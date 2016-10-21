@@ -1,0 +1,53 @@
+<pre><span class="ux-code-comment">/**
+ * Demonstrates how to use an Ext.Carousel in vertical and horizontal configurations
+ */</span>
+Ext.define('Kitchensink.view.Carousel', {
+    extend: 'Ext.Container',
+
+    requires: [
+        'Ext.carousel.Carousel'
+    ],
+
+    config: {
+        cls: 'cards',
+        layout: {
+            type: 'vbox',
+            align: 'stretch'
+        },
+        defaults: {
+            flex: 1
+        },
+        items: [{
+            xtype: 'carousel',
+            items: [{
+                html: '&lt;p&gt;Swipe left to show the next card…&lt;/p&gt;',
+                cls: 'card'
+            },
+            {
+                html: '&lt;p&gt;You can also tap on either side of the indicators.&lt;/p&gt;',
+                cls: 'card'
+            },
+            {
+                html: 'Card #3',
+                cls: 'card'
+            }]
+        }, {
+            xtype: 'carousel',
+            ui: 'light',
+            direction: 'vertical',
+            items: [{
+                html: '&lt;p&gt;Carousels can also be vertical &lt;em&gt;(swipe up)…&lt;/p&gt;',
+                cls: 'card dark'
+            },
+            {
+                html: 'And can also use &lt;code&gt;ui:light&lt;/code&gt;.',
+                cls: 'card dark'
+            },
+            {
+                html: 'Card #3',
+                cls: 'card dark'
+            }]
+        }]
+    }
+});
+</pre>

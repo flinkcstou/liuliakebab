@@ -16,6 +16,8 @@
 /www/bootstrap.js
 /www/bootstrap.json
 /www/sass/
+/www/resources/css/
+/www/resources/sass/.sass-cache/
 
 # OS generated files #
 ######################
