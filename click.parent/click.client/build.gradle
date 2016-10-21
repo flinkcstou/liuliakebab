@@ -1,0 +1,38 @@
+dependencies {}
+
+task clearClient(type: JavaExec, group: 'client_inner') {
+  classpath { [sourceSets.test.runtimeClasspath] }
+
+  main = 'kz.greetgo.click.client.ClearClient'
+  args = []
+}
+
+task senchaAppRefresh(type: JavaExec, group: 'client_inner') {
+  classpath { [sourceSets.test.runtimeClasspath] }
+
+  main = 'kz.greetgo.click.client.SenchaAppRefresh'
+  args = []
+}
+
+clean.dependsOn clearClient
+
+task prepareCordovaStandWWW(type: JavaExec, group: 'client_inner') {
+  dependsOn senchaAppRefresh
+  classpath { [sourceSets.test.runtimeClasspath] }
+
+  main = 'kz.greetgo.click.client.PrepareCordovaStandWWW'
+  args = []
+}
+
+task buildAndroid(type: JavaExec, group: 'client_inner') {
+  classpath { [sourceSets.test.runtimeClasspath] }
+
+  main = 'kz.greetgo.click.client.BuildAndroid'
+  args = []
+}
+
+task buildStandAndroid(group: 'client') {
+  dependsOn prepareCordovaStandWWW
+  dependsOn buildAndroid
+}
+buildAndroid.shouldRunAfter prepareCordovaStandWWW
