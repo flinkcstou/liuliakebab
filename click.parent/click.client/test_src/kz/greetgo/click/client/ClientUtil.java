@@ -8,11 +8,11 @@ public class ClientUtil {
   public static File getClientDir() throws IOException {
     {
       File dir = new File(".").getAbsoluteFile().getCanonicalFile();
-      if (dir.exists() && "mwallet.client".equals(dir.getName())) return dir;
+      if (dir.exists() && "click.client".equals(dir.getName())) return dir;
     }
     {
-      File dir = new File("mwallet.client").getAbsoluteFile().getCanonicalFile();
-      if (dir.exists() && "mwallet.client".equals(dir.getName())) return dir;
+      File dir = new File("click.client").getAbsoluteFile().getCanonicalFile();
+      if (dir.exists() && "click.client".equals(dir.getName())) return dir;
     }
 
     throw new RuntimeException("Cannot find client dir");
