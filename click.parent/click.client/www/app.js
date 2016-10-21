@@ -17,15 +17,19 @@ Ext.application({
     'Ext.MessageBox'
   ],
 
-  views: [
+  controllers: [
     'Main'
   ],
 
+  views: [
+    'ViewMain'
+  ],
+
   icon: {
-    '57' : 'resources/icons/Icon.png',
-    '72' : 'resources/icons/Icon~ipad.png',
-    '114': 'resources/icons/Icon@2x.png',
-    '144': 'resources/icons/Icon~ipad@2x.png'
+    '57' : 'resources/icons/left/Icon.png',
+    '72' : 'resources/icons/left/Icon~ipad.png',
+    '114': 'resources/icons/left/Icon@2x.png',
+    '144': 'resources/icons/left/Icon~ipad@2x.png'
   },
 
   isIconPrecomposed: true,
@@ -37,14 +41,6 @@ Ext.application({
     '748x1024' : 'resources/startup/748x1024.png',
     '1536x2008': 'resources/startup/1536x2008.png',
     '1496x2048': 'resources/startup/1496x2048.png'
-  },
-
-  launch: function () {
-    // Destroy the #appLoadingIndicator element
-    Ext.fly('appLoadingIndicator').destroy();
-
-    // Initialize the main view
-    Ext.Viewport.add(Ext.create('Click.view.Main'));
   },
 
   onUpdated: function () {
