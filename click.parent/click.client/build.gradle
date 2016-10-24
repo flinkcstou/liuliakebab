@@ -1,5 +1,5 @@
 dependencies {
-  testCompile 'kz.greetgo.cordosencha:cordosencha.gradle:0.0.2'
+  testCompile 'kz.greetgo.cordosencha:cordosencha.gradle:0.0.3'
 }
 
 task clearClient(type: JavaExec, group: 'client_inner') {
@@ -18,8 +18,15 @@ task senchaAppRefresh(type: JavaExec, group: 'client_inner') {
 
 clean.dependsOn clearClient
 
+task senchaAppBuildDevelopment(type: JavaExec, group: 'client_inner') {
+  classpath { [sourceSets.test.runtimeClasspath] }
+
+  main = 'kz.greetgo.click.client.Commander'
+  args = ['senchaAppBuildDevelopment']
+}
+
 task prepareCordovaStandWWW(type: JavaExec, group: 'client_inner') {
-  dependsOn senchaAppRefresh
+  dependsOn senchaAppBuildDevelopment
   classpath { [sourceSets.test.runtimeClasspath] }
 
   main = 'kz.greetgo.click.client.Commander'
@@ -32,6 +39,7 @@ task buildAndroid(type: JavaExec, group: 'client_inner') {
   main = 'kz.greetgo.click.client.Commander'
   args = ['buildAndroid']
 }
+
 
 task buildStandAndroid(group: 'client') {
   dependsOn prepareCordovaStandWWW
