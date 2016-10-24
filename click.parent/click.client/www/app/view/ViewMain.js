@@ -45,6 +45,7 @@ Ext.define('Click.view.ViewMain', {
       }, {
         xtype: 'carouselElement',
         text : 'HIHIHI',
+        //backIcon: 'resources/images/card_bg.jpg',
         //cls  : 'card',
         //style: 'background-color: #759E60'
       }, {
