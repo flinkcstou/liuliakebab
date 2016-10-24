@@ -72,7 +72,16 @@
    */
   "css": [
     {
-      "path": "resources/css/app.css",
+      "path": "resources/css/desktop.css",
+      "platform": ["desktop"],
+      "update": "delta"
+    }, {
+      "path": "resources/css/android.css",
+      "platform": ["android"],
+      "update": "delta"
+    }, {
+      "path": "resources/css/ios.css",
+      "platform": ["ios"],
       "update": "delta"
     }
   ],

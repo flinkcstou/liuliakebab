@@ -3,7 +3,8 @@ Ext.define('Click.view.ViewMain', {
   xtype : 'main',
 
   requires: [
-    'Ext.carousel.Carousel'
+    'Ext.carousel.Carousel',
+    'Click.component.CarouselElement',
   ],
 
   config: {
@@ -28,17 +29,28 @@ Ext.define('Click.view.ViewMain', {
       flex     : 29,
 
       items: [{
-        html : 'hi 1',
-        cls  : 'card',
-        style: 'background-color: #5E99CC'
+        //html: 'hi 1',
+        //cls  : 'card',
+        xtype : 'panel',
+        layout: 'hbox',
+
+        items: [{
+          xtype : 'button',
+          text  : 'asd',
+          flex  : 1,
+          margin: '1em 2em',
+        }],
+
+        //style: 'background-color: #5E99CC'
       }, {
-        html : 'hi 2',
-        cls  : 'card',
-        style: 'background-color: #759E60'
+        xtype: 'carouselElement',
+        text : 'HIHIHI',
+        //cls  : 'card',
+        //style: 'background-color: #759E60'
       }, {
-        html : 'Card #3',
-        cls  : 'card',
-        style: 'background-color: red'
+        html: 'Card #3',
+        //cls  : 'card',
+        //style: 'background-color: red'
       }]
     }, {
       xtype   : 'container',
@@ -49,7 +61,7 @@ Ext.define('Click.view.ViewMain', {
         flex     : 1,
         margin   : '0.5em 0 0 0.5em',
         xtype    : 'button',
-        ui       : 'normal',
+        //ui       : 'plain',
         iconAlign: 'top',
         iconMask : true,
       },
