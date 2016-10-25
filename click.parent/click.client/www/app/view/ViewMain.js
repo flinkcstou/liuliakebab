@@ -27,31 +27,16 @@ Ext.define('Click.view.ViewMain', {
       xtype    : 'carousel',
       direction: 'horizontal',
       flex     : 29,
+      defaults : {
+        xtype: 'carouselElement',
+      },
 
       items: [{
-        //html: 'hi 1',
-        //cls  : 'card',
-        xtype : 'panel',
-        layout: 'hbox',
-
-        items: [{
-          xtype : 'button',
-          text  : 'asd',
-          flex  : 1,
-          margin: '1em 2em',
-        }],
-
-        //style: 'background-color: #5E99CC'
+        sum: '234000.99',
       }, {
-        xtype: 'carouselElement',
-        text : 'HIHIHI',
-        //backIcon: 'resources/images/card_bg.jpg',
-        //cls  : 'card',
-        //style: 'background-color: #759E60'
+        sum: '1700000.23',
       }, {
-        html: 'Card #3',
-        //cls  : 'card',
-        //style: 'background-color: red'
+        sum: '100000.99',
       }]
     }, {
       xtype   : 'container',
