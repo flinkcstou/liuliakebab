@@ -47,7 +47,7 @@ Ext.define('Click.view.ViewMain', {
         flex     : 1,
         margin   : '0.5em 0 0 0.5em',
         xtype    : 'button',
-        //ui       : 'plain',
+        ui       : 'big-icon',
         iconAlign: 'top',
         iconMask : true,
       },
@@ -71,7 +71,7 @@ Ext.define('Click.view.ViewMain', {
         flex     : 1,
         margin   : '0.5em 0 0 0.5em',
         xtype    : 'button',
-        ui       : 'normal',
+        ui       : 'big-icon',
         iconAlign: 'top',
       },
 
@@ -88,10 +88,11 @@ Ext.define('Click.view.ViewMain', {
       flex    : 20,
       padding : '0 0.5em 0 0',
       defaults: {
-        flex  : 1,
-        margin: '0.5em 0 0 0.5em',
-        xtype : 'button',
-        ui    : 'normal',
+        flex     : 1,
+        margin   : '0.5em 0 0 0.5em',
+        xtype    : 'button',
+        ui       : 'big-icon',
+        iconAlign: 'top',
       },
 
       items: [{

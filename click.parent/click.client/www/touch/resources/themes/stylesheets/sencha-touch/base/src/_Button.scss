@@ -3,72 +3,102 @@
  */
 
 .x-button {
-    @include st-box;
+  @include st-box;
+  @include st-box-align(center);
+
+  background-color: #eee;
+  border: 1px solid #ccc;
+
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  .x-button-icon {
+    //position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .x-button-icon.x-shown {
+    display: block;
+    width: 100%;
+    @include st-box-flex(1);
     @include st-box-align(center);
+  }
 
-    background-color: #eee;
-    border: 1px solid #ccc;
+  .x-button-icon.x-hidden {
+    display: none;
+  }
+}
 
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-
-    .x-button-icon {
-        position: relative;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-
-    .x-button-icon.x-shown {
-        display: block;
-    }
-
-    .x-button-icon.x-hidden {
-        display: none;
-    }
+.x-button.x-button-pressing {
+  background-color: #d6d6d6;
 }
 
 // Button icon alignment
 .x-iconalign-left,
 .x-icon-align-right {
-    @include st-box-orient(horizontal);
+  @include st-box-orient(horizontal);
 }
 
 .x-iconalign-top,
-.x-iconalign-bottom {
-    @include st-box-orient(vertical);
+.x-iconalign-bottom,
+.x-iconalign-center {
+  @include st-box-orient(vertical);
 }
 
 .x-iconalign-bottom,
 .x-iconalign-right {
-    @include st-box-direction(reverse);
+  @include st-box-direction(reverse);
 }
 
-.x-iconalign-center {
-    @include st-box-pack(center);
-}
+//.x-iconalign-center {
+//  @include st-box-pack(center);
+//}
 
 // Button labels
 .x-button-label {
-    @include st-box-flex(1);
-    @include st-box-align(center);
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-align: center;
-    display: block;
-    overflow: hidden;
+
+  @include st-box-flex(1);
+  @include st-box-align(center);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+  vertical-align: middle;
+  //display: block;
+  @include st-box;
+  overflow: hidden;
 }
 
 .x-badge {
-    @extend .x-button-label;
-    background-color: #ccc;
-    border: 1px solid #aaa;
-    z-index: 2;
-    position: absolute !important;
-    width: auto;
-    font-size: .6em;
-    right: 0;
-    top: 0;
-    max-width: 95%;
-    display: inline-block;
+  @extend .x-button-label;
+  background-color: #ccc;
+  border: 1px solid #aaa;
+  z-index: 2;
+  position: absolute !important;
+  width: auto;
+  font-size: .6em;
+  right: 0;
+  top: 0;
+  max-width: 95%;
+  display: inline-block;
+}
+
+.x-button-plain {
+  border: none;
+  background: transparent;
+}
+
+.x-button-big-icon {
+  border: none;
+  background: transparent;
+
+  .x-button-icon.x-shown {
+    @include st-box-flex(3);
+  }
+
+  .x-button-label {
+    @include st-box-flex(1);
+  }
+
 }
