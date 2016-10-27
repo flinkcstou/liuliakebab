@@ -37,6 +37,8 @@ Ext.define('Click.view.ViewMain', {
         sum: '1700000.23',
       }, {
         sum: '100000.99',
+      }, {
+        sum: '1111',
       }]
     }, {
       xtype   : 'container',
