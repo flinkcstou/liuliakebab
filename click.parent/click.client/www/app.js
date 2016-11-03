@@ -12,18 +12,25 @@
 Ext.application({
   name: 'Click',
 
-  requires: ['Ext.MessageBox'],
+  requires: ['Ext.MessageBox', 'Ext.device.Contacts'],
+
 
   controllers: [
     'MainPageController',
     'MyCardsController',
     'MyPaymentController',
+    'MyFinanceController',
+    'TransferController',
+    'ReportController'
   ],
 
   views: [
     'ViewMainPage',
     'ViewMyCards',
     'ViewMyPayment',
+    'ViewMyFinance',
+    'ViewTransfer',
+    'ViewReport'
 
   ],
 
@@ -44,6 +51,8 @@ Ext.application({
     '1536x2008': 'resources/startup/1536x2008.png',
     '1496x2048': 'resources/startup/1496x2048.png'
   },
+
+
 
   onUpdated: function () {
     Ext.Msg.confirm(

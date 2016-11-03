@@ -1,6 +1,6 @@
 Ext.define('Click.view.ViewMainPage', {
   extend: 'Ext.Panel',
-  xtype : 'viewMain',
+  xtype: 'viewMain',
 
   requires: [
     'Ext.carousel.Carousel',
@@ -8,26 +8,26 @@ Ext.define('Click.view.ViewMainPage', {
   ],
 
   config: {
-    cls   : 'cards',
+    cls: 'cards',
     layout: {
-      type : 'vbox',
+      type: 'vbox',
       align: 'stretch'
     },
 
     items: [{
-      xtype : 'container',
+      xtype: 'container',
       layout: 'hbox',
-      flex  : 17,
+      flex: 17,
 
       items: [{
         xtype: 'label',
-        html : 'ssssssss',
+        html: 'ssssssss',
       }],
     }, {
-      xtype    : 'carousel',
+      xtype: 'carousel',
       direction: 'horizontal',
-      flex     : 29,
-      defaults : {
+      flex: 29,
+      defaults: {
         xtype: 'carouselElement',
       },
 
@@ -41,17 +41,17 @@ Ext.define('Click.view.ViewMainPage', {
         sum: '1111',
       }]
     }, {
-      xtype   : 'container',
-      layout  : 'hbox',
-      flex    : 18,
-      padding : '0 0.5em 0 0',
+      xtype: 'container',
+      layout: 'hbox',
+      flex: 18,
+      padding: '0 0.5em 0 0',
       defaults: {
-        flex     : 1,
-        margin   : '0.5em 0 0 0.5em',
-        xtype    : 'button',
-        ui       : 'big-icon',
+        flex: 1,
+        margin: '0.5em 0 0 0.5em',
+        xtype: 'button',
+        ui: 'big-icon',
         iconAlign: 'top',
-        iconMask : true,
+        iconMask: true,
       },
 
       items: [{
@@ -68,35 +68,37 @@ Ext.define('Click.view.ViewMainPage', {
         action: 'myFinance',
       }],
     }, {
-      xtype   : 'container',
-      layout  : 'hbox',
-      flex    : 18,
-      padding : '0 0.5em 0 0',
+      xtype: 'container',
+      layout: 'hbox',
+      flex: 18,
+      padding: '0 0.5em 0 0',
       defaults: {
-        flex     : 1,
-        margin   : '0.5em 0 0 0.5em',
-        xtype    : 'button',
-        ui       : 'big-icon',
+        flex: 1,
+        margin: '0.5em 0 0 0.5em',
+        xtype: 'button',
+        ui: 'big-icon',
         iconAlign: 'top',
       },
 
       items: [{
         text: 'Переводы',
         icon: 'resources/icons/32x32/main/Icon32x32_Transactions.png',
+        action: 'transfer',
       }, {
         text: 'Отчёты',
         icon: 'resources/icons/32x32/main/Icon32x32_Reports.png',
+        action: 'report',
       }],
     }, {
-      xtype   : 'container',
-      layout  : 'hbox',
-      flex    : 20,
-      padding : '0 0.5em 0 0',
+      xtype: 'container',
+      layout: 'hbox',
+      flex: 20,
+      padding: '0 0.5em 0 0',
       defaults: {
-        flex     : 1,
-        margin   : '0.5em 0 0 0.5em',
-        xtype    : 'button',
-        ui       : 'big-icon',
+        flex: 1,
+        margin: '0.5em 0 0 0.5em',
+        xtype: 'button',
+        ui: 'big-icon',
         iconAlign: 'top',
       },
 
@@ -114,13 +116,13 @@ Ext.define('Click.view.ViewMainPage', {
         icon: 'resources/icons/32x32/logos/Icon32x32_logo3.png',
       }],
     }, {
-      xtype   : 'container',
-      layout  : 'hbox',
-      flex    : 5,
+      xtype: 'container',
+      layout: 'hbox',
+      flex: 5,
       defaults: {
-        flex  : 1,
+        flex: 1,
         margin: '0.5em',
-        xtype : 'label',
+        xtype: 'label',
       },
 
       items: [{

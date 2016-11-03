@@ -14,20 +14,34 @@ Ext.define('Click.controller.MainPageController', {
       myPaymentButton: 'viewMain button[action = myPay]',
       myCardsButton: 'viewMain button[action = myCards]',
       myFinanceButton: 'viewMain button[action = myFinance]',
+      transferButton: 'viewMain button[action = transfer]',
+      reportButton: 'viewMain button[action = report]',
     },
     control: {
+
       view: {
         show: 'onShow',
       },
+
       myPaymentButton: {
         tap: 'myPaymentButtonTap',
       },
+
       myCardsButton: {
         tap: 'myCardsButtonTap'
       },
+
       myFinanceButton: {
         tap: 'myFinanceButtonTap'
       },
+
+      transferButton: {
+        tap: 'transferButtonTap',
+      },
+
+      reportButton: {
+        tap: 'reportButtonTap',
+      }
     }
 
   },
@@ -47,4 +61,13 @@ Ext.define('Click.controller.MainPageController', {
   myFinanceButtonTap: function(){
     this.showView('ViewMyFinance');
   },
+
+  transferButtonTap: function(){
+    this.showView('ViewTransfer')
+  },
+
+  reportButtonTap: function(){
+    this.showView('ViewReport')
+  },
+
 });
