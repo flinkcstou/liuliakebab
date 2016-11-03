@@ -9,10 +9,11 @@ Ext.define('Click.controller.MainPageController', {
 
   config: {
     refs:{
-      view:'mainView',
+      view:'viewMain',
 
-      myPaymentButton: 'mainView button[action = myPay]',
-      myCardsButton: 'mainView button[action = myCards]'
+      myPaymentButton: 'viewMain button[action = myPay]',
+      myCardsButton: 'viewMain button[action = myCards]',
+      myFinanceButton: 'viewMain button[action = myFinance]',
     },
     control: {
       view: {
@@ -23,7 +24,10 @@ Ext.define('Click.controller.MainPageController', {
       },
       myCardsButton: {
         tap: 'myCardsButtonTap'
-      }
+      },
+      myFinanceButton: {
+        tap: 'myFinanceButtonTap'
+      },
     }
 
   },
@@ -38,5 +42,9 @@ Ext.define('Click.controller.MainPageController', {
 
   myCardsButtonTap: function(){
     this.showView('ViewMyCards');
-  }
+  },
+
+  myFinanceButtonTap: function(){
+    this.showView('ViewMyFinance');
+  },
 });

@@ -1,6 +1,6 @@
 Ext.define('Click.view.ViewMainPage', {
   extend: 'Ext.Panel',
-  xtype : 'mainView',
+  xtype : 'viewMain',
 
   requires: [
     'Ext.carousel.Carousel',
@@ -65,6 +65,7 @@ Ext.define('Click.view.ViewMainPage', {
       }, {
         text: 'Мои финансы',
         icon: 'resources/icons/32x32/main/Icon32x32_MyFinances.png',
+        action: 'myFinance',
       }],
     }, {
       xtype   : 'container',
