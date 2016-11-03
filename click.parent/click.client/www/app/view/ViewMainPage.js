@@ -1,6 +1,6 @@
-Ext.define('Click.view.ViewMain', {
+Ext.define('Click.view.ViewMainPage', {
   extend: 'Ext.Panel',
-  xtype : 'main',
+  xtype : 'mainView',
 
   requires: [
     'Ext.carousel.Carousel',
@@ -57,9 +57,11 @@ Ext.define('Click.view.ViewMain', {
       items: [{
         text: 'Оплата',
         icon: 'resources/icons/32x32/main/Icon32x32_Payment.png',
+        action: 'myPay',
       }, {
         text: 'Мои карты',
         icon: 'resources/icons/32x32/main/Icon32x32_MyCards.png',
+        action: 'myCards'
       }, {
         text: 'Мои финансы',
         icon: 'resources/icons/32x32/main/Icon32x32_MyFinances.png',
@@ -123,6 +125,6 @@ Ext.define('Click.view.ViewMain', {
       items: [{
         html: 'asd 111',
       }],
-    }],
+    }]
   },
 });
