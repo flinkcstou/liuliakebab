@@ -1,73 +1,82 @@
 Ext.define('Click.controller.MainPageController', {
-  extend: 'Click.controller.Base',
+      extend: 'Click.controller.Base',
 
-  launch: function () {
-    window.interaction = {};
-    Ext.fly('appLoadingIndicator').destroy();
-    this.showView('ViewMainPage');
-  },
-
-  config: {
-    refs:{
-      view:'viewMain',
-
-      myPaymentButton: 'viewMain button[action = myPay]',
-      myCardsButton: 'viewMain button[action = myCards]',
-      myFinanceButton: 'viewMain button[action = myFinance]',
-      transferButton: 'viewMain button[action = transfer]',
-      reportButton: 'viewMain button[action = report]',
-    },
-    control: {
-
-      view: {
-        show: 'onShow',
+      launch: function () {
+        window.interaction = {};
+        Ext.fly('appLoadingIndicator').destroy();
+        this.showView('ViewMainPage');
       },
 
-      myPaymentButton: {
-        tap: 'myPaymentButtonTap',
+      config: {
+        refs: {
+          view: 'viewMain',
+
+          myPaymentButton: 'viewMain button[action = myPay]',
+          autoPayButton: 'viewMain button[action = autoPay]',
+          myFinanceButton: 'viewMain button[action = myFinance]',
+          transferButton: 'viewMain button[action = transfer]',
+          reportButton: 'viewMain button[action = report]',
+          openFooterButton: 'viewMain button[action = openFooter]'
+        },
+        control: {
+
+          view: {
+            show: 'onShow'
+          },
+
+          myPaymentButton: {
+            tap: 'myPaymentButtonTap'
+          },
+
+          autoPayButton: {
+            tap: 'autoPayButtonTap'
+          },
+
+          myFinanceButton: {
+            tap: 'myFinanceButtonTap'
+          },
+
+          transferButton: {
+            tap: 'transferButtonTap'
+          },
+
+          reportButton: {
+            tap: 'reportButtonTap'
+          },
+
+          openFooterButton: {
+            tap: 'openFooterTap'
+          }
+        }
+
       },
 
-      myCardsButton: {
-        tap: 'myCardsButtonTap'
+      onShow: function () {
+
       },
 
-      myFinanceButton: {
-        tap: 'myFinanceButtonTap'
+      myPaymentButtonTap: function () {
+        this.showView('ViewMyPayment');
       },
 
-      transferButton: {
-        tap: 'transferButtonTap',
+      autoPayButtonTap: function () {
+        this.showView('ViewAutoPay');
       },
 
-      reportButton: {
-        tap: 'reportButtonTap',
+      myFinanceButtonTap: function () {
+        this.showView('ViewMyFinance');
+      },
+
+      transferButtonTap: function () {
+        this.showView('ViewTransfer')
+      },
+
+      reportButtonTap: function () {
+        this.showView('ViewReport')
+      },
+
+      openFooterTap: function () {
+        this.showView('TestFooter');
       }
-    }
-
-  },
-
-  onShow: function(){
-
-  },
-
-  myPaymentButtonTap: function(){
-    this.showView('ViewMyPayment');
-  },
-
-  myCardsButtonTap: function(){
-    this.showView('ViewMyCards');
-  },
-
-  myFinanceButtonTap: function(){
-    this.showView('ViewMyFinance');
-  },
-
-  transferButtonTap: function(){
-    this.showView('ViewTransfer')
-  },
-
-  reportButtonTap: function(){
-    this.showView('ViewReport')
-  },
 
 });

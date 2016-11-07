@@ -5,6 +5,6 @@ Ext.define('Click.controller.Base', {
   showView: function (viewClass) {
     Ext.Viewport.removeAll(true, true);
     Ext.Viewport.add(Ext.create('Click.view.' + viewClass));
-  },
+  }
 
 });

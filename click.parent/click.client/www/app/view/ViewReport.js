@@ -13,18 +13,18 @@ Ext.define('Click.view.ViewReport',{
           {
             xtype: 'button',
             text: '<--',
-            action: 'back',
+            action: 'back'
           },
           {
-            xtype: 'spacer',
+            xtype: 'spacer'
           },
           {
             xtype:'label',
             name: 'title',
-            html: 'Отчёты',
+            html: 'Отчёты'
           },
           {
-            xtype: 'spacer',
+            xtype: 'spacer'
           }
         ]
       }]

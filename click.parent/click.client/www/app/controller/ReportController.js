@@ -6,15 +6,15 @@ Ext.define('Click.controller.ReportController', {
     refs: {
       view: 'viewReport',
 
-      backButton: 'viewReport button[action=back]',
+      backButton: 'viewReport button[action=back]'
     },
 
     control: {
       view: {
-        show: 'onShow',
+        show: 'onShow'
       },
       backButton: {
-        tap: 'backButtonTap',
+        tap: 'backButtonTap'
       }
     }
   },
@@ -25,6 +25,6 @@ Ext.define('Click.controller.ReportController', {
 
   backButtonTap: function () {
     this.showView('ViewMainPage');
-  },
+  }
 
 });

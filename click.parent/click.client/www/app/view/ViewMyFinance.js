@@ -9,7 +9,7 @@ Ext.define('Click.view.ViewMyFinance', {
       items:[{
         xtype:'button',
         text:'<--',
-        action: 'back',
+        action: 'back'
       },
         {
           xtype: 'spacer'
@@ -17,7 +17,7 @@ Ext.define('Click.view.ViewMyFinance', {
         {
           xtype: 'label',
           name: 'title',
-          html: 'Мои финансы',
+          html: 'Мои финансы'
         },
         {
           xtype: 'spacer'

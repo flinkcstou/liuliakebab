@@ -13,22 +13,22 @@ Ext.define('Click.view.ViewTransfer', {
           {
             xtype: 'button',
             text: '<--',
-            action: 'back',
+            action: 'back'
           },
           {
-            xtype: 'spacer',
+            xtype: 'spacer'
           },
           {
             xtype: 'label',
             name: 'title',
-            html: 'Переводы',
+            html: 'Переводы'
           },
           {
-            xtype: 'spacer',
+            xtype: 'spacer'
           }
         ]
       }]
-  },
+  }
 
 });
 

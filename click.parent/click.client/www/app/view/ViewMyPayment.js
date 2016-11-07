@@ -13,18 +13,18 @@ Ext.define('Click.view.ViewMyPayment',{
         {
         xtype: 'button',
         text: '<--',
-        action: 'back',
+        action: 'back'
       },
         {
-          xtype: 'spacer',
+          xtype: 'spacer'
         },
         {
           xtype:'label',
           name: 'title',
-          html: 'Мои оплаты',
+          html: 'Мои оплаты'
         },
         {
-          xtype: 'spacer',
+          xtype: 'spacer'
         }
       ]
     }]

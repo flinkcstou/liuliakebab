@@ -5,12 +5,12 @@ Ext.define('Click.controller.MyFinanceController', {
     refs:{
       view: 'viewMyFinance',
 
-      backButton: 'viewMyFinance button[action = back]',
+      backButton: 'viewMyFinance button[action = back]'
     },
 
     control:{
       backButton: {
-        tap: 'backButtonTap',
+        tap: 'backButtonTap'
       }
     }
 

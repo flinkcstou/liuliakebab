@@ -4,15 +4,15 @@ Ext.define('Click.controller.MyPaymentController', {
   config: {
     refs: {
       view        : 'viewMyPayment',
-      backButton  : 'viewMyPayment button[action = back]',
+      backButton  : 'viewMyPayment button[action = back]'
     },
 
     control: {
       view:{
-        show: 'onShow',
+        show: 'onShow'
       },
       backButton: {
-        tap: 'backButtonTap',
+        tap: 'backButtonTap'
       }
     }
   },

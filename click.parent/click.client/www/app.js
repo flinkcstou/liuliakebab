@@ -12,12 +12,12 @@
 Ext.application({
   name: 'Click',
 
-  requires: ['Ext.MessageBox', 'Ext.device.Contacts'],
+  requires: ['Ext.MessageBox','Ext.device.Contacts'],
 
 
   controllers: [
     'MainPageController',
-    'MyCardsController',
+    'AutoPayController',
     'MyPaymentController',
     'MyFinanceController',
     'TransferController',
@@ -26,11 +26,12 @@ Ext.application({
 
   views: [
     'ViewMainPage',
-    'ViewMyCards',
+    'ViewAutoPay',
     'ViewMyPayment',
     'ViewMyFinance',
     'ViewTransfer',
-    'ViewReport'
+    'ViewReport',
+    'TestFooter'
 
   ],
 

@@ -1,20 +1,20 @@
-Ext.define('Click.controller.MyCardsController', {
+Ext.define('Click.controller.AutoPayController', {
   extend: 'Click.controller.Base',
 
 
   config: {
     refs: {
-      view: 'viewMyCards',
+      view: 'viewAutoPay',
 
-      backButton: 'viewMyCards button[action=back]',
+      backButton: 'viewAutoPay button[action=back]'
     },
 
     control: {
       view: {
-        show: 'onShow',
+        show: 'onShow'
       },
       backButton: {
-        tap: 'backButtonTap',
+        tap: 'backButtonTap'
       }
     }
   },
@@ -25,6 +25,6 @@ Ext.define('Click.controller.MyCardsController', {
 
   backButtonTap: function () {
     this.showView('ViewMainPage');
-  },
+  }
 
 });

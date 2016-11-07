@@ -1,9 +1,10 @@
-Ext.define('Click.view.ViewMyCards', {
+Ext.define('Click.view.ViewAutoPay', {
   extend: 'Ext.Panel',
-  xtype: 'viewMyCards',
+  xtype: 'viewAutoPay',
 
   config: {
     title: 'cards',
+    style: 'background: #007EE4',
     items: [{
 
       xtype: 'toolbar',
@@ -16,11 +17,11 @@ Ext.define('Click.view.ViewMyCards', {
       }, {
         xtype: 'label',
         name: 'title',
-        html: 'Мои карты'
+        html: 'АВТОПЛАТЕЖ'
       }, {
         xtype: 'spacer'
       }]
     }]
-  },
+  }
 
 });

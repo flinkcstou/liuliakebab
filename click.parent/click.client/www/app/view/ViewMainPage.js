@@ -1,13 +1,16 @@
 Ext.define('Click.view.ViewMainPage', {
-  extend: 'Ext.Panel',
+  extend: 'Ext.Container',
   xtype: 'viewMain',
 
   requires: [
-    'Ext.carousel.Carousel',
+    'Ext.Panel',
+    'Ext.Carousel',
     'Click.component.CarouselElement',
+    'Ext.Menu'
   ],
 
   config: {
+    style:'background: #007EE4',
     cls: 'cards',
     layout: {
       type: 'vbox',
@@ -15,30 +18,59 @@ Ext.define('Click.view.ViewMainPage', {
     },
 
     items: [{
+      xtype: 'toolbar',
+      docked: 'top',
+      style: 'background: #007EE4',
+      //title: 'Sliding menu',
+      items: [{
+        xtype: 'button',
+        text: 'M',
+        handler: function(){
+          if(Ext.Viewport.getMenus().left.isHidden()){
+            Ext.Viewport.showMenu('left');
+          }
+          else{
+            Ext.Viewport.hideMenu('left');
+
+          }
+        }
+      },
+        {
+          xtype: 'button',
+          text: 'H',
+          action: 'openFooter',
+          docked: 'right'
+        }]
+    },
+      {
       xtype: 'container',
       layout: 'hbox',
       flex: 17,
 
       items: [{
         xtype: 'label',
-        html: 'ssssssss',
-      }],
+        style: 'font: normal 30px courier',
+
+        html: 'Общий баланс'
+
+      }]
     }, {
       xtype: 'carousel',
       direction: 'horizontal',
       flex: 29,
       defaults: {
-        xtype: 'carouselElement',
+        xtype: 'carouselElement'
       },
 
       items: [{
-        sum: '234000.99',
+        sum: '234000.99'
+
       }, {
-        sum: '1700000.23',
+        sum: '1700000.23'
       }, {
-        sum: '100000.99',
+        sum: '100000.99'
       }, {
-        sum: '1111',
+        sum: '1111'
       }]
     }, {
       xtype: 'container',
@@ -51,22 +83,23 @@ Ext.define('Click.view.ViewMainPage', {
         xtype: 'button',
         ui: 'big-icon',
         iconAlign: 'top',
-        iconMask: true,
+        iconMask: true
       },
 
       items: [{
-        text: 'Оплата',
+        text: 'ОПЛАТА',
         icon: 'resources/icons/32x32/main/Icon32x32_Payment.png',
-        action: 'myPay',
+        action: 'myPay'
       }, {
-        text: 'Мои карты',
+        text: 'ПЕРЕВОДЫ',
+        icon: 'resources/icons/32x32/main/Icon32x32_Transactions.png',
+        action: 'transfer'
+
+      }, {
+        text: 'АВТОПЛАТЕЖ',
         icon: 'resources/icons/32x32/main/Icon32x32_MyCards.png',
-        action: 'myCards'
-      }, {
-        text: 'Мои финансы',
-        icon: 'resources/icons/32x32/main/Icon32x32_MyFinances.png',
-        action: 'myFinance',
-      }],
+        action: 'autoPay'
+      }]
     }, {
       xtype: 'container',
       layout: 'hbox',
@@ -77,18 +110,19 @@ Ext.define('Click.view.ViewMainPage', {
         margin: '0.5em 0 0 0.5em',
         xtype: 'button',
         ui: 'big-icon',
-        iconAlign: 'top',
+        iconAlign: 'top'
       },
 
       items: [{
-        text: 'Переводы',
-        icon: 'resources/icons/32x32/main/Icon32x32_Transactions.png',
-        action: 'transfer',
+        text: 'МОИ ФИНАНСЫ',
+        icon: 'resources/icons/32x32/main/Icon32x32_MyFinances.png',
+        action: 'myFinance'
+
       }, {
-        text: 'Отчёты',
+        text: 'ОТЧЁТЫ',
         icon: 'resources/icons/32x32/main/Icon32x32_Reports.png',
-        action: 'report',
-      }],
+        action: 'report'
+      }]
     }, {
       xtype: 'container',
       layout: 'hbox',
@@ -99,22 +133,22 @@ Ext.define('Click.view.ViewMainPage', {
         margin: '0.5em 0 0 0.5em',
         xtype: 'button',
         ui: 'big-icon',
-        iconAlign: 'top',
-      },
+        iconAlign: 'top'
+      }
 
-      items: [{
-        icon: 'resources/icons/32x32/logos/Icon32x32_logo1.png',
+      /*items: [{
+        icon: 'resources/icons/32x32/logos/Icon32x32_logo1.png'
       }, {
-        icon: 'resources/icons/32x32/logos/Icon32x32_logo2.png',
+        icon: 'resources/icons/32x32/logos/Icon32x32_logo2.png'
       }, {
-        icon: 'resources/icons/32x32/logos/Icon32x32_logo3.png',
+        icon: 'resources/icons/32x32/logos/Icon32x32_logo3.png'
       }, {
-        icon: 'resources/icons/32x32/logos/Icon32x32_logo1.png',
+        icon: 'resources/icons/32x32/logos/Icon32x32_logo1.png'
       }, {
-        icon: 'resources/icons/32x32/logos/Icon32x32_logo2.png',
+        icon: 'resources/icons/32x32/logos/Icon32x32_logo2.png'
       }, {
-        icon: 'resources/icons/32x32/logos/Icon32x32_logo3.png',
-      }],
+        icon: 'resources/icons/32x32/logos/Icon32x32_logo3.png'
+      }]*/
     }, {
       xtype: 'container',
       layout: 'hbox',
@@ -122,12 +156,52 @@ Ext.define('Click.view.ViewMainPage', {
       defaults: {
         flex: 1,
         margin: '0.5em',
-        xtype: 'label',
-      },
+        xtype: 'label'
+      }
+    },
+      {
+        xtype: 'toolbar',
+        docked: 'bottom',
+        items:[
+          {
+            xtype: 'spacer'
+          },
+          {
+            xtype: 'button',
+            text: 'Контакты+',
+            handler: function () {
+              Ext.select('#listId').show();
+            }
+          },
 
-      items: [{
-        html: 'asd 111',
+          {
+            xtype: 'spacer'
+          }
+          ]
       }],
-    }]
+    listeners:{
+      initialize: function(){
+        Ext.Viewport.setMenu(this.createMenu(),{
+          side: 'left',
+          reveal: true
+        });
+      }
+    }
   },
+//Sliding menu Here
+  createMenu: function(){
+    var items = [
+      {
+        xtype: 'button',
+        text: 'button1'
+      }
+    ];
+    return Ext.create('Ext.Menu', {
+      style: 'padding: 0',
+      id: 'menu',
+      width: 300,
+      scrollable: 'vertical',
+      items: items
+    });
+  }
 });
