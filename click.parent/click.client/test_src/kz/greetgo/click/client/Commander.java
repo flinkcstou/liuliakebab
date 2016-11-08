@@ -1,8 +1,8 @@
 package kz.greetgo.click.client;
 
-import kz.greetgo.cordosencha.gradle.Cordosencha;
-import kz.greetgo.cordosencha.gradle.CordosenchaCommander;
-import kz.greetgo.cordosencha.gradle.CordosenchaConfig;
+import kz.greetgo.cordosencha.gradle.core.Cordosencha;
+import kz.greetgo.cordosencha.gradle.core.CordosenchaCommander;
+import kz.greetgo.cordosencha.gradle.core.CordosenchaConfig;
 
 public class Commander {
   public static void main(String[] args) throws Exception {
