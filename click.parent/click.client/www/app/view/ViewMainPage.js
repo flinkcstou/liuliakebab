@@ -6,7 +6,8 @@ Ext.define('Click.view.ViewMainPage', {
     'Ext.Panel',
     'Ext.Carousel',
     'Click.component.CarouselElement',
-    'Ext.Menu'
+    'Ext.Menu',
+    'Ext.Toolbar'
   ],
 
   config: {
@@ -17,12 +18,13 @@ Ext.define('Click.view.ViewMainPage', {
     },
 
     items: [{
+
       xtype: 'toolbar',
       docked: 'top',
-      //title: 'Sliding menu',
+      title: 'Sliding menu',
       items: [{
         xtype: 'button',
-        text: 'ads',
+
         handler: function(){
           if(Ext.Viewport.getMenus().left.isHidden()) {
             Ext.Viewport.showMenu('left');
