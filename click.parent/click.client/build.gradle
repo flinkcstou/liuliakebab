@@ -1,5 +1,5 @@
 dependencies {
-  testCompile 'kz.greetgo.cordosencha:cordosencha.gradle:0.0.3'
+  testCompile 'kz.greetgo.cordosencha:cordosencha.gradle:0.0.4'
 }
 
 task clearClient(type: JavaExec, group: 'client_inner') {
@@ -38,6 +38,13 @@ task buildAndroid(type: JavaExec, group: 'client_inner') {
 
   main = 'kz.greetgo.click.client.Commander'
   args = ['buildAndroid']
+}
+
+task prepareCordovaProductionWWW(type: JavaExec, group: 'client_inner') {
+  classpath { [sourceSets.test.runtimeClasspath] }
+
+  main = 'kz.greetgo.click.client.Commander'
+  args = ['prepareCordovaProductionWWW']
 }
 
 
