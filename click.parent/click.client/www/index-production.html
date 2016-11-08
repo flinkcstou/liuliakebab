@@ -3,59 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Click</title>
-  <style type="text/css">
-    /**
-    * Example of an initial loading indicator.
-    * It is recommended to keep this as minimal as possible to provide instant feedback
-    * while other resources are still being loaded for the first time
-    */
-    html, body {
-      height: 100%;
-      background-color: #ffffff;
-    }
+  <!-- @include (index-stand.html) part loading_indicator_css -->
 
-    #appLoadingIndicator {
-      background-color: #1985D0;
-      height: 100%;
-    }
-
-    #appLoadingIndicatorInner {
-      position: absolute;
-      top: 50%;
-      margin-top: -15px;
-      text-align: center;
-      width: 100%;
-      height: 30px;
-      -webkit-animation-name: appLoadingIndicator;
-      -webkit-animation-duration: 0.5s;
-      -webkit-animation-iteration-count: infinite;
-      -webkit-animation-direction: linear;
-    }
-
-    #appLoadingIndicatorInner > * {
-      background-color: #FFFFFF;
-      display: inline-block;
-      height: 30px;
-      -webkit-border-radius: 15px;
-      margin: 0 5px;
-      width: 30px;
-      opacity: 0.8;
-    }
-
-    @-webkit-keyframes appLoadingIndicator {
-      0% {
-        opacity: 0.8
-      }
-      50% {
-        opacity: 0
-      }
-      100% {
-        opacity: 0.8
-      }
-    }
-  </style>
-
-  <script type="text/javascript" src="cordova.js"></script>
+  <!-- @include (use_cordova_js.html_inc) -->
 
   <script>
     document.addEventListener("deviceready", function () {
@@ -67,12 +17,6 @@
   <script id="microloader" type="text/javascript" src=".sencha/app/microloader/development.js"></script>
 </head>
 <body>
-<div id="appLoadingIndicator">
-  <div id="appLoadingIndicatorInner">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-</div>
+<!-- @include (index-stand.html) part loading_indicator_html -->
 </body>
 </html>
