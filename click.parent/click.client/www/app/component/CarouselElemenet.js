@@ -7,7 +7,6 @@ Ext.define('Click.component.CarouselElement', {
 
     backIcon: 'resources/images/card_bg.jpg',
 
-
     sum: null,
     number: null,
   },

@@ -48,7 +48,7 @@ Ext.define('Click.view.ViewMainPage', {
 
       items: [{
         xtype: 'label',
-        style: 'font: normal 30px courier',
+        style: 'font: normal 30px Neuron',
 
         html: 'Общий баланс'
 
