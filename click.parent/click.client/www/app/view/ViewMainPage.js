@@ -48,7 +48,8 @@ Ext.define('Click.view.ViewMainPage', {
 
         items: [{
           xtype: 'label',
-          style: 'font: normal 30px courier',
+          style: 'font-family: Neuron',
+          html : 'HELLO IT IS NEURON'
 
 
         }]
@@ -71,6 +72,7 @@ Ext.define('Click.view.ViewMainPage', {
           sum: '1111'
         }]
       }, {
+
         xtype   : 'container',
         layout  : 'hbox',
         flex    : 14,
@@ -83,8 +85,8 @@ Ext.define('Click.view.ViewMainPage', {
           iconAlign: 'top',
           iconMask : true
         },
-
         items: [{
+          style: 'font-family: Neuron',
           text  : 'ОПЛАТА',
           icon  : 'resources/icons/32x32/main/Icon32x32_Payment.png',
           action: 'myPay'
@@ -101,9 +103,10 @@ Ext.define('Click.view.ViewMainPage', {
       }, {
         xtype   : 'container',
         layout  : 'hbox',
-        flex    : 18,
+        flex    : 14,
         padding : '0 0.5em 0 0',
         defaults: {
+          style: 'font-family: Neuron',
           margin   : '0.5em 0 0 0.5em',
           xtype    : 'button',
           ui       : 'big-icon',
@@ -112,11 +115,11 @@ Ext.define('Click.view.ViewMainPage', {
 
         items: [{
           text  : 'МОИ ФИНАНСЫ',
-          icon  : 'resources/icons/32x32/main/Icon32x32_MyFinances.png',
+          icon: 'resources/icons/32x32/main/Icon32x32_MyFinances.png',
           action: 'myFinance'
 
         }, {
-          text: 'ОТЧЁТЫ',
+          text  : 'ОТЧЁТЫ',
           icon: 'resources/icons/32x32/main/Icon32x32_Reports.png',
           action: 'report'
         }]
