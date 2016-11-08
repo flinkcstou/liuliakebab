@@ -1,6 +1,10 @@
 Ext.define('Click.controller.MainPageController', {
   extend: 'Click.controller.Base',
 
+  requires: [
+    'Click.store.Api',
+  ],
+
   launch: function () {
     window.interaction = {};
 
@@ -18,6 +22,8 @@ Ext.define('Click.controller.MainPageController', {
 
   runApplication: function () {
     Ext.fly('appLoadingIndicator').destroy();
+
+    window.api = Click.store.Api.create();
 
     this.showView('ViewMainPage');
   },
