@@ -8,7 +8,8 @@ Ext.define('Click.component.CarouselElement', {
     backIcon: 'resources/images/card_bg.jpg',
 
 
-    sum: null
+    sum: null,
+    number: null,
   },
 
   template: [
@@ -20,6 +21,10 @@ Ext.define('Click.component.CarouselElement', {
         tag      : 'span',
         className: 'my-carousel-card-sum',
         reference: 'sumElement'
+      }, {
+        tag      : 'span',
+        className: 'my-carousel-card-number',
+        reference: 'numberElement'
       }, {
         tag      : 'span',
         className: 'my-carousel-card-title',
@@ -42,6 +47,12 @@ Ext.define('Click.component.CarouselElement', {
     var element = this.sumElement;
 
     element.setHtml(sum);
-  }
+  },
+
+  updateNumber: function(number) {
+
+    this.numberElement.setHtml(number);
+
+  },
 
 });

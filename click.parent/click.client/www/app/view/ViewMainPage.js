@@ -10,7 +10,6 @@ Ext.define('Click.view.ViewMainPage', {
   ],
 
   config: {
-    style:'background: #007EE4',
     cls: 'cards',
     layout: {
       type: 'vbox',
@@ -20,16 +19,14 @@ Ext.define('Click.view.ViewMainPage', {
     items: [{
       xtype: 'toolbar',
       docked: 'top',
-      style: 'background: #007EE4',
       //title: 'Sliding menu',
       items: [{
         xtype: 'button',
-        text: 'M',
+        text: 'ads',
         handler: function(){
-          if(Ext.Viewport.getMenus().left.isHidden()){
+          if(Ext.Viewport.getMenus().left.isHidden()) {
             Ext.Viewport.showMenu('left');
-          }
-          else{
+          } else {
             Ext.Viewport.hideMenu('left');
 
           }
@@ -63,8 +60,8 @@ Ext.define('Click.view.ViewMainPage', {
       },
 
       items: [{
-        sum: '234000.99'
-
+        sum: '234000.99',
+        number: '432145432656365',
       }, {
         sum: '1700000.23'
       }, {
@@ -75,7 +72,7 @@ Ext.define('Click.view.ViewMainPage', {
     }, {
       xtype: 'container',
       layout: 'hbox',
-      flex: 18,
+      flex: 14,
       padding: '0 0.5em 0 0',
       defaults: {
         flex: 1,
@@ -193,7 +190,9 @@ Ext.define('Click.view.ViewMainPage', {
     var items = [
       {
         xtype: 'button',
-        text: 'button1'
+        text: 'button1',
+        iconCls: 'user',
+        class: 'menu-button'
       }
     ];
     return Ext.create('Ext.Menu', {
