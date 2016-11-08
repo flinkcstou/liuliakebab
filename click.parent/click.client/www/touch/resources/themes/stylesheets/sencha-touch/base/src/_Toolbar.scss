@@ -4,16 +4,21 @@
 
 .x-toolbar {
   position: relative;
-  background-color: #eee;
   min-height: 2.6em;
   overflow: hidden;
 
   &.x-docked-top {
-    border-bottom: 1px solid #36ff35;
+    border-bottom: 2px solid rgb(149, 230, 253);
+    padding-top: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
   }
 
   &.x-docked-bottom {
-    border-top: 1px solid;
+    border-top: 1px solid rgb(37, 160, 227);
+    color: rgb(197, 233, 239);
+    background-color: rgb(37, 159, 225);
+
   }
 
   &.x-docked-left {
@@ -56,6 +61,7 @@
 }
 
 .x-toolbar-inner {
+
   .x-field {
     .x-component-outer {
       @include st-box-flex(1);
