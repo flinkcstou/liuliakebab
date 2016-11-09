@@ -23,9 +23,9 @@ Ext.define('Click.view.ViewMainPage', {
       docked: 'top',
       items : [{
         xtype : 'button',
+        ui    : 'toolbar-left',
         icon  : 'resources/icons/32x32/menu.png',
         docked: 'left',
-        ui    : 'toolbar-left',
 
         //dlya Experimenta ne udalyat'
         handler: function () {
@@ -42,7 +42,7 @@ Ext.define('Click.view.ViewMainPage', {
           icon  : 'resources/icons/32x32/bell.png',
           action: 'openFooter',
           docked: 'right',
-          ui: 'toolbar-right',
+          ui    : 'toolbar-right',
         }]
     },
       {
@@ -75,7 +75,8 @@ Ext.define('Click.view.ViewMainPage', {
         }, {
           sum: '1111'
         }]
-      }, {
+      },
+      {
 
         xtype   : 'container',
         layout  : 'hbox',
@@ -106,9 +107,9 @@ Ext.define('Click.view.ViewMainPage', {
         }]
       }, {
         xtype   : 'container',
-        layout: 'hbox',
-        flex  : 14,
-        padding: '0 0.5em 0 0',
+        layout  : 'hbox',
+        flex    : 14,
+        padding : '0 0.5em 0 0',
         defaults: {
           style    : 'font-family: Neuron',
           margin: '0.5em 0 0 0.5em',
@@ -139,20 +140,6 @@ Ext.define('Click.view.ViewMainPage', {
           ui    : 'big-icon',
           iconAlign: 'top'
         }
-
-        /*items: [{
-         icon: 'resources/icons/32x32/logos/Icon32x32_logo1.png'
-         }, {
-         icon: 'resources/icons/32x32/logos/Icon32x32_logo2.png'
-         }, {
-         icon: 'resources/icons/32x32/logos/Icon32x32_logo3.png'
-         }, {
-         icon: 'resources/icons/32x32/logos/Icon32x32_logo1.png'
-         }, {
-         icon: 'resources/icons/32x32/logos/Icon32x32_logo2.png'
-         }, {
-         icon: 'resources/icons/32x32/logos/Icon32x32_logo3.png'
-         }]*/
       }, {
         xtype   : 'container',
         layout: 'hbox',
