@@ -37250,6 +37250,7 @@ Ext.define('Ext.Anim', {
                     mask = '-webkit-gradient(linear, left bottom, right bottom, from(transparent), to(#000), color-stop(66%, #000), color-stop(33%, transparent))';
 
                     this.from = {
+
                         '-webkit-mask-image': mask,
                         '-webkit-mask-size': el.getWidth() * 3 + 'px ' + el.getHeight() + 'px',
                         'z-index': zIndex,

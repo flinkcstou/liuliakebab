@@ -22,9 +22,12 @@ Ext.define('Click.view.ViewMainPage', {
       xtype : 'toolbar',
       docked: 'top',
       items : [{
-        xtype: 'button',
-        text : 'menu',
+        xtype : 'button',
+        icon  : 'resources/icons/32x32/menu.png',
+        docked: 'left',
+        ui    : 'toolbar-left',
 
+        //dlya Experimenta ne udalyat'
         handler: function () {
           if (Ext.Viewport.getMenus().left.isHidden()) {
             Ext.Viewport.showMenu('left');
@@ -36,9 +39,10 @@ Ext.define('Click.view.ViewMainPage', {
       },
         {
           xtype : 'button',
-          text  : 'H',
+          icon  : 'resources/icons/32x32/bell.png',
           action: 'openFooter',
-          docked: 'right'
+          docked: 'right',
+          ui: 'toolbar-right',
         }]
     },
       {
@@ -48,7 +52,7 @@ Ext.define('Click.view.ViewMainPage', {
 
         items: [{
           xtype: 'label',
-          style: 'font-family: Neuron',
+          style: 'font-family: Neuron-Bold',
           html : 'HELLO IT IS NEURON'
 
 
@@ -85,8 +89,8 @@ Ext.define('Click.view.ViewMainPage', {
           iconAlign: 'top',
           iconMask : true
         },
-        items: [{
-          style: 'font-family: Neuron',
+        items   : [{
+          style : 'font-family: Neuron',
           text  : 'ОПЛАТА',
           icon  : 'resources/icons/32x32/main/Icon32x32_Payment.png',
           action: 'myPay'
@@ -102,14 +106,14 @@ Ext.define('Click.view.ViewMainPage', {
         }]
       }, {
         xtype   : 'container',
-        layout  : 'hbox',
-        flex    : 14,
-        padding : '0 0.5em 0 0',
+        layout: 'hbox',
+        flex  : 14,
+        padding: '0 0.5em 0 0',
         defaults: {
-          style: 'font-family: Neuron',
-          margin   : '0.5em 0 0 0.5em',
-          xtype    : 'button',
-          ui       : 'big-icon',
+          style    : 'font-family: Neuron',
+          margin: '0.5em 0 0 0.5em',
+          xtype : 'button',
+          ui    : 'big-icon',
           iconAlign: 'top'
         },
 
