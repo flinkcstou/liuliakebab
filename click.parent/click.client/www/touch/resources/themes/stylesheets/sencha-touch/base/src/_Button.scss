@@ -16,12 +16,13 @@
   .x-button-icon {
     position: relative;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: bottom;
 
   }
 
   .x-button-icon.x-shown {
     display: block;
+    //width: 100%;
     background-size: contain;
     @include st-box-flex(1);
     @include st-box-align(center);
@@ -60,14 +61,13 @@
 // Button labels
 .x-button-label {
 
-  @include st-box-flex(1);
+  @include st-box-flex(0);
   @include st-box-align(center);
   white-space: nowrap;
   text-overflow: ellipsis;
   text-align: center;
   vertical-align: middle;
-  padding-top: 10px;
-  //display: block;
+  display: block;
   @include st-box;
   overflow: hidden;
 }
@@ -97,6 +97,10 @@
   width: 20px;
   height: 20px;
 
+  .x-button-icon{
+    width:100%;
+  }
+
 }
 
 .x-button-toolbar-right {
@@ -105,6 +109,10 @@
   background: transparent;
   width: 25px;
   height: 25px;
+
+  .x-button-icon{
+    width:100%;
+  }
 }
 
 .x-button-big-icon {
@@ -136,6 +144,13 @@
   background: transparent;
   // margin-left: 20px;
   //margin-top: 20px;
+
+  .x-button-icon{
+    width:40%;
+  }
+  .x-button-label{
+    height: 50%;
+  }
 }
 
 .x-button-report {
@@ -147,15 +162,31 @@
   border: none;
   background: transparent;
   //margin-left: 40px;
+
+  .x-button-icon{
+    width:40%;
+  }
+
+  .x-button-label{
+    height: 50%;;
+  }
 }
 
 .x-button-payment {
   position: absolute;
   left: 3%;
-  width: 30%;
+  width: 28%;
   height: 100%;
   border: none;
   background: transparent;
+  border-bottom:.1px solid #95E6FD;
+
+  .x-button-icon{
+    width:30%;
+  }
+  .x-button-label{
+    height: 40%;
+  }
   // margin-left: 20px;
   //margin-top: 20px;
 }
@@ -163,28 +194,39 @@
 .x-button-transfer {
   position: absolute;
   left: 35%;
-  width: 30%;
+  width: 28%;
   height: 100%;
   border: none;
   background: transparent;
+  border-bottom:.1px solid #95E6FD;
   // margin-left: 20px;
   //margin-top: 20px;
 
   .x-button-icon {
-    width: 10% !important;
+    width: 38%;
+  }
+  .x-button-label{
+    height: 40%;
   }
 
 }
 
 .x-button-autopay {
-  //position: absolute;
-  left: 65%;
-
-  width: 30%;
+  position: absolute;
+  left: 67%;
+  width: 28%;
   height: 100%;
   border: none;
   background: transparent;
-  // margin-left: 20px;
-  //margin-top: 20px;
+  border-bottom:.1px solid #95E6FD;
+
+
+  .x-button-icon{
+    width:40%;
+  }
+
+  .x-button-label{
+    height: 40%;
+  }
 }
 
