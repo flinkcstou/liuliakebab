@@ -18,7 +18,7 @@ Ext.define('Click.store.Api', {
     this.initConfig(config);
 
     if (window.fakedSocket) {
-      this.socket = window.fakedSocket;
+      this.socket = window.fakedSocket.start();
     } else {
       this.socket = new WebSocket(this.getUrl());
     }

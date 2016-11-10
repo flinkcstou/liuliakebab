@@ -1,0 +1,92 @@
+window.fakedSocket = {
+  callbacks: {}
+};
+
+window.fakedSocket.start = function () {
+
+  setTimeout(function () {
+    if (window.fakedSocket.onopen) window.fakedSocket.onopen();
+  }, 0);
+
+};
+
+window.fakedSocket.register = function (method, callback) {
+  window.fakedSocket.callbacks[method] = callback;
+};
+
+window.fakedSocket.send = function (message) {
+  var parsedMessage = JSON.parse(message);
+
+  var method = parsedMessage.method;
+
+  var callback = window.fakedSocket.callbacks[method];
+
+  if (!callback) throw new Error("No registered callback for method = " + method);
+
+  setTimeout(function () {
+    var retData;
+    try {
+      var result = callback(parsedMessage);
+      retData = {
+        api_status        : 0,
+        api_status_message: 'ok',
+
+        data: [
+          [{method: method, success: 1, error: 0, error_note: ''}],
+          [result]
+        ],
+      };
+    } catch (e) {
+      retData = {
+        api_status        : 1,
+        api_status_message: 'error',
+
+        data: [
+          [{method: method, success: 1, error: 0, error_note: ''}],
+          [e]
+        ],
+      };
+    }
+
+    if (window.fakedSocket.onmessage) window.fakedSocket.onmessage({data: retData});
+    else console.error("No onMessage")
+  }, window.fakedSocket.getCallbackTimeout());
+};
+
+window.fakedSocket.param = function (val) {
+  var result = null,
+      tmp = [];
+  location.search
+      .substr(1)
+      .split("&")
+      .forEach(function (item) {
+        tmp = item.split("=");
+        if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
+      });
+  return result;
+};
+
+window.fakedSocket.getCallbackTimeout = function () {
+  var callbackTimeoutArray = window.fakedSocket.callbackTimeoutArray;
+  if (!callbackTimeoutArray) {
+    window.fakedSocket.callbackTimeoutArray = window.fakedSocket.calculateCallbackTimeoutArray();
+    callbackTimeoutArray = window.fakedSocket.callbackTimeoutArray;
+    window.fakedSocket.callbackTimeoutArrayIndex = 0;
+  }
+  var index = window.fakedSocket.callbackTimeoutArrayIndex + 1;
+  if (index >= callbackTimeoutArray.length) {
+    index = 0;
+  }
+  window.fakedSocket.callbackTimeoutArrayIndex = index;
+  return callbackTimeoutArray[index];
+};
+
+window.fakedSocket.calculateCallbackTimeoutArray = function () {
+  var ret = [];
+  var t = window.fakedSocket.param('t');
+  if (t) t.split(',').forEach(function (item) {
+    ret.push(parseInt(item));
+  });
+  if (ret.length > 0) return ret;
+  return [0];
+};
