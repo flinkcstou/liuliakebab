@@ -7,7 +7,8 @@ Ext.define('Click.view.ViewMainPage', {
     'Ext.Carousel',
     'Click.component.CarouselElement',
     'Ext.Menu',
-    'Ext.Toolbar'
+    'Ext.Toolbar',
+    'Click.component.BottomCarouselElement'
   ],
 
   config    : {
@@ -53,7 +54,6 @@ Ext.define('Click.view.ViewMainPage', {
         items : [{
           html: 'Общий баланс',
 
-
         }]
       }, {
 
@@ -84,8 +84,6 @@ Ext.define('Click.view.ViewMainPage', {
         layout  : 'hbox',
         flex    : 14,
         defaults: {
-          //flex     : 1,
-          //margin   : '1em 0.5em',
           xtype    : 'button',
           iconAlign: 'top',
 
@@ -112,7 +110,6 @@ Ext.define('Click.view.ViewMainPage', {
         layout  : 'hbox',
         flex    : 14,
         defaults: {
-          // margin: '1em 1em',
           xtype    : 'button',
           iconAlign: 'top'
         },
@@ -134,10 +131,18 @@ Ext.define('Click.view.ViewMainPage', {
         direction: 'horizontal',
         flex     : 20,
         default  : {
-          xtype: 'bottomCarouselElement',
+          style:"margin-top:10px;"
         },
-        items    : [{},
-          {}]
+        items    : [{
+          style:"background-color: white;",
+          items:[{
+            html:'Популярные сервисы',
+            style:"color: black;"
+          }]
+        },
+          {
+            style:"background-color: grey;"
+          }]
       },
       {
         xtype : 'toolbar',
