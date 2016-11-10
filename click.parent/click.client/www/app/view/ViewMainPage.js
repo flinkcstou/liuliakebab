@@ -55,6 +55,7 @@ Ext.define('Click.view.ViewMainPage', {
         }]
       }, {
         xtype    : 'carousel',
+        name     : 'main',
         direction: 'horizontal',
         flex     : 29,
         defaults : {
@@ -85,8 +86,8 @@ Ext.define('Click.view.ViewMainPage', {
           iconAlign: 'top',
           iconMask : true
         },
-        items: [{
-          style: 'font-family: Neuron',
+        items   : [{
+          style : 'font-family: Neuron',
           text  : 'ОПЛАТА',
           icon  : 'resources/icons/32x32/main/Icon32x32_Payment.png',
           action: 'myPay'
@@ -106,10 +107,10 @@ Ext.define('Click.view.ViewMainPage', {
         flex    : 14,
         padding : '0 0.5em 0 0',
         defaults: {
-          style: 'font-family: Neuron',
-          margin   : '0.5em 0 0 0.5em',
-          xtype    : 'button',
-          ui       : 'big-icon',
+          style    : 'font-family: Neuron',
+          margin: '0.5em 0 0 0.5em',
+          xtype : 'button',
+          ui    : 'big-icon',
           iconAlign: 'top'
         },
 

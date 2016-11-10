@@ -37,7 +37,9 @@ Ext.define('Click.controller.MainPageController', {
       myFinanceButton : 'viewMain button[action = myFinance]',
       transferButton  : 'viewMain button[action = transfer]',
       reportButton    : 'viewMain button[action = report]',
-      openFooterButton: 'viewMain button[action = openFooter]'
+      openFooterButton: 'viewMain button[action = openFooter]',
+
+      carousel: 'viewMain carousel[name=main]',
     },
     control: {
 
@@ -77,7 +79,14 @@ Ext.define('Click.controller.MainPageController', {
   },
 
   myPaymentButtonTap: function () {
-    this.showView('ViewMyPayment');
+    var c = this.getCarousel();
+    console.log(c);
+
+    var i = Ext.create('Click.component.CarouselElement', {
+      sum: 10,
+    });
+
+    c.add(i);
   },
 
   autoPayButtonTap: function () {
