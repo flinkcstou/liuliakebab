@@ -7,8 +7,7 @@ Ext.define('Click.view.ViewMainPage', {
     'Ext.Carousel',
     'Click.component.CarouselElement',
     'Ext.Menu',
-    'Ext.Toolbar',
-    'Click.component.BottomCarouselElement'
+    'Ext.Toolbar'
   ],
 
   config    : {
@@ -36,7 +35,6 @@ Ext.define('Click.view.ViewMainPage', {
             Ext.Viewport.showMenu('left');
           } else {
             Ext.Viewport.hideMenu('left');
-
           }
         }
       },
@@ -111,8 +109,8 @@ Ext.define('Click.view.ViewMainPage', {
         }]
       }, {
         xtype   : 'container',
-        layout: 'hbox',
-        flex  : 14,
+        layout  : 'hbox',
+        flex    : 14,
         defaults: {
           // margin: '1em 1em',
           xtype    : 'button',

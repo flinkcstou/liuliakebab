@@ -22,8 +22,7 @@
 
   .x-button-icon.x-shown {
     display: block;
-    width: 100%;
-    background-size:contain;
+    background-size: contain;
     @include st-box-flex(1);
     @include st-box-align(center);
   }
@@ -130,21 +129,21 @@
 .x-button-finance {
   position: absolute;
   left: 3%;
-  top:10%;
-  width:30%;
+  top: 10%;
+  width: 30%;
   height: 100%;
   border: none;
   background: transparent;
- // margin-left: 20px;
+  // margin-left: 20px;
   //margin-top: 20px;
 }
 
 .x-button-report {
   position: absolute;
-  width:30%;
+  width: 30%;
   height: 100%;
-  left:34%;
-  top:10%;
+  left: 34%;
+  top: 10%;
   border: none;
   background: transparent;
   //margin-left: 40px;
@@ -152,8 +151,8 @@
 
 .x-button-payment {
   position: absolute;
-  left:3%;
-  width:30%;
+  left: 3%;
+  width: 30%;
   height: 100%;
   border: none;
   background: transparent;
@@ -164,19 +163,24 @@
 .x-button-transfer {
   position: absolute;
   left: 35%;
-  width:30%;
+  width: 30%;
   height: 100%;
   border: none;
   background: transparent;
   // margin-left: 20px;
   //margin-top: 20px;
+
+  .x-button-icon {
+    width: 10% !important;
+  }
+
 }
 
 .x-button-autopay {
   //position: absolute;
   left: 65%;
 
-  width:30%;
+  width: 30%;
   height: 100%;
   border: none;
   background: transparent;
