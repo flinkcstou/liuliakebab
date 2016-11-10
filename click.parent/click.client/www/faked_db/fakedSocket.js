@@ -8,6 +8,7 @@ window.fakedSocket.start = function () {
     if (window.fakedSocket.onopen) window.fakedSocket.onopen();
   }, 0);
 
+  return window.fakedSocket;
 };
 
 window.fakedSocket.register = function (method, callback) {
@@ -48,7 +49,9 @@ window.fakedSocket.send = function (message) {
       };
     }
 
-    if (window.fakedSocket.onmessage) window.fakedSocket.onmessage({data: retData});
+    if (window.fakedSocket.onmessage) {
+      window.fakedSocket.onmessage({data: JSON.stringify(retData)});
+    }
     else console.error("No onMessage")
   }, window.fakedSocket.getCallbackTimeout());
 };

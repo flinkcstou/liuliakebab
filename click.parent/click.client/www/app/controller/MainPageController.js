@@ -90,7 +90,35 @@ Ext.define('Click.controller.MainPageController', {
   },
 
   autoPayButtonTap: function () {
-    this.showView('ViewAutoPay');
+    console.log("asd");
+    //this.showView('ViewAutoPay');
+    window.api.call({
+      method: 'device.register.request',
+      input : {
+        "phone_num"  : "998909464133",
+        "device_info": " iPhone OS 9_3_5 Version/9.0 232323232323",
+        "device_name": "iPhone 9",
+        "device_type": 2,
+        "datetime"   : 127542442,
+        "imei"       : "232323232323"
+      },
+
+      scope: this,
+
+      onSuccess: function (result) {
+        this.comeOk(result);
+      },
+
+      onFail: function (api_status, api_status_message, data) {
+        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+        console.error(data);
+      }
+    });
+  },
+
+  comeOk: function (result) {
+    console.log("Come OK");
+    console.log(result);
   },
 
   myFinanceButtonTap: function () {
