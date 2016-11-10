@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'Neuron';
-  src: url('Neuron.otf') format('embedded-opentype');
+  src: url('../fonts/Neuron.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Neuron';
-  src: url('Neuron-Bold.otf') format('embedded-opentype');
+  src: url('../fonts/Neuron-Bold.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
 }
