@@ -14,7 +14,7 @@
   z-index: 1;
 
   .x-button-icon {
-    //position: relative;
+    position: relative;
     background-repeat: no-repeat;
     background-position: center;
 
@@ -67,6 +67,7 @@
   text-overflow: ellipsis;
   text-align: center;
   vertical-align: middle;
+  padding-top: 10px;
   //display: block;
   @include st-box;
   overflow: hidden;
@@ -100,6 +101,7 @@
 }
 
 .x-button-toolbar-right {
+  background-size: contain;
   border: none;
   background: transparent;
   width: 25px;
@@ -107,8 +109,14 @@
 }
 
 .x-button-big-icon {
-  border: none;
+
   background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin: 7px;
+  //margin:10px;
+  //padding: 30px;
 
   .x-button-icon.x-shown {
     @include st-box-flex(3);
@@ -117,5 +125,62 @@
   .x-button-label {
     @include st-box-flex(1);
   }
-
 }
+
+.x-button-finance {
+  position: absolute;
+  left: 3%;
+  top:10%;
+  width:30%;
+  height: 100%;
+  border: none;
+  background: transparent;
+ // margin-left: 20px;
+  //margin-top: 20px;
+}
+
+.x-button-report {
+  position: absolute;
+  width:30%;
+  height: 100%;
+  left:34%;
+  top:10%;
+  border: none;
+  background: transparent;
+  //margin-left: 40px;
+}
+
+.x-button-payment {
+  position: absolute;
+  left:3%;
+  width:30%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  // margin-left: 20px;
+  //margin-top: 20px;
+}
+
+.x-button-transfer {
+  position: absolute;
+  left: 35%;
+  width:30%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  // margin-left: 20px;
+  //margin-top: 20px;
+}
+
+.x-button-autopay {
+  //position: absolute;
+  left: 65%;
+
+  width:30%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  // margin-left: 20px;
+  //margin-top: 20px;
+}
+

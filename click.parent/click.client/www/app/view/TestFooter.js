@@ -2,7 +2,7 @@ Ext.define('Click.view.TestFooter', {
     extend: 'Ext.Panel',
     xtype:'footer',
 
-requires:['Ext.DataView'],
+requires:['Ext.DataView', ],
     config: {
 
     items:[{

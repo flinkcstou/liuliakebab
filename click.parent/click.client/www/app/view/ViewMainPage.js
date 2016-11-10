@@ -7,15 +7,18 @@ Ext.define('Click.view.ViewMainPage', {
     'Ext.Carousel',
     'Click.component.CarouselElement',
     'Ext.Menu',
-    'Ext.Toolbar'
+    'Ext.Toolbar',
+    'Click.component.BottomCarouselElement'
   ],
 
   config    : {
+
     cls   : 'cards',
     layout: {
       type : 'vbox',
       align: 'stretch'
     },
+
 
     items    : [{
 
@@ -24,7 +27,7 @@ Ext.define('Click.view.ViewMainPage', {
       items : [{
         xtype : 'button',
         ui    : 'toolbar-left',
-        icon  : 'resources/icons/32x32/menu.png',
+        icon  : 'resources/icons/32x32/toolbar/menu.png',
         docked: 'left',
 
         //dlya Experimenta ne udalyat'
@@ -39,7 +42,7 @@ Ext.define('Click.view.ViewMainPage', {
       },
         {
           xtype : 'button',
-          icon  : 'resources/icons/32x32/bell.png',
+          icon  : 'resources/icons/32x32/toolbar/bell.png',
           action: 'openFooter',
           docked: 'right',
           ui    : 'toolbar-right',
@@ -48,22 +51,21 @@ Ext.define('Click.view.ViewMainPage', {
       {
         xtype : 'container',
         layout: 'hbox',
-        flex  : 17,
-
-        items: [{
-          xtype: 'label',
-          style: 'font-family: Neuron-Bold',
-          html : 'HELLO IT IS NEURON'
+        flex  : 10,
+        items : [{
+          html: 'Общий баланс',
 
 
         }]
       }, {
+
         xtype    : 'carousel',
         name     : 'main',
         direction: 'horizontal',
         flex     : 29,
         defaults : {
-          xtype: 'carouselElement'
+          xtype: 'carouselElement',
+          style: 'color: black',
         },
 
         items: [{
@@ -77,84 +79,73 @@ Ext.define('Click.view.ViewMainPage', {
           sum: '1111'
         }]
       },
+
       {
 
         xtype   : 'container',
         layout  : 'hbox',
         flex    : 14,
-        padding : '0 0.5em 0 0',
         defaults: {
-          flex     : 1,
-          margin   : '0.5em 0 0 0.5em',
+          //flex     : 1,
+          //margin   : '1em 0.5em',
           xtype    : 'button',
-          ui       : 'big-icon',
           iconAlign: 'top',
-          iconMask : true
+
         },
         items   : [{
-          style : 'font-family: Neuron',
+          ui    : 'payment',
           text  : 'ОПЛАТА',
-          icon  : 'resources/icons/32x32/main/Icon32x32_Payment.png',
+          icon  : 'resources/icons/32x32/main/payments.png',
           action: 'myPay'
         }, {
+          ui    : 'transfer',
           text  : 'ПЕРЕВОДЫ',
-          icon  : 'resources/icons/32x32/main/Icon32x32_Transactions.png',
+          icon  : 'resources/icons/32x32/main/transfer.png',
           action: 'transfer'
 
         }, {
+          ui    : 'autopay',
           text  : 'АВТОПЛАТЕЖ',
-          icon  : 'resources/icons/32x32/main/Icon32x32_MyCards.png',
+          icon  : 'resources/icons/32x32/main/autopay.png',
           action: 'autoPay'
         }]
       }, {
         xtype   : 'container',
-        layout  : 'hbox',
-        flex    : 14,
-        padding : '0 0.5em 0 0',
+        layout: 'hbox',
+        flex  : 14,
         defaults: {
-          style    : 'font-family: Neuron',
-          margin: '0.5em 0 0 0.5em',
-          xtype : 'button',
-          ui    : 'big-icon',
+          // margin: '1em 1em',
+          xtype    : 'button',
           iconAlign: 'top'
         },
 
         items: [{
-          text  : 'МОИ ФИНАНСЫ',
-          icon: 'resources/icons/32x32/main/Icon32x32_MyFinances.png',
+          ui    : 'finance',
+          text: 'МОИ ФИНАНСЫ',
+          icon: 'resources/icons/32x32/main/myfinance.png',
           action: 'myFinance'
 
         }, {
-          text  : 'ОТЧЁТЫ',
-          icon: 'resources/icons/32x32/main/Icon32x32_Reports.png',
+          ui    : 'report',
+          text: 'ОТЧЁТЫ',
+          icon: 'resources/icons/32x32/main/reports.png',
           action: 'report'
         }]
       }, {
-        xtype   : 'container',
-        layout: 'hbox',
-        flex  : 20,
-        padding: '0 0.5em 0 0',
-        defaults: {
-          flex     : 1,
-          margin: '0.5em 0 0 0.5em',
-          xtype : 'button',
-          ui    : 'big-icon',
-          iconAlign: 'top'
-        }
-      }, {
-        xtype   : 'container',
-        layout: 'hbox',
-        flex  : 5,
-        defaults: {
-          flex  : 1,
-          margin: '0.5em',
-          xtype : 'label'
-        }
+        xtype    : 'carousel',
+        direction: 'horizontal',
+        flex     : 20,
+        default  : {
+          xtype: 'bottomCarouselElement',
+        },
+        items    : [{},
+          {}]
       },
       {
         xtype : 'toolbar',
         docked: 'bottom',
-        title : 'Контакты ^',
+        title : 'КОНТАКТЫ ^',
+        //style: "font-family: 'Neuron';"
 
       }],
     listeners: {
