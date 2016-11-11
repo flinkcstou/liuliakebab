@@ -16,8 +16,7 @@ Ext.define('Click.component.CarouselElement', {
       tag      : 'div',
       reference: 'cardElement',
       className: 'my-carousel-card',
-      children : [
-        {
+      children : [{
         tag      : 'span',
         className: 'my-carousel-card-sum',
         reference: 'sumElement'

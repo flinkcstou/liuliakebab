@@ -51,10 +51,19 @@ Ext.define('Click.view.ViewMainPage', {
         xtype : 'container',
         layout: 'hbox',
         flex  : 10,
-        items : [{
-          //html: 'Общий баланс',
 
-        }]
+        items: [{
+          html: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+
+        },
+          {
+            html: 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
+
+          },
+          {
+            html: 'DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD',
+
+          }]
       }, {
 
         xtype    : 'carousel',
@@ -68,10 +77,10 @@ Ext.define('Click.view.ViewMainPage', {
 
         items: [{
           /*xtype:'button',
-          text: 'Tam Me',
-          ui:'card-add'*/
-        },{
-          sum   : '234000.99',
+           text: 'Tam Me',
+           ui:'card-add'*/
+        }, {
+          sum   : '21212121',
           number: '432145432656365',
         }, {
           sum: '1700000.23'
@@ -120,8 +129,8 @@ Ext.define('Click.view.ViewMainPage', {
 
         items: [{
           ui    : 'finance',
-          text  : 'МОИ ФИНАНСЫ',
-          icon  : 'resources/icons/32x32/main/myfinance.png',
+          text: 'МОИ ФИНАНСЫ',
+          icon: 'resources/icons/32x32/main/myfinance.png',
           action: 'myFinance'
 
         }, {
@@ -135,13 +144,15 @@ Ext.define('Click.view.ViewMainPage', {
         direction: 'horizontal',
         flex     : 29,
         defaults : {
-          xtype: 'bottomCarouselElement',
+          xtype    : 'bottomCarouselElement',
+          style: "background-color: white;",
         },
         items    : [{
-          style:"background-color: white;"
+          //iconAlign: 'center',
+
         },
           {
-            style:"background-color: grey;"
+
           }]
       },
       {
@@ -177,5 +188,7 @@ Ext.define('Click.view.ViewMainPage', {
       scrollable: 'vertical',
       items     : items
     });
-  }
+  },
+
+
 });

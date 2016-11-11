@@ -40,6 +40,7 @@ Ext.define('Click.controller.MainPageController', {
       openFooterButton: 'viewMain button[action = openFooter]',
 
       carousel: 'viewMain carousel[name=main]',
+
     },
     control: {
 
@@ -122,7 +123,9 @@ Ext.define('Click.controller.MainPageController', {
   },
 
   myFinanceButtonTap: function () {
-    this.showView('ViewMyFinance');
+
+
+    //this.showView('ViewMyFinance');
   },
 
   transferButtonTap: function () {
