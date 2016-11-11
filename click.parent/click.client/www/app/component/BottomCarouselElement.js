@@ -1,31 +1,36 @@
 Ext.define('Click.component.BottomCarouselElement', {
-  extend: 'Ext.Component',
+  extend: 'Ext.Container',
   xtype : 'bottomCarouselElement',
 
-  config  : {
+  config: {
+    xtype : 'container',
+    layout: 'hbox',
 
-    baseCls: 'bottom-carousel-element',
-
-    //backIcon: 'resources/images/card_bg.jpg'
-    btn: null,
-  },
-  template: [{
-    tag      : 'div',
-    className: 'bottom-carousel-element',
-    reference: 'serviceElement',
-    children : [{
-      tag      : 'button',
-      className: 'bottom-button-beeline',
-      style     : "background-image: url(resources/icons/32x32/services/beeline.png)",
-      reference: 'buttonBeeline'
-    },
+    items: [
       {
-        tag      : 'button',
-        reference: 'buttonUcell'
+
+        //НЕ ТРОГАТЬ ПРОВЕРКА
+        html:'Популярные сервисы',
+        style:'color:grey;' +
+        'font-size:22px;' +
+        'position:absolute;' +
+        'left:25%;' +
+        'top:18%;'
       },
       {
-        tag      : 'button',
-        reference: 'buttonUms'
+      xtype: 'button',
+      icon : 'resources/icons/32x32/services/beeline.png',
+      ui   : 'button-beeline',
+    },
+      {
+        xtype:'button',
+        ui  : 'button-ucell',
+        icon: 'resources/icons/32x32/services/ucell.png'
+      },
+      {
+        xtype:'button',
+        ui  : 'button-ums',
+        icon: 'resources/icons/32x32/services/ums.png'
       }]
-  }],
+  }
 });

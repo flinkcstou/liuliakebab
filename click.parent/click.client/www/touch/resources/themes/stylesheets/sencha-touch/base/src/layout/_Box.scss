@@ -3,6 +3,8 @@
  */
 
 .x-layout-box {
+
+
   color: rgb(254, 251, 242);
   @include st-box();
 
@@ -14,6 +16,8 @@
     > .x-layout-box-item.x-flexed {
       min-width: 0 !important;
     }
+
+
   }
 
   &.x-vertical {
@@ -62,6 +66,8 @@
   }
 }
 
+
+
 .x-layout-box-item.x-sized {
   > .x-inner, > .x-body, > .x-dock-outer {
     @include absolute-fit();
@@ -105,6 +111,10 @@
         min-width: 0;
       }
     }
+
+    .x-sized{
+      background-color: #0A2B3B;
+    }
   }
 
   .x-has-height > .x-dock.x-unsized.x-dock-vertical {
@@ -113,3 +123,4 @@
     }
   }
 }
+

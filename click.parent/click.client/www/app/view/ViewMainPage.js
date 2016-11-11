@@ -129,30 +129,27 @@ Ext.define('Click.view.ViewMainPage', {
 
         items: [{
           ui    : 'finance',
-          text: 'МОИ ФИНАНСЫ',
-          icon: 'resources/icons/32x32/main/myfinance.png',
+          text  : 'МОИ ФИНАНСЫ',
+          icon  : 'resources/icons/32x32/main/myfinance.png',
           action: 'myFinance'
 
         }, {
           ui    : 'report',
-          text: 'ОТЧЁТЫ',
-          icon: 'resources/icons/32x32/main/reports.png',
+          text  : 'ОТЧЁТЫ',
+          icon  : 'resources/icons/32x32/main/reports.png',
           action: 'report'
         }]
       }, {
         xtype    : 'carousel',
         direction: 'horizontal',
-        flex     : 29,
-        defaults : {
-          xtype    : 'bottomCarouselElement',
-          style: "background-color: white;",
-        },
+        cls      : 'bottom-carousel-element',
+        flex     : 20,
         items    : [{
-          //iconAlign: 'center',
-
+          xtype:'bottomCarouselElement',
         },
           {
-
+            xtype:'bottomCarouselElement',
+            //xtype: 'bottomCarouselElement',
           }]
       },
       {
