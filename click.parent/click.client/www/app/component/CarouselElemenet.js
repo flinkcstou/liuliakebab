@@ -16,7 +16,8 @@ Ext.define('Click.component.CarouselElement', {
       tag      : 'div',
       reference: 'cardElement',
       className: 'my-carousel-card',
-      children : [{
+      children : [
+        {
         tag      : 'span',
         className: 'my-carousel-card-sum',
         reference: 'sumElement'
@@ -32,6 +33,7 @@ Ext.define('Click.component.CarouselElement', {
     }
   ],
 
+
   updateBackIcon: function (backIcon) {
     var element = this.cardElement;
 
@@ -46,6 +48,7 @@ Ext.define('Click.component.CarouselElement', {
     var element = this.sumElement;
 
     element.setHtml(sum);
+    console.log("sum ",sum);
   },
 
   updateNumber: function(number) {

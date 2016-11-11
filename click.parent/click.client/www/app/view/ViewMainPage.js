@@ -52,7 +52,7 @@ Ext.define('Click.view.ViewMainPage', {
         layout: 'hbox',
         flex  : 10,
         items : [{
-          html: 'Общий баланс',
+          //html: 'Общий баланс',
 
         }]
       }, {
@@ -67,6 +67,10 @@ Ext.define('Click.view.ViewMainPage', {
         },
 
         items: [{
+          /*xtype:'button',
+          text: 'Tam Me',
+          ui:'card-add'*/
+        },{
           sum   : '234000.99',
           number: '432145432656365',
         }, {
@@ -116,8 +120,8 @@ Ext.define('Click.view.ViewMainPage', {
 
         items: [{
           ui    : 'finance',
-          text: 'МОИ ФИНАНСЫ',
-          icon: 'resources/icons/32x32/main/myfinance.png',
+          text  : 'МОИ ФИНАНСЫ',
+          icon  : 'resources/icons/32x32/main/myfinance.png',
           action: 'myFinance'
 
         }, {
@@ -129,16 +133,12 @@ Ext.define('Click.view.ViewMainPage', {
       }, {
         xtype    : 'carousel',
         direction: 'horizontal',
-        flex     : 20,
-        default  : {
-          style:"margin-top:10px;"
+        flex     : 29,
+        defaults : {
+          xtype: 'bottomCarouselElement',
         },
         items    : [{
-          style:"background-color: white;",
-          items:[{
-            html:'Популярные сервисы',
-            style:"color: black;"
-          }]
+          style:"background-color: white;"
         },
           {
             style:"background-color: grey;"

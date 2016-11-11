@@ -1,5 +1,8 @@
 .my-carousel-element {
   padding: 1.5em 3em;
+
+  padding-top: 3%;
+  //width: 95%;
 }
 
 .my-carousel-element > .my-carousel-card {
@@ -17,5 +20,7 @@
 }
 
 .bottom-carousel-element{
-  padding: 1.5em 5em;
+  background-color: transparent;
+  padding-top: 10%;
+  width: 95%;
 }
