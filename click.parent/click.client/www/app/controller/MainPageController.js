@@ -37,7 +37,7 @@ Ext.define('Click.controller.MainPageController', {
       myFinanceButton : 'viewMain button[action = myFinance]',
       transferButton  : 'viewMain button[action = transfer]',
       reportButton    : 'viewMain button[action = report]',
-      openFooterButton: 'viewMain button[action = openFooter]',
+      phoneNumberButton: 'viewMain button[action = inputPhoneNumber]',
 
       carousel: 'viewMain carousel[name=main]',
 
@@ -68,8 +68,8 @@ Ext.define('Click.controller.MainPageController', {
         tap: 'reportButtonTap'
       },
 
-      openFooterButton: {
-        tap: 'openFooterTap'
+      phoneNumberButton: {
+        tap: 'phoneNumberTap'
       }
     }
 
@@ -91,14 +91,25 @@ Ext.define('Click.controller.MainPageController', {
   },
 
   autoPayButtonTap: function () {
+
+    //Type of Device
+    var deviceType = function () {
+      if (Ext.device.Device.platform == "Android") {
+        return 1;
+      }
+      else return 2;
+    };
+
+    //For Browser
     if (Ext.device.Device.$className == 'Ext.device.device.Simulator') {
+
       window.api.call({
         method: 'device.register.request',
         input : {
           "phone_num"  : "998909464133",
-          "device_info": " iPhone OS 9_3_5 Version/9.0 232323232323",
-          "device_name": "iPhone 9",
-          "device_type": 2,
+          "device_info": "iPhone OS 9_3_5 Version/9.0 232323232323",
+          "device_name": Ext.device.Device.$className,
+          "device_type": deviceType(),
           "datetime"   : Date.now(),
           "imei"       : "232323232323"
         },
@@ -106,6 +117,7 @@ Ext.define('Click.controller.MainPageController', {
         scope: this,
 
         onSuccess: function (result) {
+          console.log(deviceType());
           this.comeOk(result);
         },
 
@@ -115,15 +127,8 @@ Ext.define('Click.controller.MainPageController', {
         }
       });
     }
+      //For real phone
     else {
-
-      var deviceType = function () {
-        if (device.platform == "Android") {
-          return 1;
-        }
-        else return 2;
-      };
-
       window.api.call({
         method: 'device.register.request',
         input : {
@@ -133,13 +138,13 @@ Ext.define('Click.controller.MainPageController', {
           device_type: deviceType(),
           datetime   : Date.now(),
           imei       : device.uuid, //UUID IS NOT IMEI
-
         }
       });
-      alert("Model: " + device.model + ' Platform: ' + device.platform + ' Version: ' + device.version + ' Manufacturer: ' + device.manufacturer);
-      alert("Serial number: " + device.serial);
-      alert("UUID: " + device.uuid);
-      alert("Name: " + Ext.device.Device.name);
+
+      console.log("Model: " + device.model + ' Platform: ' + device.platform + ' Version: ' + device.version + ' Manufacturer: ' + device.manufacturer);
+      console.log("Serial number: " + device.serial);
+      console.log("UUID: " + device.uuid);
+      console.log("Name: " + Ext.device.Device.name);
 
     }
   },
@@ -150,30 +155,8 @@ Ext.define('Click.controller.MainPageController', {
   },
 
   myFinanceButtonTap: function () {
-    console.log();
-    window.api.call({
-      method: 'device.register.requestTest',
-      input : {
-        "phone_num"  : "998909464133",
-        "device_info": " iPhone OS 9_3_5 Version/9.0 232323232323",
-        "device_name": "iPhone 9",
-        "device_type": 2,
-        "datetime"   : 127542442,
-        "imei"       : "232323232323"
-      },
 
-      scope: this,
-
-      onSuccess: function (result) {
-        this.comeOk(result);
-      },
-
-      onFail: function (api_status, api_status_message, data) {
-        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-        console.error(data);
-      }
-    });
-    //this.showView('ViewMyFinance');
+    this.showView('ViewMyFinance');
   },
 
   transferButtonTap: function () {
@@ -184,8 +167,8 @@ Ext.define('Click.controller.MainPageController', {
     this.showView('ViewReport')
   },
 
-  openFooterTap: function () {
-    this.showView('TestFooter');
+  phoneNumberTap: function () {
+    this.showView('ViewPhoneNumber');
   }
 
 });

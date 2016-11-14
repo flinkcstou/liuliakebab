@@ -42,7 +42,7 @@ Ext.define('Click.view.ViewMainPage', {
         {
           xtype : 'button',
           icon  : 'resources/icons/32x32/toolbar/bell.png',
-          action: 'openFooter',
+          action: 'inputPhoneNumber',
           docked: 'right',
           ui    : 'toolbar-right',
         }]

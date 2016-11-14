@@ -21,7 +21,8 @@ Ext.application({
     'MyPaymentController',
     'MyFinanceController',
     'TransferController',
-    'ReportController'
+    'ReportController',
+    'PhoneNumberController'
   ],
 
   views: [
@@ -31,7 +32,8 @@ Ext.application({
     'ViewMyFinance',
     'ViewTransfer',
     'ViewReport',
-    'TestFooter'
+    'TestFooter',
+    'ViewPhoneNumber'
   ],
 
   icon: {
