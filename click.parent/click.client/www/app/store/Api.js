@@ -18,6 +18,7 @@ Ext.define('Click.store.Api', {
     this.initConfig(config);
 
     if (window.fakedSocket) {
+      console.log("faked socket");
       this.socket = window.fakedSocket.start();
     } else {
       this.socket = new WebSocket(this.getUrl());
@@ -26,7 +27,7 @@ Ext.define('Click.store.Api', {
     var me = this;
 
     this.socket.onopen = function () {
-      console.log("WebSocket opened")
+      console.log(me.socket, "WebSocket opened");
     };
     this.socket.onclose = function (event) {
       console.log("WebSocket connection closed");
@@ -55,9 +56,11 @@ Ext.define('Click.store.Api', {
       },
     };
 
+    console.log("callBacks", this.callBacks);
+
     this.socket.send(JSON.stringify({
       method    : method,
-      parameters: input,
+      parameters: input
     }));
   },
 

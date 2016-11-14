@@ -21,6 +21,7 @@ Ext.define('Click.controller.TransferController', {
 
   onShow: function () {
 
+
     var options = new ContactFindOptions();
     options.filter = "";
     options.multiple = true;

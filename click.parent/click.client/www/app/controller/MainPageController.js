@@ -91,10 +91,68 @@ Ext.define('Click.controller.MainPageController', {
   },
 
   autoPayButtonTap: function () {
-    console.log("asd");
-    //this.showView('ViewAutoPay');
+    if (Ext.device.Device.$className == 'Ext.device.device.Simulator') {
+      window.api.call({
+        method: 'device.register.request',
+        input : {
+          "phone_num"  : "998909464133",
+          "device_info": " iPhone OS 9_3_5 Version/9.0 232323232323",
+          "device_name": "iPhone 9",
+          "device_type": 2,
+          "datetime"   : Date.now(),
+          "imei"       : "232323232323"
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          this.comeOk(result);
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+    else {
+
+      var deviceType = function () {
+        if (device.platform == "Android") {
+          return 1;
+        }
+        else return 2;
+      };
+
+      window.api.call({
+        method: 'device.register.request',
+        input : {
+          phone_num  : "WILL ENTERED",
+          device_info: device.model + ' ' + device.platform + ' ' + device.version,
+          device_name: Ext.device.Device.Name, //TO CHECK
+          device_type: deviceType(),
+          datetime   : Date.now(),
+          imei       : device.uuid, //UUID IS NOT IMEI
+
+        }
+      });
+      alert("Model: " + device.model + ' Platform: ' + device.platform + ' Version: ' + device.version + ' Manufacturer: ' + device.manufacturer);
+      alert("Serial number: " + device.serial);
+      alert("UUID: " + device.uuid);
+      alert("Name: " + Ext.device.Device.name);
+
+    }
+  },
+
+  comeOk: function (result) {
+    console.log("Come OK");
+    console.log(result);
+  },
+
+  myFinanceButtonTap: function () {
+    console.log();
     window.api.call({
-      method: 'device.register.request',
+      method: 'device.register.requestTest',
       input : {
         "phone_num"  : "998909464133",
         "device_info": " iPhone OS 9_3_5 Version/9.0 232323232323",
@@ -115,16 +173,6 @@ Ext.define('Click.controller.MainPageController', {
         console.error(data);
       }
     });
-  },
-
-  comeOk: function (result) {
-    console.log("Come OK");
-    console.log(result);
-  },
-
-  myFinanceButtonTap: function () {
-
-
     //this.showView('ViewMyFinance');
   },
 

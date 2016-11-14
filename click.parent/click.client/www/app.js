@@ -12,7 +12,7 @@
 Ext.application({
   name: 'Click',
 
-  requires: ['Ext.MessageBox','Ext.device.Contacts'],
+  requires: ['Ext.MessageBox','Ext.device.Contacts', 'Ext.device.Device'],
 
 
   controllers: [
@@ -32,7 +32,6 @@ Ext.application({
     'ViewTransfer',
     'ViewReport',
     'TestFooter'
-
   ],
 
   icon: {

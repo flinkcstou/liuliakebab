@@ -5,7 +5,10 @@ window.fakedSocket = {
 window.fakedSocket.start = function () {
 
   setTimeout(function () {
-    if (window.fakedSocket.onopen) window.fakedSocket.onopen();
+    if (window.fakedSocket.onopen) {
+      window.fakedSocket.onopen();
+      console.log("Faked socket opened");
+    }
   }, 0);
 
   return window.fakedSocket;
@@ -13,6 +16,7 @@ window.fakedSocket.start = function () {
 
 window.fakedSocket.register = function (method, callback) {
   window.fakedSocket.callbacks[method] = callback;
+  console.log()
 };
 
 window.fakedSocket.send = function (message) {
@@ -58,14 +62,14 @@ window.fakedSocket.send = function (message) {
 
 window.fakedSocket.param = function (val) {
   var result = null,
-      tmp = [];
+    tmp = [];
   location.search
-      .substr(1)
-      .split("&")
-      .forEach(function (item) {
-        tmp = item.split("=");
-        if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
-      });
+    .substr(1)
+    .split("&")
+    .forEach(function (item) {
+      tmp = item.split("=");
+      if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
+    });
   return result;
 };
 
