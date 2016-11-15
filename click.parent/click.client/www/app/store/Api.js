@@ -66,6 +66,7 @@ Ext.define('Click.store.Api', {
 
   onMessage: function (eventData) {
     var parsedData = JSON.parse(eventData);
+    console.log(parsedData);
 
     var method = parsedData.data[0][0].method;
 

@@ -92,6 +92,9 @@ Ext.define('Click.controller.MainPageController', {
 
   autoPayButtonTap: function () {
 
+    var sha512 = hex_sha512("hello");
+    console.log(sha512);
+
     //Type of Device
     var deviceType = function () {
       if (Ext.device.Device.platform == "Android") {
@@ -106,19 +109,18 @@ Ext.define('Click.controller.MainPageController', {
       window.api.call({
         method: 'device.register.request',
         input : {
-          "phone_num"  : "998909464133",
-          "device_info": "iPhone OS 9_3_5 Version/9.0 232323232323",
-          "device_name": Ext.device.Device.$className,
-          "device_type": deviceType(),
-          "datetime"   : Date.now(),
-          "imei"       : "232323232323"
+          phone_num  : '998909649098',
+          device_info: 'iPhone OS 9_3_5 Version/9.0 232323232323',//device.model + ' ' + device.platform + ' ' + device.version,
+          device_name: 'iPhone 9',//Ext.device.Device.Name, //TO CHECK
+          device_type: 2,//deviceType(),
+          datetime   : 1000000000,
+          imei       : '232323232323'//device.uuid, //UUID IS NOT IMEI
         },
 
         scope: this,
 
         onSuccess: function (result) {
-          console.log(deviceType());
-          this.comeOk(result);
+          console.log(result);
         },
 
         onFail: function (api_status, api_status_message, data) {
@@ -132,7 +134,7 @@ Ext.define('Click.controller.MainPageController', {
       window.api.call({
         method: 'device.register.request',
         input : {
-          phone_num  : "WILL ENTERED",
+          phone_num  : '998909649098',
           device_info: device.model + ' ' + device.platform + ' ' + device.version,
           device_name: Ext.device.Device.Name, //TO CHECK
           device_type: deviceType(),
@@ -141,18 +143,9 @@ Ext.define('Click.controller.MainPageController', {
         }
       });
 
-      console.log("Model: " + device.model + ' Platform: ' + device.platform + ' Version: ' + device.version + ' Manufacturer: ' + device.manufacturer);
-      console.log("Serial number: " + device.serial);
-      console.log("UUID: " + device.uuid);
-      console.log("Name: " + Ext.device.Device.name);
-
     }
   },
 
-  comeOk: function (result) {
-    console.log("Come OK");
-    console.log(result);
-  },
 
   myFinanceButtonTap: function () {
 

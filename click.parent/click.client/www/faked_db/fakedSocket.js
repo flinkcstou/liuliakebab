@@ -20,6 +20,7 @@ window.fakedSocket.register = function (method, callback) {
 };
 
 window.fakedSocket.send = function (message) {
+  console.log(message);
   var parsedMessage = JSON.parse(message);
 
   var method = parsedMessage.method;
