@@ -66,7 +66,6 @@ Ext.define('Click.controller.PhoneNumberController', {
 
     var userStore = Ext.getStore('UserStore');
     userStore.load();
-    console.log("LENGTH " + userStore.getData().length);
 
 
     if (userStore.getAt(0) != null) {
@@ -79,7 +78,6 @@ Ext.define('Click.controller.PhoneNumberController', {
   nextButtonTap: function () {
 
     var userStore = Ext.getStore('UserStore');
-
     userStore.load();
     if (userStore.getAt(0) == null) {
       userStore.add({phoneNumber: this.getPhoneNumber().getValue()});
@@ -98,28 +96,13 @@ Ext.define('Click.controller.PhoneNumberController', {
 
   },
 
-  deviceInfo: function () {
-    if (Ext.device.Device.$className == 'Ext.device.device.Simulator')
-      return 'iPhone OS 9_3_5 Version/9.0 232323232323';
+  getDeviceType: function () {
+    if (Ext.device.Device.platform == "Android") {
+      return 1;
+    }
 
-    return (device.model + ' ' + device.platform + ' ' + device.version);
-
+    return 2;
   },
-
-  deviceName: function () {
-    if (Ext.device.Device.$className == 'Ext.device.device.Simulator')
-      return 'Simulator';
-
-    return Ext.device.Device.Name;
-  },
-
-  deviceImei: function () {
-    if (Ext.device.Device.$className == 'Ext.device.device.Simulator')
-      return '232323232323';
-
-    return device.uuid;
-  },
-
 
   deviceRegisterRequest: function (phoneNumber) {
 
@@ -129,54 +112,87 @@ Ext.define('Click.controller.PhoneNumberController', {
 
     var date = parseInt(Date.now() / 1000);
 
-    //Type of Device
-    var deviceType = function () {
-      if (Ext.device.Device.platform == "Android") {
-        return 1;
-      }
-      else return 2;
-    };
 
-    window.api.call({
-      method: 'device.register.request',
-      input : {
-        phone_num  : phoneNumber,
-        device_info: this.deviceInfo(),
-        device_name: this.deviceName(),
-        device_type: deviceType(),
-        datetime   : date,
-        imei       : this.deviceImei()
-      },
+    //For Browser
+    if (Ext.device.Device.$className == 'Ext.device.device.Simulator') {
 
-      scope: this,
+      window.api.call({
+        method: 'device.register.request',
+        input : {
+          phone_num  : phoneNumber,
+          device_info: 'iPhone OS 9_3_5 Version/9.0 232323232323',
+          device_name: 'iPhone 9',
+          device_type: this.getDeviceType(),
+          datetime   : date,
+          imei       : '232323232323'
+        },
 
-      onSuccess: function (result) {
+        scope: this,
 
-        if (result[0][0].success == 1) {
-          var deviceId = result[1][0].device_id;
+        onSuccess: function (result) {
 
-          var idTimeNumberSha512Token = hex_sha512(deviceId + date + phoneNumber);
+          if (result[0][0].success == 1) {
+            var deviceId = result[1][0].device_id;
+
+            var idTimeNumberSha512Token = hex_sha512(deviceId + date + phoneNumber);
 
 
-          var userStore = Ext.getStore('UserStore');
-          userStore.load();
-          userStore.add({deviceId: deviceId});
-          userStore.add({idTimeNumberToken: idTimeNumberSha512Token});
-          userStore.sync();
+            var userStore = Ext.getStore('UserStore');
+            userStore.load();
+            userStore.add({deviceId: deviceId});
+            userStore.add({idTimeNumberToken: idTimeNumberSha512Token});
+            userStore.sync();
 
 
-          console.log("DEVICE ID \n" + userStore.getAt(1).get('deviceId'));
-          console.log("TOKEN SHA512 \n" + userStore.getAt(2).get('idTimeNumberToken'));
+            console.log("DEVICE ID \n" + userStore.getAt(1).get('deviceId'));
+            console.log("TOKEN SHA512 \n" + userStore.getAt(2).get('idTimeNumberToken'));
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
         }
-      },
+      });
+    }
+    //For real phone
+      else {
+        window.api.call({
+          method: 'device.register.request',
+          input : {
+            phone_num  : phoneNumber,
+            device_info: device.model + ' ' + device.platform + ' ' + device.version,
+            device_name: Ext.device.Device.Name, //TO CHECK
+            device_type: this.getDeviceType(),
+            datetime   : date,
+            imei       : device.uuid, //UUID IS NOT IMEI
+          },
+  
+          scope: this,
+  
+          onSuccess: function (result) {
+  
+            if (result[0][0].success == 1) {
+              var deviceId = result[1][0].device_id;
+  
+              var idTimeNumberSha512Token = hex_sha512(deviceId + date + phoneNumber);
+  
+              var userStore = Ext.getStore('UserStore');
+              userStore.load();
+              userStore.add({deviceId: deviceId});
+              userStore.add({idTimeNumberToken: idTimeNumberSha512Token});
+              userStore.sync();
+  
+            }
+          },
+  
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
 
-      onFail: function (api_status, api_status_message, data) {
-        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-        console.error(data);
-      }
-    });
-
-
+    }
   },
 
   confirmSmsButtonTap: function () {
@@ -188,26 +204,53 @@ Ext.define('Click.controller.PhoneNumberController', {
     var userStore = Ext.getStore('UserStore');
     userStore.load();
 
-    window.api.call({
-      method: 'device.register.confirm',
-      input : {
-        phone_num      : userStore.getAt(0).get('phoneNumber'),
-        device_id      : userStore.getAt(1).get('deviceId'),
-        sms_code       : this.getSmsField().getValue(),
-        device_remember: ''
-      },
+    if (Ext.device.Device.$className == 'Ext.device.device.Simulator') {
 
-      scope: this,
+      window.api.call({
+        method: 'device.register.confirm',
+        input : {
+          phone_num      : userStore.getAt(0).get('phoneNumber'),
+          device_id      : userStore.getAt(1).get('deviceId'),
+          sms_code       : this.getSmsField(),
+          device_remember: ''
+        },
 
-      onSuccess: function (result) {
-        console.log(result);
-      },
+        scope: this,
 
-      onFail: function (api_status, api_status_message, data) {
-        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-        console.error(data);
-      }
-    });
+        onSuccess: function (result) {
+          console.log(result);
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+    //For real phone
+    else {
+      window.api.call({
+        method: 'device.register.confirm',
+        input : {
+          phone_num      : userStore.getAt(0).get('phoneNumber'),
+          device_id      : userStore.getAt(1).get('deviceId'),
+          sms_code       : this.getSmsField(),
+          device_remember: ''
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+
+    }
 
   },
 
@@ -220,25 +263,50 @@ Ext.define('Click.controller.PhoneNumberController', {
     var userStore = Ext.getStore('UserStore');
     userStore.load();
 
+    if (Ext.device.Device.$className == 'Ext.device.device.Simulator') {
 
-    window.api.call({
-      method: 'sms.resend',
-      input : {
-        phone_num: userStore.getAt(0).get('phoneNumber'),
-        device_id: userStore.getAt(1).get('deviceId'),
-      },
+      window.api.call({
+        method: 'sms.resend',
+        input : {
+          phone_num: userStore.getAt(0).get('phoneNumber'),
+          device_id: userStore.getAt(1).get('deviceId'),
+        },
 
-      scope: this,
+        scope: this,
 
-      onSuccess: function (result) {
-        console.log(result);
-      },
+        onSuccess: function (result) {
+          console.log(result);
+        },
 
-      onFail: function (api_status, api_status_message, data) {
-        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-        console.error(data);
-      }
-    });
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+    //For real phone
+    else {
+      window.api.call({
+        method: 'sms.resend',
+        input : {
+          phone_num: userStore.getAt(0).get('phoneNumber'),
+          device_id: userStore.getAt(1).get('deviceId'),
+        },
 
-  }
+        scope: this,
+
+        onSuccess: function (result) {
+
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+
+    }
+  },
+
+
 });
