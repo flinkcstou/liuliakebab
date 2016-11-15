@@ -6,6 +6,14 @@ Ext.define('Click.model.UserModel', {
     fields: [{
       name: 'phoneNumber',
       type: 'string'
-    }],
+    },
+      {
+        name: 'deviceId',
+        type: 'string'
+      },
+      {
+        name: 'idTimeNumberToken',
+        type: 'string'
+      }],
   }
 });

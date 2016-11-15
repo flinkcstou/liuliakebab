@@ -56,7 +56,6 @@ Ext.define('Click.store.Api', {
       },
     };
 
-    console.log("callBacks", this.callBacks);
 
     this.socket.send(JSON.stringify({
       method    : method,

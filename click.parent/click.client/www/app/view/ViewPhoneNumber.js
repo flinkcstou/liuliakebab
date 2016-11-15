@@ -4,20 +4,26 @@ Ext.define('Click.view.ViewPhoneNumber', {
 
   config: {
 
-    xtype:'fieldset',
+    xtype: 'fieldset',
     items: [{
       xtype    : 'textfield',
       maxlength: 12,
       label    : 'Phone number',
-      name:'phoneNumberID',
+      name     : 'phoneNumberID',
       component: {
         type: 'tel'
       }
     },
       {
-        xtype:'button',
-        text:'далее',
-        action: 'next'
+        xtype : 'button',
+        text  : 'далее',
+        action: 'next',
+      },
+      {
+        xtype : 'button',
+        text  : 'удалить все номера',
+        action: 'delete',
+        docked: 'bottom'
       }]
   }
 });
