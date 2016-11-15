@@ -7,9 +7,12 @@ Ext.define('Click.controller.PhoneNumberController', {
     refs: {
       view: 'viewPhoneNumber',
 
-      nextButton : 'viewPhoneNumber button[action = next]',
-      phoneNumber: 'viewPhoneNumber textfield[name = phoneNumberID]',
-      deleteAll  : 'viewPhoneNumber button[action = delete]'
+      nextButton   : 'viewPhoneNumber button[action = next]',
+      phoneNumber  : 'viewPhoneNumber textfield[name = phoneNumberID]',
+      deleteAll    : 'viewPhoneNumber button[action = delete]',
+      smsField     : 'viewPhoneNumber textfield[name = smsField]',
+      confirmSmsButton: 'viewPhoneNumber button[action = confirmSms]',
+      resendSmsButton: 'viewPhoneNumber button[action = resendSms]'
     },
 
     control: {
@@ -24,6 +27,12 @@ Ext.define('Click.controller.PhoneNumberController', {
       },
       deleteAll  : {
         tap: 'deleteAllButtonTap'
+      },
+      confirmSmsButton:{
+        tap: 'confirmSmsButtonTap'
+      },
+      resendSmsButton:{
+        tap: 'resendSmsButtonTap'
       }
     },
   },
@@ -50,7 +59,9 @@ Ext.define('Click.controller.PhoneNumberController', {
   },
 
   onShow: function () {
-
+    this.getResendSmsButton().hide();
+    this.getSmsField().hide();
+    this.getConfirmSmsButton().hide();
     this.getNextButton().setDisabled(true);
 
     var userStore = Ext.getStore('UserStore');
@@ -77,6 +88,12 @@ Ext.define('Click.controller.PhoneNumberController', {
     userStore.sync();
 
     this.deviceRegisterRequest(this.getPhoneNumber().getValue());
+
+    this.getSmsField().show();
+    this.getConfirmSmsButton().show();
+    this.getResendSmsButton().show();
+
+
   },
 
   deviceRegisterRequest: function (phoneNumber) {
@@ -175,5 +192,120 @@ Ext.define('Click.controller.PhoneNumberController', {
       });
 
     }
-  }
+  },
+
+  confirmSmsButtonTap: function(){
+    this.deviceRegisterConfirm();
+  },
+
+  deviceRegisterConfirm:function(){
+
+    var userStore = Ext.getStore('UserStore');
+    userStore.load();
+
+    if (Ext.device.Device.$className == 'Ext.device.device.Simulator') {
+
+      window.api.call({
+        method: 'device.register.confirm',
+        input : {
+          phone_num  : userStore.getAt(0).get('phoneNumber'),
+          device_id: userStore.getAt(1).get('deviceId'),
+          sms_code: this.getSmsField(),
+          device_remember: ''
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          console.log(result);
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+    //For real phone
+    else {
+      window.api.call({
+        method: 'device.register.confirm',
+        input : {
+          phone_num  : userStore.getAt(0).get('phoneNumber'),
+          device_id: userStore.getAt(1).get('deviceId'),
+          sms_code: this.getSmsField(),
+          device_remember: ''
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+
+    }
+
+  },
+
+  resendSmsButtonTap:function(){
+    this.resendSms();
+  },
+
+  resendSms: function(){
+
+    var userStore = Ext.getStore('UserStore');
+    userStore.load();
+
+    if (Ext.device.Device.$className == 'Ext.device.device.Simulator') {
+
+      window.api.call({
+        method: 'sms.resend',
+        input : {
+          phone_num  : userStore.getAt(0).get('phoneNumber'),
+          device_id: userStore.getAt(1).get('deviceId'),
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          console.log(result);
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+    //For real phone
+    else {
+      window.api.call({
+        method: 'sms.resend',
+        input : {
+          phone_num  : userStore.getAt(0).get('phoneNumber'),
+          device_id: userStore.getAt(1).get('deviceId'),
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+
+    }
+  },
+
+
 });

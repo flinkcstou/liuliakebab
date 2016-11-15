@@ -8,11 +8,8 @@ Ext.define('Click.view.ViewPhoneNumber', {
     items: [{
       xtype    : 'textfield',
       maxlength: 12,
-      label    : 'Phone number',
+      label    : 'Введите номер телефона',
       name     : 'phoneNumberID',
-      component: {
-        type: 'tel'
-      }
     },
       {
         xtype : 'button',
@@ -24,6 +21,22 @@ Ext.define('Click.view.ViewPhoneNumber', {
         text  : 'удалить все номера',
         action: 'delete',
         docked: 'bottom'
+      },
+      {
+        xtype    : 'textfield',
+        maxlength: 6,
+        label    : 'Введите код из СМС',
+        name     : 'smsField'
+      },
+      {
+        xtype : 'button',
+        text  : 'Подтвердить',
+        action: 'confirmSms'
+      },
+      {
+        xtype : 'button',
+        text  : 'Повторить отправку СМС',
+        action: 'resendSms'
       }]
   }
 });
