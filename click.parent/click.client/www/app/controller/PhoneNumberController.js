@@ -120,6 +120,12 @@ Ext.define('Click.controller.PhoneNumberController', {
     return device.uuid;
   },
 
+  deviceType:function(){
+      if (Ext.device.Device.platform == "Android")
+        return 1;
+
+    return 2;
+  },
 
   deviceRegisterRequest: function (phoneNumber) {
 
@@ -129,13 +135,6 @@ Ext.define('Click.controller.PhoneNumberController', {
 
     var date = parseInt(Date.now() / 1000);
 
-    //Type of Device
-    var deviceType = function () {
-      if (Ext.device.Device.platform == "Android") {
-        return 1;
-      }
-      else return 2;
-    };
 
     window.api.call({
       method: 'device.register.request',
@@ -143,7 +142,7 @@ Ext.define('Click.controller.PhoneNumberController', {
         phone_num  : phoneNumber,
         device_info: this.deviceInfo(),
         device_name: this.deviceName(),
-        device_type: deviceType(),
+        device_type: this.deviceType(),
         datetime   : date,
         imei       : this.deviceImei()
       },
