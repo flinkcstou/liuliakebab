@@ -57,6 +57,11 @@
       "path": "app/component/sha512.js",
       "remote": true,
       "update": "full"
+    },
+    {
+      "path": "app/component/md5.js",
+      "remote": true,
+      "update": "full"
     }
   ],
   /**

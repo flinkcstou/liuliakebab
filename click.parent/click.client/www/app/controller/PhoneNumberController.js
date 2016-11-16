@@ -74,6 +74,7 @@ Ext.define('Click.controller.PhoneNumberController', {
     if (userStore.getAt(0) != null) {
       var modelRecord = userStore.getAt(0).get('phoneNumber');
       console.log("Number is created " + modelRecord);
+      this.showView('ViewAuthorization');
     }
 
   },
@@ -91,7 +92,9 @@ Ext.define('Click.controller.PhoneNumberController', {
     }
     userStore.sync();
 
-    this.deviceRegisterRequest(this.getPhoneNumber().getValue());
+    var date = parseInt(Date.now() / 1000);
+
+    this.deviceRegisterRequest(this.getPhoneNumber().getValue(), date);
 
   },
 
@@ -124,13 +127,11 @@ Ext.define('Click.controller.PhoneNumberController', {
     return 2;
   },
 
-  deviceRegisterRequest: function (phoneNumber) {
+  deviceRegisterRequest: function (phoneNumber, date) {
 
     var sha512 = hex_sha512("hello");
 
     console.log(sha512);
-
-    var date = parseInt(Date.now() / 1000);
 
 
     window.api.call({
@@ -148,7 +149,7 @@ Ext.define('Click.controller.PhoneNumberController', {
 
       onSuccess: function (result) {
 
-        if(result[1][0].confirm_needed == true){
+        if (result[1][0].confirm_needed == true) {
           this.getSmsField().show();
           this.getConfirmSmsButton().show();
           this.getResendSmsButton().show();
@@ -159,22 +160,27 @@ Ext.define('Click.controller.PhoneNumberController', {
           this.getResendSmsButton().hide();
         }
 
-        if (result[0][0].success == 1) {
-          var deviceId = result[1][0].device_id;
+        var deviceId = result[1][0].device_id;
+        console.log("DATE TIME ", date);
+        var idTimeNumberSha512Token = hex_sha512(deviceId + date + phoneNumber);
 
-          var idTimeNumberSha512Token = hex_sha512(deviceId + date + phoneNumber);
+        console.log('DEVICE ID ', deviceId);
+        console.log('TOKEN  ', idTimeNumberSha512Token);
+
+        var userStore = Ext.getStore('UserStore');
+        userStore.load();
+        userStore.add({deviceId: deviceId});
+        userStore.add({dateTime: date});
+        userStore.add({idTimeNumberToken: idTimeNumberSha512Token});
+        userStore.sync();
 
 
-          var userStore = Ext.getStore('UserStore');
-          userStore.load();
-          userStore.add({deviceId: deviceId});
-          userStore.add({idTimeNumberToken: idTimeNumberSha512Token});
-          userStore.sync();
+        console.log("DWAWDAWDAWDWADW ", userStore.getAt(0));
+        console.log("DEVICE ID \n" + userStore.getAt(1).get('deviceId'));
+        console.log("TOKEN SHA512 \n" + userStore.getAt(2).get('idTimeNumberToken'));
+        console.log("Date TIME \n" + userStore.getAt(3).get('dateTime'));
 
 
-          console.log("DEVICE ID \n" + userStore.getAt(1).get('deviceId'));
-          console.log("TOKEN SHA512 \n" + userStore.getAt(2).get('idTimeNumberToken'));
-        }
       },
 
       onFail: function (api_status, api_status_message, data) {
@@ -190,7 +196,7 @@ Ext.define('Click.controller.PhoneNumberController', {
     this.deviceRegisterConfirm();
   },
 
-  smsChecker: function() {
+  smsChecker: function () {
     if (this.getSmsChecker().isChecked() == false)
       return 0;
     return 1;
@@ -200,6 +206,7 @@ Ext.define('Click.controller.PhoneNumberController', {
 
     var userStore = Ext.getStore('UserStore');
     userStore.load();
+    console.log("SMS SMS SMS " + this.getSmsField().getValue());
 
     window.api.call({
       method: 'device.register.confirm',
@@ -254,8 +261,6 @@ Ext.define('Click.controller.PhoneNumberController', {
     });
 
   },
-
-
 
 
 });

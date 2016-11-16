@@ -22,7 +22,8 @@ Ext.application({
     'MyFinanceController',
     'TransferController',
     'ReportController',
-    'PhoneNumberController'
+    'PhoneNumberController',
+    'AuthorizationController'
   ],
 
   views: [
@@ -33,7 +34,8 @@ Ext.application({
     'ViewTransfer',
     'ViewReport',
     'TestFooter',
-    'ViewPhoneNumber'
+    'ViewPhoneNumber',
+    'ViewAuthorization'
   ],
 
   models: ['UserModel'],

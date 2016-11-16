@@ -14,6 +14,11 @@ Ext.define('Click.model.UserModel', {
       {
         name: 'idTimeNumberToken',
         type: 'string'
-      }],
+      },
+      {
+        name  : 'dateTime',
+        type: 'string'
+      }
+    ],
   }
 });

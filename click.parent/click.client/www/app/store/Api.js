@@ -43,6 +43,7 @@ Ext.define('Click.store.Api', {
   call: function (params) {
     var method = params.method;
     var input = params.input;
+    console.log(params.input);
     var onSuccess = params.onSuccess;
     var onFail = params.onFail;
     var scope = params.scope || window;
