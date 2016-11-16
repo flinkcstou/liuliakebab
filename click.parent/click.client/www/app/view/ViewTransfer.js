@@ -1,18 +1,18 @@
 Ext.define('Click.view.ViewTransfer', {
   extend: 'Ext.Panel',
-  xtype: 'viewTransfer',
+  xtype : 'viewTransfer',
 
 
   config: {
-    html: 'Here will be my transfer information',
+    html : 'Here will be my transfer information',
     title: 'pay',
     items: [
       {
         xtype: 'toolbar',
         items: [
           {
-            xtype: 'button',
-            text: '<--',
+            xtype : 'button',
+            text  : '<--',
             action: 'back'
           },
           {
@@ -20,8 +20,8 @@ Ext.define('Click.view.ViewTransfer', {
           },
           {
             xtype: 'label',
-            name: 'title',
-            html: 'Переводы'
+            name : 'title',
+            html : 'Переводы'
           },
           {
             xtype: 'spacer'

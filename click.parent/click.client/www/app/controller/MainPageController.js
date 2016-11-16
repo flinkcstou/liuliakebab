@@ -32,11 +32,11 @@ Ext.define('Click.controller.MainPageController', {
     refs   : {
       view: 'viewMain',
 
-      myPaymentButton : 'viewMain button[action = myPay]',
-      autoPayButton   : 'viewMain button[action = autoPay]',
-      myFinanceButton : 'viewMain button[action = myFinance]',
-      transferButton  : 'viewMain button[action = transfer]',
-      reportButton    : 'viewMain button[action = report]',
+      myPaymentButton  : 'viewMain button[action = myPay]',
+      autoPayButton    : 'viewMain button[action = autoPay]',
+      myFinanceButton  : 'viewMain button[action = myFinance]',
+      transferButton   : 'viewMain button[action = transfer]',
+      reportButton     : 'viewMain button[action = report]',
       phoneNumberButton: 'viewMain button[action = inputPhoneNumber]',
 
       carousel: 'viewMain carousel[name=main]',
@@ -76,7 +76,8 @@ Ext.define('Click.controller.MainPageController', {
   },
 
   onShow: function () {
-
+    console.log("MD5 string ", hex_md5('12345'));
+    console.log("MD5 int ", hex_md5(12345));
   },
 
   myPaymentButtonTap: function () {

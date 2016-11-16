@@ -7,7 +7,7 @@ Ext.define('Click.component.CarouselElement', {
 
     backIcon: 'resources/images/card_bg.jpg',
 
-    sum: null,
+    sum   : null,
     number: null,
   },
 
@@ -47,10 +47,10 @@ Ext.define('Click.component.CarouselElement', {
     var element = this.sumElement;
 
     element.setHtml(sum);
-    console.log("sum ",sum);
+    console.log("sum ", sum);
   },
 
-  updateNumber: function(number) {
+  updateNumber: function (number) {
 
     this.numberElement.setHtml(number);
 

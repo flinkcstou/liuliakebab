@@ -10,7 +10,7 @@ Ext.define('Click.controller.AutoPayController', {
     },
 
     control: {
-      view: {
+      view      : {
         show: 'onShow'
       },
       backButton: {

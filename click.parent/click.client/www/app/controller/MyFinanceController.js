@@ -1,14 +1,14 @@
 Ext.define('Click.controller.MyFinanceController', {
   extend: 'Click.controller.Base',
 
-  config:{
-    refs:{
+  config: {
+    refs: {
       view: 'viewMyFinance',
 
       backButton: 'viewMyFinance button[action = back]'
     },
 
-    control:{
+    control: {
       backButton: {
         tap: 'backButtonTap'
       }
@@ -16,7 +16,7 @@ Ext.define('Click.controller.MyFinanceController', {
 
   },
 
-  backButtonTap: function(){
+  backButtonTap: function () {
     this.showView('ViewMainPage');
   }
 });

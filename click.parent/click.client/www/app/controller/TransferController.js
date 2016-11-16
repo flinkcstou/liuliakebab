@@ -10,7 +10,7 @@ Ext.define('Click.controller.TransferController', {
     },
 
     control: {
-      view: {
+      view      : {
         show: 'onShow'
       },
       backButton: {
@@ -29,56 +29,56 @@ Ext.define('Click.controller.TransferController', {
     navigator.contacts.find(filter, onSuccess, onError, options);
 
 
-  function onSuccess(contacts){
+    function onSuccess(contacts) {
 
-  ///alert(JSON.stringify(contacts));
-   alert(contacts[0].displayName);
-    alert(contacts.length);
+      ///alert(JSON.stringify(contacts));
+      alert(contacts[0].displayName);
+      alert(contacts.length);
 
-  for(var i = 0; i < contacts.length; i++){
+      for (var i = 0; i < contacts.length; i++) {
 
-      alert(contacts[i].displayName + ': ' + contacts[i].phoneNumbers[0].value);
+        alert(contacts[i].displayName + ': ' + contacts[i].phoneNumbers[0].value);
 
-     //alert(contacts[i].displayName + ' ' + contacts[i].phoneNumbers[0].value + ' '
-       //  + contacts[i].emails[0].value + ' ' + contacts[i].organizations[0].name);
+        //alert(contacts[i].displayName + ' ' + contacts[i].phoneNumbers[0].value + ' '
+        //  + contacts[i].emails[0].value + ' ' + contacts[i].organizations[0].name);
 
-    /*if(contacts[i].organizations[0].name == "Greetgo"){
-     alert(contacts[i].displayName);
-     alert(contacts[i].phoneNumbers[0].value);
-     alert(contacts[i].emails[0].value);
-     alert(contacts[i].organizations[0].name);
-     }*/
-
-
-  }
-}
-
-function onError(){
-  alert("Error");
-}
+        /*if(contacts[i].organizations[0].name == "Greetgo"){
+         alert(contacts[i].displayName);
+         alert(contacts[i].phoneNumbers[0].value);
+         alert(contacts[i].emails[0].value);
+         alert(contacts[i].organizations[0].name);
+         }*/
 
 
-/*var contactsConfig = {
-
-  success: function( contacts){
-    //Ext.Msg.alert(contacts.find());
-    Ext.Msg.alert(JSON.stringify(contacts[0]));
-
-    for(var i = 0; i < contacts.length; i++){
-      //console.log(contacts[i].first + ' ' + contacts[i].last + ' ' + contacts[i].emails.work);
-      //alert('Name:  ' + contacts[i].displayName + '\n' + 'Phone ' +
-          //contacts[i].phoneNumbers[0].value + '\n' + 'email:  ' + contacts[i].emails[0].value
-         // + '\n' + 'organization:  ' + contacts[i].organizations[0].name);
+      }
     }
-  },
 
-  failure: function(context){
-    Ext.Msg.alert('Failure', 'It did not work.', Ext.emptyFn);
-  },
-  scope: this,
-  includeImages: true
-};
-Ext.device.Contacts.getContacts(contactsConfig);*/
+    function onError() {
+      alert("Error");
+    }
+
+
+    /*var contactsConfig = {
+
+     success: function( contacts){
+     //Ext.Msg.alert(contacts.find());
+     Ext.Msg.alert(JSON.stringify(contacts[0]));
+
+     for(var i = 0; i < contacts.length; i++){
+     //console.log(contacts[i].first + ' ' + contacts[i].last + ' ' + contacts[i].emails.work);
+     //alert('Name:  ' + contacts[i].displayName + '\n' + 'Phone ' +
+     //contacts[i].phoneNumbers[0].value + '\n' + 'email:  ' + contacts[i].emails[0].value
+     // + '\n' + 'organization:  ' + contacts[i].organizations[0].name);
+     }
+     },
+
+     failure: function(context){
+     Ext.Msg.alert('Failure', 'It did not work.', Ext.emptyFn);
+     },
+     scope: this,
+     includeImages: true
+     };
+     Ext.device.Contacts.getContacts(contactsConfig);*/
   },
 
   backButtonTap: function () {

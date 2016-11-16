@@ -9,8 +9,8 @@ Ext.define('Click.view.ViewAuthorization', {
       label: 'авторизация',
     },
       {
-        xtype: 'button',
-        text: 'далее',
+        xtype : 'button',
+        text  : 'далее',
         action: 'authorization'
       },
       {

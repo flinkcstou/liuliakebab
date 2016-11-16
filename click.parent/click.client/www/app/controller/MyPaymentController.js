@@ -3,12 +3,12 @@ Ext.define('Click.controller.MyPaymentController', {
 
   config: {
     refs: {
-      view        : 'viewMyPayment',
-      backButton  : 'viewMyPayment button[action = back]'
+      view      : 'viewMyPayment',
+      backButton: 'viewMyPayment button[action = back]'
     },
 
     control: {
-      view:{
+      view      : {
         show: 'onShow'
       },
       backButton: {
@@ -17,11 +17,11 @@ Ext.define('Click.controller.MyPaymentController', {
     }
   },
 
-  onShow: function() {
+  onShow: function () {
 
   },
 
-  backButtonTap: function() {
+  backButtonTap: function () {
     this.showView('ViewMainPage');
   }
 });

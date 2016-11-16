@@ -1,6 +1,6 @@
 Ext.define('Click.view.ViewAutoPay', {
   extend: 'Ext.Panel',
-  xtype: 'viewAutoPay',
+  xtype : 'viewAutoPay',
 
   config: {
     title: 'cards',
@@ -9,15 +9,15 @@ Ext.define('Click.view.ViewAutoPay', {
 
       xtype: 'toolbar',
       items: [{
-        xtype: 'button',
-        text: '<--',
+        xtype : 'button',
+        text  : '<--',
         action: 'back'
       }, {
         xtype: 'spacer'
       }, {
         xtype: 'label',
-        name: 'title',
-        html: 'АВТОПЛАТЕЖ'
+        name : 'title',
+        html : 'АВТОПЛАТЕЖ'
       }, {
         xtype: 'spacer'
       }]

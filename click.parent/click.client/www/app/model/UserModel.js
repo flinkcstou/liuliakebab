@@ -16,7 +16,7 @@ Ext.define('Click.model.UserModel', {
         type: 'string'
       },
       {
-        name  : 'dateTime',
+        name: 'dateTime',
         type: 'string'
       }
     ],

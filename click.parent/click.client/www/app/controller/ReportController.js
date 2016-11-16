@@ -10,7 +10,7 @@ Ext.define('Click.controller.ReportController', {
     },
 
     control: {
-      view: {
+      view      : {
         show: 'onShow'
       },
       backButton: {

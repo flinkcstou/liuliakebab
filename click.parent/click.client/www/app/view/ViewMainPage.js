@@ -135,8 +135,8 @@ Ext.define('Click.view.ViewMainPage', {
 
         }, {
           ui    : 'report',
-          text  : 'ОТЧЁТЫ',
-          icon  : 'resources/icons/32x32/main/reports.png',
+          text: 'ОТЧЁТЫ',
+          icon: 'resources/icons/32x32/main/reports.png',
           action: 'report'
         }]
       }, {
@@ -145,10 +145,10 @@ Ext.define('Click.view.ViewMainPage', {
         cls      : 'bottom-carousel-element',
         flex     : 20,
         items    : [{
-          xtype:'bottomCarouselElement',
+          xtype: 'bottomCarouselElement',
         },
           {
-            xtype:'bottomCarouselElement',
+            xtype: 'bottomCarouselElement',
             //xtype: 'bottomCarouselElement',
           }]
       },
