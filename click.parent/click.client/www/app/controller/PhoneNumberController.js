@@ -170,8 +170,8 @@ Ext.define('Click.controller.PhoneNumberController', {
         var userStore = Ext.getStore('UserStore');
         userStore.load();
         userStore.add({deviceId: deviceId});
-        userStore.add({dateTime: date});
         userStore.add({idTimeNumberToken: idTimeNumberSha512Token});
+        userStore.add({dateTime: date});
         userStore.sync();
 
 
