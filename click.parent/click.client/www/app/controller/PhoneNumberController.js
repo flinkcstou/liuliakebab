@@ -12,7 +12,8 @@ Ext.define('Click.controller.PhoneNumberController', {
       deleteAll       : 'viewPhoneNumber button[action = delete]',
       smsField        : 'viewPhoneNumber textfield[name = smsField]',
       confirmSmsButton: 'viewPhoneNumber button[action = confirmSms]',
-      resendSmsButton : 'viewPhoneNumber button[action = resendSms]'
+      resendSmsButton : 'viewPhoneNumber button[action = resendSms]',
+      smsChecker      : 'viewPhoneNumber checkboxfield[name = smsChecker]'
     },
 
     control: {
@@ -33,9 +34,10 @@ Ext.define('Click.controller.PhoneNumberController', {
       },
       resendSmsButton : {
         tap: 'resendSmsButtonTap'
-      }
+      },
     },
   },
+
 
   deleteAllButtonTap: function () {
     var userStore = Ext.getStore('UserStore');
@@ -91,11 +93,6 @@ Ext.define('Click.controller.PhoneNumberController', {
 
     this.deviceRegisterRequest(this.getPhoneNumber().getValue());
 
-    this.getSmsField().show();
-    this.getConfirmSmsButton().show();
-    this.getResendSmsButton().show();
-
-
   },
 
   deviceInfo: function () {
@@ -120,9 +117,9 @@ Ext.define('Click.controller.PhoneNumberController', {
     return device.uuid;
   },
 
-  deviceType:function(){
-      if (Ext.device.Device.platform == "Android")
-        return 1;
+  deviceType: function () {
+    if (Ext.device.Device.platform == "Android")
+      return 1;
 
     return 2;
   },
@@ -150,6 +147,17 @@ Ext.define('Click.controller.PhoneNumberController', {
       scope: this,
 
       onSuccess: function (result) {
+
+        if(result[1][0].confirm_needed == true){
+          this.getSmsField().show();
+          this.getConfirmSmsButton().show();
+          this.getResendSmsButton().show();
+        }
+        else {
+          this.getSmsField().hide();
+          this.getConfirmSmsButton().hide();
+          this.getResendSmsButton().hide();
+        }
 
         if (result[0][0].success == 1) {
           var deviceId = result[1][0].device_id;
@@ -182,6 +190,12 @@ Ext.define('Click.controller.PhoneNumberController', {
     this.deviceRegisterConfirm();
   },
 
+  smsChecker: function() {
+    if (this.getSmsChecker().isChecked() == false)
+      return 0;
+    return 1;
+  },
+
   deviceRegisterConfirm: function () {
 
     var userStore = Ext.getStore('UserStore');
@@ -193,13 +207,13 @@ Ext.define('Click.controller.PhoneNumberController', {
         phone_num      : userStore.getAt(0).get('phoneNumber'),
         device_id      : userStore.getAt(1).get('deviceId'),
         sms_code       : this.getSmsField().getValue(),
-        device_remember: ''
+        device_remember: this.smsChecker()
       },
 
       scope: this,
 
       onSuccess: function (result) {
-        console.log(result);
+        console.log("DEVICE REGISTER CONFIRM " + result);
       },
 
       onFail: function (api_status, api_status_message, data) {
@@ -239,5 +253,9 @@ Ext.define('Click.controller.PhoneNumberController', {
       }
     });
 
-  }
+  },
+
+
+
+
 });

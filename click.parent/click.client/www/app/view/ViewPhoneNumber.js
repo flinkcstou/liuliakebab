@@ -37,6 +37,12 @@ Ext.define('Click.view.ViewPhoneNumber', {
         xtype : 'button',
         text  : 'Повторить отправку СМС',
         action: 'resendSms'
+      },
+      {
+        xtype  : 'checkboxfield',
+        name   : 'smsChecker',
+        label  : 'Запомнить устройство',
+        checked: false
       }]
   }
 });
