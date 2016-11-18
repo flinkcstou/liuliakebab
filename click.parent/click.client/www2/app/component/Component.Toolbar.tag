@@ -1,5 +1,11 @@
 <component-toolbar>
-  <div id="toolbar">
-    <h1 id="h11">BKB</h1>
+  <div class="toolbar">
+    <div class="menu-button menu-icon" onclick="{menuOpen}">
+    </div>
+
+    <div class="bell-button bell-icon" >
+    </div>
+
+
   </div>
 </component-toolbar>

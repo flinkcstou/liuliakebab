@@ -1,14 +1,153 @@
+body{
+  margin:0;
+}
+
 html {
   width: 100%;
   height: 100%;
   background-image: linear-gradient(rgb(1, 123, 226), rgb(29, 199, 251));
+  font-family: Neuron;
 }
 
-#toolbar {
+/*TOOLBAR*/
+.toolbar {
   position: absolute;
-  width: 50%;
-  height: 2%;
-  margin:0;
-  background-color: black;
+  top: 20px;
+  right: 20px;
+  left: 20px;
+  height: 50px;
+  background: transparent;
+  border-bottom: 3px solid rgb(149, 230, 253);
 }
+
+.menu-button{
+  position: absolute;
+  left: 2px;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+}
+
+.menu-icon{
+  position: absolute;
+  background: transparent;
+  background-image: url("../resources/icons/toolbar/menu.png");
+  width: 30px;
+  height: 40px;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.bell-button{
+  position: absolute;
+  right: 2px;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+}
+
+.bell-icon{
+  position: absolute;
+  background: transparent;
+  background-image: url("../resources/icons/toolbar/bell.png");
+  width: 35px;
+  height: 40px;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/*FOOTER*/
+
+.footer{
+  position: fixed;
+  bottom:0;
+  left:0;
+  right: 0;
+
+  height: 50px;
+  width: 100%;
+  border-top: 1px solid rgb(37, 160, 227);
+  color: rgb(197, 233, 239);
+  background-color: rgb(37, 159, 225);
+}
+
+/*FONT FACE*/
+@font-face {
+  font-family: "Neuron";
+  src:url("../resources/font/Neuron.otf"); format:("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/*BANK-OPERATIONS*/
+
+.bank-operations{
+  position: absolute;
+  bottom: 150px;
+  width: 100%;
+}
+
+/*PAY-BUTTON*/
+.bank-operation-button{
+  position: relative;
+  background: transparent;
+  border-bottom: .1px solid #95E6FD;
+  height: 95px;
+  width: 95px;
+  display: inline-block;
+  margin: 10px 10px 10px 10px;
+}
+
+.bank-operation-icon{
+  position: absolute;
+  top:0;
+  width: 100%;
+  height: 70%;
+
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.bank-operation-label{
+  position: absolute;
+  bottom: 0;
+  color: #ffffff;
+  text-align: center;
+  width: 100%;
+  height: 30%;
+  line-height: 30px;
+}
+
+.operation-pay-icon{
+  background-image: url("../resources/icons/bank-operations/payments.png");
+  background-size: 40%;
+}
+
+.operation-transfer-icon{
+  background-image: url("../resources/icons/bank-operations/transfer.png");
+  background-size: 60%;
+}
+
+.operation-autopay-icon{
+  background-image: url("../resources/icons/bank-operations/autopay.png");
+  background-size: 50%;
+}
+
+.operation-myFinance-icon{
+  background-image: url("../resources/icons/bank-operations/myfinance.png");
+  background-size: 50%;
+}
+
+.operation-report-icon{
+  background-image: url("../resources/icons/bank-operations/reports.png");
+  background-size: 50%;
+}
+
+
+
 
