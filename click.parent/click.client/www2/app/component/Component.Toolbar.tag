@@ -9,8 +9,9 @@
   </div>
 
   <script>
-    menuOpen()
+    menuOpen(e)
     {
+      alert('Menu is pressed');
 
     }
   </script>
