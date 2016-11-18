@@ -103,6 +103,10 @@ html {
   margin: 10px 10px 10px 10px;
 }
 
+.bank-operation-button:hover{
+  background-color: red;
+}
+
 .bank-operation-icon{
   position: absolute;
   top:0;
@@ -147,6 +151,7 @@ html {
   background-image: url("../resources/icons/bank-operations/reports.png");
   background-size: 50%;
 }
+
 
 
 
