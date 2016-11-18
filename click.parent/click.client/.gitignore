@@ -19,6 +19,7 @@
 /www/resources/css/
 /www/resources/sass/.sass-cache/
 /www/index.html
+/node_modules/
 
 # OS generated files #
 ######################
