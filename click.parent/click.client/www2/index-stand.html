@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="lib/riot/riot+compiler.js"></script>
+  <link href="css/MainPage.css" rel="stylesheet">
+  <script src="compile/js/all.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <script src="app/api/WebApi.js"></script>
+
+  <script src="stand/fakedSocket.js"></script>
+  <script src="stand/asd.js"></script>
+</head>
+
+<body>
+
+<div id="riotTags">
+  <view-main-page></view-main-page>
+</div>
+
+<script>riot.mount('view-main-page')</script>
+
+</body>
+
+</html>
