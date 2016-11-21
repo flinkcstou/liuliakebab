@@ -1,0 +1,2 @@
+<view-authorization>
+</view-authorization>

@@ -152,6 +152,14 @@ html {
   background-size: 50%;
 }
 
+.show{
+  display: none;
+}
+
+.hide{
+  display: block;
+}
+
 
 
 

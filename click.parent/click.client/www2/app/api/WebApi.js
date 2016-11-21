@@ -44,6 +44,7 @@ window.api.call = function (params) {
   var onFail = params.onFail;
   var scope = params.scope || window;
 
+  console.log(params);
   this.callBacks[method] = {
     ok : function (data) {
       onSuccess.call(scope, data);
