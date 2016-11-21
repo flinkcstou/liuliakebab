@@ -11,7 +11,7 @@ socket.close = function (event) {
 };
 
 socket.onmessage = function (event) {
-  alert('HELLO');
+
   var parsedData = JSON.parse(event.data);
   console.log(parsedData);
 
