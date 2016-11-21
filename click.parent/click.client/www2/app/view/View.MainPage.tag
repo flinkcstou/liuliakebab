@@ -4,6 +4,9 @@
   <component-footer></component-footer>
   <script>
     //this.unmount();
+
+    api.init();
+
   </script>
 </view-main-page>
 

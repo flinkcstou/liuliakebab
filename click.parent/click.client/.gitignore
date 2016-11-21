@@ -21,6 +21,7 @@
 /www/index.html
 /node_modules/
 /www2/compile
+/www2/lib
 
 # OS generated files #
 ######################
