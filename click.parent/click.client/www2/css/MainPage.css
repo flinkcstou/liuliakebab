@@ -152,12 +152,16 @@ html {
   background-size: 50%;
 }
 
-.show{
+.hide{
   display: none;
 }
 
-.hide{
+.show{
   display: block;
+}
+
+.common-balance{
+  color:#7ae4ff;
 }
 
 

@@ -7,12 +7,11 @@
   <script src="compile/js/all.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <script src="cordova.js"></script>
+  <script src="../cordova/platforms/browser/www/cordova.js"></script>
   <script src="app/api/WebApi.js"></script>
 
   <script>
     document.addEventListener("deviceready", function () {
-
     }, false);
   </script>
 
@@ -21,11 +20,12 @@
 <body>
 
 <div id="riotTags">
-  <view-main-page></view-main-page>
+<view-main-page></view-main-page>
 </div>
 
 <script>riot.mount('view-main-page')</script>
-
+<script src="app/encryption/sha512.js"></script>
+<script src="app/encryption/md5.js"></script>
 </body>
 
 </html>

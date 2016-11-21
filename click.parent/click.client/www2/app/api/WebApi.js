@@ -17,7 +17,6 @@ window.api.initSocket = function () {
   var me = this;
   this.socket.onmessage = function (event) {
     var parsedData = JSON.parse(event.data);
-    console.log(parsedData);
 
     var method = parsedData.data[0][0].method;
 
@@ -44,7 +43,6 @@ window.api.call = function (params) {
   var onFail = params.onFail;
   var scope = params.scope || window;
 
-  console.log(params);
   this.callBacks[method] = {
     ok : function (data) {
       onSuccess.call(scope, data);

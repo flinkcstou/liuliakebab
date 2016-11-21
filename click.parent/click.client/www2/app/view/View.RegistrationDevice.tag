@@ -7,30 +7,36 @@
     <input type="button" onclick="{getPhoneNumber}" value="Далее">
   </form>
 
-  <form id="smsForm" >
+  <form id="smsForm" class="hide">
     Введите sms:
     <br>
     <input type="text" id="sms">
     <br>
     <input type="button" onclick="{getSms}" value="Далее">
+    <input type="checkbox" id="rememberDevice">Запомнить устройство
+    <br>
+    <input type="button" value="Переотправит sms" onclick="{resendSms}">
   </form>
 
   <script>
     getPhoneNumber()
     {
-      console.log(device.info);
+      var correctPhoneNumber = true;
       var phoneNumber = this.phoneNumber.value;
 
-      if (phoneNumber.length > 12) {
-        alert("Number is too long");
+      if (phoneNumber.length != 12) {
+        alert("incorrect number");
+        this.phoneNumber.value = '';
+        correctPhoneNumber = false;
       }
       console.log(phoneNumber);
       localStorage.setItem('phoneNumber', phoneNumber);
       var date = parseInt(Date.now() / 1000);
 
-      registrationDevice(phoneNumber, date);
-      this.smsForm.style.display = 'block';
 
+      if (correctPhoneNumber) {
+        registrationDevice(phoneNumber, date);
+      }
 
 
     }
@@ -78,6 +84,13 @@
 
         onSuccess: function (result) {
           console.log(result);
+          console.log("ANSWER OF API ", result[1][0]);
+          if (result[1][0].confirm_needed)
+            smsForm.classList.add('show');
+          var deviceId = result[1][0].device_id;
+          localStorage.setItem('deviceID', deviceId);
+          var token = hex_sha512(deviceId + date + phoneNumber);
+          localStorage.setItem('token', token);
         },
 
         onFail: function (api_status, api_status_message, data) {
@@ -85,6 +98,72 @@
           console.error(data);
         }
       });
+    }
+
+    getSms()
+    {
+      var sms = this.sms.value;
+      var phoneNumber = localStorage.getItem('phoneNumber');
+      var deviceId = localStorage.getItem('deviceID');
+      registrationConfirm(sms, phoneNumber, deviceId);
+    }
+    function deviceRemember() {
+      if (this.rememberDevice.checked)
+        return 1;
+      return 0;
+    }
+
+    function registrationConfirm(sms, phoneNumber, deviceId) {
+      console.log(sms);
+      window.api.call({
+        method: 'device.register.confirm',
+        input : {
+          phone_num      : phoneNumber,
+          device_id      : deviceId,
+          sms_code       : sms,
+          device_remember: deviceRemember()
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          console.log("DEVICE REGISTER CONFIRM ", result[0][0]);
+          if(result[0][0].error != 0){
+            localStorage.removeItem('token');
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+
+    }
+
+    resendSms()
+    {
+      var phoneNumber = localStorage.getItem('phoneNumber');
+      var deviceId = localStorage.getItem('deviceID');
+      window.api.call({
+        method: 'sms.resend',
+        input : {
+          phone_num: phoneNumber,
+          device_id: deviceId
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          console.log(result[0][0]);
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+
     }
   </script>
 </view-registration-device>
