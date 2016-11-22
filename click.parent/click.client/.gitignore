@@ -23,6 +23,11 @@
 /www2/compile
 /www2/lib
 
+/cordova/platforms
+/cordova/plugins
+/cordova/www
+
+
 # OS generated files #
 ######################
 .DS_Store
