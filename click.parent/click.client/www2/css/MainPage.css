@@ -187,9 +187,14 @@ html {
   position: absolute;
   height:170px;
   width: 100%;
+  display: inline-block;
   top:150px;
   background-color: green;
   overflow: auto;
+}
+
+.cards{
+  position: relative;
 }
 
 .card{
