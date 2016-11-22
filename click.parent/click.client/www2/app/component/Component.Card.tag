@@ -1,3 +1,2 @@
-<component-card>
-  <div>ASD</div>
+<component-card class="card">
 </component-card>

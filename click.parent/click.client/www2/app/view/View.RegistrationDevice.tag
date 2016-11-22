@@ -1,13 +1,13 @@
 <view-registration-device>
-  <form id="phoneform">
+  <div id="phoneform">
     Введите телефон:
     <br>
     <input type="text" id="phoneNumber">
     <br>
     <input type="button" onclick="{getPhoneNumber}" value="Далее">
-  </form>
+  </div>
 
-  <form id="smsForm" class="hide">
+  <div id="smsForm" class="hide">
     Введите sms:
     <br>
     <input type="text" id="sms">
@@ -16,7 +16,7 @@
     <input type="checkbox" id="rememberDevice">Запомнить устройство
     <br>
     <input type="button" value="Переотправит sms" onclick="{resendSms}">
-  </form>
+  </div>
 
   <script>
     getPhoneNumber()
@@ -89,8 +89,8 @@
             smsForm.classList.add('show');
           var deviceId = result[1][0].device_id;
           localStorage.setItem('deviceID', deviceId);
-          var token = hex_sha512(deviceId + date + phoneNumber);
-          localStorage.setItem('token', token);
+          window.token = hex_sha512(deviceId + date + phoneNumber);
+
         },
 
         onFail: function (api_status, api_status_message, data) {
@@ -128,8 +128,8 @@
 
         onSuccess: function (result) {
           console.log("DEVICE REGISTER CONFIRM ", result[0][0]);
-          if(result[0][0].error != 0){
-            localStorage.removeItem('token');
+          if(result[0][0].error == 0){
+            localStorage.setItem('token', token);
           }
         },
 

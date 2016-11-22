@@ -13,8 +13,8 @@ html {
 .toolbar {
   position: absolute;
   top: 20px;
-  right: 20px;
-  left: 20px;
+  right: 15px;
+  left: 15px;
   height: 50px;
   background: transparent;
   border-bottom: 3px solid rgb(149, 230, 253);
@@ -89,6 +89,7 @@ html {
 .bank-operations{
   position: absolute;
   bottom: 150px;
+  height: 200px;
   width: 100%;
 }
 
@@ -111,7 +112,7 @@ html {
   position: absolute;
   top:0;
   width: 100%;
-  height: 70%;
+  height: 100%;
 
   background-repeat: no-repeat;
   background-position: center;
@@ -129,27 +130,27 @@ html {
 
 .operation-pay-icon{
   background-image: url("../resources/icons/bank-operations/payments.png");
-  background-size: 40%;
+  background-size: 30%;
 }
 
 .operation-transfer-icon{
   background-image: url("../resources/icons/bank-operations/transfer.png");
-  background-size: 60%;
+  background-size: 40%;
 }
 
 .operation-autopay-icon{
   background-image: url("../resources/icons/bank-operations/autopay.png");
-  background-size: 50%;
+  background-size: 40%;
 }
 
 .operation-myFinance-icon{
   background-image: url("../resources/icons/bank-operations/myfinance.png");
-  background-size: 50%;
+  background-size: 40%;
 }
 
 .operation-report-icon{
   background-image: url("../resources/icons/bank-operations/reports.png");
-  background-size: 50%;
+  background-size: 40%;
 }
 
 .hide{
@@ -160,11 +161,50 @@ html {
   display: block;
 }
 
-.common-balance{
+.common-balance-label{
+  position: absolute;
+  top:70px;
+  left:20px;
   color:#7ae4ff;
 }
 
+.common-balance{
+  position: absolute;
+  top:50px;
+  left:20px;
+  color:#fffaf9;
+  font-size: 52px;
+}
 
+.valuta{
+  position: absolute;
+  top:110px;
+  left:215px;
+  color:#7ae4ff;
+}
+
+.card-carousel{
+  position: absolute;
+  height:170px;
+  width: 100%;
+  top:150px;
+  background-color: green;
+  overflow: auto;
+}
+
+.card{
+  height: 130px;
+  width: 200px;
+  position: absolute;
+  border: 1px solid black;
+  top: 25px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-size: cover;
+  color: white;
+  background-color: #505060;
+}
 
 
 
