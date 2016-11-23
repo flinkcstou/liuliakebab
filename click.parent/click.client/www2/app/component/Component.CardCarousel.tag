@@ -30,7 +30,7 @@
       count++;
       this.cards.innerHTML += "<component-card style='left:" + left + "px'></component-card>";
       //console.log(this.containerCard.innerHTML); //TODO:SAVE COMPONENTS IN LOCALSTORAGE
-      left += 240;
+      left += 260;
       this.cards.style.width = (left + 40) + 'px';
       console.log(this.cards.style.width);
       riot.mount("component-card");
@@ -39,14 +39,14 @@
 
     function changePosition(position) {
       console.log("POSITION SEND ", position);
-      var card = Math.round(position / 200);
-      console.log(parseFloat(position / 200));
+      var card = Math.round(position / 260);
+      console.log(parseFloat(position / 260));
       console.log("NUMBER OF CARD ", card);
-      this.containerCard.scrollLeft = card * 240;
-      console.log("REAL POSITION ", card * 240);
+      this.containerCard.scrollLeft = card * 280;
+      console.log("REAL POSITION ", card * 280);
       console.log("NEW POSITION ", this.containerCard.scrollLeft);
 
-      window.pos = card * 240;
+      window.pos = card * 280;
 
       window.changed = false;
     }

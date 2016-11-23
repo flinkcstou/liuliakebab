@@ -198,19 +198,55 @@ html {
 }
 
 .card{
-  height: 130px;
-  width: 200px;
+  height: 140px;
+  width: 240px;
   position: absolute;
-  border: 1px solid black;
   top: 25px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  background-image: url("../resources/icons/cards/card_bg.jpg");
   background-size: cover;
   color: white;
-  background-color: #505060;
+  text-shadow: 0px 0px 1px #000000;
+  box-shadow: -4px 4px 5px #000000;
 }
 
 
+.salary-title{
+  position: absolute;
+  top:58px;
+  left: 5px;
+  color: #97989a;
+  background-size: contain;
+  font-size: 13px;
+  height: 10%;
+}
 
+.balance-of-card{
+  position: absolute;
+  top:70px;
+  left: 5px;
+  color: #515151;
+  font-size: 24px;
+  background-size: contain;
+}
 
+.valyuta-of-card{
+  position: absolute;
+  top:78px;
+  left: 95px;
+  color: #5f6062;
+  font-size: 12px;
+  background-size: contain;
+}
+
+.number-of-card{
+  position: absolute;
+  top:100px;
+  left: 10px;
+  color: #5f6062;
+  font-size: 16px;
+  background-size: contain;
+  text-shadow: 2px 2px 4px #000000;
+}
