@@ -6,17 +6,14 @@
   <input style="position: static" type="button" value="Add card" onclick={addCard}>
   <script>
 
-    this.containerCard.style.overflow = "hidden";
-    console.log(this);
     console.log(window);
-
+    this.cards.style.width = "360px";
     window.pos = 0;
     window.changed = false;
 
     var left = 80;
     var count = 0;
     var timer = null;
-    var right = 20;
 
     endTouch = function () {
       changePosition(this.containerCard.scrollLeft);
@@ -30,12 +27,12 @@
 
     addCard(e)
     {
-      console.log(this.containerCard.clientWidth);
-      this.cards.innerHTML += "<div style='width: 20px'></div>"
       count++;
       this.cards.innerHTML += "<component-card style='left:" + left + "px'></component-card>";
       //console.log(this.containerCard.innerHTML); //TODO:SAVE COMPONENTS IN LOCALSTORAGE
       left += 240;
+      this.cards.style.width = (left + 40) + 'px';
+      console.log(this.cards.style.width);
       riot.mount("component-card");
     }
 

@@ -189,7 +189,7 @@ html {
   width: 100%;
   display: inline-block;
   top:150px;
-  background-color: green;
+  background: transparent;
   overflow: auto;
 }
 
@@ -201,8 +201,6 @@ html {
   height: 130px;
   width: 200px;
   position: absolute;
-  left: 80px;
-  right: 80px;
   border: 1px solid black;
   top: 25px;
   -webkit-border-radius: 5px;
