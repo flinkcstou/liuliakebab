@@ -201,6 +201,8 @@ html {
   height: 130px;
   width: 200px;
   position: absolute;
+  left: 80px;
+  right: 80px;
   border: 1px solid black;
   top: 25px;
   -webkit-border-radius: 5px;
@@ -210,6 +212,7 @@ html {
   color: white;
   background-color: #505060;
 }
+
 
 
 

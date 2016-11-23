@@ -1,48 +1,66 @@
-<component-card-carousel class="">
-  <div id="containerCard" class="card-carousel" onscroll={scrollCard}>
+<component-card-carousel>
+  <div id="containerCard" class="card-carousel" style="transition:all 5s ease-in;" ontouchend="endTouch()" ontouchstart="startTouch()" onscroll="{onScroll}">
     <div id="cards" class="cards">
-
     </div>
   </div>
   <input style="position: static" type="button" value="Add card" onclick={addCard}>
   <script>
 
-    var asd = 80;
+    this.containerCard.style.overflow = "hidden";
+    console.log(this);
+    console.log(window);
+
+    window.pos = 0;
+    window.changed = false;
+
+    var left = 80;
     var count = 0;
-    var arrayCenter = [];
+    var timer = null;
+    var right = 20;
+
+    endTouch = function () {
+      changePosition(this.containerCard.scrollLeft);
+      this.containerCard.style.overflow = "hidden";
+    }
+
+    startTouch = function () {
+      this.containerCard.style.overflow = "auto";
+      window.changed = true;
+    }
 
     addCard(e)
     {
-      setTimeout(detectCenter, 1000);
-      //console.log('width ', this.cards.offsetWidth);
+      console.log(this.containerCard.clientWidth);
+      this.cards.innerHTML += "<div style='width: 20px'></div>"
       count++;
-      this.cards.innerHTML += "<component-card style='left:" + asd + "px'></component-card>";
+      this.cards.innerHTML += "<component-card style='left:" + left + "px'></component-card>";
       //console.log(this.containerCard.innerHTML); //TODO:SAVE COMPONENTS IN LOCALSTORAGE
-      asd += 240;
+      left += 240;
       riot.mount("component-card");
-      console.log(count, asd / 2);
-      detectCenter(count, asd/2);
-      for (var i = 0; i < count; i++) {
-        console.log(arrayCenter[i]);
-      }
     }
-    function detectCenter(count, center) {
-      arrayCenter.push(center);
+
+
+    function changePosition(position) {
+      console.log("POSITION SEND ", position);
+      var card = Math.round(position / 200);
+      console.log(parseFloat(position / 200));
+      console.log("NUMBER OF CARD ", card);
+      this.containerCard.scrollLeft = card * 240;
+      console.log("REAL POSITION ", card * 240);
+      console.log("NEW POSITION ", this.containerCard.scrollLeft);
+
+      window.pos = card * 240;
+
+      window.changed = false;
     }
-    scrollCard(e)
+
+    onScroll(e)
     {
-      console.log(e);
-      console.log(e);
-//      console.log(this.containerCard.scrollLeft);
-//      if (this.containerCard.scrollLeft > 180 && this.containerCard.scrollLeft < 200 && card2 == false) {
-//        this.containerCard.style = "background-color: black;";
-//        this.containerCard.scrollLeft = 260;
-//        card2 = true;
-//      }
-//      if (this.containerCard.scrollLeft < 320 && this.containerCard.scrollLeft > 300 && card2 == false) {
-//        this.containerCard.style = "background-color: black;";
-//        this.containerCard.scrollLeft = 260;
-//      }
+      console.log(e.target.scrollLeft);
+
+      if (!window.changed) {
+        this.containerCard.scrollLeft = window.pos;
+      }
     }
 
   </script>
