@@ -1,19 +1,20 @@
 <component-card-carousel>
-  <div id="containerCard" class="card-carousel" style="transition:all 5s ease-in;" ontouchend="endTouch()" ontouchstart="startTouch()" onscroll="{onScroll}">
+  <div id="containerCard" class="card-carousel" style="transition:all 5s ease-in;" ontouchend="endTouch()"
+       ontouchstart="startTouch()" onscroll="{onScroll}">
     <div id="cards" class="cards">
+      <component-card style="left:{left}px"
+                      each="{i in cardsArray}"
+                      name="{i.name}" salary="{i.salary}" valyuta="{i.valyuta}" number="{i.number}"></component-card>
     </div>
   </div>
   <input style="position: static" type="button" value="Add card" onclick={addCard}>
   <script>
-
-    console.log(window);
-    this.cards.style.width = "360px";
-    window.pos = 0;
-    window.changed = false;
-
-    var left = 80;
+    this.cardsArray = [];
+    var card;
+    var pos = 0;
+    this.cards.style.marginRight = '60px';
+    var changed = false;
     var count = 0;
-    var timer = null;
 
     endTouch = function () {
       changePosition(this.containerCard.scrollLeft);
@@ -22,41 +23,42 @@
 
     startTouch = function () {
       this.containerCard.style.overflow = "auto";
-      window.changed = true;
+      changed = true;
     }
 
     addCard(e)
     {
+      card = {
+        name   : 'Зарплатная карта',
+        salary : '1 798 222',
+        valyuta: 'сум',
+        number : '8723     ****     ****     4276'
+      };
+
+      this.cardsArray.push(card);
+      this.left = count * 260 + 60;
       count++;
-      this.cards.innerHTML += "<component-card style='left:" + left + "px'></component-card>";
+      this.cards.style.width = (this.left + 300) + 'px';
       //console.log(this.containerCard.innerHTML); //TODO:SAVE COMPONENTS IN LOCALSTORAGE
-      left += 260;
-      this.cards.style.width = (left + 40) + 'px';
+      console.log(this.left);
       console.log(this.cards.style.width);
       riot.mount("component-card");
+
     }
 
 
     function changePosition(position) {
-      console.log("POSITION SEND ", position);
-      var card = Math.round(position / 260);
-      console.log(parseFloat(position / 260));
-      console.log("NUMBER OF CARD ", card);
-      this.containerCard.scrollLeft = card * 280;
-      console.log("REAL POSITION ", card * 280);
-      console.log("NEW POSITION ", this.containerCard.scrollLeft);
+      var card = Math.round(position / 240);
+      this.containerCard.scrollLeft = card * 260;
 
-      window.pos = card * 280;
-
-      window.changed = false;
+      pos = card * 260;
+      changed = false;
     }
 
     onScroll(e)
     {
-      console.log(e.target.scrollLeft);
-
-      if (!window.changed) {
-        this.containerCard.scrollLeft = window.pos;
+      if (!changed) {
+        this.containerCard.scrollLeft = pos;
       }
     }
 

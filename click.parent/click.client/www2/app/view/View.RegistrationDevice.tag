@@ -128,7 +128,7 @@
 
         onSuccess: function (result) {
           console.log("DEVICE REGISTER CONFIRM ", result[0][0]);
-          if(result[0][0].error == 0){
+          if (result[0][0].error == 0) {
             localStorage.setItem('token', token);
           }
         },

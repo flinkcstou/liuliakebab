@@ -9,6 +9,7 @@
   </div>
   <component-card-carousel></component-card-carousel>
   <component-bank-operations></component-bank-operations>
+  <component-service-carousel></component-service-carousel>
   <component-footer></component-footer>
   <script>
     //this.unmount();

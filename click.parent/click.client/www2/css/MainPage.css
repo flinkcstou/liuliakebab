@@ -88,7 +88,7 @@ html {
 
 .bank-operations{
   position: absolute;
-  bottom: 150px;
+  bottom: 26%;
   height: 200px;
   width: 100%;
 }
@@ -105,7 +105,14 @@ html {
 }
 
 .bank-operation-button:hover{
-  background-color: red;
+  height: 70px;
+  background-color: #25a0e3;
+  text-shadow: 0px 0px 1px #000000;
+}
+
+.bottom-operations-buttons{
+  position: absolute;
+  top:80px;
 }
 
 .bank-operation-icon{
@@ -113,7 +120,6 @@ html {
   top:0;
   width: 100%;
   height: 100%;
-
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -161,6 +167,8 @@ html {
   display: block;
 }
 
+
+/*ALL CARD*/
 .common-balance-label{
   position: absolute;
   top:70px;
@@ -188,7 +196,7 @@ html {
   height:170px;
   width: 100%;
   display: inline-block;
-  top:150px;
+  top:130px;
   background: transparent;
   overflow: auto;
 }
@@ -208,8 +216,8 @@ html {
   background-image: url("../resources/icons/cards/card_bg.jpg");
   background-size: cover;
   color: white;
-  text-shadow: 0px 0px 1px #000000;
-  box-shadow: -4px 4px 5px #000000;
+  text-shadow: 0px 0px 1px #a3a3a3;
+  box-shadow: -3px -2px 6px #7f7f7f;
 }
 
 
@@ -249,4 +257,75 @@ html {
   font-size: 16px;
   background-size: contain;
   text-shadow: 2px 2px 4px #000000;
+}
+
+/*BOTTOM SERVICE BEELINE UCELL UMS*/
+.service-carousel{
+  position: absolute;
+  width: 100%;
+  height: 130px;
+  bottom:52px;
+  background: transparent;
+    overflow: hidden;
+}
+
+.service-component{
+  position: absolute;
+  width: 330px;
+  height: 130px;
+  bottom:0;
+  background-color: #fefefe;
+}
+
+.service-container{
+  position: absolute;
+  height: 80px;
+  width: 100%;
+  bottom: 0;
+}
+
+.service-buttons{
+  position: absolute;
+  width: 100px;
+  height: 80px;
+  bottom:0px;
+  background-repeat: no-repeat;
+}
+
+.horizontal-line{
+  position: absolute;
+  height: 30px;
+  width: 1px;
+  right:0;
+  bottom: 30px;
+  background-color: #b9b9b9;
+}
+
+.beeline-button{
+  background-image: url("../resources/icons/services/beeline.png");
+  background-size: 100%;
+}
+
+.ucell-button{
+  left: 100px;
+  background-image: url("../resources/icons/services/ucell.png");
+  background-size: 62%;
+  background-position: top;
+}
+
+.ums-button{
+  left: 200px;
+  background-position: center;
+  background-image: url("../resources/icons/services/ums.png");
+  background-size: 80%;
+}
+
+.service-title{
+  position: absolute;
+  left: 25%;
+  top:20px;
+  background: transparent;
+  background-size: contain;
+  color: #646264;
+  font-size: 17px;
 }
