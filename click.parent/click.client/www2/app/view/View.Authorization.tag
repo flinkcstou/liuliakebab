@@ -4,10 +4,12 @@
     <br>
     <input type="text" id="pin">
     <input type="button" value="далее" onclick="{prepare}">
+    <input id="getAccountId" class="hide" type="button" value="Получение списка счетов" onclick="{getAccount}">
+    <input id="getBalanceId" class="hide" type="button" value="Получение баланса" onclick="{getBalance}">
   </div>
 
   <script>
-    prepare()
+    prepare(e)
     {
       var phoneNumber = localStorage.getItem('phoneNumber');
       var pin = this.pin.value;
@@ -37,12 +39,48 @@
           var info = JSON.parse(localStorage.getItem('info'));
           console.log(info);
           console.log(info.session_key);
+          this.getAccountId.classList.add("show");
+          this.getBalanceId.classList.add("show");
         },
         onFail   : function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
       })
+    }
+
+    getAccount(e)
+    {
+      var phoneNumber = localStorage.getItem("phoneNumber");
+      var info = JSON.parse(localStorage.getItem("info"));
+      var sessionKey = info.session_key;
+
+      window.api.call({
+        method: 'get.accounts',
+        input : {
+          session_key: sessionKey,
+          phone_num  : phoneNumber
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          console.log(result);
+          console.log(result[1][0]);
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      })
+    }
+
+    getBalance(e)
+    {
+      var phoneNumber = localStorage.getItem("phoneNumber");
+      var info = JSON.parse(localStorage.getItem("info"));
+      var sessionKey = info.session_key;
     }
   </script>
 </view-authorization>

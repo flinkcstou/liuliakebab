@@ -6,10 +6,11 @@
   </div>
 
   <script>
-    var changed = false;
+    var changed = false, pos = 0;
 
     touchStart = function () {
       this.containerService.style.overflow = "auto";
+      changed = true;
     }
 
     touchEnd = function () {
@@ -18,7 +19,17 @@
     }
 
     changePosition = function (position) {
+      var block = Math.round(position / 320);
+      pos = block * 320;
+      this.containerService.scrollLeft = pos;
+      changed = false;
+    }
 
+    onScroll()
+    {
+      if(!changed){
+        this.containerService.scrollLeft = pos;
+      }
     }
   </script>
 </component-service-carousel>
