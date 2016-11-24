@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-cd www2
+if [ ! -e node_modules/riot-cli/lib/index.js ] ; then
+  npm install
+fi
 
-riot -w app/ compile/js/all.js
+node node_modules/riot-cli/lib/index.js -w www2/app/ www2/compile/js/all.js 

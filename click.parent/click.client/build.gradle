@@ -2,54 +2,9 @@ dependencies {
   testCompile 'kz.greetgo.cordosencha:cordosencha.gradle:0.0.4'
 }
 
-task clearClient(type: JavaExec, group: 'client_inner') {
-  classpath { [sourceSets.test.runtimeClasspath] }
-
-  main = 'kz.greetgo.click.client.Commander'
-  args = ['clean']
-}
-
-task senchaAppRefresh(type: JavaExec, group: 'client_inner') {
-  classpath { [sourceSets.test.runtimeClasspath] }
-
-  main = 'kz.greetgo.click.client.Commander'
-  args = ['senchaAppRefresh']
-}
-
-clean.dependsOn clearClient
-
-task senchaAppBuildDevelopment(type: JavaExec, group: 'client_inner') {
-  classpath { [sourceSets.test.runtimeClasspath] }
-
-  main = 'kz.greetgo.click.client.Commander'
-  args = ['senchaAppBuildDevelopment']
-}
-
 task prepareCordovaStandWWW(type: JavaExec, group: 'client_inner') {
-  dependsOn senchaAppBuildDevelopment
   classpath { [sourceSets.test.runtimeClasspath] }
 
-  main = 'kz.greetgo.click.client.Commander'
-  args = ['prepareCordovaStandWWW']
+  main = 'kz.greetgo.click.client.PrepareCordovaWWW'
+  args = ['index-stand.html']
 }
-
-task buildAndroid(type: JavaExec, group: 'client_inner') {
-  classpath { [sourceSets.test.runtimeClasspath] }
-
-  main = 'kz.greetgo.click.client.Commander'
-  args = ['buildAndroid']
-}
-
-task prepareCordovaProductionWWW(type: JavaExec, group: 'client_inner') {
-  classpath { [sourceSets.test.runtimeClasspath] }
-
-  main = 'kz.greetgo.click.client.Commander'
-  args = ['prepareCordovaProductionWWW']
-}
-
-
-task buildStandAndroid(group: 'client') {
-  dependsOn prepareCordovaStandWWW
-  dependsOn buildAndroid
-}
-buildAndroid.shouldRunAfter prepareCordovaStandWWW
