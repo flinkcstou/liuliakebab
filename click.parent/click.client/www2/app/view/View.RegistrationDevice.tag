@@ -4,7 +4,7 @@
     <br>
     <input type="text" id="phoneNumber">
     <br>
-    <input type="button" onclick="{getPhoneNumber}" value="Далее">
+    <input type="button" ontouchend="getPhoneNumber()" value="Далее">
   </div>
 
   <div id="smsForm" class="hide">
@@ -12,21 +12,22 @@
     <br>
     <input type="text" id="sms">
     <br>
-    <input type="button" onclick="{getSms}" value="Далее">
+    <input type="button" ontouchend="getSms()" value="Далее">
     <input type="checkbox" id="rememberDevice">Запомнить устройство
     <br>
-    <input type="button" value="Переотправит sms" onclick="{resendSms}">
+    <input type="button" value="Переотправит sms" ontouchend="resendSms()">
   </div>
 
   <script>
-    getPhoneNumber()
+    var scope = this;
+    getPhoneNumber = function()
     {
       var correctPhoneNumber = true;
-      var phoneNumber = this.phoneNumber.value;
+      var phoneNumber = scope.phoneNumber.value;
 
       if (phoneNumber.length != 12) {
         alert("incorrect number");
-        this.phoneNumber.value = '';
+        scope.phoneNumber.value = '';
         correctPhoneNumber = false;
       }
       console.log(phoneNumber);
@@ -100,9 +101,9 @@
       });
     }
 
-    getSms()
+    getSms = function()
     {
-      var sms = this.sms.value;
+      var sms = scope.sms.value;
       var phoneNumber = localStorage.getItem('phoneNumber');
       var deviceId = localStorage.getItem('deviceID');
       registrationConfirm(sms, phoneNumber, deviceId);
@@ -141,7 +142,7 @@
 
     }
 
-    resendSms()
+    resendSms = function()
     {
       var phoneNumber = localStorage.getItem('phoneNumber');
       var deviceId = localStorage.getItem('deviceID');

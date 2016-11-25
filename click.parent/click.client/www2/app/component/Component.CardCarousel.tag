@@ -6,23 +6,25 @@
                       each="{i in cardsArray}"
                       name="{i.name}" salary="{i.salary}" valyuta="{i.valyuta}" number="{i.number}"></component-card>
     </div>
+    <input style="position: static" type="button" value="Add card" onclick={addCard}>
   </div>
-  <input style="position: static" type="button" value="Add card" onclick={addCard}>
+
   <script>
-    this.cardsArray = [];
+    var scope = this;
+    scope.cardsArray = [];
     var card;
     var pos = 0;
-    this.cards.style.marginRight = '60px';
+    scope.cards.style.marginRight = '60px';
     var changed = false;
     var count = 0;
 
     endTouch = function () {
-      changePosition(this.containerCard.scrollLeft);
-      this.containerCard.style.overflow = "hidden";
+      changePosition(scope.containerCard.scrollLeft);
+      scope.containerCard.style.overflow = "hidden";
     }
 
     startTouch = function () {
-      this.containerCard.style.overflow = "auto";
+      scope.containerCard.style.overflow = "auto";
       changed = true;
     }
 
@@ -35,13 +37,13 @@
         number : '8723     ****     ****     4276'
       };
 
-      this.cardsArray.push(card);
-      this.left = count * 260 + 60;
+      scope.cardsArray.push(card);
+      scope.left = count * 260 + 60;
       count++;
-      this.cards.style.width = (this.left + 300) + 'px';
+      scope.cards.style.width = (scope.left + 300) + 'px';
       //console.log(this.containerCard.innerHTML); //TODO:SAVE COMPONENTS IN LOCALSTORAGE
-      console.log(this.left);
-      console.log(this.cards.style.width);
+      console.log(scope.left);
+      console.log(scope.cards.style.width);
       riot.mount("component-card");
 
     }
@@ -49,7 +51,7 @@
 
     function changePosition(position) {
       var card = Math.round(position / 240);
-      this.containerCard.scrollLeft = card * 260;
+      scope.containerCard.scrollLeft = card * 260;
 
       pos = card * 260;
       changed = false;
@@ -58,7 +60,7 @@
     onScroll(e)
     {
       if (!changed) {
-        this.containerCard.scrollLeft = pos;
+        scope.containerCard.scrollLeft = pos;
       }
     }
 

@@ -6,29 +6,30 @@
   </div>
 
   <script>
+    var scope = this;
     var changed = false, pos = 0;
 
     touchStart = function () {
-      this.containerService.style.overflow = "auto";
+      scope.containerService.style.overflow = "auto";
       changed = true;
     }
 
     touchEnd = function () {
-      this.containerService.style.overflow = "hidden";
-      changePosition(this.containerService.scrollLeft);
+      scope.containerService.style.overflow = "hidden";
+      changePosition(scope.containerService.scrollLeft);
     }
 
     changePosition = function (position) {
       var block = Math.round(position / 320);
       pos = block * 320;
-      this.containerService.scrollLeft = pos;
+      scope.containerService.scrollLeft = pos;
       changed = false;
     }
 
     onScroll()
     {
-      if(!changed){
-        this.containerService.scrollLeft = pos;
+      if (!changed) {
+        scope.containerService.scrollLeft = pos;
       }
     }
   </script>
