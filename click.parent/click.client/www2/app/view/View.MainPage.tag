@@ -1,4 +1,4 @@
-<view-main-page>
+<view-main-page id="mainPageId">
   <component-toolbar></component-toolbar>
   <div>
     <p class="common-balance-label">Общий баланс:</p>
@@ -12,8 +12,8 @@
   <component-service-carousel></component-service-carousel>
   <component-footer></component-footer>
   <script>
-    //this.unmount();
-
+    window.myCards = false;
+    riot.update('component-toolbar');
     api.init();
 
   </script>

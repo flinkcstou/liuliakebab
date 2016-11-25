@@ -2,21 +2,31 @@
   <div id="containerCard" class="card-carousel" style="transition:all 5s ease-in;" ontouchend="endTouch()"
        ontouchstart="startTouch()" onscroll="{onScroll}">
     <div id="cards" class="cards">
-      <component-card style="left:{left}px"
-                      each="{i in cardsArray}"
+      <component-card each="{i in cardsarray}"
+                      style="left:{i.position}"
                       name="{i.name}" salary="{i.salary}" valyuta="{i.valyuta}" number="{i.number}"></component-card>
     </div>
     <input style="position: static" type="button" value="Add card" onclick={addCard}>
   </div>
 
   <script>
+
     var scope = this;
-    scope.cardsArray = [];
+    scope.cards.style.width = localStorage.getItem('containerCardsWidth');
+    cardsarray = JSON.parse(localStorage.getItem("cards"));
+
+
+    if (!cardsarray) {
+
+      cardsarray = [];
+    }
+
+
     var card;
+    var cardNumber;
     var pos = 0;
-    scope.cards.style.marginRight = '60px';
     var changed = false;
-    var count = 0;
+    var count = localStorage.getItem('countCard');
 
     endTouch = function () {
       changePosition(scope.containerCard.scrollLeft);
@@ -30,30 +40,39 @@
 
     addCard(e)
     {
-      card = {
-        name   : 'Зарплатная карта',
-        salary : '1 798 222',
-        valyuta: 'сум',
-        number : '8723     ****     ****     4276'
-      };
-
-      scope.cardsArray.push(card);
       scope.left = count * 260 + 60;
+      card = {
+        name    : 'Зарплатная карта',
+        salary  : '1 798 222',
+        valyuta : 'сум',
+        number  : '8723     ****     ****     4276',
+        position: (scope.left + 'px')
+      };
+      console.log(card);
+
+      cardsarray.push(card);
+      console.log(cardsarray);
+      localStorage.setItem("cards", JSON.stringify(cardsarray));
+      var parsedCards = localStorage.getItem('cards');
+      console.log(parsedCards);
+
       count++;
-      scope.cards.style.width = (scope.left + 300) + 'px';
+      localStorage.setItem('countCard', count);
+      localStorage.setItem('containerCardsWidth', scope.left + 300 + 'px');
       //console.log(this.containerCard.innerHTML); //TODO:SAVE COMPONENTS IN LOCALSTORAGE
       console.log(scope.left);
-      console.log(scope.cards.style.width);
       riot.mount("component-card");
 
     }
 
-
     function changePosition(position) {
-      var card = Math.round(position / 240);
-      scope.containerCard.scrollLeft = card * 260;
+      cardNumber = Math.round(position / 240);
+      if (cardNumber > position / 240)
+        cardNumber = Math.round((position - 60) / 240);
 
-      pos = card * 260;
+      pos = cardNumber * 260;
+      scope.containerCard.scrollLeft = pos;
+
       changed = false;
     }
 
