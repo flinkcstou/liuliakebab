@@ -1,5 +1,26 @@
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+      //url System.getenv('GG_REPO')
+    }
+  }
+
+  dependencies {
+    classpath "com.moowork.gradle:gradle-node-plugin:0.12"
+  }
+}
+
+apply plugin: 'com.moowork.node'
+
+task cleanLibs(type: Delete) {
+  delete 'node_modules', 'www/lib'
+}
+
+clean.dependsOn cleanLibs
+
 dependencies {
-  testCompile 'kz.greetgo.cordosencha:cordosencha.gradle:0.0.4'
+  testCompile 'kz.greetgo.cordosencha:cordosencha.gradle:0.0.5'
 }
 
 task prepareCordovaStandWWW(type: JavaExec, group: 'client_inner') {

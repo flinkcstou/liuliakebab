@@ -7,6 +7,6 @@
   },
   "scripts": {
     "postinstall": "node postinstall.js",
-    "watch": "node node_modules/riot-cli/lib/index.js -w www2/app/ www2/compile/js/all.js"
+    "watch": "node node_modules/riot-cli/lib/index.js -w www/app/ www/lib/js/all.js"
   }
 }
