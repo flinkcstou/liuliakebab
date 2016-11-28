@@ -369,4 +369,12 @@ body{
   position: absolute;
   width: 20px;
   height: 20px;
+  left:0;
+}
+
+.right-button{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 0;
 }

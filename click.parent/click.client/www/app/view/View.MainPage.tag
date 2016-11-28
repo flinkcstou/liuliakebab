@@ -12,10 +12,11 @@
   <component-service-carousel></component-service-carousel>
   <component-footer></component-footer>
   <script>
+
     console.log(JSON.parse(localStorage.getItem("accountInfo")));
     window.myCards = false;
-    riot.update('component-toolbar');
     api.init();
+
 
   </script>
 </view-main-page>
