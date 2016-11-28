@@ -14,7 +14,7 @@ buildscript {
 apply plugin: 'com.moowork.node'
 
 task cleanLibs(type: Delete) {
-  delete 'node_modules', 'www/lib'
+  delete 'node_modules', 'www/lib', 'cordova/www', 'cordova/plugins', 'cordova/platforms'
 }
 
 clean.dependsOn cleanLibs
@@ -24,8 +24,46 @@ dependencies {
 }
 
 task prepareCordovaStandWWW(type: JavaExec, group: 'client_inner') {
+  dependsOn npmInstall
   classpath { [sourceSets.test.runtimeClasspath] }
 
   main = 'kz.greetgo.click.client.PrepareCordovaWWW'
-  args = ['index-stand.html']
+  args = [
+      '-indexName', 'index-stand.html',
+      '-copyDir', 'stand',
+      '-copyDir', 'lib',
+      '-copyDir', 'css',
+      '-copyDir', 'js',
+      '-copyNoReplace', 'cordova/www_cordova', 'cordova/www'
+  ]
+}
+
+task prepareCordovaProductionWWW(type: JavaExec, group: 'client_inner') {
+  dependsOn npmInstall
+  classpath { [sourceSets.test.runtimeClasspath] }
+
+  main = 'kz.greetgo.click.client.PrepareCordovaWWW'
+  args = [
+      '-indexName', 'index-production.html',
+      '-copyDir', 'lib',
+      '-copyDir', 'css',
+      '-copyDir', 'js',
+      '-copyDir', 'resources',
+      '-copyNoReplace', 'cordova/www_cordova', 'cordova/www'
+  ]
+}
+
+task compileAndroidStand(type: JavaExec, group: 'client') {
+  dependsOn prepareCordovaStandWWW
+  classpath { [sourceSets.test.runtimeClasspath] }
+
+  main = 'kz.greetgo.click.client.CompileCordovaAndroid'
+  args = []
+}
+task compileAndroidProduction(type: JavaExec, group: 'client') {
+  dependsOn prepareCordovaProductionWWW
+  classpath { [sourceSets.test.runtimeClasspath] }
+
+  main = 'kz.greetgo.click.client.CompileCordovaAndroid'
+  args = []
 }

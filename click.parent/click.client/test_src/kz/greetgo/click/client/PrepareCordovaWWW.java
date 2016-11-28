@@ -1,14 +1,21 @@
 package kz.greetgo.click.client;
 
 import kz.greetgo.cordosencha.gradle.core.DirOperations;
-import kz.greetgo.cordosencha.gradle.util.OperationUtil;
 
 public class PrepareCordovaWWW {
   public static void main(String[] args) throws Exception {
-    String indexName = args[0];
-    DirOperations dir = OperationUtil.inDir(OperationUtil.getClientDir("click.client"));
+    ArgsPCWWW a = ArgsPCWWW.parse(args);
+
+    DirOperations dir = Util.newDirOperations();
     dir.cd("cordova").delete("www");
-    
-    System.out.println("indexName = " + indexName);
+
+    String indexName = a.indexName();
+
+    dir.mkdirs("cordova/www");
+    dir.file("www/" + indexName).assemblingCopyTo("cordova/www/index.html");
+
+    a.copyDirList.forEach(cd -> dir.file("www/" + cd.dirName).copyTo("cordova/www"));
+
+    a.copyNoReplaceList.forEach(cnr -> dir.copyDirContentNoReplace(cnr.dirFrom, cnr.dirTo));
   }
 }

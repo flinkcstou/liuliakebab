@@ -2,33 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <script src="lib/js/riot.js"></script>
-  <link href="css/MainPage.css" rel="stylesheet">
-  <script src="lib/js/all.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+  <!-- CSS -->
+  <link href="css/MainPage.css" rel="stylesheet">
+
+  <!-- JS COMMON -->
+  <!-- @include(cordova.htmlinc) -->
+  <script src="lib/js/riot.js"></script>
+  <script src="lib/js/all.js"></script>
+
+  <script src="js/encryption/sha512.js"></script>
+  <script src="js/encryption/md5.js"></script>
   <script src="js/api/WebApi.js"></script>
-  <script src="../cordova/platforms/browser/www/cordova.js"></script>
+
+  <!-- FAKES -->
   <script src="stand/fakedSocket.js"></script>
   <script src="stand/all.js"></script>
 
-
-  <script>
-    document.addEventListener("deviceready", function () {
-    }, false);
-  </script>
+  <script src="stand/plugins/sms_fake.js"></script>
+  <script src="stand/plugins/device_fake.js"></script>
 </head>
 
-<body>
+<body id="bodyId">
 
 <div id="riotTags">
   <view-main-page></view-main-page>
+  <component-menu id="SideMenuId"></component-menu>
 </div>
 
-<script>riot.mount('view-main-page')</script>
-<script src="js/encryption/sha512.js"></script>
-<script src="js/encryption/md5.js"></script>
+<script>
+  var startApplication = function () {
+    riot.mount('view-main-page');
+    riot.mount('component-menu');
+  };
 
-</body>
+  if (window.cordova) {
+    document.addEventListener("deviceready", function () {
+      startApplication();
+    }, false);
+  } else {
+    startApplication();
+  }
+
+</script>
 
 </html>

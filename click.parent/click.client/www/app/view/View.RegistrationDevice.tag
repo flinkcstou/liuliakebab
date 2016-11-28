@@ -20,8 +20,7 @@
 
   <script>
     var scope = this;
-    getPhoneNumber = function()
-    {
+    getPhoneNumber = function () {
       var correctPhoneNumber = true;
       var phoneNumber = scope.phoneNumber.value;
 
@@ -40,31 +39,21 @@
       }
 
 
-    }
+    };
 
     function deviceType() {
-      if (device.platform == 'IOS')
-        return 2;
-
-      return 1;
-
+      return device.platform == 'IOS' ? 2 : 1;
     }
 
     function deviceName() {
-      if (!device.name)
-        return 'iPhone 9'
       return device.name;
     }
 
     function deviceImei() {
-      if (!device.uuid)
-        return '232323232323';
       return device.uuid;
     }
 
     function deviceInfo() {
-      if (!device.info)
-        return 'iPhone OS 9_3_5 Version/9.0 232323232323';
       return device.info;
     }
 
@@ -101,8 +90,7 @@
       });
     }
 
-    getSms = function()
-    {
+    getSms = function () {
       var sms = scope.sms.value;
       var phoneNumber = localStorage.getItem('phoneNumber');
       var deviceId = localStorage.getItem('deviceID');
@@ -142,8 +130,7 @@
 
     }
 
-    resendSms = function()
-    {
+    resendSms = function () {
       var phoneNumber = localStorage.getItem('phoneNumber');
       var deviceId = localStorage.getItem('deviceID');
       window.api.call({
