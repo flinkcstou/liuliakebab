@@ -1,8 +1,8 @@
 var fs = require('fs-extra');
 
-if (!fs.existsSync("www2/lib")) {
-  fs.mkdirSync("www2/lib");
+if (!fs.existsSync("www/lib")) {
+  fs.mkdirSync("www/lib");
 }
 
-fs.copySync("node_modules/riot/riot.js", "www2/lib/riot/riot.js");
+fs.copySync("node_modules/riot/riot.js", "www/lib/riot/riot.js");
 

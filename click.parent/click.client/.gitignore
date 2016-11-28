@@ -20,8 +20,8 @@
 /www/resources/sass/.sass-cache/
 /www/index.html
 /node_modules/
-/www2/compile
-/www2/lib
+/www/compile
+/www/lib
 
 /cordova/platforms
 /cordova/plugins

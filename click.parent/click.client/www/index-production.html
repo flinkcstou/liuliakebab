@@ -1,22 +1,35 @@
-<!DOCTYPE HTML>
-<html manifest="" lang="en-US">
+<!DOCTYPE html>
+<html lang="en" id="htmlId">
 <head>
   <meta charset="UTF-8">
-  <title>Click</title>
-  <!-- @include (index-stand.html) part loading_indicator_css -->
+  <script src="lib/riot/riot.js"></script>
+  <link href="css/MainPage.css" rel="stylesheet">
+  <script src="compile/js/all.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <!-- @include (use_cordova_js.html_inc) -->
+  <script src="../cordova/platforms/browser/www/cordova.js"></script>
+  <script src="app/api/WebApi.js"></script>
 
   <script>
     document.addEventListener("deviceready", function () {
-      console.log(navigator.contacts);
     }, false);
   </script>
 
-  <!-- The line below must be kept intact for Sencha Command to build your application -->
-  <script id="microloader" type="text/javascript" src=".sencha/app/microloader/development.js"></script>
 </head>
-<body>
-<!-- @include (index-stand.html) part loading_indicator_html -->
+
+<body id="bodyId">
+
+<div id="riotTags">
+  <view-main-page></view-main-page>
+  <component-menu id="SideMenuId"></component-menu>
+</div>
+
+<script>
+  riot.mount('view-main-page');
+  riot.mount('component-menu');
+</script>
+<script src="app/encryption/sha512.js"></script>
+<script src="app/encryption/md5.js"></script>
 </body>
+
 </html>
