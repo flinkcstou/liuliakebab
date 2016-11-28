@@ -1,5 +1,5 @@
 <component-card-carousel>
-  <div id="containerCard" class="card-carousel" style="transition:all 5s ease-in;" ontouchend="endTouch()"
+  <div id="containerCard" class="card-carousel" ontouchend="endTouch()"
        ontouchstart="startTouch()" onscroll="{onScroll}">
     <div id="cards" class="cards">
       <component-card each="{i in cardsarray}"

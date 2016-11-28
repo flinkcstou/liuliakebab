@@ -1,5 +1,5 @@
-body{
-  margin:0;
+body {
+  margin: 0;
 }
 
 #htmlId {
@@ -21,7 +21,7 @@ body{
   border-bottom: 3px solid rgb(149, 230, 253);
 }
 
-.menu-button{
+.menu-button {
   position: absolute;
   left: 2px;
   background: transparent;
@@ -30,7 +30,7 @@ body{
   background-position: center;
 }
 
-.menu-icon{
+.menu-icon {
   position: absolute;
   background: transparent;
   background-image: url("../resources/icons/toolbar/menu.png");
@@ -41,7 +41,7 @@ body{
   background-position: center;
 }
 
-.bell-button{
+.bell-button {
   position: absolute;
   right: 2px;
   background: transparent;
@@ -50,7 +50,7 @@ body{
   background-position: center;
 }
 
-.bell-icon{
+.bell-icon {
   position: absolute;
   background: transparent;
   background-image: url("../resources/icons/toolbar/bell.png");
@@ -63,10 +63,10 @@ body{
 
 /*FOOTER*/
 
-.footer{
+.footer {
   position: fixed;
-  bottom:0;
-  left:0;
+  bottom: 0;
+  left: 0;
   right: 0;
 
   height: 50px;
@@ -79,15 +79,15 @@ body{
 /*FONT FACE*/
 @font-face {
   font-family: "Neuron";
-  src:url("../resources/font/Neuron.otf"); format:("opentype");
+  src: url("../resources/font/Neuron.otf");
+  format: ("opentype");
   font-weight: normal;
   font-style: normal;
 }
 
-
 /*BANK-OPERATIONS*/
 
-.bank-operations{
+.bank-operations {
   position: absolute;
   bottom: 26%;
   height: 200px;
@@ -95,7 +95,7 @@ body{
 }
 
 /*PAY-BUTTON*/
-.bank-operation-button{
+.bank-operation-button {
   position: relative;
   background: transparent;
   border-bottom: .1px solid #95E6FD;
@@ -105,27 +105,27 @@ body{
   margin: 10px 10px 10px 10px;
 }
 
-.bank-operation-button:hover{
+.bank-operation-button:hover {
   height: 70px;
   background-color: #25a0e3;
   text-shadow: 0px 0px 1px #000000;
 }
 
-.bottom-operations-buttons{
+.bottom-operations-buttons {
   position: absolute;
-  top:80px;
+  top: 80px;
 }
 
-.bank-operation-icon{
+.bank-operation-icon {
   position: absolute;
-  top:0;
+  top: 0;
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.bank-operation-label{
+.bank-operation-label {
   position: absolute;
   bottom: 0;
   color: #ffffff;
@@ -135,78 +135,79 @@ body{
   line-height: 30px;
 }
 
-.operation-pay-icon{
+.operation-pay-icon {
   background-image: url("../resources/icons/bank-operations/payments.png");
   background-size: 30%;
 }
 
-.operation-transfer-icon{
+.operation-transfer-icon {
   background-image: url("../resources/icons/bank-operations/transfer.png");
   background-size: 40%;
 }
 
-.operation-autopay-icon{
+.operation-autopay-icon {
   background-image: url("../resources/icons/bank-operations/autopay.png");
   background-size: 40%;
 }
 
-.operation-myFinance-icon{
+.operation-myFinance-icon {
   background-image: url("../resources/icons/bank-operations/myfinance.png");
   background-size: 40%;
 }
 
-.operation-report-icon{
+.operation-report-icon {
   background-image: url("../resources/icons/bank-operations/reports.png");
   background-size: 40%;
 }
 
-.hide{
+.hide {
   display: none;
 }
 
-.show{
+.show {
   display: block;
 }
 
-
 /*ALL CARD*/
-.common-balance-label{
+.common-balance-label {
   position: absolute;
-  top:70px;
-  left:20px;
-  color:#7ae4ff;
+  top: 70px;
+  left: 20px;
+  color: #7ae4ff;
 }
 
-.common-balance{
+.common-balance {
   position: absolute;
-  top:50px;
-  left:20px;
-  color:#fffaf9;
+  top: 50px;
+  left: 20px;
+  color: #fffaf9;
   font-size: 52px;
 }
 
-.valuta{
+.valuta {
   position: absolute;
-  top:110px;
-  left:215px;
-  color:#7ae4ff;
+  top: 110px;
+  left: 215px;
+  color: #7ae4ff;
 }
 
-.card-carousel{
+/*CAROUSEL*/
+
+.card-carousel {
   position: absolute;
-  height:170px;
+  height: 170px;
   width: 100%;
   display: inline-block;
-  top:130px;
+  top: 130px;
   background: transparent;
   overflow: auto;
 }
 
-.cards{
+.cards {
   position: relative;
 }
 
-.card{
+.card {
   height: 140px;
   width: 240px;
   position: absolute;
@@ -221,10 +222,9 @@ body{
   box-shadow: -3px -2px 6px #7f7f7f;
 }
 
-
-.salary-title{
+.salary-title {
   position: absolute;
-  top:58px;
+  top: 58px;
   left: 5px;
   color: #97989a;
   background-size: contain;
@@ -232,27 +232,27 @@ body{
   height: 10%;
 }
 
-.balance-of-card{
+.balance-of-card {
   position: absolute;
-  top:70px;
+  top: 70px;
   left: 5px;
   color: #515151;
   font-size: 24px;
   background-size: contain;
 }
 
-.valyuta-of-card{
+.valyuta-of-card {
   position: absolute;
-  top:78px;
+  top: 78px;
   left: 95px;
   color: #5f6062;
   font-size: 12px;
   background-size: contain;
 }
 
-.number-of-card{
+.number-of-card {
   position: absolute;
-  top:100px;
+  top: 100px;
   left: 10px;
   color: #5f6062;
   font-size: 16px;
@@ -261,78 +261,77 @@ body{
 }
 
 /*BOTTOM SERVICE BEELINE UCELL UMS*/
-.service-carousel{
+.service-carousel {
   position: absolute;
   width: 100%;
   height: 130px;
-  bottom:52px;
+  bottom: 52px;
   background: transparent;
-    overflow: hidden;
+  overflow: hidden;
 }
 
-.service-component{
+.service-component {
   position: absolute;
   width: 330px;
   height: 130px;
-  bottom:0;
+  bottom: 0;
   background-color: #fefefe;
 }
 
-.service-container{
+.service-container {
   position: absolute;
   height: 80px;
   width: 100%;
   bottom: 0;
 }
 
-.service-buttons{
+.service-buttons {
   position: absolute;
   width: 100px;
   height: 80px;
-  bottom:0px;
+  bottom: 0px;
   background-repeat: no-repeat;
 }
 
-.horizontal-line{
+.horizontal-line {
   position: absolute;
   height: 30px;
   width: 1px;
-  right:0;
+  right: 0;
   bottom: 30px;
   background-color: #b9b9b9;
 }
 
-.beeline-button{
+.beeline-button {
   background-image: url("../resources/icons/services/beeline.png");
   background-size: 100%;
 }
 
-.ucell-button{
+.ucell-button {
   left: 100px;
   background-image: url("../resources/icons/services/ucell.png");
   background-size: 62%;
   background-position: top;
 }
 
-.ums-button{
+.ums-button {
   left: 200px;
   background-position: center;
   background-image: url("../resources/icons/services/ums.png");
   background-size: 80%;
 }
 
-.service-title{
+.service-title {
   position: absolute;
   left: 25%;
-  top:20px;
+  top: 20px;
   background: transparent;
   background-size: contain;
   color: #646264;
   font-size: 17px;
 }
 
-
-.side-menu{
+.side-menu {
   position: fixed;
   left: 0;
   height: 100%;
@@ -345,7 +344,7 @@ body{
 
 }
 
-.page-title{
+.page-title {
   position: absolute;
   top: 20px;
   right: 15px;
@@ -355,26 +354,43 @@ body{
   border-bottom: 3px solid rgb(149, 230, 253);
 }
 
-.name-title{
+.name-title {
   position: absolute;
   background-size: contain;
   font-size: 23px;
   left: 10%;
-  top:15px;
-  margin:0;
-  color:#fffaf9;
+  top: 15px;
+  margin: 0;
+  color: #fffaf9;
 }
 
-.back-button{
+.back-button {
   position: absolute;
   width: 20px;
   height: 20px;
-  left:0;
+  left: 0;
 }
 
-.right-button{
+.right-button {
   position: absolute;
   width: 20px;
   height: 20px;
   right: 0;
+}
+
+/*MY CARD PAGE*/
+
+.my-cards-carousel {
+  position: absolute;
+  width: 100%;
+  top: -65px;
+}
+
+.my-card-button-container {
+  position: absolute;
+  top: 250px;
+  left: 10px;
+  right: 0;
+  height: 150px;
+  background-color: black;
 }

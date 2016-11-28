@@ -4,7 +4,5 @@
   <input id="rightButton" type="button" class="{right-button: opts.rightbutton}">
 
   <script>
-    console.log(opts.backbutton);
-    console.log(this.backButton);
   </script>
 </component-page-title>
