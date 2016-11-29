@@ -30,7 +30,7 @@
         correctPhoneNumber = false;
       }
       console.log(phoneNumber);
-      localStorage.setItem('phoneNumber', phoneNumber);
+      localStorage.setItem('click_client_phoneNumber', phoneNumber);
       var date = parseInt(Date.now() / 1000);
 
 
@@ -73,11 +73,11 @@
         scope: this,
 
         onSuccess: function (result) {
-
+          console.log("result[1][0] ", result[1][0]);
           if (result[1][0].confirm_needed)
             smsForm.classList.add('show');
           var deviceId = result[1][0].device_id;
-          localStorage.setItem('deviceID', deviceId);
+          localStorage.setItem('click_client_deviceID', deviceId);
           window.token = hex_sha512(deviceId + date + phoneNumber);
 
         },
@@ -91,8 +91,8 @@
 
     getSms = function () {
       var sms = scope.sms.value;
-      var phoneNumber = localStorage.getItem('phoneNumber');
-      var deviceId = localStorage.getItem('deviceID');
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      var deviceId = localStorage.getItem('click_client_deviceID');
       registrationConfirm(sms, phoneNumber, deviceId);
     }
     function deviceRemember() {
@@ -115,9 +115,9 @@
         scope: this,
 
         onSuccess: function (result) {
-          console.log("DEVICE REGISTER CONFIRM ", result[1][0]);
+          console.log("result[1][0] ", result[1][0]);
           if (result[1][0].error == 0) {
-            localStorage.setItem('token', token);
+            localStorage.setItem('click_client_token', token);
           }
         },
 
@@ -130,8 +130,8 @@
     }
 
     resendSms = function () {
-      var phoneNumber = localStorage.getItem('phoneNumber');
-      var deviceId = localStorage.getItem('deviceID');
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      var deviceId = localStorage.getItem('click_client_deviceID');
       window.api.call({
         method: 'sms.resend',
         input : {
@@ -142,7 +142,7 @@
         scope: this,
 
         onSuccess: function (result) {
-          console.log(result[0][0]);
+          console.log("result[1][0] ", result[1][0]);
         },
 
         onFail: function (api_status, api_status_message, data) {

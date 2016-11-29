@@ -12,12 +12,12 @@
     scope = this;
     prepare = function(e)
     {
-      var phoneNumber = localStorage.getItem('phoneNumber');
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var pin = scope.pin.value;
-      var deviceId = localStorage.getItem('deviceID');
+      var deviceId = localStorage.getItem('click_client_deviceID');
       var date = parseInt(Date.now() / 1000);
       console.log(date);
-      var token = localStorage.getItem('token');
+      var token = localStorage.getItem('click_client_token');
       var password = hex_sha512(token + date + hex_md5(pin));
       localStorage.setItem("pinForStand", pin);
       authorization(phoneNumber, deviceId, password, date);
@@ -35,14 +35,14 @@
         scope : this,
 
         onSuccess: function (result) {
-          console.log("result 0 1 ", result[1][0]);
-          if(result[1][0].error != 0)
-            return
-          var JsonInfo = JSON.stringify(result[1][0]);
-          localStorage.setItem('loginInfo', JsonInfo);
-          var info = JSON.parse(localStorage.getItem('loginInfo'));
-          this.getAccountId.classList.add("show");
-          this.getBalanceId.classList.add("show");
+          console.log("result[1][0] ", result[1][0]);
+          if(!result[1][0].error) {
+            var JsonInfo = JSON.stringify(result[1][0]);
+            localStorage.setItem('click_client_loginInfo', JsonInfo);
+            var info = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+            this.getAccountId.classList.add("show");
+            this.getBalanceId.classList.add("show");
+          }
         },
         onFail   : function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -53,8 +53,8 @@
 
     getAccount = function(e)
     {
-      var phoneNumber = localStorage.getItem("phoneNumber");
-      var info = JSON.parse(localStorage.getItem("loginInfo"));
+      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+      var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = info.session_key;
 
       window.api.call({
@@ -67,9 +67,9 @@
         scope: this,
 
         onSuccess: function (result) {
-          console.log(result[1][0]);
+          console.log("result[1][0] ", result[1][0]);
           var accountInfo = JSON.stringify(result[1][0]);
-          localStorage.setItem("accountInfo", accountInfo);
+          localStorage.setItem("click_client_accountInfo", accountInfo);
         },
 
         onFail: function (api_status, api_status_message, data) {
@@ -81,10 +81,10 @@
 
     getBalance = function(e)
     {
-      var phoneNumber = localStorage.getItem("phoneNumber");
-      var loginInfo = JSON.parse(localStorage.getItem("loginInfo"));
+      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+      var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = loginInfo.session_key;
-      var accountInfo = JSON.parse(localStorage.getItem('accountInfo'));
+      var accountInfo = JSON.parse(localStorage.getItem('click_client_accountInfo'));
       var accountId =  accountInfo.id;
       var cardNumHash = accountInfo.card_num_hash;
       var cardNumCrypted = accountInfo.card_num_crypted;
@@ -102,7 +102,7 @@
       scope: this,
 
         onSuccess: function (result) {
-          console.log(result[1][0]);
+          console.log("result[1][0] ", result[1][0]);
         },
 
         onFail: function (api_status, api_status_message, data) {

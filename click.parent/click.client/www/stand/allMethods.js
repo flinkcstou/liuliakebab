@@ -19,7 +19,7 @@ window.fakedSocket.register("app.login", function (input) {
     return {"method": "app.login", "success": 1, "error": -4, "error_note": 'Neverniy PIN CODE'};
   }
   else
-    return {"method": "device.register.confirm", "success": 1, "error": 0, "error_note": "",
+    return {
       "session_key"    : "987654321", "language": "UZ", "default_account": "123456789",
       "visibility"     : "", "help_status": "", "firstname": "test", "lastname": "testov",
       "gender"         : "male", "profile_image_url": "", "update_categories": "",
@@ -28,7 +28,7 @@ window.fakedSocket.register("app.login", function (input) {
 });
 
 window.fakedSocket.register("get.accounts", function (input) {
-  if(localStorage.getItem("token"))
+  if(localStorage.getItem("click_client_token"))
   return {
     "accno"        : "", "description": "", "branch": "",
     "bank_name"    : "", "currency": "", "currency_code": "", "currency_name": "",
@@ -40,7 +40,7 @@ window.fakedSocket.register("get.accounts", function (input) {
 });
 
 window.fakedSocket.register("get.balance", function (input) {
-  if(localStorage.getItem("token"))
-  return {"method": "device.register.confirm", "success": 1, "error": 0, "error_note": "", "balance": 6000};
+  if(localStorage.getItem("click_client_token"))
+  return {"balance": 6000};
   return {"method": "app.login", "success": 1, "error": -4, "error_note": 'Nevozmozhno poluchit balans zapreshen'};
 });

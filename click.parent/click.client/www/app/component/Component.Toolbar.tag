@@ -18,7 +18,7 @@
     }
 
     bellButton = function () {
-      if (localStorage.getItem('phoneNumber') == null || localStorage.getItem('deviceID') == null || localStorage.getItem('token') == null) {
+      if (localStorage.getItem('click_client_phoneNumber') == null || localStorage.getItem('click_client_deviceID') == null || localStorage.getItem('click_client_token') == null) {
         this.riotTags.innerHTML = "<view-registration-device>";
         scope.unmount();
         riot.mount('view-registration-device');
