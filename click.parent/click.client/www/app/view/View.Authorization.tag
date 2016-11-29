@@ -19,6 +19,7 @@
       console.log(date);
       var token = localStorage.getItem('token');
       var password = hex_sha512(token + date + hex_md5(pin));
+      localStorage.setItem("pinForStand", pin);
       authorization(phoneNumber, deviceId, password, date);
     }
 
@@ -35,6 +36,8 @@
 
         onSuccess: function (result) {
           console.log("result 0 1 ", result[1][0]);
+          if(result[1][0].error != 0)
+            return
           var JsonInfo = JSON.stringify(result[1][0]);
           localStorage.setItem('loginInfo', JsonInfo);
           var info = JSON.parse(localStorage.getItem('loginInfo'));
@@ -92,14 +95,14 @@
           session_key: sessionKey,
           phone_num: phoneNumber,
           account_id: accountId,
-          сard_num_hash: cardNumHash,
+          card_num_hash: cardNumHash,
           card_num_crypted: cardNumCrypted
         },
 
-        scope: this,
+      scope: this,
 
         onSuccess: function (result) {
-          console.log(result);
+          console.log(result[1][0]);
         },
 
         onFail: function (api_status, api_status_message, data) {

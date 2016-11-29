@@ -10,5 +10,5 @@ const riot = require('riot-cli');
 
 riot.make({
   from: 'www/app/',
-  to  : 'www/lib/js/all.js',
+  to  : 'www/lib/js/allMethods.js'
 });

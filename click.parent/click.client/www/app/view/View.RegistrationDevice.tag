@@ -73,8 +73,7 @@
         scope: this,
 
         onSuccess: function (result) {
-          console.log(result);
-          console.log("ANSWER OF API ", result[1][0]);
+
           if (result[1][0].confirm_needed)
             smsForm.classList.add('show');
           var deviceId = result[1][0].device_id;
@@ -103,7 +102,7 @@
     }
 
     function registrationConfirm(sms, phoneNumber, deviceId) {
-      console.log(sms);
+
       window.api.call({
         method: 'device.register.confirm',
         input : {
@@ -116,8 +115,8 @@
         scope: this,
 
         onSuccess: function (result) {
-          console.log("DEVICE REGISTER CONFIRM ", result[0][0]);
-          if (result[0][0].error == 0) {
+          console.log("DEVICE REGISTER CONFIRM ", result[1][0]);
+          if (result[1][0].error == 0) {
             localStorage.setItem('token', token);
           }
         },

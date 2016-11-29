@@ -2,7 +2,7 @@
   <div class="bank-operations">
     <div class="top-operations-buttons">
       <div class="bank-operation-button" ontouchend="goToPayView()">
-        <div class="bank-operation-icon operation-pay-icon">
+        <div class="bank-operation-icon operation-pay-icon" href="pay">
         </div>
         <div class="bank-operation-label">ОПЛАТА</div>
       </div>

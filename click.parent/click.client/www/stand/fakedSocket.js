@@ -23,6 +23,7 @@ window.fakedSocket.send = function (message) {
   console.log(message);
   var parsedMessage = JSON.parse(message);
 
+
   var method = parsedMessage.method;
 
   var callback = window.fakedSocket.callbacks[method];
@@ -56,6 +57,7 @@ window.fakedSocket.send = function (message) {
 
     if (window.fakedSocket.onmessage) {
       window.fakedSocket.onmessage({data: JSON.stringify(retData)});
+      console.log(retData);
     }
     else console.error("No onMessage")
   }, window.fakedSocket.getCallbackTimeout());
