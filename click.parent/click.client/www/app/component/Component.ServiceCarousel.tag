@@ -1,5 +1,5 @@
 <component-service-carousel>
-  <div id="containerService" class="service-carousel" ontouchstart="touchStart()" ontouchend="touchEnd()"
+  <div id="containerService" class="service-carousel" ontouchstart="touchStartService()" ontouchend="touchEndService()"
        onscroll={onScroll}>
     <component-service></component-service>
     <component-service style="left: 340px"></component-service>
@@ -9,12 +9,12 @@
     var scope = this;
     var changed = false, pos = 0;
 
-    touchStart = function () {
+    touchStartService = function () {
       scope.containerService.style.overflow = "auto";
       changed = true;
     }
 
-    touchEnd = function () {
+    touchEndService = function () {
       scope.containerService.style.overflow = "hidden";
       changePosition(scope.containerService.scrollLeft);
     }

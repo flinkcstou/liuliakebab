@@ -11,8 +11,8 @@
 
   <script>
     var touchStartX, touchEndX;
-
     var scope = this;
+    scope.cards.style.width = localStorage.getItem('containerCardsWidth');
     cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
 
 
@@ -30,26 +30,21 @@
       count = 0;
 
     moveTouch = function () {
-      event.preventDefault();
-
-      console.log(event.changedTouches[0].screenX);
-      //scope.containerCard.style.left = event.changedTouches[0].screenX + 'px';
-      console.log(scope.containerCard.style.left)
-      console.log(event);
+      //event.preventDefault();
     }
 
     startTouch = function () {
       scope.containerCard.style.overflow = "auto";
-      touchStartX = event.changedTouches[0].screenX;
-      console.log(touchStartX);
+      touchStartX = event.changedTouches[0].pageX;
       changed = true;
     }
 
     endTouch = function () {
-      touchEndX = event.changedTouches[0].screenX;
-      console.log(touchEndX);
+      touchEndX = event.changedTouches[0].pageX;
       if (touchStartX != touchEndX)
         changePosition(scope.containerCard.scrollLeft);
+      changed = false;
+      scope.containerCard.style.overflow = "hidden";
     }
 
     addCard(e)
@@ -62,7 +57,6 @@
         number   : '8723     ****     ****     4276',
         countCard: count
       };
-      console.log(card);
 
       cardsarray.push(card);
       console.log(cardsarray);
@@ -74,37 +68,31 @@
       localStorage.setItem('click_client_countCard', count);
       localStorage.setItem('containerCardsWidth', scope.leftPosition + 360 + 'px');
       scope.cards.style.width = localStorage.getItem('containerCardsWidth');
-      //console.log(this.containerCard.innerHTML); //TODO:SAVE COMPONENTS IN LOCALSTORAGE
-      console.log(scope.leftPosition);
+
       riot.mount("component-card");
 
     }
 
     function changePosition(position) {
-      console.log("START AND END ", touchStartX, ' ', touchEndX)
-      if (touchEndX < touchStartX && cardNumber < count - 1) {
-        console.log(cardNumber)
+      if (touchEndX < touchStartX && cardNumber < count-1 ) {
         ++cardNumber;
-        console.log(cardNumber)
       }
+
       if (touchEndX > touchStartX && cardNumber > 0) {
-        console.log(cardNumber)
         --cardNumber;
-        console.log(cardNumber)
       }
+
       pos = cardNumber * 260;
-      console.log("POSITION ", pos)
 
       scope.containerCard.scrollLeft = pos;
 
-      changed = false;
     }
     onScroll = function (e) {
       if (!changed) {
         scope.containerCard.scrollLeft = pos;
-        scope.containerCard.style.overflow = "hidden";
       }
     }
+
 
   </script>
 </component-card-carousel>

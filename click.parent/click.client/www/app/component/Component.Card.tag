@@ -1,4 +1,4 @@
-<component-card class="card" ontouchstart="touchStart()" ontouchend="touchEnd()">
+<component-card class="card" ontouchstart="touchStartCard()" ontouchend="touchEndCard()">
   <div class="salary-title">{opts.name}</div>
   <div class="balance-of-card">{opts.salary}</div>
   <div class="valyuta-of-card">{opts.valyuta}</div>
@@ -6,12 +6,12 @@
 
   <script>
     var touchStartX, touchEndX;
-    touchStart = function(){
-      touchStartX = event.changedTouches[0].screenX;
+    touchStartCard = function(){
+      touchStartX = event.changedTouches[0].pageX;
     }
 
-    touchEnd = function(){
-      touchEndX = event.changedTouches[0].screenX;
+    touchEndCard = function(){
+      touchEndX = event.changedTouches[0].pageX;
 
       if(touchStartX == touchEndX)
       openCard();

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" id="htmlId">
+<html lang="en" id="htmlId" ontouchstart="touchStart()" ontouchend="touchEnd()">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -37,6 +37,20 @@
     }, false);
   } else {
     startApplication();
+  }
+
+  //MENU FUNCTIONS FOR ALL PAGES
+  var touchStartX, touchEndX;
+  touchStart = function () {
+    touchStartX = event.changedTouches[0].pageX;
+  }
+
+  touchEnd = function (){
+
+    touchEndX = event.changedTouches[0].pageX;
+    if(touchStartX < touchEndX && touchStartX <=15){
+      this.menuOpen();
+    }
   }
 
 </script>

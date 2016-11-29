@@ -11,10 +11,9 @@
   <script>
     var scope = this;
     menuOpen = function () {
-      console.log(this.sideMenuId);
-      this.sideMenuId.style.width = '250px';
+      this.sideMenuId.style.transform = "translate3d(0, 0, 0)";
+      this.sideMenuId.style.webkitTransform = "translate3d(0, 0, 0)";
       this.mainPageId.style.opacity = "0.5";
-      console.log(event.target)
     }
 
     bellButton = function () {

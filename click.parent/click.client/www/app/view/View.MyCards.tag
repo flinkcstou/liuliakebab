@@ -2,8 +2,8 @@
   <component-page-title title="{titleName}" backbutton="{backbuttoncheck}" rightbutton="{rightbuttoncheck}">
   </component-page-title>
   <div class="my-cards-carousel">
-  <component-card-carousel>
-  </component-card-carousel>
+    <component-card-carousel>
+    </component-card-carousel>
   </div>
 
   <div class="my-cards-button-container">
@@ -13,7 +13,7 @@
 
       <div class="my-cards-button-label">Переводы с карты на карту
       </div>
-      </div>
+    </div>
 
     <div class="my-cards-button-field my-cards-button-field-payment">
       <div class="my-cards-button-icon my-cards-button-icon-payment">
@@ -52,8 +52,29 @@
     scope.rightbuttoncheck = true;
     scope.cardsArray = JSON.parse(localStorage.getItem('cards'));
     window.myCards = true;
-
-
     this.titleName = 'ЗАРПЛАТНАЯ КАРТА';
+    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+    var accountId = JSON.parse(localStorage.getItem('click_client_loginInfo')).default_account;
+
+    window.api.call({
+      method: 'get.payments.by.account',
+      input : {
+        session_key: sessionKey,
+        phone_num  : phoneNumber,
+        account_id : accountId
+      },
+
+      scope: this,
+
+      onSuccess: function (result) {
+        console.log("result[1][0] ", result[1][0]);
+      },
+
+      onFail: function (api_status, api_status_message, data) {
+        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+        console.error(data);
+      }
+    });
   </script>
 </view-my-cards>

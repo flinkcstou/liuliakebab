@@ -1,4 +1,4 @@
-<view-main-page id="mainPageId">
+<view-main-page id="mainPageId" class="view-main-page">
   <component-toolbar></component-toolbar>
   <div>
     <p class="common-balance-label">Общий баланс:</p>
@@ -17,18 +17,7 @@
     window.myCards = false;
     api.init();
 
-    riot.route.start();
-    riot.route('/pay', function() {
-      console.log(riotTags);
-      riotTags.innerHTML = "<view-transfer>";
-      return riot.mount('view-transfer');
-    })
 
-    riot.route('/day', function() {
-      console.log(riotTags);
-      riotTags.innerHTML = "<view-auto-pay>";
-      return riot.mount('view-auto-pay');
-    })
 
   </script>
 </view-main-page>
