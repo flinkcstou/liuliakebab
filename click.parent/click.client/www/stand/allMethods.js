@@ -114,3 +114,12 @@ window.fakedSocket.register("get.payments.by.account", function (input) {
     };
   return {"method": "app.login", "success": 1, "error": -4, "error_note": 'Nevozmozhno poluchit balans zapreshen'};
 });
+
+window.fakedSocket.register("registration", function (input) {
+  return {
+    "method"    : 'registration',
+    "error"     : 0,
+    "error_note": '',
+    "success"   : 1
+  }
+});
