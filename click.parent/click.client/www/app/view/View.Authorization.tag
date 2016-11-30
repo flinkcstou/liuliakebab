@@ -67,6 +67,7 @@
         scope: this,
 
         onSuccess: function (result) {
+          console.log(JSON.stringify(result))
           console.log("result[1][0] ", result[1][0]);
           var accountInfo = JSON.stringify(result[1][0]);
           localStorage.setItem("click_client_accountInfo", accountInfo);

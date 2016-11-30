@@ -34,16 +34,20 @@ window.fakedSocket.send = function (message) {
     var retData;
     try {
       var result = callback(parsedMessage);
-
       retData = {
         api_status        : 0,
         api_status_message: 'ok',
 
         data: [
           [result[0]],
-          [result[1]]
+          []
         ],
       };
+      //Chtobi dobavlyali dinamichno vse objecti
+      for(var i = 1; i < result.length; i++)
+        retData.data[1].push(result[i]);
+
+
     } catch (e) {
       retData = {
         api_status        : 1,
