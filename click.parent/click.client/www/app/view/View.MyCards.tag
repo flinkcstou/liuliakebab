@@ -68,7 +68,7 @@
       scope: this,
 
       onSuccess: function (result) {
-        console.log("result[1][0] ", result[1][0]);
+        console.log("result ", result);
       },
 
       onFail: function (api_status, api_status_message, data) {

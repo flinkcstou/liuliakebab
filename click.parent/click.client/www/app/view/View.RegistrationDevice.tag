@@ -115,8 +115,9 @@
         scope: this,
 
         onSuccess: function (result) {
-          console.log("result[1][0] ", result[1][0]);
-          if (result[1][0].error == 0) {
+          console.log("result[0][0] ", result[0][0]);
+          console.log("result ", result);
+          if (result[0][0].error == 0) {
             localStorage.setItem('click_client_token', token);
           }
         },
@@ -142,7 +143,8 @@
         scope: this,
 
         onSuccess: function (result) {
-          console.log("result[1][0] ", result[1][0]);
+          console.log("result[0][0] ", result[0][0]);
+          console.log("result ", result);
         },
 
         onFail: function (api_status, api_status_message, data) {

@@ -44,20 +44,20 @@ window.fakedSocket.register("app.login", function (input) {
   }
   else
     return {
-      "session_key"      : "987654321",
-      "language"         : "UZ",
-      "default_account"  : "123456789",
-      "visibility"       : "",
-      "help_status"      : "",
-      "firstname"        : "test",
-      "lastname"         : "testov",
-      "gender"           : "male",
-      "profile_image_url": "",
-      "update_categories": "",
-      "update_services"  : "",
-      "update_faq"       : "",
-      "update_terms"     : "",
-      "p2p_comission"    : ""
+      "session_key"      : "99890988081996E4e71383c9ed9b1a3fb05fb0002499744",
+      "language"         : "RU",
+      "default_account"  : "3487271",
+      "visibility"       : false,
+      "help_status"      : false,
+      "firstname"        : "Test",
+      "lastname"         : "Testov",
+      "gender"           : "F",
+      "profile_image_url": null,
+      "update_categories": false,
+      "update_services"  : true,
+      "update_faq"       : false,
+      "update_terms"     : true,
+      "p2p_comission"    : 2
     };
 });
 
@@ -65,21 +65,21 @@ window.fakedSocket.register("get.accounts", function (input) {
   if (localStorage.getItem("click_client_token"))
     return {
       "accno"           : "",
-      "description"     : "",
-      "branch"          : "",
-      "bank_name"       : "",
-      "currency"        : "",
-      "currency_code"   : "",
-      "currency_name"   : "",
-      "acc_abs"         : "",
-      "access"          : "",
-      "short_name"      : "",
-      "card_num"        : "",
-      "expire_date"     : "",
-      "image_url"       : "",
-      "card_num_crypted": "",
-      "card_num_hash"   : "",
-      "ls_uzcard"       : ""
+      "description"     : "Карта UZCARD-Online",
+      "branch"          : "00000",
+      "bank_name"       : "UZCARD",
+      "currency"        : "000",
+      "currency_code"   : "UZS",
+      "currency_name"   : "Сум (для междунар.расчетов код 860)",
+      "acc_abs"         : "SMARTV",
+      "access"          : 2,
+      "short_name"      : null,
+      "card_num"        : "8600***5865",
+      "expire_date"     : "1806",
+      "image_url"       : "https://merchant.click.uz/static/merchant/bank/aloq.png",
+      "card_num_crypted": "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw= ",
+      "card_num_hash"   : "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
+      "ls_uzcard"       : 1
     };
   return {"method": "app.login", "success": 1, "error": -4, "error_note": 'Dostup zapreshen'};
 });
