@@ -116,7 +116,6 @@
 
         onSuccess: function (result) {
           console.log("result[0][0] ", result[0][0]);
-          console.log("result ", result);
           if (result[0][0].error == 0) {
             localStorage.setItem('click_client_token', token);
           }

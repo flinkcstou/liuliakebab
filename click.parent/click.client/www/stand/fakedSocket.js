@@ -34,13 +34,14 @@ window.fakedSocket.send = function (message) {
     var retData;
     try {
       var result = callback(parsedMessage);
+
       retData = {
         api_status        : 0,
         api_status_message: 'ok',
 
         data: [
-          [{method: method, success: 1, error: 0, error_note: ''}],
-          [result]
+          [result[0]],
+          [result[1]]
         ],
       };
     } catch (e) {
@@ -73,6 +74,7 @@ window.fakedSocket.param = function (val) {
         tmp = item.split("=");
         if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
       });
+  console.log("RESULT ", result);
   return result;
 };
 
