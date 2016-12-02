@@ -1,4 +1,12 @@
 <view-authorization>
+  <div class="authorization-pin-container">
+    <div class="authorization-pin-field">
+    <div class="authorization-pin-circles authorization-pin-one"></div>
+    <div class="authorization-pin-circles authorization-pin-two"></div>
+    <div class="authorization-pin-circles authorization-pin-three"></div>
+    <div class="authorization-pin-circles authorization-pin-four"></div>
+    </div>
+  </div>
   <div id="authorization">
     Введите пин-код
     <br>
@@ -10,8 +18,10 @@
 
   <script>
     scope = this;
-    prepare = function(e)
+    prepare = function()
     {
+      event.preventDefault();
+      event.stopPropagation();
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var pin = scope.pin.value;
       var deviceId = localStorage.getItem('click_client_deviceID');

@@ -78,33 +78,33 @@ window.fakedSocket.register("app.login", function (input) {
 
 window.fakedSocket.register("get.accounts", function (input) {
 
-  var a = [];
-  a.push({method: input.method, success: 1, error: 0, error_note: ""});
-  a.push({
-    accno           : "",
-    description     : "Карта UZCARD-Online",
-    branch          : "00000",
-    bank_name       : "UZCARD",
-    currency        : "000",
-    currency_code   : "UZS",
-    currency_name   : "Сум (для междунар.расчетов код 860)",
-    acc_abs         : "SMARTV",
-    access          : 2,
-    short_name      : null,
-    card_num        : "8600***5865",
-    expire_date     : "1806",
-    image_url       : "https://merchant.click.uz/static/merchant/bank/aloq.png",
-    card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw= ",
-    card_num_hash   : "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
-    ls_uzcard       : 1
-  },
+  var array = [];
+  array.push({method: input.method, success: 1, error: 0, error_note: ""});
+  array.push({
+      accno           : "",
+      description     : "Карта UZCARD-Online",
+      branch          : "00000",
+      bank_name       : "UZCARD",
+      currency        : "000",
+      currency_code   : "UZS",
+      currency_name   : "Сум (для междунар.расчетов код 860)",
+      acc_abs         : "SMARTV",
+      access          : 2,
+      short_name      : null,
+      card_num        : "8600***5865",
+      expire_date     : "1806",
+      image_url       : "https://merchant.click.uz/static/merchant/bank/aloq.png",
+      card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw= ",
+      card_num_hash   : "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
+      ls_uzcard       : 1
+    },
     {
       accno           : "",
-      description     : "Карта RUCARD-Online",
+      description     : "Онлайн карта Сбербанка",
       branch          : "00000",
       bank_name       : "Сбербанк",
       currency        : "000",
-      currency_code   : "UZS",
+      currency_code   : "RUB",
       currency_name   : "Руб (для междунар.расчетов код 860)",
       acc_abs         : "SMARTV",
       access          : 2,
@@ -115,51 +115,29 @@ window.fakedSocket.register("get.accounts", function (input) {
       card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw= ",
       card_num_hash   : "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
       ls_uzcard       : 1
+    },
+    {
+      accno           : "",
+      description     : "Онлайн карта KAZKOM",
+      branch          : "00000",
+      bank_name       : "KAZKOM",
+      currency        : "000",
+      currency_code   : "TNG",
+      currency_name   : "тенге (для междунар.расчетов код 860)",
+      acc_abs         : "SMARTV",
+      access          : 2,
+      short_name      : null,
+      card_num        : "8888***1111",
+      expire_date     : "2006",
+      image_url       : "https://merchant.click.uz/static/merchant/bank/aloq.png",
+      card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw= ",
+      card_num_hash   : "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
+      ls_uzcard       : 1
     });
 
   if (localStorage.getItem("click_client_token"))
-    return a;
-   // return [
-   //   {"method": input.method, "success": 1, "error": 0, "error_note": ""},
-   //[
-   //  {
-   //    "accno"           : "",
-   //    "description"     : "Карта UZCARD-Online",
-   //    "branch"          : "00000",
-   //    "bank_name"       : "UZCARD",
-   //    "currency"        : "000",
-   //    "currency_code"   : "UZS",
-   //    "currency_name"   : "Сум (для междунар.расчетов код 860)",
-   //    "acc_abs"         : "SMARTV",
-   //    "access"          : 2,
-   //    "short_name"      : null,
-   //    "card_num"        : "8600***5865",
-   //    "expire_date"     : "1806",
-   //    "image_url"       : "https://merchant.click.uz/static/merchant/bank/aloq.png",
-   //    "card_num_crypted": "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw= ",
-   //    "card_num_hash"   : "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
-   //    "ls_uzcard"       : 1
-   //  },
-   //  {
-   //    "accno"           : "",
-   //    "description"     : "Карта RUCARD-Online",
-   //    "branch"          : "00000",
-   //    "bank_name"       : "Сбербанк",
-   //    "currency"        : "000",
-   //    "currency_code"   : "UZS",
-   //    "currency_name"   : "Руб (для междунар.расчетов код 860)",
-   //    "acc_abs"         : "SMARTV",
-   //    "access"          : 2,
-   //    "short_name"      : null,
-   //    "card_num"        : "2631***7777",
-   //    "expire_date"     : "1906",
-   //    "image_url"       : "https://merchant.click.uz/static/merchant/bank/aloq.png",
-   //    "card_num_crypted": "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw= ",
-   //    "card_num_hash"   : "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
-   //    "ls_uzcard"       : 1
-   //  }
-   //  ]
-   // ];
+    return array;
+
 
   return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Dostup zapreshen'}];
 });

@@ -15,7 +15,7 @@
     <input type="button" ontouchend="getSms()" value="Далее">
     <input type="checkbox" id="rememberDevice">Запомнить устройство
     <br>
-    <input type="button" value="Переотправит sms" ontouchend="resendSms()">
+    <input type="button" value="Переотправить sms" ontouchend="resendSms()">
   </div>
 
   <script>
@@ -90,6 +90,9 @@
     }
 
     getSms = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
       var sms = scope.sms.value;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
@@ -130,6 +133,8 @@
     }
 
     resendSms = function () {
+      event.preventDefault();
+      event.stopPropagation();
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
       window.api.call({

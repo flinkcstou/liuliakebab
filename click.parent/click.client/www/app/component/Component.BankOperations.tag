@@ -39,6 +39,9 @@
     var scope = this;
     goToPayView = function(e)
     {
+      event.preventDefault();
+      event.stopPropagation();
+
       this.riotTags.innerHTML = "<view-pay>";
       scope.unmount();
       riot.mount('view-pay');
@@ -46,6 +49,9 @@
 
     goToTransferView = function(e)
     {
+      event.preventDefault();
+      event.stopPropagation();
+
       this.riotTags.innerHTML = "<view-transfer>";
       scope.unmount();
       riot.mount('view-transfer');
@@ -53,6 +59,9 @@
 
     goToAutoPayView = function(e)
     {
+      event.preventDefault();
+      event.stopPropagation();
+
       this.riotTags.innerHTML = "<view-auto-pay>";
       scope.unmount();
       riot.mount('view-auto-pay');
@@ -60,6 +69,9 @@
 
     goToMyFinanceView = function(e)
     {
+      event.preventDefault();
+      event.stopPropagation();
+
       this.riotTags.innerHTML = "<view-my-finance>";
       scope.unmount();
       riot.mount('view-my-finance');
@@ -67,6 +79,9 @@
 
     goToReportView = function(e)
     {
+      event.preventDefault();
+      event.stopPropagation();
+
       this.riotTags.innerHTML = "<view-report>";
       scope.unmount();
       riot.mount('view-report');

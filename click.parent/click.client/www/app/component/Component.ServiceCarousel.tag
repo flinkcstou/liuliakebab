@@ -10,11 +10,17 @@
     var changed = false, pos = 0;
 
     touchStartService = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
       scope.containerService.style.overflow = "auto";
       changed = true;
     }
 
     touchEndService = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
       scope.containerService.style.overflow = "hidden";
       changePosition(scope.containerService.scrollLeft);
     }
