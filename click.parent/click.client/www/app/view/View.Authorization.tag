@@ -123,6 +123,10 @@
             localStorage.setItem('click_client_loginInfo', JsonInfo);
             var info = JSON.parse(localStorage.getItem('click_client_loginInfo'));
             viewAuthorization.check = false;
+            getAccount();
+              this.riotTags.innerHTML = "<view-main-page>";
+              riot.mount('view-main-page');
+
           }
         },
         onFail   : function (api_status, api_status_message, data) {
@@ -164,7 +168,6 @@
           }
         })
       }
-      console.log(arrayAccountInfo);
     }
 
     getBalance = function (e) {
@@ -198,7 +201,5 @@
       })
 
     }
-
-    getAccount();
   </script>
 </view-authorization>

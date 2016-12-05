@@ -14,7 +14,6 @@
     var scope = this;
       var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
 
-
       var touchStartX, touchEndX;
       scope.cards.style.width = localStorage.getItem('containerCardsWidth');
       cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
@@ -80,7 +79,7 @@
           }
 
       }
-      if (getAccountsCards)
+        if(localStorage.getItem('click_client_accountInfo'))
         scope.addCard(getAccountsCards);
 
       function changePosition(position) {

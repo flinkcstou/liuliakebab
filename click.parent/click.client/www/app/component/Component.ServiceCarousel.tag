@@ -10,8 +10,7 @@
     var changed = false, pos = 0;
 
     touchStartService = function () {
-      event.preventDefault();
-      event.stopPropagation();
+
 
       scope.containerService.style.overflow = "auto";
       changed = true;

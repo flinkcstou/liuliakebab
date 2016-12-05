@@ -12,11 +12,12 @@
   <component-service-carousel></component-service-carousel>
   <component-footer></component-footer>
   <script>
+    api.init();
+    if(localStorage.getItem("click_client_accountInfo"))
+    riot.update();
     var scope = this;
     window.viewMainPage = {};
-    console.log(JSON.parse(localStorage.getItem("accountInfo")));
     window.viewMainPage.myCards = false;
-    api.init();
 
 
 
