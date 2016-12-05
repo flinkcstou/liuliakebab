@@ -1,11 +1,12 @@
 <view-registration-device>
-  <div id="phoneform">
-    Введите телефон:
 
-    <input type="text" id="phoneNumber">
+  <div class="registration-phone-field">
 
-    <input type="button" ontouchend="getPhoneNumber()" value="Далее">
   </div>
+
+  <input type="text" id="phoneNumber">
+
+  <input type="button" ontouchend="getPhoneNumber()" value="Далее">
 
   <div id="smsForm" class="hide">
     Введите sms:
@@ -20,6 +21,7 @@
 
   <script>
     var scope = this;
+    window.viewRegistration = {};
     getPhoneNumber = function () {
       var correctPhoneNumber = true;
       var phoneNumber = scope.phoneNumber.value;
@@ -37,7 +39,6 @@
       if (correctPhoneNumber) {
         registrationDevice(phoneNumber, date);
       }
-
 
     };
 

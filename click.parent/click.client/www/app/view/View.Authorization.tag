@@ -31,6 +31,7 @@
   <script>
     scope = this;
     window.viewAuthorization = {};
+    viewAuthorization.check = true;
     var pin;
 
     window.viewAuthorization.updateEnteredPin = function () {
@@ -122,6 +123,7 @@
             var JsonInfo = JSON.stringify(result[1][0]);
             localStorage.setItem('click_client_loginInfo', JsonInfo);
             var info = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+            viewAuthorization.check = false;
           }
         },
         onFail   : function (api_status, api_status_message, data) {
