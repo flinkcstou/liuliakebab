@@ -47,11 +47,13 @@
 
 
   <script>
+    viewMainPage.myCards = true;
+
     scope = this;
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;
     scope.cardsArray = JSON.parse(localStorage.getItem('cards'));
-    window.myCards = true;
+
     this.titleName = 'ЗАРПЛАТНАЯ КАРТА';
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');

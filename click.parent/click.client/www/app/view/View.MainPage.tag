@@ -13,8 +13,9 @@
   <component-footer></component-footer>
   <script>
     var scope = this;
+    window.viewMainPage = {};
     console.log(JSON.parse(localStorage.getItem("accountInfo")));
-    window.myCards = false;
+    window.viewMainPage.myCards = false;
     api.init();
 
 

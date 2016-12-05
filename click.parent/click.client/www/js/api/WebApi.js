@@ -53,6 +53,7 @@ window.api.call = function (params) {
     }
   };
 
+
   this.socket.send(JSON.stringify({
     method    : method,
     parameters: input

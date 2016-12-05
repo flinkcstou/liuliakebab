@@ -1,9 +1,9 @@
 <view-registration-device>
   <div id="phoneform">
     Введите телефон:
-    <br>
+
     <input type="text" id="phoneNumber">
-    <br>
+
     <input type="button" ontouchend="getPhoneNumber()" value="Далее">
   </div>
 

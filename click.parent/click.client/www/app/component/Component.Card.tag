@@ -21,7 +21,7 @@
     }
      openCard = function () {
 
-       if(!window.myCards) {
+       if(!viewMainPage.myCards) {
          this.riotTags.innerHTML = "<view-my-cards>";
          riot.mount("view-my-cards");
        }

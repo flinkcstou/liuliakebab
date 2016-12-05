@@ -12,130 +12,97 @@
 
   <script>
     var scope = this;
-    var arrayAccountInfo = [];
-    scope.getAccount = function () {
-      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-      var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-      var sessionKey = info.session_key;
+      var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
 
-      window.api.call({
-        method: 'get.accounts',
-        input : {
-          session_key: sessionKey,
-          phone_num  : phoneNumber
-        },
 
-        scope: this,
+      var touchStartX, touchEndX;
+      scope.cards.style.width = localStorage.getItem('containerCardsWidth');
+      cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
 
-        onSuccess: function (result) {
 
-          console.log("result[1][0] ", result[1][0]);
-          console.log("result[1][0] ", result[1][1]);
+      if (!cardsarray) {
+        cardsarray = [];
+      }
 
-          for (var i = 0; i < result[1].length; i++) {
-            ;
-            arrayAccountInfo.push(result[1][i])
+
+      var card;
+      var cardNumber = 0;
+      var pos = 0;
+      var changed = false;
+      var count = localStorage.getItem('click_client_countCard');
+      if (!count)
+        count = 0;
+
+      moveTouch = function () {
+        //event.preventDefault();
+      }
+
+      startTouch = function () {
+        scope.containerCard.style.overflow = "auto";
+        touchStartX = event.changedTouches[0].pageX;
+        changed = true;
+      }
+
+      endTouch = function () {
+        touchEndX = event.changedTouches[0].pageX;
+        if (touchStartX != touchEndX)
+          changePosition(scope.containerCard.scrollLeft);
+        changed = false;
+        scope.containerCard.style.overflow = "hidden";
+      }
+
+      addCard(getAccountsCards)
+      {
+        if (count == 0)
+          for (var i = 0; i < getAccountsCards.length; i++) {
+            scope.leftPosition = count * 260;
+            card = {
+              bankName : getAccountsCards[i].bank_name,
+              name     : getAccountsCards[i].description,
+              salary   : '1 798 222',
+              currency : getAccountsCards[i].currency_code,
+              number   : getAccountsCards[i].card_num,
+              countCard: count
+            };
+
+            cardsarray.push(card);
+            console.log(cardsarray);
+            localStorage.setItem("click_client_cards", JSON.stringify(cardsarray));
+            var parsedCards = localStorage.getItem('click_client_cards');
+            console.log(parsedCards);
+
+            count++;
+            localStorage.setItem('click_client_countCard', count);
+            localStorage.setItem('containerCardsWidth', scope.leftPosition + 360 + 'px');
+            scope.cards.style.width = localStorage.getItem('containerCardsWidth');
+
+            riot.mount("component-card");
           }
-          var accountInfo = JSON.stringify(arrayAccountInfo);
-          localStorage.setItem("click_client_accountInfo", accountInfo);
-        },
 
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      })
-    };
-    scope.getAccount();
-    var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
+      }
+      if (getAccountsCards)
+        scope.addCard(getAccountsCards);
 
-
-    var touchStartX, touchEndX;
-    scope.cards.style.width = localStorage.getItem('containerCardsWidth');
-    cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-
-
-    if (!cardsarray) {
-      cardsarray = [];
-    }
-
-
-    var card;
-    var cardNumber = 0;
-    var pos = 0;
-    var changed = false;
-    var count = localStorage.getItem('click_client_countCard');
-    if (!count)
-      count = 0;
-
-    moveTouch = function () {
-      //event.preventDefault();
-    }
-
-    startTouch = function () {
-      scope.containerCard.style.overflow = "auto";
-      touchStartX = event.changedTouches[0].pageX;
-      changed = true;
-    }
-
-    endTouch = function () {
-      touchEndX = event.changedTouches[0].pageX;
-      if (touchStartX != touchEndX)
-        changePosition(scope.containerCard.scrollLeft);
-      changed = false;
-      scope.containerCard.style.overflow = "hidden";
-    }
-
-    addCard(getAccountsCards)
-    {
-      if (count == 0)
-        for (var i = 0; i < getAccountsCards.length; i++) {
-          scope.leftPosition = count * 260;
-          card = {
-            bankName : getAccountsCards[i].bank_name,
-            name     : getAccountsCards[i].description,
-            salary   : '1 798 222',
-            currency : getAccountsCards[i].currency_code,
-            number   : getAccountsCards[i].card_num,
-            countCard: count
-          };
-
-          cardsarray.push(card);
-          console.log(cardsarray);
-          localStorage.setItem("click_client_cards", JSON.stringify(cardsarray));
-          var parsedCards = localStorage.getItem('click_client_cards');
-          console.log(parsedCards);
-
-          count++;
-          localStorage.setItem('click_client_countCard', count);
-          localStorage.setItem('containerCardsWidth', scope.leftPosition + 360 + 'px');
-          scope.cards.style.width = localStorage.getItem('containerCardsWidth');
-
-          riot.mount("component-card");
+      function changePosition(position) {
+        if (touchEndX < touchStartX && cardNumber < count - 1) {
+          ++cardNumber;
         }
 
-    }
-    if (getAccountsCards)
-      scope.addCard(getAccountsCards);
+        if (touchEndX > touchStartX && cardNumber > 0) {
+          --cardNumber;
+        }
 
-    function changePosition(position) {
-      if (touchEndX < touchStartX && cardNumber < count - 1) {
-        ++cardNumber;
-      }
+        pos = cardNumber * 260;
 
-      if (touchEndX > touchStartX && cardNumber > 0) {
-        --cardNumber;
-      }
-
-      pos = cardNumber * 260;
-
-      scope.containerCard.scrollLeft = pos;
-
-    }
-    onScroll = function (e) {
-      if (!changed) {
         scope.containerCard.scrollLeft = pos;
+
       }
+
+      onScroll = function (e) {
+        if (!changed) {
+          scope.containerCard.scrollLeft = pos;
+        }
+
     }
 
 
