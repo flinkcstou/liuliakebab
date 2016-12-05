@@ -10,12 +10,12 @@
     </div>
   </div>
 
-  <div class="authorization-keyboard-field">
+  <div class="authorization-keyboard-field keyboard-field">
     <component-keyboard></component-keyboard>
   </div>
 
-  <div class="authorization-button-enter" ontouchend="prepare()">
-    <div class="authorization-enter-label">ВОЙТИ</div>
+  <div class="button-enter authorization-button-enter" ontouchend="enter()">
+    <div class="button-enter-label">ВОЙТИ</div>
   </div>
 
   <div class="authorization-buttons-container">
@@ -30,11 +30,10 @@
 
   <script>
     scope = this;
-    window.viewAuthorization = {};
     viewAuthorization.check = true;
     var pin;
 
-    window.viewAuthorization.updateEnteredPin = function () {
+    viewAuthorization.updateEnteredPin = function () {
       console.log("Updated PIN ", viewAuthorization.enteredPin);
 
       if (viewAuthorization.enteredPin.length == 0) {
@@ -90,7 +89,7 @@
       }
     }
 
-    prepare = function () {
+    enter = function () {
       event.preventDefault();
       event.stopPropagation();
 

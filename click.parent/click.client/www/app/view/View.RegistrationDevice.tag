@@ -1,12 +1,22 @@
 <view-registration-device>
 
-  <div class="registration-phone-field">
+  <div class="registration-phone-field"><p class="registration-phone-input">{viewRegistration.phoneNumber}</p></div>
 
+  <div class="registration-keyboard-field keyboard-field">
+    <component-keyboard></component-keyboard>
   </div>
 
-  <input type="text" id="phoneNumber">
+  <div class="registration-button-enter button-enter" ontouchend="getPhoneNumber()">
+    <div class="button-enter-label">ВОЙТИ</div>
+  </div>
 
-  <input type="button" ontouchend="getPhoneNumber()" value="Далее">
+  <div class="registration-buttons-container">
+    <div class="registration-button-help">Помощь</div>
+    <div class="registration-button-registration">Регистрация</div>
+    <div class="registration-text-field">Для прохождения регистрации<br>Вам необходимо активировать <br> услугу "СМС-информаирование UzCard</div>
+    <div class="registration-button-offline">Офлайн режим</div>
+    <div class="registration-button-demo-version">Демо версия</div>
+  </div>
 
   <div id="smsForm" class="hide">
     Введите sms:
@@ -21,22 +31,24 @@
 
   <script>
     var scope = this;
-    window.viewRegistration = {};
+    var token;
+
+    viewRegistration.check = true;
+
     getPhoneNumber = function () {
       var correctPhoneNumber = true;
-      var phoneNumber = scope.phoneNumber.value;
+      var phoneNumber = viewRegistration.phoneNumber.substring(1, viewRegistration.phoneNumber.length);
 
       if (phoneNumber.length != 12) {
         alert("incorrect number");
-        scope.phoneNumber.value = '';
         correctPhoneNumber = false;
       }
       console.log(phoneNumber);
-      localStorage.setItem('click_client_phoneNumber', phoneNumber);
-      var date = parseInt(Date.now() / 1000);
 
 
       if (correctPhoneNumber) {
+        localStorage.setItem('click_client_phoneNumber', phoneNumber);
+        var date = parseInt(Date.now() / 1000);
         registrationDevice(phoneNumber, date);
       }
 
@@ -79,8 +91,8 @@
             smsForm.classList.add('show');
           var deviceId = result[1][0].device_id;
           localStorage.setItem('click_client_deviceID', deviceId);
-          window.token = hex_sha512(deviceId + date + phoneNumber);
-
+          token = hex_sha512(deviceId + date + phoneNumber);
+          viewRegistration.check = false;
         },
 
         onFail: function (api_status, api_status_message, data) {

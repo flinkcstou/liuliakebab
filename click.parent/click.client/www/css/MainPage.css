@@ -16,6 +16,37 @@ body {
   height: 100%;
 }
 
+/*ENTER BUTTON REGISTRATION AND AUTHORIZATION*/
+.button-enter {
+  position: relative;
+  width: 220px;
+  height: 50px;
+  background-color: #01cfff;
+  margin-right: auto;
+  border-radius: 40px;
+  margin-left: auto;
+}
+
+.button-enter-label {
+  position: relative;
+  top: 15px;
+  width: 60px;
+  height: 20px;
+  font-size: 22px;
+  margin: auto;
+  color: white;
+}
+
+/*KEYBOARD SETTINGS FOR REGISTRATION AND AUTHORIZATION*/
+
+.keyboard-field {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /*TOOLBAR*/
 .toolbar {
   position: absolute;
@@ -574,33 +605,11 @@ body {
 }
 
 .authorization-keyboard-field {
-  position: relative;
-  width: 250px;
-  height: 250px;
   top: 100px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .authorization-button-enter {
-  position: relative;
   top: 120px;
-  width: 220px;
-  height: 50px;
-  background-color: #01cfff;
-  margin-right: auto;
-  border-radius: 40px;
-  margin-left: auto;
-}
-
-.authorization-enter-label {
-  position: relative;
-  top: 15px;
-  width: 60px;
-  height: 20px;
-  font-size: 22px;
-  margin: auto;
-  color: white;
 }
 
 .authorization-buttons-container {
@@ -685,7 +694,7 @@ body {
   text-align: center;
 }
 
-.keyboard-buttons-label{
+.keyboard-buttons-label {
   position: absolute;
   left: 27px;
   top: 8px;
@@ -693,7 +702,7 @@ body {
 }
 
 .keyboard-buttons:active {
-  background: radial-gradient(rgba(255,255,255, 0.23), rgba(255,255,255, 0.04), transparent);
+  background: radial-gradient(rgba(255, 255, 255, 0.23), rgba(255, 255, 255, 0.04), transparent);
   border-radius: 40px;
 }
 
@@ -751,12 +760,88 @@ body {
 
 /*REGISTRATION VIEW*/
 
-.registration-phone-field{
+.registration-phone-field {
   position: relative;
   margin-left: auto;
-  top:60px;
+  top: 40px;
   margin-right: auto;
-  width: 250px;
+  width: 280px;
   height: 50px;
-  border:1px solid red;
+  border-bottom: 3px solid rgba(1, 207, 255, 0.95);
+  color: white;
+}
+
+.registration-phone-input {
+  position: absolute;
+  margin: 0;
+  top: 15px;
+  font-size: 32px;
+}
+
+.registration-button-enter {
+  top: 80px;
+}
+
+.registration-keyboard-field {
+  top: 80px;
+}
+
+.registration-buttons-container {
+  position: relative;
+  width: 280px;
+  height: 200px;
+  top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.registration-button-offline {
+  position: absolute;
+  font-size: 17px;
+  background-size: contain;
+  color: white;
+  border-bottom: 1px solid white;
+  bottom: 20px;
+  text-align: center;
+  left: 0;
+}
+
+.registration-button-demo-version {
+  position: absolute;
+  font-size: 17px;
+  background-size: contain;
+  color: white;
+  border-bottom: 1px solid white;
+  bottom: 20px;
+  text-align: center;
+  right: 0;
+}
+
+.registration-button-help {
+  position: absolute;
+  font-size: 17px;
+  top: 15px;
+  left: 50px;
+  background-size: contain;
+  color: #05eeff;
+  border-bottom: 1px solid #05eeff;
+}
+
+.registration-button-registration {
+  position: absolute;
+  top: 15px;
+  right: 60px;
+  font-size: 17px;
+  background-size: contain;
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+.registration-text-field {
+  position: relative;
+  background-size: contain;
+  top:70px;
+  text-align: center;
+  color:#05eeff;
+  font-size: 17px;
 }

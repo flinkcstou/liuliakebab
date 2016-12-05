@@ -37,11 +37,20 @@
   </div>
 
   <script>
+    if (viewAuthorization.check)
+      viewAuthorization.enteredPin = '';
 
-    window.viewAuthorization.enteredPin = '';
+    if (viewRegistration.check)
+      viewRegistration.phoneNumber = '+998';
+
     var scope = this;
     onTouchEndOne = function () {
-      if (viewAuthorization.check == true) {
+      if (viewRegistration.check) {
+        viewRegistration.phoneNumber += '1';
+        console.log(viewRegistration.phoneNumber)
+        riot.update();
+      }
+      if (viewAuthorization.check) {
         viewAuthorization.enteredPin += '1';
         viewAuthorization.updateEnteredPin();
       }
@@ -50,7 +59,12 @@
     }
 
     onTouchEndTwo = function () {
-      if (viewAuthorization.check == true) {
+      if (viewRegistration.check) {
+        viewRegistration.phoneNumber += '2';
+        riot.update();
+      }
+
+      if (viewAuthorization.check) {
         viewAuthorization.enteredPin += '2';
         viewAuthorization.updateEnteredPin();
       }
@@ -59,7 +73,12 @@
     }
 
     onTouchEndThree = function () {
-      if (viewAuthorization.check == true) {
+      if (viewRegistration.check) {
+        viewRegistration.phoneNumber += '3';
+        riot.update();
+      }
+
+      if (viewAuthorization.check) {
         viewAuthorization.enteredPin += '3';
         viewAuthorization.updateEnteredPin();
       }
@@ -68,7 +87,12 @@
     }
 
     onTouchEndFour = function () {
-      if (viewAuthorization.check == true) {
+      if (viewRegistration.check) {
+        viewRegistration.phoneNumber += '4';
+        riot.update();
+      }
+
+      if (viewAuthorization.check) {
         viewAuthorization.enteredPin += '4';
         viewAuthorization.updateEnteredPin();
       }
@@ -77,7 +101,12 @@
     }
 
     onTouchEndFive = function () {
-      if(viewAuthorization.check == true) {
+      if (viewRegistration.check) {
+        viewRegistration.phoneNumber += '5';
+        riot.update();
+      }
+
+      if (viewAuthorization.check) {
         viewAuthorization.enteredPin += '5';
         viewAuthorization.updateEnteredPin();
       }
@@ -86,7 +115,12 @@
     }
 
     onTouchEndSix = function () {
-      if(viewAuthorization.check == true) {
+      if (viewRegistration.check) {
+        viewRegistration.phoneNumber += '6';
+        riot.update();
+      }
+
+      if (viewAuthorization.check) {
         viewAuthorization.enteredPin += '6';
         viewAuthorization.updateEnteredPin();
       }
@@ -95,7 +129,12 @@
     }
 
     onTouchEndSeven = function () {
-      if(viewAuthorization.check == true) {
+      if (viewRegistration.check) {
+        viewRegistration.phoneNumber += '7';
+        riot.update();
+      }
+
+      if (viewAuthorization.check) {
         viewAuthorization.enteredPin += '7';
         viewAuthorization.updateEnteredPin();
       }
@@ -104,7 +143,12 @@
     }
 
     onTouchEndEight = function () {
-      if(viewAuthorization.check == true) {
+      if (viewRegistration.check) {
+        viewRegistration.phoneNumber += '8';
+        riot.update();
+      }
+
+      if (viewAuthorization.check) {
         viewAuthorization.enteredPin += '8';
         viewAuthorization.updateEnteredPin();
       }
@@ -113,7 +157,12 @@
     }
 
     onTouchEndNine = function () {
-      if(viewAuthorization.check == true) {
+      if (viewRegistration.check) {
+        viewRegistration.phoneNumber += '9';
+        riot.update();
+      }
+
+      if (viewAuthorization.check) {
         viewAuthorization.enteredPin += '9';
         viewAuthorization.updateEnteredPin();
       }
@@ -122,7 +171,12 @@
     }
 
     onTouchEndZero = function () {
-      if(viewAuthorization.check == true) {
+      if (viewRegistration.check) {
+        viewRegistration.phoneNumber += '0';
+        riot.update();
+      }
+
+      if (viewAuthorization.check) {
         viewAuthorization.enteredPin += '0';
         viewAuthorization.updateEnteredPin();
       }
@@ -131,7 +185,11 @@
     }
 
     onTouchEndX = function () {
-      if(viewAuthorization.check == true) {
+      if (viewRegistration.check && viewRegistration.phoneNumber.length > 4) {
+        viewRegistration.phoneNumber = viewRegistration.phoneNumber.substring(0, viewRegistration.phoneNumber.length - 1);
+        riot.update();
+      }
+      if (viewAuthorization.check) {
         viewAuthorization.enteredPin = viewAuthorization.enteredPin.substring(0, viewAuthorization.enteredPin.length - 1);
         viewAuthorization.updateEnteredPin();
       }
