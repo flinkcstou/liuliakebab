@@ -16,7 +16,7 @@
 
       this.sideMenuId.style.transform = "translate3d(0, 0, 0)";
       this.sideMenuId.style.webkitTransform = "translate3d(0, 0, 0)";
-      this.mainPageId.style.opacity = "0.5";
+      //this.mainPageId.style.opacity = "0.5";
     }
 
     bellButton = function () {

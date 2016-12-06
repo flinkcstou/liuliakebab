@@ -8,6 +8,7 @@ body {
   background-image: linear-gradient(rgb(1, 123, 226), rgb(29, 199, 251));
   font-family: Neuron;
   margin: 0;
+  overflow: hidden;
 }
 
 .view-main-page {

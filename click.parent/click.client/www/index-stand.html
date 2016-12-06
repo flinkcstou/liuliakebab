@@ -23,13 +23,13 @@
 
   <script src="stand/plugins/sms_fake.js"></script>
   <script src="stand/plugins/device_fake.js"></script>
+
+  <component-menu id="SideMenuId"></component-menu>
 </head>
 
 <body id="bodyId">
-
 <div id="riotTags">
   <view-main-page></view-main-page>
-  <component-menu id="SideMenuId"></component-menu>
 </div>
 
 <script>
@@ -53,7 +53,6 @@
   }
 
   touchEnd = function (){
-
     touchEndX = event.changedTouches[0].pageX;
     if(touchStartX < touchEndX && touchStartX <=15){
       this.menuOpen();
