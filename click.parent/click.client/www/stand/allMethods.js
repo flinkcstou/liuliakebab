@@ -1,3 +1,8 @@
+window.fakedSocket.register("registration", function (input) {
+  console.log("Input of REGISTER REQUEST ", input);
+  return [{"method": input.method, "success": 1, "error": 0, "error_note": ""}];
+});
+
 window.fakedSocket.register("device.register.request", function (input) {
   console.log("Input of REGISTER REQUEST ", input);
 
