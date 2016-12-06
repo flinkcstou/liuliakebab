@@ -43,7 +43,6 @@
       event.stopPropagation();
 
       this.riotTags.innerHTML = "<view-pay>";
-      scope.unmount();
       riot.mount('view-pay');
     }
 
@@ -53,7 +52,6 @@
       event.stopPropagation();
 
       this.riotTags.innerHTML = "<view-transfer>";
-      scope.unmount();
       riot.mount('view-transfer');
     }
 
@@ -63,7 +61,6 @@
       event.stopPropagation();
 
       this.riotTags.innerHTML = "<view-auto-pay>";
-      scope.unmount();
       riot.mount('view-auto-pay');
     }
 
@@ -73,7 +70,6 @@
       event.stopPropagation();
 
       this.riotTags.innerHTML = "<view-my-finance>";
-      scope.unmount();
       riot.mount('view-my-finance');
     }
 
@@ -83,7 +79,6 @@
       event.stopPropagation();
 
       this.riotTags.innerHTML = "<view-report>";
-      scope.unmount();
       riot.mount('view-report');
     }
   </script>

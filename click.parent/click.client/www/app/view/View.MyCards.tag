@@ -48,7 +48,7 @@
 
   <script>
     viewMainPage.myCards = true;
-
+    console.log(opts.backbuttoncheck);
     scope = this;
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;

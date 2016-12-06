@@ -6,6 +6,8 @@
   <script>
     var scope = this;
     touchStartTitle = function(){
+      this.riotTags.innerHTML = "<view-main-page>";
+      riot.mount('view-main-page');
     }
   </script>
 </component-page-title>

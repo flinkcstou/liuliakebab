@@ -34,6 +34,7 @@ task prepareCordovaStandWWW(type: JavaExec, group: 'client_inner') {
       '-copyDir', 'lib',
       '-copyDir', 'css',
       '-copyDir', 'js',
+      '-copyDir', 'resources',
       '-copyNoReplace', 'cordova/www_cordova', 'cordova/www'
   ]
 }
