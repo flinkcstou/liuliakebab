@@ -1,11 +1,12 @@
 <view-my-finance>
-  <h1>FINANCE VIEW</h1>
-  <button onclick="{test}"></button>
+  <component-page-title title="{titleName}" backbutton="{backbuttoncheck}" rightbutton="{rightbuttoncheck}">
+  </component-page-title>
 
   <script>
-    test()
-    {
-      alert("hello");
-    }
+    scope = this;
+    scope.backbuttoncheck = true;
+    scope.rightbuttoncheck = true;
+
+
   </script>
 </view-my-finance>

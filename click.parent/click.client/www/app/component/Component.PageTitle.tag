@@ -1,6 +1,6 @@
 <component-page-title class="page-title">
   <p class="name-title">{opts.title}</p>
-  <input id="backButton" type="button" ontouchstart="touchStartTitle()" class="{back-button: opts.backbutton}">
+  <input id="backButton" value="BACK" type="button" ontouchstart="touchStartTitle()" class="{back-button: opts.backbutton}">
   <input id="rightButton" type="button" class="{right-button: opts.rightbutton}">
 
   <script>

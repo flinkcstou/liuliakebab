@@ -30,6 +30,7 @@
   </div>
 
   <script>
+
     var scope = this;
     var token;
 
@@ -86,7 +87,7 @@
         scope: this,
 
         onSuccess: function (result) {
-          console.log("result[1][0] ", result[1][0]);
+          console.log("result ", result);
           var deviceId = result[1][0].device_id;
           localStorage.setItem('click_client_deviceID', deviceId);
           viewRegistration.check = false;

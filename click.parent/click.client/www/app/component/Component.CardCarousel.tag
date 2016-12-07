@@ -18,7 +18,6 @@
       scope.cards.style.width = localStorage.getItem('containerCardsWidth');
       cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
 
-
       if (!cardsarray) {
         cardsarray = [];
       }

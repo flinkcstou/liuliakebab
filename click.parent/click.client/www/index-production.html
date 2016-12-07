@@ -28,7 +28,16 @@
 </div>
 
 <script>
+  api.init();
   var startApplication = function () {
+    if(localStorage.getItem('click_client_token')) {
+      this.riotTags.innerHTML = "<view-authorization>";
+      riot.mount('view-authorization')
+    }
+    else{
+      this.riotTags.innerHTML = "<view-registration-device>";
+      riot.mount('view-registration-device');
+    }
     riot.mount('view-main-page');
     riot.mount('component-menu');
   };

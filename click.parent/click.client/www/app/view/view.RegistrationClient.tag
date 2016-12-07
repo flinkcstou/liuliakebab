@@ -1,4 +1,4 @@
-<component-registration-client>
+<view-registration-client>
 
   <script>
      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -26,4 +26,4 @@
       }
     })
   </script>
-</component-registration-client>
+</view-registration-client>

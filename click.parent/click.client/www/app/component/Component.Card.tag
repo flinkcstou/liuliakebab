@@ -6,7 +6,7 @@
   <div class="card-number">{opts.number}</div>
 
   <script>
-    console.log('ASDSAD', opts.currency)
+
     var touchStartX, touchEndX;
     touchStartCard = function(){
       touchStartX = event.changedTouches[0].pageX;

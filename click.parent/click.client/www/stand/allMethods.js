@@ -210,15 +210,6 @@ window.fakedSocket.register("get.payments.by.account", function (input) {
   return [{"method": input.method, "success": 1, "error": -4, "error_note": 'error '}];
 });
 
-window.fakedSocket.register("registration", function (input) {
-
-  return [{
-    "method"    : input.method,
-    "error"     : 0,
-    "error_note": '',
-    "success"   : 1
-  }]
-});
 
 window.fakedSocket.register("get.service.category.list", function (input) {
 
