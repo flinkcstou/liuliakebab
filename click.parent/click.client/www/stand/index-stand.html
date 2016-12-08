@@ -56,6 +56,11 @@
     startApplication();
   }
 
+
+  if(JSON.parse(localStorage.getItem('demo_version')) === true){
+    this.closeDemo();
+  }
+
   //MENU FUNCTIONS FOR ALL PAGES
   var touchStartX, touchEndX;
   touchStart = function () {

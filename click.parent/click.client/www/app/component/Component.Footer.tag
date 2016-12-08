@@ -1,8 +1,9 @@
 <component-footer>
-  <div class="footer" ontouchend="openFooter()">
+  <div id="contactsContainer" class="footer-contacts-container">
+  <div id="contactsId" class="footer" ontouchend="openFooter()">
     <h3 align="center">КОНТАКТЫ</h3>
   </div>
-  <div id="contacts" class="footer-contacts" ontouchend="closeFooter()">
+  <div id="contacts" class="footer-contacts">
 
     <div style="position: absolute; width: 50px; height: 50px;
                 border-radius: 20px; border: 2px solid yellow;
@@ -17,18 +18,24 @@
     </div>
 
   </div>
+  </div>
   <script>
 
-    openFooter = function () {
-      this.contacts.style.webkitTransform = "translate3d(0, 0, 0)";
-      this.contacts.style.Transform = "translate3d(0, 0, 0)";
-      return;
-    }
+    var check = false;
 
-    closeFooter = function () {
-      this.contacts.style.webkitTransform = "translate3d(0, 100%, 0)";
-      this.contacts.style.Transform = "translate3d(0, 100%, 0)";
-      return;
+    openFooter = function () {
+      if(!check) {
+        this.contactsContainer.style.webkitTransform = "translate3d(0, 0, 0)";
+        this.contactsContainer.style.Transform = "translate3d(0, 0, 0)";
+        check = true;
+        return;
+      }
+      if(check){
+        this.contactsContainer.style.webkitTransform = "translate3d(0, 100px, 0)";
+        this.contactsContainer.style.Transform = "translate3d(0, 100px, 0)";
+        check = false;
+        return;
+      }
     }
 
   </script>

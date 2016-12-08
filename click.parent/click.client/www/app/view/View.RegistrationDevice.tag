@@ -13,12 +13,14 @@
   <div class="registration-buttons-container">
     <div class="registration-button-help">Помощь</div>
     <div class="registration-button-registration">Регистрация</div>
-    <div class="registration-text-field">Для прохождения регистрации<br>Вам необходимо активировать <br> услугу "СМС-информаирование UzCard</div>
+    <div class="registration-text-field">Для прохождения регистрации<br>Вам необходимо активировать <br> услугу
+      "СМС-информаирование UzCard
+    </div>
     <div class="registration-container-offline">
       <div class="registration-button-offline">Офлайн режим</div>
     </div>
-    <a href="stand/index-stand.html" class="registration-container-demo-version" >
-      <div class="registration-button-demo-version">Демо версия</div>
+    <a href="stand/index-stand.html" id="demoContainer" class="registration-container-demo-version" ontouchstart="goToDemo()">
+      <div   class="registration-button-demo-version">Демо версия</div>
     </a>
   </div>
 
@@ -29,6 +31,12 @@
 
     viewRegistration.check = true;
 
+    goToDemo = function () {
+      localStorage.setItem('demo_version', true);
+    }
+    closeDemo = function (){
+      this.demoContainer.classList.add('hide')
+    }
 
     getPhoneNumber = function () {
       var correctPhoneNumber = true;

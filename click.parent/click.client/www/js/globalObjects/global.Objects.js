@@ -8,3 +8,5 @@ viewAuthorization.check = false;
 
 
 window.viewRegistration = {};
+
+

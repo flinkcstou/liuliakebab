@@ -29,6 +29,7 @@
 </head>
 
 <body id="bodyId">
+
 <div id="riotTags">
   <view-main-page></view-main-page>
 </div>
@@ -54,6 +55,10 @@
     }, false);
   } else {
     startApplication();
+  }
+
+  if(JSON.parse(localStorage.getItem('demo_version')) === true){
+    this.closeDemo();
   }
 
   //MENU FUNCTIONS FOR ALL PAGES

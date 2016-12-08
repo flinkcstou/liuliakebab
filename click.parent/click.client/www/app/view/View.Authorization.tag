@@ -80,12 +80,9 @@
         scope.circleThree.style.backgroundColor = '#01cfff';
         scope.circleFour.style.backgroundColor = '#01cfff';
         scope.circleFive.style.backgroundColor = '#01cfff';
-      }
-
-      if (viewAuthorization.enteredPin.length == 5) {
         pin = viewAuthorization.enteredPin;
-
       }
+
     }
 
     enter = function () {
@@ -116,14 +113,20 @@
         scope : this,
 
         onSuccess: function (result) {
+          console.log('RESULT', result)
           console.log("result[1][0] ", result[1][0]);
+          if(result[0][0].error != 0){
+            alert("PIN CODE IS INCORRECT")
+            viewAuthorization.enteredPin = '';
+            viewAuthorization.updateEnteredPin();
+            return
+          }
           if (!result[1][0].error) {
             var JsonInfo = JSON.stringify(result[1][0]);
             localStorage.setItem('click_client_loginInfo', JsonInfo);
             var info = JSON.parse(localStorage.getItem('click_client_loginInfo'));
             viewAuthorization.check = false;
             getAccount();
-
           }
         },
         onFail   : function (api_status, api_status_message, data) {

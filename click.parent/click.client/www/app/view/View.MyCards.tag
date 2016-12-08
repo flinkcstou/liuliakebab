@@ -1,4 +1,4 @@
-<view-my-cards>
+<view-my-cards class="view-my-cards">
   <component-page-title title="{titleName}" backbutton="{backbuttoncheck}" rightbutton="{rightbuttoncheck}">
   </component-page-title>
   <div class="my-cards-carousel">
