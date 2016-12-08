@@ -536,3 +536,8 @@ window.fakedSocket.register("get.service.list", function (input) {
 
   return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Dostup zapreshen'}];
 });
+
+window.fakedSocket.register("get.service.parameters.list", function (input) {
+  console.log("Input of REGISTER REQUEST ", input);
+  return [{"method": input.method, "success": 1, "error": 0, "error_note": ""}];
+});

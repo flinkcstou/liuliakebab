@@ -47,7 +47,9 @@
 
 
   <script>
+    viewMyCards.check = true;
     viewMainPage.myCards = true;
+
     console.log(opts.backbuttoncheck);
     scope = this;
     scope.backbuttoncheck = true;

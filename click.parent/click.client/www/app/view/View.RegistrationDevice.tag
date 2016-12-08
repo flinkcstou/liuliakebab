@@ -14,19 +14,12 @@
     <div class="registration-button-help">Помощь</div>
     <div class="registration-button-registration">Регистрация</div>
     <div class="registration-text-field">Для прохождения регистрации<br>Вам необходимо активировать <br> услугу "СМС-информаирование UzCard</div>
-    <div class="registration-button-offline">Офлайн режим</div>
-    <div class="registration-button-demo-version">Демо версия</div>
-  </div>
-
-  <div id="smsForm" class="hide">
-    Введите sms:
-    <br>
-    <input type="text" id="sms">
-    <br>
-    <input type="button" ontouchend="getSms()" value="Далее">
-    <input type="checkbox" id="rememberDevice">Запомнить устройство
-    <br>
-    <input type="button" value="Переотправить sms" ontouchend="resendSms()">
+    <div class="registration-container-offline">
+      <div class="registration-button-offline">Офлайн режим</div>
+    </div>
+    <a href="stand/index-stand.html" class="registration-container-demo-version" >
+      <div class="registration-button-demo-version">Демо версия</div>
+    </a>
   </div>
 
   <script>
@@ -35,6 +28,7 @@
     var token;
 
     viewRegistration.check = true;
+
 
     getPhoneNumber = function () {
       var correctPhoneNumber = true;

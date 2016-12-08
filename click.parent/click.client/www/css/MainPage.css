@@ -15,6 +15,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 /*ENTER BUTTON REGISTRATION AND AUTHORIZATION*/
@@ -238,12 +239,10 @@ body {
   display: inline-block;
   top: 130px;
   background: transparent;
-  overflow: auto;
 }
 
 .cards {
   position: relative;
-
 }
 
 .card {
@@ -316,7 +315,6 @@ body {
   height: 130px;
   bottom: 52px;
   background: transparent;
-  overflow: hidden;
 }
 
 .service-component {
@@ -796,6 +794,14 @@ body {
   margin-right: auto;
 }
 
+.registration-container-offline{
+  position: absolute;
+  width: 150px;
+  height: 70px;
+  bottom: 0;
+  left: 0;
+}
+
 .registration-button-offline {
   position: absolute;
   font-size: 17px;
@@ -804,8 +810,19 @@ body {
   border-bottom: 1px solid white;
   bottom: 20px;
   text-align: center;
-  left: 0;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 7px;
 }
+
+.registration-container-demo-version{
+  position: absolute;
+  width: 130px;
+  height: 70px;
+  bottom: 0;
+  right: 0;
+}
+
 
 .registration-button-demo-version {
   position: absolute;
@@ -814,8 +831,10 @@ body {
   color: white;
   border-bottom: 1px solid white;
   bottom: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 7px;
   text-align: center;
-  right: 0;
 }
 
 .registration-button-help {

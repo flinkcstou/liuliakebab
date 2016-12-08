@@ -1,7 +1,6 @@
-<component-card-carousel>
-
-  <div id="containerCard" class="card-carousel" ontouchend="endTouchCarousel()" ontouchmove="moveTouchCarousel()"
-       ontouchstart="startTouchCarousel()">
+<component-old-card-carousel>
+  <div id="containerCard" class="card-carousel" ontouchend="endTouch()" ontouchmove="moveTouch()"
+       ontouchstart="startTouch()" onscroll="{onScroll}">
     <div id="cards" class="cards">
       <component-card each="{i in cardsarray}"
                       style="left:{260*i.countCard+60}px"
@@ -26,29 +25,27 @@
     var card;
     var cardNumber = 0;
     var pos = 0;
+    var changed = false;
     var count = localStorage.getItem('click_client_countCard');
     if (!count)
       count = 0;
 
-
-    startTouchCarousel = function () {
-      touchStartX = event.changedTouches[0].pageX;
-      delta = this.cards.getBoundingClientRect().left - touchStartX;
+    moveTouch = function () {
+      //event.preventDefault();
     }
 
-    endTouchCarousel = function () {
+    startTouch = function () {
+      scope.containerCard.style.overflow = "auto";
+      touchStartX = event.changedTouches[0].pageX;
+      changed = true;
+    }
+
+    endTouch = function () {
       touchEndX = event.changedTouches[0].pageX;
       if (touchStartX != touchEndX)
-        changePosition();
-    }
-
-    moveTouchCarousel = function () {
-      this.cards.style.transition = '0s';
-      this.cards.style.webkitTransition = '0s';
-      event.preventDefault();
-      event.stopPropagation();
-      this.cards.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
-      this.cards.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
+        changePosition(scope.containerCard.scrollLeft);
+      changed = false;
+      scope.containerCard.style.overflow = "hidden";
     }
 
     addCard(getAccountsCards)
@@ -83,61 +80,43 @@
     if (localStorage.getItem('click_client_accountInfo'))
       scope.addCard(getAccountsCards);
 
-    function changePosition() {
-
-      if (touchEndX < touchStartX && cardNumber < count - 1) {
+    function changePosition(position) {
+      if (touchEndX < touchStartX && cardNumber < count - 1)
         ++cardNumber;
-        this.cards.style.transition = '0.3s';
-        this.cards.style.webkitTransition = '0.3s';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
 
-      }
 
-      if (touchEndX > touchStartX && cardNumber == 0) {
-        this.cards.style.transition = '0.3s';
-        this.cards.style.webkitTransition = '0.3s';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
-      }
-
-      if (touchEndX < touchStartX && cardNumber == count - 1) {
-        this.cards.style.transition = '0.3s';
-        this.cards.style.webkitTransition = '0.3s';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
-
-      }
-
-      if (touchEndX > touchStartX && cardNumber > 0) {
+      if (touchEndX > touchStartX && cardNumber > 0)
         --cardNumber;
-        this.cards.style.transition = '0.3s';
-        this.cards.style.webkitTransition = '0.3s';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
-      }
-
       if (!viewMainPage.myCards) {
         localStorage.setItem('cardNumber', cardNumber)
-
-
+        pos = cardNumber * 260;
+        scope.containerCard.scrollLeft = pos;
       }
-      else {
-        if (viewMainPage.myCards && viewMyCards.check) {
+      else{
+        if(viewMainPage.myCards && viewMyCards.check) {
           pos = (JSON.parse(localStorage.getItem('click_client_cards'))[localStorage.getItem('cardNumber')].countCard) * 260;
-
+          scope.containerCard.scrollLeft = pos;
           viewMyCards.check = false;
           cardNumber = localStorage.getItem('cardNumber');
           return;
         }
-        if (viewMainPage.myCards && !viewMyCards.check) {
-
-
+        if(viewMainPage.myCards && !viewMyCards.check){
+          pos = cardNumber * 260;
+          scope.containerCard.scrollLeft = pos;
         }
       }
+
+    }
+    console.log("CARD NUMBER ", cardNumber);
+
+    onScroll = function (e) {
+      if (!changed) {
+        scope.containerCard.scrollLeft = pos;
+      }
+
     }
 
 
   </script>
-</component-card-carousel>
+</component-old-card-carousel>
 

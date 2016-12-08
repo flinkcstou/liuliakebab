@@ -45,12 +45,12 @@
 
     var scope = this;
     onTouchEndOne = function () {
-      if (viewRegistration.check) {
+      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
         viewRegistration.phoneNumber += '1';
         console.log(viewRegistration.phoneNumber)
         riot.update();
       }
-      if (viewAuthorization.check) {
+      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '1';
         viewAuthorization.updateEnteredPin();
       }
@@ -59,12 +59,12 @@
     }
 
     onTouchEndTwo = function () {
-      if (viewRegistration.check) {
+      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
         viewRegistration.phoneNumber += '2';
         riot.update();
       }
 
-      if (viewAuthorization.check) {
+      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '2';
         viewAuthorization.updateEnteredPin();
       }
@@ -73,12 +73,12 @@
     }
 
     onTouchEndThree = function () {
-      if (viewRegistration.check) {
+      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
         viewRegistration.phoneNumber += '3';
         riot.update();
       }
 
-      if (viewAuthorization.check) {
+      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '3';
         viewAuthorization.updateEnteredPin();
       }
@@ -87,12 +87,12 @@
     }
 
     onTouchEndFour = function () {
-      if (viewRegistration.check) {
+      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
         viewRegistration.phoneNumber += '4';
         riot.update();
       }
 
-      if (viewAuthorization.check) {
+      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '4';
         viewAuthorization.updateEnteredPin();
       }
@@ -101,12 +101,12 @@
     }
 
     onTouchEndFive = function () {
-      if (viewRegistration.check) {
+      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
         viewRegistration.phoneNumber += '5';
         riot.update();
       }
 
-      if (viewAuthorization.check) {
+      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '5';
         viewAuthorization.updateEnteredPin();
       }
@@ -115,12 +115,12 @@
     }
 
     onTouchEndSix = function () {
-      if (viewRegistration.check) {
+      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
         viewRegistration.phoneNumber += '6';
         riot.update();
       }
 
-      if (viewAuthorization.check) {
+      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '6';
         viewAuthorization.updateEnteredPin();
       }
@@ -129,12 +129,12 @@
     }
 
     onTouchEndSeven = function () {
-      if (viewRegistration.check) {
+      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
         viewRegistration.phoneNumber += '7';
         riot.update();
       }
 
-      if (viewAuthorization.check) {
+      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '7';
         viewAuthorization.updateEnteredPin();
       }
@@ -143,12 +143,12 @@
     }
 
     onTouchEndEight = function () {
-      if (viewRegistration.check) {
+      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
         viewRegistration.phoneNumber += '8';
         riot.update();
       }
 
-      if (viewAuthorization.check) {
+      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '8';
         viewAuthorization.updateEnteredPin();
       }
@@ -157,12 +157,12 @@
     }
 
     onTouchEndNine = function () {
-      if (viewRegistration.check) {
+      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
         viewRegistration.phoneNumber += '9';
         riot.update();
       }
 
-      if (viewAuthorization.check) {
+      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '9';
         viewAuthorization.updateEnteredPin();
       }
@@ -171,12 +171,12 @@
     }
 
     onTouchEndZero = function () {
-      if (viewRegistration.check) {
+      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
         viewRegistration.phoneNumber += '0';
         riot.update();
       }
 
-      if (viewAuthorization.check) {
+      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '0';
         viewAuthorization.updateEnteredPin();
       }

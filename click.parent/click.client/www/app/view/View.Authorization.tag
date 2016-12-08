@@ -84,7 +84,6 @@
 
       if (viewAuthorization.enteredPin.length == 5) {
         pin = viewAuthorization.enteredPin;
-        viewAuthorization.enteredPin = '';
 
       }
     }
@@ -125,9 +124,6 @@
             viewAuthorization.check = false;
             getAccount();
 
-              this.riotTags.innerHTML = "<view-main-page>";
-              riot.mount('view-main-page');
-
           }
         },
         onFail   : function (api_status, api_status_message, data) {
@@ -161,6 +157,9 @@
             }
             var accountInfo = JSON.stringify(arrayAccountInfo);
             localStorage.setItem("click_client_accountInfo", accountInfo);
+
+            this.riotTags.innerHTML = "<view-main-page>";
+            riot.mount('view-main-page');
           },
 
           onFail: function (api_status, api_status_message, data) {

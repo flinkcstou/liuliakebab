@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" id="htmlId" ontouchstart="touchStart()" ontouchend="touchEnd()">
+<html lang="en" id="htmlId" ontouchstart="touchStart()" ontouchend="touchEnd()"
+      onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <!-- CSS -->
   <link href="css/MainPage.css" rel="stylesheet">
 
   <!-- JS COMMON -->
   <!-- @include(cordova.htmlinc) -->
-  <script src="lib/js/riot.js"></script>
-  <script src="lib/js/all.js"></script>
+    <script src="lib/js/riot.js"></script>
+    <script src="lib/js/all.js"></script>
 
-  <script src="js/encryption/sha512.js"></script>
-  <script src="js/encryption/md5.js"></script>
-  <script src="js/api/WebApi.js"></script>
-  <script src="js/globalObjects/global.Objects.js"></script>
+    <script src="js/encryption/sha512.js"></script>
+    <script src="js/encryption/md5.js"></script>
+    <script src="js/api/WebApi.js"></script>
+    <script src="js/globalObjects/global.Objects.js"></script>
+
 
   <component-menu id="SideMenuId"></component-menu>
 </head>
