@@ -7,10 +7,10 @@
 
   <script>
 
-
+    var delta;
     touchStartService = function () {
       touchStartX = event.changedTouches[0].pageX;
-      delta = this.containerCard.getBoundingClientRect().left - touchStartX;
+      delta = this.containerService.getBoundingClientRect().left - touchStartX;
     }
 
     touchEndService = function () {
@@ -21,25 +21,30 @@
         changePosition();
     }
 
-    changePosition = function () {
-      if (touchEndX < touchStartX && cardNumber < count - 1) {
-        ++cardNumber;
-        this.containerCard.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
-        this.containerCard.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
-        this.containerCard.style.transition = '0.3s';
-        this.containerCard.style.webkitTransition = '0.3s';
-      }
-
-      if (touchEndX > touchStartX && cardNumber == 0) {
-        this.containerCard.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
-        this.containerCard.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
-        this.containerCard.style.transition = '0.3s';
-        this.containerCard.style.webkitTransition = '0.3s';
-      }
+    touchMoveService = function () {
+      console.log(event);
+      this.containerService.style.transition = '0s';
+      this.containerService.style.webkitTransition = '0s';
+      event.preventDefault();
+      event.stopPropagation();
+      this.containerService.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
+      this.containerService.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
     }
 
-    touchMoveService = function () {
+    changePosition = function () {
+      if (touchEndX < touchStartX) {
+        this.containerService.style.transform = "translate3d(-310px, 0, 0)";
+        this.containerService.style.webkitTransform = "translate3d(-310px, 0, 0)";
+        this.containerService.style.transition = '0.3s';
+        this.containerService.style.webkitTransition = '0.3s';
+      }
 
+      if (touchEndX > touchStartX) {
+        this.containerService.style.transform = "translate3d(0, 0, 0)";
+        this.containerService.style.webkitTransform = "translate3d(0, 0, 0)";
+        this.containerService.style.transition = '0.3s';
+        this.containerService.style.webkitTransition = '0.3s';
+      }
     }
   </script>
 </component-service-carousel>
