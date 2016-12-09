@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" id="htmlId" ontouchstart="touchStart()" ontouchend="touchEnd()"
+<html lang="en" id="htmlId"
       onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
 <head>
   <meta charset="UTF-8">
@@ -23,7 +23,7 @@
   <script src="stand/allMethods.js"></script>
 
   <script src="stand/plugins/sms_fake.js"></script>
-  <script src="stand/plugins/device_fake.js"></script>
+  <script src="stand/plugins/plugins_fake.js"></script>
 
   <component-menu id="SideMenuId"></component-menu>
 </head>
@@ -37,6 +37,9 @@
 <script>
   api.init();
   var startApplication = function () {
+
+    console.log(1);
+
     if(localStorage.getItem('click_client_token')) {
       this.riotTags.innerHTML = "<view-authorization>";
       riot.mount('view-authorization')
@@ -46,14 +49,15 @@
       riot.mount('view-registration-device');
     }
     riot.mount('view-main-page');
-    riot.mount('component-menu');
   };
 
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
+      console.log(6);
       startApplication();
     }, false);
   } else {
+    console.log(7);
     startApplication();
   }
 
@@ -62,17 +66,21 @@
   }
 
   //MENU FUNCTIONS FOR ALL PAGES
-  var touchStartX, touchEndX;
-  touchStart = function () {
-    touchStartX = event.changedTouches[0].pageX;
-  }
-
-  touchEnd = function () {
-    touchEndX = event.changedTouches[0].pageX;
-    if (touchStartX < touchEndX && touchStartX <= 15) {
-      this.menuOpen();
-    }
-  }
+//  var touchStartX, touchEndX;
+//  touchStart = function () {
+//    event.preventDefault();
+//    event.stopPropagation();
+//    touchStartX = event.changedTouches[0].pageX;
+//  }
+//
+//  touchEnd = function () {
+//    event.preventDefault();
+//    event.stopPropagation();
+//    touchEndX = event.changedTouches[0].pageX;
+//    if (touchStartX < touchEndX && touchStartX <= 15) {
+//      this.menuOpen();
+//    }
+//  }
 
 </script>
 </body>

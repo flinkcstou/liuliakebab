@@ -18,7 +18,7 @@ body {
   overflow: hidden;
 }
 
-.view-my-cards{
+.view-my-cards {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -106,10 +106,6 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
-
-
-
-
 
 /*FONT FACE*/
 @font-face {
@@ -790,7 +786,7 @@ body {
   margin-right: auto;
 }
 
-.registration-container-offline{
+.registration-container-offline {
   position: absolute;
   width: 150px;
   height: 70px;
@@ -811,14 +807,13 @@ body {
   margin-bottom: 7px;
 }
 
-.registration-container-demo-version{
+.registration-container-demo-version {
   position: absolute;
   width: 130px;
   height: 70px;
   bottom: 0;
   right: 0;
 }
-
 
 .registration-button-demo-version {
   position: absolute;
@@ -856,12 +851,11 @@ body {
 .registration-text-field {
   position: relative;
   background-size: contain;
-  top:70px;
+  top: 70px;
   text-align: center;
   color: #05eeff;
   font-size: 17px;
 }
-
 
 /*COMPONENT FOOTER*/
 
@@ -877,7 +871,7 @@ body {
   background-color: rgb(37, 159, 225);
 }
 
-.footer-contacts-container{
+.footer-contacts-container {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -891,11 +885,84 @@ body {
   -ms-transform: translate3d(0, 100px, 0);
 }
 
-.footer-contacts{
+.footer-contacts {
   position: absolute;
   width: 100%;
   height: 100px;
   bottom: 0;
-  background-color: #017be2;
+  background-color: #25a0e3;
+}
 
+.footer-favourite-contacts-container {
+  position: relative;
+  width: 335px;
+  height: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+}
+
+.footer-favourite-contacts-circles {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  border: 2px solid yellow;
+  top: 0;
+  background-repeat:no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.footer-contact-one {
+  left: 0;
+}
+
+.footer-contact-two {
+  left: 70px
+}
+
+.footer-contact-three {
+  left: 140px
+}
+
+.footer-contact-four {
+  left: 210px
+}
+
+.footer-contact-five {
+  left: 280px
+}
+
+
+.footer-favourite-contacts-label{
+  position: absolute;
+  background-size: contain;
+  font-size: 15px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  top: 55px;
+}
+
+.footer-favourite-contacts-label-one{
+  left:0;
+}
+
+.footer-favourite-contacts-label-two{
+  left:80px;
+}
+
+.footer-favourite-contacts-label-three{
+  left:145px;
+}
+
+.footer-favourite-contacts-label-four{
+  left:200px;
+}
+
+.footer-favourite-contacts-label-five{
+  left:280px;
 }

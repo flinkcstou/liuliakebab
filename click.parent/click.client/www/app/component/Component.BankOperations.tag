@@ -36,6 +36,7 @@
   </div>
 
   <script>
+
     var scope = this;
     goToPayView = function(e)
     {

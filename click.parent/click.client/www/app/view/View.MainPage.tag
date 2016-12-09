@@ -12,10 +12,9 @@
   <component-service-carousel></component-service-carousel>
   <component-footer></component-footer>
   <script>
+
     var scope = this;
     viewMainPage.myCards = false;
-
-
 
   </script>
 </view-main-page>

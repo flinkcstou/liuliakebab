@@ -44,7 +44,7 @@ window.fakedSocket.send = function (message) {
         ],
       };
       //Chtobi dobavlyali dinamichno vse objecti
-      for(var i = 1; i < result.length; i++)
+      for (var i = 1; i < result.length; i++)
         retData.data[1].push(result[i]);
 
 
@@ -70,14 +70,14 @@ window.fakedSocket.send = function (message) {
 
 window.fakedSocket.param = function (val) {
   var result = null,
-      tmp = [];
+    tmp = [];
   location.search
-      .substr(1)
-      .split("&")
-      .forEach(function (item) {
-        tmp = item.split("=");
-        if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
-      });
+    .substr(1)
+    .split("&")
+    .forEach(function (item) {
+      tmp = item.split("=");
+      if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
+    });
   console.log("RESULT ", result);
   return result;
 };
@@ -98,6 +98,7 @@ window.fakedSocket.getCallbackTimeout = function () {
 };
 
 window.fakedSocket.calculateCallbackTimeoutArray = function () {
+
   var ret = [];
   var t = window.fakedSocket.param('t');
   if (t) t.split(',').forEach(function (item) {

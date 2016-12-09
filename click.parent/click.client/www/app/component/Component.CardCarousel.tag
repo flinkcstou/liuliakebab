@@ -11,6 +11,7 @@
   </div>
 
   <script>
+
     var scope = this;
     var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
 
@@ -78,7 +79,6 @@
 
           riot.mount("component-card");
         }
-
     }
     if (localStorage.getItem('click_client_accountInfo'))
       scope.addCard(getAccountsCards);
