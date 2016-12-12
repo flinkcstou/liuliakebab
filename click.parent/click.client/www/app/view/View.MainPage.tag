@@ -1,4 +1,4 @@
-<view-main-page id="mainPageId" class="view-main-page">
+<view-main-page id="mainPageId" class="view-main-page" >
   <component-toolbar></component-toolbar>
   <div>
     <p class="common-balance-label">Общий баланс:</p>
@@ -7,12 +7,13 @@
       <p class="valuta">сум</p>
     </div>
   </div>
-  <component-card-carousel></component-card-carousel>
   <component-bank-operations></component-bank-operations>
   <component-service-carousel></component-service-carousel>
   <component-footer></component-footer>
+  <component-card-carousel></component-card-carousel>
   <script>
-
+    history.arrayOfHistory.push('view-main-page');
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     var scope = this;
     viewMainPage.myCards = false;
 

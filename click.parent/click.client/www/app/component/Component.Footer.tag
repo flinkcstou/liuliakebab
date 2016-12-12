@@ -54,38 +54,38 @@
 
 
 
-    findContacts = function () {
-      var options = new ContactFindOptions();
-      options.filter = "";
-      options.multiple = true;
-      window.photo = '';
-      window.first_name = '';
-      window.second_name = '';
-      var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.photos];
-      navigator.contacts.find(fields, success, error, options);
-
-      function success(contacts) {
-        console.log(navigator.contacts);
-        alert(JSON.stringify(contacts))
-        for (var i = 0; i < contacts.length; i++) {
-          console.log("FIRST NAME ", contacts[i].name.familyName)
-          console.log("FIRST NAME ", contacts[i].name.givenName)
-          if(contacts[i].photos[0].value != null) {
-            window.first_name = contacts[i].name.familyName;
-            window.second_name = contacts[i].name.givenName;
-            window.photo = contacts[i].photos[0].value;
-            this.photoOne.style.webkitBackgroundImage = "url("+window.photo+")"
-            this.photoOne.style.backgroundImage = "url("+window.photo+")"
-            riot.update();
-          }
-        }
-      }
-      function error(message) {
-        alert('Failed because: ' + message);
-      }
-    }
-
-    findContacts();
+//    findContacts = function () {
+//      var options = new ContactFindOptions();
+//      options.filter = "";
+//      options.multiple = true;
+//      window.photo = '';
+//      window.first_name = '';
+//      window.second_name = '';
+//      var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.photos];
+//      navigator.contacts.find(fields, success, error, options);
+//
+//      function success(contacts) {
+//        console.log(navigator.contacts);
+//        alert(JSON.stringify(contacts))
+//        for (var i = 0; i < contacts.length; i++) {
+//          console.log("FIRST NAME ", contacts[i].name.familyName)
+//          console.log("FIRST NAME ", contacts[i].name.givenName)
+//          if(contacts[i].photos[0].value != null) {
+//            window.first_name = contacts[i].name.familyName;
+//            window.second_name = contacts[i].name.givenName;
+//            window.photo = contacts[i].photos[0].value;
+//            this.photoOne.style.webkitBackgroundImage = "url("+window.photo+")"
+//            this.photoOne.style.backgroundImage = "url("+window.photo+")"
+//            riot.update();
+//          }
+//        }
+//      }
+//      function error(message) {
+//        alert('Failed because: ' + message);
+//      }
+//    }
+//
+//    findContacts();
 
   </script>
 </component-footer>

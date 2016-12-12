@@ -235,6 +235,8 @@ body {
 
 .cards {
   position: relative;
+  -webkit-animation: mymove 5s infinite;
+  animation: mymove 5s infinite;
 }
 
 .card {
@@ -754,11 +756,11 @@ body {
 .registration-phone-field {
   position: relative;
   margin-left: auto;
-  top: 40px;
+  top: 120px;
   margin-right: auto;
   width: 280px;
   height: 50px;
-  border-bottom: 3px solid rgba(1, 207, 255, 0.95);
+  border-bottom: 3px solid rgba(163, 222, 238, 0.95);
   color: white;
 }
 
@@ -770,18 +772,17 @@ body {
 }
 
 .registration-button-enter {
-  top: 80px;
+  top: -100px;
 }
 
 .registration-keyboard-field {
-  top: 80px;
+  top: 230px;
 }
 
 .registration-buttons-container {
   position: relative;
   width: 280px;
-  height: 200px;
-  top: 80px;
+  top: 280px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -802,8 +803,7 @@ body {
   border-bottom: 1px solid white;
   bottom: 20px;
   text-align: center;
-  margin-right: 20px;
-  margin-left: 20px;
+  margin-left: 0;
   margin-bottom: 7px;
 }
 
@@ -819,23 +819,24 @@ body {
   position: absolute;
   font-size: 17px;
   background-size: contain;
-  color: white;
-  border-bottom: 1px solid white;
+  color: #b7f1ff;
+  border-bottom: 1px solid #b7f1ff;
   bottom: 20px;
-  margin-right: 20px;
-  margin-left: 20px;
+  margin-left: 40px;
   margin-bottom: 7px;
   text-align: center;
 }
 
 .registration-button-help {
-  position: absolute;
+  position: relative;
   font-size: 17px;
-  top: 15px;
-  left: 50px;
+  top: -20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 55px;
   background-size: contain;
-  color: #05eeff;
-  border-bottom: 1px solid #05eeff;
+  color: #b7f1ff;
+  border-bottom: 1px solid #b7f1ff;
 }
 
 .registration-button-registration {
@@ -849,12 +850,25 @@ body {
 }
 
 .registration-text-field {
-  position: relative;
+  position: absolute;
   background-size: contain;
-  top: 70px;
+  top: -10px;
+  left: 0;
   text-align: center;
-  color: #05eeff;
-  font-size: 17px;
+  color: #4bd5ff;
+  font-size: 15px;
+  margin: 0;
+}
+
+/*VIEW - SMS*/
+.sms-text-field {
+  position: relative;
+  text-align: center;
+  color: #b7f1ff;
+  top:120px;
+  font-size: 15px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*COMPONENT FOOTER*/
@@ -909,7 +923,7 @@ body {
   border-radius: 50px;
   border: 2px solid yellow;
   top: 0;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
@@ -934,8 +948,7 @@ body {
   left: 280px
 }
 
-
-.footer-favourite-contacts-label{
+.footer-favourite-contacts-label {
   position: absolute;
   background-size: contain;
   font-size: 15px;
@@ -947,22 +960,22 @@ body {
   top: 55px;
 }
 
-.footer-favourite-contacts-label-one{
-  left:0;
+.footer-favourite-contacts-label-one {
+  left: 0;
 }
 
-.footer-favourite-contacts-label-two{
-  left:80px;
+.footer-favourite-contacts-label-two {
+  left: 80px;
 }
 
-.footer-favourite-contacts-label-three{
-  left:145px;
+.footer-favourite-contacts-label-three {
+  left: 145px;
 }
 
-.footer-favourite-contacts-label-four{
-  left:200px;
+.footer-favourite-contacts-label-four {
+  left: 200px;
 }
 
-.footer-favourite-contacts-label-five{
-  left:280px;
+.footer-favourite-contacts-label-five {
+  left: 280px;
 }

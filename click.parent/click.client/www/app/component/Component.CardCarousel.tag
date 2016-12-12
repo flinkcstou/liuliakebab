@@ -16,7 +16,6 @@
     var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
 
     var touchStartX, touchEndX;
-    scope.cards.style.width = localStorage.getItem('containerCardsWidth');
     cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
 
     if (!cardsarray) {
@@ -74,7 +73,6 @@
 
           count++;
           localStorage.setItem('click_client_countCard', count);
-          localStorage.setItem('containerCardsWidth', scope.leftPosition + 360 + 'px');
           scope.cards.style.width = localStorage.getItem('containerCardsWidth');
 
           riot.mount("component-card");
@@ -87,23 +85,24 @@
 
       if (touchEndX < touchStartX && cardNumber < count - 1) {
         ++cardNumber;
-        this.cards.style.transition = '0.3s';
-        this.cards.style.webkitTransition = '0.3s';
+        // second parameter FROM TO
+        this.cards.style.transition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
+        this.cards.style.webkitTransition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
         this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
 
       }
 
       if (touchEndX > touchStartX && cardNumber == 0) {
-        this.cards.style.transition = '0.3s';
-        this.cards.style.webkitTransition = '0.3s';
+        this.cards.style.transition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
+        this.cards.style.webkitTransition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
         this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
       }
 
       if (touchEndX < touchStartX && cardNumber == count - 1) {
-        this.cards.style.transition = '0.3s';
-        this.cards.style.webkitTransition = '0.3s';
+        this.cards.style.transition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
+        this.cards.style.webkitTransition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
         this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
 
@@ -111,8 +110,8 @@
 
       if (touchEndX > touchStartX && cardNumber > 0) {
         --cardNumber;
-        this.cards.style.transition = '0.3s';
-        this.cards.style.webkitTransition = '0.3s';
+        this.cards.style.transition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
+        this.cards.style.webkitTransition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
         this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
       }

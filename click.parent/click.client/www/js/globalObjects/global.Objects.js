@@ -9,4 +9,6 @@ viewAuthorization.check = false;
 
 window.viewRegistration = {};
 
-
+window.history = {};
+history.arrayOfHistory = [];
+sessionStorage.setItem('history', JSON.stringify(hisotry.arrayOfHistory));

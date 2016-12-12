@@ -1,6 +1,9 @@
 <view-registration-client>
 
   <script>
+    history.arrayOfHistory.push('view-registration-client');
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
      var cardNumber;
      var cardData;

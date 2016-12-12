@@ -47,6 +47,9 @@
 
 
   <script>
+    history.arrayOfHistory.push('view-my-cards');
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
     viewMyCards.check = true;
     viewMainPage.myCards = true;
 

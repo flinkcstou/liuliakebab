@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" id="htmlId"
-      onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
+      onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false"
+      onDrag="return false" onDrop="return false" autocomplete=off>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport"
+        content="width=device-width, target-densitydpi=device-dpi, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <!-- CSS -->
   <link href="css/MainPage.css" rel="stylesheet">
@@ -36,15 +38,14 @@
 
 <script>
   api.init();
+  scope = this;
   var startApplication = function () {
 
-    console.log(1);
-
-    if(localStorage.getItem('click_client_token')) {
+    if (localStorage.getItem('click_client_token')) {
       this.riotTags.innerHTML = "<view-authorization>";
       riot.mount('view-authorization')
     }
-    else{
+    else {
       this.riotTags.innerHTML = "<view-registration-device>";
       riot.mount('view-registration-device');
     }
@@ -53,34 +54,55 @@
 
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
-      console.log(6);
+
+      document.addEventListener("backbutton", onBackKeyDown, false);
       startApplication();
     }, false);
   } else {
-    console.log(7);
     startApplication();
   }
 
-  if(JSON.parse(localStorage.getItem('demo_version')) === true){
+  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
     this.closeDemo();
   }
+  function onBackKeyDown() {
+    historyOfApp();
+  }
+
+  historyOfApp = function () {
+    console.log(this.riotTags);
+    history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+
+    if (history.arrayOfHistory.length != 0) {
+      history.arrayOfHistory.pop();
+      if (history.arrayOfHistory.length != 0) {
+        console.log('THIS IS riotTags div ',this.riotTags)
+        console.log("JSON ", JSON.stringify(history.arrayOfHistory));
+        console.log('LAST ELEMENT ', history.arrayOfHistory[history.arrayOfHistory.length - 1]);
+        console.log('LAST ELEMENT in RIOT TAG ', "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1] + ">");
+        this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1] + ">";
+        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1]);
+      }
+    }
+  }
+
 
   //MENU FUNCTIONS FOR ALL PAGES
-//  var touchStartX, touchEndX;
-//  touchStart = function () {
-//    event.preventDefault();
-//    event.stopPropagation();
-//    touchStartX = event.changedTouches[0].pageX;
-//  }
-//
-//  touchEnd = function () {
-//    event.preventDefault();
-//    event.stopPropagation();
-//    touchEndX = event.changedTouches[0].pageX;
-//    if (touchStartX < touchEndX && touchStartX <= 15) {
-//      this.menuOpen();
-//    }
-//  }
+  //  var touchStartX, touchEndX;
+  //  touchStart = function () {
+  //    event.preventDefault();
+  //    event.stopPropagation();
+  //    touchStartX = event.changedTouches[0].pageX;
+  //  }
+  //
+  //  touchEnd = function () {
+  //    event.preventDefault();
+  //    event.stopPropagation();
+  //    touchEndX = event.changedTouches[0].pageX;
+  //    if (touchStartX < touchEndX && touchStartX <= 15) {
+  //      this.menuOpen();
+  //    }
+  //  }
 
 </script>
 </body>

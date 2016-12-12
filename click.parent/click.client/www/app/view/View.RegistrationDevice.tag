@@ -1,21 +1,19 @@
 <view-registration-device>
-
-  <div class="registration-phone-field"><p class="registration-phone-input">{viewRegistration.phoneNumber}</p></div>
+  <div class="registration-phone-field">
+    <p class="registration-text-field">Введите номер телефона</p>
+    <p class="registration-phone-input">{viewRegistration.phoneNumber}</p>
+  </div>
 
   <div class="registration-keyboard-field keyboard-field">
+    <div class="registration-button-help">Помощь</div>
     <component-keyboard></component-keyboard>
   </div>
 
   <div class="registration-button-enter button-enter" ontouchend="getPhoneNumber()">
-    <div class="button-enter-label">ВОЙТИ</div>
+    <div class="button-enter-label">Далее</div>
   </div>
 
   <div class="registration-buttons-container">
-    <div class="registration-button-help">Помощь</div>
-    <div class="registration-button-registration">Регистрация</div>
-    <div class="registration-text-field">Для прохождения регистрации<br>Вам необходимо активировать <br> услугу
-      "СМС-информаирование UzCard
-    </div>
     <div class="registration-container-offline">
       <div class="registration-button-offline">Офлайн режим</div>
     </div>
@@ -25,6 +23,8 @@
   </div>
 
   <script>
+    history.arrayOfHistory.push('view-registration-device');
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
     var scope = this;
     var token;
@@ -89,6 +89,10 @@
         scope: this,
 
         onSuccess: function (result) {
+          if(result[0][0].error == -8){
+            alert("Пользователь не найден");
+            return;
+          }
           console.log("result ", result);
           var deviceId = result[1][0].device_id;
           localStorage.setItem('click_client_deviceID', deviceId);

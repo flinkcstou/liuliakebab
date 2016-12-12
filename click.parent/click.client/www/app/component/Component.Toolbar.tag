@@ -20,19 +20,7 @@
     }
 
     bellButton = function () {
-      event.preventDefault();
-      event.stopPropagation();
 
-      if (localStorage.getItem('click_client_phoneNumber') == null || localStorage.getItem('click_client_deviceID') == null || localStorage.getItem('click_client_token') == null) {
-        this.riotTags.innerHTML = "<view-registration-device>";
-        scope.unmount();
-        riot.mount('view-registration-device');
-      }
-      else {
-        this.riotTags.innerHTML = "<view-authorization>";
-        riot.mount('view-authorization');
-        scope.unmount();
-      }
     }
   </script>
 </component-toolbar>

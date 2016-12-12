@@ -29,6 +29,9 @@
 
 
   <script>
+    history.arrayOfHistory.push('view-authorization');
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
     scope = this;
     viewAuthorization.check = true;
     var pin;
@@ -163,6 +166,11 @@
 
             this.riotTags.innerHTML = "<view-main-page>";
             riot.mount('view-main-page');
+            riot.mount('component-toolbar');
+            riot.mount('component-bank-operations');
+            riot.mount('component-service-carousel');
+            riot.mount('component-footer');
+            riot.mount('component-card-carousel');
           },
 
           onFail: function (api_status, api_status_message, data) {

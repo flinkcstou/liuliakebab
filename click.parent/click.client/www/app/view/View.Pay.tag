@@ -4,6 +4,9 @@
 
 
   <script>
+    history.arrayOfHistory.push('view-pay');
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
     scope = this;
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;

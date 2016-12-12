@@ -3,6 +3,9 @@
   </component-page-title>
 
   <script>
+    history.arrayOfHistory.push('view-auto-pay');
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
     scope = this;
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;
