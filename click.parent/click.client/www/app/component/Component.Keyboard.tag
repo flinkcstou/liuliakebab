@@ -40,8 +40,12 @@
     if (viewAuthorization.check)
       viewAuthorization.enteredPin = '';
 
+    if(viewSms.check)
+      viewSms.confirmSms = '';
+
     if (viewRegistration.check)
       viewRegistration.phoneNumber = '+998';
+
 
     var scope = this;
     onTouchEndOne = function () {
@@ -50,6 +54,13 @@
         console.log(viewRegistration.phoneNumber)
         riot.update();
       }
+
+      if(viewSms.check && viewSms.confirmSms.length < 5){
+        viewSms.confirmSms += '1';
+        viewSms.updateSmsField();
+        riot.update();
+      }
+
       if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '1';
         viewAuthorization.updateEnteredPin();
@@ -61,6 +72,12 @@
     onTouchEndTwo = function () {
       if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
         viewRegistration.phoneNumber += '2';
+        riot.update();
+      }
+
+      if(viewSms.check && viewSms.confirmSms.length < 5){
+        viewSms.confirmSms += '2';
+        viewSms.updateSmsField();
         riot.update();
       }
 
@@ -78,6 +95,12 @@
         riot.update();
       }
 
+      if(viewSms.check && viewSms.confirmSms.length < 5){
+        viewSms.confirmSms += '3';
+        viewSms.updateSmsField();
+        riot.update();
+      }
+
       if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '3';
         viewAuthorization.updateEnteredPin();
@@ -89,6 +112,12 @@
     onTouchEndFour = function () {
       if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
         viewRegistration.phoneNumber += '4';
+        riot.update();
+      }
+
+      if(viewSms.check && viewSms.confirmSms.length < 5){
+        viewSms.confirmSms += '4';
+        viewSms.updateSmsField();
         riot.update();
       }
 
@@ -106,6 +135,12 @@
         riot.update();
       }
 
+      if(viewSms.check && viewSms.confirmSms.length < 5){
+        viewSms.confirmSms += '5';
+        viewSms.updateSmsField();
+        riot.update();
+      }
+
       if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '5';
         viewAuthorization.updateEnteredPin();
@@ -117,6 +152,12 @@
     onTouchEndSix = function () {
       if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
         viewRegistration.phoneNumber += '6';
+        riot.update();
+      }
+
+      if(viewSms.check && viewSms.confirmSms.length < 5){
+        viewSms.confirmSms += '6';
+        viewSms.updateSmsField();
         riot.update();
       }
 
@@ -134,6 +175,12 @@
         riot.update();
       }
 
+      if(viewSms.check && viewSms.confirmSms.length < 5){
+        viewSms.confirmSms += '7';
+        viewSms.updateSmsField();
+        riot.update();
+      }
+
       if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '7';
         viewAuthorization.updateEnteredPin();
@@ -145,6 +192,12 @@
     onTouchEndEight = function () {
       if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
         viewRegistration.phoneNumber += '8';
+        riot.update();
+      }
+
+      if(viewSms.check && viewSms.confirmSms.length < 5){
+        viewSms.confirmSms += '8';
+        viewSms.updateSmsField();
         riot.update();
       }
 
@@ -162,6 +215,12 @@
         riot.update();
       }
 
+      if(viewSms.check && viewSms.confirmSms.length < 5){
+        viewSms.confirmSms += '9';
+        viewSms.updateSmsField();
+        riot.update();
+      }
+
       if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '9';
         viewAuthorization.updateEnteredPin();
@@ -176,6 +235,12 @@
         riot.update();
       }
 
+      if(viewSms.check && viewSms.confirmSms.length < 5){
+        viewSms.confirmSms += '0';
+        viewSms.updateSmsField();
+        riot.update();
+      }
+
       if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
         viewAuthorization.enteredPin += '0';
         viewAuthorization.updateEnteredPin();
@@ -187,6 +252,12 @@
     onTouchEndX = function () {
       if (viewRegistration.check && viewRegistration.phoneNumber.length > 4) {
         viewRegistration.phoneNumber = viewRegistration.phoneNumber.substring(0, viewRegistration.phoneNumber.length - 1);
+        riot.update();
+      }
+
+      if(viewSms.check){
+        viewSms.confirmSms = viewSms.confirmSms.substring(0, viewSms.confirmSms.length - 1);
+        viewSms.updateSmsField();
         riot.update();
       }
       if (viewAuthorization.check) {
