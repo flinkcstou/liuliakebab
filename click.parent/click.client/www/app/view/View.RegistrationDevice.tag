@@ -1,7 +1,7 @@
 <view-registration-device>
   <div class="registration-phone-field">
     <p class="registration-text-field">Введите номер телефона</p>
-    <p class="registration-phone-input">{viewRegistration.phoneNumber}</p>
+    <p class="registration-phone-input">{phoneNumber}</p>
   </div>
 
   <div class="registration-keyboard-field keyboard-field">
@@ -17,8 +17,9 @@
     <div class="registration-container-offline">
       <div class="registration-button-offline">Офлайн режим</div>
     </div>
-    <a href="stand/index-stand.html" id="demoContainer" class="registration-container-demo-version" ontouchstart="goToDemo()">
-      <div   class="registration-button-demo-version">Демо версия</div>
+    <a href="stand/index-stand.html" id="demoContainer" class="registration-container-demo-version"
+       ontouchstart="goToDemo()">
+      <div class="registration-button-demo-version">Демо версия</div>
     </a>
   </div>
 
@@ -29,18 +30,31 @@
     var scope = this;
     var token;
 
-    viewRegistration.check = true;
+    scope.phoneNumber = '+998';
+
+
+    componentKeyboard.returnValue = function (myValue) {
+      if (scope.phoneNumber.length < 13 && myValue != 'x') {
+        scope.phoneNumber += myValue;
+      }
+      if (myValue == 'x' && scope.phoneNumber.length != 4 ) {
+        scope.phoneNumber = scope.phoneNumber.substring(0, scope.phoneNumber.length - 1);
+      }
+      console.log(myValue)
+      riot.update();
+    }
+
 
     goToDemo = function () {
       localStorage.setItem('demo_version', true);
     }
-    closeDemo = function (){
+    closeDemo = function () {
       this.demoContainer.classList.add('hide')
     }
 
     getPhoneNumber = function () {
       var correctPhoneNumber = true;
-      var phoneNumber = viewRegistration.phoneNumber.substring(1, viewRegistration.phoneNumber.length);
+      var phoneNumber = scope.phoneNumber.substring(1, scope.phoneNumber.length);
 
       if (phoneNumber.length != 12) {
         alert("incorrect number");
@@ -89,14 +103,13 @@
         scope: this,
 
         onSuccess: function (result) {
-          if(result[0][0].error == -8){
+          if (result[0][0].error == -8) {
             alert("Пользователь не найден");
             return;
           }
           console.log("result ", result);
           var deviceId = result[1][0].device_id;
           localStorage.setItem('click_client_deviceID', deviceId);
-          viewRegistration.check = false;
           if (result[1][0].confirm_needed) {
             this.riotTags.innerHTML = "<view-sms>";
             riot.mount('view-sms');

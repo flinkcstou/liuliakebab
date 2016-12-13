@@ -2,268 +2,48 @@
   <div class="keyboard-container">
 
     <div class="keyboard-field-one">
-      <div class="keyboard-buttons keyboard-button-one" ontouchend="onTouchEndOne()"><p class="keyboard-buttons-label">
+      <div  class="keyboard-buttons keyboard-button-one" value="1" ontouchend="componentKeyboard.returnValue(getAttribute('value'))"><p class="keyboard-buttons-label">
         1</p></div>
-      <div class="keyboard-buttons keyboard-button-two" ontouchend="onTouchEndTwo()"><p class="keyboard-buttons-label">
+      <div class="keyboard-buttons keyboard-button-two" value="2" ontouchend="componentKeyboard.returnValue(getAttribute('value'))"><p class="keyboard-buttons-label">
         2</p></div>
-      <div class="keyboard-buttons keyboard-button-three" ontouchend="onTouchEndThree()"><p
+      <div class="keyboard-buttons keyboard-button-three" value="3" ontouchend="componentKeyboard.returnValue(getAttribute('value'))"><p
         class="keyboard-buttons-label">3</p></div>
     </div>
 
     <div class="keyboard-field-two">
-      <div class="keyboard-buttons keyboard-button-four" ontouchend="onTouchEndFour()"><p
+      <div class="keyboard-buttons keyboard-button-four" value="4" ontouchend="componentKeyboard.returnValue(getAttribute('value'))"><p
         class="keyboard-buttons-label">4</p></div>
-      <div class="keyboard-buttons keyboard-button-five" ontouchend="onTouchEndFive()"><p
+      <div class="keyboard-buttons keyboard-button-five" value="5" ontouchend="componentKeyboard.returnValue(getAttribute('value'))"><p
         class="keyboard-buttons-label">5</p></div>
-      <div class="keyboard-buttons keyboard-button-six" ontouchend="onTouchEndSix()"><p class="keyboard-buttons-label">
+      <div class="keyboard-buttons keyboard-button-six" value="6" ontouchend="componentKeyboard.returnValue(getAttribute('value'))"><p class="keyboard-buttons-label">
         6</p></div>
     </div>
 
     <div class="keyboard-field-three">
-      <div class="keyboard-buttons keyboard-button-seven" ontouchend="onTouchEndSeven()"><p
+      <div class="keyboard-buttons keyboard-button-seven" value="7" ontouchend="componentKeyboard.returnValue(getAttribute('value'))"><p
         class="keyboard-buttons-label">7</p></div>
-      <div class="keyboard-buttons keyboard-button-eight" ontouchend="onTouchEndEight()"><p
+      <div class="keyboard-buttons keyboard-button-eight" value="8" ontouchend="componentKeyboard.returnValue(getAttribute('value'))"><p
         class="keyboard-buttons-label">8</p></div>
-      <div class="keyboard-buttons keyboard-button-nine" ontouchend="onTouchEndNine()"><p
+      <div class="keyboard-buttons keyboard-button-nine" value="9" ontouchend="componentKeyboard.returnValue(getAttribute('value'))"><p
         class="keyboard-buttons-label">9</p></div>
     </div>
     <div class="keyboard-field-four">
       <div class="keyboard-buttons keyboard-space"></div>
-      <div class="keyboard-buttons keyboard-button-zero" ontouchend="onTouchEndZero()"><p
+      <div class="keyboard-buttons keyboard-button-zero" value="0" ontouchend="componentKeyboard.returnValue(getAttribute('value'))"><p
         class="keyboard-buttons-label">0</p></div>
-      <div class="keyboard-buttons keyboard-button-x" ontouchend="onTouchEndX()"><p class="keyboard-buttons-label">x</p>
+      <div class="keyboard-buttons keyboard-button-x" value="x" ontouchend="componentKeyboard.returnValue(getAttribute('value'))"><p class="keyboard-buttons-label">x</p>
       </div>
     </div>
   </div>
 
   <script>
-    if (viewAuthorization.check)
-      viewAuthorization.enteredPin = '';
-
-    if(viewSms.check)
-      viewSms.confirmSms = '';
-
-    if (viewRegistration.check)
-      viewRegistration.phoneNumber = '+998';
-
-
     var scope = this;
-    onTouchEndOne = function () {
-      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
-        viewRegistration.phoneNumber += '1';
-        console.log(viewRegistration.phoneNumber)
-        riot.update();
-      }
 
-      if(viewSms.check && viewSms.confirmSms.length < 5){
-        viewSms.confirmSms += '1';
-        viewSms.updateSmsField();
-        riot.update();
-      }
+    //EXAMPLE OF USING KEYBOARD
+//    componentKeyboard.returnValue = function (myValue) {
+//      console.log(myValue)
+//      return myValue;
+//    }
 
-      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
-        viewAuthorization.enteredPin += '1';
-        viewAuthorization.updateEnteredPin();
-      }
-
-      return '1';
-    }
-
-    onTouchEndTwo = function () {
-      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
-        viewRegistration.phoneNumber += '2';
-        riot.update();
-      }
-
-      if(viewSms.check && viewSms.confirmSms.length < 5){
-        viewSms.confirmSms += '2';
-        viewSms.updateSmsField();
-        riot.update();
-      }
-
-      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
-        viewAuthorization.enteredPin += '2';
-        viewAuthorization.updateEnteredPin();
-      }
-
-      return '2';
-    }
-
-    onTouchEndThree = function () {
-      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
-        viewRegistration.phoneNumber += '3';
-        riot.update();
-      }
-
-      if(viewSms.check && viewSms.confirmSms.length < 5){
-        viewSms.confirmSms += '3';
-        viewSms.updateSmsField();
-        riot.update();
-      }
-
-      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
-        viewAuthorization.enteredPin += '3';
-        viewAuthorization.updateEnteredPin();
-      }
-
-      return '3';
-    }
-
-    onTouchEndFour = function () {
-      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
-        viewRegistration.phoneNumber += '4';
-        riot.update();
-      }
-
-      if(viewSms.check && viewSms.confirmSms.length < 5){
-        viewSms.confirmSms += '4';
-        viewSms.updateSmsField();
-        riot.update();
-      }
-
-      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
-        viewAuthorization.enteredPin += '4';
-        viewAuthorization.updateEnteredPin();
-      }
-
-      return '4';
-    }
-
-    onTouchEndFive = function () {
-      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
-        viewRegistration.phoneNumber += '5';
-        riot.update();
-      }
-
-      if(viewSms.check && viewSms.confirmSms.length < 5){
-        viewSms.confirmSms += '5';
-        viewSms.updateSmsField();
-        riot.update();
-      }
-
-      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
-        viewAuthorization.enteredPin += '5';
-        viewAuthorization.updateEnteredPin();
-      }
-
-      return '5';
-    }
-
-    onTouchEndSix = function () {
-      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
-        viewRegistration.phoneNumber += '6';
-        riot.update();
-      }
-
-      if(viewSms.check && viewSms.confirmSms.length < 5){
-        viewSms.confirmSms += '6';
-        viewSms.updateSmsField();
-        riot.update();
-      }
-
-      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
-        viewAuthorization.enteredPin += '6';
-        viewAuthorization.updateEnteredPin();
-      }
-
-      return '6';
-    }
-
-    onTouchEndSeven = function () {
-      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
-        viewRegistration.phoneNumber += '7';
-        riot.update();
-      }
-
-      if(viewSms.check && viewSms.confirmSms.length < 5){
-        viewSms.confirmSms += '7';
-        viewSms.updateSmsField();
-        riot.update();
-      }
-
-      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
-        viewAuthorization.enteredPin += '7';
-        viewAuthorization.updateEnteredPin();
-      }
-
-      return '7';
-    }
-
-    onTouchEndEight = function () {
-      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
-        viewRegistration.phoneNumber += '8';
-        riot.update();
-      }
-
-      if(viewSms.check && viewSms.confirmSms.length < 5){
-        viewSms.confirmSms += '8';
-        viewSms.updateSmsField();
-        riot.update();
-      }
-
-      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
-        viewAuthorization.enteredPin += '8';
-        viewAuthorization.updateEnteredPin();
-      }
-
-      return '8';
-    }
-
-    onTouchEndNine = function () {
-      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
-        viewRegistration.phoneNumber += '9';
-        riot.update();
-      }
-
-      if(viewSms.check && viewSms.confirmSms.length < 5){
-        viewSms.confirmSms += '9';
-        viewSms.updateSmsField();
-        riot.update();
-      }
-
-      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
-        viewAuthorization.enteredPin += '9';
-        viewAuthorization.updateEnteredPin();
-      }
-
-      return '9';
-    }
-
-    onTouchEndZero = function () {
-      if (viewRegistration.check && viewRegistration.phoneNumber.length < 13) {
-        viewRegistration.phoneNumber += '0';
-        riot.update();
-      }
-
-      if(viewSms.check && viewSms.confirmSms.length < 5){
-        viewSms.confirmSms += '0';
-        viewSms.updateSmsField();
-        riot.update();
-      }
-
-      if (viewAuthorization.check && viewAuthorization.enteredPin.length < 5) {
-        viewAuthorization.enteredPin += '0';
-        viewAuthorization.updateEnteredPin();
-      }
-
-      return '0';
-    }
-
-    onTouchEndX = function () {
-      if (viewRegistration.check && viewRegistration.phoneNumber.length > 4) {
-        viewRegistration.phoneNumber = viewRegistration.phoneNumber.substring(0, viewRegistration.phoneNumber.length - 1);
-        riot.update();
-      }
-
-      if(viewSms.check){
-        viewSms.confirmSms = viewSms.confirmSms.substring(0, viewSms.confirmSms.length - 1);
-        viewSms.updateSmsField();
-        riot.update();
-      }
-      if (viewAuthorization.check) {
-        viewAuthorization.enteredPin = viewAuthorization.enteredPin.substring(0, viewAuthorization.enteredPin.length - 1);
-        viewAuthorization.updateEnteredPin();
-      }
-    }
   </script>
 </component-keyboard>

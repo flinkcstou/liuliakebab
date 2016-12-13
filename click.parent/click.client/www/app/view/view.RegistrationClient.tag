@@ -2,13 +2,17 @@
   <p class="registration-client-text-field">Заполните данные вашей первой карты</p>
   <div class="registration-client-card-field">
     <p class="registration-client-card-text" style="top: 20px;left: 20px;">Номер карты</p>
-    <input class="registration-client-card-number" type="text">
+    <div id="cardNumberInput" class="registration-client-card-number" type="text">
+      <input type="text">
+      </div>
 
     <p class="registration-client-card-text" style="top: 83px;left: 20px;">Дата окончания</p>
-    <input class="registration-client-card-date" type="text">
+    <div id="cardDateInput" class="registration-client-card-date" type="text">
+      </div>
 
     <p class="registration-client-card-text" style="top: 83px;left: 150px;">Пинкод</p>
-    <input class="registration-client-card-pin" type="text">
+    <div id="cardPinInput" class="registration-client-card-pin" type="text">
+      </div>
   </div>
 
   <div class="registration-keyboard-field keyboard-field" style="top: 100px">
@@ -27,21 +31,23 @@
   </div>
 
   <script>
+    var scope = this;
+
     history.arrayOfHistory.push('view-registration-client');
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
-     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-     var cardNumber;
-     var cardData;
-     var pin;
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+    var cardNumber;
+    var cardData;
+    var pin;
 
     window.api.call({
       method: 'registration',
       input : {
-        phone_num: phoneNumber,
+        phone_num  : phoneNumber,
         card_number: cardNumber,
-        card_data : cardData,
-        pin : pin
+        card_data  : cardData,
+        pin        : pin
       },
       scope : this,
 

@@ -29,11 +29,19 @@
 
   <script>
     var scope = this;
-    viewSms.check = true;
     history.arrayOfHistory.push('view-sms');
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    viewSms.confirmSms = '';
 
-    viewSms.updateSmsField = function () {
+    componentKeyboard.returnValue = function (myValue) {
+      if (viewSms.confirmSms.length < 5 && myValue != 'x') {
+        viewSms.confirmSms += myValue;
+      }
+      if (myValue == 'x') {
+        viewSms.confirmSms = viewSms.confirmSms.substring(0, viewSms.confirmSms.length - 1);
+      }
+      console.log(myValue)
+      riot.update();
       if (viewSms.confirmSms.length == 5) {
         console.log("LENGTH EQUAL 5")
         var sms = viewSms.confirmSms;
@@ -41,6 +49,7 @@
         return;
       }
     }
+
 
 
     var minutes = 1;
@@ -106,7 +115,6 @@
             var date = parseInt(Date.now() / 1000);
             token = hex_sha512(deviceId + date + phoneNumber);
             localStorage.setItem('click_client_token', token);
-            viewSms.check = false;
             this.riotTags.innerHTML = "<view-authorization>";
             riot.mount('view-authorization');
           }

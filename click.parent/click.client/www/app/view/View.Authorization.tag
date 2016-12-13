@@ -33,27 +33,38 @@
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
     scope = this;
-    viewAuthorization.check = true;
+
     var pin;
+    var enteredPin = '';
 
-    viewAuthorization.updateEnteredPin = function () {
-      console.log("Updated PIN ", viewAuthorization.enteredPin);
+    componentKeyboard.returnValue = function (myValue) {
+      if (enteredPin.length < 5 && myValue != 'x') {
+        enteredPin += myValue;
+      }
+      if (myValue == 'x' && viewAuthorization.enteredPin != 4) {
+        enteredPin = enteredPin.substring(0, enteredPin.length - 1);
+      }
+      console.log(myValue)
+      riot.update();
+      updateEnteredPin();
+    }
 
-      if (viewAuthorization.enteredPin.length == 0) {
+    updateEnteredPin = function () {
+      if (enteredPin.length == 0) {
         scope.circleOne.style.backgroundColor = 'transparent';
         scope.circleTwo.style.backgroundColor = 'transparent';
         scope.circleThree.style.backgroundColor = 'transparent';
         scope.circleFour.style.backgroundColor = 'transparent';
         scope.circleFive.style.backgroundColor = 'transparent';
       }
-      if (viewAuthorization.enteredPin.length == 1) {
+      if (enteredPin.length == 1) {
         scope.circleOne.style.backgroundColor = '#01cfff';
         scope.circleTwo.style.backgroundColor = 'transparent';
         scope.circleThree.style.backgroundColor = 'transparent';
         scope.circleFour.style.backgroundColor = 'transparent';
         scope.circleFive.style.backgroundColor = 'transparent';
       }
-      if (viewAuthorization.enteredPin.length == 2) {
+      if (enteredPin.length == 2) {
         scope.circleOne.style.backgroundColor = '#01cfff';
         scope.circleTwo.style.backgroundColor = '#01cfff';
         scope.circleThree.style.backgroundColor = 'transparent';
@@ -61,7 +72,7 @@
         scope.circleFive.style.backgroundColor = 'transparent';
       }
 
-      if (viewAuthorization.enteredPin.length == 3) {
+      if (enteredPin.length == 3) {
         scope.circleOne.style.backgroundColor = '#01cfff';
         scope.circleTwo.style.backgroundColor = '#01cfff';
         scope.circleThree.style.backgroundColor = '#01cfff';
@@ -69,7 +80,7 @@
         scope.circleFive.style.backgroundColor = 'transparent';
       }
 
-      if (viewAuthorization.enteredPin.length == 4) {
+      if (enteredPin.length == 4) {
         scope.circleOne.style.backgroundColor = '#01cfff';
         scope.circleTwo.style.backgroundColor = '#01cfff';
         scope.circleThree.style.backgroundColor = '#01cfff';
@@ -77,15 +88,14 @@
         scope.circleFive.style.backgroundColor = 'transparent';
       }
 
-      if (viewAuthorization.enteredPin.length == 5) {
+      if (enteredPin.length == 5) {
         scope.circleOne.style.backgroundColor = '#01cfff';
         scope.circleTwo.style.backgroundColor = '#01cfff';
         scope.circleThree.style.backgroundColor = '#01cfff';
         scope.circleFour.style.backgroundColor = '#01cfff';
         scope.circleFive.style.backgroundColor = '#01cfff';
-        pin = viewAuthorization.enteredPin;
+        pin = enteredPin;
       }
-
     }
 
     enter = function () {
@@ -118,10 +128,10 @@
         onSuccess: function (result) {
           console.log('RESULT', result)
           console.log("result[1][0] ", result[1][0]);
-          if(result[0][0].error != 0){
+          if (result[0][0].error != 0) {
             alert("PIN CODE IS INCORRECT")
-            viewAuthorization.enteredPin = '';
-            viewAuthorization.updateEnteredPin();
+            enteredPin = '';
+            updateEnteredPin();
             return
           }
           if (!result[1][0].error) {
