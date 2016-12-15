@@ -35,44 +35,71 @@
 
 <script>
   api.init();
+  scope = this;
   var startApplication = function () {
-    if(localStorage.getItem('click_client_token')) {
+
+    if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
       this.riotTags.innerHTML = "<view-authorization>";
       riot.mount('view-authorization')
     }
-    else{
+    else {
       this.riotTags.innerHTML = "<view-registration-device>";
       riot.mount('view-registration-device');
     }
     riot.mount('view-main-page');
-    riot.mount('component-menu');
   };
 
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
+
+      document.addEventListener("backbutton", onBackKeyDown, false);
       startApplication();
     }, false);
   } else {
     startApplication();
   }
 
-
-  if(JSON.parse(localStorage.getItem('demo_version')) === true){
+  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
     this.closeDemo();
   }
-
-  //MENU FUNCTIONS FOR ALL PAGES
-  var touchStartX, touchEndX;
-  touchStart = function () {
-    touchStartX = event.changedTouches[0].pageX;
+  function onBackKeyDown() {
+    historyOfApp();
   }
 
-  touchEnd = function () {
-    touchEndX = event.changedTouches[0].pageX;
-    if (touchStartX < touchEndX && touchStartX <= 15) {
-      this.menuOpen();
+  historyOfApp = function () {
+    console.log(this.riotTags);
+    history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+
+    if (history.arrayOfHistory.length != 0) {
+      history.arrayOfHistory.pop();
+      if (history.arrayOfHistory.length != 0) {
+        console.log('THIS IS riotTags div ',this.riotTags)
+        console.log("JSON ", JSON.stringify(history.arrayOfHistory));
+        console.log('LAST ELEMENT ', history.arrayOfHistory[history.arrayOfHistory.length - 1]);
+        console.log('LAST ELEMENT in RIOT TAG ', "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1] + ">");
+        this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1] + ">";
+        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1]);
+      }
     }
   }
+
+
+  //MENU FUNCTIONS FOR ALL PAGES
+  //  var touchStartX, touchEndX;
+  //  touchStart = function () {
+  //    event.preventDefault();
+  //    event.stopPropagation();
+  //    touchStartX = event.changedTouches[0].pageX;
+  //  }
+  //
+  //  touchEnd = function () {
+  //    event.preventDefault();
+  //    event.stopPropagation();
+  //    touchEndX = event.changedTouches[0].pageX;
+  //    if (touchStartX < touchEndX && touchStartX <= 15) {
+  //      this.menuOpen();
+  //    }
+  //  }
 
 </script>
 </body>

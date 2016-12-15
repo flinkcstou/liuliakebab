@@ -4,6 +4,8 @@
 
 
   <script>
+    this.titleName = 'ОПЛАТА';
+
     history.arrayOfHistory.push('view-pay');
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 

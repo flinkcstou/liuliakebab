@@ -4,6 +4,8 @@
 
 
   <script>
+    this.titleName = 'ПЕРЕВОДЫ';
+
     history.arrayOfHistory.push('view-transfer');
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 

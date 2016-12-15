@@ -31,7 +31,7 @@
       <div class="keyboard-buttons keyboard-space"></div>
       <div class="keyboard-buttons keyboard-button-zero" value="0" ontouchend="componentKeyboard.returnValue(getAttribute('value'))"><p
         class="keyboard-buttons-label">0</p></div>
-      <div class="keyboard-buttons keyboard-button-x" value="x" ontouchend="componentKeyboard.returnValue(getAttribute('value'))"><p class="keyboard-buttons-label">x</p>
+      <div class="keyboard-buttons keyboard-button-x" value="x" ontouchend="componentKeyboard.returnValue(getAttribute('value'))"><p class="keyboard-buttons-label"></p>
       </div>
     </div>
   </div>

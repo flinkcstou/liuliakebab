@@ -5,7 +5,9 @@ body {
 #htmlId {
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(rgb(1, 123, 226), rgb(29, 199, 251));
+  background-image: -moz-linear-gradient(90deg, rgb(28, 200, 249) 0%, rgb(0, 122, 226) 100%);
+  background-image: -webkit-linear-gradient(90deg, rgb(28, 200, 249) 0%, rgb(0, 122, 226) 100%);
+  background-image: -ms-linear-gradient(90deg, rgb(28, 200, 249) 0%, rgb(0, 122, 226) 100%);
   font-family: Neuron;
   margin: 0;
   overflow: hidden;
@@ -14,6 +16,36 @@ body {
 input {
   font-family: Neuron;
   font-size: 24px;
+}
+
+.view-registration-device {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-image: url("../resources/icons/background/transparent.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.view-authorization {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-image: url("../resources/icons/background/transparent.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.view-sms {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-image: url("../resources/icons/background/transparent.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .view-main-page {
@@ -62,9 +94,35 @@ input {
   background-color: #1b1729;
   border: none;
   width: 260px;
-  height: 35px;
+  height: 36px;
   left: 20px;
   top: 40px;
+}
+
+.registration-client-card-number-box {
+  position: absolute;
+  width: 45px;
+  height: 20px;
+  top: 5px;
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.registration-client-card-number-box-one {
+  left: 15px;
+}
+
+.registration-client-card-number-box-two {
+  left: 75px;
+}
+
+.registration-client-card-number-box-three {
+  right: 75px;
+}
+
+.registration-client-card-number-box-four {
+  right: 15px;
 }
 
 .registration-client-card-text {
@@ -133,7 +191,7 @@ input {
 /*TOOLBAR*/
 .toolbar {
   position: absolute;
-  top: 20px;
+  top: 10px;
   right: 15px;
   left: 15px;
   height: 50px;
@@ -194,7 +252,7 @@ input {
 
 .bank-operations {
   position: absolute;
-  bottom: 26%;
+  bottom: 23%;
   height: 200px;
   width: 100%;
 }
@@ -203,17 +261,14 @@ input {
 .bank-operation-button {
   position: relative;
   background: transparent;
-  border-bottom: .1px solid #95E6FD;
   height: 95px;
   width: 95px;
   display: inline-block;
   margin: 10px 10px 10px 10px;
 }
 
-.bank-operation-button:hover {
-  height: 70px;
-  background-color: #25a0e3;
-  text-shadow: 0px 0px 1px #000000;
+.top-operations-buttons {
+
 }
 
 .bottom-operations-buttons {
@@ -243,16 +298,19 @@ input {
 .operation-pay-icon {
   background-image: url("../resources/icons/bank-operations/payments.png");
   background-size: 30%;
+  border-bottom: .1px solid #95E6FD;
 }
 
 .operation-transfer-icon {
   background-image: url("../resources/icons/bank-operations/transfer.png");
   background-size: 40%;
+  border-bottom: .1px solid #95E6FD;
 }
 
 .operation-autopay-icon {
   background-image: url("../resources/icons/bank-operations/autopay.png");
   background-size: 40%;
+  border-bottom: .1px solid #95E6FD;
 }
 
 .operation-myFinance-icon {
@@ -276,14 +334,14 @@ input {
 /*ALL CARD*/
 .common-balance-label {
   position: absolute;
-  top: 70px;
+  top: 60px;
   left: 20px;
   color: #7ae4ff;
 }
 
 .common-balance {
   position: absolute;
-  top: 50px;
+  top: 40px;
   left: 20px;
   color: #fffaf9;
   font-size: 52px;
@@ -291,7 +349,7 @@ input {
 
 .valuta {
   position: absolute;
-  top: 110px;
+  top: 100px;
   left: 215px;
   color: #7ae4ff;
 }
@@ -315,34 +373,43 @@ input {
 
 .card {
   height: 140px;
-  width: 240px;
+  width: 250px;
   position: absolute;
   top: 25px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  background-image: url("../resources/icons/cards/card_bg.jpg");
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
   background-size: cover;
   color: white;
-  text-shadow: 0px 0px 1px #a3a3a3;
   box-shadow: -3px -2px 6px #7f7f7f;
 }
 
 .card-bank-name {
   position: absolute;
-  top: 8px;
-  left: 35%;;
-  color: #515151;
+  top: 5px;
+  left: 170px;
   background-size: contain;
-  font-size: 20px;
-  height: 10%;
+  background-repeat: no-repeat;
+  font-size: 18px;
+  height: 20px;
+  width: 70px;
+}
+
+.card-bank-name-url {
+  position: absolute;
+  width: 120px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  left: 10px;
 }
 
 .card-salary-title {
   position: absolute;
   top: 58px;
-  left: 5px;
-  color: #97989a;
+  left: 20px;
+  color: #5b5c5e;
   background-size: contain;
   font-size: 13px;
   height: 10%;
@@ -350,8 +417,8 @@ input {
 
 .card-balance {
   position: absolute;
-  top: 70px;
-  left: 5px;
+  top: 75px;
+  left: 20px;
   color: #515151;
   font-size: 24px;
   background-size: contain;
@@ -359,8 +426,8 @@ input {
 
 .card-currency {
   position: absolute;
-  top: 78px;
-  left: 95px;
+  top: 83px;
+  left: 110px;
   color: #5f6062;
   font-size: 12px;
   background-size: contain;
@@ -368,12 +435,13 @@ input {
 
 .card-number {
   position: absolute;
-  top: 100px;
-  left: 10px;
-  color: #5f6062;
-  font-size: 16px;
+  top: 110px;
+  left: 20px;
+  color: #eef0ee;
+  font-size: 18px;
   background-size: contain;
-  text-shadow: 2px 2px 4px #000000;
+  text-shadow: 1px 1px 2px #000000;
+  font-weight: bold;
 }
 
 /*BOTTOM SERVICE BEELINE UCELL UMS*/
@@ -381,14 +449,14 @@ input {
   position: absolute;
   width: 100%;
   height: 130px;
-  bottom: 52px;
+  bottom: 45px;
   background: transparent;
 }
 
 .service-component {
   position: absolute;
-  width: 330px;
-  height: 130px;
+  width: 310px;
+  height: 115px;
   bottom: 0;
   background-color: #fefefe;
 }
@@ -404,46 +472,60 @@ input {
   position: absolute;
   width: 100px;
   height: 80px;
-  bottom: 0px;
+  top: 10px;
   background-repeat: no-repeat;
 }
 
 .horizontal-line {
   position: absolute;
-  height: 30px;
+  height: 25px;
   width: 1px;
-  right: 0;
-  bottom: 30px;
   background-color: #b9b9b9;
+}
+
+.horizontal-line-beeline {
+  left: 80px;
+  top: 15px;
+}
+
+.horizontal-line-ucell {
+  left: 100px;
+  top: 15px;
+}
+
+.horizontal-line-ums {
+  left: 100px;
+  top: 27px;
 }
 
 .beeline-button {
   background-image: url("../resources/icons/services/beeline.png");
-  background-size: 100%;
+  background-size: 80%;
 }
 
 .ucell-button {
-  left: 100px;
+  left: 80px;
   background-image: url("../resources/icons/services/ucell.png");
-  background-size: 62%;
+  background-size: 52%;
   background-position: top;
 }
 
 .ums-button {
-  left: 200px;
+  left: 178px;
   background-position: center;
   background-image: url("../resources/icons/services/ums.png");
-  background-size: 80%;
+  background-size: 70%;
+  top: -2px;
 }
 
 .service-title {
   position: absolute;
   left: 25%;
-  top: 20px;
+  top: 15px;
   background: transparent;
   background-size: contain;
   color: #646264;
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .side-menu {
@@ -455,7 +537,7 @@ input {
   transform: translate3d(-100%, 0, 0);
   -webkit-transform: translate3d(-100%, 0, 0);
   -ms-transform: translate3d(-100%, 0, 0);
-  background-color: #2176a7;
+  background-color: #0485e5;
   transition: 0.5s;
   -webkit-transition: 0.5s;
   z-index: 1;
@@ -465,7 +547,7 @@ input {
 
 .page-title {
   position: absolute;
-  top: 20px;
+  top: 10px;
   right: 15px;
   left: 15px;
   height: 50px;
@@ -477,7 +559,7 @@ input {
   position: absolute;
   background-size: contain;
   font-size: 23px;
-  left: 10%;
+  left: 40px;
   top: 15px;
   margin: 0;
   color: #fffaf9;
@@ -487,6 +569,12 @@ input {
   position: absolute;
   width: 60px;
   height: 50px;
+  background-image: url("../resources/icons/back/back.png");
+  background-repeat: no-repeat;
+  -webkit-background-size: 20%;
+  background-position-y: center;
+  background-position-x: 10px;
+  background-size: 20%;
   left: 0;
 }
 
@@ -627,11 +715,11 @@ input {
 
 .authorization-pin-container {
   position: relative;
-  width: 150px;
+  width: 160px;
   margin-right: auto;
   margin-left: auto;
   height: 50px;
-  top: 80px;
+  top: 120px;
 }
 
 .authorization-pin-field {
@@ -672,7 +760,7 @@ input {
 }
 
 .authorization-keyboard-field {
-  top: 100px;
+  top: 250px;
 }
 
 .authorization-button-enter {
@@ -681,9 +769,8 @@ input {
 
 .authorization-buttons-container {
   position: relative;
-  width: 230px;
-  height: 140px;
-  top: 140px;
+  width: 225px;
+  top: -105px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -692,6 +779,7 @@ input {
   position: absolute;
   font-size: 17px;
   left: 0;
+  top: 40px;
   background-size: contain;
   color: #05eeff;
   border-bottom: 1px solid #05eeff;
@@ -703,18 +791,31 @@ input {
   background-size: contain;
   color: white;
   right: 0;
+  top: 40px;
   border-bottom: 1px solid white;
 }
 
 .authorization-button-offline {
-  position: absolute;
+  position: relative;
   font-size: 17px;
+  width: 110px;
   background-size: contain;
   color: white;
   border-bottom: 1px solid white;
-  bottom: 20px;
   text-align: center;
-  left: 60px;
+  bottom: -265px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.authorization-enter-pin-label {
+  position: relative;
+  top: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: contain;
+  width: 115px;
+  color: white;
 }
 
 /*COMPONENT KEYBOARD*/
@@ -818,6 +919,11 @@ input {
 }
 
 .keyboard-button-x {
+  background-size: 38px;
+  background-image: url("../resources/icons/keyboard/backspace.png");
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: center;
   right: 0;
 }
 
@@ -830,7 +936,7 @@ input {
 .registration-phone-field {
   position: relative;
   margin-left: auto;
-  top: 120px;
+  top: 100px;
   margin-right: auto;
   width: 280px;
   height: 50px;
@@ -845,8 +951,36 @@ input {
   font-size: 32px;
 }
 
+.registration-device-remember {
+  position: absolute;
+  top: 55px;
+  width: 100%;
+  height: 50px;
+}
+
+.registration-device-remember-label {
+  position: absolute;
+  color: #4bd5ff;
+  top: 16px;
+  width: 150px;
+  margin: 0;
+}
+
+.registration-device-remember-icon {
+  position: absolute;
+  background-image: url(../resources/icons/back/back.png);
+  background-repeat: no-repeat;
+  transform: rotate(-90deg);
+  background-size: 60%;
+  width: 26px;
+  height: 36px;
+  left: 245px;
+  top: 0px;
+  opacity: 0.3;
+}
+
 .registration-button-enter {
-  top: -100px;
+  top: -95px;
 }
 
 .registration-keyboard-field {
@@ -904,7 +1038,7 @@ input {
 .registration-button-help {
   position: relative;
   font-size: 17px;
-  top: -20px;
+  top: -15px;
   margin-left: auto;
   margin-right: auto;
   width: 55px;
@@ -939,31 +1073,86 @@ input {
   position: relative;
   text-align: center;
   color: #b7f1ff;
-  top: 120px;
+  top: 140px;
   font-size: 15px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.sms-timer {
+.sms-phone-field {
+  position: relative;
+  margin-left: auto;
+  top: 120px;
+  margin-right: auto;
+  width: 280px;
+  height: 50px;
+  border-bottom: 3px solid rgba(163, 222, 238, 0.95);
+  color: white;
+}
+
+.sms-text-field-one {
   position: absolute;
   background-size: contain;
-  right: 0;
+  top: -10px;
+  left: 0;
+  text-align: center;
+  color: #4bd5ff;
+  font-size: 15px;
+  margin: 0;
+}
+
+.sms-phone-input {
+  position: absolute;
+  margin: 0;
+  top: 15px;
+  font-size: 32px;
+}
+
+.sms-timer {
+  position: absolute;
+  width: 80px;
+  height: 40px;
+  margin: 0;
+  top: 20px;
+  right: -20px;
   bottom: 0;
+}
+
+.sms-resend-icon {
+  position: absolute;
+  background-image: url(../resources/icons/sms/resend.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 22px;
+  margin: 0;
+  left: 35px;
+  top: -2px;
 }
 
 /*COMPONENT FOOTER*/
 
 .footer {
   position: absolute;
-  top: 0;
+  bottom: 100px;
   left: 0;
   right: 0;
-  height: 50px;
+  height: 45px;
   width: 100%;
   border-top: 1px solid rgb(37, 160, 227);
   color: rgb(197, 233, 239);
   background-color: rgb(37, 159, 225);
+}
+
+.footer-icon-tick {
+  position: absolute;
+  left: 210px;
+  background-size: 60%;
+  background-image: url(../resources/icons/footer/contacts.png);
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+  top: 15px;
 }
 
 .footer-contacts-container {
@@ -971,8 +1160,8 @@ input {
   bottom: 0;
   left: 0;
   right: 0;
-  transition: 0.5s;
-  -webkit-transition: 0.5s;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
   height: 150px;
   width: 100%;
   transform: translate3d(0, 100px, 0);
@@ -980,11 +1169,19 @@ input {
   -ms-transform: translate3d(0, 100px, 0);
 }
 
+.footer-contacts-label {
+  position: absolute;
+  left: 125px;
+  font-size: 17px;
+  margin-top: 13px;
+  color: white;
+}
+
 .footer-contacts {
   position: absolute;
   width: 100%;
-  height: 100px;
-  bottom: 0;
+  height: 120px;
+  bottom: -20px;
   background-color: #25a0e3;
 }
 
@@ -1002,7 +1199,8 @@ input {
   width: 50px;
   height: 50px;
   border-radius: 50px;
-  border: 2px solid yellow;
+  border: none;
+  background-color: #7ae4ff;
   top: 0;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1038,7 +1236,9 @@ input {
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  top: 55px;
+  top: 65px;
+  color: white;
+  font-weight: normal;
 }
 
 .footer-favourite-contacts-label-one {

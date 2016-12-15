@@ -1,7 +1,11 @@
-<view-registration-device>
+<view-registration-device class="view-registration-device">
   <div class="registration-phone-field">
     <p class="registration-text-field">Введите номер телефона</p>
     <p class="registration-phone-input">{phoneNumber}</p>
+    <div class="registration-device-remember" ontouchend="touchEndRemember()">
+      <p class="registration-device-remember-label">Запомнить устройство</p>
+      <div id="rememberIcon" class="registration-device-remember-icon"></div>
+    </div>
   </div>
 
   <div class="registration-keyboard-field keyboard-field">
@@ -24,6 +28,23 @@
   </div>
 
   <script>
+    var checkRemember = false;
+    touchEndRemember = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      if(!checkRemember){
+        this.rememberIcon.style.opacity = '1';
+        localStorage.setItem('device_remember', true);
+        checkRemember = true;
+        return;
+      }
+      else{
+        this.rememberIcon.style.opacity = '0.3';
+        localStorage.setItem('device_remember', false);
+        checkRemember = false;
+        return;
+      }
+    }
     history.arrayOfHistory.push('view-registration-device');
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
@@ -37,7 +58,7 @@
       if (scope.phoneNumber.length < 13 && myValue != 'x') {
         scope.phoneNumber += myValue;
       }
-      if (myValue == 'x' && scope.phoneNumber.length != 4 ) {
+      if (myValue == 'x' && scope.phoneNumber.length != 4) {
         scope.phoneNumber = scope.phoneNumber.substring(0, scope.phoneNumber.length - 1);
       }
       console.log(myValue)
@@ -111,6 +132,9 @@
           var deviceId = result[1][0].device_id;
           localStorage.setItem('click_client_deviceID', deviceId);
           if (result[1][0].confirm_needed) {
+            token = hex_sha512(deviceId + date + phoneNumber);
+            localStorage.setItem('click_client_token', token);
+            localStorage.setItem('confirm_needed', true);
             this.riotTags.innerHTML = "<view-sms>";
             riot.mount('view-sms');
           }

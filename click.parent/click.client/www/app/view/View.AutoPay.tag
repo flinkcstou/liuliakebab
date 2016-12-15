@@ -3,6 +3,7 @@
   </component-page-title>
 
   <script>
+    this.titleName = 'АВТОПЛАТЕЖ';
     history.arrayOfHistory.push('view-auto-pay');
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 

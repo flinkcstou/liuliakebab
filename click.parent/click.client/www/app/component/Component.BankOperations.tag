@@ -30,7 +30,7 @@
       <div class="bank-operation-button" ontouchend="goToReportView()">
         <div class="bank-operation-icon operation-report-icon">
         </div>
-        <label class="bank-operation-label">ОТЧЁТ</label>
+        <label class="bank-operation-label">ОТЧЕТЫ</label>
       </div>
     </div>
   </div>

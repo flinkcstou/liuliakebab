@@ -1,4 +1,6 @@
-<view-main-page id="mainPageId" class="view-main-page" >
+<view-main-page >
+  <component-menu id="SideMenuId"></component-menu>
+  <div id="mainPageId" class="view-main-page">
   <component-toolbar></component-toolbar>
   <div>
     <p class="common-balance-label">Общий баланс:</p>
@@ -11,6 +13,7 @@
   <component-service-carousel></component-service-carousel>
   <component-footer></component-footer>
   <component-card-carousel></component-card-carousel>
+  </div>
   <script>
     history.arrayOfHistory.push('view-main-page');
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))

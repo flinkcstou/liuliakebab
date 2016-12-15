@@ -1,5 +1,6 @@
-<view-authorization>
+<view-authorization class="view-authorization">
 
+  <div class="authorization-enter-pin-label">Введите CLICK-PIN</div>
   <div class="authorization-pin-container">
     <div class="authorization-pin-field">
       <div id="circleOne" class="authorization-pin-circles authorization-pin-one"></div>
@@ -14,21 +15,18 @@
     <component-keyboard></component-keyboard>
   </div>
 
-  <div class="button-enter authorization-button-enter" ontouchend="enter()">
-    <div class="button-enter-label">ВОЙТИ</div>
-  </div>
-
   <div class="authorization-buttons-container">
     <div class="authorization-button-forget-pin">Забыли Click-Pin?</div>
     <div class="authorization-button-registration">Регистрация</div>
-    <div class="authorization-button-offline">Офлайн режим</div>
   </div>
+  <div class="authorization-button-offline">Офлайн режим</div>
 
 
   <input id="getBalanceId" class="hide" type="button" value="Получение баланса" ontouchend="getBalance()">
 
 
   <script>
+
     history.arrayOfHistory.push('view-authorization');
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
@@ -41,7 +39,7 @@
       if (enteredPin.length < 5 && myValue != 'x') {
         enteredPin += myValue;
       }
-      if (myValue == 'x' && viewAuthorization.enteredPin != 4) {
+      if (myValue == 'x' && enteredPin != 4) {
         enteredPin = enteredPin.substring(0, enteredPin.length - 1);
       }
       console.log(myValue)
@@ -95,6 +93,7 @@
         scope.circleFour.style.backgroundColor = '#01cfff';
         scope.circleFive.style.backgroundColor = '#01cfff';
         pin = enteredPin;
+        enter();
       }
     }
 
@@ -103,7 +102,8 @@
       event.stopPropagation();
 
       console.log("PIN CODE ", pin)
-
+      console.log("MD5 OF PIN ",hex_md5(pin));
+      console.log("MD5 OF PIN FROM SITE ", '827ccb0eea8a706c4c34a16891f84e7b');
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
       var date = parseInt(Date.now() / 1000);
@@ -127,9 +127,9 @@
 
         onSuccess: function (result) {
           console.log('RESULT', result)
-          console.log("result[1][0] ", result[1][0]);
+          console.log("result[0][0] ", result[0][0].error);
           if (result[0][0].error != 0) {
-            alert("PIN CODE IS INCORRECT")
+            alert("PIN CODE IS INCORRECT. Pojaluysta povtorite vvod")
             enteredPin = '';
             updateEnteredPin();
             return
@@ -222,5 +222,9 @@
       })
 
     }
+
+//      <div class="button-enter authorization-button-enter" ontouchend="enter()">
+//      <div class="button-enter-label">ВОЙТИ</div>
+//      </div>
   </script>
 </view-authorization>

@@ -1,55 +1,50 @@
-<view-sms>
-  <input id="rememberDevice" type="checkbox">
-  <div class="registration-phone-field">
-    <p class="registration-text-field">Введите проверочный код</p>
-    <p class="registration-phone-input">{viewSms.confirmSms}</p>
-    <p class="sms-timer">{viewSms.time}</p>
+<view-sms class="view-sms">
+  <div class="sms-phone-field">
+    <p class="sms-text-field-one">Введите код активации</p>
+    <p class="sms-phone-input">{confirmSms}</p>
+    <div class="sms-timer" ontouchend="touchEndResend()">{time}
+      <div class="sms-resend-icon"></div>
+    </div>
   </div>
 
   <div class="sms-text-field">
-    <p style="margin-bottom: 4px">Код активации выслан на номер:</p>
-    <p style="margin: 0">{viewRegistration.phoneNumber.substring(0, 4)} {viewRegistration.phoneNumber.substring(4, 6)}
-      {viewRegistration.phoneNumber.substring(6, viewRegistration.phoneNumber.length)}</p>
+    <p style="margin-bottom: 4px">{messageTitle}<br>{messageTitleTwo}</p>
+    <p id="deliveredPhoneNumber" style="margin: 0">{phoneNumber.substring(0, 4)} {phoneNumber.substring(4, 6)}
+      {phoneNumber.substring(6, phoneNumber.length)}</p>
   </div>
 
-  <div class="registration-keyboard-field keyboard-field" style="top: 150px">
-    <div class="registration-button-help">Помощь</div>
+  <div class="registration-keyboard-field keyboard-field" style="top: 180px">
+    <div class="registration-button-help" style="top: 280px">Помощь</div>
     <component-keyboard></component-keyboard>
   </div>
 
-  <div class="registration-buttons-container">
-    <div class="registration-container-offline">
-      <div class="registration-button-offline">Офлайн режим</div>
-    </div>
-    <a href="stand/index-stand.html" id="demoContainer" class="registration-container-demo-version"
-       ontouchstart="goToDemo()">
-      <div class="registration-button-demo-version">Демо версия</div>
-    </a>
-  </div>
+
 
   <script>
     var scope = this;
+    scope.messageTitle = 'Код активации выслан на номер:';
+    scope.messageTitleTwo = '';
+    scope.phoneNumber = localStorage.getItem('click_client_phoneNumber');
     history.arrayOfHistory.push('view-sms');
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    viewSms.confirmSms = '';
+    scope.confirmSms = '';
 
     componentKeyboard.returnValue = function (myValue) {
-      if (viewSms.confirmSms.length < 5 && myValue != 'x') {
-        viewSms.confirmSms += myValue;
+      if (scope.confirmSms.length < 5 && myValue != 'x') {
+        scope.confirmSms += myValue;
       }
       if (myValue == 'x') {
-        viewSms.confirmSms = viewSms.confirmSms.substring(0, viewSms.confirmSms.length - 1);
+        scope.confirmSms = scope.confirmSms.substring(0, scope.confirmSms.length - 1);
       }
       console.log(myValue)
       riot.update();
-      if (viewSms.confirmSms.length == 5) {
+      if (scope.confirmSms.length == 5) {
         console.log("LENGTH EQUAL 5")
-        var sms = viewSms.confirmSms;
+        var sms = scope.confirmSms;
         getSms(sms);
         return;
       }
     }
-
 
 
     var minutes = 1;
@@ -60,11 +55,13 @@
       riot.update();
       seconds--;
       if (seconds < 10)
-        viewSms.time = minutes + ':0' + seconds;
+        scope.time = minutes + ':0' + seconds;
       else
-        viewSms.time = minutes + ':' + seconds;
+        scope.time = minutes + ':' + seconds;
       if (minutes == 0 && seconds == 0) {
-        alert("Вы не успкли ввести. Смс-код будет переотправлен");
+        scope.messageTitle = 'Мы позвоним вам через минуту,'
+        scope.messageTitleTwo = 'чтобы сообщить код активации на номер:';
+        riot.update();
         clearInterval(time);
       }
       if (seconds == 0) {
@@ -73,7 +70,6 @@
       }
     }
     var time = setInterval(timer, 1000);
-
 
 
     var token;
@@ -86,7 +82,7 @@
       registrationConfirm(sms, phoneNumber, deviceId);
     }
     function deviceRemember() {
-      if (this.rememberDevice.checked)
+      if (JSON.parse(localStorage.getItem('device_remember')) === true)
         return 1;
       return 0;
     }
@@ -106,15 +102,13 @@
 
         onSuccess: function (result) {
           console.log("result[0][0] ", result[0][0]);
-          if(result[0][0].error == -4) {
+          if (result[0][0].error == -4) {
             alert("Неверный смс код");
-            viewSms.confirmSms = '';
+            scope.confirmSms = '';
             return;
           }
           if (result[0][0].error == 0) {
-            var date = parseInt(Date.now() / 1000);
-            token = hex_sha512(deviceId + date + phoneNumber);
-            localStorage.setItem('click_client_token', token);
+            localStorage.setItem('confirm_needed', false);
             this.riotTags.innerHTML = "<view-authorization>";
             riot.mount('view-authorization');
           }
@@ -126,6 +120,16 @@
         }
       });
 
+    }
+
+    touchEndResend = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      alert('Смс переотправлено на номер: ', localStorage.getItem('click_client_phoneNumber'));
+      minutes = 1;
+      seconds = 60;
+      timer();
+      resendSms();
     }
 
     resendSms = function () {
@@ -153,5 +157,15 @@
         }
       })
     }
+
+//      <div class="registration-buttons-container">
+//      <div class="registration-container-offline">
+//      <div class="registration-button-offline">Офлайн режим</div>
+//    </div>
+//    <a href="stand/index-stand.html" id="demoContainer" class="registration-container-demo-version"
+//    ontouchstart="goToDemo()">
+//      <div class="registration-button-demo-version">Демо версия</div>
+//    </a>
+//    </div>
   </script>
 </view-sms>

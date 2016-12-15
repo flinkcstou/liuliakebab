@@ -4,9 +4,10 @@
        ontouchstart="startTouchCarousel()">
     <div id="cards" class="cards">
       <component-card each="{i in cardsarray}"
-                      style="left:{260*i.countCard+60}px"
+                      countcard="{i.countCard}"
                       name="{i.name}" salary="{i.salary}" currency="{i.currency}" number="{i.number}"
-                      bankname="{i.bankName}"></component-card>
+                      bankname="{i.bankName}" url="{i.url}"
+                      background="{i.background}"></component-card>
     </div>
   </div>
 
@@ -53,16 +54,34 @@
 
     addCard(getAccountsCards)
     {
+      var numberOfCard;
+      var typeOfCard;
+
       if (count == 0)
         for (var i = 0; i < getAccountsCards.length; i++) {
-          scope.leftPosition = count * 260;
+
+          if (getAccountsCards[i].access == 0) break;
+
+          if (getAccountsCards[i].acc_abs.trim() == 'SMARTV')
+            typeOfCard = 'resources/icons/cards/typeOfCards/uzcard.png';
+          if (getAccountsCards[i].acc_abs == 'DUET')
+            typeOfCard = 'resources/icons/cards/typeOfCards/duet.png';
+
+
+          numberOfCard = getAccountsCards[i].accno[0] + ' ' + getAccountsCards[i].accno[1] +
+            ' ' + getAccountsCards[i].accno[2] + ' ' + getAccountsCards[i].accno[3] + '  **** ' + '  **** ' +
+            getAccountsCards[i].accno[getAccountsCards[i].accno.length - 4] + ' ' + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 3] +
+            ' ' + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 2] + ' ' + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 1];
+
           card = {
-            bankName : getAccountsCards[i].bank_name,
-            name     : getAccountsCards[i].description,
-            salary   : '1 798 222',
-            currency : getAccountsCards[i].currency_code,
-            number   : getAccountsCards[i].card_num,
-            countCard: count
+            bankName  : typeOfCard,
+            name      : getAccountsCards[i].description,
+            salary    : '1 798 222',
+            currency  : getAccountsCards[i].currency_name,
+            number    : numberOfCard,
+            url       : getAccountsCards[i].image_url,
+            background: getAccountsCards[i].background_url,
+            countCard : count
           };
 
           cardsarray.push(card);
@@ -86,23 +105,23 @@
       if (touchEndX < touchStartX && cardNumber < count - 1) {
         ++cardNumber;
         // second parameter FROM TO
-        this.cards.style.transition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
-        this.cards.style.webkitTransition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
+        this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
 
       }
 
       if (touchEndX > touchStartX && cardNumber == 0) {
-        this.cards.style.transition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
-        this.cards.style.webkitTransition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
+        this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
       }
 
       if (touchEndX < touchStartX && cardNumber == count - 1) {
-        this.cards.style.transition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
-        this.cards.style.webkitTransition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
+        this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
 
@@ -110,8 +129,8 @@
 
       if (touchEndX > touchStartX && cardNumber > 0) {
         --cardNumber;
-        this.cards.style.transition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
-        this.cards.style.webkitTransition = '0.7s cubic-bezier(0.7, 0.05, 0.39, 2)';
+        this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
       }
