@@ -5,9 +5,9 @@ body {
 #htmlId {
   width: 100%;
   height: 100%;
-  background-image: -moz-linear-gradient(90deg, rgb(28, 200, 249) 0%, rgb(0, 122, 226) 100%);
-  background-image: -webkit-linear-gradient(90deg, rgb(28, 200, 249) 0%, rgb(0, 122, 226) 100%);
-  background-image: -ms-linear-gradient(90deg, rgb(28, 200, 249) 0%, rgb(0, 122, 226) 100%);
+  background-image: -moz-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 80%, rgb(28, 200, 249) 100%);
+  background-image: -webkit-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 80%, rgb(28, 200, 249) 100%);
+  background-image: -ms-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 80%, rgb(28, 200, 249) 100%);
   font-family: Neuron;
   margin: 0;
   overflow: hidden;
@@ -237,12 +237,29 @@ input {
   background-size: 70%;
   background-repeat: no-repeat;
   background-position: center;
+  opacity: 0.5;
 }
 
 /*FONT FACE*/
 @font-face {
   font-family: "Neuron";
   src: url("../resources/font/Neuron.otf");
+  format: ("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Orator";
+  src: url("../resources/font/OratorStd.otf");
+  format: ("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Orator-slanted";
+  src: url("../resources/font/OratorStd-Slanted.otf");
   format: ("opentype");
   font-weight: normal;
   font-style: normal;
@@ -264,7 +281,8 @@ input {
   height: 95px;
   width: 95px;
   display: inline-block;
-  margin: 10px 10px 10px 10px;
+  margin: 10px 5px 10px 10px;
+  left: 10px;
 }
 
 .top-operations-buttons {
@@ -381,12 +399,14 @@ input {
   border-radius: 7px;
   background-size: cover;
   color: white;
-  box-shadow: -3px -2px 6px #7f7f7f;
+  -webkit-box-shadow: 8px 46px 49px -55px rgba(0, 0, 0, 0.92);
+  -moz-box-shadow: 8px 46px 49px -55px rgba(0, 0, 0, 0.92);
+  box-shadow: 8px 46px 49px -55px rgba(0, 0, 0, 0.92);
 }
 
 .card-bank-name {
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: 170px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -407,7 +427,7 @@ input {
 
 .card-salary-title {
   position: absolute;
-  top: 58px;
+  top: 63px;
   left: 20px;
   color: #5b5c5e;
   background-size: contain;
@@ -417,7 +437,7 @@ input {
 
 .card-balance {
   position: absolute;
-  top: 75px;
+  top: 80px;
   left: 20px;
   color: #515151;
   font-size: 24px;
@@ -426,7 +446,7 @@ input {
 
 .card-currency {
   position: absolute;
-  top: 83px;
+  top: 88px;
   left: 110px;
   color: #5f6062;
   font-size: 12px;
@@ -435,12 +455,28 @@ input {
 
 .card-number {
   position: absolute;
-  top: 110px;
+  top: 115px;
+  color: #fefefe;
+  width: 150px;
+  font-size: 16px;
+  text-shadow: 1px 1px 0px #000000;
+  font-family: Orator;
+}
+
+.card-number-part-one {
   left: 20px;
-  color: #eef0ee;
-  font-size: 18px;
-  background-size: contain;
-  text-shadow: 1px 1px 2px #000000;
+}
+
+.card-number-part-two {
+  left: 145px
+}
+
+.number-stars {
+  position: absolute;
+  margin: 0;
+  width: 70px;
+  left: 60px;
+  top: 118px;
   font-weight: bold;
 }
 
@@ -1146,7 +1182,7 @@ input {
 
 .footer-icon-tick {
   position: absolute;
-  left: 210px;
+  left: 80px;
   background-size: 60%;
   background-image: url(../resources/icons/footer/contacts.png);
   background-repeat: no-repeat;
@@ -1171,7 +1207,6 @@ input {
 
 .footer-contacts-label {
   position: absolute;
-  left: 125px;
   font-size: 17px;
   margin-top: 13px;
   color: white;
@@ -1192,6 +1227,7 @@ input {
   margin-left: auto;
   margin-right: auto;
   top: 0;
+  left: 10px;
 }
 
 .footer-favourite-contacts-circles {
@@ -1205,58 +1241,54 @@ input {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  left: 5px;
 }
 
-.footer-contact-one {
-  left: 0;
+.footer-contacts-blocks {
+  position: absolute;
+  height: 80px;
+  width: 60px;
+  text-align: center;
 }
 
-.footer-contact-two {
-  left: 70px
+.footer-contacts-block-one {
+  left: -20px;
 }
 
-.footer-contact-three {
-  left: 140px
+.footer-contacts-block-two {
+  left: 50px;
 }
 
-.footer-contact-four {
-  left: 210px
+.footer-contacts-block-three {
+  left: 120px;
 }
 
-.footer-contact-five {
-  left: 280px
+.footer-contacts-block-four {
+  left: 190px;
+}
+
+.footer-contacts-block-five {
+  left: 260px;
 }
 
 .footer-favourite-contacts-label {
-  position: absolute;
+  position: relative;
   background-size: contain;
-  font-size: 15px;
-  text-align: center;
+  font-size: 12px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  top: 65px;
+  top: 54px;
   color: white;
   font-weight: normal;
 }
 
-.footer-favourite-contacts-label-one {
-  left: 0;
-}
-
-.footer-favourite-contacts-label-two {
-  left: 80px;
-}
-
-.footer-favourite-contacts-label-three {
-  left: 145px;
-}
-
-.footer-favourite-contacts-label-four {
-  left: 200px;
-}
-
-.footer-favourite-contacts-label-five {
-  left: 280px;
+.footer-contacts-label-icon-container {
+  position: relative;
+  background-size: contain;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: 50px;
 }

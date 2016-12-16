@@ -93,11 +93,11 @@
     };
 
     function deviceType() {
-      return device.platform == 'IOS' ? 2 : 1;
+      return device.platform == 'iOS' ? 2 : 1;
     }
 
     function deviceName() {
-      return device.name;
+      return device.model;
     }
 
     function deviceImei() {
@@ -105,7 +105,7 @@
     }
 
     function deviceInfo() {
-      return device.info;
+      return device.manufacturer + ' ' + device.version + ' ' + device.model;
     }
 
 

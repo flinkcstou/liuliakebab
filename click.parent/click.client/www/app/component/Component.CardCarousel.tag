@@ -5,7 +5,7 @@
     <div id="cards" class="cards">
       <component-card each="{i in cardsarray}"
                       countcard="{i.countCard}"
-                      name="{i.name}" salary="{i.salary}" currency="{i.currency}" number="{i.number}"
+                      name="{i.name}" salary="{i.salary}" currency="{i.currency}" numberpartone="{i.numberPartOne}" numberparttwo="{i.numberPartTwo}"
                       bankname="{i.bankName}" url="{i.url}"
                       background="{i.background}"></component-card>
     </div>
@@ -41,6 +41,10 @@
       touchEndX = event.changedTouches[0].pageX;
       if (touchStartX != touchEndX)
         changePosition();
+      else if (!viewMainPage.myCards) {
+        this.riotTags.innerHTML = "<view-my-cards>";
+        riot.mount("view-my-cards");
+      }
     }
 
     moveTouchCarousel = function () {
@@ -54,7 +58,8 @@
 
     addCard(getAccountsCards)
     {
-      var numberOfCard;
+      var numberOfCardPartOne;
+      var numberOfCardPartTwo;
       var typeOfCard;
 
       if (count == 0)
@@ -64,24 +69,24 @@
 
           if (getAccountsCards[i].acc_abs.trim() == 'SMARTV')
             typeOfCard = 'resources/icons/cards/typeOfCards/uzcard.png';
-          if (getAccountsCards[i].acc_abs == 'DUET')
+          if (getAccountsCards[i].acc_abs.trim() == 'DUET')
             typeOfCard = 'resources/icons/cards/typeOfCards/duet.png';
 
 
-          numberOfCard = getAccountsCards[i].accno[0] + ' ' + getAccountsCards[i].accno[1] +
-            ' ' + getAccountsCards[i].accno[2] + ' ' + getAccountsCards[i].accno[3] + '  **** ' + '  **** ' +
-            getAccountsCards[i].accno[getAccountsCards[i].accno.length - 4] + ' ' + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 3] +
-            ' ' + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 2] + ' ' + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 1];
+          numberOfCardPartOne = getAccountsCards[i].accno[0] + getAccountsCards[i].accno[1]
+            + getAccountsCards[i].accno[2] + getAccountsCards[i].accno[3]
+          numberOfCardPartTwo = getAccountsCards[i].accno[getAccountsCards[i].accno.length - 4] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 3] + +getAccountsCards[i].accno[getAccountsCards[i].accno.length - 2] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 1];
 
           card = {
-            bankName  : typeOfCard,
-            name      : getAccountsCards[i].description,
-            salary    : '1 798 222',
-            currency  : getAccountsCards[i].currency_name,
-            number    : numberOfCard,
-            url       : getAccountsCards[i].image_url,
-            background: getAccountsCards[i].background_url,
-            countCard : count
+            bankName     : typeOfCard,
+            name         : getAccountsCards[i].description,
+            salary       : '1 798 222',
+            currency     : getAccountsCards[i].currency_name.trim(),
+            numberPartOne: numberOfCardPartOne,
+            numberPartTwo: numberOfCardPartTwo,
+            url          : getAccountsCards[i].image_url,
+            background   : getAccountsCards[i].background_url,
+            countCard    : count
           };
 
           cardsarray.push(card);

@@ -34,6 +34,7 @@
 
     var pin;
     var enteredPin = '';
+    var checkSessionKey = false;
 
     componentKeyboard.returnValue = function (myValue) {
       if (enteredPin.length < 5 && myValue != 'x') {
@@ -102,7 +103,7 @@
       event.stopPropagation();
 
       console.log("PIN CODE ", pin)
-      console.log("MD5 OF PIN ",hex_md5(pin));
+      console.log("MD5 OF PIN ", hex_md5(pin));
       console.log("MD5 OF PIN FROM SITE ", '827ccb0eea8a706c4c34a16891f84e7b');
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
@@ -137,7 +138,7 @@
           if (!result[1][0].error) {
             var JsonInfo = JSON.stringify(result[1][0]);
             localStorage.setItem('click_client_loginInfo', JsonInfo);
-            var info = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+            checkSessionKey = true;
             viewAuthorization.check = false;
             getAccount();
           }
@@ -148,6 +149,13 @@
         }
       })
     }
+
+    if(checkSessionKey) {
+      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+      var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+      var sessionKey = loginInfo.session_key;
+    }
+
     var arrayAccountInfo = [];
     getAccount = function (e) {
       if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
@@ -169,9 +177,32 @@
           onSuccess: function (result) {
             console.log('RESULT ', result);
             for (var i = 0; i < result[1].length; i++) {
+              console.log('BALANCE ', result[1][i].id, result[1][i].card_num_hash, result[1][i].card_num_crypted)
+              window.api.call({
+                method: 'get.balance',
+                input : {
+                  session_key     : sessionKey,
+                  phone_num       : phoneNumber,
+                  account_id      : result[1][i].id,
+                  card_num_hash   : result[1][i].card_num_hash,
+                  card_num_crypted: result[1][i].card_num_crypted
+                },
+
+                scope    : this,
+                onSuccess: function (result) {
+                  console.log("result[1][0] ", result[1][0]);
+                },
+
+                onFail: function (api_status, api_status_message, data) {
+                  console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                  console.error(data);
+                }
+              })
+
               arrayAccountInfo.push(result[1][i])
             }
             var accountInfo = JSON.stringify(arrayAccountInfo);
+            console.log("ACCOUNT INFO ", accountInfo)
             localStorage.setItem("click_client_accountInfo", accountInfo);
 
             this.riotTags.innerHTML = "<view-main-page>";
@@ -192,39 +223,11 @@
     }
 
     getBalance = function (e) {
-      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-      var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-      var sessionKey = loginInfo.session_key;
-      var accountInfo = JSON.parse(localStorage.getItem('click_client_accountInfo'));
-      var accountId = accountInfo.id;
-      var cardNumHash = accountInfo.card_num_hash;
-      var cardNumCrypted = accountInfo.card_num_crypted;
-
-      window.api.call({
-        method: 'get.balance',
-        input : {
-          session_key     : sessionKey,
-          phone_num       : phoneNumber,
-          account_id      : accountId,
-          card_num_hash   : cardNumHash,
-          card_num_crypted: cardNumCrypted
-        },
-
-        scope    : this,
-        onSuccess: function (result) {
-          console.log("result[1][0] ", result[1][0]);
-        },
-
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      })
 
     }
 
-//      <div class="button-enter authorization-button-enter" ontouchend="enter()">
-//      <div class="button-enter-label">ВОЙТИ</div>
-//      </div>
+    //      <div class="button-enter authorization-button-enter" ontouchend="enter()">
+    //      <div class="button-enter-label">ВОЙТИ</div>
+    //      </div>
   </script>
 </view-authorization>

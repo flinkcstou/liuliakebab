@@ -1,39 +1,18 @@
-<component-card class="card" style="background-image: url({opts.background}); left:{260*opts.countcard+60}px" ontouchstart="touchStartCard()"
-                ontouchend="touchEndCard()">
+<component-card class="card" style="background-image: url({opts.background}); left:{260*opts.countcard+60}px">
 
-    <div class="card-bank-name-url" style="background-image: url({opts.url})"></div>
-    <div class="card-bank-name" style="background-image: url({opts.bankname})"></div>
-    <div class="card-salary-title">{opts.name}</div>
-    <div class="card-balance">{opts.salary}</div>
-    <div class="card-currency">{opts.currency}</div>
-    <div class="card-number">{opts.number}</div>
+  <div class="card-bank-name-url" style="background-image: url({opts.url})"></div>
+  <div class="card-bank-name" style="background-image: url({opts.bankname})"></div>
+  <div class="card-salary-title">{opts.name}</div>
+  <div class="card-balance">{opts.salary}</div>
+  <div class="card-currency">{opts.currency}</div>
+  <div class="card-number card-number-part-one">{opts.numberpartone}</div>
+  <p class="card-number number-stars">****&nbsp&nbsp&nbsp****</p>
+  <div class="card-number card-number-part-two">{opts.numberparttwo}</div>
 
 
   <script>
-    console.log(opts.background);
-
     var scope = this;
-    scope.position = 260*opts.countcard+60 +'px';
-    console.log(scope.position )
-    var touchStartX, touchEndX;
-    touchStartCard = function () {
-      touchStartX = event.changedTouches[0].pageX;
-    }
+  console.log(opts.numberpartone)
 
-    touchEndCard = function () {
-
-      touchEndX = event.changedTouches[0].pageX;
-
-      if (touchStartX == touchEndX)
-        openCard();
-    }
-    openCard = function () {
-
-      if (!viewMainPage.myCards) {
-        this.riotTags.innerHTML = "<view-my-cards>";
-        riot.mount("view-my-cards");
-      }
-      return;
-    }
   </script>
 </component-card>
