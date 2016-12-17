@@ -112,23 +112,23 @@
         // second parameter FROM TO
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate3d(" + (-cardNumber * 270) + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 270) + 'px' + ", 0, 0)";
 
       }
 
       if (touchEndX > touchStartX && cardNumber == 0) {
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate3d(" + (-cardNumber * 270) + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 270) + 'px' + ", 0, 0)";
       }
 
       if (touchEndX < touchStartX && cardNumber == count - 1) {
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate3d(" + (-cardNumber * 270) + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 270) + 'px' + ", 0, 0)";
 
       }
 
@@ -136,8 +136,8 @@
         --cardNumber;
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 260) + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate3d(" + (-cardNumber * 270) + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 270) + 'px' + ", 0, 0)";
       }
 
       if (!viewMainPage.myCards) {
@@ -147,7 +147,7 @@
       }
       else {
         if (viewMainPage.myCards && viewMyCards.check) {
-          pos = (JSON.parse(localStorage.getItem('click_client_cards'))[localStorage.getItem('cardNumber')].countCard) * 260;
+          pos = (JSON.parse(localStorage.getItem('click_client_cards'))[localStorage.getItem('cardNumber')].countCard) * 270;
 
           viewMyCards.check = false;
           cardNumber = localStorage.getItem('cardNumber');

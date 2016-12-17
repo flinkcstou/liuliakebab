@@ -5,9 +5,13 @@ body {
 #htmlId {
   width: 100%;
   height: 100%;
-  background-image: -moz-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 80%, rgb(28, 200, 249) 100%);
-  background-image: -webkit-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 80%, rgb(28, 200, 249) 100%);
-  background-image: -ms-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 80%, rgb(28, 200, 249) 100%);
+  /*background-image: url("../resources/draft/main_without_bar.png");*/
+  /*opacity: 0.4;*/
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: -moz-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);
+  background-image: -webkit-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);
+  background-image: -ms-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);
   font-family: Neuron;
   margin: 0;
   overflow: hidden;
@@ -192,11 +196,11 @@ input {
 .toolbar {
   position: absolute;
   top: 10px;
-  right: 15px;
-  left: 15px;
-  height: 50px;
+  right: 13px;
+  left: 13px;
+  height: 35px;
   background: transparent;
-  border-bottom: 3px solid rgb(149, 230, 253);
+  border-bottom: 2px solid #a3deee;
 }
 
 .menu-button {
@@ -211,12 +215,14 @@ input {
 .menu-icon {
   position: absolute;
   background: transparent;
-  background-image: url("../resources/icons/toolbar/menu.png");
-  width: 30px;
-  height: 40px;
-  background-size: 70%;
+  background-image: url(../resources/icons/toolbar/menu.png);
+  width: 50px;
+  height: 50px;
+  background-size: 35%;
+  top: -14px;
   background-repeat: no-repeat;
   background-position: center;
+  left: -8px;
 }
 
 .bell-button {
@@ -231,14 +237,17 @@ input {
 .bell-icon {
   position: absolute;
   background: transparent;
-  background-image: url("../resources/icons/toolbar/bell.png");
-  width: 35px;
-  height: 40px;
-  background-size: 70%;
+  background-image: url(../resources/icons/toolbar/bell.png);
+  width: 20px;
+  height: 23px;
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
   opacity: 0.5;
+  right: 10px;
+  top: -1px;
 }
+
 
 /*FONT FACE*/
 @font-face {
@@ -269,7 +278,8 @@ input {
 
 .bank-operations {
   position: absolute;
-  bottom: 23%;
+  bottom: 158px;
+  left: -3px;
   height: 200px;
   width: 100%;
 }
@@ -278,11 +288,11 @@ input {
 .bank-operation-button {
   position: relative;
   background: transparent;
-  height: 95px;
-  width: 95px;
+  height: 100px;
+  width: 100px;
   display: inline-block;
   margin: 10px 5px 10px 10px;
-  left: 10px;
+  left: 5px;
 }
 
 .top-operations-buttons {
@@ -291,7 +301,8 @@ input {
 
 .bottom-operations-buttons {
   position: absolute;
-  top: 80px;
+  top: 85px;
+  left: 0px;
 }
 
 .bank-operation-icon {
@@ -311,6 +322,7 @@ input {
   width: 100%;
   height: 30%;
   line-height: 30px;
+  left: -3px;
 }
 
 .operation-pay-icon {
@@ -326,9 +338,10 @@ input {
 }
 
 .operation-autopay-icon {
-  background-image: url("../resources/icons/bank-operations/autopay.png");
+  background-image: url(../resources/icons/bank-operations/autopay.png);
   background-size: 40%;
   border-bottom: .1px solid #95E6FD;
+  left: -3px;
 }
 
 .operation-myFinance-icon {
@@ -352,24 +365,27 @@ input {
 /*ALL CARD*/
 .common-balance-label {
   position: absolute;
-  top: 60px;
-  left: 20px;
-  color: #7ae4ff;
+  top: 42px;
+  font-size: 17px;
+  left: 22px;
+  color: #9fdbf8;
+  word-spacing: 4px;
 }
 
 .common-balance {
   position: absolute;
-  top: 40px;
-  left: 20px;
+  top: 15px;
+  left: 19px;
   color: #fffaf9;
-  font-size: 52px;
+  font-size: 58px;
+  word-spacing: 4px;
 }
 
 .valuta {
   position: absolute;
-  top: 100px;
-  left: 215px;
-  color: #7ae4ff;
+  top: 88px;
+  left: 247px;
+  color: #9fdbf8;
 }
 
 /*CAROUSEL*/
@@ -379,7 +395,7 @@ input {
   height: 170px;
   width: 100%;
   display: inline-block;
-  top: 130px;
+  top: 110px;
   background: transparent;
 }
 
@@ -390,8 +406,8 @@ input {
 }
 
 .card {
-  height: 140px;
-  width: 250px;
+  height: 148px;
+  width: 260px;
   position: absolute;
   top: 25px;
   -webkit-border-radius: 7px;
@@ -399,85 +415,113 @@ input {
   border-radius: 7px;
   background-size: cover;
   color: white;
-  -webkit-box-shadow: 8px 46px 49px -55px rgba(0, 0, 0, 0.92);
-  -moz-box-shadow: 8px 46px 49px -55px rgba(0, 0, 0, 0.92);
-  box-shadow: 8px 46px 49px -55px rgba(0, 0, 0, 0.92);
+  -webkit-box-shadow: 2px 66px 43px -68px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 2px 66px 43px -68px rgba(0, 0, 0, 0.8);
+  box-shadow: 2px 66px 43px -68px rgba(0, 0, 0, 0.8);
 }
 
 .card-bank-name {
   position: absolute;
-  top: 10px;
-  left: 170px;
+  top: 6px;
+  left: 189px;
   background-size: contain;
   background-repeat: no-repeat;
   font-size: 18px;
-  height: 20px;
-  width: 70px;
+  height: 16px;
+  width: 59px;
 }
 
 .card-bank-name-url {
   position: absolute;
   width: 120px;
-  height: 50px;
+  height: 45px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  left: 10px;
+  left: 15px;
 }
 
 .card-salary-title {
   position: absolute;
-  top: 63px;
-  left: 20px;
-  color: #5b5c5e;
+  top: 70px;
+  left: 15px;
+  color: #a7a7a7;
   background-size: contain;
   font-size: 13px;
   height: 10%;
 }
 
-.card-balance {
+.card-balance-currency-container {
   position: absolute;
-  top: 80px;
-  left: 20px;
+  width: 200px;
+  top: 83px;
+  display: inline-block;
+  margin: 0;
+}
+
+.card-balance {
+  position: relative;
+  left: 17px;
   color: #515151;
-  font-size: 24px;
-  background-size: contain;
+  font-size: 26px;
+  width: 100px;
+  /* background-size: contain; */
+  margin: 0;
+  margin-top: -1px;
+  float: left;
+  padding: 0;
 }
 
 .card-currency {
-  position: absolute;
-  top: 88px;
-  left: 110px;
-  color: #5f6062;
-  font-size: 12px;
+  position: relative;
+  margin-left: 20px;
+  /* margin-right: auto; */
+  color: #a7a7a7;
+  top: -3px;
+  font-size: 13px;
   background-size: contain;
+  /* margin: 0; */
+  float: left;
+  width: 30px;
 }
 
 .card-number {
   position: absolute;
-  top: 115px;
+  top: 121px;
   color: #fefefe;
-  width: 150px;
+  width: 192px;
+  height: 20px;
   font-size: 16px;
-  text-shadow: 1px 1px 0px #000000;
+  text-shadow:
+    white -0.5px -0.5px 0.2px,
+    black 0.0px 0.5px 0.1px,
+    white -0.5px -0.5px 0.2px,
+    black 0.0px 0.5px 0.2px;
   font-family: Orator;
+  color: transparent;
+  left: 13px;
 }
 
 .card-number-part-one {
-  left: 20px;
+  position: absolute;
+  left: 0px;
+  font-weight: bold;
 }
 
 .card-number-part-two {
-  left: 145px
+  position: absolute;
+  left: 152px;
+  font-weight: bold;
 }
 
 .number-stars {
   position: absolute;
   margin: 0;
-  width: 70px;
-  left: 60px;
-  top: 118px;
-  font-weight: bold;
+  left: 47px;
+  top: 1px;
+  letter-spacing: -5px;
+  font-size: 26px;
+  word-spacing: -4px;
 }
 
 /*BOTTOM SERVICE BEELINE UCELL UMS*/
@@ -494,6 +538,7 @@ input {
   width: 310px;
   height: 115px;
   bottom: 0;
+  /*background-color: #f7f7f7;*/
   background-color: #fefefe;
 }
 
@@ -516,52 +561,55 @@ input {
   position: absolute;
   height: 25px;
   width: 1px;
-  background-color: #b9b9b9;
+  background-color: #b1b1b1;
 }
 
 .horizontal-line-beeline {
-  left: 80px;
-  top: 15px;
+  left: 82px;
+  top: 17px;
 }
 
 .horizontal-line-ucell {
-  left: 100px;
-  top: 15px;
+  left: 99px;
+  top: 18px;
 }
 
 .horizontal-line-ums {
-  left: 100px;
+  left: 97px;
   top: 27px;
 }
 
 .beeline-button {
-  background-image: url("../resources/icons/services/beeline.png");
+  background-image: url(../resources/icons/services/beeline.png);
   background-size: 80%;
+  left: 4px;
 }
 
 .ucell-button {
-  left: 80px;
-  background-image: url("../resources/icons/services/ucell.png");
+  left: 84px;
+  background-image: url(../resources/icons/services/ucell.png);
   background-size: 52%;
   background-position: top;
 }
 
 .ums-button {
-  left: 178px;
+  left: 183px;
   background-position: center;
-  background-image: url("../resources/icons/services/ums.png");
+  background-image: url(../resources/icons/services/ums.png);
   background-size: 70%;
-  top: -2px;
+  top: 0px;
 }
 
 .service-title {
-  position: absolute;
-  left: 25%;
-  top: 15px;
+  position: relative;
+  top: 20px;
+  width: 153px;
+  margin-left: auto;
+  margin-right: auto;
   background: transparent;
   background-size: contain;
-  color: #646264;
-  font-size: 16px;
+  color: #585858;
+  font-size: 17px;
 }
 
 .side-menu {
@@ -574,9 +622,9 @@ input {
   -webkit-transform: translate3d(-100%, 0, 0);
   -ms-transform: translate3d(-100%, 0, 0);
   background-color: #0485e5;
-  transition: 0.5s;
-  -webkit-transition: 0.5s;
-  z-index: 1;
+  transition: transform 0.5s;
+  -webkit-transition: -webkit-transform 0.5s;
+  z-index: 999999;
   top: 0;
 
 }
@@ -1173,22 +1221,24 @@ input {
   bottom: 100px;
   left: 0;
   right: 0;
-  height: 45px;
+  height: 50px;
+  top: 5px;
   width: 100%;
   border-top: 1px solid rgb(37, 160, 227);
   color: rgb(197, 233, 239);
-  background-color: rgb(37, 159, 225);
+  background-color: #22a0e0;
 }
 
 .footer-icon-tick {
   position: absolute;
-  left: 80px;
-  background-size: 60%;
+  left: 88px;
+  background-size: contain;
   background-image: url(../resources/icons/footer/contacts.png);
   background-repeat: no-repeat;
-  width: 30px;
-  height: 30px;
-  top: 15px;
+  width: 19px;
+  height: 9px;
+  top: 17px;
+  transition: 0.8s;
 }
 
 .footer-contacts-container {
@@ -1207,8 +1257,8 @@ input {
 
 .footer-contacts-label {
   position: absolute;
-  font-size: 17px;
-  margin-top: 13px;
+  font-size: 18px;
+  margin-top: 14px;
   color: white;
 }
 
@@ -1252,23 +1302,23 @@ input {
 }
 
 .footer-contacts-block-one {
-  left: -20px;
+  left: -15px;
 }
 
 .footer-contacts-block-two {
-  left: 50px;
+  left: 55px;
 }
 
 .footer-contacts-block-three {
-  left: 120px;
+  left: 125px;
 }
 
 .footer-contacts-block-four {
-  left: 190px;
+  left: 195px;
 }
 
 .footer-contacts-block-five {
-  left: 260px;
+  left: 265px;
 }
 
 .footer-favourite-contacts-label {
@@ -1289,6 +1339,6 @@ input {
   background-size: contain;
   margin-left: auto;
   margin-right: auto;
-  width: 100px;
+  width: 107px;
   height: 50px;
 }

@@ -1,34 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" id="htmlId" ontouchstart="touchStart()" ontouchend="touchEnd()"
-      onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
+<html lang="en" id="htmlId"
+      onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false"
+      onDrag="return false" onDrop="return false" autocomplete=off>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport"
+        content="width=device-width, target-densitydpi=device-dpi, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <!-- CSS -->
-  <link href="../css/MainPage.css" rel="stylesheet">
+  <link href="css/MainPage.css" rel="stylesheet">
 
   <!-- JS COMMON -->
   <!-- @include(cordova.htmlinc) -->
-  <script src="../cordova.js"></script>
-  <script src="../lib/js/riot.js"></script>
-  <script src="../lib/js/all.js"></script>
+  <script src="lib/js/riot.js"></script>
+  <script src="lib/js/all.js"></script>
 
-  <script src="../js/encryption/sha512.js"></script>
-  <script src="../js/encryption/md5.js"></script>
-  <script src="../js/api/WebApi.js"></script>
-  <script src="../js/globalObjects/global.Objects.js"></script>
+  <script src="js/encryption/sha512.js"></script>
+  <script src="js/encryption/md5.js"></script>
+  <script src="js/api/WebApi.js"></script>
+  <script src="js/globalObjects/global.Objects.js"></script>
 
   <!-- FAKES -->
-  <script src="../stand/fakedSocket.js"></script>
-  <script src="../stand/allMethods.js"></script>
+  <script src="stand/fakedSocket.js"></script>
+  <script src="stand/allMethods.js"></script>
 
-  <script src="../stand/plugins/sms_fake.js"></script>
+  <script src="stand/plugins/sms_fake.js"></script>
+  <script src="stand/plugins/plugins_fake.js"></script>
 
-  <component-menu id="SideMenuId"></component-menu>
+
 </head>
 
 <body id="bodyId">
+
 <div id="riotTags">
   <view-main-page></view-main-page>
 </div>
@@ -73,7 +76,7 @@
     if (history.arrayOfHistory.length != 0) {
       history.arrayOfHistory.pop();
       if (history.arrayOfHistory.length != 0) {
-        console.log('THIS IS riotTags div ',this.riotTags)
+        console.log('THIS IS riotTags div ', this.riotTags)
         console.log("JSON ", JSON.stringify(history.arrayOfHistory));
         console.log('LAST ELEMENT ', history.arrayOfHistory[history.arrayOfHistory.length - 1]);
         console.log('LAST ELEMENT in RIOT TAG ', "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1] + ">");

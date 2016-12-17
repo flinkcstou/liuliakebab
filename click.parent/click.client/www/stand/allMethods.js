@@ -101,7 +101,7 @@ window.fakedSocket.register("get.accounts", function (input) {
       description     : "Карта UZCARD-Online",
       expire_date     : "1806",
       id              : 3487271,
-      image_url       : "https://merchant.click.uz/static/merchant/bank/aloq.png",
+      image_url       : "https://merchant.click.uz/static/content/app/bank/aloq.png",
       is_uzcard       : 1,
       removable       : 1,
       short_name      : "aloq"
@@ -122,7 +122,7 @@ window.fakedSocket.register("get.accounts", function (input) {
       description     : "Карта KAZKOM-Online",
       expire_date     : "1806",
       id              : 3487271,
-      image_url       : "https://merchant.click.uz/static/merchant/bank/aloq.png",
+      image_url       : "https://merchant.click.uz/static/content/app/bank/aloq.png",
       is_uzcard       : 1,
       removable       : 1,
       short_name      : "aloq"
@@ -143,7 +143,7 @@ window.fakedSocket.register("get.accounts", function (input) {
       description     : "Карта UZCARD-Online",
       expire_date     : "1806",
       id              : 3487271,
-      image_url       : "https://merchant.click.uz/static/merchant/bank/aloq.png",
+      image_url       : "https://merchant.click.uz/static/content/app/bank/aloq.png",
       is_uzcard       : 1,
       removable       : 1,
       short_name      : "aloq"

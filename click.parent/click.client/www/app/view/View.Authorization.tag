@@ -206,6 +206,7 @@
             localStorage.setItem("click_client_accountInfo", accountInfo);
 
             this.riotTags.innerHTML = "<view-main-page>";
+
             riot.mount('view-main-page');
             riot.mount('component-toolbar');
             riot.mount('component-bank-operations');
