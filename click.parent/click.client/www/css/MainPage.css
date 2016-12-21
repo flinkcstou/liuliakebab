@@ -12,7 +12,7 @@ body {
   background-image: -moz-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);
   background-image: -webkit-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);
   background-image: -ms-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);
-  font-family: Neuron;
+  font-family: SFUIDisplay-Light;
   margin: 0;
   overflow: hidden;
 }
@@ -23,6 +23,16 @@ input {
 }
 
 .view-registration-device {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-image: url("../resources/icons/background/transparent.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.view-registration-client{
   position: absolute;
   width: 100%;
   height: 100%;
@@ -149,6 +159,17 @@ input {
   top: 100px;
 }
 
+.registration-client-card-date-box {
+  position: absolute;
+  width: 60px;
+  left: 10px;
+  height: 20px;
+  top: 6px;
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
 .registration-client-card-pin {
   position: absolute;
   padding: 0;
@@ -159,6 +180,17 @@ input {
   height: 35px;
   left: 150px;
   top: 100px;
+}
+
+.registration-client-card-date-pin-box{
+  position: absolute;
+  width: 71px;
+  left: 2px;
+  height: 20px;
+  top: 9px;
+  background-color: transparent;
+  border: none;
+  color: white;
 }
 
 /*ENTER BUTTON REGISTRATION AND AUTHORIZATION*/
@@ -248,11 +280,10 @@ input {
   top: -1px;
 }
 
-
 /*FONT FACE*/
 @font-face {
   font-family: "Neuron";
-  src: url("../resources/font/Neuron.otf");
+  src: url("../resources/font/Neuron/Neuron.otf");
   format: ("opentype");
   font-weight: normal;
   font-style: normal;
@@ -260,7 +291,7 @@ input {
 
 @font-face {
   font-family: "Orator";
-  src: url("../resources/font/OratorStd.otf");
+  src: url("../resources/font/Orator/OratorStd.otf");
   format: ("opentype");
   font-weight: normal;
   font-style: normal;
@@ -268,7 +299,15 @@ input {
 
 @font-face {
   font-family: "Orator-slanted";
-  src: url("../resources/font/OratorStd-Slanted.otf");
+  src: url("../resources/font/Orator/OratorStd-Slanted.otf");
+  format: ("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SFUIDisplay-Light";
+  src: url("../resources/font/SFUIDisplay/SFUIDisplay-Light.otf");
   format: ("opentype");
   font-weight: normal;
   font-style: normal;
@@ -383,8 +422,8 @@ input {
 
 .valuta {
   position: absolute;
-  top: 88px;
-  left: 247px;
+  top: 90px;
+  left: 296px;
   color: #9fdbf8;
 }
 
@@ -464,7 +503,7 @@ input {
   left: 17px;
   color: #515151;
   font-size: 26px;
-  width: 100px;
+  width: 115px;
   /* background-size: contain; */
   margin: 0;
   margin-top: -1px;
@@ -492,11 +531,10 @@ input {
   width: 192px;
   height: 20px;
   font-size: 16px;
-  text-shadow:
-    white -0.5px -0.5px 0.2px,
-    black 0.0px 0.5px 0.1px,
-    white -0.5px -0.5px 0.2px,
-    black 0.0px 0.5px 0.2px;
+  text-shadow: white -0.5px -0.5px 0.2px,
+  black 0.0px 0.5px 0.1px,
+  white -0.5px -0.5px 0.2px,
+  black 0.0px 0.5px 0.2px;
   font-family: Orator;
   color: transparent;
   left: 13px;
@@ -603,7 +641,7 @@ input {
 .service-title {
   position: relative;
   top: 20px;
-  width: 153px;
+  width: 170px;
   margin-left: auto;
   margin-right: auto;
   background: transparent;
@@ -1074,7 +1112,7 @@ input {
 .registration-buttons-container {
   position: relative;
   width: 280px;
-  top: 280px;
+  bottom: -260px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1260,6 +1298,7 @@ input {
   font-size: 18px;
   margin-top: 14px;
   color: white;
+  left: -10px;
 }
 
 .footer-contacts {
