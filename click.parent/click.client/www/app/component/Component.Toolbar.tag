@@ -13,11 +13,14 @@
     menuOpen = function () {
       event.preventDefault();
       event.stopPropagation();
-      riot.mount('component-menu');
       this.mainPageId.style.transition = '0.5s';
-      this.mainPageId.style.opacity = '0.5';
+      this.mainPageId.style.webkitTransition = '0.5s';
+      this.mainPageId.style.opacity = '0.1';
+
       this.sideMenuId.style.transform = "translate3d(0, 0, 0)";
       this.sideMenuId.style.webkitTransform = "translate3d(0, 0, 0)";
+
+      this.sideMenuBackPageId.style.opacity = '1';
     }
 
     bellButton = function () {
