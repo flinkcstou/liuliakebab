@@ -156,6 +156,7 @@
       var sessionKey = loginInfo.session_key;
     }
 
+    var balance;
     var arrayAccountInfo = [];
     getAccount = function (e) {
       if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
@@ -175,6 +176,7 @@
           scope: this,
 
           onSuccess: function (result) {
+
             console.log('RESULT ', result);
             for (var i = 0; i < result[1].length; i++) {
               console.log('BALANCE ', result[1][i].id, result[1][i].card_num_hash, result[1][i].card_num_crypted)
@@ -191,13 +193,16 @@
                 scope    : this,
                 onSuccess: function (result) {
                   console.log("result[1][0] ", result[1][0]);
+                  balance = result[1][0].balance;
                 },
 
                 onFail: function (api_status, api_status_message, data) {
                   console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
                   console.error(data);
                 }
-              })
+              });
+
+              result[1][0].balance = balance;
 
               arrayAccountInfo.push(result[1][i])
             }

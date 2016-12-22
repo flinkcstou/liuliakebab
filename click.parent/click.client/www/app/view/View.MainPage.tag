@@ -15,9 +15,11 @@
   <component-card-carousel></component-card-carousel>
   </div>
   <script>
+    var scope = this;
+    localStorage.setItem('cardNumber', 0);
     history.arrayOfHistory.push('view-main-page');
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    var scope = this;
+
     viewMainPage.myCards = false;
 
   </script>

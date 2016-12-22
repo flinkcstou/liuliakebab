@@ -32,7 +32,7 @@ input {
   background-repeat: no-repeat;
 }
 
-.view-registration-client{
+.view-registration-client {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -182,7 +182,7 @@ input {
   top: 100px;
 }
 
-.registration-client-card-date-pin-box{
+.registration-client-card-date-pin-box {
   position: absolute;
   width: 71px;
   left: 2px;
@@ -454,9 +454,9 @@ input {
   border-radius: 7px;
   background-size: cover;
   color: white;
-  -webkit-box-shadow: 2px 66px 43px -68px rgba(0, 0, 0, 0.8);
-  -moz-box-shadow: 2px 66px 43px -68px rgba(0, 0, 0, 0.8);
-  box-shadow: 2px 66px 43px -68px rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: 0px 61px 40px -65px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 61px 40px -65px rgba(0, 0, 0, 1);
+  box-shadow: 0px 61px 40px -65px rgba(0, 0, 0, 1);
 }
 
 .card-bank-name {
@@ -665,7 +665,7 @@ input {
   top: 0;
 }
 
-.side-menu-back-page{
+.side-menu-back-page {
   position: fixed;
   height: 100%;
   width: 100%;
@@ -673,7 +673,7 @@ input {
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   transition: 0.5s;
   -webkit-transition: 0.5s;
   opacity: 0;
@@ -811,10 +811,18 @@ input {
   top: 20px;
 }
 
+.my-cards-last-operations-container {
+  position: absolute;
+  width: 100%;
+  top: 40px;
+  background-color: white;
+}
+
 .my-cards-last-operations {
   position: absolute;
   width: 100%;
   top: 460px;
+  overflow: auto;
   background-color: #ffffff;
   bottom: 0;
 }
@@ -841,8 +849,40 @@ input {
   position: absolute;
   top: 40px;
   width: 100%;
-  height: 65px;
+  height: 80px;
   border-bottom: 1px solid #dedfe0;
+  overflow: hidden;
+}
+
+.my-cards-operation-amount {
+  position: relative;
+  color: #EB604D;
+
+  background-size: contain;
+  font-size: 30px;
+  font-weight: bold;
+  height: 30px;
+  top: 10px;
+  left: 30px;
+  float: left;
+}
+
+.my-cards-operation-currency{
+  position: relative;
+  color: #8a8a8a;
+  top: 25px;
+  background-size: contain;
+  float: left;
+  left: 35px;
+  font-size: 15px;
+}
+
+.my-cards-operation-date{
+  position: absolute;
+  color: #8a8a8a;
+  bottom: 10px;
+  left: 35px;
+  font-size: 15px;
 }
 
 /*AUTHORIZATION VIEW*/

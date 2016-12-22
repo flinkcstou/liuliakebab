@@ -5,7 +5,8 @@
     <div id="cards" class="cards">
       <component-card each="{i in cardsarray}"
                       countcard="{i.countCard}"
-                      name="{i.name}" salary="{i.salary}" currency="{i.currency}" numberpartone="{i.numberPartOne}" numberparttwo="{i.numberPartTwo}"
+                      name="{i.name}" salary="{i.salary}" currency="{i.currency}" numberpartone="{i.numberPartOne}"
+                      numberparttwo="{i.numberPartTwo}"
                       bankname="{i.bankName}" url="{i.url}"
                       background="{i.background}"></component-card>
     </div>
@@ -25,7 +26,9 @@
 
 
     var card;
-    var cardNumber = 0;
+    var cardNumber = localStorage.getItem('cardNumber');
+    if (!cardNumber)
+      cardNumber = 0;
     var pos = 0;
     var count = localStorage.getItem('click_client_countCard');
     if (!count)
@@ -39,11 +42,20 @@
 
     endTouchCarousel = function () {
       touchEndX = event.changedTouches[0].pageX;
-      if (touchStartX != touchEndX)
+      if (touchStartX != touchEndX) {
         changePosition();
+      }
       else if (!viewMainPage.myCards) {
+        localStorage.setItem('cardNumber', cardNumber)
+        pos = (JSON.parse(localStorage.getItem('click_client_cards'))[localStorage.getItem('cardNumber')].countCard) * 270;
+        console.log("POS ", pos)
+        //viewMainPage.myCards = true;
         this.riotTags.innerHTML = "<view-my-cards>";
         riot.mount("view-my-cards");
+        this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
       }
     }
 
@@ -78,6 +90,7 @@
           numberOfCardPartTwo = getAccountsCards[i].accno[getAccountsCards[i].accno.length - 4] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 3] + +getAccountsCards[i].accno[getAccountsCards[i].accno.length - 2] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 1];
 
           card = {
+            card_id      : getAccountsCards[i].id,
             bankName     : typeOfCard,
             name         : getAccountsCards[i].description,
             salary       : '1 798 222',
@@ -139,24 +152,13 @@
         this.cards.style.transform = "translate3d(" + (-cardNumber * 270) + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 270) + 'px' + ", 0, 0)";
       }
+      localStorage.setItem('cardNumber', cardNumber);
 
-      if (!viewMainPage.myCards) {
-        localStorage.setItem('cardNumber', cardNumber)
-
-
-      }
-      else {
-        if (viewMainPage.myCards && viewMyCards.check) {
-          pos = (JSON.parse(localStorage.getItem('click_client_cards'))[localStorage.getItem('cardNumber')].countCard) * 270;
-
-          viewMyCards.check = false;
-          cardNumber = localStorage.getItem('cardNumber');
-          return;
-        }
-        if (viewMainPage.myCards && !viewMyCards.check) {
-
-
-        }
+      if (viewMainPage.myCards) {
+        scope.parent.indexOfCard = JSON.parse(localStorage.getItem('cardNumber'));
+        riot.update(scope.parent.indexOfCard)
+        viewMyCards.cardInformation();
+        console.log('INDEX OF CARD ', scope.parent.indexOfCard);
       }
     }
 

@@ -11,8 +11,10 @@
   <script>
     var scope = this;
     menuOpen = function () {
+
       event.preventDefault();
       event.stopPropagation();
+
       this.mainPageId.style.transition = '0.5s';
       this.mainPageId.style.webkitTransition = '0.5s';
       this.mainPageId.style.opacity = '0.1';
