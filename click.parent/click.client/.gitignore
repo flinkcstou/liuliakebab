@@ -26,6 +26,7 @@
 /cordova/platforms
 /cordova/plugins
 /cordova/www
+/cordova/res/
 
 
 # OS generated files #
