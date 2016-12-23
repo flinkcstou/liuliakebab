@@ -1,9 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
   <name>Click</name>
+  <icon src="www/img/logo.png" />
+  <screen src="www/img/logo.png" />
   <preference name="Fullscreen" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <platform name="android">
+    <preference name="Orientation" value="sensorPortrait"/>
+  </platform>
+  <platform name="ios">
     <preference name="Orientation" value="sensorPortrait"/>
   </platform>
   <author email="chamirkazhiyev@greet-go.com">
