@@ -17,6 +17,10 @@
     var scope = this;
     var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
 
+    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+    var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+    var sessionKey = info.session_key;
+
     var touchStartX, touchEndX;
     cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
 
@@ -77,13 +81,13 @@
       if (count == 0)
         for (var i = 0; i < getAccountsCards.length; i++) {
 
+
           if (getAccountsCards[i].access == 0) break;
 
           if (getAccountsCards[i].acc_abs.trim() == 'SMARTV')
             typeOfCard = 'resources/icons/cards/typeOfCards/uzcard.png';
           if (getAccountsCards[i].acc_abs.trim() == 'DUET')
             typeOfCard = 'resources/icons/cards/typeOfCards/duet.png';
-
 
           numberOfCardPartOne = getAccountsCards[i].accno[0] + getAccountsCards[i].accno[1]
             + getAccountsCards[i].accno[2] + getAccountsCards[i].accno[3]
@@ -93,7 +97,7 @@
             card_id      : getAccountsCards[i].id,
             bankName     : typeOfCard,
             name         : getAccountsCards[i].description,
-            salary       : '1 798 222',
+            salary       : '',
             currency     : getAccountsCards[i].currency_name.trim(),
             numberPartOne: numberOfCardPartOne,
             numberPartTwo: numberOfCardPartTwo,
@@ -105,14 +109,35 @@
           cardsarray.push(card);
           console.log(cardsarray);
           localStorage.setItem("click_client_cards", JSON.stringify(cardsarray));
-          var parsedCards = localStorage.getItem('click_client_cards');
-          console.log(parsedCards);
 
           count++;
           localStorage.setItem('click_client_countCard', count);
-          scope.cards.style.width = localStorage.getItem('containerCardsWidth');
-
           riot.mount("component-card");
+
+          window.api.call({
+            method: 'get.balance',
+            input : {
+              session_key     : sessionKey,
+              phone_num       : phoneNumber,
+              account_id      : getAccountsCards[i].id,
+              card_num_hash   : getAccountsCards[i].card_num_hash,
+              card_num_crypted: getAccountsCards[i].card_num_crypted
+            },
+
+            scope    : this,
+            onSuccess: function (result) {
+              console.log('CHECKING ', i, getAccountsCards.length)
+              console.log('CHECKING ', cardsarray[0].salary, result[1][0].balance)
+              cardsarray[0].salary = result[1][0].balance;
+              localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
+              riot.update();
+            },
+
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
         }
     }
     if (localStorage.getItem('click_client_accountInfo'))

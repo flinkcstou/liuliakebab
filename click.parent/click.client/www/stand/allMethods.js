@@ -159,13 +159,38 @@ window.fakedSocket.register("get.accounts", function (input) {
 
 window.fakedSocket.register("get.balance", function (input) {
 
-  if (localStorage.getItem("click_client_token"))
-    return [
-      {"method": input.method, "success": 1, "error": 0, "error_note": ""},
-      {
-        "balance": 6000
-      }
-    ];
+  if (localStorage.getItem("click_client_token")) {
+    console.log(' account ID  AAA ', input.parameters.account_id)
+    if (input.parameters.account_id == 3487271) {
+      return [
+        {"method": 'get.balance', "success": 1, "error": 0, "error_note": ""},
+        {
+          "account_id": input.parameters.account_id,
+          "balance"   : 6000
+        }
+      ];
+    }
+
+    if (input.parameters.account_id == 2484171) {
+      return [
+        {"method": 'get.balance', "success": 1, "error": 0, "error_note": ""},
+        {
+          "account_id": input.parameters.account_id,
+          "balance"   : 1234321
+        }
+      ];
+    }
+
+    if (input.parameters.account_id == 5487271) {
+      return [
+        {"method": 'get.balance', "success": 1, "error": 0, "error_note": ""},
+        {
+          "account_id": input.parameters.account_id,
+          "balance"   : 430
+        }
+      ];
+    }
+  }
   return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Nevozmozhno poluchit balans zapreshen'}];
 });
 

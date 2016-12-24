@@ -178,34 +178,9 @@
           onSuccess: function (result) {
 
             console.log('RESULT ', result);
-            for (var i = 0; i < result[1].length; i++) {
-              console.log('BALANCE ', result[1][i].id, result[1][i].card_num_hash, result[1][i].card_num_crypted)
-              window.api.call({
-                method: 'get.balance',
-                input : {
-                  session_key     : sessionKey,
-                  phone_num       : phoneNumber,
-                  account_id      : result[1][i].id,
-                  card_num_hash   : result[1][i].card_num_hash,
-                  card_num_crypted: result[1][i].card_num_crypted
-                },
-
-                scope    : this,
-                onSuccess: function (result) {
-                  console.log("result[1][0] ", result[1][0]);
-                  balance = result[1][0].balance;
-                },
-
-                onFail: function (api_status, api_status_message, data) {
-                  console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                  console.error(data);
-                }
-              });
-
-              result[1][0].balance = balance;
-
+            for (var i = 0; i < result[1].length; i++)
               arrayAccountInfo.push(result[1][i])
-            }
+
             var accountInfo = JSON.stringify(arrayAccountInfo);
             console.log("ACCOUNT INFO ", accountInfo)
             localStorage.setItem("click_client_accountInfo", accountInfo);

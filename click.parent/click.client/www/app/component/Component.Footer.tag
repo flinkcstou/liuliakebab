@@ -99,11 +99,11 @@
     }
 
 
-//    var arrayOfPhotosContacts = [];
-//    var arrayWithoutPhotosContacts = [];
-//    var arrayOfConnectedContacts = [];
-//
-//
+    var arrayOfPhotosContacts = [];
+    var arrayWithoutPhotosContacts = [];
+    var arrayOfConnectedContacts = [];
+
+
 //    findContacts = function () {
 //      var options = new ContactFindOptions();
 //      options.filter = "";
@@ -112,6 +112,7 @@
 //      navigator.contacts.find(fields, success, error, options);
 //
 //      function success(contacts) {
+//        //alert(JSON.stringify(contacts));
 //        for (var i = 0; i < contacts.length; i++) {
 //          console.log('contacts ', contacts[i])
 //          if (contacts[i].photos != null) {
