@@ -2,13 +2,13 @@ body {
   margin: 0;
 }
 
-html{
+html {
   -webkit-user-select: none;
   -webkit-touch-callout: none;
   -webkit-user-drag: none;
-  -webkit-tap-highlight-color:rgba(0,0,0,0);
-  text-decoration:none;
-  color:inherit;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  text-decoration: none;
+  color: inherit;
 }
 
 #htmlId {
@@ -236,17 +236,17 @@ input {
 /*TOOLBAR*/
 .toolbar {
   position: absolute;
-  top: 10px;
-  right: 13px;
-  left: 13px;
-  height: 35px;
+  top: 2.78vw;
+  right: 3.61vw;
+  left: 3.61vw;
+  height: 9.72vw;
   background: transparent;
-  border-bottom: 2px solid #a3deee;
+  border-bottom: 0.56vw solid #a3deee;
 }
 
 .menu-button {
   position: absolute;
-  left: 2px;
+  left: 0.56vw;
   background: transparent;
   width: 100%;
   height: 100%;
@@ -257,18 +257,18 @@ input {
   position: absolute;
   background: transparent;
   background-image: url(../resources/icons/toolbar/menu.png);
-  width: 50px;
-  height: 50px;
+  width: 13.89vw;
+  height: 13.89vw;
   background-size: 35%;
-  top: -14px;
+  top: -3.89vw;
   background-repeat: no-repeat;
   background-position: center;
-  left: -8px;
+  left: -2.22vw;
 }
 
 .bell-button {
   position: absolute;
-  right: 2px;
+  right: 0.56vw;
   background: transparent;
   width: 100%;
   height: 100%;
@@ -279,14 +279,14 @@ input {
   position: absolute;
   background: transparent;
   background-image: url(../resources/icons/toolbar/bell.png);
-  width: 20px;
-  height: 23px;
+  width: 5.56vw;
+  height: 6.389vw;
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
   opacity: 0.5;
-  right: 10px;
-  top: -1px;
+  right: 2.78vw;
+  top: -0.278vw;
 }
 
 /*FONT FACE*/
@@ -326,9 +326,9 @@ input {
 
 .bank-operations {
   position: absolute;
-  bottom: 158px;
-  left: -3px;
-  height: 200px;
+  bottom: 43.9vw;
+  left: -0.83vw;
+  top: 70.5vw;
   width: 100%;
 }
 
@@ -336,11 +336,11 @@ input {
 .bank-operation-button {
   position: relative;
   background: transparent;
-  height: 100px;
-  width: 100px;
+  height: 27.7vw;
+  width: 27.7vw;
   display: inline-block;
-  margin: 10px 5px 10px 10px;
-  left: 5px;
+  margin: 2.7vw 1.39vw 2.7vw 2.7vw;
+  left: 1.39vw;
 }
 
 .top-operations-buttons {
@@ -349,8 +349,8 @@ input {
 
 .bottom-operations-buttons {
   position: absolute;
-  top: 85px;
-  left: 0px;
+  top: 23.6vw;
+  left: 0;
 }
 
 .bank-operation-icon {
@@ -367,39 +367,40 @@ input {
   bottom: 0;
   color: #ffffff;
   text-align: center;
-  width: 100%;
-  height: 30%;
-  line-height: 30px;
-  left: -3px;
+  width: 27.7vw;
+  height: 8.3vw;
+  line-height: 8.3vw;
+  left: -0.83vw;
+  font-size: 15px;
 }
 
 .operation-pay-icon {
   background-image: url("../resources/icons/bank-operations/payments.png");
-  background-size: 30%;
+  background-size: 8.3vw;
   border-bottom: .1px solid #95E6FD;
 }
 
 .operation-transfer-icon {
   background-image: url("../resources/icons/bank-operations/transfer.png");
-  background-size: 40%;
+  background-size: 11.8vw;
   border-bottom: .1px solid #95E6FD;
 }
 
 .operation-autopay-icon {
   background-image: url(../resources/icons/bank-operations/autopay.png);
-  background-size: 40%;
+  background-size: 11.8vw;
   border-bottom: .1px solid #95E6FD;
-  left: -3px;
+  left: -0.83vw;
 }
 
 .operation-myFinance-icon {
   background-image: url("../resources/icons/bank-operations/myfinance.png");
-  background-size: 40%;
+  background-size: 11.8vw;
 }
 
 .operation-report-icon {
   background-image: url("../resources/icons/bank-operations/reports.png");
-  background-size: 40%;
+  background-size: 11.8vw;
 }
 
 .hide {
@@ -413,26 +414,26 @@ input {
 /*ALL CARD*/
 .common-balance-label {
   position: absolute;
-  top: 42px;
-  font-size: 17px;
-  left: 22px;
+  top: 11.67vw;
+  font-size: 4.72vw;
+  left: 6.11vw;
   color: #9fdbf8;
-  word-spacing: 4px;
+  word-spacing: 1.11vw;
 }
 
 .common-balance {
   position: absolute;
-  top: 15px;
-  left: 19px;
+  top: 4.167vw;
+  left: 5.278vw;
   color: #fffaf9;
-  font-size: 58px;
-  word-spacing: 4px;
+  font-size: 16.11vw;
+  word-spacing: 1.11vw;
 }
 
 .valuta {
   position: absolute;
-  top: 90px;
-  left: 296px;
+  top: 25vw;
+  left: 82.22vw;
   color: #9fdbf8;
 }
 
@@ -440,10 +441,10 @@ input {
 
 .card-carousel {
   position: absolute;
-  height: 170px;
+  height: 47.22vw;
   width: 100%;
   display: inline-block;
-  top: 110px;
+  top: 30.56vw;
   background: transparent;
 }
 
@@ -454,92 +455,91 @@ input {
 }
 
 .card {
-  height: 148px;
-  width: 260px;
+  height: 41.1vw;
+  width: 72.2vw;
   position: absolute;
-  top: 25px;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  border-radius: 7px;
+  top: 6.944vw;
+  -webkit-border-radius: 1.94vw;
+  -moz-border-radius: 1.94vw;
+  border-radius: 1.94vw;
   background-size: cover;
   color: white;
-  -webkit-box-shadow: 0px 61px 40px -65px rgba(0, 0, 0, 1);
-  -moz-box-shadow: 0px 61px 40px -65px rgba(0, 0, 0, 1);
-  box-shadow: 0px 61px 40px -65px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 0 16.94vw 11.11vw -18.05vw rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0 16.94vw 11.11vw -18.05vw rgba(0, 0, 0, 1);
+  box-shadow: 0 16.94vw 11.11vw -18.05vw rgba(0, 0, 0, 1);
 }
 
 .card-bank-name {
   position: absolute;
-  top: 6px;
-  left: 189px;
+  top: 1.6vw;
+  left: 52.5vw;
   background-size: contain;
   background-repeat: no-repeat;
-  font-size: 18px;
-  height: 16px;
-  width: 59px;
+  font-size: 5vw;
+  height: 4.44vw;
+  width: 16.4vw;
 }
 
 .card-bank-name-url {
   position: absolute;
-  width: 120px;
-  height: 45px;
+  width: 33.3vw;
+  height: 12.5vw;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  left: 15px;
+  left: 4.16vw;
 }
 
 .card-salary-title {
   position: absolute;
-  top: 70px;
-  left: 15px;
+  top: 19.4vw;
+  left: 4.16vw;
   color: #a7a7a7;
   background-size: contain;
-  font-size: 13px;
-  height: 10%;
+  font-size: 3.61vw;
 }
 
 .card-balance-currency-container {
   position: absolute;
-  width: 200px;
-  top: 83px;
+  width: 55.5vw;
+  top: 23.05vw;
   display: inline-block;
   margin: 0;
 }
 
 .card-balance {
   position: relative;
-  left: 17px;
+  left: 4.72vw;
   color: #515151;
-  font-size: 26px;
-  width: 115px;
+  font-size: 7.2vw;
+  width: 31.94vw;
   /* background-size: contain; */
   margin: 0;
-  margin-top: -1px;
+  margin-top: -0.27vw;
   float: left;
   padding: 0;
 }
 
 .card-currency {
   position: relative;
-  margin-left: 20px;
+  margin-left: 5.5vw;
   /* margin-right: auto; */
   color: #a7a7a7;
-  top: -3px;
-  font-size: 13px;
+  top: -0.83vw;
+  font-size: 3.61vw;
   background-size: contain;
   /* margin: 0; */
   float: left;
-  width: 30px;
+  width: 8.3vw;
 }
 
 .card-number {
   position: absolute;
-  top: 121px;
+  top: 33.6vw;
   color: #fefefe;
-  width: 192px;
-  height: 20px;
-  font-size: 16px;
+  width: 53.3vw;
+  height: 5.5vw;
+  font-size: 4.4vw;
   text-shadow: white -0.5px -0.5px 0.2px,
   black 0.0px 0.5px 0.1px,
   white -0.5px -0.5px 0.2px,
@@ -550,44 +550,44 @@ input {
   black 0.0px 0.5px 0.2px;
   font-family: Orator;
   color: transparent;
-  left: 13px;
+  left: 3.6vw;
 }
 
 .card-number-part-one {
   position: absolute;
-  left: 0px;
+  left: 0;
   font-weight: bold;
 }
 
 .card-number-part-two {
   position: absolute;
-  left: 152px;
+  left: 42.2vw;
   font-weight: bold;
 }
 
 .number-stars {
   position: absolute;
   margin: 0;
-  left: 47px;
-  top: 1px;
-  letter-spacing: -5px;
-  font-size: 26px;
-  word-spacing: -4px;
+  left: 13.05vw;
+  top: 0.27vw;
+  letter-spacing: -1.38vw;
+  font-size: 7.2vw;
+  word-spacing: -1.1vw;
 }
 
 /*BOTTOM SERVICE BEELINE UCELL UMS*/
 .service-carousel {
   position: absolute;
   width: 100%;
-  height: 130px;
-  bottom: 45px;
+  height: 36.1vw;
+  bottom: 12.5vw;
   background: transparent;
 }
 
 .service-component {
   position: absolute;
-  width: 310px;
-  height: 115px;
+  width: 86.1vw;
+  height: 31.94vw;
   bottom: 0;
   /*background-color: #f7f7f7;*/
   background-color: #fefefe;
@@ -595,72 +595,72 @@ input {
 
 .service-container {
   position: absolute;
-  height: 80px;
+  height: 22.2vw;
   width: 100%;
   bottom: 0;
 }
 
 .service-buttons {
   position: absolute;
-  width: 100px;
-  height: 80px;
-  top: 10px;
+  width: 27.7vw;
+  height: 22.2vw;
+  top: 2.7vw;
   background-repeat: no-repeat;
 }
 
 .horizontal-line {
   position: absolute;
-  height: 25px;
-  width: 1px;
+  height: 6.94vw;
+  width: 0.27vw;
   background-color: #b1b1b1;
 }
 
 .horizontal-line-beeline {
-  left: 82px;
-  top: 17px;
+  left: 22.7vw;
+  top: 4.72vw;
 }
 
 .horizontal-line-ucell {
-  left: 99px;
-  top: 18px;
+  left: 27.5vw;
+  top: 5vw;
 }
 
 .horizontal-line-ums {
-  left: 97px;
-  top: 27px;
+  left: 26.94vw;
+  top: 7.5vw;
 }
 
 .beeline-button {
   background-image: url(../resources/icons/services/beeline.png);
   background-size: 80%;
-  left: 4px;
+  left: 1.11vw;
 }
 
 .ucell-button {
-  left: 84px;
+  left: 23.33vw;
   background-image: url(../resources/icons/services/ucell.png);
   background-size: 52%;
   background-position: top;
 }
 
 .ums-button {
-  left: 183px;
+  left: 50.83vw;
   background-position: center;
   background-image: url(../resources/icons/services/ums.png);
   background-size: 70%;
-  top: 0px;
+  top: 0;
 }
 
 .service-title {
   position: relative;
-  top: 20px;
-  width: 170px;
+  top: 5.55vw;
+  width: 47.2vw;
   margin-left: auto;
   margin-right: auto;
   background: transparent;
   background-size: contain;
   color: #585858;
-  font-size: 17px;
+  font-size: 4.72vw;
 }
 
 .side-menu {
@@ -880,7 +880,7 @@ input {
   float: left;
 }
 
-.my-cards-operation-currency{
+.my-cards-operation-currency {
   position: relative;
   color: #8a8a8a;
   top: 25px;
@@ -890,7 +890,7 @@ input {
   font-size: 15px;
 }
 
-.my-cards-operation-date{
+.my-cards-operation-date {
   position: absolute;
   color: #8a8a8a;
   bottom: 10px;
@@ -1321,11 +1321,11 @@ input {
 
 .footer {
   position: absolute;
-  bottom: 100px;
+  bottom: 27.7vw;
   left: 0;
   right: 0;
-  height: 50px;
-  top: 5px;
+  height: 13.9vw;
+  top: 1.38vw;
   width: 100%;
   border-top: 1px solid rgb(37, 160, 227);
   color: rgb(197, 233, 239);
@@ -1334,13 +1334,13 @@ input {
 
 .footer-icon-tick {
   position: absolute;
-  left: 88px;
+  left: 24.44vw;
   background-size: contain;
   background-image: url(../resources/icons/footer/contacts.png);
   background-repeat: no-repeat;
-  width: 19px;
-  height: 9px;
-  top: 17px;
+  width: 5.27vw;
+  height: 2.5vw;
+  top: 4.72vw;
   transition: 0.8s;
 }
 
@@ -1351,89 +1351,89 @@ input {
   right: 0;
   transition: 0.3s;
   -webkit-transition: 0.3s;
-  height: 150px;
+  height: 41.6vw;
   width: 100%;
-  transform: translate3d(0, 100px, 0);
-  -webkit-transform: translate3d(0, 100px, 0);
-  -ms-transform: translate3d(0, 100px, 0);
+  transform: translate3d(0, 27.7vw, 0);
+  -webkit-transform: translate3d(0, 27.7vw, 0);
+  -ms-transform: translate3d(0, 27.7vw, 0);
 }
 
 .footer-contacts-label {
   position: absolute;
-  font-size: 18px;
-  margin-top: 14px;
+  font-size: 5vw;
+  margin-top: 3.9vw;
   color: white;
-  left: -10px;
+  left: -2.78vw;
 }
 
 .footer-contacts {
   position: absolute;
   width: 100%;
-  height: 120px;
-  bottom: -20px;
+  height: 33.3vw;
+  bottom: -5.55vw;
   background-color: #25a0e3;
 }
 
 .footer-favourite-contacts-container {
   position: relative;
-  width: 335px;
-  height: 80px;
+  width: 94.05vw;
+  height: 22.2vw;
   margin-left: auto;
   margin-right: auto;
   top: 0;
-  left: 10px;
+  left: 2.78vw;
 }
 
 .footer-favourite-contacts-circles {
   position: absolute;
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
+  width: 13.9vw;
+  height: 13.9vw;
+  border-radius: 13.9vw;
   border: none;
   background-color: #7ae4ff;
   top: 0;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  left: 5px;
+  left: 1.39vw;
 }
 
 .footer-contacts-blocks {
   position: absolute;
-  height: 80px;
-  width: 60px;
+  height: 22.2vw;
+  width: 16.67vw;
   text-align: center;
 }
 
 .footer-contacts-block-one {
-  left: -15px;
+  left: -4.167vw;
 }
 
 .footer-contacts-block-two {
-  left: 55px;
+  left: 15.278vw;
 }
 
 .footer-contacts-block-three {
-  left: 125px;
+  left: 34.72vw;
 }
 
 .footer-contacts-block-four {
-  left: 195px;
+  left: 54.167vw;
 }
 
 .footer-contacts-block-five {
-  left: 265px;
+  left: 73.61vw;
 }
 
 .footer-favourite-contacts-label {
   position: relative;
   background-size: contain;
-  font-size: 12px;
+  font-size: 3.33vw;
   margin-left: auto;
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  top: 54px;
+  top: 15vw;
   color: white;
   font-weight: normal;
 }
@@ -1443,6 +1443,6 @@ input {
   background-size: contain;
   margin-left: auto;
   margin-right: auto;
-  width: 107px;
-  height: 50px;
+  width: 29.722vw;
+  height: 13.89vw;
 }

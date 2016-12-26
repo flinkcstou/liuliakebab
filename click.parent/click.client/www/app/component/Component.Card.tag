@@ -1,4 +1,4 @@
-<component-card class="card" style="background-image: url({opts.background}); left:{270*opts.countcard+50}px">
+<component-card class="card" style="background-image: url({opts.background}); left:{75*opts.countcard+13.9}vw">
 
   <div class="card-bank-name-url" style="background-image: url({opts.url})"></div>
   <div class="card-bank-name" style="background-image: url({opts.bankname})"></div>
