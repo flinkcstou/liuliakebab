@@ -22,7 +22,6 @@ window.api.initSocket = function () {
     var method = parsedData.data[0][0].method;
 
     var callBack = me.callBacks[method];
-    me.callBacks[method] = null;
 
     if (parsedData.api_status == 0) {
       callBack.ok(parsedData.data);

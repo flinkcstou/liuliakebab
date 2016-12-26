@@ -68,10 +68,6 @@
       this.cards.style.webkitTransition = '0s';
       event.preventDefault();
       event.stopPropagation();
-      var sum = (event.changedTouches[0].pageX/3.6 + delta);
-      console.log("PAGE X ", event.changedTouches[0].pageX);
-      console.log("SUM asd ", sum);
-      console.log("SUM delta ", delta);
       this.cards.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
       this.cards.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
     }
@@ -113,11 +109,7 @@
           cardsarray.push(card);
           console.log(cardsarray);
           localStorage.setItem("click_client_cards", JSON.stringify(cardsarray));
-
-          count++;
-          localStorage.setItem('click_client_countCard', count);
-          riot.mount("component-card");
-
+          var j = 0;
           window.api.call({
             method: 'get.balance',
             input : {
@@ -132,7 +124,7 @@
             onSuccess: function (result) {
               console.log('CHECKING ', i, getAccountsCards.length)
               console.log('CHECKING ', cardsarray[0].salary, result[1][0].balance)
-              cardsarray[0].salary = result[1][0].balance;
+              cardsarray[j++].salary = result[1][0].balance;
               localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
               riot.update();
             },
@@ -142,6 +134,11 @@
               console.error(data);
             }
           });
+
+          count++;
+          localStorage.setItem('click_client_countCard', count);
+          riot.mount("component-card");
+
         }
     }
     if (localStorage.getItem('click_client_accountInfo'))

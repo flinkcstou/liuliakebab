@@ -7,6 +7,7 @@ html {
   -webkit-touch-callout: none;
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: none;
   text-decoration: none;
   color: inherit;
 }
@@ -602,10 +603,23 @@ input {
 
 .service-buttons {
   position: absolute;
-  width: 27.7vw;
-  height: 22.2vw;
-  top: 2.7vw;
+  /*width: 27.7vw;*/
+  /*height: 22.2vw;*/
+  /*top: 2.7vw;*/
+  width: 100px;
+  height: 80px;
+  top: 10px;
   background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 320px) and (max-width: 360px) {
+  .service-buttons {
+    position: absolute;
+    width: 100px;
+    height: 80px;
+    top: 10px;
+    background-repeat: no-repeat;
+  }
 }
 
 .horizontal-line {

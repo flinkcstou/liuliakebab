@@ -4,9 +4,15 @@
       onDrag="return false" onDrop="return false" autocomplete=off>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
+  <meta id="viewport" name="viewport" >
   <meta name = "format-detection" content = "telephone=no">
 
+  <script>
+    if(screen.width != 360){
+      this.viewport.setAttribute("content", "width=360 initial-scale=1 maximum-scale=1 user-scalable=no");
+    }
+
+  </script>
   <!-- CSS -->
   <link href="css/MainPage.css" rel="stylesheet">
 
@@ -37,6 +43,7 @@
 </div>
 
 <script>
+
   api.init();
   scope = this;
   var startApplication = function () {

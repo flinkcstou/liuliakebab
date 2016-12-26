@@ -19,7 +19,7 @@
   <plugin name="cordova-plugin-contacts"/>
   <plugin name="cordova-plugin-device"/>
   <plugin name="cordova-plugin-keyboard"/>
-  <plugin name="cordova-plugin-crosswalk-webview"/>
+  <plugin name="cordova-plugin-screensize"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>

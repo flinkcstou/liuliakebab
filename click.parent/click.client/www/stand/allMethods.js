@@ -191,6 +191,7 @@ window.fakedSocket.register("get.balance", function (input) {
       ];
     }
   }
+  else
   return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Nevozmozhno poluchit balans zapreshen'}];
 });
 
