@@ -13,8 +13,8 @@
       {phoneNumber.substring(6, phoneNumber.length)}</p>
   </div>
 
-  <div class="registration-keyboard-field keyboard-field" style="top: 180px">
-    <div class="registration-button-help" style="top: 280px">Помощь</div>
+  <div class="registration-keyboard-field keyboard-field" style="top: 360px">
+    <div class="registration-button-help" style="top: 560px">Помощь</div>
     <component-keyboard></component-keyboard>
   </div>
 

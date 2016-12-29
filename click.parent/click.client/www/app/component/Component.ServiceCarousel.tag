@@ -2,7 +2,7 @@
   <div id="containerService" class="service-carousel" ontouchstart="touchStartService()"
        ontouchend="touchEndService()" ontouchmove="touchMoveService()">
     <component-service></component-service>
-    <component-service style="left: 88.89vw"></component-service>
+    <component-service style="left: 640px"></component-service>
   </div>
 
   <script>
@@ -33,8 +33,8 @@
 
     changePosition = function () {
       if (touchEndX < touchStartX) {
-        this.containerService.style.transform = "translate3d(-75vw, 0, 0)";
-        this.containerService.style.webkitTransform = "translate3d(-75vw, 0, 0)";
+        this.containerService.style.transform = "translate3d(-540px, 0, 0)";
+        this.containerService.style.webkitTransform = "translate3d(-540px, 0, 0)";
         this.containerService.style.transition = '0.3s';
         this.containerService.style.webkitTransition = '0.3s';
       }

@@ -82,8 +82,8 @@
       event.stopPropagation();
       if (!check) {
         this.iconTickId.style.transform = "rotate3d(1, 0, 0, 180deg)";
-        this.contactsContainer.style.webkitTransform = "translate3d(0, -4.167vw, 0)";
-        this.contactsContainer.style.Transform = "translate3d(0, -4.167vw, 0)";
+        this.contactsContainer.style.webkitTransform = "translate3d(0, -30px, 0)";
+        this.contactsContainer.style.Transform = "translate3d(0, -30px, 0)";
         check = true;
         riot.update();
         return;
@@ -91,19 +91,19 @@
 
       if (check) {
         this.iconTickId.style.transform = "rotate3d(0, 0, 0, 0deg)";
-        this.contactsContainer.style.webkitTransform = "translate3d(0, 27.78vw, 0)";
-        this.contactsContainer.style.Transform = "translate3d(0, 27.78vw, 0)";
+        this.contactsContainer.style.webkitTransform = "translate3d(0, 200px, 0)";
+        this.contactsContainer.style.Transform = "translate3d(0, 200px, 0)";
         check = false;
         return;
       }
     }
 
 
-//    var arrayOfPhotosContacts = [];
-//    var arrayWithoutPhotosContacts = [];
-//    var arrayOfConnectedContacts = [];
-//
-//
+    var arrayOfPhotosContacts = [];
+    var arrayWithoutPhotosContacts = [];
+    var arrayOfConnectedContacts = [];
+
+
 //    findContacts = function () {
 //      var options = new ContactFindOptions();
 //      options.filter = "";

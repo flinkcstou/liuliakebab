@@ -22,8 +22,6 @@
   <div class="authorization-button-offline">Офлайн режим</div>
 
 
-  <input id="getBalanceId" class="hide" type="button" value="Получение баланса" ontouchend="getBalance()">
-
 
   <script>
 
@@ -201,10 +199,6 @@
           }
         })
       }
-    }
-
-    getBalance = function (e) {
-
     }
 
     //      <div class="button-enter authorization-button-enter" ontouchend="enter()">

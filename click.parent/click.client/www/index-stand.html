@@ -4,18 +4,11 @@
       onDrag="return false" onDrop="return false" autocomplete=off>
 <head>
   <meta charset="UTF-8">
-  <meta id="viewport" name="viewport" >
-  <meta name = "format-detection" content = "telephone=no">
-
-  <script>
-    if(screen.width != 360){
-      this.viewport.setAttribute("content", "width=360 initial-scale=1 maximum-scale=1 user-scalable=no");
-    }
-
-  </script>
+  <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
   <!-- CSS -->
-  <link href="css/MainPage.css" rel="stylesheet">
-
+  <link id="mainPageCss" href="css/MainPage.css" rel="stylesheet">
+  <!--<script src="js/cssGenerator/Css.Generator.js"></script>-->
   <!-- JS COMMON -->
   <!-- @include(cordova.htmlinc) -->
   <script src="lib/js/riot.js"></script>
@@ -83,7 +76,7 @@
     if (history.arrayOfHistory.length != 0) {
       history.arrayOfHistory.pop();
       if (history.arrayOfHistory.length != 0) {
-        console.log('THIS IS riotTags div ',this.riotTags)
+        console.log('THIS IS riotTags div ', this.riotTags)
         console.log("JSON ", JSON.stringify(history.arrayOfHistory));
         console.log('LAST ELEMENT ', history.arrayOfHistory[history.arrayOfHistory.length - 1]);
         console.log('LAST ELEMENT in RIOT TAG ', "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1] + ">");
@@ -92,7 +85,6 @@
       }
     }
   }
-
 
   //MENU FUNCTIONS FOR ALL PAGES
   //  var touchStartX, touchEndX;

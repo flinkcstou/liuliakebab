@@ -1,3 +1,1466 @@
+/*body {*/
+/*margin: 0;*/
+/*}*/
+
+/*html {*/
+/*-webkit-user-select: none;*/
+/*-webkit-touch-callout: none;*/
+/*-webkit-user-drag: none;*/
+/*-webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/
+/*-webkit-text-size-adjust: none;*/
+/*text-decoration: none;*/
+/*color: inherit;*/
+/*}*/
+
+/*#htmlId {*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*!*background-image: url("../resources/draft/main_without_bar.png");*!*/
+/*!*opacity: 0.4;*!*/
+/*background-size: contain;*/
+/*background-repeat: no-repeat;*/
+/*background-image: -moz-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);*/
+/*background-image: -webkit-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);*/
+/*background-image: -ms-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);*/
+/*font-family: SFUIDisplay-Light;*/
+/*margin: 0;*/
+/*overflow: hidden;*/
+/*}*/
+
+/*input {*/
+/*font-family: Neuron;*/
+/*font-size: 24px;*/
+/*}*/
+
+/*.view-registration-device {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*overflow: hidden;*/
+/*background-image: url("../resources/icons/background/transparent.png");*/
+/*background-size: contain;*/
+/*background-repeat: no-repeat;*/
+/*}*/
+
+/*.view-registration-client {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*overflow: hidden;*/
+/*background-image: url("../resources/icons/background/transparent.png");*/
+/*background-size: contain;*/
+/*background-repeat: no-repeat;*/
+/*}*/
+
+/*.view-authorization {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*overflow: hidden;*/
+/*background-image: url("../resources/icons/background/transparent.png");*/
+/*background-size: contain;*/
+/*background-repeat: no-repeat;*/
+/*}*/
+
+/*.view-sms {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*overflow: hidden;*/
+/*background-image: url("../resources/icons/background/transparent.png");*/
+/*background-size: contain;*/
+/*background-repeat: no-repeat;*/
+/*}*/
+
+/*.view-main-page {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*overflow: hidden;*/
+/*}*/
+
+/*.view-my-cards {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*overflow: hidden;*/
+/*}*/
+
+/*!*VIEW REGISTRATION CLIENT*!*/
+/*.registration-client-card-field {*/
+/*position: relative;*/
+/*top: 60px;*/
+/*width: 300px;*/
+/*height: 160px;*/
+/*border: 2px solid #2f2b3d;*/
+/*background-color: #2f2b3d;*/
+/*margin-left: auto;*/
+/*margin-right: auto;*/
+/*border-radius: 5px;*/
+/*}*/
+
+/*.registration-client-text-field {*/
+/*position: relative;*/
+/*margin-left: auto;*/
+/*margin-right: auto;*/
+/*margin-bottom: 10px;*/
+/*background-size: contain;*/
+/*text-align: center;*/
+/*color: #4bd5ff;*/
+/*font-size: 15px;*/
+/*top: 60px;*/
+/*}*/
+
+/*.registration-client-card-number {*/
+/*position: absolute;*/
+/*padding: 0;*/
+/*color: white;*/
+/*background-color: #1b1729;*/
+/*border: none;*/
+/*width: 260px;*/
+/*height: 36px;*/
+/*left: 20px;*/
+/*top: 40px;*/
+/*}*/
+
+/*.registration-client-card-number-box {*/
+/*position: absolute;*/
+/*width: 45px;*/
+/*height: 20px;*/
+/*top: 5px;*/
+/*background-color: transparent;*/
+/*border: none;*/
+/*color: white;*/
+/*}*/
+
+/*.registration-client-card-number-box-one {*/
+/*left: 15px;*/
+/*}*/
+
+/*.registration-client-card-number-box-two {*/
+/*left: 75px;*/
+/*}*/
+
+/*.registration-client-card-number-box-three {*/
+/*right: 75px;*/
+/*}*/
+
+/*.registration-client-card-number-box-four {*/
+/*right: 15px;*/
+/*}*/
+
+/*.registration-client-card-text {*/
+/*position: absolute;*/
+/*margin: 0;*/
+/*background-size: contain;*/
+/*color: #757389;*/
+/*font-size: 15px;*/
+/*}*/
+
+/*.registration-client-card-date {*/
+/*position: absolute;*/
+/*padding: 0;*/
+/*color: white;*/
+/*background-color: #1b1729;*/
+/*border: none;*/
+/*width: 80px;*/
+/*height: 35px;*/
+/*left: 20px;*/
+/*top: 100px;*/
+/*}*/
+
+/*.registration-client-card-date-box {*/
+/*position: absolute;*/
+/*width: 60px;*/
+/*left: 10px;*/
+/*height: 20px;*/
+/*top: 6px;*/
+/*background-color: transparent;*/
+/*border: none;*/
+/*color: white;*/
+/*}*/
+
+/*.registration-client-card-pin {*/
+/*position: absolute;*/
+/*padding: 0;*/
+/*color: white;*/
+/*background-color: #1b1729;*/
+/*border: none;*/
+/*width: 80px;*/
+/*height: 35px;*/
+/*left: 150px;*/
+/*top: 100px;*/
+/*}*/
+
+/*.registration-client-card-date-pin-box {*/
+/*position: absolute;*/
+/*width: 71px;*/
+/*left: 2px;*/
+/*height: 20px;*/
+/*top: 9px;*/
+/*background-color: transparent;*/
+/*border: none;*/
+/*color: white;*/
+/*}*/
+
+/*!*ENTER BUTTON REGISTRATION AND AUTHORIZATION*!*/
+/*.button-enter {*/
+/*position: relative;*/
+/*width: 220px;*/
+/*height: 50px;*/
+/*background-color: #01cfff;*/
+/*margin-right: auto;*/
+/*border-radius: 40px;*/
+/*margin-left: auto;*/
+/*}*/
+
+/*.button-enter-label {*/
+/*position: relative;*/
+/*top: 15px;*/
+/*width: 60px;*/
+/*height: 20px;*/
+/*font-size: 22px;*/
+/*margin: auto;*/
+/*color: white;*/
+/*}*/
+
+/*!*KEYBOARD SETTINGS FOR REGISTRATION AND AUTHORIZATION*!*/
+
+/*.keyboard-field {*/
+/*position: relative;*/
+/*width: 250px;*/
+/*height: 250px;*/
+/*margin-left: auto;*/
+/*margin-right: auto;*/
+/*}*/
+
+/*!*TOOLBAR*!*/
+/*.toolbar {*/
+/*position: absolute;*/
+/*top: 2.78vw;*/
+/*right: 3.61vw;*/
+/*left: 3.61vw;*/
+/*height: 9.72vw;*/
+/*background: transparent;*/
+/*border-bottom: 0.56vw solid #a3deee;*/
+/*}*/
+
+/*.menu-button {*/
+/*position: absolute;*/
+/*left: 0.56vw;*/
+/*background: transparent;*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*background-position: center;*/
+/*}*/
+
+/*.menu-icon {*/
+/*position: absolute;*/
+/*background: transparent;*/
+/*background-image: url(../resources/icons/toolbar/menu.png);*/
+/*width: 13.89vw;*/
+/*height: 13.89vw;*/
+/*background-size: 35%;*/
+/*top: -3.89vw;*/
+/*background-repeat: no-repeat;*/
+/*background-position: center;*/
+/*left: -2.22vw;*/
+/*}*/
+
+/*.bell-button {*/
+/*position: absolute;*/
+/*right: 0.56vw;*/
+/*background: transparent;*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*background-position: center;*/
+/*}*/
+
+/*.bell-icon {*/
+/*position: absolute;*/
+/*background: transparent;*/
+/*background-image: url(../resources/icons/toolbar/bell.png);*/
+/*width: 5.56vw;*/
+/*height: 6.389vw;*/
+/*background-size: 100%;*/
+/*background-repeat: no-repeat;*/
+/*background-position: center;*/
+/*opacity: 0.5;*/
+/*right: 2.78vw;*/
+/*top: -0.278vw;*/
+/*}*/
+
+/*!*FONT FACE*!*/
+/*@font-face {*/
+/*font-family: "Neuron";*/
+/*src: url("../resources/font/Neuron/Neuron.otf");*/
+/*format: ("opentype");*/
+/*font-weight: normal;*/
+/*font-style: normal;*/
+/*}*/
+
+/*@font-face {*/
+/*font-family: "Orator";*/
+/*src: url("../resources/font/Orator/OratorStd.otf");*/
+/*format: ("opentype");*/
+/*font-weight: normal;*/
+/*font-style: normal;*/
+/*}*/
+
+/*@font-face {*/
+/*font-family: "Orator-slanted";*/
+/*src: url("../resources/font/Orator/OratorStd-Slanted.otf");*/
+/*format: ("opentype");*/
+/*font-weight: normal;*/
+/*font-style: normal;*/
+/*}*/
+
+/*@font-face {*/
+/*font-family: "SFUIDisplay-Light";*/
+/*src: url("../resources/font/SFUIDisplay/SFUIDisplay-Light.otf");*/
+/*format: ("opentype");*/
+/*font-weight: normal;*/
+/*font-style: normal;*/
+/*}*/
+
+/*!*BANK-OPERATIONS*!*/
+
+/*.bank-operations {*/
+/*position: absolute;*/
+/*bottom: 43.9vw;*/
+/*left: -0.83vw;*/
+/*top: 70.5vw;*/
+/*width: 100%;*/
+/*}*/
+
+/*!*PAY-BUTTON*!*/
+/*.bank-operation-button {*/
+/*position: relative;*/
+/*background: transparent;*/
+/*height: 27.7vw;*/
+/*width: 27.7vw;*/
+/*display: inline-block;*/
+/*margin: 2.7vw 1.39vw 2.7vw 2.7vw;*/
+/*left: 1.39vw;*/
+/*}*/
+
+/*.top-operations-buttons {*/
+
+/*}*/
+
+/*.bottom-operations-buttons {*/
+/*position: absolute;*/
+/*top: 23.6vw;*/
+/*left: 0;*/
+/*}*/
+
+/*.bank-operation-icon {*/
+/*position: absolute;*/
+/*top: 0;*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*background-repeat: no-repeat;*/
+/*background-position: center;*/
+/*}*/
+
+/*.bank-operation-label {*/
+/*position: absolute;*/
+/*bottom: 0;*/
+/*color: #ffffff;*/
+/*text-align: center;*/
+/*width: 27.7vw;*/
+/*height: 8.3vw;*/
+/*line-height: 8.3vw;*/
+/*left: -0.83vw;*/
+/*font-size: 15px;*/
+/*}*/
+
+/*.operation-pay-icon {*/
+/*background-image: url("../resources/icons/bank-operations/payments.png");*/
+/*background-size: 8.3vw;*/
+/*border-bottom: .1px solid #95E6FD;*/
+/*}*/
+
+/*.operation-transfer-icon {*/
+/*background-image: url("../resources/icons/bank-operations/transfer.png");*/
+/*background-size: 11.8vw;*/
+/*border-bottom: .1px solid #95E6FD;*/
+/*}*/
+
+/*.operation-autopay-icon {*/
+/*background-image: url(../resources/icons/bank-operations/autopay.png);*/
+/*background-size: 11.8vw;*/
+/*border-bottom: .1px solid #95E6FD;*/
+/*left: -0.83vw;*/
+/*}*/
+
+/*.operation-myFinance-icon {*/
+/*background-image: url("../resources/icons/bank-operations/myfinance.png");*/
+/*background-size: 11.8vw;*/
+/*}*/
+
+/*.operation-report-icon {*/
+/*background-image: url("../resources/icons/bank-operations/reports.png");*/
+/*background-size: 11.8vw;*/
+/*}*/
+
+/*.hide {*/
+/*display: none;*/
+/*}*/
+
+/*.show {*/
+/*display: block;*/
+/*}*/
+
+/*!*ALL CARD*!*/
+/*.common-balance-label {*/
+/*position: absolute;*/
+/*top: 11.67vw;*/
+/*font-size: 4.72vw;*/
+/*left: 6.11vw;*/
+/*color: #9fdbf8;*/
+/*word-spacing: 1.11vw;*/
+/*}*/
+
+/*.common-balance {*/
+/*position: absolute;*/
+/*top: 4.167vw;*/
+/*left: 5.278vw;*/
+/*color: #fffaf9;*/
+/*font-size: 16.11vw;*/
+/*word-spacing: 1.11vw;*/
+/*}*/
+
+/*.valuta {*/
+/*position: absolute;*/
+/*top: 25vw;*/
+/*left: 82.22vw;*/
+/*color: #9fdbf8;*/
+/*}*/
+
+/*!*CAROUSEL*!*/
+
+/*.card-carousel {*/
+/*position: absolute;*/
+/*height: 47.22vw;*/
+/*width: 100%;*/
+/*display: inline-block;*/
+/*top: 30.56vw;*/
+/*background: transparent;*/
+/*}*/
+
+/*.cards {*/
+/*position: relative;*/
+/*-webkit-animation: mymove 5s infinite;*/
+/*animation: mymove 5s infinite;*/
+/*}*/
+
+/*.card {*/
+/*height: 41.1vw;*/
+/*width: 72.2vw;*/
+/*position: absolute;*/
+/*top: 6.944vw;*/
+/*-webkit-border-radius: 1.94vw;*/
+/*-moz-border-radius: 1.94vw;*/
+/*border-radius: 1.94vw;*/
+/*background-size: cover;*/
+/*color: white;*/
+/*-webkit-box-shadow: 0 16.94vw 11.11vw -18.05vw rgba(0, 0, 0, 1);*/
+/*-moz-box-shadow: 0 16.94vw 11.11vw -18.05vw rgba(0, 0, 0, 1);*/
+/*box-shadow: 0 16.94vw 11.11vw -18.05vw rgba(0, 0, 0, 1);*/
+/*}*/
+
+/*.card-bank-name {*/
+/*position: absolute;*/
+/*top: 1.6vw;*/
+/*left: 52.5vw;*/
+/*background-size: contain;*/
+/*background-repeat: no-repeat;*/
+/*font-size: 5vw;*/
+/*height: 4.44vw;*/
+/*width: 16.4vw;*/
+/*}*/
+
+/*.card-bank-name-url {*/
+/*position: absolute;*/
+/*width: 33.3vw;*/
+/*height: 12.5vw;*/
+/*background-size: contain;*/
+/*background-repeat: no-repeat;*/
+/*background-position: center;*/
+/*left: 4.16vw;*/
+/*}*/
+
+/*.card-salary-title {*/
+/*position: absolute;*/
+/*top: 19.4vw;*/
+/*left: 4.16vw;*/
+/*color: #a7a7a7;*/
+/*background-size: contain;*/
+/*font-size: 3.61vw;*/
+/*}*/
+
+/*.card-balance-currency-container {*/
+/*position: absolute;*/
+/*width: 55.5vw;*/
+/*top: 23.05vw;*/
+/*display: inline-block;*/
+/*margin: 0;*/
+/*}*/
+
+/*.card-balance {*/
+/*position: relative;*/
+/*left: 4.72vw;*/
+/*color: #515151;*/
+/*font-size: 7.2vw;*/
+/*width: 31.94vw;*/
+/*!* background-size: contain; *!*/
+/*margin: 0;*/
+/*margin-top: -0.27vw;*/
+/*float: left;*/
+/*padding: 0;*/
+/*}*/
+
+/*.card-currency {*/
+/*position: relative;*/
+/*margin-left: 5.5vw;*/
+/*!* margin-right: auto; *!*/
+/*color: #a7a7a7;*/
+/*top: -0.83vw;*/
+/*font-size: 3.61vw;*/
+/*background-size: contain;*/
+/*!* margin: 0; *!*/
+/*float: left;*/
+/*width: 8.3vw;*/
+/*}*/
+
+/*.card-number {*/
+/*position: absolute;*/
+/*top: 33.6vw;*/
+/*color: #fefefe;*/
+/*width: 53.3vw;*/
+/*height: 5.5vw;*/
+/*font-size: 4.4vw;*/
+/*text-shadow: white -0.5px -0.5px 0.2px,*/
+/*black 0.0px 0.5px 0.1px,*/
+/*white -0.5px -0.5px 0.2px,*/
+/*black 0.0px 0.5px 0.2px;*/
+/*-webkit-text-shadow: white -0.5px -0.5px 0.2px,*/
+/*black 0.0px 0.5px 0.1px,*/
+/*white -0.5px -0.5px 0.2px,*/
+/*black 0.0px 0.5px 0.2px;*/
+/*font-family: Orator;*/
+/*color: transparent;*/
+/*left: 3.6vw;*/
+/*}*/
+
+/*.card-number-part-one {*/
+/*position: absolute;*/
+/*left: 0;*/
+/*font-weight: bold;*/
+/*}*/
+
+/*.card-number-part-two {*/
+/*position: absolute;*/
+/*left: 42.2vw;*/
+/*font-weight: bold;*/
+/*}*/
+
+/*.number-stars {*/
+/*position: absolute;*/
+/*margin: 0;*/
+/*left: 13.05vw;*/
+/*top: 0.27vw;*/
+/*letter-spacing: -1.38vw;*/
+/*font-size: 7.2vw;*/
+/*word-spacing: -1.1vw;*/
+/*}*/
+
+/*!*BOTTOM SERVICE BEELINE UCELL UMS*!*/
+/*.service-carousel {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 36.1vw;*/
+/*bottom: 12.5vw;*/
+/*background: transparent;*/
+/*}*/
+
+/*.service-component {*/
+/*position: absolute;*/
+/*width: 86.1vw;*/
+/*height: 31.94vw;*/
+/*bottom: 0;*/
+/*!*background-color: #f7f7f7;*!*/
+/*background-color: #fefefe;*/
+/*}*/
+
+/*.service-container {*/
+/*position: absolute;*/
+/*height: 22.2vw;*/
+/*width: 100%;*/
+/*bottom: 0;*/
+/*}*/
+
+/*.service-buttons {*/
+/*position: absolute;*/
+/*!*width: 27.7vw;*!*/
+/*!*height: 22.2vw;*!*/
+/*!*top: 2.7vw;*!*/
+/*width: 100px;*/
+/*height: 80px;*/
+/*top: 10px;*/
+/*background-repeat: no-repeat;*/
+/*}*/
+
+/*@media screen and (min-width: 320px) and (max-width: 360px) {*/
+/*.service-buttons {*/
+/*position: absolute;*/
+/*width: 100px;*/
+/*height: 80px;*/
+/*top: 10px;*/
+/*background-repeat: no-repeat;*/
+/*}*/
+/*}*/
+
+/*.horizontal-line {*/
+/*position: absolute;*/
+/*height: 6.94vw;*/
+/*width: 0.27vw;*/
+/*background-color: #b1b1b1;*/
+/*}*/
+
+/*.horizontal-line-beeline {*/
+/*left: 22.7vw;*/
+/*top: 4.72vw;*/
+/*}*/
+
+/*.horizontal-line-ucell {*/
+/*left: 27.5vw;*/
+/*top: 5vw;*/
+/*}*/
+
+/*.horizontal-line-ums {*/
+/*left: 26.94vw;*/
+/*top: 7.5vw;*/
+/*}*/
+
+/*.beeline-button {*/
+/*background-image: url(../resources/icons/services/beeline.png);*/
+/*background-size: 80%;*/
+/*left: 1.11vw;*/
+/*}*/
+
+/*.ucell-button {*/
+/*left: 23.33vw;*/
+/*background-image: url(../resources/icons/services/ucell.png);*/
+/*background-size: 52%;*/
+/*background-position: top;*/
+/*}*/
+
+/*.ums-button {*/
+/*left: 50.83vw;*/
+/*background-position: center;*/
+/*background-image: url(../resources/icons/services/ums.png);*/
+/*background-size: 70%;*/
+/*top: 0;*/
+/*}*/
+
+/*.service-title {*/
+/*position: relative;*/
+/*top: 5.55vw;*/
+/*width: 47.2vw;*/
+/*margin-left: auto;*/
+/*margin-right: auto;*/
+/*background: transparent;*/
+/*background-size: contain;*/
+/*color: #585858;*/
+/*font-size: 4.72vw;*/
+/*}*/
+
+/*.side-menu {*/
+/*position: fixed;*/
+/*height: 100%;*/
+/*width: 250px;*/
+/*overflow: hidden;*/
+/*transform: translate3d(-100%, 0, 0);*/
+/*-webkit-transform: translate3d(-100%, 0, 0);*/
+/*-ms-transform: translate3d(-100%, 0, 0);*/
+/*background-color: #0485e5;*/
+/*transition: 0.5s;*/
+/*-webkit-transition: 0.5s;*/
+/*z-index: 999999;*/
+/*top: 0;*/
+/*}*/
+
+/*.side-menu-back-page {*/
+/*position: fixed;*/
+/*height: 100%;*/
+/*width: 100%;*/
+/*overflow: hidden;*/
+/*transform: translate3d(0, 0, 0);*/
+/*-webkit-transform: translate3d(0, 0, 0);*/
+/*-ms-transform: translate3d(0, 0, 0);*/
+/*background-color: rgba(0, 0, 0, 0.6);*/
+/*transition: 0.5s;*/
+/*-webkit-transition: 0.5s;*/
+/*opacity: 0;*/
+/*}*/
+
+/*.page-title {*/
+/*position: absolute;*/
+/*top: 10px;*/
+/*right: 15px;*/
+/*left: 15px;*/
+/*height: 50px;*/
+/*background: transparent;*/
+/*border-bottom: 3px solid rgb(149, 230, 253);*/
+/*}*/
+
+/*.name-title {*/
+/*position: absolute;*/
+/*background-size: contain;*/
+/*font-size: 23px;*/
+/*left: 40px;*/
+/*top: 15px;*/
+/*margin: 0;*/
+/*color: #fffaf9;*/
+/*}*/
+
+/*.back-button {*/
+/*position: absolute;*/
+/*width: 60px;*/
+/*height: 50px;*/
+/*background-image: url("../resources/icons/back/back.png");*/
+/*background-repeat: no-repeat;*/
+/*-webkit-background-size: 20%;*/
+/*background-position-y: center;*/
+/*background-position-x: 10px;*/
+/*background-size: 20%;*/
+/*left: 0;*/
+/*}*/
+
+/*.right-button {*/
+/*position: absolute;*/
+/*width: 20px;*/
+/*height: 20px;*/
+/*right: 0;*/
+/*}*/
+
+/*!*MY CARD PAGE*!*/
+
+/*.my-cards-carousel {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*top: -65px;*/
+/*}*/
+
+/*!*MY CARDS BUTTON*!*/
+/*.my-cards-button-container {*/
+/*position: absolute;*/
+/*top: 250px;*/
+/*left: 10px;*/
+/*right: 0;*/
+/*overflow: hidden;*/
+/*height: 150px;*/
+/*background: transparent;*/
+/*}*/
+
+/*.my-cards-button-field {*/
+/*position: absolute;*/
+/*width: 400px;*/
+/*height: 50px;*/
+/*}*/
+
+/*.my-cards-button-field-transfer {*/
+/*top: 0;*/
+/*}*/
+
+/*.my-cards-button-field-payment {*/
+/*top: 50px;*/
+/*}*/
+
+/*.my-cards-button-field-report {*/
+/*top: 100px;*/
+/*}*/
+
+/*.my-cards-button-icon {*/
+/*position: absolute;*/
+/*width: 80px;*/
+/*height: 50px;*/
+/*background: transparent;*/
+/*background-repeat: no-repeat;*/
+/*opacity: 0.7;*/
+/*}*/
+
+/*.my-cards-button-icon-transfer {*/
+/*background-image: url("../resources/icons/bank-operations/transfer.png");*/
+/*background-size: 35%;*/
+/*background-position: center;*/
+/*}*/
+
+/*.my-cards-button-icon-payment {*/
+/*background-image: url("../resources/icons/bank-operations/payments.png");*/
+/*background-size: 25%;*/
+/*background-position: center;*/
+/*}*/
+
+/*.my-cards-button-icon-report {*/
+/*background-image: url("../resources/icons/bank-operations/reports.png");*/
+/*background-size: 35%;*/
+/*background-position: center;*/
+/*}*/
+
+/*.my-cards-button-label {*/
+/*position: absolute;*/
+/*height: 70%;*/
+/*width: 80%;*/
+/*left: 20%;*/
+/*font-size: 20px;*/
+/*color: white;*/
+/*top: 15px;*/
+/*border-bottom: 1px solid #95e6fd;*/
+/*}*/
+
+/*.my-cards-button-block-card {*/
+/*position: absolute;*/
+/*height: 60px;*/
+/*width: 100%;*/
+/*background-color: #eb604d;*/
+/*top: 400px;*/
+/*}*/
+
+/*.my-cards-button-block-card-label {*/
+/*position: absolute;*/
+/*background-size: contain;*/
+/*left: 90px;*/
+/*font-size: 20px;*/
+/*color: white;*/
+/*top: 20px;*/
+/*}*/
+
+/*.my-cards-last-operations-container {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*top: 40px;*/
+/*background-color: white;*/
+/*}*/
+
+/*.my-cards-last-operations {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*top: 460px;*/
+/*overflow: auto;*/
+/*background-color: #ffffff;*/
+/*bottom: 0;*/
+/*}*/
+
+/*.my-cards-last-operations-container-label {*/
+/*position: absolute;*/
+/*top: 0;*/
+/*height: 40px;*/
+/*width: 100%;*/
+/*background-color: #f7f7f7;*/
+/*background-size: contain;*/
+/*font-size: 20px;*/
+/*color: #8a8a8a;*/
+/*}*/
+
+/*.my-cards-last-operations-label {*/
+/*position: absolute;*/
+/*margin: 0;*/
+/*left: 30px;*/
+/*top: 13px;*/
+/*}*/
+
+/*.my-cards-last-operations-info {*/
+/*position: absolute;*/
+/*top: 40px;*/
+/*width: 100%;*/
+/*height: 80px;*/
+/*border-bottom: 1px solid #dedfe0;*/
+/*overflow: hidden;*/
+/*}*/
+
+/*.my-cards-operation-amount {*/
+/*position: relative;*/
+/*color: #EB604D;*/
+
+/*background-size: contain;*/
+/*font-size: 30px;*/
+/*font-weight: bold;*/
+/*height: 30px;*/
+/*top: 10px;*/
+/*left: 30px;*/
+/*float: left;*/
+/*}*/
+
+/*.my-cards-operation-currency {*/
+/*position: relative;*/
+/*color: #8a8a8a;*/
+/*top: 25px;*/
+/*background-size: contain;*/
+/*float: left;*/
+/*left: 35px;*/
+/*font-size: 15px;*/
+/*}*/
+
+/*.my-cards-operation-date {*/
+/*position: absolute;*/
+/*color: #8a8a8a;*/
+/*bottom: 10px;*/
+/*left: 35px;*/
+/*font-size: 15px;*/
+/*}*/
+
+/*!*AUTHORIZATION VIEW*!*/
+
+/*.authorization-pin-container {*/
+/*position: relative;*/
+/*width: 160px;*/
+/*margin-right: auto;*/
+/*margin-left: auto;*/
+/*height: 50px;*/
+/*top: 120px;*/
+/*}*/
+
+/*.authorization-pin-field {*/
+/*position: relative;*/
+/*top: 15px;*/
+/*height: 20px;*/
+/*width: 160px;*/
+/*margin-right: auto;*/
+/*margin-left: auto;*/
+/*}*/
+
+/*.authorization-pin-circles {*/
+/*position: absolute;*/
+/*width: 17px;*/
+/*height: 17px;*/
+/*border-radius: 20px;*/
+/*border: 2px solid #01cfff;*/
+/*}*/
+
+/*.authorization-pin-one {*/
+
+/*}*/
+
+/*.authorization-pin-two {*/
+/*left: 35px;*/
+/*}*/
+
+/*.authorization-pin-three {*/
+/*left: 70px;*/
+/*}*/
+
+/*.authorization-pin-four {*/
+/*left: 105px;*/
+/*}*/
+
+/*.authorization-pin-five {*/
+/*left: 140px;*/
+/*}*/
+
+/*.authorization-keyboard-field {*/
+/*top: 250px;*/
+/*}*/
+
+/*.authorization-button-enter {*/
+/*top: 120px;*/
+/*}*/
+
+/*.authorization-buttons-container {*/
+/*position: relative;*/
+/*width: 225px;*/
+/*top: -105px;*/
+/*margin-left: auto;*/
+/*margin-right: auto;*/
+/*}*/
+
+/*.authorization-button-forget-pin {*/
+/*position: absolute;*/
+/*font-size: 17px;*/
+/*left: 0;*/
+/*top: 40px;*/
+/*background-size: contain;*/
+/*color: #05eeff;*/
+/*border-bottom: 1px solid #05eeff;*/
+/*}*/
+
+/*.authorization-button-registration {*/
+/*position: absolute;*/
+/*font-size: 17px;*/
+/*background-size: contain;*/
+/*color: white;*/
+/*right: 0;*/
+/*top: 40px;*/
+/*border-bottom: 1px solid white;*/
+/*}*/
+
+/*.authorization-button-offline {*/
+/*position: relative;*/
+/*font-size: 17px;*/
+/*width: 110px;*/
+/*background-size: contain;*/
+/*color: white;*/
+/*border-bottom: 1px solid white;*/
+/*text-align: center;*/
+/*bottom: -265px;*/
+/*margin-left: auto;*/
+/*margin-right: auto;*/
+/*}*/
+
+/*.authorization-enter-pin-label {*/
+/*position: relative;*/
+/*top: 120px;*/
+/*margin-left: auto;*/
+/*margin-right: auto;*/
+/*background-size: contain;*/
+/*width: 115px;*/
+/*color: white;*/
+/*}*/
+
+/*!*COMPONENT KEYBOARD*!*/
+/*.keyboard-container {*/
+/*position: absolute;*/
+/*width: 250px;*/
+/*height: 200px;*/
+/*}*/
+
+/*.keyboard-field-one {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 60px;*/
+/*}*/
+
+/*.keyboard-field-two {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 60px;*/
+/*top: 60px;*/
+/*}*/
+
+/*.keyboard-field-three {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 60px;*/
+/*top: 120px;*/
+/*}*/
+
+/*.keyboard-field-four {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 60px;*/
+/*top: 180px;*/
+/*}*/
+
+/*.keyboard-buttons {*/
+/*position: absolute;*/
+/*width: 70px;*/
+/*height: 50px;*/
+/*top: 8px;*/
+/*color: white;*/
+/*font-size: 35px;*/
+/*text-align: center;*/
+/*}*/
+
+/*.keyboard-buttons-label {*/
+/*position: absolute;*/
+/*left: 27px;*/
+/*top: 8px;*/
+/*margin: 0;*/
+/*}*/
+
+/*.keyboard-buttons:active {*/
+/*background: radial-gradient(rgba(255, 255, 255, 0.23), rgba(255, 255, 255, 0.04), transparent);*/
+/*border-radius: 40px;*/
+/*}*/
+
+/*.keyboard-button-one {*/
+/*left: 0;*/
+/*}*/
+
+/*.keyboard-button-two {*/
+/*left: 90px;*/
+/*}*/
+
+/*.keyboard-button-three {*/
+/*right: 0;*/
+/*}*/
+
+/*.keyboard-button-four {*/
+/*left: 0;*/
+/*}*/
+
+/*.keyboard-button-five {*/
+/*left: 90px;*/
+/*}*/
+
+/*.keyboard-button-six {*/
+/*right: 0;*/
+/*}*/
+
+/*.keyboard-button-seven {*/
+/*left: 0;*/
+/*}*/
+
+/*.keyboard-button-eight {*/
+/*left: 90px;*/
+/*}*/
+
+/*.keyboard-button-nine {*/
+/*right: 0;*/
+/*}*/
+
+/*.keyboard-space {*/
+/*left: 0;*/
+/*}*/
+
+/*.keyboard-button-zero {*/
+/*left: 90px;*/
+/*}*/
+
+/*.keyboard-button-x {*/
+/*background-size: 38px;*/
+/*background-image: url("../resources/icons/keyboard/backspace.png");*/
+/*background-repeat: no-repeat;*/
+/*background-position-x: 10px;*/
+/*background-position-y: center;*/
+/*right: 0;*/
+/*}*/
+
+/*.keyboard-button-enter {*/
+/*position: absolute;*/
+/*}*/
+
+/*!*REGISTRATION VIEW*!*/
+
+/*.registration-phone-field {*/
+/*position: relative;*/
+/*margin-left: auto;*/
+/*top: 100px;*/
+/*margin-right: auto;*/
+/*width: 280px;*/
+/*height: 50px;*/
+/*border-bottom: 3px solid rgba(163, 222, 238, 0.95);*/
+/*color: white;*/
+/*}*/
+
+/*.registration-phone-input {*/
+/*position: absolute;*/
+/*margin: 0;*/
+/*top: 15px;*/
+/*font-size: 32px;*/
+/*}*/
+
+/*.registration-device-remember {*/
+/*position: absolute;*/
+/*top: 55px;*/
+/*width: 100%;*/
+/*height: 50px;*/
+/*}*/
+
+/*.registration-device-remember-label {*/
+/*position: absolute;*/
+/*color: #4bd5ff;*/
+/*top: 16px;*/
+/*width: 150px;*/
+/*margin: 0;*/
+/*}*/
+
+/*.registration-device-remember-icon {*/
+/*position: absolute;*/
+/*background-image: url(../resources/icons/back/back.png);*/
+/*background-repeat: no-repeat;*/
+/*transform: rotate(-90deg);*/
+/*background-size: 60%;*/
+/*width: 26px;*/
+/*height: 36px;*/
+/*left: 245px;*/
+/*top: 0px;*/
+/*opacity: 0.3;*/
+/*}*/
+
+/*.registration-button-enter {*/
+/*top: -95px;*/
+/*}*/
+
+/*.registration-keyboard-field {*/
+/*top: 230px;*/
+/*}*/
+
+/*.registration-buttons-container {*/
+/*position: relative;*/
+/*width: 280px;*/
+/*bottom: -260px;*/
+/*margin-left: auto;*/
+/*margin-right: auto;*/
+/*}*/
+
+/*.registration-container-offline {*/
+/*position: absolute;*/
+/*width: 150px;*/
+/*height: 70px;*/
+/*bottom: 0;*/
+/*left: 0;*/
+/*}*/
+
+/*.registration-button-offline {*/
+/*position: absolute;*/
+/*font-size: 17px;*/
+/*background-size: contain;*/
+/*color: white;*/
+/*border-bottom: 1px solid white;*/
+/*bottom: 20px;*/
+/*text-align: center;*/
+/*margin-left: 0;*/
+/*margin-bottom: 7px;*/
+/*}*/
+
+/*.registration-container-demo-version {*/
+/*position: absolute;*/
+/*width: 130px;*/
+/*height: 70px;*/
+/*bottom: 0;*/
+/*right: 0;*/
+/*}*/
+
+/*.registration-button-demo-version {*/
+/*position: absolute;*/
+/*font-size: 17px;*/
+/*background-size: contain;*/
+/*color: #b7f1ff;*/
+/*border-bottom: 1px solid #b7f1ff;*/
+/*bottom: 20px;*/
+/*margin-left: 40px;*/
+/*margin-bottom: 7px;*/
+/*text-align: center;*/
+/*}*/
+
+/*.registration-button-help {*/
+/*position: relative;*/
+/*font-size: 17px;*/
+/*top: -15px;*/
+/*margin-left: auto;*/
+/*margin-right: auto;*/
+/*width: 55px;*/
+/*background-size: contain;*/
+/*color: #b7f1ff;*/
+/*border-bottom: 1px solid #b7f1ff;*/
+/*}*/
+
+/*.registration-button-registration {*/
+/*position: absolute;*/
+/*top: 15px;*/
+/*right: 60px;*/
+/*font-size: 17px;*/
+/*background-size: contain;*/
+/*color: white;*/
+/*border-bottom: 1px solid white;*/
+/*}*/
+
+/*.registration-text-field {*/
+/*position: absolute;*/
+/*background-size: contain;*/
+/*top: -10px;*/
+/*left: 0;*/
+/*text-align: center;*/
+/*color: #4bd5ff;*/
+/*font-size: 15px;*/
+/*margin: 0;*/
+/*}*/
+
+/*!*VIEW - SMS*!*/
+/*.sms-text-field {*/
+/*position: relative;*/
+/*text-align: center;*/
+/*color: #b7f1ff;*/
+/*top: 140px;*/
+/*font-size: 15px;*/
+/*margin-left: auto;*/
+/*margin-right: auto;*/
+/*}*/
+
+/*.sms-phone-field {*/
+/*position: relative;*/
+/*margin-left: auto;*/
+/*top: 120px;*/
+/*margin-right: auto;*/
+/*width: 280px;*/
+/*height: 50px;*/
+/*border-bottom: 3px solid rgba(163, 222, 238, 0.95);*/
+/*color: white;*/
+/*}*/
+
+/*.sms-text-field-one {*/
+/*position: absolute;*/
+/*background-size: contain;*/
+/*top: -10px;*/
+/*left: 0;*/
+/*text-align: center;*/
+/*color: #4bd5ff;*/
+/*font-size: 15px;*/
+/*margin: 0;*/
+/*}*/
+
+/*.sms-phone-input {*/
+/*position: absolute;*/
+/*margin: 0;*/
+/*top: 15px;*/
+/*font-size: 32px;*/
+/*}*/
+
+/*.sms-timer {*/
+/*position: absolute;*/
+/*width: 80px;*/
+/*height: 40px;*/
+/*margin: 0;*/
+/*top: 20px;*/
+/*right: -20px;*/
+/*bottom: 0;*/
+/*}*/
+
+/*.sms-resend-icon {*/
+/*position: absolute;*/
+/*background-image: url(../resources/icons/sms/resend.png);*/
+/*background-size: contain;*/
+/*background-repeat: no-repeat;*/
+/*width: 40px;*/
+/*height: 22px;*/
+/*margin: 0;*/
+/*left: 35px;*/
+/*top: -2px;*/
+/*}*/
+
+/*!*COMPONENT FOOTER*!*/
+
+/*.footer {*/
+/*position: absolute;*/
+/*bottom: 27.7vw;*/
+/*left: 0;*/
+/*right: 0;*/
+/*height: 13.9vw;*/
+/*top: 1.38vw;*/
+/*width: 100%;*/
+/*border-top: 1px solid rgb(37, 160, 227);*/
+/*color: rgb(197, 233, 239);*/
+/*background-color: #22a0e0;*/
+/*}*/
+
+/*.footer-icon-tick {*/
+/*position: absolute;*/
+/*left: 24.44vw;*/
+/*background-size: contain;*/
+/*background-image: url(../resources/icons/footer/contacts.png);*/
+/*background-repeat: no-repeat;*/
+/*width: 5.27vw;*/
+/*height: 2.5vw;*/
+/*top: 4.72vw;*/
+/*transition: 0.8s;*/
+/*}*/
+
+/*.footer-contacts-container {*/
+/*position: fixed;*/
+/*bottom: 0;*/
+/*left: 0;*/
+/*right: 0;*/
+/*transition: 0.3s;*/
+/*-webkit-transition: 0.3s;*/
+/*height: 41.6vw;*/
+/*width: 100%;*/
+/*transform: translate3d(0, 27.7vw, 0);*/
+/*-webkit-transform: translate3d(0, 27.7vw, 0);*/
+/*-ms-transform: translate3d(0, 27.7vw, 0);*/
+/*}*/
+
+/*.footer-contacts-label {*/
+/*position: absolute;*/
+/*font-size: 5vw;*/
+/*margin-top: 3.9vw;*/
+/*color: white;*/
+/*left: -2.78vw;*/
+/*}*/
+
+/*.footer-contacts {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 33.3vw;*/
+/*bottom: -5.55vw;*/
+/*background-color: #25a0e3;*/
+/*}*/
+
+/*.footer-favourite-contacts-container {*/
+/*position: relative;*/
+/*width: 94.05vw;*/
+/*height: 22.2vw;*/
+/*margin-left: auto;*/
+/*margin-right: auto;*/
+/*top: 0;*/
+/*left: 2.78vw;*/
+/*}*/
+
+/*.footer-favourite-contacts-circles {*/
+/*position: absolute;*/
+/*width: 13.9vw;*/
+/*height: 13.9vw;*/
+/*border-radius: 13.9vw;*/
+/*border: none;*/
+/*background-color: #7ae4ff;*/
+/*top: 0;*/
+/*background-repeat: no-repeat;*/
+/*background-size: contain;*/
+/*background-position: center;*/
+/*left: 1.39vw;*/
+/*}*/
+
+/*.footer-contacts-blocks {*/
+/*position: absolute;*/
+/*height: 22.2vw;*/
+/*width: 16.67vw;*/
+/*text-align: center;*/
+/*}*/
+
+/*.footer-contacts-block-one {*/
+/*left: -4.167vw;*/
+/*}*/
+
+/*.footer-contacts-block-two {*/
+/*left: 15.278vw;*/
+/*}*/
+
+/*.footer-contacts-block-three {*/
+/*left: 34.72vw;*/
+/*}*/
+
+/*.footer-contacts-block-four {*/
+/*left: 54.167vw;*/
+/*}*/
+
+/*.footer-contacts-block-five {*/
+/*left: 73.61vw;*/
+/*}*/
+
+/*.footer-favourite-contacts-label {*/
+/*position: relative;*/
+/*background-size: contain;*/
+/*font-size: 3.33vw;*/
+/*margin-left: auto;*/
+/*margin-right: auto;*/
+/*margin-top: 0;*/
+/*margin-bottom: 0;*/
+/*top: 15vw;*/
+/*color: white;*/
+/*font-weight: normal;*/
+/*}*/
+
+/*.footer-contacts-label-icon-container {*/
+/*position: relative;*/
+/*background-size: contain;*/
+/*margin-left: auto;*/
+/*margin-right: auto;*/
+/*width: 29.722vw;*/
+/*height: 13.89vw;*/
+/*}*/
+
 body {
   margin: 0;
 }
@@ -7,9 +1470,9 @@ html {
   -webkit-touch-callout: none;
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-text-size-adjust: none;
   text-decoration: none;
   color: inherit;
+  font-size:32px;
 }
 
 #htmlId {
@@ -89,26 +1552,26 @@ input {
 /*VIEW REGISTRATION CLIENT*/
 .registration-client-card-field {
   position: relative;
-  top: 60px;
-  width: 300px;
-  height: 160px;
-  border: 2px solid #2f2b3d;
+  top: 120px;
+  width: 600px;
+  height: 320px;
+  border: 4px solid #2f2b3d;
   background-color: #2f2b3d;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .registration-client-text-field {
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   background-size: contain;
   text-align: center;
   color: #4bd5ff;
-  font-size: 15px;
-  top: 60px;
+  font-size: 30px;
+  top: 120px;
 }
 
 .registration-client-card-number {
@@ -117,36 +1580,36 @@ input {
   color: white;
   background-color: #1b1729;
   border: none;
-  width: 260px;
-  height: 36px;
-  left: 20px;
-  top: 40px;
+  width: 520px;
+  height: 72px;
+  left: 40px;
+  top: 80px;
 }
 
 .registration-client-card-number-box {
   position: absolute;
-  width: 45px;
-  height: 20px;
-  top: 5px;
+  width: 90px;
+  height: 40px;
+  top: 10px;
   background-color: transparent;
   border: none;
   color: white;
 }
 
 .registration-client-card-number-box-one {
-  left: 15px;
+  left: 30px;
 }
 
 .registration-client-card-number-box-two {
-  left: 75px;
+  left: 150px;
 }
 
 .registration-client-card-number-box-three {
-  right: 75px;
+  right: 150px;
 }
 
 .registration-client-card-number-box-four {
-  right: 15px;
+  right: 30px;
 }
 
 .registration-client-card-text {
@@ -154,7 +1617,7 @@ input {
   margin: 0;
   background-size: contain;
   color: #757389;
-  font-size: 15px;
+  font-size: 30px;
 }
 
 .registration-client-card-date {
@@ -163,18 +1626,18 @@ input {
   color: white;
   background-color: #1b1729;
   border: none;
-  width: 80px;
-  height: 35px;
-  left: 20px;
-  top: 100px;
+  width: 160px;
+  height: 70px;
+  left: 40px;
+  top: 200px;
 }
 
 .registration-client-card-date-box {
   position: absolute;
-  width: 60px;
-  left: 10px;
-  height: 20px;
-  top: 6px;
+  width: 120px;
+  left: 20px;
+  height: 40px;
+  top: 12px;
   background-color: transparent;
   border: none;
   color: white;
@@ -186,18 +1649,18 @@ input {
   color: white;
   background-color: #1b1729;
   border: none;
-  width: 80px;
-  height: 35px;
-  left: 150px;
-  top: 100px;
+  width: 160px;
+  height: 70px;
+  left: 300px;
+  top: 200px;
 }
 
 .registration-client-card-date-pin-box {
   position: absolute;
-  width: 71px;
-  left: 2px;
-  height: 20px;
-  top: 9px;
+  width: 142px;
+  left: 4px;
+  height: 40px;
+  top: 18px;
   background-color: transparent;
   border: none;
   color: white;
@@ -206,20 +1669,20 @@ input {
 /*ENTER BUTTON REGISTRATION AND AUTHORIZATION*/
 .button-enter {
   position: relative;
-  width: 220px;
-  height: 50px;
+  width: 440px;
+  height: 100px;
   background-color: #01cfff;
   margin-right: auto;
-  border-radius: 40px;
+  border-radius: 80px;
   margin-left: auto;
 }
 
 .button-enter-label {
   position: relative;
-  top: 15px;
-  width: 60px;
-  height: 20px;
-  font-size: 22px;
+  top: 30px;
+  width: 120px;
+  height: 40px;
+  font-size: 44px;
   margin: auto;
   color: white;
 }
@@ -228,8 +1691,8 @@ input {
 
 .keyboard-field {
   position: relative;
-  width: 250px;
-  height: 250px;
+  width: 500px;
+  height: 500px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -237,17 +1700,17 @@ input {
 /*TOOLBAR*/
 .toolbar {
   position: absolute;
-  top: 2.78vw;
-  right: 3.61vw;
-  left: 3.61vw;
-  height: 9.72vw;
+  top: 20px;
+  right: 26px;
+  left: 26px;
+  height: 70px;
   background: transparent;
-  border-bottom: 0.56vw solid #a3deee;
+  border-bottom: 4px solid #a3deee;
 }
 
 .menu-button {
   position: absolute;
-  left: 0.56vw;
+  left: 4px;
   background: transparent;
   width: 100%;
   height: 100%;
@@ -258,18 +1721,18 @@ input {
   position: absolute;
   background: transparent;
   background-image: url(../resources/icons/toolbar/menu.png);
-  width: 13.89vw;
-  height: 13.89vw;
+  width: 100px;
+  height: 100px;
   background-size: 35%;
-  top: -3.89vw;
+  top: -28px;
   background-repeat: no-repeat;
   background-position: center;
-  left: -2.22vw;
+  left: -16px;
 }
 
 .bell-button {
   position: absolute;
-  right: 0.56vw;
+  right: 4px;
   background: transparent;
   width: 100%;
   height: 100%;
@@ -280,14 +1743,14 @@ input {
   position: absolute;
   background: transparent;
   background-image: url(../resources/icons/toolbar/bell.png);
-  width: 5.56vw;
-  height: 6.389vw;
+  width: 40px;
+  height: 46px;
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
   opacity: 0.5;
-  right: 2.78vw;
-  top: -0.278vw;
+  right: 20px;
+  top: -2px;
 }
 
 /*FONT FACE*/
@@ -327,9 +1790,9 @@ input {
 
 .bank-operations {
   position: absolute;
-  bottom: 43.9vw;
-  left: -0.83vw;
-  top: 70.5vw;
+  bottom: 316px;
+  left: -6px;
+  height: 400px;
   width: 100%;
 }
 
@@ -337,11 +1800,11 @@ input {
 .bank-operation-button {
   position: relative;
   background: transparent;
-  height: 27.7vw;
-  width: 27.7vw;
+  height: 200px;
+  width: 200px;
   display: inline-block;
-  margin: 2.7vw 1.39vw 2.7vw 2.7vw;
-  left: 1.39vw;
+  margin: 20px 10px 20px 20px;
+  left: 10px;
 }
 
 .top-operations-buttons {
@@ -350,8 +1813,8 @@ input {
 
 .bottom-operations-buttons {
   position: absolute;
-  top: 23.6vw;
-  left: 0;
+  top: 170px;
+  left: 0px;
 }
 
 .bank-operation-icon {
@@ -368,40 +1831,40 @@ input {
   bottom: 0;
   color: #ffffff;
   text-align: center;
-  width: 27.7vw;
-  height: 8.3vw;
-  line-height: 8.3vw;
-  left: -0.83vw;
-  font-size: 15px;
+  width: 100%;
+  height: 30%;
+  line-height: 60px;
+  left: -6px;
+  font-size: 32px;
 }
 
 .operation-pay-icon {
   background-image: url("../resources/icons/bank-operations/payments.png");
-  background-size: 8.3vw;
-  border-bottom: .1px solid #95E6FD;
+  background-size: 30%;
+  border-bottom: .2px solid #95E6FD;
 }
 
 .operation-transfer-icon {
   background-image: url("../resources/icons/bank-operations/transfer.png");
-  background-size: 11.8vw;
-  border-bottom: .1px solid #95E6FD;
+  background-size: 40%;
+  border-bottom: .2px solid #95E6FD;
 }
 
 .operation-autopay-icon {
   background-image: url(../resources/icons/bank-operations/autopay.png);
-  background-size: 11.8vw;
-  border-bottom: .1px solid #95E6FD;
-  left: -0.83vw;
+  background-size: 40%;
+  border-bottom: .2px solid #95E6FD;
+  left: -6px;
 }
 
 .operation-myFinance-icon {
   background-image: url("../resources/icons/bank-operations/myfinance.png");
-  background-size: 11.8vw;
+  background-size: 40%;
 }
 
 .operation-report-icon {
   background-image: url("../resources/icons/bank-operations/reports.png");
-  background-size: 11.8vw;
+  background-size: 40%;
 }
 
 .hide {
@@ -415,26 +1878,26 @@ input {
 /*ALL CARD*/
 .common-balance-label {
   position: absolute;
-  top: 11.67vw;
-  font-size: 4.72vw;
-  left: 6.11vw;
+  top: 84px;
+  font-size: 34px;
+  left: 44px;
   color: #9fdbf8;
-  word-spacing: 1.11vw;
+  word-spacing: 8px;
 }
 
 .common-balance {
   position: absolute;
-  top: 4.167vw;
-  left: 5.278vw;
+  top: 30px;
+  left: 38px;
   color: #fffaf9;
-  font-size: 16.11vw;
-  word-spacing: 1.11vw;
+  font-size: 116px;
+  word-spacing: 8px;
 }
 
 .valuta {
   position: absolute;
-  top: 25vw;
-  left: 82.22vw;
+  top: 180px;
+  left: 592px;
   color: #9fdbf8;
 }
 
@@ -442,10 +1905,10 @@ input {
 
 .card-carousel {
   position: absolute;
-  height: 47.22vw;
+  height: 340px;
   width: 100%;
   display: inline-block;
-  top: 30.56vw;
+  top: 220px;
   background: transparent;
 }
 
@@ -456,139 +1919,138 @@ input {
 }
 
 .card {
-  height: 41.1vw;
-  width: 72.2vw;
+  height: 296px;
+  width: 510px;
   position: absolute;
-  top: 6.944vw;
-  -webkit-border-radius: 1.94vw;
-  -moz-border-radius: 1.94vw;
-  border-radius: 1.94vw;
+  top: 50px;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  border-radius: 14px;
   background-size: cover;
   color: white;
-  -webkit-box-shadow: 0 16.94vw 11.11vw -18.05vw rgba(0, 0, 0, 1);
-  -moz-box-shadow: 0 16.94vw 11.11vw -18.05vw rgba(0, 0, 0, 1);
-  box-shadow: 0 16.94vw 11.11vw -18.05vw rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 0px 122px 80px -130px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 122px 80px -130px rgba(0, 0, 0, 1);
+  box-shadow: 0px 122px 80px -130px rgba(0, 0, 0, 1);
 }
 
 .card-bank-name {
   position: absolute;
-  top: 1.6vw;
-  left: 52.5vw;
+  top: 12px;
+  left: 378px;
   background-size: contain;
   background-repeat: no-repeat;
-  font-size: 5vw;
-  height: 4.44vw;
-  width: 16.4vw;
+  font-size: 36px;
+  height: 32px;
+  width: 118px;
 }
 
 .card-bank-name-url {
   position: absolute;
-  width: 33.3vw;
-  height: 12.5vw;
+  width: 240px;
+  height: 90px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  left: 4.16vw;
+  left: 30px;
 }
 
 .card-salary-title {
   position: absolute;
-  top: 19.4vw;
-  left: 4.16vw;
+  top: 140px;
+  left: 40px;
   color: #a7a7a7;
   background-size: contain;
-  font-size: 3.61vw;
+  font-size: 26px;
+  height: 10%;
 }
 
 .card-balance-currency-container {
   position: absolute;
-  width: 55.5vw;
-  top: 23.05vw;
+  width: 400px;
+  top: 166px;
   display: inline-block;
   margin: 0;
 }
 
 .card-balance {
   position: relative;
-  left: 4.72vw;
+  left: 34px;
   color: #515151;
-  font-size: 7.2vw;
-  width: 31.94vw;
+  font-size: 52px;
   /* background-size: contain; */
   margin: 0;
-  margin-top: -0.27vw;
+  margin-top: -2px;
   float: left;
   padding: 0;
 }
 
 .card-currency {
   position: relative;
-  margin-left: 5.5vw;
+  margin-left: 40px;
   /* margin-right: auto; */
   color: #a7a7a7;
-  top: -0.83vw;
-  font-size: 3.61vw;
+  top: -6px;
+  font-size: 26px;
   background-size: contain;
   /* margin: 0; */
   float: left;
-  width: 8.3vw;
+  width: 60px;
 }
 
 .card-number {
   position: absolute;
-  top: 33.6vw;
-  color: #fefefe;
-  width: 53.3vw;
-  height: 5.5vw;
-  font-size: 4.4vw;
-  text-shadow: white -0.5px -0.5px 0.2px,
-  black 0.0px 0.5px 0.1px,
-  white -0.5px -0.5px 0.2px,
-  black 0.0px 0.5px 0.2px;
-  -webkit-text-shadow: white -0.5px -0.5px 0.2px,
-  black 0.0px 0.5px 0.1px,
-  white -0.5px -0.5px 0.2px,
-  black 0.0px 0.5px 0.2px;
+  top: 242px;
+  width: 384px;
+  height: 40px;
+  font-size: 32px;
+  text-shadow: white -1px -1px 0.4px,
+  black 0.0px 1px 0.2px,
+  white -1px -1px 0.4px,
+  black 0.0px 1px 0.4px;
+  -webkit-text-shadow: white -1px -1px 0.4px,
+  black 0.0px 1px 0.2px,
+  white -1px -1px 0.4px,
+  black 0.0px 1px 0.4px;
   font-family: Orator;
   color: transparent;
-  left: 3.6vw;
+  left: 26px;
 }
 
 .card-number-part-one {
   position: absolute;
-  left: 0;
+  left: 0px;
   font-weight: bold;
 }
 
 .card-number-part-two {
   position: absolute;
-  left: 42.2vw;
+  left: 304px;
   font-weight: bold;
 }
 
 .number-stars {
   position: absolute;
   margin: 0;
-  left: 13.05vw;
-  top: 0.27vw;
-  letter-spacing: -1.38vw;
-  font-size: 7.2vw;
-  word-spacing: -1.1vw;
+  left: 94px;
+  top: 2px;
+  letter-spacing: -10px;
+  font-size: 52px;
+  word-spacing: -8px;
 }
 
 /*BOTTOM SERVICE BEELINE UCELL UMS*/
 .service-carousel {
   position: absolute;
   width: 100%;
-  height: 36.1vw;
-  bottom: 12.5vw;
+  height: 130px;
+  bottom: 90px;
   background: transparent;
 }
 
 .service-component {
   position: absolute;
-  width: 86.1vw;
-  height: 31.94vw;
+  width: 620px;
+  height: 230px;
   bottom: 0;
   /*background-color: #f7f7f7;*/
   background-color: #fefefe;
@@ -596,91 +2058,78 @@ input {
 
 .service-container {
   position: absolute;
-  height: 22.2vw;
+  height: 160px;
   width: 100%;
   bottom: 0;
 }
 
 .service-buttons {
   position: absolute;
-  /*width: 27.7vw;*/
-  /*height: 22.2vw;*/
-  /*top: 2.7vw;*/
-  width: 100px;
-  height: 80px;
-  top: 10px;
+  width: 200px;
+  height: 160px;
+  top: 20px;
   background-repeat: no-repeat;
-}
-
-@media screen and (min-width: 320px) and (max-width: 360px) {
-  .service-buttons {
-    position: absolute;
-    width: 100px;
-    height: 80px;
-    top: 10px;
-    background-repeat: no-repeat;
-  }
 }
 
 .horizontal-line {
   position: absolute;
-  height: 6.94vw;
-  width: 0.27vw;
+  height: 50px;
+  width: 2px;
   background-color: #b1b1b1;
 }
 
 .horizontal-line-beeline {
-  left: 22.7vw;
-  top: 4.72vw;
+  left: 164px;
+  top: 34px;
 }
 
 .horizontal-line-ucell {
-  left: 27.5vw;
-  top: 5vw;
+  left: 198px;
+  top: 36px;
 }
 
 .horizontal-line-ums {
-  left: 26.94vw;
-  top: 7.5vw;
+  left: 194px;
+  top: 54px;
 }
 
 .beeline-button {
   background-image: url(../resources/icons/services/beeline.png);
   background-size: 80%;
-  left: 1.11vw;
+  left: 8px;
 }
 
 .ucell-button {
-  left: 23.33vw;
+  left: 168px;
   background-image: url(../resources/icons/services/ucell.png);
   background-size: 52%;
   background-position: top;
 }
 
 .ums-button {
-  left: 50.83vw;
+  left: 366px;
   background-position: center;
   background-image: url(../resources/icons/services/ums.png);
   background-size: 70%;
-  top: 0;
+  top: 0px;
 }
 
 .service-title {
   position: relative;
-  top: 5.55vw;
-  width: 47.2vw;
+  top: 40px;
+  width: 340px;
   margin-left: auto;
   margin-right: auto;
   background: transparent;
   background-size: contain;
   color: #585858;
-  font-size: 4.72vw;
+  font-size: 34px;
 }
 
 .side-menu {
   position: fixed;
   height: 100%;
-  width: 250px;
+  width: 500px;
   overflow: hidden;
   transform: translate3d(-100%, 0, 0);
   -webkit-transform: translate3d(-100%, 0, 0);
@@ -708,41 +2157,41 @@ input {
 
 .page-title {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  left: 15px;
-  height: 50px;
+  top: 20px;
+  right: 30px;
+  left: 30px;
+  height: 100px;
   background: transparent;
-  border-bottom: 3px solid rgb(149, 230, 253);
+  border-bottom: 6px solid rgb(149, 230, 253);
 }
 
 .name-title {
   position: absolute;
   background-size: contain;
-  font-size: 23px;
-  left: 40px;
-  top: 15px;
+  font-size: 46px;
+  left: 80px;
+  top: 30px;
   margin: 0;
   color: #fffaf9;
 }
 
 .back-button {
   position: absolute;
-  width: 60px;
-  height: 50px;
+  width: 120px;
+  height: 100px;
   background-image: url("../resources/icons/back/back.png");
   background-repeat: no-repeat;
   -webkit-background-size: 20%;
   background-position-y: center;
-  background-position-x: 10px;
+  background-position-x: 20px;
   background-size: 20%;
   left: 0;
 }
 
 .right-button {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   right: 0;
 }
 
@@ -751,24 +2200,24 @@ input {
 .my-cards-carousel {
   position: absolute;
   width: 100%;
-  top: -65px;
+  top: -130px;
 }
 
 /*MY CARDS BUTTON*/
 .my-cards-button-container {
   position: absolute;
-  top: 250px;
-  left: 10px;
+  top: 500px;
+  left: 20px;
   right: 0;
   overflow: hidden;
-  height: 150px;
+  height: 300px;
   background: transparent;
 }
 
 .my-cards-button-field {
   position: absolute;
-  width: 400px;
-  height: 50px;
+  width: 800px;
+  height: 100px;
 }
 
 .my-cards-button-field-transfer {
@@ -776,17 +2225,17 @@ input {
 }
 
 .my-cards-button-field-payment {
-  top: 50px;
+  top: 100px;
 }
 
 .my-cards-button-field-report {
-  top: 100px;
+  top: 200px;
 }
 
 .my-cards-button-icon {
   position: absolute;
-  width: 80px;
-  height: 50px;
+  width: 160px;
+  height: 100px;
   background: transparent;
   background-repeat: no-repeat;
   opacity: 0.7;
@@ -815,40 +2264,40 @@ input {
   height: 70%;
   width: 80%;
   left: 20%;
-  font-size: 20px;
+  font-size: 40px;
   color: white;
-  top: 15px;
-  border-bottom: 1px solid #95e6fd;
+  top: 30px;
+  border-bottom: 2px solid #95e6fd;
 }
 
 .my-cards-button-block-card {
   position: absolute;
-  height: 60px;
+  height: 120px;
   width: 100%;
   background-color: #eb604d;
-  top: 400px;
+  top: 800px;
 }
 
 .my-cards-button-block-card-label {
   position: absolute;
   background-size: contain;
-  left: 90px;
-  font-size: 20px;
+  left: 180px;
+  font-size: 40px;
   color: white;
-  top: 20px;
+  top: 40px;
 }
 
 .my-cards-last-operations-container {
   position: absolute;
   width: 100%;
-  top: 40px;
+  top: 80px;
   background-color: white;
 }
 
 .my-cards-last-operations {
   position: absolute;
   width: 100%;
-  top: 460px;
+  top: 920px;
   overflow: auto;
   background-color: #ffffff;
   bottom: 0;
@@ -857,27 +2306,27 @@ input {
 .my-cards-last-operations-container-label {
   position: absolute;
   top: 0;
-  height: 40px;
+  height: 80px;
   width: 100%;
   background-color: #f7f7f7;
   background-size: contain;
-  font-size: 20px;
+  font-size: 40px;
   color: #8a8a8a;
 }
 
 .my-cards-last-operations-label {
   position: absolute;
   margin: 0;
-  left: 30px;
-  top: 13px;
+  left: 60px;
+  top: 26px;
 }
 
 .my-cards-last-operations-info {
   position: absolute;
-  top: 40px;
+  top: 80px;
   width: 100%;
-  height: 80px;
-  border-bottom: 1px solid #dedfe0;
+  height: 160px;
+  border-bottom: 2px solid #dedfe0;
   overflow: hidden;
 }
 
@@ -886,58 +2335,58 @@ input {
   color: #EB604D;
 
   background-size: contain;
-  font-size: 30px;
+  font-size: 60px;
   font-weight: bold;
-  height: 30px;
-  top: 10px;
-  left: 30px;
+  height: 60px;
+  top: 20px;
+  left: 60px;
   float: left;
 }
 
 .my-cards-operation-currency {
   position: relative;
   color: #8a8a8a;
-  top: 25px;
+  top: 50px;
   background-size: contain;
   float: left;
-  left: 35px;
-  font-size: 15px;
+  left: 70px;
+  font-size: 30px;
 }
 
 .my-cards-operation-date {
   position: absolute;
   color: #8a8a8a;
-  bottom: 10px;
-  left: 35px;
-  font-size: 15px;
+  bottom: 20px;
+  left: 70px;
+  font-size: 30px;
 }
 
 /*AUTHORIZATION VIEW*/
 
 .authorization-pin-container {
   position: relative;
-  width: 160px;
+  width: 320px;
   margin-right: auto;
   margin-left: auto;
-  height: 50px;
-  top: 120px;
+  height: 100px;
+  top: 240px;
 }
 
 .authorization-pin-field {
   position: relative;
-  top: 15px;
-  height: 20px;
-  width: 160px;
+  top: 30px;
+  height: 40px;
+  width: 320px;
   margin-right: auto;
   margin-left: auto;
 }
 
 .authorization-pin-circles {
   position: absolute;
-  width: 17px;
-  height: 17px;
-  border-radius: 20px;
-  border: 2px solid #01cfff;
+  width: 34px;
+  height: 34px;
+  border-radius: 40px;
+  border: 4px solid #01cfff;
 }
 
 .authorization-pin-one {
@@ -945,134 +2394,135 @@ input {
 }
 
 .authorization-pin-two {
-  left: 35px;
-}
-
-.authorization-pin-three {
   left: 70px;
 }
 
-.authorization-pin-four {
-  left: 105px;
-}
-
-.authorization-pin-five {
+.authorization-pin-three {
   left: 140px;
 }
 
+.authorization-pin-four {
+  left: 210px;
+}
+
+.authorization-pin-five {
+  left: 280px;
+}
+
 .authorization-keyboard-field {
-  top: 250px;
+  top: 500px;
 }
 
 .authorization-button-enter {
-  top: 120px;
+  top: 240px;
 }
 
 .authorization-buttons-container {
   position: relative;
-  width: 225px;
-  top: -105px;
+  width: 450px;
+  top: -210px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .authorization-button-forget-pin {
   position: absolute;
-  font-size: 17px;
+  font-size: 34px;
   left: 0;
-  top: 40px;
+  top: 80px;
   background-size: contain;
   color: #05eeff;
-  border-bottom: 1px solid #05eeff;
+  border-bottom: 2px solid #05eeff;
 }
 
 .authorization-button-registration {
   position: absolute;
-  font-size: 17px;
+  font-size: 34px;
   background-size: contain;
   color: white;
   right: 0;
-  top: 40px;
-  border-bottom: 1px solid white;
+  top: 80px;
+  border-bottom: 2px solid white;
 }
 
 .authorization-button-offline {
   position: relative;
-  font-size: 17px;
-  width: 110px;
+  font-size: 34px;
+  width: 220px;
   background-size: contain;
   color: white;
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid white;
   text-align: center;
-  bottom: -265px;
+  bottom: -530px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .authorization-enter-pin-label {
   position: relative;
-  top: 120px;
+  top: 240px;
   margin-left: auto;
   margin-right: auto;
   background-size: contain;
-  width: 115px;
+  width: 230px;
   color: white;
+  font-size: 32px;
 }
 
 /*COMPONENT KEYBOARD*/
 .keyboard-container {
   position: absolute;
-  width: 250px;
-  height: 200px;
+  width: 500px;
+  height: 400px;
 }
 
 .keyboard-field-one {
   position: absolute;
   width: 100%;
-  height: 60px;
+  height: 120px;
 }
 
 .keyboard-field-two {
   position: absolute;
   width: 100%;
-  height: 60px;
-  top: 60px;
+  height: 120px;
+  top: 120px;
 }
 
 .keyboard-field-three {
   position: absolute;
   width: 100%;
-  height: 60px;
-  top: 120px;
+  height: 120px;
+  top: 240px;
 }
 
 .keyboard-field-four {
   position: absolute;
   width: 100%;
-  height: 60px;
-  top: 180px;
+  height: 120px;
+  top: 360px;
 }
 
 .keyboard-buttons {
   position: absolute;
-  width: 70px;
-  height: 50px;
-  top: 8px;
+  width: 140px;
+  height: 100px;
+  top: 16px;
   color: white;
-  font-size: 35px;
+  font-size: 70px;
   text-align: center;
 }
 
 .keyboard-buttons-label {
   position: absolute;
-  left: 27px;
-  top: 8px;
+  left: 54px;
+  top: 16px;
   margin: 0;
 }
 
 .keyboard-buttons:active {
   background: radial-gradient(rgba(255, 255, 255, 0.23), rgba(255, 255, 255, 0.04), transparent);
-  border-radius: 40px;
+  border-radius: 80px;
 }
 
 .keyboard-button-one {
@@ -1080,7 +2530,7 @@ input {
 }
 
 .keyboard-button-two {
-  left: 90px;
+  left: 180px;
 }
 
 .keyboard-button-three {
@@ -1092,7 +2542,7 @@ input {
 }
 
 .keyboard-button-five {
-  left: 90px;
+  left: 180px;
 }
 
 .keyboard-button-six {
@@ -1104,7 +2554,7 @@ input {
 }
 
 .keyboard-button-eight {
-  left: 90px;
+  left: 180px;
 }
 
 .keyboard-button-nine {
@@ -1116,14 +2566,14 @@ input {
 }
 
 .keyboard-button-zero {
-  left: 90px;
+  left: 180px;
 }
 
 .keyboard-button-x {
-  background-size: 38px;
+  background-size: 76px;
   background-image: url("../resources/icons/keyboard/backspace.png");
   background-repeat: no-repeat;
-  background-position-x: 10px;
+  background-position-x: 20px;
   background-position-y: center;
   right: 0;
 }
@@ -1137,34 +2587,35 @@ input {
 .registration-phone-field {
   position: relative;
   margin-left: auto;
-  top: 100px;
+  top: 200px;
   margin-right: auto;
-  width: 280px;
-  height: 50px;
-  border-bottom: 3px solid rgba(163, 222, 238, 0.95);
+  width: 560px;
+  height: 100px;
+  border-bottom: 6px solid rgba(163, 222, 238, 0.95);
   color: white;
 }
 
 .registration-phone-input {
   position: absolute;
   margin: 0;
-  top: 15px;
-  font-size: 32px;
+  top: 30px;
+  font-size: 64px;
 }
 
 .registration-device-remember {
   position: absolute;
-  top: 55px;
+  top: 110px;
   width: 100%;
-  height: 50px;
+  height: 100px;
 }
 
 .registration-device-remember-label {
   position: absolute;
   color: #4bd5ff;
-  top: 16px;
-  width: 150px;
+  top: 32px;
+  width: 300px;
   margin: 0;
+  font-size: 32px;
 }
 
 .registration-device-remember-icon {
@@ -1173,99 +2624,99 @@ input {
   background-repeat: no-repeat;
   transform: rotate(-90deg);
   background-size: 60%;
-  width: 26px;
-  height: 36px;
-  left: 245px;
+  width: 52px;
+  height: 72px;
+  left: 490px;
   top: 0px;
   opacity: 0.3;
 }
 
 .registration-button-enter {
-  top: -95px;
+  top: -190px;
 }
 
 .registration-keyboard-field {
-  top: 230px;
+  top: 460px;
 }
 
 .registration-buttons-container {
   position: relative;
-  width: 280px;
-  bottom: -260px;
+  width: 560px;
+  bottom: -520px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .registration-container-offline {
   position: absolute;
-  width: 150px;
-  height: 70px;
+  width: 300px;
+  height: 140px;
   bottom: 0;
   left: 0;
 }
 
 .registration-button-offline {
   position: absolute;
-  font-size: 17px;
+  font-size: 34px;
   background-size: contain;
   color: white;
-  border-bottom: 1px solid white;
-  bottom: 20px;
+  border-bottom: 2px solid white;
+  bottom: 40px;
   text-align: center;
   margin-left: 0;
-  margin-bottom: 7px;
+  margin-bottom: 14px;
 }
 
 .registration-container-demo-version {
   position: absolute;
-  width: 130px;
-  height: 70px;
+  width: 260px;
+  height: 140px;
   bottom: 0;
   right: 0;
 }
 
 .registration-button-demo-version {
   position: absolute;
-  font-size: 17px;
+  font-size: 34px;
   background-size: contain;
   color: #b7f1ff;
-  border-bottom: 1px solid #b7f1ff;
-  bottom: 20px;
-  margin-left: 40px;
-  margin-bottom: 7px;
+  border-bottom: 2px solid #b7f1ff;
+  bottom: 40px;
+  margin-left: 80px;
+  margin-bottom: 14px;
   text-align: center;
 }
 
 .registration-button-help {
   position: relative;
-  font-size: 17px;
-  top: -15px;
+  font-size: 34px;
+  top: -30px;
   margin-left: auto;
   margin-right: auto;
-  width: 55px;
+  width: 110px;
   background-size: contain;
   color: #b7f1ff;
-  border-bottom: 1px solid #b7f1ff;
+  border-bottom: 2px solid #b7f1ff;
 }
 
 .registration-button-registration {
   position: absolute;
-  top: 15px;
-  right: 60px;
-  font-size: 17px;
+  top: 30px;
+  right: 120px;
+  font-size: 34px;
   background-size: contain;
   color: white;
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid white;
 }
 
 .registration-text-field {
   position: absolute;
   background-size: contain;
-  top: -10px;
+  top: -20px;
   left: 0;
   text-align: center;
   color: #4bd5ff;
-  font-size: 15px;
+  font-size: 30px;
   margin: 0;
 }
 
@@ -1274,8 +2725,8 @@ input {
   position: relative;
   text-align: center;
   color: #b7f1ff;
-  top: 140px;
-  font-size: 15px;
+  top: 280px;
+  font-size: 30px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1283,39 +2734,39 @@ input {
 .sms-phone-field {
   position: relative;
   margin-left: auto;
-  top: 120px;
+  top: 240px;
   margin-right: auto;
-  width: 280px;
-  height: 50px;
-  border-bottom: 3px solid rgba(163, 222, 238, 0.95);
+  width: 560px;
+  height: 100px;
+  border-bottom: 6px solid rgba(163, 222, 238, 0.95);
   color: white;
 }
 
 .sms-text-field-one {
   position: absolute;
   background-size: contain;
-  top: -10px;
+  top: -20px;
   left: 0;
   text-align: center;
   color: #4bd5ff;
-  font-size: 15px;
+  font-size: 30px;
   margin: 0;
 }
 
 .sms-phone-input {
   position: absolute;
   margin: 0;
-  top: 15px;
-  font-size: 32px;
+  top: 30px;
+  font-size: 64px;
 }
 
 .sms-timer {
   position: absolute;
-  width: 80px;
-  height: 40px;
+  width: 160px;
+  height: 80px;
   margin: 0;
-  top: 20px;
-  right: -20px;
+  top: 40px;
+  right: -40px;
   bottom: 0;
 }
 
@@ -1324,37 +2775,37 @@ input {
   background-image: url(../resources/icons/sms/resend.png);
   background-size: contain;
   background-repeat: no-repeat;
-  width: 40px;
-  height: 22px;
+  width: 80px;
+  height: 44px;
   margin: 0;
-  left: 35px;
-  top: -2px;
+  left: 70px;
+  top: -4px;
 }
 
 /*COMPONENT FOOTER*/
 
 .footer {
   position: absolute;
-  bottom: 27.7vw;
+  bottom: 200px;
   left: 0;
   right: 0;
-  height: 13.9vw;
-  top: 1.38vw;
+  height: 100px;
+  top: 10px;
   width: 100%;
-  border-top: 1px solid rgb(37, 160, 227);
+  border-top: 2px solid rgb(37, 160, 227);
   color: rgb(197, 233, 239);
   background-color: #22a0e0;
 }
 
 .footer-icon-tick {
   position: absolute;
-  left: 24.44vw;
+  left: 176px;
   background-size: contain;
   background-image: url(../resources/icons/footer/contacts.png);
   background-repeat: no-repeat;
-  width: 5.27vw;
-  height: 2.5vw;
-  top: 4.72vw;
+  width: 38px;
+  height: 18px;
+  top: 34px;
   transition: 0.8s;
 }
 
@@ -1365,89 +2816,89 @@ input {
   right: 0;
   transition: 0.3s;
   -webkit-transition: 0.3s;
-  height: 41.6vw;
+  height: 300px;
   width: 100%;
-  transform: translate3d(0, 27.7vw, 0);
-  -webkit-transform: translate3d(0, 27.7vw, 0);
-  -ms-transform: translate3d(0, 27.7vw, 0);
+  transform: translate3d(0, 200px, 0);
+  -webkit-transform: translate3d(0, 200px, 0);
+  -ms-transform: translate3d(0, 200px, 0);
 }
 
 .footer-contacts-label {
   position: absolute;
-  font-size: 5vw;
-  margin-top: 3.9vw;
+  font-size: 36px;
+  margin-top: 28px;
   color: white;
-  left: -2.78vw;
+  left: -20px;
 }
 
 .footer-contacts {
   position: absolute;
   width: 100%;
-  height: 33.3vw;
-  bottom: -5.55vw;
+  height: 240px;
+  bottom: -40px;
   background-color: #25a0e3;
 }
 
 .footer-favourite-contacts-container {
   position: relative;
-  width: 94.05vw;
-  height: 22.2vw;
+  width: 670px;
+  height: 160px;
   margin-left: auto;
   margin-right: auto;
   top: 0;
-  left: 2.78vw;
+  left: 20px;
 }
 
 .footer-favourite-contacts-circles {
   position: absolute;
-  width: 13.9vw;
-  height: 13.9vw;
-  border-radius: 13.9vw;
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
   border: none;
   background-color: #7ae4ff;
   top: 0;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  left: 1.39vw;
+  left: 10px;
 }
 
 .footer-contacts-blocks {
   position: absolute;
-  height: 22.2vw;
-  width: 16.67vw;
+  height: 160px;
+  width: 120px;
   text-align: center;
 }
 
 .footer-contacts-block-one {
-  left: -4.167vw;
+  left: -30px;
 }
 
 .footer-contacts-block-two {
-  left: 15.278vw;
+  left: 110px;
 }
 
 .footer-contacts-block-three {
-  left: 34.72vw;
+  left: 250px;
 }
 
 .footer-contacts-block-four {
-  left: 54.167vw;
+  left: 390px;
 }
 
 .footer-contacts-block-five {
-  left: 73.61vw;
+  left: 530px;
 }
 
 .footer-favourite-contacts-label {
   position: relative;
   background-size: contain;
-  font-size: 3.33vw;
+  font-size: 24px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  top: 15vw;
+  top: 108px;
   color: white;
   font-weight: normal;
 }
@@ -1457,6 +2908,6 @@ input {
   background-size: contain;
   margin-left: auto;
   margin-right: auto;
-  width: 29.722vw;
-  height: 13.89vw;
+  width: 214px;
+  height: 100px;
 }
