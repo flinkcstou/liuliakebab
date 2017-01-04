@@ -1,20 +1,24 @@
 <view-sms class="view-sms">
+  <div class="sms-flex-container">
+    <div class="sms-unchangable-container">
   <div class="sms-phone-field">
     <p class="sms-text-field-one">Введите код активации</p>
     <p class="sms-phone-input">{confirmSms}</p>
     <div class="sms-timer" ontouchend="touchEndResend()">{time}
       <div class="sms-resend-icon"></div>
     </div>
+
+    <div class="sms-text-field">
+      <p style="margin-bottom: 4px">{messageTitle}<br>{messageTitleTwo}</p>
+      <p id="deliveredPhoneNumber" style="margin: 0">{phoneNumber.substring(0, 4)} {phoneNumber.substring(4, 6)}
+        {phoneNumber.substring(6, phoneNumber.length)}</p>
+    </div>
+  </div>
+    </div>
   </div>
 
-  <div class="sms-text-field">
-    <p style="margin-bottom: 4px">{messageTitle}<br>{messageTitleTwo}</p>
-    <p id="deliveredPhoneNumber" style="margin: 0">{phoneNumber.substring(0, 4)} {phoneNumber.substring(4, 6)}
-      {phoneNumber.substring(6, phoneNumber.length)}</p>
-  </div>
-
-  <div class="registration-keyboard-field keyboard-field" style="top: 360px">
-    <div class="registration-button-help" style="top: 560px">Помощь</div>
+  <div class="registration-keyboard-field keyboard-field" style="bottom: {150*widthK}px">
+    <div class="registration-button-help" style="top: {560*widthK}px">Помощь</div>
     <component-keyboard></component-keyboard>
   </div>
 

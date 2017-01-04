@@ -1,10 +1,17 @@
 <view-registration-device class="view-registration-device">
-  <div class="registration-phone-field">
-    <p class="registration-text-field">Введите номер телефона</p>
-    <p class="registration-phone-input">{phoneNumber}</p>
-    <div class="registration-device-remember" ontouchend="touchEndRemember()">
-      <p class="registration-device-remember-label">Запомнить устройство</p>
-      <div id="rememberIcon" class="registration-device-remember-icon"></div>
+  <div class="registration-device-flex-container">
+    <div class="registration-device-unchangable-container">
+      <div class="registration-device-phone-field">
+        <p class="registration-device-text-field">Введите номер телефона</p>
+        <p class="registration-device-phone-input">{phoneNumber}</p>
+        <div class="registration-device-remember" ontouchend="touchEndRemember()">
+          <p class="registration-device-remember-label">Запомнить устройство</p>
+          <div id="rememberIcon" class="registration-device-remember-icon"></div>
+          <div class="registration-button-enter button-enter" ontouchend="getPhoneNumber()">
+            <div class="button-enter-label">Далее</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -13,9 +20,6 @@
     <component-keyboard></component-keyboard>
   </div>
 
-  <div class="registration-button-enter button-enter" ontouchend="getPhoneNumber()">
-    <div class="button-enter-label">Далее</div>
-  </div>
 
   <div class="registration-buttons-container">
     <div class="registration-container-offline">
@@ -32,13 +36,13 @@
     touchEndRemember = function () {
       event.preventDefault();
       event.stopPropagation();
-      if(!checkRemember){
+      if (!checkRemember) {
         this.rememberIcon.style.opacity = '1';
         localStorage.setItem('device_remember', true);
         checkRemember = true;
         return;
       }
-      else{
+      else {
         this.rememberIcon.style.opacity = '0.3';
         localStorage.setItem('device_remember', false);
         checkRemember = false;
