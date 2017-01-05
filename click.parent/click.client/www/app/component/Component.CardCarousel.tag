@@ -11,8 +11,10 @@
                       background="{i.background}"></component-card>
     </div>
     <div class="bank-operation-button-my-cards">
-      <div>МОИ КАРТЫ</div>
-
+      <div class="bank-operation-button-my-cards-container">
+        <div class="bank-operation-button-my-cards-icon"></div>
+        <div class="bank-operation-button-my-cards-label">МОИ КАРТЫ</div>
+      </div>
     </div>
   </div>
 

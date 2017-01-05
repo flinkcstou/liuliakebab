@@ -15,13 +15,13 @@ html {
 #htmlId {
   width: 100%;
   height: 100%;
-  background-image: url("../resources/draft/mainform.png");
-  opacity: 0.4;
+  /*background-image: url("../resources/draft/mainform.png");*/
+  /*opacity: 0.6;*/
   background-size: contain;
   background-repeat: no-repeat;
-  /*background-image: -moz-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);*/
-  /*background-image: -webkit-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);*/
-  /*background-image: -ms-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);*/
+  background-image: -moz-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);
+  background-image: -webkit-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);
+  background-image: -ms-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);
   font-family: SFUIDisplay-Light;
   margin: 0;
   overflow: hidden;
@@ -244,6 +244,28 @@ input {
   border-bottom: 4px solid #a3deee;
 }
 
+.toolbar-circle-container {
+  position: absolute;
+  width: 105px;
+  height: 105px;
+  left: 272px;
+  bottom: -27px;
+  border-radius: 100px;
+  background-color: white;
+  border: 8px solid #007AE2;
+}
+
+.toolbar-circle-button {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  margin: 8px 0px 0px 8px;
+  border-radius: 60px;
+  background-image: url(../resources/icons/bank-operations/circle.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
 .menu-button {
   position: absolute;
   left: 4px;
@@ -256,7 +278,7 @@ input {
 .menu-icon {
   position: absolute;
   background: transparent;
-  background-image: url(../resources/icons/toolbar/menu.png);
+  background-image: url(../resources/icons/toolbar/menus.png);
   width: 100px;
   height: 100px;
   background-size: 35%;
@@ -278,7 +300,7 @@ input {
 .bell-icon {
   position: absolute;
   background: transparent;
-  background-image: url(../resources/icons/toolbar/bell.png);
+  background-image: url(../resources/icons/toolbar/bells.png);
   width: 40px;
   height: 46px;
   background-size: 100%;
@@ -326,34 +348,56 @@ input {
 
 .bank-operations {
   position: absolute;
-  bottom: 316px;
-  left: -6px;
-  height: 400px;
+  bottom: 427px;
+  top: 543px;
   width: 100%;
 }
 
 /*PAY-BUTTON*/
 .bank-operation-button {
-  position: relative;
+  position: absolute;
   background: transparent;
   height: 200px;
   width: 200px;
-  display: inline-block;
-  margin: 20px 10px 20px 20px;
+  bottom: 0;
+
+}
+
+.bank-operation-button-pay {
   left: 10px;
 }
 
-.top-operations-buttons {
+.bank-operation-button-transfer {
+  left: 248px;
+}
 
+.bank-operation-button-autopay {
+  left: 480px;
+}
+
+.top-operations-buttons {
+  position: absolute;
+  width: 100%;
+  height: 205px;
+  bottom: 56px;
 }
 
 .bank-operation-icon {
   position: absolute;
-  top: 0;
+  top: -5px;
+  left: 6px;
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.bank-operation-button-my-cards-container {
+  position: absolute;
+  width: 283px;
+  height: 70px;
+  left: 200px;
+  bottom: 0px;
 }
 
 .bank-operation-button-my-cards {
@@ -366,35 +410,54 @@ input {
   bottom: -105px;
 }
 
+.bank-operation-button-my-cards-icon {
+  position: absolute;
+  width: 71px;
+  height: 70px;
+  left: 20px;
+  top: -4px;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-image: url(../resources/icons/bank-operations/allcards.png);
+}
+
+.bank-operation-button-my-cards-label {
+  width: 186px;
+  left: 70px;
+  position: absolute;
+  font-size: 27px;
+  color: #ffffff;
+}
+
 .bank-operation-label {
   position: absolute;
-  bottom: 0;
+  bottom: -16px;
   color: #ffffff;
   text-align: center;
   width: 100%;
   height: 30%;
   line-height: 60px;
-  left: -6px;
-  font-size: 32px;
+  left: 20px;
+  font-size: 27px;
 }
 
 .operation-pay-icon {
-  background-image: url("../resources/icons/bank-operations/payments.png");
+  background-image: url(../resources/icons/bank-operations/payment.png);
   background-size: 30%;
   border-bottom: .2px solid #95E6FD;
+  left: 20px;
 }
 
 .operation-transfer-icon {
-  background-image: url("../resources/icons/bank-operations/transfer.png");
+  background-image: url(../resources/icons/bank-operations/transfers.png);
   background-size: 40%;
   border-bottom: .2px solid #95E6FD;
 }
 
 .operation-autopay-icon {
-  background-image: url(../resources/icons/bank-operations/autopay.png);
-  background-size: 40%;
+  background-image: url(../resources/icons/bank-operations/autopays.png);
+  background-size: 36%;
   border-bottom: .2px solid #95E6FD;
-  left: -6px;
 }
 
 .hide {
@@ -555,7 +618,7 @@ input {
 
 .service-component {
   position: absolute;
-  width: 617px;
+  width: 620px;
   height: 338px;
   bottom: 0;
   /* background-color: #f7f7f7; */
@@ -566,70 +629,85 @@ input {
   position: absolute;
   height: 160px;
   width: 100%;
-  bottom: 0;
+  bottom: 78px;
+  left: 25px;
 }
 
 .service-buttons {
   position: absolute;
-  width: 200px;
-  height: 160px;
-  top: 20px;
+  width: 125px;
+  height: 125px;
   background-repeat: no-repeat;
-}
-
-.horizontal-line {
-  position: absolute;
-  height: 50px;
-  width: 2px;
-  background-color: #b1b1b1;
-}
-
-.horizontal-line-beeline {
-  left: 164px;
-  top: 34px;
-}
-
-.horizontal-line-ucell {
-  left: 198px;
-  top: 36px;
-}
-
-.horizontal-line-ums {
-  left: 194px;
-  top: 54px;
+  background-position: center;
+  border-radius: 100px;
+  border: 1px solid grey;
 }
 
 .beeline-button {
-  background-image: url(../resources/icons/services/beeline.png);
-  background-size: 80%;
-  left: 8px;
+  background-image: url(../resources/icons/services/beelineS.png);
+  background-size: 60%;
+  left: 152px;
 }
 
 .ucell-button {
-  left: 168px;
-  background-image: url(../resources/icons/services/ucell.png);
-  background-size: 52%;
-  background-position: top;
+  left: 15px;
+  top: 4px;
+  background-image: url(../resources/icons/services/ucellS.png);
+  background-size: 80%;
+
 }
 
 .ums-button {
-  left: 366px;
+  left: 288px;
   background-position: center;
-  background-image: url(../resources/icons/services/ums.png);
-  background-size: 70%;
-  top: 0px;
+  background-image: url(../resources/icons/services/umsS.png);
+  background-size: 60%;
+}
+
+.my-phone-button {
+  left: 425px;
+  top: 0;
+  background-position-x: 35px;
+  background-image: url(../resources/icons/services/myphone.png);
+  background-size: 60%;
+}
+
+.service-labels {
+  position: absolute;
+  bottom: -75px;
+  font-size: 25px;
+  color: grey;
+}
+
+.service-labels-ucell {
+  left: 40px;
+}
+
+.service-labels-beeline {
+  bottom: -80px;
+  left: 24px;
+}
+
+.service-labels-ums {
+  left: 29px;
+}
+
+.service-labels-my-phone {
+  left: 0px;
+  width: 166px;
+  bottom: -69px;
 }
 
 .service-title {
   position: relative;
-  top: 40px;
-  width: 340px;
+  top: 38px;
+  width: 244px;
   margin-left: auto;
   margin-right: auto;
   background: transparent;
   background-size: contain;
   color: #585858;
-  font-size: 34px;
+  font-size: 24px;
 }
 
 .side-menu {
@@ -748,19 +826,19 @@ input {
 }
 
 .my-cards-button-icon-transfer {
-  background-image: url("../resources/icons/bank-operations/transfer.png");
+  background-image: url("../resources/icons/bank-operations/transfers.png");
   background-size: 35%;
   background-position: center;
 }
 
 .my-cards-button-icon-payment {
-  background-image: url("../resources/icons/bank-operations/payments.png");
+  background-image: url("../resources/icons/bank-operations/payment.png");
   background-size: 25%;
   background-position: center;
 }
 
 .my-cards-button-icon-report {
-  background-image: url("../resources/icons/bank-operations/reports.png");
+  background-image: url("../resources/icons/bank-operations/circle.png");
   background-size: 35%;
   background-position: center;
 }
