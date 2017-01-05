@@ -20,19 +20,6 @@
       </div>
     </div>
 
-    <div class="bottom-operations-buttons">
-      <div class="bank-operation-button" ontouchend="goToMyFinanceView()">
-        <div class="bank-operation-icon operation-myFinance-icon">
-        </div>
-        <label class="bank-operation-label">МОИ ФИНАНСЫ</label>
-      </div>
-
-      <div class="bank-operation-button" ontouchend="goToReportView()">
-        <div class="bank-operation-icon operation-report-icon">
-        </div>
-        <label class="bank-operation-label">ОТЧЕТЫ</label>
-      </div>
-    </div>
   </div>
 
   <script>
@@ -65,22 +52,5 @@
       riot.mount('view-auto-pay');
     }
 
-    goToMyFinanceView = function(e)
-    {
-      event.preventDefault();
-      event.stopPropagation();
-
-      this.riotTags.innerHTML = "<view-my-finance>";
-      riot.mount('view-my-finance');
-    }
-
-    goToReportView = function(e)
-    {
-      event.preventDefault();
-      event.stopPropagation();
-
-      this.riotTags.innerHTML = "<view-report>";
-      riot.mount('view-report');
-    }
   </script>
 </component-bank-operations>

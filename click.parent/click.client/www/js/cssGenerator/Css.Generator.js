@@ -145,11 +145,10 @@ var css = {
 
   keyboardField: ".keyboard-field " +
   "{" +
-  "position: relative;" +
+  "position: absolute;" +
   "width:" + 500 * widthK + "px;" +
   "height:" + 500 * widthK + "px;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
+  "left:" + 110 * widthK + "px" +
   "}",
 
   registrationKeyboardField       : ".registration-keyboard-field " +
@@ -328,6 +327,17 @@ var css = {
   "top:" + 25 * widthK + "px;" +
   "}",
 
+  viewSms: ".view-sms " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "overflow: hidden;" +
+  "background-image: url('resources/icons/background/transparent.png');" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
   smsFlexContainer: ".sms-flex-container" +
   "{" +
   "position: absolute;" +
@@ -408,6 +418,144 @@ var css = {
   "margin: 0;" +
   "left:" + 70 * widthK + "px;" +
   "top:" + -4 * widthK + "px;" +
+  "}",
+
+  viewAuthorization: ".view-authorization " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "overflow: hidden;" +
+  "background-image: url('resources/icons/background/transparent.png');" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
+  authorizationFlexContainer: ".authorization-flex-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "top: 0;" +
+  "bottom:" + 610 * widthK + "px;" +
+  "}",
+
+  authorizationUnchangableContainer: ".authorization-unchangable-container " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 110 * widthK + "px;" +
+  "bottom: 50%;" +
+  "width: 100%;" +
+  "}",
+
+  authorizationPinContainer: ".authorization-pin-container " +
+  "{" +
+  "position: relative;" +
+  "width:" + 320 * widthK + "px;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "height:" + 100 * widthK + "px;" +
+  "}",
+
+  authorizationPinField: ".authorization-pin-field " +
+  "{" +
+  "position: relative;" +
+  "height:" + 40 * widthK + "px;" +
+  "width:" + 320 * widthK + "px;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "margin-top:" + 20 * widthK + "px;" +
+  "}",
+
+  authorizationPinCircle: ".authorization-pin-circles " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 34 * widthK + "px;" +
+  "height:" + 34 * widthK + "px;" +
+  "border-radius:" + 40 * widthK + "px;" +
+  "border:" + 4.5 * widthK + "px solid #01cfff;" +
+  "}",
+
+  authorizationPinTwo: ".authorization-pin-two " +
+  "{" +
+  "left:" + 70 * widthK + "px;" +
+  "}",
+
+  authorizationPinThree: ".authorization-pin-three " +
+  "{" +
+  "left:" + 140 * widthK + "px;" +
+  "}",
+
+  authorizationPinFour: ".authorization-pin-four " +
+  "{" +
+  "left:" + 210 * widthK + "px;" +
+  "}",
+
+  authorizationPinFive: ".authorization-pin-five " +
+  "{" +
+  "left:" + 280 * widthK + "px;" +
+  "}",
+
+  authorizationKeyboardField: ".authorization-keyboard-field " +
+  "{" +
+  "bottom:" + 107 * widthK + "px;" +
+  "}",
+
+  authorizationButtonEnter: ".authorization-button-enter " +
+  "{" +
+  "top:" + 240 * widthK + "px;" +
+  "}",
+
+  authorizationButtonsContainer: ".authorization-buttons-container " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 490 * widthK + "px;" +
+  "left:" + 120 * widthK + "px;" +
+  "bottom:" + 700 * widthK + "px;" +
+  "height:" + 45 * widthK + "px;" +
+  "}",
+
+  authorizationButtonForgetPin: ".authorization-button-forget-pin " +
+  "{" +
+  "position: absolute;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "left: 0;" +
+  "background-size: contain;" +
+  "color: #05eeff;" +
+  "border-bottom:" + 2 * widthK + "px solid #05eeff;" +
+  "}",
+
+  authorizationButtonRegistration: ".authorization-button-registration " +
+  "{" +
+  "position: absolute;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "background-size: contain;" +
+  "color: white;" +
+  "right: 0;" +
+  "border-bottom:" + 2 * widthK + "px solid white;" +
+  "}",
+
+  authorizationButtonOffline: ".authorization-button-offline " +
+  "{" +
+  "position: absolute;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "width:" + 240 * widthK + "px;" +
+  "background-size: contain;" +
+  "color: white;" +
+  "border-bottom:" + 2 * widthK + "px solid white;" +
+  "text-align: center;" +
+  "bottom:" + 40 * widthK + "px;" +
+  "left:" + 240 * widthK + "px;" +
+  "}",
+
+  authorizationEnterPinLabel: ".authorization-enter-pin-label " +
+  "{" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "background-size: contain;" +
+  "width:" + 275 * widthK + "px;" +
+  "color: white;" +
+  "font-size:" + 32 * widthK + "px;" +
   "}"
 }
 

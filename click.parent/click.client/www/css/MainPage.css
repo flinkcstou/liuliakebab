@@ -15,7 +15,7 @@ html {
 #htmlId {
   width: 100%;
   height: 100%;
-  /*background-image: url("../resources/draft/main_without_bar.png");*/
+  /*background-image: url("../resources/draft/main_without_bar.jpg");*/
   /*opacity: 0.4;*/
   background-size: contain;
   background-repeat: no-repeat;
@@ -227,11 +227,10 @@ input {
 /*KEYBOARD SETTINGS FOR REGISTRATION AND AUTHORIZATION*/
 
 .keyboard-field {
-  position: relative;
+  position: absolute;
   width: 500px;
   height: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  left: 110px;
 }
 
 /*TOOLBAR*/
@@ -348,11 +347,7 @@ input {
 
 }
 
-.bottom-operations-buttons {
-  position: absolute;
-  top: 170px;
-  left: 0px;
-}
+
 
 .bank-operation-icon {
   position: absolute;
@@ -394,15 +389,6 @@ input {
   left: -6px;
 }
 
-.operation-myFinance-icon {
-  background-image: url("../resources/icons/bank-operations/myfinance.png");
-  background-size: 40%;
-}
-
-.operation-report-icon {
-  background-image: url("../resources/icons/bank-operations/reports.png");
-  background-size: 40%;
-}
 
 .hide {
   display: none;
@@ -413,30 +399,6 @@ input {
 }
 
 /*ALL CARD*/
-.common-balance-label {
-  position: absolute;
-  top: 84px;
-  font-size: 34px;
-  left: 44px;
-  color: #9fdbf8;
-  word-spacing: 8px;
-}
-
-.common-balance {
-  position: absolute;
-  top: 30px;
-  left: 38px;
-  color: #fffaf9;
-  font-size: 116px;
-  word-spacing: 8px;
-}
-
-.valuta {
-  position: absolute;
-  top: 180px;
-  left: 592px;
-  color: #9fdbf8;
-}
 
 /*CAROUSEL*/
 
@@ -445,7 +407,7 @@ input {
   height: 340px;
   width: 100%;
   display: inline-block;
-  top: 220px;
+  top: 100px;
   background: transparent;
 }
 
@@ -587,7 +549,7 @@ input {
 .service-component {
   position: absolute;
   width: 620px;
-  height: 230px;
+  height: 300px;
   bottom: 0;
   /*background-color: #f7f7f7;*/
   background-color: #fefefe;
@@ -900,22 +862,35 @@ input {
 
 /*AUTHORIZATION VIEW*/
 
+.authorization-flex-container {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 610px;
+}
+
+.authorization-unchangable-container {
+  position: absolute;
+  height: 110px;
+  bottom: 50%;
+  width: 100%;
+}
+
 .authorization-pin-container {
   position: relative;
   width: 320px;
   margin-right: auto;
   margin-left: auto;
   height: 100px;
-  top: 240px;
 }
 
 .authorization-pin-field {
   position: relative;
-  top: 30px;
   height: 40px;
   width: 320px;
   margin-right: auto;
   margin-left: auto;
+  margin-top: 20px;
 }
 
 .authorization-pin-circles {
@@ -927,7 +902,6 @@ input {
 }
 
 .authorization-pin-one {
-
 }
 
 .authorization-pin-two {
@@ -947,7 +921,7 @@ input {
 }
 
 .authorization-keyboard-field {
-  top: 500px;
+  bottom: 107px;
 }
 
 .authorization-button-enter {
@@ -955,18 +929,17 @@ input {
 }
 
 .authorization-buttons-container {
-  position: relative;
+  position: absolute;
   width: 490px;
-  top: -210px;
-  margin-left: auto;
-  margin-right: auto;
+  left: 120px;
+  bottom: 700px;
+  height: 45px;
 }
 
 .authorization-button-forget-pin {
   position: absolute;
   font-size: 34px;
   left: 0;
-  top: 80px;
   background-size: contain;
   color: #05eeff;
   border-bottom: 2px solid #05eeff;
@@ -978,26 +951,23 @@ input {
   background-size: contain;
   color: white;
   right: 0;
-  top: 80px;
   border-bottom: 2px solid white;
 }
 
 .authorization-button-offline {
-  position: relative;
+  position: absolute;
   font-size: 34px;
   width: 240px;
   background-size: contain;
   color: white;
   border-bottom: 2px solid white;
   text-align: center;
-  bottom: -530px;
-  margin-left: auto;
-  margin-right: auto;
+  bottom: 40px;
+  left: 240px;
 }
 
 .authorization-enter-pin-label {
   position: relative;
-  top: 240px;
   margin-left: auto;
   margin-right: auto;
   background-size: contain;
@@ -1280,18 +1250,20 @@ input {
 }
 
 /*VIEW - SMS*/
-.sms-flex-container{
+.sms-flex-container {
   position: absolute;
   top: 0;
   bottom: 565px;
   width: 100%;
 }
-.sms-unchangable-container{
+
+.sms-unchangable-container {
   width: 100%;
   position: absolute;
   height: 275px;
-  bottom:20%
+  bottom: 20%
 }
+
 .sms-text-field {
   position: relative;
   text-align: center;

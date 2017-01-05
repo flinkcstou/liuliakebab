@@ -1,13 +1,17 @@
 <view-authorization class="view-authorization">
 
-  <div class="authorization-enter-pin-label">Введите CLICK-PIN</div>
-  <div class="authorization-pin-container">
-    <div class="authorization-pin-field">
-      <div id="circleOne" class="authorization-pin-circles authorization-pin-one"></div>
-      <div id="circleTwo" class="authorization-pin-circles authorization-pin-two"></div>
-      <div id="circleThree" class="authorization-pin-circles authorization-pin-three"></div>
-      <div id="circleFour" class="authorization-pin-circles authorization-pin-four"></div>
-      <div id="circleFive" class="authorization-pin-circles authorization-pin-five"></div>
+  <div class="authorization-flex-container">
+    <div class="authorization-unchangable-container">
+    <div class="authorization-enter-pin-label">Введите CLICK-PIN</div>
+    <div class="authorization-pin-container">
+      <div class="authorization-pin-field">
+        <div id="circleOne" class="authorization-pin-circles authorization-pin-one"></div>
+        <div id="circleTwo" class="authorization-pin-circles authorization-pin-two"></div>
+        <div id="circleThree" class="authorization-pin-circles authorization-pin-three"></div>
+        <div id="circleFour" class="authorization-pin-circles authorization-pin-four"></div>
+        <div id="circleFive" class="authorization-pin-circles authorization-pin-five"></div>
+      </div>
+    </div>
     </div>
   </div>
 
@@ -20,7 +24,6 @@
     <div class="authorization-button-registration">Регистрация</div>
   </div>
   <div class="authorization-button-offline">Офлайн режим</div>
-
 
 
   <script>
@@ -148,7 +151,7 @@
       })
     }
 
-    if(checkSessionKey) {
+    if (checkSessionKey) {
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = loginInfo.session_key;
