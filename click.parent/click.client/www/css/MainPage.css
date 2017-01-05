@@ -425,10 +425,10 @@ input {
 }
 
 .card {
-  height: 296px;
+  height: 289px;
   width: 510px;
   position: absolute;
-  top: 50px;
+  top: 47px;
   -webkit-border-radius: 14px;
   -moz-border-radius: 14px;
   border-radius: 14px;
@@ -555,10 +555,10 @@ input {
 
 .service-component {
   position: absolute;
-  width: 620px;
-  height: 300px;
+  width: 617px;
+  height: 338px;
   bottom: 0;
-  /*background-color: #f7f7f7;*/
+  /* background-color: #f7f7f7; */
   background-color: #fefefe;
 }
 
@@ -1348,13 +1348,13 @@ input {
 
 .footer-icon-tick {
   position: absolute;
-  left: 176px;
+  left: 185px;
   background-size: contain;
   background-image: url(../resources/icons/footer/contacts.png);
   background-repeat: no-repeat;
-  width: 38px;
+  width: 33px;
   height: 18px;
-  top: 34px;
+  top: 40px;
   transition: 0.8s;
 }
 
@@ -1365,7 +1365,7 @@ input {
   right: 0;
   transition: 0.3s;
   -webkit-transition: 0.3s;
-  height: 300px;
+  height: 312px;
   width: 100%;
   transform: translate3d(0, 200px, 0);
   -webkit-transform: translate3d(0, 200px, 0);
@@ -1374,10 +1374,10 @@ input {
 
 .footer-contacts-label {
   position: absolute;
-  font-size: 28px;
-  margin-top: 28px;
+  font-size: 27px;
+  margin-top: 33px;
   color: white;
-  left: -20px;
+  left: -1px;
 }
 
 .footer-contacts {
