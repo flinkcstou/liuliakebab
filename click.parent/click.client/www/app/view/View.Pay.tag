@@ -3,18 +3,19 @@
     </component-page-title>
 
     <div id="pay-service-container-id" class="pay-category-container">
-        <ul style="list-style:none">
+        <ul style="list-style:none; padding: 0;">
             <li each="{i in categoryList}">
                 <div class="pay-service-block-containter" id="{i.id}" ontouchend="toggle(this.id)">
                     <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
-                    <div class="pay-service-name-field">{i.name}</div>
+                    <div class="pay-category-name-field">{i.name}</div>
+                    <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
+                        <li class="pay-service-containter" each="{j in currentList}">
+                            <div class="pay-service-icon" style="background-image: url({j.image})"></div>
+                            <div class="pay-service-name-field">{j.name}</div>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="pay-services-block" if="{index == i.id}" style="list-style:none">
-                    <li class="pay-service-containter" each="{j in currentList}">
-                        <div class="pay-service-icon" style="background-image: url({j.image})"></div>
-                        {j.name}
-                    </li>
-                </ul>
+
 
             </li>
         </ul>
@@ -70,6 +71,7 @@
         }
 
         scope.index = -1;
+        scope.show = false;
 
 
         toggle = function (id) {
@@ -89,8 +91,17 @@
                 }
 
 
+            if (scope.currentList.length == 0) {
+
+                scope.show = false;
+            } else {
+
+                scope.show = true;
+            }
+
             riot.update(scope.index);
             riot.update(scope.currentList);
+            riot.update(scope.show);
         };
 
 
