@@ -5,7 +5,14 @@
   <component-bank-operations></component-bank-operations>
   <component-service-carousel></component-service-carousel>
   <component-footer></component-footer>
-  <component-card-carousel></component-card-carousel>
+  <component-card-carousel>
+  </component-card-carousel>
+    <div class="bank-operation-button-my-cards">
+      <div class="bank-operation-button-my-cards-container">
+        <div class="bank-operation-button-my-cards-icon"></div>
+        <div class="bank-operation-button-my-cards-label">МОИ КАРТЫ</div>
+      </div>
+    </div>
   </div>
   <script>
     var scope = this;

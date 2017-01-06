@@ -4,7 +4,6 @@
     </div>
 
     <div class="toolbar-circle-container">
-      <div class="toolbar-circle-button"></div>
     </div>
 
     <div class="bell-button bell-icon" ontouchend="bellButton()">

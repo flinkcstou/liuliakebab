@@ -10,7 +10,7 @@
     </div>
 
     <div id="ums" class="service-buttons ums-button">
-      <p class="service-labels service-labels-ums">Ums</p>
+      <p class="service-labels service-labels-ums">UMS</p>
     </div>
 
     <div id="myPhone" class="service-buttons my-phone-button">

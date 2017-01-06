@@ -11,15 +11,17 @@
       <div class="footer-favourite-contacts-container">
 
         <div class="footer-contacts-blocks footer-contacts-block-one">
-          <div id="photoOne" class="footer-favourite-contacts-circles footer-contact-one" style="background-image: url({firstContactObject.contactPhoto})">
+          <div id="photoOne" class="footer-favourite-contacts-circles footer-contact-one"
+               style="background-image: url({firstContactObject.contactPhoto})">
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-one">
             {firstContactObject.contactFname}<br>{firstContactObject.contactLname}
           </p>
         </div>
 
-        <div class="footer-contacts-blocks footer-contacts-block-two" >
-          <div id="photoTwo" class="footer-favourite-contacts-circles footer-contact-two" style="background-image: url({secondContactObject.contactPhoto})">
+        <div class="footer-contacts-blocks footer-contacts-block-two">
+          <div id="photoTwo" class="footer-favourite-contacts-circles footer-contact-two"
+               style="background-image: url({secondContactObject.contactPhoto})">
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-two">
             {secondContactObject.contactFname} <br>
@@ -27,7 +29,8 @@
         </div>
 
         <div class="footer-contacts-blocks footer-contacts-block-three">
-          <div id="photoThree" class="footer-favourite-contacts-circles footer-contact-three" style="background-image: url({thirdContactObject.contactPhoto})">
+          <div id="photoThree" class="footer-favourite-contacts-circles footer-contact-three"
+               style="background-image: url({thirdContactObject.contactPhoto})">
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-three">
             {thirdContactObject.contactFname} <br>
@@ -35,7 +38,8 @@
         </div>
 
         <div class="footer-contacts-blocks footer-contacts-block-four">
-          <div id="photoFour" class="footer-favourite-contacts-circles footer-contact-four" style="background-image: url({fourContactObject.contactPhoto})">
+          <div id="photoFour" class="footer-favourite-contacts-circles footer-contact-four"
+               style="background-image: url({fourContactObject.contactPhoto})">
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-four">
             {fourContactObject.contactFname} <br>
@@ -43,7 +47,8 @@
         </div>
 
         <div class="footer-contacts-blocks footer-contacts-block-five">
-          <div id="photoFive" class="footer-favourite-contacts-circles footer-contact-five" style="background-image: url({fiveContactObject.contactPhoto})">
+          <div id="photoFive" class="footer-favourite-contacts-circles footer-contact-five"
+               style="background-image: url({fiveContactObject.contactPhoto})">
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-five">
             {fiveContactObject.contactFname} <br>
@@ -82,7 +87,7 @@
       event.stopPropagation();
       if (!check) {
         this.iconTickId.style.transform = "rotate3d(1, 0, 0, 180deg)";
-        this.contactsContainer.style.webkitTransform = "translate3d(0, -30px, 0)";
+        this.contactsContainer.style.webkitTransform = "translate3d(0," + -30 * widthK + "px, 0)";
         this.contactsContainer.style.Transform = "translate3d(0, -30px, 0)";
         check = true;
         riot.update();
@@ -91,8 +96,8 @@
 
       if (check) {
         this.iconTickId.style.transform = "rotate3d(0, 0, 0, 0deg)";
-        this.contactsContainer.style.webkitTransform = "translate3d(0, 200px, 0)";
-        this.contactsContainer.style.Transform = "translate3d(0, 200px, 0)";
+        this.contactsContainer.style.webkitTransform = "translate3d(0,"+ 200 * widthK + "px, 0)";
+        this.contactsContainer.style.Transform = "translate3d(0,"+ 200 * widthK + "px, 0)";
         check = false;
         return;
       }
@@ -104,60 +109,60 @@
     var arrayOfConnectedContacts = [];
 
 
-//    findContacts = function () {
-//      var options = new ContactFindOptions();
-//      options.filter = "";
-//      options.multiple = true;
-//      var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.photos];
-//      navigator.contacts.find(fields, success, error, options);
+//        findContacts = function () {
+//          var options = new ContactFindOptions();
+//          options.filter = "";
+//          options.multiple = true;
+//          var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.photos];
+//          navigator.contacts.find(fields, success, error, options);
 //
-//      function success(contacts) {
-//        //alert(JSON.stringify(contacts));
-//        for (var i = 0; i < contacts.length; i++) {
-//          console.log('contacts ', contacts[i])
-//          if (contacts[i].photos != null) {
-//            if (contacts[i].photos[0].value != null && contacts[i].name != null) {
-//              arrayOfPhotosContacts.push(contacts[i]);
+//          function success(contacts) {
+//            //alert(JSON.stringify(contacts));
+//            for (var i = 0; i < contacts.length; i++) {
+//              console.log('contacts ', contacts[i])
+//              if (contacts[i].photos != null) {
+//                if (contacts[i].photos[0].value != null && contacts[i].name != null) {
+//                  arrayOfPhotosContacts.push(contacts[i]);
 //
-//              if (arrayOfPhotosContacts.length >= 5) break;
+//                  if (arrayOfPhotosContacts.length >= 5) break;
+//                }
+//              }
+//              if (contacts[i].photos == null && contacts[i].name != null && arrayWithoutPhotosContacts.length <= 5)
+//                arrayWithoutPhotosContacts.push(contacts[i])
+//            }
+//            console.log("CONTACTS WITH PHOTOS ", arrayOfPhotosContacts)
+//            console.log("CONTACTS WITHout PHOTOS ", arrayWithoutPhotosContacts)
+//            arrayOfConnectedContacts = arrayOfPhotosContacts.concat(arrayWithoutPhotosContacts);
+//            console.log("CONTACTS CONNECTED ARRAY ", arrayOfConnectedContacts)
+//            writeContacts(arrayOfConnectedContacts);
+//          }
+//
+//          function error(message) {
+//            alert('Failed because: ' + message);
+//          }
+//        }
+//        findContacts();
+//
+//        writeContacts = function (arrayOfConnectedContacts) {
+//          var j = 0;
+//          if (arrayOfConnectedContacts.length >= 5)
+//            j = 5;
+//          else j = arrayOfConnectedContacts.length;
+//          for (var i = 0; i < j; i++) {
+//            if (arrayOfConnectedContacts[i].photos != null)
+//              scope.arrayOfPhotos[i].contactPhoto = arrayOfConnectedContacts[i].photos[0].value;
+//
+//            if (arrayOfConnectedContacts[i].name.familyName != null)
+//              scope.arrayOfPhotos[i].contactFname = arrayOfConnectedContacts[i].name.familyName;
+//            else
+//              scope.arrayOfPhotos[i].contactFname = arrayOfConnectedContacts[i].name.givenName;
+//
+//            if (arrayOfConnectedContacts[i].name.givenName != null && arrayOfConnectedContacts[i].name.familyName != null) {
+//              scope.arrayOfPhotos[i].contactLname = arrayOfConnectedContacts[i].name.givenName;
 //            }
 //          }
-//          if (contacts[i].photos == null && contacts[i].name != null && arrayWithoutPhotosContacts.length <= 5)
-//            arrayWithoutPhotosContacts.push(contacts[i])
+//          riot.update();
 //        }
-//        console.log("CONTACTS WITH PHOTOS ", arrayOfPhotosContacts)
-//        console.log("CONTACTS WITHout PHOTOS ", arrayWithoutPhotosContacts)
-//        arrayOfConnectedContacts = arrayOfPhotosContacts.concat(arrayWithoutPhotosContacts);
-//        console.log("CONTACTS CONNECTED ARRAY ", arrayOfConnectedContacts)
-//        writeContacts(arrayOfConnectedContacts);
-//      }
-//
-//      function error(message) {
-//        alert('Failed because: ' + message);
-//      }
-//    }
-//    findContacts();
-//
-//    writeContacts = function (arrayOfConnectedContacts) {
-//      var j = 0;
-//      if (arrayOfConnectedContacts.length >= 5)
-//        j = 5;
-//      else j = arrayOfConnectedContacts.length;
-//      for (var i = 0; i < j; i++) {
-//        if (arrayOfConnectedContacts[i].photos != null)
-//          scope.arrayOfPhotos[i].contactPhoto = arrayOfConnectedContacts[i].photos[0].value;
-//
-//        if (arrayOfConnectedContacts[i].name.familyName != null)
-//          scope.arrayOfPhotos[i].contactFname = arrayOfConnectedContacts[i].name.familyName;
-//        else
-//          scope.arrayOfPhotos[i].contactFname = arrayOfConnectedContacts[i].name.givenName;
-//
-//        if (arrayOfConnectedContacts[i].name.givenName != null && arrayOfConnectedContacts[i].name.familyName != null) {
-//          scope.arrayOfPhotos[i].contactLname = arrayOfConnectedContacts[i].name.givenName;
-//        }
-//      }
-//      riot.update();
-//    }
 
     //
     //    writeContacts = function () {

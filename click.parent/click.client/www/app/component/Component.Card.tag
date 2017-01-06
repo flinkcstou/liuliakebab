@@ -1,4 +1,4 @@
-<component-card class="card" style="background-image: url({opts.background}); left:{540*opts.countcard+100}px">
+<component-card class="card" style="background-image: url({opts.background}); left:{left}px">
 
   <div class="card-bank-name-url" style="background-image: url({opts.url})"></div>
   <div class="card-bank-name" style="background-image: url({opts.bankname})"></div>
@@ -10,14 +10,15 @@
   </div>
 
   <div class="card-number">
-  <div class="card-number-part-one">{opts.numberpartone}</div>
-  <p class="number-stars">**** ****</p>
-  <div class="card-number-part-two">{opts.numberparttwo}</div>
+    <div class="card-number-part-one">{opts.numberpartone}</div>
+    <p class="number-stars">**** ****</p>
+    <div class="card-number-part-two">{opts.numberparttwo}</div>
   </div>
 
   <script>
     var scope = this;
-  console.log(opts.numberpartone)
+    scope.left = (540 * opts.countcard + 100) * widthK;
+    console.log(opts.numberpartone)
 
   </script>
 </component-card>

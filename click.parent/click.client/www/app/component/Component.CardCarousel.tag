@@ -10,12 +10,6 @@
                       bankname="{i.bankName}" url="{i.url}"
                       background="{i.background}"></component-card>
     </div>
-    <div class="bank-operation-button-my-cards">
-      <div class="bank-operation-button-my-cards-container">
-        <div class="bank-operation-button-my-cards-icon"></div>
-        <div class="bank-operation-button-my-cards-label">МОИ КАРТЫ</div>
-      </div>
-    </div>
   </div>
 
   <script>
@@ -57,7 +51,7 @@
       }
       else if (!viewMainPage.myCards) {
         localStorage.setItem('cardNumber', cardNumber)
-        pos = (JSON.parse(localStorage.getItem('click_client_cards'))[localStorage.getItem('cardNumber')].countCard) * 540;
+        pos = (JSON.parse(localStorage.getItem('click_client_cards'))[localStorage.getItem('cardNumber')].countCard) * 540 * widthK;
         console.log("POS ", pos)
         //viewMainPage.myCards = true;
         this.riotTags.innerHTML = "<view-my-cards>";
@@ -74,8 +68,8 @@
       this.cards.style.webkitTransition = '0s';
       event.preventDefault();
       event.stopPropagation();
-      this.cards.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
-      this.cards.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
+      this.cards.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
+      this.cards.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
     }
 
     addCard(getAccountsCards)
@@ -157,23 +151,23 @@
         // second parameter FROM TO
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 540) + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       }
 
       if (touchEndX > touchStartX && cardNumber == 0) {
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 540) + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
       if (touchEndX < touchStartX && cardNumber == count - 1) {
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 540) + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       }
 
@@ -181,8 +175,8 @@
         --cardNumber;
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 540) + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
       localStorage.setItem('cardNumber', cardNumber);
 

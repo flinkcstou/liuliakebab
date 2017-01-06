@@ -19,16 +19,16 @@ html {
   /*opacity: 0.6;*/
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: -moz-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);
-  background-image: -webkit-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);
-  background-image: -ms-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);
+  background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(9,147,233) 60%, rgb(21,181,243) 100%);
+  background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(9,147,233) 60%, rgb(21,181,243) 100%);
+  background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(9,147,233) 60%, rgb(21,181,243) 100%);
   font-family: SFUIDisplay-Light;
   margin: 0;
   overflow: hidden;
 }
 
 input {
-  font-family: Neuron;
+  font-family: SFUIDisplay-Light;
   font-size: 24px;
 }
 
@@ -216,7 +216,7 @@ input {
 
 .button-enter-label {
   position: relative;
-  top: 30px;
+  top: 20px;
   width: 120px;
   height: 40px;
   font-size: 44px;
@@ -253,17 +253,13 @@ input {
   border-radius: 100px;
   background-color: white;
   border: 8px solid #007AE2;
-}
-
-.toolbar-circle-button {
-  position: absolute;
-  width: 90px;
-  height: 90px;
-  margin: 8px 0px 0px 8px;
-  border-radius: 60px;
-  background-image: url(../resources/icons/bank-operations/circle.png);
+  background-image: url(../resources/icons/bank-operations/circleReport.png);
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-position: center;
+  background-size: 90%;
+  -webkit-box-shadow: 0px 11px 9px -7px rgba(0,0,0,0.45);
+  -moz-box-shadow: 0px 11px 9px -7px rgba(0,0,0,0.45);
+  box-shadow: 0px 11px 9px -7px rgba(0,0,0,0.45);
 }
 
 .menu-button {
@@ -359,12 +355,12 @@ input {
   background: transparent;
   height: 200px;
   width: 200px;
-  bottom: 0;
+  bottom: 7%;
 
 }
 
 .bank-operation-button-pay {
-  left: 10px;
+  left: 16px;
 }
 
 .bank-operation-button-transfer {
@@ -379,15 +375,15 @@ input {
   position: absolute;
   width: 100%;
   height: 205px;
-  bottom: 56px;
+  bottom: 22%;
 }
 
 .bank-operation-icon {
   position: absolute;
   top: -5px;
   left: 6px;
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 200px;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -406,8 +402,7 @@ input {
   right: 27px;
   border-bottom: 2px solid #a3deee;
   text-align: center;
-  height: 70px;
-  bottom: -105px;
+  top: 442px;;
 }
 
 .bank-operation-button-my-cards-icon {
@@ -423,9 +418,10 @@ input {
 
 .bank-operation-button-my-cards-label {
   width: 186px;
-  left: 70px;
+  left: 71px;
+  top: 1px;
   position: absolute;
-  font-size: 27px;
+  font-size: 28px;
   color: #ffffff;
 }
 
@@ -437,27 +433,22 @@ input {
   width: 100%;
   height: 30%;
   line-height: 60px;
-  left: 20px;
-  font-size: 27px;
+  left: -3px;
+  font-size: 29px;
 }
 
 .operation-pay-icon {
   background-image: url(../resources/icons/bank-operations/payment.png);
-  background-size: 30%;
-  border-bottom: .2px solid #95E6FD;
-  left: 20px;
+  left: 12px;
 }
 
 .operation-transfer-icon {
   background-image: url(../resources/icons/bank-operations/transfers.png);
-  background-size: 40%;
-  border-bottom: .2px solid #95E6FD;
+
 }
 
 .operation-autopay-icon {
   background-image: url(../resources/icons/bank-operations/autopays.png);
-  background-size: 36%;
-  border-bottom: .2px solid #95E6FD;
 }
 
 .hide {
@@ -505,12 +496,13 @@ input {
 .card-bank-name {
   position: absolute;
   top: 12px;
-  left: 378px;
+  right: 25px;
   background-size: contain;
   background-repeat: no-repeat;
   font-size: 36px;
   height: 32px;
   width: 118px;
+  background-position: top right;
 }
 
 .card-bank-name-url {
@@ -519,8 +511,9 @@ input {
   height: 90px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: left top;
   left: 30px;
+  top: 20px;
 }
 
 .card-salary-title {
@@ -556,12 +549,10 @@ input {
 .card-currency {
   position: relative;
   margin-left: 40px;
-  /* margin-right: auto; */
   color: #a7a7a7;
   top: -6px;
   font-size: 26px;
   background-size: contain;
-  /* margin: 0; */
   float: left;
   width: 60px;
 }
@@ -600,18 +591,17 @@ input {
 .number-stars {
   position: absolute;
   margin: 0;
-  left: 94px;
+  left: 90px;
   top: 2px;
   letter-spacing: -10px;
   font-size: 52px;
-  word-spacing: -8px;
 }
 
 /*BOTTOM SERVICE BEELINE UCELL UMS*/
 .service-carousel {
   position: absolute;
   width: 100%;
-  height: 130px;
+  height: 338px;
   bottom: 90px;
   background: transparent;
 }
@@ -620,8 +610,8 @@ input {
   position: absolute;
   width: 620px;
   height: 338px;
-  bottom: 0;
-  /* background-color: #f7f7f7; */
+  top: -1px;
+  bottom: 5px;
   background-color: #fefefe;
 }
 
@@ -690,12 +680,13 @@ input {
 
 .service-labels-ums {
   left: 29px;
+  bottom: -80px;
 }
 
 .service-labels-my-phone {
   left: 0px;
   width: 166px;
-  bottom: -69px;
+  bottom: -80px;
 }
 
 .service-title {
@@ -790,12 +781,13 @@ input {
 /*MY CARDS BUTTON*/
 .my-cards-button-container {
   position: absolute;
-  top: 500px;
-  left: 20px;
+  top: 455px;
+  left: 0px;
   right: 0;
   overflow: hidden;
   height: 300px;
   background: transparent;
+
 }
 
 .my-cards-button-field {
@@ -838,7 +830,7 @@ input {
 }
 
 .my-cards-button-icon-report {
-  background-image: url("../resources/icons/bank-operations/circle.png");
+  background-image: url("../resources/icons/bank-operations/circleReport.png");
   background-size: 35%;
   background-position: center;
 }
@@ -848,7 +840,7 @@ input {
   height: 70%;
   width: 80%;
   left: 20%;
-  font-size: 40px;
+  font-size: 35px;
   color: white;
   top: 30px;
   border-bottom: 2px solid #95e6fd;
@@ -859,7 +851,7 @@ input {
   height: 120px;
   width: 100%;
   background-color: #eb604d;
-  top: 800px;
+  top: 760px;
 }
 
 .my-cards-button-block-card-label {
@@ -881,10 +873,10 @@ input {
 .my-cards-last-operations {
   position: absolute;
   width: 100%;
-  top: 920px;
+  top: 878px;
   overflow: auto;
   background-color: #ffffff;
-  bottom: 0;
+  bottom: 0px;
 }
 
 .my-cards-last-operations-container-label {
@@ -1413,11 +1405,10 @@ input {
 
 .footer {
   position: absolute;
-  bottom: 200px;
+  bottom: 190px;
   left: 0;
   right: 0;
-  height: 100px;
-  top: 10px;
+  height: 105px;
   width: 100%;
   border-top: 2px solid rgb(37, 160, 227);
   color: rgb(197, 233, 239);

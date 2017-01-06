@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <!-- CSS -->
-  <link id="mainPageCss" href="css/MainPage.css" rel="stylesheet">
+  <!--<link id="mainPageCss" href="css/MainPage.css" rel="stylesheet">-->
   <!--<script src="js/cssGenerator/Css.Generator.js"></script>-->
    <!--JS COMMON -->
   <!-- @include(cordova.htmlinc) -->
@@ -42,7 +42,7 @@
   var startApplication = function () {
     var script = document.createElement('script');
     script.src = 'js/cssGenerator/Css.Generator.js';
-//    document.head.appendChild(script);
+    document.head.appendChild(script);
 
     if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
       this.riotTags.innerHTML = "<view-authorization>";

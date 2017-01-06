@@ -41,7 +41,7 @@
       <p class="my-cards-last-operations-label">Последние операции</p>
 
       <div id="lastOperationContainerId" class="my-cards-last-operations-container">
-        <div class="my-cards-last-operations-info" each="{i in arrayOfOperationsByAccount}" style="top: {i.count*80}px">
+        <div class="my-cards-last-operations-info" each="{i in arrayOfOperationsByAccount}" style="top: {i.count* top}px">
           <div class="my-cards-operation-amount">- {i.amount}</div>
           <div class="my-cards-operation-currency">сум</div>
           <div class="my-cards-operation-date">{i.created}</div>
@@ -55,7 +55,8 @@
 
 
   <script>
-    scope = this;
+    var scope = this;
+    scope.top = 160 * widthK;
 
     console.log('get card number ', localStorage.getItem("cardNumber"))
     history.arrayOfHistory.push('view-my-cards');
@@ -112,7 +113,7 @@
               scope.arrayOfOperationsByAccount.push(result[1][i]);
             }
           }
-          scope.lastOperationContainerId.style.height = j*80 +'px';
+          scope.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
           riot.update(scope.arrayOfOperationsByAccount)
 
           console.log('arratdasas', scope.arrayOfOperationsByAccount)
