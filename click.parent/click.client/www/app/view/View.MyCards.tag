@@ -33,6 +33,7 @@
   </div>
 
   <div class="my-cards-button-block-card">
+    <div class="my-cards-button-icon my-cards-button-icon-block"></div>
     <div class="my-cards-button-block-card-label">Заблокировать карту</div>
   </div>
 

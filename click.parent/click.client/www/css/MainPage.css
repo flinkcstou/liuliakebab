@@ -897,6 +897,11 @@ input {
     background-size: 35%;
     background-position: center;
 }
+.my-cards-button-icon-block{
+  background-image: url("../resources/icons/bank-operations/transfers.png");
+  background-size: 35%;
+  background-position: center;
+}
 
 .my-cards-button-label {
     position: absolute;

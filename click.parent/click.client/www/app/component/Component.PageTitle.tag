@@ -4,6 +4,7 @@
        class="{back-button: opts.backbutton}">
 
   </div>
+  <div id="rightButton" type="button" class="{settings-button: opts.rightbutton}"></div>
 
   <script>
     var scope = this;

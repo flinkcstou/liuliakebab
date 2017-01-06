@@ -119,14 +119,13 @@ var css = {
   registrationRememberIcon               : ".registration-device-remember-icon " +
   "{" +
   "position: absolute;" +
-  "background-image: url(resources/icons/back/back.png);" +
+  "background-image: url(resources/icons/authorization/remember.png);" +
   "background-repeat: no-repeat;" +
-  "transform: rotate(-90deg);" +
-  "background-size: 60%;" +
+  "background-size: 100%;" +
   "width:" + 52 * widthK + "px;" +
   "height:" + 72 * widthK + "px;" +
   "left:" + 490 * widthK + "px;" +
-  "top: 0px;" +
+  "top:" + 30 * widthK + "px;" +
   "opacity: 0.3;" +
   "}",
 
@@ -1103,7 +1102,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
-  "font-size:" + 46 * widthK + "px;" +
+  "font-size:" + 35 * widthK + "px;" +
   "left:" + 80 * widthK + "px;" +
   "top:" + 30 * widthK + "px;" +
   "margin: 0;" +
@@ -1122,6 +1121,21 @@ var css = {
   "background-position-x:" + 20 * widthK + "px;" +
   "background-size: 20%;" +
   "left: 0;" +
+  "}",
+
+  settingsButton: ".settings-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 68 * widthK + "px;" +
+  "height:" + 68 * widthK + "px;" +
+  "right:" + 8 * widthK + "px;" +
+  "background-image: url(resources/icons/myCards/cardsettings.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 70%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 20 * widthK + "px;" +
+  "background-size: 70%%;" +
+  "top:" + 20 * widthK + "px;" +
   "}",
 
   //FOOTER COMPONENT
@@ -1330,23 +1344,31 @@ var css = {
 
   myCardsButtonIconTransfer: ".my-cards-button-icon-transfer " +
   "{" +
-  "background-image: url(resources/icons/bank-operations/transfers.png);" +
+  "background-image: url(resources/icons/myCards/cardtransfer.png);" +
   "background-size: 35%;" +
   "background-position: center;" +
   "}",
 
   myCardsButtonIconPayment: ".my-cards-button-icon-payment " +
   "{" +
-  "background-image: url(resources/icons/bank-operations/payment.png);" +
+  "background-image: url(resources/icons/myCards/cardpaymens.png);" +
   "background-size: 25%;" +
   "background-position: center;" +
   "}",
 
   myCardsButtonIconReport: ".my-cards-button-icon-report " +
   "{" +
-  "background-image: url(resources/icons/bank-operations/circleReport.png);" +
+  "background-image: url(resources/icons/myCards/cardreport.png);" +
   "background-size: 35%;" +
   "background-position: center;" +
+  "}",
+
+  myCardsButtonIconBlock: ".my-cards-button-icon-block" +
+  "{" +
+  "background-image: url(resources/icons/myCards/cardblock.png);" +
+  "background-size: 32%;" +
+  "background-position: center;" +
+  "top:" + 10 * widthK + "px;" +
   "}",
 
   myCardsButtonLabel: ".my-cards-button-label " +
@@ -1374,10 +1396,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
-  "left:" + 180 * widthK + "px;" +
-  "font-size:" + 40 * widthK + "px;" +
+  "left:" + 158 * widthK + "px;" +
+  "font-size:" + 35 * widthK + "px;" +
   "color: white;" +
-  "top:" + 40 * widthK + "px;" +
+  "top:" + 36 * widthK + "px;" +
   "}",
 
   myCardsLastOperationContainer: ".my-cards-last-operations-container " +
@@ -1445,20 +1467,20 @@ var css = {
   "{" +
   "position: relative;" +
   "color: #8a8a8a;" +
-  "top:"+ 50 * widthK + "px;" +
+  "top:" + 50 * widthK + "px;" +
   "background-size: contain;" +
   "float: left;" +
-  "left:"+ 70 * widthK + "px;" +
-  "font-size:"+ 30 * widthK + "px;" +
+  "left:" + 70 * widthK + "px;" +
+  "font-size:" + 30 * widthK + "px;" +
   "}",
 
   myCardsoperationDate: ".my-cards-operation-date " +
   "{" +
   "position: absolute;" +
   "color: #8a8a8a;" +
-  "bottom:"+ 20 * widthK + "px;" +
-  "left:"+ 70 * widthK + "px;" +
-  "font-size:"+ 30 * widthK + "px;" +
+  "bottom:" + 20 * widthK + "px;" +
+  "left:" + 70 * widthK + "px;" +
+  "font-size:" + 30 * widthK + "px;" +
   "}"
 
 
