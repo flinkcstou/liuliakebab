@@ -643,7 +643,7 @@ input {
     left: 25px;
 }
 
-.pay-service-container {
+.pay-category-container {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -664,6 +664,21 @@ input {
 
 }
 
+.pay-services-block {
+    position: relative;
+    width: 100%;
+    border-style: solid;
+    border-color: gray;
+    display: inline-flex;
+    top: 60%;
+
+}
+
+.pay-services-block li {
+
+    margin-left: 20px;
+}
+
 .pay-service-name-field {
     position: relative;
     background-size: contain;
@@ -675,7 +690,7 @@ input {
     color: gray;
 }
 
-.pay-service-icon {
+.pay-category-icon {
     position: relative;
     width: 100px;
     height: 100%;
@@ -684,7 +699,31 @@ input {
     border-radius: 100px;
     /*border: 1px solid grey;*/
     float: left;
+    background-size: 60%;
+}
+
+.pay-service-icon {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 100px;
+    border: 1px solid grey;
+    float: left;
     background-image: url(../resources/icons/services/ucellS.png);
+    background-size: 60%;
+}
+
+.pay-service-containter {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid red;
+    /*float: left;*/
+
     background-size: 60%;
 }
 
@@ -897,10 +936,11 @@ input {
     background-size: 35%;
     background-position: center;
 }
-.my-cards-button-icon-block{
-  background-image: url("../resources/icons/bank-operations/transfers.png");
-  background-size: 35%;
-  background-position: center;
+
+.my-cards-button-icon-block {
+    background-image: url("../resources/icons/bank-operations/transfers.png");
+    background-size: 35%;
+    background-position: center;
 }
 
 .my-cards-button-label {
