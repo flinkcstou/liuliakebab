@@ -417,7 +417,7 @@ window.fakedSocket.register("get.service.list", function (input) {
   array.push({
       category_id: 4,
       cost: 1,
-      id: -4,
+      id: 1,
       image: "https://m.click.uz/static/merchant/logo/logo_-4.png",
       is_communal: 0,
       is_mobile: 0,
@@ -437,7 +437,7 @@ window.fakedSocket.register("get.service.list", function (input) {
     {
       category_id: 4,
       cost: 1,
-      id: -2,
+      id: 2,
       image: "https://m.click.uz/static/merchant/logo/logo_-2.png",
       is_communal: 0,
       is_mobile: 0,
@@ -457,7 +457,7 @@ window.fakedSocket.register("get.service.list", function (input) {
     {
       category_id: 4,
       cost: 1,
-      id: -1,
+      id: 1,
       image: "https://m.click.uz/static/merchant/logo/logo_-1.png",
       is_communal: 0,
       is_mobile: 0,
@@ -475,7 +475,7 @@ window.fakedSocket.register("get.service.list", function (input) {
       status: 1
     },
     {
-      category_id: 6,
+      category_id: 4,
       cost: 1,
       id: 12,
       image: "https://m.click.uz/static/merchant/logo/logo_12.png",
@@ -495,7 +495,7 @@ window.fakedSocket.register("get.service.list", function (input) {
       status: 1
     },
     {
-      category_id: 3,
+      category_id: 4,
       cost: 1,
       id: 28,
       image: "https://m.click.uz/static/merchant/logo/logo_28.png",
@@ -515,7 +515,7 @@ window.fakedSocket.register("get.service.list", function (input) {
       status: 1
     },
     {
-      category_id: 8,
+      category_id: 4,
       cost: 1,
       id: 39,
       image: "https://m.click.uz/static/merchant/logo/logo_39.png",
