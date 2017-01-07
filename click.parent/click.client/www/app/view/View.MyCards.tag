@@ -46,6 +46,7 @@
              style="top: {i.count*top}px">
           <div class="my-cards-operation-amount">- {i.amount}</div>
           <div class="my-cards-operation-currency">сум</div>
+          <div class="my-cards-firm-name">ДЛИННОЕ НАЗВАНИЕ ФИРМЫ</div>
           <div class="my-cards-operation-date">{i.created}</div>
         </div>
       </div>
@@ -85,6 +86,8 @@
     scope.arrayOfOperationsByAccount = [];
 
     viewMyCards.cardInformation = function () {
+      event.preventDefault();
+      event.stopPropagation();
 
       scope.card = JSON.parse(localStorage.getItem('click_client_cards'))[scope.indexOfCard];
       scope.arrayOfOperationsByAccount = [];

@@ -104,11 +104,11 @@
     }
 
 
-    var arrayOfPhotosContacts = [];
-    var arrayWithoutPhotosContacts = [];
-    var arrayOfConnectedContacts = [];
-
-
+//    var arrayOfPhotosContacts = [];
+//    var arrayWithoutPhotosContacts = [];
+//    var arrayOfConnectedContacts = [];
+//
+//
 //        findContacts = function () {
 //          var options = new ContactFindOptions();
 //          options.filter = "";
@@ -130,10 +130,9 @@
 //              if (contacts[i].photos == null && contacts[i].name != null && arrayWithoutPhotosContacts.length <= 5)
 //                arrayWithoutPhotosContacts.push(contacts[i])
 //            }
-//            console.log("CONTACTS WITH PHOTOS ", arrayOfPhotosContacts)
-//            console.log("CONTACTS WITHout PHOTOS ", arrayWithoutPhotosContacts)
+//
 //            arrayOfConnectedContacts = arrayOfPhotosContacts.concat(arrayWithoutPhotosContacts);
-//            console.log("CONTACTS CONNECTED ARRAY ", arrayOfConnectedContacts)
+//
 //            writeContacts(arrayOfConnectedContacts);
 //          }
 //

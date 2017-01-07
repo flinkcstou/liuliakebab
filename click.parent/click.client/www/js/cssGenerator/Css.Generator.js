@@ -36,6 +36,8 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
+    //"background-image: url(resources/draft/myCards.png);" +
+    //"opacity: 0.6;" +
   "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
   "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
   "background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
@@ -153,7 +155,7 @@ var css = {
   "}",
   registrationButtonEnter: ".registration-button-enter " +
   "{" +
-  "top:" + 110 * widthK + "px;" +
+  "top:" + 230 * widthK + "px;" +
   "}",
 
   keyboardField: ".keyboard-field " +
@@ -1090,9 +1092,9 @@ var css = {
   pageTitle: ".page-title " +
   "{" +
   "position: absolute;" +
-  "top:" + 20 * widthK + "px;" +
-  "right:" + 30 * widthK + "px;" +
-  "left:" + 30 * widthK + "px;" +
+  "top:" + -15 * widthK + "px;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background: transparent;" +
   "border-bottom:" + 6 * widthK + "px solid rgb(149, 230, 253);" +
@@ -1102,9 +1104,9 @@ var css = {
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
-  "font-size:" + 35 * widthK + "px;" +
-  "left:" + 80 * widthK + "px;" +
-  "top:" + 30 * widthK + "px;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "left:" + 82 * widthK + "px;" +
+  "top:" + 42 * widthK + "px;" +
   "margin: 0;" +
   "color: #fffaf9;" +
   "}",
@@ -1116,11 +1118,12 @@ var css = {
   "height:" + 100 * widthK + "px;" +
   "background-image: url(resources/icons/back/back.png);" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 20%;" +
+  "-webkit-background-size: 19%;" +
   "background-position-y: center;" +
   "background-position-x:" + 20 * widthK + "px;" +
-  "background-size: 20%;" +
+  "background-size: 19%;" +
   "left: 0;" +
+  "top:" + 10 * widthK + "px;" +
   "}",
 
   settingsButton: ".settings-button " +
@@ -1128,14 +1131,14 @@ var css = {
   "position: absolute;" +
   "width:" + 68 * widthK + "px;" +
   "height:" + 68 * widthK + "px;" +
-  "right:" + 8 * widthK + "px;" +
+  "right:" + 6 * widthK + "px;" +
   "background-image: url(resources/icons/myCards/cardsettings.png);" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 70%;" +
+  "-webkit-background-size: 69%;" +
   "background-position-y: center;" +
   "background-position-x:" + 20 * widthK + "px;" +
-  "background-size: 70%%;" +
-  "top:" + 20 * widthK + "px;" +
+  "background-size: 69%;" +
+  "top:" + 29 * widthK + "px;" +
   "}",
 
   //FOOTER COMPONENT
@@ -1296,14 +1299,14 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top:" + 10 * widthK + "px;" +
+  "top:" + -22 * widthK + "px;" +
   "}",
 
   myCardsButtonContainer: ".my-cards-button-container " +
   "{" +
   "position: absolute;" +
-  "top:" + 455 * widthK + "px;" +
-  "left: 0px;" +
+  "top:" + 417 * widthK + "px;" +
+  "left:" + -30 * widthK + "px;" +
   "right: 0;" +
   "overflow: hidden;" +
   "height:" + 300 * widthK + "px;" +
@@ -1335,11 +1338,12 @@ var css = {
   myCardsButtonIcon: ".my-cards-button-icon " +
   "{" +
   "position: absolute;" +
-  "width:" + 160 * widthK + "px;" +
-  "height:" + 100 * widthK + "px;" +
+  "width:" + 146 * widthK + "px;" +
+  "height:" + 101 * widthK + "px;" +
   "background: transparent;" +
   "background-repeat: no-repeat;" +
   "opacity: 0.7;" +
+  "left:" + 24 * widthK + "px;" +
   "}",
 
   myCardsButtonIconTransfer: ".my-cards-button-icon-transfer " +
@@ -1366,9 +1370,10 @@ var css = {
   myCardsButtonIconBlock: ".my-cards-button-icon-block" +
   "{" +
   "background-image: url(resources/icons/myCards/cardblock.png);" +
-  "background-size: 32%;" +
+  "background-size: 30%;" +
   "background-position: center;" +
-  "top:" + 10 * widthK + "px;" +
+  "top:" + 4 * widthK + "px;" +
+  "left:" + -2 * widthK + "px;" +
   "}",
 
   myCardsButtonLabel: ".my-cards-button-label " +
@@ -1377,7 +1382,7 @@ var css = {
   "height: 70%;" +
   "width: 80%;" +
   "left: 20%;" +
-  "font-size:" + 35 * widthK + "px;" +
+  "font-size:" + 30 * widthK + "px;" +
   "color: white;" +
   "top:" + 30 * widthK + "px;" +
   "border-bottom:" + 2 * widthK + "px solid #95e6fd;" +
@@ -1386,20 +1391,20 @@ var css = {
   myCardsButtonBlockCard: ".my-cards-button-block-card " +
   "{" +
   "position: absolute;" +
-  "height:" + 120 * widthK + "px;" +
+  "height:" + 110 * widthK + "px;" +
   "width: 100%;" +
   "background-color: #eb604d;" +
-  "top:" + 760 * widthK + "px;" +
+  "top:" + 726 * widthK + "px;" +
   "}",
 
   myCardsButtonBlockCardLabel: ".my-cards-button-block-card-label " +
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
-  "left:" + 158 * widthK + "px;" +
-  "font-size:" + 35 * widthK + "px;" +
+  "left:" + 128 * widthK + "px;" +
+  "font-size:" + 30 * widthK + "px;" +
   "color: white;" +
-  "top:" + 36 * widthK + "px;" +
+  "top:" + 33 * widthK + "px;" +
   "}",
 
   myCardsLastOperationContainer: ".my-cards-last-operations-container " +
@@ -1414,7 +1419,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top:" + 878 * widthK + "px;" +
+  "top:" + 835 * widthK + "px;" +
   "overflow: auto;" +
   "background-color: #ffffff;" +
   "bottom: 0;" +
@@ -1428,7 +1433,7 @@ var css = {
   "width: 100%;" +
   "background-color: #f7f7f7;" +
   "background-size: contain;" +
-  "font-size:" + 40 * widthK + "px;" +
+  "font-size:" + 24 * widthK + "px;" +
   "color: #8a8a8a;" +
   "}",
 
@@ -1436,8 +1441,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left:" + 60 * widthK + "px;" +
-  "top:" + 26 * widthK + "px;" +
+  "left:" + 43 * widthK + "px;" +
+  "top:" + 23 * widthK + "px;" +
   "}",
 
   myCardsLastOperationInfo: ".my-cards-last-operations-info " +
@@ -1455,32 +1460,41 @@ var css = {
   "position: relative;" +
   "color: #EB604D;" +
   "background-size: contain;" +
-  "font-size:" + 60 * widthK + "px;" +
-  "font-weight: bold;" +
+  "font-size:" + 48 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
-  "top:" + 20 * widthK + "px;" +
+  "top:" + 8 * widthK + "px;" +
   "left:" + 60 * widthK + "px;" +
   "float: left;" +
+
   "}",
 
   myCardsOperationCurrency: ".my-cards-operation-currency " +
   "{" +
   "position: relative;" +
-  "color: #8a8a8a;" +
-  "top:" + 50 * widthK + "px;" +
+  "color: #919191;" +
+  "top:" + 26 * widthK + "px;" +
   "background-size: contain;" +
   "float: left;" +
   "left:" + 70 * widthK + "px;" +
-  "font-size:" + 30 * widthK + "px;" +
+  "font-size:" + 25 * widthK + "px;" +
   "}",
 
-  myCardsoperationDate: ".my-cards-operation-date " +
+  myCardsOperationDate: ".my-cards-operation-date " +
   "{" +
   "position: absolute;" +
-  "color: #8a8a8a;" +
-  "bottom:" + 20 * widthK + "px;" +
-  "left:" + 70 * widthK + "px;" +
-  "font-size:" + 30 * widthK + "px;" +
+  "color: #919191;" +
+  "bottom:" + 30 * widthK + "px;" +
+  "left:" + 57 * widthK + "px;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "}",
+
+  myCardsFirmName: "    .my-cards-firm-name" +
+  "{" +
+  "position: absolute;" +
+  "left:" + 58 * widthK + "px;" +
+  "top:" + 60 * widthK + "px;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "color: #232323;" +
   "}"
 
 

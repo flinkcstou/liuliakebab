@@ -29,7 +29,8 @@
     }
 
     bellButton = function () {
-
+      event.preventDefault();
+      event.stopPropagation();
     }
   </script>
 </component-toolbar>

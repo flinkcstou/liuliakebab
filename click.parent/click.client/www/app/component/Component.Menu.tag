@@ -17,6 +17,9 @@
     }
 
     goToProduction = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
       alert("Local storage is cleared")
       localStorage.clear();
     }

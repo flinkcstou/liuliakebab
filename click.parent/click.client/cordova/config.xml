@@ -4,6 +4,7 @@
   <icon src="www/img/logo.png"/>
   <screen src="www/img/logo.png"/>
   <preference name="Fullscreen" value="false"/>
+  <preference name="StatusBarOverlaysWebView" value="true" />
   <preference name="DisallowOverscroll" value="true"/>
   <platform name="android">
     <preference name="Orientation" value="sensorPortrait"/>

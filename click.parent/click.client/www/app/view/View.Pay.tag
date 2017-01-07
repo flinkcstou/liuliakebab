@@ -67,6 +67,10 @@
 
         touchendfunction = function (id) {
 
+
+            //TODO: CHANGE document.getElementById to this.schosenId
+            //TODO: Example: document.getElementById(scope.chosenId).style.backgroundColor - this or scope this.chosenId.style.backgroundColor
+            //TODO: CHANGE name of function touchendfunction to touchEndFunction (Each new word starts in UpperCase)
             console.log(id);
             console.log("New=", (Number(id) + 2).toString());
             console.log("max id", scope.maxid);

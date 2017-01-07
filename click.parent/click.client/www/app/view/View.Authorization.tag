@@ -38,6 +38,9 @@
     var checkSessionKey = false;
 
     componentKeyboard.returnValue = function (myValue) {
+      event.preventDefault();
+      event.stopPropagation();
+      
       if (enteredPin.length < 5 && myValue != 'x') {
         enteredPin += myValue;
       }
@@ -50,6 +53,9 @@
     }
 
     updateEnteredPin = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
       if (enteredPin.length == 0) {
         scope.circleOne.style.backgroundColor = 'transparent';
         scope.circleTwo.style.backgroundColor = 'transparent';

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" id="htmlId"
       onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false"
-      onDrag="return false" onDrop="return false" autocomplete=off>
+      onDrag="return false" onDrop="return false" autocomplete=off unselectable="on">
 <head>
   <meta charset="UTF-8">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=360px, maximum-scale=10.0, user-scalable=no">
-  <meta name = "format-detection" content = "telephone=no">
+  <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
 
   <!-- CSS -->
-  <link href="css/MainPage.css" rel="stylesheet">
+  <!--<link href="css/MainPage.css" rel="stylesheet">-->
+  <script src="js/cssGenerator/Css.Generator.js"></script>
 
   <!-- JS COMMON -->
   <!-- @include(cordova.htmlinc) -->
@@ -31,9 +31,13 @@
 </div>
 
 <script>
+
   api.init();
   scope = this;
   var startApplication = function () {
+    var script = document.createElement('script');
+    script.src = 'js/cssGenerator/Css.Generator.js';
+    document.head.appendChild(script);
 
     if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
       this.riotTags.innerHTML = "<view-authorization>";
@@ -70,7 +74,7 @@
     if (history.arrayOfHistory.length != 0) {
       history.arrayOfHistory.pop();
       if (history.arrayOfHistory.length != 0) {
-        console.log('THIS IS riotTags div ',this.riotTags)
+        console.log('THIS IS riotTags div ', this.riotTags)
         console.log("JSON ", JSON.stringify(history.arrayOfHistory));
         console.log('LAST ELEMENT ', history.arrayOfHistory[history.arrayOfHistory.length - 1]);
         console.log('LAST ELEMENT in RIOT TAG ', "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1] + ">");

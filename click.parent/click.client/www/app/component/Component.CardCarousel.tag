@@ -45,6 +45,8 @@
     }
 
     endTouchCarousel = function () {
+      event.preventDefault();
+      event.stopPropagation();
       touchEndX = event.changedTouches[0].pageX;
       if (touchStartX != touchEndX) {
         changePosition();

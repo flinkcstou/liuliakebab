@@ -9,6 +9,9 @@
   <script>
     var scope = this;
     touchStartTitle = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
       this.riotTags.innerHTML = "<view-main-page>";
       riot.mount('view-main-page');
     }
