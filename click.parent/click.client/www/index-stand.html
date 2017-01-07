@@ -42,7 +42,7 @@
   var startApplication = function () {
     var script = document.createElement('script');
     script.src = 'js/cssGenerator/Css.Generator.js';
-    document.head.appendChild(script);
+    //document.head.appendChild(script);
 
     if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
       this.riotTags.innerHTML = "<view-authorization>";

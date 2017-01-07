@@ -129,10 +129,7 @@
         touchEndResend = function () {
             event.preventDefault();
             event.stopPropagation();
-            alert('Смс переотправлено на номер: ', localStorage.getItem('click_client_phoneNumber'));
-            minutes = 1;
-            seconds = 60;
-            timer();
+            alert('Смс переотправлено на номер: ' + localStorage.getItem('click_client_phoneNumber'));
             resendSms();
         }
 

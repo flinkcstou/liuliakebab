@@ -61,7 +61,6 @@
     var scope = this;
     scope.top = 160 * widthK;
 
-    console.log('get card number ', localStorage.getItem("cardNumber"))
     history.arrayOfHistory.push('view-my-cards');
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
@@ -70,7 +69,6 @@
     viewMyCards.check = true;
     viewMainPage.myCards = true;
 
-    console.log(opts.backbuttoncheck);
 
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;
@@ -81,7 +79,7 @@
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var accountId = JSON.parse(localStorage.getItem('click_client_loginInfo')).default_account;
     scope.card = JSON.parse(localStorage.getItem('click_client_cards'))[scope.indexOfCard];
-    console.log("CARD AAAAAAA A ", scope.card)
+
 
     scope.arrayOfOperationsByAccount = [];
 
@@ -91,9 +89,6 @@
 
       scope.card = JSON.parse(localStorage.getItem('click_client_cards'))[scope.indexOfCard];
       scope.arrayOfOperationsByAccount = [];
-      console.log()
-      riot.update()
-      console.log("CARD AAAAAAAssSS A ", scope.card)
 
       window.api.call({
         method: 'get.payments.by.account',
@@ -121,7 +116,6 @@
           scope.lastOperationContainerId.style.height = j * 160*widthK + 'px';
           riot.update(scope.arrayOfOperationsByAccount)
 
-          console.log('arratdasas', scope.arrayOfOperationsByAccount)
         },
 
         onFail: function (api_status, api_status_message, data) {

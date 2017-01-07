@@ -3,7 +3,7 @@
     <div class="menu-button menu-icon" ontouchend="menuOpen()">
     </div>
 
-    <div class="toolbar-circle-container">
+    <div class="toolbar-circle-container" ontouchend="goToViewInfo()">
     </div>
 
     <div class="bell-button bell-icon" ontouchend="bellButton()">
@@ -31,6 +31,11 @@
     bellButton = function () {
       event.preventDefault();
       event.stopPropagation();
+    }
+
+    goToViewInfo = function () {
+      this.riotTags.innerHTML  = '<view-info>';
+      riot.mount('view-info');
     }
   </script>
 </component-toolbar>

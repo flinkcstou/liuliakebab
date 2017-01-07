@@ -34,14 +34,15 @@
   <script>
     var checkRemember = false;
     touchEndRemember = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
       if (!checkRemember) {
         this.rememberIcon.style.opacity = '1';
         localStorage.setItem('device_remember', true);
         checkRemember = true;
         return;
 
-        event.preventDefault();
-        event.stopPropagation();
       }
       else {
         this.rememberIcon.style.opacity = '0.3';
@@ -60,6 +61,8 @@
 
 
     componentKeyboard.returnValue = function (myValue) {
+      event.preventDefault();
+      event.stopPropagation();
       if (scope.phoneNumber.length < 13 && myValue != 'x') {
         scope.phoneNumber += myValue;
       }
@@ -72,13 +75,20 @@
 
 
     goToDemo = function () {
+      event.preventDefault();
+      event.stopPropagation();
       localStorage.setItem('demo_version', true);
     }
     closeDemo = function () {
+      event.preventDefault();
+      event.stopPropagation();
       this.demoContainer.classList.add('hide')
     }
 
     getPhoneNumber = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
       var correctPhoneNumber = true;
       var phoneNumber = scope.phoneNumber.substring(1, scope.phoneNumber.length);
 
@@ -91,7 +101,6 @@
 
 
       if (correctPhoneNumber) {
-        alert(phoneNumber);
         localStorage.setItem('click_client_phoneNumber', phoneNumber);
         var date = parseInt(Date.now() / 1000);
         registrationDevice(phoneNumber, date);
@@ -131,7 +140,6 @@
         scope: this,
 
         onSuccess: function (result) {
-          alert(JSON.stringify(result))
           if (result[0][0].error == -8) {
             alert("Пользователь не найден");
             return;
@@ -139,9 +147,9 @@
           console.log("result ", result);
           var deviceId = result[1][0].device_id;
           localStorage.setItem('click_client_deviceID', deviceId);
+          token = hex_sha512(deviceId + date + phoneNumber);
+          localStorage.setItem('click_client_token', token);
           if (result[1][0].confirm_needed) {
-            token = hex_sha512(deviceId + date + phoneNumber);
-            localStorage.setItem('click_client_token', token);
             localStorage.setItem('confirm_needed', true);
             this.riotTags.innerHTML = "<view-sms>";
             riot.mount('view-sms');
@@ -153,9 +161,6 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
-          alert(JSON.stringify(api_status))
-          alert(JSON.stringify(api_status_message))
-          alert(JSON.stringify(data))
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }

@@ -802,10 +802,10 @@ var css = {
   cardCarousel: ".card-carousel " +
   "{" +
   "position: absolute;" +
-  "height:" + 340 * widthK + "px;" +
+  "height:" + 290 * widthK + "px;" +
   "width: 100%;" +
   "display: inline-block;" +
-  "top:" + 100 * widthK + "px;" +
+  "top:" + 140 * widthK + "px;" +
   "background: transparent;" +
   "}",
 
@@ -821,7 +821,7 @@ var css = {
   "height:" + 289 * widthK + "px;" +
   "width:" + 510 * widthK + "px;" +
   "position: absolute;" +
-  "top:" + 47 * widthK + "px;" +
+  "top:" + 7 * widthK + "px;" +
   "-webkit-border-radius:" + 14 * widthK + "px;" +
   "-moz-border-radius:" + 14 * widthK + "px;" +
   "border-radius:" + 14 * widthK + "px;" +
@@ -1132,7 +1132,7 @@ var css = {
   "width:" + 68 * widthK + "px;" +
   "height:" + 68 * widthK + "px;" +
   "right:" + 6 * widthK + "px;" +
-  "background-image: url(resources/icons/myCards/cardsettings.png);" +
+  "background-image: url(resources/icons/ViewMyCards/cardsettings.png);" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 69%;" +
   "background-position-y: center;" +
@@ -1348,28 +1348,28 @@ var css = {
 
   myCardsButtonIconTransfer: ".my-cards-button-icon-transfer " +
   "{" +
-  "background-image: url(resources/icons/myCards/cardtransfer.png);" +
+  "background-image: url(resources/icons/ViewMyCards/cardtransfer.png);" +
   "background-size: 35%;" +
   "background-position: center;" +
   "}",
 
   myCardsButtonIconPayment: ".my-cards-button-icon-payment " +
   "{" +
-  "background-image: url(resources/icons/myCards/cardpaymens.png);" +
+  "background-image: url(resources/icons/ViewMyCards/cardpaymens.png);" +
   "background-size: 25%;" +
   "background-position: center;" +
   "}",
 
   myCardsButtonIconReport: ".my-cards-button-icon-report " +
   "{" +
-  "background-image: url(resources/icons/myCards/cardreport.png);" +
+  "background-image: url(resources/icons/ViewMyCards/cardreport.png);" +
   "background-size: 35%;" +
   "background-position: center;" +
   "}",
 
   myCardsButtonIconBlock: ".my-cards-button-icon-block" +
   "{" +
-  "background-image: url(resources/icons/myCards/cardblock.png);" +
+  "background-image: url(resources/icons/ViewMyCards/cardblock.png);" +
   "background-size: 30%;" +
   "background-position: center;" +
   "top:" + 4 * widthK + "px;" +
@@ -1495,8 +1495,195 @@ var css = {
   "top:" + 60 * widthK + "px;" +
   "font-size:" + 34 * widthK + "px;" +
   "color: #232323;" +
-  "}"
+  "}",
 
+  //VIEW INFO
+
+  viewInfo : ".view-info " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "overflow: hidden;" +
+  "background-color: #ffffff;" +
+  "}",
+
+  viewInfoTitleContainer : ".view-info-title-container " +
+  "{" +
+  "position: absolute;" +
+  "right:"+ 30 * widthK + "px;" +
+  "left:"+ 30 * widthK + "px;" +
+  "height:"+ 89 * widthK + "px;" +
+  "border-bottom:"+ 1 * widthK + "px solid #f4f4f4;" +
+  "}",
+
+  viewInfoBackButton : ".view-info-back-button " +
+  "{position: absolute;" +
+  "left:"+ 10 * widthK + "px;" +
+  "width:"+ 100 * widthK + "px;" +
+  "height:"+ 100 * widthK + "px;" +
+  "top:"+ 5 * widthK + "px;" +
+  "border-radius:"+ 90 * widthK + "px;" +
+  "border:"+ 1 * widthK + "px solid #e5e5e5;" +
+  "background-image: url(resources/icons/ViewInfo/backtomain.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 48%;" +
+  "background-position: center;" +
+  "background-color: #ffffff;" +
+  "}",
+
+  viewInfoBalanceContainer : ".view-info-balance-container " +
+  "{" +
+  "position: absolute;" +
+  "right:"+ 30 * widthK + "px;" +
+  "left:"+ 30 * widthK + "px;" +
+  "height:"+ 190 * widthK + "px;" +
+  "top:"+ 89 * widthK + "px;" +
+  "border-bottom:"+ 1 * widthK + "px solid #f4f4f4;" +
+  "}",
+
+  viewInfoMyFinanceContainer : ".view-info-my-finance-container " +
+  "{" +
+  "position: absolute;" +
+  "right:"+ 30 * widthK + "px;" +
+  "left:"+ 30 * widthK + "px;" +
+  "height:"+ 125 * widthK + "px;" +
+  "top:"+ 280 * widthK + "px;" +
+  "border-bottom:"+ 1 * widthK + "px solid #f4f4f4;" +
+  "}",
+
+  viewInfoReportsContainer : ".view-info-reports-container " +
+  "{" +
+  "position: absolute;" +
+  "right:"+ 30 * widthK + "px;" +
+  "left:"+ 30 * widthK + "px;" +
+  "height:"+ 125 * widthK + "px;" +
+  "top:"+ 408 * widthK + "px;" +
+  "border-bottom:"+ 1 * widthK + "px solid #f4f4f4;" +
+  "}",
+
+  viewInfoBagIcon : ".view-info-bag-icon " +
+  "{" +
+  "position: absolute;" +
+  "width: 18%;" +
+  "height: 70%;" +
+  "left: 0%;" +
+  "top: 15%;" +
+  "background-image: url(resources/icons/ViewInfo/mybalance.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 60%;" +
+  "}",
+
+  viewInfoReloadIcon : ".view-info-reload-icon " +
+  "{" +
+  "position: absolute;" +
+  "width: 10%;" +
+  "height: 30%;" +
+  "right: 2%;" +
+  "top: 23%;" +
+  "background-image: url(resources/icons/ViewInfo/reload.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 73%;" +
+  "}",
+
+  viewInfoMyFinanceIcon   : ".view-info-my-finance-icon " +
+  "{" +
+  "position: absolute;" +
+  "width: 20%;" +
+  "height: 70%;" +
+  "left: -1%;" +
+  "top: 12%;" +
+  "background-image: url(resources/icons/ViewInfo/myfinance.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 67%;" +
+  "}",
+
+  viewInfoOpenIcon : ".view-info-open-icon " +
+  "{" +
+  "position: absolute;" +
+  "width: 20%;" +
+  "height: 80%;" +
+  "right: -5%;" +
+  "top: 12%;" +
+  "background-image: url(resources/icons/ViewInfo/open.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 9%;" +
+  "}",
+
+  viewInfoReportIcon : ".view-info-reports-icon " +
+  "{" +
+  "position: absolute;" +
+  "width: 20%;" +
+  "height: 70%;" +
+  "left: -1%;" +
+  "top: 15%;" +
+  "background-image: url(resources/icons/ViewInfo/myreports.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 67%;" +
+  "}",
+
+  viewInfoMyFinanceTitle : ".view-info-my-finance-title " +
+  "{" +
+  "position: absolute;" +
+  "width: 36%;" +
+  "height: 70%;" +
+  "left: 18%;" +
+  "top: 10%;" +
+  "text-align: center;" +
+  "font-size:"+ 29 * widthK + "px;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewInfoReportTitle: ".view-info-reports-title " +
+  "{" +
+  "position: absolute;" +
+  "width: 36%;" +
+  "height: 70%;" +
+  "left: 12%;" +
+  "top: 10%;" +
+  "text-align: center;" +
+  "font-size:"+ 29 * widthK + "px;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewInfoOperationContainer : ".view-info-operations-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:"+ 250 * widthK + "px;" +
+  "top:"+ 600 * widthK + "px;" +
+  "overflow: auto;" +
+  "}",
+
+  viewInfoOperationTitle : ".view-info-operations-title " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:"+ 68 * widthK + "px;" +
+  "top:"+ 535 * widthK + "px;" +
+  "}",
+
+  viewInfoOperationsLabel : ".view-info-operations-label " +
+  "{" +
+  "font-size:"+ 24 * widthK + "px;" +
+  "position: absolute;" +
+  "top: 26%;" +
+  "left: 7%;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewOperationInfoContainer : ".view-info-operation-info-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 300%;" +
+  "left: 103%;" +
+  "}",
 
 }
 

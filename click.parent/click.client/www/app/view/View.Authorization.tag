@@ -40,7 +40,7 @@
     componentKeyboard.returnValue = function (myValue) {
       event.preventDefault();
       event.stopPropagation();
-      
+
       if (enteredPin.length < 5 && myValue != 'x') {
         enteredPin += myValue;
       }
@@ -109,9 +109,6 @@
       event.preventDefault();
       event.stopPropagation();
 
-      console.log("PIN CODE ", pin)
-      console.log("MD5 OF PIN ", hex_md5(pin));
-      console.log("MD5 OF PIN FROM SITE ", '827ccb0eea8a706c4c34a16891f84e7b');
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
       var date = parseInt(Date.now() / 1000);
@@ -189,7 +186,6 @@
               arrayAccountInfo.push(result[1][i])
 
             var accountInfo = JSON.stringify(arrayAccountInfo);
-            console.log("ACCOUNT INFO ", accountInfo)
             localStorage.setItem("click_client_accountInfo", accountInfo);
 
             this.riotTags.innerHTML = "<view-main-page>";
