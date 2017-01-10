@@ -316,7 +316,7 @@ window.fakedSocket.register("get.service.category.list", function (input) {
       color_rgb: "231-185-73",
       icon: "https://m.click.uz/static/merchant/categories/1.png",
       id: 1,
-      name: "Мобильные операторы",
+      name: "Мобильные  операторы",
       parent: 0,
       priority: 0,
       status: true
@@ -332,16 +332,6 @@ window.fakedSocket.register("get.service.category.list", function (input) {
       status: true
     },
     {
-      color_hex: "#52a450",
-      color_rgb: "82-164-80",
-      icon: "https://m.click.uz/static/merchant/categories/3.png",
-      id: 3,
-      name: "Телевидение",
-      parent: 0,
-      priority: 15,
-      status: true
-    },
-    {
       color_hex: "#e45e55",
       color_rgb: "228-94-85",
       icon: "https://m.click.uz/static/merchant/categories/6.png",
@@ -349,16 +339,6 @@ window.fakedSocket.register("get.service.category.list", function (input) {
       name: "Интернет-сервисы",
       parent: 0,
       priority: 20,
-      status: true
-    },
-    {
-      color_hex: "#f3aab5",
-      color_rgb: "243-170-181",
-      icon: "https://m.click.uz/static/merchant/categories/5.png",
-      id: 5,
-      name: "Хостинг и домены",
-      parent: 0,
-      priority: 25,
       status: true
     },
     {
@@ -381,6 +361,50 @@ window.fakedSocket.register("get.service.category.list", function (input) {
       priority: 36,
       status: true
     },
+    {
+      color_hex: "#be2e1f",
+      color_rgb: "190-46-31",
+      icon: "https://m.click.uz/static/merchant/categories/11.png",
+      id: 11,
+      name: "Интернет пакеты",
+      parent: 0,
+      priority: 3,
+      status: true
+    },
+    {
+      color_hex: "#ee9344",
+      color_rgb: "238-147-68",
+      icon: "https://m.click.uz/static/merchant/categories/7.png",
+      id: 7,
+      name: "Телефония",
+      parent: 0,
+      priority: 5,
+      status: true
+    },
+
+    {
+      color_hex: "#52a450",
+      color_rgb: "82-164-80",
+      icon: "https://m.click.uz/static/merchant/categories/3.png",
+      id: 3,
+      name: "Телевидение",
+      parent: 0,
+      priority: 15,
+      status: true
+    },
+
+    {
+      color_hex: "#f3aab5",
+      color_rgb: "243-170-181",
+      icon: "https://m.click.uz/static/merchant/categories/5.png",
+      id: 5,
+      name: "Хостинг и домены",
+      parent: 0,
+      priority: 25,
+      status: true
+    },
+
+
     {
       color_hex: "#B58D74",
       color_rgb: "181-141-116",
@@ -613,6 +637,107 @@ window.fakedSocket.register("get.service.list", function (input) {
       service_parameters: "0",
       service_short_name: "ARBA.UZ",
       status: 0
+    },
+    {
+      category_id: 1,
+      cost: 1,
+      form_type: 1,
+      id: 6,
+      image: "https://m.click.uz/static/merchant/logo/logo_6.png",
+      is_mobile: 1,
+      lang_amount_hint: null,
+      lang_amount_placeholder: "Введите сумму оплаты",
+      lang_amount_title: "Сумма",
+      lang_max_amount: "Максимальная сумма для оплаты 600000.00 сум ",
+      lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+      max_pay_limit: 600000,
+      min_pay_limit: 1000,
+      name: "Uzmobile (CDMA)",
+      priority: 20,
+      service_parameters: "1",
+      service_short_name: "UZMOBILE",
+      status: 1
+    },
+    {
+      category_id: 1,
+      cost: 1,
+      form_type: 1,
+      id: 5,
+      image: "https://m.click.uz/static/merchant/logo/logo_5.png",
+      is_mobile: 1,
+      lang_amount_hint: null,
+      lang_amount_placeholder: "Введите сумму оплаты",
+      lang_amount_title: "Сумма",
+      lang_max_amount: "Максимальная сумма для оплаты 1000000.00 сум ",
+      lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+      max_pay_limit: 1000000,
+      min_pay_limit: 1000,
+      name: "Ucell",
+      priority: 10,
+      service_parameters: "1",
+      service_short_name: "UCELL",
+      status: 1
+    },
+    {
+      category_id: 1,
+      cost: 1,
+      form_type: 1,
+      id: 3,
+      image: "https://m.click.uz/static/merchant/logo/logo_3.png",
+      is_mobile: 1,
+      lang_amount_hint: null,
+      lang_amount_placeholder: "Введите сумму оплаты",
+      lang_amount_title: "Сумма",
+      lang_max_amount: "Максимальная сумма для оплаты 1000000.00 сум",
+      lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+      max_pay_limit: 1000000,
+      min_pay_limit: 1000,
+      name: "Билайн",
+      priority: 5,
+      service_parameters: "1",
+      service_short_name: "BEELINE",
+      status: 1
+    },
+    {
+      category_id: 1,
+      cost: 1,
+      form_type: 1,
+      id: 148,
+      image: "https://m.click.uz/static/merchant/logo/logo_148.png",
+      is_mobile: 1,
+      lang_amount_hint: null,
+      lang_amount_placeholder: "Введите сумму оплаты",
+      lang_amount_title: "Сумма",
+      lang_max_amount: "Максимальная сумма для оплаты 150000.00 сум ",
+      lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+      max_pay_limit: 150000,
+      min_pay_limit: 1000,
+      name: "Uzmobile (GSM)",
+      priority: 30,
+      service_parameters: "1",
+      service_short_name: "UzmobileGSM",
+      status: 1
+    },
+    {
+
+      category_id: 1,
+      cost: 1,
+      form_type: 1,
+      id: 2,
+      image: "https://m.click.uz/static/merchant/logo/logo_2.png",
+      is_mobile: 1,
+      lang_amount_hint: null,
+      lang_amount_placeholder: "Введите сумму оплаты",
+      lang_amount_title: "Сумма",
+      lang_max_amount: "Максимальная сумма для оплаты 1500000.00 сум",
+      lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+      max_pay_limit: 1500000,
+      min_pay_limit: 1000,
+      name: "UMS",
+      priority: 25,
+      service_parameters: "1",
+      service_short_name: "UMS",
+      status: 1
     }
   );
 

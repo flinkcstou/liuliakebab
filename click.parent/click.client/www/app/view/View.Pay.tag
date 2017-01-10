@@ -2,8 +2,8 @@
     <component-page-title title="{titleName}" backbutton="{backbuttoncheck}" rightbutton="{rightbuttoncheck}">
     </component-page-title>
 
-    <div id="pay-service-container-id" class="pay-category-container">
-        <ul style="list-style:none; padding: 0;">
+    <div class="pay-category-container">
+        <ul style="list-style:none; padding: 0; margin: 0;">
             <li each="{i in categoryList}">
                 <div class="pay-service-block-containter" id="{i.id}" ontouchend="toggle(this.id)">
                     <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
@@ -19,7 +19,6 @@
 
             </li>
         </ul>
-
     </div>
 
 
@@ -35,8 +34,10 @@
         scope.categoryList = JSON.parse(localStorage.getItem("click_client_payCategoryList"));
         scope.serviceList = JSON.parse(localStorage.getItem("click_client_payServiceList"));
 
-        console.log("categories ", scope.categoryList)
-        console.log("services ", scope.serviceList)
+        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+        phoneNumber = phoneNumber.substring(3, phoneNumber.length);
+        console.log('PHONE NUMBER ', phoneNumber);
+        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
 
         if (!scope.categoryList) {
@@ -50,7 +51,6 @@
                 scope: this,
 
                 onSuccess: function (result) {
-                    console.log('result[1]', result[1]);
                     if (result[0][0].error == 0)
                         if (result[1][0])
                             for (var i in result[1]) {
@@ -92,10 +92,8 @@
 
 
             if (scope.currentList.length == 0) {
-
                 scope.show = false;
             } else {
-
                 scope.show = true;
             }
 
@@ -105,14 +103,7 @@
         };
 
 
-        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-        phoneNumber = phoneNumber.substring(3, phoneNumber.length);
-        console.log('PHONE NUMBER ', phoneNumber);
-        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-
-
         if (!scope.serviceList) {
-            alert("empty");
             scope.serviceList = [];
             window.api.call({
                 method: 'get.service.list',
@@ -123,7 +114,6 @@
                 scope: this,
 
                 onSuccess: function (result) {
-                    console.log('result[1]', result[1]);
                     if (result[0][0].error == 0)
                         if (result[1][0])
                             var j = 0;
@@ -143,6 +133,10 @@
                 }
             })
         }
+
+
+        console.log("categories ", scope.categoryList)
+        console.log("services ", scope.serviceList)
 
 
     </script>

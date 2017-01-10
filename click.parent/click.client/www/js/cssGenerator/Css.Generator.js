@@ -20,7 +20,7 @@ var css = {
   "font-style: normal;" +
   "}",
 
-  html  : "html" +
+  html: "html" +
   "{ " +
   "-webkit-user-select: none; " +
   "-webkit-touch-callout: none; " +
@@ -45,8 +45,8 @@ var css = {
   "margin: 0;" +
   "overflow: hidden;" +
   "}",
-  body  : "body{margin: 0;}",
-  input : "input " +
+  body: "body{margin: 0;}",
+  input: "input " +
   "{" +
   "font-family: Neuron;" +
   "font-size:" + 24 * widthK + "px;" +
@@ -54,7 +54,7 @@ var css = {
 
   //VIEW REGISTRATION DEVICE
 
-  viewRegistrationDevice                 : ".view-registration-device " +
+  viewRegistrationDevice: ".view-registration-device " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
@@ -64,7 +64,7 @@ var css = {
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "}",
-  registrationDeviceFlexContainer        : ".registration-device-flex-container " +
+  registrationDeviceFlexContainer: ".registration-device-flex-container " +
   "{" +
   "position: absolute;" +
   "top: 0;" +
@@ -80,7 +80,7 @@ var css = {
     //"top:" + 155 * heightK + "px;" +
   "bottom:" + 20 + "%;" +
   "}",
-  registrationDevicePhoneField           : ".registration-device-phone-field " +
+  registrationDevicePhoneField: ".registration-device-phone-field " +
   "{" +
   "position: absolute;" +
   "left:" + 80 * widthK + "px;" +
@@ -90,26 +90,26 @@ var css = {
   "bottom:" + 210 * widthK + "px;" +
   "color: white;" +
   "}",
-  registrationDeviceTextField            : ".registration-device-text-field " +
+  registrationDeviceTextField: ".registration-device-text-field " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
   "}",
-  registrationDevicePhoneInput           : ".registration-device-phone-input " +
+  registrationDevicePhoneInput: ".registration-device-phone-input " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
   "top:" + 30 * widthK + "px;" +
   "font-size:" + 64 * widthK + "px;" +
   "}",
-  registrationDeviceRemember             : ".registration-device-remember " +
+  registrationDeviceRemember: ".registration-device-remember " +
   "{" +
   "position: absolute;" +
   "top:" + 110 * widthK + "px;" +
   "width: 100%;" +
   "height:" + 100 * widthK + "px;" +
   "}",
-  registrationDeviceRememberLabel        : ".registration-device-remember-label " +
+  registrationDeviceRememberLabel: ".registration-device-remember-label " +
   "{" +
   "position: absolute;" +
   "color: #4bd5ff;" +
@@ -118,7 +118,7 @@ var css = {
   "margin: 0;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-  registrationRememberIcon               : ".registration-device-remember-icon " +
+  registrationRememberIcon: ".registration-device-remember-icon " +
   "{" +
   "position: absolute;" +
   "background-image: url(resources/icons/authorization/remember.png);" +
@@ -143,7 +143,7 @@ var css = {
   "margin-left: auto;" +
   "}",
 
-  buttonEnterLabel       : ".button-enter-label " +
+  buttonEnterLabel: ".button-enter-label " +
   "{" +
   "position: relative;" +
   "top: " + 20 * widthK + "px;" +
@@ -166,20 +166,20 @@ var css = {
   "left:" + 110 * widthK + "px" +
   "}",
 
-  registrationKeyboardField       : ".registration-keyboard-field " +
+  registrationKeyboardField: ".registration-keyboard-field " +
   "{" +
   "position: absolute;" +
   "bottom:" + 150 * widthK + "px;" +
   "left:" + 110 * widthK + "px;" +
   "}",
-  registrationButtonsContainer    : ".registration-buttons-container " +
+  registrationButtonsContainer: ".registration-buttons-container " +
   "{" +
   "position: absolute;" +
   "width:" + 560 * widthK + "px;" +
   "bottom:" + -10 * widthK + "px;" +
   "left:" + 84 * widthK + "px;" +
   "}",
-  registrationContainerOffline    : ".registration-container-offline " +
+  registrationContainerOffline: ".registration-container-offline " +
   "{" +
   "position: absolute;" +
   "width:" + 300 * widthK + "px;" +
@@ -187,7 +187,7 @@ var css = {
   "bottom: 0;" +
   "left: 0;" +
   "}",
-  registrationButtonOffline       : ".registration-button-offline " +
+  registrationButtonOffline: ".registration-button-offline " +
   "{" +
   "position: absolute;" +
   "font-size:" + 34 * widthK + "px;" +
@@ -207,7 +207,7 @@ var css = {
   "bottom: 0;" +
   "right: 0;" +
   "}",
-  RegistrationButtonDemoVersion   : ".registration-button-demo-version " +
+  RegistrationButtonDemoVersion: ".registration-button-demo-version " +
   "{" +
   "position: absolute;" +
   "font-size:" + 34 * widthK + "px;" +
@@ -219,7 +219,7 @@ var css = {
   "margin-bottom:" + 14 * widthK + "px;" +
   "text-align: center;" +
   "}",
-  registrationButtonHelp          : ".registration-button-help " +
+  registrationButtonHelp: ".registration-button-help " +
   "{" +
   "position: relative;" +
   "font-size:" + 34 * widthK + "px;" +
@@ -231,7 +231,7 @@ var css = {
   "color: #b7f1ff;" +
   "border-bottom:" + 2 * widthK + "px solid #b7f1ff;" +
   "}",
-  registrationButtonRegistration  : ".registration-button-registration " +
+  registrationButtonRegistration: ".registration-button-registration " +
   "{" +
   "position: absolute;" +
   "top:" + 30 * widthK + "px;" +
@@ -241,7 +241,7 @@ var css = {
   "color: white;" +
   "border-bottom:" + 2 * widthK + "px solid white;" +
   "}",
-  registrationTextField           : ".registration-text-field " +
+  registrationTextField: ".registration-text-field " +
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
@@ -255,41 +255,41 @@ var css = {
 
   //KEYBOARD COMPONENT
 
-  keyboardContainer    : ".keyboard-container " +
+  keyboardContainer: ".keyboard-container " +
   "{" +
   "position: absolute;" +
   "width:" + 500 * widthK + "px;" +
   "height:" + 400 * widthK + "px;" +
   "}",
-  keyboardFieldOne     : ".keyboard-field-one " +
+  keyboardFieldOne: ".keyboard-field-one " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top: 0;" +
   "}",
-  keyboardFieldTwo     : ".keyboard-field-two " +
+  keyboardFieldTwo: ".keyboard-field-two " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 120 * widthK + "px;" +
   "}",
-  keyboardFieldThree   : ".keyboard-field-three " +
+  keyboardFieldThree: ".keyboard-field-three " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 240 * widthK + "px;" +
   "}",
-  keyboardFieldFour    : ".keyboard-field-four " +
+  keyboardFieldFour: ".keyboard-field-four " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 360 * widthK + "px;" +
   "}",
-  keyboardFieldFive    : ".keyboard-buttons " +
+  keyboardFieldFive: ".keyboard-buttons " +
   "{" +
   "position: absolute;" +
   "width: " + 140 * widthK + "px;" +
@@ -299,7 +299,7 @@ var css = {
   "font-size:" + 70 * widthK + "px;" +
   "text-align: center;" +
   "}",
-  keyboardButtons      : ".keyboard-buttons " +
+  keyboardButtons: ".keyboard-buttons " +
   "{" +
   "position: absolute;" +
   "width:" + 140 * widthK + "px;" +
@@ -309,7 +309,7 @@ var css = {
   "font-size:" + 70 * widthK + "px;" +
   "text-align: center;" +
   "}",
-  keyboardButtonsLabel : ".keyboard-buttons-label " +
+  keyboardButtonsLabel: ".keyboard-buttons-label " +
   "{" +
   "position: absolute;" +
   "left:" + 54 * widthK + "px;" +
@@ -321,18 +321,18 @@ var css = {
   "background: radial-gradient(rgba(255, 255, 255, 0.23), rgba(255, 255, 255, 0.04), transparent);" +
   "border-radius:" + 80 * widthK + "px;" +
   "}",
-  keyboardButtonOne    : ".keyboard-button-one {left: 0;}",
-  keyboardButtonTwo    : ".keyboard-button-two {left:" + 180 * widthK + "px;}",
-  keyboardButtonThree  : ".keyboard-button-three {right: 0;}",
-  keyboardButtonFour   : ".keyboard-button-four {left: 0;}",
-  keyboardButtonFive   : ".keyboard-button-five {left:" + 180 * widthK + "px;}",
-  keyboardButtonSix    : ".keyboard-button-six {right: 0;}",
-  keyboardButtonSeven  : ".keyboard-button-seven {left: 0;}",
-  keyboardButtonEight  : ".keyboard-button-eight {left:" + 180 * widthK + "px;}",
-  keyboardButtonNine   : ".keyboard-button-nine {right: 0;}",
-  keyboardSpace        : ".keyboard-space {left: 0;}",
-  keyboardButtonZero   : ".keyboard-button-zero {left:" + 180 * widthK + "px;}",
-  keyboardButtonenter  : ".keyboard-button-enter {position: absolute;}",
+  keyboardButtonOne: ".keyboard-button-one {left: 0;}",
+  keyboardButtonTwo: ".keyboard-button-two {left:" + 180 * widthK + "px;}",
+  keyboardButtonThree: ".keyboard-button-three {right: 0;}",
+  keyboardButtonFour: ".keyboard-button-four {left: 0;}",
+  keyboardButtonFive: ".keyboard-button-five {left:" + 180 * widthK + "px;}",
+  keyboardButtonSix: ".keyboard-button-six {right: 0;}",
+  keyboardButtonSeven: ".keyboard-button-seven {left: 0;}",
+  keyboardButtonEight: ".keyboard-button-eight {left:" + 180 * widthK + "px;}",
+  keyboardButtonNine: ".keyboard-button-nine {right: 0;}",
+  keyboardSpace: ".keyboard-space {left: 0;}",
+  keyboardButtonZero: ".keyboard-button-zero {left:" + 180 * widthK + "px;}",
+  keyboardButtonenter: ".keyboard-button-enter {position: absolute;}",
 
   keyboardButtonX: ".keyboard-button-x " +
   "{" +
@@ -1104,9 +1104,9 @@ var css = {
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
-  "font-size:" + 32 * widthK + "px;" +
-  "left:" + 82 * widthK + "px;" +
-  "top:" + 42 * widthK + "px;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "left:" + 86 * widthK + "px;" +
+  "top:" + 40 * widthK + "px;" +
   "margin: 0;" +
   "color: #fffaf9;" +
   "}",
@@ -1499,7 +1499,7 @@ var css = {
 
   //VIEW INFO
 
-  viewInfo : ".view-info " +
+  viewInfo: ".view-info " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
@@ -1508,23 +1508,23 @@ var css = {
   "background-color: #ffffff;" +
   "}",
 
-  viewInfoTitleContainer : ".view-info-title-container " +
+  viewInfoTitleContainer: ".view-info-title-container " +
   "{" +
   "position: absolute;" +
-  "right:"+ 30 * widthK + "px;" +
-  "left:"+ 30 * widthK + "px;" +
-  "height:"+ 89 * widthK + "px;" +
-  "border-bottom:"+ 1 * widthK + "px solid #f4f4f4;" +
+  "right:" + 30 * widthK + "px;" +
+  "left:" + 30 * widthK + "px;" +
+  "height:" + 89 * widthK + "px;" +
+  "border-bottom:" + 1 * widthK + "px solid #f4f4f4;" +
   "}",
 
-  viewInfoBackButton : ".view-info-back-button " +
+  viewInfoBackButton: ".view-info-back-button " +
   "{position: absolute;" +
-  "left:"+ 10 * widthK + "px;" +
-  "width:"+ 100 * widthK + "px;" +
-  "height:"+ 100 * widthK + "px;" +
-  "top:"+ 5 * widthK + "px;" +
-  "border-radius:"+ 90 * widthK + "px;" +
-  "border:"+ 1 * widthK + "px solid #e5e5e5;" +
+  "left:" + 10 * widthK + "px;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "top:" + 5 * widthK + "px;" +
+  "border-radius:" + 90 * widthK + "px;" +
+  "border:" + 1 * widthK + "px solid #e5e5e5;" +
   "background-image: url(resources/icons/ViewInfo/backtomain.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 48%;" +
@@ -1532,37 +1532,37 @@ var css = {
   "background-color: #ffffff;" +
   "}",
 
-  viewInfoBalanceContainer : ".view-info-balance-container " +
+  viewInfoBalanceContainer: ".view-info-balance-container " +
   "{" +
   "position: absolute;" +
-  "right:"+ 30 * widthK + "px;" +
-  "left:"+ 30 * widthK + "px;" +
-  "height:"+ 190 * widthK + "px;" +
-  "top:"+ 89 * widthK + "px;" +
-  "border-bottom:"+ 1 * widthK + "px solid #f4f4f4;" +
+  "right:" + 30 * widthK + "px;" +
+  "left:" + 30 * widthK + "px;" +
+  "height:" + 190 * widthK + "px;" +
+  "top:" + 89 * widthK + "px;" +
+  "border-bottom:" + 1 * widthK + "px solid #f4f4f4;" +
   "}",
 
-  viewInfoMyFinanceContainer : ".view-info-my-finance-container " +
+  viewInfoMyFinanceContainer: ".view-info-my-finance-container " +
   "{" +
   "position: absolute;" +
-  "right:"+ 30 * widthK + "px;" +
-  "left:"+ 30 * widthK + "px;" +
-  "height:"+ 125 * widthK + "px;" +
-  "top:"+ 280 * widthK + "px;" +
-  "border-bottom:"+ 1 * widthK + "px solid #f4f4f4;" +
+  "right:" + 30 * widthK + "px;" +
+  "left:" + 30 * widthK + "px;" +
+  "height:" + 125 * widthK + "px;" +
+  "top:" + 280 * widthK + "px;" +
+  "border-bottom:" + 1 * widthK + "px solid #f4f4f4;" +
   "}",
 
-  viewInfoReportsContainer : ".view-info-reports-container " +
+  viewInfoReportsContainer: ".view-info-reports-container " +
   "{" +
   "position: absolute;" +
-  "right:"+ 30 * widthK + "px;" +
-  "left:"+ 30 * widthK + "px;" +
-  "height:"+ 125 * widthK + "px;" +
-  "top:"+ 408 * widthK + "px;" +
-  "border-bottom:"+ 1 * widthK + "px solid #f4f4f4;" +
+  "right:" + 30 * widthK + "px;" +
+  "left:" + 30 * widthK + "px;" +
+  "height:" + 125 * widthK + "px;" +
+  "top:" + 408 * widthK + "px;" +
+  "border-bottom:" + 1 * widthK + "px solid #f4f4f4;" +
   "}",
 
-  viewInfoBagIcon : ".view-info-bag-icon " +
+  viewInfoBagIcon: ".view-info-bag-icon " +
   "{" +
   "position: absolute;" +
   "width: 18%;" +
@@ -1575,7 +1575,7 @@ var css = {
   "background-size: 60%;" +
   "}",
 
-  viewInfoReloadIcon : ".view-info-reload-icon " +
+  viewInfoReloadIcon: ".view-info-reload-icon " +
   "{" +
   "position: absolute;" +
   "width: 10%;" +
@@ -1588,7 +1588,7 @@ var css = {
   "background-size: 73%;" +
   "}",
 
-  viewInfoMyFinanceIcon   : ".view-info-my-finance-icon " +
+  viewInfoMyFinanceIcon: ".view-info-my-finance-icon " +
   "{" +
   "position: absolute;" +
   "width: 20%;" +
@@ -1601,7 +1601,7 @@ var css = {
   "background-size: 67%;" +
   "}",
 
-  viewInfoOpenIcon : ".view-info-open-icon " +
+  viewInfoOpenIcon: ".view-info-open-icon " +
   "{" +
   "position: absolute;" +
   "width: 20%;" +
@@ -1614,7 +1614,7 @@ var css = {
   "background-size: 9%;" +
   "}",
 
-  viewInfoReportIcon : ".view-info-reports-icon " +
+  viewInfoReportIcon: ".view-info-reports-icon " +
   "{" +
   "position: absolute;" +
   "width: 20%;" +
@@ -1627,7 +1627,7 @@ var css = {
   "background-size: 67%;" +
   "}",
 
-  viewInfoMyFinanceTitle : ".view-info-my-finance-title " +
+  viewInfoMyFinanceTitle: ".view-info-my-finance-title " +
   "{" +
   "position: absolute;" +
   "width: 36%;" +
@@ -1635,7 +1635,7 @@ var css = {
   "left: 18%;" +
   "top: 10%;" +
   "text-align: center;" +
-  "font-size:"+ 29 * widthK + "px;" +
+  "font-size:" + 29 * widthK + "px;" +
   "color: #8b8b8b;" +
   "}",
 
@@ -1647,37 +1647,37 @@ var css = {
   "left: 12%;" +
   "top: 10%;" +
   "text-align: center;" +
-  "font-size:"+ 29 * widthK + "px;" +
+  "font-size:" + 29 * widthK + "px;" +
   "color: #8b8b8b;" +
   "}",
 
-  viewInfoOperationContainer : ".view-info-operations-container " +
+  viewInfoOperationContainer: ".view-info-operations-container " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:"+ 250 * widthK + "px;" +
-  "top:"+ 600 * widthK + "px;" +
+  "height:" + 250 * widthK + "px;" +
+  "top:" + 600 * widthK + "px;" +
   "overflow: auto;" +
   "}",
 
-  viewInfoOperationTitle : ".view-info-operations-title " +
+  viewInfoOperationTitle: ".view-info-operations-title " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:"+ 68 * widthK + "px;" +
-  "top:"+ 535 * widthK + "px;" +
+  "height:" + 68 * widthK + "px;" +
+  "top:" + 535 * widthK + "px;" +
   "}",
 
-  viewInfoOperationsLabel : ".view-info-operations-label " +
+  viewInfoOperationsLabel: ".view-info-operations-label " +
   "{" +
-  "font-size:"+ 24 * widthK + "px;" +
+  "font-size:" + 24 * widthK + "px;" +
   "position: absolute;" +
   "top: 26%;" +
   "left: 7%;" +
   "color: #8b8b8b;" +
   "}",
 
-  viewOperationInfoContainer : ".view-info-operation-info-container " +
+  viewOperationInfoContainer: ".view-info-operation-info-container " +
   "{" +
   "position: absolute;" +
   "height: 100%;" +
