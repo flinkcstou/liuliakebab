@@ -4,7 +4,6 @@
         <p class="pay-name-title">{titleName}</p>
         <div id="backButton" ontouchstart="touchStartTitle()"
              class="{back-button: backbuttoncheck}">
-
         </div>
         <div id="rightButton" type="button" class="{settings-button: rightbuttoncheck}"></div>
     </div>
