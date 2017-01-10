@@ -127,6 +127,7 @@
         }
 
         touchEndResend = function () {
+
             event.preventDefault();
             event.stopPropagation();
             alert(window.languages.ViewSmsResendText + localStorage.getItem('click_client_phoneNumber'));
