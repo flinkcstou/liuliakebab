@@ -1141,6 +1141,21 @@ var css = {
   "top:" + 29 * widthK + "px;" +
   "}",
 
+  searchButton: ".search-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 68 * widthK + "px;" +
+  "height:" + 68 * widthK + "px;" +
+  "right:" + 0 * widthK + "px;" +
+  "background-image: url(resources/icons/toolbar/search.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 55%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 20 * widthK + "px;" +
+  "background-size: 55%;" +
+  "top:" + 25 * widthK + "px;" +
+  "}",
+
   //FOOTER COMPONENT
 
   footer: ".footer " +
@@ -1765,7 +1780,7 @@ var css = {
   "background-size: 50%;" +
   "}",
 
-  paycategoryNameField: ".pay-category-name-field" +
+  payCategoryNameField: ".pay-category-name-field" +
   "{" +
   "position: relative;" +
   "background-size: contain;" +
