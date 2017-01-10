@@ -4,6 +4,11 @@
   </div>
 
   <div class="view-info-balance-container">
+    <p class="view-info-balance-label">Общий баланс</p>
+    <div class="card-balance-currency-container">
+      <p class="view-info-card-balance">opts.salary</p>
+      <p class="card-currency">opts.currency</p>
+    </div>
     <div class="view-info-bag-icon"></div>
     <div class="view-info-reload-icon"></div>
   </div>
@@ -46,26 +51,26 @@
     }
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-
-    window.api.call({
-      method: 'get.payment.list',
-      input : {
-        session_key: sessionKey,
-        phone_num  : phoneNumber,
-      },
-
-      scope: this,
-
-      onSuccess: function (result) {
-        console.log('result[1]', result[1]);
-
-      },
-
-      onFail: function (api_status, api_status_message, data) {
-        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-        console.error(data);
-      }
-    });
+//
+//    window.api.call({
+//      method: 'get.payment.list',
+//      input : {
+//        session_key: sessionKey,
+//        phone_num  : phoneNumber,
+//      },
+//
+//      scope: this,
+//
+//      onSuccess: function (result) {
+//        console.log('result[1]', result[1]);
+//
+//      },
+//
+//      onFail: function (api_status, api_status_message, data) {
+//        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+//        console.error(data);
+//      }
+//    });
 
   </script>
 </view-info>
