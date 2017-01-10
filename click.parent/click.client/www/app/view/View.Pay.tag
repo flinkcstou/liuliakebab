@@ -14,7 +14,7 @@
                 <div class="pay-service-block-containter" id="{i.id}" ontouchend="toggle(this.id)">
                     <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
                     <div class="pay-category-name-field">{i.name}</div>
-                    <div id="iconId" class="pay-icon-tick"></div>
+                    <div id="tickIcon" class="pay-icon-tick" id="tick+{i.id}"></div>
                     <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
                         <li class="pay-service-containter" each="{j in currentList}">
                             <div class="pay-service-icon" style="background-image: url({j.image})"></div>
@@ -111,6 +111,8 @@
                 scope.show = false;
             } else {
                 scope.show = true;
+                document.getElementById("tick" + id).style.transform = "rotate3d(1, 0, 0, 180deg)";
+
             }
 
             riot.update(scope.index);

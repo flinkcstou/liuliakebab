@@ -1567,16 +1567,15 @@ input {
     transition: 0.8s;
 }
 
-.icon-tick {
-    position: absolute;
-    left: 185px;
+.pay-icon-tick {
+    position: relative;
+    left: 645px;
     background-size: contain;
-    background-image: url(../resources/icons/footer/contacts.png);
+    background-image: url(../resources/icons/ViewPay/catopen.png);
     background-repeat: no-repeat;
     width: 33px;
     height: 18px;
-    top: 40px;
-    transition: 0.8s;
+    top: 1px;
 }
 
 .footer-contacts-container {
