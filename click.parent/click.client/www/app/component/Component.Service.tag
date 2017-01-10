@@ -1,5 +1,5 @@
 <component-service div class="service-component">
-  <div class="service-title">Популярные сервисы</div>
+  <div class="service-title">{window.languages.ComponentServiceTitle}</div>
   <div class="service-container">
     <div id="beeline" class="service-buttons beeline-button">
       <p class="service-labels service-labels-beeline">Beeline</p>

@@ -2,7 +2,7 @@
     <div class="sms-flex-container">
         <div class="sms-unchangable-container">
             <div class="sms-phone-field">
-                <p class="sms-text-field-one">Введите код активации</p>
+                <p class="sms-text-field-one">{window.languages.ViewSmsFieldOne}</p>
                 <p class="sms-phone-input">{confirmSms}</p>
                 <div class="sms-timer" ontouchend="touchEndResend()">{time}
                     <div class="sms-resend-icon"></div>
@@ -19,14 +19,14 @@
     </div>
 
     <div class="registration-keyboard-field keyboard-field" style="bottom: {150*widthK}px">
-        <div class="registration-button-help" style="top: {560*widthK}px">Помощь</div>
+        <div class="registration-button-help" style="top: {560*widthK}px">{window.languages.ViewSmsButtonHelp}</div>
         <component-keyboard></component-keyboard>
     </div>
 
 
     <script>
         var scope = this;
-        scope.messageTitle = 'Код активации выслан на номер:';
+        scope.messageTitle = window.languages.ViewSmsCodeActivationText;
         scope.messageTitleTwo = '';
         scope.phoneNumber = localStorage.getItem('click_client_phoneNumber');
         history.arrayOfHistory.push('view-sms');
@@ -63,8 +63,8 @@
             else
                 scope.time = minutes + ':' + seconds;
             if (minutes == 0 && seconds == 0) {
-                scope.messageTitle = 'Мы позвоним вам через минуту,'
-                scope.messageTitleTwo = 'чтобы сообщить код активации на номер:';
+                scope.messageTitle = window.languages.ViewSmsMessageTitle;
+                scope.messageTitleTwo = window.languages.ViewSmsMessageTitleTwo;
                 riot.update();
                 clearInterval(time);
             }
@@ -129,7 +129,7 @@
         touchEndResend = function () {
             event.preventDefault();
             event.stopPropagation();
-            alert('Смс переотправлено на номер: ' + localStorage.getItem('click_client_phoneNumber'));
+            alert(window.languages.ViewSmsResendText + localStorage.getItem('click_client_phoneNumber'));
             resendSms();
         }
 

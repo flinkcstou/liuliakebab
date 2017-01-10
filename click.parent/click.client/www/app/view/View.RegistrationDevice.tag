@@ -2,36 +2,37 @@
     <div class="registration-device-flex-container">
         <div class="registration-device-unchangable-container">
             <div class="registration-device-phone-field">
-                <p class="registration-device-text-field">Введите номер телефона</p>
+                <p class="registration-device-text-field">{window.languages.ViewRegistrationTextField}</p>
                 <p class="registration-device-phone-input">{phoneNumber}</p>
                 <div class="registration-device-remember" ontouchend="touchEndRemember()">
-                    <p class="registration-device-remember-label">Запомнить устройство</p>
+                    <p class="registration-device-remember-label">{window.languages.ViewRegistrationDeviceRememberLabel}</p>
                     <div id="rememberIcon" class="registration-device-remember-icon"></div>
                 </div>
                 <div class="registration-button-enter button-enter" ontouchend="getPhoneNumber()">
-                    <div class="button-enter-label">Далее</div>
+                    <div class="button-enter-label">{window.languages.ViewRegistrationDeviceButtonEnterLabel}</div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="registration-keyboard-field keyboard-field">
-        <div class="registration-button-help">Помощь</div>
+        <div class="registration-button-help">{window.languages.ViewRegistrationDeviceButtonHelp}</div>
         <component-keyboard></component-keyboard>
     </div>
 
 
     <div class="registration-buttons-container">
         <div class="registration-container-offline">
-            <div class="registration-button-offline">Офлайн режим</div>
+            <div class="registration-button-offline">{window.languages.ViewRegistrationDeviceButtonOffline}</div>
         </div>
         <a href="stand/index-stand.html" id="demoContainer" class="registration-container-demo-version"
            ontouchstart="goToDemo()">
-            <div class="registration-button-demo-version">Демо версия</div>
+            <div class="registration-button-demo-version">{window.languages.ViewRegistrationDeviceButtonDemoVersion}</div>
         </a>
     </div>
 
     <script>
+        console.log(window.languages.ViewRegistrationTextField)
         var checkRemember = false;
         touchEndRemember = function () {
             event.preventDefault();

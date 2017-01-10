@@ -2,7 +2,7 @@
 
   <div class="authorization-flex-container">
     <div class="authorization-unchangable-container">
-    <div class="authorization-enter-pin-label">Введите CLICK-PIN</div>
+    <div class="authorization-enter-pin-label">{window.languages.ViewAuthorizationClickPinLabel}</div>
     <div class="authorization-pin-container">
       <div class="authorization-pin-field">
         <div id="circleOne" class="authorization-pin-circles authorization-pin-one"></div>
@@ -20,10 +20,10 @@
   </div>
 
   <div class="authorization-buttons-container">
-    <div class="authorization-button-forget-pin">Забыли Click-Pin?</div>
-    <div class="authorization-button-registration">Регистрация</div>
+    <div class="authorization-button-forget-pin">{window.languages.ViewAuthorizationForgetPinLabel}</div>
+    <div class="authorization-button-registration">{window.languages.ViewAuthorizationRegistrationLabel}</div>
   </div>
-  <div class="authorization-button-offline">Офлайн режим</div>
+  <div class="authorization-button-offline">{window.languages.ViewAuthorizationOfflineModeLabel}</div>
 
 
   <script>

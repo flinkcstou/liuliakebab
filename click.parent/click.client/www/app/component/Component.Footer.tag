@@ -2,7 +2,7 @@
   <div id="contactsContainer" class="footer-contacts-container">
     <div id="contactsId" class="footer" ontouchend="openFooter()">
       <div class="footer-contacts-label-icon-container">
-        <p class="footer-contacts-label" align="center">КОНТАКТЫ</p>
+        <p class="footer-contacts-label" align="center">{window.languages.ComponentFooterContactsLabel}</p>
         <div id="iconTickId" class="footer-icon-tick"></div>
       </div>
     </div>

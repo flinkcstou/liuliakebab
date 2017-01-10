@@ -11,7 +11,7 @@
       <div class="my-cards-button-icon my-cards-button-icon-transfer">
       </div>
 
-      <div class="my-cards-button-label">Переводы с карты на карту
+      <div class="my-cards-button-label">{window.languages.ViewMyCardTransfer}
       </div>
     </div>
 
@@ -19,7 +19,7 @@
       <div class="my-cards-button-icon my-cards-button-icon-payment">
       </div>
 
-      <div class="my-cards-button-label">Оплата с карты
+      <div class="my-cards-button-label">{window.languages.ViewMyCardPay}
       </div>
     </div>
 
@@ -27,19 +27,19 @@
       <div class="my-cards-button-icon my-cards-button-icon-report">
       </div>
 
-      <div class="my-cards-button-label">Отчеты по карте
+      <div class="my-cards-button-label">{window.languages.ViewMyCardReports}
       </div>
     </div>
   </div>
 
   <div class="my-cards-button-block-card">
     <div class="my-cards-button-icon my-cards-button-icon-block"></div>
-    <div class="my-cards-button-block-card-label">Заблокировать карту</div>
+    <div class="my-cards-button-block-card-label">{window.languages.ViewMyCardBlock}</div>
   </div>
 
   <div class="my-cards-last-operations">
     <div class="my-cards-last-operations-container-label">
-      <p class="my-cards-last-operations-label">Последние операции</p>
+      <p class="my-cards-last-operations-label">{window.languages.ViewMyCardLastOperations}</p>
 
       <div id="lastOperationContainerId" class="my-cards-last-operations-container">
         <div class="my-cards-last-operations-info" each="{i in arrayOfOperationsByAccount}"
