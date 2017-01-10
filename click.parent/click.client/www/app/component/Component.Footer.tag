@@ -103,7 +103,7 @@
       }
     }
 
-
+//
 //    var arrayOfPhotosContacts = [];
 //    var arrayWithoutPhotosContacts = [];
 //    var arrayOfConnectedContacts = [];
