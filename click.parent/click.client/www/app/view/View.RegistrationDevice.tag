@@ -64,10 +64,7 @@
             event.preventDefault();
             event.stopPropagation();
             if (scope.phoneNumber.length < 13 && myValue != 'x') {
-                if (scope.phoneNumber.length == 4 || scope.phoneNumber.length == 7)
-                    scope.phoneNumber += " " + myValue;
-                else
-                    scope.phoneNumber += myValue;
+                scope.phoneNumber += myValue;
             }
             if (myValue == 'x' && scope.phoneNumber.length != 4) {
                 scope.phoneNumber = scope.phoneNumber.substring(0, scope.phoneNumber.length - 1);

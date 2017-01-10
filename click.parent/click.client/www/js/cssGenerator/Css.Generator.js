@@ -1104,9 +1104,9 @@ var css = {
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
-  "font-size:" + 34 * widthK + "px;" +
-  "left:" + 86 * widthK + "px;" +
-  "top:" + 40 * widthK + "px;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "left:" + 82 * widthK + "px;" +
+  "top:" + 42 * widthK + "px;" +
   "margin: 0;" +
   "color: #fffaf9;" +
   "}",
@@ -1684,6 +1684,119 @@ var css = {
   "width: 300%;" +
   "left: 103%;" +
   "}",
+
+
+  payNameTitle: ".pay-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 34 * widthK + "px; " +
+  "left:" + 86 * widthK + "px; " +
+  "top:" + 40 * heightK + "px; " +
+  "margin: 0;  " +
+  "color: #fffaf9;" +
+  "}",
+
+  payCategoryContainer: ".pay-category-container" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 1121 * heightK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 82 * heightK + "px; " +
+  "background-color: white; " +
+  "overflow-x: hidden; " +
+  "overflow-y: scroll;" +
+  "}",
+
+  payServiceBlockContainer: ".pay-service-block-containter" +
+  "{" +
+  "position: relative;" +
+  "min-height:" + 92 * heightK + "px; " +
+  "width: 100%;" +
+  "margin-top: 1%;" +
+  "border-bottom-style: solid;" +
+  "border-bottom-color: gray;" +
+  "background-color: transparent;" +
+  "}",
+
+  payServicesBlock: ".pay-services-block" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "display: flex;" +
+  "flex-wrap: wrap;" +
+  "top: 60%;" +
+  "margin-bottom: 3%;" +
+  "padding-top: 3%;" +
+  "}",
+
+  payServiceIcon: ".pay-service-icon" +
+  "{" +
+  "position: relative;" +
+  "width: 75%;" +
+  "height: " + 150 * heightK + "px; " +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "border-radius: 50%;" +
+  "border: 1px solid grey;" +
+  "background-size: 80%;" +
+  "}",
+
+  payServiceNameField: ".pay-service-name-field" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "font-size:" + 24 * widthK + "px; " +
+  "color: gray;" +
+  "text-align: center;" +
+  "margin-right: 24%;" +
+  "margin-top: 3%;" +
+  "}",
+
+  payCategoryIcon: ".pay-category-icon" +
+  "{" +
+  "position: relative;" +
+  "width: 13%;" +
+  "height:" + 95 * heightK + "px; " +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "float: left;" +
+  "left: 3%;" +
+  "background-size: 50%;" +
+  "}",
+
+  paycategoryNameField: ".pay-category-name-field" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 33 * heightK + "px; " +
+  "left: 6%;" +
+  "text-align: left;" +
+  "font-size:" + 29 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  payServiceContainer: ".pay-service-containter" +
+  "{" +
+  "position: relative;" +
+  "width: 28%;" +
+  "margin-left: 3%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 60%;" +
+  "margin-bottom: 5%;" +
+  "}",
+
+  viewPay: ".view-pay" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "overflow: hidden;" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "background-image: url('resources/draft/payback.png');" +
+  "}"
 
 }
 

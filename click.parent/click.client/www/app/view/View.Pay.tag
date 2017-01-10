@@ -1,6 +1,13 @@
 <view-pay class="view-pay">
-    <component-page-title title="{titleName}" backbutton="{backbuttoncheck}" rightbutton="{rightbuttoncheck}">
-    </component-page-title>
+
+    <div class="page-title">
+        <p class="pay-name-title">{titleName}</p>
+        <div id="backButton" ontouchstart="touchStartTitle()"
+             class="{back-button: backbuttoncheck}">
+
+        </div>
+        <div id="rightButton" type="button" class="{settings-button: rightbuttoncheck}"></div>
+    </div>
 
     <div class="pay-category-container">
         <ul style="list-style:none; padding: 0; margin: 0;">
@@ -15,15 +22,24 @@
                         </li>
                     </ul>
                 </div>
-
-
             </li>
         </ul>
     </div>
 
 
     <script>
+
+        var scope = this;
+        touchStartTitle = function () {
+            event.preventDefault();
+            event.stopPropagation();
+
+            this.riotTags.innerHTML = "<view-main-page>";
+            riot.mount('view-main-page');
+        }
+
         this.titleName = 'ОПЛАТА';
+
 
         history.arrayOfHistory.push('view-pay');
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
