@@ -1141,6 +1141,21 @@ var css = {
   "top:" + 29 * widthK + "px;" +
   "}",
 
+  searchButton: ".search-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 68 * widthK + "px;" +
+  "height:" + 68 * widthK + "px;" +
+  "right:" + 0 * widthK + "px;" +
+  "background-image: url(resources/icons/toolbar/search.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 55%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 20 * widthK + "px;" +
+  "background-size: 55%;" +
+  "top:" + 25 * widthK + "px;" +
+  "}",
+
   //FOOTER COMPONENT
 
   footer: ".footer " +
@@ -1712,7 +1727,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 34 * widthK + "px; " +
   "left:" + 86 * widthK + "px; " +
-  "top:" + 40 * heightK + "px; " +
+  "top:" + 40 * widthK + "px; " +
   "margin: 0;  " +
   "color: #fffaf9;" +
   "}",
@@ -1720,9 +1735,9 @@ var css = {
   payCategoryContainer: ".pay-category-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 1121 * heightK + "px; " +
+  "height:" + 1121 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
-  "top:" + 82 * heightK + "px; " +
+  "top:" + 82 * widthK + "px; " +
   "background-color: white; " +
   "overflow-x: hidden; " +
   "overflow-y: scroll;" +
@@ -1731,7 +1746,7 @@ var css = {
   payServiceBlockContainer: ".pay-service-block-containter" +
   "{" +
   "position: relative;" +
-  "min-height:" + 92 * heightK + "px; " +
+  "min-height:" + 92 * widthK + "px; " +
   "width: 100%;" +
   "margin-top: 1%;" +
   "border-bottom-style: solid;" +
@@ -1754,7 +1769,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 75%;" +
-  "height: " + 150 * heightK + "px; " +
+  "height: " + 150 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "border-radius: 50%;" +
@@ -1777,7 +1792,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 13%;" +
-  "height:" + 95 * heightK + "px; " +
+  "height:" + 95 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
@@ -1785,11 +1800,11 @@ var css = {
   "background-size: 50%;" +
   "}",
 
-  paycategoryNameField: ".pay-category-name-field" +
+  payCategoryNameField: ".pay-category-name-field" +
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "top: " + 33 * heightK + "px; " +
+  "top: " + 33 * widthK + "px; " +
   "left: 6%;" +
   "text-align: left;" +
   "font-size:" + 29 * widthK + "px; " +
@@ -1816,7 +1831,19 @@ var css = {
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "background-image: url('resources/draft/payback.png');" +
-  "}"
+  "}",
+
+  payIconTick: ".pay-icon-tick " +
+  "{" +
+  "position: relative;" +
+  "left:" + 645 * widthK + "px;" +
+  "background-size: contain;" +
+  "background-image: url(resources/icons/ViewPay/catopen.png);" +
+  "background-repeat: no-repeat;" +
+  "width:" + 21 * widthK + "px;" +
+  "height:" + 18 * widthK + "px;" +
+  "top:" + 1 * widthK + "px;" +
+  "}",
 
 }
 
