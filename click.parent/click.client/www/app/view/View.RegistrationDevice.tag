@@ -5,7 +5,8 @@
                 <p class="registration-device-text-field">{window.languages.ViewRegistrationTextField}</p>
                 <p class="registration-device-phone-input">{phoneNumber}</p>
                 <div class="registration-device-remember" ontouchend="touchEndRemember()">
-                    <p class="registration-device-remember-label">{window.languages.ViewRegistrationDeviceRememberLabel}</p>
+                    <p class="registration-device-remember-label">
+                        {window.languages.ViewRegistrationDeviceRememberLabel}</p>
                     <div id="rememberIcon" class="registration-device-remember-icon"></div>
                 </div>
                 <div class="registration-button-enter button-enter" ontouchend="getPhoneNumber()">
@@ -27,11 +28,13 @@
         </div>
         <a href="stand/index-stand.html" id="demoContainer" class="registration-container-demo-version"
            ontouchstart="goToDemo()">
-            <div class="registration-button-demo-version">{window.languages.ViewRegistrationDeviceButtonDemoVersion}</div>
+            <div class="registration-button-demo-version">{window.languages.ViewRegistrationDeviceButtonDemoVersion}
+            </div>
         </a>
     </div>
 
     <script>
+        console.log(window.languages.ViewRegistrationTextField)
         var checkRemember = false;
         touchEndRemember = function () {
             event.preventDefault();
@@ -64,7 +67,7 @@
             event.preventDefault();
             event.stopPropagation();
             if (scope.phoneNumber.length < 13 && myValue != 'x') {
-                    scope.phoneNumber += myValue;
+                scope.phoneNumber += myValue;
             }
             if (myValue == 'x' && scope.phoneNumber.length != 4) {
                 scope.phoneNumber = scope.phoneNumber.substring(0, scope.phoneNumber.length - 1);
@@ -117,7 +120,7 @@
         }
 
         function deviceImei() {
-            return (device.uuid.substring(0, device.uuid.length/2));
+            return device.uuid;
         }
 
         function deviceInfo() {

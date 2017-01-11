@@ -1735,9 +1735,9 @@ var css = {
   payCategoryContainer: ".pay-category-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 1121 * widthK + "px; " +
+  "height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
-  "top:" + 82 * widthK + "px; " +
+  "top:" + 86 * widthK + "px; " +
   "background-color: white; " +
   "overflow-x: hidden; " +
   "overflow-y: scroll;" +
@@ -1761,8 +1761,8 @@ var css = {
   "display: flex;" +
   "flex-wrap: wrap;" +
   "top: 60%;" +
-  "margin-bottom: 3%;" +
-  "padding-top: 3%;" +
+  "margin-bottom: 4%;" +
+  "padding-top: 2%;" +
   "}",
 
   payServiceIcon: ".pay-service-icon" +
@@ -1804,7 +1804,7 @@ var css = {
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "top: " + 33 * widthK + "px; " +
+  "top: " + 31 * widthK + "px; " +
   "left: 6%;" +
   "text-align: left;" +
   "font-size:" + 29 * widthK + "px; " +
@@ -1830,19 +1830,19 @@ var css = {
   "overflow: hidden;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  "background-image: url('resources/draft/payback.png');" +
+  "background-image: url('resources/icons/background/transparent.png');" +
   "}",
 
   payIconTick: ".pay-icon-tick " +
   "{" +
   "position: relative;" +
-  "left:" + 645 * widthK + "px;" +
+  "left:" + 653 * widthK + "px;" +
   "background-size: contain;" +
   "background-image: url(resources/icons/ViewPay/catopen.png);" +
   "background-repeat: no-repeat;" +
-  "width:" + 21 * widthK + "px;" +
+  "width:" + 19 * widthK + "px;" +
   "height:" + 18 * widthK + "px;" +
-  "top:" + 1 * widthK + "px;" +
+  "top:" + 2 * widthK + "px;" +
   "}",
 
 }

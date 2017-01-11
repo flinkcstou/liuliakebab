@@ -45,8 +45,8 @@ window.api.call = function (params) {
   var scope = params.scope || window;
   console.log("IT IS INPUT ", input);
   this.callBacks[method] = {
-    ok : function (data) {
-      console.log('ANSWER OF API ',data);
+    ok: function (data) {
+      console.log('ANSWER OF API ', data);
       onSuccess.call(scope, data);
     },
     err: function (api_status, api_status_message, data) {
@@ -56,7 +56,7 @@ window.api.call = function (params) {
 
 
   this.socket.send(JSON.stringify({
-    method    : method,
+    method: method,
     parameters: input
   }));
 };

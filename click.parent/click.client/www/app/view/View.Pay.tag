@@ -14,7 +14,7 @@
                 <div class="pay-service-block-containter" id="{i.id}" ontouchend="toggle(this.id)">
                     <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
                     <div class="pay-category-name-field">{i.name}</div>
-                    <div id="tickIcon" class="pay-icon-tick" id="tick+{i.id}"></div>
+                    <div class="pay-icon-tick" id="tick{i.id}"></div>
                     <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
                         <li class="pay-service-containter" each="{j in currentList}">
                             <div class="pay-service-icon" style="background-image: url({j.image})"></div>
@@ -49,6 +49,7 @@
         scope.rightbuttoncheck = true;
         scope.categoryList = JSON.parse(localStorage.getItem("click_client_payCategoryList"));
         scope.serviceList = JSON.parse(localStorage.getItem("click_client_payServiceList"));
+        scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
 
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         phoneNumber = phoneNumber.substring(3, phoneNumber.length);
@@ -98,22 +99,21 @@
                 scope.index = id;
             }
 
-            scope.currentList = [];
-
-            for (var i = 0; i < scope.serviceList.length; i++)
-                if (scope.serviceList[i].category_id == id) {
-                    console.log(scope.serviceList[i].category_id);
-                    scope.currentList.push(scope.serviceList[i]);
-                }
+            scope.currentList = scope.servicesMap[id];
+            console.log("currentList", scope.currentList);
 
 
-            if (scope.currentList.length == 0) {
+            if (!scope.currentList) {
                 scope.show = false;
             } else {
                 scope.show = true;
-                document.getElementById("tick" + id).style.transform = "rotate3d(1, 0, 0, 180deg)";
-
+                document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
             }
+
+            if (scope.index == id && scope.show) {
+                document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
+            }
+
 
             riot.update(scope.index);
             riot.update(scope.currentList);
@@ -121,8 +121,9 @@
         };
 
 
-        if (!scope.serviceList) {
+        if (!(scope.serviceList && scope.servicesMap)) {
             scope.serviceList = [];
+            scope.servicesMap = {};
             window.api.call({
                 method: 'get.service.list',
                 input: {
@@ -134,16 +135,24 @@
                 onSuccess: function (result) {
                     if (result[0][0].error == 0)
                         if (result[1][0])
-                            var j = 0;
-                    for (var i in result[1]) {
-                        console.log('service ID ', result[1][i].id, ', service name= ', result[1][i].name);
-                        scope.serviceList.push(result[1][i]);
-                    }
+                            for (var i in result[1]) {
+                                console.log('service ID ', result[1][i].id, ', service name= ', result[1][i].name, ', category id= ', result[1][i].category_id);
+                                scope.serviceList.push(result[1][i]);
+                                if (!scope.servicesMap[result[1][i].category_id]) {
+                                    scope.servicesMap[result[1][i].category_id] = [];
+                                    scope.servicesMap[result[1][i].category_id].push(result[1][i]);
+                                }
+                                else {
+                                    scope.servicesMap[result[1][i].category_id].push(result[1][i]);
+                                }
+
+                            }
 
                     riot.update(scope.serviceList)
 
                     console.log('array service list', scope.serviceList)
                     localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
+                    localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
                 },
                 onFail: function (api_status, api_status_message, data) {
                     console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -153,8 +162,10 @@
         }
 
 
+
         console.log("categories ", scope.categoryList)
         console.log("services ", scope.serviceList)
+        console.log("services map", scope.servicesMap)
 
 
     </script>
