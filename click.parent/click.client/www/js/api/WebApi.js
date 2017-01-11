@@ -2,7 +2,7 @@ window.api = {};
 window.api.callBacks = {};
 
 window.api.init = function () {
-  window.api.socket = new WebSocket("wss://api.click.uz:8443");
+  window.api.socket = new WebSocket("wss://my.click.uz:8443");
   window.api.initSocket();
 };
 

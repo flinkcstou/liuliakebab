@@ -32,7 +32,6 @@
     </div>
 
     <script>
-        console.log(window.languages.ViewRegistrationTextField)
         var checkRemember = false;
         touchEndRemember = function () {
             event.preventDefault();
@@ -118,7 +117,7 @@
         }
 
         function deviceImei() {
-            return device.uuid;
+            return (device.uuid.substring(0, device.uuid.length/2));
         }
 
         function deviceInfo() {

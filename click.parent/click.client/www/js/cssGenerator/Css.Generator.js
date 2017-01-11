@@ -430,7 +430,7 @@ var css = {
   smsResendIcon: ".sms-resend-icon " +
   "{" +
   "position: absolute;" +
-  "background-image: url(resources/icons/sms/resend.png);" +
+  "background-image: url(resources/icons/ViewSms/resend.png);" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "width:" + 80 * widthK + "px;" +
@@ -1685,6 +1685,26 @@ var css = {
   "left: 103%;" +
   "}",
 
+  viewInfoBalanceLabel : ".view-info-balance-label " +
+  "{" +
+  "position: absolute;" +
+  "left: 25%;" +
+  "top: 10%;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "color: #c2c2c2;" +
+  "}",
+
+  viewInfoCardBalance : ".view-card-balance " +
+  "{" +
+  "position: relative;" +
+  "left:" + 34 * widthK + "px;" +
+  "color: #515151;" +
+  "font-size:" + 52 * widthK + "px;" +
+  "margin: 0;" +
+  "margin-top:" + -2 * widthK + "px;" +
+  "float: left;" +
+  "padding: 0;" +
+  "}",
 
   payNameTitle: ".pay-name-title " +
   "{" +

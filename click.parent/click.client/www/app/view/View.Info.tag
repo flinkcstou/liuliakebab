@@ -6,8 +6,8 @@
   <div class="view-info-balance-container">
     <p class="view-info-balance-label">{window.languages.ViewInfoBalanceTitle}</p>
     <div class="card-balance-currency-container">
-      <p class="view-info-card-balance">opts.salary</p>
-      <p class="card-currency">opts.currency</p>
+      <p class="view-info-card-balance"></p>
+      <p class="card-currency"></p>
     </div>
     <div class="view-info-bag-icon"></div>
     <div class="view-info-reload-icon"></div>

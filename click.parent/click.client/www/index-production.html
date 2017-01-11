@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
-
+  <script src="js/languages/languages.js"></script>
   <!-- CSS -->
   <!--<link href="css/MainPage.css" rel="stylesheet">-->
   <script src="js/cssGenerator/Css.Generator.js"></script>
@@ -35,9 +35,9 @@
   api.init();
   scope = this;
   var startApplication = function () {
-    var script = document.createElement('script');
-    script.src = 'js/cssGenerator/Css.Generator.js';
-    document.head.appendChild(script);
+    var GENERATOR = document.createElement('script');
+    GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
+    document.head.appendChild(GENERATOR);
 
     if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
       this.riotTags.innerHTML = "<view-authorization>";
