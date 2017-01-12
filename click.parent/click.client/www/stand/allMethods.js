@@ -759,19 +759,18 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
   console.log("Input of REGISTER REQUEST ", input);
 
   var array = [];
-  var arr1 = [{method: input.method, success: 1, error: 0, error_note: ""}];
-  array.push(arr1);
-  var arr2 = [{
-    error_message: "Номер телефона введен неправильно",
-    input_type: 1,
-    max_len: "999999999",
-    min_len: "0",
-    parameter_id: "1",
-    placeholder: "Введите номер телефона без 998",
-    service_id: 3,
-    title: "Номер телефона",
-    ussd_query: "*880*0199999*{param}*{amount}#"
-  },
+  array.push({method: input.method, success: 1, error: 0, error_note: ""});
+  array.push({
+      error_message: "Номер телефона введен неправильно",
+      input_type: 1,
+      max_len: "999999999",
+      min_len: "0",
+      parameter_id: "1",
+      placeholder: "Введите номер телефона без 998",
+      service_id: 3,
+      title: "Номер телефона",
+      ussd_query: "*880*0199999*{param}*{amount}#"
+    },
     {
       error_message: "Номер телефона введен неправильно",
       input_type: 1,
@@ -860,16 +859,15 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
       title: "Номер телефона",
       ussd_query: "*880*0199999*{param}*{amount}#"
     }
-  ];
-  array.push(arr2);
-  var arr3 = [{
-    code: -1,
-    id: 2,
-    name: "Мирабадский район",
-    offline_code: "-1",
-    parent: 0,
-    service_id: 39
-  },
+  );
+  array.push({
+      code: -1,
+      id: 2,
+      name: "Мирабадский район",
+      offline_code: "-1",
+      parent: 0,
+      service_id: 39
+    },
     {
       code: -1,
       id: 4,
@@ -878,11 +876,11 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
       parent: 0,
       service_id: 39
     }
-  ];
-  array.push(arr3);
+  );
 
   if (localStorage.getItem("click_client_token"))
     return array;
+
 
   return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Some error'}];
 });
