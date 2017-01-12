@@ -53,6 +53,9 @@
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
 
+      console.log(StatusBar);
+      StatusBar.hide();
+
       document.addEventListener("backbutton", onBackKeyDown, false);
       startApplication();
     }, false);
