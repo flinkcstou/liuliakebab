@@ -1700,7 +1700,7 @@ var css = {
   "left: 103%;" +
   "}",
 
-  viewInfoBalanceLabel : ".view-info-balance-label " +
+  viewInfoBalanceLabel: ".view-info-balance-label " +
   "{" +
   "position: absolute;" +
   "left: 25%;" +
@@ -1709,7 +1709,7 @@ var css = {
   "color: #c2c2c2;" +
   "}",
 
-  viewInfoCardBalance : ".view-card-balance " +
+  viewInfoCardBalance: ".view-card-balance " +
   "{" +
   "position: relative;" +
   "left:" + 34 * widthK + "px;" +
@@ -1750,7 +1750,7 @@ var css = {
   "width: 100%;" +
   "margin-top: 1%;" +
   "border-bottom-style: solid;" +
-  "border-bottom-color: gray;" +
+  "border-bottom-color: gainsboro;" +
   "background-color: transparent;" +
   "}",
 
@@ -1773,7 +1773,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "border-radius: 50%;" +
-  "border: 1px solid grey;" +
+  "border: 1px solid gray;" +
   "background-size: 80%;" +
   "}",
 

@@ -403,8 +403,6 @@ window.fakedSocket.register("get.service.category.list", function (input) {
       priority: 25,
       status: true
     },
-
-
     {
       color_hex: "#B58D74",
       color_rgb: "181-141-116",
@@ -441,7 +439,8 @@ window.fakedSocket.register("get.service.list", function (input) {
   array.push({
       category_id: 4,
       cost: 1,
-      id: 1,
+      form_type: 1,
+      id: -4,
       image: "https://m.click.uz/static/merchant/logo/logo_-4.png",
       is_communal: 0,
       is_mobile: 0,
@@ -461,7 +460,8 @@ window.fakedSocket.register("get.service.list", function (input) {
     {
       category_id: 4,
       cost: 1,
-      id: 2,
+      form_type: 1,
+      id: -2,
       image: "https://m.click.uz/static/merchant/logo/logo_-2.png",
       is_communal: 0,
       is_mobile: 0,
@@ -481,7 +481,8 @@ window.fakedSocket.register("get.service.list", function (input) {
     {
       category_id: 4,
       cost: 1,
-      id: 1,
+      form_type: 1,
+      id: -1,
       image: "https://m.click.uz/static/merchant/logo/logo_-1.png",
       is_communal: 0,
       is_mobile: 0,
@@ -499,8 +500,9 @@ window.fakedSocket.register("get.service.list", function (input) {
       status: 1
     },
     {
-      category_id: 4,
+      category_id: 6,
       cost: 1,
+      form_type: 1,
       id: 12,
       image: "https://m.click.uz/static/merchant/logo/logo_12.png",
       is_communal: 0,
@@ -519,8 +521,9 @@ window.fakedSocket.register("get.service.list", function (input) {
       status: 1
     },
     {
-      category_id: 4,
+      category_id: 3,
       cost: 1,
+      form_type: 1,
       id: 28,
       image: "https://m.click.uz/static/merchant/logo/logo_28.png",
       is_communal: 0,
@@ -539,8 +542,9 @@ window.fakedSocket.register("get.service.list", function (input) {
       status: 1
     },
     {
-      category_id: 4,
+      category_id: 8,
       cost: 1,
+      form_type: 3,
       id: 39,
       image: "https://m.click.uz/static/merchant/logo/logo_39.png",
       is_communal: 1,
@@ -561,6 +565,7 @@ window.fakedSocket.register("get.service.list", function (input) {
     {
       category_id: 5,
       cost: 1,
+      form_type: 1,
       id: 45,
       image: "https://m.click.uz/static/merchant/logo/logo_45.png",
       is_communal: 0,
@@ -581,6 +586,7 @@ window.fakedSocket.register("get.service.list", function (input) {
     {
       category_id: 9,
       cost: 1,
+      form_type: 1,
       id: 48,
       image: "https://m.click.uz/static/merchant/logo/logo_48.png",
       is_communal: 0,
@@ -601,9 +607,9 @@ window.fakedSocket.register("get.service.list", function (input) {
     {
       category_id: 6,
       cost: 1,
+      form_type: 1,
       id: 51,
       image: "https://m.click.uz/static/merchant/logo/logo_51.png",
-      is_communal: 0,
       is_mobile: 0,
       lang_amount_hint: null,
       lang_amount_placeholder: "Введите сумму оплаты",
@@ -621,21 +627,21 @@ window.fakedSocket.register("get.service.list", function (input) {
     {
       category_id: 6,
       cost: 1,
-      id: 55,
-      image: "https://m.click.uz/static/merchant/logo/logo_55.png",
-      is_communal: 0,
+      form_type: 1,
+      id: 184,
+      image: "https://m.click.uz/static/merchant/logo/logo_184.png",
       is_mobile: 0,
       lang_amount_hint: null,
       lang_amount_placeholder: "Введите сумму оплаты",
       lang_amount_title: "Сумма",
-      lang_max_amount: "Максимальная сумма для оплаты 10000000.00 сум ",
-      lang_min_amount: "Минимальная сумма для оплаты 100.00 сум",
-      max_pay_limit: 10000000,
-      min_pay_limit: 100,
+      lang_max_amount: "Максимальная сумма для оплаты 500000.00 сум ",
+      lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+      max_pay_limit: 500000,
+      min_pay_limit: 1000,
       name: "Arba.uz",
       priority: 0,
       service_parameters: "0",
-      service_short_name: "ARBA.UZ",
+      service_short_name: "arba.uz",
       status: 0
     },
     {
@@ -748,7 +754,136 @@ window.fakedSocket.register("get.service.list", function (input) {
   return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Dostup zapreshen'}];
 });
 
+
 window.fakedSocket.register("get.service.parameters.list", function (input) {
   console.log("Input of REGISTER REQUEST ", input);
-  return [{"method": input.method, "success": 1, "error": 0, "error_note": ""}];
+
+  var array = [];
+  var arr1 = [{method: input.method, success: 1, error: 0, error_note: ""}];
+  array.push(arr1);
+  var arr2 = [{
+    error_message: "Номер телефона введен неправильно",
+    input_type: 1,
+    max_len: "999999999",
+    min_len: "0",
+    parameter_id: "1",
+    placeholder: "Введите номер телефона без 998",
+    service_id: 3,
+    title: "Номер телефона",
+    ussd_query: "*880*0199999*{param}*{amount}#"
+  },
+    {
+      error_message: "Номер телефона введен неправильно",
+      input_type: 1,
+      max_len: "999999999",
+      min_len: "0",
+      parameter_id: "1",
+      placeholder: "Введите номер телефона без 998",
+      service_id: 2,
+      title: "Номер телефона",
+      ussd_query: "*880*0199999*{param}*{amount}#"
+    },
+    {
+      error_message: "Номер телефона введен неправильно",
+      input_type: 1,
+      max_len: "999999999",
+      min_len: "0",
+      parameter_id: "1",
+      placeholder: "Введите номер телефона без 998",
+      service_id: -2,
+      title: "Номер телефона",
+      ussd_query: null
+    },
+    {
+      error_message: "Логин введен неправильно",
+      input_type: 2,
+      max_len: "50",
+      min_len: "3",
+      parameter_id: "2",
+      placeholder: "Введите логин ",
+      service_id: -2,
+      title: "Логин",
+      ussd_query: null
+    },
+    {
+      error_message: "Выберите счет, на который нужно перевести деньги",
+      input_type: 0,
+      max_len: "99999999999",
+      min_len: "1",
+      parameter_id: "8192",
+      placeholder: "Выберите счет, на который нужно перевести средства",
+      service_id: -1,
+      title: "На счет",
+      ussd_query: null
+    },
+    {
+      error_message: "Выбирите счет, с которого будут переведены средства",
+      input_type: 0,
+      max_len: "99999999999",
+      min_len: "1",
+      parameter_id: "16384",
+      placeholder: "Выбирите счет, с которого будут переведены средства",
+      service_id: -1,
+      title: "Списать со счета",
+      ussd_query: null
+    },
+    {
+      error_message: "Номер телефона введен неправильно",
+      input_type: 1,
+      max_len: "999999999",
+      min_len: "0",
+      parameter_id: "1",
+      placeholder: "Введите номер телефона без 998",
+      service_id: 5,
+      title: "Номер телефона",
+      ussd_query: "*880*0199999*{param}*{amount}#"
+    },
+    {
+      error_message: "Номер телефона введен неправильно",
+      input_type: 1,
+      max_len: "999999999",
+      min_len: "0",
+      parameter_id: "1",
+      placeholder: "Введите номер телефона без 998",
+      service_id: 6,
+      title: "Номер телефона",
+      ussd_query: "*880*0199999*{param}*{amount}#"
+    },
+    {
+      error_message: "Номер телефона введен неправильно",
+      input_type: 1,
+      max_len: "999999999",
+      min_len: "0",
+      parameter_id: "1",
+      placeholder: "Введите номер телефона без 998",
+      service_id: 148,
+      title: "Номер телефона",
+      ussd_query: "*880*0199999*{param}*{amount}#"
+    }
+  ];
+  array.push(arr2);
+  var arr3 = [{
+    code: -1,
+    id: 2,
+    name: "Мирабадский район",
+    offline_code: "-1",
+    parent: 0,
+    service_id: 39
+  },
+    {
+      code: -1,
+      id: 4,
+      name: "Мирзо-Улугбекский район",
+      offline_code: "-1",
+      parent: 0,
+      service_id: 39
+    }
+  ];
+  array.push(arr3);
+
+  if (localStorage.getItem("click_client_token"))
+    return array;
+
+
+  return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Some error'}];
 });

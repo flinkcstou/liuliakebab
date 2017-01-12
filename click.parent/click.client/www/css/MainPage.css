@@ -680,7 +680,7 @@ input {
     width: 100%;
     margin-top: 1%;
     border-bottom-style: solid;
-    border-bottom-color: gray;
+    border-bottom-color: gainsboro;
     background-color: transparent;
 
 }
@@ -705,7 +705,7 @@ input {
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 50%;
-    border: 1px solid grey;
+    border: 1px solid gray;
     /*float: left;*/
     background-size: 80%;
 }
@@ -756,6 +756,54 @@ input {
     /* float: left; */
     background-size: 60%;
     margin-bottom: 4%;
+}
+
+.search-button {
+    position: absolute;
+    width: 68px;
+    height: 68px;
+    right: 6px;
+    background-image: url(../resources/icons/toolbar/search.png);
+    background-repeat: no-repeat;
+    -webkit-background-size: 69%;
+    background-position-y: center;
+    background-position-x: 20px;
+    background-size: 69%;
+    top: 29px;
+}
+
+.servicepage-category-field {
+    position: absolute;
+    background-size: contain;
+    font-size: 34px;
+    left: 86px;
+    top: 40px;
+    margin: 0;
+    color: #fffaf9;
+}
+
+.servicepage-service-icon {
+    position: absolute;
+    width: 68px;
+    height: 68px;
+    right: 6px;
+    background-image: url(../resources/icons/toolbar/search.png);
+    background-repeat: no-repeat;
+    -webkit-background-size: 69%;
+    background-position-y: center;
+    background-position-x: 20px;
+    background-size: 69%;
+    top: 29px;
+
+    position: relative;
+    width: 75%;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    border: 1px solid gray;
+    /*float: left;*/
+    background-size: 80%;
 }
 
 .service-buttons {
