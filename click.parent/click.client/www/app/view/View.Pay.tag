@@ -216,6 +216,8 @@
 
         goToServiceView = function (id) {
             localStorage.setItem('chosenServiceId', id);
+            event.preventDefault();
+            event.stopPropagation();
             this.riotTags.innerHTML = "<view-service-page>";
             riot.mount("view-service-page");
         }

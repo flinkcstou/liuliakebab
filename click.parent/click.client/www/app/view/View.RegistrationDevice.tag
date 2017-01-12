@@ -9,7 +9,7 @@
                         {window.languages.ViewRegistrationDeviceRememberLabel}</p>
                     <div id="rememberIcon" class="registration-device-remember-icon"></div>
                 </div>
-                <div class="servicepage-button-enter" ontouchend="getPhoneNumber()">
+                <div class="registration-button-enter button-enter" ontouchend="getPhoneNumber()">
                     <div class="button-enter-label">{window.languages.ViewRegistrationDeviceButtonEnterLabel}</div>
                 </div>
             </div>
