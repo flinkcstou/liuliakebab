@@ -24,8 +24,6 @@
         scope.servicesMap = JSON.parse(localStorage.getItem("servicesMap"));
         var serviceId = localStorage.getItem('chosenServiceId');
         scope.service = scope.servicesMap[serviceId][0];
-        console.log(scope.service.name);
-        console.log(scope.service.image);
 
 
         this.titleName = scope.service.name;

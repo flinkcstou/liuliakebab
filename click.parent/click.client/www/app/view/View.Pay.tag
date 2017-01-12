@@ -27,7 +27,6 @@
         </ul>
     </div>
 
-
     <script>
 
         var scope = this;
@@ -175,9 +174,6 @@
 
         if (!scope.servicesParams) {
             scope.servicesParams = [];
-
-
-            console.log("FIND PARAMETERS");
             window.api.call({
                 method: 'get.service.parameters.list',
                 input: {

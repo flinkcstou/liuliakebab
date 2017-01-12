@@ -884,6 +884,5 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
   if (localStorage.getItem("click_client_token"))
     return array;
 
-
   return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Some error'}];
 });

@@ -795,15 +795,15 @@ input {
     background-size: 69%;
     top: 29px;
 
-    position: relative;
-    width: 75%;
-    height: 150px;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 50%;
-    border: 1px solid gray;
-    /*float: left;*/
-    background-size: 80%;
+    /*position: relative;*/
+    /*width: 75%;*/
+    /*height: 150px;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
+    /*border-radius: 50%;*/
+    /*border: 1px solid gray;*/
+    /*!*float: left;*!*/
+    /*background-size: 80%;*/
 }
 
 .service-buttons {
