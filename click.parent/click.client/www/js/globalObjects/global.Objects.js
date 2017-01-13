@@ -21,6 +21,7 @@ sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 window.viewRegistrationClient = {};
 
 
-
 window.componentKeyboard = {};
+
+
 

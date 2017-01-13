@@ -47,11 +47,11 @@
         scope = this;
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = true;
-        scope.categoryList = JSON.parse(localStorage.getItem("payCategoryList"));
+        scope.categoryList = JSON.parse(localStorage.getItem("click_client_payCategoryList"));
         //scope.serviceList = JSON.parse(localStorage.getItem("payServiceList"));
-        scope.servicesMapByCategory = JSON.parse(localStorage.getItem("servicesMapByCategory"));
-        scope.servicesMap = JSON.parse(localStorage.getItem("servicesMap"));
-        scope.servicesParams = JSON.parse(localStorage.getItem("servicesParams"));
+        scope.servicesMapByCategory = JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"));
+        scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
+        scope.servicesParams = JSON.parse(localStorage.getItem("click_client_servicesParams"));
 
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         phoneNumber = phoneNumber.substring(3, phoneNumber.length);
@@ -80,7 +80,7 @@
 
                     scope.id = 0;
                     console.log('array category list', scope.categoryList)
-                    localStorage.setItem('payCategoryList', JSON.stringify(scope.categoryList));
+                    localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
                 },
                 onFail: function (api_status, api_status_message, data) {
                     console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -162,8 +162,8 @@
 
                     //console.log('array service list', scope.serviceList)
                     //localStorage.setItem('payServiceList', JSON.stringify(scope.serviceList));
-                    localStorage.setItem('servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
-                    localStorage.setItem('servicesMap', JSON.stringify(scope.servicesMap));
+                    localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
+                    localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
                 },
                 onFail: function (api_status, api_status_message, data) {
                     console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -201,7 +201,7 @@
                             for (var i in result[4]) {
                                 console.log('4.  service ID ', result[4][i].service_id, ', element= ', result[4][i]);
                             }
-                        localStorage.setItem('servicesParams', JSON.stringify(result));
+                        localStorage.setItem('click_client_servicesParams', JSON.stringify(result));
                         console.log("RESULT ITSELF =", result);
                     }
                 },

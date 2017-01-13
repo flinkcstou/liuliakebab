@@ -1,4 +1,4 @@
-<view-service-page class="view-service-page">
+<view-service-page>
 
     <div class="page-title" style="border-style: none;">
         <p class="servicepage-title">{titleName}</p>

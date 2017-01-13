@@ -901,8 +901,10 @@ input {
     left: 0;
 }
 
+/*VIEW-PINCARD*/
+
 .pincard-button-enter {
-    top: 350px;
+    top: 500px;
     position: relative;
     width: 440px;
     height: 100px;
@@ -912,20 +914,42 @@ input {
     background-color: rgb(1, 124, 227);
 }
 
-.pincard-payfrom-field {
+.pincard-payfrom-container {
     position: absolute;
     margin: 0;
+    background-color: transparent;
+    width: 100%;
+    height: 6%;
+    border-bottom: 1px solid lightgray;
+}
+
+.pincard-payfrom-field {
+    position: absolute;
+    font-size: 28px;
     color: gray;
-    font-size: 25px;
+    margin: 20px;
+    margin-left: 60px;
 }
 
 .pincard-card-container {
-    position: absolute;
+    position: relative;
     width: 100%;
     height: 175px;
     top: 70px;
-    background-color: gray;
+    background-color: transparent;
+    border-bottom: 1px solid lightgray;
 
+}
+
+.pincard-card-logo-container {
+    width: 41%;
+    height: 100%;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    float: left;
+    position: absolute;
 }
 
 .pincard-button-enter-label {
@@ -937,6 +961,54 @@ input {
     margin: auto;
     color: white;
     right: 43px;
+}
+
+.pincard-card-info-container {
+    position: absolute;
+    width: 41%;
+    height: 100%;
+    left: 310px;
+    background-color: transparent;
+
+}
+
+.pincard-card-info-text-one {
+    position: absolute;
+    font-size: 24px;
+    color: gray;
+    top: 5px;
+    /*margin: 20px;*/
+    /*margin-left: 60px;*/
+}
+
+.pincard-card-info-text-two {
+    position: absolute;
+    font-size: 36px;
+    font-weight: bold;
+    color: rgba(80, 185, 8, 0.77);
+    top: 30px;
+    /*margin: 20px;*/
+    /*margin-left: 60px;*/
+}
+
+.pincard-card-info-text-three {
+    position: absolute;
+    font-size: 24px;
+    color: gray;
+    top: 95px;
+    /*margin: 20px;*/
+    /*margin-left: 60px;*/
+}
+
+.pincard-card-checkmark {
+    position: absolute;
+    width: 18%;
+    height: 100%;
+    left: 589px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
 }
 
 /*OTHER*/
