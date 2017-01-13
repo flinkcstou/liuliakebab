@@ -57,6 +57,7 @@
     var scope = this;
     var token;
 
+
     scope.phoneNumber = '+998';
     scope.maskPhoneNumber = '+998 ';
 
