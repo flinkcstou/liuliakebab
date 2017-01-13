@@ -123,7 +123,7 @@ window.fakedSocket.register("get.accounts", function (input) {
       description: "Карта KAZKOM-Online",
       expire_date: "1806",
       id: 2484171,
-      image_url: "https://merchant.click.uz/static/content/app/bank/aloq.png",
+      image_url: "https://merchant.click.uz/static/content/app/bank/ofb.png",
       is_uzcard: 1,
       removable: 1,
       short_name: "aloq"
