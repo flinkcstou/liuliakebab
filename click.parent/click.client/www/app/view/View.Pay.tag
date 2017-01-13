@@ -14,14 +14,15 @@
         <div class="pay-service-block-containter" id="{i.id}" ontouchstart="onTouchStart()"
              ontouchend="onTouchEnd(this.id)">
           <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
-          <div class="pay-category-name-field" >{i.name}
+          <div class="pay-category-name-field">{i.name}
           </div>
           <div class="pay-icon-tick" id="tick{i.id}"></div>
           <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
             <li class="pay-service-containter" each="{j in currentList}" id="{j.id}"
                 ontouchend="goToServiceView(this.id)">
-              <div class="pay-service-icon" style="background-image: url({j.image})"></div>
-              <div class="pay-service-name-field">{j.name}</div>
+              <div class="pay-service-icon" style="background-image: url({j.image})">
+                <div class="pay-service-name-field">{j.name}</div>
+              </div>
             </li>
           </ul>
         </div>
@@ -95,7 +96,7 @@
     scope.show = false;
     var onTouchStartY;
     var onTouchEndY;
-
+    var count = 1;
 
     onTouchStart = function () {
       onTouchStartY = event.changedTouches[0].pageY;
@@ -105,16 +106,25 @@
     onTouchEnd = function (id) {
 
       onTouchEndY = event.changedTouches[0].pageY;
-      console.log(onTouchStartY, ' position ', onTouchEndY);
+      console.log(onTouchEndY)
 
-      if(onTouchStartY == onTouchEndY) {
+
+      if (Math.abs(onTouchStartY - onTouchEndY) <= 10) {
         if (scope.index == id) {
           scope.index = -1;
         } else {
+          if(scope.index != -1)
+          document.getElementById("tick" + scope.index).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
           scope.index = id;
         }
 
+//        for (var i = 0; i < scope.servicesMapByCategory[id].length; i++) {
+//          scope.servicesMapByCategory[id][i].count = count;
+//          console.log('CHECKS ',scope.servicesMapByCategory[id][i])
+//          count++;
+//        }
         scope.currentList = scope.servicesMapByCategory[id];
+        count = 1;
         console.log("currentList", scope.currentList);
 
 
@@ -128,6 +138,7 @@
         if (scope.index == id && scope.show) {
           document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
         }
+        console.log(scope.show)
 
 
         riot.update(scope.index);

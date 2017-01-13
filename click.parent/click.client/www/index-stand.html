@@ -31,7 +31,7 @@
   <script src="stand/allMethods.js"></script>
 
   <!--Generator-->
-  <script src="js/cssGenerator/Css.Generator.js"></script>
+  <!--<script src="js/cssGenerator/Css.Generator.js"></script>-->
 
 
 </head>
@@ -55,7 +55,7 @@
       document.head.appendChild(GENERATOR);
 
       if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
-        this.riotTags.innerHTML = "<view-authorization>";
+        scope.riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization')
       }
       else {
@@ -78,7 +78,7 @@
     document.head.appendChild(GENERATOR);
 
     if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
-      this.riotTags.innerHTML = "<view-authorization>";
+      scope.riotTags.innerHTML = "<view-authorization>";
       riot.mount('view-authorization')
     }
     else {
