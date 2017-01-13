@@ -1778,7 +1778,7 @@ var css = {
   "width: 100%;" +
   "margin-top: 1%;" +
   "border-bottom-style: solid;" +
-  "border-bottom-color: gray;" +
+  "border-bottom-color: gainsboro;" +
   "background-color: transparent;" +
   "}",
 
@@ -1801,7 +1801,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "border-radius: 50%;" +
-  "border: 1px solid grey;" +
+  "border: 1px solid gray;" +
   "background-size: 80%;" +
   "}",
 
