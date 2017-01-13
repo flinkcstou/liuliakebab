@@ -13,34 +13,61 @@
     <div class="servicepage-body-container">
         <div class="pincard-payfrom-container">
             <p class="pincard-payfrom-field">Оплатить с:</p></div>
-        <div class="pincard-card-container">
-            <div class="pincard-card-logo-container"
-                 style="background-image: url('https://merchant.click.uz/static/content/app/bank/ofb.png')"></div>
-            <div class="pincard-card-info-container">
-                <p class="pincard-card-info-text-one">Зарплатная карта</p>
-                <p class="pincard-card-info-text-two">15 789 сум</p>
-                <p class="pincard-card-info-text-three">8610 **** 9784</p>
+        <div class="pincard-allcards-container">
+            <div class="pincard-card-container">
+                <div class="pincard-card-logo-container"
+                     style="background-image: url('https://merchant.click.uz/static/content/app/bank/ofb.png')"></div>
+                <div class="pincard-card-info-container">
+                    <p class="pincard-card-info-text-one">Зарплатная карта</p>
+                    <p class="pincard-card-info-text-two">15 789 сум</p>
+                    <p class="pincard-card-info-text-three">8610 **** 9784</p>
+                </div>
+                <div class="pincard-card-checkmark"
+                     style="background-image: url('resources/icons/ViewService/checked.png')"></div>
             </div>
-            <div class="pincard-card-checkmark"
-                 style="background-image: url('resources/icons/ViewService/checked.png')"></div>
+            <div class="pincard-card-container">
+                <div class="pincard-card-logo-container"
+                     style="opacity:0.3; filter: grayscale(100%);background-image: url('https://merchant.click.uz/static/content/app/bank/ofb.png')"></div>
+                <div class="pincard-card-info-container">
+                    <p class="pincard-card-info-text-one">Зарплатная карта</p>
+                    <p class="pincard-card-info-text-two" style="color: #EB604D">0 сум</p>
+                    <p class="pincard-card-info-text-three">8610 **** 9784</p>
+                </div>
+                <div class="pincard-card-checkmark"
+                     style="background-image: url('resources/icons/ViewService/unchecked.png')"></div>
+            </div>
+            <div class="pincard-card-container">
+                <div class="pincard-card-logo-container"
+                     style="opacity:0.3; filter: grayscale(100%);background-image: url('https://merchant.click.uz/static/content/app/bank/ofb.png')"></div>
+                <div class="pincard-card-info-container">
+                    <p class="pincard-card-info-text-one">Зарплатная карта</p>
+                    <p class="pincard-card-info-text-two" style="color: #EB604D">0 сум</p>
+                    <p class="pincard-card-info-text-three">8610 **** 9784</p>
+                </div>
+                <div class="pincard-card-checkmark"
+                     style="background-image: url('resources/icons/ViewService/unchecked.png')"></div>
+            </div>
+            <div class="pincard-card-container">
+                <div class="pincard-card-logo-container"
+                     style="opacity:0.3; filter: grayscale(100%);background-image: url('https://merchant.click.uz/static/content/app/bank/ofb.png')"></div>
+                <div class="pincard-card-info-container">
+                    <p class="pincard-card-info-text-one">Зарплатная карта</p>
+                    <p class="pincard-card-info-text-two" style="color: #EB604D">0 сум</p>
+                    <p class="pincard-card-info-text-three">8610 **** 9784</p>
+                </div>
+                <div class="pincard-card-checkmark"
+                     style="background-image: url('resources/icons/ViewService/unchecked.png')"></div>
+            </div>
         </div>
-        <div class="pincard-card-container">
-            <div class="pincard-card-logo-container"
-                 style="filter: grayscale(100%);background-image: url('https://merchant.click.uz/static/content/app/bank/ofb.png')"></div>
-            <div class="pincard-card-info-container">
-                <p class="pincard-card-info-text-one">Зарплатная карта</p>
-                <p class="pincard-card-info-text-two" style="color: #EB604D">0 сум</p>
-                <p class="pincard-card-info-text-three">8610 **** 9784</p>
+        <div class="pincard-bottom-container">
+            <div class="pincard-help-text">Помощь друга</div>
+            <div class="pincard-button-enter"
+                 ontouchend="confirmDetails()">
+                <div class="pincard-button-enter-label">ОПЛАТИТЬ</div>
             </div>
-            <div class="pincard-card-checkmark"
-                 style="background-image: url('resources/icons/ViewService/unchecked.png')"></div>
         </div>
 
 
-        <div class="pincard-button-enter"
-             ontouchend="confirmDetails()">
-            <div class="pincard-button-enter-label">ОПЛАТИТЬ</div>
-        </div>
     </div>
 
 

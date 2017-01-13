@@ -778,8 +778,8 @@ input {
     position: absolute;
     background-size: contain;
     font-size: 38px;
-    left: 86px;
-    top: 40px;
+    left: 13%;
+    top: 42%;
     margin: 0;
     color: #fffaf9;
 }
@@ -788,23 +788,23 @@ input {
     position: absolute;
     background-size: contain;
     font-size: 28px;
-    left: 86px;
-    top: 90px;
+    left: 13%;
+    top: 94%;
     margin: 0;
     color: lavender;
 }
 
 .servicepage-service-icon {
-    top: 42px;
+    top: 42%;
     position: relative;
-    width: 90px;
-    height: 90px;
+    width: 13%;
+    height: 91%;
     background-repeat: no-repeat;
     background-position: center;
-    border-radius: 90px;
+    border-radius: 50%;
     border: 1px solid gray;
     float: right;
-    right: 22px;
+    right: 4%;
     background-size: 150%;
 }
 
@@ -821,22 +821,22 @@ input {
 
 .servicepage-phone-field {
     position: absolute;
-    left: 80px;
-    width: 560px;
-    height: 107px;
+    left: 11%;
+    width: 78%;
+    height: 9%;
     border-bottom: 5px solid #01cfff;
     color: white;
-    top: 20px;
+    top: 3%;
 }
 
 .servicepage-amount-field {
     position: absolute;
-    left: 80px;
-    width: 560px;
-    height: 107px;
+    left: 11%;
+    width: 78%;
+    height: 9%;
     border-bottom: 5px solid lightgray;
     color: white;
-    top: 175px;
+    top: 16%;
 }
 
 .servicepage-text-field {
@@ -849,7 +849,7 @@ input {
 .servicepage-phone-input {
     position: absolute;
     margin: 0;
-    top: 37px;
+    top: 34%;
     font-size: 53px;
     color: #515151;
 }
@@ -858,27 +858,27 @@ input {
     position: relative;
     float: right;
     background-image: url("../resources/icons/ViewService/book.png");
-    width: 45px;
-    height: 47px;
+    width: 8%;
+    height: 50%;
     background-repeat: no-repeat;
-    top: 44px;
+    top: 40%;
 }
 
 .servicepage-amount-icon {
     position: relative;
     float: right;
     background-image: url("../resources/icons/ViewService/calc.png");
-    width: 45px;
-    height: 47px;
+    width: 8%;
+    height: 50%;
     background-repeat: no-repeat;
-    top: 44px;
+    top: 40%;
 }
 
 .servicepage-button-enter {
-    top: 350px;
+    top: 31%;
     position: relative;
-    width: 440px;
-    height: 100px;
+    width: 63%;
+    height: 8%;
     margin-right: auto;
     border-radius: 80px;
     margin-left: auto;
@@ -886,26 +886,27 @@ input {
 }
 
 .servicepage-button-back {
-    top: 17px;
+    top: 20%;
     position: absolute;
-    width: 120px;
-    height: 100px;
+    width: 17%;
+    height: 90%;
     background-image: url("../resources/icons/back/back.png");
     background-repeat: no-repeat;
     -webkit-background-size: 20%;
     background-position-y: center;
-    background-position-x: 20px;
+    background-position-x: 27%;
     background-size: 20%;
     left: 0;
+
 }
 
 /*VIEW-PINCARD*/
 
 .pincard-button-enter {
-    top: 500px;
+    top: 51%;
     position: relative;
-    width: 440px;
-    height: 100px;
+    width: 60%;
+    height: 19%;
     margin-right: auto;
     border-radius: 80px;
     margin-left: auto;
@@ -925,18 +926,26 @@ input {
     position: absolute;
     font-size: 28px;
     color: gray;
-    margin: 20px;
-    margin-left: 60px;
+    margin: 2%;
+    margin-left: 6%;
+}
+
+.pincard-allcards-container {
+    position: relative;
+    width: 100%;
+    height: 46%;
+    top: 6%;
+    background-color: transparent;
+    border-bottom: 1px solid lightgray;
+    overflow: scroll;
 }
 
 .pincard-card-container {
     position: relative;
     width: 100%;
     height: 175px;
-    top: 70px;
     background-color: transparent;
     border-bottom: 1px solid lightgray;
-
 }
 
 .pincard-card-logo-container {
@@ -952,20 +961,20 @@ input {
 
 .pincard-button-enter-label {
     position: relative;
-    top: 30px;
-    width: 120px;
-    height: 40px;
+    top: 20%;
+    width: 30%;
+    /*height: 40px;*/
     font-size: 44px;
     margin: auto;
     color: white;
-    right: 43px;
+    right: 10%;
 }
 
 .pincard-card-info-container {
     position: absolute;
     width: 41%;
     height: 100%;
-    left: 310px;
+    left: 45%;
     background-color: transparent;
 
 }
@@ -974,7 +983,7 @@ input {
     position: absolute;
     font-size: 24px;
     color: gray;
-    top: 5px;
+    top: 4%;
     /*margin: 20px;*/
     /*margin-left: 60px;*/
 }
@@ -984,7 +993,7 @@ input {
     font-size: 36px;
     font-weight: bold;
     color: rgba(80, 185, 8, 0.77);
-    top: 30px;
+    top: 17%;
     /*margin: 20px;*/
     /*margin-left: 60px;*/
 }
@@ -993,7 +1002,7 @@ input {
     position: absolute;
     font-size: 24px;
     color: gray;
-    top: 95px;
+    top: 51%;
     /*margin: 20px;*/
     /*margin-left: 60px;*/
 }
@@ -1002,11 +1011,32 @@ input {
     position: absolute;
     width: 18%;
     height: 100%;
-    left: 589px;
+    left: 81%;
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50%;
+}
+
+.pincard-help-text {
+    top: 36%;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    color: rgb(1, 124, 227);
+    font-size: 30px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.pincard-bottom-container {
+    position: absolute;
+    width: 100%;
+    height: 42%;
+    top: 52%;
+    background-color: transparent;
+    border-bottom: 1px solid lightgray;
+    overflow: scroll;
 }
 
 /*OTHER*/
