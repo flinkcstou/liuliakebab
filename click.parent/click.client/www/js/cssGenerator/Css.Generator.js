@@ -1786,8 +1786,6 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "display: flex;" +
-  "flex-wrap: wrap;" +
   "top: 60%;" +
   "margin-bottom: 4%;" +
   "padding-top: 2%;" +
@@ -1813,8 +1811,9 @@ var css = {
   "font-size:" + 24 * widthK + "px; " +
   "color: gray;" +
   "text-align: center;" +
-  "margin-right: 24%;" +
-  "margin-top: 3%;" +
+  "margin-right: auto;" +
+  "top: 100%;" +
+
   "}",
 
   payCategoryIcon: ".pay-category-icon" +
@@ -1848,7 +1847,8 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-size: 60%;" +
-  "margin-bottom: 5%;" +
+  "margin-bottom: 10%;" +
+  "float: left;" +
   "}",
 
   viewPay: ".view-pay" +
