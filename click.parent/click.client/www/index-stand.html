@@ -8,7 +8,7 @@
   <meta name="format-detection" content="telephone=no">
   <script src="js/languages/languages.js"></script>
   <!-- CSS -->
-  <link id="mainPageCss" href="css/MainPage.css" rel="stylesheet">
+  <!--<link id="mainPageCss" href="css/MainPage.css" rel="stylesheet">-->
 
   <script src="stand/plugins/sms_fake.js"></script>
   <script src="stand/plugins/plugins_fake.js"></script>
@@ -52,7 +52,7 @@
 
       var GENERATOR = document.createElement('script');
       GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
-//      document.head.appendChild(GENERATOR);
+      document.head.appendChild(GENERATOR);
 
       if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
         scope.riotTags.innerHTML = "<view-authorization>";

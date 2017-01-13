@@ -47,17 +47,6 @@
                 <div class="pincard-card-checkmark"
                      style="background-image: url('resources/icons/ViewService/unchecked.png')"></div>
             </div>
-            <div class="pincard-card-container">
-                <div class="pincard-card-logo-container"
-                     style="opacity:0.3; filter: grayscale(100%);background-image: url('https://merchant.click.uz/static/content/app/bank/ofb.png')"></div>
-                <div class="pincard-card-info-container">
-                    <p class="pincard-card-info-text-one">Зарплатная карта</p>
-                    <p class="pincard-card-info-text-two" style="color: #EB604D">0 сум</p>
-                    <p class="pincard-card-info-text-three">8610 **** 9784</p>
-                </div>
-                <div class="pincard-card-checkmark"
-                     style="background-image: url('resources/icons/ViewService/unchecked.png')"></div>
-            </div>
         </div>
         <div class="pincard-bottom-container">
             <div class="pincard-help-text">Помощь друга</div>
@@ -66,8 +55,6 @@
                 <div class="pincard-button-enter-label">ОПЛАТИТЬ</div>
             </div>
         </div>
-
-
     </div>
 
 
@@ -92,6 +79,14 @@
         scope.card = JSON.parse(localStorage.getItem('click_client_cards'));
 
         console.log(scope.card);
+
+        confirmDetails = function () {
+            event.preventDefault();
+            event.stopPropagation();
+            this.riotTags.innerHTML = "<view-pay-confirm>";
+            riot.mount('view-pay-confirm');
+
+        }
 
 
     </script>

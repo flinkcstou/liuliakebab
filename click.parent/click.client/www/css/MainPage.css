@@ -1015,7 +1015,7 @@ input {
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 50%;
+    background-size: 35%;
 }
 
 .pincard-help-text {
@@ -1037,6 +1037,154 @@ input {
     background-color: transparent;
     border-bottom: 1px solid lightgray;
     overflow: scroll;
+}
+
+/*VIEW-PAYCONFIRM*/
+
+.payconfirm-data-container {
+    position: relative;
+    width: 100%;
+    height: 51%;
+    background-color: transparent;
+    border-bottom: 1px solid lightgray;
+    overflow: scroll;
+}
+
+.payconfirm-phone-field {
+    position: absolute;
+    width: 100%;
+    height: 23%;
+    border-bottom: 1px solid lightgray;
+    color: white;
+}
+
+.payconfirm-field {
+    position: relative;
+    width: 100%;
+    height: 24%;
+    border-bottom: 1px solid lightgray;
+    color: white;
+    top: 23%;
+}
+
+.payconfirm-card-field {
+    position: relative;
+    width: 100%;
+    height: 29%;
+    border-bottom: 1px solid lightgray;
+    color: white;
+    top: 23%;
+}
+
+.payconfirm-bottom-container {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    top: 52%;
+    background-color: transparent;
+    border-bottom: 1px solid lightgray;
+    overflow: scroll;
+}
+
+.payconfirm-text-field {
+    position: absolute;
+    margin: 0;
+    color: darkgray;
+    font-size: 25px;
+    margin-left: 10%;
+    top: 20%;
+
+}
+
+.payconfirm-phone-input {
+    position: absolute;
+    margin: 0;
+    margin-left: 10%;
+    top: 41%;
+    font-size: 41px;
+    color: gray;
+}
+
+.payconfirm-card-info-container {
+    position: absolute;
+    width: 60%;
+    height: 78%;
+    background-color: transparent;
+    margin-left: 4%;
+}
+
+.payconfirm-detail-text {
+    position: relative;
+    margin: 0;
+    color: darkgray;
+    font-size: 25px;
+    margin-left: 10%;
+    top: 75%;
+}
+
+.payconfirm-card-logo-container {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    left: 60%;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 55%;
+    float: left;
+}
+
+.payconfirm-action-containter {
+    position: relative;
+    float: left;
+    width: 50%;
+    height: 40%;
+    background-color: transparent;
+}
+
+.payconfirm-action-icon {
+    position: relative;
+    width: 50%;
+    height: 46%;
+    background-repeat: no-repeat;
+    background-position: center;
+    left: 25%;
+    top: 11%;
+    background-size: 50%;
+}
+
+.payconfirm-action-text {
+    top: 22%;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    color: rgb(1, 124, 227);
+    font-size: 30px;
+    text-align: center;
+    text-decoration: underline;
+    width: 50%;
+}
+
+.payconfirm-button-enter {
+    top: 51%;
+    position: relative;
+    width: 60%;
+    height: 19%;
+    margin-right: auto;
+    border-radius: 80px;
+    margin-left: auto;
+    background-color: rgb(1, 124, 227);
+}
+
+.payconfirm-button-enter-label {
+    position: absolute;
+    top: 26%;
+    width: 65%;
+    /*height: 40px;*/
+    font-size: 44px;
+    margin: auto;
+    color: white;
+    right: 10%;
 }
 
 /*OTHER*/

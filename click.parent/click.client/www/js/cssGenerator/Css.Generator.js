@@ -1,6 +1,6 @@
 widthK = window.innerWidth / 720;
 heightK = window.innerHeight / 1232;
-if(device.platform == 'iOS') {
+if (device.platform == 'iOS') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
 }
@@ -28,7 +28,7 @@ var css = {
   "font-style: normal;" +
   "}",
 
-  html  : "html" +
+  html: "html" +
   "{ " +
   "-webkit-user-select: none; " +
   "-webkit-touch-callout: none; " +
@@ -54,7 +54,7 @@ var css = {
   "overflow: hidden;" +
   "bottom: 0;" +
   "}",
-  body  : "body{" +
+  body: "body{" +
   "margin: 0;" +
   "position: absolute;" +
   "width: 100%;" +
@@ -63,7 +63,7 @@ var css = {
   "overflow: hidden;" +
   "bottom: 0;" +
   "}",
-  input : "input " +
+  input: "input " +
   "{" +
   "font-family: Neuron;" +
   "font-size:" + 24 * widthK + "px;" +
@@ -71,7 +71,7 @@ var css = {
 
   //VIEW REGISTRATION DEVICE
 
-  viewRegistrationDevice                 : ".view-registration-device " +
+  viewRegistrationDevice: ".view-registration-device " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
@@ -81,7 +81,7 @@ var css = {
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "}",
-  registrationDeviceFlexContainer        : ".registration-device-flex-container " +
+  registrationDeviceFlexContainer: ".registration-device-flex-container " +
   "{" +
   "position: absolute;" +
   "top: 0;" +
@@ -97,7 +97,7 @@ var css = {
     //"top:" + 155 * heightK + "px;" +
   "bottom:" + 17 + "%;" +
   "}",
-  registrationDevicePhoneField           : ".registration-device-phone-field " +
+  registrationDevicePhoneField: ".registration-device-phone-field " +
   "{" +
   "position: absolute;" +
   "left:" + 80 * widthK + "px;" +
@@ -107,26 +107,26 @@ var css = {
   "bottom:" + 210 * widthK + "px;" +
   "color: white;" +
   "}",
-  registrationDeviceTextField            : ".registration-device-text-field " +
+  registrationDeviceTextField: ".registration-device-text-field " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
   "}",
-  registrationDevicePhoneInput           : ".registration-device-phone-input " +
+  registrationDevicePhoneInput: ".registration-device-phone-input " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
   "top:" + 30 * widthK + "px;" +
   "font-size:" + 64 * widthK + "px;" +
   "}",
-  registrationDeviceRemember             : ".registration-device-remember " +
+  registrationDeviceRemember: ".registration-device-remember " +
   "{" +
   "position: absolute;" +
   "top:" + 110 * widthK + "px;" +
   "width: 100%;" +
   "height:" + 100 * widthK + "px;" +
   "}",
-  registrationDeviceRememberLabel        : ".registration-device-remember-label " +
+  registrationDeviceRememberLabel: ".registration-device-remember-label " +
   "{" +
   "position: absolute;" +
   "color: #4bd5ff;" +
@@ -135,7 +135,7 @@ var css = {
   "margin: 0;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-  registrationRememberIcon               : ".registration-device-remember-icon " +
+  registrationRememberIcon: ".registration-device-remember-icon " +
   "{" +
   "position: absolute;" +
   "background-image: url(resources/icons/authorization/remember.png);" +
@@ -160,7 +160,7 @@ var css = {
   "margin-left: auto;" +
   "}",
 
-  buttonEnterLabel       : ".button-enter-label " +
+  buttonEnterLabel: ".button-enter-label " +
   "{" +
   "position: relative;" +
   "top: " + 20 * widthK + "px;" +
@@ -183,20 +183,20 @@ var css = {
   "left:" + 110 * widthK + "px" +
   "}",
 
-  registrationKeyboardField       : ".registration-keyboard-field " +
+  registrationKeyboardField: ".registration-keyboard-field " +
   "{" +
   "position: absolute;" +
   "bottom:" + 150 * widthK + "px;" +
   "left:" + 110 * widthK + "px;" +
   "}",
-  registrationButtonsContainer    : ".registration-buttons-container " +
+  registrationButtonsContainer: ".registration-buttons-container " +
   "{" +
   "position: absolute;" +
   "width:" + 560 * widthK + "px;" +
   "bottom:" + -10 * widthK + "px;" +
   "left:" + 84 * widthK + "px;" +
   "}",
-  registrationContainerOffline    : ".registration-container-offline " +
+  registrationContainerOffline: ".registration-container-offline " +
   "{" +
   "position: absolute;" +
   "width:" + 300 * widthK + "px;" +
@@ -204,7 +204,7 @@ var css = {
   "bottom: 0;" +
   "left: 0;" +
   "}",
-  registrationButtonOffline       : ".registration-button-offline " +
+  registrationButtonOffline: ".registration-button-offline " +
   "{" +
   "position: absolute;" +
   "font-size:" + 34 * widthK + "px;" +
@@ -224,7 +224,7 @@ var css = {
   "bottom: 0;" +
   "right: 0;" +
   "}",
-  RegistrationButtonDemoVersion   : ".registration-button-demo-version " +
+  RegistrationButtonDemoVersion: ".registration-button-demo-version " +
   "{" +
   "position: absolute;" +
   "font-size:" + 34 * widthK + "px;" +
@@ -236,7 +236,7 @@ var css = {
   "margin-bottom:" + 14 * widthK + "px;" +
   "text-align: center;" +
   "}",
-  registrationButtonHelp          : ".registration-button-help " +
+  registrationButtonHelp: ".registration-button-help " +
   "{" +
   "position: relative;" +
   "font-size:" + 34 * widthK + "px;" +
@@ -248,7 +248,7 @@ var css = {
   "color: #b7f1ff;" +
   "border-bottom:" + 2 * widthK + "px solid #b7f1ff;" +
   "}",
-  registrationButtonRegistration  : ".registration-button-registration " +
+  registrationButtonRegistration: ".registration-button-registration " +
   "{" +
   "position: absolute;" +
   "top:" + 30 * widthK + "px;" +
@@ -258,7 +258,7 @@ var css = {
   "color: white;" +
   "border-bottom:" + 2 * widthK + "px solid white;" +
   "}",
-  registrationTextField           : ".registration-text-field " +
+  registrationTextField: ".registration-text-field " +
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
@@ -272,41 +272,41 @@ var css = {
 
   //KEYBOARD COMPONENT
 
-  keyboardContainer    : ".keyboard-container " +
+  keyboardContainer: ".keyboard-container " +
   "{" +
   "position: absolute;" +
   "width:" + 500 * widthK + "px;" +
   "height:" + 400 * widthK + "px;" +
   "}",
-  keyboardFieldOne     : ".keyboard-field-one " +
+  keyboardFieldOne: ".keyboard-field-one " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top: 0;" +
   "}",
-  keyboardFieldTwo     : ".keyboard-field-two " +
+  keyboardFieldTwo: ".keyboard-field-two " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 120 * widthK + "px;" +
   "}",
-  keyboardFieldThree   : ".keyboard-field-three " +
+  keyboardFieldThree: ".keyboard-field-three " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 240 * widthK + "px;" +
   "}",
-  keyboardFieldFour    : ".keyboard-field-four " +
+  keyboardFieldFour: ".keyboard-field-four " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 360 * widthK + "px;" +
   "}",
-  keyboardFieldFive    : ".keyboard-buttons " +
+  keyboardFieldFive: ".keyboard-buttons " +
   "{" +
   "position: absolute;" +
   "width: " + 140 * widthK + "px;" +
@@ -316,7 +316,7 @@ var css = {
   "font-size:" + 70 * widthK + "px;" +
   "text-align: center;" +
   "}",
-  keyboardButtons      : ".keyboard-buttons " +
+  keyboardButtons: ".keyboard-buttons " +
   "{" +
   "position: absolute;" +
   "width:" + 140 * widthK + "px;" +
@@ -326,7 +326,7 @@ var css = {
   "font-size:" + 70 * widthK + "px;" +
   "text-align: center;" +
   "}",
-  keyboardButtonsLabel : ".keyboard-buttons-label " +
+  keyboardButtonsLabel: ".keyboard-buttons-label " +
   "{" +
   "position: absolute;" +
   "left:" + 54 * widthK + "px;" +
@@ -338,18 +338,18 @@ var css = {
   "background: radial-gradient(rgba(255, 255, 255, 0.23), rgba(255, 255, 255, 0.04), transparent);" +
   "border-radius:" + 80 * widthK + "px;" +
   "}",
-  keyboardButtonOne    : ".keyboard-button-one {left: 0;}",
-  keyboardButtonTwo    : ".keyboard-button-two {left:" + 180 * widthK + "px;}",
-  keyboardButtonThree  : ".keyboard-button-three {right: 0;}",
-  keyboardButtonFour   : ".keyboard-button-four {left: 0;}",
-  keyboardButtonFive   : ".keyboard-button-five {left:" + 180 * widthK + "px;}",
-  keyboardButtonSix    : ".keyboard-button-six {right: 0;}",
-  keyboardButtonSeven  : ".keyboard-button-seven {left: 0;}",
-  keyboardButtonEight  : ".keyboard-button-eight {left:" + 180 * widthK + "px;}",
-  keyboardButtonNine   : ".keyboard-button-nine {right: 0;}",
-  keyboardSpace        : ".keyboard-space {left: 0;}",
-  keyboardButtonZero   : ".keyboard-button-zero {left:" + 180 * widthK + "px;}",
-  keyboardButtonenter  : ".keyboard-button-enter {position: absolute;}",
+  keyboardButtonOne: ".keyboard-button-one {left: 0;}",
+  keyboardButtonTwo: ".keyboard-button-two {left:" + 180 * widthK + "px;}",
+  keyboardButtonThree: ".keyboard-button-three {right: 0;}",
+  keyboardButtonFour: ".keyboard-button-four {left: 0;}",
+  keyboardButtonFive: ".keyboard-button-five {left:" + 180 * widthK + "px;}",
+  keyboardButtonSix: ".keyboard-button-six {right: 0;}",
+  keyboardButtonSeven: ".keyboard-button-seven {left: 0;}",
+  keyboardButtonEight: ".keyboard-button-eight {left:" + 180 * widthK + "px;}",
+  keyboardButtonNine: ".keyboard-button-nine {right: 0;}",
+  keyboardSpace: ".keyboard-space {left: 0;}",
+  keyboardButtonZero: ".keyboard-button-zero {left:" + 180 * widthK + "px;}",
+  keyboardButtonenter: ".keyboard-button-enter {position: absolute;}",
 
   keyboardButtonX: ".keyboard-button-x " +
   "{" +
@@ -744,7 +744,7 @@ var css = {
   bankOperationButtonMyCardContainer: ".bank-operation-button-my-cards-container " +
   "{" +
   "position: absolute;" +
-  "top:" + 30+ "%;" +
+  "top:" + 30 + "%;" +
   "left:" + 30 + "%;" +
   "}",
 
@@ -972,7 +972,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top:" + 805 * heightK  + "px;" +
+  "top:" + 805 * heightK + "px;" +
   "bottom:" + 90 * widthK + "px;" +
   "background: transparent;" +
   "}",
@@ -1763,7 +1763,7 @@ var css = {
   payCategoryContainer: ".pay-category-container" +
   "{" +
   "position: absolute;" +
-  //"height:" + 1150 * widthK + "px; " +
+    //"height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
   "top:" + 86 * widthK + "px; " +
   "bottom:0; " +
@@ -1801,7 +1801,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "border-radius: 50%;" +
-  "border: 1px solid gray;" +
+  "border: " + 1 * widthK + "px solid gray;" +
   "background-size: 80%;" +
   "}",
 
@@ -1875,6 +1875,444 @@ var css = {
   "height:" + 18 * widthK + "px;" +
   "top:" + 2 * widthK + "px;" +
   "}",
+
+
+  servicePageTitle: ".servicepage-title" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size: " + 38 * widthK + "px; " +
+  "left: 13%;" +
+  "top: 42%;" +
+  "margin: 0;" +
+  "color: #fffaf9;" +
+  "}",
+
+  servicePageCategoryField: ".servicepage-category-field" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size: " + 28 * widthK + "px; " +
+  "left: 13%;" +
+  "top: 94%;" +
+  "margin: 0;" +
+  "color: lavender;" +
+  "}",
+
+  servicePageServiceIcon: ".servicepage-service-icon" +
+  "{" +
+  "top: 42%;" +
+  "position: relative;" +
+  "width: 13%;" +
+  "height: 91%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "border-radius: 50%;" +
+  "border: " + 1 * widthK + "px solid gray;" +
+  "float: right;" +
+  "right: 4%;" +
+  "background-size: 150%;" +
+  "}",
+
+  servicePageBodyContainer: ".servicepage-body-container" +
+  "{" +
+  "position: absolute;" +
+  "height: " + 1150 * widthK + "px; " +
+  "width: " + 720 * widthK + "px; " +
+  "top: " + 150 * widthK + "px; " +
+  "background-color: white;" +
+  "overflow-x: hidden;" +
+  "overflow-y: scroll;" +
+  "}",
+
+  servicePagePhoneField: ".servicepage-phone-field" +
+  "{" +
+  "position: absolute;" +
+  "left: 11%;" +
+  "width: 78%;" +
+  "height: 9%;" +
+  "border-bottom:  " + 5 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  "top: 3%;" +
+  "}",
+
+  servicePageAmountField: ".servicepage-amount-field" +
+  "{position: absolute;" +
+  "left: 11%;" +
+  "width: 78%;" +
+  "height: 9%;" +
+  "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
+  "color: white;" +
+  "top: 16%;" +
+  "}",
+
+  servicePageTextField: ".servicepage-text-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 25 * widthK + "px; " +
+  "}",
+
+  servicePagePhoneInput: ".servicepage-phone-input" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "top: 34%;" +
+  "font-size: " + 53 * widthK + "px; " +
+  "color: #515151;" +
+  "}",
+
+  servicePagePhoneIcon: ".servicepage-phone-icon" +
+  "{" +
+  "position: relative;" +
+  "float: right;" +
+  "background-image: url('resources/icons/ViewService/book.png');" +
+  "width: 8%;" +
+  "height: 50%;" +
+  "background-repeat: no-repeat;" +
+  "top: 40%;" +
+  "}",
+
+  servicePageAmountIcon: ".servicepage-amount-icon" +
+  "{" +
+  "position: relative;" +
+  "float: right;" +
+  "background-image: url('resources/icons/ViewService/calc.png');" +
+  "width: 8%;" +
+  "height: 50%;" +
+  "background-repeat: no-repeat;" +
+  "top: 40%;" +
+  "}",
+
+  servicePageButtonEnter: ".servicepage-button-enter" +
+  "{" +
+  "top: 31%;" +
+  "position: relative;" +
+  "width: 63%;" +
+  "height: 8%;" +
+  "margin-right: auto;" +
+  "border-radius: " + 80 * widthK + "px; " +
+  "margin-left: auto;" +
+  "background-color: rgb(1, 124, 227);" +
+  "}",
+
+  servicePageButtonBack: ".servicepage-button-back" +
+  "{" +
+  "top: 20%;" +
+  "position: absolute;" +
+  "width: 17%;" +
+  "height: 90%;" +
+  "background-image: url('resources/icons/back/back.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 20%;" +
+  "background-position-y: center;" +
+  "background-position-x: 27%;" +
+  "background-size: 20%;" +
+  "left: 0;" +
+  "}",
+
+  pincardButtonEnter: " .pincard-button-enter" +
+  "{" +
+  "top: 51%;" +
+  "position: relative;" +
+  "width: 60%;" +
+  "height: 19%;" +
+  "margin-right: auto;" +
+  "border-radius:" + 80 * widthK + "px; " +
+  "margin-left: auto;" +
+  "background-color: rgb(1, 124, 227);" +
+  "}",
+
+  pincardPayfromContainer: ".pincard-payfrom-container" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "background-color: transparent;" +
+  "width: 100%;" +
+  "height: 6%;" +
+  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "}",
+
+  pincardPayfromField: ".pincard-payfrom-field" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 28 * widthK + "px; " +
+  "color: gray;" +
+  "margin: 2%;" +
+  "margin-left: 6%;" +
+  "}",
+
+  pincardAllcardsContainer: ".pincard-allcards-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 46%;" +
+  "top: 6%;" +
+  "background-color: transparent;" +
+  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "overflow: scroll;" +
+  "}",
+
+  pincardCardContainer: ".pincard-card-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: " + 175 * widthK + "px; " +
+  "background-color: transparent;" +
+  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "}",
+
+  pincardCardLogoContainer: ".pincard-card-logo-container" +
+  "{" +
+  "width: 41%;" +
+  "height: 100%;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 50%;" +
+  "float: left;" +
+  "position: absolute;" +
+  "}",
+
+  pincardButtonEnterLabel: ".pincard-button-enter-label" +
+  "{" +
+  "position: relative;" +
+  "top: 20%;" +
+  "width: 30%;" +
+  "font-size: " + 44 * widthK + "px; " +
+  "margin: auto;" +
+  "color: white;" +
+  "right: 10%;" +
+  "}",
+
+  pincardCardInfoContainer: ".pincard-card-info-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 41%;" +
+  "height: 100%;" +
+  "left: 45%;" +
+  "background-color: transparent;" +
+  "}",
+
+  pincardCardInfoTextOne: ".pincard-card-info-text-one" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "color: gray;" +
+  "top: 4%;" +
+  "}",
+
+  pincardCardInfoTextTwo: ".pincard-card-info-text-two" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 36 * widthK + "px; " +
+  "font-weight: bold;" +
+  "color: rgba(80, 185, 8, 0.77);" +
+  "top: 17%;" +
+  "}",
+
+  pincardCardInfoTextThree: ".pincard-card-info-text-three" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "color: gray;" +
+  "top: 51%;" +
+  "}",
+
+  pincardCardCheckmark: ".pincard-card-checkmark" +
+  "{" +
+  "position: absolute;" +
+  "width: 18%;" +
+  "height: 100%;" +
+  "left: 81%;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 35%;" +
+  "}",
+
+  pincardHelpText: ".pincard-help-text" +
+  "{" +
+  "top: 36%;" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "color: rgb(1, 124, 227);" +
+  "font-size: " + 30 * widthK + "px; " +
+  "text-align: center;" +
+  "text-decoration: underline;" +
+  "}",
+
+  pincardBottomContainer: ".pincard-bottom-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 42%;" +
+  "top: 52%;" +
+  "background-color: transparent;" +
+  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "overflow: scroll;" +
+  "}",
+
+  payconfirmDataContainer: ".payconfirm-data-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 51%;" +
+  "background-color: transparent;" +
+  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "overflow: scroll;" +
+  "}",
+
+  payconfirmPhoneField: ".payconfirm-phone-field" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 23%;" +
+  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "color: white;" +
+  "}",
+
+  payconfirm: ".payconfirm-field" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 24%;" +
+  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "color: white;" +
+  "top: 23%;" +
+  "}",
+
+  payconfirmCardField: ".payconfirm-card-field" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 29%;" +
+  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "color: white;" +
+  "top: 23%;" +
+  "}",
+
+  payconfirmBottomContainer: ".payconfirm-bottom-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 50%;" +
+  "top: 52%;" +
+  "background-color: transparent;" +
+  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "overflow: scroll;" +
+  "}",
+
+  payconfirmTextField: ".payconfirm-text-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 25 * widthK + "px; " +
+  "margin-left: 10%;" +
+  "top: 20%;" +
+  "}",
+
+  payconfirmPhoneInput: ".payconfirm-phone-input" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "margin-left: 10%;" +
+  "top: 41%;" +
+  "font-size: " + 41 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  payconfirmCardInfoContainer: ".payconfirm-card-info-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 60%;" +
+  "height: 78%;" +
+  "background-color: transparent;" +
+  "margin-left: 4%;" +
+  "}",
+
+  payconfirmDetailText: ".payconfirm-detail-text" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 25 * widthK + "px; " +
+  "margin-left: 10%;" +
+  "top: 75%;" +
+  "}",
+
+  payconfirmCardLogoContainer: ".payconfirm-card-logo-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 40%;" +
+  "height: 100%;" +
+  "left: 60%;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 55%;" +
+  "float: left;" +
+  "}",
+
+  payconfirmActionContainer: ".payconfirm-action-containter" +
+  "{" +
+  "position: relative;" +
+  "float: left;" +
+  "width: 50%;" +
+  "height: 40%;" +
+  "background-color: transparent;" +
+  "}",
+
+  payconfirmActionIcon: ".payconfirm-action-icon" +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "height: 46%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "left: 25%;" +
+  "top: 11%;" +
+  "background-size: 50%;" +
+  "}",
+
+  payconfirmActionText: ".payconfirm-action-text" +
+  "{" +
+  "top: 22%;" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "color: rgb(1, 124, 227);" +
+  "font-size: " + 30 * widthK + "px; " +
+  "text-align: center;" +
+  "text-decoration: underline;" +
+  "width: 50%;" +
+  "}",
+
+  payconfirmButtonEnter: ".payconfirm-button-enter" +
+  "{" +
+  "top: 51%;" +
+  "position: relative;" +
+  "width: 60%;" +
+  "height: 19%;" +
+  "margin-right: auto;" +
+  "border-radius: " + 80 * widthK + "px; " +
+  "margin-left: auto;" +
+  "background-color: rgb(1, 124, 227);" +
+  "}",
+
+  payconfirmButtonEnterLabel: ".payconfirm-button-enter-label" +
+  "{" +
+  "position: absolute;" +
+  "top: 26%;" +
+  "width: 65%;" +
+  "font-size: " + 44 * widthK + "px; " +
+  "margin: auto;" +
+  "color: white;" +
+  "right: 10%;" +
+  "}"
 
 }
 
