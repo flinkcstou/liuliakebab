@@ -1119,7 +1119,7 @@ var css = {
 
   pageTitle: ".page-title " +
   "{" +
-  "position: absolute;" +
+  "position: fixed;" +
   "top:" + -15 * widthK + "px;" +
   "right:" + 28 * widthK + "px;" +
   "left:" + 25 * widthK + "px;" +
@@ -1547,7 +1547,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height: 100%;" +
-  "overflow: hidden;" +
+  "overflow-x: hidden;" +
   "background-color: #ffffff;" +
   "}",
 
@@ -1763,12 +1763,13 @@ var css = {
   payCategoryContainer: ".pay-category-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 1150 * widthK + "px; " +
+  //"height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
   "top:" + 86 * widthK + "px; " +
+  "bottom:0; " +
   "background-color: white; " +
+  "overflow-y: auto; " +
   "overflow-x: hidden; " +
-  "overflow-y: scroll;" +
   "}",
 
   payServiceBlockContainer: ".pay-service-block-containter" +
@@ -1856,7 +1857,8 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height: 100%;" +
-  "overflow: hidden;" +
+  "overflow-y: hidden;" +
+  "overflow-x: hidden;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "background-image: url('resources/icons/background/transparent.png');" +
