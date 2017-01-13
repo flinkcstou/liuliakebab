@@ -1791,6 +1791,7 @@ var css = {
   "top: 60%;" +
   "margin-bottom: 4%;" +
   "padding-top: 2%;" +
+  "overflow: hidden;" +
   "}",
 
   payServiceIcon: ".pay-service-icon" +
