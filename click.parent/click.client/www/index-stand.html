@@ -9,14 +9,20 @@
   <script src="js/languages/languages.js"></script>
   <!-- CSS -->
   <!--<link id="mainPageCss" href="css/MainPage.css" rel="stylesheet">-->
-  <script src="js/cssGenerator/Css.Generator.js"></script>
+
+  <script src="stand/plugins/sms_fake.js"></script>
+  <script src="stand/plugins/plugins_fake.js"></script>
+
   <!--JS COMMON -->
   <!--@include(cordova.htmlinc)-->
   <script src="lib/js/riot.js"></script>
   <script src="lib/js/all.js"></script>
 
+  <!--Encryption-->
   <script src="js/encryption/sha512.js"></script>
   <script src="js/encryption/md5.js"></script>
+
+  <!--RealApi-->
   <script src="js/api/WebApi.js"></script>
   <script src="js/globalObjects/global.Objects.js"></script>
 
@@ -24,15 +30,15 @@
   <script src="stand/fakedSocket.js"></script>
   <script src="stand/allMethods.js"></script>
 
-  <script src="stand/plugins/sms_fake.js"></script>
-  <script src="stand/plugins/plugins_fake.js"></script>
+  <!--Generator-->
+  <script src="js/cssGenerator/Css.Generator.js"></script>
 
 
 </head>
 
 <body id="bodyId">
 
-<div id="riotTags">
+<div id="riotTags"  class="riotTags">
   <view-main-page></view-main-page>
 </div>
 
@@ -40,11 +46,36 @@
 
   api.init();
   scope = this;
-  var startApplication = function () {
-    var script = document.createElement('script');
-    script.src = 'js/cssGenerator/Css.Generator.js';
-    document.head.appendChild(script);
 
+  if (window.cordova) {
+    document.addEventListener("deviceready", function () {
+
+      var GENERATOR = document.createElement('script');
+      GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
+      document.head.appendChild(GENERATOR);
+
+      if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
+        this.riotTags.innerHTML = "<view-authorization>";
+        riot.mount('view-authorization')
+      }
+      else {
+        this.riotTags.innerHTML = "<view-registration-device>";
+        riot.mount('view-registration-device');
+      }
+      riot.mount('view-main-page');
+
+      console.log(StatusBar);
+      StatusBar.overlaysWebView(false);
+
+
+      document.addEventListener("backbutton", onBackKeyDown, false);
+      startApplication();
+    }, false);
+  }
+  else{
+    var GENERATOR = document.createElement('script');
+    GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
+    document.head.appendChild(GENERATOR);
 
     if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
       this.riotTags.innerHTML = "<view-authorization>";
@@ -55,18 +86,7 @@
       riot.mount('view-registration-device');
     }
     riot.mount('view-main-page');
-  };
 
-  if (window.cordova) {
-    document.addEventListener("deviceready", function () {
-      console.log(StatusBar);
-      StatusBar.hide();
-
-      document.addEventListener("backbutton", onBackKeyDown, false);
-      startApplication();
-    }, false);
-  } else {
-    startApplication();
   }
 
   if (JSON.parse(localStorage.getItem('demo_version')) === true) {

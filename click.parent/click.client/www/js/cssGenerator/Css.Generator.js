@@ -1,5 +1,13 @@
 widthK = window.innerWidth / 720;
 heightK = window.innerHeight / 1232;
+if(device.platform == 'iOS') {
+  heightK = (window.innerHeight - 20) / 1232;
+  heightOfMobile = window.innerHeight - 20;
+}
+else {
+  heightK = window.innerHeight / 1232;
+  heightOfMobile = window.innerHeight;
+}
 
 var css = {
   sfuiDisplay: "@font-face " +
@@ -20,7 +28,7 @@ var css = {
   "font-style: normal;" +
   "}",
 
-  html: "html" +
+  html  : "html" +
   "{ " +
   "-webkit-user-select: none; " +
   "-webkit-touch-callout: none; " +
@@ -36,7 +44,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/myCards.png);" +
+    //"background-image: url(resources/draft/mainform.png);" +
     //"opacity: 0.6;" +
   "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
   "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
@@ -44,9 +52,18 @@ var css = {
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
+  "bottom: 0;" +
   "}",
-  body: "body{margin: 0;}",
-  input: "input " +
+  body  : "body{" +
+  "margin: 0;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + heightOfMobile + "px;" +
+  "margin: 0;" +
+  "overflow: hidden;" +
+  "bottom: 0;" +
+  "}",
+  input : "input " +
   "{" +
   "font-family: Neuron;" +
   "font-size:" + 24 * widthK + "px;" +
@@ -54,7 +71,7 @@ var css = {
 
   //VIEW REGISTRATION DEVICE
 
-  viewRegistrationDevice: ".view-registration-device " +
+  viewRegistrationDevice                 : ".view-registration-device " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
@@ -64,7 +81,7 @@ var css = {
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "}",
-  registrationDeviceFlexContainer: ".registration-device-flex-container " +
+  registrationDeviceFlexContainer        : ".registration-device-flex-container " +
   "{" +
   "position: absolute;" +
   "top: 0;" +
@@ -78,9 +95,9 @@ var css = {
   "position: absolute;" +
   "height:" + 320 * widthK + "px;" +
     //"top:" + 155 * heightK + "px;" +
-  "bottom:" + 20 + "%;" +
+  "bottom:" + 17 + "%;" +
   "}",
-  registrationDevicePhoneField: ".registration-device-phone-field " +
+  registrationDevicePhoneField           : ".registration-device-phone-field " +
   "{" +
   "position: absolute;" +
   "left:" + 80 * widthK + "px;" +
@@ -90,26 +107,26 @@ var css = {
   "bottom:" + 210 * widthK + "px;" +
   "color: white;" +
   "}",
-  registrationDeviceTextField: ".registration-device-text-field " +
+  registrationDeviceTextField            : ".registration-device-text-field " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
   "}",
-  registrationDevicePhoneInput: ".registration-device-phone-input " +
+  registrationDevicePhoneInput           : ".registration-device-phone-input " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
   "top:" + 30 * widthK + "px;" +
   "font-size:" + 64 * widthK + "px;" +
   "}",
-  registrationDeviceRemember: ".registration-device-remember " +
+  registrationDeviceRemember             : ".registration-device-remember " +
   "{" +
   "position: absolute;" +
   "top:" + 110 * widthK + "px;" +
   "width: 100%;" +
   "height:" + 100 * widthK + "px;" +
   "}",
-  registrationDeviceRememberLabel: ".registration-device-remember-label " +
+  registrationDeviceRememberLabel        : ".registration-device-remember-label " +
   "{" +
   "position: absolute;" +
   "color: #4bd5ff;" +
@@ -118,7 +135,7 @@ var css = {
   "margin: 0;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-  registrationRememberIcon: ".registration-device-remember-icon " +
+  registrationRememberIcon               : ".registration-device-remember-icon " +
   "{" +
   "position: absolute;" +
   "background-image: url(resources/icons/authorization/remember.png);" +
@@ -143,7 +160,7 @@ var css = {
   "margin-left: auto;" +
   "}",
 
-  buttonEnterLabel: ".button-enter-label " +
+  buttonEnterLabel       : ".button-enter-label " +
   "{" +
   "position: relative;" +
   "top: " + 20 * widthK + "px;" +
@@ -166,20 +183,20 @@ var css = {
   "left:" + 110 * widthK + "px" +
   "}",
 
-  registrationKeyboardField: ".registration-keyboard-field " +
+  registrationKeyboardField       : ".registration-keyboard-field " +
   "{" +
   "position: absolute;" +
   "bottom:" + 150 * widthK + "px;" +
   "left:" + 110 * widthK + "px;" +
   "}",
-  registrationButtonsContainer: ".registration-buttons-container " +
+  registrationButtonsContainer    : ".registration-buttons-container " +
   "{" +
   "position: absolute;" +
   "width:" + 560 * widthK + "px;" +
   "bottom:" + -10 * widthK + "px;" +
   "left:" + 84 * widthK + "px;" +
   "}",
-  registrationContainerOffline: ".registration-container-offline " +
+  registrationContainerOffline    : ".registration-container-offline " +
   "{" +
   "position: absolute;" +
   "width:" + 300 * widthK + "px;" +
@@ -187,7 +204,7 @@ var css = {
   "bottom: 0;" +
   "left: 0;" +
   "}",
-  registrationButtonOffline: ".registration-button-offline " +
+  registrationButtonOffline       : ".registration-button-offline " +
   "{" +
   "position: absolute;" +
   "font-size:" + 34 * widthK + "px;" +
@@ -207,7 +224,7 @@ var css = {
   "bottom: 0;" +
   "right: 0;" +
   "}",
-  RegistrationButtonDemoVersion: ".registration-button-demo-version " +
+  RegistrationButtonDemoVersion   : ".registration-button-demo-version " +
   "{" +
   "position: absolute;" +
   "font-size:" + 34 * widthK + "px;" +
@@ -219,7 +236,7 @@ var css = {
   "margin-bottom:" + 14 * widthK + "px;" +
   "text-align: center;" +
   "}",
-  registrationButtonHelp: ".registration-button-help " +
+  registrationButtonHelp          : ".registration-button-help " +
   "{" +
   "position: relative;" +
   "font-size:" + 34 * widthK + "px;" +
@@ -231,7 +248,7 @@ var css = {
   "color: #b7f1ff;" +
   "border-bottom:" + 2 * widthK + "px solid #b7f1ff;" +
   "}",
-  registrationButtonRegistration: ".registration-button-registration " +
+  registrationButtonRegistration  : ".registration-button-registration " +
   "{" +
   "position: absolute;" +
   "top:" + 30 * widthK + "px;" +
@@ -241,7 +258,7 @@ var css = {
   "color: white;" +
   "border-bottom:" + 2 * widthK + "px solid white;" +
   "}",
-  registrationTextField: ".registration-text-field " +
+  registrationTextField           : ".registration-text-field " +
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
@@ -255,41 +272,41 @@ var css = {
 
   //KEYBOARD COMPONENT
 
-  keyboardContainer: ".keyboard-container " +
+  keyboardContainer    : ".keyboard-container " +
   "{" +
   "position: absolute;" +
   "width:" + 500 * widthK + "px;" +
   "height:" + 400 * widthK + "px;" +
   "}",
-  keyboardFieldOne: ".keyboard-field-one " +
+  keyboardFieldOne     : ".keyboard-field-one " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top: 0;" +
   "}",
-  keyboardFieldTwo: ".keyboard-field-two " +
+  keyboardFieldTwo     : ".keyboard-field-two " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 120 * widthK + "px;" +
   "}",
-  keyboardFieldThree: ".keyboard-field-three " +
+  keyboardFieldThree   : ".keyboard-field-three " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 240 * widthK + "px;" +
   "}",
-  keyboardFieldFour: ".keyboard-field-four " +
+  keyboardFieldFour    : ".keyboard-field-four " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 360 * widthK + "px;" +
   "}",
-  keyboardFieldFive: ".keyboard-buttons " +
+  keyboardFieldFive    : ".keyboard-buttons " +
   "{" +
   "position: absolute;" +
   "width: " + 140 * widthK + "px;" +
@@ -299,7 +316,7 @@ var css = {
   "font-size:" + 70 * widthK + "px;" +
   "text-align: center;" +
   "}",
-  keyboardButtons: ".keyboard-buttons " +
+  keyboardButtons      : ".keyboard-buttons " +
   "{" +
   "position: absolute;" +
   "width:" + 140 * widthK + "px;" +
@@ -309,7 +326,7 @@ var css = {
   "font-size:" + 70 * widthK + "px;" +
   "text-align: center;" +
   "}",
-  keyboardButtonsLabel: ".keyboard-buttons-label " +
+  keyboardButtonsLabel : ".keyboard-buttons-label " +
   "{" +
   "position: absolute;" +
   "left:" + 54 * widthK + "px;" +
@@ -321,18 +338,18 @@ var css = {
   "background: radial-gradient(rgba(255, 255, 255, 0.23), rgba(255, 255, 255, 0.04), transparent);" +
   "border-radius:" + 80 * widthK + "px;" +
   "}",
-  keyboardButtonOne: ".keyboard-button-one {left: 0;}",
-  keyboardButtonTwo: ".keyboard-button-two {left:" + 180 * widthK + "px;}",
-  keyboardButtonThree: ".keyboard-button-three {right: 0;}",
-  keyboardButtonFour: ".keyboard-button-four {left: 0;}",
-  keyboardButtonFive: ".keyboard-button-five {left:" + 180 * widthK + "px;}",
-  keyboardButtonSix: ".keyboard-button-six {right: 0;}",
-  keyboardButtonSeven: ".keyboard-button-seven {left: 0;}",
-  keyboardButtonEight: ".keyboard-button-eight {left:" + 180 * widthK + "px;}",
-  keyboardButtonNine: ".keyboard-button-nine {right: 0;}",
-  keyboardSpace: ".keyboard-space {left: 0;}",
-  keyboardButtonZero: ".keyboard-button-zero {left:" + 180 * widthK + "px;}",
-  keyboardButtonenter: ".keyboard-button-enter {position: absolute;}",
+  keyboardButtonOne    : ".keyboard-button-one {left: 0;}",
+  keyboardButtonTwo    : ".keyboard-button-two {left:" + 180 * widthK + "px;}",
+  keyboardButtonThree  : ".keyboard-button-three {right: 0;}",
+  keyboardButtonFour   : ".keyboard-button-four {left: 0;}",
+  keyboardButtonFive   : ".keyboard-button-five {left:" + 180 * widthK + "px;}",
+  keyboardButtonSix    : ".keyboard-button-six {right: 0;}",
+  keyboardButtonSeven  : ".keyboard-button-seven {left: 0;}",
+  keyboardButtonEight  : ".keyboard-button-eight {left:" + 180 * widthK + "px;}",
+  keyboardButtonNine   : ".keyboard-button-nine {right: 0;}",
+  keyboardSpace        : ".keyboard-space {left: 0;}",
+  keyboardButtonZero   : ".keyboard-button-zero {left:" + 180 * widthK + "px;}",
+  keyboardButtonenter  : ".keyboard-button-enter {position: absolute;}",
 
   keyboardButtonX: ".keyboard-button-x " +
   "{" +
@@ -676,7 +693,7 @@ var css = {
   bankOperations: ".bank-operations " +
   "{" +
   "position: absolute;" +
-  "bottom:" + 429 * widthK + "px;" +
+  "bottom:" + 429 * heightK + "px;" +
   "top:" + 545 * widthK + "px;" +
   "width: 100%;" +
   "}",
@@ -685,42 +702,41 @@ var css = {
   "{" +
   "position: absolute;" +
   "background: transparent;" +
-  "height:" + 200 * widthK + "px;" +
-  "width:" + 200 * widthK + "px;" +
-  "bottom: 7%;" +
+  "height:" + 120 * widthK + "px;" +
+  "width:" + 140 * widthK + "px;" +
+  "bottom: 20%;" +
   "}",
 
   bankOperationButtonPay: ".bank-operation-button-pay " +
   "{" +
-  "left:" + 16 * widthK + "px;" +
+  "left:" + 50 * widthK + "px;" +
   "}",
 
   bankOperationButtonTransfer: ".bank-operation-button-transfer " +
   "{" +
-  "left:" + 248 * widthK + "px;" +
+  "left:" + 280 * widthK + "px;" +
   "}",
 
   bankOperationButtonAutoPay: ".bank-operation-button-autopay " +
   "{" +
-  "left:" + 480 * widthK + "px;" +
+  "left:" + 511 * widthK + "px;" +
   "}",
 
   topOperationsButtons: ".top-operations-buttons " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 150 * widthK + "px;" +
+  "height: 60%;" +
     //"bottom:" + 85 * heightK + "px;" +
-  "top:" + 20 + "%;" +
+  "top: 15%;" +
   "}",
 
   bankOperationIcon: ".bank-operation-icon " +
   "{" +
   "position: absolute;" +
-  "top:" + -5 + "px;" +
-  "left:" + 6 + "px;" +
-  "width:" + 200 * widthK + "px;" +
-  "height:" + 210 * widthK + "px;" +
+  "top: 10%;" +
+  "width: 100%;" +
+  "height: 100%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "}",
@@ -728,10 +744,8 @@ var css = {
   bankOperationButtonMyCardContainer: ".bank-operation-button-my-cards-container " +
   "{" +
   "position: absolute;" +
-  "width:" + 283 * widthK + "px;" +
-  "top:" + -70 * widthK + "px;" +
-  "left:" + 200 * widthK + "px;" +
-  "bottom 0px;" +
+  "top:" + 30+ "%;" +
+  "left:" + 30 + "%;" +
   "}",
 
   bankOperationButtonMyCard: ".bank-operation-button-my-cards " +
@@ -741,7 +755,8 @@ var css = {
   "right:" + 27 * widthK + "px;" +
   "border-bottom:" + 2 * widthK + "px solid #a3deee;" +
   "text-align: center;" +
-  "top:" + 540 * widthK + "px;" +
+  "top:" + 440 * widthK + "px;" +
+  "height:" + 100 * heightK + "px;" +
   "}",
 
   bankOperationButtonMyCardsIcon: ".bank-operation-button-my-cards-icon " +
@@ -769,32 +784,44 @@ var css = {
   bankOperationLabel: ".bank-operation-label " +
   "{" +
   "position: absolute;" +
-  "top:" + 190 * heightK + "px;" +
-  "bottom:" + -23 * widthK + "px;" +
+  "bottom:" + -25 * widthK + "px;" +
   "color: #ffffff;" +
   "text-align: center;" +
-  "width: 100%;" +
-  "left:" + -3 * widthK + "px;" +
   "font-size:" + 29 * widthK + "px;" +
+  "}",
+
+  bankOperationLabelPay: ".bank-operation-label-pay " +
+  "{" +
+  "left:" + 77 * widthK + "px;" +
+  "}",
+
+  bankOperationLabelTransfer: ".bank-operation-label-transfer " +
+  "{" +
+  "left:" + 277 * widthK + "px;" +
+  "}",
+
+  bankOperationLabelAutoPay: ".bank-operation-label-autopay " +
+  "{" +
+  "left:" + 496 * widthK + "px;" +
   "}",
 
   operationPayIcon: ".operation-pay-icon " +
   "{" +
   "background-image: url(resources/icons/bank-operations/payment.png);" +
-  "background-size: 30%;" +
-  "left:" + 12 * widthK + "px;" +
+  "background-size: 49%;" +
+  "left:" + 8 * widthK + "px;" +
   "}",
 
   operationTransferIcon: ".operation-transfer-icon " +
   "{" +
   "background-image: url(resources/icons/bank-operations/transfers.png);" +
-  "background-size: 40%;" +
+  "background-size: 69%;" +
   "}",
 
   operationAutopayIcon: ".operation-autopay-icon " +
   "{" +
   "background-image: url(resources/icons/bank-operations/autopays.png);" +
-  "background-size: 36%;" +
+  "background-size: 53%;" +
   "}",
 
   //CAROUSEL COMPONENT
@@ -818,6 +845,7 @@ var css = {
 
   card: ".card " +
   "{" +
+  "-webkit-appearance: none;" +
   "height:" + 289 * widthK + "px;" +
   "width:" + 510 * widthK + "px;" +
   "position: absolute;" +
@@ -827,9 +855,9 @@ var css = {
   "border-radius:" + 14 * widthK + "px;" +
   "background-size: cover;" +
   "color: white;" +
-  "-webkit-box-shadow: 0px 122px 80px -130px rgba(0, 0, 0, 1.0);" +
-  "-moz-box-shadow: 0px 122px 80px -130px rgba(0, 0, 0, 1.0);" +
-  "box-shadow: 0px 122px 80px -130px rgba(0, 0, 0, 1.0);" +
+  "-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+  "-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+  "box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
   "}",
 
   cardBankName: ".card-bank-name " +
@@ -944,7 +972,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 338 * heightK + "px;" +
+  "top:" + 805 * heightK  + "px;" +
   "bottom:" + 90 * widthK + "px;" +
   "background: transparent;" +
   "}",
@@ -954,7 +982,7 @@ var css = {
   "position: absolute;" +
   "width:" + 620 * widthK + "px;" +
     //"height:" + 338 * heightK + "px;" +
-  "top:" + -1 * widthK + "px;" +
+  "top:" + -1 * heightK + "px;" +
   "bottom:" + 5 * widthK + "px;" +
   "background-color: #fefefe;" +
   "}",
@@ -962,9 +990,9 @@ var css = {
   serviceContainer: ".service-container " +
   "{" +
   "position: absolute;" +
-  "height:" + 160 * widthK + "px;" +
+  "height: 55%;" +
   "width: 100%;" +
-  "bottom:" + 78 * heightK + "px;" +
+  "bottom: 15%;" +
   "left:" + 25 * widthK + "px;" +
   "}",
 
@@ -1700,7 +1728,7 @@ var css = {
   "left: 103%;" +
   "}",
 
-  viewInfoBalanceLabel : ".view-info-balance-label " +
+  viewInfoBalanceLabel: ".view-info-balance-label " +
   "{" +
   "position: absolute;" +
   "left: 25%;" +
@@ -1709,7 +1737,7 @@ var css = {
   "color: #c2c2c2;" +
   "}",
 
-  viewInfoCardBalance : ".view-card-balance " +
+  viewInfoCardBalance: ".view-card-balance " +
   "{" +
   "position: relative;" +
   "left:" + 34 * widthK + "px;" +

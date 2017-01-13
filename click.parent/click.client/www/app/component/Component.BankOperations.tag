@@ -3,21 +3,21 @@
         <div class="top-operations-buttons">
             <div class="bank-operation-button bank-operation-button-pay" ontouchend="goToPayView()">
                 <div class="bank-operation-icon operation-pay-icon">
-                    <label class="bank-operation-label">{window.languages.ComponentBankOperationsPay}</label>
                 </div>
             </div>
+            <label class="bank-operation-label bank-operation-label-pay">{window.languages.ComponentBankOperationsPay}</label>
 
             <div class="bank-operation-button bank-operation-button-transfer" ontouchend="goToTransferView()">
                 <div class="bank-operation-icon operation-transfer-icon">
-                    <label class="bank-operation-label">{window.languages.ComponentBankOperationsTransfer}</label>
                 </div>
             </div>
+            <label class="bank-operation-label bank-operation-label-transfer">{window.languages.ComponentBankOperationsTransfer}</label>
 
             <div class="bank-operation-button bank-operation-button-autopay" ontouchend="goToAutoPayView()">
                 <div class="bank-operation-icon operation-autopay-icon">
-                    <label class="bank-operation-label">{window.languages.ComponentBankOperationsAutoPay}</label>
                 </div>
             </div>
+            <label class="bank-operation-label bank-operation-label-autopay">{window.languages.ComponentBankOperationsAutoPay}</label>
         </div>
 
     </div>

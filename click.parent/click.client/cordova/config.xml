@@ -4,7 +4,6 @@
   <icon src="www/img/logo.png"/>
   <screen src="www/img/logo.png"/>
   <preference name="Fullscreen" value="false"/>
-  <preference name="StatusBarOverlaysWebView" value="true" />
   <preference name="DisallowOverscroll" value="true"/>
   <platform name="android">
     <preference name="Orientation" value="sensorPortrait"/>
@@ -39,6 +38,9 @@
     <icon src="resources/logo.png" density="xhdpi"/>
   </platform>
   <platform name="ios">
+    <preference name="StatusBarBackgroundColor" value="#007AE2" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+
     <allow-intent href="itms:*"/>
     <allow-intent href="itms-apps:*"/>
 

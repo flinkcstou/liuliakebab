@@ -34,7 +34,33 @@
 
   api.init();
   scope = this;
-  var startApplication = function () {
+
+  if (window.cordova) {
+    document.addEventListener("deviceready", function () {
+
+      var GENERATOR = document.createElement('script');
+      GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
+      document.head.appendChild(GENERATOR);
+
+      if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
+        this.riotTags.innerHTML = "<view-authorization>";
+        riot.mount('view-authorization')
+      }
+      else {
+        this.riotTags.innerHTML = "<view-registration-device>";
+        riot.mount('view-registration-device');
+      }
+      riot.mount('view-main-page');
+
+      console.log(StatusBar);
+      StatusBar.overlaysWebView(false);
+
+
+      document.addEventListener("backbutton", onBackKeyDown, false);
+      startApplication();
+    }, false);
+  }
+  else{
     var GENERATOR = document.createElement('script');
     GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
     document.head.appendChild(GENERATOR);
@@ -48,19 +74,7 @@
       riot.mount('view-registration-device');
     }
     riot.mount('view-main-page');
-  };
 
-  if (window.cordova) {
-    document.addEventListener("deviceready", function () {
-
-      console.log(StatusBar);
-      StatusBar.hide();
-
-      document.addEventListener("backbutton", onBackKeyDown, false);
-      startApplication();
-    }, false);
-  } else {
-    startApplication();
   }
 
   if (JSON.parse(localStorage.getItem('demo_version')) === true) {

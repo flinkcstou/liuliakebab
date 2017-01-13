@@ -3,7 +3,7 @@
     <div class="registration-device-unchangable-container">
       <div class="registration-device-phone-field">
         <p class="registration-device-text-field">{window.languages.ViewRegistrationTextField}</p>
-        <p class="registration-device-phone-input">{phoneNumber}</p>
+        <p class="registration-device-phone-input">{maskPhoneNumber}</p>
         <div class="registration-device-remember" ontouchend="touchEndRemember()">
           <p class="registration-device-remember-label">{window.languages.ViewRegistrationDeviceRememberLabel}</p>
           <div id="rememberIcon" class="registration-device-remember-icon"></div>
@@ -58,19 +58,30 @@
     var token;
 
     scope.phoneNumber = '+998';
+    scope.maskPhoneNumber = '+998 ';
 
 
     componentKeyboard.returnValue = function (myValue) {
       event.preventDefault();
       event.stopPropagation();
+      if (scope.maskPhoneNumber.length < 17 && myValue != 'x') {
+        scope.maskPhoneNumber += myValue;
+        if (scope.maskPhoneNumber.length == 7 || scope.maskPhoneNumber.length == 11 || scope.maskPhoneNumber.length == 14)
+          scope.maskPhoneNumber += ' ';
+      }
       if (scope.phoneNumber.length < 13 && myValue != 'x') {
         scope.phoneNumber += myValue;
       }
       if (myValue == 'x' && scope.phoneNumber.length != 4) {
         scope.phoneNumber = scope.phoneNumber.substring(0, scope.phoneNumber.length - 1);
+
+        if (scope.maskPhoneNumber.length == 8 || scope.maskPhoneNumber.length == 12 || scope.maskPhoneNumber.length == 15)
+          scope.maskPhoneNumber = scope.maskPhoneNumber.substring(0, scope.maskPhoneNumber.length - 2);
+        else
+          scope.maskPhoneNumber = scope.maskPhoneNumber.substring(0, scope.maskPhoneNumber.length - 1);
       }
-      console.log(myValue)
-      riot.update();
+      console.log(scope.phoneNumber)
+      riot.update(scope.maskPhoneNumber);
     }
 
 
