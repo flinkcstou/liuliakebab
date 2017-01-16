@@ -14,40 +14,24 @@
         <div class="pincard-payfrom-container">
             <p class="pincard-payfrom-field">Оплатить с:</p></div>
         <div class="pincard-allcards-container">
-            <div class="pincard-card-container">
-                <div class="pincard-card-logo-container"
-                     style="background-image: url('https://merchant.click.uz/static/content/app/bank/ofb.png')"></div>
+            <div class="pincard-card-container" each="{i in cardsArray}">
+                <div class="pincard-card-logo-container" if="{i.salary>0}"
+                     style="background-image: url({i.url})"></div>
+                <div class="pincard-card-logo-container" if="{i.salary<=0}"
+                     style="opacity:0.3; filter: grayscale(100%);background-image: url({i.url})"></div>
                 <div class="pincard-card-info-container">
                     <p class="pincard-card-info-text-one">Зарплатная карта</p>
-                    <p class="pincard-card-info-text-two">15 789 сум</p>
-                    <p class="pincard-card-info-text-three">8610 **** 9784</p>
+                    <p class="pincard-card-info-text-two" if="{i.salary>0}">
+                        {i.salary} {i.currency}</p>
+                    <p class="pincard-card-info-text-two" style="color: #EB604D" if="{i.salary<=0}">
+                        {i.salary} {i.currency}</p>
+                    <p class="pincard-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
                 </div>
-                <div class="pincard-card-checkmark"
-                     style="background-image: url('resources/icons/ViewService/checked.png')"></div>
-            </div>
-            <div class="pincard-card-container">
-                <div class="pincard-card-logo-container"
-                     style="opacity:0.3; filter: grayscale(100%);background-image: url('https://merchant.click.uz/static/content/app/bank/ofb.png')"></div>
-                <div class="pincard-card-info-container">
-                    <p class="pincard-card-info-text-one">Зарплатная карта</p>
-                    <p class="pincard-card-info-text-two" style="color: #EB604D">0 сум</p>
-                    <p class="pincard-card-info-text-three">8610 **** 9784</p>
-                </div>
-                <div class="pincard-card-checkmark"
-                     style="background-image: url('resources/icons/ViewService/unchecked.png')"></div>
-            </div>
-            <div class="pincard-card-container">
-                <div class="pincard-card-logo-container"
-                     style="opacity:0.3; filter: grayscale(100%);background-image: url('https://merchant.click.uz/static/content/app/bank/ofb.png')"></div>
-                <div class="pincard-card-info-container">
-                    <p class="pincard-card-info-text-one">Зарплатная карта</p>
-                    <p class="pincard-card-info-text-two" style="color: #EB604D">0 сум</p>
-                    <p class="pincard-card-info-text-three">8610 **** 9784</p>
-                </div>
-                <div class="pincard-card-checkmark"
+                <div class="pincard-card-checkmark" ontouchend="checkCard(this.id)" id="{i.card_id}"
                      style="background-image: url('resources/icons/ViewService/unchecked.png')"></div>
             </div>
         </div>
+
         <div class="pincard-bottom-container">
             <div class="pincard-help-text">Помощь друга</div>
             <div class="pincard-button-enter"
@@ -68,17 +52,19 @@
             riot.mount('view-service-page');
         }
 
-        scope.servicesMap = JSON.parse(localStorage.getItem("servicesMap"));
-        var serviceId = localStorage.getItem('chosenServiceId');
-        scope.service = scope.servicesMap[serviceId][0];
+        scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
+        scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
 
         this.titleName = scope.service.name;
         this.serviceIcon = scope.service.image;
 
-        scope.servicesMap = JSON.parse(localStorage.getItem("cardsArray"));
-        scope.card = JSON.parse(localStorage.getItem('click_client_cards'));
+        history.arrayOfHistory.push('view-pay');
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-        console.log(scope.card);
+        cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+
+        console.log("cardsArray : ", cardsArray);
+
 
         confirmDetails = function () {
             event.preventDefault();
@@ -86,6 +72,10 @@
             this.riotTags.innerHTML = "<view-pay-confirm>";
             riot.mount('view-pay-confirm');
 
+        }
+
+        checkCard = function (id) {
+            document.getElementById(id).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
         }
 
 

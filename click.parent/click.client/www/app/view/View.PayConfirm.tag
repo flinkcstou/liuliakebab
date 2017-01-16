@@ -66,14 +66,13 @@
             riot.mount('view-service-pincards');
         }
 
-        scope.servicesMap = JSON.parse(localStorage.getItem("servicesMap"));
+        scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
         var serviceId = localStorage.getItem('chosenServiceId');
-        scope.service = scope.servicesMap[serviceId][0];
+        scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
 
         this.titleName = scope.service.name;
         this.serviceIcon = scope.service.image;
 
-        scope.servicesMap = JSON.parse(localStorage.getItem("cardsArray"));
         scope.card = JSON.parse(localStorage.getItem('click_client_cards'));
 
         console.log(scope.card);

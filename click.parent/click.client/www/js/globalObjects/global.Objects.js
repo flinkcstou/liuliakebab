@@ -23,5 +23,5 @@ window.viewRegistrationClient = {};
 
 window.componentKeyboard = {};
 
-
+window.viewPay = {};
 

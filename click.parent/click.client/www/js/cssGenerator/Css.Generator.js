@@ -1883,7 +1883,7 @@ var css = {
   "background-size: contain;" +
   "font-size: " + 38 * widthK + "px; " +
   "left: 13%;" +
-  "top: 42%;" +
+  "top: 36%;" +
   "margin: 0;" +
   "color: #fffaf9;" +
   "}",
@@ -1892,16 +1892,16 @@ var css = {
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
-  "font-size: " + 28 * widthK + "px; " +
+  "font-size: " + 29 * widthK + "px; " +
   "left: 13%;" +
-  "top: 94%;" +
+  "top: 89%;" +
   "margin: 0;" +
   "color: lavender;" +
   "}",
 
   servicePageServiceIcon: ".servicepage-service-icon" +
   "{" +
-  "top: 42%;" +
+  "top: 36%;" +
   "position: relative;" +
   "width: 13%;" +
   "height: 91%;" +
@@ -1927,13 +1927,14 @@ var css = {
 
   servicePagePhoneField: ".servicepage-phone-field" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "left: 11%;" +
   "width: 78%;" +
   "height: 9%;" +
   "border-bottom:  " + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top: 3%;" +
+    //"top: 3%;" +
+  "margin-top: 6%" +
   "}",
 
   servicePageAmountField: ".servicepage-amount-field" +
@@ -1943,7 +1944,8 @@ var css = {
   "height: 9%;" +
   "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
   "color: white;" +
-  "top: 16%;" +
+    //"top: 16%;" +
+  "margin-top: 6%" +
   "}",
 
   servicePageTextField: ".servicepage-text-field" +
@@ -1958,8 +1960,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "top: 34%;" +
-  "font-size: " + 53 * widthK + "px; " +
+  "top: 59%;" +
+  "font-size: " + 28 * widthK + "px; " +
   "color: #515151;" +
   "}",
 
@@ -1971,6 +1973,8 @@ var css = {
   "width: 8%;" +
   "height: 50%;" +
   "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "background-position: center;" +
   "top: 40%;" +
   "}",
 
@@ -1982,12 +1986,14 @@ var css = {
   "width: 8%;" +
   "height: 50%;" +
   "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 100%;" +
   "top: 40%;" +
   "}",
 
   servicePageButtonEnter: ".servicepage-button-enter" +
   "{" +
-  "top: 31%;" +
+    //"top: 31%;" +
   "position: relative;" +
   "width: 63%;" +
   "height: 8%;" +
@@ -1995,6 +2001,7 @@ var css = {
   "border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
   "background-color: rgb(1, 124, 227);" +
+  "margin-top: 30%;" +
   "}",
 
   servicePageButtonBack: ".servicepage-button-back" +
@@ -2014,13 +2021,12 @@ var css = {
 
   pincardButtonEnter: " .pincard-button-enter" +
   "{" +
-  "top: 51%;" +
-  "position: relative;" +
+  "bottom: 27%;" +
+  "position: absolute;" +
   "width: 60%;" +
   "height: 19%;" +
-  "margin-right: auto;" +
   "border-radius:" + 80 * widthK + "px; " +
-  "margin-left: auto;" +
+  "margin-left: 20%;" +
   "background-color: rgb(1, 124, 227);" +
   "}",
 
@@ -2050,7 +2056,7 @@ var css = {
   "height: 46%;" +
   "top: 6%;" +
   "background-color: transparent;" +
-  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+    //"border-bottom:  " + 1 * widthK + "px solid lightgray;" +
   "overflow: scroll;" +
   "}",
 
@@ -2134,10 +2140,9 @@ var css = {
 
   pincardHelpText: ".pincard-help-text" +
   "{" +
-  "top: 36%;" +
-  "position: relative;" +
-  "margin-right: auto;" +
-  "margin-left: auto;" +
+  "bottom: 55%;" +
+  "position: absolute;" +
+  "margin-left: 35%;" +
   "color: rgb(1, 124, 227);" +
   "font-size: " + 30 * widthK + "px; " +
   "text-align: center;" +
@@ -2293,13 +2298,12 @@ var css = {
 
   payconfirmButtonEnter: ".payconfirm-button-enter" +
   "{" +
-  "top: 51%;" +
-  "position: relative;" +
+  "bottom: 31%;" +
+  "position: absolute;" +
   "width: 60%;" +
-  "height: 19%;" +
-  "margin-right: auto;" +
+  "height: 16%;" +
   "border-radius: " + 80 * widthK + "px; " +
-  "margin-left: auto;" +
+  "margin-left: 20%;" +
   "background-color: rgb(1, 124, 227);" +
   "}",
 
