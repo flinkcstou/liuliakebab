@@ -1,5 +1,6 @@
 widthK = window.innerWidth / 720;
 heightK = window.innerHeight / 1232;
+console.log(device.platform)
 if (device.platform == 'iOS') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
@@ -1980,7 +1981,7 @@ var css = {
   "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
     //"top: 3%;" +
-  "margin-top: 5%" +
+  "top: 3%" +
   "}",
 
   servicePageAmountField: ".servicepage-amount-field" +
@@ -1991,7 +1992,7 @@ var css = {
   "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
   "color: white;" +
     //"top: 16%;" +
-  "margin-top: 8%" +
+  "top: 15%" +
   "}",
 
   servicePageTextField: ".servicepage-text-field" +

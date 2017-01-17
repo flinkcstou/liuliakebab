@@ -846,7 +846,18 @@ input {
     height: 1150px;
     width: 720px;
     top: 150px;
-    /*background-color: white;*/
+    background-color: white;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+}
+
+.pincard-body-container {
+    position: absolute;
+    height: 1150px;
+    width: 720px;
+    top: 150px;
+    background-color: white;
     overflow-x: hidden;
     overflow-y: scroll;
 

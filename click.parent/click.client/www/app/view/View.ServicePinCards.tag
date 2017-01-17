@@ -24,7 +24,7 @@
                     <p class="pincard-card-info-text-two" if="{i.salary>0}">
                         {i.salary} {i.currency}</p>
                     <p class="pincard-card-info-text-two" style="color: #EB604D" if="{i.salary<=0}">
-                        {i.salary} {i.currency}</p>
+                        0 {i.currency}</p>
                     <p class="pincard-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
                 </div>
                 <div class="pincard-card-checkmark" ontouchend="checkCard(this.id)" id="{i.card_id}"
