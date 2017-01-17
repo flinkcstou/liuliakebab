@@ -2343,5 +2343,5 @@ for (key in css) {
 
 style.appendChild(document.createTextNode(allCss));
 document.getElementsByTagName("head")[0].appendChild(style);
-
+firstMount.firstStep ();
 

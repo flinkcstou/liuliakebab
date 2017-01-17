@@ -23,6 +23,8 @@ window.viewRegistrationClient = {};
 
 window.componentKeyboard = {};
 
+window.firstMount = {};
+
 window.viewPay = {};
 
 window.viewServicePage = {};

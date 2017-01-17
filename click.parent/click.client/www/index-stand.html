@@ -30,8 +30,6 @@
   <script src="stand/fakedSocket.js"></script>
   <script src="stand/allMethods.js"></script>
 
-  <!--Generator-->
-  <script src="js/cssGenerator/Css.Generator.js"></script>
 
 
 </head>
@@ -49,14 +47,32 @@
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
 
-      var promise = new Promise(function (resolve, reject) {
-
-      })
-
       var GENERATOR = document.createElement('script');
       GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
       document.head.appendChild(GENERATOR);
 
+      firstMount.firstStep = function () {
+        if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
+          scope.riotTags.innerHTML = "<view-authorization>";
+          riot.mount('view-authorization')
+        }
+        else {
+          scope.riotTags.innerHTML = "<view-registration-device>";
+          riot.mount('view-registration-device');
+        }
+        riot.mount('view-main-page');
+      }
+
+      document.addEventListener("backbutton", onBackKeyDown, false);
+    }, false);
+  }
+  else {
+    console.log('step', 0)
+    var GENERATOR = document.createElement('script');
+    GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
+    document.head.appendChild(GENERATOR);
+
+    firstMount.firstStep = function () {
       if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
         scope.riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization')
@@ -67,26 +83,8 @@
       }
       riot.mount('view-main-page');
 
-      document.addEventListener("backbutton", onBackKeyDown, false);
-    }, false);
-  }
-  else {
-    console.log('step', 0)
-    var GENERATOR = document.createElement('script');
-    GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
-    document.head.appendChild(GENERATOR);
-    console.log('step', 3)
 
-    if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
-      scope.riotTags.innerHTML = "<view-authorization>";
-      riot.mount('view-authorization')
     }
-    else {
-      this.riotTags.innerHTML = "<view-registration-device>";
-      riot.mount('view-registration-device');
-    }
-    riot.mount('view-main-page');
-
   }
 
   if (JSON.parse(localStorage.getItem('demo_version')) === true) {
@@ -112,23 +110,6 @@
       }
     }
   }
-
-  //MENU FUNCTIONS FOR ALL PAGES
-  //  var touchStartX, touchEndX;
-  //  touchStart = function () {
-  //    event.preventDefault();
-  //    event.stopPropagation();
-  //    touchStartX = event.changedTouches[0].pageX;
-  //  }
-  //
-  //  touchEnd = function () {
-  //    event.preventDefault();
-  //    event.stopPropagation();
-  //    touchEndX = event.changedTouches[0].pageX;
-  //    if (touchStartX < touchEndX && touchStartX <= 15) {
-  //      this.menuOpen();
-  //    }
-  //  }
 
 </script>
 </body>

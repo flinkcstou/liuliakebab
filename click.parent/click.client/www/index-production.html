@@ -8,7 +8,6 @@
   <meta name="format-detection" content="telephone=no">
   <script src="js/languages/languages.js"></script>
   <!-- CSS -->
-  <!--<link href="css/MainPage.css" rel="stylesheet">-->
   <script src="js/cssGenerator/Css.Generator.js"></script>
 
   <!-- JS COMMON -->
@@ -42,16 +41,17 @@
       GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
       document.head.appendChild(GENERATOR);
 
-      if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
-        scope.riotTags.innerHTML = "<view-authorization>";
-        riot.mount('view-authorization')
+      firstMount.firstStep = function () {
+        if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
+          scope.riotTags.innerHTML = "<view-authorization>";
+          riot.mount('view-authorization')
+        }
+        else {
+          scope.riotTags.innerHTML = "<view-registration-device>";
+          riot.mount('view-registration-device');
+        }
+        riot.mount('view-main-page');
       }
-      else {
-        scope.riotTags.innerHTML = "<view-registration-device>";
-        riot.mount('view-registration-device');
-      }
-      riot.mount('view-main-page');
-
 
       document.addEventListener("backbutton", onBackKeyDown, false);
     }, false);
@@ -80,24 +80,6 @@
       }
     }
   }
-
-
-  //MENU FUNCTIONS FOR ALL PAGES
-  //  var touchStartX, touchEndX;
-  //  touchStart = function () {
-  //    event.preventDefault();
-  //    event.stopPropagation();
-  //    touchStartX = event.changedTouches[0].pageX;
-  //  }
-  //
-  //  touchEnd = function () {
-  //    event.preventDefault();
-  //    event.stopPropagation();
-  //    touchEndX = event.changedTouches[0].pageX;
-  //    if (touchStartX < touchEndX && touchStartX <= 15) {
-  //      this.menuOpen();
-  //    }
-  //  }
 
 </script>
 </body>

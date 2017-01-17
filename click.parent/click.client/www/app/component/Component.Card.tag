@@ -1,4 +1,4 @@
-<component-card class="card" style="background-image: url({opts.background}); left:{left}px">
+<component-card class="card" style="background-image: url({opts.background}); left:{leftOfCard}px">
 
   <div class="card-bank-name-url" style="background-image: url({opts.url})"></div>
   <div class="card-bank-name" style="background-image: url({opts.bankname})"></div>
@@ -17,7 +17,7 @@
 
   <script>
     var scope = this;
-    scope.left = (540 * opts.countcard + 100) * widthK;
+    scope.leftOfCard = (540 * opts.countcard + 100) * widthK;
 
     console.log(scope.left);
 

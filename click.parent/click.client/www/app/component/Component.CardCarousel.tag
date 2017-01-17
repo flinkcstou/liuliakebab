@@ -41,7 +41,6 @@
 
     startTouchCarousel = function () {
       carouselTouchStartX = event.changedTouches[0].pageX;
-//      delta = this.cards.getBoundingClientRect().left - carouselTouchStartX;
       left = -((540 * cardNumber) * widthK) - carouselTouchStartX;
       delta = left;
     }
@@ -50,7 +49,7 @@
       event.preventDefault();
       event.stopPropagation();
       carouselTouchEndX = event.changedTouches[0].pageX;
-      if (carouselTouchStartX != carouselTouchEndX) {
+      if (carouselTouchStartX -20 > carouselTouchEndX || carouselTouchStartX  < carouselTouchEndX - 20) {
         changePosition();
       }
       else if (!viewMainPage.myCards) {
