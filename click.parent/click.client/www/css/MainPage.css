@@ -774,7 +774,7 @@ input {
     width: 68px;
     height: 68px;
     right: 6px;
-    background-image: url(../resources/icons/toolbar/search.png);
+    background-image: url(../resources/icons/search/search.png);
     background-repeat: no-repeat;
     -webkit-background-size: 69%;
     background-position-y: center;
