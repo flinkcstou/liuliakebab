@@ -1119,8 +1119,8 @@ var css = {
 
   pageTitle: ".page-title " +
   "{" +
-  "position: fixed;" +
-  "top:" + 0 * widthK + "px;" +
+  "position: absolute;" +
+  "top:" + -12 * widthK + "px;" +
   "right:" + 28 * widthK + "px;" +
   "left:" + 25 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
@@ -2328,6 +2328,79 @@ var css = {
   "height: 42%;" +
   "font-size: " + 35 * widthK + "px; " +
   "font-family: Calibri;" +
+  "}",
+
+  componentSearch: ".component-search " +
+  "{" +
+  "position: fixed;" +
+  "opacity: 0.9;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "background-color: #353340;" +
+  "display: none;" +
+  "}",
+
+  searchContainer: ".search-container" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 580 * widthK + "px;" +
+  "height:" + 650 * widthK + "px;" +
+  "left:" + 70 * widthK + "px;" +
+  "top: 0px;" +
+  "}",
+
+  searchTitleContainer: ".search-title-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 13%;" +
+  "}",
+
+  searchSearchIcon: ".search-search-icon " +
+  "{" +
+  "position: relative;" +
+  "width: 13%;" +
+  "height: 100%;" +
+  "background-repeat: no-repeat;" +
+  "float: left;" +
+  "background-image: url(resources/icons/toolbar/search.png);" +
+  "background-position: center;" +
+  "background-size: 45%;" +
+  "}",
+
+  searchTitleName: ".search-title-name " +
+  "{" +
+  "position: relative;" +
+  "float: left;" +
+  "margin: 0;" +
+  "margin-top: 3%;" +
+  "color: white;" +
+  "}",
+
+  searchCancelIcon: ".search-cancel-icon " +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 15%;" +
+  "height: 100%;" +
+  "background-repeat: no-repeat;" +
+  "background-image: url(resources/icons/toolbar/search.png);" +
+  "background-position: center;" +
+  "background-size: 45%;" +
+  "}",
+
+  searchInput: ".search-input " +
+  "{" +
+  "position: absolute;" +
+  "font-family: Neuron;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "background: none;" +
+  "border: none;" +
+  "border-bottom:" + 3 * widthK + "px solid #a3deee;" +
+  "width: 80%;" +
+  "height: 10%;" +
+  "top: 20%;" +
+  "left: 10%;" +
   "}"
 
 }
