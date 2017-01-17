@@ -14,7 +14,7 @@
         <div class="payconfirm-data-container">
             <div class="payconfirm-phone-field">
                 <p class="payconfirm-text-field">Номер абонента:</p>
-                <p class="payconfirm-phone-input">+998 {phoneText}</p>
+                <p class="payconfirm-phone-input">{phoneText}</p>
             </div>
             <div class="payconfirm-field">
                 <p class="payconfirm-text-field">Сумма оплаты:</p>
@@ -90,6 +90,7 @@
                 this.salary = cardsArray[i].salary;
                 this.currency = cardsArray[i].currency;
                 this.url = cardsArray[i].url;
+                break;
             }
 
 

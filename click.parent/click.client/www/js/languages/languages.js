@@ -35,6 +35,9 @@ var RU_LANGUAGES =
   "ViewMyCardReports"                   : "Отчеты по карте",
   "ViewMyCardBlock"                   : "Заблокировать карту",
   "ViewMyCardLastOperations"                   : "Последние операции",
+  "ViewServicePageEnterLabel"                  : "Далее",
+  "ViewServicePageAmountTextLabel"                  : "Сумма оплаты:",
+
 }
 
 window.languages = RU_LANGUAGES;

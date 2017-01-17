@@ -1,4 +1,4 @@
-<view-service-pincards>
+<view-service-pincards class="view-service-pincards">
 
     <div class="page-title" style="border-style: none;">
         <p class="servicepage-title">{titleName}</p>

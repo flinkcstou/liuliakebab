@@ -12,7 +12,7 @@
     <div class="servicepage-body-container" if="{formType==1}">
         <div class="servicepage-phone-field" each="{i in fieldArray}">
             <p class="servicepage-text-field">{i.title}</p>
-            <input type="text" placeholder="{i.placeholder}" id="phone"></input>
+            <input type="text" value="+998" id="phone"></input>
             <div class="servicepage-phone-icon"></div>
         </div>
         <div class="servicepage-amount-field">
@@ -34,6 +34,9 @@
             this.riotTags.innerHTML = "<view-pay>";
             riot.mount('view-pay');
         }
+
+        history.arrayOfHistory.push('view-pay');
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
         scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
         scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
@@ -59,14 +62,6 @@
         this.fieldName = scope.servicesParamsMapOne[viewPay.chosenServiceId][0].title;
         this.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
         console.log("form type", scope.formType);
-
-        history.arrayOfHistory.push('view-pay');
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-
-        openKeyboard = function () {
-
-            document.getElementById('inputK').focus();
-        }
 
 
         choosePinCard = function () {
