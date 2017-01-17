@@ -2447,3 +2447,11 @@ input[type=number], input[type=text] {
     top: 20%;
     left: 10%;
 }
+
+.search-suggestion-container {
+    position: absolute;
+    width: 98%;
+    height: 70%;
+    left: 1%;
+    top: 30%;
+}

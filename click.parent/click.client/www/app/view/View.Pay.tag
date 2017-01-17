@@ -39,7 +39,7 @@
     </div>
     <div id="searchContainerId" class="search-container">
       <input class="search-input" onkeyup="searchSuggestion()"/>
-      <div class="search-suggestion-field"></div>
+      <div class="search-suggestion-container"></div>
     </div>
   </div>
 
