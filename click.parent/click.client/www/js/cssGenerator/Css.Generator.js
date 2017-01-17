@@ -1977,7 +1977,7 @@ var css = {
   "left: 10%;" +
   "width: 79%;" +
   "height: 9%;" +
-  "border-bottom:  " + 5 * widthK + "px solid #01cfff;" +
+  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
     //"top: 3%;" +
   "margin-top: 5%" +
@@ -2000,7 +2000,7 @@ var css = {
   "margin: 0;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px; " +
-  "top: -16%;" +
+    //"top: -16%;" +
   "}",
 
   servicePagePhoneInput: ".servicepage-phone-input" +
