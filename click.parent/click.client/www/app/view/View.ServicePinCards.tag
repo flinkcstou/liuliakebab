@@ -10,7 +10,7 @@
              style="background-image: url({serviceIcon})"></div>
     </div>
 
-    <div class="servicepage-body-container">
+    <div class="pincard-body-container">
         <div class="pincard-payfrom-container">
             <p class="pincard-payfrom-field">Оплатить с:</p></div>
         <div class="pincard-allcards-container">
@@ -72,8 +72,8 @@
         confirmDetails = function () {
             event.preventDefault();
             event.stopPropagation();
-            this.riotTags.innerHTML = "<view-pay-confirm>";
-            riot.mount('view-pay-confirm');
+//            this.riotTags.innerHTML = "<view-pay-confirm>";
+//            riot.mount('view-pay-confirm');
 
         }
 
