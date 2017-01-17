@@ -12,13 +12,12 @@
     <div class="servicepage-body-container" if="{formType==1}">
         <div class="servicepage-phone-field" each="{i in fieldArray}">
             <p class="servicepage-text-field">{i.title}</p>
-            <p id="inputK" class="servicepage-phone-input" onclick="openKeyboard()">{i.placeholder}</p>
+            <input type="text" placeholder="{i.placeholder}" id="phone"></input>
             <div class="servicepage-phone-icon"></div>
         </div>
         <div class="servicepage-amount-field">
             <p class="servicepage-text-field">Сумма оплаты</p>
-            <p class="servicepage-text-field" style="left:48%">Доступно: 21 057 879 сум</p>
-            <p class="servicepage-phone-input">0</p>
+            <input type="number" placeholder="0" id="amount"></input>
             <div class="servicepage-amount-icon"></div>
         </div>
         <div class="servicepage-button-enter" ontouchend="choosePinCard()">
@@ -71,6 +70,8 @@
 
 
         choosePinCard = function () {
+            viewServicePage.phoneText = document.getElementById('phone').value;
+            viewServicePage.amountText = document.getElementById('amount').value;
             event.preventDefault();
             event.stopPropagation();
             this.riotTags.innerHTML = "<view-service-pincards>";

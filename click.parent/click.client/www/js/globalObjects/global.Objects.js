@@ -25,3 +25,7 @@ window.componentKeyboard = {};
 
 window.viewPay = {};
 
+window.viewServicePage = {};
+
+window.viewServicePinCards = {};
+

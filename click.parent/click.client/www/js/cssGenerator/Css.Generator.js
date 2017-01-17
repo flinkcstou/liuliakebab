@@ -1928,24 +1928,24 @@ var css = {
   servicePagePhoneField: ".servicepage-phone-field" +
   "{" +
   "position: relative;" +
-  "left: 11%;" +
-  "width: 78%;" +
+  "left: 10%;" +
+  "width: 79%;" +
   "height: 9%;" +
   "border-bottom:  " + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
     //"top: 3%;" +
-  "margin-top: 6%" +
+  "margin-top: 5%" +
   "}",
 
   servicePageAmountField: ".servicepage-amount-field" +
   "{position: absolute;" +
-  "left: 11%;" +
-  "width: 78%;" +
+  "left: 10%;" +
+  "width: 79%;" +
   "height: 9%;" +
   "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
   "color: white;" +
     //"top: 16%;" +
-  "margin-top: 6%" +
+  "margin-top: 8%" +
   "}",
 
   servicePageTextField: ".servicepage-text-field" +
@@ -1953,7 +1953,8 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "color: gray;" +
-  "font-size:" + 25 * widthK + "px; " +
+  "font-size:" + 24 * widthK + "px; " +
+  "top: -16%;" +
   "}",
 
   servicePagePhoneInput: ".servicepage-phone-input" +
@@ -1975,7 +1976,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "background-position: center;" +
-  "top: 40%;" +
+  "top: 36%;" +
   "}",
 
   servicePageAmountIcon: ".servicepage-amount-icon" +
@@ -1983,8 +1984,8 @@ var css = {
   "position: relative;" +
   "float: right;" +
   "background-image: url('resources/icons/ViewService/calc.png');" +
-  "width: 8%;" +
-  "height: 50%;" +
+  "width: 7%;" +
+  "height: 40%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-size: 100%;" +
@@ -2006,15 +2007,15 @@ var css = {
 
   servicePageButtonBack: ".servicepage-button-back" +
   "{" +
-  "top: 20%;" +
+  "top: 14%;" +
   "position: absolute;" +
   "width: 17%;" +
-  "height: 90%;" +
+  "height: 88%;" +
   "background-image: url('resources/icons/back/back.png');" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 20%;" +
   "background-position-y: center;" +
-  "background-position-x: 27%;" +
+  "background-position-x: 22%;" +
   "background-size: 20%;" +
   "left: 0;" +
   "}",
@@ -2226,7 +2227,7 @@ var css = {
   "margin: 0;" +
   "margin-left: 10%;" +
   "top: 41%;" +
-  "font-size: " + 41 * widthK + "px; " +
+  "font-size: " + 38 * widthK + "px; " +
   "color: gray;" +
   "}",
 
@@ -2316,6 +2317,17 @@ var css = {
   "margin: auto;" +
   "color: white;" +
   "right: 10%;" +
+  "}",
+
+  inputTypeNumberText: "input[type=number], input[type=text]" +
+  "{" +
+  "border: none;" +
+  "position: relative;" +
+  "top: 36%;" +
+  "width: 88%;" +
+  "height: 42%;" +
+  "font-size: " + 35 * widthK + "px; " +
+  "font-family: Calibri;" +
   "}"
 
 }

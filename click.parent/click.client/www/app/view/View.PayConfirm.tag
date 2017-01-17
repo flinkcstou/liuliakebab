@@ -2,7 +2,7 @@
 
     <div class="page-title" style="border-style: none;">
         <p class="servicepage-title">{titleName}</p>
-        <p class="servicepage-category-field">Мобильные операторы</p>
+        <p class="servicepage-category-field">{categoryName}</p>
         <div ontouchstart="touchStartTitle()"
              class="servicepage-button-back">
         </div>
@@ -14,25 +14,25 @@
         <div class="payconfirm-data-container">
             <div class="payconfirm-phone-field">
                 <p class="payconfirm-text-field">Номер абонента:</p>
-                <p class="payconfirm-phone-input">+998 90 359 39 57</p>
+                <p class="payconfirm-phone-input">+998 {phoneText}</p>
             </div>
             <div class="payconfirm-field">
                 <p class="payconfirm-text-field">Сумма оплаты:</p>
-                <p class="payconfirm-phone-input">5000 сум</p>
+                <p class="payconfirm-phone-input">{amountText} сум</p>
             </div>
             <div class="payconfirm-field">
                 <p class="payconfirm-text-field">Категория:</p>
-                <p class="payconfirm-phone-input" style="text-decoration: underline">Мобильная связь</p>
+                <p class="payconfirm-phone-input" style="text-decoration: underline">{categoryName}</p>
             </div>
             <div class="payconfirm-card-field">
                 <div class="payconfirm-card-info-container">
                     <p class="payconfirm-text-field">Оплата с карты:</p>
-                    <p class="payconfirm-phone-input">Зарплатная карта</p>
-                    <p class="payconfirm-detail-text">8610 **** 9784</p>
-                    <p class="payconfirm-detail-text">Доступно:21 057 789 сум</p>
+                    <p class="payconfirm-phone-input">{cardName}</p>
+                    <p class="payconfirm-detail-text">{numberPartOne} **** {numberPartTwo}</p>
+                    <p class="payconfirm-detail-text">Доступно:{salary} {currency}</p>
                 </div>
                 <div class="payconfirm-card-logo-container"
-                     style="background-image: url('https://merchant.click.uz/static/content/app/bank/ofb.png')">
+                     style="background-image: url({url})">
                 </div>
 
             </div>
@@ -66,16 +66,34 @@
             riot.mount('view-service-pincards');
         }
 
+        history.arrayOfHistory.push('view-pay');
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+
         scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
+        scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
+        cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
         var serviceId = localStorage.getItem('chosenServiceId');
         scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
 
+        this.phoneText = viewServicePage.phoneText;
+        this.amountText = viewServicePage.amountText;
+
         this.titleName = scope.service.name;
         this.serviceIcon = scope.service.image;
+        this.categoryName = scope.categoryNamesMap[viewPay.categoryId];
 
-        scope.card = JSON.parse(localStorage.getItem('click_client_cards'));
+        for (var i = 0; i < cardsArray.length; i++)
+            if (cardsArray[i].card_id == viewServicePinCards.chosenCardId) {
+                this.cardName = cardsArray[i].name;
+                this.numberPartOne = cardsArray[i].numberPartOne;
+                this.numberPartTwo = cardsArray[i].numberPartTwo;
+                this.salary = cardsArray[i].salary;
+                this.currency = cardsArray[i].currency;
+                this.url = cardsArray[i].url;
+            }
 
-        console.log(scope.card);
+
+        console.log("chosen card id", viewServicePinCards.chosenCardId);
 
 
     </script>
