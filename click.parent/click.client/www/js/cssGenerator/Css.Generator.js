@@ -210,7 +210,7 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "background-size: contain;" +
   "color: white;" +
-  "border-bottom:" + 2 * widthK + "px solid white;" +
+  "border-bottom:" + 2 + "px solid white;" +
   "bottom:" + 40 * widthK + "px;" +
   "text-align: center;" +
   "margin-left: 0;" +
@@ -230,7 +230,7 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "background-size: contain;" +
   "color: #b7f1ff;" +
-  "border-bottom:" + 2 * widthK + "px solid #b7f1ff;" +
+  "border-bottom:" + 2 + "px solid #b7f1ff;" +
   "bottom:" + 40 * widthK + "px;" +
   "margin-left:" + 80 * widthK + "px;" +
   "margin-bottom:" + 14 * widthK + "px;" +
@@ -246,7 +246,7 @@ var css = {
   "width:" + 125 * widthK + "px;" +
   "background-size: contain;" +
   "color: #b7f1ff;" +
-  "border-bottom:" + 2 * widthK + "px solid #b7f1ff;" +
+  "border-bottom:" + 2 + "px solid #b7f1ff;" +
   "}",
   registrationButtonRegistration: ".registration-button-registration " +
   "{" +
@@ -256,7 +256,7 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "background-size: contain;" +
   "color: white;" +
-  "border-bottom:" + 2 * widthK + "px solid white;" +
+  "border-bottom:" + 2  + "px solid white;" +
   "}",
   registrationTextField: ".registration-text-field " +
   "{" +
@@ -560,7 +560,7 @@ var css = {
   "left: 0;" +
   "background-size: contain;" +
   "color: #05eeff;" +
-  "border-bottom:" + 2 * widthK + "px solid #05eeff;" +
+  "border-bottom:" + 2 + "px solid #05eeff;" +
   "}",
 
   authorizationButtonRegistration: ".authorization-button-registration " +
@@ -570,7 +570,7 @@ var css = {
   "background-size: contain;" +
   "color: white;" +
   "right: 0;" +
-  "border-bottom:" + 2 * widthK + "px solid white;" +
+  "border-bottom:" + 2 + "px solid white;" +
   "}",
 
   authorizationButtonOffline: ".authorization-button-offline " +
@@ -580,7 +580,7 @@ var css = {
   "width:" + 240 * widthK + "px;" +
   "background-size: contain;" +
   "color: white;" +
-  "border-bottom:" + 2 * widthK + "px solid white;" +
+  "border-bottom:" + 2 + "px solid white;" +
   "text-align: center;" +
   "bottom:" + 40 * widthK + "px;" +
   "left:" + 240 * widthK + "px;" +
@@ -617,7 +617,7 @@ var css = {
   "left:" + 26 * widthK + "px;" +
   "height:" + 70 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom:" + 2 * widthK + "px solid #a3deee;" +
+  "border-bottom:" + 2 + "px solid #a3deee;" +
   "}",
 
   toolbarCircleContainer: ".toolbar-circle-container " +
@@ -753,7 +753,7 @@ var css = {
   "position: absolute;" +
   "left:" + 27 * widthK + "px;" +
   "right:" + 27 * widthK + "px;" +
-  "border-bottom:" + 2 * widthK + "px solid #a3deee;" +
+  "border-bottom:" + 2 + "px solid #a3deee;" +
   "text-align: center;" +
   "top:" + 440 * widthK + "px;" +
   "height:" + 100 * heightK + "px;" +
@@ -1004,7 +1004,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "border-radius:" + 100 * widthK + "px;" +
-  "border:" + 1 * widthK + "px solid #f1f1f1;" +
+  "border:" + 1 + "px solid #f1f1f1;" +
   "}",
 
   beelineButton: ".beeline-button " +
@@ -1125,7 +1125,7 @@ var css = {
   "left:" + 25 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom:" + 6 * widthK + "px solid rgb(149, 230, 253);" +
+  "border-bottom:" + 2  + "px solid rgb(149, 230, 253);" +
   "}",
 
   nameTitle: ".name-title " +
@@ -1194,7 +1194,7 @@ var css = {
   "right: 0;" +
   "height:" + 105 * widthK + "px;" +
   "width: 100%;" +
-  "border-top:" + 2 * widthK + "px solid rgb(37, 160, 227);" +
+  "border-top:" + 2 + "px solid rgb(37, 160, 227);" +
   "color: rgb(197, 233, 239);" +
   "background-color: #22a0e0;" +
   "}",
@@ -1428,7 +1428,7 @@ var css = {
   "font-size:" + 30 * widthK + "px;" +
   "color: white;" +
   "top:" + 30 * widthK + "px;" +
-  "border-bottom:" + 2 * widthK + "px solid #95e6fd;" +
+  "border-bottom:" + 2 + "px solid #95e6fd;" +
   "}",
 
   myCardsButtonBlockCard: ".my-cards-button-block-card " +
@@ -1494,7 +1494,7 @@ var css = {
   "top:" + 80 * widthK + "px;" +
   "width: 100%;" +
   "height:" + 160 * widthK + "px;" +
-  "border-bottom:" + 2 * widthK + "px solid #dedfe0;" +
+  "border-bottom:" + 2 + "px solid #dedfe0;" +
   "overflow: hidden;" +
   "}",
 
@@ -1557,7 +1557,7 @@ var css = {
   "right:" + 30 * widthK + "px;" +
   "left:" + 30 * widthK + "px;" +
   "height:" + 89 * widthK + "px;" +
-  "border-bottom:" + 1 * widthK + "px solid #f4f4f4;" +
+  "border-bottom:" + 1 + "px solid #f4f4f4;" +
   "}",
 
   viewInfoBackButton: ".view-info-back-button " +
@@ -1567,7 +1567,7 @@ var css = {
   "height:" + 100 * widthK + "px;" +
   "top:" + 5 * widthK + "px;" +
   "border-radius:" + 90 * widthK + "px;" +
-  "border:" + 1 * widthK + "px solid #e5e5e5;" +
+  "border:" + 1 + "px solid #e5e5e5;" +
   "background-image: url(resources/icons/ViewInfo/backtomain.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 48%;" +
@@ -1582,7 +1582,7 @@ var css = {
   "left:" + 30 * widthK + "px;" +
   "height:" + 190 * widthK + "px;" +
   "top:" + 89 * widthK + "px;" +
-  "border-bottom:" + 1 * widthK + "px solid #f4f4f4;" +
+  "border-bottom:" + 1 + "px solid #f4f4f4;" +
   "}",
 
   viewInfoMyFinanceContainer: ".view-info-my-finance-container " +
@@ -1592,7 +1592,7 @@ var css = {
   "left:" + 30 * widthK + "px;" +
   "height:" + 125 * widthK + "px;" +
   "top:" + 280 * widthK + "px;" +
-  "border-bottom:" + 1 * widthK + "px solid #f4f4f4;" +
+  "border-bottom:" + 1 + "px solid #f4f4f4;" +
   "}",
 
   viewInfoReportsContainer: ".view-info-reports-container " +
@@ -1602,7 +1602,7 @@ var css = {
   "left:" + 30 * widthK + "px;" +
   "height:" + 125 * widthK + "px;" +
   "top:" + 408 * widthK + "px;" +
-  "border-bottom:" + 1 * widthK + "px solid #f4f4f4;" +
+  "border-bottom:" + 1 + "px solid #f4f4f4;" +
   "}",
 
   viewInfoBagIcon: ".view-info-bag-icon " +
@@ -1801,7 +1801,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "border-radius: 50%;" +
-  "border: " + 1 * widthK + "px solid gray;" +
+  "border: " + 1 + "px solid gray;" +
   "background-size: 80%;" +
   "}",
 
@@ -1858,7 +1858,6 @@ var css = {
   "width: 100%;" +
   "height: 100%;" +
   "overflow-y: hidden;" +
-  "overflow-x: hidden;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "background-image: url('resources/icons/background/transparent.png');" +
@@ -1944,7 +1943,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "border-radius: 50%;" +
-  "border: " + 1 * widthK + "px solid gray;" +
+  "border: " + 1 + "px solid gray;" +
   "float: right;" +
   "right: 4%;" +
   "background-size: 150%;" +
@@ -2085,7 +2084,7 @@ var css = {
   "width: 100%;" +
   "height: 6%;" +
   "left: 2%;" +
-  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
 
   pincardPayfromField: ".pincard-payfrom-field" +
@@ -2114,7 +2113,7 @@ var css = {
   "width: 100%;" +
   "height: " + 163 * widthK + "px; " +
   "background-color: transparent;" +
-  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
 
   pincardCardLogoContainer: ".pincard-card-logo-container" +
@@ -2207,7 +2206,7 @@ var css = {
   "height: 51%;" +
   "bottom:0;" +
   "background-color: transparent;" +
-  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
   "overflow: scroll;" +
   "}",
 
@@ -2217,7 +2216,7 @@ var css = {
   "width: 100%;" +
   "height: 51%;" +
   "background-color: transparent;" +
-  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
   "overflow: scroll;" +
   "}",
 
@@ -2226,7 +2225,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height: 23%;" +
-  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   "}",
 
@@ -2235,7 +2234,7 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "height: 24%;" +
-  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   "top: 23%;" +
   "}",
@@ -2245,7 +2244,7 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "height: 29%;" +
-  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   "top: 23%;" +
   "}",
@@ -2257,7 +2256,7 @@ var css = {
   "height: 50%;" +
   "top: 52%;" +
   "background-color: transparent;" +
-  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
   "overflow: scroll;" +
   "}",
 
