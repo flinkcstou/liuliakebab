@@ -17,11 +17,15 @@ window.api.initSocket = function () {
   var me = this;
   this.socket.onmessage = function (event) {
     var parsedData = JSON.parse(event.data);
-    console.log(parsedData);
 
     var method = parsedData.data[0][0].method;
+    console.log("PARSED DATA", parsedData)
 
     var callBack = me.callBacks[method];
+    console.log('method', method)
+    if(method == 'get.payments')
+    var callBack = me.callBacks['get.payments'];
+    console.log('CALLBACK', callBack)
 
     if (parsedData.api_status == 0) {
       callBack.ok(parsedData.data);

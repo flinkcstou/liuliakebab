@@ -21,7 +21,7 @@
     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = info.session_key;
 
-    var touchStartX, touchEndX;
+    var carouselTouchStartX, carouselTouchEndX;
     cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
 
     if (!cardsarray) {
@@ -40,15 +40,17 @@
 
 
     startTouchCarousel = function () {
-      touchStartX = event.changedTouches[0].pageX;
-      delta = this.cards.getBoundingClientRect().left - touchStartX;
+      carouselTouchStartX = event.changedTouches[0].pageX;
+//      delta = this.cards.getBoundingClientRect().left - carouselTouchStartX;
+      left = -((540 * cardNumber) * widthK) - carouselTouchStartX;
+      delta = left;
     }
 
     endTouchCarousel = function () {
       event.preventDefault();
       event.stopPropagation();
-      touchEndX = event.changedTouches[0].pageX;
-      if (touchStartX != touchEndX) {
+      carouselTouchEndX = event.changedTouches[0].pageX;
+      if (carouselTouchStartX != carouselTouchEndX) {
         changePosition();
       }
       else if (!viewMainPage.myCards) {
@@ -147,8 +149,9 @@
       scope.addCard(getAccountsCards);
 
     function changePosition() {
+      console.log("BEFORE", this.cards.style.transform);
 
-      if (touchEndX < touchStartX && cardNumber < count - 1) {
+      if (carouselTouchEndX < carouselTouchStartX && cardNumber < count - 1) {
         ++cardNumber;
         // second parameter FROM TO
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -158,14 +161,14 @@
 
       }
 
-      if (touchEndX > touchStartX && cardNumber == 0) {
+      if (carouselTouchEndX > carouselTouchStartX && cardNumber == 0) {
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
-      if (touchEndX < touchStartX && cardNumber == count - 1) {
+      if (carouselTouchEndX < carouselTouchStartX && cardNumber == count - 1) {
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
@@ -173,7 +176,7 @@
 
       }
 
-      if (touchEndX > touchStartX && cardNumber > 0) {
+      if (carouselTouchEndX > carouselTouchStartX && cardNumber > 0) {
         --cardNumber;
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -188,6 +191,8 @@
         viewMyCards.cardInformation();
         console.log('INDEX OF CARD ', scope.parent.indexOfCard);
       }
+
+      console.log("AFTER", this.cards.style.transform);
     }
 
 

@@ -1,37 +1,49 @@
-<view-pay class="view-pay">
-
-  <div class="page-title">
-    <p class="pay-name-title">{titleName}</p>
-    <div id="backButton" ontouchend="goToMainPage()"
-         class="{back-button: backbuttoncheck}">
+<view-pay>
+  <div id="viewPayId" class="view-pay" disabled="{false}">
+    <div class="page-title">
+      <p class="pay-name-title">{titleName}</p>
+      <div id="backButton" ontouchend="goToMainPage()"
+           class="{back-button: backbuttoncheck}">
+      </div>
+      <div id="rightButton" type="button" class="{search-button: rightbuttoncheck}" ontouchend="search()"></div>
     </div>
-    <div id="rightButton" type="button" class="{search-button: rightbuttoncheck}"></div>
+
+    <div class="pay-category-container">
+      <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
+        <li each="{i in categoryList}" style="overflow: hidden;">
+          <div class="pay-service-block-containter" id="{i.id}" ontouchstart="onTouchStart()"
+               ontouchend="onTouchEnd(this.id)">
+            <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
+            <div class="pay-category-name-field">{i.name}
+            </div>
+            <div class="pay-icon-tick" id="tick{i.id}"></div>
+            <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
+              <li class="pay-service-containter" each="{j in currentList}" id="{j.id}"
+                  ontouchend="goToServiceView(this.id)">
+                <div class="pay-service-icon" style="background-image: url({j.image})">
+                  <div class="pay-service-name-field">{j.name}</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 
-  <div class="pay-category-container">
-    <ul style="list-style:none; padding: 0; margin: 0;">
-      <li each="{i in categoryList}">
-        <div class="pay-service-block-containter" id="{i.id}" ontouchstart="onTouchStart()"
-             ontouchend="onTouchEnd(this.id)">
-          <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
-          <div class="pay-category-name-field">{i.name}
-          </div>
-          <div class="pay-icon-tick" id="tick{i.id}"></div>
-          <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
-            <li class="pay-service-containter" each="{j in currentList}" id="{j.id}"
-                ontouchend="goToServiceView(this.id)">
-              <div class="pay-service-icon" style="background-image: url({j.image})">
-                <div class="pay-service-name-field">{j.name}</div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </li>
-    </ul>
+  <div id="blockSearchId" class="component-search">
+    <div id="searchContainerId" class="search-container">
+      <div class="search-title-container">
+        <div class="search-search-icon"></div>
+        <p class="search-title-name">ВЫБОР КАТЕГОРИИ</p>
+        <div class="search-cancel-icon" ontouchend="searchCancelEnd()"></div>
+      </div>
+      <input class="search-input" type="text" ontouchend="searchInputEnd()"/>
+      <div></div>
+    </div>
   </div>
 
   <script>
-
     var scope = this;
     goToMainPage = function () {
       event.preventDefault();
@@ -39,6 +51,18 @@
 
       this.riotTags.innerHTML = "<view-main-page>";
       riot.mount('view-main-page');
+    }
+
+    search = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      this.blockSearchId.style.display = 'block'
+    }
+
+    searchCancelEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      alert('Hallo');
     }
 
     this.titleName = 'ОПЛАТА';
@@ -99,11 +123,19 @@
     var count = 1;
 
     onTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      console.log('dwq')
+      if (this.viewPayId.disabled == true) return;
+
       onTouchStartY = event.changedTouches[0].pageY;
       console.log(onTouchStartY)
     }
 
     onTouchEnd = function (id) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (this.viewPayId.disabled == true) return;
 
       onTouchEndY = event.changedTouches[0].pageY;
       console.log(onTouchEndY)
@@ -113,8 +145,8 @@
         if (scope.index == id) {
           scope.index = -1;
         } else {
-          if(scope.index != -1)
-          document.getElementById("tick" + scope.index).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
+          if (scope.index != -1)
+            document.getElementById("tick" + scope.index).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
           scope.index = id;
         }
 
@@ -240,6 +272,9 @@
 
 
     goToServiceView = function (id) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (this.viewPayId.disabled == true) return;
       localStorage.setItem('chosenServiceId', id);
       event.preventDefault();
       event.stopPropagation();

@@ -1120,7 +1120,7 @@ var css = {
   pageTitle: ".page-title " +
   "{" +
   "position: fixed;" +
-  "top:" + -15 * widthK + "px;" +
+  "top:" + 0 * widthK + "px;" +
   "right:" + 28 * widthK + "px;" +
   "left:" + 25 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
@@ -1172,15 +1172,15 @@ var css = {
   searchButton: ".search-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 68 * widthK + "px;" +
+  "width:" + 83 * widthK + "px;" +
   "height:" + 68 * widthK + "px;" +
-  "right:" + 0 * widthK + "px;" +
+  "right:" + -15 * widthK + "px;" +
   "background-image: url(resources/icons/toolbar/search.png);" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 55%;" +
   "background-position-y: center;" +
   "background-position-x:" + 20 * widthK + "px;" +
-  "background-size: 55%;" +
+  "background-size: 45%;" +
   "top:" + 25 * widthK + "px;" +
   "}",
 

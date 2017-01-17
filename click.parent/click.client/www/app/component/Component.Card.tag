@@ -18,7 +18,8 @@
   <script>
     var scope = this;
     scope.left = (540 * opts.countcard + 100) * widthK;
-    console.log(opts.numberpartone)
+
+    console.log(scope.left);
 
   </script>
 </component-card>

@@ -52,25 +52,26 @@
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-//    window.api.call({
-//      method: 'get.payment.list',
-//      input : {
-//        session_key: sessionKey,
-//        phone_num  : phoneNumber,
-//      },
-//
-//      scope: this,
-//
-//      onSuccess: function (result) {
-//        console.log('result[1]', result[1]);
-//
-//      },
-//
-//      onFail: function (api_status, api_status_message, data) {
-//        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-//        console.error(data);
-//      }
-//    });
+    window.api.call({
+      method: 'get.payment.list',
+      input : {
+        session_key: sessionKey,
+        phone_num  : phoneNumber,
+      },
+
+      scope: this,
+
+      onSuccess: function (result) {
+        console.log('AWDAEQE')
+        console.log('result', result);
+
+      },
+
+      onFail: function (api_status, api_status_message, data) {
+        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+        console.error(data);
+      }
+    });
 
   </script>
 </view-info>

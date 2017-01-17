@@ -4,11 +4,11 @@
       onDrag="return false" onDrop="return false" autocomplete=off unselectable="on">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <script src="js/languages/languages.js"></script>
   <!-- CSS -->
-  <!--<link id="mainPageCss" href="css/MainPage.css" rel="stylesheet">-->
+  <link id="mainPageCss" href="css/MainPage.css" rel="stylesheet">
 
   <script src="stand/plugins/sms_fake.js"></script>
   <script src="stand/plugins/plugins_fake.js"></script>
@@ -37,7 +37,6 @@
 </head>
 
 <body id="bodyId">
-
 <div id="riotTags" class="riotTags">
   <view-main-page></view-main-page>
 </div>
@@ -50,6 +49,10 @@
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
 
+      var promise = new Promise(function (resolve, reject) {
+
+      })
+
       var GENERATOR = document.createElement('script');
       GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
       document.head.appendChild(GENERATOR);
@@ -59,23 +62,20 @@
         riot.mount('view-authorization')
       }
       else {
-        this.riotTags.innerHTML = "<view-registration-device>";
+        scope.riotTags.innerHTML = "<view-registration-device>";
         riot.mount('view-registration-device');
       }
       riot.mount('view-main-page');
 
-      console.log(StatusBar);
-      StatusBar.overlaysWebView(false);
-
-
       document.addEventListener("backbutton", onBackKeyDown, false);
-      startApplication();
     }, false);
   }
   else {
+    console.log('step', 0)
     var GENERATOR = document.createElement('script');
     GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
     document.head.appendChild(GENERATOR);
+    console.log('step', 3)
 
     if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
       scope.riotTags.innerHTML = "<view-authorization>";
