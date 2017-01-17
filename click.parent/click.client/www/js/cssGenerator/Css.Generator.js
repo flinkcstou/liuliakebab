@@ -2357,7 +2357,7 @@ var css = {
   componentSearch: ".component-search " +
   "{" +
   "position: fixed;" +
-  "opacity: 0.9;" +
+  "opacity: 0.95;" +
   "height: 100%;" +
   "width: 100%;" +
   "background-color: #353340;" +
@@ -2435,11 +2435,49 @@ var css = {
   searchSuggestionContainer: ".search-suggestion-container " +
   "{" +
   "position: absolute;" +
-  "width: 98%;" +
+  "width: 96%;" +
   "height: 70%;" +
-  "left: 1%;" +
+  "left: 2%;" +
   "top: 30%;" +
-  "}"
+  "}",
+
+  searchSuggestionFieldOne: ".search-suggestion-field-one " +
+  "{" +
+  "position: absolute;" +
+  "top: 2%;" +
+  "width: 100%;" +
+  "height: 20%;" +
+  "background-color: white;" +
+  "}",
+
+  searchSuggestionFieldTwo: ".search-suggestion-field-two " +
+  "{" +
+  "position: absolute;" +
+  "top: 23%;" +
+  "width: 100%;" +
+  "height: 20%;" +
+  "background-color: white;" +
+  "}",
+
+  searchSuggestionFieldThree: ".search-suggestion-field-three " +
+  "{" +
+  "position: absolute;" +
+  "top: 44%;" +
+  "width: 100%;" +
+  "height: 20%;" +
+  "background-color: white;" +
+  "}",
+
+  searchSuggestionFieldFour: ".search-suggestion-field-four " +
+  "{" +
+  "position: absolute;" +
+  "top: 65%;" +
+  "width: 100%;" +
+  "height: 20%;" +
+  "background-color: white;" +
+  "}",
+
+
 
 }
 

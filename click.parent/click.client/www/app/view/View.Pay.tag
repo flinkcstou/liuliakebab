@@ -39,7 +39,14 @@
     </div>
     <div id="searchContainerId" class="search-container">
       <input class="search-input" onkeyup="searchSuggestion()"/>
-      <div class="search-suggestion-container"></div>
+
+      <div class="search-suggestion-container">
+        <div class="search-suggestion-field-one"></div>
+        <div class="search-suggestion-field-two"></div>
+        <div class="search-suggestion-field-three"></div>
+        <div class="search-suggestion-field-four"></div>
+      </div>
+
     </div>
   </div>
 
@@ -56,20 +63,13 @@
     search = function () {
       event.preventDefault();
       event.stopPropagation();
-      this.blockSearchId.style.display = 'block'
+      this.blockSearchId.style.display = 'block';
     }
 
     searchCancelEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-      alert('Hallo');
-    }
-
-    searchSuggestion = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      console.log(event);
+      this.blockSearchId.style.display = 'none';
     }
 
     this.titleName = 'ОПЛАТА';
@@ -333,6 +333,13 @@
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-service-page>";
       riot.mount("view-service-page");
+    }
+
+    searchSuggestion = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      console.log(event);
     }
 
 
