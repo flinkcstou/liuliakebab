@@ -1888,6 +1888,18 @@ var css = {
     /*"background-image: url('resources/icons/background/transparent.png');"+*/
   "}",
 
+  viewPayConfirm: ".view-pay-confirm" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "overflow: hidden;" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "background-image: url('resources/draft/payconfirm.png');" +
+    /*"background-image: url('resources/icons/background/transparent.png');"+*/
+  "}",
+
   payIconTick: ".pay-icon-tick " +
   "{" +
   "position: relative;" +
@@ -1918,14 +1930,14 @@ var css = {
   "background-size: contain;" +
   "font-size: " + 29 * widthK + "px; " +
   "left: 13%;" +
-  "top: 89%;" +
+  "top: 87%;" +
   "margin: 0;" +
   "color: lavender;" +
   "}",
 
   servicePageServiceIcon: ".servicepage-service-icon" +
   "{" +
-  "top: 36%;" +
+  "top: 33%;" +
   "position: relative;" +
   "width: 13%;" +
   "height: 91%;" +
@@ -2046,12 +2058,12 @@ var css = {
 
   pincardButtonEnter: " .pincard-button-enter" +
   "{" +
-  "bottom: 57%;" +
+  "bottom: 33%;" +
   "position: absolute;" +
-  "width: 60%;" +
+  "width: 64%;" +
   "height: 19%;" +
   "border-radius:" + 80 * widthK + "px; " +
-  "margin-left: 20%;" +
+  "margin-left: 18%;" +
   "background-color: rgb(1, 124, 227);" +
   "}",
 
@@ -2062,6 +2074,7 @@ var css = {
   "background-color: transparent;" +
   "width: 100%;" +
   "height: 6%;" +
+  "left: 2%;" +
   "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
   "}",
 
@@ -2089,7 +2102,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height: " + 175 * widthK + "px; " +
+  "height: " + 163 * widthK + "px; " +
   "background-color: transparent;" +
   "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
   "}",
@@ -2103,6 +2116,7 @@ var css = {
   "background-position: center;" +
   "background-size: 50%;" +
   "float: left;" +
+  "left: -2%;" +
   "position: absolute;" +
   "}",
 
@@ -2122,7 +2136,7 @@ var css = {
   "position: absolute;" +
   "width: 41%;" +
   "height: 100%;" +
-  "left: 45%;" +
+  "left: 42%;" +
   "background-color: transparent;" +
   "}",
 
@@ -2131,7 +2145,7 @@ var css = {
   "position: absolute;" +
   "font-size: " + 24 * widthK + "px; " +
   "color: gray;" +
-  "top: 4%;" +
+  "top: 1%;" +
   "}",
 
   pincardCardInfoTextTwo: ".pincard-card-info-text-two" +
@@ -2140,13 +2154,13 @@ var css = {
   "font-size: " + 36 * widthK + "px; " +
   "font-weight: bold;" +
   "color: rgba(80, 185, 8, 0.77);" +
-  "top: 17%;" +
+  "top: 15%;" +
   "}",
 
   pincardCardInfoTextThree: ".pincard-card-info-text-three" +
   "{" +
   "position: absolute;" +
-  "font-size: " + 24 * widthK + "px; " +
+  "font-size: " + 23 * widthK + "px; " +
   "color: gray;" +
   "top: 51%;" +
   "}",
@@ -2154,9 +2168,10 @@ var css = {
   pincardCardCheckmark: ".pincard-card-checkmark" +
   "{" +
   "position: absolute;" +
-  "width: 18%;" +
+  "width: 17%;" +
   "height: 100%;" +
   "left: 81%;" +
+  "top: 2%;" +
   "background-color: transparent;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
@@ -2165,11 +2180,11 @@ var css = {
 
   pincardHelpText: ".pincard-help-text" +
   "{" +
-  "top: 13%;" +
+  "top: 28%;" +
   "position: absolute;" +
-  "margin-left: 35%;" +
+  "margin-left: 37%;" +
   "color: rgb(1, 124, 227);" +
-  "font-size: " + 30 * widthK + "px; " +
+  "font-size: " + 29 * widthK + "px; " +
   "text-align: center;" +
   "text-decoration: underline;" +
   "}",
@@ -2350,8 +2365,9 @@ var css = {
   "top: 36%;" +
   "width: 88%;" +
   "height: 42%;" +
-  "font-size: " + 35 * widthK + "px; " +
-  "font-family: Calibri;" +
+  "font-size: " + 56 * widthK + "px; " +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
   "}",
 
   componentSearch: ".component-search " +

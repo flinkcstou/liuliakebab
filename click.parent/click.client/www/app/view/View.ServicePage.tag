@@ -17,7 +17,7 @@
         </div>
         <div class="servicepage-amount-field">
             <p class="servicepage-text-field">Сумма оплаты</p>
-            <input type="number" placeholder="0" id="amount"></input>
+            <input type="number" value="0" id="amount"></input>
             <div class="servicepage-amount-icon"></div>
         </div>
         <div class="servicepage-button-enter" ontouchend="choosePinCard()">

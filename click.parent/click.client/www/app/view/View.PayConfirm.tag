@@ -1,4 +1,4 @@
-<view-pay-confirm>
+<view-pay-confirm class="view-pay-confirm">
 
     <div class="page-title" style="border-style: none;">
         <p class="servicepage-title">{titleName}</p>
@@ -10,7 +10,7 @@
              style="background-image: url({serviceIcon})"></div>
     </div>
 
-    <div class="servicepage-body-container">
+    <div class="payconfirm-body-container">
         <div class="payconfirm-data-container">
             <div class="payconfirm-phone-field">
                 <p class="payconfirm-text-field">Номер абонента:</p>
