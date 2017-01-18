@@ -230,7 +230,7 @@
 
           //riot.update(scope.serviceList)
 
-          //console.log('array service list', scope.serviceList)
+          console.log('service list', scope.serviceList)
           localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
           localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
           localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
@@ -339,6 +339,7 @@
       event.preventDefault();
       event.stopPropagation();
 
+      console.log(scope.serviceList);
       console.log(event);
     }
 

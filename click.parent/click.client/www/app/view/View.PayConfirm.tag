@@ -13,16 +13,16 @@
     <div class="payconfirm-body-container">
         <div class="payconfirm-data-container">
             <div class="payconfirm-phone-field">
-                <p class="payconfirm-text-field">Номер абонента:</p>
+                <p class="payconfirm-text-field">Номер телефона:</p>
                 <p class="payconfirm-phone-input">{phoneText}</p>
             </div>
             <div class="payconfirm-field">
-                <p class="payconfirm-text-field">Сумма оплаты:</p>
+                <p class="payconfirm-text-field">Сумма платежа:</p>
                 <p class="payconfirm-phone-input">{amountText} сум</p>
             </div>
             <div class="payconfirm-field">
                 <p class="payconfirm-text-field">Категория:</p>
-                <p class="payconfirm-phone-input" style="text-decoration: underline">{categoryName}</p>
+                <p class="payconfirm-phone-input" style="text-decoration: underline">Мобильная связь</p>
             </div>
             <div class="payconfirm-card-field">
                 <div class="payconfirm-card-info-container">
@@ -34,18 +34,17 @@
                 <div class="payconfirm-card-logo-container"
                      style="background-image: url({url})">
                 </div>
-
             </div>
 
         </div>
         <div class="payconfirm-bottom-container">
             <div class="payconfirm-action-containter">
-                <div class="payconfirm-action-icon"
+                <div class="payconfirm-action-icon-one"
                      style="background-image: url('resources/icons/ViewService/addfavorite.png');"></div>
                 <div class="payconfirm-action-text">Добавить в избранные</div>
             </div>
             <div class="payconfirm-action-containter">
-                <div class="payconfirm-action-icon"
+                <div class="payconfirm-action-icon-two"
                      style="background-image: url('resources/icons/ViewService/addautopay.png');"></div>
                 <div class="payconfirm-action-text">Добавить в автоплатеж</div>
             </div>

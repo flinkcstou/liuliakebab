@@ -257,7 +257,7 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "background-size: contain;" +
   "color: white;" +
-  "border-bottom:" + 2  + "px solid white;" +
+  "border-bottom:" + 2 + "px solid white;" +
   "}",
   registrationTextField: ".registration-text-field " +
   "{" +
@@ -1126,7 +1126,7 @@ var css = {
   "left:" + 25 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom:" + 2  + "px solid rgb(149, 230, 253);" +
+  "border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
 
   nameTitle: ".name-title " +
@@ -1896,8 +1896,8 @@ var css = {
   "overflow: hidden;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  "background-image: url('resources/draft/payconfirm.png');" +
-    /*"background-image: url('resources/icons/background/transparent.png');"+*/
+    //"background-image: url('resources/draft/payconfirm.png');" +
+  "background-image: url('resources/icons/background/transparent.png');" +
   "}",
 
   payIconTick: ".pay-icon-tick " +
@@ -1953,9 +1953,9 @@ var css = {
   servicePageBodyContainer: ".servicepage-body-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 1150 * widthK + "px; " +
+  "height: " + 1092 * widthK + "px; " +
   "width: " + 720 * widthK + "px; " +
-  "top: " + 150 * widthK + "px; " +
+  "top: " + 140 * widthK + "px; " +
   "background-color: white;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
@@ -1964,52 +1964,36 @@ var css = {
   pincardBodyContainer: ".pincard-body-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 1085 * widthK + "px; " +
+  "height: " + 1092 * widthK + "px; " +
   "width: " + 720 * widthK + "px; " +
-  "top: " + 150 * widthK + "px; " +
+  "top: " + 140 * widthK + "px; " +
   "background-color: white;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
   "}",
+
+  payconfirmBodyContainer: ".payconfirm-body-container" +
+  "{" +
+  "position: absolute;" +
+  "height: " + 1092 * widthK + "px; " +
+  "width: " + 720 * widthK + "px; " +
+  "top: " + 140 * widthK + "px; " +
+  "background-color: white;" +
+  "overflow-x: hidden;" +
+  "overflow-y: scroll;" +
+  "border-bottom: 1px solid black;" +
+  "}",
+
   servicePagePhoneField: ".servicepage-phone-field" +
   "{" +
   "position: relative;" +
   "left: 10%;" +
-  "width: 79%;" +
+  "width: 79.5%;" +
   "height: 9%;" +
   "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
     //"top: 3%;" +
-  "top: 3%" +
-  "}",
-
-  servicePageAmountField: ".servicepage-amount-field" +
-  "{position: absolute;" +
-  "left: 10%;" +
-  "width: 79%;" +
-  "height: 9%;" +
-  "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
-  "color: white;" +
-    //"top: 16%;" +
-  "top: 15%" +
-  "}",
-
-  servicePageTextField: ".servicepage-text-field" +
-  "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "color: gray;" +
-  "font-size:" + 24 * widthK + "px; " +
-    //"top: -16%;" +
-  "}",
-
-  servicePagePhoneInput: ".servicepage-phone-input" +
-  "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "top: 59%;" +
-  "font-size: " + 28 * widthK + "px; " +
-  "color: #515151;" +
+  "top: 4.5%" +
   "}",
 
   servicePagePhoneIcon: ".servicepage-phone-icon" +
@@ -2023,6 +2007,17 @@ var css = {
   "background-size: 100%;" +
   "background-position: center;" +
   "top: 36%;" +
+  "right:1%;" +
+  "}",
+
+  servicePageAmountField: ".servicepage-amount-field" +
+  "{position: absolute;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height: 9%;" +
+  "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
+  "color: white;" +
+  "top: 19.5%" +
   "}",
 
   servicePageAmountIcon: ".servicepage-amount-icon" +
@@ -2038,6 +2033,39 @@ var css = {
   "top: 40%;" +
   "}",
 
+
+  servicePageTextField: ".servicepage-text-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px; " +
+  "bottom: 88%;" +
+  "}",
+
+  inputTypeNumberText: "input[type=number], input[type=text]" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "top: 38%;" +
+  "width: 88%;" +
+  "height: 42%;" +
+  "font-size: " + 56 * widthK + "px; " +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "}",
+
+  servicePagePhoneInput: ".servicepage-phone-input" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "top: 59%;" +
+  "font-size: " + 28 * widthK + "px; " +
+  "color: #515151;" +
+  "}",
+
+
   servicePageButtonEnter: ".servicepage-button-enter" +
   "{" +
     //"top: 31%;" +
@@ -2048,7 +2076,17 @@ var css = {
   "border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
   "background-color: rgb(1, 124, 227);" +
-  "margin-top: 30%;" +
+  "top: 25%;" +
+  "}",
+
+  servicePageButtonEnterLabel: ".servicepage-button-enter-label" +
+  "{" +
+  "position: relative;" +
+  "top: 20%;" +
+  "width: 30%;" +
+  "font-size:  " + 45 * widthK + "px; " +
+  "margin: auto;" +
+  "color: white;" +
   "}",
 
   servicePageButtonBack: ".servicepage-button-back" +
@@ -2066,43 +2104,32 @@ var css = {
   "left: 0;" +
   "}",
 
-  pincardButtonEnter: " .pincard-button-enter" +
-  "{" +
-  "top: 45%;" +
-  "position: absolute;" +
-  "width: 64%;" +
-  "height: 19%;" +
-  "border-radius:" + 80 * widthK + "px; " +
-  "margin-left: 18%;" +
-  "background-color: rgb(1, 124, 227);" +
-  "}",
 
   pincardPayfromContainer: ".pincard-payfrom-container" +
   "{" +
   "position: absolute;" +
-  "margin: 0;" +
   "background-color: transparent;" +
   "width: 100%;" +
-  "height: 6%;" +
-  "left: 2%;" +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
+  "height: 7.5%;" +
+  "border-bottom: 1px solid lightgray;" +
   "}",
 
   pincardPayfromField: ".pincard-payfrom-field" +
   "{" +
   "position: absolute;" +
-  "font-size: " + 28 * widthK + "px; " +
+  "font-size: " + 29 * widthK + "px; " +
   "color: gray;" +
-  "margin: 2%;" +
-  "margin-left: 6%;" +
+  "margin: 0;" +
+  "left: 8%;" +
+  "top:29%;" +
   "}",
 
   pincardAllcardsContainer: ".pincard-allcards-container" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height: 47%;" +
-  "top: 6%;" +
+  "height: 46%;" +
+  "top: 7.5%;" +
   "background-color: transparent;" +
     //"border-bottom:  " + 1 * widthK + "px solid lightgray;" +
   "overflow: scroll;" +
@@ -2112,7 +2139,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height: " + 163 * widthK + "px; " +
+  "height: " + 162 * widthK + "px; " +
   "background-color: transparent;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
@@ -2126,19 +2153,8 @@ var css = {
   "background-position: center;" +
   "background-size: 50%;" +
   "float: left;" +
-  "left: -2%;" +
+  "right: 61%;" +
   "position: absolute;" +
-  "}",
-
-  pincardButtonEnterLabel: ".pincard-button-enter-label" +
-  "{" +
-  "position: relative;" +
-  "top: 20%;" +
-  "width: 30%;" +
-  "font-size: " + 44 * widthK + "px; " +
-  "margin: auto;" +
-  "color: white;" +
-  "right: 10%;" +
   "}",
 
   pincardCardInfoContainer: ".pincard-card-info-container" +
@@ -2155,16 +2171,16 @@ var css = {
   "position: absolute;" +
   "font-size: " + 24 * widthK + "px; " +
   "color: gray;" +
-  "top: 1%;" +
+  "left: -1%;" +
   "}",
 
   pincardCardInfoTextTwo: ".pincard-card-info-text-two" +
   "{" +
   "position: absolute;" +
-  "font-size: " + 36 * widthK + "px; " +
+  "font-size: " + 40 * widthK + "px; " +
   "font-weight: bold;" +
   "color: rgba(80, 185, 8, 0.77);" +
-  "top: 15%;" +
+  "top: 10%;" +
   "}",
 
   pincardCardInfoTextThree: ".pincard-card-info-text-three" +
@@ -2190,9 +2206,9 @@ var css = {
 
   pincardHelpText: ".pincard-help-text" +
   "{" +
-  "top: 28%;" +
+  "top: 35.7%;" +
   "position: absolute;" +
-  "margin-left: 37%;" +
+  "left: 37%;" +
   "color: rgb(1, 124, 227);" +
   "font-size: " + 29 * widthK + "px; " +
   "text-align: center;" +
@@ -2203,19 +2219,41 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-    //"top: 52%;" +
-  "height: 51%;" +
+  "height: 46%;" +
+  "top: 54%;" +
   "bottom:0;" +
   "background-color: transparent;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "overflow: scroll;" +
   "}",
 
+  pincardButtonEnter: " .pincard-button-enter" +
+  "{" +
+  "bottom: 24%;" +
+  "position: absolute;" +
+  "width: 64%;" +
+  "height: 17%;" +
+  "border-radius:" + 80 * widthK + "px; " +
+  "left: 18%;" +
+  "background-color: rgb(1, 124, 227);" +
+  "}",
+
+  pincardButtonEnterLabel: ".pincard-button-enter-label" +
+  "{" +
+  "position: relative;" +
+  "top: 20%;" +
+  "width: 30%;" +
+  "font-size: " + 44 * widthK + "px; " +
+  "margin: auto;" +
+  "color: white;" +
+  "right: 10%;" +
+  "}",
+
   payconfirmDataContainer: ".payconfirm-data-container" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height: 51%;" +
+  "height: 52%;" +
   "background-color: transparent;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "overflow: scroll;" +
@@ -2225,16 +2263,36 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height: 23%;" +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
+  "height: 24%;" +
+  "border-bottom: 1px solid lightgray;" +
   "color: white;" +
   "}",
 
-  payconfirm: ".payconfirm-field" +
+  payconfirmTextField: ".payconfirm-text-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "left: 8%;" +
+  "top: 25%;" +
+  "}",
+
+  payconfirmPhoneInput: ".payconfirm-phone-input" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 8%;" +
+  "top: 47%;" +
+  "font-size: " + 40 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  payconfirmField: ".payconfirm-field" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height: 24%;" +
+  "height: 22.5%;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   "top: 23%;" +
@@ -2244,50 +2302,39 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height: 29%;" +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
+  "height: 32%;" +
+  "border-bottom:1px solid lightgray;" +
   "color: white;" +
   "top: 23%;" +
-  "}",
-
-  payconfirmBottomContainer: ".payconfirm-bottom-container" +
-  "{" +
-  "position: absolute;" +
-  "width: 100%;" +
-  "height: 50%;" +
-  "top: 52%;" +
-  "background-color: transparent;" +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
-  "overflow: scroll;" +
-  "}",
-
-  payconfirmTextField: ".payconfirm-text-field" +
-  "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "color: darkgray;" +
-  "font-size: " + 25 * widthK + "px; " +
-  "margin-left: 10%;" +
-  "top: 20%;" +
-  "}",
-
-  payconfirmPhoneInput: ".payconfirm-phone-input" +
-  "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "margin-left: 10%;" +
-  "top: 41%;" +
-  "font-size: " + 38 * widthK + "px; " +
-  "color: gray;" +
   "}",
 
   payconfirmCardInfoContainer: ".payconfirm-card-info-container" +
   "{" +
   "position: absolute;" +
   "width: 60%;" +
-  "height: 78%;" +
+  "height: 100%;" +
   "background-color: transparent;" +
-  "margin-left: 4%;" +
+  "left: 4%;" +
+  "}",
+
+  payconfirmTextOne: ".payconfirm-text-one" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 23 * widthK + "px; " +
+  "left: 7%;" +
+  "top: 17%;" +
+  "}",
+
+  payconfirmTextTwo: ".payconfirm-text-two" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 7%;" +
+  "top: 30%;" +
+  "font-size: " + 40 * widthK + "px; " +
+  "color: gray;" +
   "}",
 
   payconfirmDetailText: ".payconfirm-detail-text" +
@@ -2296,8 +2343,8 @@ var css = {
   "margin: 0;" +
   "color: darkgray;" +
   "font-size: " + 25 * widthK + "px; " +
-  "margin-left: 10%;" +
-  "top: 75%;" +
+  "left: 7%;" +
+  "top: 56%;" +
   "}",
 
   payconfirmCardLogoContainer: ".payconfirm-card-logo-container" +
@@ -2313,16 +2360,41 @@ var css = {
   "float: left;" +
   "}",
 
+
+  payconfirmBottomContainer: ".payconfirm-bottom-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 48%;" +
+  "top: 52%;" +
+  "bottom: 0;" +
+  "background-color: transparent;" +
+  "border-bottom:  1px solid lightgray;" +
+  "overflow: scroll;" +
+  "}",
+
   payconfirmActionContainer: ".payconfirm-action-containter" +
   "{" +
   "position: relative;" +
   "float: left;" +
   "width: 50%;" +
-  "height: 40%;" +
+  "height: 50%;" +
   "background-color: transparent;" +
   "}",
 
-  payconfirmActionIcon: ".payconfirm-action-icon" +
+  payconfirmActionIconOne: ".payconfirm-action-icon-one" +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "height: 46%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "left: 26%;" +
+  "top: 14%;" +
+  "background-size: 50%;" +
+  "}",
+
+  payconfirmActionIconTwo: ".payconfirm-action-icon-two" +
   "{" +
   "position: relative;" +
   "width: 50%;" +
@@ -2330,13 +2402,14 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "left: 25%;" +
-  "top: 11%;" +
-  "background-size: 50%;" +
+  "top: 14%;" +
+  "background-size: 41%;" +
   "}",
 
   payconfirmActionText: ".payconfirm-action-text" +
   "{" +
-  "top: 22%;" +
+  "top: 17%;" +
+  "left: 4%;" +
   "position: relative;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
@@ -2349,36 +2422,24 @@ var css = {
 
   payconfirmButtonEnter: ".payconfirm-button-enter" +
   "{" +
-  "bottom: 31%;" +
+  "bottom: 24%;" +
   "position: absolute;" +
-  "width: 60%;" +
-  "height: 16%;" +
-  "border-radius: " + 80 * widthK + "px; " +
-  "margin-left: 20%;" +
+  "width: 64%;" +
+  "height: 17%;" +
+  "border-radius:" + 80 * widthK + "px; " +
+  "left: 18%;" +
   "background-color: rgb(1, 124, 227);" +
   "}",
 
   payconfirmButtonEnterLabel: ".payconfirm-button-enter-label" +
   "{" +
-  "position: absolute;" +
-  "top: 26%;" +
-  "width: 65%;" +
+  "position: relative;" +
+  "top: 20%;" +
+  "width: 30%;" +
   "font-size: " + 44 * widthK + "px; " +
   "margin: auto;" +
   "color: white;" +
   "right: 10%;" +
-  "}",
-
-  inputTypeNumberText: "input[type=number], input[type=text]" +
-  "{" +
-  "border: none;" +
-  "position: relative;" +
-  "top: 36%;" +
-  "width: 88%;" +
-  "height: 42%;" +
-  "font-size: " + 56 * widthK + "px; " +
-  "font-family: 'SFUIDisplay-Light';" +
-  "color: #515151;" +
   "}",
 
   componentSearch: ".component-search " +

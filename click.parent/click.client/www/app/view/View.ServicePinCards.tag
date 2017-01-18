@@ -21,8 +21,7 @@
                      style="opacity:0.3; filter: grayscale(100%);background-image: url({i.url})"></div>
                 <div class="pincard-card-info-container">
                     <p class="pincard-card-info-text-one">{i.name}</p>
-                    <p class="pincard-card-info-text-two" if="{i.salary>0}">
-                        {i.salary} {i.currency}</p>
+                    <p class="pincard-card-info-text-two" if="{i.salary>0}">{i.salary} {i.currency}</p>
                     <p class="pincard-card-info-text-two" style="color: #EB604D" if="{i.salary<=0}">
                         0 {i.currency}</p>
                     <p class="pincard-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
@@ -72,8 +71,8 @@
         confirmDetails = function () {
             event.preventDefault();
             event.stopPropagation();
-//            this.riotTags.innerHTML = "<view-pay-confirm>";
-//            riot.mount('view-pay-confirm');
+            this.riotTags.innerHTML = "<view-pay-confirm>";
+            riot.mount('view-pay-confirm');
 
         }
 

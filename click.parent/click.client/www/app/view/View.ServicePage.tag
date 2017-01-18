@@ -21,7 +21,7 @@
             <div class="servicepage-amount-icon"></div>
         </div>
         <div class="servicepage-button-enter" ontouchend="choosePinCard()">
-            <div class="button-enter-label">ДАЛЕЕ</div>
+            <div class="servicepage-button-enter-label">ДАЛЕЕ</div>
         </div>
     </div>
     <script>

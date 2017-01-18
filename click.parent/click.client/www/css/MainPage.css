@@ -111,8 +111,8 @@ input {
     overflow: hidden;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url("../resources/draft/payconfirm.png");
-    /*background-image: url("../resources/icons/background/transparent.png");*/
+    /*background-image: url("../resources/draft/payconfirm.png");*/
+    background-image: url("../resources/icons/background/transparent.png");
 }
 
 .view-main-page {
@@ -843,62 +843,36 @@ input {
 
 .servicepage-body-container {
     position: absolute;
-    height: 1150px;
+    height: 1092px;
     width: 720px;
-    top: 150px;
+    top: 140px;
     background-color: white;
     overflow-x: hidden;
     overflow-y: scroll;
+    border-bottom: 1px solid black;
 
 }
 
 .pincard-body-container {
     position: absolute;
-    height: 1150px;
+    height: 1092px;
     width: 720px;
-    top: 150px;
+    top: 140px;
     background-color: white;
     overflow-x: hidden;
     overflow-y: scroll;
-
+    border-bottom: 1px solid black;
 }
 
 .servicepage-phone-field {
     position: relative;
     left: 10%;
-    width: 79%;
+    width: 79.5%;
     height: 9%;
     border-bottom: 5px solid #01cfff;
     color: white;
-    /*top: 3%;*/
-    margin-top: 5%;
-}
+    top: 4.5%;
 
-.servicepage-amount-field {
-    position: absolute;
-    left: 11%;
-    width: 78%;
-    height: 9%;
-    border-bottom: 5px solid lightgray;
-    color: white;
-    /*top: 16%;*/
-    margin-top: 6%;
-}
-
-.servicepage-text-field {
-    position: absolute;
-    margin: 0;
-    color: gray;
-    font-size: 24px;
-    top: -16%;
-}
-
-.servicepage-phone-input {
-    position: absolute;
-    margin: 0;
-    top: 59%;
-    font-size: 28px;
-    color: #515151;
 }
 
 .servicepage-phone-icon {
@@ -911,6 +885,18 @@ input {
     background-size: 100%;
     background-position: center;
     top: 36%;
+    right: 1%;
+}
+
+.servicepage-amount-field {
+    position: absolute;
+    left: 11%;
+    width: 79.5%;
+    height: 9%;
+    border-bottom: 5px solid lightgray;
+    color: white;
+    top: 19.5%;
+
 }
 
 .servicepage-amount-icon {
@@ -918,23 +904,61 @@ input {
     float: right;
     background-image: url("../resources/icons/ViewService/calc.png");
     width: 7%;
-    height: 40%;
+    height: 50%;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
-    top: 40%;
+    top: 36%;
+}
+
+.servicepage-text-field {
+    position: absolute;
+    margin: 0;
+    color: gray;
+    font-size: 24px;
+    bottom: 88%;
+}
+
+input[type=number], input[type=text] {
+    border: none;
+    outline: none;
+    /*border-bottom: 2px solid red;*/
+    position: relative;
+    top: 36%;
+    width: 88%;
+    height: 42%;
+    font-size: 56px;
+    font-family: 'SFUIDisplay-Light';
+    color: #515151;
+}
+
+.servicepage-phone-input {
+    position: absolute;
+    margin: 0;
+    top: 59%;
+    font-size: 28px;
+    color: #515151;
 }
 
 .servicepage-button-enter {
     /*top: 31%;*/
     position: relative;
-    width: 63%;
-    height: 8%;
+    width: 64%;
+    height: 9%;
     margin-right: auto;
     border-radius: 80px;
     margin-left: auto;
     background-color: rgb(1, 124, 227);
-    margin-top: 30%;
+    top: 15%;
+}
+
+.servicepage-button-enter-label {
+    position: relative;
+    top: 20%;
+    width: 30%;
+    font-size: 45px;
+    margin: auto;
+    color: white;
 }
 
 .servicepage-button-back {
@@ -952,54 +976,30 @@ input {
 
 }
 
-input[type=number], input[type=text] {
-    border: none;
-    /*border-bottom: 2px solid red;*/
-    position: relative;
-    top: 36%;
-    width: 88%;
-    height: 42%;
-    font-size: 56px;
-    font-family: 'SFUIDisplay-Light';
-    color: #515151;
-}
-
 /*VIEW-PINCARD*/
-
-.pincard-button-enter {
-    bottom: 27%;
-    position: absolute;
-    width: 60%;
-    height: 19%;
-    /*margin-right: auto;*/
-    border-radius: 80px;
-    margin-left: 20%;
-    background-color: rgb(1, 124, 227);
-}
 
 .pincard-payfrom-container {
     position: absolute;
-    margin: 0;
     background-color: transparent;
     width: 100%;
-    height: 6%;
-    left: 2%;
+    height: 7.5%;
     border-bottom: 1px solid lightgray;
 }
 
 .pincard-payfrom-field {
     position: absolute;
-    font-size: 28px;
+    font-size: 29px;
     color: gray;
-    margin: 2%;
-    margin-left: 6%;
+    margin: 0;
+    left: 8%;
+    top: 29%;
 }
 
 .pincard-allcards-container {
     position: relative;
     width: 100%;
     height: 46%;
-    top: 6%;
+    top: 7.5%;
     background-color: transparent;
     /*border-bottom: 1px solid lightgray;*/
     overflow: scroll;
@@ -1008,7 +1008,7 @@ input[type=number], input[type=text] {
 .pincard-card-container {
     position: relative;
     width: 100%;
-    height: 158px;
+    height: 162px;
     background-color: transparent;
     border-bottom: 1px solid lightgray;
 }
@@ -1021,18 +1021,8 @@ input[type=number], input[type=text] {
     background-position: center;
     background-size: 50%;
     float: left;
+    right: 61%;
     position: absolute;
-}
-
-.pincard-button-enter-label {
-    position: relative;
-    top: 20%;
-    width: 30%;
-    /*height: 40px;*/
-    font-size: 44px;
-    margin: auto;
-    color: white;
-    right: 10%;
 }
 
 .pincard-card-info-container {
@@ -1048,9 +1038,8 @@ input[type=number], input[type=text] {
     position: absolute;
     font-size: 24px;
     color: gray;
-    top: 4%;
-    /*margin: 20px;*/
-    /*margin-left: 60px;*/
+    left: -1%;
+
 }
 
 .pincard-card-info-text-two {
@@ -1068,8 +1057,6 @@ input[type=number], input[type=text] {
     font-size: 24px;
     color: gray;
     top: 51%;
-    /*margin: 20px;*/
-    /*margin-left: 60px;*/
 }
 
 .pincard-card-checkmark {
@@ -1084,9 +1071,9 @@ input[type=number], input[type=text] {
 }
 
 .pincard-help-text {
-    top: 13%;
+    top: 35.7%;
     position: absolute;
-    margin-left: 35%;
+    left: 37%;
     color: rgb(1, 124, 227);
     font-size: 30px;
     text-align: center;
@@ -1096,12 +1083,32 @@ input[type=number], input[type=text] {
 .pincard-bottom-container {
     position: absolute;
     width: 100%;
-    /*height: 42%;*/
-    top: 52%;
+    height: 46%;
+    top: 54%;
     bottom: 0;
     background-color: transparent;
     border-bottom: 1px solid lightgray;
     overflow: scroll;
+}
+
+.pincard-button-enter {
+    bottom: 24%;
+    position: absolute;
+    width: 64%;
+    height: 17%;
+    border-radius: 80px;
+    left: 18%;
+    background-color: rgb(1, 124, 227);
+}
+
+.pincard-button-enter-label {
+    position: relative;
+    top: 20%;
+    width: 30%;
+    font-size: 47px;
+    margin: auto;
+    color: white;
+    right: 10%;
 }
 
 /*VIEW-PAYCONFIRM*/
@@ -1109,7 +1116,7 @@ input[type=number], input[type=text] {
 .payconfirm-data-container {
     position: relative;
     width: 100%;
-    height: 51%;
+    height: 52%;
     background-color: transparent;
     border-bottom: 1px solid lightgray;
     overflow: scroll;
@@ -1120,7 +1127,7 @@ input[type=number], input[type=text] {
     height: 1150px;
     width: 720px;
     top: 150px;
-    /*background-color: white;*/
+    background-color: white;
     overflow-x: hidden;
     overflow-y: scroll;
 
@@ -1134,10 +1141,29 @@ input[type=number], input[type=text] {
     color: white;
 }
 
+.payconfirm-text-field {
+    position: absolute;
+    margin: 0;
+    color: darkgray;
+    font-size: 24px;
+    left: 8%;
+    top: 25%;
+
+}
+
+.payconfirm-phone-input {
+    position: absolute;
+    margin: 0;
+    left: 8%;
+    top: 47%;
+    font-size: 40px;
+    color: gray;
+}
+
 .payconfirm-field {
     position: relative;
     width: 100%;
-    height: 24%;
+    height: 22.5%;
     border-bottom: 1px solid lightgray;
     color: white;
     top: 23%;
@@ -1146,47 +1172,37 @@ input[type=number], input[type=text] {
 .payconfirm-card-field {
     position: relative;
     width: 100%;
-    height: 29%;
+    height: 32%;
     border-bottom: 1px solid lightgray;
     color: white;
     top: 23%;
 }
 
-.payconfirm-bottom-container {
-    position: absolute;
-    width: 100%;
-    height: 50%;
-    top: 52%;
-    background-color: transparent;
-    border-bottom: 1px solid lightgray;
-    overflow: scroll;
-}
-
-.payconfirm-text-field {
-    position: absolute;
-    margin: 0;
-    color: darkgray;
-    font-size: 25px;
-    margin-left: 10%;
-    top: 20%;
-
-}
-
-.payconfirm-phone-input {
-    position: absolute;
-    margin: 0;
-    margin-left: 10%;
-    top: 41%;
-    font-size: 38px;
-    color: gray;
-}
-
 .payconfirm-card-info-container {
     position: absolute;
     width: 60%;
-    height: 78%;
+    height: 100%;
     background-color: transparent;
-    margin-left: 4%;
+    left: 4%;
+}
+
+.payconfirm-text-one {
+    position: absolute;
+    margin: 0;
+    color: darkgray;
+    font-size: 23px;
+    left: 7%;
+    top: 17%;
+
+}
+
+.payconfirm-text-two {
+    position: absolute;
+    margin: 0;
+    left: 7%;
+    top: 30%;
+    font-size: 40px;
+    color: gray;
 }
 
 .payconfirm-detail-text {
@@ -1194,8 +1210,8 @@ input[type=number], input[type=text] {
     margin: 0;
     color: darkgray;
     font-size: 25px;
-    margin-left: 10%;
-    top: 75%;
+    left: 7%;
+    top: 56%;
 }
 
 .payconfirm-card-logo-container {
@@ -1210,23 +1226,44 @@ input[type=number], input[type=text] {
     float: left;
 }
 
+.payconfirm-bottom-container {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    top: 52%;
+    background-color: transparent;
+    border-bottom: 1px solid lightgray;
+    overflow: scroll;
+}
+
 .payconfirm-action-containter {
     position: relative;
     float: left;
     width: 50%;
-    height: 40%;
+    height: 50%;
     background-color: transparent;
 }
 
-.payconfirm-action-icon {
+.payconfirm-action-icon-one {
+    position: relative;
+    width: 50%;
+    height: 46%;
+    background-repeat: no-repeat;
+    background-position: center;
+    left: 26%;
+    top: 14%;
+    background-size: 50%;
+}
+
+.payconfirm-action-icon-two {
     position: relative;
     width: 50%;
     height: 46%;
     background-repeat: no-repeat;
     background-position: center;
     left: 25%;
-    top: 11%;
-    background-size: 50%;
+    top: 14%;
+    background-size: 41%;
 }
 
 .payconfirm-action-text {
@@ -1242,21 +1279,20 @@ input[type=number], input[type=text] {
 }
 
 .payconfirm-button-enter {
-    bottom: 31%;
+    bottom: 24%;
     position: absolute;
-    width: 60%;
-    height: 16%;
+    width: 64%;
+    height: 17%;
     border-radius: 80px;
-    margin-left: 20%;
+    left: 18%;
     background-color: rgb(1, 124, 227);
 }
 
 .payconfirm-button-enter-label {
-    position: absolute;
-    top: 26%;
-    width: 65%;
-    /*height: 40px;*/
-    font-size: 44px;
+    position: relative;
+    top: 20%;
+    width: 30%;
+    font-size: 47px;
     margin: auto;
     color: white;
     right: 10%;
