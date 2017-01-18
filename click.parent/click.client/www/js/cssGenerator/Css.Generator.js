@@ -2131,7 +2131,6 @@ var css = {
   "height:" + 500 * widthK + "px;" +
   "top: 7.5%;" +
   "background-color: transparent;" +
-    //"border-bottom:  " + 1 * widthK + "px solid lightgray;" +
   "overflow: scroll;" +
   "}",
 
@@ -2535,6 +2534,7 @@ var css = {
   "top: 2%;" +
   "width: 100%;" +
   "height: 20%;" +
+  "display: none;" +
   "background-color: white;" +
   "}",
 
@@ -2544,6 +2544,7 @@ var css = {
   "top: 23%;" +
   "width: 100%;" +
   "height: 20%;" +
+  "display: none;" +
   "background-color: white;" +
   "}",
 
@@ -2553,6 +2554,7 @@ var css = {
   "top: 44%;" +
   "width: 100%;" +
   "height: 20%;" +
+  "display: none;" +
   "background-color: white;" +
   "}",
 
@@ -2562,6 +2564,7 @@ var css = {
   "top: 65%;" +
   "width: 100%;" +
   "height: 20%;" +
+  "display: none;" +
   "background-color: white;" +
   "}",
 

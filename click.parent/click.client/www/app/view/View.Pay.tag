@@ -38,13 +38,13 @@
       <div class="search-cancel-icon" ontouchend="searchCancelEnd()"></div>
     </div>
     <div id="searchContainerId" class="search-container">
-      <input class="search-input" onkeyup="searchSuggestion()"/>
+      <input id="searchInputId" class="search-input" onfocus="searchSuggestion()" onkeyup="searchSuggestion()"/>
 
       <div class="search-suggestion-container">
-        <div class="search-suggestion-field-one"><p>{suggestionOne}</p></div>
-        <div class="search-suggestion-field-two"><p>{suggestionTwo}</p></div>
-        <div class="search-suggestion-field-three"><p>{suggestionThree}</p></div>
-        <div class="search-suggestion-field-four"><p>{suggestionFour}</p></div>
+        <div id="suggestionOneId" class="search-suggestion-field-one"><p class="search-part-one-of-suggestion">{partOneOfSuggestionOfOne}</p><p>{partTwoOfSuggestionOfOne}</p></div>
+        <div id="suggestionTwoId" class="search-suggestion-field-two"><p>{suggestionTwo}</p></div>
+        <div id="suggestionThreeId" class="search-suggestion-field-three"><p>{suggestionThree}</p></div>
+        <div id="suggestionFourId" class="search-suggestion-field-four"><p>{suggestionFour}</p></div>
       </div>
 
     </div>
@@ -65,6 +65,7 @@
       event.preventDefault();
       event.stopPropagation();
       this.blockSearchId.style.display = 'block';
+      scope.searchInputId.autofocus = true;
       if (scope.categoryList)
         arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
     }
@@ -78,57 +79,67 @@
 
     searchSuggestion = function () {
       var j = 0;
+      var check = false;
       event.preventDefault();
       event.stopPropagation();
-      console.log('event', event)
-
-      console.log('LENGTH', arrayOfConnectedSuggestion.length);
-      if (bufferArray.length != 0 && event.keyCode != 18) {
-        arrayOfConnectedSuggestion = bufferArray;
-        bufferArray = [];
-      }
-      else
-        arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
-
-      console.log('LENGTH BUFFER ARRAY', bufferArray.length);
 
       if (event.keyCode != 16 && event.keyCode != 18)
         searchWord = event.target.value.toLowerCase();
 
-      console.log('search WORD', searchWord)
       scope.suggestionOne = '';
       scope.suggestionTwo = '';
       scope.suggestionThree = '';
       scope.suggestionFour = '';
 
-      alert(arrayOfConnectedSuggestion.length)
-      for (var i = 0; i < arrayOfConnectedSuggestion.length; i++) {
-        if (searchWord == arrayOfConnectedSuggestion[i].name.substring(0, searchWord.length).toLowerCase()) {
-          bufferArray[j] = arrayOfConnectedSuggestion[i];
-          j++;
+        for (var i = 0; i < arrayOfConnectedSuggestion.length; i++) {
+          if (searchWord == arrayOfConnectedSuggestion[i].name.substring(0, searchWord.length).toLowerCase()) {
+            check = true;
+            if (j == 3) {
+              scope.suggestionOneId.style.display = 'block';
+              scope.suggestionTwoId.style.display = 'block';
+              scope.suggestionThreeId.style.display = 'block';
+              scope.suggestionFourId.style.display = 'block';
+              scope.suggestionFour = arrayOfConnectedSuggestion[i].name;
+            }
+            if (j == 2) {
+              scope.suggestionOneId.style.display = 'block';
+              scope.suggestionTwoId.style.display = 'block';
+              scope.suggestionThreeId.style.display = 'block';
+              scope.suggestionFourId.style.display = 'none';
+              scope.suggestionThree = arrayOfConnectedSuggestion[i].name;
+            }
+            if (j == 1) {
+              scope.suggestionOneId.style.display = 'block';
+              scope.suggestionTwoId.style.display = 'block';
+              scope.suggestionThreeId.style.display = 'none';
+              scope.suggestionFourId.style.display = 'none';
+              scope.suggestionTwo = arrayOfConnectedSuggestion[i].name;
 
-          if (arrayOfConnectedSuggestion.length >= 1) {
-
-            if(scope.suggestionOne == '' && scope.suggestionTwo == '' && scope.suggestionThree == '' && scope.suggestionFour == '')
-            scope.suggestionOne = arrayOfConnectedSuggestion[i].name;
-
-            if(scope.suggestionTwo == '' && scope.suggestionThree == '' && scope.suggestionFour == '')
-            scope.suggestionTwo = arrayOfConnectedSuggestion[i].name;
-
-            if(scope.suggestionThree == '' && scope.suggestionFour == '')
-            scope.suggestionThree = arrayOfConnectedSuggestion[i].name;
-
-            if(scope.suggestionFour == '')
-            scope.suggestionFour = arrayOfConnectedSuggestion[i].name;
+            }
+            if (j == 0) {
+              console.log('IM HERE ON ONE')
+              scope.suggestionOneId.style.display = 'block';
+              scope.suggestionTwoId.style.display = 'none';
+              scope.suggestionThreeId.style.display = 'none';
+              scope.suggestionFourId.style.display = 'none';
+              scope.suggestionOne = arrayOfConnectedSuggestion[i].name;
+              scope.partOneOfSuggestionOfOne = arrayOfConnectedSuggestion[i].name.substring(0, searchWord.length);
+              scope.partTwoOfSuggestionOfOne = arrayOfConnectedSuggestion[i].name.substring(searchWord.length, arrayOfConnectedSuggestion[i].name.length);
+              console.log(scope.suggestionOne)
+            }
+            j++;
           }
-
-          console.log('SOVPADENIE')
-          console.log('arrayOfConnectedSuggestion[i].name', arrayOfConnectedSuggestion[i].name.substring(0, searchWord.length).toLowerCase())
+          riot.update();
+          if (j == 4)
+            return
         }
-        riot.update(scope.suggestionOne)
-        riot.update(scope.suggestionTwo)
-        riot.update(scope.suggestionThree)
-        riot.update(scope.suggestionFour)
+
+      if(!check) {
+        console.log('IM DALBAEB')
+        scope.suggestionOneId.style.display = 'none';
+        scope.suggestionTwoId.style.display = 'none';
+        scope.suggestionThreeId.style.display = 'none';
+        scope.suggestionFourId.style.display = 'none';
       }
     }
 
