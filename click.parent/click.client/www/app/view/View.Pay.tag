@@ -41,10 +41,10 @@
       <input class="search-input" onkeyup="searchSuggestion()"/>
 
       <div class="search-suggestion-container">
-        <div class="search-suggestion-field-one"></div>
-        <div class="search-suggestion-field-two"></div>
-        <div class="search-suggestion-field-three"></div>
-        <div class="search-suggestion-field-four"></div>
+        <div class="search-suggestion-field-one"><p>{suggestionOne}</p></div>
+        <div class="search-suggestion-field-two"><p>{suggestionTwo}</p></div>
+        <div class="search-suggestion-field-three"><p>{suggestionThree}</p></div>
+        <div class="search-suggestion-field-four"><p>{suggestionFour}</p></div>
       </div>
 
     </div>
@@ -52,6 +52,7 @@
 
   <script>
     var scope = this;
+
     goToMainPage = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -64,12 +65,71 @@
       event.preventDefault();
       event.stopPropagation();
       this.blockSearchId.style.display = 'block';
+      if (scope.categoryList)
+        arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
     }
 
     searchCancelEnd = function () {
       event.preventDefault();
       event.stopPropagation();
       this.blockSearchId.style.display = 'none';
+      searchWord = '';
+    }
+
+    searchSuggestion = function () {
+      var j = 0;
+      event.preventDefault();
+      event.stopPropagation();
+      console.log('event', event)
+
+      console.log('LENGTH', arrayOfConnectedSuggestion.length);
+      if (bufferArray.length != 0 && event.keyCode != 18) {
+        arrayOfConnectedSuggestion = bufferArray;
+        bufferArray = [];
+      }
+      else
+        arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
+
+      console.log('LENGTH BUFFER ARRAY', bufferArray.length);
+
+      if (event.keyCode != 16 && event.keyCode != 18)
+        searchWord = event.target.value.toLowerCase();
+
+      console.log('search WORD', searchWord)
+      scope.suggestionOne = '';
+      scope.suggestionTwo = '';
+      scope.suggestionThree = '';
+      scope.suggestionFour = '';
+
+      alert(arrayOfConnectedSuggestion.length)
+      for (var i = 0; i < arrayOfConnectedSuggestion.length; i++) {
+        if (searchWord == arrayOfConnectedSuggestion[i].name.substring(0, searchWord.length).toLowerCase()) {
+          bufferArray[j] = arrayOfConnectedSuggestion[i];
+          j++;
+
+          if (arrayOfConnectedSuggestion.length >= 1) {
+
+            if(scope.suggestionOne == '' && scope.suggestionTwo == '' && scope.suggestionThree == '' && scope.suggestionFour == '')
+            scope.suggestionOne = arrayOfConnectedSuggestion[i].name;
+
+            if(scope.suggestionTwo == '' && scope.suggestionThree == '' && scope.suggestionFour == '')
+            scope.suggestionTwo = arrayOfConnectedSuggestion[i].name;
+
+            if(scope.suggestionThree == '' && scope.suggestionFour == '')
+            scope.suggestionThree = arrayOfConnectedSuggestion[i].name;
+
+            if(scope.suggestionFour == '')
+            scope.suggestionFour = arrayOfConnectedSuggestion[i].name;
+          }
+
+          console.log('SOVPADENIE')
+          console.log('arrayOfConnectedSuggestion[i].name', arrayOfConnectedSuggestion[i].name.substring(0, searchWord.length).toLowerCase())
+        }
+        riot.update(scope.suggestionOne)
+        riot.update(scope.suggestionTwo)
+        riot.update(scope.suggestionThree)
+        riot.update(scope.suggestionFour)
+      }
     }
 
     this.titleName = 'ОПЛАТА';
@@ -87,6 +147,10 @@
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
     scope.servicesParams = JSON.parse(localStorage.getItem("click_client_servicesParams"));
 
+    //VARIABLES FOR SEARCHING
+    var arrayOfConnectedSuggestion = [];
+    var bufferArray = [];
+    var searchWord = '';
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     phoneNumber = phoneNumber.substring(3, phoneNumber.length);
@@ -118,6 +182,7 @@
 
           scope.id = 0;
           console.log('array category list', scope.categoryList)
+
           localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
           localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
         },
@@ -137,11 +202,10 @@
     onTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      console.log('dwq')
       if (this.viewPayId.disabled == true) return;
 
       onTouchStartY = event.changedTouches[0].pageY;
-      console.log(onTouchStartY)
+
     }
 
     onTouchEnd = function (id) {
@@ -208,7 +272,7 @@
           if (result[0][0].error == 0)
             if (result[1][0])
               for (var i in result[1]) {
-                console.log('service ID ', result[1][i].id, ', service name= ', result[1][i].name, ', element= ', result[1][i]);
+
                 scope.serviceList.push(result[1][i]);
                 if (!scope.servicesMapByCategory[result[1][i].category_id]) {
                   scope.servicesMapByCategory[result[1][i].category_id] = [];
@@ -230,7 +294,7 @@
 
           //riot.update(scope.serviceList)
 
-          console.log('service list', scope.serviceList)
+          //console.log('array service list', scope.serviceList)
           localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
           localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
           localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
@@ -261,7 +325,6 @@
           if (result[0][0].error == 0) {
             if (result[1])
               for (var i in result[1]) {
-                console.log('1. service ID ', result[1][i].service_id, ', element= ', result[1][i]);
                 if (!scope.servicesParamsMapOne[result[1][i].service_id]) {
                   scope.servicesParamsMapOne[result[1][i].service_id] = [];
                   scope.servicesParamsMapOne[result[1][i].service_id].push(result[1][i]);
@@ -273,7 +336,6 @@
               }
             if (result[2])
               for (var i in result[2]) {
-                console.log('2. service ID ', result[2][i].service_id, ', element= ', result[2][i]);
                 if (!scope.servicesParamsMapTwo[result[2][i].service_id]) {
                   scope.servicesParamsMapTwo[result[2][i].service_id] = [];
                   scope.servicesParamsMapTwo[result[2][i].service_id].push(result[2][i]);
@@ -284,7 +346,6 @@
               }
             if (result[3])
               for (var i in result[3]) {
-                console.log('3.  service ID ', result[3][i].service_id, ', element= ', result[3][i]);
                 if (!scope.servicesParamsMapThree[result[3][i].service_id]) {
                   scope.servicesParamsMapThree[result[3][i].service_id] = [];
                   scope.servicesParamsMapThree[result[3][i].service_id].push(result[3][i]);
@@ -295,7 +356,6 @@
               }
             if (result[4])
               for (var i in result[4]) {
-                console.log('4.  service ID ', result[4][i].service_id, ', element= ', result[4][i]);
                 if (!scope.servicesParamsMapFour[result[4][i].service_id]) {
                   scope.servicesParamsMapFour[result[4][i].service_id] = [];
                   scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
@@ -309,8 +369,6 @@
             localStorage.setItem('click_client_servicesParamsMapTwo', JSON.stringify(scope.servicesParamsMapTwo));
             localStorage.setItem('click_client_servicesParamsMapThree', JSON.stringify(scope.servicesParamsMapThree));
             localStorage.setItem('click_client_servicesParamsMapFour', JSON.stringify(scope.servicesParamsMapFour));
-            console.log("ONE =", scope.servicesParamsMapOne);
-            console.log("TWO =", scope.servicesParamsMapTwo);
 
           }
         },
@@ -333,14 +391,6 @@
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-service-page>";
       riot.mount("view-service-page");
-    }
-
-    searchSuggestion = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      console.log(scope.serviceList);
-      console.log(event);
     }
 
 
