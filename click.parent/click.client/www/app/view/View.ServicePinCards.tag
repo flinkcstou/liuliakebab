@@ -71,6 +71,10 @@
 
 
         confirmDetails = function () {
+            if (!scope.checked) {
+                alert("Выберите карту для оплаты");
+                return;
+            }
             event.preventDefault();
             event.stopPropagation();
             this.riotTags.innerHTML = "<view-pay-confirm>";
@@ -79,11 +83,13 @@
         }
 
         scope.ind = -1;
+        scope.checked = false;
 
         checkCard = function (id) {
             if (scope.ind == id) {
                 scope.ind = -1;
                 document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+                scope.checked = false;
             }
             else {
                 if (scope.ind != -1) {
@@ -91,6 +97,7 @@
                 }
                 scope.ind = id;
                 document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
+                scope.checked = true;
                 viewServicePinCards.chosenCardId = scope.ind;
             }
 //

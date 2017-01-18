@@ -95,6 +95,10 @@
         checkMinValue = function () {
             var key = event.keyCode || event.charCode;
 
+            if (!(key == 8 || key == 46) && document.getElementById('phone').value.length == 13) {
+                event.preventDefault();
+            }
+
             if ((key == 8 || key == 46) && document.getElementById('phone').value.length == 4)
                 event.preventDefault();
         }
