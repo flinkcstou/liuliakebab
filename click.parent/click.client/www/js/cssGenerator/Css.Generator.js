@@ -1964,7 +1964,7 @@ var css = {
   pincardBodyContainer: ".pincard-body-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 1092 * widthK + "px; " +
+  "height: " + 1092 * heightK + "px; " +
   "width: " + 720 * widthK + "px; " +
   "top: " + 140 * widthK + "px; " +
   "background-color: white;" +
@@ -2126,9 +2126,9 @@ var css = {
 
   pincardAllcardsContainer: ".pincard-allcards-container" +
   "{" +
-  "position: relative;" +
+  "position: absolute;" +
   "width: 100%;" +
-  "height: 46%;" +
+  "height:" + 500 * widthK + "px;" +
   "top: 7.5%;" +
   "background-color: transparent;" +
     //"border-bottom:  " + 1 * widthK + "px solid lightgray;" +
@@ -2219,8 +2219,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height: 46%;" +
-  "top: 54%;" +
+  //"height: 46%;" +
+  "top: 52%;" +
   "bottom:0;" +
   "background-color: transparent;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +
