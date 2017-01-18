@@ -1975,7 +1975,7 @@ var css = {
   payconfirmBodyContainer: ".payconfirm-body-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 1092 * widthK + "px; " +
+  "height: " + 1092 * heightK + "px; " +
   "width: " + 720 * widthK + "px; " +
   "top: " + 140 * widthK + "px; " +
   "background-color: white;" +
@@ -1992,7 +1992,6 @@ var css = {
   "height: 9%;" +
   "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-    //"top: 3%;" +
   "top: 4.5%" +
   "}",
 
@@ -2219,7 +2218,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  //"height: 46%;" +
+    //"height: 46%;" +
   "top: 52%;" +
   "bottom:0;" +
   "background-color: transparent;" +
@@ -2251,12 +2250,11 @@ var css = {
 
   payconfirmDataContainer: ".payconfirm-data-container" +
   "{" +
-  "position: relative;" +
+  "position: absolute;" +
   "width: 100%;" +
-  "height: 52%;" +
+  "height: " + 569 * widthK + "px; " +
   "background-color: transparent;" +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
-  "overflow: scroll;" +
+    //"border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
 
   payconfirmPhoneField: ".payconfirm-phone-field" +
@@ -2365,8 +2363,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height: 48%;" +
-  "top: 52%;" +
+  "top: 60%;" +
   "bottom: 0;" +
   "background-color: transparent;" +
   "border-bottom:  1px solid lightgray;" +

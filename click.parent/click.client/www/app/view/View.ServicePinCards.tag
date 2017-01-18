@@ -14,7 +14,8 @@
         <div class="pincard-payfrom-container">
             <p class="pincard-payfrom-field">Оплатить с:</p></div>
         <div class="pincard-allcards-container">
-            <div class="pincard-card-container" each="{i in cardsArray}">
+            <div class="pincard-card-container" each="{i in cardsArray}" ontouchend="checkCard(this.id)"
+                 id="{i.card_id}">
                 <div class="pincard-card-logo-container" if="{i.salary>0}"
                      style="background-image: url({i.url})"></div>
                 <div class="pincard-card-logo-container" if="{i.salary<=0}"
@@ -26,8 +27,9 @@
                         0 {i.currency}</p>
                     <p class="pincard-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
                 </div>
-                <div class="pincard-card-checkmark" ontouchend="checkCard(this.id)" id="{i.card_id}"
-                     style="background-image: url('resources/icons/ViewService/unchecked.png')"></div>
+                <div class="pincard-card-checkmark" id="check{i.card_id}"
+                     style="background-image: url('resources/icons/ViewService/unchecked.png')">
+                </div>
             </div>
         </div>
 
@@ -81,14 +83,14 @@
         checkCard = function (id) {
             if (scope.ind == id) {
                 scope.ind = -1;
-                document.getElementById(id).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+                document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
             }
             else {
                 if (scope.ind != -1) {
-                    document.getElementById(scope.ind).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+                    document.getElementById("check" + scope.ind).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
                 }
                 scope.ind = id;
-                document.getElementById(id).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
+                document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
                 viewServicePinCards.chosenCardId = scope.ind;
             }
 //

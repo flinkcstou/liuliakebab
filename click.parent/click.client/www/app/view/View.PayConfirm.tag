@@ -26,8 +26,8 @@
             </div>
             <div class="payconfirm-card-field">
                 <div class="payconfirm-card-info-container">
-                    <p class="payconfirm-text-field">Оплата с карты:</p>
-                    <p class="payconfirm-phone-input">{cardName}</p>
+                    <p class="payconfirm-text-one">Оплата с карты:</p>
+                    <p class="payconfirm-text-two">{cardName}</p>
                     <p class="payconfirm-detail-text">{numberPartOne} **** {numberPartTwo}</p>
                     <p class="payconfirm-detail-text">Доступно:{salary} {currency}</p>
                 </div>
