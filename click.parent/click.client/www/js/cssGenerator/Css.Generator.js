@@ -2528,9 +2528,10 @@ var css = {
   searchSuggestionFieldOne: ".search-suggestion-field-one " +
   "{" +
   "position: absolute;" +
-  "top: 2%;" +
-  "width: 100%;" +
-  "height: 20%;" +
+  "top: 3%;" +
+  "width: 103%;" +
+  "left: -1%;" +
+  "height: 22%;" +
   "display: none;" +
   "background-color: white;" +
   "}",
@@ -2538,9 +2539,10 @@ var css = {
   searchSuggestionFieldTwo: ".search-suggestion-field-two " +
   "{" +
   "position: absolute;" +
-  "top: 23%;" +
-  "width: 100%;" +
-  "height: 20%;" +
+  "top: 26%;" +
+  "width: 103%;" +
+  "left: -1%;" +
+  "height: 22%;" +
   "display: none;" +
   "background-color: white;" +
   "}",
@@ -2548,8 +2550,9 @@ var css = {
   searchSuggestionFieldThree: ".search-suggestion-field-three " +
   "{" +
   "position: absolute;" +
-  "top: 44%;" +
-  "width: 100%;" +
+  "top: 49%;" +
+  "width: 103%;" +
+  "left: -1%;" +
   "height: 20%;" +
   "display: none;" +
   "background-color: white;" +
@@ -2558,11 +2561,22 @@ var css = {
   searchSuggestionFieldFour: ".search-suggestion-field-four " +
   "{" +
   "position: absolute;" +
-  "top: 65%;" +
-  "width: 100%;" +
+  "top: 70%;" +
+  "width: 103%;" +
+  "left: -1%;" +
   "height: 20%;" +
   "display: none;" +
   "background-color: white;" +
+  "}",
+
+  searchPartOfSuggestion : ".search-part-of-suggestion" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "background-size: contain;" +
+  "left: 5%;" +
+  "margin-top: 5%;" +
+  "color: #a1a1a2;" +
   "}",
 
 
