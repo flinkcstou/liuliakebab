@@ -35,7 +35,7 @@
             riot.mount('view-pay');
         }
 
-        history.arrayOfHistory.push('view-pay');
+        history.arrayOfHistory.push('view-service-page');
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
         scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));

@@ -2569,7 +2569,7 @@ var css = {
   "background-color: white;" +
   "}",
 
-  searchPartOfSuggestion : ".search-part-of-suggestion" +
+  searchPartOfSuggestion: ".search-part-of-suggestion" +
   "{" +
   "position: relative;" +
   "margin: 0;" +
@@ -2579,9 +2579,71 @@ var css = {
   "color: #a1a1a2;" +
   "}",
 
-  searchSelectedFieldColor : ".search-selected-field-color " +
+  searchSelectedFieldColor: ".search-selected-field-color " +
   "{" +
   "background-color: #28a2f9;" +
+  "}",
+
+  myCardListPageTitle: ".mycardlist-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top:" + -12 * widthK + "px;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background: transparent;" +
+  "border-bottom:" + 5 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  myCardList: ".mycardList" +
+  "{" +
+  "position: absolute;" +
+  "background-color: gray;" +
+  "width: 100%;" +
+  "top: 10%;" +
+  "bottom: 0;" +
+  "}",
+
+  myCardListCard: ".mycardList-card" +
+  "{" +
+  "height: 221px;" +
+  "width: 327px;" +
+  "position: relative;" +
+  "top: 7px;" +
+  "-webkit-border-radius: 14px;" +
+  "-moz-border-radius: 14px;" +
+  "border-radius: 14px;" +
+  "background-size: cover;" +
+  "color: white;" +
+  "-webkit-box-shadow: 0px 122px 80px -130px rgba(0, 0, 0, 1);" +
+  "-moz-box-shadow: 0px 122px 80px -130px rgba(0, 0, 0, 1);" +
+  "box-shadow: 0px 122px 80px -130px rgba(0, 0, 0, 1);" +
+  "margin-left: 20px;" +
+  "float: left;" +
+  "margin: 15px;" +
+  "}",
+
+  myCardListCardBankNameUrl: ".mycardList-card-bank-name-url" +
+  "{" +
+  "position: absolute;" +
+  "width: 35%;" +
+  "height: 20%;" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "background-position: left top;" +
+  "left: 7%;" +
+  "top: 11%;" +
+  "}",
+
+  cardSalaryTitle: ".card-salary-title" +
+  "{" +
+  "position: absolute;" +
+  "top: 45%;" +
+  "left: 7%;" +
+  "color: #595759;" +
+  "background-size: contain;" +
+  "font-size: 19px;" +
+  "height: 10%;" +
   "}"
 
 
