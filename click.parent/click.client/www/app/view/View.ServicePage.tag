@@ -21,8 +21,9 @@
         </div>
         <div class="servicepage-amount-field" id="amountField">
             <p class="servicepage-text-field">Сумма оплаты</p>
-            <input class="servicepage-amount-input" type="tel" maxlength="9" value="{defaultAmount}" id="amount"
-                   onfocus="eraseDefault()"></input>
+            <input class="servicepage-amount-input" type="tel" maxlength="{amountLength}" value="{defaultAmount}"
+                   id="amount"
+                   onfocus="eraseDefault()"/>
             <div class="servicepage-amount-icon"></div>
         </div>
         <div class="servicepage-button-enter" ontouchend="choosePinCard()">
@@ -67,6 +68,7 @@
         this.formType = scope.service.form_type;
         this.fieldName = scope.servicesParamsMapOne[viewPay.chosenServiceId][0].title;
         this.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
+        this.amountLength = ("" + scope.service.max_pay_limit).length;
 
 
         console.log(this.fieldArray);
