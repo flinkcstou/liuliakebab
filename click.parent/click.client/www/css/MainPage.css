@@ -1332,7 +1332,7 @@ input {
     border-bottom: 5px solid rgb(149, 230, 253);
 }
 
-.mycardList {
+.mycardlist {
     position: absolute;
     background-color: gray;
     width: 100%;
@@ -1340,7 +1340,7 @@ input {
     bottom: 0;
 }
 
-.mycardList-card {
+.mycardlist-card {
     height: 188px;
     width: 327px;
     position: relative;
@@ -1356,7 +1356,7 @@ input {
     margin-left: 20px;
 }
 
-.mycardList-card-bank-name-url {
+.mycardlist-card-bank-name-url {
     position: absolute;
     width: 35%;
     height: 20%;
@@ -1367,7 +1367,18 @@ input {
     top: 11%;
 }
 
-.mycardList-card-salary-title {
+.mycardlist-card-bank-name {
+    position: absolute;
+    top: 12px;
+    left: 378px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    font-size: 36px;
+    height: 32px;
+    width: 118px;
+}
+
+.mycardlist-card-salary-title {
     position: absolute;
     top: 45%;
     left: 7%;
@@ -1377,12 +1388,78 @@ input {
     height: 10%;
 }
 
-.myCardList-card-balance-currency-container {
+.mycardlist-card-balance-currency-container {
     position: absolute;
     width: 100%;
     top: 55%;
     display: inline-block;
     margin: 0;
+}
+
+.mycardlist-card-number {
+    position: absolute;
+    top: 242px;
+    width: 384px;
+    height: 40px;
+    font-size: 32px;
+    text-shadow: white -1px -1px 0.4px,
+    black 0.0px 1px 0.2px,
+    white -1px -1px 0.4px,
+    black 0.0px 1px 0.4px;
+    -webkit-text-shadow: white -1px -1px 0.4px,
+    black 0.0px 1px 0.2px,
+    white -1px -1px 0.4px,
+    black 0.0px 1px 0.4px;
+    font-family: Orator;
+    color: transparent;
+    left: 26px;
+}
+
+.mycardlist-card-number-part-one {
+    position: absolute;
+    left: 0px;
+    font-weight: bold;
+}
+
+.mycardlist-card-number-part-two {
+    position: absolute;
+    left: 304px;
+    font-weight: bold;
+}
+
+.mycardlist-number-stars {
+    position: absolute;
+    margin: 0;
+    left: 94px;
+    top: 2px;
+    letter-spacing: -10px;
+    font-size: 52px;
+    word-spacing: -8px;
+}
+
+.mycardlist-card-balance {
+    position: relative;
+    left: 34px;
+    color: #515151;
+    font-size: 52px;
+    /* background-size: contain; */
+    margin: 0;
+    margin-top: -2px;
+    float: left;
+    padding: 0;
+}
+
+.mycardlist-card-currency {
+    position: relative;
+    margin-left: 40px;
+    /* margin-right: auto; */
+    color: #a7a7a7;
+    top: -6px;
+    font-size: 26px;
+    background-size: contain;
+    /* margin: 0; */
+    float: left;
+    width: 60px;
 }
 
 /*OTHER*/
