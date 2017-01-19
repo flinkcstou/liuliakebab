@@ -4,14 +4,18 @@ import kz.greetgo.cordosencha.gradle.core.DirOperations;
 
 public class CompileCordovaAndroid {
   public static void main(String[] args) throws Exception {
-    DirOperations dir = Util.newDirOperations();
+    DirOperations clickClient = Util.clickClientDir();
 
-    if (!dir.file("cordova/platforms/android").exists()) {
-      dir.cd("cordova").cmd("cordova platform add android@6.1.0");
+    if (!clickClient.file("cordova/platforms/android").exists()) {
+      clickClient.cd("cordova").cmd("cordova platform add android@6.1.0");
     }
 
-    dir.cd("cordova").cmd("cordova compile android");
+    clickClient.cd("cordova").cmd("cordova compile android");
 
-    dir.cd("cordova").file("AndroidManifest.xml").copyTo("platforms/android");
+    clickClient.xmlFile("cordova/platforms/android/AndroidManifest.xml")
+      .modify(xml -> xml.changeAttr("/manifest/application/activity", "android:windowSoftInputMode", "adjustPan"))
+      .save();
+
+
   }
 }

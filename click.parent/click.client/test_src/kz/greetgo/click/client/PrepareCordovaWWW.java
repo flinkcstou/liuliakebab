@@ -6,7 +6,7 @@ public class PrepareCordovaWWW {
   public static void main(String[] args) throws Exception {
     ArgsPCWWW a = ArgsPCWWW.parse(args);
 
-    DirOperations dir = Util.newDirOperations();
+    DirOperations dir = Util.clickClientDir();
     dir.cd("cordova").delete("www");
 
     String indexName = a.indexName();

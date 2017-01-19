@@ -34,7 +34,7 @@
             <div class="search-cancel-icon" ontouchend="searchCancelEnd()"></div>
         </div>
         <div id="searchContainerId" class="search-container">
-            <input id="searchInputId" class="search-input" onfocus="searchSuggestion()" onkeyup="searchSuggestion()"/>
+            <input id="searchInputId" class="search-input" onkeyup="searchSuggestion()"/>
             <div class="search-suggestion-container">
                 <div id="suggestionOneId" class="search-suggestion-field-one" ontouchend="suggestionFieldOne()">
                     <p class="search-part-of-suggestion">{onePartOne}
@@ -129,14 +129,25 @@
             scope.suggestionTwo = {};
             scope.suggestionThree = {};
             scope.suggestionFour = {};
-            for (var i = 0; i < arrayOfConnectedSuggestion.length; i++) {
-                if (arrayOfConnectedSuggestion[i].name.toLowerCase().search(scope.searchWord) != -1) {
 
+            for (var i = 0; i < arrayOfConnectedSuggestion.length; i++) {
+                    console.log(arrayOfConnectedSuggestion[i].name);
+//
+//                for(var k = 0; k < arrayOfConnectedSuggestion[i].name.length; k++){
+//
+//                    console.log(arrayOfConnectedSuggestion[i].name.substring(k, scope.searchWord.length + k).toLowerCase(), 'search word', scope.searchWord)
+//                    if(arrayOfConnectedSuggestion[i].name.substring(k, scope.searchWord.length + k).toLowerCase() == scope.searchWord){
+//                        scope.indexOfFind = k;
+//                        break;
+//                    }
+//                }
+
+                scope.indexOfFind = arrayOfConnectedSuggestion[i].name.toLowerCase().indexOf(scope.searchWord);
+                if (scope.indexOfFind != -1) {
 
                     check = true;
                     if (j == 3) {
 
-                        scope.indexOfFind = arrayOfConnectedSuggestion[i].name.toLowerCase().search(scope.searchWord);
 
                         scope.suggestionOneId.style.display = 'block';
                         scope.suggestionTwoId.style.display = 'block';
@@ -158,7 +169,7 @@
                     }
                     if (j == 2) {
 
-                        scope.indexOfFind = arrayOfConnectedSuggestion[i].name.toLowerCase().search(scope.searchWord);
+                        //scope.indexOfFind = arrayOfConnectedSuggestion[i].name.toLowerCase().search(scope.searchWord);
 
                         scope.suggestionOneId.style.display = 'block';
                         scope.suggestionTwoId.style.display = 'block';
@@ -179,7 +190,7 @@
 
                     }
                     if (j == 1) {
-                        scope.indexOfFind = arrayOfConnectedSuggestion[i].name.toLowerCase().search(scope.searchWord);
+                        //scope.indexOfFind = arrayOfConnectedSuggestion[i].name.toLowerCase().search(scope.searchWord);
 
                         scope.suggestionOneId.style.display = 'block';
                         scope.suggestionTwoId.style.display = 'block';
@@ -200,7 +211,7 @@
 
                     }
                     if (j == 0) {
-                        scope.indexOfFind = arrayOfConnectedSuggestion[i].name.toLowerCase().search(scope.searchWord);
+                        //scope.indexOfFind = arrayOfConnectedSuggestion[i].name.toLowerCase().search(scope.searchWord);
 
                         scope.suggestionOneId.style.display = 'block';
                         scope.suggestionTwoId.style.display = 'none';
@@ -208,6 +219,7 @@
                         scope.suggestionFourId.style.display = 'none';
 
                         scope.suggestionOne.name = arrayOfConnectedSuggestion[i].name;
+                        console.log("I AM IN ONE",scope.suggestionOne.name )
 
                         scope.suggestionOne.id = arrayOfConnectedSuggestion[i].id;
 

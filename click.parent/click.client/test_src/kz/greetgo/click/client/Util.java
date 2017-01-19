@@ -6,7 +6,7 @@ import kz.greetgo.cordosencha.gradle.util.OperationUtil;
 import java.io.IOException;
 
 public class Util {
-  public static DirOperations newDirOperations() throws IOException {
+  public static DirOperations clickClientDir() throws IOException {
     return OperationUtil.inDir(OperationUtil.getClientDir("click.client"));
   }
 }

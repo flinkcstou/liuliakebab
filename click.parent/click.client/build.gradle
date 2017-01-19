@@ -20,7 +20,7 @@ task cleanLibs(type: Delete) {
 clean.dependsOn cleanLibs
 
 dependencies {
-  testCompile 'kz.greetgo.cordosencha:cordosencha.gradle:0.0.5'
+  testCompile 'kz.greetgo.cordosencha:cordosencha.gradle:0.0.6'
 }
 
 task prepareCordovaStandWWW(type: JavaExec, group: 'client_inner') {
