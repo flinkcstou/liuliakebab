@@ -2634,7 +2634,7 @@ var css = {
 
   myCardListCard: ".mycardList-card" +
   "{" +
-  "height: 221px;" +
+  "height: 188px;" +
   "width: 327px;" +
   "position: relative;" +
   "top: 7px;" +
@@ -2663,14 +2663,14 @@ var css = {
   "top: 11%;" +
   "}",
 
-  cardSalaryTitle: ".card-salary-title" +
+  myCardListCardSalaryTitle: ".mycardList-card-salary-title" +
   "{" +
   "position: absolute;" +
   "top: 45%;" +
   "left: 7%;" +
   "color: #595759;" +
   "background-size: contain;" +
-  "font-size: 19px;" +
+  "font-size: 17px;" +
   "height: 10%;" +
   "}"
 

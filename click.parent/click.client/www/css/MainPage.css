@@ -1341,8 +1341,8 @@ input {
 }
 
 .mycardList-card {
-    height: 289px;
-    width: 510px;
+    height: 188px;
+    width: 327px;
     position: relative;
     top: 7px;
     -webkit-border-radius: 14px;
@@ -1367,14 +1367,22 @@ input {
     top: 11%;
 }
 
-.card-salary-title {
+.mycardList-card-salary-title {
     position: absolute;
     top: 45%;
     left: 7%;
     color: #595759;
     background-size: contain;
-    font-size: 19px;
+    font-size: 17px;
     height: 10%;
+}
+
+.myCardList-card-balance-currency-container {
+    position: absolute;
+    width: 100%;
+    top: 55%;
+    display: inline-block;
+    margin: 0;
 }
 
 /*OTHER*/

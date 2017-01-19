@@ -11,11 +11,11 @@
         <div class="mycardList">
             <div class="mycardList-card" each="{i in cardsarray}" style="background-image: url({i.background});">
 
-                <div class="card-bank-name-url" style="background-image: url({i.url})"></div>
+                <div class="mycardList-card-bank-name-url" style="background-image: url({i.url})"></div>
                 <div class="card-bank-name" style="background-image: url({i.bankname})"></div>
-                <div class="card-salary-title">{i.name}</div>
+                <div class="mycardList-card-salary-title">{i.name}</div>
 
-                <div class="card-balance-currency-container">
+                <div class="myCardList-card-balance-currency-container">
                     <p class="card-balance">{i.salary}</p>
                     <p class="card-currency">{i.currency}</p>
                 </div>
