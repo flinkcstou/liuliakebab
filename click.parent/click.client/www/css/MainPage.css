@@ -2558,15 +2558,12 @@ input[type=number], input[type=text] {
     background-color: white;
 }
 
-.search-part-one-of-suggestion{
-    background-color: #28a2f9;
+.search-part-of-suggestion{
     margin: 0;
     background-size: contain;
     float: left;
 }
 
-.search-part-two-of-suggestion{
-    margin: 0;
-    background-size: contain;
-    float: left;
+.search-selected-field-color {
+    background-color: #28a2f9;
 }

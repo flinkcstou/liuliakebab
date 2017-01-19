@@ -1,5 +1,5 @@
 <view-pay>
-  <div id="viewPayId" class="view-pay" disabled="{false}">
+  <div id="viewPayId" class="view-pay">
     <div class="page-title">
       <p class="pay-name-title">{titleName}</p>
       <div id="backButton" ontouchend="goToMainPage()"
@@ -11,8 +11,8 @@
     <div class="pay-category-container">
       <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
         <li each="{i in categoryList}" style="overflow: hidden;">
-          <div class="pay-service-block-containter" id="{i.id}" ontouchstart="onTouchStart()"
-               ontouchend="onTouchEnd(this.id)">
+          <div class="pay-service-block-containter" id="{i.id}" ontouchstart="onTouchStartOfCategory()"
+               ontouchend="onTouchEndOfCategory(this.id)">
             <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
             <div class="pay-category-name-field">{i.name}
             </div>
@@ -44,21 +44,33 @@
 
         <div id="suggestionOneId" class="search-suggestion-field-one" ontouchend="suggestionFieldOne()">
 
-          <p class="search-part-of-suggestion">{onePartOne}<mark>{onePartTwo}</mark>{onePartThree}</p>
+          <p class="search-part-of-suggestion">{onePartOne}
+            <mark class="search-selected-field-color">{onePartTwo}</mark>
+            {onePartThree}
+          </p>
         </div>
 
         <div id="suggestionTwoId" class="search-suggestion-field-two" ontouchend="suggestionFieldTwo()">
 
-          <p class="search-part-of-suggestion">{twoPartOne}<mark>{twoPartTwo}</mark>{twoPartThree}</p>
+          <p class="search-part-of-suggestion">{twoPartOne}
+            <mark class="search-selected-field-color">{twoPartTwo}</mark>
+            {twoPartThree}
+          </p>
         </div>
 
         <div id="suggestionThreeId" class="search-suggestion-field-three" ontouchend="suggestionFieldThree()">
 
-          <p class="search-part-of-suggestion">{threePartOne}<mark>{threePartTwo}</mark>{threePartThree}</p>
+          <p class="search-part-of-suggestion">{threePartOne}
+            <mark class="search-selected-field-color">{threePartTwo}</mark>
+            {threePartThree}
+          </p>
         </div>
 
         <div id="suggestionFourId" class="search-suggestion-field-four" ontouchend="suggestionFieldFour()">
-          <p class="search-part-of-suggestion">{fourPartOne}<mark>{fourPartTwo}</mark>{fourPartThree}</p>
+          <p class="search-part-of-suggestion">{fourPartOne}
+            <mark class="search-selected-field-color">{fourPartTwo}</mark>
+            {fourPartThree}
+          </p>
         </div>
       </div>
 
@@ -66,6 +78,7 @@
   </div>
 
   <script>
+    //TODO: OPTIMIZE THIS PAGE SLOW DOWNLOADING CATEGORIES AND SERVICES
     var scope = this;
 
     goToMainPage = function () {
@@ -129,7 +142,7 @@
             }
 
             scope.fourPartOne = scope.suggestionFour.name.substring(0, scope.indexOfFind);
-            scope.fourPartTwo = scope.suggestionFour.name.substring(scope.indexOfFind, scope.searchWord.length + scope.fourPartOne.length );
+            scope.fourPartTwo = scope.suggestionFour.name.substring(scope.indexOfFind, scope.searchWord.length + scope.fourPartOne.length);
             scope.fourPartThree = scope.suggestionFour.name.substring(scope.fourPartTwo.length + scope.fourPartOne.length, scope.suggestionFour.name.length);
 
           }
@@ -151,7 +164,7 @@
             }
 
             scope.threePartOne = scope.suggestionThree.name.substring(0, scope.indexOfFind);
-            scope.threePartTwo = scope.suggestionThree.name.substring(scope.indexOfFind, scope.searchWord.length + scope.threePartOne.length );
+            scope.threePartTwo = scope.suggestionThree.name.substring(scope.indexOfFind, scope.searchWord.length + scope.threePartOne.length);
             scope.threePartThree = scope.suggestionThree.name.substring(scope.threePartTwo.length + scope.threePartOne.length, scope.suggestionThree.name.length);
 
           }
@@ -172,7 +185,7 @@
             }
 
             scope.twoPartOne = scope.suggestionTwo.name.substring(0, scope.indexOfFind);
-            scope.twoPartTwo = scope.suggestionTwo.name.substring(scope.indexOfFind, scope.searchWord.length + scope.twoPartOne.length );
+            scope.twoPartTwo = scope.suggestionTwo.name.substring(scope.indexOfFind, scope.searchWord.length + scope.twoPartOne.length);
             scope.twoPartThree = scope.suggestionTwo.name.substring(scope.twoPartTwo.length + scope.twoPartOne.length, scope.suggestionTwo.name.length);
 
           }
@@ -193,7 +206,7 @@
             }
 
             scope.onePartOne = scope.suggestionOne.name.substring(0, scope.indexOfFind);
-            scope.onePartTwo = scope.suggestionOne.name.substring(scope.indexOfFind, scope.searchWord.length + scope.onePartOne.length );
+            scope.onePartTwo = scope.suggestionOne.name.substring(scope.indexOfFind, scope.searchWord.length + scope.onePartOne.length);
             scope.onePartThree = scope.suggestionOne.name.substring(scope.onePartTwo.length + scope.onePartOne.length, scope.suggestionOne.name.length);
 
           }
@@ -202,7 +215,7 @@
           console.log("indexOfFind", scope.indexOfFind)
 
 
-          console.log('scope.partOne',scope.onePartOne, 'scope.partTwo',scope.onePartTwo,'scope.partThree', scope.onePartThree)
+          console.log('scope.partOne', scope.onePartOne, 'scope.partTwo', scope.onePartTwo, 'scope.partThree', scope.onePartThree)
         }
 
         riot.update();
@@ -222,28 +235,58 @@
       event.preventDefault();
       event.stopPropagation();
       console.log('work', scope.suggestionOne);
+      checkOfSearch = true;
+      if (scope.suggestionOne.form_type) {
+        goToServiceView(scope.suggestionOne.id)
+      }
+      else
+        onTouchEndOfCategory(scope.suggestionOne.id);
 
+      this.blockSearchId.style.display = 'none';
     }
 
     suggestionFieldTwo = function () {
       event.preventDefault();
       event.stopPropagation();
       console.log('work', scope.suggestionTwo);
+      checkOfSearch = true;
+      if (scope.suggestionTwo.form_type) {
+        goToServiceView(scope.suggestionTwo.id)
+      }
+      else
+        onTouchEndOfCategory(scope.suggestionTwo.id);
 
+      this.blockSearchId.style.display = 'none';
     }
+
 
     suggestionFieldThree = function () {
       event.preventDefault();
       event.stopPropagation();
       console.log('work', scope.suggestionThree);
+      checkOfSearch = true;
+      if (scope.suggestionThree.form_type) {
+        goToServiceView(scope.suggestionThree.id)
+      }
+      else
+        onTouchEndOfCategory(scope.suggestionThree.id);
 
+      this.blockSearchId.style.display = 'none';
     }
+
 
     suggestionFieldFour = function () {
       event.preventDefault();
       event.stopPropagation();
       console.log('work', scope.suggestionFour);
+      checkOfSearch = true;
+      if (scope.suggestionFour.form_type) {
+        goToServiceView(scope.suggestionFour.id)
+      }
+      else
+        onTouchEndOfCategory(scope.suggestionFour.id);
 
+      this.blockSearchId.style.display = 'none';
     }
 
     this.titleName = 'ОПЛАТА';
@@ -265,6 +308,7 @@
     var arrayOfConnectedSuggestion = [];
     var bufferArray = [];
     scope.searchWord = '';
+    var checkOfSearch = false;
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     phoneNumber = phoneNumber.substring(3, phoneNumber.length);
@@ -313,11 +357,9 @@
     var onTouchEndY;
     var count = 1;
 
-    onTouchStart = function () {
+    onTouchStartOfCategory = function () {
       event.preventDefault();
       event.stopPropagation();
-      if (this.viewPayId.disabled == true) return;
-
       onTouchStartY = event.changedTouches[0].pageY;
 
     }
@@ -325,13 +367,12 @@
     onTouchEndOfCategory = function (id) {
       event.preventDefault();
       event.stopPropagation();
-      if (this.viewPayId.disabled == true) return;
 
       onTouchEndY = event.changedTouches[0].pageY;
       console.log(onTouchEndY)
 
 
-      if (Math.abs(onTouchStartY - onTouchEndY) <= 10) {
+      if (Math.abs(onTouchStartY - onTouchEndY) <= 10 || checkOfSearch) {
         if (scope.index == id) {
           scope.index = -1;
         } else {
@@ -340,11 +381,6 @@
           scope.index = id;
         }
 
-//        for (var i = 0; i < scope.servicesMapByCategory[id].length; i++) {
-//          scope.servicesMapByCategory[id][i].count = count;
-//          console.log('CHECKS ',scope.servicesMapByCategory[id][i])
-//          count++;
-//        }
         scope.currentList = scope.servicesMapByCategory[id];
         count = 1;
         console.log("currentList", scope.currentList);
@@ -405,10 +441,6 @@
 
               }
 
-
-          //riot.update(scope.serviceList)
-
-          //console.log('array service list', scope.serviceList)
           localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
           localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
           localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
@@ -499,7 +531,7 @@
       viewPay.chosenServiceId = id;
       event.preventDefault();
       event.stopPropagation();
-      if (this.viewPayId.disabled == true) return;
+
       localStorage.setItem('chosenServiceId', id);
       event.preventDefault();
       event.stopPropagation();

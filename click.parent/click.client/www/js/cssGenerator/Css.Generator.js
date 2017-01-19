@@ -2440,7 +2440,7 @@ var css = {
 
   componentSearch: ".component-search " +
   "{" +
-  "position: fixed;" +
+  "position: absolute;" +
   "opacity: 0.95;" +
   "height: 100%;" +
   "width: 100%;" +
@@ -2578,6 +2578,11 @@ var css = {
   "margin-top: 5%;" +
   "color: #a1a1a2;" +
   "}",
+
+  searchSelectedFieldColor : ".search-selected-field-color " +
+  "{" +
+  "background-color: #28a2f9;" +
+  "}"
 
 
 }
