@@ -2,12 +2,9 @@
     <div id="viewPayId" class="view-pay">
         <div class="page-title">
             <p class="pay-name-title">{titleName}</p>
-            <div id="backButton" ontouchend="goToMainPage()"
-                 class="{back-button: backbuttoncheck}">
-            </div>
+            <div id="backButton" ontouchend="goToMainPage()" class="{back-button: backbuttoncheck}"></div>
             <div id="rightButton" type="button" class="{search-button: rightbuttoncheck}" ontouchend="search()"></div>
         </div>
-
         <div class="pay-category-container">
             <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
                 <li each="{i in categoryList}" style="overflow: hidden;">
@@ -30,7 +27,6 @@
             </ul>
         </div>
     </div>
-
     <div id="blockSearchId" class="component-search">
         <div class="search-title-container">
             <div class="search-search-icon"></div>
@@ -39,33 +35,25 @@
         </div>
         <div id="searchContainerId" class="search-container">
             <input id="searchInputId" class="search-input" onfocus="searchSuggestion()" onkeyup="searchSuggestion()"/>
-
             <div class="search-suggestion-container">
-
                 <div id="suggestionOneId" class="search-suggestion-field-one" ontouchend="suggestionFieldOne()">
-
                     <p class="search-part-of-suggestion">{onePartOne}
                         <mark class="search-selected-field-color">{onePartTwo}</mark>
                         {onePartThree}
                     </p>
                 </div>
-
                 <div id="suggestionTwoId" class="search-suggestion-field-two" ontouchend="suggestionFieldTwo()">
-
                     <p class="search-part-of-suggestion">{twoPartOne}
                         <mark class="search-selected-field-color">{twoPartTwo}</mark>
                         {twoPartThree}
                     </p>
                 </div>
-
                 <div id="suggestionThreeId" class="search-suggestion-field-three" ontouchend="suggestionFieldThree()">
-
                     <p class="search-part-of-suggestion">{threePartOne}
                         <mark class="search-selected-field-color">{threePartTwo}</mark>
                         {threePartThree}
                     </p>
                 </div>
-
                 <div id="suggestionFourId" class="search-suggestion-field-four" ontouchend="suggestionFieldFour()">
                     <p class="search-part-of-suggestion">{fourPartOne}
                         <mark class="search-selected-field-color">{fourPartTwo}</mark>
@@ -73,13 +61,36 @@
                     </p>
                 </div>
             </div>
-
         </div>
     </div>
-
     <script>
         //TODO: OPTIMIZE THIS PAGE SLOW DOWNLOADING CATEGORIES AND SERVICES
         var scope = this;
+        this.titleName = 'ОПЛАТА';
+
+
+        history.arrayOfHistory.push('view-pay');
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
+        scope = this;
+        scope.backbuttoncheck = true;
+        scope.rightbuttoncheck = true;
+        scope.categoryList = JSON.parse(localStorage.getItem("click_client_payCategoryList"));
+        scope.serviceList = JSON.parse(localStorage.getItem("click_client_payServiceList"));
+        scope.servicesMapByCategory = JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"));
+        scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
+        scope.servicesParams = JSON.parse(localStorage.getItem("click_client_servicesParams"));
+
+        //VARIABLES FOR SEARCHING
+        var arrayOfConnectedSuggestion = [];
+        var bufferArray = [];
+        scope.searchWord = '';
+        var checkOfSearch = false;
+
+        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+        phoneNumber = phoneNumber.substring(3, phoneNumber.length);
+        //console.log('PHONE NUMBER ', phoneNumber);
+        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
         goToMainPage = function () {
             event.preventDefault();
@@ -118,7 +129,6 @@
             scope.suggestionTwo = {};
             scope.suggestionThree = {};
             scope.suggestionFour = {};
-            console.log(arrayOfConnectedSuggestion)
             for (var i = 0; i < arrayOfConnectedSuggestion.length; i++) {
                 if (arrayOfConnectedSuggestion[i].name.toLowerCase().search(scope.searchWord) != -1) {
 
@@ -208,14 +218,9 @@
                         scope.onePartOne = scope.suggestionOne.name.substring(0, scope.indexOfFind);
                         scope.onePartTwo = scope.suggestionOne.name.substring(scope.indexOfFind, scope.searchWord.length + scope.onePartOne.length);
                         scope.onePartThree = scope.suggestionOne.name.substring(scope.onePartTwo.length + scope.onePartOne.length, scope.suggestionOne.name.length);
-
                     }
                     j++;
 
-                    console.log("indexOfFind", scope.indexOfFind)
-
-
-                    console.log('scope.partOne', scope.onePartOne, 'scope.partTwo', scope.onePartTwo, 'scope.partThree', scope.onePartThree)
                 }
 
                 riot.update();
@@ -289,33 +294,6 @@
             this.blockSearchId.style.display = 'none';
         }
 
-        this.titleName = 'ОПЛАТА';
-
-
-        history.arrayOfHistory.push('view-pay');
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-
-        scope = this;
-        scope.backbuttoncheck = true;
-        scope.rightbuttoncheck = true;
-        scope.categoryList = JSON.parse(localStorage.getItem("click_client_payCategoryList"));
-        scope.serviceList = JSON.parse(localStorage.getItem("click_client_payServiceList"));
-        scope.servicesMapByCategory = JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"));
-        scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
-        scope.servicesParams = JSON.parse(localStorage.getItem("click_client_servicesParams"));
-
-        //VARIABLES FOR SEARCHING
-        var arrayOfConnectedSuggestion = [];
-        var bufferArray = [];
-        scope.searchWord = '';
-        var checkOfSearch = false;
-
-        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-        phoneNumber = phoneNumber.substring(3, phoneNumber.length);
-        //console.log('PHONE NUMBER ', phoneNumber);
-        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-
-
         if (!scope.categoryList) {
             scope.categoryList = [];
             scope.categoryNamesMap = {};
@@ -331,7 +309,6 @@
                     if (result[0][0].error == 0)
                         if (result[1][0])
                             for (var i in result[1]) {
-//                console.log('category ID ', result[1][i].id, ', category name= ', result[1][i].name);
                                 scope.categoryList.push(result[1][i]);
                                 scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
 
@@ -339,7 +316,6 @@
                     riot.update(scope.categoryList);
 
                     scope.id = 0;
-//          console.log('array category list', scope.categoryList)
 
                     localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
                     localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
@@ -358,21 +334,19 @@
         var count = 1;
 
         onTouchStartOfCategory = function () {
-            event.preventDefault();
             event.stopPropagation();
             onTouchStartY = event.changedTouches[0].pageY;
 
         }
 
         onTouchEndOfCategory = function (id) {
-            event.preventDefault();
             event.stopPropagation();
 
             onTouchEndY = event.changedTouches[0].pageY;
 //      console.log(onTouchEndY)
 
 
-            if (Math.abs(onTouchStartY - onTouchEndY) <= 10 || checkOfSearch) {
+            if (Math.abs(onTouchStartY - onTouchEndY) <= 20 || checkOfSearch) {
                 if (scope.index == id) {
                     scope.index = -1;
                 } else {
@@ -383,7 +357,6 @@
 
                 scope.currentList = scope.servicesMapByCategory[id];
                 count = 1;
-//        console.log("currentList", scope.currentList);
 
 
                 if (!scope.currentList) {
@@ -397,7 +370,6 @@
                     document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
                     viewPay.categoryId = id;
                 }
-//        console.log(scope.show)
 
 
                 riot.update(scope.index);
@@ -538,12 +510,5 @@
             this.riotTags.innerHTML = "<view-service-page>";
             riot.mount("view-service-page");
         }
-
-
-        //    console.log("categories ", scope.categoryList)
-        //console.log("services ", scope.serviceList)
-        //    console.log("serviceParams", scope.servicesParams)
-
-
     </script>
 </view-pay>
