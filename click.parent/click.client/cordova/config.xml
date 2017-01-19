@@ -5,11 +5,27 @@
   <screen src="www/img/logo.png"/>
   <preference name="Fullscreen" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
+
   <platform name="android">
     <preference name="Orientation" value="sensorPortrait"/>
+    <allow-intent href="market:*"/>
+    <preference name="android-minSdkVersion" value="14" />
+    <icon src="resources/logo.png" density="ldpi"/>
+    <icon src="resources/logo.png" density="mdpi"/>
+    <icon src="resources/logo.png" density="hdpi"/>
+    <icon src="resources/logo.png" density="xhdpi"/>
   </platform>
+
   <platform name="ios">
     <preference name="Orientation" value="sensorPortrait"/>
+    <preference name="StatusBarBackgroundColor" value="#007AE2" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+    <allow-intent href="itms:*"/>
+    <allow-intent href="itms-apps:*"/>
+    <icon src="resources/logo.png" density="ldpi"/>
+    <icon src="resources/logo.png" density="mdpi"/>
+    <icon src="resources/logo.png" density="hdpi"/>
+    <icon src="resources/logo.png" density="xhdpi"/>
   </platform>
   <author email="chamirkazhiyev@greet-go.com">
     Amirkazhiev Chingis
@@ -28,27 +44,6 @@
   <allow-intent href="sms:*"/>
   <allow-intent href="mailto:*"/>
   <allow-intent href="geo:*"/>
-  <platform name="android">
-    <allow-intent href="market:*"/>
-
-    <preference name="android-minSdkVersion" value="14" />
-    <icon src="resources/logo.png" density="ldpi"/>
-    <icon src="resources/logo.png" density="mdpi"/>
-    <icon src="resources/logo.png" density="hdpi"/>
-    <icon src="resources/logo.png" density="xhdpi"/>
-  </platform>
-  <platform name="ios">
-    <preference name="StatusBarBackgroundColor" value="#007AE2" />
-    <preference name="StatusBarStyle" value="lightcontent" />
-
-    <allow-intent href="itms:*"/>
-    <allow-intent href="itms-apps:*"/>
-
-    <icon src="resources/logo.png" density="ldpi"/>
-    <icon src="resources/logo.png" density="mdpi"/>
-    <icon src="resources/logo.png" density="hdpi"/>
-    <icon src="resources/logo.png" density="xhdpi"/>
-  </platform>
 
 
 </widget>
