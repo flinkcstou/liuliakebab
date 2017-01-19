@@ -5,6 +5,14 @@ window.device_fake.platform = 'Android';
 window.device_fake.info = 'Apple 9.3.5 iPhone4,1';
 window.device_fake.check = false;
 
+window.Keyboard_fake = {};
+window.Keyboard_fake.hide = function (){
+  alert('keyboard is hidden')
+};
+
+if(!window.Keyboard){
+  window.Keyboard = window.Keyboard_fake;
+}
 
 if (!window.device) {
   window.device = window.device_fake;

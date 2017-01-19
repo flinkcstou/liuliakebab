@@ -110,6 +110,7 @@
         }
 
         searchCancelEnd = function () {
+            Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
             this.blockSearchId.style.display = 'none';
@@ -132,15 +133,7 @@
 
             for (var i = 0; i < arrayOfConnectedSuggestion.length; i++) {
                     console.log(arrayOfConnectedSuggestion[i].name);
-//
-//                for(var k = 0; k < arrayOfConnectedSuggestion[i].name.length; k++){
-//
-//                    console.log(arrayOfConnectedSuggestion[i].name.substring(k, scope.searchWord.length + k).toLowerCase(), 'search word', scope.searchWord)
-//                    if(arrayOfConnectedSuggestion[i].name.substring(k, scope.searchWord.length + k).toLowerCase() == scope.searchWord){
-//                        scope.indexOfFind = k;
-//                        break;
-//                    }
-//                }
+
 
                 scope.indexOfFind = arrayOfConnectedSuggestion[i].name.toLowerCase().indexOf(scope.searchWord);
                 if (scope.indexOfFind != -1) {
@@ -249,6 +242,7 @@
         }
 
         suggestionFieldOne = function () {
+            Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
             console.log('work', scope.suggestionOne);
@@ -263,6 +257,7 @@
         }
 
         suggestionFieldTwo = function () {
+            Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
             console.log('work', scope.suggestionTwo);
@@ -278,6 +273,7 @@
 
 
         suggestionFieldThree = function () {
+            Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
             console.log('work', scope.suggestionThree);
@@ -293,6 +289,7 @@
 
 
         suggestionFieldFour = function () {
+            Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
             console.log('work', scope.suggestionFour);
