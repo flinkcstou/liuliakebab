@@ -86,21 +86,13 @@
         scope.checked = false;
 
         checkCard = function (id) {
-            if (scope.ind == id) {
-                scope.ind = -1;
-                document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
-                scope.checked = false;
+            if (scope.ind != -1) {
+                document.getElementById("check" + scope.ind).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
             }
-            else {
-                if (scope.ind != -1) {
-                    document.getElementById("check" + scope.ind).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
-                }
-                scope.ind = id;
-                document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
-                scope.checked = true;
-                viewServicePinCards.chosenCardId = scope.ind;
-            }
-//
+            scope.ind = id;
+            document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
+            scope.checked = true;
+            viewServicePinCards.chosenCardId = scope.ind;
         }
 
 

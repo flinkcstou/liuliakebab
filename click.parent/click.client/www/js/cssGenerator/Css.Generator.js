@@ -1990,7 +1990,7 @@ var css = {
   "left: 10%;" +
   "width: 79.5%;" +
   "height: 9%;" +
-  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
+  "border-bottom:" + 5 * widthK + "px solid lightgray;" +
   "color: white;" +
   "top: 4.5%" +
   "}",
