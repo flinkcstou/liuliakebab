@@ -2047,8 +2047,6 @@ var css = {
   "float: left;" +
   "position: relative;" +
   "top: 26%;" +
-  "width: 7%;" +
-  "height: 42%;" +
   "font-size: " + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -2059,10 +2057,10 @@ var css = {
   "{" +
   "border: none;" +
   "outline: none;" +
-  "position: relative;" +
-  "top: 36%;" +
+  "position: absolute;" +
+  "top: 26%;" +
   "width: 88%;" +
-  "height: 42%;" +
+  "height: 67%;" +
   "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -2072,11 +2070,11 @@ var css = {
   "{" +
   "border: none;" +
   "outline: none;" +
-  "position: relative;" +
-  "top: 38%;" +
-  "left: 18%;" +
+  "position: absolute;" +
+  "top: 26%;" +
+  "left: 26%;" +
   "width: 66%;" +
-  "height: 42%;" +
+  "height: 67%;" +
   "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
