@@ -2042,18 +2042,46 @@ var css = {
   "bottom: 88%;" +
   "}",
 
-  inputTypeNumberText: "input[type=number], input[type=text]" +
+  servicePageNumberFirstPart: ".servicepage-number-first-part" +
+  "{" +
+  "float: left;" +
+  "position: relative;" +
+  "top: 26%;" +
+  "width: 7%;" +
+  "height: 42%;" +
+  "font-size: 56px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "margin: 0;" +
+  "}",
+
+  servicePageAmountInput: ".servicepage-amount-input" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "top: 36%;" +
+  "width: 88%;" +
+  "height: 42%;" +
+  "font-size: 56px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "}",
+
+  servicePageNumberInputPart: ".servicepage-number-input-part" +
   "{" +
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
   "top: 38%;" +
-  "width: 88%;" +
+  "left: 18%;" +
+  "width: 66%;" +
   "height: 42%;" +
-  "font-size: " + 56 * widthK + "px; " +
+  "font-size: 56px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
+
 
   servicePagePhoneInput: ".servicepage-phone-input" +
   "{" +

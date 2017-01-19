@@ -74,7 +74,7 @@
         var serviceId = localStorage.getItem('chosenServiceId');
         scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
 
-        this.phoneText = viewServicePage.phoneText;
+        this.phoneText = "+998 " + viewServicePage.phoneText;
         this.amountText = viewServicePage.amountText;
 
         this.titleName = scope.service.name;

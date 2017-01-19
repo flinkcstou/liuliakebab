@@ -12,12 +12,15 @@
     <div class="servicepage-body-container" if="{formType==1}">
         <div class="servicepage-phone-field" each="{i in fieldArray}">
             <p class="servicepage-text-field">{i.title}</p>
-            <input type="text" value="+998" onkeydown="checkMinValue()" id="phone"></input>
+            <p class="servicepage-number-first-part">+998</p>
+            <input class="servicepage-number-input-part" type="number"
+                   onkeydown="checkMaxValue()" id="phone" value="{defaultNumber}"></input>
             <div class="servicepage-phone-icon"></div>
         </div>
         <div class="servicepage-amount-field">
             <p class="servicepage-text-field">Сумма оплаты</p>
-            <input type="number" value="0" id="amount" onfocus="eraseDefault()"></input>
+            <input class="servicepage-amount-input" type="number" value="{defaultAmount}" id="amount"
+                   onfocus="eraseDefault()"></input>
             <div class="servicepage-amount-icon"></div>
         </div>
         <div class="servicepage-button-enter" ontouchend="choosePinCard()">
@@ -30,7 +33,6 @@
         touchStartTitle = function () {
             event.preventDefault();
             event.stopPropagation();
-
             this.riotTags.innerHTML = "<view-pay>";
             riot.mount('view-pay');
         }
@@ -40,19 +42,21 @@
 
         scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
         scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
-        console.log("services map =", scope.servicesMap);
+        //console.log("services map =", scope.servicesMap);
         scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
         scope.servicesParamsMapTwo = JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"));
         //var serviceId = localStorage.getItem('chosenServiceId');
-        console.log("service id=", viewPay.chosenServiceId);
+        //console.log("service id=", viewPay.chosenServiceId);
 
         scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
+        scope.defaultAmount = !viewServicePage.amountText ? 0 : viewServicePage.amountText;
+        scope.defaultNumber = !viewServicePage.phoneText ? null : viewServicePage.phoneText;
 
-        console.log("Service data: ", scope.service);
-        console.log("category id ", viewPay.categoryId);
-        console.log("Map One", scope.servicesParamsMapOne);
-        console.log("Map Two", scope.servicesParamsMapTwo);
-        console.log("category name =", scope.categoryNamesMap[viewPay.categoryId]);
+        //        console.log("Service data: ", scope.service);
+        //        console.log("category id ", viewPay.categoryId);
+        //        console.log("Map One", scope.servicesParamsMapOne);
+        //        console.log("Map Two", scope.servicesParamsMapTwo);
+        //        console.log("category name =", scope.categoryNamesMap[viewPay.categoryId]);
 
 
         this.titleName = scope.service.name;
@@ -61,15 +65,13 @@
         this.formType = scope.service.form_type;
         this.fieldName = scope.servicesParamsMapOne[viewPay.chosenServiceId][0].title;
         this.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
-        //scope.amountMinValue = scope.service.min_pay_limit;
-        //scope.amountMaxValue = scope.service.max_pay_limit;
-        //console.log(scope.amountMinValue);
+
 
         console.log("form type", scope.formType);
 
 
         choosePinCard = function () {
-            if (document.getElementById('phone').value.length < 13) {
+            if (document.getElementById('phone').value.length < 9) {
                 alert("Введите валидный номер телефона");
                 return;
             }
@@ -92,19 +94,17 @@
         }
 
 
-        checkMinValue = function () {
+        checkMaxValue = function () {
             var key = event.keyCode || event.charCode;
 
-            if (!(key == 8 || key == 46) && document.getElementById('phone').value.length == 13) {
+            if (!(key == 8 || key == 46) && document.getElementById('phone').value.length == 9) {
                 event.preventDefault();
             }
-
-            if ((key == 8 || key == 46) && document.getElementById('phone').value.length == 4)
-                event.preventDefault();
         }
 
         eraseDefault = function () {
-            document.getElementById('amount').value = null;
+            if (document.getElementById('amount').value == '0')
+                document.getElementById('amount').value = null;
         }
 
 
