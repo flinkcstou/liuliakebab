@@ -110,6 +110,7 @@
         }
 
         searchCancelEnd = function () {
+            Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
             this.blockSearchId.style.display = 'none';
@@ -241,6 +242,7 @@
         }
 
         suggestionFieldOne = function () {
+            Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
             console.log('work', scope.suggestionOne);
@@ -255,6 +257,7 @@
         }
 
         suggestionFieldTwo = function () {
+            Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
             console.log('work', scope.suggestionTwo);
@@ -270,6 +273,7 @@
 
 
         suggestionFieldThree = function () {
+            Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
             console.log('work', scope.suggestionThree);
@@ -285,6 +289,7 @@
 
 
         suggestionFieldFour = function () {
+            Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
             console.log('work', scope.suggestionFour);
