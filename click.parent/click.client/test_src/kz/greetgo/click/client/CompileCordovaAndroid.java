@@ -12,6 +12,6 @@ public class CompileCordovaAndroid {
 
     dir.cd("cordova").cmd("cordova compile android");
 
-    dir.cmd("cp /home/chingis/IdeaProjects/click/click.parent/click.client/cordova/AndroidManifest.xml /home/chingis/IdeaProjects/click/click.parent/click.client/cordova/platforms/android");
+    dir.cd("cordova").file("AndroidManifest.xml").copyTo("platforms/android");
   }
 }
