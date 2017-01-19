@@ -11,5 +11,7 @@ public class CompileCordovaAndroid {
     }
 
     dir.cd("cordova").cmd("cordova compile android");
+
+    dir.cd("cordova").file("AndroidManifest.xml").copyTo("platforms/android");
   }
 }
