@@ -2049,7 +2049,7 @@ var css = {
   "top: 26%;" +
   "width: 7%;" +
   "height: 42%;" +
-  "font-size: 56px;" +
+  "font-size: " + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "margin: 0;" +
@@ -2063,7 +2063,7 @@ var css = {
   "top: 36%;" +
   "width: 88%;" +
   "height: 42%;" +
-  "font-size: 56px;" +
+  "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
@@ -2077,7 +2077,7 @@ var css = {
   "left: 18%;" +
   "width: 66%;" +
   "height: 42%;" +
-  "font-size: 56px;" +
+  "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
