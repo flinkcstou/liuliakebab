@@ -132,15 +132,7 @@
 
             for (var i = 0; i < arrayOfConnectedSuggestion.length; i++) {
                     console.log(arrayOfConnectedSuggestion[i].name);
-//
-//                for(var k = 0; k < arrayOfConnectedSuggestion[i].name.length; k++){
-//
-//                    console.log(arrayOfConnectedSuggestion[i].name.substring(k, scope.searchWord.length + k).toLowerCase(), 'search word', scope.searchWord)
-//                    if(arrayOfConnectedSuggestion[i].name.substring(k, scope.searchWord.length + k).toLowerCase() == scope.searchWord){
-//                        scope.indexOfFind = k;
-//                        break;
-//                    }
-//                }
+
 
                 scope.indexOfFind = arrayOfConnectedSuggestion[i].name.toLowerCase().indexOf(scope.searchWord);
                 if (scope.indexOfFind != -1) {
