@@ -44,6 +44,7 @@
 
 
     <script>
+        riot.update();
 
         var scope = this;
         touchStartTitle = function () {
@@ -72,8 +73,10 @@
 
         if (viewServicePinCards.chosenCardId) {
             console.log("chosen card id=" + viewServicePinCards.chosenCardId);
-            riot.update();
+            console.log(document.getElementById("check" + viewServicePinCards.chosenCardId))
             document.getElementById("check" + viewServicePinCards.chosenCardId).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
+
+
         }
 
 
