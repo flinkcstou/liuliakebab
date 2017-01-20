@@ -68,7 +68,6 @@
         var scope = this;
         this.titleName = 'ОПЛАТА';
 
-
         history.arrayOfHistory.push('view-pay');
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
@@ -118,7 +117,7 @@
         }
 
         searchSuggestion = function () {
-            var j = 0;
+            var countOfSuggestionWord = 0;
             var check = false;
             event.preventDefault();
             event.stopPropagation();
@@ -131,115 +130,122 @@
             scope.suggestionThree = {};
             scope.suggestionFour = {};
 
-            for (var i = 0; i < arrayOfConnectedSuggestion.length; i++) {
-                    console.log(arrayOfConnectedSuggestion[i].name);
+            arrayOfConnectedSuggestion.filter(function (wordOfFunction) {
 
-
-                scope.indexOfFind = arrayOfConnectedSuggestion[i].name.toLowerCase().indexOf(scope.searchWord);
-                if (scope.indexOfFind != -1) {
+                var index = wordOfFunction.name.toLowerCase().indexOf(scope.searchWord);
+                if (index != -1 && countOfSuggestionWord <= 4) {
 
                     check = true;
-                    if (j == 3) {
-
+                    if (countOfSuggestionWord == 3) {
 
                         scope.suggestionOneId.style.display = 'block';
                         scope.suggestionTwoId.style.display = 'block';
                         scope.suggestionThreeId.style.display = 'block';
                         scope.suggestionFourId.style.display = 'block';
 
-                        scope.suggestionFour.name = arrayOfConnectedSuggestion[i].name;
+                        scope.suggestionFour.name = wordOfFunction.name;
 
-                        scope.suggestionFour.id = arrayOfConnectedSuggestion[i].id;
+                        scope.suggestionFour.id = wordOfFunction.id;
 
-                        if (arrayOfConnectedSuggestion[i].form_type) {
-                            scope.suggestionFour.form_type = arrayOfConnectedSuggestion[i].form_type;
+                        if (wordOfFunction.form_type) {
+                            scope.suggestionFour.form_type = wordOfFunction.form_type;
                         }
 
-                        scope.fourPartOne = scope.suggestionFour.name.substring(0, scope.indexOfFind);
-                        scope.fourPartTwo = scope.suggestionFour.name.substring(scope.indexOfFind, scope.searchWord.length + scope.fourPartOne.length);
+                        scope.fourPartOne = scope.suggestionFour.name.substring(0, index);
+                        scope.fourPartTwo = scope.suggestionFour.name.substring(index, scope.searchWord.length + scope.fourPartOne.length);
                         scope.fourPartThree = scope.suggestionFour.name.substring(scope.fourPartTwo.length + scope.fourPartOne.length, scope.suggestionFour.name.length);
 
-                    }
-                    if (j == 2) {
+                        riot.update(scope.fourPartOne);
+                        riot.update(scope.fourPartTwo);
+                        riot.update(scope.fourPartThree);
 
-                        //scope.indexOfFind = arrayOfConnectedSuggestion[i].name.toLowerCase().search(scope.searchWord);
+                    }
+                    if (countOfSuggestionWord == 2) {
 
                         scope.suggestionOneId.style.display = 'block';
                         scope.suggestionTwoId.style.display = 'block';
                         scope.suggestionThreeId.style.display = 'block';
                         scope.suggestionFourId.style.display = 'none';
 
-                        scope.suggestionThree.name = arrayOfConnectedSuggestion[i].name;
+                        scope.suggestionThree.name = wordOfFunction.name;
 
-                        scope.suggestionThree.id = arrayOfConnectedSuggestion[i].id;
+                        scope.suggestionThree.id = wordOfFunction.id;
 
-                        if (arrayOfConnectedSuggestion[i].form_type) {
-                            scope.suggestionThree.form_type = arrayOfConnectedSuggestion[i].form_type;
+                        if (wordOfFunction.form_type) {
+                            scope.suggestionThree.form_type = wordOfFunction.form_type;
                         }
 
-                        scope.threePartOne = scope.suggestionThree.name.substring(0, scope.indexOfFind);
-                        scope.threePartTwo = scope.suggestionThree.name.substring(scope.indexOfFind, scope.searchWord.length + scope.threePartOne.length);
+                        scope.threePartOne = scope.suggestionThree.name.substring(0, index);
+                        scope.threePartTwo = scope.suggestionThree.name.substring(index, scope.searchWord.length + scope.threePartOne.length);
                         scope.threePartThree = scope.suggestionThree.name.substring(scope.threePartTwo.length + scope.threePartOne.length, scope.suggestionThree.name.length);
 
+                        riot.update(scope.threePartOne);
+                        riot.update(scope.threePartTwo);
+                        riot.update(scope.threePartThree);
+
                     }
-                    if (j == 1) {
-                        //scope.indexOfFind = arrayOfConnectedSuggestion[i].name.toLowerCase().search(scope.searchWord);
+                    if (countOfSuggestionWord == 1) {
 
                         scope.suggestionOneId.style.display = 'block';
                         scope.suggestionTwoId.style.display = 'block';
                         scope.suggestionThreeId.style.display = 'none';
                         scope.suggestionFourId.style.display = 'none';
 
-                        scope.suggestionTwo.name = arrayOfConnectedSuggestion[i].name;
+                        scope.suggestionTwo.name = wordOfFunction.name;
 
-                        scope.suggestionTwo.id = arrayOfConnectedSuggestion[i].id;
+                        scope.suggestionTwo.id = wordOfFunction.id;
 
-                        if (arrayOfConnectedSuggestion[i].form_type) {
-                            scope.suggestionTwo.form_type = arrayOfConnectedSuggestion[i].form_type;
+                        if (wordOfFunction.form_type) {
+                            scope.suggestionTwo.form_type = wordOfFunction.form_type;
                         }
 
-                        scope.twoPartOne = scope.suggestionTwo.name.substring(0, scope.indexOfFind);
-                        scope.twoPartTwo = scope.suggestionTwo.name.substring(scope.indexOfFind, scope.searchWord.length + scope.twoPartOne.length);
+                        scope.twoPartOne = scope.suggestionTwo.name.substring(0, index);
+                        scope.twoPartTwo = scope.suggestionTwo.name.substring(index, scope.searchWord.length + scope.twoPartOne.length);
                         scope.twoPartThree = scope.suggestionTwo.name.substring(scope.twoPartTwo.length + scope.twoPartOne.length, scope.suggestionTwo.name.length);
 
+                        riot.update(scope.twoPartOne);
+                        riot.update(scope.twoPartTwo);
+                        riot.update(scope.twoPartThree);
+
                     }
-                    if (j == 0) {
-                        //scope.indexOfFind = arrayOfConnectedSuggestion[i].name.toLowerCase().search(scope.searchWord);
+                    if (countOfSuggestionWord == 0) {
 
                         scope.suggestionOneId.style.display = 'block';
                         scope.suggestionTwoId.style.display = 'none';
                         scope.suggestionThreeId.style.display = 'none';
                         scope.suggestionFourId.style.display = 'none';
 
-                        scope.suggestionOne.name = arrayOfConnectedSuggestion[i].name;
-                        console.log("I AM IN ONE",scope.suggestionOne.name )
+                        scope.suggestionOne.name = wordOfFunction.name;
+                        scope.suggestionOne.id = wordOfFunction.id;
 
-                        scope.suggestionOne.id = arrayOfConnectedSuggestion[i].id;
-
-                        if (arrayOfConnectedSuggestion[i].form_type) {
-                            scope.suggestionOne.form_type = arrayOfConnectedSuggestion[i].form_type;
+                        if (wordOfFunction.form_type) {
+                            scope.suggestionOne.form_type = wordOfFunction.form_type;
                         }
 
-                        scope.onePartOne = scope.suggestionOne.name.substring(0, scope.indexOfFind);
-                        scope.onePartTwo = scope.suggestionOne.name.substring(scope.indexOfFind, scope.searchWord.length + scope.onePartOne.length);
+                        scope.onePartOne = scope.suggestionOne.name.substring(0, index);
+                        scope.onePartTwo = scope.suggestionOne.name.substring(index, scope.searchWord.length + scope.onePartOne.length);
                         scope.onePartThree = scope.suggestionOne.name.substring(scope.onePartTwo.length + scope.onePartOne.length, scope.suggestionOne.name.length);
-                    }
-                    j++;
 
+                        riot.update(scope.onePartOne);
+                        riot.update(scope.onePartTwo);
+                        riot.update(scope.onePartThree);
+                    }
+                    countOfSuggestionWord++;
+                }
+                else {
+                    if (!check) {
+                        scope.suggestionOneId.style.display = 'none';
+                        scope.suggestionTwoId.style.display = 'none';
+                        scope.suggestionThreeId.style.display = 'none';
+                        scope.suggestionFourId.style.display = 'none';
+                    }
+                    return
                 }
 
-                riot.update();
-                if (j == 4)
-                    return
-            }
 
-            if (!check) {
-                scope.suggestionOneId.style.display = 'none';
-                scope.suggestionTwoId.style.display = 'none';
-                scope.suggestionThreeId.style.display = 'none';
-                scope.suggestionFourId.style.display = 'none';
-            }
-        }
+
+            })
+
 
         suggestionFieldOne = function () {
             Keyboard.hide();
