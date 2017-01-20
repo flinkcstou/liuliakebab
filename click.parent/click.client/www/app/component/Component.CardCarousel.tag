@@ -32,7 +32,7 @@
 
         var card;
         var cardNumber = localStorage.getItem('cardNumber');
-        console.log("cardNumber!!!=" + cardNumber);
+
         if (!cardNumber)
             cardNumber = 0;
         var pos = 0;
@@ -42,14 +42,12 @@
 
 
         startTouchCarousel = function () {
-            console.log("in start");
             carouselTouchStartX = event.changedTouches[0].pageX;
             left = -((540 * cardNumber) * widthK) - carouselTouchStartX;
             delta = left;
         }
 
         endTouchCarousel = function () {
-            console.log("in end");
             event.preventDefault();
             event.stopPropagation();
             carouselTouchEndX = event.changedTouches[0].pageX;
@@ -57,7 +55,6 @@
                 changePosition();
             }
             else if (!viewMainPage.myCards) {
-                console.log("in !mycards");
                 localStorage.setItem('cardNumber', cardNumber)
                 pos = (JSON.parse(localStorage.getItem('click_client_cards'))[localStorage.getItem('cardNumber')].countCard) * 540 * widthK;
                 //viewMainPage.myCards = true;
@@ -71,7 +68,6 @@
         }
 
         moveTouchCarousel = function () {
-            console.log("in move");
             event.preventDefault();
             event.stopPropagation();
             this.cards.style.transition = '0s';
@@ -162,7 +158,6 @@
             scope.addCard(getAccountsCards);
 
         function changePosition() {
-            console.log("in change position");
 
             if (carouselTouchEndX < carouselTouchStartX && cardNumber < count - 1) {
                 ++cardNumber;

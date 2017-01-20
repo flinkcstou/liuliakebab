@@ -94,9 +94,14 @@
         goToMainPage = function () {
             event.preventDefault();
             event.stopPropagation();
-
-            this.riotTags.innerHTML = "<view-main-page>";
-            riot.mount('view-main-page');
+            if (viewMyCardList.myCardListBoolean) {
+                this.riotTags.innerHTML = "<view-my-cards>";
+                riot.mount('view-my-cards');
+            }
+            else {
+                this.riotTags.innerHTML = "<view-main-page>";
+                riot.mount('view-main-page');
+            }
         }
 
         search = function () {

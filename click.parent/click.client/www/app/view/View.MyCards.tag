@@ -19,7 +19,7 @@
             <div class="my-cards-button-icon my-cards-button-icon-payment">
             </div>
 
-            <div class="my-cards-button-label">{window.languages.ViewMyCardPay}
+            <div class="my-cards-button-label" ontouchend="goToPayView()">{window.languages.ViewMyCardPay}
             </div>
         </div>
 
@@ -148,6 +148,13 @@
         });
 
         viewMyCards.cardInformation();
+
+        goToPayView = function () {
+            event.preventDefault();
+            event.stopPropagation();
+            this.riotTags.innerHTML = "<view-pay>";
+            riot.mount('view-pay');
+        }
 
     </script>
 </view-my-cards>

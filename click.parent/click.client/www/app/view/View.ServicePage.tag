@@ -15,7 +15,7 @@
             <p class="servicepage-number-first-part">+998</p>
             <input class="servicepage-number-input-part" type="tel"
                    maxlength="9"
-                   onkeydown="checkMaxValue()" id="{i.service_id}" onfocus="bordersColor(this.id)"
+                   id="{i.service_id}" onfocus="bordersColor(this.id)"
                    value="{defaultNumber}"/>
             <div class="servicepage-phone-icon"></div>
         </div>
@@ -23,10 +23,10 @@
             <p class="servicepage-text-field">Сумма оплаты</p>
             <input class="servicepage-amount-input" type="tel" maxlength="{amountLength}" value="{defaultAmount}"
                    id="amount"
-                   onfocus="eraseDefault()"/>
+                   onfocus="eraseAmountDefault()"/>
             <div class="servicepage-amount-icon"></div>
         </div>
-        <div class="servicepage-button-enter" ontouchend="choosePinCard()">
+        <div class="servicepage-button-enter" ontouchend="goToPinCardView()">
             <div class="servicepage-button-enter-label">ДАЛЕЕ</div>
         </div>
     </div>
@@ -55,12 +55,6 @@
         scope.defaultAmount = !viewServicePage.amountText ? 0 : viewServicePage.amountText;
         scope.defaultNumber = !viewServicePage.phoneText ? null : viewServicePage.phoneText;
 
-        //        console.log("Service data: ", scope.service);
-        //        console.log("category id ", viewPay.categoryId);
-        //        console.log("Map One", scope.servicesParamsMapOne);
-        //        console.log("Map Two", scope.servicesParamsMapTwo);
-        //        console.log("category name =", scope.categoryNamesMap[viewPay.categoryId]);
-
 
         this.titleName = scope.service.name;
         this.serviceIcon = scope.service.image;
@@ -70,12 +64,31 @@
         this.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
         this.amountLength = ("" + scope.service.max_pay_limit).length;
 
-
         console.log(this.fieldArray);
         console.log("form type", scope.formType);
 
+        scope.focusedFieldId = -1;
 
-        choosePinCard = function () {
+        eraseAmountDefault = function () {
+            document.getElementById('amountField').style.borderBottom = '5px solid #01cfff';
+            if (scope.focusedFieldId != -1)
+                document.getElementById("phoneField" + scope.focusedFieldId).style.borderBottom = '5px solid lightgrey';
+            if (document.getElementById('amount').value == '0')
+                document.getElementById('amount').value = null;
+        }
+
+        bordersColor = function (id) {
+            console.log("ID", id);
+            if (scope.focusedFieldId != id && scope.focusedFieldId != -1) {
+                document.getElementById("phoneField" + scope.focusedFieldId).style.borderBottom = '5px solid lightgrey';
+                console.log("as previous");
+            }
+            document.getElementById("phoneField" + id).style.borderBottom = '5px solid #01cfff';
+            document.getElementById('amountField').style.borderBottom = '5px solid lightgrey';
+            scope.focusedFieldId = id;
+        }
+
+        goToPinCardView = function () {
             if (scope.focusedFieldId == -1)
                 scope.focusedFieldId = viewPay.chosenServiceId;
 
@@ -99,30 +112,6 @@
             event.stopPropagation();
             this.riotTags.innerHTML = "<view-service-pincards>";
             riot.mount('view-service-pincards');
-        }
-
-        checkMaxValue = function () {
-
-        }
-        scope.focusedFieldId = -1;
-
-        eraseDefault = function () {
-            document.getElementById('amountField').style.borderBottom = '5px solid #01cfff';
-            if (scope.focusedFieldId != -1)
-                document.getElementById("phoneField" + scope.focusedFieldId).style.borderBottom = '5px solid lightgrey';
-            if (document.getElementById('amount').value == '0')
-                document.getElementById('amount').value = null;
-        }
-
-        bordersColor = function (id) {
-            console.log("ID", id);
-            if (scope.focusedFieldId != id && scope.focusedFieldId != -1) {
-                document.getElementById("phoneField" + scope.focusedFieldId).style.borderBottom = '5px solid lightgrey';
-                console.log("as previous");
-            }
-            document.getElementById("phoneField" + id).style.borderBottom = '5px solid #01cfff';
-            document.getElementById('amountField').style.borderBottom = '5px solid lightgrey';
-            scope.focusedFieldId = id;
         }
 
 

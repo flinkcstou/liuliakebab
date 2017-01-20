@@ -61,7 +61,6 @@
             for (var i = 0; i < scope.cardsArray.length; i++)
                 if (scope.cardsArray[i].card_id == cardId) {
                     localStorage.setItem('cardNumber', i);
-                    alert("cardNumber in list" + i);
                     break;
                 }
             viewMyCardList.myCardListBoolean = true;

@@ -14,7 +14,7 @@
         <div class="pincard-payfrom-container">
             <p class="pincard-payfrom-field">Оплатить с:</p></div>
         <div class="pincard-allcards-container">
-            <div class="pincard-card-container" each="{i in cardsArray}" ontouchend="checkCard(this.id)"
+            <div class="pincard-card-container" each="{i in cardsArray}" ontouchend="chooseCard(this.id)"
                  id="{i.card_id}">
                 <div class="pincard-card-logo-container" if="{i.salary>0}"
                      style="background-image: url({i.url})"></div>
@@ -36,7 +36,7 @@
         <div class="pincard-bottom-container">
             <div class="pincard-help-text">Помощь друга</div>
             <div class="pincard-button-enter"
-                 ontouchend="confirmDetails()">
+                 ontouchend="goToPayConfirmView()">
                 <div class="pincard-button-enter-label">ОПЛАТИТЬ</div>
             </div>
         </div>
@@ -59,18 +59,35 @@
         scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
         scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
         scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
+        cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
 
         this.titleName = scope.service.name;
         this.serviceIcon = scope.service.image;
         this.categoryName = scope.categoryNamesMap[viewPay.categoryId];
 
-
-        cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-
         console.log("cardsArray : ", cardsArray);
 
+        scope.ind = -1;
+        scope.checked = false;
 
-        confirmDetails = function () {
+        if (viewServicePinCards.chosenCardId) {
+            console.log("chosen card id=" + viewServicePinCards.chosenCardId);
+            riot.update();
+            document.getElementById("check" + viewServicePinCards.chosenCardId).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
+        }
+
+
+        chooseCard = function (id) {
+            if (scope.ind != -1) {
+                document.getElementById("check" + scope.ind).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+            }
+            scope.ind = id;
+            document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
+            scope.checked = true;
+            viewServicePinCards.chosenCardId = scope.ind;
+        }
+
+        goToPayConfirmView = function () {
             if (!scope.checked) {
                 alert("Выберите карту для оплаты");
                 return;
@@ -80,19 +97,6 @@
             this.riotTags.innerHTML = "<view-pay-confirm>";
             riot.mount('view-pay-confirm');
 
-        }
-
-        scope.ind = -1;
-        scope.checked = false;
-
-        checkCard = function (id) {
-            if (scope.ind != -1) {
-                document.getElementById("check" + scope.ind).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
-            }
-            scope.ind = id;
-            document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
-            scope.checked = true;
-            viewServicePinCards.chosenCardId = scope.ind;
         }
 
 
