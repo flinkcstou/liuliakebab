@@ -1990,7 +1990,7 @@ var css = {
   "left: 10%;" +
   "width: 79.5%;" +
   "height: 9%;" +
-  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
+  "border-bottom:" + 5 * widthK + "px solid lightgray;" +
   "color: white;" +
   "top: 4.5%" +
   "}",
@@ -2618,7 +2618,7 @@ var css = {
   "left:" + 25 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom:" + 5 + "px solid rgb(149, 230, 253);" +
+  "border-bottom:" + 5 * widthK + "px solid rgb(149, 230, 253);" +
   "}",
 
   myCardList: ".mycardlist" +
@@ -2632,21 +2632,21 @@ var css = {
 
   myCardListCard: ".mycardlist-card" +
   "{" +
-  "height: 188px;" +
-  "width: 327px;" +
+  "height: " + 188 * widthK + "px;" +
+  "width: " + 327 * widthK + "px;" +
   "position: relative;" +
-  "top: 7px;" +
-  "-webkit-border-radius: 14px;" +
-  "-moz-border-radius: 14px;" +
-  "border-radius: 14px;" +
+  "top: " + 7 * widthK + "px;" +
+  "-webkit-border-radius:" + 14 * widthK + "px;" +
+  "-moz-border-radius:" + 14 * widthK + "px;" +
+  "border-radius:" + 14 * widthK + "px;" +
   "background-size: cover;" +
   "color: white;" +
-  "-webkit-box-shadow: 0px 122px 80px -130px rgba(0, 0, 0, 1);" +
-  "-moz-box-shadow: 0px 122px 80px -130px rgba(0, 0, 0, 1);" +
-  "box-shadow: 0px 122px 80px -130px rgba(0, 0, 0, 1);" +
-  "margin-left: 20px;" +
+  "-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+  "-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+  "box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"margin-left: 20px;" +
   "float: left;" +
-  "margin: 15px;" +
+  "margin: " + 15 * widthK + "px;" +
   "}",
 
   myCardListCardBankNameUrl: ".mycardlist-card-bank-name-url" +
@@ -2681,7 +2681,7 @@ var css = {
   "left: 7%;" +
   "color: #595759;" +
   "background-size: contain;" +
-  "font-size: 17px;" +
+  "font-size:" + 17 * widthK + "px;" +
   "height: 10%;" +
   "}",
 
