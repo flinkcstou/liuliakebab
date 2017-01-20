@@ -2637,6 +2637,7 @@ var css = {
   "width: 100%;" +
   "top: 8%;" +
   "bottom: 0;" +
+  "overflow:scroll;" +
   "}",
 
   myCardListCard: ".mycardlist-card" +
@@ -2759,7 +2760,18 @@ var css = {
   "left: 17%;" +
   "letter-spacing:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
-  "}"
+  "}",
+
+  //transferBodyContainer: ".transfer-body-container" +
+  //"{" +
+  //"position: absolute;" +
+  //"height: " + 1145 * widthK + "px; " +
+  //"width: " + 720 * widthK + "px; " +
+  //"top: " + 27 * widthK + "px; " +
+  //"background-color: white;" +
+  //"overflow-x: hidden;" +
+  //"overflow-y: scroll;" +
+  //"}",
 
 
 }

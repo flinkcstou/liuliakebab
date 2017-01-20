@@ -70,7 +70,7 @@
         scope.focusedFieldId = -1;
 
         eraseAmountDefault = function () {
-            document.getElementById('amountField').style.borderBottom = '5px solid #01cfff';
+            document.getElementById('amountField').style.borderBottom = 5*widthK+'px solid #01cfff';
             if (scope.focusedFieldId != -1)
                 document.getElementById("phoneField" + scope.focusedFieldId).style.borderBottom = '5px solid lightgrey';
             if (document.getElementById('amount').value == '0')

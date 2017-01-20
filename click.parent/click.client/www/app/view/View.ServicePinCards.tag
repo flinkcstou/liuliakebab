@@ -75,10 +75,7 @@
             console.log("chosen card id=" + viewServicePinCards.chosenCardId);
             console.log(document.getElementById("check" + viewServicePinCards.chosenCardId))
             document.getElementById("check" + viewServicePinCards.chosenCardId).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
-
-
         }
-
 
         chooseCard = function (id) {
             if (scope.ind != -1) {
