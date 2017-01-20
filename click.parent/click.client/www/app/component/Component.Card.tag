@@ -19,7 +19,6 @@
     var scope = this;
     scope.leftOfCard = (540 * opts.countcard + 100) * widthK;
 
-    console.log(scope.left);
 
   </script>
 </component-card>

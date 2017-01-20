@@ -55,7 +55,6 @@
       else if (!viewMainPage.myCards) {
         localStorage.setItem('cardNumber', cardNumber)
         pos = (JSON.parse(localStorage.getItem('click_client_cards'))[localStorage.getItem('cardNumber')].countCard) * 540 * widthK;
-        console.log("POS ", pos)
         //viewMainPage.myCards = true;
         this.riotTags.innerHTML = "<view-my-cards>";
         riot.mount("view-my-cards");
@@ -67,10 +66,10 @@
     }
 
     moveTouchCarousel = function () {
-      this.cards.style.transition = '0s';
-      this.cards.style.webkitTransition = '0s';
       event.preventDefault();
       event.stopPropagation();
+      this.cards.style.transition = '0s';
+      this.cards.style.webkitTransition = '0s';
       this.cards.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
       this.cards.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
     }
@@ -148,7 +147,6 @@
       scope.addCard(getAccountsCards);
 
     function changePosition() {
-      console.log("BEFORE", this.cards.style.transform);
 
       if (carouselTouchEndX < carouselTouchStartX && cardNumber < count - 1) {
         ++cardNumber;
@@ -182,16 +180,16 @@
         this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
+
       localStorage.setItem('cardNumber', cardNumber);
 
       if (viewMainPage.myCards) {
         scope.parent.indexOfCard = JSON.parse(localStorage.getItem('cardNumber'));
         riot.update(scope.parent.indexOfCard)
         viewMyCards.cardInformation();
-        console.log('INDEX OF CARD ', scope.parent.indexOfCard);
       }
 
-      console.log("AFTER", this.cards.style.transform);
+
     }
 
 
