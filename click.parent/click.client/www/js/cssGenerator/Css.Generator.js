@@ -2235,6 +2235,20 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-size: 35%;" +
+  "background-image: url(resources/icons/ViewService/checked.png);" +
+  "}",
+  pincardCardUnCheckmark: ".pincard-card-uncheckmark" +
+  "{" +
+  "position: absolute;" +
+  "width: 17%;" +
+  "height: 100%;" +
+  "left: 81%;" +
+  "top: 2%;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 35%;" +
+  "background-image: url(resources/icons/ViewService/unchecked.png);" +
   "}",
 
   pincardHelpText: ".pincard-help-text" +

@@ -27,8 +27,7 @@
                         0 {i.currency}</p>
                     <p class="pincard-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
                 </div>
-                <div class="pincard-card-checkmark" id="check{i.card_id}"
-                     style="background-image: url('resources/icons/ViewService/unchecked.png')">
+                <div class="{pincard-card-uncheckmark: !i.chosenCard, pincard-card-checkmark: i.chosenCard}" id="check{i.card_id}">
                 </div>
             </div>
         </div>
@@ -45,6 +44,7 @@
 
     <script>
         riot.update();
+
 
         var scope = this;
         touchStartTitle = function () {
@@ -63,34 +63,21 @@
         cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
 
         this.titleName = scope.service.name;
-        this.serviceIcon = scope.service.image;
-        this.categoryName = scope.categoryNamesMap[viewPay.categoryId];
 
-        console.log("cardsArray : ", cardsArray);
-
-        scope.ind = -1;
         scope.checked = false;
 
-        if (viewServicePinCards.chosenCardId) {
-            console.log("chosen card id=" + viewServicePinCards.chosenCardId);
-            console.log(document.getElementById("check" + viewServicePinCards.chosenCardId))
-            document.getElementById("check" + viewServicePinCards.chosenCardId).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
-
-
-        }
-
-
         chooseCard = function (id) {
-            if (scope.ind != -1) {
-                document.getElementById("check" + scope.ind).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
-            }
-            scope.ind = id;
             document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
             scope.checked = true;
-            viewServicePinCards.chosenCardId = scope.ind;
         }
 
         goToPayConfirmView = function () {
+            for(var i = 0; i < cardsArray.length; i++){
+                if(cardsArray[i].chosenCard){
+                    scope.checked = true;
+                    break;
+                }
+            }
             if (!scope.checked) {
                 alert("Выберите карту для оплаты");
                 return;

@@ -66,13 +66,15 @@
 
         scope.indexOfCard = JSON.parse(localStorage.getItem('cardNumber'));
 
+
         viewMyCards.check = true;
         viewMainPage.myCards = true;
 
 
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = true;
-        scope.cardsArray = JSON.parse(localStorage.getItem('cards'));
+        scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+
 
 
         this.titleName = 'ЗАРПЛАТНАЯ КАРТА';

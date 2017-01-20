@@ -3,87 +3,103 @@
       onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false"
       onDrag="return false" onDrop="return false" autocomplete=off unselectable="on">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
-  <meta name="format-detection" content="telephone=no">
-  <script src="js/languages/languages.js"></script>
-  <!-- CSS -->
-  <!--<link id="mainPageCss" href="css/MainPage.css" rel="stylesheet">-->
-  <script src="js/cssGenerator/Css.Generator.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <script src="js/languages/languages.js"></script>
+    <!-- CSS -->
+    <!--<link id="mainPageCss" href="css/MainPage.css" rel="stylesheet">-->
+    <script src="js/cssGenerator/Css.Generator.js"></script>
 
-  <!-- JS COMMON -->
-  <script src="lib/js/riot.js"></script>
-  <script src="lib/js/all.js"></script>
+    <!-- JS COMMON -->
+    <script src="lib/js/riot.js"></script>
+    <script src="lib/js/all.js"></script>
 
-  <script src="js/encryption/sha512.js"></script>
-  <script src="js/encryption/md5.js"></script>
-  <script src="js/api/WebApi.js"></script>
-  <script src="js/globalObjects/global.Objects.js"></script>
+    <script src="js/encryption/sha512.js"></script>
+    <script src="js/encryption/md5.js"></script>
+    <script src="js/api/WebApi.js"></script>
+    <script src="js/globalObjects/global.Objects.js"></script>
 
-  <!-- FAKES -->
-  <script src="stand/plugins/sms_fake.js"></script>
-  <script src="stand/plugins/plugins_fake.js"></script>
+    <!-- FAKES -->
+    <script src="stand/plugins/sms_fake.js"></script>
+    <script src="stand/plugins/plugins_fake.js"></script>
 
 </head>
 
 <body id="bodyId">
 
 <div id="riotTags">
-  <view-main-page></view-main-page>
+    <view-main-page></view-main-page>
 </div>
 
 <script>
-  api.init();
-  scope = this;
-  var startApplication = function () {
-    var script = document.createElement('script');
-    script.src = 'js/cssGenerator/Css.Generator.js';
-    document.head.appendChild(script);
+    api.init();
+    scope = this;
+    if (window.cordova) {
+        document.addEventListener("deviceready", function () {
 
-    if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
-      this.riotTags.innerHTML = "<view-authorization>";
-      riot.mount('view-authorization')
+            var GENERATOR = document.createElement('script');
+            GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
+            document.head.appendChild(GENERATOR);
+
+            firstMount.firstStep = function () {
+                if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
+                    scope.riotTags.innerHTML = "<view-authorization>";
+                    riot.mount('view-authorization')
+                }
+                else {
+                    scope.riotTags.innerHTML = "<view-registration-device>";
+                    riot.mount('view-registration-device');
+                }
+                riot.mount('view-main-page');
+            }
+
+            document.addEventListener("backbutton", onBackKeyDown, false);
+        }, false);
     }
     else {
-      this.riotTags.innerHTML = "<view-registration-device>";
-      riot.mount('view-registration-device');
+        console.log('step', 0)
+        var GENERATOR = document.createElement('script');
+        GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
+        document.head.appendChild(GENERATOR);
+
+        firstMount.firstStep = function () {
+            if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
+                scope.riotTags.innerHTML = "<view-authorization>";
+                riot.mount('view-authorization')
+            }
+            else {
+                scope.riotTags.innerHTML = "<view-registration-device>";
+                riot.mount('view-registration-device');
+            }
+            riot.mount('view-main-page');
+
+        }
     }
-    riot.mount('view-main-page');
-  };
 
-  if (window.cordova) {
-    document.addEventListener("deviceready", function () {
-
-      document.addEventListener("backbutton", onBackKeyDown, false);
-      startApplication();
-    }, false);
-  } else {
-    startApplication();
-  }
-
-  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
-    this.closeDemo();
-  }
-  function onBackKeyDown() {
-    historyOfApp();
-  }
-
-  historyOfApp = function () {
-    console.log(this.riotTags);
-    history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
-
-    if (history.arrayOfHistory.length != 0) {
-      history.arrayOfHistory.pop();
-      if (history.arrayOfHistory.length != 0) {
-        console.log('THIS IS riotTags div ', this.riotTags)
-        console.log("JSON ", JSON.stringify(history.arrayOfHistory));
-        console.log('LAST ELEMENT ', history.arrayOfHistory[history.arrayOfHistory.length - 1]);
-        console.log('LAST ELEMENT in RIOT TAG ', "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1] + ">");
-        this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1] + ">";
-        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1]);
-      }
+    if (JSON.parse(localStorage.getItem('demo_version')) === true) {
+        this.closeDemo();
     }
-  }
+    function onBackKeyDown() {
+        historyOfApp();
+    }
+
+    historyOfApp = function () {
+        console.log(this.riotTags);
+        history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+
+        if (history.arrayOfHistory.length != 0) {
+            history.arrayOfHistory.pop();
+            if (history.arrayOfHistory.length != 0) {
+                console.log('THIS IS riotTags div ', this.riotTags)
+                console.log("JSON ", JSON.stringify(history.arrayOfHistory));
+                console.log('LAST ELEMENT ', history.arrayOfHistory[history.arrayOfHistory.length - 1]);
+                console.log('LAST ELEMENT in RIOT TAG ', "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1] + ">");
+                this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1] + ">";
+                riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1]);
+            }
+        }
+    }
 
 
 </script>

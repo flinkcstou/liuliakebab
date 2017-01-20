@@ -4,6 +4,7 @@ viewMainPage.myCards = false;
 
 window.viewMyCards = {};
 viewMyCards.check = false;
+viewMyCards.chosenCardId = '';
 
 
 window.viewAuthorization = {};
@@ -32,5 +33,7 @@ window.viewServicePage = {};
 window.viewServicePinCards = {};
 
 window.viewMyCardList = {};
+
 viewMyCardList.myCardListBoolean = false;
+
 

@@ -5,9 +5,11 @@
   <screen src="www/img/logo.png"/>
   <preference name="Fullscreen" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
+  <preference name="StatusBarBackgroundColor" value="#007AE2" />
+  <preference name="Orientation" value="sensorPortrait"/>
+  <preference name="StatusBarStyle" value="lightcontent" />
 
   <platform name="android">
-    <preference name="Orientation" value="sensorPortrait"/>
     <allow-intent href="market:*"/>
     <preference name="android-minSdkVersion" value="14" />
     <icon src="resources/logo.png" density="ldpi"/>
@@ -17,9 +19,6 @@
   </platform>
 
   <platform name="ios">
-    <preference name="Orientation" value="sensorPortrait"/>
-    <preference name="StatusBarBackgroundColor" value="#007AE2" />
-    <preference name="StatusBarStyle" value="lightcontent" />
     <allow-intent href="itms:*"/>
     <allow-intent href="itms-apps:*"/>
     <icon src="resources/logo.png" density="ldpi"/>
@@ -35,7 +34,6 @@
   <plugin name="cordova-plugin-contacts"/>
   <plugin name="cordova-plugin-device"/>
   <plugin name="cordova-plugin-keyboard"/>
-  <plugin name="cordova-plugin-screensize"/>
   <plugin name="cordova-plugin-statusbar"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>

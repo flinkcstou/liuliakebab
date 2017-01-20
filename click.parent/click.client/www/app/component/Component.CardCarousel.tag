@@ -58,6 +58,12 @@
                 localStorage.setItem('cardNumber', cardNumber)
                 pos = (JSON.parse(localStorage.getItem('click_client_cards'))[localStorage.getItem('cardNumber')].countCard) * 540 * widthK;
                 //viewMainPage.myCards = true;
+                for(var i = 0; i < cardsarray.length; i++){
+                    if(cardsarray[i].countCard == cardNumber){
+                        cardsarray[i].chosenCard = true;
+                        localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
+                    }
+                }
                 this.riotTags.innerHTML = "<view-my-cards>";
                 riot.mount("view-my-cards");
                 this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -116,7 +122,8 @@
                         numberPartTwo: numberOfCardPartTwo,
                         url: getAccountsCards[i].image_url,
                         background: getAccountsCards[i].background_url,
-                        countCard: count
+                        countCard: count,
+                        chosenCard: false,
                     };
 
                     cardsarray.push(card);
@@ -132,7 +139,7 @@
                             card_num_hash: getAccountsCards[i].card_num_hash,
                             card_num_crypted: getAccountsCards[i].card_num_crypted
                         },
-
+                        //TODO: DO CARDS
                         scope: this,
                         onSuccess: function (result) {
                             console.log('CHECKING ', i, getAccountsCards.length)
