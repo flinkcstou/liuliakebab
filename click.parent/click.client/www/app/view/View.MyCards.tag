@@ -74,10 +74,12 @@
         scope.rightbuttoncheck = true;
         scope.cardsArray = JSON.parse(localStorage.getItem('cards'));
 
+
         this.titleName = 'ЗАРПЛАТНАЯ КАРТА';
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         var accountId = JSON.parse(localStorage.getItem('click_client_loginInfo')).default_account;
+
         scope.card = JSON.parse(localStorage.getItem('click_client_cards'))[scope.indexOfCard];
 
 

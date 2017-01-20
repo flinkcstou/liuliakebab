@@ -32,4 +32,5 @@ window.viewServicePage = {};
 window.viewServicePinCards = {};
 
 window.viewMyCardList = {};
+viewMyCardList.myCardListBoolean = false;
 

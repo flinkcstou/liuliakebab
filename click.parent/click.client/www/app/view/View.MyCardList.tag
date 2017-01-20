@@ -35,6 +35,7 @@
         var scope = this;
 
         goToMainPage = function () {
+            viewMyCardList.chosenCardId = null;
             event.preventDefault();
             event.stopPropagation();
             this.riotTags.innerHTML = "<view-main-page>";
@@ -49,19 +50,27 @@
         scope.cardsArray = JSON.parse(localStorage.getItem("click_client_cards"));
         scope.cardsMap = JSON.parse(localStorage.getItem("click_client_cardsMap"));
 
-        if (!scope.cardsMap && !scope.cardsArray) {
-            scope.cardsMap = {};
-            for (var i = 0; i < scope.cardsArray.length; i++)
-                scope.cardsMap[cardsArray[i].card_id] = scope.cardsArray[i];
-            localStorage.setItem("click_client_cardsMap", scope.cardsMap);
-        }
+        //        if (!scope.cardsMap && !scope.cardsArray) {
+        //            scope.cardsMap = {};
+        //            for (var i = 0; i < scope.cardsArray.length; i++)
+        //                scope.cardsMap[cardsArray[i].card_id] = scope.cardsArray[i];
+        //            localStorage.setItem("click_client_cardsMap", scope.cardsMap);
+        //        }
 
-        goToCardPage = function (card_id) {
-            viewMyCardList.clickedCardId = card_id;
+        goToCardPage = function (cardId) {
+            for (var i = 0; i < scope.cardsArray.length; i++)
+                if (scope.cardsArray[i].card_id == cardId) {
+                    localStorage.setItem('cardNumber', i);
+                    alert("cardNumber in list" + i);
+                    break;
+                }
+            viewMyCardList.myCardListBoolean = true;
             event.preventDefault();
             event.stopPropagation();
             this.riotTags.innerHTML = "<view-my-cards>";
             riot.mount('view-my-cards');
+
+
         }
 
 
