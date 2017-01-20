@@ -243,8 +243,8 @@
                 }
 
 
-
             })
+        }
 
 
         suggestionFieldOne = function () {
