@@ -135,20 +135,41 @@ window.fakedSocket.register("get.accounts", function (input) {
       background_url: "resources/icons/cards/card1.png",
       bank_name: "UZCARD",
       branch: "00000",
-      card_num: "8600 **** **** 5865",
+      card_num: "2300 **** **** 1111",
       card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw=",
       card_num_hash: "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
       currency: "000",
       currency_code: "UZS",
       currency_name: "сум                                               ",
-      description: "Карта UZCARD-Online",
+      description: "СБЕРБАНК",
       expire_date: "1806",
-      id: 5487271,
-      image_url: "https://merchant.click.uz/static/content/app/bank/aloq.png",
+      id: 7487271,
+      image_url: "https://merchant.click.uz/static/content/app/bank/ofb.png",
       is_uzcard: 1,
       removable: 1,
       short_name: "aloq"
-    });
+    },
+      {
+        acc_abs: "SMARTV    ",
+        access: 2,
+        accno: "8600 **** **** 5865",
+        background_url: "resources/icons/cards/card1.png",
+        bank_name: "UZCARD",
+        branch: "00000",
+        card_num: "8600 **** **** 5865",
+        card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw=",
+        card_num_hash: "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
+        currency: "000",
+        currency_code: "UZS",
+        currency_name: "сум                                               ",
+        description: "Карта UZCARD-Online",
+        expire_date: "1806",
+        id: 5487271,
+        image_url: "https://merchant.click.uz/static/content/app/bank/aloq.png",
+        is_uzcard: 1,
+        removable: 1,
+        short_name: "aloq"
+      });
 
   if (localStorage.getItem("click_client_token"))
     return array;
