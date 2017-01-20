@@ -481,6 +481,15 @@ input {
     color: #ffffff;
 }
 
+.bank-operation-button-container {
+    position: absolute;
+    width: 71px;
+    height: 70px;
+    left: 20px;
+    top: -4px;
+    background-color: transparent;
+}
+
 .bank-operation-label {
     position: absolute;
     bottom: -16px;

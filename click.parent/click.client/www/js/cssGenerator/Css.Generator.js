@@ -782,6 +782,15 @@ var css = {
   "color: #ffffff;" +
   "}",
 
+  bankOperationButtonContainer: ".bank-operation-button-container" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 270 * widthK + "px;" +
+  "height:" + 75 * widthK + "px;" +
+  "top:" + -13 * widthK + "px;" +
+  "background-color: transparent;" +
+  "}",
+
   bankOperationLabel: ".bank-operation-label " +
   "{" +
   "position: absolute;" +

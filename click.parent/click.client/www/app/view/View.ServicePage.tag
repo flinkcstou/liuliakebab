@@ -101,7 +101,6 @@
             riot.mount('view-service-pincards');
         }
 
-
         checkMaxValue = function () {
 
         }
