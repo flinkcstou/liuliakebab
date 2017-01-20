@@ -483,10 +483,9 @@ input {
 
 .bank-operation-button-container {
     position: absolute;
-    width: 71px;
-    height: 70px;
-    left: 20px;
-    top: -4px;
+    width: 270px;
+    height: 75px;
+    top: -13px;
     background-color: transparent;
 }
 

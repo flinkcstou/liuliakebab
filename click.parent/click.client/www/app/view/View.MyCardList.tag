@@ -9,7 +9,8 @@
         </div>
 
         <div class="mycardlist">
-            <div class="mycardlist-card" each="{i in cardsarray}" style="background-image: url({i.background});">
+            <div class="mycardlist-card" each="{i in cardsarray}" style="background-image: url({i.background});"
+                 ontouchend="goToCardPage({i.card_id})">
 
                 <div class="mycardlist-card-bank-name-url" style="background-image: url({i.url})"></div>
                 <div class="mycardlist-card-bank-name" style="background-image: url({i.bankname})"></div>
@@ -45,7 +46,23 @@
         history.arrayOfHistory.push('view-mycard-list');
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-        cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
+        scope.cardsArray = JSON.parse(localStorage.getItem("click_client_cards"));
+        scope.cardsMap = JSON.parse(localStorage.getItem("click_client_cardsMap"));
+
+        if (!scope.cardsMap && !scope.cardsArray) {
+            scope.cardsMap = {};
+            for (var i = 0; i < scope.cardsArray.length; i++)
+                scope.cardsMap[cardsArray[i].card_id] = scope.cardsArray[i];
+            localStorage.setItem("click_client_cardsMap", scope.cardsMap);
+        }
+
+        goToCardPage = function (card_id) {
+            viewMyCardList.clickedCardId = card_id;
+            event.preventDefault();
+            event.stopPropagation();
+            this.riotTags.innerHTML = "<view-my-cards>";
+            riot.mount('view-my-cards');
+        }
 
 
     </script>
