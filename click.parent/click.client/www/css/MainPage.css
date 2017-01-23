@@ -15,13 +15,13 @@ html {
 #htmlId {
     width: 100%;
     height: 100%;
-    /*background-image: url("../resources/draft/payback.png");*/
+    /*background-image: url("../resources/draft/ViewInfo.png");*/
     /*opacity: 0.4;*/
     background-size: contain;
     background-repeat: no-repeat;
-    /*background-image: -moz-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);*/
-    /*background-image: -webkit-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);*/
-    /*background-image: -ms-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);*/
+    background-image: -moz-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);
+    background-image: -webkit-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);
+    background-image: -ms-linear-gradient(rgb(0, 122, 226) 0%, rgb(28, 200, 249) 60%, rgb(27, 198, 248) 100%);
     font-family: SFUIDisplay-Light;
     margin: 0;
     overflow: hidden;

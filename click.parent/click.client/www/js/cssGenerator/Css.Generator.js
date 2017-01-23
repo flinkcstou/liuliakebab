@@ -45,11 +45,11 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/searchPage.png);" +
-    //"opacity: 0.6;" +
-  "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
-  "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
-  "background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+    "background-image: url(resources/draft/ViewInfo.png);" +
+    "opacity: 0.6;" +
+  //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+  //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+  //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -2259,6 +2259,7 @@ var css = {
   "background-color: transparent;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
+  "background-size: 35%;" +
   "background-size: 35%;" +
   "background-image: url(resources/icons/ViewService/unchecked.png);" +
   "}",
