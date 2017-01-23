@@ -141,7 +141,9 @@
             scope.suggestionTwo = {};
 
             arrayOfContacts.filter(function (wordOfFunction){
-
+                var index = wordOfFunction.phoneNumbers[0].value.substring(4,wordOfFunction.phoneNumbers[0].value.length).toLowerCase().indexOf(scope.searchWord);
+                if (index != -1)
+                console.log('NUMBER ',wordOfFunction.phoneNumbers[0].value)
             });
         }
 
