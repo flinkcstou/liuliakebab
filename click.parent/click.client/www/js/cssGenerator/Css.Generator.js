@@ -2644,7 +2644,18 @@ var css = {
   "border-bottom:" + 5 * widthK + "px solid rgb(149, 230, 253);" +
   "}",
 
-  myCardList: ".mycardlist" +
+  myCardListNameTitle: ".mycardlist-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 32 * widthK + "px; " +
+  "left:" + 86 * widthK + "px; " +
+  "top:" + 40 * widthK + "px; " +
+  "margin: 0;  " +
+  "color: #fffaf9;" +
+  "}",
+
+  myCardListContainer: ".mycardlist-container" +
   "{" +
   "position: absolute;" +
   "background-color: transparent;" +
@@ -2659,10 +2670,10 @@ var css = {
   "height: " + 188 * widthK + "px;" +
   "width: " + 327 * widthK + "px;" +
   "position: relative;" +
-  "top: " + 7 * widthK + "px;" +
-  "-webkit-border-radius:" + 14 * widthK + "px;" +
-  "-moz-border-radius:" + 14 * widthK + "px;" +
-  "border-radius:" + 14 * widthK + "px;" +
+  "top: " + 13 * widthK + "px;" +
+  "-webkit-border-radius:" + 10 * widthK + "px;" +
+  "-moz-border-radius:" + 10 * widthK + "px;" +
+  "border-radius:" + 10 * widthK + "px;" +
   "background-size: cover;" +
   "color: white;" +
   "-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
@@ -2670,19 +2681,20 @@ var css = {
   "box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
     //"margin-left: 20px;" +
   "float: left;" +
-  "margin: " + 15 * widthK + "px;" +
+  "margin: " + 7 * widthK + "px;" +
+  "left: " + 17 * widthK + "px;" +
   "}",
 
   myCardListCardBankNameUrl: ".mycardlist-card-bank-name-url" +
   "{" +
   "position: absolute;" +
-  "width: 35%;" +
-  "height: 20%;" +
+  "width: 30%;" +
+  "height: 16%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "background-position: left top;" +
   "left: 7%;" +
-  "top: 11%;" +
+  "top: 15%;" +
   "}",
 
   myCardListcardBankName: ".mycardlist-card-bank-name " +
@@ -2701,8 +2713,8 @@ var css = {
   myCardListCardSalaryTitle: ".mycardlist-card-salary-title" +
   "{" +
   "position: absolute;" +
-  "top: 45%;" +
-  "left: 7%;" +
+  "top: 41%;" +
+  "left: 5%;" +
   "color: #595759;" +
   "background-size: contain;" +
   "font-size:" + 17 * widthK + "px;" +
@@ -2714,7 +2726,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height: 21%;" +
-  "top: 55%;" +
+  "top: 51%;" +
   "display: inline-block;" +
   "margin: 0;" +
   "}",
@@ -2722,9 +2734,9 @@ var css = {
   myCardListcardBalance: ".mycardlist-card-balance " +
   "{" +
   "position: relative;" +
-  "left: 6%;" +
+  "left: 5%;" +
   "color: #585658;" +
-  "font-size:" + 35 * widthK + "px;" +
+  "font-size:" + 33 * widthK + "px;" +
   "margin: 0;" +
   "float: left;" +
   "padding: 0;" +
@@ -2733,12 +2745,14 @@ var css = {
   myCardListcardCurrency: ".mycardlist-card-currency " +
   "{" +
   "position: relative;" +
-  "margin-left: 8%;" +
+  "left: 6%;" +
+  "top: 32%;" +
   "color: #595759;" +
   "bottom: 12%;" +
   "font-size:" + 19 * widthK + "px;" +
   "background-size: contain;" +
   "float: left;" +
+  "margin:0;" +
   "}",
 
   myCardListcardNumber: ".mycardlist-card-number " +
@@ -2763,7 +2777,7 @@ var css = {
   myCardListcardNumberPartTwo: ".mycardlist-card-number-part-two " +
   "{" +
   "position: absolute;" +
-  "left:54%;" +
+  "left:58%;" +
   "font-weight: bold;" +
   "}",
 
@@ -2771,8 +2785,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left: 17%;" +
-  "letter-spacing:" + -10 * widthK + "px;" +
+  "left: 18%;" +
+  "letter-spacing:" + -8 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
 

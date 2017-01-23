@@ -1,30 +1,30 @@
 <view-mycard-list>
-    <div class="view-pay">
+    <div class="view-mycard-list">
         <div class="mycardlist-page-title">
-            <p class="pay-name-title">{titleName}</p>
+            <p class="mycardlist-name-title">{titleName}</p>
             <div id="backButton" ontouchend="goToMainPage()"
                  class="back-button">
             </div>
             <div id="rightButton" type="button" class="{search-button: rightbuttoncheck}" ontouchend="search()"></div>
         </div>
 
-        <div class="mycardlist">
-            <div class="mycardlist-card" each="{i in cardsarray}" style="background-image: url({i.background});"
+        <div class="mycardlist-container">
+            <div class="mycardlist-card" each="{i in cardsarray}"
                  ontouchend="goToCardPage({i.card_id})">
 
                 <div class="mycardlist-card-bank-name-url" style="background-image: url({i.url})"></div>
                 <div class="mycardlist-card-bank-name" style="background-image: url({i.bankname})"></div>
-                <div class="mycardlist-card-salary-title">{i.name}</div>
+                <div class="mycardlist-card-salary-title">Зарплатная карта</div>
 
                 <div class="mycardlist-card-balance-currency-container">
-                    <p class="mycardlist-card-balance">{i.salary}</p>
-                    <p class="mycardlist-card-currency">{i.currency}</p>
+                    <p class="mycardlist-card-balance">5 438 710</p>
+                    <p class="mycardlist-card-currency">сум</p>
                 </div>
 
                 <div class="mycardlist-card-number">
-                    <div class="mycardlist-card-number-part-one">{i.numberPartOne}</div>
+                    <div class="mycardlist-card-number-part-one">1234</div>
                     <p class="mycardlist-number-stars">**** ****</p>
-                    <div class="mycardlist-card-number-part-two">{i.numberPartTwo}</div>
+                    <div class="mycardlist-card-number-part-two">4789</div>
                 </div>
             </div>
         </div>
@@ -47,8 +47,6 @@
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
         scope.cardsArray = JSON.parse(localStorage.getItem("click_client_cards"));
-
-
 
         goToCardPage = function (cardId) {
             event.preventDefault();
