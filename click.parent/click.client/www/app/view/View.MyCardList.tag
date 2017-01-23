@@ -9,7 +9,7 @@
         </div>
 
         <div class="mycardlist-container">
-            <div class="mycardlist-card" each="{i in cardsarray}"
+            <div class="mycardlist-card" each="{i in cardsarray}" style="background-image: url({i.background});"
                  ontouchend="goToCardPage({i.card_id})">
 
                 <div class="mycardlist-card-bank-name-url" style="background-image: url({i.url})"></div>

@@ -70,9 +70,9 @@
         scope.focusedFieldId = -1;
 
         eraseAmountDefault = function () {
-            document.getElementById('amountField').style.borderBottom = 5*widthK+'px solid #01cfff';
+            document.getElementById('amountField').style.borderBottom = 5 * widthK + 'px solid #01cfff';
             if (scope.focusedFieldId != -1)
-                document.getElementById("phoneField" + scope.focusedFieldId).style.borderBottom = '5px solid lightgrey';
+                document.getElementById("phoneField" + scope.focusedFieldId).style.borderBottom = 5 * widthK + 'px solid lightgrey';
             if (document.getElementById('amount').value == '0')
                 document.getElementById('amount').value = null;
         }
@@ -80,11 +80,11 @@
         bordersColor = function (id) {
             console.log("ID", id);
             if (scope.focusedFieldId != id && scope.focusedFieldId != -1) {
-                document.getElementById("phoneField" + scope.focusedFieldId).style.borderBottom = '5px solid lightgrey';
+                document.getElementById("phoneField" + scope.focusedFieldId).style.borderBottom = 5 * widthK + 'px solid lightgrey';
                 console.log("as previous");
             }
-            document.getElementById("phoneField" + id).style.borderBottom = '5px solid #01cfff';
-            document.getElementById('amountField').style.borderBottom = '5px solid lightgrey';
+            document.getElementById("phoneField" + id).style.borderBottom = 5 * widthK + 'px solid #01cfff';
+            document.getElementById('amountField').style.borderBottom = 5 * widthK + 'px solid lightgrey';
             scope.focusedFieldId = id;
         }
 

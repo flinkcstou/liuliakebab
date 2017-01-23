@@ -1909,6 +1909,18 @@ var css = {
   "background-image: url('resources/icons/background/transparent.png');" +
   "}",
 
+  viewMycardList: ".view-mycard-list" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "overflow: hidden;" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+    //"background-image: url('resources/draft/mycardList.png');" +
+  "background-image: url('resources/icons/background/transparent.png');" +
+  "}",
+
   payIconTick: ".pay-icon-tick " +
   "{" +
   "position: relative;" +
