@@ -30,6 +30,10 @@
             <div class="servicepage-button-enter-label">ДАЛЕЕ</div>
         </div>
     </div>
+    <div class="servicepage-body-container" if="{formType==2}">
+        ASD
+
+    </div>
     <script>
 
         var scope = this;
