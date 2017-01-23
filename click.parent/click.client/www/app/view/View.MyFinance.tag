@@ -3,7 +3,9 @@
   </component-page-title>
 
   <script>
-    this.titleName = 'МОИ ФИНАНСЫ';
+    var scope = this;
+
+    scope.titleName = 'МОИ ФИНАНСЫ';
     history.arrayOfHistory.push('view-my-finance');
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 

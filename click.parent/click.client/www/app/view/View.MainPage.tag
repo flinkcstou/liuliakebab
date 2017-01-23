@@ -21,14 +21,14 @@
         var scope = this;
         localStorage.setItem('cardNumber', 0);
         history.arrayOfHistory.push('view-main-page');
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
         viewMainPage.myCards = false;
 
         myCardList = function () {
             event.preventDefault();
             event.stopPropagation();
-            this.riotTags.innerHTML = "<view-mycard-list>";
+            scope.riotTags.innerHTML = "<view-mycard-list>";
             riot.mount('view-mycard-list');
         }
 

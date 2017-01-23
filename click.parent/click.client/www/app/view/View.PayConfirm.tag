@@ -77,23 +77,22 @@
         this.phoneText = "+998 " + viewServicePage.phoneText;
         this.amountText = viewServicePage.amountText;
 
-        this.titleName = scope.service.name;
-        this.serviceIcon = scope.service.image;
-        this.categoryName = scope.categoryNamesMap[viewPay.categoryId];
+        scope.titleName = scope.service.name;
+        scope.serviceIcon = scope.service.image;
+        scope.categoryName = scope.categoryNamesMap[viewPay.categoryId];
 
         for (var i = 0; i < cardsArray.length; i++)
-            if (cardsArray[i].card_id == viewServicePinCards.chosenCardId) {
-                this.cardName = cardsArray[i].name;
-                this.numberPartOne = cardsArray[i].numberPartOne;
-                this.numberPartTwo = cardsArray[i].numberPartTwo;
-                this.salary = cardsArray[i].salary;
-                this.currency = cardsArray[i].currency;
-                this.url = cardsArray[i].url;
+            if (cardsArray[i].chosenCard === true) {
+                scope.cardName = cardsArray[i].name;
+                scope.numberPartOne = cardsArray[i].numberPartOne;
+                scope.numberPartTwo = cardsArray[i].numberPartTwo;
+                scope.salary = cardsArray[i].salary;
+                scope.currency = cardsArray[i].currency;
+                scope.url = cardsArray[i].url;
                 break;
             }
 
 
-        console.log("chosen card id", viewServicePinCards.chosenCardId);
 
 
     </script>
