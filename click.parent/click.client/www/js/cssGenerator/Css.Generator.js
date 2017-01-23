@@ -2858,9 +2858,9 @@ var css = {
   transferBodyContainer: ".transfer-body-container" +
   "{" +
   "position: absolute;" +
-  "height: 1145px;" +
-  "width: 720px;" +
-  "top: 87px;" +
+  "height:" +  1145 * widthK + "px;" +
+  "width:" + 720 * widthK + "px;" +
+  "top:"+  87 * widthK + "px;" +
   "background-color: white;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
@@ -2902,7 +2902,7 @@ var css = {
   "left: 40%;" +
   "top: 39%;" +
   "position: absolute;" +
-  "font-size: 23px;" +
+  "font-size:" + 23 * widthK + "px;" +
   "color: gray;" +
   "}",
 
@@ -2919,10 +2919,10 @@ var css = {
   "position: relative;" +
   "left: 10%;" +
   "width: 79.5%;" +
-  "height: 103px;" +
-  "border-bottom: 5px solid #01cfff;" +
+  "height:" + 103 * widthK + "px;" +
+  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top: 45px;" +
+  "top:" + 45 * widthK + "px;" +
   "margin-bottom: 8%;" +
   "}",
 
@@ -2931,7 +2931,7 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "color: gray;" +
-  "font-size: 24px;" +
+  "font-size:" +  24 * widthK + "px;" +
   "bottom: 88%;" +
   "}",
 
@@ -2956,7 +2956,7 @@ var css = {
   "top: 26%;" +
   "width: 7%;" +
   "height: 42%;" +
-  "font-size: 56px;" +
+  "font-size:" + 56 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "margin: 0;" +
@@ -2971,7 +2971,7 @@ var css = {
   "left: 18%;" +
   "width: 66%;" +
   "height: 42%;" +
-  "font-size: 56px;" +
+  "font-size:" + 56 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
@@ -2980,7 +2980,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 79.5%;" +
-  "height: 103px;" +
+  "height:" + 103 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
   "margin-bottom: 3px;" +
@@ -3008,7 +3008,7 @@ var css = {
   "float: left;" +
   "left: 7%;" +
   "color: gray;" +
-  "font-size: 24px;" +
+  "font-size:" + 24 * widthK + "px;" +
   "width: 30%;" +
   "top: 24%;" +
   "}",
@@ -3020,7 +3020,7 @@ var css = {
   "float: left;" +
   "left: 14%;" +
   "color: gray;" +
-  "font-size: 24px;" +
+  "font-size:" + 24 * widthK + "px;" +
   "width: 40%;" +
   "top: 40%;" +
   "}",
@@ -3047,7 +3047,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
-  "font-size: 32px;" +
+  "font-size:" + 32 * widthK + "px;" +
   "color: #595759;" +
   "}",
 
