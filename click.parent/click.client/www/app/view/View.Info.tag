@@ -32,7 +32,7 @@
     <div class="view-info-operations-container">
 
         <div class="view-info-operations-icon" each="{i in lastOperationContainer}"
-             style="left:{leftOfOperations*i.count}px;">
+             style="left:{leftOfOperations*i.count + 50}px;">
 
             <div class="view-info-operation-info-container">
                 <p class="view-info-operation-info-name">{i.service_name}</p>
@@ -47,7 +47,7 @@
 
     <script>
         var scope = this;
-        scope.leftOfOperations = 200 * widthK;
+        scope.leftOfOperations = 470 * widthK;
         scope.lastOperationContainer = [];
 
         onTouchEndBack = function () {
