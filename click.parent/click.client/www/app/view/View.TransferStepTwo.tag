@@ -2,53 +2,27 @@
     <component-page-title title="{titleName}" backbutton="{backbuttoncheck}" rightbutton="{rightbuttoncheck}">
     </component-page-title>
 
-    <div class="transfer-body-container">
-        <div class="transfer-menus-container">
-            <div class="transfer-menu-container">
-                <div class="transfer-menu-icon"></div>
-                <p id="contactLabelId" class="transfer-menu-name-label" ontouchend="contact()">КОНТАКТ</p>
+    <div class="transfertwo-body-container">
+        <div class="transfertwo-menus-container">
+            <div class="transfertwo-menu-container">
+                <p id="contactLabelId" class="transfertwo-menu-name-label" ontouchend="contact()">СУММА</p>
             </div>
-            <div class="transfer-menu-container">
-                <div class="transfer-menu-icon"></div>
-                <p id="cardLabelId" class="transfer-menu-name-label" ontouchend="card()">КАРТА</p>
+            <div class="transfertwo-menu-container">
+                <p id="cardLabelId" class="transfertwo-menu-name-label" ontouchend="card()">ПЕРЕВЕСТИ С</p>
             </div>
         </div>
         <div class="transfer-contact-body-container" if="{contactMode}">
             <div class="transfer-contact-phone-field">
-                <p class="transfer-contact-text-field">Номер телефона получателя:</p>
                 <p class="transfer-contact-number-first-part">+998</p>
                 <input class="transfer-contact-number-input-part" type="tel"
                        maxlength="9"/>
-                <div class="transfer-contact-phone-icon"></div>
-            </div>
-            <div class="transfer-contact-found-container">
-                <div class="transfer-contact-found-photo"></div>
-                <div class="transfer-contact-found-text-one">Юлдашев Александр</div>
-                <div class="transfer-contact-found-text-two">+998 90 359 39 57</div>
-            </div>
-            <div class="transfer-contact-found-container">
-                <div class="transfer-contact-found-photo"></div>
-                <div class="transfer-contact-found-text-one">Sipa</div>
-                <div class="transfer-contact-found-text-two">+998 90 359 51 98</div>
             </div>
         </div>
         <div class="transfer-contact-body-container" if="{cardMode}">
             <div class="transfer-contact-phone-field">
-                <p class="transfer-contact-text-field">Номер карты получателя:</p>
                 <p class="transfer-contact-number-first-part">8600</p>
                 <input class="transfer-contact-number-input-part" type="tel"
                        maxlength="9"/>
-                <div class="transfer-contact-phone-icon"></div>
-            </div>
-            <div class="transfer-contact-found-container">
-                <div class="transfer-contact-found-photo"></div>
-                <div class="transfer-contact-found-text-one">Юлдашев Александр</div>
-                <div class="transfer-contact-found-text-two">8760 **** **** 9870</div>
-            </div>
-            <div class="transfer-contact-found-container">
-                <div class="transfer-contact-found-photo"></div>
-                <div class="transfer-contact-found-text-one">Дмитрий Чеченин</div>
-                <div class="transfer-contact-found-text-two">8760 **** **** 9870</div>
             </div>
         </div>
         <div class="transfer-next-button-container">

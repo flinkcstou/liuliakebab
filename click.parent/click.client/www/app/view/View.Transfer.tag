@@ -76,7 +76,8 @@
         console.log('PHONE NUMBER ', phoneNumber);
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
-        scope.contactMode = false;
+        scope.contactMode = true;
+        this.contactLabelId.style.color = 'black';
         scope.cardMode = false;
         contact = function () {
             scope.contactMode = true;
