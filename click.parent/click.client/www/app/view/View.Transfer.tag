@@ -6,16 +6,16 @@
         <div class="transfer-menus-container">
             <div class="transfer-menu-container">
                 <div class="transfer-menu-icon"></div>
-                <p class="transfer-menu-name-label">КОНТАКТ</p>
+                <p id="contactLabelId" class="transfer-menu-name-label" ontouchend="contact()">КОНТАКТ</p>
             </div>
             <div class="transfer-menu-container">
                 <div class="transfer-menu-icon"></div>
-                <p class="transfer-menu-name-label">КАРТА</p>
+                <p id="cardLabelId" class="transfer-menu-name-label" ontouchend="card()">КАРТА</p>
             </div>
         </div>
-        <div class="transfer-contact-body-container">
+        <div class="transfer-contact-body-container" if="{contactMode}">
             <div class="transfer-contact-phone-field">
-                <p class="transfer-contact-text-field">Номер телефона получателя</p>
+                <p class="transfer-contact-text-field">Номер телефона получателя:</p>
                 <p class="transfer-contact-number-first-part">+998</p>
                 <input class="transfer-contact-number-input-part" type="tel"
                        maxlength="9"/>
@@ -32,7 +32,29 @@
                 <div class="transfer-contact-found-text-two">+998 90 359 51 98</div>
             </div>
         </div>
-
+        <div class="transfer-contact-body-container" if="{cardMode}">
+            <div class="transfer-contact-phone-field">
+                <p class="transfer-contact-text-field">Номер карты получателя:</p>
+                <p class="transfer-contact-number-first-part">8600</p>
+                <input class="transfer-contact-number-input-part" type="tel"
+                       maxlength="9"/>
+                <div class="transfer-contact-phone-icon"></div>
+            </div>
+            <div class="transfer-contact-found-container">
+                <div class="transfer-contact-found-photo"></div>
+                <div class="transfer-contact-found-text-one">Юлдашев Александр</div>
+                <div class="transfer-contact-found-text-two">8760 **** **** 9870</div>
+            </div>
+            <div class="transfer-contact-found-container">
+                <div class="transfer-contact-found-photo"></div>
+                <div class="transfer-contact-found-text-one">Дмитрий Чеченин</div>
+                <div class="transfer-contact-found-text-two">8760 **** **** 9870</div>
+            </div>
+        </div>
+        <div class="transfer-next-button-container">
+            <p class="transfer-next-button-label">ДАЛЕЕ</p>
+            <div class="transfer-next-button-icon"></div>
+        </div>
 
     </div>
 
@@ -51,6 +73,26 @@
         phoneNumber = phoneNumber.substring(3, phoneNumber.length);
         console.log('PHONE NUMBER ', phoneNumber);
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+
+        scope.contactMode = false;
+        scope.cardMode = false;
+        contact = function () {
+            scope.contactMode = true;
+            this.contactLabelId.style.color = 'black';
+            this.cardLabelId.style.color = 'gray';
+            scope.cardMode = false;
+            riot.update(scope.cardMode);
+            riot.update(scope.contactMode);
+        }
+
+        card = function () {
+            scope.cardMode = true;
+            this.cardLabelId.style.color = 'black';
+            this.contactLabelId.style.color = 'gray';
+            scope.contactMode = false;
+            riot.update(scope.contactMode);
+            riot.update(scope.cardMode);
+        }
 
         //    window.api.call({
         //      method: 'get.service.list',

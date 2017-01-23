@@ -1523,6 +1523,7 @@ input {
     top: 39%;
     position: absolute;
     font-size: 23px;
+    color: gray;
 }
 
 .transfer-contact-body-container {
@@ -1633,6 +1634,37 @@ input {
     font-size: 24px;
     width: 40%;
     top: 40%;
+}
+
+.transfer-next-button-container {
+    position: absolute;
+    width: 100%;
+    height: 9%;
+    bottom: 0;
+    /*background-color: lightgray;*/
+    border-top: 1px solid lightgray;
+}
+
+.transfer-next-button-label {
+    position: absolute;
+    background-size: contain;
+    font-size: 32px;
+    left: 72%;
+    color: #595759;
+}
+
+.transfer-next-button-icon {
+    position: relative;
+    float: right;
+    /*background-image: url("../resources/icons/ViewService/book.png");*/
+    background-color: lightgray;
+    width: 6%;
+    height: 40%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    top: 31%;
+    right: 7%;
 }
 
 /*OTHER*/
