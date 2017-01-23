@@ -67,7 +67,8 @@
         history.arrayOfHistory.push('view-transfer');
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
-        scope = this;
+        var scope = this;
+        scope.searchWord = '';
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = true;
 
@@ -130,7 +131,18 @@
             findContacts();
 
         searchContacts = function () {
+            event.preventDefault();
+            event.stopPropagation();
 
+            if (event.keyCode != 16 && event.keyCode != 18)
+                scope.searchWord = event.target.value.toLowerCase();
+
+            scope.suggestionOne = {};
+            scope.suggestionTwo = {};
+
+            arrayOfContacts.filter(function (wordOfFunction){
+
+            });
         }
 
 
