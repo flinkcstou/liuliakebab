@@ -129,5 +129,6 @@
         if (device.platform != 'BrowserStand')
             findContacts();
 
+
     </script>
 </view-transfer>
