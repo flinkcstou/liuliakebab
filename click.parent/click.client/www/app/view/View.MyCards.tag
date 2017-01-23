@@ -152,9 +152,17 @@
         viewMyCards.cardInformation();
 
         goToPayView = function () {
+            for(var i = 0; i < scope.cardsArray.length; i++){
+                scope.cardsArray[i].chosenCard = false;
+                if(scope.cardsArray[i].card_id == scope.card.card_id){
+                    scope.cardsArray[i].chosenCard = true;
+                }
+            }
+            localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
+
             event.preventDefault();
             event.stopPropagation();
-            scope.riotTags.innerHTML = "<view-pay>";
+            this.riotTags.innerHTML = "<view-pay>";
             riot.mount('view-pay');
         }
 

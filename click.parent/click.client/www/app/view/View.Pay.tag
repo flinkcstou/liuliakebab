@@ -70,8 +70,6 @@
 
         history.arrayOfHistory.push('view-pay');
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-
-        scope = this;
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = true;
         scope.categoryList = JSON.parse(localStorage.getItem("click_client_payCategoryList"));
@@ -95,11 +93,11 @@
             event.preventDefault();
             event.stopPropagation();
             if (viewMyCardList.myCardListBoolean) {
-                scope.riotTags.innerHTML = "<view-my-cards>";
+                this.riotTags.innerHTML = "<view-my-cards>";
                 riot.mount('view-my-cards');
             }
             else {
-                scope.riotTags.innerHTML = "<view-main-page>";
+                this.riotTags.innerHTML = "<view-main-page>";
                 riot.mount('view-main-page');
             }
         }

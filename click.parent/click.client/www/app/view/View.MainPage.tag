@@ -28,7 +28,7 @@
         myCardList = function () {
             event.preventDefault();
             event.stopPropagation();
-            scope.riotTags.innerHTML = "<view-mycard-list>";
+            this.riotTags.innerHTML = "<view-mycard-list>";
             riot.mount('view-mycard-list');
         }
 

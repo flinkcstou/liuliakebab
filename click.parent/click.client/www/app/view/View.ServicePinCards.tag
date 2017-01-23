@@ -67,8 +67,18 @@
         scope.checked = false;
 
         chooseCard = function (id) {
-            document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
-            scope.checked = true;
+
+            for(var i = 0; i < cardsArray.length; i ++){
+                console.log('cardsArray[i].id', cardsArray[i].chosenCard, id)
+                cardsArray[i].chosenCard = false;
+                if(cardsArray[i].card_id == id){
+                    document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
+                    scope.checked = true;
+                    cardsArray[i].chosenCard = true;
+                }
+            }
+            localStorage.setItem('click_client_cards', JSON.stringify(cardsArray))
+            riot.update(document.getElementById("check" + id))
         }
 
         goToPayConfirmView = function () {

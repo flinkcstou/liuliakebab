@@ -37,7 +37,7 @@
         goToMainPage = function () {
             event.preventDefault();
             event.stopPropagation();
-            scope.riotTags.innerHTML = "<view-main-page>";
+            this.riotTags.innerHTML = "<view-main-page>";
             riot.mount('view-main-page');
         }
 
@@ -60,7 +60,7 @@
                     break;
                 }
             viewMyCardList.myCardListBoolean = true;
-            scope.riotTags.innerHTML = "<view-my-cards>";
+            this.riotTags.innerHTML = "<view-my-cards>";
             riot.mount('view-my-cards');
 
 
