@@ -45,11 +45,11 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/ViewInfo.png);" +
-    //"opacity: 0.6;" +
-  "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
-  "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
-  "background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+    "background-image: url(resources/draft/ViewInfo.png);" +
+    "opacity: 0.6;" +
+  //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+  //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+  //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -1710,7 +1710,21 @@ var css = {
   "width: 100%;" +
   "height:" + 250 * widthK + "px;" +
   "top:" + 600 * widthK + "px;" +
-  "overflow: auto;" +
+  "overflow-x: auto;" +
+  "overflow-y: hidden;" +
+  "font-size:" + 23 * widthK + "px;" +
+  "}",
+
+  viewInfoOperationsIcon: ".view-info-operations-icon " +
+  "{" +
+  "top:" + 50 * widthK + "px;" +
+  "background-size: 80%;" +
+  "position: absolute;" +
+  "width:" + 125 * widthK + "px;" +
+  "height:" + 125 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "border-radius:" + 100 * widthK + "px;" +
   "}",
 
   viewInfoOperationTitle: ".view-info-operations-title " +
@@ -1736,14 +1750,52 @@ var css = {
   "height: 100%;" +
   "width: 300%;" +
   "left: 103%;" +
+  "color: #8b8b8b;" +
   "}",
 
-  viewInfoBalanceLabel: ".view-info-balance-label " +
+  viewInfoOperationInfoName : ".view-info-operation-info-name " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: -8%;" +
+  "left: 8%;" +
+  "margin: 0;" +
+  "}",
+
+  viewInfoOperationInfoBalance : ".view-info-operation-info-balance " +
+  "{" +
+  "position: absolute;" +
+  "top: 9%;" +
+  "left: 10%;" +
+  "margin: 0;" +
+  "font-size:" + 45 * widthK + "px;" +
+  "color: #ee4d3d;" +
+  "}",
+
+  viewInfoOperationInfoNumber : ".view-info-operation-info-number " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 50%;" +
+  "left: 13%;" +
+  "margin: 0;" +
+  "}",
+
+  viewInfoOperationInfoDate : ".view-info-operation-info-date " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 81%;" +
+  "left: 9%;" +
+  "margin: 0;" +
+  "}",
+
+  viewInfoBalanceLabel: ".view-info-balance-label" +
   "{" +
   "position: absolute;" +
   "left: 25%;" +
   "top: 10%;" +
-  "font-size:" + 25 * widthK + "px;" +
+  "font-size:" + 45 * widthK + "px;" +
   "color: #c2c2c2;" +
   "}",
 
@@ -2803,214 +2855,16 @@ var css = {
   "font-size:" + 36 * widthK + "px;" +
   "}",
 
-  transferBodyContainer: ".transfer-body-container" +
-  "{" +
-  "position: absolute;" +
-  "height: 1145px;" +
-  "width: 720px;" +
-  "top: 87px;" +
-  "background-color: white;" +
-  "overflow-x: hidden;" +
-  "overflow-y: scroll;" +
-  "border-bottom: 1px solid black;" +
-  "}",
-
-  transferMenusContainer: ".transfer-menus-container" +
-  "{" +
-  "position: relative;" +
-  "height: 10%;" +
-  "background-color: #F0F1F4;" +
-  "}",
-
-  transferMenuContainer: ".transfer-menu-container" +
-  "{" +
-  "position: relative;" +
-  "height: 100%;" +
-  "width: 30%;" +
-  "float: left;" +
-  "left: 18%;" +
-  "margin-left: 2%;" +
-  "background-color: transparent;" +
-  "}",
-
-  transferMenuIcon: ".transfer-menu-icon" +
-  "{" +
-  "position: relative;" +
-  "height: 61%;" +
-  "width: 30%;" +
-  "float: left;" +
-  "left: 3%;" +
-  "top: 20%;" +
-  "background-color: lightgray;" +
-  "}",
-
-  transferMenuNameLabel: ".transfer-menu-name-label" +
-  "{" +
-  "margin: 0;" +
-  "left: 40%;" +
-  "top: 39%;" +
-  "position: absolute;" +
-  "font-size: 23px;" +
-  "color: gray;" +
-  "}",
-
-  transferContactBodyContainer: ".transfer-contact-body-container" +
-  "{" +
-  "position: absolute;" +
-  "top: 10%;" +
-  "height: 50%;" +
-  "background-color: transparent;" +
-  "}",
-
-  transferContactPhoneField: ".transfer-contact-phone-field" +
-  "{" +
-  "position: relative;" +
-  "left: 10%;" +
-  "width: 79.5%;" +
-  "height: 103px;" +
-  "border-bottom: 5px solid #01cfff;" +
-  "color: white;" +
-  "top: 45px;" +
-  "margin-bottom: 8%;" +
-  "}",
-
-  transferContactTextField: ".transfer-contact-text-field" +
-  "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "color: gray;" +
-  "font-size: 24px;" +
-  "bottom: 88%;" +
-  "}",
-
-  transferContactPhoneIcon: ".transfer-contact-phone-icon" +
-  "{" +
-  "position: relative;" +
-  "float: right;" +
-  "background-image: url('resources/icons/ViewService/book.png');" +
-  "width: 8%;" +
-  "height: 50%;" +
-  "background-repeat: no-repeat;" +
-  "background-size: 100%;" +
-  "background-position: center;" +
-  "top: 36%;" +
-  "right: 1%;" +
-  "}",
-
-  transferContactNumberFirstPart: ".transfer-contact-number-first-part" +
-  "{" +
-  "float: left;" +
-  "position: relative;" +
-  "top: 26%;" +
-  "width: 7%;" +
-  "height: 42%;" +
-  "font-size: 56px;" +
-  "font-family: 'SFUIDisplay-Light';" +
-  "color: #515151;" +
-  "margin: 0;" +
-  "}",
-
-  transferContactNumberInputPart: ".transfer-contact-number-input-part" +
-  "{" +
-  "border: none;" +
-  "outline: none;" +
-  "position: relative;" +
-  "top: 38%;" +
-  "left: 18%;" +
-  "width: 66%;" +
-  "height: 42%;" +
-  "font-size: 56px;" +
-  "font-family: 'SFUIDisplay-Light';" +
-  "color: #515151;" +
-  "}",
-
-  transferContactFoundContainer: ".transfer-contact-found-container" +
-  "{" +
-  "position: relative;" +
-  "width: 79.5%;" +
-  "height: 103px;" +
-  "background-color: #F0F1F4;" +
-  "left: 10%;" +
-  "margin-bottom: 3px;" +
-  "}",
-
-  transferContactFoundPhoto: ".transfer-contact-found-photo" +
-  "{" +
-  "top: 15%;" +
-  "position: relative;" +
-  "width: 13%;" +
-  "height: 70%;" +
-  "background-repeat: no-repeat;" +
-  "background-position: center;" +
-  "border-radius: 50%;" +
-  "border: 1px solid gray;" +
-  "float: left;" +
-  "left: 4%;" +
-  "background-size: 150%;" +
-  "}",
-
-  transferContactFoundTextOne: ".transfer-contact-found-text-one" +
-  "{" +
-  "position: relative;" +
-  "margin: 0;" +
-  "float: left;" +
-  "left: 7%;" +
-  "color: gray;" +
-  "font-size: 24px;" +
-  "width: 30%;" +
-  "top: 24%;" +
-  "}",
-
-  transferContactFoundTextTwo: ".transfer-contact-found-text-two" +
-  "{" +
-  "position: relative;" +
-  "margin: 0;" +
-  "float: left;" +
-  "left: 14%;" +
-  "color: gray;" +
-  "font-size: 24px;" +
-  "width: 40%;" +
-  "top: 40%;" +
-  "}",
-
-  transferNextButtonContainer: ".transfer-next-button-container" +
-  "{" +
-  "position: absolute;" +
-  "width: 100%;" +
-  "height: 9%;" +
-  "bottom: 0;" +
-  "border-top: 1px solid lightgray;" +
-  "}",
-
-  transferNextButtonInnerContainer: ".transfer-next-button-inner-container" +
-  "{" +
-  "position: absolute;" +
-  "height: 100%;" +
-  "width: 30%;" +
-  "left: 70%;" +
-  "background-color: transparent;" +
-  "}",
-
-  transferNextButtonLabel: ".transfer-next-button-label" +
-  "{" +
-  "position: absolute;" +
-  "background-size: contain;" +
-  "font-size: 32px;" +
-  "color: #595759;" +
-  "}",
-
-  transferNextButtonIcon: ".transfer-next-button-icon" +
-  "{" +
-  "position: relative;" +
-  "background-color: lightgray;" +
-  "width: 16%;" +
-  "height: 36%;" +
-  "background-repeat: no-repeat;" +
-  "background-size: 100%;" +
-  "background-position: center;" +
-  "top: 31%;" +
-  "left: 50%;" +
-  "}"
+  //transferBodyContainer: ".transfer-body-container" +
+  //"{" +
+  //"position: absolute;" +
+  //"height: " + 1145 * widthK + "px; " +
+  //"width: " + 720 * widthK + "px; " +
+  //"top: " + 27 * widthK + "px; " +
+  //"background-color: white;" +
+  //"overflow-x: hidden;" +
+  //"overflow-y: scroll;" +
+  //"}",
 
 
 }
