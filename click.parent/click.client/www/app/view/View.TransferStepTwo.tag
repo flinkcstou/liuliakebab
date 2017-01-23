@@ -1,4 +1,4 @@
-<view-transfer>
+<view-transfer-steptwo>
     <component-page-title title="{titleName}" backbutton="{backbuttoncheck}" rightbutton="{rightbuttoncheck}">
     </component-page-title>
 
@@ -52,17 +52,17 @@
             </div>
         </div>
         <div class="transfer-next-button-container">
-            <div class="transfer-next-button-inner-container" ontouchend="goToTransferStepTwo()">
+            <div class="transfer-next-button-inner-container">
                 <p class="transfer-next-button-label">ДАЛЕЕ</p>
                 <div class="transfer-next-button-icon"></div>
             </div>
-        </div>
 
+        </div>
     </div>
 
 
     <script>
-        this.titleName = 'ПЕРЕВОДЫ';
+        this.titleName = 'ПЕРЕВОД НА 8600 **** 7987';
 
         history.arrayOfHistory.push('view-transfer');
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
@@ -94,13 +94,6 @@
             scope.contactMode = false;
             riot.update(scope.contactMode);
             riot.update(scope.cardMode);
-        }
-
-        goToTransferStepTwo = function () {
-            event.preventDefault();
-            event.stopPropagation();
-            this.riotTags.innerHTML = "<view-transfer-steptwo>";
-            riot.mount('view-transfer-steptwo');
         }
 
         //    window.api.call({
@@ -206,4 +199,4 @@
         //    })
 
     </script>
-</view-transfer>
+</view-transfer-steptwo>
