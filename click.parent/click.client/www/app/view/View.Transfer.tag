@@ -18,7 +18,7 @@
                 <p class="transfer-contact-text-field">Номер телефона получателя:</p>
                 <p class="transfer-contact-number-first-part">+998</p>
                 <input class="transfer-contact-number-input-part" type="tel"
-                       maxlength="9"/>
+                       maxlength="9" onkeyup="searchContacts()"/>
                 <div class="transfer-contact-phone-icon"></div>
             </div>
             <div class="transfer-contact-found-container">
@@ -128,6 +128,10 @@
         }
         if (device.platform != 'BrowserStand')
             findContacts();
+
+        searchContacts = function () {
+
+        }
 
 
     </script>
