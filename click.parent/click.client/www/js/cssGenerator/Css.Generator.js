@@ -1766,7 +1766,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "top: 9%;" +
-  "left: 10%;" +
+  "left: 8%;" +
   "margin: 0;" +
   "font-size:" + 45 * widthK + "px;" +
   "color: #ee4d3d;" +
@@ -1777,7 +1777,7 @@ var css = {
   "position: absolute;" +
   "height: 25%;" +
   "top: 50%;" +
-  "left: 13%;" +
+  "left: 8%;" +
   "margin: 0;" +
   "}",
 

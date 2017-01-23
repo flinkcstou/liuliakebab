@@ -104,11 +104,11 @@
     }
 
 
-//        var arrayOfPhotosContacts = [];
-//        var arrayWithoutPhotosContacts = [];
-//        var arrayOfConnectedContacts = [];
-//
-//
+        var arrayOfPhotosContacts = [];
+        var arrayWithoutPhotosContacts = [];
+        var arrayOfConnectedContacts = [];
+
+
 //            findContacts = function () {
 //              var options = new ContactFindOptions();
 //              options.filter = "";

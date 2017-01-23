@@ -37,7 +37,7 @@
             <div class="view-info-operation-info-container">
                 <p class="view-info-operation-info-name">{i.service_name}</p>
                 <p class="view-info-operation-info-balance">{i.amount}</p>
-                <p class="view-info-operation-info-number">{i.cntrg_info_param2}</p>
+                <p class="view-info-operation-info-number">+{i.cntrg_info_param2}</p>
                 <p class="view-info-operation-info-date">{i.created}</p>
             </div>
 
