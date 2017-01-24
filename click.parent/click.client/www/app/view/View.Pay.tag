@@ -30,7 +30,7 @@
     <div id="blockSearchId" class="component-search">
         <div class="search-title-container">
             <div class="search-search-icon"></div>
-            <p class="search-title-name">ВЫБОР КАТЕГОРИИ</p>
+            <p class="search-title-name">{window.languages.ComponentSearchTitle}</p>
             <div class="search-cancel-icon" ontouchend="searchCancelEnd()"></div>
         </div>
         <div id="searchContainerId" class="search-container">
@@ -66,7 +66,7 @@
     <script>
         //TODO: OPTIMIZE THIS PAGE SLOW DOWNLOADING CATEGORIES AND SERVICES
         var scope = this;
-        this.titleName = 'ОПЛАТА';
+        this.titleName = window.languages.ViewPayTitleName;
 
         history.arrayOfHistory.push('view-pay');
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))

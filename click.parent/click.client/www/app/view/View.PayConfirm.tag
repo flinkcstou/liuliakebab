@@ -13,20 +13,20 @@
     <div class="payconfirm-body-container">
         <div class="payconfirm-data-container">
             <div class="payconfirm-phone-field">
-                <p class="payconfirm-text-field">Номер телефона:</p>
+                <p class="payconfirm-text-field">{window.languages.ViewPayConformEnterPhone}</p>
                 <p class="payconfirm-phone-input">{phoneText}</p>
             </div>
             <div class="payconfirm-field">
-                <p class="payconfirm-text-field">Сумма платежа:</p>
+                <p class="payconfirm-text-field">{window.languages.ViewPayConfirmAmountOfPay}</p>
                 <p class="payconfirm-phone-input">{amountText} сум</p>
             </div>
             <div class="payconfirm-field">
-                <p class="payconfirm-text-field">Категория:</p>
-                <p class="payconfirm-phone-input" style="text-decoration: underline">Мобильная связь</p>
+                <p class="payconfirm-text-field">{window.languages.ViewPayConfirmCategory}</p>
+                <p class="payconfirm-phone-input" style="text-decoration: underline">{window.languages.ViewPayConfirmMobileConnection}</p>
             </div>
             <div class="payconfirm-card-field">
                 <div class="payconfirm-card-info-container">
-                    <p class="payconfirm-text-one">Оплата с карты:</p>
+                    <p class="payconfirm-text-one">{window.languages.ViewPayConfirmPayFromCard}</p>
                     <p class="payconfirm-text-two">{cardName}</p>
                     <p class="payconfirm-detail-text">{numberPartOne} **** {numberPartTwo}</p>
                     <p class="payconfirm-detail-text">Доступно:{salary} {currency}</p>
@@ -41,15 +41,15 @@
             <div class="payconfirm-action-containter">
                 <div class="payconfirm-action-icon-one"
                      style="background-image: url('resources/icons/ViewService/addfavorite.png');"></div>
-                <div class="payconfirm-action-text">Добавить в избранные</div>
+                <div class="payconfirm-action-text">{window.languages.ViewPayConfirmAddToFavourite}</div>
             </div>
             <div class="payconfirm-action-containter">
                 <div class="payconfirm-action-icon-two"
                      style="background-image: url('resources/icons/ViewService/addautopay.png');"></div>
-                <div class="payconfirm-action-text">Добавить в автоплатеж</div>
+                <div class="payconfirm-action-text">{window.languages.ViewPayConfirmAddToAutoPay}</div>
             </div>
             <div class="payconfirm-button-enter">
-                <div class="payconfirm-button-enter-label">ОПЛАТИТЬ</div>
+                <div class="payconfirm-button-enter-label">{window.languages.ViewPayConfirmPay}</div>
             </div>
         </div>
     </div>
