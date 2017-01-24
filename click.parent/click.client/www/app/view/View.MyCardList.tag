@@ -14,17 +14,17 @@
 
                 <div class="mycardlist-card-bank-name-url" style="background-image: url({i.url})"></div>
                 <div class="mycardlist-card-bank-name" style="background-image: url({i.bankname})"></div>
-                <div class="mycardlist-card-salary-title">Зарплатная карта</div>
+                <div class="mycardlist-card-salary-title">{i.name}</div>
 
                 <div class="mycardlist-card-balance-currency-container">
-                    <p class="mycardlist-card-balance">5 438 710</p>
-                    <p class="mycardlist-card-currency">сум</p>
+                    <p class="mycardlist-card-balance">{i.salary}</p>
+                    <p class="mycardlist-card-currency">{i.currency}</p>
                 </div>
 
                 <div class="mycardlist-card-number">
-                    <div class="mycardlist-card-number-part-one">1234</div>
+                    <div class="mycardlist-card-number-part-one">{i.numberPartOne}</div>
                     <p class="mycardlist-number-stars">**** ****</p>
-                    <div class="mycardlist-card-number-part-two">4789</div>
+                    <div class="mycardlist-card-number-part-two">{i.numberPartTwo}</div>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
             riot.mount('view-main-page');
         }
 
-        this.titleName = 'МОИ КАРТЫ';
+        this.titleName = window.languages.ViewMyCardListTitleName;
 
         history.arrayOfHistory.push('view-mycard-list');
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
