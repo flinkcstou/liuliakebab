@@ -60,6 +60,7 @@ var RU_LANGUAGES =
   "ViewServicePinCardPayFromField": "Оплатить с:",
   "ViewServicePinCardHelpText": "Помощь друга",
   "ViewServicePinCardButtonEnterLabel": "ОПЛАТИТЬ",
+  "ViewServicePinCardButtonEnterLabel": "ОПЛАТИТЬ",
 
   "ViewPayConformEnterPhone": "Номер телефона:",
   "ViewPayConfirmAmountOfPay": "Сумма платежа:",

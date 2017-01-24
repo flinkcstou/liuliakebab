@@ -31,7 +31,9 @@
             </div>
             <div class="transfer-contact-found-container-two">
                 <div class="transfer-contact-found-photo"></div>
-                <div class="transfer-contact-found-text-one">Sipa</div>
+                <div class="transfer-contact-found-text-container">
+                    <div class="transfer-contact-found-text-one">Sipa</div>
+                </div>
                 <div class="transfer-contact-found-text-two">+998 90 359 51 98</div>
             </div>
         </div>
@@ -43,12 +45,12 @@
                        maxlength="9"/>
                 <div class="transfer-contact-phone-icon"></div>
             </div>
-            <div class="transfer-contact-found-container">
+            <div class="transfer-contact-found-container-one">
                 <div class="transfer-contact-found-photo"></div>
                 <div class="transfer-contact-found-text-one">Юлдашев Александр</div>
                 <div class="transfer-contact-found-text-two">8760 **** **** 9870</div>
             </div>
-            <div class="transfer-contact-found-container">
+            <div class="transfer-contact-found-container-two">
                 <div class="transfer-contact-found-photo"></div>
                 <div class="transfer-contact-found-text-one">Дмитрий Чеченин</div>
                 <div class="transfer-contact-found-text-two">8760 **** **** 9870</div>

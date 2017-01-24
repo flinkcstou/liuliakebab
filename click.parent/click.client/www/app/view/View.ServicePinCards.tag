@@ -1,7 +1,7 @@
 <view-service-pincards class="view-service-pincards">
 
     <div class="page-title" style="border-style: none;">
-        <p class="servicepage-title">{titleName}</p>
+        <p class="servicepage-title">Оплата {titleName}</p>
         <p class="servicepage-category-field">{categoryName}</p>
         <div ontouchstart="touchStartTitle()"
              class="servicepage-button-back">
@@ -37,7 +37,7 @@
             <div class="pincard-help-text">{window.languages.ViewServicePinCardHelpText}</div>
             <div class="pincard-button-enter"
                  ontouchend="goToPayConfirmView()">
-                <div class="pincard-button-enter-label">{ViewServicePinCardButtonEnterLabel}</div>
+                <div class="pincard-button-enter-label">{window.languages.ViewServicePinCardButtonEnterLabel}</div>
             </div>
         </div>
     </div>
@@ -64,6 +64,7 @@
         cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
 
         this.titleName = scope.service.name;
+        this.categoryName = scope.categoryNamesMap[viewPay.categoryId];
 
         scope.checked = false;
 

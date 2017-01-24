@@ -2927,14 +2927,13 @@ var css = {
 
     transferContactPhoneField: ".transfer-contact-phone-field" +
     "{" +
-    "position: relative;" +
+    "position: absolute;" +
     "left: 10%;" +
     "width: 79.5%;" +
     "height:" + 103 * widthK + "px;" +
     "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
     "color: white;" +
     "top:" + 45 * widthK + "px;" +
-    "margin-bottom: 8%;" +
     "}",
 
     transferContactTextField: ".transfer-contact-text-field" +
@@ -3027,7 +3026,7 @@ var css = {
     "position: absolute;" +
     "left: 20%;" +
     "color: gray;" +
-    "width: 30%;" +
+    "width: 40%;" +
     "height: 100%;" +
     "}",
 
