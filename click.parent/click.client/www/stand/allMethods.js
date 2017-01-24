@@ -1120,6 +1120,98 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
     }
   );
 
+  array.push({
+      card_type: "STK",
+      card_type_desc: "Central Telegraf",
+      card_type_id: 1,
+      duration: null,
+      name: "Центральный Телеграф",
+      nominal: 5000,
+      service_id: 44,
+    },
+    {
+      card_type: "STK",
+      card_type_desc: "Central Telegraf",
+      card_type_id: 1,
+      duration: null,
+      name: "Центральный Телеграф",
+      nominal: 10000,
+      service_id: 44,
+    },
+    {
+      card_type: "STK",
+      card_type_desc: "Central Telegraf",
+      card_type_id: 1,
+      duration: null,
+      name: "Центральный Телеграф",
+      nominal: 20000,
+      service_id: 44,
+    },
+    {
+      card_type: "UzT",
+      card_type_desc: "UzTelecom",
+      card_type_id: 3,
+      duration: null,
+      name: "UzTelecom",
+      nominal: 100000,
+      service_id: 44
+    },
+    {
+      card_type: "UzT",
+      card_type_desc: "UzTelecom",
+      card_type_id: 3,
+      duration: null,
+      name: "UzTelecom",
+      nominal: 50000,
+      service_id: 44,
+    },
+    {
+      card_type: "RUS-KAZ",
+      card_type_desc: "Russia,Kazahstan",
+      card_type_id: 2,
+      duration: 30,
+      name: "Россия, Казахстан",
+      nominal: 6600,
+      service_id: 44
+    },
+    {
+      card_type: "RUS-KAZ",
+      card_type_desc: "Russia,Kazahstan",
+      card_type_id: 2,
+      duration: 20,
+      name: "Россия, Казахстан",
+      nominal: 4500,
+      service_id: 44
+    },
+    {
+      card_type: "SONET",
+      card_type_desc: "SONET",
+      card_type_id: 7,
+      duration: null,
+      name: "SONET",
+      nominal: 5000,
+      service_id: 78
+    },
+    {
+      card_type: "SONET",
+      card_type_desc: "SONET",
+      card_type_id: 7,
+      duration: null,
+      name: "SONET",
+      nominal: 10000,
+      service_id: 78
+    },
+    {
+      card_type: "TELEKARTA",
+      card_type_desc: "TELEKARTA",
+      card_type_id: 6,
+      duration: null,
+      name: "TELEKARTA",
+      nominal: 3000,
+      service_id: 83
+    }
+  );
+
   if (localStorage.getItem("click_client_token"))
     return array;
 

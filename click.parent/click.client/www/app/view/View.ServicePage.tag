@@ -31,8 +31,17 @@
         </div>
     </div>
     <div class="servicepage-body-container" if="{formType==2}">
-        ASD
-
+        <div class="servicepage-pincards-container">
+            <div class="servicepage-pincard-title">Центральный телеграф</div>
+            <div class="servicepage-pincard-nominal-container">
+                <p class="servicepage-pincard-nominal-value">5000 сум</p>
+                <div class="servicepage-pincard-choose-arrow"></div>
+            </div>
+            <div class="servicepage-pincard-nominal-container">
+                <p class="servicepage-pincard-nominal-value">5000 сум</p>
+                <div class="servicepage-pincard-choose-arrow"></div>
+            </div>
+        </div>
     </div>
     <script>
 
@@ -52,23 +61,32 @@
         scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
         scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
         scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
-        scope.servicesParamsMapTwo = JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"));
+        //        scope.servicesParamsMapTwo = JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"));
 
 
         scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
         scope.defaultAmount = !viewServicePage.amountText ? 0 : viewServicePage.amountText;
         scope.defaultNumber = !viewServicePage.phoneText ? null : viewServicePage.phoneText;
 
-
         this.titleName = scope.service.name;
         this.serviceIcon = scope.service.image;
         this.categoryName = scope.categoryNamesMap[viewPay.categoryId];
         this.formType = scope.service.form_type;
-        this.fieldName = scope.servicesParamsMapOne[viewPay.chosenServiceId][0].title;
-        this.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
-        this.amountLength = ("" + scope.service.max_pay_limit).length;
 
-        console.log(this.fieldArray);
+        if (this.formType == 1) {
+            this.fieldName = scope.servicesParamsMapOne[viewPay.chosenServiceId][0].title;
+            this.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
+            this.amountLength = ("" + scope.service.max_pay_limit).length;
+        }
+        if (this.formType == 2) {
+            scope.servicesParamsMapThree = JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"));
+            console.log(scope.servicesParamsMapThree);
+//            for (var i = 0; i < scope.servicesParamsMapThree.length; i++) {
+//                scope.servicesParamsMapThree
+//            }
+        }
+
+        //console.log(this.fieldArray);
         console.log("form type", scope.formType);
 
         scope.focusedFieldId = -1;
@@ -108,7 +126,6 @@
                 alert("Сумма должна быть меньше " + scope.service.max_pay_limit);
                 return;
             }
-
             viewServicePage.phoneText = document.getElementById(scope.focusedFieldId).value;
             viewServicePage.amountText = document.getElementById('amount').value;
 
