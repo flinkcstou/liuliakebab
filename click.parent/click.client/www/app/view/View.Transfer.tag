@@ -4,11 +4,11 @@
 
     <div class="transfer-body-container">
         <div class="transfer-menus-container">
-            <div class="transfer-menu-container">
+            <div class="transfer-menu-container-contact">
                 <div class="transfer-menu-icon"></div>
                 <p id="contactLabelId" class="transfer-menu-name-label" ontouchend="contact()">{window.languages.ViewPayTransferMenuNameContact}</p>
             </div>
-            <div class="transfer-menu-container">
+            <div class="transfer-menu-container-card">
                 <div class="transfer-menu-icon"></div>
                 <p id="cardLabelId" class="transfer-menu-name-label" ontouchend="card()">{window.languages.ViewPayTransferMenuNameCard}</p>
             </div>
@@ -133,6 +133,7 @@
         searchContacts = function () {
             event.preventDefault();
             event.stopPropagation();
+            var countOfFound = 0;
 
             if (event.keyCode != 16 && event.keyCode != 18)
                 scope.searchWord = event.target.value.toLowerCase();
@@ -142,8 +143,9 @@
 
             arrayOfContacts.filter(function (wordOfFunction){
                 var index = wordOfFunction.phoneNumbers[0].value.substring(4,wordOfFunction.phoneNumbers[0].value.length).toLowerCase().indexOf(scope.searchWord);
-                if (index != -1)
-                console.log('NUMBER ',wordOfFunction.phoneNumbers[0].value)
+                if (index != -1) {
+                    console.log('NUMBER ', wordOfFunction.phoneNumbers[0].value)
+                }
             });
         }
 

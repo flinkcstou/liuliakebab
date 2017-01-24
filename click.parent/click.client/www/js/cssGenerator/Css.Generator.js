@@ -2871,19 +2871,27 @@ var css = {
 
   transferMenusContainer: ".transfer-menus-container" +
   "{" +
-  "position: relative;" +
+  "position: absolute;" +
   "height: 10%;" +
+  "width: 100%;" +
   "background-color: #F0F1F4;" +
   "}",
 
-  transferMenuContainer: ".transfer-menu-container" +
+  transferMenuContainerContact: ".transfer-menu-container-contact" +
   "{" +
-  "position: relative;" +
+  "position: absolute;" +
   "height: 100%;" +
   "width: 30%;" +
-  "float: left;" +
   "left: 18%;" +
-  "margin-left: 2%;" +
+  "background-color: transparent;" +
+  "}",
+
+  transferMenuContainerCard: ".transfer-menu-container-card" +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 30%;" +
+  "left: 50%;" +
   "background-color: transparent;" +
   "}",
 
@@ -2969,7 +2977,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 38%;" +
+  "top: 36%;" +
   "left: 18%;" +
   "width: 66%;" +
   "height: 42%;" +
