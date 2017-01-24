@@ -7,12 +7,12 @@ window.fakedSocket.register("device.register.request", function (input) {
     console.log("Input of REGISTER REQUEST ", input);
 
     return [
-        {"method": input.method, "success": 1, "error": 0, "error_note": ""},
-        {
+        [{"method": input.method, "success": 1, "error": 0, "error_note": ""}],
+        [{
             "confirm_needed": true,
             "device_id": "9989094641336AC091D93CD5E",
             "language": "UZ"
-        }
+        }]
     ];
 });
 
@@ -21,12 +21,12 @@ window.fakedSocket.register("device.register.confirm", function (input) {
     console.log("SMS_CODE ", input.parameters.sms_code);
     if (input.parameters.sms_code == '12345')
         return [
-            {
+            [{
                 "method": input.method,
                 "success": 1,
                 "error": 0,
                 "error_note": ""
-            }
+            }]
         ];
     return [
         {
@@ -62,8 +62,8 @@ window.fakedSocket.register("app.login", function (input) {
         ];
 
     return [
-        {"method": input.method, "success": 1, "error": 0, "error_note": ""},
-        {
+        [{"method": input.method, "success": 1, "error": 0, "error_note": ""}],
+        [{
             "session_key": "99890988081996E4e71383c9ed9b1a3fb05fb0002499744",
             "language": "RU",
             "default_account": "3487271",
@@ -78,14 +78,14 @@ window.fakedSocket.register("app.login", function (input) {
             "update_faq": false,
             "update_terms": true,
             "p2p_comission": 2
-        }];
+        }]];
 });
 
 window.fakedSocket.register("get.accounts", function (input) {
 
     var array = [];
-    array.push({method: input.method, success: 1, error: 0, error_note: ""});
-    array.push({
+    array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
+    array.push([{
             acc_abs: "SMARTV    ",
             access: 2,
             accno: "8600 **** **** 5865",
@@ -169,7 +169,7 @@ window.fakedSocket.register("get.accounts", function (input) {
             is_uzcard: 1,
             removable: 1,
             short_name: "aloq"
-        });
+        }]);
 
     if (localStorage.getItem("click_client_token"))
         return array;
@@ -184,41 +184,41 @@ window.fakedSocket.register("get.balance", function (input) {
         console.log(' account ID  AAA ', input.parameters.account_id)
         if (input.parameters.account_id == 3487271) {
             return [
-                {"method": 'get.balance', "success": 1, "error": 0, "error_note": ""},
-                {
+                [{"method": 'get.balance', "success": 1, "error": 0, "error_note": ""}],
+                [{
                     "account_id": input.parameters.account_id,
                     "balance": 6000
-                }
+                }]
             ];
         }
 
         if (input.parameters.account_id == 2484171) {
             return [
-                {"method": 'get.balance', "success": 1, "error": 0, "error_note": ""},
-                {
+                [{"method": 'get.balance', "success": 1, "error": 0, "error_note": ""}],
+                [{
                     "account_id": input.parameters.account_id,
                     "balance": 1234321
-                }
+                }]
             ];
         }
 
         if (input.parameters.account_id == 5487271) {
             return [
-                {"method": 'get.balance', "success": 1, "error": 0, "error_note": ""},
-                {
+                [{"method": 'get.balance', "success": 1, "error": 0, "error_note": ""}],
+                [{
                     "account_id": input.parameters.account_id,
                     "balance": 430
-                }
+                }]
             ];
         }
 
         if (input.parameters.account_id == 7487271) {
             return [
-                {"method": 'get.balance', "success": 1, "error": 0, "error_note": ""},
-                {
+                [{"method": 'get.balance', "success": 1, "error": 0, "error_note": ""}],
+                [{
                     "account_id": input.parameters.account_id,
                     "balance": 50
-                }
+                }]
             ];
         }
     }
@@ -235,8 +235,8 @@ window.fakedSocket.register("get.payments.by.account", function (input) {
 
 
     var array = [];
-    array.push({method: input.method, success: 1, error: 0, error_note: ""});
-    array.push({
+    array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
+    array.push([{
             "payment_id": 277019456,
             "amount": 1000,
             "cntrg_info_param2": "974647747",
@@ -335,7 +335,7 @@ window.fakedSocket.register("get.payments.by.account", function (input) {
             "service_id": 2,
             "is_invoice": 0,
             "comission_amount": 0
-        });
+        }]);
     if (localStorage.getItem("click_client_token"))
         return array;
 
@@ -346,8 +346,8 @@ window.fakedSocket.register("get.payment.list", function (input) {
 
 
     var array = [];
-    array.push({method: input.method, success: 1, error: 0, error_note: ""});
-    array.push({
+    array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
+    array.push([{
             "payment_id": 277019456,
             "amount": 1000,
             "cntrg_info_param2": "974647747",
@@ -446,7 +446,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
             "service_id": 2,
             "is_invoice": 0,
             "comission_amount": 0
-        });
+        }]);
     if (localStorage.getItem("click_client_token"))
         return array;
 
@@ -457,8 +457,8 @@ window.fakedSocket.register("get.payment.list", function (input) {
 window.fakedSocket.register("get.service.category.list", function (input) {
 
     var array = [];
-    array.push({method: input.method, success: 1, error: 0, error_note: ""});
-    array.push({
+    array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
+    array.push([{
             color_hex: "#e7b949",
             color_rgb: "231-185-73",
             icon: "https://m.click.uz/static/merchant/categories/1.png",
@@ -569,7 +569,7 @@ window.fakedSocket.register("get.service.category.list", function (input) {
             parent: 0,
             priority: 40,
             status: true
-        }
+        }]
     );
 
     if (localStorage.getItem("click_client_token"))
@@ -582,8 +582,8 @@ window.fakedSocket.register("get.service.category.list", function (input) {
 window.fakedSocket.register("get.service.list", function (input) {
 
     var array = [];
-    array.push({method: input.method, success: 1, error: 0, error_note: ""});
-    array.push({
+    array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
+    array.push([{
             category_id: 4,
             cost: 1,
             form_type: 1,
@@ -991,7 +991,7 @@ window.fakedSocket.register("get.service.list", function (input) {
             service_parameters: "32768",
             service_short_name: "SONET.UZ PINCARD",
             status: 1
-        }
+        }]
     );
 
     if (localStorage.getItem("click_client_token"))
@@ -1005,14 +1005,14 @@ window.fakedSocket.register("get.service.list", function (input) {
 window.fakedSocket.register("get.service.parameters.list", function (input) {
     console.log("Input of REGISTER REQUEST ", input);
 
-    var array = [[],[],[],[]];
+    var array = [];
     var arrayOne = {};
     var arrayTwo = {};
     var arrayThree = {};
-    var arrayMethod = ({method: input.method, success: 1, error: 0, error_note: ""});
+    var arrayMethod = ([{method: input.method, success: 1, error: 0, error_note: ""}]);
 
-    array[0].push(arrayMethod);
-    array[1].push({
+    array.push(arrayMethod);
+    array.push([{
         error_message: "Номер телефона введен неправильно",
         input_type: 1,
         max_len: "999999999",
@@ -1110,10 +1110,10 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
             service_id: 148,
             title: "Номер телефона",
             ussd_query: "*880*0199999*{param}*{amount}#"
-        }
+        }]
     );
 
-    array[2].push({
+    array.push([{
             code: -1,
             id: 2,
             name: "Мирабадский район",
@@ -1128,11 +1128,11 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
             offline_code: "-1",
             parent: 0,
             service_id: 39
-        }
+        }]
     );
 
 
-    array[3].push({
+    array.push([{
             card_type: "STK",
             card_type_desc: "Central Telegraf",
             card_type_id: 1,
@@ -1221,7 +1221,7 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
             name: "TELEKARTA",
             nominal: 3000,
             service_id: 83
-        }
+        }]
     );
 
 
