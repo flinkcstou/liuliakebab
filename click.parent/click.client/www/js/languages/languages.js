@@ -66,6 +66,12 @@ var RU_LANGUAGES =
     "ViewPayConfirmAddToAutoPay": "Добавить в автоплатеж",
     "ViewPayConfirmPay": "ОПЛАТИТЬ",
 
+    "ViewPayTransferMenuNameContact": "КОНТАКТ",
+    "ViewPayTransferMenuNameCard": "КАРТА",
+    "ViewPayTransferContactTextField": "Номер телефона получателя:",
+    "ViewPayTransferCardTextField": "Номер карты получателя:",
+    "ViewPayTransferNext": "ДАЛЕЕ",
+
 
 
 }

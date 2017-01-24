@@ -6,16 +6,16 @@
         <div class="transfer-menus-container">
             <div class="transfer-menu-container">
                 <div class="transfer-menu-icon"></div>
-                <p id="contactLabelId" class="transfer-menu-name-label" ontouchend="contact()">КОНТАКТ</p>
+                <p id="contactLabelId" class="transfer-menu-name-label" ontouchend="contact()">{window.languages.ViewPayTransferMenuNameContact}</p>
             </div>
             <div class="transfer-menu-container">
                 <div class="transfer-menu-icon"></div>
-                <p id="cardLabelId" class="transfer-menu-name-label" ontouchend="card()">КАРТА</p>
+                <p id="cardLabelId" class="transfer-menu-name-label" ontouchend="card()">{window.languages.ViewPayTransferMenuNameCard}</p>
             </div>
         </div>
         <div class="transfer-contact-body-container" if="{contactMode}">
             <div class="transfer-contact-phone-field">
-                <p class="transfer-contact-text-field">Номер телефона получателя:</p>
+                <p class="transfer-contact-text-field">{window.languages.ViewPayTransferContactTextField}</p>
                 <p class="transfer-contact-number-first-part">+998</p>
                 <input class="transfer-contact-number-input-part" type="tel"
                        maxlength="9" onkeyup="searchContacts()"/>
@@ -34,7 +34,7 @@
         </div>
         <div class="transfer-contact-body-container" if="{cardMode}">
             <div class="transfer-contact-phone-field">
-                <p class="transfer-contact-text-field">Номер карты получателя:</p>
+                <p class="transfer-contact-text-field">{window.languages.ViewPayTransferCardTextField}</p>
                 <p class="transfer-contact-number-first-part">8600</p>
                 <input class="transfer-contact-number-input-part" type="tel"
                        maxlength="9"/>
@@ -53,7 +53,7 @@
         </div>
         <div class="transfer-next-button-container">
             <div class="transfer-next-button-inner-container" ontouchend="goToTransferStepTwo()">
-                <p class="transfer-next-button-label">ДАЛЕЕ</p>
+                <p class="transfer-next-button-label">{window.languages.ViewPayTransferNext}</p>
                 <div class="transfer-next-button-icon"></div>
             </div>
         </div>
