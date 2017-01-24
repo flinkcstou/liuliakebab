@@ -4,13 +4,14 @@
 
     <div class="transfer-body-container">
         <div class="transfer-menus-container">
-            <div class="transfer-menu-container-contact">
+            <div class="transfer-menu-container-contact" ontouchend="contact()">
                 <div class="transfer-menu-icon"></div>
-                <p id="contactLabelId" class="transfer-menu-name-label" ontouchend="contact()">{window.languages.ViewPayTransferMenuNameContact}</p>
+                <p id="contactLabelId" class="transfer-menu-name-label">
+                    {window.languages.ViewPayTransferMenuNameContact}</p>
             </div>
-            <div class="transfer-menu-container-card">
+            <div class="transfer-menu-container-card" ontouchend="card()">
                 <div class="transfer-menu-icon"></div>
-                <p id="cardLabelId" class="transfer-menu-name-label" ontouchend="card()">{window.languages.ViewPayTransferMenuNameCard}</p>
+                <p id="cardLabelId" class="transfer-menu-name-label">{window.languages.ViewPayTransferMenuNameCard}</p>
             </div>
         </div>
         <div class="transfer-contact-body-container" if="{contactMode}">
@@ -21,12 +22,14 @@
                        maxlength="9" onkeyup="searchContacts()"/>
                 <div class="transfer-contact-phone-icon"></div>
             </div>
-            <div class="transfer-contact-found-container">
+            <div class="transfer-contact-found-container-one">
                 <div class="transfer-contact-found-photo"></div>
-                <div class="transfer-contact-found-text-one">Юлдашев Александр</div>
+                <div class="transfer-contact-found-text-container">
+                    <div class="transfer-contact-found-text-one">Юлдашев Александр</div>
+                </div>
                 <div class="transfer-contact-found-text-two">+998 90 359 39 57</div>
             </div>
-            <div class="transfer-contact-found-container">
+            <div class="transfer-contact-found-container-two">
                 <div class="transfer-contact-found-photo"></div>
                 <div class="transfer-contact-found-text-one">Sipa</div>
                 <div class="transfer-contact-found-text-two">+998 90 359 51 98</div>
@@ -141,8 +144,8 @@
             scope.suggestionOne = {};
             scope.suggestionTwo = {};
 
-            arrayOfContacts.filter(function (wordOfFunction){
-                var index = wordOfFunction.phoneNumbers[0].value.substring(4,wordOfFunction.phoneNumbers[0].value.length).toLowerCase().indexOf(scope.searchWord);
+            arrayOfContacts.filter(function (wordOfFunction) {
+                var index = wordOfFunction.phoneNumbers[0].value.substring(4, wordOfFunction.phoneNumbers[0].value.length).toLowerCase().indexOf(scope.searchWord);
                 if (index != -1) {
                     console.log('NUMBER ', wordOfFunction.phoneNumbers[0].value)
                 }
