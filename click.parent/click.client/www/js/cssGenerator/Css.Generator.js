@@ -2855,6 +2855,8 @@ var css = {
   "font-size:" + 36 * widthK + "px;" +
   "}",
 
+  //VIEW TRANSFER
+
   transferBodyContainer: ".transfer-body-container" +
   "{" +
   "position: absolute;" +
