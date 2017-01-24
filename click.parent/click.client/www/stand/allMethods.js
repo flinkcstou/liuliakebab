@@ -1001,8 +1001,11 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
   console.log("Input of REGISTER REQUEST ", input);
 
   var array = [];
+  var arrayOne = [];
+  var arrayTwo = [];
+  var arrayThree = [];
   array.push({method: input.method, success: 1, error: 0, error_note: ""});
-  array.push({
+  arrayOne.push({
       error_message: "Номер телефона введен неправильно",
       input_type: 1,
       max_len: "999999999",
@@ -1102,7 +1105,7 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
       ussd_query: "*880*0199999*{param}*{amount}#"
     }
   );
-  array.push({
+  arrayTwo.push({
       code: -1,
       id: 2,
       name: "Мирабадский район",
@@ -1120,7 +1123,7 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
     }
   );
 
-  array.push({
+  arrayThree.push({
       card_type: "STK",
       card_type_desc: "Central Telegraf",
       card_type_id: 1,
@@ -1211,6 +1214,9 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
       service_id: 83
     }
   );
+  array.push(arrayOne)
+  array.push(arrayTwo)
+  array.push(arrayThree)
 
   if (localStorage.getItem("click_client_token"))
     return array;
