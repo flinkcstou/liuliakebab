@@ -19,13 +19,13 @@ window.api.initSocket = function () {
     var parsedData = JSON.parse(event.data);
 
     var method = parsedData.data[0][0].method;
-    console.log("PARSED DATA", parsedData)
+    //console.log("PARSED DATA", parsedData)
 
     var callBack = me.callBacks[method];
-    console.log('method', method)
+    //console.log('method', method)
     if(method == 'get.payments')
     var callBack = me.callBacks['get.payments'];
-    console.log('CALLBACK', callBack)
+    //console.log('CALLBACK', callBack)
 
     if (parsedData.api_status == 0) {
       callBack.ok(parsedData.data);
@@ -47,10 +47,10 @@ window.api.call = function (params) {
   var onSuccess = params.onSuccess;
   var onFail = params.onFail;
   var scope = params.scope || window;
-  console.log("IT IS INPUT ", input);
+  //console.log("IT IS INPUT ", input);
   this.callBacks[method] = {
     ok: function (data) {
-      console.log('ANSWER OF API ', data);
+      //console.log('ANSWER OF API ', data);
       onSuccess.call(scope, data);
     },
     err: function (api_status, api_status_message, data) {

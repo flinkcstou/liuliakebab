@@ -127,7 +127,7 @@
                     };
 
                     cardsarray.push(card);
-                    console.log(cardsarray);
+//                    console.log(cardsarray);
                     localStorage.setItem("click_client_cards", JSON.stringify(cardsarray));
                     var j = 0;
                     window.api.call({

@@ -10,7 +10,7 @@ var RU_LANGUAGES =
 
   "ComponentBankOperationsAutoPay": "АВТОПЛАТЁЖ",
 
-  "BankOperationsAutoPay": "МОИ КАРТЫ",
+  "BankOperationsAutoPay": "АВТОПЛАТЁЖ",
 
   "ComponentServiceTitle": "Популярные сервисы",
 

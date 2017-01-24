@@ -16,11 +16,11 @@ window.fakedSocket.start = function () {
 
 window.fakedSocket.register = function (method, callback) {
     window.fakedSocket.callbacks[method] = callback;
-    console.log()
+    //console.log()
 };
 
 window.fakedSocket.send = function (message) {
-    console.log(message);
+    //console.log(message);
     var parsedMessage = JSON.parse(message);
 
 
@@ -35,7 +35,7 @@ window.fakedSocket.send = function (message) {
         var arrayOfAnswer = [];
         try {
             var result = callback(parsedMessage);
-            console.log('result ', result)
+            //console.log('result ', result)
             for (var i = 0; i < result.length; i++) {
                 arrayOfAnswer.push(result[i]);
             }
@@ -45,7 +45,7 @@ window.fakedSocket.send = function (message) {
 
                 data:arrayOfAnswer,
             };
-            console.log('result of fake API', retData)
+            //console.log('result of fake API', retData)
             //Chtobi dobavlyali dinamichno vse objecti
             //for (var i = 1; i < result.length; i++)
             //    retData.data.push(result[i]);
@@ -65,7 +65,7 @@ window.fakedSocket.send = function (message) {
 
         if (window.fakedSocket.onmessage) {
             window.fakedSocket.onmessage({data: JSON.stringify(retData)});
-            console.log(retData);
+            //console.log(retData);
         }
         else console.error("No onMessage")
     }, window.fakedSocket.getCallbackTimeout());
@@ -81,7 +81,7 @@ window.fakedSocket.param = function (val) {
             tmp = item.split("=");
             if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
         });
-    console.log("RESULT ", result);
+    //console.log("RESULT ", result);
     return result;
 };
 

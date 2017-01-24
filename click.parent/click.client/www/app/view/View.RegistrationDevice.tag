@@ -81,7 +81,7 @@
         else
           scope.maskPhoneNumber = scope.maskPhoneNumber.substring(0, scope.maskPhoneNumber.length - 1);
       }
-      console.log(scope.phoneNumber)
+//      console.log(scope.phoneNumber)
       riot.update(scope.maskPhoneNumber);
     }
 

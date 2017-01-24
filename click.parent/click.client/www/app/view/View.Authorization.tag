@@ -47,7 +47,7 @@
       if (myValue == 'x' && enteredPin != 4) {
         enteredPin = enteredPin.substring(0, enteredPin.length - 1);
       }
-      console.log(myValue)
+//      console.log(myValue)
       riot.update();
       updateEnteredPin();
     }
@@ -112,7 +112,7 @@
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
       var date = parseInt(Date.now() / 1000);
-      console.log(date);
+//      console.log(date);
       var token = localStorage.getItem('click_client_token');
       var password = hex_sha512(token + date + hex_md5(pin));
       localStorage.setItem("pinForStand", pin);
@@ -131,8 +131,8 @@
         scope : this,
 
         onSuccess: function (result) {
-          console.log('RESULT', result)
-          console.log("result[0][0] ", result[0][0].error);
+//          console.log('RESULT', result)
+//          console.log("result[0][0] ", result[0][0].error);
           if (result[0][0].error != 0) {
             alert("PIN CODE IS INCORRECT. Pojaluysta povtorite vvod")
             enteredPin = '';
@@ -168,7 +168,7 @@
         var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = info.session_key;
 
-        console.log(phoneNumber, ' ', sessionKey);
+//        console.log(phoneNumber, ' ', sessionKey);
 
         window.api.call({
           method: 'get.accounts',
@@ -181,7 +181,7 @@
 
           onSuccess: function (result) {
 
-            console.log('RESULT ', result);
+//            console.log('RESULT ', result);
             for (var i = 0; i < result[1].length; i++)
               arrayAccountInfo.push(result[1][i])
 

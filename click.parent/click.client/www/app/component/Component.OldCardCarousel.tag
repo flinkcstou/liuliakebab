@@ -63,10 +63,10 @@
           };
 
           cardsarray.push(card);
-          console.log(cardsarray);
+//          console.log(cardsarray);
           localStorage.setItem("click_client_cards", JSON.stringify(cardsarray));
           var parsedCards = localStorage.getItem('click_client_cards');
-          console.log(parsedCards);
+//          console.log(parsedCards);
 
           count++;
           localStorage.setItem('click_client_countCard', count);
@@ -107,7 +107,7 @@
       }
 
     }
-    console.log("CARD NUMBER ", cardNumber);
+//    console.log("CARD NUMBER ", cardNumber);
 
     onScroll = function (e) {
       if (!changed) {

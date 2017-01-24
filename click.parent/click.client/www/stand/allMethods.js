@@ -1,10 +1,10 @@
 window.fakedSocket.register("registration", function (input) {
-    console.log("Input of REGISTER REQUEST ", input);
+
     return [{"method": input.method, "success": 1, "error": 0, "error_note": ""}];
 });
 
 window.fakedSocket.register("device.register.request", function (input) {
-    console.log("Input of REGISTER REQUEST ", input);
+
 
     return [
         [{"method": input.method, "success": 1, "error": 0, "error_note": ""}],
@@ -18,7 +18,6 @@ window.fakedSocket.register("device.register.request", function (input) {
 
 window.fakedSocket.register("device.register.confirm", function (input) {
 
-    console.log("SMS_CODE ", input.parameters.sms_code);
     if (input.parameters.sms_code == '12345')
         return [
             [{
@@ -181,7 +180,7 @@ window.fakedSocket.register("get.accounts", function (input) {
 window.fakedSocket.register("get.balance", function (input) {
 
     if (localStorage.getItem("click_client_token")) {
-        console.log(' account ID  AAA ', input.parameters.account_id)
+
         if (input.parameters.account_id == 3487271) {
             return [
                 [{"method": 'get.balance', "success": 1, "error": 0, "error_note": ""}],
@@ -1003,7 +1002,7 @@ window.fakedSocket.register("get.service.list", function (input) {
 
 
 window.fakedSocket.register("get.service.parameters.list", function (input) {
-    console.log("Input of REGISTER REQUEST ", input);
+
 
     var array = [];
     var arrayOne = {};
@@ -1225,7 +1224,7 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
     );
 
 
-    console.log('TEST ARRAY', array)
+
 
     if (localStorage.getItem("click_client_token"))
         return array;

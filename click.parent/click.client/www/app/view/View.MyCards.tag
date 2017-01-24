@@ -105,7 +105,7 @@
                 scope: this,
 
                 onSuccess: function (result) {
-                    console.log('result[1]', result[1]);
+//                    console.log('result[1]', result[1]);
                     if (result[0][0].error == 0)
                         if (result[1][0])
                             var j = 0;

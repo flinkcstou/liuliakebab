@@ -100,11 +100,11 @@
         }
 
         searchCancelEnd = function () {
-            Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
             this.blockSearchId.style.display = 'none';
             scope.searchWord = '';
+            Keyboard.hide();
         }
 
         searchSuggestion = function () {

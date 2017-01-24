@@ -175,7 +175,7 @@
             scope.boxOne.value = scope.boxOne.value.substring(0, selectionStart - 1) + myValue + scope.boxOne.value.substring(selectionStart - 1, scope.boxOne.length);
             changed = false;
           }
-          console.log('selection start ', scope.boxOne.selectionStart);
+//          console.log('selection start ', scope.boxOne.selectionStart);
           cardNumberPartOne = scope.boxOne.value
         }
 
@@ -187,7 +187,7 @@
             scope.boxTwo.value = scope.boxTwo.value.substring(0, selectionStart - 1) + myValue + scope.boxTwo.value.substring(selectionStart - 1, scope.boxTwo.length);
             changed = false;
           }
-          console.log('selection start ', scope.boxTwo.selectionStart);
+//          console.log('selection start ', scope.boxTwo.selectionStart);
           cardNumberPartTwo = scope.boxTwo.value
         }
 
@@ -199,7 +199,7 @@
             scope.boxThree.value = scope.boxThree.value.substring(0, selectionStart - 1) + myValue + scope.boxThree.value.substring(selectionStart - 1, scope.boxThree.length);
             changed = false;
           }
-          console.log('selection start ', scope.boxThree.selectionStart);
+//          console.log('selection start ', scope.boxThree.selectionStart);
           cardNumberPartThree = scope.boxThree.value
         }
 
