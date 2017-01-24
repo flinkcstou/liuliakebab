@@ -33,6 +33,12 @@
 
     <script>
         var scope = this;
+        this.titleName = window.languages.ViewMyCardListTitleName;
+
+        history.arrayOfHistory.push('view-mycard-list');
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+
+        scope.cardsArray = JSON.parse(localStorage.getItem("click_client_cards"));
 
         goToMainPage = function () {
             event.preventDefault();
@@ -40,13 +46,6 @@
             this.riotTags.innerHTML = "<view-main-page>";
             riot.mount('view-main-page');
         }
-
-        this.titleName = window.languages.ViewMyCardListTitleName;
-
-        history.arrayOfHistory.push('view-mycard-list');
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-
-        scope.cardsArray = JSON.parse(localStorage.getItem("click_client_cards"));
 
         goToCardPage = function (cardId) {
             event.preventDefault();
