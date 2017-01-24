@@ -110,7 +110,7 @@
                         if (result[1][0])
                             var j = 0;
                     for (var i in result[1]) {
-                        console.log('ACCOUNT ID ', result[1][i].account_id, 'CARD ID ', scope.card.card_id);
+//                        console.log('ACCOUNT ID ', result[1][i].account_id, 'CARD ID ', scope.card.card_id);
                         if (result[1][i].account_id == scope.card.card_id) {
                             result[1][i].count = j;
                             j++;
@@ -128,26 +128,6 @@
                 }
             });
         }
-
-        window.api.call({
-            method: 'get.service.parameters.list',
-            input: {
-                session_key: sessionKey,
-                phone_num: phoneNumber,
-                service_id: accountId
-            },
-
-            scope: this,
-
-            onSuccess: function (result) {
-                console.log("result ", result);
-            },
-
-            onFail: function (api_status, api_status_message, data) {
-                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                console.error(data);
-            }
-        });
 
         viewMyCards.cardInformation();
 

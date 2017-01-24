@@ -109,7 +109,7 @@
 
         correctPhoneNumber = false;
       }
-      console.log(phoneNumber);
+//      console.log(phoneNumber);
 
 
       if (correctPhoneNumber) {
@@ -156,7 +156,7 @@
             alert("Пользователь не найден");
             return;
           }
-          console.log("result ", result);
+//          console.log("result ", result);
           var deviceId = result[1][0].device_id;
           localStorage.setItem('click_client_deviceID', deviceId);
           token = hex_sha512(deviceId + date + phoneNumber);

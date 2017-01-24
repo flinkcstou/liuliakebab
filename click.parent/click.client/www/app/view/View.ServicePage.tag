@@ -76,7 +76,7 @@
         }
         if (this.formType == 2) {
             scope.servicesParamsMapThree = JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"));
-            console.log(scope.servicesParamsMapThree);
+//            console.log(scope.servicesParamsMapThree);
             scope.pincardsMap = {};
             scope.pincardIds = [];
             for (var i = 0; i < scope.servicesParamsMapThree[scope.service.id].length; i++) {
@@ -88,13 +88,13 @@
                 else
                     scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id].push(scope.servicesParamsMapThree[scope.service.id][i]);
             }
-            console.log("pincardsMap", scope.pincardsMap);
-            console.log("pincardIds", scope.pincardIds);
+//            console.log("pincardsMap", scope.pincardsMap);
+//            console.log("pincardIds", scope.pincardIds);
 
         }
 
         //console.log(this.fieldArray);
-        console.log("form type", scope.formType);
+//        console.log("form type", scope.formType);
 
         scope.focusedFieldId = -1;
 
@@ -107,10 +107,10 @@
         }
 
         bordersColor = function (id) {
-            console.log("ID", id);
+//            console.log("ID", id);
             if (scope.focusedFieldId != id && scope.focusedFieldId != -1) {
                 document.getElementById("phoneField" + scope.focusedFieldId).style.borderBottom = 5 * widthK + 'px solid lightgrey';
-                console.log("as previous");
+//                console.log("as previous");
             }
             document.getElementById("phoneField" + id).style.borderBottom = 5 * widthK + 'px solid #01cfff';
             document.getElementById('amountField').style.borderBottom = 5 * widthK + 'px solid lightgrey';

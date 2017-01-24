@@ -188,7 +188,7 @@
             var accountInfo = JSON.stringify(arrayAccountInfo);
             localStorage.setItem("click_client_accountInfo", accountInfo);
 
-            console.log('ACCOUNT INFO', accountInfo)
+//            console.log('ACCOUNT INFO', accountInfo)
 
             this.riotTags.innerHTML = "<view-main-page>";
 

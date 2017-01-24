@@ -79,7 +79,7 @@
 
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         phoneNumber = phoneNumber.substring(3, phoneNumber.length);
-        console.log('PHONE NUMBER ', phoneNumber);
+//        console.log('PHONE NUMBER ', phoneNumber);
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
         scope.contactMode = true;

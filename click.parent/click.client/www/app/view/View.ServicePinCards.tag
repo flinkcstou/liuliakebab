@@ -71,7 +71,7 @@
         chooseCard = function (id) {
 
             for (var i = 0; i < cardsArray.length; i++) {
-                console.log('cardsArray[i].id', cardsArray[i].chosenCard, id)
+//                console.log('cardsArray[i].id', cardsArray[i].chosenCard, id)
                 cardsArray[i].chosenCard = false;
                 if (cardsArray[i].card_id == id) {
                     document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";

@@ -79,7 +79,7 @@
                         scope.lastOperationContainer[i].count = j;
                         j++;
                     }
-                    console.log('scope.lastOperationContainer', scope.lastOperationContainer)
+//                    console.log('scope.lastOperationContainer', scope.lastOperationContainer)
                     riot.update(scope.lastOperationContainer)
                 }
 

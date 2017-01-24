@@ -285,7 +285,7 @@
             Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
-            console.log('work', scope.suggestionFour);
+
             checkOfSearch = true;
             if (scope.suggestionFour.form_type) {
                 goToServiceView(scope.suggestionFour.id)
