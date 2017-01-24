@@ -241,7 +241,6 @@
             Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
-            console.log('work', scope.suggestionOne);
             checkOfSearch = true;
             if (scope.suggestionOne.form_type) {
                 goToServiceView(scope.suggestionOne.id)
@@ -256,7 +255,6 @@
             Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
-            console.log('work', scope.suggestionTwo);
             checkOfSearch = true;
             if (scope.suggestionTwo.form_type) {
                 goToServiceView(scope.suggestionTwo.id)
@@ -272,7 +270,6 @@
             Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
-            console.log('work', scope.suggestionThree);
             checkOfSearch = true;
             if (scope.suggestionThree.form_type) {
                 goToServiceView(scope.suggestionThree.id)
@@ -399,7 +396,7 @@
                     if (result[0][0].error == 0)
                         if (result[1][0])
                             for (var i in result[1]) {
-                                console.log("service id=", result[1][i].id, ", element:", result[1][i]);
+//                                console.log("service id=", result[1][i].id, ", element:", result[1][i]);
 
                                 scope.serviceList.push(result[1][i]);
                                 if (!scope.servicesMapByCategory[result[1][i].category_id]) {
@@ -449,7 +446,7 @@
                     if (result[0][0].error == 0) {
                         if (result[1])
                             for (var i in result[1]) {
-                                console.log("1. service id=", result[1][i].service_id, "element:", result[1][i]);
+//                                console.log("1. service id=", result[1][i].service_id, "element:", result[1][i]);
                                 if (!scope.servicesParamsMapOne[result[1][i].service_id]) {
                                     scope.servicesParamsMapOne[result[1][i].service_id] = [];
                                     scope.servicesParamsMapOne[result[1][i].service_id].push(result[1][i]);
@@ -461,7 +458,7 @@
                             }
                         if (result[2])
                             for (var i in result[2]) {
-                                console.log("2. service id=", result[2][i].service_id, "element:", result[2][i]);
+//                                console.log("2. service id=", result[2][i].service_id, "element:", result[2][i]);
                                 if (!scope.servicesParamsMapTwo[result[2][i].service_id]) {
                                     scope.servicesParamsMapTwo[result[2][i].service_id] = [];
                                     scope.servicesParamsMapTwo[result[2][i].service_id].push(result[2][i]);
@@ -472,7 +469,7 @@
                             }
                         if (result[3])
                             for (var i in result[3]) {
-                                console.log("3. service id=", result[3][i].service_id, "element:", result[3][i]);
+//                                console.log("3. service id=", result[3][i].service_id, "element:", result[3][i]);
                                 if (!scope.servicesParamsMapThree[result[3][i].service_id]) {
                                     scope.servicesParamsMapThree[result[3][i].service_id] = [];
                                     scope.servicesParamsMapThree[result[3][i].service_id].push(result[3][i]);
@@ -483,7 +480,7 @@
                             }
                         if (result[4])
                             for (var i in result[4]) {
-                                console.log("4. service id=", result[4][i].service_id, "element:", result[4][i]);
+//                                console.log("4. service id=", result[4][i].service_id, "element:", result[4][i]);
                                 if (!scope.servicesParamsMapFour[result[4][i].service_id]) {
                                     scope.servicesParamsMapFour[result[4][i].service_id] = [];
                                     scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);

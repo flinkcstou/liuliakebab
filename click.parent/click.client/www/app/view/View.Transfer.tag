@@ -125,7 +125,6 @@
                     if ((contacts[i].name.familyName != null || contacts[i].name.givenName) && contacts[i].phoneNumbers != null)
                         arrayOfContacts.push(contacts[i])
                 }
-                console.log('arrayOfContacts', arrayOfContacts);
             }
 
             function error(message) {
@@ -149,7 +148,6 @@
             arrayOfContacts.filter(function (wordOfFunction) {
                 var index = wordOfFunction.phoneNumbers[0].value.substring(4, wordOfFunction.phoneNumbers[0].value.length).toLowerCase().indexOf(scope.searchWord);
                 if (index != -1) {
-                    console.log('NUMBER ', wordOfFunction.phoneNumbers[0].value)
                 }
             });
         }

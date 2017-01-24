@@ -2605,12 +2605,13 @@ var css = {
     "{" +
     "position: absolute;" +
     "right: 0;" +
-    "width: 15%;" +
+    "width: 23%;" +
     "height: 100%;" +
     "background-repeat: no-repeat;" +
     "background-image: url(resources/icons/search/close.png);" +
-    "background-position: center;" +
-    "background-size: 30%;" +
+    "background-position-y: center;" +
+    "background-position-x: 70%;" +
+    "background-size: 20%;" +
     "}",
 
     searchInput: ".search-input " +
