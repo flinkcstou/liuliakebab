@@ -195,7 +195,6 @@
                         scope.suggestionFourId.style.display = 'none';
 
                         scope.suggestionTwo.name = wordOfFunction.name;
-
                         scope.suggestionTwo.id = wordOfFunction.id;
 
                         if (wordOfFunction.form_type) {

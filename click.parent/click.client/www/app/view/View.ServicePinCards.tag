@@ -12,7 +12,7 @@
 
     <div class="pincard-body-container">
         <div class="pincard-payfrom-container">
-            <p class="pincard-payfrom-field">Оплатить с:</p></div>
+            <p class="pincard-payfrom-field">{window.languages.ViewServicePinCardPayFromField}</p></div>
         <div class="pincard-allcards-container">
             <div class="pincard-card-container" each="{i in cardsArray}" ontouchend="chooseCard(this.id)"
                  id="{i.card_id}">
@@ -27,16 +27,17 @@
                         0 {i.currency}</p>
                     <p class="pincard-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
                 </div>
-                <div class="{pincard-card-uncheckmark: !i.chosenCard, pincard-card-checkmark: i.chosenCard}" id="check{i.card_id}">
+                <div class="{pincard-card-uncheckmark: !i.chosenCard, pincard-card-checkmark: i.chosenCard}"
+                     id="check{i.card_id}">
                 </div>
             </div>
         </div>
 
         <div class="pincard-bottom-container">
-            <div class="pincard-help-text">Помощь друга</div>
+            <div class="pincard-help-text">{window.languages.ViewServicePinCardHelpText}</div>
             <div class="pincard-button-enter"
                  ontouchend="goToPayConfirmView()">
-                <div class="pincard-button-enter-label">ОПЛАТИТЬ</div>
+                <div class="pincard-button-enter-label">{ViewServicePinCardButtonEnterLabel}</div>
             </div>
         </div>
     </div>
@@ -68,10 +69,10 @@
 
         chooseCard = function (id) {
 
-            for(var i = 0; i < cardsArray.length; i ++){
+            for (var i = 0; i < cardsArray.length; i++) {
                 console.log('cardsArray[i].id', cardsArray[i].chosenCard, id)
                 cardsArray[i].chosenCard = false;
-                if(cardsArray[i].card_id == id){
+                if (cardsArray[i].card_id == id) {
                     document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
                     scope.checked = true;
                     cardsArray[i].chosenCard = true;
@@ -82,8 +83,8 @@
         }
 
         goToPayConfirmView = function () {
-            for(var i = 0; i < cardsArray.length; i++){
-                if(cardsArray[i].chosenCard){
+            for (var i = 0; i < cardsArray.length; i++) {
+                if (cardsArray[i].chosenCard) {
                     scope.checked = true;
                     break;
                 }

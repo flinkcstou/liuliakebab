@@ -4,74 +4,77 @@ localStorage.setItem('settings_language', 'ru');
 
 var RU_LANGUAGES =
 {
-    "ComponentBankOperationsPay": "ОПЛАТА",
+  "ComponentBankOperationsPay": "ОПЛАТА",
 
-    "ComponentBankOperationsTransfer": "ПЕРЕВОДЫ",
+  "ComponentBankOperationsTransfer": "ПЕРЕВОДЫ",
 
-    "ComponentBankOperationsAutoPay": "АВТОПЛАТЁЖ",
+  "ComponentBankOperationsAutoPay": "АВТОПЛАТЁЖ",
 
-    "BankOperationsAutoPay": "МОИ КАРТЫ",
+  "BankOperationsAutoPay": "МОИ КАРТЫ",
 
-    "ComponentServiceTitle": "Популярные сервисы",
+  "ComponentServiceTitle": "Популярные сервисы",
 
-    "ComponentFooterContactsLabel": "КОНТАКТЫ",
+  "ComponentFooterContactsLabel": "КОНТАКТЫ",
 
-    "ViewRegistrationTextField": "Введите номер телефона",
-    "ViewRegistrationDeviceRememberLabel": "Запомнить устройство",
-    "ViewRegistrationDeviceButtonEnterLabel": "Далее",
-    "ViewRegistrationDeviceButtonHelp": "Помощь",
-    "ViewRegistrationDeviceButtonOffline": "Офлайн режим",
-    "ViewRegistrationDeviceButtonDemoVersion": "Демо версия",
+  "ViewRegistrationTextField": "Введите номер телефона",
+  "ViewRegistrationDeviceRememberLabel": "Запомнить устройство",
+  "ViewRegistrationDeviceButtonEnterLabel": "Далее",
+  "ViewRegistrationDeviceButtonHelp": "Помощь",
+  "ViewRegistrationDeviceButtonOffline": "Офлайн режим",
+  "ViewRegistrationDeviceButtonDemoVersion": "Демо версия",
 
-    "ViewSmsFieldOne": "Введите код активации",
-    "ViewSmsButtonHelp": "Помощь",
-    "ViewSmsCodeActivationText": "Код активации выслан на номер:",
-    "ViewSmsMessageTitle": "Мы позвоним вам через минуту,",
-    "ViewSmsMessageTitleTwo": "чтобы сообщить код активации на номер:",
-    "ViewSmsResendText": "Смс переотправлено на номер: ",
+  "ViewSmsFieldOne": "Введите код активации",
+  "ViewSmsButtonHelp": "Помощь",
+  "ViewSmsCodeActivationText": "Код активации выслан на номер:",
+  "ViewSmsMessageTitle": "Мы позвоним вам через минуту,",
+  "ViewSmsMessageTitleTwo": "чтобы сообщить код активации на номер:",
+  "ViewSmsResendText": "Смс переотправлено на номер: ",
 
-    "ViewAuthorizationClickPinLabel": "Введите CLICK-PIN",
-    "ViewAuthorizationForgetPinLabel": "Забыли Click-Pin?",
-    "ViewAuthorizationRegistrationLabel": "Регистрация",
-    "ViewAuthorizationOfflineModeLabel": "Офлайн режим",
+  "ViewAuthorizationClickPinLabel": "Введите CLICK-PIN",
+  "ViewAuthorizationForgetPinLabel": "Забыли Click-Pin?",
+  "ViewAuthorizationRegistrationLabel": "Регистрация",
+  "ViewAuthorizationOfflineModeLabel": "Офлайн режим",
 
-    "ViewInfoBalanceTitle": "Общий баланс",
+  "ViewInfoBalanceTitle": "Общий баланс",
 
-    "ViewInfoMyFinanceTitle": "Мои финансы",
-    "ViewInfoReportsTitle": "Отчёты",
-    "ViewInfoLastOperations": "Последние операции",
+  "ViewInfoMyFinanceTitle": "Мои финансы",
+  "ViewInfoReportsTitle": "Отчёты",
+  "ViewInfoLastOperations": "Последние операции",
 
-    "ViewMyCardTransfer": "Переводы с карты на карту",
-    "ViewMyCardTitleName": "ЗАРПЛАТНАЯ КАРТА",
-    "ViewMyCardPay": "Оплата с карты",
-    "ViewMyCardReports": "Отчеты по карте",
-    "ViewMyCardBlock": "Заблокировать карту",
-    "ViewMyCardLastOperations": "Последние операции",
+  "ViewMyCardTransfer": "Переводы с карты на карту",
+  "ViewMyCardTitleName": "ЗАРПЛАТНАЯ КАРТА",
+  "ViewMyCardPay": "Оплата с карты",
+  "ViewMyCardReports": "Отчеты по карте",
+  "ViewMyCardBlock": "Заблокировать карту",
+  "ViewMyCardLastOperations": "Последние операции",
 
-    "ViewServicePageEnterLabel": "Далее",
-    "ViewServicePageAmountTextLabel": "Сумма оплаты:",
+  "ViewServicePageEnterLabel": "ДАЛЕЕ",
+  "ViewServicePageAmountTextLabel": "Сумма оплаты:",
 
-    "ViewMyCardListTitleName": "МОИ КАРТЫ",
+  "ViewMyCardListTitleName": "МОИ КАРТЫ",
 
-    "ViewPayTitleName": "ОПЛАТА",
+  "ViewPayTitleName": "ОПЛАТА",
 
-    "ComponentSearchTitle": "ВЫБОР КАТЕГОРИИ",
+  "ComponentSearchTitle": "ВЫБОР КАТЕГОРИИ",
 
-    "ViewPayConformEnterPhone": "Номер телефона:",
-    "ViewPayConfirmAmountOfPay": "Сумма платежа:",
-    "ViewPayConfirmCategory": "Категория:",
-    "ViewPayConfirmMobileConnection": "Мобильная связь",
-    "ViewPayConfirmPayFromCard": "Оплата с карты:",
-    "ViewPayConfirmAddToFavourite": "Добавить в избранные",
-    "ViewPayConfirmAddToAutoPay": "Добавить в автоплатеж",
-    "ViewPayConfirmPay": "ОПЛАТИТЬ",
+  "ViewServicePinCardPayFromField": "Оплатить с:",
+  "ViewServicePinCardHelpText": "Помощь друга",
+  "ViewServicePinCardButtonEnterLabel": "ОПЛАТИТЬ",
 
-    "ViewPayTransferMenuNameContact": "КОНТАКТ",
-    "ViewPayTransferMenuNameCard": "КАРТА",
-    "ViewPayTransferContactTextField": "Номер телефона получателя:",
-    "ViewPayTransferCardTextField": "Номер карты получателя:",
-    "ViewPayTransferNext": "ДАЛЕЕ",
+  "ViewPayConformEnterPhone": "Номер телефона:",
+  "ViewPayConfirmAmountOfPay": "Сумма платежа:",
+  "ViewPayConfirmCategory": "Категория:",
+  "ViewPayConfirmMobileConnection": "Мобильная связь",
+  "ViewPayConfirmPayFromCard": "Оплата с карты:",
+  "ViewPayConfirmAddToFavourite": "Добавить в избранные",
+  "ViewPayConfirmAddToAutoPay": "Добавить в автоплатеж",
+  "ViewPayConfirmPay": "ОПЛАТИТЬ",
 
+  "ViewPayTransferMenuNameContact": "КОНТАКТ",
+  "ViewPayTransferMenuNameCard": "КАРТА",
+  "ViewPayTransferContactTextField": "Номер телефона получателя:",
+  "ViewPayTransferCardTextField": "Номер карты получателя:",
+  "ViewPayTransferNext": "ДАЛЕЕ",
 
 
 }

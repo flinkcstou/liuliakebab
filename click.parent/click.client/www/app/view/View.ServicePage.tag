@@ -20,25 +20,21 @@
             <div class="servicepage-phone-icon"></div>
         </div>
         <div class="servicepage-amount-field" id="amountField">
-            <p class="servicepage-text-field">Сумма оплаты</p>
+            <p class="servicepage-text-field">{window.languages.ViewServicePageAmountTextLabel}</p>
             <input class="servicepage-amount-input" type="tel" maxlength="{amountLength}" value="{defaultAmount}"
                    id="amount"
                    onfocus="eraseAmountDefault()"/>
             <div class="servicepage-amount-icon"></div>
         </div>
         <div class="servicepage-button-enter" ontouchend="goToPinCardView()">
-            <div class="servicepage-button-enter-label">ДАЛЕЕ</div>
+            <div class="servicepage-button-enter-label">{window.languages.ViewServicePageEnterLabel}</div>
         </div>
     </div>
     <div class="servicepage-body-container" if="{formType==2}">
-        <div class="servicepage-pincards-container">
-            <div class="servicepage-pincard-title">Центральный телеграф</div>
-            <div class="servicepage-pincard-nominal-container">
-                <p class="servicepage-pincard-nominal-value">5000 сум</p>
-                <div class="servicepage-pincard-choose-arrow"></div>
-            </div>
-            <div class="servicepage-pincard-nominal-container">
-                <p class="servicepage-pincard-nominal-value">5000 сум</p>
+        <div class="servicepage-pincards-container" each="{i in pincardIds}">
+            <div class="servicepage-pincard-title">{pincardsMap[i][0].name}</div>
+            <div class="servicepage-pincard-nominal-container" each="j in pincardsMap[i]">
+                <p class="servicepage-pincard-nominal-value">{j.nominal} сум</p>
                 <div class="servicepage-pincard-choose-arrow"></div>
             </div>
         </div>
@@ -81,9 +77,20 @@
         if (this.formType == 2) {
             scope.servicesParamsMapThree = JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"));
             console.log(scope.servicesParamsMapThree);
-//            for (var i = 0; i < scope.servicesParamsMapThree.length; i++) {
-//                scope.servicesParamsMapThree
-//            }
+            scope.pincardsMap = {};
+            scope.pincardIds = [];
+            for (var i = 0; i < scope.servicesParamsMapThree[scope.service.id].length; i++) {
+                if (!scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id]) {
+                    scope.pincardIds.push(scope.servicesParamsMapThree[scope.service.id][i].card_type_id);
+                    scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id] = [];
+                    scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id].push(scope.servicesParamsMapThree[scope.service.id][i]);
+                }
+                else
+                    scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id].push(scope.servicesParamsMapThree[scope.service.id][i]);
+            }
+            console.log("pincardsMap", scope.pincardsMap);
+            console.log("pincardIds", scope.pincardIds);
+
         }
 
         //console.log(this.fieldArray);
