@@ -38,8 +38,10 @@
     <script>
         this.titleName = 'ПЕРЕВОД НА 8600 **** 7987';
 
-        history.arrayOfHistory.push('view-transfer');
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-steptwo') {
+            history.arrayOfHistory.push('view-transfer-steptwo');
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+        }
 
         scope = this;
         scope.backbuttoncheck = true;

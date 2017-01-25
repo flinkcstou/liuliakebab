@@ -29,8 +29,11 @@
         scope.messageTitle = window.languages.ViewSmsCodeActivationText;
         scope.messageTitleTwo = '';
         scope.phoneNumber = localStorage.getItem('click_client_phoneNumber');
-        history.arrayOfHistory.push('view-sms');
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
+        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-sms') {
+            history.arrayOfHistory.push('view-sms');
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+        }
         scope.confirmSms = '';
 
         componentKeyboard.returnValue = function (myValue) {

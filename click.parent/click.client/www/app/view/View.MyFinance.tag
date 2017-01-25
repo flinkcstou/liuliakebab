@@ -6,8 +6,10 @@
     var scope = this;
 
     scope.titleName = 'МОИ ФИНАНСЫ';
-    history.arrayOfHistory.push('view-my-finance');
-    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-mycard-list') {
+      history.arrayOfHistory.push('view-mycard-list');
+      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    }
 
     scope = this;
     scope.backbuttoncheck = true;

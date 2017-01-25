@@ -47,6 +47,12 @@
 
     <script>
         var scope = this;
+
+        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-info') {
+            history.arrayOfHistory.push('view-info');
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        }
+
         scope.leftOfOperations = 470 * widthK;
         scope.lastOperationContainer = [];
 

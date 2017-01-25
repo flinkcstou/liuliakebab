@@ -2,7 +2,7 @@
     <div class="page-title" style="border-style: none;">
         <p class="servicepage-title">{titleName}</p>
         <p class="servicepage-category-field">{categoryName}</p>
-        <div ontouchstart="touchStartTitle()"
+        <div ontouchend="touchStartTitle()"
              class="servicepage-button-back">
         </div>
         <div type="button" class="servicepage-service-icon"
@@ -40,6 +40,10 @@
         </div>
     </div>
     <script>
+        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-service-page') {
+            history.arrayOfHistory.push('view-service-page');
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        }
 
         var scope = this;
         touchStartTitle = function () {
@@ -50,9 +54,6 @@
             this.riotTags.innerHTML = "<view-pay>";
             riot.mount('view-pay');
         }
-
-        history.arrayOfHistory.push('view-service-page');
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
         scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
         scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));

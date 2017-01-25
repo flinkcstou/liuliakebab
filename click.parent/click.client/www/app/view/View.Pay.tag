@@ -56,8 +56,10 @@
         var scope = this;
         this.titleName = window.languages.ViewPayTitleName;
 
-        history.arrayOfHistory.push('view-pay');
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-pay') {
+            history.arrayOfHistory.push('view-pay');
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+        }
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = true;
         scope.categoryList = JSON.parse(localStorage.getItem("click_client_payCategoryList"));
@@ -97,6 +99,8 @@
             scope.searchInputId.autofocus = true;
             if (scope.categoryList)
                 arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
+            if(device.platform != 'BrowserStand')
+                StatusBar.backgroundColorByHexString("#353340");
         }
 
         searchCancelEnd = function () {
@@ -507,12 +511,9 @@
 
         goToServiceView = function (id) {
             viewPay.chosenServiceId = id;
-            event.preventDefault();
             event.stopPropagation();
 
             localStorage.setItem('chosenServiceId', id);
-            event.preventDefault();
-            event.stopPropagation();
             this.riotTags.innerHTML = "<view-service-page>";
             riot.mount("view-service-page");
         }

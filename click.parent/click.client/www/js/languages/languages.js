@@ -10,7 +10,7 @@ var RU_LANGUAGES =
 
   "ComponentBankOperationsAutoPay": "АВТОПЛАТЁЖ",
 
-  "BankOperationsAutoPay": "АВТОПЛАТЁЖ",
+  "BankOperationsAutoPay": "МОИ КАРТЫ",
 
   "ComponentServiceTitle": "Популярные сервисы",
 
@@ -59,7 +59,6 @@ var RU_LANGUAGES =
 
   "ViewServicePinCardPayFromField": "Оплатить с:",
   "ViewServicePinCardHelpText": "Помощь друга",
-  "ViewServicePinCardButtonEnterLabel": "ОПЛАТИТЬ",
   "ViewServicePinCardButtonEnterLabel": "ОПЛАТИТЬ",
 
   "ViewPayConformEnterPhone": "Номер телефона:",

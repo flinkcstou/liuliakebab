@@ -51,6 +51,7 @@
         return;
       }
     }
+
     history.arrayOfHistory.push('view-registration-device');
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 

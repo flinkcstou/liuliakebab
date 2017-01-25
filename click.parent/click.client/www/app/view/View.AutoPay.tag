@@ -3,9 +3,11 @@
   </component-page-title>
 
   <script>
-    this.titleName = window.languages.BankOperationsAutoPay;
-    history.arrayOfHistory.push('view-auto-pay');
-    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    this.titleName = window.languages.ComponentBankOperationsAutoPay;
+    if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-auto-pay') {
+      history.arrayOfHistory.push('view-auto-pay');
+      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    }
 
     scope = this;
     scope.backbuttoncheck = true;

@@ -3,7 +3,7 @@
     <div class="page-title" style="border-style: none;">
         <p class="servicepage-title">Оплата {titleName}</p>
         <p class="servicepage-category-field">{categoryName}</p>
-        <div ontouchstart="touchStartTitle()"
+        <div ontouchend="touchStartTitle()"
              class="servicepage-button-back">
         </div>
         <div type="button" class="servicepage-service-icon"
@@ -44,8 +44,10 @@
 
 
     <script>
-        riot.update();
-
+        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-service-pincards') {
+            history.arrayOfHistory.push('view-service-pincards');
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        }
 
         var scope = this;
         touchStartTitle = function () {
@@ -54,9 +56,6 @@
             this.riotTags.innerHTML = "<view-service-page>";
             riot.mount('view-service-page');
         }
-
-        history.arrayOfHistory.push('view-service-pincards');
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
         scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
         scope.service = scope.servicesMap[viewPay.chosenServiceId][0];

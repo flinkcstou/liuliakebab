@@ -20,8 +20,10 @@
     <script>
         var scope = this;
         localStorage.setItem('cardNumber', 0);
-        history.arrayOfHistory.push('view-main-page');
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-main-page') {
+            history.arrayOfHistory.push('view-main-page');
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        }
 
         viewMainPage.myCards = false;
 

@@ -1849,9 +1849,10 @@ var css = {
     "{" +
     "position: relative;" +
     "width: 100%;" +
-    "top: 60%;" +
     "margin-bottom: 4%;" +
-    "padding-top: 2%;" +
+    "margin-top: 10%;" +
+    "margin-left:" + 35 * widthK + "px;" +
+    "padding: 0;" +
     "overflow: hidden;" +
     "}",
 

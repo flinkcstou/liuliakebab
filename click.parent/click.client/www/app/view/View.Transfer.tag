@@ -69,8 +69,10 @@
     <script>
         this.titleName = 'ПЕРЕВОДЫ';
 
-        history.arrayOfHistory.push('view-transfer');
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer') {
+            history.arrayOfHistory.push('view-transfer');
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+        }
 
         var scope = this;
         scope.searchWord = '';
