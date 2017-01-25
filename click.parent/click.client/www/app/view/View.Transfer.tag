@@ -156,6 +156,7 @@
         searchCard = function () {
             if(scope.cardInputId.value.length == 4 || scope.cardInputId.value.length == 9 || scope.cardInputId.value.length == 14){
                 scope.cardInputId.value += ' ';
+
             }
         }
 
