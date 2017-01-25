@@ -1233,7 +1233,7 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
 
 window.fakedSocket.register("app.payment", function (input) {
 
-  if (input.parameters.sms_code == '12345')
+  if (input)
     return [
       [{
         "method": input.method,
@@ -1247,7 +1247,7 @@ window.fakedSocket.register("app.payment", function (input) {
       "method": input.method,
       "success": 1,
       "error": -4,
-      "error_note": 'Neverniy sms'
+      "error_note": 'wrong'
     }
   ];
 });
