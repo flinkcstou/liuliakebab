@@ -10,7 +10,8 @@
                 <li each="{i in categoryList}" style="overflow: hidden;">
                     <div class="pay-service-block-containter" id="{i.id}" ontouchstart="onTouchStartOfCategory()"
                          ontouchend="onTouchEndOfCategory(this.id)">
-                        <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
+                        <div class="pay-category-icon" style="background-image: url({i.icon})" name="{i.icon}"
+                             onload="checkImage(this.name)"></div>
                         <div class="pay-category-name-field">{i.name}
                         </div>
                         <div class="pay-icon-tick" id="tick{i.id}"></div>
@@ -318,12 +319,23 @@
 
                 onSuccess: function (result) {
                     if (result[0][0].error == 0)
-                        if (result[1][0])
+                        if (result[1][0]) {
+                            var image = new Image();
+                            var j = 0, icon;
                             for (var i in result[1]) {
                                 scope.categoryList.push(result[1][i]);
                                 scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
-
+                                icon = scope.categoryList[j].icon;
+                                console.log("j=", j, ",icon=", icon);
+                                image.src = "resources/icons/ViewPay/category" + icon.substr(icon.lastIndexOf('/'));
+                                console.log(image.src);
+                                if (image.onerror) {
+                                    console.log("no image");
+                                }
+                                else scope.categoryList[j].icon = image.src;
+                                j++;
                             }
+                        }
                     riot.update(scope.categoryList);
 
                     scope.id = 0;
@@ -347,7 +359,6 @@
         onTouchStartOfCategory = function () {
             event.stopPropagation();
             onTouchStartY = event.changedTouches[0].pageY;
-
         }
 
         onTouchEndOfCategory = function (id) {
@@ -403,11 +414,22 @@
 
                 onSuccess: function (result) {
                     if (result[0][0].error == 0)
-                        if (result[1][0])
+                        if (result[1][0]) {
+                            var image = new Image();
+                            var j = 0, icon;
                             for (var i in result[1]) {
 //                                console.log("service id=", result[1][i].id, ", element:", result[1][i]);
 
                                 scope.serviceList.push(result[1][i]);
+                                icon = scope.serviceList[j].image;
+                                console.log("j=", j, ",icon=", icon);
+                                image.src = "resources/icons/ViewPay/service" + icon.substr(icon.lastIndexOf('/'));
+                                console.log(image.src);
+                                if (image.onerror) {
+                                    console.log("no image");
+                                }
+                                else scope.serviceList[j].image = image.src;
+                                j++;
                                 if (!scope.servicesMapByCategory[result[1][i].category_id]) {
                                     scope.servicesMapByCategory[result[1][i].category_id] = [];
                                     scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
@@ -424,6 +446,8 @@
                                 }
 
                             }
+                        }
+
 
                     localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
                     localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
@@ -517,7 +541,6 @@
         onTouchStartOfService = function () {
             event.stopPropagation();
             onTouchStartY = event.changedTouches[0].pageY;
-
         }
 
         onTouchEndOfService = function (id) {
@@ -532,6 +555,12 @@
                 this.riotTags.innerHTML = "<view-service-page>";
                 riot.mount("view-service-page");
             }
+        }
+
+        checkImage = function (icon) {
+            alert("ttt");
+            console.log("icon=", icon);
+
         }
     </script>
 </view-pay>
