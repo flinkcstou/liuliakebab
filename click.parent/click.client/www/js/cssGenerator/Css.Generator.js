@@ -1,6 +1,6 @@
 widthK = window.innerWidth / 720;
 heightK = window.innerHeight / 1232;
-console.log(device.platform)
+
 if (device.platform == 'iOS') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
@@ -45,7 +45,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/transferStepOne.jpg);" +
+    //"background-image: url(resources/draft/transfer/phone.png);" +
     //"opacity: 0.6;" +
   "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
   "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
@@ -1147,13 +1147,6 @@ var css = {
   "top: 44%;" +
   "margin: 0;" +
   "color: #fffaf9;" +
-  "}",
-
-  nameTitleTransfer: ".transfer-name-title " +
-  "{" +
-  "font-size:" + 33 * widthK + "px;" +
-  "left:" + 85 * widthK + "px;" +
-  "top:" + 40 * widthK + "px;" +
   "}",
 
   backButton: ".back-button " +
@@ -2882,7 +2875,7 @@ var css = {
   "position: absolute;" +
   "height:" + 1125 * widthK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 110 * widthK + "px;" +
+  "top:" + 90 * widthK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "border-bottom: 1px solid black;" +
@@ -2914,21 +2907,48 @@ var css = {
   "background-color: transparent;" +
   "}",
 
-  transferMenuIcon: ".transfer-menu-icon" +
+  transferMenuContactIcon: ".transfer-menu-contact-icon" +
   "{" +
   "position: relative;" +
   "height: 61%;" +
   "width: 30%;" +
-  "float: left;" +
-  "left: 3%;" +
+  "left: 10%;" +
   "top: 20%;" +
-  "background-color: lightgray;" +
+  "background: transparent;" +
+  "background-image: url('resources/icons/ViewTransfer/tocontact.png');" +
+  "background-repeat: no-repeat;" +
+  "background-size: 54%;" +
+  "background-position: center;" +
   "}",
 
-  transferMenuNameLabel: ".transfer-menu-name-label" +
+  transferMenuCardIcon: ".transfer-menu-card-icon" +
+  "{" +
+  "position: relative;" +
+  "height: 61%;" +
+  "width: 30%;" +
+  "left: 22%;" +
+  "top: 20%;" +
+  "background: transparent;" +
+  "background-image: url('resources/icons/ViewTransfer/tocard.png');" +
+  "background-repeat: no-repeat;" +
+  "background-size: 68%;" +
+  "background-position: center;" +
+  "}",
+
+  transferMenuContactLabel: ".transfer-menu-contact-label" +
   "{" +
   "margin: 0;" +
-  "left: 40%;" +
+  "left: 44%;" +
+  "top: 39%;" +
+  "position: absolute;" +
+  "font-size:" + 23 * widthK + "px;" +
+  "color: gray;" +
+  "}",
+
+  transferMenuCardLabel: ".transfer-menu-card-label" +
+  "{" +
+  "margin: 0;" +
+  "left: 57%;" +
   "top: 39%;" +
   "position: absolute;" +
   "font-size:" + 23 * widthK + "px;" +
@@ -2949,10 +2969,10 @@ var css = {
   "position: absolute;" +
   "left: 10%;" +
   "width: 79.5%;" +
-  "height:" + 103 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
   "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top:" + 45 * widthK + "px;" +
+  "top:" + 47 * widthK + "px;" +
   "}",
 
   transferContactTextField: ".transfer-contact-text-field" +
@@ -2961,7 +2981,7 @@ var css = {
   "margin: 0;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
-  "bottom: 88%;" +
+  "top: -8%;" +
   "}",
 
   transferContactPhoneIcon: ".transfer-contact-phone-icon" +
@@ -3009,7 +3029,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 79.5%;" +
-  "height: 18%;" +
+  "height: 21%;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
   "top: 29%;" +
@@ -3033,24 +3053,23 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 79.5%;" +
-  "height: 18%;" +
+  "height: 21%;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 47.5%;" +
+  "top: 51.5%;" +
   "}",
 
   transferContactFoundPhoto: ".transfer-contact-found-photo" +
   "{" +
-  "top: 15%;" +
-  "position: relative;" +
-  "width: 13%;" +
-  "height: 70%;" +
+  "top: 8%;" +
+  "position: absolute;" +
+  "width: 17%;" +
+  "height: 82%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "border-radius: 50%;" +
   "border: 1px solid gray;" +
-  "float: left;" +
-  "left: 4%;" +
+  "left: 5%;" +
   "background-size: 150%;" +
   "}",
 
@@ -3059,21 +3078,19 @@ var css = {
   "position: absolute;" +
   "left: 20%;" +
   "color: gray;" +
-  "width: 40%;" +
+  "width: 20%;" +
   "height: 100%;" +
+  "display: table;" +
   "}",
 
 
   transferContactFoundTextOne: ".transfer-contact-found-text-one" +
   "{" +
-  "position: relative;" +
   "margin: 0;" +
-  "float: left;" +
-  "left: 7%;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
-  "width: 30%;" +
-  "top: 24%;" +
+  "display: table-cell;" +
+  "vertical-align: middle;" +
   "}",
 
   transferContactFoundTextTwo: ".transfer-contact-found-text-two" +
@@ -3124,7 +3141,61 @@ var css = {
   "background-position: center;" +
   "top: 31%;" +
   "left: 50%;" +
-  "}"
+  "}",
+
+  transferNameTitle: ".transfer-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "left: 13%;" +
+  "top: 28.5%;" +
+  "margin: 0;" +
+  "color: #fffaf9;" +
+  "}",
+
+  transferPageTitle: ".transfer-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 0px;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 93 * widthK + "px;" +
+  "background: transparent;" +
+  "border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  transferBackButton: ".transfer-back-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 120 * widthK + "px;" +
+  "height:" + 91 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 47 * widthK + "px;" +
+  "background-size: 17%;" +
+  "left:" + -25 * widthK + "px;" +
+  "top: 0;" +
+  "}",
+
+  transferIButton: ".transfer-i-button " +
+  "{" +
+  "position: absolute;" +
+  "width: 20%;" +
+  "height: 100%;" +
+  "right: -4%;" +
+  "background-image: url(resources/icons/ViewTransfer/i.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 30%;" +
+  "background-position-y: 46%;" +
+  "background-position-x: 62%;" +
+  "background-size: 30%;" +
+  "top:0" +
+  "}",
+
+
 
 
 }

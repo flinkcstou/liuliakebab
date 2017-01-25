@@ -1,17 +1,23 @@
 <view-transfer>
-    <component-page-title title="{titleName}" backbutton="{backbuttoncheck}" rightbutton="{rightbuttoncheck}">
-    </component-page-title>
+    <div class="transfer-page-title">
+    <p class="transfer-name-title">{titleName}</p>
+    <div id="backButton" ontouchend="touchStartTitle()"
+         class="{transfer-back-button: backbuttoncheck}">
+
+    </div>
+    <div id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"></div>
+    </div>
 
     <div class="transfer-body-container">
         <div class="transfer-menus-container">
             <div class="transfer-menu-container-contact" ontouchend="contact()">
-                <div class="transfer-menu-icon"></div>
-                <p id="contactLabelId" class="transfer-menu-name-label">
+                <div class="transfer-menu-contact-icon"></div>
+                <p id="contactLabelId" class="transfer-menu-contact-label">
                     {window.languages.ViewPayTransferMenuNameContact}</p>
             </div>
             <div class="transfer-menu-container-card" ontouchend="card()">
-                <div class="transfer-menu-icon"></div>
-                <p id="cardLabelId" class="transfer-menu-name-label">{window.languages.ViewPayTransferMenuNameCard}</p>
+                <div class="transfer-menu-card-icon"></div>
+                <p id="cardLabelId" class="transfer-menu-card-label">{window.languages.ViewPayTransferMenuNameCard}</p>
             </div>
         </div>
         <div class="transfer-contact-body-container" if="{contactMode}">
@@ -66,6 +72,7 @@
 
 
     <script>
+        var scope = this;
         this.titleName = 'ПЕРЕВОДЫ';
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer') {
@@ -73,7 +80,6 @@
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
 
-        var scope = this;
         scope.searchWord = '';
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = true;
@@ -154,7 +160,12 @@
             }
 
         searchCard = function () {
-            if(scope.cardInputId.value.length == 4 || scope.cardInputId.value.length == 9 || scope.cardInputId.value.length == 14){
+            var suggestionCard = [];
+            if(localStorage.getItem('click_client_suggestion_cards'))
+                    suggestionCard = JSON.parse(localStorage.getItem('click_client_suggestion_cards'))
+//            else
+//                localStorage.setItem('click_client_suggestion_cards')
+            if((scope.cardInputId.value.length == 4 || scope.cardInputId.value.length == 9 || scope.cardInputId.value.length == 14) && event.keyCode != 8){
                 scope.cardInputId.value += ' ';
 
             }
