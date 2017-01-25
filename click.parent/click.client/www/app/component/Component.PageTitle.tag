@@ -1,6 +1,6 @@
 <component-page-title class="page-title">
     <p class="name-title">{opts.title}</p>
-    <div id="backButton" ontouchstart="touchStartTitle()"
+    <div id="backButton" ontouchend="touchStartTitle()"
          class="{back-button: opts.backbutton}">
 
     </div>
@@ -11,9 +11,7 @@
         touchStartTitle = function () {
             event.preventDefault();
             event.stopPropagation();
-
-            this.riotTags.innerHTML = "<view-main-page>";
-            riot.mount('view-main-page');
+            onBackKeyDown()
         }
     </script>
 </component-page-title>

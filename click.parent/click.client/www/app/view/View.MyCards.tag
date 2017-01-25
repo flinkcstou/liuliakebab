@@ -61,8 +61,8 @@
         var scope = this;
         scope.top = 160 * widthK;
 
-        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-mycard-list') {
-            history.arrayOfHistory.push('view-mycard-list');
+        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-my-cards') {
+            history.arrayOfHistory.push('view-my-cards');
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
 

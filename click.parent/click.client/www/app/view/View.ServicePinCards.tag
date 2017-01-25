@@ -53,8 +53,7 @@
         touchStartTitle = function () {
             event.preventDefault();
             event.stopPropagation();
-            this.riotTags.innerHTML = "<view-service-page>";
-            riot.mount('view-service-page');
+            onBackKeyDown()
         }
 
         scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));

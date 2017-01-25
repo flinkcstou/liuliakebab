@@ -40,9 +40,8 @@
         <div class="transfer-contact-body-container" if="{cardMode}">
             <div class="transfer-contact-phone-field">
                 <p class="transfer-contact-text-field">{window.languages.ViewPayTransferCardTextField}</p>
-                <p class="transfer-contact-number-first-part">8600</p>
-                <input class="transfer-contact-number-input-part" type="tel"
-                       maxlength="9"/>
+                <input id="cardInputId" class="transfer-card-number-input-part" type="tel"
+                       maxlength="19" onkeyup="searchCard()"/>
                 <div class="transfer-contact-phone-icon"></div>
             </div>
             <div class="transfer-contact-found-container-one">
@@ -69,7 +68,7 @@
     <script>
         this.titleName = 'ПЕРЕВОДЫ';
 
-        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer') {
             history.arrayOfHistory.push('view-transfer');
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
@@ -81,7 +80,7 @@
 
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         phoneNumber = phoneNumber.substring(3, phoneNumber.length);
-//        console.log('PHONE NUMBER ', phoneNumber);
+        //        console.log('PHONE NUMBER ', phoneNumber);
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
         scope.contactMode = true;
@@ -134,24 +133,30 @@
             }
         }
         if (device.platform != 'BrowserStand')
-            findContacts();
+        //findContacts();
 
-        searchContacts = function () {
-            event.preventDefault();
-            event.stopPropagation();
-            var countOfFound = 0;
+            searchContacts = function () {
+                event.preventDefault();
+                event.stopPropagation();
+                var countOfFound = 0;
 
-            if (event.keyCode != 16 && event.keyCode != 18)
-                scope.searchWord = event.target.value.toLowerCase();
+                if (event.keyCode != 16 && event.keyCode != 18)
+                    scope.searchWord = event.target.value.toLowerCase();
 
-            scope.suggestionOne = {};
-            scope.suggestionTwo = {};
+                scope.suggestionOne = {};
+                scope.suggestionTwo = {};
 
-            arrayOfContacts.filter(function (wordOfFunction) {
-                var index = wordOfFunction.phoneNumbers[0].value.substring(4, wordOfFunction.phoneNumbers[0].value.length).toLowerCase().indexOf(scope.searchWord);
-                if (index != -1) {
-                }
-            });
+                arrayOfContacts.filter(function (wordOfFunction) {
+                    var index = wordOfFunction.phoneNumbers[0].value.substring(4, wordOfFunction.phoneNumbers[0].value.length).toLowerCase().indexOf(scope.searchWord);
+                    if (index != -1) {
+                    }
+                });
+            }
+
+        searchCard = function () {
+            if(scope.cardInputId.value.length == 4 || scope.cardInputId.value.length == 9 || scope.cardInputId.value.length == 14){
+                scope.cardInputId.value += ' ';
+            }
         }
 
 

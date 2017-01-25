@@ -20,7 +20,6 @@
         </div>
         <div class="transfer-contact-body-container" if="{cardMode}">
             <div class="transfer-contact-phone-field">
-                <p class="transfer-contact-number-first-part">8600</p>
                 <input class="transfer-contact-number-input-part" type="tel"
                        maxlength="9"/>
             </div>

@@ -3,7 +3,7 @@
     <div class="page-title" style="border-style: none;">
         <p class="servicepage-title">{titleName}</p>
         <p class="servicepage-category-field">{categoryName}</p>
-        <div ontouchstart="touchStartTitle()"
+        <div ontouchend="touchStartTitle()"
              class="servicepage-button-back">
         </div>
         <div type="button" class="servicepage-service-icon"
@@ -61,8 +61,7 @@
         touchStartTitle = function () {
             event.preventDefault();
             event.stopPropagation();
-            this.riotTags.innerHTML = "<view-service-pincards>";
-            riot.mount('view-service-pincards');
+            onBackKeyDown()
         }
 
         if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-pay-confirm') {

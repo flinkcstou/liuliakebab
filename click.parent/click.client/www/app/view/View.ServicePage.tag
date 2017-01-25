@@ -51,8 +51,7 @@
             viewServicePage.amountText = null;
             event.preventDefault();
             event.stopPropagation();
-            this.riotTags.innerHTML = "<view-pay>";
-            riot.mount('view-pay');
+            onBackKeyDown()
         }
 
         scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
