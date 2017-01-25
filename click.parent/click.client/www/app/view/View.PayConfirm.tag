@@ -1,6 +1,6 @@
 <view-pay-confirm class="view-pay-confirm">
 
-    <div class="page-title" style="border-style: none;">
+    <div class="pay-page-title" style="border-style: none;">
         <p class="servicepage-title">{titleName}</p>
         <p class="servicepage-category-field">{categoryName}</p>
         <div ontouchend="touchStartTitle()"
@@ -65,7 +65,7 @@
             onBackKeyDown()
         }
 
-        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-pay-confirm') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-pay-confirm') {
             history.arrayOfHistory.push('view-pay-confirm');
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
         }

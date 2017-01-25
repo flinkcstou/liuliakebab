@@ -1,6 +1,6 @@
 <view-pay>
     <div id="viewPayId" class="view-pay">
-        <div class="page-title">
+        <div class="pay-page-title">
             <p class="pay-name-title">{titleName}</p>
             <div id="backButton" ontouchend="goToMainPage()" class="{back-button: backbuttoncheck}"></div>
             <div id="rightButton" type="button" class="{search-button: rightbuttoncheck}" ontouchend="search()"></div>

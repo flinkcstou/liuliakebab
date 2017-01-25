@@ -1,6 +1,6 @@
 <view-service-pincards class="view-service-pincards">
 
-    <div class="page-title" style="border-style: none;">
+    <div class="pay-page-title" style="border-style: none;">
         <p class="servicepage-title">Оплата {titleName}</p>
         <p class="servicepage-category-field">{categoryName}</p>
         <div ontouchend="touchStartTitle()"
@@ -44,7 +44,7 @@
 
 
     <script>
-        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-service-pincards') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-service-pincards') {
             history.arrayOfHistory.push('view-service-pincards');
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
         }
