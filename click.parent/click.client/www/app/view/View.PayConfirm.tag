@@ -12,7 +12,7 @@
 
     <div class="payconfirm-body-container">
         <div class="payconfirm-data-container">
-            <div class="payconfirm-phone-field">
+            <div class="payconfirm-phone-field" if="{viewServicePage.formType!=2}">
                 <p class="payconfirm-text-field">{window.languages.ViewPayConformEnterPhone}</p>
                 <p class="payconfirm-phone-input">{phoneText}</p>
             </div>
@@ -22,7 +22,8 @@
             </div>
             <div class="payconfirm-field">
                 <p class="payconfirm-text-field">{window.languages.ViewPayConfirmCategory}</p>
-                <p class="payconfirm-phone-input" style="text-decoration: underline">{window.languages.ViewPayConfirmMobileConnection}</p>
+                <p class="payconfirm-phone-input" style="text-decoration: underline">
+                    {window.languages.ViewPayConfirmMobileConnection}</p>
             </div>
             <div class="payconfirm-card-field">
                 <div class="payconfirm-card-info-container">
@@ -48,7 +49,7 @@
                      style="background-image: url('resources/icons/ViewService/addautopay.png');"></div>
                 <div class="payconfirm-action-text">{window.languages.ViewPayConfirmAddToAutoPay}</div>
             </div>
-            <div class="payconfirm-button-enter">
+            <div class="payconfirm-button-enter" ontouchend="payService()">
                 <div class="payconfirm-button-enter-label">{window.languages.ViewPayConfirmPay}</div>
             </div>
         </div>
@@ -94,7 +95,101 @@
                 break;
             }
 
+        payService = function () {
+            var date = parseInt(Date.now() / 1000);
+            var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+            var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+            //var phoneNumber = '998'+viewServicePage.phoneText;
+            var serviceId = viewPay.chosenServiceId;
+            var accountId = JSON.parse(localStorage.getItem('click_client_loginInfo')).default_account;
+            var amount = viewServicePage.amountText;
+            var payment_data = {"item": {"param": "", "value": ""}}
 
+
+            window.api.call({
+                method: 'app.payment',
+                input: {
+                    session_key: sessionKey,
+                    phone_num: phoneNumber,
+                    service_id: serviceId,
+                    account_id: accountId,
+                    amount: amount,
+                    payment_data: null,
+                    datetime: date
+                },
+
+                scope: this,
+
+                onSuccess: function (result) {
+                    if (result[0][0].error == 0) {
+                        alert("Пользователь не найден");
+                        return;
+                    }
+                    console.log("result ", result);
+                    var deviceId = result[1][0].device_id;
+                    localStorage.setItem('click_client_deviceID', deviceId);
+                    token = hex_sha512(deviceId + date + phoneNumber);
+                    localStorage.setItem('click_client_token', token);
+                    if (result[1][0].confirm_needed) {
+                        localStorage.setItem('confirm_needed', true);
+                        this.riotTags.innerHTML = "<view-sms>";
+                        riot.mount('view-sms');
+                    }
+                    else {
+                        this.riotTags.innerHTML = "<view-authorization>";
+                        riot.mount('view-authorization');
+                    }
+                },
+
+                onFail: function (api_status, api_status_message, data) {
+                    console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                    console.error(data);
+                }
+            });
+        }
+
+
+        function registrationDevice(phoneNumber, date) {
+            window.api.call({
+                method: 'device.register.request',
+                input: {
+                    phone_num: phoneNumber,
+                    device_info: deviceInfo(),
+                    device_name: deviceName(),
+                    device_type: deviceType(),
+                    datetime: date,
+                    imei: deviceImei()
+                },
+
+                scope: this,
+
+                onSuccess: function (result) {
+                    if (result[0][0].error == -8) {
+                        alert("Пользователь не найден");
+                        return;
+                    }
+                    console.log("result ", result);
+                    var deviceId = result[1][0].device_id;
+                    localStorage.setItem('click_client_deviceID', deviceId);
+                    token = hex_sha512(deviceId + date + phoneNumber);
+                    localStorage.setItem('click_client_token', token);
+                    if (result[1][0].confirm_needed) {
+                        localStorage.setItem('confirm_needed', true);
+                        this.riotTags.innerHTML = "<view-sms>";
+                        riot.mount('view-sms');
+                    }
+                    else {
+                        this.riotTags.innerHTML = "<view-authorization>";
+                        riot.mount('view-authorization');
+                    }
+                },
+
+                onFail: function (api_status, api_status_message, data) {
+                    console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                    console.error(data);
+                }
+            });
+        }
 
 
     </script>

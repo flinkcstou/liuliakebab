@@ -15,9 +15,9 @@
                         </div>
                         <div class="pay-icon-tick" id="tick{i.id}"></div>
                         <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
-                            <li class="pay-service-containter" each="{j in currentList}" id="{j.id}"
-                                ontouchend="goToServiceView(this.id)">
-                                <div class="pay-service-icon" style="background-image: url({j.image})">
+                            <li class="pay-service-containter" each="{j in currentList}">
+                                <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}"
+                                     ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService()">
                                     <div class="pay-service-name-field">{j.name}</div>
                                 </div>
                             </li>
@@ -37,16 +37,28 @@
             <input id="searchInputId" class="search-input" onkeyup="searchSuggestion()"/>
             <div class="search-suggestion-container">
                 <div id="suggestionOneId" class="search-suggestion-field-one" ontouchend="suggestionFieldOne()">
-                    <p class="search-part-of-suggestion">{onePartOne}<mark class="search-selected-field-color">{onePartTwo}</mark>{onePartThree}</p>
+                    <p class="search-part-of-suggestion">{onePartOne}
+                        <mark class="search-selected-field-color">{onePartTwo}</mark>
+                        {onePartThree}
+                    </p>
                 </div>
                 <div id="suggestionTwoId" class="search-suggestion-field-two" ontouchend="suggestionFieldTwo()">
-                    <p class="search-part-of-suggestion">{twoPartOne}<mark class="search-selected-field-color">{twoPartTwo}</mark>{twoPartThree}</p>
+                    <p class="search-part-of-suggestion">{twoPartOne}
+                        <mark class="search-selected-field-color">{twoPartTwo}</mark>
+                        {twoPartThree}
+                    </p>
                 </div>
                 <div id="suggestionThreeId" class="search-suggestion-field-three" ontouchend="suggestionFieldThree()">
-                    <p class="search-part-of-suggestion">{threePartOne}<mark class="search-selected-field-color">{threePartTwo}</mark>{threePartThree}</p>
+                    <p class="search-part-of-suggestion">{threePartOne}
+                        <mark class="search-selected-field-color">{threePartTwo}</mark>
+                        {threePartThree}
+                    </p>
                 </div>
                 <div id="suggestionFourId" class="search-suggestion-field-four" ontouchend="suggestionFieldFour()">
-                    <p class="search-part-of-suggestion">{fourPartOne}<mark class="search-selected-field-color">{fourPartTwo}</mark>{fourPartThree}</p>
+                    <p class="search-part-of-suggestion">{fourPartOne}
+                        <mark class="search-selected-field-color">{fourPartTwo}</mark>
+                        {fourPartThree}
+                    </p>
                 </div>
             </div>
         </div>
@@ -56,7 +68,7 @@
         var scope = this;
         this.titleName = window.languages.ViewPayTitleName;
 
-        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-pay') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-pay') {
             history.arrayOfHistory.push('view-pay');
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
@@ -99,7 +111,7 @@
             scope.searchInputId.autofocus = true;
             if (scope.categoryList)
                 arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
-            if(device.platform != 'BrowserStand')
+            if (device.platform != 'BrowserStand')
                 StatusBar.backgroundColorByHexString("#353340");
         }
 
@@ -509,13 +521,24 @@
         }
 
 
-        goToServiceView = function (id) {
-            viewPay.chosenServiceId = id;
+        onTouchStartOfService = function () {
             event.stopPropagation();
+            onTouchStartY = event.changedTouches[0].pageY;
 
-            localStorage.setItem('chosenServiceId', id);
-            this.riotTags.innerHTML = "<view-service-page>";
-            riot.mount("view-service-page");
+        }
+
+        onTouchEndOfService = function (id) {
+            event.stopPropagation();
+            onTouchEndY = event.changedTouches[0].pageY;
+
+            if (Math.abs(onTouchStartY - onTouchEndY) <= 20 || checkOfSearch) {
+                viewPay.chosenServiceId = id;
+                event.stopPropagation();
+
+                localStorage.setItem('chosenServiceId', id);
+                this.riotTags.innerHTML = "<view-service-page>";
+                riot.mount("view-service-page");
+            }
         }
     </script>
 </view-pay>
