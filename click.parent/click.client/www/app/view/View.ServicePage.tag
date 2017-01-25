@@ -10,6 +10,7 @@
     </div>
 
     <div class="servicepage-body-container" if="{formType==1}">
+
         <div class="servicepage-phone-field" each="{i in fieldArray}" id="phoneField{i.service_id}">
             <p class="servicepage-text-field">{i.title}</p>
             <p class="servicepage-number-first-part">+998</p>
@@ -19,6 +20,7 @@
                    value="{defaultNumber}"/>
             <div class="servicepage-phone-icon"></div>
         </div>
+
         <div class="servicepage-amount-field" id="amountField">
             <p class="servicepage-text-field">{window.languages.ViewServicePageAmountTextLabel}</p>
             <input class="servicepage-amount-input" type="tel" maxlength="{amountLength}" value="{defaultAmount}"
@@ -33,14 +35,15 @@
     <div class="servicepage-body-container" if="{formType==2}">
         <div class="servicepage-pincards-container" each="{i in pincardIds}">
             <div class="servicepage-pincard-title">{pincardsMap[i][0].name}</div>
-            <div class="servicepage-pincard-nominal-container" each="j in pincardsMap[i]">
+            <div class="servicepage-pincard-nominal-container" each="{j in pincardsMap[i]}"
+                 ontouchend="goToPinCardViewFromTwo()">
                 <p class="servicepage-pincard-nominal-value">{j.nominal} сум</p>
                 <div class="servicepage-pincard-choose-arrow"></div>
             </div>
         </div>
     </div>
     <script>
-        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-service-page') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-service-page') {
             history.arrayOfHistory.push('view-service-page');
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
         }
@@ -68,11 +71,13 @@
         this.serviceIcon = scope.service.image;
         this.categoryName = scope.categoryNamesMap[viewPay.categoryId];
         this.formType = scope.service.form_type;
+        viewServicePage.formType = this.formType;
 
         if (this.formType == 1) {
             this.fieldName = scope.servicesParamsMapOne[viewPay.chosenServiceId][0].title;
             this.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
             this.amountLength = ("" + scope.service.max_pay_limit).length;
+//            console.log("fieldArray", fieldArray);
         }
         if (this.formType == 2) {
             scope.servicesParamsMapThree = JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"));
@@ -94,7 +99,7 @@
         }
 
         //console.log(this.fieldArray);
-//        console.log("form type", scope.formType);
+        //        console.log("form type", scope.formType);
 
         scope.focusedFieldId = -1;
 
@@ -136,6 +141,14 @@
             viewServicePage.phoneText = document.getElementById(scope.focusedFieldId).value;
             viewServicePage.amountText = document.getElementById('amount').value;
 
+            event.preventDefault();
+            event.stopPropagation();
+            this.riotTags.innerHTML = "<view-service-pincards>";
+            riot.mount('view-service-pincards');
+        }
+
+        goToPinCardViewFromTwo = function () {
+            viewServicePage.amountText = document.getElementById('amount').value;
             event.preventDefault();
             event.stopPropagation();
             this.riotTags.innerHTML = "<view-service-pincards>";

@@ -119,7 +119,7 @@
 //              function success(contacts) {
 //                //alert(JSON.stringify(contacts));
 //                for (var i = 0; i < contacts.length; i++) {
-////                  console.log('contacts ', contacts[i])
+//                  console.log('contacts ', contacts[i])
 //                  if (contacts[i].photos != null) {
 //                    if (contacts[i].photos[0].value != null && contacts[i].name != null) {
 //                      arrayOfPhotosContacts.push(contacts[i]);
