@@ -2873,7 +2873,7 @@ var css = {
   transferBodyContainer: ".transfer-body-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 1125 * widthK + "px;" +
+  "height:" + 1145 * widthK + "px;" +
   "width:" + 720 * widthK + "px;" +
   "top:" + 90 * widthK + "px;" +
   "background-color: white;" +
@@ -2884,7 +2884,7 @@ var css = {
   transferMenusContainer: ".transfer-menus-container" +
   "{" +
   "position: absolute;" +
-  "height: 10%;" +
+  "height: 9.5%;" +
   "width: 100%;" +
   "background-color: #F0F1F4;" +
   "}",
