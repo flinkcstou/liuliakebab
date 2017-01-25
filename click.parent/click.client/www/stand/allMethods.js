@@ -52,12 +52,12 @@ window.fakedSocket.register("app.login", function (input) {
 
     if (localStorage.getItem("pinForStand") != "11111")
         return [
-            {
+            [{
                 "method": input.method,
                 "success": 1,
                 "error": -4,
                 "error_note": 'Neverniy PIN CODE'
-            }
+            }]
         ];
 
     return [
