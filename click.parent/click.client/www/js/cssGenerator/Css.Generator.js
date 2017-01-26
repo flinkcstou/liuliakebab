@@ -1830,7 +1830,7 @@ var css = {
   "background-image: url(resources/icons/back/back.png);" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 19%;" +
-  "background-position-y: center;" +
+  "background-position-y: 62%;" +
   "background-position-x: center;" +
   "background-size: 17%;" +
   "right: 87%;" +

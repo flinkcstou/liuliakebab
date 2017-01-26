@@ -38,22 +38,26 @@
             <div class="search-suggestion-container">
                 <div id="suggestionOneId" class="search-suggestion-field-one" ontouchend="suggestionFieldOne()">
                     <p class="search-part-of-suggestion">{onePartOne}
-                        <mark class="search-selected-field-color">{onePartTwo}</mark>{onePartThree}
+                        <mark class="search-selected-field-color">{onePartTwo}</mark>
+                        {onePartThree}
                     </p>
                 </div>
                 <div id="suggestionTwoId" class="search-suggestion-field-two" ontouchend="suggestionFieldTwo()">
                     <p class="search-part-of-suggestion">{twoPartOne}
-                        <mark class="search-selected-field-color">{twoPartTwo}</mark>{twoPartThree}
+                        <mark class="search-selected-field-color">{twoPartTwo}</mark>
+                        {twoPartThree}
                     </p>
                 </div>
                 <div id="suggestionThreeId" class="search-suggestion-field-three" ontouchend="suggestionFieldThree()">
                     <p class="search-part-of-suggestion">{threePartOne}
-                        <mark class="search-selected-field-color">{threePartTwo}</mark>{threePartThree}
+                        <mark class="search-selected-field-color">{threePartTwo}</mark>
+                        {threePartThree}
                     </p>
                 </div>
                 <div id="suggestionFourId" class="search-suggestion-field-four" ontouchend="suggestionFieldFour()">
                     <p class="search-part-of-suggestion">{fourPartOne}
-                        <mark class="search-selected-field-color">{fourPartTwo}</mark>{fourPartThree}
+                        <mark class="search-selected-field-color">{fourPartTwo}</mark>
+                        {fourPartThree}
                     </p>
                 </div>
             </div>
@@ -223,8 +227,8 @@
                         riot.update(scope.onePartTwo);
                         riot.update(scope.onePartThree);
                     }
-                    if(countOfSuggestionWord == 3)
-                            return
+                    if (countOfSuggestionWord == 3)
+                        return
 
                     countOfSuggestionWord++;
                 }
@@ -297,49 +301,52 @@
                 onTouchEndOfCategory(scope.suggestionFour.id);
         }
 
-        if (!scope.categoryList) {
-            scope.categoryList = [];
-            scope.categoryNamesMap = {};
-            window.api.call({
-                method: 'get.service.category.list',
-                input: {
-                    session_key: sessionKey,
-                    phone_num: phoneNumber
-                },
-                scope: this,
+        //        if (!scope.categoryList) {
+        scope.categoryList = [];
+        scope.categoryNamesMap = {};
+        window.api.call({
+            method: 'get.service.category.list',
+            input: {
+                session_key: sessionKey,
+                phone_num: phoneNumber
+            },
+            scope: this,
 
-                onSuccess: function (result) {
-                    if (result[0][0].error == 0)
-                        if (result[1][0]) {
-                            var image = new Image();
-                            var j = 0, icon;
-                            for (var i in result[1]) {
-                                scope.categoryList.push(result[1][i]);
-                                scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
-                                icon = scope.categoryList[j].icon;
-                                console.log("j=", j, ",icon=", icon);
-                                image.src = "resources/icons/ViewPay/category" + icon.substr(icon.lastIndexOf('/'));
-                                console.log(image.src);
-                                if (image.onerror) {
-                                    console.log("no image");
-                                }
-                                else scope.categoryList[j].icon = image.src;
-                                j++;
+            onSuccess: function (result) {
+                if (result[0][0].error == 0)
+                    if (result[1][0]) {
+                        var image = new Image();
+                        var j = 0, icon;
+                        for (var i in result[1]) {
+                            scope.categoryList.push(result[1][i]);
+                            scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
+                            icon = scope.categoryList[j].icon;
+                            console.log("j=", j, ",icon=", icon);
+                            image.src = "resources/icons/ViewPay/category" + icon.substr(icon.lastIndexOf('/'));
+                            console.log(image.src);
+                            if ((image.src + '').onerror) {
+                                console.log("no image");
                             }
+                            if ((image.src + '').onload) {
+                                scope.categoryList[j].icon = image.src;
+                                console.log("image exists");
+                            }
+                            j++;
                         }
-                    riot.update(scope.categoryList);
+                    }
+                riot.update(scope.categoryList);
 
-                    scope.id = 0;
+                scope.id = 0;
 
-                    localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
-                    localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
-                },
-                onFail: function (api_status, api_status_message, data) {
-                    console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                    console.error(data);
-                }
-            })
-        }
+                localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
+                localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
+            },
+            onFail: function (api_status, api_status_message, data) {
+                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                console.error(data);
+            }
+        })
+        //        }
 
         scope.index = -1;
         scope.show = false;

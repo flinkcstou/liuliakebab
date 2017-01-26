@@ -723,7 +723,7 @@ input {
     background-image: url("../resources/icons/back/back.png");
     background-repeat: no-repeat;
     -webkit-background-size: 20%;
-    background-position-y: center;
+    background-position-y: 62%;
     background-position-x: center;
     background-size: 20%;
     right: 87%;
