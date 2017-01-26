@@ -14,25 +14,7 @@
                 <p id="cardLabelId" class="transfertwo-menu-name-label" ontouchend="card()">ПЕРЕВЕСТИ С</p>
             </div>
         </div>
-        <div class="pincard-allcards-container">
-            <div class="pincard-card-container" each="{i in cardsArray}" ontouchend="chooseCard(this.id)"
-                 id="{i.card_id}">
-                <div class="pincard-card-logo-container" if="{i.salary>0}"
-                     style="background-image: url({i.url})"></div>
-                <div class="pincard-card-logo-container" if="{i.salary<=0}"
-                     style="opacity:0.3; filter: grayscale(100%);background-image: url({i.url})"></div>
-                <div class="pincard-card-info-container">
-                    <p class="pincard-card-info-text-one">{i.name}</p>
-                    <p class="pincard-card-info-text-two" if="{i.salary>0}">{i.salary} {i.currency}</p>
-                    <p class="pincard-card-info-text-two" style="color: #EB604D" if="{i.salary<=0}">
-                        0 {i.currency}</p>
-                    <p class="pincard-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
-                </div>
-                <div class="{pincard-card-uncheckmark: !i.chosenCard, pincard-card-checkmark: i.chosenCard}"
-                     id="check{i.card_id}">
-                </div>
-            </div>
-        </div>
+        <component-pincards></component-pincards>
         <div class="transfer-contact-body-container" if="{contactMode}">
             <div class="transfer-contact-phone-field">
                 <p class="transfer-contact-number-first-part">+998</p>

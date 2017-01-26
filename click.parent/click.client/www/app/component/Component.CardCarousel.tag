@@ -51,15 +51,15 @@
             event.preventDefault();
             event.stopPropagation();
             carouselTouchEndX = event.changedTouches[0].pageX;
-            if (carouselTouchStartX - 20 > carouselTouchEndX || carouselTouchStartX < carouselTouchEndX - 20) {
+            if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20 ) {
                 changePosition();
             }
             else if (!viewMainPage.myCards) {
                 localStorage.setItem('cardNumber', cardNumber)
                 pos = (JSON.parse(localStorage.getItem('click_client_cards'))[localStorage.getItem('cardNumber')].countCard) * 540 * widthK;
-                //viewMainPage.myCards = true;
-                for(var i = 0; i < cardsarray.length; i++){
-                    if(cardsarray[i].countCard == cardNumber){
+//                viewMainPage.myCards = true;
+                for (var i = 0; i < cardsarray.length; i++) {
+                    if (cardsarray[i].countCard == cardNumber) {
                         cardsarray[i].chosenCard = true;
                         localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
                     }
@@ -71,6 +71,8 @@
                 this.cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
                 this.cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
             }
+            else
+                    changePosition()
         }
 
         moveTouchCarousel = function () {
@@ -89,7 +91,8 @@
             this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
             this.cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
             this.cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
-            }
+
+        }
 
         addCard(getAccountsCards)
         {
