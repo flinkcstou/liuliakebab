@@ -2,7 +2,7 @@
     <div class="pay-page-title" style="border-style: none;">
         <p class="servicepage-title">{titleName}</p>
         <p class="servicepage-category-field">{categoryName}</p>
-        <div ontouchend="touchStartTitle()"
+        <div ontouchend="goToBack()"
              class="servicepage-button-back">
         </div>
         <div type="button" class="servicepage-service-icon"
@@ -50,7 +50,7 @@
         }
 
         var scope = this;
-        touchStartTitle = function () {
+        goToBack = function () {
             viewServicePage.phoneText = null;
             viewServicePage.amountText = null;
             event.preventDefault();
