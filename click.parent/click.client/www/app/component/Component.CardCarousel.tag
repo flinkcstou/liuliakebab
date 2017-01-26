@@ -89,7 +89,7 @@
             this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
             this.cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
             this.cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
-        }
+            }
 
         addCard(getAccountsCards)
         {

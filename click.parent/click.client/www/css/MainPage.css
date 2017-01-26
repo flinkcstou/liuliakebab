@@ -1768,18 +1768,26 @@ input {
 }
 
 .transfertwo-menus-container {
-    position: relative;
-    height: 10%;
+    position: absolute;
+    height: 8%;
+    width: 100%;
+    background-color: transparent;
+    border-bottom:1px solid gray;
+}
+
+.transfertwo-menu-container-sum {
+    position: absolute;
+    height: 100%;
+    width: 30%;
+    left: 0;
     background-color: transparent;
 }
 
-.transfertwo-menu-container {
-    position: relative;
+.transfertwo-menu-container-transfer-to {
+    position: absolute;
     height: 100%;
     width: 30%;
-    float: left;
     left: 35%;
-    margin-left: 2%;
     background-color: transparent;
 }
 

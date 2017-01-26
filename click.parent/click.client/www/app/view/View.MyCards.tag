@@ -144,6 +144,7 @@
 
             event.preventDefault();
             event.stopPropagation();
+
             this.riotTags.innerHTML = "<view-pay>";
             riot.mount('view-pay');
         }
