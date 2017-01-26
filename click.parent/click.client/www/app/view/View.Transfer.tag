@@ -71,8 +71,6 @@
 
 
     <script>
-        if (device.platform != 'BrowserStand')
-            Keyboard.show();
 
         var scope = this;
         this.titleName = 'ПЕРЕВОДЫ';
@@ -88,13 +86,13 @@
 
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         phoneNumber = phoneNumber.substring(3, phoneNumber.length);
-        //        console.log('PHONE NUMBER ', phoneNumber);
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
         scope.contactMode = true;
         this.contactLabelId.style.color = 'black';
         scope.cardMode = false;
         contact = function () {
+
             scope.contactMode = true;
             this.contactLabelId.style.color = 'black';
             this.cardLabelId.style.color = 'gray';
@@ -104,10 +102,12 @@
         }
 
         card = function () {
+
             scope.cardMode = true;
             this.cardLabelId.style.color = 'black';
             this.contactLabelId.style.color = 'gray';
             scope.contactMode = false;
+
             riot.update(scope.contactMode);
             riot.update(scope.cardMode);
         }
@@ -115,6 +115,7 @@
         goToTransferStepTwo = function () {
             event.preventDefault();
             event.stopPropagation();
+
             this.riotTags.innerHTML = "<view-transfer-steptwo>";
             riot.mount('view-transfer-steptwo');
         }
@@ -123,6 +124,7 @@
 
 
         findContacts = function () {
+
             var options = new ContactFindOptions();
             options.filter = "";
             options.multiple = true;
@@ -146,6 +148,7 @@
         searchContacts = function () {
             event.preventDefault();
             event.stopPropagation();
+
             var countOfFound = 0;
             var check = false;
 
@@ -153,14 +156,19 @@
                 scope.searchWord = event.target.value;
 
             scope.suggestionOne = {};
+
             scope.suggestionTwo = {};
 
             arrayOfContacts.filter(function (wordOfFunction) {
+
                 console.log(wordOfFunction)
                 var index = wordOfFunction.phoneNumbers[0].value.indexOf(scope.searchWord);
                 if (index != -1 && countOfFound < 2) {
+
                     check = true;
+
                     if (countOfFound == 0) {
+
                         scope.suggestionOne.phoneNumber = wordOfFunction.phoneNumbers[0].value;
                         scope.suggestionOne.fName = wordOfFunction.name.givenName;
                         scope.suggestionOne.lName = wordOfFunction.name.familyName;
@@ -169,7 +177,6 @@
                             if (wordOfFunction.photos[0] != null)
                                 scope.suggestionOne.photo = wordOfFunction.photos[0].value;
 
-                        console.log(scope.suggestionOne.phoneNumber, scope.suggestionOne.fName, scope.suggestionOne.lName, scope.suggestionOne.photo);
 
                         riot.update(scope.suggestionOne)
 
@@ -178,6 +185,7 @@
                     }
 
                     if (countOfFound == 1) {
+
                         scope.suggestionTwo.phoneNumber = wordOfFunction.phoneNumbers[0].value;
                         scope.suggestionTwo.fName = wordOfFunction.name.givenName;
                         scope.suggestionTwo.lName = wordOfFunction.name.familyName;
@@ -186,26 +194,25 @@
                             if (wordOfFunction.photos[0] != null)
                                 scope.suggestionTwo.photo = wordOfFunction.photos[0].value;
 
-                        console.log(scope.suggestionTwo.phoneNumber, scope.suggestionTwo.fName, scope.suggestionTwo.lName, scope.suggestionTwo.photo);
-
                         riot.update(scope.suggestionTwo)
 
                         scope.secondSuggestionBlockId.style.display = 'block';
                     }
                     countOfFound++;
-                    if(countOfFound == 2)
-                            return;
+                    if (countOfFound == 2)
+                        return;
                 }
-                else
-                        if(!check){
-                            scope.firstSuggestionBlockId.style.display = 'none';
-                            scope.secondSuggestionBlockId.style.display = 'none';
-                        }
+                else if (!check) {
+                    scope.firstSuggestionBlockId.style.display = 'none';
+                    scope.secondSuggestionBlockId.style.display = 'none';
+                }
             });
         }
 
         searchCard = function () {
+
             var suggestionCard = [];
+
             if (localStorage.getItem('click_client_suggestion_cards'))
                 suggestionCard = JSON.parse(localStorage.getItem('click_client_suggestion_cards'))
 //            else
