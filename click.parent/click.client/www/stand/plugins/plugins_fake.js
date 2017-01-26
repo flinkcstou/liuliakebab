@@ -1,7 +1,7 @@
 window.device_fake = {};
 window.device_fake.model = 'Phone4,1';
 window.device_fake.uuid = 'F93CF2F8-C2E3-408F-B3AE-32BA7050271F';
-window.device_fake.platform = 'BrowserStan';
+window.device_fake.platform = 'BrowserStand';
 window.device_fake.info = 'Apple 9.3.5 iPhone4,1';
 window.device_fake.check = false;
 

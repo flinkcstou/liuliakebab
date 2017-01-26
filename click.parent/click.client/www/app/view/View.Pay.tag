@@ -39,26 +39,22 @@
             <div class="search-suggestion-container">
                 <div id="suggestionOneId" class="search-suggestion-field-one" ontouchend="suggestionFieldOne()">
                     <p class="search-part-of-suggestion">{onePartOne}
-                        <mark class="search-selected-field-color">{onePartTwo}</mark>
-                        {onePartThree}
+                        <mark class="search-selected-field-color">{onePartTwo}</mark>{onePartThree}
                     </p>
                 </div>
                 <div id="suggestionTwoId" class="search-suggestion-field-two" ontouchend="suggestionFieldTwo()">
                     <p class="search-part-of-suggestion">{twoPartOne}
-                        <mark class="search-selected-field-color">{twoPartTwo}</mark>
-                        {twoPartThree}
+                        <mark class="search-selected-field-color">{twoPartTwo}</mark>{twoPartThree}
                     </p>
                 </div>
                 <div id="suggestionThreeId" class="search-suggestion-field-three" ontouchend="suggestionFieldThree()">
                     <p class="search-part-of-suggestion">{threePartOne}
-                        <mark class="search-selected-field-color">{threePartTwo}</mark>
-                        {threePartThree}
+                        <mark class="search-selected-field-color">{threePartTwo}</mark>{threePartThree}
                     </p>
                 </div>
                 <div id="suggestionFourId" class="search-suggestion-field-four" ontouchend="suggestionFieldFour()">
                     <p class="search-part-of-suggestion">{fourPartOne}
-                        <mark class="search-selected-field-color">{fourPartTwo}</mark>
-                        {fourPartThree}
+                        <mark class="search-selected-field-color">{fourPartTwo}</mark>{fourPartThree}
                     </p>
                 </div>
             </div>
@@ -230,6 +226,9 @@
                         riot.update(scope.onePartTwo);
                         riot.update(scope.onePartThree);
                     }
+                    if(countOfSuggestionWord == 3)
+                            return
+
                     countOfSuggestionWord++;
                 }
                 else {
@@ -251,28 +250,26 @@
             Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
+            this.blockSearchId.style.display = 'none';
             checkOfSearch = true;
             if (scope.suggestionOne.form_type) {
-                goToServiceView(scope.suggestionOne.id)
+                onTouchEndOfService(scope.suggestionOne.id)
             }
             else
                 onTouchEndOfCategory(scope.suggestionOne.id);
-
-            this.blockSearchId.style.display = 'none';
         }
 
         suggestionFieldTwo = function () {
             Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
+            this.blockSearchId.style.display = 'none';
             checkOfSearch = true;
             if (scope.suggestionTwo.form_type) {
                 goToServiceView(scope.suggestionTwo.id)
             }
             else
                 onTouchEndOfCategory(scope.suggestionTwo.id);
-
-            this.blockSearchId.style.display = 'none';
         }
 
 
@@ -280,14 +277,13 @@
             Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
+            this.blockSearchId.style.display = 'none';
             checkOfSearch = true;
             if (scope.suggestionThree.form_type) {
                 goToServiceView(scope.suggestionThree.id)
             }
             else
                 onTouchEndOfCategory(scope.suggestionThree.id);
-
-            this.blockSearchId.style.display = 'none';
         }
 
 
@@ -295,15 +291,13 @@
             Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
-
+            this.blockSearchId.style.display = 'none';
             checkOfSearch = true;
             if (scope.suggestionFour.form_type) {
                 goToServiceView(scope.suggestionFour.id)
             }
             else
                 onTouchEndOfCategory(scope.suggestionFour.id);
-
-            this.blockSearchId.style.display = 'none';
         }
 
         if (!scope.categoryList) {

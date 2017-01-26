@@ -3033,6 +3033,7 @@ var css = {
   "background-color: #F0F1F4;" +
   "left: 10%;" +
   "top: 29%;" +
+  "display: none;" +
   "}",
 
   transferCardNumberInputPart: ".transfer-card-number-input-part" +
@@ -3057,6 +3058,7 @@ var css = {
   "background-color: #F0F1F4;" +
   "left: 10%;" +
   "top: 51.5%;" +
+  "display: none;" +
   "}",
 
   transferContactFoundPhoto: ".transfer-contact-found-photo" +
@@ -3076,7 +3078,7 @@ var css = {
   transferContactFoundTextContainer: ".transfer-contact-found-text-container" +
   "{" +
   "position: absolute;" +
-  "left: 20%;" +
+  "left: 25%;" +
   "color: gray;" +
   "width: 20%;" +
   "height: 100%;" +
@@ -3095,39 +3097,35 @@ var css = {
 
   transferContactFoundTextTwo: ".transfer-contact-found-text-two" +
   "{" +
-  "position: relative;" +
+  "position: absolute;" +
   "margin: 0;" +
-  "float: left;" +
-  "left: 14%;" +
+  "left: 60%;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
   "top: 40%;" +
   "}",
-
-  transferNextButtonContainer: ".transfer-next-button-container" +
-  "{" +
-  "position: absolute;" +
-  "width: 100%;" +
-  "height: 9%;" +
-  "bottom: 0;" +
-  "border-top: 1px solid lightgray;" +
-  "}",
-
   transferNextButtonInnerContainer: ".transfer-next-button-inner-container" +
   "{" +
-  "position: absolute;" +
-  "height: 100%;" +
-  "width: 30%;" +
-  "left: 70%;" +
-  "background-color: transparent;" +
+  "position: relative;" +
+  "height: 6%;" +
+  "width: 45%;" +
+  "top: 47%;" +
+  "display: table;" +
+  "background-color: #027fe4;" +
+  "border-radius:" + 50 * widthK + "px;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
   "}",
 
   transferNextButtonLabel: ".transfer-next-button-label" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "background-size: contain;" +
   "font-size:" + 32 * widthK + "px;" +
-  "color: #595759;" +
+  "color: #ffffff;" +
+  "text-align: center;" +
+  "display: table-cell;" +
+  "vertical-align: middle;" +
   "}",
 
   transferNextButtonIcon: ".transfer-next-button-icon" +

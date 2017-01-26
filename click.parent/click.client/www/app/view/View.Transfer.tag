@@ -1,11 +1,11 @@
 <view-transfer>
     <div class="transfer-page-title">
-    <p class="transfer-name-title">{titleName}</p>
-    <div id="backButton" ontouchend="touchStartTitle()"
-         class="{transfer-back-button: backbuttoncheck}">
+        <p class="transfer-name-title">{titleName}</p>
+        <div id="backButton" ontouchend="touchStartTitle()"
+             class="{transfer-back-button: backbuttoncheck}">
 
-    </div>
-    <div id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"></div>
+        </div>
+        <div id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"></div>
     </div>
 
     <div class="transfer-body-container">
@@ -24,23 +24,23 @@
             <div class="transfer-contact-phone-field">
                 <p class="transfer-contact-text-field">{window.languages.ViewPayTransferContactTextField}</p>
                 <p class="transfer-contact-number-first-part">+998</p>
-                <input class="transfer-contact-number-input-part" type="tel"
+                <input autofocus="true" class="transfer-contact-number-input-part" type="tel"
                        maxlength="9" onkeyup="searchContacts()"/>
                 <div class="transfer-contact-phone-icon"></div>
             </div>
-            <div class="transfer-contact-found-container-one">
-                <div class="transfer-contact-found-photo"></div>
+            <div id="firstSuggestionBlockId" class="transfer-contact-found-container-one">
+                <div class="transfer-contact-found-photo" style="background-image: url({suggestionOne.photo})"></div>
                 <div class="transfer-contact-found-text-container">
-                    <div class="transfer-contact-found-text-one">Юлдашев Александр</div>
+                    <div class="transfer-contact-found-text-one">{suggestionOne.fName} {suggestionOne.lName}</div>
                 </div>
-                <div class="transfer-contact-found-text-two">+998 90 359 39 57</div>
+                <div class="transfer-contact-found-text-two">{suggestionOne.phoneNumber}</div>
             </div>
-            <div class="transfer-contact-found-container-two">
-                <div class="transfer-contact-found-photo"></div>
+            <div id="secondSuggestionBlockId" class="transfer-contact-found-container-two">
+                <div class="transfer-contact-found-photo" style="background-image: url({suggestionTwo.photo})"></div>
                 <div class="transfer-contact-found-text-container">
-                    <div class="transfer-contact-found-text-one">Sipa</div>
+                    <div class="transfer-contact-found-text-one">{suggestionTwo.fName} {suggestionTwo.lName}</div>
                 </div>
-                <div class="transfer-contact-found-text-two">+998 90 359 51 98</div>
+                <div class="transfer-contact-found-text-two">{suggestionTwo.phoneNumber}</div>
             </div>
         </div>
         <div class="transfer-contact-body-container" if="{cardMode}">
@@ -61,17 +61,19 @@
                 <div class="transfer-contact-found-text-two">8760 **** **** 9870</div>
             </div>
         </div>
-        <div class="transfer-next-button-container">
-            <div class="transfer-next-button-inner-container" ontouchend="goToTransferStepTwo()">
-                <p class="transfer-next-button-label">{window.languages.ViewPayTransferNext}</p>
-                <div class="transfer-next-button-icon"></div>
-            </div>
+
+        <div class="transfer-next-button-inner-container" ontouchend="goToTransferStepTwo()">
+            <p class="transfer-next-button-label">{window.languages.ViewPayTransferNext}</p>
         </div>
+
 
     </div>
 
 
     <script>
+        if (device.platform != 'BrowserStand')
+            Keyboard.show();
+
         var scope = this;
         this.titleName = 'ПЕРЕВОДЫ';
 
@@ -139,33 +141,76 @@
             }
         }
         if (device.platform != 'BrowserStand')
-        //findContacts();
+            findContacts();
 
-            searchContacts = function () {
-                event.preventDefault();
-                event.stopPropagation();
-                var countOfFound = 0;
+        searchContacts = function () {
+            event.preventDefault();
+            event.stopPropagation();
+            var countOfFound = 0;
+            var check = false;
 
-                if (event.keyCode != 16 && event.keyCode != 18)
-                    scope.searchWord = event.target.value.toLowerCase();
+            if (event.keyCode != 16 && event.keyCode != 18)
+                scope.searchWord = event.target.value;
 
-                scope.suggestionOne = {};
-                scope.suggestionTwo = {};
+            scope.suggestionOne = {};
+            scope.suggestionTwo = {};
 
-                arrayOfContacts.filter(function (wordOfFunction) {
-                    var index = wordOfFunction.phoneNumbers[0].value.substring(4, wordOfFunction.phoneNumbers[0].value.length).toLowerCase().indexOf(scope.searchWord);
-                    if (index != -1) {
+            arrayOfContacts.filter(function (wordOfFunction) {
+                console.log(wordOfFunction)
+                var index = wordOfFunction.phoneNumbers[0].value.indexOf(scope.searchWord);
+                if (index != -1 && countOfFound < 2) {
+                    check = true;
+                    if (countOfFound == 0) {
+                        scope.suggestionOne.phoneNumber = wordOfFunction.phoneNumbers[0].value;
+                        scope.suggestionOne.fName = wordOfFunction.name.givenName;
+                        scope.suggestionOne.lName = wordOfFunction.name.familyName;
+
+                        if (wordOfFunction.photos != null)
+                            if (wordOfFunction.photos[0] != null)
+                                scope.suggestionOne.photo = wordOfFunction.photos[0].value;
+
+                        console.log(scope.suggestionOne.phoneNumber, scope.suggestionOne.fName, scope.suggestionOne.lName, scope.suggestionOne.photo);
+
+                        riot.update(scope.suggestionOne)
+
+                        scope.firstSuggestionBlockId.style.display = 'block';
+                        scope.secondSuggestionBlockId.style.display = 'none';
                     }
-                });
-            }
+
+                    if (countOfFound == 1) {
+                        scope.suggestionTwo.phoneNumber = wordOfFunction.phoneNumbers[0].value;
+                        scope.suggestionTwo.fName = wordOfFunction.name.givenName;
+                        scope.suggestionTwo.lName = wordOfFunction.name.familyName;
+
+                        if (wordOfFunction.photos != null)
+                            if (wordOfFunction.photos[0] != null)
+                                scope.suggestionTwo.photo = wordOfFunction.photos[0].value;
+
+                        console.log(scope.suggestionTwo.phoneNumber, scope.suggestionTwo.fName, scope.suggestionTwo.lName, scope.suggestionTwo.photo);
+
+                        riot.update(scope.suggestionTwo)
+
+                        scope.secondSuggestionBlockId.style.display = 'block';
+                    }
+                    countOfFound++;
+                    if(countOfFound == 2)
+                            return;
+                }
+                else
+                        if(!check){
+                            scope.firstSuggestionBlockId.style.display = 'none';
+                            scope.secondSuggestionBlockId.style.display = 'none';
+                        }
+            });
+        }
 
         searchCard = function () {
             var suggestionCard = [];
-            if(localStorage.getItem('click_client_suggestion_cards'))
-                    suggestionCard = JSON.parse(localStorage.getItem('click_client_suggestion_cards'))
+            if (localStorage.getItem('click_client_suggestion_cards'))
+                suggestionCard = JSON.parse(localStorage.getItem('click_client_suggestion_cards'))
 //            else
 //                localStorage.setItem('click_client_suggestion_cards')
-            if((scope.cardInputId.value.length == 4 || scope.cardInputId.value.length == 9 || scope.cardInputId.value.length == 14) && event.keyCode != 8){
+            if ((scope.cardInputId.value.length == 4 || scope.cardInputId.value.length == 9 || scope.cardInputId.value.length == 14) && event.keyCode != 8) {
                 scope.cardInputId.value += ' ';
 
             }
