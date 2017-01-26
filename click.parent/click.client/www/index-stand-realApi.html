@@ -91,10 +91,7 @@
         if (history.arrayOfHistory.length != 0) {
             history.arrayOfHistory.pop();
             if (history.arrayOfHistory.length != 0) {
-                console.log('THIS IS riotTags div ', this.riotTags)
-                console.log("JSON ", JSON.stringify(history.arrayOfHistory));
-                console.log('LAST ELEMENT ', history.arrayOfHistory[history.arrayOfHistory.length - 1]);
-                console.log('LAST ELEMENT in RIOT TAG ', "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1] + ">");
+                sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
                 this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1] + ">";
                 riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1]);
             }
