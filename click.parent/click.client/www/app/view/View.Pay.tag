@@ -2,7 +2,7 @@
     <div id="viewPayId" class="view-pay">
         <div class="pay-page-title">
             <p class="pay-name-title">{titleName}</p>
-            <div id="backButton" ontouchend="goToMainPage()" class="pay-back-button"></div>
+            <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
             <div id="rightButton" type="button" class="pay-search-button" ontouchend="search()"></div>
         </div>
         <div class="pay-category-container">
@@ -89,7 +89,7 @@
         //console.log('PHONE NUMBER ', phoneNumber);
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
-        goToMainPage = function () {
+        goToBack = function () {
             event.preventDefault();
             event.stopPropagation();
             onBackKeyDown()

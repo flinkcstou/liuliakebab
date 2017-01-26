@@ -3133,6 +3133,7 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "top: 40%;" +
   "}",
+
   transferNextButtonInnerContainer: ".transfer-next-button-inner-container" +
   "{" +
   "position: relative;" +
@@ -3221,6 +3222,101 @@ var css = {
   "background-size: 30%;" +
   "top:0" +
   "}",
+
+
+  //VIEW TRANSFER TWO
+
+  transferTwoBodyContainer  : ".transfertwo-body-container " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 1145 * widthK + "px;" +
+  "width:" + 720 * widthK + "px;" +
+  "top:" + 87 * widthK + "px;" +
+  "background-color: white;" +
+  "overflow: hidden;" +
+  "}",
+
+  transferTwoMenusContainer : ".transfertwo-menus-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 8%;" +
+  "width: 100%;" +
+  "background-color: transparent;" +
+  "border-bottom:1px solid #e3e3e3;" +
+  "}",
+
+  transferTwoMenuContainerSum : ".transfertwo-menu-container-sum " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 30%;" +
+  "left: 0;" +
+  "background-color: transparent;" +
+  "}",
+
+  transferTwoMenuContainerTransferTo : ".transfertwo-menu-container-transfer-to " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 30%;" +
+  "left: 35%;" +
+  "background-color: transparent;" +
+  "}",
+
+  transferTwoMenuNameLabel : ".transfertwo-menu-name-label " +
+  "{" +
+  "margin: 0;" +
+  "left: 16%;" +
+  "top: 35%;" +
+  "position: absolute;" +
+  "font-size:" + 27 * widthK + "px;" +
+  "color: #515151;" +
+  "}",
+
+  transferTwoContactBodyContainer : ".transfertwo-contact-body-container " +
+  "{" +
+  "position: absolute;" +
+  "top: 10%;" +
+  "height: 50%;" +
+  "background-color: transparent;" +
+  "}",
+
+  transferTwoContactPhoneField : ".transfertwo-contact-phone-field " +
+  "{" +
+  "position: relative;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height: 103px;" +
+  "border-bottom: 5px solid #01cfff;" +
+  "color: white;" +
+  "top: 45px;" +
+  "margin-bottom: 8%;" +
+  "}",
+
+  transferTwoNextButtonInnerContainer: ".transfertwo-next-button-inner-container" +
+  "{" +
+  "position: relative;" +
+  "height: 6%;" +
+  "width: 45%;" +
+  "top: 90%;" +
+  "display: table;" +
+  "background-color: #027fe4;" +
+  "border-radius:" + 50 * widthK + "px;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "}",
+
+  transferTwoNextButtonLabel: ".transfertwo-next-button-label" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-align: center;" +
+  "display: table-cell;" +
+  "vertical-align: middle;" +
+  "}",
+
 
 
 }

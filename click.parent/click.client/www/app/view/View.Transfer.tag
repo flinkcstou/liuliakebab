@@ -1,7 +1,7 @@
 <view-transfer>
     <div class="transfer-page-title">
         <p class="transfer-name-title">{titleName}</p>
-        <div id="backButton" ontouchend="touchStartTitle()"
+        <div id="backButton" ontouchend="goToBack()"
              class="{transfer-back-button: backbuttoncheck}">
 
         </div>
@@ -91,6 +91,13 @@
         scope.contactMode = true;
         this.contactLabelId.style.color = 'black';
         scope.cardMode = false;
+
+        goToBack = function () {
+            event.preventDefault();
+            event.stopPropagation();
+            onBackKeyDown()
+        }
+
         contact = function () {
 
             scope.contactMode = true;

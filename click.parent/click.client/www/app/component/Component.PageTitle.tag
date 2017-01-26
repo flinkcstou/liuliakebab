@@ -13,5 +13,6 @@
             event.stopPropagation();
             onBackKeyDown()
         }
+
     </script>
 </component-page-title>
