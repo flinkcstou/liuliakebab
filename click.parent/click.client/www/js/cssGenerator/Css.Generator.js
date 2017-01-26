@@ -311,7 +311,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: " + 140 * widthK + "px;" +
-  "height:" + 100 * widthK + "px;" +
+  "height:" + 115 * widthK + "px;" +
   "top:" + 16 * widthK + "px;" +
   "color: white;" +
   "font-size:" + 70 * widthK + "px;" +
