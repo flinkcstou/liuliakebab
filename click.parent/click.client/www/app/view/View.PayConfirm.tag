@@ -101,8 +101,15 @@
             var serviceId = viewPay.chosenServiceId;
             var accountId = JSON.parse(localStorage.getItem('click_client_loginInfo')).default_account;
             var amount = viewServicePage.amountText;
-            var phoneParam = '998' + viewServicePage.phoneText;
-            var payment_data = {"item": {"param": "1", "value": phoneParam}, "transaction_id": Date.now()}
+            var phoneParam = viewServicePage.phoneText;
+            var payment_data = {
+                "item": {"param": "1", "value": phoneParam},
+                "transaction_id": parseInt(Date.now() / 1000)
+            }
+
+//            var payment_data = {"param": "1", "value": phoneParam};
+//            "transaction_id"            :
+//            parseInt(Date.now() / 1000)
 
 
             window.api.call({
@@ -110,9 +117,9 @@
                 input: {
                     session_key: sessionKey,
                     phone_num: phoneNumber,
-                    service_id: serviceId,
-                    account_id: accountId,
-                    amount: amount,
+                    service_id: Number(serviceId),
+                    account_id: Number(accountId),
+                    amount: Number(amount),
                     payment_data: payment_data,
                     datetime: date
                 },

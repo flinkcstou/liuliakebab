@@ -1822,6 +1822,35 @@ var css = {
   "color: #fffaf9;" +
   "}",
 
+  payBackButton: ".pay-back-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 113 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 17%;" +
+  "right: 87%;" +
+  "}",
+
+  paySearchButton: ".pay-search-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 127 * widthK + "px;" +
+  "height:" + 86 * widthK + "px;" +
+  "left:85%;" +
+  "background-image: url(resources/icons/search/search.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 55%;" +
+  "background-position-y: center;" +
+  "background-position-x:center;" +
+  "background-size: 27%;" +
+  "top:" + 12 * widthK + "px;" +
+  "}",
+
   payCategoryContainer: ".pay-category-container" +
   "{" +
   "position: absolute;" +
@@ -2156,7 +2185,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: absolute;" +
-  "top: 26%;" +
+  "top: 24%;" +
   "left: 26%;" +
   "width: 66%;" +
   "height: 67%;" +
@@ -2201,17 +2230,17 @@ var css = {
 
   servicePageButtonBack: ".servicepage-button-back" +
   "{" +
-  "top: 14%;" +
+  "top: 13%;" +
   "position: absolute;" +
   "width: 17%;" +
-  "height: 88%;" +
+  "height: 140%;" +
   "background-image: url('resources/icons/back/back.png');" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 20%;" +
   "background-position-y: center;" +
-  "background-position-x: 22%;" +
+  "background-position-x: center;" +
   "background-size: 20%;" +
-  "left: 0;" +
+  "left: -4%;" +
   "}",
 
 
@@ -3192,8 +3221,6 @@ var css = {
   "background-size: 30%;" +
   "top:0" +
   "}",
-
-
 
 
 }

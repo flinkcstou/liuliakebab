@@ -2,16 +2,15 @@
     <div id="viewPayId" class="view-pay">
         <div class="pay-page-title">
             <p class="pay-name-title">{titleName}</p>
-            <div id="backButton" ontouchend="goToMainPage()" class="{back-button: backbuttoncheck}"></div>
-            <div id="rightButton" type="button" class="{search-button: rightbuttoncheck}" ontouchend="search()"></div>
+            <div id="backButton" ontouchend="goToMainPage()" class="pay-back-button"></div>
+            <div id="rightButton" type="button" class="pay-search-button" ontouchend="search()"></div>
         </div>
         <div class="pay-category-container">
             <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
                 <li each="{i in categoryList}" style="overflow: hidden;">
                     <div class="pay-service-block-containter" id="{i.id}" ontouchstart="onTouchStartOfCategory()"
                          ontouchend="onTouchEndOfCategory(this.id)">
-                        <div class="pay-category-icon" style="background-image: url({i.icon})" name="{i.icon}"
-                             onload="checkImage(this.name)"></div>
+                        <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
                         <div class="pay-category-name-field">{i.name}
                         </div>
                         <div class="pay-icon-tick" id="tick{i.id}"></div>
@@ -69,8 +68,6 @@
             history.arrayOfHistory.push('view-pay');
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
-        scope.backbuttoncheck = true;
-        scope.rightbuttoncheck = true;
         scope.categoryList = JSON.parse(localStorage.getItem("click_client_payCategoryList"));
         scope.serviceList = JSON.parse(localStorage.getItem("click_client_payServiceList"));
         scope.servicesMapByCategory = JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"));

@@ -10,7 +10,6 @@
     </div>
 
     <div class="servicepage-body-container" if="{formType==1}">
-
         <div class="servicepage-phone-field" each="{i in fieldArray}" id="phoneField{i.service_id}">
             <p class="servicepage-text-field">{i.title}</p>
             <p class="servicepage-number-first-part">+998</p>
@@ -32,6 +31,8 @@
             <div class="servicepage-button-enter-label">{window.languages.ViewServicePageEnterLabel}</div>
         </div>
     </div>
+
+
     <div class="servicepage-body-container" if="{formType==2}">
         <div class="servicepage-pincards-container" each="{i in pincardIds}">
             <div class="servicepage-pincard-title">{pincardsMap[i][0].name}</div>
