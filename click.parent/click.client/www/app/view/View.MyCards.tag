@@ -46,7 +46,7 @@
                      style="top: {i.count*top}px">
                     <div class="my-cards-operation-amount">- {i.amount}</div>
                     <div class="my-cards-operation-currency">сум</div>
-                    <div class="my-cards-firm-name">ДЛИННОЕ НАЗВАНИЕ ФИРМЫ</div>
+                    <div class="my-cards-firm-name">{i.service_name}</div>
                     <div class="my-cards-operation-date">{i.created}</div>
                 </div>
             </div>
@@ -113,7 +113,7 @@
                             var j = 0;
                     for (var i in result[1]) {
 //                        console.log('ACCOUNT ID ', result[1][i].account_id, 'CARD ID ', scope.card.card_id);
-                        if (result[1][i].account_id == scope.card.card_id) {
+                        if (result[1][i].account_id == scope.card.card_id && result[1][i].state == 0) {
                             result[1][i].count = j;
                             j++;
                             scope.arrayOfOperationsByAccount.push(result[1][i]);
