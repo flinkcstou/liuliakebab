@@ -102,14 +102,12 @@
             var accountId = JSON.parse(localStorage.getItem('click_client_loginInfo')).default_account;
             var amount = viewServicePage.amountText;
             var phoneParam = viewServicePage.phoneText;
-            var payment_data = {
-                "item": {"param": "1", "value": phoneParam},
-                "transaction_id": parseInt(Date.now() / 1000)
-            }
+//            var payment_data = {
+//                "item": {"param": "1", "value": phoneParam},
+//                "transaction_id": parseInt(Date.now() / 1000)
+//            }
 
-//            var payment_data = {"param": "1", "value": phoneParam};
-//            "transaction_id"            :
-//            parseInt(Date.now() / 1000)
+            var payment_data = {"param": "1", "value": phoneParam, "transaction_id": parseInt(Date.now() / 1000)};
 
 
             window.api.call({
@@ -130,7 +128,6 @@
                     if (result[0][0].error == 0) {
                         console.log("result of APP.PAYMENT ", result);
                     }
-
                 },
 
                 onFail: function (api_status, api_status_message, data) {
