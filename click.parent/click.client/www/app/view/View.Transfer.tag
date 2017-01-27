@@ -174,7 +174,6 @@
 
             arrayOfContacts.filter(function (wordOfFunction) {
 
-                console.log(wordOfFunction)
                 var index = wordOfFunction.phoneNumbers[0].value.indexOf(scope.searchWord);
                 if (index != -1 && countOfFound < 2) {
 
