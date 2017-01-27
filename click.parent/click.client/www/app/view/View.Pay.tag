@@ -273,7 +273,7 @@
             this.blockSearchId.style.display = 'none';
             checkOfSearch = true;
             if (scope.suggestionTwo.form_type) {
-                goToServiceView(scope.suggestionTwo.id)
+                onTouchEndOfCategory(scope.suggestionTwo.id)
             }
             else
                 onTouchEndOfCategory(scope.suggestionTwo.id);
@@ -287,7 +287,7 @@
             this.blockSearchId.style.display = 'none';
             checkOfSearch = true;
             if (scope.suggestionThree.form_type) {
-                goToServiceView(scope.suggestionThree.id)
+                onTouchEndOfCategory(scope.suggestionThree.id)
             }
             else
                 onTouchEndOfCategory(scope.suggestionThree.id);
@@ -301,7 +301,7 @@
             this.blockSearchId.style.display = 'none';
             checkOfSearch = true;
             if (scope.suggestionFour.form_type) {
-                goToServiceView(scope.suggestionFour.id)
+                onTouchEndOfCategory(scope.suggestionFour.id)
             }
             else
                 onTouchEndOfCategory(scope.suggestionFour.id);
