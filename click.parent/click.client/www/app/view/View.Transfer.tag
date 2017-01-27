@@ -89,7 +89,7 @@
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
         scope.contactMode = true;
-        this.contactLabelId.style.color = 'black';
+        contactLabelId.style.color = 'black';
         scope.cardMode = false;
 
         goToBack = function () {
