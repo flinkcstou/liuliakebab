@@ -61,6 +61,7 @@
         scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
         scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
         scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
+        console.log(scope.servicesParamsMapOne)
         //        scope.servicesParamsMapTwo = JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"));
 
 
@@ -82,7 +83,7 @@
         }
         if (this.formType == 2) {
             scope.servicesParamsMapThree = JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"));
-//            console.log(scope.servicesParamsMapThree);
+            console.log(scope.servicesParamsMapThree);
             scope.pincardsMap = {};
             scope.pincardIds = [];
             for (var i = 0; i < scope.servicesParamsMapThree[scope.service.id].length; i++) {
