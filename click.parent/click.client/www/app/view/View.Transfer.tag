@@ -75,6 +75,16 @@
         var scope = this;
         this.titleName = 'ПЕРЕВОДЫ';
 
+        scope.suggestionOne = {};
+        scope.suggestionOne.photo = '';
+        scope.suggestionOne.fName = '';
+        scope.suggestionOne.lName = '';
+
+        scope.suggestionTwo = {};
+        scope.suggestionTwo.photo = '';
+        scope.suggestionTwo.fName = '';
+        scope.suggestionTwo.lName = '';
+
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer') {
             history.arrayOfHistory.push('view-transfer');
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
@@ -89,7 +99,7 @@
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
         scope.contactMode = true;
-        contactLabelId.style.color = 'black';
+
         scope.cardMode = false;
 
         goToBack = function () {
@@ -161,10 +171,6 @@
 
             if (event.keyCode != 16 && event.keyCode != 18)
                 scope.searchWord = event.target.value;
-
-            scope.suggestionOne = {};
-
-            scope.suggestionTwo = {};
 
             arrayOfContacts.filter(function (wordOfFunction) {
 

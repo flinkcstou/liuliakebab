@@ -2970,7 +2970,7 @@ var css = {
   "top: 39%;" +
   "position: absolute;" +
   "font-size:" + 23 * widthK + "px;" +
-  "color: gray;" +
+  "color: black;" +
   "}",
 
   transferMenuCardLabel: ".transfer-menu-card-label" +
