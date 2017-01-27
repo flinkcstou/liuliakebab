@@ -73,7 +73,7 @@
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
         scope.categoryList = JSON.parse(localStorage.getItem("click_client_payCategoryList"));
-        scope.serviceList = JSON.parse(localStorage.getItem("click_client_payServiceList"));
+        scope.serviceNamesMap = JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"));
         scope.servicesMapByCategory = JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"));
         scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
         scope.servicesParams = JSON.parse(localStorage.getItem("click_client_servicesParams"));
@@ -315,23 +315,36 @@
             onSuccess: function (result) {
                 if (result[0][0].error == 0)
                     if (result[1][0]) {
-                        var image = new Image();
-                        var j = 0, icon;
+//                        var image = new Image();
+//                        var j = 0, icon;
+//                        var changeBool = false;
                         for (var i in result[1]) {
                             scope.categoryList.push(result[1][i]);
                             scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
-                            icon = scope.categoryList[j].icon;
-                            console.log("j=", j, ",icon=", icon);
-                            image.src = "resources/icons/ViewPay/category" + icon.substr(icon.lastIndexOf('/'));
-                            console.log(image.src);
-                            if ((image.src + '').onerror) {
-                                console.log("no image");
-                            }
-                            if ((image.src + '').onload) {
-                                scope.categoryList[j].icon = image.src;
-                                console.log("image exists");
-                            }
-                            j++;
+//                            icon = scope.categoryList[j].icon;
+//                            console.log("j=", j, ",icon=", icon);
+//                            image.src = "resources/icons/ViewPay/category" + icon.substr(icon.lastIndexOf('/'));
+//                            console.log(image.src);
+//                            scope.categoryList[j].icon = image.src;
+//                            image.onerror = function () {
+//                                console.log("error!!!");
+//                                console.log(scope.categoryList);
+//                                console.log(j);
+//                                console.log(icon);
+//                                changeBool = true;
+//                                console.log(changeBool);
+//
+//                            }
+//                            image.onload = function () {
+//                                console.log("load!!!");
+//                            }
+//                            image.success = function () {
+//                                console.log("success!!!");
+//                            }
+//
+//                            console.log(changeBool);
+//                            j++;
+
                         }
                     }
                 riot.update(scope.categoryList);
@@ -398,10 +411,11 @@
             }
         };
 
-        if (!(scope.serviceList && scope.servicesMapByCategory && scope.servicesMap)) {
-            scope.serviceList = [];
+        if (!(scope.servicesMapByCategory && scope.servicesMap)) {
+//            scope.serviceList = [];
             scope.servicesMapByCategory = {};
             scope.servicesMap = {};
+            scope.serviceNamesMap = {};
             window.api.call({
                 method: 'get.service.list',
                 input: {
@@ -413,21 +427,22 @@
                 onSuccess: function (result) {
                     if (result[0][0].error == 0)
                         if (result[1][0]) {
-                            var image = new Image();
-                            var j = 0, icon;
+//                            var image = new Image();
+//                            var j = 0, icon;
                             for (var i in result[1]) {
 //                                console.log("service id=", result[1][i].id, ", element:", result[1][i]);
 
-                                scope.serviceList.push(result[1][i]);
-                                icon = scope.serviceList[j].image;
-                                console.log("j=", j, ",icon=", icon);
-                                image.src = "resources/icons/ViewPay/service" + icon.substr(icon.lastIndexOf('/'));
-                                console.log(image.src);
-                                if (image.onerror) {
-                                    console.log("no image");
-                                }
-                                else scope.serviceList[j].image = image.src;
-                                j++;
+                                scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
+//                                scope.serviceList.push(result[1][i]);
+//                                icon = scope.serviceList[j].image;
+//                                console.log("j=", j, ",icon=", icon);
+//                                image.src = "resources/icons/ViewPay/service" + icon.substr(icon.lastIndexOf('/'));
+//                                console.log(image.src);
+//                                if (image.onerror) {
+//                                    console.log("no image");
+//                                }
+//                                else scope.serviceList[j].image = image.src;
+//                                j++;
                                 if (!scope.servicesMapByCategory[result[1][i].category_id]) {
                                     scope.servicesMapByCategory[result[1][i].category_id] = [];
                                     scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
@@ -442,12 +457,11 @@
                                 else {
                                     scope.servicesMap[result[1][i].id + ''].push(result[1][i]);
                                 }
-
                             }
                         }
 
 
-                    localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
+                    localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
                     localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
                     localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
                 },
