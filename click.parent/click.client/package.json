@@ -2,11 +2,10 @@
   "name": "click",
   "dependencies": {
     "fs-extra": "1.0.0",
-    "riot": "3.0.7",
-    "riot-cli": "3.0.0"
+    "riot": "3.0.7"
   },
   "scripts": {
     "postinstall": "node postinstall.js",
-    "watch": "node node_modules/riot-cli/lib/index.js -w www/app/ www/lib/js/all.js"
+    "watch": "node node_modules/riot/node_modules/riot-cli/lib/index.js -w www/app/ www/lib/js/all.js"
   }
 }

@@ -6,9 +6,7 @@ if (!fs.existsSync("www/lib")) {
 
 fs.copySync("node_modules/riot/riot.js", "www/lib/js/riot.js");
 
-//fs.copySync("cordova/AndroidManifest.xml", "cordova/platforms/android/AndroidManifest.xml")
-
-const riot = require('riot-cli');
+const riot = require('riot/node_modules/riot-cli/lib/index.js');
 
 riot.make({
   from: 'www/app/',
