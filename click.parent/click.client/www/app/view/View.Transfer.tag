@@ -193,8 +193,8 @@
 
                         riot.update(scope.suggestionOne)
 
-                        scope.firstSuggestionBlockId.style.display = 'block';
-                        scope.secondSuggestionBlockId.style.display = 'none';
+                        firstSuggestionBlockId.style.display = 'block';
+                        secondSuggestionBlockId.style.display = 'none';
                     }
 
                     if (countOfFound == 1) {
@@ -209,15 +209,15 @@
 
                         riot.update(scope.suggestionTwo)
 
-                        scope.secondSuggestionBlockId.style.display = 'block';
+                        secondSuggestionBlockId.style.display = 'block';
                     }
                     countOfFound++;
                     if (countOfFound == 2)
                         return;
                 }
                 else if (!check) {
-                    scope.firstSuggestionBlockId.style.display = 'none';
-                    scope.secondSuggestionBlockId.style.display = 'none';
+                    firstSuggestionBlockId.style.display = 'none';
+                    secondSuggestionBlockId.style.display = 'none';
                 }
             });
         }

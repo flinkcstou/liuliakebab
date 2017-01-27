@@ -1045,7 +1045,7 @@ var css = {
   "left:" + 425 * widthK + "px;" +
   "top: 0;" +
   "background-position-x:" + 35 * widthK + "px;" +
-  "background-image: url(resources/icons/services/myphone.png);" +
+  "background-image: url(resources/icons/ViewPay/myphone.png);" +
   "background-size: 60%;" +
   "}",
 

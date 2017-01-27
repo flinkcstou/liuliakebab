@@ -91,11 +91,11 @@
 
         scope.arrayOfOperationsByAccount = [];
 
-        viewMyCards.cardInformation = function () {
+        viewMyCards.cardInformation = function (cardNumberFormCarousel) {
             event.preventDefault();
             event.stopPropagation();
 
-            scope.card = JSON.parse(localStorage.getItem('click_client_cards'))[scope.indexOfCard];
+            scope.card = JSON.parse(localStorage.getItem('click_client_cards'))[cardNumberFormCarousel];
             scope.arrayOfOperationsByAccount = [];
 
             window.api.call({
@@ -133,7 +133,7 @@
             });
         }
 
-        viewMyCards.cardInformation();
+        viewMyCards.cardInformation(scope.indexOfCard);
 
         goToPayView = function () {
             for(var i = 0; i < scope.cardsArray.length; i++){
