@@ -2,8 +2,8 @@
   "name": "click",
   "dependencies": {
     "fs-extra": "1.0.0",
-    "riot": "2.6.7",
-    "riot-cli": "2.6.1"
+    "riot": "3.0.7",
+    "riot-cli": "3.0.0"
   },
   "scripts": {
     "postinstall": "node postinstall.js",

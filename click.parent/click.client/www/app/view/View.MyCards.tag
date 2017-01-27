@@ -61,6 +61,8 @@
         var scope = this;
         scope.top = 160 * widthK;
 
+        console.log('scope',scope,'this', this)
+
         if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-my-cards') {
             history.arrayOfHistory.push('view-my-cards');
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
@@ -104,7 +106,7 @@
                     account_id: scope.card.card_id
                 },
 
-                scope: this,
+
 
                 onSuccess: function (result) {
 //                    console.log('result[1]', result[1]);
@@ -119,7 +121,7 @@
                             scope.arrayOfOperationsByAccount.push(result[1][i]);
                         }
                     }
-                    scope.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
+                    this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
                     riot.update(scope.arrayOfOperationsByAccount)
 
                 },

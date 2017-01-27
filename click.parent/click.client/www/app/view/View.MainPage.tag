@@ -18,7 +18,7 @@
         </div>
     </div>
     <script>
-        var scope = this;
+
         localStorage.setItem('cardNumber', 0);
         if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-main-page') {
             history.arrayOfHistory.push('view-main-page');

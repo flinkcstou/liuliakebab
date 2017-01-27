@@ -1,5 +1,5 @@
 <component-toolbar>
-  <div class="toolbar">
+  <div id="toolbar" class="toolbar">
     <div class="menu-button menu-icon" ontouchend="menuOpen()">
     </div>
 

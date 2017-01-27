@@ -33,7 +33,6 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    scope = this;
 
     var pin;
     var enteredPin = '';
@@ -49,7 +48,7 @@
       if (myValue == 'x' && enteredPin != 4) {
         enteredPin = enteredPin.substring(0, enteredPin.length - 1);
       }
-//      console.log(myValue)
+
       riot.update();
       updateEnteredPin();
     }
@@ -59,49 +58,49 @@
       event.stopPropagation();
 
       if (enteredPin.length == 0) {
-        scope.circleOne.style.backgroundColor = 'transparent';
-        scope.circleTwo.style.backgroundColor = 'transparent';
-        scope.circleThree.style.backgroundColor = 'transparent';
-        scope.circleFour.style.backgroundColor = 'transparent';
-        scope.circleFive.style.backgroundColor = 'transparent';
+        this.circleOne.style.backgroundColor = 'transparent';
+        this.circleTwo.style.backgroundColor = 'transparent';
+        this.circleThree.style.backgroundColor = 'transparent';
+        this.circleFour.style.backgroundColor = 'transparent';
+        this.circleFive.style.backgroundColor = 'transparent';
       }
       if (enteredPin.length == 1) {
-        scope.circleOne.style.backgroundColor = '#01cfff';
-        scope.circleTwo.style.backgroundColor = 'transparent';
-        scope.circleThree.style.backgroundColor = 'transparent';
-        scope.circleFour.style.backgroundColor = 'transparent';
-        scope.circleFive.style.backgroundColor = 'transparent';
+        this.circleOne.style.backgroundColor = '#01cfff';
+        this.circleTwo.style.backgroundColor = 'transparent';
+        this.circleThree.style.backgroundColor = 'transparent';
+        this.circleFour.style.backgroundColor = 'transparent';
+        this.circleFive.style.backgroundColor = 'transparent';
       }
       if (enteredPin.length == 2) {
-        scope.circleOne.style.backgroundColor = '#01cfff';
-        scope.circleTwo.style.backgroundColor = '#01cfff';
-        scope.circleThree.style.backgroundColor = 'transparent';
-        scope.circleFour.style.backgroundColor = 'transparent';
-        scope.circleFive.style.backgroundColor = 'transparent';
+        this.circleOne.style.backgroundColor = '#01cfff';
+        this.circleTwo.style.backgroundColor = '#01cfff';
+        this.circleThree.style.backgroundColor = 'transparent';
+        this.circleFour.style.backgroundColor = 'transparent';
+        this.circleFive.style.backgroundColor = 'transparent';
       }
 
       if (enteredPin.length == 3) {
-        scope.circleOne.style.backgroundColor = '#01cfff';
-        scope.circleTwo.style.backgroundColor = '#01cfff';
-        scope.circleThree.style.backgroundColor = '#01cfff';
-        scope.circleFour.style.backgroundColor = 'transparent';
-        scope.circleFive.style.backgroundColor = 'transparent';
+        this.circleOne.style.backgroundColor = '#01cfff';
+        this.circleTwo.style.backgroundColor = '#01cfff';
+        this.circleThree.style.backgroundColor = '#01cfff';
+        this.circleFour.style.backgroundColor = 'transparent';
+        this.circleFive.style.backgroundColor = 'transparent';
       }
 
       if (enteredPin.length == 4) {
-        scope.circleOne.style.backgroundColor = '#01cfff';
-        scope.circleTwo.style.backgroundColor = '#01cfff';
-        scope.circleThree.style.backgroundColor = '#01cfff';
-        scope.circleFour.style.backgroundColor = '#01cfff';
-        scope.circleFive.style.backgroundColor = 'transparent';
+        this.circleOne.style.backgroundColor = '#01cfff';
+        this.circleTwo.style.backgroundColor = '#01cfff';
+        this.circleThree.style.backgroundColor = '#01cfff';
+        this.circleFour.style.backgroundColor = '#01cfff';
+        this.circleFive.style.backgroundColor = 'transparent';
       }
 
       if (enteredPin.length == 5) {
-        scope.circleOne.style.backgroundColor = '#01cfff';
-        scope.circleTwo.style.backgroundColor = '#01cfff';
-        scope.circleThree.style.backgroundColor = '#01cfff';
-        scope.circleFour.style.backgroundColor = '#01cfff';
-        scope.circleFive.style.backgroundColor = '#01cfff';
+        this.circleOne.style.backgroundColor = '#01cfff';
+        this.circleTwo.style.backgroundColor = '#01cfff';
+        this.circleThree.style.backgroundColor = '#01cfff';
+        this.circleFour.style.backgroundColor = '#01cfff';
+        this.circleFive.style.backgroundColor = '#01cfff';
         pin = enteredPin;
         enter();
       }
