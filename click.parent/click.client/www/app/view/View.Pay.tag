@@ -103,7 +103,7 @@
         search = function () {
             event.preventDefault();
             event.stopPropagation();
-            this.blockSearchId.style.display = 'block';
+            blockSearchId.style.display = 'block';
             if (scope.categoryList)
                 arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
             console.log('categoryList', scope.categoryList)
@@ -115,7 +115,9 @@
         searchCancelEnd = function () {
             event.preventDefault();
             event.stopPropagation();
-            this.blockSearchId.style.display = 'none';
+            blockSearchId.style.display = 'none';
+            if (device.platform != 'BrowserStand')
+                StatusBar.backgroundColorByHexString("#007AE2");
             scope.searchWord = '';
             Keyboard.hide();
         }
