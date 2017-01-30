@@ -100,6 +100,8 @@ var RU_LANGUAGES =
   "ViewTransferFourPay": "ПЕРЕВЕСТИ",
   "ViewTransferFourTax": "Комиссия: ",
 
+  "ComponentCodeConfirmTitle": "ЗАЩИТНЫЙ КОД",
+
 
 
 }

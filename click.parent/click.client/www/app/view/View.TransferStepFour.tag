@@ -49,15 +49,15 @@
                 <div class="transferfour-action-text">{window.languages.ViewTransferFourAddToFavouritePartOne}<br>{window.languages.ViewTransferFourAddToFavouritePartTwo}</div>
             </div>
             <div class="transferfour-button-enter" ontouchend="transferStep()">
-                <div class="transferfour-button-enter-label">{window.languages.ViewTransferFourPay}</div>
+                <p class="transferfour-button-enter-label">{window.languages.ViewTransferFourPay}</p>
             </div>
         </div>
     </div>
 
     <code-confirm id="blockCodeConfirmId" class="code-confirm">
         <div class="code-confirm-title-container">
-            <p class="search-title-name">{window.languages.ComponentSearchTitle}</p>
-            <div class="search-cancel-icon" ontouchend="searchCancelEnd()"></div>
+            <p class="code-confirm-title-name">{window.languages.ComponentCodeConfirmTitle}</p>
+            <div class="code-confirm-cancel-icon" ontouchend="confirmCodeCancelEnd()"></div>
         </div>
     </code-confirm>
 
@@ -77,6 +77,10 @@
 
         transferStep = function () {
             blockCodeConfirmId.style.display = 'block';
+        }
+
+        confirmCodeCancelEnd = function () {
+            blockCodeConfirmId.style.display = 'none';
         }
     </script>
 </view-transfer-stepfour>

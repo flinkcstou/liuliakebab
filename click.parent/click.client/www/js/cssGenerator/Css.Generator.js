@@ -3240,7 +3240,7 @@ var css = {
   "height:" + 100 * widthK + "px;" +
   "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top:" + 47 * widthK + "px;" +
+  "top:" + 100 * widthK + "px;" +
   "}",
 
   transferTwoContactTextField: ".transfertwo-contact-text-field" +
@@ -3270,7 +3270,7 @@ var css = {
   "position: relative;" +
   "height: 6%;" +
   "width: 45%;" +
-  "top: 90%;" +
+  "top: 45%;" +
   "display: table;" +
   "background-color: #027fe4;" +
   "border-radius:" + 50 * widthK + "px;" +
@@ -3294,7 +3294,7 @@ var css = {
   "position: absolute;" +
   "width: 60%;" +
   "height: 15%;" +
-  "top: 20%;" +
+  "top: 27%;" +
   "left: 17%;" +
   "background-size: 100%;" +
   "background-image: url(resources/icons/ViewTransfer/input.png);" +
@@ -3394,10 +3394,11 @@ var css = {
 
   transferThreeNextButtonInnerContainer: ".transferthree-next-button-inner-container" +
   "{" +
-  "position: relative;" +
+  "position: absolute;" +
   "height: 6%;" +
   "width: 45%;" +
-  "top: 90%;" +
+  "left: 28%;" +
+  "bottom: 20%;" +
   "display: table;" +
   "background-color: #027fe4;" +
   "border-radius:" + 50 * widthK + "px;" +
@@ -3421,9 +3422,9 @@ var css = {
   transferFourBodyContainer  : ".transferfour-body-container " +
   "{" +
   "position: absolute;" +
-  "height:" + 1145 * widthK + "px;" +
+  "height:" + 1142 * widthK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 87 * widthK + "px;" +
+  "top:" + 90 * widthK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
@@ -3602,57 +3603,57 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top: 65%;" +
-  "bottom: 0;" +
+  "top: 63%;" +
+  "bottom: 15%;" +
   "background-color: transparent;" +
-  "border-bottom:  1px solid lightgray;" +
-  "overflow: scroll;" +
+  "overflow: hidden;" +
   "}",
 
   transferFourActionContainer: ".transferfour-action-containter" +
   "{" +
   "position: absolute;" +
-  "width: 50%;" +
-  "height: 50%;" +
-  "left: 24%;" +
-  "top: -5%;" +
+  "width:" + 185 * widthK + "px;" +
+  "height:" + 175 * widthK + "px;" +
+  "left: 37%;" +
+  "top: 0;" +
   "background-color: transparent;" +
   "}",
 
   transferFourActionIconOne: ".transferfour-action-icon-one" +
   "{" +
-  "position: relative;" +
-  "width: 50%;" +
+  "position: absolute;" +
+  "width: 61%;" +
   "height: 46%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "left: 29%;" +
-  "top: 14%;" +
-  "background-size: 50%;" +
+  "left: 18%;" +
+  "top: 0;" +
+  "background-size: 78%;" +
   "}",
 
   transferFourActionText: ".transferfour-action-text" +
   "{" +
-  "top: 17%;" +
+  "top: 49%;" +
   "left: 4%;" +
-  "position: relative;" +
+  "position: absolute;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
   "color: rgb(1, 124, 227);" +
   "font-size: " + 30 * widthK + "px; " +
   "text-align: center;" +
   "text-decoration: underline;" +
-  "width: 50%;" +
+  "width: 92%;" +
   "}",
 
   transferFourButtonEnter: ".transferfour-button-enter" +
   "{" +
-  "bottom: 20%;" +
+  "bottom: 0;" +
   "position: absolute;" +
-  "width: 64%;" +
-  "height: 22%;" +
+  "width: 50%;" +
+  "height: 25%;" +
   "border-radius:" + 80 * widthK + "px; " +
-  "left: 18%;" +
+  "left: 25%;" +
+  "margin: 0;" +
   "background-color: rgb(1, 124, 227);" +
   "}",
 
@@ -3660,11 +3661,12 @@ var css = {
   "{" +
   "position: relative;" +
   "top: 20%;" +
-  "width: 30%;" +
-  "font-size: " + 44 * widthK + "px; " +
+  "width: 100%;" +
+  "font-size: " + 36 * widthK + "px; " +
   "margin: auto;" +
   "color: white;" +
-  "right: 10%;" +
+  "margin: 0;" +
+  "text-align: center;" +
   "}",
 
   //VIEW CODE CONFIRM PAGE
@@ -3700,7 +3702,7 @@ var css = {
   "float: left;" +
   "margin: 0;" +
   "margin-top:" + 25 * widthK + "px;" +
-  "left: 3%;" +
+  "left: 10%;" +
   "color: white;" +
   "}",
 
