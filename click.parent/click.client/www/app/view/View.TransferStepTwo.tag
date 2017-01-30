@@ -6,19 +6,16 @@
     </div>
 
     <div class="transfertwo-body-container">
-        <div class="transfertwo-menus-container">
-            <div class="transfertwo-menu-container-sum">
-                <p id="contactLabelId" class="transfertwo-menu-name-label" ontouchend="contact()">КАРТЫ</p>
-            </div>
-            <div class="transfertwo-menu-container-transfer-to">
-                <p id="cardLabelId" class="transfertwo-menu-name-label" ontouchend="card()">ПЕРЕВЕСТИ С</p>
-            </div>
-        </div>
-        <component-pincards></component-pincards>
 
-            <div class="transfertwo-next-button-inner-container">
-                <p class="transfertwo-next-button-label">ДАЛЕЕ</p>
-            </div>
+        <div class="transfertwo-contact-phone-field">
+            <p class="transfertwo-contact-text-field">{window.languages.ViewPayTransferContactTextField}</p>
+            <input class="transfertwo-contact-number-input-part" id="contactPhoneNumberId" autofocus="true" type="tel"
+                   onkeyup="searchContacts()"/>
+        </div>
+
+        <div class="transfertwo-next-button-inner-container">
+            <p class="transfertwo-next-button-label">ДАЛЕЕ</p>
+        </div>
 
     </div>
 
@@ -66,7 +63,6 @@
             riot.update(scope.contactMode);
             riot.update(scope.cardMode);
         }
-
 
 
     </script>
