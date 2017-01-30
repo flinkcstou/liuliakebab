@@ -94,9 +94,10 @@ var RU_LANGUAGES =
   "ViewTransferFourCategory": "Категория:",
   "ViewTransferFourMobileConnection": "Мобильная связь",
   "ViewTransferFourPayFromCard": "Перевод с карты:",
-  "ViewTransferFourAddToFavourite": "Добавить в избранные",
+  "ViewTransferFourAddToFavouritePartOne": "Добавить",
+  "ViewTransferFourAddToFavouritePartTwo": "в избранные",
   "ViewTransferFourAddToAutoPay": "Добавить в автоплатеж",
-  "ViewTransferFourPay": "ОПЛАТИТЬ",
+  "ViewTransferFourPay": "ПЕРЕВЕСТИ",
   "ViewTransferFourTax": "Комиссия: ",
 
 

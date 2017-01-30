@@ -3502,7 +3502,6 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "height: 32%;" +
-  "border-bottom:1px solid lightgray;" +
   "color: white;" +
   "top: 23%;" +
   "}",
@@ -3599,6 +3598,124 @@ var css = {
   "top: 65%;" +
   "}",
 
+  transferFourBottomContainer: ".transferfour-bottom-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "top: 65%;" +
+  "bottom: 0;" +
+  "background-color: transparent;" +
+  "border-bottom:  1px solid lightgray;" +
+  "overflow: scroll;" +
+  "}",
+
+  transferFourActionContainer: ".transferfour-action-containter" +
+  "{" +
+  "position: absolute;" +
+  "width: 50%;" +
+  "height: 50%;" +
+  "left: 24%;" +
+  "top: -5%;" +
+  "background-color: transparent;" +
+  "}",
+
+  transferFourActionIconOne: ".transferfour-action-icon-one" +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "height: 46%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "left: 29%;" +
+  "top: 14%;" +
+  "background-size: 50%;" +
+  "}",
+
+  transferFourActionText: ".transferfour-action-text" +
+  "{" +
+  "top: 17%;" +
+  "left: 4%;" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "color: rgb(1, 124, 227);" +
+  "font-size: " + 30 * widthK + "px; " +
+  "text-align: center;" +
+  "text-decoration: underline;" +
+  "width: 50%;" +
+  "}",
+
+  transferFourButtonEnter: ".transferfour-button-enter" +
+  "{" +
+  "bottom: 20%;" +
+  "position: absolute;" +
+  "width: 64%;" +
+  "height: 22%;" +
+  "border-radius:" + 80 * widthK + "px; " +
+  "left: 18%;" +
+  "background-color: rgb(1, 124, 227);" +
+  "}",
+
+  transferFourButtonEnterLabel: ".transferfour-button-enter-label" +
+  "{" +
+  "position: relative;" +
+  "top: 20%;" +
+  "width: 30%;" +
+  "font-size: " + 44 * widthK + "px; " +
+  "margin: auto;" +
+  "color: white;" +
+  "right: 10%;" +
+  "}",
+
+  //VIEW CODE CONFIRM PAGE
+  codeConfirm: ".code-confirm " +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.95;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "background-color: #353340;" +
+  "display: none;" +
+  "}",
+
+  codeConfirmContainer: ".code-confirm-container" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 580 * widthK + "px;" +
+  "height:" + 650 * widthK + "px;" +
+  "left:" + 70 * widthK + "px;" +
+  "top: 0px;" +
+  "}",
+
+  codeConfirmTitleContainer: ".code-confirm-title-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 7%;" +
+  "}",
+
+  codeConfirmTitleName: ".code-confirm-title-name " +
+  "{" +
+  "position: relative;" +
+  "float: left;" +
+  "margin: 0;" +
+  "margin-top:" + 25 * widthK + "px;" +
+  "left: 3%;" +
+  "color: white;" +
+  "}",
+
+  codeConfirmCancelIcon: ".code-confirm-cancel-icon " +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 23%;" +
+  "height: 100%;" +
+  "background-repeat: no-repeat;" +
+  "background-image: url(resources/icons/search/close.png);" +
+  "background-position-y: center;" +
+  "background-position-x: 70%;" +
+  "background-size: 20%;" +
+  "}",
 
 
 }

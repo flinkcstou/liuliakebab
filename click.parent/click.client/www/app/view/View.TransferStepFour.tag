@@ -40,9 +40,26 @@
                      style="background-image: url({url})">
                 </div>
             </div>
+        </div>
 
+        <div class="transferfour-bottom-container">
+            <div class="transferfour-action-containter">
+                <div class="transferfour-action-icon-one"
+                     style="background-image: url('resources/icons/ViewService/addfavorite.png');"></div>
+                <div class="transferfour-action-text">{window.languages.ViewTransferFourAddToFavouritePartOne}<br>{window.languages.ViewTransferFourAddToFavouritePartTwo}</div>
+            </div>
+            <div class="transferfour-button-enter" ontouchend="transferStep()">
+                <div class="transferfour-button-enter-label">{window.languages.ViewTransferFourPay}</div>
+            </div>
         </div>
     </div>
+
+    <code-confirm id="blockCodeConfirmId" class="code-confirm">
+        <div class="code-confirm-title-container">
+            <p class="search-title-name">{window.languages.ComponentSearchTitle}</p>
+            <div class="search-cancel-icon" ontouchend="searchCancelEnd()"></div>
+        </div>
+    </code-confirm>
 
     <script>
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-stepfour') {
@@ -58,5 +75,8 @@
         this.titleName = window.languages.ViewTransferFourTitle;
 
 
+        transferStep = function () {
+            blockCodeConfirmId.style.display = 'block';
+        }
     </script>
 </view-transfer-stepfour>
