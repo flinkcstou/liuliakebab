@@ -27,7 +27,7 @@
             </ul>
         </div>
     </div>
-    <div id="blockSearchId" class="component-search">
+    <component-search id="blockSearchId" class="component-search">
         <div class="search-title-container">
             <div class="search-search-icon"></div>
             <p class="search-title-name">{window.languages.ComponentSearchTitle}</p>
@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </component-search>
     <script>
         //TODO: OPTIMIZE THIS PAGE SLOW DOWNLOADING CATEGORIES AND SERVICES
         var scope = this;

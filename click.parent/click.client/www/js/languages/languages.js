@@ -75,10 +75,30 @@ var RU_LANGUAGES =
   "ViewPayTransferContactTextField": "Номер телефона получателя:",
   "ViewPayTransferCardTextField": "Номер карты получателя:",
   "ViewPayTransferNext": "ДАЛЕЕ",
+  "ViewPayTransferTitle": "ПЕРЕВОДЫ",
 
 
   "ViewTransferTwoTax": "Комиссия: ",
   "ViewTransferTwoNext": "ДАЛЕЕ",
+  "ViewTransferTwoTitle": "ПЕРЕВОД НА",
+  "ViewTransferTwoSum": "СУММА",
+
+  "ViewTransferThreeTitle": "ПЕРЕВОД НА",
+  "ViewTransferThreeMenuTitle": "ПЕРЕВЕСТИ С КАРТЫ",
+
+  "ViewTransferFourTitle": "ПЕРЕВОД НА",
+  "ViewTransferFourEnterPhone": "Номер телефона получателя:",
+  "ViewTransferFourEnterCard": "Номер карты получателя:",
+  "ViewTransferFourAmountOfPay": "Сумма платежа:",
+  "ViewTransferFourOwner": "Владелец:",
+  "ViewTransferFourCategory": "Категория:",
+  "ViewTransferFourMobileConnection": "Мобильная связь",
+  "ViewTransferFourPayFromCard": "Перевод с карты:",
+  "ViewTransferFourAddToFavouritePartOne": "Добавить",
+  "ViewTransferFourAddToFavouritePartTwo": "в избранные",
+  "ViewTransferFourAddToAutoPay": "Добавить в автоплатеж",
+  "ViewTransferFourPay": "ПЕРЕВЕСТИ",
+  "ViewTransferFourTax": "Комиссия: ",
 
 
 

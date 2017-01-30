@@ -1,23 +1,18 @@
-<view-transfer-steptwo>
+<view-transfer-stepthree>
     <div class="transfer-page-title">
         <p class="transfer-name-title">{titleName}</p>
         <div id="backButton" ontouchend="goToBack()" class="{transfer-back-button: backbuttoncheck}"></div>
         <div id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"></div>
     </div>
 
-    <div class="transfertwo-body-container">
-        <div class="transfertwo-menus-container">
-            <div class="transfertwo-menu-container-sum">
-                <p id="contactLabelId" class="transfertwo-menu-name-label" ontouchend="contact()">КАРТЫ</p>
-            </div>
-            <div class="transfertwo-menu-container-transfer-to">
-                <p id="cardLabelId" class="transfertwo-menu-name-label" ontouchend="card()">ПЕРЕВЕСТИ С</p>
-            </div>
+    <div class="transferthree-body-container">
+        <div class="transferthree-menus-container">
+                <p id="cardLabelId" class="transferthree-menu-name-label" ontouchend="card()">{window.languages.ViewTransferThreeMenuTitle}</p>
         </div>
         <component-pincards></component-pincards>
 
-            <div class="transfertwo-next-button-inner-container">
-                <p class="transfertwo-next-button-label">ДАЛЕЕ</p>
+            <div class="transferthree-next-button-inner-container" ontouchend="goToTransferFour()">
+                <p class="transferthree-next-button-label">ДАЛЕЕ</p>
             </div>
 
     </div>
@@ -25,10 +20,10 @@
 
     <script>
 
-        this.titleName = 'ПЕРЕВОД НА 8600 **** 7987';
+        this.titleName = window.languages.ViewTransferThreeTitle;
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-steptwo') {
-            history.arrayOfHistory.push('view-transfer-steptwo');
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-stepthree') {
+            history.arrayOfHistory.push('view-transfer-stepthree');
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
 
@@ -67,7 +62,14 @@
             riot.update(scope.cardMode);
         }
 
+        goToTransferFour = function () {
+            event.preventDefault()
+            event.stopPropagation()
+
+            this.riotTags.innerHTML = "<view-transfer-stepfour>";
+            riot.mount('view-transfer-stepfour');
+        }
 
 
     </script>
-</view-transfer-steptwo>
+</view-transfer-stepthree>
