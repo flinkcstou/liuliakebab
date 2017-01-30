@@ -6,26 +6,25 @@
     </div>
 
     <div class="transfertwo-body-container">
-
-        <div class="transfertwo-contact-phone-field">
-            <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax}</p>
-            <input class="transfertwo-contact-number-input-part" id="contactPhoneNumberId" autofocus="true" type="tel"
-                   onkeyup="searchContacts()"/>
+        <div class="transfertwo-menus-container">
+            <div class="transfertwo-menu-container-sum">
+                <p id="contactLabelId" class="transfertwo-menu-name-label" ontouchend="contact()">КАРТЫ</p>
+            </div>
+            <div class="transfertwo-menu-container-transfer-to">
+                <p id="cardLabelId" class="transfertwo-menu-name-label" ontouchend="card()">ПЕРЕВЕСТИ С</p>
+            </div>
         </div>
+        <component-pincards></component-pincards>
 
-        <div class="transfertwo-next-button-inner-container">
-            <p class="transfertwo-next-button-label">{window.languages.ViewTransferTwoNext}</p>
-        </div>
-
-        <div class="transfertwo-comment-container">
-            <textarea maxlength="255" class="transfertwo-comment-input"
-                      type="text" placeholder={comment}></textarea>
-        </div>
+            <div class="transfertwo-next-button-inner-container">
+                <p class="transfertwo-next-button-label">ДАЛЕЕ</p>
+            </div>
 
     </div>
 
 
     <script>
+
         this.titleName = 'ПЕРЕВОД НА 8600 **** 7987';
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-steptwo') {
@@ -42,8 +41,6 @@
         scope = this;
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = false;
-
-        scope.comment = 'комментарий';
 
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         phoneNumber = phoneNumber.substring(3, phoneNumber.length);

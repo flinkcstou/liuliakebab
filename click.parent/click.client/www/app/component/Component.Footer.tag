@@ -119,7 +119,6 @@
             function success(contacts) {
                 //alert(JSON.stringify(contacts));
                 for (var i = 0; i < contacts.length; i++) {
-                    console.log('contacts ', contacts[i])
                     if (contacts[i].photos != null) {
                         if (contacts[i].photos[0].value != null && contacts[i].name != null) {
                             arrayOfPhotosContacts.push(contacts[i]);
@@ -151,6 +150,8 @@
             for (var i = 0; i < j; i++) {
                 if (arrayOfConnectedContacts[i].photos != null)
                     scope.arrayOfPhotos[i].contactPhoto = arrayOfConnectedContacts[i].photos[0].value;
+                else
+                    scope.arrayOfPhotos[i].contactPhoto = '';
 
                 if (arrayOfConnectedContacts[i].name.familyName != null)
                     scope.arrayOfPhotos[i].contactFname = arrayOfConnectedContacts[i].name.familyName;

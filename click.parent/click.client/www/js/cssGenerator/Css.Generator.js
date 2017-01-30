@@ -20,15 +20,6 @@ var css = {
   "font-style: normal;" +
   "}",
 
-  orator: "@font-face " +
-  "{" +
-  "font-family: 'Orator';" +
-  "src: url(resources/font/Orator/OratorStd.otf);" +
-  "format: ('opentype');" +
-  "font-weight: normal;" +
-  "font-style: normal;" +
-  "}",
-
   html: "html" +
   "{ " +
   "-webkit-user-select: none; " +
@@ -63,11 +54,6 @@ var css = {
   "margin: 0;" +
   "overflow: hidden;" +
   "bottom: 0;" +
-  "}",
-  input: "input " +
-  "{" +
-  "font-family: Neuron;" +
-  "font-size:" + 24 * widthK + "px;" +
   "}",
 
   //VIEW REGISTRATION DEVICE
@@ -1045,7 +1031,7 @@ var css = {
   "left:" + 425 * widthK + "px;" +
   "top: 0;" +
   "background-position-x:" + 35 * widthK + "px;" +
-  "background-image: url(resources/icons/services/myphone.png);" +
+  "background-image: url(resources/icons/ViewPay/myphone.png);" +
   "background-size: 60%;" +
   "}",
 
@@ -2177,6 +2163,8 @@ var css = {
   "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
+  "padding: 0;" +
+  "margin: 0;" +
   "}",
 
   servicePageNumberInputPart: ".servicepage-number-input-part" +
@@ -2185,6 +2173,8 @@ var css = {
   "outline: none;" +
   "position: absolute;" +
   "top: 24%;" +
+  "padding: 0;" +
+  "margin: 0;" +
   "left: 26%;" +
   "width: 66%;" +
   "height: 67%;" +
@@ -3014,8 +3004,7 @@ var css = {
 
   transferContactPhoneIcon: ".transfer-contact-phone-icon" +
   "{" +
-  "position: relative;" +
-  "float: right;" +
+  "position: absolute;" +
   "background-image: url('resources/icons/ViewService/book.png');" +
   "width: 8%;" +
   "height: 50%;" +
@@ -3029,10 +3018,8 @@ var css = {
   transferContactNumberFirstPart: ".transfer-contact-number-first-part" +
   "{" +
   "float: left;" +
-  "position: relative;" +
-  "top: 29%;" +
-  "width: 7%;" +
-  "height: 42%;" +
+  "position: absolute;" +
+  "top: 38%;" +
   "font-size:" + 51 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -3044,10 +3031,10 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 36%;" +
-  "left: 18%;" +
-  "width: 66%;" +
-  "height: 42%;" +
+  "top: 38%;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "left: 23%;" +
   "font-size:" + 51 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -3069,10 +3056,10 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 36%;" +
+  "top: 38%;" +
   "left: 0%;" +
-  "width: 90%;" +
-  "height: 42%;" +
+  "margin: 0%;" +
+  "padding: 0;" +
   "font-size:" + 51 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -3222,7 +3209,6 @@ var css = {
   "top:0" +
   "}",
 
-
   //VIEW TRANSFER TWO
 
   transferTwoBodyContainer  : ".transfertwo-body-container " +
@@ -3235,61 +3221,38 @@ var css = {
   "overflow: hidden;" +
   "}",
 
-  transferTwoMenusContainer : ".transfertwo-menus-container " +
+  transferTwoContactPhoneField: ".transfertwo-contact-phone-field" +
   "{" +
   "position: absolute;" +
-  "height: 8%;" +
-  "width: 100%;" +
-  "background-color: transparent;" +
-  "border-bottom:1px solid #e3e3e3;" +
-  "}",
-
-  transferTwoMenuContainerSum : ".transfertwo-menu-container-sum " +
-  "{" +
-  "position: absolute;" +
-  "height: 100%;" +
-  "width: 30%;" +
-  "left: 0;" +
-  "background-color: transparent;" +
-  "}",
-
-  transferTwoMenuContainerTransferTo : ".transfertwo-menu-container-transfer-to " +
-  "{" +
-  "position: absolute;" +
-  "height: 100%;" +
-  "width: 30%;" +
-  "left: 35%;" +
-  "background-color: transparent;" +
-  "}",
-
-  transferTwoMenuNameLabel : ".transfertwo-menu-name-label " +
-  "{" +
-  "margin: 0;" +
-  "left: 16%;" +
-  "top: 35%;" +
-  "position: absolute;" +
-  "font-size:" + 27 * widthK + "px;" +
-  "color: #515151;" +
-  "}",
-
-  transferTwoContactBodyContainer : ".transfertwo-contact-body-container " +
-  "{" +
-  "position: absolute;" +
-  "top: 10%;" +
-  "height: 50%;" +
-  "background-color: transparent;" +
-  "}",
-
-  transferTwoContactPhoneField : ".transfertwo-contact-phone-field " +
-  "{" +
-  "position: relative;" +
   "left: 10%;" +
   "width: 79.5%;" +
-  "height: 103px;" +
-  "border-bottom: 5px solid #01cfff;" +
+  "height:" + 100 * widthK + "px;" +
+  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top: 45px;" +
-  "margin-bottom: 8%;" +
+  "top:" + 47 * widthK + "px;" +
+  "}",
+
+  transferTwoContactTextField: ".transfertwo-contact-text-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "bottom: -50%;" +
+  "}",
+
+  transferTwoContactNumberInputPart: ".transfertwo-contact-number-input-part" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "top: 38%;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "left: 23%;" +
+  "font-size:" + 51 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
   "}",
 
   transferTwoNextButtonInnerContainer: ".transfertwo-next-button-inner-container" +
@@ -3306,6 +3269,130 @@ var css = {
   "}",
 
   transferTwoNextButtonLabel: ".transfertwo-next-button-label" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-align: center;" +
+  "display: table-cell;" +
+  "vertical-align: middle;" +
+  "}",
+
+  transferTwoCommentContainer : ".transfertwo-comment-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 60%;" +
+  "height: 15%;" +
+  "top: 20%;" +
+  "left: 17%;" +
+  "background-size: 100%;" +
+  "background-image: url(resources/icons/ViewTransfer/input.png);" +
+  "background-repeat: no-repeat;" +
+  "background-color: transparent;" +
+  "color: #ffffff;" +
+  "}",
+
+  transferTwoCommentInput : ".transfertwo-comment-input" +
+  "{" +
+  "position: absolute;" +
+  "width: 90%;" +
+  "height: 65%;" +
+  "top: 7%;" +
+  "left: 5%;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "border: none;" +
+  "outline: none;" +
+  "margin: 0;" +
+  "padding: 0;" +
+  "color: gray;" +
+  "}",
+
+
+  //VIEW TRANSFER THREE
+
+  transferThreeBodyContainer  : ".transferthree-body-container " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 1145 * widthK + "px;" +
+  "width:" + 720 * widthK + "px;" +
+  "top:" + 87 * widthK + "px;" +
+  "background-color: white;" +
+  "overflow: hidden;" +
+  "}",
+
+  transferThreeMenusContainer : ".transferthree-menus-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 8%;" +
+  "width: 100%;" +
+  "background-color: transparent;" +
+  "border-bottom:1px solid #e3e3e3;" +
+  "}",
+
+  transferThreeMenuContainerSum : ".transferthree-menu-container-sum " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 30%;" +
+  "left: 0;" +
+  "background-color: transparent;" +
+  "}",
+
+  transferThreeMenuContainerTransferTo : ".transferthree-menu-container-transfer-to " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 30%;" +
+  "left: 35%;" +
+  "background-color: transparent;" +
+  "}",
+
+  transferThreeMenuNameLabel : ".transferthree-menu-name-label " +
+  "{" +
+  "margin: 0;" +
+  "left: 16%;" +
+  "top: 35%;" +
+  "position: absolute;" +
+  "font-size:" + 27 * widthK + "px;" +
+  "color: #515151;" +
+  "}",
+
+  transferThreeContactBodyContainer : ".transferthree-contact-body-container " +
+  "{" +
+  "position: absolute;" +
+  "top: 10%;" +
+  "height: 50%;" +
+  "background-color: transparent;" +
+  "}",
+
+  transferThreeContactPhoneField : ".transferthree-contact-phone-field " +
+  "{" +
+  "position: relative;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height: 103px;" +
+  "border-bottom: 5px solid #01cfff;" +
+  "color: white;" +
+  "top: 45px;" +
+  "margin-bottom: 8%;" +
+  "}",
+
+  transferThreeNextButtonInnerContainer: ".transferthree-next-button-inner-container" +
+  "{" +
+  "position: relative;" +
+  "height: 6%;" +
+  "width: 45%;" +
+  "top: 90%;" +
+  "display: table;" +
+  "background-color: #027fe4;" +
+  "border-radius:" + 50 * widthK + "px;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "}",
+
+  transferThreeNextButtonLabel: ".transferthree-next-button-label" +
   "{" +
   "position: relative;" +
   "background-size: contain;" +

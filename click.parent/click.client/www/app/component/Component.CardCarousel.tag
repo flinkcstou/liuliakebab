@@ -204,11 +204,9 @@
 
             localStorage.setItem('cardNumber', cardNumber);
 
-            if (viewMainPage.myCards) {
-                scope.parent.indexOfCard = JSON.parse(localStorage.getItem('cardNumber'));
-                riot.update(scope.parent.indexOfCard)
-                viewMyCards.cardInformation();
-            }
+            if (viewMainPage.myCards)
+                viewMyCards.cardInformation(cardNumber);
+
         }
 
 

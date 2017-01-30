@@ -24,18 +24,20 @@
             <div class="transfer-contact-phone-field">
                 <p class="transfer-contact-text-field">{window.languages.ViewPayTransferContactTextField}</p>
                 <p class="transfer-contact-number-first-part">+998</p>
-                <input autofocus="true" class="transfer-contact-number-input-part" type="tel"
+                <input id="contactPhoneNumberId" autofocus="true" class="transfer-contact-number-input-part" type="tel"
                        maxlength="9" onkeyup="searchContacts()"/>
                 <div class="transfer-contact-phone-icon"></div>
             </div>
-            <div id="firstSuggestionBlockId" class="transfer-contact-found-container-one">
+            <div id="firstSuggestionBlockId" class="transfer-contact-found-container-one"
+                 ontouchend="firstSuggestionBlock()">
                 <div class="transfer-contact-found-photo" style="background-image: url({suggestionOne.photo})"></div>
                 <div class="transfer-contact-found-text-container">
                     <div class="transfer-contact-found-text-one">{suggestionOne.fName} {suggestionOne.lName}</div>
                 </div>
                 <div class="transfer-contact-found-text-two">{suggestionOne.phoneNumber}</div>
             </div>
-            <div id="secondSuggestionBlockId" class="transfer-contact-found-container-two">
+            <div id="secondSuggestionBlockId" class="transfer-contact-found-container-two"
+                 ontouchend="secondSuggestionBlock()">
                 <div class="transfer-contact-found-photo" style="background-image: url({suggestionTwo.photo})"></div>
                 <div class="transfer-contact-found-text-container">
                     <div class="transfer-contact-found-text-one">{suggestionTwo.fName} {suggestionTwo.lName}</div>
@@ -174,7 +176,6 @@
 
             arrayOfContacts.filter(function (wordOfFunction) {
 
-                console.log(wordOfFunction)
                 var index = wordOfFunction.phoneNumbers[0].value.indexOf(scope.searchWord);
                 if (index != -1 && countOfFound < 2) {
 
@@ -186,15 +187,20 @@
                         scope.suggestionOne.fName = wordOfFunction.name.givenName;
                         scope.suggestionOne.lName = wordOfFunction.name.familyName;
 
-                        if (wordOfFunction.photos != null)
+                        if (wordOfFunction.photos != null) {
                             if (wordOfFunction.photos[0] != null)
                                 scope.suggestionOne.photo = wordOfFunction.photos[0].value;
+                            else
+                                scope.suggestionOne.photo = '';
+                        }
+                        else
+                                scope.suggestionOne.photo = '';
 
 
                         riot.update(scope.suggestionOne)
 
-                        scope.firstSuggestionBlockId.style.display = 'block';
-                        scope.secondSuggestionBlockId.style.display = 'none';
+                        firstSuggestionBlockId.style.display = 'block';
+                        secondSuggestionBlockId.style.display = 'none';
                     }
 
                     if (countOfFound == 1) {
@@ -203,21 +209,26 @@
                         scope.suggestionTwo.fName = wordOfFunction.name.givenName;
                         scope.suggestionTwo.lName = wordOfFunction.name.familyName;
 
-                        if (wordOfFunction.photos != null)
+                        if (wordOfFunction.photos != null) {
                             if (wordOfFunction.photos[0] != null)
                                 scope.suggestionTwo.photo = wordOfFunction.photos[0].value;
+                            else
+                                scope.suggestionTwo.photo = '';
+                        }
+                        else
+                            scope.suggestionTwo.photo = '';
 
                         riot.update(scope.suggestionTwo)
 
-                        scope.secondSuggestionBlockId.style.display = 'block';
+                        secondSuggestionBlockId.style.display = 'block';
                     }
                     countOfFound++;
                     if (countOfFound == 2)
                         return;
                 }
                 else if (!check) {
-                    scope.firstSuggestionBlockId.style.display = 'none';
-                    scope.secondSuggestionBlockId.style.display = 'none';
+                    firstSuggestionBlockId.style.display = 'none';
+                    secondSuggestionBlockId.style.display = 'none';
                 }
             });
         }
@@ -230,10 +241,24 @@
                 suggestionCard = JSON.parse(localStorage.getItem('click_client_suggestion_cards'))
 //            else
 //                localStorage.setItem('click_client_suggestion_cards')
-            if ((scope.cardInputId.value.length == 4 || scope.cardInputId.value.length == 9 || scope.cardInputId.value.length == 14) && event.keyCode != 8) {
-                scope.cardInputId.value += ' ';
+            if ((cardInputId.value.length == 4 || cardInputId.value.length == 9 || cardInputId.value.length == 14) && event.keyCode != 8) {
+                cardInputId.value += ' ';
 
             }
+        }
+
+        firstSuggestionBlock = function () {
+            event.preventDefault();
+            event.stopPropagation();
+
+            contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(3, scope.suggestionOne.phoneNumber.length);
+        }
+
+        secondSuggestionBlock = function () {
+            event.preventDefault();
+            event.stopPropagation();
+
+            contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(3, scope.suggestionTwo.phoneNumber.length);
         }
 
 
