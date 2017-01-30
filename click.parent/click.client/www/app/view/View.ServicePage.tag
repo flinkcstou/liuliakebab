@@ -15,7 +15,7 @@
         <div class="servicepage-first-field" id="firstField">
             <p class="servicepage-text-field">{chosenFieldName}</p>
             <p class="servicepage-number-first-part" if="{phoneFieldBool}">+998</p>
-            <input class="servicepage-number-input-part" type="tel"
+            <input class="servicepage-number-input-part" type="tel" id="firstFieldInput"
                    maxlength="9" onfocus="bordersColor()"
                    value="{defaultNumber}"/>
             <div class="servicepage-phone-icon" if="{phoneFieldBool}"></div>
@@ -101,7 +101,6 @@
                 this.chosenFieldName = scope.fieldArray[0].title;
             }
             this.amountLength = ("" + scope.service.max_pay_limit).length;
-//            console.log("fieldArray", fieldArray);
         }
 
 
@@ -123,9 +122,7 @@
 
 
         openDropDown = function () {
-//            this.firstFieldChoiceId.style.display = 'none';
             this.blockFirstFieldId.style.display = 'block';
-
         }
 
         chooseFirstField = function (id) {
@@ -140,36 +137,25 @@
                     break;
                 }
             }
-
         }
 
-
-        scope.focusedFieldId = -1;
-
         eraseAmountDefault = function () {
-            document.getElementById('amountField').style.borderBottom = 5 * widthK + 'px solid #01cfff';
-            if (scope.focusedFieldId != -1)
-                document.getElementById("phoneField" + scope.focusedFieldId).style.borderBottom = 5 * widthK + 'px solid lightgrey';
-            if (document.getElementById('amount').value == '0')
-                document.getElementById('amount').value = null;
+            amountField.style.borderBottom = 5 * widthK + 'px solid #01cfff';
+            firstField.style.borderBottom = 5 * widthK + 'px solid lightgrey';
+            if (amount.value == '0')
+                amount.value = null;
         }
 
         bordersColor = function () {
-//            console.log("ID", id);
-            if (scope.focusedFieldId != id && scope.focusedFieldId != -1) {
-                firstField.style.borderBottom = 5 * widthK + 'px solid lightgrey';
-//                console.log("as previous");
-            }
             firstField.style.borderBottom = 5 * widthK + 'px solid #01cfff';
             amountField.style.borderBottom = 5 * widthK + 'px solid lightgrey';
-            scope.focusedFieldId = id;
         }
 
         goToPinCardView = function () {
-            if (scope.focusedFieldId == -1)
-                scope.focusedFieldId = viewPay.chosenServiceId;
+            console.log("bndfvhj = ", firstFieldInput.value.length < 9);
+            console.log(scope.phoneFieldBool);
 
-            if (document.getElementById(scope.focusedFieldId).value.length < 9) {
+            if (scope.phoneFieldBool && firstFieldInput.value.length < 9) {
                 alert("Введите валидный номер телефона");
                 return;
             }
@@ -181,8 +167,8 @@
                 alert("Сумма должна быть меньше " + scope.service.max_pay_limit);
                 return;
             }
-            viewServicePage.phoneText = document.getElementById(scope.focusedFieldId).value;
-            viewServicePage.amountText = document.getElementById('amount').value;
+            viewServicePage.phoneText = firstFieldInput.value;
+            viewServicePage.amountText = amount.value;
 
             event.preventDefault();
             event.stopPropagation();
@@ -191,7 +177,7 @@
         }
 
         goToPinCardViewFromTwo = function () {
-            viewServicePage.amountText = document.getElementById('amount').value;
+            viewServicePage.amountText = amount.value;
             event.preventDefault();
             event.stopPropagation();
             this.riotTags.innerHTML = "<view-service-pincards>";
