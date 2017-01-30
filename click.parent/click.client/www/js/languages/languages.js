@@ -77,6 +77,11 @@ var RU_LANGUAGES =
   "ViewPayTransferNext": "ДАЛЕЕ",
 
 
+  "ViewTransferTwoTax": "Комиссия: ",
+  "ViewTransferTwoNext": "ДАЛЕЕ",
+
+
+
 }
 
 window.languages = RU_LANGUAGES;

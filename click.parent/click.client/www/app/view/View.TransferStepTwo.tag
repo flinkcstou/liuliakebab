@@ -8,13 +8,17 @@
     <div class="transfertwo-body-container">
 
         <div class="transfertwo-contact-phone-field">
-            <p class="transfertwo-contact-text-field">{window.languages.ViewPayTransferContactTextField}</p>
+            <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax}</p>
             <input class="transfertwo-contact-number-input-part" id="contactPhoneNumberId" autofocus="true" type="tel"
                    onkeyup="searchContacts()"/>
         </div>
 
         <div class="transfertwo-next-button-inner-container">
-            <p class="transfertwo-next-button-label">ДАЛЕЕ</p>
+            <p class="transfertwo-next-button-label">{window.languages.ViewTransferTwoNext}</p>
+        </div>
+
+        <div class="transfertwo-comment-container">
+
         </div>
 
     </div>

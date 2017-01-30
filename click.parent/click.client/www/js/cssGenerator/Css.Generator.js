@@ -3252,7 +3252,7 @@ var css = {
   "margin: 0;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
-  "top: -8%;" +
+  "bottom: -50%;" +
   "}",
 
   transferTwoContactNumberInputPart: ".transfertwo-contact-number-input-part" +
@@ -3291,6 +3291,19 @@ var css = {
   "text-align: center;" +
   "display: table-cell;" +
   "vertical-align: middle;" +
+  "}",
+
+  transferTwoCommentContainer : ".transfertwo-comment-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 60%;" +
+  "height: 20%;" +
+  "top: 20%;" +
+  "left: 17%;" +
+  "background-size: 100%;" +
+  "background-image: url(resource/icons/ViewTransfer/input.png);" +
+  "background-repeat: no-repeat;" +
+  "color: #ffffff;" +
   "}",
 
 
