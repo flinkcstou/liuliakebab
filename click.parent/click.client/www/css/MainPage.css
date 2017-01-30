@@ -82,16 +82,16 @@ input {
 /*background-image: url("../resources/icons/background/transparent.png");*/
 /*}*/
 
-.view-service-page {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url("../resources/draft/formtypetwo.png");
-    /*background-image: url("../resources/icons/background/transparent.png");*/
-}
+/*.view-service-page {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*overflow: hidden;*/
+/*background-size: contain;*/
+/*background-repeat: no-repeat;*/
+/*background-image: url("../resources/draft/formtypetwo.png");*/
+/*!*background-image: url("../resources/icons/background/transparent.png");*!*/
+/*}*/
 
 /*.view-service-pincards {*/
 /*position: absolute;*/
@@ -915,7 +915,54 @@ input {
     background-color: #4B946A;
 }
 
-.servicepage-phone-field {
+.servicepage-fields-dropdown {
+    position: relative;
+    width: 79.5%;
+    height: 9%;
+    left: 10%;
+    top: 1%;
+    color: white;
+    border-bottom: 5px solid lightgray;
+}
+
+.servicepage-fields-dropdown-two {
+    position: absolute;
+    width: 79.5%;
+    height: 8%;
+    left: 10%;
+    top: 12%;
+    color: white;
+    border-bottom: 5px solid #95e6fd;
+}
+
+.servicepage-dropdown-text-field {
+    position: absolute;
+    background-size: contain;
+    font-size: 35px;
+    top: 40%;
+    margin: 0;
+    color: #515151;
+}
+
+.servicepage-dropdown-container {
+    position: absolute;
+    width: 100%;
+    height: 55%;
+    top: 22%;
+    overflow: scroll;
+}
+
+.servicepage-dropdown-variant {
+    position: relative;
+    width: 79.5%;
+    height: 125px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+}
+
+.servicepage-first-field {
     position: relative;
     left: 10%;
     width: 79.5%;
@@ -947,7 +994,16 @@ input {
     border-bottom: 5px solid lightgray;
     color: white;
     top: 19.5%;
+}
 
+.servicepage-amount-field-two {
+    position: relative;
+    left: 11%;
+    width: 79.5%;
+    height: 9%;
+    border-bottom: 5px solid lightgray;
+    color: white;
+    top: 13%;
 }
 
 .servicepage-amount-icon {
@@ -1772,7 +1828,7 @@ input {
     height: 8%;
     width: 100%;
     background-color: transparent;
-    border-bottom:1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
 }
 
 .transfertwo-menu-container-sum {
@@ -2968,6 +3024,15 @@ input {
 }
 
 .component-search {
+    position: absolute;
+    opacity: 0.95;
+    height: 100%;
+    width: 100%;
+    background-color: #353340;
+    display: none;
+}
+
+.component-first-field {
     position: absolute;
     opacity: 0.95;
     height: 100%;

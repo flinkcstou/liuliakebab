@@ -10,17 +10,19 @@
     </div>
 
     <div class="servicepage-body-container" if="{formType==1}">
-        <div class="servicepage-phone-field" each="{i in fieldArray}" id="phoneField{i.service_id}">
-            <p class="servicepage-text-field">{i.title}</p>
-            <p class="servicepage-number-first-part">+998</p>
+        <div class="servicepage-fields-dropdown" if="{dropDownOn}" ontouchend="openDropDown()" id="firstFieldChoiceId">
+            <p class="servicepage-dropdown-text-field">{chosenFieldName}</p></div>
+        <div class="servicepage-first-field" id="firstField">
+            <p class="servicepage-text-field">{chosenFieldName}</p>
+            <p class="servicepage-number-first-part" if="{phoneFieldBool}">+998</p>
             <input class="servicepage-number-input-part" type="tel"
-                   maxlength="9"
-                   id="{i.service_id}" onfocus="bordersColor(this.id)"
+                   maxlength="9" onfocus="bordersColor()"
                    value="{defaultNumber}"/>
-            <div class="servicepage-phone-icon"></div>
+            <div class="servicepage-phone-icon" if="{phoneFieldBool}"></div>
         </div>
 
-        <div class="servicepage-amount-field" id="amountField">
+        <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
+             id="amountField">
             <p class="servicepage-text-field">{window.languages.ViewServicePageAmountTextLabel}</p>
             <input class="servicepage-amount-input" type="tel" maxlength="{amountLength}" value="{defaultAmount}"
                    id="amount"
@@ -32,6 +34,17 @@
         </div>
     </div>
 
+    <div id="blockFirstFieldId" class="component-first-field">
+        <div class="servicepage-fields-dropdown-two">
+            <p class="servicepage-dropdown-text-field" style="color: white;">{chosenFieldName}</p>
+        </div>
+        <div class="servicepage-dropdown-container">
+            <div class="servicepage-dropdown-variant" each="{i in fieldArray}" id="{i.parameter_id}"
+                 ontouchend="chooseFirstField(this.id)">
+                <p class="servicepage-dropdown-text-field" style="left: 8%">{i.title}</p>
+            </div>
+        </div>
+    </div>
 
     <div class="servicepage-body-container" if="{formType==2}">
         <div class="servicepage-pincards-container" each="{i in pincardIds}">
@@ -74,13 +87,24 @@
         this.categoryName = scope.categoryNamesMap[viewPay.categoryId];
         this.formType = scope.service.form_type;
         viewServicePage.formType = this.formType;
+        scope.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
+
 
         if (this.formType == 1) {
-            this.fieldName = scope.servicesParamsMapOne[viewPay.chosenServiceId][0].title;
-            this.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
+            this.dropDownOn = scope.fieldArray.length > 1;
+            console.log("fiedArray length bool=", this.dropDownOn);
+            if (!this.dropDownOn) {
+                this.chosenFieldName = scope.fieldArray[0].title;
+                this.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
+            }
+            else {
+                this.chosenFieldName = scope.fieldArray[0].title;
+            }
             this.amountLength = ("" + scope.service.max_pay_limit).length;
 //            console.log("fieldArray", fieldArray);
         }
+
+
         if (this.formType == 2) {
             scope.servicesParamsMapThree = JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"));
             console.log(scope.servicesParamsMapThree);
@@ -95,13 +119,30 @@
                 else
                     scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id].push(scope.servicesParamsMapThree[scope.service.id][i]);
             }
-//            console.log("pincardsMap", scope.pincardsMap);
-//            console.log("pincardIds", scope.pincardIds);
+        }
+
+
+        openDropDown = function () {
+//            this.firstFieldChoiceId.style.display = 'none';
+            this.blockFirstFieldId.style.display = 'block';
 
         }
 
-        //console.log(this.fieldArray);
-        //        console.log("form type", scope.formType);
+        chooseFirstField = function (id) {
+            this.blockFirstFieldId.style.display = 'none';
+            console.log("chosen param id=", +id);
+            for (var i = 0; i < scope.fieldArray.length; i++) {
+                console.log("parame_id=", scope.fieldArray[i].parameter_id);
+                if (scope.fieldArray[i].parameter_id == id) {
+                    scope.chosenFieldName = scope.fieldArray[i].title;
+                    console.log("new title", scope.chosenFieldName);
+                    riot.update(scope.chosenFieldName);
+                    break;
+                }
+            }
+
+        }
+
 
         scope.focusedFieldId = -1;
 
@@ -113,14 +154,14 @@
                 document.getElementById('amount').value = null;
         }
 
-        bordersColor = function (id) {
+        bordersColor = function () {
 //            console.log("ID", id);
             if (scope.focusedFieldId != id && scope.focusedFieldId != -1) {
-                document.getElementById("phoneField" + scope.focusedFieldId).style.borderBottom = 5 * widthK + 'px solid lightgrey';
+                firstField.style.borderBottom = 5 * widthK + 'px solid lightgrey';
 //                console.log("as previous");
             }
-            document.getElementById("phoneField" + id).style.borderBottom = 5 * widthK + 'px solid #01cfff';
-            document.getElementById('amountField').style.borderBottom = 5 * widthK + 'px solid lightgrey';
+            firstField.style.borderBottom = 5 * widthK + 'px solid #01cfff';
+            amountField.style.borderBottom = 5 * widthK + 'px solid lightgrey';
             scope.focusedFieldId = id;
         }
 
