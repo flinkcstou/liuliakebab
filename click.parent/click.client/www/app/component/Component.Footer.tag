@@ -150,6 +150,8 @@
             for (var i = 0; i < j; i++) {
                 if (arrayOfConnectedContacts[i].photos != null)
                     scope.arrayOfPhotos[i].contactPhoto = arrayOfConnectedContacts[i].photos[0].value;
+                else
+                    scope.arrayOfPhotos[i].contactPhoto = '';
 
                 if (arrayOfConnectedContacts[i].name.familyName != null)
                     scope.arrayOfPhotos[i].contactFname = arrayOfConnectedContacts[i].name.familyName;

@@ -3018,8 +3018,7 @@ var css = {
 
   transferContactPhoneIcon: ".transfer-contact-phone-icon" +
   "{" +
-  "position: relative;" +
-  "float: right;" +
+  "position: absolute;" +
   "background-image: url('resources/icons/ViewService/book.png');" +
   "width: 8%;" +
   "height: 50%;" +
@@ -3071,10 +3070,10 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 36%;" +
+  "top: 38%;" +
   "left: 0%;" +
-  "width: 90%;" +
-  "height: 42%;" +
+  "margin: 0%;" +
+  "padding: 0;" +
   "font-size:" + 51 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
