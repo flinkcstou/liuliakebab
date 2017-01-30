@@ -20,6 +20,15 @@ var css = {
   "font-style: normal;" +
   "}",
 
+  orator: "@font-face " +
+  "{" +
+  "font-family: 'Orator';" +
+  "src: url('resources/font/Orator/OratorStd.otf');" +
+  "format: ('opentype');" +
+  "font-weight: normal;" +
+  "font-style: normal;" +
+  "}",
+
   html: "html" +
   "{ " +
   "-webkit-user-select: none; " +
@@ -933,8 +942,9 @@ var css = {
   "height:" + 40 * widthK + "px;" +
   "font-size:" + 32 * widthK + "px;" +
   "text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
-  "-webkit-text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;font-family: Orator;" +
+  "-webkit-text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
   "color: transparent;" +
+  "font-family: Orator;" +
   "left:" + 20 * widthK + "px;" +
   "}",
 
@@ -960,6 +970,7 @@ var css = {
   "top:" + 2 * widthK + "px;" +
   "letter-spacing:" + -10 * widthK + "px;" +
   "font-size:" + 52 * widthK + "px;" +
+  "word-spacing:" + -8 * widthK + "px;" +
   "}",
 
   //SERVICE CAROUSEL COMPONENT
@@ -3249,7 +3260,6 @@ var css = {
   "top: 38%;" +
   "padding: 0;" +
   "margin: 0;" +
-  "left: 23%;" +
   "font-size:" + 51 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -3309,6 +3319,26 @@ var css = {
   "color: gray;" +
   "}",
 
+  transferTwoMenusContainer : ".transfertwo-menus-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 8%;" +
+  "width: 100%;" +
+  "background-color: transparent;" +
+  "border-bottom:1px solid #e3e3e3;" +
+  "}",
+
+  transferTwoMenuNameLabel : ".transfertwo-menu-name-label " +
+  "{" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "width: 100%;" +
+  "top: 35%;" +
+  "position: absolute;" +
+  "font-size:" + 27 * widthK + "px;" +
+  "color: #515151;" +
+  "}",
+
 
   //VIEW TRANSFER THREE
 
@@ -3331,28 +3361,11 @@ var css = {
   "border-bottom:1px solid #e3e3e3;" +
   "}",
 
-  transferThreeMenuContainerSum : ".transferthree-menu-container-sum " +
-  "{" +
-  "position: absolute;" +
-  "height: 100%;" +
-  "width: 30%;" +
-  "left: 0;" +
-  "background-color: transparent;" +
-  "}",
-
-  transferThreeMenuContainerTransferTo : ".transferthree-menu-container-transfer-to " +
-  "{" +
-  "position: absolute;" +
-  "height: 100%;" +
-  "width: 30%;" +
-  "left: 35%;" +
-  "background-color: transparent;" +
-  "}",
-
   transferThreeMenuNameLabel : ".transferthree-menu-name-label " +
   "{" +
   "margin: 0;" +
-  "left: 16%;" +
+  "text-align: center;" +
+  "width: 100%;" +
   "top: 35%;" +
   "position: absolute;" +
   "font-size:" + 27 * widthK + "px;" +
@@ -3403,6 +3416,189 @@ var css = {
   "vertical-align: middle;" +
   "}",
 
+  //VIEW TRANSFER FOUR
+
+  transferFourBodyContainer  : ".transferfour-body-container " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 1145 * widthK + "px;" +
+  "width:" + 720 * widthK + "px;" +
+  "top:" + 87 * widthK + "px;" +
+  "background-color: white;" +
+  "overflow: hidden;" +
+  "}",
+
+  transferFourDataContainer: ".transferfour-data-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: " + 569 * widthK + "px; " +
+  "background-color: transparent;" +
+    //"border-bottom:  " + 1 + "px solid lightgray;" +
+  "}",
+
+  transferFourPhoneField: ".transferfour-phone-field" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 24%;" +
+  "border-bottom: 1px solid lightgray;" +
+  "color: white;" +
+  "}",
+
+  transferFourTextField: ".transferfour-text-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "left: 8%;" +
+  "top: 25%;" +
+  "}",
+
+  transferFourPhoneInput: ".transferfour-phone-input" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 8%;" +
+  "top: 47%;" +
+  "font-size: " + 40 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  transferFourOwnerField: ".transferfour-owner-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "left: 8%;" +
+  "top: 25%;" +
+  "}",
+
+  transferFourOwnerInput: ".transferfour-owner-input" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 8%;" +
+  "top: 47%;" +
+  "font-size: " + 40 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+
+  transferFourField: ".transferfour-field" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 22.5%;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
+  "color: white;" +
+  "top: 23%;" +
+  "}",
+
+  transferFourCardField: ".transferfour-card-field" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 32%;" +
+  "border-bottom:1px solid lightgray;" +
+  "color: white;" +
+  "top: 23%;" +
+  "}",
+
+  transferFourCardInfoContainer: ".transferfour-card-info-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 60%;" +
+  "height: 100%;" +
+  "background-color: transparent;" +
+  "left: 4%;" +
+  "}",
+
+  transferFourTextOne: ".transferfour-text-one" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 23 * widthK + "px; " +
+  "left: 7%;" +
+  "top: 17%;" +
+  "}",
+
+  transferFourTextTwo: ".transferfour-text-two" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 7%;" +
+  "top: 30%;" +
+  "font-size: " + 40 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  transferFourDetailText: ".transferfour-detail-text" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 25 * widthK + "px; " +
+  "left: 7%;" +
+  "top: 56%;" +
+  "}",
+
+  transferFourCardLogoContainer: ".transferfour-card-logo-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 40%;" +
+  "height: 100%;" +
+  "left: 60%;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 55%;" +
+  "float: left;" +
+  "}",
+
+  transferFourFieldSum: ".transferfour-field-sum" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 30%;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
+  "color: white;" +
+  "top: 23%;" +
+  "}",
+
+  transferFourAmountField: ".transferfour-amount-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "left: 8%;" +
+  "top: 20%;" +
+  "}",
+
+  transferFourAmountInput: ".transferfour-amount-input" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 8%;" +
+  "top: 35%;" +
+  "font-size: " + 40 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  transferFourTaxField: ".transferfour-tax-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "left: 8%;" +
+  "top: 65%;" +
+  "}",
+
 
 
 }
@@ -3415,7 +3611,6 @@ var styleSheet = style.stylesheet;
 for (key in css) {
   allCss += css[key];
 }
-
 style.appendChild(document.createTextNode(allCss));
 document.getElementsByTagName("head")[0].appendChild(style);
 firstMount.firstStep();

@@ -75,7 +75,7 @@
     <script>
 
         var scope = this;
-        this.titleName = 'ПЕРЕВОДЫ';
+        this.titleName = window.languages.ViewPayTransferTitle;
 
         scope.suggestionOne = {};
         scope.suggestionOne.photo = '';

@@ -6,6 +6,9 @@
     </div>
 
     <div class="transfertwo-body-container">
+        <div class="transfertwo-menus-container">
+            <p id="cardLabelId" class="transfertwo-menu-name-label" ontouchend="card()">{window.languages.ViewTransferTwoSum}</p>
+        </div>
 
         <div class="transfertwo-contact-phone-field">
             <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax}</p>
@@ -13,7 +16,7 @@
                    onkeyup="searchContacts()"/>
         </div>
 
-        <div class="transfertwo-next-button-inner-container">
+        <div class="transfertwo-next-button-inner-container" ontouchend="goToTransferThree()">
             <p class="transfertwo-next-button-label">{window.languages.ViewTransferTwoNext}</p>
         </div>
 
@@ -26,7 +29,7 @@
 
 
     <script>
-        this.titleName = 'ПЕРЕВОД НА 8600 **** 7987';
+        this.titleName = window.languages.ViewTransferTwoTitle;
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-steptwo') {
             history.arrayOfHistory.push('view-transfer-steptwo');
@@ -53,6 +56,8 @@
         scope.contactMode = false;
         scope.cardMode = false;
         contact = function () {
+            event.preventDefault()
+            event.stopPropagation()
             scope.contactMode = true;
             this.contactLabelId.style.color = 'black';
             this.cardLabelId.style.color = 'gray';
@@ -68,6 +73,14 @@
             scope.contactMode = false;
             riot.update(scope.contactMode);
             riot.update(scope.cardMode);
+        }
+
+        goToTransferThree = function () {
+            event.preventDefault()
+            event.stopPropagation()
+
+            this.riotTags.innerHTML = "<view-transfer-stepthree>";
+            riot.mount('view-transfer-stepthree');
         }
 
 
