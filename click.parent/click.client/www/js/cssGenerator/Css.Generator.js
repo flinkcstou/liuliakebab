@@ -20,15 +20,6 @@ var css = {
   "font-style: normal;" +
   "}",
 
-  orator: "@font-face " +
-  "{" +
-  "font-family: 'Orator';" +
-  "src: url(resources/font/Orator/OratorStd.otf);" +
-  "format: ('opentype');" +
-  "font-weight: normal;" +
-  "font-style: normal;" +
-  "}",
-
   html: "html" +
   "{ " +
   "-webkit-user-select: none; " +
@@ -63,11 +54,6 @@ var css = {
   "margin: 0;" +
   "overflow: hidden;" +
   "bottom: 0;" +
-  "}",
-  input: "input " +
-  "{" +
-  "font-family: Neuron;" +
-  "font-size:" + 24 * widthK + "px;" +
   "}",
 
   //VIEW REGISTRATION DEVICE
@@ -3297,13 +3283,30 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 60%;" +
-  "height: 20%;" +
+  "height: 15%;" +
   "top: 20%;" +
   "left: 17%;" +
   "background-size: 100%;" +
-  "background-image: url(resource/icons/ViewTransfer/input.png);" +
+  "background-image: url(resources/icons/ViewTransfer/input.png);" +
   "background-repeat: no-repeat;" +
+  "background-color: transparent;" +
   "color: #ffffff;" +
+  "}",
+
+  transferTwoCommentInput : ".transfertwo-comment-input" +
+  "{" +
+  "position: absolute;" +
+  "width: 90%;" +
+  "height: 65%;" +
+  "top: 7%;" +
+  "left: 5%;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "border: none;" +
+  "outline: none;" +
+  "margin: 0;" +
+  "padding: 0;" +
+  "color: gray;" +
   "}",
 
 

@@ -18,14 +18,14 @@
         </div>
 
         <div class="transfertwo-comment-container">
-
+            <textarea maxlength="255" class="transfertwo-comment-input"
+                      type="text" placeholder={comment}></textarea>
         </div>
 
     </div>
 
 
     <script>
-
         this.titleName = 'ПЕРЕВОД НА 8600 **** 7987';
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-steptwo') {
@@ -42,6 +42,8 @@
         scope = this;
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = false;
+
+        scope.comment = 'комментарий';
 
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         phoneNumber = phoneNumber.substring(3, phoneNumber.length);
@@ -67,6 +69,7 @@
             riot.update(scope.contactMode);
             riot.update(scope.cardMode);
         }
+
 
 
     </script>
