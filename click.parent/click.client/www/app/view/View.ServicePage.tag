@@ -9,13 +9,16 @@
              style="background-image: url({serviceIcon})"></div>
     </div>
 
+
     <div class="servicepage-body-container" if="{formType==1}">
         <div class="servicepage-fields-dropdown" if="{dropDownOn}" ontouchend="openDropDown()" id="firstFieldChoiceId">
             <p class="servicepage-dropdown-text-field">{chosenFieldName}</p></div>
         <div class="servicepage-first-field" id="firstField">
             <p class="servicepage-text-field">{chosenFieldName}</p>
             <p class="servicepage-number-first-part" if="{phoneFieldBool}">+998</p>
-            <input class="servicepage-number-input-part" type="tel" id="firstFieldInput"
+            <input class="{servicepage-number-input-part: phoneFieldBool, servicepage-number-input-part-two: !phoneFieldBool}"
+                   type="{inputType}"
+                   id="firstFieldInput"
                    maxlength="9" onfocus="bordersColor()"
                    value="{defaultNumber}"/>
             <div class="servicepage-phone-icon" if="{phoneFieldBool}"></div>
@@ -34,6 +37,7 @@
         </div>
     </div>
 
+
     <div id="blockFirstFieldId" class="component-first-field">
         <div class="servicepage-fields-dropdown-two">
             <p class="servicepage-dropdown-text-field" style="color: white;">{chosenFieldName}</p>
@@ -45,6 +49,7 @@
             </div>
         </div>
     </div>
+
 
     <div class="servicepage-body-container" if="{formType==2}">
         <div class="servicepage-pincards-container" each="{i in pincardIds}">
@@ -85,38 +90,46 @@
         this.titleName = scope.service.name;
         this.serviceIcon = scope.service.image;
         this.categoryName = scope.categoryNamesMap[viewPay.categoryId];
-        this.formType = scope.service.form_type;
+        scope.formType = scope.service.form_type;
+        console.log("formType=" + this.formType);
         viewServicePage.formType = this.formType;
         scope.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
+        console.log("fieldArray=", scope.fieldArray);
 
 
-        if (this.formType == 1) {
-            this.dropDownOn = scope.fieldArray.length > 1;
-            console.log("fiedArray length bool=", this.dropDownOn);
-            if (!this.dropDownOn) {
-                this.chosenFieldName = scope.fieldArray[0].title;
-                this.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
+        if (scope.formType == 1) {
+            if (scope.fieldArray) {
+                this.dropDownOn = scope.fieldArray.length > 1;
+                console.log("fiedArray length bool=", this.dropDownOn);
+
+                scope.chosenFieldName = scope.fieldArray[0].title;
+                scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
+                if (scope.fieldArray[0].input_type == '1')
+                    scope.inputType = 'tel';
+                else if (scope.fieldArray[0].input_type == '2')
+                    scope.inputType = 'text';
+                this.amountLength = ("" + scope.service.max_pay_limit).length;
             }
-            else {
-                this.chosenFieldName = scope.fieldArray[0].title;
-            }
-            this.amountLength = ("" + scope.service.max_pay_limit).length;
         }
 
 
-        if (this.formType == 2) {
+        if (scope.formType == 2) {
             scope.servicesParamsMapThree = JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"));
             console.log(scope.servicesParamsMapThree);
             scope.pincardsMap = {};
             scope.pincardIds = [];
-            for (var i = 0; i < scope.servicesParamsMapThree[scope.service.id].length; i++) {
-                if (!scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id]) {
-                    scope.pincardIds.push(scope.servicesParamsMapThree[scope.service.id][i].card_type_id);
-                    scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id] = [];
-                    scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id].push(scope.servicesParamsMapThree[scope.service.id][i]);
+            console.log("scope.service.id=", scope.service.id);
+            console.log("whole element=", scope.servicesParamsMapThree[scope.service.id]);
+            if (scope.servicesParamsMapThree[scope.service.id]) {
+                for (var i = 0; i < scope.servicesParamsMapThree[scope.service.id].length; i++) {
+                    if (!scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id]) {
+                        scope.pincardIds.push(scope.servicesParamsMapThree[scope.service.id][i].card_type_id);
+                        scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id] = [];
+                        scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id].push(scope.servicesParamsMapThree[scope.service.id][i]);
+                    }
+                    else
+                        scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id].push(scope.servicesParamsMapThree[scope.service.id][i]);
                 }
-                else
-                    scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id].push(scope.servicesParamsMapThree[scope.service.id][i]);
             }
         }
 
@@ -132,8 +145,14 @@
                 console.log("parame_id=", scope.fieldArray[i].parameter_id);
                 if (scope.fieldArray[i].parameter_id == id) {
                     scope.chosenFieldName = scope.fieldArray[i].title;
+                    scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1";
+                    if (scope.fieldArray[i].input_type == '1')
+                        scope.inputType = 'tel';
+                    else if (scope.fieldArray[i].input_type == '2')
+                        scope.inputType = 'text';
                     console.log("new title", scope.chosenFieldName);
                     riot.update(scope.chosenFieldName);
+                    riot.update(scope.phoneFieldBool);
                     break;
                 }
             }
