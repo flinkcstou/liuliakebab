@@ -101,6 +101,7 @@ var RU_LANGUAGES =
   "ViewTransferFourAddToAutoPay": "Добавить в автоплатеж",
   "ViewTransferFourPay": "ПЕРЕВЕСТИ",
   "ViewTransferFourTax": "Комиссия: ",
+  "ViewTransferFourTransferInformation": "Перевод с карты: ",
 
   "ComponentCodeConfirmTitle": "ЗАЩИТНЫЙ КОД",
 

@@ -48,10 +48,10 @@
         var objectForTransfer = opts[0];
 
         if (objectForTransfer.type == 1) {
-            transferTitle = objectForTransfer.card.substring(0, 4) + ' **** ' + objectForTransfer.card.substring(15, objectForTransfer.card.length)
+            transferTitle = objectForTransfer.name.substring(0, 4) + ' **** ' + objectForTransfer.name.substring(15, objectForTransfer.name.length)
         }
         else
-            transferTitle = objectForTransfer.phone
+            transferTitle = objectForTransfer.name
 
         this.titleName = window.languages.ViewTransferTwoTitle + ' ' + transferTitle;
 

@@ -12,17 +12,17 @@
         <div class="transferfour-data-container">
             <div class="transferfour-phone-field" if="{viewServicePage.formType!=2}">
                 <p class="transferfour-text-field">{cardOrPhone}</p>
-                <p class="transferfour-phone-input"></p>
+                <p class="transferfour-phone-input">{objectTypeForTransfer.name}</p>
             </div>
 
-            <div id="ownerContainerId" class="transferfour-owner-container">
+            <div id="ownerContainerId" class="transferfour-owner-container" if="{cardType}">
                 <p class="transferfour-owner-field">{window.languages.ViewTransferFourOwner}</p>
                 <p class="transferfour-owner-input"></p>
             </div>
 
             <div class="transferfour-field-sum">
                 <p class="transferfour-amount-field">{window.languages.ViewTransferFourAmountOfPay}</p>
-                <p class="transferfour-amount-input">{amountText} сум</p>
+                <p class="transferfour-amount-input">{objectSumForTransfer.sum} {objectCardForTransfer.currency}</p>
                 <p class="transferfour-tax-field">{window.languages.ViewTransferFourTax}</p>
             </div>
             <div id="categoryContainerId" class="transferfour-category-container">
@@ -31,10 +31,10 @@
             </div>
             <div class="transferfour-card-field">
                 <div class="transferfour-card-info-container">
-                    <p class="transferfour-text-one">{window.languages.ViewTransferFourPayFromCard}</p>
-                    <p class="transferfour-text-two">{cardName}</p>
-                    <p class="transferfour-detail-text">{numberPartOne} **** {numberPartTwo}</p>
-                    <p class="transferfour-detail-text">Доступно:{salary} {currency}</p>
+                    <p class="transferfour-text-one">{window.languages.ViewTransferFourTransferInformation}</p>
+                    <p class="transferfour-text-two">{objectCardForTransfer.name}</p>
+                    <p class="transferfour-detail-text">{objectCardForTransfer.numberPartOne} **** {objectCardForTransfer.numberPartTwo}</p>
+                    <p class="transferfour-detail-text">Доступно:{objectCardForTransfer.salary} {objectCardForTransfer.currency}</p>
                 </div>
                 <div class="transferfour-card-logo-container"
                      style="background-image: url({url})">
@@ -85,13 +85,17 @@
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = false;
 
-        var objectTypeForTransfer = opts[0][0];
-        var objectSumForTransfer = opts[0][1];
-        var objectCardForTransfer = opts[0][2];
+        scope.objectTypeForTransfer = opts[0][0];
+        if(scope.objectTypeForTransfer.type == 1){
+            scope.cardType = true;
+        }
+        else
+            scope.phoneType = false;
+        scope.objectSumForTransfer = opts[0][1];
+        scope.objectComment = opts[0][2];
+        scope.objectCardForTransfer = opts[0][3];
 
-        console.log(objectTypeForTransfer)
-        console.log(objectSumForTransfer)
-        console.log(objectCardForTransfer)
+
 
         var transferTitle;
 
@@ -99,11 +103,11 @@
 
 
         if (objectForTransfer.type == 1) {
-            transferTitle = objectForTransfer.card.substring(0, 4) + ' **** ' + objectForTransfer.card.substring(15, objectForTransfer.card.length)
+            transferTitle = objectForTransfer.name.substring(0, 4) + ' **** ' + objectForTransfer.name.substring(15, objectForTransfer.name.length)
             scope.cardOrPhone = window.languages.ViewTransferFourEnterCard;
         }
         else {
-            transferTitle = objectForTransfer.phone;
+            transferTitle = objectForTransfer.name;
             scope.cardOrPhone = window.languages.ViewTransferFourEnterPhone;
         }
 
@@ -113,6 +117,37 @@
 
         transferStep = function () {
             blockCodeConfirmId.style.display = 'block';
+
+            var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+            var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+            window.api.call({
+                method: 'p2p.payment',
+                input: {
+                    session_key: sessionKey,
+                    phone_num: phoneNumber,
+                    account_id: scope.objectCardForTransfer.card_id,
+                    receiver_data: parseInt(Date.now() / 1000),
+                    amount: scope.objectSumForTransfer,
+                    type: scope.objectTypeForTransfer.type,
+                    transaction_id: parseInt(Date.now() / 1000)
+//                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
+
+                },
+
+                scope: this,
+
+                onSuccess: function (result) {
+                    if (result[0][0].error == 0) {
+                        console.log("result of TRANSFER ", result);
+                    }
+                },
+
+                onFail: function (api_status, api_status_message, data) {
+                    console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                    console.error(data);
+                }
+            });
         }
 
         confirmCodeCancelEnd = function () {
