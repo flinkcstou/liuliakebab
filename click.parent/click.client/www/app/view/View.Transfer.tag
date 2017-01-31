@@ -89,10 +89,13 @@
         scope.suggestionTwo.fName = '';
         scope.suggestionTwo.lName = '';
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer') {
-            history.arrayOfHistory.push('view-transfer');
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-        }
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-stepthree') {
+            history.arrayOfHistory.push(
+                    {
+                        "view" :'view-transfer-stepthree',
+                        "params": ''
+                    }
+            );
 
         scope.searchWord = '';
         scope.backbuttoncheck = true;
