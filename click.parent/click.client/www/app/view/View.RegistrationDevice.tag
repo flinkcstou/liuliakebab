@@ -59,8 +59,8 @@
     var token;
 
 
-    scope.phoneNumber = '+998';
-    scope.maskPhoneNumber = '+998 ';
+    scope.phoneNumber = '+' + window.languages.CodeOfCountry;
+    scope.maskPhoneNumber = '+ ' + window.languages.CodeOfCountry;
 
 
     componentKeyboard.returnValue = function (myValue) {

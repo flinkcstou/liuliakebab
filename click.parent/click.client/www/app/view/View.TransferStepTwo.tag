@@ -29,9 +29,13 @@
 
 
     <script>
-        console.log(opts);
 
-        this.titleName = window.languages.ViewTransferTwoTitle;
+        scope = this;
+        scope.backbuttoncheck = true;
+        scope.rightbuttoncheck = false;
+        var transferVariable = opts[0];
+
+        this.titleName = window.languages.ViewTransferTwoTitle + ' ' + transferVariable;
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-steptwo') {
             history.arrayOfHistory.push('view-transfer-steptwo');
@@ -43,10 +47,6 @@
             event.stopPropagation();
             onBackKeyDown()
         }
-
-        scope = this;
-        scope.backbuttoncheck = true;
-        scope.rightbuttoncheck = false;
 
         scope.comment = 'комментарий';
 

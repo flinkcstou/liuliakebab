@@ -23,7 +23,7 @@
         <div class="transfer-contact-body-container" if="{contactMode}">
             <div class="transfer-contact-phone-field">
                 <p class="transfer-contact-text-field">{window.languages.ViewPayTransferContactTextField}</p>
-                <p class="transfer-contact-number-first-part">+998</p>
+                <p class="transfer-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
                 <input id="contactPhoneNumberId" autofocus="true" class="transfer-contact-number-input-part" type="tel"
                        maxlength="9" onkeyup="searchContacts()"/>
                 <div class="transfer-contact-phone-icon"></div>
@@ -139,6 +139,7 @@
                 return
             }
             else {
+                phoneNumberForTransfer = window.languages.CodeOfCountry + phoneNumberForTransfer
                 this.riotTags.innerHTML = "<view-transfer-steptwo>";
                 riot.mount('view-transfer-steptwo', [phoneNumberForTransfer]);
             }
