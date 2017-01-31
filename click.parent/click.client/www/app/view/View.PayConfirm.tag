@@ -69,7 +69,7 @@
             history.arrayOfHistory.push(
                     {
                         "view": 'view-pay-confirm',
-                        "params": ''
+                        "params": opts
                     }
             );
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
@@ -128,6 +128,7 @@
                 onSuccess: function (result) {
                     if (result[0][0].error == 0) {
                         console.log("result of APP.PAYMENT ", result);
+                        alert("Payment has been made succesfully!!!");
                     }
                 },
 

@@ -2252,7 +2252,7 @@ var css = {
   "position: absolute;" +
   "top: 26%;" +
   "width: 88%;" +
-  "height: 67%;" +
+  "height: 69%;" +
   "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -2265,12 +2265,12 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: absolute;" +
-  "top: 38%;" +
+  "top: 26%;" +
   "padding: 0;" +
   "margin: 0;" +
   "left: 26%;" +
   "width: 66%;" +
-  "height: 42%;" +
+  "height: 69%;" +
   "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -2281,11 +2281,11 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: absolute;" +
-  "top: 38%;" +
+  "top: 26%;" +
   "padding: 0;" +
   "margin: 0;" +
   "width: 100%;" +
-  "height: 42%;" +
+  "height: 69%;" +
   "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -2300,7 +2300,7 @@ var css = {
   "padding: 0;" +
   "margin: 0;" +
   "width: 100%;" +
-  "height: 57%;" +
+  "height: 69%;" +
   "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +

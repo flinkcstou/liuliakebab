@@ -28,7 +28,6 @@
             if (cardsArray[i].access == 2)
                 scope.cardsArrayTwo.push(cardsArray[i]);
 
-        console.log("cardsArrayTwo", scope.cardsArrayTwo);
 
         scope.checked = false;
 

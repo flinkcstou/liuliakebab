@@ -89,7 +89,7 @@ input {
     overflow: hidden;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url("../resources/draft/servicepagetwo.png");
+    background-image: url("../resources/draft/dropdown.png");
     /*background-image: url("../resources/icons/background/transparent.png");*/
 }
 
@@ -1032,9 +1032,9 @@ input {
     border: none;
     outline: none;
     position: relative;
-    top: 36%;
+    top: 26%;
     width: 88%;
-    height: 42%;
+    height: 69%;
     font-size: 56px;
     font-family: 'SFUIDisplay-Light';
     color: #515151;
@@ -1044,12 +1044,12 @@ input {
     border: none;
     outline: none;
     position: relative;
-    top: 38%;
+    top: 26%;
     padding: 0;
     margin: 0;
     left: 18%;
     width: 66%;
-    height: 42%;
+    height: 69%;
     font-size: 56px;
     font-family: 'SFUIDisplay-Light';
     color: #515151;
@@ -1059,11 +1059,11 @@ input {
     border: none;
     outline: none;
     position: relative;
-    top: 38%;
+    top: 26%;
     padding: 0;
     margin: 0;
     width: 100%;
-    height: 42%;
+    height: 69%;
     font-size: 56px;
     font-family: 'SFUIDisplay-Light';
     color: #515151;
@@ -1077,7 +1077,7 @@ input {
     padding: 0;
     margin: 0;
     width: 100%;
-    height: 57%;
+    height: 69%;
     font-size: 53px;
     font-family: 'SFUIDisplay-Light';
     color: #515151;
