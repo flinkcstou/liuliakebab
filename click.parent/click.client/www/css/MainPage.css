@@ -82,16 +82,16 @@ input {
 /*background-image: url("../resources/icons/background/transparent.png");*/
 /*}*/
 
-.view-service-page {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url("../resources/draft/formtypetwo.png");
-    /*background-image: url("../resources/icons/background/transparent.png");*/
-}
+/*.view-service-page {*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*overflow: hidden;*/
+/*background-size: contain;*/
+/*background-repeat: no-repeat;*/
+/*background-image: url("../resources/draft/formtypetwo.png");*/
+/*!*background-image: url("../resources/icons/background/transparent.png");*!*/
+/*}*/
 
 /*.view-service-pincards {*/
 /*position: absolute;*/
@@ -941,7 +941,7 @@ input {
     font-size: 35px;
     top: 40%;
     margin: 0;
-    color: #515151;
+    color: #8a8a8a;
 }
 
 .servicepage-dropdown-container {
@@ -3077,7 +3077,7 @@ input {
 
 .component-first-field {
     position: absolute;
-    opacity: 0.95;
+    opacity: 0.97;
     height: 100%;
     width: 100%;
     background-color: #353340;

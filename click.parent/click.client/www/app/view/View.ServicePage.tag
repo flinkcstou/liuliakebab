@@ -19,7 +19,7 @@
             <input class="{servicepage-number-input-part: phoneFieldBool, servicepage-number-input-part-two: !phoneFieldBool}"
                    type="{inputType}"
                    id="firstFieldInput"
-                   maxlength="9" onfocus="bordersColor()"
+                   maxlength="{inputMaxLength}" onfocus="bordersColor()"
                    value="{defaultNumber}"/>
             <div class="servicepage-phone-icon" if="{phoneFieldBool}"></div>
         </div>
@@ -45,7 +45,7 @@
         <div class="servicepage-dropdown-container">
             <div class="servicepage-dropdown-variant" each="{i in fieldArray}" id="{i.parameter_id}"
                  ontouchend="chooseFirstField(this.id)">
-                <p class="servicepage-dropdown-text-field" style="left: 8%">{i.title}</p>
+                <p id="text{i.parameter_id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.title}</p>
             </div>
         </div>
     </div>
@@ -101,13 +101,20 @@
             if (scope.fieldArray) {
                 this.dropDownOn = scope.fieldArray.length > 1;
                 console.log("fiedArray length bool=", this.dropDownOn);
-
                 scope.chosenFieldName = scope.fieldArray[0].title;
                 scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
-                if (scope.fieldArray[0].input_type == '1')
+                if (this.dropDownOn) {
+                    scope.chosenFieldParamId = scope.fieldArray[0].parameter_id;
+                    scope.oldFieldParamId = scope.fieldArray[1].parameter_id;
+                }
+                if (scope.fieldArray[0].input_type == '1') {
                     scope.inputType = 'tel';
-                else if (scope.fieldArray[0].input_type == '2')
+                    scope.inputMaxLength = scope.fieldArray[0].max_len.length;
+                }
+                else if (scope.fieldArray[0].input_type == '2') {
                     scope.inputType = 'text';
+                    scope.inputMaxLength = scope.fieldArray[0].max_len;
+                }
                 this.amountLength = ("" + scope.service.max_pay_limit).length;
             }
         }
@@ -136,6 +143,11 @@
 
         openDropDown = function () {
             this.blockFirstFieldId.style.display = 'block';
+            console.log("id=", scope.chosenFieldParamId);
+            document.getElementById(scope.oldFieldParamId).style.backgroundColor = 'white';
+            document.getElementById('text' + scope.oldFieldParamId).style.color = '#8a8a8a';
+            document.getElementById(scope.chosenFieldParamId).style.backgroundColor = '#0084E6';
+            document.getElementById('text' + scope.chosenFieldParamId).style.color = 'white';
         }
 
         chooseFirstField = function (id) {
@@ -151,6 +163,9 @@
                     else if (scope.fieldArray[i].input_type == '2')
                         scope.inputType = 'text';
                     console.log("new title", scope.chosenFieldName);
+                    scope.oldFieldParamId = scope.chosenFieldParamId;
+                    scope.chosenFieldParamId = id;
+                    firstFieldInput.value = '';
                     riot.update(scope.chosenFieldName);
                     riot.update(scope.phoneFieldBool);
                     break;

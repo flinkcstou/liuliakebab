@@ -82,6 +82,8 @@
         scope.titleName = scope.service.name;
         scope.serviceIcon = scope.service.image;
         scope.categoryName = scope.categoryNamesMap[viewPay.categoryId];
+        var chosenCardId = opts[0];
+        console.log("chosen card id=", chosenCardId);
 
         for (var i = 0; i < cardsArray.length; i++)
             if (cardsArray[i].chosenCard === true) {
@@ -99,14 +101,9 @@
             var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
             var phoneNumber = localStorage.getItem('click_client_phoneNumber');
             var serviceId = viewPay.chosenServiceId;
-            var accountId = JSON.parse(localStorage.getItem('click_client_loginInfo')).default_account;
+            var accountId = chosenCardId
             var amount = viewServicePage.amountText;
             var phoneParam = viewServicePage.phoneText;
-//            var payment_data = {
-//                "item": {"param": "1", "value": phoneParam},
-//                "transaction_id": parseInt(Date.now() / 1000)
-//            }
-
             var payment_data = {"param": "1", "value": phoneParam, "transaction_id": parseInt(Date.now() / 1000)};
 
 

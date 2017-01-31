@@ -1240,6 +1240,10 @@ window.fakedSocket.register("app.payment", function (input) {
         "success": 1,
         "error": 0,
         "error_note": ""
+      }],
+      [{
+        "invoice_id": null,
+        "payment_id": "xzsa"
       }]
     ];
   return [

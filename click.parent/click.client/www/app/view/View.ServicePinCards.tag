@@ -49,8 +49,10 @@
 
 
         goToPayConfirmView = function () {
+            console.log("cardsArray=", cardsArray);
             for (var i = 0; i < cardsArray.length; i++) {
                 if (cardsArray[i].chosenCard) {
+                    scope.chosencardId = cardsArray[i].card_id;
                     scope.checked = true;
                     break;
                 }
@@ -62,7 +64,7 @@
             event.preventDefault();
             event.stopPropagation();
             this.riotTags.innerHTML = "<view-pay-confirm>";
-            riot.mount('view-pay-confirm');
+            riot.mount('view-pay-confirm', [scope.chosencardId]);
 
         }
 
