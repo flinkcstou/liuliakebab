@@ -33,9 +33,17 @@
         scope = this;
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = false;
-        var transferVariable = opts[0];
 
-        this.titleName = window.languages.ViewTransferTwoTitle + ' ' + transferVariable;
+        var transferTitle
+        var objectForTransfer = opts[0];
+
+        if(objectForTransfer.type == 1){
+            transferTitle = objectForTransfer.card.substring(0, 4) + ' **** ' + objectForTransfer.card.substring(15, objectForTransfer.card.length)
+        }
+        else
+            transferTitle = objectForTransfer.phone
+
+        this.titleName = window.languages.ViewTransferTwoTitle + ' ' + transferTitle;
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-steptwo') {
             history.arrayOfHistory.push('view-transfer-steptwo');
@@ -82,7 +90,7 @@
             event.stopPropagation()
 
             this.riotTags.innerHTML = "<view-transfer-stepthree>";
-            riot.mount('view-transfer-stepthree');
+            riot.mount('view-transfer-stepthree', [objectForTransfer]);
         }
 
 

@@ -37,6 +37,7 @@
             cardNumber = 0;
         var pos = 0;
         var count = localStorage.getItem('click_client_countCard');
+        var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
         if (!count)
             count = 0;
 
@@ -51,7 +52,7 @@
             event.preventDefault();
             event.stopPropagation();
             carouselTouchEndX = event.changedTouches[0].pageX;
-            if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20 ) {
+            if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20) {
                 changePosition();
             }
             else if (!viewMainPage.myCards) {
@@ -72,7 +73,7 @@
                 this.cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
             }
             else
-                    changePosition()
+                changePosition()
         }
 
         moveTouchCarousel = function () {
@@ -105,6 +106,10 @@
 
 
                     if (getAccountsCards[i].access == 0) break;
+                    if (loginInfo.default_account == getAccountsCards[i].id)
+                        var defaultAccount = true;
+                    else
+                        defaultAccount = false;
 
                     if (getAccountsCards[i].acc_abs.trim() == 'SMARTV')
                         typeOfCard = 'resources/icons/cards/typeOfCards/uzcard.png';
@@ -127,6 +132,7 @@
                         background: getAccountsCards[i].background_url,
                         countCard: count,
                         chosenCard: false,
+                        default_account: defaultAccount
                     };
 
                     cardsarray.push(card);

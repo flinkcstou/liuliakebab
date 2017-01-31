@@ -20,7 +20,7 @@
                 <p id="cardLabelId" class="transfer-menu-card-label">{window.languages.ViewPayTransferMenuNameCard}</p>
             </div>
         </div>
-        <div class="transfer-contact-body-container" if="{contactMode}">
+        <contact-input-field class="transfer-contact-body-container" if="{contactMode}">
             <div class="transfer-contact-phone-field">
                 <p class="transfer-contact-text-field">{window.languages.ViewPayTransferContactTextField}</p>
                 <p class="transfer-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
@@ -44,12 +44,12 @@
                 </div>
                 <div class="transfer-contact-found-text-two">{suggestionTwo.phoneNumber}</div>
             </div>
-        </div>
-        <div class="transfer-contact-body-container" if="{cardMode}">
+        </contact-input-field>
+        <card-input-field class="transfer-contact-body-container" if="{cardMode}">
             <div class="transfer-contact-phone-field">
                 <p class="transfer-contact-text-field">{window.languages.ViewPayTransferCardTextField}</p>
                 <input id="cardInputId" class="transfer-card-number-input-part" type="tel"
-                       maxlength="19" onkeyup="searchCard()"/>
+                       maxlength="19" onkeydown="searchCard()"/>
                 <div class="transfer-contact-phone-icon"></div>
             </div>
             <div class="transfer-contact-found-container-one">
@@ -62,7 +62,7 @@
                 <div class="transfer-contact-found-text-one">Дмитрий Чеченин</div>
                 <div class="transfer-contact-found-text-two">8760 **** **** 9870</div>
             </div>
-        </div>
+        </card-input-field>
 
         <div class="transfer-next-button-inner-container" ontouchend="goToTransferStepTwo()">
             <p class="transfer-next-button-label">{window.languages.ViewPayTransferNext}</p>
@@ -76,6 +76,8 @@
 
         var scope = this;
         this.titleName = window.languages.ViewPayTransferTitle;
+        var checkPhoneForTransfer = false;
+        var checkCardForTransfer = false;
 
         scope.suggestionOne = {};
         scope.suggestionOne.photo = '';
@@ -133,16 +135,48 @@
         goToTransferStepTwo = function () {
             event.preventDefault();
             event.stopPropagation();
-            phoneNumberForTransfer = contactPhoneNumberId.value;
-            if(phoneNumberForTransfer.length != 9){
-                alert('Incorrect phone number')
-                return
-            }
+
+            if (!checkPhoneForTransfer && !checkCardForTransfer)
+                alert('Write phone number or card number for transfer')
             else {
-                phoneNumberForTransfer = window.languages.CodeOfCountry + phoneNumberForTransfer
-                this.riotTags.innerHTML = "<view-transfer-steptwo>";
-                riot.mount('view-transfer-steptwo', [phoneNumberForTransfer]);
+                if (checkPhoneForTransfer) {
+                    phoneNumberForTransfer = contactPhoneNumberId.value;
+                    if (phoneNumberForTransfer.length != 9) {
+                        alert('Incorrect phone number')
+                        return
+                    }
+                    else {
+                        phoneNumberForTransfer = window.languages.CodeOfCountry + phoneNumberForTransfer
+                        this.riotTags.innerHTML = "<view-transfer-steptwo>";
+                        riot.mount('view-transfer-steptwo', [
+                            {
+                                "phone": phoneNumberForTransfer,
+                                "type": 2
+                            }
+                        ]);
+                        return
+                    }
+                }
+
+                if (checkCardForTransfer) {
+                    cardNumberForTransfer = cardInputId.value;
+                    if (cardNumberForTransfer.length != 19) {
+                        alert('Incorrect card number')
+                        return
+                    }
+                    else {
+                        this.riotTags.innerHTML = "<view-transfer-steptwo>";
+                        riot.mount('view-transfer-steptwo', [
+                            {
+                                "card":cardNumberForTransfer,
+                                "type": 1
+                            }
+                        ]);
+                        return
+                    }
+                }
             }
+
         }
 
         var arrayOfContacts = [];
@@ -171,6 +205,8 @@
             findContacts();
 
         searchContacts = function () {
+            checkPhoneForTransfer = true;
+            checkCardForTransfer = false;
             event.preventDefault();
             event.stopPropagation();
 
@@ -200,7 +236,7 @@
                                 scope.suggestionOne.photo = '';
                         }
                         else
-                                scope.suggestionOne.photo = '';
+                            scope.suggestionOne.photo = '';
 
 
                         riot.update(scope.suggestionOne)
@@ -240,6 +276,8 @@
         }
 
         searchCard = function () {
+            checkPhoneForTransfer = false;
+            checkCardForTransfer = true;
 
             var suggestionCard = [];
 
@@ -252,6 +290,7 @@
 
             }
         }
+
 
         firstSuggestionBlock = function () {
             event.preventDefault();
