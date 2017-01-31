@@ -3029,8 +3029,9 @@ var css = {
   transferContactNumberFirstPart: ".transfer-contact-number-first-part" +
   "{" +
   "float: left;" +
-  "position: absolute;" +
+  "position: relative;" +
   "top: 38%;" +
+  "height: 68%;" +
   "font-size:" + 51 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -3045,7 +3046,8 @@ var css = {
   "top: 38%;" +
   "padding: 0;" +
   "margin: 0;" +
-  "left: 23%;" +
+  "margin-left: 3%;" +
+  "width: 65%;" +
   "font-size:" + 51 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +

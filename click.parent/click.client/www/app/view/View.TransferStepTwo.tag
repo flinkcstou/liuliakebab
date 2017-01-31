@@ -7,13 +7,14 @@
 
     <div class="transfertwo-body-container">
         <div class="transfertwo-menus-container">
-            <p id="cardLabelId" class="transfertwo-menu-name-label" ontouchend="card()">{window.languages.ViewTransferTwoSum}</p>
+            <p id="cardLabelId" class="transfertwo-menu-name-label" ontouchend="card()">
+                {window.languages.ViewTransferTwoSum}</p>
         </div>
 
         <div class="transfertwo-contact-phone-field">
             <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax}</p>
-            <input class="transfertwo-contact-number-input-part" id="contactPhoneNumberId" autofocus="true" type="tel"
-                   onkeyup="searchContacts()"/>
+            <input value="{sumValue}" class="transfertwo-contact-number-input-part" id="sumValueId" autofocus="true" type="tel"
+                   onkeydown="sumField()"/>
         </div>
 
         <div class="transfertwo-next-button-inner-container" ontouchend="goToTransferThree()">
@@ -33,22 +34,32 @@
         scope = this;
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = false;
+        scope.comment = 'комментарий';
+        var bufferForSum;
+        var defaultAccount;
+        var cards = JSON.parse(localStorage.getItem('click_client_cards'));
+        for(var i in cards){
+            if(cards[i].default_account === true)
+                    defaultAccount = cards[i];
+        }
+        console.log(defaultAccount)
 
         var transferTitle
         var objectForTransfer = opts[0];
 
-        if(objectForTransfer.type == 1){
+        if (objectForTransfer.type == 1) {
             transferTitle = objectForTransfer.card.substring(0, 4) + ' **** ' + objectForTransfer.card.substring(15, objectForTransfer.card.length)
         }
         else
             transferTitle = objectForTransfer.phone
 
-        this.titleName = window.languages.ViewTransferTwoTitle + ' ' + transferTitle;
-
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-steptwo') {
-            history.arrayOfHistory.push('view-transfer-steptwo');
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-        }
+            history.arrayOfHistory.push(
+                    {
+                        "view" :'view-transfer-steptwo',
+                        "params": opts
+                    }
+            );
 
         goToBack = function () {
             event.preventDefault();
@@ -56,43 +67,18 @@
             onBackKeyDown()
         }
 
-        scope.comment = 'комментарий';
+        sumField = function () {
 
-        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-        phoneNumber = phoneNumber.substring(3, phoneNumber.length);
-        //        console.log('PHONE NUMBER ', phoneNumber);
-        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-
-        scope.contactMode = false;
-        scope.cardMode = false;
-        contact = function () {
-            event.preventDefault()
-            event.stopPropagation()
-            scope.contactMode = true;
-            this.contactLabelId.style.color = 'black';
-            this.cardLabelId.style.color = 'gray';
-            scope.cardMode = false;
-            riot.update(scope.cardMode);
-            riot.update(scope.contactMode);
-        }
-
-        card = function () {
-            scope.cardMode = true;
-            this.cardLabelId.style.color = 'black';
-            this.contactLabelId.style.color = 'gray';
-            scope.contactMode = false;
-            riot.update(scope.contactMode);
-            riot.update(scope.cardMode);
         }
 
         goToTransferThree = function () {
             event.preventDefault()
             event.stopPropagation()
+            var sum = {"sum": sumValueId.value};
 
             this.riotTags.innerHTML = "<view-transfer-stepthree>";
-            riot.mount('view-transfer-stepthree', [objectForTransfer]);
+            riot.mount('view-transfer-stepthree', [objectForTransfer,sum]);
         }
-
 
 
     </script>

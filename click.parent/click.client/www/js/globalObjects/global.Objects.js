@@ -36,4 +36,6 @@ window.viewMyCardList = {};
 
 viewMyCardList.myCardListBoolean = false;
 
+window.viewTransferThree = {};
+viewTransferThree.check = false;
 

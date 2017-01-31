@@ -7,25 +7,45 @@
 
     <div class="transferthree-body-container">
         <div class="transferthree-menus-container">
-                <p id="cardLabelId" class="transferthree-menu-name-label" ontouchend="card()">{window.languages.ViewTransferThreeMenuTitle}</p>
+            <p id="cardLabelId" class="transferthree-menu-name-label">{window.languages.ViewTransferThreeMenuTitle}</p>
         </div>
         <component-pincards></component-pincards>
 
-            <div class="transferthree-next-button-inner-container" ontouchend="goToTransferFour()">
-                <p class="transferthree-next-button-label">ДАЛЕЕ</p>
-            </div>
+        <div class="transferthree-next-button-inner-container" ontouchend="goToTransferFour()">
+            <p class="transferthree-next-button-label">ДАЛЕЕ</p>
+        </div>
 
     </div>
 
 
     <script>
+        console.log(opts)
+        var arrayForTransfer = [];
+        arrayForTransfer.push(opts[0])
+        arrayForTransfer.push(opts[1])
+        var transferTitle;
 
-        this.titleName = window.languages.ViewTransferThreeTitle;
+        var objectForTransfer = opts[0];
+
+        if (objectForTransfer.type == 1) {
+            transferTitle = objectForTransfer.card.substring(0, 4) + ' **** ' + objectForTransfer.card.substring(15, objectForTransfer.card.length)
+        }
+        else
+            transferTitle = objectForTransfer.phone;
+
+        this.titleName = window.languages.ViewTransferThreeTitle+ ' ' + transferTitle ;
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-stepthree') {
-            history.arrayOfHistory.push('view-transfer-stepthree');
+            history.arrayOfHistory.push(
+                    {
+                        "view" :'view-transfer-stepthree',
+                        "params": opts
+                    }
+            );
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
+        var checkChosenCard = false;
+        var chosenCard;
 
         goToBack = function () {
             event.preventDefault();
@@ -37,37 +57,27 @@
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = false;
 
-        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-        phoneNumber = phoneNumber.substring(3, phoneNumber.length);
-        //        console.log('PHONE NUMBER ', phoneNumber);
-        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-
-        scope.contactMode = false;
-        scope.cardMode = false;
-        contact = function () {
-            scope.contactMode = true;
-            this.contactLabelId.style.color = 'black';
-            this.cardLabelId.style.color = 'gray';
-            scope.cardMode = false;
-            riot.update(scope.cardMode);
-            riot.update(scope.contactMode);
-        }
-
-        card = function () {
-            scope.cardMode = true;
-            this.cardLabelId.style.color = 'black';
-            this.contactLabelId.style.color = 'gray';
-            scope.contactMode = false;
-            riot.update(scope.contactMode);
-            riot.update(scope.cardMode);
-        }
 
         goToTransferFour = function () {
+            var cards = JSON.parse(localStorage.getItem('click_client_cards'));
             event.preventDefault()
             event.stopPropagation()
-
-            this.riotTags.innerHTML = "<view-transfer-stepfour>";
-            riot.mount('view-transfer-stepfour');
+            console.log(cards)
+            for (var i in cards) {
+                if (cards[i].chosenCard === true) {
+                    console.log(cards[i])
+                    checkChosenCard = true;
+                    chosenCard = cards[i]
+                    break;
+                }
+            }
+            if(checkChosenCard) {
+                arrayForTransfer.push(chosenCard)
+                this.riotTags.innerHTML = "<view-transfer-stepfour>";
+                riot.mount('view-transfer-stepfour', [arrayForTransfer]);
+            }
+            else
+                    alert('choose card')
         }
 
 

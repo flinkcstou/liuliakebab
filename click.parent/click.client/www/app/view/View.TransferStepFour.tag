@@ -11,7 +11,7 @@
     <div class="transferfour-body-container">
         <div class="transferfour-data-container">
             <div class="transferfour-phone-field" if="{viewServicePage.formType!=2}">
-                <p class="transferfour-text-field">{window.languages.ViewTransferFourEnterPhone}</p>
+                <p class="transferfour-text-field">{cardOrPhone}</p>
                 <p class="transferfour-phone-input"></p>
             </div>
 
@@ -71,16 +71,37 @@
 
     <script>
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-stepfour') {
-            history.arrayOfHistory.push('view-transfer-stepfour');
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-        }
+            history.arrayOfHistory.push(
+                    {
+                        "view" :'view-transfer-stepfour',
+                        "params": opts
+                    }
+            );
 
         var scope = this;
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = false;
 
+        var objectTypeForTransfer = opts[0][0];
+        var objectSumForTransfer = opts[0][1];
+        var objectCardForTransfer = opts[0][2];
 
-        this.titleName = window.languages.ViewTransferFourTitle;
+        var transferTitle;
+
+        var objectForTransfer = opts[0][0];
+
+
+        if (objectForTransfer.type == 1) {
+            transferTitle = objectForTransfer.card.substring(0, 4) + ' **** ' + objectForTransfer.card.substring(15, objectForTransfer.card.length)
+            scope.cardOrPhone = window.languages.ViewTransferFourEnterCard;
+        }
+        else {
+            transferTitle = objectForTransfer.phone;
+            scope.cardOrPhone = window.languages.ViewTransferFourEnterPhone;
+        }
+
+
+        this.titleName = window.languages.ViewTransferFourTitle + ' ' + transferTitle;
 
 
         transferStep = function () {
