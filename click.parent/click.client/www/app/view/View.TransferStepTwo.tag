@@ -29,6 +29,8 @@
 
 
     <script>
+        console.log(opts);
+
         this.titleName = window.languages.ViewTransferTwoTitle;
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-steptwo') {

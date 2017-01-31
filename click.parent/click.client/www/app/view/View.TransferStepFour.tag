@@ -59,6 +59,14 @@
             <p class="code-confirm-title-name">{window.languages.ComponentCodeConfirmTitle}</p>
             <div class="code-confirm-cancel-icon" ontouchend="confirmCodeCancelEnd()"></div>
         </div>
+        <div class="code-confirm-code-container">
+            <p class="code-confirm-code-text">8723</p>
+            <p class="code-confirm-message-text">Передайте код получателю для завершения перевода</p>
+
+            <div class="code-confirm-button-enter" ontouchend="transferStep()">
+                <p class="code-confirm-button-enter-label">OK</p>
+            </div>
+        </div>
     </code-confirm>
 
     <script>

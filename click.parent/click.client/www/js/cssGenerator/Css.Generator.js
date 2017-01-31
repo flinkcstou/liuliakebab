@@ -3719,6 +3719,65 @@ var css = {
   "background-size: 20%;" +
   "}",
 
+  codeConfirmCodeContainer: ".code-confirm-code-container " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 450 * widthK + "px;" +
+  "height:" + 450 * widthK + "px;" +
+  "left:" + 135 * widthK + "px;" +
+  "top:" + 150 * widthK + "px;" +
+  "}",
+
+  codeConfirmCodeText: ".code-confirm-code-text " +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "height: 25%;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "margin-bottom: 0;" +
+  "margin-top: 0;" +
+  "color: white;" +
+  "text-align: center;" +
+  "border-bottom:" + 5 * widthK+ "px solid #6abfff;"+
+  "font-size:" + 100 * widthK+ "px;"+
+  "}",
+
+  codeConfirmMessageText: ".code-confirm-message-text " +
+  "{" +
+  "position: relative;" +
+  "width: 85%;" +
+  "text-align: center;" +
+  "top: 10%;" +
+  "margin:0 auto 0 auto;" +
+  "font-size:" + 28 * widthK + "px;" +
+  "color: white;"+
+  "}",
+
+  codeConfirmButtonEnter: ".code-confirm-button-enter" +
+  "{" +
+  "bottom: 24%;" +
+  "position: absolute;" +
+  "width: 54%;" +
+  "height: 17%;" +
+  "border-radius:" + 80 * widthK + "px; " +
+  "left: 22%;" +
+  "margin: 0;" +
+  "background-color: rgb(1, 124, 227);" +
+  "}",
+
+  codeConfirmButtonEnterLabel: ".code-confirm-button-enter-label" +
+  "{" +
+  "position: relative;" +
+  "top: 20%;" +
+  "width: 100%;" +
+  "font-size: " + 36 * widthK + "px; " +
+  "margin: auto;" +
+  "color: white;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "}",
+
 
 }
 

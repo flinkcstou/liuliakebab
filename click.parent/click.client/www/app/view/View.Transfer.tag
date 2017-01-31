@@ -96,9 +96,8 @@
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = true;
 
-        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-        phoneNumber = phoneNumber.substring(3, phoneNumber.length);
-        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+        var phoneNumberForTransfer = '';
+        var cardNumberForTransfer = '';
 
         scope.contactMode = true;
 
@@ -134,9 +133,15 @@
         goToTransferStepTwo = function () {
             event.preventDefault();
             event.stopPropagation();
-
-            this.riotTags.innerHTML = "<view-transfer-steptwo>";
-            riot.mount('view-transfer-steptwo');
+            phoneNumberForTransfer = contactPhoneNumberId.value;
+            if(phoneNumberForTransfer.length != 9){
+                alert('Incorrect phone number')
+                return
+            }
+            else {
+                this.riotTags.innerHTML = "<view-transfer-steptwo>";
+                riot.mount('view-transfer-steptwo', [phoneNumberForTransfer]);
+            }
         }
 
         var arrayOfContacts = [];
