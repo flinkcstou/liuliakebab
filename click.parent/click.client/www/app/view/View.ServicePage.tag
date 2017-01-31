@@ -16,7 +16,8 @@
         <div class="servicepage-first-field" id="firstField">
             <p class="servicepage-text-field">{chosenFieldName}</p>
             <p class="servicepage-number-first-part" if="{phoneFieldBool}">+{window.languages.CodeOfCountry}</p>
-            <input class="{servicepage-number-input-part: phoneFieldBool, servicepage-number-input-part-two: !phoneFieldBool}"
+            <input class="{servicepage-number-input-part: phoneFieldBool, servicepage-number-input-part-two: !phoneFieldBool && isNumber,
+                           servicepage-number-input-part-three: !phoneFieldBool && !isNumber}"
                    type="{inputType}"
                    id="firstFieldInput"
                    maxlength="{inputMaxLength}" onfocus="bordersColor()"
@@ -110,10 +111,12 @@
                 if (scope.fieldArray[0].input_type == '1') {
                     scope.inputType = 'tel';
                     scope.inputMaxLength = scope.fieldArray[0].max_len.length;
+                    scope.isNumber = true;
                 }
                 else if (scope.fieldArray[0].input_type == '2') {
                     scope.inputType = 'text';
                     scope.inputMaxLength = scope.fieldArray[0].max_len;
+                    scope.isNumber = false;
                 }
                 this.amountLength = ("" + scope.service.max_pay_limit).length;
             }
@@ -158,10 +161,16 @@
                 if (scope.fieldArray[i].parameter_id == id) {
                     scope.chosenFieldName = scope.fieldArray[i].title;
                     scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1";
-                    if (scope.fieldArray[i].input_type == '1')
+                    if (scope.fieldArray[i].input_type == '1') {
                         scope.inputType = 'tel';
-                    else if (scope.fieldArray[i].input_type == '2')
+                        scope.inputMaxLength = scope.fieldArray[0].max_len.length;
+                        scope.isNumber = true;
+                    }
+                    else if (scope.fieldArray[i].input_type == '2') {
                         scope.inputType = 'text';
+                        scope.inputMaxLength = scope.fieldArray[0].max_len;
+                        scope.isNumber = false;
+                    }
                     console.log("new title", scope.chosenFieldName);
                     scope.oldFieldParamId = scope.chosenFieldParamId;
                     scope.chosenFieldParamId = id;

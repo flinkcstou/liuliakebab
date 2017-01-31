@@ -101,11 +101,10 @@
             var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
             var phoneNumber = localStorage.getItem('click_client_phoneNumber');
             var serviceId = viewPay.chosenServiceId;
-            var accountId = chosenCardId
+            var accountId = chosenCardId;
             var amount = viewServicePage.amountText;
             var phoneParam = viewServicePage.phoneText;
             var payment_data = {"param": "1", "value": phoneParam, "transaction_id": parseInt(Date.now() / 1000)};
-
 
             window.api.call({
                 method: 'app.payment',
