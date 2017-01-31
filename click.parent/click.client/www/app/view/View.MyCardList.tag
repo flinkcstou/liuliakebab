@@ -35,9 +35,14 @@
         var scope = this;
         this.titleName = window.languages.ViewMyCardListTitleName;
 
-        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-mycard-list') {
-            history.arrayOfHistory.push('view-mycard-list');
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-mycard-list') {
+            history.arrayOfHistory.push(
+                    {
+                        "view": 'view-mycard-list',
+                        "params": ''
+                    }
+            );
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
 
         scope.cardsArray = JSON.parse(localStorage.getItem("click_client_cards"));

@@ -52,8 +52,15 @@
       }
     }
 
-    history.arrayOfHistory.push('view-registration-device');
+      history.arrayOfHistory.push(
+              {
+                "view": 'view-registration-device',
+                "params": ''
+              }
+
+      );
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
 
     var scope = this;
     var token;

@@ -66,8 +66,13 @@
         }
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-pay-confirm') {
-            history.arrayOfHistory.push('view-pay-confirm');
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+            history.arrayOfHistory.push(
+                    {
+                        "view": 'view-pay-confirm',
+                        "params": ''
+                    }
+            );
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
 
         scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));

@@ -89,13 +89,15 @@
         scope.suggestionTwo.fName = '';
         scope.suggestionTwo.lName = '';
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-stepthree') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer') {
             history.arrayOfHistory.push(
                     {
-                        "view" :'view-transfer-stepthree',
+                        "view": 'view-transfer',
                         "params": ''
                     }
             );
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+        }
 
         scope.searchWord = '';
         scope.backbuttoncheck = true;

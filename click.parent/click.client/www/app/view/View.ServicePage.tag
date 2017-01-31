@@ -64,8 +64,13 @@
     </div>
     <script>
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-service-page') {
-            history.arrayOfHistory.push('view-service-page');
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+            history.arrayOfHistory.push(
+                    {
+                        "view": 'view-service-page',
+                        "params": ''
+                    }
+            );
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
 
         var scope = this;

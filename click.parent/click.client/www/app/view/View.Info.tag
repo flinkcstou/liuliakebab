@@ -51,9 +51,14 @@
         if (device.platform != 'BrowserStand')
             StatusBar.backgroundColorByHexString("#ffffff");
 
-        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-info') {
-            history.arrayOfHistory.push('view-info');
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-info') {
+            history.arrayOfHistory.push(
+                    {
+                        "view": 'view-info',
+                        "params": ''
+                    }
+            );
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
 
         scope.leftOfOperations = 470 * widthK;

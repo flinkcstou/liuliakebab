@@ -5,9 +5,16 @@
 
   <script>
     this.titleName = 'ОТЧЕТЫ';
-    history.arrayOfHistory.push('view-device');
-    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-report') {
+      history.arrayOfHistory.push(
+              {
+                "view": 'view-report',
+                "params": ''
+              }
+      );
+      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    }
     scope = this;
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;

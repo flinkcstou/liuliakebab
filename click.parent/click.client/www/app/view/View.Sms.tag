@@ -30,8 +30,13 @@
         scope.messageTitleTwo = '';
         scope.phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-        if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-sms') {
-            history.arrayOfHistory.push('view-sms');
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-sms') {
+            history.arrayOfHistory.push(
+                    {
+                        "view": 'view-sms',
+                        "params": ''
+                    }
+            );
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
         scope.confirmSms = '';
