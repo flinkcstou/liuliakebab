@@ -132,7 +132,8 @@
                         background: getAccountsCards[i].background_url,
                         countCard: count,
                         chosenCard: false,
-                        default_account: defaultAccount
+                        default_account: defaultAccount,
+                        access: getAccountsCards[i].access
                     };
 
                     cardsarray.push(card);
