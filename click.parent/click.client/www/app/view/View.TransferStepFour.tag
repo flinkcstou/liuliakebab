@@ -15,7 +15,7 @@
                 <p class="transferfour-phone-input"></p>
             </div>
 
-            <div class="transferfour-field">
+            <div id="ownerContainerId" class="transferfour-owner-container">
                 <p class="transferfour-owner-field">{window.languages.ViewTransferFourOwner}</p>
                 <p class="transferfour-owner-input"></p>
             </div>
@@ -25,7 +25,7 @@
                 <p class="transferfour-amount-input">{amountText} сум</p>
                 <p class="transferfour-tax-field">{window.languages.ViewTransferFourTax}</p>
             </div>
-            <div class="transferfour-field">
+            <div id="categoryContainerId" class="transferfour-category-container">
                 <p class="transferfour-text-field">{window.languages.ViewTransferFourCategory}</p>
                 <p class="transferfour-phone-input" style="text-decoration: underline"></p>
             </div>
@@ -88,6 +88,10 @@
         var objectTypeForTransfer = opts[0][0];
         var objectSumForTransfer = opts[0][1];
         var objectCardForTransfer = opts[0][2];
+
+        console.log(objectTypeForTransfer)
+        console.log(objectSumForTransfer)
+        console.log(objectCardForTransfer)
 
         var transferTitle;
 

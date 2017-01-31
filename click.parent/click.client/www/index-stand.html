@@ -96,9 +96,7 @@
     history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
 
     if (history.arrayOfHistory.length != 0) {
-      console.log(history.arrayOfHistory)
       history.arrayOfHistory.pop();
-      console.log(history.arrayOfHistory)
 
       if (history.arrayOfHistory.length != 0) {
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));

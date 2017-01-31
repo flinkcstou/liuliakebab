@@ -3602,7 +3602,17 @@ var css = {
   "}",
 
 
-  transferFourField: ".transferfour-field" +
+  transferFourContainer: ".transferfour-owner-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 22.5%;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
+  "color: white;" +
+  "top: 23%;" +
+  "}",
+
+  transferFourCategoryContainer: ".transferfour-category-container" +
   "{" +
   "position: relative;" +
   "width: 100%;" +

@@ -19,8 +19,8 @@
     </div>
     <script>
 
+        history.arrayOfHistory = [];
         localStorage.setItem('cardNumber', 0);
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-main-page') {
             history.arrayOfHistory.push(
                     {
                         "view": 'view-main-page',
@@ -28,7 +28,7 @@
                     }
             );
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-        }
+
 
         viewMainPage.myCards = false;
 
