@@ -86,7 +86,7 @@ window.fakedSocket.register("get.accounts", function (input) {
   array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
   array.push([{
     acc_abs: "SMARTV    ",
-    access: 2,
+    access: 1,
     accno: "8600 **** **** 5865",
     background_url: "https://merchant.click.uz/static/content/app/background/card1.png",
     bank_name: "UZCARD",

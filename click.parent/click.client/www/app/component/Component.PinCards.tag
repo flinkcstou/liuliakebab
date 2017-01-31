@@ -1,7 +1,7 @@
 <component-pincards>
 
     <div class="pincard-allcards-container">
-        <div class="pincard-card-container" each="{i in cardsArray}" ontouchend="chooseCard(this.id)"
+        <div class="pincard-card-container" each="{i in cardsArrayTwo}" ontouchend="chooseCard(this.id)"
              id="{i.card_id}">
             <div class="pincard-card-logo-container" if="{i.salary>0}"
                  style="background-image: url({i.url})"></div>
@@ -23,6 +23,12 @@
     <script>
         var scope = this;
         cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+        scope.cardsArrayTwo = [];
+        for (var i = 0; i < cardsArray.length; i++)
+            if (cardsArray[i].access == 2)
+                scope.cardsArrayTwo.push(cardsArray[i]);
+
+        console.log("cardsArrayTwo", scope.cardsArrayTwo);
 
         scope.checked = false;
 
