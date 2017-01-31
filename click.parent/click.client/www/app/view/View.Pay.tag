@@ -37,16 +37,28 @@
             <input id="searchInputId" class="search-input" onkeyup="searchSuggestion()"/>
             <div class="search-suggestion-container">
                 <div id="suggestionOneId" class="search-suggestion-field-one" ontouchend="suggestionFieldOne()">
-                    <p class="search-part-of-suggestion">{onePartOne}<mark class="search-selected-field-color">{onePartTwo}</mark>{onePartThree}</p>
+                    <p class="search-part-of-suggestion">{onePartOne}
+                        <mark class="search-selected-field-color">{onePartTwo}</mark>
+                        {onePartThree}
+                    </p>
                 </div>
                 <div id="suggestionTwoId" class="search-suggestion-field-two" ontouchend="suggestionFieldTwo()">
-                    <p class="search-part-of-suggestion">{twoPartOne}<mark class="search-selected-field-color">{twoPartTwo}</mark>{twoPartThree}</p>
+                    <p class="search-part-of-suggestion">{twoPartOne}
+                        <mark class="search-selected-field-color">{twoPartTwo}</mark>
+                        {twoPartThree}
+                    </p>
                 </div>
                 <div id="suggestionThreeId" class="search-suggestion-field-three" ontouchend="suggestionFieldThree()">
-                    <p class="search-part-of-suggestion">{threePartOne}<mark class="search-selected-field-color">{threePartTwo}</mark>{threePartThree}</p>
+                    <p class="search-part-of-suggestion">{threePartOne}
+                        <mark class="search-selected-field-color">{threePartTwo}</mark>
+                        {threePartThree}
+                    </p>
                 </div>
                 <div id="suggestionFourId" class="search-suggestion-field-four" ontouchend="suggestionFieldFour()">
-                    <p class="search-part-of-suggestion">{fourPartOne}<mark class="search-selected-field-color">{fourPartTwo}</mark>{fourPartThree}</p>
+                    <p class="search-part-of-suggestion">{fourPartOne}
+                        <mark class="search-selected-field-color">{fourPartTwo}</mark>
+                        {fourPartThree}
+                    </p>
                 </div>
             </div>
         </div>
@@ -126,123 +138,122 @@
             scope.suggestionThree = {};
             scope.suggestionFour = {};
 
-            if(scope.searchWord.length != 0)
-            arrayOfConnectedSuggestion.filter(function (wordOfFunction) {
+            if (scope.searchWord.length != 0)
+                arrayOfConnectedSuggestion.filter(function (wordOfFunction) {
 
-                var index = wordOfFunction.name.toLowerCase().indexOf(scope.searchWord);
-                if (index != -1 && countOfSuggestionWord <= 4) {
+                    var index = wordOfFunction.name.toLowerCase().indexOf(scope.searchWord);
+                    if (index != -1 && countOfSuggestionWord <= 4) {
 
-                    check = true;
-                    if (countOfSuggestionWord == 3) {
+                        check = true;
+                        if (countOfSuggestionWord == 3) {
 
-                        suggestionOneId.style.display = 'block';
-                        suggestionTwoId.style.display = 'block';
-                        suggestionThreeId.style.display = 'block';
-                        suggestionFourId.style.display = 'block';
+                            suggestionOneId.style.display = 'block';
+                            suggestionTwoId.style.display = 'block';
+                            suggestionThreeId.style.display = 'block';
+                            suggestionFourId.style.display = 'block';
 
-                        scope.suggestionFour.name = wordOfFunction.name;
+                            scope.suggestionFour.name = wordOfFunction.name;
 
-                        scope.suggestionFour.id = wordOfFunction.id;
+                            scope.suggestionFour.id = wordOfFunction.id;
 
-                        if (wordOfFunction.form_type) {
-                            scope.suggestionFour.form_type = wordOfFunction.form_type;
+                            if (wordOfFunction.form_type) {
+                                scope.suggestionFour.form_type = wordOfFunction.form_type;
+                            }
+
+                            scope.fourPartOne = scope.suggestionFour.name.substring(0, index);
+                            scope.fourPartTwo = scope.suggestionFour.name.substring(index, scope.searchWord.length + scope.fourPartOne.length);
+                            scope.fourPartThree = scope.suggestionFour.name.substring(scope.fourPartTwo.length + scope.fourPartOne.length, scope.suggestionFour.name.length);
+
+                            riot.update(scope.fourPartOne);
+                            riot.update(scope.fourPartTwo);
+                            riot.update(scope.fourPartThree);
                         }
+                        if (countOfSuggestionWord == 2) {
 
-                        scope.fourPartOne = scope.suggestionFour.name.substring(0, index);
-                        scope.fourPartTwo = scope.suggestionFour.name.substring(index, scope.searchWord.length + scope.fourPartOne.length);
-                        scope.fourPartThree = scope.suggestionFour.name.substring(scope.fourPartTwo.length + scope.fourPartOne.length, scope.suggestionFour.name.length);
+                            suggestionOneId.style.display = 'block';
+                            suggestionTwoId.style.display = 'block';
+                            suggestionThreeId.style.display = 'block';
+                            suggestionFourId.style.display = 'none';
 
-                        riot.update(scope.fourPartOne);
-                        riot.update(scope.fourPartTwo);
-                        riot.update(scope.fourPartThree);
+                            scope.suggestionThree.name = wordOfFunction.name;
 
-                    }
-                    if (countOfSuggestionWord == 2) {
+                            scope.suggestionThree.id = wordOfFunction.id;
 
-                        suggestionOneId.style.display = 'block';
-                        suggestionTwoId.style.display = 'block';
-                        suggestionThreeId.style.display = 'block';
-                        suggestionFourId.style.display = 'none';
+                            if (wordOfFunction.form_type) {
+                                scope.suggestionThree.form_type = wordOfFunction.form_type;
+                            }
 
-                        scope.suggestionThree.name = wordOfFunction.name;
+                            scope.threePartOne = scope.suggestionThree.name.substring(0, index);
+                            scope.threePartTwo = scope.suggestionThree.name.substring(index, scope.searchWord.length + scope.threePartOne.length);
+                            scope.threePartThree = scope.suggestionThree.name.substring(scope.threePartTwo.length + scope.threePartOne.length, scope.suggestionThree.name.length);
 
-                        scope.suggestionThree.id = wordOfFunction.id;
+                            riot.update(scope.threePartOne);
+                            riot.update(scope.threePartTwo);
+                            riot.update(scope.threePartThree);
 
-                        if (wordOfFunction.form_type) {
-                            scope.suggestionThree.form_type = wordOfFunction.form_type;
                         }
+                        if (countOfSuggestionWord == 1) {
 
-                        scope.threePartOne = scope.suggestionThree.name.substring(0, index);
-                        scope.threePartTwo = scope.suggestionThree.name.substring(index, scope.searchWord.length + scope.threePartOne.length);
-                        scope.threePartThree = scope.suggestionThree.name.substring(scope.threePartTwo.length + scope.threePartOne.length, scope.suggestionThree.name.length);
+                            suggestionOneId.style.display = 'block';
+                            suggestionTwoId.style.display = 'block';
+                            suggestionThreeId.style.display = 'none';
+                            suggestionFourId.style.display = 'none';
 
-                        riot.update(scope.threePartOne);
-                        riot.update(scope.threePartTwo);
-                        riot.update(scope.threePartThree);
+                            scope.suggestionTwo.name = wordOfFunction.name;
+                            scope.suggestionTwo.id = wordOfFunction.id;
 
-                    }
-                    if (countOfSuggestionWord == 1) {
+                            if (wordOfFunction.form_type) {
+                                scope.suggestionTwo.form_type = wordOfFunction.form_type;
+                            }
 
-                        suggestionOneId.style.display = 'block';
-                        suggestionTwoId.style.display = 'block';
-                        suggestionThreeId.style.display = 'none';
-                        suggestionFourId.style.display = 'none';
+                            scope.twoPartOne = scope.suggestionTwo.name.substring(0, index);
+                            scope.twoPartTwo = scope.suggestionTwo.name.substring(index, scope.searchWord.length + scope.twoPartOne.length);
+                            scope.twoPartThree = scope.suggestionTwo.name.substring(scope.twoPartTwo.length + scope.twoPartOne.length, scope.suggestionTwo.name.length);
 
-                        scope.suggestionTwo.name = wordOfFunction.name;
-                        scope.suggestionTwo.id = wordOfFunction.id;
+                            riot.update(scope.twoPartOne);
+                            riot.update(scope.twoPartTwo);
+                            riot.update(scope.twoPartThree);
 
-                        if (wordOfFunction.form_type) {
-                            scope.suggestionTwo.form_type = wordOfFunction.form_type;
                         }
+                        if (countOfSuggestionWord == 0) {
 
-                        scope.twoPartOne = scope.suggestionTwo.name.substring(0, index);
-                        scope.twoPartTwo = scope.suggestionTwo.name.substring(index, scope.searchWord.length + scope.twoPartOne.length);
-                        scope.twoPartThree = scope.suggestionTwo.name.substring(scope.twoPartTwo.length + scope.twoPartOne.length, scope.suggestionTwo.name.length);
+                            suggestionOneId.style.display = 'block';
+                            suggestionTwoId.style.display = 'none';
+                            suggestionThreeId.style.display = 'none';
+                            suggestionFourId.style.display = 'none';
 
-                        riot.update(scope.twoPartOne);
-                        riot.update(scope.twoPartTwo);
-                        riot.update(scope.twoPartThree);
+                            scope.suggestionOne.name = wordOfFunction.name;
+                            scope.suggestionOne.id = wordOfFunction.id;
 
-                    }
-                    if (countOfSuggestionWord == 0) {
+                            if (wordOfFunction.form_type) {
+                                scope.suggestionOne.form_type = wordOfFunction.form_type;
+                            }
 
-                        suggestionOneId.style.display = 'block';
-                        suggestionTwoId.style.display = 'none';
-                        suggestionThreeId.style.display = 'none';
-                        suggestionFourId.style.display = 'none';
+                            scope.onePartOne = scope.suggestionOne.name.substring(0, index);
+                            scope.onePartTwo = scope.suggestionOne.name.substring(index, scope.searchWord.length + scope.onePartOne.length);
+                            scope.onePartThree = scope.suggestionOne.name.substring(scope.onePartTwo.length + scope.onePartOne.length, scope.suggestionOne.name.length);
 
-                        scope.suggestionOne.name = wordOfFunction.name;
-                        scope.suggestionOne.id = wordOfFunction.id;
-
-                        if (wordOfFunction.form_type) {
-                            scope.suggestionOne.form_type = wordOfFunction.form_type;
+                            riot.update(scope.onePartOne);
+                            riot.update(scope.onePartTwo);
+                            riot.update(scope.onePartThree);
                         }
+                        if (countOfSuggestionWord == 3)
+                            return
 
-                        scope.onePartOne = scope.suggestionOne.name.substring(0, index);
-                        scope.onePartTwo = scope.suggestionOne.name.substring(index, scope.searchWord.length + scope.onePartOne.length);
-                        scope.onePartThree = scope.suggestionOne.name.substring(scope.onePartTwo.length + scope.onePartOne.length, scope.suggestionOne.name.length);
-
-                        riot.update(scope.onePartOne);
-                        riot.update(scope.onePartTwo);
-                        riot.update(scope.onePartThree);
+                        countOfSuggestionWord++;
                     }
-                    if (countOfSuggestionWord == 3)
+                    else {
+                        if (!check) {
+                            suggestionOneId.style.display = 'none';
+                            suggestionTwoId.style.display = 'none';
+                            suggestionThreeId.style.display = 'none';
+                            suggestionFourId.style.display = 'none';
+                        }
                         return
-
-                    countOfSuggestionWord++;
-                }
-                else {
-                    if (!check) {
-                        suggestionOneId.style.display = 'none';
-                        suggestionTwoId.style.display = 'none';
-                        suggestionThreeId.style.display = 'none';
-                        suggestionFourId.style.display = 'none';
                     }
-                    return
-                }
 
 
-            })
+                })
         }
 
 

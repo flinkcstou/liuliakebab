@@ -2111,7 +2111,7 @@ var css = {
   "height: 9%;" +
   "left: 10%;" +
   "color: white;" +
-  "border-bottom: 5px solid lightgray;" +
+  "border-bottom:" + 5 * widthK + "px solid lightgray;" +
   "}",
 
   servicePageFieldsDropdownTwo: ".servicepage-fields-dropdown-two" +
@@ -2122,14 +2122,14 @@ var css = {
   "left: 10%;" +
   "top: 12%;" +
   "color: white;" +
-  "border-bottom: 5px solid #95e6fd;" +
+  "border-bottom:" + 5 * widthK + "px solid #95e6fd;" +
   "}",
 
   servicePageDropdownTextField: ".servicepage-dropdown-text-field" +
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
-  "font-size: 36px;" +
+  "font-size:" + 36 * widthK + "px;" +
   "top: 40%;" +
   "margin: 0;" +
   "color: #515151;" +
@@ -2148,11 +2148,11 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 79.5%;" +
-  "height: 125px;" +
+  "height:" + 125 * widthK + "px;" +
   "background-color: white;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "margin-bottom: 5px;" +
+  "margin-bottom:" + 5 * widthK + "px;" +
   "}",
 
   servicePageFirstField: ".servicepage-first-field" +
@@ -2161,7 +2161,7 @@ var css = {
   "left: 10%;" +
   "width: 79.5%;" +
   "height: 9%;" +
-  "border-bottom: 5px solid #01cfff;" +
+  "border-bottom:  " + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
   "top: 5.5%;" +
   "}",
