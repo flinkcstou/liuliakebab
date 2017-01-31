@@ -89,7 +89,7 @@
         scope.suggestionTwo.fName = '';
         scope.suggestionTwo.lName = '';
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer') {
             history.arrayOfHistory.push(
                     {
                         "view": 'view-transfer',

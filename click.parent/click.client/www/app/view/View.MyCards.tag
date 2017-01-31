@@ -63,7 +63,7 @@
 
         console.log('scope',scope,'this', this)
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-my-cards') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-cards') {
             history.arrayOfHistory.push(
                     {
                         "view": 'view-my-cards',

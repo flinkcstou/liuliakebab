@@ -65,7 +65,7 @@
             onBackKeyDown()
         }
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-pay-confirm') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay-confirm') {
             history.arrayOfHistory.push(
                     {
                         "view": 'view-pay-confirm',

@@ -46,7 +46,8 @@
             <div class="transferfour-action-containter">
                 <div class="transferfour-action-icon-one"
                      style="background-image: url('resources/icons/ViewService/addfavorite.png');"></div>
-                <div class="transferfour-action-text">{window.languages.ViewTransferFourAddToFavouritePartOne}<br>{window.languages.ViewTransferFourAddToFavouritePartTwo}</div>
+                <div class="transferfour-action-text">{window.languages.ViewTransferFourAddToFavouritePartOne}<br>{window.languages.ViewTransferFourAddToFavouritePartTwo}
+                </div>
             </div>
             <div class="transferfour-button-enter" ontouchend="transferStep()">
                 <p class="transferfour-button-enter-label">{window.languages.ViewTransferFourPay}</p>
@@ -70,7 +71,7 @@
     </code-confirm>
 
     <script>
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-stepfour') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
             history.arrayOfHistory.push(
                     {
                         "view": 'view-transfer-stepfour',

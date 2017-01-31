@@ -68,7 +68,7 @@
         var scope = this;
         this.titleName = window.languages.ViewPayTitleName;
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-pay') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay') {
             history.arrayOfHistory.push(
                     {
                         "view": 'view-pay',

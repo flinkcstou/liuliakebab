@@ -5,7 +5,7 @@
   <script>
     this.titleName = window.languages.ComponentBankOperationsAutoPay;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-auto-pay') {
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-auto-pay') {
       history.arrayOfHistory.push(
               {
                 "view": 'view-auto-pay',

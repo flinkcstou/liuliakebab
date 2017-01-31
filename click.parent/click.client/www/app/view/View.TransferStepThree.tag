@@ -23,6 +23,8 @@
         var arrayForTransfer = [];
         arrayForTransfer.push(opts[0])
         arrayForTransfer.push(opts[1])
+        arrayForTransfer.push(opts[2])
+        console.log(arrayForTransfer)
         var transferTitle;
 
         var objectForTransfer = opts[0];
@@ -33,12 +35,12 @@
         else
             transferTitle = objectForTransfer.phone;
 
-        this.titleName = window.languages.ViewTransferThreeTitle+ ' ' + transferTitle ;
+        this.titleName = window.languages.ViewTransferThreeTitle + ' ' + transferTitle;
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-stepthree') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepthree') {
             history.arrayOfHistory.push(
                     {
-                        "view" :'view-transfer-stepthree',
+                        "view": 'view-transfer-stepthree',
                         "params": opts
                     }
             );
@@ -71,13 +73,13 @@
                     break;
                 }
             }
-            if(checkChosenCard) {
+            if (checkChosenCard) {
                 arrayForTransfer.push(chosenCard)
                 this.riotTags.innerHTML = "<view-transfer-stepfour>";
                 riot.mount('view-transfer-stepfour', [arrayForTransfer]);
             }
             else
-                    alert('choose card')
+                alert('choose card')
         }
 
 

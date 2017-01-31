@@ -13,6 +13,7 @@
 
   <script>
     var scope = this;
+
     menuOpen = function () {
 
       event.preventDefault();

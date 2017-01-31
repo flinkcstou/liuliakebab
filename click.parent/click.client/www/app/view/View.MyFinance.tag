@@ -7,7 +7,7 @@
 
     scope.titleName = 'МОИ ФИНАНСЫ';
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-my-finance') {
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-finance') {
       history.arrayOfHistory.push(
               {
                 "view": 'view-my-finance',

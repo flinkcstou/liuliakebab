@@ -63,7 +63,7 @@
         </div>
     </div>
     <script>
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-service-page') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
             history.arrayOfHistory.push(
                     {
                         "view": 'view-service-page',

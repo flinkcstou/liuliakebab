@@ -13,7 +13,8 @@
 
         <div class="transfertwo-contact-phone-field">
             <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax}</p>
-            <input value="{sumValue}" class="transfertwo-contact-number-input-part" id="sumValueId" autofocus="true" type="tel"
+            <input value="{sumValue}" class="transfertwo-contact-number-input-part" id="sumValueId" autofocus="true"
+                   type="tel"
                    onkeydown="sumField()"/>
         </div>
 
@@ -22,7 +23,7 @@
         </div>
 
         <div class="transfertwo-comment-container">
-            <textarea maxlength="255" class="transfertwo-comment-input"
+            <textarea id="commentTextId" maxlength="255" class="transfertwo-comment-input"
                       type="text" placeholder={comment}></textarea>
         </div>
 
@@ -38,11 +39,10 @@
         var bufferForSum;
         var defaultAccount;
         var cards = JSON.parse(localStorage.getItem('click_client_cards'));
-        for(var i in cards){
-            if(cards[i].default_account === true)
-                    defaultAccount = cards[i];
+        for (var i in cards) {
+            if (cards[i].default_account === true)
+                defaultAccount = cards[i];
         }
-        console.log(defaultAccount)
 
         var transferTitle
         var objectForTransfer = opts[0];
@@ -53,13 +53,16 @@
         else
             transferTitle = objectForTransfer.phone
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-steptwo') {
+        this.titleName = window.languages.ViewTransferTwoTitle + ' ' + transferTitle;
+
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-steptwo') {
             history.arrayOfHistory.push(
                     {
                         "view": 'view-transfer-steptwo',
                         "params": opts
                     }
             );
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
 
         goToBack = function () {
@@ -76,9 +79,10 @@
             event.preventDefault()
             event.stopPropagation()
             var sum = {"sum": sumValueId.value};
+            var comment = {"comment": commentTextId.value};
 
             this.riotTags.innerHTML = "<view-transfer-stepthree>";
-            riot.mount('view-transfer-stepthree', [objectForTransfer,sum]);
+            riot.mount('view-transfer-stepthree', [objectForTransfer, sum, comment]);
         }
 
 

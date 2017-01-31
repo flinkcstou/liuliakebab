@@ -35,7 +35,7 @@
         var scope = this;
         this.titleName = window.languages.ViewMyCardListTitleName;
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-mycard-list') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-mycard-list') {
             history.arrayOfHistory.push(
                     {
                         "view": 'view-mycard-list',

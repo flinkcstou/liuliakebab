@@ -51,7 +51,7 @@
         if (device.platform != 'BrowserStand')
             StatusBar.backgroundColorByHexString("#ffffff");
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-info') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-info') {
             history.arrayOfHistory.push(
                     {
                         "view": 'view-info',

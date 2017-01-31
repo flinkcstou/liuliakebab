@@ -26,7 +26,7 @@
 
 
     <script>
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-service-pincards') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards') {
             history.arrayOfHistory.push(
                     {
                         "view": 'view-service-pincards',
