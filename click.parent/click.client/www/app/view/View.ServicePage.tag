@@ -14,7 +14,7 @@
         <div class="servicepage-fields-dropdown" if="{dropDownOn}" ontouchend="openDropDown()" id="firstFieldChoiceId">
             <p class="servicepage-dropdown-text-field">{chosenFieldName}</p></div>
         <div class="servicepage-first-field" id="firstField">
-            <p class="servicepage-text-field">{chosenFieldName}</p>
+            <p class="servicepage-text-field">{chosenFieldPlaceholder}</p>
             <p class="servicepage-number-first-part" if="{phoneFieldBool}">+{window.languages.CodeOfCountry}</p>
             <input class="{servicepage-number-input-part: phoneFieldBool, servicepage-number-input-part-two: !phoneFieldBool && isNumber,
                            servicepage-number-input-part-three: !phoneFieldBool && !isNumber}"
@@ -103,6 +103,7 @@
                 this.dropDownOn = scope.fieldArray.length > 1;
                 console.log("fiedArray length bool=", this.dropDownOn);
                 scope.chosenFieldName = scope.fieldArray[0].title;
+                scope.chosenFieldPlaceholder = scope.fieldArray[0].placeholder;
                 scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
                 if (this.dropDownOn) {
                     scope.chosenFieldParamId = scope.fieldArray[0].parameter_id;
@@ -148,7 +149,7 @@
             this.blockFirstFieldId.style.display = 'block';
             console.log("id=", scope.chosenFieldParamId);
             document.getElementById(scope.oldFieldParamId).style.backgroundColor = 'white';
-            document.getElementById('text' + scope.oldFieldParamId).style.color = '#8a8a8a';
+            document.getElementById('text' + scope.oldFieldParamId).style.color = '#515151';
             document.getElementById(scope.chosenFieldParamId).style.backgroundColor = '#0084E6';
             document.getElementById('text' + scope.chosenFieldParamId).style.color = 'white';
         }
@@ -160,6 +161,7 @@
                 console.log("parame_id=", scope.fieldArray[i].parameter_id);
                 if (scope.fieldArray[i].parameter_id == id) {
                     scope.chosenFieldName = scope.fieldArray[i].title;
+                    scope.chosenFieldPlaceholder = scope.fieldArray[i].placeholder;
                     scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1";
                     if (scope.fieldArray[i].input_type == '1') {
                         scope.inputType = 'tel';

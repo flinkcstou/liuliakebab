@@ -82,16 +82,16 @@ input {
 /*background-image: url("../resources/icons/background/transparent.png");*/
 /*}*/
 
-/*.view-service-page {*/
-/*position: absolute;*/
-/*width: 100%;*/
-/*height: 100%;*/
-/*overflow: hidden;*/
-/*background-size: contain;*/
-/*background-repeat: no-repeat;*/
-/*background-image: url("../resources/draft/formtypetwo.png");*/
-/*!*background-image: url("../resources/icons/background/transparent.png");*!*/
-/*}*/
+.view-service-page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../resources/draft/servicepagetwo.png");
+    /*background-image: url("../resources/icons/background/transparent.png");*/
+}
 
 /*.view-service-pincards {*/
 /*position: absolute;*/
@@ -909,18 +909,11 @@ input {
     border-bottom: 1px solid black;
 }
 
-.servicepage-params-container {
-    position: absolute;
-    width: 100%;
-    background-color: #4B946A;
-}
-
 .servicepage-fields-dropdown {
     position: relative;
     width: 79.5%;
     height: 9%;
     left: 10%;
-    top: 1%;
     color: white;
     border-bottom: 5px solid lightgray;
 }
@@ -938,10 +931,10 @@ input {
 .servicepage-dropdown-text-field {
     position: absolute;
     background-size: contain;
-    font-size: 35px;
+    font-size: 36px;
     top: 40%;
     margin: 0;
-    color: #8a8a8a;
+    color: #515151;
 }
 
 .servicepage-dropdown-container {
@@ -969,8 +962,7 @@ input {
     height: 9%;
     border-bottom: 5px solid #01cfff;
     color: white;
-    top: 4.5%;
-
+    top: 5.5%;
 }
 
 .servicepage-phone-icon {
@@ -998,12 +990,12 @@ input {
 
 .servicepage-amount-field-two {
     position: relative;
-    left: 11%;
+    left: 10%;
     width: 79.5%;
-    height: 9%;
+    height: 8%;
     border-bottom: 5px solid lightgray;
     color: white;
-    top: 13%;
+    top: 11%;
 }
 
 .servicepage-amount-icon {
@@ -1030,8 +1022,6 @@ input {
     float: left;
     position: relative;
     top: 26%;
-    width: 7%;
-    height: 42%;
     font-size: 56px;
     font-family: 'SFUIDisplay-Light';
     color: #515151;
@@ -1055,6 +1045,8 @@ input {
     outline: none;
     position: relative;
     top: 38%;
+    padding: 0;
+    margin: 0;
     left: 18%;
     width: 66%;
     height: 42%;
@@ -1068,6 +1060,8 @@ input {
     outline: none;
     position: relative;
     top: 38%;
+    padding: 0;
+    margin: 0;
     width: 100%;
     height: 42%;
     font-size: 56px;
@@ -1079,10 +1073,12 @@ input {
     border: none;
     outline: none;
     position: relative;
-    top: 38%;
+    top: 21%;
+    padding: 0;
+    margin: 0;
     width: 100%;
     height: 57%;
-    font-size: 56px;
+    font-size: 53px;
     font-family: 'SFUIDisplay-Light';
     color: #515151;
 }

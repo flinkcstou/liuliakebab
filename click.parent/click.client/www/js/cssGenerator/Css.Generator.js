@@ -2094,6 +2094,78 @@ var css = {
   "border-bottom: 1px solid black;" +
   "}",
 
+  componentFirstField: ".component-first-field" +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.97;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "background-color: #353340;" +
+  "display: none;" +
+  "}",
+
+  servicePageFieldsDropdown: ".servicepage-fields-dropdown" +
+  "{" +
+  "position: relative;" +
+  "width: 79.5%;" +
+  "height: 9%;" +
+  "left: 10%;" +
+  "color: white;" +
+  "border-bottom: 5px solid lightgray;" +
+  "}",
+
+  servicePageFieldsDropdownTwo: ".servicepage-fields-dropdown-two" +
+  "{" +
+  "position: absolute;" +
+  "width: 79.5%;" +
+  "height: 8%;" +
+  "left: 10%;" +
+  "top: 12%;" +
+  "color: white;" +
+  "border-bottom: 5px solid #95e6fd;" +
+  "}",
+
+  servicePageDropdownTextField: ".servicepage-dropdown-text-field" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size: 36px;" +
+  "top: 40%;" +
+  "margin: 0;" +
+  "color: #515151;" +
+  "}",
+
+  servicePageDropdownContainer: ".servicepage-dropdown-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 55%;" +
+  "top: 22%;" +
+  "overflow: scroll;" +
+  "}",
+
+  servicePageDropdownVariant: ".servicepage-dropdown-variant" +
+  "{" +
+  "position: relative;" +
+  "width: 79.5%;" +
+  "height: 125px;" +
+  "background-color: white;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "margin-bottom: 5px;" +
+  "}",
+
+  servicePageFirstField: ".servicepage-first-field" +
+  "{" +
+  "position: relative;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height: 9%;" +
+  "border-bottom: 5px solid #01cfff;" +
+  "color: white;" +
+  "top: 5.5%;" +
+  "}",
+
   servicePagePhoneField: ".servicepage-phone-field" +
   "{" +
   "position: relative;" +
@@ -2127,6 +2199,16 @@ var css = {
   "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
   "color: white;" +
   "top: 19.5%" +
+  "}",
+
+  servicePageAmountFieldTwo: ".servicepage-amount-field-two" +
+  "{position: relative;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height: 8%;" +
+  "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
+  "color: white;" +
+  "top: 11%;" +
   "}",
 
   servicePageAmountIcon: ".servicepage-amount-icon" +
@@ -2183,12 +2265,42 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: absolute;" +
-  "top: 24%;" +
+  "top: 38%;" +
   "padding: 0;" +
   "margin: 0;" +
   "left: 26%;" +
   "width: 66%;" +
-  "height: 67%;" +
+  "height: 42%;" +
+  "font-size:" + 56 * widthK + "px; " +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "}",
+
+  servicePageNumberInputPartTwo: ".servicepage-number-input-part-two" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "top: 38%;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "width: 100%;" +
+  "height: 42%;" +
+  "font-size:" + 56 * widthK + "px; " +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "}",
+
+  servicePageNumberInputPartThree: ".servicepage-number-input-part-three" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "top: 21%;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "width: 100%;" +
+  "height: 57%;" +
   "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -3222,7 +3334,7 @@ var css = {
 
   //VIEW TRANSFER TWO
 
-  transferTwoBodyContainer  : ".transfertwo-body-container " +
+  transferTwoBodyContainer: ".transfertwo-body-container " +
   "{" +
   "position: absolute;" +
   "height:" + 1145 * widthK + "px;" +
@@ -3289,7 +3401,7 @@ var css = {
   "vertical-align: middle;" +
   "}",
 
-  transferTwoCommentContainer : ".transfertwo-comment-container" +
+  transferTwoCommentContainer: ".transfertwo-comment-container" +
   "{" +
   "position: absolute;" +
   "width: 60%;" +
@@ -3303,7 +3415,7 @@ var css = {
   "color: #ffffff;" +
   "}",
 
-  transferTwoCommentInput : ".transfertwo-comment-input" +
+  transferTwoCommentInput: ".transfertwo-comment-input" +
   "{" +
   "position: absolute;" +
   "width: 90%;" +
@@ -3319,7 +3431,7 @@ var css = {
   "color: gray;" +
   "}",
 
-  transferTwoMenusContainer : ".transfertwo-menus-container " +
+  transferTwoMenusContainer: ".transfertwo-menus-container " +
   "{" +
   "position: absolute;" +
   "height: 8%;" +
@@ -3328,7 +3440,7 @@ var css = {
   "border-bottom:1px solid #e3e3e3;" +
   "}",
 
-  transferTwoMenuNameLabel : ".transfertwo-menu-name-label " +
+  transferTwoMenuNameLabel: ".transfertwo-menu-name-label " +
   "{" +
   "margin: 0;" +
   "text-align: center;" +
@@ -3342,7 +3454,7 @@ var css = {
 
   //VIEW TRANSFER THREE
 
-  transferThreeBodyContainer  : ".transferthree-body-container " +
+  transferThreeBodyContainer: ".transferthree-body-container " +
   "{" +
   "position: absolute;" +
   "height:" + 1145 * widthK + "px;" +
@@ -3352,7 +3464,7 @@ var css = {
   "overflow: hidden;" +
   "}",
 
-  transferThreeMenusContainer : ".transferthree-menus-container " +
+  transferThreeMenusContainer: ".transferthree-menus-container " +
   "{" +
   "position: absolute;" +
   "height: 8%;" +
@@ -3361,7 +3473,7 @@ var css = {
   "border-bottom:1px solid #e3e3e3;" +
   "}",
 
-  transferThreeMenuNameLabel : ".transferthree-menu-name-label " +
+  transferThreeMenuNameLabel: ".transferthree-menu-name-label " +
   "{" +
   "margin: 0;" +
   "text-align: center;" +
@@ -3372,7 +3484,7 @@ var css = {
   "color: #515151;" +
   "}",
 
-  transferThreeContactBodyContainer : ".transferthree-contact-body-container " +
+  transferThreeContactBodyContainer: ".transferthree-contact-body-container " +
   "{" +
   "position: absolute;" +
   "top: 10%;" +
@@ -3380,7 +3492,7 @@ var css = {
   "background-color: transparent;" +
   "}",
 
-  transferThreeContactPhoneField : ".transferthree-contact-phone-field " +
+  transferThreeContactPhoneField: ".transferthree-contact-phone-field " +
   "{" +
   "position: relative;" +
   "left: 10%;" +
@@ -3419,7 +3531,7 @@ var css = {
 
   //VIEW TRANSFER FOUR
 
-  transferFourBodyContainer  : ".transferfour-body-container " +
+  transferFourBodyContainer: ".transferfour-body-container " +
   "{" +
   "position: absolute;" +
   "height:" + 1142 * widthK + "px;" +
@@ -3739,8 +3851,8 @@ var css = {
   "margin-top: 0;" +
   "color: white;" +
   "text-align: center;" +
-  "border-bottom:" + 5 * widthK+ "px solid #6abfff;"+
-  "font-size:" + 100 * widthK+ "px;"+
+  "border-bottom:" + 5 * widthK + "px solid #6abfff;" +
+  "font-size:" + 100 * widthK + "px;" +
   "}",
 
   codeConfirmMessageText: ".code-confirm-message-text " +
@@ -3751,7 +3863,7 @@ var css = {
   "top: 10%;" +
   "margin:0 auto 0 auto;" +
   "font-size:" + 28 * widthK + "px;" +
-  "color: white;"+
+  "color: white;" +
   "}",
 
   codeConfirmButtonEnter: ".code-confirm-button-enter" +
