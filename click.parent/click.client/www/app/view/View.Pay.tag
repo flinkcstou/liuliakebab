@@ -57,9 +57,15 @@
         this.titleName = window.languages.ViewPayTitleName;
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-pay') {
-            history.arrayOfHistory.push('view-pay');
+            history.arrayOfHistory.push(
+                    {
+                        "view": 'view-pay',
+                        "params": ''
+                    }
+            );
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
+
         scope.categoryList = JSON.parse(localStorage.getItem("click_client_payCategoryList"));
         scope.serviceList = JSON.parse(localStorage.getItem("click_client_payServiceList"));
         scope.serviceNamesMap = JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"));

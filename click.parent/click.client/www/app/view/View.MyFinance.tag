@@ -6,8 +6,14 @@
     var scope = this;
 
     scope.titleName = 'МОИ ФИНАНСЫ';
-    if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-mycard-list') {
-      history.arrayOfHistory.push('view-mycard-list');
+
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-my-finance') {
+      history.arrayOfHistory.push(
+              {
+                "view": 'view-my-finance',
+                "params": ''
+              }
+      );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 

@@ -73,10 +73,12 @@
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-stepfour') {
             history.arrayOfHistory.push(
                     {
-                        "view" :'view-transfer-stepfour',
+                        "view": 'view-transfer-stepfour',
                         "params": opts
                     }
             );
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+        }
 
         var scope = this;
         scope.backbuttoncheck = true;

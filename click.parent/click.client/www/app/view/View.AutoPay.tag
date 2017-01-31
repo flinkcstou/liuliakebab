@@ -4,9 +4,15 @@
 
   <script>
     this.titleName = window.languages.ComponentBankOperationsAutoPay;
-    if(history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-auto-pay') {
-      history.arrayOfHistory.push('view-auto-pay');
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-auto-pay') {
+      history.arrayOfHistory.push(
+              {
+                "view": 'view-auto-pay',
+                "params": ''
+              }
+      );
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
     scope = this;

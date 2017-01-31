@@ -27,8 +27,13 @@
 
     <script>
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-service-pincards') {
-            history.arrayOfHistory.push('view-service-pincards');
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+            history.arrayOfHistory.push(
+                    {
+                        "view": 'view-service-pincards',
+                        "params": ''
+                    }
+            );
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
 
         var scope = this;

@@ -28,8 +28,13 @@
 
   <script>
 
-    if(history.arrayOfHistory.length != 0 && history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-service-pincards') {
-      history.arrayOfHistory.push('view-authorization');
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-authorization') {
+      history.arrayOfHistory.push(
+              {
+                "view": 'view-authorization',
+                "params": ''
+              }
+      );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 

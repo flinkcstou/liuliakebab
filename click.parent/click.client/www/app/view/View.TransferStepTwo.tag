@@ -56,10 +56,11 @@
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1] != 'view-transfer-steptwo') {
             history.arrayOfHistory.push(
                     {
-                        "view" :'view-transfer-steptwo',
+                        "view": 'view-transfer-steptwo',
                         "params": opts
                     }
             );
+        }
 
         goToBack = function () {
             event.preventDefault();
