@@ -37,7 +37,7 @@
                     <p class="transferfour-detail-text">Доступно:{objectCardForTransfer.salary} {objectCardForTransfer.currency}</p>
                 </div>
                 <div class="transferfour-card-logo-container"
-                     style="background-image: url({url})">
+                     style="background-image: url({objectCardForTransfer.url})">
                 </div>
             </div>
         </div>
@@ -61,10 +61,10 @@
             <div class="code-confirm-cancel-icon" ontouchend="confirmCodeCancelEnd()"></div>
         </div>
         <div class="code-confirm-code-container">
-            <p class="code-confirm-code-text">8723</p>
+            <p class="code-confirm-code-text">{secretCode}</p>
             <p class="code-confirm-message-text">Передайте код получателю для завершения перевода</p>
 
-            <div class="code-confirm-button-enter" ontouchend="transferStep()">
+            <div class="code-confirm-button-enter" ontouchend="closeSecretCodePage()">
                 <p class="code-confirm-button-enter-label">OK</p>
             </div>
         </div>
@@ -117,7 +117,6 @@
 
 
         transferStep = function () {
-            blockCodeConfirmId.style.display = 'block';
 
             var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
             var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -141,6 +140,17 @@
                 onSuccess: function (result) {
                     if (result[0][0].error == 0) {
                         console.log("result of TRANSFER ", result);
+                        if (result[1][0]) {
+                            if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
+                                blockCodeConfirmId.style.display = 'block';
+                                scope.secretCode = result[1][0].secret_code;
+                                riot.update(scope.secretCode);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        alert(result[0][0].error_note)
                     }
                 },
 
@@ -151,7 +161,7 @@
             });
         }
 
-        confirmCodeCancelEnd = function () {
+        closeSecretCodePage = function () {
             blockCodeConfirmId.style.display = 'none';
         }
     </script>

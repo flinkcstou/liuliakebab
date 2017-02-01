@@ -152,11 +152,15 @@
                         //TODO: DO CARDS
                         scope: this,
                         onSuccess: function (result) {
-//                            console.log('CHECKING ', i, getAccountsCards.length)
-//                            console.log('CHECKING ', cardsarray[0].salary, result[1][0].balance)
-                            cardsarray[j++].salary = result[1][0].balance;
-                            localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
-                            riot.update();
+                            if (result[0][0].error == 0) {
+                                if(result[1][0]) {
+                                    cardsarray[j++].salary = result[1][0].balance;
+                                    localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
+                                    riot.update();
+                                }
+                            }
+                            else
+                                    alert(result[0][0].error_note);
                         },
 
                         onFail: function (api_status, api_status_message, data) {

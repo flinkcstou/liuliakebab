@@ -188,6 +188,8 @@
                                 if (result[0][0].error == 0) {
                                     console.log("result of APP.PAYMENT ", result);
                                 }
+                                else
+                                    alert(result[0][0].error_note);
                             },
 
                             onFail: function (api_status, api_status_message, data) {

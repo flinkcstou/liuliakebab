@@ -150,10 +150,8 @@
                 scope: this,
 
                 onSuccess: function (result) {
-//          console.log('RESULT', result)
-//          console.log("result[0][0] ", result[0][0].error);
                     if (result[0][0].error != 0) {
-                        alert("PIN CODE IS INCORRECT. Pojaluysta povtorite vvod")
+                        alert(result[0][0].error_note)
                         enteredPin = '';
                         updateEnteredPin();
                         return

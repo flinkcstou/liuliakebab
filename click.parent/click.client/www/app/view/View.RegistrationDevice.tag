@@ -158,24 +158,25 @@
                 scope: this,
 
                 onSuccess: function (result) {
-                    if (result[0][0].error == -8) {
-                        alert("Пользователь не найден");
-                        return;
+                    if(result[0][0].error == 0) {
+                        if(result[1][0]) {
+                            var deviceId = result[1][0].device_id;
+                            localStorage.setItem('click_client_deviceID', deviceId);
+                            token = hex_sha512(deviceId + date + phoneNumber);
+                            localStorage.setItem('click_client_token', token);
+                            if (result[1][0].confirm_needed) {
+                                localStorage.setItem('confirm_needed', true);
+                                this.riotTags.innerHTML = "<view-sms>";
+                                riot.mount('view-sms');
+                            }
+                            else {
+                                this.riotTags.innerHTML = "<view-authorization>";
+                                riot.mount('view-authorization');
+                            }
+                        }
                     }
-//          console.log("result ", result);
-                    var deviceId = result[1][0].device_id;
-                    localStorage.setItem('click_client_deviceID', deviceId);
-                    token = hex_sha512(deviceId + date + phoneNumber);
-                    localStorage.setItem('click_client_token', token);
-                    if (result[1][0].confirm_needed) {
-                        localStorage.setItem('confirm_needed', true);
-                        this.riotTags.innerHTML = "<view-sms>";
-                        riot.mount('view-sms');
-                    }
-                    else {
-                        this.riotTags.innerHTML = "<view-authorization>";
-                        riot.mount('view-authorization');
-                    }
+                    else
+                        alert(result[0][0].error_note);
                 },
 
                 onFail: function (api_status, api_status_message, data) {

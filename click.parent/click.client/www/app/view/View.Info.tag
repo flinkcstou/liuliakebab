@@ -96,6 +96,8 @@
 //                    console.log('scope.lastOperationContainer', scope.lastOperationContainer)
                     riot.update(scope.lastOperationContainer)
                 }
+                else
+                        alert(result[0][0].error_note)
 
             },
 
