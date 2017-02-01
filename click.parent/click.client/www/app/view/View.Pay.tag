@@ -27,45 +27,11 @@
             </ul>
         </div>
     </div>
-    <component-search id="blockSearchId" class="component-search">
-        <div class="search-title-container">
-            <div class="search-search-icon"></div>
-            <p class="search-title-name">{window.languages.ComponentSearchTitle}</p>
-            <div class="search-cancel-icon" ontouchend="searchCancelEnd()"></div>
-        </div>
-        <div id="searchContainerId" class="search-container">
-            <input id="searchInputId" class="search-input" onkeyup="searchSuggestion()"/>
-            <div class="search-suggestion-container">
-                <div id="suggestionOneId" class="search-suggestion-field-one" ontouchend="suggestionFieldOne()">
-                    <p class="search-part-of-suggestion">{onePartOne}
-                        <mark class="search-selected-field-color">{onePartTwo}</mark>
-                        {onePartThree}
-                    </p>
-                </div>
-                <div id="suggestionTwoId" class="search-suggestion-field-two" ontouchend="suggestionFieldTwo()">
-                    <p class="search-part-of-suggestion">{twoPartOne}
-                        <mark class="search-selected-field-color">{twoPartTwo}</mark>
-                        {twoPartThree}
-                    </p>
-                </div>
-                <div id="suggestionThreeId" class="search-suggestion-field-three" ontouchend="suggestionFieldThree()">
-                    <p class="search-part-of-suggestion">{threePartOne}
-                        <mark class="search-selected-field-color">{threePartTwo}</mark>
-                        {threePartThree}
-                    </p>
-                </div>
-                <div id="suggestionFourId" class="search-suggestion-field-four" ontouchend="suggestionFieldFour()">
-                    <p class="search-part-of-suggestion">{fourPartOne}
-                        <mark class="search-selected-field-color">{fourPartTwo}</mark>
-                        {fourPartThree}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </component-search>
+    <component-search></component-search>
     <script>
         //TODO: OPTIMIZE THIS PAGE SLOW DOWNLOADING CATEGORIES AND SERVICES
         var scope = this;
+        scope.checkOfSearch = false;
         this.titleName = window.languages.ViewPayTitleName;
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay') {
@@ -86,11 +52,6 @@
         //        scope.servicesParams = JSON.parse(localStorage.getItem("click_client_servicesParams"));
         scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
 
-        //VARIABLES FOR SEARCHING
-        var arrayOfConnectedSuggestion = [];
-        var bufferArray = [];
-        scope.searchWord = '';
-        var checkOfSearch = false;
 
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         scope.operatorKey = phoneNumber.substr(3, 2);
@@ -103,214 +64,6 @@
             event.stopPropagation();
             onBackKeyDown()
         }
-
-        search = function () {
-            event.preventDefault();
-            event.stopPropagation();
-            blockSearchId.style.display = 'block';
-            if (scope.categoryList)
-                arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
-            if (device.platform != 'BrowserStand')
-                StatusBar.backgroundColorByHexString("#353340");
-        }
-
-        searchCancelEnd = function () {
-            event.preventDefault();
-            event.stopPropagation();
-            blockSearchId.style.display = 'none';
-            if (device.platform != 'BrowserStand')
-                StatusBar.backgroundColorByHexString("#007AE2");
-            scope.searchWord = '';
-            Keyboard.hide();
-        }
-
-        searchSuggestion = function () {
-            var countOfSuggestionWord = 0;
-            var check = false;
-            event.preventDefault();
-            event.stopPropagation();
-
-            if (event.keyCode != 16 && event.keyCode != 18)
-                scope.searchWord = event.target.value.toLowerCase();
-
-            scope.suggestionOne = {};
-            scope.suggestionTwo = {};
-            scope.suggestionThree = {};
-            scope.suggestionFour = {};
-
-            if (scope.searchWord.length != 0)
-                arrayOfConnectedSuggestion.filter(function (wordOfFunction) {
-
-                    var index = wordOfFunction.name.toLowerCase().indexOf(scope.searchWord);
-                    if (index != -1 && countOfSuggestionWord <= 4) {
-
-                        check = true;
-                        if (countOfSuggestionWord == 3) {
-
-                            suggestionOneId.style.display = 'block';
-                            suggestionTwoId.style.display = 'block';
-                            suggestionThreeId.style.display = 'block';
-                            suggestionFourId.style.display = 'block';
-
-                            scope.suggestionFour.name = wordOfFunction.name;
-
-                            scope.suggestionFour.id = wordOfFunction.id;
-
-                            if (wordOfFunction.form_type) {
-                                scope.suggestionFour.form_type = wordOfFunction.form_type;
-                            }
-
-                            scope.fourPartOne = scope.suggestionFour.name.substring(0, index);
-                            scope.fourPartTwo = scope.suggestionFour.name.substring(index, scope.searchWord.length + scope.fourPartOne.length);
-                            scope.fourPartThree = scope.suggestionFour.name.substring(scope.fourPartTwo.length + scope.fourPartOne.length, scope.suggestionFour.name.length);
-
-                            riot.update(scope.fourPartOne);
-                            riot.update(scope.fourPartTwo);
-                            riot.update(scope.fourPartThree);
-                        }
-                        if (countOfSuggestionWord == 2) {
-
-                            suggestionOneId.style.display = 'block';
-                            suggestionTwoId.style.display = 'block';
-                            suggestionThreeId.style.display = 'block';
-                            suggestionFourId.style.display = 'none';
-
-                            scope.suggestionThree.name = wordOfFunction.name;
-
-                            scope.suggestionThree.id = wordOfFunction.id;
-
-                            if (wordOfFunction.form_type) {
-                                scope.suggestionThree.form_type = wordOfFunction.form_type;
-                            }
-
-                            scope.threePartOne = scope.suggestionThree.name.substring(0, index);
-                            scope.threePartTwo = scope.suggestionThree.name.substring(index, scope.searchWord.length + scope.threePartOne.length);
-                            scope.threePartThree = scope.suggestionThree.name.substring(scope.threePartTwo.length + scope.threePartOne.length, scope.suggestionThree.name.length);
-
-                            riot.update(scope.threePartOne);
-                            riot.update(scope.threePartTwo);
-                            riot.update(scope.threePartThree);
-
-                        }
-                        if (countOfSuggestionWord == 1) {
-
-                            suggestionOneId.style.display = 'block';
-                            suggestionTwoId.style.display = 'block';
-                            suggestionThreeId.style.display = 'none';
-                            suggestionFourId.style.display = 'none';
-
-                            scope.suggestionTwo.name = wordOfFunction.name;
-                            scope.suggestionTwo.id = wordOfFunction.id;
-
-                            if (wordOfFunction.form_type) {
-                                scope.suggestionTwo.form_type = wordOfFunction.form_type;
-                            }
-
-                            scope.twoPartOne = scope.suggestionTwo.name.substring(0, index);
-                            scope.twoPartTwo = scope.suggestionTwo.name.substring(index, scope.searchWord.length + scope.twoPartOne.length);
-                            scope.twoPartThree = scope.suggestionTwo.name.substring(scope.twoPartTwo.length + scope.twoPartOne.length, scope.suggestionTwo.name.length);
-
-                            riot.update(scope.twoPartOne);
-                            riot.update(scope.twoPartTwo);
-                            riot.update(scope.twoPartThree);
-
-                        }
-                        if (countOfSuggestionWord == 0) {
-
-                            suggestionOneId.style.display = 'block';
-                            suggestionTwoId.style.display = 'none';
-                            suggestionThreeId.style.display = 'none';
-                            suggestionFourId.style.display = 'none';
-
-                            scope.suggestionOne.name = wordOfFunction.name;
-                            scope.suggestionOne.id = wordOfFunction.id;
-
-                            if (wordOfFunction.form_type) {
-                                scope.suggestionOne.form_type = wordOfFunction.form_type;
-                            }
-
-                            scope.onePartOne = scope.suggestionOne.name.substring(0, index);
-                            scope.onePartTwo = scope.suggestionOne.name.substring(index, scope.searchWord.length + scope.onePartOne.length);
-                            scope.onePartThree = scope.suggestionOne.name.substring(scope.onePartTwo.length + scope.onePartOne.length, scope.suggestionOne.name.length);
-
-                            riot.update(scope.onePartOne);
-                            riot.update(scope.onePartTwo);
-                            riot.update(scope.onePartThree);
-                        }
-                        if (countOfSuggestionWord == 3)
-                            return
-
-                        countOfSuggestionWord++;
-                    }
-                    else {
-                        if (!check) {
-                            suggestionOneId.style.display = 'none';
-                            suggestionTwoId.style.display = 'none';
-                            suggestionThreeId.style.display = 'none';
-                            suggestionFourId.style.display = 'none';
-                        }
-                        return
-                    }
-
-
-                })
-        }
-
-
-        suggestionFieldOne = function () {
-            Keyboard.hide();
-            event.preventDefault();
-            event.stopPropagation();
-            blockSearchId.style.display = 'none';
-            checkOfSearch = true;
-            if (scope.suggestionOne.form_type) {
-                onTouchEndOfService(scope.suggestionOne.id)
-            }
-            else
-                onTouchEndOfCategory(scope.suggestionOne.id);
-        }
-
-        suggestionFieldTwo = function () {
-            Keyboard.hide();
-            event.preventDefault();
-            event.stopPropagation();
-            blockSearchId.style.display = 'none';
-            checkOfSearch = true;
-            if (scope.suggestionTwo.form_type) {
-                onTouchEndOfCategory(scope.suggestionTwo.id)
-            }
-            else
-                onTouchEndOfCategory(scope.suggestionTwo.id);
-        }
-
-
-        suggestionFieldThree = function () {
-            Keyboard.hide();
-            event.preventDefault();
-            event.stopPropagation();
-            blockSearchId.style.display = 'none';
-            checkOfSearch = true;
-            if (scope.suggestionThree.form_type) {
-                onTouchEndOfCategory(scope.suggestionThree.id)
-            }
-            else
-                onTouchEndOfCategory(scope.suggestionThree.id);
-        }
-
-
-        suggestionFieldFour = function () {
-            Keyboard.hide();
-            event.preventDefault();
-            event.stopPropagation();
-            blockSearchId.style.display = 'none';
-            checkOfSearch = true;
-            if (scope.suggestionFour.form_type) {
-                onTouchEndOfCategory(scope.suggestionFour.id)
-            }
-            else
-                onTouchEndOfCategory(scope.suggestionFour.id);
-        }
-
         //        if (!scope.categoryList) {
         scope.categoryList = [];
         scope.categoryNamesMap = {};
@@ -377,19 +130,19 @@
         var onTouchEndY;
         var count = 1;
 
-        onTouchStartOfCategory = function () {
+        scope.onTouchStartOfCategory = onTouchStartOfCategory = function () {
             event.stopPropagation();
             onTouchStartY = event.changedTouches[0].pageY;
         }
 
-        onTouchEndOfCategory = function (id) {
+        scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
             event.stopPropagation();
 
             onTouchEndY = event.changedTouches[0].pageY;
 //      console.log(onTouchEndY)
 
 
-            if (Math.abs(onTouchStartY - onTouchEndY) <= 20 || checkOfSearch) {
+            if (Math.abs(onTouchStartY - onTouchEndY) <= 20 ||  scope.checkOfSearch) {
                 if (scope.index == id) {
                     scope.index = -1;
                 } else {
@@ -583,24 +336,26 @@
         }
 
 
-        onTouchStartOfService = function () {
+        scope.onTouchStartOfService = onTouchStartOfService = function () {
             event.stopPropagation();
             onTouchStartY = event.changedTouches[0].pageY;
         }
 
-        onTouchEndOfService = function (id) {
+        scope.onTouchEndOfService = onTouchEndOfService = function (id) {
+            console.log(' scope.checkOfSearch', scope.checkOfSearch)
             event.stopPropagation();
             onTouchEndY = event.changedTouches[0].pageY;
 
-            if (Math.abs(onTouchStartY - onTouchEndY) <= 20 || checkOfSearch) {
+            if (Math.abs(onTouchStartY - onTouchEndY) <= 20 ||  scope.checkOfSearch) {
                 viewPay.chosenServiceId = id;
                 event.stopPropagation();
 
                 localStorage.setItem('chosenServiceId', id);
-                this.riotTags.innerHTML = "<view-service-page>";
+                riotTags.innerHTML = "<view-service-page>";
                 riot.mount("view-service-page");
             }
         }
+
 
     </script>
 </view-pay>
