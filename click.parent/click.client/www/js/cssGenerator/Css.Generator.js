@@ -3014,7 +3014,7 @@ var css = {
   transferBodyContainer: ".transfer-body-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 1145 * widthK + "px;" +
+  "height:" + 1142 * widthK + "px;" +
   "width:" + 720 * widthK + "px;" +
   "top:" + 90 * widthK + "px;" +
   "background-color: white;" +
@@ -3339,7 +3339,7 @@ var css = {
   transferTwoBodyContainer: ".transfertwo-body-container " +
   "{" +
   "position: absolute;" +
-  "height:" + 1145 * widthK + "px;" +
+  "height:" + 1139 * widthK + "px;" +
   "width:" + 720 * widthK + "px;" +
   "top:" + 93 * widthK + "px;" +
   "background-color: white;" +
@@ -3459,7 +3459,7 @@ var css = {
   transferThreeBodyContainer: ".transferthree-body-container " +
   "{" +
   "position: absolute;" +
-  "height:" + 1145 * widthK + "px;" +
+  "height:" + 1139 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
   "top:" + 93 * widthK + "px;" +
   "background-color: white;" +
@@ -3538,7 +3538,7 @@ var css = {
   transferFourBodyContainer: ".transferfour-body-container " +
   "{" +
   "position: absolute;" +
-  "height:" + 1142 * widthK + "px;" +
+  "height:" + 1142 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
   "top:" + 90 * widthK + "px;" +
   "background-color: white;" +
