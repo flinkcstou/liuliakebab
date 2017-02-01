@@ -14,11 +14,11 @@
         <div class="payconfirm-data-container">
             <div class="payconfirm-phone-field" if="{viewServicePage.formType!=2}">
                 <p class="payconfirm-text-field">{window.languages.ViewPayConformEnterPhone}</p>
-                <p class="payconfirm-phone-input">{phoneText}</p>
+                <p class="payconfirm-phone-input">{firstFieldText}</p>
             </div>
             <div class="payconfirm-field">
                 <p class="payconfirm-text-field">{window.languages.ViewPayConfirmAmountOfPay}</p>
-                <p class="payconfirm-phone-input">{amountText} сум</p>
+                <p class="payconfirm-phone-input">{amountText} {currency}</p>
             </div>
             <div class="payconfirm-field">
                 <p class="payconfirm-text-field">{window.languages.ViewPayConfirmCategory}</p>
@@ -80,14 +80,16 @@
         cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
         var serviceId = localStorage.getItem('chosenServiceId');
         scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
-
-        this.phoneText = "+" + window.languages.CodeOfCountry + viewServicePage.phoneText;
-        this.amountText = viewServicePage.amountText;
+        this.formType = opts[0][0].formtype;
+        this.firstFieldId = opts[0][1].firstFieldId;
+        this.firstFieldText = "+" + window.languages.CodeOfCountry + opts[0][2].firstFieldText;
+        this.cardTypeId = opts[0][3].cardTypeId;
+        this.amountText = opts[0][4].amountText;
 
         scope.titleName = scope.service.name;
         scope.serviceIcon = scope.service.image;
         scope.categoryName = scope.categoryNamesMap[viewPay.categoryId];
-        var chosenCardId = opts[0];
+        var chosenCardId = opts[1];
         console.log("chosen card id=", chosenCardId);
 
         for (var i = 0; i < cardsArray.length; i++)
@@ -107,9 +109,20 @@
             var phoneNumber = localStorage.getItem('click_client_phoneNumber');
             var serviceId = viewPay.chosenServiceId;
             var accountId = chosenCardId;
-            var amount = viewServicePage.amountText;
-            var phoneParam = viewServicePage.phoneText;
-            var payment_data = {"param": "1", "value": phoneParam, "transaction_id": parseInt(Date.now() / 1000)};
+            var amount = this.amountText;
+
+            if (this.formType == 1)
+                var payment_data = {
+                    "param": this.firstFieldId,
+                    "value": this.firstFieldText,
+                    "transaction_id": parseInt(Date.now() / 1000)
+                };
+            else if (this.formType == 2)
+                var payment_data = {
+                    "pin_param": this.cardTypeId,
+                    "transaction_id": parseInt(Date.now() / 1000)
+                };
+
 
             window.api.call({
                 method: 'app.payment',

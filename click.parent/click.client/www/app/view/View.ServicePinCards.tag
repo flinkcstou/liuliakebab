@@ -23,14 +23,21 @@
             </div>
         </div>
     </div>
-
-
     <script>
+
+        var arrayForTransfer = [];
+        arrayForTransfer.push(opts[0])
+        arrayForTransfer.push(opts[1])
+        arrayForTransfer.push(opts[2])
+        arrayForTransfer.push(opts[3])
+        arrayForTransfer.push(opts[4])
+        console.log(arrayForTransfer)
+
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards') {
             history.arrayOfHistory.push(
                     {
                         "view": 'view-service-pincards',
-                        "params": ''
+                        "params": opts
                     }
             );
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
@@ -69,8 +76,7 @@
             event.preventDefault();
             event.stopPropagation();
             this.riotTags.innerHTML = "<view-pay-confirm>";
-            riot.mount('view-pay-confirm', [scope.chosencardId]);
-
+            riot.mount('view-pay-confirm', [arrayForTransfer, scope.chosencardId]);
         }
 
 

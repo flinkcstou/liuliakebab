@@ -56,8 +56,8 @@
         <div class="servicepage-pincards-container" each="{i in pincardIds}">
             <div class="servicepage-pincard-title">{pincardsMap[i][0].name}</div>
             <div class="servicepage-pincard-nominal-container" each="{j in pincardsMap[i]}"
-                 ontouchend="goToPinCardViewFromTwo()">
-                <p class="servicepage-pincard-nominal-value">{j.nominal} сум</p>
+                 ontouchend="goToPinCardViewFromTwo({j.nominal},{j.card_type_id})">
+                <p class="servicepage-pincard-nominal-value">{j.nominal}</p>
                 <div class="servicepage-pincard-choose-arrow"></div>
             </div>
         </div>
@@ -130,7 +130,7 @@
 
         if (scope.formType == 2) {
             scope.servicesParamsMapThree = JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"));
-            console.log(scope.servicesParamsMapThree);
+            console.log("map THREE=", scope.servicesParamsMapThree);
             scope.pincardsMap = {};
             scope.pincardIds = [];
             console.log("scope.service.id=", scope.service.id);
@@ -215,21 +215,32 @@
                 alert("Сумма должна быть меньше " + scope.service.max_pay_limit);
                 return;
             }
-            viewServicePage.phoneText = firstFieldInput.value;
-            viewServicePage.amountText = amount.value;
+            var formtype = {"formtype": scope.formType};
+            var firstFieldId = {"firstFieldId": scope.chosenFieldParamId};
+            var firstFieldText = {"firstFieldText": firstFieldInput.value};
+            var cardTypeId = {"cardTypeId": null};
+            var amountText = {"amountText": amount.value};
+
 
             event.preventDefault();
             event.stopPropagation();
             this.riotTags.innerHTML = "<view-service-pincards>";
-            riot.mount('view-service-pincards');
+            riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, amountText]);
         }
 
-        goToPinCardViewFromTwo = function () {
-            viewServicePage.amountText = amount.value;
+        goToPinCardViewFromTwo = function (nominal, cardId) {
+            console.log("Nominal=", nominal, "cardId=", cardId);
+
+            var formtype = {"formtype": scope.formType};
+            var firstFieldId = {"firstFieldId": null};
+            var firstFieldText = {"firstFieldText": null};
+            var cardTypeId = {"cardTypeId": cardId};
+            var amountText = {"amountText": nominal};
+
             event.preventDefault();
             event.stopPropagation();
             this.riotTags.innerHTML = "<view-service-pincards>";
-            riot.mount('view-service-pincards');
+            riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, amountText]);
         }
 
 
