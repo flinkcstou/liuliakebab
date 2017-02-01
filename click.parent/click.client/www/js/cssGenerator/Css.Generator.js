@@ -45,11 +45,11 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/transfer/phone.png);" +
-    //"opacity: 0.6;" +
-  "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
-  "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
-  "background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+    "background-image: url(resources/draft/transfer/phone.png);" +
+    "opacity: 0.6;" +
+  //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+  //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+  //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -3142,7 +3142,7 @@ var css = {
   "{" +
   "float: left;" +
   "position: relative;" +
-  "top: 38%;" +
+  "top: 30%;" +
   "height: 68%;" +
   "font-size:" + 51 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
@@ -3155,7 +3155,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 38%;" +
+  "top: 30%;" +
   "padding: 0;" +
   "margin: 0;" +
   "margin-left: 3%;" +

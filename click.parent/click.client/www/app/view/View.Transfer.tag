@@ -174,12 +174,12 @@
                         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
                         window.api.call({
-                            method: 'p2p.bank.list',
+                            method: 'p2p.card.info',
                             input: {
                                 session_key: sessionKey,
                                 phone_num: phoneNumber,
-                                card_number: cardNumberForTransfer,
-//                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
+                               // card_number: cardNumberForTransfer,
+                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
 
                             },
 
