@@ -167,6 +167,7 @@
                 alert('Failed because: ' + message);
             }
         }
+        if(device.platform != 'BrowserStand')
             findContacts();
 
         writeContacts = function (arrayOfConnectedContacts) {

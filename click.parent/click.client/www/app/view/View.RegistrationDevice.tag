@@ -67,16 +67,16 @@
 
 
     scope.phoneNumber = '+' + window.languages.CodeOfCountry;
-    scope.maskPhoneNumber = '+ ' + window.languages.CodeOfCountry;
+    scope.maskPhoneNumber = '+' + window.languages.CodeOfCountry;
 
 
     componentKeyboard.returnValue = function (myValue) {
       event.preventDefault();
       event.stopPropagation();
       if (scope.maskPhoneNumber.length < 17 && myValue != 'x') {
-        scope.maskPhoneNumber += myValue;
-        if (scope.maskPhoneNumber.length == 7 || scope.maskPhoneNumber.length == 11 || scope.maskPhoneNumber.length == 14)
+        if (scope.maskPhoneNumber.length == 4)
           scope.maskPhoneNumber += ' ';
+        scope.maskPhoneNumber += myValue;
       }
       if (scope.phoneNumber.length < 13 && myValue != 'x') {
         scope.phoneNumber += myValue;
