@@ -261,7 +261,7 @@
             Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
-            this.blockSearchId.style.display = 'none';
+            blockSearchId.style.display = 'none';
             checkOfSearch = true;
             if (scope.suggestionOne.form_type) {
                 onTouchEndOfService(scope.suggestionOne.id)
@@ -274,7 +274,7 @@
             Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
-            this.blockSearchId.style.display = 'none';
+            blockSearchId.style.display = 'none';
             checkOfSearch = true;
             if (scope.suggestionTwo.form_type) {
                 onTouchEndOfCategory(scope.suggestionTwo.id)
@@ -288,7 +288,7 @@
             Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
-            this.blockSearchId.style.display = 'none';
+            blockSearchId.style.display = 'none';
             checkOfSearch = true;
             if (scope.suggestionThree.form_type) {
                 onTouchEndOfCategory(scope.suggestionThree.id)
@@ -302,7 +302,7 @@
             Keyboard.hide();
             event.preventDefault();
             event.stopPropagation();
-            this.blockSearchId.style.display = 'none';
+            blockSearchId.style.display = 'none';
             checkOfSearch = true;
             if (scope.suggestionFour.form_type) {
                 onTouchEndOfCategory(scope.suggestionFour.id)

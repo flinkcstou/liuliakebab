@@ -14,8 +14,7 @@
         <div class="transfertwo-contact-phone-field">
             <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax}</p>
             <input value="{sumValue}" class="transfertwo-contact-number-input-part" id="sumValueId" autofocus="true"
-                   type="tel"
-                   onkeydown="sumField()"/>
+                   type="tel"/>
         </div>
 
         <div class="transfertwo-next-button-inner-container" ontouchend="goToTransferThree()">
@@ -53,7 +52,7 @@
         else
             transferTitle = objectForTransfer.name
 
-        this.titleName = window.languages.ViewTransferTwoTitle + ' ' + transferTitle;
+        this.titleName = window.languages.ViewTransferTwoTitle + ' +' + transferTitle;
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-steptwo') {
             history.arrayOfHistory.push(
@@ -71,13 +70,17 @@
             onBackKeyDown()
         }
 
-        sumField = function () {
-
-        }
-
         goToTransferThree = function () {
             event.preventDefault()
             event.stopPropagation()
+            if(sumValueId.value < 5000){
+                alert('Минимальная сумма 5 000')
+                return;
+            }
+            if(sumValueId.value > 5000000){
+                alert('Максимальная сумма 5 000 000')
+                return;
+            }
             var sum = {"sum": sumValueId.value};
             var comment = {"comment": commentTextId.value};
 

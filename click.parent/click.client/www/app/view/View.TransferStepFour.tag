@@ -12,7 +12,7 @@
         <div class="transferfour-data-container">
             <div class="transferfour-phone-field" if="{viewServicePage.formType!=2}">
                 <p class="transferfour-text-field">{cardOrPhone}</p>
-                <p class="transferfour-phone-input">{objectTypeForTransfer.name}</p>
+                <p class="transferfour-phone-input">{plus}{objectTypeForTransfer.name}</p>
             </div>
 
             <div id="ownerContainerId" class="transferfour-owner-container" if="{cardType}">
@@ -33,8 +33,10 @@
                 <div class="transferfour-card-info-container">
                     <p class="transferfour-text-one">{window.languages.ViewTransferFourTransferInformation}</p>
                     <p class="transferfour-text-two">{objectCardForTransfer.name}</p>
-                    <p class="transferfour-detail-text">{objectCardForTransfer.numberPartOne} **** {objectCardForTransfer.numberPartTwo}</p>
-                    <p class="transferfour-detail-text">Доступно:{objectCardForTransfer.salary} {objectCardForTransfer.currency}</p>
+                    <p class="transferfour-detail-text">{objectCardForTransfer.numberPartOne} ****
+                        {objectCardForTransfer.numberPartTwo}</p>
+                    <p class="transferfour-detail-text">Доступно:{objectCardForTransfer.salary}
+                        {objectCardForTransfer.currency}</p>
                 </div>
                 <div class="transferfour-card-logo-container"
                      style="background-image: url({objectCardForTransfer.url})">
@@ -86,11 +88,17 @@
         scope.rightbuttoncheck = false;
 
         scope.objectTypeForTransfer = opts[0][0];
-        if(scope.objectTypeForTransfer.type == 1){
+        if (scope.objectTypeForTransfer.type == 1) {
             scope.cardType = true;
+            scope.plus = '';
         }
-        else
+        else {
             scope.phoneType = false;
+            scope.plus = '+';
+        }
+
+
+        console.log()
         scope.objectSumForTransfer = opts[0][1];
         scope.objectComment = opts[0][2];
         scope.objectCardForTransfer = opts[0][3];
@@ -113,7 +121,7 @@
         }
 
 
-        this.titleName = window.languages.ViewTransferFourTitle + ' ' + transferTitle;
+        this.titleName = window.languages.ViewTransferFourTitle + ' +' + transferTitle;
 
 
         transferStep = function () {
@@ -148,8 +156,7 @@
                             }
                         }
                     }
-                    else
-                    {
+                    else {
                         alert(result[0][0].error_note)
                     }
                 },

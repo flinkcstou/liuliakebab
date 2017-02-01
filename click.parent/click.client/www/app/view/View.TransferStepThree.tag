@@ -34,7 +34,7 @@
         else
             transferTitle = objectForTransfer.name;
 
-        this.titleName = window.languages.ViewTransferThreeTitle + ' ' + transferTitle;
+        this.titleName = window.languages.ViewTransferThreeTitle + ' +' + transferTitle;
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepthree') {
             history.arrayOfHistory.push(
@@ -78,7 +78,7 @@
                 riot.mount('view-transfer-stepfour', [arrayForTransfer]);
             }
             else
-                alert('choose card')
+                alert('Выберите карту')
         }
 
 
