@@ -65,14 +65,30 @@
         var scope = this;
 
         scope.firstContactObject = {};
+        scope.firstContactObject.contactFname = '';
+        scope.firstContactObject.contactLname = '';
+        scope.firstContactObject.contactPhoto = '';
 
         scope.secondContactObject = {};
+        scope.secondContactObject.contactFname = '';
+        scope.secondContactObject.contactLname = '';
+        scope.secondContactObject.contactPhoto = '';
 
         scope.thirdContactObject = {};
+        scope.thirdContactObject.contactFname = '';
+        scope.thirdContactObject.contactLname = '';
+        scope.thirdContactObject.contactPhoto = '';
 
         scope.fourContactObject = {};
+        scope.fourContactObject.contactFname = '';
+        scope.fourContactObject.contactLname = '';
+        scope.fourContactObject.contactPhoto = '';
+
 
         scope.fiveContactObject = {};
+        scope.fiveContactObject.contactFname = '';
+        scope.fiveContactObject.contactLname = '';
+        scope.fiveContactObject.contactPhoto = '';
 
         scope.arrayOfPhotos = [];
         scope.arrayOfPhotos.push(scope.firstContactObject);
@@ -87,15 +103,27 @@
             event.stopPropagation();
             if (!check) {
                 this.iconTickId.style.transform = "rotate3d(1, 0, 0, 180deg)";
+                this.iconTickId.style.webkitTransform = "rotate3d(1, 0, 0, 180deg)";
                 this.contactsContainer.style.webkitTransform = "translate3d(0," + -30 * widthK + "px, 0)";
                 this.contactsContainer.style.Transform = "translate3d(0, -30px, 0)";
                 check = true;
-                riot.update();
+                riot.update(scope.firstContactObject);
+                riot.update(scope.secondContactObject);
+                riot.update(scope.thirdContactObject);
+                riot.update(scope.fourContactObject);
+                riot.update(scope.fiveContactObject);
+
+                console.log('scope.firstContactObject',scope.firstContactObject)
+                console.log('scope.secondContactObject',scope.secondContactObject)
+                console.log('scope.thirdContactObject',scope.thirdContactObject)
+                console.log('scope.fourContactObject',scope.fourContactObject)
+                console.log('scope.fiveContactObject',scope.fiveContactObject)
                 return;
             }
 
             if (check) {
                 this.iconTickId.style.transform = "rotate3d(0, 0, 0, 0deg)";
+                this.iconTickId.style.webkitTransform = "rotate3d(0, 0, 0, 0deg)";
                 this.contactsContainer.style.webkitTransform = "translate3d(0," + 200 * widthK + "px, 0)";
                 this.contactsContainer.style.Transform = "translate3d(0," + 200 * widthK + "px, 0)";
                 check = false;
@@ -139,7 +167,6 @@
                 alert('Failed because: ' + message);
             }
         }
-        if (device.platform != 'BrowserStand')
             findContacts();
 
         writeContacts = function (arrayOfConnectedContacts) {
@@ -162,7 +189,11 @@
                     scope.arrayOfPhotos[i].contactLname = arrayOfConnectedContacts[i].name.givenName;
                 }
             }
-            riot.update();
+            riot.update(scope.firstContactObject);
+            riot.update(scope.secondContactObject);
+            riot.update(scope.thirdContactObject);
+            riot.update(scope.fourContactObject);
+            riot.update(scope.fiveContactObject);
         }
 
         //
