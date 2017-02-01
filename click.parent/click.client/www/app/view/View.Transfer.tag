@@ -173,29 +173,29 @@
                         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
                         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-                        window.api.call({
-                            method: 'p2p.card.info',
-                            input: {
-                                session_key: sessionKey,
-                                phone_num: phoneNumber,
-                               // card_number: cardNumberForTransfer,
-                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
-
-                            },
-
-                            scope: this,
-
-                            onSuccess: function (result) {
-                                if (result[0][0].error == 0) {
-                                    console.log("result of APP.PAYMENT ", result);
-                                }
-                            },
-
-                            onFail: function (api_status, api_status_message, data) {
-                                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                                console.error(data);
-                            }
-                        });
+//                        window.api.call({
+//                            method: 'p2p.card.info',
+//                            input: {
+//                                session_key: sessionKey,
+//                                phone_num: phoneNumber,
+//                               // card_number: cardNumberForTransfer,
+//                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
+//
+//                            },
+//
+//                            scope: this,
+//
+//                            onSuccess: function (result) {
+//                                if (result[0][0].error == 0) {
+//                                    console.log("result of APP.PAYMENT ", result);
+//                                }
+//                            },
+//
+//                            onFail: function (api_status, api_status_message, data) {
+//                                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+//                                console.error(data);
+//                            }
+//                        });
                         this.riotTags.innerHTML = "<view-transfer-steptwo>";
                         riot.mount('view-transfer-steptwo', [
                             {

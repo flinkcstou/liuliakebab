@@ -15,7 +15,7 @@
                 <p class="transferfour-phone-input">{objectTypeForTransfer.name}</p>
             </div>
 
-            <div id="ownerContainerId" class="transferfour-owner-container" if="{cardType}">
+            <div id="ownerContainerId" class="transferfour-owner-container">
                 <p class="transferfour-owner-field">{window.languages.ViewTransferFourOwner}</p>
                 <p class="transferfour-owner-input"></p>
             </div>

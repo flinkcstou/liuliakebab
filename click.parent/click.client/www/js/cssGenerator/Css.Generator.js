@@ -45,11 +45,11 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    "background-image: url(resources/draft/transfer/phone.png);" +
-    "opacity: 0.6;" +
-  //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
-  //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
-  //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+    //"background-image: url(resources/draft/transfer/step4.png);" +
+    //"opacity: 0.6;" +
+  "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+  "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+  "background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -3122,7 +3122,7 @@ var css = {
   "margin: 0;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
-  "top: -8%;" +
+  "top: -14%;" +
   "}",
 
   transferContactPhoneIcon: ".transfer-contact-phone-icon" +
@@ -3134,7 +3134,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "background-position: center;" +
-  "top: 36%;" +
+  "top: 34%;" +
   "right: 1%;" +
   "}",
 
@@ -3142,7 +3142,7 @@ var css = {
   "{" +
   "float: left;" +
   "position: relative;" +
-  "top: 30%;" +
+  "top: 28%;" +
   "height: 68%;" +
   "font-size:" + 51 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
@@ -3155,7 +3155,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 30%;" +
+  "top: 28%;" +
   "padding: 0;" +
   "margin: 0;" +
   "margin-left: 3%;" +
@@ -3181,7 +3181,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 38%;" +
+  "top: 28%;" +
   "left: 0%;" +
   "margin: 0%;" +
   "padding: 0;" +
@@ -3249,8 +3249,8 @@ var css = {
   "{" +
   "position: relative;" +
   "height: 6%;" +
-  "width: 45%;" +
-  "top: 47%;" +
+  "width: 51%;" +
+  "top: 45%;" +
   "display: table;" +
   "background-color: #027fe4;" +
   "border-radius:" + 50 * widthK + "px;" +
@@ -3262,7 +3262,7 @@ var css = {
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "font-size:" + 32 * widthK + "px;" +
+  "font-size:" + 38 * widthK + "px;" +
   "color: #ffffff;" +
   "text-align: center;" +
   "display: table-cell;" +
@@ -3286,9 +3286,9 @@ var css = {
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
-  "font-size:" + 34 * widthK + "px;" +
-  "left: 13%;" +
-  "top: 28.5%;" +
+  "font-size:" + 35 * widthK + "px;" +
+  "left: 12.7%;" +
+  "top: 25.5%;" +
   "margin: 0;" +
   "color: #fffaf9;" +
   "}",
@@ -3341,7 +3341,7 @@ var css = {
   "position: absolute;" +
   "height:" + 1145 * widthK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 87 * widthK + "px;" +
+  "top:" + 93 * widthK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
@@ -3371,10 +3371,10 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 38%;" +
+  "top: 7%;" +
   "padding: 0;" +
   "margin: 0;" +
-  "font-size:" + 51 * widthK + "px;" +
+  "font-size:" + 75 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
@@ -3382,9 +3382,9 @@ var css = {
   transferTwoNextButtonInnerContainer: ".transfertwo-next-button-inner-container" +
   "{" +
   "position: relative;" +
-  "height: 6%;" +
-  "width: 45%;" +
-  "top: 45%;" +
+  "height: 6.5%;" +
+  "width: 50%;" +
+  "top: 43.5%;" +
   "display: table;" +
   "background-color: #027fe4;" +
   "border-radius:" + 50 * widthK + "px;" +
@@ -3396,7 +3396,7 @@ var css = {
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "font-size:" + 32 * widthK + "px;" +
+  "font-size:" + 38 * widthK + "px;" +
   "color: #ffffff;" +
   "text-align: center;" +
   "display: table-cell;" +
@@ -3406,10 +3406,10 @@ var css = {
   transferTwoCommentContainer: ".transfertwo-comment-container" +
   "{" +
   "position: absolute;" +
-  "width: 60%;" +
+  "width: 63%;" +
   "height: 15%;" +
-  "top: 27%;" +
-  "left: 17%;" +
+  "top: 25.5%;" +
+  "left: 19%;" +
   "background-size: 100%;" +
   "background-image: url(resources/icons/ViewTransfer/input.png);" +
   "background-repeat: no-repeat;" +
@@ -3422,8 +3422,8 @@ var css = {
   "position: absolute;" +
   "width: 90%;" +
   "height: 65%;" +
-  "top: 7%;" +
-  "left: 5%;" +
+  "top: 13%;" +
+  "left: 6%;" +
   "font-size:" + 24 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "border: none;" +
@@ -3447,7 +3447,7 @@ var css = {
   "margin: 0;" +
   "text-align: center;" +
   "width: 100%;" +
-  "top: 35%;" +
+  "top: 41%;" +
   "position: absolute;" +
   "font-size:" + 27 * widthK + "px;" +
   "color: #515151;" +
@@ -3461,7 +3461,7 @@ var css = {
   "position: absolute;" +
   "height:" + 1145 * widthK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 87 * widthK + "px;" +
+  "top:" + 93 * widthK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
@@ -3469,8 +3469,9 @@ var css = {
   transferThreeMenusContainer: ".transferthree-menus-container " +
   "{" +
   "position: absolute;" +
-  "height: 8%;" +
+  "height: 8.5%;" +
   "width: 100%;" +
+  "top: 0%;" +
   "background-color: transparent;" +
   "border-bottom:1px solid #e3e3e3;" +
   "}",
@@ -3509,11 +3510,12 @@ var css = {
   transferThreeNextButtonInnerContainer: ".transferthree-next-button-inner-container" +
   "{" +
   "position: absolute;" +
-  "height: 6%;" +
-  "width: 45%;" +
-  "left: 28%;" +
-  "bottom: 20%;" +
+  "height: 6.5%;" +
+  "width: 50%;" +
+  "left: 25%;" +
+  "bottom: 6%;" +
   "display: table;" +
+  "font-size:" + 35 * widthK + "px;" +
   "background-color: #027fe4;" +
   "border-radius:" + 50 * widthK + "px;" +
   "margin-right: auto;" +
@@ -3568,7 +3570,7 @@ var css = {
   "color: darkgray;" +
   "font-size: " + 24 * widthK + "px; " +
   "left: 8%;" +
-  "top: 25%;" +
+  "top: 23%;" +
   "}",
 
   transferFourPhoneInput: ".transferfour-phone-input" +
@@ -3576,7 +3578,7 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "left: 8%;" +
-  "top: 47%;" +
+  "top: 43%;" +
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
   "}",
@@ -3588,7 +3590,7 @@ var css = {
   "color: darkgray;" +
   "font-size: " + 24 * widthK + "px; " +
   "left: 8%;" +
-  "top: 25%;" +
+  "top: 23%;" +
   "}",
 
   transferFourOwnerInput: ".transferfour-owner-input" +
@@ -3645,9 +3647,9 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "color: darkgray;" +
-  "font-size: " + 23 * widthK + "px; " +
+  "font-size: " + 24 * widthK + "px; " +
   "left: 7%;" +
-  "top: 17%;" +
+  "top: 13%;" +
   "}",
 
   transferFourTextTwo: ".transferfour-text-two" +
@@ -3655,7 +3657,7 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "left: 7%;" +
-  "top: 30%;" +
+  "top: 27%;" +
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
   "}",
@@ -3667,7 +3669,7 @@ var css = {
   "color: darkgray;" +
   "font-size: " + 25 * widthK + "px; " +
   "left: 7%;" +
-  "top: 56%;" +
+  "top: 55%;" +
   "}",
 
   transferFourCardLogoContainer: ".transferfour-card-logo-container" +
@@ -3687,7 +3689,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height: 30%;" +
+  "height: 28%;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   "top: 23%;" +
@@ -3700,7 +3702,7 @@ var css = {
   "color: darkgray;" +
   "font-size: " + 24 * widthK + "px; " +
   "left: 8%;" +
-  "top: 20%;" +
+  "top: 18%;" +
   "}",
 
   transferFourAmountInput: ".transferfour-amount-input" +
@@ -3720,15 +3722,15 @@ var css = {
   "color: darkgray;" +
   "font-size: " + 24 * widthK + "px; " +
   "left: 8%;" +
-  "top: 65%;" +
+  "top: 63%;" +
   "}",
 
   transferFourBottomContainer: ".transferfour-bottom-container" +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top: 63%;" +
-  "bottom: 15%;" +
+  "top: 67%;" +
+  "bottom: 8%;" +
   "background-color: transparent;" +
   "overflow: hidden;" +
   "}",
@@ -3738,7 +3740,7 @@ var css = {
   "position: absolute;" +
   "width:" + 185 * widthK + "px;" +
   "height:" + 175 * widthK + "px;" +
-  "left: 37%;" +
+  "left: 38%;" +
   "top: 0;" +
   "background-color: transparent;" +
   "}",
@@ -3757,7 +3759,7 @@ var css = {
 
   transferFourActionText: ".transferfour-action-text" +
   "{" +
-  "top: 49%;" +
+  "top: 52%;" +
   "left: 4%;" +
   "position: absolute;" +
   "margin-right: auto;" +
@@ -3773,10 +3775,10 @@ var css = {
   "{" +
   "bottom: 0;" +
   "position: absolute;" +
-  "width: 50%;" +
+  "width: 52%;" +
   "height: 25%;" +
   "border-radius:" + 80 * widthK + "px; " +
-  "left: 25%;" +
+  "left: 24%;" +
   "margin: 0;" +
   "background-color: rgb(1, 124, 227);" +
   "}",
@@ -3786,6 +3788,8 @@ var css = {
   "position: relative;" +
   "top: 20%;" +
   "width: 100%;" +
+  "left: 3.5%;" +
+  "letter-spacing:" + 3 * widthK + "px;" +
   "font-size: " + 36 * widthK + "px; " +
   "margin: auto;" +
   "color: white;" +
