@@ -12,7 +12,7 @@
         <div class="transferfour-data-container">
             <div class="transferfour-phone-field" if="{viewServicePage.formType!=2}">
                 <p class="transferfour-text-field">{cardOrPhone}</p>
-                <p class="transferfour-phone-input">{objectTypeForTransfer.name}</p>
+                <p class="transferfour-phone-input">{plus}{objectTypeForTransfer.name}</p>
             </div>
 
             <div id="ownerContainerId" class="transferfour-owner-container" if="{cardType}">
@@ -33,11 +33,13 @@
                 <div class="transferfour-card-info-container">
                     <p class="transferfour-text-one">{window.languages.ViewTransferFourTransferInformation}</p>
                     <p class="transferfour-text-two">{objectCardForTransfer.name}</p>
-                    <p class="transferfour-detail-text">{objectCardForTransfer.numberPartOne} **** {objectCardForTransfer.numberPartTwo}</p>
-                    <p class="transferfour-detail-text">Доступно:{objectCardForTransfer.salary} {objectCardForTransfer.currency}</p>
+                    <p class="transferfour-detail-text">{objectCardForTransfer.numberPartOne} ****
+                        {objectCardForTransfer.numberPartTwo}</p>
+                    <p class="transferfour-detail-text">Доступно:{objectCardForTransfer.salary}
+                        {objectCardForTransfer.currency}</p>
                 </div>
                 <div class="transferfour-card-logo-container"
-                     style="background-image: url({url})">
+                     style="background-image: url({objectCardForTransfer.url})">
                 </div>
             </div>
         </div>
@@ -61,10 +63,10 @@
             <div class="code-confirm-cancel-icon" ontouchend="confirmCodeCancelEnd()"></div>
         </div>
         <div class="code-confirm-code-container">
-            <p class="code-confirm-code-text">8723</p>
+            <p class="code-confirm-code-text">{secretCode}</p>
             <p class="code-confirm-message-text">Передайте код получателю для завершения перевода</p>
 
-            <div class="code-confirm-button-enter" ontouchend="transferStep()">
+            <div class="code-confirm-button-enter" ontouchend="closeSecretCodePage()">
                 <p class="code-confirm-button-enter-label">OK</p>
             </div>
         </div>
@@ -86,15 +88,22 @@
         scope.rightbuttoncheck = false;
 
         scope.objectTypeForTransfer = opts[0][0];
-        if(scope.objectTypeForTransfer.type == 1){
+        if (scope.objectTypeForTransfer.type == 1) {
             scope.cardType = true;
+            scope.plus = '';
         }
-        else
+        else {
             scope.phoneType = false;
+            scope.plus = '+';
+        }
+
+
+        console.log()
         scope.objectSumForTransfer = opts[0][1];
         scope.objectComment = opts[0][2];
         scope.objectCardForTransfer = opts[0][3];
 
+        console.log('scope.objectSumForTransfer', scope.objectSumForTransfer)
 
 
         var transferTitle;
@@ -112,11 +121,10 @@
         }
 
 
-        this.titleName = window.languages.ViewTransferFourTitle + ' ' + transferTitle;
+        this.titleName = window.languages.ViewTransferFourTitle + ' +' + transferTitle;
 
 
         transferStep = function () {
-            blockCodeConfirmId.style.display = 'block';
 
             var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
             var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -127,8 +135,8 @@
                     session_key: sessionKey,
                     phone_num: phoneNumber,
                     account_id: scope.objectCardForTransfer.card_id,
-                    receiver_data: parseInt(Date.now() / 1000),
-                    amount: scope.objectSumForTransfer,
+                    receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
+                    amount: parseInt(scope.objectSumForTransfer.sum),
                     type: scope.objectTypeForTransfer.type,
                     transaction_id: parseInt(Date.now() / 1000)
 //                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
@@ -140,6 +148,16 @@
                 onSuccess: function (result) {
                     if (result[0][0].error == 0) {
                         console.log("result of TRANSFER ", result);
+                        if (result[1][0]) {
+                            if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
+                                blockCodeConfirmId.style.display = 'block';
+                                scope.secretCode = result[1][0].secret_code;
+                                riot.update(scope.secretCode);
+                            }
+                        }
+                    }
+                    else {
+                        alert(result[0][0].error_note)
                     }
                 },
 
@@ -150,7 +168,7 @@
             });
         }
 
-        confirmCodeCancelEnd = function () {
+        closeSecretCodePage = function () {
             blockCodeConfirmId.style.display = 'none';
         }
     </script>

@@ -114,19 +114,23 @@
 
                 onSuccess: function (result) {
 //                    console.log('result[1]', result[1]);
-                    if (result[0][0].error == 0)
-                        if (result[1][0])
+                    if (result[0][0].error == 0) {
+                        if (result[1][0]) {
                             var j = 0;
-                    for (var i in result[1]) {
+                            for (var i in result[1]) {
 //                        console.log('ACCOUNT ID ', result[1][i].account_id, 'CARD ID ', scope.card.card_id);
-                        if (result[1][i].account_id == scope.card.card_id && result[1][i].state == 0) {
-                            result[1][i].count = j;
-                            j++;
-                            scope.arrayOfOperationsByAccount.push(result[1][i]);
+                                if (result[1][i].account_id == scope.card.card_id && result[1][i].state == 0) {
+                                    result[1][i].count = j;
+                                    j++;
+                                    scope.arrayOfOperationsByAccount.push(result[1][i]);
+                                }
+                            }
+                            this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
+                            riot.update(scope.arrayOfOperationsByAccount)
                         }
                     }
-                    this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
-                    riot.update(scope.arrayOfOperationsByAccount)
+                    else
+                            alert(result[0][0].error_note)
 
                 },
 
