@@ -110,18 +110,17 @@
                 scope.chosenFieldName = scope.fieldArray[0].title;
                 scope.chosenFieldPlaceholder = scope.fieldArray[0].placeholder;
                 scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
+                scope.inputMaxLength = scope.fieldArray[0].max_len;
                 if (this.dropDownOn) {
                     scope.chosenFieldParamId = scope.fieldArray[0].parameter_id;
                     scope.oldFieldParamId = scope.fieldArray[1].parameter_id;
                 }
                 if (scope.fieldArray[0].input_type == '1') {
                     scope.inputType = 'tel';
-                    scope.inputMaxLength = scope.fieldArray[0].max_len.length;
                     scope.isNumber = true;
                 }
                 else if (scope.fieldArray[0].input_type == '2') {
                     scope.inputType = 'text';
-                    scope.inputMaxLength = scope.fieldArray[0].max_len;
                     scope.isNumber = false;
                 }
                 this.amountLength = ("" + scope.service.max_pay_limit).length;
@@ -168,14 +167,13 @@
                     scope.chosenFieldName = scope.fieldArray[i].title;
                     scope.chosenFieldPlaceholder = scope.fieldArray[i].placeholder;
                     scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1";
+                    scope.inputMaxLength = scope.fieldArray[i].max_len;
                     if (scope.fieldArray[i].input_type == '1') {
                         scope.inputType = 'tel';
-                        scope.inputMaxLength = scope.fieldArray[0].max_len.length;
                         scope.isNumber = true;
                     }
                     else if (scope.fieldArray[i].input_type == '2') {
                         scope.inputType = 'text';
-                        scope.inputMaxLength = scope.fieldArray[0].max_len;
                         scope.isNumber = false;
                     }
                     console.log("new title", scope.chosenFieldName);

@@ -457,7 +457,7 @@
                                 }
                             }
                             for (var i in result[1]) {
-//                                console.log("service id=", result[1][i].id, ", element:", result[1][i]);
+                                console.log("service id=", result[1][i].id, ", element:", result[1][i]);
 
                                 scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
                                 scope.serviceList.push(result[1][i]);
@@ -524,7 +524,7 @@
                     if (result[0][0].error == 0) {
                         if (result[1])
                             for (var i in result[1]) {
-//                                console.log("1. service id=", result[1][i].service_id, "element:", result[1][i]);
+                                console.log("1. service id=", result[1][i].service_id, "element:", result[1][i]);
                                 if (!scope.servicesParamsMapOne[result[1][i].service_id]) {
                                     scope.servicesParamsMapOne[result[1][i].service_id] = [];
                                     scope.servicesParamsMapOne[result[1][i].service_id].push(result[1][i]);
@@ -536,7 +536,7 @@
                             }
                         if (result[2])
                             for (var i in result[2]) {
-//                                console.log("2. service id=", result[2][i].service_id, "element:", result[2][i]);
+                                console.log("2. service id=", result[2][i].service_id, "element:", result[2][i]);
                                 if (!scope.servicesParamsMapTwo[result[2][i].service_id]) {
                                     scope.servicesParamsMapTwo[result[2][i].service_id] = [];
                                     scope.servicesParamsMapTwo[result[2][i].service_id].push(result[2][i]);
@@ -547,7 +547,7 @@
                             }
                         if (result[3])
                             for (var i in result[3]) {
-//                                console.log("3. service id=", result[3][i].service_id, "element:", result[3][i]);
+                                console.log("3. service id=", result[3][i].service_id, "element:", result[3][i]);
                                 if (!scope.servicesParamsMapThree[result[3][i].service_id]) {
                                     scope.servicesParamsMapThree[result[3][i].service_id] = [];
                                     scope.servicesParamsMapThree[result[3][i].service_id].push(result[3][i]);

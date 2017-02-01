@@ -990,7 +990,129 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_parameters: "32768",
         service_short_name: "SONET.UZ PINCARD",
         status: 1
-      }]
+      },
+      {
+        category_id: 2,
+        cost: 1,
+        form_type: 1,
+        id: 7,
+        image: "https://m.click.uz/static/merchant/logo/logo_7.png",
+        is_mobile: 0,
+        lang_amount_hint: null,
+        lang_amount_placeholder: "Введите сумму оплаты",
+        lang_amount_title: "Сумма",
+        lang_max_amount: "Максимальная сумма для оплаты 1000000.00 сум ",
+        lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+        max_pay_limit: 1000000,
+        min_pay_limit: 1000,
+        name: "Sharq Telekom",
+        priority: 5,
+        service_parameters: "134",
+        service_short_name: "SHARQTELEKOM",
+        status: 1
+      },
+      {
+        category_id: 2,
+        cost: 1,
+        form_type: 1,
+        id: 15,
+        image: "https://m.click.uz/static/merchant/logo/logo_15.png",
+        is_mobile: 0,
+        lang_amount_hint: null,
+        lang_amount_placeholder: "Введите сумму оплаты",
+        lang_amount_title: "Сумма",
+        lang_max_amount: "Максимальная сумма для оплаты 1000000.00 сум ",
+        lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+        max_pay_limit: 1000000,
+        min_pay_limit: 1000,
+        name: "Sarkor Telekom",
+        priority: 7,
+        service_parameters: "10",
+        service_short_name: "SARKORTELEKOM",
+        status: 1
+      },
+      {
+        category_id: 2,
+        cost: 1,
+        form_type: 1,
+        id: 10,
+        image: "https://m.click.uz/static/merchant/logo/logo_10.png",
+        is_mobile: 0,
+        lang_amount_hint: null,
+        lang_amount_placeholder: "Введите сумму оплаты",
+        lang_amount_title: "Сумма",
+        lang_max_amount: "Максимальная сумма для оплаты 1000000.00 сум",
+        lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+        max_pay_limit: 1000000,
+        min_pay_limit: 1000,
+        name: "Skyline",
+        priority: 10,
+        service_parameters: "18",
+        service_short_name: "SKYLINE",
+        status: 1
+      },
+      {
+        category_id: 2,
+        cost: 1,
+        form_type: 1,
+        id: 35,
+        image: "https://m.click.uz/static/merchant/logo/logo_35.png",
+        is_mobile: 0,
+        lang_amount_hint: null,
+        lang_amount_placeholder: "Введите сумму оплаты",
+        lang_amount_title: "Сумма",
+        lang_max_amount: "Максимальная сумма для оплаты 1000000.00 сум",
+        lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+        max_pay_limit: 1000000,
+        min_pay_limit: 1000,
+        name: "Platinum Connect",
+        priority: 20,
+        service_parameters: "6148",
+        service_short_name: "PLATINUM",
+        status: 1
+      },
+      {
+        category_id: 7,
+        cost: 1,
+        form_type: 1,
+        id: 128,
+        image: "https://m.click.uz/static/merchant/logo/logo_128.png",
+        is_mobile: 0,
+        lang_amount_hint: null,
+        lang_amount_placeholder: "Введите сумму оплаты",
+        lang_amount_title: "Сумма",
+        lang_max_amount: "Максимальная сумма для оплаты 1000000.00 сум ",
+        lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+        max_pay_limit: 1000000,
+        min_pay_limit: 1000,
+        name: "East Telekom",
+        priority: 35,
+        service_parameters: "19",
+        service_short_name: "east_telekom",
+        status: 1
+      },
+      {
+        category_id: 2,
+        cost: 1,
+        form_type: 1,
+        id: 183,
+        image: "https://m.click.uz/static/merchant/logo/logo_183.png",
+        is_mobile: 0,
+        lang_amount_hint: null,
+        lang_amount_placeholder: "Введите сумму оплаты",
+        lang_amount_title: "Сумма",
+        lang_max_amount: "Максимальная сумма для оплаты 1000000.00 сум ",
+        lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+        max_pay_limit: 1000000,
+        min_pay_limit: 1000,
+        name: "EVO LTE",
+        priority: 35,
+        service_parameters: "16777232",
+        service_short_name: "EVOLTE",
+        status: 1
+      }
+
+    ]
   );
 
   if (localStorage.getItem("click_client_token"))
@@ -1012,107 +1134,196 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
 
   array.push(arrayMethod);
   array.push([{
+    error_message: "Номер телефона введен неправильно",
+    input_type: 1,
+    max_len: "999999999",
+    min_len: "0",
+    parameter_id: "1",
+    placeholder: "Введите номер телефона без 998",
+    service_id: 3,
+    title: "Номер телефона",
+    ussd_query: "*880*0199999*{param}*{amount}#"
+  },
+    {
       error_message: "Номер телефона введен неправильно",
       input_type: 1,
       max_len: "999999999",
       min_len: "0",
       parameter_id: "1",
       placeholder: "Введите номер телефона без 998",
-      service_id: 3,
+      service_id: 2,
       title: "Номер телефона",
       ussd_query: "*880*0199999*{param}*{amount}#"
     },
-      {
-        error_message: "Номер телефона введен неправильно",
-        input_type: 1,
-        max_len: "999999999",
-        min_len: "0",
-        parameter_id: "1",
-        placeholder: "Введите номер телефона без 998",
-        service_id: 2,
-        title: "Номер телефона",
-        ussd_query: "*880*0199999*{param}*{amount}#"
-      },
-      {
-        error_message: "Номер телефона введен неправильно",
-        input_type: 1,
-        max_len: "999999999",
-        min_len: "0",
-        parameter_id: "1",
-        placeholder: "Введите номер телефона без 998",
-        service_id: -2,
-        title: "Номер телефона",
-        ussd_query: null
-      },
-      {
-        error_message: "Логин введен неправильно",
-        input_type: 2,
-        max_len: "50",
-        min_len: "3",
-        parameter_id: "2",
-        placeholder: "Введите логин ",
-        service_id: -2,
-        title: "Логин",
-        ussd_query: null
-      },
-      {
-        error_message: "Выберите счет, на который нужно перевести деньги",
-        input_type: 0,
-        max_len: "99999999999",
-        min_len: "1",
-        parameter_id: "8192",
-        placeholder: "Выберите счет, на который нужно перевести средства",
-        service_id: -1,
-        title: "На счет",
-        ussd_query: null
-      },
-      {
-        error_message: "Выбирите счет, с которого будут переведены средства",
-        input_type: 0,
-        max_len: "99999999999",
-        min_len: "1",
-        parameter_id: "16384",
-        placeholder: "Выбирите счет, с которого будут переведены средства",
-        service_id: -1,
-        title: "Списать со счета",
-        ussd_query: null
-      },
-      {
-        error_message: "Номер телефона введен неправильно",
-        input_type: 1,
-        max_len: "999999999",
-        min_len: "0",
-        parameter_id: "1",
-        placeholder: "Введите номер телефона без 998",
-        service_id: 5,
-        title: "Номер телефона",
-        ussd_query: "*880*0199999*{param}*{amount}#"
-      },
-      {
-        error_message: "Номер телефона введен неправильно",
-        input_type: 1,
-        max_len: "999999999",
-        min_len: "0",
-        parameter_id: "1",
-        placeholder: "Введите номер телефона без 998",
-        service_id: 6,
-        title: "Номер телефона",
-        ussd_query: "*880*0199999*{param}*{amount}#"
-      },
-      {
-        error_message: "Номер телефона введен неправильно",
-        input_type: 1,
-        max_len: "999999999",
-        min_len: "0",
-        parameter_id: "1",
-        placeholder: "Введите номер телефона без 998",
-        service_id: 148,
-        title: "Номер телефона",
-        ussd_query: "*880*0199999*{param}*{amount}#"
-      }]
-  );
+    {
+      error_message: "Номер телефона введен неправильно",
+      input_type: 1,
+      max_len: "999999999",
+      min_len: "0",
+      parameter_id: "1",
+      placeholder: "Введите номер телефона без 998",
+      service_id: -2,
+      title: "Номер телефона",
+      ussd_query: null
+    },
+    {
+      error_message: "Логин введен неправильно",
+      input_type: 2,
+      max_len: "50",
+      min_len: "3",
+      parameter_id: "2",
+      placeholder: "Введите логин ",
+      service_id: -2,
+      title: "Логин",
+      ussd_query: null
+    },
+    {
+      error_message: "Выберите счет, на который нужно перевести деньги",
+      input_type: 0,
+      max_len: "99999999999",
+      min_len: "1",
+      parameter_id: "8192",
+      placeholder: "Выберите счет, на который нужно перевести средства",
+      service_id: -1,
+      title: "На счет",
+      ussd_query: null
+    },
+    {
+      error_message: "Выбирите счет, с которого будут переведены средства",
+      input_type: 0,
+      max_len: "99999999999",
+      min_len: "1",
+      parameter_id: "16384",
+      placeholder: "Выбирите счет, с которого будут переведены средства",
+      service_id: -1,
+      title: "Списать со счета",
+      ussd_query: null
+    },
+    {
+      error_message: "Номер телефона введен неправильно",
+      input_type: 1,
+      max_len: "999999999",
+      min_len: "0",
+      parameter_id: "1",
+      placeholder: "Введите номер телефона без 998",
+      service_id: 5,
+      title: "Номер телефона",
+      ussd_query: "*880*0199999*{param}*{amount}#"
+    },
+    {
+      error_message: "Номер телефона введен неправильно",
+      input_type: 1,
+      max_len: "999999999",
+      min_len: "0",
+      parameter_id: "1",
+      placeholder: "Введите номер телефона без 998",
+      service_id: 6,
+      title: "Номер телефона",
+      ussd_query: "*880*0199999*{param}*{amount}#"
+    },
+    {
+      error_message: "Номер телефона введен неправильно",
+      input_type: 1,
+      max_len: "999999999",
+      min_len: "0",
+      parameter_id: "1",
+      placeholder: "Введите номер телефона без 998",
+      service_id: 148,
+      title: "Номер телефона",
+      ussd_query: "*880*0199999*{param}*{amount}#"
+    },
+    {
+      error_message: "Логин введен неправильно",
+      input_type: 2,
+      max_len: "50",
+      min_len: "3",
+      parameter_id: "2",
+      placeholder: "Введите логин ",
+      service_id: 7,
+      title: "Логин",
+      ussd_query: "*880*0799999*{option}*{param}*{amount}#"
+    },
+    {
+      error_message: "Неверный ID абонента",
+      input_type: 1,
+      max_len: "999999999999999",
+      min_len: "0",
+      parameter_id: "4",
+      placeholder: "Введите ID абонента",
+      service_id: 7,
+      title: "ID абонента",
+      ussd_query: null
+    },
+    {
+      error_message: "Неверно введен кроссированный номер",
+      input_type: 1,
+      max_len: "998999999999",
+      min_len: "0",
+      parameter_id: "128",
+      placeholder: "Введите кроссированный номер",
+      service_id: 7,
+      title: "Кроссированный номер",
+      ussd_query: null
+    },
+    {
+      error_message: "Логин введен неправильно",
+      input_type: 2,
+      max_len: "50",
+      min_len: "3",
+      parameter_id: "2",
+      placeholder: "Введите логин ",
+      service_id: 10,
+      title: "Логин",
+      ussd_query: "*880*01099999*1*{param}*{amount}#"
+    },
+    {
+      error_message: "Неверно набран лицевой счет",
+      input_type: 2,
+      max_len: "50",
+      min_len: "0",
+      parameter_id: "16",
+      placeholder: "Введите лицевой счет абонента",
+      service_id: 10,
+      title: "Лицевой счет абонента",
+      ussd_query: "*880*01099999*2*{param}*{amount}#"
+    },
+    {
+      error_message: "Неверно набран лицевой счет",
+      input_type: 2,
+      max_len: "50",
+      min_len: "0",
+      parameter_id: "16",
+      placeholder: "Введите лицевой счет абонента",
+      service_id: 183,
+      title: "Лицевой счет абонента",
+      ussd_query: "*880*018399999*2*{option}*{param}*{amount}#"
+    },
+    {
+      error_message: "Номер контракта введен неверно",
+      input_type: 2,
+      max_len: "50",
+      min_len: "1",
+      parameter_id: "16777216",
+      placeholder: "Введите номер контракта",
+      service_id: 183,
+      title: "Номер контракта",
+      ussd_query: "*880*018399999*1*{option}*{param}*{amount}#"
+    },
+    {
+      error_message: "Неверно набран лицевой счет",
+      input_type: 2,
+      max_len: "50",
+      min_len: "0",
+      parameter_id: "16",
+      placeholder: "Введите лицевой счет абонента",
+      service_id: 198,
+      title: "Лицевой счет абонента",
+      ussd_query: "*880*019899999*{communal_param}*{param}*{amount}#"
+    }
+  ]);
 
-  array.push([{
+  array.push([
+    {
       code: -1,
       id: 2,
       name: "Мирабадский район",
@@ -1120,15 +1331,47 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
       parent: 0,
       service_id: 39
     },
-      {
-        code: -1,
-        id: 4,
-        name: "Мирзо-Улугбекский район",
-        offline_code: "-1",
-        parent: 0,
-        service_id: 39
-      }]
-  );
+    {
+      code: -1,
+      id: 4,
+      name: "Мирзо-Улугбекский район",
+      offline_code: "-1",
+      parent: 0,
+      service_id: 39
+    },
+    {
+      code: 1,
+      id: 1,
+      name: "WiMAX",
+      offline_code: "1",
+      parent: 0,
+      service_id: 183
+    },
+    {
+      code: 2,
+      id: 2,
+      name: "LTE",
+      offline_code: "2",
+      parent: 0,
+      service_id: 183
+    },
+    {
+      code: 1,
+      id: 1,
+      name: "Ташкент",
+      offline_code: "1",
+      parent: 0,
+      service_id: 198
+    },
+    {
+      code: 2,
+      id: 2,
+      name: "Таш. Обл.",
+      offline_code: "2",
+      parent: 0,
+      service_id: 198
+    }
+  ]);
 
 
   array.push([{
