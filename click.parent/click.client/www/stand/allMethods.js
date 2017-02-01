@@ -1255,3 +1255,28 @@ window.fakedSocket.register("app.payment", function (input) {
     }
   ];
 });
+
+window.fakedSocket.register("p2p.card.info", function (input) {
+
+  if (input)
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": ""
+      }],
+      [{
+        "invoice_id": null,
+        "payment_id": "xzsa"
+      }]
+    ];
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});

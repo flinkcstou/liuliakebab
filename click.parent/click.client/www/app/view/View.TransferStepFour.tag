@@ -95,6 +95,7 @@
         scope.objectComment = opts[0][2];
         scope.objectCardForTransfer = opts[0][3];
 
+        console.log('scope.objectSumForTransfer', scope.objectSumForTransfer)
 
 
         var transferTitle;
@@ -127,8 +128,8 @@
                     session_key: sessionKey,
                     phone_num: phoneNumber,
                     account_id: scope.objectCardForTransfer.card_id,
-                    receiver_data: parseInt(Date.now() / 1000),
-                    amount: scope.objectSumForTransfer,
+                    receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
+                    amount: parseInt(scope.objectSumForTransfer.sum),
                     type: scope.objectTypeForTransfer.type,
                     transaction_id: parseInt(Date.now() / 1000)
 //                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
