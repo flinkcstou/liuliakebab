@@ -3916,7 +3916,7 @@ var css = {
 
 //  Component Contact Search
 
-  contactComponentSearch: ".contact-component-search " +
+  componentContactSearch: ".component-contact-search " +
   "{" +
   "position: absolute;" +
   "opacity: 0.95;" +

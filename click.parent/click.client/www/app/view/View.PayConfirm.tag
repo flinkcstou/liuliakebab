@@ -12,7 +12,7 @@
 
     <div class="payconfirm-body-container">
         <div class="payconfirm-data-container">
-            <div class="payconfirm-phone-field" if="{viewServicePage.formType!=2}">
+            <div class="payconfirm-phone-field" if="{formType!=2}">
                 <p class="payconfirm-text-field">{window.languages.ViewPayConformEnterPhone}</p>
                 <p class="payconfirm-phone-input">{firstFieldText}</p>
             </div>
