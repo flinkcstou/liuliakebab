@@ -39,11 +39,5 @@
   <script>
     var scope = this;
 
-    //EXAMPLE OF USING KEYBOARD
-//    componentKeyboard.returnValue = function (myValue) {
-//      console.log(myValue)
-//      return myValue;
-//    }
-
   </script>
 </component-keyboard>

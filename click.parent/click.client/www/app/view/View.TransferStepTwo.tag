@@ -31,20 +31,21 @@
 
     <script>
 
-        scope = this;
+        var scope = this,
+                transferTitle,
+                objectForTransfer = opts[0],
+                defaultAccount;
+
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = false;
         scope.comment = 'комментарий';
-        var bufferForSum;
-        var defaultAccount;
+
         var cards = JSON.parse(localStorage.getItem('click_client_cards'));
         for (var i in cards) {
             if (cards[i].default_account === true)
                 defaultAccount = cards[i];
         }
 
-        var transferTitle
-        var objectForTransfer = opts[0];
 
         if (objectForTransfer.type == 1) {
             transferTitle = objectForTransfer.name.substring(0, 4) + ' **** ' + objectForTransfer.name.substring(15, objectForTransfer.name.length)
@@ -73,18 +74,18 @@
         goToTransferThree = function () {
             event.preventDefault()
             event.stopPropagation()
-            if(sumValueId.value < 5000){
+            if (sumValueId.value < 5000) {
                 alert('Минимальная сумма 5 000')
                 return;
             }
-            if(sumValueId.value > 5000000){
+            if (sumValueId.value > 5000000) {
                 alert('Максимальная сумма 5 000 000')
                 return;
             }
             var sum = {"sum": sumValueId.value};
             var comment = {"comment": commentTextId.value};
 
-            this.riotTags.innerHTML = "<view-transfer-stepthree>";
+            riotTags.innerHTML = "<view-transfer-stepthree>";
             riot.mount('view-transfer-stepthree', [objectForTransfer, sum, comment]);
         }
 

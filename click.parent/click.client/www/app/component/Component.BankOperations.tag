@@ -29,7 +29,7 @@
             event.preventDefault();
             event.stopPropagation();
 
-            this.riotTags.innerHTML = "<view-pay>";
+            riotTags.innerHTML = "<view-pay>";
             riot.mount('view-pay');
         }
 
@@ -37,7 +37,7 @@
             event.preventDefault();
             event.stopPropagation();
 
-            this.riotTags.innerHTML = "<view-transfer>";
+            riotTags.innerHTML = "<view-transfer>";
             riot.mount('view-transfer');
         }
 
@@ -45,7 +45,7 @@
             event.preventDefault();
             event.stopPropagation();
 
-            this.riotTags.innerHTML = "<view-auto-pay>";
+            riotTags.innerHTML = "<view-auto-pay>";
             riot.mount('view-auto-pay');
         }
     </script>

@@ -58,48 +58,42 @@
 
 
     <script>
-        var scope = this;
-        scope.top = 160 * widthK;
-
-        console.log('scope',scope,'this', this)
-
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-cards') {
             history.arrayOfHistory.push(
                     {
                         "view": 'view-my-cards',
-                        "params": ''
+                        "params": opts
                     }
             );
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
 
-        scope.indexOfCard = JSON.parse(localStorage.getItem('cardNumber'));
+        var scope = this,
+                cardNumber = opts[0],
+                sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
+                phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-
+        scope.top = 160 * widthK;
         viewMyCards.check = true;
         viewMainPage.myCards = true;
-
-
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = true;
         scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
 
 
-
         this.titleName = window.languages.ViewMyCardTitleName;
-        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-        scope.card = JSON.parse(localStorage.getItem('click_client_cards'))[scope.indexOfCard];
+
+        scope.card = JSON.parse(localStorage.getItem('click_client_cards'))[cardNumber];
 
 
         scope.arrayOfOperationsByAccount = [];
 
-        viewMyCards.cardInformation = function (cardNumberFormCarousel) {
+        scope.cardInformation = cardInformation = function (cardNumberFromCarousel) {
             event.preventDefault();
             event.stopPropagation();
 
-            scope.card = JSON.parse(localStorage.getItem('click_client_cards'))[cardNumberFormCarousel];
+            scope.card = JSON.parse(localStorage.getItem('click_client_cards'))[cardNumberFromCarousel];
             scope.arrayOfOperationsByAccount = [];
 
             window.api.call({
@@ -110,27 +104,23 @@
                     account_id: scope.card.card_id
                 },
 
-
-
                 onSuccess: function (result) {
-//                    console.log('result[1]', result[1]);
                     if (result[0][0].error == 0) {
                         if (result[1][0]) {
                             var j = 0;
                             for (var i in result[1]) {
-//                        console.log('ACCOUNT ID ', result[1][i].account_id, 'CARD ID ', scope.card.card_id);
                                 if (result[1][i].account_id == scope.card.card_id && result[1][i].state == 0) {
                                     result[1][i].count = j;
                                     j++;
                                     scope.arrayOfOperationsByAccount.push(result[1][i]);
                                 }
                             }
-                            this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
+                            lastOperationContainerId.style.height = j * 160 * widthK + 'px';
                             riot.update(scope.arrayOfOperationsByAccount)
                         }
                     }
                     else
-                            alert(result[0][0].error_note)
+                        alert(result[0][0].error_note)
 
                 },
 
@@ -141,12 +131,12 @@
             });
         }
 
-        viewMyCards.cardInformation(scope.indexOfCard);
+        scope.cardInformation(cardNumber);
 
         goToPayView = function () {
-            for(var i = 0; i < scope.cardsArray.length; i++){
+            for (var i = 0; i < scope.cardsArray.length; i++) {
                 scope.cardsArray[i].chosenCard = false;
-                if(scope.cardsArray[i].card_id == scope.card.card_id){
+                if (scope.cardsArray[i].card_id == scope.card.card_id) {
                     scope.cardsArray[i].chosenCard = true;
                 }
             }
@@ -155,7 +145,7 @@
             event.preventDefault();
             event.stopPropagation();
 
-            this.riotTags.innerHTML = "<view-pay>";
+            riotTags.innerHTML = "<view-pay>";
             riot.mount('view-pay');
         }
 

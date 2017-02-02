@@ -8,11 +8,10 @@
     closeMenu = function () {
       event.preventDefault();
       event.stopPropagation();
-      //this.style.opacity = "1";
-      this.sideMenuBackPageId.style.opacity = '0';
-      this.sideMenuId.style.webkitTransform = "translate3d(-100%, 0, 0)";
-      this.sideMenuId.style.Transform = "translate3d(-100%, 0, 0)";
-      this.mainPageId.style.opacity = '1';
+      sideMenuBackPageId.style.opacity = '0';
+      sideMenuId.style.webkitTransform = "translate3d(-100%, 0, 0)";
+      sideMenuId.style.Transform = "translate3d(-100%, 0, 0)";
+      mainPageId.style.opacity = '1';
 
     }
 
