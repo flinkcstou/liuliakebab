@@ -152,6 +152,9 @@
                                 scope.secretCode = result[1][0].secret_code;
                                 riot.update(scope.secretCode);
                             }
+                            if(result[1][0].secret_code == 0){
+                                alert('Перевод на карту прошел успешно')
+                            }
                         }
                     }
                     else {
