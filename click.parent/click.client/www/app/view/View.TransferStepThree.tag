@@ -19,14 +19,18 @@
 
 
     <script>
-        var arrayForTransfer = [];
+        var scope = this,
+                arrayForTransfer = [],
+                transferTitle,
+                objectForTransfer = opts[0],
+                checkChosenCard = false,
+                chosenCard;
+
         arrayForTransfer.push(opts[0])
         arrayForTransfer.push(opts[1])
         arrayForTransfer.push(opts[2])
         console.log(arrayForTransfer)
-        var transferTitle;
 
-        var objectForTransfer = opts[0];
 
         if (objectForTransfer.type == 1) {
             transferTitle = objectForTransfer.name.substring(0, 4) + ' **** ' + objectForTransfer.name.substring(15, objectForTransfer.name.length)
@@ -45,8 +49,7 @@
             );
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
-        var checkChosenCard = false;
-        var chosenCard;
+
 
         goToBack = function () {
             event.preventDefault();
@@ -54,7 +57,6 @@
             onBackKeyDown()
         }
 
-        scope = this;
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = false;
 
@@ -74,7 +76,7 @@
             }
             if (checkChosenCard) {
                 arrayForTransfer.push(chosenCard)
-                this.riotTags.innerHTML = "<view-transfer-stepfour>";
+                riotTags.innerHTML = "<view-transfer-stepfour>";
                 riot.mount('view-transfer-stepfour', [arrayForTransfer]);
             }
             else

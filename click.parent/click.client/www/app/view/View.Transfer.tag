@@ -72,10 +72,25 @@
     </div>
     <script>
 
-        var scope = this;
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer') {
+            history.arrayOfHistory.push(
+                    {
+                        "view": 'view-transfer',
+                        "params": ''
+                    }
+            );
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+        }
+
+
         this.titleName = window.languages.ViewPayTransferTitle;
-        var checkPhoneForTransfer = false;
-        var checkCardForTransfer = false;
+        var scope = this,
+                checkPhoneForTransfer = false,
+                checkCardForTransfer = false,
+                phoneNumberForTransfer = '',
+                cardNumberForTransfer = '',
+                arrayOfContacts = [];
+
 
         scope.suggestionOne = {};
         scope.suggestionOne.photo = '';
@@ -87,22 +102,9 @@
         scope.suggestionTwo.fName = '';
         scope.suggestionTwo.lName = '';
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer') {
-            history.arrayOfHistory.push(
-                    {
-                        "view": 'view-transfer',
-                        "params": ''
-                    }
-            );
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-        }
-
         scope.searchWord = '';
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = true;
-
-        var phoneNumberForTransfer = '';
-        var cardNumberForTransfer = '';
 
         scope.contactMode = true;
 
@@ -208,9 +210,6 @@
             }
 
         }
-
-        var arrayOfContacts = [];
-
 
         findContacts = function () {
 

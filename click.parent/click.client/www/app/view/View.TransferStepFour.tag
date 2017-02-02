@@ -98,12 +98,10 @@
         }
 
 
-        console.log()
         scope.objectSumForTransfer = opts[0][1];
         scope.objectComment = opts[0][2];
         scope.objectCardForTransfer = opts[0][3];
 
-        console.log('scope.objectSumForTransfer', scope.objectSumForTransfer)
 
 
         var transferTitle;

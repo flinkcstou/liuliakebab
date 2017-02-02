@@ -48,10 +48,8 @@
             if (myValue == 'x') {
                 scope.confirmSms = scope.confirmSms.substring(0, scope.confirmSms.length - 1);
             }
-//            console.log(myValue)
             riot.update();
             if (scope.confirmSms.length == 5) {
-//                console.log("LENGTH EQUAL 5")
                 var sms = scope.confirmSms;
                 getSms(sms);
                 return;
@@ -113,7 +111,6 @@
                 scope: this,
 
                 onSuccess: function (result) {
-//                    console.log("result[0][0] ", result[0][0]);
                     if (result[0][0].error == -4) {
                         alert("Неверный смс код");
                         scope.confirmSms = '';

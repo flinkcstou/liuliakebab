@@ -56,21 +56,22 @@
                 changePosition();
             }
             else if (!viewMainPage.myCards) {
-                localStorage.setItem('cardNumber', cardNumber)
-                pos = (JSON.parse(localStorage.getItem('click_client_cards'))[localStorage.getItem('cardNumber')].countCard) * 540 * widthK;
-//                viewMainPage.myCards = true;
+                pos = (cardNumber) * 540 * widthK;
                 for (var i = 0; i < cardsarray.length; i++) {
                     if (cardsarray[i].countCard == cardNumber) {
                         cardsarray[i].chosenCard = true;
                         localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
                     }
+                    else {
+                        cardsarray[i].chosenCard = false;
+                    }
                 }
-                this.riotTags.innerHTML = "<view-my-cards>";
-                riot.mount("view-my-cards");
-                this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                this.cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
-                this.cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+                riotTags.innerHTML = "<view-my-cards>";
+                riot.mount("view-my-cards", [cardNumber]);
+                cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+                cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
             }
             else
                 changePosition()
@@ -79,19 +80,19 @@
         moveTouchCarousel = function () {
             event.preventDefault();
             event.stopPropagation();
-            this.cards.style.transition = '0s';
-            this.cards.style.webkitTransition = '0s';
-            this.cards.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
-            this.cards.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
+            cards.style.transition = '0s';
+            cards.style.webkitTransition = '0s';
+            cards.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
+            cards.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
         }
 
         if (viewMyCardList.myCardListBoolean) {
             pos = (JSON.parse(localStorage.getItem('click_client_cards'))[localStorage.getItem('cardNumber')].countCard) * 540 * widthK;
 
-            this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-            this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-            this.cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
-            this.cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+            cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+            cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+            cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+            cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
 
         }
 
@@ -137,7 +138,7 @@
                     };
 
                     cardsarray.push(card);
-//                    console.log(cardsarray);
+
                     localStorage.setItem("click_client_cards", JSON.stringify(cardsarray));
                     var j = 0;
                     window.api.call({
@@ -153,14 +154,14 @@
                         scope: this,
                         onSuccess: function (result) {
                             if (result[0][0].error == 0) {
-                                if(result[1][0]) {
+                                if (result[1][0]) {
                                     cardsarray[j++].salary = result[1][0].balance;
                                     localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
                                     riot.update();
                                 }
                             }
                             else
-                                    alert(result[0][0].error_note);
+                                alert(result[0][0].error_note);
                         },
 
                         onFail: function (api_status, api_status_message, data) {
@@ -182,42 +183,40 @@
 
             if (carouselTouchEndX < carouselTouchStartX && cardNumber < count - 1) {
                 ++cardNumber;
-                // second parameter FROM TO
-                this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-                this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
             }
 
             if (carouselTouchEndX > carouselTouchStartX && cardNumber == 0) {
-                this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-                this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
             }
 
             if (carouselTouchEndX < carouselTouchStartX && cardNumber == count - 1) {
-                this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-                this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
             }
 
             if (carouselTouchEndX > carouselTouchStartX && cardNumber > 0) {
                 --cardNumber;
-                this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-                this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
             }
 
             localStorage.setItem('cardNumber', cardNumber);
 
             if (viewMainPage.myCards)
-                viewMyCards.cardInformation(cardNumber);
-
+                scope.parent.cardInformation(cardNumber);
         }
 
 

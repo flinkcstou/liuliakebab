@@ -49,9 +49,6 @@
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
         }
 
-        console.log(history.arrayOfHistory)
-
-
         var pin;
         var enteredPin = '';
         var checkSessionKey = false;
@@ -72,53 +69,52 @@
         }
 
         updateEnteredPin = function () {
-            event.preventDefault();
-            event.stopPropagation();
+
 
             if (enteredPin.length == 0) {
-                this.circleOne.style.backgroundColor = 'transparent';
-                this.circleTwo.style.backgroundColor = 'transparent';
-                this.circleThree.style.backgroundColor = 'transparent';
-                this.circleFour.style.backgroundColor = 'transparent';
-                this.circleFive.style.backgroundColor = 'transparent';
+                circleOne.style.backgroundColor = 'transparent';
+                circleTwo.style.backgroundColor = 'transparent';
+                circleThree.style.backgroundColor = 'transparent';
+                circleFour.style.backgroundColor = 'transparent';
+                circleFive.style.backgroundColor = 'transparent';
             }
             if (enteredPin.length == 1) {
-                this.circleOne.style.backgroundColor = '#01cfff';
-                this.circleTwo.style.backgroundColor = 'transparent';
-                this.circleThree.style.backgroundColor = 'transparent';
-                this.circleFour.style.backgroundColor = 'transparent';
-                this.circleFive.style.backgroundColor = 'transparent';
+                circleOne.style.backgroundColor = '#01cfff';
+                circleTwo.style.backgroundColor = 'transparent';
+                circleThree.style.backgroundColor = 'transparent';
+                circleFour.style.backgroundColor = 'transparent';
+                circleFive.style.backgroundColor = 'transparent';
             }
             if (enteredPin.length == 2) {
-                this.circleOne.style.backgroundColor = '#01cfff';
-                this.circleTwo.style.backgroundColor = '#01cfff';
-                this.circleThree.style.backgroundColor = 'transparent';
-                this.circleFour.style.backgroundColor = 'transparent';
-                this.circleFive.style.backgroundColor = 'transparent';
+                circleOne.style.backgroundColor = '#01cfff';
+                circleTwo.style.backgroundColor = '#01cfff';
+                circleThree.style.backgroundColor = 'transparent';
+                circleFour.style.backgroundColor = 'transparent';
+                circleFive.style.backgroundColor = 'transparent';
             }
 
             if (enteredPin.length == 3) {
-                this.circleOne.style.backgroundColor = '#01cfff';
-                this.circleTwo.style.backgroundColor = '#01cfff';
-                this.circleThree.style.backgroundColor = '#01cfff';
-                this.circleFour.style.backgroundColor = 'transparent';
-                this.circleFive.style.backgroundColor = 'transparent';
+                circleOne.style.backgroundColor = '#01cfff';
+                circleTwo.style.backgroundColor = '#01cfff';
+                circleThree.style.backgroundColor = '#01cfff';
+                circleFour.style.backgroundColor = 'transparent';
+                circleFive.style.backgroundColor = 'transparent';
             }
 
             if (enteredPin.length == 4) {
-                this.circleOne.style.backgroundColor = '#01cfff';
-                this.circleTwo.style.backgroundColor = '#01cfff';
-                this.circleThree.style.backgroundColor = '#01cfff';
-                this.circleFour.style.backgroundColor = '#01cfff';
-                this.circleFive.style.backgroundColor = 'transparent';
+                circleOne.style.backgroundColor = '#01cfff';
+                circleTwo.style.backgroundColor = '#01cfff';
+                circleThree.style.backgroundColor = '#01cfff';
+                circleFour.style.backgroundColor = '#01cfff';
+                circleFive.style.backgroundColor = 'transparent';
             }
 
             if (enteredPin.length == 5) {
-                this.circleOne.style.backgroundColor = '#01cfff';
-                this.circleTwo.style.backgroundColor = '#01cfff';
-                this.circleThree.style.backgroundColor = '#01cfff';
-                this.circleFour.style.backgroundColor = '#01cfff';
-                this.circleFive.style.backgroundColor = '#01cfff';
+                circleOne.style.backgroundColor = '#01cfff';
+                circleTwo.style.backgroundColor = '#01cfff';
+                circleThree.style.backgroundColor = '#01cfff';
+                circleFour.style.backgroundColor = '#01cfff';
+                circleFive.style.backgroundColor = '#01cfff';
                 pin = enteredPin;
                 enter();
             }
@@ -150,19 +146,22 @@
                 scope: this,
 
                 onSuccess: function (result) {
-                    if (result[0][0].error != 0) {
-                        alert(result[0][0].error_note)
-                        enteredPin = '';
-                        updateEnteredPin();
-                        return
-                    }
-                    if (!result[1][0].error) {
-                        var JsonInfo = JSON.stringify(result[1][0]);
-                        localStorage.setItem('click_client_loginInfo', JsonInfo);
-                        checkSessionKey = true;
-                        viewAuthorization.check = false;
-                        getAccount();
-                    }
+                    console.log(result[0][0])
+                   if(result[0][0].error == 0) {
+                       if (!result[1][0].error) {
+                           var JsonInfo = JSON.stringify(result[1][0]);
+                           localStorage.setItem('click_client_loginInfo', JsonInfo);
+                           checkSessionKey = true;
+                           viewAuthorization.check = false;
+                           getAccount();
+                       }
+                   }
+                    else{
+                       alert(result[0][0].error_note)
+                       enteredPin = '';
+                       updateEnteredPin();
+                       return
+                   }
                 },
                 onFail: function (api_status, api_status_message, data) {
                     console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -198,17 +197,18 @@
 
                     onSuccess: function (result) {
 
-//            console.log('RESULT ', result);
-                        for (var i = 0; i < result[1].length; i++)
-                            arrayAccountInfo.push(result[1][i])
+                        if(result[0][0].error == 0) {
+                            for (var i = 0; i < result[1].length; i++)
+                                arrayAccountInfo.push(result[1][i])
 
-                        var accountInfo = JSON.stringify(arrayAccountInfo);
-                        localStorage.setItem("click_client_accountInfo", accountInfo);
+                            var accountInfo = JSON.stringify(arrayAccountInfo);
+                            localStorage.setItem("click_client_accountInfo", accountInfo);
 
-//            console.log('ACCOUNT INFO', accountInfo)
-
-                        this.riotTags.innerHTML = "<view-main-page>";
-                        riot.mount('view-main-page');
+                            this.riotTags.innerHTML = "<view-main-page>";
+                            riot.mount('view-main-page');
+                        }
+                        else
+                                alert(result[0][0].error_note);
                     },
 
                     onFail: function (api_status, api_status_message, data) {
@@ -219,8 +219,5 @@
             }
         }
 
-        //      <div class="button-enter authorization-button-enter" ontouchend="enter()">
-        //      <div class="button-enter-label">ВОЙТИ</div>
-        //      </div>
     </script>
 </view-authorization>
