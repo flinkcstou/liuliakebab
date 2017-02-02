@@ -1338,7 +1338,7 @@ input {
 }
 
 .payconfirm-phone-field {
-    position: absolute;
+    position: relative;
     width: 100%;
     height: 23%;
     border-bottom: 1px solid lightgray;
@@ -1370,7 +1370,7 @@ input {
     height: 22.5%;
     border-bottom: 1px solid lightgray;
     color: white;
-    top: 23%;
+    /*top: 23%;*/
 }
 
 .payconfirm-card-field {
@@ -1379,7 +1379,7 @@ input {
     height: 32%;
     border-bottom: 1px solid lightgray;
     color: white;
-    top: 23%;
+    /*top: 23%;*/
 }
 
 .payconfirm-card-info-container {
@@ -1752,13 +1752,24 @@ input {
     color: #515151;
 }
 
-.transfer-contact-found-container {
-    position: relative;
+.transfer-contact-found-container-one {
+    position: absolute;
     width: 79.5%;
-    height: 103px;
+    height: 21%;
     background-color: #F0F1F4;
     left: 10%;
-    margin-bottom: 3px;
+    top: 29%;
+    display: none;
+}
+
+.transfer-contact-found-container-two {
+    position: absolute;
+    width: 79.5%;
+    height: 21%;
+    background-color: #F0F1F4;
+    left: 10%;
+    top: 51.5%;
+    display: none;
 }
 
 .transfer-contact-found-photo {
@@ -3228,7 +3239,6 @@ input {
     position: absolute;
     width: 100%;
     height: 13%;
-
 }
 
 .contact-search-search-icon {
@@ -3307,33 +3317,41 @@ input {
 
 .contact-search-suggestion-field-one {
     position: absolute;
-    top: 2%;
-    width: 100%;
-    height: 20%;
+    top: 3%;
+    width: 103%;
+    left: -1%;
+    height: 22%;
+    display: none;
     background-color: white;
 }
 
 .contact-search-suggestion-field-two {
     position: absolute;
-    top: 23%;
-    width: 100%;
-    height: 20%;
+    top: 26%;
+    width: 103%;
+    left: -1%;
+    height: 22%;
+    display: none;
     background-color: white;
 }
 
 .contact-search-suggestion-field-three {
     position: absolute;
-    top: 44%;
-    width: 100%;
-    height: 20%;
+    top: 49%;
+    width: 103%;
+    left: -1%;
+    height: 22%;
+    display: none;
     background-color: white;
 }
 
 .contact-search-suggestion-field-four {
     position: absolute;
-    top: 65%;
-    width: 100%;
-    height: 20%;
+    top: 72%;
+    width: 103%;
+    left: -1%;
+    height: 22%;
+    display: none;
     background-color: white;
 }
 

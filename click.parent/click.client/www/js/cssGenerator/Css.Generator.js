@@ -2363,6 +2363,53 @@ var css = {
   "left: -4%;" +
   "}",
 
+  servicePagePincardsContainer: ".servicepage-pincards-container" +
+  "{" +
+  "position: relative;" +
+  "width: 85%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "padding-top: 4%;" +
+  "padding-bottom: 4%;" +
+  "border-bottom: 1px solid gray;" +
+  "}",
+
+  servicePagePincardTitle: ".servicepage-pincard-title" +
+  "{" +
+  "position: relative;" +
+  "font-size: 24px;" +
+  "color: #595759;" +
+  "width: 100%;" +
+  "height: 25px;" +
+  "}",
+
+  servicePagePincardNominalContainer: ".servicepage-pincard-nominal-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 70px;" +
+  "}",
+
+  servicePagePincardNominalValue: ".servicepage-pincard-nominal-value" +
+  "{" +
+  "position: absolute;" +
+  "font-size: 28px;" +
+  "color: #595759;" +
+  "}",
+
+  servicePagePincardChooseArrow: ".servicepage-pincard-choose-arrow" +
+  "{" +
+  "position: absolute;" +
+  "background-color: #4B946A;" +
+  "width: 7%;" +
+  "height: 36%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "background-position: center;" +
+  "top: 31%;" +
+  "left: 92%;" +
+  "}",
+
 
   pincardPayfromContainer: ".pincard-payfrom-container" +
   "{" +
@@ -2533,7 +2580,7 @@ var css = {
 
   payconfirmPhoneField: ".payconfirm-phone-field" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "width: 100%;" +
   "height: 24%;" +
   "border-bottom: 1px solid lightgray;" +
@@ -2567,7 +2614,7 @@ var css = {
   "height: 22.5%;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
-  "top: 23%;" +
+    //"top: 23%;" +
   "}",
 
   payconfirmCardField: ".payconfirm-card-field" +
@@ -2577,7 +2624,7 @@ var css = {
   "height: 32%;" +
   "border-bottom:1px solid lightgray;" +
   "color: white;" +
-  "top: 23%;" +
+    //"top: 23%;" +
   "}",
 
   payconfirmCardInfoContainer: ".payconfirm-card-info-container" +
@@ -3184,6 +3231,17 @@ var css = {
   "display: none;" +
   "}",
 
+  transferContactFoundContainerTwo: ".transfer-contact-found-container-two" +
+  "{" +
+  "position: absolute;" +
+  "width: 79.5%;" +
+  "height: 21%;" +
+  "background-color: #F0F1F4;" +
+  "left: 10%;" +
+  "top: 51.5%;" +
+  "display: none;" +
+  "}",
+
   transferCardNumberInputPart: ".transfer-card-number-input-part" +
   "{" +
   "border: none;" +
@@ -3198,16 +3256,6 @@ var css = {
   "color: #515151;" +
   "}",
 
-  transferContactFoundContainerTwo: ".transfer-contact-found-container-two" +
-  "{" +
-  "position: absolute;" +
-  "width: 79.5%;" +
-  "height: 21%;" +
-  "background-color: #F0F1F4;" +
-  "left: 10%;" +
-  "top: 51.5%;" +
-  "display: none;" +
-  "}",
 
   transferContactFoundPhoto: ".transfer-contact-found-photo" +
   "{" +
@@ -3986,7 +4034,7 @@ var css = {
   "height:" + 100 * widthK + "px;" +
   "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top:31%;" +
+  "top:14%;" +
   "}",
 
   contactNumberFirstPart: ".contact-number-first-part" +
@@ -4022,9 +4070,9 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 96%;" +
-  "height: 70%;" +
+  "height: 79%;" +
   "left: 2%;" +
-  "top: 50%;" +
+  "top: 31%;" +
   "}",
 
   contactSearchSuggestionFieldOne: ".contact-search-suggestion-field-one " +
@@ -4055,7 +4103,7 @@ var css = {
   "top: 49%;" +
   "width: 103%;" +
   "left: -1%;" +
-  "height: 20%;" +
+  "height: 22%;" +
   "display: none;" +
   "background-color: white;" +
   "}",
@@ -4063,10 +4111,10 @@ var css = {
   contactSearchSuggestionFieldFour: ".contact-search-suggestion-field-four " +
   "{" +
   "position: absolute;" +
-  "top: 70%;" +
+  "top: 72%;" +
   "width: 103%;" +
   "left: -1%;" +
-  "height: 20%;" +
+  "height: 22%;" +
   "display: none;" +
   "background-color: white;" +
   "}",

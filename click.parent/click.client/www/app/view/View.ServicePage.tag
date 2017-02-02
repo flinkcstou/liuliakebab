@@ -100,7 +100,6 @@
         this.categoryName = scope.categoryNamesMap[viewPay.categoryId];
         scope.formType = scope.service.form_type;
         console.log("formType=" + this.formType);
-        viewServicePage.formType = this.formType;
         scope.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
         console.log("fieldArray=", scope.fieldArray);
 
