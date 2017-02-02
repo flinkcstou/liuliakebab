@@ -57,7 +57,9 @@ var RU_LANGUAGES =
 
   "ViewPayTitleName": "ОПЛАТА",
 
-  "ComponentSearchTitle": "ВЫБОР КАТЕГОРИИ",
+  "ComponentCategorySearchTitle": "ВЫБОР КАТЕГОРИИ",
+
+  "ComponentContactSearchTitle": "ВЫБОР КОНТАКТА",
 
   "ViewServicePinCardPayFromField": "Оплатить с:",
   "ViewServicePinCardHelpText": "Помощь друга",

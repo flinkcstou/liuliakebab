@@ -1902,6 +1902,10 @@ var css = {
   "text-align: center;" +
   "margin-right: auto;" +
   "top: 100%;" +
+  "width: 100%;" +
+  "height: 40%;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
 
   "}",
 
@@ -2032,6 +2036,10 @@ var css = {
   "top: 36%;" +
   "margin: 0;" +
   "color: #fffaf9;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "width: 60%;" +
   "}",
 
   servicePageCategoryField: ".servicepage-category-field" +
@@ -3906,6 +3914,206 @@ var css = {
   "text-align: center;" +
   "}",
 
+//  Component Contact Search
+
+  contactComponentSearch: ".contact-component-search " +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.95;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "background-color: #353340;" +
+  "display: none;" +
+  "}",
+
+  contactSearchContainer: ".contact-search-container" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 580 * widthK + "px;" +
+  "height:" + 650 * widthK + "px;" +
+  "left:" + 70 * widthK + "px;" +
+  "top: 0px;" +
+  "}",
+
+  contactSearchTitleContainer: ".contact-search-title-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 7%;" +
+  "}",
+
+  contactSearchSearchIcon: ".contact-search-search-icon " +
+  "{" +
+  "position: relative;" +
+  "width: 13%;" +
+  "height: 100%;" +
+  "left: 3%;" +
+  "background-repeat: no-repeat;" +
+  "float: left;" +
+  "background-image: url(resources/icons/search/search.png);" +
+  "background-position: center;" +
+  "background-size: 38%;" +
+  "}",
+
+  contactSearchTitleName: ".contact-search-title-name " +
+  "{" +
+  "position: relative;" +
+  "float: left;" +
+  "margin: 0;" +
+  "margin-top:" + 25 * widthK + "px;" +
+  "left: 3%;" +
+  "color: white;" +
+  "}",
+
+  contactSearchCancelIcon: ".contact-search-cancel-icon " +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 23%;" +
+  "height: 100%;" +
+  "background-repeat: no-repeat;" +
+  "background-image: url(resources/icons/search/close.png);" +
+  "background-position-y: center;" +
+  "background-position-x: 70%;" +
+  "background-size: 20%;" +
+  "}",
+
+  contactSearchPhoneField: ".contact-search-phone-field" +
+  "{" +
+  "position: absolute;" +
+  "left: 2%;" +
+  "width: 96%;" +
+  "height:" + 100 * widthK + "px;" +
+  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  "top:31%;" +
+  "}",
+
+  contactNumberFirstPart: ".contact-number-first-part" +
+  "{" +
+  "float: left;" +
+  "position: relative;" +
+  "top: 28%;" +
+  "height: 68%;" +
+  "font-size:" + 51 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: white;" +
+  "margin: 0;" +
+  "}",
+
+  contactSearchInput: ".contact-search-input " +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "top: 28%;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "margin-left: 3%;" +
+  "width: 65%;" +
+  "font-size:" + 51 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "-webkit-text-fill-color: white;" +
+  "background: none;" +
+  "}",
+
+  contactSearchSuggestionContainer: ".contact-search-suggestion-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 96%;" +
+  "height: 70%;" +
+  "left: 2%;" +
+  "top: 50%;" +
+  "}",
+
+  contactSearchSuggestionFieldOne: ".contact-search-suggestion-field-one " +
+  "{" +
+  "position: absolute;" +
+  "top: 3%;" +
+  "width: 103%;" +
+  "left: -1%;" +
+  "height: 22%;" +
+  "display: none;" +
+  "background-color: white;" +
+  "}",
+
+  contactSearchSuggestionFieldTwo: ".contact-search-suggestion-field-two " +
+  "{" +
+  "position: absolute;" +
+  "top: 26%;" +
+  "width: 103%;" +
+  "left: -1%;" +
+  "height: 22%;" +
+  "display: none;" +
+  "background-color: white;" +
+  "}",
+
+  contactSearchSuggestionFieldThree: ".contact-search-suggestion-field-three " +
+  "{" +
+  "position: absolute;" +
+  "top: 49%;" +
+  "width: 103%;" +
+  "left: -1%;" +
+  "height: 20%;" +
+  "display: none;" +
+  "background-color: white;" +
+  "}",
+
+  contactSearchSuggestionFieldFour: ".contact-search-suggestion-field-four " +
+  "{" +
+  "position: absolute;" +
+  "top: 70%;" +
+  "width: 103%;" +
+  "left: -1%;" +
+  "height: 20%;" +
+  "display: none;" +
+  "background-color: white;" +
+  "}",
+
+  contactSearchFoundPhoto: ".contact-search-found-photo" +
+  "{" +
+  "top: 8%;" +
+  "position: absolute;" +
+  "width: 17%;" +
+  "height: 82%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "border-radius: 50%;" +
+  "border: 1px solid gray;" +
+  "left: 5%;" +
+  "background-size: 150%;" +
+  "}",
+
+  contactSearchFoundTextContainer: ".contact-search-found-text-container" +
+  "{" +
+  "position: absolute;" +
+  "left: 25%;" +
+  "color: gray;" +
+  "width: 20%;" +
+  "height: 100%;" +
+  "display: table;" +
+  "}",
+
+
+  contactSearchFoundTextOne: ".contact-search-found-text-one" +
+  "{" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "display: table-cell;" +
+  "vertical-align: middle;" +
+  "}",
+
+  contactSearchFoundTextTwo: ".contact-search-found-text-two" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 60%;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: 40%;" +
+  "}"
 
 }
 

@@ -27,7 +27,7 @@
             </ul>
         </div>
     </div>
-    <component-search></component-search>
+    <component-category-search></component-category-search>
     <script>
         //TODO: OPTIMIZE THIS PAGE SLOW DOWNLOADING CATEGORIES AND SERVICES
         var scope = this;
@@ -142,7 +142,7 @@
 //      console.log(onTouchEndY)
 
 
-            if (Math.abs(onTouchStartY - onTouchEndY) <= 20 ||  scope.checkOfSearch) {
+            if (Math.abs(onTouchStartY - onTouchEndY) <= 20 || scope.checkOfSearch) {
                 if (scope.index == id) {
                     scope.index = -1;
                 } else {
@@ -346,7 +346,7 @@
             event.stopPropagation();
             onTouchEndY = event.changedTouches[0].pageY;
 
-            if (Math.abs(onTouchStartY - onTouchEndY) <= 20 ||  scope.checkOfSearch) {
+            if (Math.abs(onTouchStartY - onTouchEndY) <= 20 || scope.checkOfSearch) {
                 viewPay.chosenServiceId = id;
                 event.stopPropagation();
 

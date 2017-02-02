@@ -22,7 +22,7 @@
                    id="firstFieldInput"
                    maxlength="{inputMaxLength}" onfocus="bordersColor()"
                    value="{defaultNumber}"/>
-            <div class="servicepage-phone-icon" if="{phoneFieldBool}"></div>
+            <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
         </div>
 
         <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
@@ -62,6 +62,8 @@
             </div>
         </div>
     </div>
+
+    <component-contact-search></component-contact-search>
     <script>
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
             history.arrayOfHistory.push(

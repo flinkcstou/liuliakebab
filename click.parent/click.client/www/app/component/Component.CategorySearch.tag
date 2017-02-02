@@ -1,7 +1,7 @@
-<component-search id="blockSearchId" class="component-search">
+<component-category-search id="blockSearchId" class="component-search">
     <div class="search-title-container">
         <div class="search-search-icon"></div>
-        <p class="search-title-name">{window.languages.ComponentSearchTitle}</p>
+        <p class="search-title-name">{window.languages.ComponentCategorySearchTitle}</p>
         <div class="search-cancel-icon" ontouchend="searchCancelEnd()"></div>
     </div>
     <div id="searchContainerId" class="search-container">
@@ -260,4 +260,4 @@
         }
 
     </script>
-</component-search>
+</component-category-search>

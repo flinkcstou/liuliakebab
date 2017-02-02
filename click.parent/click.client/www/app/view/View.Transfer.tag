@@ -70,8 +70,6 @@
 
 
     </div>
-
-
     <script>
 
         var scope = this;
@@ -200,7 +198,7 @@
                         this.riotTags.innerHTML = "<view-transfer-steptwo>";
                         riot.mount('view-transfer-steptwo', [
                             {
-                                "name":cardNumberForTransfer,
+                                "name": cardNumberForTransfer,
                                 "type": 1
                             }
                         ]);
