@@ -10,7 +10,7 @@
     </div>
 
 
-    <div class="servicepage-body-container" if="{formType==1}">
+    <div class="servicepage-body-container" if="{formType!=2}">
         <div class="servicepage-fields-dropdown" if="{dropDownOn}" ontouchend="openDropDown()" id="firstFieldChoiceId">
             <p class="servicepage-dropdown-text-field">{chosenFieldName}</p></div>
         <div class="servicepage-first-field" id="firstField">
@@ -25,6 +25,11 @@
             <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
         </div>
 
+        <div class="servicepage-second-dropdown-field" if="formType==3">
+
+
+        </div>
+
         <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
              id="amountField">
             <p class="servicepage-text-field">{window.languages.ViewServicePageAmountTextLabel}</p>
@@ -33,6 +38,8 @@
                    onfocus="eraseAmountDefault()"/>
             <div class="servicepage-amount-icon"></div>
         </div>
+
+
         <div class="servicepage-button-enter" ontouchend="goToPinCardView()">
             <div class="servicepage-button-enter-label">{window.languages.ViewServicePageEnterLabel}</div>
         </div>
@@ -88,7 +95,7 @@
         scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
         scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
         console.log(scope.servicesParamsMapOne)
-        //        scope.servicesParamsMapTwo = JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"));
+        scope.servicesParamsMapTwo = JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"));
 
 
         scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
@@ -104,10 +111,10 @@
         console.log("fieldArray=", scope.fieldArray);
 
 
-        if (scope.formType == 1) {
+        if (scope.formType != 2) {
             if (scope.fieldArray) {
                 this.dropDownOn = scope.fieldArray.length > 1;
-                console.log("fiedArray length bool=", this.dropDownOn);
+                console.log("fieldArray length bool=", this.dropDownOn);
                 scope.chosenFieldName = scope.fieldArray[0].title;
                 scope.chosenFieldPlaceholder = scope.fieldArray[0].placeholder;
                 scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
@@ -125,6 +132,9 @@
                     scope.isNumber = false;
                 }
                 this.amountLength = ("" + scope.service.max_pay_limit).length;
+            }
+            if (scope.formType == 3 && scope.servicesParamsMapTwo) {
+
             }
         }
 

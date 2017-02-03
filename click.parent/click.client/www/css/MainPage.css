@@ -985,13 +985,13 @@ input {
 }
 
 .servicepage-amount-field {
-    position: absolute;
+    position: relative;
     left: 11%;
     width: 79.5%;
     height: 9%;
     border-bottom: 5px solid lightgray;
     color: white;
-    top: 19.5%;
+    top: 10%;
 }
 
 .servicepage-amount-field-two {
@@ -1098,15 +1098,14 @@ input {
 }
 
 .servicepage-button-enter {
-    /*top: 31%;*/
     position: relative;
-    width: 64%;
+    width: 63%;
     height: 9%;
     margin-right: auto;
     border-radius: 80px;
     margin-left: auto;
     background-color: rgb(1, 124, 227);
-    top: 15%;
+    top: 16%;
 }
 
 .servicepage-button-enter-label {
@@ -1178,6 +1177,16 @@ input {
     background-position: center;
     top: 31%;
     left: 92%;
+}
+
+.servicepage-second-dropdown-field {
+    position: relative;
+    width: 79.5%;
+    height: 9%;
+    left: 10%;
+    color: white;
+    background-color: green;
+    border-bottom: 5px solid lightgray;
 }
 
 /*VIEW-PINCARD*/

@@ -20,9 +20,7 @@
             cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
             cards.style.transform = "translate3d(" + (-firstCardNumber * 540) * widthK + 'px' + ", 0, 0)";
             cards.style.webkitTransform = "translate3d(" + (-firstCardNumber * 540) * widthK + 'px' + ", 0, 0)";
-
-            console.log('firstCardNumber', firstCardNumber)
-        })
+        });
 
         var scope = this;
         var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));

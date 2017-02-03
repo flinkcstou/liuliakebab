@@ -2200,13 +2200,13 @@ var css = {
   "}",
 
   servicePageAmountField: ".servicepage-amount-field" +
-  "{position: absolute;" +
+  "{position: relative;" +
   "left: 10%;" +
   "width: 79.5%;" +
   "height: 9%;" +
   "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
   "color: white;" +
-  "top: 19.5%" +
+  "top: 10%" +
   "}",
 
   servicePageAmountFieldTwo: ".servicepage-amount-field-two" +
@@ -2327,7 +2327,6 @@ var css = {
 
   servicePageButtonEnter: ".servicepage-button-enter" +
   "{" +
-    //"top: 31%;" +
   "position: relative;" +
   "width: 63%;" +
   "height: 8%;" +
@@ -2335,7 +2334,7 @@ var css = {
   "border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
   "background-color: rgb(1, 124, 227);" +
-  "top: 25%;" +
+  "top: 16%;" +
   "}",
 
   servicePageButtonEnterLabel: ".servicepage-button-enter-label" +
@@ -2408,6 +2407,18 @@ var css = {
   "background-position: center;" +
   "top: 31%;" +
   "left: 92%;" +
+  "}",
+
+  servicePageSecondDropdownField: ".servicepage-second-dropdown-field" +
+  "{" +
+  "position: relative;" +
+  "width: 79.5%;" +
+  "height: 9%;" +
+  "left: 10%;" +
+  "color: white;" +
+  "background-color: green;" +
+  "border-bottom: 5px solid lightgray;" +
+  "top: 7%;" +
   "}",
 
 
