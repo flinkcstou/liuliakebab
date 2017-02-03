@@ -1,8 +1,8 @@
 <component-pincards>
 
     <div class="pincard-allcards-container">
-        <div class="pincard-card-container" each="{i in cardsArrayTwo}" ontouchend="chooseCard(this.id)"
-             id="{i.card_id}">
+        <div class="pincard-card-container" each="{i in cardsArray}" ontouchend="chooseCard(this.id)"
+             id="{i.card_id}" if="{i.access == 2}">
             <div class="pincard-card-logo-container" if="{i.salary>0}"
                  style="background-image: url({i.url})"></div>
             <div class="pincard-card-logo-container" if="{i.salary<=0}"
@@ -14,8 +14,8 @@
                     0 {i.currency}</p>
                 <p class="pincard-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
             </div>
-            <div class="{pincard-card-uncheckmark: !i.chosenCard, pincard-card-checkmark: i.chosenCard}"
-                 id="check{i.card_id}">
+            <div id="check{i.card_id}"
+                 class="{pincard-card-uncheckmark: 'check'+i.card_id != checkedId, pincard-card-checkmark:'check'+i.card_id == checkedId}">
             </div>
         </div>
     </div>
@@ -23,28 +23,33 @@
     <script>
         var scope = this;
 
-        var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-        scope.cardsArrayTwo = [];
-
-        for (var i in cardsArray) {
-            if (cardsArray[i].access == 2) {
-                scope.cardsArrayTwo.push(cardsArray[i]);
-            }
-        }
-        console.log('AAAAAAAAAAAAAAa', cardsArray)
-        riot.update(scope.cardsArrayTwo);
-
-
+        scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
         scope.checked = false;
 
-        chooseCard = function (id) {
-            if (cardsArray[id]) {
-                scope.checked = true;
-                cardsArray[id].chosenCard = true;
+        for (var i in scope.cardsArray) {
+            if (scope.cardsArray[i].chosenCard == true) {
+                scope.checkedId = "check" + scope.cardsArray[i].card_id;
             }
+        }
 
-            localStorage.setItem('click_client_cards', JSON.stringify(cardsArray))
-            riot.update(document.getElementById("check" + id))
+
+        console.log("CHECKED_ID", scope.checkedId);
+
+        chooseCard = function (id) {
+            console.log(id)
+            scope.checkedId = "check" + id;
+            riot.update(scope.checkedId);
+            console.log("CHECKED_ID", scope.checkedId);
+            for (var i in scope.cardsArray) {
+                if (scope.cardsArray[i].card_id === id) {
+                    scope.cardsArray[i].chosenCard = true;
+                }
+                else
+                    scope.cardsArray[i].chosenCard = false;
+            }
+            console.log(scope.cardsArray)
+
+            localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))
         }
 
 
