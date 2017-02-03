@@ -222,6 +222,9 @@
             var cardTypeId = {"cardTypeId": null};
             var amountText = {"amountText": amount.value};
 
+            viewServicePage.phoneText = firstFieldInput.value;
+            viewServicePage.amountText = amount.value;
+
 
             event.preventDefault();
             event.stopPropagation();
