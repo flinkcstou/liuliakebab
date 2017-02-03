@@ -238,6 +238,7 @@
 
             for (var i in cardsarray) {
                 if (cardsarray[i].countCard == cardNumber) {
+
                     cardsarray[i].chosenCard = true;
                     if (viewMainPage.myCards) {
                         scope.parent.cardInformation(cardsarray[i].card_id);
