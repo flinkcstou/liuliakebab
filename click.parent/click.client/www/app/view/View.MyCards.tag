@@ -69,9 +69,14 @@
         }
 
         var scope = this,
-                cardNumber = opts[0],
                 sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
                 phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+
+        if (opts[0])
+            scope.cardNumber = opts[0];
+        else
+            scope.cardNumber = JSON.parse(localStorage.getItem('cardNumber'))
 
         scope.top = 160 * widthK;
         viewMyCards.check = true;
@@ -84,7 +89,7 @@
         this.titleName = window.languages.ViewMyCardTitleName;
 
 
-        scope.card = JSON.parse(localStorage.getItem('click_client_cards'))[cardNumber];
+        scope.card = scope.cardsArray[scope.cardNumber];
 
 
         scope.arrayOfOperationsByAccount = [];
@@ -115,7 +120,7 @@
                                     scope.arrayOfOperationsByAccount.push(result[1][i]);
                                 }
                             }
-                            lastOperationContainerId.style.height = j * 160 * widthK + 'px';
+                            this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
                             riot.update(scope.arrayOfOperationsByAccount)
                         }
                     }
@@ -131,7 +136,7 @@
             });
         }
 
-        scope.cardInformation(cardNumber);
+        scope.cardInformation(scope.cardNumber);
 
         goToPayView = function () {
             for (var i = 0; i < scope.cardsArray.length; i++) {

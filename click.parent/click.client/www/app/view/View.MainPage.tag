@@ -20,7 +20,6 @@
     <script>
 
         history.arrayOfHistory = [];
-        localStorage.setItem('cardNumber', 0);
             history.arrayOfHistory.push(
                     {
                         "view": 'view-main-page',
@@ -28,6 +27,7 @@
                     }
             );
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
 
 
         viewMainPage.myCards = false;

@@ -14,6 +14,15 @@
     </div>
 
     <script>
+        this.on('mount', function () {
+            var firstCardNumber = JSON.parse(localStorage.getItem('cardNumber'))
+            cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+            cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+            cards.style.transform = "translate3d(" + (-firstCardNumber * 540) * widthK + 'px' + ", 0, 0)";
+            cards.style.webkitTransform = "translate3d(" + (-firstCardNumber * 540) * widthK + 'px' + ", 0, 0)";
+
+            console.log('firstCardNumber', firstCardNumber)
+        })
 
         var scope = this;
         var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
@@ -31,10 +40,14 @@
 
 
         var card;
-        var cardNumber = localStorage.getItem('cardNumber');
+        var cardNumber = JSON.parse(localStorage.getItem('cardNumber'));
 
-        if (!cardNumber)
+
+        if (!cardNumber) {
             cardNumber = 0;
+        }
+
+
         var pos = 0;
         var count = localStorage.getItem('click_client_countCard');
         var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -68,10 +81,10 @@
                 }
                 riotTags.innerHTML = "<view-my-cards>";
                 riot.mount("view-my-cards", [cardNumber]);
-                cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
-                cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+                this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                this.cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+                this.cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
             }
             else
                 changePosition()
@@ -80,20 +93,10 @@
         moveTouchCarousel = function () {
             event.preventDefault();
             event.stopPropagation();
-            cards.style.transition = '0s';
-            cards.style.webkitTransition = '0s';
-            cards.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
-            cards.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
-        }
-
-        if (viewMyCardList.myCardListBoolean) {
-            pos = (JSON.parse(localStorage.getItem('click_client_cards'))[localStorage.getItem('cardNumber')].countCard) * 540 * widthK;
-
-            cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-            cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-            cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
-            cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
-
+            this.cards.style.transition = '0s';
+            this.cards.style.webkitTransition = '0s';
+            this.cards.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
+            this.cards.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
         }
 
         addCard(getAccountsCards)
@@ -183,34 +186,34 @@
 
             if (carouselTouchEndX < carouselTouchStartX && cardNumber < count - 1) {
                 ++cardNumber;
-                cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-                cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
             }
 
             if (carouselTouchEndX > carouselTouchStartX && cardNumber == 0) {
-                cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-                cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
             }
 
             if (carouselTouchEndX < carouselTouchStartX && cardNumber == count - 1) {
-                cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-                cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
             }
 
             if (carouselTouchEndX > carouselTouchStartX && cardNumber > 0) {
                 --cardNumber;
-                cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-                cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+                this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
             }
 
             localStorage.setItem('cardNumber', cardNumber);
@@ -218,7 +221,6 @@
             if (viewMainPage.myCards)
                 scope.parent.cardInformation(cardNumber);
         }
-
 
     </script>
 </component-card-carousel>
