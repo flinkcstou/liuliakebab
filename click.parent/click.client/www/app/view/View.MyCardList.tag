@@ -56,15 +56,10 @@
         goToCardPage = function (cardId) {
             event.preventDefault();
             event.stopPropagation();
-            for (var i = 0; i < scope.cardsArray.length; i++)
-                if (scope.cardsArray[i].card_id == cardId) {
-                    localStorage.setItem('cardNumber', i);
-                    viewMyCards.chosenCardId = cardId;
-                    break;
-                }
-            viewMyCardList.myCardListBoolean = true;
-            this.riotTags.innerHTML = "<view-my-cards>";
-            riot.mount('view-my-cards', [JSON.parse(localStorage.getItem('cardNumber'))]);
+            event.preventDefault();
+            event.stopPropagation();
+            riotTags.innerHTML = "<view-my-cards>";
+            riot.mount('view-my-cards', [cardId]);
 
 
         }

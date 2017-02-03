@@ -14,6 +14,7 @@
     </div>
 
     <script>
+
         this.on('mount', function () {
             var firstCardNumber = JSON.parse(localStorage.getItem('cardNumber'))
             cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -21,8 +22,44 @@
             cards.style.transform = "translate3d(" + (-firstCardNumber * 540) * widthK + 'px' + ", 0, 0)";
             cards.style.webkitTransform = "translate3d(" + (-firstCardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
-            console.log('firstCardNumber', firstCardNumber)
+            // writeBalance();
         })
+
+
+        writeBalance = function () {
+            for (var i = 0; i < getAccountsCards.length; i++) {
+
+                window.api.call({
+                    method: 'get.balance',
+                    input: {
+                        session_key: sessionKey,
+                        phone_num: phoneNumber,
+                        account_id: getAccountsCards[i].id,
+                        card_num_hash: getAccountsCards[i].card_num_hash,
+                        card_num_crypted: getAccountsCards[i].card_num_crypted
+                    },
+                    //TODO: DO CARDS
+                    scope: this,
+                    onSuccess: function (result) {
+                        if (result[0][0].error == 0) {
+                            if (result[1][0]) {
+                                for (var k = 0; k < getAccountsCards.length; k++)
+                                    cardsarray[j++].salary = result[1][0].balance;
+                                localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
+                                riot.update();
+                            }
+                        }
+                        else
+                            alert(result[0][0].error_note);
+                    },
+
+                    onFail: function (api_status, api_status_message, data) {
+                        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                        console.error(data);
+                    }
+                });
+            }
+        }
 
         var scope = this;
         var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
@@ -35,7 +72,7 @@
         cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
 
         if (!cardsarray) {
-            cardsarray = [];
+            cardsarray = {};
         }
 
 
@@ -70,9 +107,11 @@
             }
             else if (!viewMainPage.myCards) {
                 pos = (cardNumber) * 540 * widthK;
-                for (var i = 0; i < cardsarray.length; i++) {
+                var sendChosenCardId;
+                for (var i in cardsarray) {
                     if (cardsarray[i].countCard == cardNumber) {
                         cardsarray[i].chosenCard = true;
+                        sendChosenCardId = cardsarray[i].card_id
                         localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
                     }
                     else {
@@ -80,7 +119,7 @@
                     }
                 }
                 riotTags.innerHTML = "<view-my-cards>";
-                riot.mount("view-my-cards", [cardNumber]);
+                riot.mount("view-my-cards", [sendChosenCardId]);
                 this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
                 this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
                 this.cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
@@ -140,43 +179,15 @@
                         access: getAccountsCards[i].access
                     };
 
-                    cardsarray.push(card);
+
+                    cardsarray[getAccountsCards[i].id] = card;
+                    console.log(cardsarray)
 
                     localStorage.setItem("click_client_cards", JSON.stringify(cardsarray));
-                    var j = 0;
-                    window.api.call({
-                        method: 'get.balance',
-                        input: {
-                            session_key: sessionKey,
-                            phone_num: phoneNumber,
-                            account_id: getAccountsCards[i].id,
-                            card_num_hash: getAccountsCards[i].card_num_hash,
-                            card_num_crypted: getAccountsCards[i].card_num_crypted
-                        },
-                        //TODO: DO CARDS
-                        scope: this,
-                        onSuccess: function (result) {
-                            if (result[0][0].error == 0) {
-                                if (result[1][0]) {
-                                    cardsarray[j++].salary = result[1][0].balance;
-                                    localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
-                                    riot.update();
-                                }
-                            }
-                            else
-                                alert(result[0][0].error_note);
-                        },
-
-                        onFail: function (api_status, api_status_message, data) {
-                            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                            console.error(data);
-                        }
-                    });
 
                     count++;
                     localStorage.setItem('click_client_countCard', count);
                     riot.mount("component-card");
-
                 }
         }
         if (localStorage.getItem('click_client_accountInfo'))
@@ -218,9 +229,15 @@
 
             localStorage.setItem('cardNumber', cardNumber);
 
-            if (viewMainPage.myCards)
-                scope.parent.cardInformation(cardNumber);
+            if (viewMainPage.myCards) {
+                for(var i in cardsarray ){
+                    if(cardsarray[i].countCard == cardNumber)
+                       var sendChosenCardId = cardsarray[i].card_id
+                }
+                scope.parent.cardInformation(sendChosenCardId);
+            }
         }
+
 
     </script>
 </component-card-carousel>

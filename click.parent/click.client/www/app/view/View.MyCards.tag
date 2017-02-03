@@ -74,9 +74,8 @@
 
 
         if (opts[0])
-            scope.cardNumber = opts[0];
-        else
-            scope.cardNumber = JSON.parse(localStorage.getItem('cardNumber'))
+            scope.cardId = opts[0];
+
 
         scope.top = 160 * widthK;
         viewMyCards.check = true;
@@ -89,17 +88,20 @@
         this.titleName = window.languages.ViewMyCardTitleName;
 
 
-        scope.card = scope.cardsArray[scope.cardNumber];
+        scope.card = scope.cardsArray[scope.cardId];
+        console.log('scope.cardId',scope.cardId)
+        console.log('scope.card',scope.card)
 
 
         scope.arrayOfOperationsByAccount = [];
 
-        scope.cardInformation = cardInformation = function (cardNumberFromCarousel) {
+        scope.cardInformation = cardInformation = function (cardIdFromCarousel) {
             event.preventDefault();
             event.stopPropagation();
 
-            scope.card = JSON.parse(localStorage.getItem('click_client_cards'))[cardNumberFromCarousel];
+            scope.card = JSON.parse(localStorage.getItem('click_client_cards'))[cardIdFromCarousel];
             scope.arrayOfOperationsByAccount = [];
+            console.log(scope.card)
 
             window.api.call({
                 method: 'get.payments.by.account',
@@ -136,7 +138,7 @@
             });
         }
 
-        scope.cardInformation(scope.cardNumber);
+        scope.cardInformation(scope.cardId);
 
         goToPayView = function () {
             for (var i = 0; i < scope.cardsArray.length; i++) {
