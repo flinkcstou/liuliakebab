@@ -36,20 +36,23 @@
         console.log("CHECKED_ID", scope.checkedId);
 
         chooseCard = function (id) {
-            console.log(id)
             scope.checkedId = "check" + id;
             riot.update(scope.checkedId);
-            console.log("CHECKED_ID", scope.checkedId);
+
             for (var i in scope.cardsArray) {
-                if (scope.cardsArray[i].card_id === id) {
+                console.log('id', scope.cardsArray[i].card_id, id)
+                if (scope.cardsArray[i].card_id == id) {
                     scope.cardsArray[i].chosenCard = true;
+
                 }
                 else
                     scope.cardsArray[i].chosenCard = false;
             }
+            localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))
+            console.log(localStorage.getItem('click_client_cards'))
+            riot.update(scope.cardsArray)
             console.log(scope.cardsArray)
 
-            localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))
         }
 
 
