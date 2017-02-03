@@ -88,16 +88,17 @@
                 if (result[0][0].error == 0) {
                     var j = 0;
                     for (var i in result[1]) {
-
-                        scope.lastOperationContainer.push(result[1][i])
-                        scope.lastOperationContainer[i].count = j;
-                        j++;
+                        if (result[1][i].state == 0) {
+                            scope.lastOperationContainer.push(result[1][i])
+                            scope.lastOperationContainer[i].count = j;
+                            j++;
+                        }
                     }
 //                    console.log('scope.lastOperationContainer', scope.lastOperationContainer)
                     riot.update(scope.lastOperationContainer)
                 }
                 else
-                        alert(result[0][0].error_note)
+                    alert(result[0][0].error_note)
 
             },
 
