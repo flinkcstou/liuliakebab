@@ -53,7 +53,6 @@
         scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
         scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
         scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
-        cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
 
 
         this.titleName = scope.service.name;
@@ -61,9 +60,10 @@
 
 
         goToPayConfirmView = function () {
+            cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
             console.log("cardsArray=", cardsArray);
             for (var i in cardsArray) {
-                if (cardsArray[i].chosenCard) {
+                if (cardsArray[i].chosenCard && cardsArray[i].access == 2) {
                     scope.chosencardId = cardsArray[i].card_id;
                     scope.checked = true;
                     break;

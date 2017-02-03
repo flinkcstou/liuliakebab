@@ -1319,6 +1319,39 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
       service_id: 198,
       title: "Лицевой счет абонента",
       ussd_query: "*880*019899999*{communal_param}*{param}*{amount}#"
+    },
+    {
+      error_message: "Номер телефона введен неправильно",
+      input_type: 1,
+      max_len: "999999999",
+      min_len: "0",
+      parameter_id: "65536",
+      placeholder: "Введите номер телефона с кодом города (г.Ташкент(71), Таш. Обл.(70), Каракалпакстан(61), Сырдарья(67))",
+      service_id: 9,
+      title: "Номер телефона",
+      ussd_query: "*880*0999999*{communal_param}*{param}*{amount}#"
+    },
+    {
+      error_message: "Неверно набран лицевой счет",
+      input_type: 2,
+      max_len: "50",
+      min_len: "0",
+      parameter_id: "16",
+      placeholder: "Введите лицевой счет абонента",
+      service_id: 39,
+      title: "Лицевой счет абонента",
+      ussd_query: "*880*03999999*{communal_param}*{param}*{amount}#"
+    },
+    {
+      error_message: "ИНН введен не верно",
+      input_type: 1,
+      max_len: "999999999",
+      min_len: "1",
+      parameter_id: "8388608",
+      placeholder: "Введите ИНН",
+      service_id: 107,
+      title: "ИНН",
+      ussd_query: "*880*010799999*{communal_param}*{param}*{amount}#"
     }
   ]);
 
@@ -1335,6 +1368,22 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
       code: -1,
       id: 4,
       name: "Мирзо-Улугбекский район",
+      offline_code: "-1",
+      parent: 0,
+      service_id: 39
+    },
+    {
+      code: -1,
+      id: 5,
+      name: "Хамзинский район",
+      offline_code: "-1",
+      parent: 0,
+      service_id: 39
+    },
+    {
+      code: -1,
+      id: 6,
+      name: "Шайхантахурский район",
       offline_code: "-1",
       parent: 0,
       service_id: 39

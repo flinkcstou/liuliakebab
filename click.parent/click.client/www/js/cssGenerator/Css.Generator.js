@@ -2416,7 +2416,6 @@ var css = {
   "height: 9%;" +
   "left: 10%;" +
   "color: white;" +
-  "background-color: green;" +
   "border-bottom: 5px solid lightgray;" +
   "top: 7%;" +
   "}",

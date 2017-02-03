@@ -132,7 +132,28 @@
                 }
                 this.amountLength = ("" + scope.service.max_pay_limit).length;
             }
-            if (scope.formType == 3 && scope.servicesParamsMapTwo) {
+            if (scope.formType == 3 && scope.servicesParamsMapTwo[scope.service.id]) {
+                scope.firstLevelArray = [];
+                scope.secondLevelMap = {};
+                for (var i = 0; i < scope.servicesParamsMapTwo[scope.service.id].length; i++) {
+                    if (scope.servicesParamsMapTwo[scope.service.id][i].parent == 0) {
+                        scope.firstLevelArray.push(scope.servicesParamsMapTwo[scope.service.id][i]);
+                        console.log("Id=", scope.servicesParamsMapTwo[scope.service.id][i].id);
+                    } else {
+                        if (!scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent]) {
+                            scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent] = [];
+                            scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent].push(scope.servicesParamsMapTwo[scope.service.id][i]);
+                            console.log("Parent id=", scope.servicesParamsMapTwo[scope.service.id][i].parent);
+                        }
+                        else {
+                            console.log("Parent id=", scope.servicesParamsMapTwo[scope.service.id][i].parent);
+                            scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent].push(scope.servicesParamsMapTwo[scope.service.id][i]);
+                        }
+
+
+                    }
+
+                }
 
             }
         }
