@@ -149,12 +149,8 @@
                             console.log("Parent id=", scope.servicesParamsMapTwo[scope.service.id][i].parent);
                             scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent].push(scope.servicesParamsMapTwo[scope.service.id][i]);
                         }
-
-
                     }
-
                 }
-
             }
         }
 

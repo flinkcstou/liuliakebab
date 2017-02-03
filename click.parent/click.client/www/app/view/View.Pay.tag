@@ -49,7 +49,7 @@
         scope.serviceNamesMap = JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"));
         scope.servicesMapByCategory = JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"));
         scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
-        //        scope.servicesParams = JSON.parse(localStorage.getItem("click_client_servicesParams"));
+        scope.servicesParams = JSON.parse(localStorage.getItem("click_client_servicesParams"));
         scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
 
 
@@ -250,6 +250,7 @@
                     localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
                     localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
                     localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
+                    servicesParamsInit();
                 },
                 onFail: function (api_status, api_status_message, data) {
                     console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -258,7 +259,7 @@
             })
         }
 
-        if (!scope.servicesParams) {
+        servicesParamsInit = function () {
             scope.servicesParams = [];
             scope.servicesParamsMapOne = {};
             scope.servicesParamsMapTwo = {};

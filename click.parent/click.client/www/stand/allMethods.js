@@ -1110,6 +1110,26 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_parameters: "16777232",
         service_short_name: "EVOLTE",
         status: 1
+      },
+      {
+        category_id: 8,
+        cost: 1,
+        form_type: 3,
+        id: 198,
+        image: "https://m.click.uz/static/merchant/logo/logo_198.png",
+        is_mobile: 0,
+        lang_amount_hint: null,
+        lang_amount_placeholder: "Введите сумму оплаты",
+        lang_amount_title: "Сумма",
+        lang_max_amount: "Максимальная сумма для оплаты 5000000.00 сум ",
+        lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+        max_pay_limit: 5000000,
+        min_pay_limit: 1000,
+        name: "Gaz",
+        priority: 0,
+        service_parameters: "16",
+        service_short_name: "gaz",
+        status: 1
       }
 
     ]
@@ -1387,6 +1407,86 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
       offline_code: "-1",
       parent: 0,
       service_id: 39
+    },
+    {
+      code: -1,
+      id: 7,
+      name: "Яккасарайский район",
+      offline_code: "-1",
+      parent: 0,
+      service_id: 39
+    },
+    {
+      code: 1,
+      id: 1,
+      name: "Ташкент",
+      offline_code: "1",
+      parent: 0,
+      service_id: 198
+    },
+    {
+      code: 3,
+      id: 3,
+      name: "Бухара",
+      offline_code: "3",
+      parent: 0,
+      service_id: 198
+    },
+    {
+      code: 3,
+      id: 3,
+      name: "Миробод тумани",
+      offline_code: "003",
+      parent: 1,
+      service_id: 198
+    },
+    {
+      code: 4,
+      id: 4,
+      name: "М. Улугбек тумани",
+      offline_code: "004",
+      parent: 1,
+      service_id: 198
+    },
+    {
+      code: 5,
+      id: 5,
+      name: "Яккасарой тумани",
+      offline_code: "005",
+      parent: 1,
+      service_id: 198
+    },
+    {
+      code: 172,
+      id: 172,
+      name: "Бухоро шахар",
+      offline_code: "172",
+      parent: 3,
+      service_id: 198
+    },
+    {
+      code: 174,
+      id: 174,
+      name: "Ромитан тумани",
+      offline_code: "174",
+      parent: 3,
+      service_id: 198
+    },
+    {
+      code: 175,
+      id: 175,
+      name: "Когон тумани",
+      offline_code: "175",
+      parent: 3,
+      service_id: 198
+    },
+    {
+      code: 176,
+      id: 176,
+      name: "Гиждувон тумани",
+      offline_code: "176",
+      parent: 3,
+      service_id: 198
     },
     {
       code: 1,
