@@ -17,6 +17,16 @@
 
         this.on('mount', function () {
             var firstCardNumber = JSON.parse(localStorage.getItem('cardNumber'))
+
+            for (var i in cardsarray) {
+                if (cardsarray[i].countCard == firstCardNumber) {
+                    cardsarray[i].chosenCard = true;
+                }
+                else
+                    cardsarray[i].chosenCard = false;
+            }
+            console.log('cardsarray',cardsarray )
+            localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
             cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
             cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
             cards.style.transform = "translate3d(" + (-firstCardNumber * 540) * widthK + 'px' + ", 0, 0)";
@@ -42,7 +52,7 @@
                     onSuccess: function (result) {
                         if (result[0][0].error == 0) {
                             if (result[1][0]) {
-
+                                console.log(result[1][0])
                                 cardsarray[result[1][0].account_id].salary = result[1][0].balance;
                                 localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
                                 riot.update();
@@ -226,15 +236,19 @@
                 this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
             }
 
-            localStorage.setItem('cardNumber', cardNumber);
-
-            if (viewMainPage.myCards) {
-                for (var i in cardsarray) {
-                    if (cardsarray[i].countCard == cardNumber)
-                        var sendChosenCardId = cardsarray[i].card_id
+            for (var i in cardsarray) {
+                if (cardsarray[i].countCard == cardNumber) {
+                    cardsarray[i].chosenCard = true;
+                    if (viewMainPage.myCards) {
+                        scope.parent.cardInformation(cardsarray[i].card_id);
+                    }
                 }
-                scope.parent.cardInformation(sendChosenCardId);
+                else
+                    cardsarray[i].chosenCard = false;
             }
+            localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
+
+            localStorage.setItem('cardNumber', cardNumber);
         }
 
 

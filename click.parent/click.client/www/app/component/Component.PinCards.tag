@@ -22,34 +22,25 @@
 
     <script>
         var scope = this;
-        cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-        console.log("cardsArray or map=", cardsArray);
+
+        var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
         scope.cardsArrayTwo = [];
+
         for (var i in cardsArray) {
-            console.log("iter=", cardsArray[i]);
             if (cardsArray[i].access == 2) {
-                console.log("chosen?", cardsArray[i].chosenCard);
                 scope.cardsArrayTwo.push(cardsArray[i]);
             }
         }
+        console.log('AAAAAAAAAAAAAAa', cardsArray)
         riot.update(scope.cardsArrayTwo);
 
 
         scope.checked = false;
-        viewServicePinCards.oldChosenCardId;
 
         chooseCard = function (id) {
-            console.log("chosen id=", id);
-            console.log("old card id=", viewServicePinCards.oldChosenCardId);
-
             if (cardsArray[id]) {
                 scope.checked = true;
                 cardsArray[id].chosenCard = true;
-                console.log("elem with this id=", cardsArray[id]);
-                if (viewServicePinCards.oldChosenCardId && viewServicePinCards.oldChosenCardId != id)
-                    cardsArray[viewServicePinCards.oldChosenCardId].chosenCard = false;
-                viewServicePinCards.oldChosenCardId = id;
-
             }
 
             localStorage.setItem('click_client_cards', JSON.stringify(cardsArray))

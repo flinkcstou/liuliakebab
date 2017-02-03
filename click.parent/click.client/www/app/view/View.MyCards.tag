@@ -89,8 +89,8 @@
 
 
         scope.card = scope.cardsArray[scope.cardId];
-        console.log('scope.cardId',scope.cardId)
-        console.log('scope.card',scope.card)
+        console.log('scope.cardId', scope.cardId)
+        console.log('scope.card', scope.card)
 
 
         scope.arrayOfOperationsByAccount = [];
@@ -141,11 +141,12 @@
         scope.cardInformation(scope.cardId);
 
         goToPayView = function () {
-            for (var i = 0; i < scope.cardsArray.length; i++) {
-                scope.cardsArray[i].chosenCard = false;
+            for (var i in cardsArray) {
                 if (scope.cardsArray[i].card_id == scope.card.card_id) {
                     scope.cardsArray[i].chosenCard = true;
                 }
+                else
+                    scope.cardsArray[i].chosenCard = false;
             }
             localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
 
