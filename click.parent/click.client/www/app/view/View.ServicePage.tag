@@ -25,8 +25,7 @@
             <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
         </div>
 
-        <div class="servicepage-second-dropdown-field" if="formType==3">
-
+        <div class="servicepage-second-dropdown-field" if="{formType==3}">
 
         </div>
 

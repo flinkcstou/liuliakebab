@@ -22,7 +22,7 @@
             cards.style.transform = "translate3d(" + (-firstCardNumber * 540) * widthK + 'px' + ", 0, 0)";
             cards.style.webkitTransform = "translate3d(" + (-firstCardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
-             writeBalance();
+            writeBalance();
         })
 
 

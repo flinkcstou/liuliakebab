@@ -92,16 +92,15 @@
         var chosenCardId = opts[1];
         console.log("chosen card id=", chosenCardId);
 
-        for (var i = 0; i < cardsArray.length; i++)
-            if (cardsArray[i].chosenCard === true) {
-                scope.cardName = cardsArray[i].name;
-                scope.numberPartOne = cardsArray[i].numberPartOne;
-                scope.numberPartTwo = cardsArray[i].numberPartTwo;
-                scope.salary = cardsArray[i].salary;
-                scope.currency = cardsArray[i].currency;
-                scope.url = cardsArray[i].url;
-                break;
-            }
+        if (cardsArray[chosenCardId]) {
+            scope.cardName = cardsArray[chosenCardId].name;
+            scope.numberPartOne = cardsArray[chosenCardId].numberPartOne;
+            scope.numberPartTwo = cardsArray[chosenCardId].numberPartTwo;
+            scope.salary = cardsArray[chosenCardId].salary;
+            scope.currency = cardsArray[chosenCardId].currency;
+            scope.url = cardsArray[chosenCardId].url;
+        }
+
 
         payService = function () {
             var date = parseInt(Date.now() / 1000);

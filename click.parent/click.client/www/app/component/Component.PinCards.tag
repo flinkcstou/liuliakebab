@@ -23,26 +23,34 @@
     <script>
         var scope = this;
         cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+        console.log("cardsArray or map=", cardsArray);
         scope.cardsArrayTwo = [];
-        for (var i = 0; i < cardsArray.length; i++)
-            if (cardsArray[i].access == 2)
+        for (var i in cardsArray) {
+            console.log("iter=", cardsArray[i]);
+            if (cardsArray[i].access == 2) {
+                console.log("chosen?", cardsArray[i].chosenCard);
                 scope.cardsArrayTwo.push(cardsArray[i]);
+            }
+        }
+        riot.update(scope.cardsArrayTwo);
 
 
         scope.checked = false;
+        scope.oldChosenCardId;
 
         chooseCard = function (id) {
+            console.log("chosen id=", id);
 
-            for (var i = 0; i < cardsArray.length; i++) {
-
-                if (cardsArray[i].card_id == id) {
-                    scope.checked = true;
-                    cardsArray[i].chosenCard = true;
-                }
-                else
-                    cardsArray[i].chosenCard = false;
+            if (cardsArray[id]) {
+                scope.checked = true;
+                cardsArray[id].chosenCard = true;
+                console.log("elem with this id=", cardsArray[id]);
+                if (scope.oldChosenCardId)
+                    cardsArray[scope.oldChosenCardId].chosenCard = false;
+                scope.oldChosenCardId = id;
 
             }
+
             localStorage.setItem('click_client_cards', JSON.stringify(cardsArray))
             riot.update(document.getElementById("check" + id))
         }
