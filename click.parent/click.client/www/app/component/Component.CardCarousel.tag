@@ -22,13 +22,12 @@
             cards.style.transform = "translate3d(" + (-firstCardNumber * 540) * widthK + 'px' + ", 0, 0)";
             cards.style.webkitTransform = "translate3d(" + (-firstCardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
-            // writeBalance();
+             writeBalance();
         })
 
 
         writeBalance = function () {
             for (var i = 0; i < getAccountsCards.length; i++) {
-
                 window.api.call({
                     method: 'get.balance',
                     input: {
@@ -43,8 +42,8 @@
                     onSuccess: function (result) {
                         if (result[0][0].error == 0) {
                             if (result[1][0]) {
-                                for (var k = 0; k < getAccountsCards.length; k++)
-                                    cardsarray[j++].salary = result[1][0].balance;
+
+                                cardsarray[result[1][0].account_id].salary = result[1][0].balance;
                                 localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
                                 riot.update();
                             }
@@ -230,9 +229,9 @@
             localStorage.setItem('cardNumber', cardNumber);
 
             if (viewMainPage.myCards) {
-                for(var i in cardsarray ){
-                    if(cardsarray[i].countCard == cardNumber)
-                       var sendChosenCardId = cardsarray[i].card_id
+                for (var i in cardsarray) {
+                    if (cardsarray[i].countCard == cardNumber)
+                        var sendChosenCardId = cardsarray[i].card_id
                 }
                 scope.parent.cardInformation(sendChosenCardId);
             }

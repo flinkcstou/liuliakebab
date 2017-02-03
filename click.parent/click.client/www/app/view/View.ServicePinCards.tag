@@ -25,17 +25,17 @@
     </div>
     <script>
 
-        var arrayForTransfer = [];
-        arrayForTransfer.push(opts[     view-service-pincards') {
-            history.arrayOfHistory.push('view-service-pincards');
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory)is history.arrayOfHistory.push(
-                    {
-                        "view": 'view-service-pincards',
-                        "params": opts
-                    }
-            );
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-        }
+//        var arrayForTransfer = [];
+//        arrayForTransfer.push(opts[     view-service-pincards)
+//            history.arrayOfHistory.push('view-service-pincards');
+//            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory)is history.arrayOfHistory.push(
+//                    {
+//                        "view": 'view-service-pincards',
+//                        "params": opts
+//                    }
+//            );
+//            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+//        }
 
         var scope = this;
         touchStartTitle = function () {
