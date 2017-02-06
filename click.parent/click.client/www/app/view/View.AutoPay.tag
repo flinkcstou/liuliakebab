@@ -18,5 +18,7 @@
     scope = this;
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;
+
+    console.log(navigator)
   </script>
 </view-auto-pay>

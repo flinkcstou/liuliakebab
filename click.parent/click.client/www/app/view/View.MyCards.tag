@@ -7,7 +7,7 @@
     </div>
 
     <div class="my-cards-button-container">
-        <div class="my-cards-button-field my-cards-button-field-transfer">
+        <div class="my-cards-button-field my-cards-button-field-transfer" ontouchend="goToTransferView()">
             <div class="my-cards-button-icon my-cards-button-icon-transfer">
             </div>
 
@@ -90,7 +90,7 @@
 
         scope.card = scope.cardsArray[scope.cardId];
         console.log('scope.cardId', scope.cardId)
-        console.log('scope.card', scope.card)
+        console.log('scope.cardsArray', scope.cardsArray)
 
 
         scope.arrayOfOperationsByAccount = [];
@@ -141,7 +141,7 @@
         scope.cardInformation(scope.cardId);
 
         goToPayView = function () {
-            for (var i in cardsArray) {
+            for (var i in scope.cardsArray) {
                 if (scope.cardsArray[i].card_id == scope.card.card_id) {
                     scope.cardsArray[i].chosenCard = true;
                 }
@@ -155,6 +155,23 @@
 
             riotTags.innerHTML = "<view-pay>";
             riot.mount('view-pay');
+        }
+
+        goToTransferView = function () {
+            for (var i in scope.cardsArray) {
+                if (scope.cardsArray[i].card_id == scope.card.card_id) {
+                    scope.cardsArray[i].chosenCard = true;
+                }
+                else
+                    scope.cardsArray[i].chosenCard = false;
+            }
+            localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            riotTags.innerHTML = "<view-transfer>";
+            riot.mount('view-transfer');
         }
 
     </script>

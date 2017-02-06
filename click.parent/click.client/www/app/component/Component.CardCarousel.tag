@@ -16,21 +16,12 @@
     <script>
 
         this.on('mount', function () {
-            var firstCardNumber = JSON.parse(localStorage.getItem('cardNumber'))
-
-            for (var i in cardsarray) {
-                if (cardsarray[i].countCard == firstCardNumber) {
-                    cardsarray[i].chosenCard = true;
-                }
-                else
-                    cardsarray[i].chosenCard = false;
-            }
             console.log('cardsarray',cardsarray )
             localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
             cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
             cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-            cards.style.transform = "translate3d(" + (-firstCardNumber * 540) * widthK + 'px' + ", 0, 0)";
-            cards.style.webkitTransform = "translate3d(" + (-firstCardNumber * 540) * widthK + 'px' + ", 0, 0)";
+            cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+            cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
             writeBalance();
         })

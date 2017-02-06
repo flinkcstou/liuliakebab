@@ -19,6 +19,8 @@
     </div>
     <script>
 
+        localStorage.setItem('cardNumber', 0);
+
         history.arrayOfHistory = [];
             history.arrayOfHistory.push(
                     {
