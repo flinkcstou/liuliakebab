@@ -1188,6 +1188,19 @@ input {
     border-bottom: 5px solid lightgray;
 }
 
+.servicepage-dropdown-icon {
+    position: absolute;
+    /*background-image: url("../resources/icons/ViewService/book.png");*/
+    background-color: #4B946A;
+    width: 7%;
+    height: 36%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    top: 45%;
+    left: 92%;
+}
+
 /*VIEW-PINCARD*/
 
 .pincard-payfrom-container {

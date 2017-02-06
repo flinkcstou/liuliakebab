@@ -12,7 +12,9 @@
 
     <div class="servicepage-body-container" if="{formType!=2}">
         <div class="servicepage-fields-dropdown" if="{dropDownOn}" ontouchend="openDropDown()" id="firstFieldChoiceId">
-            <p class="servicepage-dropdown-text-field">{chosenFieldName}</p></div>
+            <p class="servicepage-dropdown-text-field">{chosenFieldName}</p>
+            <div class="servicepage-dropdown-icon"></div>
+        </div>
         <div class="servicepage-first-field" id="firstField">
             <p class="servicepage-text-field">{chosenFieldPlaceholder}</p>
             <p class="servicepage-number-first-part" if="{phoneFieldBool}">+{window.languages.CodeOfCountry}</p>
@@ -27,6 +29,13 @@
 
         <div class="servicepage-second-dropdown-field" if="{formType==3}" ontouchend="openDropDownTwo()">
             <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
+            <div class="servicepage-dropdown-icon"></div>
+        </div>
+
+        <div class="servicepage-second-dropdown-field" if="{formType==3 && hasSecondLevel}"
+             ontouchend="openDropDownThree()">
+            <p class="servicepage-dropdown-text-field">{chosenFieldNameThree}</p>
+            <div class="servicepage-dropdown-icon"></div>
         </div>
 
         <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
@@ -65,6 +74,18 @@
             <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}"
                  ontouchend="chooseDropdownField(this.id)">
                 <p id="text{i.id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="blockSecondDropdownId" class="component-first-field">
+        <div class="servicepage-fields-dropdown-two">
+            <p class="servicepage-dropdown-text-field" style="color: white;">{chosenFieldNameThree}</p>
+        </div>
+        <div class="servicepage-dropdown-container">
+            <div class="servicepage-dropdown-variant" each="{i in secondLevelArray}" id="two{i.id}"
+                 ontouchend="chooseDropdownFieldTwo({i.id})">
+                <p id="texttwo{i.id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
             </div>
         </div>
     </div>
@@ -148,12 +169,14 @@
                 scope.firstLevelArray = [];
                 scope.secondLevelMap = {};
                 scope.chosenFieldNameTwo = scope.servicesParamsMapTwo[scope.service.id][0].name;
+                scope.hasSecondLevel = false;
 
                 for (var i = 0; i < scope.servicesParamsMapTwo[scope.service.id].length; i++) {
                     if (scope.servicesParamsMapTwo[scope.service.id][i].parent == 0) {
                         scope.firstLevelArray.push(scope.servicesParamsMapTwo[scope.service.id][i]);
                         console.log("Elem in Arr=", scope.servicesParamsMapTwo[scope.service.id][i]);
                     } else {
+                        scope.hasSecondLevel = true;
                         if (!scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent]) {
                             scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent] = [];
                             scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent].push(scope.servicesParamsMapTwo[scope.service.id][i]);
@@ -167,6 +190,13 @@
                 }
                 scope.chosenFieldParamIdTwo = scope.firstLevelArray[0].id;
                 scope.oldFieldParamIdTwo = scope.firstLevelArray[1].id;
+                if (scope.hasSecondLevel) {
+                    scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].id];
+                    scope.chosenFieldParamIdThree = scope.secondLevelArray[0].id;
+                    scope.oldFieldParamIdThree = scope.secondLevelArray[1].id;
+                }
+
+
             }
         }
 
@@ -210,6 +240,17 @@
             document.getElementById('text' + scope.chosenFieldParamIdTwo).style.color = 'white';
         }
 
+        openDropDownThree = function () {
+            if (scope.secondLevelArray.length > 0) {
+                this.blockSecondDropdownId.style.display = 'block';
+                console.log("id=", scope.chosenFieldParamIdThree);
+                document.getElementById('two' + scope.oldFieldParamIdThree).style.backgroundColor = 'white';
+                document.getElementById('texttwo' + scope.oldFieldParamIdThree).style.color = '#515151';
+                document.getElementById('two' + scope.chosenFieldParamIdThree).style.backgroundColor = '#0084E6';
+                document.getElementById('texttwo' + scope.chosenFieldParamIdThree).style.color = 'white';
+            }
+        }
+
         chooseFirstField = function (id) {
             this.blockFirstFieldId.style.display = 'none';
             console.log("chosen param id=", +id);
@@ -250,8 +291,33 @@
                     console.log("new title", scope.chosenFieldNameTwo);
                     scope.oldFieldParamIdTwo = scope.chosenFieldParamIdTwo;
                     scope.chosenFieldParamIdTwo = id;
+                    if (scope.hasSecondLevel)
+                        scope.secondLevelArray = scope.secondLevelMap[id];
+                    if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo) {
+                        scope.chosenFieldNameThree = '';
+                        scope.chosenFieldParamIdThree = scope.secondLevelArray[0].id;
+                        scope.oldFieldParamIdThree = scope.secondLevelArray[1].id;
+                    }
 
                     riot.update(scope.chosenFieldNameTwo);
+                    break;
+                }
+            }
+        }
+
+        chooseDropdownFieldTwo = function (id) {
+            this.blockSecondDropdownId.style.display = 'none';
+            console.log("chosen param id=", +id);
+            for (var i = 0; i < scope.secondLevelArray.length; i++) {
+                console.log("param_id=", scope.secondLevelArray[i].id);
+                if (scope.secondLevelArray[i].id == id) {
+                    scope.chosenFieldNameThree = scope.secondLevelArray[i].name;
+
+                    console.log("new title", scope.chosenFieldNameThree);
+                    scope.oldFieldParamIdThree = scope.chosenFieldParamIdThree;
+                    scope.chosenFieldParamIdThree = id;
+
+                    riot.update(scope.chosenFieldNameThree);
                     break;
                 }
             }

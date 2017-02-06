@@ -2420,6 +2420,19 @@ var css = {
   "top: 7%;" +
   "}",
 
+  servicePageDropdownIcon: ".servicepage-dropdown-icon" +
+  "{" +
+  "position: absolute;" +
+  "background-color: #4B946A;" +
+  "width: 7%;" +
+  "height: 36%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "background-position: center;" +
+  "top: 45%;" +
+  "left: 92%;" +
+  "}",
+
 
   pincardPayfromContainer: ".pincard-payfrom-container" +
   "{" +

@@ -1505,14 +1505,6 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
       service_id: 183
     },
     {
-      code: 1,
-      id: 1,
-      name: "Ташкент",
-      offline_code: "1",
-      parent: 0,
-      service_id: 198
-    },
-    {
       code: 2,
       id: 2,
       name: "Таш. Обл.",
