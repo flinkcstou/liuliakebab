@@ -31,6 +31,7 @@
         arrayForTransfer.push(opts[2])
         arrayForTransfer.push(opts[3])
         arrayForTransfer.push(opts[4])
+        arrayForTransfer.push(opts[5])
         console.log(arrayForTransfer)
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards') {

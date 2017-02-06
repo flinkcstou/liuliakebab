@@ -143,6 +143,7 @@
             this.serviceIcon = scope.service.image;
         }
 
+
         this.categoryName = scope.categoryNamesMap[viewPay.categoryId];
         scope.formType = scope.service.form_type;
         console.log("formType=" + this.formType);
@@ -310,7 +311,7 @@
                         scope.chosenFieldParamIdTwo = id;
                         if (scope.hasSecondLevel)
                             scope.secondLevelArray = scope.secondLevelMap[id];
-                        if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo) {
+                        if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo && scope.hasSecondLevel) {
                             scope.chosenFieldNameThree = '';
                             scope.chosenFieldParamIdThree = scope.secondLevelArray[0].id;
                             scope.oldFieldParamIdThree = scope.secondLevelArray[1].id;
@@ -381,6 +382,13 @@
                 alert("Сумма должна быть меньше " + scope.service.max_pay_limit);
                 return;
             }
+
+            if (scope.formType == 3) {
+                if (scope.hasSecondLevel)
+                    var communalParam = {"communalParam": scope.chosenFieldParamIdThree};
+                else
+                    var communalParam = {"communalParam": scope.chosenFieldParamIdTwo};
+            }
             var formtype = {"formtype": scope.formType};
             var firstFieldId = {"firstFieldId": scope.chosenFieldParamId};
             var firstFieldText = {"firstFieldText": firstFieldInput.value};
@@ -394,7 +402,7 @@
             event.preventDefault();
             event.stopPropagation();
             this.riotTags.innerHTML = "<view-service-pincards>";
-            riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, amountText]);
+            riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText]);
         }
 
         goToPinCardViewFromTwo = function (nominal, cardId) {
@@ -404,12 +412,13 @@
             var firstFieldId = {"firstFieldId": null};
             var firstFieldText = {"firstFieldText": null};
             var cardTypeId = {"cardTypeId": cardId};
+            var communalParam = {"communalParam": null};
             var amountText = {"amountText": nominal};
 
             event.preventDefault();
             event.stopPropagation();
             this.riotTags.innerHTML = "<view-service-pincards>";
-            riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, amountText]);
+            riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText]);
         }
 
 

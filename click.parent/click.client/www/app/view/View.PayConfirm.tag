@@ -84,7 +84,8 @@
         this.firstFieldId = opts[0][1].firstFieldId;
         this.firstFieldText = "+" + window.languages.CodeOfCountry + opts[0][2].firstFieldText;
         this.cardTypeId = opts[0][3].cardTypeId;
-        this.amountText = opts[0][4].amountText;
+        this.communalParam = opts[0][4].communalParam;
+        this.amountText = opts[0][5].amountText;
 
         scope.titleName = scope.service.name;
         scope.serviceIcon = scope.service.image;
@@ -119,6 +120,13 @@
             else if (this.formType == 2)
                 var payment_data = {
                     "pin_param": this.cardTypeId,
+                    "transaction_id": parseInt(Date.now() / 1000)
+                };
+            else if (this.formType == 3)
+                var payment_data = {
+                    "param": this.firstFieldId,
+                    "value": this.firstFieldText,
+                    "communl_param": this.communalParam,
                     "transaction_id": parseInt(Date.now() / 1000)
                 };
 
