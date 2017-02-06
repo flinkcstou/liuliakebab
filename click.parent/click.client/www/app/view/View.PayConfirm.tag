@@ -13,7 +13,7 @@
     <div class="payconfirm-body-container">
         <div class="payconfirm-data-container">
             <div class="payconfirm-phone-field" if="{formType!=2}">
-                <p class="payconfirm-text-field">{window.languages.ViewPayConformEnterPhone}</p>
+                <p class="payconfirm-text-field">{firstFieldTitle}</p>
                 <p class="payconfirm-phone-input">{firstFieldText}</p>
             </div>
             <div class="payconfirm-field">
@@ -80,9 +80,15 @@
         cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
         var serviceId = localStorage.getItem('chosenServiceId');
         scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
+        console.log("OPTS=", opts);
         this.formType = opts[0][0].formtype;
         this.firstFieldId = opts[0][1].firstFieldId;
-        this.firstFieldText = "+" + window.languages.CodeOfCountry + opts[0][2].firstFieldText;
+        this.firstFieldTitle = viewServicePage.firstFieldTitle;
+        if (this.firstFieldId == '1')
+            this.firstFieldText = "+" + window.languages.CodeOfCountry + opts[0][2].firstFieldText;
+        else
+            this.firstFieldText = opts[0][2].firstFieldText;
+
         this.cardTypeId = opts[0][3].cardTypeId;
         this.communalParam = opts[0][4].communalParam;
         this.amountText = opts[0][5].amountText;

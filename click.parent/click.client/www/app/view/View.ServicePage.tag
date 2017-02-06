@@ -182,16 +182,13 @@
                 for (var i = 0; i < scope.servicesParamsMapTwo[scope.service.id].length; i++) {
                     if (scope.servicesParamsMapTwo[scope.service.id][i].parent == 0) {
                         scope.firstLevelArray.push(scope.servicesParamsMapTwo[scope.service.id][i]);
-                        console.log("Elem in Arr=", scope.servicesParamsMapTwo[scope.service.id][i]);
                     } else {
                         scope.hasSecondLevel = true;
                         if (!scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent]) {
                             scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent] = [];
                             scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent].push(scope.servicesParamsMapTwo[scope.service.id][i]);
-                            console.log("Parent id=", scope.servicesParamsMapTwo[scope.service.id][i].parent);
                         }
                         else {
-                            console.log("Parent id=", scope.servicesParamsMapTwo[scope.service.id][i].parent);
                             scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent].push(scope.servicesParamsMapTwo[scope.service.id][i]);
                         }
                     }
@@ -241,7 +238,6 @@
 
         openDropDownTwo = function () {
             this.blockFirstDropdownId.style.display = 'block';
-            console.log("id=", scope.chosenFieldParamIdTwo);
             document.getElementById(scope.oldFieldParamIdTwo).style.backgroundColor = 'white';
             document.getElementById('text' + scope.oldFieldParamIdTwo).style.color = '#515151';
             document.getElementById(scope.chosenFieldParamIdTwo).style.backgroundColor = '#0084E6';
@@ -251,7 +247,6 @@
         openDropDownThree = function () {
             if (scope.secondLevelArray.length > 0) {
                 this.blockSecondDropdownId.style.display = 'block';
-                console.log("id=", scope.chosenFieldParamIdThree);
                 document.getElementById('two' + scope.oldFieldParamIdThree).style.backgroundColor = 'white';
                 document.getElementById('texttwo' + scope.oldFieldParamIdThree).style.color = '#515151';
                 document.getElementById('two' + scope.chosenFieldParamIdThree).style.backgroundColor = '#0084E6';
@@ -261,9 +256,7 @@
 
         chooseFirstField = function (id) {
             this.blockFirstFieldId.style.display = 'none';
-            console.log("chosen param id=", +id);
             for (var i = 0; i < scope.fieldArray.length; i++) {
-                console.log("parame_id=", scope.fieldArray[i].parameter_id);
                 if (scope.fieldArray[i].parameter_id == id) {
                     scope.chosenFieldName = scope.fieldArray[i].title;
                     scope.chosenFieldPlaceholder = scope.fieldArray[i].placeholder;
@@ -277,7 +270,6 @@
                         scope.inputType = 'text';
                         scope.isNumber = false;
                     }
-                    console.log("new title", scope.chosenFieldName);
                     scope.oldFieldParamId = scope.chosenFieldParamId;
                     scope.chosenFieldParamId = id;
                     firstFieldInput.value = '';
@@ -300,13 +292,9 @@
 
             if (Math.abs(onTouchStartY - onTouchEndY) <= 20) {
                 this.blockFirstDropdownId.style.display = 'none';
-                console.log("chosen param id=", +id);
                 for (var i = 0; i < scope.firstLevelArray.length; i++) {
-                    console.log("param_id=", scope.firstLevelArray[i].id);
                     if (scope.firstLevelArray[i].id == id) {
                         scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;
-
-                        console.log("new title", scope.chosenFieldNameTwo);
                         scope.oldFieldParamIdTwo = scope.chosenFieldParamIdTwo;
                         scope.chosenFieldParamIdTwo = id;
                         if (scope.hasSecondLevel)
@@ -337,13 +325,9 @@
 
             if (Math.abs(onTouchStartY - onTouchEndY) <= 20) {
                 this.blockSecondDropdownId.style.display = 'none';
-                console.log("chosen param id=", +id);
                 for (var i = 0; i < scope.secondLevelArray.length; i++) {
-                    console.log("param_id=", scope.secondLevelArray[i].id);
                     if (scope.secondLevelArray[i].id == id) {
                         scope.chosenFieldNameThree = scope.secondLevelArray[i].name;
-
-                        console.log("new title", scope.chosenFieldNameThree);
                         scope.oldFieldParamIdThree = scope.chosenFieldParamIdThree;
                         scope.chosenFieldParamIdThree = id;
 
@@ -367,7 +351,6 @@
         }
 
         goToPinCardView = function () {
-            console.log("bndfvhj = ", firstFieldInput.value.length < 9);
             console.log(scope.phoneFieldBool);
 
             if (scope.phoneFieldBool && firstFieldInput.value.length < 9) {
@@ -388,13 +371,16 @@
                     var communalParam = {"communalParam": scope.chosenFieldParamIdThree};
                 else
                     var communalParam = {"communalParam": scope.chosenFieldParamIdTwo};
-            }
+            } else if (scope.formType == 1)
+                var communalParam = {"communalParam": null};
+
             var formtype = {"formtype": scope.formType};
             var firstFieldId = {"firstFieldId": scope.chosenFieldParamId};
             var firstFieldText = {"firstFieldText": firstFieldInput.value};
             var cardTypeId = {"cardTypeId": null};
             var amountText = {"amountText": amount.value};
 
+            viewServicePage.firstFieldTitle = scope.chosenFieldName;
             viewServicePage.phoneText = firstFieldInput.value;
             viewServicePage.amountText = amount.value;
 
@@ -406,7 +392,6 @@
         }
 
         goToPinCardViewFromTwo = function (nominal, cardId) {
-            console.log("Nominal=", nominal, "cardId=", cardId);
 
             var formtype = {"formtype": scope.formType};
             var firstFieldId = {"firstFieldId": null};
