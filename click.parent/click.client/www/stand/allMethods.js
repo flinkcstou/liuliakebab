@@ -804,7 +804,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
         max_pay_limit: 600000,
         min_pay_limit: 1000,
-        name: "Мой номер",
+        name: "UZMOBILE",
         priority: 20,
         service_parameters: "1",
         service_short_name: "UZMOBILE",

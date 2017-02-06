@@ -27,7 +27,8 @@
             <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
         </div>
 
-        <div class="servicepage-second-dropdown-field" if="{formType==3}" ontouchend="openDropDownTwo()">
+        <div class="servicepage-second-dropdown-field" if="{formType==3}"
+             ontouchend="openDropDownTwo()">
             <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
             <div class="servicepage-dropdown-icon"></div>
         </div>
@@ -72,7 +73,7 @@
         </div>
         <div class="servicepage-dropdown-container">
             <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}"
-                 ontouchend="chooseDropdownField(this.id)">
+                 ontouchstart="onTouchStartOfDropdownTwo()" ontouchend="onTouchEndOfDropdownTwo({i.id})">
                 <p id="text{i.id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
             </div>
         </div>
@@ -84,7 +85,7 @@
         </div>
         <div class="servicepage-dropdown-container">
             <div class="servicepage-dropdown-variant" each="{i in secondLevelArray}" id="two{i.id}"
-                 ontouchend="chooseDropdownFieldTwo({i.id})">
+                 ontouchstart="onTouchStartOfDropdownThree()" ontouchend="onTouchEndOfDropdownThree({i.id})">
                 <p id="texttwo{i.id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
             </div>
         </div>
@@ -134,8 +135,14 @@
         scope.defaultAmount = !viewServicePage.amountText ? 0 : viewServicePage.amountText;
         scope.defaultNumber = !viewServicePage.phoneText ? null : viewServicePage.phoneText;
 
-        this.titleName = scope.service.name;
-        this.serviceIcon = scope.service.image;
+        if (viewPay.chosenServiceId == viewServicePage.myNumberOperatorId) {
+            this.titleName = viewServicePage.myNumberOperatorName;
+            this.serviceIcon = viewServicePage.myNumberOperatorImage;
+        } else {
+            this.titleName = scope.service.name;
+            this.serviceIcon = scope.service.image;
+        }
+
         this.categoryName = scope.categoryNamesMap[viewPay.categoryId];
         scope.formType = scope.service.form_type;
         console.log("formType=" + this.formType);
@@ -280,48 +287,71 @@
             }
         }
 
-        chooseDropdownField = function (id) {
-            this.blockFirstDropdownId.style.display = 'none';
-            console.log("chosen param id=", +id);
-            for (var i = 0; i < scope.firstLevelArray.length; i++) {
-                console.log("param_id=", scope.firstLevelArray[i].id);
-                if (scope.firstLevelArray[i].id == id) {
-                    scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;
+        scope.onTouchStartOfDropdownTwo = onTouchStartOfDropdownTwo = function () {
+            event.stopPropagation();
+            onTouchStartY = event.changedTouches[0].pageY;
+        }
 
-                    console.log("new title", scope.chosenFieldNameTwo);
-                    scope.oldFieldParamIdTwo = scope.chosenFieldParamIdTwo;
-                    scope.chosenFieldParamIdTwo = id;
-                    if (scope.hasSecondLevel)
-                        scope.secondLevelArray = scope.secondLevelMap[id];
-                    if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo) {
-                        scope.chosenFieldNameThree = '';
-                        scope.chosenFieldParamIdThree = scope.secondLevelArray[0].id;
-                        scope.oldFieldParamIdThree = scope.secondLevelArray[1].id;
+        scope.onTouchEndOfDropdownTwo = onTouchEndOfDropdownTwo = function (id) {
+            event.stopPropagation();
+
+            onTouchEndY = event.changedTouches[0].pageY;
+
+            if (Math.abs(onTouchStartY - onTouchEndY) <= 20) {
+                this.blockFirstDropdownId.style.display = 'none';
+                console.log("chosen param id=", +id);
+                for (var i = 0; i < scope.firstLevelArray.length; i++) {
+                    console.log("param_id=", scope.firstLevelArray[i].id);
+                    if (scope.firstLevelArray[i].id == id) {
+                        scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;
+
+                        console.log("new title", scope.chosenFieldNameTwo);
+                        scope.oldFieldParamIdTwo = scope.chosenFieldParamIdTwo;
+                        scope.chosenFieldParamIdTwo = id;
+                        if (scope.hasSecondLevel)
+                            scope.secondLevelArray = scope.secondLevelMap[id];
+                        if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo) {
+                            scope.chosenFieldNameThree = '';
+                            scope.chosenFieldParamIdThree = scope.secondLevelArray[0].id;
+                            scope.oldFieldParamIdThree = scope.secondLevelArray[1].id;
+                        }
+
+                        riot.update(scope.chosenFieldNameTwo);
+                        break;
                     }
-
-                    riot.update(scope.chosenFieldNameTwo);
-                    break;
                 }
             }
+        };
+
+
+        scope.onTouchStartOfDropdownThree = onTouchStartOfDropdownThree = function () {
+            event.stopPropagation();
+            onTouchStartY = event.changedTouches[0].pageY;
         }
 
-        chooseDropdownFieldTwo = function (id) {
-            this.blockSecondDropdownId.style.display = 'none';
-            console.log("chosen param id=", +id);
-            for (var i = 0; i < scope.secondLevelArray.length; i++) {
-                console.log("param_id=", scope.secondLevelArray[i].id);
-                if (scope.secondLevelArray[i].id == id) {
-                    scope.chosenFieldNameThree = scope.secondLevelArray[i].name;
+        scope.onTouchEndOfDropdownThree = onTouchEndOfDropdownThree = function (id) {
+            event.stopPropagation();
 
-                    console.log("new title", scope.chosenFieldNameThree);
-                    scope.oldFieldParamIdThree = scope.chosenFieldParamIdThree;
-                    scope.chosenFieldParamIdThree = id;
+            onTouchEndY = event.changedTouches[0].pageY;
 
-                    riot.update(scope.chosenFieldNameThree);
-                    break;
+            if (Math.abs(onTouchStartY - onTouchEndY) <= 20) {
+                this.blockSecondDropdownId.style.display = 'none';
+                console.log("chosen param id=", +id);
+                for (var i = 0; i < scope.secondLevelArray.length; i++) {
+                    console.log("param_id=", scope.secondLevelArray[i].id);
+                    if (scope.secondLevelArray[i].id == id) {
+                        scope.chosenFieldNameThree = scope.secondLevelArray[i].name;
+
+                        console.log("new title", scope.chosenFieldNameThree);
+                        scope.oldFieldParamIdThree = scope.chosenFieldParamIdThree;
+                        scope.chosenFieldParamIdThree = id;
+
+                        riot.update(scope.chosenFieldNameThree);
+                        break;
+                    }
                 }
             }
-        }
+        };
 
         eraseAmountDefault = function () {
             amountField.style.borderBottom = 5 * widthK + 'px solid #01cfff';

@@ -227,11 +227,15 @@
                                 if (!scope.servicesMapByCategory[result[1][i].category_id]) {
                                     scope.servicesMapByCategory[result[1][i].category_id] = [];
                                     if (result[1][i].category_id == 1 && result[1][i].id == window.mOperators[scope.operatorKey]) {
+                                        viewServicePage.myNumberOperatorId = result[1][i].id;
+                                        viewServicePage.myNumberOperatorName = result[1][i].name;
+                                        viewServicePage.myNumberOperatorImage = result[1][i].image;
                                         result[1][i].name = 'Мой номер';
                                         result[1][i].image = 'resources/icons/ViewPay/myphone.png';
+                                        viewServicePage.phoneText = localStorage.getItem('click_client_phoneNumber');
+                                        viewServicePage.phoneText = viewServicePage.phoneText.substr(3, viewServicePage.phoneText.length - 3);
                                     }
                                     scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
-
                                 }
                                 else {
                                     scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
