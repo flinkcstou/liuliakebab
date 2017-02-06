@@ -25,8 +25,8 @@
             <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
         </div>
 
-        <div class="servicepage-second-dropdown-field" if="{formType==3}">
-
+        <div class="servicepage-second-dropdown-field" if="{formType==3}" ontouchend="openDropDownTwo()">
+            <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
         </div>
 
         <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
@@ -53,6 +53,18 @@
             <div class="servicepage-dropdown-variant" each="{i in fieldArray}" id="{i.parameter_id}"
                  ontouchend="chooseFirstField(this.id)">
                 <p id="text{i.parameter_id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.title}</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="blockFirstDropdownId" class="component-first-field">
+        <div class="servicepage-fields-dropdown-two">
+            <p class="servicepage-dropdown-text-field" style="color: white;">{chosenFieldNameTwo}</p>
+        </div>
+        <div class="servicepage-dropdown-container">
+            <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}"
+                 ontouchend="chooseDropdownField(this.id)">
+                <p id="text{i.id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
             </div>
         </div>
     </div>
@@ -135,10 +147,12 @@
             if (scope.formType == 3 && scope.servicesParamsMapTwo[scope.service.id]) {
                 scope.firstLevelArray = [];
                 scope.secondLevelMap = {};
+                scope.chosenFieldNameTwo = scope.servicesParamsMapTwo[scope.service.id][0].name;
+
                 for (var i = 0; i < scope.servicesParamsMapTwo[scope.service.id].length; i++) {
                     if (scope.servicesParamsMapTwo[scope.service.id][i].parent == 0) {
                         scope.firstLevelArray.push(scope.servicesParamsMapTwo[scope.service.id][i]);
-                        console.log("Id=", scope.servicesParamsMapTwo[scope.service.id][i].id);
+                        console.log("Elem in Arr=", scope.servicesParamsMapTwo[scope.service.id][i]);
                     } else {
                         if (!scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent]) {
                             scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent] = [];
@@ -151,6 +165,8 @@
                         }
                     }
                 }
+                scope.chosenFieldParamIdTwo = scope.firstLevelArray[0].id;
+                scope.oldFieldParamIdTwo = scope.firstLevelArray[1].id;
             }
         }
 
@@ -185,6 +201,15 @@
             document.getElementById('text' + scope.chosenFieldParamId).style.color = 'white';
         }
 
+        openDropDownTwo = function () {
+            this.blockFirstDropdownId.style.display = 'block';
+            console.log("id=", scope.chosenFieldParamIdTwo);
+            document.getElementById(scope.oldFieldParamIdTwo).style.backgroundColor = 'white';
+            document.getElementById('text' + scope.oldFieldParamIdTwo).style.color = '#515151';
+            document.getElementById(scope.chosenFieldParamIdTwo).style.backgroundColor = '#0084E6';
+            document.getElementById('text' + scope.chosenFieldParamIdTwo).style.color = 'white';
+        }
+
         chooseFirstField = function (id) {
             this.blockFirstFieldId.style.display = 'none';
             console.log("chosen param id=", +id);
@@ -209,6 +234,24 @@
                     firstFieldInput.value = '';
                     riot.update(scope.chosenFieldName);
                     riot.update(scope.phoneFieldBool);
+                    break;
+                }
+            }
+        }
+
+        chooseDropdownField = function (id) {
+            this.blockFirstDropdownId.style.display = 'none';
+            console.log("chosen param id=", +id);
+            for (var i = 0; i < scope.firstLevelArray.length; i++) {
+                console.log("param_id=", scope.firstLevelArray[i].id);
+                if (scope.firstLevelArray[i].id == id) {
+                    scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;
+
+                    console.log("new title", scope.chosenFieldNameTwo);
+                    scope.oldFieldParamIdTwo = scope.chosenFieldParamIdTwo;
+                    scope.chosenFieldParamIdTwo = id;
+
+                    riot.update(scope.chosenFieldNameTwo);
                     break;
                 }
             }
