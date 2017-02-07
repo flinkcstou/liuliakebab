@@ -247,28 +247,30 @@
             event.preventDefault();
             event.stopPropagation();
 
-            contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(3, scope.suggestionOne.phoneNumber.length).replace(/\s/g, '');
+            scope.parent.defaultNumber = scope.suggestionOne.phoneNumber.substring(3, scope.suggestionOne.phoneNumber.length).replace(/\s/g, '');
+
+            //contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(3, scope.suggestionOne.phoneNumber.length).replace(/\s/g, '');
         }
 
         secondSuggestionBlock = function () {
             event.preventDefault();
             event.stopPropagation();
 
-            contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(3, scope.suggestionTwo.phoneNumber.length).replace(/\s/g, '');
+            scope.parent.defaultNumber = scope.suggestionTwo.phoneNumber.substring(3, scope.suggestionTwo.phoneNumber.length).replace(/\s/g, '');
         }
 
         thirdSuggestionBlock = function () {
             event.preventDefault();
             event.stopPropagation();
 
-            contactPhoneNumberId.value = scope.suggestionThree.phoneNumber.substring(3, scope.suggestionThree.phoneNumber.length).replace(/\s/g, '');
+            scope.parent.defaultNumber = scope.suggestionThree.phoneNumber.substring(3, scope.suggestionThree.phoneNumber.length).replace(/\s/g, '');
         }
 
         fourthSuggestionBlock = function () {
             event.preventDefault();
             event.stopPropagation();
 
-            contactPhoneNumberId.value = scope.suggestionFour.phoneNumber.substring(3, scope.suggestionFour.phoneNumber.length).replace(/\s/g, '');
+            scope.parent.defaultNumber = scope.suggestionFour.phoneNumber.substring(3, scope.suggestionFour.phoneNumber.length).replace(/\s/g, '');
         }
 
 
