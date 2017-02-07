@@ -2399,14 +2399,14 @@ var css = {
   servicePagePincardChooseArrow: ".servicepage-pincard-choose-arrow" +
   "{" +
   "position: absolute;" +
-  "background-color: #4B946A;" +
-  "width: 7%;" +
+  "background-image: url('resources/icons/ViewService/right.png');" +
+  "width: 3%;" +
   "height: 36%;" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "background-position: center;" +
   "top: 31%;" +
-  "left: 92%;" +
+  "left: 95%;" +
   "}",
 
   servicePageSecondDropdownField: ".servicepage-second-dropdown-field" +
@@ -2423,11 +2423,11 @@ var css = {
   servicePageDropdownIcon: ".servicepage-dropdown-icon" +
   "{" +
   "position: absolute;" +
-  "background-color: #4B946A;" +
+  "background-image: url('resources/icons/ViewService/dropdown_icon.png');" +
   "width: 7%;" +
   "height: 36%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 100%;" +
+  "background-size: 65%;" +
   "background-position: center;" +
   "top: 45%;" +
   "left: 92%;" +

@@ -16,7 +16,7 @@
             <div class="servicepage-dropdown-icon"></div>
         </div>
         <div class="servicepage-first-field" id="firstField">
-            <p class="servicepage-text-field">{chosenFieldPlaceholder}</p>
+            <p class="servicepage-text-field">{chosenFieldName}</p>
             <p class="servicepage-number-first-part" if="{phoneFieldBool}">+{window.languages.CodeOfCountry}</p>
             <input class="{servicepage-number-input-part: phoneFieldBool, servicepage-number-input-part-two: !phoneFieldBool && isNumber,
                            servicepage-number-input-part-three: !phoneFieldBool && !isNumber}"
@@ -27,7 +27,7 @@
             <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
         </div>
 
-        <div class="servicepage-second-dropdown-field" if="{formType==3}"
+        <div class="servicepage-second-dropdown-field" if="{formType==3 && hasFirstLevel}"
              ontouchend="openDropDownTwo()">
             <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
             <div class="servicepage-dropdown-icon"></div>
@@ -41,7 +41,7 @@
 
         <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
              id="amountField">
-            <p class="servicepage-text-field">{window.languages.ViewServicePageAmountTextLabel}</p>
+            <p class="servicepage-text-field">{amountFieldTitle}</p>
             <input class="servicepage-amount-input" type="tel" maxlength="{amountLength}" value="{defaultAmount}"
                    id="amount"
                    onfocus="eraseAmountDefault()"/>
@@ -133,12 +133,12 @@
 
 
         scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
-        scope.defaultAmount = !viewServicePage.amountText ? 0 : viewServicePage.amountText;
-        scope.defaultNumber = !viewServicePage.phoneText ? null : viewServicePage.phoneText;
 
-        if (viewPay.chosenServiceId == viewServicePage.myNumberOperatorId) {
-            this.titleName = viewServicePage.myNumberOperatorName;
-            this.serviceIcon = viewServicePage.myNumberOperatorImage;
+        if (viewPay.chosenServiceId == localStorage.getItem('myNumberOperatorId')) {
+            this.titleName = localStorage.getItem('myNumberOperatorName');
+            this.serviceIcon = localStorage.getItem('myNumberOperatorImage');
+            viewServicePage.phoneText = localStorage.getItem('click_client_phoneNumber');
+            viewServicePage.phoneText = viewServicePage.phoneText.substr(3, viewServicePage.phoneText.length - 3);
         } else {
             this.titleName = scope.service.name;
             this.serviceIcon = scope.service.image;
@@ -157,8 +157,12 @@
                 this.dropDownOn = scope.fieldArray.length > 1;
                 console.log("fieldArray length bool=", this.dropDownOn);
                 scope.chosenFieldName = scope.fieldArray[0].title;
-                scope.chosenFieldPlaceholder = scope.fieldArray[0].placeholder;
+                scope.amountFieldTitle = scope.service.lang_amount_title;
                 scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
+                if (scope.phoneFieldBool)
+                    scope.defaultNumber = !viewServicePage.phoneText ? null : viewServicePage.phoneText;
+                scope.defaultAmount = !viewServicePage.amountText ? 0 : viewServicePage.amountText;
+
                 scope.inputMaxLength = scope.fieldArray[0].max_len;
                 if (this.dropDownOn) {
                     scope.chosenFieldParamId = scope.fieldArray[0].parameter_id;
@@ -174,18 +178,19 @@
                 }
                 this.amountLength = ("" + scope.service.max_pay_limit).length;
             }
+            scope.hasFirstLevel = false;
             if (scope.formType == 3 && scope.servicesParamsMapTwo[scope.service.id]) {
                 scope.firstLevelArray = [];
                 scope.secondLevelMap = {};
                 scope.chosenFieldNameTwo = scope.servicesParamsMapTwo[scope.service.id][0].name;
                 scope.hasSecondLevel = false;
+                scope.hasFirstLevel = true;
 
                 for (var i = 0; i < scope.servicesParamsMapTwo[scope.service.id].length; i++) {
                     if (scope.servicesParamsMapTwo[scope.service.id][i].parent == 0) {
                         scope.firstLevelArray.push(scope.servicesParamsMapTwo[scope.service.id][i]);
                     } else {
                         scope.hasSecondLevel = true;
-                        console.log("AAAAAAAAAAAAAA");
                         if (!scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent]) {
                             scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent] = [];
                             scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent].push(scope.servicesParamsMapTwo[scope.service.id][i]);
@@ -254,12 +259,10 @@
             if (scope.secondLevelArray) {
                 this.blockSecondDropdownId.style.display = 'block';
                 if (scope.oldFieldParamIdThree) {
-                    console.log("sbhcjwdebcvgf");
                     document.getElementById('two' + scope.oldFieldParamIdThree).style.backgroundColor = 'white';
                     document.getElementById('texttwo' + scope.oldFieldParamIdThree).style.color = '#515151';
                 }
                 if (scope.chosenFieldParamIdThree) {
-                    console.log("!!!!!!!!!!!!!!11");
                     document.getElementById('two' + scope.chosenFieldParamIdThree).style.backgroundColor = '#0084E6';
                     document.getElementById('texttwo' + scope.chosenFieldParamIdThree).style.color = 'white';
                 }
@@ -310,10 +313,8 @@
                         scope.oldFieldParamIdTwo = scope.chosenFieldParamIdTwo;
                         scope.chosenFieldParamIdTwo = id;
                         if (scope.hasSecondLevel) {
-                            console.log("CCCCCCCCCCCC");
                             scope.secondLevelArray = scope.secondLevelMap[id];
                             if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo) {
-                                console.log("DDDDDDDDDDDDDD");
                                 scope.chosenFieldNameThree = '';
                                 scope.oldFieldParamIdThree = null;
                                 scope.chosenFieldParamIdThree = null;
