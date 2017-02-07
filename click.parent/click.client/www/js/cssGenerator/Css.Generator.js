@@ -45,7 +45,7 @@ var css = {
     "height: 100%;" +
     "background-size: contain;" +
     "background-repeat: no-repeat;" +
-        //"background-image: url(resources/draft/transfer/step4.png);" +
+        //"background-image: url(resources/draft/successunsuccess/success.png);" +
         //"opacity: 0.6;" +
     "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
     "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
@@ -4208,21 +4208,24 @@ var css = {
     "{" +
     "position: relative;" +
     "color: white;" +
-    "width:" + 250 * widthK + "px;" +
+    "width:" + 300 * widthK + "px;" +
     "text-align: center;" +
     "margin-left: auto;" +
     "margin-top: 0;" +
     "margin-bottom: 0;" +
     "margin-right: auto;" +
-    "top:" + 500 * widthK + "px;" +
+    "top:" + 601 * widthK + "px;" +
+    "left:" + -10 * widthK + "px;" +
+    "font-size:" + 36 * widthK + "px;" +
     "}",
 
     successNextButtonInnerContainer: ".success-next-button-inner-container" +
     "{" +
     "position: relative;" +
     "height: 6%;" +
-    "width: 51%;" +
-    "top: 75%;" +
+    "left: -2%;" +
+    "width: 48%;" +
+    "top: 83%;" +
     "display: table;" +
     "background-color: #027fe4;" +
     "border-radius:" + 50 * widthK + "px;" +
@@ -4257,13 +4260,14 @@ var css = {
     "{" +
     "position: relative;" +
     "color: white;" +
-    "width:" + 305 * widthK + "px;" +
+    "width:" + 380 * widthK + "px;" +
     "text-align: center;" +
     "margin-left: auto;" +
     "margin-right: auto;" +
     "margin-top: 0;" +
     "margin-bottom: 0;" +
-    "top:" + 500 * widthK + "px;" +
+    "top:" + 575 * widthK + "px;" +
+    "font-size:" + 38 * widthK + "px;" +
     "}",
 
     unsuccessNextButtonInnerContainer: ".unsuccess-next-button-inner-container" +
@@ -4271,7 +4275,7 @@ var css = {
     "position: relative;" +
     "height: 6%;" +
     "width: 51%;" +
-    "top: 75%;" +
+    "top: 76%;" +
     "display: table;" +
     "background-color: #027fe4;" +
     "border-radius:" + 50 * widthK + "px;" +
@@ -4294,14 +4298,14 @@ var css = {
     "{" +
     "position: relative;" +
     "color: #ff3c5e;" +
-    "width:" + 550 * widthK + "px;" +
-    "font-size:" + 26 * widthK + "px;" +
+    "width:" + 640 * widthK + "px;" +
+    "font-size:" + 30 * widthK + "px;" +
     "text-align: center;" +
     "margin-left: auto;" +
     "margin-right: auto;" +
     "margin-top: 0;" +
     "margin-bottom: 0;" +
-    "top: 55%;" +
+    "top:" + 725 * widthK + "px;" +
     "}",
 
 }

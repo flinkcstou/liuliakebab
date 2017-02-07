@@ -1672,11 +1672,11 @@ window.fakedSocket.register("p2p.payment", function (input) {
       [{
         "method": input.method,
         "success": 1,
-        "error": -4,
+        "error": 1,
         "error_note": ""
       }],
       [{
-        //"secret_code": 1,
+        //"secret_code":0,
       }]
     ];
   return [
