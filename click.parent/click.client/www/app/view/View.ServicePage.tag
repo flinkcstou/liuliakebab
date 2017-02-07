@@ -184,6 +184,7 @@
                         scope.firstLevelArray.push(scope.servicesParamsMapTwo[scope.service.id][i]);
                     } else {
                         scope.hasSecondLevel = true;
+                        console.log("AAAAAAAAAAAAAA");
                         if (!scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent]) {
                             scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent] = [];
                             scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent].push(scope.servicesParamsMapTwo[scope.service.id][i]);
@@ -194,11 +195,11 @@
                     }
                 }
                 scope.chosenFieldParamIdTwo = scope.firstLevelArray[0].id;
-                scope.oldFieldParamIdTwo = scope.firstLevelArray[1].id;
-                if (scope.hasSecondLevel) {
+//                scope.oldFieldParamIdTwo = scope.firstLevelArray[1].id;
+                if (scope.hasSecondLevel && scope.secondLevelMap[scope.firstLevelArray[0].id]) {
                     scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].id];
-                    scope.chosenFieldParamIdThree = scope.secondLevelArray[0].id;
-                    scope.oldFieldParamIdThree = scope.secondLevelArray[1].id;
+//                    scope.chosenFieldParamIdThree = scope.secondLevelArray[0].id;
+//                    scope.oldFieldParamIdThree = scope.secondLevelArray[1].id;
                 }
 
 
@@ -238,19 +239,29 @@
 
         openDropDownTwo = function () {
             this.blockFirstDropdownId.style.display = 'block';
-            document.getElementById(scope.oldFieldParamIdTwo).style.backgroundColor = 'white';
-            document.getElementById('text' + scope.oldFieldParamIdTwo).style.color = '#515151';
-            document.getElementById(scope.chosenFieldParamIdTwo).style.backgroundColor = '#0084E6';
-            document.getElementById('text' + scope.chosenFieldParamIdTwo).style.color = 'white';
+            if (scope.oldFieldParamIdTwo) {
+                document.getElementById(scope.oldFieldParamIdTwo).style.backgroundColor = 'white';
+                document.getElementById('text' + scope.oldFieldParamIdTwo).style.color = '#515151';
+            }
+            if (scope.chosenFieldParamIdTwo) {
+                document.getElementById(scope.chosenFieldParamIdTwo).style.backgroundColor = '#0084E6';
+                document.getElementById('text' + scope.chosenFieldParamIdTwo).style.color = 'white';
+            }
         }
 
         openDropDownThree = function () {
-            if (scope.secondLevelArray.length > 0) {
+            if (scope.secondLevelArray) {
                 this.blockSecondDropdownId.style.display = 'block';
-                document.getElementById('two' + scope.oldFieldParamIdThree).style.backgroundColor = 'white';
-                document.getElementById('texttwo' + scope.oldFieldParamIdThree).style.color = '#515151';
-                document.getElementById('two' + scope.chosenFieldParamIdThree).style.backgroundColor = '#0084E6';
-                document.getElementById('texttwo' + scope.chosenFieldParamIdThree).style.color = 'white';
+                if (scope.oldFieldParamIdThree) {
+                    console.log("sbhcjwdebcvgf");
+                    document.getElementById('two' + scope.oldFieldParamIdThree).style.backgroundColor = 'white';
+                    document.getElementById('texttwo' + scope.oldFieldParamIdThree).style.color = '#515151';
+                }
+                if (scope.chosenFieldParamIdThree) {
+                    console.log("!!!!!!!!!!!!!!11");
+                    document.getElementById('two' + scope.chosenFieldParamIdThree).style.backgroundColor = '#0084E6';
+                    document.getElementById('texttwo' + scope.chosenFieldParamIdThree).style.color = 'white';
+                }
             }
         }
 
@@ -297,15 +308,21 @@
                         scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;
                         scope.oldFieldParamIdTwo = scope.chosenFieldParamIdTwo;
                         scope.chosenFieldParamIdTwo = id;
-                        if (scope.hasSecondLevel)
+                        if (scope.hasSecondLevel) {
+                            console.log("CCCCCCCCCCCC");
                             scope.secondLevelArray = scope.secondLevelMap[id];
-                        if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo && scope.hasSecondLevel) {
-                            scope.chosenFieldNameThree = '';
-                            scope.chosenFieldParamIdThree = scope.secondLevelArray[0].id;
-                            scope.oldFieldParamIdThree = scope.secondLevelArray[1].id;
+                            if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo) {
+                                console.log("DDDDDDDDDDDDDD");
+                                scope.chosenFieldNameThree = '';
+                                scope.oldFieldParamIdThree = null;
+                                scope.chosenFieldParamIdThree = null;
+//                                if (scope.secondLevelArray)
+//                                    scope.chosenFieldParamIdThree = scope.secondLevelArray[0].id;
+                                //scope.oldFieldParamIdThree = scope.secondLevelArray[1].id;
+                            }
                         }
-
                         riot.update(scope.chosenFieldNameTwo);
+                        riot.update(scope.secondLevelArray);
                         break;
                     }
                 }
@@ -328,7 +345,8 @@
                 for (var i = 0; i < scope.secondLevelArray.length; i++) {
                     if (scope.secondLevelArray[i].id == id) {
                         scope.chosenFieldNameThree = scope.secondLevelArray[i].name;
-                        scope.oldFieldParamIdThree = scope.chosenFieldParamIdThree;
+                        if (scope.chosenFieldParamIdThree)
+                            scope.oldFieldParamIdThree = scope.chosenFieldParamIdThree;
                         scope.chosenFieldParamIdThree = id;
 
                         riot.update(scope.chosenFieldNameThree);
