@@ -71,6 +71,11 @@
             </div>
         </div>
     </code-confirm>
+    <component-success id="componentSuccessId" operationmessage="{window.languages.ComponentSuccessMessage}"></component-success>
+    <component-unsuccess id="componentUnsuccessId"
+                         operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
+                         operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
+                         operationmessagepartthree="{window.languages.ComponentUnsuccessMessagePart3}"></component-unsuccess>
 
     <script>
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
@@ -146,6 +151,7 @@
                 onSuccess: function (result) {
                     if (result[0][0].error == 0) {
                         console.log("result of TRANSFER ", result);
+                        if(result[1])
                         if (result[1][0]) {
                             if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
                                 blockCodeConfirmId.style.display = 'block';
@@ -153,12 +159,12 @@
                                 riot.update(scope.secretCode);
                             }
                             if(result[1][0].secret_code == 0){
-                                alert('Перевод на карту прошел успешно')
+                                componentSuccessId.style.display = 'block';
                             }
                         }
                     }
                     else {
-                        alert(result[0][0].error_note)
+                        componentUnsuccessId.style.display = 'block';
                     }
                 },
 
@@ -171,6 +177,7 @@
 
         closeSecretCodePage = function () {
             blockCodeConfirmId.style.display = 'none';
+            componentSuccessId.style.display = 'block';
         }
     </script>
 </view-transfer-stepfour>

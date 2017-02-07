@@ -107,6 +107,14 @@ var RU_LANGUAGES =
 
   "ComponentCodeConfirmTitle": "ЗАЩИТНЫЙ КОД",
 
+  "ComponentSuccessMessage": "Перевод прошел успешно!",
+  "ComponentSuccessNext": "OK",
+
+  "ComponentUnsuccessMessagePart1": 'Извините,',
+  "ComponentUnsuccessMessagePart2": 'что-то пошло не так.',
+  "ComponentUnsuccessMessagePart3": "Провертье правильность введенных данных или попробуйте повторить перевод позже",
+  "ComponentUnsuccessNext": "OK",
+
 
 
 }

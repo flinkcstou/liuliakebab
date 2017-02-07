@@ -1664,3 +1664,27 @@ window.fakedSocket.register("p2p.card.info", function (input) {
     }
   ];
 });
+
+window.fakedSocket.register("p2p.payment", function (input) {
+
+  if (input)
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": -4,
+        "error_note": ""
+      }],
+      [{
+        //"secret_code": 1,
+      }]
+    ];
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});

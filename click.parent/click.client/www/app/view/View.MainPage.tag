@@ -17,6 +17,7 @@
             </div>
         </div>
     </div>
+    <component-success></component-success>
     <script>
 
         localStorage.setItem('cardNumber', 0);
