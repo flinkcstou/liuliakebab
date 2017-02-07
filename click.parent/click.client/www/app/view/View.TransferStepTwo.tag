@@ -13,7 +13,7 @@
 
         <div class="transfertwo-contact-phone-field">
             <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax}</p>
-            <input class="transfertwo-contact-number-input-part" id="sumValueId"  onfocus="sumOnFocus()"
+            <input class="transfertwo-contact-number-input-part" id="sumValueId"  onmouseup="sumMouseUp()"
                    type="tel" onkeyup="sumKeyUp()"/>
         </div>
 
@@ -41,18 +41,21 @@
                 transferTitle,
                 objectForTransfer = opts[0],
                 defaultAccount,
-                mask = /[0-9]/g;
+                mask = /[0-9]/g,
+                checkFirst = false;
 
-        sumOnFocus = function () {
+        sumMouseUp = function () {
             event.preventDefault()
             event.stopPropagation()
-            sumValueId.value = defaultAccount.currency
-            console.log(sumValueId.value.match(mask));
+            if(!checkFirst) {
+                sumValueId.value = defaultAccount.currency
+                checkFirst = true;
+            }
+            console.log(sumValueId.value);
             if (sumValueId.value.match(mask) != null) {
                 sumValueId.selectionStart = sumValueId.value.match(mask).length
                 sumValueId.selectionEnd = sumValueId.value.match(mask).length
             } else {
-                sumValueId.focus();
                 sumValueId.selectionStart = 0
                 sumValueId.selectionEnd = 0
             }
@@ -60,7 +63,15 @@
 
         sumKeyUp = function () {
             console.log(event.target.value.match(mask))
-            console.log(event.target.value)
+            sumValueId.value = sumValueId.value.substring(0,event.target.value.match(mask).length) + defaultAccount.currency
+
+            if (sumValueId.value.match(mask) != null) {
+                sumValueId.selectionStart = sumValueId.value.match(mask).length
+                sumValueId.selectionEnd = sumValueId.value.match(mask).length
+            } else {
+                sumValueId.selectionStart = 0
+                sumValueId.selectionEnd = 0
+            }
         }
 
         scope.backbuttoncheck = true;
