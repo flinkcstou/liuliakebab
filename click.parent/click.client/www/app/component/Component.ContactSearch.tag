@@ -247,7 +247,14 @@
             event.preventDefault();
             event.stopPropagation();
 
+            blockSearchId.style.display = 'none';
+            if (device.platform != 'BrowserStand')
+                StatusBar.backgroundColorByHexString("#007AE2");
+            scope.searchWord = '';
+            Keyboard.hide();
+
             scope.parent.defaultNumber = scope.suggestionOne.phoneNumber.substring(3, scope.suggestionOne.phoneNumber.length).replace(/\s/g, '');
+            riot.update(scope.parent.defaultNumber);
 
             //contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(3, scope.suggestionOne.phoneNumber.length).replace(/\s/g, '');
         }
@@ -256,21 +263,42 @@
             event.preventDefault();
             event.stopPropagation();
 
+            blockSearchId.style.display = 'none';
+            if (device.platform != 'BrowserStand')
+                StatusBar.backgroundColorByHexString("#007AE2");
+            scope.searchWord = '';
+            Keyboard.hide();
+
             scope.parent.defaultNumber = scope.suggestionTwo.phoneNumber.substring(3, scope.suggestionTwo.phoneNumber.length).replace(/\s/g, '');
+            riot.update(scope.parent.defaultNumber);
         }
 
         thirdSuggestionBlock = function () {
             event.preventDefault();
             event.stopPropagation();
 
+            blockSearchId.style.display = 'none';
+            if (device.platform != 'BrowserStand')
+                StatusBar.backgroundColorByHexString("#007AE2");
+            scope.searchWord = '';
+            Keyboard.hide();
+
             scope.parent.defaultNumber = scope.suggestionThree.phoneNumber.substring(3, scope.suggestionThree.phoneNumber.length).replace(/\s/g, '');
+            riot.update(scope.parent.defaultNumber);
         }
 
         fourthSuggestionBlock = function () {
             event.preventDefault();
             event.stopPropagation();
 
+            blockSearchId.style.display = 'none';
+            if (device.platform != 'BrowserStand')
+                StatusBar.backgroundColorByHexString("#007AE2");
+            scope.searchWord = '';
+            Keyboard.hide();
+
             scope.parent.defaultNumber = scope.suggestionFour.phoneNumber.substring(3, scope.suggestionFour.phoneNumber.length).replace(/\s/g, '');
+            riot.update(scope.parent.defaultNumber);
         }
 
 
