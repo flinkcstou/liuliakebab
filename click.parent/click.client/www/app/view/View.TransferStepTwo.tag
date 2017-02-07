@@ -13,8 +13,8 @@
 
         <div class="transfertwo-contact-phone-field">
             <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax}</p>
-            <input value="{sumValue}" class="transfertwo-contact-number-input-part" id="sumValueId" autofocus="true"
-                   type="tel"/>
+            <input class="transfertwo-contact-number-input-part" id="sumValueId"  onfocus="sumOnFocus()"
+                   type="tel" onkeyup="sumKeyUp()"/>
         </div>
 
         <div class="transfertwo-next-button-inner-container" ontouchend="goToTransferThree()">
@@ -31,10 +31,37 @@
 
     <script>
 
+
+        this.on('mount', function () {
+            sumValueId.value = 0 + ' ' + defaultAccount.currency
+        })
+
+
         var scope = this,
                 transferTitle,
                 objectForTransfer = opts[0],
-                defaultAccount;
+                defaultAccount,
+                mask = /[0-9]/g;
+
+        sumOnFocus = function () {
+            event.preventDefault()
+            event.stopPropagation()
+            sumValueId.value = defaultAccount.currency
+            console.log(sumValueId.value.match(mask));
+            if (sumValueId.value.match(mask) != null) {
+                sumValueId.selectionStart = sumValueId.value.match(mask).length
+                sumValueId.selectionEnd = sumValueId.value.match(mask).length
+            } else {
+                sumValueId.focus();
+                sumValueId.selectionStart = 0
+                sumValueId.selectionEnd = 0
+            }
+        }
+
+        sumKeyUp = function () {
+            console.log(event.target.value.match(mask))
+            console.log(event.target.value)
+        }
 
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = false;

@@ -105,6 +105,7 @@
 
     <component-contact-search></component-contact-search>
     <script>
+        var asd;
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
             history.arrayOfHistory.push(
                     {

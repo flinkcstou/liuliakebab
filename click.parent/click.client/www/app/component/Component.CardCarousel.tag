@@ -227,18 +227,12 @@
                 this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
             }
 
-            for (var i in cardsarray) {
-                if (cardsarray[i].countCard == cardNumber) {
 
-                    cardsarray[i].chosenCard = true;
+
+
                     if (viewMainPage.myCards) {
                         scope.parent.cardInformation(cardsarray[i].card_id);
                     }
-                }
-                else
-                    cardsarray[i].chosenCard = false;
-            }
-            localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
 
             localStorage.setItem('cardNumber', cardNumber);
         }

@@ -9,7 +9,7 @@
     </div>
 
     <div class="transfer-body-container">
-        <div class="transfer-menus-container">
+        <div id="menuContainerId" class="transfer-menus-container">
             <div class="transfer-menu-container-contact" ontouchend="contact()">
                 <div class="transfer-menu-contact-icon"></div>
                 <p id="contactLabelId" class="transfer-menu-contact-label">
@@ -117,7 +117,9 @@
         }
 
         contact = function () {
-
+            event.preventDefault();
+            event.stopPropagation();
+            menuContainerId.style.backgroundImage = 'url(resources/icons/ViewTransfer/contactMenu.png)';
             scope.contactMode = true;
             this.contactLabelId.style.color = 'black';
             this.cardLabelId.style.color = 'gray';
@@ -127,7 +129,10 @@
         }
 
         card = function () {
+            event.preventDefault();
+            event.stopPropagation();
 
+            menuContainerId.style.backgroundImage = 'url(resources/icons/ViewTransfer/cardMenu.png)';
             scope.cardMode = true;
             this.cardLabelId.style.color = 'black';
             this.contactLabelId.style.color = 'gray';
