@@ -3103,9 +3103,13 @@ var css = {
   transferMenusContainer: ".transfer-menus-container" +
   "{" +
   "position: absolute;" +
-  "height: 9.5%;" +
+  "height: 10.2%;" +
   "width: 100%;" +
-  "background-color: #F0F1F4;" +
+  "background: transparent;" +
+  "background-image: url(resources/icons/ViewTransfer/contactMenu.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "background-position: center;" +
   "}",
 
   transferMenuContainerContact: ".transfer-menu-container-contact" +
