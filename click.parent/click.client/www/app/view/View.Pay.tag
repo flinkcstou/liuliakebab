@@ -174,6 +174,7 @@
             }
         };
 
+
         if (!(scope.serviceList && scope.servicesMapByCategory && scope.servicesMap)) {
             scope.serviceList = [];
             scope.servicesMapByCategory = {};
@@ -215,6 +216,8 @@
 
                                     scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
                                     scope.serviceList.push(result[1][i]);
+
+
 //                                icon = scope.serviceList[j].image;
 //                                console.log("j=", j, ",icon=", icon);
 //                                image.src = "resources/icons/ViewPay/service" + icon.substr(icon.lastIndexOf('/'));
@@ -362,6 +365,28 @@
             }
         }
 
+        if (device.platform != 'BrowserStand')
+            checkImages();
+
+        checkImages = function () {
+
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+
+                alert('file system open: ' + fs.name);
+                fs.root.getFile("newPersistentFile.txt", {
+                    create: true,
+                    exclusive: false
+                }, function (fileEntry) {
+
+                    alert("fileEntry is file?" + fileEntry.isFile.toString());
+                    // fileEntry.name == 'someFile.txt'
+                    // fileEntry.fullPath == '/someFile.txt'
+                    writeFile(fileEntry, null);
+
+                }, onErrorCreateFile);
+
+            }, onErrorLoadFs);
+        }
 
     </script>
 </view-pay>
