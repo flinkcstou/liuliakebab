@@ -63,62 +63,58 @@
         }
 
         sumKeyUp = function () {
-
-            if (event.keyCode != 8) {
-                if (sumForTransfer.length > 8) {
-                    return
-                }
-
-                if (sumValueId.value.match(maskTwo) != null && sumValueId.value.match(maskTwo).length != null) {
-
-                    sumValueId.value = sumValueId.value.substring(0, event.target.value.match(maskTwo).length) + defaultAccount.currency
-                    sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-                    sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-
-                    sumForTransfer = sumValueId.value.substring(0, sumValueId.value.match(maskTwo).length);
-                    sumForTransfer = sumForTransfer.replace(new RegExp(' ', 'g'), '');
-
-                    if (sumForTransfer.length == 4) {
-                        sumValueId.value = sumForTransfer.substring(0, 1) + ' ' + sumForTransfer.substring(1, sumForTransfer.length) + ' ' + defaultAccount.currency
-                        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-                        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-                    }
-
-                    if (sumForTransfer.length == 5) {
-                        sumValueId.value = sumForTransfer.substring(0, 2) + ' ' + sumForTransfer.substring(2, sumForTransfer.length) + ' ' + defaultAccount.currency
-                        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-                        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-                    }
-
-                    if (sumForTransfer.length == 6) {
-                        sumValueId.value = sumForTransfer.substring(0, 3) + ' ' + sumForTransfer.substring(3, sumForTransfer.length) + ' ' + defaultAccount.currency
-                        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-                        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-                    }
-
-                    if (sumForTransfer.length == 7) {
-                        sumValueId.value = sumForTransfer.substring(0, 1) + ' ' + sumForTransfer.substring(1, 4) + ' ' +
-                                sumForTransfer.substring(4, sumForTransfer.length) + ' ' + defaultAccount.currency
-                        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-                        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-                    }
-
-                    if (sumForTransfer.length == 8) {
-                        sumValueId.value = sumForTransfer.substring(0, 2) + ' ' + sumForTransfer.substring(2, 5) + ' ' +
-                                sumForTransfer.substring(5, sumForTransfer.length) + ' ' + defaultAccount.currency
-                        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-                        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-                    }
-
-
-                } else {
-                    sumValueId.selectionStart = 0
-                    sumValueId.selectionEnd = 0
-                }
-            }
-            else {
+            if(event.keyCode == 8)
+            {
                 sumForTransfer = sumForTransfer.substring(0, sumForTransfer.length - 1)
             }
+
+            if (sumValueId.value.match(maskTwo) != null && sumValueId.value.match(maskTwo).length != null) {
+
+                sumValueId.value = sumValueId.value.substring(0, event.target.value.match(maskTwo).length) + defaultAccount.currency
+                sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
+                sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
+
+                sumForTransfer = sumValueId.value.substring(0, sumValueId.value.match(maskTwo).length);
+                sumForTransfer = sumForTransfer.replace(new RegExp(' ', 'g'), '');
+
+                if (sumForTransfer.length == 4) {
+                    sumValueId.value = sumForTransfer.substring(0, 1) + ' ' + sumForTransfer.substring(1, sumForTransfer.length) + ' ' + defaultAccount.currency
+                    sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
+                    sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
+                }
+
+                if (sumForTransfer.length == 5) {
+                    sumValueId.value = sumForTransfer.substring(0, 2) + ' ' + sumForTransfer.substring(2, sumForTransfer.length) + ' ' + defaultAccount.currency
+                    sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
+                    sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
+                }
+
+                if (sumForTransfer.length == 6) {
+                    sumValueId.value = sumForTransfer.substring(0, 3) + ' ' + sumForTransfer.substring(3, sumForTransfer.length) + ' ' + defaultAccount.currency
+                    sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
+                    sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
+                }
+
+                if (sumForTransfer.length == 7) {
+                    sumValueId.value = sumForTransfer.substring(0, 1) + ' ' + sumForTransfer.substring(1, 4) + ' ' +
+                            sumForTransfer.substring(4, sumForTransfer.length) + ' ' + defaultAccount.currency
+                    sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
+                    sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
+                }
+
+                if (sumForTransfer.length == 8) {
+                    sumValueId.value = sumForTransfer.substring(0, 2) + ' ' + sumForTransfer.substring(2, 5) + ' ' +
+                            sumForTransfer.substring(5, sumForTransfer.length) + ' ' + defaultAccount.currency
+                    sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
+                    sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
+                }
+
+
+            } else {
+                sumValueId.selectionStart = 0
+                sumValueId.selectionEnd = 0
+            }
+
 
         }
 

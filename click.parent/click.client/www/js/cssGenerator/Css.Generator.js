@@ -1132,7 +1132,7 @@ var css = {
     "left:" + 25 * widthK + "px;" +
     "height:" + 87 * widthK + "px;" +
     "background: transparent;" +
-    "border-bottom:" + 5 + "px solid rgb(149, 230, 253);" +
+    "border-bottom:" + 5 * widthK + "px solid rgb(149, 230, 253);" +
     "}",
 
     nameTitle: ".name-title " +

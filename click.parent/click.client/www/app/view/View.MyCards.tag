@@ -153,13 +153,17 @@
             event.preventDefault();
             event.stopPropagation();
 
-            riotTags.innerHTML = "<view-pay>";
-            riot.mount('view-pay');
+
+            if(scope.card.access == 2) {
+                riotTags.innerHTML = "<view-pay>";
+                riot.mount('view-pay');
+            }
+            else alert('Извининте, вы не можете произвести оплату с этой карты')
         }
 
         goToTransferView = function () {
             for (var i in scope.cardsArray) {
-                if (scope.cardsArray[i].card_id == scope.card.card_id) {
+                if (scope.cardsArray[i].card_id == scope.card.card_id && scope.cardsArray[i].access == 2) {
                     scope.cardsArray[i].chosenCard = true;
                 }
                 else
@@ -170,8 +174,12 @@
             event.preventDefault();
             event.stopPropagation();
 
-            riotTags.innerHTML = "<view-transfer>";
-            riot.mount('view-transfer');
+            console.log(scope.card)
+            if(scope.card.access == 2) {
+                riotTags.innerHTML = "<view-transfer>";
+                riot.mount('view-transfer');
+            }
+            else alert('Извининте, вы не можете произвести перевод с этой карты')
         }
 
     </script>
