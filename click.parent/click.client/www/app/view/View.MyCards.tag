@@ -123,6 +123,43 @@
                                 }
                             }
                             this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
+
+                            for (var i in scope.arrayOfOperationsByAccount) {
+                                scope.arrayOfOperationsByAccount[i].amount = scope.arrayOfOperationsByAccount[i].amount.toString();
+                                console.log('LENGTH', scope.arrayOfOperationsByAccount[i].amount.length)
+
+                                if (scope.arrayOfOperationsByAccount[i].amount.length == 4) {
+                                    scope.arrayOfOperationsByAccount[i].amount = scope.arrayOfOperationsByAccount[i].amount.substring(0, 1) + ' ' +
+                                            scope.arrayOfOperationsByAccount[i].amount.substring(1, scope.arrayOfOperationsByAccount[i].amount.length)
+                                    continue;
+                                }
+
+                                if (scope.arrayOfOperationsByAccount[i].amount.length == 5) {
+                                    scope.arrayOfOperationsByAccount[i].amount = scope.arrayOfOperationsByAccount[i].amount.substring(0, 2) + ' ' +
+                                            scope.arrayOfOperationsByAccount[i].amount.substring(2, scope.arrayOfOperationsByAccount[i].amount.length)
+                                    continue;
+                                }
+
+                                if (scope.arrayOfOperationsByAccount[i].amount.length == 6) {
+                                    scope.arrayOfOperationsByAccount[i].amount = scope.arrayOfOperationsByAccount[i].amount.substring(0, 3) + ' ' +
+                                            scope.arrayOfOperationsByAccount[i].amount.substring(3, scope.arrayOfOperationsByAccount[i].amount.length)
+                                    continue;
+                                }
+
+                                if (scope.arrayOfOperationsByAccount[i].amount.length == 7) {
+                                    scope.arrayOfOperationsByAccount[i].amount = scope.arrayOfOperationsByAccount[i].amount.substring(0, 1) + ' ' +
+                                            scope.arrayOfOperationsByAccount[i].amount.substring(1, 4) + ' ' + scope.arrayOfOperationsByAccount[i].amount.substring(4, scope.arrayOfOperationsByAccount[i].amount.length)
+                                    continue;
+                                }
+
+                                if (scope.arrayOfOperationsByAccount[i].amount.length == 8) {
+                                    scope.arrayOfOperationsByAccount[i].amount = scope.arrayOfOperationsByAccount[i].amount.substring(0, 2) + ' ' +
+                                            scope.arrayOfOperationsByAccount[i].amount.substring(2, 5) + ' ' + scope.arrayOfOperationsByAccount[i].amount.substring(5, scope.arrayOfOperationsByAccount[i].amount.sum.length)
+                                    continue;
+                                }
+                                console.log('scope.arrayOfOperationsByAccount[i].amount', scope.arrayOfOperationsByAccount[i].amount)
+                            }
+
                             riot.update(scope.arrayOfOperationsByAccount)
                         }
                     }
@@ -154,7 +191,7 @@
             event.stopPropagation();
 
 
-            if(scope.card.access == 2) {
+            if (scope.card.access == 2) {
                 riotTags.innerHTML = "<view-pay>";
                 riot.mount('view-pay');
             }
@@ -175,7 +212,7 @@
             event.stopPropagation();
 
             console.log(scope.card)
-            if(scope.card.access == 2) {
+            if (scope.card.access == 2) {
                 riotTags.innerHTML = "<view-transfer>";
                 riot.mount('view-transfer');
             }
