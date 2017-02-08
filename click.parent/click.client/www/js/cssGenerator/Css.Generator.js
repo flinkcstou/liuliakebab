@@ -45,11 +45,11 @@ var css = {
     "height: 100%;" +
     "background-size: contain;" +
     "background-repeat: no-repeat;" +
-        //"background-image: url(resources/draft/successunsuccess/success.png);" +
-        //"opacity: 0.6;" +
-    "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
-    "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
-    "background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+    //"background-image: url(resources/draft/myCard/myCards.png);" +
+    //"opacity: 0.6;" +
+        "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+        "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+        "background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
     "font-family: SFUIDisplay-Light;" +
     "margin: 0;" +
     "overflow: hidden;" +
@@ -1130,18 +1130,18 @@ var css = {
     "top: 0px;" +
     "right:" + 28 * widthK + "px;" +
     "left:" + 25 * widthK + "px;" +
-    "height:" + 113 * widthK + "px;" +
+    "height:" + 87 * widthK + "px;" +
     "background: transparent;" +
-    "border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+    "border-bottom:" + 5 + "px solid rgb(149, 230, 253);" +
     "}",
 
     nameTitle: ".name-title " +
     "{" +
     "position: absolute;" +
     "background-size: contain;" +
-    "font-size:" + 33 * widthK + "px;" +
+    "font-size:" + 32 * widthK + "px;" +
     "left: 12.5%;" +
-    "top: 44%;" +
+    "top: 31%;" +
     "margin: 0;" +
     "color: #fffaf9;" +
     "}",
@@ -1154,26 +1154,26 @@ var css = {
     "background-image: url(resources/icons/back/back.png);" +
     "background-repeat: no-repeat;" +
     "-webkit-background-size: 19%;" +
-    "background-position-y: center;" +
-    "background-position-x:" + 20 * widthK + "px;" +
+    "background-position-y:" + 27 * widthK + "px;" +
+    "background-position-x:" + 44 * widthK + "px;" +
     "background-size: 17%;" +
-    "left: 0;" +
-    "top: 16%;" +
+    "left: -3%;" +
+    "top: 0;" +
     "}",
 
     settingsButton: ".settings-button " +
     "{" +
     "position: absolute;" +
-    "width:" + 68 * widthK + "px;" +
-    "height:" + 68 * widthK + "px;" +
-    "right:" + 6 * widthK + "px;" +
+    "width:" + 144 * widthK + "px;" +
+    "height:" + 92 * widthK + "px;" +
+    "right:" + -36 * widthK + "px;" +
     "background-image: url(resources/icons/ViewMyCards/cardsettings.png);" +
     "background-repeat: no-repeat;" +
-    "-webkit-background-size: 69%;" +
+    "-webkit-background-size: 31%;" +
     "background-position-y: center;" +
-    "background-position-x:" + 20 * widthK + "px;" +
-    "background-size: 69%;" +
-    "top:" + 29 * widthK + "px;" +
+    "background-position-x:" + 54 * widthK + "px;" +
+    "background-size: 31%;" +
+    "top: 0;" +
     "}",
 
     searchButton: ".search-button " +
@@ -1435,7 +1435,7 @@ var css = {
     "font-size:" + 30 * widthK + "px;" +
     "color: white;" +
     "top:" + 30 * widthK + "px;" +
-    "border-bottom:" + 2 + "px solid #95e6fd;" +
+    "border-bottom:" + 2 * widthK + "px solid #95e6fd;" +
     "}",
 
     myCardsButtonBlockCard: ".my-cards-button-block-card " +

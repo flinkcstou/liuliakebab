@@ -67,6 +67,7 @@
         }
 
         searchSuggestion = function () {
+
             var countOfSuggestionWord = 0;
             var check = false;
             event.preventDefault();

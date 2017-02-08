@@ -231,7 +231,10 @@
 
 
                     if (viewMainPage.myCards) {
-                        scope.parent.cardInformation(cardsarray[i].card_id);
+                        for(i in cardsarray){
+                            if(cardsarray[i].countCard == cardNumber)
+                                scope.parent.cardInformation(cardsarray[i].card_id);
+                        }
                     }
 
             localStorage.setItem('cardNumber', cardNumber);
