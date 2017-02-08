@@ -36,6 +36,16 @@ window.viewMyCardList = {};
 
 viewMyCardList.myCardListBoolean = false;
 
+window.viewTransfer = {};
+viewTransfer.phoneNumber = '';
+viewTransfer.cardNumber = '';
+viewTransfer.type = 2;
+
+window.viewTransferStepTwo = {};
+viewTransferStepTwo.sum = '';
+window.viewTransferStepThree = {};
+window.viewTransferStepFour = {};
+
 window.viewTransferThree = {};
 viewTransferThree.check = false;
 

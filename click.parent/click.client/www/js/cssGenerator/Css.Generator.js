@@ -45,11 +45,11 @@ var css = {
     "height: 100%;" +
     "background-size: contain;" +
     "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/myCard/myCards.png);" +
-    //"opacity: 0.6;" +
-        "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
-        "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
-        "background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 60%, rgb(21,181,243) 100%);" +
+        //"background-image: url(resources/draft/successunsuccess/unsuccess.png);" +
+        //"opacity: 0.6;" +
+    "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+    "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+    "background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     "font-family: SFUIDisplay-Light;" +
     "margin: 0;" +
     "overflow: hidden;" +
@@ -4244,6 +4244,17 @@ var css = {
     "vertical-align: middle;" +
     "}",
 
+    successSuccessIcon: ".success-success-icon" +
+    "{" +
+    "position: absolute;" +
+    "top:" + 338 * widthK + "px;" +
+    "width:" + 270 * widthK + "px;" +
+    "height:" + 250 * widthK + "px;" +
+    "left:" + 234 * widthK + "px;" +
+    "background-image: url(resources/icons/ViewSuccessUnsuccess/ok.png);" +
+    "background-repeat: no-repeat;" +
+    "}",
+
     //COMPONENT UNSUCCESS
 
     uncomponentUnuccess: ".component-unsuccess " +
@@ -4306,6 +4317,17 @@ var css = {
     "margin-top: 0;" +
     "margin-bottom: 0;" +
     "top:" + 725 * widthK + "px;" +
+    "}",
+
+    unsuccessUnsuccessIcon: ".unsuccess-unsuccess-icon" +
+    "{" +
+    "position: absolute;" +
+    "top:" + 307 * widthK + "px;" +
+    "width:" + 270 * widthK + "px;" +
+    "height:" + 250 * widthK + "px;" +
+    "left:" + 243 * widthK + "px;" +
+    "background-image: url(resources/icons/ViewSuccessUnsuccess/fail.png);" +
+    "background-repeat: no-repeat;" +
     "}",
 
 }

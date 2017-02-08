@@ -13,7 +13,7 @@
 
         <div class="transfertwo-contact-phone-field">
             <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax}</p>
-            <input class="transfertwo-contact-number-input-part" id="sumValueId" onmouseup="sumMouseUp()"
+            <input maxlength="13" class="transfertwo-contact-number-input-part" id="sumValueId" onmouseup="sumMouseUp()"
                    type="tel" onkeyup="sumKeyUp()"/>
         </div>
 
@@ -33,6 +33,11 @@
 
 
         this.on('mount', function () {
+            if(viewTransferStepTwo.sum.length > 0){
+                sumValueId.value = viewTransferStepTwo.sum;
+                checkFirst = true;
+            }
+            else
             sumValueId.value = 0 + ' ' + defaultAccount.currency
         })
 
@@ -54,8 +59,8 @@
                 checkFirst = true;
             }
             if (sumValueId.value.match(maskOne) != null && sumValueId.value.match(maskOne).length != null) {
-                sumValueId.selectionStart = sumValueId.value.match(maskOne).length
-                sumValueId.selectionEnd = sumValueId.value.match(maskOne).length
+                sumValueId.selectionStart = sumValueId.value.match(maskTwo).length
+                sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length
             } else {
                 sumValueId.selectionStart = 0
                 sumValueId.selectionEnd = 0
@@ -63,8 +68,7 @@
         }
 
         sumKeyUp = function () {
-            if(event.keyCode == 8)
-            {
+            if (event.keyCode == 8) {
                 sumForTransfer = sumForTransfer.substring(0, sumForTransfer.length - 1)
             }
 
@@ -115,6 +119,7 @@
                 sumValueId.selectionEnd = 0
             }
 
+            viewTransferStepTwo.sum = sumValueId.value;
 
         }
 
@@ -135,7 +140,10 @@
         else
             transferTitle = objectForTransfer.name
 
-        this.titleName = window.languages.ViewTransferTwoTitle + ' +' + transferTitle;
+        if (objectForTransfer.type == 2)
+            this.titleName = window.languages.ViewTransferTwoTitle + ' +' + transferTitle;
+        else
+            this.titleName = window.languages.ViewTransferTwoTitle + ' ' + transferTitle;;
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-steptwo') {
             history.arrayOfHistory.push(

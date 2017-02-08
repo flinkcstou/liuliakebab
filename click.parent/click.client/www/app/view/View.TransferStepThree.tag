@@ -38,7 +38,11 @@
         else
             transferTitle = objectForTransfer.name;
 
-        this.titleName = window.languages.ViewTransferThreeTitle + ' +' + transferTitle;
+
+        if (objectForTransfer.type == 2)
+            this.titleName = window.languages.ViewTransferThreeTitle + ' +' + transferTitle;
+        else
+            this.titleName = window.languages.ViewTransferThreeTitle + ' ' + transferTitle;;
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepthree') {
             history.arrayOfHistory.push(

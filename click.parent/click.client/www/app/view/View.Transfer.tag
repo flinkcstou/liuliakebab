@@ -72,11 +72,18 @@
     </div>
     <script>
 
+        this.on('mount', function () {
+            if (viewTransfer.type == 2)
+                contact();
+            else
+                card();
+        })
+
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer') {
             history.arrayOfHistory.push(
                     {
                         "view": 'view-transfer',
-                        "params": ''
+                        "params": opts,
                     }
             );
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
@@ -85,8 +92,6 @@
 
         this.titleName = window.languages.ViewPayTransferTitle;
         var scope = this,
-                checkPhoneForTransfer = false,
-                checkCardForTransfer = false,
                 phoneNumberForTransfer = '',
                 cardNumberForTransfer = '',
                 arrayOfContacts = [];
@@ -106,9 +111,20 @@
         scope.backbuttoncheck = true;
         scope.rightbuttoncheck = true;
 
-        scope.contactMode = true;
-
-        scope.cardMode = false;
+        if (viewTransfer.phoneNumber.length > 0 || viewTransfer.cardNumber.length > 0) {
+            if (viewTransfer.type == 2) {
+                scope.contactMode = true;
+                scope.cardMode = false;
+            }
+            if (viewTransfer.type == 1) {
+                scope.contactMode = false;
+                scope.cardMode = true;
+            }
+        }
+        else {
+            scope.contactMode = true;
+            scope.cardMode = false;
+        }
 
         goToBack = function () {
             event.preventDefault();
@@ -116,9 +132,11 @@
             onBackKeyDown()
         }
 
+
         contact = function () {
             event.preventDefault();
             event.stopPropagation();
+
             menuContainerId.style.backgroundImage = 'url(resources/icons/ViewTransfer/contactMenu.png)';
             scope.contactMode = true;
             this.contactLabelId.style.color = 'black';
@@ -126,6 +144,9 @@
             scope.cardMode = false;
             riot.update(scope.cardMode);
             riot.update(scope.contactMode);
+            contactPhoneNumberId.value = viewTransfer.phoneNumber;
+
+            viewTransfer.type = 2;
         }
 
         card = function () {
@@ -140,7 +161,11 @@
 
             riot.update(scope.contactMode);
             riot.update(scope.cardMode);
+            cardInputId.value = viewTransfer.cardNumber
+
+            viewTransfer.type = 1;
         }
+
 
         goToTransferStepTwo = function () {
             event.preventDefault();
@@ -149,8 +174,10 @@
             if (!checkPhoneForTransfer && !checkCardForTransfer)
                 alert('Write phone number or card number for transfer')
             else {
-                if (checkPhoneForTransfer) {
+                if (viewTransfer.type == 2) {
                     phoneNumberForTransfer = contactPhoneNumberId.value;
+                    viewTransfer.phoneNumber = phoneNumberForTransfer;
+                    viewTransfer.type = 2;
                     if (phoneNumberForTransfer.length != 9) {
                         alert('Incorrect phone number')
                         return
@@ -168,8 +195,10 @@
                     }
                 }
 
-                if (checkCardForTransfer) {
+                if (viewTransfer.type == 1) {
                     cardNumberForTransfer = cardInputId.value;
+                    viewTransfer.cardNumber = cardNumberForTransfer
+                    viewTransfer.type = 1;
                     if (cardNumberForTransfer.length != 19) {
                         alert('Incorrect card number')
                         return

@@ -22,7 +22,7 @@
 
             <div class="transferfour-field-sum">
                 <p class="transferfour-amount-field">{window.languages.ViewTransferFourAmountOfPay}</p>
-                <p class="transferfour-amount-input">{objectSumForTransfer.sum} {objectCardForTransfer.currency}</p>
+                <p class="transferfour-amount-input">{maskSum} {objectCardForTransfer.currency}</p>
                 <p class="transferfour-tax-field">{window.languages.ViewTransferFourTax}</p>
             </div>
             <div id="categoryContainerId" class="transferfour-category-container">
@@ -71,7 +71,8 @@
             </div>
         </div>
     </code-confirm>
-    <component-success id="componentSuccessId" operationmessage="{window.languages.ComponentSuccessMessage}"></component-success>
+    <component-success id="componentSuccessId"
+                       operationmessage="{window.languages.ComponentSuccessMessage}"></component-success>
     <component-unsuccess id="componentUnsuccessId"
                          operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                          operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
@@ -107,6 +108,27 @@
         scope.objectComment = opts[0][2];
         scope.objectCardForTransfer = opts[0][3];
 
+        if (scope.objectSumForTransfer.sum.length == 4) {
+            scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 1) + ' ' + scope.objectSumForTransfer.sum.substring(1, scope.objectSumForTransfer.sum.length)
+        }
+
+        if (scope.objectSumForTransfer.sum.length == 5) {
+            scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 2) + ' ' + scope.objectSumForTransfer.sum.substring(2, scope.objectSumForTransfer.sum.length)
+        }
+
+        if (scope.objectSumForTransfer.sum.length == 6) {
+            scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 3) + ' ' + scope.objectSumForTransfer.sum.substring(3, scope.objectSumForTransfer.sum.length)
+        }
+
+        if (scope.objectSumForTransfer.sum.length == 7) {
+            scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 1) + ' ' +
+                    scope.objectSumForTransfer.sum.substring(1, 4) + ' ' + scope.objectSumForTransfer.sum.substring(4, scope.objectSumForTransfer.sum.length)
+        }
+
+        if (scope.objectSumForTransfer.sum.length == 8) {
+            scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 2) + ' ' +
+                    scope.objectSumForTransfer.sum.substring(2, 5) + ' ' + scope.objectSumForTransfer.sum.substring(5, scope.objectSumForTransfer.sum.length)
+        }
 
 
         var transferTitle;
@@ -123,8 +145,10 @@
             scope.cardOrPhone = window.languages.ViewTransferFourEnterPhone;
         }
 
-
-        this.titleName = window.languages.ViewTransferFourTitle + ' +' + transferTitle;
+        if (objectForTransfer.type == 2)
+            this.titleName = window.languages.ViewTransferFourTitle + ' +' + transferTitle;
+        else
+            this.titleName = window.languages.ViewTransferFourTitle + ' ' + transferTitle;
 
 
         transferStep = function () {
@@ -151,17 +175,17 @@
                 onSuccess: function (result) {
                     if (result[0][0].error == 0) {
                         console.log("result of TRANSFER ", result);
-                        if(result[1])
-                        if (result[1][0]) {
-                            if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
-                                blockCodeConfirmId.style.display = 'block';
-                                scope.secretCode = result[1][0].secret_code;
-                                riot.update(scope.secretCode);
+                        if (result[1])
+                            if (result[1][0]) {
+                                if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
+                                    blockCodeConfirmId.style.display = 'block';
+                                    scope.secretCode = result[1][0].secret_code;
+                                    riot.update(scope.secretCode);
+                                }
+                                if (result[1][0].secret_code == 0) {
+                                    componentSuccessId.style.display = 'block';
+                                }
                             }
-                            if(result[1][0].secret_code == 0){
-                                componentSuccessId.style.display = 'block';
-                            }
-                        }
                     }
                     else {
                         componentUnsuccessId.style.display = 'block';
