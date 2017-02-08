@@ -1679,13 +1679,17 @@ window.fakedSocket.register("p2p.payment", function (input) {
         console.log(input)
         var random = Math.random() * 1000;
         if (random.length == 2) {
-            random + Math.random() * 10 + Math.random()
+            random + Math.random() * 10;
         }
         if (random.length == 1) {
             random + Math.random() * 10 + Math.random() * 10
         }
+
+        if (random.length == 0) {
+            random + Math.random() * 10 + Math.random() * 10 + Math.random() * 10
+        }
         if (input.parameters.type == 2) {
-            if (input.parameters.phone_num == '998909880819')
+            if (input.parameters.receiver_data == '998222222222')
                 return [
                     [{
                         "method": input.method,
@@ -1708,18 +1712,18 @@ window.fakedSocket.register("p2p.payment", function (input) {
                 ];
         }
         else {
-            if(input.parameters.receiver_data == '1111222233334444')
-            return [
-                [{
-                    "method": input.method,
-                    "success": 1,
-                    "error": 0,
-                    "error_note": ""
-                }],
-                [{
-                    "secret_code": 0,
-                }]
-            ];
+            if (input.parameters.receiver_data == '1111222233334444')
+                return [
+                    [{
+                        "method": input.method,
+                        "success": 1,
+                        "error": 0,
+                        "error_note": ""
+                    }],
+                    [{
+                        "secret_code": 0,
+                    }]
+                ];
             else
                 return [
                     [{

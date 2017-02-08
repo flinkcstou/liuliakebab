@@ -34,6 +34,10 @@
 
 
         viewMainPage.myCards = false;
+        viewTransfer.phoneNumber = '';
+        viewTransfer.cardNumber = '';
+        viewTransfer.type = 2;
+        viewTransferStepTwo.sum = '';
 
         myCardList = function () {
             event.preventDefault();

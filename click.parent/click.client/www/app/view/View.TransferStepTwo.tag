@@ -36,6 +36,7 @@
             if(viewTransferStepTwo.sum.length > 0){
                 sumValueId.value = viewTransferStepTwo.sum;
                 checkFirst = true;
+                sumForTransfer = viewTransferStepTwo.sumWithoutSpace;
             }
             else
             sumValueId.value = 0 + ' ' + defaultAccount.currency
@@ -120,6 +121,7 @@
             }
 
             viewTransferStepTwo.sum = sumValueId.value;
+            viewTransferStepTwo.sumWithoutSpace = sumForTransfer;
 
         }
 

@@ -43,6 +43,8 @@ viewTransfer.type = 2;
 
 window.viewTransferStepTwo = {};
 viewTransferStepTwo.sum = '';
+viewTransferStepTwo.sumWithoutSpace = '';
+
 window.viewTransferStepThree = {};
 window.viewTransferStepFour = {};
 

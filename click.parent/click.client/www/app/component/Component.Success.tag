@@ -10,7 +10,16 @@
         var scope = this;
 
         closeSuccessMessageForm = function () {
+            event.preventDefault();
+            event.stopPropagation();
             componentSuccessId.style.display = 'none';
+            history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 3)
+            console.log(history.arrayOfHistory)
+                sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
+
+            riotTags.innerHTML = "<view-transfer>";
+            riot.mount('view-transfer');
         }
     </script>
 </component-success>

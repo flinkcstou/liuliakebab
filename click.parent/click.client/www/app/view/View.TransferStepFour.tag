@@ -60,7 +60,7 @@
     <code-confirm id="blockCodeConfirmId" class="code-confirm">
         <div class="code-confirm-title-container">
             <p class="code-confirm-title-name">{window.languages.ComponentCodeConfirmTitle}</p>
-            <div class="code-confirm-cancel-icon" ontouchend="confirmCodeCancelEnd()"></div>
+            <div class="code-confirm-cancel-icon" ontouchend="closeSecretCodePage()"></div>
         </div>
         <div class="code-confirm-code-container">
             <p class="code-confirm-code-text">{secretCode}</p>
