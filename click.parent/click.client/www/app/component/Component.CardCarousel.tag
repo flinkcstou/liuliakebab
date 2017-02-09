@@ -43,7 +43,31 @@
                     onSuccess: function (result) {
                         if (result[0][0].error == 0) {
                             if (result[1][0]) {
-                                console.log(result[1][0])
+
+                                result[1][0].balance = result[1][0].balance.toString();
+
+                                if (result[1][0].balance.length == 7) {
+                                    result[1][0].balance = result[1][0].balance.substring(0, 1) + ' ' +
+                                            result[1][0].balance.substring(1, 4) + ' ' + result[1][0].balance.substring(4, result[1][0].balance.length)
+                                }
+
+                                if (result[1][0].balance.length == 6) {
+                                    result[1][0].balance = result[1][0].balance.substring(0, 3) + ' ' +
+                                            result[1][0].balance.substring(3, result[1][0].balance.length)
+
+                                }
+
+                                if (result[1][0].balance.length == 5) {
+                                    result[1][0].balance = result[1][0].balance.substring(0, 2) + ' ' +
+                                            result[1][0].balance.substring(2, result[1][0].balance.length)
+
+                                }
+
+                                if (result[1][0].balance.length == 4) {
+                                    result[1][0].balance = result[1][0].balance.substring(0, 1) + ' ' +
+                                            result[1][0].balance.substring(1, result[1][0].balance.length)
+
+                                }
                                 cardsarray[result[1][0].account_id].salary = result[1][0].balance;
                                 localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
                                 riot.update();
