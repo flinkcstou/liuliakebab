@@ -35,6 +35,7 @@
 
     if (window.cordova) {
         document.addEventListener("deviceready", function () {
+            permissionAccess();
 
             var GENERATOR = document.createElement('script');
             GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
@@ -52,6 +53,7 @@
             }
 
             document.addEventListener("backbutton", onBackKeyDown, false);
+            document.addEventListener('onSMSArrive', readIncomingSms);
         }, false);
     }
 
@@ -78,6 +80,47 @@
 
         }
 
+    }
+
+    permissionAccess = function () {
+        if (SMS) SMS.startWatch(function (success) {
+            console.log(success)
+        }, function (error) {
+            console.log(error)
+        });
+
+        if (SMS) SMS.enableIntercept(false, function (success) {
+            console.log('Enable Intercept', success)
+        }, function (error) {
+            console.log('Enable Intercept', error)
+        });
+
+        var permissions = cordova.plugins.permissions;
+        permissions.hasPermission(permissions.READ_SMS, checkPermissionCallback, null);
+
+        function checkPermissionCallback(status) {
+            if (!status.hasPermission) {
+                var errorCallback = function () {
+                    console.log('SMS permission is not turned on');
+                }
+                permissions.requestPermission(
+                        permissions.READ_SMS,
+                        function (status) {
+                            if (!status.hasPermission) errorCallback();
+                        },
+                        errorCallback);
+            }
+        }
+
+    }
+
+    function readIncomingSms(e)
+    {
+        var sms = e.data;
+        console.log(sms)
+        if (sms.address == "Click") {
+            viewSms.getSms(sms.body);
+        }
     }
 
 

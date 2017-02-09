@@ -25,6 +25,7 @@
 
 
     <script>
+
         var scope = this;
         scope.messageTitle = window.languages.ViewSmsCodeActivationText;
         scope.messageTitleTwo = '';
@@ -51,7 +52,7 @@
             riot.update();
             if (scope.confirmSms.length == 5) {
                 var sms = scope.confirmSms;
-                getSms(sms);
+                viewSms.getSms(sms);
                 return;
             }
         }
@@ -83,7 +84,9 @@
 
 
         var token;
-        getSms = function (sms) {
+        viewSms.getSms = function (sms) {
+            scope.confirmSms = sms;
+            riot.update(scope.confirmSms)
             event.preventDefault();
             event.stopPropagation();
 
@@ -111,16 +114,12 @@
                 scope: this,
 
                 onSuccess: function (result) {
-                    if (result[0][0].error == -4) {
-                        alert("Неверный смс код");
-                        scope.confirmSms = '';
-                        return;
-                    }
                     if (result[0][0].error == 0) {
                         localStorage.setItem('confirm_needed', false);
                         this.riotTags.innerHTML = "<view-authorization>";
                         riot.mount('view-authorization');
                     }
+                    else alert(result[0][0].error_note)
                 },
 
                 onFail: function (api_status, api_status_message, data) {

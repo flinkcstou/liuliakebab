@@ -16,6 +16,7 @@
   <plugin name="cordova-plugin-statusbar"/>
   <plugin name="cordova-plugin-file"/>
   <plugin name="cordova-plugin-sms"/>
+  <plugin name="cordova-plugin-android-permissions"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>

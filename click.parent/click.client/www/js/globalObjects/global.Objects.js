@@ -13,6 +13,8 @@ viewAuthorization.check = false;
 
 window.viewRegistrationDevice = {};
 
+window.viewSms = {};
+
 
 window.history = {};
 history.arrayOfHistory = [];
