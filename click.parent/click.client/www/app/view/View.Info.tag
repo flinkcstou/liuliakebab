@@ -87,8 +87,35 @@
                     var j = 0;
                     for (var i in result[1]) {
                         if (result[1][i].state == 0) {
+                            result[1][i].count = j;
+
+                            result[1][i].amount = result[1][i].amount.toString();
+
+                            if (result[1][i].amount.length == 7) {
+                                result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
+                                        result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
+
+                            }
+
+                            if (result[1][i].amount.length == 6) {
+                                result[1][i].amount = result[1][i].amount.substring(0, 3) + ' ' +
+                                        result[1][i].amount.substring(3, result[1][i].amount.length)
+
+                            }
+
+                            if (result[1][i].amount.length == 5) {
+                                result[1][i].amount = result[1][i].amount.substring(0, 2) + ' ' +
+                                        result[1][i].amount.substring(2, result[1][i].amount.length)
+
+                            }
+
+                            if (result[1][i].amount.length == 4) {
+                                result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
+                                        result[1][i].amount.substring(1, result[1][i].amount.length)
+
+                            }
                             scope.lastOperationContainer.push(result[1][i])
-                            scope.lastOperationContainer[i].count = j;
+
                             j++;
                         }
                     }

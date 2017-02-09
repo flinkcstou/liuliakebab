@@ -348,7 +348,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
     array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
     array.push([{
         "payment_id": 277019456,
-        "amount": 1000,
+        "amount": 22543,
         "cntrg_info_param2": "974647747",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
@@ -388,7 +388,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         },
         {
             "payment_id": 277019456,
-            "amount": 125,
+            "amount": 345655,
             "cntrg_info_param2": "222222222",
             "cntrg_info_param3": null,
             "cntrg_info_param4": null,
@@ -428,7 +428,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         },
         {
             "payment_id": 123456789,
-            "amount": 5580,
+            "amount": 3456556,
             "cntrg_info_param2": "974647747",
             "cntrg_info_param3": null,
             "cntrg_info_param4": null,
