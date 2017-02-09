@@ -2992,9 +2992,10 @@ var css = {
     "background-size: contain;" +
     "background-repeat: no-repeat;" +
     "background-position: left top;" +
-    "left: 7%;" +
-    "top: 15%;" +
+    "left:" + 19 * widthK + "px;" +
+    "top:" + 13 * widthK + "px" +
     "}",
+
 
     myCardListcardBankName: ".mycardlist-card-bank-name " +
     "{" +

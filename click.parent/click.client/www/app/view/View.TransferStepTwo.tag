@@ -86,21 +86,21 @@
                     sumValueId.value = sumForTransfer.substring(0, 1) + ' ' + sumForTransfer.substring(1, sumForTransfer.length) + ' ' + defaultAccount.currency
                     sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
                     sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-                    return;
+
                 }
 
                 if (sumForTransfer.length == 5) {
                     sumValueId.value = sumForTransfer.substring(0, 2) + ' ' + sumForTransfer.substring(2, sumForTransfer.length) + ' ' + defaultAccount.currency
                     sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
                     sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-                    return;
+
                 }
 
                 if (sumForTransfer.length == 6) {
                     sumValueId.value = sumForTransfer.substring(0, 3) + ' ' + sumForTransfer.substring(3, sumForTransfer.length) + ' ' + defaultAccount.currency
                     sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
                     sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-                    return;
+
                 }
 
                 if (sumForTransfer.length == 7) {
@@ -108,7 +108,7 @@
                             sumForTransfer.substring(4, sumForTransfer.length) + ' ' + defaultAccount.currency
                     sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
                     sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-                    return;
+
                 }
 
                 if (sumForTransfer.length == 8) {
@@ -116,7 +116,7 @@
                             sumForTransfer.substring(5, sumForTransfer.length) + ' ' + defaultAccount.currency
                     sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
                     sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-                    return;
+
                 }
 
 

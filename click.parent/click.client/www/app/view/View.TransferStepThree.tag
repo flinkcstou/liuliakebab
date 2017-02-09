@@ -71,7 +71,7 @@
             event.stopPropagation()
             console.log(cards)
             for (var i in cards) {
-                if (cards[i].chosenCard === true) {
+                if (cards[i].chosenCard === true && cards[i].access == 2) {
                     console.log(cards[i])
                     checkChosenCard = true;
                     chosenCard = cards[i]

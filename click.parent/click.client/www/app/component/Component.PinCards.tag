@@ -27,31 +27,27 @@
         scope.checked = false;
 
         for (var i in scope.cardsArray) {
-            if (scope.cardsArray[i].chosenCard == true) {
+            if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
                 scope.checkedId = "check" + scope.cardsArray[i].card_id;
             }
         }
 
-
-        console.log("CHECKED_ID", scope.checkedId);
 
         chooseCard = function (id) {
             scope.checkedId = "check" + id;
             riot.update(scope.checkedId);
 
             for (var i in scope.cardsArray) {
-                console.log('id', scope.cardsArray[i].card_id, id)
-                if (scope.cardsArray[i].card_id == id) {
+                if (scope.cardsArray[i].card_id == id && scope.cardsArray[i].access == 2) {
                     scope.cardsArray[i].chosenCard = true;
 
                 }
                 else
                     scope.cardsArray[i].chosenCard = false;
             }
+
             localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))
-            console.log(localStorage.getItem('click_client_cards'))
             riot.update(scope.cardsArray)
-            console.log(scope.cardsArray)
 
         }
 
