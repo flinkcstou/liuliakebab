@@ -1,11 +1,10 @@
 <view-mycard-list>
     <div class="view-mycard-list">
-        <div class="mycardlist-page-title">
-            <p class="mycardlist-name-title">{titleName}</p>
+        <div class="page-title">
+            <p class="name-title">{titleName}</p>
             <div id="backButton" ontouchend="goToMainPage()"
                  class="back-button">
             </div>
-            <div id="rightButton" type="button" class="{search-button: rightbuttoncheck}" ontouchend="search()"></div>
         </div>
 
         <div class="mycardlist-container">

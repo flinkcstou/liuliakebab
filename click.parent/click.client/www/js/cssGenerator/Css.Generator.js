@@ -2996,6 +2996,21 @@ var css = {
     "top:" + 13 * widthK + "px" +
     "}",
 
+    myCardListbackButton: ".mycardlist-back-button " +
+    "{" +
+    "position: absolute;" +
+    "width:" + 120 * widthK + "px;" +
+    "height:" + 100 * widthK + "px;" +
+    "background-image: url(resources/icons/back/back.png);" +
+    "background-repeat: no-repeat;" +
+    "-webkit-background-size: 19%;" +
+    "background-position-y:" + 27 * widthK + "px;" +
+    "background-position-x:" + 44 * widthK + "px;" +
+    "background-size: 17%;" +
+    "left: -3%;" +
+    "top: 0;" +
+    "}",
+
 
     myCardListcardBankName: ".mycardlist-card-bank-name " +
     "{" +
