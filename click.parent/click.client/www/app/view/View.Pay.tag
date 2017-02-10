@@ -88,16 +88,16 @@
                                         scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
                                         var icon = result[1][i].icon;
                                         var filename = icon.substr(icon.lastIndexOf('/') + 1);
-                                        alert("filename=" + filename);
+                                        console.log("filename=" + filename);
 
                                         //alert('file system open: ' + fs.name);
 
                                         var newIconBool = getSampleFile;
                                         newIconBool('www/resources/icons/ViewPay/category/', filename, 'icon', icon, result[1][i], function (object) {
-                                            alert("object id and icon=" + object.id + "," + object.icon);
+                                            console.log("object id and icon=" + object.id + "," + object.icon);
                                             scope.categoryList.push(object);
                                             if (result[1].length == scope.categoryList.length) {
-                                                alert("save into localstorage");
+                                                console.log("save into localstorage");
                                                 localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
                                                 localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
                                             }
@@ -112,7 +112,7 @@
 
                                     var icon = result[1][i].icon;
                                     var filename = icon.substr(icon.lastIndexOf('/') + 1);
-                                    alert("filename=" + filename);
+                                    console.log("filename=" + filename);
 
                                     scope.categoryList.push(result[1][i]);
                                     scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
@@ -229,7 +229,7 @@
                                             scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
                                             var icon = result[1][i].image;
                                             var filename = icon.substr(icon.lastIndexOf('/') + 1);
-                                            alert("filename=" + filename);
+                                            console.log("filename=" + filename);
 
                                             //alert('file system open: ' + fs.name);
 
@@ -261,7 +261,7 @@
                                                 }
 
                                                 if ((result[1].length - inVisibleNum) == scope.serviceList.length) {
-                                                    alert("save into localstorage");
+                                                    console.log("save into localstorage");
                                                     localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
                                                     localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
                                                     localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
@@ -437,7 +437,7 @@
                 if (this.status == 200) {
 
                     var blob = new Blob([this.response], {type: 'image/png'});
-                    alert("status 200 For " + fileName);
+                    console.log("status 200 For " + fileName);
                     bool = false;
                     object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
                     callback(object);
@@ -445,12 +445,12 @@
             };
 
             xhr.onerror = function () {
-                alert("error for " + fileName);
+                console.log("error for " + fileName);
 
                 var convertFunction = convertFileToDataURLviaFileReader;
 
                 convertFunction(assetURL, function (base64Img) {
-                    alert("base64 length=" + base64Img.length);
+                    console.log("base64 length=" + base64Img.length);
                     // Split the base64 string in data and contentType
                     var block = base64Img.split(";");
                     // Get the content type

@@ -18,7 +18,6 @@
   <plugin name="cordova-plugin-sms"/>
   <plugin name="cordova-plugin-android-permissions"/>
   <plugin name="cordova-plugin-globeconnect"/>
-  <plugin name="cordova-plugin-file-transfer"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
