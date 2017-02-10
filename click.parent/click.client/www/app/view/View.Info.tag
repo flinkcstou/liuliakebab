@@ -32,7 +32,7 @@
     <div class="view-info-operations-container">
 
         <div class="view-info-operations-icon" each="{i in lastOperationContainer}"
-             style="left:{leftOfOperations*i.count + 50}px;">
+             style="left:{leftOfOperations*i.count + 50}px; background-image: url({i.image})">
 
             <div class="view-info-operation-info-container">
                 <p class="view-info-operation-info-name">{i.service_name}</p>

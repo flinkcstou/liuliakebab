@@ -15,15 +15,19 @@
 
     <script>
 
+
         this.on('mount', function () {
-            console.log('cardsarray',cardsarray )
+            console.log('cardsarray', cardsarray)
             localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
             cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
             cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
             cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
             cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+            console.log(modeOfflineMode.check)
 
-            writeBalance();
+            if (modeOfflineMode.check == false) {
+                writeBalance();
+            }
         })
 
 
@@ -130,24 +134,28 @@
                 changePosition();
             }
             else if (!viewMainPage.myCards) {
-                pos = (cardNumber) * 540 * widthK;
-                var sendChosenCardId;
-                for (var i in cardsarray) {
-                    if (cardsarray[i].countCard == cardNumber) {
-                        cardsarray[i].chosenCard = true;
-                        sendChosenCardId = cardsarray[i].card_id
-                        localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
+                if (!modeOfflineMode.balance) {
+                    pos = (cardNumber) * 540 * widthK;
+                    var sendChosenCardId;
+                    for (var i in cardsarray) {
+                        if (cardsarray[i].countCard == cardNumber) {
+                            cardsarray[i].chosenCard = true;
+                            sendChosenCardId = cardsarray[i].card_id
+                            localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
+                        }
+                        else {
+                            cardsarray[i].chosenCard = false;
+                        }
                     }
-                    else {
-                        cardsarray[i].chosenCard = false;
-                    }
+                    riotTags.innerHTML = "<view-my-cards>";
+                    riot.mount("view-my-cards", [sendChosenCardId]);
+                    this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                    this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+                    this.cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+                    this.cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
                 }
-                riotTags.innerHTML = "<view-my-cards>";
-                riot.mount("view-my-cards", [sendChosenCardId]);
-                this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-                this.cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
-                this.cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+                else
+                    modeOfflineMode.balance = false;
             }
             else
                 changePosition()
@@ -252,14 +260,12 @@
             }
 
 
-
-
-                    if (viewMainPage.myCards) {
-                        for(i in cardsarray){
-                            if(cardsarray[i].countCard == cardNumber)
-                                scope.parent.cardInformation(cardsarray[i].card_id);
-                        }
-                    }
+            if (viewMainPage.myCards) {
+                for (i in cardsarray) {
+                    if (cardsarray[i].countCard == cardNumber)
+                        scope.parent.cardInformation(cardsarray[i].card_id);
+                }
+            }
 
             localStorage.setItem('cardNumber', cardNumber);
         }

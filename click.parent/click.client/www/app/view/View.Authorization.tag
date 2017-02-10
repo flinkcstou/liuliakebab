@@ -23,7 +23,9 @@
         <div class="authorization-button-forget-pin">{window.languages.ViewAuthorizationForgetPinLabel}</div>
         <div class="authorization-button-registration">{window.languages.ViewAuthorizationRegistrationLabel}</div>
     </div>
-    <div class="authorization-button-offline">{window.languages.ViewAuthorizationOfflineModeLabel}</div>
+    <div class="authorization-button-offline" ontouchstart="offlineMode()">
+        {window.languages.ViewAuthorizationOfflineModeLabel}
+    </div>
 
 
     <script>
@@ -66,6 +68,15 @@
 
             riot.update();
             updateEnteredPin();
+        }
+
+        offlineMode = function () {
+            event.preventDefault();
+            event.stopPropagation();
+            modeOfflineMode.check = true;
+            this.riotTags.innerHTML = "<view-main-page>";
+            riot.mount('view-main-page');
+
         }
 
         updateEnteredPin = function () {
@@ -147,21 +158,22 @@
 
                 onSuccess: function (result) {
                     console.log(result[0][0])
-                   if(result[0][0].error == 0) {
-                       if (!result[1][0].error) {
-                           var JsonInfo = JSON.stringify(result[1][0]);
-                           localStorage.setItem('click_client_loginInfo', JsonInfo);
-                           checkSessionKey = true;
-                           viewAuthorization.check = false;
-                           getAccount();
-                       }
-                   }
-                    else{
-                       alert(result[0][0].error_note)
-                       enteredPin = '';
-                       updateEnteredPin();
-                       return
-                   }
+                    if (result[0][0].error == 0) {
+                        if (!result[1][0].error) {
+                            modeOfflineMode.check = false;
+                            var JsonInfo = JSON.stringify(result[1][0]);
+                            localStorage.setItem('click_client_loginInfo', JsonInfo);
+                            checkSessionKey = true;
+                            viewAuthorization.check = false;
+                            getAccount();
+                        }
+                    }
+                    else {
+                        alert(result[0][0].error_note)
+                        enteredPin = '';
+                        updateEnteredPin();
+                        return
+                    }
                 },
                 onFail: function (api_status, api_status_message, data) {
                     console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -197,7 +209,7 @@
 
                     onSuccess: function (result) {
 
-                        if(result[0][0].error == 0) {
+                        if (result[0][0].error == 0) {
                             for (var i = 0; i < result[1].length; i++)
                                 arrayAccountInfo.push(result[1][i])
 
@@ -208,7 +220,7 @@
                             riot.mount('view-main-page');
                         }
                         else
-                                alert(result[0][0].error_note);
+                            alert(result[0][0].error_note);
                     },
 
                     onFail: function (api_status, api_status_message, data) {
