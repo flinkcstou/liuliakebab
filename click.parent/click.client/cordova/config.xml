@@ -5,6 +5,8 @@
   <screen src="www/img/logo.png"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="Orientation" value="sensorPortrait"/>
+  <preference name="AndroidPersistentFileLocation" value="Internal"/>
+  <preference name="iosPersistentFileLocation" value="Library"/>
   <author email="chamirkazhiyev@greet-go.com">
     Amirkazhiev Chingis
   </author>
@@ -17,6 +19,7 @@
   <plugin name="cordova-plugin-file"/>
   <plugin name="cordova-plugin-sms"/>
   <plugin name="cordova-plugin-android-permissions"/>
+  <plugin name="cordova-plugin-file-transfer"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>

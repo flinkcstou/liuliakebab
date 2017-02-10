@@ -4,6 +4,7 @@
             <p class="pay-name-title">{titleName}</p>
             <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
             <div id="rightButton" type="button" class="pay-search-button" ontouchend="search()"></div>
+            <div style=""></div>
         </div>
         <div class="pay-category-container">
             <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
@@ -63,7 +64,7 @@
             event.preventDefault();
             event.stopPropagation();
             onBackKeyDown()
-        }
+        };
         //        if (!scope.categoryList) {
         scope.categoryList = [];
         scope.categoryNamesMap = {};
@@ -78,36 +79,32 @@
             onSuccess: function (result) {
                 if (result[0][0].error == 0)
                     if (result[1][0]) {
-//                        var image = new Image();
-//                        var j = 0, icon;
-//                        var changeBool = false;
-                        for (var i in result[1]) {
-                            scope.categoryList.push(result[1][i]);
-                            scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
-//                            icon = scope.categoryList[j].icon;
-//                            console.log("j=", j, ",icon=", icon);
-//                            image.src = "resources/icons/ViewPay/category" + icon.substr(icon.lastIndexOf('/'));
-//                            console.log(image.src);
-//                            scope.categoryList[j].icon = image.src;
-//                            image.onerror = function () {
-//                                console.log("error!!!");
-//                                console.log(scope.categoryList);
-//                                console.log(j);
-//                                console.log(icon);
-//                                changeBool = true;
-//                                console.log(changeBool);
-//
-//                            }
-//                            image.onload = function () {
-//                                console.log("load!!!");
-//                            }
-//                            image.success = function () {
-//                                console.log("success!!!");
-//                            }
-//
-//                            console.log(changeBool);
-//                            j++;
 
+                        if (device.platform != 'BrowserStand') {
+                            window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+
+                                for (var i in result[1]) {
+
+                                    var icon = result[1][i].icon;
+                                    var filename = icon.substr(icon.lastIndexOf('/'));
+                                    alert("filename=" + filename);
+
+                                    //alert('file system open: ' + fs.name);
+
+                                    var newIconBool = getSampleFile(cordova.file.applicationDirectory, filename, icon);
+                                    if (newIconBool) {
+                                        alert("newDir for " + icon);
+                                        result[1][i].icon = cordova.file.dataDirectory + icon;
+                                        alert("newDir after" + result[1][i].icon);
+                                    }
+
+                                    scope.categoryList.push(result[1][i]);
+                                    scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
+
+
+                                }
+
+                            }, onErrorLoadFs);
                         }
                     }
                 riot.update(scope.categoryList);
@@ -121,7 +118,7 @@
                 console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
                 console.error(data);
             }
-        })
+        });
         //        }
 
         scope.index = -1;
@@ -133,7 +130,7 @@
         scope.onTouchStartOfCategory = onTouchStartOfCategory = function () {
             event.stopPropagation();
             onTouchStartY = event.changedTouches[0].pageY;
-        }
+        };
 
         scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
             event.stopPropagation();
@@ -191,8 +188,7 @@
                 onSuccess: function (result) {
                     if (result[0][0].error == 0)
                         if (result[1][0]) {
-//                            var image = new Image();
-//                            var j = 0, icon;
+
                             var firstService, firstIndex, j = 0;
                             for (var i in result[1]) {
                                 if (result[1][i].category_id == 1) {
@@ -210,6 +206,9 @@
                                     }
                                 }
                             }
+//                            if (device.platform != 'BrowserStand') {
+//
+//                                window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
                             for (var i in result[1]) {
                                 if (result[1][i].is_visible == 1) {
                                     console.log("service id=", result[1][i].id, ", element:", result[1][i]);
@@ -218,15 +217,15 @@
                                     scope.serviceList.push(result[1][i]);
 
 
-//                                icon = scope.serviceList[j].image;
-//                                console.log("j=", j, ",icon=", icon);
-//                                image.src = "resources/icons/ViewPay/service" + icon.substr(icon.lastIndexOf('/'));
-//                                console.log(image.src);
-//                                if (image.onerror) {
-//                                    console.log("no image");
-//                                }
-//                                else scope.serviceList[j].image = image.src;
-//                                j++;
+//                                            icon = result[1][i].image;
+//                                            alert("icon=", icon);
+//                                            var filename = icon.substr(icon.lastIndexOf('/'));
+//                                            alert(filename);
+//
+//                                            alert('file system open: ' + fs.name);
+//
+//                                            getSampleFile(cordova.file.applicationDirectory, filename);
+
 
                                     if (!scope.servicesMapByCategory[result[1][i].category_id]) {
                                         scope.servicesMapByCategory[result[1][i].category_id] = [];
@@ -252,6 +251,8 @@
                                     }
                                 }
                             }
+//                                }, onErrorLoadFs);
+//                            }
                         }
 
                     localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
@@ -342,13 +343,13 @@
                     console.error(data);
                 }
             });
-        }
+        };
 
 
         scope.onTouchStartOfService = onTouchStartOfService = function () {
             event.stopPropagation();
             onTouchStartY = event.changedTouches[0].pageY;
-        }
+        };
 
         scope.onTouchEndOfService = onTouchEndOfService = function (id) {
             console.log(' scope.checkOfSearch', scope.checkOfSearch)
@@ -363,30 +364,208 @@
                 riotTags.innerHTML = "<view-service-page>";
                 riot.mount("view-service-page");
             }
+        };
+
+
+        //URL of our asset
+        //var assetURL = "http://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png";
+        //var assetURL = "https://m.click.uz/static/merchant/logo/logo_12.png";
+
+
+        getSampleFile = function (dirEntry, fileName, assetURL) {
+
+            alert("name is=" + fileName);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/category/' + fileName, true);
+            xhr.responseType = 'blob';
+
+            xhr.onload = function () {
+                if (this.status == 200) {
+
+                    var blob = new Blob([this.response], {type: 'image/png'});
+                    alert("status 200 For " + fileName);
+                    return false;
+                }
+            };
+
+            xhr.onerror = function () {
+                alert("error for " + fileName);
+                //downloadAsset(assetURL, "helloworld.png");
+                var convertFunction = convertFileToDataURLviaFileReader;
+
+                convertFunction(assetURL, function (base64Img) {
+                    alert("base64 length=" + base64Img.length);
+                    // Split the base64 string in data and contentType
+                    var block = base64Img.split(";");
+                    // Get the content type
+                    var dataType = block[0].split(":")[1];// In this case "image/png"
+                    // get the real base64 content of the file
+                    var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
+
+                    // The path where the file will be created
+                    var folderpath = cordova.file.dataDirectory;
+                    // The name of your file, note that you need to know if is .png,.jpeg etc
+                    //var filename = "myimage2.png";
+
+                    savebase64AsImageFile(folderpath, fileName, realData, dataType);
+                });
+                event.preventDefault();
+                return true;
+            }
+            xhr.send();
+
         }
 
-        if (device.platform != 'BrowserStand')
-            checkImages();
 
-        checkImages = function () {
-
-            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-
-                alert('file system open: ' + fs.name);
-                fs.root.getFile("newPersistentFile.txt", {
-                    create: true,
-                    exclusive: false
-                }, function (fileEntry) {
-
-                    alert("fileEntry is file?" + fileEntry.isFile.toString());
-                    // fileEntry.name == 'someFile.txt'
-                    // fileEntry.fullPath == '/someFile.txt'
-                    writeFile(fileEntry, null);
-
-                }, onErrorCreateFile);
-
-            }, onErrorLoadFs);
+        function downloadAsset(url, fileName) {
+            var fileTransfer = new FileTransfer();
+            alert("About to start transfer");
+            fileTransfer.download(url, cordova.file.dataDirectory + fileName,
+                    function (entry) {
+                        alert("Success!");
+                        appStart();
+                    },
+                    function (err) {
+                        alert("Error");
+                        console.dir(err);
+                    });
         }
+
+        function savebase64AsImageFile(folderpath, filename, content, contentType) {
+            // Convert the base64 string in a Blob
+            var DataBlob = b64toBlob(content, contentType);
+
+            console.log("Starting to write the file :3");
+
+            window.resolveLocalFileSystemURL(folderpath, function (dir) {
+                console.log("Access to the directory granted succesfully");
+                dir.getFile(filename, {create: true}, function (file) {
+                    console.log("File created succesfully.");
+                    file.createWriter(function (fileWriter) {
+                        console.log("Writing content to file");
+                        fileWriter.write(DataBlob);
+                    }, function () {
+                        alert('Unable to save file in path ' + folderpath);
+                    });
+                });
+            });
+        }
+
+        function b64toBlob(b64Data, contentType, sliceSize) {
+            contentType = contentType || '';
+            sliceSize = sliceSize || 512;
+
+            var byteCharacters = atob(b64Data);
+            var byteArrays = [];
+
+            for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+                var byteNumbers = new Array(slice.length);
+                for (var i = 0; i < slice.length; i++) {
+                    byteNumbers[i] = slice.charCodeAt(i);
+                }
+
+                var byteArray = new Uint8Array(byteNumbers);
+
+                byteArrays.push(byteArray);
+            }
+
+            var blob = new Blob(byteArrays, {type: contentType});
+            return blob;
+        }
+
+        function convertFileToDataURLviaFileReader(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                var reader = new FileReader();
+                reader.onloadend = function () {
+                    callback(reader.result);
+                }
+                reader.readAsDataURL(xhr.response);
+            };
+            xhr.open('GET', url);
+            xhr.responseType = 'blob';
+            xhr.send();
+        }
+
+
+        function saveFile(dirEntry, fileData, fileName) {
+
+            dirEntry.getFile(fileName, {create: true}, function (fileEntry) {
+
+                writeFile(fileEntry, fileData);
+
+            }, onErrorCreateFile);
+        }
+
+        function writeFile(fileEntry, dataObj) {
+            // Create a FileWriter object for our FileEntry (log.txt).
+            fileEntry.createWriter(function (fileWriter) {
+
+                fileWriter.onwriteend = function () {
+                    alert("Successful file write...");
+                    readFile(fileEntry);
+                };
+
+                fileWriter.onerror = function (e) {
+                    alert("Failed file write: " + e.toString());
+                };
+
+                // If data object is not passed in,
+                // create a new Blob instead.
+                if (!dataObj) {
+                    alert("no data object");
+                    dataObj = new Blob(['some file data'], {type: 'text/plain'});
+                }
+
+                fileWriter.write(dataObj);
+            });
+        }
+
+        function readFile(fileEntry) {
+
+            fileEntry.file(function (file) {
+                var reader = new FileReader();
+
+                reader.onloadend = function () {
+                    console.log("Successful file read: " + this.result);
+//                    displayFileData(fileEntry.fullPath + ": " + this.result);
+                };
+
+                reader.readAsText(file);
+
+            }, onErrorReadFile);
+        }
+
+        //        function displayImage(blob) {
+        //
+        //            // Displays image if result is a valid DOM string for an image.
+        //            var elem = document.getElementById('categoryIcon');
+        //            // Note: Use window.URL.revokeObjectURL when finished with image.
+        //            elem.src = window.URL.createObjectURL(blob);
+        //        }
+
+        function onErrorLoadFs() {
+            alert("OnErrorLoadFS");
+        }
+
+        //        if (device.platform != 'BrowserStand') {
+        //
+        //            window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+        //
+        //                alert('file system open: ' + fs.name);
+        //                var nameArr = ['1.png', '2.png', '123.png'];
+        //
+        //                for (var i = 0; i < nameArr.length; i++) {
+        //                    getSampleFile(cordova.file.applicationDirectory, nameArr[i]);
+        //                }
+        //
+        //            }, onErrorLoadFs);
+        //        }
+
 
     </script>
 </view-pay>

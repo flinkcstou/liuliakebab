@@ -29,13 +29,13 @@ task prepareCordovaStandWWW(type: JavaExec, group: 'client_inner') {
 
   main = 'kz.greetgo.click.client.PrepareCordovaWWW'
   args = [
-      '-indexName', 'index-stand.html',
-      '-copyDir', 'stand',
-      '-copyDir', 'lib',
-      '-copyDir', 'css',
-      '-copyDir', 'js',
-      '-copyDir', 'resources',
-      '-copyNoReplace', 'cordova/www_cordova', 'cordova/www'
+    '-indexName', 'index-stand.html',
+    '-copyDir', 'stand',
+    '-copyDir', 'lib',
+    '-copyDir', 'css',
+    '-copyDir', 'js',
+    '-copyDir', 'resources',
+    '-copyNoReplace', 'cordova/www_cordova', 'cordova/www'
   ]
 }
 
@@ -45,12 +45,12 @@ task prepareCordovaProductionWWW(type: JavaExec, group: 'client_inner') {
 
   main = 'kz.greetgo.click.client.PrepareCordovaWWW'
   args = [
-      '-indexName', 'index-production.html',
-      '-copyDir', 'lib',
-      '-copyDir', 'css',
-      '-copyDir', 'js',
-      '-copyDir', 'resources',
-      '-copyNoReplace', 'cordova/www_cordova', 'cordova/www'
+    '-indexName', 'index-production.html',
+    '-copyDir', 'lib',
+    '-copyDir', 'css',
+    '-copyDir', 'js',
+    '-copyDir', 'resources',
+    '-copyNoReplace', 'cordova/www_cordova', 'cordova/www'
   ]
 }
 
