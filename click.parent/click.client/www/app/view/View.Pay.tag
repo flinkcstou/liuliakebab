@@ -85,6 +85,7 @@
 
                                     for (var i in result[1]) {
 
+                                        scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
                                         var icon = result[1][i].icon;
                                         var filename = icon.substr(icon.lastIndexOf('/') + 1);
                                         alert("filename=" + filename);
@@ -92,13 +93,12 @@
                                         //alert('file system open: ' + fs.name);
 
                                         var newIconBool = getSampleFile;
-                                        newIconBool(cordova.file.applicationDirectory, filename, icon, function (url) {
-//                                            alert("newDir=" + url);
-
-                                            result[1][i].icon = url;
-                                            scope.categoryList.push(result[1][i]);
-                                            scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
-                                            alert("newDir after" + result[1][i].icon);
+                                        newIconBool(cordova.file.applicationDirectory, filename, icon, result[1][i], function (list) {
+                                            if (result[1].length == list.length) {
+                                                alert("save into localstorage");
+                                                localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
+                                                localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
+                                            }
 
                                         });
                                     }
@@ -116,14 +116,13 @@
                                     scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
                                 }
                                 riot.update(scope.categoryList);
+                                localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
+                                localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
                             }
                         }
 
-
                     scope.id = 0;
 
-                    localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
-                    localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
                 },
                 onFail: function (api_status, api_status_message, data) {
                     console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -378,7 +377,7 @@
         };
 
 
-        function getSampleFile(dirEntry, fileName, assetURL, callback) {
+        function getSampleFile(dirEntry, fileName, assetURL, object, callback) {
             var bool = false;
 
 //            alert("name is=" + fileName);
@@ -393,7 +392,9 @@
                     var blob = new Blob([this.response], {type: 'image/png'});
                     alert("status 200 For " + fileName);
                     bool = false;
-                    callback(cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/category/' + fileName);
+                    object.icon = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/category/' + fileName;
+                    scope.categoryList.push(object);
+                    callback(scope.categoryList);
                 }
             };
 
@@ -415,8 +416,9 @@
 
                     savebase64AsImageFile(folderpath, fileName, realData, dataType);
                     bool = true;
-
-                    callback(cordova.file.dataDirectory + fileName);
+                    object.icon = cordova.file.dataDirectory + fileName;
+                    scope.categoryList.push(object);
+                    callback(scope.categoryList);
                 });
                 event.preventDefault();
 
