@@ -210,18 +210,45 @@
                     onSuccess: function (result) {
 
                         if (result[0][0].error == 0) {
-                            for (var i = 0; i < result[1].length; i++)
-                                arrayAccountInfo.push(result[1][i])
+                            if (device.platform != 'BrowserStand') {
+                                window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+                                    for (var i = 0; i < result[1].length; i++) {
 
-                            var accountInfo = JSON.stringify(arrayAccountInfo);
-                            localStorage.setItem("click_client_accountInfo", accountInfo);
+                                        var icon = result[1][i].background_url;
+                                        var filename = icon.substr(icon.lastIndexOf('/') + 1);
+                                        console.log("filename=" + filename);
 
-                            this.riotTags.innerHTML = "<view-main-page>";
-                            riot.mount('view-main-page');
+                                        var newIconBool = viewPay.getSampleFile;
+                                        newIconBool('www/resources/icons/cards/', filename, 'background_url', icon, result[1][i], function (object) {
+                                            console.log("card id and icon=" + object.id + "," + object.background_url);
+                                            arrayAccountInfo.push(object);
+                                            if (result[1].length == arrayAccountInfo.length) {
+                                                console.log("save into localstorage");
+                                                var accountInfo = JSON.stringify(arrayAccountInfo);
+                                                localStorage.setItem("click_client_accountInfo", accountInfo);
+                                                this.riotTags.innerHTML = "<view-main-page>";
+                                                riot.mount('view-main-page');
+                                            }
+
+                                        });
+
+                                    }
+                                }, viewPay.onErrorLoadFs);
+                            } else {
+                                for (var i = 0; i < result[1].length; i++)
+                                    arrayAccountInfo.push(result[1][i])
+                                var accountInfo = JSON.stringify(arrayAccountInfo);
+                                localStorage.setItem("click_client_accountInfo", accountInfo);
+                                this.riotTags.innerHTML = "<view-main-page>";
+                                riot.mount('view-main-page');
+                            }
+
+
                         }
                         else
                             alert(result[0][0].error_note);
                     },
+
 
                     onFail: function (api_status, api_status_message, data) {
                         console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
