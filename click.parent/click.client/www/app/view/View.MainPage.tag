@@ -7,7 +7,7 @@
         <component-footer></component-footer>
         <component-card-carousel>
         </component-card-carousel>
-        <a style="position:absolute ;top: 200px;" href="tel:{ussdRequest}" ontouchend="ussd()">{ussdRequest}</a>
+
         <div class="bank-operation-button-my-cards">
             <div class="bank-operation-button-my-cards-container">
                 <div class="bank-operation-button-my-cards-icon"></div>
@@ -21,31 +21,17 @@
     <component-success></component-success>
     <script>
         var scope = this;
-        scope.ussdRequest = '*123#'
-
-        ussd = function () {
-            var ussd = globeconnect.Ussd('[access_token]');
-
-            ussd
-                    .setUssdMessage('[*111#]')
-                    .setAddress('[+]' + localStorage.getItem('click_client_phoneNumber'))
-                    .sendUssdRequest(function () {
-                        console.log(arguments);
-                    }, function () {
-                        console.log(arguments);
-                    });
-        }
-
-        function sum(arg1, arg2, callback) {
-
-            var my_number = arg1 + arg2;
-
-            callback(my_number);
-        }
-
-        sum(5, 15, function(num) {
-            console.log("callback SUM " + num);
-        });
+        //
+        //        function sum(arg1, arg2, callback) {
+        //
+        //            var my_number = arg1 + arg2;
+        //
+        //            callback(my_number);
+        //        }
+        //
+        //        sum(5, 15, function(num) {
+        //            console.log("callback SUM " + num);
+        //        });
 
         localStorage.setItem('cardNumber', 0);
 

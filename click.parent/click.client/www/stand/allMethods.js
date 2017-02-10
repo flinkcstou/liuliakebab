@@ -201,15 +201,15 @@ window.fakedSocket.register("get.balance", function (input) {
       ];
     }
 
-    if (input.parameters.account_id == 5487271) {
-      return [
-        [{"method": 'get.balance', "success": 1, "error": 0, "error_note": ""}],
-        [{
-          "account_id": input.parameters.account_id,
-          "balance": 430
-        }]
-      ];
-    }
+    //if (input.parameters.account_id == 5487271) {
+    //  return [
+    //    [{"method": 'get.balance', "success": 1, "error": 0, "error_note": ""}],
+    //    [{
+    //      "account_id": input.parameters.account_id,
+    //      "balance": 430
+    //    }]
+    //  ];
+    //}
 
     if (input.parameters.account_id == 7487271) {
       return [

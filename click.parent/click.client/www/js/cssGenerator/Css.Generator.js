@@ -4346,6 +4346,19 @@ var css = {
     "background-repeat: no-repeat;" +
     "}",
 
+    //OFFLINE MODE
+    offlineCardBalance: ".offline-card-balance " +
+    "{" +
+    "position: relative;" +
+    "left:" + 25 * widthK + "px;" +
+    "color: #585658;" +
+    "font-size:" + 36 * widthK + "px;" +
+    "margin: 0;" +
+    "margin-top:" + -2 * widthK + "px;" +
+    "float: left;" +
+    "padding: 0;" +
+    "}",
+
 }
 
 

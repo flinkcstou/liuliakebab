@@ -58,3 +58,7 @@ window.viewTransferStepFour = {};
 window.viewTransferThree = {};
 viewTransferThree.check = false;
 
+window.modeOfflineMode = {};
+modeOfflineMode.check = false;
+modeOfflineMode.balance = false;
+

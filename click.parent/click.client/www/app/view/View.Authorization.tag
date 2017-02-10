@@ -23,7 +23,9 @@
         <div class="authorization-button-forget-pin">{window.languages.ViewAuthorizationForgetPinLabel}</div>
         <div class="authorization-button-registration">{window.languages.ViewAuthorizationRegistrationLabel}</div>
     </div>
-    <div class="authorization-button-offline">{window.languages.ViewAuthorizationOfflineModeLabel}</div>
+    <div class="authorization-button-offline" ontouchstart="offlineMode()">
+        {window.languages.ViewAuthorizationOfflineModeLabel}
+    </div>
 
 
     <script>
@@ -66,6 +68,15 @@
 
             riot.update();
             updateEnteredPin();
+        }
+
+        offlineMode = function () {
+            event.preventDefault();
+            event.stopPropagation();
+            modeOfflineMode.check = true;
+            this.riotTags.innerHTML = "<view-main-page>";
+            riot.mount('view-main-page');
+
         }
 
         updateEnteredPin = function () {
@@ -149,6 +160,7 @@
                     console.log(result[0][0])
                     if (result[0][0].error == 0) {
                         if (!result[1][0].error) {
+                            modeOfflineMode.check = false;
                             var JsonInfo = JSON.stringify(result[1][0]);
                             localStorage.setItem('click_client_loginInfo', JsonInfo);
                             checkSessionKey = true;
@@ -198,40 +210,14 @@
                     onSuccess: function (result) {
 
                         if (result[0][0].error == 0) {
-                            if (device.platform != 'BrowserStand') {
-                                window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-                                    for (var i = 0; i < result[1].length; i++) {
+                            for (var i = 0; i < result[1].length; i++)
+                                arrayAccountInfo.push(result[1][i])
 
-                                        var icon = result[1][i].background_url;
-                                        var filename = icon.substr(icon.lastIndexOf('/') + 1);
-                                        console.log("filename=" + filename);
+                            var accountInfo = JSON.stringify(arrayAccountInfo);
+                            localStorage.setItem("click_client_accountInfo", accountInfo);
 
-                                        var newIconBool = viewPay.getSampleFile;
-                                        newIconBool('www/resources/icons/cards/', filename, 'background_url', icon, result[1][i], function (object) {
-                                            console.log("card id and icon=" + object.id + "," + object.background_url);
-                                            arrayAccountInfo.push(object);
-                                            if (result[1].length == arrayAccountInfo.length) {
-                                                console.log("save into localstorage");
-                                                var accountInfo = JSON.stringify(arrayAccountInfo);
-                                                localStorage.setItem("click_client_accountInfo", accountInfo);
-                                                this.riotTags.innerHTML = "<view-main-page>";
-                                                riot.mount('view-main-page');
-                                            }
-
-                                        });
-
-                                    }
-                                }, viewPay.onErrorLoadFs);
-                            } else {
-                                for (var i = 0; i < result[1].length; i++)
-                                    arrayAccountInfo.push(result[1][i])
-                                var accountInfo = JSON.stringify(arrayAccountInfo);
-                                localStorage.setItem("click_client_accountInfo", accountInfo);
-                                this.riotTags.innerHTML = "<view-main-page>";
-                                riot.mount('view-main-page');
-                            }
-
-
+                            this.riotTags.innerHTML = "<view-main-page>";
+                            riot.mount('view-main-page');
                         }
                         else
                             alert(result[0][0].error_note);
