@@ -3,22 +3,22 @@
       onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false"
       onDrag="return false" onDrop="return false" autocomplete=off unselectable="on">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
-    <meta name="format-detection" content="telephone=no">
-    <script src="js/languages/languages.js"></script>
-    <script src="js/mOperators/mOperators.js"></script>
-    <!-- CSS -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <script src="js/languages/languages.js"></script>
+  <script src="js/mOperators/mOperators.js"></script>
+  <!-- CSS -->
 
-    <!-- JS COMMON -->
-    <!-- @include(cordova.htmlinc) -->
-    <script src="lib/js/riot.js"></script>
-    <script src="lib/js/all.js"></script>
+  <!-- JS COMMON -->
+  <!-- @include(cordova.htmlinc) -->
+  <script src="lib/js/riot.js"></script>
+  <script src="lib/js/all.js"></script>
 
-    <script src="js/encryption/sha512.js"></script>
-    <script src="js/encryption/md5.js"></script>
-    <script src="js/api/WebApi.js"></script>
-    <script src="js/globalObjects/global.Objects.js"></script>
+  <script src="js/encryption/sha512.js"></script>
+  <script src="js/encryption/md5.js"></script>
+  <script src="js/api/WebApi.js"></script>
+  <script src="js/globalObjects/global.Objects.js"></script>
 
 
 </head>
@@ -30,98 +30,97 @@
 
 <script>
 
-    api.init();
-    scope = this;
+  api.init();
+  scope = this;
 
-    if (window.cordova) {
-        document.addEventListener("deviceready", function () {
-            permissionAccess();
+  if (window.cordova) {
+    document.addEventListener("deviceready", function () {
+      permissionAccess();
 
-            var GENERATOR = document.createElement('script');
-            GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
-            document.head.appendChild(GENERATOR);
+      var GENERATOR = document.createElement('script');
+      GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
+      document.head.appendChild(GENERATOR);
 
-            firstMount.firstStep = function () {
-                if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
-                    scope.riotTags.innerHTML = "<view-authorization>";
-                    riot.mount('view-authorization')
-                }
-                else {
-                    scope.riotTags.innerHTML = "<view-registration-device>";
-                    riot.mount('view-registration-device');
-                }
-            }
-
-            document.addEventListener("backbutton", onBackKeyDown, false);
-            document.addEventListener('onSMSArrive', readIncomingSms);
-        }, false);
-    }
-
-    if (JSON.parse(localStorage.getItem('demo_version')) === true) {
-        this.closeDemo();
-    }
-
-    function onBackKeyDown() {
-        history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
-
-        if (history.arrayOfHistory.length != 0) {
-            if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-main-page'
-                    || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device'
-                    || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization') {
-                navigator.app.exitApp();
-            }
-            else {
-                history.arrayOfHistory.pop();
-                sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-                riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
-                riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
-
-            }
-
+      firstMount.firstStep = function () {
+        if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
+          scope.riotTags.innerHTML = "<view-authorization>";
+          riot.mount('view-authorization')
         }
-
-    }
-
-    permissionAccess = function () {
-        if (SMS) SMS.startWatch(function (success) {
-            console.log(success)
-        }, function (error) {
-            console.log(error)
-        });
-
-        if (SMS) SMS.enableIntercept(false, function (success) {
-            console.log('Enable Intercept', success)
-        }, function (error) {
-            console.log('Enable Intercept', error)
-        });
-
-        var permissions = cordova.plugins.permissions;
-        permissions.hasPermission(permissions.READ_SMS, checkPermissionCallback, null);
-
-        function checkPermissionCallback(status) {
-            if (!status.hasPermission) {
-                var errorCallback = function () {
-                    console.log('SMS permission is not turned on');
-                }
-                permissions.requestPermission(
-                        permissions.READ_SMS,
-                        function (status) {
-                            if (!status.hasPermission) errorCallback();
-                        },
-                        errorCallback);
-            }
+        else {
+          scope.riotTags.innerHTML = "<view-registration-device>";
+          riot.mount('view-registration-device');
         }
+      }
+
+      document.addEventListener("backbutton", onBackKeyDown, false);
+      document.addEventListener('onSMSArrive', readIncomingSms);
+    }, false);
+  }
+
+  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
+    this.closeDemo();
+  }
+
+  function onBackKeyDown() {
+    history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+
+    if (history.arrayOfHistory.length != 0) {
+      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-main-page'
+          || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device'
+          || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization') {
+        navigator.app.exitApp();
+      }
+      else {
+        history.arrayOfHistory.pop();
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+
+      }
 
     }
 
-    function readIncomingSms(e)
-    {
-        var sms = e.data;
-        console.log(sms)
-        if (sms.address == "Click") {
-            viewSms.getSms(sms.body);
+  }
+
+  permissionAccess = function () {
+    if (SMS) SMS.startWatch(function (success) {
+      console.log(success)
+    }, function (error) {
+      console.log(error)
+    });
+
+    if (SMS) SMS.enableIntercept(false, function (success) {
+      console.log('Enable Intercept', success)
+    }, function (error) {
+      console.log('Enable Intercept', error)
+    });
+
+    var permissions = cordova.plugins.permissions;
+    permissions.hasPermission(permissions.READ_SMS, checkPermissionCallback, null);
+
+    function checkPermissionCallback(status) {
+      if (!status.hasPermission) {
+        var errorCallback = function () {
+          console.log('SMS permission is not turned on');
         }
+        permissions.requestPermission(
+            permissions.READ_SMS,
+            function (status) {
+              if (!status.hasPermission) errorCallback();
+            },
+            errorCallback);
+      }
     }
+
+  }
+
+  function readIncomingSms(e) {
+    var sms = e.data;
+    console.log(sms)
+    if (sms.address == "Click") {
+      viewSms.getSms(sms.body);
+    }
+  }
 
 
 </script>

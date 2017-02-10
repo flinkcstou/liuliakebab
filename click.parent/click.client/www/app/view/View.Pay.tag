@@ -65,61 +65,72 @@
             event.stopPropagation();
             onBackKeyDown()
         };
-        //        if (!scope.categoryList) {
-        scope.categoryList = [];
-        scope.categoryNamesMap = {};
-        window.api.call({
-            method: 'get.service.category.list',
-            input: {
-                session_key: sessionKey,
-                phone_num: phoneNumber
-            },
-            scope: this,
+        if (!scope.categoryList) {
+            scope.categoryList = [];
+            scope.categoryNamesMap = {};
+            window.api.call({
+                method: 'get.service.category.list',
+                input: {
+                    session_key: sessionKey,
+                    phone_num: phoneNumber
+                },
+                scope: this,
 
-            onSuccess: function (result) {
-                if (result[0][0].error == 0)
-                    if (result[1][0]) {
+                onSuccess: function (result) {
+                    if (result[0][0].error == 0)
+                        if (result[1][0]) {
 
-                        if (device.platform != 'BrowserStand') {
-                            window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+                            if (device.platform != 'BrowserStand') {
+                                window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
 
+                                    for (var i in result[1]) {
+
+                                        var icon = result[1][i].icon;
+                                        var filename = icon.substr(icon.lastIndexOf('/') + 1);
+                                        alert("filename=" + filename);
+
+                                        //alert('file system open: ' + fs.name);
+
+                                        var newIconBool = getSampleFile;
+                                        newIconBool(cordova.file.applicationDirectory, filename, icon, function (url) {
+//                                            alert("newDir=" + url);
+
+                                            result[1][i].icon = url;
+                                            scope.categoryList.push(result[1][i]);
+                                            scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
+                                            alert("newDir after" + result[1][i].icon);
+
+                                        });
+                                    }
+                                    riot.update(scope.categoryList);
+                                }, onErrorLoadFs);
+                            }
+                            else {
                                 for (var i in result[1]) {
 
                                     var icon = result[1][i].icon;
-                                    var filename = icon.substr(icon.lastIndexOf('/'));
+                                    var filename = icon.substr(icon.lastIndexOf('/') + 1);
                                     alert("filename=" + filename);
-
-                                    //alert('file system open: ' + fs.name);
-
-                                    var newIconBool = getSampleFile(cordova.file.applicationDirectory, filename, icon);
-                                    if (newIconBool) {
-                                        alert("newDir for " + icon);
-                                        result[1][i].icon = cordova.file.dataDirectory + icon;
-                                        alert("newDir after" + result[1][i].icon);
-                                    }
 
                                     scope.categoryList.push(result[1][i]);
                                     scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
-
-
                                 }
-
-                            }, onErrorLoadFs);
+                                riot.update(scope.categoryList);
+                            }
                         }
-                    }
-                riot.update(scope.categoryList);
 
-                scope.id = 0;
 
-                localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
-                localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
-            },
-            onFail: function (api_status, api_status_message, data) {
-                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                console.error(data);
-            }
-        });
-        //        }
+                    scope.id = 0;
+
+                    localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
+                    localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
+                },
+                onFail: function (api_status, api_status_message, data) {
+                    console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                    console.error(data);
+                }
+            });
+        }
 
         scope.index = -1;
         scope.show = false;
@@ -367,15 +378,10 @@
         };
 
 
-        //URL of our asset
-        //var assetURL = "http://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png";
-        //var assetURL = "https://m.click.uz/static/merchant/logo/logo_12.png";
+        function getSampleFile(dirEntry, fileName, assetURL, callback) {
+            var bool = false;
 
-
-        getSampleFile = function (dirEntry, fileName, assetURL) {
-
-            alert("name is=" + fileName);
-
+//            alert("name is=" + fileName);
             var xhr = new XMLHttpRequest();
 
             xhr.open('GET', cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/category/' + fileName, true);
@@ -386,13 +392,14 @@
 
                     var blob = new Blob([this.response], {type: 'image/png'});
                     alert("status 200 For " + fileName);
-                    return false;
+                    bool = false;
+                    callback(cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/category/' + fileName);
                 }
             };
 
             xhr.onerror = function () {
                 alert("error for " + fileName);
-                //downloadAsset(assetURL, "helloworld.png");
+
                 var convertFunction = convertFileToDataURLviaFileReader;
 
                 convertFunction(assetURL, function (base64Img) {
@@ -404,34 +411,20 @@
                     // get the real base64 content of the file
                     var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
 
-                    // The path where the file will be created
                     var folderpath = cordova.file.dataDirectory;
-                    // The name of your file, note that you need to know if is .png,.jpeg etc
-                    //var filename = "myimage2.png";
 
                     savebase64AsImageFile(folderpath, fileName, realData, dataType);
+                    bool = true;
+
+                    callback(cordova.file.dataDirectory + fileName);
                 });
                 event.preventDefault();
-                return true;
+
             }
             xhr.send();
 
         }
 
-
-        function downloadAsset(url, fileName) {
-            var fileTransfer = new FileTransfer();
-            alert("About to start transfer");
-            fileTransfer.download(url, cordova.file.dataDirectory + fileName,
-                    function (entry) {
-                        alert("Success!");
-                        appStart();
-                    },
-                    function (err) {
-                        alert("Error");
-                        console.dir(err);
-                    });
-        }
 
         function savebase64AsImageFile(folderpath, filename, content, contentType) {
             // Convert the base64 string in a Blob
@@ -441,10 +434,10 @@
 
             window.resolveLocalFileSystemURL(folderpath, function (dir) {
                 console.log("Access to the directory granted succesfully");
-                dir.getFile(filename, {create: true}, function (file) {
-                    console.log("File created succesfully.");
+                dir.getFile(filename, {create: true, exclusive: false}, function (file) {
+                    alert("File created succesfully.");
                     file.createWriter(function (fileWriter) {
-                        console.log("Writing content to file");
+                        ("Writing content to file");
                         fileWriter.write(DataBlob);
                     }, function () {
                         alert('Unable to save file in path ' + folderpath);
@@ -491,62 +484,6 @@
             xhr.send();
         }
 
-
-        function saveFile(dirEntry, fileData, fileName) {
-
-            dirEntry.getFile(fileName, {create: true}, function (fileEntry) {
-
-                writeFile(fileEntry, fileData);
-
-            }, onErrorCreateFile);
-        }
-
-        function writeFile(fileEntry, dataObj) {
-            // Create a FileWriter object for our FileEntry (log.txt).
-            fileEntry.createWriter(function (fileWriter) {
-
-                fileWriter.onwriteend = function () {
-                    alert("Successful file write...");
-                    readFile(fileEntry);
-                };
-
-                fileWriter.onerror = function (e) {
-                    alert("Failed file write: " + e.toString());
-                };
-
-                // If data object is not passed in,
-                // create a new Blob instead.
-                if (!dataObj) {
-                    alert("no data object");
-                    dataObj = new Blob(['some file data'], {type: 'text/plain'});
-                }
-
-                fileWriter.write(dataObj);
-            });
-        }
-
-        function readFile(fileEntry) {
-
-            fileEntry.file(function (file) {
-                var reader = new FileReader();
-
-                reader.onloadend = function () {
-                    console.log("Successful file read: " + this.result);
-//                    displayFileData(fileEntry.fullPath + ": " + this.result);
-                };
-
-                reader.readAsText(file);
-
-            }, onErrorReadFile);
-        }
-
-        //        function displayImage(blob) {
-        //
-        //            // Displays image if result is a valid DOM string for an image.
-        //            var elem = document.getElementById('categoryIcon');
-        //            // Note: Use window.URL.revokeObjectURL when finished with image.
-        //            elem.src = window.URL.createObjectURL(blob);
-        //        }
 
         function onErrorLoadFs() {
             alert("OnErrorLoadFS");
