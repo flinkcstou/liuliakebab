@@ -93,8 +93,10 @@
                                         //alert('file system open: ' + fs.name);
 
                                         var newIconBool = getSampleFile;
-                                        newIconBool(cordova.file.applicationDirectory, filename, icon, result[1][i], function (list) {
-                                            if (result[1].length == list.length) {
+                                        newIconBool('www/resources/icons/ViewPay/category/', filename, 'icon', icon, result[1][i], function (object) {
+                                            alert("object id and icon=" + object.id + "," + object.icon);
+                                            scope.categoryList.push(object);
+                                            if (result[1].length == scope.categoryList.length) {
                                                 alert("save into localstorage");
                                                 localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
                                                 localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
@@ -213,62 +215,107 @@
                                     if (result[1][i].id == window.mOperators[scope.operatorKey]) {
                                         result[1][firstIndex] = result[1][i];
                                         result[1][i] = firstService;
+                                        break;
                                     }
                                 }
                             }
-//                            if (device.platform != 'BrowserStand') {
-//
-//                                window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-                            for (var i in result[1]) {
-                                if (result[1][i].is_visible == 1) {
-                                    console.log("service id=", result[1][i].id, ", element:", result[1][i]);
+                            if (device.platform != 'BrowserStand') {
+                                window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+                                    var inVisibleNum = 0;
 
-                                    scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
-                                    scope.serviceList.push(result[1][i]);
+                                    for (var i in result[1]) {
+                                        if (result[1][i].is_visible == 1) {
 
+                                            scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
+                                            var icon = result[1][i].image;
+                                            var filename = icon.substr(icon.lastIndexOf('/') + 1);
+                                            alert("filename=" + filename);
 
-//                                            icon = result[1][i].image;
-//                                            alert("icon=", icon);
-//                                            var filename = icon.substr(icon.lastIndexOf('/'));
-//                                            alert(filename);
-//
-//                                            alert('file system open: ' + fs.name);
-//
-//                                            getSampleFile(cordova.file.applicationDirectory, filename);
+                                            //alert('file system open: ' + fs.name);
 
+                                            var newIconBool = getSampleFile;
+                                            newIconBool('www/resources/icons/ViewPay/service/', filename, 'image', icon, result[1][i], function (object) {
+                                                alert("service object id and icon=" + object.id + "," + object.image);
+                                                scope.serviceList.push(object);
+                                                if (!scope.servicesMapByCategory[object.category_id]) {
+                                                    scope.servicesMapByCategory[object.category_id] = [];
+                                                    if (object.category_id == 1 && object.id == window.mOperators[scope.operatorKey]) {
+                                                        localStorage.setItem('myNumberOperatorId', object.id);
+                                                        localStorage.setItem('myNumberOperatorName', object.name);
+                                                        localStorage.setItem('myNumberOperatorImage', object.image);
+                                                        object.name = 'Мой номер';
+                                                        object.image = 'resources/icons/ViewPay/myphone.png';
+                                                        //console.log("ID=", viewServicePage.myNumberOperatorId, ",,,Name=", viewServicePage.myNumberOperatorName, ",,,Image=", viewServicePage.myNumberOperatorImage);
+                                                    }
+                                                    scope.servicesMapByCategory[object.category_id].push(object);
+                                                }
+                                                else {
+                                                    scope.servicesMapByCategory[object.category_id].push(object);
+                                                }
+                                                if (!scope.servicesMap[object.id + '']) {
+                                                    scope.servicesMap[object.id + ''] = [];
+                                                    scope.servicesMap[object.id + ''].push(object);
+                                                }
+                                                else {
+                                                    scope.servicesMap[object.id + ''].push(object);
+                                                }
 
-                                    if (!scope.servicesMapByCategory[result[1][i].category_id]) {
-                                        scope.servicesMapByCategory[result[1][i].category_id] = [];
-                                        if (result[1][i].category_id == 1 && result[1][i].id == window.mOperators[scope.operatorKey]) {
-                                            localStorage.setItem('myNumberOperatorId', result[1][i].id);
-                                            localStorage.setItem('myNumberOperatorName', result[1][i].name);
-                                            localStorage.setItem('myNumberOperatorImage', result[1][i].image);
-                                            result[1][i].name = 'Мой номер';
-                                            result[1][i].image = 'resources/icons/ViewPay/myphone.png';
-                                            //console.log("ID=", viewServicePage.myNumberOperatorId, ",,,Name=", viewServicePage.myNumberOperatorName, ",,,Image=", viewServicePage.myNumberOperatorImage);
+                                                if ((result[1].length - inVisibleNum) == scope.serviceList.length) {
+                                                    alert("save into localstorage");
+                                                    localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
+                                                    localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
+                                                    localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
+                                                    localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
+                                                }
+
+                                            });
+                                        } else
+                                            inVisibleNum++;
+                                    }
+                                }, onErrorLoadFs);
+                            } else {
+                                for (var i in result[1]) {
+                                    if (result[1][i].is_visible == 1) {
+                                        console.log("service id=", result[1][i].id, ", element:", result[1][i]);
+
+                                        scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
+                                        scope.serviceList.push(result[1][i]);
+
+                                        if (!scope.servicesMapByCategory[result[1][i].category_id]) {
+                                            scope.servicesMapByCategory[result[1][i].category_id] = [];
+                                            if (result[1][i].category_id == 1 && result[1][i].id == window.mOperators[scope.operatorKey]) {
+                                                localStorage.setItem('myNumberOperatorId', result[1][i].id);
+                                                localStorage.setItem('myNumberOperatorName', result[1][i].name);
+                                                localStorage.setItem('myNumberOperatorImage', result[1][i].image);
+                                                result[1][i].name = 'Мой номер';
+                                                result[1][i].image = 'resources/icons/ViewPay/myphone.png';
+                                                //console.log("ID=", viewServicePage.myNumberOperatorId, ",,,Name=", viewServicePage.myNumberOperatorName, ",,,Image=", viewServicePage.myNumberOperatorImage);
+                                            }
+                                            scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
                                         }
-                                        scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
-                                    }
-                                    else {
-                                        scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
-                                    }
-                                    if (!scope.servicesMap[result[1][i].id + '']) {
-                                        scope.servicesMap[result[1][i].id + ''] = [];
-                                        scope.servicesMap[result[1][i].id + ''].push(result[1][i]);
-                                    }
-                                    else {
-                                        scope.servicesMap[result[1][i].id + ''].push(result[1][i]);
+                                        else {
+                                            scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
+                                        }
+                                        if (!scope.servicesMap[result[1][i].id + '']) {
+                                            scope.servicesMap[result[1][i].id + ''] = [];
+                                            scope.servicesMap[result[1][i].id + ''].push(result[1][i]);
+                                        }
+                                        else {
+                                            scope.servicesMap[result[1][i].id + ''].push(result[1][i]);
+                                        }
                                     }
                                 }
+                                localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
+                                localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
+                                localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
+                                localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
+
                             }
-//                                }, onErrorLoadFs);
-//                            }
+
+
                         }
 
-                    localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
-                    localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
-                    localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
-                    localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
+
                     servicesParamsInit();
                 },
                 onFail: function (api_status, api_status_message, data) {
@@ -377,13 +424,13 @@
         };
 
 
-        function getSampleFile(dirEntry, fileName, assetURL, object, callback) {
+        function getSampleFile(dirEntry, fileName, fieldName, assetURL, object, callback) {
             var bool = false;
 
 //            alert("name is=" + fileName);
             var xhr = new XMLHttpRequest();
 
-            xhr.open('GET', cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/category/' + fileName, true);
+            xhr.open('GET', cordova.file.applicationDirectory + dirEntry + fileName, true);
             xhr.responseType = 'blob';
 
             xhr.onload = function () {
@@ -392,9 +439,8 @@
                     var blob = new Blob([this.response], {type: 'image/png'});
                     alert("status 200 For " + fileName);
                     bool = false;
-                    object.icon = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/category/' + fileName;
-                    scope.categoryList.push(object);
-                    callback(scope.categoryList);
+                    object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
+                    callback(object);
                 }
             };
 
@@ -417,8 +463,7 @@
                     savebase64AsImageFile(folderpath, fileName, realData, dataType);
                     bool = true;
                     object.icon = cordova.file.dataDirectory + fileName;
-                    scope.categoryList.push(object);
-                    callback(scope.categoryList);
+                    callback(object);
                 });
                 event.preventDefault();
 
@@ -489,20 +534,6 @@
         function onErrorLoadFs() {
             alert("OnErrorLoadFS");
         }
-
-        //        if (device.platform != 'BrowserStand') {
-        //
-        //            window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-        //
-        //                alert('file system open: ' + fs.name);
-        //                var nameArr = ['1.png', '2.png', '123.png'];
-        //
-        //                for (var i = 0; i < nameArr.length; i++) {
-        //                    getSampleFile(cordova.file.applicationDirectory, nameArr[i]);
-        //                }
-        //
-        //            }, onErrorLoadFs);
-        //        }
 
 
     </script>
