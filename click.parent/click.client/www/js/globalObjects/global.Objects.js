@@ -29,11 +29,6 @@ window.componentKeyboard = {};
 window.firstMount = {};
 
 window.viewPay = {};
-viewPay.getSampleFile();
-viewPay.onErrorLoadFs();
-viewPay.convertFileToDataURLviaFileReader();
-viewPay.b64toBlob();
-viewPay.savebase64AsImageFile();
 
 window.viewServicePage = {};
 
