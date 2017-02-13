@@ -45,7 +45,7 @@ var css = {
     "height: 100%;" +
     "background-size: contain;" +
     "background-repeat: no-repeat;" +
-        //"background-image: url(resources/draft/successunsuccess/unsuccess.png);" +
+        //"background-image: url(resources/draft/ViewInfo.png);" +
         //"opacity: 0.6;" +
     "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -1592,6 +1592,42 @@ var css = {
     "border-bottom:" + 1 + "px solid #f4f4f4;" +
     "}",
 
+    viewInfoCardBalanceCurrencyContainer: ".view-info-card-balance-currency-container " +
+    "{" +
+    "position: absolute;" +
+    "width: 70%;" +
+    "top: 38%;" +
+    "left: 19%;" +
+    "display: inline-block;" +
+    "margin: 0;" +
+    "}",
+
+    viewInfoCardBalance: ".view-info-card-balance " +
+    "{" +
+    "position: relative;" +
+    "left:" + 25 * widthK + "px;" +
+    "color: #585658;" +
+    "font-size:" + 67 * widthK + "px;" +
+    "margin: 0;" +
+    "margin-top:" + -2 * widthK + "px;" +
+    "float: left;" +
+    "color: #91cc00;" +
+    "padding: 0;" +
+    "}",
+
+    viewInfoCardCurrency: ".view-info-card-currency " +
+    "{" +
+    "position: relative;" +
+    "margin-left:" + 30 * widthK + "px;" +
+    "color: #595759;" +
+    "top:" + 12 * widthK + "px;" +
+    "font-size:" + 26 * widthK + "px;" +
+    "background-size: contain;" +
+    "float: left;" +
+    "color: #91cc00;" +
+    "width:" + 60 * widthK + "px;" +
+    "}",
+
     viewInfoMyFinanceContainer: ".view-info-my-finance-container " +
     "{" +
     "position: absolute;" +
@@ -1722,6 +1758,7 @@ var css = {
     "background-repeat: no-repeat;" +
     "background-position: center;" +
     "border-radius:" + 100 * widthK + "px;" +
+    "border:solid 1px #b7b7b7;" +
     "}",
 
     viewInfoOperationTitle: ".view-info-operations-title " +
@@ -1790,22 +1827,10 @@ var css = {
     viewInfoBalanceLabel: ".view-info-balance-label" +
     "{" +
     "position: absolute;" +
-    "left: 25%;" +
-    "top: 10%;" +
-    "font-size:" + 45 * widthK + "px;" +
+    "left: 23%;" +
+    "top: 13%;" +
+    "font-size:" + 23 * widthK + "px;" +
     "color: #c2c2c2;" +
-    "}",
-
-    viewInfoCardBalance: ".view-card-balance " +
-    "{" +
-    "position: relative;" +
-    "left:" + 34 * widthK + "px;" +
-    "color: #515151;" +
-    "font-size:" + 52 * widthK + "px;" +
-    "margin: 0;" +
-    "margin-top:" + -2 * widthK + "px;" +
-    "float: left;" +
-    "padding: 0;" +
     "}",
 
     payNameTitle: ".pay-name-title " +

@@ -5,9 +5,12 @@
 
     <div class="view-info-balance-container">
         <p class="view-info-balance-label">{window.languages.ViewInfoBalanceTitle}</p>
-        <div class="card-balance-currency-container">
-            <p class="view-info-card-balance"></p>
-            <p class="card-currency"></p>
+        <div class="view-info-card-balance-currency-container">
+                <p if="{!modeOfflineMode.check}" class="view-info-card-balance">5 078 970</p>
+                <p if="{!modeOfflineMode.check}" class="view-info-card-currency">сум</p>
+
+                <a href="tel:*880*2%23" if="{modeOfflineMode.check}" class="offline-card-balance"
+                   ontouchstart="offlineBalanceTrue()" >Получить баланс</a>
         </div>
         <div class="view-info-bag-icon"></div>
         <div class="view-info-reload-icon"></div>
