@@ -56,7 +56,8 @@
   </div>
 
   <component-success id="componentSuccessId"
-                     operationmessage="{window.languages.ComponentSuccessMessageTwo}"></component-success>
+                     operationmessage="{window.languages.ComponentSuccessMessageTwo}"
+                     viewpage="view-pay"></component-success>
   <component-unsuccess id="componentUnsuccessId"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
@@ -163,7 +164,6 @@
             if (result[1])
               if (result[1][0]['payment_id']) {
                 console.log("result of APP.PAYMENT ", result);
-                alert("Payment has been made succesfully!!!");
                 componentSuccessId.style.display = 'block';
               } else {
                 componentUnsuccessId.style.display = 'block';

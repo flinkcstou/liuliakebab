@@ -72,7 +72,8 @@
         </div>
     </code-confirm>
     <component-success id="componentSuccessId"
-                       operationmessage="{window.languages.ComponentSuccessMessage}"></component-success>
+                       operationmessage="{window.languages.ComponentSuccessMessage}"
+                       viewpage="view-transfer"></component-success>
     <component-unsuccess id="componentUnsuccessId"
                          operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                          operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"

@@ -45,6 +45,7 @@
 
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
+      permissionAccess();
 
       var GENERATOR = document.createElement('script');
       GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
@@ -63,6 +64,7 @@
       }
 
       document.addEventListener("backbutton", onBackKeyDown, false);
+      document.addEventListener('onSMSArrive', readIncomingSms);
     }, false);
   }
   else {
@@ -103,6 +105,84 @@
 
       }
 
+    }
+  }
+
+  permissionAccess = function () {
+    if (SMS) SMS.startWatch(function (success) {
+      console.log(success)
+    }, function (error) {
+      console.log(error)
+    });
+
+    if (SMS) SMS.enableIntercept(false, function (success) {
+      console.log('Enable Intercept', success)
+    }, function (error) {
+      console.log('Enable Intercept', error)
+    });
+
+    var permissions = cordova.plugins.permissions;
+    permissions.hasPermission(permissions.READ_SMS, checkPermissionCallbackOfSms, null);
+    permissions.hasPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
+    permissions.hasPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
+    window.plugins.sim.getSimInfo(successOfSim, errorOfSim);
+
+    function successOfSim (success){
+      console.log(success)
+    }
+
+    function errorOfSim (error){
+      console.log(error)
+    }
+
+    function checkPermissionCallbackOfSms(status) {
+      if (!status.hasPermission) {
+        var errorCallback = function () {
+          console.log('SMS permission is not turned on');
+        }
+        permissions.requestPermission(
+                permissions.READ_SMS,
+                function (status) {
+                  if (!status.hasPermission) errorCallback();
+                },
+                errorCallback);
+      }
+    }
+
+    function checkPermissionCallbackOfCall(status) {
+      if (!status.hasPermission) {
+        var errorCallback = function () {
+          console.log('CALL permission is not turned on');
+        }
+        permissions.requestPermission(
+                permissions.CALL_PHONE,
+                function (status) {
+                  if (!status.hasPermission) errorCallback();
+                },
+                errorCallback);
+      }
+    }
+
+    function checkPermissionCallbackOfSim(status) {
+      if (!status.hasPermission) {
+        var errorCallback = function () {
+          console.log('SIM permission is not turned on');
+        }
+        permissions.requestPermission(
+                permissions.READ_SMS,
+                function (status) {
+                  if (!status.hasPermission) errorCallback();
+                },
+                errorCallback);
+      }
+    }
+  }
+
+  function readIncomingSms(e) {
+    var sms = e.data;
+    console.log(sms)
+    if (sms.address == "Click") {
+      viewSms.getSms(sms.body);
     }
   }
 
