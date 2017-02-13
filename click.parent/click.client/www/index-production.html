@@ -98,6 +98,7 @@
     var permissions = cordova.plugins.permissions;
     permissions.hasPermission(permissions.READ_SMS, checkPermissionCallbackOfSms, null);
     permissions.hasPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
+    permissions.hasPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
     window.plugins.sim.getSimInfo(successOfSim, errorOfSim);
 
     function successOfSim (success){
@@ -129,6 +130,20 @@
         }
         permissions.requestPermission(
                 permissions.READ_SMS,
+                function (status) {
+                  if (!status.hasPermission) errorCallback();
+                },
+                errorCallback);
+      }
+    }
+
+    function checkPermissionCallbackOfCall(status) {
+      if (!status.hasPermission) {
+        var errorCallback = function () {
+          console.log('CALL permission is not turned on');
+        }
+        permissions.requestPermission(
+                permissions.CALL_PHONE,
                 function (status) {
                   if (!status.hasPermission) errorCallback();
                 },
