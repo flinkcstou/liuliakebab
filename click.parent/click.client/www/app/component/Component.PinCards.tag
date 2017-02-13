@@ -26,6 +26,8 @@
         scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
         scope.checked = false;
 
+        console.log(' scope.cardsArray', scope.cardsArray)
+
         for (var i in scope.cardsArray) {
             if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
                 scope.checkedId = "check" + scope.cardsArray[i].card_id;

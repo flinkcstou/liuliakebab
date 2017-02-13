@@ -96,9 +96,19 @@
     });
 
     var permissions = cordova.plugins.permissions;
-    permissions.hasPermission(permissions.READ_SMS, checkPermissionCallback, null);
+    permissions.hasPermission(permissions.READ_SMS, checkPermissionCallbackOfSms, null);
+    permissions.hasPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
+    window.plugins.sim.getSimInfo(successOfSim, errorOfSim);
 
-    function checkPermissionCallback(status) {
+    function successOfSim (success){
+      console.log(success)
+    }
+
+    function errorOfSim (error){
+      console.log(error)
+    }
+
+    function checkPermissionCallbackOfSms(status) {
       if (!status.hasPermission) {
         var errorCallback = function () {
           console.log('SMS permission is not turned on');
@@ -109,6 +119,20 @@
             if (!status.hasPermission) errorCallback();
           },
           errorCallback);
+      }
+    }
+
+    function checkPermissionCallbackOfSim(status) {
+      if (!status.hasPermission) {
+        var errorCallback = function () {
+          console.log('SIM permission is not turned on');
+        }
+        permissions.requestPermission(
+                permissions.READ_SMS,
+                function (status) {
+                  if (!status.hasPermission) errorCallback();
+                },
+                errorCallback);
       }
     }
 

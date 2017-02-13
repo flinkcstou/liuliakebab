@@ -48,6 +48,7 @@
                     onSuccess: function (result) {
                         if (result[0][0].error == 0) {
                             if (result[1][0]) {
+                                cardsarray[result[1][0].account_id].salaryOriginal = result[1][0].balance;
 
                                 result[1][0].balance = result[1][0].balance.toString();
 
