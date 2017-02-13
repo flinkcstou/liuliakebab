@@ -3,27 +3,27 @@
       onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false"
       onDrag="return false" onDrop="return false" autocomplete=off unselectable="on">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
-    <meta name="format-detection" content="telephone=no">
-    <script src="js/languages/languages.js"></script>
-    <script src="js/mOperators/mOperators.js"></script>
-    <!-- CSS -->
-    <!--<link id="mainPageCss" href="css/MainPage.css" rel="stylesheet">-->
-    <script src="js/cssGenerator/Css.Generator.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <script src="js/languages/languages.js"></script>
+  <script src="js/mOperators/mOperators.js"></script>
+  <!-- CSS -->
+  <!--<link id="mainPageCss" href="css/MainPage.css" rel="stylesheet">-->
+  <script src="js/cssGenerator/Css.Generator.js"></script>
 
-    <!-- JS COMMON -->
-    <script src="lib/js/riot.js"></script>
-    <script src="lib/js/all.js"></script>
+  <!-- JS COMMON -->
+  <script src="lib/js/riot.js"></script>
+  <script src="lib/js/all.js"></script>
 
-    <script src="js/encryption/sha512.js"></script>
-    <script src="js/encryption/md5.js"></script>
-    <script src="js/api/WebApi.js"></script>
-    <script src="js/globalObjects/global.Objects.js"></script>
+  <script src="js/encryption/sha512.js"></script>
+  <script src="js/encryption/md5.js"></script>
+  <script src="js/api/WebApi.js"></script>
+  <script src="js/globalObjects/global.Objects.js"></script>
 
-    <!-- FAKES -->
-    <script src="stand/plugins/sms_fake.js"></script>
-    <script src="stand/plugins/plugins_fake.js"></script>
+  <!-- FAKES -->
+  <script src="stand/plugins/sms_fake.js"></script>
+  <script src="stand/plugins/plugins_fake.js"></script>
 
 </head>
 
@@ -33,72 +33,183 @@
 </div>
 
 <script>
-    api.init();
-    scope = this;
-    if (window.cordova) {
-        document.addEventListener("deviceready", function () {
+  api.init();
+  scope = this;
+  if (window.cordova) {
+    document.addEventListener("deviceready", function () {
 
-            var GENERATOR = document.createElement('script');
-            GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
-            document.head.appendChild(GENERATOR);
+      var GENERATOR = document.createElement('script');
+      GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
+      document.head.appendChild(GENERATOR);
 
-            firstMount.firstStep = function () {
-                if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
-                    scope.riotTags.innerHTML = "<view-authorization>";
-                    riot.mount('view-authorization')
-                }
-                else {
-                    scope.riotTags.innerHTML = "<view-registration-device>";
-                    riot.mount('view-registration-device');
-                }
-                riot.mount('view-main-page');
-            }
-
-            document.addEventListener("backbutton", onBackKeyDown, false);
-        }, false);
-    }
-    else {
-        console.log('step', 0)
-        var GENERATOR = document.createElement('script');
-        GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
-        document.head.appendChild(GENERATOR);
-
-        firstMount.firstStep = function () {
-            if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
-                scope.riotTags.innerHTML = "<view-authorization>";
-                riot.mount('view-authorization')
-            }
-            else {
-                scope.riotTags.innerHTML = "<view-registration-device>";
-                riot.mount('view-registration-device');
-            }
-
+      firstMount.firstStep = function () {
+        if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
+          scope.riotTags.innerHTML = "<view-authorization>";
+          riot.mount('view-authorization')
         }
-    }
-
-    if (JSON.parse(localStorage.getItem('demo_version')) === true) {
-        this.closeDemo();
-    }
-    function onBackKeyDown() {
-        history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
-
-        if (history.arrayOfHistory.length != 0) {
-            if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-main-page'
-                    || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device'
-                    || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization') {
-                navigator.app.exitApp();
-            }
-            else {
-                history.arrayOfHistory.pop();
-                sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-                riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
-                riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
-
-            }
-
+        else {
+          scope.riotTags.innerHTML = "<view-registration-device>";
+          riot.mount('view-registration-device');
         }
+        riot.mount('view-main-page');
+      }
+
+      document.addEventListener("backbutton", onBackKeyDown, false);
+    }, false);
+  }
+  else {
+    console.log('step', 0)
+    var GENERATOR = document.createElement('script');
+    GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
+    document.head.appendChild(GENERATOR);
+
+    firstMount.firstStep = function () {
+      if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
+        scope.riotTags.innerHTML = "<view-authorization>";
+        riot.mount('view-authorization')
+      }
+      else {
+        scope.riotTags.innerHTML = "<view-registration-device>";
+        riot.mount('view-registration-device');
+      }
 
     }
+  }
+
+  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
+    this.closeDemo();
+  }
+  function onBackKeyDown() {
+    history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+
+    if (history.arrayOfHistory.length != 0) {
+      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-main-page'
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device'
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization') {
+        navigator.app.exitApp();
+      }
+      else {
+        history.arrayOfHistory.pop();
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+
+      }
+
+    }
+
+  }
+
+  function checkImageURL(dirEntry, fileName, fieldName, assetURL, object, callback) {
+    var bool = false;
+
+//            alert("name is=" + fileName);
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', cordova.file.applicationDirectory + dirEntry + fileName, true);
+    xhr.responseType = 'blob';
+
+    xhr.onload = function () {
+      if (this.status == 200) {
+
+        var blob = new Blob([this.response], {type: 'image/png'});
+        console.log("status 200 For " + fileName);
+        bool = false;
+        object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
+        callback(object);
+      }
+    };
+
+    xhr.onerror = function () {
+      console.log("error for " + fileName);
+
+      var convertFunction = convertFileToDataURLviaFileReader;
+
+      convertFunction(assetURL, function (base64Img) {
+        console.log("base64 length=" + base64Img.length);
+        // Split the base64 string in data and contentType
+        var block = base64Img.split(";");
+        // Get the content type
+        var dataType = block[0].split(":")[1];// In this case "image/png"
+        // get the real base64 content of the file
+        var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
+
+        var folderpath = cordova.file.dataDirectory;
+
+        savebase64AsImageFile(folderpath, fileName, realData, dataType);
+        bool = true;
+        object.icon = cordova.file.dataDirectory + fileName;
+        callback(object);
+      });
+      event.preventDefault();
+
+    }
+    xhr.send();
+  }
+
+
+  function savebase64AsImageFile(folderpath, filename, content, contentType) {
+    // Convert the base64 string in a Blob
+    var DataBlob = b64toBlob(content, contentType);
+
+    console.log("Starting to write the file :3");
+
+    window.resolveLocalFileSystemURL(folderpath, function (dir) {
+      console.log("Access to the directory granted succesfully");
+      dir.getFile(filename, {create: true, exclusive: false}, function (file) {
+        console.log("File created succesfully.");
+        file.createWriter(function (fileWriter) {
+          ("Writing content to file");
+          fileWriter.write(DataBlob);
+        }, function () {
+          alert('Unable to save file in path ' + folderpath);
+        });
+      });
+    });
+  }
+
+  function b64toBlob(b64Data, contentType, sliceSize) {
+    contentType = contentType || '';
+    sliceSize = sliceSize || 512;
+
+    var byteCharacters = atob(b64Data);
+    var byteArrays = [];
+
+    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+      var byteNumbers = new Array(slice.length);
+      for (var i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      var byteArray = new Uint8Array(byteNumbers);
+
+      byteArrays.push(byteArray);
+    }
+
+    var blob = new Blob(byteArrays, {type: contentType});
+    return blob;
+  }
+
+  function convertFileToDataURLviaFileReader(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+      var reader = new FileReader();
+      reader.onloadend = function () {
+        callback(reader.result);
+      }
+      reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.send();
+  }
+
+
+  function onErrorLoadFs() {
+    alert("OnErrorLoadFS");
+  }
 
 
 </script>
