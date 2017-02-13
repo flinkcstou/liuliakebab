@@ -1661,6 +1661,19 @@ var css = {
     "background-size: 60%;" +
     "}",
 
+    viewInfoAttentionIcon: ".view-info-attention-icon " +
+    "{" +
+    "position: absolute;" +
+    "width: 18%;" +
+    "height: 70%;" +
+    "left: 0%;" +
+    "top: 15%;" +
+    "background-image: url(resources/icons/ViewInfo/attention.png);" +
+    "background-repeat: no-repeat;" +
+    "background-position: center;" +
+    "background-size: 60%;" +
+    "}",
+
     viewInfoReloadIcon: ".view-info-reload-icon " +
     "{" +
     "position: absolute;" +
