@@ -33,7 +33,6 @@
         <p class="view-info-operations-label">{window.languages.ViewInfoLastOperations}</p>
     </div>
 
-
     <div class="view-info-operations-container">
 
         <div class="view-info-operations-icon" each="{i in lastOperationContainer}"
