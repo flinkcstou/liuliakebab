@@ -107,9 +107,7 @@
   }
 
   function checkImageURL(dirEntry, fileName, fieldName, assetURL, object, callback) {
-    var bool = false;
 
-//            alert("name is=" + fileName);
     var xhr = new XMLHttpRequest();
 
     xhr.open('GET', cordova.file.applicationDirectory + dirEntry + fileName, true);
@@ -120,7 +118,6 @@
 
         var blob = new Blob([this.response], {type: 'image/png'});
         console.log("status 200 For " + fileName);
-        bool = false;
         object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
         callback(object);
       }
@@ -143,8 +140,7 @@
         var folderpath = cordova.file.dataDirectory;
 
         savebase64AsImageFile(folderpath, fileName, realData, dataType);
-        bool = true;
-        object.icon = cordova.file.dataDirectory + fileName;
+        object[fieldName] = cordova.file.dataDirectory + fileName;
         callback(object);
       });
       event.preventDefault();
@@ -163,7 +159,7 @@
     window.resolveLocalFileSystemURL(folderpath, function (dir) {
       console.log("Access to the directory granted succesfully");
       dir.getFile(filename, {create: true, exclusive: false}, function (file) {
-        console.log("File created succesfully.");
+        console.log("File created succesfully." + filename);
         file.createWriter(function (fileWriter) {
           ("Writing content to file");
           fileWriter.write(DataBlob);

@@ -17,7 +17,6 @@
   <plugin name="cordova-plugin-file"/>
   <plugin name="cordova-plugin-sms"/>
   <plugin name="cordova-plugin-android-permissions"/>
-  <plugin name="cordova-plugin-file-transfer"/>
   <plugin name="cordova-plugin-sim"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>

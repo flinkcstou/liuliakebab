@@ -4,7 +4,7 @@ localStorage.setItem('settings_language', 'ru');
 
 var RU_LANGUAGES =
 {
-  "CodeOfCountry" : "998",
+  "CodeOfCountry": "998",
 
   "ComponentBankOperationsPay": "ОПЛАТА",
 
@@ -108,13 +108,13 @@ var RU_LANGUAGES =
   "ComponentCodeConfirmTitle": "ЗАЩИТНЫЙ КОД",
 
   "ComponentSuccessMessage": "Перевод прошел успешно!",
+  "ComponentSuccessMessageTwo": "Оплата проведена успешно!",
   "ComponentSuccessNext": "OK",
 
   "ComponentUnsuccessMessagePart1": 'Извините,',
   "ComponentUnsuccessMessagePart2": 'что-то пошло не так.',
   "ComponentUnsuccessMessagePart3": "Провертье правильность введенных данных или попробуйте повторить перевод позже",
   "ComponentUnsuccessNext": "OK",
-
 
 
 }
