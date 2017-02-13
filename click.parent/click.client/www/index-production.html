@@ -66,8 +66,8 @@
 
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-main-page'
-          || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device'
-          || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization') {
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device'
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization') {
         navigator.app.exitApp();
       }
       else {
@@ -104,11 +104,11 @@
           console.log('SMS permission is not turned on');
         }
         permissions.requestPermission(
-            permissions.READ_SMS,
-            function (status) {
-              if (!status.hasPermission) errorCallback();
-            },
-            errorCallback);
+          permissions.READ_SMS,
+          function (status) {
+            if (!status.hasPermission) errorCallback();
+          },
+          errorCallback);
       }
     }
 
@@ -120,6 +120,117 @@
     if (sms.address == "Click") {
       viewSms.getSms(sms.body);
     }
+  }
+
+  function checkImageURL(dirEntry, fileName, fieldName, assetURL, object, callback) {
+    var bool = false;
+
+//            alert("name is=" + fileName);
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', cordova.file.applicationDirectory + dirEntry + fileName, true);
+    xhr.responseType = 'blob';
+
+    xhr.onload = function () {
+      if (this.status == 200) {
+
+        var blob = new Blob([this.response], {type: 'image/png'});
+        console.log("status 200 For " + fileName);
+        bool = false;
+        object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
+        callback(object);
+      }
+    };
+
+    xhr.onerror = function () {
+      console.log("error for " + fileName);
+
+      var convertFunction = convertFileToDataURLviaFileReader;
+
+      convertFunction(assetURL, function (base64Img) {
+        console.log("base64 length=" + base64Img.length);
+        // Split the base64 string in data and contentType
+        var block = base64Img.split(";");
+        // Get the content type
+        var dataType = block[0].split(":")[1];// In this case "image/png"
+        // get the real base64 content of the file
+        var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
+
+        var folderpath = cordova.file.dataDirectory;
+
+        savebase64AsImageFile(folderpath, fileName, realData, dataType);
+        bool = true;
+        object.icon = cordova.file.dataDirectory + fileName;
+        callback(object);
+      });
+      event.preventDefault();
+
+    }
+    xhr.send();
+  }
+
+
+  function savebase64AsImageFile(folderpath, filename, content, contentType) {
+    // Convert the base64 string in a Blob
+    var DataBlob = b64toBlob(content, contentType);
+
+    console.log("Starting to write the file :3");
+
+    window.resolveLocalFileSystemURL(folderpath, function (dir) {
+      console.log("Access to the directory granted succesfully");
+      dir.getFile(filename, {create: true, exclusive: false}, function (file) {
+        console.log("File created succesfully.");
+        file.createWriter(function (fileWriter) {
+          ("Writing content to file");
+          fileWriter.write(DataBlob);
+        }, function () {
+          alert('Unable to save file in path ' + folderpath);
+        });
+      });
+    });
+  }
+
+  function b64toBlob(b64Data, contentType, sliceSize) {
+    contentType = contentType || '';
+    sliceSize = sliceSize || 512;
+
+    var byteCharacters = atob(b64Data);
+    var byteArrays = [];
+
+    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+      var byteNumbers = new Array(slice.length);
+      for (var i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      var byteArray = new Uint8Array(byteNumbers);
+
+      byteArrays.push(byteArray);
+    }
+
+    var blob = new Blob(byteArrays, {type: contentType});
+    return blob;
+  }
+
+  function convertFileToDataURLviaFileReader(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+      var reader = new FileReader();
+      reader.onloadend = function () {
+        callback(reader.result);
+      }
+      reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.send();
+  }
+
+
+  function onErrorLoadFs() {
+    alert("OnErrorLoadFS");
   }
 
 

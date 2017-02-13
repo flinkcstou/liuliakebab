@@ -218,7 +218,7 @@
                     var filename = icon.substr(icon.lastIndexOf('/') + 1);
                     console.log("filename=" + filename);
 
-                    var newIconBool = getSampleFile;
+                    var newIconBool = checkImageURL;
                     newIconBool('www/resources/icons/cards/', filename, 'background_url', icon, result[1][i], function (object) {
                       console.log("card id and icon=" + object.id + "," + object.background_url);
                       arrayAccountInfo.push(object);
