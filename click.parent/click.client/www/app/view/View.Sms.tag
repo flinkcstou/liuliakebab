@@ -10,9 +10,8 @@
 
                 <div class="sms-text-field">
                     <p style="margin-bottom: 4px">{messageTitle}<br>{messageTitleTwo}</p>
-                    <p id="deliveredPhoneNumber" style="margin: 0">{phoneNumber.substring(0, 4)}
-                        {phoneNumber.substring(4, 6)}
-                        {phoneNumber.substring(6, phoneNumber.length)}</p>
+                    <p id="deliveredPhoneNumber" style="margin: 0">{phoneNumber.substring(0, 3)}
+                        {phoneNumber.substring(3, phoneNumber.length)}</p>
                 </div>
             </div>
         </div>

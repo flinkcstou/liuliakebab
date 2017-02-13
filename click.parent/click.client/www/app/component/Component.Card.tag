@@ -1,4 +1,4 @@
-<component-card class="card" style="background-image: url({backgroundImage}); left:{leftOfCard}px">
+<component-card class="card" style="background-image: url({opts.background}); left:{leftOfCard}px">
 
     <div class="card-bank-name-url" style="background-image: url({opts.url})"></div>
     <div class="card-bank-name" style="background-image: url({opts.bankname})"></div>
@@ -9,7 +9,7 @@
         <p if="{!modeOfflineMode.check && opts.salary}" class="card-currency">{opts.currency}</p>
 
         <a href="tel:*880*2%23" if="{modeOfflineMode.check}" class="offline-card-balance"
-           onmousedown="offlineBalanceTrue()">Получить баланс</a>
+           ontouchstart="offlineBalanceTrue()" >Получить баланс</a>
     </div>
 
     <div class="card-number">
@@ -20,29 +20,18 @@
 
     <script>
         modeOfflineMode.balance = false;
+        console.log('backgroundImage',opts.background)
 
         var scope = this;
-        scope.backgroundImage = '';
-        console.log(modeOfflineMode.check)
         scope.leftOfCard = (540 * opts.countcard + 100) * widthK;
-        if (opts.background == 'https://merchant.click.uz/static/content/app/background/card0.png') {
-            scope.backgroundImage = 'resources/icons/cards/card2.png';
-        }
-
-        if (opts.background == 'https://merchant.click.uz/static/content/app/background/card1.png') {
-            scope.backgroundImage = 'resources/icons/cards/card1.png';
-        }
 
         offlineBalanceTrue = function () {
             event.preventDefault()
             event.stopPropagation();
             modeOfflineMode.balance = true;
+            window.open('tel:*880*2#')
+            console.log('asd')
         }
-        //        offlineBalanceFalse = function () {
-        //            event.preventDefault()
-        //            event.stopPropagation();
-        //            modeOfflineMode.balance = false;
-        //        }
 
 
     </script>

@@ -3,6 +3,7 @@
     <div id="containerCard" class="card-carousel" ontouchend="endTouchCarousel()" ontouchmove="moveTouchCarousel()"
          ontouchstart="startTouchCarousel()">
         <div id="cards" class="cards">
+
             <component-card each="{i in cardsarray}"
                             countcard="{i.countCard}"
                             name="{i.name}" salary="{i.salary}" currency="{i.currency}"
@@ -25,7 +26,7 @@
             cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
             console.log(modeOfflineMode.check)
 
-            if (modeOfflineMode.check == false) {
+            if (!modeOfflineMode.check) {
                 writeBalance();
             }
         })
