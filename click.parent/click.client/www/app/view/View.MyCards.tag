@@ -73,8 +73,10 @@
                 phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
 
-        if (opts[0])
+        if (opts[0]) {
             scope.cardId = opts[0];
+            console.log('scope.cardId',scope.cardId)
+        }
 
 
         scope.top = 160 * widthK;
@@ -98,8 +100,13 @@
         scope.cardInformation = cardInformation = function (cardIdFromCarousel) {
             event.preventDefault();
             event.stopPropagation();
+            console.log('cardIdFromCarousel', cardIdFromCarousel)
 
-            scope.card = JSON.parse(localStorage.getItem('click_client_cards'))[cardIdFromCarousel];
+            history.arrayOfHistory[history.arrayOfHistory.length - 1].params[0] = cardIdFromCarousel;
+            history.arrayOfHistory[history.arrayOfHistory.length - 1].view = 'view-my-cards';
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
+            scope.card = scope.cardsArray[cardIdFromCarousel];
             scope.arrayOfOperationsByAccount = [];
             console.log(scope.card)
 
