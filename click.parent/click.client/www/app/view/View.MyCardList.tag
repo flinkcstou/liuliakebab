@@ -55,8 +55,18 @@
         goToCardPage = function (cardId) {
             event.preventDefault();
             event.stopPropagation();
-            event.preventDefault();
-            event.stopPropagation();
+            console.log('cardId', cardId)
+            for(var i in scope.cardsArray){
+                if(scope.cardsArray[i] == scope.cardsArray[cardId]) {
+                    scope.cardsArray[cardId].chosenCard = true;
+                    console.log('scope.cardsArray[cardId]', scope.cardsArray[cardId])
+                    console.log('scope.cardsArray[i]', scope.cardsArray[i])
+                    localStorage.setItem('cardNumber', scope.cardsArray[cardId].countCard);
+                }
+                else
+                    scope.cardsArray[cardId].chosenCard = false;
+            }
+
             riotTags.innerHTML = "<view-my-cards>";
             riot.mount('view-my-cards', [cardId]);
 

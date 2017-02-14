@@ -95,7 +95,7 @@
                                     scope.fullBalance += result[1][0].balance;
                                     scope.fullBalanceCopy = scope.fullBalance;
 
-                                    scope.fullBalanceCopy = scope.fullBalanceCopy.toString();
+                                    scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
 
                                     if (scope.fullBalanceCopy.length == 7) {
                                         scope.fullBalanceCopy = scope.fullBalanceCopy.substring(0, 1) + ' ' +

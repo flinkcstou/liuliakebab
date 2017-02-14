@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
   <name>Click</name>
-  <icon src="www/img/logo.png"/>
+  <icon src="www/resources/icons/icon/icon.png"/>
   <screen src="www/img/logo.png"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="Orientation" value="sensorPortrait"/>
@@ -30,10 +30,6 @@
   <platform name="ios">
     <allow-intent href="itms:*"/>
     <allow-intent href="itms-apps:*"/>
-    <icon src="resources/logo.png" density="ldpi"/>
-    <icon src="resources/logo.png" density="mdpi"/>
-    <icon src="resources/logo.png" density="hdpi"/>
-    <icon src="resources/logo.png" density="xhdpi"/>
   </platform>
 
   <platform name="android">
@@ -41,10 +37,6 @@
     <preference name="android-minSdkVersion" value="14"/>
     <preference name="Fullscreen" value="false"/>
     <preference name="StatusBarOverlaysWebView" value="true"/>
-    <icon src="resources/logo.png" density="ldpi"/>
-    <icon src="resources/logo.png" density="mdpi"/>
-    <icon src="resources/logo.png" density="hdpi"/>
-    <icon src="resources/logo.png" density="xhdpi"/>
   </platform>
 
 
