@@ -9,8 +9,8 @@
             <p if="{!modeOfflineMode.check}" class="view-info-card-balance">{fullBalanceCopy}</p>
             <p if="{!modeOfflineMode.check}" class="view-info-card-currency">сум</p>
 
-            <a href="tel:*880*2%23" if="{modeOfflineMode.check}" class="offline-card-balance"
-               ontouchstart="offlineBalanceTrue()">Получить баланс</a>
+            <a if="{modeOfflineMode.check}" class="offline-card-balance"
+               ontouchstart="offlineBalanceInfoTrue()">Получить баланс</a>
         </div>
         <div if="{!attention}" class="view-info-bag-icon"></div>
         <div if="{attention}" class="view-info-attention-icon"></div>
@@ -141,6 +141,27 @@
 
         }
         writeBalance();
+
+        offlineBalanceInfoTrue = function () {
+            event.preventDefault()
+            event.stopPropagation();
+            modeOfflineMode.balance = true;
+
+            if (device.platform == "Android") {
+                phonedialer.dial(
+                        "*111*3%23",
+                        function (err) {
+                            if (err == "empty") alert("Unknown phone number");
+                            else alert("Dialer Error:" + err);
+                        },
+                        function (success) {
+                        }
+                );
+            }
+            if(device.platform == "iOS"){
+                window.open('*111%23')
+            }
+        }
 
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-info') {

@@ -4389,6 +4389,7 @@ var css = {
     "{" +
     "position: relative;" +
     "left:" + 25 * widthK + "px;" +
+    "height:" + 70 * widthK + "px;" +
     "color: #585658;" +
     "font-size:" + 36 * widthK + "px;" +
     "margin: 0;" +

@@ -9,7 +9,7 @@
         <p if="{!modeOfflineMode.check && opts.salary}" class="card-currency">{opts.currency}</p>
 
         <a if="{modeOfflineMode.check}" class="offline-card-balance"
-           ontouchstart="offlineBalanceTrue()">Получить баланс</a>
+           ontouchstart="offlineBalanceTrueTouchStart()" ontouchend="offlineBalanceTrueTouchEnd()" ontouchmove="offlineBalanceTrueTouchMove()">Получить баланс</a>
     </div>
 
     <div class="card-number">
@@ -25,22 +25,34 @@
         var scope = this;
         scope.leftOfCard = (540 * opts.countcard + 100) * widthK;
 
-        offlineBalanceTrue = function () {
-            event.preventDefault()
+        offlineBalanceTrueTouchStart = function () {
             event.stopPropagation();
+            event.preventDefault();
             modeOfflineMode.balance = true;
 
-            phonedialer.dial(
-                    "*111%23",
-                    function (err) {
-                        if (err == "empty") alert("Unknown phone number");
-                        else alert("Dialer Error:" + err);
-                    },
-                    function (success) {
-                        alert('Dialing succeeded');
-                    }
-            );
+            if (device.platform == "Android") {
+                phonedialer.dial(
+                        "*880*3%23",
+                        function (err) {
+                            if (err == "empty") alert("Unknown phone number");
+                            else alert("Dialer Error:" + err);
+                        },
+                        function (success) {
+                        }
+                );
+            }
+            if (device.platform == "iOS") {
+                window.open('*111%23')
+            }
+        }
 
+        offlineBalanceTrueTouchEnd = function () {
+            event.stopPropagation();
+            event.preventDefault();
+        }
+        offlineBalanceTrueTouchMove = function () {
+            event.stopPropagation();
+            event.preventDefault();
         }
 
 
