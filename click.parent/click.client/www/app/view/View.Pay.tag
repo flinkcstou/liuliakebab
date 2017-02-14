@@ -240,13 +240,21 @@
                         if (!scope.servicesMapByCategory[object.category_id]) {
                           scope.servicesMapByCategory[object.category_id] = [];
                           if (object.category_id == 1 && object.id == window.mOperators[scope.operatorKey]) {
+                            console.log("in my numb");
+                            console.log("obj id=", object.id);
                             localStorage.setItem('myNumberOperatorId', object.id);
                             localStorage.setItem('myNumberOperatorName', object.name);
                             localStorage.setItem('myNumberOperatorImage', object.image);
-                            object.name = 'Мой номер';
-                            object.image = 'resources/icons/ViewPay/myphone.png';
+                            var myNumberObject = object;
+                            myNumberObject.name = 'Мой номер';
+                            myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+                            myNumberObject.id = 'mynumber' + object.id;
+                            console.log("obj id 2=", object.id);
+                            console.log("my numb obj id =", myNumberObject.id);
+                            scope.servicesMapByCategory[object.category_id].push(myNumberObject);
                             //console.log("ID=", viewServicePage.myNumberOperatorId, ",,,Name=", viewServicePage.myNumberOperatorName, ",,,Image=", viewServicePage.myNumberOperatorImage);
                           }
+                          console.log("gonna push object");
                           scope.servicesMapByCategory[object.category_id].push(object);
                         }
                         else {
@@ -284,11 +292,20 @@
                     if (!scope.servicesMapByCategory[result[1][i].category_id]) {
                       scope.servicesMapByCategory[result[1][i].category_id] = [];
                       if (result[1][i].category_id == 1 && result[1][i].id == window.mOperators[scope.operatorKey]) {
+                        console.log("in my numb");
+                        console.log("obj id=", result[1][i].id);
                         localStorage.setItem('myNumberOperatorId', result[1][i].id);
                         localStorage.setItem('myNumberOperatorName', result[1][i].name);
                         localStorage.setItem('myNumberOperatorImage', result[1][i].image);
-                        result[1][i].name = 'Мой номер';
-                        result[1][i].image = 'resources/icons/ViewPay/myphone.png';
+//                        var tempId = result[1][i];
+                        var myNumberObject = {};
+                        myNumberObject.name = 'Мой номер';
+                        myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+                        myNumberObject.id = 'mynumber' + result[1][i].id;
+                        console.log("my numb obj id =", myNumberObject.id);
+                        scope.servicesMapByCategory[result[1][i].category_id].push(myNumberObject);
+                        console.log("obj id 2=", result[1][i].id);
+
                         //console.log("ID=", viewServicePage.myNumberOperatorId, ",,,Name=", viewServicePage.myNumberOperatorName, ",,,Image=", viewServicePage.myNumberOperatorImage);
                       }
                       scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
@@ -409,11 +426,12 @@
     };
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
-      console.log(' scope.checkOfSearch', scope.checkOfSearch)
+      console.log(' scope.checkOfSearch', scope.checkOfSearch);
       event.stopPropagation();
       onTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20 || scope.checkOfSearch) {
+        console.log("chosen id in pay view=", id);
         viewPay.chosenServiceId = id;
         event.stopPropagation();
 
