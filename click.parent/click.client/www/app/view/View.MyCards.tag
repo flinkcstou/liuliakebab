@@ -27,7 +27,7 @@
             <div class="my-cards-button-icon my-cards-button-icon-report">
             </div>
 
-            <div class="my-cards-button-label">{window.languages.ViewMyCardReports}
+            <div class="my-cards-button-label" style="border: none;">{window.languages.ViewMyCardReports}
             </div>
         </div>
     </div>
