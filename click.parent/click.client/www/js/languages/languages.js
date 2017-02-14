@@ -108,12 +108,14 @@ var RU_LANGUAGES =
   "ComponentCodeConfirmTitle": "ЗАЩИТНЫЙ КОД",
 
   "ComponentSuccessMessage": "Перевод прошел успешно!",
-  "ComponentSuccessMessageTwo": "Оплата проведена успешно!",
+  "ComponentSuccessMessageForPay": "Оплата проведена успешно!",
   "ComponentSuccessNext": "OK",
 
   "ComponentUnsuccessMessagePart1": 'Извините,',
   "ComponentUnsuccessMessagePart2": 'что-то пошло не так.',
   "ComponentUnsuccessMessagePart3": "Провертье правильность введенных данных или попробуйте повторить перевод позже",
+
+  "ComponentUnsuccessMessagePart3ForPay": "Провертье правильность введенных данных или попробуйте повторить оплату позже",
   "ComponentUnsuccessNext": "OK",
 
 

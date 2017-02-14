@@ -127,11 +127,11 @@
     permissions.hasPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
     window.plugins.sim.getSimInfo(successOfSim, errorOfSim);
 
-    function successOfSim (success){
+    function successOfSim(success) {
       console.log(success)
     }
 
-    function errorOfSim (error){
+    function errorOfSim(error) {
       console.log(error)
     }
 
@@ -141,11 +141,11 @@
           console.log('SMS permission is not turned on');
         }
         permissions.requestPermission(
-                permissions.READ_SMS,
-                function (status) {
-                  if (!status.hasPermission) errorCallback();
-                },
-                errorCallback);
+          permissions.READ_SMS,
+          function (status) {
+            if (!status.hasPermission) errorCallback();
+          },
+          errorCallback);
       }
     }
 
@@ -155,11 +155,11 @@
           console.log('CALL permission is not turned on');
         }
         permissions.requestPermission(
-                permissions.CALL_PHONE,
-                function (status) {
-                  if (!status.hasPermission) errorCallback();
-                },
-                errorCallback);
+          permissions.CALL_PHONE,
+          function (status) {
+            if (!status.hasPermission) errorCallback();
+          },
+          errorCallback);
       }
     }
 
@@ -169,11 +169,11 @@
           console.log('SIM permission is not turned on');
         }
         permissions.requestPermission(
-                permissions.READ_SMS,
-                function (status) {
-                  if (!status.hasPermission) errorCallback();
-                },
-                errorCallback);
+          permissions.READ_SMS,
+          function (status) {
+            if (!status.hasPermission) errorCallback();
+          },
+          errorCallback);
       }
     }
   }
@@ -244,7 +244,7 @@
           ("Writing content to file");
           fileWriter.write(DataBlob);
         }, function () {
-          alert('Unable to save file in path ' + folderpath);
+          console.log('Unable to save file in path ' + folderpath);
         });
       });
     });
@@ -290,7 +290,7 @@
 
 
   function onErrorLoadFs() {
-    alert("OnErrorLoadFS");
+    console.log("OnErrorLoadFS");
   }
 
 

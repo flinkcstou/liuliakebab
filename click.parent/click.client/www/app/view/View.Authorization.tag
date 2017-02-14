@@ -223,14 +223,14 @@
 
                       var newIconBool = checkImageURL;
                       newIconBool('www/resources/icons/cards/', filename, 'background_url', icon, result[1][i], function (object) {
-                        alert("card id 1=" + object.id + "," + object.background_url);
+//                        alert("card id 1=" + object.id + "," + object.background_url);
 
                         var icon2 = object.image_url;
                         var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
-                        alert("filename2=" + filename2);
+//                        alert("filename2=" + filename2);
                         var newIcon = checkImageURL;
                         newIcon('www/resources/icons/cards/logo/', filename2, 'image_url', icon2, object, function (object2) {
-                          alert("card id 2=" + object2.id + "," + object2.image_url);
+//                          alert("card id 2=" + object2.id + "," + object2.image_url);
                           arrayAccountInfo.push(object2);
                           if (result[1].length == arrayAccountInfo.length) {
                             console.log("save into localstorage");

@@ -56,12 +56,12 @@
   </div>
 
   <component-success id="componentSuccessId"
-                     operationmessage="{window.languages.ComponentSuccessMessageTwo}"
+                     operationmessage="{window.languages.ComponentSuccessMessageForPay}"
                      viewpage="view-pay"></component-success>
   <component-unsuccess id="componentUnsuccessId"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{window.languages.ComponentUnsuccessMessagePart3}"></component-unsuccess>
+                       operationmessagepartthree="{window.languages.ComponentUnsuccessMessagePart3ForPay}"></component-unsuccess>
 
 
   <script>
