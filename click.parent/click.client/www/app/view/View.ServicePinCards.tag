@@ -25,6 +25,7 @@
     </div>
     <script>
 
+        console.log('OPTS',opts)
         var arrayForTransfer = [];
         arrayForTransfer.push(opts[0])
         arrayForTransfer.push(opts[1])

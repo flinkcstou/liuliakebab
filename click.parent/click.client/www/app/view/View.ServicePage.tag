@@ -164,6 +164,7 @@
         scope.dropDownOn = scope.fieldArray.length > 1;
         console.log("fieldArray length bool=", scope.dropDownOn);
         scope.chosenFieldName = scope.fieldArray[0].title;
+        scope.chosenFieldParamId = scope.fieldArray[0].parameter_id;
         scope.amountFieldTitle = scope.service.lang_amount_title;
         scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
         if (scope.phoneFieldBool)
