@@ -12,7 +12,7 @@
             <a if="{modeOfflineMode.check}" class="offline-card-balance"
                ontouchstart="offlineBalanceInfoTrue()">Получить баланс</a>
         </div>
-        <div if="{!attention}" class="view-info-bag-icon"></div>
+        <div class="view-info-bag-icon"></div>
         <div if="{attention}" class="view-info-attention-icon"></div>
         <div class="view-info-reload-icon"></div>
     </div>
