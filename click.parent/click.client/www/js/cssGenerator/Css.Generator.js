@@ -1666,8 +1666,8 @@ var css = {
     "position: absolute;" +
     "width: 18%;" +
     "height: 70%;" +
-    "left: 0%;" +
-    "top: 15%;" +
+    "right: -2%;" +
+    "top: 40%;" +
     "background-image: url(resources/icons/ViewInfo/attention.png);" +
     "background-repeat: no-repeat;" +
     "background-position: center;" +
@@ -4398,6 +4398,177 @@ var css = {
     "margin-top:" + -2 * widthK + "px;" +
     "float: left;" +
     "padding: 0;" +
+    "}",
+
+    //VIEW REGISTRATION CLIENT
+
+    viewRegistrationClient: ".view-registration-client " +
+    "{" +
+    "position: absolute;" +
+    "width: 100%;" +
+    "height: 100%;" +
+    "overflow: hidden;" +
+    "background-image: url('resources/icons/background/transparent.png');" +
+    "background-size: contain;" +
+    "background-repeat: no-repeat;" +
+    "}",
+
+    registrationClientCardField : ".registration-client-card-field " +
+    "{" +
+    "position: relative;" +
+    "top:" + 40 * heightK + "px;" +
+    "width:" + 600 * heightK + "px;" +
+    "height:" + 320 * heightK + "px;" +
+    "border:" + 4 * heightK + "px solid #2f2b3d;" +
+    "background-color: #2f2b3d;" +
+    "margin-left: auto;" +
+    "margin-right: auto;" +
+    "border-radius:" + 10 * heightK + "px;" +
+    "}",
+
+    registrationClientCardNumberText : ".registration-client-card-number-text " +
+    "{" +
+    "left: 4%;" +
+    "top: 10%;" +
+    "}",
+
+    registrationClientTextField: ".registration-client-text-field " +
+    "{" +
+    "position: relative;" +
+    "margin-left: auto;" +
+    "margin-right: auto;" +
+    "margin-bottom:" + 20 * widthK + "px;" +
+    "background-size: contain;" +
+    "text-align: center;" +
+    "color: #4bd5ff;" +
+    "font-size:" + 30 * widthK + "px;" +
+    "top:" + 40 * widthK + "px;" +
+    "}",
+
+    registrationClientCardNumber: ".registration-client-card-number " +
+    "{" +
+    "position: absolute;" +
+    "padding: 0;" +
+    "color: white;" +
+    "background-color: #1b1729;" +
+    "border: none;" +
+    "width: 86%;" +
+    "height: 23%;" +
+    "left: 7%;" +
+    "top: 24%;" +
+    "}",
+
+    registrationClientCardNumberBox: ".registration-client-card-number-box " +
+    "{" +
+    "position: absolute;" +
+    "width: 17%;" +
+    "height: 55%;" +
+    "top: 18%;" +
+    "background-color: transparent;" +
+    "border: none;" +
+    "color: white;" +
+    "font-size:" + 30 * widthK + "px;" +
+    "}",
+
+    registrationClientCardNumberBoxOne: ".registration-client-card-number-box-one " +
+    "{" +
+    "left: 6%;" +
+    "}",
+
+    registrationClientCardNumberBoxTwo: ".registration-client-card-number-box-two " +
+    "{" +
+    "left: 30%;" +
+    "}",
+
+    registrationClientCardNumberBoxThree: ".registration-client-card-number-box-three " +
+    "{" +
+    "right: 30%;" +
+    "}",
+
+    registrationClientCardNumberBoxFour: ".registration-client-card-number-box-four " +
+    "{" +
+    "right: 6%;" +
+    "}",
+
+    registrationClientCardText: ".registration-client-card-text " +
+    "{" +
+    "position: absolute;" +
+    "margin: 0;" +
+    "background-size: contain;" +
+    "color: #757389;" +
+    "font-size:" + 30 * widthK + "px;" +
+    "}",
+
+    registrationClientCardTextDate: ".registration-client-card-text-date " +
+    "{" +
+    "left: 4%;" +
+    "top: 50%;" +
+    "}",
+
+    registrationClientCardTextPin: ".registration-client-card-text-pin " +
+    "{" +
+    "top: 50%;" +
+    "left: 47%;" +
+    "}",
+
+    registrationClientCardDate: ".registration-client-card-date " +
+    "{" +
+    "position: absolute;" +
+    "padding: 0;" +
+    "color: white;" +
+    "background-color: #1b1729;" +
+    "border: none;" +
+    "width: 25%;" +
+    "height: 22%;" +
+    "left: 7%;" +
+    "bottom: 15%;" +
+    "}",
+
+    registrationClientCardDateBox: ".registration-client-card-date-box " +
+    "{" +
+    "position: absolute;" +
+    "width: 60%;" +
+    "left: 23%;" +
+    "height: 50%;" +
+    "top: 26%;" +
+    "background-color: transparent;" +
+    "border: none;" +
+    "color: white;" +
+    "font-size:" + 30 * widthK + "px;" +
+    "}",
+
+    registrationClientCardPin: ".registration-client-card-pin " +
+    "{" +
+    "position: absolute;" +
+    "padding: 0;" +
+    "color: white;" +
+    "background-color: #1b1729;" +
+    "border: none;" +
+    "width: 25%;" +
+    "height: 22%;" +
+    "left: 50%;" +
+    "bottom: 15%;" +
+    "}",
+
+    registrationClientCardDatePinBox: ".registration-client-card-date-pin-box " +
+    "{" +
+    "position: absolute;" +
+    "width: 94%;" +
+    "left: 12%;" +
+    "height: 50%;" +
+    "top: 26%;" +
+    "background-color: transparent;" +
+    "border: none;" +
+    "color: white;" +
+    "font-size:" + 30 * widthK + "px;" +
+    "}",
+
+    registrationClientButtonsContainer: ".registration-client-buttons-container " +
+    "{" +
+    "position: absolute;" +
+    "width:" + 560 * widthK + "px;" +
+    "bottom:" + -10 * widthK + "px;" +
+    "left:" + 84 * widthK + "px;" +
     "}",
 
 }

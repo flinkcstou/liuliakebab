@@ -45,6 +45,7 @@
 
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
+
       permissionAccess();
 
       var GENERATOR = document.createElement('script');
@@ -85,9 +86,9 @@
     }
   }
 
-  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
-    this.closeDemo();
-  }
+//  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
+//    this.closeDemo();
+//  }
   function onBackKeyDown() {
     history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
 
