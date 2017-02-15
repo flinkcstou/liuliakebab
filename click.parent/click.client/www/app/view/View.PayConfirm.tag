@@ -118,32 +118,57 @@
 
 
     payService = function () {
-      var date = parseInt(Date.now() / 1000);
-      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-      var serviceId = viewPay.chosenServiceId;
-      var accountId = chosenCardId;
-      var amount = this.amountText;
+      console.log("inPayService");
 
-      if (this.formType == 1)
+      var date = parseInt(Date.now() / 1000);
+      console.log("date", date);
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+      console.log("sk", sessionKey);
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      console.log("pn", phoneNumber);
+      var serviceId = viewPay.chosenServiceId;
+      console.log("si", serviceId);
+      var accountId = chosenCardId;
+      console.log("ai", accountId);
+      var amount = this.amountText;
+      console.log("amount", amount);
+
+      console.log("before PD");
+
+      if (this.formType == 1) {
+        console.log("before PD");
         var payment_data = {
           "param": this.firstFieldId,
           "value": this.firstFieldText,
           "transaction_id": parseInt(Date.now() / 1000)
         };
-      else if (this.formType == 2)
+        console.log("xsaxqa", payment_data);
+        paymentFunction();
+      }
+      else if (this.formType == 2) {
+        console.log("before PD");
         var payment_data = {
           "pin_param": this.cardTypeId,
           "transaction_id": parseInt(Date.now() / 1000)
         };
-      else if (this.formType == 3)
+        console.log("xsaxqa", payment_data);
+        paymentFunction();
+      }
+      else if (this.formType == 3) {
+        console.log("before PD");
         var payment_data = {
           "param": this.firstFieldId,
           "value": this.firstFieldText,
           "communl_param": this.communalParam,
           "transaction_id": parseInt(Date.now() / 1000)
         };
+        console.log("xsaxqa", payment_data);
+        paymentFunction();
+      }
+    }
 
+    paymentFunction = function () {
+      console.log("in function pay");
 
       window.api.call({
         method: 'app.payment',
@@ -163,13 +188,15 @@
           if (result[0][0].error == 0) {
             if (result[1])
               if (result[1][0]['payment_id']) {
-                console.log("result of APP.PAYMENT ", result);
+                console.log("result of APP.PAYMENT 1", result);
                 componentSuccessId.style.display = 'block';
               } else {
+                console.log("result of APP.PAYMENT 2", result);
                 componentUnsuccessId.style.display = 'block';
               }
           }
           else {
+            console.log("result of APP.PAYMENT 3", result);
             componentUnsuccessId.style.display = 'block';
           }
         },

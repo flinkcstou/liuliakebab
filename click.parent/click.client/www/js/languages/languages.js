@@ -113,9 +113,9 @@ var RU_LANGUAGES =
 
   "ComponentUnsuccessMessagePart1": 'Извините,',
   "ComponentUnsuccessMessagePart2": 'что-то пошло не так.',
-  "ComponentUnsuccessMessagePart3": "Провертье правильность введенных данных или попробуйте повторить перевод позже",
+  "ComponentUnsuccessMessagePart3": "Проверьте правильность введенных данных или попробуйте повторить перевод позже",
 
-  "ComponentUnsuccessMessagePart3ForPay": "Провертье правильность введенных данных или попробуйте повторить оплату позже",
+  "ComponentUnsuccessMessagePart3ForPay": "Проверьте правильность введенных данных или попробуйте повторить оплату позже",
   "ComponentUnsuccessNext": "OK",
 
 

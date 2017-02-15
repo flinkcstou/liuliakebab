@@ -15,6 +15,7 @@
       <p class="servicepage-dropdown-text-field">{chosenFieldName}</p>
       <div class="servicepage-dropdown-icon"></div>
     </div>
+
     <div class="servicepage-first-field" id="firstField">
       <p class="servicepage-text-field">{chosenFieldName}</p>
       <p class="servicepage-number-first-part" if="{phoneFieldBool}">+{window.languages.CodeOfCountry}</p>
@@ -79,11 +80,11 @@
     </div>
   </div>
 
-  <div class="servicepage-body-container" if="{formType==2}">
+  <div class="servicepage-formtype-two-container" if="{formType==2}">
     <div class="servicepage-pincards-container" each="{i in pincardIds}">
       <div class="servicepage-pincard-title">{pincardsMap[i][0].name}</div>
       <div class="servicepage-pincard-nominal-container" each="{j in pincardsMap[i]}"
-           ontouchend="goToPinCardViewFromTwo({j.nominal},{j.card_type_id})">
+           ontouchstart="onTouchStartOfPincard()" ontouchend="onTouchEndOfPincard({j.nominal},{j.card_type_id})">
         <p class="servicepage-pincard-nominal-value">{j.nominal}</p>
         <div class="servicepage-pincard-choose-arrow"></div>
       </div>
@@ -129,16 +130,21 @@
     scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
     console.log(scope.servicesParamsMapOne);
     scope.servicesParamsMapTwo = JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"));
+    //    scope.myNumberMode = false;
 
 
     if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
+//      scope.myNumberMode = true;
       console.log("chosen service id in MNYNUMB=", viewPay.chosenServiceId);
+      console.log("my number mode=", scope.myNumberMode)
       scope.service = scope.servicesMap[localStorage.getItem('myNumberOperatorId')][0];
-      scope.titleName = localStorage.getItem('myNumberOperatorName');
-      scope.serviceIcon = localStorage.getItem('myNumberOperatorImage');
+      scope.titleName = 'Мой номер';
+      scope.serviceIcon = 'resources/icons/ViewPay/myphone.png';
       viewServicePage.phoneText = localStorage.getItem('click_client_phoneNumber');
       viewServicePage.phoneText = viewServicePage.phoneText.substr(3, viewServicePage.phoneText.length - 3);
       scope.fieldArray = scope.servicesParamsMapOne[localStorage.getItem('myNumberOperatorId')];
+//      this.firstField.style.display = 'none';
+//      riot.update(scope.myNumberMode);
     } else {
       console.log("chosen service id=", viewPay.chosenServiceId);
       scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
@@ -151,9 +157,7 @@
     scope.categoryName = scope.categoryNamesMap[viewPay.categoryId];
     scope.formType = scope.service.form_type;
     console.log("formType=" + scope.formType);
-
     console.log("fieldArray=", scope.fieldArray);
-
 
     if (scope.formType != 2) {
       if (scope.fieldArray) {
@@ -469,8 +473,6 @@
       viewServicePage.amountText = amount.value;
       viewServicePage.amountWithoutSpace = amountForPayTransaction;
 
-//      console.log('AAAAAAA', viewServicePage.amountText)
-
     };
 
     bordersColor = function () {
@@ -479,7 +481,8 @@
     };
 
     goToPinCardView = function () {
-      console.log(scope.phoneFieldBool);
+      console.log("PhoneFieldBool", scope.phoneFieldBool);
+      console.log("chosen firstField id=", scope.chosenFieldParamId)
 
       if (scope.phoneFieldBool && firstFieldInput.value.length < 9) {
         alert("Введите валидный номер телефона");
@@ -511,7 +514,6 @@
       viewServicePage.firstFieldTitle = scope.chosenFieldName;
       viewServicePage.phoneText = firstFieldInput.value;
 
-
       event.preventDefault();
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-service-pincards>";
@@ -532,6 +534,31 @@
       this.riotTags.innerHTML = "<view-service-pincards>";
       riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText]);
     }
+
+    scope.onTouchStartOfPincard = onTouchStartOfPincard = function () {
+      event.stopPropagation();
+      onTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    scope.onTouchEndOfPincard = onTouchEndOfPincard = function (nominal, cardId) {
+      event.stopPropagation();
+
+      onTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(onTouchStartY - onTouchEndY) <= 20) {
+        var formtype = {"formtype": scope.formType};
+        var firstFieldId = {"firstFieldId": null};
+        var firstFieldText = {"firstFieldText": null};
+        var cardTypeId = {"cardTypeId": cardId};
+        var communalParam = {"communalParam": null};
+        var amountText = {"amountText": nominal};
+
+        event.preventDefault();
+        event.stopPropagation();
+        this.riotTags.innerHTML = "<view-service-pincards>";
+        riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText]);
+      }
+    };
 
 
   </script>
