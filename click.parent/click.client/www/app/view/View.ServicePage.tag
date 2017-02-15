@@ -130,11 +130,11 @@
     scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
     console.log(scope.servicesParamsMapOne);
     scope.servicesParamsMapTwo = JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"));
-    //    scope.myNumberMode = false;
+    //    this.notMyNumberMode = true;
 
 
     if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
-//      scope.myNumberMode = true;
+//      this.notMyNumberMode = false;
       console.log("chosen service id in MNYNUMB=", viewPay.chosenServiceId);
       console.log("my number mode=", scope.myNumberMode)
       scope.service = scope.servicesMap[localStorage.getItem('myNumberOperatorId')][0];
@@ -143,7 +143,12 @@
       viewServicePage.phoneText = localStorage.getItem('click_client_phoneNumber');
       viewServicePage.phoneText = viewServicePage.phoneText.substr(3, viewServicePage.phoneText.length - 3);
       scope.fieldArray = scope.servicesParamsMapOne[localStorage.getItem('myNumberOperatorId')];
-//      this.firstField.style.display = 'none';
+      viewPay.chosenServiceId = localStorage.getItem('myNumberOperatorId');
+      this.on('mount', function () {
+        firstField.style.display = 'none';
+        amountField.style.top = '5.5%';
+      })
+
 //      riot.update(scope.myNumberMode);
     } else {
       console.log("chosen service id=", viewPay.chosenServiceId);

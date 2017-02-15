@@ -122,56 +122,41 @@
 
 
     payService = function () {
-      console.log("inPayService");
 
       var date = parseInt(Date.now() / 1000);
-      console.log("date", date);
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-      console.log("sk", sessionKey);
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-      console.log("pn", phoneNumber);
       var serviceId = viewPay.chosenServiceId;
-      console.log("si", serviceId);
       var accountId = chosenCardId;
-      console.log("ai", accountId);
       var amount = opts[0][5].amountText;
-      console.log("date", amount);
 
-      console.log("before PD");
 
       if (opts[0][0].formtype == 1) {
-        console.log("before PD");
         var payment_data = {
           "param": opts[0][1].firstFieldId,
           "value": firstFieldtext,
           "transaction_id": parseInt(Date.now() / 1000)
         };
-        console.log("xsaxqa", payment_data);
         paymentFunction(payment_data);
       }
       else if (opts[0][0].formtype == 2) {
-        console.log("before PD");
         var payment_data = {
           "pin_param": this.cardTypeId,
           "transaction_id": parseInt(Date.now() / 1000)
         };
-        console.log("xsaxqa", payment_data);
         paymentFunction(payment_data);
       }
       else if (opts[0][0].formtype == 3) {
-        console.log("before PD");
         var payment_data = {
           "param": opts[0][1].firstFieldId,
           "value": firstFieldtext,
           "communl_param": this.communalParam,
           "transaction_id": parseInt(Date.now() / 1000)
         };
-        console.log("xsaxqa", payment_data);
         paymentFunction(payment_data);
       }
 
       function paymentFunction(payment_data) {
-        console.log("in function pay");
 
         window.api.call({
           method: 'app.payment',
