@@ -1,6 +1,6 @@
 <view-info class="view-info">
     <div class="view-info-title-container">
-        <div class="view-info-back-button" ontouchend="onTouchEndBack()"></div>
+        <div class="view-info-back-button" ontouchstart="onTouchEndBack()"></div>
     </div>
 
     <div class="view-info-balance-container">
@@ -13,8 +13,8 @@
                ontouchstart="offlineBalanceInfoTrue()">Получить баланс</a>
         </div>
         <div class="view-info-bag-icon"></div>
-        <div if="{attention}" class="view-info-attention-icon"></div>
-        <div class="view-info-reload-icon"></div>
+        <div if="{attention && !modeOfflineMode.check}" class="view-info-attention-icon"></div>
+        <div if="{!modeOfflineMode.check}" class="view-info-reload-icon" ontouchend="reloadBalanceTouchEnd()"></div>
     </div>
 
     <div class="view-info-my-finance-container">
@@ -70,6 +70,12 @@
                 console.log('scope.fullBalance', scope.fullBalance)
             }
         })
+
+        reloadBalanceTouchEnd = function () {
+            scope.fullBalance = 0;
+            scope.fullBalanceCopy = '';
+            writeBalance()
+        }
 
         writeBalance = function () {
             var j = 0;

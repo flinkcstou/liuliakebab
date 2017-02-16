@@ -89,17 +89,18 @@
     var serviceId = localStorage.getItem('chosenServiceId');
     scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
     console.log("OPTS=", opts);
-    this.formType = opts[0][0].formtype;
-    this.firstFieldId = opts[0][1].firstFieldId;
+    scope.formType = opts[0][0].formtype;
+    scope.firstFieldId = opts[0][1].firstFieldId;
+    console.log('scope.firstFieldId', scope.firstFieldId)
     this.firstFieldTitle = viewServicePage.firstFieldTitle;
-    if (this.firstFieldId == '1')
+    if (scope.firstFieldId == '1')
       this.firstFieldText = "+" + window.languages.CodeOfCountry + opts[0][2].firstFieldText;
     else
       this.firstFieldText = opts[0][2].firstFieldText;
 
     this.cardTypeId = opts[0][3].cardTypeId;
     this.communalParam = opts[0][4].communalParam;
-    this.amountText = opts[0][5].amountText;
+    scope.amountText = opts[0][5].amountText;
 
     scope.titleName = scope.service.name;
     scope.serviceIcon = scope.service.image;
@@ -130,22 +131,22 @@
       console.log("si", serviceId);
       var accountId = chosenCardId;
       console.log("ai", accountId);
-      var amount = this.amountText;
-      console.log("amount", amount);
+      var amount = scope.amountText;
+      console.log("ASDSDS", amount)
 
-      console.log("before PD");
 
-      if (this.formType == 1) {
-        console.log("before PD");
+
+      if (scope.formType == 1) {
+        console.log("before PD", scope.firstFieldId);
         var payment_data = {
-          "param": this.firstFieldId,
+          "param": scope.firstFieldId,
           "value": this.firstFieldText,
           "transaction_id": parseInt(Date.now() / 1000)
         };
         console.log("xsaxqa", payment_data);
         paymentFunction();
       }
-      else if (this.formType == 2) {
+      else if (scope.formType == 2) {
         console.log("before PD");
         var payment_data = {
           "pin_param": this.cardTypeId,
@@ -154,10 +155,10 @@
         console.log("xsaxqa", payment_data);
         paymentFunction();
       }
-      else if (this.formType == 3) {
+      else if (scope.formType == 3) {
         console.log("before PD");
         var payment_data = {
-          "param": this.firstFieldId,
+          "param": scope.firstFieldId,
           "value": this.firstFieldText,
           "communl_param": this.communalParam,
           "transaction_id": parseInt(Date.now() / 1000)

@@ -11,12 +11,12 @@
     <div class="transfer-body-container">
         <div id="menuContainerId" class="transfer-menus-container">
             <div class="transfer-menu-container-contact" ontouchend="contact()">
-                <div class="transfer-menu-contact-icon"></div>
+                <div id="contactIconId" class="transfer-menu-contact-icon"></div>
                 <p id="contactLabelId" class="transfer-menu-contact-label">
                     {window.languages.ViewPayTransferMenuNameContact}</p>
             </div>
             <div class="transfer-menu-container-card" ontouchend="card()">
-                <div class="transfer-menu-card-icon"></div>
+                <div id="cardIconId" class="transfer-menu-card-icon"></div>
                 <p id="cardLabelId" class="transfer-menu-card-label">{window.languages.ViewPayTransferMenuNameCard}</p>
             </div>
         </div>
@@ -141,6 +141,8 @@
             scope.contactMode = true;
             this.contactLabelId.style.color = 'black';
             this.cardLabelId.style.color = 'gray';
+            this.contactIconId.style.opacity = '1'
+            this.cardIconId.style.opacity = '0.5'
             scope.cardMode = false;
             riot.update(scope.cardMode);
             riot.update(scope.contactMode);
@@ -157,6 +159,8 @@
             scope.cardMode = true;
             this.cardLabelId.style.color = 'black';
             this.contactLabelId.style.color = 'gray';
+            this.cardIconId.style.opacity = '1'
+            this.contactIconId.style.opacity = '0.5'
             scope.contactMode = false;
 
             riot.update(scope.contactMode);

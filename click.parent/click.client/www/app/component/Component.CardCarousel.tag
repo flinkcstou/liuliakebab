@@ -52,6 +52,11 @@
 
                                 result[1][0].balance = result[1][0].balance.toFixed(0).toString();
 
+                                if (result[1][0].balance.length == 9) {
+                                    result[1][0].balance = result[1][0].balance.substring(0, 3) + ' ' +
+                                            result[1][0].balance.substring(3, 6) + ' ' + result[1][0].balance.substring(6, result[1][0].balance.length)
+                                }
+
                                 if (result[1][0].balance.length == 7) {
                                     result[1][0].balance = result[1][0].balance.substring(0, 1) + ' ' +
                                             result[1][0].balance.substring(1, 4) + ' ' + result[1][0].balance.substring(4, result[1][0].balance.length)

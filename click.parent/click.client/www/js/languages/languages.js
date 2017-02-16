@@ -118,6 +118,9 @@ var RU_LANGUAGES =
   "ComponentUnsuccessMessagePart3ForPay": "Проверьте правильность введенных данных или попробуйте повторить оплату позже",
   "ComponentUnsuccessNext": "OK",
 
+  "ViewPinCodeClickPinLabel": "Установите CLICK-PIN",
+  "ViewPinCodeConfirmClickPinLabel": "Подтвердите CLICK-PIN",
+
 
 }
 

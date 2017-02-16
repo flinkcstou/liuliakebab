@@ -32,6 +32,7 @@
 
     <script>
 
+
         if (history.arrayOfHistory.length != 0) {
             if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization') {
                 history.arrayOfHistory.push(

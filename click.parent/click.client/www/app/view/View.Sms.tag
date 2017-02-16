@@ -115,8 +115,14 @@
                 onSuccess: function (result) {
                     if (result[0][0].error == 0) {
                         localStorage.setItem('confirm_needed', false);
-                        this.riotTags.innerHTML = "<view-authorization>";
-                        riot.mount('view-authorization');
+                        if (result[0][0].client_exists == 1) {
+                            this.riotTags.innerHTML = "<view-authorization>";
+                            riot.mount('view-authorization');
+                        }
+                        else {
+                            this.riotTags.innerHTML = "<view-registration-client>";
+                            riot.mount('view-registration-client');
+                        }
                     }
                     else alert(result[0][0].error_note)
                 },
