@@ -89,18 +89,21 @@
     var serviceId = localStorage.getItem('chosenServiceId');
     scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
     console.log("OPTS=", opts);
-    scope.formType = opts[0][0].formtype;
-    scope.firstFieldId = opts[0][1].firstFieldId;
-    console.log('scope.firstFieldId', scope.firstFieldId)
+    this.formType = opts[0][0].formtype;
+    this.firstFieldId = opts[0][1].firstFieldId;
     this.firstFieldTitle = viewServicePage.firstFieldTitle;
-    if (scope.firstFieldId == '1')
+    if (opts[0][1].firstFieldId == '1') {
       this.firstFieldText = "+" + window.languages.CodeOfCountry + opts[0][2].firstFieldText;
-    else
+      var firstFieldtext = "+" + window.languages.CodeOfCountry + opts[0][2].firstFieldText;
+    }
+    else {
       this.firstFieldText = opts[0][2].firstFieldText;
+      var firstFieldText = opts[0][2].firstFieldText;
+    }
 
     this.cardTypeId = opts[0][3].cardTypeId;
     this.communalParam = opts[0][4].communalParam;
-    scope.amountText = opts[0][5].amountText;
+    this.amountText = opts[0][5].amountText;
 
     scope.titleName = scope.service.name;
     scope.serviceIcon = scope.service.image;
@@ -119,94 +122,79 @@
 
 
     payService = function () {
-      console.log("inPayService");
 
       var date = parseInt(Date.now() / 1000);
-      console.log("date", date);
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-      console.log("sk", sessionKey);
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-      console.log("pn", phoneNumber);
       var serviceId = viewPay.chosenServiceId;
-      console.log("si", serviceId);
       var accountId = chosenCardId;
-      console.log("ai", accountId);
-      var amount = scope.amountText;
-      console.log("ASDSDS", amount)
+      var amount = opts[0][5].amountText;
 
 
-
-      if (scope.formType == 1) {
-        console.log("before PD", scope.firstFieldId);
+      if (opts[0][0].formtype == 1) {
         var payment_data = {
-          "param": scope.firstFieldId,
-          "value": this.firstFieldText,
+          "param": opts[0][1].firstFieldId,
+          "value": firstFieldtext,
           "transaction_id": parseInt(Date.now() / 1000)
         };
-        console.log("xsaxqa", payment_data);
-        paymentFunction();
+        paymentFunction(payment_data);
       }
-      else if (scope.formType == 2) {
-        console.log("before PD");
+      else if (opts[0][0].formtype == 2) {
         var payment_data = {
           "pin_param": this.cardTypeId,
           "transaction_id": parseInt(Date.now() / 1000)
         };
-        console.log("xsaxqa", payment_data);
-        paymentFunction();
+        paymentFunction(payment_data);
       }
-      else if (scope.formType == 3) {
-        console.log("before PD");
+      else if (opts[0][0].formtype == 3) {
         var payment_data = {
-          "param": scope.firstFieldId,
-          "value": this.firstFieldText,
+          "param": opts[0][1].firstFieldId,
+          "value": firstFieldtext,
           "communl_param": this.communalParam,
           "transaction_id": parseInt(Date.now() / 1000)
         };
-        console.log("xsaxqa", payment_data);
-        paymentFunction();
+        paymentFunction(payment_data);
       }
-    }
 
-    paymentFunction = function () {
-      console.log("in function pay");
+      function paymentFunction(payment_data) {
 
-      window.api.call({
-        method: 'app.payment',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          service_id: Number(serviceId),
-          account_id: Number(accountId),
-          amount: Number(amount),
-          payment_data: payment_data,
-          datetime: date
-        },
+        window.api.call({
+          method: 'app.payment',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            service_id: Number(serviceId),
+            account_id: Number(accountId),
+            amount: Number(amount),
+            payment_data: payment_data,
+            datetime: date
+          },
 
-        scope: this,
+          scope: this,
 
-        onSuccess: function (result) {
-          if (result[0][0].error == 0) {
-            if (result[1])
-              if (result[1][0]['payment_id']) {
-                console.log("result of APP.PAYMENT 1", result);
-                componentSuccessId.style.display = 'block';
-              } else {
-                console.log("result of APP.PAYMENT 2", result);
-                componentUnsuccessId.style.display = 'block';
-              }
+          onSuccess: function (result) {
+            if (result[0][0].error == 0) {
+              if (result[1])
+                if (result[1][0]['payment_id']) {
+                  console.log("result of APP.PAYMENT 1", result);
+                  componentSuccessId.style.display = 'block';
+                } else {
+                  console.log("result of APP.PAYMENT 2", result);
+                  componentUnsuccessId.style.display = 'block';
+                }
+            }
+            else {
+              console.log("result of APP.PAYMENT 3", result);
+              componentUnsuccessId.style.display = 'block';
+            }
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
           }
-          else {
-            console.log("result of APP.PAYMENT 3", result);
-            componentUnsuccessId.style.display = 'block';
-          }
-        },
-
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      });
+        });
+      }
     }
 
 
