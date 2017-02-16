@@ -243,9 +243,9 @@
                             console.log("in my numb");
                             console.log("obj id=", object.id);
                             localStorage.setItem('myNumberOperatorId', object.id);
-                            localStorage.setItem('myNumberOperatorName', object.name);
-                            localStorage.setItem('myNumberOperatorImage', object.image);
-                            var myNumberObject = object;
+//                            localStorage.setItem('myNumberOperatorName', object.name);
+//                            localStorage.setItem('myNumberOperatorImage', object.image);
+                            var myNumberObject = {};
                             myNumberObject.name = 'Мой номер';
                             myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
                             myNumberObject.id = 'mynumber' + object.id;
