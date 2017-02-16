@@ -95,10 +95,12 @@
     if (opts[0][1].firstFieldId == '1') {
       this.firstFieldText = "+" + window.languages.CodeOfCountry + opts[0][2].firstFieldText;
       var firstFieldtext = "+" + window.languages.CodeOfCountry + opts[0][2].firstFieldText;
+      console.log("text=", firstFieldtext)
     }
     else {
       this.firstFieldText = opts[0][2].firstFieldText;
-      var firstFieldText = opts[0][2].firstFieldText;
+      var firstFieldtext = opts[0][2].firstFieldText;
+      console.log("text in else=", firstFieldtext)
     }
 
     this.cardTypeId = opts[0][3].cardTypeId;
@@ -141,7 +143,7 @@
       }
       else if (opts[0][0].formtype == 2) {
         var payment_data = {
-          "pin_param": this.cardTypeId,
+          "pin_param": opts[0][3].cardTypeId,
           "transaction_id": parseInt(Date.now() / 1000)
         };
         paymentFunction(payment_data);
@@ -150,7 +152,7 @@
         var payment_data = {
           "param": opts[0][1].firstFieldId,
           "value": firstFieldtext,
-          "communl_param": this.communalParam,
+          "communl_param": opts[0][4].communalParam,
           "transaction_id": parseInt(Date.now() / 1000)
         };
         paymentFunction(payment_data);
