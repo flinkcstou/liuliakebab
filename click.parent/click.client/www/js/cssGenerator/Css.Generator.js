@@ -2104,6 +2104,7 @@ var css = {
   "float: right;" +
   "right: 4%;" +
   "background-size: 150%;" +
+  "background-color: white;" +
   "}",
 
   servicePageBodyContainer: ".servicepage-body-container" +
@@ -2639,7 +2640,7 @@ var css = {
   "font-size: " + 44 * widthK + "px; " +
   "margin: auto;" +
   "color: white;" +
-  "right: 10%;" +
+    //"right: 10%;" +
   "}",
 
   payconfirmDataContainer: ".payconfirm-data-container" +

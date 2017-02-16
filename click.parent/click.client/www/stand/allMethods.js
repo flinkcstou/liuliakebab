@@ -495,7 +495,7 @@ window.fakedSocket.register("get.service.category.list", function (input) {
   array.push([{
       color_hex: "#e7b949",
       color_rgb: "231-185-73",
-      icon: "https://m.click.uz/static/merchant/categories/1.png",
+      icon: "https://my.click.uz/static/content/app/categories/1.png",
       id: 1,
       name: "Мобильные операторы",
       parent: 0,
@@ -505,7 +505,7 @@ window.fakedSocket.register("get.service.category.list", function (input) {
       {
         color_hex: "#87c965",
         color_rgb: "135-201-101",
-        icon: "https://m.click.uz/static/merchant/categories/2.png",
+        icon: "https://my.click.uz/static/content/app/categories/2.png",
         id: 2,
         name: "Интернет провайдеры",
         parent: 0,
@@ -515,7 +515,7 @@ window.fakedSocket.register("get.service.category.list", function (input) {
       {
         color_hex: "#e45e55",
         color_rgb: "228-94-85",
-        icon: "https://m.click.uz/static/merchant/categories/6.png",
+        icon: "https://my.click.uz/static/content/app/categories/6.png",
         id: 6,
         name: "Интернет сервисы",
         parent: 0,
@@ -525,7 +525,7 @@ window.fakedSocket.register("get.service.category.list", function (input) {
       {
         color_hex: "#77acde",
         color_rgb: "119-172-222",
-        icon: "https://m.click.uz/static/merchant/categories/8.png",
+        icon: "https://my.click.uz/static/content/app/categories/8.png",
         id: 8,
         name: "Коммунальные платежи",
         parent: 0,
@@ -535,7 +535,7 @@ window.fakedSocket.register("get.service.category.list", function (input) {
       {
         color_hex: "#6e9a8f",
         color_rgb: "110-154-143",
-        icon: "https://m.click.uz/static/merchant/categories/10.png",
+        icon: "https://my.click.uz/static/content/app/categories/10.png",
         id: 10,
         name: "Налоги",
         parent: 0,
@@ -545,7 +545,7 @@ window.fakedSocket.register("get.service.category.list", function (input) {
       {
         color_hex: "#be2e1f",
         color_rgb: "190-46-31",
-        icon: "https://m.click.uz/static/merchant/categories/11.png",
+        icon: "https://my.click.uz/static/content/app/categories/11.png",
         id: 11,
         name: "Интернет пакеты",
         parent: 0,
@@ -555,29 +555,27 @@ window.fakedSocket.register("get.service.category.list", function (input) {
       {
         color_hex: "#ee9344",
         color_rgb: "238-147-68",
-        icon: "https://m.click.uz/static/merchant/categories/7.png",
+        icon: "https://my.click.uz/static/content/app/categories/7.png",
         id: 7,
         name: "Телефония",
         parent: 0,
         priority: 5,
         status: true
       },
-
       {
         color_hex: "#52a450",
         color_rgb: "82-164-80",
-        icon: "https://m.click.uz/static/merchant/categories/3.png",
+        icon: "https://my.click.uz/static/content/app/categories/3.png",
         id: 3,
         name: "Телевидение",
         parent: 0,
         priority: 15,
         status: true
       },
-
       {
         color_hex: "#f3aab5",
         color_rgb: "243-170-181",
-        icon: "https://m.click.uz/static/merchant/categories/5.png",
+        icon: "https://my.click.uz/static/content/app/categories/5.png",
         id: 5,
         name: "Хостинг и домены",
         parent: 0,

@@ -891,6 +891,7 @@ input {
   float: right;
   right: 4%;
   background-size: 150%;
+  background-color: white;
 }
 
 .servicepage-body-container {
@@ -1342,7 +1343,7 @@ input {
   font-size: 47px;
   margin: auto;
   color: white;
-  right: 10%;
+  /*right: 10%;*/
 }
 
 /*VIEW-PAYCONFIRM*/
