@@ -358,19 +358,34 @@
       }
     }
 
+    var maskOne = /[0-9]/g;
 
     firstSuggestionBlock = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(3, scope.suggestionOne.phoneNumber.length).replace(/\s/g, '');
+      var digits = scope.suggestionOne.phoneNumber.match(maskOne);
+      var phone = '';
+      for (var i in digits) {
+        phone += digits[i]
+      }
+      scope.suggestionOne.phoneNumber = phone;
+      console.log(scope.suggestionOne.phoneNumber)
+      contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length).replace(/\s/g, '');
     }
 
     secondSuggestionBlock = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(3, scope.suggestionTwo.phoneNumber.length).replace(/\s/g, '');
+      var digits = scope.suggestionTwo.phoneNumber.match(maskOne);
+      var phone = '';
+      for (var i in digits) {
+        phone += digits[i]
+      }
+      scope.suggestionOne.phoneNumber = phone;
+
+      contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length).replace(/\s/g, '');
     }
 
 

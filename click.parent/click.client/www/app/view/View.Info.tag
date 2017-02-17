@@ -55,6 +55,7 @@
     var defaultAccount;
     scope.attention = false;
     scope.fullBalance = 0;
+    scope.fullBalanceCopy = 0;
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
@@ -70,18 +71,18 @@
     this.on('mount', function () {
 
       if (!modeOfflineMode.check) {
-        console.log('scope.fullBalance', scope.fullBalance)
+        writeBalance();
       }
     })
 
     reloadBalanceTouchEnd = function () {
-      scope.fullBalance = 0;
-      scope.fullBalanceCopy = '';
-      writeBalance()
+      writeBalance();
     }
 
     writeBalance = function () {
       var j = 0;
+      scope.fullBalance = 0;
+      scope.fullBalanceCopy = 0;
       for (var i = 0; i < getAccountsCards.length; i++) {
         window.api.call({
           method: 'get.balance',
@@ -148,8 +149,8 @@
         });
       }
 
+      riot.update(scope.fullBalanceCopy);
     }
-    writeBalance();
 
     offlineBalanceInfoTrue = function () {
       event.preventDefault()
