@@ -43,6 +43,7 @@
   api.init();
   scope = this;
 
+
   permissionAccess = function () {
     if (SMS) SMS.startWatch(function (success) {
       console.log(success)
@@ -117,6 +118,7 @@
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
 
+      if(device.platform == 'Android')
       permissionAccess();
 
       var GENERATOR = document.createElement('script');

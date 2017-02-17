@@ -46,6 +46,7 @@
       console.log('Enable Intercept', error)
     });
 
+
     var permissions = cordova.plugins.permissions;
     permissions.hasPermission(permissions.READ_SMS, checkPermissionCallbackOfSms, null);
     permissions.hasPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
@@ -106,6 +107,7 @@
 
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
+      if(device.platform == 'Android')
       permissionAccess();
 
       var GENERATOR = document.createElement('script');

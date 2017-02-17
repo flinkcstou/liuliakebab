@@ -26,7 +26,7 @@
         <p class="transfer-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
         <input id="contactPhoneNumberId" autofocus="true" class="transfer-contact-number-input-part" type="tel"
                maxlength="9" onkeyup="searchContacts()"/>
-        <div class="transfer-contact-phone-icon"></div>
+        <div class="transfer-contact-phone-icon" ontouchend="pickContactFromNative()"></div>
       </div>
       <div id="firstSuggestionBlockId" class="transfer-contact-found-container-one"
            ontouchend="firstSuggestionBlock()">
@@ -87,6 +87,14 @@
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    }
+
+    pickContactFromNative = function() {
+      navigator.contacts.pickContact(function (contact) {
+        console.log('The following contact has been selected:' + JSON.stringify(contact));
+      }, function (err) {
+        console.log('Error: ' + err);
+      });
     }
 
 

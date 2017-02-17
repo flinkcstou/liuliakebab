@@ -3589,7 +3589,7 @@ var css = {
   transferTwoMenusContainer: ".transfertwo-menus-container " +
   "{" +
   "position: absolute;" +
-  "height:" + 100 * widthK + ";" +
+  "height:" + 90 * widthK + "px;" +
   "width: 100%;" +
   "background-color: transparent;" +
   "border-bottom:1px solid #e3e3e3;" +
@@ -4430,7 +4430,7 @@ var css = {
   registrationClientCardField: ".registration-client-card-field " +
   "{" +
   "position: relative;" +
-  "top:" + 40 * heightK + "px;" +
+  "top:" + 0 * heightK + "px;" +
   "width:" + 600 * heightK + "px;" +
   "height:" + 320 * heightK + "px;" +
   "border:" + 4 * heightK + "px solid #2f2b3d;" +
@@ -4456,7 +4456,7 @@ var css = {
   "text-align: center;" +
   "color: #4bd5ff;" +
   "font-size:" + 30 * widthK + "px;" +
-  "top:" + 40 * widthK + "px;" +
+  "top:" + 20 * widthK + "px;" +
   "}",
 
   registrationClientCardNumber: ".registration-client-card-number " +
@@ -4516,14 +4516,14 @@ var css = {
   registrationClientCardTextDate: ".registration-client-card-text-date " +
   "{" +
   "left: -12%;" +
-  "width: 160%;" +
+  "width: 200%;" +
   "top: -65%;" +
   "}",
 
   registrationClientCardTextPin: ".registration-client-card-text-pin " +
   "{" +
   "top: -65%;" +
-  "left: -12%;" +
+  "left: 0;" +
   "}",
 
   registrationClientCardDate: ".registration-client-card-date " +
@@ -4588,7 +4588,7 @@ var css = {
 
   registrationClientButtonEnter: ".registration-client-button-enter " +
   "{" +
-  "top:" + 50 * widthK + "px;" +
+  "top:" + 20 * widthK + "px;" +
   "}",
 
   registrationClientKeyboardField: ".registration-client-keyboard-field " +
