@@ -1,6 +1,7 @@
 window.fakedSocket.register("registration", function (input) {
+  window.standCheckRegistration = true;
 
-  return [{"method": input.method, "success": 1, "error": 0, "error_note": ""}];
+  return [[{"method": input.method, "success": 1, "error": 0, "error_note": ""}]];
 });
 
 window.fakedSocket.register("device.register.request", function (input) {
@@ -18,15 +19,29 @@ window.fakedSocket.register("device.register.request", function (input) {
 
 window.fakedSocket.register("device.register.confirm", function (input) {
 
-  if (input.parameters.sms_code == '12345')
-    return [
-      [{
-        "method": input.method,
-        "success": 1,
-        "error": 0,
-        "error_note": ""
-      }]
-    ];
+  if (input.parameters.sms_code == '12345') {
+    if (!window.standCheckRegistration)
+      return [
+        [{
+          "client_exists": 0,
+          "method": input.method,
+          "success": 1,
+          "error": 0,
+          "error_note": ""
+        }]
+      ];
+    else
+      return [
+        [{
+          "client_exists": 1,
+          "method": input.method,
+          "success": 1,
+          "error": 0,
+          "error_note": ""
+        }]
+      ];
+      }
+
   return [
     {
       "method": input.method,
@@ -84,28 +99,7 @@ window.fakedSocket.register("get.accounts", function (input) {
 
   var array = [];
   array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
-  array.push([{
-    acc_abs: "SMARTV    ",
-    access: 1,
-    accno: "8600 **** **** 5865",
-    background_url: "https://merchant.click.uz/static/content/app/background/card1.png",
-    bank_name: "UZCARD",
-    branch: "00000",
-    card_num: "8600 **** **** 5865",
-    card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw=",
-    card_num_hash: "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
-    currency: "000",
-    currency_code: "UZS",
-    currency_name: "сум                                               ",
-    description: "Карта UZCARD-Online",
-    expire_date: "1806",
-    id: 3487271,
-    image_url: "https://merchant.click.uz/static/content/app/bank/aloq.png",
-    is_uzcard: 1,
-    removable: 1,
-    short_name: "aloq"
-  },
-
+  array.push([
     {
       acc_abs: "DUET    ",
       access: 2,
@@ -144,6 +138,28 @@ window.fakedSocket.register("get.accounts", function (input) {
       expire_date: "1806",
       id: 7487271,
       image_url: "https://merchant.click.uz/static/content/app/bank/ofb.png",
+      is_uzcard: 1,
+      removable: 1,
+      short_name: "aloq"
+    },
+
+    {
+      acc_abs: "SMARTV    ",
+      access: 1,
+      accno: "8600 **** **** 5865",
+      background_url: "https://merchant.click.uz/static/content/app/background/card1.png",
+      bank_name: "UZCARD",
+      branch: "00000",
+      card_num: "8600 **** **** 5865",
+      card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw=",
+      card_num_hash: "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
+      currency: "000",
+      currency_code: "UZS",
+      currency_name: "сум                                               ",
+      description: "Карта UZCARD-Online",
+      expire_date: "1806",
+      id: 3487271,
+      image_url: "https://merchant.click.uz/static/content/app/bank/aloq.png",
       is_uzcard: 1,
       removable: 1,
       short_name: "aloq"

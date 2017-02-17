@@ -3161,9 +3161,9 @@ var css = {
   transferBodyContainer: ".transfer-body-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 1142 * widthK + "px;" +
+  "height:" + 1150 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 90 * widthK + "px;" +
+  "top:" + 90 * heightK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "border-bottom: 1px solid black;" +
@@ -3172,8 +3172,9 @@ var css = {
   transferMenusContainer: ".transfer-menus-container" +
   "{" +
   "position: absolute;" +
-  "height: 10.2%;" +
+  "height:" + 120 * widthK + "px;" +
   "width: 100%;" +
+  "top: 0;" +
   "background: transparent;" +
   "background-image: url(resources/icons/ViewTransfer/contactMenu.png);" +
   "background-repeat: no-repeat;" +
@@ -3449,12 +3450,11 @@ var css = {
   transferPageTitle: ".transfer-page-title " +
   "{" +
   "position: absolute;" +
-  "top: 0px;" +
+  "top: 0;" +
   "right:" + 28 * widthK + "px;" +
   "left:" + 25 * widthK + "px;" +
   "height:" + 93 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
 
   transferBackButton: ".transfer-back-button " +
@@ -3492,9 +3492,9 @@ var css = {
   transferTwoBodyContainer: ".transfertwo-body-container " +
   "{" +
   "position: absolute;" +
-  "height:" + 1139 * widthK + "px;" +
+  "height:" + 1139 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 93 * widthK + "px;" +
+  "top:" + 93 * heightK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
@@ -3589,7 +3589,7 @@ var css = {
   transferTwoMenusContainer: ".transfertwo-menus-container " +
   "{" +
   "position: absolute;" +
-  "height: 8%;" +
+  "height:" + 100 * widthK + ";" +
   "width: 100%;" +
   "background-color: transparent;" +
   "border-bottom:1px solid #e3e3e3;" +
@@ -3614,7 +3614,7 @@ var css = {
   "position: absolute;" +
   "height:" + 1139 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 93 * widthK + "px;" +
+  "top:" + 93 * heightK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
@@ -3693,7 +3693,7 @@ var css = {
   "position: absolute;" +
   "height:" + 1142 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 90 * widthK + "px;" +
+  "top:" + 90 * heightK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "}",

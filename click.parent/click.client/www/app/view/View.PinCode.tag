@@ -168,9 +168,9 @@
                     console.log(result)
                     console.log(result[0][0])
                     if(result[0][0].error == 0){
-                        console.log('sdsd')
                         riotTags.innerHTML = "<view-registration-device>";
                         riot.mount('view-registration-device');
+                        window.standCheckRegistration = true;
                         return
                     }
                     else {

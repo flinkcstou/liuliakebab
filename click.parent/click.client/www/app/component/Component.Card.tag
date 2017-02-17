@@ -20,7 +20,6 @@
 
     <script>
         modeOfflineMode.balance = false;
-        console.log('backgroundImage', opts.background)
 
         var scope = this;
         scope.leftOfCard = (540 * opts.countcard + 100) * widthK;

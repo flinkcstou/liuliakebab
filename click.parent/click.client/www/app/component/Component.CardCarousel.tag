@@ -193,8 +193,9 @@
 
 
                     if (getAccountsCards[i].access == 0) break;
-                    if (loginInfo.default_account == getAccountsCards[i].id)
+                    if (loginInfo.default_account == getAccountsCards[i].id) {
                         var defaultAccount = true;
+                    }
                     else
                         defaultAccount = false;
 
@@ -233,6 +234,13 @@
                     localStorage.setItem('click_client_countCard', count);
                     riot.mount("component-card");
                 }
+
+            var tmpArray = [];
+            for (var j in cardsarray) {
+                tmpArray.push(cardsarray[j])
+            }
+
+            console.log('TMPARRAT', tmpArray)
         }
         if (localStorage.getItem('click_client_accountInfo'))
             scope.addCard(getAccountsCards);

@@ -57,3 +57,5 @@ window.modeOfflineMode = {};
 modeOfflineMode.check = false;
 modeOfflineMode.balance = false;
 
+window.standCheckRegistration = false;
+
