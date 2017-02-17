@@ -3404,7 +3404,7 @@ var css = {
   "position: relative;" +
   "height: 6%;" +
   "width: 51%;" +
-  "top: 50%;" +
+  "top: 48%;" +
   "display: table;" +
   "background-color: #027fe4;" +
   "border-radius:" + 50 * widthK + "px;" +
@@ -3537,7 +3537,7 @@ var css = {
   "position: relative;" +
   "height: 6.5%;" +
   "width: 50%;" +
-  "top: 43.5%;" +
+  "top: 45%;" +
   "display: table;" +
   "background-color: #027fe4;" +
   "border-radius:" + 50 * widthK + "px;" +
@@ -3561,7 +3561,7 @@ var css = {
   "position: absolute;" +
   "width: 63%;" +
   "height: 15%;" +
-  "top: 25.5%;" +
+  "top: 26%;" +
   "left: 19%;" +
   "background-size: 100%;" +
   "background-image: url(resources/icons/ViewTransfer/input.png);" +
