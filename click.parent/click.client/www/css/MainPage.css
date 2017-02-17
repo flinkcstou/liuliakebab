@@ -1028,7 +1028,7 @@ input {
 .servicepage-number-first-part {
   float: left;
   position: relative;
-  top: 26%;
+  top: 22%;
   font-size: 56px;
   font-family: 'SFUIDisplay-Light';
   color: #515151;
@@ -1051,12 +1051,12 @@ input {
   border: none;
   outline: none;
   position: relative;
-  top: 26%;
+  top: 22%;
   padding: 0;
   margin: 0;
   left: 18%;
   width: 66%;
-  height: 69%;
+  /*height: 69%;*/
   font-size: 56px;
   font-family: 'SFUIDisplay-Light';
   color: #515151;

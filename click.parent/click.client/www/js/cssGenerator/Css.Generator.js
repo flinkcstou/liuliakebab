@@ -2285,7 +2285,7 @@ var css = {
   "{" +
   "float: left;" +
   "position: relative;" +
-  "top: 26%;" +
+  "top: 22%;" +
   "font-size: " + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -2312,12 +2312,12 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: absolute;" +
-  "top: 26%;" +
+  "top: 22%;" +
   "padding: 0;" +
   "margin: 0;" +
   "left: 26%;" +
   "width: 66%;" +
-  "height: 69%;" +
+    //"height: 69%;" +
   "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
