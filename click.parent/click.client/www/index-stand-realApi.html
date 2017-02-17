@@ -100,10 +100,8 @@
 
   }
 
-  function checkImageURL(dirEntry, fileName, fieldName, assetURL, object, callback) {
-    var bool = false;
+  function checkImageURL(dirEntry, fileName, assetURL, index, callback) {
 
-//            alert("name is=" + fileName);
     var xhr = new XMLHttpRequest();
 
     xhr.open('GET', cordova.file.applicationDirectory + dirEntry + fileName, true);
@@ -114,9 +112,8 @@
 
         var blob = new Blob([this.response], {type: 'image/png'});
         console.log("status 200 For " + fileName);
-        bool = false;
-        object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
-        callback(object);
+        //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
+        callback(false, index, fileName);
       }
     };
 
@@ -137,9 +134,8 @@
         var folderpath = cordova.file.dataDirectory;
 
         savebase64AsImageFile(folderpath, fileName, realData, dataType);
-        bool = true;
-        object.icon = cordova.file.dataDirectory + fileName;
-        callback(object);
+//        object[fieldName] = cordova.file.dataDirectory + fileName;
+        callback(true, index, fileName);
       });
       event.preventDefault();
 

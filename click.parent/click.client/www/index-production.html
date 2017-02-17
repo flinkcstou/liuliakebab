@@ -52,11 +52,11 @@
     permissions.hasPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
     window.plugins.sim.getSimInfo(successOfSim, errorOfSim);
 
-    function successOfSim (success){
+    function successOfSim(success) {
       console.log(success)
     }
 
-    function errorOfSim (error){
+    function errorOfSim(error) {
       console.log(error)
     }
 
@@ -66,11 +66,11 @@
           console.log('SMS permission is not turned on');
         }
         permissions.requestPermission(
-                permissions.READ_SMS,
-                function (status) {
-                  if (!status.hasPermission) errorCallback();
-                },
-                errorCallback);
+          permissions.READ_SMS,
+          function (status) {
+            if (!status.hasPermission) errorCallback();
+          },
+          errorCallback);
       }
     }
 
@@ -80,11 +80,11 @@
           console.log('SIM permission is not turned on');
         }
         permissions.requestPermission(
-                permissions.READ_SMS,
-                function (status) {
-                  if (!status.hasPermission) errorCallback();
-                },
-                errorCallback);
+          permissions.READ_SMS,
+          function (status) {
+            if (!status.hasPermission) errorCallback();
+          },
+          errorCallback);
       }
     }
 
@@ -94,11 +94,11 @@
           console.log('CALL permission is not turned on');
         }
         permissions.requestPermission(
-                permissions.CALL_PHONE,
-                function (status) {
-                  if (!status.hasPermission) errorCallback();
-                },
-                errorCallback);
+          permissions.CALL_PHONE,
+          function (status) {
+            if (!status.hasPermission) errorCallback();
+          },
+          errorCallback);
       }
     }
 
@@ -128,9 +128,9 @@
     }, false);
   }
 
-//  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
-//    this.closeDemo();
-//  }
+  //  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
+  //    this.closeDemo();
+  //  }
 
   function onBackKeyDown() {
     history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
@@ -162,10 +162,8 @@
     }
   }
 
-  function checkImageURL(dirEntry, fileName, fieldName, assetURL, object, callback) {
-    var bool = false;
+  function checkImageURL(dirEntry, fileName, assetURL, index, callback) {
 
-//            alert("name is=" + fileName);
     var xhr = new XMLHttpRequest();
 
     xhr.open('GET', cordova.file.applicationDirectory + dirEntry + fileName, true);
@@ -176,9 +174,8 @@
 
         var blob = new Blob([this.response], {type: 'image/png'});
         console.log("status 200 For " + fileName);
-        bool = false;
-        object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
-        callback(object);
+        //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
+        callback(false, index, fileName);
       }
     };
 
@@ -199,9 +196,8 @@
         var folderpath = cordova.file.dataDirectory;
 
         savebase64AsImageFile(folderpath, fileName, realData, dataType);
-        bool = true;
-        object.icon = cordova.file.dataDirectory + fileName;
-        callback(object);
+//        object[fieldName] = cordova.file.dataDirectory + fileName;
+        callback(true, index, fileName);
       });
       event.preventDefault();
 
