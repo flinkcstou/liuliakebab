@@ -76,11 +76,11 @@
           console.log('SMS permission is not turned on');
         }
         permissions.requestPermission(
-                permissions.READ_SMS,
-                function (status) {
-                  if (!status.hasPermission) errorCallback();
-                },
-                errorCallback);
+          permissions.READ_SMS,
+          function (status) {
+            if (!status.hasPermission) errorCallback();
+          },
+          errorCallback);
       }
     }
 
@@ -90,11 +90,11 @@
           console.log('CALL permission is not turned on');
         }
         permissions.requestPermission(
-                permissions.CALL_PHONE,
-                function (status) {
-                  if (!status.hasPermission) errorCallback();
-                },
-                errorCallback);
+          permissions.CALL_PHONE,
+          function (status) {
+            if (!status.hasPermission) errorCallback();
+          },
+          errorCallback);
       }
     }
 
@@ -104,11 +104,11 @@
           console.log('SIM permission is not turned on');
         }
         permissions.requestPermission(
-                permissions.READ_PHONE_STATE,
-                function (status) {
-                  if (!status.hasPermission) errorCallback();
-                },
-                errorCallback);
+          permissions.READ_PHONE_STATE,
+          function (status) {
+            if (!status.hasPermission) errorCallback();
+          },
+          errorCallback);
       }
     }
   }

@@ -108,7 +108,7 @@
                       if (result[1].length == scope.categoryList.length) {
                         console.log("save into localstorage, categoryList=", scope.categoryList);
                         riot.update(scope.categoryList);
-//                        localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
+                        localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
                         localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
                       }
                     });
