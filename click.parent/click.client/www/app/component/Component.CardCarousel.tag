@@ -31,7 +31,7 @@
             }
         })
 
-
+        //
         writeBalance = function () {
             for (var i = 0; i < getAccountsCards.length; i++) {
                 window.api.call({
