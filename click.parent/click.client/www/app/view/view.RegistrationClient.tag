@@ -1,303 +1,303 @@
 <view-registration-client class="view-registration-client">
-    <p class="registration-client-text-field">Заполните данные вашей первой карты</p>
-    <div class="registration-client-card-field">
-        <p class="registration-client-card-text registration-client-card-number-text">Номер карты</p>
-        <div id="cardNumberInput" class="registration-client-card-number">
-            <div ontouchend="touchEndBoxOne()" id="boxOne"
-                 class="registration-client-card-number-box registration-client-card-number-box-one">
-                {cardNumberPartOne}
-            </div>
-            <div ontouchend="touchEndBoxTwo()" id="boxTwo"
-                 class="registration-client-card-number-box registration-client-card-number-box-two">
-                {cardNumberPartTwo}
-            </div>
-            <div ontouchend="touchEndBoxThree()" id="boxThree"
-                 class="registration-client-card-number-box registration-client-card-number-box-three">
-                {cardNumberPartThree}
-            </div>
-            <div ontouchend="touchEndBoxFour()" id="boxFour"
-                 class="registration-client-card-number-box registration-client-card-number-box-four">
-                {cardNumberPartFour}
-            </div>
-        </div>
-
-        <div id="cardDateInput" class="registration-client-card-date" type="text">
-            <p class="registration-client-card-text registration-client-card-text-date">Дата окончания</p>
-            <div ontouchend="touchEndBoxData()" id="boxData"
-                 class="registration-client-card-date-box">
-                {cardDate}
-            </div>
-        </div>
-
-        <div id="cardPinInput" class="registration-client-card-pin">
-            <p class="registration-client-card-text registration-client-card-text-pin">Код банка</p>
-            <div ontouchend="touchEndBoxPin()" id="boxPin"
-                 class="registration-client-card-date-pin-box">
-                {cardPin}
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="registration-client-button-enter registration-client-button-enter-container" ontouchend="goToPinCode()">
-        <div class="button-enter-label">Далее</div>
+  <p class="registration-client-text-field">Заполните данные вашей первой карты</p>
+  <div class="registration-client-card-field">
+    <p class="registration-client-card-text registration-client-card-number-text">Номер карты</p>
+    <div id="cardNumberInput" class="registration-client-card-number">
+      <div ontouchend="touchEndBoxOne()" id="boxOne"
+           class="registration-client-card-number-box registration-client-card-number-box-one">
+        {cardNumberPartOne}
+      </div>
+      <div ontouchend="touchEndBoxTwo()" id="boxTwo"
+           class="registration-client-card-number-box registration-client-card-number-box-two">
+        {cardNumberPartTwo}
+      </div>
+      <div ontouchend="touchEndBoxThree()" id="boxThree"
+           class="registration-client-card-number-box registration-client-card-number-box-three">
+        {cardNumberPartThree}
+      </div>
+      <div ontouchend="touchEndBoxFour()" id="boxFour"
+           class="registration-client-card-number-box registration-client-card-number-box-four">
+        {cardNumberPartFour}
+      </div>
     </div>
 
-    <div class="registration-client-keyboard-field keyboard-field">
-        <component-keyboard></component-keyboard>
+    <div id="cardDateInput" class="registration-client-card-date" type="text">
+      <p class="registration-client-card-text registration-client-card-text-date">Дата окончания</p>
+      <div ontouchend="touchEndBoxData()" id="boxData"
+           class="registration-client-card-date-box">
+        {cardDate}
+      </div>
     </div>
 
-    <div class="registration-client-buttons-container">
-        <div class="registration-container-offline">
-            <div class="registration-button-offline">Офлайн режим</div>
-        </div>
-        <a id="demoContainer" class="registration-container-demo-version"
-        >
-            <div class="registration-button-demo-version">Демо версия</div>
-        </a>
+    <div id="cardPinInput" class="registration-client-card-pin">
+      <p class="registration-client-card-text registration-client-card-text-pin">Код банка</p>
+      <div ontouchend="touchEndBoxPin()" id="boxPin"
+           class="registration-client-card-date-pin-box">
+        {cardPin}
+      </div>
     </div>
+  </div>
+  </div>
+  <div class="registration-client-button-enter registration-client-button-enter-container" ontouchend="goToPinCode()">
+    <div class="button-enter-label">Далее</div>
+  </div>
 
-    <script>
+  <div class="registration-client-keyboard-field keyboard-field">
+    <component-keyboard></component-keyboard>
+  </div>
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-client') {
-            history.arrayOfHistory.push(
-                    {
-                        "view": 'view-registration-client',
-                        "params": ''
-                    }
-            );
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+  <div class="registration-client-buttons-container">
+    <div class="registration-container-offline">
+      <div class="registration-button-offline">Офлайн режим</div>
+    </div>
+    <a id="demoContainer" class="registration-container-demo-version"
+    >
+      <div class="registration-button-demo-version">Демо версия</div>
+    </a>
+  </div>
+
+  <script>
+
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-client') {
+      history.arrayOfHistory.push(
+        {
+          "view": 'view-registration-client',
+          "params": ''
         }
+      );
+      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    }
 
 
-        this.on('mount', function () {
-            boxOne.style.border = 'solid 1px gray';
-            checkOne = true;
-        })
+    this.on('mount', function () {
+      boxOne.style.border = 'solid 1px gray';
+      checkOne = true;
+    })
 
-        var scope = this;
-        scope.cardNumberPartOne = '';
-        scope.cardNumberPartTwo = '';
-        scope.cardNumberPartThree = '';
-        scope.cardNumberPartFour = '';
-        scope.cardDate = '';
-        scope.cardDateOriginal = '';
-        scope.cardPin = '';
-        scope.cardPinOriginal = '';
-        var cardNumber = '';
-        var selectionStart;
-        var selectionEnd;
-        var changed = false;
-        var date = false;
-        var checkOne = false, checkTwo = false, checkThree = false, checkFour = false, checkDate = false, checkPin = false;
+    var scope = this;
+    scope.cardNumberPartOne = '';
+    scope.cardNumberPartTwo = '';
+    scope.cardNumberPartThree = '';
+    scope.cardNumberPartFour = '';
+    scope.cardDate = '';
+    scope.cardDateOriginal = '';
+    scope.cardPin = '';
+    scope.cardPinOriginal = '';
+    var cardNumber = '';
+    var selectionStart;
+    var selectionEnd;
+    var changed = false;
+    var date = false;
+    var checkOne = false, checkTwo = false, checkThree = false, checkFour = false, checkDate = false, checkPin = false;
 
 
-        touchEndBoxOne = function () {
-            boxOne.style.border = 'solid 1px gray';
-            boxTwo.style.border = 'none';
-            boxThree.style.border = 'none';
-            boxFour.style.border = 'none';
-            boxData.style.border = 'none';
-            boxPin.style.border = 'none';
-            checkOne = true;
-            checkTwo = false;
-            checkThree = false;
-            checkFour = false;
-        }
+    touchEndBoxOne = function () {
+      boxOne.style.border = 'solid 1px gray';
+      boxTwo.style.border = 'none';
+      boxThree.style.border = 'none';
+      boxFour.style.border = 'none';
+      boxData.style.border = 'none';
+      boxPin.style.border = 'none';
+      checkOne = true;
+      checkTwo = false;
+      checkThree = false;
+      checkFour = false;
+    }
 
-        touchEndBoxTwo = function () {
-            boxOne.style.border = 'none';
-            boxTwo.style.border = 'solid 1px gray';
-            boxThree.style.border = 'none';
-            boxFour.style.border = 'none';
-            boxData.style.border = 'none';
-            boxPin.style.border = 'none';
-            checkOne = false;
-            checkTwo = true;
-            checkThree = false;
-            checkFour = false;
-        }
+    touchEndBoxTwo = function () {
+      boxOne.style.border = 'none';
+      boxTwo.style.border = 'solid 1px gray';
+      boxThree.style.border = 'none';
+      boxFour.style.border = 'none';
+      boxData.style.border = 'none';
+      boxPin.style.border = 'none';
+      checkOne = false;
+      checkTwo = true;
+      checkThree = false;
+      checkFour = false;
+    }
 
-        touchEndBoxThree = function () {
-            boxOne.style.border = 'none';
-            boxTwo.style.border = 'none';
-            boxThree.style.border = 'solid 1px gray';
-            boxFour.style.border = 'none';
-            boxData.style.border = 'none';
-            boxPin.style.border = 'none';
-            checkOne = false;
-            checkTwo = false;
-            checkThree = true;
-            checkFour = false;
-        }
+    touchEndBoxThree = function () {
+      boxOne.style.border = 'none';
+      boxTwo.style.border = 'none';
+      boxThree.style.border = 'solid 1px gray';
+      boxFour.style.border = 'none';
+      boxData.style.border = 'none';
+      boxPin.style.border = 'none';
+      checkOne = false;
+      checkTwo = false;
+      checkThree = true;
+      checkFour = false;
+    }
 
-        touchEndBoxFour = function () {
-            boxOne.style.border = 'none';
-            boxTwo.style.border = 'none';
-            boxThree.style.border = 'none';
-            boxFour.style.border = 'solid 1px gray';
-            boxData.style.border = 'none';
-            boxPin.style.border = 'none';
-            checkOne = false;
-            checkTwo = false;
-            checkThree = false;
-            checkFour = true;
-        }
+    touchEndBoxFour = function () {
+      boxOne.style.border = 'none';
+      boxTwo.style.border = 'none';
+      boxThree.style.border = 'none';
+      boxFour.style.border = 'solid 1px gray';
+      boxData.style.border = 'none';
+      boxPin.style.border = 'none';
+      checkOne = false;
+      checkTwo = false;
+      checkThree = false;
+      checkFour = true;
+    }
 
-        touchEndBoxData = function () {
-            if (checkDate) {
-                boxOne.style.border = 'none';
-                boxTwo.style.border = 'none';
-                boxThree.style.border = 'none';
-                boxFour.style.border = 'none';
-                boxData.style.border = 'solid 1px gray';
-                boxPin.style.border = 'none';
-                checkOne = false;
-                checkTwo = false;
-                checkThree = false;
-                checkFour = false;
-            }
-            else return
-        }
+    touchEndBoxData = function () {
+      if (checkDate) {
+        boxOne.style.border = 'none';
+        boxTwo.style.border = 'none';
+        boxThree.style.border = 'none';
+        boxFour.style.border = 'none';
+        boxData.style.border = 'solid 1px gray';
+        boxPin.style.border = 'none';
+        checkOne = false;
+        checkTwo = false;
+        checkThree = false;
+        checkFour = false;
+      }
+      else return
+    }
 
-        touchEndBoxPin = function () {
-            if (checkPin) {
-                boxOne.style.border = 'none';
-                boxTwo.style.border = 'none';
-                boxThree.style.border = 'none';
-                boxFour.style.border = 'none';
-                boxData.style.border = 'none';
-                boxPin.style.border = 'solid 1px gray';
-                checkOne = false;
-                checkTwo = false;
-                checkThree = false;
-                checkFour = false;
-            }
-            else return
-        }
+    touchEndBoxPin = function () {
+      if (checkPin) {
+        boxOne.style.border = 'none';
+        boxTwo.style.border = 'none';
+        boxThree.style.border = 'none';
+        boxFour.style.border = 'none';
+        boxData.style.border = 'none';
+        boxPin.style.border = 'solid 1px gray';
+        checkOne = false;
+        checkTwo = false;
+        checkThree = false;
+        checkFour = false;
+      }
+      else return
+    }
 
-        componentKeyboard.returnValue = function (myValue) {
+    componentKeyboard.returnValue = function (myValue) {
 
-            if (myValue != 'x') {
-                if (checkOne && scope.cardNumberPartOne.length < 4) {
-                    scope.cardNumberPartOne += myValue;
-                    riot.update(scope.cardNumberPartOne)
-                    if (scope.cardNumberPartOne.length == 4) {
-                        if (scope.cardNumberPartOne == '8600') {
-                            checkDate = true;
-                            checkPin = false;
-                        }
-                        else {
-                            checkDate = false;
-                            checkPin = true;
-                        }
-                        touchEndBoxTwo()
-                        return
-                    }
-                }
-
-                if (checkTwo && scope.cardNumberPartTwo.length < 4) {
-                    scope.cardNumberPartTwo += myValue;
-                    riot.update(scope.cardNumberPartTwo)
-                    if (scope.cardNumberPartTwo.length == 4) {
-                        touchEndBoxThree()
-                        return
-                    }
-                }
-
-                if (checkThree && scope.cardNumberPartThree.length < 4) {
-                    scope.cardNumberPartThree += myValue;
-                    riot.update(scope.cardNumberPartThree)
-                    if (scope.cardNumberPartThree.length == 4) {
-                        touchEndBoxFour()
-                        return
-                    }
-                }
-
-                if (checkFour && scope.cardNumberPartFour.length < 4) {
-                    scope.cardNumberPartFour += myValue;
-                    riot.update(scope.cardNumberPartFour)
-                    if (scope.cardNumberPartFour.length == 4) {
-                        if (checkDate)
-                            touchEndBoxData()
-                        if (checkPin)
-                            touchEndBoxPin()
-                        return
-                    }
-                }
-
-                if (checkDate && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardDate.length < 5) {
-                    if (scope.cardDate.length == 2)
-                        scope.cardDate += '/'
-                    scope.cardDate += myValue;
-                    scope.cardDateOriginal += myValue;
-                    riot.update(scope.cardDate)
-                    if (scope.cardDate.length == 4) {
-                        return
-                    }
-                }
-                if (checkPin && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardPinOriginal.length < 4) {
-                    scope.cardPin += ' * ';
-                    scope.cardPinOriginal += myValue;
-                    riot.update(scope.cardPin)
-                    if (scope.cardPin.length == 4) {
-                        return
-                    }
-                }
-
+      if (myValue != 'x') {
+        if (checkOne && scope.cardNumberPartOne.length < 4) {
+          scope.cardNumberPartOne += myValue;
+          riot.update(scope.cardNumberPartOne)
+          if (scope.cardNumberPartOne.length == 4) {
+            if (scope.cardNumberPartOne == '8600') {
+              checkDate = true;
+              checkPin = false;
             }
             else {
-                if (checkOne) {
-                    scope.cardNumberPartOne = scope.cardNumberPartOne.substring(0, scope.cardNumberPartOne.length - 1);
-                    riot.update(scope.cardNumberPartOne)
-                }
-
-                if (checkTwo) {
-                    scope.cardNumberPartTwo = scope.cardNumberPartTwo.substring(0, scope.cardNumberPartTwo.length - 1);
-                    riot.update(scope.cardNumberPartTwo)
-                }
-
-                if (checkThree) {
-                    scope.cardNumberPartThree = scope.cardNumberPartThree.substring(0, scope.cardNumberPartThree.length - 1);
-                    riot.update(scope.cardNumberPartThree)
-                }
-
-                if (checkFour) {
-                    scope.cardNumberPartFour = scope.cardNumberPartFour.substring(0, scope.cardNumberPartFour.length - 1);
-                    riot.update(scope.cardNumberPartFour)
-                }
-
-                if (checkDate) {
-                    scope.cardDate = scope.cardDate.substring(0, scope.cardDate.length - 1);
-                    scope.cardDateOriginal = scope.cardDateOriginal.substring(0, scope.cardDateOriginal.length - 1);
-                    riot.update(scope.cardDate)
-                }
-                if (checkPin) {
-                    scope.cardPin = scope.cardPin.substring(0, scope.cardPin.length - 3);
-                    scope.cardPinOriginal = scope.cardPinOriginal.substring(0, scope.cardPinOriginal.length - 1);
-
-                    riot.update(scope.cardDate)
-                }
+              checkDate = false;
+              checkPin = true;
             }
-
-            cardNumber = scope.cardNumberPartOne + scope.cardNumberPartTwo + scope.cardNumberPartThree + scope.cardNumberPartFour;
-
+            touchEndBoxTwo()
+            return
+          }
         }
 
-        goToPinCode = function () {
-            event.preventDefault();
-            event.stopPropagation();
-            var secondParameter;
-            if(checkDate)
-                secondParameter = scope.cardDateOriginal
-            else
-                secondParameter = scope.cardPinOriginal
-
-            if (cardNumber.length == 16 && (scope.cardDateOriginal || scope.cardPinOriginal )) {
-                riotTags.innerHTML = "<view-pin-code>";
-                riot.mount('view-pin-code', [cardNumber, secondParameter]);
-            }
-            else
-            alert('error')
+        if (checkTwo && scope.cardNumberPartTwo.length < 4) {
+          scope.cardNumberPartTwo += myValue;
+          riot.update(scope.cardNumberPartTwo)
+          if (scope.cardNumberPartTwo.length == 4) {
+            touchEndBoxThree()
+            return
+          }
         }
-    </script>
+
+        if (checkThree && scope.cardNumberPartThree.length < 4) {
+          scope.cardNumberPartThree += myValue;
+          riot.update(scope.cardNumberPartThree)
+          if (scope.cardNumberPartThree.length == 4) {
+            touchEndBoxFour()
+            return
+          }
+        }
+
+        if (checkFour && scope.cardNumberPartFour.length < 4) {
+          scope.cardNumberPartFour += myValue;
+          riot.update(scope.cardNumberPartFour)
+          if (scope.cardNumberPartFour.length == 4) {
+            if (checkDate)
+              touchEndBoxData()
+            if (checkPin)
+              touchEndBoxPin()
+            return
+          }
+        }
+
+        if (checkDate && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardDate.length < 5) {
+          if (scope.cardDate.length == 2)
+            scope.cardDate += '/'
+          scope.cardDate += myValue;
+          scope.cardDateOriginal += myValue;
+          riot.update(scope.cardDate)
+          if (scope.cardDate.length == 4) {
+            return
+          }
+        }
+        if (checkPin && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardPinOriginal.length < 4) {
+          scope.cardPin += ' * ';
+          scope.cardPinOriginal += myValue;
+          riot.update(scope.cardPin)
+          if (scope.cardPin.length == 4) {
+            return
+          }
+        }
+
+      }
+      else {
+        if (checkOne) {
+          scope.cardNumberPartOne = scope.cardNumberPartOne.substring(0, scope.cardNumberPartOne.length - 1);
+          riot.update(scope.cardNumberPartOne)
+        }
+
+        if (checkTwo) {
+          scope.cardNumberPartTwo = scope.cardNumberPartTwo.substring(0, scope.cardNumberPartTwo.length - 1);
+          riot.update(scope.cardNumberPartTwo)
+        }
+
+        if (checkThree) {
+          scope.cardNumberPartThree = scope.cardNumberPartThree.substring(0, scope.cardNumberPartThree.length - 1);
+          riot.update(scope.cardNumberPartThree)
+        }
+
+        if (checkFour) {
+          scope.cardNumberPartFour = scope.cardNumberPartFour.substring(0, scope.cardNumberPartFour.length - 1);
+          riot.update(scope.cardNumberPartFour)
+        }
+
+        if (checkDate) {
+          scope.cardDate = scope.cardDate.substring(0, scope.cardDate.length - 1);
+          scope.cardDateOriginal = scope.cardDateOriginal.substring(0, scope.cardDateOriginal.length - 1);
+          riot.update(scope.cardDate)
+        }
+        if (checkPin) {
+          scope.cardPin = scope.cardPin.substring(0, scope.cardPin.length - 3);
+          scope.cardPinOriginal = scope.cardPinOriginal.substring(0, scope.cardPinOriginal.length - 1);
+
+          riot.update(scope.cardDate)
+        }
+      }
+
+      cardNumber = scope.cardNumberPartOne + scope.cardNumberPartTwo + scope.cardNumberPartThree + scope.cardNumberPartFour;
+
+    }
+
+    goToPinCode = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      var secondParameter;
+      if (checkDate)
+        secondParameter = scope.cardDateOriginal
+      else
+        secondParameter = scope.cardPinOriginal
+
+      if (cardNumber.length == 16 && (scope.cardDateOriginal || scope.cardPinOriginal )) {
+        riotTags.innerHTML = "<view-pin-code>";
+        riot.mount('view-pin-code', [cardNumber, secondParameter]);
+      }
+      else
+        alert('error')
+    }
+  </script>
 </view-registration-client>

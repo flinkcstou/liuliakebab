@@ -15,7 +15,7 @@
     var delta;
     touchStartService = function () {
       touchStartX = event.changedTouches[0].pageX;
-      leftOfDelta = -(540 * cardNumberOfService *  widthK) - touchStartX;
+      leftOfDelta = -(540 * cardNumberOfService * widthK) - touchStartX;
       delta = leftOfDelta;
     }
 
@@ -39,8 +39,8 @@
     changePosition = function () {
       if (touchEndX < touchStartX) {
         cardNumberOfService = 1;
-        this.containerService.style.transform = "translate3d("+-540 * widthK +"px, 0, 0)";
-        this.containerService.style.webkitTransform = "translate3d("+-540 * widthK +"px, 0, 0)";
+        this.containerService.style.transform = "translate3d(" + -540 * widthK + "px, 0, 0)";
+        this.containerService.style.webkitTransform = "translate3d(" + -540 * widthK + "px, 0, 0)";
         this.containerService.style.transition = '0.3s';
         this.containerService.style.webkitTransition = '0.3s';
       }

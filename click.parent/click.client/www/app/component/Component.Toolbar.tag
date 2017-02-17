@@ -35,7 +35,7 @@
     }
 
     goToViewInfo = function () {
-      this.riotTags.innerHTML  = '<view-info>';
+      this.riotTags.innerHTML = '<view-info>';
       riot.mount('view-info');
     }
   </script>

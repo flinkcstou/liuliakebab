@@ -8,10 +8,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report') {
       history.arrayOfHistory.push(
-              {
-                "view": 'view-report',
-                "params": ''
-              }
+        {
+          "view": 'view-report',
+          "params": ''
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }

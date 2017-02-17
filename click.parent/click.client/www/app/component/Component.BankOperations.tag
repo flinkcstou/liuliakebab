@@ -1,52 +1,53 @@
 <component-bank-operations>
-    <div class="bank-operations">
-        <div class="top-operations-buttons">
-            <div class="bank-operation-button bank-operation-button-pay" ontouchend="goToPayView()">
-                <div class="bank-operation-icon operation-pay-icon">
-                </div>
-            </div>
-            <label class="bank-operation-label bank-operation-label-pay">{window.languages.ComponentBankOperationsPay}</label>
-
-            <div class="bank-operation-button bank-operation-button-transfer" ontouchend="goToTransferView()">
-                <div class="bank-operation-icon operation-transfer-icon">
-                </div>
-            </div>
-            <label class="bank-operation-label bank-operation-label-transfer">{window.languages.ComponentBankOperationsTransfer}</label>
-
-            <div class="bank-operation-button bank-operation-button-autopay" ontouchend="goToAutoPayView()">
-                <div class="bank-operation-icon operation-autopay-icon">
-                </div>
-            </div>
-            <label class="bank-operation-label bank-operation-label-autopay">{window.languages.ComponentBankOperationsAutoPay}</label>
+  <div class="bank-operations">
+    <div class="top-operations-buttons">
+      <div class="bank-operation-button bank-operation-button-pay" ontouchend="goToPayView()">
+        <div class="bank-operation-icon operation-pay-icon">
         </div>
+      </div>
+      <label class="bank-operation-label bank-operation-label-pay">{window.languages.ComponentBankOperationsPay}</label>
 
+      <div class="bank-operation-button bank-operation-button-transfer" ontouchend="goToTransferView()">
+        <div class="bank-operation-icon operation-transfer-icon">
+        </div>
+      </div>
+      <label class="bank-operation-label bank-operation-label-transfer">{window.languages.ComponentBankOperationsTransfer}</label>
+
+      <div class="bank-operation-button bank-operation-button-autopay" ontouchend="goToAutoPayView()">
+        <div class="bank-operation-icon operation-autopay-icon">
+        </div>
+      </div>
+      <label
+        class="bank-operation-label bank-operation-label-autopay">{window.languages.ComponentBankOperationsAutoPay}</label>
     </div>
 
-    <script>
+  </div>
 
-        var scope = this;
-        goToPayView = function (e) {
-            event.preventDefault();
-            event.stopPropagation();
+  <script>
 
-            riotTags.innerHTML = "<view-pay>";
-            riot.mount('view-pay');
-        }
+    var scope = this;
+    goToPayView = function (e) {
+      event.preventDefault();
+      event.stopPropagation();
 
-        goToTransferView = function (e) {
-            event.preventDefault();
-            event.stopPropagation();
+      riotTags.innerHTML = "<view-pay>";
+      riot.mount('view-pay');
+    }
 
-            riotTags.innerHTML = "<view-transfer>";
-            riot.mount('view-transfer');
-        }
+    goToTransferView = function (e) {
+      event.preventDefault();
+      event.stopPropagation();
 
-        goToAutoPayView = function (e) {
-            event.preventDefault();
-            event.stopPropagation();
+      riotTags.innerHTML = "<view-transfer>";
+      riot.mount('view-transfer');
+    }
 
-            riotTags.innerHTML = "<view-auto-pay>";
-            riot.mount('view-auto-pay');
-        }
-    </script>
+    goToAutoPayView = function (e) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riotTags.innerHTML = "<view-auto-pay>";
+      riot.mount('view-auto-pay');
+    }
+  </script>
 </component-bank-operations>

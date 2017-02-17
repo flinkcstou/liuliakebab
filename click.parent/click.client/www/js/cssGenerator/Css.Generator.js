@@ -2183,7 +2183,7 @@ var css = {
   "}",
 
   servicePageDropdownContainer: ".servicepage-dropdown-container" +
-  "{"+
+  "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height: 55%;" +

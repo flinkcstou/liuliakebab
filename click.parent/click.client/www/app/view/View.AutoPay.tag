@@ -7,12 +7,12 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-auto-pay') {
       history.arrayOfHistory.push(
-              {
-                "view": 'view-auto-pay',
-                "params": ''
-              }
+        {
+          "view": 'view-auto-pay',
+          "params": ''
+        }
       );
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
     scope = this;
