@@ -3404,7 +3404,7 @@ var css = {
   "position: relative;" +
   "height: 6%;" +
   "width: 51%;" +
-  "top: 45%;" +
+  "top: 50%;" +
   "display: table;" +
   "background-color: #027fe4;" +
   "border-radius:" + 50 * widthK + "px;" +
