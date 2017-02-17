@@ -40,8 +40,8 @@ window.fakedSocket.register("device.register.confirm", function (input) {
           "error_note": ""
         }]
       ];
-      }
-
+  }
+else
   return [
     {
       "method": input.method,

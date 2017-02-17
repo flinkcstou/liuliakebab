@@ -157,9 +157,9 @@
     }
   }
 
-//  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
-//    this.closeDemo();
-//  }
+  //  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
+  //    this.closeDemo();
+  //  }
   function onBackKeyDown() {
     history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
 
@@ -191,7 +191,7 @@
     }
   }
 
-  function checkImageURL(dirEntry, fileName, fieldName, assetURL, object, callback) {
+  function checkImageURL(dirEntry, fileName, assetURL, index, callback) {
 
     var xhr = new XMLHttpRequest();
 
@@ -203,8 +203,8 @@
 
         var blob = new Blob([this.response], {type: 'image/png'});
         console.log("status 200 For " + fileName);
-        object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
-        callback(object);
+        //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
+        callback(false, index, fileName);
       }
     };
 
@@ -225,8 +225,8 @@
         var folderpath = cordova.file.dataDirectory;
 
         savebase64AsImageFile(folderpath, fileName, realData, dataType);
-        object[fieldName] = cordova.file.dataDirectory + fileName;
-        callback(object);
+//        object[fieldName] = cordova.file.dataDirectory + fileName;
+        callback(true, index, fileName);
       });
       event.preventDefault();
 
