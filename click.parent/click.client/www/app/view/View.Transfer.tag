@@ -371,7 +371,7 @@
       }
       scope.suggestionOne.phoneNumber = phone;
       console.log(scope.suggestionOne.phoneNumber)
-      contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length).replace(/\s/g, '');
+      contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length);
     }
 
     secondSuggestionBlock = function () {
@@ -383,9 +383,9 @@
       for (var i in digits) {
         phone += digits[i]
       }
-      scope.suggestionOne.phoneNumber = phone;
+      scope.suggestionTwo.phoneNumber = phone;
 
-      contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length).replace(/\s/g, '');
+      contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length);
     }
 
 
