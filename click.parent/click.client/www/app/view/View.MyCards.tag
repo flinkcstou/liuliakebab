@@ -98,9 +98,6 @@
         scope.arrayOfOperationsByAccount = [];
 
         scope.cardInformation = cardInformation = function (cardIdFromCarousel) {
-            event.preventDefault();
-            event.stopPropagation();
-            console.log('cardIdFromCarousel', cardIdFromCarousel)
 
             history.arrayOfHistory[history.arrayOfHistory.length - 1].params[0] = cardIdFromCarousel;
             history.arrayOfHistory[history.arrayOfHistory.length - 1].view = 'view-my-cards';
@@ -108,6 +105,7 @@
 
             scope.card = scope.cardsArray[cardIdFromCarousel];
             scope.arrayOfOperationsByAccount = [];
+            riot.update()
             console.log(scope.card)
 
             window.api.call({

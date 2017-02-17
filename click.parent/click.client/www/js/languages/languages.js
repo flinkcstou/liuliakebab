@@ -76,8 +76,8 @@ var RU_LANGUAGES =
 
   "ViewPayTransferMenuNameContact": "КОНТАКТ",
   "ViewPayTransferMenuNameCard": "КАРТА",
-  "ViewPayTransferContactTextField": "Номер телефона получателя:",
-  "ViewPayTransferCardTextField": "Номер карты получателя:",
+  "ViewPayTransferContactTextField": "Укажите номер телефона получателя:",
+  "ViewPayTransferCardTextField": "Укажите номер карты получателя:",
   "ViewPayTransferNext": "ДАЛЕЕ",
   "ViewPayTransferTitle": "ПЕРЕВОДЫ",
 

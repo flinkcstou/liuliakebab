@@ -57,6 +57,11 @@
                                             result[1][0].balance.substring(3, 6) + ' ' + result[1][0].balance.substring(6, result[1][0].balance.length)
                                 }
 
+                                if (result[1][0].balance.length == 8) {
+                                    result[1][0].balance = result[1][0].balance.substring(0, 2) + ' ' +
+                                            result[1][0].balance.substring(2, 5) + ' ' + result[1][0].balance.substring(5, result[1][0].balance.length)
+                                }
+
                                 if (result[1][0].balance.length == 7) {
                                     result[1][0].balance = result[1][0].balance.substring(0, 1) + ' ' +
                                             result[1][0].balance.substring(1, 4) + ' ' + result[1][0].balance.substring(4, result[1][0].balance.length)

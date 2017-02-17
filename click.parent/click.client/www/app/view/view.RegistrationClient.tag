@@ -38,9 +38,11 @@
         </div>
     </div>
     </div>
+    <div class="registration-client-button-enter registration-client-button-enter-container" ontouchend="goToPinCode()">
+        <div class="button-enter-label">Далее</div>
+    </div>
 
-    <div class="registration-keyboard-field keyboard-field">
-        <div class="registration-button-help" ontouchend="goToPinCode()">Далее</div>
+    <div class="registration-client-keyboard-field keyboard-field">
         <component-keyboard></component-keyboard>
     </div>
 

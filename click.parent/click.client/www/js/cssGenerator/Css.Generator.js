@@ -4586,6 +4586,29 @@ var css = {
   "left:" + 84 * widthK + "px;" +
   "}",
 
+  registrationClientButtonEnter: ".registration-client-button-enter " +
+  "{" +
+  "top:" + 50 * widthK + "px;" +
+  "}",
+
+  registrationClientKeyboardField: ".registration-client-keyboard-field " +
+  "{" +
+  "position: absolute;" +
+  "bottom:" + 107 * heightK + "px;" +
+  "left:" + 110 * widthK + "px;" +
+  "}",
+
+  registrationClientButtonEnterContainer: ".registration-client-button-enter-container " +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "height: 8%;" +
+  "background-color: #01cfff;" +
+  "margin-right: auto;" +
+  "border-radius:" + 80 * widthK + "px;" +
+  "margin-left: auto;" +
+  "}",
+
   //VIEW PIN CODE
 
   viewPinCode: ".view-pincode " +
