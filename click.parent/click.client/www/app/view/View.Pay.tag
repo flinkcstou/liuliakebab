@@ -92,7 +92,6 @@
 
                     var icon = result[1][i].icon;
                     var filename = icon.substr(icon.lastIndexOf('/') + 1);
-                    console.log("filename=" + filename);
 
                     var newIconBool = checkImageURL;
                     newIconBool('www/resources/icons/ViewPay/category/', filename, icon, j, function (bool, index, fileName) {
@@ -101,7 +100,6 @@
                         scope.categoryList[index]['icon'] = cordova.file.dataDirectory + fileName;//
                       } else {
                         scope.categoryList[index]['icon'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/category/' + fileName;
-//                        alert("new icon=" + scope.categoryList[index]['icon']);
                       }
 
 
@@ -233,28 +231,19 @@
                       scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
                       var icon = result[1][i].image;
                       var filename = icon.substr(icon.lastIndexOf('/') + 1);
-                      console.log("filename=" + filename);
-
-                      //alert('file system open: ' + fs.name);
 
                       var newIconBool = checkImageURL;
                       newIconBool('www/resources/icons/ViewPay/service/', filename, 'image', icon, result[1][i], function (object) {
-//                        alert("service object id and icon=" + object.id + "," + object.image);
                         scope.serviceList.push(object);
                         if (!scope.servicesMapByCategory[object.category_id]) {
                           scope.servicesMapByCategory[object.category_id] = [];
                           if (object.category_id == 1 && object.id == window.mOperators[scope.operatorKey]) {
-                            console.log("in my numb");
-                            console.log("obj id=", object.id);
                             localStorage.setItem('myNumberOperatorId', object.id);
-//                            localStorage.setItem('myNumberOperatorName', object.name);
-//                            localStorage.setItem('myNumberOperatorImage', object.image);
+
                             var myNumberObject = {};
                             myNumberObject.name = 'Мой номер';
                             myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
                             myNumberObject.id = 'mynumber' + object.id;
-                            console.log("obj id 2=", object.id);
-                            console.log("my numb obj id =", myNumberObject.id);
                             scope.servicesMapByCategory[object.category_id].push(myNumberObject);
                             //console.log("ID=", viewServicePage.myNumberOperatorId, ",,,Name=", viewServicePage.myNumberOperatorName, ",,,Image=", viewServicePage.myNumberOperatorImage);
                           }
@@ -296,16 +285,12 @@
                     if (!scope.servicesMapByCategory[result[1][i].category_id]) {
                       scope.servicesMapByCategory[result[1][i].category_id] = [];
                       if (result[1][i].category_id == 1 && result[1][i].id == window.mOperators[scope.operatorKey]) {
-                        console.log("in my numb");
-                        console.log("obj id=", result[1][i].id);
                         localStorage.setItem('myNumberOperatorId', result[1][i].id);
                         var myNumberObject = {};
                         myNumberObject.name = 'Мой номер';
                         myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
                         myNumberObject.id = 'mynumber' + result[1][i].id;
-                        console.log("my numb obj id =", myNumberObject.id);
                         scope.servicesMapByCategory[result[1][i].category_id].push(myNumberObject);
-                        console.log("obj id 2=", result[1][i].id);
                         //console.log("ID=", viewServicePage.myNumberOperatorId, ",,,Name=", viewServicePage.myNumberOperatorName, ",,,Image=", viewServicePage.myNumberOperatorImage);
                       }
                       scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
@@ -359,7 +344,7 @@
           if (result[0][0].error == 0) {
             if (result[1])
               for (var i in result[1]) {
-                console.log("1. service id=", result[1][i].service_id, "element:", result[1][i]);
+//                console.log("1. service id=", result[1][i].service_id, "element:", result[1][i]);
                 if (!scope.servicesParamsMapOne[result[1][i].service_id]) {
                   scope.servicesParamsMapOne[result[1][i].service_id] = [];
                   scope.servicesParamsMapOne[result[1][i].service_id].push(result[1][i]);
@@ -371,7 +356,7 @@
               }
             if (result[2])
               for (var i in result[2]) {
-                console.log("2. service id=", result[2][i].service_id, "element:", result[2][i]);
+//                console.log("2. service id=", result[2][i].service_id, "element:", result[2][i]);
                 if (!scope.servicesParamsMapTwo[result[2][i].service_id]) {
                   scope.servicesParamsMapTwo[result[2][i].service_id] = [];
                   scope.servicesParamsMapTwo[result[2][i].service_id].push(result[2][i]);
@@ -382,7 +367,7 @@
               }
             if (result[3])
               for (var i in result[3]) {
-                console.log("3. service id=", result[3][i].service_id, "element:", result[3][i]);
+//                console.log("3. service id=", result[3][i].service_id, "element:", result[3][i]);
                 if (!scope.servicesParamsMapThree[result[3][i].service_id]) {
                   scope.servicesParamsMapThree[result[3][i].service_id] = [];
                   scope.servicesParamsMapThree[result[3][i].service_id].push(result[3][i]);

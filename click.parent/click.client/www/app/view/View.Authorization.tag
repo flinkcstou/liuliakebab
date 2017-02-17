@@ -236,30 +236,22 @@
 
                       var newIconBool = checkImageURL;
                       newIconBool('www/resources/icons/cards/', filename, icon, j, function (bool, index, fileName) {
-//                        alert("bool" + bool);
-//                        alert("index" + index);
-//                        alert("filename" + fileName);
 
                         if (bool) {
                           arrayAccountInfo[index].background_url = cordova.file.dataDirectory + fileName;
-                          alert("new icon=" + arrayAccountInfo[index]['background_url']);
                         } else {
                           arrayAccountInfo[index].background_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/' + fileName;
-                          alert("new icon=" + arrayAccountInfo[index]['background_url']);
                         }
 
                         var icon2 = arrayAccountInfo[index].image_url;
                         var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
                         var newIcon = checkImageURL;
                         newIcon('www/resources/icons/cards/logo/', filename2, icon2, index, function (bool2, index2, fileName2) {
-//                          alert("card id 2=" + object2.id + "," + object2.image_url);
 
                           if (bool2) {
                             arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
-                            alert("new icon=" + arrayAccountInfo[index2]['image_url']);
                           } else {
                             arrayAccountInfo[index2].image_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/logo/' + fileName2;
-                            alert("new icon=" + arrayAccountInfo[index2]['image_url']);
                           }
 
                           if (result[1].length == arrayAccountInfo.length) {
