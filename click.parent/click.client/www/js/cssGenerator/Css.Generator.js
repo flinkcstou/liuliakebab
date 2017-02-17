@@ -2507,7 +2507,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 500 * widthK + "px;" +
+  "height:60%;" +
   "top: 7.5%;" +
   "background-color: transparent;" +
   "overflow: scroll;" +
@@ -2614,7 +2614,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
     //"height: 46%;" +
-  "top: 52%;" +
+  "top: 67%;" +
   "bottom:0;" +
   "background-color: transparent;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +
@@ -2626,7 +2626,7 @@ var css = {
   "bottom: 24%;" +
   "position: absolute;" +
   "width: 64%;" +
-  "height: 17%;" +
+  "height: 22%;" +
   "border-radius:" + 80 * widthK + "px; " +
   "left: 18%;" +
   "background-color: rgb(1, 124, 227);" +
@@ -2640,7 +2640,7 @@ var css = {
   "font-size: " + 44 * widthK + "px; " +
   "margin: auto;" +
   "color: white;" +
-    //"right: 10%;" +
+  "right: 10%;" +
   "}",
 
   payconfirmDataContainer: ".payconfirm-data-container" +
