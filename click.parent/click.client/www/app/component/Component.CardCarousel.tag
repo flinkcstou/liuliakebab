@@ -226,24 +226,25 @@
 
 
           cardsarray[getAccountsCards[i].id] = card;
-          console.log(cardsarray)
 
           localStorage.setItem("click_client_cards", JSON.stringify(cardsarray));
 
           count++;
           localStorage.setItem('click_client_countCard', count);
-          riot.mount("component-card");
         }
 
-      var tmpArray = [];
-      for (var j in cardsarray) {
-        tmpArray.push(cardsarray[j])
-      }
-
-      console.log('TMPARRAT', tmpArray)
     }
-    if (localStorage.getItem('click_client_accountInfo'))
+    if (localStorage.getItem('click_client_accountInfo')) {
+
+      for (var i = 0; i < getAccountsCards.length; i++) {
+        if(getAccountsCards[i].id == loginInfo.default_account){
+          var tmp = getAccountsCards[0];
+          getAccountsCards[0] = getAccountsCards[i];
+          getAccountsCards[i] = tmp;
+        }
+      }
       scope.addCard(getAccountsCards);
+    }
 
     function changePosition() {
 
