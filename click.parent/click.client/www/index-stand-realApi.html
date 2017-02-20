@@ -155,7 +155,7 @@
       dir.getFile(filename, {create: true, exclusive: false}, function (file) {
         console.log("File created succesfully.");
         file.createWriter(function (fileWriter) {
-          ("Writing content to file");
+          console.log("Writing content to file");
           fileWriter.write(DataBlob);
         }, function () {
           alert('Unable to save file in path ' + folderpath);

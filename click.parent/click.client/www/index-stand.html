@@ -118,8 +118,8 @@
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
 
-      if(device.platform == 'Android')
-      permissionAccess();
+      if (device.platform == 'Android')
+        permissionAccess();
 
       var GENERATOR = document.createElement('script');
       GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
@@ -248,7 +248,7 @@
       dir.getFile(filename, {create: true, exclusive: false}, function (file) {
         console.log("File created succesfully." + filename);
         file.createWriter(function (fileWriter) {
-          ("Writing content to file");
+          console.log("Writing content to file");
           fileWriter.write(DataBlob);
         }, function () {
           console.log('Unable to save file in path ' + folderpath);

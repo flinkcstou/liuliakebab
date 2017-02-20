@@ -236,9 +236,9 @@
 
                       var newIconBool = checkImageURL;
                       newIconBool('www/resources/icons/cards/', filename, icon, j, function (bool, index, fileName) {
-                        alert("bool" + bool);
-                        alert("index" + index);
-                        alert("filename" + fileName);
+                        alert("bool=" + bool);
+                        alert("index=" + index);
+                        alert("filename=" + fileName);
 
                         if (bool) {
                           arrayAccountInfo[index].background_url = cordova.file.dataDirectory + fileName;
