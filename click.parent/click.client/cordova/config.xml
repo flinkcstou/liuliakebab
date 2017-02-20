@@ -17,6 +17,7 @@
   <plugin name="cordova-plugin-android-permissions"/>
   <plugin name="cordova-plugin-sim"/>
   <plugin name="cordova-plugin-phonedialer"/>
+  <plugin name="cordova-plugin-keepe-cardio"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
@@ -35,9 +36,6 @@
   </platform>
 
   <platform name="android">
-    <preference name="StatusBarOverlaysWebView" value="false"/>
-    <preference name="StatusBarBackgroundColor" value="#165769"/>
-    <preference name="StatusBarStyle" value="lightcontent"/>
     <allow-intent href="market:*"/>
     <preference name="android-minSdkVersion" value="14"/>
     <preference name="Fullscreen" value="false"/>
