@@ -13,7 +13,7 @@ public class CompileCordovaAndroid {
     clickClient.cd("cordova").cmd("cordova compile android");
 
     clickClient.xmlFile("cordova/platforms/android/AndroidManifest.xml")
-      .modify(xml -> xml.changeAttr("/manifest/application/activity", "android:windowSoftInputMode", "adjustPan"))
+      .modify(xml -> xml.changeAttr("/manifest/application/activity[@name='MainActivity']", "android:windowSoftInputMode", "adjustPan"))
       .save();
 
 
