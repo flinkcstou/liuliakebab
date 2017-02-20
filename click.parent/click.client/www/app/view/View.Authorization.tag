@@ -20,7 +20,9 @@
   </div>
 
   <div class="authorization-buttons-container">
-    <div id="TESTID" class="authorization-button-forget-pin" >{window.languages.ViewAuthorizationForgetPinLabel}</div>
+    <div id="TESTID" class="authorization-button-forget-pin" ontouchend="TEST()">
+      {window.languages.ViewAuthorizationForgetPinLabel}
+    </div>
     <div class="authorization-button-registration" ontouchend="registrationClientTouchEnd()">
       {window.languages.ViewAuthorizationRegistrationLabel}
     </div>
@@ -29,10 +31,52 @@
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
 
-
   <script>
 
+    TEST = function () {
+      CardIO.scan({
+        "expiry": true,
+        "cvv": true,
+        "zip": false,
+        "suppressManual": false,
+        "suppressConfirm": false,
+        "hideLogo": true
+      }, onCardIOComplete, onCardIOCancel);
+    };
 
+
+      CardIO.canScan(onCardIOCheck);
+
+      function onCardIOComplete(response) {
+        var cardIOResponseFields = [
+          "card_type",
+          "redacted_card_number",
+          "card_number",
+          "expiry_month",
+          "expiry_year",
+          "cvv",
+          "zip"
+        ];
+
+        var len = cardIOResponseFields.length;
+        console.log("card.io scan complete");
+        for (var i = 0; i < len; i++) {
+          var field = cardIOResponseFields[i];
+          alert(field + ": " + response[field]);
+        }
+      }
+
+      function onCardIOCancel(error) {
+        console.log("card.io scan cancelled");
+        console.log(error)
+      }
+
+      function onCardIOCheck(canScan) {
+        console.log("card.io canScan? " + canScan);
+        if (!canScan) {
+          console.log('can Scan false')
+        }
+      }
 
 
     if (history.arrayOfHistory.length != 0) {
@@ -144,8 +188,6 @@
     }
 
     enter = function () {
-      event.preventDefault();
-      event.stopPropagation();
 
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
@@ -295,6 +337,57 @@
           riot.mount('view-main-page');
         }
       }
+    }
+
+    if(device.platform == 'Android'){
+
+      function isAvailableSuccess(result) {
+        console.log("FingerprintAuth available: " + JSON.stringify(result));
+        result.isAvailable = true;
+        if (result.isAvailable) {
+          var encryptConfig = {
+            clientId: "myAppName",
+            username: "currentUser",
+            password: "currentUserPassword"
+
+          }; // See config object for required parameters
+          FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
+        }
+      }
+
+      function isAvailableError(message) {
+        console.log("isAvailableError(): " + message);
+      }
+
+      function encryptSuccessCallback(result) {
+        console.log("successCallback(): " + JSON.stringify(result));
+        if (result.withFingerprint) {
+          console.log("Successfully encrypted credentials.");
+          console.log("Encrypted credentials: " + result.token);
+          pin = '11111';
+          enter();
+        } else if (result.withBackup) {
+          console.log("Authenticated with backup password");
+        }
+      }
+
+      function encryptErrorCallback(error) {
+        if (error === "Cancelled") {
+          console.log("FingerprintAuth Dialog Cancelled!");
+        } else {
+          console.log("FingerprintAuth Error: " + error);
+        }
+      }
+
+      FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
+
+    }
+
+    if(device.platform == 'iOS'){
+      window.plugins.touchid.isAvailable(
+        function() {alert('available!')}, // success handler: TouchID available
+        function(msg) {alert('not available, message: ' + msg)} // error handler: no TouchID available
+      );
     }
 
   </script>
