@@ -157,14 +157,14 @@
       scope.serviceIcon = scope.service.image;
       scope.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
     }
-    //
-    //    if (scope.servicesParamsMapOne[viewPay.chosenServiceId])
-    //      console.log("Map One!!!!", scope.servicesParamsMapOne[viewPay.chosenServiceId]);
-    //    if (scope.servicesParamsMapTwo[viewPay.chosenServiceId])
-    //      console.log("Map Two!!!!", scope.servicesParamsMapTwo[viewPay.chosenServiceId]);
-    //    if (scope.servicesParamsMapThree[viewPay.chosenServiceId])
-    //      console.log("Map Three!!!!", scope.servicesParamsMapThree[viewPay.chosenServiceId]);
-    //
+
+    if (scope.servicesParamsMapOne[viewPay.chosenServiceId])
+      console.log("Map One!!!!", scope.servicesParamsMapOne[viewPay.chosenServiceId]);
+    if (scope.servicesParamsMapTwo[viewPay.chosenServiceId])
+      console.log("Map Two!!!!", scope.servicesParamsMapTwo[viewPay.chosenServiceId]);
+    if (scope.servicesParamsMapThree[viewPay.chosenServiceId])
+      console.log("Map Three!!!!", scope.servicesParamsMapThree[viewPay.chosenServiceId]);
+
 
     scope.categoryName = scope.categoryNamesMap[viewPay.categoryId];
     scope.formType = scope.service.form_type;

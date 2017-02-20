@@ -238,6 +238,12 @@
                       var newIconBool = checkImageURL;
                       newIconBool('www/resources/icons/ViewPay/service/', filename, icon, j, function (bool, index, fileName) {
 
+                        if (bool) {
+                          scope.serviceList[index]['image'] = cordova.file.dataDirectory + fileName;//
+                        } else {
+                          scope.serviceList[index]['image'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/service/' + fileName;
+                        }
+
 
                         if (!scope.servicesMapByCategory[scope.serviceList[index].category_id]) {
                           scope.servicesMapByCategory[scope.serviceList[index].category_id] = [];
@@ -249,7 +255,7 @@
                             myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
                             myNumberObject.id = 'mynumber' + scope.serviceList[index].id;
                             scope.servicesMapByCategory[scope.serviceList[index].category_id].push(myNumberObject);
-                            //console.log("ID=", viewServicePage.myNumberOperatorId, ",,,Name=", viewServicePage.myNumberOperatorName, ",,,Image=", viewServicePage.myNumberOperatorImage);
+
                           }
                           scope.servicesMapByCategory[scope.serviceList[index].category_id].push(scope.serviceList[index]);
                         }

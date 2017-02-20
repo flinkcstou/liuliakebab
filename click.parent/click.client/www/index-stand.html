@@ -166,10 +166,20 @@
     xhr.responseType = 'blob';
 
     xhr.onload = function () {
+      console.log("in onload");
 
       var blob = new Blob([this.response], {type: 'image/png'});
       console.log("status 200 For " + fileName);
+      //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
       callback(false, index, fileName);
+
+//      if (this.status == 200) {
+//
+//        var blob = new Blob([this.response], {type: 'image/png'});
+//        console.log("status 200 For " + fileName);
+//        //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
+//        callback(false, index, fileName);
+//      }
     };
 
     xhr.onerror = function () {
@@ -189,6 +199,7 @@
         var folderpath = cordova.file.dataDirectory;
 
         savebase64AsImageFile(folderpath, fileName, realData, dataType);
+
         callback(true, index, fileName);
       });
       event.preventDefault();
@@ -242,18 +253,26 @@
   }
 
   function convertFileToDataURLviaFileReader(url, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function () {
+    console.log("in convert!");
+    var xhr2 = new XMLHttpRequest();
+    xhr2.open('GET', url, true);
+    xhr2.responseType = 'blob';
 
+    xhr2.onload = function () {
+      console.log("in another onload 1");
       var reader = new FileReader();
       reader.onloadend = function () {
+        console.log("in another onload 2");
         callback(reader.result);
-      }
-      reader.readAsDataURL(xhr.response);
+      };
+      reader.readAsDataURL(xhr2.response);
     };
-    xhr.open('GET', url);
-    xhr.responseType = 'blob';
-    xhr.send();
+
+    xhr2.onerror = function () {
+      alert("Возможно у вас нет интернета, проверьте подключение.");
+    }
+
+    xhr2.send();
   }
 
 
