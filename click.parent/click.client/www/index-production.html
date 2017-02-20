@@ -48,7 +48,6 @@
 
 
     var permissions = cordova.plugins.permissions;
-    permissions.hasPermission(permissions.READ_SMS, checkPermissionCallbackOfSms, null);
     permissions.hasPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
     permissions.hasPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
     window.plugins.sim.getSimInfo(successOfSim, errorOfSim);
@@ -59,20 +58,6 @@
 
     function errorOfSim(error) {
       console.log(error)
-    }
-
-    function checkPermissionCallbackOfSms(status) {
-      if (!status.hasPermission) {
-        var errorCallback = function () {
-          console.log('SMS permission is not turned on');
-        }
-        permissions.requestPermission(
-          permissions.READ_SMS,
-          function (status) {
-            if (!status.hasPermission) errorCallback();
-          },
-          errorCallback);
-      }
     }
 
     function checkPermissionCallbackOfSim(status) {
@@ -153,15 +138,6 @@
 
     }
 
-  }
-
-
-  function readIncomingSms(e) {
-    var sms = e.data;
-    console.log(sms)
-    if (sms.address == "Click") {
-      viewSms.getSms(sms.body);
-    }
   }
 
   function checkImageURL(dirEntry, fileName, assetURL, index, callback) {

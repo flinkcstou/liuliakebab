@@ -208,60 +208,60 @@
       onSuccess: function (result) {
         if (result[0][0].error == 0) {
           var j = 0;
-          if (device.platform != 'BrowserStand') {
-            window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-
-              for (var i in result[1]) {
-
-
-                if (result[1][i].state == 0) {
-                  result[1][i].count = j;
-
-                  result[1][i].amount = result[1][i].amount.toString();
-
-                  if (result[1][i].amount.length == 7) {
-                    result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-                      result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
-
-                  }
-
-                  if (result[1][i].amount.length == 6) {
-                    result[1][i].amount = result[1][i].amount.substring(0, 3) + ' ' +
-                      result[1][i].amount.substring(3, result[1][i].amount.length)
-
-                  }
-
-                  if (result[1][i].amount.length == 5) {
-                    result[1][i].amount = result[1][i].amount.substring(0, 2) + ' ' +
-                      result[1][i].amount.substring(2, result[1][i].amount.length)
-
-                  }
-
-                  if (result[1][i].amount.length == 4) {
-                    result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-                      result[1][i].amount.substring(1, result[1][i].amount.length)
-
-                  }
-
-                  var icon = result[1][i].image;
-                  var filename = icon.substr(icon.lastIndexOf('/') + 1);
-
-                  var newIcon = checkImageURL;
-                  newIcon('www/resources/icons/ViewPay/service/', filename, 'image', icon, result[1][i], function (object) {
-                    scope.lastOperationContainer.push(object);
-//                    if (result[1].length == scope.lastOperationContainer.length) {
-//                      console.log("save into localstorage");
-//                      localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
-//                      localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
-//                    }
-                  });
-
-                  j++;
-                }
-
-              }
-            }, onErrorLoadFs);
-          } else {
+//          if (device.platform != 'BrowserStand') {
+//            window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+//
+//              for (var i in result[1]) {
+//
+//
+//                if (result[1][i].state == 0) {
+//                  result[1][i].count = j;
+//
+//                  result[1][i].amount = result[1][i].amount.toString();
+//
+//                  if (result[1][i].amount.length == 7) {
+//                    result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
+//                      result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
+//
+//                  }
+//
+//                  if (result[1][i].amount.length == 6) {
+//                    result[1][i].amount = result[1][i].amount.substring(0, 3) + ' ' +
+//                      result[1][i].amount.substring(3, result[1][i].amount.length)
+//
+//                  }
+//
+//                  if (result[1][i].amount.length == 5) {
+//                    result[1][i].amount = result[1][i].amount.substring(0, 2) + ' ' +
+//                      result[1][i].amount.substring(2, result[1][i].amount.length)
+//
+//                  }
+//
+//                  if (result[1][i].amount.length == 4) {
+//                    result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
+//                      result[1][i].amount.substring(1, result[1][i].amount.length)
+//
+//                  }
+//
+//                  var icon = result[1][i].image;
+//                  var filename = icon.substr(icon.lastIndexOf('/') + 1);
+//
+//                  var newIcon = checkImageURL;
+//                  newIcon('www/resources/icons/ViewPay/service/', filename, 'image', icon, result[1][i], function (object) {
+//                    scope.lastOperationContainer.push(object);
+////                    if (result[1].length == scope.lastOperationContainer.length) {
+////                      console.log("save into localstorage");
+////                      localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
+////                      localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
+////                    }
+//                  });
+//
+//                  j++;
+//                }
+//
+//              }
+//            }, onErrorLoadFs);
+//          } else {
             for (var i in result[1]) {
               if (result[1][i].state == 0) {
                 result[1][i].count = j;
@@ -296,7 +296,7 @@
                 j++;
               }
             }
-          }
+//          }
 //                    console.log('scope.lastOperationContainer', scope.lastOperationContainer)
           riot.update(scope.lastOperationContainer)
           console.log('scope.lastOperationContainer', scope.lastOperationContainer);
