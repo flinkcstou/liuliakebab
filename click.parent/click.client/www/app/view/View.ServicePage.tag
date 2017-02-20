@@ -131,6 +131,7 @@
     console.log(scope.servicesParamsMapOne);
     scope.servicesParamsMapTwo = JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"));
     //    this.notMyNumberMode = true;
+    scope.servicesParamsMapThree = JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"));
 
 
     if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
@@ -147,8 +148,7 @@
       this.on('mount', function () {
         firstField.style.display = 'none';
         amountField.style.top = '5.5%';
-      })
-
+      });
 //      riot.update(scope.myNumberMode);
     } else {
       console.log("chosen service id=", viewPay.chosenServiceId);
@@ -157,7 +157,14 @@
       scope.serviceIcon = scope.service.image;
       scope.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
     }
-
+    //
+    //    if (scope.servicesParamsMapOne[viewPay.chosenServiceId])
+    //      console.log("Map One!!!!", scope.servicesParamsMapOne[viewPay.chosenServiceId]);
+    //    if (scope.servicesParamsMapTwo[viewPay.chosenServiceId])
+    //      console.log("Map Two!!!!", scope.servicesParamsMapTwo[viewPay.chosenServiceId]);
+    //    if (scope.servicesParamsMapThree[viewPay.chosenServiceId])
+    //      console.log("Map Three!!!!", scope.servicesParamsMapThree[viewPay.chosenServiceId]);
+    //
 
     scope.categoryName = scope.categoryNamesMap[viewPay.categoryId];
     scope.formType = scope.service.form_type;
@@ -227,8 +234,8 @@
 
 
     if (scope.formType == 2) {
-      scope.servicesParamsMapThree = JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"));
-      console.log("map THREE=", scope.servicesParamsMapThree);
+
+//      console.log("map THREE=", scope.servicesParamsMapThree);
       scope.pincardsMap = {};
       scope.pincardIds = [];
       console.log("scope.service.id=", scope.service.id);

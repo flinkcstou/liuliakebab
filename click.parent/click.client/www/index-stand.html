@@ -166,13 +166,10 @@
     xhr.responseType = 'blob';
 
     xhr.onload = function () {
-      if (this.status == 200) {
 
-        var blob = new Blob([this.response], {type: 'image/png'});
-        console.log("status 200 For " + fileName);
-        //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
-        callback(false, index, fileName);
-      }
+      var blob = new Blob([this.response], {type: 'image/png'});
+      console.log("status 200 For " + fileName);
+      callback(false, index, fileName);
     };
 
     xhr.onerror = function () {
@@ -189,15 +186,13 @@
         // get the real base64 content of the file
         var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
 
-        var folderpath = cordova.file.applicationStorageDirectory;
+        var folderpath = cordova.file.dataDirectory;
 
         savebase64AsImageFile(folderpath, fileName, realData, dataType);
-//        object[fieldName] = cordova.file.dataDirectory + fileName;
         callback(true, index, fileName);
       });
       event.preventDefault();
-
-    }
+    };
     xhr.send();
   }
 
@@ -249,6 +244,7 @@
   function convertFileToDataURLviaFileReader(url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.onload = function () {
+
       var reader = new FileReader();
       reader.onloadend = function () {
         callback(reader.result);

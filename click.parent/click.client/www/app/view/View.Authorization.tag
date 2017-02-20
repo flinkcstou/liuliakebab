@@ -35,53 +35,52 @@
   <script>
 
 
-      function scanCreditCard() {
-        CardIO.canScan(onCardIOCheck);
+    function scanCreditCard() {
+      CardIO.canScan(onCardIOCheck);
 
-        function onCardIOComplete(response) {
-          var cardIOResponseFields = [
-            "cardType",
-            "redactedCardNumber",
-            "cardNumber",
-            "expiryMonth",
-            "expiryYear",
-            "cvv",
-            "postalCode"
-          ];
+      function onCardIOComplete(response) {
+        var cardIOResponseFields = [
+          "cardType",
+          "redactedCardNumber",
+          "cardNumber",
+          "expiryMonth",
+          "expiryYear",
+          "cvv",
+          "postalCode"
+        ];
 
-          var len = cardIOResponseFields.length;
-          alert("card.io scan complete");
-          for (var i = 0; i < len; i++) {
-            var field = cardIOResponseFields[i];
-            alert(field + ": " + response[field]);
-          }
-        }
-
-        function onCardIOCancel() {
-          alert("card.io scan cancelled");
-        }
-
-        function onCardIOCheck(canScan) {
-          alert("card.io canScan? " + canScan);
-          if (!canScan) {
-            alert("Manual entry");
-          }
-
-          scanCard = function () {
-            console.log('sd')
-            CardIO.scan({
-              "requireExpiry": true,
-              "scanExpiry": true,
-              "requirePostalCode": true,
-              "restrictPostalCodeToNumericOnly": true,
-              "hideCardIOLogo": true,
-              "suppressScan": false,
-              "keepApplicationTheme": true
-            }, onCardIOComplete, onCardIOCancel);
-          };
+        var len = cardIOResponseFields.length;
+        alert("card.io scan complete");
+        for (var i = 0; i < len; i++) {
+          var field = cardIOResponseFields[i];
+          alert(field + ": " + response[field]);
         }
       }
 
+      function onCardIOCancel() {
+        alert("card.io scan cancelled");
+      }
+
+      function onCardIOCheck(canScan) {
+        alert("card.io canScan? " + canScan);
+        if (!canScan) {
+          alert("Manual entry");
+        }
+
+        scanCard = function () {
+          console.log('sd')
+          CardIO.scan({
+            "requireExpiry": true,
+            "scanExpiry": true,
+            "requirePostalCode": true,
+            "restrictPostalCodeToNumericOnly": true,
+            "hideCardIOLogo": true,
+            "suppressScan": false,
+            "keepApplicationTheme": true
+          }, onCardIOComplete, onCardIOCancel);
+        };
+      }
+    }
 
 
     if (history.arrayOfHistory.length != 0) {
@@ -287,9 +286,6 @@
 
                       var newIconBool = checkImageURL;
                       newIconBool('www/resources/icons/cards/', filename, icon, j, function (bool, index, fileName) {
-                        alert("bool=" + bool);
-                        alert("index=" + index);
-                        alert("filename=" + fileName);
 
                         if (bool) {
                           arrayAccountInfo[index].background_url = cordova.file.dataDirectory + fileName;
@@ -301,7 +297,6 @@
                         var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
                         var newIcon = checkImageURL;
                         newIcon('www/resources/icons/cards/logo/', filename2, icon2, index, function (bool2, index2, fileName2) {
-                          alert("filename2" + fileName2);
 
                           if (bool2) {
                             arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;

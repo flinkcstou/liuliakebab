@@ -81,8 +81,8 @@
 
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
-      if(device.platform == 'Android')
-      permissionAccess();
+      if (device.platform == 'Android')
+        permissionAccess();
 
       var GENERATOR = document.createElement('script');
       GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
@@ -136,13 +136,10 @@
     xhr.responseType = 'blob';
 
     xhr.onload = function () {
-      if (this.status == 200) {
 
-        var blob = new Blob([this.response], {type: 'image/png'});
-        console.log("status 200 For " + fileName);
-        //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
-        callback(false, index, fileName);
-      }
+      var blob = new Blob([this.response], {type: 'image/png'});
+      console.log("status 200 For " + fileName);
+      callback(false, index, fileName);
     };
 
     xhr.onerror = function () {
