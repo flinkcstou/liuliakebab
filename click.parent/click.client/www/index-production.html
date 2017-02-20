@@ -34,17 +34,6 @@
   scope = this;
 
   permissionAccess = function () {
-    if (SMS) SMS.startWatch(function (success) {
-      console.log(success)
-    }, function (error) {
-      console.log(error)
-    });
-
-    if (SMS) SMS.enableIntercept(false, function (success) {
-      console.log('Enable Intercept', success)
-    }, function (error) {
-      console.log('Enable Intercept', error)
-    });
 
 
     var permissions = cordova.plugins.permissions;
