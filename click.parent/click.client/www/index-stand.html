@@ -45,20 +45,9 @@
 
 
   permissionAccess = function () {
-    if (SMS) SMS.startWatch(function (success) {
-      console.log(success)
-    }, function (error) {
-      console.log(error)
-    });
 
-    if (SMS) SMS.enableIntercept(false, function (success) {
-      console.log('Enable Intercept', success)
-    }, function (error) {
-      console.log('Enable Intercept', error)
-    });
 
     var permissions = cordova.plugins.permissions;
-    permissions.hasPermission(permissions.READ_SMS, checkPermissionCallbackOfSms, null);
     permissions.hasPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
     permissions.hasPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
     window.plugins.sim.getSimInfo(successOfSim, errorOfSim);
@@ -69,20 +58,6 @@
 
     function errorOfSim(error) {
       console.log(error)
-    }
-
-    function checkPermissionCallbackOfSms(status) {
-      if (!status.hasPermission) {
-        var errorCallback = function () {
-          console.log('SMS permission is not turned on');
-        }
-        permissions.requestPermission(
-          permissions.READ_SMS,
-          function (status) {
-            if (!status.hasPermission) errorCallback();
-          },
-          errorCallback);
-      }
     }
 
     function checkPermissionCallbackOfCall(status) {
@@ -138,7 +113,6 @@
       }
 
       document.addEventListener("backbutton", onBackKeyDown, false);
-      document.addEventListener('onSMSArrive', readIncomingSms);
     }, false);
   }
   else {
@@ -184,15 +158,6 @@
     }
   }
 
-
-  function readIncomingSms(e) {
-    var sms = e.data;
-    console.log(sms)
-    if (sms.address == "Click") {
-      viewSms.getSms(sms.body);
-    }
-  }
-
   function checkImageURL(dirEntry, fileName, assetURL, index, callback) {
 
     var xhr = new XMLHttpRequest();
@@ -224,7 +189,7 @@
         // get the real base64 content of the file
         var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
 
-        var folderpath = cordova.file.dataDirectory;
+        var folderpath = cordova.file.applicationStorageDirectory;
 
         savebase64AsImageFile(folderpath, fileName, realData, dataType);
 //        object[fieldName] = cordova.file.dataDirectory + fileName;

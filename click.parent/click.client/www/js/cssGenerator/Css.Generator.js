@@ -2321,6 +2321,7 @@ var css = {
   "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
+  "height:75%;" +
   "}",
 
   servicePageNumberInputPartTwo: ".servicepage-number-input-part-two" +

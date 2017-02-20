@@ -13,9 +13,7 @@
   <plugin name="cordova-plugin-contacts"/>
   <plugin name="cordova-plugin-device"/>
   <plugin name="cordova-plugin-keyboard"/>
-  <plugin name="org.apache.cordova.statusbar" spec="0.1.4" source="pgb"/>
   <plugin name="cordova-plugin-file"/>
-  <plugin name="cordova-plugin-sms"/>
   <plugin name="cordova-plugin-android-permissions"/>
   <plugin name="cordova-plugin-sim"/>
   <plugin name="cordova-plugin-phonedialer"/>

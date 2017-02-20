@@ -20,7 +20,9 @@
   </div>
 
   <div class="authorization-buttons-container">
-    <div class="authorization-button-forget-pin">{window.languages.ViewAuthorizationForgetPinLabel}</div>
+    <div class="authorization-button-forget-pin" ontouchend="scanCard()">
+      {window.languages.ViewAuthorizationForgetPinLabel}
+    </div>
     <div class="authorization-button-registration" ontouchend="registrationClientTouchEnd()">
       {window.languages.ViewAuthorizationRegistrationLabel}
     </div>
@@ -31,6 +33,55 @@
 
 
   <script>
+
+
+      function scanCreditCard() {
+        CardIO.canScan(onCardIOCheck);
+
+        function onCardIOComplete(response) {
+          var cardIOResponseFields = [
+            "cardType",
+            "redactedCardNumber",
+            "cardNumber",
+            "expiryMonth",
+            "expiryYear",
+            "cvv",
+            "postalCode"
+          ];
+
+          var len = cardIOResponseFields.length;
+          alert("card.io scan complete");
+          for (var i = 0; i < len; i++) {
+            var field = cardIOResponseFields[i];
+            alert(field + ": " + response[field]);
+          }
+        }
+
+        function onCardIOCancel() {
+          alert("card.io scan cancelled");
+        }
+
+        function onCardIOCheck(canScan) {
+          alert("card.io canScan? " + canScan);
+          if (!canScan) {
+            alert("Manual entry");
+          }
+
+          scanCard = function () {
+            console.log('sd')
+            CardIO.scan({
+              "requireExpiry": true,
+              "scanExpiry": true,
+              "requirePostalCode": true,
+              "restrictPostalCodeToNumericOnly": true,
+              "hideCardIOLogo": true,
+              "suppressScan": false,
+              "keepApplicationTheme": true
+            }, onCardIOComplete, onCardIOCancel);
+          };
+        }
+      }
+
 
 
     if (history.arrayOfHistory.length != 0) {
