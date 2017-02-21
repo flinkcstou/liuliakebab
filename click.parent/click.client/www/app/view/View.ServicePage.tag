@@ -132,21 +132,21 @@
       onBackKeyDown()
     };
 
-    searchContact = function() {
+    searchContact = function () {
       var maskOne = /[0-9]/g;
       window.plugins.PickContact.chooseContact(function (contactInfo) {
-          setTimeout(function () {
-            var phoneNumber = contact.phone;
-            var digits = phoneNumber.match(maskOne);
-            var phone = '';
-            for (var i in digits) {
-              phone += digits[i]
-            }
-            firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
-          }, 0);
-        }, function (error) {
-          console.log('error', error)
-        });
+        setTimeout(function () {
+          var phoneNumber = contact.phone;
+          var digits = phoneNumber.match(maskOne);
+          var phone = '';
+          for (var i in digits) {
+            phone += digits[i]
+          }
+          firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
+        }, 0);
+      }, function (error) {
+        console.log('error', error)
+      });
     }
 
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
@@ -620,7 +620,7 @@
         var amountText = {"amountText": amountForPayTransaction};
       } else if (scope.formType == 4) {
         var communalParam = {"communalParam": null};
-        if (internetPackageParam && amountText) {
+        if (scope.chosenFieldParamIdThree && scope.amountOfFormTypeFour) {
           var amountText = {"amountText": scope.amountOfFormTypeFour};
           var internetPackageParam = {"internetPackageParam": scope.chosenFieldParamIdThree};
         } else {

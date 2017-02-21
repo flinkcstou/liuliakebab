@@ -1392,11 +1392,11 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
       input_type: 1,
       max_len: "999999999",
       min_len: "0",
-      parameter_id: "65536",
-      placeholder: "Введите номер телефона с кодом города (г.Ташкент(71), Таш. Обл.(70), Каракалпакстан(61), Сырдарья(67))",
+      parameter_id: "1",
+      placeholder: "Введите номер телефона без 998",
       service_id: 4422,
       title: "Номер телефона",
-      ussd_query: "*880*0999999*{communal_param}*{param}*{amount}#"
+      ussd_query: "*880*0199999*{param}*{amount}#"
     }
   ]);
 
