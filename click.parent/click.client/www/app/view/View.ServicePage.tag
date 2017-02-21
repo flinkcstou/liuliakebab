@@ -126,7 +126,7 @@
 
     searchContact = function() {
       var maskOne = /[0-9]/g;
-        window.plugins.ContactPicker.pickContact(function (contact) {
+      window.plugins.PickContact.chooseContact(function (contactInfo) {
           setTimeout(function () {
             var phoneNumber = contact.phone;
             var digits = phoneNumber.match(maskOne);
@@ -136,8 +136,8 @@
             }
             firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
           }, 0);
-        }, function (onError) {
-          console.log('onError', onError)
+        }, function (error) {
+          console.log('error', error)
         });
     }
 

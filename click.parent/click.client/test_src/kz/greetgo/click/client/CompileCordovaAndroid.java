@@ -15,7 +15,7 @@ public class CompileCordovaAndroid {
     clickClient.xmlFile("cordova/platforms/android/AndroidManifest.xml")
       .modify(xml -> xml.changeAttr("/manifest/application/activity[@name='MainActivity']", "android:windowSoftInputMode", "adjustPan"))
       .save();
-    clickClient.cd("cordova").cmd("cordova plugin add https://github.com/nishilshah17/CordovaContactPicker.git");
+    clickClient.cd("cordova").cmd("cordova plugin add https://github.com/kolwit/com.kolwit.pickcontact.git");
 
 
   }

@@ -93,33 +93,36 @@
     var maskOne = /[0-9]/g;
 
     pickContactFromNative = function () {
-      window.plugins.ContactPicker.pickContact(function (contact) {
-        setTimeout(function () {
-          var phoneNumber = contact.phone;
-          var digits = phoneNumber.match(maskOne);
-          var phone = '';
-          for (var i in digits) {
-            phone += digits[i]
-          }
-          contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
-          if (contactPhoneNumberId.value.length != 0) {
-            checkPhoneForTransfer = true;
-            checkCardForTransfer = false;
-            console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
-              if(contactPhoneNumberId.value.length == 9){
+
+        window.plugins.PickContact.chooseContact(function (contactInfo) {
+          setTimeout(function () {
+            var phoneNumber = contactInfo.phoneNr;
+            var digits = phoneNumber.match(maskOne);
+            var phone = '';
+            for (var i in digits) {
+              phone += digits[i]
+            }
+            contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
+            if (contactPhoneNumberId.value.length != 0) {
+              checkPhoneForTransfer = true;
+              checkCardForTransfer = false;
+              console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
+              if (contactPhoneNumberId.value.length == 9) {
                 nextButtonId.style.display = 'block'
                 nextButtonId.style.display = 'table'
               }
               else
                 nextButtonId.style.display = 'none'
 
-          }
-        }, 0);
-      }, function (onError) {
-        console.log('onError', onError)
-        checkPhoneForTransfer = false;
-        checkCardForTransfer = false;
-      });
+            }// use time-out to fix iOS alert problem
+          }, 0);
+        }, function (error) {
+          console.log('error', error)
+          checkPhoneForTransfer = false;
+          checkCardForTransfer = false;
+        });
+
+
     }
 
     contactPhoneBlurAndChange = function () {
