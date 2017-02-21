@@ -44,8 +44,8 @@
       }, onCardIOComplete, onCardIOCancel);
     };
 
-    if(device.platform != 'BrowserStand')
-    CardIO.canScan(onCardIOCheck);
+    if (device.platform != 'BrowserStand')
+      CardIO.canScan(onCardIOCheck);
 
     function onCardIOComplete(response) {
       var cardIOResponseFields = [
@@ -136,7 +136,6 @@
     }
 
     updateEnteredPin = function () {
-
 
       if (enteredPin.length == 0) {
         circleOne.style.backgroundColor = 'transparent';

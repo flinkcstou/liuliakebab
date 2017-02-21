@@ -51,7 +51,7 @@
         checkRemember = false;
         return;
       }
-    }
+    };
 
     history.arrayOfHistory.push(
       {

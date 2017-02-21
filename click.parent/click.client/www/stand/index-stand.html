@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <script src="../js/languages/languages.js"></script>
+  <script src="../js/mOperators/mOperators.js"></script>
   <!-- CSS -->
 
   <script src="../stand/plugins/sms_fake.js"></script>
@@ -29,8 +30,6 @@
   <script src="../stand/fakedSocket.js"></script>
   <script src="../stand/allMethods.js"></script>
 
-
-
 </head>
 
 <body id="bodyId">
@@ -46,8 +45,11 @@
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
 
+      if (device.platform == 'Android')
+        permissionAccess();
+
       var GENERATOR = document.createElement('script');
-      GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
+      GENERATOR.src = '../js/cssGenerator/Css.Generator.js';
       document.head.appendChild(GENERATOR);
 
       firstMount.firstStep = function () {
@@ -60,53 +62,174 @@
           riot.mount('view-registration-device');
         }
         riot.mount('view-main-page');
-      }
+      };
 
       document.addEventListener("backbutton", onBackKeyDown, false);
     }, false);
+  }
+  else {
+    var GENERATOR = document.createElement('script');
+    GENERATOR.src = '../js/cssGenerator/Css.Generator.js';
+    document.head.appendChild(GENERATOR);
+
+    firstMount.firstStep = function () {
+      if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
+        scope.riotTags.innerHTML = "<view-authorization>";
+        riot.mount('view-authorization')
+      }
+      else {
+        scope.riotTags.innerHTML = "<view-registration-device>";
+        riot.mount('view-registration-device');
+      }
+
+    }
   }
 
 
   if (JSON.parse(localStorage.getItem('demo_version')) === true) {
     this.closeDemo();
   }
-  function onBackKeyDown() {
-    historyOfApp();
-  }
 
-  historyOfApp = function () {
-    console.log(this.riotTags);
+  function onBackKeyDown() {
     history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
 
     if (history.arrayOfHistory.length != 0) {
-      history.arrayOfHistory.pop();
-      if (history.arrayOfHistory.length != 0) {
-        console.log('THIS IS riotTags div ', this.riotTags)
-        console.log("JSON ", JSON.stringify(history.arrayOfHistory));
-        console.log('LAST ELEMENT ', history.arrayOfHistory[history.arrayOfHistory.length - 1]);
-        console.log('LAST ELEMENT in RIOT TAG ', "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1] + ">");
-        this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1] + ">";
-        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1]);
+      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-main-page'
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device'
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization') {
+        navigator.app.exitApp();
+      }
+      else {
+        history.arrayOfHistory.pop();
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+        console.log(history.arrayOfHistory[history.arrayOfHistory.length - 1].view)
+        console.log(history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
+        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+
       }
     }
   }
 
-  //MENU FUNCTIONS FOR ALL PAGES
-  //  var touchStartX, touchEndX;
-  //  touchStart = function () {
-  //    event.preventDefault();
-  //    event.stopPropagation();
-  //    touchStartX = event.changedTouches[0].pageX;
-  //  }
-  //
-  //  touchEnd = function () {
-  //    event.preventDefault();
-  //    event.stopPropagation();
-  //    touchEndX = event.changedTouches[0].pageX;
-  //    if (touchStartX < touchEndX && touchStartX <= 15) {
-  //      this.menuOpen();
-  //    }
-  //  }
+  function checkImageURL(dirEntry, fileName, assetURL, index, callback) {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', cordova.file.applicationDirectory + dirEntry + fileName, true);
+    xhr.responseType = 'blob';
+
+    xhr.onload = function () {
+      console.log("in onload");
+
+      var blob = new Blob([this.response], {type: 'image/png'});
+      console.log("status 200 For " + fileName);
+      //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
+      callback(false, index, fileName);
+
+//      if (this.status == 200) {
+//
+//        var blob = new Blob([this.response], {type: 'image/png'});
+//        console.log("status 200 For " + fileName);
+//        //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
+//        callback(false, index, fileName);
+//      }
+    };
+
+    xhr.onerror = function () {
+      console.log("error for " + fileName);
+
+      var convertFunction = convertFileToDataURLviaFileReader;
+
+      convertFunction(assetURL, function (base64Img) {
+        console.log("base64 length=" + base64Img.length);
+        // Split the base64 string in data and contentType
+        var block = base64Img.split(";");
+        // Get the content type
+        var dataType = block[0].split(":")[1];// In this case "image/png"
+        // get the real base64 content of the file
+        var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
+
+        var folderpath = cordova.file.dataDirectory;
+
+        savebase64AsImageFile(folderpath, fileName, realData, dataType);
+
+        callback(true, index, fileName);
+      });
+      event.preventDefault();
+    };
+    xhr.send();
+  }
+
+  function savebase64AsImageFile(folderpath, filename, content, contentType) {
+    // Convert the base64 string in a Blob
+    var DataBlob = b64toBlob(content, contentType);
+
+    console.log("Starting to write the file :3");
+
+    window.resolveLocalFileSystemURL(folderpath, function (dir) {
+      console.log("Access to the directory granted succesfully");
+      dir.getFile(filename, {create: true, exclusive: false}, function (file) {
+        console.log("File created succesfully." + filename);
+        file.createWriter(function (fileWriter) {
+          console.log("Writing content to file");
+          fileWriter.write(DataBlob);
+        }, function () {
+          console.log('Unable to save file in path ' + folderpath);
+        });
+      });
+    });
+  }
+
+  function b64toBlob(b64Data, contentType, sliceSize) {
+    contentType = contentType || '';
+    sliceSize = sliceSize || 512;
+
+    var byteCharacters = atob(b64Data);
+    var byteArrays = [];
+
+    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+      var byteNumbers = new Array(slice.length);
+      for (var i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      var byteArray = new Uint8Array(byteNumbers);
+
+      byteArrays.push(byteArray);
+    }
+
+    var blob = new Blob(byteArrays, {type: contentType});
+    return blob;
+  }
+
+  function convertFileToDataURLviaFileReader(url, callback) {
+    console.log("in convert!");
+    var xhr2 = new XMLHttpRequest();
+    xhr2.open('GET', url, true);
+    xhr2.responseType = 'blob';
+
+    xhr2.onload = function () {
+      console.log("in another onload 1");
+      var reader = new FileReader();
+      reader.onloadend = function () {
+        console.log("in another onload 2");
+        callback(reader.result);
+      };
+      reader.readAsDataURL(xhr2.response);
+    };
+
+    xhr2.onerror = function () {
+      alert("Возможно у вас нет интернета, проверьте подключение.");
+    }
+
+    xhr2.send();
+  }
+
+  function onErrorLoadFs() {
+    console.log("OnErrorLoadFS");
+  }
 
 </script>
 </body>

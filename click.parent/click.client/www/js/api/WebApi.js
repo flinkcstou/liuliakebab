@@ -24,15 +24,14 @@ window.api.initSocket = function () {
 
     var callBack = me.callBacks[method];
     //console.log('method', method)
-    if(method == 'get.payments')
-    var callBack = me.callBacks['get.payments'];
+    if (method == 'get.payments')
+      var callBack = me.callBacks['get.payments'];
     //console.log('CALLBACK', callBack)
 
     if (parsedData.api_status == 0) {
       callBack.ok(parsedData.data);
       return;
     }
-
     callBack.err(parsedData.api_status, parsedData.api_status_message, parsedData.data);
   };
   this.socket.onerror = function (error) {

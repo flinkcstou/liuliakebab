@@ -132,6 +132,8 @@
     scope.servicesParamsMapTwo = JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"));
     //    this.notMyNumberMode = true;
     scope.servicesParamsMapThree = JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"));
+    scope.servicesParamsMapFour = JSON.parse(localStorage.getItem("click_client_servicesParamsMapFour"));
+    scope.servicesParamsMapFive = JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"));
 
 
     if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
@@ -149,6 +151,16 @@
         firstField.style.display = 'none';
         amountField.style.top = '5.5%';
       });
+      if (scope.servicesParamsMapOne[viewPay.chosenServiceId])
+        console.log("Map One!!!!", scope.servicesParamsMapOne[viewPay.chosenServiceId]);
+      if (scope.servicesParamsMapTwo[viewPay.chosenServiceId])
+        console.log("Map Two!!!!", scope.servicesParamsMapTwo[viewPay.chosenServiceId]);
+      if (scope.servicesParamsMapThree[viewPay.chosenServiceId])
+        console.log("Map Three!!!!", scope.servicesParamsMapThree[viewPay.chosenServiceId]);
+      if (scope.servicesParamsMapFour[viewPay.chosenServiceId])
+        console.log("Map Four!!!!", scope.servicesParamsMapFour[viewPay.chosenServiceId]);
+      if (scope.servicesParamsMapFive[viewPay.chosenServiceId])
+        console.log("Map Four!!!!", scope.servicesParamsMapFive[viewPay.chosenServiceId]);
 //      riot.update(scope.myNumberMode);
     } else {
       console.log("chosen service id=", viewPay.chosenServiceId);
@@ -156,14 +168,17 @@
       scope.titleName = scope.service.name;
       scope.serviceIcon = scope.service.image;
       scope.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
+      if (scope.servicesParamsMapOne[viewPay.chosenServiceId])
+        console.log("Map One!!!!", scope.servicesParamsMapOne[viewPay.chosenServiceId]);
+      if (scope.servicesParamsMapTwo[viewPay.chosenServiceId])
+        console.log("Map Two!!!!", scope.servicesParamsMapTwo[viewPay.chosenServiceId]);
+      if (scope.servicesParamsMapThree[viewPay.chosenServiceId])
+        console.log("Map Three!!!!", scope.servicesParamsMapThree[viewPay.chosenServiceId]);
+      if (scope.servicesParamsMapFour[viewPay.chosenServiceId])
+        console.log("Map Four!!!!", scope.servicesParamsMapFour[viewPay.chosenServiceId]);
+      if (scope.servicesParamsMapFive[viewPay.chosenServiceId])
+        console.log("Map Four!!!!", scope.servicesParamsMapFive[viewPay.chosenServiceId]);
     }
-
-    if (scope.servicesParamsMapOne[viewPay.chosenServiceId])
-      console.log("Map One!!!!", scope.servicesParamsMapOne[viewPay.chosenServiceId]);
-    if (scope.servicesParamsMapTwo[viewPay.chosenServiceId])
-      console.log("Map Two!!!!", scope.servicesParamsMapTwo[viewPay.chosenServiceId]);
-    if (scope.servicesParamsMapThree[viewPay.chosenServiceId])
-      console.log("Map Three!!!!", scope.servicesParamsMapThree[viewPay.chosenServiceId]);
 
 
     scope.categoryName = scope.categoryNamesMap[viewPay.categoryId];
@@ -221,20 +236,15 @@
           }
         }
         scope.chosenFieldParamIdTwo = scope.firstLevelArray[0].id;
-//                scope.oldFieldParamIdTwo = scope.firstLevelArray[1].id;
         if (scope.hasSecondLevel && scope.secondLevelMap[scope.firstLevelArray[0].id]) {
           scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].id];
-//                    scope.chosenFieldParamIdThree = scope.secondLevelArray[0].id;
-//                    scope.oldFieldParamIdThree = scope.secondLevelArray[1].id;
+
         }
-
-
       }
     }
 
 
     if (scope.formType == 2) {
-
 //      console.log("map THREE=", scope.servicesParamsMapThree);
       scope.pincardsMap = {};
       scope.pincardIds = [];

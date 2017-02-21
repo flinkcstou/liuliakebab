@@ -35,7 +35,6 @@
 
   permissionAccess = function () {
 
-
     var permissions = cordova.plugins.permissions;
     permissions.hasPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
     permissions.hasPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);

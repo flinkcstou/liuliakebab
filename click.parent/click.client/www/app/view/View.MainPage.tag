@@ -42,8 +42,7 @@
         "params": ''
       }
     );
-    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
     viewMainPage.myCards = false;
     viewTransfer.phoneNumber = '';
