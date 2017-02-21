@@ -84,9 +84,13 @@
       <p class="servicepage-dropdown-text-field" style="color: white;">{chosenFieldNameTwo}</p>
     </div>
     <div class="servicepage-dropdown-container">
-      <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}"
+      <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}" if="{formType==3}"
            ontouchstart="onTouchStartOfDropdownTwo()" ontouchend="onTouchEndOfDropdownTwo({i.id})">
         <p id="text{i.id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
+      </div>
+      <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.type}" if="{formType==4}"
+           ontouchstart="onTouchStartOfDropdownTwo()" ontouchend="onTouchEndOfDropdownTwo({i.type})">
+        <p id="text{i.type}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
       </div>
     </div>
   </div>
@@ -96,9 +100,13 @@
       <p class="servicepage-dropdown-text-field" style="color: white;">{chosenFieldNameThree}</p>
     </div>
     <div class="servicepage-dropdown-container">
-      <div class="servicepage-dropdown-variant" each="{i in secondLevelArray}" id="two{i.id}"
+      <div class="servicepage-dropdown-variant" each="{i in secondLevelArray}" id="two{i.id}" if="{formType==3}"
            ontouchstart="onTouchStartOfDropdownThree()" ontouchend="onTouchEndOfDropdownThree({i.id})">
         <p id="texttwo{i.id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
+      </div>
+      <div class="servicepage-dropdown-variant" each="{i in secondLevelArray}" id="{i.code}" if="{formType==4}"
+           ontouchstart="onTouchStartOfDropdownThree()" ontouchend="onTouchEndOfDropdownThree(this.id)">
+        <p id="texttwo{i.code}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
       </div>
     </div>
   </div>
@@ -124,21 +132,21 @@
       onBackKeyDown()
     };
 
-    searchContact = function() {
+    searchContact = function () {
       var maskOne = /[0-9]/g;
-        window.plugins.ContactPicker.pickContact(function (contact) {
-          setTimeout(function () {
-            var phoneNumber = contact.phone;
-            var digits = phoneNumber.match(maskOne);
-            var phone = '';
-            for (var i in digits) {
-              phone += digits[i]
-            }
-            firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
-          }, 0);
-        }, function (onError) {
-          console.log('onError', onError)
-        });
+      window.plugins.ContactPicker.pickContact(function (contact) {
+        setTimeout(function () {
+          var phoneNumber = contact.phone;
+          var digits = phoneNumber.match(maskOne);
+          var phone = '';
+          for (var i in digits) {
+            phone += digits[i]
+          }
+          firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
+        }, 0);
+      }, function (onError) {
+        console.log('onError', onError)
+      });
     }
 
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
@@ -167,34 +175,24 @@
         firstField.style.display = 'none';
         amountField.style.top = '5.5%';
       });
-      if (scope.servicesParamsMapOne[viewPay.chosenServiceId])
-        console.log("Map One!!!!", scope.servicesParamsMapOne[viewPay.chosenServiceId]);
-      if (scope.servicesParamsMapTwo[viewPay.chosenServiceId])
-        console.log("Map Two!!!!", scope.servicesParamsMapTwo[viewPay.chosenServiceId]);
-      if (scope.servicesParamsMapThree[viewPay.chosenServiceId])
-        console.log("Map Three!!!!", scope.servicesParamsMapThree[viewPay.chosenServiceId]);
-      if (scope.servicesParamsMapFour[viewPay.chosenServiceId])
-        console.log("Map Four!!!!", scope.servicesParamsMapFour[viewPay.chosenServiceId]);
-      if (scope.servicesParamsMapFive[viewPay.chosenServiceId])
-        console.log("Map Four!!!!", scope.servicesParamsMapFive[viewPay.chosenServiceId]);
-//      riot.update(scope.myNumberMode);
     } else {
       console.log("chosen service id=", viewPay.chosenServiceId);
       scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
       scope.titleName = scope.service.name;
       scope.serviceIcon = scope.service.image;
       scope.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
-      if (scope.servicesParamsMapOne[viewPay.chosenServiceId])
-        console.log("Map One!!!!", scope.servicesParamsMapOne[viewPay.chosenServiceId]);
-      if (scope.servicesParamsMapTwo[viewPay.chosenServiceId])
-        console.log("Map Two!!!!", scope.servicesParamsMapTwo[viewPay.chosenServiceId]);
-      if (scope.servicesParamsMapThree[viewPay.chosenServiceId])
-        console.log("Map Three!!!!", scope.servicesParamsMapThree[viewPay.chosenServiceId]);
-      if (scope.servicesParamsMapFour[viewPay.chosenServiceId])
-        console.log("Map Four!!!!", scope.servicesParamsMapFour[viewPay.chosenServiceId]);
-      if (scope.servicesParamsMapFive[viewPay.chosenServiceId])
-        console.log("Map Four!!!!", scope.servicesParamsMapFive[viewPay.chosenServiceId]);
     }
+
+    if (scope.servicesParamsMapOne[viewPay.chosenServiceId])
+      console.log("Map One!!!!", scope.servicesParamsMapOne[viewPay.chosenServiceId]);
+    if (scope.servicesParamsMapTwo[viewPay.chosenServiceId])
+      console.log("Map Two!!!!", scope.servicesParamsMapTwo[viewPay.chosenServiceId]);
+    if (scope.servicesParamsMapThree[viewPay.chosenServiceId])
+      console.log("Map Three!!!!", scope.servicesParamsMapThree[viewPay.chosenServiceId]);
+    if (scope.servicesParamsMapFour[viewPay.chosenServiceId])
+      console.log("Map Four!!!!", scope.servicesParamsMapFour[viewPay.chosenServiceId]);
+    if (scope.servicesParamsMapFive[viewPay.chosenServiceId])
+      console.log("Map Four!!!!", scope.servicesParamsMapFive[viewPay.chosenServiceId]);
 
 
     scope.categoryName = scope.categoryNamesMap[viewPay.categoryId];
@@ -264,8 +262,12 @@
         scope.chosenFieldNameTwo = scope.servicesParamsMapFour[scope.service.id][0].name;
         scope.hasSecondLevel = true;
         scope.hasFirstLevel = true;
+        this.on('mount', function () {
+          amountField.style.display = 'none';
+        });
 
         for (var i = 0; i < scope.servicesParamsMapFour[scope.service.id].length; i++) {
+          console.log("first arr name=", scope.servicesParamsMapFour[scope.service.id][i].name);
           scope.firstLevelArray.push(scope.servicesParamsMapFour[scope.service.id][i]);
         }
         for (var i = 0; i < scope.servicesParamsMapFive[scope.service.id].length; i++) {
@@ -278,9 +280,9 @@
           }
         }
 
-        scope.chosenFieldParamIdTwo = scope.firstLevelArray[0].id;
-        if (scope.hasSecondLevel && scope.secondLevelMap[scope.firstLevelArray[0].id]) {
-          scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].id];
+        scope.chosenFieldParamIdTwo = scope.firstLevelArray[0].type;
+        if (scope.hasSecondLevel && scope.secondLevelMap[scope.firstLevelArray[0].type]) {
+          scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].type];
 
         }
       }
@@ -332,11 +334,17 @@
       if (scope.secondLevelArray) {
         this.blockSecondDropdownId.style.display = 'block';
         if (scope.oldFieldParamIdThree) {
-          document.getElementById('two' + scope.oldFieldParamIdThree).style.backgroundColor = 'white';
+          if (scope.formType == 3)
+            document.getElementById('two' + scope.oldFieldParamIdThree).style.backgroundColor = 'white';
+          else if (scope.formType == 4)
+            document.getElementById(scope.oldFieldParamIdThree).style.backgroundColor = 'white';
           document.getElementById('texttwo' + scope.oldFieldParamIdThree).style.color = '#515151';
         }
         if (scope.chosenFieldParamIdThree) {
-          document.getElementById('two' + scope.chosenFieldParamIdThree).style.backgroundColor = '#0084E6';
+          if (scope.formType == 3)
+            document.getElementById('two' + scope.chosenFieldParamIdThree).style.backgroundColor = '#0084E6';
+          else if (scope.formType == 4)
+            document.getElementById(scope.chosenFieldParamIdThree).style.backgroundColor = '#0084E6';
           document.getElementById('texttwo' + scope.chosenFieldParamIdThree).style.color = 'white';
         }
       }
@@ -380,25 +388,43 @@
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20) {
         this.blockFirstDropdownId.style.display = 'none';
-        for (var i = 0; i < scope.firstLevelArray.length; i++) {
-          if (scope.firstLevelArray[i].id == id) {
-            scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;
-            scope.oldFieldParamIdTwo = scope.chosenFieldParamIdTwo;
-            scope.chosenFieldParamIdTwo = id;
-            if (scope.hasSecondLevel) {
-              scope.secondLevelArray = scope.secondLevelMap[id];
-              if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo) {
-                scope.chosenFieldNameThree = '';
-                scope.oldFieldParamIdThree = null;
-                scope.chosenFieldParamIdThree = null;
-//                                if (scope.secondLevelArray)
-//                                    scope.chosenFieldParamIdThree = scope.secondLevelArray[0].id;
-                //scope.oldFieldParamIdThree = scope.secondLevelArray[1].id;
+        if (scope.formType == 3) {
+          for (var i = 0; i < scope.firstLevelArray.length; i++) {
+            if (scope.firstLevelArray[i].id == id) {
+              scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;
+              scope.oldFieldParamIdTwo = scope.chosenFieldParamIdTwo;
+              scope.chosenFieldParamIdTwo = id;
+              if (scope.hasSecondLevel) {
+                scope.secondLevelArray = scope.secondLevelMap[id];
+                if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo) {
+                  scope.chosenFieldNameThree = '';
+                  scope.oldFieldParamIdThree = null;
+                  scope.chosenFieldParamIdThree = null;
+                }
               }
+              riot.update(scope.chosenFieldNameTwo);
+              riot.update(scope.secondLevelArray);
+              break;
             }
-            riot.update(scope.chosenFieldNameTwo);
-            riot.update(scope.secondLevelArray);
-            break;
+          }
+        } else if (scope.formType == 4) {
+          for (var i = 0; i < scope.firstLevelArray.length; i++) {
+            if (scope.firstLevelArray[i].type == id) {
+              scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;
+              scope.oldFieldParamIdTwo = scope.chosenFieldParamIdTwo;
+              scope.chosenFieldParamIdTwo = id;
+              if (scope.hasSecondLevel) {
+                scope.secondLevelArray = scope.secondLevelMap[id];
+                if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo) {
+                  scope.chosenFieldNameThree = '';
+                  scope.oldFieldParamIdThree = null;
+                  scope.chosenFieldParamIdThree = null;
+                }
+              }
+              riot.update(scope.chosenFieldNameTwo);
+              riot.update(scope.secondLevelArray);
+              break;
+            }
           }
         }
       }
@@ -417,15 +443,30 @@
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20) {
         this.blockSecondDropdownId.style.display = 'none';
-        for (var i = 0; i < scope.secondLevelArray.length; i++) {
-          if (scope.secondLevelArray[i].id == id) {
-            scope.chosenFieldNameThree = scope.secondLevelArray[i].name;
-            if (scope.chosenFieldParamIdThree)
-              scope.oldFieldParamIdThree = scope.chosenFieldParamIdThree;
-            scope.chosenFieldParamIdThree = id;
+        if (scope.formType == 3) {
+          for (var i = 0; i < scope.secondLevelArray.length; i++) {
+            if (scope.secondLevelArray[i].id == id) {
+              scope.chosenFieldNameThree = scope.secondLevelArray[i].name;
+              if (scope.chosenFieldParamIdThree)
+                scope.oldFieldParamIdThree = scope.chosenFieldParamIdThree;
+              scope.chosenFieldParamIdThree = id;
 
-            riot.update(scope.chosenFieldNameThree);
-            break;
+              riot.update(scope.chosenFieldNameThree);
+              break;
+            }
+          }
+        } else if (scope.formType == 4) {
+          for (var i = 0; i < scope.secondLevelArray.length; i++) {
+            if (scope.secondLevelArray[i].code == id) {
+              scope.chosenFieldNameThree = scope.secondLevelArray[i].name;
+              if (scope.chosenFieldParamIdThree)
+                scope.oldFieldParamIdThree = scope.chosenFieldParamIdThree;
+              scope.chosenFieldParamIdThree = id;
+              scope.amountOfFormTypeFour = scope.secondLevelArray[i].sum_cost;
+              viewServicePage.amountText = scope.secondLevelArray[i].usd_cost;
+              riot.update(scope.chosenFieldNameThree);
+              break;
+            }
           }
         }
       }
@@ -553,6 +594,9 @@
       if (scope.phoneFieldBool && firstFieldInput.value.length < 9) {
         alert("Введите валидный номер телефона");
         return;
+      } else if (firstFieldInput.value.length == 0) {
+        alert("Введите значение первого поля");
+        return;
       }
       if (amountForPayTransaction < scope.service.min_pay_limit) {
         alert("Сумма должна быть больше " + scope.service.min_pay_limit);
@@ -564,18 +608,32 @@
       }
 
       if (scope.formType == 3) {
+        var internetPackageParam = {"internetPackageParam": null};
+        var amountText = {"amountText": amountForPayTransaction};
         if (scope.hasSecondLevel)
           var communalParam = {"communalParam": scope.chosenFieldParamIdThree};
         else
           var communalParam = {"communalParam": scope.chosenFieldParamIdTwo};
-      } else if (scope.formType == 1)
+      } else if (scope.formType == 1) {
         var communalParam = {"communalParam": null};
+        var internetPackageParam = {"internetPackageParam": null};
+        var amountText = {"amountText": amountForPayTransaction};
+      } else if (scope.formType == 4) {
+        var communalParam = {"communalParam": null};
+        if (internetPackageParam && amountText) {
+          var amountText = {"amountText": scope.amountOfFormTypeFour};
+          var internetPackageParam = {"internetPackageParam": scope.chosenFieldParamIdThree};
+        } else {
+          alert("Выберите интернет пакет");
+          return;
+        }
+      }
 
       var formtype = {"formtype": scope.formType};
       var firstFieldId = {"firstFieldId": scope.chosenFieldParamId};
       var firstFieldText = {"firstFieldText": firstFieldInput.value};
       var cardTypeId = {"cardTypeId": null};
-      var amountText = {"amountText": amountForPayTransaction};
+
 
       viewServicePage.firstFieldTitle = scope.chosenFieldName;
       viewServicePage.phoneText = firstFieldInput.value;
@@ -583,23 +641,8 @@
       event.preventDefault();
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-service-pincards>";
-      riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText]);
+      riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam]);
     };
-
-    goToPinCardViewFromTwo = function (nominal, cardId) {
-
-      var formtype = {"formtype": scope.formType};
-      var firstFieldId = {"firstFieldId": null};
-      var firstFieldText = {"firstFieldText": null};
-      var cardTypeId = {"cardTypeId": cardId};
-      var communalParam = {"communalParam": null};
-      var amountText = {"amountText": nominal};
-
-      event.preventDefault();
-      event.stopPropagation();
-      this.riotTags.innerHTML = "<view-service-pincards>";
-      riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText]);
-    }
 
     scope.onTouchStartOfPincard = onTouchStartOfPincard = function () {
       event.stopPropagation();
@@ -618,11 +661,12 @@
         var cardTypeId = {"cardTypeId": cardId};
         var communalParam = {"communalParam": null};
         var amountText = {"amountText": nominal};
+        var internetPackageParam = {"internetPackageParam": null};
 
         event.preventDefault();
         event.stopPropagation();
         this.riotTags.innerHTML = "<view-service-pincards>";
-        riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText]);
+        riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam]);
       }
     };
 

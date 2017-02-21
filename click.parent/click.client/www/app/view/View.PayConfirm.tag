@@ -102,9 +102,7 @@
       var firstFieldtext = opts[0][2].firstFieldText;
       console.log("text in else=", firstFieldtext)
     }
-
     this.cardTypeId = opts[0][3].cardTypeId;
-    this.communalParam = opts[0][4].communalParam;
     this.amountText = opts[0][5].amountText;
 
     scope.titleName = scope.service.name;
@@ -153,6 +151,15 @@
           "param": opts[0][1].firstFieldId,
           "value": firstFieldtext,
           "communl_param": opts[0][4].communalParam,
+          "transaction_id": parseInt(Date.now() / 1000)
+        };
+        paymentFunction(payment_data);
+      }
+      else if (opts[0][0].formtype == 4) {
+        var payment_data = {
+          "param": opts[0][1].firstFieldId,
+          "value": firstFieldtext,
+          "internetPackageParam": opts[0][6].internetPackageParam,
           "transaction_id": parseInt(Date.now() / 1000)
         };
         paymentFunction(payment_data);
