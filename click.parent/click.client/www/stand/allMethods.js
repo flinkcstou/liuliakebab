@@ -41,15 +41,15 @@ window.fakedSocket.register("device.register.confirm", function (input) {
         }]
       ];
   }
-else
-  return [
-    {
-      "method": input.method,
-      "success": 1,
-      "error": -4,
-      "error_note": 'Neverniy sms'
-    }
-  ];
+  else
+    return [
+      {
+        "method": input.method,
+        "success": 1,
+        "error": -4,
+        "error_note": 'Neverniy sms'
+      }
+    ];
 });
 
 window.fakedSocket.register("sms.resend", function (input) {
@@ -853,7 +853,7 @@ window.fakedSocket.register("get.service.list", function (input) {
       {
         category_id: 1,
         cost: 1,
-        form_type: 1,
+        form_type: 4,
         is_visible: 1,
         id: 2,
         image: "https://m.click.uz/static/merchant/logo/logo_2.png",
@@ -1599,6 +1599,92 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
         service_id: 83
       }]
   );
+
+  array.push([
+    {
+      name: "30 dney",
+      service_id: 4422,
+      type: 1
+    },
+    {
+      name: "sutochnie",
+      service_id: 4422,
+      type: 2
+    },
+    {
+      name: "nochnie",
+      service_id: 4422,
+      type: 3
+    },
+    {
+      name: "nochnoy DRIVE",
+      service_id: 4422,
+      type: 4
+    }
+  ]);
+
+  array.push([
+    {
+      code: "MB300M1",
+      name: "Интернет-пакет 300 Mb",
+      priority: 1,
+      service_id: 4422,
+      status: 1,
+      sum_cost: 16785,
+      type: 1,
+      usd_cost: 5
+    },
+    {
+      code: "MB500M",
+      name: "Интернет-пакет 500 Mb",
+      priority: 2,
+      service_id: 4422,
+      status: 1,
+      sum_cost: 23499,
+      type: 1,
+      usd_cost: 7
+    },
+    {
+      code: "MB1000M1",
+      name: "Интернет-пакет 1000 Mb",
+      priority: 3,
+      service_id: 4422,
+      status: 1,
+      sum_cost: 33569,
+      type: 1,
+      usd_cost: 10
+    },
+    {
+      code: "FRGPRS50DAY",
+      name: "Суточный интернет-пакет 50 Mb",
+      priority: 1,
+      service_id: 4422,
+      status: 1,
+      sum_cost: 5036,
+      type: 2,
+      usd_cost: 1.5,
+    },
+    {
+      code: "MB1000MNIGHT",
+      name: "Ночной интернет-пакет 1000 Mb",
+      priority: 1,
+      service_id: 4422,
+      status: 1,
+      sum_cost: 6714,
+      type: 3,
+      usd_cost: 2
+    },
+    {
+      code: "NIGHTDRIVE1",
+      name: "Ночной DRIVE 1",
+      priority: 1,
+      service_id: 4422,
+      status: 1,
+      sum_cost: 10071,
+      type: 4,
+      usd_cost: 3
+    }
+  ]);
 
 
   if (localStorage.getItem("click_client_token"))

@@ -28,13 +28,13 @@
       <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
     </div>
 
-    <div class="servicepage-second-dropdown-field" if="{formType==3 && hasFirstLevel}"
+    <div class="servicepage-second-dropdown-field" if="{hasFirstLevel}"
          ontouchend="openDropDownTwo()">
       <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
       <div class="servicepage-dropdown-icon"></div>
     </div>
 
-    <div class="servicepage-second-dropdown-field" if="{formType==3 && hasSecondLevel}"
+    <div class="servicepage-second-dropdown-field" if="{hasSecondLevel}"
          ontouchend="openDropDownThree()">
       <p class="servicepage-dropdown-text-field">{chosenFieldNameThree}</p>
       <div class="servicepage-dropdown-icon"></div>
@@ -68,6 +68,17 @@
     </div>
   </div>
 
+  <div class="servicepage-formtype-two-container" if="{formType==2}">
+    <div class="servicepage-pincards-container" each="{i in pincardIds}">
+      <div class="servicepage-pincard-title">{pincardsMap[i][0].name}</div>
+      <div class="servicepage-pincard-nominal-container" each="{j in pincardsMap[i]}"
+           ontouchstart="onTouchStartOfPincard()" ontouchend="onTouchEndOfPincard({j.nominal},{j.card_type_id})">
+        <p class="servicepage-pincard-nominal-value">{j.nominal}</p>
+        <div class="servicepage-pincard-choose-arrow"></div>
+      </div>
+    </div>
+  </div>
+
   <div id="blockFirstDropdownId" class="component-first-field">
     <div class="servicepage-fields-dropdown-two">
       <p class="servicepage-dropdown-text-field" style="color: white;">{chosenFieldNameTwo}</p>
@@ -76,17 +87,6 @@
       <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}"
            ontouchstart="onTouchStartOfDropdownTwo()" ontouchend="onTouchEndOfDropdownTwo({i.id})">
         <p id="text{i.id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="servicepage-formtype-two-container" if="{formType==2}">
-    <div class="servicepage-pincards-container" each="{i in pincardIds}">
-      <div class="servicepage-pincard-title">{pincardsMap[i][0].name}</div>
-      <div class="servicepage-pincard-nominal-container" each="{j in pincardsMap[i]}"
-           ontouchstart="onTouchStartOfPincard()" ontouchend="onTouchEndOfPincard({j.nominal},{j.card_type_id})">
-        <p class="servicepage-pincard-nominal-value">{j.nominal}</p>
-        <div class="servicepage-pincard-choose-arrow"></div>
       </div>
     </div>
   </div>
@@ -103,7 +103,6 @@
     </div>
   </div>
 
-  <component-contact-search></component-contact-search>
   <script>
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
@@ -235,6 +234,33 @@
             }
           }
         }
+        scope.chosenFieldParamIdTwo = scope.firstLevelArray[0].id;
+        if (scope.hasSecondLevel && scope.secondLevelMap[scope.firstLevelArray[0].id]) {
+          scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].id];
+
+        }
+      }
+
+      if (scope.formType == 4 && scope.servicesParamsMapFour[scope.service.id] && scope.servicesParamsMapFive[scope.service.id]) {
+        scope.firstLevelArray = [];
+        scope.secondLevelMap = {};
+        scope.chosenFieldNameTwo = scope.servicesParamsMapFour[scope.service.id][0].name;
+        scope.hasSecondLevel = true;
+        scope.hasFirstLevel = true;
+
+        for (var i = 0; i < scope.servicesParamsMapFour[scope.service.id].length; i++) {
+          scope.firstLevelArray.push(scope.servicesParamsMapFour[scope.service.id][i]);
+        }
+        for (var i = 0; i < scope.servicesParamsMapFive[scope.service.id].length; i++) {
+          if (!scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type]) {
+            scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type] = [];
+            scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type].push(scope.servicesParamsMapFive[scope.service.id][i]);
+          }
+          else {
+            scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type].push(scope.servicesParamsMapFive[scope.service.id][i]);
+          }
+        }
+
         scope.chosenFieldParamIdTwo = scope.firstLevelArray[0].id;
         if (scope.hasSecondLevel && scope.secondLevelMap[scope.firstLevelArray[0].id]) {
           scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].id];
