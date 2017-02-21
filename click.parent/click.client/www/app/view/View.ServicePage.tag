@@ -124,6 +124,23 @@
       onBackKeyDown()
     };
 
+    searchContact = function() {
+      var maskOne = /[0-9]/g;
+        window.plugins.ContactPicker.pickContact(function (contact) {
+          setTimeout(function () {
+            var phoneNumber = contact.phone;
+            var digits = phoneNumber.match(maskOne);
+            var phone = '';
+            for (var i in digits) {
+              phone += digits[i]
+            }
+            firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
+          }, 0);
+        }, function (onError) {
+          console.log('onError', onError)
+        });
+    }
+
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
     scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
     scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
