@@ -44,39 +44,39 @@
       }, onCardIOComplete, onCardIOCancel);
     };
 
+    if(device.platform != 'BrowserStand')
+    CardIO.canScan(onCardIOCheck);
 
-      CardIO.canScan(onCardIOCheck);
+    function onCardIOComplete(response) {
+      var cardIOResponseFields = [
+        "card_type",
+        "redacted_card_number",
+        "card_number",
+        "expiry_month",
+        "expiry_year",
+        "cvv",
+        "zip"
+      ];
 
-      function onCardIOComplete(response) {
-        var cardIOResponseFields = [
-          "card_type",
-          "redacted_card_number",
-          "card_number",
-          "expiry_month",
-          "expiry_year",
-          "cvv",
-          "zip"
-        ];
-
-        var len = cardIOResponseFields.length;
-        console.log("card.io scan complete");
-        for (var i = 0; i < len; i++) {
-          var field = cardIOResponseFields[i];
-          alert(field + ": " + response[field]);
-        }
+      var len = cardIOResponseFields.length;
+      console.log("card.io scan complete");
+      for (var i = 0; i < len; i++) {
+        var field = cardIOResponseFields[i];
+        alert(field + ": " + response[field]);
       }
+    }
 
-      function onCardIOCancel(error) {
-        console.log("card.io scan cancelled");
-        console.log(error)
-      }
+    function onCardIOCancel(error) {
+      console.log("card.io scan cancelled");
+      console.log(error)
+    }
 
-      function onCardIOCheck(canScan) {
-        console.log("card.io canScan? " + canScan);
-        if (!canScan) {
-          console.log('can Scan false')
-        }
+    function onCardIOCheck(canScan) {
+      console.log("card.io canScan? " + canScan);
+      if (!canScan) {
+        console.log('can Scan false')
       }
+    }
 
 
     if (history.arrayOfHistory.length != 0) {
@@ -339,7 +339,7 @@
       }
     }
 
-    if(device.platform == 'Android'){
+    if (device.platform == 'Android') {
 
       function isAvailableSuccess(result) {
         console.log("FingerprintAuth available: " + JSON.stringify(result));
@@ -383,11 +383,27 @@
 
     }
 
-    if(device.platform == 'iOS'){
-      window.plugins.touchid.isAvailable(
-        function() {alert('available!')}, // success handler: TouchID available
-        function(msg) {alert('not available, message: ' + msg)} // error handler: no TouchID available
-      );
+    if (device.platform == 'iOS') {
+      function successCallback(success) {
+        alert('success', success)
+        var text = 'hello';
+        touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
+      }
+
+      function notSupportedCallback(error) {
+        alert('error', error)
+      }
+
+      touchid.checkSupport(successCallback, notSupportedCallback);
+
+      function successCallbackOfAuth(success) {
+        alert(success)
+      }
+
+      function failureCallbackOfAuth(error) {
+        alert(error)
+      }
+
     }
 
   </script>

@@ -18,7 +18,7 @@
   <plugin name="cordova-plugin-sim"/>
   <plugin name="cordova-plugin-phonedialer"/>
   <plugin name="cordova-plugin-keepe-cardio"/>
-  <plugin name="cordova-plugin-touch-id"/>
+  <plugin name="cordova-plugin-touchid"/>
   <plugin name="cordova-plugin-android-fingerprint-auth"/>
 
   <access origin="*"/>
