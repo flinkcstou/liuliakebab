@@ -89,11 +89,27 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    pickContactFromNative = function() {
-      navigator.contacts.pickContact(function (contact) {
-        console.log('The following contact has been selected:' + JSON.stringify(contact));
-      }, function (err) {
-        console.log('Error: ' + err);
+    var maskOne = /[0-9]/g;
+
+    pickContactFromNative = function () {
+      window.plugins.ContactPicker.pickContact(function (contact) {
+        setTimeout(function () {
+          var phoneNumber = contact.phone;
+          var digits = phoneNumber.match(maskOne);
+          var phone = '';
+          for (var i in digits) {
+            phone += digits[i]
+          }
+          contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
+          if(phone.length != 0){
+            checkPhoneForTransfer = true;
+            checkCardForTransfer = false;
+          }
+        }, 0);
+      }, function (onError) {
+        console.log('onError', onError)
+        checkPhoneForTransfer = false;
+        checkCardForTransfer = false;
       });
     }
 
@@ -366,7 +382,6 @@
       }
     }
 
-    var maskOne = /[0-9]/g;
 
     firstSuggestionBlock = function () {
       event.preventDefault();

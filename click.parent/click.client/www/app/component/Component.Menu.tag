@@ -3,6 +3,7 @@
   <div id="sideMenuId" class="side-menu" ontouchend="closeMenu()">
     <a style=" position: absolute; top: 20px;" href="index.html" type="button" value="Production"
        ontouchend="goToProduction()">Clear local storage</a>
+    <button style="position: absolute; top: 300px;" ontouchend="TESTASD()">ASD</button>
   </div>
   <script>
     closeMenu = function () {

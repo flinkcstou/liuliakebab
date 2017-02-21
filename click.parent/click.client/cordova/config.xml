@@ -21,6 +21,7 @@
   <plugin name="cordova-plugin-touchid"/>
   <plugin name="cordova-plugin-android-fingerprint-auth"/>
 
+
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
@@ -39,6 +40,7 @@
   </platform>
 
   <platform name="android">
+
     <allow-intent href="market:*"/>
     <preference name="android-minSdkVersion" value="14"/>
     <preference name="Fullscreen" value="false"/>
