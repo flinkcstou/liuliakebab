@@ -3407,6 +3407,7 @@ var css = {
   "width: 51%;" +
   "top: 48%;" +
   "display: table;" +
+  "display: none;" +
   "background-color: #027fe4;" +
   "border-radius:" + 50 * widthK + "px;" +
   "margin-right: auto;" +

@@ -24,7 +24,8 @@
       <div class="transfer-contact-phone-field">
         <p class="transfer-contact-text-field">{window.languages.ViewPayTransferContactTextField}</p>
         <p class="transfer-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
-        <input id="contactPhoneNumberId" autofocus="true" class="transfer-contact-number-input-part" type="tel"
+        <input onchange="contactPhoneBlurAndChange()" onfocus="contactPhoneBlurAndChange()" onblur="contactPhoneBlurAndChange()" id="contactPhoneNumberId" autofocus="true"
+               class="transfer-contact-number-input-part" type="tel"
                maxlength="9" onkeyup="searchContacts()"/>
         <div class="transfer-contact-phone-icon" ontouchend="pickContactFromNative()"></div>
       </div>
@@ -64,7 +65,7 @@
       </div>
     </card-input-field>
 
-    <div class="transfer-next-button-inner-container" ontouchend="goToTransferStepTwo()">
+    <div id="nextButtonId" class="transfer-next-button-inner-container" ontouchend="goToTransferStepTwo()">
       <p class="transfer-next-button-label">{window.languages.ViewPayTransferNext}</p>
     </div>
 
@@ -101,9 +102,17 @@
             phone += digits[i]
           }
           contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
-          if(phone.length != 0){
+          if (contactPhoneNumberId.value.length != 0) {
             checkPhoneForTransfer = true;
             checkCardForTransfer = false;
+            console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
+              if(contactPhoneNumberId.value.length == 9){
+                nextButtonId.style.display = 'block'
+                nextButtonId.style.display = 'table'
+              }
+              else
+                nextButtonId.style.display = 'none'
+
           }
         }, 0);
       }, function (onError) {
@@ -111,6 +120,18 @@
         checkPhoneForTransfer = false;
         checkCardForTransfer = false;
       });
+    }
+
+    contactPhoneBlurAndChange = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if(contactPhoneNumberId.value.length == 9){
+        nextButtonId.style.display = 'block'
+        nextButtonId.style.display = 'table'
+      }
+      else
+        nextButtonId.style.display = 'none'
     }
 
 
@@ -296,6 +317,14 @@
       findContacts();
 
     searchContacts = function () {
+
+      if(contactPhoneNumberId.value.length == 9){
+        nextButtonId.style.display = 'block'
+        nextButtonId.style.display = 'table'
+      }
+      else
+        nextButtonId.style.display = 'none'
+
       checkPhoneForTransfer = true;
       checkCardForTransfer = false;
       event.preventDefault();
@@ -395,6 +424,13 @@
       scope.suggestionOne.phoneNumber = phone;
       console.log(scope.suggestionOne.phoneNumber)
       contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length);
+
+      if(contactPhoneNumberId.value.length == 9){
+        nextButtonId.style.display = 'block'
+        nextButtonId.style.display = 'table'
+      }
+      else
+        nextButtonId.style.display = 'none'
     }
 
     secondSuggestionBlock = function () {
@@ -409,6 +445,13 @@
       scope.suggestionTwo.phoneNumber = phone;
 
       contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length);
+
+      if(contactPhoneNumberId.value.length == 9){
+        nextButtonId.style.display = 'block'
+        nextButtonId.style.display = 'table'
+      }
+      else
+        nextButtonId.style.display = 'none'
     }
 
 
