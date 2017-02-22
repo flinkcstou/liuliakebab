@@ -3,8 +3,7 @@
   <div id="sideMenuId" class="side-menu" ontouchend="closeMenu()">
     <a style=" position: absolute; top: 20px;" type="button" value="Production"
        ontouchend="goToProduction()">Clear local storage</a>
-    <a href="index-stand.html" style=" position: absolute; top: 70px;">Close demo</a>
-    <button style="position: absolute; top: 300px;" ontouchend="TESTASD()">ASD</button>
+    <a ontouchend="TEST()" style=" position: absolute; top: 70px;">Close demo</a>
   </div>
   <script>
     closeMenu = function () {
@@ -15,6 +14,10 @@
       sideMenuId.style.Transform = "translate3d(-100%, 0, 0)";
       mainPageId.style.opacity = '1';
 
+    }
+
+    TEST = function () {
+      window.location.href = "index-stand.html";
     }
 
     goToProduction = function () {

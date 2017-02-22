@@ -1,5 +1,6 @@
 <view-main-page>
   <component-menu></component-menu>
+
   <div id="mainPageId" class="view-main-page">
     <component-toolbar></component-toolbar>
     <component-bank-operations></component-bank-operations>
