@@ -678,6 +678,73 @@ input {
   word-spacing: -8px;
 }
 
+/*CARD EDIT PAGE*/
+.card-edit-body-container {
+  position: absolute;
+  height: 1150px;
+  width: 720px;
+  top: 150px;
+  /*left: 21px;*/
+  /*background-color: white;*/
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.card-edit-field {
+  position: relative;
+  left: 11%;
+  width: 79.5%;
+  height: 9%;
+  border-bottom: 5px solid #01cfff;
+  color: white;
+  top: 10%;
+}
+
+.card-edit-text-field {
+  position: absolute;
+  margin: 0;
+  color: gray;
+  font-size: 24px;
+  bottom: 88%;
+}
+
+.card-edit-input {
+  border: none;
+  outline: none;
+  position: relative;
+  top: 26%;
+  width: 88%;
+  height: 69%;
+  font-size: 49px;
+  font-family: 'SFUIDisplay-Light';
+  color: #515151;
+}
+
+.card-edit-makemain-container {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  /*background-color: lightblue;*/
+}
+
+.card-edit-makemain-text {
+  position: absolute;
+  font-size: 28px;
+  color: #595759;
+}
+
+.card-edit-makemain-check {
+  position: absolute;
+  background-image: url("../resources/icons/ViewService/right.png");
+  width: 3%;
+  height: 36%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  top: 31%;
+  left: 95%;
+}
+
 /*BOTTOM SERVICE BEELINE UCELL UMS*/
 .service-carousel {
   position: absolute;

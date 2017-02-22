@@ -1,6 +1,12 @@
 <view-my-cards class="view-my-cards">
-  <component-page-title title="{titleName}" backbutton="{backbuttoncheck}" rightbutton="{rightbuttoncheck}">
-  </component-page-title>
+  <div class="page-title">
+    <p class="name-title">{titleName}</p>
+    <div id="backButton" ontouchend="touchStartTitle()"
+         class="{back-button: backbuttoncheck}">
+    </div>
+    <div id="rightButton" type="button" class="{settings-button: rightbuttoncheck}" ontouchend="editCard()"></div>
+  </div>
+
   <div class="my-cards-carousel">
     <component-card-carousel>
     </component-card-carousel>
@@ -66,6 +72,20 @@
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    }
+
+    touchStartTitle = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      onBackKeyDown()
+    }
+
+    editCard = function () {
+      console.log("card for edit=", scope.card);
+      event.preventDefault();
+      event.stopPropagation();
+      riotTags.innerHTML = "<view-card-edit>";
+      riot.mount('view-card-edit', [scope.card]);
     }
 
     var scope = this,

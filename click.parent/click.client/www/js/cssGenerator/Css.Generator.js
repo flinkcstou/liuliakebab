@@ -1549,6 +1549,98 @@ var css = {
   "color: #232323;" +
   "}",
 
+  //VIEW CARD EDIT
+
+  cardEditBodyContainer: ".card-edit-body-container" +
+  "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 86 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: white; " +
+  "overflow-y: auto; " +
+  "overflow-x: hidden; " +
+  "}",
+
+  checkButton: ".check-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 144 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "right:" + -36 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewService/unchecked.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 31%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 54 * widthK + "px;" +
+  "background-size: 31%;" +
+  "top: 0;" +
+  "}",
+
+  cardEditField: ".card-edit-field" +
+  "{position: relative;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height: 9%;" +
+  "border-bottom:  " + 5 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  "top: 6%" +
+  "}",
+
+  cardEditTextField: ".card-edit-text-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px; " +
+  "bottom: 88%;" +
+  "}",
+
+  cardEditInput: ".card-edit-input" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "top: 26%;" +
+  "width: 88%;" +
+  "height: 69%;" +
+  "font-size:" + 49 * widthK + "px; " +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "}",
+
+  cardEditMakeMainContainer: ".card-edit-makemain-container" +
+  "{" +
+  "position: relative;" +
+  "width: 79.5%;" +
+  "height: " + 70 * widthK + "px; " +
+  "top:12%;" +
+  "left:10%;" +
+  "}",
+
+  cardEditMakeMainText: ".card-edit-makemain-text" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 28 * widthK + "px; " +
+  "color: #595759;" +
+  "}",
+
+  cardEditMakeMainCheck: ".card-edit-makemain-check" +
+  "{" +
+  "position: absolute;" +
+  "background-image: url('resources/icons/ViewService/unchecked.png');" +
+  "width: 7%;" +
+  "height: 36%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "background-position: center;" +
+  "top: 50%;" +
+  "left: 93%;" +
+  "}",
+
   //VIEW INFO
 
   viewInfo: ".view-info " +
