@@ -4,12 +4,12 @@
     <div id="backButton" ontouchend="touchStartTitle()"
          class="{back-button: backbuttoncheck}">
     </div>
-    <div id="rightButton" type="button" class="{settings-button: rightbuttoncheck}" ontouchend="editCard()"></div>
+    <div id="rightButton" type="button" class="{check-button: rightbuttoncheck}" ontouchend="saveEdit()"></div>
   </div>
   <div class="card-edit-body-container">
     <div class="card-edit-field">
       <p class="card-edit-text-field">Название карты</p>
-      <input class="card-edit-input"/>
+      <input class="card-edit-input" value="{defaultName}"/>
     </div>
     <div class="card-edit-makemain-container">
       <p class="card-edit-makemain-text">Сделать основной</p>
@@ -35,8 +35,8 @@
       onBackKeyDown()
     }
 
-    editCard = function () {
-      console.log("Hello world");
+    saveEdit = function () {
+      console.log("Done!");
     }
 
     var scope = this,
@@ -45,22 +45,14 @@
 
 
     if (opts[0]) {
-      scope.cardId = opts[0];
-      console.log('scope.cardId', scope.cardId)
+      scope.card = opts[0];
+      console.log('scope.card from opt', scope.card)
+      this.defaultName = scope.card.name;
     }
 
-
-    scope.top = 160 * widthK;
-    viewMyCards.check = true;
-    viewMainPage.myCards = true;
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;
     scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-
-
-    scope.card = scope.cardsArray[scope.cardId];
-    console.log('scope.cardId', scope.cardId)
-    console.log('scope.cardsArray', scope.cardsArray)
 
 
   </script>

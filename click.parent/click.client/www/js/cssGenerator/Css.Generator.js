@@ -1566,6 +1566,21 @@ var css = {
   "overflow-x: hidden; " +
   "}",
 
+  checkButton: ".check-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 144 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "right:" + -36 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewService/unchecked.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 31%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 54 * widthK + "px;" +
+  "background-size: 31%;" +
+  "top: 0;" +
+  "}",
+
   cardEditField: ".card-edit-field" +
   "{position: relative;" +
   "left: 10%;" +
@@ -1593,7 +1608,7 @@ var css = {
   "top: 26%;" +
   "width: 88%;" +
   "height: 69%;" +
-  "font-size:" + 56 * widthK + "px; " +
+  "font-size:" + 49 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "padding: 0;" +
@@ -1619,14 +1634,14 @@ var css = {
   cardEditMakeMainCheck: ".card-edit-makemain-check" +
   "{" +
   "position: absolute;" +
-  "background-image: url('resources/icons/ViewService/right.png');" +
-  "width: 3%;" +
+  "background-image: url('resources/icons/ViewService/unchecked.png');" +
+  "width: 7%;" +
   "height: 36%;" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "background-position: center;" +
-  "top: 31%;" +
-  "left: 95%;" +
+  "top: 50%;" +
+  "left: 93%;" +
   "}",
 
   //VIEW INFO

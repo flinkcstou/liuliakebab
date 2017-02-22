@@ -81,10 +81,11 @@
     }
 
     editCard = function () {
+      console.log("card for edit=", scope.card);
       event.preventDefault();
       event.stopPropagation();
       riotTags.innerHTML = "<view-card-edit>";
-      riot.mount('view-card-edit');
+      riot.mount('view-card-edit', [scope.card]);
     }
 
     var scope = this,
