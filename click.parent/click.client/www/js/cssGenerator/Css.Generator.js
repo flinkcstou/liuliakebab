@@ -47,18 +47,18 @@ var css = {
   "background-repeat: no-repeat;" +
     //"background-image: url(resources/draft/ViewInfo.png);" +
     //"opacity: 0.6;" +
-  //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background-image: -moz-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
-  "background-image: -webkit-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
-  "background-image: -ms-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+    //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+    //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+    //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+  "background: -moz-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+  "background: -webkit-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+  "background: -ms-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
   "bottom: 0;" +
-  "transition: 0.5s;" +
-  "-webkit-transition: 0.5s;" +
+  "transition: all 2s;" +
+  "-webkit-transition: all 2s;" +
   "}",
   body: "body{" +
   "margin: 0;" +

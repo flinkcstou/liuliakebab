@@ -131,14 +131,104 @@
     if (!count)
       count = 0;
 
+    var cNow1, cNow2, cNow3, vNow1, vNow2, vNow3;
+    var cNext1, cNext2, cNext3, vNext1, vNext2, vNext3;
+    var cPrivious1, cPrivious2, cPrivious3, vPrivious1, vPrivious2, vPrivious3;
+    var formChangableColor1, formChangableColor2, formChangableColor3, toChangableColor1, toChangableColor2, toChangableColor3;
+
+    var firstEnter;
 
     startTouchCarousel = function () {
+      firstEnter = true;
       carouselTouchStartX = event.changedTouches[0].pageX;
       left = -((540 * cardNumber) * widthK) - carouselTouchStartX;
       delta = left;
+
+      var n, n1, n2;
+
+      for (var i in cardsarray) {
+        if (cardsarray[i].countCard == cardNumber) {
+          n = cardsarray[i].background_color_top.indexOf(',') + 1;
+          cNow1 = cardsarray[i].background_color_top.substring(0, n - 1);
+          cardsarray[i].background_color_top = cardsarray[i].background_color_top.substring(n, cardsarray[i].background_color_top.length)
+          n2 = cardsarray[i].background_color_top.indexOf(',') + 1;
+          cNow2 = cardsarray[i].background_color_top.substring(0, n2 - 1);
+          cardsarray[i].background_color_top = cardsarray[i].background_color_top.substring(n2, cardsarray[i].background_color_top.length)
+          cNow3 = cardsarray[i].background_color_top.substring(0, cardsarray[i].background_color_top.length);
+
+          v = cardsarray[i].background_color_bottom.indexOf(',') + 1;
+          vNow1 = cardsarray[i].background_color_bottom.substring(0, v - 1);
+          cardsarray[i].background_color_bottom = cardsarray[i].background_color_bottom.substring(v, cardsarray[i].background_color_bottom.length)
+          v2 = cardsarray[i].background_color_bottom.indexOf(',') + 1;
+          vNow2 = cardsarray[i].background_color_bottom.substring(0, v2 - 1);
+          cardsarray[i].background_color_bottom = cardsarray[i].background_color_bottom.substring(v2, cardsarray[i].background_color_bottom.length)
+          vNow3 = cardsarray[i].background_color_bottom.substring(0, cardsarray[i].background_color_bottom.length);
+        }
+
+        if (cardsarray[i].countCard == cardNumber - 1) {
+          console.log('PRIVIOUS',cardsarray[i] )
+          n = cardsarray[i].background_color_top.indexOf(',') + 1;
+          cPrivious1 = cardsarray[i].background_color_top.substring(0, n - 1);
+          cardsarray[i].background_color_top = cardsarray[i].background_color_top.substring(n, cardsarray[i].background_color_top.length)
+          n2 = cardsarray[i].background_color_top.indexOf(',') + 1;
+          cPrivious2 = cardsarray[i].background_color_top.substring(0, n2 - 1);
+          cardsarray[i].background_color_top = cardsarray[i].background_color_top.substring(n2, cardsarray[i].background_color_top.length)
+          cPrivious3 = cardsarray[i].background_color_top.substring(0, cardsarray[i].background_color_top.length);
+
+          v = cardsarray[i].background_color_bottom.indexOf(',') + 1;
+          vPrivious1 = cardsarray[i].background_color_bottom.substring(0, v - 1);
+          cardsarray[i].background_color_bottom = cardsarray[i].background_color_bottom.substring(v, cardsarray[i].background_color_bottom.length)
+          v2 = cardsarray[i].background_color_bottom.indexOf(',') + 1;
+          vPrivious2 = cardsarray[i].background_color_bottom.substring(0, v2 - 1);
+          cardsarray[i].background_color_bottom = cardsarray[i].background_color_bottom.substring(v2, cardsarray[i].background_color_bottom.length)
+          vPrivious3 = cardsarray[i].background_color_bottom.substring(0, cardsarray[i].background_color_bottom.length);
+        }
+
+        if (cardsarray[i].countCard == cardNumber + 1) {
+          console.log('NEXT',cardsarray[i] )
+          n = cardsarray[i].background_color_top.indexOf(',') + 1;
+          cNext1 = cardsarray[i].background_color_top.substring(0, n - 1);
+          cardsarray[i].background_color_top = cardsarray[i].background_color_top.substring(n, cardsarray[i].background_color_top.length)
+          console.log('BEFORE N2', cardsarray[i].background_color_top)
+          n2 = cardsarray[i].background_color_top.indexOf(',') + 1;
+          cNext2 = cardsarray[i].background_color_top.substring(0, n2 - 1);
+          cardsarray[i].background_color_top = cardsarray[i].background_color_top.substring(n2, cardsarray[i].background_color_top.length)
+          cNext3 = cardsarray[i].background_color_top.substring(0, cardsarray[i].background_color_top.length);
+
+          v = cardsarray[i].background_color_bottom.indexOf(',') + 1;
+          vNext1 = cardsarray[i].background_color_bottom.substring(0, v - 1);
+          cardsarray[i].background_color_bottom = cardsarray[i].background_color_bottom.substring(v, cardsarray[i].background_color_bottom.length)
+          v2 = cardsarray[i].background_color_bottom.indexOf(',') + 1;
+          vNext2 = cardsarray[i].background_color_bottom.substring(0, v2 - 1);
+          cardsarray[i].background_color_bottom = cardsarray[i].background_color_bottom.substring(v2, cardsarray[i].background_color_bottom.length)
+          vNext3 = cardsarray[i].background_color_bottom.substring(0, cardsarray[i].background_color_bottom.length);
+        }
+      }
+      cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
     }
 
+    var leftCard = false, rightCard = false;
+
     endTouchCarousel = function () {
+
+      console.log('cNext1', cNext1)
+      console.log('cNext2', cNext2)
+      console.log('cNext3', cNext3)
+      console.log('vNext1', vNext1)
+      console.log('vNext2', vNext2)
+      console.log('vNext3', vNext3)
+
+      console.log('cPrivious1', cPrivious1)
+      console.log('cPrivious2', cPrivious2)
+      console.log('cPrivious3', cPrivious3)
+      console.log('vPrivious1', vPrivious1)
+      console.log('vPrivious2', vPrivious2)
+      console.log('vPrivious3', vPrivious3)
+
+      if (rightCard)
+        htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNext1 + ',' + cNext2 + ',' + cNext3 + '),rgb(' + vNext1 + ',' + vNext2 + ',' + vNext3 + '))';
+      if (leftCard)
+        htmlId.style.background = '-webkit-linear-gradient(rgb(' + cPrivious1 + ',' + cPrivious2 + ',' + cPrivious3 + '),rgb(' + vPrivious1 + ',' + vPrivious2 + ',' + vPrivious3 + '))';
       event.preventDefault();
       event.stopPropagation();
       carouselTouchEndX = event.changedTouches[0].pageX;
@@ -176,6 +266,48 @@
     moveTouchCarousel = function () {
       event.preventDefault();
       event.stopPropagation();
+      if (carouselTouchStartX > event.changedTouches[0].pageX && firstEnter) {
+        //to RIGHT
+        rightCard = true;
+        leftCard = false;
+        formChangableColor1 = cNext1
+        formChangableColor2 = cNext2
+        formChangableColor3 = cNext3
+
+        toChangableColor1 = vNext1
+        toChangableColor2 = vNext2
+        toChangableColor3 = vNext3
+        firstEnter = false;
+
+      }
+      if (carouselTouchStartX < event.changedTouches[0].pageX && firstEnter) {
+        //to LEFT
+        rightCard = false;
+        leftCard = true;
+        formChangableColor1 = cPrivious1
+        formChangableColor2 = cPrivious2
+        formChangableColor3 = cPrivious3
+
+        toChangableColor1 = vPrivious1
+        toChangableColor2 = vPrivious2
+        toChangableColor3 = vPrivious3
+        firstEnter = false;
+      }
+      if (cNow1 > formChangableColor1) cNow1--;
+      if (cNow1 < formChangableColor1) cNow1++;
+      if (cNow2 > formChangableColor2) cNow2--;
+      if (cNow2 < formChangableColor2) cNow2++;
+      if (cNow3 > formChangableColor3) cNow3--;
+      if (cNow3 < formChangableColor3) cNow3++;
+      if (vNow1 > toChangableColor1) vNow1--;
+      if (vNow1 < toChangableColor1) vNow1++;
+      if (vNow2 > toChangableColor2) vNow2--;
+      if (vNow2 < toChangableColor2) vNow2++;
+      if (vNow3 > toChangableColor3) vNow3--;
+      if (vNow3 < toChangableColor3) vNow3++;
+
+      htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
+        'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + '))';
       this.cards.style.transition = '0s';
       this.cards.style.webkitTransition = '0s';
       this.cards.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
@@ -217,11 +349,14 @@
             numberPartOne: numberOfCardPartOne,
             numberPartTwo: numberOfCardPartTwo,
             url: getAccountsCards[i].image_url,
-            background: getAccountsCards[i].background_url,
+            background: getAccountsCards[i].card_background_url,
             countCard: count,
             chosenCard: false,
             default_account: defaultAccount,
-            access: getAccountsCards[i].access
+            access: getAccountsCards[i].access,
+            background_color_bottom: getAccountsCards[i].background_color_bottom,
+            background_color_top: getAccountsCards[i].background_color_top,
+            font_color: getAccountsCards[i].font_color
           };
 
 
@@ -237,7 +372,7 @@
     if (localStorage.getItem('click_client_accountInfo')) {
 
       for (var i = 0; i < getAccountsCards.length; i++) {
-        if(getAccountsCards[i].id == loginInfo.default_account){
+        if (getAccountsCards[i].id == loginInfo.default_account) {
           var tmp = getAccountsCards[0];
           getAccountsCards[0] = getAccountsCards[i];
           getAccountsCards[i] = tmp;
@@ -246,7 +381,11 @@
       scope.addCard(getAccountsCards);
     }
 
+    animation = function () {
+    }
+
     function changePosition() {
+
 
       if (carouselTouchEndX < carouselTouchStartX && cardNumber < count - 1) {
         ++cardNumber;
