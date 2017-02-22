@@ -4,7 +4,6 @@
       <p class="pay-name-title">{titleName}</p>
       <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
       <div id="rightButton" type="button" class="pay-search-button" ontouchend="search()"></div>
-      <div style=""></div>
     </div>
     <div class="pay-category-container">
       <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">

@@ -121,7 +121,9 @@ var RU_LANGUAGES =
   "ViewPinCodeClickPinLabel": "Установите CLICK-PIN",
   "ViewPinCodeConfirmClickPinLabel": "Подтвердите CLICK-PIN",
 
+  "ViewCardEditTitleName": "НАСТРОЙКИ КАРТЫ"
 
-}
+
+};
 
 window.languages = RU_LANGUAGES;

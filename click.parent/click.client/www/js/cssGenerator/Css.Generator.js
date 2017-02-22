@@ -47,9 +47,9 @@ var css = {
   "background-repeat: no-repeat;" +
     //"background-image: url(resources/draft/ViewInfo.png);" +
     //"opacity: 0.6;" +
-  //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+    //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+    //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+    //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
   "background-image: -moz-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
   "background-image: -webkit-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
   "background-image: -ms-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
@@ -1550,6 +1550,83 @@ var css = {
   "top:" + 60 * widthK + "px;" +
   "font-size:" + 34 * widthK + "px;" +
   "color: #232323;" +
+  "}",
+
+  //VIEW CARD EDIT
+
+  cardEditBodyContainer: ".card-edit-body-container" +
+  "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 86 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: white; " +
+  "overflow-y: auto; " +
+  "overflow-x: hidden; " +
+  "}",
+
+  cardEditField: ".card-edit-field" +
+  "{position: relative;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height: 9%;" +
+  "border-bottom:  " + 5 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  "top: 6%" +
+  "}",
+
+  cardEditTextField: ".card-edit-text-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px; " +
+  "bottom: 88%;" +
+  "}",
+
+  cardEditInput: ".card-edit-input" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "top: 26%;" +
+  "width: 88%;" +
+  "height: 69%;" +
+  "font-size:" + 56 * widthK + "px; " +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "}",
+
+  cardEditMakeMainContainer: ".card-edit-makemain-container" +
+  "{" +
+  "position: relative;" +
+  "width: 79.5%;" +
+  "height: " + 70 * widthK + "px; " +
+  "top:12%;" +
+  "left:10%;" +
+  "}",
+
+  cardEditMakeMainText: ".card-edit-makemain-text" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 28 * widthK + "px; " +
+  "color: #595759;" +
+  "}",
+
+  cardEditMakeMainCheck: ".card-edit-makemain-check" +
+  "{" +
+  "position: absolute;" +
+  "background-image: url('resources/icons/ViewService/right.png');" +
+  "width: 3%;" +
+  "height: 36%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "background-position: center;" +
+  "top: 31%;" +
+  "left: 95%;" +
   "}",
 
   //VIEW INFO
