@@ -24,17 +24,17 @@
     </div>
   </div>
   <script>
-    console.log('OPTS', opts)
 
-    console.log('OPTS', opts)
+    console.log('OPTS', opts);
     var arrayForTransfer = [];
-    arrayForTransfer.push(opts[0])
-    arrayForTransfer.push(opts[1])
-    arrayForTransfer.push(opts[2])
-    arrayForTransfer.push(opts[3])
-    arrayForTransfer.push(opts[4])
-    arrayForTransfer.push(opts[5])
-    console.log(arrayForTransfer)
+    arrayForTransfer.push(opts[0]);
+    arrayForTransfer.push(opts[1]);
+    arrayForTransfer.push(opts[2]);
+    arrayForTransfer.push(opts[3]);
+    arrayForTransfer.push(opts[4]);
+    arrayForTransfer.push(opts[5]);
+    arrayForTransfer.push(opts[6]);
+    console.log(arrayForTransfer);
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards') {
       history.arrayOfHistory.push(
@@ -51,7 +51,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
-    }
+    };
 
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
     scope.service = scope.servicesMap[viewPay.chosenServiceId][0];

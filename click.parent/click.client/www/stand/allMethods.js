@@ -853,7 +853,7 @@ window.fakedSocket.register("get.service.list", function (input) {
       {
         category_id: 1,
         cost: 1,
-        form_type: 4,
+        form_type: 1,
         is_visible: 1,
         id: 2,
         image: "https://m.click.uz/static/merchant/logo/logo_2.png",
@@ -1123,6 +1123,27 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_parameters: "16",
         service_short_name: "gaz",
         status: 1
+      },
+      {
+        category_id: 11,
+        cost: 1,
+        form_type: 4,
+        id: 4422,
+        image: "https://m.click.uz/static/merchant/logo/logo_4422.png",
+        is_mobile: 0,
+        is_visible: 1,
+        lang_amount_hint: null,
+        lang_amount_placeholder: "Введите сумму оплаты",
+        lang_amount_title: "Сумма",
+        lang_max_amount: "Максимальная сумма для оплаты 1500000.00 сум ",
+        lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+        max_pay_limit: 1500000,
+        min_pay_limit: 1000,
+        name: "UMS Internet Paketi",
+        priority: 25,
+        service_parameters: "1",
+        service_short_name: "UMS Internet Paketi",
+        status: 1
       }
 
     ]
@@ -1365,6 +1386,17 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
       service_id: 107,
       title: "ИНН",
       ussd_query: "*880*010799999*{communal_param}*{param}*{amount}#"
+    },
+    {
+      error_message: "Номер телефона введен неправильно",
+      input_type: 1,
+      max_len: "999999999",
+      min_len: "0",
+      parameter_id: "1",
+      placeholder: "Введите номер телефона без 998",
+      service_id: 4422,
+      title: "Номер телефона",
+      ussd_query: "*880*0199999*{param}*{amount}#"
     }
   ]);
 

@@ -54,14 +54,14 @@
       document.head.appendChild(GENERATOR);
 
       firstMount.firstStep = function () {
-//        if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
-//          scope.riotTags.innerHTML = "<view-authorization>";
-//          riot.mount('view-authorization')
-//        }
-//        else {
-//          scope.riotTags.innerHTML = "<view-registration-device>";
-//          riot.mount('view-registration-device');
-//        }
+        if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true) {
+          scope.riotTags.innerHTML = "<view-authorization>";
+          riot.mount('view-authorization')
+        }
+        else {
+          scope.riotTags.innerHTML = "<view-registration-device>";
+          riot.mount('view-registration-device');
+        }
         riot.mount('view-main-page');
       };
 

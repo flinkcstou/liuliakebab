@@ -2646,7 +2646,7 @@ var css = {
   "font-size: " + 44 * widthK + "px; " +
   "margin: auto;" +
   "color: white;" +
-  "right: 10%;" +
+    //"right: 10%;" +
   "}",
 
   payconfirmDataContainer: ".payconfirm-data-container" +
