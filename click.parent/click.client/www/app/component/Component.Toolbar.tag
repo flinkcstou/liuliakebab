@@ -3,7 +3,7 @@
     <div class="menu-button menu-icon" ontouchend="menuOpen()">
     </div>
 
-    <div class="toolbar-circle-container" ontouchend="goToViewInfo()">
+    <div id="circleMenuId" class="toolbar-circle-container" ontouchend="goToViewInfo()">
     </div>
 
     <div class="bell-button bell-icon" ontouchend="bellButton()">

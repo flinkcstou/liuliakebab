@@ -618,7 +618,7 @@ var css = {
   "left:" + 26 * widthK + "px;" +
   "height:" + 70 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom:" + 2 + "px solid #a3deee;" +
+  "border-bottom:" + 2 + "px solid white;" +
   "}",
 
   toolbarCircleContainer: ".toolbar-circle-container " +
@@ -754,7 +754,7 @@ var css = {
   "position: absolute;" +
   "left:" + 27 * widthK + "px;" +
   "right:" + 27 * widthK + "px;" +
-  "border-bottom:" + 2 + "px solid #a3deee;" +
+  "border-bottom:" + 2 + "px solid white;" +
   "text-align: center;" +
   "top:" + 440 * widthK + "px;" +
   "height:" + 100 * heightK + "px;" +
@@ -900,7 +900,6 @@ var css = {
   "position: absolute;" +
   "top:" + 134 * widthK + "px;" +
   "left:" + 25 * widthK + "px;" +
-  "color: #595759;" +
   "background-size: contain;" +
   "font-size:" + 23 * widthK + "px;" +
   "height: 10%;" +
@@ -919,7 +918,6 @@ var css = {
   "{" +
   "position: relative;" +
   "left:" + 25 * widthK + "px;" +
-  "color: #585658;" +
   "font-size:" + 44 * widthK + "px;" +
   "margin: 0;" +
   "margin-top:" + -2 * widthK + "px;" +
@@ -931,7 +929,6 @@ var css = {
   "{" +
   "position: relative;" +
   "margin-left:" + 35 * widthK + "px;" +
-  "color: #595759;" +
   "top:" + -6 * widthK + "px;" +
   "font-size:" + 24 * widthK + "px;" +
   "background-size: contain;" +
