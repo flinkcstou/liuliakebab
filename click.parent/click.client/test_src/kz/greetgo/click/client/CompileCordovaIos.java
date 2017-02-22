@@ -9,11 +9,9 @@ public class CompileCordovaIos extends AbstractCompileCordova {
     if (!clickClient.file("cordova/platforms/ios").exists()) {
       clickClient.cd("cordova").cmd("cordova platform add ios");
     }
-
-    clickClient.cd("cordova").cmd("cordova compile ios");
     
     addPluginPickcontact();
 
-    //clickClient.cd("cordova").cmd("cp www/index-stand-demo.html platforms/android/assets/www");
+    clickClient.cd("cordova").cmd("cp www/index-stand-demo.html platforms/ios/www");
   }
 }
