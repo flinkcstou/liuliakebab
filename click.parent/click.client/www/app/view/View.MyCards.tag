@@ -45,7 +45,7 @@
         <div class="my-cards-last-operations-info" each="{i in arrayOfOperationsByAccount}"
              style="top: {i.count*top}px">
           <div class="my-cards-operation-amount">- {i.amount}</div>
-          <div class="my-cards-operation-currency">сум</div>
+          <div class="my-cards-operation-currency">{i.lang_amount_currency}</div>
           <div class="my-cards-firm-name">{i.service_name}</div>
           <div class="my-cards-operation-date">{i.created}</div>
         </div>

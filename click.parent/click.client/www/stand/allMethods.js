@@ -654,6 +654,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 0,
         service_parameters: "4",
         service_short_name: "OLX.UZ",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -676,6 +677,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 0,
         service_parameters: "4",
         service_short_name: "UZDTV",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -698,6 +700,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 0,
         service_parameters: "16",
         service_short_name: "MAXSUSTRANS",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -720,6 +723,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 0,
         service_parameters: "4",
         service_short_name: "REGNAME",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -742,6 +746,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 0,
         service_parameters: "0",
         service_short_name: "AIST_TAXI",
+        lang_amount_currency: "сум",
         status: 0
       },
       {
@@ -763,6 +768,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 0,
         service_parameters: "0",
         service_short_name: "mt",
+        lang_amount_currency: "сум",
         status: 0
       },
       {
@@ -784,6 +790,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 0,
         service_parameters: "0",
         service_short_name: "arba.uz",
+        lang_amount_currency: "сум",
         status: 0
       },
       {
@@ -805,6 +812,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 20,
         service_parameters: "1",
         service_short_name: "UZMOBILE",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -826,6 +834,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 10,
         service_parameters: "1",
         service_short_name: "UCELL",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -847,6 +856,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 5,
         service_parameters: "1",
         service_short_name: "BEELINE",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -868,6 +878,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 30,
         service_parameters: "1",
         service_short_name: "UzmobileGSM",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -889,6 +900,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 25,
         service_parameters: "1",
         service_short_name: "UMS",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -910,6 +922,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 10,
         service_parameters: "32768",
         service_short_name: "TELEGRAF",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -932,6 +945,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 20,
         service_parameters: "32768",
         service_short_name: "Telekarta",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -953,6 +967,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 0,
         service_parameters: "32768",
         service_short_name: "Dastur.uz",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -974,6 +989,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 30,
         service_parameters: "32768",
         service_short_name: "Oxygen Networks",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -995,6 +1011,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 0,
         service_parameters: "32768",
         service_short_name: "SONET.UZ PINCARD",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -1016,6 +1033,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 5,
         service_parameters: "134",
         service_short_name: "SHARQTELEKOM",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -1037,6 +1055,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 7,
         service_parameters: "10",
         service_short_name: "SARKORTELEKOM",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -1058,6 +1077,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 10,
         service_parameters: "18",
         service_short_name: "SKYLINE",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -1079,6 +1099,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 20,
         service_parameters: "6148",
         service_short_name: "PLATINUM",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -1100,6 +1121,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 35,
         service_parameters: "19",
         service_short_name: "east_telekom",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -1121,6 +1143,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 35,
         service_parameters: "16777232",
         service_short_name: "EVOLTE",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -1142,6 +1165,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 0,
         service_parameters: "16",
         service_short_name: "gaz",
+        lang_amount_currency: "сум",
         status: 1
       },
       {
@@ -1163,6 +1187,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         priority: 25,
         service_parameters: "1",
         service_short_name: "UMS Internet Paketi",
+        lang_amount_currency: "сум",
         status: 1
       }
 
