@@ -68,3 +68,20 @@ task compileAndroidProduction(type: JavaExec, group: 'client') {
   main = 'kz.greetgo.click.client.CompileCordovaAndroid'
   args = []
 }
+
+
+
+task compileIosStand(type: JavaExec, group: 'client') {
+  dependsOn prepareCordovaStandWWW
+  classpath { [sourceSets.test.runtimeClasspath] }
+
+  main = 'kz.greetgo.click.client.CompileCordovaIos'
+  args = []
+}
+task compileIosProduction(type: JavaExec, group: 'client') {
+  dependsOn prepareCordovaProductionWWW
+  classpath { [sourceSets.test.runtimeClasspath] }
+
+  main = 'kz.greetgo.click.client.CompileCordovaIos'
+  args = []
+}

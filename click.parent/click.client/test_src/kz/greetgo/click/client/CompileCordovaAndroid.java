@@ -1,11 +1,13 @@
 package kz.greetgo.click.client;
 
-import kz.greetgo.cordosencha.gradle.core.DirOperations;
+import java.io.IOException;
 
-public class CompileCordovaAndroid {
+public class CompileCordovaAndroid extends AbstractCompileCordova {
   public static void main(String[] args) throws Exception {
-    DirOperations clickClient = Util.clickClientDir();
+    new CompileCordovaAndroid().execute();
+  }
 
+  private void execute() throws Exception {
     if (!clickClient.file("cordova/platforms/android").exists()) {
       clickClient.cd("cordova").cmd("cordova platform add android@6.1.0");
     }
@@ -15,10 +17,10 @@ public class CompileCordovaAndroid {
     clickClient.xmlFile("cordova/platforms/android/AndroidManifest.xml")
       .modify(xml -> xml.changeAttr("/manifest/application/activity[@name='MainActivity']", "android:windowSoftInputMode", "adjustPan"))
       .save();
-    clickClient.cd("cordova").cmd("cordova plugin add https://github.com/kolwit/com.kolwit.pickcontact.git");
-    clickClient.cmd("cp www/index-stand-demo.html cordova/www");
-    clickClient.cd("cordova").cmd("cp www/index-stand-demo.html platforms/android/assets/www");
 
+    addPluginPickcontact();
+    
+    clickClient.cd("cordova").cmd("cp www/index-stand-demo.html platforms/android/assets/www");
 
   }
 }
