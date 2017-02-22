@@ -45,11 +45,13 @@
       htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
         'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
 
-      contacts.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-      circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+      if(!viewMainPage.myCards) {
+        contacts.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+        circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
 
-      contactsId.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-      contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+        contactsId.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+      }
 
 
       cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -261,20 +263,24 @@
       if (rightCard) {
         htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNext1 + ',' + cNext2 + ',' + cNext3 + '),rgb(' + vNext1 + ',' + vNext2 + ',' + vNext3 + ')150%)';
 
-        contacts.style.backgroundColor = 'rgb(' + cNext1 + ',' + cNext2 + ',' + cNext3 + ')';
-        circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNext1 + ',' + cNext2 + ',' + cNext3 + ')';
+        if (!viewMainPage.myCards) {
+          contacts.style.backgroundColor = 'rgb(' + cNext1 + ',' + cNext2 + ',' + cNext3 + ')';
+          circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNext1 + ',' + cNext2 + ',' + cNext3 + ')';
 
-        contactsId.style.backgroundColor = 'rgb(' + cNext1 + ',' + cNext2 + ',' + cNext3 + ')';
-        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cNext1 + ',' + cNext2 + ',' + cNext3 + ')';
+          contactsId.style.backgroundColor = 'rgb(' + cNext1 + ',' + cNext2 + ',' + cNext3 + ')';
+          contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cNext1 + ',' + cNext2 + ',' + cNext3 + ')';
+        }
       }
       if (leftCard) {
         htmlId.style.background = '-webkit-linear-gradient(rgb(' + cPrivious1 + ',' + cPrivious2 + ',' + cPrivious3 + '),rgb(' + vPrivious1 + ',' + vPrivious2 + ',' + vPrivious3 + '))';
 
-        contacts.style.backgroundColor = 'rgb(' + cPrivious1 + ',' + cPrivious2 + ',' + cPrivious3 + ')';
-        circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cPrivious1 + ',' + cPrivious2 + ',' + cPrivious3 + ')';
+        if (!viewMainPage.myCards) {
+          contacts.style.backgroundColor = 'rgb(' + cPrivious1 + ',' + cPrivious2 + ',' + cPrivious3 + ')';
+          circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cPrivious1 + ',' + cPrivious2 + ',' + cPrivious3 + ')';
 
-        contactsId.style.backgroundColor = 'rgb(' + cPrivious1 + ',' + cPrivious2 + ',' + cPrivious3 + ')';
-        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cPrivious1 + ',' + cPrivious2 + ',' + cPrivious3 + ')';
+          contactsId.style.backgroundColor = 'rgb(' + cPrivious1 + ',' + cPrivious2 + ',' + cPrivious3 + ')';
+          contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cPrivious1 + ',' + cPrivious2 + ',' + cPrivious3 + ')';
+        }
       }
 
       event.preventDefault();
@@ -357,11 +363,13 @@
       htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
         'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
 
-      contacts.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-      circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+      if (!viewMainPage.myCards) {
+        contacts.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+        circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
 
-      contactsId.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-      contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+        contactsId.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+      }
 
 
       this.cards.style.transition = '0s';
