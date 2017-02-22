@@ -690,6 +690,20 @@ input {
   overflow-y: scroll;
 }
 
+.check-button {
+  position: absolute;
+  width: 144px;
+  height: 92px;
+  right: -36px;
+  background-image: url("../resources/icons/ViewService/unchecked.png");
+  background-repeat: no-repeat;
+  -webkit-background-size: 31%;
+  background-position-y: center;
+  background-position-x: 54px;
+  background-size: 31%;
+  top: 0;
+}
+
 .card-edit-field {
   position: relative;
   left: 11%;
@@ -735,7 +749,7 @@ input {
 
 .card-edit-makemain-check {
   position: absolute;
-  background-image: url("../resources/icons/ViewService/right.png");
+  background-image: url("../resources/icons/ViewService/unchecked.png");
   width: 3%;
   height: 36%;
   background-repeat: no-repeat;
