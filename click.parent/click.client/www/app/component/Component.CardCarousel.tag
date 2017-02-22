@@ -45,7 +45,7 @@
       htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
         'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
 
-      if(!viewMainPage.myCards) {
+      if (!viewMainPage.myCards) {
         contacts.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
         circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
 
