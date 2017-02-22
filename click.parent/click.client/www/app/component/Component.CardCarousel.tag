@@ -10,7 +10,7 @@
                       numberpartone="{i.numberPartOne}"
                       numberparttwo="{i.numberPartTwo}"
                       bankname="{i.bankName}" url="{i.url}"
-                      background="{i.background}"></component-card>
+                      background="{i.card_background_url}"></component-card>
     </div>
   </div>
 
@@ -20,6 +20,30 @@
     this.on('mount', function () {
       console.log('cardsarray', cardsarray)
       localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
+      copyCardsArray = JSON.parse(JSON.stringify(cardsarray));
+
+      var nn, nn2;
+      var vv, vv2;
+
+      nn = copyCardsArray[defaultAccountId].background_color_top.indexOf(',') + 1;
+      cNow1 = copyCardsArray[defaultAccountId].background_color_top.substring(0, nn - 1);
+      copyCardsArray[defaultAccountId].background_color_top = copyCardsArray[defaultAccountId].background_color_top.substring(nn, copyCardsArray[defaultAccountId].background_color_top.length)
+      nn2 = copyCardsArray[defaultAccountId].background_color_top.indexOf(',') + 1;
+      cNow2 = copyCardsArray[defaultAccountId].background_color_top.substring(0, nn2 - 1);
+      copyCardsArray[defaultAccountId].background_color_top = copyCardsArray[defaultAccountId].background_color_top.substring(nn2, copyCardsArray[defaultAccountId].background_color_top.length)
+      cNow3 = copyCardsArray[defaultAccountId].background_color_top.substring(0, copyCardsArray[defaultAccountId].background_color_top.length);
+
+      vv = copyCardsArray[defaultAccountId].background_color_bottom.indexOf(',') + 1;
+      vNow1 = copyCardsArray[defaultAccountId].background_color_bottom.substring(0, vv - 1);
+      copyCardsArray[defaultAccountId].background_color_bottom = copyCardsArray[defaultAccountId].background_color_bottom.substring(vv, copyCardsArray[defaultAccountId].background_color_bottom.length)
+      vv2 = copyCardsArray[defaultAccountId].background_color_bottom.indexOf(',') + 1;
+      vNow2 = copyCardsArray[defaultAccountId].background_color_bottom.substring(0, vv2 - 1);
+      copyCardsArray[defaultAccountId].background_color_bottom = copyCardsArray[defaultAccountId].background_color_bottom.substring(vv2, copyCardsArray[defaultAccountId].background_color_bottom.length)
+      vNow3 = copyCardsArray[defaultAccountId].background_color_bottom.substring(0, copyCardsArray[defaultAccountId].background_color_bottom.length);
+
+      htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
+        'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + '))';
+
       cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
@@ -103,6 +127,7 @@
 
     var scope = this;
     var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
+    var defaultAccountId;
 
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -166,7 +191,7 @@
         }
 
         if (cardsarray[i].countCard == cardNumber - 1) {
-          console.log('PRIVIOUS',cardsarray[i] )
+          console.log('PRIVIOUS', cardsarray[i])
           n = cardsarray[i].background_color_top.indexOf(',') + 1;
           cPrivious1 = cardsarray[i].background_color_top.substring(0, n - 1);
           cardsarray[i].background_color_top = cardsarray[i].background_color_top.substring(n, cardsarray[i].background_color_top.length)
@@ -185,7 +210,7 @@
         }
 
         if (cardsarray[i].countCard == cardNumber + 1) {
-          console.log('NEXT',cardsarray[i] )
+          console.log('NEXT', cardsarray[i])
           n = cardsarray[i].background_color_top.indexOf(',') + 1;
           cNext1 = cardsarray[i].background_color_top.substring(0, n - 1);
           cardsarray[i].background_color_top = cardsarray[i].background_color_top.substring(n, cardsarray[i].background_color_top.length)
@@ -331,10 +356,6 @@
           else
             defaultAccount = false;
 
-          if (getAccountsCards[i].acc_abs.trim() == 'SMARTV')
-            typeOfCard = 'resources/icons/cards/typeOfCards/uzcard.png';
-          if (getAccountsCards[i].acc_abs.trim() == 'DUET')
-            typeOfCard = 'resources/icons/cards/typeOfCards/duet.png';
 
           numberOfCardPartOne = getAccountsCards[i].accno[0] + getAccountsCards[i].accno[1]
             + getAccountsCards[i].accno[2] + getAccountsCards[i].accno[3]
@@ -349,7 +370,7 @@
             numberPartOne: numberOfCardPartOne,
             numberPartTwo: numberOfCardPartTwo,
             url: getAccountsCards[i].image_url,
-            background: getAccountsCards[i].card_background_url,
+            card_background_url: getAccountsCards[i].card_background_url,
             countCard: count,
             chosenCard: false,
             default_account: defaultAccount,
@@ -373,6 +394,7 @@
 
       for (var i = 0; i < getAccountsCards.length; i++) {
         if (getAccountsCards[i].id == loginInfo.default_account) {
+          defaultAccountId = getAccountsCards[i].id;
           var tmp = getAccountsCards[0];
           getAccountsCards[0] = getAccountsCards[i];
           getAccountsCards[i] = tmp;
