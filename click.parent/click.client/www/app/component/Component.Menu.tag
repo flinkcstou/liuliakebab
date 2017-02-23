@@ -17,7 +17,9 @@
     }
 
     TEST = function () {
-      window.location.href = "index-stand.html";
+      localStorage.setItem('demo_version', false);
+      localStorage.clear();
+      window.location.href = "index.html";
     }
 
     goToProduction = function () {

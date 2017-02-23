@@ -1885,3 +1885,46 @@ window.fakedSocket.register("p2p.payment", function (input) {
     }
   }
 });
+
+
+window.fakedSocket.register("settings.account.name", function (input) {
+
+  if (input)
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": ""
+      }]
+    ];
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});
+
+window.fakedSocket.register("settings.change.default.account", function (input) {
+
+  if (input)
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": ""
+      }]
+    ];
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});

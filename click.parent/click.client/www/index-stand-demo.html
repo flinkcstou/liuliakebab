@@ -36,7 +36,7 @@
 <div id="riotTags" class="riotTags">
   <view-main-page></view-main-page>
 </div>
-`
+
 
 <script>
 
@@ -72,9 +72,9 @@
   }
 
 
-  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
-    this.closeDemo();
-  }
+  //  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
+  //    this.closeDemo();
+  //  }
 
   function prepareLoginData() {
     var phoneNumber = "998901111111";
@@ -104,6 +104,7 @@
       "p2p_comission": 2
     };
     localStorage.setItem('click_client_loginInfo', JSON.stringify(JsonInfo));
+    localStorage.setItem('demo_version', true);
     getAccount();
 
   }

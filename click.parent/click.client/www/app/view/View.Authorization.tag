@@ -273,7 +273,8 @@
                       j++;
                       arrayAccountInfo.push(result[1][i]);
 
-                      var icon = result[1][i].background_url;
+                      var icon = result[1][i].card_background_url;
+                      console.log();
                       var filename = icon.substr(icon.lastIndexOf('/') + 1);
                       console.log("filename=" + filename);
 
@@ -281,9 +282,9 @@
                       newIconBool('www/resources/icons/cards/', filename, icon, j, function (bool, index, fileName) {
 
                         if (bool) {
-                          arrayAccountInfo[index].background_url = cordova.file.dataDirectory + fileName;
+                          arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
                         } else {
-                          arrayAccountInfo[index].background_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/' + fileName;
+                          arrayAccountInfo[index].card_background_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/' + fileName;
                         }
 
                         var icon2 = arrayAccountInfo[index].image_url;
