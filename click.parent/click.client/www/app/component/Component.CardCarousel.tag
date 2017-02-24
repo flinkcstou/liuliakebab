@@ -23,24 +23,17 @@
       localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
       copyCardsArray = JSON.parse(JSON.stringify(cardsarray));
 
-      var nn, nn2;
-      var vv, vv2;
+      var splitTop = copyCardsArray[defaultAccountId].background_color_top.split(',')
 
-      nn = copyCardsArray[defaultAccountId].background_color_top.indexOf(',') + 1;
-      cNow1 = copyCardsArray[defaultAccountId].background_color_top.substring(0, nn - 1);
-      copyCardsArray[defaultAccountId].background_color_top = copyCardsArray[defaultAccountId].background_color_top.substring(nn, copyCardsArray[defaultAccountId].background_color_top.length)
-      nn2 = copyCardsArray[defaultAccountId].background_color_top.indexOf(',') + 1;
-      cNow2 = copyCardsArray[defaultAccountId].background_color_top.substring(0, nn2 - 1);
-      copyCardsArray[defaultAccountId].background_color_top = copyCardsArray[defaultAccountId].background_color_top.substring(nn2, copyCardsArray[defaultAccountId].background_color_top.length)
-      cNow3 = copyCardsArray[defaultAccountId].background_color_top.substring(0, copyCardsArray[defaultAccountId].background_color_top.length);
+      cNow1 = splitTop[0]
+      cNow2 = splitTop[1]
+      cNow3 = splitTop[2]
 
-      vv = copyCardsArray[defaultAccountId].background_color_bottom.indexOf(',') + 1;
-      vNow1 = copyCardsArray[defaultAccountId].background_color_bottom.substring(0, vv - 1);
-      copyCardsArray[defaultAccountId].background_color_bottom = copyCardsArray[defaultAccountId].background_color_bottom.substring(vv, copyCardsArray[defaultAccountId].background_color_bottom.length)
-      vv2 = copyCardsArray[defaultAccountId].background_color_bottom.indexOf(',') + 1;
-      vNow2 = copyCardsArray[defaultAccountId].background_color_bottom.substring(0, vv2 - 1);
-      copyCardsArray[defaultAccountId].background_color_bottom = copyCardsArray[defaultAccountId].background_color_bottom.substring(vv2, copyCardsArray[defaultAccountId].background_color_bottom.length)
-      vNow3 = copyCardsArray[defaultAccountId].background_color_bottom.substring(0, copyCardsArray[defaultAccountId].background_color_bottom.length);
+      var splitBottom = copyCardsArray[defaultAccountId].background_color_bottom.split(',')
+
+      vNow1 = splitBottom[0]
+      vNow2 = splitBottom[1]
+      vNow3 = splitBottom[2]
 
       htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
         'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
@@ -179,64 +172,46 @@
       left = -((540 * cardNumber) * widthK) - carouselTouchStartX;
       delta = left;
 
-      var n, n1, n2;
-
       for (var i in cardsarray) {
         if (cardsarray[i].countCard == cardNumber) {
-          n = cardsarray[i].background_color_top.indexOf(',') + 1;
-          cNow1 = cardsarray[i].background_color_top.substring(0, n - 1);
-          cardsarray[i].background_color_top = cardsarray[i].background_color_top.substring(n, cardsarray[i].background_color_top.length)
-          n2 = cardsarray[i].background_color_top.indexOf(',') + 1;
-          cNow2 = cardsarray[i].background_color_top.substring(0, n2 - 1);
-          cardsarray[i].background_color_top = cardsarray[i].background_color_top.substring(n2, cardsarray[i].background_color_top.length)
-          cNow3 = cardsarray[i].background_color_top.substring(0, cardsarray[i].background_color_top.length);
+          console.log('SPLIT SPLIT ', cardsarray[i].background_color_top.split(','))
+          var splitTop = cardsarray[i].background_color_top.split(',');
 
-          v = cardsarray[i].background_color_bottom.indexOf(',') + 1;
-          vNow1 = cardsarray[i].background_color_bottom.substring(0, v - 1);
-          cardsarray[i].background_color_bottom = cardsarray[i].background_color_bottom.substring(v, cardsarray[i].background_color_bottom.length)
-          v2 = cardsarray[i].background_color_bottom.indexOf(',') + 1;
-          vNow2 = cardsarray[i].background_color_bottom.substring(0, v2 - 1);
-          cardsarray[i].background_color_bottom = cardsarray[i].background_color_bottom.substring(v2, cardsarray[i].background_color_bottom.length)
-          vNow3 = cardsarray[i].background_color_bottom.substring(0, cardsarray[i].background_color_bottom.length);
+          cNow1 = splitTop[0]
+          cNow2 = splitTop[1]
+          cNow3 = splitTop[2]
+
+          var splitBottom = cardsarray[i].background_color_bottom.split(',')
+
+          vNow1 = splitBottom[0]
+          vNow2 = splitBottom[1]
+          vNow3 = splitBottom[2]
         }
 
         if (cardsarray[i].countCard == cardNumber - 1) {
           console.log('PRIVIOUS', cardsarray[i])
-          n = cardsarray[i].background_color_top.indexOf(',') + 1;
-          cPrivious1 = cardsarray[i].background_color_top.substring(0, n - 1);
-          cardsarray[i].background_color_top = cardsarray[i].background_color_top.substring(n, cardsarray[i].background_color_top.length)
-          n2 = cardsarray[i].background_color_top.indexOf(',') + 1;
-          cPrivious2 = cardsarray[i].background_color_top.substring(0, n2 - 1);
-          cardsarray[i].background_color_top = cardsarray[i].background_color_top.substring(n2, cardsarray[i].background_color_top.length)
-          cPrivious3 = cardsarray[i].background_color_top.substring(0, cardsarray[i].background_color_top.length);
+          var splitTopPrivious = cardsarray[i].background_color_top.split(',');
+          cPrivious1 = splitTopPrivious[0]
+          cPrivious2 = splitTopPrivious[1]
+          cPrivious3 = splitTopPrivious[2]
 
-          v = cardsarray[i].background_color_bottom.indexOf(',') + 1;
-          vPrivious1 = cardsarray[i].background_color_bottom.substring(0, v - 1);
-          cardsarray[i].background_color_bottom = cardsarray[i].background_color_bottom.substring(v, cardsarray[i].background_color_bottom.length)
-          v2 = cardsarray[i].background_color_bottom.indexOf(',') + 1;
-          vPrivious2 = cardsarray[i].background_color_bottom.substring(0, v2 - 1);
-          cardsarray[i].background_color_bottom = cardsarray[i].background_color_bottom.substring(v2, cardsarray[i].background_color_bottom.length)
-          vPrivious3 = cardsarray[i].background_color_bottom.substring(0, cardsarray[i].background_color_bottom.length);
+          var splitBottomPrivious = cardsarray[i].background_color_bottom.split(',');
+          vPrivious1 = splitBottomPrivious[0]
+          vPrivious2 = splitBottomPrivious[1]
+          vPrivious3 = splitBottomPrivious[2]
         }
 
         if (cardsarray[i].countCard == cardNumber + 1) {
-          console.log('NEXT', cardsarray[i])
-          n = cardsarray[i].background_color_top.indexOf(',') + 1;
-          cNext1 = cardsarray[i].background_color_top.substring(0, n - 1);
-          cardsarray[i].background_color_top = cardsarray[i].background_color_top.substring(n, cardsarray[i].background_color_top.length)
-          console.log('BEFORE N2', cardsarray[i].background_color_top)
-          n2 = cardsarray[i].background_color_top.indexOf(',') + 1;
-          cNext2 = cardsarray[i].background_color_top.substring(0, n2 - 1);
-          cardsarray[i].background_color_top = cardsarray[i].background_color_top.substring(n2, cardsarray[i].background_color_top.length)
-          cNext3 = cardsarray[i].background_color_top.substring(0, cardsarray[i].background_color_top.length);
 
-          v = cardsarray[i].background_color_bottom.indexOf(',') + 1;
-          vNext1 = cardsarray[i].background_color_bottom.substring(0, v - 1);
-          cardsarray[i].background_color_bottom = cardsarray[i].background_color_bottom.substring(v, cardsarray[i].background_color_bottom.length)
-          v2 = cardsarray[i].background_color_bottom.indexOf(',') + 1;
-          vNext2 = cardsarray[i].background_color_bottom.substring(0, v2 - 1);
-          cardsarray[i].background_color_bottom = cardsarray[i].background_color_bottom.substring(v2, cardsarray[i].background_color_bottom.length)
-          vNext3 = cardsarray[i].background_color_bottom.substring(0, cardsarray[i].background_color_bottom.length);
+          var splitTopNext = cardsarray[i].background_color_top.split(',');
+          cNext1 = splitTopNext[0]
+          cNext2 = splitTopNext[1]
+          cNext3 = splitTopNext[2]
+
+          var splitBottomNext = cardsarray[i].background_color_bottom.split(',');
+          vNext1 = splitBottomNext[0]
+          vNext2 = splitBottomNext[1]
+          vNext3 = splitBottomNext[2]
         }
       }
       cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
