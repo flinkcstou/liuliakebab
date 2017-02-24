@@ -46,6 +46,7 @@ task prepareCordovaProductionWWW(type: JavaExec, group: 'client_inner') {
   main = 'kz.greetgo.click.client.PrepareCordovaWWW'
   args = [
     '-indexName', 'index-production.html',
+    '-copyDir', 'stand',
     '-copyDir', 'lib',
     '-copyDir', 'css',
     '-copyDir', 'js',

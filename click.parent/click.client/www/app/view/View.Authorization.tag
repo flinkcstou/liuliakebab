@@ -213,6 +213,8 @@
           console.log(result[0][0])
           if (result[0][0].error == 0) {
             if (!result[1][0].error) {
+              console.log("APP LOGIN RESULT", result);
+              localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
               modeOfflineMode.check = false;
               var JsonInfo = JSON.stringify(result[1][0]);
               localStorage.setItem('click_client_loginInfo', JsonInfo);

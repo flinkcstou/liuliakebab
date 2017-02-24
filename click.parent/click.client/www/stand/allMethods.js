@@ -1928,3 +1928,83 @@ window.fakedSocket.register("settings.change.default.account", function (input) 
     }
   ];
 });
+
+window.fakedSocket.register("get.popular.services", function (input) {
+
+  var array = [];
+  array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
+  array.push([
+    {
+      category_id: 1,
+      cost: 1,
+      form_type: 1,
+      is_visible: 1,
+      id: 6,
+      image: "https://m.click.uz/static/merchant/logo/logo_6.png",
+      is_mobile: 1,
+      lang_amount_hint: null,
+      lang_amount_placeholder: "Введите сумму оплаты",
+      lang_amount_title: "Сумма",
+      lang_max_amount: "Максимальная сумма для оплаты 600000.00 сум ",
+      lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+      max_pay_limit: 600000,
+      min_pay_limit: 1000,
+      name: "UZMOBILE",
+      priority: 20,
+      service_parameters: "1",
+      service_short_name: "UZMOBILE",
+      lang_amount_currency: "сум",
+      status: 1
+    },
+    {
+      category_id: 1,
+      cost: 1,
+      form_type: 1,
+      is_visible: 1,
+      id: 5,
+      image: "https://m.click.uz/static/merchant/logo/logo_5.png",
+      is_mobile: 1,
+      lang_amount_hint: null,
+      lang_amount_placeholder: "Введите сумму оплаты",
+      lang_amount_title: "Сумма",
+      lang_max_amount: "Максимальная сумма для оплаты 1000000.00 сум ",
+      lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+      max_pay_limit: 1000000,
+      min_pay_limit: 1000,
+      name: "Ucell",
+      priority: 10,
+      service_parameters: "1",
+      service_short_name: "UCELL",
+      lang_amount_currency: "сум",
+      status: 1
+    },
+    {
+      category_id: 1,
+      cost: 1,
+      form_type: 1,
+      is_visible: 1,
+      id: 3,
+      image: "https://m.click.uz/static/merchant/logo/logo_3.png",
+      is_mobile: 1,
+      lang_amount_hint: null,
+      lang_amount_placeholder: "Введите сумму оплаты",
+      lang_amount_title: "Сумма",
+      lang_max_amount: "Максимальная сумма для оплаты 1000000.00 сум",
+      lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
+      max_pay_limit: 1000000,
+      min_pay_limit: 1000,
+      name: "Билайн",
+      priority: 5,
+      service_parameters: "1",
+      service_short_name: "BEELINE",
+      lang_amount_currency: "сум",
+      status: 1
+    }]
+  );
+
+  if (localStorage.getItem("click_client_token"))
+    return array;
+
+
+  return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Dostup zapreshen'}];
+});

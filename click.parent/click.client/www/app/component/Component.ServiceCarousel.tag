@@ -44,11 +44,12 @@
 
     if (scope.popularServiceList) {
       this.on('mount', function () {
+        console.log("NBHLJvdfbdrftgbrfsbnft");
         firstId.name = scope.popularServiceList[0].id;
         secondId.name = scope.popularServiceList[1].id;
         thirdId.name = scope.popularServiceList[2].id;
-//        alert("SAWD" + localStorage.getItem('myNumberOperatorId'));
-        myPhoneId.name = window.mOperators[scope.operatorKey];
+        //        alert("SAWD" + localStorage.getItem('myNumberOperatorId'));
+        myPhoneId.name = localStorage.getItem('myNumberOperatorId');
         firstId.style.backgroundImage = "url(" + scope.popularServiceList[0].image + ")";
         secondId.style.backgroundImage = "url(" + scope.popularServiceList[1].image + ")";
         thirdId.style.backgroundImage = "url(" + scope.popularServiceList[2].image + ")";
@@ -104,9 +105,12 @@
 //                }, onErrorLoadFs);
 //              }
 //              else {
-              for (var i = 0; i < 3; i++) {
+              for (var i in result[1]) {
+                console.log("FTYFJUKVG", result[1][i]);
                 scope.popularServiceList.push(result[1][i]);
               }
+
+
               console.log("popular services", scope.popularServiceList);
               riot.update(scope.popularServiceList);
               localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
