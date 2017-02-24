@@ -2067,7 +2067,7 @@ input {
 }
 
 .beeline-button {
-  background-image: url(../resources/icons/services/beelineS.png);
+  /*background-image: url(../resources/icons/services/beelineS.png);*/
   background-size: 60%;
   left: 152px;
 }
@@ -2075,7 +2075,7 @@ input {
 .ucell-button {
   left: 15px;
   top: 4px;
-  background-image: url(../resources/icons/services/ucellS.png);
+  /*background-image: url(../resources/icons/services/ucellS.png);*/
   background-size: 80%;
 
 }
@@ -2083,7 +2083,7 @@ input {
 .ums-button {
   left: 288px;
   background-position: center;
-  background-image: url(../resources/icons/services/umsS.png);
+  /*background-image: url(../resources/icons/services/umsS.png);*/
   background-size: 60%;
 }
 

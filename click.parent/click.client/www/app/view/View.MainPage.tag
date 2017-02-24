@@ -58,6 +58,7 @@
       riot.mount('view-mycard-list');
     }
 
+
   </script>
 </view-main-page>
 

@@ -75,6 +75,10 @@
     }
 
     touchStartTitle = function () {
+      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-card-edit') {
+        history.arrayOfHistory.pop();
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+      }
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
@@ -87,6 +91,7 @@
       riotTags.innerHTML = "<view-card-edit>";
       riot.mount('view-card-edit', [scope.card]);
     }
+
 
     var scope = this,
       sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
