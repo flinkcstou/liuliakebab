@@ -5,24 +5,11 @@
       <div class="service-title">{window.languages.ComponentServiceTitle}</div>
       <div class="service-container">
 
-        <div id="firstId" name="{firstName}" class="service-buttons ucell-button"
-             ontouchend="goToServicePage(this.name)">
-          <p class="service-labels service-labels-ucell">{firstServiceName}</p>
-        </div>
-
-        <div id="secondId" name="{secondName}" class="service-buttons ums-button"
-             ontouchend="goToServicePage(this.name)">
-          <p class="service-labels service-labels-ums">{secondServiceName}</p>
-        </div>
-
-        <div id="thirdId" name="{thirdName}" class="service-buttons beeline-button"
-             ontouchend="goToServicePage(this.name)">
-          <p class="service-labels service-labels-beeline">{thirdServiceName}</p>
-        </div>
-
-        <div id="myPhoneId" name="{myPhoneName}" class="service-buttons my-phone-button"
-             ontouchend="goToServicePage(this.name)">
-          <p class="service-labels service-labels-my-phone">Мой номер</p>
+        <div class="service-each-container" each="{i in popularServiceList}">
+          <div id="{i.id}" class="service-buttons"
+               ontouchend="goToServicePage(this.id)" style="background-image: url({i.image})">
+          </div>
+          <p class="service-labels">{i.name}</p>
         </div>
 
 
@@ -42,29 +29,10 @@
     scope.operatorKey = phoneNumber.substr(3, 2);
 
 
-    if (scope.popularServiceList) {
-      this.on('mount', function () {
-        console.log("NBHLJvdfbdrftgbrfsbnft");
-        firstId.name = scope.popularServiceList[0].id;
-        secondId.name = scope.popularServiceList[1].id;
-        thirdId.name = scope.popularServiceList[2].id;
-        //        alert("SAWD" + localStorage.getItem('myNumberOperatorId'));
-        myPhoneId.name = localStorage.getItem('myNumberOperatorId');
-        firstId.style.backgroundImage = "url(" + scope.popularServiceList[0].image + ")";
-        secondId.style.backgroundImage = "url(" + scope.popularServiceList[1].image + ")";
-        thirdId.style.backgroundImage = "url(" + scope.popularServiceList[2].image + ")";
-        this.firstServiceName = scope.popularServiceList[0].name;
-        this.secondServiceName = scope.popularServiceList[1].name;
-        this.thirdServiceName = scope.popularServiceList[2].name;
-        riot.update();
-      });
-    }
-
-
     if (!scope.popularServiceList) {
       scope.popularServiceList = [];
       window.api.call({
-        method: 'get.service.list',
+        method: 'get.popular.services',
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber
@@ -109,8 +77,11 @@
                 console.log("FTYFJUKVG", result[1][i]);
                 scope.popularServiceList.push(result[1][i]);
               }
-
-
+              var myNumberObject = {};
+              myNumberObject.name = 'Мой номер';
+              myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+              myNumberObject.id = 'mynumber' + localStorage.getItem('myNumberOperatorId');
+              scope.popularServiceList.push(myNumberObject);
               console.log("popular services", scope.popularServiceList);
               riot.update(scope.popularServiceList);
               localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
@@ -133,13 +104,9 @@
     scope.leftOfServiceCarousel = 640 * widthK;
 
     goToServicePage = function (id) {
-      alert(id);
-      riot.update();
+
       console.log("chosen id in pay view=", id);
-      if (id == window.mOperators[scope.operatorKey])
-        viewPay.chosenServiceId = 'mynumber' + id;
-      else
-        viewPay.chosenServiceId = id;
+      viewPay.chosenServiceId = id;
       event.stopPropagation();
 
       localStorage.setItem('chosenServiceId', id);

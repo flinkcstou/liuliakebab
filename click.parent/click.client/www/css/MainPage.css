@@ -2057,13 +2057,25 @@ input {
 /*OTHER*/
 
 .service-buttons {
-  position: absolute;
+  position: relative;
   width: 125px;
   height: 125px;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 100px;
   border: 1px solid grey;
+  background-size: 80%;
+  float: left;
+  margin-right: 20px;
+}
+
+.service-each-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border: 1px solid red;
+  float: left;
+  margin-right: 20px;
 }
 
 .beeline-button {
@@ -2097,9 +2109,14 @@ input {
 
 .service-labels {
   position: absolute;
-  bottom: -75px;
+  bottom: 0;
   font-size: 25px;
   color: grey;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: center;
+  width: 100%;
 }
 
 .service-labels-ucell {

@@ -1007,13 +1007,27 @@ var css = {
 
   serviceButtons: ".service-buttons " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "width:" + 125 * widthK + "px;" +
   "height:" + 125 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "border-radius:" + 100 * widthK + "px;" +
   "border:" + 1 + "px solid #f1f1f1;" +
+  "background-size: 80%;" +
+  "float: left;" +
+  "margin-right: 20px;" +
+  "}",
+
+
+  serviceEachContainer: ".service-each-container" +
+  "{" +
+  "position: relative;" +
+  "width: 127px;" +
+  "height: 200px;" +
+    //"border: 1px solid red;" +
+  "float: left;" +
+  "margin-right: 20px;" +
   "}",
 
   beelineButton: ".beeline-button " +
@@ -1041,8 +1055,8 @@ var css = {
 
   myPhoneButton: ".my-phone-button " +
   "{" +
-  "left:" + 425 * widthK + "px;" +
-  "top: 0;" +
+    //"left:" + 425 * widthK + "px;" +
+    //"top: 0;" +
   "background-position-x:" + 35 * widthK + "px;" +
   "background-image: url(resources/icons/ViewPay/myphone.png);" +
   "background-size: 60%;" +
@@ -1051,9 +1065,14 @@ var css = {
   serviceLabels: ".service-labels " +
   "{" +
   "position: absolute;" +
-  "bottom:" + -80 * widthK + "px;" +
+  "bottom:0;" +
   "font-size:" + 25 * widthK + "px;" +
   "color: grey;" +
+  "width: 100%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "text-align: center;" +
   "}",
 
   serviceLabelsUcell: ".service-labels-ucell " +

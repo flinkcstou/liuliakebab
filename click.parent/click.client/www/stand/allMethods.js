@@ -81,6 +81,7 @@ window.fakedSocket.register("app.login", function (input) {
       "session_key": "99890988081996E4e71383c9ed9b1a3fb05fb0002499744",
       "language": "RU",
       "default_account": "3487271",
+      "my_service_id": "3",
       "visibility": false,
       "help_status": false,
       "firstname": "Test",
