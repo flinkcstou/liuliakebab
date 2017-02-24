@@ -19,38 +19,36 @@
 
 
     this.on('mount', function () {
+      clearInterval(changingColor);
+
       console.log('cardsarray', cardsarray)
       localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
       copyCardsArray = JSON.parse(JSON.stringify(cardsarray));
 
       var splitTop = copyCardsArray[defaultAccountId].background_color_top.split(',')
 
-      cNow1 = splitTop[0]
-      cNow2 = splitTop[1]
-      cNow3 = splitTop[2]
+      cMount1 = splitTop[0]
+      cMount2 = splitTop[1]
+      cMount3 = splitTop[2]
 
       var splitBottom = copyCardsArray[defaultAccountId].background_color_bottom.split(',')
 
-      vNow1 = splitBottom[0]
-      vNow2 = splitBottom[1]
-      vNow3 = splitBottom[2]
-
-      htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-        'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
+      vMount1 = splitBottom[0]
+      vMount2 = splitBottom[1]
+      vMount3 = splitBottom[2]
+      console.log('splitTop', splitTop)
+      console.log('splitBottom', splitBottom)
 
       if (!viewMainPage.myCards) {
-        contacts.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-        circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+        htmlId.style.background = '-webkit-linear-gradient(rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + '),' +
+          'rgb(' + vMount1 + ',' + vMount2 + ',' + vMount3 + ')150%)';
 
-        contactsId.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+        contacts.style.backgroundColor = 'rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + ')';
+        circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + ')';
+
+        contactsId.style.backgroundColor = 'rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + ')';
+        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + ')';
       }
-
-
-      cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-      cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-      cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-      cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       console.log(modeOfflineMode.check)
 
       if (!modeOfflineMode.check) {
@@ -162,11 +160,19 @@
     var cNow1, cNow2, cNow3, vNow1, vNow2, vNow3;
     var cNext1, cNext2, cNext3, vNext1, vNext2, vNext3;
     var cPrivious1, cPrivious2, cPrivious3, vPrivious1, vPrivious2, vPrivious3;
-    var formChangableColor1, formChangableColor2, formChangableColor3, toChangableColor1, toChangableColor2, toChangableColor3;
-
-    var firstEnter;
+    var fromChangableColor1, fromChangableColor2, fromChangableColor3, toChangableColor1, toChangableColor2, toChangableColor3;
+    var cNowOriginal1, cNowOriginal2, cNowOriginal3, vNowOriginal1, vNowOriginal2, vNowOriginal3;
+    var firstEnter = false;
 
     startTouchCarousel = function () {
+      //
+      //Test
+      scope.direction = 0;
+      scope.whereWasX = event.changedTouches[0].pageX;
+      //
+      //
+      clearInterval(changingColor)
+
       firstEnter = true;
       carouselTouchStartX = event.changedTouches[0].pageX;
       left = -((540 * cardNumber) * widthK) - carouselTouchStartX;
@@ -215,48 +221,20 @@
         }
       }
       cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
+      cNowOriginal1 = cNow1
+      cNowOriginal2 = cNow2
+      cNowOriginal3 = cNow3
+
+      vNowOriginal1 = vNow1
+      vNowOriginal2 = vNow2
+      vNowOriginal3 = vNow3
     }
 
     var leftCard = false, rightCard = false;
 
     endTouchCarousel = function () {
 
-      console.log('cNext1', cNext1)
-      console.log('cNext2', cNext2)
-      console.log('cNext3', cNext3)
-      console.log('vNext1', vNext1)
-      console.log('vNext2', vNext2)
-      console.log('vNext3', vNext3)
-
-      console.log('cPrivious1', cPrivious1)
-      console.log('cPrivious2', cPrivious2)
-      console.log('cPrivious3', cPrivious3)
-      console.log('vPrivious1', vPrivious1)
-      console.log('vPrivious2', vPrivious2)
-      console.log('vPrivious3', vPrivious3)
-
-      if (rightCard) {
-        htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNext1 + ',' + cNext2 + ',' + cNext3 + '),rgb(' + vNext1 + ',' + vNext2 + ',' + vNext3 + ')150%)';
-
-        if (!viewMainPage.myCards) {
-          contacts.style.backgroundColor = 'rgb(' + cNext1 + ',' + cNext2 + ',' + cNext3 + ')';
-          circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNext1 + ',' + cNext2 + ',' + cNext3 + ')';
-
-          contactsId.style.backgroundColor = 'rgb(' + cNext1 + ',' + cNext2 + ',' + cNext3 + ')';
-          contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cNext1 + ',' + cNext2 + ',' + cNext3 + ')';
-        }
-      }
-      if (leftCard) {
-        htmlId.style.background = '-webkit-linear-gradient(rgb(' + cPrivious1 + ',' + cPrivious2 + ',' + cPrivious3 + '),rgb(' + vPrivious1 + ',' + vPrivious2 + ',' + vPrivious3 + '))';
-
-        if (!viewMainPage.myCards) {
-          contacts.style.backgroundColor = 'rgb(' + cPrivious1 + ',' + cPrivious2 + ',' + cPrivious3 + ')';
-          circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cPrivious1 + ',' + cPrivious2 + ',' + cPrivious3 + ')';
-
-          contactsId.style.backgroundColor = 'rgb(' + cPrivious1 + ',' + cPrivious2 + ',' + cPrivious3 + ')';
-          contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cPrivious1 + ',' + cPrivious2 + ',' + cPrivious3 + ')';
-        }
-      }
+      clearInterval(changingColor)
 
       event.preventDefault();
       event.stopPropagation();
@@ -278,6 +256,8 @@
               cardsarray[i].chosenCard = false;
             }
           }
+          htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
+            'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
           riotTags.innerHTML = "<view-my-cards>";
           riot.mount("view-my-cards", [sendChosenCardId]);
           this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -295,39 +275,93 @@
     moveTouchCarousel = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      if (scope.whereWasX < event.changedTouches[0].pageX && scope.direction == 1
+        || scope.whereWasX > event.changedTouches[0].pageX && scope.direction == -1) {
+
+
+        if (fromChangableColor1 == cNowOriginal1 && fromChangableColor2 == cNowOriginal2 && fromChangableColor3 == cNowOriginal3 &&
+            toChangableColor1 == vNowOriginal1 && toChangableColor2 == vNowOriginal2 && toChangableColor3 == vNowOriginal3) {
+
+          console.log("ASD", fromChangableColor1, cNext1, cPrivious1, cNowOriginal1);
+
+          if (scope.direction == -1) {
+
+            fromChangableColor1 = cNext1
+            fromChangableColor2 = cNext2
+            fromChangableColor3 = cNext3
+
+            toChangableColor1 = vNext1
+            toChangableColor2 = vNext2
+            toChangableColor3 = vNext3
+
+            console.log("BBB");
+
+          } else {
+
+            fromChangableColor1 = cPrivious1
+            fromChangableColor2 = cPrivious2
+            fromChangableColor3 = cPrivious3
+
+            toChangableColor1 = vPrivious1
+            toChangableColor2 = vPrivious2
+            toChangableColor3 = vPrivious3
+            console.log("GGG");
+          }
+        } else {
+
+          if (fromChangableColor1 == cNext1 || fromChangableColor1 == cPrivious1) {
+            fromChangableColor1 = cNowOriginal1
+            fromChangableColor2 = cNowOriginal2
+            fromChangableColor3 = cNowOriginal3
+
+            toChangableColor1 = vNowOriginal1
+            toChangableColor2 = vNowOriginal2
+            toChangableColor3 = vNowOriginal3
+          }
+        }
+
+        scope.direction *= -1;
+
+        console.log('QQQQ')
+      }
+
       if (carouselTouchStartX > event.changedTouches[0].pageX && firstEnter) {
         //to RIGHT
+        scope.direction = 1;
         rightCard = true;
         leftCard = false;
-        formChangableColor1 = cNext1
-        formChangableColor2 = cNext2
-        formChangableColor3 = cNext3
+        firstEnter = false;
+        fromChangableColor1 = cNext1
+        fromChangableColor2 = cNext2
+        fromChangableColor3 = cNext3
 
         toChangableColor1 = vNext1
         toChangableColor2 = vNext2
         toChangableColor3 = vNext3
-        firstEnter = false;
-
       }
+
       if (carouselTouchStartX < event.changedTouches[0].pageX && firstEnter) {
         //to LEFT
+        scope.direction = -1;
         rightCard = false;
         leftCard = true;
-        formChangableColor1 = cPrivious1
-        formChangableColor2 = cPrivious2
-        formChangableColor3 = cPrivious3
+        firstEnter = false;
+        fromChangableColor1 = cPrivious1
+        fromChangableColor2 = cPrivious2
+        fromChangableColor3 = cPrivious3
 
         toChangableColor1 = vPrivious1
         toChangableColor2 = vPrivious2
         toChangableColor3 = vPrivious3
-        firstEnter = false;
       }
-      if (cNow1 > formChangableColor1) cNow1--;
-      if (cNow1 < formChangableColor1) cNow1++;
-      if (cNow2 > formChangableColor2) cNow2--;
-      if (cNow2 < formChangableColor2) cNow2++;
-      if (cNow3 > formChangableColor3) cNow3--;
-      if (cNow3 < formChangableColor3) cNow3++;
+
+      if (cNow1 > fromChangableColor1) cNow1--;
+      if (cNow1 < fromChangableColor1) cNow1++;
+      if (cNow2 > fromChangableColor2) cNow2--;
+      if (cNow2 < fromChangableColor2) cNow2++;
+      if (cNow3 > fromChangableColor3) cNow3--;
+      if (cNow3 < fromChangableColor3) cNow3++;
       if (vNow1 > toChangableColor1) vNow1--;
       if (vNow1 < toChangableColor1) vNow1++;
       if (vNow2 > toChangableColor2) vNow2--;
@@ -351,6 +385,10 @@
       this.cards.style.webkitTransition = '0s';
       this.cards.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
       this.cards.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
+
+      //Test
+      //
+      scope.whereWasX = event.changedTouches[0].pageX;
     }
 
     addCard(getAccountsCards)
@@ -417,11 +455,86 @@
       scope.addCard(getAccountsCards);
     }
 
-    animation = function () {
+    changeColor = function (index) {
+      console.log('sss')
+      var splitTop = cardsarray[index].background_color_top.split(',');
+      fromChangableColor1 = splitTop[0]
+      fromChangableColor2 = splitTop[1]
+      fromChangableColor3 = splitTop[2]
+
+      var splitBottom = cardsarray[index].background_color_bottom.split(',');
+      toChangableColor1 = splitBottom[0]
+      toChangableColor2 = splitBottom[1]
+      toChangableColor3 = splitBottom[2]
+
+      if (cNow1 != fromChangableColor1)
+        if (cNow1 > fromChangableColor1) cNow1--;
+
+      if (cNow1 != fromChangableColor1)
+        if (cNow1 < fromChangableColor1) cNow1++;
+
+      if (cNow2 != fromChangableColor2)
+        if (cNow2 > fromChangableColor2) cNow2--;
+
+      if (cNow2 != fromChangableColor2)
+        if (cNow2 < fromChangableColor2) cNow2++;
+
+      if (cNow3 != fromChangableColor3)
+        if (cNow3 > fromChangableColor3) cNow3--;
+
+      if (cNow3 != fromChangableColor3)
+        if (cNow3 < fromChangableColor3) cNow3++;
+
+      if (vNow1 != toChangableColor1)
+        if (vNow1 > toChangableColor1) vNow1--;
+
+      if (vNow1 != toChangableColor1)
+        if (vNow1 < toChangableColor1) vNow1++;
+
+      if (vNow2 != toChangableColor2)
+        if (vNow2 > toChangableColor2) vNow2--;
+
+      if (vNow2 != toChangableColor2)
+        if (vNow2 < toChangableColor2) vNow2++;
+
+      if (vNow3 != toChangableColor3)
+        if (vNow3 > toChangableColor3) vNow3--;
+
+      if (vNow3 != toChangableColor3)
+        if (vNow3 < toChangableColor3) vNow3++;
+
+      htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
+        'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
+
+      if (!viewMainPage.myCards) {
+        contacts.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+        circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+
+        contactsId.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+      }
+
+      if (cNow1 == fromChangableColor1 && cNow2 == fromChangableColor2 && cNow3 == fromChangableColor3 &&
+        vNow1 == toChangableColor1 && vNow2 == toChangableColor2 && vNow3 == toChangableColor3)
+        clearInterval(changingColor)
+
+      if (!fromChangableColor1 || !fromChangableColor2 || !fromChangableColor3 || !toChangableColor1 || !toChangableColor2 || !toChangableColor3)
+        clearInterval(changingColor)
+//
+//      console.log('cNow1', cNow1, 'fromChangableColor1', fromChangableColor1)
+//      console.log('cNow2', cNow2, 'fromChangableColor2', fromChangableColor2)
+//      console.log('cNow3', cNow3, 'fromChangableColor3', fromChangableColor3)
+//      console.log('vNow1', vNow1, 'toChangableColor1', toChangableColor1)
+//      console.log('vNow2', vNow2, 'toChangableColor2', toChangableColor2)
+//      console.log('vNow3', vNow3, 'toChangableColor3', toChangableColor3)
+
+
     }
 
-    function changePosition() {
+    var changingColor;
 
+    function changePosition() {
+      clearInterval(changingColor);
 
       if (carouselTouchEndX < carouselTouchStartX && cardNumber < count - 1) {
         ++cardNumber;
@@ -454,6 +567,16 @@
         this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
+
+
+      for (i in cardsarray) {
+        if (cardsarray[i].countCard == cardNumber)
+          var index = i;
+      }
+
+      changingColor = setInterval(function () {
+        changeColor(index)
+      }, 4);
 
 
       if (viewMainPage.myCards) {
