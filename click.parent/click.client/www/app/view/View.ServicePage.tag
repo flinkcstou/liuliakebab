@@ -158,6 +158,7 @@
     scope.servicesParamsMapThree = JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"));
     scope.servicesParamsMapFour = JSON.parse(localStorage.getItem("click_client_servicesParamsMapFour"));
     scope.servicesParamsMapFive = JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"));
+    riot.update(scope.categoryNamesMap);
 
 
     if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
@@ -195,7 +196,7 @@
       console.log("Map Four!!!!", scope.servicesParamsMapFive[viewPay.chosenServiceId]);
 
 
-    scope.categoryName = scope.categoryNamesMap[viewPay.categoryId];
+    scope.categoryName = scope.categoryNamesMap[scope.service.category_id];
     scope.formType = scope.service.form_type;
     console.log("formType=" + scope.formType);
     console.log("fieldArray=", scope.fieldArray);

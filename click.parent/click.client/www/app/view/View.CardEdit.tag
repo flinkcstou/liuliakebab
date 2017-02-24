@@ -41,6 +41,15 @@
       scope.card = opts[0];
       console.log('scope.card from opt', scope.card);
       this.defaultName = scope.card.name;
+      var isMain = scope.card.default_account;
+      this.on('mount', function () {
+        if (isMain) {
+          makeMainCheckId.style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
+        }
+      });
+
+      console.log("Initially isMain=", isMain);
+
     }
 
     scope.backbuttoncheck = true;
@@ -72,9 +81,13 @@
             console.log(result);
             console.log(result[0][0]);
             if (result[0][0].error == 0) {
-              alert("Изменения сохранены");
-//              riotTags.innerHTML = "<view-registration-device>";
-//              riot.mount('view-registration-device');
+              scope.cardsArray[scope.card.card_id].name = newCardName;
+              console.log("name new=", scope.cardsArray[scope.card.card_id].name);
+              if (isMain == scope.card.default_account) {
+                localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
+                riotTags.innerHTML = "<view-my-cards>";
+                riot.mount("view-my-cards", [scope.card.card_id]);
+              }
             }
             else {
               alert(result[0][0].error_note);
@@ -86,8 +99,10 @@
             console.error(data);
           }
         });
+      } else {
+        scope.noNameChange = true;
       }
-      if (isMain) {
+      if (isMain != scope.card.default_account) {
         console.log("is main");
         window.api.call({
           method: 'settings.change.default.account',
@@ -102,7 +117,11 @@
             console.log(result);
             console.log(result[0][0]);
             if (result[0][0].error == 0) {
-              alert("Карта сохранена как дефолтная");
+              scope.cardsArray[scope.card.card_id].default_account = isMain;
+              console.log("defaultBool new=", scope.cardsArray[scope.card.card_id].default_account);
+              localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
+              riotTags.innerHTML = "<view-my-cards>";
+              riot.mount("view-my-cards", [scope.card.card_id]);
             }
             else {
               alert(result[0][0].error_note);
@@ -113,23 +132,30 @@
             console.error(data);
           }
         });
+      } else {
+        scope.noBoolChange = true;
       }
 
-      riotTags.innerHTML = "<view-my-cards>";
-      riot.mount("view-my-cards", [scope.card.card_id]);
+      if (scope.noNameChange && scope.noBoolChange) {
+        console.log("no changes");
+        riotTags.innerHTML = "<view-my-cards>";
+        riot.mount("view-my-cards", [scope.card.card_id]);
+
+      }
     };
 
-    var k = 0, isMain = false;
     MakeMainCheck = function () {
-      k++;
-      if (k % 2 == 1) {
-        makeMainCheckId.style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
-        isMain = true;
-      } else {
-        makeMainCheckId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+      if (isMain) {
+        console.log("false!!!");
         isMain = false;
+        makeMainCheckId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+      } else {
+        console.log("true!!!");
+        isMain = true;
+        makeMainCheckId.style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
       }
 
+      riot.update(makeMainCheckId);
     }
 
 

@@ -1018,7 +1018,7 @@ var css = {
 
   beelineButton: ".beeline-button " +
   "{" +
-  "background-image: url(resources/icons/services/beelineS.png);" +
+    //"background-image: url(resources/icons/services/beelineS.png);" +
   "background-size: 60%;" +
   "left:" + 152 * widthK + "px;" +
   "}",
@@ -1027,7 +1027,7 @@ var css = {
   "{" +
   "left:" + 15 * widthK + "px;" +
   "top:" + 0 * widthK + "px;" +
-  "background-image: url(resources/icons/services/ucellS.png);" +
+    //"background-image: url(resources/icons/services/ucellS.png);" +
   "background-size: 80%;" +
   "}",
 
@@ -1035,7 +1035,7 @@ var css = {
   "{" +
   "left:" + 288 * widthK + "px;" +
   "background-position: center;" +
-  "background-image: url(resources/icons/services/umsS.png);" +
+    //"background-image: url(resources/icons/services/umsS.png);" +
   "background-size: 60%;" +
   "}",
 
@@ -1640,6 +1640,7 @@ var css = {
   "top: 50%;" +
   "left: 93%;" +
   "}",
+
 
   //VIEW INFO
 
