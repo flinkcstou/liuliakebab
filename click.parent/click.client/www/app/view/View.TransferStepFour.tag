@@ -151,53 +151,152 @@
     else
       this.titleName = window.languages.ViewTransferFourTitle + ' ' + transferTitle;
 
+    findContacts = function (saveNumber) {
+      var maskOne = /[0-9]/g;
+      var searchNumber = saveNumber.substring(3, saveNumber.length);
+      var transferContacts = JSON.parse(localStorage.getItem('transferContacts'));
+      var searchedIndex = -1;
+      var checkInBottomContacts = false;
+
+      for (var i = 0; i < transferContacts.length; i++) {
+        var phone = '';
+        var digits = '';
+        if (transferContacts[i].phoneNumbers != null)
+          if (transferContacts[i].phoneNumbers[0] != null)
+            if (transferContacts[i].phoneNumbers[0].value != null) {
+              digits = transferContacts[i].phoneNumbers[0].value.match(maskOne)
+              for (var k in digits) {
+                phone += digits[k]
+              }
+              searchedIndex = phone.indexOf(searchNumber);
+              if (searchedIndex != -1) {
+                checkInBottomContacts = true;
+                console.log('CHECK', transferContacts[i])
+                transferContacts.splice(i, 1);
+                console.log('TRANSFER CONTACTS', transferContacts)
+                localStorage.setItem('transferContacts', JSON.stringify(transferContacts));
+                break;
+              }
+              else {
+                checkInBottomContacts = false;
+              }
+            }
+      }
+
+      transferContacts = JSON.parse(localStorage.getItem('transferContacts'));
+      console.log('searchNumber', searchNumber)
+
+      var options = new ContactFindOptions();
+      options.filter = '';
+      options.multiple = true;
+      var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.photos];
+      navigator.contacts.find(fields, success, error, options);
+
+      function success(contacts) {
+        var searchedIndex = -1;
+        for (var i = 0; i < contacts.length; i++) {
+          var phone = '';
+          var digits = '';
+          if (contacts[i].phoneNumbers != null)
+            if (contacts[i].phoneNumbers[0] != null)
+              if (contacts[i].phoneNumbers[0].value != null) {
+                console.log('contacts[i].phoneNumbers[0].value', contacts[i].phoneNumbers[0].value)
+                digits = contacts[i].phoneNumbers[0].value.match(maskOne)
+                for (var k in digits) {
+                  phone += digits[k]
+                }
+                searchedIndex = phone.indexOf(searchNumber);
+                if (searchedIndex != -1) {
+                  transferContacts.unshift(contacts[i]);
+                  localStorage.setItem('transferContacts', JSON.stringify(transferContacts))
+                  return;
+                }
+              }
+
+
+        }
+      }
+
+      function error(message) {
+        console.log('Failed because: ' + JSON.parse(message));
+      }
+    }
 
     transferStep = function () {
 
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-      window.api.call({
-        method: 'p2p.payment',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          account_id: scope.objectCardForTransfer.card_id,
-          receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
-          amount: parseInt(scope.objectSumForTransfer.sum),
-          type: scope.objectTypeForTransfer.type,
-          transaction_id: parseInt(Date.now() / 1000)
+      if (!modeOfflineMode.check) {
+        window.api.call({
+          method: 'p2p.payment',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            account_id: scope.objectCardForTransfer.card_id,
+            receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
+            amount: parseInt(scope.objectSumForTransfer.sum),
+            type: scope.objectTypeForTransfer.type,
+            transaction_id: parseInt(Date.now() / 1000)
 //                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
 
-        },
+          },
 
-        scope: this,
+          scope: this,
 
-        onSuccess: function (result) {
-          if (result[0][0].error == 0) {
-            console.log("result of TRANSFER ", result);
-            if (result[1])
-              if (result[1][0]) {
-                if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
-                  blockCodeConfirmId.style.display = 'block';
-                  scope.secretCode = result[1][0].secret_code;
-                  riot.update(scope.secretCode);
+          onSuccess: function (result) {
+            if (result[0][0].error == 0) {
+              console.log("result of TRANSFER ", result);
+              if (result[1])
+                if (result[1][0]) {
+                  if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
+                    blockCodeConfirmId.style.display = 'block';
+                    scope.secretCode = result[1][0].secret_code;
+                    riot.update(scope.secretCode);
+
+                    findContacts(scope.objectTypeForTransfer.name.replace(/\s/g, ''));
+                  }
+                  if (result[1][0].secret_code == 0) {
+                    componentSuccessId.style.display = 'block';
+                  }
                 }
-                if (result[1][0].secret_code == 0) {
-                  componentSuccessId.style.display = 'block';
-                }
-              }
-          }
-          else {
-            componentUnsuccessId.style.display = 'block';
-          }
-        },
+            }
+            else {
+              componentUnsuccessId.style.display = 'block';
+            }
+          },
 
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+      }
+      else {
+
+        if (scope.objectTypeForTransfer.type == 2) {
+          phonedialer.dial(
+            "*880*3*" + scope.objectTypeForTransfer.name.replace(/\s/g, '') + "*" + parseInt(scope.objectSumForTransfer.sum) + "%23",
+            function (err) {
+              if (err == "empty") alert("Unknown phone number");
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
+          );
         }
-      });
+        else {
+          phonedialer.dial(
+            "*880*" + scope.objectTypeForTransfer.name.replace(/\s/g, '') + "*" + parseInt(scope.objectSumForTransfer.sum) + "%23",
+            function (err) {
+              if (err == "empty") alert("Unknown phone number");
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
+          );
+        }
+      }
     }
 
     closeSecretCodePage = function () {

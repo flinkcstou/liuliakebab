@@ -13,5 +13,6 @@ public class CompileCordovaIos extends AbstractCompileCordova {
     addPluginPickcontact();
 
     clickClient.cd("cordova").cmd("cp www/index-stand-demo.html platforms/ios/www");
+    //clickClient.cd("cordova").cmd("cordova plugin add https://github.com/Rohfosho/CordovaCallNumberPlugin.git");
   }
 }

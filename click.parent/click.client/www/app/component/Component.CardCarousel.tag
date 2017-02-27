@@ -51,6 +51,11 @@
       }
       console.log(modeOfflineMode.check)
 
+      cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+      cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+      cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+      cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+
       if (!modeOfflineMode.check) {
         writeBalance();
       }

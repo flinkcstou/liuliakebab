@@ -1838,7 +1838,7 @@ window.fakedSocket.register("p2p.payment", function (input) {
       random + Math.random() * 10 + Math.random() * 10 + Math.random() * 10
     }
     if (input.parameters.type == 2) {
-      if (input.parameters.receiver_data == '998222222222')
+      //if (input.parameters.receiver_data == '998222222222')
         return [
           [{
             "method": input.method,
@@ -1850,15 +1850,15 @@ window.fakedSocket.register("p2p.payment", function (input) {
             "secret_code": random.toFixed(0),
           }]
         ];
-      else
-        return [
-          [{
-            "method": input.method,
-            "success": 1,
-            "error": 1,
-            "error_note": ""
-          }],
-        ];
+      //else
+      //  return [
+      //    [{
+      //      "method": input.method,
+      //      "success": 1,
+      //      "error": 1,
+      //      "error_note": ""
+      //    }],
+      //  ];
     }
     else {
       if (input.parameters.receiver_data == '1111222233334444')

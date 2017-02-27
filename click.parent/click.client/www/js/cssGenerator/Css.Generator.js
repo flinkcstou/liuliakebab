@@ -57,8 +57,6 @@ var css = {
   "margin: 0;" +
   "overflow: hidden;" +
   "bottom: 0;" +
-  "transition: all 2s;" +
-  "-webkit-transition: all 2s;" +
   "}",
   body: "body{" +
   "margin: 0;" +
@@ -1147,6 +1145,7 @@ var css = {
 
   pageTitle: ".page-title " +
   "{" +
+  "position: absolute;" +
   "position: absolute;" +
   "top: 0px;" +
   "right:" + 28 * widthK + "px;" +

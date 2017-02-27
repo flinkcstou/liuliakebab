@@ -50,7 +50,6 @@
     var permissions = cordova.plugins.permissions;
     permissions.hasPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
     permissions.hasPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
-    permissions.hasPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
     window.plugins.sim.getSimInfo(successOfSim, errorOfSim);
 
     function successOfSim(success) {
@@ -134,16 +133,14 @@
     }
   }
 
-  //  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
-  //    this.closeDemo();
-  //  }
   function onBackKeyDown() {
     history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
 
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-main-page'
         || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device'
-        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization') {
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization'
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-client') {
         navigator.app.exitApp();
       }
       else {
@@ -280,7 +277,6 @@
   function onErrorLoadFs() {
     console.log("OnErrorLoadFS");
   }
-
 
 
 </script>

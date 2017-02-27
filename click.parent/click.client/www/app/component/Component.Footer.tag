@@ -132,43 +132,55 @@
 
 
     findContacts = function () {
-      var options = new ContactFindOptions();
-      options.filter = "";
-      options.multiple = true;
-      var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.photos];
-      navigator.contacts.find(fields, success, error, options);
+      if (!localStorage.getItem('transferContacts')) {
+        var options = new ContactFindOptions();
+        options.filter = "";
+        options.multiple = true;
+        var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.photos];
+        navigator.contacts.find(fields, success, error, options);
 
-      function success(contacts) {
-        //alert(JSON.stringify(contacts));
-        for (var i = 0; i < contacts.length; i++) {
-          if (contacts[i].photos != null) {
-            if (contacts[i].photos[0].value != null && contacts[i].name != null) {
-              arrayOfPhotosContacts.push(contacts[i]);
+        function success(contacts) {
+          //alert(JSON.stringify(contacts));
+          for (var i = 0; i < contacts.length; i++) {
+            if (contacts[i].photos != null) {
+              if (contacts[i].photos[0].value != null && contacts[i].name != null && contacts[i].phoneNumbers != null) {
+                arrayOfPhotosContacts.push(contacts[i]);
 
-              if (arrayOfPhotosContacts.length >= 5) break;
+                if (arrayOfPhotosContacts.length >= 5) break;
+              }
             }
+            else if (contacts[i].name != null && contacts[i].phoneNumbers != null && arrayWithoutPhotosContacts.length <= 5)
+              arrayWithoutPhotosContacts.push(contacts[i])
           }
-          if (contacts[i].photos == null && contacts[i].name != null && arrayWithoutPhotosContacts.length <= 5)
-            arrayWithoutPhotosContacts.push(contacts[i])
+
+          arrayOfConnectedContacts = arrayOfPhotosContacts.concat(arrayWithoutPhotosContacts);
+
+          writeContacts(arrayOfConnectedContacts);
         }
 
-        arrayOfConnectedContacts = arrayOfPhotosContacts.concat(arrayWithoutPhotosContacts);
-
-        writeContacts(arrayOfConnectedContacts);
+        function error(message) {
+          alert('Failed because: ' + message);
+        }
       }
-
-      function error(message) {
-        alert('Failed because: ' + message);
+      else {
+        var arrayOfContacts = JSON.parse(localStorage.getItem('transferContacts'));
+        writeContacts(arrayOfContacts);
       }
     }
     if (device.platform != 'BrowserStand')
       findContacts();
 
-    writeContacts = function (arrayOfConnectedContacts) {
+    function writeContacts(arrayOfConnectedContacts) {
       var j = 0;
-      if (arrayOfConnectedContacts.length >= 5)
+      if (arrayOfConnectedContacts.length >= 5) {
         j = 5;
-      else j = arrayOfConnectedContacts.length;
+        arrayOfConnectedContacts = arrayOfConnectedContacts.splice(0, 5);
+      }
+      else {
+        j = arrayOfConnectedContacts.length;
+        arrayOfConnectedContacts = arrayOfConnectedContacts.splice(0, j);
+      }
+
       for (var i = 0; i < j; i++) {
         if (arrayOfConnectedContacts[i].photos != null)
           scope.arrayOfPhotos[i].contactPhoto = arrayOfConnectedContacts[i].photos[0].value;
@@ -189,6 +201,8 @@
       riot.update(scope.thirdContactObject);
       riot.update(scope.fourContactObject);
       riot.update(scope.fiveContactObject);
+
+      localStorage.setItem('transferContacts', JSON.stringify(arrayOfConnectedContacts))
     }
 
   </script>

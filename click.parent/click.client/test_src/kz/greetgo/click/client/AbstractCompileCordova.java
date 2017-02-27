@@ -18,7 +18,7 @@ public abstract class AbstractCompileCordova {
   }
 
   protected void addPluginPickcontact() throws IOException, InterruptedException {
-    clickClient.cd("cordova").cmd("cordova plugin add https://github.com/kolwit/com.kolwit.pickcontact.git");
+    clickClient.cd("cordova").cmd("cordova plugin add https://github.com/kolwit/com.kolwit.pickcontact.git#64eafca2b31e4294ff26900291937eb9640067f9");
     clickClient.cmd("cp www/index-stand-demo.html cordova/www");
   }
 }
