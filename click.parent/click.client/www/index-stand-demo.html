@@ -236,6 +236,38 @@
     }
   }
 
+  window.beforeunload = function (e) {
+    alert("vrflibkvp;ae");
+    //    return 'Dialog text here.';
+  };
+//
+  //  $(window.location).trigger(
+  //    "change",
+  //    {
+  //      currentHref: strLocation,
+  //      currentHash: fnCleanHash(strHash),
+  //      previousHref: strPrevLocation,
+  //      previousHash: fnCleanHash(strPrevHash)
+  //    }
+  //  );
+
+  $(window.location).bind(
+    "change",
+    function (objEvent, objData) {
+      alert("YKJJJJ");
+      var jLog = $("#log");
+      // Add the URL change.
+      jLog.append(
+        "<li>" +
+        "Hash changed from " +
+        "<strong>" + objData.previousHash + "</strong>" +
+        " to " +
+        "<strong>" + objData.currentHash + "</strong>" +
+        "</li>"
+      );
+    }
+  );
+
 
   scope.categoryList = JSON.parse(localStorage.getItem("click_client_payCategoryList"));
   scope.serviceList = JSON.parse(localStorage.getItem("click_client_payServiceList"));

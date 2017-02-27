@@ -4,18 +4,27 @@
     <div class="service-component">
       <div class="service-title">{window.languages.ComponentServiceTitle}</div>
       <div class="service-container">
-
         <div class="service-each-container" each="{i in popularServiceList}">
-          <div id="{i.id}" class="service-buttons"
-               ontouchend="goToServicePage(this.id)" style="background-image: url({i.image})">
+          <div id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfService()"
+               ontouchend="ontouchEndOfService(this.id)" style="background-image: url({i.image})">
           </div>
           <p class="service-labels">{i.name}</p>
         </div>
-
-
       </div>
     </div>
-    <component-service style="left: {leftOfServiceCarousel}px"></component-service>
+
+    <div class="service-component" style="left: {leftOfServiceCarousel}px">
+      <div class="service-title">{window.languages.ComponentServiceTitle}</div>
+      <div class="service-container">
+        <div class="service-each-container" each="{i in popularServiceList}">
+          <div id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfService()"
+               ontouchend="ontouchEndOfService(this.id)" style="background-image: url({i.image})">
+          </div>
+          <p class="service-labels">{i.name}</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script>
@@ -103,21 +112,21 @@
 
     scope.leftOfServiceCarousel = 640 * widthK;
 
-    goToServicePage = function (id) {
-
-      console.log("chosen id in pay view=", id);
-      viewPay.chosenServiceId = id;
-      event.stopPropagation();
-
-      localStorage.setItem('chosenServiceId', id);
-      riotTags.innerHTML = "<view-service-page>";
-      riot.mount("view-service-page");
-    }
+    //    goToServicePage = function (id) {
+    //
+    //      console.log("chosen id in pay view=", id);
+    //      viewPay.chosenServiceId = id;
+    //      event.stopPropagation();
+    //
+    //      localStorage.setItem('chosenServiceId', id);
+    //      riotTags.innerHTML = "<view-service-page>";
+    //      riot.mount("view-service-page");
+    //    }
 
     var delta;
     touchStartService = function () {
       touchStartX = event.changedTouches[0].pageX;
-      leftOfDelta = -(100 * cardNumberOfService * widthK) - touchStartX;
+      leftOfDelta = -(540 * cardNumberOfService * widthK) - touchStartX;
       delta = leftOfDelta;
     }
 
@@ -141,8 +150,8 @@
     changePosition = function () {
       if (touchEndX < touchStartX) {
         cardNumberOfService = 1;
-        this.containerService.style.transform = "translate3d(" + -100 * widthK + "px, 0, 0)";
-        this.containerService.style.webkitTransform = "translate3d(" + -100 * widthK + "px, 0, 0)";
+        this.containerService.style.transform = "translate3d(" + -540 * widthK + "px, 0, 0)";
+        this.containerService.style.webkitTransform = "translate3d(" + -540 * widthK + "px, 0, 0)";
         this.containerService.style.transition = '0.3s';
         this.containerService.style.webkitTransition = '0.3s';
       }
@@ -155,6 +164,28 @@
         this.containerService.style.webkitTransition = '0.3s';
       }
     }
+
+
+    scope.ontouchStartOfService = ontouchStartOfService = function () {
+      event.stopPropagation();
+      onTouchStartX = event.changedTouches[0].pageX;
+    };
+
+    scope.ontouchEndOfService = ontouchEndOfService = function (id) {
+      event.stopPropagation();
+
+      onTouchEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(onTouchStartX - onTouchEndX) <= 20) {
+        console.log("chosen id in pay view=", id);
+        viewPay.chosenServiceId = id;
+        event.stopPropagation();
+
+        localStorage.setItem('chosenServiceId', id);
+        riotTags.innerHTML = "<view-service-page>";
+        riot.mount("view-service-page");
+      }
+    };
 
 
   </script>
