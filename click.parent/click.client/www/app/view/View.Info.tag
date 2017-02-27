@@ -196,6 +196,7 @@
 
     }
 
+    if(!modeOfflineMode.check)
     window.api.call({
       method: 'get.payment.list',
       input: {

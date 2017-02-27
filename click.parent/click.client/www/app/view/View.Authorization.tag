@@ -27,58 +27,58 @@
       {window.languages.ViewAuthorizationRegistrationLabel}
     </div>
   </div>
-  <div class="authorization-button-offline" ontouchstart="offlineMode()">
+  <div if="{checkAndroid}" class="authorization-button-offline" ontouchstart="offlineMode()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
 
   <script>
+    //    TEST = function () {
+    //      CardIO.scan({
+    //        "expiry": true,
+    //        "cvv": true,
+    //        "zip": false,
+    //        "suppressManual": false,
+    //        "suppressConfirm": false,
+    //        "hideLogo": true
+    //      }, onCardIOComplete, onCardIOCancel);
+    //    };
+    //
+    //    if (device.platform != 'BrowserStand')
+    //      CardIO.canScan(onCardIOCheck);
+    //
+    //    function onCardIOComplete(response) {
+    //      var cardIOResponseFields = [
+    //        "card_type",
+    //        "redacted_card_number",
+    //        "card_number",
+    //        "expiry_month",
+    //        "expiry_year",
+    //        "cvv",
+    //        "zip"
+    //      ];
+    //
+    //      var len = cardIOResponseFields.length;
+    //      console.log("card.io scan complete");
+    //      for (var i = 0; i < len; i++) {
+    //        var field = cardIOResponseFields[i];
+    //        alert(field + ": " + response[field]);
+    //      }
+    //    }
+    //
+    //    function onCardIOCancel(error) {
+    //      console.log("card.io scan cancelled");
+    //      console.log(error)
+    //    }
+    //
+    //    function onCardIOCheck(canScan) {
+    //      console.log("card.io canScan? " + canScan);
+    //      if (!canScan) {
+    //        console.log('can Scan false')
+    //      }
+    //    }
 
-    TEST = function () {
-      CardIO.scan({
-        "expiry": true,
-        "cvv": true,
-        "zip": false,
-        "suppressManual": false,
-        "suppressConfirm": false,
-        "hideLogo": true
-      }, onCardIOComplete, onCardIOCancel);
-    };
-
-    if (device.platform != 'BrowserStand')
-      CardIO.canScan(onCardIOCheck);
-
-    function onCardIOComplete(response) {
-      var cardIOResponseFields = [
-        "card_type",
-        "redacted_card_number",
-        "card_number",
-        "expiry_month",
-        "expiry_year",
-        "cvv",
-        "zip"
-      ];
-
-      var len = cardIOResponseFields.length;
-      console.log("card.io scan complete");
-      for (var i = 0; i < len; i++) {
-        var field = cardIOResponseFields[i];
-        alert(field + ": " + response[field]);
-      }
-    }
-
-    function onCardIOCancel(error) {
-      console.log("card.io scan cancelled");
-      console.log(error)
-    }
-
-    function onCardIOCheck(canScan) {
-      console.log("card.io canScan? " + canScan);
-      if (!canScan) {
-        console.log('can Scan false')
-      }
-    }
-
-
+    var scope = this;
+    scope.checkAndroid = false;
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization') {
         history.arrayOfHistory.push(
@@ -98,6 +98,10 @@
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    }
+
+    if (device.platform == 'Android') {
+      scope.checkAndroid = true;
     }
 
     registrationClientTouchEnd = function () {
@@ -130,8 +134,13 @@
       event.preventDefault();
       event.stopPropagation();
       modeOfflineMode.check = true;
-      this.riotTags.innerHTML = "<view-main-page>";
-      riot.mount('view-main-page');
+      var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+      console.log('sessionKey',sessionKey)
+      if (loginInfo) {
+        this.riotTags.innerHTML = "<view-main-page>";
+        riot.mount('view-main-page');
+      }
+      else alert('Do first enter with Internet')
 
     }
 
@@ -659,72 +668,72 @@
       }
     }
 
-    if (device.platform == 'Android') {
-
-      function isAvailableSuccess(result) {
-        console.log("FingerprintAuth available: " + JSON.stringify(result));
-        result.isAvailable = true;
-        if (result.isAvailable) {
-          var encryptConfig = {
-            clientId: "myAppName",
-            username: "currentUser",
-            password: "currentUserPassword"
-
-          }; // See config object for required parameters
-          FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
-        }
-      }
-
-      function isAvailableError(message) {
-        console.log("isAvailableError(): " + message);
-      }
-
-      function encryptSuccessCallback(result) {
-        console.log("successCallback(): " + JSON.stringify(result));
-        if (result.withFingerprint) {
-          console.log("Successfully encrypted credentials.");
-          console.log("Encrypted credentials: " + result.token);
-          pin = '11111';
-          enter();
-        } else if (result.withBackup) {
-          console.log("Authenticated with backup password");
-        }
-      }
-
-      function encryptErrorCallback(error) {
-        if (error === "Cancelled") {
-          console.log("FingerprintAuth Dialog Cancelled!");
-        } else {
-          console.log("FingerprintAuth Error: " + error);
-        }
-      }
-
-      FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
-
-    }
-
-    if (device.platform == 'iOS') {
-      function successCallback(success) {
-        alert('success', success)
-        var text = 'hello';
-        touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
-      }
-
-      function notSupportedCallback(error) {
-        alert('error', error)
-      }
-
-      touchid.checkSupport(successCallback, notSupportedCallback);
-
-      function successCallbackOfAuth(success) {
-        alert(success)
-      }
-
-      function failureCallbackOfAuth(error) {
-        alert(error)
-      }
-
-    }
+    //    if (device.platform == 'Android') {
+    //
+    //      function isAvailableSuccess(result) {
+    //        console.log("FingerprintAuth available: " + JSON.stringify(result));
+    //        result.isAvailable = true;
+    //        if (result.isAvailable) {
+    //          var encryptConfig = {
+    //            clientId: "myAppName",
+    //            username: "currentUser",
+    //            password: "currentUserPassword"
+    //
+    //          }; // See config object for required parameters
+    //          FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
+    //        }
+    //      }
+    //
+    //      function isAvailableError(message) {
+    //        console.log("isAvailableError(): " + message);
+    //      }
+    //
+    //      function encryptSuccessCallback(result) {
+    //        console.log("successCallback(): " + JSON.stringify(result));
+    //        if (result.withFingerprint) {
+    //          console.log("Successfully encrypted credentials.");
+    //          console.log("Encrypted credentials: " + result.token);
+    //          pin = '11111';
+    //          enter();
+    //        } else if (result.withBackup) {
+    //          console.log("Authenticated with backup password");
+    //        }
+    //      }
+    //
+    //      function encryptErrorCallback(error) {
+    //        if (error === "Cancelled") {
+    //          console.log("FingerprintAuth Dialog Cancelled!");
+    //        } else {
+    //          console.log("FingerprintAuth Error: " + error);
+    //        }
+    //      }
+    //
+    //      FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
+    //
+    //    }
+    //
+    //    if (device.platform == 'iOS') {
+    //      function successCallback(success) {
+    //        alert('success', success)
+    //        var text = 'hello';
+    //        touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
+    //      }
+    //
+    //      function notSupportedCallback(error) {
+    //        alert('error', error)
+    //      }
+    //
+    //      touchid.checkSupport(successCallback, notSupportedCallback);
+    //
+    //      function successCallbackOfAuth(success) {
+    //        alert(success)
+    //      }
+    //
+    //      function failureCallbackOfAuth(error) {
+    //        alert(error)
+    //      }
+    //
+    //    }
 
 
   </script>

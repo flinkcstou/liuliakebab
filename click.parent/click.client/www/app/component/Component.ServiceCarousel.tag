@@ -60,7 +60,7 @@
     }
 
 
-    if (!scope.popularServiceList) {
+    if (!scope.popularServiceList ) {
       scope.popularServiceList = [];
       window.api.call({
         method: 'get.service.list',

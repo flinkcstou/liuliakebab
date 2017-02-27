@@ -10,8 +10,8 @@
            style="opacity:0.3; filter: grayscale(100%);background-image: url({i.url})"></div>
       <div class="pincard-card-info-container">
         <p class="pincard-card-info-text-one">{i.name}</p>
-        <p class="pincard-card-info-text-two" if="{i.salaryOriginal>0}">{i.salary} {i.currency}</p>
-        <p class="pincard-card-info-text-two" style="color: #EB604D" if="{i.salaryOriginal<=0}">
+        <p if="{!modeOfflineMode.check}" class="pincard-card-info-text-two" if="{i.salaryOriginal>0}">{i.salary} {i.currency}</p>
+        <p  class="pincard-card-info-text-two" style="color: #EB604D" if="{i.salaryOriginal<=0 && !modeOfflineMode.check}">
           0 {i.currency}</p>
         <p class="pincard-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
       </div>

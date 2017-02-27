@@ -36,14 +36,11 @@
           "*880*2%23",
           function (err) {
             if (err == "empty") alert("Unknown phone number");
-            else alert("Dialer Error:" + err);
+            else console.log("Dialer Error:" + err);
           },
           function (success) {
           }
         );
-      }
-      if (device.platform == "iOS") {
-        window.open("*880*2%23")
       }
     }
 
