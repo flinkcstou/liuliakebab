@@ -1021,40 +1021,40 @@ var css = {
   serviceEachContainer: ".service-each-container" +
   "{" +
   "position: relative;" +
-  "width: 127px;" +
-  "height: 200px;" +
+  "width: " + 127 * widthK + "px;" +
+  "height: " + 200 * widthK + "px;" +
     //"border: 1px solid red;" +
   "float: left;" +
-  "margin-right: 20px;" +
+  "margin-right: " + 20 * widthK + "px;" +
   "}",
 
   beelineButton: ".beeline-button " +
   "{" +
-    //"background-image: url(resources/icons/services/beelineS.png);" +
+  "background-image: url(resources/icons/services/beelineS.png);" +
   "background-size: 60%;" +
-  "left:" + 152 * widthK + "px;" +
+    //"left:" + 152 * widthK + "px;" +
   "}",
 
   ucellButton: ".ucell-button " +
   "{" +
-  "left:" + 15 * widthK + "px;" +
+    //"left:" + 15 * widthK + "px;" +
   "top:" + 0 * widthK + "px;" +
-    //"background-image: url(resources/icons/services/ucellS.png);" +
+  "background-image: url(resources/icons/services/ucellS.png);" +
   "background-size: 80%;" +
   "}",
 
   umsButton: ".ums-button " +
   "{" +
-  "left:" + 288 * widthK + "px;" +
+    //"left:" + 288 * widthK + "px;" +
   "background-position: center;" +
-    //"background-image: url(resources/icons/services/umsS.png);" +
+  "background-image: url(resources/icons/services/umsS.png);" +
   "background-size: 60%;" +
   "}",
 
   myPhoneButton: ".my-phone-button " +
   "{" +
     //"left:" + 425 * widthK + "px;" +
-    //"top: 0;" +
+  "top: 0;" +
   "background-position-x:" + 35 * widthK + "px;" +
   "background-image: url(resources/icons/ViewPay/myphone.png);" +
   "background-size: 60%;" +
@@ -1076,6 +1076,7 @@ var css = {
   serviceLabelsUcell: ".service-labels-ucell " +
   "{" +
   "left:" + 40 * widthK + "px;" +
+  "bottom:" + -80 * widthK + "px;" +
   "}",
 
   serviceLabelBeeline: ".service-labels-beeline " +
