@@ -136,7 +136,13 @@
       var maskOne = /[0-9]/g;
       window.plugins.PickContact.chooseContact(function (contactInfo) {
         setTimeout(function () {
-          var phoneNumber = contact.phone;
+          var phoneNumber
+          if (device.platform == 'iOS')
+            phoneNumber = contactInfo.phoneNr;
+
+          if (device.platform == 'Android') {
+            phoneNumber = contactInfo.nameFormated
+          }
           var digits = phoneNumber.match(maskOne);
           var phone = '';
           for (var i in digits) {
@@ -147,6 +153,7 @@
       }, function (error) {
         console.log('error', error)
       });
+
     }
 
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
