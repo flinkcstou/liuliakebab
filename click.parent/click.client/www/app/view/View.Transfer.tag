@@ -107,7 +107,7 @@
       window.plugins.PickContact.chooseContact(function (contactInfo) {
         console.log('CONTACTINFO', contactInfo)
         setTimeout(function () {
-          var phoneNumber = contactInfo.phoneNr;
+          var phoneNumber = contactInfo.nameFormated;
           var digits = phoneNumber.match(maskOne);
           var phone = '';
           for (var i in digits) {
