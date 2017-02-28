@@ -1839,17 +1839,17 @@ window.fakedSocket.register("p2p.payment", function (input) {
     }
     if (input.parameters.type == 2) {
       //if (input.parameters.receiver_data == '998222222222')
-        return [
-          [{
-            "method": input.method,
-            "success": 1,
-            "error": 0,
-            "error_note": ""
-          }],
-          [{
-            "secret_code": random.toFixed(0),
-          }]
-        ];
+      return [
+        [{
+          "method": input.method,
+          "success": 1,
+          "error": 0,
+          "error_note": ""
+        }],
+        [{
+          "secret_code": random.toFixed(0),
+        }]
+      ];
       //else
       //  return [
       //    [{
@@ -2002,6 +2002,111 @@ window.fakedSocket.register("get.popular.services", function (input) {
       status: 1
     }]
   );
+
+  if (localStorage.getItem("click_client_token"))
+    return array;
+
+
+  return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Dostup zapreshen'}];
+});
+
+window.fakedSocket.register("p2p.bank.list", function (input) {
+
+  var array = [];
+  array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
+  array.push([
+    {
+      code: 1,
+      image: 1,
+      bank_name: 1,
+      p2p_min_limit: 1,
+      p2p_max_limit: 6,
+    },
+    {
+      code: 1,
+      image: 1,
+      bank_name: 1,
+      p2p_min_limit: 1,
+      p2p_max_limit: 6,
+    },
+    {
+      code: 1,
+      image: 1,
+      bank_name: 1,
+      p2p_min_limit: 1,
+      p2p_max_limit: 6,
+    }]
+  );
+
+  if (localStorage.getItem("click_client_token"))
+    return array;
+
+
+  return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Dostup zapreshen'}];
+});
+
+window.fakedSocket.register("settings.change.pin", function (input) {
+
+  var array = [];
+  array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
+
+  if (localStorage.getItem("click_client_token"))
+    return array;
+
+
+  return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Dostup zapreshen'}];
+});
+
+window.fakedSocket.register("history.chart.data", function (input) {
+
+  var array = [];
+  array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
+  array.push([
+    {
+      category_name: 1,
+      amount: 1,
+      percent: 1,
+      image: 1,
+    },
+    {
+      category_name: 1,
+      amount: 1,
+      percent: 1,
+      image: 1,
+    },
+    {
+      category_name: 1,
+      amount: 1,
+      percent: 1,
+      image: 1,
+    }]
+  );
+
+  if (localStorage.getItem("click_client_token"))
+    return array;
+
+
+  return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Dostup zapreshen'}];
+});
+
+window.fakedSocket.register("account.remove", function (input) {
+
+  var array = [];
+  array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
+
+
+  if (localStorage.getItem("click_client_token"))
+    return array;
+
+
+  return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Dostup zapreshen'}];
+});
+
+window.fakedSocket.register("settings.change.profile.data", function (input) {
+
+  var array = [];
+  array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
+
 
   if (localStorage.getItem("click_client_token"))
     return array;

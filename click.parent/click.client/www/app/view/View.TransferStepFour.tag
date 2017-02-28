@@ -158,6 +158,7 @@
       var searchedIndex = -1;
       var checkInBottomContacts = false;
 
+      if(transferContacts)
       for (var i = 0; i < transferContacts.length; i++) {
         var phone = '';
         var digits = '';

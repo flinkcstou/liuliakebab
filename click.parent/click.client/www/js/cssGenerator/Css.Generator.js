@@ -3440,7 +3440,7 @@ var css = {
   "height: 21%;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 29%;" +
+  "top: 30%;" +
   "display: none;" +
   "}",
 
@@ -3451,7 +3451,40 @@ var css = {
   "height: 21%;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 51.5%;" +
+  "top: 52.5%;" +
+  "display: none;" +
+  "}",
+
+  transferContactFoundContainerThree: ".transfer-contact-found-container-three" +
+  "{" +
+  "position: absolute;" +
+  "width: 79.5%;" +
+  "height: 21%;" +
+  "background-color: #F0F1F4;" +
+  "left: 10%;" +
+  "top: 75%;" +
+  "display: none;" +
+  "}",
+
+  transferContactFoundContainerFour: ".transfer-contact-found-container-four" +
+  "{" +
+  "position: absolute;" +
+  "width: 79.5%;" +
+  "height: 21%;" +
+  "background-color: #F0F1F4;" +
+  "left: 10%;" +
+  "top: 97.5%;" +
+  "display: none;" +
+  "}",
+
+  transferContactFoundContainerFive: ".transfer-contact-found-container-five" +
+  "{" +
+  "position: absolute;" +
+  "width: 79.5%;" +
+  "height: 21%;" +
+  "background-color: #F0F1F4;" +
+  "left: 10%;" +
+  "top: 120%;" +
   "display: none;" +
   "}",
 

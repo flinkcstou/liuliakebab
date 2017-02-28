@@ -25,7 +25,7 @@
         <p class="transfer-contact-text-field">{window.languages.ViewPayTransferContactTextField}</p>
         <p class="transfer-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
         <input onchange="contactPhoneBlurAndChange()" onfocus="contactPhoneBlurAndChange()"
-               id="contactPhoneNumberId" autofocus="true"
+               id="contactPhoneNumberId"
                class="transfer-contact-number-input-part" type="tel"
                maxlength="9" onkeyup="searchContacts()"/>
         <div class="transfer-contact-phone-icon" ontouchend="pickContactFromNative()"></div>
@@ -46,7 +46,39 @@
         </div>
         <div class="transfer-contact-found-text-two">{suggestionTwo.phoneNumber}</div>
       </div>
+
+
+      <div id="thirdSuggestionBlockId" class="transfer-contact-found-container-three"
+           ontouchend="thirdSuggestionBlock()">
+        <div class="transfer-contact-found-photo" style="background-image: url({suggestionThree.photo})"></div>
+        <div class="transfer-contact-found-text-container">
+          <div class="transfer-contact-found-text-one">{suggestionThree.fName} {suggestionThree.lName}</div>
+        </div>
+        <div class="transfer-contact-found-text-two">{suggestionThree.phoneNumber}</div>
+      </div>
+
+
+      <div id="fourthSuggestionBlockId" class="transfer-contact-found-container-four"
+           ontouchend="fourthSuggestionBlock()">
+        <div class="transfer-contact-found-photo" style="background-image: url({suggestionFour.photo})"></div>
+        <div class="transfer-contact-found-text-container">
+          <div class="transfer-contact-found-text-one">{suggestionFour.fName} {suggestionFour.lName}</div>
+        </div>
+        <div class="transfer-contact-found-text-two">{suggestionFour.phoneNumber}</div>
+      </div>
+
+
+      <div id="fifthSuggestionBlockId" class="transfer-contact-found-container-five"
+           ontouchend="fifthSuggestionBlock()">
+        <div class="transfer-contact-found-photo" style="background-image: url({suggestionFive.photo})"></div>
+        <div class="transfer-contact-found-text-container">
+          <div class="transfer-contact-found-text-one">{suggestionFive.fName} {suggestionFive.lName}</div>
+        </div>
+        <div class="transfer-contact-found-text-two">{suggestionFive.phoneNumber}</div>
+      </div>
+
     </div>
+
     <div id="cardInputFieldId" class="transfer-contact-body-container">
       <div class="transfer-contact-phone-field">
         <p class="transfer-contact-text-field">{window.languages.ViewPayTransferCardTextField}</p>
@@ -76,18 +108,39 @@
   <script>
 
     this.on('mount', function () {
+
+//      firstSuggestionBlockId.style.display = 'block';
+//      secondSuggestionBlockId.style.display = 'block';
+//      thirdSuggestionBlockId.style.display = 'block';
+//      fourthSuggestionBlockId.style.display = 'block';
+//      fifthSuggestionBlockId.style.display = 'block';
+
       if (viewTransfer.type == 2) {
         console.log('ON MOUNT')
         contact();
         if (checkFirstBlock) {
           firstSuggestionBlockId.style.display = 'block';
         }
+
         if (checkSecondBlock) {
           secondSuggestionBlockId.style.display = 'block';
         }
+
+        if (checkThirdBlock) {
+          thirdSuggestionBlockId.style.display = 'block';
+        }
+
+        if (checkFourthBlock) {
+          fourthSuggestionBlockId.style.display = 'block';
+        }
+
+        if (checkFifthBlock) {
+          fifthSuggestionBlockId.style.display = 'block';
+        }
       }
-      else
+      else {
         card();
+      }
     })
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer') {
@@ -98,6 +151,36 @@
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    }
+
+    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+    if (!JSON.parse(localStorage.getItem('transferCards'))) {
+      window.api.call({
+        method: 'p2p.bank.list',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+            console.log("result of P2P BANK LIST ", result[1]);
+            localStorage.setItem('transferCards', JSON.stringify(result[1]))
+          }
+          else
+            alert(result[0][0].error_note);
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
     }
 
     var maskOne = /[0-9]/g;
@@ -127,6 +210,13 @@
             if (contactPhoneNumberId.value.length == 9) {
               nextButtonId.style.display = 'block'
               nextButtonId.style.display = 'table'
+
+              firstSuggestionBlockId.style.display = 'none';
+              secondSuggestionBlockId.style.display = 'none';
+              thirdSuggestionBlockId.style.display = 'none';
+              fourthSuggestionBlockId.style.display = 'none';
+              fifthSuggestionBlockId.style.display = 'none';
+
             }
             else
               nextButtonId.style.display = 'none'
@@ -152,9 +242,15 @@
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
         nextButtonId.style.display = 'table'
+        firstSuggestionBlockId.style.display = 'none';
+        secondSuggestionBlockId.style.display = 'none';
+        thirdSuggestionBlockId.style.display = 'none';
+        fourthSuggestionBlockId.style.display = 'none';
+        fifthSuggestionBlockId.style.display = 'none';
       }
-      else
+      else {
         nextButtonId.style.display = 'none'
+      }
     }
 
     cardPhoneBlurAndChange = function () {
@@ -188,14 +284,48 @@
     scope.suggestionOne.lName = '';
     scope.suggestionOne.phoneNumber = '';
 
+    scope.suggestionOneCopy = {};
+    scope.suggestionOneCopy.photo = '';
+    scope.suggestionOneCopy.fName = '';
+    scope.suggestionOneCopy.lName = '';
+    scope.suggestionOneCopy.phoneNumber = '';
+
     scope.suggestionTwo = {};
     scope.suggestionTwo.photo = '';
     scope.suggestionTwo.fName = '';
     scope.suggestionTwo.lName = '';
     scope.suggestionTwo.phoneNumber = '';
 
+    scope.suggestionTwoCopy = {};
+    scope.suggestionTwoCopy.photo = '';
+    scope.suggestionTwoCopy.fName = '';
+    scope.suggestionTwoCopy.lName = '';
+    scope.suggestionTwoCopy.phoneNumber = '';
+
+    scope.suggestionThree = {};
+    scope.suggestionThree.photo = '';
+    scope.suggestionThree.fName = '';
+    scope.suggestionThree.lName = '';
+    scope.suggestionThree.phoneNumber = '';
+
+    scope.suggestionFour = {};
+    scope.suggestionFour.photo = '';
+    scope.suggestionFour.fName = '';
+    scope.suggestionFour.lName = '';
+    scope.suggestionFour.phoneNumber = '';
+
+    scope.suggestionFive = {};
+    scope.suggestionFive.photo = '';
+    scope.suggestionFive.fName = '';
+    scope.suggestionFive.lName = '';
+    scope.suggestionFive.phoneNumber = '';
+
     var checkFirstBlock = false;
     var checkSecondBlock = false;
+    var checkThirdBlock = false;
+    var checkFourthBlock = false;
+    var checkFifthBlock = false;
+
     console.log('SCRIPT INIT')
 
     scope.searchWord = '';
@@ -316,7 +446,7 @@
 
               onSuccess: function (result) {
                 if (result[0][0].error == 0) {
-                  console.log("result of APP.PAYMENT ", result);
+                  console.log("result of P2P CARD INFO ", result);
                 }
                 else
                   alert(result[0][0].error_note);
@@ -341,105 +471,150 @@
 
     }
 
-    //    findContacts = function () {
-    //
-    //      var options = new ContactFindOptions();
-    //      options.filter = "";
-    //      options.multiple = true;
-    //      var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.photos];
-    //      navigator.contacts.find(fields, success, error, options);
-    //
-    //      function success(contacts) {
-    //        for (var i = 0; i < contacts.length; i++) {
-    //          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null)
-    //            arrayOfContacts.push(contacts[i])
-    //        }
-    //      }
-    //
-    //      function error(message) {
-    //        alert('Failed because: ' + message);
-    //      }
-    //    }
-    //    if (device.platform != 'BrowserStand')
-    //      findContacts();
+    findContacts = function () {
+
+      var options = new ContactFindOptions();
+      options.filter = "";
+      options.multiple = true;
+      var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.photos];
+      navigator.contacts.find(fields, success, error, options);
+
+      function success(contacts) {
+        for (var i = 0; i < contacts.length; i++) {
+          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null)
+            arrayOfContacts.push(contacts[i])
+        }
+      }
+
+      function error(message) {
+        alert('Failed because: ' + message);
+      }
+    }
+    if (device.platform != 'BrowserStand')
+      findContacts();
 
     searchContacts = function () {
 
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
         nextButtonId.style.display = 'table'
+
+        firstSuggestionBlockId.style.display = 'none';
+        secondSuggestionBlockId.style.display = 'none';
+        thirdSuggestionBlockId.style.display = 'none';
+        fourthSuggestionBlockId.style.display = 'none';
+        fifthSuggestionBlockId.style.display = 'none';
+
       }
-      else
+      else {
         nextButtonId.style.display = 'none'
+        console.log('INPUT CONTACT VALUE', contactPhoneNumberId.value.length)
+
+        if (contactPhoneNumberId.value.length == 0) {
+          console.log('I AM HERE')
+          console.log('BLOCK 1', checkFirstBlock)
+          console.log('BLOCK 2', checkSecondBlock)
+          console.log('BLOCK 3', checkThirdBlock)
+          console.log('BLOCK 4', checkFourthBlock)
+          console.log('BLOCK 5', checkFifthBlock)
+          if (checkFirstBlock) {
+            scope.suggestionOne = JSON.parse(JSON.stringify(scope.suggestionOneCopy));
+            firstSuggestionBlockId.style.display = 'block';
+          }
+
+          if (checkSecondBlock) {
+            scope.suggestionTwo = JSON.parse(JSON.stringify(scope.suggestionTwoCopy));
+            secondSuggestionBlockId.style.display = 'block';
+          }
+
+          if (checkThirdBlock) {
+            thirdSuggestionBlockId.style.display = 'block';
+          }
+
+          if (checkFourthBlock) {
+            fourthSuggestionBlockId.style.display = 'block';
+          }
+
+          if (checkFifthBlock) {
+            fifthSuggestionBlockId.style.display = 'block';
+          }
+          riot.update();
+          return
+        }
+      }
+
+      thirdSuggestionBlockId.style.display = 'none';
+      fourthSuggestionBlockId.style.display = 'none';
+      fifthSuggestionBlockId.style.display = 'none';
 
       checkPhoneForTransfer = true;
       checkCardForTransfer = false;
       event.preventDefault();
       event.stopPropagation();
 
-//      var countOfFound = 0;
-//      var check = false;
-//
-//      if (event.keyCode != 16 && event.keyCode != 18)
-//        scope.searchWord = event.target.value;
-//
-//      arrayOfContacts.filter(function (wordOfFunction) {
-//
-//        var index = wordOfFunction.phoneNumbers[0].value.indexOf(scope.searchWord);
-//        if (index != -1 && countOfFound < 2) {
-//
-//          check = true;
-//
-//          if (countOfFound == 0) {
-//
-//            scope.suggestionOne.phoneNumber = wordOfFunction.phoneNumbers[0].value;
-//            scope.suggestionOne.fName = wordOfFunction.name.givenName;
-//            scope.suggestionOne.lName = wordOfFunction.name.familyName;
-//
-//            if (wordOfFunction.photos != null) {
-//              if (wordOfFunction.photos[0] != null)
-//                scope.suggestionOne.photo = wordOfFunction.photos[0].value;
-//              else
-//                scope.suggestionOne.photo = '';
-//            }
-//            else
-//              scope.suggestionOne.photo = '';
-//
-//
-//            riot.update(scope.suggestionOne)
-//
-//            firstSuggestionBlockId.style.display = 'block';
-//            secondSuggestionBlockId.style.display = 'none';
-//          }
-//
-//          if (countOfFound == 1) {
-//
-//            scope.suggestionTwo.phoneNumber = wordOfFunction.phoneNumbers[0].value;
-//            scope.suggestionTwo.fName = wordOfFunction.name.givenName;
-//            scope.suggestionTwo.lName = wordOfFunction.name.familyName;
-//
-//            if (wordOfFunction.photos != null) {
-//              if (wordOfFunction.photos[0] != null)
-//                scope.suggestionTwo.photo = wordOfFunction.photos[0].value;
-//              else
-//                scope.suggestionTwo.photo = '';
-//            }
-//            else
-//              scope.suggestionTwo.photo = '';
-//
-//            riot.update(scope.suggestionTwo)
-//
-//            secondSuggestionBlockId.style.display = 'block';
-//          }
-//          countOfFound++;
-//          if (countOfFound == 2)
-//            return;
-//        }
-//        else if (!check) {
-//          firstSuggestionBlockId.style.display = 'none';
-//          secondSuggestionBlockId.style.display = 'none';
-//        }
-//      });
+      var countOfFound = 0;
+      var check = false;
+
+      if (event.keyCode != 16 && event.keyCode != 18)
+        scope.searchWord = event.target.value;
+
+      arrayOfContacts.filter(function (wordOfFunction) {
+
+        var index = wordOfFunction.phoneNumbers[0].value.indexOf(scope.searchWord);
+        if (index != -1 && countOfFound < 2) {
+
+          check = true;
+
+          if (countOfFound == 0) {
+
+            scope.suggestionOne.phoneNumber = wordOfFunction.phoneNumbers[0].value;
+            scope.suggestionOne.fName = wordOfFunction.name.givenName;
+            scope.suggestionOne.lName = wordOfFunction.name.familyName;
+
+            if (wordOfFunction.photos != null) {
+              if (wordOfFunction.photos[0] != null)
+                scope.suggestionOne.photo = wordOfFunction.photos[0].value;
+              else
+                scope.suggestionOne.photo = '';
+            }
+            else
+              scope.suggestionOne.photo = '';
+
+
+            riot.update(scope.suggestionOne)
+
+            firstSuggestionBlockId.style.display = 'block';
+            secondSuggestionBlockId.style.display = 'none';
+          }
+
+          if (countOfFound == 1) {
+
+            scope.suggestionTwo.phoneNumber = wordOfFunction.phoneNumbers[0].value;
+            scope.suggestionTwo.fName = wordOfFunction.name.givenName;
+            scope.suggestionTwo.lName = wordOfFunction.name.familyName;
+
+            if (wordOfFunction.photos != null) {
+              if (wordOfFunction.photos[0] != null)
+                scope.suggestionTwo.photo = wordOfFunction.photos[0].value;
+              else
+                scope.suggestionTwo.photo = '';
+            }
+            else
+              scope.suggestionTwo.photo = '';
+
+            riot.update(scope.suggestionTwo)
+
+            secondSuggestionBlockId.style.display = 'block';
+          }
+          countOfFound++;
+          if (countOfFound == 2)
+            return;
+        }
+        else if (!check) {
+          firstSuggestionBlockId.style.display = 'none';
+          secondSuggestionBlockId.style.display = 'none';
+        }
+      });
     }
 
     suggestionFunction = function () {
@@ -458,7 +633,106 @@
       var j = 0;
       for (var i = 0; i < transferContacts.length; i++) {
 
-        if (j == 1)
+        if (j == 4) {
+          if (transferContacts[i] != null && transferContacts[i].phoneNumbers != null && transferContacts[i].phoneNumbers[0] != null && transferContacts[i].phoneNumbers[0].value != null) {
+            checkFifthBlock = true;
+            scope.suggestionFive.phoneNumber = transferContacts[i].phoneNumbers[0].value;
+            if (transferContacts[i].photos != null && transferContacts[i].photos[0] != null && transferContacts[i].photos[0].value != null) {
+              scope.suggestionFive.photo = transferContacts[i].photos[0].value;
+            }
+            else {
+              scope.suggestionFive.photo = '';
+            }
+
+            if (transferContacts[i].name != null) {
+              if (transferContacts[i].name.givenName != null) {
+                scope.suggestionFive.fName = transferContacts[i].name.givenName;
+              }
+              else {
+                scope.suggestionFive.fName = '';
+              }
+              if (transferContacts[i].name.familyName != null) {
+                scope.suggestionFive.lName = transferContacts[i].name.familyName;
+              }
+              else {
+                scope.suggestionFive.lName = '';
+              }
+            }
+            j++;
+          }
+          else {
+            scope.suggestionFive = {}
+
+          }
+        }
+
+        if (j == 3) {
+          if (transferContacts[i] != null && transferContacts[i].phoneNumbers != null && transferContacts[i].phoneNumbers[0] != null && transferContacts[i].phoneNumbers[0].value != null) {
+            checkFourthBlock = true;
+            scope.suggestionFour.phoneNumber = transferContacts[i].phoneNumbers[0].value;
+            if (transferContacts[i].photos != null && transferContacts[i].photos[0] != null && transferContacts[i].photos[0].value != null) {
+              scope.suggestionFour.photo = transferContacts[i].photos[0].value;
+            }
+            else {
+              scope.suggestionFour.photo = '';
+            }
+
+            if (transferContacts[i].name != null) {
+              if (transferContacts[i].name.givenName != null) {
+                scope.suggestionFour.fName = transferContacts[i].name.givenName;
+              }
+              else {
+                scope.suggestionFour.fName = '';
+              }
+              if (transferContacts[i].name.familyName != null) {
+                scope.suggestionFour.lName = transferContacts[i].name.familyName;
+              }
+              else {
+                scope.suggestionFour.lName = '';
+              }
+            }
+            j++;
+          }
+          else {
+            scope.suggestionFour = {}
+
+          }
+        }
+
+        if (j == 2) {
+          if (transferContacts[i] != null && transferContacts[i].phoneNumbers != null && transferContacts[i].phoneNumbers[0] != null && transferContacts[i].phoneNumbers[0].value != null) {
+            checkThirdBlock = true;
+            scope.suggestionThree.phoneNumber = transferContacts[i].phoneNumbers[0].value;
+            if (transferContacts[i].photos != null && transferContacts[i].photos[0] != null && transferContacts[i].photos[0].value != null) {
+              scope.suggestionThree.photo = transferContacts[i].photos[0].value;
+            }
+            else {
+              scope.suggestionThree.photo = '';
+            }
+
+            if (transferContacts[i].name != null) {
+              if (transferContacts[i].name.givenName != null) {
+                scope.suggestionThree.fName = transferContacts[i].name.givenName;
+              }
+              else {
+                scope.suggestionThree.fName = '';
+              }
+              if (transferContacts[i].name.familyName != null) {
+                scope.suggestionThree.lName = transferContacts[i].name.familyName;
+              }
+              else {
+                scope.suggestionThree.lName = '';
+              }
+            }
+            j++
+          }
+          else {
+            scope.suggestionThree = {}
+
+          }
+        }
+
+        if (j == 1) {
           if (transferContacts[i] != null && transferContacts[i].phoneNumbers != null && transferContacts[i].phoneNumbers[0] != null && transferContacts[i].phoneNumbers[0].value != null) {
             checkSecondBlock = true;
             scope.suggestionTwo.phoneNumber = transferContacts[i].phoneNumbers[0].value;
@@ -483,13 +757,14 @@
                 scope.suggestionTwo.lName = '';
               }
             }
+            j++;
+
+            scope.suggestionTwoCopy = JSON.parse(JSON.stringify(scope.suggestionTwo));
           }
           else {
             scope.suggestionTwo = {}
 
           }
-        if (j == 1) {
-          break;
         }
 
         if (j == 0)
@@ -519,6 +794,8 @@
               }
             }
             j++;
+
+            scope.suggestionOneCopy = JSON.parse(JSON.stringify(scope.suggestionOne));
           }
           else {
             scope.suggestionOne = {};
@@ -555,6 +832,8 @@
       }
       else
         nextButtonId.style.display = 'none'
+
+
     }
 
 
@@ -574,6 +853,11 @@
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
         nextButtonId.style.display = 'table'
+        firstSuggestionBlockId.style.display = 'none';
+        secondSuggestionBlockId.style.display = 'none';
+        thirdSuggestionBlockId.style.display = 'none';
+        fourthSuggestionBlockId.style.display = 'none';
+        fifthSuggestionBlockId.style.display = 'none';
       }
       else
         nextButtonId.style.display = 'none'
@@ -595,6 +879,89 @@
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
         nextButtonId.style.display = 'table'
+        firstSuggestionBlockId.style.display = 'none';
+        secondSuggestionBlockId.style.display = 'none';
+        thirdSuggestionBlockId.style.display = 'none';
+        fourthSuggestionBlockId.style.display = 'none';
+        fifthSuggestionBlockId.style.display = 'none';
+      }
+      else
+        nextButtonId.style.display = 'none'
+    }
+
+    thirdSuggestionBlock = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      var digits = scope.suggestionThree.phoneNumber.match(maskOne);
+      var phone = '';
+      for (var i in digits) {
+        phone += digits[i]
+      }
+      scope.suggestionThree.phoneNumber = phone;
+
+      contactPhoneNumberId.value = scope.suggestionThree.phoneNumber.substring(scope.suggestionThree.phoneNumber.length - 9, scope.suggestionThree.phoneNumber.length);
+
+      if (contactPhoneNumberId.value.length == 9) {
+        nextButtonId.style.display = 'block'
+        nextButtonId.style.display = 'table'
+        firstSuggestionBlockId.style.display = 'none';
+        secondSuggestionBlockId.style.display = 'none';
+        thirdSuggestionBlockId.style.display = 'none';
+        fourthSuggestionBlockId.style.display = 'none';
+        fifthSuggestionBlockId.style.display = 'none';
+      }
+      else
+        nextButtonId.style.display = 'none'
+    }
+
+    fourthSuggestionBlock = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      var digits = scope.suggestionFour.phoneNumber.match(maskOne);
+      var phone = '';
+      for (var i in digits) {
+        phone += digits[i]
+      }
+      scope.suggestionFour.phoneNumber = phone;
+
+      contactPhoneNumberId.value = scope.suggestionFour.phoneNumber.substring(scope.suggestionFour.phoneNumber.length - 9, scope.suggestionFour.phoneNumber.length);
+
+      if (contactPhoneNumberId.value.length == 9) {
+        nextButtonId.style.display = 'block'
+        nextButtonId.style.display = 'table'
+        firstSuggestionBlockId.style.display = 'none';
+        secondSuggestionBlockId.style.display = 'none';
+        thirdSuggestionBlockId.style.display = 'none';
+        fourthSuggestionBlockId.style.display = 'none';
+        fifthSuggestionBlockId.style.display = 'none';
+      }
+      else
+        nextButtonId.style.display = 'none'
+    }
+
+    fifthSuggestionBlock = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      var digits = scope.suggestionFive.phoneNumber.match(maskOne);
+      var phone = '';
+      for (var i in digits) {
+        phone += digits[i]
+      }
+      scope.suggestionFive.phoneNumber = phone;
+
+      contactPhoneNumberId.value = scope.suggestionFive.phoneNumber.substring(scope.suggestionFive.phoneNumber.length - 9, scope.suggestionFive.phoneNumber.length);
+
+      if (contactPhoneNumberId.value.length == 9) {
+        nextButtonId.style.display = 'block'
+        nextButtonId.style.display = 'table'
+        firstSuggestionBlockId.style.display = 'none';
+        secondSuggestionBlockId.style.display = 'none';
+        thirdSuggestionBlockId.style.display = 'none';
+        fourthSuggestionBlockId.style.display = 'none';
+        fifthSuggestionBlockId.style.display = 'none';
       }
       else
         nextButtonId.style.display = 'none'
