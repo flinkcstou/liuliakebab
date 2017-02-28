@@ -77,6 +77,7 @@
         alert("Выберите карту для оплаты");
         return;
       }
+      viewPayConfirm.isInFavorites = false;
       event.preventDefault();
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-pay-confirm>";

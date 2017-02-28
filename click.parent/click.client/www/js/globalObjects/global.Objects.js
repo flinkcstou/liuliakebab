@@ -34,6 +34,8 @@ window.viewServicePage = {};
 
 window.viewServicePinCards = {};
 
+window.viewPayConfirm = {};
+
 window.viewMyCardList = {};
 
 viewMyCardList.myCardListBoolean = false;
