@@ -219,7 +219,6 @@
         scope: this,
 
         onSuccess: function (result) {
-          console.log(result)
           console.log(result[0][0])
           if (result[0][0].error == 0) {
             if (!result[1][0].error) {
