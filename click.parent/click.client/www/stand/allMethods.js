@@ -2009,3 +2009,38 @@ window.fakedSocket.register("get.popular.services", function (input) {
 
   return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Dostup zapreshen'}];
 });
+
+window.fakedSocket.register("p2p.bank.list", function (input) {
+
+  var array = [];
+  array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
+  array.push([
+    {
+      code: 1,
+      image: 1,
+      bank_name: 1,
+      p2p_min_limit: 1,
+      p2p_max_limit: 6,
+    },
+    {
+      code: 1,
+      image: 1,
+      bank_name: 1,
+      p2p_min_limit: 1,
+      p2p_max_limit: 6,
+    },
+    {
+      code: 1,
+      image: 1,
+      bank_name: 1,
+      p2p_min_limit: 1,
+      p2p_max_limit: 6,
+    }]
+  );
+
+  if (localStorage.getItem("click_client_token"))
+    return array;
+
+
+  return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Dostup zapreshen'}];
+});
