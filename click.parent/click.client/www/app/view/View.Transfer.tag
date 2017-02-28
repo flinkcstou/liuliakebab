@@ -153,6 +153,36 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+    if (!JSON.parse(localStorage.getItem('transferCards'))) {
+      window.api.call({
+        method: 'p2p.bank.list',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+            console.log("result of P2P BANK LIST ", result[1]);
+            localStorage.setItem('transferCards', JSON.stringify(result[1]))
+          }
+          else
+            alert(result[0][0].error_note);
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+
     var maskOne = /[0-9]/g;
 
     pickContactFromNative = function () {
@@ -359,35 +389,6 @@
 
       if (viewTransfer.cardNumber)
         this.cardInputId.value = viewTransfer.cardNumber
-
-      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-
-      if (!JSON.parse(localStorage.getItem('transferCards'))) {
-        window.api.call({
-          method: 'p2p.bank.list',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-
-          },
-
-          scope: this,
-
-          onSuccess: function (result) {
-            if (result[0][0].error == 0) {
-              console.log("result of P2P BANK LIST ", result);
-            }
-            else
-              alert(result[0][0].error_note);
-          },
-
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
-          }
-        });
-      }
 
     }
 
@@ -831,6 +832,8 @@
       }
       else
         nextButtonId.style.display = 'none'
+
+
     }
 
 
