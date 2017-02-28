@@ -59,3 +59,6 @@ modeOfflineMode.balance = false;
 
 window.standCheckRegistration = false;
 
+checkPhoneForTransfer = true;
+checkCardForTransfer = false;
+

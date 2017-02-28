@@ -158,31 +158,31 @@
       var searchedIndex = -1;
       var checkInBottomContacts = false;
 
-      if(transferContacts)
-      for (var i = 0; i < transferContacts.length; i++) {
-        var phone = '';
-        var digits = '';
-        if (transferContacts[i].phoneNumbers != null)
-          if (transferContacts[i].phoneNumbers[0] != null)
-            if (transferContacts[i].phoneNumbers[0].value != null) {
-              digits = transferContacts[i].phoneNumbers[0].value.match(maskOne)
-              for (var k in digits) {
-                phone += digits[k]
+      if (transferContacts)
+        for (var i = 0; i < transferContacts.length; i++) {
+          var phone = '';
+          var digits = '';
+          if (transferContacts[i].phoneNumbers != null)
+            if (transferContacts[i].phoneNumbers[0] != null)
+              if (transferContacts[i].phoneNumbers[0].value != null) {
+                digits = transferContacts[i].phoneNumbers[0].value.match(maskOne)
+                for (var k in digits) {
+                  phone += digits[k]
+                }
+                searchedIndex = phone.indexOf(searchNumber);
+                if (searchedIndex != -1) {
+                  checkInBottomContacts = true;
+                  console.log('CHECK', transferContacts[i])
+                  transferContacts.splice(i, 1);
+                  console.log('TRANSFER CONTACTS', transferContacts)
+                  localStorage.setItem('transferContacts', JSON.stringify(transferContacts));
+                  break;
+                }
+                else {
+                  checkInBottomContacts = false;
+                }
               }
-              searchedIndex = phone.indexOf(searchNumber);
-              if (searchedIndex != -1) {
-                checkInBottomContacts = true;
-                console.log('CHECK', transferContacts[i])
-                transferContacts.splice(i, 1);
-                console.log('TRANSFER CONTACTS', transferContacts)
-                localStorage.setItem('transferContacts', JSON.stringify(transferContacts));
-                break;
-              }
-              else {
-                checkInBottomContacts = false;
-              }
-            }
-      }
+        }
 
       transferContacts = JSON.parse(localStorage.getItem('transferContacts'));
       console.log('searchNumber', searchNumber)
@@ -223,6 +223,44 @@
       }
     }
 
+    findCards = function (saveCard) {
+
+      var transferCards = [];
+      var codeOfBank = saveCard.replace(/\s/g, '').substring(3, 6);
+      var card = {};
+      card.image = '';
+      card.name = '';
+      card.cardNumber = '';
+      card.owner = {};
+      card.owner.firstName = '';
+      card.owner.secondName = '';
+      console.log('CODE OF BANK', codeOfBank)
+
+      var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))
+      for (var i = 0; i < bankList.length; i++) {
+        if (codeOfBank == bankList[i].code) {
+          if (JSON.parse(localStorage.getItem('transferCards'))) {
+            transferCards = JSON.parse(localStorage.getItem('transferCards'));
+            card.image = bankList[i].image
+            card.name = bankList[i].name
+            card.cardNumber = saveCard;
+            transferCards.unshift(card)
+            localStorage.setItem('transferCards', JSON.stringify(transferCards));
+          }
+          else {
+            card.image = bankList[i].image
+            card.name = bankList[i].name
+            card.cardNumber = saveCard;
+            transferCards.unshift(card)
+            localStorage.setItem('transferCards', JSON.stringify(transferCards));
+
+          }
+
+        }
+      }
+
+    }
+
     transferStep = function () {
 
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
@@ -259,6 +297,7 @@
                   }
                   if (result[1][0].secret_code == 0) {
                     componentSuccessId.style.display = 'block';
+                    findCards(scope.objectTypeForTransfer.name);
                   }
                 }
             }

@@ -1861,7 +1861,7 @@ window.fakedSocket.register("p2p.payment", function (input) {
       //  ];
     }
     else {
-      if (input.parameters.receiver_data == '1111222233334444')
+      //if (input.parameters.receiver_data == '1111222233334444')
         return [
           [{
             "method": input.method,
@@ -1873,15 +1873,15 @@ window.fakedSocket.register("p2p.payment", function (input) {
             "secret_code": 0,
           }]
         ];
-      else
-        return [
-          [{
-            "method": input.method,
-            "success": 1,
-            "error": 1,
-            "error_note": ""
-          }],
-        ];
+      //else
+      //  return [
+      //    [{
+      //      "method": input.method,
+      //      "success": 1,
+      //      "error": 1,
+      //      "error_note": ""
+      //    }],
+      //  ];
 
     }
   }
@@ -2016,25 +2016,46 @@ window.fakedSocket.register("p2p.bank.list", function (input) {
   array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
   array.push([
     {
-      code: 1,
-      image: 1,
-      bank_name: 1,
-      p2p_min_limit: 1,
-      p2p_max_limit: 6,
+      code: "020",
+      image: "https://merchant.click.uz/static/merchant/bank/utb.png",
+      bank_name: "UT банк",
+      p2p_min_limit: 5000,
+      p2p_max_limit: 5000000,
     },
     {
-      code: 1,
-      image: 1,
-      bank_name: 1,
-      p2p_min_limit: 1,
-      p2p_max_limit: 6,
+      code: "004",
+      image: "https://merchant.click.uz/static/merchant/bank/agro.png",
+      bank_name: "Агробанк",
+      p2p_min_limit: 5000,
+      p2p_max_limit: 5000000,
     },
     {
-      code: 1,
-      image: 1,
-      bank_name: 1,
-      p2p_min_limit: 1,
-      p2p_max_limit: 6,
+      code: "055",
+      image: "https://merchant.click.uz/static/merchant/bank/aab.png",
+      bank_name: "Азия Альянс Банк",
+      p2p_min_limit: 5000,
+      p2p_max_limit: 5000000,
+    },
+    {
+      code: "031",
+      image: "https://merchant.click.uz/static/merchant/bank/aloq.png",
+      bank_name: "Алокабанк",
+      p2p_min_limit: 5000,
+      p2p_max_limit: 5000000,
+    },
+    {
+      code: "013",
+      image: "https://merchant.click.uz/static/merchant/bank/asaka.png",
+      bank_name: "Асака Банк",
+      p2p_min_limit: 5000,
+      p2p_max_limit: 5000000,
+    },
+    {
+      code: "051",
+      image: "https://merchant.click.uz/static/merchant/bank/davr.png",
+      bank_name: "Давр Банк",
+      p2p_min_limit: 5000,
+      p2p_max_limit: 5000000,
     }]
   );
 

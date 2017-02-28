@@ -3517,6 +3517,17 @@ var css = {
   "background-size: 150%;" +
   "}",
 
+  transferCardFoundPhoto: ".transfer-card-found-photo" +
+  "{" +
+  "position: absolute;" +
+  "width: 20%;" +
+  "height: 100%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "left: 5%;" +
+  "background-size: 100%;" +
+  "}",
+
   transferContactFoundTextContainer: ".transfer-contact-found-text-container" +
   "{" +
   "position: absolute;" +

@@ -87,16 +87,62 @@
                maxlength="19" onkeydown="searchCard()" onkeyup="cardOnKeyUp()"/>
         <div class="transfer-contact-phone-icon"></div>
       </div>
-      <div class="transfer-contact-found-container-one">
-        <div class="transfer-contact-found-photo"></div>
-        <div class="transfer-contact-found-text-one">Юлдашев Александр</div>
-        <div class="transfer-contact-found-text-two">8760 **** **** 9870</div>
+
+      <div id="firstCardSuggestionId" class="transfer-contact-found-container-one"
+           ontouchend="firstCardSuggestionBlock()">
+        <div class="transfer-card-found-photo" style="background-image: url({cardSuggestionOne.photo})"></div>
+        <div class="transfer-contact-found-text-container">
+          <div class="transfer-contact-found-text-one">{cardSuggestionOne.fName} {cardSuggestionOne.lName}</div>
+        </div>
+        <div class="transfer-contact-found-text-two">{cardSuggestionOne.cardNumber.substring(0,4)} **** ****
+          {cardSuggestionOne.cardNumber.substring(cardSuggestionOne.cardNumber.length-4,cardSuggestionOne.cardNumber.length)}
+        </div>
       </div>
-      <div class="transfer-contact-found-container-two">
-        <div class="transfer-contact-found-photo"></div>
-        <div class="transfer-contact-found-text-one">Дмитрий Чеченин</div>
-        <div class="transfer-contact-found-text-two">8760 **** **** 9870</div>
+
+      <div id="secondCardSuggestionId" class="transfer-contact-found-container-two"
+           ontouchend="secondCardSuggestionBlock()">
+        <div class="transfer-card-found-photo" style="background-image: url({cardSuggestionTwo.photo})"></div>
+        <div class="transfer-contact-found-text-container">
+          <div class="transfer-contact-found-text-one">{cardSuggestionTwo.fName} {cardSuggestionTwo.lName}</div>
+        </div>
+        <div class="transfer-contact-found-text-two">{cardSuggestionTwo.cardNumber.substring(0,4)} **** ****
+          {cardSuggestionTwo.cardNumber.substring(cardSuggestionTwo.cardNumber.length-4,cardSuggestionTwo.cardNumber.length)}
+        </div>
       </div>
+
+      <div id="thirdCardSuggestionId" class="transfer-contact-found-container-three"
+           ontouchend="thirdCardSuggestionBlock()">
+        <div class="transfer-card-found-photo" style="background-image: url({cardSuggestionThree.photo})"></div>
+        <div class="transfer-contact-found-text-container">
+          <div class="transfer-contact-found-text-one">{cardSuggestionThree.fName} {cardSuggestionThree.lName}</div>
+        </div>
+        <div class="transfer-contact-found-text-two">{cardSuggestionThree.cardNumber.substring(0,4)} **** ****
+          {cardSuggestionThree.cardNumber.substring(cardSuggestionThree.cardNumber.length-4,cardSuggestionThree.cardNumber.length)}
+        </div>
+      </div>
+
+      <div id="fourthCardSuggestionId" class="transfer-contact-found-container-four"
+           ontouchend="fourthCardSuggestionBlock()">
+        <div class="transfer-card-found-photo" style="background-image: url({cardSuggestionFour.photo})"></div>
+        <div class="transfer-contact-found-text-container">
+          <div class="transfer-contact-found-text-one">{cardSuggestionFour.fName} {cardSuggestionFour.lName}</div>
+        </div>
+        <div class="transfer-contact-found-text-two">{cardSuggestionFour.cardNumber.substring(0,4)} **** ****
+          {cardSuggestionFour.cardNumber.substring(cardSuggestionFour.cardNumber.length-4,cardSuggestionFour.cardNumber.length)}
+        </div>
+      </div>
+
+      <div id="fifthCardSuggestionId" class="transfer-contact-found-container-five"
+           ontouchend="fifthCardSuggestionBlock()">
+        <div class="transfer-card-found-photo" style="background-image: url({cardSuggestionFive.photo})"></div>
+        <div class="transfer-contact-found-text-container">
+          <div class="transfer-contact-found-text-one">{cardSuggestionFive.fName} {cardSuggestionFive.lName}</div>
+        </div>
+        <div class="transfer-contact-found-text-two">{cardSuggestionFive.cardNumber.substring(0,4)} **** ****
+          {cardSuggestionFive.cardNumber.substring(cardSuggestionFive.cardNumber.length-4,cardSuggestionFive.cardNumber.length)}
+        </div>
+      </div>
+
     </div>
 
     <div id="nextButtonId" class="transfer-next-button-inner-container" ontouchend="goToTransferStepTwo()">
@@ -139,6 +185,30 @@
         }
       }
       else {
+        checkCardMenu = false;
+
+        if (checkCardFirstBlock) {
+          scope.cardSuggestionOne = JSON.parse(JSON.stringify(scope.cardSuggestionOneCopy));
+          firstCardSuggestionId.style.display = 'block';
+        }
+
+        if (checkCardSecondBlock) {
+          scope.cardSuggestionTwo = JSON.parse(JSON.stringify(scope.cardSuggestionTwoCopy));
+          secondCardSuggestionId.style.display = 'block';
+        }
+
+        if (checkCardThirdBlock) {
+          thirdCardSuggestionId.style.display = 'block';
+        }
+
+        if (checkCardFourthBlock) {
+          fourthCardSuggestionId.style.display = 'block';
+        }
+
+        if (checkCardFifthBlock) {
+          fifthCardSuggestionId.style.display = 'block';
+        }
+        riot.update();
         card();
       }
     })
@@ -156,7 +226,7 @@
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-    if (!JSON.parse(localStorage.getItem('transferCards'))) {
+    if (!JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))) {
       window.api.call({
         method: 'p2p.bank.list',
         input: {
@@ -170,7 +240,7 @@
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
             console.log("result of P2P BANK LIST ", result[1]);
-            localStorage.setItem('transferCards', JSON.stringify(result[1]))
+            localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(result[1]))
           }
           else
             alert(result[0][0].error_note);
@@ -264,6 +334,11 @@
       if (cardInputId.value.replace(/\s/g, '').length == 16) {
         nextButtonId.style.display = 'block'
         nextButtonId.style.display = 'table'
+        firstCardSuggestionId.style.display = 'none';
+        secondCardSuggestionId.style.display = 'none';
+        thirdCardSuggestionId.style.display = 'none';
+        fourthCardSuggestionId.style.display = 'none';
+        fifthCardSuggestionId.style.display = 'none';
       }
       else
         nextButtonId.style.display = 'none'
@@ -320,11 +395,62 @@
     scope.suggestionFive.lName = '';
     scope.suggestionFive.phoneNumber = '';
 
+
+    //CARD SUGGESTION OBJECTS
+    scope.cardSuggestionOne = {};
+    scope.cardSuggestionOne.photo = '';
+    scope.cardSuggestionOne.fName = '';
+    scope.cardSuggestionOne.lName = '';
+    scope.cardSuggestionOne.cardNumber = '';
+
+    scope.cardSuggestionOneCopy = {};
+    scope.cardSuggestionOneCopy.photo = '';
+    scope.cardSuggestionOneCopy.fName = '';
+    scope.cardSuggestionOneCopy.lName = '';
+    scope.cardSuggestionOneCopy.cardNumber = '';
+
+    scope.cardSuggestionTwo = {};
+    scope.cardSuggestionTwo.photo = '';
+    scope.cardSuggestionTwo.fName = '';
+    scope.cardSuggestionTwo.lName = '';
+    scope.cardSuggestionTwo.cardNumber = '';
+
+    scope.cardSuggestionTwoCopy = {};
+    scope.cardSuggestionTwoCopy.photo = '';
+    scope.cardSuggestionTwoCopy.fName = '';
+    scope.cardSuggestionTwoCopy.lName = '';
+    scope.cardSuggestionTwoCopy.cardNumber = '';
+
+    scope.cardSuggestionThree = {};
+    scope.cardSuggestionThree.photo = '';
+    scope.cardSuggestionThree.fName = '';
+    scope.cardSuggestionThree.lName = '';
+    scope.cardSuggestionThree.cardNumber = '';
+
+    scope.cardSuggestionFour = {};
+    scope.cardSuggestionFour.photo = '';
+    scope.cardSuggestionFour.fName = '';
+    scope.cardSuggestionFour.lName = '';
+    scope.cardSuggestionFour.cardNumber = '';
+
+    scope.cardSuggestionFive = {};
+    scope.cardSuggestionFive.photo = '';
+    scope.cardSuggestionFive.fName = '';
+    scope.cardSuggestionFive.lName = '';
+    scope.cardSuggestionFive.cardNumber = '';
+
     var checkFirstBlock = false;
     var checkSecondBlock = false;
     var checkThirdBlock = false;
     var checkFourthBlock = false;
     var checkFifthBlock = false;
+
+    var checkCardFirstBlock = false;
+    var checkCardSecondBlock = false;
+    var checkCardThirdBlock = false;
+    var checkCardFourthBlock = false;
+    var checkCardFifthBlock = false;
+    var checkCardMenu = false;
 
     console.log('SCRIPT INIT')
 
@@ -353,6 +479,272 @@
       onBackKeyDown()
     }
 
+    searchCard = function () {
+
+      checkPhoneForTransfer = false;
+      checkCardForTransfer = true;
+
+      if ((cardInputId.value.length == 4 || cardInputId.value.length == 9 || cardInputId.value.length == 14) && event.keyCode != 8) {
+        cardInputId.value += ' ';
+
+      }
+
+    }
+
+    cardOnKeyUp = function () {
+      var arrayOfCards = [];
+      if (JSON.parse(localStorage.getItem('transferCards'))) {
+        arrayOfCards = JSON.parse(localStorage.getItem('transferCards'));
+      }
+
+      if (cardInputId.value.replace(/\s/g, '').length == 16) {
+        nextButtonId.style.display = 'block'
+        nextButtonId.style.display = 'table'
+        firstCardSuggestionId.style.display = 'none';
+        secondCardSuggestionId.style.display = 'none';
+        thirdCardSuggestionId.style.display = 'none';
+        fourthCardSuggestionId.style.display = 'none';
+        fifthCardSuggestionId.style.display = 'none';
+      }
+      else {
+
+        nextButtonId.style.display = 'none'
+        console.log('INPUT CONTACT VALUE', contactPhoneNumberId.value.length)
+
+        if (cardInputId.value.length == 0) {
+
+          if (checkCardFirstBlock) {
+            scope.cardSuggestionOne = JSON.parse(JSON.stringify(scope.cardSuggestionOneCopy));
+            firstCardSuggestionId.style.display = 'block';
+          }
+
+          if (checkCardSecondBlock) {
+            scope.cardSuggestionTwo = JSON.parse(JSON.stringify(scope.cardSuggestionTwoCopy));
+            secondCardSuggestionId.style.display = 'block';
+          }
+
+          if (checkCardThirdBlock) {
+            thirdCardSuggestionId.style.display = 'block';
+          }
+
+          if (checkCardFourthBlock) {
+            fourthCardSuggestionId.style.display = 'block';
+          }
+
+          if (checkCardFifthBlock) {
+            fifthCardSuggestionId.style.display = 'block';
+          }
+          riot.update();
+          return
+        }
+      }
+
+      thirdCardSuggestionId.style.display = 'none';
+      fourthCardSuggestionId.style.display = 'none';
+      fifthCardSuggestionId.style.display = 'none';
+
+      checkPhoneForTransfer = false;
+      checkCardForTransfer = true;
+      event.preventDefault();
+      event.stopPropagation();
+
+      var countOfFound = 0;
+      var check = false;
+
+      if (event.keyCode != 16 && event.keyCode != 18)
+        scope.searchWord = event.target.value.replace(/\s/g, '');
+
+      arrayOfCards.filter(function (wordOfFunction) {
+
+        var index = wordOfFunction.cardNumber.indexOf(scope.searchWord);
+        if (index != -1 && countOfFound < 2) {
+
+          check = true;
+
+          if (countOfFound == 0) {
+
+            scope.cardSuggestionOne.cardNumber = wordOfFunction.cardNumber;
+//            scope.cardSuggestionOne.fName = wordOfFunction;
+//            scope.cardSuggestionOne.lName = wordOfFunction;
+
+            if (wordOfFunction.image != null) {
+              scope.cardSuggestionOne.photo = wordOfFunction.image;
+            }
+            else
+              scope.cardSuggestionOne.photo = '';
+
+
+            riot.update(scope.cardSuggestionOne)
+
+            firstCardSuggestionId.style.display = 'block';
+            secondCardSuggestionId.style.display = 'none';
+          }
+
+          if (countOfFound == 1) {
+
+            scope.cardSuggestionTwo.cardNumber = wordOfFunction.cardNumber;
+//            scope.cardSuggestionTwo.fName = wordOfFunction;
+//            scope.cardSuggestionTwo.lName = wordOfFunction;
+
+            if (wordOfFunction.image != null) {
+              scope.cardSuggestionTwo.photo = wordOfFunction.image;
+            }
+            else
+              scope.cardSuggestionTwo.photo = '';
+
+            riot.update(scope.cardSuggestionTwo)
+
+            secondCardSuggestionId.style.display = 'block';
+          }
+          countOfFound++;
+          if (countOfFound == 2)
+            return;
+        }
+        else if (!check) {
+          firstCardSuggestionId.style.display = 'none';
+          secondCardSuggestionId.style.display = 'none';
+        }
+      });
+
+
+    }
+
+    cardSuggestionFunction = function () {
+
+      console.log("TRANSFERCARDS", JSON.parse(localStorage.getItem('transferCards')))
+      if (JSON.parse(localStorage.getItem('transferCards'))) {
+        var transferCards = JSON.parse(localStorage.getItem('transferCards'));
+      }
+      else {
+        console.log("RETURN")
+        return;
+      }
+
+      var j = 0;
+      for (var i = 0; i < transferCards.length; i++) {
+
+        if (j == 4) {
+          if (transferCards[i] != null && transferCards[i].cardNumber) {
+            checkCardFifthBlock = true
+            scope.cardSuggestionFive.cardNumber = transferCards[i].cardNumber;
+            if (transferCards[i].image != null) {
+              console.log("PHOTO", transferCards[i].image)
+              scope.cardSuggestionFive.photo = transferCards[i].image;
+            }
+            else {
+              scope.cardSuggestionFive.photo = '';
+            }
+            j++;
+          }
+          else {
+            scope.cardSuggestionFive = {};
+          }
+        }
+
+        if (j == 3) {
+          if (transferCards[i] != null && transferCards[i].cardNumber) {
+            checkCardFourthBlock = true
+            scope.cardSuggestionFour.cardNumber = transferCards[i].cardNumber;
+            if (transferCards[i].image != null) {
+              console.log("PHOTO", transferCards[i].image)
+              scope.cardSuggestionFour.photo = transferCards[i].image;
+            }
+            else {
+              scope.cardSuggestionFour.photo = '';
+            }
+            j++;
+          }
+          else {
+            scope.cardSuggestionFour = {};
+          }
+        }
+
+        if (j == 2) {
+          if (transferCards[i] != null && transferCards[i].cardNumber) {
+            checkCardThirdBlock = true
+            scope.cardSuggestionThree.cardNumber = transferCards[i].cardNumber;
+            if (transferCards[i].image != null) {
+              console.log("PHOTO", transferCards[i].image)
+              scope.cardSuggestionThree.photo = transferCards[i].image;
+            }
+            else {
+              scope.cardSuggestionThree.photo = '';
+            }
+            j++;
+          }
+          else {
+            scope.cardSuggestionThree = {};
+          }
+        }
+
+        if (j == 1) {
+          if (transferCards[i] != null && transferCards[i].cardNumber) {
+            checkCardSecondBlock = true
+            scope.cardSuggestionTwo.cardNumber = transferCards[i].cardNumber;
+            if (transferCards[i].image != null) {
+              console.log("PHOTO", transferCards[i].image)
+              scope.cardSuggestionTwo.photo = transferCards[i].image;
+            }
+            else {
+              scope.cardSuggestionTwo.photo = '';
+            }
+            j++;
+
+            scope.cardSuggestionTwoCopy = JSON.parse(JSON.stringify(scope.cardSuggestionTwo));
+          }
+          else {
+            scope.cardSuggestionTwo = {};
+          }
+        }
+
+        if (j == 0) {
+          if (transferCards[i] != null && transferCards[i].cardNumber) {
+            checkCardFirstBlock = true
+            scope.cardSuggestionOne.cardNumber = transferCards[i].cardNumber;
+            if (transferCards[i].image != null) {
+              console.log("PHOTO", transferCards[i].image)
+              scope.cardSuggestionOne.photo = transferCards[i].image;
+            }
+            else {
+              scope.cardSuggestionOne.photo = '';
+            }
+            j++;
+
+            scope.cardSuggestionOneCopy = JSON.parse(JSON.stringify(scope.cardSuggestionOne));
+          }
+          else {
+            scope.cardSuggestionOne = {};
+          }
+        }
+      }
+
+      if (!checkCardMenu) {
+
+        if (checkCardFirstBlock) {
+          firstCardSuggestionId.style.display = 'block';
+        }
+
+        if (checkCardSecondBlock) {
+          secondCardSuggestionId.style.display = 'block';
+        }
+
+        if (checkCardThirdBlock) {
+          thirdCardSuggestionId.style.display = 'block';
+        }
+
+        if (checkCardFourthBlock) {
+          fourthCardSuggestionId.style.display = 'block';
+        }
+
+        if (checkCardFifthBlock) {
+          fifthCardSuggestionId.style.display = 'block';
+        }
+      }
+
+      j = 0;
+      riot.update();
+
+    }
 
     contact = function () {
 
@@ -366,9 +758,12 @@
       this.cardLabelId.style.color = 'gray';
       this.contactIconId.style.opacity = '1'
       this.cardIconId.style.opacity = '0.5';
+      riot.update();
 
       if (viewTransfer.phoneNumber)
         this.contactPhoneNumberId.value = viewTransfer.phoneNumber;
+
+      contactSuggestionFunction();
 
     }
 
@@ -378,8 +773,6 @@
       viewTransfer.type = 1;
       scope.cardMode = true;
       scope.contactMode = false;
-      riot.update(scope.contactMode);
-      riot.update(scope.cardMode);
       riot.update();
       this.menuContainerId.style.backgroundImage = 'url(resources/icons/ViewTransfer/cardMenu.png)';
       this.cardLabelId.style.color = 'black';
@@ -389,6 +782,8 @@
 
       if (viewTransfer.cardNumber)
         this.cardInputId.value = viewTransfer.cardNumber
+
+      cardSuggestionFunction();
 
     }
 
@@ -422,6 +817,25 @@
         }
 
         if (viewTransfer.type == 1) {
+          var transferCards = [];
+          var codeOfBank = cardInputId.value.replace(/\s/g, '').substring(3, 6);
+          var checkOfCode = false;
+          console.log('CODE OF BANK', codeOfBank)
+
+          var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))
+          for (var i = 0; i < bankList.length; i++) {
+            if (codeOfBank == bankList[i].code) {
+              checkOfCode = true;
+              break;
+            }
+            else {
+              checkOfCode = false;
+            }
+          }
+          if (!checkOfCode) {
+            alert('Неверный код банка');
+            return;
+          }
           cardNumberForTransfer = cardInputId.value;
           viewTransfer.cardNumber = cardNumberForTransfer
           viewTransfer.type = 1;
@@ -617,7 +1031,7 @@
       });
     }
 
-    suggestionFunction = function () {
+    contactSuggestionFunction = function () {
 
 
       console.log("JSON.parse(localStorage.getItem('transferContacts'))", JSON.parse(localStorage.getItem('transferContacts')))
@@ -806,34 +1220,11 @@
       riot.update();
 
     }
-    suggestionFunction();
-
-
-    searchCard = function () {
-      checkPhoneForTransfer = false;
-      checkCardForTransfer = true;
-
-      var suggestionCard = [];
-
-      if (localStorage.getItem('click_client_suggestion_cards'))
-        suggestionCard = JSON.parse(localStorage.getItem('click_client_suggestion_cards'))
-//            else
-//                localStorage.setItem('click_client_suggestion_cards')
-      if ((cardInputId.value.length == 4 || cardInputId.value.length == 9 || cardInputId.value.length == 14) && event.keyCode != 8) {
-        cardInputId.value += ' ';
-
-      }
-    }
-
-    cardOnKeyUp = function () {
-      if (cardInputId.value.replace(/\s/g, '').length == 16) {
-        nextButtonId.style.display = 'block'
-        nextButtonId.style.display = 'table'
-      }
-      else
-        nextButtonId.style.display = 'none'
-
-
+    if (viewTransfer.type == 2)
+      contactSuggestionFunction()
+    else {
+      checkCardMenu = true;
+      cardSuggestionFunction()
     }
 
 
@@ -962,6 +1353,102 @@
         thirdSuggestionBlockId.style.display = 'none';
         fourthSuggestionBlockId.style.display = 'none';
         fifthSuggestionBlockId.style.display = 'none';
+      }
+      else
+        nextButtonId.style.display = 'none'
+    }
+
+
+    firstCardSuggestionBlock = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      cardInputId.value = scope.cardSuggestionOne.cardNumber;
+
+      if (cardInputId.value.length == 19) {
+        nextButtonId.style.display = 'block'
+        nextButtonId.style.display = 'table'
+        firstCardSuggestionId.style.display = 'none';
+        secondCardSuggestionId.style.display = 'none';
+        thirdCardSuggestionId.style.display = 'none';
+        fourthCardSuggestionId.style.display = 'none';
+        fifthCardSuggestionId.style.display = 'none';
+      }
+      else
+        nextButtonId.style.display = 'none'
+    }
+
+    secondCardSuggestionBlock = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      cardInputId.value = scope.cardSuggestionTwo.cardNumber;
+
+      if (cardInputId.value.length == 19) {
+        nextButtonId.style.display = 'block'
+        nextButtonId.style.display = 'table'
+        firstCardSuggestionId.style.display = 'none';
+        secondCardSuggestionId.style.display = 'none';
+        thirdCardSuggestionId.style.display = 'none';
+        fourthCardSuggestionId.style.display = 'none';
+        fifthCardSuggestionId.style.display = 'none';
+      }
+      else
+        nextButtonId.style.display = 'none'
+    }
+
+    thirdCardSuggestionBlock = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      cardInputId.value = scope.cardSuggestionThree.cardNumber;
+
+      if (cardInputId.value.length == 19) {
+        nextButtonId.style.display = 'block'
+        nextButtonId.style.display = 'table'
+        firstCardSuggestionId.style.display = 'none';
+        secondCardSuggestionId.style.display = 'none';
+        thirdCardSuggestionId.style.display = 'none';
+        fourthCardSuggestionId.style.display = 'none';
+        fifthCardSuggestionId.style.display = 'none';
+      }
+      else
+        nextButtonId.style.display = 'none'
+    }
+
+    fourthCardSuggestionBlock = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      cardInputId.value = scope.cardSuggestionFour.cardNumber;
+
+      if (cardInputId.value.length == 19) {
+        nextButtonId.style.display = 'block'
+        nextButtonId.style.display = 'table'
+        firstCardSuggestionId.style.display = 'none';
+        secondCardSuggestionId.style.display = 'none';
+        thirdCardSuggestionId.style.display = 'none';
+        fourthCardSuggestionId.style.display = 'none';
+        fifthCardSuggestionId.style.display = 'none';
+      }
+      else
+        nextButtonId.style.display = 'none'
+    }
+
+    fifthCardSuggestionBlock = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      cardInputId.value = scope.cardSuggestionFive.cardNumber;
+
+      if (cardInputId.value.length == 19) {
+        nextButtonId.style.display = 'block'
+        nextButtonId.style.display = 'table'
+        firstCardSuggestionId.style.display = 'none';
+        secondCardSuggestionId.style.display = 'none';
+        thirdCardSuggestionId.style.display = 'none';
+        fourthCardSuggestionId.style.display = 'none';
+        fifthCardSuggestionId.style.display = 'none';
       }
       else
         nextButtonId.style.display = 'none'
