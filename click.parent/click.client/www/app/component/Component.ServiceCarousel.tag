@@ -118,11 +118,10 @@
 
 
     if (scope.favoritePaymentsList) {
-      console.log("Listxmewdvds", scope.favoritePaymentsList);
+      console.log("list", scope.favoritePaymentsList);
       this.hasFavorites = true;
       scope.favPaymentsList = [];
       for (var i in scope.favoritePaymentsList) {
-        console.log("Iter=", scope.favoritePaymentsList[i].service);
         scope.favPaymentsList.push(scope.favoritePaymentsList[i].service);
       }
       riot.update(scope.favPaymentsList);

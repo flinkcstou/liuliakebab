@@ -128,9 +128,8 @@
       scope.url = cardsArray[chosenCardId].url;
     }
 
-    var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
     addToFavorites = function () {
-      if (!favoritePaymentsList) {
+      if (!localStorage.getItem('favoritePaymentsList')) {
         var favoritePaymentsList = [];
         console.log("OPTS TO SAVE=", opts);
         console.log("Chosen Service =", scope.service);
@@ -144,6 +143,7 @@
 
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
       } else {
+        var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
         console.log("OPTS TO SAVE=", opts);
         console.log("Chosen Service =", scope.service);
         favoritePaymentsList.push({
@@ -171,9 +171,7 @@
           scope.isInFavorites = false;
           localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
           riot.update(scope.isInFavorites);
-
         }
-
     }
 
 
