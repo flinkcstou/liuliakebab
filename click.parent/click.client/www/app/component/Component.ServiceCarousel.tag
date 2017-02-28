@@ -2,7 +2,7 @@
   <div id="containerService" class="service-carousel" ontouchstart="touchStartService()"
        ontouchend="touchEndService()" ontouchmove="touchMoveService()">
     <div class="service-component">
-      <div class="service-title">{window.languages.ComponentServiceTitle}</div>
+      <div class="service-title">{window.languages.ComponentPopularServicesTitle}</div>
       <div class="service-container">
         <div class="service-each-container" each="{i in popularServiceList}">
           <div id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfService()"
@@ -14,11 +14,11 @@
     </div>
 
     <div class="service-component" style="left: {leftOfServiceCarousel}px">
-      <div class="service-title">{window.languages.ComponentServiceTitle}</div>
-      <div class="service-container">
-        <div class="service-each-container" each="{i in popularServiceList}">
-          <div id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfService()"
-               ontouchend="ontouchEndOfService(this.id)" style="background-image: url({i.image})">
+      <div class="service-title">{window.languages.ComponentFavoritePaymentsTitle}</div>
+      <div class="service-container" if="{hasFavorites}">
+        <div class="service-each-container" each="{i in favPaymentsList}">
+          <div id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfPayment()"
+               ontouchend="ontouchEndOfPayment(this.id)" style="background-image: url({i.image})">
           </div>
           <p class="service-labels">{i.name}</p>
         </div>
@@ -33,9 +33,11 @@
     var leftOfDelta;
     var cardNumberOfService = 0;
     scope.popularServiceList = JSON.parse(localStorage.getItem("click_client_popularServiceList"));
+    scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     scope.operatorKey = phoneNumber.substr(3, 2);
+    this.hasFavorites = false;
 
 
     if (!scope.popularServiceList) {
@@ -83,8 +85,10 @@
 //              }
 //              else {
               for (var i in result[1]) {
-                console.log("FTYFJUKVG", result[1][i]);
-                scope.popularServiceList.push(result[1][i]);
+                if (scope.popularServiceList.length < 4) {
+                  console.log("FTYFJUKVG", result[1][i]);
+                  scope.popularServiceList.push(result[1][i]);
+                }
               }
               var myNumberObject = {};
               myNumberObject.name = 'Мой номер';
@@ -112,16 +116,17 @@
 
     scope.leftOfServiceCarousel = 640 * widthK;
 
-    //    goToServicePage = function (id) {
-    //
-    //      console.log("chosen id in pay view=", id);
-    //      viewPay.chosenServiceId = id;
-    //      event.stopPropagation();
-    //
-    //      localStorage.setItem('chosenServiceId', id);
-    //      riotTags.innerHTML = "<view-service-page>";
-    //      riot.mount("view-service-page");
-    //    }
+
+    if (scope.favoritePaymentsList) {
+      console.log("Listxmewdvds", scope.favoritePaymentsList);
+      this.hasFavorites = true;
+      scope.favPaymentsList = [];
+      for (var i in scope.favoritePaymentsList) {
+        console.log("Iter=", scope.favoritePaymentsList[i].service);
+        scope.favPaymentsList.push(scope.favoritePaymentsList[i].service);
+      }
+      riot.update(scope.favPaymentsList);
+    }
 
     var delta;
     touchStartService = function () {
@@ -177,13 +182,43 @@
       onTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(onTouchStartX - onTouchEndX) <= 20) {
-        console.log("chosen id in pay view=", id);
+        console.log("chosen id in service carousel=", id);
         viewPay.chosenServiceId = id;
         event.stopPropagation();
 
         localStorage.setItem('chosenServiceId', id);
         riotTags.innerHTML = "<view-service-page>";
         riot.mount("view-service-page");
+      }
+    };
+
+    scope.ontouchStartOfPayment = ontouchStartOfPayment = function () {
+      event.stopPropagation();
+      onTouchStartX = event.changedTouches[0].pageX;
+    };
+
+    scope.ontouchEndOfPayment = ontouchEndOfPayment = function (id) {
+      event.stopPropagation();
+
+      onTouchEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(onTouchStartX - onTouchEndX) <= 20) {
+        console.log("chosen id in payments carousel=", id);
+        for (var i in scope.favoritePaymentsList) {
+          if (scope.favoritePaymentsList[i].service.id == id) {
+            console.log("gnrf", scope.favoritePaymentsList[i].opts);
+            viewPay.chosenServiceId = id;
+            viewPay.categoryId = scope.favoritePaymentsList[i].categoryId;
+            viewServicePage.firstFieldTitle = scope.favoritePaymentsList[i].firstFieldTitle;
+            viewPayConfirm.isInFavorites = true;
+            event.stopPropagation();
+            this.riotTags.innerHTML = "<view-pay-confirm>";
+            riot.mount('view-pay-confirm', [scope.favoritePaymentsList[i].opts[0], scope.favoritePaymentsList[i].opts[1]]);
+
+          }
+
+        }
+
       }
     };
 

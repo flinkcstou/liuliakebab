@@ -42,7 +42,12 @@
       <div class="payconfirm-action-containter">
         <div class="payconfirm-action-icon-one"
              style="background-image: url('resources/icons/ViewService/addfavorite.png');"></div>
-        <div class="payconfirm-action-text">{window.languages.ViewPayConfirmAddToFavourite}</div>
+        <div class="payconfirm-action-text" ontouchend="addToFavorites()" if="{!isInFavorites}">
+          {window.languages.ViewPayConfirmAddToFavorites}
+        </div>
+        <div class="payconfirm-action-text" ontouchend="removeFromFavorites()" if="{isInFavorites}">
+          {window.languages.ViewPayConfirmRemoveFromFavorites}
+        </div>
       </div>
       <div class="payconfirm-action-containter">
         <div class="payconfirm-action-icon-two"
@@ -83,6 +88,9 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    scope.isInFavorites = viewPayConfirm.isInFavorites;
+
+
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
     scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
     cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
@@ -118,6 +126,43 @@
       scope.salary = cardsArray[chosenCardId].salary;
       scope.currency = cardsArray[chosenCardId].currency;
       scope.url = cardsArray[chosenCardId].url;
+    }
+
+    addToFavorites = function () {
+      if (!localStorage.getItem('favoritePaymentsList')) {
+        var favoritePaymentsList = [];
+        console.log("OPTS TO SAVE=", opts);
+        console.log("Chosen Service =", scope.service);
+        favoritePaymentsList.push({
+          "opts": opts,
+          "service": scope.service,
+          "categoryId": viewPay.categoryId,
+          "firstFieldTitle": viewServicePage.firstFieldTitle
+        });
+        console.log("favoritePaymentsList=", favoritePaymentsList);
+
+        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+      } else {
+        var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+        console.log("OPTS TO SAVE=", opts);
+        console.log("Chosen Service =", scope.service);
+        favoritePaymentsList.push({
+          "opts": opts,
+          "service": scope.service,
+          "categoryId": viewPay.categoryId,
+          "firstFieldTitle": viewServicePage.firstFieldTitle
+        });
+        console.log("favoritePaymentsList=", favoritePaymentsList);
+        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+      }
+      scope.isInFavorites = true;
+      riot.update(scope.isInFavorites);
+      alert("must've been updated");
+
+    }
+
+    removeFromFavorites = function () {
+      alert("is to remove");
     }
 
 

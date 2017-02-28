@@ -14,7 +14,9 @@ var RU_LANGUAGES =
 
   "BankOperationsAutoPay": "МОИ КАРТЫ",
 
-  "ComponentServiceTitle": "Популярные сервисы",
+  "ComponentPopularServicesTitle": "Популярные сервисы",
+
+  "ComponentFavoritePaymentsTitle": "Избранные платежи",
 
   "ComponentFooterContactsLabel": "КОНТАКТЫ",
 
@@ -70,7 +72,8 @@ var RU_LANGUAGES =
   "ViewPayConfirmCategory": "Категория:",
   "ViewPayConfirmMobileConnection": "Мобильная связь",
   "ViewPayConfirmPayFromCard": "Оплата с карты:",
-  "ViewPayConfirmAddToFavourite": "Добавить в избранные",
+  "ViewPayConfirmAddToFavorites": "Добавить в избранные",
+  "ViewPayConfirmRemoveFromFavorites": "Удалить из избранных",
   "ViewPayConfirmAddToAutoPay": "Добавить в автоплатеж",
   "ViewPayConfirmPay": "ОПЛАТИТЬ",
 
