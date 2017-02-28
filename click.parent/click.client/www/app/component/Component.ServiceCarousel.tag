@@ -26,6 +26,7 @@
       </div>
     </div>
 
+
   </div>
 
   <script>
@@ -176,12 +177,14 @@
     scope.ontouchStartOfService = ontouchStartOfService = function () {
       event.stopPropagation();
       onTouchStartX = event.changedTouches[0].pageX;
+      touchStartX = event.changedTouches[0].pageX;
     };
 
     scope.ontouchEndOfService = ontouchEndOfService = function (id) {
       event.stopPropagation();
 
       onTouchEndX = event.changedTouches[0].pageX;
+      touchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(onTouchStartX - onTouchEndX) <= 20) {
         console.log("chosen id in service carousel=", id);
@@ -192,6 +195,8 @@
         riotTags.innerHTML = "<view-service-page>";
         riot.mount("view-service-page");
       }
+      if (touchStartX != touchEndX)
+        changePosition();
     };
 
     ontouchMoveOfService = function () {
@@ -206,12 +211,14 @@
     scope.ontouchStartOfPayment = ontouchStartOfPayment = function () {
       event.stopPropagation();
       onTouchStartX2 = event.changedTouches[0].pageX;
+      touchStartX = event.changedTouches[0].pageX;
     };
 
     scope.ontouchEndOfPayment = ontouchEndOfPayment = function (id) {
       event.stopPropagation();
 
       onTouchEndX2 = event.changedTouches[0].pageX;
+      touchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(onTouchStartX2 - onTouchEndX2) <= 20) {
         console.log("chosen id in payments carousel=", id);
@@ -231,6 +238,8 @@
         }
 
       }
+      if (touchStartX != touchEndX)
+        changePosition();
     };
 
 
