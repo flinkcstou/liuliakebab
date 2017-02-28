@@ -546,8 +546,8 @@ var css = {
   authorizationButtonsContainer: ".authorization-buttons-container " +
   "{" +
   "position: absolute;" +
-  "width:" + 490 * widthK + "px;" +
-  "left:" + 120 * widthK + "px;" +
+  "width:" + 580 * widthK + "px;" +
+  "left:" + 70 * widthK + "px;" +
   "bottom:" + 700 * widthK + "px;" +
   "height:" + 45 * widthK + "px;" +
   "}",

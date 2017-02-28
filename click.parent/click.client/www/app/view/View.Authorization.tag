@@ -23,8 +23,8 @@
     <div id="TESTID" class="authorization-button-forget-pin" ontouchend="TEST()">
       {window.languages.ViewAuthorizationForgetPinLabel}
     </div>
-    <div class="authorization-button-registration" ontouchend="registrationClientTouchEnd()">
-      {window.languages.ViewAuthorizationRegistrationLabel}
+    <div class="authorization-button-registration" ontouchend="resetLocalStorageTouchEnd()">
+      {window.languages.ViewAuthorizationResetLocalStorageLabel}
     </div>
   </div>
   <div if="{checkAndroid}" class="authorization-button-offline" ontouchstart="offlineMode()">
@@ -104,11 +104,14 @@
       scope.checkAndroid = true;
     }
 
-    registrationClientTouchEnd = function () {
+    resetLocalStorageTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-      this.riotTags.innerHTML = "<view-registration-client>";
-      riot.mount('view-registration-client');
+      var question = 'Подтвердите удаление данных'
+      var result = confirm(question)
+      if(result){
+        localStorage.clear();
+      }
     }
 
     var pin;
