@@ -3523,4 +3523,87 @@ input {
   top: 40%;
 }
 
-/*ads*/
+/*COMPONENT PIN RESET*/
+
+.component-pinreset {
+  position: absolute;
+  opacity: 0.95;
+  height: 100%;
+  width: 100%;
+  background-color: #353340;
+  display: none;
+}
+
+.component-pinreset-message {
+  position: relative;
+  color: white;
+  width: 400px;
+  text-align: center;
+  margin-left: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: auto;
+  top: 410px;
+  /*left: -10px;*/
+  font-size: 32px;
+}
+
+.component-pinreset-buttons-container {
+  position: relative;
+  height: 6%;
+  /*left: -2%;*/
+  width: 60%;
+  top: 36%;
+  display: table;
+  background-color: palevioletred;
+  /*border-radius: 50px;*/
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.component-pinreset-yes-button {
+  position: relative;
+  height: 6%;
+  left: -2%;
+  width: 20%;
+  top: 36%;
+  display: table;
+  background-color: #027fe4;
+  border-radius: 50px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.component-pinreset-yes-button-label {
+  position: relative;
+  background-size: contain;
+  font-size: 38px;
+  color: #ffffff;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.component-pinreset-no-button {
+  position: relative;
+  height: 6%;
+  left: -2%;
+  width: 20%;
+  top: 36%;
+  display: table;
+  background-color: #027fe4;
+  border-radius: 50px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.component-pinreset-no-button-label {
+  position: relative;
+  background-size: contain;
+  font-size: 38px;
+  color: #ffffff;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+

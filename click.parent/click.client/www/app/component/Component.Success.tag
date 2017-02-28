@@ -17,7 +17,7 @@
       console.log(history.arrayOfHistory)
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
-      console.log('viewpagcdecfee', opts.viewpage)
+      console.log('viewpage', opts.viewpage)
 
 
       riotTags.innerHTML = "<" + opts.viewpage + ">";

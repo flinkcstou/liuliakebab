@@ -124,7 +124,14 @@ var RU_LANGUAGES =
   "ViewPinCodeClickPinLabel": "Установите CLICK-PIN",
   "ViewPinCodeConfirmClickPinLabel": "Подтвердите CLICK-PIN",
 
-  "ViewCardEditTitleName": "НАСТРОЙКИ КАРТЫ"
+  "ViewCardEditTitleName": "НАСТРОЙКИ КАРТЫ",
+
+  "ComponentPinResetTextOne": "При смене CLICK-PIN все Ваши карты будут отключены от системы CLICK",
+  "ComponentPinResetTextTwo": "Продолжить?",
+  "ComponentPinResetTextThree": "Все Ваши карты отключены от системы CLICK",
+  "ComponentPinResetTextFour": "Для установки нового CLICK-PIN необходимо заново пройти регистрацию",
+  "ComponentPinResetYesButtonLabel": "Да",
+  "ComponentPinResetNoButtonLabel": "Нет"
 
 
 };
