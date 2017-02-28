@@ -36,6 +36,7 @@
       scope: this,
 
       onSuccess: function (result) {
+        console.log('get.terms', result)
         if (result[0][0].error == 0) {
           console.log("get.terms", result);
         }
@@ -44,6 +45,7 @@
       },
 
       onFail: function (api_status, api_status_message, data) {
+        console.log('get.terms')
         console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
         console.error(data);
       }
@@ -61,6 +63,7 @@
       scope: this,
 
       onSuccess: function (result) {
+        console.log('settings.change.visibility', result)
         if (result[0][0].error == 0) {
           console.log("settings.change.visibility", result);
         }
@@ -69,6 +72,7 @@
       },
 
       onFail: function (api_status, api_status_message, data) {
+        console.log('settings.change.visibility')
         console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
         console.error(data);
       }
@@ -88,6 +92,7 @@
       scope: this,
 
       onSuccess: function (result) {
+        console.log('settings.change.profile.data', result)
         if (result[0][0].error == 0) {
           console.log("settings.change.profile.data", result);
         }
@@ -96,6 +101,7 @@
       },
 
       onFail: function (api_status, api_status_message, data) {
+        console.log('settings.change.profile.data')
         console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
         console.error(data);
       }
@@ -113,6 +119,7 @@
       scope: this,
 
       onSuccess: function (result) {
+        console.log('history.chart.data', result)
         if (result[0][0].error == 0) {
           console.log("result of history.chart.data' ", result);
         }
@@ -140,6 +147,7 @@
       scope: this,
 
       onSuccess: function (result) {
+        console.log('pin.reset', result)
         if (result[0][0].error == 0) {
           console.log("result of PIN RESET ", result);
         }
@@ -148,6 +156,7 @@
       },
 
       onFail: function (api_status, api_status_message, data) {
+        console.log('pin.reset')
         console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
         console.error(data);
       }
