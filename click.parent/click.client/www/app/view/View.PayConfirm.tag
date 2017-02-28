@@ -157,12 +157,21 @@
       }
       scope.isInFavorites = true;
       riot.update(scope.isInFavorites);
-      alert("must've been updated");
 
     }
 
     removeFromFavorites = function () {
-      alert("is to remove");
+      var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+      console.log(favoritePaymentsList);
+      for (var i in favoritePaymentsList)
+        if (favoritePaymentsList[i].service.id == viewPay.chosenServiceId) {
+          console.log("i=", i);
+          favoritePaymentsList.splice(i, 1);
+          console.log(favoritePaymentsList);
+          scope.isInFavorites = false;
+          localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+          riot.update(scope.isInFavorites);
+        }
     }
 
 
