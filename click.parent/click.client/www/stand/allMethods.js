@@ -1862,17 +1862,17 @@ window.fakedSocket.register("p2p.payment", function (input) {
     }
     else {
       //if (input.parameters.receiver_data == '1111222233334444')
-        return [
-          [{
-            "method": input.method,
-            "success": 1,
-            "error": 0,
-            "error_note": ""
-          }],
-          [{
-            "secret_code": 0,
-          }]
-        ];
+      return [
+        [{
+          "method": input.method,
+          "success": 1,
+          "error": 0,
+          "error_note": ""
+        }],
+        [{
+          "secret_code": 0,
+        }]
+      ];
       //else
       //  return [
       //    [{
@@ -2134,4 +2134,27 @@ window.fakedSocket.register("settings.change.profile.data", function (input) {
 
 
   return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Dostup zapreshen'}];
+});
+
+
+window.fakedSocket.register("pin.reset", function (input) {
+
+  if (input)
+    return [
+      {
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": ''
+      }
+    ];
+
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
 });

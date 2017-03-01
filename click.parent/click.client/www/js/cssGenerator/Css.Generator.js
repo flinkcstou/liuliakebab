@@ -4996,6 +4996,16 @@ var css = {
   "font-size:" + 30 * widthK + "px;" +
   "}",
 
+  componentPinResetLine: ".component-pinreset-line" +
+  "{" +
+  "position: relative;" +
+  "color: white;" +
+  "width: 65%;" +
+  "margin-top: " + 42 * widthK + "px;" +
+  "margin-bottom: " + 30 * widthK + "px;" +
+  "top:" + 410 * widthK + "px;" +
+  "}",
+
   componentPinResetMessageRegistration: ".component-pinreset-message-registration" +
   "{" +
   "font-size:" + 38 * widthK + "px;" +
@@ -5069,7 +5079,7 @@ var css = {
   "text-align: center;" +
   "display: table-cell;" +
   "vertical-align: middle;" +
-  "}"
+  "}",
 
   switch: ".switch" +
   "{" +

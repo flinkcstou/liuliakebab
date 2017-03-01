@@ -1,7 +1,7 @@
 <component-pin-reset id="componentPinResetId" class="component-pinreset">
   <div style="width: 100%; height: 100%;" if="{firstStage}">
     <p class="component-pinreset-message">{window.languages.ComponentPinResetTextOne}</p>
-    <p class="component-pinreset-message">--------------------------</p>
+    <hr class="component-pinreset-line">
     <p class="component-pinreset-message">{window.languages.ComponentPinResetTextTwo}</p>
 
 
@@ -38,20 +38,51 @@
     scope.firstStage = true;
 
     resetPin = function () {
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      var timeStamp = parseInt(Date.now() / 1000);
+      var sign_string = hex_md5(phoneNumber.substring(0, 5) + timeStamp + phoneNumber.substring(phoneNumber.length - 4, phoneNumber.length));
+      window.api.call({
+        method: 'pin.reset',
+        input: {
+          timestamp: timeStamp,
+          phone_num: phoneNumber,
+          sign_string: sign_string
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          console.log('pin.reset', result);
+          if (result[0][0].error == 0) {
+            console.log("result of PIN RESET ", result);
+          }
+          else
+            alert(result[0][0].error_note);
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.log('pin.reset');
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
       console.log("call method in api");
       scope.firstStage = false;
       riot.update(scope.firstStage);
-    }
+    };
 
     closeWindow = function () {
       console.log("close");
       componentPinResetId.style.display = 'none';
-    }
+    };
 
     goToRegistration = function () {
+      localStorage.removeItem('click_client_token');
       console.log("registr, need to delete some lines in storage");
       componentPinResetId.style.display = 'none';
-    }
+      this.riotTags.innerHTML = "<view-registration-device>";
+      riot.mount('view-registration-device');
+    };
 
   </script>
 </component-pin-reset>

@@ -3548,7 +3548,14 @@ input {
   font-size: 32px;
 }
 
-
+.component-pinreset-line {
+  position: relative;
+  color: white;
+  width: 65%;
+  margin-top: 42px;
+  margin-bottom: 30px;
+  top: 410px;
+}
 
 .component-pinreset-buttons-container {
   position: relative;
