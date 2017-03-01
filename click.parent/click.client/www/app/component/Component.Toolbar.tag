@@ -19,6 +19,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      componentMenu.checkOpen = true;
+
       this.mainPageId.style.transition = '0.3s';
       this.mainPageId.style.webkitTransition = '0.3s';
       this.mainPageId.style.zIndex = '-1';
