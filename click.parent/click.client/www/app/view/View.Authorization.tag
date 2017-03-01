@@ -102,7 +102,7 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    if (device.platform == 'Android') {
+    if (device.platform == 'BrowserStand') {
       scope.checkAndroid = true;
     }
 
@@ -170,6 +170,7 @@
         circleFive.style.backgroundColor = 'transparent';
       }
       if (enteredPin.length == 2) {
+        circleOne.style.backgroundColor = '#01cfff';
         circleOne.style.backgroundColor = '#01cfff';
         circleTwo.style.backgroundColor = '#01cfff';
         circleThree.style.backgroundColor = 'transparent';

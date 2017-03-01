@@ -132,7 +132,10 @@ var RU_LANGUAGES =
   "ComponentPinResetTextFour": "Для установки нового CLICK-PIN необходимо заново пройти регистрацию",
   "ComponentPinResetYesButtonLabel": "ДА",
   "ComponentPinResetNoButtonLabel": "НЕТ",
-  "ComponentPinResetRegistrationButtonLabel": "РЕГИСТРАЦИЯ"
+  "ComponentPinResetRegistrationButtonLabel": "РЕГИСТРАЦИЯ",
+
+  "ComponentMenuOnlineMode": "Активен он-лайн режим",
+  "ComponentMenuOfflineMode": "Активен USSD режим",
 
 
 };

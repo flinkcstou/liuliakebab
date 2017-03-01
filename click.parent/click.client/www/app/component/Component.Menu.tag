@@ -10,7 +10,7 @@
     </div>
     <div class="side-menu-change-mode">
       <div class="side-menu-change-mode-icon"></div>
-      <p class="side-menu-change-mode-text">Активен он-лфйн режим</p>
+      <p class="side-menu-change-mode-text">{mode}</p>
       <label class="switch">
         <input onchange="changeMode()" id="checkBoxChangeId" type="checkbox" checked="true">
         <div class="slider round"></div>
@@ -35,6 +35,8 @@
     </div>
   </div>
   <script>
+    var scope = this;
+    scope.mode = window.languages.
     closeMenu = function () {
       event.preventDefault();
       event.stopPropagation();

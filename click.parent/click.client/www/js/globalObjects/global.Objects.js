@@ -64,3 +64,7 @@ window.standCheckRegistration = false;
 checkPhoneForTransfer = true;
 checkCardForTransfer = false;
 
+window.modeOfApp = {};
+modeOfApp.onlineMode = true;
+modeOfApp.offlineMode = true;
+

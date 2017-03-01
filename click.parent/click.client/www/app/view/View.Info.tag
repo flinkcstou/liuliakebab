@@ -70,7 +70,7 @@
 
     this.on('mount', function () {
 
-      if (!modeOfflineMode.check) {
+      if (!modeOfApp.offlineMode) {
         writeBalance();
       }
     })
@@ -155,7 +155,7 @@
     offlineBalanceInfoTrue = function () {
       event.preventDefault()
       event.stopPropagation();
-      modeOfflineMode.balance = true;
+      modeOfApp.offlineMode.balance = true;
 
       if (device.platform == "Android") {
         phonedialer.dial(
@@ -196,19 +196,19 @@
 
     }
 
-    if(!modeOfflineMode.check)
-    window.api.call({
-      method: 'get.payment.list',
-      input: {
-        session_key: sessionKey,
-        phone_num: phoneNumber,
-      },
+    if (!modeOfApp.offlineMode)
+      window.api.call({
+        method: 'get.payment.list',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+        },
 
-      scope: this,
+        scope: this,
 
-      onSuccess: function (result) {
-        if (result[0][0].error == 0) {
-          var j = 0;
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+            var j = 0;
 //          if (device.platform != 'BrowserStand') {
 //            window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
 //
@@ -299,19 +299,19 @@
             }
 //          }
 //                    console.log('scope.lastOperationContainer', scope.lastOperationContainer)
-          riot.update(scope.lastOperationContainer)
-          console.log('scope.lastOperationContainer', scope.lastOperationContainer);
+            riot.update(scope.lastOperationContainer)
+            console.log('scope.lastOperationContainer', scope.lastOperationContainer);
+          }
+          else
+            alert(result[0][0].error_note)
+
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
         }
-        else
-          alert(result[0][0].error_note)
-
-      },
-
-      onFail: function (api_status, api_status_message, data) {
-        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-        console.error(data);
-      }
-    });
+      });
 
   </script>
 </view-info>

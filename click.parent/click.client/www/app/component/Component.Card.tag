@@ -6,10 +6,10 @@
   <div class="card-salary-title">{opts.name}</div>
 
   <div class="card-balance-currency-container">
-    <p if="{!modeOfflineMode.check}" class="card-balance">{opts.salary}</p>
-    <p if="{!modeOfflineMode.check && opts.salary}" class="card-currency">{opts.currency}</p>
+    <p if="{!modeOfApp.offlineMode}" class="card-balance">{opts.salary}</p>
+    <p if="{!modeOfApp.offlineMode && opts.salary}" class="card-currency">{opts.currency}</p>
 
-    <a if="{modeOfflineMode.check}" class="offline-card-balance"
+    <a if="{modeOfApp.offlineMode}" class="offline-card-balance"
        ontouchstart="offlineBalanceTrueTouchStart()" ontouchend="offlineBalanceTrueTouchEnd()"
        ontouchmove="offlineBalanceTrueTouchMove()">Получить баланс</a>
   </div>
@@ -21,7 +21,7 @@
   </div>
 
   <script>
-    modeOfflineMode.balance = false;
+    modeOfApp.offlineMode.balance = false;
 
     var scope = this;
     scope.leftOfCard = (540 * opts.countcard + 100) * widthK;
@@ -29,7 +29,7 @@
     offlineBalanceTrueTouchStart = function () {
       event.stopPropagation();
       event.preventDefault();
-      modeOfflineMode.balance = true;
+      modeOfApp.offlineMode.balance = true;
 
       if (device.platform == "Android") {
         phonedialer.dial(
