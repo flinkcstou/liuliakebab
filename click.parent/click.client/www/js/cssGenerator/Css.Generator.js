@@ -1126,6 +1126,19 @@ var css = {
   "top: 0;" +
   "}",
 
+  sideMenuInsideButton: ".side-menu-inside-button " +
+  "{" +
+  "position: absolute;" +
+  "height: 6%;" +
+  "width: 15%;" +
+  "top: 9%;" +
+  "left: 5%;" +
+  "border: 1px solid red;" +
+  "background-image: url(resources/icons/toolbar/menus.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "}",
+
   sideMenuUserInfoContainer: ".side-menu-user-info-container " +
   "{" +
   "position: absolute;" +
@@ -1144,6 +1157,24 @@ var css = {
   "left: 50%;" +
   "border:" + 3 * widthK + "px solid white;" +
   "border-radius:" + 50 * widthK + "px;" +
+  "}",
+
+  sideMenuUserFirstName: ".side-menu-user-first-name " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "padding: 0;" +
+  "bottom: 0;" +
+  "right: 15%;" +
+  "}",
+
+  sideMenuUserSecondName: ".side-menu-user-second-name " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "padding: 0;" +
+  "bottom: 20%;" +
+  "right: 15%;" +
   "}",
 
   sideMenuBackPage: ".side-menu-back-page " +
