@@ -1123,8 +1123,27 @@ var css = {
   "background-color: #22a0e0;" +
   "transition: 0.3s;" +
   "-webkit-transition: 0.3s;" +
-  "z-index: 999999;" +
   "top: 0;" +
+  "}",
+
+  sideMenuUserInfoContainer: ".side-menu-user-info-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 15%;" +
+  "width: 55%;" +
+  "top: 10%;" +
+  "right: 0;" +
+  "border: 1px solid red;" +
+  "}",
+
+  sideMenuUserIcon: ".side-menu-user-icon " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 95 * widthK + "px;" +
+  "width:" + 95 * widthK + "px;" +
+  "left: 50%;" +
+  "border:" + 3 * widthK + "px solid white;" +
+  "border-radius:" + 50 * widthK + "px;" +
   "}",
 
   sideMenuBackPage: ".side-menu-back-page " +
@@ -3381,7 +3400,7 @@ var css = {
   "height:" + 100 * widthK + "px;" +
   "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top:" + 47 * widthK + "px;" +
+  "top: 8%;" +
   "}",
 
   transferContactTextField: ".transfer-contact-text-field" +
@@ -3437,7 +3456,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 79.5%;" +
-  "height: 21%;" +
+  "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
   "top: 30%;" +
@@ -3448,7 +3467,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 79.5%;" +
-  "height: 21%;" +
+  "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
   "top: 52.5%;" +
@@ -3459,7 +3478,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 79.5%;" +
-  "height: 21%;" +
+  "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
   "top: 75%;" +
@@ -3470,7 +3489,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 79.5%;" +
-  "height: 21%;" +
+  "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
   "top: 97.5%;" +
@@ -3481,7 +3500,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 79.5%;" +
-  "height: 21%;" +
+  "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
   "top: 120%;" +
@@ -3505,10 +3524,10 @@ var css = {
 
   transferContactFoundPhoto: ".transfer-contact-found-photo" +
   "{" +
-  "top: 8%;" +
+  "top:" + 8 * widthK + "px;" +
   "position: absolute;" +
-  "width: 17%;" +
-  "height: 82%;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "border-radius: 50%;" +
@@ -5006,6 +5025,74 @@ var css = {
   "text-align: center;" +
   "display: table-cell;" +
   "vertical-align: middle;" +
+  "}",
+
+  switch: ".switch" +
+  "{" +
+  "position: relative;" +
+  "display: block;" +
+  "width:" + 52 * widthK + "px;" +
+  "height:" + 24 * widthK + "px;" +
+  "border: 1px solid white;" +
+  "border-radius:" + 50 * widthK + "px;" +
+  "}",
+
+  switchInput: ".switch input" +
+  "{" +
+  "display: none;" +
+  "}",
+
+  slider: ".slider" +
+  "{" +
+  "position: absolute;" +
+  "cursor: pointer;" +
+  "top: 0;" +
+  "left: 0;" +
+  "bottom: 0;" +
+  "background-color: #ccc;" +
+  "-webkit-transition: .4s;" +
+  "transition: .4s;" +
+  "}",
+
+  sliderBefore: ".slider:before" +
+  "{" +
+  "position: absolute;" +
+  "content: '';" +
+  "height:" + 26 * widthK + "px;" +
+  "width:" + 26 * widthK + "px;" +
+  "left: 0;" +
+  "bottom:" + 4 * widthK + "px;" +
+  "background-color: white;" +
+  "-webkit-transition: .4s;" +
+  "transition: .4s;" +
+  "}",
+
+  inputCheckedSlider: "input:checked + .slider" +
+  "{" +
+  "background-color: #2196F3;" +
+  "}",
+
+  inputFocusSlider: "input:focus + .slider" +
+  "{" +
+  "box-shadow: 0 0 1px #2196F3;" +
+  "}",
+
+  inputCheckedSliderBefore: "input:checked + .slider:before" +
+  "{" +
+  "-webkit-transform: translateX(" + 26 * widthK + "px);" +
+  "transform: translateX(" + 26 * widthK + "px);" +
+  "}",
+
+  sliderRound: ".slider.round" +
+  "{" +
+  "border-radius:" + 34 * widthK + "px;" +
+  "position: absolute;" +
+  "top:" + 29 * widthK + "px;" +
+  "}",
+
+  sliderRoundBefore: ".slider.round:before" +
+  "{" +
+  "border-radius: 50%;" +
   "}",
 
 }

@@ -1,9 +1,13 @@
 <component-menu>
   <div id="sideMenuBackPageId" class="side-menu-back-page"></div>
-  <div id="sideMenuId" class="side-menu" ontouchend="closeMenu()">
-    <a style=" position: absolute; top: 20px;" type="button" value="Production"
-       ontouchend="goToProduction()">Clear local storage</a>
-    <a ontouchend="TEST()" style=" position: absolute; top: 70px;">Close demo</a>
+  <div id="sideMenuId" class="side-menu">
+    <label class="switch">
+      <input onchange="changeMode()" id="checkBoxChangeId" type="checkbox" checked="true">
+      <div class="slider round"></div>
+    </label>
+    <div class="side-menu-user-info-container">
+      <div class="side-menu-user-icon"></div>
+    </div>
   </div>
   <script>
     closeMenu = function () {
@@ -15,6 +19,10 @@
       mainPageId.style.opacity = '1';
       this.mainPageId.style.zIndex = '0';
 
+    }
+
+    changeMode = function () {
+      console.log(checkBoxChangeId.checked)
     }
 
     TEST = function () {
