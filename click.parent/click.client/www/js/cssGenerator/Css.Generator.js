@@ -1120,9 +1120,9 @@ var css = {
   "transform: translate3d(-100%, 0, 0);" +
   "-webkit-transform: translate3d(-100%, 0, 0);" +
   "-ms-transform: translate3d(-100%, 0, 0);" +
-  "background-color: #0485e5;" +
-  "transition: 0.5s;" +
-  "-webkit-transition: 0.5s;" +
+  "background-color: #22a0e0;" +
+  "transition: 0.3s;" +
+  "-webkit-transition: 0.3s;" +
   "z-index: 999999;" +
   "top: 0;" +
   "}",

@@ -13,6 +13,7 @@
       sideMenuId.style.webkitTransform = "translate3d(-100%, 0, 0)";
       sideMenuId.style.Transform = "translate3d(-100%, 0, 0)";
       mainPageId.style.opacity = '1';
+      this.mainPageId.style.zIndex = '0';
 
     }
 

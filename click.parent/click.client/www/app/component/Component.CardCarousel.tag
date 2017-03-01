@@ -24,6 +24,7 @@
       console.log('cardsarray', cardsarray)
       localStorage.setItem('click_client_cards', JSON.stringify(cardsarray));
       copyCardsArray = JSON.parse(JSON.stringify(cardsarray));
+      console.log(copyCardsArray, defaultAccountId)
 
       var splitTop = copyCardsArray[defaultAccountId].background_color_top.split(',')
 
@@ -159,6 +160,7 @@
     var pos = 0;
     var count = localStorage.getItem('click_client_countCard');
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+    console.log('DDDDDDDD', loginInfo)
     if (!count)
       count = 0;
 
@@ -286,7 +288,7 @@
 
 
         if (fromChangableColor1 == cNowOriginal1 && fromChangableColor2 == cNowOriginal2 && fromChangableColor3 == cNowOriginal3 &&
-            toChangableColor1 == vNowOriginal1 && toChangableColor2 == vNowOriginal2 && toChangableColor3 == vNowOriginal3) {
+          toChangableColor1 == vNowOriginal1 && toChangableColor2 == vNowOriginal2 && toChangableColor3 == vNowOriginal3) {
 
           console.log("ASD", fromChangableColor1, cNext1, cPrivious1, cNowOriginal1);
 
@@ -448,8 +450,8 @@
 
     }
     if (localStorage.getItem('click_client_accountInfo')) {
-
       for (var i = 0; i < getAccountsCards.length; i++) {
+        console.log(getAccountsCards[i].id, loginInfo.default_account)
         if (getAccountsCards[i].id == loginInfo.default_account) {
           defaultAccountId = getAccountsCards[i].id;
           var tmp = getAccountsCards[0];
