@@ -135,6 +135,11 @@
   }
 
   function onBackKeyDown() {
+    if(componentMenu.checkOpen == true){
+      closeMenu()
+      return;
+    }
+
     history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
 
     if (history.arrayOfHistory.length != 0) {

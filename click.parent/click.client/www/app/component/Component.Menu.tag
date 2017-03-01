@@ -1,5 +1,5 @@
 <component-menu>
-  <div id="sideMenuBackPageId" class="side-menu-back-page"></div>
+  <div id="sideMenuBackPageId" ontouchend="menuBackPageTouchEnd()" class="side-menu-back-page"></div>
   <div id="sideMenuId" class="side-menu">
 
     <div class="side-menu-inside-button" ontouchend="closeMenu()"></div>
@@ -30,7 +30,7 @@
       <div class="side-menu-containers-icon"></div>
     </div>
 
-    <div class="side-menu-call-container">
+    <div class="side-menu-call-container" ontouchend="callToClick()">
       <div class="side-menu-containers-icon"></div>
     </div>
   </div>
@@ -64,9 +64,12 @@
     })
 
     closeMenu = function () {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      componentMenu.checkOpen = false;
 
-      event.preventDefault();
-      event.stopPropagation();
       sideMenuBackPageId.style.opacity = '0';
       sideMenuId.style.webkitTransform = "translate3d(-100%, 0, 0)";
       sideMenuId.style.Transform = "translate3d(-100%, 0, 0)";
@@ -101,18 +104,15 @@
       riot.update()
     }
 
-    TEST = function () {
-      localStorage.setItem('demo_version', false);
-      localStorage.clear();
-      window.location.href = "index.html";
+    menuBackPageTouchEnd = function () {
+      closeMenu()
     }
 
-    goToProduction = function () {
+    callToClick = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      alert("Local storage is cleared")
-      localStorage.clear();
+      window.open('tel:+998712310880')
     }
   </script>
 </component-menu>
