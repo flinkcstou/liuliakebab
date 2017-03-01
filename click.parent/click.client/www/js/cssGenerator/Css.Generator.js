@@ -1179,7 +1179,7 @@ var css = {
 
   sideMenuBillingsContainer: ".side-menu-billings-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "top: 40%;" +
   "height: 6%;" +
   "width: 75%;" +
@@ -1190,7 +1190,7 @@ var css = {
 
   sideMenuAutoPayContainer: ".side-menu-auto-pay-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "top: 47%;" +
   "height: 6%;" +
   "width: 75%;" +
@@ -1201,7 +1201,7 @@ var css = {
 
   sideMenuScannerQrContainer: ".side-menu-scanner-qr-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "top: 54%;" +
   "height: 6%;" +
   "width: 75%;" +
@@ -1212,7 +1212,7 @@ var css = {
 
   sideMenuSettingsContainer: ".side-menu-settings-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "top: 65%;" +
   "height: 6%;" +
   "width: 75%;" +
@@ -1223,7 +1223,7 @@ var css = {
 
   sideMenuCallContainer: ".side-menu-call-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "top: 72%;" +
   "height: 6%;" +
   "width: 75%;" +

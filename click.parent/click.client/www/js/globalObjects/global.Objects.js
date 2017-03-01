@@ -66,5 +66,5 @@ checkCardForTransfer = false;
 
 window.modeOfApp = {};
 modeOfApp.onlineMode = true;
-modeOfApp.offlineMode = true;
+modeOfApp.offlineMode = false;
 

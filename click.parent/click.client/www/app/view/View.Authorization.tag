@@ -142,7 +142,8 @@
     offlineMode = function () {
       event.preventDefault();
       event.stopPropagation();
-      modeOfflineMode.check = true;
+      modeOfApp.onlineMode = false
+      modeOfApp.offlineMode = true;
       var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
       console.log('sessionKey', sessionKey)
       if (loginInfo) {

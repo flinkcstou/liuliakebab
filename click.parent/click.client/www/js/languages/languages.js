@@ -36,7 +36,7 @@ var RU_LANGUAGES =
 
   "ViewAuthorizationClickPinLabel": "Введите CLICK-PIN",
   "ViewAuthorizationForgetPinLabel": "Забыли Click-Pin?",
-  "ViewAuthorizationResetLocalStorageLabel": "Отчистить данные",
+  "ViewAuthorizationResetLocalStorageLabel": "Очистить данные",
   "ViewAuthorizationOfflineModeLabel": "Офлайн режим",
 
   "ViewInfoBalanceTitle": "Общий баланс",
@@ -136,6 +136,7 @@ var RU_LANGUAGES =
 
   "ComponentMenuOnlineMode": "Активен он-лайн режим",
   "ComponentMenuOfflineMode": "Активен USSD режим",
+  "ComponentMenuBillings": "Активен USSD режим",
 
 
 };

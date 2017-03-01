@@ -4,15 +4,15 @@
 
     <div class="side-menu-inside-button" ontouchend="closeMenu()"></div>
     <div class="side-menu-user-info-container">
-      <div class="side-menu-user-icon"></div>
-      <p class="side-menu-user-second-name">Chingis</p>
-      <p class="side-menu-user-first-name">Amirkazhiev</p>
+      <div class="side-menu-user-icon" style="background-image: url({photo})"></div>
+      <p class="side-menu-user-second-name">{firstName}</p>
+      <p class="side-menu-user-first-name">{lastName}</p>
     </div>
-    <div class="side-menu-change-mode">
+    <div id="changeModeContainerId" class="side-menu-change-mode">
       <div class="side-menu-change-mode-icon"></div>
-      <p class="side-menu-change-mode-text">{mode}</p>
+      <p class="side-menu-change-mode-text">{modeOfApplication}</p>
       <label class="switch">
-        <input onchange="changeMode()" id="checkBoxChangeId" type="checkbox" checked="true">
+        <input onchange="changeMode()" id="checkBoxChangeId" type="checkbox" checked="{checkModeOfApplication}">
         <div class="slider round"></div>
       </label>
     </div>
@@ -36,8 +36,35 @@
   </div>
   <script>
     var scope = this;
-    scope.mode = window.languages.
+    var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+    scope.firstName = loginInfo.firstname;
+    scope.lastName = loginInfo.lastname;
+    scope.photo = loginInfo.profile_image_url;
+    if (modeOfApp.onlineMode) {
+      scope.modeOfApplication = window.languages.ComponentMenuOnlineMode
+      scope.checkModeOfApplication = true;
+    }
+    if (modeOfApp.offlineMode) {
+      scope.modeOfApplication = window.languages.ComponentMenuOfflineMode
+      scope.checkModeOfApplication = false;
+    }
+
+    this.on('mount', function () {
+      if (modeOfApp.onlineMode) {
+        scope.modeOfApplication = window.languages.ComponentMenuOnlineMode
+        scope.checkModeOfApplication = true;
+        changeModeContainerId.style.backgroundColor = '#92bf3a'
+      }
+      if (modeOfApp.offlineMode) {
+        scope.modeOfApplication = window.languages.ComponentMenuOfflineMode
+        scope.checkModeOfApplication = false;
+        changeModeContainerId.style.backgroundColor = '#e56c47'
+      }
+      riot.update();
+    })
+
     closeMenu = function () {
+
       event.preventDefault();
       event.stopPropagation();
       sideMenuBackPageId.style.opacity = '0';
@@ -50,6 +77,28 @@
 
     changeMode = function () {
       console.log(checkBoxChangeId.checked)
+      if (checkBoxChangeId.checked) {
+        modeOfApp.onlineMode = true
+        modeOfApp.offlineMode = false;
+        this.riotTags.innerHTML = "<view-authorization>";
+        riot.mount('view-authorization');
+        return
+      }
+      else {
+        modeOfApp.onlineMode = false;
+        modeOfApp.offlineMode = true;
+      }
+      if (modeOfApp.onlineMode) {
+        scope.modeOfApplication = window.languages.ComponentMenuOnlineMode
+        changeModeContainerId.style.backgroundColor = '#92bf3a'
+        scope.checkModeOfApplication = true;
+      }
+      if (modeOfApp.offlineMode) {
+        scope.modeOfApplication = window.languages.ComponentMenuOfflineMode
+        scope.checkModeOfApplication = false;
+        changeModeContainerId.style.backgroundColor = '#e56c47'
+      }
+      riot.update()
     }
 
     TEST = function () {
