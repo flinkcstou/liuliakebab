@@ -85,8 +85,7 @@
               console.log("name new=", scope.cardsArray[scope.card.card_id].name);
               if (isMain == scope.card.default_account) {
                 localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
-                riotTags.innerHTML = "<view-my-cards>";
-                riot.mount("view-my-cards", [scope.card.card_id]);
+                onBackKeyDown();
               }
             }
             else {
@@ -120,8 +119,7 @@
               scope.cardsArray[scope.card.card_id].default_account = isMain;
               console.log("defaultBool new=", scope.cardsArray[scope.card.card_id].default_account);
               localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
-              riotTags.innerHTML = "<view-my-cards>";
-              riot.mount("view-my-cards", [scope.card.card_id]);
+              onBackKeyDown();
             }
             else {
               alert(result[0][0].error_note);
@@ -138,8 +136,7 @@
 
       if (scope.noNameChange && scope.noBoolChange) {
         console.log("no changes");
-        riotTags.innerHTML = "<view-my-cards>";
-        riot.mount("view-my-cards", [scope.card.card_id]);
+        onBackKeyDown();
 
       }
     };
