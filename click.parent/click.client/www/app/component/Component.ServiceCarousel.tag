@@ -92,11 +92,14 @@
                   scope.popularServiceList.push(result[1][i]);
                 }
               }
-              var myNumberObject = {};
-              myNumberObject.name = 'Мой номер';
-              myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
-              myNumberObject.id = 'mynumber' + localStorage.getItem('myNumberOperatorId');
-              scope.popularServiceList.push(myNumberObject);
+              if (scope.popularServiceList.length == 3) {
+                var myNumberObject = {};
+                myNumberObject.name = 'Мой номер';
+                myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+                myNumberObject.id = 'mynumber' + localStorage.getItem('myNumberOperatorId');
+                scope.popularServiceList.push(myNumberObject);
+              }
+
               console.log("popular services", scope.popularServiceList);
               riot.update(scope.popularServiceList);
               localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
@@ -178,6 +181,8 @@
       event.stopPropagation();
       onTouchStartX = event.changedTouches[0].pageX;
       touchStartX = event.changedTouches[0].pageX;
+      leftOfDelta = -(540 * cardNumberOfService * widthK) - touchStartX;
+      delta = leftOfDelta;
     };
 
     scope.ontouchEndOfService = ontouchEndOfService = function (id) {
@@ -212,6 +217,8 @@
       event.stopPropagation();
       onTouchStartX2 = event.changedTouches[0].pageX;
       touchStartX = event.changedTouches[0].pageX;
+      leftOfDelta = -(540 * cardNumberOfService * widthK) - touchStartX;
+      delta = leftOfDelta;
     };
 
     scope.ontouchEndOfPayment = ontouchEndOfPayment = function (id) {
