@@ -75,10 +75,10 @@
     }
 
     touchStartTitle = function () {
-      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-card-edit') {
-        history.arrayOfHistory.pop();
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-      }
+//      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-card-edit') {
+//        history.arrayOfHistory.pop();
+//        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+//      }
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()

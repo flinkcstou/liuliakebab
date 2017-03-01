@@ -19,7 +19,7 @@
   <div style="width: 100%; height: 100%;" if="{!firstStage}">
     <p class="component-pinreset-message component-pinreset-message-registration">
       {window.languages.ComponentPinResetTextThree}</p>
-    <p class="component-pinreset-message">--------------------------</p>
+    <hr class="component-pinreset-line">
     <p class="component-pinreset-message">{window.languages.ComponentPinResetTextFour}</p>
 
 
