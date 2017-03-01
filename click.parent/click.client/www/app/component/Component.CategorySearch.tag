@@ -5,7 +5,7 @@
     <div class="search-cancel-icon" ontouchend="searchCancelEnd()"></div>
   </div>
   <div id="searchContainerId" class="search-container">
-    <input id="searchInputId" class="search-input" onkeyup="searchSuggestion()"/>
+    <input autofocus="true" id="searchInputId" class="search-input" onkeyup="searchSuggestion()"/>
     <div class="search-suggestion-container">
       <div id="suggestionOneId" class="search-suggestion-field-one" ontouchend="suggestionFieldOne()">
         <p class="search-part-of-suggestion">{onePartOne}
@@ -86,6 +86,10 @@
 
           var index = wordOfFunction.name.toLowerCase().indexOf(scope.searchWord);
           if (index != -1 && countOfSuggestionWord <= 4) {
+            if (wordOfFunction.name.length > 30) {
+              wordOfFunction.name = wordOfFunction.name.substring(0, 30)
+            }
+            console.log('wordOfFunction.name', wordOfFunction.name)
 
             check = true;
             if (countOfSuggestionWord == 3) {
