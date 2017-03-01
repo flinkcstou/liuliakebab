@@ -4920,6 +4920,94 @@ var css = {
   "font-size:" + 32 * widthK + "px;" +
   "}",
 
+  //COMPONENT PIN RESET
+
+  componentPinReset: ".component-pinreset" +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.95;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "background-color: #353340;" +
+  "display: none;" +
+  "}",
+
+  componentPinResetMessage: ".component-pinreset-message" +
+  "{" +
+  "position: relative;" +
+  "color: white;" +
+  "width:" + 400 * widthK + "px;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 410 * widthK + "px;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "}",
+
+  componentPinResetButtonsContainer: ".component-pinreset-buttons-container" +
+  "{" +
+  "position: relative;" +
+  "height: 6%;" +
+    //"left: -2%;" +
+  "width: 100%;" +
+  "top: 36%;" +
+  "display: table;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "}",
+
+  componentPinResetYesButton: ".component-pinreset-yes-button" +
+  "{" +
+  "position: relative;" +
+  "height: 6%;" +
+  "left: -2%;" +
+  "width: 20%;" +
+  "top: 36%;" +
+  "display: table;" +
+  "background-color: #027fe4;" +
+  "border-radius:" + 50 * widthK + "px;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "}",
+
+  componentPinResetYesButtonLabel: ".component-pinreset-yes-button-label" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "font-size:" + 38 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-align: center;" +
+  "display: table-cell;" +
+  "vertical-align: middle;" +
+  "}",
+
+  componentPinResetNoButton: ".component-pinreset-no-button" +
+  "{" +
+  "position: relative;" +
+  "height: 6%;" +
+  "left: -2%;" +
+  "width: 20%;" +
+  "top: 36%;" +
+  "display: table;" +
+  "background-color: #027fe4;" +
+  "border-radius:" + 50 * widthK + "px;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "}",
+
+  componentPinResetNoButtonLabel: ".component-pinreset-no-button-label" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "font-size:" + 38 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-align: center;" +
+  "display: table-cell;" +
+  "vertical-align: middle;" +
+  "}",
+
 }
 
 

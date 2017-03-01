@@ -20,7 +20,7 @@
   </div>
 
   <div class="authorization-buttons-container">
-    <div id="TESTID" class="authorization-button-forget-pin" ontouchend="TEST()">
+    <div id="TESTID" class="authorization-button-forget-pin" ontouchend="pinReset()">
       {window.languages.ViewAuthorizationForgetPinLabel}
     </div>
     <div class="authorization-button-registration" ontouchend="resetLocalStorageTouchEnd()">
@@ -30,6 +30,8 @@
   <div if="{checkAndroid}" class="authorization-button-offline" ontouchstart="offlineMode()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
+
+  <component-pin-reset></component-pin-reset>
 
   <script>
     //    TEST = function () {
@@ -104,15 +106,19 @@
       scope.checkAndroid = true;
     }
 
+    pinReset = function () {
+      componentPinResetId.style.display = 'block';
+    };
+
     resetLocalStorageTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
       var question = 'Подтвердите удаление данных'
       var result = confirm(question)
-      if(result){
+      if (result) {
         localStorage.clear();
       }
-    }
+    };
 
     var pin;
     var enteredPin = '';
@@ -138,14 +144,14 @@
       event.stopPropagation();
       modeOfflineMode.check = true;
       var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-      console.log('sessionKey',sessionKey)
+      console.log('sessionKey', sessionKey)
       if (loginInfo) {
         this.riotTags.innerHTML = "<view-main-page>";
         riot.mount('view-main-page');
       }
       else alert('Do first enter with Internet')
 
-    }
+    };
 
     updateEnteredPin = function () {
 
@@ -333,8 +339,6 @@
                   this.riotTags.innerHTML = "<view-main-page>";
                   riot.mount('view-main-page');
                 }
-
-
               }
               else
                 alert(result[0][0].error_note);

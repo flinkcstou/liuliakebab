@@ -62,7 +62,7 @@
 
   <component-success id="componentSuccessId"
                      operationmessage="{window.languages.ComponentSuccessMessageForPay}"
-                     viewpage="view-pay"></component-success>
+                     viewpage="{viewPage}"></component-success>
   <component-unsuccess id="componentUnsuccessId"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
@@ -88,18 +88,25 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    scope.isInFavorites = viewPayConfirm.isInFavorites;
-
 
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
     scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
     cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
     var serviceId = localStorage.getItem('chosenServiceId');
     scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
+    scope.isInFavorites = viewPayConfirm.isInFavorites;
+
+    if (scope.isInFavorites)
+      this.viewPage = 'view-main-page';
+    else this.viewPage = 'view-pay';
+
+
     console.log("OPTS=", opts);
     this.formType = opts[0][0].formtype;
     this.firstFieldId = opts[0][1].firstFieldId;
     this.firstFieldTitle = viewServicePage.firstFieldTitle;
+
+
     if (opts[0][1].firstFieldId == '1') {
       this.firstFieldText = "+" + window.languages.CodeOfCountry + opts[0][2].firstFieldText;
       var firstFieldtext = "+" + window.languages.CodeOfCountry + opts[0][2].firstFieldText;
@@ -110,6 +117,8 @@
       var firstFieldtext = opts[0][2].firstFieldText;
       console.log("text in else=", firstFieldtext)
     }
+
+
     this.cardTypeId = opts[0][3].cardTypeId;
     this.amountText = opts[0][5].amountText;
 
@@ -240,6 +249,8 @@
               if (result[1])
                 if (result[1][0]['payment_id']) {
                   console.log("result of APP.PAYMENT 1", result);
+                  viewServicePage.phoneText = null;
+                  viewServicePage.amountText = null;
                   componentSuccessId.style.display = 'block';
                 } else {
                   console.log("result of APP.PAYMENT 2", result);

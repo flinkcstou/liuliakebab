@@ -6,7 +6,8 @@
       <div class="service-container">
         <div class="service-each-container" each="{i in popularServiceList}">
           <div id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfService()"
-               ontouchend="ontouchEndOfService(this.id)" style="background-image: url({i.image})">
+               ontouchend="ontouchEndOfService(this.id)" ontouchmove="ontouchMoveOfService()"
+               style="background-image: url({i.image})">
           </div>
           <p class="service-labels">{i.name}</p>
         </div>
@@ -24,6 +25,7 @@
         </div>
       </div>
     </div>
+
 
   </div>
 
@@ -122,7 +124,9 @@
       this.hasFavorites = true;
       scope.favPaymentsList = [];
       for (var i in scope.favoritePaymentsList) {
-        scope.favPaymentsList.push(scope.favoritePaymentsList[i].service);
+        if (scope.favPaymentsList.length < 4)
+          scope.favPaymentsList.push(scope.favoritePaymentsList[i].service);
+        else break;
       }
       riot.update(scope.favPaymentsList);
     }
@@ -173,12 +177,14 @@
     scope.ontouchStartOfService = ontouchStartOfService = function () {
       event.stopPropagation();
       onTouchStartX = event.changedTouches[0].pageX;
+      touchStartX = event.changedTouches[0].pageX;
     };
 
     scope.ontouchEndOfService = ontouchEndOfService = function (id) {
       event.stopPropagation();
 
       onTouchEndX = event.changedTouches[0].pageX;
+      touchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(onTouchStartX - onTouchEndX) <= 20) {
         console.log("chosen id in service carousel=", id);
@@ -189,19 +195,32 @@
         riotTags.innerHTML = "<view-service-page>";
         riot.mount("view-service-page");
       }
+      if (touchStartX != touchEndX)
+        changePosition();
     };
+
+    ontouchMoveOfService = function () {
+      this.containerService.style.transition = '0s';
+      this.containerService.style.webkitTransition = '0s';
+      event.preventDefault();
+      event.stopPropagation();
+      this.containerService.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
+      this.containerService.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
+    }
 
     scope.ontouchStartOfPayment = ontouchStartOfPayment = function () {
       event.stopPropagation();
-      onTouchStartX = event.changedTouches[0].pageX;
+      onTouchStartX2 = event.changedTouches[0].pageX;
+      touchStartX = event.changedTouches[0].pageX;
     };
 
     scope.ontouchEndOfPayment = ontouchEndOfPayment = function (id) {
       event.stopPropagation();
 
-      onTouchEndX = event.changedTouches[0].pageX;
+      onTouchEndX2 = event.changedTouches[0].pageX;
+      touchEndX = event.changedTouches[0].pageX;
 
-      if (Math.abs(onTouchStartX - onTouchEndX) <= 20) {
+      if (Math.abs(onTouchStartX2 - onTouchEndX2) <= 20) {
         console.log("chosen id in payments carousel=", id);
         for (var i in scope.favoritePaymentsList) {
           if (scope.favoritePaymentsList[i].service.id == id) {
@@ -219,6 +238,8 @@
         }
 
       }
+      if (touchStartX != touchEndX)
+        changePosition();
     };
 
 
