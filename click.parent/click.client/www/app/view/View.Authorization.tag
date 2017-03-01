@@ -102,7 +102,7 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    if (device.platform == 'BrowserStand') {
+    if (device.platform == 'Android') {
       scope.checkAndroid = true;
     }
 
@@ -117,6 +117,9 @@
       var result = confirm(question)
       if (result) {
         localStorage.clear();
+        this.riotTags.innerHTML = "<view-registration-device>";
+        riot.mount('view-registration-device');
+        return
       }
     };
 
