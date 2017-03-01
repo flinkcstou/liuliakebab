@@ -130,8 +130,9 @@ var RU_LANGUAGES =
   "ComponentPinResetTextTwo": "Продолжить?",
   "ComponentPinResetTextThree": "Все Ваши карты отключены от системы CLICK",
   "ComponentPinResetTextFour": "Для установки нового CLICK-PIN необходимо заново пройти регистрацию",
-  "ComponentPinResetYesButtonLabel": "Да",
-  "ComponentPinResetNoButtonLabel": "Нет"
+  "ComponentPinResetYesButtonLabel": "ДА",
+  "ComponentPinResetNoButtonLabel": "НЕТ",
+  "ComponentPinResetRegistrationButtonLabel": "РЕГИСТРАЦИЯ"
 
 
 };

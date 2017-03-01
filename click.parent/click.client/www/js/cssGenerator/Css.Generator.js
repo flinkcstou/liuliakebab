@@ -5090,7 +5090,12 @@ var css = {
   "margin-bottom: 0;" +
   "margin-right: auto;" +
   "top:" + 410 * widthK + "px;" +
-  "font-size:" + 32 * widthK + "px;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "}",
+
+  componentPinResetMessageRegistration: ".component-pinreset-message-registration" +
+  "{" +
+  "font-size:" + 38 * widthK + "px;" +
   "}",
 
   componentPinResetButtonsContainer: ".component-pinreset-buttons-container" +
@@ -5105,25 +5110,27 @@ var css = {
   "margin-left: auto;" +
   "}",
 
-  componentPinResetYesButton: ".component-pinreset-yes-button" +
+  componentPinResetButton: ".component-pinreset-button" +
   "{" +
   "position: relative;" +
-  "height: 6%;" +
-  "left: -2%;" +
-  "width: 20%;" +
+  "height: 85%;" +
+  "width: 28%;" +
   "top: 36%;" +
   "display: table;" +
   "background-color: #027fe4;" +
   "border-radius:" + 50 * widthK + "px;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
+  "float: left;" +
+  "left:18%;" +
+  "margin-right: 9%;" +
   "}",
 
-  componentPinResetYesButtonLabel: ".component-pinreset-yes-button-label" +
+  componentPinResetButtonLabel: ".component-pinreset-button-label" +
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "font-size:" + 38 * widthK + "px;" +
+  "font-size:" + 30 * widthK + "px;" +
   "color: #ffffff;" +
   "text-align: center;" +
   "display: table-cell;" +
@@ -5132,10 +5139,16 @@ var css = {
 
   componentPinResetNoButton: ".component-pinreset-no-button" +
   "{" +
+  "background-color: transparent;" +
+  "border: 1px solid white;" +
+  "}",
+
+  componentPinResetRegistrationButton: ".component-pinreset-registration-button" +
+  "{" +
   "position: relative;" +
-  "height: 6%;" +
-  "left: -2%;" +
-  "width: 20%;" +
+  "height: 100%;" +
+    //"left: -2%;" +
+  "width: 57%;" +
   "top: 36%;" +
   "display: table;" +
   "background-color: #027fe4;" +
@@ -5144,16 +5157,16 @@ var css = {
   "margin-left: auto;" +
   "}",
 
-  componentPinResetNoButtonLabel: ".component-pinreset-no-button-label" +
+  componentPinResetRegistrationButtonLabel: ".component-pinreset-registration-button-label" +
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "font-size:" + 38 * widthK + "px;" +
+  "font-size:" + 34 * widthK + "px;" +
   "color: #ffffff;" +
   "text-align: center;" +
   "display: table-cell;" +
   "vertical-align: middle;" +
-  "}",
+  "}"
 
   switch: ".switch" +
   "{" +

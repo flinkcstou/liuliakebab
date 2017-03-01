@@ -3548,6 +3548,8 @@ input {
   font-size: 32px;
 }
 
+
+
 .component-pinreset-buttons-container {
   position: relative;
   height: 6%;
@@ -3607,3 +3609,25 @@ input {
   vertical-align: middle;
 }
 
+.component-pinreset-registration-button {
+  position: relative;
+  height: 100%;
+  /*left: -2%;*/
+  width: 57%;
+  top: 36%;
+  display: table;
+  background-color: #027fe4;
+  border-radius: 50px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.component-pinreset-registration-button-label {
+  position: relative;
+  background-size: contain;
+  font-size: 34px;
+  color: #ffffff;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
