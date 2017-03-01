@@ -1177,6 +1177,101 @@ var css = {
   "right: 15%;" +
   "}",
 
+  sideMenuBillingsContainer: ".side-menu-billings-container " +
+  "{" +
+  "position: absolute;" +
+  "top: 40%;" +
+  "height: 6%;" +
+  "width: 75%;" +
+  "left: 10%;" +
+  "background-color: #92bf3a;" +
+  "border: solid 1px red;" +
+  "}",
+
+  sideMenuAutoPayContainer: ".side-menu-auto-pay-container " +
+  "{" +
+  "position: absolute;" +
+  "top: 47%;" +
+  "height: 6%;" +
+  "width: 75%;" +
+  "left: 10%;" +
+  "background-color: #92bf3a;" +
+  "border: solid 1px red;" +
+  "}",
+
+  sideMenuScannerQrContainer: ".side-menu-scanner-qr-container " +
+  "{" +
+  "position: absolute;" +
+  "top: 54%;" +
+  "height: 6%;" +
+  "width: 75%;" +
+  "left: 10%;" +
+  "background-color: #92bf3a;" +
+  "border: solid 1px red;" +
+  "}",
+
+  sideMenuSettingsContainer: ".side-menu-settings-container " +
+  "{" +
+  "position: absolute;" +
+  "top: 65%;" +
+  "height: 6%;" +
+  "width: 75%;" +
+  "left: 10%;" +
+  "background-color: #92bf3a;" +
+  "border: solid 1px red;" +
+  "}",
+
+  sideMenuCallContainer: ".side-menu-call-container " +
+  "{" +
+  "position: absolute;" +
+  "top: 72%;" +
+  "height: 6%;" +
+  "width: 75%;" +
+  "left: 10%;" +
+  "background-color: #92bf3a;" +
+  "border: solid 1px red;" +
+  "}",
+
+  sideMenuContainersIcon: ".side-menu-containers-icon " +
+  "{" +
+  "position: absolute;" +
+  "width: 15%;" +
+  "height: 80%;" +
+  "top: 7%;" +
+  "left: 3%;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
+  sideMenuChangeMode: ".side-menu-change-mode " +
+  "{" +
+  "position: absolute;" +
+  "top: 30%;" +
+  "height: 6%;" +
+  "width: 100%;" +
+  "background-color: #92bf3a;" +
+  "border: solid 1px red;" +
+  "}",
+
+  sideMenuChangeModeText: ".side-menu-change-mode-text " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "padding: 0;" +
+  "top: 27%;" +
+  "left: 20%;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "}",
+
+  sideMenuChangeModeIcon: ".side-menu-change-mode-icon " +
+  "{" +
+  "position: absolute;" +
+  "width: 12%;" +
+  "height: 80%;" +
+  "top: 7%;" +
+  "left: 3%;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
   sideMenuBackPage: ".side-menu-back-page " +
   "{" +
   "position: fixed;" +
@@ -3985,6 +4080,7 @@ var css = {
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   "top: 23%;" +
+  "display: none;" +
   "}",
 
   transferFourCardField: ".transferfour-card-field" +
@@ -4105,6 +4201,7 @@ var css = {
   "height:" + 175 * widthK + "px;" +
   "left: 38%;" +
   "top: 0;" +
+  "display: none;" +
   "background-color: transparent;" +
   "}",
 
@@ -5083,9 +5180,11 @@ var css = {
 
   switch: ".switch" +
   "{" +
-  "position: relative;" +
+  "position: absolute;" +
   "display: block;" +
   "width:" + 52 * widthK + "px;" +
+  "top: 30%;" +
+  "right: 5%;" +
   "height:" + 24 * widthK + "px;" +
   "border: 1px solid white;" +
   "border-radius:" + 50 * widthK + "px;" +

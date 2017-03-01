@@ -1,15 +1,37 @@
 <component-menu>
   <div id="sideMenuBackPageId" class="side-menu-back-page"></div>
   <div id="sideMenuId" class="side-menu">
-    <label class="switch">
-      <input onchange="changeMode()" id="checkBoxChangeId" type="checkbox" checked="true">
-      <div class="slider round"></div>
-    </label>
-    <div class="side-menu-inside-button"></div>
+
+    <div class="side-menu-inside-button" ontouchend="closeMenu()"></div>
     <div class="side-menu-user-info-container">
       <div class="side-menu-user-icon"></div>
       <p class="side-menu-user-second-name">Chingis</p>
       <p class="side-menu-user-first-name">Amirkazhiev</p>
+    </div>
+    <div class="side-menu-change-mode">
+      <div class="side-menu-change-mode-icon"></div>
+      <p class="side-menu-change-mode-text">Активен он-лфйн режим</p>
+      <label class="switch">
+        <input onchange="changeMode()" id="checkBoxChangeId" type="checkbox" checked="true">
+        <div class="slider round"></div>
+      </label>
+    </div>
+    <div class="side-menu-billings-container">
+      <div class="side-menu-containers-icon"></div>
+    </div>
+    <div class="side-menu-auto-pay-container">
+      <div class="side-menu-containers-icon"></div>
+    </div>
+    <div class="side-menu-scanner-qr-container">
+      <div class="side-menu-containers-icon"></div>
+    </div>
+
+    <div class="side-menu-settings-container">
+      <div class="side-menu-containers-icon"></div>
+    </div>
+
+    <div class="side-menu-call-container">
+      <div class="side-menu-containers-icon"></div>
     </div>
   </div>
   <script>
