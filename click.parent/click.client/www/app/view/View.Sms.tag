@@ -117,10 +117,12 @@
             localStorage.setItem('confirm_needed', false);
             console.log(result)
             if (result[0][0].client_exists == 1) {
+              localStorage.setItem('click_client_registered', true)
               this.riotTags.innerHTML = "<view-authorization>";
               riot.mount('view-authorization');
             }
             else {
+              localStorage.setItem('click_client_registered', false)
               this.riotTags.innerHTML = "<view-registration-client>";
               riot.mount('view-registration-client');
             }

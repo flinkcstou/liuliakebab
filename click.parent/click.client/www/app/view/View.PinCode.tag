@@ -171,6 +171,7 @@
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');
             window.standCheckRegistration = true;
+            localStorage.setItem('click_client_registered', true)
             return
           }
           else {

@@ -88,7 +88,7 @@
     var selectionEnd;
     var changed = false;
     var date = false;
-    var checkOne = false, checkTwo = false, checkThree = false, checkFour = false, checkDate = false, checkPin = false;
+    var checkOne = false, checkTwo = false, checkThree = false, checkFour = false, checkDate = false, checkPin = false, checkPinCopy = false, checkDateCopy = false;
 
 
     touchEndBoxOne = function () {
@@ -102,6 +102,8 @@
       checkTwo = false;
       checkThree = false;
       checkFour = false;
+      checkPinCopy = false;
+      checkDateCopy = false;
     }
 
     touchEndBoxTwo = function () {
@@ -115,6 +117,8 @@
       checkTwo = true;
       checkThree = false;
       checkFour = false;
+      checkPinCopy = false;
+      checkDateCopy = false;
     }
 
     touchEndBoxThree = function () {
@@ -128,6 +132,8 @@
       checkTwo = false;
       checkThree = true;
       checkFour = false;
+      checkPinCopy = false;
+      checkDateCopy = false;
     }
 
     touchEndBoxFour = function () {
@@ -141,6 +147,8 @@
       checkTwo = false;
       checkThree = false;
       checkFour = true;
+      checkPinCopy = false;
+      checkDateCopy = false;
     }
 
     touchEndBoxData = function () {
@@ -155,6 +163,8 @@
         checkTwo = false;
         checkThree = false;
         checkFour = false;
+        checkPinCopy = false;
+        checkDateCopy = true;
       }
       else return
     }
@@ -171,14 +181,18 @@
         checkTwo = false;
         checkThree = false;
         checkFour = false;
+        checkPinCopy = true;
+        checkDateCopy = false;
       }
       else return
     }
 
     componentKeyboard.returnValue = function (myValue) {
 
+      scope.checkReturn = false;
+
       if (myValue != 'x') {
-        if (checkOne && scope.cardNumberPartOne.length < 4) {
+        if (!scope.checkReturn && checkOne && scope.cardNumberPartOne.length < 4) {
           scope.cardNumberPartOne += myValue;
           riot.update(scope.cardNumberPartOne)
           if (scope.cardNumberPartOne.length == 4) {
@@ -191,29 +205,29 @@
               checkPin = true;
             }
             touchEndBoxTwo()
-            return
+            scope.checkReturn = true;
           }
         }
 
-        if (checkTwo && scope.cardNumberPartTwo.length < 4) {
+        if (!scope.checkReturn && checkTwo && scope.cardNumberPartTwo.length < 4) {
           scope.cardNumberPartTwo += myValue;
           riot.update(scope.cardNumberPartTwo)
           if (scope.cardNumberPartTwo.length == 4) {
             touchEndBoxThree()
-            return
+            scope.checkReturn = true;
           }
         }
 
-        if (checkThree && scope.cardNumberPartThree.length < 4) {
+        if (!scope.checkReturn && checkThree && scope.cardNumberPartThree.length < 4) {
           scope.cardNumberPartThree += myValue;
           riot.update(scope.cardNumberPartThree)
           if (scope.cardNumberPartThree.length == 4) {
             touchEndBoxFour()
-            return
+            scope.checkReturn = true;
           }
         }
 
-        if (checkFour && scope.cardNumberPartFour.length < 4) {
+        if (!scope.checkReturn && checkFour && scope.cardNumberPartFour.length < 4) {
           scope.cardNumberPartFour += myValue;
           riot.update(scope.cardNumberPartFour)
           if (scope.cardNumberPartFour.length == 4) {
@@ -221,26 +235,26 @@
               touchEndBoxData()
             if (checkPin)
               touchEndBoxPin()
-            return
+            scope.checkReturn = true;
           }
         }
 
-        if (checkDate && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardDate.length < 5) {
+        if (checkDateCopy && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardDate.length < 5) {
           if (scope.cardDate.length == 2)
             scope.cardDate += '/'
           scope.cardDate += myValue;
           scope.cardDateOriginal += myValue;
           riot.update(scope.cardDate)
           if (scope.cardDate.length == 4) {
-            return
+            scope.checkReturn = true;
           }
         }
-        if (checkPin && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardPinOriginal.length < 4) {
+        if (checkPinCopy && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardPinOriginal.length < 4) {
           scope.cardPin += ' * ';
           scope.cardPinOriginal += myValue;
           riot.update(scope.cardPin)
           if (scope.cardPin.length == 4) {
-            return
+            scope.checkReturn = true;
           }
         }
 
@@ -266,20 +280,24 @@
           riot.update(scope.cardNumberPartFour)
         }
 
-        if (checkDate) {
+        if (checkDateCopy) {
           scope.cardDate = scope.cardDate.substring(0, scope.cardDate.length - 1);
           scope.cardDateOriginal = scope.cardDateOriginal.substring(0, scope.cardDateOriginal.length - 1);
           riot.update(scope.cardDate)
         }
-        if (checkPin) {
+        if (checkPinCopy) {
           scope.cardPin = scope.cardPin.substring(0, scope.cardPin.length - 3);
           scope.cardPinOriginal = scope.cardPinOriginal.substring(0, scope.cardPinOriginal.length - 1);
 
-          riot.update(scope.cardDate)
+          riot.update(scope.cardPin)
         }
       }
 
       cardNumber = scope.cardNumberPartOne + scope.cardNumberPartTwo + scope.cardNumberPartThree + scope.cardNumberPartFour;
+      console.log('cardNumberPartOne',scope.cardNumberPartOne)
+      console.log('cardNumberPartTwo',scope.cardNumberPartTwo)
+      console.log('cardNumberPartThree',scope.cardNumberPartThree)
+      console.log('cardNumberPartFour',scope.cardNumberPartFour)
 
     }
 
@@ -298,6 +316,8 @@
       }
       else
         alert('error')
+
+      console.log('cardNumber', cardNumber, secondParameter)
     }
   </script>
 </view-registration-client>
