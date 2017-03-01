@@ -2,7 +2,7 @@
   <div id="sideMenuBackPageId" class="side-menu-back-page"></div>
   <div id="sideMenuId" class="side-menu">
 
-    <div class="side-menu-inside-button"></div>
+    <div class="side-menu-inside-button" ontouchend="closeMenu()"></div>
     <div class="side-menu-user-info-container">
       <div class="side-menu-user-icon"></div>
       <p class="side-menu-user-second-name">Chingis</p>
