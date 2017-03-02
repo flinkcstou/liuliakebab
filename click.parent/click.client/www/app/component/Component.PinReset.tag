@@ -55,11 +55,19 @@
           console.log('pin.reset', result);
           if (result[0][0].error == 0) {
             console.log("result of PIN RESET ", result);
-            scope.firstMessage = result[0][0].text1;
-            scope.secondMessage = result[0][0].text2;
+            console.log("text1 ", result[1][0].text1);
+            console.log("text2", result[1][0].text2);
+            scope.firstMessage = result[1][0].text1;
+            scope.secondMessage = result[1][0].text2;
+            riot.update(scope.firstMessage);
+            riot.update(scope.secondMessage);
+            console.log("call method in api");
+            scope.firstStage = false;
+            riot.update(scope.firstStage);
           }
           else
             alert(result[0][0].error_note);
+          componentPinResetId.style.display = 'none';
         },
 
         onFail: function (api_status, api_status_message, data) {
@@ -68,11 +76,6 @@
           console.error(data);
         }
       });
-      console.log("call method in api");
-      scope.firstStage = false;
-      riot.update(scope.firstStage);
-      riot.update(scope.firstMessage);
-      riot.update(scope.secondMessage);
     };
 
     closeWindow = function () {

@@ -125,6 +125,8 @@ var RU_LANGUAGES =
   "ViewPinCodeConfirmClickPinLabel": "Подтвердите CLICK-PIN",
 
   "ViewCardEditTitleName": "НАСТРОЙКИ КАРТЫ",
+  "ViewCardEditCardNameText": "Название карты",
+  "ViewCardEditMakeMainText": "Сделать основной",
 
   "ComponentPinResetTextOne": "При смене CLICK-PIN все Ваши карты будут отключены от системы CLICK",
   "ComponentPinResetTextTwo": "Продолжить?",

@@ -2144,12 +2144,16 @@ window.fakedSocket.register("pin.reset", function (input) {
 
   if (input)
     return [
-      {
+      [{
         "method": input.method,
         "success": 1,
         "error": 0,
-        "error_note": ''
-      }
+        "error_note": ""
+      }],
+      [{
+        "text1": "",
+        "text2": ""
+      }]
     ];
 
   return [
