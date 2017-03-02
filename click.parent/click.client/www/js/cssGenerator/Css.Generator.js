@@ -45,14 +45,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/ViewInfo.png);" +
-    //"opacity: 0.6;" +
+  "background-image: url(resources/draft/menu/crop.png);" +
+  "opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
-  "background: -webkit-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
-  "background: -ms-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+    //"background: -moz-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+    //"background: -webkit-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+    //"background: -ms-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -1115,7 +1115,7 @@ var css = {
   "{" +
   "position: fixed;" +
   "height: 100%;" +
-  "width:" + 500 * widthK + "px;" +
+  "width:" + 538 * widthK + "px;" +
   "overflow: hidden;" +
   "transform: translate3d(-100%, 0, 0);" +
   "-webkit-transform: translate3d(-100%, 0, 0);" +
@@ -1131,31 +1131,29 @@ var css = {
   "position: absolute;" +
   "height: 6%;" +
   "width: 15%;" +
-  "top: 9%;" +
-  "left: 5%;" +
-  "border: 1px solid red;" +
+  "top: 0.3%;" +
+  "left: 4%;" +
   "background-image: url(resources/icons/toolbar/menus.png);" +
   "background-repeat: no-repeat;" +
-  "background-size: 50%;" +
+  "background-size: 45%;" +
   "background-position: center;" +
   "}",
 
   sideMenuUserInfoContainer: ".side-menu-user-info-container " +
   "{" +
   "position: absolute;" +
-  "height: 15%;" +
+  "height: 17%;" +
   "width: 55%;" +
-  "top: 10%;" +
+  "top: 2%;" +
   "right: 0;" +
-  "border: 1px solid red;" +
   "}",
 
   sideMenuUserIcon: ".side-menu-user-icon " +
   "{" +
   "position: absolute;" +
-  "height:" + 95 * widthK + "px;" +
+  "height:" + 99 * widthK + "px;" +
   "width:" + 95 * widthK + "px;" +
-  "left: 50%;" +
+  "left: 52%;" +
   "border:" + 3 * widthK + "px solid white;" +
   "border-radius:" + 50 * widthK + "px;" +
   "}",
@@ -1165,8 +1163,8 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "padding: 0;" +
-  "bottom: 0;" +
-  "right: 15%;" +
+  "bottom:" + 21 * widthK + "px;" +
+  "right: 14%;" +
   "}",
 
   sideMenuUserSecondName: ".side-menu-user-second-name " +
@@ -1174,8 +1172,8 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "padding: 0;" +
-  "bottom:" + 25 * widthK + "px;" +
-  "right: 15%;" +
+  "bottom:" + 53 * widthK + "px;" +
+  "right: 14%;" +
   "}",
 
   sideMenuBillingsContainer: ".side-menu-billings-container " +
@@ -1192,7 +1190,7 @@ var css = {
   sideMenuAutoPayContainer: ".side-menu-auto-pay-container " +
   "{" +
   "position: relative;" +
-  "top: 47%;" +
+  "top: 30%;" +
   "height: 6%;" +
   "width: 75%;" +
   "left: 10%;" +
@@ -1203,7 +1201,7 @@ var css = {
   sideMenuScannerQrContainer: ".side-menu-scanner-qr-container " +
   "{" +
   "position: relative;" +
-  "top: 54%;" +
+  "top: 40%;" +
   "height: 6%;" +
   "width: 75%;" +
   "left: 10%;" +
@@ -1214,7 +1212,7 @@ var css = {
   sideMenuSettingsContainer: ".side-menu-settings-container " +
   "{" +
   "position: relative;" +
-  "top: 65%;" +
+  "top: 50%;" +
   "height: 6%;" +
   "width: 75%;" +
   "left: 10%;" +
@@ -1225,7 +1223,7 @@ var css = {
   sideMenuCallContainer: ".side-menu-call-container " +
   "{" +
   "position: relative;" +
-  "top: 72%;" +
+  "top: 60%;" +
   "height: 6%;" +
   "width: 75%;" +
   "left: 10%;" +
@@ -1244,24 +1242,53 @@ var css = {
   "background-position: center;" +
   "}",
 
+  sideMenuContainersIconSettings: ".side-menu-containers-icon-settings" +
+  "{" +
+  "background-image: url(resources/icons/menu/menu_settings.png);" +
+  "}",
+
+  sideMenuContainersIconBillings: ".side-menu-containers-icon-billings" +
+  "{" +
+  "background-image: url(resources/icons/menu/menu_bills.png);" +
+  "}",
+
+  sideMenuContainersIconAutopayment: ".side-menu-containers-icon-autopayment" +
+  "{" +
+  "background-image: url(resources/icons/menu/menu_autopayment.png);" +
+  "}",
+
+  sideMenuContainersIconScannerQr: ".side-menu-containers-icon-scanner-qr" +
+  "{" +
+  "background-image: url(resources/icons/menu/menu_qr.png);" +
+  "}",
+
+  sideMenuContainersIconCall: ".side-menu-containers-icon-call" +
+  "{" +
+  "background-image: url(resources/icons/menu/menu_call.png);" +
+  "}",
+
+  sideMenuContainersIconFavourit: ".side-menu-containers-icon-favorite" +
+  "{" +
+  "background-image: url(resources/icons/menu/menu_call.png);" +
+  "}",
+
+
   sideMenuContainersName: ".side-menu-containers-name " +
   "{" +
   "position: absolute;" +
-  "width: 40%;" +
   "height: 80%;" +
   "top: 20%;" +
   "left: 28%;" +
-
+  "font-size:" + 24 * widthK + "px;" +
   "}",
 
   sideMenuChangeMode: ".side-menu-change-mode " +
   "{" +
   "position: absolute;" +
-  "top: 30%;" +
-  "height: 6%;" +
+  "top: 22%;" +
+  "height: 7%;" +
   "width: 100%;" +
   "background-color: #92bf3a;" +
-  "border: solid 1px red;" +
   "}",
 
   sideMenuChangeModeText: ".side-menu-change-mode-text " +
@@ -1269,10 +1296,82 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "padding: 0;" +
-  "top: 27%;" +
-  "left: 20%;" +
-  "font-size:" + 24 * widthK + "px;" +
+  "top: 29%;" +
+  "left: 20.2%;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "word-spacing:" + 2 * widthK + "px;" +
   "}",
+
+  switchMenu: ".switch-menu" +
+  "{" +
+  "position: absolute;" +
+  "display: block;" +
+  "width:" + 37 * widthK + "px;" +
+  "top: 35%;" +
+  "right: 7%;" +
+  "height:" + 20 * widthK + "px;" +
+  "border: 1px solid white;" +
+  "border-radius:" + 50 * widthK + "px;" +
+  "}",
+
+  switchMenuInput: ".switch-menu input" +
+  "{" +
+  "display: none;" +
+  "}",
+
+  sliderMenu: ".slider-menu" +
+  "{" +
+  "position: absolute;" +
+  "cursor: pointer;" +
+  "top: 0;" +
+  "left: 0;" +
+  "bottom: 0;" +
+  "background-color: #ccc;" +
+  "-webkit-transition: .4s;" +
+  "transition: .4s;" +
+  "}",
+
+  sliderMenuBefore: ".slider-menu:before" +
+  "{" +
+  "position: absolute;" +
+  "content: '';" +
+  "height:" + 14 * widthK + "px;" +
+  "width:" + 14 * widthK + "px;" +
+  "left:" + 4 * widthK + "px;" +
+  "bottom:" + 12 * widthK + "px;" +
+  "background-color: white;" +
+  "-webkit-transition: .4s;" +
+  "transition: .4s;" +
+  "}",
+
+  inputCheckedSlider: "input:checked + .slider-menu" +
+  "{" +
+  "background-color: #2196F3;" +
+  "}",
+
+  inputFocusSlider: "input:focus + .slider-menu" +
+  "{" +
+  "box-shadow: 0 0 1px #2196F3;" +
+  "}",
+
+  inputCheckedSliderBefore: "input:checked + .slider-menu:before" +
+  "{" +
+  "-webkit-transform: translateX(" + 17 * widthK + "px);" +
+  "transform: translateX(" + 17 * widthK + "px);" +
+  "}",
+
+  sliderMenuRound: ".slider-menu.round" +
+  "{" +
+  "border-radius:" + 34 * widthK + "px;" +
+  "position: absolute;" +
+  "top:" + 29 * widthK + "px;" +
+  "}",
+
+  sliderMenuRoundBefore: ".slider-menu.round:before" +
+  "{" +
+  "border-radius: 50%;" +
+  "}",
+
 
   sideMenuChangeModeIcon: ".side-menu-change-mode-icon " +
   "{" +
@@ -1280,7 +1379,7 @@ var css = {
   "width: 12%;" +
   "height: 80%;" +
   "top: 7%;" +
-  "left: 3%;" +
+  "left: 6%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-image: url(resources/icons/menu/menu_online.png);" +
@@ -5199,75 +5298,75 @@ var css = {
   "vertical-align: middle;" +
   "}",
 
-  switch: ".switch" +
-  "{" +
-  "position: absolute;" +
-  "display: block;" +
-  "width:" + 52 * widthK + "px;" +
-  "top: 30%;" +
-  "right: 5%;" +
-  "height:" + 24 * widthK + "px;" +
-  "border: 1px solid white;" +
-  "border-radius:" + 50 * widthK + "px;" +
-  "}",
-
-  switchInput: ".switch input" +
-  "{" +
-  "display: none;" +
-  "}",
-
-  slider: ".slider" +
-  "{" +
-  "position: absolute;" +
-  "cursor: pointer;" +
-  "top: 0;" +
-  "left: 0;" +
-  "bottom: 0;" +
-  "background-color: #ccc;" +
-  "-webkit-transition: .4s;" +
-  "transition: .4s;" +
-  "}",
-
-  sliderBefore: ".slider:before" +
-  "{" +
-  "position: absolute;" +
-  "content: '';" +
-  "height:" + 26 * widthK + "px;" +
-  "width:" + 26 * widthK + "px;" +
-  "left: 0;" +
-  "bottom:" + 4 * widthK + "px;" +
-  "background-color: white;" +
-  "-webkit-transition: .4s;" +
-  "transition: .4s;" +
-  "}",
-
-  inputCheckedSlider: "input:checked + .slider" +
-  "{" +
-  "background-color: #2196F3;" +
-  "}",
-
-  inputFocusSlider: "input:focus + .slider" +
-  "{" +
-  "box-shadow: 0 0 1px #2196F3;" +
-  "}",
-
-  inputCheckedSliderBefore: "input:checked + .slider:before" +
-  "{" +
-  "-webkit-transform: translateX(" + 26 * widthK + "px);" +
-  "transform: translateX(" + 26 * widthK + "px);" +
-  "}",
-
-  sliderRound: ".slider.round" +
-  "{" +
-  "border-radius:" + 34 * widthK + "px;" +
-  "position: absolute;" +
-  "top:" + 29 * widthK + "px;" +
-  "}",
-
-  sliderRoundBefore: ".slider.round:before" +
-  "{" +
-  "border-radius: 50%;" +
-  "}",
+  //switch: ".switch" +
+  //"{" +
+  //"position: absolute;" +
+  //"display: block;" +
+  //"width:" + 52 * widthK + "px;" +
+  //"top: 30%;" +
+  //"right: 5%;" +
+  //"height:" + 24 * widthK + "px;" +
+  //"border: 1px solid white;" +
+  //"border-radius:" + 50 * widthK + "px;" +
+  //"}",
+  //
+  //switchInput: ".switch input" +
+  //"{" +
+  //"display: none;" +
+  //"}",
+  //
+  //slider: ".slider" +
+  //"{" +
+  //"position: absolute;" +
+  //"cursor: pointer;" +
+  //"top: 0;" +
+  //"left: 0;" +
+  //"bottom: 0;" +
+  //"background-color: #ccc;" +
+  //"-webkit-transition: .4s;" +
+  //"transition: .4s;" +
+  //"}",
+  //
+  //sliderBefore: ".slider:before" +
+  //"{" +
+  //"position: absolute;" +
+  //"content: '';" +
+  //"height:" + 26 * widthK + "px;" +
+  //"width:" + 26 * widthK + "px;" +
+  //"left: 0;" +
+  //"bottom:" + 4 * widthK + "px;" +
+  //"background-color: white;" +
+  //"-webkit-transition: .4s;" +
+  //"transition: .4s;" +
+  //"}",
+  //
+  //inputCheckedSlider: "input:checked + .slider" +
+  //"{" +
+  //"background-color: #2196F3;" +
+  //"}",
+  //
+  //inputFocusSlider: "input:focus + .slider" +
+  //"{" +
+  //"box-shadow: 0 0 1px #2196F3;" +
+  //"}",
+  //
+  //inputCheckedSliderBefore: "input:checked + .slider:before" +
+  //"{" +
+  //"-webkit-transform: translateX(" + 26 * widthK + "px);" +
+  //"transform: translateX(" + 26 * widthK + "px);" +
+  //"}",
+  //
+  //sliderRound: ".slider.round" +
+  //"{" +
+  //"border-radius:" + 34 * widthK + "px;" +
+  //"position: absolute;" +
+  //"top:" + 29 * widthK + "px;" +
+  //"}",
+  //
+  //sliderRoundBefore: ".slider.round:before" +
+  //"{" +
+  //"border-radius: 50%;" +
+  //"}",
 
 }
 

@@ -11,28 +11,33 @@
     <div id="changeModeContainerId" class="side-menu-change-mode">
       <div class="side-menu-change-mode-icon"></div>
       <p class="side-menu-change-mode-text">{modeOfApplication}</p>
-      <label class="switch">
+      <label class="switch-menu">
         <input onchange="changeMode()" id="checkBoxChangeId" type="checkbox" checked="{checkModeOfApplication}">
-        <div class="slider round"></div>
+        <div class="slider-menu round"></div>
       </label>
     </div>
     <div class="side-menu-billings-container" ontouchend="goToSettings()">
-      <div class="side-menu-containers-icon"></div>
-      <div class="side-menu-containers-name">Настройки</div>
+      <div class="side-menu-containers-icon side-menu-containers-icon-billings"></div>
+      <div class="side-menu-containers-name">Выставленные счета</div>
     </div>
     <div class="side-menu-auto-pay-container">
-      <div class="side-menu-containers-icon"></div>
+      <div class="side-menu-containers-icon side-menu-containers-icon-autopayment"></div>
+      <div class="side-menu-containers-name">Автоплатеж</div>
+
     </div>
     <div class="side-menu-scanner-qr-container">
-      <div class="side-menu-containers-icon"></div>
+      <div class="side-menu-containers-icon side-menu-containers-icon-scanner-qr"></div>
+      <div class="side-menu-containers-name">Сканер QR-кода</div>
     </div>
 
     <div class="side-menu-settings-container">
-      <div class="side-menu-containers-icon"></div>
+      <div class="side-menu-containers-icon side-menu-containers-icon-settings"></div>
+      <div class="side-menu-containers-name">Настройки</div>
     </div>
 
     <div class="side-menu-call-container" ontouchend="callToClick()">
       <div class="side-menu-containers-icon"></div>
+      <div class="side-menu-containers-name">Позвонить в Click</div>
     </div>
   </div>
   <script>
