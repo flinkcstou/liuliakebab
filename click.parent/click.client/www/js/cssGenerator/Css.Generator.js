@@ -1,13 +1,17 @@
 widthK = window.innerWidth / 720;
 heightK = window.innerHeight / 1232;
+var heightOfMobile;
+var topOfIos;
 
 if (device.platform == 'iOS') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
+  topOfIos = 20;
 }
 else {
   heightK = window.innerHeight / 1232;
   heightOfMobile = window.innerHeight;
+  topOfIos = 0;
 }
 
 var css = {
@@ -45,14 +49,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  //"background-image: url(resources/draft/menu/crop.png);" +
-  //"opacity: 0.6;" +
+    //"background-image: url(resources/draft/menu/crop.png);" +
+    //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-    "background: -moz-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
-    "background: -webkit-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
-    "background: -ms-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+  "background: -moz-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+  "background: -webkit-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+  "background: -ms-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -1123,7 +1127,7 @@ var css = {
   "background-color: #22a0e0;" +
   "transition: 0.3s;" +
   "-webkit-transition: 0.3s;" +
-  "top: 0;" +
+  "top:" + topOfIos + "px;" +
   "}",
 
   sideMenuInsideButton: ".side-menu-inside-button " +
@@ -1142,8 +1146,8 @@ var css = {
   sideMenuUserInfoContainer: ".side-menu-user-info-container " +
   "{" +
   "position: absolute;" +
-  "height: 17%;" +
-  "width: 55%;" +
+  "height:" + 215 * widthK + "px;" +
+  "width:" + 300 * widthK + "px;" +
   "top: 2%;" +
   "right: 0;" +
   "}",
@@ -1156,6 +1160,9 @@ var css = {
   "left: 52%;" +
   "border:" + 4 * widthK + "px solid white;" +
   "border-radius:" + 50 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "background-position: center;" +
   "}",
 
   sideMenuUserFirstName: ".side-menu-user-first-name " +
@@ -1229,7 +1236,6 @@ var css = {
   "}",
 
 
-
   sideMenuCallContainer: ".side-menu-call-container " +
   "{" +
   "position: relative;" +
@@ -1254,32 +1260,38 @@ var css = {
   sideMenuContainersIconSettings: ".side-menu-containers-icon-settings" +
   "{" +
   "background-image: url(resources/icons/menu/menu_settings.png);" +
+  "background-size: 100%;" +
   "}",
 
   sideMenuContainersIconBillings: ".side-menu-containers-icon-billings" +
   "{" +
   "background-image: url(resources/icons/menu/menu_bills.png);" +
+  "background-size: 100%;" +
   "}",
 
   sideMenuContainersIconAutopayment: ".side-menu-containers-icon-autopayment" +
   "{" +
   "background-image: url(resources/icons/menu/menu_autopayment.png);" +
+  "background-size: 100%;" +
   "}",
 
   sideMenuContainersIconScannerQr: ".side-menu-containers-icon-scanner-qr" +
   "{" +
   "background-image: url(resources/icons/menu/menu_qr.png);" +
+  "background-size: 100%;" +
   "}",
 
   sideMenuContainersIconCall: ".side-menu-containers-icon-call" +
   "{" +
   "background-image: url(resources/icons/menu/menu_call.png);" +
+  "background-size: 100%;" +
   "top: 22%;" +
   "}",
 
   sideMenuContainersIconFavorite: ".side-menu-containers-icon-favorite" +
   "{" +
   "background-image: url(resources/icons/menu/menu_favorites.png);" +
+  "background-size: 100%;" +
   "}",
 
 
@@ -1366,7 +1378,7 @@ var css = {
   "height:" + 14 * widthK + "px;" +
   "width:" + 14 * widthK + "px;" +
   "left:" + 4 * widthK + "px;" +
-  "bottom:" + 12 * widthK + "px;" +
+  "bottom:" + 12.5 * widthK + "px;" +
   "background-color: white;" +
   "-webkit-transition: .4s;" +
   "transition: .4s;" +
@@ -1411,6 +1423,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-image: url(resources/icons/menu/menu_online.png);" +
+  "background-size: 56%;" +
   "}",
 
   sideMenuBackPage: ".side-menu-back-page " +
