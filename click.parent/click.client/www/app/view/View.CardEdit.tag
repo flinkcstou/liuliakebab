@@ -8,11 +8,11 @@
   </div>
   <div class="card-edit-body-container">
     <div class="card-edit-field">
-      <p class="card-edit-text-field">Название карты</p>
+      <p class="card-edit-text-field">{window.languages.ViewCardEditCardNameText}</p>
       <input id="cardNameInputID" class="card-edit-input" value="{defaultName}"/>
     </div>
-    <div class="card-edit-makemain-container" ontouchend="MakeMainCheck()">
-      <p class="card-edit-makemain-text">Сделать основной</p>
+    <div class="card-edit-makemain-container" if="{!onlyOneCard}" ontouchend="MakeMainCheck()">
+      <p class="card-edit-makemain-text">{window.languages.ViewCardEditMakeMainText}</p>
       <div id="makeMainCheckId" class="card-edit-makemain-check"></div>
     </div>
   </div>
@@ -30,6 +30,9 @@
     }
 
     var scope = this;
+    scope.backbuttoncheck = true;
+    scope.rightbuttoncheck = true;
+    scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
 
     touchStartTitle = function () {
       event.preventDefault();
@@ -41,20 +44,26 @@
       scope.card = opts[0];
       console.log('scope.card from opt', scope.card);
       this.defaultName = scope.card.name;
-      var isMain = scope.card.default_account;
-      this.on('mount', function () {
-        if (isMain) {
-          makeMainCheckId.style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
-        }
-      });
-
-      console.log("Initially isMain=", isMain);
+      alert(scope.cardsArray.prototype.size);
+      if (scope.cardsArray.length == 1) {
+        alert("only one card");
+        scope.onlyOneCard = true;
+        riot.update(scope.onlyOneCard);
+      }
+      else {
+        alert("many cards");
+        scope.onlyOneCard = false;
+        riot.update(scope.onlyOneCard);
+        var isMain = scope.card.default_account;
+        this.on('mount', function () {
+          if (isMain) {
+            makeMainCheckId.style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
+          }
+        });
+        console.log("Initially isMain=", isMain);
+      }
 
     }
-
-    scope.backbuttoncheck = true;
-    scope.rightbuttoncheck = true;
-    scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
 
     saveEdit = function () {
 
@@ -115,7 +124,7 @@
           onSuccess: function (result) {
             console.log(result);
             console.log(result[0][0]);
-            if (result[0][0].error == 0) {
+            if (result[0][0].error == 0 && result[1][0]) {
               for (var i in scope.cardsArray) {
                 if (scope.cardsArray[i].card_id == result[1][0].default_account_id)
                   scope.cardsArray[i].default_account = true;
