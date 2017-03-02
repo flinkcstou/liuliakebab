@@ -4,33 +4,33 @@
       <p class="pay-name-title">{titleName}</p>
       <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
     </div>
-    <div class="pay-category-container">
-      <div class="pay-service-block-containter">
-        <div class="pay-category-name-field">{window.languages.ViewMainSettingsTitle}</div>
+    <div class="settings-container">
+      <div class="settings-block-containter" ontouchend="goToMainSettings()">
+        <div class="settings-block-name-field">{window.languages.ViewMainSettingsTitle}</div>
       </div>
 
-      <div class="pay-service-block-containter">
-        <div class="pay-category-name-field">{window.languages.ViewSecuritySettingsTitle}</div>
+      <div class="settings-block-containter" ontouchend="goToSecuritySettings()">
+        <div class="settings-block-name-field">{window.languages.ViewSecuritySettingsTitle}</div>
       </div>
 
-      <div class="pay-service-block-containter">
-        <div class="pay-category-name-field">{window.languages.ViewFriendHelpSettingsTitle}</div>
+      <div class="settings-block-containter" ontouchend="goToFriendHelpSettings()">
+        <div class="settings-block-name-field">{window.languages.ViewFriendHelpSettingsTitle}</div>
       </div>
 
-      <div class="pay-service-block-containter">
-        <div class="pay-category-name-field">{window.languages.ViewInviteFriendSettingsTitle}</div>
+      <div class="settings-block-containter" ontouchend="goToInviteFriendSettings()">
+        <div class="settings-block-name-field">{window.languages.ViewInviteFriendSettingsTitle}</div>
       </div>
 
-      <div class="pay-service-block-containter">
-        <div class="pay-category-name-field">{window.languages.ViewAboutSettingsTitle}</div>
+      <div class="settings-block-containter" ontouchend="goToAboutSettings()">
+        <div class="settings-block-name-field">{window.languages.ViewAboutSettingsTitle}</div>
       </div>
 
-      <div class="pay-service-block-containter">
-        <div class="pay-category-name-field">{window.languages.ViewSupportSettingsTitle}</div>
+      <div class="settings-block-containter" ontouchend="goToSupportSettings()">
+        <div class="settings-block-name-field">{window.languages.ViewSupportSettingsTitle}</div>
       </div>
 
-      <div class="pay-service-block-containter">
-        <div class="pay-category-name-field">{window.languages.ViewCallCenterSettingsTitle}</div>
+      <div class="settings-block-containter" ontouchend="goToCallCenterSettings()">
+        <div class="settings-block-name-field">{window.languages.ViewCallCenterSettingsTitle}</div>
       </div>
     </div>
 
@@ -56,6 +56,29 @@
       onBackKeyDown()
     };
 
+    goToMainSettings = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riotTags.innerHTML = "<view-main-settings>";
+      riot.mount("view-main-settings");
+    }
+
+    goToSecuritySettings = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riotTags.innerHTML = "<view-security-settings>";
+      riot.mount("view-security-settings");
+    }
+
+    goToFriendHelpSettings = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riotTags.innerHTML = "<view-friend-help-settings>";
+      riot.mount("view-friend-help-settings");
+    }
 
   </script>
 </view-settings>

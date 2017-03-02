@@ -1918,6 +1918,9 @@ window.fakedSocket.register("settings.change.default.account", function (input) 
         "success": 1,
         "error": 0,
         "error_note": ""
+      }],
+      [{
+        "default_account_id": 4544830
       }]
     ];
   return [
