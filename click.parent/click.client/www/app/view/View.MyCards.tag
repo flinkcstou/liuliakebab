@@ -74,6 +74,11 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    this.on('mount', function () {
+      scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+      riot.update();
+    })
+
     touchStartTitle = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -96,24 +101,33 @@
 
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      var account_id = scope.card.card_id
+      var removable = scope.card.removable
 
       var question = 'Подтвердите удаление карты'
       var result = confirm(question);
 
-      if (result) {
+      if (result && removable == 1) {
 
         window.api.call({
           method: 'account.remove',
           input: {
+            session_key: sessionKey,
             phone_num: phoneNumber,
-            device_id: deviceId
+            account_id: account_id
           },
 
           scope: this,
 
           onSuccess: function (result) {
-//                    console.log("result[0][0] ", result[0][0]);
-//                    console.log("result ", result);
+            if (result[0][0].error == 0) {
+              alert('Карта успешно удалена')
+              updateCard();
+              return
+            }
+            else {
+              alert(result[0][0].error_note)
+            }
           },
 
           onFail: function (api_status, api_status_message, data) {
@@ -125,9 +139,15 @@
       }
       else
         return;
+    }
+
+    updateCard = function () {
 
       var arrayAccountInfo = [];
       localStorage.removeItem('click_client_accountInfo')
+      localStorage.removeItem('click_client_cards')
+      localStorage.removeItem('cardNumber')
+      localStorage.removeItem('click_client_countCard')
 
       console.log('ACCOUNT INFO', JSON.parse(localStorage.getItem('click_client_accountInfo')))
       console.log('ACCOUNT INFO')
@@ -183,8 +203,8 @@
                           console.log("save into localstorage");
                           var accountInfo = JSON.stringify(arrayAccountInfo);
                           localStorage.setItem("click_client_accountInfo", accountInfo);
-                          this.riotTags.innerHTML = "<view-main-page>";
-                          riot.mount('view-main-page');
+                          this.riotTags.innerHTML = "<view-my-cards>";
+                          riot.mount('view-my-cards');
                         }
                       });
 
@@ -197,8 +217,8 @@
                   arrayAccountInfo.push(result[1][i])
                 var accountInfo = JSON.stringify(arrayAccountInfo);
                 localStorage.setItem("click_client_accountInfo", accountInfo);
-                this.riotTags.innerHTML = "<view-main-page>";
-                riot.mount('view-main-page');
+                this.riotTags.innerHTML = "<view-my-cards>";
+                riot.mount('view-my-cards');
               }
             }
             else
@@ -212,8 +232,9 @@
           }
         })
       }
-    }
 
+
+    }
     var scope = this,
       sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
       phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -235,8 +256,8 @@
 
     this.titleName = window.languages.ViewMyCardTitleName;
 
-
-    scope.card = scope.cardsArray[scope.cardId];
+    if (scope.cardId)
+      scope.card = scope.cardsArray[scope.cardId];
     console.log('scope.cardId', scope.cardId)
     console.log('scope.cardsArray', scope.cardsArray)
 
@@ -249,71 +270,73 @@
       history.arrayOfHistory[history.arrayOfHistory.length - 1].view = 'view-my-cards';
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
-      scope.card = scope.cardsArray[cardIdFromCarousel];
+      if (cardIdFromCarousel)
+        scope.card = scope.cardsArray[cardIdFromCarousel];
       scope.arrayOfOperationsByAccount = [];
       riot.update()
       console.log(scope.card)
 
-      window.api.call({
-        method: 'get.payments.by.account',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          account_id: scope.card.card_id
-        },
+      if (scope.card)
+        window.api.call({
+          method: 'get.payments.by.account',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            account_id: scope.card.card_id
+          },
 
-        onSuccess: function (result) {
-          if (result[0][0].error == 0) {
-            if (result[1][0]) {
-              var j = 0;
-              for (var i in result[1]) {
-                if (result[1][i].account_id == scope.card.card_id && result[1][i].state == 0) {
-                  result[1][i].count = j;
-                  result[1][i].amount = result[1][i].amount.toString();
+          onSuccess: function (result) {
+            if (result[0][0].error == 0) {
+              if (result[1][0]) {
+                var j = 0;
+                for (var i in result[1]) {
+                  if (result[1][i].account_id == scope.card.card_id && result[1][i].state == 0) {
+                    result[1][i].count = j;
+                    result[1][i].amount = result[1][i].amount.toString();
 
-                  if (result[1][i].amount.length == 7) {
-                    result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-                      result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
+                    if (result[1][i].amount.length == 7) {
+                      result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
+                        result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
 
+                    }
+
+                    if (result[1][i].amount.length == 6) {
+                      result[1][i].amount = result[1][i].amount.substring(0, 3) + ' ' +
+                        result[1][i].amount.substring(3, result[1][i].amount.length)
+
+                    }
+
+                    if (result[1][i].amount.length == 5) {
+                      result[1][i].amount = result[1][i].amount.substring(0, 2) + ' ' +
+                        result[1][i].amount.substring(2, result[1][i].amount.length)
+
+                    }
+
+                    if (result[1][i].amount.length == 4) {
+                      result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
+                        result[1][i].amount.substring(1, result[1][i].amount.length)
+
+                    }
+
+                    j++;
+                    scope.arrayOfOperationsByAccount.push(result[1][i]);
                   }
-
-                  if (result[1][i].amount.length == 6) {
-                    result[1][i].amount = result[1][i].amount.substring(0, 3) + ' ' +
-                      result[1][i].amount.substring(3, result[1][i].amount.length)
-
-                  }
-
-                  if (result[1][i].amount.length == 5) {
-                    result[1][i].amount = result[1][i].amount.substring(0, 2) + ' ' +
-                      result[1][i].amount.substring(2, result[1][i].amount.length)
-
-                  }
-
-                  if (result[1][i].amount.length == 4) {
-                    result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-                      result[1][i].amount.substring(1, result[1][i].amount.length)
-
-                  }
-
-                  j++;
-                  scope.arrayOfOperationsByAccount.push(result[1][i]);
                 }
+                this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
+                riot.update(scope.arrayOfOperationsByAccount)
+                console.log('scope.arrayOfOperationsByAccount', scope.arrayOfOperationsByAccount)
               }
-              this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
-              riot.update(scope.arrayOfOperationsByAccount)
-              console.log('scope.arrayOfOperationsByAccount', scope.arrayOfOperationsByAccount)
             }
+            else
+              alert(result[0][0].error_note)
+
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
           }
-          else
-            alert(result[0][0].error_note)
-
-        },
-
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      });
+        });
     }
 
     scope.cardInformation(scope.cardId);
