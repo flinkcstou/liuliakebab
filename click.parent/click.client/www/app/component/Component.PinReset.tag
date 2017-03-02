@@ -65,9 +65,10 @@
             scope.firstStage = false;
             riot.update(scope.firstStage);
           }
-          else
+          else {
             alert(result[0][0].error_note);
-          componentPinResetId.style.display = 'none';
+            componentPinResetId.style.display = 'none';
+          }
         },
 
         onFail: function (api_status, api_status_message, data) {

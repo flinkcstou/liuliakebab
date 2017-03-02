@@ -44,14 +44,11 @@
       scope.card = opts[0];
       console.log('scope.card from opt', scope.card);
       this.defaultName = scope.card.name;
-      alert(scope.cardsArray.prototype.size);
-      if (scope.cardsArray.length == 1) {
-        alert("only one card");
+      if (Object.keys(scope.cardsArray).length < 2) {
         scope.onlyOneCard = true;
         riot.update(scope.onlyOneCard);
       }
       else {
-        alert("many cards");
         scope.onlyOneCard = false;
         riot.update(scope.onlyOneCard);
         var isMain = scope.card.default_account;
@@ -110,7 +107,7 @@
       } else {
         scope.noNameChange = true;
       }
-      if (isMain != scope.card.default_account) {
+      if (isMain != scope.card.default_account && !scope.onlyOneCard) {
         console.log("is main");
         window.api.call({
           method: 'settings.change.default.account',
@@ -125,16 +122,29 @@
             console.log(result);
             console.log(result[0][0]);
             if (result[0][0].error == 0 && result[1][0]) {
+              var j = 1;
               for (var i in scope.cardsArray) {
-                if (scope.cardsArray[i].card_id == result[1][0].default_account_id)
+                if (scope.cardsArray[i].card_id == result[1][0].default_account_id) {
                   scope.cardsArray[i].default_account = true;
-                else
+                  scope.cardsArray[i].countCard = 0;
+                }
+                else {
                   scope.cardsArray[i].default_account = false;
+                  scope.cardsArray[i].countCard = j++;
+                }
+              }
+              cardsarrayTwo = {};
+              for (var i = 0; i < Object.keys(scope.cardsArray).length; i++) {
+                for (var k in scope.cardsArray) {
+                  if (scope.cardsArray[k].countCard == i) {
+                    cardsarrayTwo[scope.cardsArray[k].card_id] = scope.cardsArray[k];
+                    console.log("i=", i, ",card=", cardsarrayTwo[scope.cardsArray[k].card_id]);
+                  }
+                }
               }
               console.log("Default account ID new=", result[1][0].default_account_id);
               console.log("bool of current card=", scope.cardsArray[scope.card.card_id].default_account);
-              console.log(scope.cardsArray);
-              localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
+              localStorage.setItem('click_client_cards', JSON.stringify(cardsarrayTwo));
               onBackKeyDown();
             }
             else {

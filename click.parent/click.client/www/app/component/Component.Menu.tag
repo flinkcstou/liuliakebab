@@ -36,7 +36,7 @@
       <div class="side-menu-containers-name side-menu-containers-name-scanner-qr">Сканер QR-кода</div>
     </div>
 
-    <div class="side-menu-settings-container">
+    <div class="side-menu-settings-container" ontouchend="goToSettings()">
       <div class="side-menu-containers-icon side-menu-containers-icon-settings"></div>
       <div class="side-menu-containers-name side-menu-containers-name-settings">Настройки</div>
     </div>

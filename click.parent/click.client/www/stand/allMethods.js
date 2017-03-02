@@ -1920,7 +1920,7 @@ window.fakedSocket.register("settings.change.default.account", function (input) 
         "error_note": ""
       }],
       [{
-        "default_account_id": 4544830
+        "default_account_id": 1287271
       }]
     ];
   return [
@@ -2151,8 +2151,8 @@ window.fakedSocket.register("pin.reset", function (input) {
         "error_note": ""
       }],
       [{
-        "text1": "",
-        "text2": ""
+        "text1": "Все Ваши карты отключены от системы CLICK",
+        "text2": "Для установки нового CLICK-PIN необходимо заново пройти регистрацию"
       }]
     ];
 
