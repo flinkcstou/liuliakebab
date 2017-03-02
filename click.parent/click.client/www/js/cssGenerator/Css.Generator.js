@@ -162,7 +162,7 @@ var css = {
   buttonEnterLabel: ".button-enter-label " +
   "{" +
   "position: relative;" +
-  "top: " + 20 * widthK + "px;" +
+  "top: 19%;" +
   "width:" + 120 * widthK + "px;" +
   "height:" + 40 * widthK + "px;" +
   "font-size:" + 44 * widthK + "px;" +
