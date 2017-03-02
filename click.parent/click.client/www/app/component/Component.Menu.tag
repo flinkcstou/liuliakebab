@@ -16,28 +16,34 @@
         <div class="slider-menu round"></div>
       </label>
     </div>
-    <div class="side-menu-billings-container" ontouchend="goToSettings()">
+    <div class="side-menu-billings-container">
       <div class="side-menu-containers-icon side-menu-containers-icon-billings"></div>
-      <div class="side-menu-containers-name">Выставленные счета</div>
+      <div class="side-menu-containers-name side-menu-containers-name-billings">Выставленные счета</div>
     </div>
+
+    <div class="side-menu-favorite-container">
+      <div class="side-menu-containers-icon side-menu-containers-icon-favorite"></div>
+      <div class="side-menu-containers-name side-menu-containers-name-favorite">Избранные</div>
+    </div>
+
     <div class="side-menu-auto-pay-container">
       <div class="side-menu-containers-icon side-menu-containers-icon-autopayment"></div>
-      <div class="side-menu-containers-name">Автоплатеж</div>
-
+      <div class="side-menu-containers-name side-menu-containers-name-autopayment">Автоплатеж</div>
     </div>
+
     <div class="side-menu-scanner-qr-container">
       <div class="side-menu-containers-icon side-menu-containers-icon-scanner-qr"></div>
-      <div class="side-menu-containers-name">Сканер QR-кода</div>
+      <div class="side-menu-containers-name side-menu-containers-name-scanner-qr">Сканер QR-кода</div>
     </div>
 
     <div class="side-menu-settings-container">
       <div class="side-menu-containers-icon side-menu-containers-icon-settings"></div>
-      <div class="side-menu-containers-name">Настройки</div>
+      <div class="side-menu-containers-name side-menu-containers-name-settings">Настройки</div>
     </div>
 
     <div class="side-menu-call-container" ontouchend="callToClick()">
-      <div class="side-menu-containers-icon"></div>
-      <div class="side-menu-containers-name">Позвонить в Click</div>
+      <div class="side-menu-containers-icon side-menu-containers-icon-call"></div>
+      <div class="side-menu-containers-name side-menu-containers-name-call">Позвонить в Click</div>
     </div>
   </div>
   <script>

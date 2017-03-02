@@ -45,14 +45,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  "background-image: url(resources/draft/menu/crop.png);" +
-  "opacity: 0.6;" +
+  //"background-image: url(resources/draft/menu/crop.png);" +
+  //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-    //"background: -moz-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
-    //"background: -webkit-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
-    //"background: -ms-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+    "background: -moz-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+    "background: -webkit-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+    "background: -ms-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -1154,7 +1154,7 @@ var css = {
   "height:" + 99 * widthK + "px;" +
   "width:" + 95 * widthK + "px;" +
   "left: 52%;" +
-  "border:" + 3 * widthK + "px solid white;" +
+  "border:" + 4 * widthK + "px solid white;" +
   "border-radius:" + 50 * widthK + "px;" +
   "}",
 
@@ -1165,6 +1165,7 @@ var css = {
   "padding: 0;" +
   "bottom:" + 21 * widthK + "px;" +
   "right: 14%;" +
+  "color: white;" +
   "}",
 
   sideMenuUserSecondName: ".side-menu-user-second-name " +
@@ -1174,70 +1175,78 @@ var css = {
   "padding: 0;" +
   "bottom:" + 53 * widthK + "px;" +
   "right: 14%;" +
+  "color: white;" +
   "}",
 
   sideMenuBillingsContainer: ".side-menu-billings-container " +
   "{" +
   "position: relative;" +
-  "top: 40%;" +
+  "top: 32.2%;" +
   "height: 6%;" +
-  "width: 75%;" +
-  "left: 10%;" +
-  "background-color: #92bf3a;" +
-  "border: solid 1px red;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  "border-bottom: 1px solid white;" +
+  "}",
+
+  sideMenuFavoriteContainer: ".side-menu-favorite-container " +
+  "{" +
+  "position: relative;" +
+  "top: 32.7%;" +
+  "height: 6%;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  "border-bottom: 1px solid white;" +
   "}",
 
   sideMenuAutoPayContainer: ".side-menu-auto-pay-container " +
   "{" +
   "position: relative;" +
-  "top: 30%;" +
+  "top: 32.7%;" +
   "height: 6%;" +
-  "width: 75%;" +
-  "left: 10%;" +
-  "background-color: #92bf3a;" +
-  "border: solid 1px red;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  "border-bottom: 1px solid white;" +
   "}",
 
   sideMenuScannerQrContainer: ".side-menu-scanner-qr-container " +
   "{" +
   "position: relative;" +
-  "top: 40%;" +
+  "top: 32.7%;" +
   "height: 6%;" +
-  "width: 75%;" +
-  "left: 10%;" +
-  "background-color: #92bf3a;" +
-  "border: solid 1px red;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  "border-bottom: 1px solid white;" +
   "}",
 
   sideMenuSettingsContainer: ".side-menu-settings-container " +
   "{" +
   "position: relative;" +
-  "top: 50%;" +
-  "height: 6%;" +
-  "width: 75%;" +
-  "left: 10%;" +
-  "background-color: #92bf3a;" +
-  "border: solid 1px red;" +
+  "top: 39.4%;" +
+  "height: 7%;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  "border-bottom: 1px solid white;" +
   "}",
+
+
 
   sideMenuCallContainer: ".side-menu-call-container " +
   "{" +
   "position: relative;" +
-  "top: 60%;" +
+  "top: 38.7%;" +
   "height: 6%;" +
-  "width: 75%;" +
-  "left: 10%;" +
-  "background-color: #92bf3a;" +
-  "border: solid 1px red;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  "border-bottom: 1px solid white;" +
   "}",
 
   sideMenuContainersIcon: ".side-menu-containers-icon " +
   "{" +
   "position: absolute;" +
-  "width: 15%;" +
-  "height: 80%;" +
+  "width: 9%;" +
+  "height: 81%;" +
   "top: 7%;" +
-  "left: 3%;" +
+  "left: 0%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "}",
@@ -1265,21 +1274,39 @@ var css = {
   sideMenuContainersIconCall: ".side-menu-containers-icon-call" +
   "{" +
   "background-image: url(resources/icons/menu/menu_call.png);" +
+  "top: 22%;" +
   "}",
 
-  sideMenuContainersIconFavourit: ".side-menu-containers-icon-favorite" +
+  sideMenuContainersIconFavorite: ".side-menu-containers-icon-favorite" +
   "{" +
-  "background-image: url(resources/icons/menu/menu_call.png);" +
+  "background-image: url(resources/icons/menu/menu_favorites.png);" +
   "}",
 
 
   sideMenuContainersName: ".side-menu-containers-name " +
   "{" +
   "position: absolute;" +
-  "height: 80%;" +
-  "top: 20%;" +
-  "left: 28%;" +
-  "font-size:" + 24 * widthK + "px;" +
+  "top: 25.5%;" +
+  "left: 16%;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "color: white;" +
+  "}",
+
+  sideMenuContainersNameAutopayment: ".side-menu-containers-name-autopayment " +
+  "{" +
+  "}",
+
+  sideMenuContainersNameScannerQr: ".side-menu-containers-name-scanner-qr " +
+  "{" +
+  "}",
+
+  sideMenuContainersNameSettings: ".side-menu-containers-name-settings " +
+  "{" +
+  "}",
+
+  sideMenuContainersNameCall: ".side-menu-containers-name-call " +
+  "{" +
+  "top: 33%;" +
   "}",
 
   sideMenuChangeMode: ".side-menu-change-mode " +
@@ -1289,6 +1316,7 @@ var css = {
   "height: 7%;" +
   "width: 100%;" +
   "background-color: #92bf3a;" +
+  "color: white;" +
   "}",
 
   sideMenuChangeModeText: ".side-menu-change-mode-text " +
