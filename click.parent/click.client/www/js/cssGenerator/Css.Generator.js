@@ -1241,6 +1241,7 @@ var css = {
   "top: 7%;" +
   "left: 3%;" +
   "background-repeat: no-repeat;" +
+  "background-position: center;" +
   "}",
 
   sideMenuContainersName: ".side-menu-containers-name " +
@@ -1281,6 +1282,8 @@ var css = {
   "top: 7%;" +
   "left: 3%;" +
   "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/menu/menu_online.png);" +
   "}",
 
   sideMenuBackPage: ".side-menu-back-page " +
