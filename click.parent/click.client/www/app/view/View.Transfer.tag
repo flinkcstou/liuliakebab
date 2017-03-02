@@ -85,7 +85,6 @@
         <input onchange="cardPhoneBlurAndChange()" onfocus="cardPhoneBlurAndChange()"
                id="cardInputId" class="transfer-card-number-input-part" type="tel"
                maxlength="19" onkeydown="searchCard()" onkeyup="cardOnKeyUp()"/>
-        <div class="transfer-contact-phone-icon"></div>
       </div>
 
       <div id="firstCardSuggestionId" class="transfer-contact-found-container-one"
