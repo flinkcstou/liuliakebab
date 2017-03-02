@@ -3841,15 +3841,16 @@ var css = {
   transferTwoNextButtonInnerContainer: ".transfertwo-next-button-inner-container" +
   "{" +
   "position: relative;" +
-  "height: 6.5%;" +
-  "width: 50%;" +
-  "top: 45%;" +
+  "height: 6%;" +
+  "width: 51%;" +
+  "top: 48%;" +
   "display: table;" +
   "background-color: #027fe4;" +
   "border-radius:" + 50 * widthK + "px;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
   "}",
+
 
   transferTwoNextButtonLabel: ".transfertwo-next-button-label" +
   "{" +
@@ -3866,10 +3867,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 63%;" +
-  "height: 15%;" +
+  "height: 16%;" +
   "top: 26%;" +
   "left: 19%;" +
-  "background-size: 100%;" +
+  "background-size: 97%;" +
   "background-image: url(resources/icons/ViewTransfer/input.png);" +
   "background-repeat: no-repeat;" +
   "background-color: transparent;" +
@@ -3879,8 +3880,8 @@ var css = {
   transferTwoCommentInput: ".transfertwo-comment-input" +
   "{" +
   "position: absolute;" +
-  "width: 90%;" +
-  "height: 65%;" +
+  "width: 87%;" +
+  "height: 59%;" +
   "top: 13%;" +
   "left: 6%;" +
   "font-size:" + 24 * widthK + "px;" +
@@ -4247,7 +4248,7 @@ var css = {
   transferFourButtonEnterLabel: ".transferfour-button-enter-label" +
   "{" +
   "position: relative;" +
-  "top: 20%;" +
+  "top: 18%;" +
   "width: 100%;" +
   "left: 3.5%;" +
   "letter-spacing:" + 3 * widthK + "px;" +
