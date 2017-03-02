@@ -1242,6 +1242,16 @@ var css = {
   "background-repeat: no-repeat;" +
   "}",
 
+  sideMenuContainersName: ".side-menu-containers-name " +
+  "{" +
+  "position: absolute;" +
+  "width: 40%;" +
+  "height: 80%;" +
+  "top: 20%;" +
+  "left: 28%;" +
+
+  "}",
+
   sideMenuChangeMode: ".side-menu-change-mode " +
   "{" +
   "position: absolute;" +

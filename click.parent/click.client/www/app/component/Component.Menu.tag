@@ -16,8 +16,9 @@
         <div class="slider round"></div>
       </label>
     </div>
-    <div class="side-menu-billings-container">
+    <div class="side-menu-billings-container" ontouchend="goToSettings()">
       <div class="side-menu-containers-icon"></div>
+      <div class="side-menu-containers-name">Настройки</div>
     </div>
     <div class="side-menu-auto-pay-container">
       <div class="side-menu-containers-icon"></div>
@@ -107,12 +108,22 @@
     menuBackPageTouchEnd = function () {
       closeMenu()
     }
-
     callToClick = function () {
       event.preventDefault();
       event.stopPropagation();
 
       window.open('tel:+998712310880')
     }
+
+    goToSettings = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riotTags.innerHTML = "<view-settings>";
+      riot.mount("view-settings");
+
+    }
+
+
   </script>
 </component-menu>

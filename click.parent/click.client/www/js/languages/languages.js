@@ -138,6 +138,15 @@ var RU_LANGUAGES =
   "ComponentMenuOfflineMode": "Активен USSD режим",
   "ComponentMenuBillings": "Активен USSD режим",
 
+  "ViewSettingsTitleName": "Настройки",
+  "ViewMainSettingsTitle": "Основные",
+  "ViewSecuritySettingsTitle": "Безопасность",
+  "ViewFriendHelpSettingsTitle": "Помощь друга",
+  "ViewInviteFriendSettingsTitle": "Пригласить друга",
+  "ViewAboutSettingsTitle": "О программе",
+  "ViewSupportSettingsTitle": "Служба поддержки",
+  "ViewCallCenterSettingsTitle": "Позвонить в Контактный центр",
+
 
 };
 
