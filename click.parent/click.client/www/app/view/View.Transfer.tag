@@ -155,11 +155,11 @@
 
     this.on('mount', function () {
 
-//      firstSuggestionBlockId.style.display = 'block';
-//      secondSuggestionBlockId.style.display = 'block';
-//      thirdSuggestionBlockId.style.display = 'block';
-//      fourthSuggestionBlockId.style.display = 'block';
-//      fifthSuggestionBlockId.style.display = 'block';
+      firstSuggestionBlockId.style.display = 'block';
+      secondSuggestionBlockId.style.display = 'block';
+      thirdSuggestionBlockId.style.display = 'block';
+      fourthSuggestionBlockId.style.display = 'block';
+      fifthSuggestionBlockId.style.display = 'block';
 
       if (viewTransfer.type == 2) {
         console.log('ON MOUNT')

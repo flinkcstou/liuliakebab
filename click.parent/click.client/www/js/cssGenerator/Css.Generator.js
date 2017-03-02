@@ -1136,6 +1136,7 @@ var css = {
   "border: 1px solid red;" +
   "background-image: url(resources/icons/toolbar/menus.png);" +
   "background-repeat: no-repeat;" +
+  "background-size: 50%;" +
   "background-position: center;" +
   "}",
 
@@ -1173,7 +1174,7 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "padding: 0;" +
-  "bottom: 20%;" +
+  "bottom:" + 25 * widthK + "px;" +
   "right: 15%;" +
   "}",
 
@@ -3596,7 +3597,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 52.5%;" +
+  "top: 54.5%;" +
   "display: none;" +
   "}",
 
@@ -3607,7 +3608,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 75%;" +
+  "top: 79%;" +
   "display: none;" +
   "}",
 
@@ -3618,7 +3619,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 97.5%;" +
+  "top: 103.5%;" +
   "display: none;" +
   "}",
 
@@ -3629,7 +3630,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 120%;" +
+  "top: 128%;" +
   "display: none;" +
   "}",
 
