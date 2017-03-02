@@ -3253,6 +3253,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "}",
 
+
   searchSelectedFieldColor: ".search-selected-field-color " +
   "{" +
   "background-color: #28a2f9;" +
