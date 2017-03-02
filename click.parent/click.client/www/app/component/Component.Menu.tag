@@ -9,7 +9,7 @@
       <p class="side-menu-user-first-name">{lastName}</p>
     </div>
     <div id="changeModeContainerId" class="side-menu-change-mode">
-      <div class="side-menu-change-mode-icon"></div>
+      <div id="changeModeIconId" class="side-menu-change-mode-icon"></div>
       <p class="side-menu-change-mode-text">{modeOfApplication}</p>
       <label class="switch-menu">
         <input onchange="changeMode()" id="checkBoxChangeId" type="checkbox" checked="{checkModeOfApplication}">
@@ -66,11 +66,13 @@
         scope.modeOfApplication = window.languages.ComponentMenuOnlineMode
         scope.checkModeOfApplication = true;
         changeModeContainerId.style.backgroundColor = '#92bf3a'
+        changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_online.png)';
       }
       if (modeOfApp.offlineMode) {
         scope.modeOfApplication = window.languages.ComponentMenuOfflineMode
         scope.checkModeOfApplication = false;
         changeModeContainerId.style.backgroundColor = '#e56c47'
+        changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
       }
       riot.update();
     })
@@ -107,11 +109,13 @@
         scope.modeOfApplication = window.languages.ComponentMenuOnlineMode
         changeModeContainerId.style.backgroundColor = '#92bf3a'
         scope.checkModeOfApplication = true;
+        changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_online.png)';
       }
       if (modeOfApp.offlineMode) {
         scope.modeOfApplication = window.languages.ComponentMenuOfflineMode
         scope.checkModeOfApplication = false;
         changeModeContainerId.style.backgroundColor = '#e56c47'
+        changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
       }
       riot.update()
     }
