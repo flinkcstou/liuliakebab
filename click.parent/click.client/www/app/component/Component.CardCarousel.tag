@@ -436,7 +436,8 @@
             access: getAccountsCards[i].access,
             background_color_bottom: getAccountsCards[i].background_color_bottom,
             background_color_top: getAccountsCards[i].background_color_top,
-            font_color: getAccountsCards[i].font_color
+            font_color: getAccountsCards[i].font_color,
+            removable: getAccountsCards[i].removable,
           };
 
 
