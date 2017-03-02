@@ -121,6 +121,7 @@
     }
 
     goToSettings = function () {
+      closeMenu();
       event.preventDefault();
       event.stopPropagation();
 

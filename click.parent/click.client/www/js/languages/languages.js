@@ -147,6 +147,21 @@ var RU_LANGUAGES =
   "ViewSupportSettingsTitle": "Служба поддержки",
   "ViewCallCenterSettingsTitle": "Позвонить в Контактный центр",
 
+  "ViewSecuritySettingsTrustedDevicesTitle": "Доверенные устройства",
+  "ViewSecuritySettingsPinChangeTitle": "Сменить CLICK-PIN",
+  "ViewSecuritySettingsTouchScanUseTitle": "Использовать Сканер Отпечатка пальца",
+  "ViewSecuritySettingsBlockTitle": "Блокировка",
+  "ViewSecuritySettingsBlockText": "Запрашивать CLICK-PIN после каждого сворачивания приложения",
+  "ViewSecuritySettingsMyNumberHideTitle": "Скрыть мой номер",
+
+  "ViewFriendHelpSettingsAddFriendText": "Добавить друга",
+  "ViewFriendHelpSettingsFriendNameText": "Имя друга",
+  "ViewFriendHelpSettingsAddText": "Добавить",
+  "ViewFriendHelpSettingsAddFromContactsText": "Выбрать из контактов",
+  "ViewFriendHelpSettingsCancelText": "Отменить",
+
+  "ViewAboutSettingsAgreementTitle": "Пользовательское соглашение",
+  "ViewAboutSettingsRateUsTitle": "Оцените нас в Google Play",
 
 };
 

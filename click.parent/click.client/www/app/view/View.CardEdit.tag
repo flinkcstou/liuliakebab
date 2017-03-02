@@ -116,8 +116,15 @@
             console.log(result);
             console.log(result[0][0]);
             if (result[0][0].error == 0) {
-              scope.cardsArray[scope.card.card_id].default_account = isMain;
-              console.log("defaultBool new=", scope.cardsArray[scope.card.card_id].default_account);
+              for (var i in scope.cardsArray) {
+                if (scope.cardsArray[i].card_id == result[1][0].default_account_id)
+                  scope.cardsArray[i].default_account = true;
+                else
+                  scope.cardsArray[i].default_account = false;
+              }
+              console.log("Default account ID new=", result[1][0].default_account_id);
+              console.log("bool of current card=", scope.cardsArray[scope.card.card_id].default_account);
+              console.log(scope.cardsArray);
               localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
               onBackKeyDown();
             }

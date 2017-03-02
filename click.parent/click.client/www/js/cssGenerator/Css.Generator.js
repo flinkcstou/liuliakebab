@@ -5368,6 +5368,45 @@ var css = {
   //"border-radius: 50%;" +
   //"}",
 
+//  SETTINGS
+
+  settingsContainer: ".settings-container" +
+  "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 86 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: white; " +
+  "overflow-y: auto; " +
+  "overflow-x: hidden; " +
+  "}",
+
+  settingsBlockContainer: ".settings-block-containter" +
+  "{" +
+  "position: relative;" +
+  "min-height:" + 92 * widthK + "px; " +
+  "width: 100%;" +
+  "margin-top: 1%;" +
+  "border-bottom:" + 3 * widthK + "px solid gainsboro;" +
+  "background-color: transparent;" +
+  "}",
+
+  settingsBlockNameField: ".settings-block-name-field" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "font-size:" + 24 * widthK + "px; " +
+  "color: gray;" +
+  "text-align: center;" +
+  "margin-right: auto;" +
+  "top: 100%;" +
+  "width: 100%;" +
+  "height: 40%;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
 }
 
 

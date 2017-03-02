@@ -18,9 +18,9 @@
 
   <div style="width: 100%; height: 100%;" if="{!firstStage}">
     <p class="component-pinreset-message component-pinreset-message-registration">
-      {window.languages.ComponentPinResetTextThree}</p>
+      {firstMessage}</p>
     <hr class="component-pinreset-line">
-    <p class="component-pinreset-message">{window.languages.ComponentPinResetTextFour}</p>
+    <p class="component-pinreset-message">{secondMessage}</p>
 
 
     <div class="component-pinreset-buttons-container">
@@ -55,6 +55,8 @@
           console.log('pin.reset', result);
           if (result[0][0].error == 0) {
             console.log("result of PIN RESET ", result);
+            scope.firstMessage = result[0][0].text1;
+            scope.secondMessage = result[0][0].text2;
           }
           else
             alert(result[0][0].error_note);
@@ -69,6 +71,8 @@
       console.log("call method in api");
       scope.firstStage = false;
       riot.update(scope.firstStage);
+      riot.update(scope.firstMessage);
+      riot.update(scope.secondMessage);
     };
 
     closeWindow = function () {
