@@ -1,13 +1,17 @@
 widthK = window.innerWidth / 720;
 heightK = window.innerHeight / 1232;
+var heightOfMobile;
+var topOfIos;
 
 if (device.platform == 'iOS') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
+  topOfIos = 20;
 }
 else {
   heightK = window.innerHeight / 1232;
   heightOfMobile = window.innerHeight;
+  topOfIos = 0;
 }
 
 var css = {
@@ -1123,7 +1127,7 @@ var css = {
   "background-color: #22a0e0;" +
   "transition: 0.3s;" +
   "-webkit-transition: 0.3s;" +
-  "top: 0;" +
+  "top:" + topOfIos + "px;" +
   "}",
 
   sideMenuInsideButton: ".side-menu-inside-button " +
