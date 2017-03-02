@@ -49,7 +49,7 @@ var RU_LANGUAGES =
   "ViewMyCardTitleName": "ЗАРПЛАТНАЯ КАРТА",
   "ViewMyCardPay": "Оплата с карты",
   "ViewMyCardReports": "Отчеты по карте",
-  "ViewMyCardBlock": "Заблокировать карту",
+  "ViewMyCardBlock": "Удалить карту",
   "ViewMyCardLastOperations": "Последние операции",
 
   "ViewServicePageEnterLabel": "ДАЛЕЕ",
