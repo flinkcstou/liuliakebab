@@ -85,7 +85,6 @@
         <input onchange="cardPhoneBlurAndChange()" onfocus="cardPhoneBlurAndChange()"
                id="cardInputId" class="transfer-card-number-input-part" type="tel"
                maxlength="19" onkeydown="searchCard()" onkeyup="cardOnKeyUp()"/>
-        <div class="transfer-contact-phone-icon"></div>
       </div>
 
       <div id="firstCardSuggestionId" class="transfer-contact-found-container-one"
@@ -155,11 +154,11 @@
 
     this.on('mount', function () {
 
-//      firstSuggestionBlockId.style.display = 'block';
-//      secondSuggestionBlockId.style.display = 'block';
-//      thirdSuggestionBlockId.style.display = 'block';
-//      fourthSuggestionBlockId.style.display = 'block';
-//      fifthSuggestionBlockId.style.display = 'block';
+      firstSuggestionBlockId.style.display = 'block';
+      secondSuggestionBlockId.style.display = 'block';
+      thirdSuggestionBlockId.style.display = 'block';
+      fourthSuggestionBlockId.style.display = 'block';
+      fifthSuggestionBlockId.style.display = 'block';
 
       if (viewTransfer.type == 2) {
         console.log('ON MOUNT')

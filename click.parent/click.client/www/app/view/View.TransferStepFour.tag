@@ -234,9 +234,20 @@
       card.owner = {};
       card.owner.firstName = '';
       card.owner.secondName = '';
-      console.log('CODE OF BANK', codeOfBank)
-
       var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))
+      console.log('CODE OF BANK', codeOfBank)
+      if (JSON.parse(localStorage.getItem('transferCards'))) {
+        transferCards = JSON.parse(localStorage.getItem('transferCards'));
+        for (var j = 0; j < transferCards.length; j++) {
+
+          if (transferCards[j].cardNumber == saveCard) {
+            transferCards.splice(j, 1);
+            localStorage.setItem('transferCards', JSON.stringify(transferCards));
+          }
+
+        }
+      }
+
       for (var i = 0; i < bankList.length; i++) {
         if (codeOfBank == bankList[i].code) {
           if (JSON.parse(localStorage.getItem('transferCards'))) {
@@ -245,6 +256,7 @@
             card.name = bankList[i].name
             card.cardNumber = saveCard;
             transferCards.unshift(card)
+
             localStorage.setItem('transferCards', JSON.stringify(transferCards));
           }
           else {

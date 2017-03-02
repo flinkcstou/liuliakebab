@@ -199,6 +199,8 @@
             if (scope.cardNumberPartOne == '8600') {
               checkDate = true;
               checkPin = false;
+              scope.cardPin = '';
+              riot.update();
             }
             else {
               checkDate = false;
@@ -294,10 +296,10 @@
       }
 
       cardNumber = scope.cardNumberPartOne + scope.cardNumberPartTwo + scope.cardNumberPartThree + scope.cardNumberPartFour;
-      console.log('cardNumberPartOne',scope.cardNumberPartOne)
-      console.log('cardNumberPartTwo',scope.cardNumberPartTwo)
-      console.log('cardNumberPartThree',scope.cardNumberPartThree)
-      console.log('cardNumberPartFour',scope.cardNumberPartFour)
+      console.log('cardNumberPartOne', scope.cardNumberPartOne)
+      console.log('cardNumberPartTwo', scope.cardNumberPartTwo)
+      console.log('cardNumberPartThree', scope.cardNumberPartThree)
+      console.log('cardNumberPartFour', scope.cardNumberPartFour)
 
     }
 

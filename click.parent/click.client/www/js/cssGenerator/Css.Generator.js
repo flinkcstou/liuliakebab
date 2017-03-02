@@ -1,7 +1,7 @@
 widthK = window.innerWidth / 720;
 heightK = window.innerHeight / 1232;
 
-if (device.platform == 'iOS') {
+if (device.platform == 'BrowserStand') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
 }
@@ -162,7 +162,7 @@ var css = {
   buttonEnterLabel: ".button-enter-label " +
   "{" +
   "position: relative;" +
-  "top: " + 20 * widthK + "px;" +
+  "top: 19%;" +
   "width:" + 120 * widthK + "px;" +
   "height:" + 40 * widthK + "px;" +
   "font-size:" + 44 * widthK + "px;" +
@@ -1136,6 +1136,7 @@ var css = {
   "border: 1px solid red;" +
   "background-image: url(resources/icons/toolbar/menus.png);" +
   "background-repeat: no-repeat;" +
+  "background-size: 50%;" +
   "background-position: center;" +
   "}",
 
@@ -1173,7 +1174,7 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "padding: 0;" +
-  "bottom: 20%;" +
+  "bottom:" + 25 * widthK + "px;" +
   "right: 15%;" +
   "}",
 
@@ -3433,7 +3434,7 @@ var css = {
   "position: absolute;" +
   "height:" + 1150 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 90 * heightK + "px;" +
+  "top:" + 93 * widthK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "border-bottom: 1px solid black;" +
@@ -3595,7 +3596,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 30%;" +
+  "top:" + 165 * widthK + "px;" +
   "display: none;" +
   "}",
 
@@ -3606,7 +3607,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 52.5%;" +
+  "top:" + 290 * widthK + "px;" +
   "display: none;" +
   "}",
 
@@ -3617,7 +3618,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 75%;" +
+  "top:" + 415 * widthK + "px;" +
   "display: none;" +
   "}",
 
@@ -3628,7 +3629,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 97.5%;" +
+  "top:" + 540 * widthK + "px;" +
   "display: none;" +
   "}",
 
@@ -3639,7 +3640,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 120%;" +
+  "top:" + 665 * widthK + "px;" +
   "display: none;" +
   "}",
 
@@ -3809,7 +3810,7 @@ var css = {
   "position: absolute;" +
   "height:" + 1139 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 93 * heightK + "px;" +
+  "top:" + 93 * widthK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
@@ -3850,15 +3851,16 @@ var css = {
   transferTwoNextButtonInnerContainer: ".transfertwo-next-button-inner-container" +
   "{" +
   "position: relative;" +
-  "height: 6.5%;" +
-  "width: 50%;" +
-  "top: 45%;" +
+  "height: 6%;" +
+  "width: 51%;" +
+  "top: 48%;" +
   "display: table;" +
   "background-color: #027fe4;" +
   "border-radius:" + 50 * widthK + "px;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
   "}",
+
 
   transferTwoNextButtonLabel: ".transfertwo-next-button-label" +
   "{" +
@@ -3875,10 +3877,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 63%;" +
-  "height: 15%;" +
+  "height: 16%;" +
   "top: 26%;" +
   "left: 19%;" +
-  "background-size: 100%;" +
+  "background-size: 97%;" +
   "background-image: url(resources/icons/ViewTransfer/input.png);" +
   "background-repeat: no-repeat;" +
   "background-color: transparent;" +
@@ -3888,8 +3890,8 @@ var css = {
   transferTwoCommentInput: ".transfertwo-comment-input" +
   "{" +
   "position: absolute;" +
-  "width: 90%;" +
-  "height: 65%;" +
+  "width: 87%;" +
+  "height: 59%;" +
   "top: 13%;" +
   "left: 6%;" +
   "font-size:" + 24 * widthK + "px;" +
@@ -3929,7 +3931,7 @@ var css = {
   "position: absolute;" +
   "height:" + 1139 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 93 * heightK + "px;" +
+  "top:" + 93 * widthK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
@@ -4008,7 +4010,7 @@ var css = {
   "position: absolute;" +
   "height:" + 1142 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 90 * heightK + "px;" +
+  "top:" + 93 * widthK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
@@ -4256,7 +4258,7 @@ var css = {
   transferFourButtonEnterLabel: ".transferfour-button-enter-label" +
   "{" +
   "position: relative;" +
-  "top: 20%;" +
+  "top: 18%;" +
   "width: 100%;" +
   "left: 3.5%;" +
   "letter-spacing:" + 3 * widthK + "px;" +
@@ -4841,6 +4843,7 @@ var css = {
   "{" +
   "top: -65%;" +
   "left: 0;" +
+  "width: 200%;" +
   "}",
 
   registrationClientCardDate: ".registration-client-card-date " +
@@ -4859,9 +4862,9 @@ var css = {
   registrationClientCardDateBox: ".registration-client-card-date-box " +
   "{" +
   "position: absolute;" +
-  "width: 60%;" +
+  "width: 65%;" +
   "left: 23%;" +
-  "height: 50%;" +
+  "height: 60%;" +
   "top: 26%;" +
   "background-color: transparent;" +
   "border: none;" +
@@ -4885,9 +4888,9 @@ var css = {
   registrationClientCardDatePinBox: ".registration-client-card-date-pin-box " +
   "{" +
   "position: absolute;" +
-  "width: 52%;" +
-  "left: 22%;" +
-  "height: 50%;" +
+  "width: 65%;" +
+  "left: 23%;" +
+  "height: 60%;" +
   "top: 26%;" +
   "background-color: transparent;" +
   "border: none;" +
