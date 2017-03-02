@@ -1,7 +1,7 @@
 widthK = window.innerWidth / 720;
 heightK = window.innerHeight / 1232;
 
-if (device.platform == 'BrowserStand') {
+if (device.platform == 'iOS') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
 }
@@ -3247,6 +3247,10 @@ var css = {
   "left: 5%;" +
   "margin-top: 5%;" +
   "color: #a1a1a2;" +
+  "overflow: hidden;" +
+  "width: 90%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
   "}",
 
   searchSelectedFieldColor: ".search-selected-field-color " +

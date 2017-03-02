@@ -86,9 +86,7 @@
 
           var index = wordOfFunction.name.toLowerCase().indexOf(scope.searchWord);
           if (index != -1 && countOfSuggestionWord <= 4) {
-            if (wordOfFunction.name.length > 30) {
-              wordOfFunction.name = wordOfFunction.name.substring(0, 30)
-            }
+
             console.log('wordOfFunction.name', wordOfFunction.name)
 
             check = true;
