@@ -1,7 +1,7 @@
 widthK = window.innerWidth / 720;
 heightK = window.innerHeight / 1232;
 
-if (device.platform == 'iOS') {
+if (device.platform == 'BrowserStand') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
 }
@@ -3586,7 +3586,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 30%;" +
+  "top:" + 165 * widthK + "px;" +
   "display: none;" +
   "}",
 
@@ -3597,7 +3597,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 54.5%;" +
+  "top:" + 290 * widthK + "px;" +
   "display: none;" +
   "}",
 
@@ -3608,7 +3608,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 79%;" +
+  "top:" + 415 * widthK + "px;" +
   "display: none;" +
   "}",
 
@@ -3619,7 +3619,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 103.5%;" +
+  "top:" + 540 * widthK + "px;" +
   "display: none;" +
   "}",
 
@@ -3630,7 +3630,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top: 128%;" +
+  "top:" + 665 * widthK + "px;" +
   "display: none;" +
   "}",
 
@@ -4832,6 +4832,7 @@ var css = {
   "{" +
   "top: -65%;" +
   "left: 0;" +
+  "width: 200%;" +
   "}",
 
   registrationClientCardDate: ".registration-client-card-date " +
@@ -4850,9 +4851,9 @@ var css = {
   registrationClientCardDateBox: ".registration-client-card-date-box " +
   "{" +
   "position: absolute;" +
-  "width: 60%;" +
+  "width: 65%;" +
   "left: 23%;" +
-  "height: 50%;" +
+  "height: 60%;" +
   "top: 26%;" +
   "background-color: transparent;" +
   "border: none;" +
@@ -4876,9 +4877,9 @@ var css = {
   registrationClientCardDatePinBox: ".registration-client-card-date-pin-box " +
   "{" +
   "position: absolute;" +
-  "width: 52%;" +
-  "left: 22%;" +
-  "height: 50%;" +
+  "width: 65%;" +
+  "left: 23%;" +
+  "height: 60%;" +
   "top: 26%;" +
   "background-color: transparent;" +
   "border: none;" +
