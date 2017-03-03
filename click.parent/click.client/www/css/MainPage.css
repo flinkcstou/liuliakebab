@@ -1058,12 +1058,11 @@ input {
   float: right;
   background-image: url("../resources/icons/ViewService/book.png");
   width: 8%;
-  height: 50%;
+  height: 65%;
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: 98%;
   background-position: center;
-  top: 36%;
-  right: 1%;
+  top: 27%;
 }
 
 .servicepage-amount-field {
@@ -1095,7 +1094,7 @@ input {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
-  top: 36%;
+  top: 40%;
 }
 
 .servicepage-text-field {

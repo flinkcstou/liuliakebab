@@ -2643,12 +2643,11 @@ var css = {
   "float: right;" +
   "background-image: url('resources/icons/ViewService/book.png');" +
   "width: 8%;" +
-  "height: 50%;" +
+  "height: 65%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 100%;" +
+  "background-size: 98%;" +
   "background-position: center;" +
-  "top: 36%;" +
-  "right:1%;" +
+  "top: 27%;" +
   "}",
 
   servicePageAmountField: ".servicepage-amount-field" +
@@ -2677,7 +2676,7 @@ var css = {
   "float: right;" +
   "background-image: url('resources/icons/ViewService/calc.png');" +
   "width: 7%;" +
-  "height: 40%;" +
+  "height: 50%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-size: 100%;" +
