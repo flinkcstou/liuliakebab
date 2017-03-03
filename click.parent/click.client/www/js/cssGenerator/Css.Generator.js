@@ -6,7 +6,7 @@ var topOfIos;
 if (device.platform == 'iOS') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
-  Keyboard.shrinkView(false);
+  cordova.plugins.Keyboard.disableScroll(true);
   topOfIos = 20;
 }
 else {
