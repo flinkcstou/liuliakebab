@@ -561,8 +561,9 @@
 
       arrayOfCards.filter(function (wordOfFunction) {
 
-        var index = wordOfFunction.cardNumber.indexOf(scope.searchWord);
+        var index = wordOfFunction.cardNumber.replace(/\s/g, '').indexOf(scope.searchWord);
         if (index != -1 && countOfFound < 2) {
+          console.log(wordOfFunction.cardNumber)
 
           check = true;
 
@@ -755,6 +756,7 @@
 
       contactInputFieldId.style.display = 'block'
       cardInputFieldId.style.display = 'none'
+      cardInputId.value = '';
       viewTransfer.type = 2;
       scope.cardMode = false;
       scope.contactMode = true;
@@ -768,6 +770,10 @@
       if (viewTransfer.phoneNumber)
         this.contactPhoneNumberId.value = viewTransfer.phoneNumber;
 
+      if (!contactPhoneNumberId.value) {
+        nextButtonId.style.display = 'none'
+      }
+
       contactSuggestionFunction();
 
     }
@@ -776,6 +782,7 @@
       contactInputFieldId.style.display = 'none'
       cardInputFieldId.style.display = 'block'
       viewTransfer.type = 1;
+      contactPhoneNumberId.value = '';
       scope.cardMode = true;
       scope.contactMode = false;
       riot.update();
@@ -787,6 +794,10 @@
 
       if (viewTransfer.cardNumber)
         this.cardInputId.value = viewTransfer.cardNumber
+
+      if (!cardInputId.value) {
+        nextButtonId.style.display = 'none'
+      }
 
       cardSuggestionFunction();
 

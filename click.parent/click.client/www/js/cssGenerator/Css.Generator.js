@@ -3872,7 +3872,7 @@ var css = {
   "position: relative;" +
   "height: 6%;" +
   "width: 51%;" +
-  "top: 48%;" +
+  "top: 28%;" +
   "display: table;" +
   "display: none;" +
   "background-color: #027fe4;" +
