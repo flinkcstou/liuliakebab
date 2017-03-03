@@ -162,7 +162,7 @@
     }
   }
 
-  function checkImageURL(dirEntry, folderName, fileName, assetURL, index, callback) {
+  function checkImageURL(dirEntry, fileNamePrefix, fileName, assetURL, index, callback) {
 
     var xhr = new XMLHttpRequest();
 
@@ -200,11 +200,13 @@
         // get the real base64 content of the file
         var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
 
-        var folderpath = cordova.file.dataDirectory + folderName;
+        var folderpath = cordova.file.dataDirectory;
+        console.log("file name with prefix", fileNamePrefix + fileName);
+        console.log("file name with prefix another attempt", fileNamePrefix + '-' + fileName);
 
-        savebase64AsImageFile(folderpath, fileName, realData, dataType);
+        savebase64AsImageFile(folderpath, fileNamePrefix + fileName, realData, dataType);
 
-        callback(true, index, fileName);
+        callback(true, index, fileNamePrefix + fileName);
       });
       event.preventDefault();
     };
@@ -216,7 +218,7 @@
     // Convert the base64 string in a Blob
     var DataBlob = b64toBlob(content, contentType);
 
-    console.log("Starting to write the file :3");
+    console.log("Starting to write the file :3", filename);
 
     window.resolveLocalFileSystemURL(folderpath, function (dir) {
       console.log("Access to the directory granted succesfully");

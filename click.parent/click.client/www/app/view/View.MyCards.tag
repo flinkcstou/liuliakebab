@@ -122,7 +122,7 @@
           onSuccess: function (result) {
             if (result[0][0].error == 0) {
               alert('Карта успешно удалена')
-              updateCard();
+//              updateCard();
               return
             }
             else {
@@ -141,100 +141,100 @@
         return;
     }
 
-    updateCard = function () {
-
-      var arrayAccountInfo = [];
-      localStorage.removeItem('click_client_accountInfo')
-      localStorage.removeItem('click_client_cards')
-      localStorage.removeItem('cardNumber')
-      localStorage.removeItem('click_client_countCard')
-
-      console.log('ACCOUNT INFO', JSON.parse(localStorage.getItem('click_client_accountInfo')))
-      console.log('ACCOUNT INFO')
-
-      if (!localStorage.getItem("click_client_accountInfo")) {
-        window.api.call({
-          method: 'get.accounts',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber
-          },
-
-          scope: this,
-
-          onSuccess: function (result) {
-
-            if (result[0][0].error == 0) {
-
-              if (device.platform != 'BrowserStand') {
-                window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-                  var j = -1;
-                  for (var i = 0; i < result[1].length; i++) {
-
-                    j++;
-                    arrayAccountInfo.push(result[1][i]);
-
-                    var icon = result[1][i].card_background_url;
-                    console.log();
-                    var filename = icon.substr(icon.lastIndexOf('/') + 1);
-                    console.log("filename=" + filename);
-
-                    var newIconBool = checkImageURL;
-                    newIconBool('www/resources/icons/cards/', filename, icon, j, function (bool, index, fileName) {
-
-                      if (bool) {
-                        arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
-                      } else {
-                        arrayAccountInfo[index].card_background_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/' + fileName;
-                      }
-
-                      var icon2 = arrayAccountInfo[index].image_url;
-                      var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
-                      var newIcon = checkImageURL;
-                      newIcon('www/resources/icons/cards/logo/', filename2, icon2, index, function (bool2, index2, fileName2) {
-
-                        if (bool2) {
-                          arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
-                        } else {
-                          arrayAccountInfo[index2].image_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/logo/' + fileName2;
-                        }
-
-                        if (result[1].length == arrayAccountInfo.length) {
-                          console.log("save into localstorage");
-                          var accountInfo = JSON.stringify(arrayAccountInfo);
-                          localStorage.setItem("click_client_accountInfo", accountInfo);
-                          this.riotTags.innerHTML = "<view-my-cards>";
-                          riot.mount('view-my-cards');
-                        }
-                      });
-
-                    });
-
-                  }
-                }, onErrorLoadFs);
-              } else {
-                for (var i = 0; i < result[1].length; i++)
-                  arrayAccountInfo.push(result[1][i])
-                var accountInfo = JSON.stringify(arrayAccountInfo);
-                localStorage.setItem("click_client_accountInfo", accountInfo);
-                this.riotTags.innerHTML = "<view-my-cards>";
-                riot.mount('view-my-cards');
-              }
-            }
-            else
-              alert(result[0][0].error_note);
-          },
-
-
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
-          }
-        })
-      }
-
-
-    }
+//    updateCard = function () {
+    //
+    //      var arrayAccountInfo = [];
+    //      localStorage.removeItem('click_client_accountInfo')
+    //      localStorage.removeItem('click_client_cards')
+    //      localStorage.removeItem('cardNumber')
+    //      localStorage.removeItem('click_client_countCard')
+    //
+    //      console.log('ACCOUNT INFO', JSON.parse(localStorage.getItem('click_client_accountInfo')))
+    //      console.log('ACCOUNT INFO')
+    //
+    //      if (!localStorage.getItem("click_client_accountInfo")) {
+    //        window.api.call({
+    //          method: 'get.accounts',
+    //          input: {
+    //            session_key: sessionKey,
+    //            phone_num: phoneNumber
+    //          },
+    //
+    //          scope: this,
+    //
+    //          onSuccess: function (result) {
+    //
+    //            if (result[0][0].error == 0) {
+    //
+    //              if (device.platform != 'BrowserStand') {
+    //                window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+    //                  var j = -1;
+    //                  for (var i = 0; i < result[1].length; i++) {
+    //
+    //                    j++;
+    //                    arrayAccountInfo.push(result[1][i]);
+    //
+    //                    var icon = result[1][i].card_background_url;
+    //                    console.log();
+    //                    var filename = icon.substr(icon.lastIndexOf('/') + 1);
+    //                    console.log("filename=" + filename);
+    //
+    //                    var newIconBool = checkImageURL;
+    //                    newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
+    //
+    //                      if (bool) {
+    //                        arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + 'cards' + fileName;
+    //                      } else {
+    //                        arrayAccountInfo[index].card_background_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/' + fileName;
+    //                      }
+    //
+    //                      var icon2 = arrayAccountInfo[index].image_url;
+    //                      var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
+    //                      var newIcon = checkImageURL;
+    //                      newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
+    //
+    //                        if (bool2) {
+    //                          arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + 'cards' + fileName2;
+    //                        } else {
+    //                          arrayAccountInfo[index2].image_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/logo/' + fileName2;
+    //                        }
+    //
+    //                        if (result[1].length == arrayAccountInfo.length) {
+    //                          console.log("save into localstorage");
+    //                          var accountInfo = JSON.stringify(arrayAccountInfo);
+    //                          localStorage.setItem("click_client_accountInfo", accountInfo);
+    //                          this.riotTags.innerHTML = "<view-my-cards>";
+    //                          riot.mount('view-my-cards');
+    //                        }
+    //                      });
+    //
+    //                    });
+    //
+    //                  }
+    //                }, onErrorLoadFs);
+    //              } else {
+    //                for (var i = 0; i < result[1].length; i++)
+    //                  arrayAccountInfo.push(result[1][i])
+    //                var accountInfo = JSON.stringify(arrayAccountInfo);
+    //                localStorage.setItem("click_client_accountInfo", accountInfo);
+    //                this.riotTags.innerHTML = "<view-my-cards>";
+    //                riot.mount('view-my-cards');
+    //              }
+    //            }
+    //            else
+    //              alert(result[0][0].error_note);
+    //          },
+    //
+    //
+    //          onFail: function (api_status, api_status_message, data) {
+    //            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+    //            console.error(data);
+    //          }
+    //        })
+    //      }
+    //
+    //
+    //    }
     var scope = this,
       sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
       phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -313,6 +313,7 @@
                     }
 
                     if (result[1][i].amount.length == 4) {
+
                       result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
                         result[1][i].amount.substring(1, result[1][i].amount.length)
 
