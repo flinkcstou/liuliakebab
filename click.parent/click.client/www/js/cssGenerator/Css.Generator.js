@@ -5436,17 +5436,24 @@ var css = {
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "font-size:" + 24 * widthK + "px; " +
+  "top: " + 31 * widthK + "px; " +
+  "left: 6%;" +
+  "text-align: left;" +
+  "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
-  "text-align: center;" +
-  "margin-right: auto;" +
-  "top: 100%;" +
-  "width: 100%;" +
-  "height: 40%;" +
-  "text-overflow: ellipsis;" +
-  "overflow: hidden;" +
   "}",
 
+  settingsBlockIcon: ".settings-block-icon" +
+  "{" +
+  "position: relative;" +
+  "width: 13%;" +
+  "height:" + 95 * widthK + "px; " +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "float: left;" +
+  "left: 3%;" +
+  "background-size: 50%;" +
+  "}",
 }
 
 

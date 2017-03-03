@@ -141,6 +141,7 @@ var RU_LANGUAGES =
   "ComponentMenuBillings": "Активен USSD режим",
 
   "ViewSettingsTitleName": "Настройки",
+  "ViewSettingsTitleNameTwo": "НАСТРОЙКИ",
   "ViewMainSettingsTitle": "Основные",
   "ViewSecuritySettingsTitle": "Безопасность",
   "ViewFriendHelpSettingsTitle": "Помощь друга",

@@ -6,30 +6,37 @@
     </div>
     <div class="settings-container">
       <div class="settings-block-containter" ontouchend="goToMainSettings()">
+        <div class="settings-block-icon" style="background-color: lightgray;"></div>
         <div class="settings-block-name-field">{window.languages.ViewMainSettingsTitle}</div>
       </div>
 
       <div class="settings-block-containter" ontouchend="goToSecuritySettings()">
+        <div class="settings-block-icon" style="background-color: lightgray;"></div>
         <div class="settings-block-name-field">{window.languages.ViewSecuritySettingsTitle}</div>
       </div>
 
       <div class="settings-block-containter" ontouchend="goToFriendHelpSettings()">
+        <div class="settings-block-icon" style="background-color: lightgray;"></div>
         <div class="settings-block-name-field">{window.languages.ViewFriendHelpSettingsTitle}</div>
       </div>
 
       <div class="settings-block-containter" ontouchend="goToInviteFriendSettings()">
+        <div class="settings-block-icon" style="background-color: lightgray;"></div>
         <div class="settings-block-name-field">{window.languages.ViewInviteFriendSettingsTitle}</div>
       </div>
 
       <div class="settings-block-containter" ontouchend="goToAboutSettings()">
+        <div class="settings-block-icon" style="background-color: lightgray;"></div>
         <div class="settings-block-name-field">{window.languages.ViewAboutSettingsTitle}</div>
       </div>
 
       <div class="settings-block-containter" ontouchend="goToSupportSettings()">
+        <div class="settings-block-icon" style="background-color: lightgray;"></div>
         <div class="settings-block-name-field">{window.languages.ViewSupportSettingsTitle}</div>
       </div>
 
       <div class="settings-block-containter" ontouchend="goToCallCenterSettings()">
+        <div class="settings-block-icon" style="background-color: lightgray;"></div>
         <div class="settings-block-name-field">{window.languages.ViewCallCenterSettingsTitle}</div>
       </div>
     </div>
@@ -38,7 +45,7 @@
 
   <script>
     var scope = this;
-    this.titleName = window.languages.ViewSettingsTitleName;
+    this.titleName = window.languages.ViewSettingsTitleNameTwo;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-settings') {
       history.arrayOfHistory.push(
