@@ -3821,7 +3821,6 @@ var css = {
   "background-size: 100%;" +
   "background-position: center;" +
   "border-radius: 50%;" +
-  "border: 1px solid gray;" +
   "left: 5%;" +
   "background-size: 150%;" +
   "}",
