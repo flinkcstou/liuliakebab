@@ -184,6 +184,13 @@
           break;
         }
           }
+      if(!maxLimit){
+        maxLimit = 5000000;
+      }
+
+      if(!minLimit){
+        minLimit = 5000;
+      }
       if (sumForTransfer < minLimit) {
         alert('Минимальная сумма 5 000')
         return;
