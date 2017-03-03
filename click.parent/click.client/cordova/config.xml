@@ -12,7 +12,7 @@
   <plugin name="cordova-plugin-whitelist"/>
   <plugin name="cordova-plugin-contacts"/>
   <plugin name="cordova-plugin-device"/>
-  <plugin name="cordova-plugin-keyboard"/>
+  <plugin name="com.ionic.keyboard"/>
   <plugin name="cordova-plugin-file"/>
   <plugin name="cordova-plugin-android-permissions"/>
   <plugin name="cordova-plugin-sim"/>
