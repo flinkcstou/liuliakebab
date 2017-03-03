@@ -172,6 +172,7 @@
     var firstEnter = false;
 
     startTouchCarousel = function () {
+
       //
       //Test
 //      scope.direction = 0;
@@ -237,7 +238,7 @@
 //      vNowOriginal3 = vNow3
     }
 
-    var leftCard = false, rightCard = false;
+    //    var leftCard = false, rightCard = false;
 
     endTouchCarousel = function () {
 
@@ -463,83 +464,83 @@
       scope.addCard(getAccountsCards);
     }
 
-//    changeColor = function (index) {
-//      console.log('sss')
-//      var splitTop = cardsarray[index].background_color_top.split(',');
-//      fromChangableColor1 = splitTop[0]
-//      fromChangableColor2 = splitTop[1]
-//      fromChangableColor3 = splitTop[2]
-//
-//      var splitBottom = cardsarray[index].background_color_bottom.split(',');
-//      toChangableColor1 = splitBottom[0]
-//      toChangableColor2 = splitBottom[1]
-//      toChangableColor3 = splitBottom[2]
-//
-//      if (cNow1 != fromChangableColor1)
-//        if (cNow1 > fromChangableColor1) cNow1--;
-//
-//      if (cNow1 != fromChangableColor1)
-//        if (cNow1 < fromChangableColor1) cNow1++;
-//
-//      if (cNow2 != fromChangableColor2)
-//        if (cNow2 > fromChangableColor2) cNow2--;
-//
-//      if (cNow2 != fromChangableColor2)
-//        if (cNow2 < fromChangableColor2) cNow2++;
-//
-//      if (cNow3 != fromChangableColor3)
-//        if (cNow3 > fromChangableColor3) cNow3--;
-//
-//      if (cNow3 != fromChangableColor3)
-//        if (cNow3 < fromChangableColor3) cNow3++;
-//
-//      if (vNow1 != toChangableColor1)
-//        if (vNow1 > toChangableColor1) vNow1--;
-//
-//      if (vNow1 != toChangableColor1)
-//        if (vNow1 < toChangableColor1) vNow1++;
-//
-//      if (vNow2 != toChangableColor2)
-//        if (vNow2 > toChangableColor2) vNow2--;
-//
-//      if (vNow2 != toChangableColor2)
-//        if (vNow2 < toChangableColor2) vNow2++;
-//
-//      if (vNow3 != toChangableColor3)
-//        if (vNow3 > toChangableColor3) vNow3--;
-//
-//      if (vNow3 != toChangableColor3)
-//        if (vNow3 < toChangableColor3) vNow3++;
-//
-//      htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-//        'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
-//
-//      if (!viewMainPage.myCards) {
-//        contacts.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-//        circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-//
-//        contactsId.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-//        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-//      }
-//
-//      if (cNow1 == fromChangableColor1 && cNow2 == fromChangableColor2 && cNow3 == fromChangableColor3 &&
-//        vNow1 == toChangableColor1 && vNow2 == toChangableColor2 && vNow3 == toChangableColor3)
-//        clearInterval(changingColor)
-//
-//      if (!fromChangableColor1 || !fromChangableColor2 || !fromChangableColor3 || !toChangableColor1 || !toChangableColor2 || !toChangableColor3)
-//        clearInterval(changingColor)
-////
-////      console.log('cNow1', cNow1, 'fromChangableColor1', fromChangableColor1)
-////      console.log('cNow2', cNow2, 'fromChangableColor2', fromChangableColor2)
-////      console.log('cNow3', cNow3, 'fromChangableColor3', fromChangableColor3)
-////      console.log('vNow1', vNow1, 'toChangableColor1', toChangableColor1)
-////      console.log('vNow2', vNow2, 'toChangableColor2', toChangableColor2)
-////      console.log('vNow3', vNow3, 'toChangableColor3', toChangableColor3)
-//
-//
-//    }
+    //    changeColor = function (index) {
+    //      console.log('sss')
+    //      var splitTop = cardsarray[index].background_color_top.split(',');
+    //      fromChangableColor1 = splitTop[0]
+    //      fromChangableColor2 = splitTop[1]
+    //      fromChangableColor3 = splitTop[2]
+    //
+    //      var splitBottom = cardsarray[index].background_color_bottom.split(',');
+    //      toChangableColor1 = splitBottom[0]
+    //      toChangableColor2 = splitBottom[1]
+    //      toChangableColor3 = splitBottom[2]
+    //
+    //      if (cNow1 != fromChangableColor1)
+    //        if (cNow1 > fromChangableColor1) cNow1--;
+    //
+    //      if (cNow1 != fromChangableColor1)
+    //        if (cNow1 < fromChangableColor1) cNow1++;
+    //
+    //      if (cNow2 != fromChangableColor2)
+    //        if (cNow2 > fromChangableColor2) cNow2--;
+    //
+    //      if (cNow2 != fromChangableColor2)
+    //        if (cNow2 < fromChangableColor2) cNow2++;
+    //
+    //      if (cNow3 != fromChangableColor3)
+    //        if (cNow3 > fromChangableColor3) cNow3--;
+    //
+    //      if (cNow3 != fromChangableColor3)
+    //        if (cNow3 < fromChangableColor3) cNow3++;
+    //
+    //      if (vNow1 != toChangableColor1)
+    //        if (vNow1 > toChangableColor1) vNow1--;
+    //
+    //      if (vNow1 != toChangableColor1)
+    //        if (vNow1 < toChangableColor1) vNow1++;
+    //
+    //      if (vNow2 != toChangableColor2)
+    //        if (vNow2 > toChangableColor2) vNow2--;
+    //
+    //      if (vNow2 != toChangableColor2)
+    //        if (vNow2 < toChangableColor2) vNow2++;
+    //
+    //      if (vNow3 != toChangableColor3)
+    //        if (vNow3 > toChangableColor3) vNow3--;
+    //
+    //      if (vNow3 != toChangableColor3)
+    //        if (vNow3 < toChangableColor3) vNow3++;
+    //
+    //      htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
+    //        'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
+    //
+    //      if (!viewMainPage.myCards) {
+    //        contacts.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+    //        circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+    //
+    //        contactsId.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+    //        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
+    //      }
+    //
+    //      if (cNow1 == fromChangableColor1 && cNow2 == fromChangableColor2 && cNow3 == fromChangableColor3 &&
+    //        vNow1 == toChangableColor1 && vNow2 == toChangableColor2 && vNow3 == toChangableColor3)
+    //        clearInterval(changingColor)
+    //
+    //      if (!fromChangableColor1 || !fromChangableColor2 || !fromChangableColor3 || !toChangableColor1 || !toChangableColor2 || !toChangableColor3)
+    //        clearInterval(changingColor)
+    ////
+    ////      console.log('cNow1', cNow1, 'fromChangableColor1', fromChangableColor1)
+    ////      console.log('cNow2', cNow2, 'fromChangableColor2', fromChangableColor2)
+    ////      console.log('cNow3', cNow3, 'fromChangableColor3', fromChangableColor3)
+    ////      console.log('vNow1', vNow1, 'toChangableColor1', toChangableColor1)
+    ////      console.log('vNow2', vNow2, 'toChangableColor2', toChangableColor2)
+    ////      console.log('vNow3', vNow3, 'toChangableColor3', toChangableColor3)
+    //
+    //
+    //    }
 
-//    var changingColor;
+    //    var changingColor;
 
     function changePosition() {
 //      clearInterval(changingColor);

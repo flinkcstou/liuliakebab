@@ -4086,7 +4086,7 @@ var css = {
   transferThreeMenusContainer: ".transferthree-menus-container " +
   "{" +
   "position: absolute;" +
-  "height: 8.5%;" +
+  "height: 7.5%;" +
   "width: 100%;" +
   "top: 0%;" +
   "background-color: transparent;" +
