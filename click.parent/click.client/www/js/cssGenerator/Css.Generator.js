@@ -3,7 +3,7 @@ heightK = window.innerHeight / 1232;
 var heightOfMobile;
 var topOfIos;
 
-if (device.platform == 'BrowserStand') {
+if (device.platform == 'iOS') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
   topOfIos = 20;
