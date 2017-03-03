@@ -6,6 +6,7 @@ var topOfIos;
 if (device.platform == 'iOS') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
+  Keyboard.shrinkView(false);
   topOfIos = 20;
 }
 else {
@@ -1117,7 +1118,7 @@ var css = {
 
   sideMenu: ".side-menu " +
   "{" +
-  "position: fixed;" +
+  "position: absolute;" +
   "height: 100%;" +
   "width:" + 538 * widthK + "px;" +
   "overflow: hidden;" +
@@ -1127,7 +1128,7 @@ var css = {
   "background-color: #22a0e0;" +
   "transition: 0.3s;" +
   "-webkit-transition: 0.3s;" +
-  "top:" + topOfIos + "px;" +
+    //"top:" + topOfIos + "px;" +
   "}",
 
   sideMenuInsideButton: ".side-menu-inside-button " +
@@ -1428,7 +1429,7 @@ var css = {
 
   sideMenuBackPage: ".side-menu-back-page " +
   "{" +
-  "position: fixed;" +
+  "position: absolute;" +
   "height: 100%;" +
   "width: 100%;" +
   "overflow: hidden;" +
@@ -1515,7 +1516,7 @@ var css = {
 
   footer: ".footer " +
   "{" +
-  "position: fixed;" +
+  "position: absolute;" +
   "bottom:" + 190 * widthK + "px;" +
   "left: 0;" +
   "right: 0;" +
@@ -1541,7 +1542,7 @@ var css = {
 
   footerContactsContainer: ".footer-contacts-container " +
   "{" +
-  "position: fixed;" +
+  "position: absolute;" +
   "bottom: 0;" +
   "left: 0;" +
   "right: 0;" +
@@ -1565,7 +1566,7 @@ var css = {
 
   footerContacts: ".footer-contacts " +
   "{" +
-  "position: fixed;" +
+  "position: absolute;" +
   "width: 100%;" +
   "height:" + 240 * widthK + "px;" +
   "bottom:" + -40 * widthK + "px;" +
@@ -3817,6 +3818,7 @@ var css = {
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
   "background-position: center;" +
   "border-radius: 50%;" +
   "border: 1px solid gray;" +
