@@ -2314,7 +2314,7 @@ var css = {
   payServiceBlockContainer: ".pay-service-block-containter" +
   "{" +
   "position: relative;" +
-  "min-height:" + 92 * widthK + "px; " +
+  "min-height:" + 100 * widthK + "px; " +
   "width: 100%;" +
   "margin-top: 1%;" +
   "border-bottom:" + 3 * widthK + "px solid gainsboro;" +
@@ -2339,9 +2339,9 @@ var css = {
   "height: " + 150 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "border-radius: " + 100 * widthK + "px;" +
-  "border: " + 1 + "px solid #f1f1f1;" +
-  "background-size: 80%;" +
+    //"border-radius: " + 100 * widthK + "px;" +
+  "border: " + 1 + "px solid white;" +
+  "background-size: initial;" +
   "}",
 
   payServiceNameField: ".pay-service-name-field" +
@@ -2352,7 +2352,7 @@ var css = {
   "color: gray;" +
   "text-align: center;" +
   "margin-right: auto;" +
-  "top: 100%;" +
+  "top: 104%;" +
   "width: 100%;" +
   "height: 40%;" +
   "text-overflow: ellipsis;" +
@@ -2463,7 +2463,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "width:" + 19 * widthK + "px;" +
   "height:" + 18 * widthK + "px;" +
-  "top:" + 2 * widthK + "px;" +
+  "top:" + 9 * widthK + "px;" +
   "}",
 
   payPageTitle: ".pay-page-title " +
@@ -2513,7 +2513,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "border-radius: 50%;" +
-  "border: " + 1 + "px solid gray;" +
+    //"border: " + 1 + "px solid gray;" +
   "float: right;" +
   "right: 4%;" +
   "background-size: 150%;" +
