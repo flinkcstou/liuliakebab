@@ -100,7 +100,7 @@
 
   }
 
-  function checkImageURL(dirEntry, folderName, fileName, assetURL, index, callback) {
+  function checkImageURL(dirEntry, fileNamePrefix, fileName, assetURL, index, callback) {
 
     var xhr = new XMLHttpRequest();
 
@@ -108,10 +108,20 @@
     xhr.responseType = 'blob';
 
     xhr.onload = function () {
+      console.log("in onload");
 
       var blob = new Blob([this.response], {type: 'image/png'});
       console.log("status 200 For " + fileName);
+      //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
       callback(false, index, fileName);
+
+//      if (this.status == 200) {
+//
+//        var blob = new Blob([this.response], {type: 'image/png'});
+//        console.log("status 200 For " + fileName);
+//        //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
+//        callback(false, index, fileName);
+//      }
     };
 
     xhr.onerror = function () {
@@ -128,15 +138,16 @@
         // get the real base64 content of the file
         var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
 
-        var folderpath = cordova.file.dataDirectory + folderName;
+        var folderpath = cordova.file.dataDirectory;
+        console.log("file name with prefix", fileNamePrefix + fileName);
+        console.log("file name with prefix another attempt", fileNamePrefix + '-' + fileName);
 
-        savebase64AsImageFile(folderpath, fileName, realData, dataType);
-//        object[fieldName] = cordova.file.dataDirectory + fileName;
-        callback(true, index, fileName);
+        savebase64AsImageFile(folderpath, fileNamePrefix + fileName, realData, dataType);
+
+        callback(true, index, fileNamePrefix + fileName);
       });
       event.preventDefault();
-
-    }
+    };
     xhr.send();
   }
 
