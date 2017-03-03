@@ -13,7 +13,8 @@
 
     <div class="transfertwo-contact-phone-field">
       <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax}</p>
-      <input maxlength="13" class="transfertwo-contact-number-input-part" id="sumValueId" onmouseup="sumMouseUp()"
+      <input maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
+             onmouseup="sumMouseUp()"
              type="tel" onkeyup="sumKeyUp()"/>
     </div>
 
@@ -66,6 +67,14 @@
         sumValueId.selectionStart = 0
         sumValueId.selectionEnd = 0
       }
+    }
+
+    sumFocus = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
     }
 
     sumKeyUp = function () {
@@ -178,17 +187,17 @@
       var maxLimit;
       var minLimit;
       for (var i = 0; i < bankList.length; i++) {
-        if (bankList[i].code == codeOfBank){
+        if (bankList[i].code == codeOfBank) {
           maxLimit = bankList[i].p2p_max_limit
           minLimit = bankList[i].p2p_min_limit
           break;
         }
-          }
-      if(!maxLimit){
+      }
+      if (!maxLimit) {
         maxLimit = 5000000;
       }
 
-      if(!minLimit){
+      if (!minLimit) {
         minLimit = 5000;
       }
       if (sumForTransfer < minLimit) {
