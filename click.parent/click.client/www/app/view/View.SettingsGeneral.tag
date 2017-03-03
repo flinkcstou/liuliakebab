@@ -1,4 +1,4 @@
-<view-main-settings>
+<view-general-settings>
   <div>
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
@@ -14,10 +14,10 @@
     var scope = this;
     this.titleName = window.languages.ViewMainSettingsTitle;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-main-settings') {
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-general-settings') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-main-settings',
+          "view": 'view-general-settings',
           "params": ''
         }
       );
@@ -32,4 +32,4 @@
 
 
   </script>
-</view-main-settings>
+</view-general-settings>

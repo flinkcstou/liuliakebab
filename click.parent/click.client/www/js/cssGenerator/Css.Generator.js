@@ -3,7 +3,7 @@ heightK = window.innerHeight / 1232;
 var heightOfMobile;
 var topOfIos;
 
-if (device.platform == 'iOS') {
+if (device.platform == 'BrowserStand') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
   topOfIos = 20;
@@ -2339,8 +2339,8 @@ var css = {
   "height: " + 150 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "border-radius: 50%;" +
-  "border: " + 1 + "px solid gray;" +
+  "border-radius: " + 100 * widthK + "px;" +
+  "border: " + 1 + "px solid #f1f1f1;" +
   "background-size: 80%;" +
   "}",
 
@@ -2589,7 +2589,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
-  "font-size:" + 36 * widthK + "px;" +
+  "font-size:" + 32 * widthK + "px;" +
   "top: 40%;" +
   "margin: 0;" +
   "color: #515151;" +
@@ -2709,9 +2709,9 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: absolute;" +
-  "top: 26%;" +
+  "top: 22%;" +
   "width: 88%;" +
-  "height: 69%;" +
+  "height: 71%;" +
   "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -5437,7 +5437,7 @@ var css = {
   "position: relative;" +
   "background-size: contain;" +
   "top: " + 31 * widthK + "px; " +
-  "left: 6%;" +
+  "left: 3%;" +
   "text-align: left;" +
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
@@ -5451,7 +5451,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
-  "left: 3%;" +
+  "left: 2%;" +
   "background-size: 50%;" +
   "}",
 }
