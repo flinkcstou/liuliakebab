@@ -2342,7 +2342,7 @@ var css = {
   "background-position: center;" +
     //"border-radius: " + 100 * widthK + "px;" +
   "border: " + 1 + "px solid white;" +
-  "background-size: initial;" +
+  "background-size: 80%;" +
   "}",
 
   payServiceNameField: ".pay-service-name-field" +
