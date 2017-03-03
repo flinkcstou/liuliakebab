@@ -95,10 +95,10 @@
                     var filename = icon.substr(icon.lastIndexOf('/') + 1);
 
                     var newIconBool = checkImageURL;
-                    newIconBool('www/resources/icons/ViewPay/category/', filename, icon, j, function (bool, index, fileName) {
+                    newIconBool('www/resources/icons/ViewPay/category/', 'category/', filename, icon, j, function (bool, index, fileName) {
 
                       if (bool) {
-                        scope.categoryList[index]['icon'] = cordova.file.dataDirectory + fileName;//
+                        scope.categoryList[index]['icon'] = cordova.file.dataDirectory + 'category/' + fileName;//
                       } else {
                         scope.categoryList[index]['icon'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/category/' + fileName;
                       }
@@ -238,10 +238,10 @@
                       var filename = icon.substr(icon.lastIndexOf('/') + 1);
 
                       var newIconBool = checkImageURL;
-                      newIconBool('www/resources/icons/ViewPay/service/', filename, icon, j, function (bool, index, fileName) {
+                      newIconBool('www/resources/icons/ViewPay/service/', 'service/', filename, icon, j, function (bool, index, fileName) {
 
                         if (bool) {
-                          scope.serviceList[index]['image'] = cordova.file.dataDirectory + fileName;//
+                          scope.serviceList[index]['image'] = cordova.file.dataDirectory + 'service/' + fileName;
                         } else {
                           scope.serviceList[index]['image'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/service/' + fileName;
                         }

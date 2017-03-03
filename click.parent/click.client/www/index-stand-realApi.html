@@ -43,7 +43,7 @@
       document.head.appendChild(GENERATOR);
 
       firstMount.firstStep = function () {
-        if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true  && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
+        if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
           scope.riotTags.innerHTML = "<view-authorization>";
           riot.mount('view-authorization')
         }
@@ -100,7 +100,7 @@
 
   }
 
-  function checkImageURL(dirEntry, fileName, assetURL, index, callback) {
+  function checkImageURL(dirEntry, folderName, fileName, assetURL, index, callback) {
 
     var xhr = new XMLHttpRequest();
 
@@ -128,7 +128,7 @@
         // get the real base64 content of the file
         var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
 
-        var folderpath = cordova.file.dataDirectory;
+        var folderpath = cordova.file.dataDirectory + folderName;
 
         savebase64AsImageFile(folderpath, fileName, realData, dataType);
 //        object[fieldName] = cordova.file.dataDirectory + fileName;

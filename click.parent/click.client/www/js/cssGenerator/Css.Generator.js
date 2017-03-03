@@ -1872,7 +1872,7 @@ var css = {
   cardEditBodyContainer: ".card-edit-body-container" +
   "{" +
   "position: absolute;" +
-    //"height:" + 1150 * widthK + "px; " +
+  "height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
   "top:" + 86 * widthK + "px; " +
   "bottom:0; " +
@@ -2593,6 +2593,10 @@ var css = {
   "top: 40%;" +
   "margin: 0;" +
   "color: #515151;" +
+  "width: 92%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   servicePageDropdownContainer: ".servicepage-dropdown-container" +

@@ -135,7 +135,7 @@
   }
 
   function onBackKeyDown() {
-    if(componentMenu.checkOpen == true){
+    if (componentMenu.checkOpen == true) {
       closeMenu()
       return;
     }
@@ -162,7 +162,7 @@
     }
   }
 
-  function checkImageURL(dirEntry, fileName, assetURL, index, callback) {
+  function checkImageURL(dirEntry, folderName, fileName, assetURL, index, callback) {
 
     var xhr = new XMLHttpRequest();
 
@@ -200,7 +200,7 @@
         // get the real base64 content of the file
         var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
 
-        var folderpath = cordova.file.dataDirectory;
+        var folderpath = cordova.file.dataDirectory + folderName;
 
         savebase64AsImageFile(folderpath, fileName, realData, dataType);
 

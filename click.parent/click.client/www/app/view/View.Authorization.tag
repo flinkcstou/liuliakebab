@@ -304,10 +304,10 @@
                       console.log("filename=" + filename);
 
                       var newIconBool = checkImageURL;
-                      newIconBool('www/resources/icons/cards/', filename, icon, j, function (bool, index, fileName) {
+                      newIconBool('www/resources/icons/cards/', 'cards/', filename, icon, j, function (bool, index, fileName) {
 
                         if (bool) {
-                          arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
+                          arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + 'cards/' + fileName;
                         } else {
                           arrayAccountInfo[index].card_background_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/' + fileName;
                         }
@@ -315,10 +315,10 @@
                         var icon2 = arrayAccountInfo[index].image_url;
                         var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
                         var newIcon = checkImageURL;
-                        newIcon('www/resources/icons/cards/logo/', filename2, icon2, index, function (bool2, index2, fileName2) {
+                        newIcon('www/resources/icons/cards/logo/', 'logo/', filename2, icon2, index, function (bool2, index2, fileName2) {
 
                           if (bool2) {
-                            arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
+                            arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + 'logo/' + fileName2;
                           } else {
                             arrayAccountInfo[index2].image_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/logo/' + fileName2;
                           }
@@ -390,10 +390,10 @@
                         var filename = icon.substr(icon.lastIndexOf('/') + 1);
 
                         var newIconBool = checkImageURL;
-                        newIconBool('www/resources/icons/ViewPay/category/', filename, icon, j, function (bool, index, fileName) {
+                        newIconBool('www/resources/icons/ViewPay/category/', 'category/', filename, icon, j, function (bool, index, fileName) {
 
                           if (bool) {
-                            scope.categoryList[index]['icon'] = cordova.file.dataDirectory + fileName;//
+                            scope.categoryList[index]['icon'] = cordova.file.dataDirectory + 'category/' + fileName;
                           } else {
                             scope.categoryList[index]['icon'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/category/' + fileName;
                           }
@@ -485,10 +485,10 @@
                           var filename = icon.substr(icon.lastIndexOf('/') + 1);
 
                           var newIconBool = checkImageURL;
-                          newIconBool('www/resources/icons/ViewPay/service/', filename, icon, j, function (bool, index, fileName) {
+                          newIconBool('www/resources/icons/ViewPay/service/', 'service/', filename, icon, j, function (bool, index, fileName) {
 
                             if (bool) {
-                              scope.serviceList[index]['image'] = cordova.file.dataDirectory + fileName;//
+                              scope.serviceList[index]['image'] = cordova.file.dataDirectory + 'service/' + fileName;
                             } else {
                               scope.serviceList[index]['image'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/service/' + fileName;
                             }
