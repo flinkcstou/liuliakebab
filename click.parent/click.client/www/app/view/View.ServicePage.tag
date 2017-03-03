@@ -45,6 +45,7 @@
       <p class="servicepage-text-field">{amountFieldTitle}</p>
       <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="13"
              id="amount"
+             onfocus="amountFocus()"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()"/>
       <div class="servicepage-amount-icon"></div>
     </div>
@@ -154,6 +155,14 @@
         console.log('error', error)
       });
 
+    }
+
+    amountFocus = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
     }
 
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
@@ -591,6 +600,13 @@
     };
 
     bordersColor = function () {
+
+      event.preventDefault()
+      event.stopPropagation()
+
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+
       firstField.style.borderBottom = 5 * widthK + 'px solid #01cfff';
       amountField.style.borderBottom = 5 * widthK + 'px solid lightgrey';
     };
