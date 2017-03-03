@@ -89,7 +89,7 @@
       sideMenuId.style.Transform = "translate3d(-100%, 0, 0)";
       mainPageId.style.opacity = '1';
       this.mainPageId.style.zIndex = '0';
-
+      riot.update();
     }
 
     changeMode = function () {

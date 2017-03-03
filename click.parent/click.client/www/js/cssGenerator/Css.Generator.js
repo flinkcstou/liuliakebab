@@ -3,7 +3,7 @@ heightK = window.innerHeight / 1232;
 var heightOfMobile;
 var topOfIos;
 
-if (device.platform == 'BrowserStand') {
+if (device.platform == 'iOS') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
   topOfIos = 20;
@@ -1515,7 +1515,7 @@ var css = {
 
   footer: ".footer " +
   "{" +
-  "position: absolute;" +
+  "position: fixed;" +
   "bottom:" + 190 * widthK + "px;" +
   "left: 0;" +
   "right: 0;" +
@@ -1547,7 +1547,7 @@ var css = {
   "right: 0;" +
   "transition: 0.3s;" +
   "-webkit-transition: 0.3s;" +
-  "height:" + 312 * widthK + "px;" +
+  "height:" + 300 * widthK + "px;" +
   "width: 100%;" +
   "transform: translate3d(0, " + 200 * widthK + "px, 0);" +
   "-webkit-transform: translate3d(0," + 200 * widthK + "px, 0);" +
@@ -1565,7 +1565,7 @@ var css = {
 
   footerContacts: ".footer-contacts " +
   "{" +
-  "position: absolute;" +
+  "position: fixed;" +
   "width: 100%;" +
   "height:" + 240 * widthK + "px;" +
   "bottom:" + -40 * widthK + "px;" +

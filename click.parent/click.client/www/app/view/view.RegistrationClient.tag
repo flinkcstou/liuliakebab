@@ -3,7 +3,7 @@
   <div class="registration-client-card-field">
     <p class="registration-client-card-text registration-client-card-number-text">Номер карты</p>
     <div id="cardNumberInput" class="registration-client-card-number">
-      <div ontouchend="touchEndBoxOne()" id="boxOne"
+      <div onfocus="boxFocus()" ontouchend="touchEndBoxOne()" id="boxOne"
            class="registration-client-card-number-box registration-client-card-number-box-one">
         {cardNumberPartOne}
       </div>
@@ -92,6 +92,7 @@
 
 
     touchEndBoxOne = function () {
+
       boxOne.style.border = 'solid 1px gray';
       boxTwo.style.border = 'none';
       boxThree.style.border = 'none';

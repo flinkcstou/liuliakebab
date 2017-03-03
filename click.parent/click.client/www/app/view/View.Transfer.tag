@@ -304,6 +304,10 @@
     contactPhoneBlurAndChange = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+
       scope.contactMode = true
       scope.cardMode = false
       riot.update(scope.contactMode);
@@ -325,6 +329,8 @@
     cardPhoneBlurAndChange = function () {
       event.preventDefault();
       event.stopPropagation();
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
 
       scope.cardMode = true
       scope.contactMode = false

@@ -9,7 +9,7 @@
   <div class="card-edit-body-container">
     <div class="card-edit-field">
       <p class="card-edit-text-field">{window.languages.ViewCardEditCardNameText}</p>
-      <input id="cardNameInputID" class="card-edit-input" value="{defaultName}"/>
+      <input onfocus="cardEditFoucs()" id="cardNameInputID" class="card-edit-input" value="{defaultName}"/>
     </div>
     <div class="card-edit-makemain-container" if="{!onlyOneCard}" ontouchend="MakeMainCheck()">
       <p class="card-edit-makemain-text">{window.languages.ViewCardEditMakeMainText}</p>
@@ -60,6 +60,14 @@
         console.log("Initially isMain=", isMain);
       }
 
+    }
+
+    cardEditFocus = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
     }
 
     saveEdit = function () {
