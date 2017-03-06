@@ -3818,11 +3818,10 @@ var css = {
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background-repeat: no-repeat;" +
-  "background-size: 100%;" +
+  "background-size: contain;" +
   "background-position: center;" +
   "border-radius: 50%;" +
   "left: 5%;" +
-  "background-size: 150%;" +
   "}",
 
   transferCardFoundPhoto: ".transfer-card-found-photo" +
