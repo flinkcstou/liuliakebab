@@ -5463,6 +5463,191 @@ var css = {
   "left: 2%;" +
   "background-size: 50%;" +
   "}",
+
+  settingsGeneralPageTitle: ".settings-general-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top:" + -12 * widthK + "px;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background: transparent;" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  settingsGeneralContainer: ".settings-general-container" +
+  "{" +
+  "top:" + 380 * widthK + "px; " +
+  "}",
+
+  settingsGeneralUserInfoContainer: ".settings-general-user-info-container" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 245 * widthK + "px;" +
+  "width:100%;" +
+  "top: 9%;" +
+  "}",
+
+  settingsGeneralUserIcon: ".settings-general-user-icon" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 150 * widthK + "px;" +
+  "width:" + 150 * widthK + "px;" +
+  "left: 39%;" +
+  "border:" + 4 * widthK + "px solid white;" +
+  "border-radius:" + 90 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "background-position: center;" +
+  "}",
+
+  settingsGeneralUserFirstName: ".settings-general-user-first-name" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "padding: 0;" +
+  "bottom:0;" +
+  "color: white;" +
+  "float: left;" +
+  "}",
+
+  settingsGeneralUserSecondName: ".settings-general-user-second-name" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "padding: 0;" +
+  "bottom:0;" +
+  "right: 14%;" +
+  "color: white;" +
+  "left:3%;" +
+  "float: left;" +
+  "}",
+
+  settingsGeneralGenderContainer: ".settings-general-gender-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 17%;" +
+  "top:2%;" +
+  "}",
+
+  settingsGeneralLanguagesContainer: ".settings-general-languages-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 20%;" +
+  "top: 23%;" +
+  "background-color: lightblue;" +
+  "}",
+
+  settingsGeneralMaleContainer: ".settings-general-male-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 20%;" +
+  "height: 100%;" +
+  "/*top: 20%;*/" +
+    //"background-color: grey;" +
+  "left: 29%;" +
+  "}",
+
+  settingsGeneralFemaleContainer: ".settings-general-female-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 20%;" +
+  "height: 100%;" +
+  "/*top: 20%;*/" +
+    //"background-color: grey;" +
+  "left: 53%;" +
+  "}",
+
+  settingsGeneralMaleIcon: ".settings-general-male-icon" +
+  "{" +
+  "position: absolute;" +
+  "width: 80%;" +
+  "height: 70%;" +
+  "/*top: 20%;*/" +
+  "left: 12%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 83%;" +
+  "background-position: center;" +
+  "background-image: url('resources/icons/ViewSettings/general/general_male_active.png');" +
+  "}",
+
+  settingsGeneralFemaleIcon: ".settings-general-female-icon" +
+  "{" +
+  "position: absolute;" +
+  "width: 80%;" +
+  "height: 70%;" +
+  "/*top: 20%;*/" +
+  "left: 12%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 83%;" +
+  "background-position: center;" +
+  "background-image: url('resources/icons/ViewSettings/general/general_female_inactive.png');" +
+  "}",
+
+  settingsGeneralGenderText: ".settings-general-gender-text" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "padding: 0;" +
+  "bottom: 0;" +
+  "color: lightgray;" +
+  "left:32%;" +
+  "font-size:24px;" +
+  "}",
+
+  settingsGeneralEditIcon: ".settings-general-edit-icon" +
+  "{" +
+  "position: absolute;" +
+  "width: 35px;" +
+  "height: 40px;" +
+  "left: 85%;" +
+  "bottom:0;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 83%;" +
+  "background-position: center;" +
+  "background-image: url('resources/icons/ViewSettings/general/general_edit.png');" +
+  "}",
+
+  settingsGeneralUserNameContainer: ".settings-general-user-name-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 75%;" +
+  "height: 20%;" +
+    //"background-color: lightgrey;" +
+  "bottom: 0;" +
+  "left:11%;" +
+  "}",
+
+  settingsGeneralLangContainer: ".settings-general-lang-container" +
+  "{" +
+  "position: relative;" +
+  "width: 79.5%;" +
+  "height: " + 70 * widthK + "px; " +
+  "top:12%;" +
+  "left:10%;" +
+  "}",
+
+  settingsGeneralLangText: ".settings-general-lang-text" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 28 * widthK + "px; " +
+  "color: #595759;" +
+  "}",
+
+  settingsGeneralLangCheck: ".settings-general-lang-check" +
+  "{" +
+  "position: absolute;" +
+  "background-image: url('resources/icons/ViewService/unchecked.png');" +
+  "width: 7%;" +
+  "height: 36%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "background-position: center;" +
+  "top: 50%;" +
+  "left: 93%;" +
+  "}",
 }
 
 

@@ -3637,3 +3637,86 @@ input {
   display: table-cell;
   vertical-align: middle;
 }
+
+/*Settings general partially*/
+
+.settings-general-gender-container {
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  background-color: lightblue;
+}
+
+.settings-general-languages-container {
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  top: 20%;
+  background-color: lightblue;
+}
+
+.settings-general-male-container {
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  /*top: 20%;*/
+  background-color: grey;
+  left: 20%;
+}
+
+.settings-general-female-container {
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  /*top: 20%;*/
+  background-color: grey;
+  left: 53%;
+}
+
+.settings-general-male-icon {
+  position: absolute;
+  width: 80%;
+  height: 70%;
+  /*top: 20%;*/
+  background-color: grey;
+  /*left: 53%;*/
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  background-image: url("../resources/icons/ViewSettings/general/general_male_active.png");
+}
+
+.settings-general-female-icon {
+  position: absolute;
+  width: 80%;
+  height: 70%;
+  /*top: 20%;*/
+  background-color: grey;
+  /*left: 53%;*/
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  background-image: url("../resources/icons/ViewSettings/general/general_female_inactive.png");
+}
+
+.settings-general-gender-text {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  color: white;
+  left: 27%;
+}
+
+.settings-general-edit-icon {
+  position: relative;
+
+}
+
+.settings-general-user-name-container {
+  position: absolute;
+  width: 70%;
+  height: 20%;
+  background-color: #01cfff;
+  bottom: 10%;
+}

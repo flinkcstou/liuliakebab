@@ -143,6 +143,7 @@ var RU_LANGUAGES =
   "ViewSettingsTitleName": "Настройки",
   "ViewSettingsTitleNameTwo": "НАСТРОЙКИ",
   "ViewMainSettingsTitle": "Основные",
+  "ViewMainSettingsTitleTwo": "ОСНОВНЫЕ",
   "ViewSecuritySettingsTitle": "Безопасность",
   "ViewFriendHelpSettingsTitle": "Помощь друга",
   "ViewInviteFriendSettingsTitle": "Пригласить друга",
