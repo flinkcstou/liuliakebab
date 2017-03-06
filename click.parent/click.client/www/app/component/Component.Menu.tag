@@ -1,6 +1,7 @@
 <component-menu>
   <div id="sideMenuBackPageId" ontouchend="menuBackPageTouchEnd()" class="side-menu-back-page"></div>
-  <div id="sideMenuId" class="side-menu">
+  <div ontouchend="sideMenuTouchEnd()" ontouchstart="sideMenuTouchStart()" ontouchmove="sideMenuTouchMove()"
+       id="sideMenuId" class="side-menu">
 
     <div class="side-menu-inside-button" ontouchend="closeMenu()"></div>
     <div class="side-menu-user-info-container">
@@ -84,12 +85,66 @@
       }
       componentMenu.checkOpen = false;
 
+      this.sideMenuId.style.webkitTransition = '0.3s';
       sideMenuBackPageId.style.opacity = '0';
+      sideMenuBackPageId.style.webkitTransition = '0';
       sideMenuId.style.webkitTransform = "translate3d(-100%, 0, 0)";
       sideMenuId.style.Transform = "translate3d(-100%, 0, 0)";
       mainPageId.style.opacity = '1';
       this.mainPageId.style.zIndex = '0';
       riot.update();
+    }
+
+    var touchStartX, touchEndX, touchMoveX, touchEndMove, timeStartX, timeEndXs;
+    var width = window.innerWidth;
+
+    sideMenuTouchStart = function () {
+      sideMenuId.style.webkitTransition = '0s';
+      mainPageId.style.webkitTransition = '0s';
+      sideMenuBackPageId.style.webkitTransition = '0s';
+      touchStartX = event.changedTouches[0].pageX;
+      timeStartX = event.timeStamp.toFixed(0);
+
+    }
+
+    sideMenuTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      touchEndX = event.changedTouches[0].pageX;
+      timeEndX = event.timeStamp.toFixed(0);
+
+      console.log('touchEndMove', touchEndMove)
+
+      if ((Math.abs(touchEndMove) > 269 * widthK)) {
+        closeMenu();
+      }
+      else {
+        if (timeEndX - timeStartX < 500 && touchStartX - touchEndX > 20) {
+          closeMenu();
+        }
+        else
+          menuOpen()
+      }
+    }
+
+    sideMenuTouchMove = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      touchMoveX = event.changedTouches[0].pageX;
+      var deltaForMainPage = Math.abs((touchStartX - touchMoveX).toFixed(0) / width * 2);
+      var deltaForSideMenuBack = 1 - deltaForMainPage;
+      if (deltaForSideMenuBack < 0.1)
+        deltaForSideMenuBack = 0.1
+
+      sideMenuBackPageId.style.opacity = deltaForSideMenuBack;
+      //console.log('deltaForMainPage', deltaForMainPage)
+      mainPageId.style.opacity = deltaForMainPage;
+
+      if (touchMoveX - touchStartX <= 0) {
+        sideMenuId.style.webkitTransform = 'translate3d(' + (touchMoveX - touchStartX) + 'px,0,0)'
+        touchEndMove = touchMoveX - touchStartX
+      }
+
     }
 
     changeMode = function () {
@@ -121,7 +176,12 @@
     }
 
     menuBackPageTouchEnd = function () {
-      closeMenu()
+      event.preventDefault();
+      event.stopPropagation();
+      console.log(event.changedTouches[0].pageX)
+      if (event.changedTouches[0].pageX > 550 * widthK)
+        closeMenu()
+      else return
     }
     callToClick = function () {
       event.preventDefault();

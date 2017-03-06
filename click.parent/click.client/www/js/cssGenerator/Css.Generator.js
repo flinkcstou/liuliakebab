@@ -621,7 +621,7 @@ var css = {
   "left:" + 26 * widthK + "px;" +
   "height:" + 70 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom:" + 2 + "px solid white;" +
+  "border-bottom:" + 2 * widthK + "px solid white;" +
   "}",
 
   toolbarCircleContainer: ".toolbar-circle-container " +
@@ -757,7 +757,7 @@ var css = {
   "position: absolute;" +
   "left:" + 27 * widthK + "px;" +
   "right:" + 27 * widthK + "px;" +
-  "border-bottom:" + 2 + "px solid white;" +
+  "border-bottom:" + 2 * widthK + "px solid white;" +
   "text-align: center;" +
   "top:" + 440 * widthK + "px;" +
   "height:" + 100 * heightK + "px;" +
@@ -1116,6 +1116,15 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "}",
 
+  sideMenuBlockForSwipe: ".side-menu-block-for-swipe " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "top:" + 90 * widthK + "px;" +
+  "z-index: 1;" +
+  "width:" + 60 * widthK + "px;" +
+  "}",
+
   sideMenu: ".side-menu " +
   "{" +
   "position: absolute;" +
@@ -1126,8 +1135,7 @@ var css = {
   "-webkit-transform: translate3d(-100%, 0, 0);" +
   "-ms-transform: translate3d(-100%, 0, 0);" +
   "background-color: #22a0e0;" +
-  "transition: 0.3s;" +
-  "-webkit-transition: 0.3s;" +
+  "z-index: 1;" +
     //"top:" + topOfIos + "px;" +
   "}",
 
@@ -1437,8 +1445,6 @@ var css = {
   "-webkit-transform: translate3d(0, 0, 0);" +
   "-ms-transform: translate3d(0, 0, 0);" +
   "background-color: rgba(0, 0, 0, 0.6);" +
-  "transition: 0.5s;" +
-  "-webkit-transition: 0.5s;" +
   "opacity: 0;" +
   "}",
 
@@ -1446,7 +1452,6 @@ var css = {
 
   pageTitle: ".page-title " +
   "{" +
-  "position: absolute;" +
   "position: absolute;" +
   "top: 0px;" +
   "right:" + 28 * widthK + "px;" +

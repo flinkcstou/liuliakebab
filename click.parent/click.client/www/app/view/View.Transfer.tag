@@ -510,6 +510,7 @@
         thirdCardSuggestionId.style.display = 'none';
         fourthCardSuggestionId.style.display = 'none';
         fifthCardSuggestionId.style.display = 'none';
+        return
       }
       else {
 
@@ -934,6 +935,7 @@
         thirdSuggestionBlockId.style.display = 'none';
         fourthSuggestionBlockId.style.display = 'none';
         fifthSuggestionBlockId.style.display = 'none';
+        return
 
       }
       else {
