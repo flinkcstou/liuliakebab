@@ -194,8 +194,6 @@
         var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
 
         var folderpath = cordova.file.dataDirectory;
-        console.log("file name with prefix", fileNamePrefix + fileName);
-        console.log("file name with prefix another attempt", fileNamePrefix + '-' + fileName);
 
         savebase64AsImageFile(folderpath, fileNamePrefix + fileName, realData, dataType);
 
