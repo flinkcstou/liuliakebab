@@ -1,5 +1,6 @@
 <component-menu>
-  <div id="sideMenuBackPageId" ontouchend="menuBackPageTouchEnd()" class="side-menu-back-page"></div>
+  <div id="sideMenuBackPageId" ontouchend="sideMenuTouchEnd()" ontouchstart="sideMenuTouchStart()"
+       ontouchmove="sideMenuTouchMove()" class="side-menu-back-page"></div>
   <div ontouchend="sideMenuTouchEnd()" ontouchstart="sideMenuTouchStart()" ontouchmove="sideMenuTouchMove()"
        id="sideMenuId" class="side-menu">
 
@@ -37,12 +38,12 @@
       <div class="side-menu-containers-name side-menu-containers-name-scanner-qr">Сканер QR-кода</div>
     </div>
 
-    <div class="side-menu-settings-container" ontouchend="goToSettings()">
+    <div class="side-menu-settings-container" ontouchstart="goToSettingsStart()" ontouchend="goToSettingsEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-settings"></div>
       <div class="side-menu-containers-name side-menu-containers-name-settings">Настройки</div>
     </div>
 
-    <div class="side-menu-call-container" ontouchend="callToClick()">
+    <div class="side-menu-call-container" ontouchend="callToClickTouchEnd()" ontouchstart="callToClickTouchStart()">
       <div class="side-menu-containers-icon side-menu-containers-icon-call"></div>
       <div class="side-menu-containers-name side-menu-containers-name-call">Позвонить в Click</div>
     </div>
@@ -80,8 +81,8 @@
 
     closeMenu = function () {
       if (event) {
-        event.preventDefault();
-        event.stopPropagation();
+//        event.preventDefault();
+//        event.stopPropagation();
       }
       componentMenu.checkOpen = false;
 
@@ -115,7 +116,7 @@
 
       console.log('touchEndMove', touchEndMove)
 
-      if ((Math.abs(touchEndMove) > 269 * widthK)) {
+      if ((Math.abs(touchEndMove) > 230 * widthK)) {
         closeMenu();
       }
       else {
@@ -175,29 +176,49 @@
       riot.update()
     }
 
-    menuBackPageTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-      console.log(event.changedTouches[0].pageX)
-      if (event.changedTouches[0].pageX > 550 * widthK)
-        closeMenu()
+    //    menuBackPageTouchEnd = function () {
+    //      event.preventDefault();
+    //      event.stopPropagation();
+    //      console.log(event.changedTouches[0].pageX)
+    //      if (event.changedTouches[0].pageX > 550 * widthK)
+    //        closeMenu()
+    //      else return
+    //    }
+
+    var callTouchStartX, callTouchEndX
+    callToClickTouchEnd = function () {
+      callTouchEndX = event.changedTouches[0].pageX;
+
+      if (callTouchStartX - callTouchEndX < 20) {
+        window.open('tel:+998712310880')
+      }
       else return
-    }
-    callToClick = function () {
-      event.preventDefault();
-      event.stopPropagation();
 
-      window.open('tel:+998712310880')
     }
 
-    goToSettings = function () {
-      closeMenu();
-      event.preventDefault();
-      event.stopPropagation();
+    callToClickTouchStart = function () {
+      callTouchStartX = event.changedTouches[0].pageX;
+    }
 
-      riotTags.innerHTML = "<view-settings>";
-      riot.mount("view-settings");
+    var settingsTouchStartX, settingsTouchEndX
 
+    goToSettingsEnd = function () {
+
+      settingsTouchEndX = event.changedTouches[0].pageX;
+
+      console.log('settingsTouchStartX', settingsTouchStartX)
+      console.log('settingsTouchEndX', settingsTouchEndX)
+
+      if (settingsTouchStartX - settingsTouchEndX < 20) {
+        riotTags.innerHTML = "<view-settings>";
+        riot.mount("view-settings");
+      }
+      else return
+
+    }
+
+    goToSettingsStart = function () {
+      settingsTouchStartX = event.changedTouches[0].pageX;
     }
 
 
