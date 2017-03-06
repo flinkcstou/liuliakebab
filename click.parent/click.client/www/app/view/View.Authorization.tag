@@ -292,7 +292,7 @@
 
                 if (device.platform != 'BrowserStand') {
                   window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-                    var j = -1;
+                    var j = -1, count = 0;
                     for (var i = 0; i < result[1].length; i++) {
 
                       j++;
@@ -301,14 +301,18 @@
                       var icon = result[1][i].card_background_url;
                       console.log();
                       var filename = icon.substr(icon.lastIndexOf('/') + 1);
-                      console.log("filename=" + filename);
+//                      alert("filename=" + filename);
 
                       var newIconBool = checkImageURL;
                       newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
 
                         if (bool) {
+                          count++;
+//                          alert("(1)new file name=" + fileName + "," + count);
                           arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
                         } else {
+                          count++;
+//                          alert("(2)new file name=" + fileName + "," + count);
                           arrayAccountInfo[index].card_background_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/' + fileName;
                         }
 
@@ -318,18 +322,23 @@
                         newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
 
                           if (bool2) {
+                            count++;
+//                            alert("(11)new file name=" + fileName2 + "," + count);
                             arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
                           } else {
+                            count++;
+//                            alert("(12)new file name=" + fileName2 + "," + count);
                             arrayAccountInfo[index2].image_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/logo/' + fileName2;
                           }
 
-                          if (result[1].length == arrayAccountInfo.length) {
-                            console.log("GHVCHGFUIHOI:JIJsave into localstorage");
+                          if (count == (result[1].length * 2)) {
+//                            alert("GHVCHGFUIHOI:JIJsave into localstorage");
                             var accountInfo = JSON.stringify(arrayAccountInfo);
                             localStorage.setItem("click_client_accountInfo", accountInfo);
                             this.riotTags.innerHTML = "<view-main-page>";
                             riot.mount('view-main-page');
                           }
+
                         });
 
                       });
