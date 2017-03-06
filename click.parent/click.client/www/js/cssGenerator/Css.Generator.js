@@ -1116,6 +1116,14 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "}",
 
+  sideMenuBlockForSwipe: ".side-menu-block-for-swipe " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "z-index: 1;" +
+  "width:" + 40 * widthK + "px;" +
+  "}",
+
   sideMenu: ".side-menu " +
   "{" +
   "position: absolute;" +

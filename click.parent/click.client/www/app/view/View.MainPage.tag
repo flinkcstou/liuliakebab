@@ -1,4 +1,6 @@
 <view-main-page>
+  <div class="side-menu-block-for-swipe" ontouchend="blockForSwipeTouchEnd()"
+       ontouchstart="blockForSwipeTouchStart()"></div>
   <component-menu></component-menu>
 
   <div id="mainPageId" class="view-main-page">
@@ -54,11 +56,35 @@
     viewTransfer.type = 2;
     viewTransferStepTwo.sum = '';
 
+    var touchStartX, touchEndX;
+
     myCardList = function () {
       event.preventDefault();
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-mycard-list>";
       riot.mount('view-mycard-list');
+    }
+
+    blockForSwipeTouchStart = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      touchStartX = event.changedTouches[0].pageX;
+
+      console.log('TOUCH START', touchStartX)
+    }
+
+    blockForSwipeTouchEnd = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      touchEndX = event.changedTouches[0].pageX;
+
+      console.log('TOUCH END', touchEndX)
+
+      if (touchEndX - touchStartX > 20) {
+        menuOpen();
+      }
     }
 
 
