@@ -119,7 +119,7 @@
         closeMenu();
       }
       else {
-        if (timeEndX - timeStartX < 100 && touchStartX - touchEndX > 20) {
+        if (timeEndX - timeStartX < 500 && touchStartX - touchEndX > 20) {
           closeMenu();
         }
         else

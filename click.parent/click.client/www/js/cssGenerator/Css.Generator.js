@@ -1120,8 +1120,9 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: 100%;" +
+  "top:" + 90 * widthK + "px;" +
   "z-index: 1;" +
-  "width:" + 40 * widthK + "px;" +
+  "width:" + 60 * widthK + "px;" +
   "}",
 
   sideMenu: ".side-menu " +

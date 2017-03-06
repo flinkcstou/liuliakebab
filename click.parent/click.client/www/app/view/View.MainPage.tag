@@ -96,7 +96,7 @@
         menuOpen();
       }
       else {
-        if (timeEndX - timeStartX < 100 && touchEndX - touchStartX > 20) {
+        if (timeEndX - timeStartX < 500 && touchEndX - touchStartX > 20) {
           menuOpen();
         }
         else
