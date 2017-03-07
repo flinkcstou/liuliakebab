@@ -102,5 +102,13 @@
       riot.mount("view-about-program");
     }
 
+    goToInviteFriendSettings = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riotTags.innerHTML = "<view-add-friend>";
+      riot.mount("view-add-friend");
+    }
+
   </script>
 </view-settings>

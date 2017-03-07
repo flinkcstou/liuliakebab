@@ -1,4 +1,4 @@
-<view-about-program>
+<view-add-friend>
   <div>
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
@@ -32,4 +32,4 @@
 
 
   </script>
-</view-about-program>
+</view-add-friend>
