@@ -15,13 +15,11 @@
     var scope = this;
 
     menuOpen = function () {
-
-      event.preventDefault();
-      event.stopPropagation();
+      event.stopPropagation()
 
       componentMenu.checkOpen = true;
 
-      sideMenuBackPageId.style.webkitTransition = '0.3s';
+      this.sideMenuBackPageId.style.webkitTransition = '0.3s';
       this.mainPageId.style.webkitTransition = '0.3s';
       this.mainPageId.style.zIndex = '-1';
       this.mainPageId.style.opacity = '0.1';

@@ -78,7 +78,6 @@
     }
 
     blockForSwipeTouchEnd = function () {
-      event.preventDefault()
       event.stopPropagation()
 
       touchEndX = event.changedTouches[0].pageX;

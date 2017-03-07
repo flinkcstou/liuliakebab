@@ -190,9 +190,10 @@
       callTouchEndX = event.changedTouches[0].pageX;
 
       if (callTouchStartX - callTouchEndX < 20) {
+        closeMenu()
         window.open('tel:+998712310880')
       }
-      else return
+      else sideMenuTouchEnd()
 
     }
 
@@ -203,6 +204,8 @@
     var settingsTouchStartX, settingsTouchEndX
 
     goToSettingsEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
 
       settingsTouchEndX = event.changedTouches[0].pageX;
 
@@ -210,10 +213,12 @@
       console.log('settingsTouchEndX', settingsTouchEndX)
 
       if (settingsTouchStartX - settingsTouchEndX < 20) {
+        closeMenu()
         riotTags.innerHTML = "<view-settings>";
         riot.mount("view-settings");
+        return
       }
-      else return
+      else sideMenuTouchEnd()
 
     }
 
