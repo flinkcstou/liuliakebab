@@ -102,6 +102,44 @@
       }
     }
 
+    pickContactFromNative = function () {
+
+      window.plugins.PickContact.chooseContact(function (contactInfo) {
+        console.log('CONTACTINFO', contactInfo)
+        setTimeout(function () {
+          var phoneNumber
+          if (device.platform == 'iOS')
+            phoneNumber = contactInfo.phoneNr;
+
+          if (device.platform == 'Android') {
+            phoneNumber = contactInfo.nameFormated
+          }
+          var digits = phoneNumber.match(maskOne);
+          var phone = '';
+          for (var i in digits) {
+            phone += digits[i]
+          }
+          contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
+          if (contactPhoneNumberId.value.length != 0) {
+            console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
+            if (contactPhoneNumberId.value.length == 9) {
+              nextButtonId.style.display = 'block'
+
+              firstSuggestionBlockId.style.display = 'none';
+              secondSuggestionBlockId.style.display = 'none';
+            }
+            else
+              nextButtonId.style.display = 'none'
+
+          }// use time-out to fix iOS alert problem
+        }, 0);
+      }, function (error) {
+        console.log('error', error)
+      });
+
+
+    }
+
     findContacts = function () {
 
       var options = new ContactFindOptions();
