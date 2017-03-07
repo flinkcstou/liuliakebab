@@ -5758,6 +5758,30 @@ var css = {
   "top:" + 375 * widthK + "px;" +
   "display: none;" +
   "}",
+
+  //SETTINGS ABOUT PROGRAM
+  settingsAboutProgramBlueContainer: ".settings-about-program-blue-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 350 * widthK + "px;" +
+  "background-color: #027ee3;" +
+  "}",
+
+  settingsAboutProgramClickIcon: ".settings-about-program-click-icon" +
+  "{" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "top: 15%;" +
+  "width: 30%;" +
+  "height: 60%;" +
+  "background-repeat: no-repeat;" +
+  "background-image: url(resources/icons/icon/icon.png);" +
+  "background-size: 100%;" +
+  "background-position: center;" +
+  "}",
+
 }
 
 

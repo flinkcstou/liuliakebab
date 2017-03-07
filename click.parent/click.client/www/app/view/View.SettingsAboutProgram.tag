@@ -5,7 +5,9 @@
       <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
     </div>
     <div class="settings-container">
-
+      <div class="settings-about-program-blue-container">
+        <div class="settings-about-program-click-icon"></div>
+      </div>
     </div>
 
   </div>
