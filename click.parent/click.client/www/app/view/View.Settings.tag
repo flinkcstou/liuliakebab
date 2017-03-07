@@ -108,6 +108,7 @@
 
       riotTags.innerHTML = "<view-add-friend>";
       riot.mount("view-add-friend");
+
     }
 
   </script>

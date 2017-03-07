@@ -6,24 +6,41 @@
     </div>
     <div class="settings-container">
 
+      <div class="settings-add-friend-add-container">
+        <p class="settings-add-friend-add-title">Имя друга</p>
+      </div>
+      <div class="settings-add-friend-contact-phone-field">
+        <div class="settings-add-friend-contact-phone-icon" ontouchend="pickContactFromNative()"></div>
+        <p class="settings-add-friend-contact-text-field">{window.languages.ViewSettingsAddFriendPhoneNumberTitle}</p>
+        <p class="settings-add-friend-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
+        <input onchange="contactPhoneBlurAndChange()" onfocus="contactPhoneBlurAndChange()"
+               id="contactPhoneNumberId"
+               class="transfer-contact-number-input-part" type="tel"
+               maxlength="9" onkeyup="searchContacts()"/>
+      </div>
+
+      <div id="firstSuggestionBlockId" class="settings-add-friend-contact-found-container-one"
+           ontouchend="firstSuggestionBlock()">
+        <div class="transfer-contact-found-photo" style="background-image: url({suggestionOne.photo})"></div>
+        <div class="transfer-contact-found-text-container">
+          <div class="transfer-contact-found-text-one">{suggestionOne.fName} {suggestionOne.lName}</div>
+        </div>
+        <div class="transfer-contact-found-text-two">{suggestionOne.phoneNumber}</div>
+      </div>
+      <div id="secondSuggestionBlockId" class="settings-add-friend-contact-found-container-two"
+           ontouchend="secondSuggestionBlock()">
+        <div class="transfer-contact-found-photo" style="background-image: url({suggestionTwo.photo})"></div>
+        <div class="transfer-contact-found-text-container">
+          <div class="transfer-contact-found-text-one">{suggestionTwo.fName} {suggestionTwo.lName}</div>
+        </div>
+        <div class="transfer-contact-found-text-two">{suggestionTwo.phoneNumber}</div>
+      </div>
+
+      <div id="nextButtonId" class="settings-add-friend-next-button-inner-container" ontouchend="goToTransferStepTwo()">
+        <p class="settings-add-friend-next-button-label">{window.languages.ViewPayTransferNext}</p>
+      </div>
     </div>
 
-  </div>
-  <div class="settings-add-friend-add-container">
-    <p class="settings-add-friend-add-title">Имя друга</p>
-  </div>
-  <div class="settings-add-friend-contact-phone-field">
-    <p class="settings-add-friend-contact-text-field">{window.languages.ViewSettingsAddFriendPhoneNumberTitle}</p>
-    <p class="settings-add-friend-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
-    <input onchange="contactPhoneBlurAndChange()" onfocus="contactPhoneBlurAndChange()"
-           id="contactPhoneNumberId"
-           class="transfer-contact-number-input-part" type="tel"
-           maxlength="9" onkeyup="searchContacts()"/>
-  </div>
-
-  <div class="settings-add-friend-contact-from-native-container">
-    <div class="settings-add-friend-contact-phone-icon" ontouchend="pickContactFromNative()"></div>
-    <p class="settings-add-friend-contact-from-native-title">Выбрать из контактов</p>
   </div>
 
   <script>
@@ -40,11 +57,221 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    this.on('mount', function () {
+
+//      firstSuggestionBlockId.style.display = 'block';
+//      secondSuggestionBlockId.style.display = 'block';
+    })
+
+    scope.suggestionOne = {};
+    scope.suggestionOne.photo = '';
+    scope.suggestionOne.fName = '';
+    scope.suggestionOne.lName = '';
+    scope.suggestionOne.phoneNumber = '';
+
+    scope.suggestionTwo = {};
+    scope.suggestionTwo.photo = '';
+    scope.suggestionTwo.fName = '';
+    scope.suggestionTwo.lName = '';
+    scope.suggestionTwo.phoneNumber = '';
+
+    var maskOne = /[0-9]/g;
+    arrayOfContacts = [];
+
+    var checkFirstBlock = false;
+    var checkSecondBlock = false;
+
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
     };
+
+    contactPhoneBlurAndChange = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riot.update();
+      if (contactPhoneNumberId.value.length == 9) {
+        nextButtonId.style.display = 'block'
+        firstSuggestionBlockId.style.display = 'none';
+        secondSuggestionBlockId.style.display = 'none';
+      }
+      else {
+        nextButtonId.style.display = 'none'
+      }
+    }
+
+    findContacts = function () {
+
+      var options = new ContactFindOptions();
+      options.filter = "";
+      options.multiple = true;
+      var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.photos];
+      navigator.contacts.find(fields, success, error, options);
+
+      function success(contacts) {
+        for (var i = 0; i < contacts.length; i++) {
+          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null)
+            arrayOfContacts.push(contacts[i])
+        }
+      }
+
+      function error(message) {
+        alert('Failed because: ' + message);
+      }
+    }
+    if (device.platform != 'BrowserStand')
+      findContacts();
+
+    searchContacts = function () {
+
+      if (contactPhoneNumberId.value.length == 9) {
+        nextButtonId.style.display = 'block'
+
+
+        firstSuggestionBlockId.style.display = 'none';
+        secondSuggestionBlockId.style.display = 'none';
+        return
+
+      }
+      else {
+        nextButtonId.style.display = 'none'
+
+        if (contactPhoneNumberId.value.length == 0) {
+          console.log('I AM HERE')
+
+          scope.suggestionOne = JSON.parse(JSON.stringify(scope.suggestionOneCopy));
+          firstSuggestionBlockId.style.display = 'none';
+          secondSuggestionBlockId.style.display = 'none';
+          riot.update();
+          return
+        }
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      var countOfFound = 0;
+      var check = false;
+      var index = -1;
+      if (event.keyCode != 16 && event.keyCode != 18)
+        scope.searchWord = event.target.value;
+
+      arrayOfContacts.filter(function (wordOfFunction) {
+        var objectPos = '';
+        if (wordOfFunction.phoneNumbers) {
+          for (var i in wordOfFunction.phoneNumbers) {
+            index = wordOfFunction.phoneNumbers[i].value.indexOf(scope.searchWord);
+            if (index != -1) {
+              objectPos = i;
+              break;
+            }
+          }
+        }
+        else
+          index = -1;
+
+        if (index != -1 && countOfFound < 2) {
+
+          check = true;
+
+          if (countOfFound == 0) {
+
+            scope.suggestionOne.phoneNumber = wordOfFunction.phoneNumbers[objectPos].value;
+            scope.suggestionOne.fName = wordOfFunction.name.givenName;
+            scope.suggestionOne.lName = wordOfFunction.name.familyName;
+
+            if (wordOfFunction.photos != null) {
+              if (wordOfFunction.photos[0] != null)
+                scope.suggestionOne.photo = wordOfFunction.photos[0].value;
+              else
+                scope.suggestionOne.photo = '';
+            }
+            else
+              scope.suggestionOne.photo = '';
+
+
+            riot.update(scope.suggestionOne)
+
+            firstSuggestionBlockId.style.display = 'block';
+            secondSuggestionBlockId.style.display = 'none';
+          }
+
+          if (countOfFound == 1) {
+
+            scope.suggestionTwo.phoneNumber = wordOfFunction.phoneNumbers[objectPos].value;
+            scope.suggestionTwo.fName = wordOfFunction.name.givenName;
+            scope.suggestionTwo.lName = wordOfFunction.name.familyName;
+
+            if (wordOfFunction.photos != null) {
+              if (wordOfFunction.photos[0] != null)
+                scope.suggestionTwo.photo = wordOfFunction.photos[0].value;
+              else
+                scope.suggestionTwo.photo = '';
+            }
+            else
+              scope.suggestionTwo.photo = '';
+
+            riot.update(scope.suggestionTwo)
+
+            secondSuggestionBlockId.style.display = 'block';
+          }
+          countOfFound++;
+          if (countOfFound == 2)
+            return;
+        }
+        else if (!check) {
+          firstSuggestionBlockId.style.display = 'none';
+          secondSuggestionBlockId.style.display = 'none';
+        }
+      });
+    }
+
+    firstSuggestionBlock = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      var digits = scope.suggestionOne.phoneNumber.match(maskOne);
+      var phone = '';
+      for (var i in digits) {
+        phone += digits[i]
+      }
+      scope.suggestionOne.phoneNumber = phone;
+      console.log(scope.suggestionOne.phoneNumber)
+      contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length);
+
+      if (contactPhoneNumberId.value.length == 9) {
+        nextButtonId.style.display = 'block'
+
+        firstSuggestionBlockId.style.display = 'none';
+        secondSuggestionBlockId.style.display = 'none';
+      }
+      else
+        nextButtonId.style.display = 'none'
+    }
+
+    secondSuggestionBlock = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      var digits = scope.suggestionTwo.phoneNumber.match(maskOne);
+      var phone = '';
+      for (var i in digits) {
+        phone += digits[i]
+      }
+      scope.suggestionTwo.phoneNumber = phone;
+
+      contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length);
+
+      if (contactPhoneNumberId.value.length == 9) {
+        nextButtonId.style.display = 'block'
+        firstSuggestionBlockId.style.display = 'none';
+        secondSuggestionBlockId.style.display = 'none';
+      }
+      else
+        nextButtonId.style.display = 'none'
+    }
 
 
   </script>

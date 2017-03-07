@@ -5647,7 +5647,6 @@ var css = {
   "width: 100%;" +
   "border-bottom: 1px solid gray;" +
   "height:" + 100 * widthK + "px;" +
-  "top:" + 86 * widthK + "px;" +
   "}",
 
   settingsAddFriendAddTitle: ".settings-add-friend-add-title" +
@@ -5664,7 +5663,7 @@ var css = {
   "height:" + 100 * widthK + "px;" +
   "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top: 19%" +
+  "top: 12%" +
   "}",
 
   settingsAddFriendContactTextField: ".settings-add-friend-contact-text-field" +
@@ -5681,11 +5680,12 @@ var css = {
   "position: absolute;" +
   "background-image: url('resources/icons/ViewService/book.png');" +
   "width: 8%;" +
-  "height: 100%;" +
+  "height: 50%;" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "background-position: center;" +
-  "left: 9%;" +
+  "top: 34%;" +
+  "right: 1%;" +
   "}",
 
   settingsAddFriendContactNumberFirstPart: ".settings-add-friend-contact-number-first-part" +
@@ -5715,21 +5715,48 @@ var css = {
   "color: #515151;" +
   "}",
 
-  settingsAddFriendContactFromNativeContainer: ".settings-add-friend-contact-from-native-container" +
-  "{" +
-  "position: absolute;" +
-  "top: 29%;" +
-  "width: 100%;" +
-  "height:" + 85 * widthK + "px;" +
-  "border-bottom: 1px solid gray;" +
-  "}",
-
-  settingsAddFriendContactFromNativeTitle: ".settings-add-friend-contact-from-native-title" +
+  settingsAddFriendNextButtonInnerContainer: ".settings-add-friend-next-button-inner-container" +
   "{" +
   "position: relative;" +
-  "margin-bottom: 0;" +
-  "margin-top: 3%;" +
-  "margin-left: 21%;" +
+  "width: 63%;" +
+  "height: 8%;" +
+  "margin-right: auto;" +
+  "border-radius: " + 80 * widthK + "px; " +
+  "margin-left: auto;" +
+  "background-color: rgb(1, 124, 227);" +
+  "top: 49%;" +
+  "}",
+
+  settingsAddFriendNextButtonLabel: ".settings-add-friend-next-button-label" +
+  "{" +
+  "position: relative;" +
+  "top: 20%;" +
+  "width: 30%;" +
+  "font-size:  " + 45 * widthK + "px; " +
+  "margin: auto;" +
+  "color: white;" +
+  "}",
+
+  settingsAddFriendContactFoundContainerOne: ".settings-add-friend-contact-found-container-one" +
+  "{" +
+  "position: absolute;" +
+  "width: 79.5%;" +
+  "height:" + 120 * widthK + "px;" +
+  "background-color: #F0F1F4;" +
+  "left: 10%;" +
+  "top:" + 250 * widthK + "px;" +
+  "display: none;" +
+  "}",
+
+  settingsAddFriendContactFoundContainerTwo: ".settings-add-friend-contact-found-container-two" +
+  "{" +
+  "position: absolute;" +
+  "width: 79.5%;" +
+  "height:" + 120 * widthK + "px;" +
+  "background-color: #F0F1F4;" +
+  "left: 10%;" +
+  "top:" + 375 * widthK + "px;" +
+  "display: none;" +
   "}",
 }
 
