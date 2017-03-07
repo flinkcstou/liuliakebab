@@ -3873,26 +3873,23 @@ var css = {
   transferNextButtonInnerContainer: ".transfer-next-button-inner-container" +
   "{" +
   "position: relative;" +
-  "height: 6%;" +
-  "width: 51%;" +
-  "top: 28%;" +
-  "display: table;" +
-  "display: none;" +
-  "background-color: #027fe4;" +
-  "border-radius:" + 50 * widthK + "px;" +
+  "width: 63%;" +
+  "height: 8%;" +
   "margin-right: auto;" +
+  "border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
+  "background-color: rgb(1, 124, 227);" +
+  "top: 25%;" +
   "}",
 
   transferNextButtonLabel: ".transfer-next-button-label" +
   "{" +
   "position: relative;" +
-  "background-size: contain;" +
-  "font-size:" + 38 * widthK + "px;" +
-  "color: #ffffff;" +
-  "text-align: center;" +
-  "display: table-cell;" +
-  "vertical-align: middle;" +
+  "top: 20%;" +
+  "width: 30%;" +
+  "font-size:  " + 45 * widthK + "px; " +
+  "margin: auto;" +
+  "color: white;" +
   "}",
 
   transferNextButtonIcon: ".transfer-next-button-icon" +
@@ -4007,26 +4004,24 @@ var css = {
   transferTwoNextButtonInnerContainer: ".transfertwo-next-button-inner-container" +
   "{" +
   "position: relative;" +
-  "height: 6%;" +
-  "width: 51%;" +
-  "top: 48%;" +
-  "display: table;" +
-  "background-color: #027fe4;" +
-  "border-radius:" + 50 * widthK + "px;" +
+  "width: 63%;" +
+  "height: 8%;" +
   "margin-right: auto;" +
+  "border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
+  "background-color: rgb(1, 124, 227);" +
+  "top: 45%;" +
   "}",
 
 
   transferTwoNextButtonLabel: ".transfertwo-next-button-label" +
   "{" +
   "position: relative;" +
-  "background-size: contain;" +
-  "font-size:" + 38 * widthK + "px;" +
-  "color: #ffffff;" +
-  "text-align: center;" +
-  "display: table-cell;" +
-  "vertical-align: middle;" +
+  "top: 20%;" +
+  "width: 30%;" +
+  "font-size:  " + 45 * widthK + "px; " +
+  "margin: auto;" +
+  "color: white;" +
   "}",
 
   transferTwoCommentContainer: ".transfertwo-comment-container" +
@@ -4135,28 +4130,24 @@ var css = {
 
   transferThreeNextButtonInnerContainer: ".transferthree-next-button-inner-container" +
   "{" +
-  "position: absolute;" +
-  "height: 6.5%;" +
-  "width: 50%;" +
-  "left: 25%;" +
-  "bottom: 6%;" +
-  "display: table;" +
-  "font-size:" + 35 * widthK + "px;" +
-  "background-color: #027fe4;" +
-  "border-radius:" + 50 * widthK + "px;" +
+  "position: relative;" +
+  "width: 63%;" +
+  "height: 8%;" +
   "margin-right: auto;" +
+  "border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
+  "background-color: rgb(1, 124, 227);" +
+  "top: 75%;" +
   "}",
 
   transferThreeNextButtonLabel: ".transferthree-next-button-label" +
   "{" +
   "position: relative;" +
-  "background-size: contain;" +
-  "font-size:" + 32 * widthK + "px;" +
-  "color: #ffffff;" +
-  "text-align: center;" +
-  "display: table-cell;" +
-  "vertical-align: middle;" +
+  "top: 20%;" +
+  "width: 30%;" +
+  "font-size:  " + 45 * widthK + "px; " +
+  "margin: auto;" +
+  "color: white;" +
   "}",
 
   //VIEW TRANSFER FOUR
@@ -4404,7 +4395,7 @@ var css = {
   "bottom: 0;" +
   "position: absolute;" +
   "width: 52%;" +
-  "height: 25%;" +
+  "height: 32%;" +
   "border-radius:" + 80 * widthK + "px; " +
   "left: 24%;" +
   "margin: 0;" +
@@ -4414,9 +4405,9 @@ var css = {
   transferFourButtonEnterLabel: ".transferfour-button-enter-label" +
   "{" +
   "position: relative;" +
-  "top: 18%;" +
+  "top: 24%;" +
   "width: 100%;" +
-  "left: 3.5%;" +
+  "left: 1%;" +
   "letter-spacing:" + 3 * widthK + "px;" +
   "font-size: " + 36 * widthK + "px; " +
   "margin: auto;" +
@@ -5647,6 +5638,98 @@ var css = {
   "background-position: center;" +
   "top: 50%;" +
   "left: 93%;" +
+  "}",
+
+  //SETTINGS ADD FRIEND
+  settingsAddFriendAddContainer: ".settings-add-friend-add-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "border-bottom: 1px solid gray;" +
+  "height:" + 100 * widthK + "px;" +
+  "top:" + 86 * widthK + "px;" +
+  "}",
+
+  settingsAddFriendAddTitle: ".settings-add-friend-add-title" +
+  "{" +
+  "position: relative;" +
+  "margin-left: 10%;" +
+  "}",
+
+  settingsAddFriendContactPhoneField: ".settings-add-friend-contact-phone-field" +
+  "{" +
+  "position: absolute;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height:" + 100 * widthK + "px;" +
+  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  "top: 19%" +
+  "}",
+
+  settingsAddFriendContactTextField: ".settings-add-friend-contact-text-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: -14%;" +
+  "}",
+
+  settingsAddFriendContactPhoneIcon: ".settings-add-friend-contact-phone-icon" +
+  "{" +
+  "position: absolute;" +
+  "background-image: url('resources/icons/ViewService/book.png');" +
+  "width: 8%;" +
+  "height: 100%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "background-position: center;" +
+  "left: 9%;" +
+  "}",
+
+  settingsAddFriendContactNumberFirstPart: ".settings-add-friend-contact-number-first-part" +
+  "{" +
+  "float: left;" +
+  "position: relative;" +
+  "top: 28%;" +
+  "height: 68%;" +
+  "font-size:" + 51 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "margin: 0;" +
+  "}",
+
+  settingsAddFriendContactNumberInputPart: ".settings-add-friend-contact-number-input-part" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "top: 28%;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "margin-left: 3%;" +
+  "width: 65%;" +
+  "font-size:" + 51 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "}",
+
+  settingsAddFriendContactFromNativeContainer: ".settings-add-friend-contact-from-native-container" +
+  "{" +
+  "position: absolute;" +
+  "top: 29%;" +
+  "width: 100%;" +
+  "height:" + 85 * widthK + "px;" +
+  "border-bottom: 1px solid gray;" +
+  "}",
+
+  settingsAddFriendContactFromNativeTitle: ".settings-add-friend-contact-from-native-title" +
+  "{" +
+  "position: relative;" +
+  "margin-bottom: 0;" +
+  "margin-top: 3%;" +
+  "margin-left: 21%;" +
   "}",
 }
 

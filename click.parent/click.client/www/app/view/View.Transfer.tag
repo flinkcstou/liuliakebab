@@ -278,7 +278,6 @@
             console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
             if (contactPhoneNumberId.value.length == 9) {
               nextButtonId.style.display = 'block'
-              nextButtonId.style.display = 'table'
 
               firstSuggestionBlockId.style.display = 'none';
               secondSuggestionBlockId.style.display = 'none';
@@ -314,7 +313,6 @@
       riot.update(scope.cardMode);
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
-        nextButtonId.style.display = 'table'
         firstSuggestionBlockId.style.display = 'none';
         secondSuggestionBlockId.style.display = 'none';
         thirdSuggestionBlockId.style.display = 'none';
@@ -338,7 +336,6 @@
       riot.update(scope.contactMode);
       if (cardInputId.value.replace(/\s/g, '').length == 16) {
         nextButtonId.style.display = 'block'
-        nextButtonId.style.display = 'table'
         firstCardSuggestionId.style.display = 'none';
         secondCardSuggestionId.style.display = 'none';
         thirdCardSuggestionId.style.display = 'none';
@@ -504,7 +501,6 @@
 
       if (cardInputId.value.replace(/\s/g, '').length == 16) {
         nextButtonId.style.display = 'block'
-        nextButtonId.style.display = 'table'
         firstCardSuggestionId.style.display = 'none';
         secondCardSuggestionId.style.display = 'none';
         thirdCardSuggestionId.style.display = 'none';
@@ -928,7 +924,7 @@
 
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
-        nextButtonId.style.display = 'table'
+
 
         firstSuggestionBlockId.style.display = 'none';
         secondSuggestionBlockId.style.display = 'none';
@@ -1272,7 +1268,7 @@
 
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
-        nextButtonId.style.display = 'table'
+
         firstSuggestionBlockId.style.display = 'none';
         secondSuggestionBlockId.style.display = 'none';
         thirdSuggestionBlockId.style.display = 'none';
@@ -1298,7 +1294,6 @@
 
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
-        nextButtonId.style.display = 'table'
         firstSuggestionBlockId.style.display = 'none';
         secondSuggestionBlockId.style.display = 'none';
         thirdSuggestionBlockId.style.display = 'none';
@@ -1324,7 +1319,6 @@
 
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
-        nextButtonId.style.display = 'table'
         firstSuggestionBlockId.style.display = 'none';
         secondSuggestionBlockId.style.display = 'none';
         thirdSuggestionBlockId.style.display = 'none';
@@ -1350,7 +1344,6 @@
 
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
-        nextButtonId.style.display = 'table'
         firstSuggestionBlockId.style.display = 'none';
         secondSuggestionBlockId.style.display = 'none';
         thirdSuggestionBlockId.style.display = 'none';
@@ -1376,7 +1369,6 @@
 
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
-        nextButtonId.style.display = 'table'
         firstSuggestionBlockId.style.display = 'none';
         secondSuggestionBlockId.style.display = 'none';
         thirdSuggestionBlockId.style.display = 'none';
@@ -1396,7 +1388,6 @@
 
       if (cardInputId.value.length == 19) {
         nextButtonId.style.display = 'block'
-        nextButtonId.style.display = 'table'
         firstCardSuggestionId.style.display = 'none';
         secondCardSuggestionId.style.display = 'none';
         thirdCardSuggestionId.style.display = 'none';
@@ -1415,7 +1406,6 @@
 
       if (cardInputId.value.length == 19) {
         nextButtonId.style.display = 'block'
-        nextButtonId.style.display = 'table'
         firstCardSuggestionId.style.display = 'none';
         secondCardSuggestionId.style.display = 'none';
         thirdCardSuggestionId.style.display = 'none';
@@ -1434,7 +1424,6 @@
 
       if (cardInputId.value.length == 19) {
         nextButtonId.style.display = 'block'
-        nextButtonId.style.display = 'table'
         firstCardSuggestionId.style.display = 'none';
         secondCardSuggestionId.style.display = 'none';
         thirdCardSuggestionId.style.display = 'none';
@@ -1453,7 +1442,6 @@
 
       if (cardInputId.value.length == 19) {
         nextButtonId.style.display = 'block'
-        nextButtonId.style.display = 'table'
         firstCardSuggestionId.style.display = 'none';
         secondCardSuggestionId.style.display = 'none';
         thirdCardSuggestionId.style.display = 'none';
@@ -1472,7 +1460,6 @@
 
       if (cardInputId.value.length == 19) {
         nextButtonId.style.display = 'block'
-        nextButtonId.style.display = 'table'
         firstCardSuggestionId.style.display = 'none';
         secondCardSuggestionId.style.display = 'none';
         thirdCardSuggestionId.style.display = 'none';

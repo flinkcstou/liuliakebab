@@ -169,6 +169,9 @@ var RU_LANGUAGES =
 
   "ViewSettingsAboutProgramTitleName": "О ПРОГРАММЕ",
 
+  "ViewSettingsAddFriendTitleName": "ДОБАВИТЬ ДРУГА",
+  "ViewSettingsAddFriendPhoneNumberTitle": "Номер телефона",
+
 };
 
 window.languages = RU_LANGUAGES;
