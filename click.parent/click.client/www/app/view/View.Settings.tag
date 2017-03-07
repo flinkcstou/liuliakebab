@@ -94,5 +94,13 @@
       riot.mount("view-friend-help-settings");
     }
 
+    goToAboutSettings = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riotTags.innerHTML = "<view-about-program>";
+      riot.mount("view-about-program");
+    }
+
   </script>
 </view-settings>

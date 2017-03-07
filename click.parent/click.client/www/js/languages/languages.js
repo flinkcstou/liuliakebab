@@ -167,6 +167,8 @@ var RU_LANGUAGES =
   "ViewAboutSettingsAgreementTitle": "Пользовательское соглашение",
   "ViewAboutSettingsRateUsTitle": "Оцените нас в Google Play",
 
+  "ViewSettingsAboutProgramTitleName": "О ПРОГРАММЕ",
+
 };
 
 window.languages = RU_LANGUAGES;

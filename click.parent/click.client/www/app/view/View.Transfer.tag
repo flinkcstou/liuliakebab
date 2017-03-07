@@ -986,20 +986,31 @@
 
       var countOfFound = 0;
       var check = false;
-
+      var index = -1;
       if (event.keyCode != 16 && event.keyCode != 18)
         scope.searchWord = event.target.value;
 
       arrayOfContacts.filter(function (wordOfFunction) {
+        var objectPos = '';
+        if (wordOfFunction.phoneNumbers) {
+          for (var i in wordOfFunction.phoneNumbers) {
+            index = wordOfFunction.phoneNumbers[i].value.indexOf(scope.searchWord);
+            if (index != -1) {
+              objectPos = i;
+              break;
+            }
+          }
+        }
+        else
+          index = -1;
 
-        var index = wordOfFunction.phoneNumbers[0].value.indexOf(scope.searchWord);
         if (index != -1 && countOfFound < 2) {
 
           check = true;
 
           if (countOfFound == 0) {
 
-            scope.suggestionOne.phoneNumber = wordOfFunction.phoneNumbers[0].value;
+            scope.suggestionOne.phoneNumber = wordOfFunction.phoneNumbers[objectPos].value;
             scope.suggestionOne.fName = wordOfFunction.name.givenName;
             scope.suggestionOne.lName = wordOfFunction.name.familyName;
 
@@ -1021,7 +1032,7 @@
 
           if (countOfFound == 1) {
 
-            scope.suggestionTwo.phoneNumber = wordOfFunction.phoneNumbers[0].value;
+            scope.suggestionTwo.phoneNumber = wordOfFunction.phoneNumbers[objectPos].value;
             scope.suggestionTwo.fName = wordOfFunction.name.givenName;
             scope.suggestionTwo.lName = wordOfFunction.name.familyName;
 
