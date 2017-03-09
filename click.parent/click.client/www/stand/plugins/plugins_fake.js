@@ -7,7 +7,7 @@ window.device_fake.check = false;
 
 window.Keyboard_fake = {};
 window.Keyboard_fake.hide = function (){
-  alert('keyboard is hidden')
+  //alert('keyboard is hidden')
 };
 
 if(!window.Keyboard){

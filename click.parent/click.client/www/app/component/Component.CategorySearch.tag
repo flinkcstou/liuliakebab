@@ -52,8 +52,7 @@
       blockSearchId.style.display = 'block';
       if (scope.categoryList)
         arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
-      if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#353340");
+
     }
 
     searchCancelEnd = function () {
@@ -63,7 +62,7 @@
       if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#007AE2");
       scope.searchWord = '';
-      Keyboard.hide();
+      searchInputId.autofocus = false;
     }
 
     searchSuggestion = function () {
@@ -203,7 +202,7 @@
 
 
     suggestionFieldOne = function () {
-      Keyboard.hide();
+      searchInputId.autofocus = false;
       event.preventDefault();
       event.stopPropagation();
       blockSearchId.style.display = 'none';
@@ -218,7 +217,7 @@
     }
 
     suggestionFieldTwo = function () {
-      Keyboard.hide();
+      searchInputId.autofocus = false;
       event.preventDefault();
       event.stopPropagation();
       blockSearchId.style.display = 'none';
@@ -233,7 +232,7 @@
 
 
     suggestionFieldThree = function () {
-      Keyboard.hide();
+      searchInputId.autofocus = false;
       event.preventDefault();
       event.stopPropagation();
       blockSearchId.style.display = 'none';
@@ -248,7 +247,7 @@
 
 
     suggestionFieldFour = function () {
-      Keyboard.hide();
+      searchInputId.autofocus = false;
       event.preventDefault();
       event.stopPropagation();
       blockSearchId.style.display = 'none';

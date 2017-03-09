@@ -3,6 +3,7 @@
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
       <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
+      <div id="rightButton" ontouchend="goToBack()" class="settings-friend-help-add-button"></div>
     </div>
     <div class="settings-container">
       <div class="settings-friend-help-contact-container">

@@ -97,10 +97,11 @@
             if (result[0][0].error == 0) {
               scope.cardsArray[scope.card.card_id].name = newCardName;
               console.log("name new=", scope.cardsArray[scope.card.card_id].name);
-              if (isMain == scope.card.default_account) {
-                localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
-                onBackKeyDown();
-              }
+              //TODO: CHANGED - COMMENTED
+//              if (isMain == scope.card.default_account) {
+              localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
+              onBackKeyDown();
+//              }
             }
             else {
               alert(result[0][0].error_note);

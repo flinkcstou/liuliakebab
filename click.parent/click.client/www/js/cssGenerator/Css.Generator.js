@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/menu/crop.png);" +
-    //"opacity: 0.6;" +
+  //"background-image: url(resources/draft/add_friend.png);" +
+  //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
-  "background: -webkit-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
-  "background: -ms-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+    "background: -moz-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+    "background: -webkit-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+    "background: -ms-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -1465,7 +1465,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "font-size:" + 35 * widthK + "px;" +
   "left: 12.5%;" +
   "top: 31%;" +
   "margin: 0;" +
@@ -2269,9 +2269,9 @@ var css = {
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
-  "font-size:" + 34 * widthK + "px; " +
+  "font-size:" + 35 * widthK + "px; " +
   "left:" + 86 * widthK + "px; " +
-  "top:" + 40 * widthK + "px; " +
+  "top:" + 38 * widthK + "px; " +
   "margin: 0;  " +
   "color: #fffaf9;" +
   "}",
@@ -2480,7 +2480,7 @@ var css = {
   "left:" + 25 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
 
 
@@ -5420,7 +5420,7 @@ var css = {
   "position: absolute;" +
     //"height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
-  "top:" + 86 * widthK + "px; " +
+  "top:" + 92 * widthK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
   "overflow-y: auto; " +
@@ -5667,14 +5667,17 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "border-bottom: 1px solid gray;" +
-  "height:" + 100 * widthK + "px;" +
+    //"border-bottom: 1px solid gray;" +
+  "height:" + 150 * widthK + "px;" +
   "}",
 
   settingsAddFriendAddTitle: ".settings-add-friend-add-title" +
   "{" +
   "position: relative;" +
   "margin-left: 10%;" +
+  "top: 12%;" +
+  "color: #cbcbcb;" +
+  "font-size:" + 24 * widthK + "px;" +
   "}",
 
   settingsAddFriendContactPhoneField: ".settings-add-friend-contact-phone-field" +
@@ -5685,14 +5688,55 @@ var css = {
   "height:" + 100 * widthK + "px;" +
   "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top: 12%" +
+  "top: 17%" +
+  "}",
+
+  settingsAddFriendContactNumberInputPart: ".settings-add-friend-contact-number-input-part" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "top: 28%;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "margin-left: 3%;" +
+  "width: 65%;" +
+  "font-size:" + 51 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "}",
+
+  settingsAddFriendNameNumberInputPart: ".settings-add-friend-name-number-input-part" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "top: 28%;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "margin-left: 3%;" +
+  "width: 93%;" +
+  "font-size:" + 51 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "}",
+
+  settingsAddFriendNamePhoneField: ".settings-add-friend-name-phone-field" +
+  "{" +
+  "position: absolute;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height:" + 100 * widthK + "px;" +
+  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  "top: 36%" +
   "}",
 
   settingsAddFriendContactTextField: ".settings-add-friend-contact-text-field" +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "color: gray;" +
+  "color: #cbcbcb;" +
   "font-size:" + 24 * widthK + "px;" +
   "top: -14%;" +
   "}",
@@ -5746,7 +5790,7 @@ var css = {
   "border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
   "background-color: rgb(1, 124, 227);" +
-  "top: 24%;" +
+  "top: 29%;" +
   "}",
 
   settingsAddFriendNextButtonLabel: ".settings-add-friend-next-button-label" +
@@ -5812,6 +5856,21 @@ var css = {
   "height:" + 110 * widthK + "px;" +
   "}",
 
+  settingsFriendHelpAddButton: ".settings-friend-help-add-button " +
+  "{" +
+  "position: absolute;" +
+  "width: 20%;" +
+  "height: 100%;" +
+  "right: -4%;" +
+  "background-image: url(resources/icons/ViewSettingsFriendHelp/plus.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 30%;" +
+  "background-position-y: 62%;" +
+  "background-position-x: 62%;" +
+  "background-size: 30%;" +
+  "top:0" +
+  "}",
+
   settingsFriendHelpContactFoundPhoto: ".settings-friend-help-contact-found-photo" +
   "{" +
   "top:" + 8 * widthK + "px;" +
@@ -5840,7 +5899,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "color: gray;" +
+  "color: #999999;" +
   "top: 20%;" +
   "font-size:" + 24 * widthK + "px;" +
   "width:" + 400 * widthK + "px;" +
@@ -5851,7 +5910,7 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "left: 0%;" +
-  "color: gray;" +
+  "color: #cbcbcb;" +
   "font-size:" + 24 * widthK + "px;" +
   "top: 45%;" +
   "}",
@@ -5863,9 +5922,9 @@ var css = {
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background-repeat: no-repeat;" +
-  "background-size: contain;" +
+  "background-size: 30%;" +
   "background-position: center;" +
-  "border-radius: 50%;" +
+  "background-image: url(resources/icons/ViewSettingsFriendHelp/delete.png);" +
   "right: 5%;" +
   "}",
 

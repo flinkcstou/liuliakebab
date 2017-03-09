@@ -8,14 +8,21 @@
 
       <div class="settings-add-friend-add-container">
         <p class="settings-add-friend-add-title">Имя друга</p>
+        <div id="namePhoneFieldId" class="settings-add-friend-name-phone-field">
+          <p class="settings-add-friend-contact-text-field"></p>
+          <p class="settings-add-friend-contact-number-first-part"></p>
+          <input ontouchend="namePhoneFieldTouchEnd()" autofocus="true"
+                 class="settings-add-friend-name-number-input-part"
+                 type="text"/>
+        </div>
       </div>
-      <div class="settings-add-friend-contact-phone-field">
+      <div id="contactPhoneFieldId" class="settings-add-friend-contact-phone-field">
         <div class="settings-add-friend-contact-phone-icon" ontouchend="pickContactFromNative()"></div>
         <p class="settings-add-friend-contact-text-field">{window.languages.ViewSettingsAddFriendPhoneNumberTitle}</p>
         <p class="settings-add-friend-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
         <input onchange="contactPhoneBlurAndChange()" onfocus="contactPhoneBlurAndChange()"
                id="contactPhoneNumberId"
-               class="transfer-contact-number-input-part" type="tel"
+               class="settings-add-friend-contact-number-input-part" type="tel"
                maxlength="9" onkeyup="searchContacts()"/>
       </div>
 
@@ -59,9 +66,24 @@
 
     this.on('mount', function () {
 
+      namePhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #01cfff"
+      contactPhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #cbcbcb"
+      if (contactPhoneNumberId.value.length != 9) {
+        nextButtonId.style.display = 'none'
+      }
+      riot.update();
+
 //      firstSuggestionBlockId.style.display = 'block';
 //      secondSuggestionBlockId.style.display = 'block';
     })
+
+    namePhoneFieldTouchEnd = function () {
+
+      namePhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #01cfff"
+      contactPhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #cbcbcb"
+      riot.update();
+
+    }
 
     scope.suggestionOne = {};
     scope.suggestionOne.photo = '';
@@ -93,7 +115,6 @@
       event.preventDefault();
       event.stopPropagation();
 
-      riot.update();
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
         firstSuggestionBlockId.style.display = 'none';
@@ -102,6 +123,11 @@
       else {
         nextButtonId.style.display = 'none'
       }
+
+      namePhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #cbcbcb"
+      contactPhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #01cfff"
+
+      riot.update();
     }
 
     pickContactFromNative = function () {
@@ -181,7 +207,6 @@
         if (contactPhoneNumberId.value.length == 0) {
           console.log('I AM HERE')
 
-          scope.suggestionOne = JSON.parse(JSON.stringify(scope.suggestionOneCopy));
           firstSuggestionBlockId.style.display = 'none';
           secondSuggestionBlockId.style.display = 'none';
           riot.update();
