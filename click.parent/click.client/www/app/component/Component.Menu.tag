@@ -81,8 +81,8 @@
 
     closeMenu = function () {
       if (event) {
-//        event.preventDefault();
-//        event.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
       }
       componentMenu.checkOpen = false;
 

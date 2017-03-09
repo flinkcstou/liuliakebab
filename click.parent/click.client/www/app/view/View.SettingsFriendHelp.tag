@@ -5,6 +5,15 @@
       <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
     </div>
     <div class="settings-container">
+      <div class="settings-friend-help-contact-container">
+        <div class="settings-friend-help-contact-found-photo"
+             style="background-image: url({suggestionOne.photo})"></div>
+        <div class="settings-friend-help-contact-found-text-container">
+          <div class="settings-friend-help-contact-found-text-one">GANIEV JASUR</div>
+          <div class="settings-friend-help-contact-found-text-two">+90997474737</div>
+        </div>
+        <div class="settings-friend-help-contact-cancel-icon"></div>
+      </div>
 
     </div>
 

@@ -1,15 +1,15 @@
 <view-general-settings>
   <div>
-    <div class="settings-general-page-title">
+    <div class="page-title settings-general-page-title">
       <p class="name-title">{titleName}</p>
-      <div id="backButton" ontouchend="goToBack()" class="back-button"></div>
+      <div id="backButton" ontouchend="goToBack()" class="settings-general-back-button"></div>
       <div id="rightButton" type="button" class="check-button" ontouchend="saveEdit()"></div>
     </div>
     <div class="settings-general-user-info-container">
       <div class="settings-general-user-icon" style="background-image: url({photo})"></div>
       <div class="settings-general-user-name-container">
-        <p class="settings-general-user-first-name">Юлдашев</p>
-        <p class="settings-general-user-second-name">Александр</p>
+        <p class="settings-general-user-first-name">{lastName}</p>
+        <p class="settings-general-user-second-name">{firstName}</p>
       </div>
       <div class="settings-general-edit-icon"></div>
     </div>
@@ -40,6 +40,13 @@
     var scope = this;
     this.titleName = window.languages.ViewMainSettingsTitleTwo;
     scope.langChangeBool = false;
+
+    console.log(JSON.parse(localStorage.getItem('click_client_loginInfo')))
+    var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+
+    scope.firstName = loginInfo.firstname;
+    scope.lastName = loginInfo.lastname;
+    scope.photo = loginInfo.profile_image_url;
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-general-settings') {

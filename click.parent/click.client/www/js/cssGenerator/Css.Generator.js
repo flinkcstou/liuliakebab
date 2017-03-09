@@ -1465,7 +1465,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
-  "font-size:" + 32 * widthK + "px;" +
+  "font-size:" + 34 * widthK + "px;" +
   "left: 12.5%;" +
   "top: 31%;" +
   "margin: 0;" +
@@ -5457,13 +5457,28 @@ var css = {
 
   settingsGeneralPageTitle: ".settings-general-page-title " +
   "{" +
+    //"position: absolute;" +
+    //"top:" + -12 * widthK + "px;" +
+    //"right:" + 28 * widthK + "px;" +
+    //"left:" + 25 * widthK + "px;" +
+    //"height:" + 100 * widthK + "px;" +
+    //"background: transparent;" +
+  "border: none;" +
+  "}",
+
+  settingsGeneralBackButton: ".settings-general-back-button " +
+  "{" +
   "position: absolute;" +
-  "top:" + -12 * widthK + "px;" +
-  "right:" + 28 * widthK + "px;" +
-  "left:" + 25 * widthK + "px;" +
+  "width:" + 120 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
-  "background: transparent;" +
-    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y:" + 31 * widthK + "px; " +
+  "background-position-x:" + 41 * widthK + "px; " +
+  "background-size: 16%;" +
+  "left: -3%;" +
+  "top: 0;" +
   "}",
 
   settingsGeneralContainer: ".settings-general-container" +
@@ -5553,9 +5568,9 @@ var css = {
 
   settingsGeneralMaleIcon: ".settings-general-male-icon" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "width: 80%;" +
-  "height: 70%;" +
+  "height:" + 100 * widthK + "px;" +
   "/*top: 20%;*/" +
   "left: 12%;" +
   "background-repeat: no-repeat;" +
@@ -5566,9 +5581,9 @@ var css = {
 
   settingsGeneralFemaleIcon: ".settings-general-female-icon" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "width: 80%;" +
-  "height: 70%;" +
+  "height:" + 100 * widthK + "px;" +
   "/*top: 20%;*/" +
   "left: 12%;" +
   "background-repeat: no-repeat;" +
@@ -5579,20 +5594,22 @@ var css = {
 
   settingsGeneralGenderText: ".settings-general-gender-text" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "margin: 0;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "text-align: center;" +
   "padding: 0;" +
   "bottom: 0;" +
   "color: lightgray;" +
-  "left:32%;" +
-  "font-size:24px;" +
+  "font-size:" + 24 * widthK + "px;" +
   "}",
 
   settingsGeneralEditIcon: ".settings-general-edit-icon" +
   "{" +
   "position: absolute;" +
-  "width: 35px;" +
-  "height: 40px;" +
+  "width:" + 35 * widthK + "px;" +
+  "height:" + 40 * widthK + "px;" +
   "left: 85%;" +
   "bottom:0;" +
   "background-repeat: no-repeat;" +
@@ -5780,6 +5797,71 @@ var css = {
   "background-image: url(resources/icons/icon/icon.png);" +
   "background-size: 100%;" +
   "background-position: center;" +
+  "}",
+
+  //SETTINGS FRIEND HELP
+  settingsFriendHelpContactContainer: ".settings-friend-help-contact-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height:" + 110 * widthK + "px;" +
+  "}",
+
+  settingsFriendHelpContactFoundPhoto: ".settings-friend-help-contact-found-photo" +
+  "{" +
+  "top:" + 8 * widthK + "px;" +
+  "position: absolute;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-size: contain;" +
+  "background-position: center;" +
+  "border-radius: 50%;" +
+  "left: 5%;" +
+  "}",
+
+  settingsFriendHelpContactFoundTextContainer: ".settings-friend-help-contact-found-text-container" +
+  "{" +
+  "position: absolute;" +
+  "left: 25%;" +
+  "color: gray;" +
+  "width: 60%;" +
+  "height: 100%;" +
+  "display: table;" +
+  "}",
+
+
+  settingsFriendHelpContactFoundTextOne: ".settings-friend-help-contact-found-text-one" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "top: 20%;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "width:" + 400 * widthK + "px;" +
+  "}",
+
+  settingsFriendHelpContactFoundTextTwo: ".settings-friend-help-contact-found-text-two" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 0%;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: 45%;" +
+  "}",
+
+  settingsFriendHelpContactCancelIcon: ".settings-friend-help-contact-cancel-icon" +
+  "{" +
+  "top:" + 8 * widthK + "px;" +
+  "position: absolute;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-size: contain;" +
+  "background-position: center;" +
+  "border-radius: 50%;" +
+  "right: 5%;" +
   "}",
 
 }
