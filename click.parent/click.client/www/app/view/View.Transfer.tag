@@ -32,7 +32,9 @@
       </div>
       <div id="firstSuggestionBlockId" class="transfer-contact-found-container-one"
            ontouchend="firstSuggestionBlock()">
-        <div class="transfer-contact-found-photo" style="background-image: url({suggestionOne.photo})"></div>
+        <div class="transfer-contact-found-photo" style="background-image: url({suggestionOne.photo})">
+          {suggestionOne.firstLetterOfName}
+        </div>
         <div class="transfer-contact-found-text-container">
           <div class="transfer-contact-found-text-one">{suggestionOne.fName} {suggestionOne.lName}</div>
         </div>
@@ -40,7 +42,9 @@
       </div>
       <div id="secondSuggestionBlockId" class="transfer-contact-found-container-two"
            ontouchend="secondSuggestionBlock()">
-        <div class="transfer-contact-found-photo" style="background-image: url({suggestionTwo.photo})"></div>
+        <div class="transfer-contact-found-photo" style="background-image: url({suggestionTwo.photo})">
+          {suggestionTwo.firstLetterOfName}
+        </div>
         <div class="transfer-contact-found-text-container">
           <div class="transfer-contact-found-text-one">{suggestionTwo.fName} {suggestionTwo.lName}</div>
         </div>
@@ -50,7 +54,9 @@
 
       <div id="thirdSuggestionBlockId" class="transfer-contact-found-container-three"
            ontouchend="thirdSuggestionBlock()">
-        <div class="transfer-contact-found-photo" style="background-image: url({suggestionThree.photo})"></div>
+        <div class="transfer-contact-found-photo" style="background-image: url({suggestionThree.photo})">
+          {suggestionThree.firstLetterOfName}
+        </div>
         <div class="transfer-contact-found-text-container">
           <div class="transfer-contact-found-text-one">{suggestionThree.fName} {suggestionThree.lName}</div>
         </div>
@@ -60,7 +66,9 @@
 
       <div id="fourthSuggestionBlockId" class="transfer-contact-found-container-four"
            ontouchend="fourthSuggestionBlock()">
-        <div class="transfer-contact-found-photo" style="background-image: url({suggestionFour.photo})"></div>
+        <div class="transfer-contact-found-photo" style="background-image: url({suggestionFour.photo})">
+          {suggestionFour.firstLetterOfName}
+        </div>
         <div class="transfer-contact-found-text-container">
           <div class="transfer-contact-found-text-one">{suggestionFour.fName} {suggestionFour.lName}</div>
         </div>
@@ -70,7 +78,9 @@
 
       <div id="fifthSuggestionBlockId" class="transfer-contact-found-container-five"
            ontouchend="fifthSuggestionBlock()">
-        <div class="transfer-contact-found-photo" style="background-image: url({suggestionFive.photo})"></div>
+        <div class="transfer-contact-found-photo" style="background-image: url({suggestionFive.photo})">
+          {suggestionFive.firstLetterOfName}
+        </div>
         <div class="transfer-contact-found-text-container">
           <div class="transfer-contact-found-text-one">{suggestionFive.fName} {suggestionFive.lName}</div>
         </div>
@@ -154,7 +164,7 @@
 
     this.on('mount', function () {
 
-//      firstSuggestionBlockId.style.display = 'block';
+      firstSuggestionBlockId.style.display = 'block';
 //      secondSuggestionBlockId.style.display = 'block';
 //      thirdSuggestionBlockId.style.display = 'block';
 //      fourthSuggestionBlockId.style.display = 'block';
@@ -360,42 +370,49 @@
     scope.suggestionOne.fName = '';
     scope.suggestionOne.lName = '';
     scope.suggestionOne.phoneNumber = '';
+    scope.suggestionOne.firstLetterOfName = '';
 
     scope.suggestionOneCopy = {};
     scope.suggestionOneCopy.photo = '';
     scope.suggestionOneCopy.fName = '';
     scope.suggestionOneCopy.lName = '';
     scope.suggestionOneCopy.phoneNumber = '';
+    scope.suggestionOneCopy.firstLetterOfName = '';
 
     scope.suggestionTwo = {};
     scope.suggestionTwo.photo = '';
     scope.suggestionTwo.fName = '';
     scope.suggestionTwo.lName = '';
     scope.suggestionTwo.phoneNumber = '';
+    scope.suggestionTwo.firstLetterOfName = '';
 
     scope.suggestionTwoCopy = {};
     scope.suggestionTwoCopy.photo = '';
     scope.suggestionTwoCopy.fName = '';
     scope.suggestionTwoCopy.lName = '';
     scope.suggestionTwoCopy.phoneNumber = '';
+    scope.suggestionTwoCopy.firstLetterOfName = '';
 
     scope.suggestionThree = {};
     scope.suggestionThree.photo = '';
     scope.suggestionThree.fName = '';
     scope.suggestionThree.lName = '';
     scope.suggestionThree.phoneNumber = '';
+    scope.suggestionThree.firstLetterOfName = '';
 
     scope.suggestionFour = {};
     scope.suggestionFour.photo = '';
     scope.suggestionFour.fName = '';
     scope.suggestionFour.lName = '';
     scope.suggestionFour.phoneNumber = '';
+    scope.suggestionFour.firstLetterOfName = '';
 
     scope.suggestionFive = {};
     scope.suggestionFive.photo = '';
     scope.suggestionFive.fName = '';
     scope.suggestionFive.lName = '';
     scope.suggestionFive.phoneNumber = '';
+    scope.suggestionFive.firstLetterOfName = '';
 
 
     //CARD SUGGESTION OBJECTS
@@ -1011,13 +1028,31 @@
             scope.suggestionOne.lName = wordOfFunction.name.familyName;
 
             if (wordOfFunction.photos != null) {
-              if (wordOfFunction.photos[0] != null)
+              if (wordOfFunction.photos[0] != null) {
                 scope.suggestionOne.photo = wordOfFunction.photos[0].value;
-              else
+                scope.suggestionOne.firstLetterOfName = '';
+              }
+              else {
                 scope.suggestionOne.photo = '';
+                if (scope.suggestionOne.lName) {
+                  scope.suggestionOne.firstLetterOfName = scope.suggestionOne.lName[0];
+                }
+                else {
+                  if (scope.suggestionOne.fName)
+                    scope.suggestionOne.firstLetterOfName = scope.suggestionOne.fName[0];
+                }
+              }
             }
-            else
+            else {
               scope.suggestionOne.photo = '';
+              if (scope.suggestionOne.lName) {
+                scope.suggestionOne.firstLetterOfName = scope.suggestionOne.lName[0];
+              }
+              else {
+                if (scope.suggestionOne.fName)
+                  scope.suggestionOne.firstLetterOfName = scope.suggestionOne.fName[0];
+              }
+            }
 
 
             riot.update(scope.suggestionOne)
@@ -1033,13 +1068,31 @@
             scope.suggestionTwo.lName = wordOfFunction.name.familyName;
 
             if (wordOfFunction.photos != null) {
-              if (wordOfFunction.photos[0] != null)
+              if (wordOfFunction.photos[0] != null) {
                 scope.suggestionTwo.photo = wordOfFunction.photos[0].value;
-              else
+                scope.suggestionTwo.firstLetterOfName = '';
+              }
+              else {
                 scope.suggestionTwo.photo = '';
+                if (scope.suggestionTwo.lName) {
+                  scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.lName[0];
+                }
+                else {
+                  if (scope.suggestionTwo.fName)
+                    scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.fName[0];
+                }
+              }
             }
-            else
+            else {
               scope.suggestionTwo.photo = '';
+              if (scope.suggestionTwo.lName) {
+                scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.lName[0];
+              }
+              else {
+                if (scope.suggestionTwo.fName)
+                  scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.fName[0];
+              }
+            }
 
             riot.update(scope.suggestionTwo)
 
@@ -1078,9 +1131,17 @@
             scope.suggestionFive.phoneNumber = transferContacts[i].phoneNumbers[0].value;
             if (transferContacts[i].photos != null && transferContacts[i].photos[0] != null && transferContacts[i].photos[0].value != null) {
               scope.suggestionFive.photo = transferContacts[i].photos[0].value;
+              scope.suggestionFive.firstLetterOfName = '';
             }
             else {
               scope.suggestionFive.photo = '';
+              if (transferContacts[i].name != null) {
+                scope.suggestionFive.firstLetterOfName = transferContacts[i].name.familyName[0];
+              }
+              else {
+                if (transferContacts[i].name.familyName != null)
+                  scope.suggestionFive.firstLetterOfName = transferContacts[i].name[0];
+              }
             }
 
             if (transferContacts[i].name != null) {
@@ -1111,9 +1172,17 @@
             scope.suggestionFour.phoneNumber = transferContacts[i].phoneNumbers[0].value;
             if (transferContacts[i].photos != null && transferContacts[i].photos[0] != null && transferContacts[i].photos[0].value != null) {
               scope.suggestionFour.photo = transferContacts[i].photos[0].value;
+              scope.suggestionFour.firstLetterOfName = '';
             }
             else {
               scope.suggestionFour.photo = '';
+              if (transferContacts[i].name != null) {
+                scope.suggestionFour.firstLetterOfName = transferContacts[i].name.familyName[0];
+              }
+              else {
+                if (transferContacts[i].name.familyName != null)
+                  scope.suggestionFour.firstLetterOfName = transferContacts[i].name[0];
+              }
             }
 
             if (transferContacts[i].name != null) {
@@ -1144,9 +1213,17 @@
             scope.suggestionThree.phoneNumber = transferContacts[i].phoneNumbers[0].value;
             if (transferContacts[i].photos != null && transferContacts[i].photos[0] != null && transferContacts[i].photos[0].value != null) {
               scope.suggestionThree.photo = transferContacts[i].photos[0].value;
+              scope.suggestionThree.firstLetterOfName = '';
             }
             else {
               scope.suggestionThree.photo = '';
+              if (transferContacts[i].name != null) {
+                scope.suggestionThree.firstLetterOfName = transferContacts[i].name.familyName[0];
+              }
+              else {
+                if (transferContacts[i].name.familyName != null)
+                  scope.suggestionThree.firstLetterOfName = transferContacts[i].name[0];
+              }
             }
 
             if (transferContacts[i].name != null) {
@@ -1177,9 +1254,17 @@
             scope.suggestionTwo.phoneNumber = transferContacts[i].phoneNumbers[0].value;
             if (transferContacts[i].photos != null && transferContacts[i].photos[0] != null && transferContacts[i].photos[0].value != null) {
               scope.suggestionTwo.photo = transferContacts[i].photos[0].value;
+              scope.suggestionTwo.firstLetterOfName = '';
             }
             else {
               scope.suggestionTwo.photo = '';
+              if (transferContacts[i].name != null) {
+                scope.suggestionTwo.firstLetterOfName = transferContacts[i].name.familyName[0];
+              }
+              else {
+                if (transferContacts[i].name.familyName != null)
+                  scope.suggestionTwo.firstLetterOfName = transferContacts[i].name[0];
+              }
             }
 
             if (transferContacts[i].name != null) {
@@ -1213,9 +1298,17 @@
             if (transferContacts[i].photos != null && transferContacts[i].photos[0] != null && transferContacts[i].photos[0].value != null) {
               console.log("PHOTO", transferContacts[i].photos[0])
               scope.suggestionOne.photo = transferContacts[i].photos[0].value;
+              scope.suggestionOne.firstLetterOfName = '';
             }
             else {
               scope.suggestionOne.photo = '';
+              if (transferContacts[i].name != null) {
+                scope.suggestionOne.firstLetterOfName = transferContacts[i].name.familyName[0];
+              }
+              else {
+                if (transferContacts[i].name.familyName != null)
+                  scope.suggestionOne.firstLetterOfName = transferContacts[i].name[0];
+              }
             }
 
             if (transferContacts[i].name != null) {

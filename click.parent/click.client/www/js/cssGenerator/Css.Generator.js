@@ -3826,6 +3826,11 @@ var css = {
   "background-size: contain;" +
   "background-position: center;" +
   "border-radius: 50%;" +
+  "text-align: center;" +
+  "line-height:" + 100 * widthK + "px;" +
+  "font-size:" + 50 * widthK + "px;" +
+  "background-color: #027fe3;" +
+  "color: white;" +
   "left: 5%;" +
   "}",
 
