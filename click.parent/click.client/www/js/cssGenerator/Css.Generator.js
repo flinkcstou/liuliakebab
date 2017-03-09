@@ -5746,7 +5746,7 @@ var css = {
   "border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
   "background-color: rgb(1, 124, 227);" +
-  "top: 49%;" +
+  "top: 24%;" +
   "}",
 
   settingsAddFriendNextButtonLabel: ".settings-add-friend-next-button-label" +

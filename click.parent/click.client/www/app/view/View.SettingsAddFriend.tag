@@ -68,12 +68,14 @@
     scope.suggestionOne.fName = '';
     scope.suggestionOne.lName = '';
     scope.suggestionOne.phoneNumber = '';
+    scope.suggestionOne.firstLetterOfName = '';
 
     scope.suggestionTwo = {};
     scope.suggestionTwo.photo = '';
     scope.suggestionTwo.fName = '';
     scope.suggestionTwo.lName = '';
     scope.suggestionTwo.phoneNumber = '';
+    scope.suggestionTwo.firstLetterOfName = '';
 
     var maskOne = /[0-9]/g;
     arrayOfContacts = [];
@@ -221,13 +223,31 @@
             scope.suggestionOne.lName = wordOfFunction.name.familyName;
 
             if (wordOfFunction.photos != null) {
-              if (wordOfFunction.photos[0] != null)
+              if (wordOfFunction.photos[0] != null) {
                 scope.suggestionOne.photo = wordOfFunction.photos[0].value;
-              else
+                scope.suggestionOne.firstLetterOfName = '';
+              }
+              else {
                 scope.suggestionOne.photo = '';
+                if (scope.suggestionOne.lName) {
+                  scope.suggestionOne.firstLetterOfName = scope.suggestionOne.lName[0];
+                }
+                else {
+                  if (scope.suggestionOne.fName)
+                    scope.suggestionOne.firstLetterOfName = scope.suggestionOne.fName[0];
+                }
+              }
             }
-            else
+            else {
               scope.suggestionOne.photo = '';
+              if (scope.suggestionOne.lName) {
+                scope.suggestionOne.firstLetterOfName = scope.suggestionOne.lName[0];
+              }
+              else {
+                if (scope.suggestionOne.fName)
+                  scope.suggestionOne.firstLetterOfName = scope.suggestionOne.fName[0];
+              }
+            }
 
 
             riot.update(scope.suggestionOne)
@@ -243,13 +263,31 @@
             scope.suggestionTwo.lName = wordOfFunction.name.familyName;
 
             if (wordOfFunction.photos != null) {
-              if (wordOfFunction.photos[0] != null)
+              if (wordOfFunction.photos[0] != null) {
                 scope.suggestionTwo.photo = wordOfFunction.photos[0].value;
-              else
+                scope.suggestionTwo.firstLetterOfName = '';
+              }
+              else {
                 scope.suggestionTwo.photo = '';
+                if (scope.suggestionTwo.lName) {
+                  scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.lName[0];
+                }
+                else {
+                  if (scope.suggestionTwo.fName)
+                    scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.fName[0];
+                }
+              }
             }
-            else
+            else {
               scope.suggestionTwo.photo = '';
+              if (scope.suggestionTwo.lName) {
+                scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.lName[0];
+              }
+              else {
+                if (scope.suggestionTwo.fName)
+                  scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.fName[0];
+              }
+            }
 
             riot.update(scope.suggestionTwo)
 
