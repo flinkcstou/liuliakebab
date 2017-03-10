@@ -192,6 +192,17 @@
         if (checkFifthBlock) {
           fifthSuggestionBlockId.style.display = 'block';
         }
+
+        if (contactPhoneNumberId.value.length == 9) {
+          nextButtonId.style.display = 'block'
+          firstSuggestionBlockId.style.display = 'none';
+          secondSuggestionBlockId.style.display = 'none';
+          thirdSuggestionBlockId.style.display = 'none';
+          fourthSuggestionBlockId.style.display = 'none';
+          fifthSuggestionBlockId.style.display = 'none';
+        }
+
+
       }
       else {
         checkCardMenu = false;
@@ -217,6 +228,16 @@
         if (checkCardFifthBlock) {
           fifthCardSuggestionId.style.display = 'block';
         }
+
+        if (cardInputId.value.length == 19) {
+          nextButtonId.style.display = 'block'
+          firstCardSuggestionId.style.display = 'none';
+          secondCardSuggestionId.style.display = 'none';
+          thirdCardSuggestionId.style.display = 'none';
+          fourthCardSuggestionId.style.display = 'none';
+          fifthCardSuggestionId.style.display = 'none';
+        }
+
         riot.update();
         card();
       }
