@@ -132,6 +132,7 @@
       event.preventDefault();
       event.stopPropagation();
       touchMoveX = event.changedTouches[0].pageX;
+      if(touchStartX < touchMoveX) return
       var deltaForMainPage = Math.abs((touchStartX - touchMoveX).toFixed(0) / width * 2);
       var deltaForSideMenuBack = 1 - deltaForMainPage;
       if (deltaForSideMenuBack < 0.1)
