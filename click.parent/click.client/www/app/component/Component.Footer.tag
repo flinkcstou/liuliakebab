@@ -12,7 +12,7 @@
 
         <div class="footer-contacts-blocks footer-contacts-block-one">
           <div id="photoOne" class="footer-favourite-contacts-circles footer-contact-one"
-               style="background-image: url({firstContactObject.contactPhoto})">
+               style="background-image: url({firstContactObject.contactPhoto})">{firstContactObject.firstLetter}
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-one">
             {firstContactObject.contactFname}<br>{firstContactObject.contactLname}
@@ -21,7 +21,7 @@
 
         <div class="footer-contacts-blocks footer-contacts-block-two">
           <div id="photoTwo" class="footer-favourite-contacts-circles footer-contact-two"
-               style="background-image: url({secondContactObject.contactPhoto})">
+               style="background-image: url({secondContactObject.contactPhoto})">{secondContactObject.firstLetter}
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-two">
             {secondContactObject.contactFname} <br>
@@ -30,7 +30,7 @@
 
         <div class="footer-contacts-blocks footer-contacts-block-three">
           <div id="photoThree" class="footer-favourite-contacts-circles footer-contact-three"
-               style="background-image: url({thirdContactObject.contactPhoto})">
+               style="background-image: url({thirdContactObject.contactPhoto})">{thirdContactObject.firstLetter}
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-three">
             {thirdContactObject.contactFname} <br>
@@ -39,7 +39,7 @@
 
         <div class="footer-contacts-blocks footer-contacts-block-four">
           <div id="photoFour" class="footer-favourite-contacts-circles footer-contact-four"
-               style="background-image: url({fourContactObject.contactPhoto})">
+               style="background-image: url({fourContactObject.contactPhoto})">{fourContactObject.firstLetter}
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-four">
             {fourContactObject.contactFname} <br>
@@ -48,7 +48,7 @@
 
         <div class="footer-contacts-blocks footer-contacts-block-five">
           <div id="photoFive" class="footer-favourite-contacts-circles footer-contact-five"
-               style="background-image: url({fiveContactObject.contactPhoto})">
+               style="background-image: url({fiveContactObject.contactPhoto})">{fiveContactObject.firstLetter}
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-five">
             {fiveContactObject.contactFname} <br>
@@ -68,27 +68,32 @@
     scope.firstContactObject.contactFname = '';
     scope.firstContactObject.contactLname = '';
     scope.firstContactObject.contactPhoto = '';
+    scope.firstContactObject.firstLetter = '';
 
     scope.secondContactObject = {};
     scope.secondContactObject.contactFname = '';
     scope.secondContactObject.contactLname = '';
     scope.secondContactObject.contactPhoto = '';
+    scope.secondContactObject.firstLetter = '';
 
     scope.thirdContactObject = {};
     scope.thirdContactObject.contactFname = '';
     scope.thirdContactObject.contactLname = '';
     scope.thirdContactObject.contactPhoto = '';
+    scope.thirdContactObject.firstLetter = '';
 
     scope.fourContactObject = {};
     scope.fourContactObject.contactFname = '';
     scope.fourContactObject.contactLname = '';
     scope.fourContactObject.contactPhoto = '';
+    scope.fourContactObject.firstLetter = '';
 
 
     scope.fiveContactObject = {};
     scope.fiveContactObject.contactFname = '';
     scope.fiveContactObject.contactLname = '';
     scope.fiveContactObject.contactPhoto = '';
+    scope.fiveContactObject.firstLetter = '';
 
     scope.arrayOfPhotos = [];
     scope.arrayOfPhotos.push(scope.firstContactObject);
@@ -182,10 +187,21 @@
       }
 
       for (var i = 0; i < j; i++) {
-        if (arrayOfConnectedContacts[i].photos != null)
+        if (arrayOfConnectedContacts[i].photos != null) {
           scope.arrayOfPhotos[i].contactPhoto = arrayOfConnectedContacts[i].photos[0].value;
-        else
+          scope.arrayOfPhotos[i].firstLetter = '';
+        }
+        else {
           scope.arrayOfPhotos[i].contactPhoto = '';
+          if (arrayOfConnectedContacts[i].name.familyName) {
+            scope.arrayOfPhotos[i].firstLetter = arrayOfConnectedContacts[i].name.familyName[0];
+          }
+          else {
+            if (arrayOfConnectedContacts[i].name.givenName) {
+              scope.arrayOfPhotos[i].firstLetter = arrayOfConnectedContacts[i].name.givenName[0];
+            }
+          }
+        }
 
         if (arrayOfConnectedContacts[i].name.familyName != null)
           scope.arrayOfPhotos[i].contactFname = arrayOfConnectedContacts[i].name.familyName;
