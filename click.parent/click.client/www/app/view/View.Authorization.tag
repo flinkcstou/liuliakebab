@@ -102,7 +102,7 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    if (device.platform == 'Android') {
+    if (device.platform == 'BrowserStand') {
       scope.checkAndroid = true;
     }
 

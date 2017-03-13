@@ -1,5 +1,5 @@
 <component-card class="card"
-                style="background-image: url({opts.background}); color: rgb({opts.fontcolor});; left:{leftOfCard}px">
+                style="background-image: url({opts.background}); color: rgb({opts.fontcolor}); left:{leftOfCard}px">
 
   <div class="card-bank-name-url" style="background-image: url({opts.url})"></div>
   <div class="card-bank-name" style="background-image: url({opts.bankname})"></div>
@@ -26,6 +26,11 @@
     var scope = this;
     scope.leftOfCard = (540 * opts.countcard + 100) * widthK;
 
+    scope.on("mount", function () {
+
+      console.log("ASD_scope.leftOfCard", scope.leftOfCard);
+    });
+
     offlineBalanceTrueTouchStart = function () {
       event.stopPropagation();
       event.preventDefault();
@@ -33,13 +38,13 @@
 
       if (device.platform == "Android") {
         phonedialer.dial(
-          "*880*2%23",
-          function (err) {
-            if (err == "empty") alert("Unknown phone number");
-            else console.log("Dialer Error:" + err);
-          },
-          function (success) {
-          }
+            "*880*2%23",
+            function (err) {
+              if (err == "empty") alert("Unknown phone number");
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
         );
       }
     }
