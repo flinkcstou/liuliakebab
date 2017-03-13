@@ -18,7 +18,7 @@
       </div>
       <div class="payconfirm-field">
         <p class="payconfirm-text-field">{window.languages.ViewPayConfirmAmountOfPay}</p>
-        <p class="payconfirm-phone-input">{amountText} {currency}</p>
+        <p class="payconfirm-phone-input">{amountTextCopy} {currency}</p>
       </div>
       <div class="payconfirm-field">
         <p class="payconfirm-text-field">{window.languages.ViewPayConfirmCategory}</p>
@@ -30,7 +30,7 @@
           <p class="payconfirm-text-one">{window.languages.ViewPayConfirmPayFromCard}</p>
           <p class="payconfirm-text-two">{cardName}</p>
           <p class="payconfirm-detail-text">{numberPartOne} **** {numberPartTwo}</p>
-          <p class="payconfirm-detail-text">Доступно:{salary} {currency}</p>
+          <p class="payconfirm-detail-text">{window.languages.ViewPayConfirmAvailable}:{salary} {currency}</p>
         </div>
         <div class="payconfirm-card-logo-container"
              style="background-image: url({url})">
@@ -121,6 +121,33 @@
 
     this.cardTypeId = opts[0][3].cardTypeId;
     this.amountText = opts[0][5].amountText;
+
+    scope.amountTextCopy = this.amountText;
+
+    console.log("AMOUNT", this.amountText)
+
+    if (scope.amountTextCopy.length == 8) {
+      scope.amountTextCopy = scope.amountTextCopy.substring(0, 2) + ' ' +
+        scope.amountTextCopy.substring(2, 5) + ' ' + scope.amountTextCopy.substring(5, scope.amountTextCopy.length)
+    }
+
+    if (scope.amountTextCopy.length == 7) {
+      scope.amountTextCopy = scope.amountTextCopy.substring(0, 1) + ' ' +
+        scope.amountTextCopy.substring(1, 4) + ' ' + scope.amountTextCopy.substring(4, scope.amountTextCopy.length)
+    }
+
+    if (scope.amountTextCopy.length == 6) {
+      scope.amountTextCopy = scope.amountTextCopy.substring(0, 3) + ' ' + scope.amountTextCopy.substring(3, scope.amountTextCopy.length)
+    }
+
+    if (scope.amountTextCopy.length == 5) {
+      scope.amountTextCopy = scope.amountTextCopy.substring(0, 2) + ' ' + scope.amountTextCopy.substring(2, scope.amountTextCopy.length)
+    }
+
+    if (scope.amountTextCopy.length == 4) {
+      scope.amountTextCopy = scope.amountTextCopy.substring(0, 1) + ' ' + scope.amountTextCopy.substring(1, scope.amountTextCopy.length)
+    }
+
 
     scope.titleName = scope.service.name;
     scope.serviceIcon = scope.service.image;

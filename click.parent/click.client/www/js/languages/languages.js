@@ -73,6 +73,7 @@ var RU_LANGUAGES =
   "ViewPayConfirmMobileConnection": "Мобильная связь",
   "ViewPayConfirmPayFromCard": "Оплата с карты:",
   "ViewPayConfirmAddToFavorites": "Добавить в избранные",
+  "ViewPayConfirmAvailable": "Доступно",
   "ViewPayConfirmRemoveFromFavorites": "Удалить из избранных",
   "ViewPayConfirmAddToAutoPay": "Добавить в автоплатеж",
   "ViewPayConfirmPay": "ОПЛАТИТЬ",

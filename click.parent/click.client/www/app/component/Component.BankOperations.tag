@@ -1,19 +1,19 @@
 <component-bank-operations>
   <div class="bank-operations">
     <div class="top-operations-buttons">
-      <div class="bank-operation-button bank-operation-button-pay" ontouchend="goToPayView()">
+      <div class="bank-operation-button bank-operation-button-pay" ontouchstart="goToPayView()">
         <div class="bank-operation-icon operation-pay-icon">
         </div>
       </div>
       <label class="bank-operation-label bank-operation-label-pay">{window.languages.ComponentBankOperationsPay}</label>
 
-      <div class="bank-operation-button bank-operation-button-transfer" ontouchend="goToTransferView()">
+      <div class="bank-operation-button bank-operation-button-transfer" ontouchstart="goToTransferView()">
         <div class="bank-operation-icon operation-transfer-icon">
         </div>
       </div>
       <label class="bank-operation-label bank-operation-label-transfer">{window.languages.ComponentBankOperationsTransfer}</label>
 
-      <div class="bank-operation-button bank-operation-button-autopay" ontouchend="goToAutoPayView()">
+      <div class="bank-operation-button bank-operation-button-autopay" ontouchstart="goToAutoPayView()">
         <div class="bank-operation-icon operation-autopay-icon">
         </div>
       </div>

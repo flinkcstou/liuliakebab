@@ -1252,7 +1252,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  //"border-bottom: 1px solid #43aee5;" +
+    //"border-bottom: 1px solid #43aee5;" +
   "}",
 
   sideMenuContainersIcon: ".side-menu-containers-icon " +
@@ -2792,8 +2792,8 @@ var css = {
   servicePageButtonEnter: ".servicepage-button-enter" +
   "{" +
   "position: relative;" +
-  "width: 63%;" +
-  "height: 8%;" +
+  "width: " + 450 * widthK + "px; " +
+  "height: " + 90 * widthK + "px; " +
   "margin-right: auto;" +
   "border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
@@ -2804,7 +2804,7 @@ var css = {
   servicePageButtonEnterLabel: ".servicepage-button-enter-label" +
   "{" +
   "position: relative;" +
-  "top: 19%;" +
+  "top:" + 15 * widthK + "px; " +
   "width: 30%;" +
   "font-size:  " + 45 * widthK + "px; " +
   "margin: auto;" +
@@ -3050,8 +3050,8 @@ var css = {
   "{" +
   "bottom: 24%;" +
   "position: absolute;" +
-  "width: 64%;" +
-  "height: 22%;" +
+  "width:" + 460 * widthK + "px; " +
+  "height:" + 75 * widthK + "px; " +
   "border-radius:" + 80 * widthK + "px; " +
   "left: 18%;" +
   "background-color: rgb(1, 124, 227);" +
@@ -3060,7 +3060,7 @@ var css = {
   pincardButtonEnterLabel: ".pincard-button-enter-label" +
   "{" +
   "position: relative;" +
-  "top: 20%;" +
+  "top: " + 10 * widthK + "px; " +
   "width: 30%;" +
   "font-size: " + 44 * widthK + "px; " +
   "margin: auto;" +
@@ -3241,8 +3241,8 @@ var css = {
   "{" +
   "bottom: 24%;" +
   "position: absolute;" +
-  "width: 64%;" +
-  "height: 17%;" +
+  "width:" + 460 * widthK + "px; " +
+  "height:" + 70 * widthK + "px; " +
   "border-radius:" + 80 * widthK + "px; " +
   "left: 18%;" +
   "background-color: rgb(1, 124, 227);" +
@@ -3251,12 +3251,11 @@ var css = {
   payconfirmButtonEnterLabel: ".payconfirm-button-enter-label" +
   "{" +
   "position: relative;" +
-  "top: 20%;" +
-  "width: 30%;" +
+  "top: " + 9 * widthK + "px; " +
+  "width: 48%;" +
   "font-size: " + 44 * widthK + "px; " +
   "margin: auto;" +
   "color: white;" +
-  "right: 10%;" +
   "}",
 
   //COMPONENT SEARCH
@@ -3892,7 +3891,7 @@ var css = {
   transferNextButtonLabel: ".transfer-next-button-label" +
   "{" +
   "position: relative;" +
-  "top: 19%;" +
+  "top: 18%;" +
   "width: 30%;" +
   "font-size:  " + 45 * widthK + "px; " +
   "margin: auto;" +
@@ -4024,7 +4023,7 @@ var css = {
   transferTwoNextButtonLabel: ".transfertwo-next-button-label" +
   "{" +
   "position: relative;" +
-  "top: 19%;" +
+  "top: 18%;" +
   "width: 30%;" +
   "font-size:  " + 45 * widthK + "px; " +
   "margin: auto;" +
@@ -4150,7 +4149,7 @@ var css = {
   transferThreeNextButtonLabel: ".transferthree-next-button-label" +
   "{" +
   "position: relative;" +
-  "top: 19%;" +
+  "top: 18%;" +
   "width: 30%;" +
   "font-size:  " + 45 * widthK + "px; " +
   "margin: auto;" +
@@ -4413,7 +4412,7 @@ var css = {
   "{" +
   "position: relative;" +
   "top: 24%;" +
-  //"left: 1%;" +
+    //"left: 1%;" +
   "letter-spacing:" + 3 * widthK + "px;" +
   "font-size: " + 36 * widthK + "px; " +
   "color: white;" +

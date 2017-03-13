@@ -109,16 +109,9 @@
     scope.objectComment = opts[0][2];
     scope.objectCardForTransfer = opts[0][3];
 
-    if (scope.objectSumForTransfer.sum.length == 4) {
-      scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 1) + ' ' + scope.objectSumForTransfer.sum.substring(1, scope.objectSumForTransfer.sum.length)
-    }
-
-    if (scope.objectSumForTransfer.sum.length == 5) {
-      scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 2) + ' ' + scope.objectSumForTransfer.sum.substring(2, scope.objectSumForTransfer.sum.length)
-    }
-
-    if (scope.objectSumForTransfer.sum.length == 6) {
-      scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 3) + ' ' + scope.objectSumForTransfer.sum.substring(3, scope.objectSumForTransfer.sum.length)
+    if (scope.objectSumForTransfer.sum.length == 8) {
+      scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 2) + ' ' +
+        scope.objectSumForTransfer.sum.substring(2, 5) + ' ' + scope.objectSumForTransfer.sum.substring(5, scope.objectSumForTransfer.sum.length)
     }
 
     if (scope.objectSumForTransfer.sum.length == 7) {
@@ -126,10 +119,20 @@
         scope.objectSumForTransfer.sum.substring(1, 4) + ' ' + scope.objectSumForTransfer.sum.substring(4, scope.objectSumForTransfer.sum.length)
     }
 
-    if (scope.objectSumForTransfer.sum.length == 8) {
-      scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 2) + ' ' +
-        scope.objectSumForTransfer.sum.substring(2, 5) + ' ' + scope.objectSumForTransfer.sum.substring(5, scope.objectSumForTransfer.sum.length)
+    if (scope.objectSumForTransfer.sum.length == 6) {
+      scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 3) + ' ' + scope.objectSumForTransfer.sum.substring(3, scope.objectSumForTransfer.sum.length)
     }
+
+    if (scope.objectSumForTransfer.sum.length == 5) {
+      scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 2) + ' ' + scope.objectSumForTransfer.sum.substring(2, scope.objectSumForTransfer.sum.length)
+    }
+
+    if (scope.objectSumForTransfer.sum.length == 4) {
+      scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 1) + ' ' + scope.objectSumForTransfer.sum.substring(1, scope.objectSumForTransfer.sum.length)
+    }
+
+
+
 
 
     var transferTitle;
