@@ -84,20 +84,20 @@
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization') {
         history.arrayOfHistory.push(
-          {
-            "view": 'view-authorization',
-            "params": ''
-          }
+            {
+              "view": 'view-authorization',
+              "params": ''
+            }
         );
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
       }
     }
     else {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-authorization',
-          "params": ''
-        }
+          {
+            "view": 'view-authorization',
+            "params": ''
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -440,8 +440,12 @@
           });
         }
 
-        if (!(localStorage.getItem("click_client_payServiceList") && localStorage.getItem("click_client_servicesMapByCategory")
-          && localStorage.getItem("click_client_servicesMap"))) {
+        /*
+         * Убрана проверка, так как по требованию в онлайн режиме всегда производится вызов сервисов.
+         * */
+//        if (!(localStorage.getItem("click_client_payServiceList") && localStorage.getItem("click_client_servicesMapByCategory")
+//            && localStorage.getItem("click_client_servicesMap"))) {
+        refreshServiceList = function () {
           console.log("IN SERVICE LIST FUNC");
           scope.serviceList = [];
           scope.servicesMapByCategory = {};
@@ -596,7 +600,9 @@
               console.error(data);
             }
           })
-        }
+        };
+
+        refreshServiceList();
 
         servicesParamsInit = function () {
           console.log("IN SERVICES PARAMS INIT");

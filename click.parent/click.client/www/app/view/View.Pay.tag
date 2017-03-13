@@ -37,10 +37,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-pay',
-          "params": ''
-        }
+          {
+            "view": 'view-pay',
+            "params": ''
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -451,7 +451,6 @@
         riot.mount("view-service-page");
       }
     };
-
 
   </script>
 </view-pay>
