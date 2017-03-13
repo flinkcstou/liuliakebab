@@ -1387,7 +1387,7 @@ var css = {
   "height:" + 14 * widthK + "px;" +
   "width:" + 14 * widthK + "px;" +
   "left:" + 4 * widthK + "px;" +
-  "bottom:" + 12.5 * widthK + "px;" +
+  "bottom:" + 12 * widthK + "px;" +
   "background-color: white;" +
   "-webkit-transition: .4s;" +
   "transition: .4s;" +
