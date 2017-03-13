@@ -171,6 +171,7 @@ var RU_LANGUAGES =
 
   "ViewSettingsAddFriendTitleName": "ДОБАВИТЬ ДРУГА",
   "ViewSettingsAddFriendPhoneNumberTitle": "Номер телефона",
+  "ViewSettingsAddFriendNameTitle": "Имя друга",
 
 };
 

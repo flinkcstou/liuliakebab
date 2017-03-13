@@ -1201,7 +1201,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid white;" +
+  "border-bottom: 1px solid #43aee5;" +
   "}",
 
   sideMenuFavoriteContainer: ".side-menu-favorite-container " +
@@ -1211,7 +1211,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid white;" +
+  "border-bottom: 1px solid #43aee5;" +
   "}",
 
   sideMenuAutoPayContainer: ".side-menu-auto-pay-container " +
@@ -1221,7 +1221,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid white;" +
+  "border-bottom: 1px solid #43aee5;" +
   "}",
 
   sideMenuScannerQrContainer: ".side-menu-scanner-qr-container " +
@@ -1231,7 +1231,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid white;" +
+  "border-bottom: 1px solid #43aee5;" +
   "}",
 
   sideMenuSettingsContainer: ".side-menu-settings-container " +
@@ -1241,7 +1241,7 @@ var css = {
   "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid white;" +
+  "border-bottom: 1px solid #43aee5;" +
   "}",
 
 
@@ -1252,7 +1252,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid white;" +
+  //"border-bottom: 1px solid #43aee5;" +
   "}",
 
   sideMenuContainersIcon: ".side-menu-containers-icon " +

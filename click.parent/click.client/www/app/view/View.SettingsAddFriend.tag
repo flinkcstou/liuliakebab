@@ -7,11 +7,11 @@
     <div class="settings-container">
 
       <div class="settings-add-friend-add-container">
-        <p class="settings-add-friend-add-title">Имя друга</p>
+        <p class="settings-add-friend-add-title">{window.languages.ViewSettingsAddFriendNameTitle}</p>
         <div id="namePhoneFieldId" class="settings-add-friend-name-phone-field">
           <p class="settings-add-friend-contact-text-field"></p>
           <p class="settings-add-friend-contact-number-first-part"></p>
-          <input id="contactNameId" ontouchend="namePhoneFieldTouchEnd()" autofocus="true"
+          <input maxlength="25" id="contactNameId" ontouchend="namePhoneFieldTouchEnd()" autofocus="true"
                  class="settings-add-friend-name-number-input-part"
                  type="text"/>
         </div>
