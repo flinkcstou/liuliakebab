@@ -2723,10 +2723,9 @@ var css = {
   "{" +
   "border: none;" +
   "outline: none;" +
-  "position: absolute;" +
-  "top: 21%;" +
+  "position: relative;" +
+  "top: 22%;" +
   "width: 88%;" +
-  "height: 71%;" +
   "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -2805,7 +2804,7 @@ var css = {
   servicePageButtonEnterLabel: ".servicepage-button-enter-label" +
   "{" +
   "position: relative;" +
-  "top: 20%;" +
+  "top: 19%;" +
   "width: 30%;" +
   "font-size:  " + 45 * widthK + "px; " +
   "margin: auto;" +
@@ -3893,7 +3892,7 @@ var css = {
   transferNextButtonLabel: ".transfer-next-button-label" +
   "{" +
   "position: relative;" +
-  "top: 20%;" +
+  "top: 19%;" +
   "width: 30%;" +
   "font-size:  " + 45 * widthK + "px; " +
   "margin: auto;" +
@@ -4025,7 +4024,7 @@ var css = {
   transferTwoNextButtonLabel: ".transfertwo-next-button-label" +
   "{" +
   "position: relative;" +
-  "top: 20%;" +
+  "top: 19%;" +
   "width: 30%;" +
   "font-size:  " + 45 * widthK + "px; " +
   "margin: auto;" +
@@ -4151,7 +4150,7 @@ var css = {
   transferThreeNextButtonLabel: ".transferthree-next-button-label" +
   "{" +
   "position: relative;" +
-  "top: 20%;" +
+  "top: 19%;" +
   "width: 30%;" +
   "font-size:  " + 45 * widthK + "px; " +
   "margin: auto;" +
@@ -4414,13 +4413,14 @@ var css = {
   "{" +
   "position: relative;" +
   "top: 24%;" +
-  "width: 100%;" +
-  "left: 1%;" +
+  //"left: 1%;" +
   "letter-spacing:" + 3 * widthK + "px;" +
   "font-size: " + 36 * widthK + "px; " +
-  "margin: auto;" +
   "color: white;" +
   "margin: 0;" +
+  "width: 60%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "text-align: center;" +
   "}",
 
