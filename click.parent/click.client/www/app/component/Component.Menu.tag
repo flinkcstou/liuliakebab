@@ -109,8 +109,8 @@
     }
 
     sideMenuTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
+//      event.preventDefault();
+//      event.stopPropagation();
       touchEndX = event.changedTouches[0].pageX;
       timeEndX = event.timeStamp.toFixed(0);
 
@@ -150,6 +150,9 @@
     }
 
     changeMode = function () {
+      console.log('asd')
+      event.preventDefault();
+      event.stopPropagation();
       console.log(checkBoxChangeId.checked)
       if (checkBoxChangeId.checked) {
         modeOfApp.onlineMode = true
