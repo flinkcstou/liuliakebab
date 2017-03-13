@@ -31,6 +31,8 @@ window.firstMount = {};
 window.viewPay = {};
 
 window.viewServicePage = {};
+viewServicePage.amountText = '';
+viewServicePage.amountWithoutSpace = '';
 
 window.viewServicePinCards = {};
 

@@ -2,7 +2,6 @@
 <widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
   <name>Click</name>
   <icon src="www/resources/icons/icon/icon.png"/>
-  <screen src="www/img/logo.png"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="Orientation" value="sensorPortrait"/>
   <author email="chamirkazhiyev@greet-go.com">
@@ -19,7 +18,6 @@
   <plugin name="cordova-plugin-phonedialer"/>
   <plugin name="cordova-plugin-touchid"/>
   <plugin name="cordova-plugin-android-fingerprint-auth"/>
-
 
   <access origin="*"/>
   <allow-intent href="http://*/*"/>

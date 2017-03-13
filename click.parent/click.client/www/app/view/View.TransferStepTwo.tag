@@ -15,7 +15,7 @@
       <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax}</p>
       <input maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
              onmouseup="sumMouseUp()"
-             type="tel" onkeyup="sumKeyUp()"/>
+             type="tel" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
     </div>
 
     <div class="transfertwo-next-button-inner-container" ontouchend="goToTransferThree()">
@@ -34,7 +34,7 @@
 
 
     this.on('mount', function () {
-      if (viewTransferStepTwo.sum.length > 0) {
+      if (viewTransferStepTwo.sumWithoutSpace.length > 0) {
         sumValueId.value = viewTransferStepTwo.sum;
         checkFirst = true;
         sumForTransfer = viewTransferStepTwo.sumWithoutSpace;
@@ -61,23 +61,39 @@
         checkFirst = true;
       }
       if (sumValueId.value.match(maskOne) != null && sumValueId.value.match(maskOne).length != null) {
-        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length
-        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length
+        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
+        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
       } else {
         sumValueId.selectionStart = 0
         sumValueId.selectionEnd = 0
       }
     }
 
+    sumOnBlur = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (sumValueId.value.length == 4) {
+        sumValueId.value = '0 ' + defaultAccount.currency;
+      }
+    }
+
+
     sumFocus = function () {
       event.preventDefault()
       event.stopPropagation()
 
-      window.scrollTo(0, 0);
-      document.body.scrollTop = 0;
+      if (sumValueId.value.length == 5 && sumValueId.value[0] == '0') {
+        sumValueId.value = ' ' + defaultAccount.currency;
+      }
     }
 
     sumKeyUp = function () {
+      console.log('sumValueId.value', sumValueId.value[0])
+      console.log('sumValueId.value.length', sumValueId.value.length)
+      if (sumValueId.value.length == 5 && sumValueId.value[0] == '0') {
+        sumValueId.value = ' ' + defaultAccount.currency;
+      }
       if (event.keyCode == 8) {
         sumForTransfer = sumForTransfer.substring(0, sumForTransfer.length - 1)
       }

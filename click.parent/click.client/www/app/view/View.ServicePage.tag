@@ -45,7 +45,7 @@
       <p class="servicepage-text-field">{amountFieldTitle}</p>
       <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="13"
              id="amount"
-             onfocus="amountFocus()"
+             onfocus="amountFocus()" onblur="amountOnBlur()"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()"/>
       <div class="servicepage-amount-icon"></div>
     </div>
@@ -125,6 +125,17 @@
     }
 
     var scope = this;
+
+
+    this.on('mount', function () {
+      if (viewServicePage.amountWithoutSpace.length > 0) {
+        amount.value = viewServicePage.amountText;
+        checkFirst = true;
+        amountForPayTransaction = viewServicePage.amountWithoutSpace;
+      }
+      else
+        amount.value = '0 ' + defaultAccount.currency
+    })
     goToBack = function () {
       viewServicePage.phoneText = null;
       viewServicePage.amountText = null;
@@ -161,8 +172,20 @@
       event.preventDefault()
       event.stopPropagation()
 
-      window.scrollTo(0, 0);
-      document.body.scrollTop = 0;
+      if (amount.value.length == 5 && amount.value[0] == '0') {
+        amount.value = ' ' + defaultAccount.currency;
+      }
+
+    }
+
+    amountOnBlur = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (amount.value.length == 4) {
+        amount.value = '0 ' + defaultAccount.currency;
+      }
+
     }
 
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
@@ -522,8 +545,8 @@
         checkFirst = true;
       }
       if (amount.value.match(maskOne) != null && amount.value.match(maskOne).length != null) {
-        amount.selectionStart = amount.value.match(maskTwo).length;
-        amount.selectionEnd = amount.value.match(maskTwo).length;
+        amount.selectionStart = amount.value.match(maskTwo).length - 1;
+        amount.selectionEnd = amount.value.match(maskTwo).length - 1;
       } else {
         amount.selectionStart = 0;
         amount.selectionEnd = 0;
@@ -540,6 +563,10 @@
 
       if (event.keyCode == 8) {
         amountForPayTransaction = amountForPayTransaction.substring(0, amountForPayTransaction.length - 1)
+      }
+
+      if (amount.value.length == 5 && amount.value[0] == '0') {
+        amount.value = ' ' + defaultAccount.currency;
       }
 
       if (amount.value.match(maskTwo) != null && amount.value.match(maskTwo).length != null) {
@@ -604,8 +631,6 @@
       event.preventDefault()
       event.stopPropagation()
 
-      window.scrollTo(0, 0);
-      document.body.scrollTop = 0;
 
       firstField.style.borderBottom = 5 * widthK + 'px solid #01cfff';
       amountField.style.borderBottom = 5 * widthK + 'px solid lightgrey';
