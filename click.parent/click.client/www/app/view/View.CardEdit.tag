@@ -9,7 +9,7 @@
   <div class="card-edit-body-container">
     <div class="card-edit-field">
       <p class="card-edit-text-field">{window.languages.ViewCardEditCardNameText}</p>
-      <input onfocus="cardEditFoucs()" id="cardNameInputID" class="card-edit-input" value="{defaultName}"/>
+      <input maxlength="25" onfocus="cardEditFoucs()" id="cardNameInputID" class="card-edit-input" value="{defaultName}"/>
     </div>
     <div class="card-edit-makemain-container" if="{!onlyOneCard}" ontouchend="MakeMainCheck()">
       <p class="card-edit-makemain-text">{window.languages.ViewCardEditMakeMainText}</p>

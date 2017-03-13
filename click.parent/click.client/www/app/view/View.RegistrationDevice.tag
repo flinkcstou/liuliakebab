@@ -33,6 +33,18 @@
   </div>
 
   <script>
+    //TODO CHANGE VERSION
+    if (localStorage.getItem('version') !== null) {
+      if (JSON.parse(localStorage.getItem('version')) != '1') {
+        localStorage.clear();
+      }
+    }
+    else {
+      localStorage.clear();
+    }
+
+    localStorage.setItem('version', '1')
+
     var checkRemember = false;
     touchEndRemember = function () {
       event.preventDefault();
@@ -169,6 +181,8 @@
                 riot.mount('view-sms');
               }
               else {
+                localStorage.setItem('confirm_needed', false);
+                localStorage.setItem('click_client_registered', true)
                 this.riotTags.innerHTML = "<view-authorization>";
                 riot.mount('view-authorization');
               }

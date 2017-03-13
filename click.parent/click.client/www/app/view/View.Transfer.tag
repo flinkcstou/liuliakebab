@@ -946,8 +946,17 @@
 
       function success(contacts) {
         for (var i = 0; i < contacts.length; i++) {
-          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null)
+          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null) {
+            for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
+              var digits = contacts[i].phoneNumbers[j].value.match(maskOne);
+              var phone = '';
+              for (var k in digits) {
+                phone += digits[k]
+              }
+              contacts[i].phoneNumbers[j].value = phone;
+            }
             arrayOfContacts.push(contacts[i])
+          }
         }
       }
 
@@ -1157,11 +1166,13 @@
             else {
               scope.suggestionFive.photo = '';
               if (transferContacts[i].name != null) {
-                scope.suggestionFive.firstLetterOfName = transferContacts[i].name.familyName[0];
-              }
-              else {
-                if (transferContacts[i].name.familyName != null)
-                  scope.suggestionFive.firstLetterOfName = transferContacts[i].name[0];
+                if (transferContacts[i].name.familyName != null) {
+                  scope.suggestionFive.firstLetterOfName = transferContacts[i].name.familyName[0];
+                }
+                else {
+                  if (transferContacts[i].name.givenName != null)
+                    scope.suggestionFive.firstLetterOfName = transferContacts[i].name.givenName[0];
+                }
               }
             }
 
@@ -1198,11 +1209,13 @@
             else {
               scope.suggestionFour.photo = '';
               if (transferContacts[i].name != null) {
-                scope.suggestionFour.firstLetterOfName = transferContacts[i].name.familyName[0];
-              }
-              else {
-                if (transferContacts[i].name.familyName != null)
-                  scope.suggestionFour.firstLetterOfName = transferContacts[i].name[0];
+                if (transferContacts[i].name.familyName != null) {
+                  scope.suggestionFour.firstLetterOfName = transferContacts[i].name.familyName[0];
+                }
+                else {
+                  if (transferContacts[i].name.givenName != null)
+                    scope.suggestionFour.firstLetterOfName = transferContacts[i].name.givenName[0];
+                }
               }
             }
 
@@ -1239,11 +1252,13 @@
             else {
               scope.suggestionThree.photo = '';
               if (transferContacts[i].name != null) {
-                scope.suggestionThree.firstLetterOfName = transferContacts[i].name.familyName[0];
-              }
-              else {
-                if (transferContacts[i].name.familyName != null)
-                  scope.suggestionThree.firstLetterOfName = transferContacts[i].name[0];
+                if (transferContacts[i].name.familyName != null) {
+                  scope.suggestionThree.firstLetterOfName = transferContacts[i].name.familyName[0];
+                }
+                else {
+                  if (transferContacts[i].name.givenName != null)
+                    scope.suggestionThree.firstLetterOfName = transferContacts[i].name.givenName[0];
+                }
               }
             }
 
@@ -1280,11 +1295,13 @@
             else {
               scope.suggestionTwo.photo = '';
               if (transferContacts[i].name != null) {
-                scope.suggestionTwo.firstLetterOfName = transferContacts[i].name.familyName[0];
-              }
-              else {
-                if (transferContacts[i].name.familyName != null)
-                  scope.suggestionTwo.firstLetterOfName = transferContacts[i].name[0];
+                if (transferContacts[i].name.familyName != null) {
+                  scope.suggestionTwo.firstLetterOfName = transferContacts[i].name.familyName[0];
+                }
+                else {
+                  if (transferContacts[i].name.givenName != null)
+                    scope.suggestionTwo.firstLetterOfName = transferContacts[i].name.givenName[0];
+                }
               }
             }
 
@@ -1324,11 +1341,13 @@
             else {
               scope.suggestionOne.photo = '';
               if (transferContacts[i].name != null) {
-                scope.suggestionOne.firstLetterOfName = transferContacts[i].name.familyName[0];
-              }
-              else {
-                if (transferContacts[i].name.familyName != null)
-                  scope.suggestionOne.firstLetterOfName = transferContacts[i].name[0];
+                if (transferContacts[i].name.familyName != null) {
+                  scope.suggestionOne.firstLetterOfName = transferContacts[i].name.familyName[0];
+                }
+                else {
+                  if (transferContacts[i].name.givenName != null)
+                    scope.suggestionOne.firstLetterOfName = transferContacts[i].name.givenName[0];
+                }
               }
             }
 

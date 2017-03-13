@@ -3,15 +3,15 @@
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
       <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
-      <div id="rightButton" ontouchend="goToBack()" class="settings-friend-help-add-button"></div>
+      <div id="rightButton" ontouchend="goToAddFriendView()" class="settings-friend-help-add-button"></div>
     </div>
     <div class="settings-container">
-      <div class="settings-friend-help-contact-container">
+      <div each="{i in arrayOfFriends}" class="settings-friend-help-contact-container">
         <div class="settings-friend-help-contact-found-photo"
-             style="background-image: url({suggestionOne.photo})"></div>
+             style="background-image: url({i.photo})"></div>
         <div class="settings-friend-help-contact-found-text-container">
-          <div class="settings-friend-help-contact-found-text-one">GANIEV JASUR</div>
-          <div class="settings-friend-help-contact-found-text-two">+90997474737</div>
+          <div class="settings-friend-help-contact-found-text-one">{i.name}</div>
+          <div class="settings-friend-help-contact-found-text-two">+{i.number}</div>
         </div>
         <div class="settings-friend-help-contact-cancel-icon"></div>
       </div>
@@ -39,6 +39,21 @@
       event.stopPropagation();
       onBackKeyDown()
     };
+
+    goToAddFriendView = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      riotTags.innerHTML = "<view-add-friend>";
+      riot.mount("view-add-friend");
+    }
+    scope.arrayOfFriends = [];
+
+    if (localStorage.getItem('click_client_friends') === null) {
+      scope.arrayOfFriends = []
+    }
+    else {
+      scope.arrayOfFriends = JSON.parse(localStorage.getItem('click_client_friends'));
+    }
 
 
   </script>

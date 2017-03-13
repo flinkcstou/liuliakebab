@@ -1600,7 +1600,7 @@ var css = {
   "background-color: #7ae4ff;" +
   "top: 0;" +
   "background-repeat: no-repeat;" +
-  "background-size: contain;" +
+  "background-size: cover;" +
   "text-align: center;" +
   "line-height:" + 100 * widthK + "px;" +
   "font-size:" + 50 * widthK + "px;" +
@@ -2656,12 +2656,13 @@ var css = {
   "position: relative;" +
   "float: right;" +
   "background-image: url('resources/icons/ViewService/book.png');" +
-  "width: 8%;" +
+  "width: 13%;" +
   "height: 65%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 98%;" +
+  "background-size: 60%;" +
   "background-position: center;" +
   "top: 27%;" +
+  "right: -2%;" +
   "}",
 
   servicePageAmountField: ".servicepage-amount-field" +
@@ -2723,7 +2724,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: absolute;" +
-  "top: 22%;" +
+  "top: 21%;" +
   "width: 88%;" +
   "height: 71%;" +
   "font-size:" + 56 * widthK + "px; " +
@@ -2737,17 +2738,15 @@ var css = {
   "{" +
   "border: none;" +
   "outline: none;" +
-  "position: absolute;" +
+  "position: relative;" +
   "top: 22%;" +
   "padding: 0;" +
   "margin: 0;" +
-  "left: 26%;" +
-  "width: 66%;" +
-    //"height: 69%;" +
+  "margin-left: 3%;" +
+  "width: 57%;" +
   "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
-  "height:75%;" +
   "}",
 
   servicePageNumberInputPartTwo: ".servicepage-number-input-part-two" +
@@ -3714,13 +3713,13 @@ var css = {
   "{" +
   "position: absolute;" +
   "background-image: url('resources/icons/ViewService/book.png');" +
-  "width: 8%;" +
+  "width: 13%;" +
   "height: 50%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 100%;" +
+  "background-size: 60%;" +
   "background-position: center;" +
   "top: 34%;" +
-  "right: 1%;" +
+  "right: -2%;" +
   "}",
 
   transferContactNumberFirstPart: ".transfer-contact-number-first-part" +
@@ -3827,7 +3826,7 @@ var css = {
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background-repeat: no-repeat;" +
-  "background-size: contain;" +
+  "background-size: cover;" +
   "background-position: center;" +
   "border-radius: 50%;" +
   "text-align: center;" +
@@ -5749,13 +5748,13 @@ var css = {
   "{" +
   "position: absolute;" +
   "background-image: url('resources/icons/ViewService/book.png');" +
-  "width: 8%;" +
+  "width: 13%;" +
   "height: 50%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 100%;" +
+  "background-size: 60%;" +
   "background-position: center;" +
   "top: 34%;" +
-  "right: 1%;" +
+  "right: -2%;" +
   "}",
 
   settingsAddFriendContactNumberFirstPart: ".settings-add-friend-contact-number-first-part" +
@@ -5882,7 +5881,7 @@ var css = {
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background-repeat: no-repeat;" +
-  "background-size: contain;" +
+  "background-size: cover;" +
   "background-position: center;" +
   "border-radius: 50%;" +
   "left: 5%;" +

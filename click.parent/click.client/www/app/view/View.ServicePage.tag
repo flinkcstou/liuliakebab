@@ -23,7 +23,7 @@
                            servicepage-number-input-part-three: !phoneFieldBool && !isNumber}"
              type="{inputType}"
              id="firstFieldInput"
-             maxlength="{inputMaxLength}" onfocus="bordersColor()"
+             maxlength="9" onfocus="bordersColor()"
              value="{defaultNumber}"/>
       <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
     </div>

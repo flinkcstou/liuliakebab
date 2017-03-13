@@ -11,7 +11,7 @@
         <div id="namePhoneFieldId" class="settings-add-friend-name-phone-field">
           <p class="settings-add-friend-contact-text-field"></p>
           <p class="settings-add-friend-contact-number-first-part"></p>
-          <input ontouchend="namePhoneFieldTouchEnd()" autofocus="true"
+          <input id="contactNameId" ontouchend="namePhoneFieldTouchEnd()" autofocus="true"
                  class="settings-add-friend-name-number-input-part"
                  type="text"/>
         </div>
@@ -43,7 +43,7 @@
         <div class="transfer-contact-found-text-two">{suggestionTwo.phoneNumber}</div>
       </div>
 
-      <div id="nextButtonId" class="settings-add-friend-next-button-inner-container" ontouchend="goToTransferStepTwo()">
+      <div id="nextButtonId" class="settings-add-friend-next-button-inner-container" ontouchend="addFriendTouchEnd()">
         <p class="settings-add-friend-next-button-label">{window.languages.ViewPayTransferNext}</p>
       </div>
     </div>
@@ -178,8 +178,17 @@
 
       function success(contacts) {
         for (var i = 0; i < contacts.length; i++) {
-          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null)
+          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null) {
+            for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
+              var digits = contacts[i].phoneNumbers[j].value.match(maskOne);
+              var phone = '';
+              for (var k in digits) {
+                phone += digits[k]
+              }
+              contacts[i].phoneNumbers[j].value = phone;
+            }
             arrayOfContacts.push(contacts[i])
+          }
         }
       }
 
@@ -329,6 +338,7 @@
       });
     }
 
+
     firstSuggestionBlock = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -339,7 +349,6 @@
         phone += digits[i]
       }
       scope.suggestionOne.phoneNumber = phone;
-      console.log(scope.suggestionOne.phoneNumber)
       contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length);
 
       if (contactPhoneNumberId.value.length == 9) {
@@ -372,6 +381,85 @@
       }
       else
         nextButtonId.style.display = 'none'
+    }
+
+    //    searchContactsForAdding = function (number) {
+    //
+    //      var index = -1;
+    //      arrayOfContacts.filter(function (wordOfFunction) {
+    //        var objectPos = '';
+    //        if (wordOfFunction.phoneNumbers) {
+    //          for (var i in wordOfFunction.phoneNumbers) {
+    //            index = wordOfFunction.phoneNumbers[i].value.indexOf(number);
+    //            if (index != -1) {
+    //              objectPos = i;
+    //              break;
+    //            }
+    //          }
+    //        }
+    //        else
+    //          index = -1;
+    //
+    //        if (index != -1) {
+    ////            scope.suggestionOne.phoneNumber = wordOfFunction.phoneNumbers[objectPos].value;
+    ////            scope.suggestionOne.fName = wordOfFunction.name.givenName;
+    ////            scope.suggestionOne.lName = wordOfFunction.name.familyName;
+    //
+    //          if (wordOfFunction.photos != null) {
+    //            if (wordOfFunction.photos[0] != null) {
+    //              return wordOfFunction.photos[0].value;
+    //            }
+    //          }
+    //        }
+    //      });
+    //    }
+
+    var arrayOfFriends = [];
+    addFriendTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (localStorage.getItem('click_client_friends') === null) {
+        arrayOfFriends = []
+      }
+      else {
+        arrayOfFriends = JSON.parse(localStorage.getItem('click_client_friends'));
+      }
+      var object = {};
+      object.name = contactNameId.value;
+      object.number = window.languages.CodeOfCountry + contactPhoneNumberId.value;
+
+      var index = -1;
+      arrayOfContacts.filter(function (wordOfFunction) {
+        var objectPos = '';
+        if (wordOfFunction.phoneNumbers) {
+          for (var i in wordOfFunction.phoneNumbers) {
+            index = wordOfFunction.phoneNumbers[i].value.indexOf(contactPhoneNumberId.value);
+            if (index != -1) {
+              objectPos = i;
+              break;
+            }
+          }
+        }
+        else
+          index = -1;
+
+        if (index != -1) {
+//            scope.suggestionOne.phoneNumber = wordOfFunction.phoneNumbers[objectPos].value;
+//            scope.suggestionOne.fName = wordOfFunction.name.givenName;
+//            scope.suggestionOne.lName = wordOfFunction.name.familyName;
+
+          if (wordOfFunction.photos != null) {
+            if (wordOfFunction.photos[0] != null) {
+              object.photo = wordOfFunction.photos[0].value;
+            }
+          }
+        }
+      });
+      arrayOfFriends.unshift(object)
+
+      localStorage.setItem('click_client_friends', JSON.stringify(arrayOfFriends))
+      onBackKeyDown()
     }
 
 
