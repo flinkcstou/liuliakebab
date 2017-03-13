@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/add_friend.png);" +
+    //"background-image: url(resources/draft/friendshelp.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -1384,10 +1384,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "content: '';" +
-  "height:" + 14 * widthK + "px;" +
-  "width:" + 14 * widthK + "px;" +
+  "height:" + 12 * widthK + "px;" +
+  "width:" + 12 * widthK + "px;" +
   "left:" + 4 * widthK + "px;" +
-  "bottom:" + 12 * widthK + "px;" +
+  "bottom:" + 13 * widthK + "px;" +
   "background-color: white;" +
   "-webkit-transition: .4s;" +
   "transition: .4s;" +
@@ -2274,7 +2274,7 @@ var css = {
   "position: absolute;" +
   "background-size: contain;" +
   "font-size:" + 35 * widthK + "px; " +
-  "left:" + 86 * widthK + "px; " +
+  "left:" + 85 * widthK + "px; " +
   "top:" + 38 * widthK + "px; " +
   "margin: 0;  " +
   "color: #fffaf9;" +
@@ -5856,7 +5856,8 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height:" + 110 * widthK + "px;" +
+  "border-bottom: 1px solid #f4f4f4;" +
+  "height:" + 160 * widthK + "px;" +
   "}",
 
   settingsFriendHelpAddButton: ".settings-friend-help-add-button " +
@@ -5876,7 +5877,7 @@ var css = {
 
   settingsFriendHelpContactFoundPhoto: ".settings-friend-help-contact-found-photo" +
   "{" +
-  "top:" + 8 * widthK + "px;" +
+  "top:" + 32 * widthK + "px;" +
   "position: absolute;" +
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
@@ -5884,13 +5885,13 @@ var css = {
   "background-size: cover;" +
   "background-position: center;" +
   "border-radius: 50%;" +
-  "left: 5%;" +
+  "left: 6%;" +
   "}",
 
   settingsFriendHelpContactFoundTextContainer: ".settings-friend-help-contact-found-text-container" +
   "{" +
   "position: absolute;" +
-  "left: 25%;" +
+  "left: 23%;" +
   "color: gray;" +
   "width: 60%;" +
   "height: 100%;" +
@@ -5903,8 +5904,8 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "color: #999999;" +
-  "top: 20%;" +
-  "font-size:" + 24 * widthK + "px;" +
+  "top: 32%;" +
+  "font-size:" + 29 * widthK + "px;" +
   "width:" + 400 * widthK + "px;" +
   "}",
 
@@ -5915,20 +5916,20 @@ var css = {
   "left: 0%;" +
   "color: #cbcbcb;" +
   "font-size:" + 24 * widthK + "px;" +
-  "top: 45%;" +
+  "top: 53%;" +
   "}",
 
   settingsFriendHelpContactCancelIcon: ".settings-friend-help-contact-cancel-icon" +
   "{" +
-  "top:" + 8 * widthK + "px;" +
+  "top:" + 33 * widthK + "px;" +
   "position: absolute;" +
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background-repeat: no-repeat;" +
-  "background-size: 30%;" +
+  "background-size: 21%;" +
   "background-position: center;" +
   "background-image: url(resources/icons/ViewSettingsFriendHelp/delete.png);" +
-  "right: 5%;" +
+  "right: 2%;" +
   "}",
 
 }
