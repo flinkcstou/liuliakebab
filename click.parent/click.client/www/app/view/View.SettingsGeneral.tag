@@ -11,6 +11,7 @@
       <div class="settings-general-user-icon" style="background-image: url({photo})"></div>
       <div class="settings-general-user-name-container">
         <input id="settingsUserNameId" class="settings-general-user-first-name"/>
+        <div class="settings-general-user-name-save"></div>
       </div>
       <div class="settings-general-download-delete-container">
         <div class="settings-general-download-container"></div>
@@ -52,6 +53,7 @@
     this.on('mount', function () {
 
       settingsUserNameId.value = scope.firstName + ' ' + scope.lastName;
+      settingsUserNameId.value = 'Юлдашев Алексан';
 
       riot.update();
 

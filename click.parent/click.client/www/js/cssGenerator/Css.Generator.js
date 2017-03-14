@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/about_crop.png);" +
+    //"background-image: url(resources/draft/general_crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -5490,13 +5490,13 @@ var css = {
 
   settingsGeneralContainer: ".settings-general-container" +
   "{" +
-  "top:" + 450 * widthK + "px; " +
+  "top:" + 500 * widthK + "px; " +
   "}",
 
   settingsGeneralUserInfoContainer: ".settings-general-user-info-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 450 * widthK + "px;" +
+  "height:" + 500 * widthK + "px;" +
   "width:100%;" +
   "background: -moz-linear-gradient(rgb(0,124,231),rgb(0,180,247));" +
   "background: -webkit-linear-gradient(rgb(0,124,231),rgb(0,180,247));" +
@@ -5506,10 +5506,10 @@ var css = {
   settingsGeneralUserIcon: ".settings-general-user-icon" +
   "{" +
   "position: absolute;" +
-  "height:" + 150 * widthK + "px;" +
-  "width:" + 150 * widthK + "px;" +
+  "height:" + 169 * widthK + "px;" +
+  "width:" + 169 * widthK + "px;" +
   "top:" + 90 * widthK + "px;" +
-  "left: 39%;" +
+  "left: 37.5%;" +
   "border:" + 4 * widthK + "px solid white;" +
   "border-radius:" + 90 * widthK + "px;" +
   "background-repeat: no-repeat;" +
@@ -5522,12 +5522,11 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: absolute;" +
-  "top: 26%;" +
-  "width: 100%;" +
-  "height: 69%;" +
-  "font-size:" + 49 * widthK + "px; " +
+  "top: 25%;" +
+  "left: 8%;" +
+  "width: 80%;" +
+  "font-size:" + 42 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
-  "color: #515151;" +
   "padding: 0;" +
   "margin: 0;" +
   "color: white;" +
@@ -5627,35 +5626,51 @@ var css = {
   settingsGeneralUserNameContainer: ".settings-general-user-name-container" +
   "{" +
   "position: absolute;" +
-  "width: 86%;" +
-  "height: 12%;" +
-  "bottom: 26%;" +
-  "border-bottom:" + 4 * widthK + "px solid #05d0ff;" +
-  "left: 7%;" +
+  "width: 84.5%;" +
+  "height: 17%;" +
+  "bottom: 29%;" +
+  "border-bottom:" + 5 * widthK + "px solid #05d0ff;" +
+  "left: 8.5%;" +
+  "}",
+
+  settingsGeneralUserNameSave: ".settings-general-user-name-save" +
+  "{" +
+  "position: absolute;" +
+  "width: 11%;" +
+  "height: 100%;" +
+  "top: 0;" +
+  "right: 0;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 83%;" +
+  "background-position: center;" +
+  "background-image: url('resources/icons/ViewService/checked.png');" +
   "}",
 
   settingsGeneralDownloadDeleteContainer: ".settings-general-download-delete-container" +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 100 * widthK + "px;" +
+  "height:" + 120 * widthK + "px;" +
   "bottom: 0%;" +
   "}",
 
   settingsGeneralDownloadContainer: ".settings-general-download-container" +
   "{" +
   "position: relative;" +
-  "width: 40%;" +
+  "width: 41%;" +
   "height: 50%;" +
-  "margin-left: 5%;" +
-  "margin-right: 10%;" +
+  "top: 13%;" +
+  "margin-left: 13%;" +
+  "margin-right: 0%;" +
   "float: left;" +
+  "background-color: #09ceff;" +
   "}",
 
   settingsGeneralDeleteContainer: ".settings-general-delete-container" +
   "{" +
   "position: relative;" +
   "width: 40%;" +
+  "top: 13%;" +
   "height: 50%;" +
   "float: left;" +
   "}",
