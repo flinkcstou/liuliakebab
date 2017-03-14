@@ -886,17 +886,17 @@ var css = {
   "background-position: top right;" +
   "}",
 
-  cardBankNameUrl: ".card-bank-name-url " +
-  "{" +
-  "position: absolute;" +
-  "width:" + 240 * widthK + "px;" +
-  "height:" + 90 * widthK + "px;" +
-  "background-size: contain;" +
-  "background-repeat: no-repeat;" +
-  "background-position: left top;" +
-  "left:" + 30 * widthK + "px;" +
-  "top:" + 20 * widthK + "px" +
-  "}",
+  //cardBankNameUrl: ".card-bank-name-url " +
+  //"{" +
+  //"position: absolute;" +
+  //"width:" + 240 * widthK + "px;" +
+  //"height:" + 90 * widthK + "px;" +
+  //"background-size: contain;" +
+  //"background-repeat: no-repeat;" +
+  //"background-position: left top;" +
+  //"left:" + 30 * widthK + "px;" +
+  //"top:" + 20 * widthK + "px" +
+  //"}",
 
   cardSalaryTitle: ".card-salary-title " +
   "{" +
