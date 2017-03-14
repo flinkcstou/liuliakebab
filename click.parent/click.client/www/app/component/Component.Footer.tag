@@ -194,11 +194,11 @@
         else {
           scope.arrayOfPhotos[i].contactPhoto = '';
           if (arrayOfConnectedContacts[i].name.familyName) {
-            scope.arrayOfPhotos[i].firstLetter = arrayOfConnectedContacts[i].name.familyName[0];
+            scope.arrayOfPhotos[i].firstLetter = arrayOfConnectedContacts[i].name.familyName[0].toUpperCase();
           }
           else {
             if (arrayOfConnectedContacts[i].name.givenName) {
-              scope.arrayOfPhotos[i].firstLetter = arrayOfConnectedContacts[i].name.givenName[0];
+              scope.arrayOfPhotos[i].firstLetter = arrayOfConnectedContacts[i].name.givenName[0].toUpperCase();
             }
           }
         }

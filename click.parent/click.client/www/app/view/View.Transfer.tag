@@ -1065,22 +1065,22 @@
               else {
                 scope.suggestionOne.photo = '';
                 if (scope.suggestionOne.lName) {
-                  scope.suggestionOne.firstLetterOfName = scope.suggestionOne.lName[0];
+                  scope.suggestionOne.firstLetterOfName = scope.suggestionOne.lName[0].toUpperCase();
                 }
                 else {
                   if (scope.suggestionOne.fName)
-                    scope.suggestionOne.firstLetterOfName = scope.suggestionOne.fName[0];
+                    scope.suggestionOne.firstLetterOfName = scope.suggestionOne.fName[0].toUpperCase();
                 }
               }
             }
             else {
               scope.suggestionOne.photo = '';
               if (scope.suggestionOne.lName) {
-                scope.suggestionOne.firstLetterOfName = scope.suggestionOne.lName[0];
+                scope.suggestionOne.firstLetterOfName = scope.suggestionOne.lName[0].toUpperCase();
               }
               else {
                 if (scope.suggestionOne.fName)
-                  scope.suggestionOne.firstLetterOfName = scope.suggestionOne.fName[0];
+                  scope.suggestionOne.firstLetterOfName = scope.suggestionOne.fName[0].toUpperCase();
               }
             }
 
@@ -1105,22 +1105,22 @@
               else {
                 scope.suggestionTwo.photo = '';
                 if (scope.suggestionTwo.lName) {
-                  scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.lName[0];
+                  scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.lName[0].toUpperCase();
                 }
                 else {
                   if (scope.suggestionTwo.fName)
-                    scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.fName[0];
+                    scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.fName[0].toUpperCase();
                 }
               }
             }
             else {
               scope.suggestionTwo.photo = '';
               if (scope.suggestionTwo.lName) {
-                scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.lName[0];
+                scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.lName[0].toUpperCase();
               }
               else {
                 if (scope.suggestionTwo.fName)
-                  scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.fName[0];
+                  scope.suggestionTwo.firstLetterOfName = scope.suggestionTwo.fName[0].toUpperCase();
               }
             }
 
@@ -1210,11 +1210,11 @@
               scope.suggestionFour.photo = '';
               if (transferContacts[i].name != null) {
                 if (transferContacts[i].name.familyName != null) {
-                  scope.suggestionFour.firstLetterOfName = transferContacts[i].name.familyName[0];
+                  scope.suggestionFour.firstLetterOfName = transferContacts[i].name.familyName[0].toUpperCase();
                 }
                 else {
                   if (transferContacts[i].name.givenName != null)
-                    scope.suggestionFour.firstLetterOfName = transferContacts[i].name.givenName[0];
+                    scope.suggestionFour.firstLetterOfName = transferContacts[i].name.givenName[0].toUpperCase();
                 }
               }
             }
@@ -1253,11 +1253,11 @@
               scope.suggestionThree.photo = '';
               if (transferContacts[i].name != null) {
                 if (transferContacts[i].name.familyName != null) {
-                  scope.suggestionThree.firstLetterOfName = transferContacts[i].name.familyName[0];
+                  scope.suggestionThree.firstLetterOfName = transferContacts[i].name.familyName[0].toUpperCase();
                 }
                 else {
                   if (transferContacts[i].name.givenName != null)
-                    scope.suggestionThree.firstLetterOfName = transferContacts[i].name.givenName[0];
+                    scope.suggestionThree.firstLetterOfName = transferContacts[i].name.givenName[0].toUpperCase();
                 }
               }
             }
@@ -1296,11 +1296,11 @@
               scope.suggestionTwo.photo = '';
               if (transferContacts[i].name != null) {
                 if (transferContacts[i].name.familyName != null) {
-                  scope.suggestionTwo.firstLetterOfName = transferContacts[i].name.familyName[0];
+                  scope.suggestionTwo.firstLetterOfName = transferContacts[i].name.familyName[0].toUpperCase();
                 }
                 else {
                   if (transferContacts[i].name.givenName != null)
-                    scope.suggestionTwo.firstLetterOfName = transferContacts[i].name.givenName[0];
+                    scope.suggestionTwo.firstLetterOfName = transferContacts[i].name.givenName[0].toUpperCase();
                 }
               }
             }
@@ -1342,11 +1342,11 @@
               scope.suggestionOne.photo = '';
               if (transferContacts[i].name != null) {
                 if (transferContacts[i].name.familyName != null) {
-                  scope.suggestionOne.firstLetterOfName = transferContacts[i].name.familyName[0];
+                  scope.suggestionOne.firstLetterOfName = transferContacts[i].name.familyName[0].toUpperCase();
                 }
                 else {
                   if (transferContacts[i].name.givenName != null)
-                    scope.suggestionOne.firstLetterOfName = transferContacts[i].name.givenName[0];
+                    scope.suggestionOne.firstLetterOfName = transferContacts[i].name.givenName[0].toUpperCase();
                 }
               }
             }
