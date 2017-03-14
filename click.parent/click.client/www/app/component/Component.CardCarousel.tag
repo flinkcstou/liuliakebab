@@ -123,10 +123,6 @@
             }
           })
         }
-      } else if (modeOfApp.offlineMode) {
-
-//        cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-        addCard();
       }
 //      copyCardsArray = JSON.parse(JSON.stringify(cardsarray));
 //      console.log(copyCardsArray, defaultAccountId)
@@ -585,6 +581,12 @@
       if (!modeOfApp.offlineMode) {
         writeBalance();
       }
+    }
+
+    if (modeOfApp.offlineMode) {
+
+//        cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
+      addCard();
     }
 
     //    changeColor = function (index) {
