@@ -179,6 +179,11 @@ var RU_LANGUAGES =
   "ViewSettingsAddFriendPhoneNumberTitle": "Номер телефона",
   "ViewSettingsAddFriendNameTitle": "Имя друга",
 
+  "ViewSettingsGeneralDownloadPhotoTitle": "Загрузить фото",
+  "ViewSettingsGeneralDeletePhotoTitle": "Удалить фото",
+  "ViewSettingsGeneralGenderMaleTitle": "Муж",
+  "ViewSettingsGeneralGenderFemaleTitle": "Жен",
+
 };
 
 window.languages = RU_LANGUAGES;

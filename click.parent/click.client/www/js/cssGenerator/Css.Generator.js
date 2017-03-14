@@ -5488,6 +5488,21 @@ var css = {
   "top: 0;" +
   "}",
 
+  settingsGeneralCheckButton: ".settings-general-check-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 135 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "right:" + -36 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewSettingsGeneral/general_save.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 31%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 54 * widthK + "px;" +
+  "background-size: 31%;" +
+  "top: 0;" +
+  "}",
+
   settingsGeneralContainer: ".settings-general-container" +
   "{" +
   "top:" + 500 * widthK + "px; " +
@@ -5538,8 +5553,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height: 17%;" +
-  "top:2%;" +
+  "height: 25%;" +
+
   "}",
 
   settingsGeneralLanguagesContainer: ".settings-general-languages-container " +
@@ -5556,9 +5571,7 @@ var css = {
   "position: absolute;" +
   "width: 20%;" +
   "height: 100%;" +
-  "/*top: 20%;*/" +
-    //"background-color: grey;" +
-  "left: 29%;" +
+  "left: 26%;" +
   "}",
 
   settingsGeneralFemaleContainer: ".settings-general-female-container" +
@@ -5566,35 +5579,33 @@ var css = {
   "position: absolute;" +
   "width: 20%;" +
   "height: 100%;" +
-  "/*top: 20%;*/" +
-    //"background-color: grey;" +
-  "left: 53%;" +
+  "left: 54%;" +
   "}",
 
   settingsGeneralMaleIcon: ".settings-general-male-icon" +
   "{" +
   "position: relative;" +
   "width: 80%;" +
-  "height:" + 100 * widthK + "px;" +
+  "height: 92%;" +
   "/*top: 20%;*/" +
-  "left: 12%;" +
+  "left: 11%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 83%;" +
+  "background-size: 70%;" +
   "background-position: center;" +
-  "background-image: url('resources/icons/ViewSettings/general/general_male_active.png');" +
+  "background-image: url('resources/icons/ViewSettingsGeneral/general_male_active.png');" +
   "}",
 
   settingsGeneralFemaleIcon: ".settings-general-female-icon" +
   "{" +
   "position: relative;" +
   "width: 80%;" +
-  "height:" + 100 * widthK + "px;" +
-  "/*top: 20%;*/" +
-  "left: 12%;" +
+  "height: 92%;" +
+  "top: 0%;" +
+  "left: 11%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 83%;" +
+  "background-size: 74%;" +
   "background-position: center;" +
-  "background-image: url('resources/icons/ViewSettings/general/general_female_inactive.png');" +
+  "background-image: url('resources/icons/ViewSettingsGeneral/general_female_inactive.png');" +
   "}",
 
   settingsGeneralGenderText: ".settings-general-gender-text" +
@@ -5605,9 +5616,19 @@ var css = {
   "margin-left: auto;" +
   "text-align: center;" +
   "padding: 0;" +
-  "bottom: 0;" +
+  "bottom: 12%;" +
   "color: lightgray;" +
   "font-size:" + 24 * widthK + "px;" +
+  "}",
+
+  settingsGeneralLineBetween: ".settings-general-line-between" +
+  "{" +
+  "position: absolute;" +
+  "left: 50%;" +
+  "width: 1px;" +
+  "height: 55%%;" +
+  "top: 40%;" +
+  "background-color: lightgrey;" +
   "}",
 
   settingsGeneralEditIcon: ".settings-general-edit-icon" +
@@ -5620,7 +5641,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 83%;" +
   "background-position: center;" +
-  "background-image: url('resources/icons/ViewSettings/general/general_edit.png');" +
+  "background-image: url('resources/icons/ViewSettingsGeneral/general_edit.png');" +
   "}",
 
   settingsGeneralUserNameContainer: ".settings-general-user-name-container" +
@@ -5636,14 +5657,15 @@ var css = {
   settingsGeneralUserNameSave: ".settings-general-user-name-save" +
   "{" +
   "position: absolute;" +
-  "width: 11%;" +
-  "height: 100%;" +
-  "top: 0;" +
+  "width: 9%;" +
+  "height: 85%;" +
+  "top: 13%;" +
   "right: 0;" +
   "background-repeat: no-repeat;" +
-  "background-size: 83%;" +
+  "background-size: 70%;" +
   "background-position: center;" +
-  "background-image: url('resources/icons/ViewService/checked.png');" +
+  "background-image: url('resources/icons/ViewSettingsGeneral/general_edit.png');" +
+    //"background-image: url('resources/icons/ViewSettingsGeneral/general_save.png');" +
   "}",
 
   settingsGeneralDownloadDeleteContainer: ".settings-general-download-delete-container" +
@@ -5666,6 +5688,30 @@ var css = {
   "background-color: #09ceff;" +
   "}",
 
+  settingsGeneralDownloadTitle: ".settings-general-download-title" +
+  "{" +
+  "position: absolute;" +
+  "top: 20%;" +
+  "left: 27%;" +
+  "margin: 0;" +
+  "color: white;" +
+  "font-size:" + 27 * widthK + "px;" +
+  "background-color: #09ceff;" +
+  "}",
+
+  settingsGeneralDownloadIcon: ".settings-general-download-icon" +
+  "{" +
+  "position: absolute;" +
+  "width: 9%;" +
+  "height: 85%;" +
+  "top: 13%;" +
+  "left: 13%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 75%;" +
+  "background-position: center;" +
+  "background-image: url('resources/icons/ViewSettingsGeneral/general_upload.png');" +
+  "}",
+
   settingsGeneralDeleteContainer: ".settings-general-delete-container" +
   "{" +
   "position: relative;" +
@@ -5674,6 +5720,30 @@ var css = {
   "height: 50%;" +
   "float: left;" +
   "}",
+
+  settingsGeneralDeleteTitle: ".settings-general-delete-title" +
+  "{" +
+  "position: absolute;" +
+  "top: 31%;" +
+  "left: 26%;" +
+  "margin: 0;" +
+  "color: white;" +
+  "font-size:" + 27 * widthK + "px;" +
+  "}",
+
+  settingsGeneralDeleteIcon: ".settings-general-delete-icon" +
+  "{" +
+  "position: absolute;" +
+  "width: 9%;" +
+  "height: 85%;" +
+  "top: 13%;" +
+  "left: 13%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 75%;" +
+  "background-position: center;" +
+  "background-image: url('resources/icons/ViewSettingsGeneral/general_delete.png');" +
+  "}",
+
 
   settingsGeneralLangContainer: ".settings-general-lang-container" +
   "{" +

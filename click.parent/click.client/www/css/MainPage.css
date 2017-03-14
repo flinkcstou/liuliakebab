@@ -3683,7 +3683,7 @@ input {
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
-  background-image: url("../resources/icons/ViewSettings/general/general_male_active.png");
+  background-image: url("../resources/icons/ViewSettingsGeneral/general_male_active.png");
 }
 
 .settings-general-female-icon {
@@ -3696,7 +3696,7 @@ input {
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
-  background-image: url("../resources/icons/ViewSettings/general/general_female_inactive.png");
+  background-image: url("../resources/icons/ViewSettingsGeneral/general_female_inactive.png");
 }
 
 .settings-general-gender-text {
