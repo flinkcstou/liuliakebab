@@ -3464,17 +3464,17 @@ var css = {
   "left: " + 17 * widthK + "px;" +
   "}",
 
-  myCardListCardBankNameUrl: ".mycardlist-card-bank-name-url" +
-  "{" +
-  "position: absolute;" +
-  "width: 30%;" +
-  "height: 16%;" +
-  "background-size: contain;" +
-  "background-repeat: no-repeat;" +
-  "background-position: left top;" +
-  "left:" + 19 * widthK + "px;" +
-  "top:" + 13 * widthK + "px" +
-  "}",
+  //myCardListCardBankNameUrl: ".mycardlist-card-bank-name-url" +
+  //"{" +
+  //"position: absolute;" +
+  //"width: 30%;" +
+  //"height: 16%;" +
+  //"background-size: contain;" +
+  //"background-repeat: no-repeat;" +
+  //"background-position: left top;" +
+  //"left:" + 19 * widthK + "px;" +
+  //"top:" + 13 * widthK + "px" +
+  //"}",
 
   myCardListbackButton: ".mycardlist-back-button " +
   "{" +
