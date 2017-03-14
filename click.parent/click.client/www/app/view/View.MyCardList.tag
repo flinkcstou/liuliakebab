@@ -11,7 +11,7 @@
       <div class="mycardlist-card" each="{i in cardsArray}" style="background-image: url({i.card_background_url});"
            ontouchend="goToCardPage({i.card_id})">
 
-        <div class="mycardlist-card-bank-name" style="background-image: url({i.bankname})"></div>
+        <div class="mycardlist-card-bank-name"></div>
         <div class="mycardlist-card-salary-title">{i.name}</div>
 
         <div class="mycardlist-card-balance-currency-container">
