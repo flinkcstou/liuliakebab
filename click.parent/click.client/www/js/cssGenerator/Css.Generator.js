@@ -5490,15 +5490,17 @@ var css = {
 
   settingsGeneralContainer: ".settings-general-container" +
   "{" +
-  "top:" + 380 * widthK + "px; " +
+  "top:" + 450 * widthK + "px; " +
   "}",
 
   settingsGeneralUserInfoContainer: ".settings-general-user-info-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 245 * widthK + "px;" +
+  "height:" + 450 * widthK + "px;" +
   "width:100%;" +
-  "top: 9%;" +
+  "background: -moz-linear-gradient(rgb(0,124,231),rgb(0,180,247));" +
+  "background: -webkit-linear-gradient(rgb(0,124,231),rgb(0,180,247));" +
+  "background: -ms-linear-gradient(rgb(0,124,231),rgb(0,180,247));" +
   "}",
 
   settingsGeneralUserIcon: ".settings-general-user-icon" +
@@ -5506,6 +5508,7 @@ var css = {
   "position: absolute;" +
   "height:" + 150 * widthK + "px;" +
   "width:" + 150 * widthK + "px;" +
+  "top:" + 90 * widthK + "px;" +
   "left: 39%;" +
   "border:" + 4 * widthK + "px solid white;" +
   "border-radius:" + 90 * widthK + "px;" +
@@ -5516,24 +5519,20 @@ var css = {
 
   settingsGeneralUserFirstName: ".settings-general-user-first-name" +
   "{" +
-  "position: relative;" +
-  "margin: 0;" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "top: 26%;" +
+  "width: 100%;" +
+  "height: 69%;" +
+  "font-size:" + 49 * widthK + "px; " +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
   "padding: 0;" +
-  "bottom:0;" +
-  "color: white;" +
-  "float: left;" +
-  "}",
-
-  settingsGeneralUserSecondName: ".settings-general-user-second-name" +
-  "{" +
-  "position: relative;" +
   "margin: 0;" +
-  "padding: 0;" +
-  "bottom:0;" +
-  "right: 14%;" +
   "color: white;" +
-  "left:3%;" +
-  "float: left;" +
+  "background: transparent;" +
+  "text-align: center;" +
   "}",
 
   settingsGeneralGenderContainer: ".settings-general-gender-container " +
@@ -5628,11 +5627,37 @@ var css = {
   settingsGeneralUserNameContainer: ".settings-general-user-name-container" +
   "{" +
   "position: absolute;" +
-  "width: 75%;" +
-  "height: 20%;" +
-    //"background-color: lightgrey;" +
-  "bottom: 0;" +
-  "left:11%;" +
+  "width: 86%;" +
+  "height: 12%;" +
+  "bottom: 26%;" +
+  "border-bottom:" + 4 * widthK + "px solid #05d0ff;" +
+  "left: 7%;" +
+  "}",
+
+  settingsGeneralDownloadDeleteContainer: ".settings-general-download-delete-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 100 * widthK + "px;" +
+  "bottom: 0%;" +
+  "}",
+
+  settingsGeneralDownloadContainer: ".settings-general-download-container" +
+  "{" +
+  "position: relative;" +
+  "width: 40%;" +
+  "height: 50%;" +
+  "margin-left: 5%;" +
+  "margin-right: 10%;" +
+  "float: left;" +
+  "}",
+
+  settingsGeneralDeleteContainer: ".settings-general-delete-container" +
+  "{" +
+  "position: relative;" +
+  "width: 40%;" +
+  "height: 50%;" +
+  "float: left;" +
   "}",
 
   settingsGeneralLangContainer: ".settings-general-lang-container" +
