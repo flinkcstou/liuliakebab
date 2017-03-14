@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/friendshelp.png);" +
+    //"background-image: url(resources/draft/about_crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -5793,20 +5793,6 @@ var css = {
   "margin: 0;" +
   "}",
 
-  settingsAddFriendContactNumberInputPart: ".settings-add-friend-contact-number-input-part" +
-  "{" +
-  "border: none;" +
-  "outline: none;" +
-  "position: relative;" +
-  "top: 28%;" +
-  "padding: 0;" +
-  "margin: 0;" +
-  "margin-left: 3%;" +
-  "width: 65%;" +
-  "font-size:" + 51 * widthK + "px;" +
-  "font-family: 'SFUIDisplay-Light';" +
-  "color: #515151;" +
-  "}",
 
   settingsAddFriendNextButtonInnerContainer: ".settings-add-friend-next-button-inner-container" +
   "{" +
@@ -5857,8 +5843,124 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 350 * widthK + "px;" +
+  "height:" + 418 * widthK + "px;" +
   "background-color: #027ee3;" +
+  "}",
+
+  settingsAboutProgramUserAgreementContainer: ".settings-about-program-user-agreement-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 12%;" +
+  "border-bottom:1px solid #f4f4f4;" +
+  "}",
+
+  settingsAboutProgramUserAgreementTitle: ".settings-about-program-user-agreement-title" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-left: 6%;" +
+  "top: 36%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #919191;" +
+  "}",
+
+  settingsAboutProgramUserAgreementIcon: ".settings-about-program-user-agreement-icon" +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 15%;" +
+  "height: 100%;" +
+  "top: 0;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 11%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/ViewInfo/open.png);" +
+  "}",
+
+  settingsAboutProgramRankContainer: ".settings-about-program-rank-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 12%;" +
+  "border-bottom:1px solid #f4f4f4;" +
+  "}",
+
+  settingsAboutProgramRankTitle: ".settings-about-program-rank-title" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-left: 6%;" +
+  "top: 36%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #919191;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 10%;" +
+  "background-position: center;" +
+  "}",
+
+  settingsAboutProgramRankIcon: ".settings-about-program-rank-icon" +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 15%;" +
+  "height: 100%;" +
+  "top: 0;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 11%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/ViewInfo/open.png);" +
+  "}",
+
+  settingsAboutProgramContainer: ".settings-about-program-container" +
+  "{" +
+  "top:" + 417 * widthK + "px;" +
+  "}",
+
+  settingsAboutProgramPageTitle: ".settings-about-program-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top:" + -12 * widthK + "px;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background: transparent;" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  settingsAboutProgramNameTitle: ".settings-about-program-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 34 * widthK + "px; " +
+  "left:" + 77 * widthK + "px; " +
+  "top:" + 38 * widthK + "px; " +
+  "margin: 0;  " +
+  "color: #fffaf9;" +
+  "}",
+
+  settingsAboutProgramVersionTitlePartOne: ".settings-about-program-version-title-part-one " +
+  "{" +
+  "position: relative;" +
+  "font-size:" + 35 * widthK + "px; " +
+  "width:" + 255 * widthK + "px; " +
+  "margin: 0; " +
+  "margin-left: auto; " +
+  "margin-right: auto; " +
+  "top: 10%; " +
+  "color: white;" +
+  "}",
+
+  settingsAboutProgramVersionTitlePartTwo: ".settings-about-program-version-title-part-two " +
+  "{" +
+  "position: relative;" +
+  "font-size:" + 24 * widthK + "px; " +
+  "width:" + 150 * widthK + "px; " +
+  "margin: 0; " +
+  "margin-left: auto; " +
+  "margin-right: auto; " +
+  "top: 11%; " +
+  "color: white;" +
   "}",
 
   settingsAboutProgramClickIcon: ".settings-about-program-click-icon" +
@@ -5866,11 +5968,11 @@ var css = {
   "position: relative;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "top: 15%;" +
-  "width: 30%;" +
+  "top: 14%;" +
+  "width: 21%;" +
   "height: 60%;" +
   "background-repeat: no-repeat;" +
-  "background-image: url(resources/icons/icon/icon.png);" +
+  "background-image: url(resources/icons/ViewSettingsAboutProgram/about_logo.png);" +
   "background-size: 100%;" +
   "background-position: center;" +
   "}",

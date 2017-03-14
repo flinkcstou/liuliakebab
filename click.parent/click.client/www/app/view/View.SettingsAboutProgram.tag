@@ -1,16 +1,27 @@
 <view-about-program>
-  <div>
-    <div class="pay-page-title">
-      <p class="pay-name-title">{titleName}</p>
+  <div class="settings-about-program-blue-container">
+    <div class="settings-about-program-page-title">
+      <p class="settings-about-program-name-title">{titleName}</p>
       <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
     </div>
-    <div class="settings-container">
-      <div class="settings-about-program-blue-container">
-        <div class="settings-about-program-click-icon"></div>
-      </div>
-    </div>
-
+    <div class="settings-about-program-click-icon"></div>
+    <p class="settings-about-program-version-title-part-one">
+      {window.languages.ViewSettingsAboutProgramVersionTitleNamePartOne}</p>
+    <p class="settings-about-program-version-title-part-two">
+      {window.languages.ViewSettingsAboutProgramVersionTitleNamePartTwo}</p>
   </div>
+  <div class="settings-container settings-about-program-container">
+    <div class="settings-about-program-user-agreement-container">
+      <p class="settings-about-program-user-agreement-title">
+        {window.languages.ViewSettingsAboutProgramUserAgreementTitleName}</p>
+      <div class="settings-about-program-user-agreement-icon"></div>
+    </div>
+    <div class="settings-about-program-rank-container">
+      <p class="settings-about-program-rank-title">{window.languages.ViewSettingsAboutProgramRankTitleName}</p>
+      <div class="settings-about-program-rank-icon"></div>
+    </div>
+  </div>
+
 
   <script>
     var scope = this;
