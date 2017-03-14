@@ -28,7 +28,9 @@
 
       <div id="firstSuggestionBlockId" class="settings-add-friend-contact-found-container-one"
            ontouchend="firstSuggestionBlock()">
-        <div class="transfer-contact-found-photo" style="background-image: url({suggestionOne.photo})"></div>
+        <div class="transfer-contact-found-photo" style="background-image: url({suggestionOne.photo})">
+          {suggestionOne.firstLetterOfName}
+        </div>
         <div class="transfer-contact-found-text-container">
           <div class="transfer-contact-found-text-one">{suggestionOne.fName} {suggestionOne.lName}</div>
         </div>
@@ -36,7 +38,9 @@
       </div>
       <div id="secondSuggestionBlockId" class="settings-add-friend-contact-found-container-two"
            ontouchend="secondSuggestionBlock()">
-        <div class="transfer-contact-found-photo" style="background-image: url({suggestionTwo.photo})"></div>
+        <div class="transfer-contact-found-photo" style="background-image: url({suggestionTwo.photo})">
+          {suggestionTwo.firstLetterOfName}
+        </div>
         <div class="transfer-contact-found-text-container">
           <div class="transfer-contact-found-text-one">{suggestionTwo.fName} {suggestionTwo.lName}</div>
         </div>
@@ -426,8 +430,9 @@
         arrayOfFriends = JSON.parse(localStorage.getItem('click_client_friends'));
       }
       var object = {};
-      object.name = contactNameId.value;
+      object.name = contactNameId.value.toString();
       object.number = window.languages.CodeOfCountry + contactPhoneNumberId.value;
+      object.firstLetterOfName = '';
 
       var index = -1;
       arrayOfContacts.filter(function (wordOfFunction) {
@@ -447,7 +452,7 @@
         if (index != -1) {
 //            scope.suggestionOne.phoneNumber = wordOfFunction.phoneNumbers[objectPos].value;
 //            scope.suggestionOne.fName = wordOfFunction.name.givenName;
-//            scope.suggestionOne.lName = wordOfFunction.name.familyName;
+//            scope.suggestionOne.lName = wordOfFunction.name.familyName
 
           if (wordOfFunction.photos != null) {
             if (wordOfFunction.photos[0] != null) {
@@ -456,6 +461,10 @@
           }
         }
       });
+
+      if (!object.photo) {
+        object.firstLetterOfName = object.name[0].toUpperCase();
+      }
       arrayOfFriends.unshift(object)
 
       localStorage.setItem('click_client_friends', JSON.stringify(arrayOfFriends))

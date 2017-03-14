@@ -8,7 +8,8 @@
     <div id="mainContainerId" class="settings-container">
       <div each="{i in arrayOfFriends}" id="{id+i.number}" class="settings-friend-help-contact-container">
         <div class="settings-friend-help-contact-found-photo"
-             style="background-image: url({i.photo})"></div>
+             style="background-image: url({i.photo})">{i.firstLetterOfName}
+        </div>
         <div id="" class="settings-friend-help-contact-found-text-container">
           <div class="settings-friend-help-contact-found-text-one">{i.name}</div>
           <div class="settings-friend-help-contact-found-text-two">+{i.number}</div>
@@ -54,6 +55,13 @@
     }
     else {
       scope.arrayOfFriends = JSON.parse(localStorage.getItem('click_client_friends'));
+      console.log('scope.arrayOfFriends', scope.arrayOfFriends)
+
+//      for(var i in scope.arrayOfFriends){
+//        if(scope.arrayOfFriends[i].photo === null){
+//
+//        }
+//      }
     }
 
     deleteFriendTouchEnd = function (id, idWithoutPrefix) {

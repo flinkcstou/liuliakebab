@@ -5837,7 +5837,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top:" + 250 * widthK + "px;" +
+  "top:" + 310 * widthK + "px;" +
   "display: none;" +
   "}",
 
@@ -5848,7 +5848,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top:" + 375 * widthK + "px;" +
+  "top:" + 435 * widthK + "px;" +
   "display: none;" +
   "}",
 
@@ -5905,10 +5905,15 @@ var css = {
   "position: absolute;" +
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
+  "line-height:" + 100 * widthK + "px;" +
+  "font-size:" + 50 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
   "background-position: center;" +
+  "background-color: #017de8;" +
+  "color: white;" +
   "border-radius: 50%;" +
+  "text-align: center;" +
   "left: 6%;" +
   "}",
 
