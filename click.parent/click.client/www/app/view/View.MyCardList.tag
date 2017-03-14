@@ -11,8 +11,7 @@
       <div class="mycardlist-card" each="{i in cardsArray}" style="background-image: url({i.card_background_url});"
            ontouchend="goToCardPage({i.card_id})">
 
-        <div class="mycardlist-card-bank-name-url"></div>
-        <div class="mycardlist-card-bank-name"></div>
+        <div class="mycardlist-card-bank-name" style="background-image: url({i.bankname})"></div>
         <div class="mycardlist-card-salary-title">{i.name}</div>
 
         <div class="mycardlist-card-balance-currency-container">
@@ -36,15 +35,16 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-mycard-list') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-mycard-list',
-          "params": ''
-        }
+          {
+            "view": 'view-mycard-list',
+            "params": ''
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
     scope.cardsArray = JSON.parse(localStorage.getItem("click_client_cards"));
+    riot.update(scope.cardsArray);
 
     goToMainPage = function () {
       event.preventDefault();
@@ -67,10 +67,10 @@
           scope.cardsArray[cardId].chosenCard = false;
       }
 
+      riot.update(scope.cardsArray);
+
       riotTags.innerHTML = "<view-my-cards>";
       riot.mount('view-my-cards', [cardId]);
-
-
     }
 
 
