@@ -155,7 +155,7 @@ var RU_LANGUAGES =
 
   "ViewSecuritySettingsTrustedDevicesTitle": "Доверенные устройства",
   "ViewSecuritySettingsPinChangeTitle": "Сменить CLICK-PIN",
-  "ViewSecuritySettingsTouchScanUseTitle": "Использовать Сканер Отпечатка пальца",
+  "ViewSecuritySettingsTouchScanUseTitle": "Использовать сканнер отпечатка пальца",
   "ViewSecuritySettingsBlockTitle": "Блокировка",
   "ViewSecuritySettingsBlockText": "Запрашивать CLICK-PIN после каждого сворачивания приложения",
   "ViewSecuritySettingsMyNumberHideTitle": "Скрыть мой номер",
