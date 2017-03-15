@@ -5538,11 +5538,22 @@ var css = {
   "width:" + 169 * widthK + "px;" +
   "top:" + 90 * widthK + "px;" +
   "left: 37.5%;" +
-  "border:" + 4 * widthK + "px solid white;" +
+  //"border:" + 4 * widthK + "px solid white;" +
   "border-radius:" + 90 * widthK + "px;" +
   "background-repeat: no-repeat;" +
-  "background-size: 100%;" +
+  "background-size: cover;" +
   "background-position: center;" +
+  "}",
+
+  settingsGeneralUserUploadAvatar: ".settings-general-user-upload-avatar" +
+  "{" +
+  "position: absolute;" +
+  "top: 16%;" +
+  "left: 13%;" +
+  "opacity: 0;" +
+  "z-index: 999999;" +
+  "font-size:" + 38 * widthK + "px;" +
+  "letter-spacing:" + -21 * widthK + "px;" +
   "}",
 
   settingsGeneralUserFirstName: ".settings-general-user-first-name" +
@@ -5605,7 +5616,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 70%;" +
   "background-position: center;" +
-  "background-image: url('resources/icons/ViewSettingsGeneral/general_male_active.png');" +
+  "background-image: url('resources/icons/ViewSettingsGeneral/general_male_inactive.png');" +
   "}",
 
   settingsGeneralFemaleIcon: ".settings-general-female-icon" +
