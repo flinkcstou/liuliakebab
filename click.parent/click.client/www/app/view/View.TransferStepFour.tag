@@ -77,7 +77,7 @@
   <component-unsuccess id="componentUnsuccessId"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{window.languages.ComponentUnsuccessMessagePart3}"></component-unsuccess>
+                       operationmessagepartthree="{errorMessageFromTransfer}"></component-unsuccess>
 
   <component-in-processing id="componentInProcessingId"
                            operationmessagepartone="{window.languages.ComponentInProcessingPartOne}"
@@ -98,6 +98,8 @@
     var scope = this;
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = false;
+
+    scope.errorMessageFromTransfer = '';
 
     scope.objectTypeForTransfer = opts[0][0];
     if (scope.objectTypeForTransfer.type == 1) {
@@ -318,7 +320,9 @@
                 }
             }
             else {
+              scope.errorMessageFromTransfer = result[0][0].error_note
               componentUnsuccessId.style.display = 'block';
+              riot.update();
             }
           },
 

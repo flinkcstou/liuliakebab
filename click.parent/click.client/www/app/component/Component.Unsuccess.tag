@@ -11,6 +11,7 @@
     var scope = this;
 
     closeUnsuccessMessageForm = function () {
+      console.log('OPTS', opts)
       componentUnsuccessId.style.display = 'none';
     }
 
