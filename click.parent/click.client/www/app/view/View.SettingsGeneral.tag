@@ -70,6 +70,8 @@
     scope.firstName = loginInfo.firstname;
     scope.lastName = loginInfo.lastname;
     scope.photo = loginInfo.profile_image_url;
+    scope.gender = loginInfo.gender;
+    console.log('LOGIN', loginInfo)
 
     editUserInfoTouchEnd = function () {
       event.preventDefault();
