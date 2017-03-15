@@ -121,7 +121,7 @@ window.fakedSocket.register("get.accounts", function (input) {
       description: "Карта KAZKOM-Online",
       expire_date: "1806",
       id: 2484171,
-      image_url: "https://my.click.uz/static/content/app/card/aab.png",
+      image_url: "https://my.click.uz/static/content/app/bank/aab.png",
       is_uzcard: 1,
       removable: 1,
       short_name: "aloq"
@@ -146,7 +146,7 @@ window.fakedSocket.register("get.accounts", function (input) {
       description: "СБЕРБАНК",
       expire_date: "1806",
       id: 7487271,
-      image_url: "https://my.click.uz/static/content/app/card/aab.png",
+      image_url: "https://my.click.uz/static/content/app/bank/aab.png",
       is_uzcard: 1,
       removable: 1,
       short_name: "aloq"
@@ -172,7 +172,7 @@ window.fakedSocket.register("get.accounts", function (input) {
       description: "Карта UZCARD-Online",
       expire_date: "1806",
       id: 3487271,
-      image_url: "https://my.click.uz/static/content/app/card/aab.png",
+      image_url: "https://my.click.uz/static/content/app/bank/aab.png",
       is_uzcard: 1,
       removable: 1,
       short_name: "aloq"

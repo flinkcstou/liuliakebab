@@ -34,7 +34,7 @@
 
 
     this.on('mount', function () {
-      if (viewTransferStepTwo.sumWithoutSpace.length > 0) {
+      if (viewTransferStepTwo.sum.length > 0) {
         sumValueId.value = viewTransferStepTwo.sum;
         checkFirst = true;
         sumForTransfer = viewTransferStepTwo.sumWithoutSpace;

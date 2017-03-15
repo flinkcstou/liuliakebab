@@ -128,7 +128,7 @@
             onSuccess: function (result) {
 
               if (result[0][0].error == 0) {
-                console.log('CARDS UPDATE()')
+                console.log('CARDS UPDATE()', result[1])
                 console.log(result[1])
                 if (device.platform != 'BrowserStand') {
                   window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
