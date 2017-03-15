@@ -84,20 +84,20 @@
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization') {
         history.arrayOfHistory.push(
-            {
-              "view": 'view-authorization',
-              "params": ''
-            }
+          {
+            "view": 'view-authorization',
+            "params": ''
+          }
         );
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
       }
     }
     else {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-authorization',
-            "params": ''
-          }
+        {
+          "view": 'view-authorization',
+          "params": ''
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }

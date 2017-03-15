@@ -55,8 +55,12 @@
   <script>
     var scope = this;
     this.titleName = window.languages.ViewSecuritySettingsTitle;
-    var isVisible = true;
+    sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+    var isVisible = localStorage.getItem('click_client_loginInfo').visibility;
     var isBlocked = true;
+
     this.on('mount', function () {
       if (isVisible) {
         hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
@@ -94,13 +98,39 @@
         hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
       }
       riot.update(hideMyNumberIconId);
-    }
+
+      window.api.call({
+        method: 'settings.change.visibility',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          visibility: isVisible
+        },
+        scope: this,
+
+        onSuccess: function (result) {
+          console.log(result)
+          console.log(result[0][0])
+          if (result[0][0].error == 0) {
+            alert("Изменена видимость номера");
+          }
+          else {
+            alert(result[0][0].error_note);
+          }
+
+        },
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    };
 
     changeClickPin = function () {
 
       riotTags.innerHTML = "<view-pin-code>";
       riot.mount('view-pin-code', ['view-security-settings']);
-    }
+    };
 
     blockWithPin = function () {
 
@@ -114,7 +144,7 @@
         blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
       }
       riot.update(hideMyNumberIconId);
-    }
+    };
 
     saveEditedSecuritySettings = function () {
       alert("save edits")

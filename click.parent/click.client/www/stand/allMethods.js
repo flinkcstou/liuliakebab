@@ -2189,3 +2189,25 @@ window.fakedSocket.register("settings.change.pin", function (input) {
   ];
 });
 
+window.fakedSocket.register("settings.change.visibility", function (input) {
+
+  if (input)
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": ""
+      }]
+    ];
+
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});
+
