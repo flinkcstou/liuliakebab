@@ -9,12 +9,15 @@
              ontouchend="saveEditedNameToucEnd()"></div>
       </div>
 
-      <div class="settings-general-user-icon" style="background-image: url({photo})"></div>
+      <img src="resources/icons/ViewSettingsGeneral/general_avatar.png" id="imageUserAvatarId"
+           class="settings-general-user-icon"/>
       <div class="settings-general-user-name-container">
         <input id="settingsUserNameId" readonly="true" class="settings-general-user-first-name"/>
         <div id="editUserInfoIconId" class="settings-general-user-name-save" ontouchend="editUserInfoTouchEnd()"></div>
       </div>
       <div class="settings-general-download-delete-container">
+        <input id="uploadUserAvatarId" class="settings-general-user-upload-avatar" type="file" accept="image/*"
+               onchange="imageSelectedChange()"/>
         <div class="settings-general-download-container">
           <div class="settings-general-download-icon"></div>
           <p class="settings-general-download-title">{window.languages.ViewSettingsGeneralDownloadPhotoTitle}</p>
@@ -27,15 +30,16 @@
     </div>
     <div class="settings-container settings-general-container">
       <div class="settings-general-gender-container">
-        <div class="settings-general-male-container">
-          <div class="settings-general-male-icon"></div>
-          <p class="settings-general-gender-text" style="color: #353340;">
+        <div class="settings-general-male-container" ontouchend="maleTouchEnd()">
+          <div id="maleIconId" class="settings-general-male-icon"></div>
+          <p id="maleTitleId" class="settings-general-gender-text">
             {window.languages.ViewSettingsGeneralGenderMaleTitle}</p>
         </div>
         <div class="settings-general-line-between"></div>
-        <div class="settings-general-female-container">
-          <div class="settings-general-female-icon"></div>
-          <p class="settings-general-gender-text">{window.languages.ViewSettingsGeneralGenderFemaleTitle}</p>
+        <div class="settings-general-female-container" ontouchend="femaleTouchEnd()">
+          <div id="femaleIconId" class="settings-general-female-icon"></div>
+          <p id="femaleTitleId" class="settings-general-gender-text">
+            {window.languages.ViewSettingsGeneralGenderFemaleTitle}</p>
         </div>
       </div>
       <div class="settings-general-languages-container" if="{langChangeBool}">
@@ -62,10 +66,71 @@
     this.on('mount', function () {
 
       settingsUserNameId.value = scope.firstName + ' ' + scope.lastName;
+      if (scope.gender == 'M') {
+        maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_active.png)'
+        maleTitleId.style.color = 'black'
 
+        femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_inactive.png)'
+        femaleTitleId.style.color = 'lightgrey'
+      }
+      else {
+        maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_inactive.png)'
+        maleTitleId.style.color = 'lightgrey'
+
+        femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_active.png)'
+        femaleTitleId.style.color = 'black'
+      }
       riot.update();
 
     })
+
+    imageSelectedChange = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+
+      var reader = new FileReader();
+      if (event.target.files && event.target.files[0]) {
+        console.log(reader)
+        reader.readAsDataURL(uploadUserAvatarId.files[0]);
+
+        reader.onload = function (event) {
+          console.log('uploadUserAvatarId.files[0]', uploadUserAvatarId.files[0])
+          ImageTools.resize(uploadUserAvatarId.files[0], {
+              width: 32,
+              height: 24,
+            },
+            function (blob, didItResize) {
+              // didItResize will be true if it managed to resize it, otherwise false (and will return the original file as 'blob')
+              imageUserAvatarId.src = window.URL.createObjectURL(blob);
+              console.log('event', event)
+              // you can also now upload this blob using an XHR.
+            });
+        }
+      }
+    }
+
+    maleTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_active.png)'
+      maleTitleId.style.color = 'black'
+
+      femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_inactive.png)'
+      femaleTitleId.style.color = 'lightgrey'
+    }
+
+    femaleTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_inactive.png)'
+      maleTitleId.style.color = 'lightgrey'
+
+      femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_active.png)'
+      femaleTitleId.style.color = 'black'
+    }
 
     scope.firstName = loginInfo.firstname;
     scope.lastName = loginInfo.lastname;
