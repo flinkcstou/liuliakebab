@@ -6,7 +6,7 @@
         <p class="name-title">{titleName}</p>
         <div id="backButton" ontouchend="goToBack()" class="settings-general-back-button"></div>
         <div id="rightButton" type="button" class="settings-general-check-button"
-             ontouchend="saveEditedNameToucEnd()"></div>
+             ontouchend="saveEditedNameTouchEnd()"></div>
       </div>
 
       <img src="resources/icons/ViewSettingsGeneral/general_avatar.png" id="imageUserAvatarId"
@@ -62,6 +62,10 @@
 
     console.log(JSON.parse(localStorage.getItem('click_client_loginInfo')))
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+    scope.firstName = loginInfo.firstname;
+    scope.lastName = loginInfo.lastname;
+    scope.photo = loginInfo.profile_image_url;
+    scope.gender = loginInfo.gender;
 
     this.on('mount', function () {
 
@@ -80,10 +84,54 @@
         femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_active.png)'
         femaleTitleId.style.color = 'black'
       }
+
+      scope.firstName = loginInfo.firstname;
+      scope.lastName = loginInfo.lastname;
+      scope.photo = loginInfo.profile_image_url;
+      scope.gender = loginInfo.gender;
+      console.log('LOGIN', loginInfo)
+
       riot.update();
 
     })
 
+    saveEditedNameTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+      var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+      var sessionKey = loginInfo.session_key;
+
+      window.api.call({
+        method: 'settings.change.profile.data',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          firstname: getAccountsCards[i].id,
+          lastname: getAccountsCards[i].card_num_hash,
+          card_num_crypted: getAccountsCards[i].card_num_crypted
+        },
+        //TODO: DO CARDS
+        scope: this,
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+            if (result[1][0]) {
+
+            }
+          }
+          else
+            alert(result[0][0].error_note);
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+
+    scope.base64Data = '';
     imageSelectedChange = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -91,19 +139,25 @@
 
       var reader = new FileReader();
       if (event.target.files && event.target.files[0]) {
-        console.log(reader)
         reader.readAsDataURL(uploadUserAvatarId.files[0]);
 
         reader.onload = function (event) {
           console.log('uploadUserAvatarId.files[0]', uploadUserAvatarId.files[0])
           ImageTools.resize(uploadUserAvatarId.files[0], {
-              width: 32,
-              height: 24,
+              width: 320,
+              height: 240,
             },
             function (blob, didItResize) {
               // didItResize will be true if it managed to resize it, otherwise false (and will return the original file as 'blob')
               imageUserAvatarId.src = window.URL.createObjectURL(blob);
-              console.log('event', event)
+              var convertReader = new FileReader();
+              convertReader.readAsDataURL(blob);
+
+              convertReader.onload = function () {
+                scope.base64Data = convertReader.result;
+                console.log(scope.base64Data)
+              }
+              localStorage.setItem('click_client_image', imageUserAvatarId.src)
               // you can also now upload this blob using an XHR.
             });
         }
@@ -119,6 +173,8 @@
 
       femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_inactive.png)'
       femaleTitleId.style.color = 'lightgrey'
+
+      scope.gender = 'M'
     }
 
     femaleTouchEnd = function () {
@@ -130,13 +186,10 @@
 
       femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_active.png)'
       femaleTitleId.style.color = 'black'
+
+      scope.gender = 'F'
     }
 
-    scope.firstName = loginInfo.firstname;
-    scope.lastName = loginInfo.lastname;
-    scope.photo = loginInfo.profile_image_url;
-    scope.gender = loginInfo.gender;
-    console.log('LOGIN', loginInfo)
 
     editUserInfoTouchEnd = function () {
       event.preventDefault();
