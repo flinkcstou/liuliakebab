@@ -207,26 +207,28 @@
       else {
         checkCardMenu = false;
 
-        if (checkCardFirstBlock) {
-          scope.cardSuggestionOne = JSON.parse(JSON.stringify(scope.cardSuggestionOneCopy));
-          firstCardSuggestionId.style.display = 'block';
-        }
+        if (cardInputId.value.length != 19) {
+          if (checkCardFirstBlock) {
+            scope.cardSuggestionOne = JSON.parse(JSON.stringify(scope.cardSuggestionOneCopy));
+            firstCardSuggestionId.style.display = 'block';
+          }
 
-        if (checkCardSecondBlock) {
-          scope.cardSuggestionTwo = JSON.parse(JSON.stringify(scope.cardSuggestionTwoCopy));
-          secondCardSuggestionId.style.display = 'block';
-        }
+          if (checkCardSecondBlock) {
+            scope.cardSuggestionTwo = JSON.parse(JSON.stringify(scope.cardSuggestionTwoCopy));
+            secondCardSuggestionId.style.display = 'block';
+          }
 
-        if (checkCardThirdBlock) {
-          thirdCardSuggestionId.style.display = 'block';
-        }
+          if (checkCardThirdBlock) {
+            thirdCardSuggestionId.style.display = 'block';
+          }
 
-        if (checkCardFourthBlock) {
-          fourthCardSuggestionId.style.display = 'block';
-        }
+          if (checkCardFourthBlock) {
+            fourthCardSuggestionId.style.display = 'block';
+          }
 
-        if (checkCardFifthBlock) {
-          fifthCardSuggestionId.style.display = 'block';
+          if (checkCardFifthBlock) {
+            fifthCardSuggestionId.style.display = 'block';
+          }
         }
 
         if (cardInputId.value.length == 19) {
@@ -358,13 +360,10 @@
     cardPhoneBlurAndChange = function () {
       event.preventDefault();
       event.stopPropagation();
-      window.scrollTo(0, 0);
-      document.body.scrollTop = 0;
 
       scope.cardMode = true
       scope.contactMode = false
-      riot.update(scope.cardMode);
-      riot.update(scope.contactMode);
+
       if (cardInputId.value.replace(/\s/g, '').length == 16) {
         nextButtonId.style.display = 'block'
         firstCardSuggestionId.style.display = 'none';
@@ -376,6 +375,7 @@
       else
         nextButtonId.style.display = 'none'
 
+      riot.update();
     }
 
 
@@ -662,6 +662,7 @@
       }
 
       var j = 0;
+
       for (var i = 0; i < transferCards.length; i++) {
 
         if (j == 4) {
@@ -827,14 +828,18 @@
       this.cardIconId.style.opacity = '1'
       this.contactIconId.style.opacity = '0.5'
 
-      if (viewTransfer.cardNumber)
+      if (viewTransfer.cardNumber) {
         this.cardInputId.value = viewTransfer.cardNumber
+      }
+      console.log('LENGTH ', cardInputId.value.length)
 
       if (!cardInputId.value) {
         nextButtonId.style.display = 'none'
       }
 
-      cardSuggestionFunction();
+      if (cardInputId.value.length != 19) {
+        cardSuggestionFunction();
+      }
 
     }
 
@@ -1382,7 +1387,8 @@
       contactSuggestionFunction()
     else {
       checkCardMenu = true;
-      cardSuggestionFunction()
+      if (viewTransfer.cardNumber.length != 19)
+        cardSuggestionFunction()
     }
 
 

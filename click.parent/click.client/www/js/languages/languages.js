@@ -115,6 +115,9 @@ var RU_LANGUAGES =
   "ComponentSuccessMessageForPay": "Оплата проведена успешно!",
   "ComponentSuccessNext": "OK",
 
+  "ComponentInProcessingPartOne": "Перевод передан на обработку.",
+  "ComponentInProcessingPartTwo": "Ждите СМС с результатом!",
+
   "ComponentUnsuccessMessagePart1": 'Извините,',
   "ComponentUnsuccessMessagePart2": 'что-то пошло не так.',
   "ComponentUnsuccessMessagePart3": "Проверьте правильность введенных данных или попробуйте повторить перевод позже",
@@ -183,6 +186,8 @@ var RU_LANGUAGES =
   "ViewSettingsGeneralDeletePhotoTitle": "Удалить фото",
   "ViewSettingsGeneralGenderMaleTitle": "Муж",
   "ViewSettingsGeneralGenderFemaleTitle": "Жен",
+
+  "ViewSettingsUserAgreementTitle" : "ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ"
 
 };
 

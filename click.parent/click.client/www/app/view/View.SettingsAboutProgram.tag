@@ -11,7 +11,7 @@
       {window.languages.ViewSettingsAboutProgramVersionTitleNamePartTwo}</p>
   </div>
   <div class="settings-container settings-about-program-container">
-    <div class="settings-about-program-user-agreement-container">
+    <div class="settings-about-program-user-agreement-container" ontouchend="userAgreementTouchEnd()">
       <p class="settings-about-program-user-agreement-title">
         {window.languages.ViewSettingsAboutProgramUserAgreementTitleName}</p>
       <div class="settings-about-program-user-agreement-icon"></div>
@@ -42,6 +42,14 @@
       event.stopPropagation();
       onBackKeyDown()
     };
+
+    userAgreementTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riotTags.innerHTML = "<view-settings-user-agreement>";
+      riot.mount("view-settings-user-agreement");
+    }
 
 
   </script>

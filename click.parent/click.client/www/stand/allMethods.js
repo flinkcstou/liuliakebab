@@ -115,7 +115,7 @@ window.fakedSocket.register("get.accounts", function (input) {
       background_color_bottom: "255,141,101",
       background_color_top: "192,62,108",
       font_color: "255,255,255",
-      card_background_url: 'https://my.click.uz/static/content/app/card/aab.png',
+      card_background_url: 'https://merchant.click.uz/static/content/app/card/1.png',
       currency_code: "UZS",
       currency_name: "тенге                                               ",
       description: "Карта KAZKOM-Online",

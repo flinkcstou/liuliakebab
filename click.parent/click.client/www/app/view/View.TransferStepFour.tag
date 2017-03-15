@@ -79,6 +79,11 @@
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
                        operationmessagepartthree="{window.languages.ComponentUnsuccessMessagePart3}"></component-unsuccess>
 
+  <component-in-processing id="componentInProcessingId"
+                           operationmessagepartone="{window.languages.ComponentInProcessingPartOne}"
+                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"
+                           viewpage="view-transfer"></component-in-processing>
+
   <script>
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
       history.arrayOfHistory.push(
@@ -130,9 +135,6 @@
     if (scope.objectSumForTransfer.sum.length == 4) {
       scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 1) + ' ' + scope.objectSumForTransfer.sum.substring(1, scope.objectSumForTransfer.sum.length)
     }
-
-
-
 
 
     var transferTitle;
@@ -308,7 +310,6 @@
                     scope.secretCode = result[1][0].secret_code;
                     riot.update(scope.secretCode);
 
-                    findContacts(scope.objectTypeForTransfer.name.replace(/\s/g, ''));
                   }
                   if (result[1][0].secret_code == 0) {
                     componentSuccessId.style.display = 'block';
@@ -356,7 +357,7 @@
 
     closeSecretCodePage = function () {
       blockCodeConfirmId.style.display = 'none';
-      componentSuccessId.style.display = 'block';
+      componentInProcessingId.style.display = 'block';
     }
   </script>
 </view-transfer-stepfour>
