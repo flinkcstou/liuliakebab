@@ -46,8 +46,14 @@
     var enteredPin = '';
     scope.checkPin = true;
     scope.checkPinConfirm = false;
-    var cardNumber = opts[0];
-    var cardInformation = opts[1];
+    if (opts[0] == 'view-registration-client') {
+      var fromRegistration = true;
+      var cardNumber = opts[1];
+      var cardInformation = opts[2];
+    } else if (opts[0] == 'view-security-settings') {
+      var fromRegistration = false;
+    }
+
 
     componentKeyboard.returnValue = function (myValue) {
       event.preventDefault();
@@ -125,7 +131,9 @@
           pinConfirm = enteredPin;
           scope.checkPinConfirm = false;
           if (pin == pinConfirm) {
-            enter(pin);
+            if (fromRegistration)
+              enter(pin);
+            else changePin(pin);
           }
           else {
             alert("Different pin codes")
@@ -187,6 +195,44 @@
         }
       })
 
+    }
+
+    changePin = function (pin) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      var currentPin = localStorage.getItem('pinForStand');
+
+      window.api.call({
+        method: 'settings.change.pin',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          current_pin: currentPin,
+          new_pin: pin
+        },
+        scope: this,
+
+        onSuccess: function (result) {
+          console.log(result)
+          console.log(result[0][0])
+          if (result[0][0].error == 0) {
+            alert("Успешно изменен пин");
+            onBackKeyDown();
+          }
+          else {
+            alert(result[0][0].error_note);
+            onBackKeyDown();
+          }
+
+        },
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      })
     }
 
 
