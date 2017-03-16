@@ -184,6 +184,17 @@ var RU_LANGUAGES =
   "ViewSettingsGeneralGenderMaleTitle": "Муж",
   "ViewSettingsGeneralGenderFemaleTitle": "Жен",
 
+  "ViewReportMonthsArray": [{"name": "Январь", "count": 1}, {"name": "Февраль", "count": 2}, {
+    "name": "Март",
+    "count": 3
+  }, {"name": "Апрель", "count": 4},
+    {"name": "Май", "count": 5}, {"name": "Июнь", "count": 6}, {"name": "Июль", "count": 7}, {
+      "name": "Август",
+      "count": 8
+    }, {"name": "Сентябрь", "count": 9},
+    {"name": "Октябрь", "count": 10}, {"name": "Ноябрь", "count": 11}, {"name": "Декабрь", "count": 12}]
+
+
 };
 
 window.languages = RU_LANGUAGES;

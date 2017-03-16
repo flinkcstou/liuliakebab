@@ -23,7 +23,7 @@
     <p class="view-info-my-finance-title">{window.languages.ViewInfoMyFinanceTitle}</p>
   </div>
 
-  <div class="view-info-reports-container">
+  <div class="view-info-reports-container" ontouchend="goToReports()">
     <div class="view-info-reports-icon"></div>
     <div class="view-info-open-icon"></div>
     <p class="view-info-reports-title">{window.languages.ViewInfoReportsTitle}</p>
@@ -313,5 +313,12 @@
         }
       });
 
+    goToReports = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      riotTags.innerHTML = "<view-report>";
+      riot.mount('view-report');
+
+    }
   </script>
 </view-info>

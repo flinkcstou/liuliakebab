@@ -5538,7 +5538,7 @@ var css = {
   "width:" + 169 * widthK + "px;" +
   "top:" + 90 * widthK + "px;" +
   "left: 37.5%;" +
-  //"border:" + 4 * widthK + "px solid white;" +
+    //"border:" + 4 * widthK + "px solid white;" +
   "border-radius:" + 90 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
@@ -6227,6 +6227,52 @@ var css = {
   settingsSecurityBlock: ".settings-security-block" +
   "{" +
   "height:" + 160 * widthK + "px;" +
+  "}",
+
+//  VIEW REPORTS
+
+  viewReportsMonthsContainer: ".view-reports-months-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 80 * widthK + "px;" +
+  "top:" + 90 * widthK + "px;" +
+  "overflow-x: auto;" +
+  "overflow-y: hidden;" +
+  "font-size:" + 23 * widthK + "px;" +
+  "}",
+
+
+  viewReportsMonthInfoContainer: ".view-reports-month-info-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 50%;" +
+  "left: 103%;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewReportsMonthInfoName: ".view-reports-month-info-name " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 30%;" +
+  "left: 8%;" +
+  "margin: 0;" +
+  "color: white;" +
+  "font-size: 32px;" +
+  "}",
+
+  viewReportsBodyContainer: ".view-reports-body-container" +
+  "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 170 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: white; " +
+  "overflow-y: auto; " +
+  "overflow-x: hidden; " +
   "}",
 
 }
