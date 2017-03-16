@@ -109,6 +109,8 @@ var RU_LANGUAGES =
   "ViewTransferFourTax": "Комиссия: ",
   "ViewTransferFourTransferInformation": "Перевод с карты: ",
 
+  "ViewTransferDetailTitle" : "ДЕТАЛИ ПЕРЕВОДА",
+
   "ComponentCodeConfirmTitle": "ЗАЩИТНЫЙ КОД",
 
   "ComponentSuccessMessage": "Перевод прошел успешно!",
