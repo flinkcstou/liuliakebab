@@ -5616,7 +5616,7 @@ var css = {
   "width:" + 169 * widthK + "px;" +
   "top:" + 90 * widthK + "px;" +
   "left: 37.5%;" +
-  //"border:" + 4 * widthK + "px solid white;" +
+    //"border:" + 4 * widthK + "px solid white;" +
   "border-radius:" + 90 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
@@ -6335,6 +6335,87 @@ var css = {
   "width: 100%;  " +
   "color: #fffaf9;" +
   "}",
+
+  //TRANSFER DETAIL VIEW
+
+  transferDetailContainer: ".transfer-detail-container" +
+  "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 500 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: #f4f4f4; " +
+  "overflow-y: auto; " +
+  "overflow-x: hidden; " +
+  "}",
+
+  transferDetailTitleContainer: ".transfer-detail-title-container" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 500 * widthK + "px;" +
+  "width:100%;" +
+  "background-color: #0280e4;" +
+  "}",
+
+  transferDetailPageTitle: ".transfer-detail-page-title " +
+  "{" +
+  "border: none;" +
+  "}",
+
+  transferDetailTransferContainer: ".transfer-detail-transfer-container " +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 17%;" +
+  "}",
+
+  transferDetailTransferIcon: ".transfer-detail-transfer-icon" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 100 * widthK + "px;" +
+  "width:" + 100 * widthK + "px;" +
+  "top:" + 90 * widthK + "px;" +
+  "left: 43.5%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/bank-operations/transfers.png);" +
+  "}",
+
+  transferDetailTransferIconTitlePartOne: ".transfer-detail-transfer-icon-title-part-one " +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "top: 40%;" +
+  "margin: 0;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "text-align: center;" +
+  "}",
+
+  transferDetailTransferIconTitlePartTwo: ".transfer-detail-transfer-icon-title-part-two " +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "top: 40%;" +
+  "margin: 0;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "text-align: center;" +
+  "}",
+
+  transferDetailTransferIconTitlePhone: ".transfer-detail-transfer-icon-title-phone " +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "top: 40%;" +
+  "margin: 0;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "text-align: center;" +
+  "}",
+
 
 //  VIEW REPORTS
 
