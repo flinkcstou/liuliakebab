@@ -115,13 +115,13 @@ window.fakedSocket.register("get.accounts", function (input) {
       background_color_bottom: "255,141,101",
       background_color_top: "192,62,108",
       font_color: "255,255,255",
-      card_background_url: 'https://my.click.uz/static/content/app/card/aab.png',
+      card_background_url: 'https://merchant.click.uz/static/content/app/card/1.png',
       currency_code: "UZS",
       currency_name: "тенге                                               ",
       description: "Карта KAZKOM-Online",
       expire_date: "1806",
       id: 2484171,
-      image_url: "https://my.click.uz/static/content/app/card/aab.png",
+      image_url: "https://my.click.uz/static/content/app/bank/aab.png",
       is_uzcard: 1,
       removable: 1,
       short_name: "aloq"
@@ -146,7 +146,7 @@ window.fakedSocket.register("get.accounts", function (input) {
       description: "СБЕРБАНК",
       expire_date: "1806",
       id: 7487271,
-      image_url: "https://my.click.uz/static/content/app/card/aab.png",
+      image_url: "https://my.click.uz/static/content/app/bank/aab.png",
       is_uzcard: 1,
       removable: 1,
       short_name: "aloq"
@@ -172,7 +172,7 @@ window.fakedSocket.register("get.accounts", function (input) {
       description: "Карта UZCARD-Online",
       expire_date: "1806",
       id: 3487271,
-      image_url: "https://my.click.uz/static/content/app/card/aab.png",
+      image_url: "https://my.click.uz/static/content/app/bank/aab.png",
       is_uzcard: 1,
       removable: 1,
       short_name: "aloq"
@@ -1845,7 +1845,7 @@ window.fakedSocket.register("p2p.payment", function (input) {
           "method": input.method,
           "success": 1,
           "error": 0,
-          "error_note": ""
+          "error_note": "qweqw eqw eqweqweqeqweq we wqeqweqweqwe qwe qweqweqwe qw eqwe qwe qweqwe qwe qweqwe"
         }],
         [{
           "secret_code": random.toFixed(0),

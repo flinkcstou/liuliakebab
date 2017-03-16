@@ -109,11 +109,16 @@ var RU_LANGUAGES =
   "ViewTransferFourTax": "Комиссия: ",
   "ViewTransferFourTransferInformation": "Перевод с карты: ",
 
+  "ViewTransferDetailTitle" : "ДЕТАЛИ ПЕРЕВОДА",
+
   "ComponentCodeConfirmTitle": "ЗАЩИТНЫЙ КОД",
 
   "ComponentSuccessMessage": "Перевод прошел успешно!",
   "ComponentSuccessMessageForPay": "Оплата проведена успешно!",
   "ComponentSuccessNext": "OK",
+
+  "ComponentInProcessingPartOne": "Перевод передан на обработку.",
+  "ComponentInProcessingPartTwo": "Ждите СМС с результатом!",
 
   "ComponentUnsuccessMessagePart1": 'Извините,',
   "ComponentUnsuccessMessagePart2": 'что-то пошло не так.',
@@ -194,6 +199,8 @@ var RU_LANGUAGES =
     }, {"name": "Сентябрь", "count": 9},
     {"name": "Октябрь", "count": 10}, {"name": "Ноябрь", "count": 11}, {"name": "Декабрь", "count": 12}]
 
+
+  "ViewSettingsUserAgreementTitle" : "ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ"
 
 };
 

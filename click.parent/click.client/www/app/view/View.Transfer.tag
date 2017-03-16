@@ -207,26 +207,28 @@
       else {
         checkCardMenu = false;
 
-        if (checkCardFirstBlock) {
-          scope.cardSuggestionOne = JSON.parse(JSON.stringify(scope.cardSuggestionOneCopy));
-          firstCardSuggestionId.style.display = 'block';
-        }
+        if (cardInputId.value.length != 19) {
+          if (checkCardFirstBlock) {
+            scope.cardSuggestionOne = JSON.parse(JSON.stringify(scope.cardSuggestionOneCopy));
+            firstCardSuggestionId.style.display = 'block';
+          }
 
-        if (checkCardSecondBlock) {
-          scope.cardSuggestionTwo = JSON.parse(JSON.stringify(scope.cardSuggestionTwoCopy));
-          secondCardSuggestionId.style.display = 'block';
-        }
+          if (checkCardSecondBlock) {
+            scope.cardSuggestionTwo = JSON.parse(JSON.stringify(scope.cardSuggestionTwoCopy));
+            secondCardSuggestionId.style.display = 'block';
+          }
 
-        if (checkCardThirdBlock) {
-          thirdCardSuggestionId.style.display = 'block';
-        }
+          if (checkCardThirdBlock) {
+            thirdCardSuggestionId.style.display = 'block';
+          }
 
-        if (checkCardFourthBlock) {
-          fourthCardSuggestionId.style.display = 'block';
-        }
+          if (checkCardFourthBlock) {
+            fourthCardSuggestionId.style.display = 'block';
+          }
 
-        if (checkCardFifthBlock) {
-          fifthCardSuggestionId.style.display = 'block';
+          if (checkCardFifthBlock) {
+            fifthCardSuggestionId.style.display = 'block';
+          }
         }
 
         if (cardInputId.value.length == 19) {
@@ -358,13 +360,10 @@
     cardPhoneBlurAndChange = function () {
       event.preventDefault();
       event.stopPropagation();
-      window.scrollTo(0, 0);
-      document.body.scrollTop = 0;
 
       scope.cardMode = true
       scope.contactMode = false
-      riot.update(scope.cardMode);
-      riot.update(scope.contactMode);
+
       if (cardInputId.value.replace(/\s/g, '').length == 16) {
         nextButtonId.style.display = 'block'
         firstCardSuggestionId.style.display = 'none';
@@ -376,6 +375,7 @@
       else
         nextButtonId.style.display = 'none'
 
+      riot.update();
     }
 
 
@@ -492,7 +492,7 @@
     var checkCardFifthBlock = false;
     var checkCardMenu = false;
 
-    console.log('SCRIPT INIT')
+
 
     scope.searchWord = '';
     scope.backbuttoncheck = true;
@@ -549,7 +549,7 @@
       else {
 
         nextButtonId.style.display = 'none'
-        console.log('INPUT CONTACT VALUE', contactPhoneNumberId.value.length)
+
 
         if (cardInputId.value.length == 0) {
 
@@ -598,7 +598,6 @@
 
         var index = wordOfFunction.cardNumber.replace(/\s/g, '').indexOf(scope.searchWord);
         if (index != -1 && countOfFound < 2) {
-          console.log(wordOfFunction.cardNumber)
 
           check = true;
 
@@ -652,16 +651,15 @@
 
     cardSuggestionFunction = function () {
 
-      console.log("TRANSFERCARDS", JSON.parse(localStorage.getItem('transferCards')))
       if (JSON.parse(localStorage.getItem('transferCards'))) {
         var transferCards = JSON.parse(localStorage.getItem('transferCards'));
       }
       else {
-        console.log("RETURN")
         return;
       }
 
       var j = 0;
+
       for (var i = 0; i < transferCards.length; i++) {
 
         if (j == 4) {
@@ -669,7 +667,6 @@
             checkCardFifthBlock = true
             scope.cardSuggestionFive.cardNumber = transferCards[i].cardNumber;
             if (transferCards[i].image != null) {
-              console.log("PHOTO", transferCards[i].image)
               scope.cardSuggestionFive.photo = transferCards[i].image;
             }
             else {
@@ -687,7 +684,6 @@
             checkCardFourthBlock = true
             scope.cardSuggestionFour.cardNumber = transferCards[i].cardNumber;
             if (transferCards[i].image != null) {
-              console.log("PHOTO", transferCards[i].image)
               scope.cardSuggestionFour.photo = transferCards[i].image;
             }
             else {
@@ -827,14 +823,18 @@
       this.cardIconId.style.opacity = '1'
       this.contactIconId.style.opacity = '0.5'
 
-      if (viewTransfer.cardNumber)
+      if (viewTransfer.cardNumber) {
         this.cardInputId.value = viewTransfer.cardNumber
+      }
+      console.log('LENGTH ', cardInputId.value.length)
 
       if (!cardInputId.value) {
         nextButtonId.style.display = 'none'
       }
 
-      cardSuggestionFunction();
+      if (cardInputId.value.length != 19) {
+        cardSuggestionFunction();
+      }
 
     }
 
@@ -1382,7 +1382,8 @@
       contactSuggestionFunction()
     else {
       checkCardMenu = true;
-      cardSuggestionFunction()
+      if (viewTransfer.cardNumber.length != 19)
+        cardSuggestionFunction()
     }
 
 

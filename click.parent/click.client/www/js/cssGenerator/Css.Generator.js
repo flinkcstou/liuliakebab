@@ -1596,7 +1596,7 @@ var css = {
   "height:" + 100 * widthK + "px;" +
   "border-radius:" + 100 * widthK + "px;" +
   "border: none;" +
-  "color: white;" +
+  "color: #027ee3;" +
   "background-color: #7ae4ff;" +
   "top: 0;" +
   "background-repeat: no-repeat;" +
@@ -4735,6 +4735,84 @@ var css = {
 
   //COMPONENT SUCCESS
 
+  componentInProcessing: ".component-in-processing " +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.95;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "background-color: #353340;" +
+  "display: none;" +
+  "}",
+
+  InProcessingOperationSuccessMessagePartOne: ".in-processing-operation-success-message-part-one" +
+  "{" +
+  "position: relative;" +
+  "color: white;" +
+  "width: 100%;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 601 * widthK + "px;" +
+  "left:" + -10 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "}",
+
+  InProcessingOperationSuccessMessagePartTwo: ".in-processing-operation-success-message-part-two" +
+  "{" +
+  "position: relative;" +
+  "color: #f7bd20;" +
+  "width: 100%;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 601 * widthK + "px;" +
+  "left:" + -10 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "}",
+
+  InProcessingNextButtonInnerContainer: ".in-processing-next-button-inner-container" +
+  "{" +
+  "position: relative;" +
+  "height: 6%;" +
+  "left: -2%;" +
+  "width: 48%;" +
+  "top: 83%;" +
+  "display: table;" +
+  "background-color: #027fe4;" +
+  "border-radius:" + 50 * widthK + "px;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "}",
+
+  InProcessingNextButtonLabel: ".in-processing-next-button-label" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "font-size:" + 38 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-align: center;" +
+  "display: table-cell;" +
+  "vertical-align: middle;" +
+  "}",
+
+  InProcessingSuccessIcon: ".in-processing-success-icon" +
+  "{" +
+  "position: absolute;" +
+  "top:" + 338 * widthK + "px;" +
+  "width:" + 270 * widthK + "px;" +
+  "height:" + 250 * widthK + "px;" +
+  "left:" + 234 * widthK + "px;" +
+  "background-image: url(resources/icons/ViewSuccessUnsuccess/processing.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 93%;" +
+  "}",
+
+  //COMPONENT INPROCESSING
   componentSuccess: ".component-success " +
   "{" +
   "position: absolute;" +
@@ -5538,7 +5616,7 @@ var css = {
   "width:" + 169 * widthK + "px;" +
   "top:" + 90 * widthK + "px;" +
   "left: 37.5%;" +
-    //"border:" + 4 * widthK + "px solid white;" +
+  //"border:" + 4 * widthK + "px solid white;" +
   "border-radius:" + 90 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
@@ -6227,6 +6305,35 @@ var css = {
   settingsSecurityBlock: ".settings-security-block" +
   "{" +
   "height:" + 160 * widthK + "px;" +
+  "}",
+
+  //SETTINGS USER AGREEMENT
+
+  settingsUserAgreementText: ".settings-user-agreement-text" +
+  "{" +
+  "position: relative;" +
+  "top: 5%; " +
+  "text-align: justify;" +
+  "margin: 0;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "width: 85%;" +
+  "font-size:" + 24 * widthK + "px; " +
+  "font-family: SFUIDisplay-Light; " +
+  "white-space: pre-line; " +
+  "overflow-x: hidden; " +
+  "}",
+
+  settingsUserAgreementNameTitle: ".settings-user-agreement-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 35 * widthK + "px; " +
+  "left:" + 85 * widthK + "px; " +
+  "top:" + 38 * widthK + "px; " +
+  "margin: 0;  " +
+  "width: 100%;  " +
+  "color: #fffaf9;" +
   "}",
 
 //  VIEW REPORTS
