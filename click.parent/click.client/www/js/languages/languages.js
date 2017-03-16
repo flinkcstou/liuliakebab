@@ -192,10 +192,10 @@ var RU_LANGUAGES =
   "ViewTransferDetailTitle": "ДЕТАЛИ ПЕРЕВОДА",
   "ViewTransferDetailTransferIconTitleOne": "Получен перевод",
   "ViewTransferDetailTransferIconTitleTwo": "от пользователя CLICK",
-  "ViewTransferDetailTitleSum": "Сумма перевода",
-  "ViewTransferDetailTitleNumber": "Номер перевода",
-  "ViewTransferDetailTitleDate": "Дата перевода",
-  "ViewTransferDetailTitleStatus": "Статус",
+  "ViewTransferDetailTitleSum": "Сумма перевода:",
+  "ViewTransferDetailTitleNumber": "Номер перевода:",
+  "ViewTransferDetailTitleDate": "Дата перевода:",
+  "ViewTransferDetailTitleStatus": "Статус:",
 
   "ViewReportMonthsArray": [{"name": "Январь", "count": 1}, {"name": "Февраль", "count": 2}, {
     "name": "Март",
