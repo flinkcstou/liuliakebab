@@ -5,8 +5,6 @@
       <div class="page-title transfer-detail-page-title">
         <p class="name-title">{titleName}</p>
         <div id="backButton" ontouchend="goToBack()" class="settings-general-back-button"></div>
-        <div id="rightButton" type="button" class="settings-general-check-button"
-             ontouchend="saveEditedNameTouchEnd()"></div>
       </div>
       <div class="transfer-detail-transfer-icon"></div>
       <p class="transfer-detail-transfer-icon-title-part-one">
@@ -22,11 +20,27 @@
 
     <div class="transfer-detail-container">
       <div class="transfer-detail-transfer-container">
-        <p class="transfer-detail-title">Сумма перевода</p>
+        <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleSum}</p>
+        <p class="transfer-detail-sum">115 000 сум</p>
       </div>
-      <div class="transfer-detail-transfer-container"></div>
-      <div class="transfer-detail-transfer-container"></div>
-      <div class="transfer-detail-transfer-container"></div>
+      <div class="transfer-detail-transfer-container">
+        <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleNumber}</p>
+        <p class="transfer-detail-number">6497 9863</p>
+      </div>
+      <div class="transfer-detail-transfer-container">
+        <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleDate}</p>
+        <p class="transfer-detail-date">12:38 01.03.2017</p>
+      </div>
+      <div class="transfer-detail-transfer-container">
+        <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleStatus}</p>
+        <p class="transfer-detail-status">Ожидает подтверждения</p>
+      </div>
+
+      <div class="transfer-detail-buttons-container">
+        <p class="transfer-detail-button-accept">ПРИНЯТЬ</p>
+        <p class="transfer-detail-button-cancel">ОТКЛОНИТЬ</p>
+      </div>
+
     </div>
 
   </div>
