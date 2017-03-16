@@ -1596,7 +1596,7 @@ var css = {
   "height:" + 100 * widthK + "px;" +
   "border-radius:" + 100 * widthK + "px;" +
   "border: none;" +
-  "color: white;" +
+  "color: #027ee3;" +
   "background-color: #7ae4ff;" +
   "top: 0;" +
   "background-repeat: no-repeat;" +
