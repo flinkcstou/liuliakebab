@@ -492,7 +492,7 @@
     var checkCardFifthBlock = false;
     var checkCardMenu = false;
 
-    console.log('SCRIPT INIT')
+
 
     scope.searchWord = '';
     scope.backbuttoncheck = true;
@@ -549,7 +549,7 @@
       else {
 
         nextButtonId.style.display = 'none'
-        console.log('INPUT CONTACT VALUE', contactPhoneNumberId.value.length)
+
 
         if (cardInputId.value.length == 0) {
 
@@ -598,7 +598,6 @@
 
         var index = wordOfFunction.cardNumber.replace(/\s/g, '').indexOf(scope.searchWord);
         if (index != -1 && countOfFound < 2) {
-          console.log(wordOfFunction.cardNumber)
 
           check = true;
 
@@ -652,12 +651,10 @@
 
     cardSuggestionFunction = function () {
 
-      console.log("TRANSFERCARDS", JSON.parse(localStorage.getItem('transferCards')))
       if (JSON.parse(localStorage.getItem('transferCards'))) {
         var transferCards = JSON.parse(localStorage.getItem('transferCards'));
       }
       else {
-        console.log("RETURN")
         return;
       }
 
@@ -670,7 +667,6 @@
             checkCardFifthBlock = true
             scope.cardSuggestionFive.cardNumber = transferCards[i].cardNumber;
             if (transferCards[i].image != null) {
-              console.log("PHOTO", transferCards[i].image)
               scope.cardSuggestionFive.photo = transferCards[i].image;
             }
             else {
@@ -688,7 +684,6 @@
             checkCardFourthBlock = true
             scope.cardSuggestionFour.cardNumber = transferCards[i].cardNumber;
             if (transferCards[i].image != null) {
-              console.log("PHOTO", transferCards[i].image)
               scope.cardSuggestionFour.photo = transferCards[i].image;
             }
             else {

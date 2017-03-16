@@ -53,7 +53,6 @@
         if (result[0][0].error == 0) {
           if (result[1][0]) {
             scope.contentOfAgreement = result[1][0].content;
-            console.log('AGREEMENT', scope.contentOfAgreement)
             riot.update();
           }
         }

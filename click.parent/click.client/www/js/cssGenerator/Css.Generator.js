@@ -6313,9 +6313,12 @@ var css = {
   "{" +
   "position: relative;" +
   "top: 5%; " +
-  "text-align: center;" +
+  "text-align: justify;" +
   "margin: 0;" +
-  "font-size:" + 32 * widthK + "px; " +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "width: 85%;" +
+  "font-size:" + 24 * widthK + "px; " +
   "font-family: SFUIDisplay-Light; " +
   "white-space: pre-line; " +
   "overflow-x: hidden; " +
