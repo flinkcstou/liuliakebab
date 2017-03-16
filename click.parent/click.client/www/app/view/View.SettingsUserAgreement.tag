@@ -1,14 +1,13 @@
 <view-settings-user-agreement>
 
   <div class="pay-page-title">
-    <p class="pay-name-title">{titleName}</p>
+    <p class="settings-user-agreement-name-title">{titleName}</p>
     <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
-    <div id="rightButton" type="button" class="settings-security-check-button"
-         ontouchend="saveEditedNameToucEnd()"></div>
+
   </div>
 
   <div class="settings-container">
-
+    <p class="settings-user-agreement-text">{contentOfAgreement}</p>
   </div>
 
 
@@ -26,6 +25,12 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    scope.contentOfAgreement = '';
+
+    this.on('mount', function () {
+      console.log('AGREEMENT', scope.contentOfAgreement)
+    })
+
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -35,6 +40,7 @@
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = loginInfo.session_key;
+
 
     window.api.call({
       method: 'get.terms',
@@ -46,7 +52,9 @@
       onSuccess: function (result) {
         if (result[0][0].error == 0) {
           if (result[1][0]) {
-            console.log('RESULT OF TERMS', result[1][0].content)
+            scope.contentOfAgreement = result[1][0].content;
+            console.log('AGREEMENT', scope.contentOfAgreement)
+            riot.update();
           }
         }
         else

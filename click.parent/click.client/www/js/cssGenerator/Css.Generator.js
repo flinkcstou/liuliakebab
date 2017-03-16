@@ -6307,6 +6307,32 @@ var css = {
   "height:" + 160 * widthK + "px;" +
   "}",
 
+  //SETTINGS USER AGREEMENT
+
+  settingsUserAgreementText: ".settings-user-agreement-text" +
+  "{" +
+  "position: relative;" +
+  "top: 5%; " +
+  "text-align: center;" +
+  "margin: 0;" +
+  "font-size:" + 32 * widthK + "px; " +
+  "font-family: SFUIDisplay-Light; " +
+  "white-space: pre-line; " +
+  "overflow-x: hidden; " +
+  "}",
+
+  settingsUserAgreementNameTitle: ".settings-user-agreement-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 35 * widthK + "px; " +
+  "left:" + 85 * widthK + "px; " +
+  "top:" + 38 * widthK + "px; " +
+  "margin: 0;  " +
+  "width: 100%;  " +
+  "color: #fffaf9;" +
+  "}",
+
 }
 
 
