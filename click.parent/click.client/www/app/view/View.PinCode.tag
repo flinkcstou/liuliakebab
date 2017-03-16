@@ -195,7 +195,7 @@
         }
       })
 
-    }
+    };
 
     changePin = function (pin) {
       event.preventDefault();

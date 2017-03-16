@@ -50,8 +50,8 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  //"background-image: url(resources/draft/transfer-detail-crop.png);" +
-  //"opacity: 0.6;" +
+    //"background-image: url(resources/draft/transfer-detail-crop.png);" +
+    //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -6577,6 +6577,95 @@ var css = {
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
   "}",
+
+  //body
+
+  viewReportsPaymentDateContainer: ".view-reports-payment-date-containter" +
+  "{" +
+  "position: relative;" +
+  "height:" + 75 * widthK + "px; " +
+  "width: 91%;" +
+  "left: 4%;" +
+  "margin-top: 1%;" +
+  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "background-color: transparent;" +
+  "}",
+
+  viewReportsPaymentDateField: ".view-reports-payment-date-field" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 26 * widthK + "px; " +
+  "left: 1%;" +
+  "text-align: left;" +
+  "font-size:" + 24 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  viewReportsPaymentBlockContainer: ".view-reports-payment-block-containter" +
+  "{" +
+  "position: relative;" +
+  "height:" + 150 * widthK + "px; " +
+  "width: 91%;" +
+  "left: 4%;" +
+  "margin-top: 1%;" +
+  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "background-color: transparent;" +
+  "}",
+
+
+  viewReportsPaymentIcon: ".view-reports-payment-icon " +
+  "{" +
+    //"top:" + 50 * widthK + "px;" +
+  "background-size: 80%;" +
+  "position: absolute;" +
+  "width:" + 125 * widthK + "px;" +
+  "height:" + 125 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "border-radius:" + 100 * widthK + "px;" +
+  "border:solid 1px #b7b7b7;" +
+  "}",
+
+  viewReportsPaymentInfoContainer: ".view-reports-payment-info-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 72%;" +
+  "left: 18%;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewReportsPaymentInfoName: ".view-reports-payment-info-name " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+    //"top: -8%;" +
+  "left: 8%;" +
+  "margin: 0;" +
+  "font-size: 22px;" +
+  "}",
+
+  viewReportsPaymentInfoBalance: ".view-reports-payment-info-balance " +
+  "{" +
+  "position: absolute;" +
+  "top: 14%;" +
+  "left: 8%;" +
+  "margin: 0;" +
+  "font-size:" + 45 * widthK + "px;" +
+  "color: #ee4d3d;" +
+  "}",
+
+  viewReportsPaymentInfoNumber: ".view-reports-payment-info-number " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 50%;" +
+  "left: 8%;" +
+  "margin: 0;" +
+  "font-size: 22px;" +
+  "}",
+
 
 }
 
