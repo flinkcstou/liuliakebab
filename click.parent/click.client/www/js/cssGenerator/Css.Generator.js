@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/general_crop.png);" +
+    //"background-image: url(resources/draft/transfer-detail-crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -6343,7 +6343,7 @@ var css = {
   "position: absolute;" +
     //"height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
-  "top:" + 500 * widthK + "px; " +
+  "top:" + 380 * widthK + "px; " +
   "bottom:0; " +
   "background-color: #f4f4f4; " +
   "overflow-y: auto; " +
@@ -6353,30 +6353,40 @@ var css = {
   transferDetailTitleContainer: ".transfer-detail-title-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 500 * widthK + "px;" +
+  "height:" + 380 * widthK + "px;" +
   "width:100%;" +
   "background-color: #0280e4;" +
   "}",
 
   transferDetailPageTitle: ".transfer-detail-page-title " +
   "{" +
+  "position: absolute;" +
+  "top: 0px;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 19 * widthK + "px;" +
+  "height:" + 84 * widthK + "px;" +
+  "background: transparent;" +
   "border: none;" +
   "}",
+
 
   transferDetailTransferContainer: ".transfer-detail-transfer-container " +
   "{" +
   "position: relative;" +
-  "width: 100%;" +
-  "height: 17%;" +
+  "width: 90%;" +
+  "height: 13%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "border-bottom: 1px solid lightgrey;" +
   "}",
 
   transferDetailTransferIcon: ".transfer-detail-transfer-icon" +
   "{" +
   "position: absolute;" +
-  "height:" + 100 * widthK + "px;" +
-  "width:" + 100 * widthK + "px;" +
-  "top:" + 90 * widthK + "px;" +
-  "left: 43.5%;" +
+  "height:" + 90 * widthK + "px;" +
+  "width:" + 90 * widthK + "px;" +
+  "top:" + 104 * widthK + "px;" +
+  "left: 44%;" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "background-position: center;" +
@@ -6387,32 +6397,49 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "top: 40%;" +
+  "top: 59%;" +
   "margin: 0;" +
+  "color: white;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "text-align: center;" +
+  "font-size:" + 34 * widthK + "px;" +
   "}",
 
   transferDetailTransferIconTitlePartTwo: ".transfer-detail-transfer-icon-title-part-two " +
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "top: 40%;" +
+  "top: 57%;" +
   "margin: 0;" +
+  "color: white;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "text-align: center;" +
+  "font-size:" + 34 * widthK + "px;" +
   "}",
 
   transferDetailTransferIconTitlePhone: ".transfer-detail-transfer-icon-title-phone " +
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "top: 40%;" +
+  "top: 56%;" +
   "margin: 0;" +
+  "color: white;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
+  "text-align: center;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "}",
+
+  transferDetailTitle: ".transfer-detail-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 28%;" +
+  "left: 3%;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "color: lightgrey;" +
+  "margin: 0;" +
   "text-align: center;" +
   "}",
 

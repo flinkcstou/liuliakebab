@@ -187,11 +187,11 @@ var RU_LANGUAGES =
   "ViewSettingsGeneralGenderMaleTitle": "Муж",
   "ViewSettingsGeneralGenderFemaleTitle": "Жен",
 
-  "ViewSettingsUserAgreementTitle" : "ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ",
+  "ViewSettingsUserAgreementTitle": "ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ",
 
-  "ViewTransferDetailTitle" : "ДЕТАЛИ ПЕРЕВОДА",
-  "ViewTransferDetailTransferIconTitleOne" : "Получен перевод",
-  "ViewTransferDetailTransferIconTitleTwo" : "от пользователя CLICK",
+  "ViewTransferDetailTitle": "ДЕТАЛИ ПЕРЕВОДА",
+  "ViewTransferDetailTransferIconTitleOne": "Получен перевод",
+  "ViewTransferDetailTransferIconTitleTwo": "от пользователя CLICK",
 
   "ViewReportMonthsArray": [{"name": "Январь", "count": 1}, {"name": "Февраль", "count": 2}, {
     "name": "Март",
@@ -201,10 +201,8 @@ var RU_LANGUAGES =
       "name": "Август",
       "count": 8
     }, {"name": "Сентябрь", "count": 9},
-    {"name": "Октябрь", "count": 10}, {"name": "Ноябрь", "count": 11}, {"name": "Декабрь", "count": 12}]
+    {"name": "Октябрь", "count": 10}, {"name": "Ноябрь", "count": 11}, {"name": "Декабрь", "count": 12}],
 
-
-  "ViewSettingsUserAgreementTitle" : "ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ"
 
 };
 

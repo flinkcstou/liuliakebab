@@ -21,7 +21,9 @@
     </div>
 
     <div class="transfer-detail-container">
-      <div class="transfer-detail-transfer-container"></div>
+      <div class="transfer-detail-transfer-container">
+        <p class="transfer-detail-title">Сумма перевода</p>
+      </div>
       <div class="transfer-detail-transfer-container"></div>
       <div class="transfer-detail-transfer-container"></div>
       <div class="transfer-detail-transfer-container"></div>
