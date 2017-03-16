@@ -1844,7 +1844,7 @@ window.fakedSocket.register("p2p.payment", function (input) {
         [{
           "method": input.method,
           "success": 1,
-          "error": -1,
+          "error": 0,
           "error_note": "qweqw eqw eqweqweqeqweq we wqeqweqweqwe qwe qweqweqwe qw eqwe qwe qweqwe qwe qweqwe"
         }],
         [{

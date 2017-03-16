@@ -68,6 +68,9 @@
     scope.gender = loginInfo.gender;
 
     this.on('mount', function () {
+      if (scope.photo) {
+        imageUserAvatarId.src = scope.photo;
+      }
 
       settingsUserNameId.value = scope.firstName + ' ' + scope.lastName;
       if (scope.gender == 'M') {
@@ -84,12 +87,6 @@
         femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_active.png)'
         femaleTitleId.style.color = 'black'
       }
-
-      scope.firstName = loginInfo.firstname;
-      scope.lastName = loginInfo.lastname;
-      scope.photo = loginInfo.profile_image_url;
-      scope.gender = loginInfo.gender;
-      console.log('LOGIN', loginInfo)
 
       riot.update();
 
@@ -155,9 +152,38 @@
 
               convertReader.onload = function () {
                 scope.base64Data = convertReader.result;
-                console.log(scope.base64Data)
+
+                var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+                var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+                var sessionKey = loginInfo.session_key;
+
+                if (scope.base64Data)
+                  window.api.call({
+                    method: 'settings.photo.upload',
+                    input: {
+                      session_key: sessionKey,
+                      phone_num: phoneNumber,
+                      data: scope.base64Data,
+                    },
+                    //TODO: DO CARDS
+                    scope: this,
+                    onSuccess: function (result) {
+                      if (result[0][0].error == 0) {
+                        if (result[1][0]) {
+                          console.log('result[1][0]', result[1][0])
+                        }
+                      }
+                      else
+                        alert(result[0][0].error_note);
+                    },
+
+                    onFail: function (api_status, api_status_message, data) {
+                      console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                      console.error(data);
+                    }
+                  });
               }
-              localStorage.setItem('click_client_image', imageUserAvatarId.src)
+              localStorage.setItem('click_client_avatar', imageUserAvatarId.src)
               // you can also now upload this blob using an XHR.
             });
         }
