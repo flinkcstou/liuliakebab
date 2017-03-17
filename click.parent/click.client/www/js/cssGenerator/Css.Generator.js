@@ -6540,8 +6540,8 @@ var css = {
   "width: 100%;" +
   "height:" + 80 * widthK + "px;" +
   "top:" + 90 * widthK + "px;" +
-  "overflow-x: auto;" +
-  "overflow-y: hidden;" +
+    //"overflow-x: auto;" +
+    //"overflow-y: hidden;" +
   "font-size:" + 23 * widthK + "px;" +
   "}",
 
@@ -6576,6 +6576,51 @@ var css = {
   "background-color: white; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
+  "}",
+
+  viewReportsFilterContainer: ".view-reports-filter-container " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 195 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "right:" + 103 * widthK + "px;" +
+  "top: 0;" +
+  "}",
+
+  viewReportsFilterText: ".view-reports-filter-text " +
+  "{" +
+  "color: white;" +
+  "font-size:" + 28 * widthK + "px;" +
+  "}",
+
+  viewReportsFilterButton: ".view-reports-filter-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 60 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "right:0;" +
+  "background-image: url('resources/icons/ViewService/unchecked.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 31%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 10 * widthK + "px;" +
+  "background-size: 70%;" +
+  "top: 0;" +
+  "}",
+
+  viewReportsGraphButton: ".view-reports-graph-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 138 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "right:" + -36 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewService/unchecked.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 31%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 54 * widthK + "px;" +
+  "background-size: 31%;" +
+  "top: 0;" +
   "}",
 
   //body
