@@ -6752,6 +6752,67 @@ var css = {
   "width: 44%;" +
   "}",
 
+  //VIEW TRANSFER TO CARD
+
+  transferToCardContainer: ".transfer-to-card-container" +
+  "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 380 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: #f4f4f4; " +
+  "overflow-y: hidden; " +
+  "overflow-x: hidden; " +
+  "}",
+
+  transferToCardTitleContainer: ".transfer-to-card-title-container" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 380 * widthK + "px;" +
+  "width:100%;" +
+  "background-color: #0280e4;" +
+  "}",
+
+  transferToCardTransferTitlePartOne: ".transfer-to-card-transfer-title-part-one " +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "top: 59%;" +
+  "margin: 0;" +
+  "color: white;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "text-align: center;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "}",
+
+  transferToCardTransferTitlePartTwo: ".transfer-to-card-transfer-title-part-two " +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "top: 57%;" +
+  "margin: 0;" +
+  "color: white;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "text-align: center;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "}",
+
+  transferToCardTransferTitlePhone: ".transfer-to-card-transfer-title-phone " +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "top: 56%;" +
+  "margin: 0;" +
+  "color: white;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "text-align: center;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "}",
+
 
 //  VIEW REPORTS
 
