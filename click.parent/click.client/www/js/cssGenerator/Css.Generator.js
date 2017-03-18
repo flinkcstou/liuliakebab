@@ -6684,12 +6684,20 @@ var css = {
   "color: grey;" +
   "}",
 
+  accountDetailCardsContainer: ".account-detail-cards-container" +
+  "{" +
+  "position: relative;" +
+  "height: 72%;" +
+  "width:100%;" +
+    //"top: 9%;" +
+  "}",
+
   accountDetailButtonsContainer: ".account-detail-buttons-container" +
   "{" +
   "position: relative;" +
   "height: 13%;" +
   "width:100%;" +
-    //"top: 9%;" +
+  "top: 6%;" +
   "}",
 
   accountDetailButtonAccept: ".account-detail-button-accept" +

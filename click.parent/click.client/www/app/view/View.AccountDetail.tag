@@ -32,11 +32,12 @@
         <p class="account-detail-title">{window.languages.ViewAccountDetailTitlePayFrom}</p>
       </div>
 
-      <component-pincards></component-pincards>
-
-      <div class="account-detail-buttons-container">
-        <p class="account-detail-button-accept">ПРИНЯТЬ</p>
-        <p class="account-detail-button-cancel">ОТКЛОНИТЬ</p>
+      <div class="account-detail-cards-container">
+        <component-pincards></component-pincards>
+        <div class="account-detail-buttons-container">
+          <p class="account-detail-button-accept">ПРИНЯТЬ</p>
+          <p class="account-detail-button-cancel">ОТКЛОНИТЬ</p>
+        </div>
       </div>
 
     </div>
@@ -45,7 +46,7 @@
 
   <script>
     var scope = this;
-    this.titleName = window.languages.ViewTransferDetailTitle;
+    this.titleName = window.languages.ViewAccountDetailTitle;
 
     this.on('mount', function () {
 

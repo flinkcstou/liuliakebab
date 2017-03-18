@@ -202,6 +202,7 @@ var RU_LANGUAGES =
   "ViewAccountDetailTitleSum": "Сумма платежа:",
   "ViewAccountDetailTitlePayFor": "Оплата за:",
   "ViewAccountDetailTitlePayFrom": "Оплата с:",
+  "ViewAccountDetailTitle": "ДЕТАЛИ СЧЕТА",
 
   "ViewReportMonthsArray": [{"name": "Январь", "count": 1}, {"name": "Февраль", "count": 2}, {
     "name": "Март",
