@@ -62,7 +62,7 @@
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-    console.log('getAccountsCards', getAccountsCards)
+//    console.log('getAccountsCards', getAccountsCards)
     for (var i in cards) {
       if (cards[i].default_account === true)
         defaultAccount = cards[i];
@@ -98,8 +98,8 @@
           onSuccess: function (result) {
             if (result[0][0].error == 0) {
               if (result[1][0]) {
-                console.log('getAccountsCards[j].currency_name', getAccountsCards[j].currency_name)
-                console.log('defaultAccount.currency', defaultAccount.currency)
+//                console.log('getAccountsCards[j].currency_name', getAccountsCards[j].currency_name)
+//                console.log('defaultAccount.currency', defaultAccount.currency)
                 if (getAccountsCards[j].currency_name.trim() == defaultAccount.currency.trim()) {
                   scope.fullBalance = parseInt(scope.fullBalance);
                   scope.fullBalance += result[1][0].balance;
@@ -300,7 +300,7 @@
 //          }
 //                    console.log('scope.lastOperationContainer', scope.lastOperationContainer)
             riot.update(scope.lastOperationContainer)
-            console.log('scope.lastOperationContainer', scope.lastOperationContainer);
+//            console.log('scope.lastOperationContainer', scope.lastOperationContainer);
           }
           else
             alert(result[0][0].error_note)
