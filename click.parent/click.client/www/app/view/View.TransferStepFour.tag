@@ -179,9 +179,9 @@
                 searchedIndex = phone.indexOf(searchNumber);
                 if (searchedIndex != -1) {
                   checkInBottomContacts = true;
-                  console.log('CHECK', transferContacts[i])
+//                  console.log('CHECK', transferContacts[i])
                   transferContacts.splice(i, 1);
-                  console.log('TRANSFER CONTACTS', transferContacts)
+//                  console.log('TRANSFER CONTACTS', transferContacts)
                   localStorage.setItem('transferContacts', JSON.stringify(transferContacts));
                   break;
                 }
@@ -192,7 +192,7 @@
         }
 
       transferContacts = JSON.parse(localStorage.getItem('transferContacts'));
-      console.log('searchNumber', searchNumber)
+//      console.log('searchNumber', searchNumber)
 
       var options = new ContactFindOptions();
       options.filter = '';
@@ -208,7 +208,7 @@
           if (contacts[i].phoneNumbers != null)
             if (contacts[i].phoneNumbers[0] != null)
               if (contacts[i].phoneNumbers[0].value != null) {
-                console.log('contacts[i].phoneNumbers[0].value', contacts[i].phoneNumbers[0].value)
+//                console.log('contacts[i].phoneNumbers[0].value', contacts[i].phoneNumbers[0].value)
                 digits = contacts[i].phoneNumbers[0].value.match(maskOne)
                 for (var k in digits) {
                   phone += digits[k]
@@ -242,7 +242,7 @@
       card.owner.firstName = '';
       card.owner.secondName = '';
       var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))
-      console.log('CODE OF BANK', codeOfBank)
+//      console.log('CODE OF BANK', codeOfBank)
       if (JSON.parse(localStorage.getItem('transferCards'))) {
         transferCards = JSON.parse(localStorage.getItem('transferCards'));
         for (var j = 0; j < transferCards.length; j++) {
@@ -304,7 +304,7 @@
 
           onSuccess: function (result) {
             if (result[0][0].error == 0) {
-              console.log("result of TRANSFER ", result);
+//              console.log("result of TRANSFER ", result);
               if (result[1])
                 if (result[1][0]) {
                   if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {

@@ -29,7 +29,7 @@
     arrayForTransfer.push(opts[0])
     arrayForTransfer.push(opts[1])
     arrayForTransfer.push(opts[2])
-    console.log(arrayForTransfer)
+//    console.log(arrayForTransfer)
 
 
     if (objectForTransfer.type == 1) {
@@ -70,10 +70,10 @@
       var cards = JSON.parse(localStorage.getItem('click_client_cards'));
       event.preventDefault()
       event.stopPropagation()
-      console.log(cards)
+//      console.log(cards)
       for (var i in cards) {
         if (cards[i].chosenCard === true && cards[i].access == 2) {
-          console.log(cards[i])
+//          console.log(cards[i])
           checkChosenCard = true;
           chosenCard = cards[i]
           break;

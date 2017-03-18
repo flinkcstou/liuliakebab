@@ -137,7 +137,7 @@
     pickContactFromNative = function () {
 
       window.plugins.PickContact.chooseContact(function (contactInfo) {
-        console.log('CONTACTINFO', contactInfo)
+//        console.log('CONTACTINFO', contactInfo)
         setTimeout(function () {
           var phoneNumber
           if (device.platform == 'iOS')
@@ -153,7 +153,7 @@
           }
           contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
           if (contactPhoneNumberId.value.length != 0) {
-            console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
+//            console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
             if (contactPhoneNumberId.value.length == 9) {
               nextButtonId.style.display = 'block'
 
