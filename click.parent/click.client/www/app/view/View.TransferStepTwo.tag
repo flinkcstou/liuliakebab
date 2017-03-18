@@ -89,8 +89,8 @@
     }
 
     sumKeyUp = function () {
-      console.log('sumValueId.value', sumValueId.value[0])
-      console.log('sumValueId.value.length', sumValueId.value.length)
+//      console.log('sumValueId.value', sumValueId.value[0])
+//      console.log('sumValueId.value.length', sumValueId.value.length)
       if (sumValueId.value.length == 5 && sumValueId.value[0] == '0') {
         sumValueId.value = ' ' + defaultAccount.currency;
       }
@@ -197,7 +197,7 @@
     goToTransferThree = function () {
       event.preventDefault()
       event.stopPropagation()
-      console.log('objectForTransfer', objectForTransfer)
+//      console.log('objectForTransfer', objectForTransfer)
       var codeOfBank = objectForTransfer.name.replace(/\s/g, '').substring(3, 6);
       var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'));
       var maxLimit;

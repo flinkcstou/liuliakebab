@@ -52,7 +52,7 @@
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
-      console.log("BACK")
+//      console.log("BACK")
       onBackKeyDown()
     };
 

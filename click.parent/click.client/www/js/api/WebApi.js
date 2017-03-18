@@ -47,7 +47,7 @@ window.api.call = function (params) {
   var onSuccess = params.onSuccess;
   var onFail = params.onFail;
   var scope = params.scope || window;
-  console.log("IT IS INPUT ", input);
+  //console.log("IT IS INPUT ", input);
   this.callBacks[method] = {
     ok: function (data) {
       //console.log('ANSWER OF API ', data);

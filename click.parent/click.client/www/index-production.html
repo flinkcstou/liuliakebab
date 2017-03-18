@@ -141,10 +141,10 @@
     xhr.responseType = 'blob';
 
     xhr.onload = function () {
-      console.log("in onload");
+//      console.log("in onload");
 
       var blob = new Blob([this.response], {type: 'image/png'});
-      console.log("status 200 For " + fileName);
+//      console.log("status 200 For " + fileName);
       //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
       callback(false, index, fileName);
 
@@ -158,12 +158,12 @@
     };
 
     xhr.onerror = function () {
-      console.log("error for " + fileName);
+//      console.log("error for " + fileName);
 
       var convertFunction = convertFileToDataURLviaFileReader;
 
       convertFunction(assetURL, function (base64Img) {
-        console.log("base64 length=" + base64Img.length);
+//        console.log("base64 length=" + base64Img.length);
         // Split the base64 string in data and contentType
         var block = base64Img.split(";");
         // Get the content type
@@ -187,12 +187,12 @@
     // Convert the base64 string in a Blob
     var DataBlob = b64toBlob(content, contentType);
 
-    console.log("Starting to write the file :3");
+//    console.log("Starting to write the file :3");
 
     window.resolveLocalFileSystemURL(folderpath, function (dir) {
-      console.log("Access to the directory granted succesfully");
+//      console.log("Access to the directory granted succesfully");
       dir.getFile(filename, {create: true, exclusive: false}, function (file) {
-        console.log("File created succesfully.");
+//        console.log("File created succesfully.");
         file.createWriter(function (fileWriter) {
           ("Writing content to file");
           fileWriter.write(DataBlob);

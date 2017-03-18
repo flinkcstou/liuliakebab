@@ -105,17 +105,15 @@
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
-          firstname: getAccountsCards[i].id,
-          lastname: getAccountsCards[i].card_num_hash,
-          card_num_crypted: getAccountsCards[i].card_num_crypted
+          name: settingsUserNameId.value,
+          gender: scope.gender,
         },
         //TODO: DO CARDS
         scope: this,
         onSuccess: function (result) {
+          console.log(result)
           if (result[0][0].error == 0) {
-            if (result[1][0]) {
-
-            }
+            alert('Изменения сохранены')
           }
           else
             alert(result[0][0].error_note);

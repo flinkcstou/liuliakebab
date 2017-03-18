@@ -213,12 +213,12 @@
     // Convert the base64 string in a Blob
     var DataBlob = b64toBlob(content, contentType);
 
-    console.log("Starting to write the file :3", filename);
+//    console.log("Starting to write the file :3", filename);
 
     window.resolveLocalFileSystemURL(folderpath, function (dir) {
-      console.log("Access to the directory granted succesfully");
+//      console.log("Access to the directory granted succesfully");
       dir.getFile(filename, {create: true, exclusive: false}, function (file) {
-        console.log("File created succesfully." + filename);
+//        console.log("File created succesfully." + filename);
         file.createWriter(function (fileWriter) {
           console.log("Writing content to file");
           fileWriter.write(DataBlob);
@@ -254,16 +254,16 @@
   }
 
   function convertFileToDataURLviaFileReader(url, callback) {
-    console.log("in convert!");
+//    console.log("in convert!");
     var xhr2 = new XMLHttpRequest();
     xhr2.open('GET', url, true);
     xhr2.responseType = 'blob';
 
     xhr2.onload = function () {
-      console.log("in another onload 1");
+//      console.log("in another onload 1");
       var reader = new FileReader();
       reader.onloadend = function () {
-        console.log("in another onload 2");
+//        console.log("in another onload 2");
         callback(reader.result);
       };
       reader.readAsDataURL(xhr2.response);

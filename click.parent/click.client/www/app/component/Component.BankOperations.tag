@@ -45,7 +45,7 @@
     goToAutoPayView = function (e) {
       event.preventDefault();
       event.stopPropagation();
-
+      return
       riotTags.innerHTML = "<view-transfer-to-card>";
       riot.mount('view-transfer-to-card');
     }

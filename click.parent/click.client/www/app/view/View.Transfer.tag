@@ -171,7 +171,7 @@
 //      fifthSuggestionBlockId.style.display = 'block';
 
       if (viewTransfer.type == 2) {
-        console.log('ON MOUNT')
+//        console.log('ON MOUNT')
         contact();
         if (checkFirstBlock) {
           firstSuggestionBlockId.style.display = 'block';
@@ -271,7 +271,7 @@
 
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
-            console.log("result of P2P BANK LIST ", result[1]);
+//            console.log("result of P2P BANK LIST ", result[1]);
             localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(result[1]))
           }
           else
@@ -290,7 +290,7 @@
     pickContactFromNative = function () {
 
       window.plugins.PickContact.chooseContact(function (contactInfo) {
-        console.log('CONTACTINFO', contactInfo)
+//        console.log('CONTACTINFO', contactInfo)
         setTimeout(function () {
           var phoneNumber
           if (device.platform == 'iOS')
@@ -308,7 +308,7 @@
           if (contactPhoneNumberId.value.length != 0) {
             checkPhoneForTransfer = true;
             checkCardForTransfer = false;
-            console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
+//            console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
             if (contactPhoneNumberId.value.length == 9) {
               nextButtonId.style.display = 'block'
 
@@ -325,7 +325,7 @@
           }// use time-out to fix iOS alert problem
         }, 0);
       }, function (error) {
-        console.log('error', error)
+//        console.log('error', error)
         checkPhoneForTransfer = false;
         checkCardForTransfer = false;
       });
@@ -701,7 +701,7 @@
             checkCardThirdBlock = true
             scope.cardSuggestionThree.cardNumber = transferCards[i].cardNumber;
             if (transferCards[i].image != null) {
-              console.log("PHOTO", transferCards[i].image)
+//              console.log("PHOTO", transferCards[i].image)
               scope.cardSuggestionThree.photo = transferCards[i].image;
             }
             else {
@@ -719,7 +719,7 @@
             checkCardSecondBlock = true
             scope.cardSuggestionTwo.cardNumber = transferCards[i].cardNumber;
             if (transferCards[i].image != null) {
-              console.log("PHOTO", transferCards[i].image)
+//              console.log("PHOTO", transferCards[i].image)
               scope.cardSuggestionTwo.photo = transferCards[i].image;
             }
             else {
@@ -739,7 +739,7 @@
             checkCardFirstBlock = true
             scope.cardSuggestionOne.cardNumber = transferCards[i].cardNumber;
             if (transferCards[i].image != null) {
-              console.log("PHOTO", transferCards[i].image)
+//              console.log("PHOTO", transferCards[i].image)
               scope.cardSuggestionOne.photo = transferCards[i].image;
             }
             else {
@@ -826,7 +826,7 @@
       if (viewTransfer.cardNumber) {
         this.cardInputId.value = viewTransfer.cardNumber
       }
-      console.log('LENGTH ', cardInputId.value.length)
+//      console.log('LENGTH ', cardInputId.value.length)
 
       if (!cardInputId.value) {
         nextButtonId.style.display = 'none'
@@ -871,7 +871,7 @@
           var transferCards = [];
           var codeOfBank = cardInputId.value.replace(/\s/g, '').substring(3, 6);
           var checkOfCode = false;
-          console.log('CODE OF BANK', codeOfBank)
+//          console.log('CODE OF BANK', codeOfBank)
 
           var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))
           for (var i = 0; i < bankList.length; i++) {
@@ -911,7 +911,7 @@
 
               onSuccess: function (result) {
                 if (result[0][0].error == 0) {
-                  console.log("result of P2P CARD INFO ", result);
+//                  console.log("result of P2P CARD INFO ", result);
                 }
                 else
                   alert(result[0][0].error_note);
@@ -983,15 +983,10 @@
       }
       else {
         nextButtonId.style.display = 'none'
-        console.log('INPUT CONTACT VALUE', contactPhoneNumberId.value.length)
+//        console.log('INPUT CONTACT VALUE', contactPhoneNumberId.value.length)
 
         if (contactPhoneNumberId.value.length == 0) {
-          console.log('I AM HERE')
-          console.log('BLOCK 1', checkFirstBlock)
-          console.log('BLOCK 2', checkSecondBlock)
-          console.log('BLOCK 3', checkThirdBlock)
-          console.log('BLOCK 4', checkFourthBlock)
-          console.log('BLOCK 5', checkFifthBlock)
+
           if (checkFirstBlock) {
             scope.suggestionOne = JSON.parse(JSON.stringify(scope.suggestionOneCopy));
             firstSuggestionBlockId.style.display = 'block';
@@ -1142,13 +1137,13 @@
     contactSuggestionFunction = function () {
 
 
-      console.log("JSON.parse(localStorage.getItem('transferContacts'))", JSON.parse(localStorage.getItem('transferContacts')))
+//      console.log("JSON.parse(localStorage.getItem('transferContacts'))", JSON.parse(localStorage.getItem('transferContacts')))
       if (JSON.parse(localStorage.getItem('transferContacts'))) {
-        console.log("IN TRANSFER CONTACTS")
+//        console.log("IN TRANSFER CONTACTS")
         var transferContacts = JSON.parse(localStorage.getItem('transferContacts'));
       }
       else {
-        console.log("RETURN")
+//        console.log("RETURN")
         return;
       }
 
@@ -1334,7 +1329,7 @@
             checkFirstBlock = true
             scope.suggestionOne.phoneNumber = transferContacts[i].phoneNumbers[0].value;
             if (transferContacts[i].photos != null && transferContacts[i].photos[0] != null && transferContacts[i].photos[0].value != null) {
-              console.log("PHOTO", transferContacts[i].photos[0])
+//              console.log("PHOTO", transferContacts[i].photos[0])
               scope.suggestionOne.photo = transferContacts[i].photos[0].value;
               scope.suggestionOne.firstLetterOfName = '';
             }
@@ -1397,7 +1392,7 @@
         phone += digits[i]
       }
       scope.suggestionOne.phoneNumber = phone;
-      console.log(scope.suggestionOne.phoneNumber)
+//      console.log(scope.suggestionOne.phoneNumber)
       contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length);
 
       if (contactPhoneNumberId.value.length == 9) {

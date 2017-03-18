@@ -86,7 +86,7 @@
     }
 
     editCard = function () {
-      console.log("card for edit=", scope.card);
+//      console.log("card for edit=", scope.card);
       event.preventDefault();
       event.stopPropagation();
       riotTags.innerHTML = "<view-card-edit>";
@@ -96,8 +96,8 @@
     deleteCardTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-      console.log("card for edit=", scope.card);
-      console.log('ACCOUNT INFO', JSON.parse(localStorage.getItem('click_client_accountInfo')))
+//      console.log("card for edit=", scope.card);
+//      console.log('ACCOUNT INFO', JSON.parse(localStorage.getItem('click_client_accountInfo')))
 
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -242,7 +242,7 @@
 
     if (opts[0]) {
       scope.cardId = opts[0];
-      console.log('scope.cardId', scope.cardId)
+//      console.log('scope.cardId', scope.cardId)
     }
 
 
@@ -258,8 +258,8 @@
 
     if (scope.cardId)
       scope.card = scope.cardsArray[scope.cardId];
-    console.log('scope.cardId', scope.cardId)
-    console.log('scope.cardsArray', scope.cardsArray)
+//    console.log('scope.cardId', scope.cardId)
+//    console.log('scope.cardsArray', scope.cardsArray)
 
 
     scope.arrayOfOperationsByAccount = [];
@@ -274,7 +274,7 @@
         scope.card = scope.cardsArray[cardIdFromCarousel];
       scope.arrayOfOperationsByAccount = [];
       riot.update()
-      console.log(scope.card)
+//      console.log(scope.card)
 
       if (scope.card)
         window.api.call({
@@ -325,7 +325,7 @@
                 }
                 this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
                 riot.update(scope.arrayOfOperationsByAccount)
-                console.log('scope.arrayOfOperationsByAccount', scope.arrayOfOperationsByAccount)
+//                console.log('scope.arrayOfOperationsByAccount', scope.arrayOfOperationsByAccount)
               }
             }
             else
@@ -376,7 +376,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      console.log(scope.card)
+//      console.log(scope.card)
       if (scope.card.access == 2) {
         riotTags.innerHTML = "<view-transfer>";
         riot.mount('view-transfer');

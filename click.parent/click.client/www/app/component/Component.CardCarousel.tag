@@ -21,7 +21,7 @@
     scope.cardsarray = {};
 
     addCard = function () {
-      console.log("REFRESH CARDS")
+//      console.log("REFRESH CARDS")
 
       if (localStorage.getItem('click_client_accountInfo')) {
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
@@ -123,8 +123,8 @@
             onSuccess: function (result) {
 
               if (result[0][0].error == 0) {
-                console.log('CARDS UPDATE()', result[1])
-                console.log(result[1])
+//                console.log('CARDS UPDATE()', result[1])
+//                console.log(result[1])
                 if (device.platform != 'BrowserStand') {
                   window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
                     var j = -1, count = 0;
@@ -134,7 +134,7 @@
                       arrayAccountInfo.push(result[1][i]);
 
                       var icon = result[1][i].card_background_url;
-                      console.log();
+
                       var filename = icon.substr(icon.lastIndexOf('/') + 1);
 //                      alert("filename=" + filename);
 
@@ -232,14 +232,14 @@
 //        contactsId.style.backgroundColor = 'rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + ')';
 //        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + ')';
 //      }
-      console.log(modeOfApp.offlineMode)
+//      console.log(modeOfApp.offlineMode)
 //    })
     };
 
     onComponentCreated();
 
     this.on("mount", function () {
-      console.log("CARDS", JSON.parse(localStorage.getItem("click_client_cards")))
+//      console.log("CARDS", JSON.parse(localStorage.getItem("click_client_cards")))
 
       cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -347,7 +347,7 @@
     var pos = 0;
     var count = localStorage.getItem('click_client_countCard');
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-    console.log('DDDDDDDD', loginInfo)
+//    console.log('DDDDDDDD', loginInfo)
     if (!count)
       count = 0;
 
