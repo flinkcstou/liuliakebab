@@ -6541,7 +6541,7 @@ var css = {
   "top:" + 380 * widthK + "px; " +
   "bottom:0; " +
   "background-color: #f4f4f4; " +
-  "overflow-y: auto; " +
+  "overflow-y: hidden; " +
   "overflow-x: hidden; " +
   "}",
 
@@ -6667,7 +6667,7 @@ var css = {
   "position: relative;" +
   "height: 13%;" +
   "width:100%;" +
-  "top: 9%;" +
+    //"top: 9%;" +
   "}",
 
   accountDetailButtonAccept: ".account-detail-button-accept" +
