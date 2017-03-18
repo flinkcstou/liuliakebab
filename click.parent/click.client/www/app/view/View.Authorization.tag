@@ -79,8 +79,25 @@
     //      }
     //    }
 
+    //TODO CHANGE VERSION
+    if (localStorage.getItem('version') !== null) {
+      if (JSON.parse(localStorage.getItem('version')) != '3.1') {
+        localStorage.clear();
+        riotTags.innerHTML = "<view-registration-device>";
+        riot.mount('view-registration-device');
+      }
+    }
+    else {
+      localStorage.clear();
+      riotTags.innerHTML = "<view-registration-device>";
+      riot.mount('view-registration-device');
+    }
+
+    localStorage.setItem('version', '3.1')
+
     var scope = this;
     scope.checkAndroid = false;
+
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization') {
         history.arrayOfHistory.push(
