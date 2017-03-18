@@ -27,7 +27,7 @@
 
     scope.on("mount", function () {
 
-      console.log("ASD_scope.leftOfCard", scope.leftOfCard);
+//      console.log("ASD_scope.leftOfCard", scope.leftOfCard);
     });
 
     offlineBalanceTrueTouchStart = function () {
