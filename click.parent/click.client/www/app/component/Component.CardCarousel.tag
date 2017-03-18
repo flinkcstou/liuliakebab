@@ -82,9 +82,7 @@
 
         scope.cardsarray[getAccountsCards[i].id] = card;
 
-        console.log("ASD TEST", scope.cardsarray);
         localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
-        console.log('JSON.parse(localStorage.getItem("click_client_cards"))', JSON.parse(localStorage.getItem("click_client_cards")))
 
         count++;
         cardNumber %= count;
