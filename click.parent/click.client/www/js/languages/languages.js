@@ -210,6 +210,7 @@ var RU_LANGUAGES =
 
   "ViewTransferToCardTitleOne": "Зачислить средства в размере",
   "ViewTransferToCardTitleTwo": "на карту:",
+  "ViewTransferToCardTitle": "ЗАЧИСЛЕНИЕ",
 
   "ViewReportMonthsArray": [{"name": "Январь", "count": 1}, {"name": "Февраль", "count": 2}, {
     "name": "Март",

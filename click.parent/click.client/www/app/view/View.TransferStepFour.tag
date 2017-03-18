@@ -1,7 +1,7 @@
 <view-transfer-stepfour>
   <div class="transfer-page-title">
     <p class="transfer-name-title">{titleName}</p>
-    <div id="backButton" ontouchend="goToBack()"
+    <div id="backButton" ontouchstart="goToBack()"
          class="{transfer-back-button: backbuttoncheck}">
 
     </div>

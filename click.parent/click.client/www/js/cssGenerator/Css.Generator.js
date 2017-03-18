@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/account_crop.png);" +
+    //"background-image: url(resources/draft/transfer-to-card-crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -6759,7 +6759,7 @@ var css = {
   "position: absolute;" +
     //"height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
-  "top:" + 380 * widthK + "px; " +
+  "top:" + 220 * widthK + "px; " +
   "bottom:0; " +
   "background-color: #f4f4f4; " +
   "overflow-y: hidden; " +
@@ -6769,7 +6769,7 @@ var css = {
   transferToCardTitleContainer: ".transfer-to-card-title-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 380 * widthK + "px;" +
+  "height:" + 220 * widthK + "px;" +
   "width:100%;" +
   "background-color: #0280e4;" +
   "}",
@@ -6777,8 +6777,8 @@ var css = {
   transferToCardTransferTitlePartOne: ".transfer-to-card-transfer-title-part-one " +
   "{" +
   "position: relative;" +
-  "width: 50%;" +
-  "top: 59%;" +
+  "width: 100%;" +
+  "top: 20%;" +
   "margin: 0;" +
   "color: white;" +
   "margin-left: auto;" +
@@ -6791,7 +6791,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "top: 57%;" +
+  "top: 27%;" +
   "margin: 0;" +
   "color: white;" +
   "margin-left: auto;" +
@@ -6804,7 +6804,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "top: 56%;" +
+  "top: 27%;" +
   "margin: 0;" +
   "color: white;" +
   "margin-left: auto;" +

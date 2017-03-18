@@ -1,6 +1,10 @@
 <view-transfer-to-card>
   <div>
     <div class="transfer-to-card-title-container">
+      <div class="page-title account-detail-page-title">
+        <p class="name-title">{titleName}</p>
+        <div id="backButton" ontouchstart="goToBack()" class="settings-general-back-button"></div>
+      </div>
 
       <p class="transfer-to-card-transfer-title-part-one">
         {window.languages.ViewTransferToCardTitleOne}</p>
@@ -28,7 +32,7 @@
 
   <script>
     var scope = this;
-    this.titleName = window.languages.ViewAccountDetailTitle;
+    this.titleName = window.languages.ViewTransferToCardTitle;
 
     this.on('mount', function () {
 
@@ -48,6 +52,7 @@
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
+      console.log("BACK")
       onBackKeyDown()
     };
 
