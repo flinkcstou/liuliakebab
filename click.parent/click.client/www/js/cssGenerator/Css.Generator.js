@@ -7090,18 +7090,30 @@ var css = {
   "top: " + 10 * widthK + "px; " +
   "left: 15%;" +
   "text-align: left;" +
-  "font-size:" + 29 * widthK + "px; " +
+  "font-size:" + 25 * widthK + "px; " +
   "color: gray;" +
   "}",
 
   viewReportsGraphBlockAmountField: ".view-reports-graph-block-amount-field" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "top: 40%;" +
-  "left: 15%;" +
+  "left: 2%;" +
   "margin: 0;" +
   "font-size:" + 45 * widthK + "px;" +
   "color: #ee4d3d;" +
+  "float: left;" +
+  "}",
+
+  viewReportsGraphBlockCurrencyField: ".view-reports-graph-block-currency-field" +
+  "{" +
+  "position: relative;" +
+  "top: 51%;" +
+  "left: 3%;" +
+  "margin: 0;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "color: #ee4d3d;" +
+  "float: left;" +
   "}",
 
   viewReportsGraphBlockIcon: ".view-reports-graph-block-icon" +

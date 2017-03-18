@@ -43,8 +43,7 @@
 
   <div class="view-reports-graph-body-container" if="{!firstReportView}">
     <div class="view-reports-graph-bigamount-container">
-      <p class="view-reports-graph-bigamount-text">50 078 970 сум</p>
-      <p class="view-reports-graph-bigamount-detail-text">Данные актуальны на 15.02.2017</p>
+      <p class="view-reports-graph-bigamount-text">{paymentsSum} сум</p>
     </div>
     <div class="view-reports-graph-image-container"></div>
     <div class="view-reports-graph-content-container">
@@ -53,7 +52,8 @@
         <div class="view-reports-graph-block-icon"
              style="background-image: url({j.image})"></div>
         <div class="view-reports-graph-block-name-field">{j.category_name}</div>
-        <div class="view-reports-graph-block-amount-field">{j.amount} сум</div>
+        <div class="view-reports-graph-block-amount-field">{j.amount}</div>
+        <div class="view-reports-graph-block-currency-field">сум</div>
         <div class="view-reports-graph-block-next-icon"></div>
       </div>
     </div>
@@ -90,7 +90,7 @@
 
 
     if (!mNumber) {
-      mNumber = 0;
+      mNumber = new Date().getMonth();
     }
 
 
@@ -107,74 +107,12 @@
       if (scope.firstReportView) {
         graphButtonId.style.backgroundImage = "url(resources/icons/ViewReport/reports_chart_off.png)";
 
-        scope.paymentsList = [];
-        window.api.call({
-          method: 'get.payment.list',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            date_start: convertDate(firstDay),
-            date_end: convertDate(lastDay)
-          },
-          scope: this,
-
-          onSuccess: function (result) {
-            console.log(result)
-            console.log(result[0][0])
-            if (result[0][0].error == 0) {
-              for (var i in result[1]) {
-                scope.paymentsList.push(result[1][i])
-              }
-              console.log('ASAASASDASDFAAS', scope.paymentsList);
-              riot.update(scope.paymentsList)
-            }
-            else {
-              alert(result[0][0].error_note);
-            }
-
-          },
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
-          }
-        });
+        paymentListUpdate();
       }
       else {
         graphButtonId.style.backgroundImage = "url(resources/icons/ViewReport/reports_chart_on.png)";
 
-        scope.graphList = [];
-
-        window.api.call({
-          method: 'history.chart.data',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            date_start: convertDate(firstDay),
-            date_end: convertDate(lastDay)
-
-          },
-          scope: this,
-
-          onSuccess: function (result) {
-            console.log(result)
-            console.log(result[0][0])
-            if (result[0][0].error == 0) {
-              for (var i in result[1]) {
-                scope.graphList.push(result[1][i])
-              }
-              riot.update(scope.graphList)
-              console.log('history chart data', scope.graphList);
-            }
-            else {
-              alert(result[0][0].error_note);
-            }
-
-          },
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
-          }
-        });
+        graphListUpdate();
       }
     }
 
@@ -184,45 +122,6 @@
     scope.monthsArray = window.languages.ViewReportMonthsArray;
     console.log("monthsArray", scope.monthsArray);
     riot.update(scope.monthsArray);
-
-    scope.paymentsList = [];
-
-    var date = new Date();
-    var firstDay = new Date(date.getFullYear(), mNumber, 1);
-    var lastDay = new Date(date.getFullYear(), mNumber + 1, 0);
-    console.log("firstDay=", firstDay);
-    console.log("lastDay=", lastDay);
-
-    window.api.call({
-      method: 'get.payment.list',
-      input: {
-        session_key: sessionKey,
-        phone_num: phoneNumber,
-        date_start: convertDate(firstDay),
-        date_end: convertDate(lastDay)
-      },
-      scope: this,
-
-      onSuccess: function (result) {
-        console.log(result)
-        console.log(result[0][0])
-        if (result[0][0].error == 0) {
-          for (var i in result[1]) {
-            scope.paymentsList.push(result[1][i])
-          }
-          riot.update(scope.paymentsList)
-          console.log('QQQQQQQQ', scope.paymentsList);
-        }
-        else {
-          alert(result[0][0].error_note);
-        }
-
-      },
-      onFail: function (api_status, api_status_message, data) {
-        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-        console.error(data);
-      }
-    });
 
 
     monthContainerTouchStart = function () {
@@ -294,78 +193,11 @@
 
       console.log("!!!!!!!!", mNumber);
 
-      var date = new Date();
-      var firstDay = new Date(date.getFullYear(), mNumber, 1);
-      var lastDay = new Date(date.getFullYear(), mNumber + 1, 0);
-      console.log("firstDay=", firstDay);
-      console.log("lastDay=", lastDay);
-
 
       if (scope.firstReportView) {
-        scope.paymentsList = [];
-        window.api.call({
-          method: 'get.payment.list',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            date_start: convertDate(firstDay),
-            date_end: convertDate(lastDay)
-          },
-          scope: this,
-
-          onSuccess: function (result) {
-            console.log(result)
-            console.log(result[0][0])
-            if (result[0][0].error == 0) {
-              for (var i in result[1]) {
-                scope.paymentsList.push(result[1][i])
-              }
-              console.log('ASAASASDASDFAAS', scope.paymentsList);
-              riot.update(scope.paymentsList)
-            }
-            else {
-              alert(result[0][0].error_note);
-            }
-
-          },
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
-          }
-        });
+        paymentListUpdate();
       } else {
-        scope.graphList = [];
-        window.api.call({
-          method: 'history.chart.data',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            date_start: convertDate(firstDay),
-            date_end: convertDate(lastDay)
-
-          },
-          scope: this,
-
-          onSuccess: function (result) {
-            console.log(result)
-            console.log(result[0][0])
-            if (result[0][0].error == 0) {
-              for (var i in result[1]) {
-                scope.graphList.push(result[1][i])
-              }
-              riot.update(scope.graphList)
-              console.log('history chart data', scope.graphList);
-            }
-            else {
-              alert(result[0][0].error_note);
-            }
-
-          },
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
-          }
-        });
+        graphListUpdate();
       }
 
 
@@ -384,6 +216,174 @@
       return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
     }
 
+    paymentListUpdate = function () {
+      var date = new Date();
+      var firstDay = new Date(date.getFullYear(), mNumber, 1);
+      var lastDay = new Date(date.getFullYear(), mNumber + 1, 0);
+      console.log("firstDay=", firstDay);
+      console.log("lastDay=", lastDay);
+
+      scope.paymentsList = [];
+      window.api.call({
+        method: 'get.payment.list',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          date_start: convertDate(firstDay),
+          date_end: convertDate(lastDay)
+        },
+        scope: this,
+
+        onSuccess: function (result) {
+          console.log(result)
+          console.log(result[0][0])
+          if (result[0][0].error == 0) {
+            for (var i in result[1]) {
+
+              result[1][i].amount = result[1][i].amount.toString();
+
+              if (result[1][i].amount.length == 7) {
+                result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
+                  result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
+
+              }
+
+              if (result[1][i].amount.length == 6) {
+                result[1][i].amount = result[1][i].amount.substring(0, 3) + ' ' +
+                  result[1][i].amount.substring(3, result[1][i].amount.length)
+
+              }
+
+              if (result[1][i].amount.length == 5) {
+                result[1][i].amount = result[1][i].amount.substring(0, 2) + ' ' +
+                  result[1][i].amount.substring(2, result[1][i].amount.length)
+
+              }
+
+              if (result[1][i].amount.length == 4) {
+                result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
+                  result[1][i].amount.substring(1, result[1][i].amount.length)
+
+              }
+
+              scope.paymentsList.push(result[1][i]);
+            }
+            console.log('ASAASASDASDFAAS', scope.paymentsList);
+            riot.update(scope.paymentsList)
+          }
+          else {
+            alert(result[0][0].error_note);
+          }
+
+        },
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+
+    graphListUpdate = function () {
+      var date = new Date();
+      var firstDay = new Date(date.getFullYear(), mNumber, 1);
+      var lastDay = new Date(date.getFullYear(), mNumber + 1, 0);
+      console.log("firstDay=", firstDay);
+      console.log("lastDay=", lastDay);
+
+      scope.graphList = [];
+      scope.paymentsSum = 0;
+      window.api.call({
+        method: 'history.chart.data',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          date_start: convertDate(firstDay),
+          date_end: convertDate(lastDay)
+
+        },
+        scope: this,
+
+        onSuccess: function (result) {
+          console.log(result)
+          console.log(result[0][0])
+          if (result[0][0].error == 0) {
+            for (var i in result[1]) {
+              scope.paymentsSum += result[1][i].amount;
+
+              result[1][i].amount = result[1][i].amount.toString();
+
+              if (result[1][i].amount.length == 7) {
+                result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
+                  result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
+
+              }
+
+              if (result[1][i].amount.length == 6) {
+                result[1][i].amount = result[1][i].amount.substring(0, 3) + ' ' +
+                  result[1][i].amount.substring(3, result[1][i].amount.length)
+
+              }
+
+              if (result[1][i].amount.length == 5) {
+                result[1][i].amount = result[1][i].amount.substring(0, 2) + ' ' +
+                  result[1][i].amount.substring(2, result[1][i].amount.length)
+
+              }
+
+              if (result[1][i].amount.length == 4) {
+                result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
+                  result[1][i].amount.substring(1, result[1][i].amount.length)
+
+              }
+
+              scope.graphList.push(result[1][i]);
+            }
+
+            //
+            scope.paymentsSum = scope.paymentsSum.toString();
+
+            if (scope.paymentsSum.length == 7) {
+              scope.paymentsSum = scope.paymentsSum.substring(0, 1) + ' ' +
+                scope.paymentsSum.substring(1, 4) + ' ' + scope.paymentsSum.substring(4, scope.paymentsSum.length)
+
+            }
+
+            if (scope.paymentsSum.length == 6) {
+              scope.paymentsSum = scope.paymentsSum.substring(0, 3) + ' ' +
+                scope.paymentsSum.substring(3, scope.paymentsSum.length)
+
+            }
+
+            if (scope.paymentsSum.length == 5) {
+              scope.paymentsSum = scope.paymentsSum.substring(0, 2) + ' ' +
+                scope.paymentsSum.substring(2, scope.paymentsSum.length)
+
+            }
+
+            if (scope.paymentsSum.length == 4) {
+              scope.paymentsSum = scope.paymentsSum.substring(0, 1) + ' ' +
+                scope.paymentsSum.substring(1, scope.paymentsSum.length)
+
+            }
+
+            riot.update(scope.graphList);
+            riot.update(scope.paymentsSum);
+            console.log('history chart data', scope.graphList);
+          }
+          else {
+            alert(result[0][0].error_note);
+          }
+
+        },
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+
+
+    paymentListUpdate();
 
   </script>
 </view-report>
