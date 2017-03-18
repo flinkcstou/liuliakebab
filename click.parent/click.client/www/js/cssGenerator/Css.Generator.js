@@ -906,15 +906,20 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 23 * widthK + "px;" +
   "height: 10%;" +
+  "width: 90%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   cardBalansCurrencyContainer: ".card-balance-currency-container " +
   "{" +
   "position: absolute;" +
-  "width:" + 400 * widthK + "px;" +
+  "width:" + 500 * widthK + "px;" +
   "top:" + 163 * widthK + "px;" +
   "display: inline-block;" +
   "margin: 0;" +
+  "overflow: hidden;" +
   "}",
 
   cardBalance: ".card-balance " +
@@ -926,6 +931,9 @@ var css = {
   "margin-top:" + -2 * widthK + "px;" +
   "float: left;" +
   "padding: 0;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   cardCurrency: ".card-currency " +
@@ -3522,6 +3530,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 17 * widthK + "px;" +
   "height: 10%;" +
+
   "}",
 
   myCardListCardBalanceCurrencyContainer: ".mycardlist-card-balance-currency-container" +
