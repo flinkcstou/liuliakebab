@@ -118,7 +118,7 @@ window.fakedSocket.register("get.accounts", function (input) {
       card_background_url: 'https://merchant.click.uz/static/content/app/card/1.png',
       currency_code: "UZS",
       currency_name: "тенге                                               ",
-      description: "Карта KAZKOM-Online",
+      description: "Карта KAZKOM-Online Kazakhstan Halyk Bank Group",
       expire_date: "1806",
       id: 2484171,
       image_url: "https://my.click.uz/static/content/app/bank/aab.png",
@@ -178,57 +178,57 @@ window.fakedSocket.register("get.accounts", function (input) {
       short_name: "aloq"
     },
 
-    //{
-    //  acc_abs: "SMARTV    ",
-    //  access: 2,
-    //  accno: "3333 **** **** 2222",
-    //  background_url: "https://my.click.uz/static/content/app/card/aab.png",
-    //  bank_name: "UZCARD",
-    //  branch: "00000",
-    //  card_num: "3333 **** **** 2222",
-    //  card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw=",
-    //  card_num_hash: "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
-    //  currency: "000",
-    //  background_color_bottom: "155,141,22",
-    //  background_color_top: "192,33,4",
-    //  font_color: "255,255,255",
-    //  card_background_url: 'https://my.click.uz/static/content/app/card/aab.png',
-    //  currency_code: "UZS",
-    //  currency_name: "сум                                               ",
-    //  description: "СБЕРБАНК",
-    //  expire_date: "1806",
-    //  id: 1287271,
-    //  image_url: "https://my.click.uz/static/content/app/card/aab.png",
-    //  is_uzcard: 1,
-    //  removable: 1,
-    //  short_name: "aloq"
-    //},
+    {
+      acc_abs: "SMARTV    ",
+      access: 2,
+      accno: "3333 **** **** 2222",
+      background_url: "https://my.click.uz/static/content/app/card/aab.png",
+      bank_name: "UZCARD",
+      branch: "00000",
+      card_num: "3333 **** **** 2222",
+      card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw=",
+      card_num_hash: "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
+      currency: "000",
+      background_color_bottom: "155,141,22",
+      background_color_top: "192,33,4",
+      font_color: "255,255,255",
+      card_background_url: 'https://my.click.uz/static/content/app/card/aab.png',
+      currency_code: "UZS",
+      currency_name: "сум                                               ",
+      description: "СБЕРБАНК",
+      expire_date: "1806",
+      id: 1287271,
+      image_url: "https://my.click.uz/static/content/app/card/aab.png",
+      is_uzcard: 1,
+      removable: 1,
+      short_name: "aloq"
+    },
 
-    //{
-    //  acc_abs: "SMARTV    ",
-    //  access: 2,
-    //  accno: "8600 **** **** 5865",
-    //  background_url: "https://my.click.uz/static/content/app/card/aab.png",
-    //  bank_name: "UZCARD",
-    //  branch: "00000",
-    //  card_num: "8600 **** **** 5865",
-    //  card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw=",
-    //  card_num_hash: "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
-    //  currency: "000",
-    //  background_color_bottom: "132,141,101",
-    //  background_color_top: "4,62,23",
-    //  font_color: "255,255,255",
-    //  card_background_url: 'https://my.click.uz/static/content/app/card/aab.png',
-    //  currency_code: "UZS",
-    //  currency_name: "сум                                               ",
-    //  description: "Карта UZCARD-Online",
-    //  expire_date: "1806",
-    //  id: 5487271,
-    //  image_url: "https://my.click.uz/static/content/app/card/aab.png",
-    //  is_uzcard: 1,
-    //  removable: 1,
-    //  short_name: "aloq"
-    //}
+    {
+      acc_abs: "SMARTV    ",
+      access: 2,
+      accno: "8600 **** **** 5865",
+      background_url: "https://my.click.uz/static/content/app/card/aab.png",
+      bank_name: "UZCARD",
+      branch: "00000",
+      card_num: "8600 **** **** 5865",
+      card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw=",
+      card_num_hash: "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
+      currency: "000",
+      background_color_bottom: "132,141,101",
+      background_color_top: "4,62,23",
+      font_color: "255,255,255",
+      card_background_url: 'https://my.click.uz/static/content/app/card/aab.png',
+      currency_code: "UZS",
+      currency_name: "сум                                               ",
+      description: "Карта UZCARD-Online",
+      expire_date: "1806",
+      id: 5487271,
+      image_url: "https://my.click.uz/static/content/app/card/aab.png",
+      is_uzcard: 1,
+      removable: 1,
+      short_name: "aloq"
+    }
   ]);
 
   if (localStorage.getItem("click_client_token"))
@@ -257,7 +257,7 @@ window.fakedSocket.register("get.balance", function (input) {
         [{"method": 'get.balance', "success": 1, "error": 0, "error_note": ""}],
         [{
           "account_id": input.parameters.account_id,
-          "balance": 4552122
+          "balance": 433552122
         }]
       ];
     }

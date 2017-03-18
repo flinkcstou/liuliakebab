@@ -37,8 +37,8 @@
       </div>
 
       <div class="transfer-detail-buttons-container">
-        <p class="transfer-detail-button-accept">ПРИНЯТЬ</p>
-        <p class="transfer-detail-button-cancel">ОТКЛОНИТЬ</p>
+        <p class="transfer-detail-button-accept">{window.languages.ViewTransferDetailTitleAccept}</p>
+        <p class="transfer-detail-button-cancel">{window.languages.ViewTransferDetailTitleDecline}</p>
       </div>
 
     </div>
