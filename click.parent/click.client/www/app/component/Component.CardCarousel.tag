@@ -26,7 +26,6 @@
       if (localStorage.getItem('click_client_accountInfo')) {
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
         for (var i = 0; i < getAccountsCards.length; i++) {
-          console.log(getAccountsCards[i].id, loginInfo.default_account)
           if (getAccountsCards[i].id == loginInfo.default_account) {
             defaultAccountId = getAccountsCards[i].id;
             var tmp = getAccountsCards[0];
@@ -34,6 +33,8 @@
             getAccountsCards[i] = tmp;
           }
         }
+
+
         count = 0;
         if (JSON.parse(localStorage.getItem("click_client_cards"))) {
           localStorage.removeItem("click_client_cards")
@@ -238,6 +239,9 @@
     onComponentCreated();
 
     this.on("mount", function () {
+
+      console.log(JSON.parse(localStorage.getItem('click_client_accountInfo')))
+
 
       cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';

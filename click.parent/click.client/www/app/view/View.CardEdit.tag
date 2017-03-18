@@ -9,7 +9,8 @@
   <div class="card-edit-body-container">
     <div class="card-edit-field">
       <p class="card-edit-text-field">{window.languages.ViewCardEditCardNameText}</p>
-      <input maxlength="25" onfocus="cardEditFoucs()" id="cardNameInputID" class="card-edit-input" value="{defaultName}"/>
+      <input maxlength="25" onfocus="cardEditFoucs()" id="cardNameInputID" class="card-edit-input"
+             value="{defaultName}"/>
     </div>
     <div class="card-edit-makemain-container" if="{!onlyOneCard}" ontouchend="MakeMainCheck()">
       <p class="card-edit-makemain-text">{window.languages.ViewCardEditMakeMainText}</p>
@@ -98,10 +99,10 @@
               scope.cardsArray[scope.card.card_id].name = newCardName;
               console.log("name new=", scope.cardsArray[scope.card.card_id].name);
               //TODO: CHANGED - COMMENTED
-//              if (isMain == scope.card.default_account) {
+              if (isMain == scope.card.default_account) {
               localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
               onBackKeyDown();
-//              }
+              }
             }
             else {
               alert(result[0][0].error_note);
@@ -142,6 +143,26 @@
                   scope.cardsArray[i].countCard = j++;
                 }
               }
+              var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+              console.log('LOGIN', loginInfo)
+              loginInfo.default_account = result[1][0].default_account_id;
+              console.log('LOGIN AFTER', loginInfo)
+              localStorage.setItem('click_client_cards', JSON.stringify(loginInfo));
+
+              var getAccountsCards = [];
+
+              if (localStorage.getItem('click_client_accountInfo')) {
+                getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
+                for (var i = 0; i < getAccountsCards.length; i++) {
+                  if (getAccountsCards[i].id == result[1][0].default_account_id) {
+                    var tmp = getAccountsCards[0];
+                    getAccountsCards[0] = getAccountsCards[i];
+                    getAccountsCards[i] = tmp;
+                  }
+                }
+                localStorage.setItem('click_client_accountInfo', JSON.stringify(getAccountsCards))
+              }
+
               cardsarrayTwo = {};
               for (var i = 0; i < Object.keys(scope.cardsArray).length; i++) {
                 for (var k in scope.cardsArray) {
