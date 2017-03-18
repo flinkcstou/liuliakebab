@@ -2935,7 +2935,8 @@ var css = {
   "height:60%;" +
   "top: 7.5%;" +
   "background-color: transparent;" +
-  "overflow: scroll;" +
+  "overflow-x: hidden;" +
+  "overflow-y: auto;" +
   "}",
 
   pincardCardContainer: ".pincard-card-container" +
@@ -2974,7 +2975,11 @@ var css = {
   "position: absolute;" +
   "font-size: " + 24 * widthK + "px; " +
   "color: gray;" +
+  "width: 110%;" +
   "left: -1%;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
   "}",
 
   pincardCardInfoTextTwo: ".pincard-card-info-text-two" +
@@ -2985,6 +2990,9 @@ var css = {
   "color: rgba(80, 185, 8, 0.77);" +
   "top: 10%;" +
   "width: 110%;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
   "}",
 
   pincardCardInfoTextThree: ".pincard-card-info-text-three" +
@@ -6691,6 +6699,7 @@ var css = {
   "width:90%;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
+  "overflow: hidden;" +
     //"top: 9%;" +
   "}",
 

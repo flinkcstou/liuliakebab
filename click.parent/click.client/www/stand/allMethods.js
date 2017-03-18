@@ -118,7 +118,7 @@ window.fakedSocket.register("get.accounts", function (input) {
       card_background_url: 'https://merchant.click.uz/static/content/app/card/1.png',
       currency_code: "UZS",
       currency_name: "тенге                                               ",
-      description: "Карта KAZKOM-Online",
+      description: "Карта KAZKOM-Online Kazakhstan Halyk Bank Group",
       expire_date: "1806",
       id: 2484171,
       image_url: "https://my.click.uz/static/content/app/bank/aab.png",
@@ -257,7 +257,7 @@ window.fakedSocket.register("get.balance", function (input) {
         [{"method": 'get.balance', "success": 1, "error": 0, "error_note": ""}],
         [{
           "account_id": input.parameters.account_id,
-          "balance": 4552122
+          "balance": 433552122
         }]
       ];
     }
