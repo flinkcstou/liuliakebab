@@ -91,6 +91,14 @@
 
     if (!mNumber) {
       mNumber = new Date().getMonth();
+      console.log("DRGHFD", mNumber);
+
+      this.on('mount', function () {
+//        monthContainerId.scrollLeft = (320 * mNumber) * widthK;
+        monthContainerTouchStart();
+        monthContainerTouchEnd();
+//      changePosition();
+      });
     }
 
 
@@ -106,12 +114,10 @@
 
       if (scope.firstReportView) {
         graphButtonId.style.backgroundImage = "url(resources/icons/ViewReport/reports_chart_off.png)";
-
         paymentListUpdate();
       }
       else {
         graphButtonId.style.backgroundImage = "url(resources/icons/ViewReport/reports_chart_on.png)";
-
         graphListUpdate();
       }
     }
