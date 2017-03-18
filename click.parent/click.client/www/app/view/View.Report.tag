@@ -41,7 +41,22 @@
   </div>
 
 
-  <div class="view-reports-body-container" if="{!firstReportView}">
+  <div class="view-reports-graph-body-container" if="{!firstReportView}">
+    <div class="view-reports-graph-bigamount-container">
+      <p class="view-reports-graph-bigamount-text">50 078 970 сум</p>
+      <p class="view-reports-graph-bigamount-detail-text">Данные актуальны на 15.02.2017</p>
+    </div>
+    <div class="view-reports-graph-image-container"></div>
+    <div class="view-reports-graph-content-container">
+
+      <div class="view-reports-graph-block-containter" each="{j in graphList}">
+        <div class="view-reports-graph-block-icon"
+             style="background-image: url({j.image})"></div>
+        <div class="view-reports-graph-block-name-field">{j.category_name}</div>
+        <div class="view-reports-graph-block-amount-field">{j.amount} сум</div>
+        <div class="view-reports-graph-block-next-icon"></div>
+      </div>
+    </div>
 
 
   </div>
@@ -78,14 +93,89 @@
       mNumber = 0;
     }
 
+
     graphView = function () {
       scope.firstReportView = !scope.firstReportView;
       riot.update(scope.firstReportView);
 
-      if (scope.firstReportView)
+      var date = new Date();
+      var firstDay = new Date(date.getFullYear(), mNumber, 1);
+      var lastDay = new Date(date.getFullYear(), mNumber + 1, 0);
+      console.log("firstDay=", firstDay);
+      console.log("lastDay=", lastDay);
+
+      if (scope.firstReportView) {
         graphButtonId.style.backgroundImage = "url(resources/icons/ViewReport/reports_chart_off.png)";
-      else
+
+        scope.paymentsList = [];
+        window.api.call({
+          method: 'get.payment.list',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            date_start: convertDate(firstDay),
+            date_end: convertDate(lastDay)
+          },
+          scope: this,
+
+          onSuccess: function (result) {
+            console.log(result)
+            console.log(result[0][0])
+            if (result[0][0].error == 0) {
+              for (var i in result[1]) {
+                scope.paymentsList.push(result[1][i])
+              }
+              console.log('ASAASASDASDFAAS', scope.paymentsList);
+              riot.update(scope.paymentsList)
+            }
+            else {
+              alert(result[0][0].error_note);
+            }
+
+          },
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+      }
+      else {
         graphButtonId.style.backgroundImage = "url(resources/icons/ViewReport/reports_chart_on.png)";
+
+        scope.graphList = [];
+
+        window.api.call({
+          method: 'history.chart.data',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            date_start: convertDate(firstDay),
+            date_end: convertDate(lastDay)
+
+          },
+          scope: this,
+
+          onSuccess: function (result) {
+            console.log(result)
+            console.log(result[0][0])
+            if (result[0][0].error == 0) {
+              for (var i in result[1]) {
+                scope.graphList.push(result[1][i])
+              }
+              riot.update(scope.graphList)
+              console.log('history chart data', scope.graphList);
+            }
+            else {
+              alert(result[0][0].error_note);
+            }
+
+          },
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+      }
     }
 
     sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
@@ -134,35 +224,6 @@
       }
     });
 
-    //    window.api.call({
-    //      method: 'history.chart.data',
-    //      input: {
-    //        session_key: sessionKey,
-    //        phone_num: phoneNumber,
-    //
-    //      },
-    //      scope: this,
-    //
-    //      onSuccess: function (result) {
-    //        console.log(result)
-    //        console.log(result[0][0])
-    //        if (result[0][0].error == 0) {
-    //          for (var i in result[1]) {
-    //            scope.paymentsList.push(result[1][i])
-    //          }
-    //          riot.update(scope.paymentsList)
-    //          console.log('history chart data', result);
-    //        }
-    //        else {
-    //          alert(result[0][0].error_note);
-    //        }
-    //
-    //      },
-    //      onFail: function (api_status, api_status_message, data) {
-    //        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-    //        console.error(data);
-    //      }
-    //    });
 
     monthContainerTouchStart = function () {
       console.log("in start touch=", mNumber);
@@ -239,38 +300,73 @@
       console.log("firstDay=", firstDay);
       console.log("lastDay=", lastDay);
 
-      scope.paymentsList = [];
 
-      window.api.call({
-        method: 'get.payment.list',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          date_start: convertDate(firstDay),
-          date_end: convertDate(lastDay)
-        },
-        scope: this,
+      if (scope.firstReportView) {
+        scope.paymentsList = [];
+        window.api.call({
+          method: 'get.payment.list',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            date_start: convertDate(firstDay),
+            date_end: convertDate(lastDay)
+          },
+          scope: this,
 
-        onSuccess: function (result) {
-          console.log(result)
-          console.log(result[0][0])
-          if (result[0][0].error == 0) {
-            for (var i in result[1]) {
-              scope.paymentsList.push(result[1][i])
+          onSuccess: function (result) {
+            console.log(result)
+            console.log(result[0][0])
+            if (result[0][0].error == 0) {
+              for (var i in result[1]) {
+                scope.paymentsList.push(result[1][i])
+              }
+              console.log('ASAASASDASDFAAS', scope.paymentsList);
+              riot.update(scope.paymentsList)
             }
-            console.log('ASAASASDASDFAAS', scope.paymentsList);
-            riot.update(scope.paymentsList)
-          }
-          else {
-            alert(result[0][0].error_note);
-          }
+            else {
+              alert(result[0][0].error_note);
+            }
 
-        },
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      });
+          },
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+      } else {
+        scope.graphList = [];
+        window.api.call({
+          method: 'history.chart.data',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            date_start: convertDate(firstDay),
+            date_end: convertDate(lastDay)
+
+          },
+          scope: this,
+
+          onSuccess: function (result) {
+            console.log(result)
+            console.log(result[0][0])
+            if (result[0][0].error == 0) {
+              for (var i in result[1]) {
+                scope.graphList.push(result[1][i])
+              }
+              riot.update(scope.graphList)
+              console.log('history chart data', scope.graphList);
+            }
+            else {
+              alert(result[0][0].error_note);
+            }
+
+          },
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+      }
 
 
       localStorage.setItem('mNumber', mNumber);

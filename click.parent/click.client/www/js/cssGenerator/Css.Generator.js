@@ -6790,6 +6790,16 @@ var css = {
   "overflow-x: hidden; " +
   "}",
 
+  viewReportsGraphBodyContainer: ".view-reports-graph-body-container" +
+  "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 170 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: white; " +
+  "}",
+
   viewReportsFilterContainer: ".view-reports-filter-container " +
   "{" +
   "position: absolute;" +
@@ -6936,6 +6946,117 @@ var css = {
   "color: #8b8b8b;" +
   "}",
 
+  //graph
+
+  viewReportsGraphBigamountContainer: ".view-reports-graph-bigamount-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 16%;" +
+  "width: 85%;" +
+  "left: 7%;" +
+  "color: black;" +
+  "}",
+
+  viewReportsGraphBigamountText: ".view-reports-graph-bigamount-text " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 15%;" +
+  "margin: 0;" +
+  "font-size: 63px;" +
+  "color:#353340;" +
+  "width: 100%;" +
+  "text-align: center;" +
+  "}",
+
+  viewReportsGraphBigamountDetailText: ".view-reports-graph-bigamount-detail-text " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 63%;" +
+  "margin: 0;" +
+  "font-size: 22px;" +
+  "width: 100%;" +
+  "text-align: center;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewReportsGraphImageContainer: ".view-reports-graph-image-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 45%;" +
+  "top: 16%;" +
+  "width: 100%;" +
+  "color: black;" +
+  "background-color: lightgray;" +
+  "}",
+
+  viewReportsGraphContentContainer: ".view-reports-graph-content-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 39%;" +
+  "top: 61%;" +
+  "width: 100%;" +
+  "color: black;" +
+  "overflow-y: auto;" +
+  "overflow-x: hidden;" +
+  "}",
+
+  viewReportsGraphBlockContainer: ".view-reports-graph-block-containter" +
+  "{" +
+  "position: relative;" +
+  "height:" + 122 * widthK + "px; " +
+  "width: 91%;" +
+  "left: 4%;" +
+  "margin-top: 1%;" +
+  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "background-color: transparent;" +
+  "}",
+
+  viewReportsGraphBlockNameField: ".view-reports-graph-block-name-field" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "top: " + 10 * widthK + "px; " +
+  "left: 15%;" +
+  "text-align: left;" +
+  "font-size:" + 29 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  viewReportsGraphBlockAmountField: ".view-reports-graph-block-amount-field" +
+  "{" +
+  "position: absolute;" +
+  "top: 40%;" +
+  "left: 15%;" +
+  "margin: 0;" +
+  "font-size:" + 45 * widthK + "px;" +
+  "color: #ee4d3d;" +
+  "}",
+
+  viewReportsGraphBlockIcon: ".view-reports-graph-block-icon" +
+  "{" +
+  "position: relative;" +
+  "width: 13%;" +
+  "height:" + 95 * widthK + "px; " +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "float: left;" +
+  "background-size: 50%;" +
+  "}",
+
+  viewReportsGraphBlockNextIcon: ".view-reports-graph-block-next-icon" +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 10%;" +
+  "height: 100%;" +
+  "top: 0;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 17%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/ViewInfo/open.png);" +
+  "}",
 
 }
 

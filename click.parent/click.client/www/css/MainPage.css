@@ -3720,3 +3720,10 @@ input {
   background-color: #01cfff;
   bottom: 10%;
 }
+
+/*VIEW REPORT*/
+
+.view-reports-graph-bigamount-text {
+  position: absolute;
+
+}
