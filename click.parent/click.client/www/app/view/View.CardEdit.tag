@@ -9,7 +9,8 @@
   <div class="card-edit-body-container">
     <div class="card-edit-field">
       <p class="card-edit-text-field">{window.languages.ViewCardEditCardNameText}</p>
-      <input maxlength="25" onfocus="cardEditFoucs()" id="cardNameInputID" class="card-edit-input" value="{defaultName}"/>
+      <input maxlength="25" onfocus="cardEditFocus()" id="cardNameInputID" class="card-edit-input"
+             value="{defaultName}"/>
     </div>
     <div class="card-edit-makemain-container" if="{!onlyOneCard}" ontouchend="MakeMainCheck()">
       <p class="card-edit-makemain-text">{window.languages.ViewCardEditMakeMainText}</p>
@@ -65,9 +66,6 @@
     cardEditFocus = function () {
       event.preventDefault()
       event.stopPropagation()
-
-      window.scrollTo(0, 0);
-      document.body.scrollTop = 0;
     }
 
     saveEdit = function () {
@@ -98,10 +96,11 @@
               scope.cardsArray[scope.card.card_id].name = newCardName;
               console.log("name new=", scope.cardsArray[scope.card.card_id].name);
               //TODO: CHANGED - COMMENTED
-//              if (isMain == scope.card.default_account) {
-              localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
-              onBackKeyDown();
-//              }
+              if (isMain == scope.card.default_account) {
+                localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
+                onBackKeyDown();
+              }
+
             }
             else {
               alert(result[0][0].error_note);
@@ -142,6 +141,7 @@
                   scope.cardsArray[i].countCard = j++;
                 }
               }
+
               cardsarrayTwo = {};
               for (var i = 0; i < Object.keys(scope.cardsArray).length; i++) {
                 for (var k in scope.cardsArray) {

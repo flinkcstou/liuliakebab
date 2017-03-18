@@ -46,8 +46,8 @@
       event.preventDefault();
       event.stopPropagation();
 
-      riotTags.innerHTML = "<view-account-detail>";
-      riot.mount('view-account-detail');
+      riotTags.innerHTML = "<view-transfer-to-card>";
+      riot.mount('view-transfer-to-card');
     }
   </script>
 </component-bank-operations>

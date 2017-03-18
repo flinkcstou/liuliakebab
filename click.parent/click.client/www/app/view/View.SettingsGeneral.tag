@@ -146,12 +146,14 @@
             },
             function (blob, didItResize) {
               // didItResize will be true if it managed to resize it, otherwise false (and will return the original file as 'blob')
-              imageUserAvatarId.src = window.URL.createObjectURL(blob);
+//              imageUserAvatarId.src = window.URL.createObjectURL(blob);
               var convertReader = new FileReader();
               convertReader.readAsDataURL(blob);
 
               convertReader.onload = function () {
                 scope.base64Data = convertReader.result;
+                var index = scope.base64Data.indexOf(',');
+                var base64Cut = scope.base64Data.substring(index + 1, scope.base64Data.length)
 
                 var phoneNumber = localStorage.getItem("click_client_phoneNumber");
                 var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -163,14 +165,14 @@
                     input: {
                       session_key: sessionKey,
                       phone_num: phoneNumber,
-                      data: scope.base64Data,
+                      data: base64Cut,
                     },
                     //TODO: DO CARDS
                     scope: this,
                     onSuccess: function (result) {
                       if (result[0][0].error == 0) {
                         if (result[1][0]) {
-                          console.log('result[1][0]', result[1][0])
+                          imageUserAvatarId.src = scope.base64Data
                         }
                       }
                       else

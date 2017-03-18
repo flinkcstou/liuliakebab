@@ -148,7 +148,7 @@
       modeOfApp.onlineMode = false
       modeOfApp.offlineMode = true;
       var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-      console.log('sessionKey', sessionKey)
+//      console.log('sessionKey', sessionKey)
       if (loginInfo) {
         this.riotTags.innerHTML = "<view-main-page>";
         riot.mount('view-main-page');
@@ -233,10 +233,10 @@
         scope: this,
 
         onSuccess: function (result) {
-          console.log(result[0][0])
+//          console.log(result[0][0])
           if (result[0][0].error == 0) {
             if (!result[1][0].error) {
-              console.log("APP LOGIN RESULT", result);
+//              console.log("APP LOGIN RESULT", result);
               localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
               modeOfflineMode.check = false;
               var JsonInfo = JSON.stringify(result[1][0]);
@@ -299,7 +299,7 @@
                       arrayAccountInfo.push(result[1][i]);
 
                       var icon = result[1][i].card_background_url;
-                      console.log();
+
                       var filename = icon.substr(icon.lastIndexOf('/') + 1);
 //                      alert("filename=" + filename);
 
@@ -370,7 +370,7 @@
         }
 
         if (!localStorage.getItem("click_client_payCategoryList")) {
-          console.log("yjxvgcdwvkucli");
+
           scope.categoryList = [];
           scope.categoryNamesMap = {};
           window.api.call({
@@ -409,7 +409,7 @@
 
 
                           if (result[1].length == scope.categoryList.length) {
-                            console.log("save into localstorage, categoryList=", scope.categoryList);
+//                            console.log("save into localstorage, categoryList=", scope.categoryList);
                             riot.update(scope.categoryList);
                             localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
                             localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
@@ -446,13 +446,13 @@
 //        if (!(localStorage.getItem("click_client_payServiceList") && localStorage.getItem("click_client_servicesMapByCategory")
 //            && localStorage.getItem("click_client_servicesMap"))) {
         refreshServiceList = function () {
-          console.log("IN SERVICE LIST FUNC");
+//          console.log("IN SERVICE LIST FUNC");
           scope.serviceList = [];
           scope.servicesMapByCategory = {};
           scope.servicesMap = {};
           scope.serviceNamesMap = {};
           scope.operatorKey = phoneNumber.substr(3, 2);
-          console.log("MOPERATORS!!!!!!!!!!!!!!", window.mOperators[scope.operatorKey]);
+//          console.log("MOPERATORS!!!!!!!!!!!!!!", window.mOperators[scope.operatorKey]);
           window.api.call({
             method: 'get.service.list',
             input: {
@@ -511,7 +511,7 @@
                               scope.servicesMapByCategory[scope.serviceList[index].category_id] = [];
                               if (scope.serviceList[index].category_id == 1 && scope.serviceList[index].id == window.mOperators[scope.operatorKey]) {
                                 localStorage.setItem('myNumberOperatorId', scope.serviceList[index].id);
-                                console.log("MY NUMBER ID", scope.serviceList[index].id);
+//                                console.log("MY NUMBER ID", scope.serviceList[index].id);
 
                                 var myNumberObject = {};
                                 myNumberObject.name = 'Мой номер';
@@ -537,7 +537,7 @@
 
 
                             if ((result[1].length - inVisibleNum) == scope.serviceList.length) {
-                              console.log("save into localstorage");
+//                              console.log("save into localstorage");
                               localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
                               localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
                               localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
@@ -553,7 +553,7 @@
 
                     for (var i in result[1]) {
                       if (result[1][i].is_visible == 1) {
-                        console.log("service id=", result[1][i].id, ", element:", result[1][i]);
+//                        console.log("service id=", result[1][i].id, ", element:", result[1][i]);
 
                         scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
                         scope.serviceList.push(result[1][i]);
@@ -561,7 +561,7 @@
                         if (!scope.servicesMapByCategory[result[1][i].category_id]) {
                           scope.servicesMapByCategory[result[1][i].category_id] = [];
                           if (result[1][i].category_id == 1 && result[1][i].id == window.mOperators[scope.operatorKey]) {
-                            console.log("MY NUMBER");
+//                            console.log("MY NUMBER");
                             localStorage.setItem('myNumberOperatorId', result[1][i].id);
                             var myNumberObject = {};
                             myNumberObject.name = 'Мой номер';
@@ -605,7 +605,7 @@
         refreshServiceList();
 
         servicesParamsInit = function () {
-          console.log("IN SERVICES PARAMS INIT");
+//          console.log("IN SERVICES PARAMS INIT");
           scope.servicesParams = [];
           scope.servicesParamsMapOne = {};
           scope.servicesParamsMapTwo = {};

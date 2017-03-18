@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/account_crop.png);" +
+    //"background-image: url(resources/draft/transfer-to-card-crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -906,15 +906,20 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 23 * widthK + "px;" +
   "height: 10%;" +
+  "width: 90%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   cardBalansCurrencyContainer: ".card-balance-currency-container " +
   "{" +
   "position: absolute;" +
-  "width:" + 400 * widthK + "px;" +
+  "width:" + 500 * widthK + "px;" +
   "top:" + 163 * widthK + "px;" +
   "display: inline-block;" +
   "margin: 0;" +
+  "overflow: hidden;" +
   "}",
 
   cardBalance: ".card-balance " +
@@ -926,6 +931,9 @@ var css = {
   "margin-top:" + -2 * widthK + "px;" +
   "float: left;" +
   "padding: 0;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   cardCurrency: ".card-currency " +
@@ -3522,6 +3530,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 17 * widthK + "px;" +
   "height: 10%;" +
+
   "}",
 
   myCardListCardBalanceCurrencyContainer: ".mycardlist-card-balance-currency-container" +
@@ -6741,6 +6750,67 @@ var css = {
   "border-radius:" + 5 * widthK + "px;" +
   "font-size:" + 29 * widthK + "px;" +
   "width: 44%;" +
+  "}",
+
+  //VIEW TRANSFER TO CARD
+
+  transferToCardContainer: ".transfer-to-card-container" +
+  "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 220 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: #f4f4f4; " +
+  "overflow-y: hidden; " +
+  "overflow-x: hidden; " +
+  "}",
+
+  transferToCardTitleContainer: ".transfer-to-card-title-container" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 220 * widthK + "px;" +
+  "width:100%;" +
+  "background-color: #0280e4;" +
+  "}",
+
+  transferToCardTransferTitlePartOne: ".transfer-to-card-transfer-title-part-one " +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "top: 20%;" +
+  "margin: 0;" +
+  "color: white;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "text-align: center;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "}",
+
+  transferToCardTransferTitlePartTwo: ".transfer-to-card-transfer-title-part-two " +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "top: 27%;" +
+  "margin: 0;" +
+  "color: white;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "text-align: center;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "}",
+
+  transferToCardTransferTitlePhone: ".transfer-to-card-transfer-title-phone " +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "top: 27%;" +
+  "margin: 0;" +
+  "color: white;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "text-align: center;" +
+  "font-size:" + 34 * widthK + "px;" +
   "}",
 
 

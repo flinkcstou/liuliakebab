@@ -25,15 +25,16 @@
 
       if (localStorage.getItem('click_client_accountInfo')) {
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
+        var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'))
         for (var i = 0; i < getAccountsCards.length; i++) {
-          console.log(getAccountsCards[i].id, loginInfo.default_account)
           if (getAccountsCards[i].id == loginInfo.default_account) {
-            defaultAccountId = getAccountsCards[i].id;
             var tmp = getAccountsCards[0];
             getAccountsCards[0] = getAccountsCards[i];
             getAccountsCards[i] = tmp;
           }
         }
+
+
         count = 0;
         if (JSON.parse(localStorage.getItem("click_client_cards"))) {
           localStorage.removeItem("click_client_cards")
@@ -45,8 +46,6 @@
       var numberOfCardPartTwo;
       var typeOfCard;
 
-      console.log("ASD TEST", getAccountsCards);
-
       for (var i = 0; i < getAccountsCards.length; i++) {
 
 
@@ -57,12 +56,10 @@
         else
           defaultAccount = false;
 
-
         numberOfCardPartOne = getAccountsCards[i].accno[0] + getAccountsCards[i].accno[1]
-            + getAccountsCards[i].accno[2] + getAccountsCards[i].accno[3]
+          + getAccountsCards[i].accno[2] + getAccountsCards[i].accno[3]
         numberOfCardPartTwo = getAccountsCards[i].accno[getAccountsCards[i].accno.length - 4] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 3] + +getAccountsCards[i].accno[getAccountsCards[i].accno.length - 2] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 1];
 
-        console.log("ASD TEST COUNT", count);
 
         card = {
           card_id: getAccountsCards[i].id,
@@ -86,9 +83,7 @@
 
         scope.cardsarray[getAccountsCards[i].id] = card;
 
-        console.log("ASD TEST", scope.cardsarray);
         localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
-        console.log('JSON.parse(localStorage.getItem("click_client_cards"))', JSON.parse(localStorage.getItem("click_client_cards")))
 
         count++;
         cardNumber %= count;
@@ -244,6 +239,7 @@
     onComponentCreated();
 
     this.on("mount", function () {
+      console.log("CARDS", JSON.parse(localStorage.getItem("click_client_cards")))
 
       cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -274,34 +270,34 @@
 
                 if (result[1][0].balance.length == 9) {
                   result[1][0].balance = result[1][0].balance.substring(0, 3) + ' ' +
-                      result[1][0].balance.substring(3, 6) + ' ' + result[1][0].balance.substring(6, result[1][0].balance.length)
+                    result[1][0].balance.substring(3, 6) + ' ' + result[1][0].balance.substring(6, result[1][0].balance.length)
                 }
 
                 if (result[1][0].balance.length == 8) {
                   result[1][0].balance = result[1][0].balance.substring(0, 2) + ' ' +
-                      result[1][0].balance.substring(2, 5) + ' ' + result[1][0].balance.substring(5, result[1][0].balance.length)
+                    result[1][0].balance.substring(2, 5) + ' ' + result[1][0].balance.substring(5, result[1][0].balance.length)
                 }
 
                 if (result[1][0].balance.length == 7) {
                   result[1][0].balance = result[1][0].balance.substring(0, 1) + ' ' +
-                      result[1][0].balance.substring(1, 4) + ' ' + result[1][0].balance.substring(4, result[1][0].balance.length)
+                    result[1][0].balance.substring(1, 4) + ' ' + result[1][0].balance.substring(4, result[1][0].balance.length)
                 }
 
                 if (result[1][0].balance.length == 6) {
                   result[1][0].balance = result[1][0].balance.substring(0, 3) + ' ' +
-                      result[1][0].balance.substring(3, result[1][0].balance.length)
+                    result[1][0].balance.substring(3, result[1][0].balance.length)
 
                 }
 
                 if (result[1][0].balance.length == 5) {
                   result[1][0].balance = result[1][0].balance.substring(0, 2) + ' ' +
-                      result[1][0].balance.substring(2, result[1][0].balance.length)
+                    result[1][0].balance.substring(2, result[1][0].balance.length)
 
                 }
 
                 if (result[1][0].balance.length == 4) {
                   result[1][0].balance = result[1][0].balance.substring(0, 1) + ' ' +
-                      result[1][0].balance.substring(1, result[1][0].balance.length)
+                    result[1][0].balance.substring(1, result[1][0].balance.length)
 
                 }
                 scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
@@ -456,7 +452,7 @@
             }
           }
           htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-              'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
+            'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
           riotTags.innerHTML = "<view-my-cards>";
           riot.mount("view-my-cards", [sendChosenCardId]);
           this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';

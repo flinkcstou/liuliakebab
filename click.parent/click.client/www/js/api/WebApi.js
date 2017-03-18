@@ -16,7 +16,6 @@ window.api.initSocket = function () {
   };
   var me = this;
   this.socket.onmessage = function (event) {
-    console.log('EVENT',event)
     var parsedData = JSON.parse(event.data);
     console.log(parsedData)
 
