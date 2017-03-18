@@ -103,6 +103,7 @@
               localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
               onBackKeyDown();
               }
+
             }
             else {
               alert(result[0][0].error_note);
@@ -142,25 +143,6 @@
                   scope.cardsArray[i].default_account = false;
                   scope.cardsArray[i].countCard = j++;
                 }
-              }
-              var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-              console.log('LOGIN', loginInfo)
-              loginInfo.default_account = result[1][0].default_account_id;
-              console.log('LOGIN AFTER', loginInfo)
-              localStorage.setItem('click_client_cards', JSON.stringify(loginInfo));
-
-              var getAccountsCards = [];
-
-              if (localStorage.getItem('click_client_accountInfo')) {
-                getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
-                for (var i = 0; i < getAccountsCards.length; i++) {
-                  if (getAccountsCards[i].id == result[1][0].default_account_id) {
-                    var tmp = getAccountsCards[0];
-                    getAccountsCards[0] = getAccountsCards[i];
-                    getAccountsCards[i] = tmp;
-                  }
-                }
-                localStorage.setItem('click_client_accountInfo', JSON.stringify(getAccountsCards))
               }
 
               cardsarrayTwo = {};
