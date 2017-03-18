@@ -493,7 +493,6 @@
     var checkCardMenu = false;
 
 
-
     scope.searchWord = '';
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;
