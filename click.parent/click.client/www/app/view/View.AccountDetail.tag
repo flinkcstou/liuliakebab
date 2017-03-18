@@ -28,6 +28,8 @@
         <p class="account-detail-number">6497 9863</p>
       </div>
 
+      <component-pincards></component-pincards>
+
       <div class="account-detail-buttons-container">
         <p class="account-detail-button-accept">ПРИНЯТЬ</p>
         <p class="account-detail-button-cancel">ОТКЛОНИТЬ</p>

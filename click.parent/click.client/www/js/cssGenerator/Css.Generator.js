@@ -2911,7 +2911,7 @@ var css = {
 
   pincardPayfromContainer: ".pincard-payfrom-container" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "background-color: transparent;" +
   "width: 100%;" +
   "height: 7.5%;" +
@@ -2930,7 +2930,7 @@ var css = {
 
   pincardAllcardsContainer: ".pincard-allcards-container" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "width: 100%;" +
   "height:60%;" +
   "top: 7.5%;" +
@@ -4095,7 +4095,7 @@ var css = {
 
   transferThreeMenusContainer: ".transferthree-menus-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "height: 7.5%;" +
   "width: 100%;" +
   "top: 0%;" +
