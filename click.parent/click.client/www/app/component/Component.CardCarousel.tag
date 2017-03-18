@@ -25,9 +25,9 @@
 
       if (localStorage.getItem('click_client_accountInfo')) {
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
+        var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'))
         for (var i = 0; i < getAccountsCards.length; i++) {
           if (getAccountsCards[i].id == loginInfo.default_account) {
-            defaultAccountId = getAccountsCards[i].id;
             var tmp = getAccountsCards[0];
             getAccountsCards[0] = getAccountsCards[i];
             getAccountsCards[i] = tmp;
@@ -239,9 +239,7 @@
     onComponentCreated();
 
     this.on("mount", function () {
-
-      console.log(JSON.parse(localStorage.getItem('click_client_accountInfo')))
-
+      console.log("CARDS", JSON.parse(localStorage.getItem("click_client_cards")))
 
       cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';

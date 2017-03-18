@@ -9,7 +9,7 @@
   <div class="card-edit-body-container">
     <div class="card-edit-field">
       <p class="card-edit-text-field">{window.languages.ViewCardEditCardNameText}</p>
-      <input maxlength="25" onfocus="cardEditFoucs()" id="cardNameInputID" class="card-edit-input"
+      <input maxlength="25" onfocus="cardEditFocus()" id="cardNameInputID" class="card-edit-input"
              value="{defaultName}"/>
     </div>
     <div class="card-edit-makemain-container" if="{!onlyOneCard}" ontouchend="MakeMainCheck()">
@@ -66,9 +66,6 @@
     cardEditFocus = function () {
       event.preventDefault()
       event.stopPropagation()
-
-      window.scrollTo(0, 0);
-      document.body.scrollTop = 0;
     }
 
     saveEdit = function () {
@@ -100,8 +97,8 @@
               console.log("name new=", scope.cardsArray[scope.card.card_id].name);
               //TODO: CHANGED - COMMENTED
               if (isMain == scope.card.default_account) {
-              localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
-              onBackKeyDown();
+                localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
+                onBackKeyDown();
               }
 
             }
