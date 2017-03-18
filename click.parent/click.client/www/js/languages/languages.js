@@ -199,6 +199,9 @@ var RU_LANGUAGES =
 
   "ViewAccountDetailTransferIconTitleOne": "Получен счет",
   "ViewAccountDetailTransferIconTitleTwo": "от пользователя CLICK",
+  "ViewAccountDetailTitleSum": "Сумма платежа:",
+  "ViewAccountDetailTitlePayFor": "Оплата за:",
+  "ViewAccountDetailTitlePayFrom": "Оплата с:",
 
   "ViewReportMonthsArray": [{"name": "Январь", "count": 1}, {"name": "Февраль", "count": 2}, {
     "name": "Март",

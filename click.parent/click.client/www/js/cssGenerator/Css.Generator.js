@@ -4143,7 +4143,7 @@ var css = {
   "border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
   "background-color: rgb(1, 124, 227);" +
-  "top: 75%;" +
+  "top: 20%;" +
   "}",
 
   transferThreeNextButtonLabel: ".transferthree-next-button-label" +
@@ -6565,7 +6565,17 @@ var css = {
   "}",
 
 
-  accountDetailTransferContainer: ".account-detail-transfer-container " +
+  accountDetailTransferContainer: ".account-detail-payment-container " +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "height: 11.5%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "border-bottom: 1px solid lightgrey;" +
+  "}",
+
+  accountDetailTransferPayFromContainer: ".account-detail-payment-pay-from-container " +
   "{" +
   "position: relative;" +
   "width: 90%;" +
@@ -6650,7 +6660,19 @@ var css = {
   "color: #9ec94a;" +
   "}",
 
-  accountDetailNumber: ".account-detail-number " +
+  accountDetailPayFor: ".account-detail-pay-for " +
+  "{" +
+  "position: absolute;" +
+  "top: 57%;" +
+  "left: 3%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: grey;" +
+  "}",
+
+  accountDetailPayFrom: ".account-detail-pay-from " +
   "{" +
   "position: absolute;" +
   "top: 57%;" +

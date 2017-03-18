@@ -8,10 +8,10 @@
       </div>
       <div class="account-detail-transfer-icon"></div>
       <p class="account-detail-transfer-icon-title-part-one">
-        {window.languages.ViewTransferDetailTransferIconTitleOne}</p>
+        {window.languages.ViewAccountDetailTransferIconTitleOne}</p>
 
       <p class="account-detail-transfer-icon-title-part-two">
-        {window.languages.ViewTransferDetailTransferIconTitleTwo}</p>
+        {window.languages.ViewAccountDetailTransferIconTitleTwo}</p>
 
       <p class="account-detail-transfer-icon-title-phone">
         +99890974322344</p>
@@ -19,13 +19,17 @@
     </div>
 
     <div class="account-detail-container">
-      <div class="account-detail-transfer-container">
-        <p class="account-detail-title">{window.languages.ViewTransferDetailTitleSum}</p>
+      <div class="account-detail-payment-container">
+        <p class="account-detail-title">{window.languages.ViewAccountDetailTitleSum}</p>
         <p class="account-detail-sum">115 000 сум</p>
       </div>
-      <div class="account-detail-transfer-container">
-        <p class="account-detail-title">{window.languages.ViewTransferDetailTitleNumber}</p>
-        <p class="account-detail-number">6497 9863</p>
+      <div class="account-detail-payment-container">
+        <p class="account-detail-title">{window.languages.ViewAccountDetailTitlePayFor}</p>
+        <p class="account-detail-pay-for">6497 9863</p>
+      </div>
+
+      <div class="account-detail-payment-pay-from-container">
+        <p class="account-detail-title">{window.languages.ViewAccountDetailTitlePayFrom}</p>
       </div>
 
       <component-pincards></component-pincards>
