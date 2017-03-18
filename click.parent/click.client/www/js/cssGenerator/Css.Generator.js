@@ -6845,7 +6845,7 @@ var css = {
   "left: 3%;" +
   "margin: 0;" +
   "color: white;" +
-  "font-size: 32px;" +
+  "font-size: " + 32 * widthK + "px; " +
   "}",
 
   viewReportsBodyContainer: ".view-reports-body-container" +
@@ -6981,7 +6981,7 @@ var css = {
   "top: 15%;" +
   "left: 8%;" +
   "margin: 0;" +
-  "font-size: 22px;" +
+  "font-size:" + 22 * widthK + "px; " +
   "}",
 
   viewReportsPaymentInfoBalance: ".view-reports-payment-info-balance " +
@@ -7001,7 +7001,7 @@ var css = {
   "top: 65%;" +
   "left: 8%;" +
   "margin: 0;" +
-  "font-size: 22px;" +
+  "font-size: " + 22 * widthK + "px; " +
   "}",
 
   viewReportsPaymentInfoTime: ".view-reports-payment-info-time " +
@@ -7011,7 +7011,7 @@ var css = {
   "width: 10%;" +
   "height: 100%;" +
   "top: 15%;" +
-  "font-size: 22px;" +
+  "font-size: " + 22 * widthK + "px; " +
   "margin: 0;" +
   "color: #8b8b8b;" +
   "}",
@@ -7033,7 +7033,7 @@ var css = {
   "height: 25%;" +
   "top: 15%;" +
   "margin: 0;" +
-  "font-size: 63px;" +
+  "font-size: " + 63 * widthK + "px; " +
   "color:#353340;" +
   "width: 100%;" +
   "text-align: center;" +
@@ -7045,7 +7045,7 @@ var css = {
   "height: 25%;" +
   "top: 63%;" +
   "margin: 0;" +
-  "font-size: 22px;" +
+  "font-size: " + 22 * widthK + "px; " +
   "width: 100%;" +
   "text-align: center;" +
   "color: #8b8b8b;" +
