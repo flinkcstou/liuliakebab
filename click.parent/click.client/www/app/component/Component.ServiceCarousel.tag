@@ -86,24 +86,24 @@
                 }, onErrorLoadFs);
               }
               else {
-              for (var i in result[1]) {
-                if (scope.popularServiceList.length < 4) {
-                  console.log("FTYFJUKVG", result[1][i]);
-                  scope.popularServiceList.push(result[1][i]);
+                for (var i in result[1]) {
+                  if (scope.popularServiceList.length < 4) {
+                    console.log("FTYFJUKVG", result[1][i]);
+                    scope.popularServiceList.push(result[1][i]);
+                  }
                 }
-              }
-              if (scope.popularServiceList.length == 3) {
-                var myNumberObject = {};
-                myNumberObject.name = 'Мой номер';
-                myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
-                myNumberObject.id = 'mynumber' + localStorage.getItem('myNumberOperatorId');
-                scope.popularServiceList.push(myNumberObject);
-              }
+                if (scope.popularServiceList.length == 3) {
+                  var myNumberObject = {};
+                  myNumberObject.name = 'Мой номер';
+                  myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+                  myNumberObject.id = 'mynumber' + localStorage.getItem('myNumberOperatorId');
+                  scope.popularServiceList.push(myNumberObject);
+                }
 
-              console.log("popular services", scope.popularServiceList);
-              riot.update(scope.popularServiceList);
-              localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
-//              }
+                console.log("popular services", scope.popularServiceList);
+                riot.update(scope.popularServiceList);
+                localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
+              }
             }
           }
           else {

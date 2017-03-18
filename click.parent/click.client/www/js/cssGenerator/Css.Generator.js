@@ -6985,6 +6985,10 @@ var css = {
   "left: 8%;" +
   "margin: 0;" +
   "font-size:" + 22 * widthK + "px; " +
+  "width: 75%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   viewReportsPaymentInfoBalance: ".view-reports-payment-info-balance " +
@@ -7005,6 +7009,10 @@ var css = {
   "left: 8%;" +
   "margin: 0;" +
   "font-size: " + 22 * widthK + "px; " +
+  "width: 75%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   viewReportsPaymentInfoTime: ".view-reports-payment-info-time " +

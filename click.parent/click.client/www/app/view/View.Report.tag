@@ -90,15 +90,16 @@
 
 
     if (!mNumber) {
-      mNumber = new Date().getMonth();
-      console.log("DRGHFD", mNumber);
-
-      this.on('mount', function () {
-//        monthContainerId.scrollLeft = (320 * mNumber) * widthK;
-        monthContainerTouchStart();
-        monthContainerTouchEnd();
-//      changePosition();
-      });
+      mNumber = 0;
+//      mNumber = new Date().getMonth();
+//      console.log("DRGHFD", mNumber);
+//
+//      this.on('mount', function () {
+////        monthContainerId.scrollLeft = (320 * mNumber) * widthK;
+//        monthContainerTouchStart();
+//        monthContainerTouchEnd();
+////      changePosition();
+//      });
     }
 
 
