@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/account_crop.png);" +
-    //"opacity: 0.6;" +
+    "background-image: url(resources/draft/account_crop.png);" +
+    "opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
-  "background: -webkit-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
-  "background: -ms-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+  //"background: -moz-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+  //"background: -webkit-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+  //"background: -ms-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -6688,7 +6688,9 @@ var css = {
   "{" +
   "position: relative;" +
   "height: 72%;" +
-  "width:100%;" +
+  "width:90%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
     //"top: 9%;" +
   "}",
 
@@ -6706,14 +6708,14 @@ var css = {
   "margin: 0;" +
   "float: left;" +
   "text-align: center;" +
-  "margin-left: 6%;" +
+  "margin-left: 1%;" +
   "color: white;" +
   "background-color: #0280e4;" +
   "height:" + 62 * widthK + "px;" +
   "line-height:" + 63 * widthK + "px;" +
   "border-radius:" + 5 * widthK + "px;" +
   "font-size:" + 29 * widthK + "px;" +
-  "width: 40%;" +
+  "width: 44%;" +
   "}",
 
   accountDetailButtonCancel: ".account-detail-button-cancel" +
@@ -6722,14 +6724,14 @@ var css = {
   "margin: 0;" +
   "float: left;" +
   "text-align: center;" +
-  "margin-left: 8%;" +
+  "margin-left: 9%;" +
   "color: white;" +
   "background-color: #f46b5b;" +
   "height:" + 62 * widthK + "px;" +
   "line-height:" + 63 * widthK + "px;" +
   "border-radius:" + 5 * widthK + "px;" +
   "font-size:" + 29 * widthK + "px;" +
-  "width: 40%;" +
+  "width: 44%;" +
   "}",
 
 
