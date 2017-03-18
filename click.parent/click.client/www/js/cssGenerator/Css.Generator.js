@@ -6781,7 +6781,7 @@ var css = {
   "position: absolute;" +
   "height: 25%;" +
   "top: 30%;" +
-  "left: 8%;" +
+  "left: 3%;" +
   "margin: 0;" +
   "color: white;" +
   "font-size: 32px;" +
@@ -6820,7 +6820,7 @@ var css = {
   "width:" + 60 * widthK + "px;" +
   "height:" + 92 * widthK + "px;" +
   "right:0;" +
-  "background-image: url('resources/icons/ViewService/unchecked.png');" +
+  "background-image: url('resources/icons/ViewReport/reports_filters.png');" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 31%;" +
   "background-position-y: center;" +
@@ -6835,7 +6835,7 @@ var css = {
   "width:" + 138 * widthK + "px;" +
   "height:" + 92 * widthK + "px;" +
   "right:" + -36 * widthK + "px;" +
-  "background-image: url('resources/icons/ViewService/unchecked.png');" +
+  "background-image: url('resources/icons/ViewReport/reports_chart_off.png');" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 31%;" +
   "background-position-y: center;" +
@@ -6891,6 +6891,7 @@ var css = {
   "background-position: center;" +
   "border-radius:" + 100 * widthK + "px;" +
   "border:solid 1px #b7b7b7;" +
+  "top: 6%;" +
   "}",
 
   viewReportsPaymentInfoContainer: ".view-reports-payment-info-container " +
@@ -6906,7 +6907,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: 25%;" +
-    //"top: -8%;" +
+  "top: 15%;" +
   "left: 8%;" +
   "margin: 0;" +
   "font-size: 22px;" +
@@ -6915,7 +6916,7 @@ var css = {
   viewReportsPaymentInfoBalance: ".view-reports-payment-info-balance " +
   "{" +
   "position: absolute;" +
-  "top: 14%;" +
+  "top: 30%;" +
   "left: 8%;" +
   "margin: 0;" +
   "font-size:" + 45 * widthK + "px;" +
@@ -6926,10 +6927,22 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: 25%;" +
-  "top: 50%;" +
+  "top: 65%;" +
   "left: 8%;" +
   "margin: 0;" +
   "font-size: 22px;" +
+  "}",
+
+  viewReportsPaymentInfoTime: ".view-reports-payment-info-time " +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 10%;" +
+  "height: 100%;" +
+  "top: 15%;" +
+  "font-size: 22px;" +
+  "margin: 0;" +
+  "color: #8b8b8b;" +
   "}",
 
 
