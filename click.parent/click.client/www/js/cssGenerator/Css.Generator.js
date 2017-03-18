@@ -6531,6 +6531,177 @@ var css = {
   "width: 40%;" +
   "}",
 
+  //ACCOUNT DETAIL VIEW
+
+  accountDetailContainer: ".account-detail-container" +
+  "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 380 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: #f4f4f4; " +
+  "overflow-y: auto; " +
+  "overflow-x: hidden; " +
+  "}",
+
+  accountDetailTitleContainer: ".account-detail-title-container" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 380 * widthK + "px;" +
+  "width:100%;" +
+  "background-color: #0280e4;" +
+  "}",
+
+  accountDetailPageTitle: ".account-detail-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 0px;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 19 * widthK + "px;" +
+  "height:" + 84 * widthK + "px;" +
+  "background: transparent;" +
+  "border: none;" +
+  "}",
+
+
+  accountDetailTransferContainer: ".account-detail-transfer-container " +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "height: 11.5%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "border-bottom: 1px solid lightgrey;" +
+  "}",
+
+  accountDetailTransferIcon: ".account-detail-transfer-icon" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 90 * widthK + "px;" +
+  "width:" + 90 * widthK + "px;" +
+  "top:" + 104 * widthK + "px;" +
+  "left: 44%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 70%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/bank-operations/payment.png);" +
+  "}",
+
+  accountDetailTransferIconTitlePartOne: ".account-detail-transfer-icon-title-part-one " +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "top: 59%;" +
+  "margin: 0;" +
+  "color: white;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "text-align: center;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "}",
+
+  accountDetailTransferIconTitlePartTwo: ".account-detail-transfer-icon-title-part-two " +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "top: 57%;" +
+  "margin: 0;" +
+  "color: white;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "text-align: center;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "}",
+
+  accountDetailTransferIconTitlePhone: ".account-detail-transfer-icon-title-phone " +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "top: 56%;" +
+  "margin: 0;" +
+  "color: white;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "text-align: center;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "}",
+
+  accountDetailTitle: ".account-detail-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 28%;" +
+  "left: 3%;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "}",
+
+  accountDetailSum: ".account-detail-sum " +
+  "{" +
+  "position: absolute;" +
+  "top: 57%;" +
+  "left: 3%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: #9ec94a;" +
+  "}",
+
+  accountDetailNumber: ".account-detail-number " +
+  "{" +
+  "position: absolute;" +
+  "top: 57%;" +
+  "left: 3%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: grey;" +
+  "}",
+
+  accountDetailButtonsContainer: ".account-detail-buttons-container" +
+  "{" +
+  "position: relative;" +
+  "height: 13%;" +
+  "width:100%;" +
+  "top: 9%;" +
+  "}",
+
+  accountDetailButtonAccept: ".account-detail-button-accept" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "float: left;" +
+  "text-align: center;" +
+  "margin-left: 6%;" +
+  "color: white;" +
+  "background-color: #0280e4;" +
+  "height:" + 62 * widthK + "px;" +
+  "line-height:" + 63 * widthK + "px;" +
+  "border-radius:" + 5 * widthK + "px;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "width: 40%;" +
+  "}",
+
+  accountDetailButtonCancel: ".account-detail-button-cancel" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "float: left;" +
+  "text-align: center;" +
+  "margin-left: 8%;" +
+  "color: white;" +
+  "background-color: #f46b5b;" +
+  "height:" + 62 * widthK + "px;" +
+  "line-height:" + 63 * widthK + "px;" +
+  "border-radius:" + 5 * widthK + "px;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "width: 40%;" +
+  "}",
+
 
 //  VIEW REPORTS
 

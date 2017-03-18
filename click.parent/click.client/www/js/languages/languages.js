@@ -197,6 +197,9 @@ var RU_LANGUAGES =
   "ViewTransferDetailTitleDate": "Дата перевода:",
   "ViewTransferDetailTitleStatus": "Статус:",
 
+  "ViewAccountDetailTransferIconTitleOne": "Получен счет",
+  "ViewAccountDetailTransferIconTitleTwo": "от пользователя CLICK",
+
   "ViewReportMonthsArray": [{"name": "Январь", "count": 1}, {"name": "Февраль", "count": 2}, {
     "name": "Март",
     "count": 3
