@@ -1661,6 +1661,9 @@ var css = {
   "top:" + 108 * widthK + "px;" +
   "color: white;" +
   "font-weight: normal;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   footerContactsLabelIconContainer: ".footer-contacts-label-icon-container " +
