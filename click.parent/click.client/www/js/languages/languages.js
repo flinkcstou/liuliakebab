@@ -196,6 +196,8 @@ var RU_LANGUAGES =
   "ViewTransferDetailTitleNumber": "Номер перевода:",
   "ViewTransferDetailTitleDate": "Дата перевода:",
   "ViewTransferDetailTitleStatus": "Статус:",
+  "ViewTransferDetailTitleAccept": "ПРИНЯТЬ",
+  "ViewTransferDetailTitleDecline": "ОТКЛОНИТЬ",
 
   "ViewAccountDetailTransferIconTitleOne": "Получен счет",
   "ViewAccountDetailTransferIconTitleTwo": "от пользователя CLICK",
@@ -203,6 +205,8 @@ var RU_LANGUAGES =
   "ViewAccountDetailTitlePayFor": "Оплата за:",
   "ViewAccountDetailTitlePayFrom": "Оплата с:",
   "ViewAccountDetailTitle": "ДЕТАЛИ СЧЕТА",
+  "ViewAccountDetailTitlePay": "ОПЛАТИТЬ",
+  "ViewAccountDetailTitleDecline": "ОТКАЗАТЬ",
 
   "ViewReportMonthsArray": [{"name": "Январь", "count": 1}, {"name": "Февраль", "count": 2}, {
     "name": "Март",

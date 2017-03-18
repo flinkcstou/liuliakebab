@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/transfer-detail-crop.png);" +
+    //"background-image: url(resources/draft/account_crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -6579,7 +6579,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 90%;" +
-  "height: 11.5%;" +
+  "height: 10%;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "border-bottom: 1px solid lightgrey;" +
@@ -6697,7 +6697,7 @@ var css = {
   "position: relative;" +
   "height: 13%;" +
   "width:100%;" +
-  "top: 6%;" +
+  "top: 11%;" +
   "}",
 
   accountDetailButtonAccept: ".account-detail-button-accept" +

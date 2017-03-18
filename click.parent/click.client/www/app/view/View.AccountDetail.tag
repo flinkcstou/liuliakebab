@@ -35,8 +35,8 @@
       <div class="account-detail-cards-container">
         <component-pincards></component-pincards>
         <div class="account-detail-buttons-container">
-          <p class="account-detail-button-accept">ПРИНЯТЬ</p>
-          <p class="account-detail-button-cancel">ОТКЛОНИТЬ</p>
+          <p class="account-detail-button-accept">{window.languages.ViewAccountDetailTitlePay}</p>
+          <p class="account-detail-button-cancel">{window.languages.ViewAccountDetailTitleDecline}</p>
         </div>
       </div>
 
