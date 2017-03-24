@@ -62,6 +62,7 @@
 
   </div>
 
+  <component-delete-card></component-delete-card>
 
   <script>
 

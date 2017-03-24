@@ -4810,7 +4810,7 @@ var css = {
   "top: 40%;" +
   "}",
 
-  //COMPONENT SUCCESS
+  //COMPONENT INPROCESSING
 
   componentInProcessing: ".component-in-processing " +
   "{" +
@@ -4889,7 +4889,7 @@ var css = {
   "background-size: 93%;" +
   "}",
 
-  //COMPONENT INPROCESSING
+  //COMPONENT SUCCESS
   componentSuccess: ".component-success " +
   "{" +
   "position: absolute;" +
@@ -4951,6 +4951,55 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 93%;" +
   "}",
+
+  //COMPONENT DELETE
+  componentDelete: ".component-delete " +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.95;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "background-color: #353340;" +
+  "}",
+
+
+  deleteNextButtonInnerContainer: ".delete-next-button-inner-container" +
+  "{" +
+  "position: relative;" +
+  "height: 6%;" +
+  "left: -2%;" +
+  "width: 48%;" +
+  "top: 83%;" +
+  "display: table;" +
+  "background-color: #027fe4;" +
+  "border-radius:" + 50 * widthK + "px;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "}",
+
+  deleteNextButtonLabel: ".delete-next-button-label" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "font-size:" + 38 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-align: center;" +
+  "display: table-cell;" +
+  "vertical-align: middle;" +
+  "}",
+
+  deleteSuccessIcon: ".delete-delete-icon" +
+  "{" +
+  "position: absolute;" +
+  "top:" + 338 * widthK + "px;" +
+  "width:" + 270 * widthK + "px;" +
+  "height:" + 250 * widthK + "px;" +
+  "left:" + 234 * widthK + "px;" +
+  "background-image: url(resources/icons/ViewSuccessUnsuccess/ok.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 93%;" +
+  "}",
+
 
   //COMPONENT UNSUCCESS
 
