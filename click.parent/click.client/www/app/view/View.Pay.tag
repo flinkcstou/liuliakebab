@@ -194,17 +194,13 @@
     };
 
 
-    onTouchMoveOfCategory = function (name) {
+    onTouchMoveOfCategory = function () {
       event.stopPropagation();
 
       var element = document.getElementById(scope.index);
-      console.log(element.offsetTop);
-      console.log(categoriesContainerId.scrollTop);
-      console.log(name);
 
       if (categoriesContainerId.scrollTop > element.offsetTop) {
         hintContainerId.style.display = 'block';
-//        scope.showCategoryName = name;
         scope.showCategoryName = scope.categoryNamesMap[scope.index];
         riot.update(hintContainerId);
       } else {

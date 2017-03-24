@@ -7026,6 +7026,12 @@ var css = {
 
   //body
 
+  viewReportsPaymentsContainer: ".view-reports-payments-containter" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "}",
+
   viewReportsPaymentDateContainer: ".view-reports-payment-date-containter" +
   "{" +
   "position: relative;" +
