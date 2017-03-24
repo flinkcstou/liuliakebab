@@ -82,7 +82,7 @@
     userIconTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-
+      onBackKeyDown()
       riotTags.innerHTML = "<view-general-settings>";
       riot.mount("view-general-settings");
     }
@@ -94,13 +94,13 @@
       }
       componentMenu.checkOpen = false;
 
-      this.sideMenuId.style.webkitTransition = '0.3s';
+      sideMenuId.style.webkitTransition = '0.3s';
       sideMenuBackPageId.style.opacity = '0';
       sideMenuBackPageId.style.webkitTransition = '0';
       sideMenuId.style.webkitTransform = "translate3d(-100%, 0, 0)";
       sideMenuId.style.Transform = "translate3d(-100%, 0, 0)";
       mainPageId.style.opacity = '1';
-      this.mainPageId.style.zIndex = '0';
+      mainPageId.style.zIndex = '0';
       riot.update();
     }
 

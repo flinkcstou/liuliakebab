@@ -2205,7 +2205,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "border-radius:" + 100 * widthK + "px;" +
-  "border:solid 1px #b7b7b7;" +
+  //"border:solid 1px #b7b7b7;" +
   "}",
 
   viewInfoOperationTitle: ".view-info-operations-title " +
