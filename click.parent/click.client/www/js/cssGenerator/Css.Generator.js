@@ -2205,7 +2205,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "border-radius:" + 100 * widthK + "px;" +
-  //"border:solid 1px #b7b7b7;" +
+    //"border:solid 1px #b7b7b7;" +
   "}",
 
   viewInfoOperationTitle: ".view-info-operations-title " +
@@ -2344,6 +2344,20 @@ var css = {
   "margin-top: 1%;" +
   "border-bottom:" + 3 * widthK + "px solid gainsboro;" +
   "background-color: transparent;" +
+  "}",
+
+  payServiceHintContainer: ".pay-service-hint-containter" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 100 * widthK + "px; " +
+  "width: 100%;" +
+  "margin-top: 1%;" +
+  "border-bottom:" + 3 * widthK + "px solid gainsboro;" +
+  "z-index: 999999;" +
+  "background-color: aliceblue;" +
+  "top:" + 78 * widthK + "px; " +
+  "position:fixed;" +
+  "display: none;" +
   "}",
 
   payServicesBlock: ".pay-services-block" +

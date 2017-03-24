@@ -6,11 +6,12 @@
       <div id="rightButton" type="button" class="pay-search-button" ontouchend="search()"></div>
       <div style=""></div>
     </div>
-    <div class="pay-category-container">
+    <div class="pay-category-container" id="categoriesContainerId">
       <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
         <li each="{i in categoryList}" style="overflow: hidden;">
           <div class="pay-service-block-containter" id="{i.id}" ontouchstart="onTouchStartOfCategory()"
-               ontouchend="onTouchEndOfCategory(this.id)">
+               ontouchend="onTouchEndOfCategory(this.id)"
+               ontouchmove="onTouchMoveOfCategory()">
             <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
             <div class="pay-category-name-field">{i.name}
             </div>
@@ -26,6 +27,10 @@
           </div>
         </li>
       </ul>
+      <div class="pay-service-hint-containter" id="hintContainerId">
+        <div class="pay-category-name-field" style="left: 19%;">{showCategoryName}
+        </div>
+      </div>
     </div>
   </div>
   <component-category-search></component-category-search>
@@ -37,10 +42,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-pay',
-            "params": ''
-          }
+        {
+          "view": 'view-pay',
+          "params": ''
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -52,6 +57,7 @@
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
     scope.servicesParams = JSON.parse(localStorage.getItem("click_client_servicesParams"));
     scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
+    scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
 
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -186,6 +192,29 @@
         riot.update(scope.show);
       }
     };
+
+
+    onTouchMoveOfCategory = function (name) {
+      event.stopPropagation();
+
+      var element = document.getElementById(scope.index);
+      console.log(element.offsetTop);
+      console.log(categoriesContainerId.scrollTop);
+      console.log(name);
+
+      if (categoriesContainerId.scrollTop > element.offsetTop) {
+        hintContainerId.style.display = 'block';
+//        scope.showCategoryName = name;
+        scope.showCategoryName = scope.categoryNamesMap[scope.index];
+        riot.update(hintContainerId);
+      } else {
+        hintContainerId.style.display = 'none';
+        scope.showCategoryName = 'Bye world';
+        riot.update(hintContainerId);
+
+      }
+
+    }
 
 
     if ((localStorage.getItem("click_client_payServiceList") && scope.servicesMapByCategory && scope.servicesMap)) {
