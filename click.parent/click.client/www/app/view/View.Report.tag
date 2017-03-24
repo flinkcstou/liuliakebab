@@ -33,8 +33,8 @@
              style="background-image: url({j.image})"></div>
         <div class="view-reports-payment-info-container">
           <p class="view-reports-payment-info-name">{j.service_name}</p>
-          <p class="view-reports-payment-info-balance">{j.amount}</p>
-          <p class="view-reports-payment-info-balance">{}</p>
+          <div class="view-reports-payment-info-balance">{j.amount}</div>
+          <div class="view-reports-payment-info-currency-field">сум</div>
           <p class="view-reports-payment-info-number">{j.cntrg_info_param2}</p>
         </div>
         <p class="view-reports-payment-info-time">{j.paymentTime}</p>
