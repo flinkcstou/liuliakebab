@@ -4959,6 +4959,7 @@ var css = {
   "opacity: 0.98;" +
   "height: 100%;" +
   "width: 101%;" +
+  "display: none;" +
   "background-color: #efeff1;" +
   "}",
 
