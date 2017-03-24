@@ -111,8 +111,11 @@
         //TODO: DO CARDS
         scope: this,
         onSuccess: function (result) {
-          console.log(result)
           if (result[0][0].error == 0) {
+            loginInfo.firstname = result[1][0].firstname
+            loginInfo.lastname = result[1][0].lastname
+            loginInfo.gender = result[1][0].gender
+            localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo))
             alert('Изменения сохранены')
           }
           else
@@ -168,9 +171,12 @@
                     //TODO: DO CARDS
                     scope: this,
                     onSuccess: function (result) {
+                      console.log("RESULT PHOTO", result)
                       if (result[0][0].error == 0) {
                         if (result[1][0]) {
                           imageUserAvatarId.src = scope.base64Data
+                          loginInfo.profile_image_url = result[1][0].profile_image_url;
+                          localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo))
                         }
                       }
                       else

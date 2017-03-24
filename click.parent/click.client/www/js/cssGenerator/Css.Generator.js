@@ -2034,6 +2034,7 @@ var css = {
   "left: 19%;" +
   "display: inline-block;" +
   "margin: 0;" +
+  "overflow: hidden;" +
   "}",
 
   viewInfoCardBalance: ".view-info-card-balance " +
@@ -2047,6 +2048,10 @@ var css = {
   "float: left;" +
   "color: #91cc00;" +
   "padding: 0;" +
+  "overflow: hidden;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "width: 78%;" +
   "}",
 
   viewInfoCardCurrency: ".view-info-card-currency " +

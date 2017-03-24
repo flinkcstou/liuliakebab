@@ -81,6 +81,7 @@
 
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
+      StatusBar.backgroundColorByHexString("#0280e4");
 
       if (device.platform == 'Android')
         permissionAccess();
