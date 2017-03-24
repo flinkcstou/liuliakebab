@@ -4,7 +4,7 @@
        ontouchstart="startTouchCarousel()">
     <div></div>
     <div id="cards" class="cards">
-      <div if="{viewMainPage.atMainPage}" class="bills-holder" ontouchend="stopPropogation()">
+      <div if="{viewMainPage.atMainPage}" class="bills-holder" ontouchend="stopPropagation()">
         <div class="invoice-card-part-one" style="left:   {invoiceLeft}px; background-color: red"></div>
         <div class="invoice-card-part-two" style="left:  {invoiceLeft}px; background-color: red"></div>
       </div>
@@ -26,7 +26,7 @@
     scope.cardsarray = {};
     scope.invoiceLeft = 100 * widthK;
 
-    stopPropogation = function () {
+    stopPropagation = function () {
 
       billsHolderTouchEndX = event.changedTouches[0].pageX;
       if (Math.abs(carouselTouchStartX - billsHolderTouchEndX) < 20) {
