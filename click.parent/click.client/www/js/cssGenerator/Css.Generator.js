@@ -7257,6 +7257,12 @@ var css = {
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "}",
 
+  billsHolder: ".bills-holder " +
+  "{" +
+  "height:" + 305 * widthK + "px; " +
+  "width:" + 627 * widthK + "px;" +
+  "}"
+
 }
 
 
