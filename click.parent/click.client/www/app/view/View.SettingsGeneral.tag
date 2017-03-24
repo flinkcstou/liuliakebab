@@ -22,7 +22,7 @@
           <div class="settings-general-download-icon"></div>
           <p class="settings-general-download-title">{window.languages.ViewSettingsGeneralDownloadPhotoTitle}</p>
         </div>
-        <div class="settings-general-delete-container">
+        <div class="settings-general-delete-container" ontouchend="photoDeleteTouchEnd()">
           <div class="settings-general-delete-icon"></div>
           <p class="settings-general-delete-title">{window.languages.ViewSettingsGeneralDeletePhotoTitle}</p>
         </div>
@@ -91,6 +91,43 @@
       riot.update();
 
     })
+
+    photoDeleteTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+      var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+      var sessionKey = loginInfo.session_key;
+
+      var result = confirm('Подтвердите удаление фото')
+      console.log(result)
+
+      if (result)
+        window.api.call({
+          method: 'settings.photo.remove',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+          },
+          scope: this,
+          onSuccess: function (result) {
+            console.log(result)
+            if (result[0][0].error == 0) {
+
+            }
+            else
+              alert(result[0][0].error_note);
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+
+
+    }
 
     saveEditedNameTouchEnd = function () {
       event.preventDefault();
@@ -168,7 +205,6 @@
                       phone_num: phoneNumber,
                       data: base64Cut,
                     },
-                    //TODO: DO CARDS
                     scope: this,
                     onSuccess: function (result) {
                       console.log("RESULT PHOTO", result)

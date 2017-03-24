@@ -2,7 +2,10 @@
 
   <div id="containerCard" class="card-carousel" ontouchend="endTouchCarousel()" ontouchmove="moveTouchCarousel()"
        ontouchstart="startTouchCarousel()">
+    <div></div>
     <div id="cards" class="cards">
+      <div class="invoice-card-part-one" style="left:   {invoiceLeft}px; background-color: red"></div>
+      <div class="invoice-card-part-two" style="left:  {invoiceLeft}px; background-color: red"></div>
 
       <component-card each="{i in cardsarray}"
                       countcard="{i.countCard}"
@@ -19,9 +22,9 @@
 
     var scope = this;
     scope.cardsarray = {};
+    scope.invoiceLeft = 100 * widthK;
 
     addCard = function () {
-//      console.log("REFRESH CARDS")
 
       if (localStorage.getItem('click_client_accountInfo')) {
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
@@ -34,8 +37,12 @@
           }
         }
 
-
-        count = 0;
+        if (invoiceCheck) {
+          count = 1;
+        }
+        else {
+          count = 0;
+        }
         if (JSON.parse(localStorage.getItem("click_client_cards"))) {
           localStorage.removeItem("click_client_cards")
           scope.cardsarray = {};
@@ -85,6 +92,7 @@
 
         localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
 
+
         count++;
         cardNumber %= count;
         localStorage.setItem('click_client_countCard', count);
@@ -98,7 +106,51 @@
       }
     }
 
+    var invoiceCheck = false;
+
+    invoiceCheckFunction = function () {
+
+      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+      var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+      var sessionKey = loginInfo.session_key;
+
+      window.api.call({
+        method: 'invoice.list',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+        },
+        scope: this,
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+            if (result[1]) {
+              if (result[1][0]) {
+                console.log('invoice', result[1])
+                invoiceCheck = true;
+                var arrayOfInvoice = [];
+                for (var i = 0; i < result[1].length; i++) {
+                  arrayOfInvoice.push(result[1][i]);
+                }
+                localStorage.setItem('click_client_invoice_list', JSON.stringify(arrayOfInvoice));
+                onComponentCreated()
+              }
+              else {
+                invoiceCheck = false;
+              }
+            }
+          }
+          else
+            alert(result[0][0].error_note);
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
     onComponentCreated = function () {
+
 //    this.on('mount', function () {
 //      clearInterval(changingColor);
 
@@ -106,9 +158,7 @@
 //      localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
       if (modeOfApp.onlineMode) {
         if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
-          var phoneNumber = localStorage.getItem("click_client_phoneNumber");
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-          var sessionKey = info.session_key;
           var arrayAccountInfo = [];
 
           window.api.call({
@@ -236,6 +286,7 @@
 //    })
     };
 
+    invoiceCheckFunction();
     onComponentCreated();
 
     this.on("mount", function () {
@@ -347,7 +398,7 @@
     var pos = 0;
     var count = localStorage.getItem('click_client_countCard');
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-//    console.log('DDDDDDDD', loginInfo)
+    //    console.log('DDDDDDDD', loginInfo)
     if (!count)
       count = 0;
 

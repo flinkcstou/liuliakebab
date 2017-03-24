@@ -65,6 +65,7 @@
     var timeStartX, timeEndX;
     var width = window.innerWidth;
 
+
     myCardList = function () {
       event.preventDefault();
       event.stopPropagation();
