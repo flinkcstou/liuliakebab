@@ -8,8 +8,7 @@
     <component-bank-operations></component-bank-operations>
     <component-service-carousel></component-service-carousel>
     <component-footer></component-footer>
-    <component-card-carousel>
-    </component-card-carousel>
+    <component-card-carousel></component-card-carousel>
 
     <div id="myalt" style="visibility:hidden; position:absolute; left:0; top:0; border-style:solid; border-color:'#000000';
     border-width:1px; width:400px; height:10px; background-color:'#f5f5f5'; padding:3px; z-Index:3"></div>
@@ -25,6 +24,8 @@
     </div>
   </div>
   <script>
+
+    viewMainPage.atMainPage = true;
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
@@ -48,10 +49,10 @@
 
     history.arrayOfHistory = [];
     history.arrayOfHistory.push(
-      {
-        "view": 'view-main-page',
-        "params": ''
-      }
+        {
+          "view": 'view-main-page',
+          "params": ''
+        }
     );
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
