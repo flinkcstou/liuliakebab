@@ -4962,30 +4962,19 @@ var css = {
   "background-color: #efeff1;" +
   "}",
 
-
-  deleteNextButtonInnerContainer: ".delete-next-button-inner-container" +
+  deleteOperationConfirmMessage: ".delete-operation-confirm-message" +
   "{" +
   "position: relative;" +
-  "height: 6%;" +
-  "left: -2%;" +
-  "width: 48%;" +
-  "top: 83%;" +
-  "display: table;" +
-  "background-color: #027fe4;" +
-  "border-radius:" + 50 * widthK + "px;" +
-  "margin-right: auto;" +
-  "margin-left: auto;" +
-  "}",
-
-  deleteNextButtonLabel: ".delete-next-button-label" +
-  "{" +
-  "position: relative;" +
-  "background-size: contain;" +
-  "font-size:" + 38 * widthK + "px;" +
-  "color: #ffffff;" +
+  "color: black;" +
+  "width:" + 540 * widthK + "px;" +
   "text-align: center;" +
-  "display: table-cell;" +
-  "vertical-align: middle;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 601 * widthK + "px;" +
+  "left:" + -10 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
   "}",
 
   deleteDeleteIcon: ".delete-delete-icon" +
@@ -4998,6 +4987,46 @@ var css = {
   "background-image: url(resources/icons/ComponentDelete/card_remove.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 93%;" +
+  "}",
+
+  deleteButtonsContainer: ".delete-buttons-container" +
+  "{" +
+  "position: relative;" +
+  "height: 13%;" +
+  "width:100%;" +
+  "top: 62%;" +
+  "}",
+
+  deleteButtonAccept: ".delete-button-accept" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "float: left;" +
+  "text-align: center;" +
+  "margin-left: 6%;" +
+  "color: white;" +
+  "background-color: #0280e4;" +
+  "height:" + 62 * widthK + "px;" +
+  "line-height:" + 63 * widthK + "px;" +
+  "border-radius:" + 5 * widthK + "px;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "width: 40%;" +
+  "}",
+
+  deleteButtonCancel: ".delete-button-cancel" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "float: left;" +
+  "text-align: center;" +
+  "margin-left: 8%;" +
+  "color: white;" +
+  "background-color: #f46b5b;" +
+  "height:" + 62 * widthK + "px;" +
+  "line-height:" + 63 * widthK + "px;" +
+  "border-radius:" + 5 * widthK + "px;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "width: 40%;" +
   "}",
 
 

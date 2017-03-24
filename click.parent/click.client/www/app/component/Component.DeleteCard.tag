@@ -1,8 +1,10 @@
 <component-delete-card class="component-delete">
   <div class="delete-delete-icon"></div>
+  <p class="delete-operation-confirm-message">{window.languages.ComponentDeleteText}</p>
 
-  <div class="delete-next-button-inner-container" ontouchend="closeSuccessMessageForm()">
-    <p class="delete-next-button-label">{window.languages.ComponentSuccessNext}</p>
+  <div class="delete-buttons-container">
+    <p class="delete-button-accept">{window.languages.ViewTransferDetailTitleAccept}</p>
+    <p class="delete-button-cancel">{window.languages.ViewTransferDetailTitleDecline}</p>
   </div>
 
   <script>
