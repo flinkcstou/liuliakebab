@@ -10,6 +10,10 @@ window.Keyboard_fake.hide = function (){
   //alert('keyboard is hidden')
 };
 
+window.exitApp = function (){
+  //alert('keyboard is hidden')
+};
+
 if(!window.Keyboard){
   window.Keyboard = window.Keyboard_fake;
 }

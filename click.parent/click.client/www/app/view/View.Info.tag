@@ -62,13 +62,15 @@
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-//    console.log('getAccountsCards', getAccountsCards)
+    //    console.log('getAccountsCards', getAccountsCards)
     for (var i in cards) {
       if (cards[i].default_account === true)
         defaultAccount = cards[i];
     }
 
     this.on('mount', function () {
+      if (device.platform != 'BrowserStand')
+        StatusBar.backgroundColorByHexString("#ffffff");
 
       if (!modeOfApp.offlineMode) {
         writeBalance();

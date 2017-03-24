@@ -25,6 +25,12 @@
     </div>
   </div>
   <script>
+
+    this.on('mount', function () {
+      if (device.platform != 'BrowserStand')
+        StatusBar.backgroundColorByHexString("#0280e4");
+    })
+
     var scope = this;
     //
     //        function sum(arg1, arg2, callback) {
@@ -72,8 +78,6 @@
       sideMenuId.style.webkitTransition = '0s';
       mainPageId.style.webkitTransition = '0s';
       sideMenuBackPageId.style.webkitTransition = '0s';
-
-      console.log('TOUCH START', event)
     }
 
     blockForSwipeTouchEnd = function () {
@@ -81,8 +85,6 @@
 
       touchEndX = event.changedTouches[0].pageX;
       timeEndX = event.timeStamp.toFixed(0);
-
-      console.log('TOUCH END', event)
 
 //      if (touchEndX - touchStartX > 20) {
 //        menuOpen();
@@ -114,11 +116,8 @@
         touchMoveX = event.changedTouches[0].pageX;
       }
       sideMenuBackPageId.style.opacity = deltaForSideMenuBack;
-      console.log('deltaForMainPage', deltaForMainPage)
       mainPageId.style.opacity = deltaForMainPage;
-      //console.log('touchMoveX', event)
     }
-
 
 
   </script>
