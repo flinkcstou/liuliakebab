@@ -4956,10 +4956,10 @@ var css = {
   componentDelete: ".component-delete " +
   "{" +
   "position: absolute;" +
-  "opacity: 0.95;" +
+  "opacity: 0.98;" +
   "height: 100%;" +
-  "width: 100%;" +
-  "background-color: #353340;" +
+  "width: 101%;" +
+  "background-color: #efeff1;" +
   "}",
 
 
@@ -4988,14 +4988,14 @@ var css = {
   "vertical-align: middle;" +
   "}",
 
-  deleteSuccessIcon: ".delete-delete-icon" +
+  deleteDeleteIcon: ".delete-delete-icon" +
   "{" +
   "position: absolute;" +
   "top:" + 338 * widthK + "px;" +
   "width:" + 270 * widthK + "px;" +
   "height:" + 250 * widthK + "px;" +
   "left:" + 234 * widthK + "px;" +
-  "background-image: url(resources/icons/ViewSuccessUnsuccess/ok.png);" +
+  "background-image: url(resources/icons/ComponentDelete/card_remove.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 93%;" +
   "}",
