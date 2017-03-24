@@ -4,7 +4,7 @@
        ontouchstart="startTouchCarousel()">
     <div></div>
     <div id="cards" class="cards">
-      <div if="{viewMainPage.atMainPage}">
+      <div if="{viewMainPage.atMainPage}" class="bills-holder" ontouchend="stopPropagation()">
         <div class="invoice-card-part-one" style="left:   {invoiceLeft}px; background-color: red"></div>
         <div class="invoice-card-part-two" style="left:  {invoiceLeft}px; background-color: red"></div>
       </div>
@@ -26,6 +26,15 @@
     scope.cardsarray = {};
     scope.invoiceLeft = 100 * widthK;
 
+    stopPropagation = function () {
+
+      billsHolderTouchEndX = event.changedTouches[0].pageX;
+      if (Math.abs(carouselTouchStartX - billsHolderTouchEndX) < 20) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
+    };
+
     addCard = function () {
 
       if (localStorage.getItem('click_client_accountInfo')) {
@@ -39,17 +48,20 @@
           }
         }
 
-        if (invoiceCheck) {
-          count = 1;
-        }
-        else {
-          count = 0;
-        }
         if (JSON.parse(localStorage.getItem("click_client_cards"))) {
           localStorage.removeItem("click_client_cards")
           scope.cardsarray = {};
         }
       }
+
+      if (invoiceCheck && viewMainPage.atMainPage) {
+        count = 1;
+      }
+      else {
+        count = 0;
+      }
+
+      console.log("ASDASDASDASDASD", scope.cardsarray);
 
       var numberOfCardPartOne;
       var numberOfCardPartTwo;
@@ -96,9 +108,9 @@
 
 
         count++;
-        cardNumber %= count;
+//        cardNumber %= count;
         localStorage.setItem('click_client_countCard', count);
-        localStorage.setItem('cardNumber', cardNumber);
+//        localStorage.setItem('cardNumber', cardNumber);
       }
 
       riot.update();
@@ -173,6 +185,8 @@
             scope: this,
 
             onSuccess: function (result) {
+
+              arrayAccountInfo = [];
 
               if (result[0][0].error == 0) {
 //                console.log('CARDS UPDATE()', result[1])
@@ -391,11 +405,9 @@
     var card;
     var cardNumber = JSON.parse(localStorage.getItem('cardNumber'));
 
-
     if (!cardNumber) {
       cardNumber = 0;
     }
-
 
     var pos = 0;
     var count = localStorage.getItem('click_client_countCard');
@@ -492,6 +504,11 @@
       }
       else if (!viewMainPage.myCards) {
         if (!modeOfApp.offlineMode.balance) {
+
+          cardNumber = (invoiceCheck) ? (cardNumber - 1) : (cardNumber);
+
+          localStorage.setItem("cardNumber", cardNumber);
+
           pos = (cardNumber) * 540 * widthK;
           var sendChosenCardId;
           for (var i in scope.cardsarray) {

@@ -46,8 +46,8 @@
       event.preventDefault();
       event.stopPropagation();
 //      return
-      riotTags.innerHTML = "<component-delete-card>";
-      riot.mount('component-delete-card');
+      riotTags.innerHTML = "<view-transfer-detail>";
+      riot.mount('view-transfer-detail');
     }
   </script>
 </component-bank-operations>

@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/transfer-to-card-crop.png);" +
+    //"background-image: url(resources/draft/delete_crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
-  "background: -webkit-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
-  "background: -ms-linear-gradient(rgb(0,122,226),rgb(28,200,249));" +
+  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -4959,45 +4959,75 @@ var css = {
   "opacity: 0.98;" +
   "height: 100%;" +
   "width: 101%;" +
+  "display: none;" +
   "background-color: #efeff1;" +
   "}",
 
-
-  deleteNextButtonInnerContainer: ".delete-next-button-inner-container" +
+  deleteOperationConfirmMessage: ".delete-operation-confirm-message" +
   "{" +
   "position: relative;" +
-  "height: 6%;" +
-  "left: -2%;" +
-  "width: 48%;" +
-  "top: 83%;" +
-  "display: table;" +
-  "background-color: #027fe4;" +
-  "border-radius:" + 50 * widthK + "px;" +
-  "margin-right: auto;" +
-  "margin-left: auto;" +
-  "}",
-
-  deleteNextButtonLabel: ".delete-next-button-label" +
-  "{" +
-  "position: relative;" +
-  "background-size: contain;" +
-  "font-size:" + 38 * widthK + "px;" +
-  "color: #ffffff;" +
+  "color: black;" +
+  "width:" + 540 * widthK + "px;" +
   "text-align: center;" +
-  "display: table-cell;" +
-  "vertical-align: middle;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 558 * widthK + "px;" +
+  "left:" + -5 * widthK + "px;" +
+  "font-size:" + 37 * widthK + "px;" +
   "}",
 
   deleteDeleteIcon: ".delete-delete-icon" +
   "{" +
   "position: absolute;" +
-  "top:" + 338 * widthK + "px;" +
+  "top:" + 246 * widthK + "px;" +
   "width:" + 270 * widthK + "px;" +
   "height:" + 250 * widthK + "px;" +
   "left:" + 234 * widthK + "px;" +
   "background-image: url(resources/icons/ComponentDelete/card_remove.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 93%;" +
+  "}",
+
+  deleteButtonsContainer: ".delete-buttons-container" +
+  "{" +
+  "position: relative;" +
+  "height: 13%;" +
+  "width:100%;" +
+  "top: 58%;" +
+  "}",
+
+  deleteButtonAccept: ".delete-button-accept" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "float: left;" +
+  "text-align: center;" +
+  "margin-left: 15%;" +
+  "color: white;" +
+  "background-color: #ff613e;" +
+  "height:" + 62 * widthK + "px;" +
+  "line-height:" + 63 * widthK + "px;" +
+  "border-radius:" + 5 * widthK + "px;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "width: 33%;" +
+  "}",
+
+  deleteButtonCancel: ".delete-button-cancel" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "float: left;" +
+  "text-align: center;" +
+  "margin-left: 3%;" +
+  "color: #c8c8c8;" +
+  "background-color: #ffffff;" +
+  "height:" + 62 * widthK + "px;" +
+  "line-height:" + 63 * widthK + "px;" +
+  "border-radius:" + 5 * widthK + "px;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "width: 33%;" +
   "}",
 
 
@@ -7262,6 +7292,12 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "}",
+
+  billsHolder: ".bills-holder " +
+  "{" +
+  "height:" + 305 * widthK + "px; " +
+  "width:" + 627 * widthK + "px;" +
+  "}"
 
 }
 

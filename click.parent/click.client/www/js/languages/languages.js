@@ -125,6 +125,10 @@ var RU_LANGUAGES =
   "ComponentUnsuccessMessagePart3ForPay": "Проверьте правильность введенных данных или попробуйте повторить оплату позже",
   "ComponentUnsuccessNext": "OK",
 
+  "ComponentDeleteText": "Вы действительно хотите удалить карту из приложения?",
+  "ComponentDeleteTextYes": "ДА",
+  "ComponentDeleteTextNo": "НЕТ",
+
   "ViewPinCodeClickPinLabel": "Установите CLICK-PIN",
   "ViewPinCodeConfirmClickPinLabel": "Подтвердите CLICK-PIN",
 
