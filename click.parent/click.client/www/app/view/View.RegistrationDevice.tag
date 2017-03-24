@@ -33,17 +33,6 @@
   </div>
 
   <script>
-    //TODO CHANGE VERSION
-    if (localStorage.getItem('version') !== null) {
-      if (JSON.parse(localStorage.getItem('version')) != '3.1') {
-        localStorage.clear();
-      }
-    }
-    else {
-      localStorage.clear();
-    }
-
-    localStorage.setItem('version', '3.1')
 
     var checkRemember = false;
     touchEndRemember = function () {

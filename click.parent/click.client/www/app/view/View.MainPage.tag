@@ -24,7 +24,6 @@
       </div>
     </div>
   </div>
-  <component-success></component-success>
   <script>
     var scope = this;
     //

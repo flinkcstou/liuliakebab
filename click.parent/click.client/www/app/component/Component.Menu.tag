@@ -6,7 +6,7 @@
 
     <div class="side-menu-inside-button" ontouchend="closeMenu()"></div>
     <div class="side-menu-user-info-container">
-      <div class="side-menu-user-icon" style="background-image: url({photo})"></div>
+      <div class="side-menu-user-icon" style="background-image: url({photo})" ontouchend="userIconTouchEnd()"></div>
       <p class="side-menu-user-second-name">{firstName}</p>
       <p class="side-menu-user-first-name">{lastName}</p>
     </div>
@@ -79,6 +79,14 @@
       riot.update();
     })
 
+    userIconTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riotTags.innerHTML = "<view-general-settings>";
+      riot.mount("view-general-settings");
+    }
+
     closeMenu = function () {
       if (event) {
         event.preventDefault();
@@ -132,7 +140,7 @@
       event.preventDefault();
       event.stopPropagation();
       touchMoveX = event.changedTouches[0].pageX;
-      if(touchStartX < touchMoveX) return
+      if (touchStartX < touchMoveX) return
       var deltaForMainPage = Math.abs((touchStartX - touchMoveX).toFixed(0) / width * 2);
       var deltaForSideMenuBack = 1 - deltaForMainPage;
       if (deltaForSideMenuBack < 0.1)
