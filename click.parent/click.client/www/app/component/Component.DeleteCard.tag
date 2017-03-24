@@ -3,8 +3,8 @@
   <p class="delete-operation-confirm-message">{window.languages.ComponentDeleteText}</p>
 
   <div class="delete-buttons-container">
-    <p class="delete-button-accept">{window.languages.ViewTransferDetailTitleAccept}</p>
-    <p class="delete-button-cancel">{window.languages.ViewTransferDetailTitleDecline}</p>
+    <p class="delete-button-accept">{window.languages.ComponentDeleteTextYes}</p>
+    <p class="delete-button-cancel">{window.languages.ComponentDeleteTextNo}</p>
   </div>
 
   <script>

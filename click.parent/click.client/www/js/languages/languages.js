@@ -126,6 +126,8 @@ var RU_LANGUAGES =
   "ComponentUnsuccessNext": "OK",
 
   "ComponentDeleteText": "Вы действительно хотите удалить карту из приложения?",
+  "ComponentDeleteTextYes": "ДА",
+  "ComponentDeleteTextNo": "НЕТ",
 
   "ViewPinCodeClickPinLabel": "Установите CLICK-PIN",
   "ViewPinCodeConfirmClickPinLabel": "Подтвердите CLICK-PIN",

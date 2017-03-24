@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/transfer-to-card-crop.png);" +
+    //"background-image: url(resources/draft/delete_crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -4972,15 +4972,15 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 601 * widthK + "px;" +
-  "left:" + -10 * widthK + "px;" +
-  "font-size:" + 36 * widthK + "px;" +
+  "top:" + 558 * widthK + "px;" +
+  "left:" + -5 * widthK + "px;" +
+  "font-size:" + 37 * widthK + "px;" +
   "}",
 
   deleteDeleteIcon: ".delete-delete-icon" +
   "{" +
   "position: absolute;" +
-  "top:" + 338 * widthK + "px;" +
+  "top:" + 246 * widthK + "px;" +
   "width:" + 270 * widthK + "px;" +
   "height:" + 250 * widthK + "px;" +
   "left:" + 234 * widthK + "px;" +
@@ -4994,7 +4994,7 @@ var css = {
   "position: relative;" +
   "height: 13%;" +
   "width:100%;" +
-  "top: 62%;" +
+  "top: 58%;" +
   "}",
 
   deleteButtonAccept: ".delete-button-accept" +
@@ -5003,14 +5003,14 @@ var css = {
   "margin: 0;" +
   "float: left;" +
   "text-align: center;" +
-  "margin-left: 6%;" +
+  "margin-left: 15%;" +
   "color: white;" +
-  "background-color: #0280e4;" +
+  "background-color: #ff613e;" +
   "height:" + 62 * widthK + "px;" +
   "line-height:" + 63 * widthK + "px;" +
   "border-radius:" + 5 * widthK + "px;" +
   "font-size:" + 29 * widthK + "px;" +
-  "width: 40%;" +
+  "width: 33%;" +
   "}",
 
   deleteButtonCancel: ".delete-button-cancel" +
@@ -5019,14 +5019,14 @@ var css = {
   "margin: 0;" +
   "float: left;" +
   "text-align: center;" +
-  "margin-left: 8%;" +
-  "color: white;" +
-  "background-color: #f46b5b;" +
+  "margin-left: 3%;" +
+  "color: #c8c8c8;" +
+  "background-color: #ffffff;" +
   "height:" + 62 * widthK + "px;" +
   "line-height:" + 63 * widthK + "px;" +
   "border-radius:" + 5 * widthK + "px;" +
   "font-size:" + 29 * widthK + "px;" +
-  "width: 40%;" +
+  "width: 33%;" +
   "}",
 
 
