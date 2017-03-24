@@ -64,12 +64,15 @@
 
 
   <script>
+
+    viewMainPage.atMainPage = false;
+
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-cards') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-my-cards',
-          "params": opts
-        }
+          {
+            "view": 'view-my-cards',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -141,7 +144,7 @@
         return;
     }
 
-//    updateCard = function () {
+    //    updateCard = function () {
     //
     //      var arrayAccountInfo = [];
     //      localStorage.removeItem('click_client_accountInfo')
@@ -236,8 +239,8 @@
     //
     //    }
     var scope = this,
-      sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
-      phoneNumber = localStorage.getItem('click_client_phoneNumber');
+        sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
+        phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
 
     if (opts[0]) {
@@ -258,8 +261,8 @@
 
     if (scope.cardId)
       scope.card = scope.cardsArray[scope.cardId];
-//    console.log('scope.cardId', scope.cardId)
-//    console.log('scope.cardsArray', scope.cardsArray)
+    //    console.log('scope.cardId', scope.cardId)
+    //    console.log('scope.cardsArray', scope.cardsArray)
 
 
     scope.arrayOfOperationsByAccount = [];
@@ -296,26 +299,26 @@
 
                     if (result[1][i].amount.length == 7) {
                       result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-                        result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
+                          result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
 
                     }
 
                     if (result[1][i].amount.length == 6) {
                       result[1][i].amount = result[1][i].amount.substring(0, 3) + ' ' +
-                        result[1][i].amount.substring(3, result[1][i].amount.length)
+                          result[1][i].amount.substring(3, result[1][i].amount.length)
 
                     }
 
                     if (result[1][i].amount.length == 5) {
                       result[1][i].amount = result[1][i].amount.substring(0, 2) + ' ' +
-                        result[1][i].amount.substring(2, result[1][i].amount.length)
+                          result[1][i].amount.substring(2, result[1][i].amount.length)
 
                     }
 
                     if (result[1][i].amount.length == 4) {
 
                       result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-                        result[1][i].amount.substring(1, result[1][i].amount.length)
+                          result[1][i].amount.substring(1, result[1][i].amount.length)
 
                     }
 
