@@ -2244,6 +2244,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
   "overflow: hidden;" +
+  "width: 65%;" +
   "}",
 
   viewInfoOperationInfoBalance: ".view-info-operation-info-balance " +
