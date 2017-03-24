@@ -93,14 +93,9 @@
 
 
     if (!mNumber) {
-      mNumber = 0;
       mNumber = new Date().getMonth();
-      console.log("DRGHFD", mNumber);
 
       this.on('mount', function () {
-        console.log("@@@@@@@@@@@@@@", monthContainerId.scrollLeft);
-        monthContainerId.scrollLeft = monthContainerId.scrollLeft + 500;
-        console.log("@@@@@@@@@@@@@@", monthContainerId.scrollLeft);
         changePositionTwo();
       });
 
@@ -159,12 +154,10 @@
       this.monthContainerId.style.webkitTransition = '0s';
       this.monthContainerId.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
       this.monthContainerId.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
-      console.log("@@@@@@@@@@@@@@", monthContainerId.scrollLeft);
 
     }
 
     function changePosition() {
-      console.log("number before change", mNumber);
 
       if (carouselTouchEndX < carouselTouchStartX && mNumber < count - 1) {
         ++mNumber;
@@ -172,8 +165,6 @@
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        console.log("1=", mNumber);
-
       }
 
       if (carouselTouchEndX > carouselTouchStartX && mNumber == 0) {
@@ -181,7 +172,6 @@
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        console.log("2=", mNumber);
       }
 
       if (carouselTouchEndX < carouselTouchStartX && mNumber == count - 1) {
@@ -189,8 +179,6 @@
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        console.log("3=", mNumber);
-
       }
 
       if (carouselTouchEndX > carouselTouchStartX && mNumber > 0) {
@@ -199,12 +187,7 @@
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        console.log("4=", mNumber);
       }
-
-
-      console.log("!!!!!!!!", mNumber);
-
 
       if (scope.firstReportView) {
         paymentListUpdate();
@@ -212,12 +195,10 @@
         graphListUpdate();
       }
 
-
       localStorage.setItem('mNumber', mNumber);
     }
 
     function changePositionTwo() {
-      console.log("number before change", mNumber);
 
       if (mNumber < count - 1) {
         ++mNumber;
@@ -225,7 +206,6 @@
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        console.log("1=", mNumber);
       }
 
       if (mNumber == 0) {
@@ -233,7 +213,6 @@
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        console.log("2=", mNumber);
       }
 
       if (mNumber == count - 1) {
@@ -241,7 +220,6 @@
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        console.log("3=", mNumber);
       }
 
       if (mNumber > 0) {
@@ -250,7 +228,6 @@
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        console.log("4=", mNumber);
       }
 
       if (scope.firstReportView) {
