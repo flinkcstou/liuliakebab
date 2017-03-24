@@ -62,6 +62,7 @@
 
   </div>
 
+  <component-delete-card></component-delete-card>
 
   <script>
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-cards') {
@@ -141,7 +142,7 @@
         return;
     }
 
-//    updateCard = function () {
+    //    updateCard = function () {
     //
     //      var arrayAccountInfo = [];
     //      localStorage.removeItem('click_client_accountInfo')
@@ -258,8 +259,8 @@
 
     if (scope.cardId)
       scope.card = scope.cardsArray[scope.cardId];
-//    console.log('scope.cardId', scope.cardId)
-//    console.log('scope.cardsArray', scope.cardsArray)
+    //    console.log('scope.cardId', scope.cardId)
+    //    console.log('scope.cardsArray', scope.cardsArray)
 
 
     scope.arrayOfOperationsByAccount = [];

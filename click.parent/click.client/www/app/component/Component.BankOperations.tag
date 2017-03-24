@@ -45,9 +45,9 @@
     goToAutoPayView = function (e) {
       event.preventDefault();
       event.stopPropagation();
-      return
-      riotTags.innerHTML = "<view-transfer-to-card>";
-      riot.mount('view-transfer-to-card');
+//      return
+      riotTags.innerHTML = "<component-delete-card>";
+      riot.mount('component-delete-card');
     }
   </script>
 </component-bank-operations>
