@@ -7056,6 +7056,12 @@ var css = {
 
   //body
 
+  viewReportsPaymentsContainer: ".view-reports-payments-containter" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "}",
+
   viewReportsPaymentDateContainer: ".view-reports-payment-date-containter" +
   "{" +
   "position: relative;" +
@@ -7129,12 +7135,24 @@ var css = {
 
   viewReportsPaymentInfoBalance: ".view-reports-payment-info-balance " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "top: 30%;" +
   "left: 8%;" +
   "margin: 0;" +
   "font-size:" + 45 * widthK + "px;" +
   "color: #ee4d3d;" +
+  "float: left;" +
+  "}",
+
+  viewReportsPaymentInfoCurrencyField: ".view-reports-payment-info-currency-field" +
+  "{" +
+  "position: relative;" +
+  "top: 42%;" +
+  "left: 9%;" +
+  "margin: 0;" +
+  "font-size:" + 26 * widthK + "px;" +
+  "color: #ee4d3d;" +
+  "float: left;" +
   "}",
 
   viewReportsPaymentInfoNumber: ".view-reports-payment-info-number " +

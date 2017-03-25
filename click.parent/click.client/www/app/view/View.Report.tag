@@ -24,20 +24,23 @@
 
 
   <div class="view-reports-body-container" if="{firstReportView}">
-    <div class="view-reports-payment-date-containter">
-      <div class="view-reports-payment-date-field">18 февраля 2017</div>
-    </div>
-    <div class="view-reports-payment-block-containter" each="{i in paymentsList}">
-      <div class="view-reports-payment-icon"
-           style="background-image: url({i.image})"></div>
-      <div class="view-reports-payment-info-container">
-        <p class="view-reports-payment-info-name">{i.service_name}</p>
-        <p class="view-reports-payment-info-balance">{i.amount}</p>
-        <p class="view-reports-payment-info-balance">{}</p>
-        <p class="view-reports-payment-info-number">{i.cntrg_info_param2}</p>
+    <div class="view-reports-payments-container" each="{i in paymentDates}">
+      <div class="view-reports-payment-date-containter">
+        <div class="view-reports-payment-date-field">{i}</div>
       </div>
-      <p class="view-reports-payment-info-time">18:31</p>
+      <div class="view-reports-payment-block-containter" each="{j in paymentsMap[i]}">
+        <div class="view-reports-payment-icon"
+             style="background-image: url({j.image})"></div>
+        <div class="view-reports-payment-info-container">
+          <p class="view-reports-payment-info-name">{j.service_name}</p>
+          <div class="view-reports-payment-info-balance">{j.amount}</div>
+          <div class="view-reports-payment-info-currency-field">сум</div>
+          <p class="view-reports-payment-info-number">{j.cntrg_info_param2}</p>
+        </div>
+        <p class="view-reports-payment-info-time">{j.paymentTime}</p>
+      </div>
     </div>
+
   </div>
 
 
@@ -90,16 +93,12 @@
 
 
     if (!mNumber) {
-      mNumber = 0;
-//      mNumber = new Date().getMonth();
-//      console.log("DRGHFD", mNumber);
-//
-//      this.on('mount', function () {
-////        monthContainerId.scrollLeft = (320 * mNumber) * widthK;
-//        monthContainerTouchStart();
-//        monthContainerTouchEnd();
-////      changePosition();
-//      });
+      mNumber = new Date().getMonth();
+
+      this.on('mount', function () {
+        changePositionTwo();
+      });
+
     }
 
 
@@ -159,7 +158,6 @@
     }
 
     function changePosition() {
-      console.log("number before change", mNumber);
 
       if (carouselTouchEndX < carouselTouchStartX && mNumber < count - 1) {
         ++mNumber;
@@ -167,8 +165,6 @@
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        console.log("1=", mNumber);
-
       }
 
       if (carouselTouchEndX > carouselTouchStartX && mNumber == 0) {
@@ -176,7 +172,6 @@
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        console.log("2=", mNumber);
       }
 
       if (carouselTouchEndX < carouselTouchStartX && mNumber == count - 1) {
@@ -184,8 +179,6 @@
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        console.log("3=", mNumber);
-
       }
 
       if (carouselTouchEndX > carouselTouchStartX && mNumber > 0) {
@@ -194,12 +187,7 @@
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        console.log("4=", mNumber);
       }
-
-
-      console.log("!!!!!!!!", mNumber);
-
 
       if (scope.firstReportView) {
         paymentListUpdate();
@@ -207,8 +195,47 @@
         graphListUpdate();
       }
 
-
       localStorage.setItem('mNumber', mNumber);
+    }
+
+    function changePositionTwo() {
+
+      if (mNumber < count - 1) {
+        ++mNumber;
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+      }
+
+      if (mNumber == 0) {
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+      }
+
+      if (mNumber == count - 1) {
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+      }
+
+      if (mNumber > 0) {
+        --mNumber;
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+      }
+
+      if (scope.firstReportView) {
+        paymentListUpdate();
+      } else {
+        graphListUpdate();
+      }
+
     }
 
 
@@ -230,7 +257,8 @@
       console.log("firstDay=", firstDay);
       console.log("lastDay=", lastDay);
 
-      scope.paymentsList = [];
+      scope.paymentsMap = {};
+      scope.paymentDates = [];
       window.api.call({
         method: 'get.payment.list',
         input: {
@@ -272,11 +300,22 @@
                   result[1][i].amount.substring(1, result[1][i].amount.length)
 
               }
+              var date = new Date(result[1][i].created);
+              var dateStr = date.getDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getMonth()] + ' ' + date.getFullYear();
+              result[1][i].paymentTime = date.getHours() + ':' + date.getMinutes();
 
-              scope.paymentsList.push(result[1][i]);
+              if (!scope.paymentsMap[dateStr]) {
+                scope.paymentsMap[dateStr] = [];
+                scope.paymentDates.push(dateStr);
+                scope.paymentsMap[dateStr].push(result[1][i]);
+              }
+              else
+                scope.paymentsMap[dateStr].push(result[1][i]);
+
             }
-            console.log('ASAASASDASDFAAS', scope.paymentsList);
-            riot.update(scope.paymentsList)
+            console.log('ASAASASDASDFAAS', scope.paymentsMap);
+            riot.update(scope.paymentDates)
+            riot.update(scope.paymentsMap)
           }
           else {
             alert(result[0][0].error_note);
@@ -289,6 +328,7 @@
         }
       });
     }
+
 
     graphListUpdate = function () {
       var date = new Date();
