@@ -10,9 +10,6 @@
     <component-footer></component-footer>
     <component-card-carousel></component-card-carousel>
 
-    <div id="myalt" style="visibility:hidden; position:absolute; left:0; top:0; border-style:solid; border-color:'#000000';
-    border-width:1px; width:400px; height:10px; background-color:'#f5f5f5'; padding:3px; z-Index:3"></div>
-
     <div class="bank-operation-button-my-cards">
       <div class="bank-operation-button-my-cards-container">
         <div class="bank-operation-button-my-cards-icon"></div>
