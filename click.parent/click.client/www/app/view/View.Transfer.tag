@@ -5,7 +5,8 @@
          class="{transfer-back-button: backbuttoncheck}">
 
     </div>
-    <div id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"></div>
+    <div id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"
+         ontouchend="openBanksListPage()"></div>
   </div>
 
   <div class="transfer-body-container">
@@ -158,8 +159,8 @@
       <p class="transfer-next-button-label">{window.languages.ViewPayTransferNext}</p>
     </div>
 
-
   </div>
+  <component-bank-list></component-bank-list>
   <script>
 
     this.on('mount', function () {
@@ -257,6 +258,10 @@
 
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+    openBanksListPage = function () {
+      componentBankListId.style.display = 'block';
+    };
 
     if (!JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))) {
       window.api.call({

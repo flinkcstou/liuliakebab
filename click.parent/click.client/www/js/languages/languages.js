@@ -229,6 +229,9 @@ var RU_LANGUAGES =
   "ViewReportMonthsArrayTwo": ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"],
 
 
+  "ViewBankListTitleName": "ДОСТУПНЫЕ БАНКИ",
+
+
 };
 
 window.languages = RU_LANGUAGES;

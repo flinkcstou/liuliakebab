@@ -7309,7 +7309,43 @@ var css = {
   "{" +
   "height:" + 305 * widthK + "px; " +
   "width:" + 627 * widthK + "px;" +
-  "}"
+  "}",
+
+//  VIEW BANK LIST
+
+  componentBankList: ".component-bank-list" +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.95;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "background-color: #353340;" +
+  "display: none;" +
+  "}",
+
+  bankListContainer: ".component-banklist-container" +
+  "{" +
+  "position: absolute;" +
+  "background-color: transparent;" +
+  "width: 100%;" +
+  "top: 8%;" +
+  "bottom: 0;" +
+  "overflow:scroll;" +
+  "}",
+
+  bankListCard: ".component-banklist-card" +
+  "{" +
+  "height: " + 188 * widthK + "px;" +
+  "width: " + 327 * widthK + "px;" +
+  "position: relative;" +
+  "top: " + 13 * widthK + "px;" +
+  "float: left;" +
+  "margin: " + 7 * widthK + "px;" +
+  "left: " + 17 * widthK + "px;" +
+  "background-color: aliceblue;" +
+  "}",
+
+  //component-banklist-name-title
 
 }
 
