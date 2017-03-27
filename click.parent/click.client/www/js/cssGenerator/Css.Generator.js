@@ -7081,6 +7081,16 @@ var css = {
   "background-color: white; " +
   "}",
 
+  viewReportsGraphFrame: ".view-reports-graph-frame" +
+  "{" +
+  "position: relative;" +
+  "width:" + 400 * widthK + "px !important; " +
+  "height:" + 400 * widthK + "px !important; " +
+  "margin-left: auto; " +
+  "margin-right: auto; " +
+  "background-color: white; " +
+  "}",
+
   viewReportsFilterContainer: ".view-reports-filter-container " +
   "{" +
   "position: absolute;" +
@@ -7295,7 +7305,7 @@ var css = {
   "top: 16%;" +
   "width: 100%;" +
   "color: black;" +
-  "background-color: lightgray;" +
+  "background-color: white;" +
   "}",
 
   viewReportsGraphContentContainer: ".view-reports-graph-content-container " +
