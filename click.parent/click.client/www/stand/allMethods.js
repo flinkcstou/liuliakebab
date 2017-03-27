@@ -2092,22 +2092,32 @@ window.fakedSocket.register("history.chart.data", function (input) {
   array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
   array.push([
     {
-      category_name: 1,
-      amount: 1,
-      percent: 1,
-      image: 1,
+      category_id: 1,
+      category_name: "Мобильные операторы",
+      amount: "81 600",
+      percent: 34.42,
+      image: "https://merchant.click.uz/static/merchant/categories/1.png",
     },
     {
-      category_name: 1,
-      amount: 1,
-      percent: 1,
-      image: 1,
+      category_id: 4,
+      category_name: "Перевод средств",
+      amount: "105 199",
+      percent: 44.38,
+      image: "https://merchant.click.uz/static/merchant/categories/4.png",
     },
     {
-      category_name: 1,
-      amount: 1,
-      percent: 1,
-      image: 1,
+      category_id: 6,
+      category_name: "Интернет-сервисы",
+      amount: "8 500",
+      percent: 3.59,
+      image: "https://merchant.click.uz/static/merchant/categories/6.png",
+    },
+    {
+      category_id: 11,
+      category_name: "Интернет пакеты",
+      amount: "41 763",
+      percent: 17.62,
+      image: "https://merchant.click.uz/static/merchant/categories/11.png",
     }]
   );
 
