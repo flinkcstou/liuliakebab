@@ -2239,6 +2239,8 @@ window.fakedSocket.register("invoice.list", function (input) {
         {
           amount: 695326,
           datetime: "2017-03-24T10:41:15.760Z",
+          "date": "24.03.2017",
+          "time": "10:41",
           datetime_timestamp: 1490352075,
           description: "Перевод от 998974647747",
           invoice_id: 4063838,
@@ -2251,6 +2253,8 @@ window.fakedSocket.register("invoice.list", function (input) {
         {
           amount: 5326,
           datetime: "2017-03-24T10:40:57.856Z",
+          "date": "24.03.2017",
+          "time": "10:40",
           datetime_timestamp: 1490352057,
           description: "Перевод от 998974647747",
           invoice_id: 4063829,
@@ -2263,6 +2267,8 @@ window.fakedSocket.register("invoice.list", function (input) {
         {
           amount: 100,
           datetime: "2017-03-24T10:40:31.876Z",
+          "date": "24.03.2017",
+          "time": "10:40",
           datetime_timestamp: 1490352031,
           description: "Счет от YTT MUXAMEDOVA SH. R.",
           invoice_id: 4063823,
@@ -2275,6 +2281,8 @@ window.fakedSocket.register("invoice.list", function (input) {
         {
           amount: 1000,
           datetime: "2017-03-24T10:40:10.320Z",
+          "date": "24.03.2017",
+          "time": "10:40",
           datetime_timestamp: 1490352010,
           description: "Помощь другу 998974647747",
           invoice_id: 4063819,
@@ -2287,6 +2295,8 @@ window.fakedSocket.register("invoice.list", function (input) {
         {
           amount: 1000,
           datetime: "2017-03-24T10:39:55.656Z",
+          "date": "24.03.2017",
+          "time": "10:39",
           datetime_timestamp: 1490351995,
           description: "Помощь другу 998974647747",
           invoice_id: 4063812,
