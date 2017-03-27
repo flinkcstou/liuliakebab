@@ -4,7 +4,7 @@
        ontouchstart="startTouchCarousel()">
     <div></div>
     <div id="cards" class="cards">
-      <div if="{viewMainPage.atMainPage}" class="bills-holder" ontouchend="stopPropagation()">
+      <div if="{viewMainPage.atMainPage && invoiceList[0]}" class="bills-holder" ontouchend="stopPropagation()">
         <div class="invoice-card-part-one" style="left:   {invoiceLeft}px;"
              ontouchend="blockOneTouchEnd()" ontouchstart="blockOneTouchStart()" if="{invoiceList[0]}">
           <div id="first-transfer-container" class="invoice-card-info-holder" if="{invoiceList[0].is_p2p}">
