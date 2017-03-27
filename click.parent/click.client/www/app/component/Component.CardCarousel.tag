@@ -6,28 +6,48 @@
     <div id="cards" class="cards">
       <div if="{viewMainPage.atMainPage}" class="bills-holder" ontouchend="stopPropagation()">
         <div class="invoice-card-part-one" style="left:   {invoiceLeft}px;"
-             ontouchend="blockOneTouchEnd()" ontouchstart="blockOneTouchStart()">
-          <div id="transfer-container" class="invoice-card-info-holder">
+             ontouchend="blockOneTouchEnd()" ontouchstart="blockOneTouchStart()" if="{invoiceList[0]}">
+          <div id="first-transfer-container" class="invoice-card-info-holder" if="{invoiceList[0].is_p2p}">
             <p class="invoice-card-from-label">Получен перевод стредств от:</p>
-            <p class="invoice-card-from-sender-number">+ 998 93 579 59 14</p>
-            <p class="invoice-card-date">18:39 4.12.2016</p>
-            <p class="invoice-card-transfer-sum">20 000
+            <p class="invoice-card-from-sender-number">+ {invoiceList[0].merchant_phone}</p>
+            <p class="invoice-card-date">{invoiceList[0].time} {invoiceList[0].date}</p>
+            <p class="invoice-card-transfer-sum">{invoiceList[0].amount}
               <mark class="invoice-card-sum-marked">сум</mark>
             </p>
           </div>
-          <div class="invoice-card-transfer"></div>
+          <div id="first-payment-container" class="invoice-card-info-holder" if="{!invoiceList[0].is_p2p}">
+            <p class="invoice-card-from-label">Вам выставлен счёт:</p>
+            <p class="invoice-card-from-sender-number">{invoiceList[0].service_name} +
+              {invoiceList[0].merchant_phone}</p>
+            <p class="invoice-card-date">{invoiceList[0].time} {invoiceList[0].date}</p>
+            <p class="invoice-card-payment-sum">{invoiceList[0].amount}
+              <mark class="invoice-card-sum-marked">сум</mark>
+            </p>
+          </div>
+          <div class="invoice-card-transfer" if="{invoiceList[0].is_p2p}"></div>
+          <div class="invoice-card-payment" if="{!invoiceList[0].is_p2p}"></div>
         </div>
         <div class="invoice-card-part-two" style="left:  {invoiceLeft}px;"
-             ontouchend="blockTwoTouchEnd()" ontouchstart="blockTwoTouchStart()">
-          <div id="payment-container" class="invoice-card-info-holder">
-            <p class="invoice-card-from-label">Вам выставлен счёт:</p>
-            <p class="invoice-card-from-sender-number">UMS + 998 93 579 59 14</p>
-            <p class="invoice-card-date">18:39 4.12.2016</p>
-            <p class="invoice-card-payment-sum">974 000
+             ontouchend="blockTwoTouchEnd()" ontouchstart="blockTwoTouchStart()" if="{invoiceList[1]}">
+          <div id="second-transfer-container" class="invoice-card-info-holder" if="{invoiceList[1].is_p2p}">
+            <p class="invoice-card-from-label">Получен перевод стредств от:</p>
+            <p class="invoice-card-from-sender-number">+ {invoiceList[1].merchant_phone}</p>
+            <p class="invoice-card-date">{invoiceList[1].time} {invoiceList[1].date}</p>
+            <p class="invoice-card-transfer-sum">{invoiceList[1].amount}
               <mark class="invoice-card-sum-marked">сум</mark>
             </p>
           </div>
-          <div class="invoice-card-payment"></div>
+          <div id="second-payment-container" class="invoice-card-info-holder" if="{!invoiceList[1].is_p2p}">
+            <p class="invoice-card-from-label">Вам выставлен счёт:</p>
+            <p class="invoice-card-from-sender-number">{invoiceList[1].service_name} +
+              {invoiceList[1].merchant_phone}</p>
+            <p class="invoice-card-date">{invoiceList[1].time} {invoiceList[1].date}</p>
+            <p class="invoice-card-payment-sum">{invoiceList[1].amount}
+              <mark class="invoice-card-sum-marked">сум</mark>
+            </p>
+          </div>
+          <div class="invoice-card-transfer" if="{invoiceList[1].is_p2p}"></div>
+          <div class="invoice-card-payment" if="{!invoiceList[1].is_p2p}"></div>
         </div>
       </div>
 
@@ -48,6 +68,7 @@
     var scope = this;
     scope.cardsarray = {};
     scope.invoiceLeft = 100 * widthK;
+    scope.invoiceList = [];
 
     stopPropagation = function () {
 
@@ -106,8 +127,6 @@
       else {
         count = 0;
       }
-
-      console.log("ASDASDASDASDASD", scope.cardsarray);
 
       var numberOfCardPartOne;
       var numberOfCardPartTwo;
@@ -192,6 +211,15 @@
                   arrayOfInvoice.push(result[1][i]);
                 }
                 localStorage.setItem('click_client_invoice_list', JSON.stringify(arrayOfInvoice));
+
+                if (arrayOfInvoice[0]) {
+                  scope.invoiceList.push(arrayOfInvoice[0]);
+                }
+
+                if (arrayOfInvoice[1]) {
+                  scope.invoiceList.push(arrayOfInvoice[1]);
+                }
+
                 onComponentCreated()
               }
               else {
