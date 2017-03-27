@@ -220,7 +220,6 @@
                   scope.invoiceList.push(arrayOfInvoice[1]);
                 }
 
-                onComponentCreated()
               }
               else {
                 invoiceCheck = false;

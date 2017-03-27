@@ -442,7 +442,6 @@
         var myChart = new Chart(ctx, {
           type: 'doughnut',
           data: {
-            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
             datasets: [{
               label: 'apples',
               data: [12, 19, 3, 17, 6, 3, 7],
