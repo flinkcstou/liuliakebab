@@ -8,11 +8,11 @@
         <div class="invoice-card-part-one" style="left:   {invoiceLeft}px;"
              ontouchend="blockOneTouchEnd()" ontouchstart="blockOneTouchStart()">
           <div id="transfer-container" class="invoice-card-info-holder">
-            <p class="invoice-card-transfer-from-label">Получен перевод стредств от:</p>
-            <p class="invoice-card-transfer-from-sender-number">+ 998 93 579 59 14</p>
-            <p class="invoice-card-transfer-date">18:39 4.12.2016</p>
+            <p class="invoice-card-from-label">Получен перевод стредств от:</p>
+            <p class="invoice-card-from-sender-number">+ 998 93 579 59 14</p>
+            <p class="invoice-card-date">18:39 4.12.2016</p>
             <p class="invoice-card-transfer-sum">20 000
-              <mark class="invoice-card-transfer-sum-marked">сум</mark>
+              <mark class="invoice-card-sum-marked">сум</mark>
             </p>
           </div>
           <div class="invoice-card-transfer"></div>
@@ -20,11 +20,11 @@
         <div class="invoice-card-part-two" style="left:  {invoiceLeft}px;"
              ontouchend="blockTwoTouchEnd()" ontouchstart="blockTwoTouchStart()">
           <div id="payment-container" class="invoice-card-info-holder">
-            <p class="invoice-card-transfer-from-label">Вам выставлен счёт:</p>
-            <p class="invoice-card-transfer-from-sender-number">UMS + 998 93 579 59 14</p>
-            <p class="invoice-card-transfer-date">18:39 4.12.2016</p>
-            <p class="invoice-card-transfer-sum">974 000
-              <mark class="invoice-card-transfer-sum-marked">сум</mark>
+            <p class="invoice-card-from-label">Вам выставлен счёт:</p>
+            <p class="invoice-card-from-sender-number">UMS + 998 93 579 59 14</p>
+            <p class="invoice-card-date">18:39 4.12.2016</p>
+            <p class="invoice-card-payment-sum">974 000
+              <mark class="invoice-card-sum-marked">сум</mark>
             </p>
           </div>
           <div class="invoice-card-payment"></div>
