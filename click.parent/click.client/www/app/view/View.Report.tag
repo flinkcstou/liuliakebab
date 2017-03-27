@@ -49,7 +49,7 @@
       <p class="view-reports-graph-bigamount-text">{paymentsSum} сум</p>
     </div>
     <div class="view-reports-graph-image-container">
-        <canvas class="view-reports-graph-frame" id="myChart"></canvas>
+      <canvas class="view-reports-graph-frame" id="myChart"></canvas>
     </div>
     <div class="view-reports-graph-content-container">
 
@@ -438,21 +438,29 @@
 
     createGraph = function (arrayForGraph) {
 
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            datasets: [{
-              label: 'apples',
-              data: [12, 19, 3, 17, 6, 3, 7],
-              backgroundColor: "rgba(153,255,51,0.4)"
-            }, {
-              label: 'oranges',
-              data: [2, 29, 5, 5, 2, 3, 10],
-              backgroundColor: "rgba(255,153,0,0.4)"
-            }]
-          }
-        });
+      var data = {
+        datasets: [
+          {
+            data: [30, 50, 20],
+            backgroundColor: [
+              "#FF6384",
+              "#36A2EB",
+              "#FFCE56"
+            ],
+            hoverBackgroundColor: [
+              "#FF6384",
+              "#36A2EB",
+              "#FFCE56"
+            ]
+          }]
+      };
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: data,
+        options: {
+        }
+      });
 
     }
 
