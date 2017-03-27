@@ -7388,10 +7388,10 @@ var css = {
   componentBankList: ".component-bank-list" +
   "{" +
   "position: absolute;" +
-  "opacity: 0.95;" +
+  "opacity: 0.97;" +
   "height: 100%;" +
   "width: 100%;" +
-  "background-color: #353340;" +
+  "background-color: whitesmoke;" +
   "display: none;" +
   "}",
 
@@ -7407,17 +7407,42 @@ var css = {
 
   bankListCard: ".component-banklist-card" +
   "{" +
-  "height: " + 188 * widthK + "px;" +
-  "width: " + 327 * widthK + "px;" +
+  "height: " + 286 * widthK + "px;" +
+  "width: " + 302 * widthK + "px;" +
   "position: relative;" +
   "top: " + 13 * widthK + "px;" +
   "float: left;" +
-  "margin: " + 7 * widthK + "px;" +
-  "left: " + 17 * widthK + "px;" +
-  "background-color: aliceblue;" +
+  "margin: " + 4 * widthK + "px;" +
+  "left: " + 48 * widthK + "px;" +
+  "background-color: white;" +
   "}",
 
-  //component-banklist-name-title
+
+  componentBankListNameTitle: ".component-banklist-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 35 * widthK + "px;" +
+  "left: 9%;" +
+  "top: 31%;" +
+  "margin: 0;" +
+  "color: #353340;" +
+  "}",
+
+  closeButton: ".close-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 144 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "right:" + -36 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewService/unchecked.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 31%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 54 * widthK + "px;" +
+  "background-size: 31%;" +
+  "top: 0;" +
+  "}",
 
 }
 
