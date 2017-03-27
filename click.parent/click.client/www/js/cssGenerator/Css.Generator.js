@@ -621,7 +621,7 @@ var css = {
   "left:" + 26 * widthK + "px;" +
   "height:" + 70 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom: 2 px solid white;" +
+  "border-bottom: 2px solid white;" +
   "}",
 
   toolbarCircleContainer: ".toolbar-circle-container " +
@@ -757,7 +757,7 @@ var css = {
   "position: absolute;" +
   "left:" + 27 * widthK + "px;" +
   "right:" + 27 * widthK + "px;" +
-  "border-bottom: 2 px solid white;" +
+  "border-bottom: 2px solid white;" +
   "text-align: center;" +
   "top:" + 440 * widthK + "px;" +
   "height:" + 100 * heightK + "px;" +
@@ -880,9 +880,7 @@ var css = {
   "width:" + 510 * widthK + "px;" +
   "position: absolute;" +
   "top:" + 7 * widthK + "px;" +
-  "-webkit-border-radius:" + 14 * widthK + "px;" +
-  "-moz-border-radius:" + 14 * widthK + "px;" +
-  "border-radius:" + 14 * widthK + "px;" +
+  "background-color: white;" +
   "background-size: cover;" +
   "color: white;" +
   "-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
@@ -897,14 +895,88 @@ var css = {
   "width:" + 510 * widthK + "px;" +
   "position: absolute;" +
   "top:" + 150 * widthK + "px;" +
-  "-webkit-border-radius:" + 14 * widthK + "px;" +
-  "-moz-border-radius:" + 14 * widthK + "px;" +
-  "border-radius:" + 14 * widthK + "px;" +
+  "background-color: white;" +
   "background-size: cover;" +
   "color: white;" +
   "-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
   "-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
   "box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+  "}",
+
+  invoiceCardInfoHolder: ".invoice-card-info-holder" +
+  "{" +
+  "width:" + 430 * widthK + "px;" +
+  "float: left;" +
+  "}",
+
+  invoiceCardTransfer: ".invoice-card-transfer" +
+  "{" +
+  "float: right;" +
+  "background-color: #ABD15B;" +
+  "background-image: url(resources/icons/bank-operations/transfers.png);" +
+  "color: white;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 65%;" +
+  "background-position: center;" +
+  "height: 100%;" +
+  "width:" + 80 * widthK + "px;" +
+  "}",
+
+  invoiceCardFromLabel: ".invoice-card-from-label" +
+  "{" +
+  "color: #8f8f8f;" +
+  "margin:" + 5 * widthK + "px 0 0 " + 20 * widthK + "px;" +
+  "font-size:" + 27 * widthK + "px;" +
+  "}",
+
+  invoiceCardFromSenderNumber: ".invoice-card-from-sender-number" +
+  "{" +
+  "color: #8f8f8f;" +
+  "margin: 0 0 0 " + 20 * widthK + "px;" +
+  "font-size:" + 28 * widthK + "px;" +
+  "}",
+
+  invoiceCardDate: ".invoice-card-date" +
+  "{" +
+  "color: #b5b5b5;" +
+  "margin:" + 10 * widthK + "px " + 10 * widthK + "px " + 10 * widthK + "px " + 20 * widthK + "px;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "float: left;" +
+  "word-spacing:" + 15 * widthK + "px;" +
+  "}",
+
+  invoiceCardTransferSum: ".invoice-card-transfer-sum" +
+  "{" +
+  "float: right;" +
+  "color: #ABD15B;" +
+  "margin:" + 5 * widthK + "px " + 20 * widthK + "px " + 10 * widthK + "px 0;" +
+  "}",
+
+  invoiceCardSumMarked: ".invoice-card-sum-marked" +
+  "{" +
+  "background-color: transparent;" +
+  "font-size:" + 21 * widthK + "px;" +
+  "color: inherit;" +
+  "}",
+
+  invoiceCardPayment: ".invoice-card-payment" +
+  "{" +
+  "float: right;" +
+  "background-color: #FC8379;" +
+  "background-image: url(resources/icons/bank-operations/payment.png);" +
+  "color: white;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 55%;" +
+  "background-position: center;" +
+  "height: 100%;" +
+  "width:" + 80 * widthK + "px;" +
+  "}",
+
+  invoiceCardPaymentSum: ".invoice-card-payment-sum" +
+  "{" +
+  "float: right;" +
+  "color: #FC8379;" +
+  "margin:" + 5 * widthK + "px " + 20 * widthK + "px " + 10 * widthK + "px 0;" +
   "}",
 
   cardBankName: ".card-bank-name " +
@@ -1500,7 +1572,7 @@ var css = {
   "left:" + 25 * widthK + "px;" +
   "height:" + 87 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom: 2 px solid white;" +
+  "border-bottom: 2px solid white;" +
   "}",
 
   nameTitle: ".name-title " +
@@ -1810,7 +1882,7 @@ var css = {
   "font-size:" + 30 * widthK + "px;" +
   "color: white;" +
   "top:" + 30 * widthK + "px;" +
-  "border-bottom: 2 px solid #95e6fd;" +
+  "border-bottom: 2px solid #95e6fd;" +
   "}",
 
   myCardsButtonBlockCard: ".my-cards-button-block-card " +

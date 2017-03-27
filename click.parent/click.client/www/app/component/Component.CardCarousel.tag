@@ -4,11 +4,51 @@
        ontouchstart="startTouchCarousel()">
     <div></div>
     <div id="cards" class="cards">
-      <div if="{viewMainPage.atMainPage}" class="bills-holder" ontouchend="stopPropagation()">
-        <div class="invoice-card-part-one" style="left:   {invoiceLeft}px; background-color: red"
-             ontouchend="blockOneTouchEnd()" ontouchstart="blockOneTouchStart()"></div>
-        <div class="invoice-card-part-two" style="left:  {invoiceLeft}px; background-color: red"
-             ontouchend="blockTwoTouchEnd()" ontouchstart="blockTwoTouchStart()"></div>
+      <div if="{viewMainPage.atMainPage && invoiceList[0]}" class="bills-holder" ontouchend="stopPropagation()">
+        <div class="invoice-card-part-one" style="left:   {invoiceLeft}px;"
+             ontouchend="blockOneTouchEnd()" ontouchstart="blockOneTouchStart()" if="{invoiceList[0]}">
+          <div id="first-transfer-container" class="invoice-card-info-holder" if="{invoiceList[0].is_p2p}">
+            <p class="invoice-card-from-label">Получен перевод стредств от:</p>
+            <p class="invoice-card-from-sender-number">+ {invoiceList[0].merchant_phone}</p>
+            <p class="invoice-card-date">{invoiceList[0].time} {invoiceList[0].date}</p>
+            <p class="invoice-card-transfer-sum">{invoiceList[0].amount}
+              <mark class="invoice-card-sum-marked">сум</mark>
+            </p>
+          </div>
+          <div id="first-payment-container" class="invoice-card-info-holder" if="{!invoiceList[0].is_p2p}">
+            <p class="invoice-card-from-label">Вам выставлен счёт:</p>
+            <p class="invoice-card-from-sender-number">{invoiceList[0].service_name} +
+              {invoiceList[0].merchant_phone}</p>
+            <p class="invoice-card-date">{invoiceList[0].time} {invoiceList[0].date}</p>
+            <p class="invoice-card-payment-sum">{invoiceList[0].amount}
+              <mark class="invoice-card-sum-marked">сум</mark>
+            </p>
+          </div>
+          <div class="invoice-card-transfer" if="{invoiceList[0].is_p2p}"></div>
+          <div class="invoice-card-payment" if="{!invoiceList[0].is_p2p}"></div>
+        </div>
+        <div class="invoice-card-part-two" style="left:  {invoiceLeft}px;"
+             ontouchend="blockTwoTouchEnd()" ontouchstart="blockTwoTouchStart()" if="{invoiceList[1]}">
+          <div id="second-transfer-container" class="invoice-card-info-holder" if="{invoiceList[1].is_p2p}">
+            <p class="invoice-card-from-label">Получен перевод стредств от:</p>
+            <p class="invoice-card-from-sender-number">+ {invoiceList[1].merchant_phone}</p>
+            <p class="invoice-card-date">{invoiceList[1].time} {invoiceList[1].date}</p>
+            <p class="invoice-card-transfer-sum">{invoiceList[1].amount}
+              <mark class="invoice-card-sum-marked">сум</mark>
+            </p>
+          </div>
+          <div id="second-payment-container" class="invoice-card-info-holder" if="{!invoiceList[1].is_p2p}">
+            <p class="invoice-card-from-label">Вам выставлен счёт:</p>
+            <p class="invoice-card-from-sender-number">{invoiceList[1].service_name} +
+              {invoiceList[1].merchant_phone}</p>
+            <p class="invoice-card-date">{invoiceList[1].time} {invoiceList[1].date}</p>
+            <p class="invoice-card-payment-sum">{invoiceList[1].amount}
+              <mark class="invoice-card-sum-marked">сум</mark>
+            </p>
+          </div>
+          <div class="invoice-card-transfer" if="{invoiceList[1].is_p2p}"></div>
+          <div class="invoice-card-payment" if="{!invoiceList[1].is_p2p}"></div>
+        </div>
       </div>
 
       <component-card each=" {i in cardsarray}
@@ -28,6 +68,7 @@
     var scope = this;
     scope.cardsarray = {};
     scope.invoiceLeft = 100 * widthK;
+    scope.invoiceList = [];
 
     stopPropagation = function () {
 
@@ -87,8 +128,6 @@
         count = 0;
       }
 
-      console.log("ASDASDASDASDASD", scope.cardsarray);
-
       var numberOfCardPartOne;
       var numberOfCardPartTwo;
       var typeOfCard;
@@ -104,7 +143,7 @@
           defaultAccount = false;
 
         numberOfCardPartOne = getAccountsCards[i].accno[0] + getAccountsCards[i].accno[1]
-          + getAccountsCards[i].accno[2] + getAccountsCards[i].accno[3]
+            + getAccountsCards[i].accno[2] + getAccountsCards[i].accno[3]
         numberOfCardPartTwo = getAccountsCards[i].accno[getAccountsCards[i].accno.length - 4] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 3] + +getAccountsCards[i].accno[getAccountsCards[i].accno.length - 2] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 1];
 
 
@@ -172,6 +211,15 @@
                   arrayOfInvoice.push(result[1][i]);
                 }
                 localStorage.setItem('click_client_invoice_list', JSON.stringify(arrayOfInvoice));
+
+                if (arrayOfInvoice[0]) {
+                  scope.invoiceList.push(arrayOfInvoice[0]);
+                }
+
+                if (arrayOfInvoice[1]) {
+                  scope.invoiceList.push(arrayOfInvoice[1]);
+                }
+
                 onComponentCreated()
               }
               else {
@@ -363,34 +411,34 @@
 
                 if (result[1][0].balance.length == 9) {
                   result[1][0].balance = result[1][0].balance.substring(0, 3) + ' ' +
-                    result[1][0].balance.substring(3, 6) + ' ' + result[1][0].balance.substring(6, result[1][0].balance.length)
+                      result[1][0].balance.substring(3, 6) + ' ' + result[1][0].balance.substring(6, result[1][0].balance.length)
                 }
 
                 if (result[1][0].balance.length == 8) {
                   result[1][0].balance = result[1][0].balance.substring(0, 2) + ' ' +
-                    result[1][0].balance.substring(2, 5) + ' ' + result[1][0].balance.substring(5, result[1][0].balance.length)
+                      result[1][0].balance.substring(2, 5) + ' ' + result[1][0].balance.substring(5, result[1][0].balance.length)
                 }
 
                 if (result[1][0].balance.length == 7) {
                   result[1][0].balance = result[1][0].balance.substring(0, 1) + ' ' +
-                    result[1][0].balance.substring(1, 4) + ' ' + result[1][0].balance.substring(4, result[1][0].balance.length)
+                      result[1][0].balance.substring(1, 4) + ' ' + result[1][0].balance.substring(4, result[1][0].balance.length)
                 }
 
                 if (result[1][0].balance.length == 6) {
                   result[1][0].balance = result[1][0].balance.substring(0, 3) + ' ' +
-                    result[1][0].balance.substring(3, result[1][0].balance.length)
+                      result[1][0].balance.substring(3, result[1][0].balance.length)
 
                 }
 
                 if (result[1][0].balance.length == 5) {
                   result[1][0].balance = result[1][0].balance.substring(0, 2) + ' ' +
-                    result[1][0].balance.substring(2, result[1][0].balance.length)
+                      result[1][0].balance.substring(2, result[1][0].balance.length)
 
                 }
 
                 if (result[1][0].balance.length == 4) {
                   result[1][0].balance = result[1][0].balance.substring(0, 1) + ' ' +
-                    result[1][0].balance.substring(1, result[1][0].balance.length)
+                      result[1][0].balance.substring(1, result[1][0].balance.length)
 
                 }
                 scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
@@ -548,7 +596,7 @@
             }
           }
           htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-            'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
+              'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
           riotTags.innerHTML = "<view-my-cards>";
           riot.mount("view-my-cards", [sendChosenCardId]);
           this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
