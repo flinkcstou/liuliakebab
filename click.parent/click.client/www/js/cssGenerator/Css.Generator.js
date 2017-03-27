@@ -922,21 +922,21 @@ var css = {
   "width:" + 80 * widthK + "px;" +
   "}",
 
-  invoiceCardTransferFromLabel: ".invoice-card-transfer-from-label" +
+  invoiceCardFromLabel: ".invoice-card-from-label" +
   "{" +
   "color: #8f8f8f;" +
   "margin:" + 5 * widthK + "px 0 0 " + 20 * widthK + "px;" +
   "font-size:" + 27 * widthK + "px;" +
   "}",
 
-  invoiceCardTransferFromSenderNumber: ".invoice-card-transfer-from-sender-number" +
+  invoiceCardFromSenderNumber: ".invoice-card-from-sender-number" +
   "{" +
   "color: #8f8f8f;" +
   "margin: 0 0 0 " + 20 * widthK + "px;" +
   "font-size:" + 28 * widthK + "px;" +
   "}",
 
-  invoiceCardTransferDate: ".invoice-card-transfer-date" +
+  invoiceCardDate: ".invoice-card-date" +
   "{" +
   "color: #b5b5b5;" +
   "margin:" + 10 * widthK + "px " + 10 * widthK + "px " + 10 * widthK + "px " + 20 * widthK + "px;" +
@@ -952,7 +952,7 @@ var css = {
   "margin:" + 5 * widthK + "px " + 20 * widthK + "px " + 10 * widthK + "px 0;" +
   "}",
 
-  invoiceCardTransferSumMarked: ".invoice-card-transfer-sum-marked" +
+  invoiceCardSumMarked: ".invoice-card-sum-marked" +
   "{" +
   "background-color: transparent;" +
   "font-size:" + 21 * widthK + "px;" +
@@ -970,6 +970,13 @@ var css = {
   "background-position: center;" +
   "height: 100%;" +
   "width:" + 80 * widthK + "px;" +
+  "}",
+
+  invoiceCardPaymentSum: ".invoice-card-payment-sum" +
+  "{" +
+  "float: right;" +
+  "color: #FC8379;" +
+  "margin:" + 5 * widthK + "px " + 20 * widthK + "px " + 10 * widthK + "px 0;" +
   "}",
 
   cardBankName: ".card-bank-name " +
