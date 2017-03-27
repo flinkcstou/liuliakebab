@@ -5,46 +5,50 @@
     <div></div>
     <div id="cards" class="cards">
       <div if="{viewMainPage.atMainPage && invoiceList[0]}" class="bills-holder" ontouchend="stopPropagation()">
-        <div class="invoice-card-part-one" style="left:   {invoiceLeft}px;"
+        <div class="invoice-card-part-one" style="left: {invoiceLeft}px;"
              ontouchend="blockOneTouchEnd()" ontouchstart="blockOneTouchStart()" if="{invoiceList[0]}">
           <div id="first-transfer-container" class="invoice-card-info-holder" if="{invoiceList[0].is_p2p}">
             <p class="invoice-card-from-label">Получен перевод стредств от:</p>
             <p class="invoice-card-from-sender-number">+ {invoiceList[0].merchant_phone}</p>
             <p class="invoice-card-date">{invoiceList[0].time} {invoiceList[0].date}</p>
-            <p class="invoice-card-transfer-sum">{invoiceList[0].amount}
+            <div class="invoice-card-transfer-sum-holder">
+              <p class="invoice-card-sum">{invoiceList[0].amount}</p>
               <mark class="invoice-card-sum-marked">сум</mark>
-            </p>
+            </div>
           </div>
           <div id="first-payment-container" class="invoice-card-info-holder" if="{!invoiceList[0].is_p2p}">
             <p class="invoice-card-from-label">Вам выставлен счёт:</p>
             <p class="invoice-card-from-sender-number">{invoiceList[0].service_name} +
               {invoiceList[0].merchant_phone}</p>
             <p class="invoice-card-date">{invoiceList[0].time} {invoiceList[0].date}</p>
-            <p class="invoice-card-payment-sum">{invoiceList[0].amount}
+            <div class="invoice-card-payment-sum-holder">
+              <p class="invoice-card-sum">{invoiceList[0].amount}</p>
               <mark class="invoice-card-sum-marked">сум</mark>
-            </p>
+            </div>
           </div>
           <div class="invoice-card-transfer" if="{invoiceList[0].is_p2p}"></div>
           <div class="invoice-card-payment" if="{!invoiceList[0].is_p2p}"></div>
         </div>
-        <div class="invoice-card-part-two" style="left:  {invoiceLeft}px;"
+        <div class="invoice-card-part-two" style="left: {invoiceLeft}px;"
              ontouchend="blockTwoTouchEnd()" ontouchstart="blockTwoTouchStart()" if="{invoiceList[1]}">
           <div id="second-transfer-container" class="invoice-card-info-holder" if="{invoiceList[1].is_p2p}">
             <p class="invoice-card-from-label">Получен перевод стредств от:</p>
             <p class="invoice-card-from-sender-number">+ {invoiceList[1].merchant_phone}</p>
             <p class="invoice-card-date">{invoiceList[1].time} {invoiceList[1].date}</p>
-            <p class="invoice-card-transfer-sum">{invoiceList[1].amount}
+            <div class="invoice-card-transfer-sum-holder">
+              <p class="invoice-card-sum">{invoiceList[1].amount}</p>
               <mark class="invoice-card-sum-marked">сум</mark>
-            </p>
+            </div>
           </div>
           <div id="second-payment-container" class="invoice-card-info-holder" if="{!invoiceList[1].is_p2p}">
             <p class="invoice-card-from-label">Вам выставлен счёт:</p>
             <p class="invoice-card-from-sender-number">{invoiceList[1].service_name} +
               {invoiceList[1].merchant_phone}</p>
             <p class="invoice-card-date">{invoiceList[1].time} {invoiceList[1].date}</p>
-            <p class="invoice-card-payment-sum">{invoiceList[1].amount}
+            <div class="invoice-card-payment-sum-holder">
+              <p class="invoice-card-sum">{invoiceList[1].amount}</p>
               <mark class="invoice-card-sum-marked">сум</mark>
-            </p>
+            </div>
           </div>
           <div class="invoice-card-transfer" if="{invoiceList[1].is_p2p}"></div>
           <div class="invoice-card-payment" if="{!invoiceList[1].is_p2p}"></div>
@@ -100,6 +104,18 @@
 
     blockTwoTouchEnd = function () {
 
+    }
+
+    blockTwoTouchStart = function () {
+      touchEndInvoiceOne = event.changedTouches[0].pageX;
+
+      console.log('START', touchStartInvoiceOne)
+      console.log('END', touchEndInvoiceOne)
+
+      if (Math.abs(touchStartInvoiceOne - touchEndInvoiceOne) < 20) {
+        riotTags.innerHTML = "<view-transfer-detail>";
+        riot.mount('view-transfer-detail');
+      }
     }
 
     addCard = function () {
@@ -238,6 +254,8 @@
       });
     }
     onComponentCreated = function () {
+
+      console.log("onComponentCreated STARTED");
 
 //    this.on('mount', function () {
 //      clearInterval(changingColor);

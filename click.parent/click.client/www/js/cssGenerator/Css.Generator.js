@@ -945,7 +945,7 @@ var css = {
   "word-spacing:" + 15 * widthK + "px;" +
   "}",
 
-  invoiceCardTransferSum: ".invoice-card-transfer-sum" +
+  invoiceCardTransferSumHolder: ".invoice-card-transfer-sum-holder" +
   "{" +
   "float: right;" +
   "color: #ABD15B;" +
@@ -972,11 +972,24 @@ var css = {
   "width:" + 80 * widthK + "px;" +
   "}",
 
-  invoiceCardPaymentSum: ".invoice-card-payment-sum" +
+  invoiceCardPaymentSumHolder: ".invoice-card-payment-sum-holder" +
   "{" +
   "float: right;" +
   "color: #FC8379;" +
   "margin:" + 5 * widthK + "px " + 20 * widthK + "px " + 10 * widthK + "px 0;" +
+  "}",
+
+  invoiceCardSum: ".invoice-card-sum" +
+  "{" +
+  "background-color: inherit;" +
+  "color: inherit;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "max-width:" + 130 * widthK + "px;" +
+  "white-space: nowrap;" +
+  "margin: 0;" +
+  "margin-right:" + 7 * widthK + "px;" +
+  "float: left;" +
   "}",
 
   cardBankName: ".card-bank-name " +
