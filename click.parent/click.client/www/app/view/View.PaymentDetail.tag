@@ -1,4 +1,4 @@
-<view-transfer-to-card>
+<view-payment-detail>
   <div>
     <div class="transfer-to-card-title-container">
       <div class="page-title account-detail-page-title">
@@ -58,4 +58,4 @@
 
 
   </script>
-</view-transfer-to-card>
+</view-payment-detail>
