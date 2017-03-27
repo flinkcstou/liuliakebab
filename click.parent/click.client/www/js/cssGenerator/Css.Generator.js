@@ -621,7 +621,7 @@ var css = {
   "left:" + 26 * widthK + "px;" +
   "height:" + 70 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom: 2 px solid white;" +
+  "border-bottom: 2px solid white;" +
   "}",
 
   toolbarCircleContainer: ".toolbar-circle-container " +
@@ -757,7 +757,7 @@ var css = {
   "position: absolute;" +
   "left:" + 27 * widthK + "px;" +
   "right:" + 27 * widthK + "px;" +
-  "border-bottom: 2 px solid white;" +
+  "border-bottom: 2px solid white;" +
   "text-align: center;" +
   "top:" + 440 * widthK + "px;" +
   "height:" + 100 * heightK + "px;" +
@@ -1565,7 +1565,7 @@ var css = {
   "left:" + 25 * widthK + "px;" +
   "height:" + 87 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom: 2 px solid white;" +
+  "border-bottom: 2px solid white;" +
   "}",
 
   nameTitle: ".name-title " +
@@ -1875,7 +1875,7 @@ var css = {
   "font-size:" + 30 * widthK + "px;" +
   "color: white;" +
   "top:" + 30 * widthK + "px;" +
-  "border-bottom: 2 px solid #95e6fd;" +
+  "border-bottom: 2px solid #95e6fd;" +
   "}",
 
   myCardsButtonBlockCard: ".my-cards-button-block-card " +
