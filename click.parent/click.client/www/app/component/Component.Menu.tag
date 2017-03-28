@@ -23,7 +23,7 @@
       <div class="side-menu-containers-name side-menu-containers-name-billings">Выставленные счета</div>
     </div>
 
-    <div class="side-menu-favorite-container">
+    <div class="side-menu-favorite-container" ontouchstart="goToFavoritesStart()" ontouchend="goToFavoritesEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-favorite"></div>
       <div class="side-menu-containers-name side-menu-containers-name-favorite">Избранные</div>
     </div>
@@ -236,6 +236,32 @@
 
     goToSettingsStart = function () {
       settingsTouchStartX = event.changedTouches[0].pageX;
+    }
+
+
+    var favoritesTouchStartX, favoritesTouchEndX;
+
+    goToFavoritesEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      favoritesTouchEndX = event.changedTouches[0].pageX;
+
+      console.log('settingsTouchStartX', favoritesTouchStartX)
+      console.log('settingsTouchEndX', favoritesTouchEndX)
+
+      if (favoritesTouchStartX - favoritesTouchEndX < 20) {
+        closeMenu();
+        riotTags.innerHTML = "<view-favorites>";
+        riot.mount("view-favorites");
+        return
+      }
+      else sideMenuTouchEnd()
+
+    }
+
+    goToFavoritesStart = function () {
+      favoritesTouchStartX = event.changedTouches[0].pageX;
     }
 
 

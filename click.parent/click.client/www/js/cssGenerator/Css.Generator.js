@@ -7616,6 +7616,117 @@ var css = {
   "float: left;" +
   "}",
 
+//  VIEW FAVORITES
+
+  viewFavoritesContainer: ".view-favorites-container" +
+  "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 86 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: white; " +
+  "overflow-y: auto; " +
+  "overflow-x: hidden; " +
+  "}",
+
+  viewFavoritesBlockContainer: ".view-favorites-block-containter" +
+  "{" +
+  "position: relative;" +
+  "height:" + 150 * widthK + "px; " +
+  "width: 91%;" +
+  "left: 4%;" +
+  "margin-top: 1%;" +
+  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "background-color: transparent;" +
+  "}",
+
+
+  viewFavoritesIcon: ".view-favorites-icon " +
+  "{" +
+    //"top:" + 50 * widthK + "px;" +
+  "background-size: 80%;" +
+  "position: absolute;" +
+  "width:" + 125 * widthK + "px;" +
+  "height:" + 125 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "border-radius:" + 100 * widthK + "px;" +
+  "border:solid 1px #b7b7b7;" +
+  "top: 6%;" +
+  "}",
+
+  viewFavoritesInfoContainer: ".view-favorites-info-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 72%;" +
+  "left: 18%;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewFavoritesInfoName: ".view-favorites-info-name " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 15%;" +
+  "left: 8%;" +
+  "margin: 0;" +
+  "font-size:" + 22 * widthK + "px; " +
+  "width: 75%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  viewFavoritesInfoBalance: ".view-favorites-info-balance " +
+  "{" +
+  "position: relative;" +
+  "top: 30%;" +
+  "left: 8%;" +
+  "margin: 0;" +
+  "font-size:" + 45 * widthK + "px;" +
+  "color: #ee4d3d;" +
+  "float: left;" +
+  "}",
+
+  viewFavoritesInfoCurrencyField: ".view-favorites-info-currency-field" +
+  "{" +
+  "position: relative;" +
+  "top: 42%;" +
+  "left: 9%;" +
+  "margin: 0;" +
+  "font-size:" + 26 * widthK + "px;" +
+  "color: #ee4d3d;" +
+  "float: left;" +
+  "}",
+
+  viewFavoritesInfoNumber: ".view-favorites-info-number " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 65%;" +
+  "left: 8%;" +
+  "margin: 0;" +
+  "font-size: " + 22 * widthK + "px; " +
+  "width: 75%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  viewFavoritesDeleteIcon: ".view-favorites-delete-icon" +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 10%;" +
+  "height: 100%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 36%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/services/delete.png);" +
+  "}",
+
 
 }
 
