@@ -929,11 +929,26 @@ var css = {
   "font-size:" + 27 * widthK + "px;" +
   "}",
 
-  invoiceCardFromSenderNumber: ".invoice-card-from-sender-number" +
+  invoiceCardFromSenderHolder: ".invoice-card-from-sender-holder" +
   "{" +
   "color: #8f8f8f;" +
   "margin: 0 0 0 " + 20 * widthK + "px;" +
   "font-size:" + 28 * widthK + "px;" +
+  "}",
+
+  invoiceCardFromSenderServiceName: ".invoice-card-from-sender-service-name" +
+  "{" +
+  "margin: 0;" +
+  "float: left;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "width:" + 70 * widthK + "px;" +
+  "white-space: nowrap;" +
+  "}",
+
+  invoiceCardFormSenderNumber: ".invoice-card-form-sender-number" +
+  "{" +
+  "margin: 0;" +
   "}",
 
   invoiceCardDate: ".invoice-card-date" +

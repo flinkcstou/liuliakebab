@@ -2237,6 +2237,20 @@ window.fakedSocket.register("invoice.list", function (input) {
       }],
       [
         {
+          amount: 100,
+          datetime: "2017-03-24T10:40:31.876Z",
+          "date": "24.03.2017",
+          "time": "10:40",
+          datetime_timestamp: 1490352031,
+          description: "Счет от YTT MUXAMEDOVA SH. R.",
+          invoice_id: 4063823,
+          is_p2p: 0,
+          merchant_phone: "998974647747",
+          parameter: "04703",
+          service_id: 4703,
+          service_name: "YTT MUXAMEDOVA SH. R.",
+        },
+        {
           amount: 695326,
           datetime: "2017-03-24T10:41:15.760Z",
           "date": "24.03.2017",
@@ -2263,20 +2277,6 @@ window.fakedSocket.register("invoice.list", function (input) {
           parameter: "998974647747",
           service_id: -4,
           service_name: "PAYME"
-        },
-        {
-          amount: 100,
-          datetime: "2017-03-24T10:40:31.876Z",
-          "date": "24.03.2017",
-          "time": "10:40",
-          datetime_timestamp: 1490352031,
-          description: "Счет от YTT MUXAMEDOVA SH. R.",
-          invoice_id: 4063823,
-          is_p2p: 0,
-          merchant_phone: "998974647747",
-          parameter: "04703",
-          service_id: 4703,
-          service_name: "YTT MUXAMEDOVA SH. R.",
         },
         {
           amount: 1000,

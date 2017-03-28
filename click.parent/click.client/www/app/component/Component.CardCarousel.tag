@@ -9,7 +9,7 @@
              ontouchend="blockOneTouchEnd()" ontouchstart="blockOneTouchStart()" if="{invoiceList[0]}">
           <div id="first-transfer-container" class="invoice-card-info-holder" if="{invoiceList[0].is_p2p}">
             <p class="invoice-card-from-label">Получен перевод стредств от:</p>
-            <p class="invoice-card-from-sender-number">+ {invoiceList[0].merchant_phone}</p>
+            <div class="invoice-card-from-sender-holder">+ {invoiceList[0].merchant_phone}</div>
             <p class="invoice-card-date">{invoiceList[0].time} {invoiceList[0].date}</p>
             <div class="invoice-card-transfer-sum-holder">
               <p class="invoice-card-sum">{invoiceList[0].amount}</p>
@@ -18,8 +18,10 @@
           </div>
           <div id="first-payment-container" class="invoice-card-info-holder" if="{!invoiceList[0].is_p2p}">
             <p class="invoice-card-from-label">Вам выставлен счёт:</p>
-            <p class="invoice-card-from-sender-number">{invoiceList[0].service_name} +
-              {invoiceList[0].merchant_phone}</p>
+            <div class="invoice-card-from-sender-holder">
+              <p class="invoice-card-from-sender-service-name">{invoiceList[0].service_name}</p>
+              <p class="invoice-card-form-sender-number"> + {invoiceList[0].merchant_phone}</p>
+            </div>
             <p class="invoice-card-date">{invoiceList[0].time} {invoiceList[0].date}</p>
             <div class="invoice-card-payment-sum-holder">
               <p class="invoice-card-sum">{invoiceList[0].amount}</p>
@@ -33,7 +35,7 @@
              ontouchend="blockTwoTouchEnd()" ontouchstart="blockTwoTouchStart()" if="{invoiceList[1]}">
           <div id="second-transfer-container" class="invoice-card-info-holder" if="{invoiceList[1].is_p2p}">
             <p class="invoice-card-from-label">Получен перевод стредств от:</p>
-            <p class="invoice-card-from-sender-number">+ {invoiceList[1].merchant_phone}</p>
+            <div class="invoice-card-from-sender-holder">+ {invoiceList[1].merchant_phone}</div>
             <p class="invoice-card-date">{invoiceList[1].time} {invoiceList[1].date}</p>
             <div class="invoice-card-transfer-sum-holder">
               <p class="invoice-card-sum">{invoiceList[1].amount}</p>
@@ -42,8 +44,10 @@
           </div>
           <div id="second-payment-container" class="invoice-card-info-holder" if="{!invoiceList[1].is_p2p}">
             <p class="invoice-card-from-label">Вам выставлен счёт:</p>
-            <p class="invoice-card-from-sender-number">{invoiceList[1].service_name} +
-              {invoiceList[1].merchant_phone}</p>
+            <div class="invoice-card-from-sender-holder">
+              <p class="invoice-card-from-sender-service-name">{invoiceList[1].service_name}</p>
+              <p class="invoice-card-form-sender-number"> + {invoiceList[1].merchant_phone}</p>
+            </div>
             <p class="invoice-card-date">{invoiceList[1].time} {invoiceList[1].date}</p>
             <div class="invoice-card-payment-sum-holder">
               <p class="invoice-card-sum">{invoiceList[1].amount}</p>
