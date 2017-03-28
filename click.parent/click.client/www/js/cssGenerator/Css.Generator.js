@@ -633,7 +633,7 @@ var css = {
   "bottom:" + -40 * widthK + "px;" +
   "border-radius:" + 100 * widthK + "px;" +
   "background-color: white;" +
-  "border:" + 8 * widthK + "px solid #007AE2;" +
+  "border:" + 8 * widthK + "px solid #00a8f1;" +
   "background-image: url(resources/icons/bank-operations/circleReport.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 90%;" +
@@ -7199,9 +7199,11 @@ var css = {
   "{" +
   "position: relative;" +
   "margin: 0;" +
+  "top: 5%;" +
   "color: white;" +
   "width: 100%;" +
   "text-align: center;" +
+  "font-weight: bold;" +
   "font-size:" + 30 * widthK + "px !important; " +
   "}",
 
