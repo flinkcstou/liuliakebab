@@ -22,11 +22,11 @@
     //THIS COMPONENT IS NOT IN USE
     var scope = this;
 
-    if (JSON.parse(localStorage.getItem("click_client_p2p_bank_list"))) {
-      scope.bankList = JSON.parse(localStorage.getItem("click_client_p2p_bank_list"));
-      console.log("bank list", scope.bankList);
-      riot.update(scope.bankList);
-    }
+//    if (JSON.parse(localStorage.getItem("click_client_p2p_bank_list"))) {
+//      scope.bankList = JSON.parse(localStorage.getItem("click_client_p2p_bank_list"));
+//      console.log("bank list", scope.bankList);
+//      riot.update(scope.bankList);
+//    }
 
 
     closeComponent = function () {

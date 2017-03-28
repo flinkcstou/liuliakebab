@@ -7429,7 +7429,7 @@ var css = {
   "opacity: 0.97;" +
   "height: 100%;" +
   "width: 100%;" +
-  "background-color: whitesmoke;" +
+  "background-color: #f0f1f4;" +
   "display: none;" +
   "}",
 
@@ -7438,6 +7438,7 @@ var css = {
   "position: absolute;" +
   "background-color: transparent;" +
   "width: 100%;" +
+  "height: 90%;" +
   "top: 8%;" +
   "bottom: 0;" +
   "overflow:auto;" +
@@ -7495,6 +7496,7 @@ var css = {
   "width:" + 200 * widthK + "px;" +
   "background-position: top right;" +
   "background-position-x: center;" +
+  "background-position-y: center;" +
   "}",
 
 
