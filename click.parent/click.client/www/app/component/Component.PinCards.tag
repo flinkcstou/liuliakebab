@@ -1,6 +1,6 @@
 <component-pincards>
 
-  <div class="pincard-allcards-container">
+  <div class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail}">
     <div class="pincard-card-container" each="{i in cardsArray}" ontouchend="chooseCardTouchEnd(this.id)"
          ontouchstart="chooseCardTouchStart()"
          id="{i.card_id}" if="{i.access == 2}">
@@ -10,8 +10,10 @@
            style="opacity:0.3; filter: grayscale(100%);background-image: url({i.url})"></div>
       <div class="pincard-card-info-container">
         <p class="pincard-card-info-text-one">{i.name}</p>
-        <p if="{!modeOfflineMode.check}" class="pincard-card-info-text-two" if="{i.salaryOriginal>0}">{i.salary} {i.currency}</p>
-        <p  class="pincard-card-info-text-two" style="color: #EB604D" if="{i.salaryOriginal<=0 && !modeOfflineMode.check}">
+        <p if="{!modeOfflineMode.check}" class="pincard-card-info-text-two" if="{i.salaryOriginal>0}">{i.salary}
+          {i.currency}</p>
+        <p class="pincard-card-info-text-two" style="color: #EB604D"
+           if="{i.salaryOriginal<=0 && !modeOfflineMode.check}">
           0 {i.currency}</p>
         <p class="pincard-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
       </div>

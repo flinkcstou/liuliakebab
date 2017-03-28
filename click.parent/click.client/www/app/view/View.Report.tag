@@ -49,8 +49,17 @@
       <p class="view-reports-graph-bigamount-text">{paymentsSum} сум</p>
     </div>
     <div class="view-reports-graph-image-container">
-      <canvas class="view-reports-graph-frame" id="myChart"></canvas>
-      <div id="titleOfChartId"></div>
+      <div class="view-reports-graph-frame">
+        <canvas class="view-reports-graph-frame" id="myChart">
+        </canvas>
+        <div
+          style="position:absolute; width: 5px; height: 5px; background-color: black; top: 235px; left: 235px;;"></div>
+
+        <div each="{i in arrayOfCoordinates}"
+             style="position:absolute; width: 5px; height: 5px; background-color: black; top: {i.y}px; left: {i.x}px;;">
+          {i.percent}
+        </div>
+      </div>
     </div>
     <div class="view-reports-graph-content-container">
 
@@ -452,20 +461,37 @@
             ]
           }]
       };
+
+      var sumOfAngle = 0;
+      scope.arrayOfCoordinates = [];
       console.log(data.datasets[0].data)
-      for(var i in arrayForGraph){
+
+      for (var i in arrayForGraph) {
         data.datasets[0].data.push(arrayForGraph[i].percent);
+        var centerOfBlock = sumOfAngle + arrayForGraph[i].percent / 2.0;
+        console.log('CENTER', centerOfBlock)
+        var alpha = 3.6 * centerOfBlock;
+        sumOfAngle += arrayForGraph[i].percent;
+
+        var x = 235 + (170 * Math.sin(alpha / (180 / Math.PI)));
+        var y = 235 - (170 * Math.cos(alpha / (180 / Math.PI)));
+
+        var coordinates = {
+          x: x,
+          y: y,
+          percent: arrayForGraph[i].percent.toFixed(0)
+        }
+        scope.arrayOfCoordinates.push(coordinates);
       }
+      riot.update()
+      console.log("ARRAY OF COORDINATES", scope.arrayOfCoordinates)
       console.log('DATA', data)
       var ctx = document.getElementById('myChart').getContext('2d');
       var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: data,
-        options: {
-        }
+        options: {}
       });
-
-
 
 
     }

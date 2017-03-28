@@ -6601,9 +6601,12 @@ var css = {
   "width:" + 720 * widthK + "px; " +
   "top:" + 380 * widthK + "px; " +
   "bottom:0; " +
-  "background-color: #f4f4f4; " +
-  "overflow-y: auto; " +
+  "background-color: #ffffff; " +
+  "overflow-y: hidden; " +
   "overflow-x: hidden; " +
+  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position-y: 420px;" +
   "}",
 
   transferDetailTitleContainer: ".transfer-detail-title-container" +
@@ -6750,9 +6753,10 @@ var css = {
   transferDetailButtonsContainer: ".transfer-detail-buttons-container" +
   "{" +
   "position: relative;" +
-  "height: 13%;" +
+  "height: 46.5%;" +
   "width:100%;" +
   "top: 9%;" +
+  "background-color: #f4f4f4;" +
   "}",
 
   transferDetailButtonAccept: ".transfer-detail-button-accept" +
@@ -6991,24 +6995,27 @@ var css = {
   "width: 44%;" +
   "}",
 
-  //VIEW TRANSFER TO CARD
+  //VIEW TRANSFER TO CARD ----> VIEW PAYMENT DETAIL
 
   transferToCardContainer: ".transfer-to-card-container" +
   "{" +
   "position: absolute;" +
     //"height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
-  "top:" + 220 * widthK + "px; " +
+  "top:" + 380 * widthK + "px; " +
   "bottom:0; " +
-  "background-color: #f4f4f4; " +
+  "background-color: #ffffff; " +
   "overflow-y: hidden; " +
   "overflow-x: hidden; " +
+  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position-y:" + 668 * widthK + "px;" +
   "}",
 
   transferToCardTitleContainer: ".transfer-to-card-title-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 220 * widthK + "px;" +
+  "height:" + 380 * widthK + "px;" +
   "width:100%;" +
   "background-color: #0280e4;" +
   "}",
@@ -7016,8 +7023,8 @@ var css = {
   transferToCardTransferTitlePartOne: ".transfer-to-card-transfer-title-part-one " +
   "{" +
   "position: relative;" +
-  "width: 100%;" +
-  "top: 20%;" +
+  "width: 50%;" +
+  "top: 59%;" +
   "margin: 0;" +
   "color: white;" +
   "margin-left: auto;" +
@@ -7030,7 +7037,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "top: 27%;" +
+  "top: 57%;" +
   "margin: 0;" +
   "color: white;" +
   "margin-left: auto;" +
@@ -7043,7 +7050,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "top: 27%;" +
+  "top: 56%;" +
   "margin: 0;" +
   "color: white;" +
   "margin-left: auto;" +
@@ -7052,6 +7059,68 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "}",
 
+  changedHeightForPaymentDetail: ".changed-height-for-payment-detail" +
+  "{" +
+  "height: 40%;" +
+  "}",
+
+  paymentDetailPaymentIcon: ".payment-detail-payment-icon" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 90 * widthK + "px;" +
+  "width:" + 90 * widthK + "px;" +
+  "top:" + 104 * widthK + "px;" +
+  "left: 44%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 71%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/bank-operations/payment.png);" +
+  "}",
+
+  paymentDetailPaymentContainer: ".payment-detail-payment-container" +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "height: 11.5%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "border-bottom: 1px solid lightgrey;" +
+  "}",
+
+  paymentDetailTitle: ".payment-detail-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 28%;" +
+  "left: 3%;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "}",
+
+  paymentDetailSum: ".payment-detail-sum " +
+  "{" +
+  "position: absolute;" +
+  "top: 57%;" +
+  "left: 3%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: #f46b5b;" +
+  "}",
+
+  paymentDetailNumber: ".payment-detail-number " +
+  "{" +
+  "position: absolute;" +
+  "top: 57%;" +
+  "left: 3%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: grey;" +
+  "}",
 
 //  VIEW REPORTS
 
