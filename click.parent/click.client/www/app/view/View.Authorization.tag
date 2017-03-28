@@ -512,7 +512,7 @@
                               scope.servicesMapByCategory[scope.serviceList[index].category_id] = [];
                               if (scope.serviceList[index].category_id == 1 && scope.serviceList[index].id == window.mOperators[scope.operatorKey]) {
                                 localStorage.setItem('myNumberOperatorId', scope.serviceList[index].id);
-                                console.log("MY NUMBER ID", scope.serviceList[index].id);
+//                                console.log("MY NUMBER ID", scope.serviceList[index].id);
 
                                 var myNumberObject = {};
                                 myNumberObject.name = 'Мой номер';
@@ -554,7 +554,7 @@
 
                     for (var i in result[1]) {
                       if (result[1][i].is_visible == 1) {
-                        console.log("service id=", result[1][i].id, ", element:", result[1][i]);
+//                        console.log("service id=", result[1][i].id, ", element:", result[1][i]);
 
                         scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
                         scope.serviceList.push(result[1][i]);
@@ -564,7 +564,7 @@
                           if (result[1][i].category_id == 1 && result[1][i].id == window.mOperators[scope.operatorKey]) {
 //                            console.log("MY NUMBER");
                             localStorage.setItem('myNumberOperatorId', result[1][i].id);
-                            console.log("MY NUMBER ID", result[1][i].id);
+//                            console.log("MY NUMBER ID", result[1][i].id);
                             var myNumberObject = {};
                             myNumberObject.name = 'Мой номер';
                             myNumberObject.image = 'resources/icons/ViewPay/myphone.png';

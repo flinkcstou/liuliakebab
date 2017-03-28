@@ -442,19 +442,21 @@
       var data = {
         datasets: [
           {
-            data: [20, 60, 20],
+            data: [],
             backgroundColor: [
               "#FF6384",
               "#36A2EB",
-              "#FFCE56"
-            ],
-            hoverBackgroundColor: [
-              "#FF6384",
-              "#36A2EB",
-              "#FFCE56"
+              "#FFCE56",
+              "brown",
+              "grey"
             ]
           }]
       };
+      console.log(data.datasets[0].data)
+      for(var i in arrayForGraph){
+        data.datasets[0].data.push(arrayForGraph[i].percent);
+      }
+      console.log('DATA', data)
       var ctx = document.getElementById('myChart').getContext('2d');
       var myChart = new Chart(ctx, {
         type: 'doughnut',
