@@ -6601,9 +6601,12 @@ var css = {
   "width:" + 720 * widthK + "px; " +
   "top:" + 380 * widthK + "px; " +
   "bottom:0; " +
-  "background-color: #f4f4f4; " +
-  "overflow-y: auto; " +
+  "background-color: #ffffff; " +
+  "overflow-y: hidden; " +
   "overflow-x: hidden; " +
+  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position-y: 420px;" +
   "}",
 
   transferDetailTitleContainer: ".transfer-detail-title-container" +
@@ -6750,9 +6753,10 @@ var css = {
   transferDetailButtonsContainer: ".transfer-detail-buttons-container" +
   "{" +
   "position: relative;" +
-  "height: 13%;" +
+  "height: 46.5%;" +
   "width:100%;" +
   "top: 9%;" +
+  "background-color: #f4f4f4;" +
   "}",
 
   transferDetailButtonAccept: ".transfer-detail-button-accept" +

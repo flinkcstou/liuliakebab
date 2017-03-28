@@ -279,7 +279,7 @@
     openBanksListPage = function () {
       if (JSON.parse(localStorage.getItem("click_client_p2p_bank_list"))) {
         scope.bankList = JSON.parse(localStorage.getItem("click_client_p2p_bank_list"));
-        console.log("bank list", scope.bankList);
+//        console.log("bank list", scope.bankList);
         riot.update(scope.bankList);
       }
       componentBankListId.style.display = 'block';
@@ -331,7 +331,7 @@
 
               }
             }
-            console.log("result of P2P BANK LIST ", result[1]);
+//            console.log("result of P2P BANK LIST ", result[1]);
             localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(result[1]))
           }
           else
