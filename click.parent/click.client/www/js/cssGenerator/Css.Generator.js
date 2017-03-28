@@ -7128,8 +7128,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 80 * widthK + "px;" +
-  "top:" + 90 * widthK + "px;" +
+  "height:" + 65 * widthK + "px;" +
+  "top:" + 88 * heightK + "px;" +
     //"overflow-x: auto;" +
     //"overflow-y: hidden;" +
   "font-size:" + 23 * widthK + "px;" +
@@ -7148,8 +7148,7 @@ var css = {
   viewReportsMonthInfoName: ".view-reports-month-info-name " +
   "{" +
   "position: absolute;" +
-  "height: 25%;" +
-  "top: 30%;" +
+  "top: 10%;" +
   "left: 3%;" +
   "margin: 0;" +
   "color: white;" +
@@ -7173,7 +7172,7 @@ var css = {
   "position: absolute;" +
     //"height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
-  "top:" + 170 * widthK + "px; " +
+  "top:" + 170 * heightK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
   "}",
@@ -7181,8 +7180,8 @@ var css = {
   viewReportsGraphFrame: ".view-reports-graph-frame" +
   "{" +
   "position: relative;" +
-  "width:" + 470 * widthK + "px !important; " +
-  "height:" + 470 * widthK + "px !important; " +
+  "width:" + 470 * heightK + "px !important; " +
+  "height:" + 470 * heightK + "px !important; " +
   "margin-left: auto; " +
   "margin-right: auto; " +
   "background-color: white; " +
@@ -7191,8 +7190,8 @@ var css = {
   viewReportsGraphPercentImageContainer: ".view-reports-graph-percent-image-container" +
   "{" +
   "position: absolute;" +
-  "width:" + 160 * widthK + "px; " +
-  "height:" + 80 * widthK + "px; " +
+  "width:" + 80 * heightK + "px; " +
+  "height:" + 80 * heightK + "px; " +
   "transform: translate3d(-50%, -50%, 0); " +
   "}",
 
@@ -7201,8 +7200,9 @@ var css = {
   "position: relative;" +
   "margin: 0;" +
   "color: white;" +
-  "float: left;" +
-  "font-size:" + 46 * widthK + "px !important; " +
+  "width: 100%;" +
+  "text-align: center;" +
+  "font-size:" + 30 * widthK + "px !important; " +
   "}",
 
   viewReportsGraphImage: ".view-reports-graph-image" +
@@ -7211,11 +7211,12 @@ var css = {
   "margin: 0;" +
   "color: white;" +
   "float: left;" +
+  "margin-left: 10%;" +
   "background-position: center;" +
   "background-size: 100%;" +
   "background-repeat: no-repeat;" +
-  "width:" + 65 * widthK + "px;" +
-  "height:" + 65 * widthK + "px;" +
+  "width:" + 50 * widthK + "px;" +
+  "height:" + 50 * widthK + "px;" +
   "}",
 
   viewReportsFilterContainer: ".view-reports-filter-container " +
@@ -7223,14 +7224,17 @@ var css = {
   "position: absolute;" +
   "width:" + 195 * widthK + "px;" +
   "height:" + 92 * widthK + "px;" +
-  "right:" + 103 * widthK + "px;" +
+  "right:" + 63 * widthK + "px;" +
   "top: 0;" +
   "}",
 
   viewReportsFilterText: ".view-reports-filter-text " +
   "{" +
+  "position: absolute;" +
+  "margin: 0;" +
   "color: white;" +
-  "font-size:" + 28 * widthK + "px;" +
+  "top: 29%;" +
+  "font-size:" + 29 * widthK + "px;" +
   "}",
 
   viewReportsFilterButton: ".view-reports-filter-button " +
@@ -7241,10 +7245,10 @@ var css = {
   "right:0;" +
   "background-image: url('resources/icons/ViewReport/reports_filters.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 31%;" +
+  "-webkit-background-size: 44%;" +
   "background-position-y: center;" +
-  "background-position-x:" + 10 * widthK + "px;" +
-  "background-size: 70%;" +
+  "background-position-x:" + 9 * widthK + "px;" +
+  "background-size: 44%;" +
   "top: 0;" +
   "}",
 
@@ -7256,10 +7260,10 @@ var css = {
   "right:" + -36 * widthK + "px;" +
   "background-image: url('resources/icons/ViewReport/reports_chart_off.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 31%;" +
+  "-webkit-background-size: 23%;" +
   "background-position-y: center;" +
-  "background-position-x:" + 54 * widthK + "px;" +
-  "background-size: 31%;" +
+  "background-position-x:" + 62 * widthK + "px;" +
+  "background-size: 23%;" +
   "top: 0;" +
   "}",
 
@@ -7428,7 +7432,7 @@ var css = {
   viewReportsGraphImageContainer: ".view-reports-graph-image-container " +
   "{" +
   "position: absolute;" +
-  "height: 45%;" +
+  "height:" + 480 * widthK + "px;" +
   "top: 15%;" +
   "width: 100%;" +
   "color: black;" +
@@ -7438,8 +7442,8 @@ var css = {
   viewReportsGraphContentContainer: ".view-reports-graph-content-container " +
   "{" +
   "position: absolute;" +
-  "height: 39%;" +
-  "top: 61%;" +
+  "height:" + 390 * heightK + "px;" +
+  "bottom: 0;" +
   "width: 100%;" +
   "color: black;" +
   "overflow-y: auto;" +

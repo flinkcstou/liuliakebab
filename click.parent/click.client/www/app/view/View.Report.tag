@@ -55,8 +55,8 @@
 
         <div class="view-reports-graph-percent-image-container" each="{i in arrayOfCoordinates}"
              id="chartImageBlockId{i.order}" if="{i.percent > 10}"
-             style="top: {i.y}px; left: {i.x}px; width: {i.width}px">
-          <p if="{i.percent > 20}" class="view-reports-graph-percent">{i.percent}%</p>
+             style="top: {i.y * heightK}px; left: {i.x  * heightK}px;">
+          <p if="{i.percent > 10}" class="view-reports-graph-percent">{i.percent}%</p>
           <div class="view-reports-graph-image"
                style="background-image: url({i.image})"></div>
         </div>
@@ -475,27 +475,27 @@
         console.log('ALPHA', alpha)
         sumOfAngle += parseInt(arrayForGraph[i].percent);
 
-        var x = 235 + (170 * Math.sin(alpha / (180 / Math.PI)));
-        var y = 235 - (170 * Math.cos(alpha / (180 / Math.PI)));
+        var x = 240 + (170 * Math.sin(alpha / (180 / Math.PI)));
+        var y = 240 - (170 * Math.cos(alpha / (180 / Math.PI)));
 
-        if (alpha >= 0 && alpha < 90) {
-          x = x - 30;
-          y = y - 20;
-        }
-
-        if (alpha >= 90 && alpha < 180) {
-          y = y - 20;
-          x = x - 60;
-        }
-
-        if (alpha >= 180 && alpha < 270) {
-          y = y - 20;
-        }
-
-        if (alpha >= 270 && alpha < 360) {
-          x = x - 20;
-          y = y - 40;
-        }
+//        if (alpha >= 0 && alpha < 90) {
+//          x = x - 30;
+//          y = y - 20;
+//        }
+//
+//        if (alpha >= 90 && alpha < 180) {
+//          y = y - 20;
+//          x = x - 60;
+//        }
+//
+//        if (alpha >= 180 && alpha < 270) {
+//          y = y - 20;
+//        }
+//
+//        if (alpha >= 270 && alpha < 360) {
+//          x = x - 20;
+//          y = y - 40;
+//        }
 
         var width = 160;
         if ((alpha >= 30 && alpha < 125) || (alpha >= 205 && alpha < 335)) {
@@ -511,7 +511,7 @@
           image: arrayForGraph[i].image,
           order: j,
           alpha: alpha,
-          width: width
+//          width: width
         }
         scope.arrayOfCoordinates.push(coordinates);
         j++;
