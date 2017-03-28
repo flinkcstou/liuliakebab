@@ -445,6 +445,7 @@
           console.error(data);
         }
       });
+
     }
 
     createGraph = function (arrayForGraph) {
@@ -526,7 +527,12 @@
         options: {}
       });
 
-
+      for (var i in scope.arrayOfCoordinates) {
+        if (document.getElementById('chartImageBlockId' + scope.arrayOfCoordinates[i].order)) {
+          document.getElementById('chartImageBlockId' + scope.arrayOfCoordinates[i].order).style.opacity = 1;
+          console.log('scope.arrayOfCoordinates[i]', scope.arrayOfCoordinates)
+        }
+      }
     }
 
 

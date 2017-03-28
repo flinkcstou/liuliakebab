@@ -7194,6 +7194,8 @@ var css = {
   viewReportsGraphPercentImageContainer: ".view-reports-graph-percent-image-container" +
   "{" +
   "position: absolute;" +
+  "opacity: 0;" +
+  "transition: 3s;" +
   "width:" + 80 * heightK + "px; " +
   "height:" + 80 * heightK + "px; " +
   "transform: translate3d(-50%, -50%, 0); " +
@@ -7221,8 +7223,8 @@ var css = {
   "background-position: center;" +
   "background-size: 100%;" +
   "background-repeat: no-repeat;" +
-  "width:" + 50 * widthK + "px;" +
-  "height:" + 50 * widthK + "px;" +
+  "width:" + 50 * heightK + "px;" +
+  "height:" + 50 * heightK + "px;" +
   "}",
 
   viewReportsFilterContainer: ".view-reports-filter-container " +
