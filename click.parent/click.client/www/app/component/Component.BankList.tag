@@ -1,6 +1,6 @@
 <component-bank-list id="componentBankListId" class="component-bank-list">
   <div class="page-title" style="border: none;">
-    <p class="component-banklist-name-title">{titleName}</p>
+    <p class="component-banklist-name-title">{window.languages.ViewBankListTitleName}</p>
     <div id="rightButton" type="button" class="component-banklist-close-button" ontouchend="closeComponent()"></div>
   </div>
 
@@ -19,12 +19,15 @@
   </div>
 
   <script>
+    //THIS COMPONENT IS NOT IN USE
     var scope = this;
-    this.titleName = window.languages.ViewBankListTitleName;
 
-    scope.bankList = JSON.parse(localStorage.getItem("click_client_p2p_bank_list"));
-    console.log("bank list", scope.bankList);
-    riot.update(scope.bankList);
+    if (JSON.parse(localStorage.getItem("click_client_p2p_bank_list"))) {
+      scope.bankList = JSON.parse(localStorage.getItem("click_client_p2p_bank_list"));
+      console.log("bank list", scope.bankList);
+      riot.update(scope.bankList);
+    }
+
 
     closeComponent = function () {
       event.preventDefault();

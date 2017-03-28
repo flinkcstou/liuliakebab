@@ -160,7 +160,23 @@
     </div>
 
   </div>
-  <component-bank-list></component-bank-list>
+
+  <div id="componentBankListId" class="component-bank-list">
+    <div class="page-title" style="border: none;">
+      <p class="component-banklist-name-title">{window.languages.ViewBankListTitleName}</p>
+      <div id="rightButton" type="button" class="component-banklist-close-button" ontouchend="closeComponent()"></div>
+    </div>
+    <div class="component-banklist-container">
+      <div class="component-banklist-card" each="{i in bankList}">
+        <div class="component-banklist-bank-logo" style="background-image: url({i.image});"></div>
+        <div class="component-banklist-bank-limit-container">
+          <div class="component-banklist-bank-limit-text">{window.languages.ViewBankListLimitText}</div>
+          <div class="component-banklist-bank-limit">{i.amount}</div>
+          <div class="component-banklist-bank-limit-currency">{window.languages.ViewBankListLimitForMonthText}</div>
+        </div>
+      </div>
+    </div>
+  </div>
   <script>
 
     this.on('mount', function () {
@@ -260,8 +276,17 @@
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
     openBanksListPage = function () {
+      if (JSON.parse(localStorage.getItem("click_client_p2p_bank_list"))) {
+        scope.bankList = JSON.parse(localStorage.getItem("click_client_p2p_bank_list"));
+        console.log("bank list", scope.bankList);
+        riot.update(scope.bankList);
+      }
       componentBankListId.style.display = 'block';
     };
+
+    closeComponent = function () {
+      componentBankListId.style.display = 'none';
+    }
 
     if (!JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))) {
       window.api.call({
