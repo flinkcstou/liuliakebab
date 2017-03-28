@@ -7433,7 +7433,7 @@ var css = {
   "display: none;" +
   "}",
 
-  bankListContainer: ".component-banklist-container" +
+  componentBankListContainer: ".component-banklist-container" +
   "{" +
   "position: absolute;" +
   "background-color: transparent;" +
@@ -7443,7 +7443,7 @@ var css = {
   "overflow:scroll;" +
   "}",
 
-  bankListCard: ".component-banklist-card" +
+  componentBankListCard: ".component-banklist-card" +
   "{" +
   "height: " + 286 * widthK + "px;" +
   "width: " + 302 * widthK + "px;" +
@@ -7461,26 +7461,89 @@ var css = {
   "position: absolute;" +
   "background-size: contain;" +
   "font-size:" + 35 * widthK + "px;" +
-  "left: 9%;" +
+  "left: 6%;" +
   "top: 31%;" +
   "margin: 0;" +
   "color: #353340;" +
   "}",
 
-  closeButton: ".close-button " +
+  componentBankListCloseButton: ".component-banklist-close-button " +
   "{" +
   "position: absolute;" +
   "width:" + 144 * widthK + "px;" +
   "height:" + 92 * widthK + "px;" +
   "right:" + -36 * widthK + "px;" +
-  "background-image: url('resources/icons/ViewService/unchecked.png');" +
+  "background-image: url('resources/icons/ViewTransfer/banks_close.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 31%;" +
+  "-webkit-background-size: 22%;" +
   "background-position-y: center;" +
   "background-position-x:" + 54 * widthK + "px;" +
-  "background-size: 31%;" +
+  "background-size: 22%;" +
   "top: 0;" +
   "}",
+
+  componentBankListBankLogo: ".component-banklist-bank-logo" +
+  "{" +
+  "position: absolute;" +
+  "top:" + 40 * widthK + "px;" +
+  "right:" + 51 * widthK + "px;" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "height:" + 122 * widthK + "px;" +
+  "width:" + 200 * widthK + "px;" +
+  "background-position: top right;" +
+  "background-position-x: center;" +
+  "}",
+
+
+  componentBankListBankLimitContainer: ".component-banklist-bank-limit-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 34%;" +
+  "top: 65%;" +
+  "display: inline-block;" +
+  "margin: 0;" +
+  "}",
+
+  componentBankListBankLimitText: ".component-banklist-bank-limit-text " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 15%;" +
+  "left: 8%;" +
+  "margin: 0;" +
+  "color: #585658;" +
+  "font-size:" + 22 * widthK + "px; " +
+  "width: 75%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  componentBankListBankLimit: ".component-banklist-bank-limit " +
+  "{" +
+  "position: relative;" +
+  "top: 40%;" +
+  "left: 8%;" +
+  "margin: 0;" +
+  "font-size:" + 20 * widthK + "px;" +
+  "color: #585658;" +
+  "float: left;" +
+  "}",
+
+  componentBankListBankLimitCurrency: ".component-banklist-bank-limit-currency" +
+  "{" +
+  "position: relative;" +
+  "top: 40%;" +
+  "left: 9%;" +
+  "margin: 0;" +
+  "font-size:" + 20 * widthK + "px;" +
+  "color: #585658;" +
+  "float: left;" +
+  "}",
+
 
 }
 

@@ -1,20 +1,20 @@
 <component-bank-list id="componentBankListId" class="component-bank-list">
   <div class="page-title" style="border: none;">
     <p class="component-banklist-name-title">{titleName}</p>
-    <div id="rightButton" type="button" class="close-button" ontouchend="closeComponent()"></div>
+    <div id="rightButton" type="button" class="component-banklist-close-button" ontouchend="closeComponent()"></div>
   </div>
 
   <div class="component-banklist-container">
-    <div class="component-banklist-card" each="{i in bankList}"
-         ontouchend="goToCardPage({i.card_id})">
+    <div class="component-banklist-card" each="{i in bankList}">
 
-      <div class="mycardlist-card-bank-name" style="background-image: url({i.image});"></div>
-      <div class="mycardlist-card-salary-title">{i.bank_name}</div>
+      <div class="component-banklist-bank-logo" style="background-image: url({i.image});"></div>
 
-      <div class="mycardlist-card-balance-currency-container">
-        <p class="mycardlist-card-balance">{i.code}</p>
-        <p class="mycardlist-card-currency">{i.code}</p>
+      <div class="component-banklist-bank-limit-container">
+        <div class="component-banklist-bank-limit-text">{window.languages.ViewBankListLimitText}</div>
+        <div class="component-banklist-bank-limit">{i.amount}</div>
+        <div class="component-banklist-bank-limit-currency">{window.languages.ViewBankListLimitForMonthText}</div>
       </div>
+
     </div>
   </div>
 

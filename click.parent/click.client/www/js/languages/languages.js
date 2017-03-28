@@ -230,6 +230,8 @@ var RU_LANGUAGES =
 
 
   "ViewBankListTitleName": "ДОСТУПНЫЕ БАНКИ",
+  "ViewBankListLimitForMonthText": "сум в месяц",
+  "ViewBankListLimitText": "Лимит:",
 
 
 };
