@@ -103,7 +103,10 @@
 
           params = {
 
-            amount: invoice.amount
+            amount: invoice.amount,
+            invoiceId: invoice.invoice_id,
+            phoneNumber: invoice.merchant_phone,
+            serviceName: invoice.service_name
           };
 
           riotTags.innerHTML = "<view-payment-detail>";

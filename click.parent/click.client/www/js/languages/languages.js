@@ -212,9 +212,12 @@ var RU_LANGUAGES =
   "ViewAccountDetailTitlePay": "ОПЛАТИТЬ",
   "ViewAccountDetailTitleDecline": "ОТКАЗАТЬ",
 
-  "ViewTransferToCardTitleOne": "Зачислить средства в размере",
-  "ViewTransferToCardTitleTwo": "на карту:",
-  "ViewTransferToCardTitle": "ЗАЧИСЛЕНИЕ",
+  "ViewPaymentDetailTitleOne": "Получен счет",
+  "ViewPaymentDetailTitleTwo": "от пользователя CLICK",
+  "ViewPaymentDetailTitle": "ДЕТАЛИ СЧЕТА #",
+  "ViewPaymentDetailTitleSum": "Сумма платежа:",
+  "ViewPaymentDetailTitlePayFor": "Оплата за",
+  "ViewPaymentDetailTitlePayFrom": "Оплатить с:",
 
   "ViewReportMonthsArray": [{"name": "Январь", "count": 1}, {"name": "Февраль", "count": 2}, {
     "name": "Март",
