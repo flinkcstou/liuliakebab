@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  //"background-image: url(resources/draft/transfer-to-card-crop.png);" +
+    //"background-image: url(resources/draft/transfer-to-card-crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-    "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
-    "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
-    "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -3329,6 +3329,10 @@ var css = {
   "top: 30%;" +
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
+  "width:100%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   payconfirmDetailText: ".payconfirm-detail-text" +
