@@ -86,20 +86,20 @@
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization') {
         history.arrayOfHistory.push(
-          {
-            "view": 'view-authorization',
-            "params": ''
-          }
+            {
+              "view": 'view-authorization',
+              "params": ''
+            }
         );
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
       }
     }
     else {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-authorization',
-          "params": ''
-        }
+          {
+            "view": 'view-authorization',
+            "params": ''
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -276,7 +276,7 @@
         var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = info.session_key;
 
-//        console.log(phoneNumber, ' ', sessionKey);
+        console.log("ASD authorization 279", phoneNumber, sessionKey);
 
         if (!localStorage.getItem("click_client_accountInfo")) {
           window.api.call({

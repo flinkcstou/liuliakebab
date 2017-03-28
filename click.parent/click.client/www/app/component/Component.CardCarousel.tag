@@ -74,9 +74,12 @@
   <script>
 
     var scope = this;
-    scope.cardsarray = {};
     scope.invoiceLeft = 100 * widthK;
     scope.invoiceList = [];
+
+    scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
+    scope.cardsarray = (scope.cardsarray) ? (scope.cardsarray) : ({});
+    riot.update(scope.cardsarray);
 
     stopPropagation = function () {
 
@@ -191,6 +194,8 @@
 
         localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
 
+        console.log("ASD 197", scope.cardsarray);
+
 
         count++;
 //        cardNumber %= count;
@@ -269,6 +274,10 @@
         if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
           var arrayAccountInfo = [];
+          var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+          var sessionKey = info.session_key;
+
+          console.log("ASD cardCarousel 278", phoneNumber, sessionKey);
 
           window.api.call({
             method: 'get.accounts',
@@ -464,6 +473,9 @@
                 }
                 scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
                 localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+
+                console.log("ASD 473", scope.cardsarray);
+
                 riot.update();
               }
             }
@@ -611,6 +623,7 @@
               scope.cardsarray[i].chosenCard = true;
               sendChosenCardId = scope.cardsarray[i].card_id
               localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+              console.log("ASD 622", scope.cardsarray);
             }
             else {
               scope.cardsarray[i].chosenCard = false;
