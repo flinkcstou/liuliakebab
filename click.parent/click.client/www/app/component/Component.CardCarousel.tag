@@ -141,6 +141,7 @@
         if (JSON.parse(localStorage.getItem("click_client_cards"))) {
           localStorage.removeItem("click_client_cards")
           scope.cardsarray = {};
+          riot.update(scope.cardsarray);
         }
       }
 
@@ -203,7 +204,7 @@
 //        localStorage.setItem('cardNumber', cardNumber);
       }
 
-      riot.update();
+      riot.update(scope.cardsarray);
 
       if (!modeOfApp.offlineMode) {
         writeBalance();
@@ -476,7 +477,7 @@
 
                 console.log("ASD 473", scope.cardsarray);
 
-                riot.update();
+                riot.update(scope.cardsarray);
               }
             }
             else
