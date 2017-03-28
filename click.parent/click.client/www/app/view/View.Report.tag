@@ -52,12 +52,13 @@
       <div class="view-reports-graph-frame">
         <canvas class="view-reports-graph-frame" id="myChart">
         </canvas>
-        <div
-          style="position:absolute; width: 5px; height: 5px; background-color: black; top: 235px; left: 235px;;"></div>
 
-        <div each="{i in arrayOfCoordinates}"
-             style="position:absolute; width: 5px; height: 5px; background-color: black; top: {i.y}px; left: {i.x}px;;">
-          {i.percent}
+        <div class="view-reports-graph-percent-image-container" each="{i in arrayOfCoordinates}"
+             id="chartImageBlockId{i.order}" if="{i.percent > 10}"
+             style="top: {i.y}px; left: {i.x}px; width: {i.width}px">
+          <p if="{i.percent > 20}" class="view-reports-graph-percent">{i.percent}%</p>
+          <div class="view-reports-graph-image"
+               style="background-image: url({i.image})"></div>
         </div>
       </div>
     </div>
@@ -465,23 +466,55 @@
       var sumOfAngle = 0;
       scope.arrayOfCoordinates = [];
       console.log(data.datasets[0].data)
-
+      var j = 0;
       for (var i in arrayForGraph) {
         data.datasets[0].data.push(arrayForGraph[i].percent);
-        var centerOfBlock = sumOfAngle + arrayForGraph[i].percent / 2.0;
+        var centerOfBlock = parseInt(sumOfAngle) + parseInt(arrayForGraph[i].percent) / 2;
         console.log('CENTER', centerOfBlock)
-        var alpha = 3.6 * centerOfBlock;
-        sumOfAngle += arrayForGraph[i].percent;
+        var alpha = 3.6 * parseInt(centerOfBlock);
+        console.log('ALPHA', alpha)
+        sumOfAngle += parseInt(arrayForGraph[i].percent);
 
         var x = 235 + (170 * Math.sin(alpha / (180 / Math.PI)));
         var y = 235 - (170 * Math.cos(alpha / (180 / Math.PI)));
 
+        if (alpha >= 0 && alpha < 90) {
+          x = x - 30;
+          y = y - 20;
+        }
+
+        if (alpha >= 90 && alpha < 180) {
+          y = y - 20;
+          x = x - 60;
+        }
+
+        if (alpha >= 180 && alpha < 270) {
+          y = y - 20;
+        }
+
+        if (alpha >= 270 && alpha < 360) {
+          x = x - 20;
+          y = y - 40;
+        }
+
+        var width = 160;
+        if ((alpha >= 30 && alpha < 125) || (alpha >= 205 && alpha < 335)) {
+          width = 100;
+        }
+
+        console.log(alpha)
+        var percent = arrayForGraph[i].percent;
         var coordinates = {
           x: x,
           y: y,
-          percent: arrayForGraph[i].percent.toFixed(0)
+          percent: parseInt(percent),
+          image: arrayForGraph[i].image,
+          order: j,
+          alpha: alpha,
+          width: width
         }
         scope.arrayOfCoordinates.push(coordinates);
+        j++;
       }
       riot.update()
       console.log("ARRAY OF COORDINATES", scope.arrayOfCoordinates)

@@ -18,7 +18,8 @@
         <div class="slider-menu round"></div>
       </label>
     </div>
-    <div class="side-menu-billings-container">
+    <div class="side-menu-billings-container" ontouchstart="goToBillingsTouchStart()"
+         ontouchend="goToBillingsTouchEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-billings"></div>
       <div class="side-menu-containers-name side-menu-containers-name-billings">Выставленные счета</div>
     </div>
@@ -201,7 +202,7 @@
     callToClickTouchEnd = function () {
       callTouchEndX = event.changedTouches[0].pageX;
 
-      if (callTouchStartX - callTouchEndX < 20) {
+      if (Math.abs(callTouchStartX - callTouchEndX < 20)) {
         closeMenu()
         window.open('tel:+998712310880')
       }
@@ -224,7 +225,7 @@
       console.log('settingsTouchStartX', settingsTouchStartX)
       console.log('settingsTouchEndX', settingsTouchEndX)
 
-      if (settingsTouchStartX - settingsTouchEndX < 20) {
+      if (Math.abs(settingsTouchStartX - settingsTouchEndX) < 20) {
         closeMenu()
         riotTags.innerHTML = "<view-settings>";
         riot.mount("view-settings");
@@ -238,6 +239,16 @@
       settingsTouchStartX = event.changedTouches[0].pageX;
     }
 
+
+    goToBillingsTouchStart = function () {
+
+      billingsTouchStartX = event.changedTouches[0].pageX;
+    };
+
+    goToBillingsTouchEnd = function () {
+
+
+    };
 
     var favoritesTouchStartX, favoritesTouchEndX;
 
