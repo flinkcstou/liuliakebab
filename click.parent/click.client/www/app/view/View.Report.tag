@@ -50,6 +50,7 @@
     </div>
     <div class="view-reports-graph-image-container">
       <canvas class="view-reports-graph-frame" id="myChart"></canvas>
+      <div id="titleOfChartId"></div>
     </div>
     <div class="view-reports-graph-content-container">
 
@@ -441,7 +442,7 @@
       var data = {
         datasets: [
           {
-            data: [30, 50, 20],
+            data: [20, 60, 20],
             backgroundColor: [
               "#FF6384",
               "#36A2EB",
@@ -461,6 +462,9 @@
         options: {
         }
       });
+
+
+
 
     }
 

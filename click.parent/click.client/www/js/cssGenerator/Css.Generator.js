@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/delete_crop.png);" +
+    //"background-image: url(resources/draft/chart_crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -7097,8 +7097,8 @@ var css = {
   viewReportsGraphFrame: ".view-reports-graph-frame" +
   "{" +
   "position: relative;" +
-  "width:" + 400 * widthK + "px !important; " +
-  "height:" + 400 * widthK + "px !important; " +
+  "width:" + 470 * widthK + "px !important; " +
+  "height:" + 470 * widthK + "px !important; " +
   "margin-left: auto; " +
   "margin-right: auto; " +
   "background-color: white; " +
@@ -7315,7 +7315,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: 45%;" +
-  "top: 16%;" +
+  "top: 15%;" +
   "width: 100%;" +
   "color: black;" +
   "background-color: white;" +
