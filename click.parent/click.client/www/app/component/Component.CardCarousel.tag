@@ -5,57 +5,33 @@
     <div></div>
     <div id="cards" class="cards">
       <div if="{viewMainPage.atMainPage && invoiceList[0]}" class="bills-holder" ontouchend="stopPropagation()">
-        <div class="invoice-card-part-one" style="left: {invoiceLeft}px;"
-             ontouchend="blockOneTouchEnd()" ontouchstart="blockOneTouchStart()" if="{invoiceList[0]}">
-          <div id="first-transfer-container" class="invoice-card-info-holder" if="{invoiceList[0].is_p2p}">
+        <div each="{invoice in invoiceList}" title="{JSON.stringify(invoice)}"
+             class="{invoice-card-part-one: invoice == invoiceList[0], invoice-card-part-two: invoice == invoiceList[1]}"
+             style="left: {invoiceLeft}px;"
+             ontouchend="invoiceBlockTouchEnd(this.title)" ontouchstart="invoiceBlockTouchStart()">
+          <div id="transfer-container" class="invoice-card-info-holder" if="{invoice.is_p2p}">
             <p class="invoice-card-from-label">Получен перевод стредств от:</p>
-            <div class="invoice-card-from-sender-holder">+ {invoiceList[0].merchant_phone}</div>
-            <p class="invoice-card-date">{invoiceList[0].time} {invoiceList[0].date}</p>
+            <div class="invoice-card-from-sender-holder">+ {invoice.merchant_phone}</div>
+            <p class="invoice-card-date">{invoice.time} {invoice.date}</p>
             <div class="invoice-card-transfer-sum-holder">
-              <p class="invoice-card-sum">{invoiceList[0].amount}</p>
+              <p class="invoice-card-sum">{invoice.amount}</p>
               <mark class="invoice-card-sum-marked">сум</mark>
             </div>
           </div>
-          <div id="first-payment-container" class="invoice-card-info-holder" if="{!invoiceList[0].is_p2p}">
+          <div id="payment-container" class="invoice-card-info-holder" if="{!invoice.is_p2p}">
             <p class="invoice-card-from-label">Вам выставлен счёт:</p>
             <div class="invoice-card-from-sender-holder">
-              <p class="invoice-card-from-sender-service-name">{invoiceList[0].service_name}</p>
-              <p class="invoice-card-form-sender-number"> + {invoiceList[0].merchant_phone}</p>
+              <p class="invoice-card-from-sender-service-name">{invoice.service_name}</p>
+              <p class="invoice-card-form-sender-number"> + {invoice.merchant_phone}</p>
             </div>
-            <p class="invoice-card-date">{invoiceList[0].time} {invoiceList[0].date}</p>
+            <p class="invoice-card-date">{invoice.time} {invoice.date}</p>
             <div class="invoice-card-payment-sum-holder">
-              <p class="invoice-card-sum">{invoiceList[0].amount}</p>
+              <p class="invoice-card-sum">{invoice.amount}</p>
               <mark class="invoice-card-sum-marked">сум</mark>
             </div>
           </div>
-          <div class="invoice-card-transfer" if="{invoiceList[0].is_p2p}"></div>
-          <div class="invoice-card-payment" if="{!invoiceList[0].is_p2p}"></div>
-        </div>
-        <div class="invoice-card-part-two" style="left: {invoiceLeft}px;"
-             ontouchend="blockTwoTouchEnd()" ontouchstart="blockTwoTouchStart()" if="{invoiceList[1]}">
-          <div id="second-transfer-container" class="invoice-card-info-holder" if="{invoiceList[1].is_p2p}">
-            <p class="invoice-card-from-label">Получен перевод стредств от:</p>
-            <div class="invoice-card-from-sender-holder">+ {invoiceList[1].merchant_phone}</div>
-            <p class="invoice-card-date">{invoiceList[1].time} {invoiceList[1].date}</p>
-            <div class="invoice-card-transfer-sum-holder">
-              <p class="invoice-card-sum">{invoiceList[1].amount}</p>
-              <mark class="invoice-card-sum-marked">сум</mark>
-            </div>
-          </div>
-          <div id="second-payment-container" class="invoice-card-info-holder" if="{!invoiceList[1].is_p2p}">
-            <p class="invoice-card-from-label">Вам выставлен счёт:</p>
-            <div class="invoice-card-from-sender-holder">
-              <p class="invoice-card-from-sender-service-name">{invoiceList[1].service_name}</p>
-              <p class="invoice-card-form-sender-number"> + {invoiceList[1].merchant_phone}</p>
-            </div>
-            <p class="invoice-card-date">{invoiceList[1].time} {invoiceList[1].date}</p>
-            <div class="invoice-card-payment-sum-holder">
-              <p class="invoice-card-sum">{invoiceList[1].amount}</p>
-              <mark class="invoice-card-sum-marked">сум</mark>
-            </div>
-          </div>
-          <div class="invoice-card-transfer" if="{invoiceList[1].is_p2p}"></div>
-          <div class="invoice-card-payment" if="{!invoiceList[1].is_p2p}"></div>
+          <div class="invoice-card-transfer" if="{invoice.is_p2p}"></div>
+          <div class="invoice-card-payment" if="{!invoice.is_p2p}"></div>
         </div>
       </div>
 
@@ -93,35 +69,28 @@
     var touchStartInvoiceOne;
     var touchEndInvoiceOne;
 
-    blockOneTouchStart = function () {
+    invoiceBlockTouchStart = function () {
       touchStartInvoiceOne = event.changedTouches[0].pageX;
     }
 
-    blockOneTouchEnd = function () {
+    invoiceBlockTouchEnd = function (invoice) {
+
+      invoice = JSON.parse(invoice);
+
       touchEndInvoiceOne = event.changedTouches[0].pageX;
 
       console.log('START', touchStartInvoiceOne)
       console.log('END', touchEndInvoiceOne)
 
       if (Math.abs(touchStartInvoiceOne - touchEndInvoiceOne) < 20) {
-        riotTags.innerHTML = "<view-transfer-detail>";
-        riot.mount('view-transfer-detail');
-      }
-    }
+        if (invoice.is_p2p) {
+          riotTags.innerHTML = "<view-transfer-detail>";
+          riot.mount('view-transfer-detail');
+        } else {
 
-    blockTwoTouchEnd = function () {
-
-    }
-
-    blockTwoTouchStart = function () {
-      touchEndInvoiceOne = event.changedTouches[0].pageX;
-
-      console.log('START', touchStartInvoiceOne)
-      console.log('END', touchEndInvoiceOne)
-
-      if (Math.abs(touchStartInvoiceOne - touchEndInvoiceOne) < 20) {
-        riotTags.innerHTML = "<view-transfer-detail>";
-        riot.mount('view-transfer-detail');
+          riotTags.innerHTML = "<view-payment-detail>";
+          riot.mount('view-payment-detail');
+        }
       }
     }
 
@@ -194,9 +163,6 @@
         scope.cardsarray[getAccountsCards[i].id] = card;
 
         localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
-
-        console.log("ASD 197", scope.cardsarray);
-
 
         count++;
 //        cardNumber %= count;
@@ -277,8 +243,6 @@
           var arrayAccountInfo = [];
           var phoneNumber = localStorage.getItem("click_client_phoneNumber");
           var sessionKey = info.session_key;
-
-          console.log("ASD cardCarousel 278", phoneNumber, sessionKey);
 
           window.api.call({
             method: 'get.accounts',
@@ -475,8 +439,6 @@
                 scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
                 localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
 
-                console.log("ASD 473", scope.cardsarray);
-
                 riot.update(scope.cardsarray);
               }
             }
@@ -624,7 +586,6 @@
               scope.cardsarray[i].chosenCard = true;
               sendChosenCardId = scope.cardsarray[i].card_id
               localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
-              console.log("ASD 622", scope.cardsarray);
             }
             else {
               scope.cardsarray[i].chosenCard = false;
