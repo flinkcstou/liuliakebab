@@ -16,12 +16,19 @@
 
     <div class="service-component" style="left: {leftOfServiceCarousel}px">
       <div class="service-title">{window.languages.ComponentFavoritePaymentsTitle}</div>
-      <div class="service-container" if="{hasFavorites}">
+      <div class="service-container">
         <div class="service-each-container" each="{i in favPaymentsList}">
           <div id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfPayment()"
                ontouchend="ontouchEndOfPayment(this.id)" style="background-image: url({i.image})">
           </div>
           <p class="service-labels">{i.name}</p>
+        </div>
+        <div class="service-each-container" if="{addFavoriteBool}">
+          <div id="addFavoriteButtonId" class="service-buttons" ontouchstart="ontouchStartOfPayment()"
+               ontouchend="ontouchEndOfAddFavorite()"
+               style="background-image: url('resources/icons/services/favorites_add.png'); background-size: 46%;">
+          </div>
+          <p class="service-labels">Добавить</p>
         </div>
       </div>
     </div>
@@ -39,7 +46,7 @@
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     scope.operatorKey = phoneNumber.substr(3, 2);
-    this.hasFavorites = false;
+    scope.addFavoriteBool = true;
 
 
     if (!scope.popularServiceList) {
@@ -127,15 +134,17 @@
 
 
     if (scope.favoritePaymentsList) {
-      console.log("list", scope.favoritePaymentsList);
-      this.hasFavorites = true;
+//      console.log("list", scope.favoritePaymentsList);
       scope.favPaymentsList = [];
       for (var i in scope.favoritePaymentsList) {
         if (scope.favPaymentsList.length < 4)
           scope.favPaymentsList.push(scope.favoritePaymentsList[i].service);
         else break;
       }
+      if (scope.favPaymentsList.length >= 4)
+        scope.addFavoriteBool = false;
       riot.update(scope.favPaymentsList);
+      riot.update(scope.addFavoriteBool);
     }
 
     var delta;
@@ -248,6 +257,22 @@
 
         }
 
+      }
+      if (touchStartX != touchEndX)
+        changePosition();
+    };
+
+    scope.ontouchEndOfAddFavorite = ontouchEndOfAddFavorite = function () {
+      event.stopPropagation();
+
+      onTouchEndX2 = event.changedTouches[0].pageX;
+      touchEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(onTouchStartX2 - onTouchEndX2) <= 20) {
+        console.log("ADD NEW FAVORITE");
+        event.stopPropagation();
+        this.riotTags.innerHTML = "<view-pay>";
+        riot.mount('view-pay');
       }
       if (touchStartX != touchEndX)
         changePosition();
