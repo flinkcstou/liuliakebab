@@ -166,7 +166,7 @@
       <p class="component-banklist-name-title">{window.languages.ViewBankListTitleName}</p>
       <div id="rightButton" type="button" class="component-banklist-close-button" ontouchend="closeComponent()"></div>
     </div>
-    <div class="component-banklist-container">
+    <div class="component-banklist-container" id="bankListContainerId">
       <div class="component-banklist-card" each="{i in bankList}">
         <div class="component-banklist-bank-logo" style="background-image: url({i.image});"></div>
         <div class="component-banklist-bank-limit-container">
@@ -275,13 +275,18 @@
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
+
     openBanksListPage = function () {
       if (JSON.parse(localStorage.getItem("click_client_p2p_bank_list"))) {
         scope.bankList = JSON.parse(localStorage.getItem("click_client_p2p_bank_list"));
         console.log("bank list", scope.bankList);
         riot.update(scope.bankList);
       }
+
+      bankListContainerId.scrollTop = 0;
+      console.log(bankListContainerId.scrollTop);
       componentBankListId.style.display = 'block';
+      riot.update(bankListContainerId);
     };
 
     closeComponent = function () {

@@ -7440,7 +7440,8 @@ var css = {
   "width: 100%;" +
   "top: 8%;" +
   "bottom: 0;" +
-  "overflow:scroll;" +
+  "overflow:auto;" +
+  "margin-bottom: 15px;" +
   "}",
 
   componentBankListCard: ".component-banklist-card" +
