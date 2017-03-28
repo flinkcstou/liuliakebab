@@ -83,13 +83,31 @@
       console.log('END', touchEndInvoiceOne)
 
       if (Math.abs(touchStartInvoiceOne - touchEndInvoiceOne) < 20) {
+
+        var params = {};
+
         if (invoice.is_p2p) {
+
+          params = {
+
+            phoneNumber: invoice.merchant_phone,
+            amount: invoice.amount,
+            invoiceId: invoice.invoice_id,
+            time: invoice.time,
+            date: invoice.date
+          };
+
           riotTags.innerHTML = "<view-transfer-detail>";
-          riot.mount('view-transfer-detail');
+          riot.mount('view-transfer-detail', params);
         } else {
 
+          params = {
+
+            amount: invoice.amount
+          };
+
           riotTags.innerHTML = "<view-payment-detail>";
-          riot.mount('view-payment-detail');
+          riot.mount('view-payment-detail', params);
         }
       }
     }
