@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/delete_crop.png);" +
+    //"background-image: url(resources/draft/chart_crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -945,7 +945,7 @@ var css = {
   "word-spacing:" + 15 * widthK + "px;" +
   "}",
 
-  invoiceCardTransferSum: ".invoice-card-transfer-sum" +
+  invoiceCardTransferSumHolder: ".invoice-card-transfer-sum-holder" +
   "{" +
   "float: right;" +
   "color: #ABD15B;" +
@@ -972,11 +972,24 @@ var css = {
   "width:" + 80 * widthK + "px;" +
   "}",
 
-  invoiceCardPaymentSum: ".invoice-card-payment-sum" +
+  invoiceCardPaymentSumHolder: ".invoice-card-payment-sum-holder" +
   "{" +
   "float: right;" +
   "color: #FC8379;" +
   "margin:" + 5 * widthK + "px " + 20 * widthK + "px " + 10 * widthK + "px 0;" +
+  "}",
+
+  invoiceCardSum: ".invoice-card-sum" +
+  "{" +
+  "background-color: inherit;" +
+  "color: inherit;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "max-width:" + 130 * widthK + "px;" +
+  "white-space: nowrap;" +
+  "margin: 0;" +
+  "margin-right:" + 7 * widthK + "px;" +
+  "float: left;" +
   "}",
 
   cardBankName: ".card-bank-name " +
@@ -7081,6 +7094,16 @@ var css = {
   "background-color: white; " +
   "}",
 
+  viewReportsGraphFrame: ".view-reports-graph-frame" +
+  "{" +
+  "position: relative;" +
+  "width:" + 470 * widthK + "px !important; " +
+  "height:" + 470 * widthK + "px !important; " +
+  "margin-left: auto; " +
+  "margin-right: auto; " +
+  "background-color: white; " +
+  "}",
+
   viewReportsFilterContainer: ".view-reports-filter-container " +
   "{" +
   "position: absolute;" +
@@ -7292,10 +7315,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: 45%;" +
-  "top: 16%;" +
+  "top: 15%;" +
   "width: 100%;" +
   "color: black;" +
-  "background-color: lightgray;" +
+  "background-color: white;" +
   "}",
 
   viewReportsGraphContentContainer: ".view-reports-graph-content-container " +

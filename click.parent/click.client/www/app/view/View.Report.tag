@@ -48,7 +48,10 @@
     <div class="view-reports-graph-bigamount-container">
       <p class="view-reports-graph-bigamount-text">{paymentsSum} сум</p>
     </div>
-    <div class="view-reports-graph-image-container"></div>
+    <div class="view-reports-graph-image-container">
+      <canvas class="view-reports-graph-frame" id="myChart"></canvas>
+      <div id="titleOfChartId"></div>
+    </div>
     <div class="view-reports-graph-content-container">
 
       <div class="view-reports-graph-block-containter" each="{j in graphList}">
@@ -76,6 +79,10 @@
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
+
+    this.on('mount', function () {
+
+    })
 
     touchStartTitle = function () {
       event.preventDefault();
@@ -416,6 +423,7 @@
             riot.update(scope.graphList);
             riot.update(scope.paymentsSum);
             console.log('history chart data', scope.graphList);
+            createGraph(scope.graphList);
           }
           else {
             alert(result[0][0].error_note);
@@ -427,6 +435,37 @@
           console.error(data);
         }
       });
+    }
+
+    createGraph = function (arrayForGraph) {
+
+      var data = {
+        datasets: [
+          {
+            data: [20, 60, 20],
+            backgroundColor: [
+              "#FF6384",
+              "#36A2EB",
+              "#FFCE56"
+            ],
+            hoverBackgroundColor: [
+              "#FF6384",
+              "#36A2EB",
+              "#FFCE56"
+            ]
+          }]
+      };
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: data,
+        options: {
+        }
+      });
+
+
+
+
     }
 
 
