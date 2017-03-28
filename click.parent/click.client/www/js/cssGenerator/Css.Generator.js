@@ -7184,6 +7184,36 @@ var css = {
   "background-color: white; " +
   "}",
 
+  viewReportsGraphPercentImageContainer: ".view-reports-graph-percent-image-container" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 160 * widthK + "px; " +
+  "height:" + 80 * widthK + "px; " +
+  "transform: translate3d(-50%, -50%, 0); " +
+  "}",
+
+  viewReportsGraphPercent: ".view-reports-graph-percent" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "color: white;" +
+  "float: left;" +
+  "font-size:" + 46 * widthK + "px !important; " +
+  "}",
+
+  viewReportsGraphImage: ".view-reports-graph-image" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "color: white;" +
+  "float: left;" +
+  "background-position: center;" +
+  "background-size: 100%;" +
+  "background-repeat: no-repeat;" +
+  "width:" + 65 * widthK + "px;" +
+  "height:" + 65 * widthK + "px;" +
+  "}",
+
   viewReportsFilterContainer: ".view-reports-filter-container " +
   "{" +
   "position: absolute;" +
