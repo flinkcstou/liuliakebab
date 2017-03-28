@@ -250,8 +250,8 @@
             viewServicePage.firstFieldTitle = scope.favoritePaymentsList[i].firstFieldTitle;
             viewPayConfirm.isInFavorites = true;
             event.stopPropagation();
-            this.riotTags.innerHTML = "<view-pay-confirm>";
-            riot.mount('view-pay-confirm', [scope.favoritePaymentsList[i].opts[0], scope.favoritePaymentsList[i].opts[1]]);
+            this.riotTags.innerHTML = "<view-service-pincards>";
+            riot.mount('view-service-pincards', scope.favoritePaymentsList[i].opts[0]);
 
           }
 
