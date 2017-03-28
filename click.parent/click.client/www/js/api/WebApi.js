@@ -45,8 +45,6 @@ window.api.call = function (params) {
   var method = params.method;
   var input = params.input;
 
-  console.log("ASD WebAPI 48", params);
-
   var onSuccess = params.onSuccess;
   var onFail = params.onFail;
   var scope = params.scope || window;

@@ -10,7 +10,7 @@
         {window.languages.ViewTransferToCardTitleOne}</p>
 
       <p class="transfer-to-card-transfer-title-part-two">
-        115 000 сум</p>
+        {opts.amount} сум</p>
 
       <p class="transfer-to-card-transfer-title-phone">
         {window.languages.ViewTransferToCardTitleTwo}</p>
@@ -40,10 +40,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-to-card') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer-to-card',
-          "params": ''
-        }
+          {
+            "view": 'view-transfer-to-card',
+            "params": ''
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }

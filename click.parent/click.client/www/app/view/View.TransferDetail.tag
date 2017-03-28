@@ -14,22 +14,22 @@
         {window.languages.ViewTransferDetailTransferIconTitleTwo}</p>
 
       <p class="transfer-detail-transfer-icon-title-phone">
-        +99890974322344</p>
+        +{opts.phoneNumber}</p>
 
     </div>
 
     <div class="transfer-detail-container">
       <div class="transfer-detail-transfer-container">
         <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleSum}</p>
-        <p class="transfer-detail-sum">115 000 сум</p>
+        <p class="transfer-detail-sum">{opts.amount} сум</p>
       </div>
       <div class="transfer-detail-transfer-container">
         <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleNumber}</p>
-        <p class="transfer-detail-number">6497 9863</p>
+        <p class="transfer-detail-number">{opts.invoiceId}</p>
       </div>
       <div class="transfer-detail-transfer-container">
         <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleDate}</p>
-        <p class="transfer-detail-date">12:38 01.03.2017</p>
+        <p class="transfer-detail-date">{opts.time} {opts.date}</p>
       </div>
       <div class="transfer-detail-transfer-container">
         <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleStatus}</p>
@@ -55,10 +55,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-detail') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer-detail',
-          "params": ''
-        }
+          {
+            "view": 'view-transfer-detail',
+            "params": ''
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }

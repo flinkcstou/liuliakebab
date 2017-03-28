@@ -276,8 +276,6 @@
         var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = info.session_key;
 
-        console.log("ASD authorization 279", phoneNumber, sessionKey);
-
         if (!localStorage.getItem("click_client_accountInfo")) {
           window.api.call({
             method: 'get.accounts',
