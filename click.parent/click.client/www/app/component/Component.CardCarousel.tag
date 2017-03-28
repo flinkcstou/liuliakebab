@@ -596,7 +596,7 @@
       else if (!viewMainPage.myCards) {
         if (!modeOfApp.offlineMode.balance) {
 
-          cardNumber = (invoiceCheck) ? (cardNumber - 1) : (cardNumber);
+          cardNumber = (invoiceCheck && cardNumber) ? (cardNumber - 1) : (cardNumber);
 
           localStorage.setItem("cardNumber", cardNumber);
 
