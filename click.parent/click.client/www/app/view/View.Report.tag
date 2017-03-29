@@ -68,8 +68,8 @@
         <div class="view-reports-graph-block-icon"
              style="background-image: url({j.image})"></div>
         <div class="view-reports-graph-block-name-field">{j.category_name}</div>
-        <div class="view-reports-graph-block-amount-field">{j.amount}</div>
-        <div class="view-reports-graph-block-currency-field">сум</div>
+        <div class="view-reports-graph-block-amount-field" style="color: {j.color_hex}">{j.amount}</div>
+        <div class="view-reports-graph-block-currency-field" style="color: {j.color_hex}">сум</div>
         <div class="view-reports-graph-block-next-icon"></div>
       </div>
     </div>
@@ -418,8 +418,7 @@
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
-      })
-      ;
+      });
 
     }
 
