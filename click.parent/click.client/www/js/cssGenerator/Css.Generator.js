@@ -2445,7 +2445,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 35 * widthK + "px; " +
   "left:" + 85 * widthK + "px; " +
-  "top:" + 38 * widthK + "px; " +
+  "top:" + 26 * widthK + "px; " +
   "margin: 0;  " +
   "color: #fffaf9;" +
   "}",
@@ -2458,7 +2458,7 @@ var css = {
   "background-image: url(resources/icons/back/back.png);" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 19%;" +
-  "background-position-y: 62%;" +
+  "background-position-y: 45%;" +
   "background-position-x: center;" +
   "background-size: 17%;" +
   "right: 87%;" +
@@ -2663,10 +2663,10 @@ var css = {
   payPageTitle: ".pay-page-title " +
   "{" +
   "position: absolute;" +
-  "top:" + -12 * widthK + "px;" +
+  "top:" + 0 * widthK + "px;" +
   "right:" + 28 * widthK + "px;" +
   "left:" + 25 * widthK + "px;" +
-  "height:" + 100 * widthK + "px;" +
+  "height:" + 88 * widthK + "px;" +
   "background: transparent;" +
     //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
@@ -3619,6 +3619,21 @@ var css = {
   "border-bottom:" + 5 * widthK + "px solid rgb(149, 230, 253);" +
   "}",
 
+  mycardlistAddButton: ".mycardlist-add-button " +
+  "{" +
+  "position: absolute;" +
+  "width: 20%;" +
+  "height: 100%;" +
+  "right: -4%;" +
+  "background-image: url(resources/icons/ViewSettingsFriendHelp/plus.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 30%;" +
+  "background-position-y: 55%;" +
+  "background-position-x: 62%;" +
+  "background-size: 30%;" +
+  "top:0" +
+  "}",
+
   myCardListNameTitle: ".mycardlist-name-title " +
   "{" +
   "position: absolute;" +
@@ -3710,7 +3725,10 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 17 * widthK + "px;" +
   "height: 10%;" +
-
+  "overflow: hidden;" +
+  "width: 90%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
   "}",
 
   myCardListCardBalanceCurrencyContainer: ".mycardlist-card-balance-currency-container" +
@@ -3732,6 +3750,10 @@ var css = {
   "margin: 0;" +
   "float: left;" +
   "padding: 0;" +
+  "overflow: hidden;" +
+  "max-width: 50%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
   "}",
 
   myCardListcardCurrency: ".mycardlist-card-currency " +
@@ -6494,7 +6516,7 @@ var css = {
   "background-image: url(resources/icons/ViewSettingsFriendHelp/plus.png);" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 30%;" +
-  "background-position-y: 62%;" +
+  "background-position-y: 55%;" +
   "background-position-x: 62%;" +
   "background-size: 30%;" +
   "top:0" +

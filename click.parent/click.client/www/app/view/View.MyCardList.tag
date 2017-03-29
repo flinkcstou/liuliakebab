@@ -5,6 +5,7 @@
       <div id="backButton" ontouchend="goToMainPage()"
            class="back-button">
       </div>
+      <div class="mycardlist-add-button" ontouchend="addCardTouchEnd()"></div>
     </div>
 
     <div class="mycardlist-container">
@@ -35,10 +36,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-mycard-list') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-mycard-list',
-            "params": ''
-          }
+        {
+          "view": 'view-mycard-list',
+          "params": ''
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -71,6 +72,14 @@
 
       riotTags.innerHTML = "<view-my-cards>";
       riot.mount('view-my-cards', [cardId]);
+    }
+
+    addCardTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riotTags.innerHTML = "<view-add-card>";
+      riot.mount('view-add-card');
     }
 
 

@@ -46,8 +46,8 @@
       event.preventDefault();
       event.stopPropagation();
 //      return
-      riotTags.innerHTML = "<view-add-card>";
-      riot.mount('view-add-card');
+      riotTags.innerHTML = "<view-auto-pay>";
+      riot.mount('view-auto-pay');
     }
   </script>
 </component-bank-operations>
