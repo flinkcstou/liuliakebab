@@ -7290,7 +7290,7 @@ var css = {
   "transition: 3s;" +
   "width:" + 79 * heightK + "px; " +
   "height:" + 79 * heightK + "px; " +
-  "transform: translate3d(-50%, -50%, 0); " +
+  //"transform: translate3d(-50%, -50%, 0); " +
   "}",
 
   viewReportsGraphPercent: ".view-reports-graph-percent" +
