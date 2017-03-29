@@ -94,6 +94,7 @@
 
     })
 
+
     touchStartTitle = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -449,7 +450,7 @@
 
         var position = 50;
         if (alpha >= 90 && alpha < 270) {
-            position = 50;
+          position = 50;
         }
         else {
           position = 40;
@@ -479,10 +480,17 @@
       console.log('DATA', data)
       var ctx = document.getElementById('myChart').getContext('2d');
       var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: data,
-        options: {}
-      });
+          type: 'doughnut',
+          data: data,
+          options: {
+            animateScale: false,
+            tooltips: {
+              enabled: false
+            },
+            events: []
+          }
+        })
+        ;
 
       for (var i in scope.arrayOfCoordinates) {
         if (document.getElementById('chartImageBlockId' + scope.arrayOfCoordinates[i].order)) {
