@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/add-card-crop.png);" +
-    //"opacity: 0.6;" +
+  //"background-image: url(resources/draft/add-card-crop.png);" +
+  //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
-  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
-  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+    "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+    "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+    "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -7288,8 +7288,8 @@ var css = {
   "position: absolute;" +
   "opacity: 0;" +
   "transition: 3s;" +
-  "width:" + 80 * heightK + "px; " +
-  "height:" + 80 * heightK + "px; " +
+  "width:" + 79 * heightK + "px; " +
+  "height:" + 79 * heightK + "px; " +
   "transform: translate3d(-50%, -50%, 0); " +
   "}",
 
@@ -7310,12 +7310,10 @@ var css = {
   "position: relative;" +
   "margin: 0;" +
   "color: white;" +
-  "float: left;" +
-  "margin-left: 10%;" +
   "background-position: center;" +
-  "background-size: 100%;" +
+  "background-size: 70%;" +
   "background-repeat: no-repeat;" +
-  "width:" + 50 * heightK + "px;" +
+  "width: 100%;" +
   "height:" + 50 * heightK + "px;" +
   "}",
 
@@ -8066,6 +8064,34 @@ var css = {
   "background-position-x: center;" +
   "background-size: 17%;" +
   "right: 87%;" +
+  "}",
+
+  addCardCardNameInputPartContainer: ".add-card-card-name-input-part-container" +
+  "{" +
+  "position: absolute;" +
+  "top: 6%;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "margin-left: 8%;" +
+  "margin-right: 8%;" +
+  "width: 84%;" +
+  "height: 6%;" +
+  "font-size:" + 51 * widthK + "px;" +
+  "border-bottom:" + 3 * widthK + "px solid #e7e7e7;" +
+  "color: #515151;" +
+  "}",
+
+  addCardCardNameInputPart: ".add-card-card-name-input-part" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "padding: 0;" +
+  "top: 6%;" +
+  "margin: 0;" +
+  "width: 100%;" +
+  "font-size:" + 39 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
   "}",
 
 

@@ -7,6 +7,9 @@
 
   <div class="view-add-card">
     <p class="add-card-text-field">Заполните данные вашей первой карты</p>
+    <div class="add-card-card-name-input-part-container">
+      <input class="add-card-card-name-input-part"/>
+    </div>
     <div class="add-card-card-field">
       <p class="add-card-card-text add-card-card-number-text">Номер карты</p>
       <div id="cardNumberInput" class="add-card-card-number">
