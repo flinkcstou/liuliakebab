@@ -41,6 +41,7 @@
   </div>
 
   <script>
+    var scope = this;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-card') {
       history.arrayOfHistory.push(
@@ -51,6 +52,8 @@
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
+
+    scope.titleName = window.languages.ViewAddCardTitle;
 
     goToBack = function () {
       event.preventDefault()

@@ -236,6 +236,8 @@ var RU_LANGUAGES =
   "ViewBankListLimitForMonthText": "сум в месяц",
   "ViewBankListLimitText": "Лимит:",
 
+  "ViewAddCardTitle": "ДОБАВИТЬ КАРТУ",
+
 
 };
 
