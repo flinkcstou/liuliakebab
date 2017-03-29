@@ -83,6 +83,9 @@
         <div class="servicepage-pincard-choose-arrow"></div>
       </div>
     </div>
+    <div class="servicepage-button-enter" if="{!enterButton && isTime}" ontouchend="addToFavoritesforFormTypeTwo()">
+      <div class="servicepage-button-enter-label" style="right: 13%;">{window.languages.ViewServicePageSaveLabel}</div>
+    </div>
   </div>
 
   <div id="blockFirstDropdownId" class="component-first-field">
@@ -142,7 +145,7 @@
         checkFirst = true;
         amountForPayTransaction = viewServicePage.amountWithoutSpace;
       }
-      else
+      else if (scope.formType != 2)
         amount.value = '0 ' + defaultAccount.currency
     })
     goToBack = function () {
@@ -318,6 +321,7 @@
 
 
     if (scope.formType == 2) {
+      scope.isTime = false;
       scope.pincardsMap = {};
       scope.pincardIds = [];
       if (scope.servicesParamsMapThree[scope.service.id]) {
@@ -677,33 +681,7 @@
         riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
       } else {
         console.log("GOING TO ADD TO FAVORITES");
-
-        if (!localStorage.getItem('favoritePaymentsList')) {
-          var favoritePaymentsList = [];
-          console.log("OPTS TO SAVE=", [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
-          console.log("Chosen Service =", scope.service);
-          favoritePaymentsList.push({
-            "opts": [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites],
-            "service": scope.service,
-            "categoryId": viewPay.categoryId,
-            "firstFieldTitle": viewServicePage.firstFieldTitle
-          });
-          console.log("favoritePaymentsList=", favoritePaymentsList);
-
-          localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-        } else {
-          var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
-          console.log("OPTS TO SAVE=", [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
-          console.log("Chosen Service =", scope.service);
-          favoritePaymentsList.push({
-            "opts": [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites],
-            "service": scope.service,
-            "categoryId": viewPay.categoryId,
-            "firstFieldTitle": viewServicePage.firstFieldTitle
-          });
-          console.log("favoritePaymentsList=", favoritePaymentsList);
-          localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-        }
+        addToFavorites([formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
 
         event.preventDefault();
         event.stopPropagation();
@@ -734,12 +712,61 @@
         var internetPackageParam = {"internetPackageParam": null};
         var isInFavorites = {"isInFavorites": !scope.enterButton};
 
-        event.preventDefault();
-        event.stopPropagation();
-        this.riotTags.innerHTML = "<view-service-pincards>";
-        riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
+        scope.formTypeTwoOptsArray = [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites];
+
+        if (scope.enterButton) {
+          event.preventDefault();
+          event.stopPropagation();
+          this.riotTags.innerHTML = "<view-service-pincards>";
+          riot.mount('view-service-pincards', scope.formTypeTwoOptsArray);
+        } else {
+          scope.isTime = true;
+          riot.update(scope.isTime);
+        }
       }
     };
+
+    addToFavoritesforFormTypeTwo = function () {
+      if (scope.formTypeTwoOptsArray) {
+        addToFavorites(scope.formTypeTwoOptsArray);
+        event.preventDefault();
+        event.stopPropagation();
+        this.riotTags.innerHTML = "<view-main-page>";
+        riot.mount('view-main-page');
+      }
+      else
+        alert("Попробуйте еще раз");
+
+    }
+
+    addToFavorites = function (array) {
+      if (!localStorage.getItem('favoritePaymentsList')) {
+        var favoritePaymentsList = [];
+        console.log("OPTS TO SAVE=", array);
+        console.log("Chosen Service =", scope.service);
+        favoritePaymentsList.push({
+          "opts": array,
+          "service": scope.service,
+          "categoryId": viewPay.categoryId,
+          "firstFieldTitle": viewServicePage.firstFieldTitle
+        });
+        console.log("favoritePaymentsList=", favoritePaymentsList);
+        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+
+      } else {
+        var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+        console.log("OPTS TO SAVE=", array);
+        console.log("Chosen Service =", scope.service);
+        favoritePaymentsList.push({
+          "opts": array,
+          "service": scope.service,
+          "categoryId": viewPay.categoryId,
+          "firstFieldTitle": viewServicePage.firstFieldTitle
+        });
+        console.log("favoritePaymentsList=", favoritePaymentsList);
+        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+      }
+    }
 
 
   </script>

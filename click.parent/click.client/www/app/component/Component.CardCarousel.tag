@@ -115,7 +115,7 @@
       }
     }
 
-    addCard = function () {
+    addCard = function (withoutBalance) {
 
       if (localStorage.getItem('click_client_accountInfo')) {
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
@@ -199,7 +199,7 @@
 
       riot.update(scope.cardsarray);
 
-      if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo')) {
+      if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
         writeBalance();
       }
     }
@@ -260,8 +260,6 @@
           else {
             alert(result[0][0].error_note);
           }
-
-          addCard();
         },
 
         onFail: function (api_status, api_status_message, data) {
@@ -430,6 +428,9 @@
 
     //
     writeBalance = function () {
+
+      console.log("balance started");
+
       for (var i = 0; i < getAccountsCards.length; i++) {
         window.api.call({
           method: 'get.balance',
@@ -914,7 +915,7 @@
       localStorage.setItem('cardNumber', scope.cardNumber);
     }
 
-    addCard();
+    addCard(true);
 
 
   </script>

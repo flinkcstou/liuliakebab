@@ -98,7 +98,10 @@
           localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
           riot.update(scope.favPaymentsList);
         }
-      riot.update();
+
+      event.stopPropagation();
+      riotTags.innerHTML = "<view-favorites>";
+      riot.mount("view-favorites");
     }
 
 
