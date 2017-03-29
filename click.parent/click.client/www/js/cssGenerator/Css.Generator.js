@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/add-card-crop.png);" +
-    //"opacity: 0.6;" +
+  //"background-image: url(resources/draft/add-card-crop.png);" +
+  //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
-  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
-  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+    "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+    "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+    "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -6672,6 +6672,15 @@ var css = {
 
   //TRANSFER DETAIL VIEW
 
+  transferDetailCover: ".transfer-detail-cover" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 100 * widthK + "px;" +
+  "bottom: 0;" +
+  "background-color: #f4f4f4;" +
+  "}",
+
   transferDetailContainer: ".transfer-detail-container" +
   "{" +
   "position: absolute;" +
@@ -6682,9 +6691,6 @@ var css = {
   "background-color: #ffffff; " +
   "overflow-y: hidden; " +
   "overflow-x: hidden; " +
-  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
-  "background-repeat: no-repeat;" +
-  "background-position-y:" + 420 * widthK + "px;" +
   "}",
 
   transferDetailTitleContainer: ".transfer-detail-title-container" +
@@ -6830,11 +6836,14 @@ var css = {
 
   transferDetailButtonsContainer: ".transfer-detail-buttons-container" +
   "{" +
-  "position: relative;" +
-  "height: 46.5%;" +
+  "position: absolute;" +
   "width:100%;" +
-  "top: 9%;" +
-  "background-color: #f4f4f4;" +
+  "height:" + 90 * widthK + "px;" +
+  "bottom: 0;" +
+  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 1232 * widthK + "px;" +
+  "padding-top:" + 60 * widthK + "px;" +
   "}",
 
   transferDetailButtonAccept: ".transfer-detail-button-accept" +
@@ -6870,6 +6879,15 @@ var css = {
   "}",
 
   //ACCOUNT DETAIL VIEW
+
+  accountDetailCover: ".account-detail-cover" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 100 * widthK + "px;" +
+  "bottom: 0;" +
+  "background-color: #f4f4f4;" +
+  "}",
 
   accountDetailContainer: ".account-detail-container" +
   "{" +
@@ -7035,10 +7053,14 @@ var css = {
 
   accountDetailButtonsContainer: ".account-detail-buttons-container" +
   "{" +
-  "position: relative;" +
-  "height: 13%;" +
-  "width:100%;" +
-  "top: 11%;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 90 * widthK + "px;" +
+  "bottom: 0;" +
+  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 1232 * widthK + "px;" +
+  "padding-top:" + 60 * widthK + "px;" +
   "}",
 
   accountDetailButtonAccept: ".account-detail-button-accept" +
@@ -7078,16 +7100,12 @@ var css = {
   transferToCardContainer: ".transfer-to-card-container" +
   "{" +
   "position: absolute;" +
-    //"height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
   "top:" + 380 * widthK + "px; " +
   "bottom:0; " +
   "background-color: #ffffff; " +
   "overflow-y: hidden; " +
   "overflow-x: hidden; " +
-  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
-  "background-repeat: no-repeat;" +
-  "background-position-y:" + 668 * widthK + "px;" +
   "}",
 
   transferToCardTitleContainer: ".transfer-to-card-title-container" +
@@ -7270,9 +7288,9 @@ var css = {
   "position: absolute;" +
   "opacity: 0;" +
   "transition: 3s;" +
-  "width:" + 80 * heightK + "px; " +
-  "height:" + 80 * heightK + "px; " +
-  "transform: translate3d(-50%, -50%, 0); " +
+  "width:" + 79 * heightK + "px; " +
+  "height:" + 79 * heightK + "px; " +
+  //"transform: translate3d(-50%, -50%, 0); " +
   "}",
 
   viewReportsGraphPercent: ".view-reports-graph-percent" +
@@ -7292,12 +7310,10 @@ var css = {
   "position: relative;" +
   "margin: 0;" +
   "color: white;" +
-  "float: left;" +
-  "margin-left: 10%;" +
   "background-position: center;" +
-  "background-size: 100%;" +
+  "background-size: 70%;" +
   "background-repeat: no-repeat;" +
-  "width:" + 50 * heightK + "px;" +
+  "width: 100%;" +
   "height:" + 50 * heightK + "px;" +
   "}",
 
@@ -8048,6 +8064,34 @@ var css = {
   "background-position-x: center;" +
   "background-size: 17%;" +
   "right: 87%;" +
+  "}",
+
+  addCardCardNameInputPartContainer: ".add-card-card-name-input-part-container" +
+  "{" +
+  "position: absolute;" +
+  "top: 6%;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "margin-left: 8%;" +
+  "margin-right: 8%;" +
+  "width: 84%;" +
+  "height: 6%;" +
+  "font-size:" + 51 * widthK + "px;" +
+  "border-bottom:" + 3 * widthK + "px solid #e7e7e7;" +
+  "color: #515151;" +
+  "}",
+
+  addCardCardNameInputPart: ".add-card-card-name-input-part" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "padding: 0;" +
+  "top: 6%;" +
+  "margin: 0;" +
+  "width: 100%;" +
+  "font-size:" + 39 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
   "}",
 
 

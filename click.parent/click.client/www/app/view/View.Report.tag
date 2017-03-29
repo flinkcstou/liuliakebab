@@ -55,7 +55,7 @@
 
         <div class="view-reports-graph-percent-image-container" each="{i in arrayOfCoordinates}"
              id="chartImageBlockId{i.order}" if="{i.percent > 10}"
-             style="top: {i.y * heightK}px; left: {i.x  * heightK}px;">
+             style="top: {i.y * heightK}px; left: {i.x  * heightK}px; transform: translate3d(-55%, -{i.position}% ,0);">
           <p if="{i.percent > 10}" class="view-reports-graph-percent">{i.percent}%</p>
           <div class="view-reports-graph-image"
                style="background-image: url({i.image})"></div>
@@ -93,6 +93,7 @@
     this.on('mount', function () {
 
     })
+
 
     touchStartTitle = function () {
       event.preventDefault();
@@ -447,7 +448,13 @@
         var x = 240 + (170 * Math.sin(alpha / (180 / Math.PI)));
         var y = 240 - (170 * Math.cos(alpha / (180 / Math.PI)));
 
-
+        var position = 50;
+        if (alpha >= 90 && alpha < 270) {
+          position = 50;
+        }
+        else {
+          position = 40;
+        }
         var width = 160;
         if ((alpha >= 30 && alpha < 125) || (alpha >= 205 && alpha < 335)) {
           width = 100;
@@ -462,6 +469,7 @@
           image: arrayForGraph[i].image_inner,
           order: j,
           alpha: alpha,
+          position: position,
 //          width: width
         }
         scope.arrayOfCoordinates.push(coordinates);
@@ -472,10 +480,17 @@
       console.log('DATA', data)
       var ctx = document.getElementById('myChart').getContext('2d');
       var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: data,
-        options: {}
-      });
+          type: 'doughnut',
+          data: data,
+          options: {
+            animateScale: false,
+            tooltips: {
+              enabled: false
+            },
+            events: []
+          }
+        })
+        ;
 
       for (var i in scope.arrayOfCoordinates) {
         if (document.getElementById('chartImageBlockId' + scope.arrayOfCoordinates[i].order)) {

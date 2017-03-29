@@ -35,6 +35,8 @@
 
       <component-pincards paymentdetail="true"></component-pincards>
 
+      <div class="account-detail-cover"></div>
+
       <div class="account-detail-buttons-container">
         <p class="account-detail-button-accept">{window.languages.ViewAccountDetailTitlePay}</p>
         <p class="account-detail-button-cancel">{window.languages.ViewAccountDetailTitleDecline}</p>
