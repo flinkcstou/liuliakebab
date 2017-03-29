@@ -250,6 +250,7 @@
                   scope.invoiceList.push(arrayOfInvoice[1]);
                 }
 
+                addCard(true);
               }
               else {
                 scope.invoiceCheck = false;
