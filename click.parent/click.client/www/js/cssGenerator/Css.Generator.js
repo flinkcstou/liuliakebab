@@ -879,7 +879,7 @@ var css = {
   "height:" + 125 * widthK + "px;" +
   "width:" + 510 * widthK + "px;" +
   "position: absolute;" +
-  "top:" + 7 * widthK + "px;" +
+  "top:" + 17 * widthK + "px;" +
   "background-color: white;" +
   "background-size: cover;" +
   "color: white;" +
@@ -894,7 +894,7 @@ var css = {
   "height:" + 125 * widthK + "px;" +
   "width:" + 510 * widthK + "px;" +
   "position: absolute;" +
-  "top:" + 150 * widthK + "px;" +
+  "top:" + 160 * widthK + "px;" +
   "background-color: white;" +
   "background-size: cover;" +
   "color: white;" +
