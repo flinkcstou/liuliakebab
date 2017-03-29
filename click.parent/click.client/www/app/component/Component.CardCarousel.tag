@@ -224,11 +224,15 @@
             if (result[1]) {
               if (result[1][0]) {
                 console.log('invoice', result[1])
-                scope.invoiceCheck = true;
-                scope.cardNumber = 1;
+
+                cards.style.transition = '0s';
+                cards.style.webkitTransition = '0s';
 
                 cards.style.transform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
                 cards.style.webkitTransform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
+
+                scope.invoiceCheck = true;
+                scope.cardNumber = 1;
 
                 riot.update(scope.invoiceCheck);
                 riot.update(scope.cardNumber);
