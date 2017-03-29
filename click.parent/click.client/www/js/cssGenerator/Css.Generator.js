@@ -6662,7 +6662,7 @@ var css = {
   "overflow-x: hidden; " +
   "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
-  "background-position-y: 420px;" +
+  "background-position-y:" + 420 * widthK + "px;" +
   "}",
 
   transferDetailTitleContainer: ".transfer-detail-title-container" +
