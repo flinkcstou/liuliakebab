@@ -52,6 +52,12 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    goToBack = function () {
+      event.preventDefault()
+      event.stopPropagation()
+      onBackKeyDown()
+    }
+
 
     this.on('mount', function () {
 
