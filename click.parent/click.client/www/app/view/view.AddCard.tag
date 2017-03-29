@@ -9,7 +9,7 @@
     <p class="add-card-text-field">Заполните данные вашей первой карты</p>
     <div class="add-card-card-field">
       <p class="add-card-card-text add-card-card-number-text">Номер карты</p>
-      <div id="cardNumberInput" class="registration-client-card-number">
+      <div id="cardNumberInput" class="add-card-card-number">
         <div onfocus="boxFocus()" ontouchend="touchEndBoxOne()" id="boxOne"
              class="add-card-card-number-box registration-client-card-number-box-one">
         </div>
@@ -24,15 +24,15 @@
         </div>
       </div>
 
+      <p class="add-card-card-text add-card-card-text-date">Дата окончания</p>
       <div id="cardDateInput" class="add-card-card-date" type="text">
-        <p class="add-card-card-text add-card-card-text-date">Дата окончания</p>
         <div ontouchend="touchEndBoxData()" id="boxData"
              class="add-card-card-date-box">
         </div>
       </div>
 
+      <p class="add-card-card-text add-card-card-text-pin">Код банка</p>
       <div id="cardPinInput" class="add-card-card-pin">
-        <p class="add-card-card-text add-card-card-text-pin">Код банка</p>
         <div ontouchend="touchEndBoxPin()" id="boxPin"
              class="add-card-card-date-pin-box">
         </div>

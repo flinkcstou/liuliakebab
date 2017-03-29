@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/transfer-to-card-crop.png);" +
+    //"background-image: url(resources/draft/add-card-crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -7823,11 +7823,11 @@ var css = {
   addCardCardField: ".add-card-card-field " +
   "{" +
   "position: relative;" +
-  "top:" + 200 * heightK + "px;" +
+  "top:" + 177 * heightK + "px;" +
   "width:" + 600 * heightK + "px;" +
   "height:" + 320 * heightK + "px;" +
-  "border:" + 4 * heightK + "px solid #2f2b3d;" +
-  "background-color: #2f2b3d;" +
+  "border:" + 3 * heightK + "px solid #e7e7e7;" +
+  "background-color: white;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "border-radius:" + 10 * heightK + "px;" +
@@ -7835,21 +7835,19 @@ var css = {
 
   addCardCardNumberText: ".add-card-card-number-text " +
   "{" +
-  "left: 4%;" +
-  "top: 10%;" +
+  "left: 6%;" +
+  "top: 13%;" +
   "}",
 
   addCardTextField: ".add-card-text-field " +
   "{" +
-  "position: relative;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "margin-bottom:" + 20 * widthK + "px;" +
+  "position: absolute;" +
   "background-size: contain;" +
   "text-align: center;" +
-  "color: #4bd5ff;" +
-  "font-size:" + 30 * widthK + "px;" +
-  "top:" + 180 * widthK + "px;" +
+  "color: #bfbfbf;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: 1%;" +
+  "left: 8%;" +
   "}",
 
   addCardCardNumber: ".add-card-card-number " +
@@ -7857,12 +7855,12 @@ var css = {
   "position: absolute;" +
   "padding: 0;" +
   "color: white;" +
-  "background-color: #1b1729;" +
-  "border: none;" +
+  "background-color: white;" +
+  "border:" + 3 * heightK + "px solid #e7e7e7;" +
   "width: 86%;" +
-  "height: 23%;" +
-  "left: 7%;" +
-  "top: 24%;" +
+  "height: 19%;" +
+  "left: 6%;" +
+  "top: 26%;" +
   "}",
 
   addCardCardNumberBox: ".add-card-card-number-box " +
@@ -7903,20 +7901,20 @@ var css = {
   "margin: 0;" +
   "background-size: contain;" +
   "color: #757389;" +
-  "font-size:" + 30 * widthK + "px;" +
+  "font-size:" + 27 * widthK + "px;" +
   "}",
 
   addCardCardTextDate: ".add-card-card-text-date " +
   "{" +
-  "left: -12%;" +
+  "left: 6%;" +
   "width: 200%;" +
-  "top: -65%;" +
+  "bottom: 36%;" +
   "}",
 
   addCardCardTextPin: ".add-card-card-text-pin " +
   "{" +
-  "top: -65%;" +
-  "left: 0;" +
+  "bottom: 36%;" +
+  "left: 46%;" +
   "width: 200%;" +
   "}",
 
@@ -7925,12 +7923,12 @@ var css = {
   "position: absolute;" +
   "padding: 0;" +
   "color: white;" +
-  "background-color: #1b1729;" +
-  "border: none;" +
-  "width: 25%;" +
-  "height: 22%;" +
-  "left: 7%;" +
-  "bottom: 15%;" +
+  "background-color: white;" +
+  "border:" + 3 * heightK + "px solid #e7e7e7;" +
+  "width: 27%;" +
+  "height: 18%;" +
+  "left: 6%;" +
+  "bottom: 14%;" +
   "}",
 
   addCardCardDateBox: ".add-card-card-date-box " +
@@ -7941,7 +7939,6 @@ var css = {
   "height: 60%;" +
   "top: 26%;" +
   "background-color: transparent;" +
-  "border: none;" +
   "color: white;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
@@ -7951,12 +7948,12 @@ var css = {
   "position: absolute;" +
   "padding: 0;" +
   "color: white;" +
-  "background-color: #1b1729;" +
-  "border: none;" +
-  "width: 25%;" +
-  "height: 22%;" +
-  "left: 50%;" +
-  "bottom: 15%;" +
+  "background-color: white;" +
+  "border:" + 3 * heightK + "px solid #e7e7e7;" +
+  "width: 26%;" +
+  "height: 18%;" +
+  "left: 46%;" +
+  "bottom: 14%;" +
   "}",
 
   addCardCardDatePinBox: ".add-card-card-date-pin-box " +
