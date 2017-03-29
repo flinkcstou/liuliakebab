@@ -5767,6 +5767,42 @@ var css = {
   "overflow-x: hidden; " +
   "}",
 
+  settingsPageTitle: ".settings-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 0;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "background: transparent;" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  settingsNameTitle: ".settings-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 35 * widthK + "px; " +
+  "left:" + 85 * widthK + "px; " +
+  "top:" + 27 * widthK + "px; " +
+  "margin: 0;  " +
+  "color: #fffaf9;" +
+  "}",
+
+  settingsBackButton: ".settings-back-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 113 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y: 43%;" +
+  "background-position-x: center;" +
+  "background-size: 17%;" +
+  "right: 87%;" +
+  "}",
+
   settingsBlockContainer: ".settings-block-containter" +
   "{" +
   "position: relative;" +
@@ -7767,6 +7803,209 @@ var css = {
   "background-size: 36%;" +
   "background-position: center;" +
   "background-image: url(resources/icons/services/delete.png);" +
+  "}",
+
+
+  //VIEW ADD CARD
+
+  viewAddCard: ".view-add-card " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "bottom: 0;" +
+  "top:" + 92 * heightK + "px;" +
+  "overflow: hidden;" +
+  "background-size: contain;" +
+  "background-color: white;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
+  addCardCardField: ".add-card-card-field " +
+  "{" +
+  "position: relative;" +
+  "top:" + 200 * heightK + "px;" +
+  "width:" + 600 * heightK + "px;" +
+  "height:" + 320 * heightK + "px;" +
+  "border:" + 4 * heightK + "px solid #2f2b3d;" +
+  "background-color: #2f2b3d;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "border-radius:" + 10 * heightK + "px;" +
+  "}",
+
+  addCardCardNumberText: ".add-card-card-number-text " +
+  "{" +
+  "left: 4%;" +
+  "top: 10%;" +
+  "}",
+
+  addCardTextField: ".add-card-text-field " +
+  "{" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "margin-bottom:" + 20 * widthK + "px;" +
+  "background-size: contain;" +
+  "text-align: center;" +
+  "color: #4bd5ff;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "top:" + 180 * widthK + "px;" +
+  "}",
+
+  addCardCardNumber: ".add-card-card-number " +
+  "{" +
+  "position: absolute;" +
+  "padding: 0;" +
+  "color: white;" +
+  "background-color: #1b1729;" +
+  "border: none;" +
+  "width: 86%;" +
+  "height: 23%;" +
+  "left: 7%;" +
+  "top: 24%;" +
+  "}",
+
+  addCardCardNumberBox: ".add-card-card-number-box " +
+  "{" +
+  "position: absolute;" +
+  "width: 17%;" +
+  "height: 55%;" +
+  "top: 18%;" +
+  "background-color: transparent;" +
+  "border: none;" +
+  "color: white;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "}",
+
+  addCardCardNumberBoxOne: ".add-card-card-number-box-one " +
+  "{" +
+  "left: 6%;" +
+  "}",
+
+  addCardCardNumberBoxTwo: ".add-card-card-number-box-two " +
+  "{" +
+  "left: 30%;" +
+  "}",
+
+  addCardCardNumberBoxThree: ".add-card-card-number-box-three " +
+  "{" +
+  "right: 30%;" +
+  "}",
+
+  addCardCardNumberBoxFour: ".add-card-card-number-box-four " +
+  "{" +
+  "right: 6%;" +
+  "}",
+
+  addCardCardText: ".add-card-card-text " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "background-size: contain;" +
+  "color: #757389;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "}",
+
+  addCardCardTextDate: ".add-card-card-text-date " +
+  "{" +
+  "left: -12%;" +
+  "width: 200%;" +
+  "top: -65%;" +
+  "}",
+
+  addCardCardTextPin: ".add-card-card-text-pin " +
+  "{" +
+  "top: -65%;" +
+  "left: 0;" +
+  "width: 200%;" +
+  "}",
+
+  addCardCardDate: ".add-card-card-date " +
+  "{" +
+  "position: absolute;" +
+  "padding: 0;" +
+  "color: white;" +
+  "background-color: #1b1729;" +
+  "border: none;" +
+  "width: 25%;" +
+  "height: 22%;" +
+  "left: 7%;" +
+  "bottom: 15%;" +
+  "}",
+
+  addCardCardDateBox: ".add-card-card-date-box " +
+  "{" +
+  "position: absolute;" +
+  "width: 65%;" +
+  "left: 23%;" +
+  "height: 60%;" +
+  "top: 26%;" +
+  "background-color: transparent;" +
+  "border: none;" +
+  "color: white;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "}",
+
+  addCardCardPin: ".add-card-card-pin " +
+  "{" +
+  "position: absolute;" +
+  "padding: 0;" +
+  "color: white;" +
+  "background-color: #1b1729;" +
+  "border: none;" +
+  "width: 25%;" +
+  "height: 22%;" +
+  "left: 50%;" +
+  "bottom: 15%;" +
+  "}",
+
+  addCardCardDatePinBox: ".add-card-card-date-pin-box " +
+  "{" +
+  "position: absolute;" +
+  "width: 65%;" +
+  "left: 23%;" +
+  "height: 60%;" +
+  "top: 26%;" +
+  "background-color: transparent;" +
+  "border: none;" +
+  "color: white;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "}",
+
+  addCardPageTitle: ".add-card-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 0;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "background: transparent;" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  addCardNameTitle: ".add-card-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 35 * widthK + "px; " +
+  "left:" + 85 * widthK + "px; " +
+  "top:" + 38 * widthK + "px; " +
+  "margin: 0;  " +
+  "color: #fffaf9;" +
+  "}",
+
+  addCardBackButton: ".add-card-back-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 113 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y: 43%;" +
+  "background-position-x: center;" +
+  "background-size: 17%;" +
+  "right: 87%;" +
   "}",
 
 
