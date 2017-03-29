@@ -8,13 +8,16 @@
 
     <div class="view-favorites-container">
       <div class="view-favorites-block-containter" each="{j in favPaymentsList}">
-        <div class="view-favorites-icon"
-             style="background-image: url({j.service.image})"></div>
-        <div class="view-favorites-info-container">
-          <p class="view-favorites-info-name">{j.service.name}</p>
-          <div class="view-favorites-info-balance">{j.opts[0][5].amountText}</div>
-          <div class="view-favorites-info-currency-field">сум</div>
-          <p class="view-favorites-info-number">{j.opts[0][2].firstFieldText}</p>
+        <div id="p{j.service.id}" class="view-favorites-block-inner-containter"
+             ontouchend="openFavoritePayment(this.id)">
+          <div class="view-favorites-icon"
+               style="background-image: url({j.service.image})"></div>
+          <div class="view-favorites-info-container">
+            <p class="view-favorites-info-name">{j.service.name}</p>
+            <div class="view-favorites-info-balance">{j.opts[5].amountText}</div>
+            <div class="view-favorites-info-currency-field">сум</div>
+            <p class="view-favorites-info-number">{j.opts[2].firstFieldText}</p>
+          </div>
         </div>
         <div id="{j.service.id}" class="view-favorites-delete-icon" ontouchend="removeFromFavorites(this.id)"></div>
       </div>
@@ -48,7 +51,7 @@
       event.preventDefault();
       event.stopPropagation();
       riotTags.innerHTML = "<view-pay>";
-      riot.mount("view-pay");
+      riot.mount("view-pay", ['ADDFAVORITE']);
     }
 
     if (scope.favoritePaymentsList) {
@@ -62,13 +65,34 @@
       riot.update(scope.favPaymentsList);
     }
 
+    openFavoritePayment = function (id) {
+      event.stopPropagation();
+
+      console.log("id=", id);
+      id = id.substring(1, id.length);
+      console.log("id2=", id);
+      for (var i in scope.favoritePaymentsList) {
+        if (scope.favoritePaymentsList[i].service.id == id) {
+          console.log("gnrf", scope.favoritePaymentsList[i].opts);
+          viewPay.chosenServiceId = id;
+          viewPay.categoryId = scope.favoritePaymentsList[i].categoryId;
+          viewServicePage.firstFieldTitle = scope.favoritePaymentsList[i].firstFieldTitle;
+          viewPayConfirm.isInFavorites = true;
+          event.stopPropagation();
+          this.riotTags.innerHTML = "<view-service-pincards>";
+          riot.mount('view-service-pincards', scope.favoritePaymentsList[i].opts);
+
+        }
+      }
+
+    };
+
     removeFromFavorites = function (id) {
       console.log("Id to remove=", id);
       var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
       console.log(favoritePaymentsList);
       for (var i in favoritePaymentsList)
         if (favoritePaymentsList[i].service.id == id) {
-          console.log("i=", i);
           favoritePaymentsList.splice(i, 1);
           console.log(favoritePaymentsList);
           localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));

@@ -251,7 +251,7 @@
             viewPayConfirm.isInFavorites = true;
             event.stopPropagation();
             this.riotTags.innerHTML = "<view-service-pincards>";
-            riot.mount('view-service-pincards', scope.favoritePaymentsList[i].opts[0]);
+            riot.mount('view-service-pincards', scope.favoritePaymentsList[i].opts);
 
           }
 
@@ -272,7 +272,7 @@
         console.log("ADD NEW FAVORITE");
         event.stopPropagation();
         this.riotTags.innerHTML = "<view-pay>";
-        riot.mount('view-pay');
+        riot.mount('view-pay', ['ADDFAVORITE']);
       }
       if (touchStartX != touchEndX)
         changePosition();

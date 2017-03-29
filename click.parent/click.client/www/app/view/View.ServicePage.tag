@@ -51,9 +51,14 @@
     </div>
 
 
-    <div class="servicepage-button-enter" ontouchend="goToPinCardView()">
+    <div class="servicepage-button-enter" if="{enterButton}" ontouchend="enterButton()">
       <div class="servicepage-button-enter-label">{window.languages.ViewServicePageEnterLabel}</div>
     </div>
+
+    <div class="servicepage-button-enter" if="{!enterButton}" ontouchend="enterButton()">
+      <div class="servicepage-button-enter-label" style="right: 13%;">{window.languages.ViewServicePageSaveLabel}</div>
+    </div>
+
   </div>
 
 
@@ -114,17 +119,21 @@
 
   <script>
 
+    console.log('OPTS', opts);
+
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
       history.arrayOfHistory.push(
         {
           "view": 'view-service-page',
-          "params": ''
+          "params": opts
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
     var scope = this;
+    scope.enterButton = opts[0] != 'ADDFAVORITE' ? true : false;
+    console.log("enterButton", scope.enterButton);
 
 
     this.on('mount', function () {
@@ -191,9 +200,7 @@
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
     scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
     scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
-    console.log(scope.servicesParamsMapOne);
     scope.servicesParamsMapTwo = JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"));
-    //    this.notMyNumberMode = true;
     scope.servicesParamsMapThree = JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"));
     scope.servicesParamsMapFour = JSON.parse(localStorage.getItem("click_client_servicesParamsMapFour"));
     scope.servicesParamsMapFive = JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"));
@@ -201,9 +208,6 @@
 
 
     if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
-//      this.notMyNumberMode = false;
-      console.log("chosen service id in MNYNUMB=", viewPay.chosenServiceId);
-      console.log("my number mode=", scope.myNumberMode)
       scope.service = scope.servicesMap[localStorage.getItem('myNumberOperatorId')][0];
       scope.titleName = 'Мой номер';
       scope.serviceIcon = 'resources/icons/ViewPay/myphone.png';
@@ -216,34 +220,19 @@
         amountField.style.top = '5.5%';
       });
     } else {
-      console.log("chosen service id=", viewPay.chosenServiceId);
       scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
       scope.titleName = scope.service.name;
       scope.serviceIcon = scope.service.image;
       scope.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
     }
 
-    if (scope.servicesParamsMapOne[viewPay.chosenServiceId])
-      console.log("Map One!!!!", scope.servicesParamsMapOne[viewPay.chosenServiceId]);
-    if (scope.servicesParamsMapTwo[viewPay.chosenServiceId])
-      console.log("Map Two!!!!", scope.servicesParamsMapTwo[viewPay.chosenServiceId]);
-    if (scope.servicesParamsMapThree[viewPay.chosenServiceId])
-      console.log("Map Three!!!!", scope.servicesParamsMapThree[viewPay.chosenServiceId]);
-    if (scope.servicesParamsMapFour[viewPay.chosenServiceId])
-      console.log("Map Four!!!!", scope.servicesParamsMapFour[viewPay.chosenServiceId]);
-    if (scope.servicesParamsMapFive[viewPay.chosenServiceId])
-      console.log("Map Four!!!!", scope.servicesParamsMapFive[viewPay.chosenServiceId]);
-
 
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id];
     scope.formType = scope.service.form_type;
-    console.log("formType=" + scope.formType);
-    console.log("fieldArray=", scope.fieldArray);
 
     if (scope.formType != 2) {
       if (scope.fieldArray) {
         scope.dropDownOn = scope.fieldArray.length > 1;
-        console.log("fieldArray length bool=", scope.dropDownOn);
         scope.chosenFieldName = scope.fieldArray[0].title;
         scope.chosenFieldParamId = scope.fieldArray[0].parameter_id;
         scope.amountFieldTitle = scope.service.lang_amount_title;
@@ -307,7 +296,6 @@
         });
 
         for (var i = 0; i < scope.servicesParamsMapFour[scope.service.id].length; i++) {
-          console.log("first arr name=", scope.servicesParamsMapFour[scope.service.id][i].name);
           scope.firstLevelArray.push(scope.servicesParamsMapFour[scope.service.id][i]);
         }
         for (var i = 0; i < scope.servicesParamsMapFive[scope.service.id].length; i++) {
@@ -330,11 +318,8 @@
 
 
     if (scope.formType == 2) {
-//      console.log("map THREE=", scope.servicesParamsMapThree);
       scope.pincardsMap = {};
       scope.pincardIds = [];
-      console.log("scope.service.id=", scope.service.id);
-      console.log("whole element=", scope.servicesParamsMapThree[scope.service.id]);
       if (scope.servicesParamsMapThree[scope.service.id]) {
         for (var i = 0; i < scope.servicesParamsMapThree[scope.service.id].length; i++) {
           if (!scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id]) {
@@ -513,7 +498,6 @@
     };
 
     this.on('mount', function () {
-      console.log('viewServicePage.amountText', viewServicePage.amountText);
       if (viewServicePage.amountText)
         if (viewServicePage.amountText.length > 0) {
           amount.value = viewServicePage.amountText;
@@ -636,9 +620,7 @@
       amountField.style.borderBottom = 5 * widthK + 'px solid lightgrey';
     };
 
-    goToPinCardView = function () {
-      console.log("PhoneFieldBool", scope.phoneFieldBool);
-      console.log("chosen firstField id=", scope.chosenFieldParamId)
+    enterButton = function () {
 
       if (scope.phoneFieldBool && firstFieldInput.value.length < 9) {
         alert("Введите валидный номер телефона");
@@ -683,15 +665,54 @@
       var firstFieldText = {"firstFieldText": firstFieldInput.value};
       var cardTypeId = {"cardTypeId": null};
 
-
       viewServicePage.firstFieldTitle = scope.chosenFieldName;
       viewServicePage.phoneText = firstFieldInput.value;
+      var isInFavorites = {"isInFavorites": !scope.enterButton};
 
-      event.preventDefault();
-      event.stopPropagation();
-      this.riotTags.innerHTML = "<view-service-pincards>";
-      riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam]);
+      if (scope.enterButton) {
+
+        event.preventDefault();
+        event.stopPropagation();
+        this.riotTags.innerHTML = "<view-service-pincards>";
+        riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
+      } else {
+        console.log("GOING TO ADD TO FAVORITES");
+
+        if (!localStorage.getItem('favoritePaymentsList')) {
+          var favoritePaymentsList = [];
+          console.log("OPTS TO SAVE=", [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
+          console.log("Chosen Service =", scope.service);
+          favoritePaymentsList.push({
+            "opts": [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites],
+            "service": scope.service,
+            "categoryId": viewPay.categoryId,
+            "firstFieldTitle": viewServicePage.firstFieldTitle
+          });
+          console.log("favoritePaymentsList=", favoritePaymentsList);
+
+          localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+        } else {
+          var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+          console.log("OPTS TO SAVE=", [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
+          console.log("Chosen Service =", scope.service);
+          favoritePaymentsList.push({
+            "opts": [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites],
+            "service": scope.service,
+            "categoryId": viewPay.categoryId,
+            "firstFieldTitle": viewServicePage.firstFieldTitle
+          });
+          console.log("favoritePaymentsList=", favoritePaymentsList);
+          localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+        this.riotTags.innerHTML = "<view-main-page>";
+        riot.mount('view-main-page');
+
+      }
     };
+
 
     scope.onTouchStartOfPincard = onTouchStartOfPincard = function () {
       event.stopPropagation();
@@ -711,11 +732,12 @@
         var communalParam = {"communalParam": null};
         var amountText = {"amountText": nominal};
         var internetPackageParam = {"internetPackageParam": null};
+        var isInFavorites = {"isInFavorites": !scope.enterButton};
 
         event.preventDefault();
         event.stopPropagation();
         this.riotTags.innerHTML = "<view-service-pincards>";
-        riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam]);
+        riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
       }
     };
 
