@@ -1068,6 +1068,7 @@ var css = {
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
+  "max-height: 52%;" +
   "}",
 
   cardCurrency: ".card-currency " +
@@ -2163,7 +2164,7 @@ var css = {
   viewInfoCardBalanceCurrencyContainer: ".view-info-card-balance-currency-container " +
   "{" +
   "position: absolute;" +
-  "width: 70%;" +
+  "width: 95%;" +
   "top: 38%;" +
   "left: 19%;" +
   "display: inline-block;" +
@@ -2182,10 +2183,25 @@ var css = {
   "float: left;" +
   "color: #91cc00;" +
   "padding: 0;" +
+  "display: inline-block;" +
+  "width: 78%;" +
+  "}",
+
+  viewInfoCardBalanceSum: ".view-info-card-balance-sum " +
+  "{" +
+  "position: relative;" +
+  "left:" + 25 * widthK + "px;" +
+  "color: #585658;" +
+  "font-size:" + 67 * widthK + "px;" +
+  "margin: 0;" +
+  "margin-top:" + -2 * widthK + "px;" +
+  "float: left;" +
+  "color: #91cc00;" +
+  "padding: 0;" +
+  "max-width: 75%;" +
   "overflow: hidden;" +
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
-  "width: 78%;" +
   "}",
 
   viewInfoCardCurrency: ".view-info-card-currency " +

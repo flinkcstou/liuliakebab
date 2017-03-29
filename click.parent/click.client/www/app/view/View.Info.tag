@@ -6,8 +6,10 @@
   <div class="view-info-balance-container">
     <p class="view-info-balance-label">{window.languages.ViewInfoBalanceTitle}</p>
     <div class="view-info-card-balance-currency-container">
-      <p if="{!modeOfflineMode.check}" class="view-info-card-balance">{fullBalanceCopy}</p>
-      <p if="{!modeOfflineMode.check}" class="view-info-card-currency">сум</p>
+      <div if="{!modeOfflineMode.check}" class="view-info-card-balance">
+        <p class="view-info-card-balance-sum">{fullBalanceCopy}</p>
+        <p if=" {!modeOfflineMode.check}" class="view-info-card-currency">сум</p>
+      </div>
 
       <a if="{modeOfflineMode.check}" class="offline-card-balance"
          ontouchstart="offlineBalanceInfoTrue()">Получить баланс</a>
