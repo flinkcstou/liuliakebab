@@ -106,11 +106,11 @@
 
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-      var account_id = scope.card.card_id
-      var removable = scope.card.removable
+      var account_id = scope.card.card_id;
+      var removable = scope.card.removable;
 
-      if(removable == 1)
-      componentDeleteCard.getInformation(sessionKey, phoneNumber, account_id);
+      if (removable == 1)
+        componentDeleteCard.getInformation(sessionKey, phoneNumber, account_id);
       else alert('You cant delete this card');
     }
 
@@ -212,7 +212,6 @@
         sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
         phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-
     if (opts[0]) {
       scope.cardId = opts[0];
 //      console.log('scope.cardId', scope.cardId)
@@ -229,8 +228,9 @@
 
     this.titleName = window.languages.ViewMyCardTitleName;
 
-    if (scope.cardId)
+    if (scope.cardId) {
       scope.card = scope.cardsArray[scope.cardId];
+    }
     //    console.log('scope.cardId', scope.cardId)
     //    console.log('scope.cardsArray', scope.cardsArray)
 
@@ -243,8 +243,9 @@
       history.arrayOfHistory[history.arrayOfHistory.length - 1].view = 'view-my-cards';
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
-      if (cardIdFromCarousel)
+      if (cardIdFromCarousel) {
         scope.card = scope.cardsArray[cardIdFromCarousel];
+      }
       scope.arrayOfOperationsByAccount = [];
       riot.update()
 //      console.log(scope.card)
