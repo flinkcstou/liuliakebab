@@ -1,8 +1,8 @@
 <view-settings>
   <div>
-    <div class="pay-page-title">
-      <p class="pay-name-title">{titleName}</p>
-      <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
+    <div class="settings-page-title">
+      <p class="settings-name-title">{titleName}</p>
+      <div id="backButton" ontouchend="goToBack()" class="settings-back-button"></div>
     </div>
     <div class="settings-container">
       <div class="settings-block-containter" ontouchend="goToMainSettings()">

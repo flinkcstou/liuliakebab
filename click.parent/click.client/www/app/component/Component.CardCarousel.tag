@@ -53,9 +53,9 @@
     scope.invoiceLeft = 100 * widthK;
     scope.invoiceList = [];
 
-    scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-    scope.cardsarray = (scope.cardsarray) ? (scope.cardsarray) : ({});
-    riot.update(scope.cardsarray);
+    //    scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
+    //    scope.cardsarray = (scope.cardsarray) ? (scope.cardsarray) : ({});
+    //    riot.update(scope.cardsarray);
 
     stopPropagation = function () {
 
@@ -135,7 +135,13 @@
         }
       }
 
-      if (invoiceCheck && viewMainPage.atMainPage) {
+      if (!scope.cardsarray) {
+
+        scope.cardsarray = {};
+        riot.update(scope.cardsarray);
+      }
+
+      if (scope.invoiceCheck && viewMainPage.atMainPage) {
         count = 1;
       }
       else {
@@ -193,12 +199,12 @@
 
       riot.update(scope.cardsarray);
 
-      if (!modeOfApp.offlineMode) {
+      if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo')) {
         writeBalance();
       }
     }
 
-    var invoiceCheck = false;
+    scope.invoiceCheck = false;
 
     invoiceCheckFunction = function () {
 
@@ -210,7 +216,7 @@
         method: 'invoice.list',
         input: {
           session_key: sessionKey,
-          phone_num: phoneNumber,
+          phone_num: phoneNumber
         },
         scope: this,
         onSuccess: function (result) {
@@ -218,7 +224,18 @@
             if (result[1]) {
               if (result[1][0]) {
                 console.log('invoice', result[1])
-                invoiceCheck = true;
+
+                cards.style.transition = '0s';
+                cards.style.webkitTransition = '0s';
+
+                cards.style.transform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
+                cards.style.webkitTransform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
+
+                scope.invoiceCheck = true;
+                scope.cardNumber = 1;
+
+                riot.update(scope.invoiceCheck);
+                riot.update(scope.cardNumber);
                 var arrayOfInvoice = [];
                 for (var i = 0; i < result[1].length; i++) {
                   arrayOfInvoice.push(result[1][i]);
@@ -235,12 +252,16 @@
 
               }
               else {
-                invoiceCheck = false;
+                scope.invoiceCheck = false;
+                riot.update(scope.invoiceCheck);
               }
             }
           }
-          else
+          else {
             alert(result[0][0].error_note);
+          }
+
+          addCard();
         },
 
         onFail: function (api_status, api_status_message, data) {
@@ -392,7 +413,9 @@
 //    })
     };
 
-    invoiceCheckFunction();
+    if (viewMainPage.atMainPage) {
+      invoiceCheckFunction();
+    }
     onComponentCreated();
 
     this.on("mount", function () {
@@ -400,8 +423,9 @@
 
       cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-      cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-      cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+
+      cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+      cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
     });
 
     //
@@ -494,11 +518,12 @@
 
 
     var card;
-    var cardNumber = JSON.parse(localStorage.getItem('cardNumber'));
+    scope.cardNumber = JSON.parse(localStorage.getItem('cardNumber'));
 
-    if (!cardNumber) {
-      cardNumber = 0;
+    if (!scope.cardNumber) {
+      scope.cardNumber = 0;
     }
+    riot.update(scope.cardNumber);
 
     var pos = 0;
     var count = localStorage.getItem('click_client_countCard');
@@ -526,7 +551,7 @@
 //
 //      firstEnter = true;
       carouselTouchStartX = event.changedTouches[0].pageX;
-      left = -((540 * cardNumber) * widthK) - carouselTouchStartX;
+      left = -((540 * scope.cardNumber) * widthK) - carouselTouchStartX;
       delta = left;
 //
 //      for (var i in scope.cardsarray) {
@@ -596,14 +621,14 @@
       else if (!viewMainPage.myCards) {
         if (!modeOfApp.offlineMode.balance) {
 
-          cardNumber = (invoiceCheck && cardNumber) ? (cardNumber - 1) : (cardNumber);
+          scope.cardNumber = (scope.invoiceCheck && scope.cardNumber) ? (scope.cardNumber - 1) : (scope.cardNumber);
 
-          localStorage.setItem("cardNumber", cardNumber);
+          localStorage.setItem("cardNumber", scope.cardNumber);
 
-          pos = (cardNumber) * 540 * widthK;
+          pos = (scope.cardNumber) * 540 * widthK;
           var sendChosenCardId;
           for (var i in scope.cardsarray) {
-            if (scope.cardsarray[i].countCard == cardNumber) {
+            if (scope.cardsarray[i].countCard == scope.cardNumber) {
               scope.cardsarray[i].chosenCard = true;
               sendChosenCardId = scope.cardsarray[i].card_id
               localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
@@ -747,11 +772,11 @@
       //scope.whereWasX = event.changedTouches[0].pageX;
     }
 
-    if (modeOfApp.offlineMode) {
-
-//        scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-      addCard();
-    }
+    //    if (modeOfApp.offlineMode) {
+    //
+    ////        scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
+    //      addCard();
+    //    }
 
     //    changeColor = function (index) {
     //      console.log('sss')
@@ -834,36 +859,38 @@
     function changePosition() {
 //      clearInterval(changingColor);
 
-      if (carouselTouchEndX < carouselTouchStartX && cardNumber < count - 1) {
-        ++cardNumber;
+      if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber < count - 1) {
+        ++scope.cardNumber;
+        riot.update(scope.cardNumber);
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       }
 
-      if (carouselTouchEndX > carouselTouchStartX && cardNumber == 0) {
+      if (carouselTouchEndX > carouselTouchStartX && scope.cardNumber == 0) {
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
-      if (carouselTouchEndX < carouselTouchStartX && cardNumber == count - 1) {
+      if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber == count - 1) {
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       }
 
-      if (carouselTouchEndX > carouselTouchStartX && cardNumber > 0) {
-        --cardNumber;
+      if (carouselTouchEndX > carouselTouchStartX && scope.cardNumber > 0) {
+        --scope.cardNumber;
+        riot.update(scope.cardNumber);
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
 
@@ -879,13 +906,15 @@
 
       if (viewMainPage.myCards) {
         for (i in scope.cardsarray) {
-          if (scope.cardsarray[i].countCard == cardNumber)
+          if (scope.cardsarray[i].countCard == scope.cardNumber)
             scope.parent.cardInformation(scope.cardsarray[i].card_id);
         }
       }
 
-      localStorage.setItem('cardNumber', cardNumber);
+      localStorage.setItem('cardNumber', scope.cardNumber);
     }
+
+    addCard();
 
 
   </script>

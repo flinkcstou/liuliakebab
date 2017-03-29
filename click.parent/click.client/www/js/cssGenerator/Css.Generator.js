@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/transfer-to-card-crop.png);" +
+    //"background-image: url(resources/draft/add-card-crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -633,7 +633,7 @@ var css = {
   "bottom:" + -40 * widthK + "px;" +
   "border-radius:" + 100 * widthK + "px;" +
   "background-color: white;" +
-  "border:" + 8 * widthK + "px solid #007AE2;" +
+  "border:" + 8 * widthK + "px solid #00a8f1;" +
   "background-image: url(resources/icons/bank-operations/circleReport.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 90%;" +
@@ -879,7 +879,7 @@ var css = {
   "height:" + 125 * widthK + "px;" +
   "width:" + 510 * widthK + "px;" +
   "position: absolute;" +
-  "top:" + 7 * widthK + "px;" +
+  "top:" + 17 * widthK + "px;" +
   "background-color: white;" +
   "background-size: cover;" +
   "color: white;" +
@@ -894,7 +894,7 @@ var css = {
   "height:" + 125 * widthK + "px;" +
   "width:" + 510 * widthK + "px;" +
   "position: absolute;" +
-  "top:" + 150 * widthK + "px;" +
+  "top:" + 160 * widthK + "px;" +
   "background-color: white;" +
   "background-size: cover;" +
   "color: white;" +
@@ -5767,6 +5767,42 @@ var css = {
   "overflow-x: hidden; " +
   "}",
 
+  settingsPageTitle: ".settings-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 0;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "background: transparent;" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  settingsNameTitle: ".settings-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 35 * widthK + "px; " +
+  "left:" + 85 * widthK + "px; " +
+  "top:" + 27 * widthK + "px; " +
+  "margin: 0;  " +
+  "color: #fffaf9;" +
+  "}",
+
+  settingsBackButton: ".settings-back-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 113 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y: 43%;" +
+  "background-position-x: center;" +
+  "background-size: 17%;" +
+  "right: 87%;" +
+  "}",
+
   settingsBlockContainer: ".settings-block-containter" +
   "{" +
   "position: relative;" +
@@ -7194,6 +7230,8 @@ var css = {
   viewReportsGraphPercentImageContainer: ".view-reports-graph-percent-image-container" +
   "{" +
   "position: absolute;" +
+  "opacity: 0;" +
+  "transition: 3s;" +
   "width:" + 80 * heightK + "px; " +
   "height:" + 80 * heightK + "px; " +
   "transform: translate3d(-50%, -50%, 0); " +
@@ -7203,9 +7241,11 @@ var css = {
   "{" +
   "position: relative;" +
   "margin: 0;" +
+  "top: 5%;" +
   "color: white;" +
   "width: 100%;" +
   "text-align: center;" +
+  "font-weight: bold;" +
   "font-size:" + 30 * widthK + "px !important; " +
   "}",
 
@@ -7219,8 +7259,8 @@ var css = {
   "background-position: center;" +
   "background-size: 100%;" +
   "background-repeat: no-repeat;" +
-  "width:" + 50 * widthK + "px;" +
-  "height:" + 50 * widthK + "px;" +
+  "width:" + 50 * heightK + "px;" +
+  "height:" + 50 * heightK + "px;" +
   "}",
 
   viewReportsFilterContainer: ".view-reports-filter-container " +
@@ -7770,6 +7810,206 @@ var css = {
   "background-size: 36%;" +
   "background-position: center;" +
   "background-image: url(resources/icons/services/delete.png);" +
+  "}",
+
+
+  //VIEW ADD CARD
+
+  viewAddCard: ".view-add-card " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "bottom: 0;" +
+  "top:" + 92 * heightK + "px;" +
+  "overflow: hidden;" +
+  "background-size: contain;" +
+  "background-color: white;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
+  addCardCardField: ".add-card-card-field " +
+  "{" +
+  "position: relative;" +
+  "top:" + 177 * heightK + "px;" +
+  "width:" + 600 * heightK + "px;" +
+  "height:" + 320 * heightK + "px;" +
+  "border:" + 3 * heightK + "px solid #e7e7e7;" +
+  "background-color: white;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "border-radius:" + 10 * heightK + "px;" +
+  "}",
+
+  addCardCardNumberText: ".add-card-card-number-text " +
+  "{" +
+  "left: 6%;" +
+  "top: 13%;" +
+  "}",
+
+  addCardTextField: ".add-card-text-field " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "text-align: center;" +
+  "color: #bfbfbf;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: 1%;" +
+  "left: 8%;" +
+  "}",
+
+  addCardCardNumber: ".add-card-card-number " +
+  "{" +
+  "position: absolute;" +
+  "padding: 0;" +
+  "color: white;" +
+  "background-color: white;" +
+  "border:" + 3 * heightK + "px solid #e7e7e7;" +
+  "width: 86%;" +
+  "height: 19%;" +
+  "left: 6%;" +
+  "top: 26%;" +
+  "}",
+
+  addCardCardNumberBox: ".add-card-card-number-box " +
+  "{" +
+  "position: absolute;" +
+  "width: 17%;" +
+  "height: 55%;" +
+  "top: 18%;" +
+  "background-color: transparent;" +
+  "border: none;" +
+  "color: white;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "}",
+
+  addCardCardNumberBoxOne: ".add-card-card-number-box-one " +
+  "{" +
+  "left: 6%;" +
+  "}",
+
+  addCardCardNumberBoxTwo: ".add-card-card-number-box-two " +
+  "{" +
+  "left: 30%;" +
+  "}",
+
+  addCardCardNumberBoxThree: ".add-card-card-number-box-three " +
+  "{" +
+  "right: 30%;" +
+  "}",
+
+  addCardCardNumberBoxFour: ".add-card-card-number-box-four " +
+  "{" +
+  "right: 6%;" +
+  "}",
+
+  addCardCardText: ".add-card-card-text " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "background-size: contain;" +
+  "color: #757389;" +
+  "font-size:" + 27 * widthK + "px;" +
+  "}",
+
+  addCardCardTextDate: ".add-card-card-text-date " +
+  "{" +
+  "left: 6%;" +
+  "width: 200%;" +
+  "bottom: 36%;" +
+  "}",
+
+  addCardCardTextPin: ".add-card-card-text-pin " +
+  "{" +
+  "bottom: 36%;" +
+  "left: 46%;" +
+  "width: 200%;" +
+  "}",
+
+  addCardCardDate: ".add-card-card-date " +
+  "{" +
+  "position: absolute;" +
+  "padding: 0;" +
+  "color: white;" +
+  "background-color: white;" +
+  "border:" + 3 * heightK + "px solid #e7e7e7;" +
+  "width: 27%;" +
+  "height: 18%;" +
+  "left: 6%;" +
+  "bottom: 14%;" +
+  "}",
+
+  addCardCardDateBox: ".add-card-card-date-box " +
+  "{" +
+  "position: absolute;" +
+  "width: 65%;" +
+  "left: 23%;" +
+  "height: 60%;" +
+  "top: 26%;" +
+  "background-color: transparent;" +
+  "color: white;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "}",
+
+  addCardCardPin: ".add-card-card-pin " +
+  "{" +
+  "position: absolute;" +
+  "padding: 0;" +
+  "color: white;" +
+  "background-color: white;" +
+  "border:" + 3 * heightK + "px solid #e7e7e7;" +
+  "width: 26%;" +
+  "height: 18%;" +
+  "left: 46%;" +
+  "bottom: 14%;" +
+  "}",
+
+  addCardCardDatePinBox: ".add-card-card-date-pin-box " +
+  "{" +
+  "position: absolute;" +
+  "width: 65%;" +
+  "left: 23%;" +
+  "height: 60%;" +
+  "top: 26%;" +
+  "background-color: transparent;" +
+  "border: none;" +
+  "color: white;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "}",
+
+  addCardPageTitle: ".add-card-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 0;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "background: transparent;" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  addCardNameTitle: ".add-card-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 35 * widthK + "px; " +
+  "left:" + 85 * widthK + "px; " +
+  "top:" + 27 * widthK + "px; " +
+  "margin: 0;  " +
+  "color: #fffaf9;" +
+  "}",
+
+  addCardBackButton: ".add-card-back-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 113 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y: 43%;" +
+  "background-position-x: center;" +
+  "background-size: 17%;" +
+  "right: 87%;" +
   "}",
 
 
