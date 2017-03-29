@@ -6871,6 +6871,15 @@ var css = {
 
   //ACCOUNT DETAIL VIEW
 
+  accountDetailCover: ".account-detail-cover" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "top:" + 800 * widthK + "px;" +
+  "bottom: 0;" +
+  "background-color: #f4f4f4;" +
+  "}",
+
   accountDetailContainer: ".account-detail-container" +
   "{" +
   "position: absolute;" +
@@ -7036,9 +7045,13 @@ var css = {
   accountDetailButtonsContainer: ".account-detail-buttons-container" +
   "{" +
   "position: relative;" +
-  "height: 13%;" +
   "width:100%;" +
-  "top: 11%;" +
+  "height:" + 182 * widthK + "px;" +
+  "top:" + 33 * widthK + "px;" +
+  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 1232 * widthK + "px;" +
+  "padding-top:" + 60 * widthK + "px;" +
   "}",
 
   accountDetailButtonAccept: ".account-detail-button-accept" +
@@ -7078,16 +7091,12 @@ var css = {
   transferToCardContainer: ".transfer-to-card-container" +
   "{" +
   "position: absolute;" +
-    //"height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
   "top:" + 380 * widthK + "px; " +
   "bottom:0; " +
   "background-color: #ffffff; " +
   "overflow-y: hidden; " +
   "overflow-x: hidden; " +
-  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
-  "background-repeat: no-repeat;" +
-  "background-position-y:" + 668 * widthK + "px;" +
   "}",
 
   transferToCardTitleContainer: ".transfer-to-card-title-container" +
