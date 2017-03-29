@@ -6672,6 +6672,15 @@ var css = {
 
   //TRANSFER DETAIL VIEW
 
+  transferDetailCover: ".transfer-detail-cover" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 100 * widthK + "px;" +
+  "bottom: 0;" +
+  "background-color: #f4f4f4;" +
+  "}",
+
   transferDetailContainer: ".transfer-detail-container" +
   "{" +
   "position: absolute;" +
@@ -6682,9 +6691,6 @@ var css = {
   "background-color: #ffffff; " +
   "overflow-y: hidden; " +
   "overflow-x: hidden; " +
-  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
-  "background-repeat: no-repeat;" +
-  "background-position-y:" + 420 * widthK + "px;" +
   "}",
 
   transferDetailTitleContainer: ".transfer-detail-title-container" +
@@ -6830,11 +6836,14 @@ var css = {
 
   transferDetailButtonsContainer: ".transfer-detail-buttons-container" +
   "{" +
-  "position: relative;" +
-  "height: 46.5%;" +
+  "position: absolute;" +
   "width:100%;" +
-  "top: 9%;" +
-  "background-color: #f4f4f4;" +
+  "height:" + 90 * widthK + "px;" +
+  "bottom: 0;" +
+  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 1232 * widthK + "px;" +
+  "padding-top:" + 60 * widthK + "px;" +
   "}",
 
   transferDetailButtonAccept: ".transfer-detail-button-accept" +
@@ -6875,7 +6884,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top:" + 800 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
   "bottom: 0;" +
   "background-color: #f4f4f4;" +
   "}",
@@ -7044,10 +7053,10 @@ var css = {
 
   accountDetailButtonsContainer: ".account-detail-buttons-container" +
   "{" +
-  "position: relative;" +
-  "width:100%;" +
-  "height:" + 182 * widthK + "px;" +
-  "top:" + 33 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 90 * widthK + "px;" +
+  "bottom: 0;" +
   "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
   "background-size:" + 1232 * widthK + "px;" +
