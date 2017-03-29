@@ -454,22 +454,16 @@
         datasets: [
           {
             data: [],
-            backgroundColor: [
-              "#FF6384",
-              "#36A2EB",
-              "#FFCE56",
-              "brown",
-              "grey"
-            ]
+            backgroundColor: []
           }]
       };
 
       var sumOfAngle = 0;
       scope.arrayOfCoordinates = [];
-      console.log(data.datasets[0].data)
       var j = 0;
       for (var i in arrayForGraph) {
         data.datasets[0].data.push(arrayForGraph[i].percent);
+        data.datasets[0].backgroundColor.push(arrayForGraph[i].color);
         var centerOfBlock = parseInt(sumOfAngle) + parseInt(arrayForGraph[i].percent) / 2;
         console.log('CENTER', centerOfBlock)
         var alpha = 3.6 * parseInt(centerOfBlock);
@@ -503,13 +497,13 @@
           width = 100;
         }
 
-        console.log(alpha)
+        console.log('DATA',data)
         var percent = arrayForGraph[i].percent;
         var coordinates = {
           x: x,
           y: y,
           percent: parseInt(percent),
-          image: arrayForGraph[i].image,
+          image: arrayForGraph[i].image_inner,
           order: j,
           alpha: alpha,
 //          width: width
