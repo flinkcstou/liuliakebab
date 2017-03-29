@@ -34,6 +34,7 @@
     arrayForTransfer.push(opts[4]);
     arrayForTransfer.push(opts[5]);
     arrayForTransfer.push(opts[6]);
+    arrayForTransfer.push(opts[7]);
     console.log(arrayForTransfer);
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards') {
@@ -77,7 +78,6 @@
         alert("Выберите карту для оплаты");
         return;
       }
-      viewPayConfirm.isInFavorites = false;
       event.preventDefault();
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-pay-confirm>";

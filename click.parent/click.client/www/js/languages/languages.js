@@ -53,6 +53,7 @@ var RU_LANGUAGES =
   "ViewMyCardLastOperations": "Последние операции",
 
   "ViewServicePageEnterLabel": "ДАЛЕЕ",
+  "ViewServicePageSaveLabel": "СОХРАНИТЬ",
   "ViewServicePageAmountTextLabel": "Сумма оплаты:",
 
   "ViewMyCardListTitleName": "МОИ КАРТЫ",

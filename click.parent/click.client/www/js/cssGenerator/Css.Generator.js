@@ -7719,6 +7719,13 @@ var css = {
   "background-color: transparent;" +
   "}",
 
+  viewFavoritesBlockInnerContainer: ".view-favorites-block-inner-containter" +
+  "{" +
+  "position: absolute;" +
+  "height:100%;" +
+  "width: 90%;" +
+  "}",
+
 
   viewFavoritesIcon: ".view-favorites-icon " +
   "{" +
@@ -7739,7 +7746,7 @@ var css = {
   "position: absolute;" +
   "height: 100%;" +
   "width: 72%;" +
-  "left: 18%;" +
+  "left: 21%;" +
   "color: #8b8b8b;" +
   "}",
 

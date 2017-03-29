@@ -94,7 +94,7 @@
     cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
     var serviceId = localStorage.getItem('chosenServiceId');
     scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
-    scope.isInFavorites = viewPayConfirm.isInFavorites;
+    scope.isInFavorites = opts[0][7].isInFavorites;
 
     if (scope.isInFavorites)
       this.viewPage = 'view-main-page';
@@ -165,12 +165,15 @@
     }
 
     addToFavorites = function () {
+      scope.isInFavorites = true;
+      riot.update(scope.isInFavorites);
+      opts[0][7].isInFavorites = true;
+
       if (!localStorage.getItem('favoritePaymentsList')) {
         var favoritePaymentsList = [];
-        console.log("OPTS TO SAVE=", opts);
-        console.log("Chosen Service =", scope.service);
+
         favoritePaymentsList.push({
-          "opts": opts,
+          "opts": opts[0],
           "service": scope.service,
           "categoryId": viewPay.categoryId,
           "firstFieldTitle": viewServicePage.firstFieldTitle
@@ -180,10 +183,8 @@
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
       } else {
         var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
-        console.log("OPTS TO SAVE=", opts);
-        console.log("Chosen Service =", scope.service);
         favoritePaymentsList.push({
-          "opts": opts,
+          "opts": opts[0],
           "service": scope.service,
           "categoryId": viewPay.categoryId,
           "firstFieldTitle": viewServicePage.firstFieldTitle
@@ -191,8 +192,6 @@
         console.log("favoritePaymentsList=", favoritePaymentsList);
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
       }
-      scope.isInFavorites = true;
-      riot.update(scope.isInFavorites);
 
     }
 

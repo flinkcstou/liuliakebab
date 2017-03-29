@@ -44,7 +44,7 @@
       history.arrayOfHistory.push(
         {
           "view": 'view-pay',
-          "params": ''
+          "params": opts
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
@@ -205,7 +205,6 @@
         riot.update(hintContainerId);
       } else {
         hintContainerId.style.display = 'none';
-        scope.showCategoryName = 'Bye world';
         riot.update(hintContainerId);
 
       }
@@ -461,6 +460,8 @@
       onTouchStartY = event.changedTouches[0].pageY;
     };
 
+    console.log('OPTS', opts);
+
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
       console.log(' scope.checkOfSearch', scope.checkOfSearch);
       event.stopPropagation();
@@ -473,7 +474,7 @@
 
         localStorage.setItem('chosenServiceId', id);
         riotTags.innerHTML = "<view-service-page>";
-        riot.mount("view-service-page");
+        riot.mount("view-service-page", opts);
       }
     };
 
