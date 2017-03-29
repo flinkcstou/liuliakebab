@@ -53,9 +53,9 @@
     scope.invoiceLeft = 100 * widthK;
     scope.invoiceList = [];
 
-    scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-    scope.cardsarray = (scope.cardsarray) ? (scope.cardsarray) : ({});
-    riot.update(scope.cardsarray);
+    //    scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
+    //    scope.cardsarray = (scope.cardsarray) ? (scope.cardsarray) : ({});
+    //    riot.update(scope.cardsarray);
 
     stopPropagation = function () {
 
@@ -210,7 +210,7 @@
         method: 'invoice.list',
         input: {
           session_key: sessionKey,
-          phone_num: phoneNumber,
+          phone_num: phoneNumber
         },
         scope: this,
         onSuccess: function (result) {
@@ -395,7 +395,9 @@
 //    })
     };
 
-    invoiceCheckFunction();
+    if (viewMainPage.atMainPage) {
+      invoiceCheckFunction();
+    }
     onComponentCreated();
 
     this.on("mount", function () {
@@ -889,6 +891,8 @@
 
       localStorage.setItem('cardNumber', cardNumber);
     }
+
+    addCard();
 
 
   </script>
