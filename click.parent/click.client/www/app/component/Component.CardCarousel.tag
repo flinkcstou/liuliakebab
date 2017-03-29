@@ -135,6 +135,12 @@
         }
       }
 
+      if (!scope.cardsarray) {
+
+        scope.cardsarray = {};
+        riot.update(scope.cardsarray);
+      }
+
       if (scope.invoiceCheck && viewMainPage.atMainPage) {
         count = 1;
       }
@@ -193,7 +199,7 @@
 
       riot.update(scope.cardsarray);
 
-      if (!modeOfApp.offlineMode) {
+      if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo')) {
         writeBalance();
       }
     }
