@@ -372,38 +372,12 @@
           console.log(result[0][0])
           if (result[0][0].error == 0) {
             for (var i in result[1]) {
-              scope.paymentsSum += result[1][i].amount;
 
-              result[1][i].amount = result[1][i].amount.toString();
-
-              if (result[1][i].amount.length == 7) {
-                result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-                  result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
-
-              }
-
-              if (result[1][i].amount.length == 6) {
-                result[1][i].amount = result[1][i].amount.substring(0, 3) + ' ' +
-                  result[1][i].amount.substring(3, result[1][i].amount.length)
-
-              }
-
-              if (result[1][i].amount.length == 5) {
-                result[1][i].amount = result[1][i].amount.substring(0, 2) + ' ' +
-                  result[1][i].amount.substring(2, result[1][i].amount.length)
-
-              }
-
-              if (result[1][i].amount.length == 4) {
-                result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-                  result[1][i].amount.substring(1, result[1][i].amount.length)
-
-              }
+              scope.paymentsSum += parseInt(result[1][i].amount.replace(/\s/g, ''));
 
               scope.graphList.push(result[1][i]);
             }
 
-            //
             scope.paymentsSum = scope.paymentsSum.toString();
 
             if (scope.paymentsSum.length == 7) {
@@ -444,7 +418,8 @@
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
-      });
+      })
+      ;
 
     }
 
@@ -463,7 +438,7 @@
       var j = 0;
       for (var i in arrayForGraph) {
         data.datasets[0].data.push(arrayForGraph[i].percent);
-        data.datasets[0].backgroundColor.push(arrayForGraph[i].color);
+        data.datasets[0].backgroundColor.push(arrayForGraph[i].color_hex);
         var centerOfBlock = parseInt(sumOfAngle) + parseInt(arrayForGraph[i].percent) / 2;
         console.log('CENTER', centerOfBlock)
         var alpha = 3.6 * parseInt(centerOfBlock);
@@ -473,31 +448,13 @@
         var x = 240 + (170 * Math.sin(alpha / (180 / Math.PI)));
         var y = 240 - (170 * Math.cos(alpha / (180 / Math.PI)));
 
-//        if (alpha >= 0 && alpha < 90) {
-//          x = x - 30;
-//          y = y - 20;
-//        }
-//
-//        if (alpha >= 90 && alpha < 180) {
-//          y = y - 20;
-//          x = x - 60;
-//        }
-//
-//        if (alpha >= 180 && alpha < 270) {
-//          y = y - 20;
-//        }
-//
-//        if (alpha >= 270 && alpha < 360) {
-//          x = x - 20;
-//          y = y - 40;
-//        }
 
         var width = 160;
         if ((alpha >= 30 && alpha < 125) || (alpha >= 205 && alpha < 335)) {
           width = 100;
         }
 
-        console.log('DATA',data)
+        console.log('DATA', data)
         var percent = arrayForGraph[i].percent;
         var coordinates = {
           x: x,

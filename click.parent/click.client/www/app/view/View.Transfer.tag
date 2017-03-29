@@ -307,6 +307,7 @@
             for (var i in result[1]) {
               result[1][i].amount = result[1][i].p2p_max_limit.toString();
 
+
               if (result[1][i].amount.length == 7) {
                 result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
                   result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
@@ -330,6 +331,7 @@
                   result[1][i].amount.substring(1, result[1][i].amount.length)
 
               }
+              console.log("!!!!!", result[1][i].p2p_max_limit);
             }
 //            console.log("result of P2P BANK LIST ", result[1]);
             localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(result[1]))
