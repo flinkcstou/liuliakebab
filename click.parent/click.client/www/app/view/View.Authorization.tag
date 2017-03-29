@@ -452,7 +452,7 @@
           scope.servicesMap = {};
           scope.serviceNamesMap = {};
           scope.operatorKey = phoneNumber.substr(3, 2);
-          console.log("MOPERATORS!!!!!!!!!!!!!!", window.mOperators[scope.operatorKey]);
+//          console.log("MOPERATORS!!!!!!!!!!!!!!", window.mOperators[scope.operatorKey]);
           window.api.call({
             method: 'get.service.list',
             input: {
