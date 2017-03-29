@@ -239,8 +239,11 @@
               }
             }
           }
-          else
+          else {
             alert(result[0][0].error_note);
+          }
+
+          addCard();
         },
 
         onFail: function (api_status, api_status_message, data) {
