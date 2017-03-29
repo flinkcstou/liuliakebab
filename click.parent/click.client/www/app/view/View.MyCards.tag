@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <div class="my-cards-button-block-card" ontouchend="deleteCardTouchEnd()">
+  <div class="my-cards-button-block-card" ontouchend="confirmToDeleteCardTouchEnd()">
     <div class="my-cards-button-icon my-cards-button-icon-block"></div>
     <div class="my-cards-button-block-card-label">{window.languages.ViewMyCardBlock}</div>
   </div>
@@ -62,7 +62,7 @@
 
   </div>
 
-  <component-delete-card></component-delete-card>
+  <component-delete-card id="deleteCardComponentId"></component-delete-card>
 
   <script>
 
@@ -97,52 +97,21 @@
       riot.mount('view-card-edit', [scope.card]);
     }
 
-    deleteCardTouchEnd = function () {
+    confirmToDeleteCardTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-//      console.log("card for edit=", scope.card);
-//      console.log('ACCOUNT INFO', JSON.parse(localStorage.getItem('click_client_accountInfo')))
+
+      deleteCardComponentId.style.display = 'block'
+      console.log('qwe')
 
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var account_id = scope.card.card_id
       var removable = scope.card.removable
 
-      var question = 'Подтвердите удаление карты'
-      var result = confirm(question);
-
-      if (result && removable == 1) {
-
-        window.api.call({
-          method: 'account.remove',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            account_id: account_id
-          },
-
-          scope: this,
-
-          onSuccess: function (result) {
-            if (result[0][0].error == 0) {
-              alert('Карта успешно удалена')
-//              updateCard();
-              return
-            }
-            else {
-              alert(result[0][0].error_note)
-            }
-          },
-
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
-          }
-        })
-
-      }
-      else
-        return;
+      if(removable == 1)
+      componentDeleteCard.getInformation(sessionKey, phoneNumber, account_id);
+      else alert('You cant delete this card');
     }
 
     //    updateCard = function () {

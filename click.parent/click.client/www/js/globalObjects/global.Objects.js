@@ -73,3 +73,5 @@ window.modeOfApp = {};
 modeOfApp.onlineMode = true;
 modeOfApp.offlineMode = false;
 
+window.componentDeleteCard = {};
+
