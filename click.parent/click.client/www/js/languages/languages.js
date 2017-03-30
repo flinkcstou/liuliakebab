@@ -238,6 +238,11 @@ var RU_LANGUAGES =
   "ViewBankListLimitText": "Лимит:",
 
   "ViewAddCardTitle": "ДОБАВИТЬ КАРТУ",
+  "ViewAddCardNameTitle": "Введите название карты",
+  "ViewAddCardNumberTitle": "Номер карты",
+  "ViewAddCardDateTitle": "Дата окончания",
+  "ViewAddCardPinTitle": "Код банка",
+  "ViewAddCardDoMainTitle": "Сделать основной",
 
 
 };
