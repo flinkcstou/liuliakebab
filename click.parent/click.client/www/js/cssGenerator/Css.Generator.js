@@ -7922,6 +7922,38 @@ var css = {
   "border-radius:" + 10 * heightK + "px;" +
   "}",
 
+  addCardMainCardField: ".add-card-main-card-field " +
+  "{" +
+  "position: absolute;" +
+  "top: 49%;" +
+  "width: 84%;" +
+  "height: 6%;" +
+  "left: 8%;" +
+  "border-top: 1px solid #e7e7e7;" +
+  "border-bottom: 1px solid #e7e7e7;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "}",
+
+  addCardMainCardText: ".add-card-main-card-text " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "top: 22%;" +
+  "color: #3b3b3b;" +
+  "}",
+
+  addCardMainCardIcon: ".add-card-main-card-icon " +
+  "{" +
+  "position: absolute;" +
+  "right: -4%;" +
+  "width: 15%;" +
+  "height: 100%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 49%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/ViewService/unchecked.png);" +
+  "}",
+
   addCardCardNumberText: ".add-card-card-number-text " +
   "{" +
   "left: 6%;" +
@@ -7971,12 +8003,12 @@ var css = {
 
   addCardCardNumberBoxTwo: ".add-card-card-number-box-two " +
   "{" +
-  "left: 30%;" +
+  "left: 29%;" +
   "}",
 
   addCardCardNumberBoxThree: ".add-card-card-number-box-three " +
   "{" +
-  "right: 30%;" +
+  "right: 29%;" +
   "}",
 
   addCardCardNumberBoxFour: ".add-card-card-number-box-four " +
@@ -8024,7 +8056,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 75%;" +
-  "left: 16c%;" +
+  "left: 16%;" +
   "height: 60%;" +
   "top: 20%;" +
   "background-color: transparent;" +

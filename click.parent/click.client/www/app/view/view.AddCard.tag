@@ -41,6 +41,11 @@
         </input>
       </div>
     </div>
+
+    <div class="add-card-main-card-field">
+      <p class="add-card-main-card-text">{window.languages.ViewAddCardDoMainTitle}</p>
+      <div id="doMainId" class="add-card-main-card-icon" ontouchend="doMainCardTouchEnd()"></div>
+    </div>
   </div>
 
   <script>
@@ -56,12 +61,27 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+
+    scope.doMainCard = false;
+
+    doMainCardTouchEnd = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (!scope.doMainCard) {
+        scope.doMainCard = true;
+        doMainId.style.backgroundImage = 'url(resources/icons/ViewService/checked.png)';
+      }
+      else {
+        scope.doMainCard = false;
+        doMainId.style.backgroundImage = 'url(resources/icons/ViewService/unchecked.png)';
+      }
+    }
     boxOneKeyUp = function () {
       event.preventDefault()
       event.stopPropagation()
 
       if (boxOne.value.length == 4) {
-        console.log('qwe')
         boxTwo.focus();
       }
     }
@@ -96,6 +116,9 @@
     boxDateKeyUp = function () {
       event.preventDefault()
       event.stopPropagation()
+      if (boxDate.value.length == 2) {
+        boxDate.value += '/'
+      }
 
       if (boxDate.value.length == 5) {
         boxPin.focus();
