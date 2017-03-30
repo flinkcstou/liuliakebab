@@ -13,30 +13,30 @@
     <div class="add-card-card-field">
       <p class="add-card-card-text add-card-card-number-text">{window.languages.ViewAddCardNumberTitle}</p>
       <div id="cardNumberInput" class="add-card-card-number">
-        <input onkeyup="boxOneKeyUp()" autofocus="true" maxlength="4" id="boxOne"
+        <input onkeydown="boxOneKeyDown()" autofocus="true" maxlength="4" id="boxOne"
                class="add-card-card-number-box registration-client-card-number-box-one">
         </input>
-        <input onkeyup="boxTwoKeyUp()" maxlength="4" id="boxTwo"
+        <input onkeydown="boxTwoKeyDown()" maxlength="4" id="boxTwo"
                class="add-card-card-number-box registration-client-card-number-box-two">
         </input>
-        <input onkeyup="boxThreeKeyUp()" maxlength="4" id="boxThree"
+        <input onkeydown="boxThreeKeyDown()" maxlength="4" id="boxThree"
                class="add-card-card-number-box registration-client-card-number-box-three">
         </input>
-        <input onkeyup="boxFourKeyUp()" maxlength="4" id="boxFour"
+        <input onkeydown="boxFourKeyDown()" maxlength="4" id="boxFour"
                class="add-card-card-number-box registration-client-card-number-box-four">
         </input>
       </div>
 
       <p class="add-card-card-text add-card-card-text-date">{window.languages.ViewAddCardDateTitle}</p>
       <div id="cardDateInput" class="add-card-card-date" type="text">
-        <input onkeyup="boxDateKeyUp()" maxlength="5" id="boxDate"
+        <input onkeydown="boxDateKeyDown()" maxlength="5" id="boxDate"
                class="add-card-card-date-box">
         </input>
       </div>
 
       <p class="add-card-card-text add-card-card-text-pin">{window.languages.ViewAddCardPinTitle}</p>
       <div id="cardPinInput" class="add-card-card-pin">
-        <input onkeyup="boxPinKeyUp()" maxlength="4" id="boxPin"
+        <input onkeydown="boxPinKeyDown()" type="tel" maxlength="4" id="boxPin"
                class="add-card-card-date-pin-box">
         </input>
       </div>
@@ -77,45 +77,36 @@
         doMainId.style.backgroundImage = 'url(resources/icons/ViewService/unchecked.png)';
       }
     }
-    boxOneKeyUp = function () {
-      event.preventDefault()
-      event.stopPropagation()
+    boxOneKeyDown = function () {
 
       if (boxOne.value.length == 4) {
         boxTwo.focus();
       }
     }
 
-    boxTwoKeyUp = function () {
-      event.preventDefault()
-      event.stopPropagation()
+    boxTwoKeyDown = function () {
 
       if (boxTwo.value.length == 4) {
         boxThree.focus();
       }
     }
 
-    boxThreeKeyUp = function () {
-      event.preventDefault()
-      event.stopPropagation()
+    boxThreeKeyDown = function () {
 
       if (boxThree.value.length == 4) {
         boxFour.focus();
       }
     }
 
-    boxFourKeyUp = function () {
-      event.preventDefault()
-      event.stopPropagation()
+    boxFourKeyDown = function () {
 
       if (boxFour.value.length == 4) {
         boxDate.focus();
       }
     }
 
-    boxDateKeyUp = function () {
-      event.preventDefault()
-      event.stopPropagation()
+    boxDateKeyDown = function () {
+
       if (boxDate.value.length == 2) {
         boxDate.value += '/'
       }
@@ -126,15 +117,25 @@
     }
 
     var stars = '';
-    boxPinKeyUp = function () {
-      event.preventDefault()
-      event.stopPropagation()
-      stars += '*'
-      if (stars.length > 4)
-        return
+    var pinCodeOfBank = '';
+    boxPinKeyDown = function () {
 
-      if (boxPin.value.length < 5)
+
+      if (event.keyCode != 8 && pinCodeOfBank.length < 4) {
+        pinCodeOfBank += event.key;
+        console.log('pinCodeOfBank', pinCodeOfBank)
+        stars += '*'
         boxPin.value = stars
+      }
+      else {
+        if (event.keyCode == 8) {
+          stars = stars.substring(0, stars.length - 1)
+          pinCodeOfBank = pinCodeOfBank.substring(0, pinCodeOfBank.length - 1)
+          boxPin.value = stars
+        }
+      }
+
+      event.preventDefault()
     }
 
     scope.titleName = window.languages.ViewAddCardTitle;
