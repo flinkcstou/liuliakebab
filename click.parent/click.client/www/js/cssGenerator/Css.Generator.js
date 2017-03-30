@@ -7927,13 +7927,13 @@ var css = {
   addCardCardNumberBox: ".add-card-card-number-box " +
   "{" +
   "position: absolute;" +
-  "width: 17%;" +
+  "width: 20%;" +
   "height: 55%;" +
   "top: 18%;" +
   "background-color: transparent;" +
   "border: none;" +
-  "color: white;" +
-  "font-size:" + 30 * widthK + "px;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "letter-spacing:" + 5 * widthK + "px;" +
   "}",
 
   addCardCardNumberBoxOne: ".add-card-card-number-box-one " +
@@ -7995,13 +7995,15 @@ var css = {
   addCardCardDateBox: ".add-card-card-date-box " +
   "{" +
   "position: absolute;" +
-  "width: 65%;" +
-  "left: 23%;" +
+  "width: 60%;" +
+  "left: 19%;" +
   "height: 60%;" +
-  "top: 26%;" +
+  "top: 20%;" +
   "background-color: transparent;" +
-  "color: white;" +
-  "font-size:" + 30 * widthK + "px;" +
+  //"outline: none;" +
+  "border: none;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "letter-spacing:" + 5 * widthK + "px;" +
   "}",
 
   addCardCardPin: ".add-card-card-pin " +
@@ -8021,13 +8023,15 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 65%;" +
-  "left: 23%;" +
+  "left: 19%;" +
   "height: 60%;" +
-  "top: 26%;" +
+  "top: 20%;" +
   "background-color: transparent;" +
   "border: none;" +
-  "color: white;" +
-  "font-size:" + 30 * widthK + "px;" +
+  //"outline: none;" +
+  "border: none;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "letter-spacing:" + 12 * widthK + "px;" +
   "}",
 
   addCardPageTitle: ".add-card-page-title " +
