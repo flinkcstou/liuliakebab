@@ -4132,7 +4132,7 @@ var css = {
   "border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
   "background-color: rgb(1, 124, 227);" +
-  "top: 25%;" +
+  "top: 28%;" +
   "}",
 
   transferNextButtonLabel: ".transfer-next-button-label" +
@@ -7987,7 +7987,7 @@ var css = {
   addCardCardNumberBox: ".add-card-card-number-box " +
   "{" +
   "position: absolute;" +
-  "width: 20%;" +
+  "width:" + 90 * widthK + "px;" +
   "height: 55%;" +
   "top: 18%;" +
   "background-color: transparent;" +

@@ -2029,6 +2029,7 @@ window.fakedSocket.register("p2p.bank.list", function (input) {
       bank_name: "UT банк",
       p2p_min_limit: 5000,
       p2p_max_limit: 5000000,
+      p2p_percent : 2
     },
     {
       code: "004",
@@ -2036,6 +2037,7 @@ window.fakedSocket.register("p2p.bank.list", function (input) {
       bank_name: "Агробанк",
       p2p_min_limit: 5000,
       p2p_max_limit: 5000000,
+      p2p_percent : 1.5
     },
     {
       code: "055",
@@ -2043,6 +2045,7 @@ window.fakedSocket.register("p2p.bank.list", function (input) {
       bank_name: "Азия Альянс Банк",
       p2p_min_limit: 5000,
       p2p_max_limit: 5000000,
+      p2p_percent : 2
     },
     {
       code: "031",
@@ -2050,6 +2053,7 @@ window.fakedSocket.register("p2p.bank.list", function (input) {
       bank_name: "Алокабанк",
       p2p_min_limit: 5000,
       p2p_max_limit: 5000000,
+      p2p_percent : 1.5
     },
     {
       code: "013",
@@ -2057,6 +2061,7 @@ window.fakedSocket.register("p2p.bank.list", function (input) {
       bank_name: "Асака Банк",
       p2p_min_limit: 5000,
       p2p_max_limit: 5000000,
+      p2p_percent : 1.5
     },
     {
       code: "051",
@@ -2064,6 +2069,7 @@ window.fakedSocket.register("p2p.bank.list", function (input) {
       bank_name: "Давр Банк",
       p2p_min_limit: 5000,
       p2p_max_limit: 5000000,
+      p2p_percent : 0.7
     }]
   );
 
