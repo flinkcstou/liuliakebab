@@ -7996,7 +7996,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 75%;" +
-  "left: 16%;" +
+  "left: 16c%;" +
   "height: 60%;" +
   "top: 20%;" +
   "background-color: transparent;" +
