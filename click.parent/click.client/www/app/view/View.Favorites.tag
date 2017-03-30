@@ -55,13 +55,25 @@
     }
 
     if (scope.favoritePaymentsList) {
-      console.log("favorite list", scope.favoritePaymentsList);
+//      console.log("favorite list", scope.favoritePaymentsList);
       scope.favPaymentsList = [];
       for (var i in scope.favoritePaymentsList) {
-        if (scope.favPaymentsList.length < 4)
+        if (scope.favPaymentsList.length < 4) {
+          if (scope.favoritePaymentsList[i].opts[1].firstFieldId == '1') {
+            var firstField = scope.favoritePaymentsList[i].opts[2].firstFieldText.toString();
+
+            if (firstField.length == 9) {
+              firstField = '+' + window.languages.CodeOfCountry + ' ' + firstField.substr(0, 2) + ' ' + firstField.substr(2, 3) + ' ' + firstField.substr(5, 2) + ' ' +
+                firstField.substr(7, 2);
+            }
+            scope.favoritePaymentsList[i].opts[2].firstFieldText = firstField;
+          }
           scope.favPaymentsList.push(scope.favoritePaymentsList[i]);
+        }
+
         else break;
       }
+//      console.log("favorites=", scope.favPaymentsList);
       riot.update(scope.favPaymentsList);
     }
 
