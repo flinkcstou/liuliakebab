@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  //"background-image: url(resources/draft/add-card-crop.png);" +
-  //"opacity: 0.6;" +
+    //"background-image: url(resources/draft/add-card-crop.png);" +
+    //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-    "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
-    "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
-    "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -2985,6 +2985,19 @@ var css = {
   "top: 16%;" +
   "}",
 
+  servicePageButtonSave: ".servicepage-button-save" +
+  "{" +
+  "position: absolute;" +
+  "width: " + 450 * widthK + "px; " +
+  "height: " + 90 * widthK + "px; " +
+  "border-radius: " + 80 * widthK + "px; " +
+  "background-color: rgb(1, 124, 227);" +
+  "left: 19%;" +
+  "bottom: " + 55 * widthK + "px; " +
+  "pointer-events: none;" +
+  "background-color: lightgrey;" +
+  "}",
+
   servicePageButtonEnterLabel: ".servicepage-button-enter-label" +
   "{" +
   "position: relative;" +
@@ -3017,11 +3030,27 @@ var css = {
   "width: " + 720 * widthK + "px; " +
   "top: " + 140 * heightK + "px; " +
   "background-color: white;" +
+  "}",
+
+  servicePagePincardsContainerTwo: ".servicepage-pincards-container-two" +
+  "{" +
+  "position: absolute;" +
+  "height: " + 920 * heightK + "px; " +
+  "width: " + 720 * widthK + "px; " +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
   "}",
 
   servicePagePincardsContainer: ".servicepage-pincards-container" +
+  "{" +
+  "position: absolute;" +
+  "height: 100%; " +
+  "width: " + 720 * widthK + "px; " +
+  "overflow-x: hidden;" +
+  "overflow-y: scroll;" +
+  "}",
+
+  servicePagePincardsBlockContainer: ".servicepage-pincards-block-container" +
   "{" +
   "position: relative;" +
   "width: 85%;" +
@@ -7290,7 +7319,7 @@ var css = {
   "transition: 3s;" +
   "width:" + 79 * heightK + "px; " +
   "height:" + 79 * heightK + "px; " +
-  //"transform: translate3d(-50%, -50%, 0); " +
+    //"transform: translate3d(-50%, -50%, 0); " +
   "}",
 
   viewReportsGraphPercent: ".view-reports-graph-percent" +
