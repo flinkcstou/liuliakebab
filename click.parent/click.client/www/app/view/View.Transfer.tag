@@ -932,9 +932,11 @@
 //          console.log('CODE OF BANK', codeOfBank)
 
           var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))
+          var percentOfBank = 0;
           for (var i = 0; i < bankList.length; i++) {
             if (codeOfBank == bankList[i].code) {
               checkOfCode = true;
+              percentOfBank = bankList[i].p2p_percent
               break;
             }
             else {
@@ -984,7 +986,8 @@
             riot.mount('view-transfer-steptwo', [
               {
                 "name": cardNumberForTransfer,
-                "type": 1
+                "type": 1,
+                "percent": percentOfBank,
               }
             ]);
             return
