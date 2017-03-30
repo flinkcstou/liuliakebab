@@ -391,7 +391,10 @@
 
                       for (var i in result[1]) {
 
-                        scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
+                        scope.categoryNamesMap[result[1][i].id] = {
+                          "name": result[1][i].name,
+                          "icon": result[1][i].icon
+                        };
                         j++;
                         scope.categoryList.push(result[1][i]);
 
@@ -422,7 +425,10 @@
                     for (var i in result[1]) {
 
                       scope.categoryList.push(result[1][i]);
-                      scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
+                      scope.categoryNamesMap[result[1][i].id] = {
+                        "name": result[1][i].name,
+                        "icon": result[1][i].icon
+                      };
                     }
 //                    riot.update(scope.categoryList);
                     localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));

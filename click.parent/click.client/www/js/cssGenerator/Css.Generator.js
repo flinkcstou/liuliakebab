@@ -2507,9 +2507,8 @@ var css = {
   "height:" + 100 * widthK + "px; " +
   "width: 100%;" +
   "margin-top: 1%;" +
-  "border-bottom:" + 3 * widthK + "px solid gainsboro;" +
   "z-index: 999999;" +
-  "background-color: aliceblue;" +
+  "background-color: white;" +
   "top:" + 78 * widthK + "px; " +
   "position:fixed;" +
   "display: none;" +
@@ -8029,7 +8028,7 @@ var css = {
   "height: 60%;" +
   "top: 20%;" +
   "background-color: transparent;" +
-  //"outline: none;" +
+    //"outline: none;" +
   "border: none;" +
   "font-size:" + 32 * widthK + "px;" +
   "letter-spacing:" + 5 * widthK + "px;" +
@@ -8057,7 +8056,7 @@ var css = {
   "top: 20%;" +
   "background-color: transparent;" +
   "border: none;" +
-  //"outline: none;" +
+    //"outline: none;" +
   "border: none;" +
   "font-size:" + 32 * widthK + "px;" +
   "letter-spacing:" + 12 * widthK + "px;" +

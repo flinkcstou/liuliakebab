@@ -28,7 +28,8 @@
         </li>
       </ul>
       <div class="pay-service-hint-containter" id="hintContainerId">
-        <div class="pay-category-name-field" style="left: 19%;">{showCategoryName}
+        <div class="pay-category-icon" style="background-image: url({showCategoryIcon})"></div>
+        <div class="pay-category-name-field">{showCategoryName}
         </div>
       </div>
     </div>
@@ -94,7 +95,10 @@
 //
 //                  for (var i in result[1]) {
 //
-//                    scope.categoryNamesMap[result[1][i].id] = result[1][i].name;
+//                    scope.categoryNamesMap[result[1][i].id] = {
+//      "name": result[1][i].name,
+//        "icon": result[1][i].icon
+//    };
 //                    j++;
 //                    scope.categoryList.push(result[1][i]);
 //
@@ -201,7 +205,8 @@
 
       if (categoriesContainerId.scrollTop > element.offsetTop) {
         hintContainerId.style.display = 'block';
-        scope.showCategoryName = scope.categoryNamesMap[scope.index];
+        scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
+        scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
         riot.update(hintContainerId);
       } else {
         hintContainerId.style.display = 'none';
