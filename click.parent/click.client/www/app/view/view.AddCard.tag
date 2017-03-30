@@ -13,30 +13,30 @@
     <div class="add-card-card-field">
       <p class="add-card-card-text add-card-card-number-text">{window.languages.ViewAddCardNumberTitle}</p>
       <div id="cardNumberInput" class="add-card-card-number">
-        <input autofocus="true" maxlength="4" id="boxOne"
+        <input onkeyup="boxOneKeyUp()" autofocus="true" maxlength="4" id="boxOne"
                class="add-card-card-number-box registration-client-card-number-box-one">
         </input>
-        <input maxlength="4" id="boxTwo"
+        <input onkeyup="boxTwoKeyUp()" maxlength="4" id="boxTwo"
                class="add-card-card-number-box registration-client-card-number-box-two">
         </input>
-        <input maxlength="4" id="boxThree"
+        <input onkeyup="boxThreeKeyUp()" maxlength="4" id="boxThree"
                class="add-card-card-number-box registration-client-card-number-box-three">
         </input>
-        <input maxlength="4" id="boxFour"
+        <input onkeyup="boxFourKeyUp()" maxlength="4" id="boxFour"
                class="add-card-card-number-box registration-client-card-number-box-four">
         </input>
       </div>
 
       <p class="add-card-card-text add-card-card-text-date">{window.languages.ViewAddCardDateTitle}</p>
       <div id="cardDateInput" class="add-card-card-date" type="text">
-        <input maxlength="4" id="boxData"
+        <input onkeyup="boxDateKeyUp()" maxlength="5" id="boxDate"
                class="add-card-card-date-box">
         </input>
       </div>
 
       <p class="add-card-card-text add-card-card-text-pin">{window.languages.ViewAddCardPinTitle}</p>
       <div id="cardPinInput" class="add-card-card-pin">
-        <input maxlength="4" id="boxPin"
+        <input onkeyup="boxPinKeyUp()" maxlength="4" id="boxPin"
                class="add-card-card-date-pin-box">
         </input>
       </div>
@@ -54,6 +54,64 @@
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    }
+
+    boxOneKeyUp = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (boxOne.value.length == 4) {
+        console.log('qwe')
+        boxTwo.focus();
+      }
+    }
+
+    boxTwoKeyUp = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (boxTwo.value.length == 4) {
+        boxThree.focus();
+      }
+    }
+
+    boxThreeKeyUp = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (boxThree.value.length == 4) {
+        boxFour.focus();
+      }
+    }
+
+    boxFourKeyUp = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (boxFour.value.length == 4) {
+        boxDate.focus();
+      }
+    }
+
+    boxDateKeyUp = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (boxDate.value.length == 5) {
+        boxPin.focus();
+      }
+    }
+
+    var stars = '';
+    boxPinKeyUp = function () {
+      event.preventDefault()
+      event.stopPropagation()
+      stars += '*'
+      if (stars.length > 4)
+        return
+
+      if (boxPin.value.length < 5)
+        boxPin.value = stars
     }
 
     scope.titleName = window.languages.ViewAddCardTitle;

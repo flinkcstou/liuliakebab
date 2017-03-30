@@ -7995,8 +7995,8 @@ var css = {
   addCardCardDateBox: ".add-card-card-date-box " +
   "{" +
   "position: absolute;" +
-  "width: 60%;" +
-  "left: 19%;" +
+  "width: 75%;" +
+  "left: 16%;" +
   "height: 60%;" +
   "top: 20%;" +
   "background-color: transparent;" +
