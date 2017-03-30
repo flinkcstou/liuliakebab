@@ -239,7 +239,7 @@
       }
 
 
-      scope.categoryName = scope.categoryNamesMap[scope.service.category_id];
+      scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
       scope.formType = scope.service.form_type;
 
       if (scope.formType != 2) {

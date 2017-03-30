@@ -151,7 +151,7 @@
 
     scope.titleName = scope.service.name;
     scope.serviceIcon = scope.service.image;
-    scope.categoryName = scope.categoryNamesMap[viewPay.categoryId];
+    scope.categoryName = scope.categoryNamesMap[viewPay.categoryId].name;
     var chosenCardId = opts[1];
     console.log("chosen card id=", chosenCardId);
 
