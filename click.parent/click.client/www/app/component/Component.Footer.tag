@@ -12,7 +12,7 @@
 
         <div class="footer-contacts-blocks footer-contacts-block-one">
           <div id="photoOne" class="footer-favourite-contacts-circles footer-contact-one"
-               style="background-image: url({firstContactObject.contactPhoto})" ontouchend="contactTouchEnd()">
+               style="background-image: url({firstContactObject.contactPhoto})" ontouchend="contactOneTouchEnd()">
             {firstContactObject.firstLetter}
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-one">
@@ -22,7 +22,7 @@
 
         <div class="footer-contacts-blocks footer-contacts-block-two">
           <div id="photoTwo" class="footer-favourite-contacts-circles footer-contact-two"
-               style="background-image: url({secondContactObject.contactPhoto})" ontouchend="contactTouchEnd()">
+               style="background-image: url({secondContactObject.contactPhoto})" ontouchend="contactTwoTouchEnd()">
             {secondContactObject.firstLetter}
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-two">
@@ -32,7 +32,7 @@
 
         <div class="footer-contacts-blocks footer-contacts-block-three">
           <div id="photoThree" class="footer-favourite-contacts-circles footer-contact-three"
-               style="background-image: url({thirdContactObject.contactPhoto})" ontouchend="contactTouchEnd()">
+               style="background-image: url({thirdContactObject.contactPhoto})" ontouchend="contactThreeTouchEnd()">
             {thirdContactObject.firstLetter}
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-three">
@@ -42,7 +42,7 @@
 
         <div class="footer-contacts-blocks footer-contacts-block-four">
           <div id="photoFour" class="footer-favourite-contacts-circles footer-contact-four"
-               style="background-image: url({fourContactObject.contactPhoto})" ontouchend="contactTouchEnd()">
+               style="background-image: url({fourContactObject.contactPhoto})" ontouchend="contactFourTouchEnd()">
             {fourContactObject.firstLetter}
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-four">
@@ -52,7 +52,7 @@
 
         <div class="footer-contacts-blocks footer-contacts-block-five">
           <div id="photoFive" class="footer-favourite-contacts-circles footer-contact-five"
-               style="background-image: url({fiveContactObject.contactPhoto})" ontouchend="contactTouchEnd()">
+               style="background-image: url({fiveContactObject.contactPhoto})" ontouchend="contactFiveTouchEnd()">
             {fiveContactObject.firstLetter}
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-five">
@@ -107,12 +107,64 @@
     scope.arrayOfPhotos.push(scope.fourContactObject);
     scope.arrayOfPhotos.push(scope.fiveContactObject);
 
-    contactTouchEnd = function () {
+    contactOneTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
       riotTags.innerHTML = "<view-contact>";
-      riot.mount('view-contact');
+      riot.mount('view-contact',
+        {
+          "object": scope.firstContactObject,
+        }
+      );
+    }
+
+    contactTwoTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riotTags.innerHTML = "<view-contact>";
+      riot.mount('view-contact',
+        {
+          "object": scope.secondContactObject,
+        }
+      );
+    }
+
+    contactThreeTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riotTags.innerHTML = "<view-contact>";
+      riot.mount('view-contact',
+        {
+          "object": scope.thirdContactObject,
+        }
+      );
+    }
+
+    contactFourTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riotTags.innerHTML = "<view-contact>";
+      riot.mount('view-contact',
+        {
+          "object": scope.fourContactObject,
+        }
+      );
+    }
+
+    contactFiveTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riotTags.innerHTML = "<view-contact>";
+      riot.mount('view-contact',
+        {
+          "object": scope.fiveContactObject,
+        }
+      );
     }
 
 
