@@ -1105,7 +1105,7 @@ var css = {
   invoiceCardTransfer: ".invoice-card-transfer" +
   "{" +
   "float: right;" +
-  "background-color: #3CCE00;" +
+  "background-color: #98cc1b;" +
   "background-image: url(resources/icons/bank-operations/transfers.png);" +
   "color: white;" +
   "background-repeat: no-repeat;" +
@@ -1170,7 +1170,7 @@ var css = {
   invoiceCardPayment: ".invoice-card-payment" +
   "{" +
   "float: right;" +
-  "background-color: #FF7561;" +
+  "background-color: #fe7363;" +
   "background-image: url(resources/icons/bank-operations/payment.png);" +
   "color: white;" +
   "background-repeat: no-repeat;" +
