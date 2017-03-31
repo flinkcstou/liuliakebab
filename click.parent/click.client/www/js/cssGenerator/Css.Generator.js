@@ -55,9 +55,9 @@ var css = {
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
-  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
-  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)60%);" +
+  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)60%);" +
+  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)60%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -1858,9 +1858,9 @@ var css = {
   "right: 0;" +
   "height:" + 105 * widthK + "px;" +
   "width: 100%;" +
-  "border-top:" + 2 + "px solid rgb(37, 160, 227);" +
+  "border-top:" + 2 + "px solid #00b3fd;" +
   "color: rgb(197, 233, 239);" +
-  "background-color: #22a0e0;" +
+  "background-color: #00b3fd;" +
   "}",
 
   footerIconTick: ".footer-icon-tick " +
@@ -1906,7 +1906,7 @@ var css = {
   "width: 100%;" +
   "height:" + 240 * widthK + "px;" +
   "bottom:" + -40 * widthK + "px;" +
-  "background-color: #25a0e3;" +
+  "background-color: #00b3fd;" +
   "}",
 
   footerFavouriteContactsContainer: ".footer-favourite-contacts-container " +
