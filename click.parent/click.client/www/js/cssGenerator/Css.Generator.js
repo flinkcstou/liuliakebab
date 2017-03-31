@@ -1069,7 +1069,7 @@ var css = {
   invoiceCardPartOne: ".invoice-card-part-one " +
   "{" +
   "-webkit-appearance: none;" +
-  "height:" + 125 * widthK + "px;" +
+  "height:" + 130 * widthK + "px;" +
   "width:" + 510 * widthK + "px;" +
   "position: absolute;" +
   "top:" + 17 * widthK + "px;" +
@@ -1084,7 +1084,7 @@ var css = {
   invoiceCardPartTwo: ".invoice-card-part-two" +
   "{" +
   "-webkit-appearance: none;" +
-  "height:" + 125 * widthK + "px;" +
+  "height:" + 130 * widthK + "px;" +
   "width:" + 510 * widthK + "px;" +
   "position: absolute;" +
   "top:" + 160 * widthK + "px;" +
@@ -1105,7 +1105,7 @@ var css = {
   invoiceCardTransfer: ".invoice-card-transfer" +
   "{" +
   "float: right;" +
-  "background-color: #ABD15B;" +
+  "background-color: #3CCE00;" +
   "background-image: url(resources/icons/bank-operations/transfers.png);" +
   "color: white;" +
   "background-repeat: no-repeat;" +
@@ -1170,11 +1170,11 @@ var css = {
   invoiceCardPayment: ".invoice-card-payment" +
   "{" +
   "float: right;" +
-  "background-color: #FC8379;" +
+  "background-color: #FF7561;" +
   "background-image: url(resources/icons/bank-operations/payment.png);" +
   "color: white;" +
   "background-repeat: no-repeat;" +
-  "background-size: 55%;" +
+  "background-size: 50%;" +
   "background-position: center;" +
   "height: 100%;" +
   "width:" + 80 * widthK + "px;" +
