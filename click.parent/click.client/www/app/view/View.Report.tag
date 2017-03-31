@@ -429,6 +429,7 @@
       var data = {
         datasets: [
           {
+            borderWidth: 0,
             data: [],
             backgroundColor: []
           }]
@@ -488,7 +489,8 @@
             tooltips: {
               enabled: false
             },
-            events: []
+            events: [],
+
           }
         })
         ;
