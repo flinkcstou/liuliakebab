@@ -328,7 +328,16 @@
 //              }
               var date = new Date(result[1][i].created);
               var dateStr = date.getDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getMonth()] + ' ' + date.getFullYear();
-              result[1][i].paymentTime = date.getHours() + ':' + date.getMinutes();
+              if (date.getMinutes() < 10 && date.getHours() < 10) {
+                result[1][i].paymentTime = '0' + date.getHours() + ':' + '0' + date.getMinutes();
+              } else if (date.getMinutes() < 10 && date.getHours() >= 10) {
+                result[1][i].paymentTime = date.getHours() + ':' + '0' + date.getMinutes();
+              } else if (date.getMinutes() >= 10 && date.getHours() < 10) {
+                result[1][i].paymentTime = '0' + date.getHours() + ':' + date.getMinutes();
+              } else {
+                result[1][i].paymentTime = date.getHours() + ':' + date.getMinutes();
+              }
+
 
               if (!scope.paymentsMap[dateStr]) {
                 scope.paymentsMap[dateStr] = [];
