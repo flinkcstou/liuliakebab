@@ -1,20 +1,22 @@
 <view-contact>
 
-  <div class="contact-page-title">
-    <p class="contact-name-title">{titleName}</p>
-    <div id="backButton" ontouchend="goToBack()" class="contact-back-button"></div>
+  <div class="view-contact-page-title">
+    <p class="view-contact-name-title">{titleName}</p>
+    <div id="backButton" ontouchend="goToBack()" class="view-contact-back-button"></div>
   </div>
 
   <div class="view-contact">
-    <div class="contact-info-title">
-      <div class="contact-info-icon"></div>
-      <p class="contact-info-text">ALEKSANDR ALEKSANDROV</p>
+    <div class="view-contact-info-title">
+      <div class="view-contact-info-icon"></div>
+      <p class="view-contact-info-text">ALEKSANDR ALEKSANDROV</p>
     </div>
-    <div class="contact-pay-transfer-container">
-      <div class="contact-pay-icon"></div>
+    <div class="view-contact-pay-transfer-container">
+      <div class="view-contact-pay-icon"></div>
+      <div class="view-contact-open-icon"></div>
     </div>
-    <div class="contact-pay-transfer-container">
-      <div class="contact-transfer-icon"></div>
+    <div class="view-contact-pay-transfer-container">
+      <div class="view-contact-transfer-icon"></div>
+      <div class="view-contact-open-icon"></div>
     </div>
   </div>
 
