@@ -130,14 +130,14 @@ var css = {
   "background-image: url(resources/icons/invoice/invoices_in.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
-    "}",
+  "}",
 
   invoiceListInvoicesOut: ".invoice-list-invoices-out" +
   "{" +
   "background-image: url(resources/icons/invoice/invoices_out.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
-    "}",
+  "}",
 
   invoiceListNavButtonToUser: ".invoice-list-nav-button-to-user" +
   "{" +

@@ -81,6 +81,7 @@
                 }
 
                 riot.update(scope.invoiceList);
+
                 localStorage.setItem('click_client_invoice_list', JSON.stringify(scope.invoiceList));
               }
             }
