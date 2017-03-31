@@ -818,7 +818,7 @@ var css = {
   "width:" + 105 * widthK + "px;" +
   "height:" + 105 * widthK + "px;" +
   "left:" + 272 * widthK + "px;" +
-  "bottom:" + -40 * widthK + "px;" +
+  "bottom:" + -25 * widthK + "px;" +
   "border-radius:" + 100 * widthK + "px;" +
   "background-color: white;" +
   "border:" + 8 * widthK + "px solid #00a8f1;" +
