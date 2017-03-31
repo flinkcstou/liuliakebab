@@ -18,30 +18,33 @@
       + {opts.phoneNumber} 998 90 359 39 57</p>
   </div>
 
-  <div class="transfer-detail-container">
-    <div class="transfer-detail-transfer-container">
-      <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleSum}</p>
-      <p class="transfer-detail-sum">{opts.amount} сум</p>
+  <div class="invoice-history-detail-container" if="{opts.is_p2p}">
+    <div class="invoice-history-detail-invoice-container">
+      <p class="transfer-detail-title">{languages.ViewInvoiceHistoryDetailTransferAmountLabel}</p>
+      <p class="transfer-detail-sum">1 500 000 сум</p>
     </div>
-    <div class="transfer-detail-transfer-container">
-      <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleNumber}</p>
-      <p class="transfer-detail-number">{opts.invoiceId}</p>
+    <div class="invoice-history-detail-invoice-container">
+      <p class="transfer-detail-title">{languages.ViewInvoiceHistoryDetailTransferCommissionLabel}</p>
+      <p class="transfer-detail-number">15 000 сум</p>
     </div>
-    <div class="transfer-detail-transfer-container">
-      <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleDate}</p>
-      <p class="transfer-detail-date">{opts.time} {opts.date}</p>
+    <div class="invoice-history-detail-invoice-container">
+      <p class="transfer-detail-title">{languages.ViewInvoiceHistoryDetailTransferCodeLabel}</p>
+      <p class="transfer-detail-date">879</p>
     </div>
-    <div class="transfer-detail-transfer-container">
-      <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleStatus}</p>
-      <p class="transfer-detail-status">Ожидает подтверждения</p>
+    <div class="invoice-history-detail-invoice-container">
+      <p class="transfer-detail-title">{languages.ViewInvoiceHistoryDetailTransferNumberLabel}</p>
+      <p class="transfer-detail-date">6497 9863</p>
+    </div>
+    <div class="invoice-history-detail-invoice-container">
+      <p class="transfer-detail-title">{languages.ViewInvoiceHistoryDetailTransferDateLabel}</p>
+      <p class="transfer-detail-date">12:38 01.03.2017</p>
+    </div>
+    <div class="invoice-history-detail-invoice-container">
+      <p class="transfer-detail-title">{languages.ViewInvoiceHistoryDetailTransferStatusLabel}</p>
+      <p class="transfer-detail-status">Успешно проведен</p>
     </div>
 
     <div class="transfer-detail-cover"></div>
-
-    <div class="transfer-detail-buttons-container">
-      <p class="transfer-detail-button-accept">{window.languages.ViewTransferDetailTitleAccept}</p>
-      <p class="transfer-detail-button-cancel">{window.languages.ViewTransferDetailTitleDecline}</p>
-    </div>
 
   </div>
 

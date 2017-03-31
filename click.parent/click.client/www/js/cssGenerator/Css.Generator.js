@@ -8586,16 +8586,25 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "}",
 
-  invoiceHistoryDetailContainer: "invoice-history-detail-container" +
+  invoiceHistoryDetailContainer: ".invoice-history-detail-container" +
   "{" +
   "position: absolute;" +
-    //"height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
   "top:" + 340 * widthK + "px; " +
   "bottom:0; " +
   "background-color: #ffffff; " +
   "overflow-y: hidden; " +
   "overflow-x: hidden; " +
+  "}",
+
+  invoiceHistoryDetailInvoiceContainer: ".invoice-history-detail-invoice-container" +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "height:"+ 96*widthK+"px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "border-bottom: 1px solid lightgrey;" +
   "}",
 
   //VIEW CONTACT

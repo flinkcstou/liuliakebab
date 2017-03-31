@@ -161,21 +161,21 @@
       goToInvoiceHistoryDetailTouchEndX = event.changedTouches[0].pageX;
       goToInvoiceHistoryDetailTouchEndY = event.changedTouches[0].pageY;
 
-//      if (Math.abs(goToInvoiceHistoryDetailTouchEndX - goToInvoiceHistoryDetailTouchStartX) < 20 &&
-//          Math.abs(goToInvoiceHistoryDetailTouchEndY - goToInvoiceHistoryDetailTouchStartY) < 20) {
-//
-//        invoice = JSON.parse(invoice);
-//
-//        params = {
-//          is_p2p: invoice.is_p2p,
-//          invoice_id: invoice.invoice_id
-//        };
-//
-//        history.arrayOfHistory.push({view: "view-invoice-history-detail"});
-//        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-//        riotTags.innerHTML = "<view-invoice-history-detail>";
-//        riot.mount("view-invoice-history-detail", params);
-//      }
+      if (Math.abs(goToInvoiceHistoryDetailTouchEndX - goToInvoiceHistoryDetailTouchStartX) < 20 &&
+          Math.abs(goToInvoiceHistoryDetailTouchEndY - goToInvoiceHistoryDetailTouchStartY) < 20) {
+
+        invoice = JSON.parse(invoice);
+
+        var params = {
+          is_p2p: invoice.is_p2p,
+          invoice_id: invoice.invoice_id
+        };
+
+        history.arrayOfHistory.push({view: "view-invoice-history-detail"});
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        riotTags.innerHTML = "<view-invoice-history-detail>";
+        riot.mount("view-invoice-history-detail", params);
+      }
     };
 
     goToInvoiceHistoryDetailTouchStart = function () {
