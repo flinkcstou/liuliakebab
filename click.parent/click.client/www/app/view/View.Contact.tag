@@ -7,8 +7,8 @@
 
   <div class="view-contact">
     <div class="view-contact-info-title">
-      <div class="view-contact-info-icon"></div>
-      <p class="view-contact-info-text">ALEKSANDR ALEKSANDROV</p>
+      <div class="view-contact-info-icon" style="background-image: url({contactPhoto})">{firstLetter}</div>
+      <p class="view-contact-info-text">{firstName} {secondName}</p>
     </div>
     <div class="view-contact-pay-transfer-container">
       <div class="view-contact-pay-icon"></div>
@@ -28,6 +28,11 @@
     this.on('mount', function () {
 
     })
+    console.log(opts.object)
+    scope.firstName = opts.object.contactFname;
+    scope.secondName = opts.object.contactLname;
+    scope.contactPhoto = opts.object.contactPhoto;
+    scope.firstLetter = opts.object.firstLetter;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-contact') {
       history.arrayOfHistory.push(

@@ -8583,10 +8583,16 @@ var css = {
   "width:" + 95 * widthK + "px;" +
   "height:" + 95 * widthK + "px;" +
   "float: left;" +
+  "color: white;" +
   "margin-left: 6%;" +
   "background-color: #0099e2;" +
   "margin-top: 4%;" +
   "border-radius:" + 100 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-size: cover;" +
+  "text-align: center;" +
+  "line-height:" + 100 * widthK + "px;" +
+  "font-size:" + 32 * widthK + "px;" +
   "}",
 
   viewContactInfoText: ".view-contact-info-text " +
@@ -8596,8 +8602,12 @@ var css = {
   "color: #7a808d;" +
   "margin: 0;" +
   "margin-left: 4%;" +
+  "width: 60%;" +
   "margin-top: 7%;" +
   "font-size:" + 40 * widthK + "px;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "white-space: nowrap;" +
   "}",
 
   viewContactPayTransferContainer: ".view-contact-pay-transfer-container " +
