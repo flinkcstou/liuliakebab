@@ -12,7 +12,7 @@
     </div>
 
     <div class="transfertwo-contact-phone-field">
-      <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax}</p>
+      <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax}{tax}</p>
       <input maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
              onmouseup="sumMouseUp()"
              type="tel" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
@@ -43,7 +43,6 @@
         sumValueId.value = 0 + ' ' + defaultAccount.currency
     })
 
-
     var scope = this,
       transferTitle,
       objectForTransfer = opts[0],
@@ -52,6 +51,7 @@
       maskTwo = /[0-9' ']/g,
       checkFirst = false,
       sumForTransfer = 0;
+
 
     sumMouseUp = function () {
       event.preventDefault()
@@ -153,6 +153,8 @@
       viewTransferStepTwo.sum = sumValueId.value;
       viewTransferStepTwo.sumWithoutSpace = sumForTransfer;
 
+      scope.tax = sumForTransfer * objectForTransfer.percent / 100;
+      riot.update()
     }
 
     scope.backbuttoncheck = true;

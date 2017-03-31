@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/add-card-crop.png);" +
+    //"background-image: url(resources/draft/contact_crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
-  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
-  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255));" +
+  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -71,6 +71,213 @@ var css = {
   "margin: 0;" +
   "overflow: hidden;" +
   "bottom: 0;" +
+  "}",
+
+  //VIEW INVOICE LIST
+
+  invoiceListPageTitle: ".invoice-list-page-title" +
+  "{" +
+  "position: absolute;" +
+  "top: 0;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 93 * widthK + "px;" +
+  "background: transparent;" +
+  "}",
+
+  invoiceListNameTitle: ".invoice-list-name-title" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 35 * widthK + "px;" +
+  "left: 11.7%;" +
+  "top: 25.5%;" +
+  "margin: 0;" +
+  "color: #fffaf9;" +
+  "}",
+
+  invoiceListBackButton: ".invoice-list-back-button" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 120 * widthK + "px;" +
+  "height:" + 91 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 47 * widthK + "px;" +
+  "background-size: 17%;" +
+  "left:" + -25 * widthK + "px;" +
+  "top: 0;" +
+  "}",
+
+  invoiceListContentHolder: ".invoice-list-content-holder" +
+  "{" +
+  "position: absolute;" +
+  "top:" + 92 * widthK + "px;" +
+  "bottom: 0;" +
+  "width: 100%;" +
+  "background-color: #ffffff" +
+  "}",
+
+  invoiceListNavButtonsHolder: ".invoice-list-nav-buttons-holder" +
+  "{" +
+  "height:" + 120 * widthK + "px;" +
+  "}",
+
+  invoiceListInvoicesIn: ".invoice-list-invoices-in" +
+  "{" +
+  "background-image: url(resources/icons/invoice/invoices_in.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+    "}",
+
+  invoiceListInvoicesOut: ".invoice-list-invoices-out" +
+  "{" +
+  "background-image: url(resources/icons/invoice/invoices_out.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+    "}",
+
+  invoiceListNavButtonToUser: ".invoice-list-nav-button-to-user" +
+  "{" +
+  "width:" + 286 * widthK + "px;" +
+  "float: left;" +
+  "height:" + 81 * widthK + "px;" +
+  "padding-top:" + 26 * widthK + "px;" +
+  "padding-left:" + 74 * widthK + "px;" +
+  "}",
+
+  invoiceListNavButtonFromUser: ".invoice-list-nav-button-from-user" +
+  "{" +
+  "width:" + 336 * widthK + "px;" +
+  "float: right;" +
+  "height:" + 81 * widthK + "px;" +
+  "padding-top:" + 26 * widthK + "px;" +
+  "}",
+
+  invoiceListNavButtonsIcon: ".invoice-list-nav-buttons-icon" +
+  "{" +
+  "width:" + 45 * widthK + "px;" +
+  "height:" + 52 * widthK + "px;" +
+  "float: left;" +
+  "}",
+
+  invoiceListNavButtonsTitle: ".invoice-list-nav-buttons-title" +
+  "{" +
+  "margin:" + 13 * widthK + "px 0 0 " + 57 * widthK + "px;" +
+  "letter-spacing:" + (-1.2 * widthK) + "px;" +
+  "text-transform: uppercase;" +
+  "font-size:" + 26 * widthK + "px;" +
+  "}",
+
+  invoiceListNavButtonNotSelected: ".invoice-list-nav-button-not-selected" +
+  "{" +
+  "color: #ACBDC4;" +
+  "}",
+
+  invoiceListInvoicesHolder: ".invoice-list-invoices-holder" +
+  "{" +
+  "overflow-y: scroll;" +
+  "position: absolute;" +
+  "top:" + 120 * widthK + "px;" +
+  "bottom: 0;" +
+  "padding: 0 " + 25 * widthK + "px 0 " + 30 * widthK + "px;" +
+  "}",
+
+  invoiceListInvoice: ".invoice-list-invoice" +
+  "{" +
+  "height:" + 132 * widthK + "px;" +
+  "border-bottom:" + 5 * widthK + "px solid #f7f7f7;" +
+  "padding-top:" + 29 * widthK + "px;" +
+  "padding-left:" + 25 * widthK + "px;" +
+  "}",
+
+  invoiceListFromWhomLabel: ".invoice-list-from-whom-label" +
+  "{" +
+  "margin: 0;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "float: left;" +
+  "}",
+
+  invoiceListInvoiceSumHolder: ".invoice-list-invoice-sum-holder" +
+  "{" +
+  "padding-right:" + 36 * widthK + "px;" +
+  "float: right;" +
+  "width:" + 295 * widthK + "px;" +
+  "height:" + 120 * widthK + "px;" +
+  "}",
+
+  invoiceListInvoiceSum: ".invoice-list-invoice-sum" +
+  "{" +
+  "margin: 0;" +
+  "font-size:" + 47 * widthK + "px;" +
+  "float: right;" +
+  "margin-right:" + 6 * widthK + "px;" +
+  "color: inherit;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "max-width:" + 245 * widthK + "px;" +
+  "white-space: nowrap;" +
+  "}",
+
+  invoiceListInvoiceSumSym: ".invoice-list-invoice-sum-sym" +
+  "{" +
+  "font-size:" + 24 * widthK + "px;" +
+  "margin: 0;" +
+  "line-height:" + 70 * widthK + "px;" +
+  "background-color: transparent;" +
+  "color: inherit;" +
+  "float: right;" +
+  "}",
+
+  invoiceListInvoicePhoneNumberHolder: ".invoice-list-invoice-phone-number-holder" +
+  "{" +
+  "margin: 0;" +
+  "float: left;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "color: #8B8B8B;" +
+  "width:" + 290 * widthK + "px;" +
+  "}",
+
+  invoiceListInvoicePhoneNumber: ".invoice-list-invoice-phone-number" +
+  "{" +
+  "margin: 0;" +
+  "float: left;" +
+  "width:" + 300 * widthK + "px;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "white-space: nowrap;" +
+  "}",
+
+  invoiceListInvoiceServiceName: ".invoice-list-invoice-service-name" +
+  "{" +
+  "margin: 0;" +
+  "float: left;" +
+  "width:" + 300 * widthK + "px;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "white-space: nowrap;" +
+  "}",
+
+  invoiceListInvoiceDate: ".invoice-list-invoice-date" +
+  "{" +
+  "margin: 0;" +
+  "font-size:" + 22 * widthK + "px;" +
+  "float: left;" +
+  "margin-top:" + 18 * widthK + "px;" +
+  "word-spacing:" + 7 * widthK + "px;" +
+  "color: #c2c2c2;" +
+  "}",
+
+  invoiceListInvoiceIsP2P: ".invoice-list-invoice-is-p2p" +
+  "{" +
+  "color: #6DBF34;" +
+  "}",
+
+  invoiceListInvoiceIsNotP2P: ".invoice-list-invoice-is-not-p2p" +
+  "{" +
+  "color: #FF544A;" +
   "}",
 
   //VIEW REGISTRATION DEVICE
@@ -621,7 +828,7 @@ var css = {
   "left:" + 26 * widthK + "px;" +
   "height:" + 70 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom: 2px solid white;" +
+  "border-bottom: 1px solid #4ae3ff;" +
   "}",
 
   toolbarCircleContainer: ".toolbar-circle-container " +
@@ -757,7 +964,7 @@ var css = {
   "position: absolute;" +
   "left:" + 27 * widthK + "px;" +
   "right:" + 27 * widthK + "px;" +
-  "border-bottom: 2px solid white;" +
+  "border-bottom: 1px solid #4ae3ff;" +
   "text-align: center;" +
   "top:" + 440 * widthK + "px;" +
   "height:" + 100 * heightK + "px;" +
@@ -876,7 +1083,7 @@ var css = {
   invoiceCardPartOne: ".invoice-card-part-one " +
   "{" +
   "-webkit-appearance: none;" +
-  "height:" + 125 * widthK + "px;" +
+  "height:" + 130 * widthK + "px;" +
   "width:" + 510 * widthK + "px;" +
   "position: absolute;" +
   "top:" + 17 * widthK + "px;" +
@@ -891,7 +1098,7 @@ var css = {
   invoiceCardPartTwo: ".invoice-card-part-two" +
   "{" +
   "-webkit-appearance: none;" +
-  "height:" + 125 * widthK + "px;" +
+  "height:" + 130 * widthK + "px;" +
   "width:" + 510 * widthK + "px;" +
   "position: absolute;" +
   "top:" + 160 * widthK + "px;" +
@@ -912,7 +1119,7 @@ var css = {
   invoiceCardTransfer: ".invoice-card-transfer" +
   "{" +
   "float: right;" +
-  "background-color: #ABD15B;" +
+  "background-color: #98cc1b;" +
   "background-image: url(resources/icons/bank-operations/transfers.png);" +
   "color: white;" +
   "background-repeat: no-repeat;" +
@@ -977,11 +1184,11 @@ var css = {
   invoiceCardPayment: ".invoice-card-payment" +
   "{" +
   "float: right;" +
-  "background-color: #FC8379;" +
+  "background-color: #fe7363;" +
   "background-image: url(resources/icons/bank-operations/payment.png);" +
   "color: white;" +
   "background-repeat: no-repeat;" +
-  "background-size: 55%;" +
+  "background-size: 50%;" +
   "background-position: center;" +
   "height: 100%;" +
   "width:" + 80 * widthK + "px;" +
@@ -1670,9 +1877,9 @@ var css = {
   "right: 0;" +
   "height:" + 105 * widthK + "px;" +
   "width: 100%;" +
-  "border-top:" + 2 + "px solid rgb(37, 160, 227);" +
+  "border-top:" + 2 + "px solid #00b3fd;" +
   "color: rgb(197, 233, 239);" +
-  "background-color: #22a0e0;" +
+  "background-color: #00b3fd;" +
   "}",
 
   footerIconTick: ".footer-icon-tick " +
@@ -1718,7 +1925,7 @@ var css = {
   "width: 100%;" +
   "height:" + 240 * widthK + "px;" +
   "bottom:" + -40 * widthK + "px;" +
-  "background-color: #25a0e3;" +
+  "background-color: #00b3fd;" +
   "}",
 
   footerFavouriteContactsContainer: ".footer-favourite-contacts-container " +
@@ -2319,7 +2526,6 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 36%;" +
-  "height: 70%;" +
   "left: 18%;" +
   "top: 10%;" +
   "text-align: center;" +
@@ -4286,7 +4492,7 @@ var css = {
   "border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
   "background-color: rgb(1, 124, 227);" +
-  "top: 25%;" +
+  "top: 28%;" +
   "}",
 
   transferNextButtonLabel: ".transfer-next-button-label" +
@@ -8141,7 +8347,7 @@ var css = {
   addCardCardNumberBox: ".add-card-card-number-box " +
   "{" +
   "position: absolute;" +
-  "width: 20%;" +
+  "width:" + 90 * widthK + "px;" +
   "height: 55%;" +
   "top: 18%;" +
   "background-color: transparent;" +
@@ -8310,6 +8516,158 @@ var css = {
   "width: 100%;" +
   "font-size:" + 39 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
+  "}",
+
+  //VIEW CONTACT
+
+  viewContact: ".view-contact " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "bottom: 0;" +
+  "top:" + 92 * heightK + "px;" +
+  "overflow: hidden;" +
+  "background-size: contain;" +
+  "background-color: white;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
+  viewContactPageTitle: ".view-contact-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 0;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "background: transparent;" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  viewContactNameTitle: ".view-contact-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 35 * widthK + "px; " +
+  "left:" + 85 * widthK + "px; " +
+  "top:" + 27 * widthK + "px; " +
+  "margin: 0;  " +
+  "color: #fffaf9;" +
+  "}",
+
+  viewContactBackButton: ".view-contact-back-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 113 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y: 43%;" +
+  "background-position-x: center;" +
+  "background-size: 17%;" +
+  "right: 87%;" +
+  "}",
+
+  viewContactInfoTitle: ".view-contact-info-title " +
+  "{" +
+  "position: relative;" +
+  "top: 0;" +
+  "width: 100%;" +
+  "background-color: #f3f3f3;" +
+  "height:" + 150 * widthK + "px;" +
+  "}",
+
+  viewContactInfoIcon: ".view-contact-info-icon " +
+  "{" +
+  "position: relative;" +
+  "width:" + 95 * widthK + "px;" +
+  "height:" + 95 * widthK + "px;" +
+  "float: left;" +
+  "margin-left: 6%;" +
+  "background-color: #0099e2;" +
+  "margin-top: 4%;" +
+  "border-radius:" + 100 * widthK + "px;" +
+  "}",
+
+  viewContactInfoText: ".view-contact-info-text " +
+  "{" +
+  "position: relative;" +
+  "float: left;" +
+  "color: #7a808d;" +
+  "margin: 0;" +
+  "margin-left: 4%;" +
+  "margin-top: 7%;" +
+  "font-size:" + 40 * widthK + "px;" +
+  "}",
+
+  viewContactPayTransferContainer: ".view-contact-pay-transfer-container " +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "margin-left: auto;" +
+  "border-top: 1px solid #f3f3f3;" +
+  "margin-right: auto;" +
+  "height:" + 105 * widthK + "px;" +
+  "}",
+
+  viewContactPayIcon: ".view-contact-pay-icon " +
+  "{" +
+  "position: absolute;" +
+  "width: 8%;" +
+  "height: 80%;" +
+  "top: 7%;" +
+  "left: 1%;" +
+  "background-image: url(resources/icons/ViewContact/contact_pay.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position: left;" +
+  "background-size: 63%;" +
+  "}",
+
+  viewContactTransferIcon: ".view-contact-transfer-icon " +
+  "{" +
+  "position: absolute;" +
+  "width: 8%;" +
+  "height: 80%;" +
+  "top: 7%;" +
+  "background-image: url(resources/icons/ViewContact/contact_transfer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position: left;" +
+  "background-size: 90%;" +
+  "}",
+
+  viewContactOpenIcon: ".view-contact-open-icon " +
+  "{" +
+  "position: absolute;" +
+  "width: 20%;" +
+  "height: 80%;" +
+  "right: -6%;" +
+  "top: 12%;" +
+  "background-image: url(resources/icons/ViewInfo/open.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 9%;" +
+  "}",
+
+  viewContactPayTitle: ".view-contact-pay-title " +
+  "{" +
+  "position: absolute;" +
+  "width: 60%;" +
+  "left: 6%;" +
+  "top: 4%;" +
+  "text-align: center;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewContactTransferTitle: ".view-contact-transfer-title " +
+  "{" +
+  "position: absolute;" +
+  "width: 65%;" +
+  "left: 9%;" +
+  "top: 3%;" +
+  "text-align: center;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "color: #8b8b8b;" +
   "}",
 
 

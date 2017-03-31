@@ -144,6 +144,13 @@ var RU_LANGUAGES =
   "ViewCardEditCardNameText": "Название карты",
   "ViewCardEditMakeMainText": "Сделать основной",
 
+  "ViewInvoiceListTitle": "ВЫСТАВЛЕННЫЕ СЧЕТА",
+  "ViewInvoiceListToUser": "пользователю",
+  "ViewInvoiceListFromUser": "пользователем",
+  "ViewInvoiceListInvoiceIsP2PToUser": "Получен перевод от:",
+  "ViewInvoiceListInvoiceIsP2PFromUser": "Отправлен перевод на:",
+  "ViewInvoiceListInvoiceIsNot2P2": "Вам выставлен счет:",
+
   "ComponentPinResetTextOne": "При смене CLICK-PIN все Ваши карты будут отключены от системы CLICK",
   "ComponentPinResetTextTwo": "Продолжить?",
   "ComponentPinResetTextThree": "Все Ваши карты отключены от системы CLICK",
@@ -250,6 +257,8 @@ var RU_LANGUAGES =
   "ViewAddCardDateTitle": "Дата окончания",
   "ViewAddCardPinTitle": "Код банка",
   "ViewAddCardDoMainTitle": "Сделать основной",
+
+  "ViewContactTitle": "КОНТАКТ",
 
 
 };

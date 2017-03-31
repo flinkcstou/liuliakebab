@@ -102,7 +102,6 @@
       event.stopPropagation();
 
       deleteCardComponentId.style.display = 'block'
-      console.log('qwe')
 
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
