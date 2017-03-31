@@ -7988,7 +7988,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
-  "background-size: 60%;" +
+  "background-size: 70%;" +
   "top: 6%;" +
   "}",
 
