@@ -2512,7 +2512,6 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 36%;" +
-  "height: 70%;" +
   "left: 18%;" +
   "top: 10%;" +
   "text-align: center;" +
@@ -8477,6 +8476,28 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-size: 9%;" +
+  "}",
+
+  viewContactPayTitle: ".view-contact-pay-title " +
+  "{" +
+  "position: absolute;" +
+  "width: 60%;" +
+  "left: 18%;" +
+  "top: 10%;" +
+  "text-align: center;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewContactTransferTitle: ".view-contact-transfer-title " +
+  "{" +
+  "position: absolute;" +
+  "width: 65%;" +
+  "left: 18%;" +
+  "top: 10%;" +
+  "text-align: center;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "color: #8b8b8b;" +
   "}",
 
 

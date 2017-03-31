@@ -12,10 +12,12 @@
     </div>
     <div class="view-contact-pay-transfer-container">
       <div class="view-contact-pay-icon"></div>
+      <p class="view-contact-pay-title">Оплатить за мобильный</p>
       <div class="view-contact-open-icon"></div>
     </div>
     <div class="view-contact-pay-transfer-container">
       <div class="view-contact-transfer-icon"></div>
+      <p class="view-contact-transfer-title">Перевод по номеру телефона</p>
       <div class="view-contact-open-icon"></div>
     </div>
   </div>
