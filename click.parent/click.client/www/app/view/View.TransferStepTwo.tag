@@ -43,7 +43,6 @@
         sumValueId.value = 0 + ' ' + defaultAccount.currency
     })
 
-    console.log("OPTS", opts)
     var scope = this,
       transferTitle,
       objectForTransfer = opts[0],
