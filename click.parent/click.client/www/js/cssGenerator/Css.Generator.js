@@ -8365,7 +8365,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "}",
 
-  contactPageTitle: ".contact-page-title " +
+  viewContactPageTitle: ".view-contact-page-title " +
   "{" +
   "position: absolute;" +
   "top: 0;" +
@@ -8376,7 +8376,7 @@ var css = {
     //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
 
-  contactNameTitle: ".contact-name-title " +
+  viewContactNameTitle: ".view-contact-name-title " +
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
@@ -8387,7 +8387,7 @@ var css = {
   "color: #fffaf9;" +
   "}",
 
-  contactBackButton: ".contact-back-button " +
+  viewContactBackButton: ".view-contact-back-button " +
   "{" +
   "position: absolute;" +
   "width:" + 113 * widthK + "px;" +
@@ -8401,7 +8401,7 @@ var css = {
   "right: 87%;" +
   "}",
 
-  contactInfoTitle: ".contact-info-title " +
+  viewContactInfoTitle: ".view-contact-info-title " +
   "{" +
   "position: relative;" +
   "top: 0;" +
@@ -8410,7 +8410,7 @@ var css = {
   "height:" + 160 * widthK + "px;" +
   "}",
 
-  contactInfoIcon: ".contact-info-icon " +
+  viewContactInfoIcon: ".view-contact-info-icon " +
   "{" +
   "position: relative;" +
   "width: 15%;" +
@@ -8422,7 +8422,7 @@ var css = {
   "border-radius:" + 100 * widthK + "px;" +
   "}",
 
-  contactInfoText: ".contact-info-text " +
+  viewContactInfoText: ".view-contact-info-text " +
   "{" +
   "position: relative;" +
   "float: left;" +
@@ -8432,7 +8432,7 @@ var css = {
   "font-size:" + 32 * widthK + "px;" +
   "}",
 
-  contactPayTransferContainer: ".contact-pay-transfer-container " +
+  viewContactPayTransferContainer: ".view-contact-pay-transfer-container " +
   "{" +
   "position: relative;" +
   "width: 90%;" +
@@ -8440,6 +8440,43 @@ var css = {
   "border-top: 1px solid #f3f3f3;" +
   "margin-right: auto;" +
   "height:" + 120 * widthK + "px;" +
+  "}",
+
+  viewContactPayIcon: ".view-contact-pay-icon " +
+  "{" +
+  "position: absolute;" +
+  "width: 14%;" +
+  "height: 80%;" +
+  "top: 7%;" +
+  "background-image: url(resources/icons/ViewContact/contact_pay.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 44%;" +
+  "}",
+
+  viewContactTransferIcon: ".view-contact-transfer-icon " +
+  "{" +
+  "position: absolute;" +
+  "width: 14%;" +
+  "height: 80%;" +
+  "top: 7%;" +
+  "background-image: url(resources/icons/ViewContact/contact_transfer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 44%;" +
+  "}",
+
+  viewContactOpenIcon: ".view-contact-open-icon " +
+  "{" +
+  "position: absolute;" +
+  "width: 20%;" +
+  "height: 80%;" +
+  "right: -5%;" +
+  "top: 12%;" +
+  "background-image: url(resources/icons/ViewInfo/open.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 9%;" +
   "}",
 
 

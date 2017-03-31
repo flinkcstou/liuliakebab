@@ -11,9 +11,11 @@
       <p class="contact-info-text">ALEKSANDR ALEKSANDROV</p>
     </div>
     <div class="contact-pay-transfer-container">
-      <div></div>
+      <div class="contact-pay-icon"></div>
     </div>
-    <div class="contact-pay-transfer-container"></div>
+    <div class="contact-pay-transfer-container">
+      <div class="contact-transfer-icon"></div>
+    </div>
   </div>
 
   <script>
