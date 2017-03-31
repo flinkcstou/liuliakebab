@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  "background-image: url(resources/draft/chart_crop.png);" +
-  "opacity: 0.6;" +
+  //"background-image: url(resources/draft/chart_crop.png);" +
+  //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-    //"background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    //"background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    //"background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
