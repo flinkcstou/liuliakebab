@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/billings1.png);" +
-    //"opacity: 0.6;" +
+  //"background-image: url(resources/draft/contact_crop.png);" +
+  //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -8406,17 +8406,17 @@ var css = {
   "top: 0;" +
   "width: 100%;" +
   "background-color: #f3f3f3;" +
-  "height:" + 160 * widthK + "px;" +
+  "height:" + 150 * widthK + "px;" +
   "}",
 
   viewContactInfoIcon: ".view-contact-info-icon " +
   "{" +
   "position: relative;" +
-  "width: 15%;" +
-  "height: 66%;" +
+  "width:" + 95 * widthK + "px;" +
+  "height:" + 95 * widthK + "px;" +
   "float: left;" +
-  "background-color: red;" +
-  "margin-left: 10%;" +
+  "margin-left: 6%;" +
+  "background-color: #0099e2;" +
   "margin-top: 4%;" +
   "border-radius:" + 100 * widthK + "px;" +
   "}",
@@ -8425,10 +8425,11 @@ var css = {
   "{" +
   "position: relative;" +
   "float: left;" +
+  "color: #7a808d;" +
   "margin: 0;" +
-  "margin-left: 5%;" +
-  "margin-top: 8%;" +
-  "font-size:" + 32 * widthK + "px;" +
+  "margin-left: 4%;" +
+  "margin-top: 7%;" +
+  "font-size:" + 40 * widthK + "px;" +
   "}",
 
   viewContactPayTransferContainer: ".view-contact-pay-transfer-container " +
@@ -8438,31 +8439,32 @@ var css = {
   "margin-left: auto;" +
   "border-top: 1px solid #f3f3f3;" +
   "margin-right: auto;" +
-  "height:" + 120 * widthK + "px;" +
+  "height:" + 105 * widthK + "px;" +
   "}",
 
   viewContactPayIcon: ".view-contact-pay-icon " +
   "{" +
   "position: absolute;" +
-  "width: 14%;" +
+  "width: 8%;" +
   "height: 80%;" +
   "top: 7%;" +
+  "left: 1%;" +
   "background-image: url(resources/icons/ViewContact/contact_pay.png);" +
   "background-repeat: no-repeat;" +
-  "background-position: center;" +
-  "background-size: 44%;" +
+  "background-position: left;" +
+  "background-size: 63%;" +
   "}",
 
   viewContactTransferIcon: ".view-contact-transfer-icon " +
   "{" +
   "position: absolute;" +
-  "width: 14%;" +
+  "width: 8%;" +
   "height: 80%;" +
   "top: 7%;" +
   "background-image: url(resources/icons/ViewContact/contact_transfer.png);" +
   "background-repeat: no-repeat;" +
-  "background-position: center;" +
-  "background-size: 44%;" +
+  "background-position: left;" +
+  "background-size: 90%;" +
   "}",
 
   viewContactOpenIcon: ".view-contact-open-icon " +
@@ -8470,7 +8472,7 @@ var css = {
   "position: absolute;" +
   "width: 20%;" +
   "height: 80%;" +
-  "right: -5%;" +
+  "right: -6%;" +
   "top: 12%;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "background-repeat: no-repeat;" +
@@ -8482,8 +8484,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 60%;" +
-  "left: 18%;" +
-  "top: 10%;" +
+  "left: 6%;" +
+  "top: 4%;" +
   "text-align: center;" +
   "font-size:" + 29 * widthK + "px;" +
   "color: #8b8b8b;" +
@@ -8493,8 +8495,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 65%;" +
-  "left: 18%;" +
-  "top: 10%;" +
+  "left: 9%;" +
+  "top: 3%;" +
   "text-align: center;" +
   "font-size:" + 29 * widthK + "px;" +
   "color: #8b8b8b;" +
