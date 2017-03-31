@@ -92,7 +92,7 @@
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#0099e2");
+        StatusBar.backgroundColorByHexString("#00a8f1");
 
       if (!modeOfApp.offlineMode) {
         writeBalance();
@@ -103,8 +103,7 @@
     touchStartTitle = function () {
       event.preventDefault();
       event.stopPropagation();
-      if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#0099e2");
+
       onBackKeyDown()
     };
 
@@ -501,6 +500,7 @@
           type: 'doughnut',
           data: data,
           options: {
+            cutoutPercentage: 55,
             animateScale: false,
             tooltips: {
               enabled: false

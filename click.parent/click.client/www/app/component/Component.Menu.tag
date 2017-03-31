@@ -83,7 +83,6 @@
     userIconTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
       riotTags.innerHTML = "<view-general-settings>";
       riot.mount("view-general-settings");
     }

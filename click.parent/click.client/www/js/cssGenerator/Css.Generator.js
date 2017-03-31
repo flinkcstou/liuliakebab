@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  //"background-image: url(resources/draft/invoice_details1.png);" +
+  //"background-image: url(resources/draft/chart_crop.png);" +
   //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -7918,7 +7918,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height:" + 480 * widthK + "px;" +
-  "top: 15%;" +
+  "top: 15.5%;" +
   "width: 100%;" +
   "color: black;" +
   "background-color: white;" +
