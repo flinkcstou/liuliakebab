@@ -809,7 +809,7 @@ var css = {
   "left:" + 26 * widthK + "px;" +
   "height:" + 70 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom: 2px solid white;" +
+  "border-bottom: 1px solid #4ae3ff;" +
   "}",
 
   toolbarCircleContainer: ".toolbar-circle-container " +
@@ -945,7 +945,7 @@ var css = {
   "position: absolute;" +
   "left:" + 27 * widthK + "px;" +
   "right:" + 27 * widthK + "px;" +
-  "border-bottom: 2px solid white;" +
+  "border-bottom: 1px solid #4ae3ff;" +
   "text-align: center;" +
   "top:" + 440 * widthK + "px;" +
   "height:" + 100 * heightK + "px;" +
