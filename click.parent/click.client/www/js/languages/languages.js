@@ -151,6 +151,15 @@ var RU_LANGUAGES =
   "ViewInvoiceListInvoiceIsP2PFromUser": "Отправлен перевод на:",
   "ViewInvoiceListInvoiceIsNot2P2": "Вам выставлен счет:",
 
+  "ViewInvoiceHistoryDetailTransferTitle": "ДЕТАЛИ ПЕРЕВОДА",
+  "ViewInvoiceHistoryDetailTransferToNumberLabel": "Перевод на номер",
+  "ViewInvoiceHistoryDetailTransferAmountLabel": "Cумма перевода:",
+  "ViewInvoiceHistoryDetailTransferCommissionLabel": "Комиссия:",
+  "ViewInvoiceHistoryDetailTransferCodeLabel": "Код перевода:",
+  "ViewInvoiceHistoryDetailTransferNumberLabel": "Номер перевода:",
+  "ViewInvoiceHistoryDetailTransferDateLabel": "Дата перевода:",
+  "ViewInvoiceHistoryDetailTransferStatusLabel": "Статус:",
+
   "ComponentPinResetTextOne": "При смене CLICK-PIN все Ваши карты будут отключены от системы CLICK",
   "ComponentPinResetTextTwo": "Продолжить?",
   "ComponentPinResetTextThree": "Все Ваши карты отключены от системы CLICK",

@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/contact_crop.png);" +
-    //"opacity: 0.6;" +
+  "background-image: url(resources/draft/invoice_details1.png);" +
+  "opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    //"background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    //"background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    //"background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -7308,7 +7308,6 @@ var css = {
   "border: none;" +
   "}",
 
-
   accountDetailTransferContainer: ".account-detail-payment-container " +
   "{" +
   "position: relative;" +
@@ -8517,6 +8516,86 @@ var css = {
   "width: 100%;" +
   "font-size:" + 39 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
+  "}",
+
+  //VIEW INVOICE HISTORY DETAIL
+  invoiceHistoryDetailTitleContainer: ".invoice-history-detail-title-container" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 340 * widthK + "px;" +
+  "width:100%;" +
+  "background-color:  #00B1F0;" +
+  "}",
+
+  invoiceHistoryDetailTitle: ".invoice-history-detail-title" +
+  "{" +
+  "position: absolute;" +
+  "top: 0px;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 19 * widthK + "px;" +
+  "height:" + 84 * widthK + "px;" +
+  "background: transparent;" +
+  "border: none;" +
+  "}",
+
+  invoiceHistoryDetailIcon: ".invoice-history-detail-icon" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 90 * widthK + "px;" +
+  "width:" + 90 * widthK + "px;" +
+  "top:" + 104 * widthK + "px;" +
+  "left: 44%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 71%;" +
+  "background-position: center;" +
+  "}",
+
+  invoiceHistoryDetailPaymentIcon: "invoice-history-detail-payment-icon" +
+  "{" +
+  "background-image: url(resources/icons/bank-operations/payment.png);" +
+  "}",
+
+  invoiceHistoryDetailTransferIcon: "invoice-history-detail-transfer-icon" +
+  "{" +
+  "background-image: url(resources/icons/bank-operations/transfer.png);" +
+  "}",
+
+  invoiceHistoryDetailTitlePartOne: ".invoice-history-detail-title-part-one" +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "top:" + 221 * widthK + "px;" +
+  "margin: 0;" +
+  "color: white;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "text-align: center;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "}",
+
+  invoiceHistoryDetailTitlePhoneNumber: ".invoice-history-detail-title-phone-number" +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "top:" + 217 * widthK + "px;" +
+  "margin: 0;" +
+  "color: white;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "text-align: center;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "}",
+
+  invoiceHistoryDetailContainer: "invoice-history-detail-container" +
+  "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 340 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: #ffffff; " +
+  "overflow-y: hidden; " +
+  "overflow-x: hidden; " +
   "}",
 
   //VIEW CONTACT
