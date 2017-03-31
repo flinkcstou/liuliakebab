@@ -1808,7 +1808,7 @@ var css = {
   "left:" + 25 * widthK + "px;" +
   "height:" + 87 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom: 2px solid white;" +
+  "border-bottom: 1px solid #4ae3ff;" +
   "}",
 
   nameTitle: ".name-title " +
