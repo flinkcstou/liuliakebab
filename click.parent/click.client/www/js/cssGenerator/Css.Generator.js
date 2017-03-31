@@ -2930,6 +2930,7 @@ var css = {
   "overflow-y: scroll;" +
   "}",
 
+
   pincardBodyContainer: ".pincard-body-container" +
   "{" +
   "position: absolute;" +
@@ -3325,6 +3326,159 @@ var css = {
   "top: 45%;" +
   "left: 92%;" +
   "}",
+
+  componentCalc: ".component-calc" +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.97;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "background-color: #f0f1f4;" +
+  "display: none;" +
+  "}",
+
+  componentCalcNameTitle: ".component-calc-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 35 * widthK + "px;" +
+  "left: 8%;" +
+  "top: 22%;" +
+  "margin: 0;" +
+  "color: #353340;" +
+  "}",
+
+  componentCalcFieldsContainer: ".component-calc-fields-container" +
+  "{" +
+  "position: absolute;" +
+  "height: 50%;" +
+  "width: 100%;" +
+  "top: 28%;" +
+  "}",
+
+  componentCalcFirstField: ".component-calc-first-field" +
+  "{" +
+  "position: absolute;" +
+  "left: 8%;" +
+  "width: 85%;" +
+  "height:" + 90 * widthK + "px;" +
+  "border-bottom:" + 4 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  "top: 8%;" +
+  "}",
+
+  componentCalcFirstFieldText: ".component-calc-first-field-text" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: -14%;" +
+  "}",
+
+  componentCalcFirstFieldInputPart: ".component-calc-first-field-input-part" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "top: 28%;" +
+  "left: 0%;" +
+  "margin: 0%;" +
+  "padding: 0;" +
+  "font-size:" + 42 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "background-color: transparent" +
+  "}",
+
+  componentCalcCurrencyText: ".component-calc-currency-text" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: 27%;" +
+  "left: 8%;" +
+  "}",
+
+  componentCalcSecondField: ".component-calc-second-field" +
+  "{" +
+  "position: absolute;" +
+  "left: 8%;" +
+  "width: 85%;" +
+  "height:" + 90 * widthK + "px;" +
+  "border-bottom:" + 4 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  "top: 40%;" +
+  "}",
+
+  componentCalcSecondFieldText: ".component-calc-second-field-text" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: -14%;" +
+  "}",
+
+  componentCalcSecondFieldInputPart: ".component-calc-second-field-input-part" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "top: 28%;" +
+  "left: 0%;" +
+  "margin: 0%;" +
+  "padding: 0;" +
+  "font-size:" + 42 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "background-color: transparent" +
+  "}",
+
+  componentCalcButtonsContainer: ".component-calc-buttons-container" +
+  "{" +
+  "position: absolute;" +
+  "height: 12%;" +
+  "width: 100%;" +
+  "top: 74%;" +
+  "}",
+
+  componentCalcButton: ".component-calc-button" +
+  "{" +
+  "position: relative;" +
+  "height: 85%;" +
+  "width: 34%;" +
+  "display: table;" +
+  "background-color: #01b9ff;" +
+  "border-radius:" + 5 * widthK + "px;" +
+  "float: left;" +
+  "left:11%;" +
+  "margin-right: 8%;" +
+  "}",
+
+  componentCalcButtonLabel: ".component-calc-button-label" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "font-size:" + 28 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-align: center;" +
+  "display: table-cell;" +
+  "vertical-align: middle;" +
+  "}",
+
+  componentCalcCancelButton: ".component-calc-cancel-button" +
+  "{" +
+  "background-color: white;" +
+  "}",
+
+  componentCalcCancelButtonLabel: ".component-calc-cancel-button-label" +
+  "{" +
+  "color: #c1c1c1;" +
+  "}",
+
+  //VIEW PINCARD
 
 
   pincardPayfromContainer: ".pincard-payfrom-container" +

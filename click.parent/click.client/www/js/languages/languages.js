@@ -56,6 +56,13 @@ var RU_LANGUAGES =
   "ViewServicePageSaveLabel": "СОХРАНИТЬ",
   "ViewServicePageAmountTextLabel": "Сумма оплаты:",
 
+  "ViewAmountCalculatorNameTitle": "КАЛЬКУЛЯТОР ВАЛЮТ",
+  "ViewAmountCalculatorTextOne": "Введите сумму в USD",
+  "ViewAmountCalculatorTextTwo": "Текущий курс: 1$=",
+  "ViewAmountCalculatorTextThree": "Сумма в национальной валюте (сум)",
+  "ViewAmountCalculatorCancelText": "ОТМЕНИТЬ",
+  "ViewAmountCalculatorAcceptText": "ПРИНЯТЬ",
+
   "ViewMyCardListTitleName": "МОИ КАРТЫ",
 
   "ViewPayTitleName": "ОПЛАТА",
