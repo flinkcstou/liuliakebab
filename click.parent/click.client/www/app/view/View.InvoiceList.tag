@@ -8,7 +8,7 @@
   </div>
 
   <div class="invoice-list-content-holder">
-    <div class="invoice-list-nav-buttons-holder">
+    <div class="invoice-list-nav-buttons-holder {invoice-list-invoices-in: toUser, invoice-list-invoices-out: !toUser}">
       <div class="invoice-list-nav-button-to-user" ontouchend="getInvoiceListToUser()">
         <img class="invoice-list-nav-buttons-icon"
              src="{(toUser)?('resources/icons/invoice/invoices_in_on.png'):('resources/icons/invoice/invoices_in_off.png')}">

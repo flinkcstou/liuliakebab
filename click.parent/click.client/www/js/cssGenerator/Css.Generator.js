@@ -125,6 +125,18 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "}",
 
+  invoiceListInvoicesIn: ".invoice-list-invoices-in" +
+  "{" +
+  "background-image: url(resources/icons/invoice/invoices_in.png);" +
+  "background-size: 100%;" +
+  "}",
+
+  invoiceListInvoicesOut: ".invoice-list-invoices-out" +
+  "{" +
+  "background-image: url(resources/icons/invoice/invoices_out.png);" +
+  "background-size: 100%;" +
+  "}",
+
   invoiceListNavButtonToUser: ".invoice-list-nav-button-to-user" +
   "{" +
   "width:" + 286 * widthK + "px;" +
