@@ -251,6 +251,8 @@ var RU_LANGUAGES =
   "ViewAddCardPinTitle": "Код банка",
   "ViewAddCardDoMainTitle": "Сделать основной",
 
+  "ViewContactTitle": "КОНТАКТ",
+
 
 };
 

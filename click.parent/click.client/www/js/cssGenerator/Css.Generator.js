@@ -8346,6 +8346,56 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "}",
 
+  //VIEW CONTACT
+
+  viewContact: ".view-contact " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "bottom: 0;" +
+  "top:" + 92 * heightK + "px;" +
+  "overflow: hidden;" +
+  "background-size: contain;" +
+  "background-color: white;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
+  contactPageTitle: ".contact-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 0;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "background: transparent;" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  contactNameTitle: ".contact-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 35 * widthK + "px; " +
+  "left:" + 85 * widthK + "px; " +
+  "top:" + 27 * widthK + "px; " +
+  "margin: 0;  " +
+  "color: #fffaf9;" +
+  "}",
+
+  contactBackButton: ".contact-back-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 113 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y: 43%;" +
+  "background-position-x: center;" +
+  "background-size: 17%;" +
+  "right: 87%;" +
+  "}",
+
 
 }
 
