@@ -130,14 +130,14 @@ var css = {
   "background-image: url(resources/icons/invoice/invoices_in.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
-    "}",
+  "}",
 
   invoiceListInvoicesOut: ".invoice-list-invoices-out" +
   "{" +
   "background-image: url(resources/icons/invoice/invoices_out.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
-    "}",
+  "}",
 
   invoiceListNavButtonToUser: ".invoice-list-nav-button-to-user" +
   "{" +
@@ -7613,7 +7613,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 65 * widthK + "px;" +
-  "top:" + 88 * heightK + "px;" +
+  "top:" + 98 * heightK + "px;" +
     //"overflow-x: auto;" +
     //"overflow-y: hidden;" +
   "font-size:" + 23 * widthK + "px;" +
@@ -7636,7 +7636,7 @@ var css = {
   "left: 3%;" +
   "margin: 0;" +
   "color: white;" +
-  "font-size: " + 32 * widthK + "px; " +
+  "font-size: " + 30 * widthK + "px; " +
   "}",
 
   viewReportsBodyContainer: ".view-reports-body-container" +
@@ -7644,7 +7644,7 @@ var css = {
   "position: absolute;" +
     //"height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
-  "top:" + 170 * widthK + "px; " +
+  "top:" + 160 * widthK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
   "overflow-y: auto; " +
@@ -7656,7 +7656,7 @@ var css = {
   "position: absolute;" +
     //"height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
-  "top:" + 170 * heightK + "px; " +
+  "top:" + 160 * heightK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
   "}",
@@ -7768,7 +7768,7 @@ var css = {
   "width: 91%;" +
   "left: 4%;" +
   "margin-top: 1%;" +
-  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+    //"border-bottom:" + 1 * widthK + "px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
 
@@ -7789,8 +7789,8 @@ var css = {
   "height:" + 150 * widthK + "px; " +
   "width: 91%;" +
   "left: 4%;" +
-  "margin-top: 1%;" +
-  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+    //"margin-top: 1%;" +
+  "border-top:" + 1 * widthK + "px solid #f1f1f1;" +
   "background-color: transparent;" +
   "}",
 
@@ -7805,7 +7805,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "border-radius:" + 100 * widthK + "px;" +
-  "border:solid 1px #b7b7b7;" +
+  "border:solid 1px #f1f1f1;" +
   "top: 6%;" +
   "}",
 
@@ -7898,7 +7898,7 @@ var css = {
   "top: 15%;" +
   "margin: 0;" +
   "font-size: " + 63 * widthK + "px; " +
-  "color:#353340;" +
+  "color:#595759;" +
   "width: 100%;" +
   "text-align: center;" +
   "}",
@@ -7943,7 +7943,7 @@ var css = {
   "width: 91%;" +
   "left: 4%;" +
   "margin-top: 1%;" +
-  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "border-bottom:" + 1 * widthK + "px solid #f1f1f1;" +
   "background-color: transparent;" +
   "}",
 
@@ -7988,7 +7988,8 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
-  "background-size: 50%;" +
+  "background-size: 60%;" +
+  "top: 6%;" +
   "}",
 
   viewReportsGraphBlockNextIcon: ".view-reports-graph-block-next-icon" +
