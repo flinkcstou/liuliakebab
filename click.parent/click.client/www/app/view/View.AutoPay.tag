@@ -26,11 +26,34 @@
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;
 
-    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-    var fName = JSON.parse(localStorage.getItem('click_client_loginInfo')).firstname
-    var lName = JSON.parse(localStorage.getItem('click_client_loginInfo')).lastname
-    var gender = JSON.parse(localStorage.getItem('click_client_loginInfo')).gender
+
+    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+    var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+    var sessionKey = info.session_key;
+
+    window.api.call({
+      method: 'settings.get.trusted.devices',
+      input: {
+        phone_num: phoneNumber,
+        session_key: sessionKey,
+
+      },
+
+      scope: this,
+
+      onSuccess: function (result) {
+        if (result[0][0].error == 0) {
+          console.log("DEVICES", result);
+        }
+        else
+          alert(result[0][0].error_note);
+      },
+
+      onFail: function (api_status, api_status_message, data) {
+        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+        console.error(data);
+      }
+    });
 
     //    window.api.call({
     //      method: 'get.terms',

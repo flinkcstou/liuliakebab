@@ -23,7 +23,9 @@
       </div>
     </div>
     <div class="invoice-list-invoices-holder">
-      <div each="{invoice in invoiceList}" class="invoice-list-invoice">
+      <div each="{invoice in invoiceList}" title="{JSON.stringify(invoice)}" class="invoice-list-invoice"
+           ontouchend="goToInvoiceHistoryDetailTouchEnd(this.title)"
+           ontouchstart="goToInvoiceHistoryDetailTouchStart()">
         <div
             class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
           <mark class="invoice-list-invoice-sum-sym">сум</mark>
@@ -46,7 +48,11 @@
 
   <script>
 
-    var scope = this;
+    var scope = this,
+        goToInvoiceHistoryDetailTouchStartX,
+        goToInvoiceHistoryDetailTouchEndX,
+        goToInvoiceHistoryDetailTouchStartY,
+        goToInvoiceHistoryDetailTouchEndY;
 
     scope.invoiceList = [];
     scope.titleName = languages.ViewInvoiceListTitle;
@@ -149,6 +155,34 @@
       event.stopPropagation();
       onBackKeyDown()
     }
+
+    goToInvoiceHistoryDetailTouchEnd = function (invoice) {
+
+      goToInvoiceHistoryDetailTouchEndX = event.changedTouches[0].pageX;
+      goToInvoiceHistoryDetailTouchEndY = event.changedTouches[0].pageY;
+
+//      if (Math.abs(goToInvoiceHistoryDetailTouchEndX - goToInvoiceHistoryDetailTouchStartX) < 20 &&
+//          Math.abs(goToInvoiceHistoryDetailTouchEndY - goToInvoiceHistoryDetailTouchStartY) < 20) {
+//
+//        invoice = JSON.parse(invoice);
+//
+//        params = {
+//          is_p2p: invoice.is_p2p,
+//          invoice_id: invoice.invoice_id
+//        };
+//
+//        history.arrayOfHistory.push({view: "view-invoice-history-detail"});
+//        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+//        riotTags.innerHTML = "<view-invoice-history-detail>";
+//        riot.mount("view-invoice-history-detail", params);
+//      }
+    };
+
+    goToInvoiceHistoryDetailTouchStart = function () {
+
+      goToInvoiceHistoryDetailTouchStartX = event.changedTouches[0].pageX;
+      goToInvoiceHistoryDetailTouchStartY = event.changedTouches[0].pageY;
+    };
 
   </script>
 </view-invoice-list>

@@ -91,13 +91,20 @@
     }
 
     this.on('mount', function () {
+      if (device.platform != 'BrowserStand')
+        StatusBar.backgroundColorByHexString("#0099e2");
 
+      if (!modeOfApp.offlineMode) {
+        writeBalance();
+      }
     })
 
 
     touchStartTitle = function () {
       event.preventDefault();
       event.stopPropagation();
+      if (device.platform != 'BrowserStand')
+        StatusBar.backgroundColorByHexString("#0099e2");
       onBackKeyDown()
     };
 
