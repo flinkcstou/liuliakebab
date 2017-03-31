@@ -26,7 +26,7 @@
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#0280e4");
+        StatusBar.backgroundColorByHexString("#00a8f1");
     })
 
     var scope = this;
