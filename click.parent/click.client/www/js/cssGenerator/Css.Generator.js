@@ -8432,6 +8432,16 @@ var css = {
   "font-size:" + 32 * widthK + "px;" +
   "}",
 
+  contactPayTransferContainer: ".contact-pay-transfer-container " +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "margin-left: auto;" +
+  "border-top: 1px solid #f3f3f3;" +
+  "margin-right: auto;" +
+  "height:" + 120 * widthK + "px;" +
+  "}",
+
 
 }
 

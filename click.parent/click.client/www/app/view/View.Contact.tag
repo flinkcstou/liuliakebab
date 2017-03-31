@@ -10,7 +10,10 @@
       <div class="contact-info-icon"></div>
       <p class="contact-info-text">ALEKSANDR ALEKSANDROV</p>
     </div>
-    <div></div>
+    <div class="contact-pay-transfer-container">
+      <div></div>
+    </div>
+    <div class="contact-pay-transfer-container"></div>
   </div>
 
   <script>
