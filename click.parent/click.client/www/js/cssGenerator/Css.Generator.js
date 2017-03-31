@@ -8396,6 +8396,37 @@ var css = {
   "right: 87%;" +
   "}",
 
+  contactInfoTitle: ".contact-info-title " +
+  "{" +
+  "position: relative;" +
+  "top: 0;" +
+  "width: 100%;" +
+  "background-color: #f3f3f3;" +
+  "height:" + 160 * widthK + "px;" +
+  "}",
+
+  contactInfoIcon: ".contact-info-icon " +
+  "{" +
+  "position: relative;" +
+  "width: 15%;" +
+  "height: 66%;" +
+  "float: left;" +
+  "background-color: red;" +
+  "margin-left: 10%;" +
+  "margin-top: 4%;" +
+  "border-radius:" + 100 * widthK + "px;" +
+  "}",
+
+  contactInfoText: ".contact-info-text " +
+  "{" +
+  "position: relative;" +
+  "float: left;" +
+  "margin: 0;" +
+  "margin-left: 5%;" +
+  "margin-top: 8%;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "}",
+
 
 }
 

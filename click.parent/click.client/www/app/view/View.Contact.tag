@@ -6,17 +6,25 @@
   </div>
 
   <div class="view-contact">
-
+    <div class="contact-info-title">
+      <div class="contact-info-icon"></div>
+      <p class="contact-info-text">ALEKSANDR ALEKSANDROV</p>
+    </div>
+    <div></div>
   </div>
 
   <script>
     var scope = this;
 
+    this.on('mount', function () {
+
+    })
+
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-contact') {
       history.arrayOfHistory.push(
         {
           "view": 'view-contact',
-          "params": ''
+          "params": opts
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
@@ -29,11 +37,6 @@
       event.stopPropagation()
       onBackKeyDown()
     }
-
-
-    this.on('mount', function () {
-
-    })
 
 
   </script>
