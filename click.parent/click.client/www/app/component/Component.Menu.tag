@@ -247,7 +247,18 @@
 
     goToBillingsTouchEnd = function () {
 
+      billingsTouchEndX = event.changedTouches[0].pageX;
 
+      if (Math.abs(billingsTouchEndX - billingsTouchStartX < 20)) {
+
+        closeMenu();
+
+        history.arrayOfHistory.push({view: "view-invoice-list"});
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        riotTags.innerHTML = "<view-invoice-list>";
+        riot.mount("view-invoice-list");
+        return
+      }
     };
 
     var favoritesTouchStartX, favoritesTouchEndX;
