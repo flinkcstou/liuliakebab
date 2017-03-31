@@ -36,8 +36,8 @@
         <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p" if="{invoice.is_p2p == 1 && !toUser}">
           {languages.ViewInvoiceListInvoiceIsP2PFromUser}</p>
         <div class="invoice-list-invoice-phone-number-holder">
-          <p class="invoice-list-invoice-service-name" if="{invoice.is_p2p == 0}">{invoice.service_name}&nbsp;</p>
           <p class="invoice-list-invoice-phone-number">+ {invoice.parameter||invoice.cntrg_info_param2}</p>
+          <p class="invoice-list-invoice-service-name" if="{invoice.is_p2p == 0}">{invoice.service_name}</p>
         </div>
         <p class="invoice-list-invoice-date">{invoice.date} {invoice.time}</p>
       </div>

@@ -191,6 +191,7 @@ var css = {
   "padding-right:" + 36 * widthK + "px;" +
   "float: right;" +
   "width:" + 295 * widthK + "px;" +
+  "height:" + 120 * widthK + "px;" +
   "}",
 
   invoiceListInvoiceSum: ".invoice-list-invoice-sum" +
@@ -202,7 +203,7 @@ var css = {
   "color: inherit;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
-  "max-width:" + 320 * widthK + "px;" +
+  "max-width:" + 245 * widthK + "px;" +
   "white-space: nowrap;" +
   "}",
 
@@ -228,6 +229,10 @@ var css = {
   invoiceListInvoicePhoneNumber: ".invoice-list-invoice-phone-number" +
   "{" +
   "margin: 0;" +
+  "float: left;" +
+  "width:" + 300 * widthK + "px;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "white-space: nowrap;" +
   "}",
 
@@ -235,7 +240,7 @@ var css = {
   "{" +
   "margin: 0;" +
   "float: left;" +
-  "max-width:" + 93 * widthK + "px;" +
+  "width:" + 300 * widthK + "px;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "white-space: nowrap;" +
