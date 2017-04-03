@@ -23,7 +23,7 @@
             <p class="invoice-card-from-label">Вам выставлен счёт:</p>
             <div class="invoice-card-from-sender-holder">
               <p class="invoice-card-from-sender-service-name">{invoice.service_name}</p>
-              <p class="invoice-card-form-sender-number"> {(invoice.service_id == -4)?("+"):("")}
+              <p class="invoice-card-from-sender-number"> {(invoice.service_id == -4)?("+"):("")}
                 {invoice.parameter}</p>
             </div>
             <p class="invoice-card-date">{invoice.time} {invoice.date}</p>

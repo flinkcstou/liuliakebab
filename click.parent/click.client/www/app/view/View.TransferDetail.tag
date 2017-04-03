@@ -57,9 +57,13 @@
 
     scope.titleName = window.languages.ViewTransferDetailTitle;
 
-    goToBack = function () {
-      event.preventDefault();
-      event.stopPropagation();
+    goToBack = function (doNotPrevent) {
+
+      if (!doNotPrevent) {
+
+        event.preventDefault();
+        event.stopPropagation();
+      }
       onBackKeyDown()
     };
 
@@ -95,7 +99,7 @@
             console.log("result of invoice transfer decline", result);
 
             if (result[0][0].error == 0) {
-              goToBack();
+              goToBack(true);
             }
             else {
               alert(result[0][0].error_note);
