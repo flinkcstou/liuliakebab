@@ -1,80 +1,77 @@
 <view-report>
-
-  <div class="page-title" style="border: none;">
-    <p class="name-title">{titleName}</p>
-    <div id="backButton" ontouchend="touchStartTitle()"
-         class="back-button">
-    </div>
-    <div class="view-reports-filter-container">
-      <p class="view-reports-filter-text">Фильтры</p>
-      <div type="button" class="view-reports-filter-button" ontouchend="filter()"></div>
-    </div>
-    <div id="graphButtonId" type="button" class="view-reports-graph-button" ontouchend="graphView()"></div>
-  </div>
-
-
-  <div id="monthContainerId" class="view-reports-months-container" ontouchstart="monthContainerTouchStart()"
-       ontouchend="monthContainerTouchEnd()"
-       ontouchmove="monthContainerTouchMove()">
-    <div class="view-reports-month-info-container" each="{i in monthsArray}"
-         style="left:{leftOfOperations*i.count}px;">
-      <p class="view-reports-month-info-name">{i.name}</p>
-    </div>
-  </div>
-
-
-  <div class="view-reports-body-container" if="{firstReportView}">
-    <div class="view-reports-payments-container" each="{i in paymentDates}">
-      <div class="view-reports-payment-date-containter">
-        <div class="view-reports-payment-date-field">{i}</div>
+  <component-report-filter></component-report-filter>
+  <div id="reportPageId" class="view-reports-page">
+    <div class="page-title" style="border: none;">
+      <p class="name-title">{titleName}</p>
+      <div id="backButton" ontouchend="touchStartTitle()"
+           class="back-button">
       </div>
-      <div class="view-reports-payment-block-containter" each="{j in paymentsMap[i]}">
-        <div class="view-reports-payment-icon"
-             style="background-image: url({j.image})"></div>
-        <div class="view-reports-payment-info-container">
-          <p class="view-reports-payment-info-name">{j.service_name}</p>
-          <div class="view-reports-payment-info-balance">{j.amount}</div>
-          <div class="view-reports-payment-info-currency-field">сум</div>
-          <p class="view-reports-payment-info-number">{j.cntrg_info_param2}</p>
+      <div class="view-reports-filter-container" ontouchend="openFilter()">
+        <p class="view-reports-filter-text">Фильтры</p>
+        <div type="button" class="view-reports-filter-button"></div>
+      </div>
+      <div id="graphButtonId" type="button" class="view-reports-graph-button" ontouchend="graphView()"></div>
+    </div>
+
+
+    <div id="monthContainerId" class="view-reports-months-container" ontouchstart="monthContainerTouchStart()"
+         ontouchend="monthContainerTouchEnd()"
+         ontouchmove="monthContainerTouchMove()">
+      <div class="view-reports-month-info-container" each="{i in monthsArray}"
+           style="left:{leftOfOperations*i.count}px;">
+        <p class="view-reports-month-info-name">{i.name}</p>
+      </div>
+    </div>
+
+
+    <div class="view-reports-body-container" if="{firstReportView}">
+      <div class="view-reports-payments-container" each="{i in paymentDates}">
+        <div class="view-reports-payment-date-containter">
+          <div class="view-reports-payment-date-field">{i}</div>
         </div>
-        <p class="view-reports-payment-info-time">{j.paymentTime}</p>
-      </div>
-    </div>
-
-  </div>
-
-
-  <div class="view-reports-graph-body-container" if="{!firstReportView}">
-    <div class="view-reports-graph-bigamount-container">
-      <p class="view-reports-graph-bigamount-text">{paymentsSum} сум</p>
-    </div>
-    <div class="view-reports-graph-image-container">
-      <div class="view-reports-graph-frame">
-        <canvas class="view-reports-graph-frame" id="myChart">
-        </canvas>
-
-        <div class="view-reports-graph-percent-image-container" each="{i in arrayOfCoordinates}"
-             id="chartImageBlockId{i.order}" if="{i.percent > 10}"
-             style="top: {i.y * heightK}px; left: {i.x  * heightK}px; transform: translate3d(-55%, -{i.position}% ,0);">
-          <p if="{i.percent > 10}" class="view-reports-graph-percent">{i.percent}%</p>
-          <div class="view-reports-graph-image"
-               style="background-image: url({i.image})"></div>
+        <div class="view-reports-payment-block-containter" each="{j in paymentsMap[i]}">
+          <div class="view-reports-payment-icon"
+               style="background-image: url({j.image})"></div>
+          <div class="view-reports-payment-info-container">
+            <p class="view-reports-payment-info-name">{j.service_name}</p>
+            <div class="view-reports-payment-info-balance">{j.amount}</div>
+            <div class="view-reports-payment-info-currency-field">сум</div>
+            <p class="view-reports-payment-info-number">{j.cntrg_info_param2}</p>
+          </div>
+          <p class="view-reports-payment-info-time">{j.paymentTime}</p>
         </div>
       </div>
     </div>
-    <div class="view-reports-graph-content-container">
 
-      <div class="view-reports-graph-block-containter" each="{j in graphList}">
-        <div class="view-reports-graph-block-icon"
-             style="background-image: url({j.image})"></div>
-        <div class="view-reports-graph-block-name-field">{j.category_name}</div>
-        <div class="view-reports-graph-block-amount-field" style="color: {j.color_hex}">{j.amount}</div>
-        <div class="view-reports-graph-block-currency-field" style="color: {j.color_hex}">сум</div>
-        <div class="view-reports-graph-block-next-icon"></div>
+    <div class="view-reports-graph-body-container" if="{!firstReportView}">
+      <div class="view-reports-graph-bigamount-container">
+        <p class="view-reports-graph-bigamount-text">{paymentsSum} сум</p>
+      </div>
+      <div class="view-reports-graph-image-container">
+        <div class="view-reports-graph-frame">
+          <canvas class="view-reports-graph-frame" id="myChart">
+          </canvas>
+
+          <div class="view-reports-graph-percent-image-container" each="{i in arrayOfCoordinates}"
+               id="chartImageBlockId{i.order}" if="{i.percent > 10}"
+               style="top: {i.y * heightK}px; left: {i.x  * heightK}px; transform: translate3d(-55%, -{i.position}% ,0);">
+            <p if="{i.percent > 10}" class="view-reports-graph-percent">{i.percent}%</p>
+            <div class="view-reports-graph-image"
+                 style="background-image: url({i.image})"></div>
+          </div>
+        </div>
+      </div>
+      <div class="view-reports-graph-content-container">
+        <div class="view-reports-graph-block-containter" each="{j in graphList}">
+          <div class="view-reports-graph-block-icon"
+               style="background-image: url({j.image})"></div>
+          <div class="view-reports-graph-block-name-field">{j.category_name}</div>
+          <div class="view-reports-graph-block-amount-field" style="color: {j.color_hex}">{j.amount}</div>
+          <div class="view-reports-graph-block-currency-field" style="color: {j.color_hex}">сум</div>
+          <div class="view-reports-graph-block-next-icon"></div>
+        </div>
       </div>
     </div>
-
-
   </div>
 
   <script>
@@ -122,7 +119,21 @@
       this.on('mount', function () {
         changePositionTwo();
       });
+    }
 
+    openFilter = function () {
+      event.stopPropagation();
+
+      componentMenu.checkOpen = true;
+
+      this.filterMenuBackPageId.style.webkitTransition = '0.3s';
+      this.reportPageId.style.webkitTransition = '0.3s';
+      this.reportPageId.style.zIndex = '-1';
+      this.reportPageId.style.opacity = '0.1';
+      this.filterMenuId.style.webkitTransition = '0.3s';
+      this.filterMenuId.style.transform = "translate3d(0, 0, 0)";
+      this.filterMenuId.style.webkitTransform = "translate3d(0, 0, 0)";
+      this.filterMenuBackPageId.style.opacity = '1';
     }
 
 
@@ -518,7 +529,6 @@
         }
       }
     }
-
 
     paymentListUpdate();
 

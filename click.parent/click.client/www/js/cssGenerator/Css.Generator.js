@@ -7647,6 +7647,13 @@ var css = {
 
 //  VIEW REPORTS
 
+  viewReportsPage: ".view-reports-page " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "}",
+
   viewReportsMonthsContainer: ".view-reports-months-container " +
   "{" +
   "position: absolute;" +
@@ -7744,6 +7751,22 @@ var css = {
   "height:" + 50 * heightK + "px;" +
   "}",
 
+  filterMenu: ".filter-menu " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width:" + 538 * widthK + "px;" +
+  "overflow: hidden;" +
+  "transform: translate3d(0, -100%, 0);" +
+  "-webkit-transform: translate3d(0, -100%, 0);" +
+  "-ms-transform: translate3d(0, -100%, 0);" +
+  "background-color: white;" +
+  "z-index: 1;" +
+  "right:0;" +
+    //"top:" + topOfIos + "px;" +
+  "}",
+
+
   viewReportsFilterContainer: ".view-reports-filter-container " +
   "{" +
   "position: absolute;" +
@@ -7775,6 +7798,114 @@ var css = {
   "background-position-x:" + 9 * widthK + "px;" +
   "background-size: 44%;" +
   "top: 0;" +
+  "}",
+
+  filterMenuInsideButton: ".filter-menu-inside-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 195 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "right:" + 90 * widthK + "px;" +
+  "top: 0;" +
+  "}",
+
+  filterInsideText: ".filter-inside-text " +
+  "{" +
+  "color: 	#00A1EA;" +
+  "}",
+
+  filterInsideButton: ".filter-inside-button " +
+  "{" +
+  "background-image: url('resources/icons/ViewReport/reports_filters_close.png');" +
+  "}",
+
+  filterMenuBodyContainer: ".filter-menu-body-container " +
+  "{" +
+  "position: absolute;" +
+  "width:84%;" +
+  "height:65%;" +
+  "left:8%;" +
+  "top: 22%;" +
+    //"background-color: antiquewhite;" +
+  "}",
+
+  filterMenuTitle: ".filter-menu-title " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: 	#00A1EA;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "width: 45%;" +
+  "top: 13%;" +
+  "left: 8%;" +
+  "}",
+
+  filterMenuBlockContainer: ".filter-menu-block-containter" +
+  "{" +
+  "position: relative;" +
+  "height:" + 90 * widthK + "px; " +
+  "width: 100%;" +
+    //"left: 4%;" +
+    //"margin-top: 1%;" +
+  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "background-color: transparent;" +
+  "float: left;" +
+  "}",
+
+  filterMenuNameField: ".filter-menu-name-field" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 26 * widthK + "px; " +
+    //"left: 3%;" +
+  "text-align: left;" +
+  "font-size:" + 29 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  filterMenuDateIcon: ".filter-menu-date-icon" +
+  "{" +
+  "position: relative;" +
+  "width: 13%;" +
+  "height:100%; " +
+  "background-repeat: no-repeat;" +
+  "background-position-y: center;" +
+  "float: left;" +
+  "background-size: 65%;" +
+  "}",
+
+  filterMenuDateNextIcon: ".filter-menu-date-next-icon" +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 10%;" +
+  "height: 100%;" +
+  "top: 0;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 28%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/ViewInfo/open.png);" +
+  "}",
+
+
+  filterMenuBillingsContainer: ".filter-menu-billings-container " +
+  "{" +
+  "position: relative;" +
+  "top: 32.2%;" +
+  "height: 6%;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  "border-bottom: 1px solid #43aee5;" +
+  "}",
+
+  filterMenuFavoriteContainer: ".filter-menu-favorite-container " +
+  "{" +
+  "position: relative;" +
+  "top: 32.7%;" +
+  "height: 6%;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  "border-bottom: 1px solid #43aee5;" +
   "}",
 
   viewReportsGraphButton: ".view-reports-graph-button " +
