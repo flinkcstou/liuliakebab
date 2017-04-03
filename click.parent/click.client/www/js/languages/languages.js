@@ -92,6 +92,7 @@ var RU_LANGUAGES =
   "ViewPayTransferCardTextField": "Укажите номер карты получателя:",
   "ViewPayTransferNext": "ДАЛЕЕ",
   "ViewPayTransferTitle": "ПЕРЕВОДЫ",
+  "ViewPayTransferCardOwnerTitle": "Владелец:",
 
 
   "ViewTransferTwoTax": "Комиссия: ",

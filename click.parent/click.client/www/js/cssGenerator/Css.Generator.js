@@ -55,9 +55,9 @@ var css = {
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-    "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -4231,7 +4231,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 90%;" +
-  "height: 18%;" +
+  "height: 20%;" +
   "top: 32%;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
@@ -4242,7 +4242,7 @@ var css = {
   transferCardOwnerTitle: ".transfer-card-owner-title " +
   "{" +
   "position: absolute;" +
-  "top: 28%;" +
+  "top: 22%;" +
   "left: 3%;" +
   "font-size:" + 25 * widthK + "px;" +
   "color: #c1c1c1;" +
@@ -4253,13 +4253,13 @@ var css = {
   transferCardOwnerInfo: ".transfer-card-owner-info " +
   "{" +
   "position: absolute;" +
-  "top: 57%;" +
+  "top: 47%;" +
   "left: 3%;" +
   "font-size:" + 30 * widthK + "px;" +
   "color: #c1c1c1;" +
   "margin: 0;" +
   "text-align: center;" +
-  "color: #9ec94a;" +
+  "color: #626062;" +
   "}",
 
   transferMenuContainerCard: ".transfer-menu-container-card" +
@@ -4521,21 +4521,21 @@ var css = {
   transferNextButtonInnerContainer: ".transfer-next-button-inner-container" +
   "{" +
   "position: relative;" +
-  "width: 63%;" +
-  "height: 8%;" +
+  "width: 38%;" +
+  "height: 5%;" +
   "margin-right: auto;" +
-  "border-radius: " + 80 * widthK + "px; " +
+  //"border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
-  "background-color: rgb(1, 124, 227);" +
-  "top: 38%;" +
+  "background-color: #01b6fe;" +
+  "top: 42%;" +
   "}",
 
   transferNextButtonLabel: ".transfer-next-button-label" +
   "{" +
   "position: relative;" +
   "top: 18%;" +
-  "width: 30%;" +
-  "font-size:  " + 45 * widthK + "px; " +
+  "width: 36%;" +
+  "font-size:  " + 32 * widthK + "px; " +
   "margin: auto;" +
   "color: white;" +
   "}",

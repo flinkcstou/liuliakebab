@@ -98,7 +98,7 @@
                maxlength="19" onkeydown="searchCard()" onkeyup="cardOnKeyUp()"/>
       </div>
       <div class="transfer-card-owner-container">
-        <p class="transfer-card-owner-title">{window.languages.ViewTransferDetailTitleNumber}</p>
+        <p class="transfer-card-owner-title">{window.languages.ViewPayTransferCardOwnerTitle}</p>
         <p class="transfer-card-owner-info">{cardOwner}</p>
       </div>
 
