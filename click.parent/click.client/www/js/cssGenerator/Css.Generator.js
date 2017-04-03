@@ -4227,6 +4227,41 @@ var css = {
   "background-color: transparent;" +
   "}",
 
+  transferCardOwnerContainer: ".transfer-card-owner-container " +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "height: 18%;" +
+  "top: 32%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "border-bottom: 1px solid lightgrey;" +
+  "border-top: 1px solid lightgrey;" +
+  "}",
+
+  transferCardOwnerTitle: ".transfer-card-owner-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 28%;" +
+  "left: 3%;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "}",
+
+  transferCardOwnerInfo: ".transfer-card-owner-info " +
+  "{" +
+  "position: absolute;" +
+  "top: 57%;" +
+  "left: 3%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: #9ec94a;" +
+  "}",
+
   transferMenuContainerCard: ".transfer-menu-container-card" +
   "{" +
   "position: absolute;" +
@@ -4492,7 +4527,7 @@ var css = {
   "border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
   "background-color: rgb(1, 124, 227);" +
-  "top: 28%;" +
+  "top: 38%;" +
   "}",
 
   transferNextButtonLabel: ".transfer-next-button-label" +
