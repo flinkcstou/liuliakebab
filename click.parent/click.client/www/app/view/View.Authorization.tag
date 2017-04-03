@@ -563,6 +563,7 @@
                         scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
                         scope.serviceList.push(result[1][i]);
 
+
                         if (!scope.servicesMapByCategory[result[1][i].category_id]) {
                           scope.servicesMapByCategory[result[1][i].category_id] = [];
                           if (result[1][i].category_id === 1 && (result[1][i].id === window.mOperators[scope.operatorKey])) {
