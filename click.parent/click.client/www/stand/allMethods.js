@@ -2667,3 +2667,30 @@ window.fakedSocket.register("invoice.history", function (input) {
     }
   ];
 });
+
+window.fakedSocket.register("rate.convert", function (input) {
+
+  if (input)
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": ""
+      }],
+      [{
+        "amount": 1,
+        "converted_amount": 3596,
+        "current_rate": 3595.02
+      }]
+    ];
+
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});
