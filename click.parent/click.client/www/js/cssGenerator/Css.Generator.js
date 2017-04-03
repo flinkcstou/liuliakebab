@@ -8948,10 +8948,9 @@ var css = {
   "right: 87%;" +
   "}",
 
-  viewContactSelectInfoTitle: ".view-contact-select-info-title " +
+  viewContactInfoTitle: ".view-contact-info-title " +
   "{" +
   "position: relative;" +
-  "top: 7%;" +
   "width: 100%;" +
   "height:" + 150 * widthK + "px;" +
   "}",
@@ -9068,8 +9067,16 @@ var css = {
   "opacity: 0.98;" +
   "height: 100%;" +
   "width: 101%;" +
-    //"display: none;" +
+  "display: none;" +
   "background-color: #efeff1;" +
+  "}",
+
+  viewContactSelectInfoTitle: ".view-contact-select-info-title " +
+  "{" +
+  "position: relative;" +
+  "top: 7%;" +
+  "width: 100%;" +
+  "height:" + 150 * widthK + "px;" +
   "}",
 
   viewContactSelectChooseTitle: ".view-contact-select-choose-title " +
@@ -9078,8 +9085,8 @@ var css = {
   "margin: 0;" +
   "left: 10.5%;" +
   "top: 25%;" +
-  //"font-size:" + 29 * widthK + "px;" +
-  //"color: #8b8b8b;" +
+    //"font-size:" + 29 * widthK + "px;" +
+    //"color: #8b8b8b;" +
   "}",
 
   viewContactSelectPhoneNumberContainer: ".view-contact-select-phone-number-container " +

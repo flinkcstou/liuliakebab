@@ -279,6 +279,7 @@ var RU_LANGUAGES =
   "ViewContactTitle": "КОНТАКТ",
   "ViewContactPay": "Оплатить за мобильный",
   "ViewContactTransfer": "Перевод по номеру телефона",
+  "ViewContactChooseNumber": "ВЫБЕРИТЕ НОМЕР",
 
 
 };

@@ -22,17 +22,17 @@
     </div>
   </div>
 
-  <div class="view-contact-select-container">
+  <div class="view-contact-select-container" id="contactSelectContainerId">
 
     <div class="view-contact-page-title">
-      <div class="view-contact-select-x-button"></div>
+      <div class="view-contact-select-x-button" ontouchend="closeContactPickTouchEnd()"></div>
     </div>
 
     <div class="view-contact-select-info-title">
       <div class="view-contact-info-icon" style="background-image: url({contactPhoto})">{firstLetter}</div>
       <p class="view-contact-info-text">{firstName} {secondName}</p>
     </div>
-    <p class="view-contact-select-choose-title">ВЫБЕРИТЕ НОМЕР</p>
+    <p class="view-contact-select-choose-title">{window.languages.ViewContactChooseNumber}</p>
 
     <div class="view-contact-select-phone-container">
       <div class="view-contact-select-phone-number-container" each="{i in arrayOfNumbers}">
@@ -84,6 +84,13 @@
 
       }
 
+    }
+
+    closeContactPickTouchEnd = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      contactSelectContainerId.style.display = 'none'
     }
 
     goToBack = function () {
