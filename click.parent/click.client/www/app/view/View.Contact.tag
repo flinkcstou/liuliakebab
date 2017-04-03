@@ -25,7 +25,7 @@
   <div class="view-contact-select-container">
 
     <div class="view-contact-page-title">
-
+      <div class="view-contact-select-x-button"></div>
     </div>
 
     <div class="view-contact-select-info-title">

@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/invoice_details2.png);" +
+    //"background-image: url(resources/draft/contact2_crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-    "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -8945,7 +8945,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left: 10%;" +
+  "left: 10.5%;" +
   "top: 25%;" +
   //"font-size:" + 29 * widthK + "px;" +
   //"color: #8b8b8b;" +
@@ -8954,7 +8954,7 @@ var css = {
   viewContactSelectPhoneNumberContainer: ".view-contact-select-phone-number-container " +
   "{" +
   "position: relative;" +
-  "width: 80%;" +
+  "width: 78%;" +
   "height: 15%;" +
   "background-color: white;" +
   "margin: 0;" +
@@ -8968,8 +8968,8 @@ var css = {
   "position: relative;" +
   "margin: 0;" +
   "background-size: contain;" +
-  "left: 15%;" +
-  "top: 33%;" +
+  "left: 9%;" +
+  "top: 36%;" +
   "color: #a1a1a2;" +
   "overflow: hidden;" +
   "width: 84%;" +
@@ -8983,7 +8983,7 @@ var css = {
   "height:" + 800 * heightK + "px;" +
   "width: 100%;" +
   "overflow: auto;" +
-  "top: 35%;" +
+  "top: 30%;" +
     //"display: none;" +
   "background-color: #efeff1;" +
   "}",
@@ -8994,12 +8994,12 @@ var css = {
   "width:" + 135 * widthK + "px;" +
   "height:" + 92 * widthK + "px;" +
   "right:" + -36 * widthK + "px;" +
-  "background-image: url('resources/icons/ViewSettingsGeneral/general_save.png');" +
+  "background-image: url('resources/icons/ViewTransfer/banks_close.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 31%;" +
+  "-webkit-background-size: 22%;" +
   "background-position-y: center;" +
   "background-position-x:" + 54 * widthK + "px;" +
-  "background-size: 31%;" +
+  "background-size: 22%;" +
   "top: 0;" +
   "}",
 
