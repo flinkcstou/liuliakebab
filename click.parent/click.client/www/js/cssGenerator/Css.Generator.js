@@ -2682,7 +2682,7 @@ var css = {
   "background-position-y: center;" +
   "background-position-x:center;" +
   "background-size: 27%;" +
-  "top:" + 12 * widthK + "px;" +
+  "top:" + 0 * widthK + "px;" +
   "}",
 
   payCategoryContainer: ".pay-category-container" +
@@ -8687,12 +8687,11 @@ var css = {
   "right: 87%;" +
   "}",
 
-  viewContactInfoTitle: ".view-contact-info-title " +
+  viewContactSelectInfoTitle: ".view-contact-select-info-title " +
   "{" +
   "position: relative;" +
-  "top: 0;" +
+  "top: 7%;" +
   "width: 100%;" +
-  "background-color: #f3f3f3;" +
   "height:" + 150 * widthK + "px;" +
   "}",
 
@@ -8799,6 +8798,18 @@ var css = {
   "color: #8b8b8b;" +
   "}",
 
+
+  //CONTACT SELECT
+
+  viewContactSelectContainer: ".view-contact-select-container " +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.98;" +
+  "height: 100%;" +
+  "width: 101%;" +
+  //"display: none;" +
+  "background-color: #efeff1;" +
+  "}",
 
 }
 

@@ -270,6 +270,8 @@ var RU_LANGUAGES =
   "ViewAddCardDoMainTitle": "Сделать основной",
 
   "ViewContactTitle": "КОНТАКТ",
+  "ViewContactPay": "Оплатить за мобильный",
+  "ViewContactTransfer": "Перевод по номеру телефона",
 
 
 };
