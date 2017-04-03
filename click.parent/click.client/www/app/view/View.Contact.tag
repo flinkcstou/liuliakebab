@@ -32,7 +32,7 @@
       <div class="view-contact-info-icon" style="background-image: url({contactPhoto})">{firstLetter}</div>
       <p class="view-contact-info-text">{firstName} {secondName}</p>
     </div>
-    <p class="view-contact-select-choose-title">ВЫБЕРИТЕ НОМЕР</p>
+    <p class="view-contact-select-choose-title">{window.languages.ViewContactChooseNumber}</p>
 
     <div class="view-contact-select-phone-container">
       <div class="view-contact-select-phone-number-container" each="{i in arrayOfNumbers}">
