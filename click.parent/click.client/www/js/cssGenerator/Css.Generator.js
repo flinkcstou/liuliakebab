@@ -8817,10 +8817,9 @@ var css = {
   "right: 87%;" +
   "}",
 
-  viewContactSelectInfoTitle: ".view-contact-select-info-title " +
+  viewContactInfoTitle: ".view-contact-info-title " +
   "{" +
   "position: relative;" +
-  "top: 7%;" +
   "width: 100%;" +
   "height:" + 150 * widthK + "px;" +
   "}",
@@ -8939,6 +8938,14 @@ var css = {
   "width: 101%;" +
     //"display: none;" +
   "background-color: #efeff1;" +
+  "}",
+
+  viewContactSelectInfoTitle: ".view-contact-select-info-title " +
+  "{" +
+  "position: relative;" +
+  "top: 7%;" +
+  "width: 100%;" +
+  "height:" + 150 * widthK + "px;" +
   "}",
 
   viewContactSelectChooseTitle: ".view-contact-select-choose-title " +
