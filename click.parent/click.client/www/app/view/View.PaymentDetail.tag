@@ -27,7 +27,7 @@
       </div>
       <div class="payment-detail-payment-container">
         <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitlePayFor} {opts.serviceName}:</p>
-        <p class="payment-detail-number">+{opts.phoneNumber}</p>
+        <p class="payment-detail-number">{opts.accountNumber}</p>
       </div>
       <div class="payment-detail-payment-container">
         <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitlePayFrom}</p>
@@ -48,22 +48,7 @@
 
   <script>
     var scope = this;
-    this.titleName = window.languages.ViewPaymentDetailTitle + opts.invoiceId;
-
-    this.on('mount', function () {
-
-    })
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-to-card') {
-      history.arrayOfHistory.push(
-          {
-            "view": 'view-transfer-to-card',
-            "params": ''
-          }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
-
+    scope.titleName = window.languages.ViewPaymentDetailTitle + opts.invoiceId;
 
     goToBack = function () {
       event.preventDefault();

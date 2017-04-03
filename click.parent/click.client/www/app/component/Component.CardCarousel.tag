@@ -11,7 +11,8 @@
              ontouchend="invoiceBlockTouchEnd(this.title)" ontouchstart="invoiceBlockTouchStart()">
           <div id="transfer-container" class="invoice-card-info-holder" if="{invoice.is_p2p}">
             <p class="invoice-card-from-label">Получен перевод стредств от:</p>
-            <div class="invoice-card-from-sender-holder">+ {invoice.merchant_phone}</div>
+            <div class="invoice-card-from-sender-holder">{(invoice.service_id == -4)?("+"):("")} {invoice.parameter}
+            </div>
             <p class="invoice-card-date">{invoice.time} {invoice.date}</p>
             <div class="invoice-card-transfer-sum-holder">
               <p class="invoice-card-sum">{invoice.amount}</p>
@@ -22,7 +23,8 @@
             <p class="invoice-card-from-label">Вам выставлен счёт:</p>
             <div class="invoice-card-from-sender-holder">
               <p class="invoice-card-from-sender-service-name">{invoice.service_name}</p>
-              <p class="invoice-card-form-sender-number"> + {invoice.merchant_phone}</p>
+              <p class="invoice-card-form-sender-number"> {(invoice.service_id == -4)?("+"):("")}
+                {invoice.parameter}</p>
             </div>
             <p class="invoice-card-date">{invoice.time} {invoice.date}</p>
             <div class="invoice-card-payment-sum-holder">
@@ -90,13 +92,15 @@
 
           params = {
 
-            phoneNumber: invoice.merchant_phone,
+            phoneNumber: invoice.parameter,
             amount: invoice.amount,
             invoiceId: invoice.invoice_id,
             time: invoice.time,
             date: invoice.date
           };
 
+          history.arrayOfHistory.push({view: "view-transfer-detail"});
+          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
           riotTags.innerHTML = "<view-transfer-detail>";
           riot.mount('view-transfer-detail', params);
         } else {
@@ -106,9 +110,12 @@
             amount: invoice.amount,
             invoiceId: invoice.invoice_id,
             phoneNumber: invoice.merchant_phone,
+            accountNumber: invoice.parameter,
             serviceName: invoice.service_name
           };
 
+          history.arrayOfHistory.push({view: "view-payment-detail"});
+          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
           riotTags.innerHTML = "<view-payment-detail>";
           riot.mount('view-payment-detail', params);
         }
