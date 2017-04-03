@@ -38,7 +38,8 @@
       <div class="account-detail-cover"></div>
 
       <div class="account-detail-buttons-container">
-        <p class="account-detail-button-accept">{window.languages.ViewAccountDetailTitlePay}</p>
+        <p class="account-detail-button-accept" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
+          {window.languages.ViewAccountDetailTitlePay}</p>
         <p class="account-detail-button-cancel" ontouchend="onTouchEndDecline()" ontouchstart="onTouchStartDecline()">
           {window.languages.ViewAccountDetailTitleDecline}</p>
       </div>
@@ -48,7 +49,16 @@
   </div>
 
   <script>
-    var scope = this;
+    var scope = this,
+        touchStartDeclineX,
+        touchStartDeclineY,
+        touchEndDeclineX,
+        touchEndDeclineY,
+        touchStartAcceptX,
+        touchStartAcceptY,
+        touchEndAcceptX,
+        touchEndAcceptY;
+
     scope.titleName = window.languages.ViewPaymentDetailTitle + opts.invoiceId;
 
     goToBack = function (doNotPrevent) {
@@ -92,6 +102,59 @@
           onSuccess: function (result) {
 
             console.log("result of invoice transfer decline", result);
+
+            if (result[0][0].error == 0) {
+              goToBack(true);
+            }
+            else {
+              alert(result[0][0].error_note);
+            }
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+      }
+    };
+
+    onTouchStartAccept = function () {
+
+      touchStartAcceptX = event.changedTouches[0].pageX;
+      touchStartAcceptY = event.changedTouches[0].pageY;
+    };
+
+    onTouchEndAccept = function () {
+
+      touchEndAcceptX = event.changedTouches[0].pageX;
+      touchEndAcceptY = event.changedTouches[0].pageY;
+
+      if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
+          Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
+
+        var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+        var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+        var sessionKey = loginInfo.session_key;
+        var accountId = scope.tags["component-pincards"].getAccountCardId();
+
+        console.log("Account ID for accepting the payment invoice", accountId);
+
+        if (accountId == undefined) return;
+
+        window.api.call({
+          method: 'invoice.action',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            invoice_id: opts.invoiceId,
+            action: invoiceActions.ACCEPT,
+            account_id: accountId
+          },
+          scope: this,
+          onSuccess: function (result) {
+
+            console.log("result of invoice transfer accept", result);
 
             if (result[0][0].error == 0) {
               goToBack(true);

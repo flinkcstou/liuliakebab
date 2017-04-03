@@ -28,6 +28,7 @@
 
     scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
     scope.checked = false;
+    scope.cardId = undefined;
 
     console.log(' scope.cardsArray', scope.cardsArray)
 
@@ -43,11 +44,11 @@
     chooseCardTouchStart = function () {
 
       touchStartY = event.changedTouches[0].pageY;
-
     }
 
-
     chooseCardTouchEnd = function (id) {
+
+      scope.cardId = id;
 
       touchEndY = event.changedTouches[0].pageY;
 
@@ -70,6 +71,11 @@
       else return
 
     }
+
+    scope.getAccountCardId = function () {
+
+      return scope.cardId;
+    };
 
 
   </script>

@@ -7503,7 +7503,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 130 * widthK + "px;" +
+  "height:" + 90 * widthK + "px;" +
   "bottom: 0;" +
   "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
@@ -7605,7 +7605,7 @@ var css = {
 
   changedHeightForPaymentDetail: ".changed-height-for-payment-detail" +
   "{" +
-  "height: 40%;" +
+  "height: 48%;" +
   "}",
 
   paymentDetailPaymentIcon: ".payment-detail-payment-icon" +
@@ -8804,17 +8804,8 @@ var css = {
   "overflow-x: hidden; " +
   "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
+  "background-position-y:" + 742 * widthK + "px;" +
   "background-size: 100%;" +
-  "}",
-
-  invoiceHistoryDetailContainerPayment: ".invoice-history-detail-container-payment" +
-  "{" +
-  "background-position-y:" + 471 * widthK + "px;" +
-  "}",
-
-  invoiceHistoryDetailContainerTransfer: ".invoice-history-detail-container-transfer" +
-  "{" +
-  "background-position-y:" + 635 * widthK + "px;" +
   "}",
 
   invoiceHistoryDetailInvoiceContainer: ".invoice-history-detail-invoice-container" +
@@ -8871,15 +8862,6 @@ var css = {
   "width: 100%;" +
   "bottom: 0;" +
   "background-color: #f4f4f4;" +
-  "}",
-
-  invoiceHistoryDetailCoverPayment: ".invoice-history-detail-cover-payment" +
-  "{" +
-  "height:" + 260 * widthK + "px;" +
-  "}",
-
-  invoiceHistoryDetailCoverTransfer: ".invoice-history-detail-cover-transfer" +
-  "{" +
   "height:" + 100 * widthK + "px;" +
   "}",
 
