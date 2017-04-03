@@ -327,7 +327,16 @@
 //              }
               var date = new Date(result[1][i].created);
               var dateStr = date.getDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getMonth()] + ' ' + date.getFullYear();
-              result[1][i].paymentTime = date.getHours() + ':' + date.getMinutes();
+              if (date.getMinutes() < 10 && date.getHours() < 10) {
+                result[1][i].paymentTime = '0' + date.getHours() + ':' + '0' + date.getMinutes();
+              } else if (date.getMinutes() < 10 && date.getHours() >= 10) {
+                result[1][i].paymentTime = date.getHours() + ':' + '0' + date.getMinutes();
+              } else if (date.getMinutes() >= 10 && date.getHours() < 10) {
+                result[1][i].paymentTime = '0' + date.getHours() + ':' + date.getMinutes();
+              } else {
+                result[1][i].paymentTime = date.getHours() + ':' + date.getMinutes();
+              }
+
 
               if (!scope.paymentsMap[dateStr]) {
                 scope.paymentsMap[dateStr] = [];
@@ -461,7 +470,7 @@
           position = 50;
         }
         else {
-          position = 40;
+          position = 50;
         }
         var width = 160;
         if ((alpha >= 30 && alpha < 125) || (alpha >= 205 && alpha < 335)) {

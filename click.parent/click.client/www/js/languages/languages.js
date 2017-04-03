@@ -5,6 +5,7 @@ localStorage.setItem('settings_language', 'ru');
 var RU_LANGUAGES =
 {
   "CodeOfCountry": "998",
+  "Currency": "сум",
 
   "ComponentBankOperationsPay": "ОПЛАТА",
 
@@ -92,6 +93,7 @@ var RU_LANGUAGES =
   "ViewPayTransferCardTextField": "Укажите номер карты получателя:",
   "ViewPayTransferNext": "ДАЛЕЕ",
   "ViewPayTransferTitle": "ПЕРЕВОДЫ",
+  "ViewPayTransferCardOwnerTitle": "Владелец:",
 
 
   "ViewTransferTwoTax": "Комиссия: ",
@@ -268,6 +270,8 @@ var RU_LANGUAGES =
   "ViewAddCardDoMainTitle": "Сделать основной",
 
   "ViewContactTitle": "КОНТАКТ",
+  "ViewContactPay": "Оплатить за мобильный",
+  "ViewContactTransfer": "Перевод по номеру телефона",
 
 
 };

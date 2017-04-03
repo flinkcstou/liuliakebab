@@ -82,7 +82,7 @@
       if (checkChosenCard) {
         arrayForTransfer.push(chosenCard)
         riotTags.innerHTML = "<view-transfer-stepfour>";
-        riot.mount('view-transfer-stepfour', [arrayForTransfer]);
+        riot.mount('view-transfer-stepfour', [arrayForTransfer,opts[3]]);
       }
       else
         alert('Выберите карту')

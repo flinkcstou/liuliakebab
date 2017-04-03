@@ -97,6 +97,10 @@
                id="cardInputId" class="transfer-card-number-input-part" type="tel"
                maxlength="19" onkeydown="searchCard()" onkeyup="cardOnKeyUp()"/>
       </div>
+      <div class="transfer-card-owner-container">
+        <p class="transfer-card-owner-title">{window.languages.ViewPayTransferCardOwnerTitle}</p>
+        <p class="transfer-card-owner-info">{cardOwner}</p>
+      </div>
 
       <div id="firstCardSuggestionId" class="transfer-contact-found-container-one"
            ontouchend="firstCardSuggestionBlock()">
@@ -589,6 +593,7 @@
 
     }
 
+    scope.cardOwner = '';
     cardOnKeyUp = function () {
       var arrayOfCards = [];
       if (JSON.parse(localStorage.getItem('transferCards'))) {
@@ -602,6 +607,37 @@
         thirdCardSuggestionId.style.display = 'none';
         fourthCardSuggestionId.style.display = 'none';
         fifthCardSuggestionId.style.display = 'none';
+
+        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+        window.api.call({
+          method: 'p2p.card.info',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            card_number: cardInputId.value.replace(/\s/g, ''),
+
+          },
+
+          scope: this,
+
+          onSuccess: function (result) {
+            if (result[0][0].error == 0) {
+              console.log("result of P2P CARD INFO ", result[1][0].card_owner);
+              scope.cardOwner = result[1][0].card_owner;
+              riot.update()
+            }
+            else
+              alert(result[0][0].error_note);
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+
         return
       }
       else {
@@ -955,33 +991,6 @@
             return
           }
           else {
-            var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-            var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-
-            window.api.call({
-              method: 'p2p.card.info',
-              input: {
-                session_key: sessionKey,
-                phone_num: phoneNumber,
-                card_number: cardNumberForTransfer.replace(/\s/g, ''),
-
-              },
-
-              scope: this,
-
-              onSuccess: function (result) {
-                if (result[0][0].error == 0) {
-//                  console.log("result of P2P CARD INFO ", result);
-                }
-                else
-                  alert(result[0][0].error_note);
-              },
-
-              onFail: function (api_status, api_status_message, data) {
-                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                console.error(data);
-              }
-            });
             this.riotTags.innerHTML = "<view-transfer-steptwo>";
             riot.mount('view-transfer-steptwo', [
               {
