@@ -1143,6 +1143,10 @@ var css = {
   "font-size:" + 28 * widthK + "px;" +
   "width:" + 395 * widthK + "px;" +
   "height:" + 35 * widthK + "px;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "max-width:" + 365 * widthK + "px;" +
+  "white-space: nowrap;" +
   "}",
 
   invoiceCardFromSenderServiceName: ".invoice-card-from-sender-service-name" +
@@ -1155,9 +1159,13 @@ var css = {
   "white-space: nowrap;" +
   "}",
 
-  invoiceCardFormSenderNumber: ".invoice-card-form-sender-number" +
+  invoiceCardFromSenderNumber: ".invoice-card-from-sender-number" +
   "{" +
   "margin: 0;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "max-width:" + 295 * widthK + "px;" +
+  "white-space: nowrap;" +
   "}",
 
   invoiceCardDate: ".invoice-card-date" +
