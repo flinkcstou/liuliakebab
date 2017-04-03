@@ -75,3 +75,7 @@ modeOfApp.offlineMode = false;
 
 window.componentDeleteCard = {};
 
+window.invoiceActions = {};
+invoiceActions.ACCEPT = 1;
+invoiceActions.DECLINE = 2;
+
