@@ -185,8 +185,15 @@
 
     this.on('mount', function () {
 
-      if(opts){
+      if (opts) {
         contactPhoneNumberId.value = opts.number
+        if (contactPhoneNumberId.value == 9) {
+          firstSuggestionBlockId.style.display = 'none';
+          secondSuggestionBlockId.style.display = 'none';
+          thirdSuggestionBlockId.style.display = 'none';
+          fourthSuggestionBlockId.style.display = 'none';
+          fifthSuggestionBlockId.style.display = 'none';
+        }
       }
 
       if (viewTransfer.type == 2) {

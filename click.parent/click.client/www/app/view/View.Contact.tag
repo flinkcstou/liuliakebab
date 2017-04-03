@@ -93,6 +93,7 @@
       event.preventDefault()
       event.stopPropagation()
       console.log('NUMBER', number)
+      number = number.toString();
 
       var maskOne = /[0-9]/g;
 
@@ -101,7 +102,7 @@
       for (var i in digits) {
         phone += digits[i]
       }
-      phone = phone.substring(3, phone.length);
+      phone = phone.substring(phone.length - 9, phone.length);
 
 
       if (goToPay) {
@@ -121,14 +122,25 @@
       goToPay = false;
       goToTransfer = true;
 
-      if (scope.arrayOfNumbers)
+      if (scope.arrayOfNumbers) {
+
+        var maskOne = /[0-9]/g;
+
+        var digits = scope.arrayOfNumbers[0].value.match(maskOne);
+        var phone = '';
+        for (var i in digits) {
+          phone += digits[i]
+        }
+        phone = phone.substring(phone.length - 9, phone.length);
+
         if (scope.arrayOfNumbers.length > 1) {
           contactSelectContainerId.style.display = 'block'
         }
         else {
           riotTags.innerHTML = "<view-transfer>";
-          riot.mount('view-transfer', {number: scope.arrayOfNumbers[0].value});
+          riot.mount('view-transfer', {number: phone});
         }
+      }
 
     }
 
