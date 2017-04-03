@@ -23,7 +23,8 @@
       <div class="transferfour-field-sum">
         <p class="transferfour-amount-field">{window.languages.ViewTransferFourAmountOfPay}</p>
         <p class="transferfour-amount-input">{maskSum} {objectCardForTransfer.currency}</p>
-        <p class="transferfour-tax-field">{window.languages.ViewTransferFourTax}</p>
+        <p class="transferfour-tax-field">{window.languages.ViewTransferFourTax} {tax}
+          {objectCardForTransfer.currency}</p>
       </div>
       <div id="categoryContainerId" class="transferfour-category-container">
         <p class="transferfour-text-field">{window.languages.ViewTransferFourCategory}</p>
@@ -101,6 +102,8 @@
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = false;
 
+    console.log(opts)
+    scope.tax = opts[1];
     scope.errorMessageFromTransfer = '';
 
     scope.objectTypeForTransfer = opts[0][0];

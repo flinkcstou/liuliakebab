@@ -5,6 +5,7 @@ localStorage.setItem('settings_language', 'ru');
 var RU_LANGUAGES =
 {
   "CodeOfCountry": "998",
+  "Currency": "сум",
 
   "ComponentBankOperationsPay": "ОПЛАТА",
 
