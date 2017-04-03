@@ -1141,6 +1141,8 @@ var css = {
   "color: #8f8f8f;" +
   "margin: 0 0 0 " + 20 * widthK + "px;" +
   "font-size:" + 28 * widthK + "px;" +
+  "width:" + 395 * widthK + "px;" +
+  "height:" + 35 * widthK + "px;" +
   "}",
 
   invoiceCardFromSenderServiceName: ".invoice-card-from-sender-service-name" +
