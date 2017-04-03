@@ -16,7 +16,11 @@
 
     <component-pincards></component-pincards>
     <div class="pincard-bottom-container">
-      <div class="pincard-help-text">{window.languages.ViewServicePinCardHelpText}</div>
+
+      <div class="pincard-freind-help-container">
+        <div class="pincard-friend-help-text">{window.languages.ViewServicePinCardHelpText}</div>
+      </div>
+
       <div class="pincard-button-enter"
            ontouchend="goToPayConfirmView()">
         <div class="pincard-button-enter-label">{window.languages.ViewServicePageEnterLabel}</div>

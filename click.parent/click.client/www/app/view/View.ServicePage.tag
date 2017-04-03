@@ -249,41 +249,41 @@
 
 //      if (!localStorage.getItem('click_client_currency_rate')) {
 //        console.log("no currency rate in localStorage");
-        window.api.call({
-          method: 'rate.convert',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            amount: 1
-          },
+      window.api.call({
+        method: 'rate.convert',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          amount: 1
+        },
 
-          scope: this,
+        scope: this,
 
-          onSuccess: function (result) {
-            console.log('rate.convert', result);
-            if (result[0][0].error == 0) {
-              scope.currencyRate = result[1][0].current_rate;
+        onSuccess: function (result) {
+          console.log('rate.convert', result);
+          if (result[0][0].error == 0) {
+            scope.currencyRate = result[1][0].current_rate;
 //              console.log("API returned = ", scope.currencyRate);
 //              localStorage.setItem('click_client_currency_rate', scope.currencyRate);
 
-              riot.update(scope.currencyRate);
-            }
-            else {
-              alert(result[0][0].error_note);
-            }
-          },
-
-          onFail: function (api_status, api_status_message, data) {
-            console.log('rate.convert');
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
+            riot.update(scope.currencyRate);
           }
-        });
-      }
+          else {
+            alert(result[0][0].error_note);
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.log('rate.convert');
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+//      }
 //    else {
-    //        scope.currencyRate = localStorage.getItem('click_client_currency_rate');
-    //        console.log("currency rate is in localStorage=", scope.currencyRate);
-    //      }
+      //        scope.currencyRate = localStorage.getItem('click_client_currency_rate');
+      //        console.log("currency rate is in localStorage=", scope.currencyRate);
+      //      }
 
       blockAmountCalculatorId.style.display = 'block';
       riot.update(blockAmountCalculatorId);

@@ -3603,7 +3603,18 @@ var css = {
   "background-image: url(resources/icons/ViewService/unchecked.png);" +
   "}",
 
-  pincardHelpText: ".pincard-help-text" +
+  pincardFriendHelpContainer: ".pincard-friend-help-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 50%;" +
+  "height: 46%;" +
+  "top: 10%;" +
+    //"bottom:0;" +
+  "background-color: grey;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
+  "}",
+
+  pincardFriendHelpText: ".pincard-friend-help-text" +
   "{" +
   "top: 35.7%;" +
   "position: absolute;" +
