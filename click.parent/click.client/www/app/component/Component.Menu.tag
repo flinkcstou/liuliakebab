@@ -34,7 +34,7 @@
       <div class="side-menu-containers-name side-menu-containers-name-autopayment">Автоплатеж</div>
     </div>
 
-    <div class="side-menu-scanner-qr-container">
+    <div class="side-menu-scanner-qr-container" ontouchstart="goToQrScannerStart()" ontouchend="goToQrScannerEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-scanner-qr"></div>
       <div class="side-menu-containers-name side-menu-containers-name-scanner-qr">Сканер QR-кода</div>
     </div>
@@ -121,8 +121,6 @@
 //      event.stopPropagation();
       touchEndX = event.changedTouches[0].pageX;
       timeEndX = event.timeStamp.toFixed(0);
-
-      console.log('touchEndMove', touchEndMove)
 
       if ((Math.abs(touchEndMove) > 230 * widthK)) {
         closeMenu();
@@ -211,6 +209,49 @@
 
     callToClickTouchStart = function () {
       callTouchStartX = event.changedTouches[0].pageX;
+    }
+
+
+    var qrScannerTouchStartX, qrScannerTouchEndX
+
+    goToQrScannerEnd = function () {
+      qrScannerTouchEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX < 20)) {
+//        closeMenu()
+        if (device.platform != 'BrowserStand') {
+          cordova.plugins.barcodeScanner.scan(
+            function (result) {
+              console.log(result)
+              alert("We got a barcode\n" +
+                "Result: " + result.text + "\n" +
+                "Format: " + result.format + "\n" +
+                "Cancelled: " + result.cancelled);
+            },
+            function (error) {
+              alert("Scanning failed: " + error);
+            },
+            {
+              preferFrontCamera: false, // iOS and Android
+              showFlipCameraButton: true, // iOS and Android
+              showTorchButton: true, // iOS and Android
+              torchOn: false, // Android, launch with the torch switched on (if available)
+              prompt: "Place a qrcode inside the scan area", // Android
+              resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+              formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
+              orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
+              disableAnimations: true, // iOS
+              disableSuccessBeep: false // iOS
+            }
+          );
+        }
+      }
+      else sideMenuTouchEnd()
+
+    }
+
+    goToQrScannerStart = function () {
+      qrScannerTouchStartX = event.changedTouches[0].pageX;
     }
 
     var settingsTouchStartX, settingsTouchEndX
