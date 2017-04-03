@@ -6829,10 +6829,10 @@ var css = {
   settingsAboutProgramPageTitle: ".settings-about-program-page-title " +
   "{" +
   "position: absolute;" +
-  "top:" + -12 * widthK + "px;" +
+  "top:" + 0 * widthK + "px;" +
   "right:" + 28 * widthK + "px;" +
   "left:" + 25 * widthK + "px;" +
-  "height:" + 100 * widthK + "px;" +
+  "height:" + 88 * widthK + "px;" +
   "background: transparent;" +
     //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
@@ -6843,7 +6843,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 34 * widthK + "px; " +
   "left:" + 77 * widthK + "px; " +
-  "top:" + 38 * widthK + "px; " +
+  "top:" + 26 * widthK + "px; " +
   "margin: 0;  " +
   "color: #fffaf9;" +
   "}",
