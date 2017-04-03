@@ -16,7 +16,7 @@
         {window.languages.ViewSettingsAboutProgramUserAgreementTitleName}</p>
       <div class="settings-about-program-user-agreement-icon"></div>
     </div>
-    <div class="settings-about-program-rank-container">
+    <div class="settings-about-program-rank-container" ontouchend="rankInGooglePlayTouchEnd()">
       <p class="settings-about-program-rank-title">{window.languages.ViewSettingsAboutProgramRankTitleName}</p>
       <div class="settings-about-program-rank-icon"></div>
     </div>
@@ -49,6 +49,13 @@
 
       riotTags.innerHTML = "<view-settings-user-agreement>";
       riot.mount("view-settings-user-agreement");
+    }
+
+    rankInGooglePlayTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      window.open('https://play.google.com/store/apps/details?id=air.com.ssdsoftwaresolutions.clickuz')
     }
 
 
