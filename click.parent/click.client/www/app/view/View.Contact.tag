@@ -94,13 +94,23 @@
       event.stopPropagation()
       console.log('NUMBER', number)
 
+      var maskOne = /[0-9]/g;
+
+      var digits = number.match(maskOne);
+      var phone = '';
+      for (var i in digits) {
+        phone += digits[i]
+      }
+      phone = phone.substring(3, phone.length);
+
+
       if (goToPay) {
         riotTags.innerHTML = "<view-pay>";
         riot.mount('view-pay');
       }
       else {
         riotTags.innerHTML = "<view-transfer>";
-        riot.mount('view-transfer');
+        riot.mount('view-transfer', {number: phone});
       }
     }
 
@@ -117,7 +127,7 @@
         }
         else {
           riotTags.innerHTML = "<view-transfer>";
-          riot.mount('view-transfer');
+          riot.mount('view-transfer', {number: scope.arrayOfNumbers[0].value});
         }
 
     }

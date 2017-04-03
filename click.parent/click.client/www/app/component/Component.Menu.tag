@@ -215,6 +215,8 @@
     var qrScannerTouchStartX, qrScannerTouchEndX
 
     goToQrScannerEnd = function () {
+
+
       qrScannerTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX < 20)) {
@@ -223,10 +225,18 @@
           cordova.plugins.barcodeScanner.scan(
             function (result) {
               console.log(result)
-              alert("We got a barcode\n" +
-                "Result: " + result.text + "\n" +
-                "Format: " + result.format + "\n" +
-                "Cancelled: " + result.cancelled);
+
+              var string = result.text;
+
+              string = string.split('?')[1]
+              string = string.split('&')
+              var id = '';
+              for (var i in string) {
+                if (string[i].split('=')[0] == 'id') {
+                  id = string[i].split('=')[1];
+                  console.log('ID', id)
+                }
+              }
             },
             function (error) {
               alert("Scanning failed: " + error);

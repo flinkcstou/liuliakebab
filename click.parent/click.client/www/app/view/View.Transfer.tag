@@ -185,11 +185,9 @@
 
     this.on('mount', function () {
 
-//      firstSuggestionBlockId.style.display = 'block';
-//      secondSuggestionBlockId.style.display = 'block';
-//      thirdSuggestionBlockId.style.display = 'block';
-//      fourthSuggestionBlockId.style.display = 'block';
-//      fifthSuggestionBlockId.style.display = 'block';
+      if(opts){
+        contactPhoneNumberId.value = opts.number
+      }
 
       if (viewTransfer.type == 2) {
 //        console.log('ON MOUNT')
@@ -275,6 +273,7 @@
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
+    console.log('OPTS', opts)
 
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');

@@ -6981,7 +6981,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
   "background-position: center;" +
-  "background-color: #017de8;" +
+  "background-color: #00a8f1;" +
   "color: white;" +
   "border-radius: 50%;" +
   "text-align: center;" +
