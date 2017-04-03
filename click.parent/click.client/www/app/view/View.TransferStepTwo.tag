@@ -12,7 +12,8 @@
     </div>
 
     <div class="transfertwo-contact-phone-field">
-      <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax}{tax}</p>
+      <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
+        {window.languages.Currency}</p>
       <input maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
              onmouseup="sumMouseUp()"
              type="tel" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
@@ -230,7 +231,7 @@
       var comment = {"comment": commentTextId.value};
 
       riotTags.innerHTML = "<view-transfer-stepthree>";
-      riot.mount('view-transfer-stepthree', [objectForTransfer, sum, comment]);
+      riot.mount('view-transfer-stepthree', [objectForTransfer, sum, comment, scope.tax]);
     }
 
 

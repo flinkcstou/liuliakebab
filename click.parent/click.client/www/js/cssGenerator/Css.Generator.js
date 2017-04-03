@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/chart_crop.png);" +
+    //"background-image: url(resources/draft/contact2_crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -2682,7 +2682,7 @@ var css = {
   "background-position-y: center;" +
   "background-position-x:center;" +
   "background-size: 27%;" +
-  "top:" + 12 * widthK + "px;" +
+  "top:" + 0 * widthK + "px;" +
   "}",
 
   payCategoryContainer: ".pay-category-container" +
@@ -4227,6 +4227,41 @@ var css = {
   "background-color: transparent;" +
   "}",
 
+  transferCardOwnerContainer: ".transfer-card-owner-container " +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "height: 20%;" +
+  "top: 32%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "border-bottom: 1px solid lightgrey;" +
+  "border-top: 1px solid lightgrey;" +
+  "}",
+
+  transferCardOwnerTitle: ".transfer-card-owner-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 22%;" +
+  "left: 3%;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "}",
+
+  transferCardOwnerInfo: ".transfer-card-owner-info " +
+  "{" +
+  "position: absolute;" +
+  "top: 47%;" +
+  "left: 3%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: #626062;" +
+  "}",
+
   transferMenuContainerCard: ".transfer-menu-container-card" +
   "{" +
   "position: absolute;" +
@@ -4486,21 +4521,21 @@ var css = {
   transferNextButtonInnerContainer: ".transfer-next-button-inner-container" +
   "{" +
   "position: relative;" +
-  "width: 63%;" +
-  "height: 8%;" +
+  "width: 38%;" +
+  "height: 5%;" +
   "margin-right: auto;" +
-  "border-radius: " + 80 * widthK + "px; " +
+    //"border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
-  "background-color: rgb(1, 124, 227);" +
-  "top: 28%;" +
+  "background-color: #00a8f1;" +
+  "top: 42%;" +
   "}",
 
   transferNextButtonLabel: ".transfer-next-button-label" +
   "{" +
   "position: relative;" +
-  "top: 18%;" +
-  "width: 30%;" +
-  "font-size:  " + 45 * widthK + "px; " +
+  "top: 14%;" +
+  "width: 36%;" +
+  "font-size:  " + 32 * widthK + "px; " +
   "margin: auto;" +
   "color: white;" +
   "}",
@@ -4617,12 +4652,12 @@ var css = {
   transferTwoNextButtonInnerContainer: ".transfertwo-next-button-inner-container" +
   "{" +
   "position: relative;" +
-  "width: 63%;" +
-  "height: 8%;" +
+  "width: 38%;" +
+  "height: 5%;" +
   "margin-right: auto;" +
-  "border-radius: " + 80 * widthK + "px; " +
+    //"border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
-  "background-color: rgb(1, 124, 227);" +
+  "background-color: #00a8f1;" +
   "top: 45%;" +
   "}",
 
@@ -4630,9 +4665,9 @@ var css = {
   transferTwoNextButtonLabel: ".transfertwo-next-button-label" +
   "{" +
   "position: relative;" +
-  "top: 18%;" +
-  "width: 30%;" +
-  "font-size:  " + 45 * widthK + "px; " +
+  "top: 14%;" +
+  "width: 38%;" +
+  "font-size:  " + 32 * widthK + "px; " +
   "margin: auto;" +
   "color: white;" +
   "}",
@@ -4744,21 +4779,21 @@ var css = {
   transferThreeNextButtonInnerContainer: ".transferthree-next-button-inner-container" +
   "{" +
   "position: relative;" +
-  "width: 63%;" +
-  "height: 8%;" +
+  "width: 38%;" +
+  "height: 5%;" +
   "margin-right: auto;" +
-  "border-radius: " + 80 * widthK + "px; " +
+    //"border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
-  "background-color: rgb(1, 124, 227);" +
+  "background-color: #00a8f1;" +
   "top: 20%;" +
   "}",
 
   transferThreeNextButtonLabel: ".transferthree-next-button-label" +
   "{" +
   "position: relative;" +
-  "top: 18%;" +
-  "width: 30%;" +
-  "font-size:  " + 45 * widthK + "px; " +
+  "top: 14%;" +
+  "width: 38%;" +
+  "font-size:  " + 32 * widthK + "px; " +
   "margin: auto;" +
   "color: white;" +
   "}",
@@ -4891,6 +4926,9 @@ var css = {
   "top: 27%;" +
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   transferFourDetailText: ".transferfour-detail-text" +
@@ -5005,26 +5043,27 @@ var css = {
 
   transferFourButtonEnter: ".transferfour-button-enter" +
   "{" +
-  "bottom: 0;" +
-  "position: absolute;" +
-  "width: 52%;" +
-  "height: 32%;" +
-  "border-radius:" + 80 * widthK + "px; " +
-  "left: 24%;" +
+  "position: relative;" +
+  "width: 38%;" +
+  "height: 5%;" +
+  "top: 80%;" +
   "margin: 0;" +
-  "background-color: rgb(1, 124, 227);" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+    //"border-radius:" + 80 * widthK + "px; " +
+  "background-color: #00a8f1;" +
   "}",
 
   transferFourButtonEnterLabel: ".transferfour-button-enter-label" +
   "{" +
   "position: relative;" +
-  "top: 24%;" +
+  "top: 15%;" +
     //"left: 1%;" +
-  "letter-spacing:" + 3 * widthK + "px;" +
-  "font-size: " + 36 * widthK + "px; " +
+    //"letter-spacing:" + 3 * widthK + "px;" +
+  "font-size: " + 32 * widthK + "px; " +
   "color: white;" +
   "margin: 0;" +
-  "width: 60%;" +
+  "width: 63%;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "text-align: center;" +
@@ -6829,10 +6868,10 @@ var css = {
   settingsAboutProgramPageTitle: ".settings-about-program-page-title " +
   "{" +
   "position: absolute;" +
-  "top:" + -12 * widthK + "px;" +
+  "top:" + 0 * widthK + "px;" +
   "right:" + 28 * widthK + "px;" +
   "left:" + 25 * widthK + "px;" +
-  "height:" + 100 * widthK + "px;" +
+  "height:" + 88 * widthK + "px;" +
   "background: transparent;" +
     //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
@@ -6843,7 +6882,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 34 * widthK + "px; " +
   "left:" + 77 * widthK + "px; " +
-  "top:" + 38 * widthK + "px; " +
+  "top:" + 26 * widthK + "px; " +
   "margin: 0;  " +
   "color: #fffaf9;" +
   "}",
@@ -6977,6 +7016,7 @@ var css = {
   settingsSecurityCheckButton: ".settings-security-check-button " +
   "{" +
   "position: absolute;" +
+  "display: none;" +
   "width:" + 135 * widthK + "px;" +
   "height:" + 92 * widthK + "px;" +
   "right:" + -36 * widthK + "px;" +
@@ -6986,7 +7026,7 @@ var css = {
   "background-position-y: center;" +
   "background-position-x:" + 54 * widthK + "px;" +
   "background-size: 31%;" +
-  "top: " + 12 * widthK + "px;" +
+  "top: " + 0 * widthK + "px;" +
   "}",
 
   settingsSecurityCheckIcon: ".settings-security-check-icon" +
@@ -7230,7 +7270,7 @@ var css = {
   "bottom: 0;" +
   "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
-  "background-size:" + 1232 * widthK + "px;" +
+  "background-size: 100%;" +
   "padding-top:" + 60 * widthK + "px;" +
   "}",
 
@@ -7442,11 +7482,11 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 90 * widthK + "px;" +
+  "height:" + 130 * widthK + "px;" +
   "bottom: 0;" +
   "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
-  "background-size:" + 1232 * widthK + "px;" +
+  "background-size: 100%;" +
   "padding-top:" + 60 * widthK + "px;" +
   "}",
 
@@ -8681,14 +8721,29 @@ var css = {
   "background-position: center;" +
   "}",
 
-  invoiceHistoryDetailPaymentIcon: "invoice-history-detail-payment-icon" +
+  invoiceHistoryDetailGeneralBackButton: ".invoice-history-detail-general-back-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 120 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y:" + 31 * widthK + "px; " +
+  "background-position-x:" + 41 * widthK + "px; " +
+  "background-size: 16%;" +
+  "left: -3%;" +
+  "top: 0;" +
+  "}",
+
+  invoiceHistoryDetailPaymentIcon: ".invoice-history-detail-payment-icon" +
   "{" +
   "background-image: url(resources/icons/bank-operations/payment.png);" +
   "}",
 
-  invoiceHistoryDetailTransferIcon: "invoice-history-detail-transfer-icon" +
+  invoiceHistoryDetailTransferIcon: ".invoice-history-detail-transfer-icon" +
   "{" +
-  "background-image: url(resources/icons/bank-operations/transfer.png);" +
+  "background-image: url(resources/icons/bank-operations/transfers.png);" +
   "}",
 
   invoiceHistoryDetailTitlePartOne: ".invoice-history-detail-title-part-one" +
@@ -8717,16 +8772,130 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "}",
 
-  invoiceHistoryDetailContainer: "invoice-history-detail-container" +
+  invoiceHistoryDetailContainer: ".invoice-history-detail-container" +
   "{" +
   "position: absolute;" +
-    //"height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
   "top:" + 340 * widthK + "px; " +
   "bottom:0; " +
   "background-color: #ffffff; " +
   "overflow-y: hidden; " +
   "overflow-x: hidden; " +
+  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "}",
+
+  invoiceHistoryDetailContainerPayment: ".invoice-history-detail-container-payment" +
+  "{" +
+  "background-position-y:" + 471 * widthK + "px;" +
+  "}",
+
+  invoiceHistoryDetailContainerTransfer: ".invoice-history-detail-container-transfer" +
+  "{" +
+  "background-position-y:" + 635 * widthK + "px;" +
+  "}",
+
+  invoiceHistoryDetailInvoiceContainer: ".invoice-history-detail-invoice-container" +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "height:" + 96 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "border-bottom: 1px solid lightgrey;" +
+  "}",
+
+  invoiceHistoryDetailInvoiceTitle: ".invoice-history-detail-invoice-title" +
+  "{" +
+  "position: absolute;" +
+  "top: 28%;" +
+  "left: 3%;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "}",
+
+  invoiceHistoryDetailStatus: ".invoice-history-detail-status " +
+  "{" +
+  "position: absolute;" +
+  "top: 51%;" +
+  "left: 3%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: #f3ba31;" +
+  "}",
+
+  invoiceHistoryDetailStatusWait: ".invoice-history-detail-status-wait" +
+  "{" +
+  "color: #f3ba31;" +
+  "}",
+
+  invoiceHistoryDetailStatusSuccess: ".invoice-history-detail-status-success" +
+  "{" +
+  "color: #6ABD38;" +
+  "}",
+
+  invoiceHistoryDetailStatusDeleted: ".invoice-history-detail-status-deleted" +
+  "{" +
+  "color: #ff6d65;" +
+  "}",
+
+  invoiceHistoryDetailCover: ".invoice-history-detail-cover" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "bottom: 0;" +
+  "background-color: #f4f4f4;" +
+  "}",
+
+  invoiceHistoryDetailCoverPayment: ".invoice-history-detail-cover-payment" +
+  "{" +
+  "height:" + 260 * widthK + "px;" +
+  "}",
+
+  invoiceHistoryDetailCoverTransfer: ".invoice-history-detail-cover-transfer" +
+  "{" +
+  "height:" + 100 * widthK + "px;" +
+  "}",
+
+  invoiceHistoryDetailData: ".invoice-history-detail-data" +
+  "{" +
+  "position: absolute;" +
+  "top: 53%;" +
+  "left: 3%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: grey;" +
+  "}",
+
+  invoiceHistoryDetailSum: ".invoice-history-detail-sum " +
+  "{" +
+  "position: absolute;" +
+  "top: 57%;" +
+  "left: 3%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: #9ec94a;" +
+  "}",
+
+  invoiceHistoryDetailNumber: ".invoice-history-detail-number " +
+  "{" +
+  "position: absolute;" +
+  "top: 57%;" +
+  "left: 3%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: grey;" +
   "}",
 
   //VIEW CONTACT
@@ -8779,12 +8948,11 @@ var css = {
   "right: 87%;" +
   "}",
 
-  viewContactInfoTitle: ".view-contact-info-title " +
+  viewContactSelectInfoTitle: ".view-contact-select-info-title " +
   "{" +
   "position: relative;" +
-  "top: 0;" +
+  "top: 7%;" +
   "width: 100%;" +
-  "background-color: #f3f3f3;" +
   "height:" + 150 * widthK + "px;" +
   "}",
 
@@ -8891,6 +9059,80 @@ var css = {
   "color: #8b8b8b;" +
   "}",
 
+
+  //CONTACT SELECT
+
+  viewContactSelectContainer: ".view-contact-select-container " +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.98;" +
+  "height: 100%;" +
+  "width: 101%;" +
+    //"display: none;" +
+  "background-color: #efeff1;" +
+  "}",
+
+  viewContactSelectChooseTitle: ".view-contact-select-choose-title " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 10.5%;" +
+  "top: 25%;" +
+  //"font-size:" + 29 * widthK + "px;" +
+  //"color: #8b8b8b;" +
+  "}",
+
+  viewContactSelectPhoneNumberContainer: ".view-contact-select-phone-number-container " +
+  "{" +
+  "position: relative;" +
+  "width: 78%;" +
+  "height: 15%;" +
+  "background-color: white;" +
+  "margin: 0;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "margin-top: 1%;" +
+  "}",
+
+  viewContactSelectPhoneNumber: ".view-contact-select-phone-number" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "background-size: contain;" +
+  "left: 9%;" +
+  "top: 36%;" +
+  "color: #a1a1a2;" +
+  "overflow: hidden;" +
+  "width: 84%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "}",
+
+  viewContactSelectPhoneContainer: ".view-contact-select-phone-container " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 800 * heightK + "px;" +
+  "width: 100%;" +
+  "overflow: auto;" +
+  "top: 30%;" +
+    //"display: none;" +
+  "background-color: #efeff1;" +
+  "}",
+
+  viewContactSelectXButton: ".view-contact-select-x-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 135 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "right:" + -36 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewTransfer/banks_close.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 22%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 54 * widthK + "px;" +
+  "background-size: 22%;" +
+  "top: 0;" +
+  "}",
 
 }
 

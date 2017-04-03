@@ -10,15 +10,34 @@
       <div class="view-contact-info-icon" style="background-image: url({contactPhoto})">{firstLetter}</div>
       <p class="view-contact-info-text">{firstName} {secondName}</p>
     </div>
-    <div class="view-contact-pay-transfer-container">
+    <div class="view-contact-pay-transfer-container" ontouchend="contactPayTouchEnd()">
       <div class="view-contact-pay-icon"></div>
-      <p class="view-contact-pay-title">Оплатить за мобильный</p>
+      <p class="view-contact-pay-title">{window.languages.ViewContactPay}</p>
       <div class="view-contact-open-icon"></div>
     </div>
-    <div class="view-contact-pay-transfer-container">
+    <div class="view-contact-pay-transfer-container" ontouchend="contactTransferTouchEnd()">
       <div class="view-contact-transfer-icon"></div>
-      <p class="view-contact-transfer-title">Перевод по номеру телефона</p>
+      <p class="view-contact-transfer-title">{window.languages.ViewContactTransfer}</p>
       <div class="view-contact-open-icon"></div>
+    </div>
+  </div>
+
+  <div class="view-contact-select-container">
+
+    <div class="view-contact-page-title">
+      <div class="view-contact-select-x-button"></div>
+    </div>
+
+    <div class="view-contact-select-info-title">
+      <div class="view-contact-info-icon" style="background-image: url({contactPhoto})">{firstLetter}</div>
+      <p class="view-contact-info-text">{firstName} {secondName}</p>
+    </div>
+    <p class="view-contact-select-choose-title">ВЫБЕРИТЕ НОМЕР</p>
+
+    <div class="view-contact-select-phone-container">
+      <div class="view-contact-select-phone-number-container" each="{i in arrayOfNumbers}">
+        <p class="view-contact-select-phone-number">+{i.value}</p>
+      </div>
     </div>
   </div>
 
@@ -28,11 +47,12 @@
     this.on('mount', function () {
 
     })
-    console.log(opts.object)
+    console.log(opts.object.phoneNumbers)
     scope.firstName = opts.object.contactFname;
     scope.secondName = opts.object.contactLname;
     scope.contactPhoto = opts.object.contactPhoto;
     scope.firstLetter = opts.object.firstLetter;
+    scope.arrayOfNumbers = opts.object.phoneNumbers[0];
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-contact') {
       history.arrayOfHistory.push(
@@ -45,6 +65,26 @@
     }
 
     scope.titleName = window.languages.ViewContactTitle;
+
+    contactPayTouchEnd = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (scope.arrayOfNumbers.length > 1) {
+
+      }
+
+    }
+
+    contactTransferTouchEnd = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (scope.arrayOfNumbers.length > 1) {
+
+      }
+
+    }
 
     goToBack = function () {
       event.preventDefault()

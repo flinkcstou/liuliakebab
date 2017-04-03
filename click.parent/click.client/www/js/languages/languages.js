@@ -5,6 +5,7 @@ localStorage.setItem('settings_language', 'ru');
 var RU_LANGUAGES =
 {
   "CodeOfCountry": "998",
+  "Currency": "сум",
 
   "ComponentBankOperationsPay": "ОПЛАТА",
 
@@ -92,6 +93,7 @@ var RU_LANGUAGES =
   "ViewPayTransferCardTextField": "Укажите номер карты получателя:",
   "ViewPayTransferNext": "ДАЛЕЕ",
   "ViewPayTransferTitle": "ПЕРЕВОДЫ",
+  "ViewPayTransferCardOwnerTitle": "Владелец:",
 
 
   "ViewTransferTwoTax": "Комиссия: ",
@@ -159,6 +161,13 @@ var RU_LANGUAGES =
   "ViewInvoiceHistoryDetailTransferNumberLabel": "Номер перевода:",
   "ViewInvoiceHistoryDetailTransferDateLabel": "Дата перевода:",
   "ViewInvoiceHistoryDetailTransferStatusLabel": "Статус:",
+
+  "ViewInvoiceHistoryDetailPaymentTitle": "ДЕТАЛИ СЧЕТА",
+  "ViewInvoiceHistoryDetailPaymentToNumberLabel": "Счет на оплату",
+  "ViewInvoiceHistoryDetailPaymentAmountLabel": "Cумма оплаты:",
+  "ViewInvoiceHistoryDetailPaymentNumberLabel": "Номер счета:",
+  "ViewInvoiceHistoryDetailPaymentDateLabel": "Дата перевода:",
+  "ViewInvoiceHistoryDetailPaymentStatusLabel": "Статус:",
 
   "ComponentPinResetTextOne": "При смене CLICK-PIN все Ваши карты будут отключены от системы CLICK",
   "ComponentPinResetTextTwo": "Продолжить?",
@@ -268,6 +277,8 @@ var RU_LANGUAGES =
   "ViewAddCardDoMainTitle": "Сделать основной",
 
   "ViewContactTitle": "КОНТАКТ",
+  "ViewContactPay": "Оплатить за мобильный",
+  "ViewContactTransfer": "Перевод по номеру телефона",
 
 
 };

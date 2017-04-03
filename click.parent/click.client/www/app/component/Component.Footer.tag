@@ -74,24 +74,28 @@
     scope.firstContactObject.contactLname = '';
     scope.firstContactObject.contactPhoto = '';
     scope.firstContactObject.firstLetter = '';
+    scope.firstContactObject.phoneNumbers = [];
 
     scope.secondContactObject = {};
     scope.secondContactObject.contactFname = '';
     scope.secondContactObject.contactLname = '';
     scope.secondContactObject.contactPhoto = '';
     scope.secondContactObject.firstLetter = '';
+    scope.secondContactObject.phoneNumbers = [];
 
     scope.thirdContactObject = {};
     scope.thirdContactObject.contactFname = '';
     scope.thirdContactObject.contactLname = '';
     scope.thirdContactObject.contactPhoto = '';
     scope.thirdContactObject.firstLetter = '';
+    scope.thirdContactObject.phoneNumbers = [];
 
     scope.fourContactObject = {};
     scope.fourContactObject.contactFname = '';
     scope.fourContactObject.contactLname = '';
     scope.fourContactObject.contactPhoto = '';
     scope.fourContactObject.firstLetter = '';
+    scope.fourContactObject.phoneNumbers = [];
 
 
     scope.fiveContactObject = {};
@@ -99,6 +103,7 @@
     scope.fiveContactObject.contactLname = '';
     scope.fiveContactObject.contactPhoto = '';
     scope.fiveContactObject.firstLetter = '';
+    scope.fiveContactObject.phoneNumbers = [];
 
     scope.arrayOfPhotos = [];
     scope.arrayOfPhotos.push(scope.firstContactObject);
@@ -255,8 +260,10 @@
         if (arrayOfConnectedContacts[i].photos != null) {
           scope.arrayOfPhotos[i].contactPhoto = arrayOfConnectedContacts[i].photos[0].value;
           scope.arrayOfPhotos[i].firstLetter = '';
+          scope.arrayOfPhotos[i].phoneNumbers.push(arrayOfConnectedContacts[i].phoneNumbers);
         }
         else {
+          scope.arrayOfPhotos[i].phoneNumbers.push(arrayOfConnectedContacts[i].phoneNumbers);
           scope.arrayOfPhotos[i].contactPhoto = '';
           if (arrayOfConnectedContacts[i].name.familyName) {
             scope.arrayOfPhotos[i].firstLetter = arrayOfConnectedContacts[i].name.familyName[0].toUpperCase();
