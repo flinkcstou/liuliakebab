@@ -49,22 +49,7 @@
 
   <script>
     var scope = this;
-    this.titleName = window.languages.ViewTransferDetailTitle;
-
-    this.on('mount', function () {
-
-    })
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-detail') {
-      history.arrayOfHistory.push(
-          {
-            "view": 'view-transfer-detail',
-            "params": ''
-          }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
-
+    scope.titleName = window.languages.ViewTransferDetailTitle;
 
     goToBack = function () {
       event.preventDefault();

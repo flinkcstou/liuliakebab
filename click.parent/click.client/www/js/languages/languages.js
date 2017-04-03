@@ -162,6 +162,13 @@ var RU_LANGUAGES =
   "ViewInvoiceHistoryDetailTransferDateLabel": "Дата перевода:",
   "ViewInvoiceHistoryDetailTransferStatusLabel": "Статус:",
 
+  "ViewInvoiceHistoryDetailPaymentTitle": "ДЕТАЛИ СЧЕТА",
+  "ViewInvoiceHistoryDetailPaymentToNumberLabel": "Счет на оплату",
+  "ViewInvoiceHistoryDetailPaymentAmountLabel": "Cумма оплаты:",
+  "ViewInvoiceHistoryDetailPaymentNumberLabel": "Номер счета:",
+  "ViewInvoiceHistoryDetailPaymentDateLabel": "Дата перевода:",
+  "ViewInvoiceHistoryDetailPaymentStatusLabel": "Статус:",
+
   "ComponentPinResetTextOne": "При смене CLICK-PIN все Ваши карты будут отключены от системы CLICK",
   "ComponentPinResetTextTwo": "Продолжить?",
   "ComponentPinResetTextThree": "Все Ваши карты отключены от системы CLICK",

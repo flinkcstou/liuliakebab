@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/chart_crop.png);" +
+    //"background-image: url(resources/draft/invoice_details2.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -7269,7 +7269,7 @@ var css = {
   "bottom: 0;" +
   "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
-  "background-size:" + 1232 * widthK + "px;" +
+  "background-size: 100%;" +
   "padding-top:" + 60 * widthK + "px;" +
   "}",
 
@@ -7481,11 +7481,11 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 90 * widthK + "px;" +
+  "height:" + 130 * widthK + "px;" +
   "bottom: 0;" +
   "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
-  "background-size:" + 1232 * widthK + "px;" +
+  "background-size: 100%;" +
   "padding-top:" + 60 * widthK + "px;" +
   "}",
 
@@ -8589,14 +8589,29 @@ var css = {
   "background-position: center;" +
   "}",
 
-  invoiceHistoryDetailPaymentIcon: "invoice-history-detail-payment-icon" +
+  invoiceHistoryDetailGeneralBackButton: ".invoice-history-detail-general-back-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 120 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y:" + 31 * widthK + "px; " +
+  "background-position-x:" + 41 * widthK + "px; " +
+  "background-size: 16%;" +
+  "left: -3%;" +
+  "top: 0;" +
+  "}",
+
+  invoiceHistoryDetailPaymentIcon: ".invoice-history-detail-payment-icon" +
   "{" +
   "background-image: url(resources/icons/bank-operations/payment.png);" +
   "}",
 
-  invoiceHistoryDetailTransferIcon: "invoice-history-detail-transfer-icon" +
+  invoiceHistoryDetailTransferIcon: ".invoice-history-detail-transfer-icon" +
   "{" +
-  "background-image: url(resources/icons/bank-operations/transfer.png);" +
+  "background-image: url(resources/icons/bank-operations/transfers.png);" +
   "}",
 
   invoiceHistoryDetailTitlePartOne: ".invoice-history-detail-title-part-one" +
@@ -8634,16 +8649,121 @@ var css = {
   "background-color: #ffffff; " +
   "overflow-y: hidden; " +
   "overflow-x: hidden; " +
+  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "}",
+
+  invoiceHistoryDetailContainerPayment: ".invoice-history-detail-container-payment" +
+  "{" +
+  "background-position-y:" + 471 * widthK + "px;" +
+  "}",
+
+  invoiceHistoryDetailContainerTransfer: ".invoice-history-detail-container-transfer" +
+  "{" +
+  "background-position-y:" + 635 * widthK + "px;" +
   "}",
 
   invoiceHistoryDetailInvoiceContainer: ".invoice-history-detail-invoice-container" +
   "{" +
   "position: relative;" +
   "width: 90%;" +
-  "height:"+ 96*widthK+"px;" +
+  "height:" + 96 * widthK + "px;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "border-bottom: 1px solid lightgrey;" +
+  "}",
+
+  invoiceHistoryDetailInvoiceTitle: ".invoice-history-detail-invoice-title" +
+  "{" +
+  "position: absolute;" +
+  "top: 28%;" +
+  "left: 3%;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "}",
+
+  invoiceHistoryDetailStatus: ".invoice-history-detail-status " +
+  "{" +
+  "position: absolute;" +
+  "top: 51%;" +
+  "left: 3%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: #f3ba31;" +
+  "}",
+
+  invoiceHistoryDetailStatusWait: ".invoice-history-detail-status-wait" +
+  "{" +
+  "color: #f3ba31;" +
+  "}",
+
+  invoiceHistoryDetailStatusSuccess: ".invoice-history-detail-status-success" +
+  "{" +
+  "color: #6ABD38;" +
+  "}",
+
+  invoiceHistoryDetailStatusDeleted: ".invoice-history-detail-status-deleted" +
+  "{" +
+  "color: #ff6d65;" +
+  "}",
+
+  invoiceHistoryDetailCover: ".invoice-history-detail-cover" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "bottom: 0;" +
+  "background-color: #f4f4f4;" +
+  "}",
+
+  invoiceHistoryDetailCoverPayment: ".invoice-history-detail-cover-payment" +
+  "{" +
+  "height:" + 260 * widthK + "px;" +
+  "}",
+
+  invoiceHistoryDetailCoverTransfer: ".invoice-history-detail-cover-transfer" +
+  "{" +
+  "height:" + 100 * widthK + "px;" +
+  "}",
+
+  invoiceHistoryDetailData: ".invoice-history-detail-data" +
+  "{" +
+  "position: absolute;" +
+  "top: 53%;" +
+  "left: 3%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: grey;" +
+  "}",
+
+  invoiceHistoryDetailSum: ".invoice-history-detail-sum " +
+  "{" +
+  "position: absolute;" +
+  "top: 57%;" +
+  "left: 3%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: #9ec94a;" +
+  "}",
+
+  invoiceHistoryDetailNumber: ".invoice-history-detail-number " +
+  "{" +
+  "position: absolute;" +
+  "top: 57%;" +
+  "left: 3%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: grey;" +
   "}",
 
   //VIEW CONTACT

@@ -3,9 +3,8 @@
   <div class="invoice-history-detail-title-container">
     <div class="page-title invoice-history-detail-title">
       <p class="name-title">
-        {(opts.is_p2p)?(languages.ViewInvoiceHistoryDetailTransferTitle):(languages.ViewInvoiceHistoryDetailPaymentTitle)}
-        {opts.invoice_id}</p>
-      <div id="backButton" ontouchstart="goToBack()" class="settings-general-back-button"></div>
+        {(opts.is_p2p)?(languages.ViewInvoiceHistoryDetailTransferTitle):(languages.ViewInvoiceHistoryDetailPaymentTitle)}</p>
+      <div id="backButton" ontouchstart="goToBack()" class="invoice-history-detail-general-back-button"></div>
     </div>
 
     <div
@@ -15,36 +14,64 @@
       {(opts.is_p2p)?(languages.ViewInvoiceHistoryDetailTransferToNumberLabel):(languages.ViewInvoiceHistoryDetailPaymentToNumberLabel)}</p>
 
     <p class="invoice-history-detail-title-phone-number">
-      + {opts.phoneNumber} 998 90 359 39 57</p>
+      {(opts.is_p2p)?("+"):("")} {opts.inParameter}</p>
   </div>
 
-  <div class="invoice-history-detail-container" if="{opts.is_p2p}">
+  <div class="invoice-history-detail-container invoice-history-detail-container-transfer" if="{opts.is_p2p}">
     <div class="invoice-history-detail-invoice-container">
-      <p class="transfer-detail-title">{languages.ViewInvoiceHistoryDetailTransferAmountLabel}</p>
-      <p class="transfer-detail-sum">1 500 000 сум</p>
+      <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailTransferAmountLabel}</p>
+      <p class="invoice-history-detail-sum">{opts.amount} сум</p>
     </div>
     <div class="invoice-history-detail-invoice-container">
-      <p class="transfer-detail-title">{languages.ViewInvoiceHistoryDetailTransferCommissionLabel}</p>
-      <p class="transfer-detail-number">15 000 сум</p>
+      <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailTransferCommissionLabel}</p>
+      <p class="invoice-history-detail-number">{opts.commission} сум</p>
     </div>
     <div class="invoice-history-detail-invoice-container">
-      <p class="transfer-detail-title">{languages.ViewInvoiceHistoryDetailTransferCodeLabel}</p>
-      <p class="transfer-detail-date">879</p>
+      <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailTransferCodeLabel}</p>
+      <p class="invoice-history-detail-data">{opts.transferCode}</p>
     </div>
     <div class="invoice-history-detail-invoice-container">
-      <p class="transfer-detail-title">{languages.ViewInvoiceHistoryDetailTransferNumberLabel}</p>
-      <p class="transfer-detail-date">6497 9863</p>
+      <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailTransferNumberLabel}</p>
+      <p class="invoice-history-detail-data">{opts.invoice_id}</p>
     </div>
     <div class="invoice-history-detail-invoice-container">
-      <p class="transfer-detail-title">{languages.ViewInvoiceHistoryDetailTransferDateLabel}</p>
-      <p class="transfer-detail-date">12:38 01.03.2017</p>
+      <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailTransferDateLabel}</p>
+      <p class="invoice-history-detail-data">{opts.time} {opts.date}</p>
     </div>
     <div class="invoice-history-detail-invoice-container">
-      <p class="transfer-detail-title">{languages.ViewInvoiceHistoryDetailTransferStatusLabel}</p>
-      <p class="transfer-detail-status">Успешно проведен</p>
+      <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailTransferStatusLabel}</p>
+      <p class="invoice-history-detail-status {invoice-history-detail-status-wait: opts.status == 'Ожидание',
+                                               invoice-history-detail-status-deleted: opts.status == 'Удален',
+                                               invoice-history-detail-status-success: opts.status == 'Успешно проведен'}">
+        {opts.status}</p>
     </div>
 
-    <div class="transfer-detail-cover"></div>
+    <div class="invoice-history-detail-cover invoice-history-detail-cover-transfer"></div>
+
+  </div>
+
+  <div class="invoice-history-detail-container invoice-history-detail-container-payment" if="{!opts.is_p2p}">
+    <div class="invoice-history-detail-invoice-container">
+      <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailPaymentAmountLabel}</p>
+      <p class="invoice-history-detail-sum">{opts.amount} сум</p>
+    </div>
+    <div class="invoice-history-detail-invoice-container">
+      <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailPaymentNumberLabel}</p>
+      <p class="invoice-history-detail-data">{opts.invoice_id}</p>
+    </div>
+    <div class="invoice-history-detail-invoice-container">
+      <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailPaymentDateLabel}</p>
+      <p class="invoice-history-detail-data">{opts.time} {opts.date}</p>
+    </div>
+    <div class="invoice-history-detail-invoice-container">
+      <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailPaymentStatusLabel}</p>
+      <p class="invoice-history-detail-status {invoice-history-detail-status-wait: opts.status == 'Ожидание',
+                                               invoice-history-detail-status-deleted: opts.status == 'Удален',
+                                               invoice-history-detail-status-success: opts.status == 'Успешно проведен'}">
+        {opts.status}</p>
+    </div>
+
+    <div class="invoice-history-detail-cover invoice-history-detail-cover-payment"></div>
 
   </div>
 
