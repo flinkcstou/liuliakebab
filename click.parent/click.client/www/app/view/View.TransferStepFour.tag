@@ -51,10 +51,12 @@
         <div class="transferfour-action-text">{window.languages.ViewTransferFourAddToFavouritePartOne}<br>{window.languages.ViewTransferFourAddToFavouritePartTwo}
         </div>
       </div>
-      <div class="transferfour-button-enter" ontouchend="transferStep()">
-        <p class="transferfour-button-enter-label">{window.languages.ViewTransferFourPay}</p>
-      </div>
     </div>
+
+    <div class="transferfour-button-enter" ontouchend="transferStep()">
+      <p class="transferfour-button-enter-label">{window.languages.ViewTransferFourPay}</p>
+    </div>
+
   </div>
 
   <code-confirm id="blockCodeConfirmId" class="code-confirm">
