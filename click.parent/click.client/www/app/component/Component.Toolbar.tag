@@ -3,7 +3,8 @@
     <div class="menu-button menu-icon" ontouchend="menuOpen()">
     </div>
 
-    <div id="circleMenuId" class="toolbar-circle-container" ontouchend="goToViewInfo()">
+    <div id="circleMenuId" class="toolbar-circle-container" ontouchend="goToViewInfoTouchEnd()"
+         ontouchstart="goToViewInfoTouchStart()">
     </div>
 
     <div class="bell-button bell-icon" ontouchend="bellButton()">
@@ -12,10 +13,14 @@
   </div>
 
   <script>
-    var scope = this;
+    var scope = this,
+        goToViewInfoTouchStartX,
+        goToViewInfoTouchStartY,
+        goToViewInfoTouchEndX,
+        goToViewInfoTouchEndY;
 
     menuOpen = function () {
-      event.stopPropagation()
+      event.stopPropagation();
 
       componentMenu.checkOpen = true;
 
@@ -28,16 +33,30 @@
       this.sideMenuId.style.webkitTransform = "translate3d(0, 0, 0)";
 
       this.sideMenuBackPageId.style.opacity = '1';
-    }
+    };
 
     bellButton = function () {
       event.preventDefault();
       event.stopPropagation();
-    }
+    };
 
-    goToViewInfo = function () {
-      this.riotTags.innerHTML = '<view-info>';
-      riot.mount('view-info');
-    }
+    goToViewInfoTouchStart = function () {
+
+      goToViewInfoTouchStartX = event.changedTouches[0].pageX;
+      goToViewInfoTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    goToViewInfoTouchEnd = function () {
+
+      goToViewInfoTouchEndX = event.changedTouches[0].pageX;
+      goToViewInfoTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goToViewInfoTouchEndX - goToViewInfoTouchStartX) < 20 &&
+          Math.abs(goToViewInfoTouchEndY - goToViewInfoTouchStartY) < 20) {
+
+        this.riotTags.innerHTML = '<view-info>';
+        riot.mount('view-info');
+      }
+    };
   </script>
 </component-toolbar>
