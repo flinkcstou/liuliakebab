@@ -470,7 +470,7 @@
           position = 50;
         }
         else {
-          position = 40;
+          position = 50;
         }
         var width = 160;
         if ((alpha >= 30 && alpha < 125) || (alpha >= 205 && alpha < 335)) {
