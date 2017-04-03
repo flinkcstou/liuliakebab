@@ -4533,7 +4533,7 @@ var css = {
   transferNextButtonLabel: ".transfer-next-button-label" +
   "{" +
   "position: relative;" +
-  "top: 18%;" +
+  "top: 14%;" +
   "width: 36%;" +
   "font-size:  " + 32 * widthK + "px; " +
   "margin: auto;" +
@@ -4665,7 +4665,7 @@ var css = {
   transferTwoNextButtonLabel: ".transfertwo-next-button-label" +
   "{" +
   "position: relative;" +
-  "top: 18%;" +
+  "top: 14%;" +
   "width: 38%;" +
   "font-size:  " + 32 * widthK + "px; " +
   "margin: auto;" +
@@ -4791,7 +4791,7 @@ var css = {
   transferThreeNextButtonLabel: ".transferthree-next-button-label" +
   "{" +
   "position: relative;" +
-  "top: 18%;" +
+  "top: 14%;" +
   "width: 38%;" +
   "font-size:  " + 32 * widthK + "px; " +
   "margin: auto;" +
@@ -4926,6 +4926,9 @@ var css = {
   "top: 27%;" +
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   transferFourDetailText: ".transferfour-detail-text" +
@@ -5054,7 +5057,7 @@ var css = {
   transferFourButtonEnterLabel: ".transferfour-button-enter-label" +
   "{" +
   "position: relative;" +
-  "top: 20%;" +
+  "top: 15%;" +
     //"left: 1%;" +
     //"letter-spacing:" + 3 * widthK + "px;" +
   "font-size: " + 32 * widthK + "px; " +
