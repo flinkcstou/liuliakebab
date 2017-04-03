@@ -39,7 +39,8 @@
 
       <div class="account-detail-buttons-container">
         <p class="account-detail-button-accept">{window.languages.ViewAccountDetailTitlePay}</p>
-        <p class="account-detail-button-cancel">{window.languages.ViewAccountDetailTitleDecline}</p>
+        <p class="account-detail-button-cancel" ontouchend="onTouchEndDecline()" ontouchstart="onTouchStartDecline()">
+          {window.languages.ViewAccountDetailTitleDecline}</p>
       </div>
     </div>
 
@@ -55,6 +56,53 @@
       event.stopPropagation();
 //      console.log("BACK")
       onBackKeyDown()
+    };
+
+    onTouchStartDecline = function () {
+
+      touchStartDeclineX = event.changedTouches[0].pageX;
+      touchStartDeclineY = event.changedTouches[0].pageY;
+    };
+
+    onTouchEndDecline = function () {
+
+      touchEndDeclineX = event.changedTouches[0].pageX;
+      touchEndDeclineY = event.changedTouches[0].pageY;
+
+      if (Math.abs(touchEndDeclineX - touchStartDeclineX) < 20 &&
+          Math.abs(touchEndDeclineY - touchStartDeclineY) < 20) {
+
+        var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+        var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+        var sessionKey = loginInfo.session_key;
+
+        window.api.call({
+          method: 'invoice.action',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            invoice_id: opts.invoiceId,
+            action: invoiceActions.DECLINE
+          },
+          scope: this,
+          onSuccess: function (result) {
+
+            console.log("result of invoice transfer decline", result);
+
+            if (result[0][0].error == 0) {
+              goToBack();
+            }
+            else {
+              alert(result[0][0].error_note);
+            }
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+      }
     };
 
 

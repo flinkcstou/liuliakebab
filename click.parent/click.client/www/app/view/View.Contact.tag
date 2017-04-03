@@ -35,7 +35,8 @@
     <p class="view-contact-select-choose-title">{window.languages.ViewContactChooseNumber}</p>
 
     <div class="view-contact-select-phone-container">
-      <div class="view-contact-select-phone-number-container" each="{i in arrayOfNumbers}">
+      <div class="view-contact-select-phone-number-container" each="{i in arrayOfNumbers}"
+           ontouchend="choosePhoneNumberTouchEnd({i.value})">
         <p class="view-contact-select-phone-number">+{i.value}</p>
       </div>
     </div>
@@ -66,23 +67,58 @@
 
     scope.titleName = window.languages.ViewContactTitle;
 
+    var goToPay = false;
+    var goToTransfer = false;
+
     contactPayTouchEnd = function () {
       event.preventDefault()
       event.stopPropagation()
 
-      if (scope.arrayOfNumbers.length > 1) {
+      goToPay = true;
+      goToTransfer = false;
 
+      if (scope.arrayOfNumbers) {
+        if (scope.arrayOfNumbers.length > 1) {
+          contactSelectContainerId.style.display = 'block'
+        }
+        else {
+          riotTags.innerHTML = "<view-pay>";
+          riot.mount('view-pay');
+        }
       }
 
+    }
+
+    choosePhoneNumberTouchEnd = function (number) {
+      event.preventDefault()
+      event.stopPropagation()
+      console.log('NUMBER', number)
+
+      if (goToPay) {
+        riotTags.innerHTML = "<view-pay>";
+        riot.mount('view-pay');
+      }
+      else {
+        riotTags.innerHTML = "<view-transfer>";
+        riot.mount('view-transfer');
+      }
     }
 
     contactTransferTouchEnd = function () {
       event.preventDefault()
       event.stopPropagation()
 
-      if (scope.arrayOfNumbers.length > 1) {
+      goToPay = false;
+      goToTransfer = true;
 
-      }
+      if (scope.arrayOfNumbers)
+        if (scope.arrayOfNumbers.length > 1) {
+          contactSelectContainerId.style.display = 'block'
+        }
+        else {
+          riotTags.innerHTML = "<view-transfer>";
+          riot.mount('view-transfer');
+        }
 
     }
 

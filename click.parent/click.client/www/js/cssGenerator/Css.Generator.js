@@ -6365,9 +6365,9 @@ var css = {
   "position: absolute;" +
   "height:" + 500 * widthK + "px;" +
   "width:100%;" +
-  "background: -moz-linear-gradient(rgb(0,124,231),rgb(0,180,247));" +
-  "background: -webkit-linear-gradient(rgb(0,124,231),rgb(0,180,247));" +
-  "background: -ms-linear-gradient(rgb(0,124,231),rgb(0,180,247));" +
+  "background: -moz-linear-gradient(rgb(0,168,241),rgb(76,212,255));" +
+  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(76,212,255));" +
+  "background: -ms-linear-gradient(rgb(0,168,241),rgb(76,212,255));" +
   "}",
 
   settingsGeneralUserIcon: ".settings-general-user-icon" +
@@ -6792,7 +6792,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 418 * widthK + "px;" +
-  "background-color: #027ee3;" +
+  "background-color: #00a8f1;" +
   "}",
 
   settingsAboutProgramUserAgreementContainer: ".settings-about-program-user-agreement-container" +

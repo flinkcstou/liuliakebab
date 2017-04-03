@@ -2694,3 +2694,26 @@ window.fakedSocket.register("rate.convert", function (input) {
     }
   ];
 });
+
+window.fakedSocket.register("invoice.action", function (input) {
+
+  if (input)
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": "",
+        "invoice_id": input.input.invoice_id
+      }]
+    ];
+
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});

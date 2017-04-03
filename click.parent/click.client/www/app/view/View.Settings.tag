@@ -115,5 +115,12 @@
 
     }
 
+    goToCallCenterSettings = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      window.open('tel:+998712310880')
+    }
+
   </script>
 </view-settings>
