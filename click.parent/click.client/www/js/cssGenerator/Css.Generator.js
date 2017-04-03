@@ -7016,6 +7016,7 @@ var css = {
   settingsSecurityCheckButton: ".settings-security-check-button " +
   "{" +
   "position: absolute;" +
+  "display: none;" +
   "width:" + 135 * widthK + "px;" +
   "height:" + 92 * widthK + "px;" +
   "right:" + -36 * widthK + "px;" +
@@ -7025,7 +7026,7 @@ var css = {
   "background-position-y: center;" +
   "background-position-x:" + 54 * widthK + "px;" +
   "background-size: 31%;" +
-  "top: " + 12 * widthK + "px;" +
+  "top: " + 0 * widthK + "px;" +
   "}",
 
   settingsSecurityCheckIcon: ".settings-security-check-icon" +
@@ -8807,8 +8808,70 @@ var css = {
   "opacity: 0.98;" +
   "height: 100%;" +
   "width: 101%;" +
-  //"display: none;" +
+    //"display: none;" +
   "background-color: #efeff1;" +
+  "}",
+
+  viewContactSelectChooseTitle: ".view-contact-select-choose-title " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 10%;" +
+  "top: 25%;" +
+  //"font-size:" + 29 * widthK + "px;" +
+  //"color: #8b8b8b;" +
+  "}",
+
+  viewContactSelectPhoneNumberContainer: ".view-contact-select-phone-number-container " +
+  "{" +
+  "position: relative;" +
+  "width: 80%;" +
+  "height: 15%;" +
+  "background-color: white;" +
+  "margin: 0;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "margin-top: 1%;" +
+  "}",
+
+  viewContactSelectPhoneNumber: ".view-contact-select-phone-number" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "background-size: contain;" +
+  "left: 15%;" +
+  "top: 33%;" +
+  "color: #a1a1a2;" +
+  "overflow: hidden;" +
+  "width: 84%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "}",
+
+  viewContactSelectPhoneContainer: ".view-contact-select-phone-container " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 800 * heightK + "px;" +
+  "width: 100%;" +
+  "overflow: auto;" +
+  "top: 35%;" +
+    //"display: none;" +
+  "background-color: #efeff1;" +
+  "}",
+
+  viewContactSelectXButton: ".view-contact-select-x-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 135 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "right:" + -36 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewSettingsGeneral/general_save.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 31%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 54 * widthK + "px;" +
+  "background-size: 31%;" +
+  "top: 0;" +
   "}",
 
 }

@@ -23,9 +23,21 @@
   </div>
 
   <div class="view-contact-select-container">
+
+    <div class="view-contact-page-title">
+
+    </div>
+
     <div class="view-contact-select-info-title">
       <div class="view-contact-info-icon" style="background-image: url({contactPhoto})">{firstLetter}</div>
       <p class="view-contact-info-text">{firstName} {secondName}</p>
+    </div>
+    <p class="view-contact-select-choose-title">ВЫБЕРИТЕ НОМЕР</p>
+
+    <div class="view-contact-select-phone-container">
+      <div class="view-contact-select-phone-number-container" each="{i in arrayOfNumbers}">
+        <p class="view-contact-select-phone-number">+{i.value}</p>
+      </div>
     </div>
   </div>
 
@@ -58,12 +70,19 @@
       event.preventDefault()
       event.stopPropagation()
 
+      if (scope.arrayOfNumbers.length > 1) {
+
+      }
+
     }
 
     contactTransferTouchEnd = function () {
       event.preventDefault()
       event.stopPropagation()
 
+      if (scope.arrayOfNumbers.length > 1) {
+
+      }
 
     }
 
