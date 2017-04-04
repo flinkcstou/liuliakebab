@@ -4,11 +4,11 @@
       <p class="view-qr-name-title">{titleName}</p>
       <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
     </div>
-    <div class="view-qr-company-icon"></div>
+    <div class="view-qr-company-icon" style="background-image: url({opts.image})"></div>
     <p class="view-qr-company-name">
-      {window.languages.ViewSettingsAboutProgramVersionTitleNamePartOne}</p>
+      {opts.name}</p>
     <p class="view-qr-address-name">
-      {window.languages.ViewSettingsAboutProgramVersionTitleNamePartTwo}</p>
+      {opts.address}</p>
   </div>
   <div class="view-qr-container">
 

@@ -9420,7 +9420,7 @@ var css = {
   "height:" + 150 * widthK + "px; " +
   "border-radius:" + 100 * widthK + "px; " +
   "background-repeat: no-repeat;" +
-  "background-size: 100%;" +
+  "background-size: cover;" +
   "background-position: center;" +
   "}",
 
