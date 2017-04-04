@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/confirm.png);" +
+    //"background-image: url(resources/draft/qr.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -9343,13 +9343,13 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 418 * widthK + "px;" +
+  "height:" + 340 * widthK + "px;" +
   "background-color: #00a8f1;" +
   "}",
 
   viewQrContainer: ".view-qr-container" +
   "{" +
-  "top:" + 417 * widthK + "px;" +
+  "top:" + 340 * widthK + "px;" +
   "}",
 
   viewQrPageTitle: ".view-qr-page-title " +
@@ -9378,11 +9378,12 @@ var css = {
   "{" +
   "position: relative;" +
   "font-size:" + 35 * widthK + "px; " +
-  "width:" + 255 * widthK + "px; " +
+  "width: 90%; " +
+  "text-align: center; " +
   "margin: 0; " +
   "margin-left: auto; " +
   "margin-right: auto; " +
-  "top: 10%; " +
+  "top: 22%; " +
   "color: white;" +
   "}",
 
@@ -9390,11 +9391,12 @@ var css = {
   "{" +
   "position: relative;" +
   "font-size:" + 24 * widthK + "px; " +
-  "width:" + 150 * widthK + "px; " +
+  "width: 90%; " +
+  "text-align: center; " +
   "margin: 0; " +
   "margin-left: auto; " +
   "margin-right: auto; " +
-  "top: 11%; " +
+  "top: 22%; " +
   "color: white;" +
   "}",
 
@@ -9403,9 +9405,10 @@ var css = {
   "position: relative;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "top: 14%;" +
-  "width: 21%;" +
-  "height: 60%;" +
+  "top: 21%;" +
+  "width:" + 150 * widthK + "px; " +
+  "height:" + 150 * widthK + "px; " +
+  "border-radius:" + 100 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-image: url(resources/icons/ViewSettingsAboutProgram/about_logo.png);" +
   "background-size: 100%;" +
