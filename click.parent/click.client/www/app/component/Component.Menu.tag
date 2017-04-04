@@ -199,7 +199,7 @@
     callToClickTouchEnd = function () {
       callTouchEndX = event.changedTouches[0].pageX;
 
-      if (Math.abs(callTouchStartX - callTouchEndX < 20)) {
+      if (Math.abs(callTouchStartX - callTouchEndX) < 20) {
         closeMenu()
         window.open('tel:+998712310880')
       }
@@ -215,7 +215,7 @@
     goToAutoPayEnd = function () {
       autoPayTouchEndX = event.changedTouches[0].pageX;
 
-      if (Math.abs(autoPayTouchStartX - autoPayTouchEndX < 20)) {
+      if (Math.abs(autoPayTouchStartX - autoPayTouchEndX) < 20) {
         riotTags.innerHTML = "<view-auto-pay>";
         riot.mount('view-auto-pay');
       }
@@ -235,7 +235,7 @@
 
       qrScannerTouchEndX = event.changedTouches[0].pageX;
 
-      if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX < 20)) {
+      if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX) < 20) {
 //        closeMenu()
         if (device.platform != 'BrowserStand') {
           cordova.plugins.barcodeScanner.scan(
@@ -354,7 +354,7 @@
 
       billingsTouchEndX = event.changedTouches[0].pageX;
 
-      if (Math.abs(billingsTouchEndX - billingsTouchStartX < 20)) {
+      if (Math.abs(billingsTouchEndX - billingsTouchStartX) < 20) {
 
         closeMenu();
 
@@ -377,7 +377,7 @@
       console.log('settingsTouchStartX', favoritesTouchStartX)
       console.log('settingsTouchEndX', favoritesTouchEndX)
 
-      if (favoritesTouchStartX - favoritesTouchEndX < 20) {
+      if (Math.abs(favoritesTouchStartX - favoritesTouchEndX) < 20) {
         closeMenu();
         riotTags.innerHTML = "<view-favorites>";
         riot.mount("view-favorites");
