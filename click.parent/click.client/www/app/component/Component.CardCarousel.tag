@@ -635,8 +635,10 @@
 
           pos = (scope.cardNumber) * 540 * widthK;
           var sendChosenCardId;
+          console.log("ASD", scope.cardsarray, scope.cardNumber);
           for (var i in scope.cardsarray) {
-            if (scope.cardsarray[i].countCard == scope.cardNumber + 1) {
+            scope.cardsarray[i].countCard--;
+            if (scope.cardsarray[i].countCard == scope.cardNumber) {
               scope.cardsarray[i].chosenCard = true;
               sendChosenCardId = scope.cardsarray[i].card_id
               localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));

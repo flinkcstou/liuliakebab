@@ -216,7 +216,6 @@
 //      console.log('scope.cardId', scope.cardId)
     }
 
-
     scope.top = 160 * widthK;
     viewMyCards.check = true;
     viewMainPage.myCards = true;
