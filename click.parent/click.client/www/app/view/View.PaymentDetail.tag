@@ -46,6 +46,14 @@
     </div>
 
 
+    <component-success id="componentSuccessId"
+                       operationmessage="{window.languages.ComponentSuccessMessageForPay}"
+                       viewpage="{undefined}" step_amount="{0}" close_action="{goToBack}"></component-success>
+    <component-unsuccess id="componentUnsuccessId"
+                         operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
+                         operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
+                         operationmessagepartthree="{errorMessageFromTransfer}"></component-unsuccess>
+
   </div>
 
   <script>
@@ -157,14 +165,15 @@
             console.log("result of invoice payment accept", result);
 
             if (result[0][0].error == 0) {
-              goToBack(true);
+              componentSuccessId.style.display = 'block';
             }
             else {
-              alert(result[0][0].error_note);
+              componentUnsuccessId.style.display = 'block';
             }
           },
 
           onFail: function (api_status, api_status_message, data) {
+            componentUnsuccessId.style.display = 'block';
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }

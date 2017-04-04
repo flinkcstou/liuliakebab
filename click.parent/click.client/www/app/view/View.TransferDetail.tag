@@ -132,8 +132,6 @@
           invoiceId: opts.invoiceId
         };
 
-        history.arrayOfHistory.push({view: "view-transfer-on-card"});
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
         riotTags.innerHTML = "<view-transfer-on-card>";
         riot.mount("view-transfer-on-card", params);
       }

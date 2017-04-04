@@ -1,7 +1,7 @@
 <component-pincards>
 
   <div
-      class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail, transfer-on-card-pincard-all-cards-container: opts.transferoncard}">
+    class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail, transfer-on-card-pincard-all-cards-container: opts.transferoncard}">
     <div class="pincard-card-container" each="{i in cardsArray}" ontouchend="chooseCardTouchEnd(this.id)"
          ontouchstart="chooseCardTouchStart()"
          id="{i.card_id}" if="{i.access == 2}">
@@ -27,7 +27,20 @@
   <script>
     var scope = this;
 
-    scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+    if (!viewTransfer.check) {
+      scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+    }
+    else {
+      scope.cardsArray = [];
+      var cards = JSON.parse(localStorage.getItem('click_client_cards'));
+      for (var j in cards) {
+        if (cards[j].numberPartOne == '8600') {
+          console.log(cards[j])
+          scope.cardsArray.push(cards[j])
+        }
+      }
+      riot.update()
+    }
     scope.checked = false;
     scope.cardId = undefined;
 

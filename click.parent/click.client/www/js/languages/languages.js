@@ -296,6 +296,8 @@ var RU_LANGUAGES =
 
 
   "ViewQrTitle": "ОПЛАТА ТОВАРОВ И УСЛУГ",
+  "ViewQrTitleAccept": "ДАЛЕЕ",
+  "ViewQrTitleCancel": "ОТМЕНИТЬ",
 
 
 };

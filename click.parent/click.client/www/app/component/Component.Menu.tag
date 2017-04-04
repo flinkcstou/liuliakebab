@@ -29,7 +29,7 @@
       <div class="side-menu-containers-name side-menu-containers-name-favorite">Избранные</div>
     </div>
 
-    <div class="side-menu-auto-pay-container">
+    <div class="side-menu-auto-pay-container" ontouchstart="goToAutoPayStart()" ontouchend="goToAutoPayEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-autopayment"></div>
       <div class="side-menu-containers-name side-menu-containers-name-autopayment">Автоплатеж</div>
     </div>
@@ -199,7 +199,7 @@
     callToClickTouchEnd = function () {
       callTouchEndX = event.changedTouches[0].pageX;
 
-      if (Math.abs(callTouchStartX - callTouchEndX < 20)) {
+      if (Math.abs(callTouchStartX - callTouchEndX) < 20) {
         closeMenu()
         window.open('tel:+998712310880')
       }
@@ -211,6 +211,22 @@
       callTouchStartX = event.changedTouches[0].pageX;
     }
 
+    var autoPayTouchStartX, autoPayTouchEndX;
+    goToAutoPayEnd = function () {
+      autoPayTouchEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(autoPayTouchStartX - autoPayTouchEndX) < 20) {
+        riotTags.innerHTML = "<view-auto-pay>";
+        riot.mount('view-auto-pay');
+      }
+      else sideMenuTouchEnd()
+
+    }
+
+    goToAutoPayStart = function () {
+      autoPayTouchStartX = event.changedTouches[0].pageX;
+    }
+
 
     var qrScannerTouchStartX, qrScannerTouchEndX
 
@@ -219,7 +235,7 @@
 
       qrScannerTouchEndX = event.changedTouches[0].pageX;
 
-      if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX < 20)) {
+      if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX) < 20) {
 //        closeMenu()
         if (device.platform != 'BrowserStand') {
           cordova.plugins.barcodeScanner.scan(
@@ -227,15 +243,54 @@
               console.log(result)
 
               var string = result.text;
+              if (string.indexOf('click.uz') != -1) {
 
-              string = string.split('?')[1]
-              string = string.split('&')
-              var id = '';
-              for (var i in string) {
-                if (string[i].split('=')[0] == 'id') {
-                  id = string[i].split('=')[1];
-                  console.log('ID', id)
+                string = string.split('?')[1]
+                string = string.split('&')
+                var id = '';
+                for (var i in string) {
+                  if (string[i].split('=')[0] == 'id') {
+                    id = string[i].split('=')[1];
+                    console.log('ID', id)
+                  }
                 }
+                if (id) {
+                  var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+                  var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+                  var sessionKey = info.session_key;
+
+                  window.api.call({
+                    method: 'get.indoor.service',
+                    input: {
+                      phone_num: phoneNumber,
+                      session_key: sessionKey,
+                      service_id: id,
+
+                    },
+
+                    scope: this,
+
+                    onSuccess: function (result) {
+                      if (result[0][0].error == 0) {
+                        if (result[1]) {
+                          if (result[1][0]) {
+                            riotTags.innerHTML = "<view-qr>";
+                            riot.mount('view-qr', result[1][0]);
+                          }
+                        }
+                        console.log("QR PAY", result);
+                      }
+                      else
+                        alert(result[0][0].error_note);
+                    },
+
+                    onFail: function (api_status, api_status_message, data) {
+                      console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                      console.error(data);
+                    }
+                  });
+                }
+                console.log("HOST NAME")
               }
             },
             function (error) {
@@ -299,7 +354,7 @@
 
       billingsTouchEndX = event.changedTouches[0].pageX;
 
-      if (Math.abs(billingsTouchEndX - billingsTouchStartX < 20)) {
+      if (Math.abs(billingsTouchEndX - billingsTouchStartX) < 20) {
 
         closeMenu();
 
@@ -322,7 +377,7 @@
       console.log('settingsTouchStartX', favoritesTouchStartX)
       console.log('settingsTouchEndX', favoritesTouchEndX)
 
-      if (favoritesTouchStartX - favoritesTouchEndX < 20) {
+      if (Math.abs(favoritesTouchStartX - favoritesTouchEndX) < 20) {
         closeMenu();
         riotTags.innerHTML = "<view-favorites>";
         riot.mount("view-favorites");

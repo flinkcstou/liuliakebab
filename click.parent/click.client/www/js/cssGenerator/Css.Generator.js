@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/transfer_on_card.png);" +
+    //"background-image: url(resources/draft/qr.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -1837,7 +1837,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 35 * widthK + "px;" +
   "left: 12.5%;" +
-  "top: 31%;" +
+  "top: 27%;" +
   "margin: 0;" +
   "color: #fffaf9;" +
   "}",
@@ -3543,12 +3543,14 @@ var css = {
 
   pincardCardLogoContainer: ".pincard-card-logo-container" +
   "{" +
-  "width: 41%;" +
-  "height: 100%;" +
+  "width: 25%;" +
+  "height: 67%;" +
+  "top: 17%;" +
+  "left: 5%;" +
   "background-color: transparent;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "background-size: 50%;" +
+  "background-size: contain;" +
   "float: left;" +
   "right: 61%;" +
   "position: absolute;" +
@@ -9350,6 +9352,13 @@ var css = {
 
   viewQrContainer: ".view-qr-container" +
   "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 92 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: #f4f4f4; " +
+  "overflow: hidden; " +
   "top:" + 340 * widthK + "px;" +
   "}",
 
@@ -9411,10 +9420,98 @@ var css = {
   "height:" + 150 * widthK + "px; " +
   "border-radius:" + 100 * widthK + "px; " +
   "background-repeat: no-repeat;" +
-  "background-image: url(resources/icons/ViewSettingsAboutProgram/about_logo.png);" +
-  "background-size: 100%;" +
+  "background-size: cover;" +
   "background-position: center;" +
   "}",
+
+  viewQrContactPhoneFieldContainer: ".view-qr-contact-phone-field-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 25%;" +
+  "background-color: white;" +
+  "}",
+
+  viewQrContactPhoneField: ".view-qr-contact-phone-field" +
+  "{" +
+  "position: absolute;" +
+  "left: 7.5%;" +
+  "width: 85%;" +
+  "height:" + 150 * widthK + "px;" +
+  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  "top:" + 5 * widthK + "px;" +
+  "}",
+
+  viewQrContactTextField: ".view-qr-contact-text-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: 34%;" +
+  "}",
+
+  viewQrContactNumberInputPart: ".view-qr-contact-number-input-part" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "top: 61%;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "font-size:" + 40 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "}",
+
+  viewQrButtonsContainer: ".view-qr-buttons-container" +
+  "{" +
+  "position: absolute;" +
+  "width:100%;" +
+  "height:" + 90 * widthK + "px;" +
+  "top: 24%;" +
+  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "padding-top:" + 60 * widthK + "px;" +
+  "}",
+
+  viewQrButtonAccept: ".view-qr-button-accept" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "float: left;" +
+  "text-align: center;" +
+  "margin-left: 8%;" +
+  "margin-top: 2%;" +
+  "color: white;" +
+  "background-color: #00b8ff;" +
+  "height:" + 62 * widthK + "px;" +
+  "line-height:" + 63 * widthK + "px;" +
+  "border-radius:" + 5 * widthK + "px;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "width: 33%;" +
+  "}",
+
+  viewQrButtonCancel: ".view-qr-button-cancel" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "float: left;" +
+  "text-align: center;" +
+  "margin-left: 13%;" +
+  "margin-top: 2%;" +
+  "color: white;" +
+  "background-color: white;" +
+  "color: #c0c0c0;" +
+  "height:" + 62 * widthK + "px;" +
+  "line-height:" + 63 * widthK + "px;" +
+  "border-radius:" + 5 * widthK + "px;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "width: 33%;" +
+  "}",
+
 
   //VIEW TRANSFER ON CARD
 

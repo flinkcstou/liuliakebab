@@ -183,6 +183,7 @@
   </div>
   <script>
 
+    viewTransfer.check = true;
     this.on('mount', function () {
 
       if (opts && opts.number) {

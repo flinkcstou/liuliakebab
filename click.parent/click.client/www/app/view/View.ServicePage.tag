@@ -188,9 +188,11 @@
 
     this.on('mount', function () {
       if (opts && opts.number) {
-        firstFieldInput.value = opts.number
-        riot.update();
-      }
+          firstFieldInput.value = opts.number
+          riot.update();
+
+        }
+
 
       if (viewServicePage.amountWithoutSpace.length > 0) {
         amount.value = viewServicePage.amountText;
