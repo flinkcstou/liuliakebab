@@ -3754,7 +3754,7 @@ var css = {
   "top: 30%;" +
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
-  "width:100%;" +
+  "width: 90%;" +
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
