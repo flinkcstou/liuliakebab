@@ -181,11 +181,17 @@
     var scope = this;
     scope.enterButton = opts[0] != 'ADDFAVORITE' ? true : false;
 
+
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
 
     this.on('mount', function () {
+      if (opts && opts.number) {
+        firstFieldInput.value = opts.number
+        riot.update();
+      }
+
       if (viewServicePage.amountWithoutSpace.length > 0) {
         amount.value = viewServicePage.amountText;
         checkFirst = true;

@@ -19,6 +19,7 @@
   <plugin name="cordova-plugin-android-fingerprint-auth"/>
   <plugin name="cordova-plugin-splashscreen"/>
   <plugin name="cordova-plugin-statusbar"/>
+  <plugin name="phonegap-plugin-barcodescanner"/>
 
   <access origin="*"/>
   <allow-intent href="http://*/*"/>

@@ -185,11 +185,16 @@
 
     this.on('mount', function () {
 
-//      firstSuggestionBlockId.style.display = 'block';
-//      secondSuggestionBlockId.style.display = 'block';
-//      thirdSuggestionBlockId.style.display = 'block';
-//      fourthSuggestionBlockId.style.display = 'block';
-//      fifthSuggestionBlockId.style.display = 'block';
+      if (opts && opts.number) {
+        contactPhoneNumberId.value = opts.number
+        if (contactPhoneNumberId.value == 9) {
+          firstSuggestionBlockId.style.display = 'none';
+          secondSuggestionBlockId.style.display = 'none';
+          thirdSuggestionBlockId.style.display = 'none';
+          fourthSuggestionBlockId.style.display = 'none';
+          fifthSuggestionBlockId.style.display = 'none';
+        }
+      }
 
       if (viewTransfer.type == 2) {
 //        console.log('ON MOUNT')
@@ -275,6 +280,7 @@
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
+    console.log('OPTS', opts)
 
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');

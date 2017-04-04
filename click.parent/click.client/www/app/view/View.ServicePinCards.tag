@@ -17,17 +17,36 @@
     <component-pincards></component-pincards>
     <div class="pincard-bottom-container">
 
-      <div class="pincard-freind-help-container">
+      <div class="pincard-friend-help-container" if="{!friendHelpBool}" ontouchend="friendHelp()">
+        <div class="pincard-friend-help-icon"></div>
         <div class="pincard-friend-help-text">{window.languages.ViewServicePinCardHelpText}</div>
+      </div>
+
+
+      <div class="pincard-chosen-friend-container" if="{friendHelpBool}">
+        <div class="pincard-friend-help-text-two">{window.languages.ViewServicePinCardHelpText}</div>
+        <div class="pincard-chosen-friend-inner-container"
+             ontouchend="firstSuggestionBlock()">
+          <div class="pincard-chosen-friend-photo">
+            {firstLetterOfName}
+          </div>
+          <div class="pincard-chosen-friend-text-container">
+            <div class="pincard-chosen-friend-text-one">{fName} {lName}</div>
+          </div>
+          <div class="pincard-chosen-friend-text-two">{phoneNumber}</div>
+        </div>
+        <div class="pincard-friend-change-text" ontouchend="friendHelp()">Изменить</div>
       </div>
 
       <div class="pincard-button-enter"
            ontouchend="goToPayConfirmView()">
         <div class="pincard-button-enter-label">{window.languages.ViewServicePageEnterLabel}</div>
       </div>
+
     </div>
   </div>
   <script>
+    //style="background-image: url({suggestionOne.photo})"
 
     console.log('OPTS', opts);
     var arrayForTransfer = [];
@@ -86,6 +105,28 @@
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-pay-confirm>";
       riot.mount('view-pay-confirm', [arrayForTransfer, scope.chosencardId]);
+    }
+
+    friendHelp = function () {
+      viewServicePinCards.fromPincardsPage = true;
+      event.preventDefault();
+      event.stopPropagation();
+      this.riotTags.innerHTML = "<view-friend-help-settings>";
+      riot.mount('view-friend-help-settings');
+    }
+
+    if (viewServicePinCards.fromPincardsPage) {
+      console.log("AAA");
+      scope.friendHelpBool = true;
+      if (viewServicePinCards.chosenFriendForHelp) {
+        scope.firstLetterOfName = viewServicePinCards.chosenFriendForHelp.firstLetterOfName;
+        scope.fName = viewServicePinCards.chosenFriendForHelp.name;
+        scope.phoneNumber = viewServicePinCards.chosenFriendForHelp.number;
+
+      }
+    } else {
+      console.log("BBB");
+      scope.friendHelpBool = false;
     }
 
 
