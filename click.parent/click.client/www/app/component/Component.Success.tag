@@ -13,15 +13,23 @@
       event.preventDefault();
       event.stopPropagation();
       componentSuccessId.style.display = 'none';
-      history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 3)
+      history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
       console.log(history.arrayOfHistory)
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
       console.log('viewpage', opts.viewpage)
 
+      if (opts.viewpage) {
 
-      riotTags.innerHTML = "<" + opts.viewpage + ">";
-      riot.mount(opts.viewpage);
+        riotTags.innerHTML = "<" + opts.viewpage + ">";
+        riot.mount(opts.viewpage);
+      }
+
+      if (opts.close_action) {
+
+        opts.close_action();
+      }
     }
+
   </script>
 </component-success>
