@@ -35,6 +35,7 @@ viewServicePage.amountText = '';
 viewServicePage.amountWithoutSpace = '';
 
 window.viewServicePinCards = {};
+viewServicePinCards.fromPincardsPage = false;
 
 window.viewPayConfirm = {};
 

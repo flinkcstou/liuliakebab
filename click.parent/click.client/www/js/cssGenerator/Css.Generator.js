@@ -3514,7 +3514,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height:60%;" +
+  "height:51%;" +
   "top: 7.5%;" +
   "background-color: transparent;" +
   "overflow-x: hidden;" +
@@ -3617,22 +3617,127 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 50%;" +
-  "height: 46%;" +
-  "top: 10%;" +
+  "height: 50%;" +
+  "top: 3%;" +
     //"bottom:0;" +
-  "background-color: grey;" +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
+    //"background-color: grey;" +
+    //"border-bottom:  " + 1 + "px solid lightgray;" +
+  "left: 25%;" +
   "}",
 
   pincardFriendHelpText: ".pincard-friend-help-text" +
   "{" +
-  "top: 35.7%;" +
+  "top: 65%;" +
   "position: absolute;" +
-  "left: 37%;" +
+  "left: 23%;" +
   "color: rgb(1, 124, 227);" +
   "font-size: " + 29 * widthK + "px; " +
   "text-align: center;" +
   "text-decoration: underline;" +
+  "}",
+
+  pincardFriendHelpIcon: ".pincard-friend-help-icon" +
+  "{" +
+  "width: 40%;" +
+  "height: 67%;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 65%;" +
+  "float: left;" +
+  "right: 30%;" +
+  "position: absolute;" +
+  "background-image: url(resources/icons/ViewService/friend.png);" +
+  "}",
+
+  pincardChosenFriendContainer: ".pincard-chosen-friend-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:50%;" +
+    //"background-color: grey;" +
+    //"left: 10%;" +
+    //"top:" + 165 * widthK + "px;" +
+  "}",
+
+  pincardFriendHelpTextTwo: ".pincard-friend-help-text-two" +
+  "{" +
+    //"top: 65%;" +
+  "position: absolute;" +
+  "left: 36%;" +
+  "color: grey;" +
+  "font-size: " + 29 * widthK + "px; " +
+  "text-align: center;" +
+    //"text-decoration: underline;" +
+  "}",
+
+  pincardFriendChangeText: ".pincard-friend-change-text" +
+  "{" +
+  "top: 80%;" +
+  "position: absolute;" +
+  "left: 40%;" +
+  "color: rgb(1, 124, 227);" +
+  "font-size: " + 29 * widthK + "px; " +
+  "text-align: center;" +
+  "text-decoration: underline;" +
+  "}",
+
+  pincardChosenFriendInnerContainer: ".pincard-chosen-friend-inner-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 79.5%;" +
+  "height:" + 115 * widthK + "px;" +
+  "background-color: #F0F1F4;" +
+  "left: 10%;" +
+  "top:22%;" +
+  "}",
+
+  pincardChosenFriendPhoto: ".pincard-chosen-friend-photo" +
+  "{" +
+  "top:" + 8 * widthK + "px;" +
+  "position: absolute;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-size: cover;" +
+  "background-position: center;" +
+  "border-radius: 50%;" +
+  "text-align: center;" +
+  "line-height:" + 100 * widthK + "px;" +
+  "font-size:" + 50 * widthK + "px;" +
+  "background-color: #027fe3;" +
+  "color: white;" +
+  "left: 5%;" +
+  "}",
+
+  pincardChosenFriendTextContainer: ".pincard-chosen-friend-text-container" +
+  "{" +
+  "position: absolute;" +
+  "left: 25%;" +
+  "color: gray;" +
+  "width: 20%;" +
+  "height: 100%;" +
+  "display: table;" +
+  "}",
+
+
+  pincardChosenFriendTextOne: ".pincard-chosen-friend-text-one" +
+  "{" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "display: table-cell;" +
+  "vertical-align: middle;" +
+  "}",
+
+  pincardChosenFriendTextTwo: ".pincard-chosen-friend-text-two" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 60%;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: 40%;" +
   "}",
 
   pincardBottomContainer: ".pincard-bottom-container" +
@@ -3640,7 +3745,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
     //"height: 46%;" +
-  "top: 67%;" +
+  "top: 62%;" +
   "bottom:0;" +
   "background-color: transparent;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +

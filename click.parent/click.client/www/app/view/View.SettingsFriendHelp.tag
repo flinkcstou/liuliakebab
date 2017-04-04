@@ -10,7 +10,8 @@
         <div class="settings-friend-help-contact-found-photo"
              style="background-image: url({i.photo})">{i.firstLetterOfName}
         </div>
-        <div id="" class="settings-friend-help-contact-found-text-container">
+        <div id="" class="settings-friend-help-contact-found-text-container"
+             ontouchend="chooseFriendForHelp({i.number})">
           <div class="settings-friend-help-contact-found-text-one">{i.name}</div>
           <div class="settings-friend-help-contact-found-text-two">+{i.number}</div>
         </div>
@@ -62,6 +63,20 @@
 //
 //        }
 //      }
+    }
+
+    chooseFriendForHelp = function (number) {
+      if (viewServicePinCards.fromPincardsPage) {
+        console.log("in choose friend for help");
+        for (var i in scope.arrayOfFriends) {
+          if (scope.arrayOfFriends[i].number == number) {
+            viewServicePinCards.chosenFriendForHelp = scope.arrayOfFriends[i];
+            console.log(viewServicePinCards.chosenFriendForHelp);
+          }
+        }
+        onBackKeyDown();
+      }
+
     }
 
     deleteFriendTouchEnd = function (id, idWithoutPrefix) {
