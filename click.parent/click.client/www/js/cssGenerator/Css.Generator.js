@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/transfer_on_card.png);" +
+    //"background-image: url(resources/draft/qr.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -4755,12 +4755,12 @@ var css = {
   transferTwoContactPhoneField: ".transfertwo-contact-phone-field" +
   "{" +
   "position: absolute;" +
-  "left: 10%;" +
-  "width: 79.5%;" +
-  "height:" + 100 * widthK + "px;" +
+  "left: 7.5%;" +
+  "width: 85%;" +
+  "height:" + 150 * widthK + "px;" +
   "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top:" + 100 * widthK + "px;" +
+  "top:" + 5 * widthK + "px;" +
   "}",
 
   transferTwoContactTextField: ".transfertwo-contact-text-field" +
@@ -4769,7 +4769,7 @@ var css = {
   "margin: 0;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
-  "bottom: -50%;" +
+  "top: 34%;" +
   "}",
 
   transferTwoContactNumberInputPart: ".transfertwo-contact-number-input-part" +
@@ -4777,10 +4777,10 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 7%;" +
+  "top: 61%;" +
   "padding: 0;" +
   "margin: 0;" +
-  "font-size:" + 75 * widthK + "px;" +
+  "font-size:" + 40 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
@@ -9410,7 +9410,6 @@ var css = {
   "height:" + 150 * widthK + "px; " +
   "border-radius:" + 100 * widthK + "px; " +
   "background-repeat: no-repeat;" +
-  "background-image: url(resources/icons/ViewSettingsAboutProgram/about_logo.png);" +
   "background-size: 100%;" +
   "background-position: center;" +
   "}",
