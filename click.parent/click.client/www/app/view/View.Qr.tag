@@ -1,25 +1,17 @@
 <view-qr>
-  <div class="settings-about-program-blue-container">
-    <div class="settings-about-program-page-title">
-      <p class="settings-about-program-name-title">{titleName}</p>
+  <div class="view-qr-blue-container">
+    <div class="view-qr-page-title">
+      <p class="view-qr-name-title">{titleName}</p>
       <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
     </div>
-    <div class="settings-about-program-click-icon"></div>
-    <p class="settings-about-program-version-title-part-one">
+    <div class="view-qr-company-icon"></div>
+    <p class="view-qr-company-name">
       {window.languages.ViewSettingsAboutProgramVersionTitleNamePartOne}</p>
-    <p class="settings-about-program-version-title-part-two">
+    <p class="view-qr-address-name">
       {window.languages.ViewSettingsAboutProgramVersionTitleNamePartTwo}</p>
   </div>
-  <div class="settings-container settings-about-program-container">
-    <div class="settings-about-program-user-agreement-container" ontouchend="userAgreementTouchEnd()">
-      <p class="settings-about-program-user-agreement-title">
-        {window.languages.ViewSettingsAboutProgramUserAgreementTitleName}</p>
-      <div class="settings-about-program-user-agreement-icon"></div>
-    </div>
-    <div class="settings-about-program-rank-container" ontouchend="rankInGooglePlayTouchEnd()">
-      <p class="settings-about-program-rank-title">{window.languages.ViewSettingsAboutProgramRankTitleName}</p>
-      <div class="settings-about-program-rank-icon"></div>
-    </div>
+  <div class="settings-container view-qr-container">
+
   </div>
 
 

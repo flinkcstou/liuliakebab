@@ -9126,7 +9126,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 35 * widthK + "px; " +
   "left:" + 85 * widthK + "px; " +
-  "top:" + 27 * widthK + "px; " +
+  "top:" + 24 * widthK + "px; " +
   "margin: 0;  " +
   "color: #fffaf9;" +
   "}",
@@ -9336,6 +9336,80 @@ var css = {
   "background-position-x:" + 54 * widthK + "px;" +
   "background-size: 22%;" +
   "top: 0;" +
+  "}",
+
+  //VIEW QR
+  viewQrBlueContainer: ".view-qr-blue-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 418 * widthK + "px;" +
+  "background-color: #00a8f1;" +
+  "}",
+
+  viewQrContainer: ".view-qr-container" +
+  "{" +
+  "top:" + 417 * widthK + "px;" +
+  "}",
+
+  viewQrPageTitle: ".view-qr-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top:" + 0 * widthK + "px;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 88 * widthK + "px;" +
+  "background: transparent;" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  viewQrNameTitle: ".view-qr-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 34 * widthK + "px; " +
+  "left:" + 77 * widthK + "px; " +
+  "top:" + 26 * widthK + "px; " +
+  "margin: 0;  " +
+  "color: #fffaf9;" +
+  "}",
+
+  viewQrCompanyName: ".view-qr-company-name " +
+  "{" +
+  "position: relative;" +
+  "font-size:" + 35 * widthK + "px; " +
+  "width:" + 255 * widthK + "px; " +
+  "margin: 0; " +
+  "margin-left: auto; " +
+  "margin-right: auto; " +
+  "top: 10%; " +
+  "color: white;" +
+  "}",
+
+  viewQrAddressName: ".view-qr-address-name " +
+  "{" +
+  "position: relative;" +
+  "font-size:" + 24 * widthK + "px; " +
+  "width:" + 150 * widthK + "px; " +
+  "margin: 0; " +
+  "margin-left: auto; " +
+  "margin-right: auto; " +
+  "top: 11%; " +
+  "color: white;" +
+  "}",
+
+  viewQrCompanyIcon: ".view-qr-company-icon" +
+  "{" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "top: 14%;" +
+  "width: 21%;" +
+  "height: 60%;" +
+  "background-repeat: no-repeat;" +
+  "background-image: url(resources/icons/ViewSettingsAboutProgram/about_logo.png);" +
+  "background-size: 100%;" +
+  "background-position: center;" +
   "}",
 
 }

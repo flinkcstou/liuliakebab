@@ -46,8 +46,8 @@
       event.preventDefault();
       event.stopPropagation();
 //      return
-      riotTags.innerHTML = "<view-auto-pay>";
-      riot.mount('view-auto-pay');
+      riotTags.innerHTML = "<view-qr>";
+      riot.mount('view-qr');
     }
   </script>
 </component-bank-operations>
