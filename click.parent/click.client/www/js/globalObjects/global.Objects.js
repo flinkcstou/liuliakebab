@@ -44,6 +44,7 @@ window.viewMyCardList = {};
 viewMyCardList.myCardListBoolean = false;
 
 window.viewTransfer = {};
+viewTransfer.check = false;
 viewTransfer.phoneNumber = '';
 viewTransfer.cardNumber = '';
 viewTransfer.type = 2;

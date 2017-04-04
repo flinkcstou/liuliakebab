@@ -23,6 +23,7 @@
   <script>
 
     viewMainPage.atMainPage = true;
+    viewTransfer.check = false;
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
