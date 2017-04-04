@@ -3859,7 +3859,7 @@ var css = {
   "top: 30%;" +
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
-  "width:100%;" +
+  "width: 90%;" +
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
@@ -5049,6 +5049,7 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "left: 7%;" +
+  "width: 90%;" +
   "top: 27%;" +
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +

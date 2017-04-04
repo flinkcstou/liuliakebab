@@ -185,7 +185,7 @@
 
     this.on('mount', function () {
 
-      if (opts) {
+      if (opts && opts.number) {
         contactPhoneNumberId.value = opts.number
         if (contactPhoneNumberId.value == 9) {
           firstSuggestionBlockId.style.display = 'none';

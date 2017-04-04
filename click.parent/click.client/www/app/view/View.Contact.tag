@@ -78,12 +78,32 @@
       goToTransfer = false;
 
       if (scope.arrayOfNumbers) {
+
+        var maskOne = /[0-9]/g;
+
+        var digits = scope.arrayOfNumbers[0].value.match(maskOne);
+        var phone = '';
+        for (var i in digits) {
+          phone += digits[i]
+        }
+        phone = phone.substring(phone.length - 9, phone.length);
+
         if (scope.arrayOfNumbers.length > 1) {
           contactSelectContainerId.style.display = 'block'
         }
         else {
-          riotTags.innerHTML = "<view-pay>";
-          riot.mount('view-pay');
+          var id = window.mOperators[phone.substring(0, 2)]
+          viewPay.chosenServiceId = id;
+
+          console.log('ID', id)
+          if(id) {
+            riotTags.innerHTML = "<view-service-page>";
+            riot.mount("view-service-page", {number: phone});
+          }
+          else{
+            alert('Вы не можете оплатить за этот номер')
+          }
+
         }
       }
 
@@ -106,8 +126,18 @@
 
 
       if (goToPay) {
-        riotTags.innerHTML = "<view-pay>";
-        riot.mount('view-pay');
+        var id = window.mOperators[phone.substring(0, 2)]
+        if(id) {
+          viewPay.chosenServiceId = id;
+
+          console.log('ID', id)
+
+          riotTags.innerHTML = "<view-service-page>";
+          riot.mount("view-service-page", {number: phone});
+        }
+        else{
+          alert('Вы не можете оплатить за этот номер')
+        }
       }
       else {
         riotTags.innerHTML = "<view-transfer>";
