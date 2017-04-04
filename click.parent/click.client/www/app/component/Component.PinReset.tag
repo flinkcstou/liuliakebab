@@ -32,6 +32,8 @@
 
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
 
   <script>
     var scope = this;
@@ -66,7 +68,10 @@
             riot.update(scope.firstStage);
           }
           else {
-            alert(result[0][0].error_note);
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
             componentPinResetId.style.display = 'none';
           }
         },
