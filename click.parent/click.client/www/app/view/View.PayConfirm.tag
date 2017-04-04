@@ -23,7 +23,7 @@
       <div class="payconfirm-field">
         <p class="payconfirm-text-field">{window.languages.ViewPayConfirmCategory}</p>
         <p class="payconfirm-phone-input" style="text-decoration: underline">
-          {window.languages.ViewPayConfirmMobileConnection}</p>
+          {categoryName}</p>
       </div>
       <div class="payconfirm-card-field">
         <div class="payconfirm-card-info-container">

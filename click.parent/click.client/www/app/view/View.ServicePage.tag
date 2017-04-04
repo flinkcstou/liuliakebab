@@ -161,6 +161,9 @@
 
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   </div>
 
 
@@ -188,10 +191,10 @@
 
     this.on('mount', function () {
       if (opts && opts.number) {
-          firstFieldInput.value = opts.number
-          riot.update();
+        firstFieldInput.value = opts.number
+        riot.update();
 
-        }
+      }
 
 
       if (viewServicePage.amountWithoutSpace.length > 0) {
@@ -277,7 +280,10 @@
             riot.update(scope.currencyRate);
           }
           else {
-            alert(result[0][0].error_note);
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
           }
         },
 
@@ -787,18 +793,31 @@
     enterButton = function () {
 
       if (scope.phoneFieldBool && firstFieldInput.value.length < 9) {
-        alert("Введите валидный номер телефона");
+        scope.clickPinError = false;
+        scope.errorNote = "Введите валидный номер телефона";
+        riot.update();
+        componentAlertId.style.display = 'block';
+
         return;
       } else if (firstFieldInput.value.length == 0) {
-        alert("Введите значение первого поля");
+        scope.clickPinError = false;
+        scope.errorNote = "Введите значение первого поля";
+        riot.update();
+        componentAlertId.style.display = 'block';
         return;
       }
       if (amountForPayTransaction < scope.service.min_pay_limit) {
-        alert("Сумма должна быть больше " + scope.service.min_pay_limit);
+        scope.clickPinError = false;
+        scope.errorNote = "Сумма должна быть больше " + scope.service.min_pay_limit;
+        riot.update();
+        componentAlertId.style.display = 'block';
         return;
       }
       if (amountForPayTransaction > scope.service.max_pay_limit) {
-        alert("Сумма должна быть меньше " + scope.service.max_pay_limit);
+        scope.clickPinError = false;
+        scope.errorNote = "Сумма должна быть меньше " + scope.service.max_pay_limit;
+        riot.update();
+        componentAlertId.style.display = 'block';
         return;
       }
 
@@ -819,7 +838,10 @@
           var amountText = {"amountText": scope.amountOfFormTypeFour};
           var internetPackageParam = {"internetPackageParam": scope.chosenFieldParamIdThree};
         } else {
-          alert("Выберите интернет пакет");
+          scope.clickPinError = false;
+          scope.errorNote = "Выберите интернет пакет";
+          riot.update();
+          componentAlertId.style.display = 'block';
           return;
         }
       }
@@ -895,8 +917,12 @@
         this.riotTags.innerHTML = "<view-main-page>";
         riot.mount('view-main-page');
       }
-      else
-        alert("Попробуйте еще раз");
+      else {
+        scope.clickPinError = false;
+        scope.errorNote = "Попробуйте еще раз";
+        riot.update();
+        componentAlertId.style.display = 'block';
+      }
 
     }
 

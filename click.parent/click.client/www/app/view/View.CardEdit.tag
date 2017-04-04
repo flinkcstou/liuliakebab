@@ -18,7 +18,8 @@
     </div>
   </div>
 
-
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
   <script>
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-card-edit') {
       history.arrayOfHistory.push(
@@ -63,31 +64,31 @@
 
     }
 
-//    cardEditFocus = function () {
-//      event.preventDefault()
-//      event.stopPropagation()
-//
-//      if (cardNameInputID.value.length > 25) {
-//        return
-//      }
-//    }
-//
-//    cardEditKeyDown = function () {
-//      if (cardNameInputID.value.length > 25) {
-//        event.preventDefault()
-//        event.stopPropagation()
-//        return
-//      }
-//    }
-//
-//    cardEditKeyUp = function () {
-//      event.preventDefault()
-//      event.stopPropagation()
-//
-//      if (cardNameInputID.value.length > 25) {
-//        return
-//      }
-//    }
+    //    cardEditFocus = function () {
+    //      event.preventDefault()
+    //      event.stopPropagation()
+    //
+    //      if (cardNameInputID.value.length > 25) {
+    //        return
+    //      }
+    //    }
+    //
+    //    cardEditKeyDown = function () {
+    //      if (cardNameInputID.value.length > 25) {
+    //        event.preventDefault()
+    //        event.stopPropagation()
+    //        return
+    //      }
+    //    }
+    //
+    //    cardEditKeyUp = function () {
+    //      event.preventDefault()
+    //      event.stopPropagation()
+    //
+    //      if (cardNameInputID.value.length > 25) {
+    //        return
+    //      }
+    //    }
 
     saveEdit = function () {
 
@@ -126,7 +127,10 @@
 
             }
             else {
-              alert(result[0][0].error_note);
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
+              riot.update();
+              componentAlertId.style.display = 'block';
             }
 
           },
@@ -180,7 +184,10 @@
               onBackKeyDown();
             }
             else {
-              alert(result[0][0].error_note);
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
+              riot.update();
+              componentAlertId.style.display = 'block';
             }
           },
           onFail: function (api_status, api_status_message, data) {

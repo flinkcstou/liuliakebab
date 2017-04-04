@@ -158,7 +158,12 @@
         this.riotTags.innerHTML = "<view-main-page>";
         riot.mount('view-main-page');
       }
-      else alert('Do first enter with Internet')
+      else {
+        scope.clickPinError = false;
+        scope.errorNote = 'Do first enter with Internet';
+        riot.update();
+        componentAlertId.style.display = 'block';
+      }
 
     };
 
@@ -252,8 +257,7 @@
             }
           }
           else {
-            alert(result[0][0].error_note);
-            if (!result[0][0].error == 31) {
+            if (result[0][0].error == -31) {
               scope.clickPinError = true;
               console.log("click pin error");
             } else {
@@ -367,8 +371,13 @@
                   riot.mount('view-main-page');
                 }
               }
-              else
-                alert(result[0][0].error_note);
+              else {
+                scope.clickPinError = false;
+                scope.errorNote = result[0][0].error_note;
+                console.log("errornote=", scope.errorNote);
+                riot.update();
+                componentAlertId.style.display = 'block';
+              }
             },
 
 

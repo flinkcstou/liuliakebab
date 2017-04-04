@@ -70,7 +70,7 @@ window.fakedSocket.register("app.login", function (input) {
       [{
         "method": input.method,
         "success": 1,
-        "error": -4,
+        "error": -31,
         "error_note": 'Neverniy PIN CODE'
       }]
     ];

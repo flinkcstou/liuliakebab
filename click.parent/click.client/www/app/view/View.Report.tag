@@ -74,6 +74,9 @@
     </div>
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
     this.titleName = 'ОТЧЕТЫ';
 
@@ -338,7 +341,10 @@
             riot.update(scope.paymentsMap)
           }
           else {
-            alert(result[0][0].error_note);
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
           }
 
         },
@@ -413,7 +419,10 @@
             createGraph(scope.graphList);
           }
           else {
-            alert(result[0][0].error_note);
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
           }
 
         },

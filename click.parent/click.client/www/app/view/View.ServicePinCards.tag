@@ -45,6 +45,8 @@
 
     </div>
   </div>
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
   <script>
 
 
@@ -99,7 +101,10 @@
         }
       }
       if (!scope.checked) {
-        alert("Выберите карту для оплаты");
+        scope.clickPinError = false;
+        scope.errorNote = "Выберите карту для оплаты";
+        riot.update();
+        componentAlertId.style.display = 'block';
         return;
       }
       event.preventDefault();
