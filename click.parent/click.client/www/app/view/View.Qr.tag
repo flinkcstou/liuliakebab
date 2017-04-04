@@ -137,6 +137,7 @@
       }
     }
 
+    var sumForQrPay;
 
     sumFocus = function () {
       event.preventDefault()
@@ -153,7 +154,7 @@
         sumValueId.value = ' ' + defaultAccount.currency;
       }
       if (event.keyCode == 8) {
-        sumForTransfer = sumForTransfer.substring(0, sumForTransfer.length - 1)
+        sumForQrPay = sumForQrPay.substring(0, sumForQrPay.length - 1)
       }
 
       if (sumValueId.value.match(maskTwo) != null && sumValueId.value.match(maskTwo).length != null) {
@@ -162,41 +163,41 @@
         sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
         sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
 
-        sumForTransfer = sumValueId.value.substring(0, sumValueId.value.match(maskTwo).length);
-        sumForTransfer = sumForTransfer.replace(new RegExp(' ', 'g'), '');
+        sumForQrPay = sumValueId.value.substring(0, sumValueId.value.match(maskTwo).length);
+        sumForQrPay = sumForQrPay.replace(new RegExp(' ', 'g'), '');
 
-        if (sumForTransfer.length == 4) {
-          sumValueId.value = sumForTransfer.substring(0, 1) + ' ' + sumForTransfer.substring(1, sumForTransfer.length) + ' ' + defaultAccount.currency
+        if (sumForQrPay.length == 4) {
+          sumValueId.value = sumForQrPay.substring(0, 1) + ' ' + sumForQrPay.substring(1, sumForQrPay.length) + ' ' + defaultAccount.currency
           sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
           sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
 
         }
 
-        if (sumForTransfer.length == 5) {
-          sumValueId.value = sumForTransfer.substring(0, 2) + ' ' + sumForTransfer.substring(2, sumForTransfer.length) + ' ' + defaultAccount.currency
+        if (sumForQrPay.length == 5) {
+          sumValueId.value = sumForQrPay.substring(0, 2) + ' ' + sumForQrPay.substring(2, sumForQrPay.length) + ' ' + defaultAccount.currency
           sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
           sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
 
         }
 
-        if (sumForTransfer.length == 6) {
-          sumValueId.value = sumForTransfer.substring(0, 3) + ' ' + sumForTransfer.substring(3, sumForTransfer.length) + ' ' + defaultAccount.currency
+        if (sumForQrPay.length == 6) {
+          sumValueId.value = sumForQrPay.substring(0, 3) + ' ' + sumForQrPay.substring(3, sumForQrPay.length) + ' ' + defaultAccount.currency
           sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
           sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
 
         }
 
-        if (sumForTransfer.length == 7) {
-          sumValueId.value = sumForTransfer.substring(0, 1) + ' ' + sumForTransfer.substring(1, 4) + ' ' +
-            sumForTransfer.substring(4, sumForTransfer.length) + ' ' + defaultAccount.currency
+        if (sumForQrPay.length == 7) {
+          sumValueId.value = sumForQrPay.substring(0, 1) + ' ' + sumForQrPay.substring(1, 4) + ' ' +
+            sumForQrPay.substring(4, sumForQrPay.length) + ' ' + defaultAccount.currency
           sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
           sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
 
         }
 
-        if (sumForTransfer.length == 8) {
-          sumValueId.value = sumForTransfer.substring(0, 2) + ' ' + sumForTransfer.substring(2, 5) + ' ' +
-            sumForTransfer.substring(5, sumForTransfer.length) + ' ' + defaultAccount.currency
+        if (sumForQrPay.length == 8) {
+          sumValueId.value = sumForQrPay.substring(0, 2) + ' ' + sumForQrPay.substring(2, 5) + ' ' +
+            sumForQrPay.substring(5, sumForQrPay.length) + ' ' + defaultAccount.currency
           sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
           sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
 
