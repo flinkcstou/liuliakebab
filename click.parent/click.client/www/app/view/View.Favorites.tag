@@ -87,7 +87,6 @@
         if (scope.favoritePaymentsList[i].service.id == id) {
           console.log("gnrf", scope.favoritePaymentsList[i].opts);
           viewPay.chosenServiceId = id;
-          viewPay.categoryId = scope.favoritePaymentsList[i].categoryId;
           viewServicePage.firstFieldTitle = scope.favoritePaymentsList[i].firstFieldTitle;
           viewPayConfirm.isInFavorites = true;
           event.stopPropagation();

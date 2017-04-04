@@ -84,7 +84,8 @@
 
     this.titleName = scope.service.name;
     this.serviceIcon = scope.service.image;
-    this.categoryName = scope.categoryNamesMap[viewPay.categoryId].name;
+
+    this.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
 
 
     goToPayConfirmView = function () {

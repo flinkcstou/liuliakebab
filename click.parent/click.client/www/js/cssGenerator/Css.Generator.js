@@ -9554,12 +9554,12 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: 6%;" +
-  "left: 26%;" +
-  "width: 48%;" +
-  "top: 83%;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "top: 87%;" +
   "display: table;" +
-  "background-color: #027fe4;" +
-  "border-radius:" + 50 * widthK + "px;" +
+  "background-color: #01B8FE;" +
+  "border-radius:" + 10 * widthK + "px;" +
   "bottom:0;" +
   "}",
 

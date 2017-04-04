@@ -906,7 +906,6 @@
         favoritePaymentsList.push({
           "opts": array,
           "service": scope.service,
-          "categoryId": viewPay.categoryId,
           "firstFieldTitle": viewServicePage.firstFieldTitle
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);
@@ -919,7 +918,6 @@
         favoritePaymentsList.push({
           "opts": array,
           "service": scope.service,
-          "categoryId": viewPay.categoryId,
           "firstFieldTitle": viewServicePage.firstFieldTitle
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);

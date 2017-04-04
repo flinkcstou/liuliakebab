@@ -151,7 +151,7 @@
 
     scope.titleName = scope.service.name;
     scope.serviceIcon = scope.service.image;
-    scope.categoryName = scope.categoryNamesMap[viewPay.categoryId].name;
+    scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     var chosenCardId = opts[1];
     console.log("chosen card id=", chosenCardId);
 
@@ -175,7 +175,6 @@
         favoritePaymentsList.push({
           "opts": opts[0],
           "service": scope.service,
-          "categoryId": viewPay.categoryId,
           "firstFieldTitle": viewServicePage.firstFieldTitle
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);
@@ -186,7 +185,6 @@
         favoritePaymentsList.push({
           "opts": opts[0],
           "service": scope.service,
-          "categoryId": viewPay.categoryId,
           "firstFieldTitle": viewServicePage.firstFieldTitle
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);

@@ -19,11 +19,6 @@
   <script>
     var scope = this;
 
-    console.log("errornote in comp=", opts.errornote);
-
-    scope.errorTextOne = window.languages.ComponentAlertClickPinErrorTextOne;
-    scope.errorTextTwo = window.languages.ComponentAlertClickPinErrorTextTwo;
-    scope.errorTextThree = window.languages.ComponentAlertClickPinErrorTextThree;
 
     closeAlertForm = function () {
       event.preventDefault();

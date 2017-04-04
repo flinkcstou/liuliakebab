@@ -253,13 +253,13 @@
           }
           else {
             alert(result[0][0].error_note);
-            if (!result[0][0].error) {
+            if (!result[0][0].error == 31) {
+              scope.clickPinError = true;
+              console.log("click pin error");
+            } else {
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
               console.log("errornote=", scope.errorNote);
-            } else {
-              scope.clickPinError = true;
-              console.log("no errornote");
             }
             riot.update();
             componentAlertId.style.display = 'block';
