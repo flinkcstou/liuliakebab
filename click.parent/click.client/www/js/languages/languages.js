@@ -236,6 +236,10 @@ var RU_LANGUAGES =
   "ViewTransferDetailTitleAccept": "ПРИНЯТЬ",
   "ViewTransferDetailTitleDecline": "ОТКЛОНИТЬ",
 
+  "ViewTransferDetailConfirmEnterCodeLabel": "Введите секретный код для получения перевода:",
+  "ViewTransferDetailConfirmShouldSendCodeLabelFirstPart": "Пользователь",
+  "ViewTransferDetailConfirmShouldSendCodeLabelSecondPart": "должен сообщить вам секретный код",
+
   "ViewAccountDetailTransferIconTitleOne": "Получен счет",
   "ViewAccountDetailTransferIconTitleTwo": "от пользователя CLICK",
   "ViewAccountDetailTitleSum": "Сумма платежа:",

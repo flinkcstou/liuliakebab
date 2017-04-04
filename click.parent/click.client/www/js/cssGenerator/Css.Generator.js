@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/contact2_crop.png);" +
+    //"background-image: url(resources/draft/confirm.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -7431,6 +7431,84 @@ var css = {
   "border-radius:" + 5 * widthK + "px;" +
   "font-size:" + 29 * widthK + "px;" +
   "width: 40%;" +
+  "}",
+
+  transferDetailCodeConfirm: ".transfer-detail-code-confirm" +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.95;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "background-color: #353340;" +
+  "}",
+
+  transferDetailCodeConfirmCodeContainer: ".transfer-detail-code-confirm-code-container " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 450 * widthK + "px;" +
+  "height:" + 450 * widthK + "px;" +
+  "left:" + 135 * widthK + "px;" +
+  "top:" + 100 * widthK + "px;" +
+  "}",
+
+  transferDetailCodeConfirmMessageText: ".transfer-detail-code-confirm-message-text " +
+  "{" +
+  "position: relative;" +
+  "width: 81%;" +
+  "text-align: center;" +
+  "margin:0 auto;" +
+  "font-size:" + 31 * widthK + "px;" +
+  "color: white;" +
+  "}",
+
+  transferDetailCodeConfirmCodeInput: ".transfer-detail-code-confirm-code-input" +
+  "{" +
+  "position: relative;" +
+  "width: 46%;" +
+  "height: 25%;" +
+  "color: white;" +
+  "text-align: center;" +
+  "border: none;" +
+  "border-bottom:" + 5 * widthK + "px solid #6abfff;" +
+  "font-size:" + 100 * widthK + "px;" +
+  "background: none;" +
+  "margin:" + 35 * widthK + "px " + 125 * widthK + "px;" +
+  "outline: none;" +
+  "}",
+
+  transferDetailCodeConfirmButtonEnter: ".transfer-detail-code-confirm-button-enter" +
+  "{" +
+  "bottom: 5.4%;" +
+  "position: absolute;" +
+  "width: 63%;" +
+  "height: 13%;" +
+  "left: 19%;" +
+  "margin: 0;" +
+  "background-color: rgb(1, 124, 227);" +
+  "}",
+
+  transferDetailCodeConfirmButtonEnterLabel: ".transfer-detail-code-confirm-button-enter-label" +
+  "{" +
+  "position: relative;" +
+  "top: 17%;" +
+  "width: 100%;" +
+  "font-size: " + 30 * widthK + "px; " +
+  "margin: auto;" +
+  "color: white;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "}",
+
+  transferDetailCodeConfirmMessageTextInfo: ".transfer-detail-code-confirm-message-text-info" +
+  "{" +
+  "position: relative;" +
+  "width: 106%;" +
+  "text-align: center;" +
+  "top: 0.5%;" +
+  "left: -0.7%;" +
+  "margin:0 auto;" +
+  "font-size:" + 27 * widthK + "px;" +
+  "color: white;" +
   "}",
 
   //ACCOUNT DETAIL VIEW

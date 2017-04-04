@@ -80,3 +80,6 @@ window.invoiceActions = {};
 invoiceActions.ACCEPT = 1;
 invoiceActions.DECLINE = 2;
 
+window.input_codes = {};
+input_codes.BACKSPACE_CODE = 8
+
