@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/qr.png);" +
+    //"background-image: url(resources/draft/transfer_on_card.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -9415,6 +9415,73 @@ var css = {
   "background-position: center;" +
   "}",
 
+  //VIEW TRANSFER ON CARD
+
+  viewTransferOnCardTitleContainer: ".view-transfer-on-card-title-container" +
+  "{" +
+  "position: absolute;" +
+  "top: 0;" +
+  "height:" + 220 * widthK + "px;" +
+  "width: 100%;" +
+  "background-color: #0280e4;" +
+  "}",
+
+  viewTransferOnCardTitleTextPartOne: ".view-transfer-on-card-title-text-part-one" +
+  "{" +
+  "color: white;" +
+  "position: relative;" +
+  "margin:" + 50 * widthK + "px 0 0 " + 120 * widthK + "px;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "word-spacing:" + 3 * widthK + "px;" +
+  "}",
+
+  viewTransferOnCardTitleTextPartTwoSum: ".view-transfer-on-card-title-text-part-two-sum" +
+  "{" +
+  "color: white;" +
+  "position: relative;" +
+  "margin: " + 2 * widthK + "px 0 0 " + 250 * widthK + "px;" +
+  "font-size: " + 40 * widthK + "px;" +
+  "word-spacing: " + 4.6 * widthK + "px;" +
+  "}",
+
+  viewTransferOnCardTitleTextPartThree: ".view-transfer-on-card-title-text-part-three" +
+  "{" +
+  "color: white;" +
+  "position: relative;" +
+  "margin:" + (-9) * widthK + "px 0 0 " + 291 * widthK + "px;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "word-spacing:" + 3 * widthK + "px;" +
+  "}",
+
+  viewTransferOnCardContentContainer: ".view-transfer-on-card-content-container" +
+  "{" +
+  "position: absolute;" +
+  "top: " + 220 * widthK + "px;" +
+  "width: 100%;" +
+  "bottom: 0;" +
+  "background: white;" +
+  "}",
+
+  transferOnCardPincardAllCardsContainer: ".transfer-on-card-pincard-all-cards-container" +
+  "{" +
+  "height:80%;" +
+  "}",
+
+  transferOnCardOkButton: ".transfer-on-card-ok-button" +
+  "{" +
+  "position: relative;" +
+  "margin: " + 49 * widthK + "px 0 0 " + 214 * widthK + "px;" +
+  "float: left;" +
+  "text-align: center;" +
+  "color: white;" +
+  "background-color: #0280e4;" +
+  "height: " + 63 * widthK + "px;" +
+  "line-height: " + 63 * widthK + "px;" +
+  "border-radius: " + 5 * widthK + "px;" +
+  "font-size: " + 27 * widthK + "px;" +
+  "width: 40%;" +
+  "text-transform: uppercase;" +
+  "}",
 }
 
 

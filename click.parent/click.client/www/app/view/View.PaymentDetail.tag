@@ -101,7 +101,7 @@
           scope: this,
           onSuccess: function (result) {
 
-            console.log("result of invoice transfer decline", result);
+            console.log("result of invoice payment decline", result);
 
             if (result[0][0].error == 0) {
               goToBack(true);
@@ -154,7 +154,7 @@
           scope: this,
           onSuccess: function (result) {
 
-            console.log("result of invoice transfer accept", result);
+            console.log("result of invoice payment accept", result);
 
             if (result[0][0].error == 0) {
               goToBack(true);

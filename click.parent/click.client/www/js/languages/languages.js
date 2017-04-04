@@ -240,6 +240,10 @@ var RU_LANGUAGES =
   "ViewTransferDetailConfirmShouldSendCodeLabelFirstPart": "Пользователь",
   "ViewTransferDetailConfirmShouldSendCodeLabelSecondPart": "должен сообщить вам секретный код",
 
+  "ViewTransferOnCardTitleTextPartOne": "Зачислить средства в размере",
+  "ViewTransferOnCardTitleTextPartTwo": "на карту:",
+  "ViewTransferOnCardAcceptButtonText": "принять",
+
   "ViewAccountDetailTransferIconTitleOne": "Получен счет",
   "ViewAccountDetailTransferIconTitleTwo": "от пользователя CLICK",
   "ViewAccountDetailTitleSum": "Сумма платежа:",

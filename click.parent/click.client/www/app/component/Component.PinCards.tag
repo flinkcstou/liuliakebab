@@ -1,6 +1,7 @@
 <component-pincards>
 
-  <div class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail}">
+  <div
+      class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail, transfer-on-card-pincard-all-cards-container: opts.transferoncard}">
     <div class="pincard-card-container" each="{i in cardsArray}" ontouchend="chooseCardTouchEnd(this.id)"
          ontouchstart="chooseCardTouchStart()"
          id="{i.card_id}" if="{i.access == 2}">
