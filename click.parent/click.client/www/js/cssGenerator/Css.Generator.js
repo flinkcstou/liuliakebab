@@ -1837,7 +1837,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 35 * widthK + "px;" +
   "left: 12.5%;" +
-  "top: 31%;" +
+  "top: 27%;" +
   "margin: 0;" +
   "color: #fffaf9;" +
   "}",

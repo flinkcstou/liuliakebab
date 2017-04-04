@@ -13,19 +13,19 @@
   <div class="view-qr-container">
 
     <div class="view-qr-contact-phone-field-container">
-    <div class="view-qr-contact-phone-field">
-      <p class="view-qr-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
-        {window.languages.Currency}</p>
-      <input maxlength="13" class="view-qr-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
-             onmouseup="sumMouseUp()"
-             type="tel" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
-    </div>
+      <div class="view-qr-contact-phone-field">
+        <p class="view-qr-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
+          {window.languages.Currency}</p>
+        <input maxlength="13" class="view-qr-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
+               onmouseup="sumMouseUp()"
+               type="tel" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
+      </div>
     </div>
 
     <div class="view-qr-buttons-container">
-      <p class="view-qr-button-cancel" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
+      <p class="view-qr-button-cancel" ontouchend="onTouchEndDecline()" ontouchstart="onTouchStartDecline()">
         {window.languages.ViewQrTitleCancel}</p>
-      <p class="view-qr-button-accept" ontouchend="onTouchEndDecline()" ontouchstart="onTouchStartDecline()">
+      <p class="view-qr-button-accept" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
         {window.languages.ViewQrTitleAccept}</p>
     </div>
 
@@ -53,7 +53,7 @@
 //        sumForTransfer = viewTransferStepTwo.sumWithoutSpace;
 //      }
 //      else
-        sumValueId.value = 0 + ' ' + defaultAccount.currency
+      sumValueId.value = 0 + ' ' + defaultAccount.currency
     })
 
     var checkFirst = false,
@@ -71,6 +71,44 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+    };
+
+    var touchStartAcceptX, touchStartAcceptY, touchStartDeclineX, touchStartDeclineY
+    onTouchStartAccept = function () {
+
+      touchStartAcceptX = event.changedTouches[0].pageX;
+      touchStartAcceptY = event.changedTouches[0].pageY;
+    };
+
+    onTouchEndAccept = function () {
+
+      touchEndAcceptX = event.changedTouches[0].pageX;
+      touchEndAcceptY = event.changedTouches[0].pageY;
+
+      if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
+        Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
+        riotTags.innerHTML = "<view-service-pincards>";
+        riot.mount('view-service-pincards');
+
+//        [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
+      }
+    };
+
+    onTouchStartDecline = function () {
+
+      touchStartDeclineX = event.changedTouches[0].pageX;
+      touchStartDeclineY = event.changedTouches[0].pageY;
+    };
+
+    onTouchEndDecline = function () {
+
+      touchEndDeclineX = event.changedTouches[0].pageX;
+      touchEndDeclineY = event.changedTouches[0].pageY;
+
+      if (Math.abs(touchEndDeclineX - touchStartDeclineX) < 20 &&
+        Math.abs(touchEndDeclineY - touchStartDeclineY) < 20) {
+        onBackKeyDown()
+      }
     };
 
     sumMouseUp = function () {
