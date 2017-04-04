@@ -33,6 +33,9 @@
 
   <component-pin-reset></component-pin-reset>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
     //    TEST = function () {
     //      CardIO.scan({
@@ -249,7 +252,17 @@
             }
           }
           else {
-            alert(result[0][0].error_note)
+            alert(result[0][0].error_note);
+            if (!result[0][0].error) {
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
+              console.log("errornote=", scope.errorNote);
+            } else {
+              scope.clickPinError = true;
+              console.log("no errornote");
+            }
+            riot.update();
+            componentAlertId.style.display = 'block';
             enteredPin = '';
             updateEnteredPin();
             return

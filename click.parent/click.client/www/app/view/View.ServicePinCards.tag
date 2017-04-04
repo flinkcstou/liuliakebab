@@ -27,7 +27,7 @@
         <div class="pincard-friend-help-text-two">{window.languages.ViewServicePinCardHelpText}</div>
         <div class="pincard-chosen-friend-inner-container"
              ontouchend="firstSuggestionBlock()">
-          <div class="pincard-chosen-friend-photo">
+          <div class="pincard-chosen-friend-photo" style="background-image: url({photo})">
             {firstLetterOfName}
           </div>
           <div class="pincard-chosen-friend-text-container">
@@ -46,7 +46,7 @@
     </div>
   </div>
   <script>
-    //style="background-image: url({suggestionOne.photo})"
+
 
     console.log('OPTS', opts);
     var arrayForTransfer = [];
@@ -122,7 +122,7 @@
         scope.firstLetterOfName = viewServicePinCards.chosenFriendForHelp.firstLetterOfName;
         scope.fName = viewServicePinCards.chosenFriendForHelp.name;
         scope.phoneNumber = viewServicePinCards.chosenFriendForHelp.number;
-
+        scope.photo = viewServicePinCards.chosenFriendForHelp.photo;
       }
     } else {
       console.log("BBB");
