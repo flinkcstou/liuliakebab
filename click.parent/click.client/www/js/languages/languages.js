@@ -236,6 +236,14 @@ var RU_LANGUAGES =
   "ViewTransferDetailTitleAccept": "ПРИНЯТЬ",
   "ViewTransferDetailTitleDecline": "ОТКЛОНИТЬ",
 
+  "ViewTransferDetailConfirmEnterCodeLabel": "Введите секретный код для получения перевода:",
+  "ViewTransferDetailConfirmShouldSendCodeLabelFirstPart": "Пользователь",
+  "ViewTransferDetailConfirmShouldSendCodeLabelSecondPart": "должен сообщить вам секретный код",
+
+  "ViewTransferOnCardTitleTextPartOne": "Зачислить средства в размере",
+  "ViewTransferOnCardTitleTextPartTwo": "на карту:",
+  "ViewTransferOnCardAcceptButtonText": "принять",
+
   "ViewAccountDetailTransferIconTitleOne": "Получен счет",
   "ViewAccountDetailTransferIconTitleTwo": "от пользователя CLICK",
   "ViewAccountDetailTitleSum": "Сумма платежа:",
@@ -285,6 +293,9 @@ var RU_LANGUAGES =
   "ComponentAlertClickPinErrorTextTwo": 'более 3 раз',
   "ComponentAlertClickPinErrorTextThree": 'и Ваш профиль заблокирован на 15 минут',
   "ComponentAlertOk": 'OK',
+
+
+  "ViewQrTitle": "ОПЛАТА ТОВАРОВ И УСЛУГ",
 
 
 };

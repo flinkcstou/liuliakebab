@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/contact2_crop.png);" +
+    //"background-image: url(resources/draft/transfer_on_card.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -1542,6 +1542,11 @@ var css = {
   "bottom:" + 21 * widthK + "px;" +
   "right: 14%;" +
   "color: white;" +
+  "width: 100%;" +
+  "overflow: hidden;" +
+  "text-overflow: ellipsis;" +
+  "text-align: right;" +
+  "white-space: nowrap;" +
   "}",
 
   sideMenuUserSecondName: ".side-menu-user-second-name " +
@@ -1551,7 +1556,12 @@ var css = {
   "padding: 0;" +
   "bottom:" + 53 * widthK + "px;" +
   "right: 14%;" +
+  "width: 100%;" +
+  "overflow: hidden;" +
+  "text-overflow: ellipsis;" +
   "color: white;" +
+  "text-align: right;" +
+  "white-space: nowrap;" +
   "}",
 
   sideMenuBillingsContainer: ".side-menu-billings-container " +
@@ -7434,6 +7444,84 @@ var css = {
   "width: 40%;" +
   "}",
 
+  transferDetailCodeConfirm: ".transfer-detail-code-confirm" +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.95;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "background-color: #353340;" +
+  "}",
+
+  transferDetailCodeConfirmCodeContainer: ".transfer-detail-code-confirm-code-container " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 450 * widthK + "px;" +
+  "height:" + 450 * widthK + "px;" +
+  "left:" + 135 * widthK + "px;" +
+  "top:" + 100 * widthK + "px;" +
+  "}",
+
+  transferDetailCodeConfirmMessageText: ".transfer-detail-code-confirm-message-text " +
+  "{" +
+  "position: relative;" +
+  "width: 81%;" +
+  "text-align: center;" +
+  "margin:0 auto;" +
+  "font-size:" + 31 * widthK + "px;" +
+  "color: white;" +
+  "}",
+
+  transferDetailCodeConfirmCodeInput: ".transfer-detail-code-confirm-code-input" +
+  "{" +
+  "position: relative;" +
+  "width: 46%;" +
+  "height: 25%;" +
+  "color: white;" +
+  "text-align: center;" +
+  "border: none;" +
+  "border-bottom:" + 5 * widthK + "px solid #6abfff;" +
+  "font-size:" + 100 * widthK + "px;" +
+  "background: none;" +
+  "margin:" + 35 * widthK + "px " + 125 * widthK + "px;" +
+  "outline: none;" +
+  "}",
+
+  transferDetailCodeConfirmButtonEnter: ".transfer-detail-code-confirm-button-enter" +
+  "{" +
+  "bottom: 5.4%;" +
+  "position: absolute;" +
+  "width: 63%;" +
+  "height: 13%;" +
+  "left: 19%;" +
+  "margin: 0;" +
+  "background-color: rgb(1, 124, 227);" +
+  "}",
+
+  transferDetailCodeConfirmButtonEnterLabel: ".transfer-detail-code-confirm-button-enter-label" +
+  "{" +
+  "position: relative;" +
+  "top: 17%;" +
+  "width: 100%;" +
+  "font-size: " + 30 * widthK + "px; " +
+  "margin: auto;" +
+  "color: white;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "}",
+
+  transferDetailCodeConfirmMessageTextInfo: ".transfer-detail-code-confirm-message-text-info" +
+  "{" +
+  "position: relative;" +
+  "width: 106%;" +
+  "text-align: center;" +
+  "top: 0.5%;" +
+  "left: -0.7%;" +
+  "margin:0 auto;" +
+  "font-size:" + 27 * widthK + "px;" +
+  "color: white;" +
+  "}",
+
   //ACCOUNT DETAIL VIEW
 
   accountDetailCover: ".account-detail-cover" +
@@ -7610,7 +7698,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 130 * widthK + "px;" +
+  "height:" + 90 * widthK + "px;" +
   "bottom: 0;" +
   "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
@@ -7712,7 +7800,7 @@ var css = {
 
   changedHeightForPaymentDetail: ".changed-height-for-payment-detail" +
   "{" +
-  "height: 40%;" +
+  "height: 48%;" +
   "}",
 
   paymentDetailPaymentIcon: ".payment-detail-payment-icon" +
@@ -8911,17 +8999,8 @@ var css = {
   "overflow-x: hidden; " +
   "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
+  "background-position-y:" + 742 * widthK + "px;" +
   "background-size: 100%;" +
-  "}",
-
-  invoiceHistoryDetailContainerPayment: ".invoice-history-detail-container-payment" +
-  "{" +
-  "background-position-y:" + 471 * widthK + "px;" +
-  "}",
-
-  invoiceHistoryDetailContainerTransfer: ".invoice-history-detail-container-transfer" +
-  "{" +
-  "background-position-y:" + 635 * widthK + "px;" +
   "}",
 
   invoiceHistoryDetailInvoiceContainer: ".invoice-history-detail-invoice-container" +
@@ -8978,15 +9057,6 @@ var css = {
   "width: 100%;" +
   "bottom: 0;" +
   "background-color: #f4f4f4;" +
-  "}",
-
-  invoiceHistoryDetailCoverPayment: ".invoice-history-detail-cover-payment" +
-  "{" +
-  "height:" + 260 * widthK + "px;" +
-  "}",
-
-  invoiceHistoryDetailCoverTransfer: ".invoice-history-detail-cover-transfer" +
-  "{" +
   "height:" + 100 * widthK + "px;" +
   "}",
 
@@ -9057,7 +9127,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 35 * widthK + "px; " +
   "left:" + 85 * widthK + "px; " +
-  "top:" + 27 * widthK + "px; " +
+  "top:" + 24 * widthK + "px; " +
   "margin: 0;  " +
   "color: #fffaf9;" +
   "}",
@@ -9269,6 +9339,150 @@ var css = {
   "top: 0;" +
   "}",
 
+  //VIEW QR
+  viewQrBlueContainer: ".view-qr-blue-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 340 * widthK + "px;" +
+  "background-color: #00a8f1;" +
+  "}",
+
+  viewQrContainer: ".view-qr-container" +
+  "{" +
+  "top:" + 340 * widthK + "px;" +
+  "}",
+
+  viewQrPageTitle: ".view-qr-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top:" + 0 * widthK + "px;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 88 * widthK + "px;" +
+  "background: transparent;" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  viewQrNameTitle: ".view-qr-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 34 * widthK + "px; " +
+  "left:" + 77 * widthK + "px; " +
+  "top:" + 26 * widthK + "px; " +
+  "margin: 0;  " +
+  "color: #fffaf9;" +
+  "}",
+
+  viewQrCompanyName: ".view-qr-company-name " +
+  "{" +
+  "position: relative;" +
+  "font-size:" + 35 * widthK + "px; " +
+  "width: 90%; " +
+  "text-align: center; " +
+  "margin: 0; " +
+  "margin-left: auto; " +
+  "margin-right: auto; " +
+  "top: 22%; " +
+  "color: white;" +
+  "}",
+
+  viewQrAddressName: ".view-qr-address-name " +
+  "{" +
+  "position: relative;" +
+  "font-size:" + 24 * widthK + "px; " +
+  "width: 90%; " +
+  "text-align: center; " +
+  "margin: 0; " +
+  "margin-left: auto; " +
+  "margin-right: auto; " +
+  "top: 22%; " +
+  "color: white;" +
+  "}",
+
+  viewQrCompanyIcon: ".view-qr-company-icon" +
+  "{" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "top: 21%;" +
+  "width:" + 150 * widthK + "px; " +
+  "height:" + 150 * widthK + "px; " +
+  "border-radius:" + 100 * widthK + "px; " +
+  "background-repeat: no-repeat;" +
+  "background-image: url(resources/icons/ViewSettingsAboutProgram/about_logo.png);" +
+  "background-size: 100%;" +
+  "background-position: center;" +
+  "}",
+
+  //VIEW TRANSFER ON CARD
+
+  viewTransferOnCardTitleContainer: ".view-transfer-on-card-title-container" +
+  "{" +
+  "position: absolute;" +
+  "top: 0;" +
+  "height:" + 220 * widthK + "px;" +
+  "width: 100%;" +
+  "background-color: #0280e4;" +
+  "}",
+
+  viewTransferOnCardTitleTextPartOne: ".view-transfer-on-card-title-text-part-one" +
+  "{" +
+  "color: white;" +
+  "position: relative;" +
+  "margin:" + 50 * widthK + "px 0 0 " + 120 * widthK + "px;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "word-spacing:" + 3 * widthK + "px;" +
+  "}",
+
+  viewTransferOnCardTitleTextPartTwoSum: ".view-transfer-on-card-title-text-part-two-sum" +
+  "{" +
+  "color: white;" +
+  "position: relative;" +
+  "margin: " + 2 * widthK + "px 0 0 " + 250 * widthK + "px;" +
+  "font-size: " + 40 * widthK + "px;" +
+  "word-spacing: " + 4.6 * widthK + "px;" +
+  "}",
+
+  viewTransferOnCardTitleTextPartThree: ".view-transfer-on-card-title-text-part-three" +
+  "{" +
+  "color: white;" +
+  "position: relative;" +
+  "margin:" + (-9) * widthK + "px 0 0 " + 291 * widthK + "px;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "word-spacing:" + 3 * widthK + "px;" +
+  "}",
+
+  viewTransferOnCardContentContainer: ".view-transfer-on-card-content-container" +
+  "{" +
+  "position: absolute;" +
+  "top: " + 220 * widthK + "px;" +
+  "width: 100%;" +
+  "bottom: 0;" +
+  "background: white;" +
+  "}",
+
+  transferOnCardPincardAllCardsContainer: ".transfer-on-card-pincard-all-cards-container" +
+  "{" +
+  "height:80%;" +
+  "}",
+
+  transferOnCardOkButton: ".transfer-on-card-ok-button" +
+  "{" +
+  "position: relative;" +
+  "margin: " + 49 * widthK + "px 0 0 " + 214 * widthK + "px;" +
+  "float: left;" +
+  "text-align: center;" +
+  "color: white;" +
+  "background-color: #0280e4;" +
+  "height: " + 63 * widthK + "px;" +
+  "line-height: " + 63 * widthK + "px;" +
+  "border-radius: " + 5 * widthK + "px;" +
+  "font-size: " + 27 * widthK + "px;" +
+  "width: 40%;" +
+  "text-transform: uppercase;" +
+  "}",
 //  Component Alert
 
   componentAlert: ".component-alert " +

@@ -1,6 +1,7 @@
 <component-pincards>
 
-  <div class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail}">
+  <div
+      class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail, transfer-on-card-pincard-all-cards-container: opts.transferoncard}">
     <div class="pincard-card-container" each="{i in cardsArray}" ontouchend="chooseCardTouchEnd(this.id)"
          ontouchstart="chooseCardTouchStart()"
          id="{i.card_id}" if="{i.access == 2}">
@@ -28,6 +29,7 @@
 
     scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
     scope.checked = false;
+    scope.cardId = undefined;
 
     console.log(' scope.cardsArray', scope.cardsArray)
 
@@ -43,11 +45,11 @@
     chooseCardTouchStart = function () {
 
       touchStartY = event.changedTouches[0].pageY;
-
     }
 
-
     chooseCardTouchEnd = function (id) {
+
+      scope.cardId = id;
 
       touchEndY = event.changedTouches[0].pageY;
 
@@ -70,6 +72,11 @@
       else return
 
     }
+
+    scope.getAccountCardId = function () {
+
+      return scope.cardId;
+    };
 
 
   </script>

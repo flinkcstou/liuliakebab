@@ -39,7 +39,8 @@
       <div class="transfer-detail-cover"></div>
 
       <div class="transfer-detail-buttons-container">
-        <p class="transfer-detail-button-accept">{window.languages.ViewTransferDetailTitleAccept}</p>
+        <p class="transfer-detail-button-accept" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
+          {window.languages.ViewTransferDetailTitleAccept}</p>
         <p class="transfer-detail-button-cancel" ontouchend="onTouchEndDecline()" ontouchstart="onTouchStartDecline()">
           {window.languages.ViewTransferDetailTitleDecline}</p>
       </div>
@@ -48,14 +49,41 @@
 
   </div>
 
+  <code-confirm id="blockCodeConfirmId" class="transfer-detail-code-confirm" if="{showConfirmPanel}">
+
+    <div class="transfer-detail-code-confirm-code-container">
+
+      <p class="transfer-detail-code-confirm-message-text">{languages.ViewTransferDetailConfirmEnterCodeLabel}</p>
+      <input id="secretCodeInput" class="transfer-detail-code-confirm-code-input" type="number"
+             onkeydown="verifyInput(this)"
+             autofocus/>
+      <p class="transfer-detail-code-confirm-message-text-info">
+        {languages.ViewTransferDetailConfirmShouldSendCodeLabelFirstPart} + {opts.phoneNumber}
+        {languages.ViewTransferDetailConfirmShouldSendCodeLabelSecondPart}</p>
+      <div class="transfer-detail-code-confirm-button-enter" ontouchend="onTouchEndAcceptSecretCode()"
+           ontouchstart="onTouchStartAcceptSecretCode()">
+        <p class="transfer-detail-code-confirm-button-enter-label">OK</p>
+      </div>
+    </div>
+  </code-confirm>
+
   <script>
     var scope = this,
         touchStartDeclineX,
         touchEndDeclineX,
         touchStartDeclineY,
-        touchEndDeclineY;
+        touchEndDeclineY,
+        touchStartAcceptX,
+        touchEndAcceptX,
+        touchStartAcceptY,
+        touchEndAcceptY,
+        touchStartAcceptSecretCodeX,
+        touchEndAcceptSecretCodeX,
+        touchStartAcceptSecretCodeY,
+        touchEndAcceptSecretCodeY;
 
     scope.titleName = window.languages.ViewTransferDetailTitle;
+    scope.showConfirmPanel = false;
 
     goToBack = function (doNotPrevent) {
 
@@ -65,6 +93,69 @@
         event.stopPropagation();
       }
       onBackKeyDown()
+    };
+
+    verifyInput = function (input) {
+
+      console.log(event);
+
+      if (input.value.length >= 3 && event.keyCode != input_codes.BACKSPACE_CODE) {
+
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    };
+
+    onTouchStartAcceptSecretCode = function () {
+
+      console.log("Secret Code For Confirmation", this.secretCodeInput.value);
+
+      touchStartAcceptSecretCodeX = event.changedTouches[0].pageX;
+      touchStartAcceptSecretCodeY = event.changedTouches[0].pageY;
+    };
+
+    onTouchEndAcceptSecretCode = function () {
+
+      touchEndAcceptSecretCodeX = event.changedTouches[0].pageX;
+      touchEndAcceptSecretCodeY = event.changedTouches[0].pageY;
+
+      var secret_key = this.secretCodeInput.value;
+
+      if (!secret_key) return;
+
+      if (Math.abs(touchEndAcceptSecretCodeX - touchStartAcceptSecretCodeX) < 20 &&
+          Math.abs(touchEndAcceptSecretCodeY - touchStartAcceptSecretCodeY) < 20) {
+
+        params = {
+          amount: opts.amount,
+          secret_key: secret_key,
+          invoiceId: opts.invoiceId
+        };
+
+        history.arrayOfHistory.push({view: "view-transfer-on-card"});
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        riotTags.innerHTML = "<view-transfer-on-card>";
+        riot.mount("view-transfer-on-card", params);
+      }
+    };
+
+    onTouchStartAccept = function () {
+
+      touchStartAcceptX = event.changedTouches[0].pageX;
+      touchStartAcceptY = event.changedTouches[0].pageY;
+    };
+
+    onTouchEndAccept = function () {
+
+      touchEndAcceptX = event.changedTouches[0].pageX;
+      touchEndAcceptY = event.changedTouches[0].pageY;
+
+      if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
+          Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
+
+        scope.showConfirmPanel = true;
+        riot.update(scope.showConfirmPanel);
+      }
     };
 
     onTouchStartDecline = function () {

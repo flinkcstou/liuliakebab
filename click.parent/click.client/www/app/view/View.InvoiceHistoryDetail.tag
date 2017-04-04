@@ -17,7 +17,7 @@
       {(opts.is_p2p)?("+"):("")} {opts.inParameter}</p>
   </div>
 
-  <div class="invoice-history-detail-container invoice-history-detail-container-transfer" if="{opts.is_p2p}">
+  <div class="invoice-history-detail-container" if="{opts.is_p2p}">
     <div class="invoice-history-detail-invoice-container">
       <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailTransferAmountLabel}</p>
       <p class="invoice-history-detail-sum">{opts.amount} сум</p>
@@ -50,7 +50,7 @@
 
   </div>
 
-  <div class="invoice-history-detail-container invoice-history-detail-container-payment" if="{!opts.is_p2p}">
+  <div class="invoice-history-detail-container" if="{!opts.is_p2p}">
     <div class="invoice-history-detail-invoice-container">
       <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailPaymentAmountLabel}</p>
       <p class="invoice-history-detail-sum">{opts.amount} сум</p>
