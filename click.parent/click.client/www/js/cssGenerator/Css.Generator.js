@@ -9352,6 +9352,13 @@ var css = {
 
   viewQrContainer: ".view-qr-container" +
   "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 92 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: #f4f4f4; " +
+  "overflow: hidden; " +
   "top:" + 340 * widthK + "px;" +
   "}",
 
@@ -9417,6 +9424,14 @@ var css = {
   "background-position: center;" +
   "}",
 
+  viewQrContactPhoneFieldContainer: ".view-qr-contact-phone-field-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 25%;" +
+  "background-color: white;" +
+  "}",
+
   viewQrContactPhoneField: ".view-qr-contact-phone-field" +
   "{" +
   "position: absolute;" +
@@ -9449,6 +9464,54 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
+
+  viewQrButtonsContainer: ".view-qr-buttons-container" +
+  "{" +
+  "position: absolute;" +
+  "width:100%;" +
+  "height:" + 90 * widthK + "px;" +
+  "top: 24%;" +
+  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "padding-top:" + 60 * widthK + "px;" +
+  "}",
+
+  viewQrButtonAccept: ".view-qr-button-accept" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "float: left;" +
+  "text-align: center;" +
+  "margin-left: 8%;" +
+  "margin-top: 2%;" +
+  "color: white;" +
+  "background-color: #00b8ff;" +
+  "height:" + 62 * widthK + "px;" +
+  "line-height:" + 63 * widthK + "px;" +
+  "border-radius:" + 5 * widthK + "px;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "width: 33%;" +
+  "}",
+
+  viewQrButtonCancel: ".view-qr-button-cancel" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "float: left;" +
+  "text-align: center;" +
+  "margin-left: 13%;" +
+  "margin-top: 2%;" +
+  "color: white;" +
+  "background-color: white;" +
+  "color: #c0c0c0;" +
+  "height:" + 62 * widthK + "px;" +
+  "line-height:" + 63 * widthK + "px;" +
+  "border-radius:" + 5 * widthK + "px;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "width: 33%;" +
+  "}",
+
 
   //VIEW TRANSFER ON CARD
 

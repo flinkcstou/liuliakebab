@@ -10,8 +10,9 @@
     <p class="view-qr-address-name">
       {window.languages.ViewSettingsAboutProgramVersionTitleNamePartTwo}</p>
   </div>
-  <div class="settings-container view-qr-container">
+  <div class="view-qr-container">
 
+    <div class="view-qr-contact-phone-field-container">
     <div class="view-qr-contact-phone-field">
       <p class="view-qr-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
         {window.languages.Currency}</p>
@@ -19,12 +20,13 @@
              onmouseup="sumMouseUp()"
              type="tel" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
     </div>
+    </div>
 
-    <div class="transfer-detail-buttons-container">
-      <p class="transfer-detail-button-accept" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
-        {window.languages.ViewTransferDetailTitleAccept}</p>
-      <p class="transfer-detail-button-cancel" ontouchend="onTouchEndDecline()" ontouchstart="onTouchStartDecline()">
-        {window.languages.ViewTransferDetailTitleDecline}</p>
+    <div class="view-qr-buttons-container">
+      <p class="view-qr-button-cancel" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
+        {window.languages.ViewQrTitleCancel}</p>
+      <p class="view-qr-button-accept" ontouchend="onTouchEndDecline()" ontouchstart="onTouchStartDecline()">
+        {window.languages.ViewQrTitleAccept}</p>
     </div>
 
   </div>
