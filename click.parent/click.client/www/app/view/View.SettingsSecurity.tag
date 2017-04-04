@@ -8,7 +8,7 @@
     </div>
     <div class="settings-container">
 
-      <div class="settings-block-containter" ontouchend="" if="{false}">
+      <div class="settings-block-containter" ontouchend="goToTrustedDevices()">
         <div class="settings-block-icon"
              style="background-image: url('resources/icons/ViewSettingsSecurity/security_devices.png')"></div>
         <div class="settings-block-name-field">{window.languages.ViewSecuritySettingsTrustedDevicesTitle}</div>
@@ -72,10 +72,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-security-settings') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-security-settings',
-          "params": ''
-        }
+          {
+            "view": 'view-security-settings',
+            "params": ''
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -148,8 +148,15 @@
 
     saveEditedSecuritySettings = function () {
       alert("save edits")
-    }
+    };
 
+    goToTrustedDevices = function () {
+
+      history.arrayOfHistory.push({view: "view-trusted-devices"});
+      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+      riotTags.innerHTML = "<view-trusted-devices>";
+      riot.mount("view-trusted-devices");
+    };
 
   </script>
 </view-security-settings>
