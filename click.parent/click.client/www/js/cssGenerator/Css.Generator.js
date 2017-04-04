@@ -4778,7 +4778,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 61%;" +
+  "top: 30%;" +
   "padding: 0;" +
   "margin: 0;" +
   "font-size:" + 40 * widthK + "px;" +
@@ -9413,6 +9413,39 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "background-position: center;" +
+  "}",
+
+  viewQrContactPhoneField: ".view-qr-contact-phone-field" +
+  "{" +
+  "position: absolute;" +
+  "left: 7.5%;" +
+  "width: 85%;" +
+  "height:" + 150 * widthK + "px;" +
+  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  "top:" + 5 * widthK + "px;" +
+  "}",
+
+  viewQrContactTextField: ".view-qr-contact-text-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: 34%;" +
+  "}",
+
+  viewQrContactNumberInputPart: ".view-qr-contact-number-input-part" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "top: 61%;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "font-size:" + 40 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
   "}",
 
   //VIEW TRANSFER ON CARD
