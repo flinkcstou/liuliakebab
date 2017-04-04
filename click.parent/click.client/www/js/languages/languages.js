@@ -286,6 +286,9 @@ var RU_LANGUAGES =
   "ViewContactChooseNumber": "ВЫБЕРИТЕ НОМЕР",
 
 
+  "ViewQrTitle": "ОПЛАТА ТОВАРОВ И УСЛУГ",
+
+
 };
 
 window.languages = RU_LANGUAGES;

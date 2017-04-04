@@ -1542,6 +1542,11 @@ var css = {
   "bottom:" + 21 * widthK + "px;" +
   "right: 14%;" +
   "color: white;" +
+  "width: 100%;" +
+  "overflow: hidden;" +
+  "text-overflow: ellipsis;" +
+  "text-align: right;" +
+  "white-space: nowrap;" +
   "}",
 
   sideMenuUserSecondName: ".side-menu-user-second-name " +
@@ -1551,7 +1556,12 @@ var css = {
   "padding: 0;" +
   "bottom:" + 53 * widthK + "px;" +
   "right: 14%;" +
+  "width: 100%;" +
+  "overflow: hidden;" +
+  "text-overflow: ellipsis;" +
   "color: white;" +
+  "text-align: right;" +
+  "white-space: nowrap;" +
   "}",
 
   sideMenuBillingsContainer: ".side-menu-billings-container " +

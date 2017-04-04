@@ -9,7 +9,7 @@
   <div class="card-edit-body-container">
     <div class="card-edit-field">
       <p class="card-edit-text-field">{window.languages.ViewCardEditCardNameText}</p>
-      <input maxlength="25" onfocus="cardEditFocus()" id="cardNameInputID" class="card-edit-input"
+      <input type="text" maxlength="25" id="cardNameInputID" class="card-edit-input"
              value="{defaultName}"/>
     </div>
     <div class="card-edit-makemain-container" if="{!onlyOneCard}" ontouchend="MakeMainCheck()">
@@ -63,10 +63,31 @@
 
     }
 
-    cardEditFocus = function () {
-      event.preventDefault()
-      event.stopPropagation()
-    }
+//    cardEditFocus = function () {
+//      event.preventDefault()
+//      event.stopPropagation()
+//
+//      if (cardNameInputID.value.length > 25) {
+//        return
+//      }
+//    }
+//
+//    cardEditKeyDown = function () {
+//      if (cardNameInputID.value.length > 25) {
+//        event.preventDefault()
+//        event.stopPropagation()
+//        return
+//      }
+//    }
+//
+//    cardEditKeyUp = function () {
+//      event.preventDefault()
+//      event.stopPropagation()
+//
+//      if (cardNameInputID.value.length > 25) {
+//        return
+//      }
+//    }
 
     saveEdit = function () {
 
