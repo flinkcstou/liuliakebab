@@ -20,6 +20,13 @@
              type="tel" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
     </div>
 
+    <div class="transfer-detail-buttons-container">
+      <p class="transfer-detail-button-accept" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
+        {window.languages.ViewTransferDetailTitleAccept}</p>
+      <p class="transfer-detail-button-cancel" ontouchend="onTouchEndDecline()" ontouchstart="onTouchStartDecline()">
+        {window.languages.ViewTransferDetailTitleDecline}</p>
+    </div>
+
   </div>
 
 

@@ -3543,12 +3543,14 @@ var css = {
 
   pincardCardLogoContainer: ".pincard-card-logo-container" +
   "{" +
-  "width: 41%;" +
-  "height: 100%;" +
+  "width: 25%;" +
+  "height: 67%;" +
+  "top: 17%;" +
+  "left: 5%;" +
   "background-color: transparent;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "background-size: 50%;" +
+  "background-size: contain;" +
   "float: left;" +
   "right: 61%;" +
   "position: absolute;" +
