@@ -101,6 +101,8 @@
                 onBackKeyDown();
               }
 
+              onBackKeyDown();
+
             }
             else {
               alert(result[0][0].error_note);
