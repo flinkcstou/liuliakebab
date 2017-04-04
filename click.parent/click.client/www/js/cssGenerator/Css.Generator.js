@@ -4756,12 +4756,12 @@ var css = {
   transferTwoContactPhoneField: ".transfertwo-contact-phone-field" +
   "{" +
   "position: absolute;" +
-  "left: 7.5%;" +
-  "width: 85%;" +
-  "height:" + 150 * widthK + "px;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height:" + 100 * widthK + "px;" +
   "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top:" + 5 * widthK + "px;" +
+  "top:" + 100 * widthK + "px;" +
   "}",
 
   transferTwoContactTextField: ".transfertwo-contact-text-field" +
@@ -4770,7 +4770,7 @@ var css = {
   "margin: 0;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
-  "top: 34%;" +
+  "bottom: -50%;" +
   "}",
 
   transferTwoContactNumberInputPart: ".transfertwo-contact-number-input-part" +
@@ -4778,10 +4778,10 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 30%;" +
+  "top: 7%;" +
   "padding: 0;" +
   "margin: 0;" +
-  "font-size:" + 40 * widthK + "px;" +
+  "font-size:" + 75 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
