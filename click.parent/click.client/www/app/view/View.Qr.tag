@@ -12,10 +12,10 @@
   </div>
   <div class="settings-container view-qr-container">
 
-    <div class="transfertwo-contact-phone-field">
-      <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
+    <div class="view-qr-contact-phone-field">
+      <p class="view-qr-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
         {window.languages.Currency}</p>
-      <input maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
+      <input maxlength="13" class="view-qr-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
              onmouseup="sumMouseUp()"
              type="tel" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
     </div>
