@@ -96,9 +96,13 @@
           viewPay.chosenServiceId = id;
 
           console.log('ID', id)
-
-          riotTags.innerHTML = "<view-service-page>";
-          riot.mount("view-service-page", {number: phone});
+          if(id) {
+            riotTags.innerHTML = "<view-service-page>";
+            riot.mount("view-service-page", {number: phone});
+          }
+          else{
+            alert('Вы не можете оплатить за этот номер')
+          }
 
         }
       }
@@ -123,13 +127,17 @@
 
       if (goToPay) {
         var id = window.mOperators[phone.substring(0, 2)]
-        if(id)
-        viewPay.chosenServiceId = id;
+        if(id) {
+          viewPay.chosenServiceId = id;
 
-        console.log('ID', id)
+          console.log('ID', id)
 
-        riotTags.innerHTML = "<view-service-page>";
-        riot.mount("view-service-page", {number: phone});
+          riotTags.innerHTML = "<view-service-page>";
+          riot.mount("view-service-page", {number: phone});
+        }
+        else{
+          alert('Вы не можете оплатить за этот номер')
+        }
       }
       else {
         riotTags.innerHTML = "<view-transfer>";

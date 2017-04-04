@@ -4944,6 +4944,7 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "left: 7%;" +
+  "width: 90%;" +
   "top: 27%;" +
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
