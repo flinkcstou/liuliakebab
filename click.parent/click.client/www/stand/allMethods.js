@@ -2713,16 +2713,18 @@ window.fakedSocket.register("invoice.action", function (input) {
       ];
     } else if (input.parameters.action == invoiceActions.ACCEPT) {
 
-      [{
-        "method": input.method,
-        "success": 1,
-        "error": 0,
-        "error_note": "",
-      }],
+      return [
+        [{
+          "method": input.method,
+          "success": 1,
+          "error": 0,
+          "error_note": ""
+        }],
         [{
           invoice_id: input.parameters.invoice_id,
           payment_id: "352814752"
         }]
+      ]
     }
 
   return [
