@@ -2700,15 +2700,30 @@ window.fakedSocket.register("invoice.action", function (input) {
   console.log("Input for invoice.action", input);
 
   if (input)
-    return [
+
+    if (input.parameters.action == invoiceActions.DECLINE) {
+      return [
+        [{
+          "method": input.method,
+          "success": 1,
+          "error": 0,
+          "error_note": "",
+          "invoice_id": input.parameters.invoice_id
+        }]
+      ];
+    } else if (input.parameters.action == invoiceActions.ACCEPT) {
+
       [{
         "method": input.method,
         "success": 1,
         "error": 0,
         "error_note": "",
-        "invoice_id": input.parameters.invoice_id
-      }]
-    ];
+      }],
+        [{
+          invoice_id: input.parameters.invoice_id,
+          payment_id: "352814752"
+        }]
+    }
 
   return [
     {
