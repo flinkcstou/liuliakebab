@@ -2927,6 +2927,7 @@ var css = {
   "right: 4%;" +
   "background-size: 150%;" +
   "background-color: white;" +
+  "display:none;" +
   "}",
 
   servicePageBodyContainer: ".servicepage-body-container" +
@@ -9267,6 +9268,111 @@ var css = {
   "background-size: 22%;" +
   "top: 0;" +
   "}",
+
+//  Component Alert
+
+  componentAlert: ".component-alert " +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.92;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "background-color: white;" +
+  "display: none;" +
+  "}",
+
+  componentAlertMessage: ".component-alert-message" +
+  "{" +
+  "position: relative;" +
+  "color: #1d1d1f;" +
+  "width:" + 400 * widthK + "px;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 601 * widthK + "px;" +
+  "left:" + -10 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "}",
+
+  componentAlertClickPinErrorContainer: ".component-alert-clickpin-error-container" +
+  "{" +
+  "position: relative;" +
+  "color: #1d1d1f;" +
+  "width:" + 500 * widthK + "px;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 601 * widthK + "px;" +
+  "left:" + -10 * widthK + "px;" +
+  "}",
+
+  componentAlertClickPinErrorMsgOne: ".component-alert-clickpin-message-one" +
+  "{" +
+
+    //"color: #1d1d1f;" +
+  "width:100%;" +
+  "top:0;" +
+  "left:0;" +
+  "}",
+
+  componentAlertClickPinErrorMsgTwo: ".component-alert-clickpin-message-two" +
+  "{" +
+  "color: #FFAE0A;" +
+  "width:100%;" +
+  "top:0;" +
+  "left:0;" +
+  "font-weight: bold;" +
+  "}",
+
+  componentAlertClickPinErrorMsgThree: ".component-alert-clickpin-message-three" +
+  "{" +
+    //"color: yellow;" +
+  "width:100%;" +
+  "top:0;" +
+  "left:0;" +
+  "}",
+
+  componentAlertButtonInnerContainer: ".component-alert-button-inner-container" +
+  "{" +
+  "position: absolute;" +
+  "height: 6%;" +
+  "left: 26%;" +
+  "width: 48%;" +
+  "top: 83%;" +
+  "display: table;" +
+  "background-color: #027fe4;" +
+  "border-radius:" + 50 * widthK + "px;" +
+  "bottom:0;" +
+  "}",
+
+  componentAlertButtonLabel: ".component-alert-button-label" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "font-size:" + 38 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-align: center;" +
+  "display: table-cell;" +
+  "vertical-align: middle;" +
+  "}",
+
+  componentAlertIcon: ".component-alert-icon" +
+  "{" +
+  "position: absolute;" +
+  "top:" + 300 * widthK + "px;" +
+  "width:" + 270 * widthK + "px;" +
+  "height:" + 250 * widthK + "px;" +
+  "left:" + 225 * widthK + "px;" +
+  "background-image: url(resources/icons/icon/alert_icon.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 85%;" +
+  "background-position-x: center;" +
+  "}",
+
 
 }
 

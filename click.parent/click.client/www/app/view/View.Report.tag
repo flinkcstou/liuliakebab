@@ -311,31 +311,6 @@
             console.log('PAYMENTLIST=', result[1]);
             for (var i in result[1]) {
 
-//              result[1][i].amount = result[1][i].amount.toString();
-//
-//              if (result[1][i].amount.length == 7) {
-//                result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-//                  result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
-//
-//              }
-//
-//              if (result[1][i].amount.length == 6) {
-//                result[1][i].amount = result[1][i].amount.substring(0, 3) + ' ' +
-//                  result[1][i].amount.substring(3, result[1][i].amount.length)
-//
-//              }
-//
-//              if (result[1][i].amount.length == 5) {
-//                result[1][i].amount = result[1][i].amount.substring(0, 2) + ' ' +
-//                  result[1][i].amount.substring(2, result[1][i].amount.length)
-//
-//              }
-//
-//              if (result[1][i].amount.length == 4) {
-//                result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-//                  result[1][i].amount.substring(1, result[1][i].amount.length)
-//
-//              }
               var date = new Date(result[1][i].created);
               var dateStr = date.getDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getMonth()] + ' ' + date.getFullYear();
               if (date.getMinutes() < 10 && date.getHours() < 10) {

@@ -72,9 +72,10 @@
           if (scope.arrayOfFriends[i].number == number) {
             viewServicePinCards.chosenFriendForHelp = scope.arrayOfFriends[i];
             console.log(viewServicePinCards.chosenFriendForHelp);
+            onBackKeyDown();
           }
         }
-        onBackKeyDown();
+
       }
 
     }

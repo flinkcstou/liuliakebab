@@ -281,6 +281,11 @@ var RU_LANGUAGES =
   "ViewContactTransfer": "Перевод по номеру телефона",
   "ViewContactChooseNumber": "ВЫБЕРИТЕ НОМЕР",
 
+  "ComponentAlertClickPinErrorTextOne": 'CLICK-PIN набран неверно',
+  "ComponentAlertClickPinErrorTextTwo": 'более 3 раз',
+  "ComponentAlertClickPinErrorTextThree": 'и Ваш профиль заблокирован на 15 минут',
+  "ComponentAlertOk": 'OK',
+
 
 };
 
