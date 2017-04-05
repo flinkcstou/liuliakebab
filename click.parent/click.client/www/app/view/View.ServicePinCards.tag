@@ -14,7 +14,7 @@
     <div class="pincard-payfrom-container">
       <p class="pincard-payfrom-field">{window.languages.ViewServicePinCardPayFromField}</p></div>
 
-    <component-pincards></component-pincards>
+    <component-pincards friendhelpbool="{friendHelpBool}"></component-pincards>
     <div class="pincard-bottom-container">
 
       <div class="pincard-friend-help-container" if="{!friendHelpBool}" ontouchend="friendHelp()">
@@ -97,20 +97,27 @@
         if (cardsArray[i].chosenCard && cardsArray[i].access == 2) {
           scope.chosencardId = cardsArray[i].card_id;
           scope.checked = true;
-          break;
+          event.preventDefault();
+          event.stopPropagation();
+          this.riotTags.innerHTML = "<view-pay-confirm>";
+          riot.mount('view-pay-confirm', [arrayForTransfer, true, scope.chosencardId]);
         }
       }
       if (!scope.checked) {
-        scope.clickPinError = false;
-        scope.errorNote = "Выберите карту для оплаты";
-        riot.update();
-        componentAlertId.style.display = 'block';
-        return;
+        if (scope.friendHelpBool) {
+          event.preventDefault();
+          event.stopPropagation();
+          this.riotTags.innerHTML = "<view-pay-confirm>";
+          riot.mount('view-pay-confirm', [arrayForTransfer, false, viewServicePinCards.chosenFriendForHelp]);
+        } else {
+          scope.clickPinError = false;
+          scope.errorNote = "Выберите карту для оплаты";
+          riot.update();
+          componentAlertId.style.display = 'block';
+          return;
+        }
       }
-      event.preventDefault();
-      event.stopPropagation();
-      this.riotTags.innerHTML = "<view-pay-confirm>";
-      riot.mount('view-pay-confirm', [arrayForTransfer, scope.chosencardId]);
+
     }
 
     friendHelp = function () {
@@ -130,6 +137,7 @@
         scope.phoneNumber = viewServicePinCards.chosenFriendForHelp.number;
         scope.photo = viewServicePinCards.chosenFriendForHelp.photo;
       }
+      riot.update();
     } else {
       console.log("BBB");
       scope.friendHelpBool = false;

@@ -3901,6 +3901,24 @@ var css = {
   "float: left;" +
   "}",
 
+  payconfirmChosenFriendPhoto: ".payconfirm-chosen-friend-photo" +
+  "{" +
+  "top:" + 40 * widthK + "px;" +
+  "position: absolute;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-size: cover;" +
+  "background-position: center;" +
+  "border-radius: 50%;" +
+  "text-align: center;" +
+  "line-height:" + 100 * widthK + "px;" +
+  "font-size:" + 50 * widthK + "px;" +
+  "background-color: #027fe3;" +
+  "color: white;" +
+  "right: 10%;" +
+  "}",
+
 
   payconfirmBottomContainer: ".payconfirm-bottom-container" +
   "{" +

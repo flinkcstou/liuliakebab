@@ -43,12 +43,14 @@
     }
     scope.checked = false;
     scope.cardId = undefined;
+    scope.index = -1;
 
     console.log(' scope.cardsArray', scope.cardsArray)
 
     for (var i in scope.cardsArray) {
       if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
         scope.checkedId = "check" + scope.cardsArray[i].card_id;
+        scope.index = scope.cardsArray[i].card_id;
       }
     }
 
@@ -56,28 +58,56 @@
     var touchEndY;
 
     chooseCardTouchStart = function () {
-
       touchStartY = event.changedTouches[0].pageY;
     }
 
+
     chooseCardTouchEnd = function (id) {
+      console.log("friend help bool=", opts.friendhelpbool);
 
       scope.cardId = id;
 
       touchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchStartY - touchEndY) < 20) {
-        scope.checkedId = "check" + id;
-        riot.update(scope.checkedId);
 
-        for (var i in scope.cardsArray) {
-          if (scope.cardsArray[i].card_id == id && scope.cardsArray[i].access == 2) {
-            scope.cardsArray[i].chosenCard = true;
-
+        if (opts.friendhelpbool) {
+          if (scope.index == id) {
+            scope.index = -1;
+            scope.checkedId = "";
+            riot.update(scope.checkedId);
+          } else {
+            scope.checkedId = "check" + id;
+            riot.update(scope.checkedId);
+            scope.index = id;
           }
-          else
-            scope.cardsArray[i].chosenCard = false;
+
+
+          for (var i in scope.cardsArray) {
+            if (scope.cardsArray[i].card_id == id && scope.cardsArray[i].access == 2) {
+              if (scope.checkedId.length < 2)
+                scope.cardsArray[i].chosenCard = false;
+              else
+                scope.cardsArray[i].chosenCard = true;
+            }
+            else
+              scope.cardsArray[i].chosenCard = false;
+          }
+
+
+        } else {
+          scope.checkedId = "check" + id;
+          riot.update(scope.checkedId);
+
+          for (var i in scope.cardsArray) {
+            if (scope.cardsArray[i].card_id == id && scope.cardsArray[i].access == 2) {
+              scope.cardsArray[i].chosenCard = true;
+            }
+            else
+              scope.cardsArray[i].chosenCard = false;
+          }
         }
+
 
         localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))
         riot.update(scope.cardsArray)

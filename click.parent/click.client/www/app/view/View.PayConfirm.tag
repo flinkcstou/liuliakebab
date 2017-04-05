@@ -25,7 +25,7 @@
         <p class="payconfirm-phone-input" style="text-decoration: underline">
           {categoryName}</p>
       </div>
-      <div class="payconfirm-card-field">
+      <div class="payconfirm-card-field" if="{cardOrFriendBool}">
         <div class="payconfirm-card-info-container">
           <p class="payconfirm-text-one">{window.languages.ViewPayConfirmPayFromCard}</p>
           <p class="payconfirm-text-two">{cardName}</p>
@@ -34,6 +34,16 @@
         </div>
         <div class="payconfirm-card-logo-container"
              style="background-image: url({url})">
+        </div>
+      </div>
+      <div class="payconfirm-card-field" if="{!cardOrFriendBool}">
+        <div class="payconfirm-card-info-container">
+          <p class="payconfirm-text-one">{window.languages.ViewPayConfirmFriendHelp}</p>
+          <p class="payconfirm-text-two">{friendName}</p>
+          <p class="payconfirm-detail-text">{friendNumber}</p>
+        </div>
+        <div class="payconfirm-chosen-friend-photo" style="background-image: url({friendPhoto})">
+          {friendFirstLetterOfName}
         </div>
       </div>
 
@@ -80,10 +90,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay-confirm') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-pay-confirm',
-            "params": opts
-          }
+        {
+          "view": 'view-pay-confirm',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -128,12 +138,12 @@
 
     if (scope.amountTextCopy.length == 8) {
       scope.amountTextCopy = scope.amountTextCopy.substring(0, 2) + ' ' +
-          scope.amountTextCopy.substring(2, 5) + ' ' + scope.amountTextCopy.substring(5, scope.amountTextCopy.length)
+        scope.amountTextCopy.substring(2, 5) + ' ' + scope.amountTextCopy.substring(5, scope.amountTextCopy.length)
     }
 
     if (scope.amountTextCopy.length == 7) {
       scope.amountTextCopy = scope.amountTextCopy.substring(0, 1) + ' ' +
-          scope.amountTextCopy.substring(1, 4) + ' ' + scope.amountTextCopy.substring(4, scope.amountTextCopy.length)
+        scope.amountTextCopy.substring(1, 4) + ' ' + scope.amountTextCopy.substring(4, scope.amountTextCopy.length)
     }
 
     if (scope.amountTextCopy.length == 6) {
@@ -152,17 +162,27 @@
     scope.titleName = scope.service.name;
     scope.serviceIcon = scope.service.image;
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
-    var chosenCardId = opts[1];
-    console.log("chosen card id=", chosenCardId);
+    scope.cardOrFriendBool = opts[1];
 
-    if (cardsArray[chosenCardId]) {
-      scope.cardName = cardsArray[chosenCardId].name;
-      scope.numberPartOne = cardsArray[chosenCardId].numberPartOne;
-      scope.numberPartTwo = cardsArray[chosenCardId].numberPartTwo;
-      scope.salary = cardsArray[chosenCardId].salary;
-      scope.currency = cardsArray[chosenCardId].currency;
-      scope.url = cardsArray[chosenCardId].url;
+    if (scope.cardOrFriendBool) {
+      var chosenCardId = opts[2];
+      if (cardsArray[chosenCardId]) {
+        scope.cardName = cardsArray[chosenCardId].name;
+        scope.numberPartOne = cardsArray[chosenCardId].numberPartOne;
+        scope.numberPartTwo = cardsArray[chosenCardId].numberPartTwo;
+        scope.salary = cardsArray[chosenCardId].salary;
+        scope.currency = cardsArray[chosenCardId].currency;
+        scope.url = cardsArray[chosenCardId].url;
+      }
     }
+    else {
+      var friendForHelp = opts[2];
+      scope.friendName = friendForHelp.name;
+      scope.friendNumber = friendForHelp.number;
+      scope.friendFirstLetterOfName = friendForHelp.firstLetterOfName;
+      scope.friendPhoto = friendForHelp.photo;
+    }
+    riot.update();
 
     addToFavorites = function () {
       scope.isInFavorites = true;
