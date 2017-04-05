@@ -261,6 +261,8 @@ var RU_LANGUAGES =
   "ViewPaymentDetailTitlePayFor": "Оплата за",
   "ViewPaymentDetailTitlePayFrom": "Оплатить с:",
 
+  "ViewTrustedDevicesTitle": "доверенные устройства",
+
   "ViewReportMonthsArray": [{"name": "Январь", "count": 1}, {"name": "Февраль", "count": 2}, {
     "name": "Март",
     "count": 3

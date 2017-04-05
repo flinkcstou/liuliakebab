@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/qr.png);" +
+    //"background-image: url(resources/draft/devices.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -63,6 +63,7 @@ var css = {
   "overflow: hidden;" +
   "bottom: 0;" +
   "}",
+
   body: "body{" +
   "margin: 0;" +
   "position: absolute;" +
@@ -2895,7 +2896,6 @@ var css = {
   "background: transparent;" +
     //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
-
 
   servicePageTitle: ".servicepage-title" +
   "{" +
@@ -9598,8 +9598,8 @@ var css = {
   "width: 40%;" +
   "text-transform: uppercase;" +
   "}",
-//  Component Alert
 
+//  Component Alert
   componentAlert: ".component-alert " +
   "{" +
   "position: absolute;" +
@@ -9702,7 +9702,95 @@ var css = {
   "background-position-x: center;" +
   "}",
 
+  //VIEW TRUSTED DEVICES
+  trustedDevicesTitle: ".trusted-devices-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 35 * widthK + "px; " +
+  "left:" + 85 * widthK + "px; " +
+  "top:" + 26 * widthK + "px; " +
+  "margin: 0;  " +
+  "color: #fffaf9;" +
+  "text-transform: uppercase;" +
+  "}",
 
+  trustedDevicesPageTitle: ".trusted-devices-page-title" +
+  "{" +
+  "position: absolute;" +
+  "top:" + 0 * widthK + "px;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 88 * widthK + "px;" +
+  "background: transparent;" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  trustedDevicesBackButton: ".trusted-devices-back-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 113 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y: 45%;" +
+  "background-position-x: center;" +
+  "background-size: 17%;" +
+  "right: 87%;" +
+  "}",
+
+  trustedDevicesContentContainer: ".trusted-devices-content-container" +
+  "{" +
+  "position: absolute;" +
+  "top: 94px;" +
+  "bottom: 0;" +
+  "width: 91.4%;" +
+  "padding: 0 4.3%;" +
+  "background: white;" +
+  "}",
+
+  trustedDevicesDeviceInfoContainer: ".trusted-devices-device-info-container" +
+  "{" +
+  "width: " + 639 * widthK + "px;" +
+  "height: " + 59 * widthK + "px;" +
+  "padding: " + 32 * widthK + "px " + 11 * widthK + "px;" +
+  "border-bottom: 1px solid #f6f6f6;" +
+  "}",
+
+  trustedDevicesDeviceInfoIcon: ".trusted-devices-device-info-icon" +
+  "{" +
+  "float: left;" +
+  "}",
+
+  trustedDevicesDeviceInfoName: ".trusted-devices-device-info-name" +
+  "{" +
+  "margin: 0 0 0 " + 37 * widthK + "px;" +
+  "font-size: " + 30 * widthK + "px;" +
+  "width:" + 515 * widthK + "px;" +
+  "float: left;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "white-space: nowrap;" +
+  "line-height: " + 31 * widthK + "px;" +
+  "}",
+
+  trustedDevicesDeviceInfoDate: ".trusted-devices-device-info-date" +
+  "{" +
+  "float: left;" +
+  "margin: 0 0 0 " + 37 * widthK + "px;" +
+  "font-size: " + 24 * widthK + "px;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "width: " + 514 * widthK + "px;" +
+  "white-space: nowrap;" +
+  "line-height: " + 31 * widthK + "px;" +
+  "}",
+
+  trustedDevicesDeviceDeleteIcon: ".trusted-devices-device-delete-icon" +
+  "{" +
+  "margin: " + 20 * widthK + "px 0 0 " + 21 * widthK + "px;" +
+  "}",
 }
 
 

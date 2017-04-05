@@ -87,10 +87,9 @@
 
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
         Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
-        riotTags.innerHTML = "<view-service-pincards>";
-        riot.mount('view-service-pincards');
+        riotTags.innerHTML = "<view-qr-pincards>";
+        riot.mount('view-qr-pincards');
 
-//        [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
       }
     };
 
