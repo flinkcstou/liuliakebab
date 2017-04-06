@@ -14,7 +14,7 @@
     <div class="qr-pincard-payfrom-container">
       <p class="qr-pincard-payfrom-field">{window.languages.ViewServicePinCardPayFromField}</p></div>
 
-    <component-pincards></component-pincards>
+    <component-pincards friendhelpbool="{friendHelpBool}"></component-pincards>
     <div class="qr-pincard-bottom-container">
 
       <div class="qr-pincard-friend-help-container" if="{!friendHelpBool}" ontouchend="friendHelp()">
@@ -53,10 +53,10 @@
     console.log('OPTS', opts);
 
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards') {
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr-pincards') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-service-pincards',
+          "view": 'view-qr-pincards',
           "params": opts
         }
       );
@@ -77,26 +77,33 @@
 
 
     goToQrPayConfirmView = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
       cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
       console.log("cardsArray=", cardsArray);
       for (var i in cardsArray) {
         if (cardsArray[i].chosenCard && cardsArray[i].access == 2) {
           scope.chosencardId = cardsArray[i].card_id;
           scope.checked = true;
-          break;
+          this.riotTags.innerHTML = "<view-qr-pay-confirm>";
+          riot.mount('view-qr-pay-confirm', [true, scope.chosencardId, opts]);
         }
       }
       if (!scope.checked) {
-        scope.clickPinError = false;
-        scope.errorNote = "Выберите карту для оплаты";
-        riot.update();
-        componentAlertId.style.display = 'block';
-        return;
+        if (scope.friendHelpBool) {
+          event.preventDefault();
+          event.stopPropagation();
+          this.riotTags.innerHTML = "<view-qr-pay-confirm>";
+          riot.mount('view-qr-pay-confirm', [false, viewServicePinCards.chosenFriendForHelp, opts]);
+        } else {
+          scope.clickPinError = false;
+          scope.errorNote = "Выберите карту для оплаты";
+          riot.update();
+          componentAlertId.style.display = 'block';
+          return;
+        }
       }
-      event.preventDefault();
-      event.stopPropagation();
-      this.riotTags.innerHTML = "<view-pay-confirm>";
-      riot.mount('view-pay-confirm', [arrayForTransfer, scope.chosencardId]);
     }
 
     friendHelp = function () {
@@ -116,8 +123,9 @@
         scope.phoneNumber = viewServicePinCards.chosenFriendForHelp.number;
         scope.photo = viewServicePinCards.chosenFriendForHelp.photo;
       }
+      riot.update();
     } else {
-      console.log("BBB");
+//      console.log("BBB");
       scope.friendHelpBool = false;
     }
 

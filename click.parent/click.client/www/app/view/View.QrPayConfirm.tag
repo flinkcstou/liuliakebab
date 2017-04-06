@@ -12,7 +12,7 @@
 
   <div class="qr-payconfirm-body-container">
     <div class="qr-payconfirm-data-container">
-      <div class="qr-payconfirm-phone-field" if="{formType!=2}">
+      <div style="display: none" class="qr-payconfirm-phone-field" if="{formType!=2}">
         <p class="qr-payconfirm-text-field">{firstFieldTitle}</p>
         <p class="qr-payconfirm-phone-input">{firstFieldText}</p>
       </div>
@@ -40,7 +40,7 @@
         <div class="qr-payconfirm-card-info-container">
           <p class="qr-payconfirm-text-one">{window.languages.ViewPayConfirmFriendHelp}</p>
           <p class="qr-payconfirm-text-two">{friendName}</p>
-          <p class="qr-payconfirm-detail-text">{friendNumber}</p>
+          <p class="qr-payconfirm-detail-text">+{friendNumber}</p>
         </div>
         <div class="qr-payconfirm-chosen-friend-photo" style="background-image: url({friendPhoto})">
           {friendFirstLetterOfName}
@@ -49,21 +49,6 @@
 
     </div>
     <div class="qr-payconfirm-bottom-container">
-      <div class="qr-payconfirm-action-containter">
-        <div class="qr-payconfirm-action-icon-one"
-             style="background-image: url('resources/icons/ViewService/addfavorite.png');"></div>
-        <div class="qr-payconfirm-action-text" ontouchend="addToFavorites()" if="{!isInFavorites}">
-          {window.languages.ViewPayConfirmAddToFavorites}
-        </div>
-        <div class="qr-payconfirm-action-text" ontouchend="removeFromFavorites()" if="{isInFavorites}">
-          {window.languages.ViewPayConfirmRemoveFromFavorites}
-        </div>
-      </div>
-      <div id="addToAutoPayContainerId" class="qr-payconfirm-action-containter">
-        <div class="qr-payconfirm-action-icon-two"
-             style="background-image: url('resources/icons/ViewService/addautopay.png');"></div>
-        <div class="qr-payconfirm-action-text">{window.languages.ViewPayConfirmAddToAutoPay}</div>
-      </div>
       <div class="qr-payconfirm-button-enter" ontouchend="payService()">
         <div class="qr-payconfirm-button-enter-label">{window.languages.ViewPayConfirmPay}</div>
       </div>
@@ -84,6 +69,7 @@
 
   <script>
 
+    console.log('OPTS QR CONFIRM', opts)
     var scope = this;
     goToBack = function () {
       event.preventDefault();
@@ -91,56 +77,31 @@
       onBackKeyDown()
     }
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay-confirm') {
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr-pay-confirm') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-pay-confirm',
+          "view": 'view-qr-pay-confirm',
           "params": opts
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    this.on('mount', function () {
+
+    });
 
 
-    cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-
-    if (scope.isInFavorites)
-      this.viewPage = 'view-main-page';
-    else this.viewPage = 'view-pay';
-    scope.amountTextCopy = ''
-
-
-    if (scope.amountTextCopy.length == 8) {
-      scope.amountTextCopy = scope.amountTextCopy.substring(0, 2) + ' ' +
-        scope.amountTextCopy.substring(2, 5) + ' ' + scope.amountTextCopy.substring(5, scope.amountTextCopy.length)
-    }
-
-    if (scope.amountTextCopy.length == 7) {
-      scope.amountTextCopy = scope.amountTextCopy.substring(0, 1) + ' ' +
-        scope.amountTextCopy.substring(1, 4) + ' ' + scope.amountTextCopy.substring(4, scope.amountTextCopy.length)
-    }
-
-    if (scope.amountTextCopy.length == 6) {
-      scope.amountTextCopy = scope.amountTextCopy.substring(0, 3) + ' ' + scope.amountTextCopy.substring(3, scope.amountTextCopy.length)
-    }
-
-    if (scope.amountTextCopy.length == 5) {
-      scope.amountTextCopy = scope.amountTextCopy.substring(0, 2) + ' ' + scope.amountTextCopy.substring(2, scope.amountTextCopy.length)
-    }
-
-    if (scope.amountTextCopy.length == 4) {
-      scope.amountTextCopy = scope.amountTextCopy.substring(0, 1) + ' ' + scope.amountTextCopy.substring(1, scope.amountTextCopy.length)
-    }
-
-
-    scope.titleName = opts.
-    scope.serviceIcon
-    scope.categoryName
-    scope.cardOrFriendBool
+    var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+    scope.cardOrFriendBool = opts[0];
+    //
+    //    if (scope.isInFavorites)
+    //      this.viewPage = 'view-main-page';
+    //    else this.viewPage = 'view-pay';
+    scope.amountTextCopy = opts[2].qrSum;
 
     if (scope.cardOrFriendBool) {
-      var chosenCardId = opts[2];
+      var chosenCardId = opts[1];
       if (cardsArray[chosenCardId]) {
         scope.cardName = cardsArray[chosenCardId].name;
         scope.numberPartOne = cardsArray[chosenCardId].numberPartOne;
@@ -151,61 +112,52 @@
       }
     }
     else {
-      var friendForHelp
-      scope.friendName
-      scope.friendNumbe
-      scope.friendFirstLetterOfName
-      scope.friendPhoto
+      var friendForHelp = opts[1];
+      scope.friendName = friendForHelp.name;
+      scope.friendNumber = friendForHelp.number;
+      scope.friendFirstLetterOfName = friendForHelp.firstLetterOfName;
+      scope.friendPhoto = friendForHelp.photo;
+
+    }
+    riot.update();
+
+    scope.titleName = opts[2].name
+    scope.serviceIcon = opts[2].image
+    scope.categoryName = opts[2].name
+    scope.cardOrFriendBool = opts[0]
+
+    if (scope.cardOrFriendBool) {
+      var chosenCardId = opts[1];
+      if (cardsArray[chosenCardId]) {
+        scope.cardName = cardsArray[chosenCardId].name;
+        scope.numberPartOne = cardsArray[chosenCardId].numberPartOne;
+        scope.numberPartTwo = cardsArray[chosenCardId].numberPartTwo;
+        scope.salary = cardsArray[chosenCardId].salary;
+        scope.currency = cardsArray[chosenCardId].currency;
+        scope.url = cardsArray[chosenCardId].url;
+      }
+    }
+    else {
+      if (viewServicePinCards.friendHelpPaymentMode) {
+        console.log("AAA");
+        scope.friendHelpBool = true;
+        if (viewServicePinCards.chosenFriendForHelp) {
+          scope.firstLetterOfName = viewServicePinCards.chosenFriendForHelp.firstLetterOfName;
+          scope.fName = viewServicePinCards.chosenFriendForHelp.name;
+          scope.phoneNumber = viewServicePinCards.chosenFriendForHelp.number;
+          scope.photo = viewServicePinCards.chosenFriendForHelp.photo;
+        }
+        riot.update();
+      } else {
+//      console.log("BBB");
+        scope.friendHelpBool = false;
+      }
       this.on('mount', function () {
         addToAutoPayContainerId.style.display = 'none';
       });
 
     }
     riot.update();
-
-    addToFavorites = function () {
-      scope.isInFavorites = true;
-      riot.update(scope.isInFavorites);
-      opts[0][7].isInFavorites = true;
-
-      if (!localStorage.getItem('favoritePaymentsList')) {
-        var favoritePaymentsList = [];
-
-        favoritePaymentsList.push({
-          "opts": opts[0],
-          "service": scope.service,
-          "firstFieldTitle": viewServicePage.firstFieldTitle
-        });
-        console.log("favoritePaymentsList=", favoritePaymentsList);
-
-        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-      } else {
-        var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
-        favoritePaymentsList.push({
-          "opts": opts[0],
-          "service": scope.service,
-          "firstFieldTitle": viewServicePage.firstFieldTitle
-        });
-        console.log("favoritePaymentsList=", favoritePaymentsList);
-        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-      }
-
-    }
-
-    removeFromFavorites = function () {
-      var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
-      console.log(favoritePaymentsList);
-      for (var i in favoritePaymentsList)
-        if (favoritePaymentsList[i].service.id == viewPay.chosenServiceId) {
-          console.log("i=", i);
-          favoritePaymentsList.splice(i, 1);
-          console.log(favoritePaymentsList);
-          scope.isInFavorites = false;
-          localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-          riot.update(scope.isInFavorites);
-        }
-    }
-
 
     payService = function () {
 

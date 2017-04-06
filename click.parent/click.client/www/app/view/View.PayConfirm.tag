@@ -40,7 +40,7 @@
         <div class="payconfirm-card-info-container">
           <p class="payconfirm-text-one">{window.languages.ViewPayConfirmFriendHelp}</p>
           <p class="payconfirm-text-two">{friendName}</p>
-          <p class="payconfirm-detail-text">{friendNumber}</p>
+          <p class="payconfirm-detail-text">+{friendNumber}</p>
         </div>
         <div class="payconfirm-chosen-friend-photo" style="background-image: url({friendPhoto})">
           {friendFirstLetterOfName}

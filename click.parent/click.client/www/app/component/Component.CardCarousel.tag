@@ -279,7 +279,8 @@
           console.error(data);
         }
       });
-    }
+    };
+
     onComponentCreated = function () {
 
       console.log("onComponentCreated STARTED");
@@ -501,7 +502,7 @@
                 scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
                 localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
 
-                riot.update(scope.cardsarray);
+                riot.update();
               }
             }
             else {

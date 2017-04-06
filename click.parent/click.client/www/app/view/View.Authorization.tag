@@ -37,6 +37,7 @@
                    errornote="{errorNote}"></component-alert>
 
   <script>
+
     //    TEST = function () {
     //      CardIO.scan({
     //        "expiry": true,
@@ -81,7 +82,6 @@
     //        console.log('can Scan false')
     //      }
     //    }
-
 
     var scope = this;
     scope.checkAndroid = false;
