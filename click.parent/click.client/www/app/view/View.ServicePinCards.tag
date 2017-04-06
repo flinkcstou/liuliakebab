@@ -33,7 +33,7 @@
           <div class="pincard-chosen-friend-text-container">
             <div class="pincard-chosen-friend-text-one">{fName} {lName}</div>
           </div>
-          <div class="pincard-chosen-friend-text-two">{phoneNumber}</div>
+          <div class="pincard-chosen-friend-text-two">+{phoneNumber}</div>
         </div>
         <div class="pincard-friend-change-text" ontouchend="friendHelp()">Изменить</div>
       </div>
