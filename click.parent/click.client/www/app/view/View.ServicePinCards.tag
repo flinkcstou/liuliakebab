@@ -14,7 +14,7 @@
     <div class="pincard-payfrom-container">
       <p class="pincard-payfrom-field">{window.languages.ViewServicePinCardPayFromField}</p></div>
 
-    <component-pincards friendhelpbool="{friendHelpBool}"></component-pincards>
+    <component-pincards></component-pincards>
     <div class="pincard-bottom-container">
 
       <div class="pincard-friend-help-container" if="{!friendHelpBool}" ontouchend="friendHelp()">
@@ -93,42 +93,46 @@
     goToPayConfirmView = function () {
       cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
       console.log("cardsArray=", cardsArray);
-      for (var i in cardsArray) {
-        if (cardsArray[i].chosenCard && cardsArray[i].access == 2) {
-          scope.chosencardId = cardsArray[i].card_id;
-          scope.checked = true;
-          event.preventDefault();
-          event.stopPropagation();
-          this.riotTags.innerHTML = "<view-pay-confirm>";
-          riot.mount('view-pay-confirm', [arrayForTransfer, true, scope.chosencardId]);
+      console.log("BOOL=", scope.friendHelpBool);
+      if (scope.friendHelpBool) {
+        scope.checked = true;
+        event.preventDefault();
+        event.stopPropagation();
+        this.riotTags.innerHTML = "<view-pay-confirm>";
+        riot.mount('view-pay-confirm', [arrayForTransfer, false, viewServicePinCards.chosenFriendForHelp]);
+      } else {
+        for (var i in cardsArray) {
+          if (cardsArray[i].chosenCard && cardsArray[i].access == 2) {
+            scope.chosencardId = cardsArray[i].card_id;
+            scope.checked = true;
+            event.preventDefault();
+            event.stopPropagation();
+            this.riotTags.innerHTML = "<view-pay-confirm>";
+            riot.mount('view-pay-confirm', [arrayForTransfer, true, scope.chosencardId]);
+          }
         }
       }
       if (!scope.checked) {
-        if (scope.friendHelpBool) {
-          event.preventDefault();
-          event.stopPropagation();
-          this.riotTags.innerHTML = "<view-pay-confirm>";
-          riot.mount('view-pay-confirm', [arrayForTransfer, false, viewServicePinCards.chosenFriendForHelp]);
-        } else {
-          scope.clickPinError = false;
-          scope.errorNote = "Выберите карту для оплаты";
-          riot.update();
-          componentAlertId.style.display = 'block';
-          return;
-        }
+        scope.clickPinError = false;
+        scope.errorNote = "Выберите карту для оплаты";
+        riot.update();
+        componentAlertId.style.display = 'block';
+        return;
+
       }
 
     }
 
     friendHelp = function () {
       viewServicePinCards.friendHelpPaymentMode = true;
+      viewServicePinCards.chosenFriendForHelp = null;
       event.preventDefault();
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-friend-help-settings>";
       riot.mount('view-friend-help-settings');
     }
 
-    if (viewServicePinCards.friendHelpPaymentMode) {
+    if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
 //      console.log("AAA");
       scope.friendHelpBool = true;
       if (viewServicePinCards.chosenFriendForHelp) {
@@ -143,6 +147,10 @@
       scope.friendHelpBool = false;
     }
 
+    refreshFunction = function (bool) {
+      scope.friendHelpBool = bool;
+      riot.update(scope.friendHelpBool);
+    }
 
   </script>
 </view-service-pincards>

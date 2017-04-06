@@ -184,7 +184,6 @@
       this.on('mount', function () {
         addToAutoPayContainerId.style.display = 'none';
       });
-
     }
     riot.update();
 
@@ -315,6 +314,7 @@
                   viewServicePage.phoneText = null;
                   viewServicePage.amountText = null;
                   viewServicePinCards.friendHelpPaymentMode = false;
+                  viewServicePinCards.chosenFriendForHelp = null;
                   componentSuccessId.style.display = 'block';
                 }
             }

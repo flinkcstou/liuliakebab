@@ -47,12 +47,23 @@
 
     console.log(' scope.cardsArray', scope.cardsArray)
 
-    for (var i in scope.cardsArray) {
-      if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
-        scope.checkedId = "check" + scope.cardsArray[i].card_id;
-        scope.index = scope.cardsArray[i].card_id;
-      }
+    if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
+      for (var i in scope.cardsArray)
+        if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
+          scope.cardsArray[i].chosenCard = false;
+//          scope.index = scope.cardsArray[i].card_id;
+        }
+      console.log("WWW");
     }
+    else {
+      for (var i in scope.cardsArray)
+        if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
+          scope.checkedId = "check" + scope.cardsArray[i].card_id;
+//          scope.index = scope.cardsArray[i].card_id;
+        }
+      console.log("QQQ");
+    }
+
 
     var touchStartY;
     var touchEndY;
@@ -63,7 +74,6 @@
 
 
     chooseCardTouchEnd = function (id) {
-      console.log("friend help bool=", opts.friendhelpbool);
 
       scope.cardId = id;
 
@@ -71,42 +81,49 @@
 
       if (Math.abs(touchStartY - touchEndY) < 20) {
 
-        if (opts.friendhelpbool) {
-          if (scope.index == id) {
-            scope.index = -1;
-            scope.checkedId = "";
-            riot.update(scope.checkedId);
-          } else {
-            scope.checkedId = "check" + id;
-            riot.update(scope.checkedId);
-            scope.index = id;
-          }
+//        if (opts.friendhelpbool) {
+//          if (scope.index == id) {
+//            scope.index = -1;
+//            scope.checkedId = "";
+//            riot.update(scope.checkedId);
+//          } else {
+//            scope.checkedId = "check" + id;
+//            riot.update(scope.checkedId);
+//            scope.index = id;
+//          }
+//
+//
+//          for (var i in scope.cardsArray) {
+//            if (scope.cardsArray[i].card_id == id && scope.cardsArray[i].access == 2) {
+//              if (scope.checkedId.length < 2)
+//                scope.cardsArray[i].chosenCard = false;
+//              else
+//                scope.cardsArray[i].chosenCard = true;
+//            }
+//            else
+//              scope.cardsArray[i].chosenCard = false;
+//          }
+//
+//
+//        } else {
+        scope.checkedId = "check" + id;
+        riot.update(scope.checkedId);
 
-
-          for (var i in scope.cardsArray) {
-            if (scope.cardsArray[i].card_id == id && scope.cardsArray[i].access == 2) {
-              if (scope.checkedId.length < 2)
-                scope.cardsArray[i].chosenCard = false;
-              else
-                scope.cardsArray[i].chosenCard = true;
-            }
-            else
-              scope.cardsArray[i].chosenCard = false;
-          }
-
-
-        } else {
-          scope.checkedId = "check" + id;
-          riot.update(scope.checkedId);
-
-          for (var i in scope.cardsArray) {
-            if (scope.cardsArray[i].card_id == id && scope.cardsArray[i].access == 2) {
-              scope.cardsArray[i].chosenCard = true;
-            }
-            else
-              scope.cardsArray[i].chosenCard = false;
-          }
+        if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
+          this.parent.refreshFunction(false);
+          viewServicePinCards.friendHelpPaymentMode = false;
+          viewServicePinCards.chosenFriendForHelp = null;
         }
+
+
+        for (var i in scope.cardsArray) {
+          if (scope.cardsArray[i].card_id == id && scope.cardsArray[i].access == 2) {
+            scope.cardsArray[i].chosenCard = true;
+          }
+          else
+            scope.cardsArray[i].chosenCard = false;
+        }
+//        }
 
 
         localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))

@@ -209,6 +209,7 @@
       viewServicePage.phoneText = null;
       viewServicePage.amountText = null;
       viewServicePinCards.friendHelpPaymentMode = false;
+      viewServicePinCards.chosenFriendForHelp = null;
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
