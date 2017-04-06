@@ -57,6 +57,8 @@
 
   </div>
 
+  <view-settings-support id="settingsSupportId" style="display: none"></view-settings-support>
+
   <script>
     var scope = this;
     this.titleName = window.languages.ViewSettingsTitleNameTwo;
@@ -112,6 +114,14 @@
     goToInviteFriendSettings = function () {
       event.preventDefault();
       event.stopPropagation();
+
+    }
+
+    goToSupportSettings = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      settingsSupportId.style.display = 'block'
 
     }
 

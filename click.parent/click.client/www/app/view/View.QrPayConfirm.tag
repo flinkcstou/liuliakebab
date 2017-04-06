@@ -87,6 +87,8 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    this.viewPage = 'view-main-page';
+
     this.on('mount', function () {
 
     });

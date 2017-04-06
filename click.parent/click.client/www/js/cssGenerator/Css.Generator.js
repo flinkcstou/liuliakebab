@@ -10541,6 +10541,74 @@ var css = {
     //"top: 23%;" +
   "}",
 
+
+  //VIEW SETTINGS SUPPORT
+
+  viewSettingsSupport: ".view-settings-support" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "opacity: 0.95;" +
+  "}",
+
+  settingsSupportBlueContainer: ".settings-support-blue-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 516 * heightK + "px;" +
+  "background-color: white;" +
+  "}",
+
+  settingsSupportContainer: ".settings-support-container" +
+  "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 516 * heightK + "px; " +
+  "bottom:0; " +
+  "background-color: #00a8f1; " +
+  "overflow-y: auto; " +
+  "overflow-x: hidden; " +
+  "}",
+
+  settingsSupportPageTitle: ".settings-support-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 0;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "background: transparent;" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  settingsSupportXButton: ".settings-support-x-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 135 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "right:" + -36 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewTransfer/banks_close.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 22%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 54 * widthK + "px;" +
+  "background-size: 22%;" +
+  "top: 0;" +
+  "}",
+
+  settingsSupportHelpTitle: ".settings-support-help-title " +
+  "{" +
+  "position: relative;" +
+  "color: #7c7c7c;" +
+  "width: 80%;" +
+  "margin: 0;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "top: 50%;" +
+  "}",
+
 }
 
 
