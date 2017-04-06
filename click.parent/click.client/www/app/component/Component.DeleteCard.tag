@@ -7,6 +7,9 @@
     <p class="delete-button-cancel" ontouchend="cancelDeleteCardTouchEnd()">{window.languages.ComponentDeleteTextNo}</p>
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
     var scope = this;
 
@@ -61,13 +64,19 @@
 
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
-            alert('Карта успешно удалена')
+            scope.clickPinError = false;
+            scope.errorNote = 'Карта успешно удалена';
+            riot.update();
+            componentAlertId.style.display = 'block';
             deleteCardComponentId.style.display = 'none'
 //              updateCard();
             return
           }
           else {
-            alert(result[0][0].error_note)
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
           }
         },
 

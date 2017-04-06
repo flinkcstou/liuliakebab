@@ -8,7 +8,7 @@
   <div class="trusted-devices-content-container">
     <div each="{device in devices}" class="trusted-devices-device-info-container">
       <div
-          class="trusted-devices-device-info-icon-container {trusted-devices-android-device-icon: device.device_type == 1,
+        class="trusted-devices-device-info-icon-container {trusted-devices-android-device-icon: device.device_type == 1,
                                                               trusted-devices-ios-device-icon: device.device_type == 2,
                                                               trusted-devices-web-device-icon: device.device_type == 3}"></div>
       <div class="trusted-devices-info-container">
@@ -27,10 +27,10 @@
   <script>
 
     var scope = this,
-        deleteTouchStartX,
-        deleteTouchEndX,
-        deleteTouchStartY,
-        deleteTouchEndY;
+      deleteTouchStartX,
+      deleteTouchEndX,
+      deleteTouchStartY,
+      deleteTouchEndY;
 
     getTrustedDevicesList = function () {
 
@@ -95,7 +95,7 @@
       deleteTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(deleteTouchEndX - deleteTouchStartX) < 20 &&
-          Math.abs(deleteTouchEndY - deleteTouchStartY) < 20) {
+        Math.abs(deleteTouchEndY - deleteTouchStartY) < 20) {
 
         var confirmed = confirm("Вы действительно хотите удалить устройство?");
         if (confirmed == true) {
@@ -122,7 +122,11 @@
                 getTrustedDevicesList();
               }
               else {
-                alert(result[0][0].error_note);
+                scope.clickPinError = false;
+                scope.errorNote = result[0][0].error_note;
+                riot.update();
+                componentAlertId.style.display = 'block';
+
               }
             },
 

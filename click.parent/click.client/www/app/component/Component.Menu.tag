@@ -49,6 +49,9 @@
       <div class="side-menu-containers-name side-menu-containers-name-call">Позвонить в Click</div>
     </div>
   </div>
+
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
   <script>
     var scope = this;
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -280,8 +283,12 @@
                         }
                         console.log("QR PAY", result);
                       }
-                      else
-                        alert(result[0][0].error_note);
+                      else {
+                        scope.clickPinError = false;
+                        scope.errorNote = result[0][0].error_note;
+                        riot.update();
+                        componentAlertId.style.display = 'block';
+                      }
                     },
 
                     onFail: function (api_status, api_status_message, data) {
@@ -294,7 +301,10 @@
               }
             },
             function (error) {
-              alert("Scanning failed: " + error);
+              scope.clickPinError = false;
+              scope.errorNote = "Scanning failed: " + error;
+              riot.update();
+              componentAlertId.style.display = 'block';
             },
             {
               preferFrontCamera: false, // iOS and Android

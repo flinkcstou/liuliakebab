@@ -47,6 +47,8 @@
                       fontcolor="{i.font_color}"></component-card>
     </div>
   </div>
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
 
   <script>
 
@@ -169,7 +171,7 @@
           defaultAccount = false;
 
         numberOfCardPartOne = getAccountsCards[i].accno[0] + getAccountsCards[i].accno[1]
-            + getAccountsCards[i].accno[2] + getAccountsCards[i].accno[3]
+          + getAccountsCards[i].accno[2] + getAccountsCards[i].accno[3]
         numberOfCardPartTwo = getAccountsCards[i].accno[getAccountsCards[i].accno.length - 4] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 3] + +getAccountsCards[i].accno[getAccountsCards[i].accno.length - 2] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 1];
 
 
@@ -265,7 +267,10 @@
             }
           }
           else {
-            alert(result[0][0].error_note);
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
           }
         },
 
@@ -375,8 +380,12 @@
                   addCard()
                 }
               }
-              else
-                alert(result[0][0].error_note);
+              else {
+                scope.clickPinError = false;
+                scope.errorNote = result[0][0].error_note;
+                riot.update();
+                componentAlertId.style.display = 'block';
+              }
             },
 
 
@@ -459,34 +468,34 @@
 
                 if (result[1][0].balance.length == 9) {
                   result[1][0].balance = result[1][0].balance.substring(0, 3) + ' ' +
-                      result[1][0].balance.substring(3, 6) + ' ' + result[1][0].balance.substring(6, result[1][0].balance.length)
+                    result[1][0].balance.substring(3, 6) + ' ' + result[1][0].balance.substring(6, result[1][0].balance.length)
                 }
 
                 if (result[1][0].balance.length == 8) {
                   result[1][0].balance = result[1][0].balance.substring(0, 2) + ' ' +
-                      result[1][0].balance.substring(2, 5) + ' ' + result[1][0].balance.substring(5, result[1][0].balance.length)
+                    result[1][0].balance.substring(2, 5) + ' ' + result[1][0].balance.substring(5, result[1][0].balance.length)
                 }
 
                 if (result[1][0].balance.length == 7) {
                   result[1][0].balance = result[1][0].balance.substring(0, 1) + ' ' +
-                      result[1][0].balance.substring(1, 4) + ' ' + result[1][0].balance.substring(4, result[1][0].balance.length)
+                    result[1][0].balance.substring(1, 4) + ' ' + result[1][0].balance.substring(4, result[1][0].balance.length)
                 }
 
                 if (result[1][0].balance.length == 6) {
                   result[1][0].balance = result[1][0].balance.substring(0, 3) + ' ' +
-                      result[1][0].balance.substring(3, result[1][0].balance.length)
+                    result[1][0].balance.substring(3, result[1][0].balance.length)
 
                 }
 
                 if (result[1][0].balance.length == 5) {
                   result[1][0].balance = result[1][0].balance.substring(0, 2) + ' ' +
-                      result[1][0].balance.substring(2, result[1][0].balance.length)
+                    result[1][0].balance.substring(2, result[1][0].balance.length)
 
                 }
 
                 if (result[1][0].balance.length == 4) {
                   result[1][0].balance = result[1][0].balance.substring(0, 1) + ' ' +
-                      result[1][0].balance.substring(1, result[1][0].balance.length)
+                    result[1][0].balance.substring(1, result[1][0].balance.length)
 
                 }
                 scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
@@ -495,8 +504,12 @@
                 riot.update(scope.cardsarray);
               }
             }
-            else
-              alert(result[0][0].error_note);
+            else {
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
+              riot.update();
+              componentAlertId.style.display = 'block';
+            }
           },
 
           onFail: function (api_status, api_status_message, data) {
@@ -648,7 +661,7 @@
             }
           }
           htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-              'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
+            'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
           riotTags.innerHTML = "<view-my-cards>";
           riot.mount("view-my-cards", [sendChosenCardId]);
           this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';

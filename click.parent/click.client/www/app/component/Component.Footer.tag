@@ -64,6 +64,9 @@
 
     </div>
   </div>
+
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
   <script>
 
     var check = false;
@@ -234,7 +237,10 @@
         }
 
         function error(message) {
-          alert('Failed because: ' + message);
+          scope.clickPinError = false;
+          scope.errorNote = 'Failed because: ' + message;
+          riot.update();
+          componentAlertId.style.display = 'block';
         }
       }
       else {

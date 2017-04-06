@@ -18,7 +18,8 @@
     <p class="number-stars">**** ****</p>
     <div class="card-number-part-two">{opts.numberparttwo}</div>
   </div>
-
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
   <script>
     modeOfApp.offlineMode.balance = false;
 
@@ -37,13 +38,18 @@
 
       if (device.platform == "Android") {
         phonedialer.dial(
-            "*880*2%23",
-            function (err) {
-              if (err == "empty") alert("Unknown phone number");
-              else console.log("Dialer Error:" + err);
-            },
-            function (success) {
+          "*880*2%23",
+          function (err) {
+            if (err == "empty") {
+              scope.clickPinError = false;
+              scope.errorNote = "Unknown phone number";
+              riot.update();
+              componentAlertId.style.display = 'block';
             }
+            else console.log("Dialer Error:" + err);
+          },
+          function (success) {
+          }
         );
       }
     }

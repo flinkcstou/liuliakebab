@@ -57,13 +57,10 @@
           console.log('pin.reset', result);
           if (result[0][0].error == 0) {
             console.log("result of PIN RESET ", result);
-            console.log("text1 ", result[1][0].text1);
-            console.log("text2", result[1][0].text2);
             scope.firstMessage = result[1][0].text1;
             scope.secondMessage = result[1][0].text2;
             riot.update(scope.firstMessage);
             riot.update(scope.secondMessage);
-            console.log("call method in api");
             scope.firstStage = false;
             riot.update(scope.firstStage);
           }
@@ -91,7 +88,6 @@
 
     goToRegistration = function () {
       localStorage.removeItem('click_client_token');
-      console.log("registr, need to delete some lines in storage");
       componentPinResetId.style.display = 'none';
       this.riotTags.innerHTML = "<view-registration-device>";
       riot.mount('view-registration-device');
