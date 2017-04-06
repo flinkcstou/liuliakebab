@@ -16,7 +16,7 @@
       <div class="view-qr-contact-phone-field">
         <p class="view-qr-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
           {window.languages.Currency}</p>
-        <input maxlength="13" class="view-qr-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
+        <input maxlength="14" class="view-qr-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
                onmouseup="sumMouseUp()"
                type="tel" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
       </div>
@@ -61,8 +61,6 @@
       maskTwo = /[0-9' ']/g,
       defaultAccount;
 
-    opts.isInFavorites = false;
-
     console.log('QR OPTS', opts);
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
@@ -91,8 +89,14 @@
 
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
         Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
-        riotTags.innerHTML = "<view-qr-pincards>";
-        riot.mount('view-qr-pincards', opts);
+        opts.qrSum = sumForQrPay;
+        if(parseInt(sumForQrPay) < opts.max_pay_limit && parseInt(sumForQrPay) > opts.min_pay_limit) {
+          riotTags.innerHTML = "<view-qr-pincards>";
+          riot.mount('view-qr-pincards', opts);
+        }
+        else{
+          alert(opts.lang_max_amount)
+        }
 
       }
     };

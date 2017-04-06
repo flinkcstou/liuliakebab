@@ -49,16 +49,6 @@
 
     </div>
     <div class="qr-payconfirm-bottom-container">
-      <div class="qr-payconfirm-action-containter">
-        <div class="qr-payconfirm-action-icon-one"
-             style="background-image: url('resources/icons/ViewService/addfavorite.png');"></div>
-        <div class="qr-payconfirm-action-text" ontouchend="addToFavorites()" if="{!isInFavorites}">
-          {window.languages.ViewPayConfirmAddToFavorites}
-        </div>
-        <div class="qr-payconfirm-action-text" ontouchend="removeFromFavorites()" if="{isInFavorites}">
-          {window.languages.ViewPayConfirmRemoveFromFavorites}
-        </div>
-      </div>
       <div class="qr-payconfirm-button-enter" ontouchend="payService()">
         <div class="qr-payconfirm-button-enter-label">{window.languages.ViewPayConfirmPay}</div>
       </div>
@@ -97,7 +87,7 @@
     }
 
     this.on('mount', function () {
-      addToAutoPayContainerId.style.display = 'none';
+
     });
 
 
