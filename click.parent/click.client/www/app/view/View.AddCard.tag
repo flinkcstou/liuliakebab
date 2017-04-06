@@ -53,6 +53,9 @@
          ontouchend="createCardTouchEnd()"></div>
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
     var scope = this;
 
@@ -118,8 +121,12 @@
           if (result[0][0].error == 0) {
             console.log("CARD ADD", result);
           }
-          else
-            alert(result[0][0].error_note);
+          else {
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
+          }
         },
 
         onFail: function (api_status, api_status_message, data) {

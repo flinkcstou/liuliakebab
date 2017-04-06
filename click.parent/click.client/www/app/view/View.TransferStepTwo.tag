@@ -30,6 +30,9 @@
 
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
 
   <script>
 
@@ -220,11 +223,17 @@
         minLimit = 5000;
       }
       if (sumForTransfer < minLimit) {
-        alert('Минимальная сумма 5 000')
+        scope.clickPinError = false;
+        scope.errorNote = ('Минимальная сумма 5 000');
+        riot.update();
+        componentAlertId.style.display = 'block';
         return;
       }
       if (sumForTransfer > maxLimit) {
-        alert('Максимальная сумма 5 000 000')
+        scope.clickPinError = false;
+        scope.errorNote = ('Максимальная сумма 5 000 000');
+        riot.update();
+        componentAlertId.style.display = 'block';
         return;
       }
       var sum = {"sum": sumForTransfer};

@@ -52,6 +52,9 @@
 
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
     var scope = this;
     var defaultAccount;
@@ -142,8 +145,12 @@
 
               }
             }
-            else
-              alert(result[0][0].error_note);
+            else {
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
+              riot.update();
+              componentAlertId.style.display = 'block';
+            }
           },
 
           onFail: function (api_status, api_status_message, data) {
@@ -165,8 +172,18 @@
         phonedialer.dial(
           "*111*3%23",
           function (err) {
-            if (err == "empty") alert("Unknown phone number");
-            else alert("Dialer Error:" + err);
+            if (err == "empty") {
+              scope.clickPinError = false;
+              scope.errorNote = "Unknown phone number";
+              riot.update();
+              componentAlertId.style.display = 'block';
+            }
+            else {
+              scope.clickPinError = false;
+              scope.errorNote = "Dialer Error:" + err;
+              riot.update();
+              componentAlertId.style.display = 'block';
+            }
           },
           function (success) {
           }
@@ -306,8 +323,12 @@
             riot.update(scope.lastOperationContainer)
 //            console.log('scope.lastOperationContainer', scope.lastOperationContainer);
           }
-          else
-            alert(result[0][0].error_note)
+          else {
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
+          }
 
         },
 

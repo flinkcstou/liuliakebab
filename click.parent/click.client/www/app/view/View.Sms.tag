@@ -22,6 +22,8 @@
     <component-keyboard></component-keyboard>
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
 
   <script>
 
@@ -127,7 +129,12 @@
               riot.mount('view-registration-client');
             }
           }
-          else alert(result[0][0].error_note)
+          else {
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
+          }
         },
 
         onFail: function (api_status, api_status_message, data) {

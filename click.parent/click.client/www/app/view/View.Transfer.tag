@@ -181,6 +181,8 @@
       </div>
     </div>
   </div>
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
   <script>
 
     viewTransfer.check = true;
@@ -347,8 +349,12 @@
 //            console.log("result of P2P BANK LIST ", result[1]);
             localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(result[1]))
           }
-          else
-            alert(result[0][0].error_note);
+          else {
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
+          }
         },
 
         onFail: function (api_status, api_status_message, data) {

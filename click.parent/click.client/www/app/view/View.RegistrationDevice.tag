@@ -32,6 +32,9 @@
     </a>
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
 
     var checkRemember = false;
@@ -111,7 +114,10 @@
       var phoneNumber = scope.phoneNumber.substring(1, scope.phoneNumber.length);
 
       if (phoneNumber.length != 12) {
-        alert("incorrect number");
+        scope.clickPinError = false;
+        scope.errorNote = "incorrect number";
+        riot.update();
+        componentAlertId.style.display = 'block';
 
         correctPhoneNumber = false;
       }
@@ -177,8 +183,14 @@
               }
             }
           }
-          else
-            alert(result[0][0].error_note);
+          else {
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
+          }
+
+
         },
 
         onFail: function (api_status, api_status_message, data) {

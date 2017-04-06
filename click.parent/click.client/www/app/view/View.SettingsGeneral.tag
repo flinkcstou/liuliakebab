@@ -54,6 +54,9 @@
 
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
     var scope = this;
     this.titleName = window.languages.ViewMainSettingsTitleTwo;
@@ -116,8 +119,12 @@
             if (result[0][0].error == 0) {
 
             }
-            else
-              alert(result[0][0].error_note);
+            else {
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
+              riot.update();
+              componentAlertId.style.display = 'block';
+            }
           },
 
           onFail: function (api_status, api_status_message, data) {
@@ -153,10 +160,17 @@
             loginInfo.lastname = result[1][0].lastname
             loginInfo.gender = result[1][0].gender
             localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo))
-            alert('Изменения сохранены')
+            scope.clickPinError = false;
+            scope.errorNote = 'Изменения сохранены';
+            riot.update();
+            componentAlertId.style.display = 'block';
           }
-          else
-            alert(result[0][0].error_note);
+          else {
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
+          }
         },
 
         onFail: function (api_status, api_status_message, data) {
@@ -215,8 +229,12 @@
                           localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo))
                         }
                       }
-                      else
-                        alert(result[0][0].error_note);
+                      else {
+                        scope.clickPinError = false;
+                        scope.errorNote = result[0][0].error_note;
+                        riot.update();
+                        componentAlertId.style.display = 'block';
+                      }
                     },
 
                     onFail: function (api_status, api_status_message, data) {

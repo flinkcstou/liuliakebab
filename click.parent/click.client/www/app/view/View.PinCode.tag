@@ -26,6 +26,9 @@
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
 
   <script>
 
@@ -136,7 +139,11 @@
             else changePin(pin);
           }
           else {
-            alert("Different pin codes")
+            scope.clickPinError = false;
+            scope.errorNote = "Different pin codes";
+            riot.update();
+            componentAlertId.style.display = 'block';
+
             scope.checkPinConfirm = true;
             enteredPin = '';
             riot.update();
@@ -183,7 +190,10 @@
             return
           }
           else {
-            alert(result[0][0].error_note);
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');
           }
@@ -219,11 +229,17 @@
           console.log(result)
           console.log(result[0][0])
           if (result[0][0].error == 0) {
-            alert("Успешно изменен пин");
+            scope.clickPinError = false;
+            scope.errorNote = "Успешно изменен пин";
+            riot.update();
+            componentAlertId.style.display = 'block';
             onBackKeyDown();
           }
           else {
-            alert(result[0][0].error_note);
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
             onBackKeyDown();
           }
 
