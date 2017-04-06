@@ -163,8 +163,8 @@
       var date = parseInt(Date.now() / 1000);
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-      var serviceId = viewPay.chosenServiceId;
-      var amount = opts[0][5].amountText;
+      var serviceId = opts[2].id;
+      var amount = opts[2].qrSum;
       var accountId;
       var friendPhone;
 
@@ -181,85 +181,51 @@
       }
       console.log("accountId", accountId);
       console.log("friendPhone", friendPhone);
+      var payment_data = {"transaction_id": parseInt(Date.now() / 1000)}
 
-      if (opts[0][0].formtype == 1) {
-        var payment_data = {
-          "param": opts[0][1].firstFieldId,
-          "value": firstFieldtext,
-          "transaction_id": parseInt(Date.now() / 1000)
-        };
-        paymentFunction(payment_data);
-      }
-      else if (opts[0][0].formtype == 2) {
-        var payment_data = {
-          "pin_param": opts[0][3].cardTypeId,
-          "transaction_id": parseInt(Date.now() / 1000)
-        };
-        paymentFunction(payment_data);
-      }
-      else if (opts[0][0].formtype == 3) {
-        var payment_data = {
-          "param": opts[0][1].firstFieldId,
-          "value": firstFieldtext,
-          "communl_param": opts[0][4].communalParam,
-          "transaction_id": parseInt(Date.now() / 1000)
-        };
-        paymentFunction(payment_data);
-      }
-      else if (opts[0][0].formtype == 4) {
-        var payment_data = {
-          "param": opts[0][1].firstFieldId,
-          "value": firstFieldtext,
-          "internetPackageParam": opts[0][6].internetPackageParam,
-          "transaction_id": parseInt(Date.now() / 1000)
-        };
-        paymentFunction(payment_data);
-      }
 
-      function paymentFunction(payment_data) {
+      window.api.call({
+        method: 'app.payment',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          service_id: Number(serviceId),
+          account_id: Number(accountId),
+          amount: Number(amount),
+          payment_data: payment_data,
+          datetime: date,
+          friend_phone: friendPhone
+        },
 
-        window.api.call({
-          method: 'app.payment',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            service_id: Number(serviceId),
-            account_id: Number(accountId),
-            amount: Number(amount),
-            payment_data: payment_data,
-            datetime: date,
-            friend_phone: friendPhone
-          },
+        scope: this,
 
-          scope: this,
-
-          onSuccess: function (result) {
-            if (result[0][0].error == 0) {
-              if (result[1])
-                if (result[1][0].payment_id || result[1][0].invoice_id) {
-                  console.log("result of APP.PAYMENT 1", result);
-                  viewServicePage.phoneText = null;
-                  viewServicePage.amountText = null;
-                  viewServicePinCards.friendHelpPaymentMode = false;
-                  componentSuccessId.style.display = 'block';
-                }
-            }
-            else {
-              console.log("result of APP.PAYMENT 3", result);
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              riot.update();
-              componentAlertId.style.display = 'block';
-              componentUnsuccessId.style.display = 'block';
-            }
-          },
-
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+            if (result[1])
+              if (result[1][0].payment_id || result[1][0].invoice_id) {
+                console.log("result of APP.PAYMENT 1", result);
+                viewServicePage.phoneText = null;
+                viewServicePage.amountText = null;
+                viewServicePinCards.friendHelpPaymentMode = false;
+                componentSuccessId.style.display = 'block';
+              }
           }
-        });
-      }
+          else {
+            console.log("result of APP.PAYMENT 3", result);
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
+            componentUnsuccessId.style.display = 'block';
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+
     }
 
 
