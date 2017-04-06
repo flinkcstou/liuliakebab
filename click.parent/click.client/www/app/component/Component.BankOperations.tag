@@ -46,8 +46,8 @@
       event.preventDefault();
       event.stopPropagation();
 //      return
-      riotTags.innerHTML = "<view-qr-pincards>";
-      riot.mount('view-qr-pincards');
+      riotTags.innerHTML = "<view-qr-pay-confirm>";
+      riot.mount('view-qr-pay-confirm');
     }
   </script>
 </component-bank-operations>

@@ -39,7 +39,7 @@
       </div>
 
       <div class="qr-pincard-button-enter"
-           ontouchend="goToPayConfirmView()">
+           ontouchend="goToQrPayConfirmView()">
         <div class="qr-pincard-button-enter-label">{window.languages.ViewServicePageEnterLabel}</div>
       </div>
 
@@ -70,13 +70,13 @@
       onBackKeyDown()
     };
 
-    this.titleName
-    this.serviceIcon
+    this.titleName = opts.name
+    this.serviceIcon = opts.image
 
-    this.categoryName
+    this.categoryName = opts.name
 
 
-    goToPayConfirmView = function () {
+    goToQrPayConfirmView = function () {
       cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
       console.log("cardsArray=", cardsArray);
       for (var i in cardsArray) {

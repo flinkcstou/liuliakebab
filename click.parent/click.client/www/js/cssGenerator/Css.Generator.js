@@ -10191,6 +10191,231 @@ var css = {
   "left: -4%;" +
   "}",
 
+  //VIEW QR PAY CONFIRM
+  qrPayconfirmBodyContainer: ".qr-payconfirm-body-container" +
+  "{" +
+  "position: absolute;" +
+  "height: " + 1092 * heightK + "px; " +
+  "width: " + 720 * widthK + "px; " +
+  "top: " + 140 * heightK + "px; " +
+  "background-color: white;" +
+  "overflow-x: hidden;" +
+  "overflow-y: scroll;" +
+  "border-bottom: 1px solid black;" +
+  "}",
+
+  qrPayconfirmDataContainer: ".qr-payconfirm-data-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: " + 569 * widthK + "px; " +
+  "background-color: transparent;" +
+    //"border-bottom:  " + 1 + "px solid lightgray;" +
+  "}",
+
+  qrPayconfirmPhoneField: ".qr-payconfirm-phone-field" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 24%;" +
+  "border-bottom: 1px solid lightgray;" +
+  "color: white;" +
+  "}",
+
+  qrPayconfirmTextField: ".qr-payconfirm-text-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "left: 8%;" +
+  "top: 25%;" +
+  "}",
+
+  qrPayconfirmPhoneInput: ".qr-payconfirm-phone-input" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 8%;" +
+  "top: 47%;" +
+  "font-size: " + 40 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  qrPayconfirmField: ".qr-payconfirm-field" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 22.5%;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
+  "color: white;" +
+    //"top: 23%;" +
+  "}",
+
+  qrPayconfirmCardField: ".payconfirm-card-field" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 32%;" +
+  "border-bottom:1px solid lightgray;" +
+  "color: white;" +
+    //"top: 23%;" +
+  "}",
+
+  qrPayconfirmCardInfoContainer: ".qr-payconfirm-card-info-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 60%;" +
+  "height: 100%;" +
+  "background-color: transparent;" +
+  "left: 4%;" +
+  "}",
+
+  qrPayconfirmTextOne: ".qr-payconfirm-text-one" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 23 * widthK + "px; " +
+  "left: 7%;" +
+  "top: 17%;" +
+  "}",
+
+  qrPayconfirmTextTwo: ".qr-payconfirm-text-two" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 7%;" +
+  "top: 30%;" +
+  "font-size: " + 40 * widthK + "px; " +
+  "color: gray;" +
+  "width: 90%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  qrPayconfirmetailText: ".qr-payconfirm-detail-text" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 25 * widthK + "px; " +
+  "left: 7%;" +
+  "top: 56%;" +
+  "}",
+
+  qrPayconfirmCardLogoContainer: ".qr-payconfirm-card-logo-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 40%;" +
+  "height: 100%;" +
+  "left: 60%;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 55%;" +
+  "float: left;" +
+  "}",
+
+  qrPayconfirmChosenFriendPhoto: ".qr-payconfirm-chosen-friend-photo" +
+  "{" +
+  "top:" + 40 * widthK + "px;" +
+  "position: absolute;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-size: cover;" +
+  "background-position: center;" +
+  "border-radius: 50%;" +
+  "text-align: center;" +
+  "line-height:" + 100 * widthK + "px;" +
+  "font-size:" + 50 * widthK + "px;" +
+  "background-color: #027fe3;" +
+  "color: white;" +
+  "right: 10%;" +
+  "}",
+
+
+  qrPayconfirmBottomContainer: ".qr-payconfirm-bottom-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "top: 60%;" +
+  "bottom: 0;" +
+  "background-color: transparent;" +
+  "border-bottom:  1px solid lightgray;" +
+  "overflow: scroll;" +
+  "}",
+
+  qrPayconfirmActionContainer: ".qr-payconfirm-action-containter" +
+  "{" +
+  "position: relative;" +
+  "float: left;" +
+  "width: 50%;" +
+  "height: 50%;" +
+  "background-color: transparent;" +
+  "}",
+
+  qrPayconfirmActionIconOne: ".qr-payconfirm-action-icon-one" +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "height: 46%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "left: 26%;" +
+  "top: 14%;" +
+  "background-size: 50%;" +
+  "}",
+
+  qrPayconfirmActionIconTwo: ".qr-payconfirm-action-icon-two" +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "height: 46%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "left: 25%;" +
+  "top: 14%;" +
+  "background-size: 41%;" +
+  "}",
+
+  qrPayconfirmActionText: ".qr-payconfirm-action-text" +
+  "{" +
+  "top: 17%;" +
+  "left: 4%;" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "color: rgb(1, 124, 227);" +
+  "font-size: " + 30 * widthK + "px; " +
+  "text-align: center;" +
+  "text-decoration: underline;" +
+  "width: 50%;" +
+  "}",
+
+  qrPayconfirmButtonEnter: ".qr-payconfirm-button-enter" +
+  "{" +
+  "bottom: 24%;" +
+  "position: absolute;" +
+  "width:" + 460 * widthK + "px; " +
+  "height:" + 70 * widthK + "px; " +
+  "border-radius:" + 80 * widthK + "px; " +
+  "left: 18%;" +
+  "background-color: rgb(1, 124, 227);" +
+  "}",
+
+  qrPayconfirmButtonEnterLabel: ".qr-payconfirm-button-enter-label" +
+  "{" +
+  "position: relative;" +
+  "top: " + 9 * widthK + "px; " +
+  "width: 48%;" +
+  "font-size: " + 44 * widthK + "px; " +
+  "margin: auto;" +
+  "color: white;" +
+  "}",
+
 
 }
 
