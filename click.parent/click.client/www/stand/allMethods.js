@@ -2736,3 +2736,163 @@ window.fakedSocket.register("invoice.action", function (input) {
     }
   ];
 });
+
+window.fakedSocket.register("settings.get.trusted.devices", function (input) {
+
+  console.log("Input for settings.get.trusted.devices", input);
+
+  if (input) {
+
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": "",
+        "invoice_id": input.parameters.invoice_id
+      }],
+      [
+        {
+          "device_id": "9989746477470CC3A9585B6A6B97AB5D46DB85763875",
+          "device_type": 2, "device_type_name": "iOS",
+          "device_name": "iPhone4,1"
+        },
+        {
+          "device_id": "998974647747142C972F4502E63D488A7B62B77BCFA3",
+          "device_type": 2,
+          "device_type_name": "iOS",
+          "device_name": "iPhone4,1"
+        },
+        {
+          "device_id": "9989746477472095613FF74967916AFFFF555F99B057",
+          "device_type": 1,
+          "device_type_name": "Android",
+          "device_name": "A0001"
+        },
+        {
+          "device_id": "99897464774728B7617EBD1AF6C43ABD93F8725CCF3A",
+          "device_type": 3,
+          "device_type_name": "Web браузер",
+          "device_name": "Chrome/54.0.2840.98"
+        },
+        {
+          "device_id": "9989746477472C1EB1D7DB60A6595E3C7B3982B5CAA2",
+          "device_type": 3,
+          "device_type_name": "Web браузер",
+          "device_name": "Edge/13.10586"
+        },
+        {
+          "device_id": "9989746477473724CF524CE46CD3376F6AEBB4C04837",
+          "device_type": 3,
+          "device_type_name": "Web браузер",
+          "device_name": "Chrome/55.0.2883.87"
+        },
+        {
+          "device_id": "9989746477473A179042B5D9D18726343F8EFDF53113",
+          "device_type": 3,
+          "device_type_name": "Web браузер",
+          "device_name": "Chrome/54.0.2840.99"
+        },
+        {
+          "device_id": "9989746477473CA01AE0B46EF283221DAA593B69AC12",
+          "device_type": 3,
+          "device_type_name": "Web браузер",
+          "device_name": "Safari/7.0.6"
+        },
+        {
+          "device_id": "9989746477475A7B04FA8072A7AE7CBD077BEDE33FCB",
+          "device_type": 2,
+          "device_type_name": "iOS",
+          "device_name": "iPhone4,1"
+        },
+        {
+          "device_id": "998974647747671B162845329D46A67F4AB3F8F2CB44",
+          "device_type": 2,
+          "device_type_name": "iOS",
+          "device_name": "iPhone4,1"
+        },
+        {
+          "device_id": "9989746477476B160798E60348CAE0816755E53B1189",
+          "device_type": 1,
+          "device_type_name": "Android",
+          "device_name": "SM-J710F"
+        },
+        {
+          "device_id": "998974647747754CDCC1E6416D7A56262CF3D275472D",
+          "device_type": 3,
+          "device_type_name": "Web браузер",
+          "device_name": "Chrome/56.0.2924.87"
+        },
+        {
+          "device_id": "9989746477477FBB3DA0DD1D829E2AA03F69D88F328C",
+          "device_type": 3,
+          "device_type_name": "Web браузер",
+          "device_name": "Chrome/54.0.2840.71"
+        },
+        {
+          "device_id": "9989746477478032A000BC4252966F1F555E5D61A114",
+          "device_type": 1,
+          "device_type_name": "Android",
+          "device_name": "Nexus 6"
+        },
+        {
+          "device_id": "998974647747844F7AE4D251B2E6E152FDD13EF479F6",
+          "device_type": 3,
+          "device_type_name": "Web браузер",
+          "device_name": "Chrome/55.0.2883.87"
+        },
+        {
+          "device_id": "9989746477479BC134E93CA434CC48BB120CDC5E1606",
+          "device_type": 3,
+          "device_type_name": "Web браузер",
+          "device_name": "macintel"
+        },
+        {
+          "device_id": "998974647747A133AD1BB88CE05F84349C60A02F596E",
+          "device_type": 2,
+          "device_type_name": "iOS",
+          "device_name": "iPhone4,1"
+        },
+        {
+          "device_id": "998974647747A1E958CDA927804447A0414C5BF8AA27",
+          "device_type": 1,
+          "device_type_name": "Android",
+          "device_name": "Nexus 6"
+        },
+        {
+          "device_id": "998974647747A3C460B60964F772829A2045CF28F868",
+          "device_type": 2,
+          "device_type_name": "iOS",
+          "device_name": "iPhone4,1"
+        },
+        {
+          "device_id": "998974647747BBE17F0A746D1D92D88F5944FC82BF7F",
+          "device_type": 3,
+          "device_type_name": "Web браузер",
+          "device_name": "Chrome/54.0.2840.99"
+        },
+        {
+          "device_id": "998974647747C2A9916B51290A90D3EFCF0161892C25",
+          "device_type": 3,
+          "device_type_name": "Web браузер",
+          "device_name": "Chrome/54.0.2840.85"
+        },
+        {
+          "device_id": "998974647747FDFE46DA4E0CFCBC728DB30D4233EC17",
+          "device_type": 3,
+          "device_type_name": "Web браузер",
+          "device_name": "Chrome/54.0.2840.71"
+        }
+      ]
+    ];
+  }
+
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});
