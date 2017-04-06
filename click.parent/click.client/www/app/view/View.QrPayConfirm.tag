@@ -94,11 +94,17 @@
 
     var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
     scope.cardOrFriendBool = opts[0];
+    scope.titleName = opts[2].name
+    scope.serviceIcon = opts[2].image
+    scope.categoryName = opts[2].name
+
+    riot.update()
+    console.log(opts[0])
     //
     //    if (scope.isInFavorites)
     //      this.viewPage = 'view-main-page';
     //    else this.viewPage = 'view-pay';
-    scope.amountTextCopy = opts[2].qrSum;
+    scope.amountTextCopy = window.amountTransform(opts[2].qrSum);
 
     if (scope.cardOrFriendBool) {
       var chosenCardId = opts[1];
@@ -121,10 +127,6 @@
     }
     riot.update();
 
-    scope.titleName = opts[2].name
-    scope.serviceIcon = opts[2].image
-    scope.categoryName = opts[2].name
-    scope.cardOrFriendBool = opts[0]
 
     if (scope.cardOrFriendBool) {
       var chosenCardId = opts[1];
@@ -139,7 +141,7 @@
     }
     else {
       if (viewServicePinCards.friendHelpPaymentMode) {
-        console.log("AAA");
+
         scope.friendHelpBool = true;
         if (viewServicePinCards.chosenFriendForHelp) {
           scope.firstLetterOfName = viewServicePinCards.chosenFriendForHelp.firstLetterOfName;
@@ -149,12 +151,9 @@
         }
         riot.update();
       } else {
-//      console.log("BBB");
+
         scope.friendHelpBool = false;
       }
-      this.on('mount', function () {
-        addToAutoPayContainerId.style.display = 'none';
-      });
 
     }
     riot.update();

@@ -82,28 +82,34 @@
 
       cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
       console.log("cardsArray=", cardsArray);
-      for (var i in cardsArray) {
-        if (cardsArray[i].chosenCard && cardsArray[i].access == 2) {
-          scope.chosencardId = cardsArray[i].card_id;
-          scope.checked = true;
-          this.riotTags.innerHTML = "<view-qr-pay-confirm>";
-          riot.mount('view-qr-pay-confirm', [true, scope.chosencardId, opts]);
+      console.log("BOOL=", scope.friendHelpBool);
+      if (scope.friendHelpBool) {
+        scope.checked = true;
+        event.preventDefault();
+        event.stopPropagation();
+        this.riotTags.innerHTML = "<view-qr-pay-confirm>";
+        riot.mount('view-qr-pay-confirm', [false, viewServicePinCards.chosenFriendForHelp, opts]);
+      } else {
+        for (var i in cardsArray) {
+          if (cardsArray[i].chosenCard && cardsArray[i].access == 2) {
+            scope.chosencardId = cardsArray[i].card_id;
+            scope.checked = true;
+            event.preventDefault();
+            event.stopPropagation();
+            this.riotTags.innerHTML = "<view-qr-pay-confirm>";
+            riot.mount('view-qr-pay-confirm', [true, scope.chosencardId, opts]);
+          }
         }
       }
       if (!scope.checked) {
-        if (scope.friendHelpBool) {
-          event.preventDefault();
-          event.stopPropagation();
-          this.riotTags.innerHTML = "<view-qr-pay-confirm>";
-          riot.mount('view-qr-pay-confirm', [false, viewServicePinCards.chosenFriendForHelp, opts]);
-        } else {
-          scope.clickPinError = false;
-          scope.errorNote = "Выберите карту для оплаты";
-          riot.update();
-          componentAlertId.style.display = 'block';
-          return;
-        }
+        scope.clickPinError = false;
+        scope.errorNote = "Выберите карту для оплаты";
+        riot.update();
+        componentAlertId.style.display = 'block';
+        return;
+
       }
+
     }
 
     friendHelp = function () {
