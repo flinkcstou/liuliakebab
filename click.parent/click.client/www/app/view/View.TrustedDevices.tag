@@ -91,42 +91,43 @@
       if (Math.abs(deleteTouchEndX - deleteTouchStartX) < 20 &&
           Math.abs(deleteTouchEndY - deleteTouchStartY) < 20) {
 
-        var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-        var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-        var sessionKey = loginInfo.session_key;
+        var confirmed = confirm("Вы действительно хотите удалить устройство?");
+        if (confirmed == true) {
 
-        window.api.call({
-          method: 'settings.device.revoke.trust',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            device_id: device_id
-          },
-          scope: this,
-          onSuccess: function (result) {
 
-            console.log("DELETE DEVICE FROM TRUSTED RESPONSE", result);
+          var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+          var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+          var sessionKey = loginInfo.session_key;
 
-            if (result[0][0].error == 0) {
-              if (result[1]) {
-                if (result[1][0]) {
-                  console.log('DELETE DEVICE FROM TRUSTED result', result[1]);
-                }
-                else {
+          window.api.call({
+            method: 'settings.device.revoke.trust',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber,
+              device_id: device_id
+            },
+            scope: this,
+            onSuccess: function (result) {
 
-                }
+              console.log("DELETE DEVICE FROM TRUSTED RESPONSE", result);
+
+              if (result[0][0].error == 0) {
+
+                getTrustedDevicesList();
               }
-            }
-            else {
-              alert(result[0][0].error_note);
-            }
-          },
+              else {
+                alert(result[0][0].error_note);
+              }
+            },
 
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
-          }
-        });
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
+        }
+      } else {
+
       }
     };
 

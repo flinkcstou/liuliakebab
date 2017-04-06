@@ -2944,3 +2944,26 @@ window.fakedSocket.register("get.indoor.service", function (input) {
     }
   ];
 });
+
+window.fakedSocket.register("settings.device.revoke.trust", function (input) {
+
+  if (input) {
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": ""
+      }]
+    ];
+  }
+
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});
