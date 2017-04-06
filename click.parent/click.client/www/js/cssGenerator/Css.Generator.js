@@ -9794,6 +9794,17 @@ var css = {
 
   //VIEW QR PIN CARD
 
+  qrPincardBodyContainer: ".qr-pincard-body-container" +
+  "{" +
+  "position: absolute;" +
+  "height: " + 1092 * heightK + "px; " +
+  "width: " + 720 * widthK + "px; " +
+  "top: " + 140 * heightK + "px; " +
+  "background-color: white;" +
+  "overflow-x: hidden;" +
+  "overflow-y: scroll;" +
+  "}",
+
   qrPincardPayfromContainer: ".qr-pincard-payfrom-container" +
   "{" +
   "position: relative;" +
