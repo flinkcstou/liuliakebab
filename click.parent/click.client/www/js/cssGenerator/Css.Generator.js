@@ -9743,7 +9743,7 @@ var css = {
   trustedDevicesContentContainer: ".trusted-devices-content-container" +
   "{" +
   "position: absolute;" +
-  "top: 94px;" +
+  "top: " + 94 * widthK + "px;" +
   "bottom: 0;" +
   "width: 91.4%;" +
   "padding: 0 4.3%;" +
@@ -9752,20 +9752,48 @@ var css = {
 
   trustedDevicesDeviceInfoContainer: ".trusted-devices-device-info-container" +
   "{" +
-  "width: " + 639 * widthK + "px;" +
-  "height: " + 59 * widthK + "px;" +
-  "padding: " + 32 * widthK + "px " + 11 * widthK + "px;" +
+  "width: " + 661 * widthK + "px;" +
+  "height: " + 123 * widthK + "px;" +
   "border-bottom: 1px solid #f6f6f6;" +
   "}",
 
-  trustedDevicesDeviceInfoIcon: ".trusted-devices-device-info-icon" +
+  trustedDevicesDeviceInfoIconContainer: ".trusted-devices-device-info-icon-container" +
   "{" +
+  "background-image: url(resources/icons/ViewTrustedDevices/devices_android.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 56%;" +
+  "height: " + 121 * widthK + "px;" +
+  "width: " + 57 * widthK + "px;" +
   "float: left;" +
+  "}",
+
+  trustedDevicesIosDeviceIcon: ".trusted-devices-ios-device-icon" +
+  "{" +
+  "background-image: url('resources/icons/ViewTrustedDevices/devices_ios.png');" +
+  "background-size: " + 47 * widthK + "px;" +
+  "}",
+
+  trustedDevicesIosDeviceAndroid: ".trusted-devices-android-device-icon" +
+  "{" +
+  "background-image: url('resources/icons/ViewTrustedDevices/devices_android.png');" +
+  "background-size: " + 35 * widthK + "px;" +
+  "}",
+
+  trustedDevicesIosDeviceWeb: ".trusted-devices-web-device-icon" +
+  "{" +
+  "background-image: url('resources/icons/ViewTrustedDevices/devices_web.png');" +
+  "background-size: " + 55 * widthK + "px;" +
+  "}",
+
+  trustedDevicesInfoContainer: ".trusted-devices-info-container" +
+  "{" +
+  "padding: " + 32 * widthK + "px " + 11 * widthK + "px " + 32 * widthK + "px " + 81 * widthK + "px;" +
   "}",
 
   trustedDevicesDeviceInfoName: ".trusted-devices-device-info-name" +
   "{" +
-  "margin: 0 0 0 " + 37 * widthK + "px;" +
+  "margin: 0;" +
   "font-size: " + 30 * widthK + "px;" +
   "width:" + 515 * widthK + "px;" +
   "float: left;" +
@@ -9773,23 +9801,27 @@ var css = {
   "overflow: hidden;" +
   "white-space: nowrap;" +
   "line-height: " + 31 * widthK + "px;" +
+  "color: #8a8a8a;" +
   "}",
 
   trustedDevicesDeviceInfoDate: ".trusted-devices-device-info-date" +
   "{" +
   "float: left;" +
-  "margin: 0 0 0 " + 37 * widthK + "px;" +
+  "margin: 0;" +
   "font-size: " + 24 * widthK + "px;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "width: " + 514 * widthK + "px;" +
   "white-space: nowrap;" +
   "line-height: " + 31 * widthK + "px;" +
+  "color: #c8c8c8;" +
   "}",
 
   trustedDevicesDeviceDeleteIcon: ".trusted-devices-device-delete-icon" +
   "{" +
   "margin: " + 20 * widthK + "px 0 0 " + 21 * widthK + "px;" +
+  "height: " + 20 * widthK + "px;" +
+  "width: " + 20 * widthK + "px;" +
   "}",
 
   //VIEW QR PIN CARD

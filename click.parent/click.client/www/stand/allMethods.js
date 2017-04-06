@@ -2754,7 +2754,8 @@ window.fakedSocket.register("settings.get.trusted.devices", function (input) {
       [
         {
           "device_id": "9989746477470CC3A9585B6A6B97AB5D46DB85763875",
-          "device_type": 2, "device_type_name": "iOS",
+          "device_type": 2,
+          "device_type_name": "iOS",
           "device_name": "iPhone4,1"
         },
         {
