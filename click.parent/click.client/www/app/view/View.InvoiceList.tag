@@ -27,7 +27,7 @@
            ontouchend="goToInvoiceHistoryDetailTouchEnd(this.title)"
            ontouchstart="goToInvoiceHistoryDetailTouchStart()">
         <div
-          class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
+            class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
           <mark class="invoice-list-invoice-sum-sym">сум</mark>
           <p class="invoice-list-invoice-sum">{invoice.amount}</p>
         </div>
@@ -53,10 +53,10 @@
   <script>
 
     var scope = this,
-      goToInvoiceHistoryDetailTouchStartX,
-      goToInvoiceHistoryDetailTouchEndX,
-      goToInvoiceHistoryDetailTouchStartY,
-      goToInvoiceHistoryDetailTouchEndY;
+        goToInvoiceHistoryDetailTouchStartX,
+        goToInvoiceHistoryDetailTouchEndX,
+        goToInvoiceHistoryDetailTouchStartY,
+        goToInvoiceHistoryDetailTouchEndY;
 
     scope.invoiceList = [];
     scope.titleName = languages.ViewInvoiceListTitle;
@@ -87,6 +87,9 @@
                 console.log('invoice to user', result[1])
 
                 for (var i = 0; i < result[1].length; i++) {
+
+                  result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
+
                   scope.invoiceList.push(result[1][i]);
                 }
 
@@ -136,6 +139,9 @@
                 console.log('invoice from user', result[1])
 
                 for (var i = 0; i < result[1].length; i++) {
+
+                  result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
+
                   scope.invoiceList.push(result[1][i]);
                 }
 
@@ -173,7 +179,7 @@
       goToInvoiceHistoryDetailTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goToInvoiceHistoryDetailTouchEndX - goToInvoiceHistoryDetailTouchStartX) < 20 &&
-        Math.abs(goToInvoiceHistoryDetailTouchEndY - goToInvoiceHistoryDetailTouchStartY) < 20) {
+          Math.abs(goToInvoiceHistoryDetailTouchEndY - goToInvoiceHistoryDetailTouchStartY) < 20) {
 
         invoice = JSON.parse(invoice);
         console.log("Invoice for view.invoice-history-details", invoice);
