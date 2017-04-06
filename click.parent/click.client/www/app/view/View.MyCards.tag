@@ -64,16 +64,19 @@
 
   <component-delete-card id="deleteCardComponentId"></component-delete-card>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
 
     viewMainPage.atMainPage = false;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-cards') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-my-cards',
-            "params": opts
-          }
+        {
+          "view": 'view-my-cards',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -110,7 +113,12 @@
 
       if (removable == 1)
         componentDeleteCard.getInformation(sessionKey, phoneNumber, account_id);
-      else alert('You cant delete this card');
+      else {
+        scope.clickPinError = false;
+        scope.errorNote = 'You cant delete this card';
+        riot.update();
+        componentAlertId.style.display = 'block';
+      }
     }
 
     //    updateCard = function () {
@@ -208,8 +216,8 @@
     //
     //    }
     var scope = this,
-        sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
-        phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
+      phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
     if (opts[0]) {
       scope.cardId = opts[0];
@@ -268,26 +276,26 @@
 
                     if (result[1][i].amount.length == 7) {
                       result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-                          result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
+                        result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
 
                     }
 
                     if (result[1][i].amount.length == 6) {
                       result[1][i].amount = result[1][i].amount.substring(0, 3) + ' ' +
-                          result[1][i].amount.substring(3, result[1][i].amount.length)
+                        result[1][i].amount.substring(3, result[1][i].amount.length)
 
                     }
 
                     if (result[1][i].amount.length == 5) {
                       result[1][i].amount = result[1][i].amount.substring(0, 2) + ' ' +
-                          result[1][i].amount.substring(2, result[1][i].amount.length)
+                        result[1][i].amount.substring(2, result[1][i].amount.length)
 
                     }
 
                     if (result[1][i].amount.length == 4) {
 
                       result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-                          result[1][i].amount.substring(1, result[1][i].amount.length)
+                        result[1][i].amount.substring(1, result[1][i].amount.length)
 
                     }
 
@@ -300,8 +308,12 @@
 //                console.log('scope.arrayOfOperationsByAccount', scope.arrayOfOperationsByAccount)
               }
             }
-            else
-              alert(result[0][0].error_note)
+            else {
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
+              riot.update();
+              componentAlertId.style.display = 'block';
+            }
 
           },
 
@@ -332,7 +344,12 @@
         riotTags.innerHTML = "<view-pay>";
         riot.mount('view-pay');
       }
-      else alert('Извининте, вы не можете произвести оплату с этой карты')
+      else {
+        scope.clickPinError = false;
+        scope.errorNote = 'Извининте, вы не можете произвести оплату с этой карты';
+        riot.update();
+        componentAlertId.style.display = 'block';
+      }
     }
 
     goToTransferView = function () {
@@ -353,7 +370,12 @@
         riotTags.innerHTML = "<view-transfer>";
         riot.mount('view-transfer');
       }
-      else alert('Извининте, вы не можете произвести перевод с этой карты')
+      else {
+        scope.clickPinError = false;
+        scope.errorNote = 'Извининте, вы не можете произвести перевод с этой карты';
+        riot.update();
+        componentAlertId.style.display = 'block';
+      }
     }
 
   </script>

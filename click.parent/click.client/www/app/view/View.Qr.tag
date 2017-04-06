@@ -90,7 +90,7 @@
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
         Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
         riotTags.innerHTML = "<view-qr-pincards>";
-        riot.mount('view-qr-pincards');
+        riot.mount('view-qr-pincards', opts);
 
       }
     };

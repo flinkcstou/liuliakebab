@@ -86,14 +86,16 @@
                            operationmessagepartone="{window.languages.ComponentInProcessingPartOne}"
                            operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"
                            viewpage="view-transfer"></component-in-processing>
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
 
   <script>
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-transfer-stepfour',
-            "params": opts
-          }
+        {
+          "view": 'view-transfer-stepfour',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -123,12 +125,12 @@
 
     if (scope.objectSumForTransfer.sum.length == 8) {
       scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 2) + ' ' +
-          scope.objectSumForTransfer.sum.substring(2, 5) + ' ' + scope.objectSumForTransfer.sum.substring(5, scope.objectSumForTransfer.sum.length)
+        scope.objectSumForTransfer.sum.substring(2, 5) + ' ' + scope.objectSumForTransfer.sum.substring(5, scope.objectSumForTransfer.sum.length)
     }
 
     if (scope.objectSumForTransfer.sum.length == 7) {
       scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 1) + ' ' +
-          scope.objectSumForTransfer.sum.substring(1, 4) + ' ' + scope.objectSumForTransfer.sum.substring(4, scope.objectSumForTransfer.sum.length)
+        scope.objectSumForTransfer.sum.substring(1, 4) + ' ' + scope.objectSumForTransfer.sum.substring(4, scope.objectSumForTransfer.sum.length)
     }
 
     if (scope.objectSumForTransfer.sum.length == 6) {
@@ -341,24 +343,34 @@
 
         if (scope.objectTypeForTransfer.type == 2) {
           phonedialer.dial(
-              "*880*3*" + scope.objectTypeForTransfer.name.replace(/\s/g, '') + "*" + parseInt(scope.objectSumForTransfer.sum) + "%23",
-              function (err) {
-                if (err == "empty") alert("Unknown phone number");
-                else console.log("Dialer Error:" + err);
-              },
-              function (success) {
+            "*880*3*" + scope.objectTypeForTransfer.name.replace(/\s/g, '') + "*" + parseInt(scope.objectSumForTransfer.sum) + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                riot.update();
+                componentAlertId.style.display = 'block';
               }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
           );
         }
         else {
           phonedialer.dial(
-              "*880*" + scope.objectTypeForTransfer.name.replace(/\s/g, '') + "*" + parseInt(scope.objectSumForTransfer.sum) + "%23",
-              function (err) {
-                if (err == "empty") alert("Unknown phone number");
-                else console.log("Dialer Error:" + err);
-              },
-              function (success) {
+            "*880*" + scope.objectTypeForTransfer.name.replace(/\s/g, '') + "*" + parseInt(scope.objectSumForTransfer.sum) + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                riot.update();
+                componentAlertId.style.display = 'block';
               }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
           );
         }
       }

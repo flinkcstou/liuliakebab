@@ -3,8 +3,6 @@
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
       <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
-      <div id="rightButton" type="button" class="settings-security-check-button"
-           ontouchend="saveEditedSecuritySettings()"></div>
     </div>
     <div class="settings-container">
 
@@ -52,6 +50,9 @@
 
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
     var scope = this;
     this.titleName = window.languages.ViewSecuritySettingsTitle;
@@ -72,10 +73,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-security-settings') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-security-settings',
-            "params": ''
-          }
+        {
+          "view": 'view-security-settings',
+          "params": ''
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -112,10 +113,16 @@
           console.log(result)
           console.log(result[0][0])
           if (result[0][0].error == 0) {
-            alert("Изменена видимость номера");
+            scope.clickPinError = false;
+            scope.errorNote = ("Изменена видимость номера");
+            riot.update();
+            componentAlertId.style.display = 'block';
           }
           else {
-            alert(result[0][0].error_note);
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
           }
 
         },
@@ -146,9 +153,6 @@
       riot.update(hideMyNumberIconId);
     };
 
-    saveEditedSecuritySettings = function () {
-      alert("save edits")
-    };
 
     goToTrustedDevices = function () {
 

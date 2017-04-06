@@ -10,6 +10,8 @@
     <p class="settings-user-agreement-text">{contentOfAgreement}</p>
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
 
   <script>
     var scope = this;
@@ -56,8 +58,12 @@
             riot.update();
           }
         }
-        else
-          alert(result[0][0].error_note);
+        else {
+          scope.clickPinError = false;
+          scope.errorNote = result[0][0].error_note;
+          riot.update();
+          componentAlertId.style.display = 'block';
+        }
       },
 
       onFail: function (api_status, api_status_message, data) {

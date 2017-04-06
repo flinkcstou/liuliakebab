@@ -16,7 +16,8 @@
     </div>
 
   </div>
-
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
 
   <script>
     var scope = this,
@@ -29,7 +30,7 @@
     arrayForTransfer.push(opts[0])
     arrayForTransfer.push(opts[1])
     arrayForTransfer.push(opts[2])
-//    console.log(arrayForTransfer)
+    //    console.log(arrayForTransfer)
 
 
     if (objectForTransfer.type == 1) {
@@ -82,10 +83,14 @@
       if (checkChosenCard) {
         arrayForTransfer.push(chosenCard)
         riotTags.innerHTML = "<view-transfer-stepfour>";
-        riot.mount('view-transfer-stepfour', [arrayForTransfer,opts[3]]);
+        riot.mount('view-transfer-stepfour', [arrayForTransfer, opts[3]]);
       }
-      else
-        alert('Выберите карту')
+      else {
+        scope.clickPinError = false;
+        scope.errorNote = ('Выберите карту');
+        riot.update();
+        componentAlertId.style.display = 'block';
+      }
     }
 
 

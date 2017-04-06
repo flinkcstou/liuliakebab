@@ -7,23 +7,12 @@
     <p class="delete-button-cancel" ontouchend="cancelDeleteCardTouchEnd()">{window.languages.ComponentDeleteTextNo}</p>
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
     var scope = this;
 
-    closeSuccessMessageForm = function () {
-      event.preventDefault();
-      event.stopPropagation();
-      componentSuccessId.style.display = 'none';
-      history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 3)
-      console.log(history.arrayOfHistory)
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-
-      console.log('viewpage', opts.viewpage)
-
-
-      riotTags.innerHTML = "<" + opts.viewpage + ">";
-      riot.mount(opts.viewpage);
-    }
 
     deleteCardTouchEnd = function () {
       event.preventDefault();
@@ -61,13 +50,19 @@
 
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
-            alert('Карта успешно удалена')
+            scope.clickPinError = false;
+            scope.errorNote = 'Карта успешно удалена';
+            riot.update();
+            componentAlertId.style.display = 'block';
             deleteCardComponentId.style.display = 'none'
 //              updateCard();
             return
           }
           else {
-            alert(result[0][0].error_note)
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            riot.update();
+            componentAlertId.style.display = 'block';
           }
         },
 

@@ -42,6 +42,9 @@
     </div>
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
     var scope = this;
 
@@ -121,7 +124,11 @@
             riot.mount("view-service-page", {number: scope.arrayOfNumbers[0].value});
           }
           else {
-            alert('Вы не можете оплатить за этот номер')
+            scope.clickPinError = false;
+            scope.errorNote = 'Вы не можете оплатить за этот номер';
+            riot.update();
+            componentAlertId.style.display = 'block';
+
           }
 
         }
@@ -156,7 +163,10 @@
           riot.mount("view-service-page", {number: phone});
         }
         else {
-          alert('Вы не можете оплатить за этот номер')
+          scope.clickPinError = false;
+          scope.errorNote = 'Вы не можете оплатить за этот номер';
+          riot.update();
+          componentAlertId.style.display = 'block';
         }
       }
       else {

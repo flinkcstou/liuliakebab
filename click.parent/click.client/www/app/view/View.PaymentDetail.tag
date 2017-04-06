@@ -54,18 +54,21 @@
                          operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
                          operationmessagepartthree="{errorMessageFromTransfer}"></component-unsuccess>
 
+    <component-alert clickpinerror="{clickPinError}"
+                     errornote="{errorNote}"></component-alert>
+
   </div>
 
   <script>
     var scope = this,
-        touchStartDeclineX,
-        touchStartDeclineY,
-        touchEndDeclineX,
-        touchEndDeclineY,
-        touchStartAcceptX,
-        touchStartAcceptY,
-        touchEndAcceptX,
-        touchEndAcceptY;
+      touchStartDeclineX,
+      touchStartDeclineY,
+      touchEndDeclineX,
+      touchEndDeclineY,
+      touchStartAcceptX,
+      touchStartAcceptY,
+      touchEndAcceptX,
+      touchEndAcceptY;
 
     scope.titleName = window.languages.ViewPaymentDetailTitle + opts.invoiceId;
 
@@ -92,7 +95,7 @@
       touchEndDeclineY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchEndDeclineX - touchStartDeclineX) < 20 &&
-          Math.abs(touchEndDeclineY - touchStartDeclineY) < 20) {
+        Math.abs(touchEndDeclineY - touchStartDeclineY) < 20) {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -115,7 +118,10 @@
               goToBack(true);
             }
             else {
-              alert(result[0][0].error_note);
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
+              riot.update();
+              componentAlertId.style.display = 'block';
             }
           },
 
@@ -139,7 +145,7 @@
       touchEndAcceptY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
-          Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
+        Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));

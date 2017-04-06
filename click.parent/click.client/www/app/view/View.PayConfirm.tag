@@ -40,7 +40,7 @@
         <div class="payconfirm-card-info-container">
           <p class="payconfirm-text-one">{window.languages.ViewPayConfirmFriendHelp}</p>
           <p class="payconfirm-text-two">{friendName}</p>
-          <p class="payconfirm-detail-text">{friendNumber}</p>
+          <p class="payconfirm-detail-text">+{friendNumber}</p>
         </div>
         <div class="payconfirm-chosen-friend-photo" style="background-image: url({friendPhoto})">
           {friendFirstLetterOfName}
@@ -69,9 +69,6 @@
       </div>
     </div>
   </div>
-
-  <component-alert clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
 
   <component-success id="componentSuccessId"
                      operationmessage="{operationMessage}"
@@ -323,10 +320,6 @@
             }
             else {
               console.log("result of APP.PAYMENT 3", result);
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              riot.update();
-              componentAlertId.style.display = 'block';
               componentUnsuccessId.style.display = 'block';
             }
           },
