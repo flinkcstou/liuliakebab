@@ -90,11 +90,11 @@
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
         Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
         opts.qrSum = sumForQrPay;
-        if(parseInt(sumForQrPay) < opts.max_pay_limit && parseInt(sumForQrPay) > opts.min_pay_limit) {
+        if (parseInt(sumForQrPay) < opts.max_pay_limit && parseInt(sumForQrPay) > opts.min_pay_limit) {
           riotTags.innerHTML = "<view-qr-pincards>";
           riot.mount('view-qr-pincards', opts);
         }
-        else{
+        else {
           alert(opts.lang_max_amount)
         }
 
@@ -173,42 +173,9 @@
         sumForQrPay = sumValueId.value.substring(0, sumValueId.value.match(maskTwo).length);
         sumForQrPay = sumForQrPay.replace(new RegExp(' ', 'g'), '');
 
-        if (sumForQrPay.length == 4) {
-          sumValueId.value = sumForQrPay.substring(0, 1) + ' ' + sumForQrPay.substring(1, sumForQrPay.length) + ' ' + defaultAccount.currency
-          sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-          sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-
-        }
-
-        if (sumForQrPay.length == 5) {
-          sumValueId.value = sumForQrPay.substring(0, 2) + ' ' + sumForQrPay.substring(2, sumForQrPay.length) + ' ' + defaultAccount.currency
-          sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-          sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-
-        }
-
-        if (sumForQrPay.length == 6) {
-          sumValueId.value = sumForQrPay.substring(0, 3) + ' ' + sumForQrPay.substring(3, sumForQrPay.length) + ' ' + defaultAccount.currency
-          sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-          sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-
-        }
-
-        if (sumForQrPay.length == 7) {
-          sumValueId.value = sumForQrPay.substring(0, 1) + ' ' + sumForQrPay.substring(1, 4) + ' ' +
-            sumForQrPay.substring(4, sumForQrPay.length) + ' ' + defaultAccount.currency
-          sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-          sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-
-        }
-
-        if (sumForQrPay.length == 8) {
-          sumValueId.value = sumForQrPay.substring(0, 2) + ' ' + sumForQrPay.substring(2, 5) + ' ' +
-            sumForQrPay.substring(5, sumForQrPay.length) + ' ' + defaultAccount.currency
-          sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-          sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-
-        }
+        sumValueId.value = window.amountTransform(sumForQrPay) + ' ' + defaultAccount.currency;
+        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
+        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
 
 
       } else {
