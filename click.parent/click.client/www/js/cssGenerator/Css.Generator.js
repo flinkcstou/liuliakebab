@@ -4266,7 +4266,6 @@ var css = {
   "position: absolute;" +
   "top: 41%;" +
   "left: 5%;" +
-  "color: #595759;" +
   "background-size: contain;" +
   "font-size:" + 17 * widthK + "px;" +
   "height: 10%;" +
@@ -4290,7 +4289,6 @@ var css = {
   "{" +
   "position: relative;" +
   "left: 5%;" +
-  "color: #585658;" +
   "font-size:" + 33 * widthK + "px;" +
   "margin: 0;" +
   "float: left;" +
@@ -4306,7 +4304,6 @@ var css = {
   "position: relative;" +
   "left: 6%;" +
   "top: 32%;" +
-  "color: #595759;" +
   "bottom: 12%;" +
   "font-size:" + 19 * widthK + "px;" +
   "background-size: contain;" +
