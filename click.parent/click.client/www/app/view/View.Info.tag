@@ -113,29 +113,8 @@
                   scope.fullBalanceCopy = scope.fullBalance;
 
                   scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
+                  scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
 
-                  if (scope.fullBalanceCopy.length == 7) {
-                    scope.fullBalanceCopy = scope.fullBalanceCopy.substring(0, 1) + ' ' +
-                      scope.fullBalanceCopy.substring(1, 4) + ' ' + scope.fullBalanceCopy.substring(4, scope.fullBalanceCopy.length)
-                  }
-
-                  if (scope.fullBalanceCopy.length == 6) {
-                    scope.fullBalanceCopy = scope.fullBalanceCopy.substring(0, 3) + ' ' +
-                      scope.fullBalanceCopy.substring(3, scope.fullBalanceCopy.length)
-
-                  }
-
-                  if (scope.fullBalanceCopy.length == 5) {
-                    scope.fullBalanceCopy = scope.fullBalanceCopy.substring(0, 2) + ' ' +
-                      scope.fullBalanceCopy.substring(2, scope.fullBalanceCopy.length)
-
-                  }
-
-                  if (scope.fullBalanceCopy.length == 4) {
-                    scope.fullBalanceCopy = scope.fullBalanceCopy.substring(0, 1) + ' ' +
-                      scope.fullBalanceCopy.substring(1, scope.fullBalanceCopy.length)
-
-                  }
                   riot.update(scope.fullBalanceCopy);
                 }
                 else
@@ -289,30 +268,8 @@
                 result[1][i].count = j;
 
                 result[1][i].amount = result[1][i].amount.toString();
+                result[1][i].amount = window.amountTransform(result[1][i].amount);
 
-                if (result[1][i].amount.length == 7) {
-                  result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-                    result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
-
-                }
-
-                if (result[1][i].amount.length == 6) {
-                  result[1][i].amount = result[1][i].amount.substring(0, 3) + ' ' +
-                    result[1][i].amount.substring(3, result[1][i].amount.length)
-
-                }
-
-                if (result[1][i].amount.length == 5) {
-                  result[1][i].amount = result[1][i].amount.substring(0, 2) + ' ' +
-                    result[1][i].amount.substring(2, result[1][i].amount.length)
-
-                }
-
-                if (result[1][i].amount.length == 4) {
-                  result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-                    result[1][i].amount.substring(1, result[1][i].amount.length)
-
-                }
                 scope.lastOperationContainer.push(result[1][i])
 
                 j++;
