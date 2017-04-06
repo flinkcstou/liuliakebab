@@ -29,7 +29,8 @@
         <div class="view-reports-payment-date-containter">
           <div class="view-reports-payment-date-field">{i}</div>
         </div>
-        <div class="view-reports-payment-block-containter" each="{j in paymentsMap[i]}">
+        <div class="view-reports-payment-block-containter" each="{j in paymentsMap[i]}" id="{j.payment_id}"
+             ontouchstart="paymentTouchStart()" ontouchend="paymentTouchEnd(this.id)">
           <div class="view-reports-payment-icon"
                style="background-image: url({j.image})"></div>
           <div class="view-reports-payment-info-container">
@@ -515,6 +516,30 @@
     }
 
     paymentListUpdate();
+
+
+    var paymentTouchStartY, paymentTouchEndY;
+
+    paymentTouchEnd = function (paymentId) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      paymentTouchEndY = event.changedTouches[0].pageY;
+
+      console.log('settingsTouchStartY', paymentTouchStartY)
+      console.log('settingsTouchEndY', paymentTouchEndY)
+
+      if (Math.abs(paymentTouchStartY - paymentTouchEndY) < 20) {
+
+        riotTags.innerHTML = "<view-report-service>";
+        riot.mount("view-report-service");
+      }
+
+    }
+
+    paymentTouchStart = function () {
+      paymentTouchStartY = event.changedTouches[0].pageY;
+    }
 
   </script>
 </view-report>

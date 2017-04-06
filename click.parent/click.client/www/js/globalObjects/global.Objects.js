@@ -36,6 +36,7 @@ viewServicePage.amountWithoutSpace = '';
 
 window.viewServicePinCards = {};
 viewServicePinCards.friendHelpPaymentMode = false;
+viewServicePinCards.chosenFriendForHelp = null;
 
 window.viewPayConfirm = {};
 
