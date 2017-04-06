@@ -2754,7 +2754,8 @@ window.fakedSocket.register("settings.get.trusted.devices", function (input) {
       [
         {
           "device_id": "9989746477470CC3A9585B6A6B97AB5D46DB85763875",
-          "device_type": 2, "device_type_name": "iOS",
+          "device_type": 2,
+          "device_type_name": "iOS",
           "device_name": "iPhone4,1"
         },
         {
@@ -2884,6 +2885,76 @@ window.fakedSocket.register("settings.get.trusted.devices", function (input) {
           "device_name": "Chrome/54.0.2840.71"
         }
       ]
+    ];
+  }
+
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});
+
+window.fakedSocket.register("get.indoor.service", function (input) {
+
+  if (input)
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": ""
+      }],
+      [
+        {
+          "address": "г.Ташкент, ул. Езгулик, дом 15",
+          "category_id": 6,
+          "cost": 1,
+          "form_type": 1,
+          "id": 4705,
+          "image": "https://m.click.uz/static/merchant/logo/logo_4705.png",
+          "is_mobile": 0,
+          "is_visible": 0,
+          "lang_amount_currency": "сум",
+          "lang_amount_hint": null,
+          "lang_amount_placeholder": "Введите сумму оплаты",
+          "lang_amount_title": "Сумма",
+          "lang_max_amount": "Максимальная сумма для оплаты 10000000.00 сум ",
+          "lang_min_amount": "Минимальная сумма для оплаты 100.00 сум ",
+          "max_pay_limit": 10000000,
+          "min_pay_limit": 100,
+          "name": "CafeQQB",
+          "priority": 0,
+          "service_parameters": "0",
+          "service_short_name": "CafeQQB",
+          "status": 0,
+        }
+      ]
+    ];
+
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});
+
+window.fakedSocket.register("settings.device.revoke.trust", function (input) {
+
+  if (input) {
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": ""
+      }]
     ];
   }
 

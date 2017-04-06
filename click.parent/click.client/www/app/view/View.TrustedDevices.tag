@@ -7,10 +7,17 @@
 
   <div class="trusted-devices-content-container">
     <div each="{device in devices}" class="trusted-devices-device-info-container">
-      <img class="trusted-devices-device-info-icon" src="resources/icons/ViewTrustedDevices/devices_android.png">
-      <p class="trusted-devices-device-info-name">Motorola Nexus 6</p>
-      <p class="trusted-devices-device-info-date">27.02.2017</p>
-      <img class="trusted-devices-device-delete-icon" src="resources/icons/ViewSettingsFriendHelp/delete.png">
+      <div
+          class="trusted-devices-device-info-icon-container {trusted-devices-android-device-icon: device.device_type == 1,
+                                                              trusted-devices-ios-device-icon: device.device_type == 2,
+                                                              trusted-devices-web-device-icon: device.device_type == 3}"></div>
+      <div class="trusted-devices-info-container">
+        <p class="trusted-devices-device-info-name">{device.device_name}</p>
+        <p class="trusted-devices-device-info-date">27.02.2017</p>
+        <img id="{device.device_id}" class="trusted-devices-device-delete-icon"
+             ontouchend="deleteDeviceOnTouchEnd(this.id)" ontouchstart="deleteDeviceOnTouchStart()"
+             src="resources/icons/ViewSettingsFriendHelp/delete.png">
+      </div>
     </div>
   </div>
 
@@ -19,7 +26,11 @@
 
   <script>
 
-    var scope = this;
+    var scope = this,
+        deleteTouchStartX,
+        deleteTouchEndX,
+        deleteTouchStartY,
+        deleteTouchEndY;
 
     getTrustedDevicesList = function () {
 
@@ -46,7 +57,9 @@
             if (result[1]) {
               if (result[1][0]) {
                 console.log('TRUSTED DEVICES', result[1]);
-                console.log('TRUSTED DEVICES', JSON.stringify(result[1]));
+
+                scope.devices = result[1];
+                riot.update(scope.devices);
               }
               else {
 
@@ -66,7 +79,63 @@
           console.error(data);
         }
       });
-    }
+    };
+
+    deleteDeviceOnTouchStart = function () {
+
+      deleteTouchStartX = event.changedTouches[0].pageX;
+      deleteTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    deleteDeviceOnTouchEnd = function (device_id) {
+
+      console.log("DELETE DEVICE FROM TRUSTED STARTED");
+
+      deleteTouchEndX = event.changedTouches[0].pageX;
+      deleteTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(deleteTouchEndX - deleteTouchStartX) < 20 &&
+          Math.abs(deleteTouchEndY - deleteTouchStartY) < 20) {
+
+        var confirmed = confirm("Вы действительно хотите удалить устройство?");
+        if (confirmed == true) {
+
+
+          var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+          var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+          var sessionKey = loginInfo.session_key;
+
+          window.api.call({
+            method: 'settings.device.revoke.trust',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber,
+              device_id: device_id
+            },
+            scope: this,
+            onSuccess: function (result) {
+
+              console.log("DELETE DEVICE FROM TRUSTED RESPONSE", result);
+
+              if (result[0][0].error == 0) {
+
+                getTrustedDevicesList();
+              }
+              else {
+                alert(result[0][0].error_note);
+              }
+            },
+
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
+        }
+      } else {
+
+      }
+    };
 
     getTrustedDevicesList();
 

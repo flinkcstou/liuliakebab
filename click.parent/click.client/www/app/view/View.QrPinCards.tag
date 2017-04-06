@@ -39,7 +39,7 @@
       </div>
 
       <div class="qr-pincard-button-enter"
-           ontouchend="goToPayConfirmView()">
+           ontouchend="goToQrPayConfirmView()">
         <div class="qr-pincard-button-enter-label">{window.languages.ViewServicePageEnterLabel}</div>
       </div>
 
@@ -52,7 +52,6 @@
 
     console.log('OPTS', opts);
 
-    console.log(arrayForTransfer);
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards') {
       history.arrayOfHistory.push(
@@ -71,18 +70,13 @@
       onBackKeyDown()
     };
 
-    scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
-    scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
-    scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
+    this.titleName = opts.name
+    this.serviceIcon = opts.image
+
+    this.categoryName = opts.name
 
 
-    this.titleName = scope.service.name;
-    this.serviceIcon = scope.service.image;
-
-    this.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
-
-
-    goToPayConfirmView = function () {
+    goToQrPayConfirmView = function () {
       cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
       console.log("cardsArray=", cardsArray);
       for (var i in cardsArray) {
