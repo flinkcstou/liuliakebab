@@ -10493,6 +10493,53 @@ var css = {
   "top:" + 400 * widthK + "px; " +
   "}",
 
+  reportServiceDataContainer: ".report-service-data-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: " + 430 * widthK + "px; " +
+  "background-color: transparent;" +
+    //"border-bottom:  " + 1 + "px solid lightgray;" +
+  "}",
+
+  reportServicePhoneField: ".report-service-phone-field" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 24%;" +
+  "border-bottom: 1px solid lightgray;" +
+  "color: white;" +
+  "}",
+
+  reportServiceTextField: ".report-service-text-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 23 * widthK + "px; " +
+  "left: 8%;" +
+  "top: 25%;" +
+  "}",
+
+  reportServicePhoneInput: ".report-service-phone-input" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 8%;" +
+  "top: 49%;" +
+  "font-size: " + 28 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  reportServiceField: ".report-service-field" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 22.5%;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
+  "color: white;" +
+    //"top: 23%;" +
+  "}",
 
 }
 

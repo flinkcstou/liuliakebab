@@ -303,6 +303,12 @@ var RU_LANGUAGES =
   "ViewQrTitleAccept": "ДАЛЕЕ",
   "ViewQrTitleCancel": "ОТМЕНИТЬ",
 
+  "ViewReportServiceAmountOfPay": "Сумма платежа:",
+  "ViewReportServicePayWithCard": "Оплата с карты:",
+  "ViewReportServiceStatus": "Статус:",
+  "ViewReportServicePaymentNumber": "Номер платежа:",
+  "ViewReportServicePaymentDate": "Дата:",
+
 
 };
 

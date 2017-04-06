@@ -298,6 +298,7 @@
 
       scope.paymentsMap = {};
       scope.paymentDates = [];
+      scope.paymentsList = [];
       window.api.call({
         method: 'get.payment.list',
         input: {
@@ -314,6 +315,8 @@
           if (result[0][0].error == 0) {
             console.log('PAYMENTLIST=', result[1]);
             for (var i in result[1]) {
+
+              console.log("C", result[1][i].payment_id);
 
               var date = new Date(result[1][i].created);
               var dateStr = date.getDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getMonth()] + ' ' + date.getFullYear();
@@ -332,9 +335,14 @@
                 scope.paymentsMap[dateStr] = [];
                 scope.paymentDates.push(dateStr);
                 scope.paymentsMap[dateStr].push(result[1][i]);
+                console.log("A", result[1][i].payment_id);
               }
-              else
+              else {
+                console.log("B", result[1][i].payment_id);
                 scope.paymentsMap[dateStr].push(result[1][i]);
+              }
+
+              scope.paymentsList.push(result[1][i]);
 
             }
             console.log('ASAASASDASDFAAS', scope.paymentsMap);
@@ -515,7 +523,7 @@
       }
     }
 
-    paymentListUpdate();
+    //    paymentListUpdate();
 
 
     var paymentTouchStartY, paymentTouchEndY;
@@ -531,8 +539,14 @@
 
       if (Math.abs(paymentTouchStartY - paymentTouchEndY) < 20) {
 
-        riotTags.innerHTML = "<view-report-service>";
-        riot.mount("view-report-service");
+        for (var i = 0; i < scope.paymentsList.length; i++) {
+          if (scope.paymentsList[i].payment_id == paymentId) {
+            console.log("service report for=", scope.paymentsList[i]);
+            riotTags.innerHTML = "<view-report-service>";
+            riot.mount("view-report-service", scope.paymentsList[i]);
+            break;
+          }
+        }
       }
 
     }
