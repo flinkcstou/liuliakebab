@@ -10253,7 +10253,7 @@ var css = {
     //"top: 23%;" +
   "}",
 
-  qrPayconfirmCardField: ".payconfirm-card-field" +
+  qrPayconfirmCardField: ".qr-payconfirm-card-field" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
@@ -10416,6 +10416,7 @@ var css = {
   "margin: auto;" +
   "color: white;" +
   "}",
+
 
 
 }

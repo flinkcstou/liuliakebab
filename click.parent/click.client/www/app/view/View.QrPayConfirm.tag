@@ -40,7 +40,7 @@
         <div class="qr-payconfirm-card-info-container">
           <p class="qr-payconfirm-text-one">{window.languages.ViewPayConfirmFriendHelp}</p>
           <p class="qr-payconfirm-text-two">{friendName}</p>
-          <p class="qr-payconfirm-detail-text">{friendNumber}</p>
+          <p class="qr-payconfirm-detail-text">+{friendNumber}</p>
         </div>
         <div class="qr-payconfirm-chosen-friend-photo" style="background-image: url({friendPhoto})">
           {friendFirstLetterOfName}
@@ -91,24 +91,49 @@
       onBackKeyDown()
     }
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay-confirm') {
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr-pay-confirm') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-pay-confirm',
+          "view": 'view-qr-pay-confirm',
           "params": opts
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    this.on('mount', function () {
+      addToAutoPayContainerId.style.display = 'none';
+    });
 
 
-    cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-
-    if (scope.isInFavorites)
-      this.viewPage = 'view-main-page';
-    else this.viewPage = 'view-pay';
+    var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+    scope.cardOrFriendBool = opts[0];
+    //
+    //    if (scope.isInFavorites)
+    //      this.viewPage = 'view-main-page';
+    //    else this.viewPage = 'view-pay';
     scope.amountTextCopy = ''
+
+    if (scope.cardOrFriendBool) {
+      var chosenCardId = opts[1];
+      if (cardsArray[chosenCardId]) {
+        scope.cardName = cardsArray[chosenCardId].name;
+        scope.numberPartOne = cardsArray[chosenCardId].numberPartOne;
+        scope.numberPartTwo = cardsArray[chosenCardId].numberPartTwo;
+        scope.salary = cardsArray[chosenCardId].salary;
+        scope.currency = cardsArray[chosenCardId].currency;
+        scope.url = cardsArray[chosenCardId].url;
+      }
+    }
+    else {
+      var friendForHelp = opts[1];
+      scope.friendName = friendForHelp.name;
+      scope.friendNumber = friendForHelp.number;
+      scope.friendFirstLetterOfName = friendForHelp.firstLetterOfName;
+      scope.friendPhoto = friendForHelp.photo;
+
+    }
+    riot.update();
 
 
     if (scope.amountTextCopy.length == 8) {
@@ -134,7 +159,7 @@
     }
 
 
-    scope.titleName = opts.
+    scope.titleName
     scope.serviceIcon
     scope.categoryName
     scope.cardOrFriendBool
@@ -151,11 +176,20 @@
       }
     }
     else {
-      var friendForHelp
-      scope.friendName
-      scope.friendNumbe
-      scope.friendFirstLetterOfName
-      scope.friendPhoto
+      if (viewServicePinCards.friendHelpPaymentMode) {
+        console.log("AAA");
+        scope.friendHelpBool = true;
+        if (viewServicePinCards.chosenFriendForHelp) {
+          scope.firstLetterOfName = viewServicePinCards.chosenFriendForHelp.firstLetterOfName;
+          scope.fName = viewServicePinCards.chosenFriendForHelp.name;
+          scope.phoneNumber = viewServicePinCards.chosenFriendForHelp.number;
+          scope.photo = viewServicePinCards.chosenFriendForHelp.photo;
+        }
+        riot.update();
+      } else {
+//      console.log("BBB");
+        scope.friendHelpBool = false;
+      }
       this.on('mount', function () {
         addToAutoPayContainerId.style.display = 'none';
       });

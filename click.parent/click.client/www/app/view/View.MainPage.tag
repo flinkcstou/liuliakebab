@@ -24,6 +24,7 @@
 
     viewMainPage.atMainPage = true;
     viewTransfer.check = false;
+    viewServicePinCards.friendHelpPaymentMode = false;
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')

@@ -297,7 +297,6 @@
                     }
                   });
                 }
-                console.log("HOST NAME")
               }
             },
             function (error) {
@@ -320,6 +319,43 @@
             }
           );
         }
+        else {
+          var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+          var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+          var sessionKey = info.session_key;
+
+          window.api.call({
+            method: 'get.indoor.service',
+            input: {
+              phone_num: phoneNumber,
+              session_key: sessionKey,
+              service_id: 1234,
+
+            },
+
+            scope: this,
+
+            onSuccess: function (result) {
+              if (result[0][0].error == 0) {
+                if (result[1]) {
+                  if (result[1][0]) {
+                    riotTags.innerHTML = "<view-qr>";
+                    riot.mount('view-qr', result[1][0]);
+                  }
+                }
+                console.log("QR PAY", result);
+              }
+              else
+                alert(result[0][0].error_note);
+            },
+
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
+        }
+
       }
       else sideMenuTouchEnd()
 
