@@ -87,7 +87,7 @@
           scope.chosencardId = cardsArray[i].card_id;
           scope.checked = true;
           this.riotTags.innerHTML = "<view-qr-pay-confirm>";
-          riot.mount('view-qr-pay-confirm', [true, scope.chosencardId]);
+          riot.mount('view-qr-pay-confirm', [true, scope.chosencardId, opts]);
         }
       }
       if (!scope.checked) {
@@ -95,7 +95,7 @@
           event.preventDefault();
           event.stopPropagation();
           this.riotTags.innerHTML = "<view-qr-pay-confirm>";
-          riot.mount('view-qr-pay-confirm', [false, viewServicePinCards.chosenFriendForHelp]);
+          riot.mount('view-qr-pay-confirm', [false, viewServicePinCards.chosenFriendForHelp, opts]);
         } else {
           scope.clickPinError = false;
           scope.errorNote = "Выберите карту для оплаты";

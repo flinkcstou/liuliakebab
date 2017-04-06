@@ -69,6 +69,7 @@
 
   <script>
 
+    console.log('OPTS QR CONFIRM', opts)
     var scope = this;
     goToBack = function () {
       event.preventDefault();
@@ -97,7 +98,7 @@
     //    if (scope.isInFavorites)
     //      this.viewPage = 'view-main-page';
     //    else this.viewPage = 'view-pay';
-    scope.amountTextCopy = ''
+    scope.amountTextCopy = opts[2].qrSum;
 
     if (scope.cardOrFriendBool) {
       var chosenCardId = opts[1];
@@ -120,37 +121,13 @@
     }
     riot.update();
 
-
-    if (scope.amountTextCopy.length == 8) {
-      scope.amountTextCopy = scope.amountTextCopy.substring(0, 2) + ' ' +
-        scope.amountTextCopy.substring(2, 5) + ' ' + scope.amountTextCopy.substring(5, scope.amountTextCopy.length)
-    }
-
-    if (scope.amountTextCopy.length == 7) {
-      scope.amountTextCopy = scope.amountTextCopy.substring(0, 1) + ' ' +
-        scope.amountTextCopy.substring(1, 4) + ' ' + scope.amountTextCopy.substring(4, scope.amountTextCopy.length)
-    }
-
-    if (scope.amountTextCopy.length == 6) {
-      scope.amountTextCopy = scope.amountTextCopy.substring(0, 3) + ' ' + scope.amountTextCopy.substring(3, scope.amountTextCopy.length)
-    }
-
-    if (scope.amountTextCopy.length == 5) {
-      scope.amountTextCopy = scope.amountTextCopy.substring(0, 2) + ' ' + scope.amountTextCopy.substring(2, scope.amountTextCopy.length)
-    }
-
-    if (scope.amountTextCopy.length == 4) {
-      scope.amountTextCopy = scope.amountTextCopy.substring(0, 1) + ' ' + scope.amountTextCopy.substring(1, scope.amountTextCopy.length)
-    }
-
-
-    scope.titleName
-    scope.serviceIcon
-    scope.categoryName
-    scope.cardOrFriendBool
+    scope.titleName = opts[2].name
+    scope.serviceIcon = opts[2].image
+    scope.categoryName = opts[2].name
+    scope.cardOrFriendBool = opts[0]
 
     if (scope.cardOrFriendBool) {
-      var chosenCardId = opts[2];
+      var chosenCardId = opts[1];
       if (cardsArray[chosenCardId]) {
         scope.cardName = cardsArray[chosenCardId].name;
         scope.numberPartOne = cardsArray[chosenCardId].numberPartOne;

@@ -84,3 +84,17 @@ invoiceActions.DECLINE = 2;
 window.input_codes = {};
 input_codes.BACKSPACE_CODE = 8
 
+
+window.amountTransform = function (amount) {
+  var j = 0;
+  var newAmount = '';
+  for (var i = amount.length - 1; i >= 0; i--) {
+    j++;
+    newAmount += amount[i];
+    if (j % 3 == 0) {
+      newAmount += ' ';
+    }
+  }
+
+  return newAmount.split("").reverse().join("");
+}
