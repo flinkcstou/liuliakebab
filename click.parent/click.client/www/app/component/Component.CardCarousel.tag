@@ -274,7 +274,8 @@
           console.error(data);
         }
       });
-    }
+    };
+
     onComponentCreated = function () {
 
       console.log("onComponentCreated STARTED");
