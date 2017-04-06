@@ -61,6 +61,8 @@
       maskTwo = /[0-9' ']/g,
       defaultAccount;
 
+    opts.isInFavorites = false;
+
     console.log('QR OPTS', opts);
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));

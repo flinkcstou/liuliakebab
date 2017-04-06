@@ -12,7 +12,7 @@
 
   <div class="qr-payconfirm-body-container">
     <div class="qr-payconfirm-data-container">
-      <div class="qr-payconfirm-phone-field" if="{formType!=2}">
+      <div style="display: none" class="qr-payconfirm-phone-field" if="{formType!=2}">
         <p class="qr-payconfirm-text-field">{firstFieldTitle}</p>
         <p class="qr-payconfirm-phone-input">{firstFieldText}</p>
       </div>
@@ -58,11 +58,6 @@
         <div class="qr-payconfirm-action-text" ontouchend="removeFromFavorites()" if="{isInFavorites}">
           {window.languages.ViewPayConfirmRemoveFromFavorites}
         </div>
-      </div>
-      <div id="addToAutoPayContainerId" class="qr-payconfirm-action-containter">
-        <div class="qr-payconfirm-action-icon-two"
-             style="background-image: url('resources/icons/ViewService/addautopay.png');"></div>
-        <div class="qr-payconfirm-action-text">{window.languages.ViewPayConfirmAddToAutoPay}</div>
       </div>
       <div class="qr-payconfirm-button-enter" ontouchend="payService()">
         <div class="qr-payconfirm-button-enter-label">{window.languages.ViewPayConfirmPay}</div>
@@ -196,50 +191,6 @@
 
     }
     riot.update();
-
-    addToFavorites = function () {
-      scope.isInFavorites = true;
-      riot.update(scope.isInFavorites);
-      opts[0][7].isInFavorites = true;
-
-      if (!localStorage.getItem('favoritePaymentsList')) {
-        var favoritePaymentsList = [];
-
-        favoritePaymentsList.push({
-          "opts": opts[0],
-          "service": scope.service,
-          "firstFieldTitle": viewServicePage.firstFieldTitle
-        });
-        console.log("favoritePaymentsList=", favoritePaymentsList);
-
-        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-      } else {
-        var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
-        favoritePaymentsList.push({
-          "opts": opts[0],
-          "service": scope.service,
-          "firstFieldTitle": viewServicePage.firstFieldTitle
-        });
-        console.log("favoritePaymentsList=", favoritePaymentsList);
-        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-      }
-
-    }
-
-    removeFromFavorites = function () {
-      var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
-      console.log(favoritePaymentsList);
-      for (var i in favoritePaymentsList)
-        if (favoritePaymentsList[i].service.id == viewPay.chosenServiceId) {
-          console.log("i=", i);
-          favoritePaymentsList.splice(i, 1);
-          console.log(favoritePaymentsList);
-          scope.isInFavorites = false;
-          localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-          riot.update(scope.isInFavorites);
-        }
-    }
-
 
     payService = function () {
 
