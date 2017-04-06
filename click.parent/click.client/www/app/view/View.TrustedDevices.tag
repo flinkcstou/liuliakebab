@@ -18,6 +18,52 @@
 
     var scope = this;
 
+    getTrustedDevicesList = function () {
+
+
+      console.log("GET TRUSTED DEVICES STARTED");
+
+
+      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+      var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+      var sessionKey = loginInfo.session_key;
+
+      window.api.call({
+        method: 'settings.get.trusted.devices',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber
+        },
+        scope: this,
+        onSuccess: function (result) {
+
+          console.log("GET TRUSTED DEVICES RESPONSE", result);
+
+          if (result[0][0].error == 0) {
+            if (result[1]) {
+              if (result[1][0]) {
+                console.log('TRUSTED DEVICES', result[1]);
+                console.log('TRUSTED DEVICES', JSON.stringify(result[1]));
+              }
+              else {
+
+              }
+            }
+          }
+          else {
+            alert(result[0][0].error_note);
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+
+    getTrustedDevicesList();
+
   </script>
 
 </view-trusted-devices>
