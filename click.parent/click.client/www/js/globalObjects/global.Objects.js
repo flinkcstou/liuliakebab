@@ -87,7 +87,7 @@ input_codes.BACKSPACE_CODE = 8
 
 
 window.amountTransform = function (amount) {
-  amount = amount.replace(new RegExp('^[0 - 9]', 'g'), '');
+  amount = amount.replace(new RegExp('[^0-9]', 'g'), '');
   var j = 0;
   var newAmount = '';
   for (var i = amount.length - 1; i >= 0; i--) {

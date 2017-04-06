@@ -420,7 +420,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
   array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
   array.push([{
     "payment_id": 277019456,
-    "amount": 22543,
+    "amount": '22543AAA ',
     "cntrg_info_param2": "974647747",
     "cntrg_info_param3": null,
     "cntrg_info_param4": null,
