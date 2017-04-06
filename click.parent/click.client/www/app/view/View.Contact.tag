@@ -48,12 +48,41 @@
     this.on('mount', function () {
 
     })
+    //REFRESH OBJECT TRANSFER VIEW
+    viewTransfer.check = false;
+    viewTransfer.phoneNumber = '';
+    viewTransfer.cardNumber = '';
+    viewTransfer.type = 2;
+
     console.log(opts.object.phoneNumbers)
     scope.firstName = opts.object.contactFname;
     scope.secondName = opts.object.contactLname;
     scope.contactPhoto = opts.object.contactPhoto;
     scope.firstLetter = opts.object.firstLetter;
     scope.arrayOfNumbers = opts.object.phoneNumbers[0];
+
+    if (scope.arrayOfNumbers) {
+
+      for (var i in scope.arrayOfNumbers) {
+        console.log('I', i)
+        console.log('I', scope.arrayOfNumbers[i])
+        var number = scope.arrayOfNumbers[i].value
+        var maskOne = /[0-9]/g;
+
+        var digits = scope.arrayOfNumbers[i].value.match(maskOne);
+        var phone = '';
+        for (var j in digits) {
+          phone += digits[j]
+        }
+//        phone = phone.substring(phone.length - 9, phone.length);
+
+        scope.arrayOfNumbers[i].value = phone;
+
+//        for(var j = 0; j < number.length; j++){
+//
+//        }
+      }
+    }
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-contact') {
       history.arrayOfHistory.push(
@@ -79,15 +108,6 @@
 
       if (scope.arrayOfNumbers) {
 
-        var maskOne = /[0-9]/g;
-
-        var digits = scope.arrayOfNumbers[0].value.match(maskOne);
-        var phone = '';
-        for (var i in digits) {
-          phone += digits[i]
-        }
-        phone = phone.substring(phone.length - 9, phone.length);
-
         if (scope.arrayOfNumbers.length > 1) {
           contactSelectContainerId.style.display = 'block'
         }
@@ -96,11 +116,11 @@
           viewPay.chosenServiceId = id;
 
           console.log('ID', id)
-          if(id) {
+          if (id) {
             riotTags.innerHTML = "<view-service-page>";
-            riot.mount("view-service-page", {number: phone});
+            riot.mount("view-service-page", {number: scope.arrayOfNumbers[0].value});
           }
-          else{
+          else {
             alert('Вы не можете оплатить за этот номер')
           }
 
@@ -127,7 +147,7 @@
 
       if (goToPay) {
         var id = window.mOperators[phone.substring(0, 2)]
-        if(id) {
+        if (id) {
           viewPay.chosenServiceId = id;
 
           console.log('ID', id)
@@ -135,7 +155,7 @@
           riotTags.innerHTML = "<view-service-page>";
           riot.mount("view-service-page", {number: phone});
         }
-        else{
+        else {
           alert('Вы не можете оплатить за этот номер')
         }
       }
@@ -154,21 +174,12 @@
 
       if (scope.arrayOfNumbers) {
 
-        var maskOne = /[0-9]/g;
-
-        var digits = scope.arrayOfNumbers[0].value.match(maskOne);
-        var phone = '';
-        for (var i in digits) {
-          phone += digits[i]
-        }
-        phone = phone.substring(phone.length - 9, phone.length);
-
         if (scope.arrayOfNumbers.length > 1) {
           contactSelectContainerId.style.display = 'block'
         }
         else {
           riotTags.innerHTML = "<view-transfer>";
-          riot.mount('view-transfer', {number: phone});
+          riot.mount('view-transfer', {number: scope.arrayOfNumbers[0].value});
         }
       }
 

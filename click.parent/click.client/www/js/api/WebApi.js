@@ -43,6 +43,7 @@ window.api.initSocket = function () {
 window.api.call = function (params) {
 
   var method = params.method;
+  console.log('METHOD', method)
   var input = params.input;
 
   var onSuccess = params.onSuccess;
