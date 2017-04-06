@@ -9410,6 +9410,9 @@ var css = {
   "margin-right: auto; " +
   "top: 22%; " +
   "color: white;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
   "}",
 
   viewQrAddressName: ".view-qr-address-name " +
@@ -9423,6 +9426,9 @@ var css = {
   "margin-right: auto; " +
   "top: 22%; " +
   "color: white;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
   "}",
 
   viewQrCompanyIcon: ".view-qr-company-icon" +
@@ -10486,7 +10492,6 @@ var css = {
   "overflow-x: hidden; " +
   "top:" + 400 * widthK + "px; " +
   "}",
-
 
 
 }

@@ -108,13 +108,14 @@
 
     friendHelp = function () {
       viewServicePinCards.friendHelpPaymentMode = true;
+      viewServicePinCards.chosenFriendForHelp = null;
       event.preventDefault();
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-friend-help-settings>";
       riot.mount('view-friend-help-settings');
     }
 
-    if (viewServicePinCards.friendHelpPaymentMode) {
+    if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
       console.log("AAA");
       scope.friendHelpBool = true;
       if (viewServicePinCards.chosenFriendForHelp) {
@@ -127,6 +128,11 @@
     } else {
 //      console.log("BBB");
       scope.friendHelpBool = false;
+    }
+
+    refreshFunction = function (bool) {
+      scope.friendHelpBool = bool;
+      riot.update(scope.friendHelpBool);
     }
 
 
