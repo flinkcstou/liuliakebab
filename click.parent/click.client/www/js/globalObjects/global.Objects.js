@@ -91,7 +91,7 @@ window.amountTransform = function (amount) {
   for (var i = amount.length - 1; i >= 0; i--) {
     j++;
     newAmount += amount[i];
-    if (j % 3 == 0) {
+    if (j % 3 == 0 && i != 0) {
       newAmount += ' ';
     }
   }

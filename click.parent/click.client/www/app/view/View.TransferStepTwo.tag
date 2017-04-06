@@ -111,8 +111,8 @@
         sumForTransfer = sumValueId.value.substring(0, sumValueId.value.match(maskTwo).length);
         sumForTransfer = sumForTransfer.replace(new RegExp(' ', 'g'), '');
 
-        if (sumForTransfer.length == 4) {
-          sumValueId.value = sumForTransfer.substring(0, 1) + ' ' + sumForTransfer.substring(1, sumForTransfer.length) + ' ' + defaultAccount.currency
+
+          sumValueId.value = defaultAccount.currency
           sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
           sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
 
