@@ -124,6 +124,7 @@ var RU_LANGUAGES =
 
   "ComponentSuccessMessage": "Перевод прошел успешно!",
   "ComponentSuccessMessageForPay": "Оплата проведена успешно!",
+  "ComponentSuccessMessageForPayFriendHelp": "Запрос передан в обработку",
   "ComponentSuccessNext": "OK",
 
   "ComponentInProcessingPartOne": "Перевод передан на обработку.",

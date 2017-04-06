@@ -66,7 +66,7 @@
     }
 
     chooseFriendForHelp = function (number) {
-      if (viewServicePinCards.fromPincardsPage) {
+      if (viewServicePinCards.friendHelpPaymentMode) {
         console.log("in choose friend for help");
         for (var i in scope.arrayOfFriends) {
           if (scope.arrayOfFriends[i].number == number) {

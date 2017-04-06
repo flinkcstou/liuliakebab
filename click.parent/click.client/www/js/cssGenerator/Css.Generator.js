@@ -3364,7 +3364,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 35 * widthK + "px;" +
   "left: 8%;" +
-  "top: 22%;" +
+  "top: 14%;" +
   "margin: 0;" +
   "color: #353340;" +
   "}",
@@ -3374,7 +3374,7 @@ var css = {
   "position: absolute;" +
   "height: 50%;" +
   "width: 100%;" +
-  "top: 28%;" +
+  "top: 20%;" +
   "}",
 
   componentCalcFirstField: ".component-calc-first-field" +
@@ -3462,7 +3462,7 @@ var css = {
   "position: absolute;" +
   "height: 12%;" +
   "width: 100%;" +
-  "top: 74%;" +
+  "top: 67%;" +
   "}",
 
   componentCalcButton: ".component-calc-button" +

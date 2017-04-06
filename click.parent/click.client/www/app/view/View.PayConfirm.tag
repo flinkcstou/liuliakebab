@@ -59,7 +59,7 @@
           {window.languages.ViewPayConfirmRemoveFromFavorites}
         </div>
       </div>
-      <div class="payconfirm-action-containter">
+      <div id="addToAutoPayContainerId" class="payconfirm-action-containter">
         <div class="payconfirm-action-icon-two"
              style="background-image: url('resources/icons/ViewService/addautopay.png');"></div>
         <div class="payconfirm-action-text">{window.languages.ViewPayConfirmAddToAutoPay}</div>
@@ -70,8 +70,11 @@
     </div>
   </div>
 
+  <component-alert clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <component-success id="componentSuccessId"
-                     operationmessage="{window.languages.ComponentSuccessMessageForPay}"
+                     operationmessage="{operationMessage}"
                      viewpage="{viewPage}" step_amount="{3}"></component-success>
   <component-unsuccess id="componentUnsuccessId"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
@@ -181,6 +184,10 @@
       scope.friendNumber = friendForHelp.number;
       scope.friendFirstLetterOfName = friendForHelp.firstLetterOfName;
       scope.friendPhoto = friendForHelp.photo;
+      this.on('mount', function () {
+        addToAutoPayContainerId.style.display = 'none';
+      });
+
     }
     riot.update();
 
@@ -234,9 +241,23 @@
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var serviceId = viewPay.chosenServiceId;
-      var accountId = chosenCardId;
       var amount = opts[0][5].amountText;
+      var accountId;
+      var friendPhone;
 
+      // friend help or own payment
+      if (scope.cardOrFriendBool) {
+        accountId = chosenCardId;
+        friendPhone = 0;
+        scope.operationMessage = window.languages.ComponentSuccessMessageForPay;
+      }
+      else {
+        accountId = 0;
+        friendPhone = scope.friendNumber;
+        scope.operationMessage = window.languages.ComponentSuccessMessageForPayFriendHelp;
+      }
+      console.log("accountId", accountId);
+      console.log("friendPhone", friendPhone);
 
       if (opts[0][0].formtype == 1) {
         var payment_data = {
@@ -283,7 +304,8 @@
             account_id: Number(accountId),
             amount: Number(amount),
             payment_data: payment_data,
-            datetime: date
+            datetime: date,
+            friend_phone: friendPhone
           },
 
           scope: this,
@@ -291,18 +313,20 @@
           onSuccess: function (result) {
             if (result[0][0].error == 0) {
               if (result[1])
-                if (result[1][0]['payment_id']) {
+                if (result[1][0].payment_id || result[1][0].invoice_id) {
                   console.log("result of APP.PAYMENT 1", result);
                   viewServicePage.phoneText = null;
                   viewServicePage.amountText = null;
+                  viewServicePinCards.friendHelpPaymentMode = false;
                   componentSuccessId.style.display = 'block';
-                } else {
-                  console.log("result of APP.PAYMENT 2", result);
-                  componentUnsuccessId.style.display = 'block';
                 }
             }
             else {
               console.log("result of APP.PAYMENT 3", result);
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
+              riot.update();
+              componentAlertId.style.display = 'block';
               componentUnsuccessId.style.display = 'block';
             }
           },

@@ -121,15 +121,15 @@
     }
 
     friendHelp = function () {
-      viewServicePinCards.fromPincardsPage = true;
+      viewServicePinCards.friendHelpPaymentMode = true;
       event.preventDefault();
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-friend-help-settings>";
       riot.mount('view-friend-help-settings');
     }
 
-    if (viewServicePinCards.fromPincardsPage) {
-      console.log("AAA");
+    if (viewServicePinCards.friendHelpPaymentMode) {
+//      console.log("AAA");
       scope.friendHelpBool = true;
       if (viewServicePinCards.chosenFriendForHelp) {
         scope.firstLetterOfName = viewServicePinCards.chosenFriendForHelp.firstLetterOfName;
@@ -139,7 +139,7 @@
       }
       riot.update();
     } else {
-      console.log("BBB");
+//      console.log("BBB");
       scope.friendHelpBool = false;
     }
 

@@ -208,6 +208,7 @@
     goToBack = function () {
       viewServicePage.phoneText = null;
       viewServicePage.amountText = null;
+      viewServicePinCards.friendHelpPaymentMode = false;
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
