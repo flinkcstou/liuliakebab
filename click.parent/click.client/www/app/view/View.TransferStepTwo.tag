@@ -111,42 +111,9 @@
         sumForTransfer = sumValueId.value.substring(0, sumValueId.value.match(maskTwo).length);
         sumForTransfer = sumForTransfer.replace(new RegExp(' ', 'g'), '');
 
-
-          sumValueId.value = defaultAccount.currency
-          sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-          sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-
-        }
-
-        if (sumForTransfer.length == 5) {
-          sumValueId.value = sumForTransfer.substring(0, 2) + ' ' + sumForTransfer.substring(2, sumForTransfer.length) + ' ' + defaultAccount.currency
-          sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-          sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-
-        }
-
-        if (sumForTransfer.length == 6) {
-          sumValueId.value = sumForTransfer.substring(0, 3) + ' ' + sumForTransfer.substring(3, sumForTransfer.length) + ' ' + defaultAccount.currency
-          sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-          sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-
-        }
-
-        if (sumForTransfer.length == 7) {
-          sumValueId.value = sumForTransfer.substring(0, 1) + ' ' + sumForTransfer.substring(1, 4) + ' ' +
-            sumForTransfer.substring(4, sumForTransfer.length) + ' ' + defaultAccount.currency
-          sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-          sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-
-        }
-
-        if (sumForTransfer.length == 8) {
-          sumValueId.value = sumForTransfer.substring(0, 2) + ' ' + sumForTransfer.substring(2, 5) + ' ' +
-            sumForTransfer.substring(5, sumForTransfer.length) + ' ' + defaultAccount.currency
-          sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-          sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
-
-        }
+        sumValueId.value = window.amountTransform(sumForTransfer) + ' ' + defaultAccount.currency
+        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
+        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
 
 
       } else {
