@@ -1,46 +1,46 @@
 <view-qr-pincards class="view-service-pincards">
 
-  <div class="pay-page-title" style="border-style: none;">
-    <p class="servicepage-title">{titleName}</p>
-    <p class="servicepage-category-field">{categoryName}</p>
+  <div class="qr-pay-page-title" style="border-style: none;">
+    <p class="qr-servicepage-title">{titleName}</p>
+    <p class="qr-servicepage-category-field">{categoryName}</p>
     <div ontouchend="touchStartTitle()"
-         class="servicepage-button-back">
+         class="qr-servicepage-button-back">
     </div>
-    <div type="button" class="servicepage-service-icon"
+    <div type="button" class="qr-servicepage-service-icon"
          style="background-image: url({serviceIcon})"></div>
   </div>
 
-  <div class="pincard-body-container">
-    <div class="pincard-payfrom-container">
-      <p class="pincard-payfrom-field">{window.languages.ViewServicePinCardPayFromField}</p></div>
+  <div class="qr-pincard-body-container">
+    <div class="qr-pincard-payfrom-container">
+      <p class="qr-pincard-payfrom-field">{window.languages.ViewServicePinCardPayFromField}</p></div>
 
     <component-pincards></component-pincards>
-    <div class="pincard-bottom-container">
+    <div class="qr-pincard-bottom-container">
 
-      <div class="pincard-friend-help-container" if="{!friendHelpBool}" ontouchend="friendHelp()">
-        <div class="pincard-friend-help-icon"></div>
-        <div class="pincard-friend-help-text">{window.languages.ViewServicePinCardHelpText}</div>
+      <div class="qr-pincard-friend-help-container" if="{!friendHelpBool}" ontouchend="friendHelp()">
+        <div class="qr-pincard-friend-help-icon"></div>
+        <div class="qr-pincard-friend-help-text">{window.languages.ViewServicePinCardHelpText}</div>
       </div>
 
 
-      <div class="pincard-chosen-friend-container" if="{friendHelpBool}">
-        <div class="pincard-friend-help-text-two">{window.languages.ViewServicePinCardHelpText}</div>
-        <div class="pincard-chosen-friend-inner-container"
+      <div class="qr-pincard-chosen-friend-container" if="{friendHelpBool}">
+        <div class="qr-pincard-friend-help-text-two">{window.languages.ViewServicePinCardHelpText}</div>
+        <div class="qr-pincard-chosen-friend-inner-container"
              ontouchend="firstSuggestionBlock()">
-          <div class="pincard-chosen-friend-photo" style="background-image: url({photo})">
+          <div class="qr-pincard-chosen-friend-photo" style="background-image: url({photo})">
             {firstLetterOfName}
           </div>
-          <div class="pincard-chosen-friend-text-container">
-            <div class="pincard-chosen-friend-text-one">{fName} {lName}</div>
+          <div class="qr-pincard-chosen-friend-text-container">
+            <div class="qr-pincard-chosen-friend-text-one">{fName} {lName}</div>
           </div>
-          <div class="pincard-chosen-friend-text-two">{phoneNumber}</div>
+          <div class="qr-pincard-chosen-friend-text-two">{phoneNumber}</div>
         </div>
-        <div class="pincard-friend-change-text" ontouchend="friendHelp()">Изменить</div>
+        <div class="qr-pincard-friend-change-text" ontouchend="friendHelp()">Изменить</div>
       </div>
 
-      <div class="pincard-button-enter"
+      <div class="qr-pincard-button-enter"
            ontouchend="goToPayConfirmView()">
-        <div class="pincard-button-enter-label">{window.languages.ViewServicePageEnterLabel}</div>
+        <div class="qr-pincard-button-enter-label">{window.languages.ViewServicePageEnterLabel}</div>
       </div>
 
     </div>
@@ -51,15 +51,7 @@
 
 
     console.log('OPTS', opts);
-    var arrayForTransfer = [];
-    arrayForTransfer.push(opts[0]);
-    arrayForTransfer.push(opts[1]);
-    arrayForTransfer.push(opts[2]);
-    arrayForTransfer.push(opts[3]);
-    arrayForTransfer.push(opts[4]);
-    arrayForTransfer.push(opts[5]);
-    arrayForTransfer.push(opts[6]);
-    arrayForTransfer.push(opts[7]);
+
     console.log(arrayForTransfer);
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards') {

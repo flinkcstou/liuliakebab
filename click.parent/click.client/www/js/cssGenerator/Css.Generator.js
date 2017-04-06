@@ -9791,6 +9791,364 @@ var css = {
   "{" +
   "margin: " + 20 * widthK + "px 0 0 " + 21 * widthK + "px;" +
   "}",
+
+  //VIEW QR PIN CARD
+
+  qrPincardPayfromContainer: ".qr-pincard-payfrom-container" +
+  "{" +
+  "position: relative;" +
+  "background-color: transparent;" +
+  "width: 100%;" +
+  "height: 7.5%;" +
+  "border-bottom: 1px solid lightgray;" +
+  "}",
+
+  qrPincardPayfromField: ".qr-pincard-payfrom-field" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 29 * widthK + "px; " +
+  "color: gray;" +
+  "margin: 0;" +
+  "left: 8%;" +
+  "top:29%;" +
+  "}",
+
+  qrPincardAllcardsContainer: ".qr-pincard-allcards-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height:51%;" +
+  "top: 7.5%;" +
+  "background-color: transparent;" +
+  "overflow-x: hidden;" +
+  "overflow-y: auto;" +
+  "}",
+
+  qrPincardCardContainer: ".qr-pincard-card-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: " + 162 * widthK + "px; " +
+  "background-color: transparent;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
+  "}",
+
+  qrPincardCardLogoContainer: ".qr-pincard-card-logo-container" +
+  "{" +
+  "width: 25%;" +
+  "height: 67%;" +
+  "top: 17%;" +
+  "left: 5%;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: contain;" +
+  "float: left;" +
+  "right: 61%;" +
+  "position: absolute;" +
+  "}",
+
+  qrPincardCardInfoContainer: ".qr-pincard-card-info-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 41%;" +
+  "height: 100%;" +
+  "left: 42%;" +
+  "background-color: transparent;" +
+  "}",
+
+  qrPincardCardInfoTextOne: ".qr-pincard-card-info-text-one" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "color: gray;" +
+  "width: 110%;" +
+  "left: -1%;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
+  "}",
+
+  qrPincardCardInfoTextTwo: ".qr-pincard-card-info-text-two" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 40 * widthK + "px; " +
+  "font-weight: bold;" +
+  "color: rgba(80, 185, 8, 0.77);" +
+  "top: 10%;" +
+  "width: 110%;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
+  "}",
+
+  qrPincardCardInfoTextThree: ".qr-pincard-card-info-text-three" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 23 * widthK + "px; " +
+  "color: gray;" +
+  "top: 51%;" +
+  "}",
+
+  qrPincardCardCheckmark: ".qr-pincard-card-checkmark" +
+  "{" +
+  "position: absolute;" +
+  "width: 17%;" +
+  "height: 100%;" +
+  "left: 81%;" +
+  "top: 2%;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 35%;" +
+  "background-image: url(resources/icons/ViewService/checked.png);" +
+  "}",
+  qrPincardCardUnCheckmark: ".qr-pincard-card-uncheckmark" +
+  "{" +
+  "position: absolute;" +
+  "width: 17%;" +
+  "height: 100%;" +
+  "left: 81%;" +
+  "top: 2%;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 35%;" +
+  "background-size: 35%;" +
+  "background-image: url(resources/icons/ViewService/unchecked.png);" +
+  "}",
+
+  qrPincardFriendHelpContainer: ".qr-pincard-friend-help-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 50%;" +
+  "height: 50%;" +
+  "top: 3%;" +
+    //"bottom:0;" +
+    //"background-color: grey;" +
+    //"border-bottom:  " + 1 + "px solid lightgray;" +
+  "left: 25%;" +
+  "}",
+
+  qrPincardFriendHelpText: ".qr-pincard-friend-help-text" +
+  "{" +
+  "top: 65%;" +
+  "position: absolute;" +
+  "left: 23%;" +
+  "color: rgb(1, 124, 227);" +
+  "font-size: " + 29 * widthK + "px; " +
+  "text-align: center;" +
+  "text-decoration: underline;" +
+  "}",
+
+  qrPincardFriendHelpIcon: ".qr-pincard-friend-help-icon" +
+  "{" +
+  "width: 40%;" +
+  "height: 67%;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 65%;" +
+  "float: left;" +
+  "right: 30%;" +
+  "position: absolute;" +
+  "background-image: url(resources/icons/ViewService/friend.png);" +
+  "}",
+
+  qrPincardChosenFriendContainer: ".qr-pincard-chosen-friend-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:50%;" +
+    //"background-color: grey;" +
+    //"left: 10%;" +
+    //"top:" + 165 * widthK + "px;" +
+  "}",
+
+  qrPincardFriendHelpTextTwo: ".qr-pincard-friend-help-text-two" +
+  "{" +
+    //"top: 65%;" +
+  "position: absolute;" +
+  "left: 36%;" +
+  "color: grey;" +
+  "font-size: " + 29 * widthK + "px; " +
+  "text-align: center;" +
+    //"text-decoration: underline;" +
+  "}",
+
+  qrPincardFriendChangeText: ".qr-pincard-friend-change-text" +
+  "{" +
+  "top: 80%;" +
+  "position: absolute;" +
+  "left: 40%;" +
+  "color: rgb(1, 124, 227);" +
+  "font-size: " + 29 * widthK + "px; " +
+  "text-align: center;" +
+  "text-decoration: underline;" +
+  "}",
+
+  qrPincardChosenFriendInnerContainer: ".qr-pincard-chosen-friend-inner-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 79.5%;" +
+  "height:" + 115 * widthK + "px;" +
+  "background-color: #F0F1F4;" +
+  "left: 10%;" +
+  "top:22%;" +
+  "}",
+
+  qrPincardChosenFriendPhoto: ".qr-pincard-chosen-friend-photo" +
+  "{" +
+  "top:" + 8 * widthK + "px;" +
+  "position: absolute;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-size: cover;" +
+  "background-position: center;" +
+  "border-radius: 50%;" +
+  "text-align: center;" +
+  "line-height:" + 100 * widthK + "px;" +
+  "font-size:" + 50 * widthK + "px;" +
+  "background-color: #027fe3;" +
+  "color: white;" +
+  "left: 5%;" +
+  "}",
+
+  qrPincardChosenFriendTextContainer: ".qr-pincard-chosen-friend-text-container" +
+  "{" +
+  "position: absolute;" +
+  "left: 25%;" +
+  "color: gray;" +
+  "width: 20%;" +
+  "height: 100%;" +
+  "display: table;" +
+  "}",
+
+
+  qrPincardChosenFriendTextOne: ".qr-pincard-chosen-friend-text-one" +
+  "{" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "display: table-cell;" +
+  "vertical-align: middle;" +
+  "}",
+
+  qrPincardChosenFriendTextTwo: ".qr-pincard-chosen-friend-text-two" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 60%;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: 40%;" +
+  "}",
+
+  qrPincardBottomContainer: ".qr-pincard-bottom-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+    //"height: 46%;" +
+  "top: 62%;" +
+  "bottom:0;" +
+  "background-color: transparent;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
+  "overflow: scroll;" +
+  "}",
+
+  qrPincardButtonEnter: " .qr-pincard-button-enter" +
+  "{" +
+  "bottom: 24%;" +
+  "position: absolute;" +
+  "width:" + 460 * widthK + "px; " +
+  "height:" + 75 * widthK + "px; " +
+  "border-radius:" + 80 * widthK + "px; " +
+  "left: 18%;" +
+  "background-color: rgb(1, 124, 227);" +
+  "}",
+
+  qrPincardButtonEnterLabel: ".qr-pincard-button-enter-label" +
+  "{" +
+  "position: relative;" +
+  "top: " + 10 * widthK + "px; " +
+  "width: 30%;" +
+  "font-size: " + 44 * widthK + "px; " +
+  "margin: auto;" +
+  "color: white;" +
+    //"right: 10%;" +
+  "}",
+
+  qrPayPageTitle: ".qr-pay-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top:" + 0 * widthK + "px;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 88 * widthK + "px;" +
+  "background: transparent;" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  qrServicePageTitle: ".qr-servicepage-title" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size: " + 38 * widthK + "px; " +
+  "left: 13%;" +
+  "top: 36%;" +
+  "margin: 0;" +
+  "color: #fffaf9;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "width: 60%;" +
+  "}",
+
+  qrServicePageCategoryField: ".qr-servicepage-category-field" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size: " + 29 * widthK + "px; " +
+  "left: 13%;" +
+  "top: 87%;" +
+  "margin: 0;" +
+  "color: lavender;" +
+  "}",
+
+  qrServicePageServiceIcon: ".qr-servicepage-service-icon" +
+  "{" +
+  "top: 33%;" +
+  "position: relative;" +
+  "width: 13%;" +
+  "height: 91%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "border-radius: 50%;" +
+    //"border: " + 1 + "px solid gray;" +
+  "float: right;" +
+  "right: 4%;" +
+  "background-size: 150%;" +
+  "background-color: white;" +
+  "display:none;" +
+  "}",
+
+  qrServicePageButtonBack: ".qr-servicepage-button-back" +
+  "{" +
+  "top: 13%;" +
+  "position: absolute;" +
+  "width: 17%;" +
+  "height: 140%;" +
+  "background-image: url('resources/icons/back/back.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 20%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 20%;" +
+  "left: -4%;" +
+  "}",
+
+
 }
 
 
