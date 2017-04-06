@@ -14,14 +14,20 @@
       <div class="trusted-devices-info-container">
         <p class="trusted-devices-device-info-name">{device.device_name}</p>
         <p class="trusted-devices-device-info-date">27.02.2017</p>
-        <img class="trusted-devices-device-delete-icon" src="resources/icons/ViewSettingsFriendHelp/delete.png">
+        <img id="{device.device_id}" class="trusted-devices-device-delete-icon"
+             ontouchend="deleteDeviceOnTouchEnd(this.id)" ontouchstart="deleteDeviceOnTouchStart()"
+             src="resources/icons/ViewSettingsFriendHelp/delete.png">
       </div>
     </div>
   </div>
 
   <script>
 
-    var scope = this;
+    var scope = this,
+        deleteTouchStartX,
+        deleteTouchEndX,
+        deleteTouchStartY,
+        deleteTouchEndY;
 
     getTrustedDevicesList = function () {
 
@@ -67,6 +73,61 @@
           console.error(data);
         }
       });
+    };
+
+    deleteDeviceOnTouchStart = function () {
+
+      deleteTouchStartX = event.changedTouches[0].pageX;
+      deleteTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    deleteDeviceOnTouchEnd = function (device_id) {
+
+      console.log("DELETE DEVICE FROM TRUSTED STARTED");
+
+      deleteTouchEndX = event.changedTouches[0].pageX;
+      deleteTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(deleteTouchEndX - deleteTouchStartX) < 20 &&
+          Math.abs(deleteTouchEndY - deleteTouchStartY) < 20) {
+
+        var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+        var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+        var sessionKey = loginInfo.session_key;
+
+        window.api.call({
+          method: 'settings.device.revoke.trust',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            device_id: device_id
+          },
+          scope: this,
+          onSuccess: function (result) {
+
+            console.log("DELETE DEVICE FROM TRUSTED RESPONSE", result);
+
+            if (result[0][0].error == 0) {
+              if (result[1]) {
+                if (result[1][0]) {
+                  console.log('DELETE DEVICE FROM TRUSTED result', result[1]);
+                }
+                else {
+
+                }
+              }
+            }
+            else {
+              alert(result[0][0].error_note);
+            }
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+      }
     };
 
     getTrustedDevicesList();

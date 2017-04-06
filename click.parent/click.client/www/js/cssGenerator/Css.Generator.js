@@ -9748,6 +9748,7 @@ var css = {
   "width: 91.4%;" +
   "padding: 0 4.3%;" +
   "background: white;" +
+  "overflow-y: scroll;" +
   "}",
 
   trustedDevicesDeviceInfoContainer: ".trusted-devices-device-info-container" +
