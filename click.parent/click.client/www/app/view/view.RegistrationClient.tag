@@ -56,14 +56,17 @@
     </a>
   </div>
 
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-client') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-registration-client',
-          "params": opts
-        }
+          {
+            "view": 'view-registration-client',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -75,6 +78,8 @@
     })
 
     var scope = this;
+
+    scope.showError = false;
     scope.cardNumberPartOne = '';
     scope.cardNumberPartTwo = '';
     scope.cardNumberPartThree = '';
@@ -317,8 +322,13 @@
         riotTags.innerHTML = "<view-pin-code>";
         riot.mount('view-pin-code', ['view-registration-client', cardNumber, secondParameter]);
       }
-      else
-        alert('error')
+      else {
+//        alert('error')
+        scope.clickPinError = false;
+        scope.errorNote = 'Error';
+        scope.showError = true;
+        riot.update();
+      }
 
       console.log('cardNumber', cardNumber, secondParameter)
     }
