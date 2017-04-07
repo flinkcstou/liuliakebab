@@ -7,32 +7,35 @@
 
     <div class="settings-support-help-icon"></div>
 
-    <p class="settings-support-help-title">Если вы обнаружили ошибку, хотите получить помощь или внести предложение,
-      пожалуйста, сообщите нам об этом</p>
+    <p class="settings-support-help-title">{window.languages.VewSettingsSupportMessage}</p>
   </div>
   <div class="settings-support-container">
-    <p class="settings-support-container-title">ВЫБЕРИТЕ ТЕМУ ДЛЯ ОБРАЩЕНИЯ</p>
+    <p class="settings-support-container-title">{window.languages.VewSettingsSupportTheme}</p>
 
     <div class="settings-support-buttons-container">
 
-      <div class="settings-support-buttons settings-support-buttons-registration">
+      <div class="settings-support-buttons settings-support-buttons-registration"
+           ontouchend="goToSettingsStepTwo(window.languages.VewSettingsSupportRegistration)">
         <div class="settings-support-open-icon"></div>
-        <p class="settings-support-buttons-title">РЕГИСТРАЦИЯ</p>
+        <p class="settings-support-buttons-title">{window.languages.VewSettingsSupportRegistration}</p>
       </div>
 
-      <div class="settings-support-buttons settings-support-buttons-pay">
+      <div class="settings-support-buttons settings-support-buttons-pay"
+           ontouchend="goToSettingsStepTwo(window.languages.VewSettingsSupportPay)">
         <div class="settings-support-open-icon"></div>
-        <p class="settings-support-buttons-title">ОПЛАТА</p>
+        <p class="settings-support-buttons-title">{window.languages.VewSettingsSupportPay}</p>
       </div>
 
-      <div class="settings-support-buttons settings-support-buttons-balance">
+      <div class="settings-support-buttons settings-support-buttons-balance"
+           ontouchend="goToSettingsStepTwo(window.languages.VewSettingsSupportBalance)">
         <div class="settings-support-open-icon"></div>
-        <p class="settings-support-buttons-title">БАЛАНС</p>
+        <p class="settings-support-buttons-title">{window.languages.VewSettingsSupportBalance}</p>
       </div>
 
-      <div class="settings-support-buttons settings-support-buttons-other">
+      <div class="settings-support-buttons settings-support-buttons-other"
+           ontouchend="goToSettingsStepTwo(window.languages.VewSettingsSupportOther)">
         <div class="settings-support-open-icon"></div>
-        <p class="settings-support-buttons-title">ДРУГОЕ</p>
+        <p class="settings-support-buttons-title">{window.languages.VewSettingsSupportOther}</p>
       </div>
 
     </div>
@@ -43,11 +46,29 @@
   <script>
     var scope = this;
 
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-settings-support') {
+      history.arrayOfHistory.push(
+        {
+          "view": 'view-settings-support',
+          "params": opts,
+        }
+      );
+      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    }
+
     closeSettingsSupportTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
       settingsSupportId.style.display = 'none'
+    }
+
+    goToSettingsStepTwo = function (titleOfHelp) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      riotTags.innerHTML = "<view-settings-support-part-two>";
+      riot.mount('view-settings-support-part-two', {title: titleOfHelp});
     }
 
 

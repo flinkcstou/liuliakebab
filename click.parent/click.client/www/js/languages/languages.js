@@ -309,6 +309,16 @@ var RU_LANGUAGES =
   "ViewReportServicePaymentNumber": "Номер платежа:",
   "ViewReportServicePaymentDate": "Дата:",
 
+  "VewSettingsSupportMessage": "Если вы обнаружили ошибку, хотите получить помощь или внести предложение,пожалуйста, сообщите нам об этом",
+  "VewSettingsSupportTheme": "ВЫБЕРИТЕ ТЕМУ ДЛЯ ОБРАЩЕНИЯ",
+  "VewSettingsSupportRegistration": "РЕГИСТРАЦИЯ",
+  "VewSettingsSupportPay": "ОПЛАТА",
+  "VewSettingsSupportBalance": "БАЛАНС",
+  "VewSettingsSupportOther": "ДРУГОЕ",
+
+  "VewSettingsSupportPartTwoTheme": "ОБРАЩЕНИЕ НА ТЕМУ",
+  "VewSettingsSupportPartTwoSend": "ОТПРАВИТЬ",
+
 
 };
 
