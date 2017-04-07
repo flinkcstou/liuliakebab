@@ -24,22 +24,26 @@
 
     <div class="view-qr-buttons-container">
       <button class="view-qr-button-accept" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
-        {window.languages.ViewQrTitleAccept}</button>
+        {window.languages.ViewQrTitleAccept}
+      </button>
     </div>
 
   </div>
 
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
 
   <script>
     var scope = this;
+    scope.showError = false;
     this.titleName = window.languages.ViewQrTitle;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-qr',
-          "params": opts
-        }
+          {
+            "view": 'view-qr',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -55,9 +59,9 @@
     })
 
     var checkFirst = false,
-      maskOne = /[0-9]/g,
-      maskTwo = /[0-9' ']/g,
-      defaultAccount;
+        maskOne = /[0-9]/g,
+        maskTwo = /[0-9' ']/g,
+        defaultAccount;
 
     console.log('QR OPTS', opts);
 
@@ -86,14 +90,18 @@
       touchEndAcceptY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
-        Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
+          Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
         opts.qrSum = sumForQrPay;
         if (parseInt(sumForQrPay) < opts.max_pay_limit && parseInt(sumForQrPay) > opts.min_pay_limit) {
           riotTags.innerHTML = "<view-qr-pincards>";
           riot.mount('view-qr-pincards', opts);
         }
         else {
-          alert(opts.lang_max_amount)
+          scope.clickPinError = false;
+          scope.errorNote = opts.lang_max_amount;
+          scope.showError = true;
+          riot.update();
+//          alert(opts.lang_max_amount)
         }
 
       }
