@@ -98,11 +98,11 @@
         }
         else {
           scope.clickPinError = false;
-          if (parseInt(sumForQrPay) <= opts.max_pay_limit) {
-            scope.errorNote = opts.max_pay_limit;
+          if (parseInt(sumForQrPay) > opts.max_pay_limit) {
+            scope.errorNote = opts.lang_max_amount;
           }
           else {
-            scope.errorNote = opts.min_pay_limit
+            scope.errorNote = opts.lang_min_amount
           }
           scope.showError = true;
           riot.update();
