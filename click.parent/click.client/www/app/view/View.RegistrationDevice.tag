@@ -61,13 +61,12 @@
     };
 
     history.arrayOfHistory.push(
-        {
-          "view": 'view-registration-device',
-          "params": ''
-        }
+      {
+        "view": 'view-registration-device',
+        "params": ''
+      }
     );
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-
 
     var scope = this;
     var token;
@@ -178,6 +177,9 @@
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
             if (result[1][0]) {
+
+              localStorage.setItem('onResume', false)
+
               var deviceId = result[1][0].device_id;
               localStorage.setItem('click_client_deviceID', deviceId);
               token = hex_sha512(deviceId + date + phoneNumber);

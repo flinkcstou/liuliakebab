@@ -364,6 +364,7 @@
                                 if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
                                   this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
                                   riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
+                                  localStorage.setItem('onResume', false)
                                 }
                               }
                             }
@@ -390,6 +391,7 @@
                       if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
                         this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
                         riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
+                        localStorage.setItem('onResume', false)
                       }
                     }
                   }
@@ -401,6 +403,7 @@
                 scope.showError = true;
                 console.log("errornote=", scope.errorNote);
                 riot.update();
+
               }
             },
 
@@ -421,6 +424,7 @@
               if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
                 this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
                 riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
+                localStorage.setItem('onResume', false)
               }
             }
           }

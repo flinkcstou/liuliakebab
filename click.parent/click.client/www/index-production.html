@@ -87,6 +87,13 @@
 
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
+
+      if (!localStorage.getItem('settings_block')) {
+        localStorage.setItem('click_client_block', false)
+      }
+
+      localStorage.setItem('onResume', false);
+
       StatusBar.backgroundColorByHexString("#00a8f1");
 
       if (device.platform == 'Android')
@@ -108,6 +115,7 @@
       }
 
       document.addEventListener("backbutton", onBackKeyDown, false);
+      document.addEventListener("pause", onPauseFunction, false);
     }, false);
   }
 
@@ -135,6 +143,17 @@
 
     }
 
+  }
+
+  function onPauseFunction() {
+    setTimeout(function () {
+      console.log('ON onResume EVENT IS TRIGGERED')
+      localStorage.setItem('onResume', true);
+      if (JSON.parse(localStorage.getItem('settings_block')) === true) {
+        riotTags.innerHTML = "<view-authorization>";
+        riot.mount('view-authorization');
+      }
+    }, 0);
   }
 
   function checkImageURL(dirEntry, fileNamePrefix, fileName, assetURL, index, callback) {
