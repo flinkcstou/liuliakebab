@@ -120,8 +120,8 @@
       if (phoneNumber.length != 12) {
         scope.clickPinError = false;
         scope.errorNote = "incorrect number";
+        scope.showError = true;
         riot.update();
-        componentAlertId.style.display = 'block';
 
         correctPhoneNumber = false;
       }

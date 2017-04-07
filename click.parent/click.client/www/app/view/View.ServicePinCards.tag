@@ -45,6 +45,9 @@
     </div>
   </div>
 
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
 
 
@@ -71,6 +74,7 @@
     }
 
     var scope = this;
+    scope.showError = false;
     touchStartTitle = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -113,8 +117,8 @@
       if (!scope.checked) {
         scope.clickPinError = false;
         scope.errorNote = "Выберите карту для оплаты";
+        scope.showError = true;
         riot.update();
-        componentAlertId.style.display = 'block';
         return;
 
       }

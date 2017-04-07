@@ -19,10 +19,14 @@
     <div class="card-number-part-two">{opts.numberparttwo}</div>
   </div>
 
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
     modeOfApp.offlineMode.balance = false;
 
     var scope = this;
+    scope.showError = false;
     scope.leftOfCard = (540 * opts.countcard + 100) * widthK;
 
     scope.on("mount", function () {
@@ -42,8 +46,8 @@
               if (err == "empty") {
                 scope.clickPinError = false;
                 scope.errorNote = "Unknown phone number";
+                scope.showError = true;
                 riot.update();
-                componentAlertId.style.display = 'block';
               }
               else console.log("Dialer Error:" + err);
             },

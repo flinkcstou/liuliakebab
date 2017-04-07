@@ -65,10 +65,15 @@
     </div>
   </div>
 
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
 
     var check = false;
     var scope = this;
+
+    scope.showError = false;
 
     scope.firstContactObject = {};
     scope.firstContactObject.contactFname = '';
@@ -237,8 +242,8 @@
         function error(message) {
           scope.clickPinError = false;
           scope.errorNote = 'Failed because: ' + message;
+          scope.showError = true;
           riot.update();
-          componentAlertId.style.display = 'block';
         }
       }
       else {

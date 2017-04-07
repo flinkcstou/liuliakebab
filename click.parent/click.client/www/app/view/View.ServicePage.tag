@@ -805,29 +805,29 @@
       if (scope.phoneFieldBool && firstFieldInput.value.length < 9) {
         scope.clickPinError = false;
         scope.errorNote = "Введите валидный номер телефона";
+        scope.showError = true;
         riot.update();
-        componentAlertId.style.display = 'block';
 
         return;
       } else if (firstFieldInput.value.length == 0) {
         scope.clickPinError = false;
         scope.errorNote = "Введите значение первого поля";
+        scope.showError = true;
         riot.update();
-        componentAlertId.style.display = 'block';
         return;
       }
       if (amountForPayTransaction < scope.service.min_pay_limit) {
         scope.clickPinError = false;
         scope.errorNote = "Сумма должна быть больше " + scope.service.min_pay_limit;
+        scope.showError = true;
         riot.update();
-        componentAlertId.style.display = 'block';
         return;
       }
       if (amountForPayTransaction > scope.service.max_pay_limit) {
         scope.clickPinError = false;
         scope.errorNote = "Сумма должна быть меньше " + scope.service.max_pay_limit;
+        scope.showError = true;
         riot.update();
-        componentAlertId.style.display = 'block';
         return;
       }
 
@@ -850,8 +850,8 @@
         } else {
           scope.clickPinError = false;
           scope.errorNote = "Выберите интернет пакет";
+          scope.showError = true;
           riot.update();
-          componentAlertId.style.display = 'block';
           return;
         }
       }
@@ -930,8 +930,8 @@
       else {
         scope.clickPinError = false;
         scope.errorNote = "Попробуйте еще раз";
+        scope.showError = true;
         riot.update();
-        componentAlertId.style.display = 'block';
       }
 
     }

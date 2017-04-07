@@ -163,8 +163,8 @@
       else {
         scope.clickPinError = false;
         scope.errorNote = 'Do first enter with Internet';
+        scope.showError = true;
         riot.update();
-        componentAlertId.style.display = 'block';
       }
 
     };
@@ -398,10 +398,9 @@
               else {
                 scope.clickPinError = false;
                 scope.errorNote = result[0][0].error_note;
-                scope.showError = true
+                scope.showError = true;
                 console.log("errornote=", scope.errorNote);
                 riot.update();
-                console.log('componentAlertId', componentAlertId)
               }
             },
 

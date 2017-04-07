@@ -54,16 +54,20 @@
 
   </div>
 
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
     var scope = this;
+    scope.showError = false;
     this.titleName = window.languages.ViewSettingsAddFriendTitleName;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-friend') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-add-friend',
-          "params": ''
-        }
+          {
+            "view": 'view-add-friend',
+            "params": ''
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -199,8 +203,8 @@
       function error(message) {
         scope.clickPinError = false;
         scope.errorNote = 'Failed because: ' + message;
+        scope.showError = true;
         riot.update();
-        componentAlertId.style.display = 'block';
       }
     }
     if (device.platform != 'BrowserStand')

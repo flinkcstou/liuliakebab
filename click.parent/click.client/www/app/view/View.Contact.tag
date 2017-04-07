@@ -42,6 +42,8 @@
     </div>
   </div>
 
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
 
   <script>
     var scope = this;
@@ -87,10 +89,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-contact') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-contact',
-          "params": opts
-        }
+          {
+            "view": 'view-contact',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -124,9 +126,8 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = 'Вы не можете оплатить за этот номер';
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
-
           }
 
         }
@@ -163,8 +164,8 @@
         else {
           scope.clickPinError = false;
           scope.errorNote = 'Вы не можете оплатить за этот номер';
+          scope.showError = true;
           riot.update();
-          componentAlertId.style.display = 'block';
         }
       }
       else {

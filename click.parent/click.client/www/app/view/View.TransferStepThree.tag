@@ -12,18 +12,23 @@
     <component-pincards></component-pincards>
 
     <button class="transferthree-next-button-inner-container" ontouchend="goToTransferFour()">
-     {window.languages.ViewTransferThreeNext}
+      {window.languages.ViewTransferThreeNext}
     </button>
 
   </div>
 
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
     var scope = this,
-      arrayForTransfer = [],
-      transferTitle,
-      objectForTransfer = opts[0],
-      checkChosenCard = false,
-      chosenCard;
+        arrayForTransfer = [],
+        transferTitle,
+        objectForTransfer = opts[0],
+        checkChosenCard = false,
+        chosenCard;
+
+    scope.showError = false;
 
     arrayForTransfer.push(opts[0])
     arrayForTransfer.push(opts[1])
@@ -46,10 +51,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepthree') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer-stepthree',
-          "params": opts
-        }
+          {
+            "view": 'view-transfer-stepthree',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -86,8 +91,8 @@
       else {
         scope.clickPinError = false;
         scope.errorNote = ('Выберите карту');
+        scope.showError = true;
         riot.update();
-        componentAlertId.style.display = 'block';
       }
     }
 

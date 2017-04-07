@@ -155,14 +155,14 @@
               if (err == "empty") {
                 scope.clickPinError = false;
                 scope.errorNote = "Unknown phone number";
+                scope.showError = true;
                 riot.update();
-                componentAlertId.style.display = 'block';
               }
               else {
                 scope.clickPinError = false;
                 scope.errorNote = "Dialer Error:" + err;
+                scope.showError = true;
                 riot.update();
-                componentAlertId.style.display = 'block';
               }
             },
             function (success) {

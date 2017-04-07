@@ -143,8 +143,8 @@
       else {
         scope.clickPinError = false;
         scope.errorNote = 'You cant delete this card';
+        scope.showError = true;
         riot.update();
-        componentAlertId.style.display = 'block';
       }
     }
 
@@ -376,8 +376,8 @@
       else {
         scope.clickPinError = false;
         scope.errorNote = 'Извининте, вы не можете произвести оплату с этой карты';
+        scope.showError = true;
         riot.update();
-        componentAlertId.style.display = 'block';
       }
     }
 
@@ -402,8 +402,8 @@
       else {
         scope.clickPinError = false;
         scope.errorNote = 'Извининте, вы не можете произвести перевод с этой карты';
+        scope.showError = true;
         riot.update();
-        componentAlertId.style.display = 'block';
       }
     }
 

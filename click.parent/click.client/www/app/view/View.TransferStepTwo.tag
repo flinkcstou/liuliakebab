@@ -30,6 +30,9 @@
 
   </div>
 
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
 
 
@@ -45,14 +48,15 @@
 
     console.log(opts)
     var scope = this,
-      transferTitle,
-      objectForTransfer = opts[0],
-      defaultAccount,
-      maskOne = /[0-9]/g,
-      maskTwo = /[0-9' ']/g,
-      checkFirst = false,
-      sumForTransfer = 0;
+        transferTitle,
+        objectForTransfer = opts[0],
+        defaultAccount,
+        maskOne = /[0-9]/g,
+        maskTwo = /[0-9' ']/g,
+        checkFirst = false,
+        sumForTransfer = 0;
 
+    scope.showError = false;
 
     sumMouseUp = function () {
       event.preventDefault()
@@ -150,10 +154,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-steptwo') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer-steptwo',
-          "params": opts
-        }
+          {
+            "view": 'view-transfer-steptwo',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -189,15 +193,15 @@
       if (sumForTransfer < minLimit) {
         scope.clickPinError = false;
         scope.errorNote = ('Минимальная сумма 5 000');
+        scope.showError = true;
         riot.update();
-        componentAlertId.style.display = 'block';
         return;
       }
       if (sumForTransfer > maxLimit) {
         scope.clickPinError = false;
         scope.errorNote = ('Максимальная сумма 5 000 000');
+        scope.showError = true;
         riot.update();
-        componentAlertId.style.display = 'block';
         return;
       }
       var sum = {"sum": sumForTransfer};

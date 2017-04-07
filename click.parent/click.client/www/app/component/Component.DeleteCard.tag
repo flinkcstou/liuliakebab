@@ -52,8 +52,8 @@
           if (result[0][0].error == 0) {
             scope.clickPinError = false;
             scope.errorNote = 'Карта успешно удалена';
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
             deleteCardComponentId.style.display = 'none'
 //              updateCard();
             return

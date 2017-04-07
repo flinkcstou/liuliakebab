@@ -163,8 +163,8 @@
             localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo))
             scope.clickPinError = false;
             scope.errorNote = 'Изменения сохранены';
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
           }
           else {
             scope.clickPinError = false;
