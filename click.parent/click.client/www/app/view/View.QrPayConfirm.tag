@@ -49,9 +49,9 @@
 
     </div>
     <div class="qr-payconfirm-bottom-container">
-      <div class="qr-payconfirm-button-enter" ontouchend="payService()">
-        <div class="qr-payconfirm-button-enter-label">{window.languages.ViewPayConfirmPay}</div>
-      </div>
+      <button class="qr-payconfirm-button-enter" ontouchend="payService()">
+        {window.languages.ViewPayConfirmPay}
+      </button>
     </div>
   </div>
 
@@ -76,10 +76,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr-pay-confirm') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-qr-pay-confirm',
-            "params": opts
-          }
+        {
+          "view": 'view-qr-pay-confirm',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
