@@ -38,10 +38,10 @@
         <div class="qr-pincard-friend-change-text" ontouchend="friendHelp()">Изменить</div>
       </div>
 
-      <div class="qr-pincard-button-enter"
+      <button class="qr-pincard-button-enter"
            ontouchend="goToQrPayConfirmView()">
         {window.languages.ViewServicePageEnterLabel}
-      </div>
+      </button>
 
     </div>
   </div>
