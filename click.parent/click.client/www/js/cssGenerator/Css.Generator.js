@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/devices.png);" +
+    //"background-image: url(resources/draft/supportOne_crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -10556,7 +10556,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 516 * heightK + "px;" +
+  "height:" + 555 * heightK + "px;" +
   "background-color: white;" +
   "}",
 
@@ -10565,11 +10565,21 @@ var css = {
   "position: absolute;" +
     //"height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
-  "top:" + 516 * heightK + "px; " +
+  "top:" + 555 * heightK + "px; " +
   "bottom:0; " +
   "background-color: #00a8f1; " +
-  "overflow-y: auto; " +
-  "overflow-x: hidden; " +
+  "overflow: hidden; " +
+  "}",
+
+  settingsSupportContainerTitle: ".settings-support-container-title" +
+  "{" +
+  "position: relative;" +
+  "width: 40%; " +
+  "left: 12%; " +
+  "margin: 0; " +
+  "margin-top: 10%; " +
+  "color: #48e0ff; " +
+  "font-size:" + 35 * widthK + "px; " +
   "}",
 
   settingsSupportPageTitle: ".settings-support-page-title " +
@@ -10587,8 +10597,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 135 * widthK + "px;" +
-  "height:" + 92 * widthK + "px;" +
-  "right:" + -36 * widthK + "px;" +
+  "height:" + 84 * widthK + "px;" +
+  "right:" + -32 * widthK + "px;" +
   "background-image: url('resources/icons/ViewTransfer/banks_close.png');" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 22%;" +
@@ -10601,9 +10611,9 @@ var css = {
   settingsSupportHelpIcon: ".settings-support-help-icon " +
   "{" +
   "position: absolute;" +
-  "width:" + 180 * widthK + "px;" +
-  "height:" + 180 * widthK + "px;" +
-  "top: 15%;" +
+  "width:" + 170 * widthK + "px;" +
+  "height:" + 170 * widthK + "px;" +
+  "top: 20%;" +
   "left: 10%;" +
   "background-image: url('resources/icons/ViewSettingsSupport/support_icon.png');" +
   "background-repeat: no-repeat;" +
@@ -10619,7 +10629,7 @@ var css = {
   "margin: 0;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "top: 50%;" +
+  "top: 58%;" +
   "}",
 
   settingsSupportButtonsContainer: ".settings-support-buttons-container " +
@@ -10633,10 +10643,31 @@ var css = {
   settingsSupportButtons: ".settings-support-buttons " +
   "{" +
   "position: relative;" +
-  "right:" + 30 * widthK + "px;" +
-  "left:" + 30 * widthK + "px;" +
-  "height:" + 125 * widthK + "px;" +
+  "width: 99%;" +
+  "left:" + 2 * widthK + "px;" +
+  "height:" + 80 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #f4f4f4;" +
+  "}",
+
+  settingsSupportButtonsRegistration: ".settings-support-buttons-registration " +
+  "{" +
+  "margin-top: 3.5%;" +
+  "}",
+
+  settingsSupportButtonsPay: ".settings-support-buttons-pay " +
+  "{" +
+  "margin-top: -1%;" +
+  "}",
+
+  settingsSupportButtonsBalance: ".settings-support-buttons-balance " +
+  "{" +
+  "margin-top: -1.5%;" +
+  "}",
+
+  settingsSupportButtonsOther: ".settings-support-buttons-other " +
+  "{" +
+  "margin-top: -1.5%;" +
+  "border: none;" +
   "}",
 
   settingsSupportOpenIcon: ".settings-support-open-icon " +
@@ -10644,8 +10675,8 @@ var css = {
   "position: absolute;" +
   "width: 20%;" +
   "height: 80%;" +
-  "right: -5%;" +
-  "top: 12%;" +
+  "right: -7%;" +
+  "top: 19%;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
@@ -10656,11 +10687,12 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 36%;" +
-  "left: 18%;" +
-  "top: 10%;" +
-  "text-align: center;" +
+  "margin: 0;" +
+  "left: 2%;" +
+  "top: 37%;" +
+  "text-align: left;" +
   "font-size:" + 29 * widthK + "px;" +
-  "color: #8b8b8b;" +
+  "color: white;" +
   "}",
 
 }
