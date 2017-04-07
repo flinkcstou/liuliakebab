@@ -75,7 +75,11 @@
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
             console.log("SUPPORT", result);
-            alert('Удачно отправлено');
+            scope.clickPinError = false;
+            scope.errorNote = 'Удачно отправлено';
+            scope.showError = true;
+            riot.update();
+//            alert('Удачно отправлено');
           }
           else {
 //            alert(result[0][0].error_note);
