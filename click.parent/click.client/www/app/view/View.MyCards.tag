@@ -33,7 +33,8 @@
       <div class="my-cards-button-icon my-cards-button-icon-report">
       </div>
 
-      <div class="my-cards-button-label" style="border: none;">{window.languages.ViewMyCardReports}
+      <div class="my-cards-button-label" style="border: none;" ontouchend="goToReports()">
+        {window.languages.ViewMyCardReports}
       </div>
     </div>
   </div>
@@ -73,10 +74,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-cards') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-my-cards',
-          "params": opts
-        }
+          {
+            "view": 'view-my-cards',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -98,7 +99,33 @@
       event.stopPropagation();
       riotTags.innerHTML = "<view-card-edit>";
       riot.mount('view-card-edit', [scope.card]);
-    }
+    };
+
+    goToReports = function () {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      var cardNumber = localStorage.getItem("cardNumber"),
+          cards = scope.tags["component-card-carousel"].cardsarray;
+      cardNumber = JSON.parse(cardNumber);
+
+//      console.log("ASDASDASDASDASD", cards);
+
+      for (card in cards) {
+
+//        console.log("ASDASDASDASDASD", card, cards[card], cards[card].countCard, cardNumber);
+
+        if (cards[card].countCard == cardNumber) {
+
+          riotTags.innerHTML = "<view-report>";
+          riot.mount('view-report', {
+            show_graph: true,
+            account_id: card
+          });
+        }
+      }
+    };
 
     confirmToDeleteCardTouchEnd = function () {
       event.preventDefault();
@@ -216,8 +243,8 @@
     //
     //    }
     var scope = this,
-      sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
-      phoneNumber = localStorage.getItem('click_client_phoneNumber');
+        sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
+        phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
     if (opts[0]) {
       scope.cardId = opts[0];
@@ -276,26 +303,26 @@
 
                     if (result[1][i].amount.length == 7) {
                       result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-                        result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
+                          result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
 
                     }
 
                     if (result[1][i].amount.length == 6) {
                       result[1][i].amount = result[1][i].amount.substring(0, 3) + ' ' +
-                        result[1][i].amount.substring(3, result[1][i].amount.length)
+                          result[1][i].amount.substring(3, result[1][i].amount.length)
 
                     }
 
                     if (result[1][i].amount.length == 5) {
                       result[1][i].amount = result[1][i].amount.substring(0, 2) + ' ' +
-                        result[1][i].amount.substring(2, result[1][i].amount.length)
+                          result[1][i].amount.substring(2, result[1][i].amount.length)
 
                     }
 
                     if (result[1][i].amount.length == 4) {
 
                       result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-                        result[1][i].amount.substring(1, result[1][i].amount.length)
+                          result[1][i].amount.substring(1, result[1][i].amount.length)
 
                     }
 

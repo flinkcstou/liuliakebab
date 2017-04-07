@@ -81,14 +81,15 @@
                    errornote="{errorNote}"></component-alert>
 
   <script>
+
     this.titleName = 'ОТЧЕТЫ';
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-report',
-          "params": ''
-        }
+          {
+            "view": 'view-report',
+            "params": ''
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -117,6 +118,8 @@
     var mNumber;
     var count = 12;
     localStorage.setItem('click_client_countCard', count);
+
+    scope.firstReportView = !opts.show_graph;
 
 
     if (!mNumber) {
@@ -382,8 +385,8 @@
           session_key: sessionKey,
           phone_num: phoneNumber,
           date_start: convertDate(firstDay),
-          date_end: convertDate(lastDay)
-
+          date_end: convertDate(lastDay),
+          account_id: opts.account_id
         },
         scope: this,
 
@@ -402,25 +405,25 @@
 
             if (scope.paymentsSum.length == 7) {
               scope.paymentsSum = scope.paymentsSum.substring(0, 1) + ' ' +
-                scope.paymentsSum.substring(1, 4) + ' ' + scope.paymentsSum.substring(4, scope.paymentsSum.length)
+                  scope.paymentsSum.substring(1, 4) + ' ' + scope.paymentsSum.substring(4, scope.paymentsSum.length)
 
             }
 
             if (scope.paymentsSum.length == 6) {
               scope.paymentsSum = scope.paymentsSum.substring(0, 3) + ' ' +
-                scope.paymentsSum.substring(3, scope.paymentsSum.length)
+                  scope.paymentsSum.substring(3, scope.paymentsSum.length)
 
             }
 
             if (scope.paymentsSum.length == 5) {
               scope.paymentsSum = scope.paymentsSum.substring(0, 2) + ' ' +
-                scope.paymentsSum.substring(2, scope.paymentsSum.length)
+                  scope.paymentsSum.substring(2, scope.paymentsSum.length)
 
             }
 
             if (scope.paymentsSum.length == 4) {
               scope.paymentsSum = scope.paymentsSum.substring(0, 1) + ' ' +
-                scope.paymentsSum.substring(1, scope.paymentsSum.length)
+                  scope.paymentsSum.substring(1, scope.paymentsSum.length)
 
             }
 
@@ -503,19 +506,19 @@
       console.log('DATA', data)
       var ctx = document.getElementById('myChart').getContext('2d');
       var myChart = new Chart(ctx, {
-          type: 'doughnut',
-          data: data,
-          options: {
-            cutoutPercentage: 55,
-            animateScale: false,
-            tooltips: {
-              enabled: false
-            },
-            events: [],
+            type: 'doughnut',
+            data: data,
+            options: {
+              cutoutPercentage: 55,
+              animateScale: false,
+              tooltips: {
+                enabled: false
+              },
+              events: [],
 
-          }
-        })
-        ;
+            }
+          })
+          ;
 
       for (var i in scope.arrayOfCoordinates) {
         if (document.getElementById('chartImageBlockId' + scope.arrayOfCoordinates[i].order)) {
