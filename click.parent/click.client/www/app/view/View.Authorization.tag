@@ -109,6 +109,9 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    if (device.platform != 'BrowserStand')
+      StatusBar.backgroundColorByHexString("#00a8f1");
+
     if (device.platform == 'Android') {
       scope.checkAndroid = true;
     }
