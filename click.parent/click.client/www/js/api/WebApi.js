@@ -3,13 +3,6 @@ window.api.callBacks = {};
 
 window.api.init = function () {
 
-  var options = {dimBackground: true};
-  SpinnerPlugin.activityStart(languages.ConnectionSocket, options, function () {
-    alert("OK");
-  }, function () {
-    alert("Error");
-  });
-
   window.api.socket = new WebSocket("wss://my.click.uz:8443");
   window.api.initSocket();
 };
@@ -46,15 +39,25 @@ window.api.initSocket = function () {
       }
     }
     else {
-      var result = confirm(parsedData.data[0][0].error_note)
-      if (result) {
-        riotTags.innerHTML = "<view-authorization>";
-        riot.mount('view-authorization');
-      }
-      else {
-        navigator.app.exitApp();
-      }
-      return
+
+      var options = {dimBackground: true};
+
+      SpinnerPlugin.activityStart(languages.ConnectionSocket, options, function () {
+        window.api.init();
+        console.log("Started");
+      }, function () {
+        console.log("closed");
+      });
+
+      //var result = confirm(parsedData.data[0][0].error_note)
+      //if (result) {
+      //  riotTags.innerHTML = "<view-authorization>";
+      //  riot.mount('view-authorization');
+      //}
+      //else {
+      //  navigator.app.exitApp();
+      //}
+      //return
     }
     callBack.err(parsedData.api_status, parsedData.api_status_message, parsedData.data);
   };
