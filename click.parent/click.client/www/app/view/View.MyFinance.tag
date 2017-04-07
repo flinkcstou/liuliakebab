@@ -9,10 +9,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-finance') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-my-finance',
-          "params": ''
-        }
+          {
+            "view": 'view-my-finance',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }

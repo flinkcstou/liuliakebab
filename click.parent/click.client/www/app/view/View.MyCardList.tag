@@ -39,7 +39,7 @@
       history.arrayOfHistory.push(
         {
           "view": 'view-mycard-list',
-          "params": ''
+          "params": opts
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))

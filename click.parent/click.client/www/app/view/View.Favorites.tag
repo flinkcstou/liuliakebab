@@ -35,7 +35,7 @@
       history.arrayOfHistory.push(
         {
           "view": 'view-favorites',
-          "params": ''
+          "params": opts
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))

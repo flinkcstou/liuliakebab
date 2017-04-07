@@ -88,7 +88,7 @@
       history.arrayOfHistory.push(
           {
             "view": 'view-report',
-            "params": ''
+            "params": opts
           }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))

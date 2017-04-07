@@ -56,7 +56,7 @@
       history.arrayOfHistory.push(
         {
           "view": 'view-account-detail',
-          "params": ''
+          "params": opts
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))

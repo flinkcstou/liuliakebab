@@ -66,7 +66,7 @@
       history.arrayOfHistory.push(
           {
             "view": 'view-add-friend',
-            "params": ''
+            "params": opts
           }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))

@@ -22,7 +22,7 @@
       history.arrayOfHistory.push(
           {
             "view": 'view-settings-user-agreement',
-            "params": ''
+            "params": opts
           }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))

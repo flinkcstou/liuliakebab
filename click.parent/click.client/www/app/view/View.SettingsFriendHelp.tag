@@ -31,7 +31,7 @@
       history.arrayOfHistory.push(
         {
           "view": 'view-friend-help-settings',
-          "params": ''
+          "params": opts
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))

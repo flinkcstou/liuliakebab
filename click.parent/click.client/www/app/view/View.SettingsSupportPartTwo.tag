@@ -29,7 +29,7 @@
       history.arrayOfHistory.push(
           {
             "view": 'view-settings-support-part-two',
-            "params": ''
+            "params": opts
           }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))

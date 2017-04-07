@@ -46,10 +46,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-client') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-registration-client',
-          "params": ''
-        }
+          {
+            "view": 'view-registration-client',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
