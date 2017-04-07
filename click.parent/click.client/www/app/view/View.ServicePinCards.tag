@@ -39,13 +39,12 @@
       </div>
 
       <button class="pincard-button-enter"
-           ontouchend="goToPayConfirmView()">{window.languages.ViewServicePageEnterLabel}
+              ontouchend="goToPayConfirmView()">{window.languages.ViewServicePageEnterLabel}
       </button>
 
     </div>
   </div>
-  <component-alert clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
+
   <script>
 
 
@@ -63,10 +62,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-service-pincards',
-          "params": opts
-        }
+          {
+            "view": 'view-service-pincards',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
