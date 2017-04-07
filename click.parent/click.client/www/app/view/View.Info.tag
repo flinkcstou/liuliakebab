@@ -76,7 +76,7 @@
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#ffffff");
+        StatusBar.backgroundColorByHexString("#e5e5e5");
 
       if (!modeOfApp.offlineMode) {
         writeBalance();
