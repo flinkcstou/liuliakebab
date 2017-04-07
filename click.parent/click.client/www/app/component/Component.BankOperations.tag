@@ -46,8 +46,8 @@
       event.preventDefault();
       event.stopPropagation();
 //      return
-      riotTags.innerHTML = "<view-settings-support-part-two>";
-      riot.mount('view-settings-support-part-two');
+      riotTags.innerHTML = "<view-help>";
+      riot.mount('view-help');
     }
   </script>
 </component-bank-operations>

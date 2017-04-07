@@ -17,7 +17,9 @@
   </div>
 
   <div class="registration-keyboard-field keyboard-field">
-    <div class="registration-button-help">{window.languages.ViewRegistrationDeviceButtonHelp}</div>
+    <div class="registration-button-help" ontouchend="helpTouchEnd()">
+      {window.languages.ViewRegistrationDeviceButtonHelp}
+    </div>
     <component-keyboard></component-keyboard>
   </div>
 
@@ -36,6 +38,7 @@
                    errornote="{errorNote}"></component-alert>
 
   <script>
+
 
     var checkRemember = false;
     touchEndRemember = function () {
@@ -131,6 +134,14 @@
       }
 
     };
+
+    helpTouchEnd = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      riotTags.innerHTML = "<view-help>";
+      riot.mount('view-help');
+    }
 
     function deviceType() {
       return device.platform == 'iOS' ? 2 : 1;
