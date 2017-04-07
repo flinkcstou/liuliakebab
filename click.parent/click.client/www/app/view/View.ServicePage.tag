@@ -24,7 +24,7 @@
              type="{inputType}"
              id="firstFieldInput"
              maxlength="9" onfocus="bordersColor()"
-             value="{defaultNumber}"/>
+             value="{defaultNumber}" onkeydown="telVerificationKeyDown(this)"/>
       <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
     </div>
 
@@ -43,7 +43,7 @@
     <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
          id="amountField">
       <p class="servicepage-text-field">{amountFieldTitle}</p>
-      <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="13"
+      <input class="servicepage-amount-input" type="number" value="{defaultAmount}" maxlength="13"
              id="amount"
              onfocus="amountFocus()" onblur="amountOnBlur()"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()"/>
@@ -137,7 +137,7 @@
 
       <div class="component-calc-first-field">
         <p class="component-calc-first-field-text">{window.languages.ViewAmountCalculatorTextOne}</p>
-        <input id="amountCalcInputId" class="component-calc-first-field-input-part" type="tel"
+        <input id="amountCalcInputId" class="component-calc-first-field-input-part" type="number"
                maxlength="19" onkeyup="convertAmount()"/>
       </div>
 
@@ -184,12 +184,19 @@
     var scope = this;
     scope.enterButton = opts[0] != 'ADDFAVORITE' ? true : false;
 
+    telVerificationKeyDown = function (input) {
+      console.log(event.target.value)
+      if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE) {
+        firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+      }
+    }
 
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
 
     this.on('mount', function () {
+      firstFieldInput.focus()
       if (opts && opts.number) {
         firstFieldInput.value = opts.number
         riot.update();
@@ -419,7 +426,7 @@
           scope.oldFieldParamId = scope.fieldArray[1].parameter_id;
         }
         if (scope.fieldArray[0].input_type == '1') {
-          scope.inputType = 'tel';
+          scope.inputType = 'number';
           scope.isNumber = true;
         }
         else if (scope.fieldArray[0].input_type == '2') {
@@ -556,7 +563,7 @@
           scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1";
           scope.inputMaxLength = scope.fieldArray[i].max_len;
           if (scope.fieldArray[i].input_type == '1') {
-            scope.inputType = 'tel';
+            scope.inputType = 'number';
             scope.isNumber = true;
           }
           else if (scope.fieldArray[i].input_type == '2') {

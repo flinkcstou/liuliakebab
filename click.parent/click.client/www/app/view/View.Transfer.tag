@@ -27,7 +27,7 @@
         <p class="transfer-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
         <input onchange="contactPhoneBlurAndChange()" onfocus="contactPhoneBlurAndChange()"
                id="contactPhoneNumberId"
-               class="transfer-contact-number-input-part" type="tel"
+               class="transfer-contact-number-input-part" type="number"
                maxlength="9" onkeyup="searchContacts()"/>
         <div class="transfer-contact-phone-icon" ontouchend="pickContactFromNative()"></div>
       </div>
@@ -94,7 +94,7 @@
       <div class="transfer-contact-phone-field">
         <p class="transfer-contact-text-field">{window.languages.ViewPayTransferCardTextField}</p>
         <input onchange="cardPhoneBlurAndChange()" onfocus="cardPhoneBlurAndChange()"
-               id="cardInputId" class="transfer-card-number-input-part" type="tel"
+               id="cardInputId" class="transfer-card-number-input-part" type="number"
                maxlength="19" onkeydown="searchCard()" onkeyup="cardOnKeyUp()"/>
       </div>
       <div class="transfer-card-owner-container">
