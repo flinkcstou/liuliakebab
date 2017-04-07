@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/supportOne_crop.png);" +
+    //"background-image: url(resources/draft/supportTwo_crop.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -10694,6 +10694,105 @@ var css = {
   "text-align: left;" +
   "font-size:" + 29 * widthK + "px;" +
   "color: white;" +
+  "}",
+
+  //VIEW SETTINGS SUPPORT PART TWO
+
+  viewSettingsSupportPartTwo: ".view-settings-support-part-two" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "background-color: #00b8ff;" +
+  "}",
+
+
+  settingsSupportPartTwoContainerTitle: ".settings-support-part-two-container-title" +
+  "{" +
+  "position: relative;" +
+  "width: 50%; " +
+  "left: 13%; " +
+  "top: 5%; " +
+  "margin: 0; " +
+  "color: #48e0ff; " +
+  "font-size:" + 35 * widthK + "px; " +
+  "}",
+
+  settingsSupportPartTwoContainer: ".settings-support-part-two-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 60%;" +
+  "}",
+
+  settingsSupportPartTwoPageTitle: ".settings-support-part-two-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 0;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "background: transparent;" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  settingsSupportPartTwoXButton: ".settings-support-part-two-x-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 135 * widthK + "px;" +
+  "height:" + 84 * widthK + "px;" +
+  "right:" + -32 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewSettingsSupport/support_close.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 22%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 54 * widthK + "px;" +
+  "background-size: 22%;" +
+  "top: 0;" +
+  "}",
+
+  settingsSupportPartTwoInputContainer: ".settings-support-part-two-input-container" +
+  "{" +
+  "position: relative;" +
+  "width: 82%;" +
+  "margin: 0 auto 0 auto;" +
+  "height: 65%;" +
+  "top: 6%;" +
+  "background-image: url('resources/icons/ViewSettingsSupport/support_message.png');" +
+  "background-repeat: no-repeat;" +
+  "background-position-y: center;" +
+  "background-size: 100%;" +
+  "}",
+
+  settingsSupportPartTwoSendButton: ".settings-support-part-two-send-button" +
+  "{" +
+  "position: relative;" +
+  "width: 39%;" +
+  "margin: 0 auto 0 auto;" +
+  "height: 7%;" +
+  "top: 4%;" +
+  "color: white;" +
+  "text-align: center;" +
+  "border:" + 4 * widthK + "px solid white;" +
+  "line-height: 160%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "}",
+
+
+  settingsSupportPartTwoInput: ".settings-support-part-two-input" +
+  "{" +
+  "position: absolute;" +
+  "width: 87%;" +
+  "height: 59%;" +
+  "top: 18%;" +
+  "left: 6%;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "border: none;" +
+  "outline: none;" +
+  "margin: 0;" +
+  "padding: 0;" +
+  "color: gray;" +
   "}",
 
 }
