@@ -216,7 +216,7 @@ var RU_LANGUAGES =
   "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 1.0 BETA",
   "ViewSettingsAboutProgramVersionTitleNamePartTwo": "5 марта, 2017",
   "ViewSettingsAboutProgramUserAgreementTitleName": "Пользовательское соглашение",
-  "ViewSettingsAboutProgramRankTitleName": "Оцентие нас в Google Play",
+  "ViewSettingsAboutProgramRankTitleName": "Оцените нас в Google Play",
 
   "ViewSettingsAddFriendTitleName": "ДОБАВИТЬ ДРУГА",
   "ViewSettingsAddFriendPhoneNumberTitle": "Номер телефона",
