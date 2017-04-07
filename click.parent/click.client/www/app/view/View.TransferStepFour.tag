@@ -86,8 +86,6 @@
                            operationmessagepartone="{window.languages.ComponentInProcessingPartOne}"
                            operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"
                            viewpage="view-transfer"></component-in-processing>
-  <component-alert clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
 
   <script>
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {

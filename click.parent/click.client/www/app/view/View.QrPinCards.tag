@@ -45,8 +45,7 @@
 
     </div>
   </div>
-  <component-alert clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
+
   <script>
 
 

@@ -22,50 +22,49 @@
     </div>
 
     <div class="report-service-body-container">
-      <div class="report-service-phone-field">
-        <p class="report-service-text-field">{opts.parameter_name}</p>
-        <p class="report-service-phone-input">{opts.cntrg_info_param2}</p>
-      </div>
-      <div class="report-service-field">
-        <p class="report-service-text-field">{window.languages.ViewReportServiceAmountOfPay}</p>
-        <p class="report-service-info-input report-service-info-input-amount">-
-          {amountTransform(opts.amount.toString())} сум</p>
-      </div>
-      <div class="report-service-field">
-        <p class="report-service-text-field">{window.languages.ViewReportServicePayWithCard}</p>
-        <p class="report-service-info-input">{cardName}</p>
-      </div>
-      <div class="report-service-field report-service-last-field">
-        <p class="report-service-text-field">{window.languages.ViewReportServiceStatus}</p>
-        <p class="report-service-info-input {report-service-status-wait: opts.state == 1,
+      <div class="report-service-body-info-container">
+        <div class="report-service-phone-field">
+          <p class="report-service-text-field">{opts.parameter_name}</p>
+          <p class="report-service-phone-input">{opts.cntrg_info_param2}</p>
+        </div>
+        <div class="report-service-field">
+          <p class="report-service-text-field">{window.languages.ViewReportServiceAmountOfPay}</p>
+          <p class="report-service-info-input report-service-info-input-amount">-
+            {amountTransform(opts.amount.toString())} сум</p>
+        </div>
+        <div class="report-service-field">
+          <p class="report-service-text-field">{window.languages.ViewReportServicePayWithCard}</p>
+          <p class="report-service-info-input">{cardName}</p>
+        </div>
+        <div class="report-service-field report-service-last-field">
+          <p class="report-service-text-field">{window.languages.ViewReportServiceStatus}</p>
+          <p class="report-service-info-input {report-service-status-wait: opts.state == 1,
                                                report-service-status-error: opts.state == -1,
                                                report-service-status-success: opts.state == 0}">
-          {opts.status_note}</p>
+            {opts.status_note}</p>
+        </div>
       </div>
 
-      <div class="report-service-cover"></div>
+      <div class="report-service-data-button-info-container">
+        <div class="report-service-button-info-container">
+          <div class="report-service-button-icon report-service-button-favorites-icon"></div>
+          <a class="report-service-button-action">{languages.ViewReportServiceAddToFavorites}</a>
+        </div>
+        <div class="report-service-button-info-container">
+          <div class="report-service-button-icon report-service-button-auto-payment-icon"></div>
+          <a class="report-service-button-action">{languages.ViewReportServiceAddToAutoPayment}</a>
+        </div>
+        <div class="report-service-button-info-container">
+          <div class="report-service-button-icon report-service-button-support-icon"></div>
+          <a class="report-service-button-action">{languages.ViewReportServiceGetSupportHelp}</a>
+        </div>
 
-      <div class="report-service-button-info-container">
-        <div class="report-service-button-icon report-service-button-favorites-icon"></div>
-        <a class="report-service-button-action">{languages.ViewReportServiceAddToFavorites}</a>
+        <button class="report-service-repeat-button">{languages.ViewReportServiceRepeatButtonLabel}</button>
       </div>
-      <div class="report-service-button-info-container">
-        <div class="report-service-button-icon report-service-button-auto-payment-icon"></div>
-        <a class="report-service-button-action">{languages.ViewReportServiceAddToAutoPayment}</a>
-      </div>
-      <div class="report-service-button-info-container">
-        <div class="report-service-button-icon report-service-button-support-icon"></div>
-        <a class="report-service-button-action">{languages.ViewReportServiceGetSupportHelp}</a>
-      </div>
-
-      <button class="report-service-repeat-button">{languages.ViewReportServiceRepeatButtonLabel}</button>
 
     </div>
 
   </div>
-
-  <component-alert clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
 
   <script>
     var scope = this;
