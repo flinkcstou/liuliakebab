@@ -180,7 +180,7 @@
       }
       console.log("accountId", accountId);
       console.log("friendPhone", friendPhone);
-      var payment_data = {"transaction_id": parseInt(Date.now() / 1000)}
+      var payment_data = {"transaction_id": parseInt(Date.now() / 1000), "is_indoor": 1}
 
 
       window.api.call({
