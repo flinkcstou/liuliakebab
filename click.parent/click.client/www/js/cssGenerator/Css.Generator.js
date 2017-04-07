@@ -3216,6 +3216,7 @@ var css = {
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
+  "border-radius: " + 8 * widthK + "px; " +
   "}",
 
   servicePageButtonSave: ".servicepage-button-save" +
@@ -3786,6 +3787,7 @@ var css = {
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
+  "border-radius: " + 8 * widthK + "px; " +
   "}",
 
   pincardButtonEnterLabel: ".pincard-button-enter-label" +
@@ -4004,6 +4006,7 @@ var css = {
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
+  "border-radius: " + 8 * widthK + "px; " +
   "}",
 
   payconfirmButtonEnterLabel: ".payconfirm-button-enter-label" +
@@ -4703,6 +4706,7 @@ var css = {
   "left: " + 230 * widthK + "px; " +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
+  "border-radius: " + 8 * widthK + "px; " +
   "}",
 
   transferNextButtonLabel: ".transfer-next-button-label" +
@@ -4838,6 +4842,7 @@ var css = {
   "left: " + 230 * widthK + "px; " +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
+  "border-radius: " + 8 * widthK + "px; " +
   "}",
 
 
@@ -4969,6 +4974,7 @@ var css = {
   "left: " + 230 * widthK + "px; " +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
+  "border-radius: " + 8 * widthK + "px; " +
   "}",
 
   transferThreeNextButtonLabel: ".transferthree-next-button-label" +
@@ -5239,6 +5245,7 @@ var css = {
   "left: " + 230 * widthK + "px; " +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
+  "border-radius: " + 8 * widthK + "px; " +
   "}",
 
   transferFourButtonEnterLabel: ".transferfour-button-enter-label" +
@@ -8706,6 +8713,23 @@ var css = {
   "background-repeat: no-repeat;" +
   "}",
 
+  viewAddNextButton: ".view-add-next-button " +
+  "{" +
+  "position: absolute;" +
+  "width: 38%;" +
+  "height: 5%;" +
+  "top: 60%;" +
+  "background-color: #00a8f1;" +
+  "color: white;" +
+  "outline: none;" +
+  "border: none;" +
+  "padding: 0;" +
+  "left: " + 230 * widthK + "px; " +
+  "font-size: " + 32 * widthK + "px; " +
+  "border-radius: " + 8 * widthK + "px; " +
+  "font-family: SFUIDisplay-Light;" +
+  "}",
+
   addCardCardField: ".add-card-card-field " +
   "{" +
   "position: relative;" +
@@ -9536,7 +9560,7 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "height:" + 62 * widthK + "px;" +
-  "border-radius:" + 5 * widthK + "px;" +
+  "border-radius:" + 8 * widthK + "px;" +
   "font-size:" + 29 * widthK + "px;" +
   "width: 33%;" +
   "background-color: #00a8f1;" +

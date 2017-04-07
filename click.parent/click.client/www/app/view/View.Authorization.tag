@@ -291,6 +291,10 @@
     var balance;
     var arrayAccountInfo = [];
     getAccount = function (e) {
+      if(history.arrayOfHistory.length < 2){
+        localStorage.setItem('onResume', false)
+      }
+
       if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));

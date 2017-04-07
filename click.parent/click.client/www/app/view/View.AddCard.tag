@@ -49,8 +49,8 @@
       <div id="doMainId" class="add-card-main-card-icon" ontouchend="doMainCardTouchEnd()"></div>
     </div>
 
-    <div style="position: absolute; bottom: 0; width: 10%; height: 10%; left: 20%; background-color: red"
-         ontouchend="createCardTouchEnd()"></div>
+    <button class="view-add-next-button"
+         ontouchend="createCardTouchEnd()">ДОБАВИТЬ</button>
   </div>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
