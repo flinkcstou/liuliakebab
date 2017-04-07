@@ -1377,7 +1377,6 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "border-radius:" + 100 * widthK + "px;" +
-  "border:" + 1 + "px solid #f1f1f1;" +
   "background-size: 80%;" +
   "float: left;" +
   "margin-right: 20px;" +

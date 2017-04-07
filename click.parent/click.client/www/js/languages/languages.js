@@ -47,7 +47,7 @@ var RU_LANGUAGES =
   "ViewInfoLastOperations": "Последние операции",
 
   "ViewMyCardTransfer": "Переводы с карты на карту",
-  "ViewMyCardTitleName": "ЗАРПЛАТНАЯ КАРТА",
+  "ViewMyCardTitleName": "ДЕЙСТВИЯ С КАРТОЙ",
   "ViewMyCardPay": "Оплата с карты",
   "ViewMyCardReports": "Отчеты по карте",
   "ViewMyCardBlock": "Удалить карту",
