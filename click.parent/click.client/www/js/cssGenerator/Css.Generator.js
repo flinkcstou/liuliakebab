@@ -341,7 +341,7 @@ var css = {
   registrationDeviceRememberLabel: ".registration-device-remember-label " +
   "{" +
   "position: absolute;" +
-  "color: #4bd5ff;" +
+  "color: white;" +
   "top:" + 32 * widthK + "px;" +
   "width:" + 340 * widthK + "px;" +
   "margin: 0;" +
