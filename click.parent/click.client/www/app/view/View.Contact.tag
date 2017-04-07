@@ -89,10 +89,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-contact') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-contact',
-            "params": opts
-          }
+        {
+          "view": 'view-contact',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -117,6 +117,7 @@
         else {
           var id = window.mOperators[phone.substring(0, 2)]
           viewPay.chosenServiceId = id;
+          scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length);
 
           console.log('ID', id)
           if (id) {
@@ -187,6 +188,8 @@
           contactSelectContainerId.style.display = 'block'
         }
         else {
+
+          scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length);
           riotTags.innerHTML = "<view-transfer>";
           riot.mount('view-transfer', {number: scope.arrayOfNumbers[0].value});
         }
