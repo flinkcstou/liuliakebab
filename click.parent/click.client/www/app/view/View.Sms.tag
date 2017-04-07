@@ -36,10 +36,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-sms') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-sms',
-          "params": opts
-        }
+          {
+            "view": 'view-sms',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -152,7 +152,11 @@
 
       event.preventDefault();
       event.stopPropagation();
-      alert(window.languages.ViewSmsResendText + localStorage.getItem('click_client_phoneNumber'));
+      scope.clickPinError = false;
+      scope.errorNote = window.languages.ViewSmsResendText + localStorage.getItem('click_client_phoneNumber');
+      scope.showError = true;
+      riot.update();
+//      alert(window.languages.ViewSmsResendText + localStorage.getItem('click_client_phoneNumber'));
       resendSms();
     }
 
