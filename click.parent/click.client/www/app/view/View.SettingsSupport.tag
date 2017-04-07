@@ -11,6 +11,31 @@
       пожалуйста, сообщите нам об этом</p>
   </div>
   <div class="settings-support-container">
+    <p>ВЫБЕРИТЕ ТЕМУ ДЛЯ ОБРАЩЕНИЯ</p>
+
+    <div class="settings-support-buttons-container">
+
+      <div class="settings-support-buttons">
+        <div class="settings-support-open-icon"></div>
+        <p class="settings-support-buttons-title">РЕГИСТРАЦИЯ</p>
+      </div>
+
+      <div class="settings-support-buttons">
+        <div class="settings-support-open-icon"></div>
+        <p class="settings-support-buttons-title">ОПЛАТА</p>
+      </div>
+
+      <div class="settings-support-buttons">
+        <div class="settings-support-open-icon"></div>
+        <p class="settings-support-buttons-title">БАЛАНС</p>
+      </div>
+
+      <div class="settings-support-buttons">
+        <div class="settings-support-open-icon"></div>
+        <p class="settings-support-buttons-title">ДРУГОЕ</p>
+      </div>
+
+    </div>
 
   </div>
 

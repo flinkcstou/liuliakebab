@@ -10549,7 +10549,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height: 100%;" +
-  "opacity: 0.95;" +
+  "opacity: 0.97;" +
   "}",
 
   settingsSupportBlueContainer: ".settings-support-blue-container" +
@@ -10620,6 +10620,47 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "top: 50%;" +
+  "}",
+
+  settingsSupportButtonsContainer: ".settings-support-buttons-container " +
+  "{" +
+  "position: relative;" +
+  "width: 80%;" +
+  "height: 72%;" +
+  "margin: 0 auto 0 auto;" +
+  "}",
+
+  settingsSupportButtons: ".settings-support-buttons " +
+  "{" +
+  "position: relative;" +
+  "right:" + 30 * widthK + "px;" +
+  "left:" + 30 * widthK + "px;" +
+  "height:" + 125 * widthK + "px;" +
+  "border-bottom:" + 1 + "px solid #f4f4f4;" +
+  "}",
+
+  settingsSupportOpenIcon: ".settings-support-open-icon " +
+  "{" +
+  "position: absolute;" +
+  "width: 20%;" +
+  "height: 80%;" +
+  "right: -5%;" +
+  "top: 12%;" +
+  "background-image: url(resources/icons/ViewInfo/open.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 9%;" +
+  "}",
+
+  settingsSupportButtonsTitle: ".settings-support-buttons-title " +
+  "{" +
+  "position: absolute;" +
+  "width: 36%;" +
+  "left: 18%;" +
+  "top: 10%;" +
+  "text-align: center;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "color: #8b8b8b;" +
   "}",
 
 }
