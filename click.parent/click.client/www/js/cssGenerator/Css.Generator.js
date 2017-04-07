@@ -8007,6 +8007,7 @@ var css = {
   "height:" + 92 * widthK + "px;" +
   "right:" + 63 * widthK + "px;" +
   "top: 0;" +
+  "z-index: 1;" +
   "}",
 
   viewReportsFilterText: ".view-reports-filter-text " +
