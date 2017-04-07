@@ -30,7 +30,7 @@
     scope.contentOfAgreement = '';
 
     this.on('mount', function () {
-      console.log('AGREEMENT', scope.contentOfAgreement)
+
     })
 
     goToBack = function () {
@@ -39,38 +39,38 @@
       onBackKeyDown()
     };
 
-    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-    var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-    var sessionKey = loginInfo.session_key;
+//    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+//    var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+//    var sessionKey = loginInfo.session_key;
 
 
-    window.api.call({
-      method: 'get.terms',
-      input: {
-        session_key: sessionKey,
-        phone_num: phoneNumber,
-      },
-      scope: this,
-      onSuccess: function (result) {
-        if (result[0][0].error == 0) {
-          if (result[1][0]) {
-            scope.contentOfAgreement = result[1][0].content;
-            riot.update();
-          }
-        }
-        else {
-          scope.clickPinError = false;
-          scope.errorNote = result[0][0].error_note;
-          riot.update();
-          componentAlertId.style.display = 'block';
-        }
-      },
-
-      onFail: function (api_status, api_status_message, data) {
-        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-        console.error(data);
-      }
-    });
+//    window.api.call({
+//      method: 'get.terms',
+//      input: {
+//        session_key: sessionKey,
+//        phone_num: phoneNumber,
+//      },
+//      scope: this,
+//      onSuccess: function (result) {
+//        if (result[0][0].error == 0) {
+//          if (result[1][0]) {
+//            scope.contentOfAgreement = result[1][0].content;
+//            riot.update();
+//          }
+//        }
+//        else {
+//          scope.clickPinError = false;
+//          scope.errorNote = result[0][0].error_note;
+//          riot.update();
+//          componentAlertId.style.display = 'block';
+//        }
+//      },
+//
+//      onFail: function (api_status, api_status_message, data) {
+//        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+//        console.error(data);
+//      }
+//    });
 
 
   </script>
