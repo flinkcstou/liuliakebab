@@ -48,7 +48,9 @@
       <div class="view-reports-graph-bigamount-container">
         <p class="view-reports-graph-bigamount-text">{paymentsSum} сум</p>
       </div>
-      <div class="view-reports-graph-image-container">
+      <div class="view-reports-graph-image-container" ontouchstart="monthContainerTouchStart()"
+           ontouchend="monthContainerTouchEnd()"
+           ontouchmove="monthContainerTouchMove()">
         <div class="view-reports-graph-frame">
           <canvas class="view-reports-graph-frame" id="myChart">
           </canvas>
