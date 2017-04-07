@@ -20,9 +20,17 @@
   <script>
     var scope = this;
 
-    history.arrayOfHistory = history.arrayOfHistory.splice(history.arrayOfHistory.length - 1, 1);
+    history.arrayOfHistory.splice(history.arrayOfHistory.length - 1, 1);
 
-    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-settings-support-part-two') {
+      history.arrayOfHistory.push(
+        {
+          "view": 'view-settings-support-part-two',
+          "params": ''
+        }
+      );
+      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    }
 
 
     scope.comment = 'Опишите вашу проблему';
@@ -31,8 +39,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      riotTags.innerHTML = "<view-settings>";
-      riot.mount('view-settings');
+      onBackKeyDown()
     }
 
     sendMessageTouchEnd = function () {

@@ -46,16 +46,6 @@
   <script>
     var scope = this;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-settings-support') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-settings-support',
-          "params": opts,
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
-
     closeSettingsSupportTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
