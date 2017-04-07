@@ -15,25 +15,25 @@
     <div class="settings-support-buttons-container">
 
       <div class="settings-support-buttons settings-support-buttons-registration"
-           ontouchend="goToSettingsStepTwo(window.languages.VewSettingsSupportRegistration)">
+           ontouchend="goToSettingsStepTwo(window.languages.VewSettingsSupportRegistration, 'REGISTRATION')">
         <div class="settings-support-open-icon"></div>
         <p class="settings-support-buttons-title">{window.languages.VewSettingsSupportRegistration}</p>
       </div>
 
       <div class="settings-support-buttons settings-support-buttons-pay"
-           ontouchend="goToSettingsStepTwo(window.languages.VewSettingsSupportPay)">
+           ontouchend="goToSettingsStepTwo(window.languages.VewSettingsSupportPay, 'PAY')">
         <div class="settings-support-open-icon"></div>
         <p class="settings-support-buttons-title">{window.languages.VewSettingsSupportPay}</p>
       </div>
 
       <div class="settings-support-buttons settings-support-buttons-balance"
-           ontouchend="goToSettingsStepTwo(window.languages.VewSettingsSupportBalance)">
+           ontouchend="goToSettingsStepTwo(window.languages.VewSettingsSupportBalance, 'BALANS')">
         <div class="settings-support-open-icon"></div>
         <p class="settings-support-buttons-title">{window.languages.VewSettingsSupportBalance}</p>
       </div>
 
       <div class="settings-support-buttons settings-support-buttons-other"
-           ontouchend="goToSettingsStepTwo(window.languages.VewSettingsSupportOther)">
+           ontouchend="goToSettingsStepTwo(window.languages.VewSettingsSupportOther, 'OTHER')">
         <div class="settings-support-open-icon"></div>
         <p class="settings-support-buttons-title">{window.languages.VewSettingsSupportOther}</p>
       </div>
@@ -63,12 +63,12 @@
       settingsSupportId.style.display = 'none'
     }
 
-    goToSettingsStepTwo = function (titleOfHelp) {
+    goToSettingsStepTwo = function (titleOfHelp, keyOfHelp) {
       event.preventDefault();
       event.stopPropagation();
 
       riotTags.innerHTML = "<view-settings-support-part-two>";
-      riot.mount('view-settings-support-part-two', {title: titleOfHelp});
+      riot.mount('view-settings-support-part-two', {title: titleOfHelp, key: keyOfHelp});
     }
 
 
