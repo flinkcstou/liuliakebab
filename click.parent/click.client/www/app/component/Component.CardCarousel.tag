@@ -1,4 +1,5 @@
 <component-card-carousel>
+<component-card-carousel>
 
   <div id="containerCard" class="card-carousel" ontouchend="endTouchCarousel()" ontouchmove="moveTouchCarousel()"
        ontouchstart="startTouchCarousel()">
@@ -47,7 +48,7 @@
                       fontcolor="{i.font_color}"></component-card>
     </div>
   </div>
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
@@ -55,6 +56,8 @@
     var scope = this;
     scope.invoiceLeft = 100 * widthK;
     scope.invoiceList = [];
+
+    scope.showError = false;
 
     //    scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
     //    scope.cardsarray = (scope.cardsarray) ? (scope.cardsarray) : ({});
@@ -275,8 +278,8 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
           }
         },
 
@@ -390,8 +393,8 @@
               else {
                 scope.clickPinError = false;
                 scope.errorNote = result[0][0].error_note;
+                scope.showError = true;
                 riot.update();
-                componentAlertId.style.display = 'block';
               }
             },
 
@@ -484,8 +487,8 @@
             else {
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
+              scope.showError = true;
               riot.update();
-              componentAlertId.style.display = 'block';
             }
           },
 

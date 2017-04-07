@@ -9644,7 +9644,7 @@ var css = {
   "height: 100%;" +
   "width: 100%;" +
   "background-color: white;" +
-  "display: block;" +
+  "z-index: 99999;" +
   "}",
 
   componentAlertMessage: ".component-alert-message" +

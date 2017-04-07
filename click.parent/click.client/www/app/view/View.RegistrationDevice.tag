@@ -61,10 +61,10 @@
     };
 
     history.arrayOfHistory.push(
-      {
-        "view": 'view-registration-device',
-        "params": ''
-      }
+        {
+          "view": 'view-registration-device',
+          "params": ''
+        }
     );
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
@@ -73,7 +73,6 @@
     var token;
 
     scope.showError = false;
-
 
     scope.phoneNumber = '+' + window.languages.CodeOfCountry;
     scope.maskPhoneNumber = '+' + window.languages.CodeOfCountry;
@@ -197,6 +196,7 @@
             }
           }
           else {
+
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;

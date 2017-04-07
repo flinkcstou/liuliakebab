@@ -65,8 +65,6 @@
     </div>
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
   <script>
 
     var check = false;
@@ -121,9 +119,9 @@
 
       riotTags.innerHTML = "<view-contact>";
       riot.mount('view-contact',
-        {
-          "object": scope.firstContactObject,
-        }
+          {
+            "object": scope.firstContactObject,
+          }
       );
     }
 
@@ -133,9 +131,9 @@
 
       riotTags.innerHTML = "<view-contact>";
       riot.mount('view-contact',
-        {
-          "object": scope.secondContactObject,
-        }
+          {
+            "object": scope.secondContactObject,
+          }
       );
     }
 
@@ -145,9 +143,9 @@
 
       riotTags.innerHTML = "<view-contact>";
       riot.mount('view-contact',
-        {
-          "object": scope.thirdContactObject,
-        }
+          {
+            "object": scope.thirdContactObject,
+          }
       );
     }
 
@@ -157,9 +155,9 @@
 
       riotTags.innerHTML = "<view-contact>";
       riot.mount('view-contact',
-        {
-          "object": scope.fourContactObject,
-        }
+          {
+            "object": scope.fourContactObject,
+          }
       );
     }
 
@@ -169,9 +167,9 @@
 
       riotTags.innerHTML = "<view-contact>";
       riot.mount('view-contact',
-        {
-          "object": scope.fiveContactObject,
-        }
+          {
+            "object": scope.fiveContactObject,
+          }
       );
     }
 

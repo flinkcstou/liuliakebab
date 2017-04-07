@@ -50,14 +50,18 @@
     </div>
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
   <script>
     var scope = this;
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+
     scope.firstName = loginInfo.firstname;
     scope.lastName = loginInfo.lastname;
     scope.photo = loginInfo.profile_image_url;
+    scope.showError = false;
+
+
     if (modeOfApp.onlineMode) {
       scope.modeOfApplication = window.languages.ComponentMenuOnlineMode
       scope.checkModeOfApplication = true;
@@ -242,81 +246,81 @@
 //        closeMenu()
         if (device.platform != 'BrowserStand') {
           cordova.plugins.barcodeScanner.scan(
-            function (result) {
-              console.log(result)
+              function (result) {
+                console.log(result)
 
-              var string = result.text;
-              if (string.indexOf('click.uz') != -1) {
+                var string = result.text;
+                if (string.indexOf('click.uz') != -1) {
 
-                string = string.split('?')[1]
-                string = string.split('&')
-                var id = '';
-                for (var i in string) {
-                  if (string[i].split('=')[0] == 'id') {
-                    id = string[i].split('=')[1];
-                    console.log('ID', id)
+                  string = string.split('?')[1]
+                  string = string.split('&')
+                  var id = '';
+                  for (var i in string) {
+                    if (string[i].split('=')[0] == 'id') {
+                      id = string[i].split('=')[1];
+                      console.log('ID', id)
+                    }
+                  }
+                  if (id) {
+                    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+                    var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+                    var sessionKey = info.session_key;
+
+                    window.api.call({
+                      method: 'get.indoor.service',
+                      input: {
+                        phone_num: phoneNumber,
+                        session_key: sessionKey,
+                        service_id: id,
+
+                      },
+
+                      scope: this,
+
+                      onSuccess: function (result) {
+                        if (result[0][0].error == 0) {
+                          if (result[1]) {
+                            if (result[1][0]) {
+                              riotTags.innerHTML = "<view-qr>";
+                              riot.mount('view-qr', result[1][0]);
+                            }
+                          }
+                          console.log("QR PAY", result);
+                        }
+                        else {
+                          scope.clickPinError = false;
+                          scope.errorNote = result[0][0].error_note;
+                          scope.showError = true;
+                          riot.update();
+                        }
+                      },
+
+                      onFail: function (api_status, api_status_message, data) {
+                        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                        console.error(data);
+                      }
+                    });
                   }
                 }
-                if (id) {
-                  var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-                  var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-                  var sessionKey = info.session_key;
-
-                  window.api.call({
-                    method: 'get.indoor.service',
-                    input: {
-                      phone_num: phoneNumber,
-                      session_key: sessionKey,
-                      service_id: id,
-
-                    },
-
-                    scope: this,
-
-                    onSuccess: function (result) {
-                      if (result[0][0].error == 0) {
-                        if (result[1]) {
-                          if (result[1][0]) {
-                            riotTags.innerHTML = "<view-qr>";
-                            riot.mount('view-qr', result[1][0]);
-                          }
-                        }
-                        console.log("QR PAY", result);
-                      }
-                      else {
-                        scope.clickPinError = false;
-                        scope.errorNote = result[0][0].error_note;
-                        riot.update();
-                        componentAlertId.style.display = 'block';
-                      }
-                    },
-
-                    onFail: function (api_status, api_status_message, data) {
-                      console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                      console.error(data);
-                    }
-                  });
-                }
+              },
+              function (error) {
+                scope.clickPinError = false;
+                scope.errorNote = "Scanning failed: " + error;
+                scope.showError = true;
+                riot.update();
+              },
+              {
+                preferFrontCamera: false, // iOS and Android
+                showFlipCameraButton: true, // iOS and Android
+                showTorchButton: true, // iOS and Android
+                torchOn: false, // Android, launch with the torch switched on (if available)
+                prompt: "Place a qrcode inside the scan area", // Android
+                resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+                formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
+                orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
+                disableAnimations: true, // iOS
+                disableSuccessBeep: false // iOS
               }
-            },
-            function (error) {
-              scope.clickPinError = false;
-              scope.errorNote = "Scanning failed: " + error;
-              riot.update();
-              componentAlertId.style.display = 'block';
-            },
-            {
-              preferFrontCamera: false, // iOS and Android
-              showFlipCameraButton: true, // iOS and Android
-              showTorchButton: true, // iOS and Android
-              torchOn: false, // Android, launch with the torch switched on (if available)
-              prompt: "Place a qrcode inside the scan area", // Android
-              resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-              formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
-              orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
-              disableAnimations: true, // iOS
-              disableSuccessBeep: false // iOS
-            }
           );
         }
         else {
@@ -345,8 +349,14 @@
                 }
                 console.log("QR PAY", result);
               }
-              else
-                alert(result[0][0].error_note);
+              else {
+
+                scope.showError = true;
+                scope.clickPinError = false;
+                scope.errorNote = result[0][0].error_note;
+                riot.update();
+//                alert(result[0][0].error_note);
+              }
             },
 
             onFail: function (api_status, api_status_message, data) {

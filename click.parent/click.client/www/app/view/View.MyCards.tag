@@ -332,7 +332,7 @@
                 }
                 this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
                 riot.update(scope.arrayOfOperationsByAccount)
-//                console.log('scope.arrayOfOperationsByAccount', scope.arrayOfOperationsByAccount)
+                console.log('scope.arrayOfOperationsByAccount', scope.arrayOfOperationsByAccount)
               }
             }
             else {

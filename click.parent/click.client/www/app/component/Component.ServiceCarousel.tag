@@ -36,7 +36,7 @@
 
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
@@ -51,6 +51,7 @@
     scope.operatorKey = phoneNumber.substr(3, 2);
     scope.addFavoriteBool = true;
 
+    scope.showError = false;
 
     if (!scope.popularServiceList) {
       scope.popularServiceList = [];
@@ -128,9 +129,9 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
             riot.update();
             componentAlertId.style.display = 'block';
-
           }
 
         },
