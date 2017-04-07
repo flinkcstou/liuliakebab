@@ -49,8 +49,12 @@
     </div>
   </div>
 
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
     var scope = this;
+    scope.showError = false;
 
     scope.suggestionOne = {};
     scope.suggestionOne.photo = '';
@@ -113,7 +117,11 @@
       }
 
       function error(message) {
-        alert('Failed because: ' + message);
+        scope.clickPinError = false;
+        scope.errorNote = 'Failed because: ' + message;
+        scope.showError = true;
+        riot.update();
+//        alert('Failed because: ' + message);
       }
     }
     if (device.platform != 'BrowserStand')
