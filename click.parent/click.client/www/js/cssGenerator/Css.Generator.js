@@ -10164,13 +10164,20 @@ var css = {
 
   qrPincardButtonEnter: " .qr-pincard-button-enter" +
   "{" +
-  "bottom: 24%;" +
+  "top: 60%;" +
   "position: absolute;" +
-  "width:" + 460 * widthK + "px; " +
-  "height:" + 75 * widthK + "px; " +
-  "border-radius:" + 80 * widthK + "px; " +
-  "left: 18%;" +
-  "background-color: rgb(1, 124, 227);" +
+  "width: 38%; " +
+  "height: 15%; " +
+  "margin: 0 auto 0 auto; " +
+  "left:" + 230 * widthK + "px; " +
+  "background-color: #00a8f1;" +
+  "color: white;" +
+  "outline: none;" +
+  "border: none;" +
+  "padding: 0;" +
+  "font-size: " + 32 * widthK + "px; " +
+  "font-family: SFUIDisplay-Light;" +
+  "border-radius: " + 3 * widthK + "px; " +
   "}",
 
   qrPincardButtonEnterLabel: ".qr-pincard-button-enter-label" +

@@ -40,7 +40,7 @@
 
       <div class="qr-pincard-button-enter"
            ontouchend="goToQrPayConfirmView()">
-        <div class="qr-pincard-button-enter-label">{window.languages.ViewServicePageEnterLabel}</div>
+        {window.languages.ViewServicePageEnterLabel}
       </div>
 
     </div>
@@ -57,10 +57,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr-pincards') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-qr-pincards',
-            "params": opts
-          }
+        {
+          "view": 'view-qr-pincards',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
