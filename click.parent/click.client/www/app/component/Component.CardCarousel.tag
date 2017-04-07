@@ -1,5 +1,4 @@
 <component-card-carousel>
-<component-card-carousel>
 
   <div id="containerCard" class="card-carousel" ontouchend="endTouchCarousel()" ontouchmove="moveTouchCarousel()"
        ontouchstart="startTouchCarousel()">
@@ -403,7 +402,7 @@
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
               console.error(data);
             }
-          })
+          });
         }
       }
 //      copyCardsArray = JSON.parse(JSON.stringify(scope.cardsarray));
