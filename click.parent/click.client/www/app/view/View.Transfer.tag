@@ -28,7 +28,8 @@
         <input onchange="contactPhoneBlurAndChange()" onfocus="contactPhoneBlurAndChange()"
                id="contactPhoneNumberId"
                class="transfer-contact-number-input-part" type="number"
-               maxlength="9" onkeyup="searchContacts()"/>
+               onkeyup="searchContacts()"
+                onkeydown="telTransferVerificationKeyDown(this)"/>
         <div class="transfer-contact-phone-icon" ontouchend="pickContactFromNative()"></div>
       </div>
       <div id="firstSuggestionBlockId" class="transfer-contact-found-container-one"
@@ -94,8 +95,8 @@
       <div class="transfer-contact-phone-field">
         <p class="transfer-contact-text-field">{window.languages.ViewPayTransferCardTextField}</p>
         <input onchange="cardPhoneBlurAndChange()" onfocus="cardPhoneBlurAndChange()"
-               id="cardInputId" class="transfer-card-number-input-part" type="number"
-               maxlength="19" onkeydown="searchCard()" onkeyup="cardOnKeyUp()"/>
+               id="cardInputId" class="transfer-card-number-input-part" type="tel"
+               onkeydown="searchCard(this)" onkeyup="cardOnKeyUp()"/>
       </div>
       <div class="transfer-card-owner-container">
         <p class="transfer-card-owner-title">{window.languages.ViewPayTransferCardOwnerTitle}</p>
@@ -168,7 +169,7 @@
   <div id="componentBankListId" class="component-bank-list">
     <div class="page-title" style="border: none;">
       <p class="component-banklist-name-title">{window.languages.ViewBankListTitleName}</p>
-      <div id="rightButton" type="button" class="component-banklist-close-button" ontouchend="closeComponent()"></div>
+      <div id="rightButtons" type="button" class="component-banklist-close-button" ontouchend="closeComponent()"></div>
     </div>
     <div id="bankListContainerId" class="component-banklist-container">
       <div class="component-banklist-card" each="{i in bankList}">
@@ -273,6 +274,13 @@
         card();
       }
     })
+
+    telTransferVerificationKeyDown = function (input) {
+      console.log(event.target.value)
+      if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE) {
+        contactPhoneNumberId.value = event.target.value.substring(0, event.target.value.length - 1);
+      }
+    }
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer') {
       history.arrayOfHistory.push(
@@ -572,14 +580,18 @@
       onBackKeyDown()
     }
 
-    searchCard = function () {
+    searchCard = function (input) {
 
       checkPhoneForTransfer = false;
       checkCardForTransfer = true;
 
-      if ((cardInputId.value.length == 4 || cardInputId.value.length == 9 || cardInputId.value.length == 14) && event.keyCode != 8) {
+      if ((cardInputId.value.length == 4 || cardInputId.value.length == 9 || cardInputId.value.length == 14) && event.keyCode != input_codes.BACKSPACE_CODE) {
         cardInputId.value += ' ';
 
+      }
+
+      if (input.value.length >= 19 && event.keyCode != input_codes.BACKSPACE_CODE) {
+        cardInputId.value = event.target.value.substring(0, event.target.value.length - 1);
       }
 
     }

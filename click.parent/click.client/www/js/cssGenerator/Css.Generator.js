@@ -3203,12 +3203,11 @@ var css = {
   servicePageButtonEnter: ".servicepage-button-enter" +
   "{" +
   "position: relative;" +
-  "width: " + 450 * widthK + "px; " +
-  "height: " + 90 * widthK + "px; " +
+  "width: 38%; " +
+  "height: 5%; " +
   "margin-right: auto;" +
-  "border-radius: " + 80 * widthK + "px; " +
   "margin-left: auto;" +
-  "background-color: rgb(1, 124, 227);" +
+  "background-color: #00a8f1;" +
   "top: 16%;" +
   "}",
 
@@ -3228,9 +3227,9 @@ var css = {
   servicePageButtonEnterLabel: ".servicepage-button-enter-label" +
   "{" +
   "position: relative;" +
-  "top:" + 15 * widthK + "px; " +
-  "width: 30%;" +
-  "font-size:  " + 45 * widthK + "px; " +
+  "top:" + 8 * widthK + "px; " +
+  "width: 36%;" +
+  "font-size:  " + 32 * widthK + "px; " +
   "margin: auto;" +
   "color: white;" +
   "}",

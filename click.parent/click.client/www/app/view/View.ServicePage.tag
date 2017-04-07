@@ -23,8 +23,8 @@
                            servicepage-number-input-part-three: !phoneFieldBool && !isNumber}"
              type="{inputType}"
              id="firstFieldInput"
-             maxlength="9" onfocus="bordersColor()"
-             value="{defaultNumber}" onkeydown="telVerificationKeyDown(this)"/>
+             onfocus="bordersColor()"
+             value="{defaultNumber}" onkeydown="telPayVerificationKeyDown(this)"/>
       <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
     </div>
 
@@ -43,7 +43,7 @@
     <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
          id="amountField">
       <p class="servicepage-text-field">{amountFieldTitle}</p>
-      <input class="servicepage-amount-input" type="number" value="{defaultAmount}" maxlength="13"
+      <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="13"
              id="amount"
              onfocus="amountFocus()" onblur="amountOnBlur()"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()"/>
@@ -184,7 +184,7 @@
     var scope = this;
     scope.enterButton = opts[0] != 'ADDFAVORITE' ? true : false;
 
-    telVerificationKeyDown = function (input) {
+    telPayVerificationKeyDown = function (input) {
       console.log(event.target.value)
       if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
