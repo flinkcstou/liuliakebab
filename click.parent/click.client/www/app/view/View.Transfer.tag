@@ -182,7 +182,7 @@
       </div>
     </div>
   </div>
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
   <script>
 
@@ -284,10 +284,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer',
-          "params": opts,
-        }
+          {
+            "view": 'view-transfer',
+            "params": opts,
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -338,8 +338,8 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
           }
         },
 
@@ -443,9 +443,11 @@
 
     this.titleName = window.languages.ViewPayTransferTitle;
     var scope = this,
-      phoneNumberForTransfer = '',
-      cardNumberForTransfer = '',
-      arrayOfContacts = [];
+        phoneNumberForTransfer = '',
+        cardNumberForTransfer = '',
+        arrayOfContacts = [];
+
+    scope.showError = false;
 
 
     scope.suggestionOne = {};
@@ -631,8 +633,13 @@
               scope.cardOwner = result[1][0].card_owner;
               riot.update()
             }
-            else
-              alert(result[0][0].error_note);
+            else {
+//              alert(result[0][0].error_note);
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
+              scope.showError = true;
+              riot.update();
+            }
           },
 
           onFail: function (api_status, api_status_message, data) {

@@ -55,9 +55,6 @@
     </div>
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <component-success id="componentSuccessId"
                      operationmessage="{operationMessage}"
                      viewpage="{viewPage}" step_amount="{3}"></component-success>
@@ -79,10 +76,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr-pay-confirm') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-qr-pay-confirm',
-          "params": opts
-        }
+          {
+            "view": 'view-qr-pay-confirm',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -214,10 +211,7 @@
           }
           else {
             console.log("result of APP.PAYMENT 3", result);
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
             riot.update();
-            componentAlertId.style.display = 'block';
             componentUnsuccessId.style.display = 'block';
           }
         },

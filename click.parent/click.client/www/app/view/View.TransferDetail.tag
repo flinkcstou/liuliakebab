@@ -67,26 +67,27 @@
     </div>
   </code-confirm>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
     var scope = this,
-      touchStartDeclineX,
-      touchEndDeclineX,
-      touchStartDeclineY,
-      touchEndDeclineY,
-      touchStartAcceptX,
-      touchEndAcceptX,
-      touchStartAcceptY,
-      touchEndAcceptY,
-      touchStartAcceptSecretCodeX,
-      touchEndAcceptSecretCodeX,
-      touchStartAcceptSecretCodeY,
-      touchEndAcceptSecretCodeY;
+        touchStartDeclineX,
+        touchEndDeclineX,
+        touchStartDeclineY,
+        touchEndDeclineY,
+        touchStartAcceptX,
+        touchEndAcceptX,
+        touchStartAcceptY,
+        touchEndAcceptY,
+        touchStartAcceptSecretCodeX,
+        touchEndAcceptSecretCodeX,
+        touchStartAcceptSecretCodeY,
+        touchEndAcceptSecretCodeY;
 
     scope.titleName = window.languages.ViewTransferDetailTitle;
     scope.showConfirmPanel = false;
+    scope.showError = false;
 
     goToBack = function (doNotPrevent) {
 
@@ -127,7 +128,7 @@
       if (!secret_key) return;
 
       if (Math.abs(touchEndAcceptSecretCodeX - touchStartAcceptSecretCodeX) < 20 &&
-        Math.abs(touchEndAcceptSecretCodeY - touchStartAcceptSecretCodeY) < 20) {
+          Math.abs(touchEndAcceptSecretCodeY - touchStartAcceptSecretCodeY) < 20) {
 
         params = {
           amount: opts.amount,
@@ -152,7 +153,7 @@
       touchEndAcceptY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
-        Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
+          Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
 
         scope.showConfirmPanel = true;
         riot.update(scope.showConfirmPanel);
@@ -171,7 +172,7 @@
       touchEndDeclineY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchEndDeclineX - touchStartDeclineX) < 20 &&
-        Math.abs(touchEndDeclineY - touchStartDeclineY) < 20) {
+          Math.abs(touchEndDeclineY - touchStartDeclineY) < 20) {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -196,8 +197,8 @@
             else {
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
+              scope.showError = true;
               riot.update();
-              componentAlertId.style.display = 'block';
             }
           },
 

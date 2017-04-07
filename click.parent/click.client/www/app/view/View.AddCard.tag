@@ -53,18 +53,19 @@
          ontouchend="createCardTouchEnd()"></div>
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
     var scope = this;
+    scope.showError = false;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-card') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-add-card',
-          "params": ''
-        }
+          {
+            "view": 'view-add-card',
+            "params": ''
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -124,8 +125,8 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
           }
         },
 

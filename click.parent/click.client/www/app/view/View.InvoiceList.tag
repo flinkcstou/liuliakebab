@@ -47,7 +47,7 @@
     </div>
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
@@ -58,6 +58,7 @@
         goToInvoiceHistoryDetailTouchStartY,
         goToInvoiceHistoryDetailTouchEndY;
 
+    scope.showError = false;
     scope.invoiceList = [];
     scope.titleName = languages.ViewInvoiceListTitle;
     scope.toUser = true;
@@ -102,9 +103,8 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
-
           }
         },
 
@@ -153,8 +153,8 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
           }
         },
 

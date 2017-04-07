@@ -65,7 +65,7 @@
 
   <component-delete-card id="deleteCardComponentId"></component-delete-card>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
@@ -246,6 +246,8 @@
         sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
         phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
+    scope.showError = false;
+
     if (opts[0]) {
       scope.cardId = opts[0];
 //      console.log('scope.cardId', scope.cardId)
@@ -338,8 +340,8 @@
             else {
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
+              scope.showError = true;
               riot.update();
-              componentAlertId.style.display = 'block';
             }
 
           },

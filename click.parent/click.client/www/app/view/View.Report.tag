@@ -77,7 +77,7 @@
     </div>
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
@@ -115,6 +115,7 @@
     scope = this;
     scope.leftOfOperations = 320 * widthK;
     scope.firstReportView = true;
+    scope.showError = false;
     var mNumber;
     var count = 12;
     localStorage.setItem('click_client_countCard', count);
@@ -357,8 +358,8 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
           }
 
         },
@@ -435,8 +436,8 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
           }
 
         },

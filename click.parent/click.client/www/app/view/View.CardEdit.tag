@@ -18,20 +18,21 @@
     </div>
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
   <script>
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-card-edit') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-card-edit',
-          "params": opts
-        }
+          {
+            "view": 'view-card-edit',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
     var scope = this;
+    scope.showError = false;
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;
     scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
@@ -129,8 +130,8 @@
             else {
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
+              scope.showError = true;
               riot.update();
-              componentAlertId.style.display = 'block';
             }
 
           },
@@ -183,11 +184,11 @@
               localStorage.setItem('click_client_cards', JSON.stringify(cardsarrayTwo));
               onBackKeyDown();
             }
-            else {
+            else if (result[0][0].error != 0) {
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
+              scope.showError = true;
               riot.update();
-              componentAlertId.style.display = 'block';
             }
           },
           onFail: function (api_status, api_status_message, data) {

@@ -10,19 +10,20 @@
     <p class="settings-user-agreement-text">{helpText}</p>
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
     var scope = this;
+    scope.showError = false;
     this.titleName = window.languages.ViewHelpTitle;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-help') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-help',
-          "params": ''
-        }
+          {
+            "view": 'view-help',
+            "params": ''
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -46,8 +47,7 @@
 
     window.api.call({
       method: 'get.help',
-      input: {
-      },
+      input: {},
       scope: this,
       onSuccess: function (result) {
         if (result[0][0].error == 0) {
@@ -59,8 +59,8 @@
         else {
           scope.clickPinError = false;
           scope.errorNote = result[0][0].error_note;
+          scope.showError = true;
           riot.update();
-          componentAlertId.style.display = 'block';
         }
       },
 

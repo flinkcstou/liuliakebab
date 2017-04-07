@@ -32,12 +32,13 @@
 
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
     var scope = this;
     scope.firstStage = true;
+    scope.showError = false;
 
     resetPin = function () {
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -67,9 +68,8 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
-            componentPinResetId.style.display = 'none';
           }
         },
 

@@ -10,19 +10,20 @@
     <p class="settings-user-agreement-text">{contentOfAgreement}</p>
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
     var scope = this;
+    scope.showError = false;
     this.titleName = window.languages.ViewSettingsUserAgreementTitle;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-settings-user-agreement') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-settings-user-agreement',
-          "params": ''
-        }
+          {
+            "view": 'view-settings-user-agreement',
+            "params": ''
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -61,8 +62,8 @@
         else {
           scope.clickPinError = false;
           scope.errorNote = result[0][0].error_note;
+          scope.showError = true;
           riot.update();
-          componentAlertId.style.display = 'block';
         }
       },
 

@@ -52,11 +52,12 @@
 
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
     var scope = this;
+    scope.showError = false;
     var defaultAccount;
     scope.attention = false;
     scope.fullBalance = 0;
@@ -127,8 +128,8 @@
             else {
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
+              scope.showError = true;
               riot.update();
-              componentAlertId.style.display = 'block';
             }
           },
 
@@ -149,23 +150,23 @@
 
       if (device.platform == "Android") {
         phonedialer.dial(
-          "*111*3%23",
-          function (err) {
-            if (err == "empty") {
-              scope.clickPinError = false;
-              scope.errorNote = "Unknown phone number";
-              riot.update();
-              componentAlertId.style.display = 'block';
+            "*111*3%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = "Unknown phone number";
+                riot.update();
+                componentAlertId.style.display = 'block';
+              }
+              else {
+                scope.clickPinError = false;
+                scope.errorNote = "Dialer Error:" + err;
+                riot.update();
+                componentAlertId.style.display = 'block';
+              }
+            },
+            function (success) {
             }
-            else {
-              scope.clickPinError = false;
-              scope.errorNote = "Dialer Error:" + err;
-              riot.update();
-              componentAlertId.style.display = 'block';
-            }
-          },
-          function (success) {
-          }
         );
       }
       if (device.platform == "iOS") {
@@ -176,10 +177,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-info') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-info',
-          "params": ''
-        }
+          {
+            "view": 'view-info',
+            "params": ''
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -283,8 +284,8 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
           }
 
         },

@@ -16,18 +16,21 @@
     </div>
   </div>
 
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
 
   <script>
     var scope = this;
+    scope.showError = false;
 
     history.arrayOfHistory.splice(history.arrayOfHistory.length - 1, 1);
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-settings-support-part-two') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-settings-support-part-two',
-          "params": ''
-        }
+          {
+            "view": 'view-settings-support-part-two',
+            "params": ''
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -74,8 +77,13 @@
             console.log("SUPPORT", result);
             alert('Удачно отправлено');
           }
-          else
-            alert(result[0][0].error_note);
+          else {
+//            alert(result[0][0].error_note);
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
+            riot.update();
+          }
         },
 
         onFail: function (api_status, api_status_message, data) {

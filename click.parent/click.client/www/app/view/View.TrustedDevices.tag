@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
@@ -31,6 +31,9 @@
         deleteTouchEndX,
         deleteTouchStartY,
         deleteTouchEndY;
+
+
+    scope.showError = false;
 
     getTrustedDevicesList = function () {
 
@@ -69,8 +72,8 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
           }
         },
 
@@ -124,9 +127,8 @@
               else {
                 scope.clickPinError = false;
                 scope.errorNote = result[0][0].error_note;
+                scope.showError = true;
                 riot.update();
-                componentAlertId.style.display = 'block';
-
               }
             },
 

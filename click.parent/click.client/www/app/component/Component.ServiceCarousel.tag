@@ -131,7 +131,6 @@
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
           }
 
         },
