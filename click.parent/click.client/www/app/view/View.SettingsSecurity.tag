@@ -50,24 +50,34 @@
 
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
     var scope = this;
+
+    scope.showError = false;
     this.titleName = window.languages.ViewSecuritySettingsTitle;
     sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
+    if (!localStorage.getItem('click_client_block')) {
+      localStorage.setItem('click_client_block', false)
+    }
+
     var isVisible = localStorage.getItem('click_client_loginInfo').visibility;
-    var isBlocked = true;
+    var isBlocked = JSON.parse(localStorage.getItem('click_client_block'));
 
     this.on('mount', function () {
       if (isVisible) {
         hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
       }
+
       if (isBlocked) {
         blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
+      }
+      else {
+        blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
       }
     });
 
@@ -115,14 +125,14 @@
           if (result[0][0].error == 0) {
             scope.clickPinError = false;
             scope.errorNote = ("Изменена видимость номера");
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
           }
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
           }
 
         },
@@ -132,6 +142,7 @@
         }
       });
     };
+
 
     changeClickPin = function () {
 
@@ -145,10 +156,13 @@
         console.log("false!!!");
         isBlocked = false;
         blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+        localStorage.setItem('click_client_block', false)
+
       } else {
         console.log("true!!!");
         isBlocked = true;
         blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
+        localStorage.setItem('click_client_block', true)
       }
       riot.update(hideMyNumberIconId);
     };

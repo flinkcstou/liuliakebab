@@ -145,8 +145,8 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = "Different pin codes";
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
 
             scope.checkPinConfirm = true;
             enteredPin = '';

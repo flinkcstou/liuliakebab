@@ -253,6 +253,7 @@
               modeOfflineMode.check = false;
               var JsonInfo = JSON.stringify(result[1][0]);
               localStorage.setItem('click_client_loginInfo', JsonInfo);
+              console.log('JsonInfo', result[1][0])
               checkSessionKey = true;
               viewAuthorization.check = false;
               getAccount();
