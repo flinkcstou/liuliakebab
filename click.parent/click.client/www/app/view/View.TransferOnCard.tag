@@ -79,7 +79,7 @@
             else {
 
               componentUnsuccessId.style.display = 'block';
-              alert(result[0][0].error_note);
+//              alert(result[0][0].error_note);
             }
           },
 

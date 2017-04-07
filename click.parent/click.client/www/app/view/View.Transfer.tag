@@ -947,15 +947,24 @@
       event.preventDefault();
       event.stopPropagation();
 
-      if (!checkPhoneForTransfer && !checkCardForTransfer)
-        alert('Write phone number or card number for transfer')
+      if (!checkPhoneForTransfer && !checkCardForTransfer) {
+        scope.clickPinError = false;
+        scope.errorNote = 'Write phone number or card number for transfer';
+        scope.showError = true;
+        riot.update();
+//        alert('Write phone number or card number for transfer')
+      }
       else {
         if (viewTransfer.type == 2) {
           phoneNumberForTransfer = contactPhoneNumberId.value;
           viewTransfer.phoneNumber = phoneNumberForTransfer;
           viewTransfer.type = 2;
           if (phoneNumberForTransfer.length != 9) {
-            alert('Incorrect phone number')
+            scope.clickPinError = false;
+            scope.errorNote = 'Incorrect phone number';
+            scope.showError = true;
+            riot.update();
+//            alert('Incorrect phone number')
             return
           }
           else {
@@ -990,14 +999,22 @@
             }
           }
           if (!checkOfCode) {
-            alert('Неверный код банка');
+            scope.clickPinError = false;
+            scope.errorNote = 'Неверный код банка';
+            scope.showError = true;
+            riot.update();
+//            alert('Неверный код банка');
             return;
           }
           cardNumberForTransfer = cardInputId.value;
           viewTransfer.cardNumber = cardNumberForTransfer
           viewTransfer.type = 1;
           if (cardNumberForTransfer.length != 19) {
-            alert('Incorrect card number')
+            scope.clickPinError = false;
+            scope.errorNote = 'Incorrect card number';
+            scope.showError = true;
+            riot.update();
+//            alert('Incorrect card number')
             return
           }
           else {
@@ -1041,7 +1058,11 @@
       }
 
       function error(message) {
-        alert('Failed because: ' + message);
+        scope.clickPinError = false;
+        scope.errorNote = 'Failed because: ' + message;
+        scope.showError = true;
+        riot.update();
+//        alert('Failed because: ' + message);
       }
     }
     if (device.platform != 'BrowserStand')
