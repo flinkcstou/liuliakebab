@@ -61,10 +61,10 @@
     };
 
     history.arrayOfHistory.push(
-      {
-        "view": 'view-registration-device',
-        "params": ''
-      }
+        {
+          "view": 'view-registration-device',
+          "params": opts
+        }
     );
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 

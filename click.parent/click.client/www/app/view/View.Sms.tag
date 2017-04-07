@@ -38,7 +38,7 @@
       history.arrayOfHistory.push(
         {
           "view": 'view-sms',
-          "params": ''
+          "params": opts
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))

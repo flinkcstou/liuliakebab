@@ -13,7 +13,7 @@
       history.arrayOfHistory.push(
         {
           "view": 'view-auto-pay',
-          "params": ''
+          "params": opts
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))

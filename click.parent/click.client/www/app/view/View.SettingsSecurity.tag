@@ -81,7 +81,7 @@
       history.arrayOfHistory.push(
         {
           "view": 'view-security-settings',
-          "params": ''
+          "params": opts
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))

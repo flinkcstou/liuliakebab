@@ -62,7 +62,7 @@
       history.arrayOfHistory.push(
         {
           "view": 'view-registration-client',
-          "params": ''
+          "params": opts
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
