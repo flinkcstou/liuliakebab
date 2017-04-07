@@ -127,7 +127,7 @@
       }
 
       document.addEventListener("backbutton", onBackKeyDown, false);
-//      document.addEventListener("resume", onResume, false);
+      document.addEventListener("resume", onResumeFunction, false);
       document.addEventListener("pause", onPauseFunction, false);
     }, false);
   }
@@ -176,7 +176,7 @@
   }
 
   function onPauseFunction() {
-    if(componentMenu.check === true){
+    if (componentMenu.check === true) {
       return
     }
     setTimeout(function () {
@@ -186,6 +186,12 @@
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
       }
+    }, 0);
+  }
+
+  function onResumeFunction() {
+    setTimeout(function () {
+      api.init();
     }, 0);
   }
 

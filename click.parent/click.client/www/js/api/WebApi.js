@@ -18,19 +18,32 @@ window.api.initSocket = function () {
   this.socket.onmessage = function (event) {
     var parsedData = JSON.parse(event.data);
     console.log(parsedData)
+    if (parsedData.data[0][0].error == 0) {
 
-    var method = parsedData.data[0][0].method;
-    //console.log("PARSED DATA", parsedData)
+      var method = parsedData.data[0][0].method;
+      //console.log("PARSED DATA", parsedData)
 
-    var callBack = me.callBacks[method];
-    //console.log('method', method)
-    if (method == 'get.payments')
-      var callBack = me.callBacks['get.payments'];
-    //console.log('CALLBACK', callBack)
+      var callBack = me.callBacks[method];
+      //console.log('method', method)
+      if (method == 'get.payments')
+        var callBack = me.callBacks['get.payments'];
+      //console.log('CALLBACK', callBack)
 
-    if (parsedData.api_status == 0) {
-      callBack.ok(parsedData.data);
-      return;
+      if (parsedData.api_status == 0) {
+        callBack.ok(parsedData.data);
+        return;
+      }
+    }
+    else {
+      var result = confirm(parsedData.data[0][0].error_note)
+      if (result) {
+        riotTags.innerHTML = "<view-authorization>";
+        riot.mount('view-authorization');
+      }
+      else {
+        navigator.app.exitApp();
+      }
+      return
     }
     callBack.err(parsedData.api_status, parsedData.api_status_message, parsedData.data);
   };

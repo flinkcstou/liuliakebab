@@ -28,6 +28,9 @@
       scope.parent.showError = false;
       //OK
       riot.update()
+    }
+
+    window.showAlert = function () {
 
     }
   </script>

@@ -116,6 +116,7 @@
 
       document.addEventListener("backbutton", onBackKeyDown, false);
       document.addEventListener("pause", onPauseFunction, false);
+      document.addEventListener("resume", onResumeFunction, false);
     }, false);
   }
 
@@ -150,12 +151,19 @@
       return
     }
     setTimeout(function () {
+
       console.log('ON onResume EVENT IS TRIGGERED')
       localStorage.setItem('onResume', true);
       if (JSON.parse(localStorage.getItem('settings_block')) === true) {
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
       }
+    }, 0);
+  }
+
+  function onResumeFunction() {
+    setTimeout(function () {
+      api.init();
     }, 0);
   }
 
