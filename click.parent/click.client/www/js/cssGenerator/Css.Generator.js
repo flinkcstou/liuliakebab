@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/supportTwo_crop.png);" +
+    //"background-image: url(resources/draft/reportPaymentDetail.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -10459,19 +10459,18 @@ var css = {
   reportServiceUpperContainer: ".report-service-upper-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 400 * widthK + "px;" +
+  "height:" + 382 * widthK + "px;" +
   "width:100%;" +
   "background-color:#0081E7;" +
-
   "}",
 
   reportServiceIcon: ".report-service-icon" +
   "{" +
   "position: absolute;" +
-  "height:" + 150 * widthK + "px;" +
-  "width:" + 150 * widthK + "px;" +
-  "top:" + 75 * widthK + "px;" +
-  "left: 40%;" +
+  "height:" + 140 * widthK + "px;" +
+  "width:" + 140 * widthK + "px;" +
+  "top:" + 64 * widthK + "px;" +
+  "left: 41%;" +
     //"border:" + 4 * widthK + "px solid white;" +
   "border-radius:" + 90 * widthK + "px;" +
   "background-repeat: no-repeat;" +
@@ -10484,18 +10483,18 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
-  "bottom: 10%;" +
+  "top: " + 220 * widthK + "px;" +
   "}",
 
   reportServiceTitle: ".report-service-title " +
   "{" +
   "position: relative;" +
   "font-size:" + 35 * widthK + "px; " +
-  "width:" + 255 * widthK + "px; " +
+  "width: 100%;" +
   "margin: 0; " +
   "margin-left: auto; " +
   "margin-right: auto; " +
-  "top: 10%; " +
+  "top: " + 10 * widthK + "px; " +
   "color: white;" +
   "text-align: center;" +
   "}",
@@ -10504,11 +10503,11 @@ var css = {
   "{" +
   "position: relative;" +
   "font-size:" + 24 * widthK + "px; " +
-  "width:" + 500 * widthK + "px; " +
+  "width: 100%; " +
   "margin: 0; " +
   "margin-left: auto; " +
   "margin-right: auto; " +
-  "top: 11%; " +
+  "top: " + 18 * widthK + "px; " +
   "color: white;" +
   "text-align: center;" +
   "}",
@@ -10518,19 +10517,23 @@ var css = {
   "position: absolute;" +
 //"height:" + 1150 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
-  "top:" + 92 * widthK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
-  "top:" + 400 * widthK + "px; " +
+  "top:" + 382 * widthK + "px; " +
+  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "background-position-y: " + 415 * widthK + "px;" +
   "}",
 
   reportServiceDataContainer: ".report-service-data-container" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "width: 100%;" +
-  "height: " + 430 * widthK + "px; " +
+  "top: 0;" +
+  "bottom: " + 440 * widthK + "px; " +
   "background-color: transparent;" +
     //"border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
@@ -10538,8 +10541,9 @@ var css = {
   reportServicePhoneField: ".report-service-phone-field" +
   "{" +
   "position: relative;" +
-  "width: 100%;" +
-  "height: 24%;" +
+  "width: 92%;" +
+  "margin: 0 4%;" +
+  "height: " + 106 * widthK + "px;" +
   "border-bottom: 1px solid lightgray;" +
   "color: white;" +
   "}",
@@ -10550,7 +10554,7 @@ var css = {
   "margin: 0;" +
   "color: darkgray;" +
   "font-size: " + 23 * widthK + "px; " +
-  "left: 8%;" +
+  "left: 4%;" +
   "top: 25%;" +
   "}",
 
@@ -10558,22 +10562,139 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left: 8%;" +
+  "left: 4%;" +
+  "top: 56%;" +
+  "font-size: " + 28 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  reportServiceInfoInput: ".report-service-info-input" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 4%;" +
   "top: 49%;" +
   "font-size: " + 28 * widthK + "px; " +
   "color: gray;" +
+  "text-overflow: ellipsis;" +
+  "width: " + 625 * widthK + "px;" +
+  "overflow: hidden;" +
+  "white-space: nowrap;" +
+  "}",
+
+  reportServiceInfoInputAmount: ".report-service-info-input-amount" +
+  "{" +
+  "color: #ff6d65;" +
   "}",
 
   reportServiceField: ".report-service-field" +
   "{" +
   "position: relative;" +
-  "width: 100%;" +
-  "height: 22.5%;" +
+  "width: 92%;" +
+  "margin: 0 4% 0 4%;" +
+  "height: " + 95 * widthK + "px;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
     //"top: 23%;" +
   "}",
 
+  reportServiceLastField: ".report-service-last-field" +
+  "{" +
+  "border: none;" +
+  "margin-bottom: " + 65 * widthK + "px;" +
+  "}",
+
+  reportServiceStatusError: ".report-service-status-error" +
+  "{" +
+  "color: #ff6d65;" +
+  "}",
+
+  reportServiceStatusWait: ".report-service-status-wait" +
+  "{" +
+  "color: #f3ba31;" +
+  "}",
+
+  reportServiceStatusSuccess: ".report-service-status-success" +
+  "{" +
+  "color: #6ABD38;" +
+  "}",
+
+  reportServiceButtonContainer: ".report-service-button-container" +
+  "{" +
+  "position: relative;" +
+  "bottom: 0;" +
+  "top: " + 22 * widthK + "px;" +
+  "width: 100%;" +
+  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "padding: " + 42 * widthK + "px " + 20 * widthK + "px;" +
+  "}",
+
+  reportServiceCover: ".report-service-cover" +
+  "{" +
+  "position: absolute;" +
+  "bottom: 0;" +
+  "top: " + 600 * widthK + "px;" +
+  "width: 100%;" +
+  "background-color: #f4f4f4;" +
+  "}",
+
+  reportServiceButtonInfoContainer: ".report-service-button-info-container" +
+  "{" +
+  "height: " + 73 * widthK + "px;" +
+  "margin: 0 2.8%;" +
+  "}",
+
+  reportServiceButtonIcon: ".report-service-button-icon" +
+  "{" +
+  "height: " + 50 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: " + 47 * widthK + "px;" +
+  "width: " + 115 * widthK + "px;" +
+  "float: left;" +
+  "}",
+
+  reportServiceButtonAction: ".report-service-button-action" +
+  "{" +
+  "position: relative;" +
+  "top: " + 5 * widthK + "px;" +
+  "font-size: " + 30 * widthK + "px;" +
+  "color: #0185E3;" +
+  "text-decoration: underline;" +
+  "}",
+
+  reportServiceButtonFavoritesIcon: ".report-service-button-favorites-icon" +
+  "{" +
+  "background-image: url(resources/icons/ViewReportService/details_favorites.png);" +
+  "}",
+
+  reportServiceButtonAutoPaymentIcon: ".report-service-button-auto-payment-icon" +
+  "{" +
+  "background-image: url(resources/icons/ViewReportService/details_autopayment.png);" +
+  "}",
+
+  reportServiceButtonSupportIcon: ".report-service-button-support-icon" +
+  "{" +
+  "background-image: url(resources/icons/ViewReportService/details_support.png);" +
+  "}",
+
+  reportServiceRepeatButton: ".report-service-repeat-button" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "left: " + 210 * widthK + "px;" +
+  "top: " + 24 * widthK + "px;" +
+  "height: " + 65 * widthK + "px;" +
+  "width: " + 287 * widthK + "px;" +
+  "text-transform: uppercase;" +
+  "font-size: " + 28 * widthK + "px;" +
+  "color: white;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "background-color: #0083E3;" +
+  "}",
 
   //VIEW SETTINGS SUPPORT
 

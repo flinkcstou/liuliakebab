@@ -277,6 +277,10 @@ var RU_LANGUAGES =
 
   "ViewReportMonthsArrayTwo": ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"],
 
+  "ViewReportServiceAddToFavorites": "Добавить в избранные",
+  "ViewReportServiceAddToAutoPayment": "Добавить в автоплатеж",
+  "ViewReportServiceGetSupportHelp": "Получить помощь поддержки",
+  "ViewReportServiceRepeatButtonLabel": "повторить",
 
   "ViewBankListTitleName": "ДОСТУПНЫЕ БАНКИ",
   "ViewBankListLimitForMonthText": "сум в месяц",
