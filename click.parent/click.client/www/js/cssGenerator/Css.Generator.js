@@ -7247,7 +7247,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 35 * widthK + "px; " +
   "left:" + 85 * widthK + "px; " +
-  "top:" + 38 * widthK + "px; " +
+  "top:" + 26 * widthK + "px; " +
   "margin: 0;  " +
   "width: 100%;  " +
   "color: #fffaf9;" +
