@@ -61,12 +61,8 @@
     sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-    if (!localStorage.getItem('click_client_block')) {
-      localStorage.setItem('click_client_block', false)
-    }
-
     var isVisible = localStorage.getItem('click_client_loginInfo').visibility;
-    var isBlocked = JSON.parse(localStorage.getItem('click_client_block'));
+    var isBlocked = JSON.parse(localStorage.getItem('settings_block'));
 
     this.on('mount', function () {
       if (isVisible) {
@@ -156,13 +152,13 @@
         console.log("false!!!");
         isBlocked = false;
         blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
-        localStorage.setItem('click_client_block', false)
+        localStorage.setItem('settings_block', false)
 
       } else {
         console.log("true!!!");
         isBlocked = true;
         blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
-        localStorage.setItem('click_client_block', true)
+        localStorage.setItem('settings_block', true)
       }
       riot.update(hideMyNumberIconId);
     };
