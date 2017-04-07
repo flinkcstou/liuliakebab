@@ -29,7 +29,7 @@
                id="contactPhoneNumberId"
                class="transfer-contact-number-input-part" type="number"
                onkeyup="searchContacts()"
-                onkeydown="telTransferVerificationKeyDown(this)"/>
+               onkeydown="telTransferVerificationKeyDown(this)"/>
         <div class="transfer-contact-phone-icon" ontouchend="pickContactFromNative()"></div>
       </div>
       <div id="firstSuggestionBlockId" class="transfer-contact-found-container-one"
@@ -160,9 +160,9 @@
 
     </div>
 
-    <div id="nextButtonId" class="transfer-next-button-inner-container" ontouchend="goToTransferStepTwo()">
-      <p class="transfer-next-button-label">{window.languages.ViewPayTransferNext}</p>
-    </div>
+    <button id="nextButtonId" class="transfer-next-button-inner-container" ontouchend="goToTransferStepTwo()">
+      {window.languages.ViewPayTransferNext}
+    </button>
 
   </div>
 

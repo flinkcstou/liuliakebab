@@ -38,10 +38,9 @@
         <div class="pincard-friend-change-text" ontouchend="friendHelp()">Изменить</div>
       </div>
 
-      <div class="pincard-button-enter"
-           ontouchend="goToPayConfirmView()">
-        <div class="pincard-button-enter-label">{window.languages.ViewServicePageEnterLabel}</div>
-      </div>
+      <button class="pincard-button-enter"
+           ontouchend="goToPayConfirmView()">{window.languages.ViewServicePageEnterLabel}
+      </button>
 
     </div>
   </div>

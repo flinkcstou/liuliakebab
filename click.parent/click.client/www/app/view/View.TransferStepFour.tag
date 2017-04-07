@@ -54,9 +54,9 @@
       </div>
     </div>
 
-    <div class="transferfour-button-enter" ontouchend="transferStep()">
-      <p class="transferfour-button-enter-label">{window.languages.ViewTransferFourPay}</p>
-    </div>
+    <button class="transferfour-button-enter" ontouchend="transferStep()">
+      {window.languages.ViewTransferFourPay}
+    </button>
 
   </div>
 

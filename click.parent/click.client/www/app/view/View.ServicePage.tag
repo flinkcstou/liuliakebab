@@ -51,13 +51,13 @@
     </div>
 
 
-    <div class="servicepage-button-enter" if="{enterButton}" ontouchend="enterButton()">
-      <div class="servicepage-button-enter-label">{window.languages.ViewServicePageEnterLabel}</div>
-    </div>
+    <button class="servicepage-button-enter" if="{enterButton}" ontouchend="enterButton()">
+      {window.languages.ViewServicePageEnterLabel}
+    </button>
 
-    <div class="servicepage-button-enter" if="{!enterButton}" ontouchend="enterButton()">
-      <div class="servicepage-button-enter-label" style="right: 13%;">{window.languages.ViewServicePageSaveLabel}</div>
-    </div>
+    <button class="servicepage-button-enter" if="{!enterButton}" ontouchend="enterButton()">
+      {window.languages.ViewServicePageSaveLabel}
+    </button>
 
   </div>
 

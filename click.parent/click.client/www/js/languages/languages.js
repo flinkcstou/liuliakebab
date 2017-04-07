@@ -104,6 +104,7 @@ var RU_LANGUAGES =
 
   "ViewTransferThreeTitle": "ПЕРЕВОД НА",
   "ViewTransferThreeMenuTitle": "ПЕРЕВЕСТИ С КАРТЫ",
+  "ViewTransferThreeNext": "ДАЛЕЕ",
 
   "ViewTransferFourTitle": "ПЕРЕВОД НА",
   "ViewTransferFourEnterPhone": "Номер телефона получателя:",

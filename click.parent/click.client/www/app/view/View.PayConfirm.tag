@@ -64,9 +64,8 @@
              style="background-image: url('resources/icons/ViewService/addautopay.png');"></div>
         <div class="payconfirm-action-text">{window.languages.ViewPayConfirmAddToAutoPay}</div>
       </div>
-      <div class="payconfirm-button-enter" ontouchend="payService()">
-        <div class="payconfirm-button-enter-label">{window.languages.ViewPayConfirmPay}</div>
-      </div>
+      <button class="payconfirm-button-enter" ontouchend="payService()">{window.languages.ViewPayConfirmPay}
+      </button>
     </div>
   </div>
 

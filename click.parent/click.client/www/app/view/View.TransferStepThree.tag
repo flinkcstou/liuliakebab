@@ -11,9 +11,9 @@
     </div>
     <component-pincards></component-pincards>
 
-    <div class="transferthree-next-button-inner-container" ontouchend="goToTransferFour()">
-      <p class="transferthree-next-button-label">ДАЛЕЕ</p>
-    </div>
+    <button class="transferthree-next-button-inner-container" ontouchend="goToTransferFour()">
+     {window.languages.ViewTransferThreeNext}
+    </button>
 
   </div>
   <component-alert clickpinerror="{clickPinError}"

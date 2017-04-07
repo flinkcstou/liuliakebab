@@ -19,9 +19,9 @@
              type="tel" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
     </div>
 
-    <div class="transfertwo-next-button-inner-container" ontouchend="goToTransferThree()">
-      <p class="transfertwo-next-button-label">{window.languages.ViewTransferTwoNext}</p>
-    </div>
+    <button class="transfertwo-next-button-inner-container" ontouchend="goToTransferThree()">
+      {window.languages.ViewTransferTwoNext}
+    </button>
 
     <div class="transfertwo-comment-container">
             <textarea id="commentTextId" maxlength="255" class="transfertwo-comment-input"
