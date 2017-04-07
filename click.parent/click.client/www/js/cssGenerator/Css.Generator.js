@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/reportPaymentDetail.png);" +
+    //"background-image: url(resources/draft/transfer_card.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -3216,7 +3216,7 @@ var css = {
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 8 * widthK + "px; " +
+  "border-radius: " + 3 * widthK + "px; " +
   "}",
 
   servicePageButtonSave: ".servicepage-button-save" +
@@ -3787,7 +3787,7 @@ var css = {
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 8 * widthK + "px; " +
+  "border-radius: " + 3 * widthK + "px; " +
   "}",
 
   pincardButtonEnterLabel: ".pincard-button-enter-label" +
@@ -4006,7 +4006,7 @@ var css = {
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 8 * widthK + "px; " +
+  "border-radius: " + 3 * widthK + "px; " +
   "}",
 
   payconfirmButtonEnterLabel: ".payconfirm-button-enter-label" +
@@ -4395,7 +4395,7 @@ var css = {
   transferMenuContainerContact: ".transfer-menu-container-contact" +
   "{" +
   "position: absolute;" +
-  "height: 100%;" +
+  "height: 88%;" +
   "width: 30%;" +
   "left: 18%;" +
   "background-color: transparent;" +
@@ -4406,7 +4406,7 @@ var css = {
   "position: relative;" +
   "width: 90%;" +
   "height: 20%;" +
-  "top: 32%;" +
+  "top: 33%;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "border-bottom: 1px solid lightgrey;" +
@@ -4416,8 +4416,8 @@ var css = {
   transferCardOwnerTitle: ".transfer-card-owner-title " +
   "{" +
   "position: absolute;" +
-  "top: 22%;" +
-  "left: 3%;" +
+  "top: 18%;" +
+  "left: 5.5%;" +
   "font-size:" + 25 * widthK + "px;" +
   "color: #c1c1c1;" +
   "margin: 0;" +
@@ -4427,8 +4427,8 @@ var css = {
   transferCardOwnerInfo: ".transfer-card-owner-info " +
   "{" +
   "position: absolute;" +
-  "top: 47%;" +
-  "left: 3%;" +
+  "top: 43%;" +
+  "left: 6%;" +
   "font-size:" + 30 * widthK + "px;" +
   "color: #c1c1c1;" +
   "margin: 0;" +
@@ -4439,7 +4439,7 @@ var css = {
   transferMenuContainerCard: ".transfer-menu-container-card" +
   "{" +
   "position: absolute;" +
-  "height: 100%;" +
+  "height: 88%;" +
   "width: 30%;" +
   "left: 50%;" +
   "background-color: transparent;" +
@@ -4511,7 +4511,7 @@ var css = {
   "height:" + 100 * widthK + "px;" +
   "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top: 8%;" +
+  "top: 7%;" +
   "}",
 
   transferContactTextField: ".transfer-contact-text-field" +
@@ -4520,7 +4520,7 @@ var css = {
   "margin: 0;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
-  "top: -14%;" +
+  "top: -9%;" +
   "}",
 
   transferContactPhoneIcon: ".transfer-contact-phone-icon" +
@@ -4623,7 +4623,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 28%;" +
+  "top: 32%;" +
   "left: 0%;" +
   "margin: 0%;" +
   "padding: 0;" +
@@ -4695,18 +4695,18 @@ var css = {
   transferNextButtonInnerContainer: ".transfer-next-button-inner-container" +
   "{" +
   "position: absolute;" +
-  "width: 38%;" +
+  "width: 39%;" +
   "height: 5%;" +
-  "top: 42%;" +
+  "top: 41%;" +
   "background-color: #00a8f1;" +
   "color: white;" +
   "outline: none;" +
   "border: none;" +
   "padding: 0;" +
-  "left: " + 230 * widthK + "px; " +
+  "left: " + 220 * widthK + "px; " +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 8 * widthK + "px; " +
+  "border-radius: " + 3 * widthK + "px; " +
   "}",
 
   transferNextButtonLabel: ".transfer-next-button-label" +
@@ -4831,7 +4831,7 @@ var css = {
   transferTwoNextButtonInnerContainer: ".transfertwo-next-button-inner-container" +
   "{" +
   "position: absolute;" +
-  "width: 38%;" +
+  "width: 39%;" +
   "height: 5%;" +
   "top: 45%;" +
   "background-color: #00a8f1;" +
@@ -4839,10 +4839,10 @@ var css = {
   "outline: none;" +
   "border: none;" +
   "padding: 0;" +
-  "left: " + 230 * widthK + "px; " +
+  "left: " + 220 * widthK + "px; " +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 8 * widthK + "px; " +
+  "border-radius: " + 3 * widthK + "px; " +
   "}",
 
 
@@ -4963,7 +4963,7 @@ var css = {
   transferThreeNextButtonInnerContainer: ".transferthree-next-button-inner-container" +
   "{" +
   "position: absolute;" +
-  "width: 38%;" +
+  "width: 39%;" +
   "height: 5%;" +
   "bottom: 10%;" +
   "background-color: #00a8f1;" +
@@ -4971,10 +4971,10 @@ var css = {
   "outline: none;" +
   "border: none;" +
   "padding: 0;" +
-  "left: " + 230 * widthK + "px; " +
+  "left: " + 220 * widthK + "px; " +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 8 * widthK + "px; " +
+  "border-radius: " + 3 * widthK + "px; " +
   "}",
 
   transferThreeNextButtonLabel: ".transferthree-next-button-label" +
@@ -5242,10 +5242,10 @@ var css = {
   "outline: none;" +
   "border: none;" +
   "padding: 0;" +
-  "left: " + 230 * widthK + "px; " +
+  "left: " + 220 * widthK + "px; " +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 8 * widthK + "px; " +
+  "border-radius: " + 3 * widthK + "px; " +
   "}",
 
   transferFourButtonEnterLabel: ".transferfour-button-enter-label" +
