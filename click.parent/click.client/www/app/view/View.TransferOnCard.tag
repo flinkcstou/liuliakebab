@@ -35,16 +35,6 @@
     scope.success = false;
     scope.fail = false;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-on-card') {
-      history.arrayOfHistory.push(
-          {
-            "view": 'view-transfer-on-card',
-            "params": opts
-          }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
-
     onTouchStartAccept = function () {
 
       touchStartAcceptX = event.changedTouches[0].pageX;
