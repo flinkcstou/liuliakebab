@@ -88,6 +88,14 @@
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
 
+      var options = {dimBackground: true};
+
+      SpinnerPlugin.activityStart(languages.ConnectionSocket, options, function () {
+        console.log("Started");
+      }, function () {
+        console.log("closed");
+      });
+
       if (!localStorage.getItem('settings_block')) {
         localStorage.setItem('click_client_block', false)
       }
@@ -163,7 +171,6 @@
 
   function onResumeFunction() {
     setTimeout(function () {
-      api.init();
     }, 0);
   }
 

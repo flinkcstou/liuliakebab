@@ -11,7 +11,8 @@ window.api.initSocket = function () {
 
   this.socket.onopen = function () {
     console.log('WebSocket is connected');
-    var options = {dimBackground: true};
+    window.isConnected = true;
+
     SpinnerPlugin.activityStop();
   };
   this.socket.close = function (event) {
@@ -20,9 +21,12 @@ window.api.initSocket = function () {
   };
   var me = this;
   this.socket.onmessage = function (event) {
+
+    SpinnerPlugin.activityStop();
+
     var parsedData = JSON.parse(event.data);
     console.log(parsedData)
-    if (parsedData.data[0][0].error == 0) {
+    try {
 
       var method = parsedData.data[0][0].method;
       //console.log("PARSED DATA", parsedData)
@@ -35,29 +39,37 @@ window.api.initSocket = function () {
 
       if (parsedData.api_status == 0) {
         callBack.ok(parsedData.data);
+        window.isConnected = true;
         return;
       }
     }
-    else {
+    catch (ERROR) {
 
-      var options = {dimBackground: true};
+      //var options = {dimBackground: true};
+      //
+      //SpinnerPlugin.activityStart(languages.ConnectionSocket, options, function () {
+      //  window.api.init();
+      //  console.log("Started");
+      //}, function () {
+      //  console.log("closed");
+      //});
 
-      SpinnerPlugin.activityStart(languages.ConnectionSocket, options, function () {
-        window.api.init();
-        console.log("Started");
-      }, function () {
-        console.log("closed");
-      });
+      console.log("ERROR", window.isConnected);
+      console.log("ERROR", ERROR);
 
-      //var result = confirm(parsedData.data[0][0].error_note)
-      //if (result) {
-      //  riotTags.innerHTML = "<view-authorization>";
-      //  riot.mount('view-authorization');
-      //}
-      //else {
-      //  navigator.app.exitApp();
-      //}
-      //return
+      if (window.isConnected) {
+
+        window.isConnected = false;
+
+        var result = confirm(parsedData.data[0][0].error_note)
+        if (result) {
+          riotTags.innerHTML = "<view-authorization>";
+          riot.mount('view-authorization');
+        }
+        else {
+          navigator.app.exitApp();
+        }
+      }
     }
     callBack.err(parsedData.api_status, parsedData.api_status_message, parsedData.data);
   };
