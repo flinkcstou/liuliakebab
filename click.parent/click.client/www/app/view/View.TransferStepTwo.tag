@@ -12,7 +12,7 @@
     </div>
 
     <div class="transfertwo-contact-phone-field">
-      <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
+      <p if="{opts[0].type == 1}" class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
         {window.languages.Currency}</p>
       <input maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
              onmouseup="sumMouseUp()"
@@ -47,6 +47,7 @@
         sumValueId.value = 0 + ' ' + defaultAccount.currency
     })
 
+    console.log(opts)
     var scope = this,
       transferTitle,
       objectForTransfer = opts[0],

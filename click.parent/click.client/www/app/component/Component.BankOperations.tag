@@ -46,8 +46,8 @@
       event.preventDefault();
       event.stopPropagation();
 //      return
-      riotTags.innerHTML = "<view-help>";
-      riot.mount('view-help');
+      riotTags.innerHTML = "<view-qr>";
+      riot.mount('view-qr');
     }
   </script>
 </component-bank-operations>

@@ -7,7 +7,7 @@
   </div>
 
   <div class="settings-container">
-    <p class="settings-user-agreement-text">{contentOfAgreement}</p>
+    <p class="settings-user-agreement-text">{helpText}</p>
   </div>
 
   <component-alert clickpinerror="{clickPinError}"
@@ -15,7 +15,7 @@
 
   <script>
     var scope = this;
-    this.titleName = window.languages.ViewSettingsUserAgreementTitle;
+    this.titleName = window.languages.ViewHelpTitle;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-help') {
       history.arrayOfHistory.push(
@@ -27,7 +27,7 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    scope.contentOfAgreement = '';
+    scope.helpText = '';
 
     this.on('mount', function () {
 
@@ -39,38 +39,36 @@
       onBackKeyDown()
     };
 
-//    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-//    var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-//    var sessionKey = loginInfo.session_key;
+    //    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+    //    var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+    //    var sessionKey = loginInfo.session_key;
 
 
-//    window.api.call({
-//      method: 'get.terms',
-//      input: {
-//        session_key: sessionKey,
-//        phone_num: phoneNumber,
-//      },
-//      scope: this,
-//      onSuccess: function (result) {
-//        if (result[0][0].error == 0) {
-//          if (result[1][0]) {
-//            scope.contentOfAgreement = result[1][0].content;
-//            riot.update();
-//          }
-//        }
-//        else {
-//          scope.clickPinError = false;
-//          scope.errorNote = result[0][0].error_note;
-//          riot.update();
-//          componentAlertId.style.display = 'block';
-//        }
-//      },
-//
-//      onFail: function (api_status, api_status_message, data) {
-//        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-//        console.error(data);
-//      }
-//    });
+    window.api.call({
+      method: 'get.help',
+      input: {
+      },
+      scope: this,
+      onSuccess: function (result) {
+        if (result[0][0].error == 0) {
+          if (result[1][0]) {
+            scope.helpText = result[1][0].content;
+            riot.update();
+          }
+        }
+        else {
+          scope.clickPinError = false;
+          scope.errorNote = result[0][0].error_note;
+          riot.update();
+          componentAlertId.style.display = 'block';
+        }
+      },
+
+      onFail: function (api_status, api_status_message, data) {
+        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+        console.error(data);
+      }
+    });
 
 
   </script>

@@ -324,6 +324,8 @@ var RU_LANGUAGES =
   "VewSettingsSupportPartTwoTheme": "ОБРАЩЕНИЕ НА ТЕМУ",
   "VewSettingsSupportPartTwoSend": "ОТПРАВИТЬ",
 
+  "ViewHelpTitle": "ПОМОЩЬ",
+
 
 };
 

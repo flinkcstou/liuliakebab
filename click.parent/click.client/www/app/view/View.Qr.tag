@@ -23,10 +23,8 @@
     </div>
 
     <div class="view-qr-buttons-container">
-      <p class="view-qr-button-cancel" ontouchend="onTouchEndDecline()" ontouchstart="onTouchStartDecline()">
-        {window.languages.ViewQrTitleCancel}</p>
-      <p class="view-qr-button-accept" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
-        {window.languages.ViewQrTitleAccept}</p>
+      <button class="view-qr-button-accept" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
+        {window.languages.ViewQrTitleAccept}</button>
     </div>
 
   </div>
@@ -101,22 +99,6 @@
       }
     };
 
-    onTouchStartDecline = function () {
-
-      touchStartDeclineX = event.changedTouches[0].pageX;
-      touchStartDeclineY = event.changedTouches[0].pageY;
-    };
-
-    onTouchEndDecline = function () {
-
-      touchEndDeclineX = event.changedTouches[0].pageX;
-      touchEndDeclineY = event.changedTouches[0].pageY;
-
-      if (Math.abs(touchEndDeclineX - touchStartDeclineX) < 20 &&
-        Math.abs(touchEndDeclineY - touchStartDeclineY) < 20) {
-        onBackKeyDown()
-      }
-    };
 
     sumMouseUp = function () {
       event.preventDefault()

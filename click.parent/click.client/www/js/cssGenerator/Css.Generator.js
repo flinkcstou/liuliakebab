@@ -9533,19 +9533,20 @@ var css = {
 
   viewQrButtonAccept: ".view-qr-button-accept" +
   "{" +
-  "position: relative;" +
+  "position: absolute;" +
   "margin: 0;" +
-  "float: left;" +
-  "text-align: center;" +
-  "margin-left: 8%;" +
-  "margin-top: 2%;" +
-  "color: white;" +
-  "background-color: #00b8ff;" +
   "height:" + 62 * widthK + "px;" +
-  "line-height:" + 63 * widthK + "px;" +
   "border-radius:" + 5 * widthK + "px;" +
   "font-size:" + 29 * widthK + "px;" +
   "width: 33%;" +
+  "background-color: #00a8f1;" +
+  "color: white;" +
+  "outline: none;" +
+  "border: none;" +
+  "padding: 0;" +
+  "left: " + 230 * widthK + "px; " +
+  "font-size: " + 32 * widthK + "px; " +
+  "font-family: SFUIDisplay-Light;" +
   "}",
 
   viewQrButtonCancel: ".view-qr-button-cancel" +
