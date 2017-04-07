@@ -26,6 +26,7 @@
       event.preventDefault();
       event.stopPropagation();
       scope.parent.showError = false;
+      //OK
       riot.update()
 
     }
