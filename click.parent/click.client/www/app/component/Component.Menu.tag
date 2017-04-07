@@ -95,6 +95,8 @@
     }
 
     closeMenu = function () {
+      componentMenu.check = false;
+
       if (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -158,6 +160,7 @@
       if (touchMoveX - touchStartX <= 0) {
         sideMenuId.style.webkitTransform = 'translate3d(' + (touchMoveX - touchStartX) + 'px,0,0)'
         touchEndMove = touchMoveX - touchStartX
+        componentMenu.check = true;
       }
 
     }

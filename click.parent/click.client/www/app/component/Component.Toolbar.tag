@@ -20,6 +20,8 @@
         goToViewInfoTouchEndY;
 
     menuOpen = function () {
+      componentMenu.check = true;
+
       event.stopPropagation();
 
       componentMenu.checkOpen = true;

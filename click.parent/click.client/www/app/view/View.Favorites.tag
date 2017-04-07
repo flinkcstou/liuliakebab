@@ -41,6 +41,8 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    componentMenu.check= false;
+
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();

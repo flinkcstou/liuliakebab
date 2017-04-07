@@ -26,6 +26,7 @@
     viewTransfer.check = false;
     viewServicePinCards.friendHelpPaymentMode = false;
     viewServicePinCards.chosenFriendForHelp = [];
+    componentMenu.check = false;
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')

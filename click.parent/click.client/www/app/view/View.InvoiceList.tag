@@ -58,6 +58,8 @@
         goToInvoiceHistoryDetailTouchStartY,
         goToInvoiceHistoryDetailTouchEndY;
 
+    componentMenu.check = false;
+
     scope.showError = false;
     scope.invoiceList = [];
     scope.titleName = languages.ViewInvoiceListTitle;

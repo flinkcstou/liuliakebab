@@ -22,6 +22,7 @@
     this.on('mount', function () {
     })
 
+    componentMenu.check = false;
     scope = this;
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;

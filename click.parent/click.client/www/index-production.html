@@ -146,6 +146,9 @@
   }
 
   function onPauseFunction() {
+    if (componentMenu.check === true) {
+      return
+    }
     setTimeout(function () {
       console.log('ON onResume EVENT IS TRIGGERED')
       localStorage.setItem('onResume', true);

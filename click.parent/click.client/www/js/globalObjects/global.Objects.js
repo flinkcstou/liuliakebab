@@ -85,6 +85,9 @@ invoiceActions.DECLINE = 2;
 window.input_codes = {};
 input_codes.BACKSPACE_CODE = 8
 
+window.componentMenu = {};
+componentMenu.check = false;
+
 
 window.amountTransform = function (amount) {
   amount = amount.replace(new RegExp('[^0-9]', 'g'), '');

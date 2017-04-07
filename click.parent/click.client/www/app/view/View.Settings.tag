@@ -72,7 +72,7 @@
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
-
+    componentMenu.check = false;
     scope.supportShow = false;
 
     goToBack = function () {
