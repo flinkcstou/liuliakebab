@@ -10598,6 +10598,19 @@ var css = {
   "top: 0;" +
   "}",
 
+  settingsSupportHelpIcon: ".settings-support-help-icon " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 180 * widthK + "px;" +
+  "height:" + 180 * widthK + "px;" +
+  "top: 15%;" +
+  "left: 10%;" +
+  "background-image: url('resources/icons/ViewSettingsSupport/support_icon.png');" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 100%;" +
+  "}",
+
   settingsSupportHelpTitle: ".settings-support-help-title " +
   "{" +
   "position: relative;" +

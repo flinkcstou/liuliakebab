@@ -5,6 +5,8 @@
       <div class="settings-support-x-button" ontouchend="closeSettingsSupportTouchEnd()"></div>
     </div>
 
+    <div class="settings-support-help-icon"></div>
+
     <p class="settings-support-help-title">Если вы обнаружили ошибку, хотите получить помощь или внести предложение,
       пожалуйста, сообщите нам об этом</p>
   </div>
