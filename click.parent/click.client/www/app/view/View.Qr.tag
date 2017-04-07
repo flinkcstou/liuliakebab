@@ -40,10 +40,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-qr',
-            "params": opts
-          }
+        {
+          "view": 'view-qr',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -59,9 +59,9 @@
     })
 
     var checkFirst = false,
-        maskOne = /[0-9]/g,
-        maskTwo = /[0-9' ']/g,
-        defaultAccount;
+      maskOne = /[0-9]/g,
+      maskTwo = /[0-9' ']/g,
+      defaultAccount;
 
     console.log('QR OPTS', opts);
 
@@ -90,15 +90,20 @@
       touchEndAcceptY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
-          Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
+        Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
         opts.qrSum = sumForQrPay;
-        if (parseInt(sumForQrPay) < opts.max_pay_limit && parseInt(sumForQrPay) > opts.min_pay_limit) {
+        if (parseInt(sumForQrPay) <= opts.max_pay_limit && parseInt(sumForQrPay) >= opts.min_pay_limit) {
           riotTags.innerHTML = "<view-qr-pincards>";
           riot.mount('view-qr-pincards', opts);
         }
         else {
           scope.clickPinError = false;
-          scope.errorNote = opts.lang_max_amount;
+          if (parseInt(sumForQrPay) <= opts.max_pay_limit) {
+            scope.errorNote = opts.max_pay_limit;
+          }
+          else {
+            scope.errorNote = opts.min_pay_limit
+          }
           scope.showError = true;
           riot.update();
 //          alert(opts.lang_max_amount)
