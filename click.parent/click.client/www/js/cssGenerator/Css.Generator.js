@@ -10678,7 +10678,7 @@ var css = {
   "height: 80%;" +
   "right: -7%;" +
   "top: 19%;" +
-  "background-image: url(resources/icons/ViewInfo/open.png);" +
+  "background-image: url(resources/icons/ViewSettingsSupport/support_open.png);" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-size: 9%;" +

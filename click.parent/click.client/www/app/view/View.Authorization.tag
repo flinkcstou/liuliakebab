@@ -33,7 +33,7 @@
 
   <component-pin-reset></component-pin-reset>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert id="componentAlertId" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
