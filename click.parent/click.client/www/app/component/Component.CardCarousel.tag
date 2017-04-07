@@ -629,9 +629,14 @@
           var sendChosenCardId;
           console.log("ASD", scope.cardsarray, scope.cardNumber);
           for (var i in scope.cardsarray) {
-            scope.cardsarray[i].countCard--;
+
+            if (scope.invoiceCheck) {
+              scope.cardsarray[i].countCard--;
+            }
+            console.log("ASDASDASDSADDAS", scope.cardsarray[i].countCard);
             if (scope.cardsarray[i].countCard == scope.cardNumber) {
               scope.cardsarray[i].chosenCard = true;
+              console.log("ASDASDASDSADDAS", scope.cardsarray[i]);
               sendChosenCardId = scope.cardsarray[i].card_id
               localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
             }

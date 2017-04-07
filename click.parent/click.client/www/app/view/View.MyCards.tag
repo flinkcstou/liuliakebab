@@ -281,6 +281,9 @@
       if (cardIdFromCarousel) {
         scope.card = scope.cardsArray[cardIdFromCarousel];
       }
+
+      console.log("You clicked on card - ", cardIdFromCarousel);
+
       scope.arrayOfOperationsByAccount = [];
       riot.update()
 //      console.log(scope.card)
