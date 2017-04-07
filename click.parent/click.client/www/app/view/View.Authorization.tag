@@ -89,7 +89,7 @@
     scope.showError = false;
 
     if (history.arrayOfHistory.length != 0) {
-      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization') {
+      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization' && !JSON.parse(localStorage.getItem('onResume'))) {
         history.arrayOfHistory.push(
           {
             "view": 'view-authorization',
@@ -355,8 +355,19 @@
 //                            alert("GHVCHGFUIHOI:JIJsave into localstorage");
                             var accountInfo = JSON.stringify(arrayAccountInfo);
                             localStorage.setItem("click_client_accountInfo", accountInfo);
-                            this.riotTags.innerHTML = "<view-main-page>";
-                            riot.mount('view-main-page');
+                            if (!JSON.parse(localStorage.getItem('onResume'))) {
+                              this.riotTags.innerHTML = "<view-main-page>";
+                              riot.mount('view-main-page');
+                            }
+                            else {
+                              if (history.arrayOfHistory) {
+                                if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
+                                  this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+                                  riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
+                                }
+                              }
+                            }
+
                           }
 
                         });
@@ -370,17 +381,27 @@
                     arrayAccountInfo.push(result[1][i])
                   var accountInfo = JSON.stringify(arrayAccountInfo);
                   localStorage.setItem("click_client_accountInfo", accountInfo);
-                  this.riotTags.innerHTML = "<view-main-page>";
-                  riot.mount('view-main-page');
+                  if (!JSON.parse(localStorage.getItem('onResume'))) {
+                    this.riotTags.innerHTML = "<view-main-page>";
+                    riot.mount('view-main-page');
+                  }
+                  else {
+                    if (history.arrayOfHistory) {
+                      if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
+                        this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+                        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
+                      }
+                    }
+                  }
                 }
               }
               else {
                 scope.clickPinError = false;
                 scope.errorNote = result[0][0].error_note;
+                scope.showError = true
                 console.log("errornote=", scope.errorNote);
                 riot.update();
                 console.log('componentAlertId', componentAlertId)
-                componentAlertId.style.display = 'block';
               }
             },
 
@@ -391,8 +412,19 @@
             }
           })
         } else {
-          this.riotTags.innerHTML = "<view-main-page>";
-          riot.mount('view-main-page');
+          if (!JSON.parse(localStorage.getItem('onResume'))) {
+            this.riotTags.innerHTML = "<view-main-page>";
+            riot.mount('view-main-page');
+          }
+          else {
+
+            if (history.arrayOfHistory) {
+              if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
+                this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+                riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
+              }
+            }
+          }
         }
 
         if (!localStorage.getItem("click_client_payCategoryList")) {
