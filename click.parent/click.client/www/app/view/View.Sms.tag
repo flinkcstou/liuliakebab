@@ -22,7 +22,7 @@
     <component-keyboard></component-keyboard>
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
@@ -31,6 +31,8 @@
     scope.messageTitle = window.languages.ViewSmsCodeActivationText;
     scope.messageTitleTwo = '';
     scope.phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+    scope.showError = false;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-sms') {
       history.arrayOfHistory.push(
@@ -115,26 +117,28 @@
         scope: this,
 
         onSuccess: function (result) {
-          if (result[0][0].error == 0) {
-            localStorage.setItem('confirm_needed', false);
-            console.log(result)
-            if (result[0][0].client_exists == 1) {
-              localStorage.setItem('click_client_registered', true)
-              this.riotTags.innerHTML = "<view-authorization>";
-              riot.mount('view-authorization');
+          if (result[0][0])
+            if (result[0][0].error == 0) {
+              localStorage.setItem('confirm_needed', false);
+              console.log(result)
+              if (result[0][0].client_exists == 1) {
+                localStorage.setItem('click_client_registered', true)
+                this.riotTags.innerHTML = "<view-authorization>";
+                riot.mount('view-authorization');
+              }
+              else {
+                localStorage.setItem('click_client_registered', false)
+                this.riotTags.innerHTML = "<view-registration-client>";
+                riot.mount('view-registration-client');
+              }
             }
             else {
-              localStorage.setItem('click_client_registered', false)
-              this.riotTags.innerHTML = "<view-registration-client>";
-              riot.mount('view-registration-client');
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_code;
+              scope.showError = true;
+              riot.update();
+              componentAlertId.style.display = 'block';
             }
-          }
-          else {
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            riot.update();
-            componentAlertId.style.display = 'block';
-          }
         },
 
         onFail: function (api_status, api_status_message, data) {

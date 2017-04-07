@@ -34,7 +34,7 @@
     </a>
   </div>
 
-  <component-alert clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
@@ -71,6 +71,8 @@
 
     var scope = this;
     var token;
+
+    scope.showError = false;
 
 
     scope.phoneNumber = '+' + window.languages.CodeOfCountry;
@@ -197,8 +199,8 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
             riot.update();
-            componentAlertId.style.display = 'block';
           }
 
 

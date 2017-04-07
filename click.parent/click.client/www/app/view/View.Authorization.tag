@@ -33,7 +33,7 @@
 
   <component-pin-reset></component-pin-reset>
 
-  <component-alert id="componentAlertId" clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
@@ -85,6 +85,8 @@
 
     var scope = this;
     scope.checkAndroid = false;
+
+    scope.showError = false;
 
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization') {
@@ -265,8 +267,8 @@
               scope.errorNote = result[0][0].error_note;
               console.log("errornote=", scope.errorNote);
             }
-            riot.update();
-            componentAlertId.style.display = 'block';
+            scope.showError = true;
+            riot.update(scope.showError);
             enteredPin = '';
             updateEnteredPin();
             return
@@ -376,6 +378,7 @@
                 scope.errorNote = result[0][0].error_note;
                 console.log("errornote=", scope.errorNote);
                 riot.update();
+                console.log('componentAlertId', componentAlertId)
                 componentAlertId.style.display = 'block';
               }
             },
