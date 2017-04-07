@@ -71,7 +71,15 @@
 
     scope.cards = localStorage.getItem("click_client_cards");
     scope.cards = JSON.parse(scope.cards);
-    scope.cardName = scope.cards[opts.account_id].name + " " + scope.cards[opts.account_id].numberPartOne + " **** **** " + scope.cards[opts.account_id].numberPartTwo;
+
+    console.log("ASDASDASDASD", scope.cards, opts.account_id);
+    try {
+
+      scope.cardName = scope.cards[opts.account_id].name + " " + scope.cards[opts.account_id].numberPartOne + " **** **** " + scope.cards[opts.account_id].numberPartTwo;
+    } catch (err) {
+
+      scope.cardName = "UNKNOWN";
+    }
     riot.update(scope.cardName);
 
     console.log("OPTS=", opts);
