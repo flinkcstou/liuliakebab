@@ -2,13 +2,24 @@ window.api = {};
 window.api.callBacks = {};
 
 window.api.init = function () {
+
+  var options = {dimBackground: true};
+  SpinnerPlugin.activityStart(languages.ConnectionSocket, options, function () {
+    alert("OK");
+  }, function () {
+    alert("Error");
+  });
+
   window.api.socket = new WebSocket("wss://my.click.uz:8443");
   window.api.initSocket();
 };
 
 window.api.initSocket = function () {
+
   this.socket.onopen = function () {
     console.log('WebSocket is connected');
+    var options = {dimBackground: true};
+    SpinnerPlugin.activityStop();
   };
   this.socket.close = function (event) {
     console.log('Connection is closed');

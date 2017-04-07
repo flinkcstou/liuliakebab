@@ -45,12 +45,12 @@
         </div>
       </div>
 
-      <div class="report-service-data-button-info-container">
+      <div class="report-service-data-button-info-container" if="{!opts.is_indoor}">
         <div class="report-service-button-info-container">
           <div class="report-service-button-icon report-service-button-favorites-icon"></div>
           <a class="report-service-button-action">{languages.ViewReportServiceAddToFavorites}</a>
         </div>
-        <div class="report-service-button-info-container">
+        <div class="report-service-button-info-container" if="{false}">
           <div class="report-service-button-icon report-service-button-auto-payment-icon"></div>
           <a class="report-service-button-action">{languages.ViewReportServiceAddToAutoPayment}</a>
         </div>
@@ -59,7 +59,9 @@
           <a class="report-service-button-action">{languages.ViewReportServiceGetSupportHelp}</a>
         </div>
 
-        <button class="report-service-repeat-button">{languages.ViewReportServiceRepeatButtonLabel}</button>
+        <button class="report-service-repeat-button" if="{!opts.is_indoor}">
+          {languages.ViewReportServiceRepeatButtonLabel}
+        </button>
       </div>
 
     </div>
@@ -72,7 +74,7 @@
     scope.cards = localStorage.getItem("click_client_cards");
     scope.cards = JSON.parse(scope.cards);
 
-    console.log("ASDASDASDASD", scope.cards, opts.account_id);
+    //    console.log("ASDASDASDASD", scope.cards, opts.account_id);
     try {
 
       scope.cardName = scope.cards[opts.account_id].name + " " + scope.cards[opts.account_id].numberPartOne + " **** **** " + scope.cards[opts.account_id].numberPartTwo;

@@ -937,6 +937,9 @@
     }
 
     addToFavorites = function (array) {
+
+      console.log("ADD TO FAVORITES INPUT", array);
+
       if (!localStorage.getItem('favoritePaymentsList')) {
         var favoritePaymentsList = [];
         console.log("OPTS TO SAVE=", array);

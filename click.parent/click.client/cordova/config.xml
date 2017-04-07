@@ -21,6 +21,8 @@
   <plugin name="cordova-plugin-statusbar"/>
   <plugin name="phonegap-plugin-barcodescanner"/>
 
+  <plugin name="cordova-plugin-spinner"/>
+
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
