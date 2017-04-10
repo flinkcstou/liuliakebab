@@ -36,7 +36,7 @@
              type="{inputType}"
              id="firstFieldInput"
              onfocus="bordersColor()"
-             value="{defaultNumber}" onkeydown="telPayVerificationKeyDown(this)"/>
+             value="{defaultNumber || opts.first_field_value}" onkeydown="telPayVerificationKeyDown(this)"/>
       <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
     </div>
 
@@ -177,10 +177,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-service-page',
-          "params": opts
-        }
+          {
+            "view": 'view-service-page',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -672,16 +672,21 @@
           amount.value = viewServicePage.amountText;
           checkFirst = true;
           amountForPayTransaction = viewServicePage.amountWithoutSpace;
+
+          if (!amountForPayTransaction) {
+            amountForPayTransaction = (viewServicePage.amountText) ? (viewServicePage.amountText) : (0);
+            amountForPayTransaction = parseInt(amountForPayTransaction);
+          }
         }
         else
           amount.value = 0 + ' ' + defaultAccount.currency
     });
 
     var maskOne = /[0-9]/g,
-      maskTwo = /[0-9' ']/g,
-      amountForPayTransaction,
-      checkFirst = false,
-      defaultAccount;
+        maskTwo = /[0-9' ']/g,
+        amountForPayTransaction,
+        checkFirst = false,
+        defaultAccount;
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     for (var i in cards) {
@@ -754,7 +759,7 @@
 
         if (amountForPayTransaction.length == 7) {
           amount.value = amountForPayTransaction.substring(0, 1) + ' ' + amountForPayTransaction.substring(1, 4) + ' ' +
-            amountForPayTransaction.substring(4, amountForPayTransaction.length) + ' ' + defaultAccount.currency;
+              amountForPayTransaction.substring(4, amountForPayTransaction.length) + ' ' + defaultAccount.currency;
           amount.selectionStart = amount.value.match(maskTwo).length - 1;
           amount.selectionEnd = amount.value.match(maskTwo).length - 1;
 
@@ -762,7 +767,7 @@
 
         if (amountForPayTransaction.length == 8) {
           amount.value = amountForPayTransaction.substring(0, 2) + ' ' + amountForPayTransaction.substring(2, 5) + ' ' +
-            amountForPayTransaction.substring(5, amountForPayTransaction.length) + ' ' + defaultAccount.currency;
+              amountForPayTransaction.substring(5, amountForPayTransaction.length) + ' ' + defaultAccount.currency;
           amount.selectionStart = amount.value.match(maskTwo).length - 1;
           amount.selectionEnd = amount.value.match(maskTwo).length - 1;
 
