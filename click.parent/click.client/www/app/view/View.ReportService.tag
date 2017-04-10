@@ -54,7 +54,8 @@
           <div class="report-service-button-icon report-service-button-auto-payment-icon"></div>
           <a class="report-service-button-action">{languages.ViewReportServiceAddToAutoPayment}</a>
         </div>
-        <div class="report-service-button-info-container">
+        <div class="report-service-button-info-container" ontouchend="goToSupportTouchEnd()"
+             ontouchstart="goToSupportTouchStart()">
           <div class="report-service-button-icon report-service-button-support-icon"></div>
           <a class="report-service-button-action">{languages.ViewReportServiceGetSupportHelp}</a>
         </div>
@@ -69,7 +70,9 @@
   </div>
 
   <script>
-    var scope = this;
+    var scope = this,
+        goToSupportTouchStartX,
+        goToSupportTouchEndX;
 
     scope.cards = localStorage.getItem("click_client_cards");
     scope.cards = JSON.parse(scope.cards);
@@ -95,6 +98,25 @@
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
+
+    goToSupportTouchStart = function () {
+
+      goToSupportTouchStartX = event.changedTouches[0].pageX;
+    };
+
+    goToSupportTouchEnd = function () {
+
+      goToSupportTouchEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(goToSupportTouchEndX - goToSupportTouchStartX) < 20) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        riotTags.innerHTML = "<view-settings-support-part-two>";
+        riot.mount('view-settings-support-part-two', {title: window.languages.VewSettingsSupportPay, key: 'PAY'});
+      }
+    };
 
     goToBack = function () {
       event.preventDefault();
