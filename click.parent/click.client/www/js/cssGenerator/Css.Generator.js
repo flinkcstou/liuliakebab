@@ -3950,7 +3950,7 @@ var css = {
   "position: relative;" +
   "float: left;" +
   "width: 50%;" +
-  "top: 10%;" +
+  "top: 15%;" +
   "height: 50%;" +
   "background-color: transparent;" +
   "}",
@@ -3995,7 +3995,7 @@ var css = {
 
   payconfirmButtonEnter: ".payconfirm-button-enter" +
   "{" +
-  "top: 25%;" +
+  "top: 30%;" +
   "position: relative;" +
   "width: 36%; " +
   "height: 15%; " +
