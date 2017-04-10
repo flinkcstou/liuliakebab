@@ -273,7 +273,7 @@
         var payment_data = {
           "param": opts[0][1].firstFieldId,
           "value": firstFieldtext,
-          "communl_param": opts[0][4].communalParam,
+          "communal_param": opts[0][4].communalParam,
           "transaction_id": parseInt(Date.now() / 1000)
         };
         paymentFunction(payment_data);
