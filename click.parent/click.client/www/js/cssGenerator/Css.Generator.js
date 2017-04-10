@@ -3938,7 +3938,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top: 60%;" +
+  "top: 62%;" +
   "bottom: 0;" +
   "background-color: transparent;" +
   "border-bottom:  1px solid lightgray;" +
@@ -3995,7 +3995,7 @@ var css = {
 
   payconfirmButtonEnter: ".payconfirm-button-enter" +
   "{" +
-  "top: 30%;" +
+  "top:" + 120 * widthK + "px;" +
   "position: relative;" +
   "width: 36%; " +
   "height: 15%; " +
