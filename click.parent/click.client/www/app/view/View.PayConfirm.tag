@@ -277,6 +277,7 @@
           "transaction_id": parseInt(Date.now() / 1000)
         };
         paymentFunction(payment_data);
+
       }
       else if (opts[0][0].formtype == 4) {
         var payment_data = {
