@@ -54,6 +54,8 @@ var RU_LANGUAGES =
   "ViewMyCardLastOperations": "Последние операции",
 
   "ViewServicePageEnterLabel": "ДАЛЕЕ",
+  "ViewServicePageChooseRegion": "ВЫБЕРИТЕ РАЙОН",
+  "ViewServicePageChooseCity": "ВЫБЕРИТЕ ГОРОД",
   "ViewServicePageSaveLabel": "СОХРАНИТЬ",
   "ViewServicePageAmountTextLabel": "Сумма оплаты:",
 

@@ -16,18 +16,6 @@
       <div class="servicepage-dropdown-icon"></div>
     </div>
 
-    <div class="servicepage-first-field" id="firstField">
-      <p class="servicepage-text-field">{chosenFieldName}</p>
-      <p class="servicepage-number-first-part" if="{phoneFieldBool}">+{window.languages.CodeOfCountry}</p>
-      <input class="{servicepage-number-input-part: phoneFieldBool, servicepage-number-input-part-two: !phoneFieldBool && isNumber,
-                           servicepage-number-input-part-three: !phoneFieldBool && !isNumber}"
-             type="{inputType}"
-             id="firstFieldInput"
-             onfocus="bordersColor()"
-             value="{defaultNumber}" onkeydown="telPayVerificationKeyDown(this)"/>
-      <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
-    </div>
-
     <div class="servicepage-second-dropdown-field" if="{hasFirstLevel}"
          ontouchend="openDropDownTwo()">
       <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
@@ -38,6 +26,18 @@
          ontouchend="openDropDownThree()">
       <p class="servicepage-dropdown-text-field">{chosenFieldNameThree}</p>
       <div class="servicepage-dropdown-icon"></div>
+    </div>
+
+    <div class="servicepage-first-field" id="firstField">
+      <p class="servicepage-text-field">{chosenFieldName}</p>
+      <p class="servicepage-number-first-part" if="{phoneFieldBool}">+{window.languages.CodeOfCountry}</p>
+      <input class="{servicepage-number-input-part: phoneFieldBool, servicepage-number-input-part-two: !phoneFieldBool && isNumber,
+                           servicepage-number-input-part-three: !phoneFieldBool && !isNumber}"
+             type="{inputType}"
+             id="firstFieldInput"
+             onfocus="bordersColor()"
+             value="{defaultNumber}" onkeydown="telPayVerificationKeyDown(this)"/>
+      <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
     </div>
 
     <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
@@ -76,7 +76,10 @@
 
   <div id="blockFirstDropdownId" class="component-first-field">
     <div class="servicepage-fields-dropdown-two">
-      <p class="servicepage-dropdown-text-field" style="color: white;">{chosenFieldNameTwo}</p>
+      <p if="{!hasSecondLevel}" class="servicepage-dropdown-text-field" style="color: white;">
+        {window.languages.ViewServicePageChooseRegion}</p>
+      <p if="{hasSecondLevel}" class="servicepage-dropdown-text-field" style="color: white;">
+        {window.languages.ViewServicePageChooseCity}</p>
     </div>
     <div class="servicepage-dropdown-container">
       <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}" if="{formType==3}"
@@ -92,7 +95,8 @@
 
   <div id="blockSecondDropdownId" class="component-first-field">
     <div class="servicepage-fields-dropdown-two">
-      <p class="servicepage-dropdown-text-field" style="color: white;">{chosenFieldNameThree}</p>
+      <p class="servicepage-dropdown-text-field" style="color: white;">
+        {window.languages.ViewServicePageChooseRegion}</p>
     </div>
     <div class="servicepage-dropdown-container">
       <div class="servicepage-dropdown-variant" each="{i in secondLevelArray}" id="two{i.id}" if="{formType==3}"
@@ -181,9 +185,12 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    console.log('opts', opts)
+
     var scope = this;
     scope.enterButton = opts[0] != 'ADDFAVORITE' ? true : false;
     scope.showError = false;
+
 
     telPayVerificationKeyDown = function (input) {
       console.log(event.target.value)
@@ -376,6 +383,9 @@
       this.on('mount', function () {
         firstField.style.display = 'none';
         amountField.style.top = '5.5%';
+
+        console.log('fieldArray'.scope.fieldArray)
+
       });
     } else {
       scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
@@ -441,6 +451,7 @@
           scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].id];
 
         }
+        console.log('firstLevelArray', scope.firstLevelArray)
       }
 
       if (scope.formType == 4 && scope.servicesParamsMapFour[scope.service.id] && scope.servicesParamsMapFive[scope.service.id]) {

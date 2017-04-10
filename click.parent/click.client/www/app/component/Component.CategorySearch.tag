@@ -86,8 +86,6 @@
           var index = wordOfFunction.name.toLowerCase().indexOf(scope.searchWord);
           if (index != -1 && countOfSuggestionWord <= 4) {
 
-            console.log('wordOfFunction.name', wordOfFunction.name)
-
             check = true;
             if (countOfSuggestionWord == 3) {
 
@@ -208,7 +206,7 @@
       blockSearchId.style.display = 'none';
       scope.parent.checkOfSearch = true;
       riot.update(scope.parent.checkOfSearch)
-      console.log(scope.parent.checkOfSearch, scope.parent)
+
       if (scope.suggestionOne.form_type) {
         scope.parent.onTouchEndOfService(scope.suggestionOne.id)
       }

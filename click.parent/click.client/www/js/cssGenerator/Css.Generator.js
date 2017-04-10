@@ -3047,7 +3047,7 @@ var css = {
   "height: 10%;" +
   "border-bottom:  " + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top: 5.5%;" +
+  "top: 7%;" +
   "}",
 
   servicePagePhoneField: ".servicepage-phone-field" +
@@ -3339,7 +3339,7 @@ var css = {
   "left: 10%;" +
   "color: white;" +
   "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
-  "top: 7%;" +
+  "top: 2%;" +
   "}",
 
   servicePageDropdownIcon: ".servicepage-dropdown-icon" +

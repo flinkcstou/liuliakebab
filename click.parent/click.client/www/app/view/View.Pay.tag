@@ -468,7 +468,6 @@
     console.log('OPTS', opts);
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
-      console.log(' scope.checkOfSearch', scope.checkOfSearch);
       event.stopPropagation();
       onTouchEndY = event.changedTouches[0].pageY;
 
