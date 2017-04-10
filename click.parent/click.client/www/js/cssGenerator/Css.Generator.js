@@ -3995,7 +3995,7 @@ var css = {
 
   payconfirmButtonEnter: ".payconfirm-button-enter" +
   "{" +
-  "top:" + 120 * widthK + "px;" +
+  "top:" + 100 * widthK + "px;" +
   "position: relative;" +
   "width: 36%; " +
   "height: 15%; " +
