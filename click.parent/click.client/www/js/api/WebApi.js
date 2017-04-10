@@ -13,7 +13,8 @@ window.api.initSocket = function () {
     console.log('WebSocket is connected');
     window.isConnected = true;
 
-    SpinnerPlugin.activityStop();
+    if (device.platform != 'BrowserStand')
+      SpinnerPlugin.activityStop();
   };
   this.socket.close = function (event) {
     console.log('Connection is closed');
@@ -22,7 +23,8 @@ window.api.initSocket = function () {
   var me = this;
   this.socket.onmessage = function (event) {
 
-    SpinnerPlugin.activityStop();
+    if (device.platform != 'BrowserStand')
+      SpinnerPlugin.activityStop();
 
     var parsedData = JSON.parse(event.data);
     console.log(parsedData)
