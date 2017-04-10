@@ -173,10 +173,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-service-page',
-            "params": opts
-          }
+        {
+          "view": 'view-service-page',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -326,29 +326,7 @@
       scope.convertedAmount = Math.ceil(amountCalcInputId.value * scope.currencyRate);
       converted = scope.convertedAmount.toString();
 
-
-      if (converted.length == 7) {
-        converted = converted.substring(0, 1) + ' ' +
-            converted.substring(1, 4) + ' ' + converted.substring(4, converted.length)
-
-      }
-
-      if (converted.length == 6) {
-        converted = converted.substring(0, 3) + ' ' +
-            converted.substring(3, converted.length)
-
-      }
-
-      if (converted.length == 5) {
-        converted = converted.substring(0, 2) + ' ' +
-            converted.substring(2, converted.length);
-
-      }
-
-      if (converted.length == 4) {
-        converted = converted.substring(0, 1) + ' ' +
-            converted.substring(1, converted.length);
-      }
+      converted = window.amountTransform(converted);
 
       console.log("after=", converted);
 
@@ -689,10 +667,10 @@
     });
 
     var maskOne = /[0-9]/g,
-        maskTwo = /[0-9' ']/g,
-        amountForPayTransaction,
-        checkFirst = false,
-        defaultAccount;
+      maskTwo = /[0-9' ']/g,
+      amountForPayTransaction,
+      checkFirst = false,
+      defaultAccount;
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     for (var i in cards) {
@@ -765,7 +743,7 @@
 
         if (amountForPayTransaction.length == 7) {
           amount.value = amountForPayTransaction.substring(0, 1) + ' ' + amountForPayTransaction.substring(1, 4) + ' ' +
-              amountForPayTransaction.substring(4, amountForPayTransaction.length) + ' ' + defaultAccount.currency;
+            amountForPayTransaction.substring(4, amountForPayTransaction.length) + ' ' + defaultAccount.currency;
           amount.selectionStart = amount.value.match(maskTwo).length - 1;
           amount.selectionEnd = amount.value.match(maskTwo).length - 1;
 
@@ -773,7 +751,7 @@
 
         if (amountForPayTransaction.length == 8) {
           amount.value = amountForPayTransaction.substring(0, 2) + ' ' + amountForPayTransaction.substring(2, 5) + ' ' +
-              amountForPayTransaction.substring(5, amountForPayTransaction.length) + ' ' + defaultAccount.currency;
+            amountForPayTransaction.substring(5, amountForPayTransaction.length) + ' ' + defaultAccount.currency;
           amount.selectionStart = amount.value.match(maskTwo).length - 1;
           amount.selectionEnd = amount.value.match(maskTwo).length - 1;
 

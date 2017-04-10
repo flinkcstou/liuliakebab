@@ -3207,7 +3207,7 @@ var css = {
   "margin-right: auto;" +
   "margin-left: auto;" +
   "background-color: #00a8f1;" +
-  "top: 40%;" +
+  "top: 60%;" +
   "left:" + 230 * widthK + "px; " +
   "background-color: #00a8f1;" +
   "color: white;" +

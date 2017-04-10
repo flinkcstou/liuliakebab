@@ -48,13 +48,13 @@
 
     console.log(opts)
     var scope = this,
-        transferTitle,
-        objectForTransfer = opts[0],
-        defaultAccount,
-        maskOne = /[0-9]/g,
-        maskTwo = /[0-9' ']/g,
-        checkFirst = false,
-        sumForTransfer = 0;
+      transferTitle,
+      objectForTransfer = opts[0],
+      defaultAccount,
+      maskOne = /[0-9]/g,
+      maskTwo = /[0-9' ']/g,
+      checkFirst = false,
+      sumForTransfer = 0;
 
     scope.showError = false;
 
@@ -94,6 +94,7 @@
     }
 
     sumKeyUp = function () {
+      //.replace(new RegExp('[^0-9]', 'g'), '');
 //      console.log('sumValueId.value', sumValueId.value[0])
 //      console.log('sumValueId.value.length', sumValueId.value.length)
       if (sumValueId.value.length == 5 && sumValueId.value[0] == '0') {
@@ -154,10 +155,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-steptwo') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-transfer-steptwo',
-            "params": opts
-          }
+        {
+          "view": 'view-transfer-steptwo',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
