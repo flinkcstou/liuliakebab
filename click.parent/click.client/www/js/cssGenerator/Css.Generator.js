@@ -3044,7 +3044,7 @@ var css = {
   "position: relative;" +
   "left: 10%;" +
   "width: 79.5%;" +
-  "height: 9%;" +
+  "height: 10%;" +
   "border-bottom:  " + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
   "top: 5.5%;" +
@@ -3079,7 +3079,7 @@ var css = {
   "{position: relative;" +
   "left: 10%;" +
   "width: 79.5%;" +
-  "height: 9%;" +
+  "height: 10%;" +
   "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
   "color: white;" +
   "top: 10%" +
@@ -3123,7 +3123,7 @@ var css = {
   "float: left;" +
   "position: relative;" +
   "top: 22%;" +
-  "font-size: " + 56 * widthK + "px; " +
+  "font-size: " + 54 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "margin: 0;" +
@@ -3136,7 +3136,7 @@ var css = {
   "position: relative;" +
   "top: 22%;" +
   "width: 88%;" +
-  "font-size:" + 56 * widthK + "px; " +
+  "font-size:" + 54 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "padding: 0;" +
@@ -3153,7 +3153,7 @@ var css = {
   "margin: 0;" +
   "margin-left: 3%;" +
   "width: 57%;" +
-  "font-size:" + 56 * widthK + "px; " +
+  "font-size:" + 54 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
