@@ -912,7 +912,7 @@
         riot.update();
       }
 
-    }
+    };
 
     addToFavorites = function (array) {
 
@@ -942,7 +942,7 @@
         console.log("favoritePaymentsList=", favoritePaymentsList);
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
       }
-    }
+    };
 
 
   </script>

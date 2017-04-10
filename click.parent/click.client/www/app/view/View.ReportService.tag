@@ -45,7 +45,8 @@
         </div>
       </div>
 
-      <div class="report-service-data-button-info-container" if="{!opts.is_indoor}">
+      <div class="report-service-data-button-info-container" if="{!opts.is_indoor}"
+           ontouchend="addToFavoritesTouchEnd()" ontouchstart="addToFavoritesTouchStart()">
         <div class="report-service-button-info-container">
           <div class="report-service-button-icon report-service-button-favorites-icon"></div>
           <a class="report-service-button-action">{languages.ViewReportServiceAddToFavorites}</a>
@@ -69,10 +70,16 @@
 
   </div>
 
+  <component-success id="componentSuccessId"
+                     operationmessage="{window.languages.ComponentSuccessMessageForAddingToFavorites}"
+                     viewpage="{undefined}" step_amount="{0}" close_action="{goToBack}"></component-success>
+
   <script>
     var scope = this,
         goToSupportTouchStartX,
-        goToSupportTouchEndX;
+        goToSupportTouchEndX,
+        addToFavoritesTouchStartX,
+        addToFavoritesTouchEndX;
 
     scope.cards = localStorage.getItem("click_client_cards");
     scope.cards = JSON.parse(scope.cards);
@@ -115,6 +122,56 @@
 
         riotTags.innerHTML = "<view-settings-support-part-two>";
         riot.mount('view-settings-support-part-two', {title: window.languages.VewSettingsSupportPay, key: 'PAY'});
+      }
+    };
+
+    addToFavoritesTouchStart = function () {
+
+      addToFavoritesTouchStartX = event.changedTouches[0].pageX;
+    };
+
+    addToFavoritesTouchEnd = function () {
+
+      addToFavoritesTouchEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(addToFavoritesTouchEndX - addToFavoritesTouchStartX) < 20) {
+
+        var servicesMap = localStorage.getItem("click_client_servicesMap");
+        servicesMap = JSON.parse(servicesMap);
+
+        console.log("Preparing inputs for favorites", localStorage.getItem("click_client_servicesMap"), opts.service_id, servicesMap, servicesMap[opts.service_id][0]);
+
+        var formType = {"formtype": servicesMap[opts.service_id][0].form_type};
+        var firstFieldId = {"firstFieldId": servicesMap[opts.service_id][0].service_parameters};
+        var firstFieldText = {"firstFieldText": opts.cntrg_info_param2};
+        var cardTypeId = {"cardTypeId": opts.account_id};
+        var communalParam = {"communalParam": opts.cntrg_info_param5};
+        var amountText = {"amountText": opts.amount};
+        var internetPackageParam = {"internetPackageParam": opts.cntrg_info_param5};
+        var isInFavorites = {"isInFavorites": true};
+
+        var array = [formType, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites];
+
+        console.log("ADD TO FAVORITES INPUT", array);
+
+        var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+
+        favoritePaymentsList = (favoritePaymentsList) ? (favoritePaymentsList) : ([]);
+
+        console.log("OPTS TO SAVE=", array);
+        console.log("Chosen Service =", servicesMap[opts.service_id][0]);
+
+        favoritePaymentsList.push({
+          "opts": array,
+          "service": servicesMap[opts.service_id][0],
+          "firstFieldTitle": opts.parameter_name
+        });
+
+        console.log("favoritePaymentsList=", favoritePaymentsList);
+
+        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+
+        componentSuccessId.style.display = 'block';
       }
     };
 

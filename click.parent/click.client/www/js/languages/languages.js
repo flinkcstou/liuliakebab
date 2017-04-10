@@ -128,6 +128,8 @@ var RU_LANGUAGES =
   "ComponentSuccessMessageForPayFriendHelp": "Запрос передан в обработку",
   "ComponentSuccessNext": "OK",
 
+  "ComponentSuccessMessageForAddingToFavorites": "Платёж успешно добавлен в избранные",
+
   "ComponentInProcessingPartOne": "Перевод передан на обработку.",
   "ComponentInProcessingPartTwo": "Ждите СМС с результатом!",
 
