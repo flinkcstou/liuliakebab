@@ -61,7 +61,8 @@
           <a class="report-service-button-action">{languages.ViewReportServiceGetSupportHelp}</a>
         </div>
 
-        <button class="report-service-repeat-button" if="{!opts.is_indoor}">
+        <button class="report-service-repeat-button" if="{!opts.is_indoor}" ontouchend="onTouchEndOfService()"
+                ontouchstart="onTouchStartOfService()">
           {languages.ViewReportServiceRepeatButtonLabel}
         </button>
       </div>
@@ -79,7 +80,9 @@
         goToSupportTouchStartX,
         goToSupportTouchEndX,
         addToFavoritesTouchStartX,
-        addToFavoritesTouchEndX;
+        addToFavoritesTouchEndX,
+        onTouchStartOfServiceX,
+        onTouchEndOfServiceX;
 
     scope.cards = localStorage.getItem("click_client_cards");
     scope.cards = JSON.parse(scope.cards);
@@ -172,6 +175,42 @@
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
 
         componentSuccessId.style.display = 'block';
+      }
+    };
+
+    onTouchStartOfService = onTouchStartOfService = function () {
+
+      event.stopPropagation();
+      onTouchStartOfServiceX = event.changedTouches[0].pageX;
+    };
+
+    console.log('OPTS', opts);
+
+    onTouchEndOfService = function () {
+
+      event.stopPropagation();
+      onTouchEndOfServiceX = event.changedTouches[0].pageX;
+
+      if (Math.abs(onTouchEndOfServiceX - onTouchStartOfServiceX) <= 20) {
+
+        var cards = JSON.parse(localStorage.getItem('click_client_cards'));
+        for (var i in cards) {
+          if (cards[i].default_account === true)
+            defaultAccount = cards[i];
+        }
+
+        var param = {
+          first_field_value: opts.cntrg_info_param2
+        };
+
+        console.log("chosen id in pay view=", opts.service_id);
+
+        localStorage.setItem('chosenServiceId', opts.service_id);
+        viewPay.chosenServiceId = opts.service_id;
+        viewServicePage.amountText = opts.amount + ' ' + defaultAccount.currency;
+
+        riotTags.innerHTML = "<view-service-page>";
+        riot.mount("view-service-page", param);
       }
     };
 
