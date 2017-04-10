@@ -3942,7 +3942,7 @@ var css = {
   "bottom: 0;" +
   "background-color: transparent;" +
   "border-bottom:  1px solid lightgray;" +
-  "overflow: scroll;" +
+  "overflow: hidden;" +
   "}",
 
   payconfirmActionContainer: ".payconfirm-action-containter" +
@@ -3950,6 +3950,7 @@ var css = {
   "position: relative;" +
   "float: left;" +
   "width: 50%;" +
+  "top: 10%;" +
   "height: 50%;" +
   "background-color: transparent;" +
   "}",
@@ -3994,7 +3995,7 @@ var css = {
 
   payconfirmButtonEnter: ".payconfirm-button-enter" +
   "{" +
-  "top: 13%;" +
+  "top: 25%;" +
   "position: relative;" +
   "width: 36%; " +
   "height: 15%; " +

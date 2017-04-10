@@ -146,6 +146,8 @@
             scope.clickPinError = false;
             scope.errorNote = "Different pin codes";
             scope.showError = true;
+            riotTags.innerHTML = "<view-pin-code>";
+            riot.mount('view-pin-code');
             riot.update();
 
             scope.checkPinConfirm = true;
