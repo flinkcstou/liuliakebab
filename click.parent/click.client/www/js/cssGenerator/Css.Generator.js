@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/transfer_card.png);" +
-    //"opacity: 0.6;" +
+  "background-image: url(resources/draft/filters_accounts.png);" +
+  "opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    //"background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    //"background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    //"background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -7860,6 +7860,11 @@ var css = {
   "height: 48%;" +
   "}",
 
+  changedHeightForFilterAccount: ".changed-height-for-filter-account" +
+  "{" +
+  "height: 60%;" +
+  "}",
+
   paymentDetailPaymentIcon: ".payment-detail-payment-icon" +
   "{" +
   "position: absolute;" +
@@ -8028,7 +8033,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: 100%;" +
-  "width:" + 538 * widthK + "px;" +
+  "width:" + 610 * widthK + "px;" +
   "overflow: hidden;" +
   "transform: translate3d(0, -100%, 0);" +
   "-webkit-transform: translate3d(0, -100%, 0);" +
@@ -8074,6 +8079,21 @@ var css = {
   "top: 0;" +
   "}",
 
+  reportFilterReadyButton: "report-filter-ready-button" +
+  "{" +
+  "position: absolute;" +
+  "transform: translate3d(-50%, 0, 0);" +
+  "bottom: " + 81 * widthK + "px;" +
+  "height: " + 64 * widthK + "px;" +
+  "left: 50.5%;" +
+  "width: " + 286 * widthK + "px;" +
+  "border: none;" +
+  "font-size: " + 27 * widthK + "px;" +
+  "background-color: #00A1EC;" +
+  "text-transform: uppercase;" +
+  "color: white;" +
+  "}",
+
   filterMenuInsideButton: ".filter-menu-inside-button " +
   "{" +
   "position: absolute;" +
@@ -8098,9 +8118,8 @@ var css = {
   "position: absolute;" +
   "width:84%;" +
   "height:65%;" +
-  "left:8%;" +
-  "top: 22%;" +
-    //"background-color: antiquewhite;" +
+  "left: 9%;" +
+  "top: 21.3%;" +
   "}",
 
   filterMenuTitle: ".filter-menu-title " +
@@ -8109,9 +8128,9 @@ var css = {
   "margin: 0;" +
   "color: 	#00A1EA;" +
   "font-size:" + 32 * widthK + "px;" +
-  "width: 45%;" +
-  "top: 13%;" +
-  "left: 8%;" +
+  "width: 35%;" +
+  "top: 12%;" +
+  "left: 9%;" +
   "}",
 
   filterMenuBlockContainer: ".filter-menu-block-containter" +

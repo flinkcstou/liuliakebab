@@ -59,6 +59,19 @@ var RU_LANGUAGES =
   "ViewServicePageSaveLabel": "СОХРАНИТЬ",
   "ViewServicePageAmountTextLabel": "Сумма оплаты:",
 
+  "ComponentReportFilterTitle": "Фильтры",
+  "ComponentReportFilterDate": "Выбрать даты для фильтра",
+  "ComponentReportFilterDateToday": "За сегодня",
+  "ComponentReportFilterDateYesterday": "За вчера",
+  "ComponentReportFilterDateWeek": "За текущую неделю",
+  "ComponentReportFilterDatePastWeek": "За прошлую неделю",
+  "ComponentReportFilterDateCurrentMonth": "За текущий месяц",
+  "ComponentReportFilterDatePastMonth": "За прошлый месяц",
+
+  "ComponentReportFilterAccount": "Выбрать карту для фильтра",
+
+  "ComponentReportFilterReadyButton": "готово",
+
   "ViewAmountCalculatorNameTitle": "КАЛЬКУЛЯТОР ВАЛЮТ",
   "ViewAmountCalculatorTextOne": "Введите сумму в USD",
   "ViewAmountCalculatorTextTwo": "Текущий курс: 1$=",

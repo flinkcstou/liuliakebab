@@ -5,46 +5,62 @@
        id="filterMenuId" class="filter-menu">
 
     <div class="filter-menu-inside-button" ontouchend="closeMenu()">
-      <p class="view-reports-filter-text filter-inside-text">Фильтры</p>
+      <p class="view-reports-filter-text filter-inside-text">{languages.ComponentReportFilterTitle}</p>
       <div type="button" class="view-reports-filter-button filter-inside-button"></div>
     </div>
-    <div class="filter-menu-title">Выбрать даты для фильтра</div>
-    <div class="filter-menu-body-container">
 
-      <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
-        <div class="filter-menu-date-icon"
-             style="background-image: url('resources/icons/ViewReport/date_from.png')"></div>
-        <div class="filter-menu-name-field">С 17.02.2017</div>
-        <div class="filter-menu-date-next-icon"></div>
-      </div>
-      <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
-        <div class="filter-menu-date-icon"
-             style="background-image: url('resources/icons/ViewReport/date_to.png')"></div>
-        <div class="filter-menu-name-field">По 18.03.2017</div>
-        <div class="filter-menu-date-next-icon"></div>
-      </div>
+    <div if="{filterAccount}">
+      <div class="filter-menu-title">{languages.ComponentReportFilterAccount}</div>
+      <div class="filter-menu-body-container">
 
-      <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
-        <div class="filter-menu-name-field">За сегодня</div>
-      </div>
-      <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
-        <div class="filter-menu-name-field">За вчера</div>
-      </div>
-      <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
-        <div class="filter-menu-name-field">За текущую неделю</div>
-      </div>
-      <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
-        <div class="filter-menu-name-field">За прошлую неделю</div>
-      </div>
-      <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
-        <div class="filter-menu-name-field">За текущий месяц</div>
-      </div>
-      <div class="filter-menu-block-containter" ontouchend="goToMainSettings()" style="border: none;">
-        <div class="filter-menu-name-field">За прошлый месяц</div>
-      </div>
+        <component-pincards filteraccount="true"></component-pincards>
 
+      </div>
 
     </div>
+
+    <div if="{filterDate}">
+      <div class="filter-menu-title">{languages.ComponentReportFilterDate}</div>
+      <div class="filter-menu-body-container">
+
+        <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
+          <div class="filter-menu-date-icon"
+               style="background-image: url('resources/icons/ViewReport/date_from.png')"></div>
+          <div class="filter-menu-name-field">С 17.02.2017</div>
+          <div class="filter-menu-date-next-icon"></div>
+        </div>
+        <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
+          <div class="filter-menu-date-icon"
+               style="background-image: url('resources/icons/ViewReport/date_to.png')"></div>
+          <div class="filter-menu-name-field">По 18.03.2017</div>
+          <div class="filter-menu-date-next-icon"></div>
+        </div>
+
+        <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
+          <div class="filter-menu-name-field">{languages.ComponentReportFilterDateToday}</div>
+        </div>
+        <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
+          <div class="filter-menu-name-field">{languages.ComponentReportFilterDateYesterday}</div>
+        </div>
+        <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
+          <div class="filter-menu-name-field">{languages.ComponentReportFilterDateWeek}</div>
+        </div>
+        <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
+          <div class="filter-menu-name-field">{languages.ComponentReportFilterDatePastWeek}</div>
+        </div>
+        <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
+          <div class="filter-menu-name-field">{languages.ComponentReportFilterDateCurrentMonth}</div>
+        </div>
+        <div class="filter-menu-block-containter" ontouchend="goToMainSettings()" style="border: none;">
+          <div class="filter-menu-name-field">{languages.ComponentReportFilterDatePastMonth}</div>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="report-filter-ready-button" if="{filterDate || filterAccount}">
+      {languages.ComponentReportFilterReadyButton}
+    </button>
 
   </div>
   <script>
@@ -54,6 +70,8 @@
     scope.lastName = loginInfo.lastname;
     scope.photo = loginInfo.profile_image_url;
 
+    scope.filterDate = false;
+    scope.filterAccount = false;
 
     userIconTouchEnd = function () {
       event.preventDefault();
