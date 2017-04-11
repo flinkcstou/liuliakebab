@@ -6,11 +6,12 @@
 
   <div class="view-news-container">
 
-    <div class="view-news-block"> </div>
+    <div class="view-news-block"></div>
   </div>
 
   <script>
     var scope = this;
+    scope.newsArray = []
 
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -29,6 +30,9 @@
       onSuccess: function (result) {
         if (result[0][0].error == 0) {
           console.log("NEWS", result);
+          for (var i in result[1]) {
+            scope.newsArray.push(result[1][i])
+          }
         }
         else
           alert(result[0][0].error_note);
@@ -39,7 +43,6 @@
         console.error(data);
       }
     });
-
 
 
   </script>

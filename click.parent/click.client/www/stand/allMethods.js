@@ -3011,3 +3011,36 @@ window.fakedSocket.register("get.terms", function (input) {
     }
   ];
 });
+
+window.fakedSocket.register("get.news", function (input) {
+
+  if (input)
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": ""
+      }],
+      [
+        {
+          "news_title": "г.Ташкент, ул. Езгулик, дом 15",
+          "news_content_short": 6,
+          "news_content": 1,
+          "url": 1,
+          "news_id": 4705,
+          "image": "https://m.click.uz/static/merchant/logo/logo_4705.png",
+          "datetime": 0,
+        }
+      ]
+    ];
+
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});
