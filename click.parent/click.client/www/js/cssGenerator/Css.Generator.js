@@ -11003,6 +11003,26 @@ var css = {
   "color: gray;" +
   "}",
 
+
+  viewNews: ".view-news" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "background-color: white;" +
+  "opacity: 0.97;" +
+  "}",
+
+  viewNewsContainer: ".view-news-container" +
+  "{" +
+  "position: relative;" +
+  "width:" + 620 * widthK + "px;" +
+  "margin: 0 auto 0 auto;" +
+  "top:" + 130 * widthK + "px;" +
+  "height: 100%;" +
+  "background-color: white;" +
+  "}",
+
 }
 
 

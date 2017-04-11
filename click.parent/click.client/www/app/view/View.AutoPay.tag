@@ -31,30 +31,30 @@
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = info.session_key;
-//
-//    window.api.call({
-//      method: 'settings.get.trusted.devices',
-//      input: {
-//        phone_num: phoneNumber,
-//        session_key: sessionKey,
-//
-//      },
-//
-//      scope: this,
-//
-//      onSuccess: function (result) {
-//        if (result[0][0].error == 0) {
-//          console.log("DEVICES", result);
-//        }
-//        else
-//          alert(result[0][0].error_note);
-//      },
-//
-//      onFail: function (api_status, api_status_message, data) {
-//        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-//        console.error(data);
-//      }
-//    });
+
+    window.api.call({
+      method: 'get.news',
+      input: {
+        phone_num: phoneNumber,
+        session_key: sessionKey,
+
+      },
+
+      scope: this,
+
+      onSuccess: function (result) {
+        if (result[0][0].error == 0) {
+          console.log("NEWS", result);
+        }
+        else
+          alert(result[0][0].error_note);
+      },
+
+      onFail: function (api_status, api_status_message, data) {
+        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+        console.error(data);
+      }
+    });
 
     //    window.api.call({
     //      method: 'get.terms',

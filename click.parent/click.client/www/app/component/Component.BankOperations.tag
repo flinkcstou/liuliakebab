@@ -46,8 +46,8 @@
       event.preventDefault();
       event.stopPropagation();
 //      return
-      riotTags.innerHTML = "<view-qr-pay-confirm>";
-      riot.mount('view-qr-pay-confirm');
+      riotTags.innerHTML = "<view-news>";
+      riot.mount('view-news');
     }
 
   </script>
