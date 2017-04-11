@@ -98,6 +98,23 @@ componentReportFilter.pastWeek = 4;
 componentReportFilter.currentMonth = 5;
 componentReportFilter.pastMonth = 6;
 
+window.representDotedDate = function (left, middle, right) {
+
+  return dateAddZero(left) + "." + dateAddZero(middle) + "." + dateAddZero(right);
+};
+
+window.dateAddZero = function (date) {
+
+  date = date.toString();
+
+  if (date.length == 1) {
+
+    date = "0" + date;
+  }
+
+  return date;
+};
+
 window.amountTransform = function (amount) {
   amount = amount.replace(new RegExp('[^0-9]', 'g'), '');
   var j = 0;

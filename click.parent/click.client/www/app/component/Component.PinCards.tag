@@ -133,7 +133,7 @@
       }
       else return
 
-    }
+    };
 
     scope.getAccountCardId = function () {
 

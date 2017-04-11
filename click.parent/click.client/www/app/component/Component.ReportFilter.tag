@@ -70,7 +70,11 @@
         <p class="report-filter-filter-title">{languages.ComponentReportFilterByDate}</p>
         <img class="report-filter-filter-plus-icon" src="resources/icons/ViewSettingsFriendHelp/plus.png"
              ontouchend="filterDateTouchEnd()" ontouchstart="filterDateTouchStart()">
-        <div class="report-filter-filter-chosen-filter-container"></div>
+        <div class="report-filter-filter-chosen-filter-container">
+          <div>
+
+          </div>
+        </div>
       </div>
       <div class="report-filter-filter-container">
         <p class="report-filter-filter-title">{languages.ComponentReportFilterByAccount}</p>
@@ -243,6 +247,16 @@
       readyButtonTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(readyButtonTouchEndX - readyButtonTouchStartX) < 20) {
+
+        if (scope.filterDate) {
+
+          scope.filterDateFrom = scope.from_yyyy + "-" + scope.from_mm + "-" + scope.from_dd;
+          scope.filterDateTo = scope.to_yyyy + "-" + scope.to_mm + "-" + scope.to_dd;
+
+        } else if (scope.filterAccount) {
+
+          scope.filterByAccount = scope.tags["component-pincards"].getAccountCardId();
+        }
 
         scope.filterDate = false;
         scope.filterAccount = false;
