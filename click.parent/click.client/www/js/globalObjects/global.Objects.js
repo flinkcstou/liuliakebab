@@ -103,6 +103,11 @@ window.representDotedDate = function (left, middle, right) {
   return dateAddZero(left) + "." + dateAddZero(middle) + "." + dateAddZero(right);
 };
 
+window.representDashedDate = function (left, middle, right) {
+
+  return dateAddZero(left) + "-" + dateAddZero(middle) + "-" + dateAddZero(right);
+};
+
 window.dateAddZero = function (date) {
 
   date = date.toString();
