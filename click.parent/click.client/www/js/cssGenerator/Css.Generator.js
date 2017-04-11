@@ -11010,6 +11010,8 @@ var css = {
   "width: 100%;" +
   "height: 100%;" +
   "background-color: white;" +
+  "display: none;" +
+  "z-index: 999999;" +
   "opacity: 0.97;" +
   "}",
 
@@ -11021,6 +11023,54 @@ var css = {
   "top:" + 130 * widthK + "px;" +
   "height: 100%;" +
   "background-color: white;" +
+  "}",
+
+  viewNewsBlock: ".view-news-block" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "margin: 5% auto 0 auto;" +
+  "height: 25%;" +
+  "background-image: url('resources/icons/ViewNews/news.png');" +
+  "background-repeat: no-repeat;" +
+  "background-position-y: center;" +
+  "background-size: 100%;" +
+  "}",
+
+  viewNewsPageTitle: ".view-news-page-title " +
+  "{" +
+  "position: absolute;" +
+  "top: 0;" +
+  "right:" + 28 * widthK + "px;" +
+  "left:" + 25 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "background: transparent;" +
+    //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
+  "}",
+
+  viewNewsNameTitle: ".view-news-name-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 35 * widthK + "px; " +
+  "left:" + 85 * widthK + "px; " +
+  "top:" + 27 * widthK + "px; " +
+  "margin: 0;  " +
+  "color: #fffaf9;" +
+  "}",
+
+  viewNewsBackButton: ".view-news-back-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 113 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y: 43%;" +
+  "background-position-x: center;" +
+  "background-size: 17%;" +
+  "right: 87%;" +
   "}",
 
 }

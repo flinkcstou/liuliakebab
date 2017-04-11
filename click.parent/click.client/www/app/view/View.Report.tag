@@ -56,7 +56,7 @@
           </canvas>
 
           <div class="view-reports-graph-percent-image-container" each="{i in arrayOfCoordinates}"
-               id="chartImageBlockId{i.order}" if="{i.percent > 10}"
+               id="chartImageBlockId{i.order}" if="{i.percent > 15}"
                style="top: {i.y * heightK}px; left: {i.x  * heightK}px; transform: translate3d(-55%, -{i.position}% ,0);">
             <p if="{i.percent > 10}" class="view-reports-graph-percent">{i.percent}%</p>
             <div class="view-reports-graph-image"
@@ -450,6 +450,7 @@
     }
 
     createGraph = function (arrayForGraph) {
+      scope.count = 0;
 
       var data = {
         datasets: [
@@ -467,6 +468,7 @@
         data.datasets[0].data.push(arrayForGraph[i].percent);
         data.datasets[0].backgroundColor.push(arrayForGraph[i].color_hex);
         var centerOfBlock = parseInt(sumOfAngle) + parseInt(arrayForGraph[i].percent) / 2;
+
         console.log('CENTER', centerOfBlock)
         var alpha = 3.6 * parseInt(centerOfBlock);
         console.log('ALPHA', alpha)
@@ -480,7 +482,7 @@
           position = 50;
         }
         else {
-          position = 50;
+          position = 55;
         }
         var width = 160;
         if ((alpha >= 30 && alpha < 125) || (alpha >= 205 && alpha < 335)) {
@@ -501,6 +503,8 @@
         }
         scope.arrayOfCoordinates.push(coordinates);
         j++;
+
+        scope.count = j;
       }
       riot.update()
       console.log("ARRAY OF COORDINATES", scope.arrayOfCoordinates)

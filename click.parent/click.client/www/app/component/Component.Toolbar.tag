@@ -14,10 +14,10 @@
 
   <script>
     var scope = this,
-        goToViewInfoTouchStartX,
-        goToViewInfoTouchStartY,
-        goToViewInfoTouchEndX,
-        goToViewInfoTouchEndY;
+      goToViewInfoTouchStartX,
+      goToViewInfoTouchStartY,
+      goToViewInfoTouchEndX,
+      goToViewInfoTouchEndY;
 
     menuOpen = function () {
       componentMenu.check = true;
@@ -40,6 +40,8 @@
     bellButton = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      viewNewsId.style.display = 'block'
     };
 
     goToViewInfoTouchStart = function () {
@@ -54,7 +56,7 @@
       goToViewInfoTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goToViewInfoTouchEndX - goToViewInfoTouchStartX) < 20 &&
-          Math.abs(goToViewInfoTouchEndY - goToViewInfoTouchStartY) < 20) {
+        Math.abs(goToViewInfoTouchEndY - goToViewInfoTouchStartY) < 20) {
 
         this.riotTags.innerHTML = '<view-info>';
         riot.mount('view-info');

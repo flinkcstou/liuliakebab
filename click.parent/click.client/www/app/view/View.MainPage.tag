@@ -10,6 +10,8 @@
     <component-footer></component-footer>
     <component-card-carousel></component-card-carousel>
 
+    <view-news></view-news>
+
     <div class="bank-operation-button-my-cards">
       <div class="bank-operation-button-my-cards-container">
         <div class="bank-operation-button-my-cards-icon"></div>
@@ -50,10 +52,10 @@
 
     history.arrayOfHistory = [];
     history.arrayOfHistory.push(
-        {
-          "view": 'view-main-page',
-          "params": opts
-        }
+      {
+        "view": 'view-main-page',
+        "params": opts
+      }
     );
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
