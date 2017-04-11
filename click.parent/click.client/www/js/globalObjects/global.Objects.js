@@ -90,6 +90,13 @@ input_codes.BACKSPACE_CODE = 8
 window.componentMenu = {};
 componentMenu.check = false;
 
+window.componentReportFilter = {};
+componentReportFilter.today = 1;
+componentReportFilter.yesterday = 2;
+componentReportFilter.currentWeek = 3;
+componentReportFilter.pastWeek = 4;
+componentReportFilter.currentMonth = 5;
+componentReportFilter.pastMonth = 6;
 
 window.amountTransform = function (amount) {
   amount = amount.replace(new RegExp('[^0-9]', 'g'), '');

@@ -70,6 +70,12 @@ var RU_LANGUAGES =
 
   "ComponentReportFilterAccount": "Выбрать карту для фильтра",
 
+  "ComponentReportFilterByDate": "По дате",
+  "ComponentReportFilterByAccount": "По карте",
+
+  "ComponentReportFilterByDateFrom": "C",
+  "ComponentReportFilterByDateTo": "По",
+
   "ComponentReportFilterReadyButton": "готово",
 
   "ViewAmountCalculatorNameTitle": "КАЛЬКУЛЯТОР ВАЛЮТ",

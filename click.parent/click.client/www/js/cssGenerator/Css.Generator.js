@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  "background-image: url(resources/draft/filters_accounts.png);" +
-  "opacity: 0.6;" +
+    //"background-image: url(resources/draft/filters.png);" +
+    //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-    //"background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    //"background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    //"background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -8038,12 +8038,63 @@ var css = {
   "transform: translate3d(0, -100%, 0);" +
   "-webkit-transform: translate3d(0, -100%, 0);" +
   "-ms-transform: translate3d(0, -100%, 0);" +
-  "background-color: white;" +
   "z-index: 1;" +
   "right:0;" +
     //"top:" + topOfIos + "px;" +
   "}",
 
+  filterMainMenu: ".filter-main-menu" +
+  "{" +
+  "background-color: #00A1DF;" +
+  "}",
+
+  filterMinorMenu: ".filter-minor-menu" +
+  "{" +
+  "background-color: white;" +
+  "}",
+
+  reportFilterFiltersContentContainer: ".report-filter-filters-content-container" +
+  "{" +
+  "position: absolute;" +
+  "top: " + 206 * widthK + "px;" +
+  "width: 100%;" +
+  "bottom: 0;" +
+  "}",
+
+  reportFilterFilterContainer: ".report-filter-filter-container" +
+  "{" +
+  "width: " + 516 * widthK + "px;" +
+  "height: " + 147 * widthK + "px;" +
+  "padding: 0px " + 48 * widthK + "px 0 " + 45 * widthK + "px;" +
+  "}",
+
+  reportFilterFilterTitle: ".report-filter-filter-title" +
+  "{" +
+  "margin: 0;" +
+  "float: left;" +
+  "margin-left: " + 21 * widthK + "px;" +
+  "color: white;" +
+  "}",
+
+  reportFilterFilterPlusIcon: ".report-filter-filter-plus-icon" +
+  "{" +
+  "float: right;" +
+  "margin-right: " + 7 * widthK + "px;" +
+  "margin-top: " + 18 * widthK + "px;" +
+  "height: " + 25 * widthK + "px;" +
+  "width: " + 25 * widthK + "px;" +
+  "}",
+
+  reportFilterFilterChosenFilterContainer: ".report-filter-filter-chosen-filter-container" +
+  "{" +
+  "position: relative;" +
+  "width: 95.7%;" +
+  "height: " + 75 * widthK + "px;" +
+  "float: left;" +
+  "margin-top: " + 15 * widthK + "px;" +
+  "border-top: 1px solid #00BCE8;" +
+  "padding: " + 13.5 * widthK + "px 0 0 4.3%;" +
+  "}",
 
   viewReportsFilterContainer: ".view-reports-filter-container " +
   "{" +
@@ -8079,7 +8130,7 @@ var css = {
   "top: 0;" +
   "}",
 
-  reportFilterReadyButton: "report-filter-ready-button" +
+  reportFilterReadyButton: ".report-filter-ready-button" +
   "{" +
   "position: absolute;" +
   "transform: translate3d(-50%, 0, 0);" +
@@ -8092,6 +8143,7 @@ var css = {
   "background-color: #00A1EC;" +
   "text-transform: uppercase;" +
   "color: white;" +
+  "outline: none" +
   "}",
 
   filterMenuInsideButton: ".filter-menu-inside-button " +
@@ -8111,6 +8163,16 @@ var css = {
   filterInsideButton: ".filter-inside-button " +
   "{" +
   "background-image: url('resources/icons/ViewReport/reports_filters_close.png');" +
+  "}",
+
+  filterInsideTextMain: ".filter-inside-text-main " +
+  "{" +
+  "color: white;" +
+  "}",
+
+  filterInsideButtonMain: ".filter-inside-button-main " +
+  "{" +
+  "background-image: url('resources/icons/ViewReport/reports_filters_close_white.png');" +
   "}",
 
   filterMenuBodyContainer: ".filter-menu-body-container " +
