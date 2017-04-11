@@ -335,7 +335,7 @@
                     scope.arrayOfOperationsByAccount.push(result[1][i]);
                   }
                 }
-                this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
+//                this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
                 riot.update(scope.arrayOfOperationsByAccount)
                 console.log('scope.arrayOfOperationsByAccount', scope.arrayOfOperationsByAccount)
               }
