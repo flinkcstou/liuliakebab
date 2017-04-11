@@ -3959,7 +3959,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "height: 46%;" +
+  "height: 50%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "left: 26%;" +
@@ -3971,7 +3971,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "height: 46%;" +
+  "height: 50%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "left: 25%;" +
