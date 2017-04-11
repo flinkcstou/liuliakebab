@@ -50,14 +50,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  "background-image: url(resources/draft/filters.png);" +
-  "opacity: 0.6;" +
+    //"background-image: url(resources/draft/filters.png);" +
+    //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-    //"background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    //"background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    //"background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -11105,18 +11105,23 @@ var css = {
   "margin: 0 auto 0 auto;" +
   "top:" + 100 * widthK + "px;" +
   "height: 100%;" +
+  "overflow-x: hidden;" +
+  "overflow-y: auto;" +
   "}",
 
   viewNewsBlock: ".view-news-block" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "margin: 3% auto 0 auto;" +
+  "margin: 0 auto 3% auto;" +
   "height: 27%;" +
+  "contain: content;" +
   "background-image: url('resources/icons/ViewNews/news.png');" +
   "background-repeat: no-repeat;" +
-  "background-position-y: center;" +
+  "background-position-y: bottom;" +
   "background-size: 100%;" +
+  "background-color: white;" +
+  "border-bottom-right-radius:" + 70 * widthK + "px;" +
   "}",
 
   viewNewsPageTitle: ".view-news-page-title " +
@@ -11155,24 +11160,43 @@ var css = {
   "right: 87%;" +
   "}",
 
+  viewNewsBlockOfAll: ".view-news-block-of-all " +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "contain: content;" +
+  "}",
+
   viewNewsBlockText: ".view-news-block-text " +
   "{" +
   "position: relative;" +
   "font-size:" + 24 * widthK + "px; " +
-  "height: 28%; " +
   "width: 88%; " +
-  "margin: 6.5% auto 0 auto;  " +
+  "margin:" + 35 * widthK + "px auto 0 auto;  " +
   "color: black;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
+  "text-align: justify;" +
+  "white-space: pre-line;" +
+  "}",
+
+  viewNewsBlockImage: ".view-news-block-image " +
+  "{" +
+  "position: relative;" +
+  "background-image: url('resources/icons/ViewNews/news.png');" +
+  "background-repeat: no-repeat;" +
+  "background-position-y: bottom;" +
+  "background-size: 100%;" +
+  "width: 100%;" +
+  "height:" + 330 * widthK + "px;" +
   "}",
 
   viewNewsBlockTitle: ".view-news-block-title " +
   "{" +
   "position: relative;" +
   "font-size:" + 34 * widthK + "px; " +
-  "top: 12%; " +
-  "height: 27%; " +
+  "top:" + 40 * widthK + "px; " +
+  "height:" + 95 * widthK + "px; " +
   "width: 87%; " +
   "margin: 0 auto 0 auto;  " +
   "color: #00b8ff;" +
@@ -11182,23 +11206,28 @@ var css = {
 
   viewNewsBlockDate: ".view-news-block-date " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "font-size:" + 24 * widthK + "px; " +
   "margin: 0;  " +
-  "bottom: 13%;  " +
+  "width: 30%;  " +
+  "margin-top:" + 35 * widthK + "px; " +
+  "margin-bottom:" + 52 * widthK + "px; " +
   "left: 6%;  " +
+  "float: left;  " +
   "color: #bbbbbb;" +
   "}",
 
   viewNewsBlockReadMoreContainer: ".view-news-block-readmore-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "font-size:" + 24 * widthK + "px; " +
   "margin: 0;  " +
-  "right: 5%;  " +
-  "bottom: 5%;  " +
+  "left: 30%;  " +
+  "margin-top:" + 35 * widthK + "px; " +
+  "margin-bottom:" + 52 * widthK + "px; " +
   "width: 30%;  " +
   "height: 17%;  " +
+  "float: left;  " +
   "color: #bbbbbb;" +
   "}",
 
@@ -11213,6 +11242,13 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position-y: center;" +
   "background-size: 27%;" +
+  "}",
+
+  viewNewsBlockSpace: ".view-news-block-space " +
+  "{" +
+  "position: relative;" +
+  "height: 10%;  " +
+  "width: 100%;  " +
   "}",
 
 }
