@@ -11143,7 +11143,7 @@ var css = {
   "left:" + 75 * widthK + "px; " +
   "top:" + 26 * widthK + "px; " +
   "margin: 0;  " +
-  "color: black;" +
+  "color: #4f4f4f;" +
   "}",
 
   viewNewsBackButton: ".view-news-back-button " +
@@ -11158,6 +11158,22 @@ var css = {
   "background-position-x: center;" +
   "background-size: 17%;" +
   "right: 87%;" +
+  "display: block;" +
+  "}",
+
+  viewNewsRightButton: ".view-news-right-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 144 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "right:" + -36 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewTransfer/banks_close.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 22%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 54 * widthK + "px;" +
+  "background-size: 22%;" +
+  "top: 0;" +
   "}",
 
   viewNewsBlockOfAll: ".view-news-block-of-all " +
@@ -11173,7 +11189,7 @@ var css = {
   "font-size:" + 24 * widthK + "px; " +
   "width: 88%; " +
   "margin:" + 35 * widthK + "px auto 0 auto;  " +
-  "color: black;" +
+  "color: #777a7a;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "text-align: justify;" +

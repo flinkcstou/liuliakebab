@@ -42,6 +42,16 @@
       event.stopPropagation();
 
       viewNewsId.style.display = 'block'
+
+      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-news') {
+        history.arrayOfHistory.push(
+          {
+            "view": 'view-news',
+            "params": opts
+          }
+        );
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+      }
     };
 
     goToViewInfoTouchStart = function () {

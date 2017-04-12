@@ -1,24 +1,25 @@
 <view-news id="viewNewsId" class="view-news">
   <div class="view-news-page-title">
     <p class="view-news-name-title">УВЕДОМЛЕНИЯ</p>
-    <div id="backButton" ontouchend="goToBack()" class="view-news-back-button"></div>
+    <div id="closeButton" ontouchend="closeNewsTouchEnd()" class="view-news-right-button"></div>
   </div>
 
   <div class="view-news-container">
 
     <div class="view-news-block-of-all" each="{i in newsArray}">
 
-      <div if="{i.image_exist}" class="view-news-block-image" style="background-image: url({i.image})"></div>
+      <div id="newsImageId{i.news_id}" hidden="true"
+           class="view-news-block-image" style="background-image: url({i.news_image})"></div>
 
       <div class="view-news-block" shorttext="{i.content_short}" opened="false" title="{i.news_content}"
            id="newsContainerId{i.news_id}"
            ontouchstart="newsTouchStart()"
-           ontouchend="newsTouchEnd(this.id, 'newsTextId' + {i.news_id}, this.title, document.getElementById(this.id).getAttribute('shorttext'))">
+           ontouchend="newsTouchEnd(this.id, 'newsTextId' + {i.news_id}, this.title, document.getElementById(this.id).getAttribute('shorttext'), 'newsImageId'+{i.news_id})">
         <p class="view-news-block-title">{i.news_title}</p>
         <p id="newsTextId{i.news_id}" class="view-news-block-text">{i.content_short}</p>
 
         <p class="view-news-block-date">{i.datetime}</p>
-        <div class="view-news-block-readmore-container">Подробнее
+        <div style="display: none" class="view-news-block-readmore-container">Подробнее
           <div class="view-news-block-readmore-icon"></div>
         </div>
       </div>
@@ -34,31 +35,46 @@
 
     })
 
+
+
+    closeNewsTouchEnd = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      onBackKeyDown()
+    }
+
     var touchStartY, touchEndY;
 
     newsTouchStart = function () {
-      touchStartY =  event.changedTouches[0].pageY;
+      touchStartY = event.changedTouches[0].pageY;
     }
 
-    newsTouchEnd = function (containerId, textId, longText, shortText) {
+    newsTouchEnd = function (containerId, textId, longText, shortText, imageId) {
       event.preventDefault()
       event.stopPropagation()
 
       touchEndY = event.changedTouches[0].pageY;
+      console.log('imageId', imageId)
 
 
-      if(Math.abs(touchStartY - touchEndY) <= 20) {
+      if (Math.abs(touchStartY - touchEndY) <= 20) {
 
         if (JSON.parse(document.getElementById(containerId).getAttribute('opened')) === false) {
           document.getElementById(containerId).setAttribute('opened', true)
+          document.getElementById(imageId).style.display = 'block'
           document.getElementById(containerId).style.height = 'auto';
           document.getElementById(textId).innerHTML = longText;
         }
         else {
           document.getElementById(containerId).style.height = '27%';
+          document.getElementById(imageId).style.display = 'false'
+          document.getElementById(imageId).style.display = 'none'
           document.getElementById(textId).innerHTML = shortText;
           document.getElementById(containerId).setAttribute('opened', false)
         }
+
+        riot.update()
       }
       else
         return
@@ -83,7 +99,7 @@
           console.log("NEWS", result);
           for (var i in result[1]) {
             if (result[1][i].news_content_short.length > 120) {
-              if (result[1][i].image) {
+              if (result[1][i].news_image) {
                 result[1][i].image_exist = true;
               }
               else {
