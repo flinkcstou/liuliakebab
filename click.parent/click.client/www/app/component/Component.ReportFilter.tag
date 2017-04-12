@@ -27,7 +27,7 @@
       <div class="filter-menu-title">{languages.ComponentReportFilterDate}</div>
       <div class="filter-menu-body-container">
 
-        <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
+        <div class="filter-menu-block-containter" ontouchend="pickDateFrom()">
           <div class="filter-menu-date-icon"
                style="background-image: url('resources/icons/ViewReport/date_from.png')"></div>
           <div class="filter-menu-name-field">{languages.ComponentReportFilterByDateFrom}
@@ -35,7 +35,7 @@
           </div>
           <div class="filter-menu-date-next-icon"></div>
         </div>
-        <div class="filter-menu-block-containter" ontouchend="goToMainSettings()">
+        <div class="filter-menu-block-containter" ontouchend="pickDateTo()">
           <div class="filter-menu-date-icon"
                style="background-image: url('resources/icons/ViewReport/date_to.png')"></div>
           <div class="filter-menu-name-field">{languages.ComponentReportFilterByDateTo} {to_dd}.{to_mm}.{to_yyyy}</div>
@@ -126,6 +126,50 @@
 
     scope.filterDate = false;
     scope.filterAccount = false;
+
+    pickDateFrom = function () {
+
+      var options = {
+        date: new Date(),
+        mode: 'date',
+        androidTheme: 5
+      };
+
+      function onSuccess(pickedDate) {
+
+        date = pickedDate;
+
+        scope.from_dd = date.getDate();
+        scope.from_mm = date.getMonth() + 1;
+        scope.from_yyyy = date.getFullYear();
+
+        riot.update();
+      }
+
+      datePicker.show(options, onSuccess);
+    };
+
+    pickDateTo = function () {
+
+      var options = {
+        date: new Date(),
+        mode: 'date',
+        androidTheme: 5
+      };
+
+      function onSuccess(pickedDate) {
+
+        date = pickedDate;
+
+        scope.to_dd = date.getDate();
+        scope.to_mm = date.getMonth() + 1;
+        scope.to_yyyy = date.getFullYear();
+
+        riot.update();
+      }
+
+      datePicker.show(options, onSuccess);
+    };
 
     deleteAccountFilterTouchStart = function () {
 
@@ -308,7 +352,24 @@
 
           scope.filterDateFrom = representDashedDate(scope.from_yyyy, scope.from_mm, scope.from_dd);
           scope.filterDateTo = representDashedDate(scope.to_yyyy, scope.to_mm, scope.to_dd);
-          scope.createdDateFilter = representDotedDate(scope.from_dd, scope.from_mm, scope.from_yyyy) + " - " + representDotedDate(scope.to_dd, scope.to_mm, scope.to_yyyy);
+
+          if (scope.from_dd == scope.to_dd) {
+
+            var newDate = new Date();
+
+            if (newDate.getDate() == scope.from_dd) {
+
+              scope.createdDateFilter = languages.ComponentReportFilterTodayText;
+
+            } else if (newDate.getDate() - 1 == scope.from_dd) {
+
+              scope.createdDateFilter = languages.ComponentReportFilterYesterdayText;
+            }
+
+          } else {
+
+            scope.createdDateFilter = representDotedDate(scope.from_dd, scope.from_mm, scope.from_yyyy) + " - " + representDotedDate(scope.to_dd, scope.to_mm, scope.to_yyyy);
+          }
 
         } else if (scope.filterAccount) {
 
@@ -373,7 +434,7 @@
       event.stopPropagation();
       riotTags.innerHTML = "<view-general-settings>";
       riot.mount("view-general-settings");
-    }
+    };
 
     closeMenu = function () {
       if (event) {
@@ -393,7 +454,30 @@
       reportPageId.style.opacity = '1';
       reportPageId.style.zIndex = '0';
       riot.update();
-    }
+
+      console.log("ASDASDASD", scope.parent);
+
+      if (scope.parent) {
+
+        console.log("ASDASDASD", scope.parent.paymentListUpdate);
+        console.log("ASDASDASD", scope.parent.graphListUpdate);
+        console.log("ASDASDASD", scope.parent.firstReportView);
+
+        if (scope.parent.firstReportView) {
+
+          if (scope.parent.paymentListUpdate) {
+
+            scope.parent.paymentListUpdate();
+          }
+        } else {
+
+          if (scope.parent.graphListUpdate) {
+
+            scope.parent.graphListUpdate();
+          }
+        }
+      }
+    };
 
     var touchStartX, touchEndX, touchMoveX, touchEndMove, timeStartX, timeEndXs;
     var width = window.innerWidth;

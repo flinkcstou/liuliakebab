@@ -7,7 +7,7 @@
            class="back-button">
       </div>
       <div class="view-reports-filter-container" ontouchend="openFilter()">
-        <p class="view-reports-filter-text">Фильтры</p>
+        <p class="view-reports-filter-text">{languages.ComponentReportFilterTitle}</p>
         <div type="button" class="view-reports-filter-button"></div>
       </div>
       <div id="graphButtonId" type="button" class="view-reports-graph-button" ontouchend="graphView()"></div>
@@ -16,13 +16,18 @@
 
     <div id="monthContainerId" class="view-reports-months-container" ontouchstart="monthContainerTouchStart()"
          ontouchend="monthContainerTouchEnd()"
-         ontouchmove="monthContainerTouchMove()">
+         ontouchmove="monthContainerTouchMove()"
+         hidden="{(tags['component-report-filter'].filterDateFrom && tags['component-report-filter'].filterDateTo)}">
       <div class="view-reports-month-info-container" each="{i in monthsArray}"
            style="left:{leftOfOperations*i.count}px;">
         <p class="view-reports-month-info-name">{i.name}</p>
       </div>
     </div>
 
+    <p class="view-reports-date-filter-text"
+       if="{(tags['component-report-filter'].filterDateFrom && tags['component-report-filter'].filterDateTo)}">
+      {tags['component-report-filter'].createdDateFilter}
+    </p>
 
     <div class="view-reports-body-container" if="{firstReportView}">
       <div class="view-reports-payments-container" each="{i in paymentDates}">
@@ -47,6 +52,8 @@
     <div class="view-reports-graph-body-container" if="{!firstReportView}">
       <div class="view-reports-graph-bigamount-container">
         <p class="view-reports-graph-bigamount-text">{paymentsSum} сум</p>
+        <p class="view-reports-account-filter-text">
+          {(tags["component-report-filter"].createdAccountFilter)?(tags["component-report-filter"].createdAccountFilter):(languages.ViewReportsFilterAllAccountsText)}</p>
       </div>
       <div class="view-reports-graph-image-container" ontouchstart="monthContainerTouchStart()"
            ontouchend="monthContainerTouchEnd()"
@@ -82,6 +89,8 @@
 
   <script>
 
+    var scope = this;
+
     this.titleName = 'ОТЧЕТЫ';
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report') {
@@ -101,7 +110,7 @@
       if (!modeOfApp.offlineMode) {
         writeBalance();
       }
-    })
+    });
 
 
     touchStartTitle = function () {
@@ -111,8 +120,6 @@
       onBackKeyDown()
     };
 
-
-    scope = this;
     scope.leftOfOperations = 320 * widthK;
     scope.firstReportView = true;
     scope.showError = false;
@@ -144,7 +151,7 @@
       this.filterMenuId.style.transform = "translate3d(0, 0, 0)";
       this.filterMenuId.style.webkitTransform = "translate3d(0, 0, 0)";
       this.filterMenuBackPageId.style.opacity = '1';
-    }
+    };
 
 
     graphView = function () {
@@ -165,7 +172,7 @@
         graphButtonId.style.backgroundImage = "url(resources/icons/ViewReport/reports_chart_on.png)";
         graphListUpdate();
       }
-    }
+    };
 
     sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -176,31 +183,50 @@
 
 
     monthContainerTouchStart = function () {
+
+      if ((scope.tags['component-report-filter'].filterDateFrom && scope.tags['component-report-filter'].filterDateTo)) {
+
+        return;
+      }
+
       console.log("in start touch=", mNumber);
       carouselTouchStartX = event.changedTouches[0].pageX;
       left = -((320 * mNumber) * widthK) - carouselTouchStartX;
       delta = left;
-    }
+    };
 
     monthContainerTouchEnd = function () {
+
       event.preventDefault();
       event.stopPropagation();
+
+      if ((scope.tags['component-report-filter'].filterDateFrom && scope.tags['component-report-filter'].filterDateTo)) {
+
+        return;
+      }
+
       carouselTouchEndX = event.changedTouches[0].pageX;
       if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20) {
         changePosition();
       }
-    }
+    };
 
 
     monthContainerTouchMove = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      if ((scope.tags['component-report-filter'].filterDateFrom && scope.tags['component-report-filter'].filterDateTo)) {
+
+        return;
+      }
+
       this.monthContainerId.style.transition = '0s';
       this.monthContainerId.style.webkitTransition = '0s';
       this.monthContainerId.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
       this.monthContainerId.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
 
-    }
+    };
 
     function changePosition() {
 
@@ -295,10 +321,28 @@
       return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
     }
 
-    paymentListUpdate = function () {
-      var date = new Date();
-      var firstDay = new Date(date.getFullYear(), mNumber, 1);
-      var lastDay = new Date(date.getFullYear(), mNumber + 1, 0);
+    scope.paymentListUpdate = paymentListUpdate = function () {
+
+      var firstDay = scope.tags["component-report-filter"].filterDateFrom,
+          lastDay = scope.tags["component-report-filter"].filterDateTo,
+          accountId = scope.tags["component-report-filter"].filterByAccount;
+
+      if (!accountId) {
+
+        accountId = null;
+      }
+
+      if (!(firstDay && lastDay)) {
+
+        var date = new Date();
+
+        firstDay = new Date(date.getFullYear(), mNumber, 1);
+        lastDay = new Date(date.getFullYear(), mNumber + 1, 0);
+
+        firstDay = convertDate(firstDay);
+        lastDay = convertDate(lastDay);
+      }
+
       console.log("firstDay=", firstDay);
       console.log("lastDay=", lastDay);
 
@@ -310,8 +354,9 @@
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
-          date_start: convertDate(firstDay),
-          date_end: convertDate(lastDay)
+          date_start: firstDay,
+          date_end: lastDay,
+          account_id: accountId
         },
         scope: this,
 
@@ -371,10 +416,33 @@
     }
 
 
-    graphListUpdate = function () {
-      var date = new Date();
-      var firstDay = new Date(date.getFullYear(), mNumber, 1);
-      var lastDay = new Date(date.getFullYear(), mNumber + 1, 0);
+    scope.graphListUpdate = graphListUpdate = function () {
+
+      var firstDay = scope.tags["component-report-filter"].filterDateFrom,
+          lastDay = scope.tags["component-report-filter"].filterDateTo,
+          accountId = scope.tags["component-report-filter"].filterByAccount;
+
+      if (opts.account_id) {
+
+        accountId = opts.account_id;
+      }
+
+      if (!accountId) {
+
+        accountId = null;
+      }
+
+      if (!(firstDay && lastDay)) {
+
+        var date = new Date();
+
+        firstDay = new Date(date.getFullYear(), mNumber, 1);
+        lastDay = new Date(date.getFullYear(), mNumber + 1, 0);
+
+        firstDay = convertDate(firstDay);
+        lastDay = convertDate(lastDay);
+      }
+
       console.log("firstDay=", firstDay);
       console.log("lastDay=", lastDay);
 
@@ -385,9 +453,9 @@
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
-          date_start: convertDate(firstDay),
-          date_end: convertDate(lastDay),
-          account_id: opts.account_id
+          date_start: firstDay,
+          date_end: lastDay,
+          account_id: accountId
         },
         scope: this,
 

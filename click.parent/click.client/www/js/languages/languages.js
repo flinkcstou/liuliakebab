@@ -78,6 +78,9 @@ var RU_LANGUAGES =
 
   "ComponentReportFilterReadyButton": "готово",
 
+  "ComponentReportFilterTodayText": "сегодня",
+  "ComponentReportFilterYesterdayText": "вчера",
+
   "ViewAmountCalculatorNameTitle": "КАЛЬКУЛЯТОР ВАЛЮТ",
   "ViewAmountCalculatorTextOne": "Введите сумму в USD",
   "ViewAmountCalculatorTextTwo": "Текущий курс: 1$=",
@@ -336,6 +339,8 @@ var RU_LANGUAGES =
   "ViewReportServiceStatus": "Статус:",
   "ViewReportServicePaymentNumber": "Номер платежа:",
   "ViewReportServicePaymentDate": "Дата:",
+
+  "ViewReportsFilterAllAccountsText": "Все карты и счета",
 
   "VewSettingsSupportMessage": "Если вы обнаружили ошибку, хотите получить помощь или внести предложение,пожалуйста, сообщите нам об этом",
   "VewSettingsSupportTheme": "ВЫБЕРИТЕ ТЕМУ ДЛЯ ОБРАЩЕНИЯ",

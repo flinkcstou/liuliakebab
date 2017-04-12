@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/filters.png);" +
+    //"background-image: url(resources/draft/chart_filtered.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -8078,9 +8078,10 @@ var css = {
 
   reportFilterFilterPlusIcon: ".report-filter-filter-plus-icon" +
   "{" +
+  "position: relative;" +
+  "left: " + 20 * widthK + "px;" +
   "float: right;" +
-  "margin-right: " + 7 * widthK + "px;" +
-  "margin-top: " + 18 * widthK + "px;" +
+  "padding: " + 18 * widthK + "px " + 28 * widthK + "px " + 15 * widthK + "px " + 30 * widthK + "px;" +
   "height: " + 25 * widthK + "px;" +
   "width: " + 25 * widthK + "px;" +
   "}",
@@ -8091,7 +8092,7 @@ var css = {
   "width: 95.7%;" +
   "height: " + 75 * widthK + "px;" +
   "float: left;" +
-  "margin-top: " + 15 * widthK + "px;" +
+    //"margin-top: " + 15 * widthK + "px;" +
   "border-top: 1px solid #00BCE8;" +
   "padding: " + 13.5 * widthK + "px 0 0 4.3%;" +
   "}",
@@ -8113,6 +8114,29 @@ var css = {
   "color: white;" +
   "top: 29%;" +
   "font-size:" + 29 * widthK + "px;" +
+  "}",
+
+  viewReportsDateFilterText: ".view-reports-date-filter-text" +
+  "{" +
+  "margin: 0;" +
+  "color: white;" +
+  "top: " + 95 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "text-align: center;" +
+  "font-size: " + 30 * widthK + "px;" +
+  "}",
+
+  viewReportsAccountFilterText: ".view-reports-account-filter-text" +
+  "{" +
+  "margin: 0;" +
+  "position: absolute;" +
+  "top: " + 111 * widthK + "px;" +
+  "width: 100%;" +
+  "text-align: center;" +
+  "font-size: " + 24 * widthK + "px;" +
+  "left: " + 6 * widthK + "px;" +
+  "color: #525252;" +
   "}",
 
   viewReportsFilterButton: ".view-reports-filter-button " +
@@ -8197,6 +8221,8 @@ var css = {
   "{" +
   "margin-bottom: " + 6 * widthK + "px;" +
   "margin-left: " + 19 * widthK + "px;" +
+  "height: " + 15 * widthK + "px;" +
+  "width: " + 15 * widthK + "px;" +
   "}",
 
   filterMenuInsideButton: ".filter-menu-inside-button " +
