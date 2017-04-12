@@ -29,6 +29,7 @@
   <script>
     var scope = this;
 
+
     if (!viewTransfer.check) {
       scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
     }
@@ -46,33 +47,46 @@
     scope.checked = false;
     scope.cardId = undefined;
     scope.index = -1;
-
     console.log(' scope.cardsArray', scope.cardsArray)
 
+
     if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
-      for (var i in scope.cardsArray)
+      for (var i in scope.cardsArray) {
         if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
           scope.cardsArray[i].chosenCard = false;
-//          scope.index = scope.cardsArray[i].card_id;
         }
+      }
       console.log("WWW");
     }
     else {
-      for (var i in scope.cardsArray)
+      for (var i in scope.cardsArray) {
         if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
           scope.checkedId = "check" + scope.cardsArray[i].card_id;
-//          scope.index = scope.cardsArray[i].card_id;
         }
+      }
       console.log("QQQ");
     }
-
-
     var touchStartY;
+
+
     var touchEndY;
+    //          scope.index = scope.cardsArray[i].card_id;
+    //          scope.index = scope.cardsArray[i].card_id;
+
+
+    scope.on("mount", function () {
+
+      for (var i in scope.cardsArray) {
+        if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
+          scope.cardId = scope.cardsArray[i].card_id;
+          scope.cardName = scope.cardsArray[i].name;
+        }
+      }
+    });
 
     chooseCardTouchStart = function () {
       touchStartY = event.changedTouches[0].pageY;
-    }
+    };
 
 
     chooseCardTouchEnd = function (id) {
@@ -121,6 +135,7 @@
         for (var i in scope.cardsArray) {
           if (scope.cardsArray[i].card_id == id && scope.cardsArray[i].access == 2) {
             scope.cardsArray[i].chosenCard = true;
+            scope.cardName = scope.cardsArray[i].name;
           }
           else
             scope.cardsArray[i].chosenCard = false;
@@ -138,6 +153,11 @@
     scope.getAccountCardId = function () {
 
       return scope.cardId;
+    };
+
+    scope.getAccountCardName = function () {
+
+      return scope.cardName;
     };
 
 

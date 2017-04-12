@@ -8146,6 +8146,59 @@ var css = {
   "outline: none" +
   "}",
 
+  reportFilterFilterInfoContainer: ".report-filter-filter-info-container" +
+  "{" +
+  "height: " + 36 * widthK + "px;" +
+  "contain: content;" +
+  "float: left;" +
+  "background-color: #ffffff;" +
+  "}",
+
+  reportFilterFilterInfoText: ".report-filter-filter-info-text" +
+  "{" +
+  "margin: 0;" +
+  "font-size: " + 24 * widthK + "px;" +
+  "float: left;" +
+  "margin-left: " + 20 * widthK + "px;" +
+  "margin-top: " + 3 * widthK + "px;" +
+  "color: #979797;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "max-width: " + 400 * widthK + "px;" +
+  "}",
+
+  reportFilterFilterDeleteIcon: ".report-filter-filter-delete-icon" +
+  "{" +
+  "width: " + 15 * widthK + "px;" +
+  "height: " + 15 * widthK + "px;" +
+  "margin-left: " + 26 * widthK + "px;" +
+  "margin-right: " + 13 * widthK + "px;" +
+  "margin-bottom: " + 4 * widthK + "px;" +
+  "}",
+
+  reportFilterClearFiltersContainer: ".report-filter-clear-filters-container" +
+  "{" +
+  "height: " + 25 * widthK + "px;" +
+  "position: absolute;" +
+  "bottom: " + 133 * widthK + "px;" +
+  "left: " + 163 * widthK + "px;" +
+  "}",
+
+  reportFilterClearFiltersLabel: ".report-filter-clear-filters-label" +
+  "{" +
+  "margin: 0;" +
+  "float: left;" +
+  "font-size: " + 24 * widthK + "px;" +
+  "color: white;" +
+  "text-decoration: underline;" +
+  "}",
+
+  reportFilterClearFiltersIcon: ".report-filter-clear-filters-icon" +
+  "{" +
+  "margin-bottom: " + 6 * widthK + "px;" +
+  "margin-left: " + 19 * widthK + "px;" +
+  "}",
+
   filterMenuInsideButton: ".filter-menu-inside-button " +
   "{" +
   "position: absolute;" +
