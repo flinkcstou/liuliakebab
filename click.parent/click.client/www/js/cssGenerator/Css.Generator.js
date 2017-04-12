@@ -7951,16 +7951,18 @@ var css = {
   "width: 50%;" +
   "left: 103%;" +
   "color: #8b8b8b;" +
+  "transform: translate3d(-50%, 0, 0);" +
+  "text-align: center;" +
   "}",
 
   viewReportsMonthInfoName: ".view-reports-month-info-name " +
   "{" +
   "position: absolute;" +
   "top: 10%;" +
-  "left: 3%;" +
   "margin: 0;" +
   "color: white;" +
   "font-size: " + 30 * widthK + "px; " +
+  "width: 100%;" +
   "}",
 
   viewReportsBodyContainer: ".view-reports-body-container" +

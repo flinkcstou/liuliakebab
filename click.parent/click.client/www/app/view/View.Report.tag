@@ -19,7 +19,7 @@
          ontouchmove="monthContainerTouchMove()"
          hidden="{(tags['component-report-filter'].filterDateFrom && tags['component-report-filter'].filterDateTo)}">
       <div class="view-reports-month-info-container" each="{i in monthsArray}"
-           style="left:{leftOfOperations*i.count}px;">
+           style="left:{50*i.count}%;">
         <p class="view-reports-month-info-name">{i.name}</p>
       </div>
     </div>
@@ -191,7 +191,12 @@
 
       console.log("in start touch=", mNumber);
       carouselTouchStartX = event.changedTouches[0].pageX;
-      left = -((320 * mNumber) * widthK) - carouselTouchStartX;
+
+      percentageTouche = (carouselTouchStartX * 100.0) / window.innerHeight;
+
+      console.log("touche started at %", percentageTouche);
+
+      left = -(50 * mNumber) - percentageTouche;
       delta = left;
     };
 
@@ -221,10 +226,12 @@
         return;
       }
 
+      toucheInPercentage = (event.changedTouches[0].pageX * 100.0) / window.innerHeight
+
       this.monthContainerId.style.transition = '0s';
       this.monthContainerId.style.webkitTransition = '0s';
-      this.monthContainerId.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
-      this.monthContainerId.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
+      this.monthContainerId.style.transform = "translate3d(" + (toucheInPercentage + delta ) + '%' + ", 0, 0)";
+      this.monthContainerId.style.webkitTransform = "translate3d(" + (toucheInPercentage + delta ) + '%' + ", 0, 0)";
 
     };
 
@@ -234,30 +241,30 @@
         ++mNumber;
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
       }
 
       if (carouselTouchEndX > carouselTouchStartX && mNumber == 0) {
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
       }
 
       if (carouselTouchEndX < carouselTouchStartX && mNumber == count - 1) {
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
       }
 
       if (carouselTouchEndX > carouselTouchStartX && mNumber > 0) {
         --mNumber;
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
       }
 
       if (scope.firstReportView) {
@@ -275,30 +282,30 @@
         ++mNumber;
         this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
       }
 
       if (mNumber == 0) {
         this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
       }
 
       if (mNumber == count - 1) {
         this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
       }
 
       if (mNumber > 0) {
         --mNumber;
         this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 320) * widthK + 'px' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
       }
 
       if (scope.firstReportView) {
