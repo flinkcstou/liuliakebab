@@ -30,6 +30,16 @@
     viewServicePinCards.chosenFriendForHelp = [];
     componentMenu.check = false;
 
+    if (device.platform != 'BrowserStand' && !localStorage.getItem('push_registered'))
+      window.pushNotificationInitialize();
+
+    if (device.platform != 'BrowserStand')
+      window.FirebasePlugin.onNotificationOpen(function (notification) {
+        console.log(notification);
+      }, function (error) {
+        console.error(error);
+      });
+
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#00a8f1");

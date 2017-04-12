@@ -23,7 +23,7 @@
       {window.languages.ViewTransferTwoNext}
     </button>
 
-    <div class="transfertwo-comment-container">
+    <div style="display: none" class="transfertwo-comment-container">
             <textarea id="commentTextId" maxlength="255" class="transfertwo-comment-input"
                       type="text" placeholder={comment}></textarea>
     </div>
