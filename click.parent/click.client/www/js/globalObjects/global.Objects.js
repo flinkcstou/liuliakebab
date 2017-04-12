@@ -134,3 +134,45 @@ window.amountTransform = function (amount) {
 
   return newAmount.split("").reverse().join("");
 }
+
+window.pushNotificationInitialize = function () {
+  window.FirebasePlugin.getToken(function (token) {
+    // save this server-side and use it to push notifications to this device
+
+    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+    var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+    var sessionKey = info.session_key;
+
+    window.api.call({
+      method: 'push.register.token',
+      input: {
+        phone_num: phoneNumber,
+        session_key: sessionKey,
+        token: token,
+        device_vendor: device.manufacturer,
+        device_model: device.model
+
+      },
+
+      scope: this,
+
+      onSuccess: function (result) {
+        if (result[0][0].error == 0) {
+          console.log("PUSH", result);
+          localStorage.setItem('push_registered', token)
+        }
+        else
+          alert(result[0][0].error_note);
+      },
+
+      onFail: function (api_status, api_status_message, data) {
+        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+        console.error(data);
+      }
+    });
+    console.log('TOKEN PUSH', token)
+    console.log(token);
+  }, function (error) {
+    console.error(error);
+  });
+}
