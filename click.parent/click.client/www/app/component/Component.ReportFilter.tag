@@ -71,8 +71,10 @@
         <img class="report-filter-filter-plus-icon" src="resources/icons/ViewSettingsFriendHelp/plus.png"
              ontouchend="filterDateTouchEnd()" ontouchstart="filterDateTouchStart()">
         <div class="report-filter-filter-chosen-filter-container">
-          <div>
-
+          <div class="report-filter-filter-info-container" if="{createdDateFilter}">
+            <p class="report-filter-filter-info-text">{createdDateFilter}</p>
+            <img class="report-filter-filter-delete-icon" src="resources/icons/ViewReport/reports_filters_del.png"
+                 ontouchend="deleteDateFilterTouchEnd()" ontouchstart="deleteDateFilterTouchStart()">
           </div>
         </div>
       </div>
@@ -80,7 +82,20 @@
         <p class="report-filter-filter-title">{languages.ComponentReportFilterByAccount}</p>
         <img class="report-filter-filter-plus-icon" src="resources/icons/ViewSettingsFriendHelp/plus.png"
              ontouchend="filterAccountTouchEnd()" ontouchstart="filterAccountTouchStart()">
-        <div class="report-filter-filter-chosen-filter-container"></div>
+        <div class="report-filter-filter-chosen-filter-container">
+          <div class="report-filter-filter-info-container" if="{createdAccountFilter}">
+            <p class="report-filter-filter-info-text">{createdAccountFilter}</p>
+            <img class="report-filter-filter-delete-icon" src="resources/icons/ViewReport/reports_filters_del.png"
+                 ontouchend="deleteAccountFilterTouchEnd()" ontouchstart="deleteAccountFilterTouchStart()">
+          </div>
+        </div>
+      </div>
+
+      <div class="report-filter-clear-filters-container"
+           ontouchend="deleteAccountFilterTouchEnd(), deleteDateFilterTouchEnd()"
+           ontouchstart="deleteAccountFilterTouchStart(), deleteDateFilterTouchStart()">
+        <p class="report-filter-clear-filters-label">Очистить все фильтры</p>
+        <img class="report-filter-clear-filters-icon" src="resources/icons/ViewReport/reports_filters_clear.png">
       </div>
     </div>
 
@@ -98,6 +113,10 @@
         filterAccountTouchEndX,
         readyButtonTouchStartX,
         readyButtonTouchEndX,
+        deleteAccountFilterTouchStartX,
+        deleteAccountFilterTouchEndX,
+        deleteDateFilterTouchStartX,
+        deleteDateFilterTouchEndX,
         date;
 
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -107,6 +126,43 @@
 
     scope.filterDate = false;
     scope.filterAccount = false;
+
+    deleteAccountFilterTouchStart = function () {
+
+      deleteAccountFilterTouchStartX = event.changedTouches[0].pageX;
+    };
+
+    deleteAccountFilterTouchEnd = function () {
+
+      deleteAccountFilterTouchEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(deleteAccountFilterTouchEndX - deleteAccountFilterTouchStartX) < 20) {
+
+        scope.createdAccountFilter = "";
+        scope.filterByAccount = "";
+
+        riot.update();
+      }
+    };
+
+    deleteDateFilterTouchStart = function () {
+
+      deleteDateFilterTouchStartX = event.changedTouches[0].pageX;
+    };
+
+    deleteDateFilterTouchEnd = function () {
+
+      deleteDateFilterTouchEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(deleteDateFilterTouchEndX - deleteDateFilterTouchStartX) < 20) {
+
+        scope.createdDateFilter = "";
+        scope.filterDateFrom = "";
+        scope.filterDateTo = "";
+
+        riot.update();
+      }
+    };
 
     setDate = function (forWhatDate) {
 
@@ -250,12 +306,14 @@
 
         if (scope.filterDate) {
 
-          scope.filterDateFrom = scope.from_yyyy + "-" + scope.from_mm + "-" + scope.from_dd;
-          scope.filterDateTo = scope.to_yyyy + "-" + scope.to_mm + "-" + scope.to_dd;
+          scope.filterDateFrom = representDashedDate(scope.from_yyyy, scope.from_mm, scope.from_dd);
+          scope.filterDateTo = representDashedDate(scope.to_yyyy, scope.to_mm, scope.to_dd);
+          scope.createdDateFilter = representDotedDate(scope.from_dd, scope.from_mm, scope.from_yyyy) + " - " + representDotedDate(scope.to_dd, scope.to_mm, scope.to_yyyy);
 
         } else if (scope.filterAccount) {
 
           scope.filterByAccount = scope.tags["component-pincards"].getAccountCardId();
+          scope.createdAccountFilter = scope.tags["component-pincards"].getAccountCardName();
         }
 
         scope.filterDate = false;

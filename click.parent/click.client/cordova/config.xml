@@ -24,6 +24,10 @@
 
   <plugin name="cordova-plugin-spinner"/>
 
+  <!--TEST-->
+  <plugin name="cordova-plugin-calendar"/>
+  <!--TEST-->
+
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
