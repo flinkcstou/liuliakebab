@@ -55,7 +55,6 @@
       event.stopPropagation()
 
       touchEndY = event.changedTouches[0].pageY;
-      console.log('imageId', imageId)
 
 
       if (Math.abs(touchStartY - touchEndY) <= 20) {
