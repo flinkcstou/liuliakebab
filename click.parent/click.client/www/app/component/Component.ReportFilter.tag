@@ -129,6 +129,8 @@
 
     pickDateFrom = function () {
 
+      var comparisonDate = new Date();
+
       var options = {
         date: new Date(),
         mode: 'date',
@@ -139,9 +141,17 @@
 
         date = pickedDate;
 
-        scope.from_dd = date.getDate();
-        scope.from_mm = date.getMonth() + 1;
-        scope.from_yyyy = date.getFullYear();
+        if (date.getTime() > comparisonDate.getTime()) {
+
+          scope.from_dd = comparisonDate.getDate();
+          scope.from_mm = comparisonDate.getMonth() + 1;
+          scope.from_yyyy = comparisonDate.getFullYear();
+        } else {
+
+          scope.from_dd = date.getDate();
+          scope.from_mm = date.getMonth() + 1;
+          scope.from_yyyy = date.getFullYear();
+        }
 
         riot.update();
       }
@@ -151,6 +161,8 @@
 
     pickDateTo = function () {
 
+      var comparisonDate = new Date();
+
       var options = {
         date: new Date(),
         mode: 'date',
@@ -161,9 +173,17 @@
 
         date = pickedDate;
 
-        scope.to_dd = date.getDate();
-        scope.to_mm = date.getMonth() + 1;
-        scope.to_yyyy = date.getFullYear();
+        if (date.getTime() > comparisonDate.getTime()) {
+
+          scope.to_dd = comparisonDate.getDate();
+          scope.to_mm = comparisonDate.getMonth() + 1;
+          scope.to_yyyy = comparisonDate.getFullYear();
+        } else {
+
+          scope.to_dd = date.getDate();
+          scope.to_mm = date.getMonth() + 1;
+          scope.to_yyyy = date.getFullYear();
+        }
 
         riot.update();
       }
@@ -489,7 +509,7 @@
 //      touchStartX = event.changedTouches[0].pageX;
 //      timeStartX = event.timeStamp.toFixed(0);
 
-    }
+    };
 
     sideMenuTouchEnd = function () {
 //      event.preventDefault();

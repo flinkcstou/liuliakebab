@@ -29,6 +29,10 @@
       {tags['component-report-filter'].createdDateFilter}
     </p>
 
+    <p class="view-reports-month-not-started-yet-label" if="{monthNotStartedYet}">
+      {languages.ViewReportMonthsArray[mNumber].name}
+      {languages.ViewReportsFilterMonthNotStartedYet}</p>
+
     <div class="view-reports-body-container" if="{firstReportView}">
       <div class="view-reports-payments-container" each="{i in paymentDates}">
         <div class="view-reports-payment-date-containter">
@@ -123,15 +127,17 @@
     scope.leftOfOperations = 320 * widthK;
     scope.firstReportView = true;
     scope.showError = false;
-    var mNumber;
+
     var count = 12;
     localStorage.setItem('click_client_countCard', count);
 
     scope.firstReportView = !opts.show_graph;
 
 
-    if (!mNumber) {
-      mNumber = new Date().getMonth();
+    if (!scope.mNumber) {
+      scope.mNumber = new Date().getMonth();
+
+      scope.monthNotStartedYet = false;
 
       this.on('mount', function () {
         changePositionTwo();
@@ -155,12 +161,13 @@
 
 
     graphView = function () {
+
       scope.firstReportView = !scope.firstReportView;
       riot.update(scope.firstReportView);
 
       var date = new Date();
-      var firstDay = new Date(date.getFullYear(), mNumber, 1);
-      var lastDay = new Date(date.getFullYear(), mNumber + 1, 0);
+      var firstDay = new Date(date.getFullYear(), scope.mNumber, 1);
+      var lastDay = new Date(date.getFullYear(), scope.mNumber + 1, 0);
       console.log("firstDay=", firstDay);
       console.log("lastDay=", lastDay);
 
@@ -189,14 +196,14 @@
         return;
       }
 
-      console.log("in start touch=", mNumber);
+      console.log("in start touch=", scope.mNumber);
       carouselTouchStartX = event.changedTouches[0].pageX;
 
       percentageTouche = (carouselTouchStartX * 100.0) / window.innerHeight;
 
       console.log("touche started at %", percentageTouche);
 
-      left = -(50 * mNumber) - percentageTouche;
+      left = -(50 * scope.mNumber) - percentageTouche;
       delta = left;
     };
 
@@ -218,6 +225,7 @@
 
 
     monthContainerTouchMove = function () {
+
       event.preventDefault();
       event.stopPropagation();
 
@@ -226,7 +234,7 @@
         return;
       }
 
-      toucheInPercentage = (event.changedTouches[0].pageX * 100.0) / window.innerHeight
+      toucheInPercentage = (event.changedTouches[0].pageX * 100.0) / window.innerHeight;
 
       this.monthContainerId.style.transition = '0s';
       this.monthContainerId.style.webkitTransition = '0s';
@@ -237,34 +245,47 @@
 
     function changePosition() {
 
-      if (carouselTouchEndX < carouselTouchStartX && mNumber < count - 1) {
-        ++mNumber;
+      if (carouselTouchEndX < carouselTouchStartX && scope.mNumber < count - 1) {
+        ++scope.mNumber;
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
-      if (carouselTouchEndX > carouselTouchStartX && mNumber == 0) {
+      if (carouselTouchEndX > carouselTouchStartX && scope.mNumber == 0) {
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
-      if (carouselTouchEndX < carouselTouchStartX && mNumber == count - 1) {
+      if (carouselTouchEndX < carouselTouchStartX && scope.mNumber == count - 1) {
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
-      if (carouselTouchEndX > carouselTouchStartX && mNumber > 0) {
-        --mNumber;
+      if (carouselTouchEndX > carouselTouchStartX && scope.mNumber > 0) {
+        --scope.mNumber;
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+      }
+
+      var dateForComparison = new Date();
+
+      if (dateForComparison.getMonth() < scope.mNumber) {
+
+        scope.monthNotStartedYet = true;
+        riot.update();
+
+      } else {
+
+        scope.monthNotStartedYet = false;
+        riot.update();
       }
 
       if (scope.firstReportView) {
@@ -273,39 +294,52 @@
         graphListUpdate();
       }
 
-      localStorage.setItem('mNumber', mNumber);
+      localStorage.setItem('mNumber', scope.mNumber);
     }
 
     function changePositionTwo() {
 
-      if (mNumber < count - 1) {
-        ++mNumber;
+      if (scope.mNumber < count - 1) {
+        ++scope.mNumber;
         this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
-      if (mNumber == 0) {
+      if (scope.mNumber == 0) {
         this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
-      if (mNumber == count - 1) {
+      if (scope.mNumber == count - 1) {
         this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
-      if (mNumber > 0) {
-        --mNumber;
+      if (scope.mNumber > 0) {
+        --scope.mNumber;
         this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+      }
+
+      var dateForComparison = new Date();
+
+      if (dateForComparison.getMonth() < scope.mNumber) {
+
+        scope.monthNotStartedYet = true;
+        riot.update();
+
+      } else {
+
+        scope.monthNotStartedYet = false;
+        riot.update();
       }
 
       if (scope.firstReportView) {
@@ -330,6 +364,17 @@
 
     scope.paymentListUpdate = paymentListUpdate = function () {
 
+      if (scope.monthNotStartedYet) {
+
+        scope.paymentsMap = {};
+        scope.paymentDates = [];
+        scope.paymentsList = [];
+
+        riot.update();
+
+        return;
+      }
+
       var firstDay = scope.tags["component-report-filter"].filterDateFrom,
           lastDay = scope.tags["component-report-filter"].filterDateTo,
           accountId = scope.tags["component-report-filter"].filterByAccount;
@@ -343,8 +388,8 @@
 
         var date = new Date();
 
-        firstDay = new Date(date.getFullYear(), mNumber, 1);
-        lastDay = new Date(date.getFullYear(), mNumber + 1, 0);
+        firstDay = new Date(date.getFullYear(), scope.mNumber, 1);
+        lastDay = new Date(date.getFullYear(), scope.mNumber + 1, 0);
 
         firstDay = convertDate(firstDay);
         lastDay = convertDate(lastDay);
@@ -420,10 +465,22 @@
           console.error(data);
         }
       });
-    }
+    };
 
 
     scope.graphListUpdate = graphListUpdate = function () {
+
+      if (scope.monthNotStartedYet) {
+
+        scope.graphList = [];
+        scope.paymentsSum = 0;
+
+        createGraph([]);
+
+        riot.update();
+
+        return;
+      }
 
       var firstDay = scope.tags["component-report-filter"].filterDateFrom,
           lastDay = scope.tags["component-report-filter"].filterDateTo,
@@ -443,8 +500,8 @@
 
         var date = new Date();
 
-        firstDay = new Date(date.getFullYear(), mNumber, 1);
-        lastDay = new Date(date.getFullYear(), mNumber + 1, 0);
+        firstDay = new Date(date.getFullYear(), scope.mNumber, 1);
+        lastDay = new Date(date.getFullYear(), scope.mNumber + 1, 0);
 
         firstDay = convertDate(firstDay);
         lastDay = convertDate(lastDay);
@@ -522,7 +579,7 @@
         }
       });
 
-    }
+    };
 
     createGraph = function (arrayForGraph) {
       scope.count = 0;
