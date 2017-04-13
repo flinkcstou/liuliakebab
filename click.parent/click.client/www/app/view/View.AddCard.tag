@@ -13,7 +13,8 @@
     <div class="add-card-card-field">
       <p class="add-card-card-text add-card-card-number-text">{window.languages.ViewAddCardNumberTitle}</p>
       <div id="cardNumberInput" class="add-card-card-number">
-        <input type="number" onkeyup="boxOneKeyUp()" onkeydown="boxOneKeyDown()" autofocus="true" maxlength="4" id="boxOne"
+        <input type="number" onkeyup="boxOneKeyUp()" onkeydown="boxOneKeyDown()" autofocus="true" maxlength="4"
+               id="boxOne"
                class="add-card-card-number-box registration-client-card-number-box-one">
         </input>
         <input type="number" onkeydown="boxTwoKeyDown()" maxlength="4" id="boxTwo"
@@ -30,7 +31,7 @@
       <p id="cardDateInputTitleId" class="add-card-card-text add-card-card-text-date">
         {window.languages.ViewAddCardDateTitle}</p>
       <div id="cardDateInputId" class="add-card-card-date" type="text">
-        <input onkeyup="boxDateKeyUp()" onkeydown="boxDateKeyDown()" maxlength="5" id="boxDate"
+        <input type="tel" onkeyup="boxDateKeyUp()" onkeydown="boxDateKeyDown()" maxlength="5" id="boxDate"
                class="add-card-card-date-box">
         </input>
       </div>
@@ -50,7 +51,8 @@
     </div>
 
     <button class="view-add-next-button"
-         ontouchend="createCardTouchEnd()">ДОБАВИТЬ</button>
+            ontouchend="createCardTouchEnd()">ДОБАВИТЬ
+    </button>
   </div>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
@@ -62,10 +64,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-card') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-add-card',
-            "params": opts
-          }
+        {
+          "view": 'view-add-card',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -184,6 +186,7 @@
     }
 
     boxFourKeyDown = function () {
+      console.log('event.keyCode', event.keyCode)
 
       if (boxFour.value.length >= 4 && event.keyCode != input_codes.BACKSPACE_CODE) {
         boxFour.value = event.target.value.substring(0, event.target.value.length - 1);
