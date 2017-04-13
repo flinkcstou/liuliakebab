@@ -63,10 +63,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-client') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-registration-client',
-            "params": opts
-          }
+        {
+          "view": 'view-registration-client',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -235,6 +235,17 @@
           }
         }
 
+        if (checkDateCopy && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardDate.length < 5) {
+          if (scope.cardDate.length == 2)
+            scope.cardDate += '/'
+          scope.cardDate += myValue;
+          scope.cardDateOriginal += myValue;
+          riot.update(scope.cardDate)
+          if (scope.cardDate.length == 4) {
+            scope.checkReturn = true;
+          }
+        }
+
         if (!scope.checkReturn && checkFour && scope.cardNumberPartFour.length < 4) {
           scope.cardNumberPartFour += myValue;
           riot.update(scope.cardNumberPartFour)
@@ -247,16 +258,6 @@
           }
         }
 
-        if (checkDateCopy && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardDate.length < 5) {
-          if (scope.cardDate.length == 2)
-            scope.cardDate += '/'
-          scope.cardDate += myValue;
-          scope.cardDateOriginal += myValue;
-          riot.update(scope.cardDate)
-          if (scope.cardDate.length == 4) {
-            scope.checkReturn = true;
-          }
-        }
         if (checkPinCopy && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardPinOriginal.length < 4) {
           scope.cardPin += ' * ';
           scope.cardPinOriginal += myValue;
