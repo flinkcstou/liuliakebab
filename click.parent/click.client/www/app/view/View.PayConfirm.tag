@@ -311,8 +311,10 @@
               if (result[1])
                 if (result[1][0].payment_id || result[1][0].invoice_id) {
                   console.log("result of APP.PAYMENT 1", result);
-                  viewServicePage.phoneText = null;
-                  viewServicePage.amountText = null;
+                  viewServicePage.phoneText = '';
+                  window.viewServicePage = {};
+                  viewServicePage.amountText = '';
+                  viewServicePage.amountWithoutSpace = '';
                   viewServicePinCards.friendHelpPaymentMode = false;
                   viewServicePinCards.chosenFriendForHelp = null;
                   componentSuccessId.style.display = 'block';

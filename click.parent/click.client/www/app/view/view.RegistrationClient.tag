@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <div id="cardPinInput" class="registration-client-card-pin">
+    <div style="display: none" id="cardPinInput" class="registration-client-card-pin">
       <p class="registration-client-card-text registration-client-card-text-pin">Код банка</p>
       <div ontouchend="touchEndBoxPin()" id="boxPin"
            class="registration-client-card-date-pin-box">

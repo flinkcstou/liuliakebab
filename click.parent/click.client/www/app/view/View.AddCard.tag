@@ -35,9 +35,9 @@
         </input>
       </div>
 
-      <p id="cardPinInputTitleId" class="add-card-card-text add-card-card-text-pin">
+      <p style="display: none" id="cardPinInputTitleId" class="add-card-card-text add-card-card-text-pin">
         {window.languages.ViewAddCardPinTitle}</p>
-      <div id="cardPinInputId" class="add-card-card-pin">
+      <div style="display: none" id="cardPinInputId" class="add-card-card-pin">
         <input onkeyup="boxPinKeyUp()" type="tel" maxlength="4" id="boxPin"
                class="add-card-card-date-pin-box">
         </input>
