@@ -154,8 +154,8 @@
           cardDateInputId.style.display = 'none';
           cardDateInputTitleId.style.display = 'none';
 
-          cardPinInputId.style.display = 'block';
-          cardPinInputTitleId.style.display = 'block';
+//          cardPinInputId.style.display = 'block';
+//          cardPinInputTitleId.style.display = 'block';
         }
       }
     }
@@ -180,9 +180,14 @@
       if (boxThree.value.length == 4 && event.keyCode != 8) {
         boxFour.focus();
       }
+
     }
 
     boxFourKeyDown = function () {
+
+      if (boxFour.value.length >= 4 && event.keyCode != input_codes.BACKSPACE_CODE) {
+        boxFour.value = event.target.value.substring(0, event.target.value.length - 1);
+      }
 
       if (boxFour.value.length == 4 && event.keyCode != 8) {
         if (boxOne.value == '8600') {
