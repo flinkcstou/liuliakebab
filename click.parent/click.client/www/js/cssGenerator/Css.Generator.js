@@ -7965,6 +7965,21 @@ var css = {
   "width: 100%;" +
   "}",
 
+  viewReportsMonthNotStartedYetLabel: ".view-reports-month-not-started-yet-label" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "text-transform: uppercase;" +
+  "transform: translate3d(-50%, 0, 0);" +
+  "width: 100%;" +
+  "top: " + 540 * widthK + "px;" +
+  "left: 50%;" +
+  "font-size: " + 48 * widthK + "px;" +
+  "z-index: 1;" +
+  "color: #b6b6b6;" +
+  "text-align: center;" +
+  "}",
+
   viewReportsBodyContainer: ".view-reports-body-container" +
   "{" +
   "position: absolute;" +

@@ -399,6 +399,9 @@
     scope.formType = scope.service.form_type;
 
     if (scope.formType != 2) {
+
+      console.log("Yahoo1", scope.formType, scope.fieldArray, scope.servicesParamsMapOne[viewPay.chosenServiceId], scope.servicesParamsMapOne, viewPay.chosenServiceId);
+
       if (scope.fieldArray) {
         scope.dropDownOn = scope.fieldArray.length > 1;
         scope.chosenFieldName = scope.fieldArray[0].title;
@@ -414,6 +417,9 @@
           scope.chosenFieldParamId = scope.fieldArray[0].parameter_id;
           scope.oldFieldParamId = scope.fieldArray[1].parameter_id;
         }
+
+        console.log("Yahoooo_1", scope.fieldArray, scope.fieldArray[0], scope.fieldArray[0].input_type);
+
         if (scope.fieldArray[0].input_type == '1') {
           scope.inputType = 'number';
           scope.isNumber = true;
@@ -545,13 +551,21 @@
     };
 
     chooseFirstField = function (id) {
+
       this.blockFirstFieldId.style.display = 'none';
+
       for (var i = 0; i < scope.fieldArray.length; i++) {
+
+        console.log("Yahoo2", id, scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].parameter_id);
+
         if (scope.fieldArray[i].parameter_id == id) {
           scope.chosenFieldName = scope.fieldArray[i].title;
           scope.chosenFieldPlaceholder = scope.fieldArray[i].placeholder;
           scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1";
           scope.inputMaxLength = scope.fieldArray[i].max_len;
+
+          console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
+
           if (scope.fieldArray[i].input_type == '1') {
             scope.inputType = 'number';
             scope.isNumber = true;
