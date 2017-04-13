@@ -3064,3 +3064,11 @@ window.fakedSocket.register("get.news", function (input) {
     }
   ];
 });
+
+window.notification = {
+
+  action: "invoice",
+  body: "Abonent +998909464133 prosit Vas oplatit' 1000 sum na +998909464133(BEELINE)↵Naberite *880# dlya oplati ili otkaza",
+  notify_id: "4503973",
+  tap: false
+};

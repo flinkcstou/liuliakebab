@@ -11393,6 +11393,11 @@ var css = {
   "background-color: #f1eff3;  " +
   "}",
 
+  componentNotificationShow: ".component-notification-show" +
+  "{" +
+  "transform: translate3d(0, 0, 0);  " +
+  "}",
+
   ComponentNotificationButtonsContainer: ".component-notification-buttons-container" +
   "{" +
   "position: absolute;" +
