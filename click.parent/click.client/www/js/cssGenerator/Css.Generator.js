@@ -9272,7 +9272,7 @@ var css = {
   "overflow-x: hidden; " +
   "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
-  "background-position-y:" + 742 * widthK + "px;" +
+  "background-position-y:  108.7%;" +
   "background-size: 100%;" +
   "}",
 
@@ -9330,7 +9330,7 @@ var css = {
   "width: 100%;" +
   "bottom: 0;" +
   "background-color: #f4f4f4;" +
-  "height:" + 100 * widthK + "px;" +
+  "top: 94.79%;" +
   "}",
 
   invoiceHistoryDetailData: ".invoice-history-detail-data" +
