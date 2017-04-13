@@ -176,8 +176,14 @@
         <div class="component-banklist-bank-logo" style="background-image: url({i.image});"></div>
         <div class="component-banklist-bank-limit-container">
           <div class="component-banklist-bank-limit-text">{window.languages.ViewBankListLimitText}</div>
-          <div class="component-banklist-bank-limit">{i.amount}</div>
-          <div class="component-banklist-bank-limit-currency">{window.languages.ViewBankListLimitForMonthText}</div>
+          <div class="component-banklist-bank-limit-receipt">Прием: {i.p2p_receipt_max_limit}</div>
+          <div class="component-banklist-bank-limit-currency-receipt">{window.languages.ViewBankListLimitForMonthText}
+          </div>
+
+          <div class="component-banklist-bank-limit-transfer">Перевод: {i.p2p_max_limit}</div>
+          <div class="component-banklist-bank-limit-currency-transfer">
+            {window.languages.ViewBankListLimitForMonthText}
+          </div>
         </div>
       </div>
     </div>

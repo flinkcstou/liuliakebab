@@ -309,8 +309,8 @@ var RU_LANGUAGES =
   "ViewReportServiceRepeatButtonLabel": "повторить",
 
   "ViewBankListTitleName": "ДОСТУПНЫЕ БАНКИ",
-  "ViewBankListLimitForMonthText": "сум в месяц",
-  "ViewBankListLimitText": "Лимит:",
+  "ViewBankListLimitForMonthText": "сум",
+  "ViewBankListLimitText": "Лимит в месяц:",
 
   "ViewAddCardTitle": "ДОБАВИТЬ КАРТУ",
   "ViewAddCardNameTitle": "Введите название карты",
