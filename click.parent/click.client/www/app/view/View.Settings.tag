@@ -123,7 +123,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      settingsSupportId.style.display = 'block'
+      settingsSupportId.style.display = 'block';
 
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-settings-support') {
         history.arrayOfHistory.push(

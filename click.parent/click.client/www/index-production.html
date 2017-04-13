@@ -94,8 +94,6 @@
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
 
-      console.log("YAHOOOOOOOOOOOOO", window.isConnected);
-
       if (!window.isConnected) {
         var options = {dimBackground: true};
 
@@ -110,7 +108,7 @@
 
       var numberOfMessage = 0;
       window.FirebasePlugin.onNotificationOpen(function (notification) {
-        console.log(notification);
+        console.log("PUSH NOTIFICATION OBJECT", notification);
         ++numberOfMessage;
 
         window.FirebasePlugin.setBadgeNumber(numberOfMessage);

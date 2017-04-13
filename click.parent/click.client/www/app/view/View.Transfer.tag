@@ -175,14 +175,14 @@
       <div class="component-banklist-card" each="{i in bankList}">
         <div class="component-banklist-bank-logo" style="background-image: url({i.image});"></div>
         <div class="component-banklist-bank-limit-container">
-          <div class="component-banklist-bank-limit-text">{window.languages.ViewBankListLimitText}</div>
-          <div class="component-banklist-bank-limit-receipt">Прием: {i.p2p_receipt_max_limit}</div>
-          <div class="component-banklist-bank-limit-currency-receipt">{window.languages.ViewBankListLimitForMonthText}
+          <div class="component-banklist-bank-limit-receipt">{window.languages.ViewBankListReceiveLimitText}</div>
+          <div class="component-banklist-bank-limit-currency-receipt">{i.p2p_receipt_max_limit}
+            {window.languages.ViewBankListLimitForMonthText}
           </div>
 
-          <div class="component-banklist-bank-limit-transfer">Перевод: {i.p2p_max_limit}</div>
+          <div class="component-banklist-bank-limit-transfer">{window.languages.ViewBankListTransferLimitText}</div>
           <div class="component-banklist-bank-limit-currency-transfer">
-            {window.languages.ViewBankListLimitForMonthText}
+            {i.p2p_max_limit} {window.languages.ViewBankListLimitForMonthText}
           </div>
         </div>
       </div>
@@ -290,10 +290,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer',
-          "params": opts,
-        }
+          {
+            "view": 'view-transfer',
+            "params": opts,
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -457,9 +457,9 @@
 
     this.titleName = window.languages.ViewPayTransferTitle;
     var scope = this,
-      phoneNumberForTransfer = '',
-      cardNumberForTransfer = '',
-      arrayOfContacts = [];
+        phoneNumberForTransfer = '',
+        cardNumberForTransfer = '',
+        arrayOfContacts = [];
 
     scope.showError = false;
 

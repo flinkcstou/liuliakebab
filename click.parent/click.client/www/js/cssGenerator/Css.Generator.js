@@ -8722,61 +8722,56 @@ var css = {
   "margin: 0;" +
   "}",
 
-  componentBankListBankLimitText: ".component-banklist-bank-limit-text " +
-  "{" +
-  "position: absolute;" +
-  "height: 25%;" +
-  "top: 15%;" +
-  "left: 8%;" +
-  "margin: 0;" +
-  "color: #585658;" +
-  "font-size:" + 22 * widthK + "px; " +
-  "width: 75%;" +
-  "white-space: nowrap;" +
-  "text-overflow: ellipsis;" +
-  "overflow: hidden;" +
-  "}",
-
   componentBankListBankLimitReceipt: ".component-banklist-bank-limit-receipt " +
   "{" +
   "position: relative;" +
-  "top: 40%;" +
+  "top: 0%;" +
   "left: 8%;" +
   "margin: 0;" +
   "font-size:" + 20 * widthK + "px;" +
   "color: #585658;" +
   "float: left;" +
+  "width: 92%;" +
   "}",
 
   componentBankListBankLimitTransfer: ".component-banklist-bank-limit-transfer " +
   "{" +
   "position: relative;" +
-  "top: 40%;" +
+  "top: 2%;" +
   "left: 8%;" +
   "margin: 0;" +
   "font-size:" + 20 * widthK + "px;" +
   "color: #585658;" +
   "float: left;" +
+  "width: 92%;" +
   "}",
 
   componentBankListBankLimitCurrencyReceipt: ".component-banklist-bank-limit-currency-receipt" +
   "{" +
   "position: relative;" +
-  "top: 40%;" +
-  "left: 9%;" +
+  "top: 0%;" +
+  "left: 10%;" +
   "margin: 0;" +
   "font-size:" + 20 * widthK + "px;" +
   "color: #585658;" +
+  "float: left;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "width: 90%;" +
   "}",
 
   componentBankListBankLimitCurrencyTransfer: ".component-banklist-bank-limit-currency-transfer" +
   "{" +
   "position: relative;" +
-  "top: 40%;" +
-  "left: 9%;" +
+  "top: 0%;" +
+  "left: 10%;" +
   "margin: 0;" +
   "font-size:" + 20 * widthK + "px;" +
   "color: #585658;" +
+  "float: left;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "width: 90%;" +
   "}",
 
 //  VIEW FAVORITES
