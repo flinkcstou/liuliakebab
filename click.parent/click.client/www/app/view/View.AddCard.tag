@@ -13,16 +13,16 @@
     <div class="add-card-card-field">
       <p class="add-card-card-text add-card-card-number-text">{window.languages.ViewAddCardNumberTitle}</p>
       <div id="cardNumberInput" class="add-card-card-number">
-        <input onkeyup="boxOneKeyUp()" onkeydown="boxOneKeyDown()" autofocus="true" maxlength="4" id="boxOne"
+        <input type="number" onkeyup="boxOneKeyUp()" onkeydown="boxOneKeyDown()" autofocus="true" maxlength="4" id="boxOne"
                class="add-card-card-number-box registration-client-card-number-box-one">
         </input>
-        <input onkeydown="boxTwoKeyDown()" maxlength="4" id="boxTwo"
+        <input type="number" onkeydown="boxTwoKeyDown()" maxlength="4" id="boxTwo"
                class="add-card-card-number-box registration-client-card-number-box-two">
         </input>
-        <input onkeydown="boxThreeKeyDown()" maxlength="4" id="boxThree"
+        <input type="number" onkeydown="boxThreeKeyDown()" maxlength="4" id="boxThree"
                class="add-card-card-number-box registration-client-card-number-box-three">
         </input>
-        <input onkeydown="boxFourKeyDown()" maxlength="4" id="boxFour"
+        <input type="number" onkeydown="boxFourKeyDown()" maxlength="4" id="boxFour"
                class="add-card-card-number-box registration-client-card-number-box-four">
         </input>
       </div>

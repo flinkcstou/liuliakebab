@@ -284,10 +284,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-transfer',
-            "params": opts,
-          }
+        {
+          "view": 'view-transfer',
+          "params": opts,
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -327,10 +327,11 @@
           if (result[0][0].error == 0) {
             for (var i in result[1]) {
               result[1][i].amount = result[1][i].p2p_max_limit.toString();
+              console.log('result[1][i]', result[1][i])
 
               result[1][i].amount = window.amountTransform(result[1][i].amount);
 
-              console.log("!!!!!", result[1][i].p2p_max_limit);
+//              console.log("!!!!!", result[1][i].p2p_max_limit);
             }
 //            console.log("result of P2P BANK LIST ", result[1]);
             localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(result[1]))
@@ -443,9 +444,9 @@
 
     this.titleName = window.languages.ViewPayTransferTitle;
     var scope = this,
-        phoneNumberForTransfer = '',
-        cardNumberForTransfer = '',
-        arrayOfContacts = [];
+      phoneNumberForTransfer = '',
+      cardNumberForTransfer = '',
+      arrayOfContacts = [];
 
     scope.showError = false;
 
