@@ -465,7 +465,7 @@
           console.error(data);
         }
       });
-    }
+    };
 
 
     scope.graphListUpdate = graphListUpdate = function () {
@@ -579,7 +579,7 @@
         }
       });
 
-    }
+    };
 
     createGraph = function (arrayForGraph) {
       scope.count = 0;
