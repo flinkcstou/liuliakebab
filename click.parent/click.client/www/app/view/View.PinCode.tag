@@ -52,13 +52,14 @@
     scope.checkPin = true;
     scope.checkPinConfirm = false;
     scope.showError = false;
+    var fromRegistration
 
     if (opts[0] == 'view-registration-client') {
-      var fromRegistration = true;
+      fromRegistration = true;
       var cardNumber = opts[1];
       var cardInformation = opts[2];
     } else if (opts[0] == 'view-security-settings') {
-      var fromRegistration = false;
+      fromRegistration = false;
     }
 
 
@@ -145,20 +146,23 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = "Different pin codes";
-            scope.showError = true;
-            riotTags.innerHTML = "<view-pin-code>";
-            riot.mount('view-pin-code');
-            riot.update();
 
-            scope.checkPinConfirm = true;
+            console.log('scope.checkPin', scope.checkPin, 'scope.checkPinConfirm', scope.checkPinConfirm)
+            scope.showError = true;
+            scope.checkPin = true;
+            scope.checkPinConfirm = false;
+            riot.update(scope.checkPin);
+            riot.update(scope.checkPinConfirm);
+            console.log('scope.checkPin', scope.checkPin, 'scope.checkPinConfirm', scope.checkPinConfirm)
+            pinConfirm = '';
+            pin = '';
             enteredPin = '';
-            riot.update();
             updateEnteredPin()
           }
 
         }
-
-        if (scope.checkPin) {
+        else if (scope.checkPin) {
+          console.log('qwewewww')
           pin = enteredPin;
           scope.checkPin = false;
           scope.checkPinConfirm = true;
@@ -217,7 +221,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var currentPin = localStorage.getItem('pinForStand');
 
