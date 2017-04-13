@@ -91,23 +91,24 @@
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization' && !JSON.parse(localStorage.getItem('onResume'))) {
         history.arrayOfHistory.push(
-            {
-              "view": 'view-authorization',
-              "params": opts
-            }
+          {
+            "view": 'view-authorization',
+            "params": opts
+          }
         );
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
       }
     }
     else {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-authorization',
-            "params": opts
-          }
+        {
+          "view": 'view-authorization',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
+
 
     if (device.platform != 'BrowserStand')
       StatusBar.backgroundColorByHexString("#00a8f1");
@@ -278,8 +279,13 @@
               scope.clickPinError = true;
               console.log("click pin error");
             } else {
+              console.log(opts)
+              if (opts.from == "registration-client") {
+                scope.errorNote = "Карта ещё не добавлена. Попробуйте войти через несколько минут";
+              }
+              else
+                scope.errorNote = result[0][0].error_note;
               scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
               console.log("errornote=", scope.errorNote);
             }
             scope.showError = true;

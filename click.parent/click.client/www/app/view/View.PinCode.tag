@@ -194,7 +194,7 @@
           console.log(result[0][0])
           if (result[0][0].error == 0) {
             riotTags.innerHTML = "<view-authorization>";
-            riot.mount('view-authorization');
+            riot.mount('view-authorization', {from: "registration-client"});
             window.standCheckRegistration = true;
             localStorage.setItem('click_client_registered', true)
             return
@@ -204,8 +204,8 @@
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
             riot.update();
-            riotTags.innerHTML = "<view-registration-device>";
-            riot.mount('view-registration-device');
+            riotTags.innerHTML = "<view-registration-client>";
+            riot.mount('view-registration-client');
           }
 
         },
