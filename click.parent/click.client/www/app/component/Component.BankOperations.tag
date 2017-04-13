@@ -46,8 +46,7 @@
       event.preventDefault();
       event.stopPropagation();
 //      return
-      riotTags.innerHTML = "<view-news>";
-      riot.mount('view-news');
+      notificationPushId.style.transform = 'translate3d(0, -100%, 0)'
     }
 
   </script>

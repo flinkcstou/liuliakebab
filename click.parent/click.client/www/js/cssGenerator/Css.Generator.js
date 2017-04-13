@@ -11384,8 +11384,91 @@ var css = {
   "width: 100%;  " +
   "}",
 
+
+  //COMPONENT NOTIFICATION
+
+  componentNotification: ".component-notification " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 200 * widthK + "px;  " +
+  "width: 100%;  " +
+  "z-index: 9999999;  " +
+  "background-color: #f1eff3;  " +
+  "}",
+
+  ComponentNotificationButtonsContainer: ".component-notification-buttons-container" +
+  "{" +
+  "position: absolute;" +
+  "width:100%;" +
+  "height:" + 70 * widthK + "px;" +
+  "bottom: 0;" +
+  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "}",
+
+  ComponentNotificationButtonAccept: ".component-notification-button-accept" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "float: left;" +
+  "text-align: center;" +
+  "margin-left: 6%;" +
+  "color: #666466;" +
+  "background-color: #fffeff;" +
+  "height:" + 57 * widthK + "px;" +
+  "line-height:" + 58 * widthK + "px;" +
+  "border-radius:" + 5 * widthK + "px;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "width: 40%;" +
+  "}",
+
+  ComponentNotificationButtonCancel: ".component-notification-button-cancel" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "float: left;" +
+  "text-align: center;" +
+  "margin-left: 8%;" +
+  "color: #fffbd8;" +
+  "background-color: #ffb01c;" +
+  "height:" + 55 * widthK + "px;" +
+  "line-height:" + 58 * widthK + "px;" +
+  "border-radius:" + 5 * widthK + "px;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "width: 40%;" +
+  "}",
+
+  ComponentNotificationIcon: ".component-notification-icon" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 100 * widthK + "px;" +
+  "width:" + 100 * widthK + "px;" +
+  "left: 10%;" +
+  "top: 10%;" +
+  "background-image: url(resources/icons/ViewSuccessUnsuccess/notification.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "}",
+
+  ComponentNotificationText: ".component-notification-text" +
+  "{" +
+  "position: relative;" +
+  "color: black;" +
+  "width: 76%;" +
+  "max-height: 40%;" +
+  "text-align: center;" +
+  "margin-left: 24%;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top: 20%;" +
+  "font-size:" + 26 * widthK + "px;" +
+  "}",
+
 }
 
+riot.mount('component-notification');
 
 var style = document.createElement('style');
 style.type = 'text/css';
