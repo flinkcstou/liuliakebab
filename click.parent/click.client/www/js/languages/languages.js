@@ -357,6 +357,8 @@ var RU_LANGUAGES =
   "ViewHelpTitle": "ПОМОЩЬ",
 
   "ConnectionSocket": "Устанавливаем соединение...",
+
+  "AuthorizationInProgress": "Выполняется вход...",
 };
 
 window.languages = RU_LANGUAGES;

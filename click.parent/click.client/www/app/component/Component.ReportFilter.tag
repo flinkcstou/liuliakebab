@@ -117,7 +117,9 @@
         deleteAccountFilterTouchEndX,
         deleteDateFilterTouchStartX,
         deleteDateFilterTouchEndX,
-        date;
+        date,
+        dateFrom,
+        dateTo;
 
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
     scope.firstName = loginInfo.firstname;
@@ -129,7 +131,8 @@
 
     pickDateFrom = function () {
 
-      var comparisonDate = new Date();
+      var currentDate = new Date(),
+          verifiedDate;
 
       var options = {
         date: new Date(),
@@ -139,19 +142,27 @@
 
       function onSuccess(pickedDate) {
 
-        date = pickedDate;
+        verifiedDate = pickedDate;
 
-        if (date.getTime() > comparisonDate.getTime()) {
+        if (verifiedDate.getTime() > currentDate.getTime()) {
 
-          scope.from_dd = comparisonDate.getDate();
-          scope.from_mm = comparisonDate.getMonth() + 1;
-          scope.from_yyyy = comparisonDate.getFullYear();
-        } else {
+          verifiedDate = currentDate;
 
-          scope.from_dd = date.getDate();
-          scope.from_mm = date.getMonth() + 1;
-          scope.from_yyyy = date.getFullYear();
         }
+
+        if (dateTo) {
+
+          if (dateTo.getTime() < verifiedDate.getTime()) {
+
+            verifiedDate = dateTo;
+          }
+        }
+
+        dateFrom = verifiedDate;
+
+        scope.from_dd = dateFrom.getDate();
+        scope.from_mm = dateFrom.getMonth() + 1;
+        scope.from_yyyy = dateFrom.getFullYear();
 
         riot.update();
       }
@@ -161,7 +172,8 @@
 
     pickDateTo = function () {
 
-      var comparisonDate = new Date();
+      var currentDate = new Date(),
+          verifiedDate;
 
       var options = {
         date: new Date(),
@@ -171,22 +183,29 @@
 
       function onSuccess(pickedDate) {
 
-        date = pickedDate;
+        verifiedDate = pickedDate;
 
-        if (date.getTime() > comparisonDate.getTime()) {
+        if (verifiedDate.getTime() > currentDate.getTime()) {
 
-          scope.to_dd = comparisonDate.getDate();
-          scope.to_mm = comparisonDate.getMonth() + 1;
-          scope.to_yyyy = comparisonDate.getFullYear();
-        } else {
-
-          scope.to_dd = date.getDate();
-          scope.to_mm = date.getMonth() + 1;
-          scope.to_yyyy = date.getFullYear();
+          verifiedDate = currentDate;
         }
 
+        if (dateFrom) {
+
+          if (dateFrom.getTime() > verifiedDate.getTime()) {
+
+            verifiedDate = dateFrom;
+          }
+        }
+
+        dateTo = verifiedDate;
+
+        scope.to_dd = dateTo.getDate();
+        scope.to_mm = dateTo.getMonth() + 1;
+        scope.to_yyyy = dateTo.getFullYear();
+
         riot.update();
-      }
+      };
 
       datePicker.show(options, onSuccess);
     };
