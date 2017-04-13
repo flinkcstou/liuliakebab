@@ -16,7 +16,7 @@
         {window.languages.Currency}</p>
       <input maxlength="9" class="transfertwo-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
              onmouseup="sumMouseUp()"
-             type="tel" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
+             type="tel" pattern="[0-9]" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
     </div>
 
     <button class="transfertwo-next-button-inner-container" ontouchend="goToTransferThree()">

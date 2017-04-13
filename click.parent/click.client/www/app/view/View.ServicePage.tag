@@ -45,6 +45,7 @@
       <p class="servicepage-text-field">{amountFieldTitle}</p>
       <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="9"
              id="amount"
+             pattern="[0-9]"
              onfocus="amountFocus()" onblur="amountOnBlur()"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()"/>
       <div class="servicepage-amount-icon" ontouchend="amountCalculator()"></div>
