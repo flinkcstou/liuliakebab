@@ -354,6 +354,11 @@
     var maskOne = /[0-9]/g;
 
     pickContactFromNative = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+
+      window.pickContactFromNativeChecker = true;
 
       window.plugins.PickContact.chooseContact(function (contactInfo) {
 //        console.log('CONTACTINFO', contactInfo)
@@ -389,6 +394,8 @@
               nextButtonId.style.display = 'none'
 
           }// use time-out to fix iOS alert problem
+
+          window.pickContactFromNativeChecker = false;
         }, 0);
       }, function (error) {
 //        console.log('error', error)
