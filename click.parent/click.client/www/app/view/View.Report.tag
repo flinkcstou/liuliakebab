@@ -225,6 +225,7 @@
 
 
     monthContainerTouchMove = function () {
+
       event.preventDefault();
       event.stopPropagation();
 
@@ -363,6 +364,17 @@
 
     scope.paymentListUpdate = paymentListUpdate = function () {
 
+      if (scope.monthNotStartedYet) {
+
+        scope.paymentsMap = {};
+        scope.paymentDates = [];
+        scope.paymentsList = [];
+
+        riot.update();
+
+        return;
+      }
+
       var firstDay = scope.tags["component-report-filter"].filterDateFrom,
           lastDay = scope.tags["component-report-filter"].filterDateTo,
           accountId = scope.tags["component-report-filter"].filterByAccount;
@@ -457,6 +469,18 @@
 
 
     scope.graphListUpdate = graphListUpdate = function () {
+
+      if (scope.monthNotStartedYet) {
+
+        scope.graphList = [];
+        scope.paymentsSum = 0;
+
+        createGraph([]);
+
+        riot.update();
+
+        return;
+      }
 
       var firstDay = scope.tags["component-report-filter"].filterDateFrom,
           lastDay = scope.tags["component-report-filter"].filterDateTo,

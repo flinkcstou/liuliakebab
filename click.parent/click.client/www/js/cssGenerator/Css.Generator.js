@@ -7969,12 +7969,11 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "text-transform: uppercase;" +
   "transform: translate3d(-50%, 0, 0);" +
   "width: 100%;" +
   "top: " + 540 * widthK + "px;" +
   "left: 50%;" +
-  "font-size: " + 48 * widthK + "px;" +
+  "font-size: " + 24 * widthK + "px;" +
   "z-index: 1;" +
   "color: #b6b6b6;" +
   "text-align: center;" +
