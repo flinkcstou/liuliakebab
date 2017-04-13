@@ -144,7 +144,7 @@
       event.preventDefault()
       event.stopPropagation()
 
-      if (boxOne.value.length == 4 && event.keyCode != 8) {
+      if (boxOne.value.length == 4 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         if (boxOne.value == '8600') {
           cardPinInputId.style.display = 'none';
           cardPinInputTitleId.style.display = 'none';
@@ -164,7 +164,7 @@
 
     boxOneKeyDown = function () {
 
-      if (boxOne.value.length == 4 && event.keyCode != 8) {
+      if (boxOne.value.length == 4 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
 
         boxTwo.focus();
       }
@@ -172,14 +172,14 @@
 
     boxTwoKeyDown = function () {
 
-      if (boxTwo.value.length == 4 && event.keyCode != 8) {
+      if (boxTwo.value.length == 4 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         boxThree.focus();
       }
     }
 
     boxThreeKeyDown = function () {
 
-      if (boxThree.value.length == 4 && event.keyCode != 8) {
+      if (boxThree.value.length == 4 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         boxFour.focus();
       }
 
@@ -188,11 +188,11 @@
     boxFourKeyDown = function () {
       console.log('event.keyCode', event.keyCode)
 
-      if (boxFour.value.length >= 4 && event.keyCode != input_codes.BACKSPACE_CODE) {
+      if (boxFour.value.length >= 4 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         boxFour.value = event.target.value.substring(0, event.target.value.length - 1);
       }
 
-      if (boxFour.value.length == 4 && event.keyCode != 8) {
+      if (boxFour.value.length == 4 && event.keyCode != input_codes.BACKSPACE_CODE) {
         if (boxOne.value == '8600') {
           boxDate.focus();
         }
@@ -204,7 +204,7 @@
 
     boxDateKeyDown = function () {
 
-      if (boxDate.value.length == 2 && event.keyCode != 8) {
+      if (boxDate.value.length == 2 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
 //        if (boxDate.value.length == 2 && boxDate.value > 12) {
 //          boxDate.value = boxDate.value.substring(0, boxDate.value.length - 1)
 //          return
