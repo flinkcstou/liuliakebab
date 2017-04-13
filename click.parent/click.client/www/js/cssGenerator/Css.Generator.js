@@ -11388,6 +11388,8 @@ var css = {
   "height:" + 200 * widthK + "px;  " +
   "width: 100%;  " +
   "z-index: 9999999;  " +
+  "transition: 1s;  " +
+  "transform: translate3d(0, -100%, 0);  " +
   "background-color: #f1eff3;  " +
   "}",
 
@@ -11397,9 +11399,6 @@ var css = {
   "width:100%;" +
   "height:" + 70 * widthK + "px;" +
   "bottom: 0;" +
-  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
-  "background-repeat: no-repeat;" +
-  "background-size: 100%;" +
   "}",
 
   ComponentNotificationButtonAccept: ".component-notification-button-accept" +

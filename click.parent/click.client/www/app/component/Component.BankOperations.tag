@@ -46,7 +46,7 @@
       event.preventDefault();
       event.stopPropagation();
 //      return
-      notificationPushId.style.transform = 'translate3d(0, -100%, 0)'
+      notificationPushId.style.transform = 'translate3d(0, 0, 0)'
     }
 
   </script>
