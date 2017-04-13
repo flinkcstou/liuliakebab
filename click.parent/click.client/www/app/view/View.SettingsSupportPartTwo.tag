@@ -17,13 +17,22 @@
   </div>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
+                   errornote="{errorNote}" step_amount="{0}"></component-alert>
 
   <script>
     var scope = this;
     scope.showError = false;
 
-    history.arrayOfHistory.splice(history.arrayOfHistory.length - 1, 1);
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-settings-support') {
+      history.arrayOfHistory.push(
+          {
+            "view": 'view-settings-support',
+            "params": opts
+          }
+      );
+
+      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    }
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-settings-support-part-two') {
       history.arrayOfHistory.push(
@@ -43,7 +52,7 @@
       event.stopPropagation();
 
       onBackKeyDown()
-    }
+    };
 
     sendMessageTouchEnd = function () {
       event.preventDefault();

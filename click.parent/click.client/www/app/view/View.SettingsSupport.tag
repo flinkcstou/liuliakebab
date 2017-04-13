@@ -50,8 +50,8 @@
       event.preventDefault();
       event.stopPropagation();
 
-      settingsSupportId.style.display = 'none'
-    }
+      onBackKeyDown();
+    };
 
     goToSettingsStepTwo = function (titleOfHelp, keyOfHelp) {
       event.preventDefault();
