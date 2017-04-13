@@ -122,6 +122,7 @@
               localStorage.setItem('confirm_needed', false);
               console.log(result)
               if (result[0][0].client_exists == 1) {
+                window.pushNotificationInitialize();
                 localStorage.setItem('click_client_registered', true)
                 this.riotTags.innerHTML = "<view-authorization>";
                 riot.mount('view-authorization');

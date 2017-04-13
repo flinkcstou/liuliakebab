@@ -190,6 +190,7 @@
                 riot.mount('view-sms');
               }
               else {
+                window.pushNotificationInitialize();
                 localStorage.setItem('confirm_needed', false);
                 localStorage.setItem('click_client_registered', true)
                 this.riotTags.innerHTML = "<view-authorization>";
