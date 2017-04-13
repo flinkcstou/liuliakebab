@@ -43,7 +43,7 @@
     <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
          id="amountField">
       <p class="servicepage-text-field">{amountFieldTitle}</p>
-      <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="13"
+      <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="9"
              id="amount"
              onfocus="amountFocus()" onblur="amountOnBlur()"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()"/>
@@ -218,7 +218,7 @@
         amountForPayTransaction = viewServicePage.amountWithoutSpace;
       }
       else if (scope.formType != 2)
-        amount.value = '0 ' + defaultAccount.currency
+        amount.value = 0
     })
     goToBack = function () {
       viewServicePage.phoneText = null;
@@ -260,8 +260,8 @@
       event.preventDefault()
       event.stopPropagation()
 
-      if (amount.value.length == 5 && amount.value[0] == '0') {
-        amount.value = ' ' + defaultAccount.currency;
+      if (amount.value.length == 1) {
+        amount.value = '';
       }
 
     }
@@ -270,8 +270,8 @@
       event.preventDefault()
       event.stopPropagation()
 
-      if (amount.value.length == 4) {
-        amount.value = '0 ' + defaultAccount.currency;
+      if (amount.value.length == 0) {
+        amount.value = 0
       }
     }
 
@@ -382,11 +382,27 @@
       viewServicePage.phoneText = viewServicePage.phoneText.substr(3, viewServicePage.phoneText.length - 3);
       scope.fieldArray = scope.servicesParamsMapOne[localStorage.getItem('myNumberOperatorId')];
       viewPay.chosenServiceId = localStorage.getItem('myNumberOperatorId');
+
       this.on('mount', function () {
         firstField.style.display = 'none';
         amountField.style.top = '5.5%';
 
-        console.log('fieldArray'.scope.fieldArray)
+        amountField.style.display = 'none';
+
+        if (viewServicePage.amountText)
+          if (viewServicePage.amountText.length > 0) {
+            amount.value = viewServicePage.amountText;
+            checkFirst = true;
+            amountForPayTransaction = viewServicePage.amountWithoutSpace;
+
+            if (!amountForPayTransaction) {
+              amountForPayTransaction = (viewServicePage.amountText) ? (viewServicePage.amountText) : (0);
+              amountForPayTransaction = parseInt(amountForPayTransaction);
+            }
+          }
+          else
+            amount.value = 0;
+
 
       });
     } else {
@@ -468,9 +484,8 @@
         scope.chosenFieldNameTwo = scope.servicesParamsMapFour[scope.service.id][0].name;
         scope.hasSecondLevel = true;
         scope.hasFirstLevel = true;
-        this.on('mount', function () {
-          amountField.style.display = 'none';
-        });
+
+
 
         for (var i = 0; i < scope.servicesParamsMapFour[scope.service.id].length; i++) {
           scope.firstLevelArray.push(scope.servicesParamsMapFour[scope.service.id][i]);
@@ -682,21 +697,6 @@
       }
     };
 
-    this.on('mount', function () {
-      if (viewServicePage.amountText)
-        if (viewServicePage.amountText.length > 0) {
-          amount.value = viewServicePage.amountText;
-          checkFirst = true;
-          amountForPayTransaction = viewServicePage.amountWithoutSpace;
-
-          if (!amountForPayTransaction) {
-            amountForPayTransaction = (viewServicePage.amountText) ? (viewServicePage.amountText) : (0);
-            amountForPayTransaction = parseInt(amountForPayTransaction);
-          }
-        }
-        else
-          amount.value = 0 + ' ' + defaultAccount.currency
-    });
 
     var maskOne = /[0-9]/g,
       maskTwo = /[0-9' ']/g,
@@ -715,12 +715,12 @@
       event.stopPropagation();
 
       if (!checkFirst) {
-        amount.value = ' ' + defaultAccount.currency;
+        amount.value = '';
         checkFirst = true;
       }
       if (amount.value.match(maskOne) != null && amount.value.match(maskOne).length != null) {
-        amount.selectionStart = amount.value.match(maskTwo).length - 1;
-        amount.selectionEnd = amount.value.match(maskTwo).length - 1;
+        amount.selectionStart = amount.value.match(maskTwo).length;
+        amount.selectionEnd = amount.value.match(maskTwo).length;
       } else {
         amount.selectionStart = 0;
         amount.selectionEnd = 0;
@@ -739,56 +739,20 @@
         amountForPayTransaction = amountForPayTransaction.substring(0, amountForPayTransaction.length - 1)
       }
 
-      if (amount.value.length == 5 && amount.value[0] == '0') {
-        amount.value = ' ' + defaultAccount.currency;
+      if (amount.value.length == 1 && amount.value == 0) {
+        amount.value = '';
       }
 
       if (amount.value.match(maskTwo) != null && amount.value.match(maskTwo).length != null) {
 
-        amount.value = amount.value.substring(0, event.target.value.match(maskTwo).length) + defaultAccount.currency;
-        amount.selectionStart = amount.value.match(maskTwo).length - 1;
-        amount.selectionEnd = amount.value.match(maskTwo).length - 1;
+        amount.value = amount.value.substring(0, event.target.value.match(maskTwo).length);
+        amount.selectionStart = amount.value.match(maskTwo).length;
+        amount.selectionEnd = amount.value.match(maskTwo).length;
 
         amountForPayTransaction = amount.value.substring(0, amount.value.match(maskTwo).length);
         amountForPayTransaction = amountForPayTransaction.replace(new RegExp(' ', 'g'), '');
 
-        if (amountForPayTransaction.length == 4) {
-          amount.value = amountForPayTransaction.substring(0, 1) + ' ' + amountForPayTransaction.substring(1, amountForPayTransaction.length) + ' ' + defaultAccount.currency;
-          amount.selectionStart = amount.value.match(maskTwo).length - 1;
-          amount.selectionEnd = amount.value.match(maskTwo).length - 1
-
-        }
-
-        if (amountForPayTransaction.length == 5) {
-          amount.value = amountForPayTransaction.substring(0, 2) + ' ' + amountForPayTransaction.substring(2, amountForPayTransaction.length) + ' ' + defaultAccount.currency;
-          amount.selectionStart = amount.value.match(maskTwo).length - 1;
-          amount.selectionEnd = amount.value.match(maskTwo).length - 1;
-
-        }
-
-        if (amountForPayTransaction.length == 6) {
-          amount.value = amountForPayTransaction.substring(0, 3) + ' ' + amountForPayTransaction.substring(3, amountForPayTransaction.length) + ' ' + defaultAccount.currency;
-          amount.selectionStart = amount.value.match(maskTwo).length - 1;
-          amount.selectionEnd = amount.value.match(maskTwo).length - 1;
-
-        }
-
-        if (amountForPayTransaction.length == 7) {
-          amount.value = amountForPayTransaction.substring(0, 1) + ' ' + amountForPayTransaction.substring(1, 4) + ' ' +
-            amountForPayTransaction.substring(4, amountForPayTransaction.length) + ' ' + defaultAccount.currency;
-          amount.selectionStart = amount.value.match(maskTwo).length - 1;
-          amount.selectionEnd = amount.value.match(maskTwo).length - 1;
-
-        }
-
-        if (amountForPayTransaction.length == 8) {
-          amount.value = amountForPayTransaction.substring(0, 2) + ' ' + amountForPayTransaction.substring(2, 5) + ' ' +
-            amountForPayTransaction.substring(5, amountForPayTransaction.length) + ' ' + defaultAccount.currency;
-          amount.selectionStart = amount.value.match(maskTwo).length - 1;
-          amount.selectionEnd = amount.value.match(maskTwo).length - 1;
-
-        }
-
+        amount.value = window.amountTransform(amountForPayTransaction);
 
       } else {
         amount.selectionStart = 0;
