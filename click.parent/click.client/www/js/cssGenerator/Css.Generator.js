@@ -5952,6 +5952,7 @@ var css = {
   "background-color: transparent;" +
   "border: none;" +
   "color: white;" +
+  "text-align: center;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
 
@@ -6015,12 +6016,13 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 65%;" +
-  "left: 23%;" +
+  "left: 16%;" +
   "height: 60%;" +
-  "top: 26%;" +
+  "top: 20%;" +
   "background-color: transparent;" +
   "border: none;" +
   "color: white;" +
+  "text-align: center;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
 
