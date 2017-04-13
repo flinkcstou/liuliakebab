@@ -14,7 +14,7 @@
     <div class="transfertwo-contact-phone-field">
       <p if="{opts[0].type == 1}" class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
         {window.languages.Currency}</p>
-      <input maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
+      <input maxlength="9" class="transfertwo-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
              onmouseup="sumMouseUp()"
              type="tel" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
     </div>
@@ -43,7 +43,7 @@
         sumForTransfer = viewTransferStepTwo.sumWithoutSpace;
       }
       else
-        sumValueId.value = 0 + ' ' + defaultAccount.currency
+        sumValueId.value = 0
     })
 
     console.log(opts)
@@ -62,12 +62,12 @@
       event.preventDefault()
       event.stopPropagation()
       if (!checkFirst) {
-        sumValueId.value = ' ' + defaultAccount.currency
+        sumValueId.value = ''
         checkFirst = true;
       }
       if (sumValueId.value.match(maskOne) != null && sumValueId.value.match(maskOne).length != null) {
-        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
+        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length
+        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length
       } else {
         sumValueId.selectionStart = 0
         sumValueId.selectionEnd = 0
@@ -78,8 +78,8 @@
       event.preventDefault()
       event.stopPropagation()
 
-      if (sumValueId.value.length == 4) {
-        sumValueId.value = '0 ' + defaultAccount.currency;
+      if (sumValueId.value.length == 0) {
+        sumValueId.value = 0;
       }
     }
 
@@ -88,8 +88,8 @@
       event.preventDefault()
       event.stopPropagation()
 
-      if (sumValueId.value.length == 5 && sumValueId.value[0] == '0') {
-        sumValueId.value = ' ' + defaultAccount.currency;
+      if (sumValueId.value.length == 1 && sumValueId.value[0] == 0) {
+        sumValueId.value = '';
       }
     }
 
@@ -97,25 +97,26 @@
       //.replace(new RegExp('[^0-9]', 'g'), '');
 //      console.log('sumValueId.value', sumValueId.value[0])
 //      console.log('sumValueId.value.length', sumValueId.value.length)
-      if (sumValueId.value.length == 5 && sumValueId.value[0] == '0') {
-        sumValueId.value = ' ' + defaultAccount.currency;
+      if (sumValueId.value.length == 1 && sumValueId.value == 0) {
+        sumValueId.value = ''
       }
+
       if (event.keyCode == 8) {
         sumForTransfer = sumForTransfer.substring(0, sumForTransfer.length - 1)
       }
 
       if (sumValueId.value.match(maskTwo) != null && sumValueId.value.match(maskTwo).length != null) {
 
-        sumValueId.value = sumValueId.value.substring(0, event.target.value.match(maskTwo).length) + defaultAccount.currency
-        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
+        sumValueId.value = sumValueId.value.substring(0, event.target.value.match(maskTwo).length)
+        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length
+        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length
 
         sumForTransfer = sumValueId.value.substring(0, sumValueId.value.match(maskTwo).length);
         sumForTransfer = sumForTransfer.replace(new RegExp(' ', 'g'), '');
 
-        sumValueId.value = window.amountTransform(sumForTransfer) + ' ' + defaultAccount.currency
-        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
+        sumValueId.value = window.amountTransform(sumForTransfer)
+        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length
+        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length
 
 
       } else {
