@@ -126,6 +126,8 @@ window.amountTransform = function (amount) {
   if (amount.length == 1 && amount == 0) {
     return '';
   }
+
+
   amount = amount.replace(new RegExp('[^0-9]', 'g'), '');
   var j = 0;
   var newAmount = '';

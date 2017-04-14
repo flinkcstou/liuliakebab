@@ -617,7 +617,7 @@
     cardOnKeyUp = function () {
 
 
-      if (cardInputId.value.length < 19 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT)
+      if (cardInputId.value.length <= 19 && (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT))
         cardInputId.value = inputVerification.cardVerification(cardInputId.value);
 
       var arrayOfCards = [];
