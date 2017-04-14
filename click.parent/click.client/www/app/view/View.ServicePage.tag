@@ -188,6 +188,8 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    viewPay.chosenServiceId = opts.id;
+
     console.log('opts', opts)
 
     var scope = this;
@@ -381,7 +383,6 @@
     scope.servicesParamsMapFour = JSON.parse(localStorage.getItem("click_client_servicesParamsMapFour"));
     scope.servicesParamsMapFive = JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"));
     riot.update(scope.categoryNamesMap);
-
 
     if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
       scope.service = scope.servicesMap[localStorage.getItem('myNumberOperatorId')][0];
