@@ -107,7 +107,6 @@
 
       window.FirebasePlugin.subscribe("Click");
 
-      riot.mount('component-notification');
 
       if (!localStorage.getItem('settings_block')) {
         localStorage.setItem('click_client_block', false)
@@ -125,8 +124,8 @@
       document.head.appendChild(GENERATOR);
 
       firstMount.firstStep = function () {
-        indexNotificationBlockId
         scope.indexNotificationBlockId.innerHTML = "<component-notification>";
+        riot.mount('component-notification');
 
         if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
           scope.riotTags.innerHTML = "<view-authorization>";

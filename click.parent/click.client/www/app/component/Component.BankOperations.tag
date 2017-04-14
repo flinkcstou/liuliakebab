@@ -45,8 +45,6 @@
     goToAutoPayView = function (e) {
       event.preventDefault();
       event.stopPropagation();
-
-      notificationPushId.style.transform="translate3d(0,0,0)"
     }
 
   </script>
