@@ -3201,23 +3201,19 @@ var css = {
 
   servicePageButtonEnter: ".servicepage-button-enter" +
   "{" +
-  "position: absolute;" +
-  "width: 38%; " +
-  "height: 5%; " +
-  "margin-right: auto;" +
-  "margin-left: auto;" +
+  "height: 5%;" +
+  "margin-top: "+160*widthK+"px;" +
   "background-color: #00a8f1;" +
-  "top: 60%;" +
-  "left:" + 230 * widthK + "px; " +
-  "background-color: #00a8f1;" +
-  "color: white;" +
-  "outline: none;" +
-  "border: none;" +
-  "display: none;" +
   "padding: 0;" +
-  "font-size: " + 32 * widthK + "px; " +
+  "font-size: " + 32 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 3 * widthK + "px; " +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
   "}",
 
   servicePageButtonSave: ".servicepage-button-save" +
@@ -3776,19 +3772,19 @@ var css = {
   pincardButtonEnter: " .pincard-button-enter" +
   "{" +
   "top: 60%;" +
-  "position: absolute;" +
-  "width: 38%; " +
-  "height: 15%; " +
-  "margin: 0 auto 0 auto; " +
-  "left:" + 230 * widthK + "px; " +
+  "height: 15%;" +
+  "margin: 0 auto 0 auto;" +
   "background-color: #00a8f1;" +
-  "color: white;" +
-  "outline: none;" +
-  "border: none;" +
   "padding: 0;" +
-  "font-size: " + 32 * widthK + "px; " +
+  "font-size: " + 32 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 3 * widthK + "px; " +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
   "}",
 
   pincardButtonEnterLabel: ".pincard-button-enter-label" +
@@ -7333,7 +7329,7 @@ var css = {
   "position: absolute;" +
   "height:" + 380 * widthK + "px;" +
   "width:100%;" +
-  "background-color: #0280e4;" +
+  "background-color: transparent;" +
   "}",
 
   transferDetailPageTitle: ".transfer-detail-page-title " +
@@ -7489,7 +7485,7 @@ var css = {
   "text-align: center;" +
   "margin-left: 6%;" +
   "color: white;" +
-  "background-color: #0280e4;" +
+  "background-color: #00a8f1;" +
   "height:" + 62 * widthK + "px;" +
   "line-height:" + 63 * widthK + "px;" +
   "border-radius:" + 5 * widthK + "px;" +
@@ -7783,7 +7779,7 @@ var css = {
   "text-align: center;" +
   "margin-left: 1%;" +
   "color: white;" +
-  "background-color: #0280e4;" +
+  "background-color: #00a8f1;" +
   "height:" + 62 * widthK + "px;" +
   "line-height:" + 63 * widthK + "px;" +
   "border-radius:" + 5 * widthK + "px;" +
@@ -7825,7 +7821,7 @@ var css = {
   "position: absolute;" +
   "height:" + 380 * widthK + "px;" +
   "width:100%;" +
-  "background-color: #0280e4;" +
+  "background-color: transparent;" +
   "}",
 
   transferToCardTransferTitlePartOne: ".transfer-to-card-transfer-title-part-one " +
@@ -9189,7 +9185,7 @@ var css = {
   "position: absolute;" +
   "height:" + 340 * widthK + "px;" +
   "width:100%;" +
-  "background-color:  #00B1F0;" +
+  "background-color: transparent;" +
   "}",
 
   invoiceHistoryDetailTitle: ".invoice-history-detail-title" +
@@ -9934,15 +9930,18 @@ var css = {
 
   componentAlertButtonInnerContainer: ".component-alert-button-inner-container" +
   "{" +
+  "border: none;" +
+  "outline: none;" +
   "position: absolute;" +
   "height: 6%;" +
   "left: 28%;" +
   "width: 44%;" +
   "top: 87%;" +
-  "display: table;" +
   "background-color: #01B8FE;" +
-  "border-radius:" + 10 * widthK + "px;" +
-  "bottom:0;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "bottom: 0;" +
+  "font-size: " + 38 * widthK + "px;" +
+  "color: #ffffff;" +
   "}",
 
   componentAlertButtonLabel: ".component-alert-button-label" +

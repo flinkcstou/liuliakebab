@@ -13,9 +13,9 @@
     </div>
 
 
-    <div class="component-alert-button-inner-container" ontouchend="closeAlertForm()">
-      <p class="component-alert-button-label">{window.languages.ComponentAlertOk}</p>
-    </div>
+    <button class="component-alert-button-inner-container" ontouchend="closeAlertForm()">
+      {window.languages.ComponentAlertOk}
+    </button>
   </div>
 
   <script>
