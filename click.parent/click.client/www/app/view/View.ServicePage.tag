@@ -196,6 +196,7 @@
 
     telPayVerificationKeyDown = function (input) {
       console.log(event.target.value)
+      console.log(event.keyCode)
       if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
       }
@@ -439,7 +440,7 @@
         console.log("Yahoooo_1", scope.fieldArray, scope.fieldArray[0], scope.fieldArray[0].input_type);
 
         if (scope.fieldArray[0].input_type == '1') {
-          scope.inputType = 'tel';
+          scope.inputType = 'number';
           scope.isNumber = true;
         }
         else if (scope.fieldArray[0].input_type == '2') {
@@ -586,7 +587,7 @@
           console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
 
           if (scope.fieldArray[i].input_type == '1') {
-            scope.inputType = 'tel';
+            scope.inputType = 'number';
             scope.isNumber = true;
           }
           else if (scope.fieldArray[i].input_type == '2') {
@@ -848,7 +849,7 @@
         event.stopPropagation();
         console.log(formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites)
 
-        console.log('scope.fieldArray[0]',scope.fieldArray[0])
+        console.log('scope.fieldArray[0]', scope.fieldArray[0])
         if (modeOfApp.offlineMode) {
           console.log("opts[0].name.replace(/\s/g, '')", opts[0].name.replace(/\s/g, ''))
           if (opts[0].type == 2) {
