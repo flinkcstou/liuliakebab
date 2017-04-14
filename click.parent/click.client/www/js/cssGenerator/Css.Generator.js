@@ -11418,7 +11418,7 @@ var css = {
   "position: absolute;" +
   "width:100%;" +
   "height:" + 70 * widthK + "px;" +
-  "bottom: 0;" +
+  "bottom:" + 10 * widthK + "px;" +
   "}",
 
   ComponentNotificationButtonAccept: ".component-notification-button-accept" +
@@ -11426,6 +11426,7 @@ var css = {
   "position: relative;" +
   "margin: 0;" +
   "float: left;" +
+  "opacity: 0.95;" +
   "text-align: center;" +
   "margin-left: 6%;" +
   "color: #666466;" +
@@ -11473,9 +11474,9 @@ var css = {
   "max-height: 45%;" +
   "text-align: center;" +
   "margin: 0 auto 0 auto;" +
-  "top: 20%;" +
+  "top: 15%;" +
   "overflow: hidden;" +
-  "font-size:" + 24 * widthK + "px;" +
+  "font-size:" + 22 * widthK + "px;" +
   "}",
 
 }
