@@ -1376,7 +1376,7 @@ var css = {
   "height:" + 125 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "border-radius:" + 100 * widthK + "px;" +
+    //"border-radius:" + 100 * widthK + "px;" +
   "background-size: 80%;" +
   "float: left;" +
   "margin-right: 20px;" +
@@ -2585,7 +2585,7 @@ var css = {
   "height:" + 125 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "border-radius:" + 100 * widthK + "px;" +
+    //"border-radius:" + 100 * widthK + "px;" +
     //"border:solid 1px #b7b7b7;" +
   "}",
 
@@ -2759,7 +2759,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
     //"border-radius: " + 100 * widthK + "px;" +
-  "border: " + 1 + "px solid white;" +
+    //"border: " + 1 + "px solid white;" +
   "background-size: 80%;" +
   "}",
 
@@ -8435,8 +8435,8 @@ var css = {
   "height:" + 125 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "border-radius:" + 100 * widthK + "px;" +
-  "border:solid 1px #f1f1f1;" +
+    //"border-radius:" + 100 * widthK + "px;" +
+    //"border:solid 1px #f1f1f1;" +
   "top: 6%;" +
   "}",
 
