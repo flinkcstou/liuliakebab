@@ -194,17 +194,28 @@
     scope.enterButton = opts[0] != 'ADDFAVORITE' ? true : false;
     scope.showError = false;
 
+    scope.changeInput = '';
 
     telPayVerificationKeyDown = function (input) {
 
-      console.log('event', event)
       if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
       }
+
     }
 
+    var buffer = ''
     telPayVerificationKeyUp = function () {
-      event.target.value.replace(new RegExp(/[^0-9]/g))
+      var regExp = new RegExp(/[0-9]+/g);
+      var res = regExp.exec(event.target.value)
+      if (!res) {
+        event.target.value = buffer
+      }
+      else {
+        buffer = res.input;
+      }
+
+      console.log(res)
     }
 
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
