@@ -101,11 +101,12 @@ window.api.call = function (params) {
     }
   };
 
-
-  this.socket.send(JSON.stringify({
-    method: method,
-    parameters: input
-  }));
+  if (modeOfApp.onlineMode) {
+    this.socket.send(JSON.stringify({
+      method: method,
+      parameters: input
+    }));
+  }
 };
 
 

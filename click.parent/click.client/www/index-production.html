@@ -94,6 +94,8 @@
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
 
+      localStorage.setItem("click_client_authorized", JSON.stringify(false));
+
       if (!window.isConnected) {
         var options = {dimBackground: true};
 
@@ -132,7 +134,7 @@
           scope.riotTags.innerHTML = "<view-registration-device>";
           riot.mount('view-registration-device');
         }
-      }
+      };
 
       document.addEventListener("backbutton", onBackKeyDown, false);
       document.addEventListener("pause", onPauseFunction, false);
@@ -184,7 +186,10 @@
   }
 
   function onResumeFunction() {
+
     setTimeout(function () {
+
+      window.pushNotificationActions.retrievePushNotification();
     }, 0);
   }
 

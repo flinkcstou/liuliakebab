@@ -64,10 +64,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-card') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-add-card',
-          "params": opts
-        }
+          {
+            "view": 'view-add-card',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -123,6 +123,11 @@
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
             console.log("CARD ADD", result);
+
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
+            riot.update();
           }
           else {
             scope.clickPinError = false;

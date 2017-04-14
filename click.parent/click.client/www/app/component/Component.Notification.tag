@@ -19,7 +19,6 @@
 
     scope.show = false;
     scope.setTransition = false;
-    console.log("ASDASDASASDASDASDASDASDASDADASDASDADS1111");
     scope.notificationText = "";
     scope.notificationAction = "";
 
@@ -39,7 +38,43 @@
         scope.notificationText = notification.body;
         scope.notificationAction = notification.action;
         scope.notificationElementId = notification.notify_id;
-        scope.show = true;
+
+        var authorized = localStorage.getItem("click_client_authorized");
+        authorized = JSON.parse(authorized);
+
+        if (notification.tap && !authorized) {
+
+          var background_notification = {};
+
+          if (scope.notificationAction == "invoice") {
+
+            background_notification.action = "getInvoiceFunction";
+            background_notification.params = scope.notificationElementId;
+
+            sessionStorage.setItem("push_notification", JSON.stringify(background_notification));
+          }
+
+          if (scope.notificationAction == "card.add") {
+
+
+            background_notification.action = "refreshCardCarousel";
+            background_notification.params = scope.notificationElementId;
+
+            sessionStorage.setItem("push_notification", JSON.stringify(background_notification));
+          }
+
+          if (scope.notificationAction == "payment") {
+
+            background_notification.action = "getPaymentList";
+            background_notification.params = scope.notificationElementId;
+
+            sessionStorage.setItem("push_notification", JSON.stringify(background_notification));
+          }
+        }
+        else {
+
+          scope.show = true;
+        }
 
         riot.update();
 
@@ -71,150 +106,19 @@
       if (scope.notificationAction == "invoice") {
 
 
-        getInvoiceFunction(scope.notificationElementId);
+        window.pushNotificationActions.getInvoiceFunction(scope.notificationElementId);
       }
 
       if (scope.notificationAction == "card.add") {
 
 
-        onComponentCreated();
+        window.pushNotificationActions.refreshCardCarousel(scope.notificationElementId);
       }
 
       if (scope.notificationAction == "payment") {
 
-        getPaymentList(scope.notificationElementId);
+        window.pushNotificationActions.getPaymentList(scope.notificationElementId);
       }
-    };
-
-    getInvoiceFunction = function (invoiceId) {
-
-      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-      var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-      var sessionKey = loginInfo.session_key;
-
-      window.api.call({
-        method: 'invoice.list',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber
-        },
-        scope: this,
-        onSuccess: function (result) {
-          if (result[0][0].error == 0) {
-            if (result[1]) {
-              if (result[1][0]) {
-                console.log('invoice', result[1])
-
-                var invoice = {};
-                for (var i = 0; i < result[1].length; i++) {
-
-                  if (invoiceId == result[1][i].invoice_id) {
-
-                    invoice = result[1][i];
-
-                    var params;
-
-                    if (invoice.is_p2p) {
-
-                      params = {
-
-                        phoneNumber: invoice.parameter,
-                        amount: invoice.amount,
-                        invoiceId: invoice.invoice_id,
-                        time: invoice.time,
-                        date: invoice.date
-                      };
-
-                      history.arrayOfHistory.push({view: "view-transfer-detail"});
-                      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-                      riotTags.innerHTML = "<view-transfer-detail>";
-                      riot.mount('view-transfer-detail', params);
-                    } else {
-
-                      params = {
-
-                        amount: invoice.amount,
-                        invoiceId: invoice.invoice_id,
-                        phoneNumber: invoice.merchant_phone,
-                        accountNumber: invoice.parameter,
-                        serviceName: invoice.service_name
-                      };
-
-                      history.arrayOfHistory.push({view: "view-payment-detail"});
-                      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-                      riotTags.innerHTML = "<view-payment-detail>";
-                      riot.mount('view-payment-detail', params);
-                    }
-
-                    return;
-                  }
-                }
-
-                console.log("Invoice", invoice);
-              }
-              else {
-
-              }
-            }
-          }
-          else {
-//            scope.clickPinError = false;
-//            scope.errorNote = result[0][0].error_note;
-//            scope.showError = true;
-//            riot.update();
-          }
-        },
-
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      });
-    };
-
-    getPaymentList = function (paymentId) {
-
-      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-      var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-      var sessionKey = loginInfo.session_key;
-
-      scope.paymentsMap = {};
-      scope.paymentDates = [];
-      scope.paymentsList = [];
-      window.api.call({
-        method: 'get.payment.list',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber
-        },
-        scope: this,
-
-        onSuccess: function (result) {
-          console.log(result)
-          console.log(result[0][0])
-          if (result[0][0].error == 0) {
-            console.log('PAYMENTLIST=', result[1]);
-            for (var i in result[1]) {
-
-              if (result[1][i].payment_id == paymentId) {
-
-                console.log("service report for=", result[1][i]);
-                riotTags.innerHTML = "<view-report-service>";
-                riot.mount("view-report-service", result[1][i]);
-                return;
-              }
-            }
-          }
-          else {
-
-          }
-
-        },
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      });
     };
 
   </script>
