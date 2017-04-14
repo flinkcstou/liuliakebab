@@ -49,20 +49,22 @@
 
     </div>
     <div class="payconfirm-bottom-container">
-      <div class="payconfirm-action-containter">
-        <div class="payconfirm-action-icon-one"
-             style="background-image: url('resources/icons/ViewService/addfavorite.png');"></div>
-        <div class="payconfirm-action-text" ontouchend="addToFavorites()" if="{!isInFavorites}">
-          {window.languages.ViewPayConfirmAddToFavorites}
+      <div class="payconfirm-action-autopay-container">
+        <div class="payconfirm-action-containter">
+          <div class="payconfirm-action-icon-one"
+               style="background-image: url('resources/icons/ViewService/addfavorite.png');"></div>
+          <div class="payconfirm-action-text" ontouchend="addToFavorites()" if="{!isInFavorites}">
+            {window.languages.ViewPayConfirmAddToFavorites}
+          </div>
+          <div class="payconfirm-action-text" ontouchend="removeFromFavorites()" if="{isInFavorites}">
+            {window.languages.ViewPayConfirmRemoveFromFavorites}
+          </div>
         </div>
-        <div class="payconfirm-action-text" ontouchend="removeFromFavorites()" if="{isInFavorites}">
-          {window.languages.ViewPayConfirmRemoveFromFavorites}
+        <div id="addToAutoPayContainerId" class="payconfirm-action-containter">
+          <div class="payconfirm-action-icon-two"
+               style="background-image: url('resources/icons/ViewService/addautopay.png');"></div>
+          <div class="payconfirm-action-text">{window.languages.ViewPayConfirmAddToAutoPay}</div>
         </div>
-      </div>
-      <div id="addToAutoPayContainerId" class="payconfirm-action-containter">
-        <div class="payconfirm-action-icon-two"
-             style="background-image: url('resources/icons/ViewService/addautopay.png');"></div>
-        <div class="payconfirm-action-text">{window.languages.ViewPayConfirmAddToAutoPay}</div>
       </div>
       <button class="payconfirm-button-enter" ontouchend="payService()">{window.languages.ViewPayConfirmPay}
       </button>
@@ -89,10 +91,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay-confirm') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-pay-confirm',
-          "params": opts
-        }
+          {
+            "view": 'view-pay-confirm',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -137,12 +139,12 @@
 
     if (scope.amountTextCopy.length == 8) {
       scope.amountTextCopy = scope.amountTextCopy.substring(0, 2) + ' ' +
-        scope.amountTextCopy.substring(2, 5) + ' ' + scope.amountTextCopy.substring(5, scope.amountTextCopy.length)
+          scope.amountTextCopy.substring(2, 5) + ' ' + scope.amountTextCopy.substring(5, scope.amountTextCopy.length)
     }
 
     if (scope.amountTextCopy.length == 7) {
       scope.amountTextCopy = scope.amountTextCopy.substring(0, 1) + ' ' +
-        scope.amountTextCopy.substring(1, 4) + ' ' + scope.amountTextCopy.substring(4, scope.amountTextCopy.length)
+          scope.amountTextCopy.substring(1, 4) + ' ' + scope.amountTextCopy.substring(4, scope.amountTextCopy.length)
     }
 
     if (scope.amountTextCopy.length == 6) {

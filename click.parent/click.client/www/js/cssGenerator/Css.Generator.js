@@ -50,7 +50,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/chart_filtered.png);" +
+    //"background-image: url(resources/draft/payconfirm.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -3938,11 +3938,18 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top: 62%;" +
+  "top: 58%;" +
   "bottom: 0;" +
   "background-color: transparent;" +
   "border-bottom:  1px solid lightgray;" +
   "overflow: hidden;" +
+  "}",
+
+  payconfirmActionAutoPayContainer: ".payconfirm-action-autopay-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: " + 312 * widthK + "px;" +
   "}",
 
   payconfirmActionContainer: ".payconfirm-action-containter" +
@@ -3950,7 +3957,7 @@ var css = {
   "position: relative;" +
   "float: left;" +
   "width: 50%;" +
-  "top: 15%;" +
+  "top: 9%;" +
   "height: 50%;" +
   "background-color: transparent;" +
   "}",
@@ -3981,7 +3988,7 @@ var css = {
 
   payconfirmActionText: ".payconfirm-action-text" +
   "{" +
-  "top: 17%;" +
+  "top: 30%;" +
   "left: 4%;" +
   "position: relative;" +
   "margin-right: auto;" +
@@ -3995,7 +4002,7 @@ var css = {
 
   payconfirmButtonEnter: ".payconfirm-button-enter" +
   "{" +
-  "top:" + 100 * widthK + "px;" +
+    //"top:" + 100 * widthK + "px;" +
   "position: relative;" +
   "width: 36%; " +
   "height: 15%; " +
@@ -9681,7 +9688,7 @@ var css = {
   "top: 22%; " +
   "color: white;" +
   "text-overflow: ellipsis;" +
-  //"white-space: nowrap;" +
+    //"white-space: nowrap;" +
   "overflow: hidden;" +
   "}",
 

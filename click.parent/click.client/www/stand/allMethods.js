@@ -3079,4 +3079,14 @@ window.notificationCardAdd = {
   body: "Karta 8600***8946 uspeshno dobavlena. Pojaluysta ustanovite kartu dlya oplat po umolchaniyu v razdele 4)Nastroyki-4)Upravleniye kartami",
   notify_id: "8600330432558946",
   tap: false
-}
+};
+
+window.notificationCardAddBack = {
+  action: "card.add",
+  collapse_key: "com.ios.xp",
+  from: "206647793311",
+  "google.message_id": "0:1492141725817086%37cfad8637cfad86",
+  "google.sent_time": 1492141725644,
+  "notify_id": "8600330432558946",
+  "tap": true
+};
