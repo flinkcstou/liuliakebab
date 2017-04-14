@@ -194,29 +194,18 @@
     scope.enterButton = opts[0] != 'ADDFAVORITE' ? true : false;
     scope.showError = false;
 
-    scope.changeInput = '';
 
     telPayVerificationKeyDown = function (input) {
 
       if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
       }
-
     }
 
-    var buffer = ''
     telPayVerificationKeyUp = function () {
       if (event.keyCode != input_codes.BACKSPACE_CODE) {
-        var regExp = new RegExp(/[0-9]+/g);
-        var res = regExp.exec(event.target.value)
-        if (!res) {
-          event.target.value = buffer
-        }
-        else {
-          buffer = res.input;
-        }
-
-        console.log(res)
+        console.log(firstFieldInput.value)
+        firstFieldInput.value = inputVerification.telVerification(firstFieldInput.value)
       }
     }
 
@@ -458,7 +447,7 @@
         console.log("Yahoooo_1", scope.fieldArray, scope.fieldArray[0], scope.fieldArray[0].input_type);
 
         if (scope.fieldArray[0].input_type == '1') {
-          scope.inputType = 'number';
+          scope.inputType = 'tel';
           scope.isNumber = true;
         }
         else if (scope.fieldArray[0].input_type == '2') {
@@ -605,7 +594,7 @@
           console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
 
           if (scope.fieldArray[i].input_type == '1') {
-            scope.inputType = 'number';
+            scope.inputType = 'tel';
             scope.isNumber = true;
           }
           else if (scope.fieldArray[i].input_type == '2') {

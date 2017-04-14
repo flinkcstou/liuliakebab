@@ -137,6 +137,15 @@ window.amountTransform = function (amount) {
   return newAmount.split("").reverse().join("");
 }
 
+window.inputVerification = {};
+
+
+window.inputVerification.telVerification = function (phoneNumber) {
+
+  phoneNumber = phoneNumber.replace(new RegExp('[^0-9]', 'g'), '');
+  return phoneNumber.split(",").join();
+}
+
 window.pushNotificationInitialize = function () {
   if (device.platform != 'BrowserStand')
     window.FirebasePlugin.getToken(function (token) {
