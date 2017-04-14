@@ -3,8 +3,13 @@ window.api.callBacks = {};
 
 window.api.init = function () {
 
-  window.api.socket = new WebSocket("wss://my.click.uz:8443");
-  window.api.initSocket();
+  try {
+    window.api.socket = new WebSocket("wss://my.click.uz:8443");
+    window.api.initSocket();
+  }
+  catch (error) {
+    window.api.init()
+  }
 };
 
 window.api.initSocket = function () {

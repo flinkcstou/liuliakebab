@@ -31,8 +31,7 @@
 </head>
 
 <body id="bodyId">
-<component-notification id="notificationPushId">
-</component-notification>
+<div id="indexNotificationBlockId"></div>
 
 <div id="riotTags">
 </div>
@@ -126,6 +125,9 @@
       document.head.appendChild(GENERATOR);
 
       firstMount.firstStep = function () {
+        indexNotificationBlockId
+        scope.indexNotificationBlockId.innerHTML = "<component-notification>";
+
         if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
           scope.riotTags.innerHTML = "<view-authorization>";
           riot.mount('view-authorization')
