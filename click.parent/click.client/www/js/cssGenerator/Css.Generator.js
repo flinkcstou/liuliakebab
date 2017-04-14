@@ -9689,6 +9689,7 @@ var css = {
   "top: 22%; " +
   "color: white;" +
   "text-overflow: ellipsis;" +
+
     //"white-space: nowrap;" +
   "overflow: hidden;" +
   "}",

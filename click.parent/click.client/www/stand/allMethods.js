@@ -2930,7 +2930,7 @@ window.fakedSocket.register("get.indoor.service", function (input) {
       }],
       [
         {
-          "address": "г.Ташкент, ул. Езгулик, дом 15",
+          "address": "г.Ташкент, ул. Езгулик Езгулик Езгулик Езгулик Езгулик Езгулик Езгулик Езгулик Езгулик Езгулик Езгулик, дом 15",
           "category_id": 6,
           "cost": 1,
           "form_type": 1,
