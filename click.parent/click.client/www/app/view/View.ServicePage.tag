@@ -37,7 +37,8 @@
              id="firstFieldInput"
              onfocus="bordersColor()"
              autofocus="true"
-             value="{defaultNumber || opts.first_field_value}" onkeydown="telPayVerificationKeyDown(this)"/>
+             value="{defaultNumber || opts.first_field_value}" onkeydown="telPayVerificationKeyDown(this)"
+             onkeyup="telPayVerificationKeyUp()"/>
       <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
     </div>
 
@@ -195,18 +196,15 @@
 
 
     telPayVerificationKeyDown = function (input) {
-      console.log(event.target.value)
+
       console.log('event', event)
       if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
       }
-      else {
-        console.log(event.target.value)
-        console.log(firstFieldInput.value)
-        event.target.value.replace(new RegExp(/[^0-9]/g))
-        console.log(event.target.value)
-        console.log(firstFieldInput.value)
-      }
+    }
+
+    telPayVerificationKeyUp = function () {
+      firstFieldInput.value = event.target.value.replace(new RegExp(/[^0-9]/g))
     }
 
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
