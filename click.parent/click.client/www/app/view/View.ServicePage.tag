@@ -36,6 +36,7 @@
              type="{inputType}"
              id="firstFieldInput"
              onfocus="bordersColor()"
+             autofocus="true"
              value="{defaultNumber || opts.first_field_value}" onkeydown="telPayVerificationKeyDown(this)"/>
       <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
     </div>
@@ -388,7 +389,6 @@
         amountField.style.top = '5.5%';
 
 
-
         if (viewServicePage.amountText)
           if (viewServicePage.amountText.length > 0) {
             amount.value = viewServicePage.amountText;
@@ -439,7 +439,7 @@
         console.log("Yahoooo_1", scope.fieldArray, scope.fieldArray[0], scope.fieldArray[0].input_type);
 
         if (scope.fieldArray[0].input_type == '1') {
-          scope.inputType = 'number';
+          scope.inputType = 'tel';
           scope.isNumber = true;
         }
         else if (scope.fieldArray[0].input_type == '2') {
@@ -487,7 +487,6 @@
         scope.chosenFieldNameTwo = scope.servicesParamsMapFour[scope.service.id][0].name;
         scope.hasSecondLevel = true;
         scope.hasFirstLevel = true;
-
 
 
         for (var i = 0; i < scope.servicesParamsMapFour[scope.service.id].length; i++) {
@@ -587,7 +586,7 @@
           console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
 
           if (scope.fieldArray[i].input_type == '1') {
-            scope.inputType = 'number';
+            scope.inputType = 'tel';
             scope.isNumber = true;
           }
           else if (scope.fieldArray[i].input_type == '2') {
@@ -844,10 +843,51 @@
 
       if (scope.enterButton) {
 
+
         event.preventDefault();
         event.stopPropagation();
-        this.riotTags.innerHTML = "<view-service-pincards>";
-        riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
+        console.log(formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites)
+
+        console.log('scope.fieldArray[0]',scope.fieldArray[0])
+        if (modeOfApp.offlineMode) {
+          console.log("opts[0].name.replace(/\s/g, '')", opts[0].name.replace(/\s/g, ''))
+          if (opts[0].type == 2) {
+            phonedialer.dial(
+              "*880*1*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  riot.update();
+                }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
+              }
+            );
+          }
+          else {
+            phonedialer.dial(
+              "*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  riot.update();
+                }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
+              }
+            );
+          }
+        }
+        else {
+          this.riotTags.innerHTML = "<view-service-pincards>";
+          riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
+        }
       } else {
         console.log("GOING TO ADD TO FAVORITES");
         addToFavorites([formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
