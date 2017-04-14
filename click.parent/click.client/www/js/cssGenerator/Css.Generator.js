@@ -11444,8 +11444,8 @@ var css = {
   "float: left;" +
   "text-align: center;" +
   "margin-left: 8%;" +
-  "color: #fffbd8;" +
-  "background-color: #ffb01c;" +
+  "color: white;" +
+  "background-color: #00acf5;" +
   "height:" + 55 * widthK + "px;" +
   "line-height:" + 58 * widthK + "px;" +
   "border-radius:" + 5 * widthK + "px;" +
@@ -11469,15 +11469,13 @@ var css = {
   "{" +
   "position: relative;" +
   "color: black;" +
-  "width: 76%;" +
-  "max-height: 40%;" +
+  "width: 90%;" +
+  "max-height: 45%;" +
   "text-align: center;" +
-  "margin-left: 24%;" +
-  "margin-top: 0;" +
-  "margin-bottom: 0;" +
-  "margin-right: auto;" +
+  "margin: 0 auto 0 auto;" +
   "top: 20%;" +
-  "font-size:" + 26 * widthK + "px;" +
+  "overflow: hidden;" +
+  "font-size:" + 24 * widthK + "px;" +
   "}",
 
 }

@@ -1,7 +1,7 @@
 <component-notification id="notificationPushId"
                         class="component-notification {component-notification-show: show, component-notification-set-transition: setTransition}">
 
-  <div class="component-notification-icon"></div>
+  <div style="display: none" class="component-notification-icon"></div>
   <p class="component-notification-text">{notificationText}</p>
 
   <div class="component-notification-buttons-container">

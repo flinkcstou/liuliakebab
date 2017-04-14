@@ -46,8 +46,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      riotTags.innerHTML = "<view-auto-pay>";
-      riot.mount('view-auto-pay');
+      notificationPushId.style.transform="translate3d(0,0,0)"
     }
 
   </script>
