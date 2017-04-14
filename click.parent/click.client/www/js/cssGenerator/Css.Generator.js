@@ -11389,9 +11389,13 @@ var css = {
   "height:" + 200 * widthK + "px;  " +
   "width: 100%;  " +
   "z-index: 9999999;  " +
-  "transition: 1s;  " +
   "transform: translate3d(0, -100%, 0);  " +
   "background-color: #f1eff3;  " +
+  "}",
+
+  componentNotificationSetTransition: ".component-notification-set-transition" +
+  "{" +
+  "transition: 1s;  " +
   "}",
 
   componentNotificationShow: ".component-notification-show" +

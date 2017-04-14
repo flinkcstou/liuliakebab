@@ -1,15 +1,15 @@
 <component-notification id="notificationPushId"
-                        class="component-notification {component-notification-show: show}">
+                        class="component-notification {component-notification-show: show, component-notification-set-transition: setTransition}">
 
   <div class="component-notification-icon"></div>
   <p class="component-notification-text">{notificationText}</p>
 
   <div class="component-notification-buttons-container">
-    <p class="component-notification-button-cancel" ontouchend="onTouchEndDecline()"
-       ontouchstart="onTouchStartDecline()">
+    <p class="component-notification-button-cancel" ontouchend="onTouchEndNotificationDecline()"
+       ontouchstart="onTouchStartNotificationDecline()">
       ЗАКРЫТЬ</p>
-    <p class="component-notification-button-accept" ontouchend="onTouchEndAccept()"
-       ontouchstart="onTouchStartAccept()">
+    <p class="component-notification-button-accept" ontouchend="onTouchEndNotificationAccept()"
+       ontouchstart="onTouchStartNotificationAccept()">
       ДЕТАЛИ</p>
   </div>
 
@@ -18,34 +18,51 @@
     var scope = this;
 
     scope.show = false;
+    scope.setTransition = false;
+    console.log("ASDASDASASDASDASDASDASDASDADASDASDADS1111");
     scope.notificationText = "";
     scope.notificationAction = "";
 
     var numberOfMessage = 0;
-    window.FirebasePlugin.onNotificationOpen(function (notification) {
-      console.log("PUSH NOTIFICATION OBJECT", notification);
-      ++numberOfMessage;
 
-      scope.notificationText = notification.body;
-      scope.notificationAction = notification.action;
-      scope.show = true;
+    setTimeout(function () {
 
+      scope.setTransition = true;
       riot.update();
+    }, 1000);
 
-      window.FirebasePlugin.setBadgeNumber(numberOfMessage);
+    if (device.platform != 'BrowserStand') {
+      window.FirebasePlugin.onNotificationOpen(function (notification) {
+        console.log("PUSH NOTIFICATION OBJECT", notification);
+        ++numberOfMessage;
 
-    }, function (error) {
-      console.error(error);
-    });
+        scope.notificationText = notification.body;
+        scope.notificationAction = notification.action;
+        scope.notificationElementId = notification.notify_id;
+        scope.show = true;
 
-    onTouchStartDecline = function () {
+        riot.update();
+
+        window.FirebasePlugin.setBadgeNumber(numberOfMessage);
+
+      }, function (error) {
+        console.error(error);
+      });
+    }
+
+    onTouchEndNotificationAccept = function () {
+    };
+    onTouchEndNotificationDecline = function () {
+    };
+
+    onTouchStartNotificationDecline = function () {
 
       scope.show = false;
       scope.notificationText = "";
       riot.update();
     };
 
-    onTouchStartAccept = function () {
+    onTouchStartNotificationAccept = function () {
 
       scope.show = false;
       scope.notificationText = "";
@@ -54,7 +71,18 @@
       if (scope.notificationAction == "invoice") {
 
 
-//        riot.mount();
+        getInvoiceFunction(scope.notificationElementId);
+      }
+
+      if (scope.notificationAction == "card.add") {
+
+
+        onComponentCreated();
+      }
+
+      if (scope.notificationAction == "payment") {
+
+        getPaymentList(scope.notificationElementId);
       }
     };
 
@@ -117,6 +145,8 @@
                       riotTags.innerHTML = "<view-payment-detail>";
                       riot.mount('view-payment-detail', params);
                     }
+
+                    return;
                   }
                 }
 
@@ -135,6 +165,51 @@
           }
         },
 
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    };
+
+    getPaymentList = function (paymentId) {
+
+      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+      var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+      var sessionKey = loginInfo.session_key;
+
+      scope.paymentsMap = {};
+      scope.paymentDates = [];
+      scope.paymentsList = [];
+      window.api.call({
+        method: 'get.payment.list',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber
+        },
+        scope: this,
+
+        onSuccess: function (result) {
+          console.log(result)
+          console.log(result[0][0])
+          if (result[0][0].error == 0) {
+            console.log('PAYMENTLIST=', result[1]);
+            for (var i in result[1]) {
+
+              if (result[1][i].payment_id == paymentId) {
+
+                console.log("service report for=", result[1][i]);
+                riotTags.innerHTML = "<view-report-service>";
+                riot.mount("view-report-service", result[1][i]);
+                return;
+              }
+            }
+          }
+          else {
+
+          }
+
+        },
         onFail: function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);

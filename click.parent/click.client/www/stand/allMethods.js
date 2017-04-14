@@ -3065,10 +3065,18 @@ window.fakedSocket.register("get.news", function (input) {
   ];
 });
 
-window.notification = {
+window.notificationInvoice = {
 
   action: "invoice",
   body: "Abonent +998909464133 prosit Vas oplatit' 1000 sum na +998909464133(BEELINE)↵Naberite *880# dlya oplati ili otkaza",
   notify_id: "4503973",
   tap: false
 };
+
+window.notificationCardAdd = {
+
+  action: "card.add",
+  body: "Karta 8600***8946 uspeshno dobavlena. Pojaluysta ustanovite kartu dlya oplat po umolchaniyu v razdele 4)Nastroyki-4)Upravleniye kartami",
+  notify_id: "8600330432558946",
+  tap: false
+}
