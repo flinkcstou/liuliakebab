@@ -199,7 +199,7 @@
 
     telPayVerificationKeyDown = function (input) {
 
-      if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE) {
+      if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
       }
     }

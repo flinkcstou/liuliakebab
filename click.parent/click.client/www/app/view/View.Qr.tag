@@ -55,7 +55,7 @@
 //        sumForTransfer = viewTransferStepTwo.sumWithoutSpace;
 //      }
 //      else
-      sumValueId.value = 0 + ' ' + defaultAccount.currency
+      sumValueId.value = 0
     })
 
     var checkFirst = false,
@@ -117,13 +117,13 @@
       event.preventDefault()
       event.stopPropagation()
       if (!checkFirst) {
-        sumValueId.value = ' ' + defaultAccount.currency
+        sumValueId.value = ''
         checkFirst = true;
       }
 
       if (sumValueId.value.match(maskOne) != null && sumValueId.value.match(maskOne).length != null) {
-        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
+        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length
+        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length
       } else {
         sumValueId.selectionStart = 0
         sumValueId.selectionEnd = 0
@@ -134,8 +134,8 @@
       event.preventDefault()
       event.stopPropagation()
 
-      if (sumValueId.value.length == 4) {
-        sumValueId.value = '0 ' + defaultAccount.currency;
+      if (sumValueId.value.length == 0) {
+        sumValueId.value = '0';
       }
     }
 
@@ -145,32 +145,33 @@
       event.preventDefault()
       event.stopPropagation()
 
-      if (sumValueId.value.length == 5 && sumValueId.value[0] == '0') {
-        sumValueId.value = ' ' + defaultAccount.currency;
+      if (sumValueId.value.length == 1 && sumValueId.value[0] == '0') {
+        sumValueId.value = ''
       }
     }
 
     sumKeyUp = function () {
 
-      if (sumValueId.value.length == 5 && sumValueId.value[0] == '0') {
-        sumValueId.value = ' ' + defaultAccount.currency;
+      if (sumValueId.value.length == 1) {
+        sumValueId.value = window.amountTransform(sumValueId.value)
       }
-      if (event.keyCode == 8) {
+
+      if (event.keyCode == input_codes.BACKSPACE_CODE) {
         sumForQrPay = sumForQrPay.substring(0, sumForQrPay.length - 1)
       }
 
       if (sumValueId.value.match(maskTwo) != null && sumValueId.value.match(maskTwo).length != null) {
 
-        sumValueId.value = sumValueId.value.substring(0, event.target.value.match(maskTwo).length) + defaultAccount.currency
-        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
+        sumValueId.value = sumValueId.value.substring(0, event.target.value.match(maskTwo).length)
+        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length
+        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length
 
         sumForQrPay = sumValueId.value.substring(0, sumValueId.value.match(maskTwo).length);
         sumForQrPay = sumForQrPay.replace(new RegExp(' ', 'g'), '');
 
-        sumValueId.value = window.amountTransform(sumForQrPay) + ' ' + defaultAccount.currency;
-        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length - 1
-        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length - 1
+        sumValueId.value = window.amountTransform(sumForQrPay);
+        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length
+        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length
 
 
       } else {

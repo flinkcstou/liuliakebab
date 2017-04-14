@@ -212,6 +212,10 @@
 
     searchContacts = function () {
 
+      if (event.keyCode != input_codes.BACKSPACE_CODE) {
+        contactPhoneNumberId.value = inputVerification.telVerification(contactPhoneNumberId.value)
+      }
+
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
 

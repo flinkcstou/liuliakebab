@@ -1,7 +1,7 @@
 <component-pincards>
 
   <div
-      class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail,
+    class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail,
                                         transfer-on-card-pincard-all-cards-container: opts.transferoncard,
                                         changed-height-for-filter-account: opts.filteraccount}">
     <div class="pincard-card-container" each="{i in cardsArray}" ontouchend="chooseCardTouchEnd(this.id)"
@@ -13,7 +13,7 @@
            style="opacity:0.3; filter: grayscale(100%);background-image: url({i.url})"></div>
       <div class="pincard-card-info-container">
         <p class="pincard-card-info-text-one">{i.name}</p>
-        <p if="{!modeOfflineMode.check}" class="pincard-card-info-text-two" if="{i.salaryOriginal>0}">{i.salary}
+        <p if="{i.salaryOriginal > 0}" class="pincard-card-info-text-two" if="{i.salaryOriginal>0}">{i.salary}
           {i.currency}</p>
         <p class="pincard-card-info-text-two" style="color: #EB604D"
            if="{i.salaryOriginal<=0 && !modeOfflineMode.check}">
