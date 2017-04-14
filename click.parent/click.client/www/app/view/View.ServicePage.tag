@@ -746,6 +746,10 @@
       event.preventDefault();
       event.stopPropagation();
 
+      if (amount.value.length == 1) {
+        amount.value = window.amountTransform(amount.value)
+      }
+
       if (event.keyCode == 8) {
         amountForPayTransaction = amountForPayTransaction.substring(0, amountForPayTransaction.length - 1)
       }
