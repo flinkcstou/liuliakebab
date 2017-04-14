@@ -206,16 +206,18 @@
 
     var buffer = ''
     telPayVerificationKeyUp = function () {
-      var regExp = new RegExp(/[0-9]+/g);
-      var res = regExp.exec(event.target.value)
-      if (!res) {
-        event.target.value = buffer
-      }
-      else {
-        buffer = res.input;
-      }
+      if (event.keyCode != input_codes.BACKSPACE_CODE) {
+        var regExp = new RegExp(/[0-9]+/g);
+        var res = regExp.exec(event.target.value)
+        if (!res) {
+          event.target.value = buffer
+        }
+        else {
+          buffer = res.input;
+        }
 
-      console.log(res)
+        console.log(res)
+      }
     }
 
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
