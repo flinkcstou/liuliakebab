@@ -249,7 +249,6 @@
             phone += digits[i]
           }
           firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
-          window.pickContactFromNativeChecker = false;
         }, 0);
       }, function (error) {
         console.log('error', error)

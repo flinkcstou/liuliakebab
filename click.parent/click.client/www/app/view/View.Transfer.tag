@@ -401,7 +401,6 @@
 
           }// use time-out to fix iOS alert problem
 
-          window.pickContactFromNativeChecker = false;
         }, 0);
       }, function (error) {
 //        console.log('error', error)

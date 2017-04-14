@@ -178,6 +178,8 @@
 
   function onPauseFunction() {
     if (componentMenu.check === true || window.pickContactFromNativeChecker === true) {
+      window.pickContactFromNativeChecker = false;
+      componentMenu.check = false;
       return
     }
     setTimeout(function () {

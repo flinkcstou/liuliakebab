@@ -141,6 +141,7 @@
     pickContactFromNative = function () {
 
       window.plugins.PickContact.chooseContact(function (contactInfo) {
+        window.pickContactFromNativeChecker = true;
 //        console.log('CONTACTINFO', contactInfo)
         setTimeout(function () {
           var phoneNumber

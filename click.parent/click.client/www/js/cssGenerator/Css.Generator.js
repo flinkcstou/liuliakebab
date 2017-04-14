@@ -9670,6 +9670,7 @@ var css = {
   "{" +
   "position: relative;" +
   "font-size:" + 24 * widthK + "px; " +
+  "max-height:" + 60 * widthK + "px; " +
   "width: 90%; " +
   "text-align: center; " +
   "margin: 0; " +
@@ -9678,7 +9679,7 @@ var css = {
   "top: 22%; " +
   "color: white;" +
   "text-overflow: ellipsis;" +
-  "white-space: nowrap;" +
+  //"white-space: nowrap;" +
   "overflow: hidden;" +
   "}",
 
