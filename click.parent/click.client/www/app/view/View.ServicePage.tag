@@ -196,7 +196,7 @@
 
     telPayVerificationKeyDown = function (input) {
       console.log(event.target.value)
-      console.log(event.keyCode)
+      console.log('event', event)
       if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
       }
@@ -207,7 +207,7 @@
 
 
     this.on('mount', function () {
-      firstFieldInput.focus()
+
       if (opts && opts.number) {
         firstFieldInput.value = opts.number
         riot.update();
