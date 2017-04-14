@@ -226,6 +226,7 @@
               else console.log("Dialer Error:" + err);
             },
             function (success) {
+              console.log("*880*3*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23")
             }
           );
         }
@@ -242,6 +243,7 @@
               else console.log("Dialer Error:" + err);
             },
             function (success) {
+              console.log("*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23")
             }
           );
         }
