@@ -200,6 +200,9 @@
       if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
       }
+      else {
+        firstFieldInput.value.replace(new RegExp(/\D+/g));
+      }
     }
 
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
