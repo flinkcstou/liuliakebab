@@ -3202,7 +3202,7 @@ var css = {
   servicePageButtonEnter: ".servicepage-button-enter" +
   "{" +
   "height: 5%;" +
-  "margin-top: "+160*widthK+"px;" +
+  "margin-top: " + 160 * widthK + "px;" +
   "background-color: #00a8f1;" +
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px;" +
@@ -3935,7 +3935,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top: 58%;" +
+  "top: 60%;" +
   "bottom: 0;" +
   "background-color: transparent;" +
   "border-bottom:  1px solid lightgray;" +
@@ -3946,7 +3946,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height: " + 312 * widthK + "px;" +
+  "height: " + 290 * widthK + "px;" +
   "}",
 
   payconfirmActionContainer: ".payconfirm-action-containter" +
@@ -3955,7 +3955,7 @@ var css = {
   "float: left;" +
   "width: 50%;" +
   "top: 9%;" +
-  "height: 50%;" +
+  "height: 60%;" +
   "background-color: transparent;" +
   "}",
 
@@ -3999,19 +3999,18 @@ var css = {
 
   payconfirmButtonEnter: ".payconfirm-button-enter" +
   "{" +
-    //"top:" + 100 * widthK + "px;" +
   "position: relative;" +
-  "width: 36%; " +
-  "height: 15%; " +
-  "left:" + 230 * widthK + "px; " +
+  "height: 15%;" +
   "background-color: #00a8f1;" +
-  "color: white;" +
-  "outline: none;" +
-  "border: none;" +
   "padding: 0;" +
-  "font-size: " + 32 * widthK + "px; " +
+  "font-size: " + 32 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 3 * widthK + "px; " +
+  "border: none;" +
+  "outline: none;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
   "}",
 
   payconfirmButtonEnterLabel: ".payconfirm-button-enter-label" +
@@ -4699,19 +4698,19 @@ var css = {
 
   transferNextButtonInnerContainer: ".transfer-next-button-inner-container" +
   "{" +
-  "position: absolute;" +
-  "width: 39%;" +
   "height: 5%;" +
   "top: 41%;" +
-  "background-color: #00a8f1;" +
-  "color: white;" +
-  "outline: none;" +
-  "border: none;" +
-  "padding: 0;" +
-  "left: " + 220 * widthK + "px; " +
-  "font-size: " + 32 * widthK + "px; " +
+  "font-size: " + 32 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 3 * widthK + "px; " +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "background-color: #00a8f1;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "bottom: 0;" +
+  "color: #ffffff;" +
   "}",
 
   transferNextButtonLabel: ".transfer-next-button-label" +
@@ -4835,19 +4834,19 @@ var css = {
 
   transferTwoNextButtonInnerContainer: ".transfertwo-next-button-inner-container" +
   "{" +
-  "position: absolute;" +
-  "width: 39%;" +
   "height: 5%;" +
-  "top: 45%;" +
-  "background-color: #00a8f1;" +
-  "color: white;" +
-  "outline: none;" +
-  "border: none;" +
-  "padding: 0;" +
-  "left: " + 220 * widthK + "px; " +
-  "font-size: " + 32 * widthK + "px; " +
+  "top: 41%;" +
+  "font-size: " + 32 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 3 * widthK + "px; " +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "background-color: #00a8f1;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "bottom: 0;" +
+  "color: #ffffff;" +
   "}",
 
 
@@ -4968,7 +4967,7 @@ var css = {
   transferThreeNextButtonInnerContainer: ".transferthree-next-button-inner-container" +
   "{" +
   "position: absolute;" +
-  "width: 39%;" +
+  "width: 44%;" +
   "height: 5%;" +
   "bottom: 10%;" +
   "background-color: #00a8f1;" +
@@ -4976,10 +4975,10 @@ var css = {
   "outline: none;" +
   "border: none;" +
   "padding: 0;" +
-  "left: " + 220 * widthK + "px; " +
+  "left: 28%; " +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 3 * widthK + "px; " +
+  "border-radius: " + 10 * widthK + "px; " +
   "}",
 
   transferThreeNextButtonLabel: ".transferthree-next-button-label" +
@@ -5238,19 +5237,19 @@ var css = {
 
   transferFourButtonEnter: ".transferfour-button-enter" +
   "{" +
-  "position: absolute;" +
-  "width: 38%;" +
+  "background-color: #00a8f1;" +
   "height: 5%;" +
   "bottom: 10%;" +
-  "background-color: #00a8f1;" +
   "color: white;" +
-  "outline: none;" +
-  "border: none;" +
   "padding: 0;" +
-  "left: " + 220 * widthK + "px; " +
-  "font-size: " + 32 * widthK + "px; " +
+  "font-size: " + 32 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 3 * widthK + "px; " +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
   "}",
 
   transferFourButtonEnterLabel: ".transferfour-button-enter-label" +
@@ -5685,16 +5684,20 @@ var css = {
 
   successNextButtonInnerContainer: ".success-next-button-inner-container" +
   "{" +
-  "position: relative;" +
-  "height: 6%;" +
-  "left: -2%;" +
-  "width: 48%;" +
   "top: 83%;" +
-  "display: table;" +
+  "height: 6%;" +
+  "margin: 0 auto 0 auto;" +
   "background-color: #027fe4;" +
-  "border-radius:" + 50 * widthK + "px;" +
-  "margin-right: auto;" +
-  "margin-left: auto;" +
+  "padding: 0;" +
+  "font-size: " + 38 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
   "}",
 
   successNextButtonLabel: ".success-next-button-label" +
@@ -5827,15 +5830,20 @@ var css = {
 
   unsuccessNextButtonInnerContainer: ".unsuccess-next-button-inner-container" +
   "{" +
-  "position: relative;" +
+  "top: 89%;" +
   "height: 6%;" +
-  "width: 51%;" +
-  "top: 76%;" +
-  "display: table;" +
+  "margin: 0 auto 0 auto;" +
   "background-color: #027fe4;" +
-  "border-radius:" + 50 * widthK + "px;" +
-  "margin-right: auto;" +
-  "margin-left: auto;" +
+  "padding: 0;" +
+  "font-size: " + 38 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
   "}",
 
   unsuccessNextButtonLabel: ".unsuccess-next-button-label" +
@@ -6945,16 +6953,21 @@ var css = {
 
   settingsAddFriendNextButtonInnerContainer: ".settings-add-friend-next-button-inner-container" +
   "{" +
-  "position: relative;" +
-  "width: 39%;" +
-  "height: 5%;" +
-  "color: white;" +
-  "margin-right: auto;" +
-  "border-radius: " + 3 * widthK + "px; " +
-  "font-size: " + 32 * widthK + "px; " +
-  "margin-left: auto;" +
-  "background-color: #00a8f1;" +
   "top: 41%;" +
+  "position: relative;" +
+  "height: 5%;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "margin: 0 auto 0 auto;" +
+  "background-color: #00a8f1;" +
+  "padding: 0;" +
+  "font-size: " + 32 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
   "}",
 
   settingsAddFriendNextButtonLabel: ".settings-add-friend-next-button-label" +
@@ -8916,18 +8929,18 @@ var css = {
   viewAddNextButton: ".view-add-next-button " +
   "{" +
   "position: absolute;" +
-  "width: 38%;" +
   "height: 5%;" +
   "top: 60%;" +
   "background-color: #00a8f1;" +
-  "color: white;" +
-  "outline: none;" +
-  "border: none;" +
   "padding: 0;" +
-  "left: " + 230 * widthK + "px; " +
-  "font-size: " + 32 * widthK + "px; " +
-  "border-radius: " + 8 * widthK + "px; " +
+  "font-size: " + 32 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
   "}",
 
   addCardCardField: ".add-card-card-field " +
@@ -9761,18 +9774,18 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "height:" + 62 * widthK + "px;" +
-  "border-radius:" + 8 * widthK + "px;" +
-  "font-size:" + 29 * widthK + "px;" +
-  "width: 33%;" +
+  "height: " + 62 * widthK + "px;" +
+  "font-size: " + 32 * widthK + "px;" +
+  "top: 60%;" +
   "background-color: #00a8f1;" +
-  "color: white;" +
-  "outline: none;" +
-  "border: none;" +
   "padding: 0;" +
-  "left: " + 230 * widthK + "px; " +
-  "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
   "}",
 
   viewQrButtonCancel: ".view-qr-button-cancel" +
@@ -10369,20 +10382,20 @@ var css = {
 
   qrPincardButtonEnter: " .qr-pincard-button-enter" +
   "{" +
-  "top: 60%;" +
   "position: absolute;" +
-  "width: 38%; " +
-  "height: 15%; " +
-  "margin: 0 auto 0 auto; " +
-  "left:" + 230 * widthK + "px; " +
+  "margin: 0;" +
+  "height: " + 62 * widthK + "px;" +
+  "font-size: " + 32 * widthK + "px;" +
+  "top: 60%;" +
   "background-color: #00a8f1;" +
-  "color: white;" +
-  "outline: none;" +
-  "border: none;" +
   "padding: 0;" +
-  "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 3 * widthK + "px; " +
+  "border: none;" +
+  "outline: none;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
   "}",
 
   qrPincardButtonEnterLabel: ".qr-pincard-button-enter-label" +
@@ -10671,20 +10684,20 @@ var css = {
 
   qrPayconfirmButtonEnter: ".qr-payconfirm-button-enter" +
   "{" +
-  "top: 60%;" +
   "position: absolute;" +
-  "width: 38%; " +
-  "height: 15%; " +
-  "margin: 0 auto 0 auto; " +
-  "left:" + 230 * widthK + "px; " +
+  "margin: 0;" +
+  "height: " + 62 * widthK + "px;" +
+  "font-size: " + 32 * widthK + "px;" +
+  "top: 60%;" +
   "background-color: #00a8f1;" +
-  "color: white;" +
-  "outline: none;" +
-  "border: none;" +
   "padding: 0;" +
-  "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +
-  "border-radius: " + 3 * widthK + "px; " +
+  "border: none;" +
+  "outline: none;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
   "}",
 
   qrPayconfirmButtonEnterLabel: ".qr-payconfirm-button-enter-label" +

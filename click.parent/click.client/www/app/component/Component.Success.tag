@@ -2,9 +2,7 @@
   <p class="success-operation-success-message">{opts.operationmessage}</p>
   <div class="success-success-icon"></div>
 
-  <div class="success-next-button-inner-container" ontouchend="closeSuccessMessageForm()">
-    <p class="success-next-button-label">{window.languages.ComponentSuccessNext}</p>
-  </div>
+  <button class="success-next-button-inner-container" ontouchend="closeSuccessMessageForm()">{window.languages.ComponentSuccessNext}</button>
 
   <script>
     var scope = this;

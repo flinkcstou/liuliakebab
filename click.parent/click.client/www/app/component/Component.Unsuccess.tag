@@ -3,9 +3,9 @@
   <p class="unsuccess-operation-success-message-part-three">{opts.operationmessagepartthree}</p>
   <div class="unsuccess-unsuccess-icon"></div>
 
-  <div class="unsuccess-next-button-inner-container" ontouchend="closeUnsuccessMessageForm()">
-    <p class="unsuccess-next-button-label">{window.languages.ComponentUnsuccessNext}</p>
-  </div>
+  <button class="unsuccess-next-button-inner-container" ontouchend="closeUnsuccessMessageForm()">
+    {window.languages.ComponentUnsuccessNext}
+  </button>
 
   <script>
     var scope = this;
