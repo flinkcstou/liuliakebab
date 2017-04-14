@@ -97,8 +97,8 @@
       //.replace(new RegExp('[^0-9]', 'g'), '');
 //      console.log('sumValueId.value', sumValueId.value[0])
 //      console.log('sumValueId.value.length', sumValueId.value.length)
-      if (sumValueId.value.length == 1 && sumValueId.value == 0) {
-        sumValueId.value = ''
+      if (sumValueId.value.length == 1) {
+        sumValueId.value = window.amountTransform(sumValueId.value)
       }
 
       if (event.keyCode == 8) {
