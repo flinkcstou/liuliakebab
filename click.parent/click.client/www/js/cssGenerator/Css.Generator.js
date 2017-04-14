@@ -6942,13 +6942,15 @@ var css = {
   settingsAddFriendNextButtonInnerContainer: ".settings-add-friend-next-button-inner-container" +
   "{" +
   "position: relative;" +
-  "width: 63%;" +
-  "height: 8%;" +
+  "width: 39%;" +
+  "height: 5%;" +
+  "color: white;" +
   "margin-right: auto;" +
-  "border-radius: " + 80 * widthK + "px; " +
+  "border-radius: " + 3 * widthK + "px; " +
+  "font-size: " + 32 * widthK + "px; " +
   "margin-left: auto;" +
-  "background-color: rgb(1, 124, 227);" +
-  "top: 29%;" +
+  "background-color: #00a8f1;" +
+  "top: 41%;" +
   "}",
 
   settingsAddFriendNextButtonLabel: ".settings-add-friend-next-button-label" +

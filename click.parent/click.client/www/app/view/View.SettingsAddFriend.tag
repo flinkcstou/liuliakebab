@@ -47,9 +47,8 @@
         <div class="transfer-contact-found-text-two">{suggestionTwo.phoneNumber}</div>
       </div>
 
-      <div id="nextButtonId" class="settings-add-friend-next-button-inner-container" ontouchend="addFriendTouchEnd()">
-        <p class="settings-add-friend-next-button-label">{window.languages.ViewPayTransferNext}</p>
-      </div>
+      <button id="nextButtonId" class="settings-add-friend-next-button-inner-container" ontouchend="addFriendTouchEnd()">{window.languages.ViewPayTransferNext}
+      </button>
     </div>
 
   </div>
