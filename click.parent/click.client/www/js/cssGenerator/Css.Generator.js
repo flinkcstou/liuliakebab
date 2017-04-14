@@ -3213,6 +3213,7 @@ var css = {
   "color: white;" +
   "outline: none;" +
   "border: none;" +
+  "display: none;" +
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px; " +
   "font-family: SFUIDisplay-Light;" +

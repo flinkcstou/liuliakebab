@@ -54,7 +54,7 @@
     </div>
 
 
-    <button class="servicepage-button-enter" if="{enterButton}" ontouchend="enterButton()">
+    <button id="enterButtonId" class="servicepage-button-enter" if="{enterButton}" ontouchend="enterButton()">
       {window.languages.ViewServicePageEnterLabel}
     </button>
 
@@ -180,10 +180,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-service-page',
-            "params": opts
-          }
+        {
+          "view": 'view-service-page',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -710,10 +710,10 @@
 
 
     var maskOne = /[0-9]/g,
-        maskTwo = /[0-9' ']/g,
-        amountForPayTransaction = 0,
-        checkFirst = false,
-        defaultAccount;
+      maskTwo = /[0-9' ']/g,
+      amountForPayTransaction = 0,
+      checkFirst = false,
+      defaultAccount;
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     for (var i in cards) {
@@ -776,6 +776,14 @@
 
       viewServicePage.amountText = amount.value;
       viewServicePage.amountWithoutSpace = amountForPayTransaction;
+
+      if(amount.value.length >= 1 && amount.value != 0)
+      {
+        enterButtonId.style.display = 'block'
+      }
+      else{
+        enterButtonId.style.display = 'none'
+      }
 
     };
 
@@ -866,34 +874,34 @@
           console.log("opts[0].name.replace(/\s/g, '')", opts[0].name.replace(/\s/g, ''))
           if (opts[0].type == 2) {
             phonedialer.dial(
-                "*880*1*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
-                function (err) {
-                  if (err == "empty") {
-                    scope.clickPinError = false;
-                    scope.errorNote = ("Unknown phone number");
-                    scope.showError = true;
-                    riot.update();
-                  }
-                  else console.log("Dialer Error:" + err);
-                },
-                function (success) {
+              "*880*1*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  riot.update();
                 }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
+              }
             );
           }
           else {
             phonedialer.dial(
-                "*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
-                function (err) {
-                  if (err == "empty") {
-                    scope.clickPinError = false;
-                    scope.errorNote = ("Unknown phone number");
-                    scope.showError = true;
-                    riot.update();
-                  }
-                  else console.log("Dialer Error:" + err);
-                },
-                function (success) {
+              "*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  riot.update();
                 }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
+              }
             );
           }
         }
