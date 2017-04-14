@@ -43,10 +43,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-pay',
-          "params": opts
-        }
+          {
+            "view": 'view-pay',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -474,6 +474,7 @@
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20 || scope.checkOfSearch) {
         console.log("chosen id in pay view=", id);
         viewPay.chosenServiceId = id;
+        opts.id = id;
         event.stopPropagation();
 
         localStorage.setItem('chosenServiceId', id);
