@@ -201,7 +201,7 @@
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
       }
       else {
-        firstFieldInput.value.replace(new RegExp(/\D+/g));
+        event.target.value.exec(new RegExp(/[^0-9]/g));
       }
     }
 
