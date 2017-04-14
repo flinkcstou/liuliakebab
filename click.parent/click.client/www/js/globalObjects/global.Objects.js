@@ -146,6 +146,23 @@ window.inputVerification.telVerification = function (phoneNumber) {
   return phoneNumber.split(",").join();
 }
 
+window.inputVerification.cardVerification = function (card) {
+
+  card = card.replace(new RegExp('[^0-9]', 'g'), '');
+  card = card.split(",").join();
+
+  var newCard = ''
+  var j = 0;
+  for (var i = 0; i < card.length; i++) {
+    j++;
+    newCard += card[i]
+    if (j % 4 == 0) {
+      newCard += ' ';
+    }
+  }
+  return newCard
+}
+
 window.pushNotificationInitialize = function () {
   if (device.platform != 'BrowserStand')
     window.FirebasePlugin.getToken(function (token) {

@@ -27,7 +27,7 @@
         <p class="transfer-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
         <input onchange="contactPhoneBlurAndChange()" onfocus="contactPhoneBlurAndChange()"
                id="contactPhoneNumberId"
-               class="transfer-contact-number-input-part" type="number"
+               class="transfer-contact-number-input-part" type="tel"
                onkeyup="searchContacts()"
                onkeydown="telTransferVerificationKeyDown(this)"/>
         <div class="transfer-contact-phone-icon" ontouchend="pickContactFromNative()"></div>
@@ -96,7 +96,9 @@
         <p class="transfer-contact-text-field">{window.languages.ViewPayTransferCardTextField}</p>
         <input onchange="cardPhoneBlurAndChange()" onfocus="cardPhoneBlurAndChange()"
                id="cardInputId" class="transfer-card-number-input-part" type="tel"
-               onkeydown="searchCard(this)" onkeyup="cardOnKeyUp()"/>
+               onkeydown="searchCard(this)" onkeyup="cardOnKeyUp()"
+               maxlength="19"
+        />
       </div>
       <div class="transfer-card-owner-container">
         <p class="transfer-card-owner-title">{window.languages.ViewPayTransferCardOwnerTitle}</p>
@@ -290,14 +292,14 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-transfer',
-            "params": opts,
-          }
+        {
+          "view": 'view-transfer',
+          "params": opts,
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
-//    console.log('OPTS', opts)
+    //    console.log('OPTS', opts)
 
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -456,9 +458,9 @@
 
     this.titleName = window.languages.ViewPayTransferTitle;
     var scope = this,
-        phoneNumberForTransfer = '',
-        cardNumberForTransfer = '',
-        arrayOfContacts = [];
+      phoneNumberForTransfer = '',
+      cardNumberForTransfer = '',
+      arrayOfContacts = [];
 
     scope.showError = false;
 
@@ -600,12 +602,12 @@
       checkPhoneForTransfer = false;
       checkCardForTransfer = true;
 
-      if ((cardInputId.value.length == 4 || cardInputId.value.length == 9 || cardInputId.value.length == 14) && event.keyCode != input_codes.BACKSPACE_CODE) {
-        cardInputId.value += ' ';
+//      if ((cardInputId.value.length == 4 || cardInputId.value.length == 9 || cardInputId.value.length == 14) && event.keyCode != input_codes.BACKSPACE_CODE) {
+//        cardInputId.value += ' ';
+//
+//      }
 
-      }
-
-      if (input.value.length >= 19 && event.keyCode != input_codes.BACKSPACE_CODE) {
+      if (input.value.length >= 19 && event.keyCode != input_codes.BACKSPACE_CODEevent.keyCode != input_codes.NEXT) {
         cardInputId.value = event.target.value.substring(0, event.target.value.length - 1);
       }
 
@@ -613,6 +615,11 @@
 
     scope.cardOwner = '';
     cardOnKeyUp = function () {
+
+
+      if (cardInputId.value.length < 19 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT)
+        cardInputId.value = inputVerification.cardVerification(cardInputId.value);
+
       var arrayOfCards = [];
       if (JSON.parse(localStorage.getItem('transferCards'))) {
         arrayOfCards = JSON.parse(localStorage.getItem('transferCards'));
@@ -1082,6 +1089,9 @@
       findContacts();
 
     searchContacts = function () {
+      if (event.keyCode != input_codes.BACKSPACE_CODE) {
+        contactPhoneNumberId.value = inputVerification.telVerification(contactPhoneNumberId.value)
+      }
 
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
