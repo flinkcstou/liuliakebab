@@ -209,8 +209,48 @@
       var sum = {"sum": sumForTransfer};
       var comment = {"comment": commentTextId.value};
 
-      riotTags.innerHTML = "<view-transfer-stepthree>";
-      riot.mount('view-transfer-stepthree', [objectForTransfer, sum, comment, scope.tax]);
+
+      console.log(opts)
+      if (modeOfApp.offlineMode) {
+        console.log("opts[0].name.replace(/\s/g, '')",opts[0].name.replace(/\s/g, ''))
+        if (opts[0].type == 2) {
+          phonedialer.dial(
+            "*880*3*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                riot.update();
+              }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
+          );
+        }
+        else {
+          phonedialer.dial(
+            "*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                riot.update();
+              }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
+          );
+        }
+      }
+      else {
+
+        riotTags.innerHTML = "<view-transfer-stepthree>";
+        riot.mount('view-transfer-stepthree', [objectForTransfer, sum, comment, scope.tax]);
+      }
     }
 
 

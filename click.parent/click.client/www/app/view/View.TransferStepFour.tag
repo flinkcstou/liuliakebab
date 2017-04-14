@@ -294,7 +294,7 @@
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-      if (!modeOfflineMode.check) {
+
         window.api.call({
           method: 'p2p.payment',
           input: {
@@ -340,42 +340,6 @@
             console.error(data);
           }
         });
-      }
-      else {
-
-        if (scope.objectTypeForTransfer.type == 2) {
-          phonedialer.dial(
-              "*880*3*" + scope.objectTypeForTransfer.name.replace(/\s/g, '') + "*" + parseInt(scope.objectSumForTransfer.sum) + "%23",
-              function (err) {
-                if (err == "empty") {
-                  scope.clickPinError = false;
-                  scope.errorNote = ("Unknown phone number");
-                  scope.showError = true;
-                  riot.update();
-                }
-                else console.log("Dialer Error:" + err);
-              },
-              function (success) {
-              }
-          );
-        }
-        else {
-          phonedialer.dial(
-              "*880*" + scope.objectTypeForTransfer.name.replace(/\s/g, '') + "*" + parseInt(scope.objectSumForTransfer.sum) + "%23",
-              function (err) {
-                if (err == "empty") {
-                  scope.clickPinError = false;
-                  scope.errorNote = ("Unknown phone number");
-                  scope.showError = true;
-                  riot.update();
-                }
-                else console.log("Dialer Error:" + err);
-              },
-              function (success) {
-              }
-          );
-        }
-      }
     }
 
     closeSecretCodePage = function () {

@@ -282,7 +282,7 @@
     })
 
     telTransferVerificationKeyDown = function (input) {
-      console.log(event.target.value)
+//      console.log(event.target.value)
       if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         contactPhoneNumberId.value = event.target.value.substring(0, event.target.value.length - 1);
       }
@@ -297,7 +297,7 @@
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
-    console.log('OPTS', opts)
+//    console.log('OPTS', opts)
 
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -333,7 +333,7 @@
           if (result[0][0].error == 0) {
             for (var i in result[1]) {
               result[1][i].amount = result[1][i].p2p_max_limit.toString();
-              console.log('result[1][i]', result[1][i])
+//              console.log('result[1][i]', result[1][i])
 
               result[1][i].amount = window.amountTransform(result[1][i].amount);
 
@@ -642,7 +642,7 @@
 
           onSuccess: function (result) {
             if (result[0][0].error == 0) {
-              console.log("result of P2P CARD INFO ", result[1][0].card_owner);
+//              console.log("result of P2P CARD INFO ", result[1][0].card_owner);
               scope.cardOwner = result[1][0].card_owner;
               riot.update()
             }

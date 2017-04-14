@@ -7,7 +7,7 @@
          ontouchstart="goToViewInfoTouchStart()">
     </div>
 
-    <div class="bell-button bell-icon" ontouchend="bellButton()">
+    <div if="{!modeOfApp.offlineMode}" class="bell-button bell-icon" ontouchend="bellButton()">
     </div>
 
   </div>

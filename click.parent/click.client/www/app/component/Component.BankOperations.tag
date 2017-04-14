@@ -45,8 +45,9 @@
     goToAutoPayView = function (e) {
       event.preventDefault();
       event.stopPropagation();
-//      return
-      notificationPushId.style.transform = 'translate3d(0, 0, 0)'
+
+      riotTags.innerHTML = "<view-auto-pay>";
+      riot.mount('view-auto-pay');
     }
 
   </script>
