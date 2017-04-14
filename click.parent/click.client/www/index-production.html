@@ -63,11 +63,11 @@
           console.log('SIM permission is not turned on');
         }
         permissions.requestPermission(
-          permissions.READ_SMS,
-          function (status) {
-            if (!status.checkPermission) errorCallback();
-          },
-          errorCallback);
+            permissions.READ_SMS,
+            function (status) {
+              if (!status.checkPermission) errorCallback();
+            },
+            errorCallback);
       }
     }
 
@@ -77,11 +77,11 @@
           console.log('CALL permission is not turned on');
         }
         permissions.requestPermission(
-          permissions.CALL_PHONE,
-          function (status) {
-            if (!status.checkPermission) errorCallback();
-          },
-          errorCallback);
+            permissions.CALL_PHONE,
+            function (status) {
+              if (!status.checkPermission) errorCallback();
+            },
+            errorCallback);
       }
     }
 
@@ -106,17 +106,7 @@
 
       window.FirebasePlugin.subscribe("Click");
 
-      var numberOfMessage = 0;
-      window.FirebasePlugin.onNotificationOpen(function (notification) {
-        console.log("PUSH NOTIFICATION OBJECT", notification);
-        ++numberOfMessage;
-
-        window.FirebasePlugin.setBadgeNumber(numberOfMessage);
-
-      }, function (error) {
-        console.error(error);
-      });
-
+      riot.mount('component-notification');
 
       if (!localStorage.getItem('settings_block')) {
         localStorage.setItem('click_client_block', false)
@@ -159,9 +149,9 @@
 
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-main-page'
-        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device'
-        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization'
-        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-client') {
+          || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device'
+          || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization'
+          || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-client') {
         navigator.app.exitApp();
       }
       else {
