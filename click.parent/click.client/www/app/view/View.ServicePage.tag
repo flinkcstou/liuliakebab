@@ -387,7 +387,7 @@
         firstField.style.display = 'none';
         amountField.style.top = '5.5%';
 
-        amountField.style.display = 'none';
+
 
         if (viewServicePage.amountText)
           if (viewServicePage.amountText.length > 0) {
@@ -479,6 +479,9 @@
       }
 
       if (scope.formType == 4 && scope.servicesParamsMapFour[scope.service.id] && scope.servicesParamsMapFive[scope.service.id]) {
+        this.on('mount', function () {
+          amountField.style.display = 'none';
+        });
         scope.firstLevelArray = [];
         scope.secondLevelMap = {};
         scope.chosenFieldNameTwo = scope.servicesParamsMapFour[scope.service.id][0].name;
