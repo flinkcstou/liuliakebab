@@ -204,7 +204,7 @@
     }
 
     telPayVerificationKeyUp = function () {
-      firstFieldInput.value = event.target.value.replace(new RegExp(/[^0-9]/g))
+      event.target.value.replace(new RegExp(/[^0-9]/g))
     }
 
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
