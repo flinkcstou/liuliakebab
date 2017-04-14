@@ -801,7 +801,7 @@
 
       if (scope.phoneFieldBool && firstFieldInput.value.length < 9) {
         scope.clickPinError = false;
-        scope.errorNote = "Введите валидный номер телефона";
+        scope.errorNote = "Неправильно введён номер телефона";
         scope.showError = true;
         riot.update();
 
