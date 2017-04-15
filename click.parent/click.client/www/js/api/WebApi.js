@@ -16,6 +16,7 @@ window.api.initSocket = function () {
 
   this.socket.onopen = function () {
     console.log('WebSocket is connected');
+    modeOfApp.onlineMode = true;
     window.isConnected = true;
 
     if (device.platform != 'BrowserStand')

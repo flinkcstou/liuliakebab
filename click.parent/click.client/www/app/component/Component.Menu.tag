@@ -39,7 +39,8 @@
       <div class="side-menu-containers-name side-menu-containers-name-scanner-qr">Сканер QR-кода</div>
     </div>
 
-    <div class="side-menu-settings-container" ontouchstart="goToSettingsStart()" ontouchend="goToSettingsEnd()">
+    <div if="{!modeOfApp.offlineMode}" class="side-menu-settings-container" ontouchstart="goToSettingsStart()"
+         ontouchend="goToSettingsEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-settings"></div>
       <div class="side-menu-containers-name side-menu-containers-name-settings">Настройки</div>
     </div>

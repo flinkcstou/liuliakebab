@@ -11,7 +11,7 @@
         <p if=" {!modeOfflineMode.check}" class="view-info-card-currency">сум</p>
       </div>
 
-      <a if="{modeOfflineMode.check}" class="offline-card-balance"
+      <a if="{modeOfApp.offlineMode}" class="offline-card-balance"
          ontouchstart="offlineBalanceInfoTrue()">Получить баланс</a>
     </div>
     <div class="view-info-bag-icon"></div>
@@ -158,7 +158,7 @@
 
       if (device.platform == "Android") {
         phonedialer.dial(
-          "*111*3%23",
+          "*880*3%23",
           function (err) {
             if (err == "empty") {
               scope.clickPinError = false;
@@ -176,9 +176,6 @@
           function (success) {
           }
         );
-      }
-      if (device.platform == "iOS") {
-        window.open('*111%23')
       }
     }
 
