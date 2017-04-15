@@ -243,6 +243,7 @@
       var friendPhone;
 
       // friend help or own payment
+
       if (scope.cardOrFriendBool) {
         accountId = chosenCardId;
         friendPhone = 0;
@@ -253,6 +254,8 @@
         friendPhone = scope.friendNumber;
         scope.operationMessage = window.languages.ComponentSuccessMessageForPayFriendHelp;
       }
+
+      riot.update();
       console.log("accountId", accountId);
       console.log("friendPhone", friendPhone);
 
