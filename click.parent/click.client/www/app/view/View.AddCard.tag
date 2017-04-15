@@ -13,17 +13,17 @@
     <div class="add-card-card-field">
       <p class="add-card-card-text add-card-card-number-text">{window.languages.ViewAddCardNumberTitle}</p>
       <div id="cardNumberInput" class="add-card-card-number">
-        <input type="number" onkeyup="boxOneKeyUp()" onkeydown="boxOneKeyDown()" autofocus="true" maxlength="4"
+        <input type="tel" onkeyup="boxOneKeyUp()" onkeydown="boxOneKeyDown()" autofocus="true" maxlength="4"
                id="boxOne"
                class="add-card-card-number-box registration-client-card-number-box-one">
         </input>
-        <input type="number" onkeydown="boxTwoKeyDown()" maxlength="4" id="boxTwo"
+        <input type="tel" onkeyup="boxTwoKeyUp()" onkeydown="boxTwoKeyDown()" maxlength="4" id="boxTwo"
                class="add-card-card-number-box registration-client-card-number-box-two">
         </input>
-        <input type="number" onkeydown="boxThreeKeyDown()" maxlength="4" id="boxThree"
+        <input type="tel" onkeyup="boxThreeKeyUp()" onkeydown="boxThreeKeyDown()" maxlength="4" id="boxThree"
                class="add-card-card-number-box registration-client-card-number-box-three">
         </input>
-        <input type="number" onkeydown="boxFourKeyDown()" maxlength="4" id="boxFour"
+        <input type="tel" onkeyup="boxFourKeyUp()" onkeydown="boxFourKeyDown()" maxlength="4" id="boxFour"
                class="add-card-card-number-box registration-client-card-number-box-four">
         </input>
       </div>
@@ -64,10 +64,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-card') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-add-card',
-            "params": opts
-          }
+        {
+          "view": 'view-add-card',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -149,6 +149,10 @@
       event.preventDefault()
       event.stopPropagation()
 
+      if (event.keyCode != input_codes.BACKSPACE_CODE) {
+        boxOne.value = inputVerification.telVerification(boxOne.value)
+      }
+
       if (boxOne.value.length == 4 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         if (boxOne.value == '8600') {
           cardPinInputId.style.display = 'none';
@@ -166,6 +170,34 @@
         }
       }
     }
+
+    boxTwoKeyUp = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (event.keyCode != input_codes.BACKSPACE_CODE) {
+        boxTwo.value = inputVerification.telVerification(boxTwo.value)
+      }
+    }
+
+    boxThreeKeyUp = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (event.keyCode != input_codes.BACKSPACE_CODE) {
+        boxThree.value = inputVerification.telVerification(boxThree.value)
+      }
+    }
+
+    boxFourKeyUp = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (event.keyCode != input_codes.BACKSPACE_CODE) {
+        boxFour.value = inputVerification.telVerification(boxFour.value)
+      }
+    }
+
 
     boxOneKeyDown = function () {
 
@@ -208,29 +240,12 @@
     }
 
     boxDateKeyDown = function () {
-
-      if (boxDate.value.length == 2 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-//        if (boxDate.value.length == 2 && boxDate.value > 12) {
-//          boxDate.value = boxDate.value.substring(0, boxDate.value.length - 1)
-//          return
-//        }
-        boxDate.value += '/'
-      }
     }
 
     boxDateKeyUp = function () {
 
-      if (boxDate.value.length == 5 && boxDate.value.substring(3, boxDate.value.length) < 18) {
-        boxDate.value = boxDate.value.substring(0, boxDate.value.length - 1)
-        return
-      }
-
-      if (boxDate.value.length == 2 && event.keyCode != 8) {
-        if (boxDate.value.length == 2 && (boxDate.value > 12 || boxDate.value == 0 )) {
-          boxDate.value = boxDate.value.substring(0, boxDate.value.length - 1)
-          return
-        }
-        boxDate.value += '/'
+      if (event.keyCode != input_codes.BACKSPACE_CODE) {
+        boxDate.value = inputVerification.dateVerification(boxDate.value)
       }
     }
 

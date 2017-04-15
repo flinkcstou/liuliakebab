@@ -1030,7 +1030,7 @@
           cardNumberForTransfer = cardInputId.value;
           viewTransfer.cardNumber = cardNumberForTransfer
           viewTransfer.type = 1;
-          if (cardNumberForTransfer.length != 20) {
+          if (cardNumberForTransfer.replace(/\s/g, '').length != 16) {
             scope.clickPinError = false;
             scope.errorNote = 'Incorrect card number';
             scope.showError = true;
