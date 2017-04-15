@@ -95,6 +95,14 @@
       event.preventDefault()
       event.stopPropagation()
 
+      boxOne.blur()
+      boxTwo.blur()
+      boxThree.blur()
+      boxFour.blur()
+      boxFour.blur()
+      boxDate.blur()
+
+
       cardNumber = boxOne.value + boxTwo.value + boxThree.value + boxFour.value
 
       if (boxOne.value == '8600') {
