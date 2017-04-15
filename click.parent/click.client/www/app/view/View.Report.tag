@@ -401,6 +401,9 @@
       scope.paymentsMap = {};
       scope.paymentDates = [];
       scope.paymentsList = [];
+
+      riot.update();
+
       window.api.call({
         method: 'get.payment.list',
         input: {
@@ -413,6 +416,11 @@
         scope: this,
 
         onSuccess: function (result) {
+
+          scope.paymentsMap = {};
+          scope.paymentDates = [];
+          scope.paymentsList = [];
+
           console.log(result)
           console.log(result[0][0])
           if (result[0][0].error == 0) {
@@ -449,8 +457,7 @@
 
             }
             console.log('ASAASASDASDFAAS', scope.paymentsMap);
-            riot.update(scope.paymentDates)
-            riot.update(scope.paymentsMap)
+            riot.update();
           }
           else {
             scope.clickPinError = false;
@@ -512,6 +519,7 @@
 
       scope.graphList = [];
       scope.paymentsSum = 0;
+      riot.update();
       window.api.call({
         method: 'history.chart.data',
         input: {
@@ -524,6 +532,10 @@
         scope: this,
 
         onSuccess: function (result) {
+
+          scope.graphList = [];
+          scope.paymentsSum = 0;
+
           console.log(result)
           console.log(result[0][0])
           if (result[0][0].error == 0) {
@@ -563,6 +575,7 @@
             riot.update(scope.graphList);
             riot.update(scope.paymentsSum);
             console.log('history chart data', scope.graphList);
+
             createGraph(scope.graphList);
           }
           else {

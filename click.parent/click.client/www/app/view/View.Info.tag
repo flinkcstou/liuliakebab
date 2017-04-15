@@ -108,18 +108,23 @@
               if (result[1][0]) {
 //                console.log('getAccountsCards[j].currency_name', getAccountsCards[j].currency_name)
 //                console.log('defaultAccount.currency', defaultAccount.currency)
-                if (getAccountsCards[j].currency_name.trim() == defaultAccount.currency.trim()) {
-                  scope.fullBalance = parseInt(scope.fullBalance);
-                  scope.fullBalance += result[1][0].balance;
-                  scope.fullBalanceCopy = scope.fullBalance;
+                try {
+                  if (getAccountsCards[j].currency_name.trim() == defaultAccount.currency.trim()) {
+                    scope.fullBalance = parseInt(scope.fullBalance);
+                    scope.fullBalance += result[1][0].balance;
+                    scope.fullBalanceCopy = scope.fullBalance;
 
-                  scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
-                  scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
+                    scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
+                    scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
 
-                  riot.update(scope.fullBalanceCopy);
+                    riot.update(scope.fullBalanceCopy);
+                  }
+                  else
+                    scope.attention = true;
+                } catch (Error) {
+
+                  console.log("VIEW INFO WRITE BALANCE", Error);
                 }
-                else
-                  scope.attention = true;
 
                 j++;
 
