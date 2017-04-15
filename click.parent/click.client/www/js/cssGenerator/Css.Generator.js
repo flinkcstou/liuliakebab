@@ -11276,7 +11276,7 @@ var css = {
   "position: absolute;" +
   "background-size: contain;" +
   "font-size:" + 35 * widthK + "px; " +
-  "left:" + 75 * widthK + "px; " +
+  "left: 6%; " +
   "top:" + 26 * widthK + "px; " +
   "margin: 0;  " +
   "color: #4f4f4f;" +

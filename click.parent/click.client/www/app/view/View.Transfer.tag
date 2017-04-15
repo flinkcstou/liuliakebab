@@ -626,6 +626,7 @@
       }
 
       if (cardInputId.value.replace(/\s/g, '').length == 16) {
+        console.log(cardInputId.value.replace(/\s/g, '').length)
         nextButtonId.style.display = 'block'
         firstCardSuggestionId.style.display = 'none';
         secondCardSuggestionId.style.display = 'none';
@@ -1029,7 +1030,7 @@
           cardNumberForTransfer = cardInputId.value;
           viewTransfer.cardNumber = cardNumberForTransfer
           viewTransfer.type = 1;
-          if (cardNumberForTransfer.length != 19) {
+          if (cardNumberForTransfer.length != 20) {
             scope.clickPinError = false;
             scope.errorNote = 'Incorrect card number';
             scope.showError = true;
