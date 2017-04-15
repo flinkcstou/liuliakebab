@@ -41,7 +41,7 @@
           <p class="report-service-info-input {report-service-status-wait: opts.state == 1,
                                                report-service-status-error: opts.state == -1,
                                                report-service-status-success: opts.state == 0}">
-            {opts.status_note}</p>
+            {(opts.state == -1)?(opts.error):(opts.status_note)}</p>
         </div>
       </div>
 
