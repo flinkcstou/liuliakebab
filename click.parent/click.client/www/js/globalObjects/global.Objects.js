@@ -154,14 +154,14 @@ window.inputVerification.telVerification = function (phoneNumber) {
 window.inputVerification.dateVerification = function (date) {
 
   date = date.replace(new RegExp('[^0-9]', 'g'), '');
-  if(date.length == 1)
-  return date;
-  if(date.length == 2)
+  if (date.length == 1)
+    return date;
+  if (date.length == 2)
     return date + '/';
-  if(date.length == 3)
-    return date.substring(0,2) +'/' + date.substring(2,3)
-  if(date.length == 4)
-    return date.substring(0,2) +'/' + date.substring(2,4)
+  if (date.length == 3)
+    return date.substring(0, 2) + '/' + date.substring(2, 3)
+  if (date.length == 4)
+    return date.substring(0, 2) + '/' + date.substring(2, 4)
 }
 
 window.inputVerification.cardVerification = function (card) {
@@ -174,7 +174,7 @@ window.inputVerification.cardVerification = function (card) {
   for (var i = 0; i < card.length; i++) {
     j++;
     newCard += card[i]
-    if (j % 4 == 0) {
+    if (j % 4 == 0 && i < 15) {
       newCard += ' ';
     }
   }

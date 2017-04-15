@@ -37,7 +37,7 @@
       scope.cardsArray = [];
       var cards = JSON.parse(localStorage.getItem('click_client_cards'));
       for (var j in cards) {
-        if (cards[j].numberPartOne == '8600') {
+        if (cards[j].numberPartOne == '8600' && (parseInt(viewTransferStepTwo.sumWithoutSpace) <= parseInt(cards[j].salary.replace(/\s/g, '')))) {
           console.log(cards[j])
           scope.cardsArray.push(cards[j])
         }

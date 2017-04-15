@@ -100,7 +100,7 @@
                maxlength="19"
         />
       </div>
-      <div class="transfer-card-owner-container">
+      <div hidden id="ownerCardDsiplayId" class="transfer-card-owner-container">
         <p class="transfer-card-owner-title">{window.languages.ViewPayTransferCardOwnerTitle}</p>
         <p class="transfer-card-owner-info">{cardOwner}</p>
       </div>
@@ -112,7 +112,7 @@
           <div class="transfer-contact-found-text-one">{cardSuggestionOne.fName} {cardSuggestionOne.lName}</div>
         </div>
         <div class="transfer-contact-found-text-two">{cardSuggestionOne.cardNumber.substring(0,4)} **** ****
-          {cardSuggestionOne.cardNumber.substring(cardSuggestionOne.cardNumber.length-4,cardSuggestionOne.cardNumber.length)}
+          {cardSuggestionOne.cardNumber.substring(cardSuggestionOne.cardNumber.length-5,cardSuggestionOne.cardNumber.length)}
         </div>
       </div>
 
@@ -123,7 +123,7 @@
           <div class="transfer-contact-found-text-one">{cardSuggestionTwo.fName} {cardSuggestionTwo.lName}</div>
         </div>
         <div class="transfer-contact-found-text-two">{cardSuggestionTwo.cardNumber.substring(0,4)} **** ****
-          {cardSuggestionTwo.cardNumber.substring(cardSuggestionTwo.cardNumber.length-4,cardSuggestionTwo.cardNumber.length)}
+          {cardSuggestionTwo.cardNumber.substring(cardSuggestionTwo.cardNumber.length-5,cardSuggestionTwo.cardNumber.length)}
         </div>
       </div>
 
@@ -134,7 +134,7 @@
           <div class="transfer-contact-found-text-one">{cardSuggestionThree.fName} {cardSuggestionThree.lName}</div>
         </div>
         <div class="transfer-contact-found-text-two">{cardSuggestionThree.cardNumber.substring(0,4)} **** ****
-          {cardSuggestionThree.cardNumber.substring(cardSuggestionThree.cardNumber.length-4,cardSuggestionThree.cardNumber.length)}
+          {cardSuggestionThree.cardNumber.substring(cardSuggestionThree.cardNumber.length-5,cardSuggestionThree.cardNumber.length)}
         </div>
       </div>
 
@@ -145,7 +145,7 @@
           <div class="transfer-contact-found-text-one">{cardSuggestionFour.fName} {cardSuggestionFour.lName}</div>
         </div>
         <div class="transfer-contact-found-text-two">{cardSuggestionFour.cardNumber.substring(0,4)} **** ****
-          {cardSuggestionFour.cardNumber.substring(cardSuggestionFour.cardNumber.length-4,cardSuggestionFour.cardNumber.length)}
+          {cardSuggestionFour.cardNumber.substring(cardSuggestionFour.cardNumber.length-5,cardSuggestionFour.cardNumber.length)}
         </div>
       </div>
 
@@ -156,7 +156,7 @@
           <div class="transfer-contact-found-text-one">{cardSuggestionFive.fName} {cardSuggestionFive.lName}</div>
         </div>
         <div class="transfer-contact-found-text-two">{cardSuggestionFive.cardNumber.substring(0,4)} **** ****
-          {cardSuggestionFive.cardNumber.substring(cardSuggestionFive.cardNumber.length-4,cardSuggestionFive.cardNumber.length)}
+          {cardSuggestionFive.cardNumber.substring(cardSuggestionFive.cardNumber.length-5,cardSuggestionFive.cardNumber.length)}
         </div>
       </div>
 
@@ -245,7 +245,9 @@
       else {
         checkCardMenu = false;
 
-        if (cardInputId.value.length != 19) {
+        console.log("TRANSFER SSSSSSS", cardInputId.value.length)
+
+        if (cardInputId.value.replace(/\s/g, '').length != 16) {
           if (checkCardFirstBlock) {
             scope.cardSuggestionOne = JSON.parse(JSON.stringify(scope.cardSuggestionOneCopy));
             firstCardSuggestionId.style.display = 'block';
@@ -269,7 +271,8 @@
           }
         }
 
-        if (cardInputId.value.length == 19) {
+        if (cardInputId.value.replace(/\s/g, '').length == 16) {
+          console.log('WQEQEWQEQW')
           nextButtonId.style.display = 'block'
           firstCardSuggestionId.style.display = 'none';
           secondCardSuggestionId.style.display = 'none';
@@ -442,12 +445,14 @@
       scope.contactMode = false
 
       if (cardInputId.value.replace(/\s/g, '').length == 16) {
+        cardOwnerFunction();
         nextButtonId.style.display = 'block'
         firstCardSuggestionId.style.display = 'none';
         secondCardSuggestionId.style.display = 'none';
         thirdCardSuggestionId.style.display = 'none';
         fourthCardSuggestionId.style.display = 'none';
         fifthCardSuggestionId.style.display = 'none';
+
       }
       else
         nextButtonId.style.display = 'none'
@@ -614,6 +619,46 @@
     }
 
     scope.cardOwner = '';
+
+    cardOwnerFunction = function () {
+
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+      window.api.call({
+        method: 'p2p.card.info',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          card_number: cardInputId.value.replace(/\s/g, ''),
+
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+//              console.log("result of P2P CARD INFO ", result[1][0].card_owner);
+            ownerCardDsiplayId.style.display = 'block'
+            scope.cardOwner = result[1][0].card_owner;
+            riot.update()
+          }
+          else {
+//              alert(result[0][0].error_note);
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
+            riot.update();
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+
     cardOnKeyUp = function () {
 
 
@@ -626,6 +671,7 @@
       }
 
       if (cardInputId.value.replace(/\s/g, '').length == 16) {
+        cardOwnerFunction();
         console.log(cardInputId.value.replace(/\s/g, '').length)
         nextButtonId.style.display = 'block'
         firstCardSuggestionId.style.display = 'none';
@@ -634,46 +680,12 @@
         fourthCardSuggestionId.style.display = 'none';
         fifthCardSuggestionId.style.display = 'none';
 
-        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-
-        window.api.call({
-          method: 'p2p.card.info',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            card_number: cardInputId.value.replace(/\s/g, ''),
-
-          },
-
-          scope: this,
-
-          onSuccess: function (result) {
-            if (result[0][0].error == 0) {
-//              console.log("result of P2P CARD INFO ", result[1][0].card_owner);
-              scope.cardOwner = result[1][0].card_owner;
-              riot.update()
-            }
-            else {
-//              alert(result[0][0].error_note);
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
-              riot.update();
-            }
-          },
-
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
-          }
-        });
-
         return
       }
       else {
 
         nextButtonId.style.display = 'none'
+        ownerCardDsiplayId.style.display = 'none'
 
 
         if (cardInputId.value.length == 0) {
@@ -950,6 +962,10 @@
 
       if (viewTransfer.cardNumber) {
         this.cardInputId.value = viewTransfer.cardNumber
+
+        if (cardInputId.value.replace(/\s/g, '').length == 16) {
+          cardOwnerFunction();
+        }
       }
 //      console.log('LENGTH ', cardInputId.value.length)
 
@@ -957,7 +973,7 @@
         nextButtonId.style.display = 'none'
       }
 
-      if (cardInputId.value.length != 19) {
+      if (cardInputId.value.replace(/\s/g, '').length != 16) {
         cardSuggestionFunction();
       }
 
@@ -994,7 +1010,7 @@
             riot.mount('view-transfer-steptwo', [
               {
                 "name": phoneNumberForTransfer,
-                "type": 2
+                "type": 2,
               }
             ]);
             return
@@ -1045,6 +1061,7 @@
                 "name": cardNumberForTransfer,
                 "type": 1,
                 "percent": percentOfBank,
+                "owner": scope.cardOwner
               }
             ]);
             return
@@ -1502,7 +1519,7 @@
       contactSuggestionFunction()
     else {
       checkCardMenu = true;
-      if (viewTransfer.cardNumber.length != 19)
+      if (viewTransfer.cardNumber.replace(/\s/g, '').length != 16)
         cardSuggestionFunction()
     }
 
@@ -1640,7 +1657,8 @@
 
       cardInputId.value = scope.cardSuggestionOne.cardNumber;
 
-      if (cardInputId.value.length == 19) {
+      if (cardInputId.value.replace(/\s/g, '').length == 16) {
+        cardOwnerFunction();
         nextButtonId.style.display = 'block'
         firstCardSuggestionId.style.display = 'none';
         secondCardSuggestionId.style.display = 'none';
@@ -1658,7 +1676,8 @@
 
       cardInputId.value = scope.cardSuggestionTwo.cardNumber;
 
-      if (cardInputId.value.length == 19) {
+      if (cardInputId.value.replace(/\s/g, '').length == 16) {
+        cardOwnerFunction();
         nextButtonId.style.display = 'block'
         firstCardSuggestionId.style.display = 'none';
         secondCardSuggestionId.style.display = 'none';
@@ -1676,7 +1695,8 @@
 
       cardInputId.value = scope.cardSuggestionThree.cardNumber;
 
-      if (cardInputId.value.length == 19) {
+      if (cardInputId.value.replace(/\s/g, '').length == 16) {
+        cardOwnerFunction();
         nextButtonId.style.display = 'block'
         firstCardSuggestionId.style.display = 'none';
         secondCardSuggestionId.style.display = 'none';
@@ -1694,7 +1714,8 @@
 
       cardInputId.value = scope.cardSuggestionFour.cardNumber;
 
-      if (cardInputId.value.length == 19) {
+      if (cardInputId.value.replace(/\s/g, '').length == 16) {
+        cardOwnerFunction();
         nextButtonId.style.display = 'block'
         firstCardSuggestionId.style.display = 'none';
         secondCardSuggestionId.style.display = 'none';
@@ -1712,7 +1733,8 @@
 
       cardInputId.value = scope.cardSuggestionFive.cardNumber;
 
-      if (cardInputId.value.length == 19) {
+      if (cardInputId.value.replace(/\s/g, '').length == 16) {
+        cardOwnerFunction();
         nextButtonId.style.display = 'block'
         firstCardSuggestionId.style.display = 'none';
         secondCardSuggestionId.style.display = 'none';

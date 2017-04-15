@@ -17,7 +17,7 @@
 
       <div id="ownerContainerId" class="transferfour-owner-container" if="{cardType}">
         <p class="transferfour-owner-field">{window.languages.ViewTransferFourOwner}</p>
-        <p class="transferfour-owner-input"></p>
+        <p if={opts[0][0].owner} class="transferfour-owner-input">{opts[0][0].owner}</p>
       </div>
 
       <div class="transferfour-field-sum">
@@ -93,10 +93,10 @@
   <script>
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-transfer-stepfour',
-            "params": opts
-          }
+        {
+          "view": 'view-transfer-stepfour',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -125,28 +125,7 @@
     scope.objectComment = opts[0][2];
     scope.objectCardForTransfer = opts[0][3];
 
-    if (scope.objectSumForTransfer.sum.length == 8) {
-      scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 2) + ' ' +
-          scope.objectSumForTransfer.sum.substring(2, 5) + ' ' + scope.objectSumForTransfer.sum.substring(5, scope.objectSumForTransfer.sum.length)
-    }
-
-    if (scope.objectSumForTransfer.sum.length == 7) {
-      scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 1) + ' ' +
-          scope.objectSumForTransfer.sum.substring(1, 4) + ' ' + scope.objectSumForTransfer.sum.substring(4, scope.objectSumForTransfer.sum.length)
-    }
-
-    if (scope.objectSumForTransfer.sum.length == 6) {
-      scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 3) + ' ' + scope.objectSumForTransfer.sum.substring(3, scope.objectSumForTransfer.sum.length)
-    }
-
-    if (scope.objectSumForTransfer.sum.length == 5) {
-      scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 2) + ' ' + scope.objectSumForTransfer.sum.substring(2, scope.objectSumForTransfer.sum.length)
-    }
-
-    if (scope.objectSumForTransfer.sum.length == 4) {
-      scope.maskSum = scope.objectSumForTransfer.sum.substring(0, 1) + ' ' + scope.objectSumForTransfer.sum.substring(1, scope.objectSumForTransfer.sum.length)
-    }
-
+    scope.maskSum = window.amountTransform(scope.objectSumForTransfer.sum);
 
     var transferTitle;
 
@@ -240,6 +219,7 @@
     }
 
     findCards = function (saveCard) {
+      console.log('SAVE CARD',saveCard)
 
       var transferCards = [];
       var codeOfBank = saveCard.replace(/\s/g, '').substring(3, 6);
@@ -295,51 +275,52 @@
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
 
-        window.api.call({
-          method: 'p2p.payment',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            account_id: scope.objectCardForTransfer.card_id,
-            receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
-            amount: parseInt(scope.objectSumForTransfer.sum),
-            type: scope.objectTypeForTransfer.type,
-            transaction_id: parseInt(Date.now() / 1000)
+      window.api.call({
+        method: 'p2p.payment',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          account_id: scope.objectCardForTransfer.card_id,
+          receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
+          amount: parseInt(scope.objectSumForTransfer.sum),
+          type: scope.objectTypeForTransfer.type,
+          transaction_id: parseInt(Date.now() / 1000)
 //                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
 
-          },
+        },
 
-          scope: this,
+        scope: this,
 
-          onSuccess: function (result) {
-            if (result[0][0].error == 0) {
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
 //              console.log("result of TRANSFER ", result);
-              if (result[1])
-                if (result[1][0]) {
-                  if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
-                    blockCodeConfirmId.style.display = 'block';
-                    scope.secretCode = result[1][0].secret_code;
-                    riot.update(scope.secretCode);
+            if (result[1])
+              if (result[1][0]) {
+                if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
+                  blockCodeConfirmId.style.display = 'block';
+                  scope.secretCode = result[1][0].secret_code;
+                  riot.update(scope.secretCode);
 
-                  }
-                  if (result[1][0].secret_code == 0) {
-                    componentSuccessId.style.display = 'block';
-                    findCards(scope.objectTypeForTransfer.name);
-                  }
                 }
-            }
-            else {
-              scope.errorMessageFromTransfer = result[0][0].error_note
-              componentUnsuccessId.style.display = 'block';
-              riot.update();
-            }
-          },
+                if (result[1][0].secret_code == 0) {
+                  componentSuccessId.style.display = 'block';
+                  findCards(scope.objectTypeForTransfer.name);
+                }
+              }
 
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
           }
-        });
+          else {
+            scope.errorMessageFromTransfer = result[0][0].error_note
+            componentUnsuccessId.style.display = 'block';
+            riot.update();
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
     }
 
     closeSecretCodePage = function () {

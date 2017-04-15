@@ -55,6 +55,7 @@
       maskTwo = /[0-9' ']/g,
       checkFirst = false,
       sumForTransfer = 0;
+    owner = opts[2];
 
     scope.showError = false;
 
@@ -212,7 +213,7 @@
 
       console.log(opts)
       if (modeOfApp.offlineMode) {
-        console.log("opts[0].name.replace(/\s/g, '')",opts[0].name.replace(/\s/g, ''))
+        console.log("opts[0].name.replace(/\s/g, '')", opts[0].name.replace(/\s/g, ''))
         if (opts[0].type == 2) {
           phonedialer.dial(
             "*880*3*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
@@ -251,7 +252,7 @@
       else {
 
         riotTags.innerHTML = "<view-transfer-stepthree>";
-        riot.mount('view-transfer-stepthree', [objectForTransfer, sum, comment, scope.tax]);
+        riot.mount('view-transfer-stepthree', [objectForTransfer, sum, comment, scope.tax, owner]);
       }
     }
 

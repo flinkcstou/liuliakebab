@@ -22,12 +22,17 @@
 
   <script>
     var scope = this,
-        arrayForTransfer = [],
-        transferTitle,
-        objectForTransfer = opts[0],
-        checkChosenCard = false,
-        chosenCard;
+      arrayForTransfer = [],
+      transferTitle,
+      objectForTransfer = opts[0],
+      checkChosenCard = false,
+      chosenCard;
+    console.log('OOOOPts',opts)
 
+    if (opts[0].owner)
+      var owner = opts[0].owner;
+
+    console.log('STEP 3', opts)
     scope.showError = false;
 
     arrayForTransfer.push(opts[0])
@@ -51,10 +56,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepthree') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-transfer-stepthree',
-            "params": opts
-          }
+        {
+          "view": 'view-transfer-stepthree',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -86,7 +91,7 @@
       if (checkChosenCard) {
         arrayForTransfer.push(chosenCard)
         riotTags.innerHTML = "<view-transfer-stepfour>";
-        riot.mount('view-transfer-stepfour', [arrayForTransfer, opts[3]]);
+        riot.mount('view-transfer-stepfour', [arrayForTransfer, opts[3], owner]);
       }
       else {
         scope.clickPinError = false;
