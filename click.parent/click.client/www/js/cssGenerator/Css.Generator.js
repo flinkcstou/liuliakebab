@@ -10718,7 +10718,6 @@ var css = {
   "position: absolute;" +
   "height:" + 382 * widthK + "px;" +
   "width:100%;" +
-  "background-color:#0081E7;" +
   "}",
 
   reportServiceIcon: ".report-service-icon" +
@@ -10965,7 +10964,7 @@ var css = {
   "font-size: " + 28 * widthK + "px;" +
   "color: white;" +
   "border-radius: " + 10 * widthK + "px;" +
-  "background-color: #0083E3;" +
+  "background-color: #00a8f1;" +
   "}",
 
   //VIEW SETTINGS SUPPORT
