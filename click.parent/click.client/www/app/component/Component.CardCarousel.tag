@@ -235,11 +235,15 @@
               if (result[1][0]) {
                 console.log('invoice', result[1])
 
-                cards.style.transition = '0s';
-                cards.style.webkitTransition = '0s';
+                try {
+                  cards.style.transition = '0s';
+                  cards.style.webkitTransition = '0s';
 
-                cards.style.transform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
-                cards.style.webkitTransform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
+                  cards.style.transform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
+                  cards.style.webkitTransform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
+                } catch (error) {
+                  console.log("INVOICE LIST ERROR", error);
+                }
 
                 scope.invoiceCheck = true;
                 scope.cardNumber = 1;
@@ -258,12 +262,15 @@
 
                 localStorage.setItem('click_client_invoice_list', JSON.stringify(arrayOfInvoice));
 
-                if (arrayOfInvoice[0]) {
-                  scope.invoiceList.push(arrayOfInvoice[0]);
-                }
+                if (scope.invoiceList) {
 
-                if (arrayOfInvoice[1]) {
-                  scope.invoiceList.push(arrayOfInvoice[1]);
+                  if (arrayOfInvoice[0]) {
+                    scope.invoiceList.push(arrayOfInvoice[0]);
+                  }
+
+                  if (arrayOfInvoice[1]) {
+                    scope.invoiceList.push(arrayOfInvoice[1]);
+                  }
                 }
 
                 addCard(true);
@@ -280,7 +287,8 @@
             scope.showError = true;
             riot.update();
           }
-        },
+        }
+        ,
 
         onFail: function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
