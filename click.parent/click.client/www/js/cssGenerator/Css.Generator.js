@@ -3201,7 +3201,8 @@ var css = {
 
   servicePageButtonEnter: ".servicepage-button-enter" +
   "{" +
-  "height: 5%;" +
+  "height: " + 74 * widthK + "px;" +
+  "text-transform: capitalize;" +
   "margin-top: " + 160 * widthK + "px;" +
   "background-color: #00a8f1;" +
   "padding: 0;" +
@@ -3999,8 +4000,9 @@ var css = {
 
   payconfirmButtonEnter: ".payconfirm-button-enter" +
   "{" +
+  "height: " + 74 * widthK + "px;" +
+  "text-transform: capitalize;" +
   "position: relative;" +
-  "height: 15%;" +
   "background-color: #00a8f1;" +
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px;" +
@@ -5685,7 +5687,7 @@ var css = {
   successNextButtonInnerContainer: ".success-next-button-inner-container" +
   "{" +
   "top: 83%;" +
-  "height: 6%;" +
+  "height: " + 74 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
   "background-color: #027fe4;" +
   "padding: 0;" +
@@ -6955,7 +6957,8 @@ var css = {
   "{" +
   "top: 41%;" +
   "position: relative;" +
-  "height: 5%;" +
+  "height: " + 74 * widthK + "px;" +
+  "text-transform: capitalize;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
   "margin: 0 auto 0 auto;" +
@@ -7496,30 +7499,36 @@ var css = {
   "margin: 0;" +
   "float: left;" +
   "text-align: center;" +
-  "margin-left: 6%;" +
-  "color: white;" +
+  "margin-left: 3%;" +
   "background-color: #00a8f1;" +
-  "height:" + 62 * widthK + "px;" +
-  "line-height:" + 63 * widthK + "px;" +
-  "border-radius:" + 5 * widthK + "px;" +
-  "font-size:" + 29 * widthK + "px;" +
-  "width: 40%;" +
+  "font-size: " + 29 * widthK + "px;" +
+  "height: " + 74 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-transform: capitalize;" +
   "}",
 
   transferDetailButtonCancel: ".transfer-detail-button-cancel" +
   "{" +
-  "position: relative;" +
   "margin: 0;" +
-  "float: left;" +
-  "text-align: center;" +
-  "margin-left: 8%;" +
-  "color: white;" +
+  "margin-right: 3%;" +
   "background-color: #f46b5b;" +
-  "height:" + 62 * widthK + "px;" +
-  "line-height:" + 63 * widthK + "px;" +
-  "border-radius:" + 5 * widthK + "px;" +
-  "font-size:" + 29 * widthK + "px;" +
-  "width: 40%;" +
+  "font-size: " + 29 * widthK + "px;" +
+  "position: relative;" +
+  "float: right;" +
+  "text-align: center;" +
+  "height: " + 74 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-transform: capitalize;" +
   "}",
 
   transferDetailCodeConfirm: ".transfer-detail-code-confirm" +
@@ -7567,26 +7576,35 @@ var css = {
 
   transferDetailCodeConfirmButtonEnter: ".transfer-detail-code-confirm-button-enter" +
   "{" +
-  "bottom: 5.4%;" +
-  "position: absolute;" +
-  "width: 63%;" +
-  "height: 13%;" +
-  "left: 19%;" +
   "margin: 0;" +
-  "background-color: rgb(1, 124, 227);" +
+  "float: left;" +
+  "text-align: center;" +
+  "background-color: #017ce3;" +
+  "font-size: " + 29 * widthK + "px;" +
+  "height: " + 74 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "width: 63%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-transform: capitalize;" +
+  "left: 19%;" +
+  "bottom: 4.4%;" +
+  "position: absolute;" +
   "}",
 
-  transferDetailCodeConfirmButtonEnterLabel: ".transfer-detail-code-confirm-button-enter-label" +
-  "{" +
-  "position: relative;" +
-  "top: 17%;" +
-  "width: 100%;" +
-  "font-size: " + 30 * widthK + "px; " +
-  "margin: auto;" +
-  "color: white;" +
-  "margin: 0;" +
-  "text-align: center;" +
-  "}",
+  //transferDetailCodeConfirmButtonEnterLabel: ".transfer-detail-code-confirm-button-enter-label" +
+  //"{" +
+  //"position: relative;" +
+  //"top: 17%;" +
+  //"width: 100%;" +
+  //"font-size: " + 30 * widthK + "px; " +
+  //"margin: auto;" +
+  //"color: white;" +
+  //"margin: 0;" +
+  //"text-align: center;" +
+  //"}",
 
   transferDetailCodeConfirmMessageTextInfo: ".transfer-detail-code-confirm-message-text-info" +
   "{" +
@@ -7784,36 +7802,74 @@ var css = {
   "padding-top:" + 60 * widthK + "px;" +
   "}",
 
+  //accountDetailButtonAccept: ".account-detail-button-accept" +
+  //"{" +
+  //"position: relative;" +
+  //"margin: 0;" +
+  //"float: left;" +
+  //"text-align: center;" +
+  //"margin-left: 1%;" +
+  //"color: white;" +
+  //"background-color: #00a8f1;" +
+  //"height:" + 62 * widthK + "px;" +
+  //"line-height:" + 63 * widthK + "px;" +
+  //"border-radius:" + 5 * widthK + "px;" +
+  //"font-size:" + 29 * widthK + "px;" +
+  //"width: 44%;" +
+  //"}",
+  //
+  //accountDetailButtonCancel: ".account-detail-button-cancel" +
+  //"{" +
+  //"position: relative;" +
+  //"margin: 0;" +
+  //"float: left;" +
+  //"text-align: center;" +
+  //"margin-left: 9%;" +
+  //"color: white;" +
+  //"background-color: #f46b5b;" +
+  //"height:" + 62 * widthK + "px;" +
+  //"line-height:" + 63 * widthK + "px;" +
+  //"border-radius:" + 5 * widthK + "px;" +
+  //"font-size:" + 29 * widthK + "px;" +
+  //"width: 44%;" +
+  //"}",
+
   accountDetailButtonAccept: ".account-detail-button-accept" +
   "{" +
   "position: relative;" +
   "margin: 0;" +
   "float: left;" +
   "text-align: center;" +
-  "margin-left: 1%;" +
-  "color: white;" +
+  "margin-left: 3%;" +
   "background-color: #00a8f1;" +
-  "height:" + 62 * widthK + "px;" +
-  "line-height:" + 63 * widthK + "px;" +
-  "border-radius:" + 5 * widthK + "px;" +
-  "font-size:" + 29 * widthK + "px;" +
+  "font-size: " + 29 * widthK + "px;" +
+  "height: " + 74 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
   "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-transform: capitalize;" +
   "}",
 
   accountDetailButtonCancel: ".account-detail-button-cancel" +
   "{" +
-  "position: relative;" +
   "margin: 0;" +
-  "float: left;" +
-  "text-align: center;" +
-  "margin-left: 9%;" +
-  "color: white;" +
+  "margin-right: 3%;" +
   "background-color: #f46b5b;" +
-  "height:" + 62 * widthK + "px;" +
-  "line-height:" + 63 * widthK + "px;" +
-  "border-radius:" + 5 * widthK + "px;" +
-  "font-size:" + 29 * widthK + "px;" +
+  "font-size: " + 29 * widthK + "px;" +
+  "position: relative;" +
+  "float: right;" +
+  "text-align: center;" +
+  "height: " + 74 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
   "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-transform: capitalize;" +
   "}",
 
   //VIEW TRANSFER TO CARD ----> VIEW PAYMENT DETAIL
@@ -8196,13 +8252,13 @@ var css = {
   "position: absolute;" +
   "transform: translate3d(-50%, 0, 0);" +
   "bottom: " + 81 * widthK + "px;" +
-  "height: " + 64 * widthK + "px;" +
+  "height: " + 74 * widthK + "px;" +
+  "text-transform: capitalize;" +
   "left: 50.5%;" +
   "width: " + 286 * widthK + "px;" +
   "border: none;" +
   "font-size: " + 27 * widthK + "px;" +
   "background-color: #00A1EC;" +
-  "text-transform: uppercase;" +
   "color: white;" +
   "outline: none" +
   "}",
@@ -9829,7 +9885,6 @@ var css = {
   "top: 0;" +
   "height:" + 220 * widthK + "px;" +
   "width: 100%;" +
-  "background-color: #0280e4;" +
   "}",
 
   viewTransferOnCardTitleTextPartOne: ".view-transfer-on-card-title-text-part-one" +
@@ -9879,14 +9934,17 @@ var css = {
   "margin: " + 49 * widthK + "px 0 0 " + 214 * widthK + "px;" +
   "float: left;" +
   "text-align: center;" +
-  "color: white;" +
-  "background-color: #0280e4;" +
-  "height: " + 63 * widthK + "px;" +
   "line-height: " + 63 * widthK + "px;" +
-  "border-radius: " + 5 * widthK + "px;" +
-  "font-size: " + 27 * widthK + "px;" +
-  "width: 40%;" +
-  "text-transform: uppercase;" +
+  "font-size: " + 29 * widthK + "px;" +
+  "background-color: #00a8f1;" +
+  "height: " + 74 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-transform: capitalize;" +
   "}",
 
 //  Component Alert
@@ -10972,9 +11030,9 @@ var css = {
   "position: relative;" +
   "left: " + 210 * widthK + "px;" +
   "top: " + 24 * widthK + "px;" +
-  "height: " + 65 * widthK + "px;" +
+  "height: " + 74 * widthK + "px;" +
+  "text-transform: capitalize;" +
   "width: " + 287 * widthK + "px;" +
-  "text-transform: uppercase;" +
   "font-size: " + 28 * widthK + "px;" +
   "color: white;" +
   "border-radius: " + 10 * widthK + "px;" +

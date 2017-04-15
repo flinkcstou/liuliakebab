@@ -38,10 +38,14 @@
       <div class="account-detail-cover"></div>
 
       <div class="account-detail-buttons-container">
-        <p class="account-detail-button-accept" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
-          {window.languages.ViewAccountDetailTitlePay}</p>
-        <p class="account-detail-button-cancel" ontouchend="onTouchEndDecline()" ontouchstart="onTouchStartDecline()">
-          {window.languages.ViewAccountDetailTitleDecline}</p>
+        <button class="account-detail-button-accept" ontouchend="onTouchEndAccept()"
+                ontouchstart="onTouchStartAccept()">
+          {window.languages.ViewAccountDetailTitlePay}
+        </button>
+        <button class="account-detail-button-cancel" ontouchend="onTouchEndDecline()"
+                ontouchstart="onTouchStartDecline()">
+          {window.languages.ViewAccountDetailTitleDecline}
+        </button>
       </div>
     </div>
 

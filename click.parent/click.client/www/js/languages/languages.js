@@ -53,10 +53,10 @@ var RU_LANGUAGES =
   "ViewMyCardBlock": "Удалить карту",
   "ViewMyCardLastOperations": "Последние операции",
 
-  "ViewServicePageEnterLabel": "ДАЛЕЕ",
+  "ViewServicePageEnterLabel": "Далее",
   //"ViewServicePageChooseRegion": "ВЫБЕРИТЕ РАЙОН",
   //"ViewServicePageChooseCity": "ВЫБЕРИТЕ ГОРОД",
-  "ViewServicePageSaveLabel": "СОХРАНИТЬ",
+  "ViewServicePageSaveLabel": "Сохранить",
   "ViewServicePageAmountTextLabel": "Сумма оплаты:",
 
 //{(secondLevelArray && secondLevelArray[0])?(secondLevelArray[0].name):("")}
@@ -88,8 +88,8 @@ var RU_LANGUAGES =
   "ViewAmountCalculatorTextOne": "Введите сумму в USD",
   "ViewAmountCalculatorTextTwo": "Текущий курс: 1$=",
   "ViewAmountCalculatorTextThree": "Сумма в национальной валюте (сум)",
-  "ViewAmountCalculatorCancelText": "ОТМЕНИТЬ",
-  "ViewAmountCalculatorAcceptText": "ПРИНЯТЬ",
+  "ViewAmountCalculatorCancelText": "Отменить",
+  "ViewAmountCalculatorAcceptText": "Принять",
 
   "ViewMyCardListTitleName": "МОИ КАРТЫ",
 
@@ -101,7 +101,7 @@ var RU_LANGUAGES =
 
   "ViewServicePinCardPayFromField": "Оплатить с:",
   "ViewServicePinCardHelpText": "Помощь друга",
-  "ViewServicePinCardButtonEnterLabel": "ОПЛАТИТЬ",
+  "ViewServicePinCardButtonEnterLabel": "Оплатить",
 
   "ViewPayConformEnterPhone": "Номер телефона:",
   "ViewPayConfirmAmountOfPay": "Сумма платежа:",
@@ -113,25 +113,25 @@ var RU_LANGUAGES =
   "ViewPayConfirmAvailable": "Доступно",
   "ViewPayConfirmRemoveFromFavorites": "Удалить из избранных",
   "ViewPayConfirmAddToAutoPay": "Добавить в автоплатеж",
-  "ViewPayConfirmPay": "ОПЛАТИТЬ",
+  "ViewPayConfirmPay": "Оплатить",
 
   "ViewPayTransferMenuNameContact": "КОНТАКТ",
   "ViewPayTransferMenuNameCard": "КАРТА",
   "ViewPayTransferContactTextField": "Укажите номер телефона получателя:",
   "ViewPayTransferCardTextField": "Укажите номер карты получателя:",
-  "ViewPayTransferNext": "ДАЛЕЕ",
+  "ViewPayTransferNext": "Далее",
   "ViewPayTransferTitle": "ПЕРЕВОДЫ",
   "ViewPayTransferCardOwnerTitle": "Владелец:",
 
 
   "ViewTransferTwoTax": "Комиссия: ",
-  "ViewTransferTwoNext": "ДАЛЕЕ",
+  "ViewTransferTwoNext": "Далее",
   "ViewTransferTwoTitle": "ПЕРЕВОД НА",
   "ViewTransferTwoSum": "СУММА",
 
   "ViewTransferThreeTitle": "ПЕРЕВОД НА",
   "ViewTransferThreeMenuTitle": "ПЕРЕВЕСТИ С КАРТЫ",
-  "ViewTransferThreeNext": "ДАЛЕЕ",
+  "ViewTransferThreeNext": "Далее",
 
   "ViewTransferFourTitle": "ПЕРЕВОД НА",
   "ViewTransferFourEnterPhone": "Номер телефона получателя:",
@@ -144,7 +144,7 @@ var RU_LANGUAGES =
   "ViewTransferFourAddToFavouritePartOne": "Добавить",
   "ViewTransferFourAddToFavouritePartTwo": "в избранные",
   "ViewTransferFourAddToAutoPay": "Добавить в автоплатеж",
-  "ViewTransferFourPay": "ПЕРЕВЕСТИ",
+  "ViewTransferFourPay": "Перевести",
   "ViewTransferFourTax": "Комиссия: ",
   "ViewTransferFourTransferInformation": "Перевод с карты: ",
 
@@ -265,8 +265,8 @@ var RU_LANGUAGES =
   "ViewTransferDetailTitleNumber": "Номер перевода:",
   "ViewTransferDetailTitleDate": "Дата перевода:",
   "ViewTransferDetailTitleStatus": "Статус:",
-  "ViewTransferDetailTitleAccept": "ПРИНЯТЬ",
-  "ViewTransferDetailTitleDecline": "ОТКЛОНИТЬ",
+  "ViewTransferDetailTitleAccept": "Принять",
+  "ViewTransferDetailTitleDecline": "Отклонить",
 
   "ViewTransferDetailConfirmEnterCodeLabel": "Введите секретный код для получения перевода:",
   "ViewTransferDetailConfirmShouldSendCodeLabelFirstPart": "Пользователь",
@@ -282,8 +282,8 @@ var RU_LANGUAGES =
   "ViewAccountDetailTitlePayFor": "Оплата за:",
   "ViewAccountDetailTitlePayFrom": "Оплата с:",
   "ViewAccountDetailTitle": "ДЕТАЛИ СЧЕТА",
-  "ViewAccountDetailTitlePay": "ОПЛАТИТЬ",
-  "ViewAccountDetailTitleDecline": "ОТКАЗАТЬ",
+  "ViewAccountDetailTitlePay": "Оплатить",
+  "ViewAccountDetailTitleDecline": "Отказать",
 
   "ViewPaymentDetailTitleOne": "Получен счет",
   "ViewPaymentDetailTitleTwo": "от пользователя CLICK",
@@ -335,8 +335,8 @@ var RU_LANGUAGES =
 
 
   "ViewQrTitle": "ОПЛАТА ТОВАРОВ И УСЛУГ",
-  "ViewQrTitleAccept": "ДАЛЕЕ",
-  "ViewQrTitleCancel": "ОТМЕНИТЬ",
+  "ViewQrTitleAccept": "Далее",
+  "ViewQrTitleCancel": "Отменить",
 
   "ViewReportServiceAmountOfPay": "Сумма платежа:",
   "ViewReportServicePayWithCard": "Оплата с карты:",

@@ -39,10 +39,14 @@
       <div class="transfer-detail-cover"></div>
 
       <div class="transfer-detail-buttons-container">
-        <p class="transfer-detail-button-accept" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
-          {window.languages.ViewTransferDetailTitleAccept}</p>
-        <p class="transfer-detail-button-cancel" ontouchend="onTouchEndDecline()" ontouchstart="onTouchStartDecline()">
-          {window.languages.ViewTransferDetailTitleDecline}</p>
+        <button class="transfer-detail-button-accept" ontouchend="onTouchEndAccept()"
+                ontouchstart="onTouchStartAccept()">
+          {window.languages.ViewTransferDetailTitleAccept}
+        </button>
+        <button class="transfer-detail-button-cancel" ontouchend="onTouchEndDecline()"
+                ontouchstart="onTouchStartDecline()">
+          {window.languages.ViewTransferDetailTitleDecline}
+        </button>
       </div>
 
     </div>
@@ -60,10 +64,10 @@
       <p class="transfer-detail-code-confirm-message-text-info">
         {languages.ViewTransferDetailConfirmShouldSendCodeLabelFirstPart} + {opts.phoneNumber}
         {languages.ViewTransferDetailConfirmShouldSendCodeLabelSecondPart}</p>
-      <div class="transfer-detail-code-confirm-button-enter" ontouchend="onTouchEndAcceptSecretCode()"
-           ontouchstart="onTouchStartAcceptSecretCode()">
-        <p class="transfer-detail-code-confirm-button-enter-label">OK</p>
-      </div>
+      <button class="transfer-detail-code-confirm-button-enter" ontouchend="onTouchEndAcceptSecretCode()"
+              ontouchstart="onTouchStartAcceptSecretCode()">
+        OK
+      </button>
     </div>
   </code-confirm>
 
