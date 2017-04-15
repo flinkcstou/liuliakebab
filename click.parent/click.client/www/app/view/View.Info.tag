@@ -65,7 +65,10 @@
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
+
+    if(JSON.parse(localStorage.getItem('click_client_loginInfo')))
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
     //    console.log('getAccountsCards', getAccountsCards)

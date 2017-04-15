@@ -175,15 +175,17 @@
       event.preventDefault()
       event.stopPropagation()
 //      console.log('objectForTransfer', objectForTransfer)
-      var codeOfBank = objectForTransfer.name.replace(/\s/g, '').substring(3, 6);
-      var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'));
-      var maxLimit;
-      var minLimit;
-      for (var i = 0; i < bankList.length; i++) {
-        if (bankList[i].code == codeOfBank) {
-          maxLimit = bankList[i].p2p_max_limit
-          minLimit = bankList[i].p2p_min_limit
-          break;
+      if (objectForTransfer.type == 1) {
+        var codeOfBank = objectForTransfer.name.replace(/\s/g, '').substring(3, 6);
+        var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'));
+        var maxLimit;
+        var minLimit;
+        for (var i = 0; i < bankList.length; i++) {
+          if (bankList[i].code == codeOfBank) {
+            maxLimit = bankList[i].p2p_max_limit
+            minLimit = bankList[i].p2p_min_limit
+            break;
+          }
         }
       }
       if (!maxLimit) {

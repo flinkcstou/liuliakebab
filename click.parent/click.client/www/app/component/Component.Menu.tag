@@ -270,45 +270,51 @@
                   }
                 }
                 if (id) {
-                  var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-                  var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-                  var sessionKey = info.session_key;
+                  if (modeOfApp.offlineMode) {
+                    riotTags.innerHTML = "<view-qr>";
+                    riot.mount('view-qr', {"name": result.format, "address": result.text, "id": id});
+                  }
+                  else {
+                    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+                    var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+                    var sessionKey = info.session_key;
 
-                  window.api.call({
-                    method: 'get.indoor.service',
-                    input: {
-                      phone_num: phoneNumber,
-                      session_key: sessionKey,
-                      service_id: id,
+                    window.api.call({
+                      method: 'get.indoor.service',
+                      input: {
+                        phone_num: phoneNumber,
+                        session_key: sessionKey,
+                        service_id: id,
 
-                    },
+                      },
 
-                    scope: this,
+                      scope: this,
 
-                    onSuccess: function (result) {
-                      if (result[0][0].error == 0) {
-                        if (result[1]) {
-                          if (result[1][0]) {
-                            closeMenu();
-                            riotTags.innerHTML = "<view-qr>";
-                            riot.mount('view-qr', result[1][0]);
+                      onSuccess: function (result) {
+                        if (result[0][0].error == 0) {
+                          if (result[1]) {
+                            if (result[1][0]) {
+                              closeMenu();
+                              riotTags.innerHTML = "<view-qr>";
+                              riot.mount('view-qr', result[1][0]);
+                            }
                           }
+                          console.log("QR PAY", result);
                         }
-                        console.log("QR PAY", result);
-                      }
-                      else {
-                        scope.clickPinError = false;
-                        scope.errorNote = result[0][0].error_note;
-                        scope.showError = true;
-                        riot.update();
-                      }
-                    },
+                        else {
+                          scope.clickPinError = false;
+                          scope.errorNote = result[0][0].error_note;
+                          scope.showError = true;
+                          riot.update();
+                        }
+                      },
 
-                    onFail: function (api_status, api_status_message, data) {
-                      console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                      console.error(data);
-                    }
-                  });
+                      onFail: function (api_status, api_status_message, data) {
+                        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                        console.error(data);
+                      }
+                    });
+                  }
                 }
               }
             },

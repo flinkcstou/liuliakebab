@@ -337,6 +337,8 @@
             onSuccess: function (result) {
 
               if (result[0][0].error == 0) {
+                modeOfApp.onlineMode = true
+                modeOfApp.offlineMode = false;
 
                 if (device.platform != 'BrowserStand') {
                   window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {

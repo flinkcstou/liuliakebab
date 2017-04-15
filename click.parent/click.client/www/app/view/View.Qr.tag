@@ -92,6 +92,25 @@
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
         Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
         opts.qrSum = sumForQrPay;
+
+        if(modeOfApp.offlineMode){
+          phonedialer.dial(
+            "*880*0" +opts.id + "*" + parseInt(sumForTransfer) + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                riot.update();
+              }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+              console.log("*880*3*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23")
+            }
+          );
+          return
+        }
         if (parseInt(sumForQrPay) <= opts.max_pay_limit && parseInt(sumForQrPay) >= opts.min_pay_limit) {
           riotTags.innerHTML = "<view-qr-pincards>";
           riot.mount('view-qr-pincards', opts);

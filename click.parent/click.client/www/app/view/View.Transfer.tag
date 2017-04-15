@@ -304,7 +304,9 @@
     }
     //    console.log('OPTS', opts)
 
-    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    if (JSON.parse(localStorage.getItem('click_client_loginInfo')))
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
 
@@ -622,7 +624,9 @@
 
     cardOwnerFunction = function () {
 
-      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+      if (JSON.parse(localStorage.getItem('click_client_loginInfo')))
+        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
       window.api.call({
