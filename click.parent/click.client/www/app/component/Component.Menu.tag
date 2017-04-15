@@ -427,8 +427,24 @@
       billingsTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(billingsTouchEndX - billingsTouchStartX) < 20) {
-
         closeMenu();
+        if (modeOfApp.offlineMode) {
+          phonedialer.dial(
+            "*880*00*98767" + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                riot.update();
+              }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
+          );
+          return
+        }
 
         history.arrayOfHistory.push({view: "view-invoice-list"});
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
