@@ -916,6 +916,12 @@
 
         event.preventDefault();
         event.stopPropagation();
+        viewServicePage.phoneText = '';
+        window.viewServicePage = {};
+        viewServicePage.amountText = '';
+        viewServicePage.amountWithoutSpace = '';
+        viewServicePinCards.friendHelpPaymentMode = false;
+        viewServicePinCards.chosenFriendForHelp = null;
         onBackKeyDown();
         onBackKeyDown();
 

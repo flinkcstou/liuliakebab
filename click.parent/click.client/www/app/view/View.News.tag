@@ -36,7 +36,6 @@
     })
 
 
-
     closeNewsTouchEnd = function () {
       event.preventDefault()
       event.stopPropagation()
@@ -81,7 +80,8 @@
 
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-    var sessionKey = info.session_key;
+    if (info)
+      var sessionKey = info.session_key;
 
     window.api.call({
       method: 'get.news',

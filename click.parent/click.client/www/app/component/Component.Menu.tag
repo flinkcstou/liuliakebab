@@ -56,11 +56,14 @@
     var scope = this;
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
 
-    scope.firstName = loginInfo.firstname;
-    scope.lastName = loginInfo.lastname;
-    scope.photo = loginInfo.profile_image_url;
-    scope.showError = false;
+    if (loginInfo) {
+      scope.firstName = loginInfo.firstname;
+      scope.lastName = loginInfo.lastname;
+      scope.photo = loginInfo.profile_image_url;
 
+    }
+
+    scope.showError = false;
 
     if (modeOfApp.onlineMode) {
       scope.modeOfApplication = window.languages.ComponentMenuOnlineMode

@@ -47,7 +47,11 @@
     scope.popularServiceList = JSON.parse(localStorage.getItem("click_client_popularServiceList"));
     scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+    if(JSON.parse(localStorage.getItem('click_client_loginInfo')))
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+
+    if(phoneNumber)
     scope.operatorKey = phoneNumber.substr(3, 2);
     scope.addFavoriteBool = true;
 

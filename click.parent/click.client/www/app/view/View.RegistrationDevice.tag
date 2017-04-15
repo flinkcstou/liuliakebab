@@ -25,7 +25,7 @@
 
 
   <div class="registration-buttons-container">
-    <div class="registration-container-offline">
+    <div class="registration-container-offline" ontouchend="registrationOfflineTouchEnd()">
       <div class="registration-button-offline">{window.languages.ViewRegistrationDeviceButtonOffline}</div>
     </div>
     <a id="demoContainer" class="registration-container-demo-version">
@@ -61,10 +61,10 @@
     };
 
     history.arrayOfHistory.push(
-        {
-          "view": 'view-registration-device',
-          "params": opts
-        }
+      {
+        "view": 'view-registration-device',
+        "params": opts
+      }
     );
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
@@ -97,6 +97,15 @@
       riot.update(scope.maskPhoneNumber);
     }
 
+    registrationOfflineTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      modeOfApp.onlineMode = false;
+      modeOfApp.offlineMode = true;
+      this.riotTags.innerHTML = "<view-main-page>";
+      riot.mount('view-main-page');
+    }
 
     goToDemo = function () {
       event.preventDefault();
