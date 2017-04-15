@@ -1022,30 +1022,32 @@
         }
 
         if (viewTransfer.type == 1) {
-          var transferCards = [];
-          var codeOfBank = cardInputId.value.replace(/\s/g, '').substring(3, 6);
-          var checkOfCode = false;
+          if (modeOfApp.onlineMode) {
+            var transferCards = [];
+            var codeOfBank = cardInputId.value.replace(/\s/g, '').substring(3, 6);
+            var checkOfCode = false;
 //          console.log('CODE OF BANK', codeOfBank)
 
-          var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))
-          var percentOfBank = 0;
-          for (var i = 0; i < bankList.length; i++) {
-            if (codeOfBank == bankList[i].code) {
-              checkOfCode = true;
-              percentOfBank = bankList[i].p2p_percent
-              break;
+            var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))
+            var percentOfBank = 0;
+            for (var i = 0; i < bankList.length; i++) {
+              if (codeOfBank == bankList[i].code) {
+                checkOfCode = true;
+                percentOfBank = bankList[i].p2p_percent
+                break;
+              }
+              else {
+                checkOfCode = false;
+              }
             }
-            else {
-              checkOfCode = false;
-            }
-          }
-          if (!checkOfCode) {
-            scope.clickPinError = false;
-            scope.errorNote = 'Неверный код банка';
-            scope.showError = true;
-            riot.update();
+            if (!checkOfCode) {
+              scope.clickPinError = false;
+              scope.errorNote = 'Неверный код банка';
+              scope.showError = true;
+              riot.update();
 //            alert('Неверный код банка');
-            return;
+              return;
+            }
           }
           cardNumberForTransfer = cardInputId.value;
           viewTransfer.cardNumber = cardNumberForTransfer
