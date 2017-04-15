@@ -79,10 +79,8 @@
 
   <div id="blockFirstDropdownId" class="component-first-field">
     <div class="servicepage-fields-dropdown-two">
-      <p if="{!hasSecondLevel}" class="servicepage-dropdown-text-field" style="color: white;">
-        {window.languages.ViewServicePageChooseRegion}</p>
-      <p if="{hasSecondLevel}" class="servicepage-dropdown-text-field" style="color: white;">
-        {window.languages.ViewServicePageChooseCity}</p>
+      <p class="servicepage-dropdown-text-field" style="color: white;">
+        {service.options_title}</p>
     </div>
     <div class="servicepage-dropdown-container">
       <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}" if="{formType==3}"
@@ -99,7 +97,7 @@
   <div id="blockSecondDropdownId" class="component-first-field">
     <div class="servicepage-fields-dropdown-two">
       <p class="servicepage-dropdown-text-field" style="color: white;">
-        {window.languages.ViewServicePageChooseRegion}</p>
+        {(secondLevelArray && secondLevelArray[0])?(secondLevelArray[0].name):("")}</p>
     </div>
     <div class="servicepage-dropdown-container">
       <div class="servicepage-dropdown-variant" each="{i in secondLevelArray}" id="two{i.id}" if="{formType==3}"

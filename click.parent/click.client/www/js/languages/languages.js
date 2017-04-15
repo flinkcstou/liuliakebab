@@ -54,10 +54,13 @@ var RU_LANGUAGES =
   "ViewMyCardLastOperations": "Последние операции",
 
   "ViewServicePageEnterLabel": "ДАЛЕЕ",
-  "ViewServicePageChooseRegion": "ВЫБЕРИТЕ РАЙОН",
-  "ViewServicePageChooseCity": "ВЫБЕРИТЕ ГОРОД",
+  //"ViewServicePageChooseRegion": "ВЫБЕРИТЕ РАЙОН",
+  //"ViewServicePageChooseCity": "ВЫБЕРИТЕ ГОРОД",
   "ViewServicePageSaveLabel": "СОХРАНИТЬ",
   "ViewServicePageAmountTextLabel": "Сумма оплаты:",
+
+//{(secondLevelArray && secondLevelArray[0])?(secondLevelArray[0].name):("")}
+//{service.options_title}
 
   "ComponentReportFilterTitle": "Фильтры",
   "ComponentReportFilterDate": "Выбрать даты для фильтра",
