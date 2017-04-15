@@ -97,6 +97,8 @@
         <p class="report-filter-clear-filters-label">Очистить все фильтры</p>
         <img class="report-filter-clear-filters-icon" src="resources/icons/ViewReport/reports_filters_clear.png">
       </div>
+
+      <button class="report-filter-ok-button" ontouchend="closeMenu()">ok</button>
     </div>
 
     <button class="report-filter-ready-button" if="{filterDate || filterAccount}" ontouchstart="readyButtonTouchStart()"

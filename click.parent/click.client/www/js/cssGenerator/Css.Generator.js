@@ -8262,6 +8262,22 @@ var css = {
   "width: " + 15 * widthK + "px;" +
   "}",
 
+  reportFilterOKButton: ".report-filter-ok-button" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "height: " + 74 * widthK + "px;" +
+  "left: 27%;" +
+  "width: 44%;" +
+  "background-color: #01B8FE;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
+  "color: #ffffff;" +
+  "bottom: " + 38 * widthK + "px;" +
+  "text-transform: uppercase;" +
+  "}",
+
   filterMenuInsideButton: ".filter-menu-inside-button " +
   "{" +
   "position: absolute;" +
@@ -9946,10 +9962,10 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: absolute;" +
-  "height: 6%;" +
+  "height: " + 74 * widthK + "px;" +
   "left: 28%;" +
   "width: 44%;" +
-  "top: 87%;" +
+  "top: 82%;" +
   "background-color: #01B8FE;" +
   "border-radius: " + 10 * widthK + "px;" +
   "bottom: 0;" +
