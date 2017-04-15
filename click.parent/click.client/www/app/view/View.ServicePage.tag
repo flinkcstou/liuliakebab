@@ -179,10 +179,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-service-page',
-            "params": opts
-          }
+        {
+          "view": 'view-service-page',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -713,10 +713,10 @@
 
 
     var maskOne = /[0-9]/g,
-        maskTwo = /[0-9' ']/g,
-        amountForPayTransaction = 0,
-        checkFirst = false,
-        defaultAccount;
+      maskTwo = /[0-9' ']/g,
+      amountForPayTransaction = 0,
+      checkFirst = false,
+      defaultAccount;
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     for (var i in cards) {
@@ -876,34 +876,34 @@
           console.log("opts[0].name.replace(/\s/g, '')", opts[0].name.replace(/\s/g, ''))
           if (opts[0].type == 2) {
             phonedialer.dial(
-                "*880*1*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
-                function (err) {
-                  if (err == "empty") {
-                    scope.clickPinError = false;
-                    scope.errorNote = ("Unknown phone number");
-                    scope.showError = true;
-                    riot.update();
-                  }
-                  else console.log("Dialer Error:" + err);
-                },
-                function (success) {
+              "*880*1*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  riot.update();
                 }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
+              }
             );
           }
           else {
             phonedialer.dial(
-                "*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
-                function (err) {
-                  if (err == "empty") {
-                    scope.clickPinError = false;
-                    scope.errorNote = ("Unknown phone number");
-                    scope.showError = true;
-                    riot.update();
-                  }
-                  else console.log("Dialer Error:" + err);
-                },
-                function (success) {
+              "*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  riot.update();
                 }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
+              }
             );
           }
         }
@@ -912,13 +912,12 @@
           riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
         }
       } else {
-        console.log("GOING TO ADD TO FAVORITES");
         addToFavorites([formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
 
         event.preventDefault();
         event.stopPropagation();
-        this.riotTags.innerHTML = "<view-main-page>";
-        riot.mount('view-main-page');
+        onBackKeyDown();
+        onBackKeyDown();
 
       }
     };
