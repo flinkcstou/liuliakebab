@@ -8851,8 +8851,6 @@ var css = {
   "height:" + 125 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "border-radius:" + 100 * widthK + "px;" +
-  "border:solid 1px #b7b7b7;" +
   "top: 6%;" +
   "}",
 
