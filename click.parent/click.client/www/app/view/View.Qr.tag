@@ -95,7 +95,7 @@
 
         if(modeOfApp.offlineMode){
           phonedialer.dial(
-            "*880*0" +opts.id + "*" + parseInt(sumForTransfer) + "%23",
+            "*880*0" +opts.id + "*" + parseInt(sumForQrPay) + "%23",
             function (err) {
               if (err == "empty") {
                 scope.clickPinError = false;
@@ -106,7 +106,7 @@
               else console.log("Dialer Error:" + err);
             },
             function (success) {
-              console.log("*880*3*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23")
+
             }
           );
           return

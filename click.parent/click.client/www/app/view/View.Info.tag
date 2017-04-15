@@ -66,8 +66,8 @@
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
 
-    if(JSON.parse(localStorage.getItem('click_client_loginInfo')))
-    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    if (JSON.parse(localStorage.getItem('click_client_loginInfo')))
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
@@ -158,23 +158,23 @@
 
       if (device.platform == "Android") {
         phonedialer.dial(
-            "*111*3%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = "Unknown phone number";
-                scope.showError = true;
-                riot.update();
-              }
-              else {
-                scope.clickPinError = false;
-                scope.errorNote = "Dialer Error:" + err;
-                scope.showError = true;
-                riot.update();
-              }
-            },
-            function (success) {
+          "*111*3%23",
+          function (err) {
+            if (err == "empty") {
+              scope.clickPinError = false;
+              scope.errorNote = "Unknown phone number";
+              scope.showError = true;
+              riot.update();
             }
+            else {
+              scope.clickPinError = false;
+              scope.errorNote = "Dialer Error:" + err;
+              scope.showError = true;
+              riot.update();
+            }
+          },
+          function (success) {
+          }
         );
       }
       if (device.platform == "iOS") {
@@ -185,10 +185,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-info') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-info',
-            "params": opts
-          }
+        {
+          "view": 'view-info',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -307,6 +307,25 @@
     goToReports = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      if (modeOfApp.offlineMode) {
+        phonedialer.dial(
+          "*880*00*3" + "%23",
+          function (err) {
+            if (err == "empty") {
+              scope.clickPinError = false;
+              scope.errorNote = ("Unknown phone number");
+              scope.showError = true;
+              riot.update();
+            }
+            else console.log("Dialer Error:" + err);
+          },
+          function (success) {
+          }
+        );
+        return
+      }
+
       riotTags.innerHTML = "<view-report>";
       riot.mount('view-report');
 
