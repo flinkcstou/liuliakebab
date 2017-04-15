@@ -80,7 +80,8 @@
   <div id="blockFirstDropdownId" class="component-first-field">
     <div class="servicepage-fields-dropdown-two">
       <p class="servicepage-dropdown-text-field" style="color: white;">
-        {service.options_title}</p>
+        {(service.options_title)?(service.options_title):((firstLevelArray &&
+        firstLevelArray[0])?(firstLevelArray[0].name):(""))}</p>
     </div>
     <div class="servicepage-dropdown-container">
       <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}" if="{formType==3}"
