@@ -10,12 +10,14 @@
       <div class="view-contact-info-icon" style="background-image: url({contactPhoto})">{firstLetter}</div>
       <p class="view-contact-info-text">{firstName} {secondName}</p>
     </div>
-    <div class="view-contact-pay-transfer-container" ontouchend="contactPayTouchEnd()">
+    <div class="view-contact-pay-transfer-container" ontouchstart="contactPayTouchStart()"
+         ontouchend="contactPayTouchEnd()">
       <div class="view-contact-pay-icon"></div>
       <p class="view-contact-pay-title">{window.languages.ViewContactPay}</p>
       <div class="view-contact-open-icon"></div>
     </div>
-    <div class="view-contact-pay-transfer-container" ontouchend="contactTransferTouchEnd()">
+    <div class="view-contact-pay-transfer-container" ontouchstart="contactTransferTouchStart()"
+         ontouchend="contactTransferTouchEnd()">
       <div class="view-contact-transfer-icon"></div>
       <p class="view-contact-transfer-title">{window.languages.ViewContactTransfer}</p>
       <div class="view-contact-open-icon"></div>
@@ -102,35 +104,47 @@
     var goToPay = false;
     var goToTransfer = false;
 
+    var payTouchStart, payTouchEnd;
+
+    contactPayTouchStart = function () {
+      payTouchStart = event.changedTouches[0].pageY
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
     contactPayTouchEnd = function () {
       event.preventDefault()
       event.stopPropagation()
 
-      goToPay = true;
-      goToTransfer = false;
+      payTouchEnd = event.changedTouches[0].pageY
 
-      if (scope.arrayOfNumbers) {
+      if (Math.abs(payTouchStart - payTouchEnd) <= 20) {
+        goToPay = true;
+        goToTransfer = false;
 
-        if (scope.arrayOfNumbers.length > 1) {
-          contactSelectContainerId.style.display = 'block'
-        }
-        else {
-          var id = window.mOperators[phone.substring(0, 2)]
-          viewPay.chosenServiceId = id;
-          scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length);
+        if (scope.arrayOfNumbers) {
 
-          console.log('ID', id)
-          if (id) {
-            riotTags.innerHTML = "<view-service-page>";
-            riot.mount("view-service-page", {number: scope.arrayOfNumbers[0].value});
+          if (scope.arrayOfNumbers.length > 1) {
+            contactSelectContainerId.style.display = 'block'
           }
           else {
-            scope.clickPinError = false;
-            scope.errorNote = 'Вы не можете оплатить за этот номер';
-            scope.showError = true;
-            riot.update();
-          }
+            var id = window.mOperators[phone.substring(0, 2)]
+            viewPay.chosenServiceId = id;
+            scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length);
 
+            console.log('ID', id)
+            if (id) {
+              riotTags.innerHTML = "<view-service-page>";
+              riot.mount("view-service-page", {number: scope.arrayOfNumbers[0].value});
+            }
+            else {
+              scope.clickPinError = false;
+              scope.errorNote = 'Вы не можете оплатить за этот номер';
+              scope.showError = true;
+              riot.update();
+            }
+
+          }
         }
       }
 
@@ -175,23 +189,36 @@
       }
     }
 
+
+    var transferTouchStart, transferTouchEnd;
+
+    contactTransferTouchStart = function () {
+      transferTouchStart = event.changedTouches[0].pageY
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
     contactTransferTouchEnd = function () {
       event.preventDefault()
       event.stopPropagation()
 
-      goToPay = false;
-      goToTransfer = true;
+      transferTouchEnd = event.changedTouches[0].pageY
 
-      if (scope.arrayOfNumbers) {
+      if (Math.abs(transferTouchStart - transferTouchEnd) <= 20) {
+        goToPay = false;
+        goToTransfer = true;
 
-        if (scope.arrayOfNumbers.length > 1) {
-          contactSelectContainerId.style.display = 'block'
-        }
-        else {
+        if (scope.arrayOfNumbers) {
 
-          scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length);
-          riotTags.innerHTML = "<view-transfer>";
-          riot.mount('view-transfer', {number: scope.arrayOfNumbers[0].value});
+          if (scope.arrayOfNumbers.length > 1) {
+            contactSelectContainerId.style.display = 'block'
+          }
+          else {
+
+            scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length);
+            riotTags.innerHTML = "<view-transfer>";
+            riot.mount('view-transfer', {number: scope.arrayOfNumbers[0].value});
+          }
         }
       }
 

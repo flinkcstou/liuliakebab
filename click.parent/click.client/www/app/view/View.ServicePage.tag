@@ -194,10 +194,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-service-page',
-            "params": opts
-          }
+        {
+          "view": 'view-service-page',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -725,10 +725,10 @@
 
 
     var maskOne = /[0-9]/g,
-        maskTwo = /[0-9' ']/g,
-        amountForPayTransaction = 0,
-        checkFirst = false,
-        defaultAccount;
+      maskTwo = /[0-9' ']/g,
+      amountForPayTransaction = 0,
+      checkFirst = false,
+      defaultAccount;
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     for (var i in cards) {
@@ -886,6 +886,7 @@
         console.log("OPTS", opts);
 
         console.log('USSD', scope.fieldArray[0].ussd_query)
+        console.log('fieldArray', scope.fieldArray[0])
 
         console.log('firstFieldText', firstFieldText)
 
@@ -898,27 +899,49 @@
 
           var ussdQuery = scope.fieldArray[0].ussd_query;
 
+          if (formtype.formtype == 1) {
+            if(firstFieldText.firstFieldText) {
+              ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
+            }
+            else{
+              ussdQuery = ussdQuery.replace('*{param}', firstFieldText.firstFieldText);
+            }
+            ussdQuery = ussdQuery.replace('{option}', firstFieldId.firstFieldId);
+            ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
+            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+            console.log(ussdQuery)
+          }
 
-          ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
-          ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
-          ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+          if (formtype.formtype == 2) {
+            ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
+            ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
+            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+            console.log(ussdQuery)
+          }
+
+          if (formtype.formtype == 4) {
+            ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
+            ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
+            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+            console.log(ussdQuery)
+          }
 
           console.log(ussdQuery)
 
           phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-              ussdQuery + "%23",
-              function (err) {
-                if (err == "empty") {
-                  scope.clickPinError = false;
-                  scope.errorNote = ("Unknown phone number");
-                  scope.showError = true;
-                  riot.update();
-                }
-                else console.log("Dialer Error:" + err);
-              },
-              function (success) {
+            ussdQuery + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                riot.update();
               }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
           );
         }
         else {
@@ -951,6 +974,7 @@
     scope.onTouchEndOfPincard = onTouchEndOfPincard = function (nominal, cardId) {
       event.stopPropagation();
 
+      console.log('scope.fieldArray[0]', scope.fieldArray[0])
       onTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20) {
@@ -978,18 +1002,18 @@
 
           phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-              ussdQuery + "%23",
-              function (err) {
-                if (err == "empty") {
-                  scope.clickPinError = false;
-                  scope.errorNote = ("Unknown phone number");
-                  scope.showError = true;
-                  riot.update();
-                }
-                else console.log("Dialer Error:" + err);
-              },
-              function (success) {
+            ussdQuery + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                riot.update();
               }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
           );
         }
 
@@ -1027,7 +1051,8 @@
 
     addToFavorites = function (array) {
 
-      console.log("ADD TO FAVORITES INPUT", array);
+
+      console.log('scope.fieldArray[0]', scope.fieldArray[0].ussd_query)
 
       if (!localStorage.getItem('favoritePaymentsList')) {
         var favoritePaymentsList = [];
@@ -1036,7 +1061,8 @@
         favoritePaymentsList.push({
           "opts": array,
           "service": scope.service,
-          "firstFieldTitle": viewServicePage.firstFieldTitle
+          "firstFieldTitle": viewServicePage.firstFieldTitle,
+          "ussd": scope.fieldArray[0].ussd_query
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
@@ -1048,7 +1074,8 @@
         favoritePaymentsList.push({
           "opts": array,
           "service": scope.service,
-          "firstFieldTitle": viewServicePage.firstFieldTitle
+          "firstFieldTitle": viewServicePage.firstFieldTitle,
+          "ussd": scope.fieldArray[0].ussd_query
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));

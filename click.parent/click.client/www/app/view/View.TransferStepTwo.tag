@@ -46,6 +46,10 @@
         sumValueId.value = 0
     })
 
+    if (modeOfApp.offlineMode) {
+      window.languages.ViewTransferTwoNext = 'Перевести'
+    }
+
     console.log(opts)
     var scope = this,
       transferTitle,
@@ -153,7 +157,7 @@
       this.titleName = window.languages.ViewTransferTwoTitle + ' +' + transferTitle;
     else
       this.titleName = window.languages.ViewTransferTwoTitle + ' ' + transferTitle;
-    ;
+
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-steptwo') {
       history.arrayOfHistory.push(

@@ -41,7 +41,7 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    componentMenu.check= false;
+    componentMenu.check = false;
 
     goToBack = function () {
       event.preventDefault();
@@ -64,8 +64,8 @@
           if (scope.favoritePaymentsList[i].opts[1].firstFieldId == '1') {
             var firstField = scope.favoritePaymentsList[i].opts[2].firstFieldText.toString();
             console.log(scope.favoritePaymentsList[i].opts[5])
-            if(scope.favoritePaymentsList[i].opts[5] && scope.favoritePaymentsList[i].opts[5].amountText)
-            scope.favoritePaymentsList[i].opts[5].amountText = window.amountTransform(scope.favoritePaymentsList[i].opts[5].amountText)
+            if (scope.favoritePaymentsList[i].opts[5] && scope.favoritePaymentsList[i].opts[5].amountText)
+              scope.favoritePaymentsList[i].opts[5].amountText = window.amountTransform(scope.favoritePaymentsList[i].opts[5].amountText)
             if (firstField.length == 9) {
               firstField = '+' + window.languages.CodeOfCountry + ' ' + firstField.substr(0, 2) + ' ' + firstField.substr(2, 3) + ' ' + firstField.substr(5, 2) + ' ' +
                 firstField.substr(7, 2);
@@ -87,13 +87,41 @@
       console.log("id=", id);
       id = id.substring(1, id.length);
       console.log("id2=", id);
+
       for (var i in scope.favoritePaymentsList) {
         if (scope.favoritePaymentsList[i].service.id == id) {
-          console.log("gnrf", scope.favoritePaymentsList[i].opts);
+          console.log("scope.favoritePaymentsList[i].service.id", scope.favoritePaymentsList[i].service.id);
+          console.log("gnrf", scope.favoritePaymentsList[i]);
           viewPay.chosenServiceId = id;
           viewServicePage.firstFieldTitle = scope.favoritePaymentsList[i].firstFieldTitle;
           viewPayConfirm.isInFavorites = true;
-          event.stopPropagation();
+          if (modeOfApp.offlineMode) {
+            var firstVar = scope.favoritePaymentsList[i].opts[2].firstFieldText
+            var secondVar = scope.favoritePaymentsList[i].opts[5].amountText
+
+            var ussdQuery = scope.favoritePaymentsList[i].ussd;
+            ussdQuery = ussdQuery.replace('{param}', firstVar);
+            ussdQuery = ussdQuery.replace('{amount}', secondVar);
+            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+            console.log(ussdQuery)
+
+            phonedialer.dial(
+//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
+              ussdQuery + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  riot.update();
+                }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
+              }
+            );
+            return
+          }
           this.riotTags.innerHTML = "<view-service-pincards>";
           riot.mount('view-service-pincards', scope.favoritePaymentsList[i].opts);
 
