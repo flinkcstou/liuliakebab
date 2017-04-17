@@ -117,7 +117,7 @@ window.api.call = function (params) {
 
   if (modeOfApp.onlineMode) {
 
-    if (device.platform != 'BrowserStand' || method != "get.balance") {
+    if (device.platform != 'BrowserStand' && method != "get.balance") {
       var options = {dimBackground: true};
 
       SpinnerPlugin.activityStart(languages.Downloading, options, function () {

@@ -37,6 +37,7 @@
     offlineBalanceTrueTouchStart = function () {
       event.stopPropagation();
       event.preventDefault();
+
       modeOfApp.offlineMode.balance = true;
 
       if (device.platform == "Android") {

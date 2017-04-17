@@ -9868,7 +9868,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "height: " + 62 * widthK + "px;" +
+  "height: " + 74 * widthK + "px;" +
   "font-size: " + 32 * widthK + "px;" +
   "top: 60%;" +
   "background-color: #00a8f1;" +
@@ -9893,8 +9893,8 @@ var css = {
   "color: white;" +
   "background-color: white;" +
   "color: #c0c0c0;" +
-  "height:" + 62 * widthK + "px;" +
-  "line-height:" + 63 * widthK + "px;" +
+  "height:" + 74 * widthK + "px;" +
+  "line-height:" + 74 * widthK + "px;" +
   "border-radius:" + 5 * widthK + "px;" +
   "font-size:" + 29 * widthK + "px;" +
   "width: 33%;" +
