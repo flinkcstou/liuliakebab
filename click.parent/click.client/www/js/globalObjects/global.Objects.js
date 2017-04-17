@@ -154,14 +154,20 @@ window.inputVerification.telVerification = function (phoneNumber) {
 window.inputVerification.dateVerification = function (date) {
 
   date = date.replace(new RegExp('[^0-9]', 'g'), '');
-  if (date.length == 1)
-    return date;
-  if (date.length == 2)
-    return date + '/';
-  if (date.length == 3)
-    return date.substring(0, 2) + '/' + date.substring(2, 3)
-  if (date.length == 4)
-    return date.substring(0, 2) + '/' + date.substring(2, 4)
+  console.log(date)
+  if (date) {
+    if (date.length == 1)
+      return date;
+    if (date.length == 2)
+      return date + '/';
+    if (date.length == 3)
+      return date.substring(0, 2) + '/' + date.substring(2, 3)
+    if (date.length == 4)
+      return date.substring(0, 2) + '/' + date.substring(2, 4)
+  }
+  else {
+    return date
+  }
 }
 
 window.inputVerification.cardVerification = function (card) {
