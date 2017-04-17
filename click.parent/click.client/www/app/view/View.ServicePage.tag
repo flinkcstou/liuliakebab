@@ -193,10 +193,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-service-page',
-            "params": opts
-          }
+        {
+          "view": 'view-service-page',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -471,6 +471,7 @@
       }
       scope.hasFirstLevel = false;
       if (scope.formType == 3 && scope.servicesParamsMapTwo[scope.service.id]) {
+        console.log("QWERTY", scope.servicesParamsMapTwo[scope.service.id])
         scope.firstLevelArray = [];
         scope.secondLevelMap = {};
         scope.chosenFieldNameTwo = scope.servicesParamsMapTwo[scope.service.id][0].name;
@@ -503,6 +504,7 @@
         this.on('mount', function () {
           amountField.style.display = 'none';
         });
+        console.log("QWERTY222", scope.servicesParamsMapFour[scope.service.id], "333", scope.servicesParamsMapFive[scope.service.id])
         scope.firstLevelArray = [];
         scope.secondLevelMap = {};
         scope.chosenFieldNameTwo = scope.servicesParamsMapFour[scope.service.id][0].name;
@@ -712,6 +714,7 @@
               scope.chosenFieldParamIdThree = id;
               scope.amountOfFormTypeFour = scope.secondLevelArray[i].sum_cost;
               viewServicePage.amountText = scope.secondLevelArray[i].usd_cost;
+              amountForPayTransaction = scope.amountOfFormTypeFour;
               riot.update(scope.chosenFieldNameThree);
               break;
             }
@@ -722,10 +725,10 @@
 
 
     var maskOne = /[0-9]/g,
-        maskTwo = /[0-9' ']/g,
-        amountForPayTransaction = 0,
-        checkFirst = false,
-        defaultAccount;
+      maskTwo = /[0-9' ']/g,
+      amountForPayTransaction = 0,
+      checkFirst = false,
+      defaultAccount;
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     for (var i in cards) {
@@ -887,18 +890,18 @@
 
           phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-              "*880*1" + "%23",
-              function (err) {
-                if (err == "empty") {
-                  scope.clickPinError = false;
-                  scope.errorNote = ("Unknown phone number");
-                  scope.showError = true;
-                  riot.update();
-                }
-                else console.log("Dialer Error:" + err);
-              },
-              function (success) {
+            "*880*1" + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                riot.update();
               }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
           );
         }
         else {

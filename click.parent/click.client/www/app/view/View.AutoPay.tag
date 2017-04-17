@@ -1,12 +1,29 @@
 <view-auto-pay>
-  <component-page-title title="{titleName}" backbutton="{backbuttoncheck}" rightbutton="{rightbuttoncheck}">
-  </component-page-title>
-  <div style="display: block; width: 400px; height: 400px;">
-    <canvas id="myChart"></canvas>
+  <div class="pay-page-title">
+    <p class="pay-name-title">{titleName}</p>
+    <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
+    <div id="rightButton" ontouchend="addFavorite()" class="settings-friend-help-add-button"></div>
   </div>
 
+  <div class="view-favorites-container">
+    <div class="view-favorites-block-containter" each="{j in autopayList}">
+      <div id="p{j.service.id}" class="view-favorites-block-inner-containter"
+           ontouchend="openFavoritePayment(this.id)">
+        <div class="view-favorites-icon"
+        ></div>
+        <div class="view-favorites-info-container">
+          <p class="view-favorites-info-name">{j.service_name}</p>
+          <div class="view-favorites-info-balance">{j.amountText}</div>
+          <div class="view-favorites-info-currency-field">сум</div>
+          <p class="view-favorites-info-number">{j.firstFieldText}</p>
+        </div>
+      </div>
+      <div id="{j.service.id}" class="view-favorites-delete-icon" ontouchend="removeFromFavorites(this.id)"></div>
+    </div>
+  </div>
 
   <script>
+
     this.titleName = window.languages.ComponentBankOperationsAutoPay;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-auto-pay') {
@@ -33,29 +50,59 @@
     if (info)
       var sessionKey = info.session_key;
 
-    window.api.call({
-      method: 'get.news',
-      input: {
-        phone_num: phoneNumber,
-        session_key: sessionKey,
+    scope.autopayList = JSON.parse(localStorage.getItem('click_client_autopayList'));
 
-      },
+    //    if (scope.favoritePaymentsList) {
+    ////      console.log("favorite list", scope.favoritePaymentsList);
+    //      scope.favPaymentsList = [];
+    //      for (var i in scope.favoritePaymentsList) {
+    //        if (scope.favPaymentsList.length < 4) {
+    //          if (scope.favoritePaymentsList[i].opts[1].firstFieldId == '1') {
+    //            var firstField = scope.favoritePaymentsList[i].opts[2].firstFieldText.toString();
+    //            console.log(scope.favoritePaymentsList[i].opts[5])
+    //            if (scope.favoritePaymentsList[i].opts[5] && scope.favoritePaymentsList[i].opts[5].amountText)
+    //              scope.favoritePaymentsList[i].opts[5].amountText = window.amountTransform(scope.favoritePaymentsList[i].opts[5].amountText)
+    //            if (firstField.length == 9) {
+    //              firstField = '+' + window.languages.CodeOfCountry + ' ' + firstField.substr(0, 2) + ' ' + firstField.substr(2, 3) + ' ' + firstField.substr(5, 2) + ' ' +
+    //                firstField.substr(7, 2);
+    //            }
+    //            scope.favoritePaymentsList[i].opts[2].firstFieldText = firstField;
+    //          }
+    //          scope.favPaymentsList.push(scope.favoritePaymentsList[i]);
+    //        }
+    //
+    //        else break;
+    //      }
+    ////      console.log("favorites=", scope.favPaymentsList);
+    //      riot.update(scope.favPaymentsList);
+    //    }
 
-      scope: this,
+    if (!scope.autopayList)
+      window.api.call({
+        method: 'autopay.list',
+        input: {
+          phone_num: phoneNumber,
+          session_key: sessionKey,
 
-      onSuccess: function (result) {
-        if (result[0][0].error == 0) {
-          console.log("NEWS", result);
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+            console.log("Autopay list", result[1]);
+            localStorage.setItem('click_client_autopayList', JSON.stringify(result[1]));
+
+          }
+          else
+            alert(result[0][0].error_note);
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
         }
-        else
-          alert(result[0][0].error_note);
-      },
-
-      onFail: function (api_status, api_status_message, data) {
-        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-        console.error(data);
-      }
-    });
+      });
 
     //    window.api.call({
     //      method: 'get.terms',
