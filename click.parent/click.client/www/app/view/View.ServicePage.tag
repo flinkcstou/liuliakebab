@@ -175,12 +175,28 @@
 
     console.log('OPTS', opts);
 
+    var scope = this;
+    scope.servicesMap = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesMap")) : offlineServicesMap);
+    scope.categoryNamesMap = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_categoryNamesMap")) : offlineCategoryNamesMap);
+    scope.servicesParamsMapOne = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesParamsMapOne")) : offlineServicesParamsMapOne);
+    scope.servicesParamsMapTwo = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesParamsMapTwo")) : offlineServicesParamsMapTwo);
+    scope.servicesParamsMapThree = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesParamsMapThree")) : offlineServicesParamsMapThree);
+    scope.servicesParamsMapFour = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesParamsMapFour")) : offlineServicesParamsMapFour);
+    scope.servicesParamsMapFive = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesParamsMapFive")) : offlineServicesParamsMapFive);
+
+    //    console.log("click_client_servicesParamsMapTwo", localStorage.getItem("click_client_servicesParamsMapTwo"));
+    //    console.log("click_client_servicesParamsMapThree", localStorage.getItem("click_client_servicesParamsMapThree"));
+    //    console.log("click_client_servicesParamsMapFour", localStorage.getItem("click_client_servicesParamsMapFour"));
+    //    console.log("click_client_servicesParamsMapFive", localStorage.getItem("click_client_servicesParamsMapFive"));
+
+    riot.update(scope.categoryNamesMap);
+
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-service-page',
-          "params": opts
-        }
+          {
+            "view": 'view-service-page',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -191,8 +207,6 @@
     }
 
     console.log('opts', opts)
-
-    var scope = this;
     scope.enterButton = opts[0] != 'ADDFAVORITE' ? true : false;
     scope.showError = false;
 
@@ -211,7 +225,13 @@
       }
     }
 
-    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+
+    if (loginInfo) {
+
+      var sessionKey = loginInfo.session_key;
+    }
+
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
 
@@ -374,15 +394,6 @@
       blockAmountCalculatorId.style.display = 'none';
       riot.update(blockAmountCalculatorId);
     }
-
-    scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
-    scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
-    scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
-    scope.servicesParamsMapTwo = JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"));
-    scope.servicesParamsMapThree = JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"));
-    scope.servicesParamsMapFour = JSON.parse(localStorage.getItem("click_client_servicesParamsMapFour"));
-    scope.servicesParamsMapFive = JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"));
-    riot.update(scope.categoryNamesMap);
 
     if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
       scope.service = scope.servicesMap[localStorage.getItem('myNumberOperatorId')][0];
@@ -711,10 +722,10 @@
 
 
     var maskOne = /[0-9]/g,
-      maskTwo = /[0-9' ']/g,
-      amountForPayTransaction = 0,
-      checkFirst = false,
-      defaultAccount;
+        maskTwo = /[0-9' ']/g,
+        amountForPayTransaction = 0,
+        checkFirst = false,
+        defaultAccount;
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     for (var i in cards) {
@@ -869,12 +880,14 @@
         event.stopPropagation();
         console.log(formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites)
 
+        console.log("OPTS", opts);
+
         console.log('scope.fieldArray[0]', scope.fieldArray[0])
         if (modeOfApp.offlineMode) {
-          console.log("opts[0].name.replace(/\s/g, '')", opts[0].name.replace(/\s/g, ''))
-          if (opts[0].type == 2) {
-            phonedialer.dial(
-              "*880*1*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
+
+          phonedialer.dial(
+//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
+              "*880*1" + "%23",
               function (err) {
                 if (err == "empty") {
                   scope.clickPinError = false;
@@ -886,24 +899,7 @@
               },
               function (success) {
               }
-            );
-          }
-          else {
-            phonedialer.dial(
-              "*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
-              function (err) {
-                if (err == "empty") {
-                  scope.clickPinError = false;
-                  scope.errorNote = ("Unknown phone number");
-                  scope.showError = true;
-                  riot.update();
-                }
-                else console.log("Dialer Error:" + err);
-              },
-              function (success) {
-              }
-            );
-          }
+          );
         }
         else {
           this.riotTags.innerHTML = "<view-service-pincards>";

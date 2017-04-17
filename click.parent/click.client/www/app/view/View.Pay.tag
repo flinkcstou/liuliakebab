@@ -51,21 +51,37 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    scope.categoryList = JSON.parse(localStorage.getItem("click_client_payCategoryList"));
-    scope.serviceList = JSON.parse(localStorage.getItem("click_client_payServiceList"));
-    scope.serviceNamesMap = JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"));
-    scope.servicesMapByCategory = JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"));
-    scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
-    scope.servicesParams = JSON.parse(localStorage.getItem("click_client_servicesParams"));
-    scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
-    scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
+    scope.categoryList = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_payCategoryList")) : (offlinePayCategoryList));
+    scope.serviceList = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_payServiceList")) : (offlinePayServiceList));
+    scope.serviceNamesMap = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_payServiceNamesMap")) : offlinePayServiceNamesMap);
+    scope.servicesMapByCategory = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesMapByCategory")) : offlineServicesMapByCategory);
+    scope.servicesMap = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesMap")) : offlineServicesMap);
+    scope.servicesParams = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesParams")) : offlineServicesParams);
+    scope.servicesParamsMapOne = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesParamsMapOne")) : offlineServicesParamsMapOne);
+    scope.categoryNamesMap = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_categoryNamesMap")) : offlineCategoryNamesMap);
 
+    //    console.log("click_client_payCategoryList", localStorage.getItem("click_client_payCategoryList"));
+    //    console.log("click_client_payServiceList", localStorage.getItem("click_client_payServiceList"));
+    //    console.log("click_client_payServiceNamesMap", localStorage.getItem("click_client_payServiceNamesMap"));
+    //    console.log("click_client_servicesMapByCategory", localStorage.getItem("click_client_servicesMapByCategory"));
+    //    console.log("click_client_servicesMap", localStorage.getItem("click_client_servicesMap"));
+    //    console.log("click_client_servicesParams", localStorage.getItem("click_client_servicesParams"));
+    //    console.log("click_client_servicesParamsMapOne", localStorage.getItem("click_client_servicesParamsMapOne"));
+    //    console.log("click_client_categoryNamesMap", localStorage.getItem("click_client_categoryNamesMap"));
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-    scope.operatorKey = phoneNumber.substr(3, 2);
-    phoneNumber = phoneNumber.substring(3, phoneNumber.length);
+    var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
 
-    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    if (phoneNumber) {
+
+      scope.operatorKey = phoneNumber.substr(3, 2);
+      phoneNumber = phoneNumber.substring(3, phoneNumber.length);
+    }
+
+    if (loginInfo) {
+
+      var sessionKey = loginInfo.session_key;
+    }
 
     goToBack = function () {
       event.preventDefault();

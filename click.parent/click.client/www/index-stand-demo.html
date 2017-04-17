@@ -25,6 +25,7 @@
   <!--RealApi-->
   <script src="js/api/WebApi.js"></script>
   <script src="js/globalObjects/global.Objects.js"></script>
+  <script src="js/offlineMode/offlineModeVariables.js"></script>
 
   <!-- FAKES -->
   <script src="stand/fakedSocket.js"></script>
@@ -251,20 +252,20 @@
   //  );
 
   $(window.location).bind(
-    "change",
-    function (objEvent, objData) {
-      alert("YKJJJJ");
-      var jLog = $("#log");
-      // Add the URL change.
-      jLog.append(
-        "<li>" +
-        "Hash changed from " +
-        "<strong>" + objData.previousHash + "</strong>" +
-        " to " +
-        "<strong>" + objData.currentHash + "</strong>" +
-        "</li>"
-      );
-    }
+      "change",
+      function (objEvent, objData) {
+        alert("YKJJJJ");
+        var jLog = $("#log");
+        // Add the URL change.
+        jLog.append(
+            "<li>" +
+            "Hash changed from " +
+            "<strong>" + objData.previousHash + "</strong>" +
+            " to " +
+            "<strong>" + objData.currentHash + "</strong>" +
+            "</li>"
+        );
+      }
   );
 
 
@@ -355,7 +356,7 @@
   }
 
   if (!(localStorage.getItem("click_client_payServiceList") && localStorage.getItem("click_client_servicesMapByCategory")
-    && localStorage.getItem("click_client_servicesMap"))) {
+      && localStorage.getItem("click_client_servicesMap"))) {
     console.log("IN SERVICE LIST FUNC");
     scope.serviceList = [];
     scope.servicesMapByCategory = {};
