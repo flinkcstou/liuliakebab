@@ -2461,7 +2461,7 @@ var css = {
   "left:" + 30 * widthK + "px;" +
   "height:" + 125 * widthK + "px;" +
   "top:" + 280 * widthK + "px;" +
-  //"top:" + 408 * widthK + "px;" +
+    //"top:" + 408 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #f4f4f4;" +
   "}",
 
@@ -11585,6 +11585,123 @@ var css = {
   "overflow: hidden;" +
   "font-size:" + 22 * widthK + "px;" +
   "}",
+
+//  View AutoPay
+
+  viewAutopayContainer: ".view-autopay-container" +
+  "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 86 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: white; " +
+  "overflow-y: auto; " +
+  "overflow-x: hidden; " +
+  "}",
+
+  viewAutopayBlockContainer: ".view-autopay-block-containter" +
+  "{" +
+  "position: relative;" +
+  "height:" + 150 * widthK + "px; " +
+  "width: 91%;" +
+  "left: 4%;" +
+  "margin-top: 1%;" +
+  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "background-color: transparent;" +
+  "}",
+
+  viewAutopayBlockInnerContainer: ".view-autopay-block-inner-containter" +
+  "{" +
+  "position: absolute;" +
+  "height:100%;" +
+  "width: 90%;" +
+  "}",
+
+
+  viewAutopayIcon: ".view-autopay-icon " +
+  "{" +
+    //"top:" + 50 * widthK + "px;" +
+  "background-size: 80%;" +
+  "position: absolute;" +
+  "width:" + 125 * widthK + "px;" +
+  "height:" + 125 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "top: 6%;" +
+  "}",
+
+  viewAutopayInfoContainer: ".view-autopay-info-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 72%;" +
+  "left: 21%;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewAutopayInfoName: ".view-autopay-info-name " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 15%;" +
+  "left: 8%;" +
+  "margin: 0;" +
+  "font-size:" + 22 * widthK + "px; " +
+  "width: 75%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  viewAutopayInfoBalance: ".view-autopay-info-balance " +
+  "{" +
+  "position: relative;" +
+  "top: 30%;" +
+  "left: 8%;" +
+  "margin: 0;" +
+  "font-size:" + 45 * widthK + "px;" +
+  "color: #ee4d3d;" +
+  "float: left;" +
+  "}",
+
+  viewAutopayInfoCurrencyField: ".view-autopay-info-currency-field" +
+  "{" +
+  "position: relative;" +
+  "top: 42%;" +
+  "left: 9%;" +
+  "margin: 0;" +
+  "font-size:" + 26 * widthK + "px;" +
+  "color: #ee4d3d;" +
+  "float: left;" +
+  "}",
+
+  viewAutopayInfoNumber: ".view-autopay-info-number " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 65%;" +
+  "left: 8%;" +
+  "margin: 0;" +
+  "font-size: " + 22 * widthK + "px; " +
+  "width: 75%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  viewAutopayNextIcon: ".view-autopay-next-icon" +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 10%;" +
+  "height: 100%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 20%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/ViewInfo/open.png);" +
+  "}",
+
 
 }
 

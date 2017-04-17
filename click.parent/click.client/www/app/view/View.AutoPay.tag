@@ -2,23 +2,23 @@
   <div class="pay-page-title">
     <p class="pay-name-title">{titleName}</p>
     <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
-    <div id="rightButton" ontouchend="addFavorite()" class="settings-friend-help-add-button"></div>
+    <div id="rightButton" ontouchend="addAutoPay()" class="settings-friend-help-add-button"></div>
   </div>
 
-  <div class="view-favorites-container">
-    <div class="view-favorites-block-containter" each="{j in autopayList}">
-      <div id="p{j.service.id}" class="view-favorites-block-inner-containter"
+  <div class="view-autopay-container">
+    <div class="view-autopay-block-containter" each="{j in autopayList}">
+      <div id="p{j.id}" class="view-autopay-block-inner-containter"
            ontouchend="openFavoritePayment(this.id)">
-        <div class="view-favorites-icon"
+        <div class="view-autopay-icon"
         ></div>
-        <div class="view-favorites-info-container">
-          <p class="view-favorites-info-name">{j.service_name}</p>
-          <div class="view-favorites-info-balance">{j.amountText}</div>
-          <div class="view-favorites-info-currency-field">сум</div>
-          <p class="view-favorites-info-number">{j.firstFieldText}</p>
+        <div class="view-autopay-info-container">
+          <p class="view-autopay-info-name">{j.service_name}</p>
+          <div class="view-autopay-info-balance">{j.amount}</div>
+          <div class="view-autopay-info-currency-field">сум</div>
+          <p class="view-autopay-info-number">{j.cntrg_param2}</p>
         </div>
       </div>
-      <div id="{j.service.id}" class="view-favorites-delete-icon" ontouchend="removeFromFavorites(this.id)"></div>
+      <div id="{j.id}" class="view-autopay-next-icon" ontouchend="removeFromFavorites(this.id)"></div>
     </div>
   </div>
 
@@ -38,6 +38,19 @@
 
     this.on('mount', function () {
     })
+
+    goToBack = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      onBackKeyDown()
+    };
+
+    addAutoPay = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      riotTags.innerHTML = "<view-pay>";
+      riot.mount("view-pay", ['ADDFAVORITE']);
+    }
 
     componentMenu.check = false;
     scope = this;
@@ -77,21 +90,29 @@
     //      riot.update(scope.favPaymentsList);
     //    }
 
-    if (!scope.autopayList)
+    if (scope.autopayList) {
+      console.log("Autopay list", scope.autopayList);
+      riot.update(scope.autopayList);
+    }
+    else {
+      console.log("kekreke");
+      scope.autopayList = [];
       window.api.call({
         method: 'autopay.list',
         input: {
           phone_num: phoneNumber,
           session_key: sessionKey,
-
         },
 
         scope: this,
 
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
-            console.log("Autopay list", result[1]);
-            localStorage.setItem('click_client_autopayList', JSON.stringify(result[1]));
+
+            scope.autopayList = result[1];
+            console.log("Autopay list", scope.autopayList);
+            riot.update(scope.autopayList);
+            localStorage.setItem('click_client_autopayList', JSON.stringify(scope.autopayList));
 
           }
           else
@@ -103,6 +124,7 @@
           console.error(data);
         }
       });
+    }
 
     //    window.api.call({
     //      method: 'get.terms',
