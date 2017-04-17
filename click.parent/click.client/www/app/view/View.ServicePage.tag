@@ -193,10 +193,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-service-page',
-            "params": opts
-          }
+        {
+          "view": 'view-service-page',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -723,10 +723,10 @@
 
 
     var maskOne = /[0-9]/g,
-        maskTwo = /[0-9' ']/g,
-        amountForPayTransaction = 0,
-        checkFirst = false,
-        defaultAccount;
+      maskTwo = /[0-9' ']/g,
+      amountForPayTransaction = 0,
+      checkFirst = false,
+      defaultAccount;
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     for (var i in cards) {
@@ -883,23 +883,36 @@
 
         console.log("OPTS", opts);
 
-        console.log('scope.fieldArray[0]', scope.fieldArray[0])
+        console.log('USSD', scope.fieldArray[0].ussd_query)
+
+        console.log('firstFieldText', firstFieldText)
+
+
         if (modeOfApp.offlineMode) {
+
+          var ussdQuery = scope.fieldArray[0].ussd_query;
+
+
+          ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
+          ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
+          ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+
+          console.log(ussdQuery)
 
           phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-              "*880*1" + "%23",
-              function (err) {
-                if (err == "empty") {
-                  scope.clickPinError = false;
-                  scope.errorNote = ("Unknown phone number");
-                  scope.showError = true;
-                  riot.update();
-                }
-                else console.log("Dialer Error:" + err);
-              },
-              function (success) {
+            ussdQuery + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                riot.update();
               }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
           );
         }
         else {
