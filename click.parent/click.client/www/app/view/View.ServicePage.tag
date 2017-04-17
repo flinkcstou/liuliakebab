@@ -206,6 +206,7 @@
       viewPay.chosenServiceId = opts.id;
     }
 
+
     console.log('opts', opts)
     scope.enterButton = opts[0] != 'ADDFAVORITE' ? true : false;
     scope.showError = false;
