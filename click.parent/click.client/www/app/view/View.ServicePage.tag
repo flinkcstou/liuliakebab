@@ -887,6 +887,10 @@
 
         console.log('firstFieldText', firstFieldText)
 
+        console.log('formtype', formtype)
+        console.log('communalParam', communalParam)
+        console.log('internetPackageParam', internetPackageParam)
+
 
         if (modeOfApp.offlineMode) {
 
@@ -956,6 +960,36 @@
         var amountText = {"amountText": nominal};
         var internetPackageParam = {"internetPackageParam": null};
         var isInFavorites = {"isInFavorites": !scope.enterButton};
+
+        var ussdQuery = scope.fieldArray[0].ussd_query;
+        ussdQuery = ussdQuery.replace('{nominal}', nominal);
+        ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+
+        console.log(ussdQuery)
+
+        if (modeOfApp.offlineMode) {
+
+          var ussdQuery = scope.fieldArray[0].ussd_query;
+          ussdQuery = ussdQuery.replace('{nominal}', nominal);
+          ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+          console.log(ussdQuery)
+
+          phonedialer.dial(
+//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
+            ussdQuery + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                riot.update();
+              }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
+          );
+        }
 
         scope.formTypeTwoOptsArray = [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites];
 
