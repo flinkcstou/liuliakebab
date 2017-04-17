@@ -126,12 +126,10 @@
       </div>
     </div>
 
-    <div id="formTypeTwoBtnSaveId" class="servicepage-button-save" if="{!enterButton}"
-         ontouchend="addToFavoritesforFormTypeTwo()" type="button">
-      <div class="servicepage-button-enter-label" if="{!enterButton}" style="right: 13%;">
-        {window.languages.ViewServicePageSaveLabel}
-      </div>
-    </div>
+    <button id="formTypeTwoBtnSaveId" class="servicepage-button-save" if="{!enterButton}"
+            ontouchend="addToFavoritesforFormTypeTwo()">
+      {window.languages.ViewServicePageSaveLabel}
+    </button>
   </div>
 
 

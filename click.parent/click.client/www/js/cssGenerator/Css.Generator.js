@@ -3220,14 +3220,18 @@ var css = {
   servicePageButtonSave: ".servicepage-button-save" +
   "{" +
   "position: absolute;" +
-  "width: " + 450 * widthK + "px; " +
-  "height: " + 90 * widthK + "px; " +
-  "border-radius: " + 80 * widthK + "px; " +
-  "background-color: rgb(1, 124, 227);" +
-  "left: 19%;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "height: " + 74 * widthK + "px;" +
+  "background-color: #00a8f1;" +
+  "border-radius: " + 10 * widthK + "px;" +
   "bottom: " + 55 * widthK + "px; " +
+  "font-size: " + 32 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "color: #ffffff;" +
+  "border: none;" +
+  "outline: none;" +
   "pointer-events: none;" +
-  "background-color: lightgrey;" +
   "}",
 
   servicePageButtonEnterLabel: ".servicepage-button-enter-label" +
