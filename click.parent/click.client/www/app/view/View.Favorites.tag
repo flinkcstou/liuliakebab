@@ -103,16 +103,16 @@
             var firstFieldId = scope.favoritePaymentsList[i].opts[1].firstFieldId
 
 
-            var ussdQuery = scope.fieldArray[0].ussd_query;
+            var ussdQuery = scope.favoritePaymentsList[i].ussd;
 
             if (formtype == 1) {
-              if (firstFieldText.firstFieldText) {
+              if (firstFieldText) {
                 ussdQuery = ussdQuery.replace('{param}', firstFieldText);
               }
               else {
                 ussdQuery = ussdQuery.replace('*{param}', firstFieldText);
               }
-              ussdQuery = ussdQuery.replace('{option}', firstFieldId.firstFieldId);
+              ussdQuery = ussdQuery.replace('{option}', firstFieldId);
               ussdQuery = ussdQuery.replace('{amount}', amountText);
               ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
               console.log(ussdQuery)

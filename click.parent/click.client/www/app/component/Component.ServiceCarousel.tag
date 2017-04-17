@@ -266,7 +266,73 @@
             viewPay.categoryId = scope.favoritePaymentsList[i].categoryId;
             viewServicePage.firstFieldTitle = scope.favoritePaymentsList[i].firstFieldTitle;
             viewPayConfirm.isInFavorites = true;
-            event.stopPropagation();
+
+            if (modeOfApp.offlineMode) {
+              var firstFieldText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].opts[2].firstFieldText)
+              var amountText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].opts[5].amountText)
+              var formtype = scope.favoritePaymentsList[i].opts[0].formtype
+              var communalParam = scope.favoritePaymentsList[i].opts[4].communalParam
+              var firstFieldId = scope.favoritePaymentsList[i].opts[1].firstFieldId
+
+
+              var ussdQuery = scope.favoritePaymentsList[i].ussd;
+
+              if (formtype == 1) {
+                if (firstFieldText) {
+                  ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                }
+                else {
+                  ussdQuery = ussdQuery.replace('*{param}', firstFieldText);
+                }
+                ussdQuery = ussdQuery.replace('{option}', firstFieldId);
+                ussdQuery = ussdQuery.replace('{amount}', amountText);
+                ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                console.log(ussdQuery)
+              }
+
+              if (formtype == 2) {
+                ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                ussdQuery = ussdQuery.replace('{amount}', amountText);
+                ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                console.log(ussdQuery)
+              }
+
+              if (formtype == 3) {
+                ussdQuery = ussdQuery.replace('{communal_para}', communalParam);
+                ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                ussdQuery = ussdQuery.replace('{amount}', amountText);
+                ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                console.log(ussdQuery)
+              }
+
+              if (formtype == 4) {
+                ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                ussdQuery = ussdQuery.replace('{amount}', amountText);
+                ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                console.log(ussdQuery)
+              }
+
+
+              console.log(ussdQuery)
+
+              phonedialer.dial(
+//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
+                ussdQuery + "%23",
+                function (err) {
+                  if (err == "empty") {
+                    scope.clickPinError = false;
+                    scope.errorNote = ("Unknown phone number");
+                    scope.showError = true;
+                    riot.update();
+                  }
+                  else console.log("Dialer Error:" + err);
+                },
+                function (success) {
+                }
+              );
+              return
+            }
+
             this.riotTags.innerHTML = "<view-service-pincards>";
             riot.mount('view-service-pincards', scope.favoritePaymentsList[i].opts);
 
