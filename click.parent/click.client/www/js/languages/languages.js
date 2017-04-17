@@ -361,6 +361,7 @@ var RU_LANGUAGES =
   "ViewHelpTitle": "ПОМОЩЬ",
 
   "ConnectionSocket": "Устанавливаем соединение...",
+  "Downloading": "Загрузка...",
 
   "AuthorizationInProgress": "Выполняется вход...",
 };

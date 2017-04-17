@@ -100,6 +100,11 @@ window.api.call = function (params) {
   this.callBacks[method] = {
     ok: function (data) {
       //console.log('ANSWER OF API ', data);
+
+      if (device.platform != 'BrowserStand') {
+        SpinnerPlugin.activityStop();
+      }
+
       onSuccess.call(scope, data);
     },
     err: function (api_status, api_status_message, data) {
@@ -108,6 +113,17 @@ window.api.call = function (params) {
   };
 
   if (modeOfApp.onlineMode) {
+
+    if (device.platform != 'BrowserStand' || method != "get.balance") {
+      var options = {dimBackground: true};
+
+      SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+        console.log("Started");
+      }, function () {
+        console.log("closed");
+      });
+    }
+
     this.socket.send(JSON.stringify({
       method: method,
       parameters: input
