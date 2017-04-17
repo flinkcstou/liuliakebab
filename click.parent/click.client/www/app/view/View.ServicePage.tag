@@ -193,10 +193,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-service-page',
-          "params": opts
-        }
+          {
+            "view": 'view-service-page',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -205,6 +205,7 @@
 
       viewPay.chosenServiceId = opts.id;
     }
+
 
     console.log('opts', opts)
     scope.enterButton = opts[0] != 'ADDFAVORITE' ? true : false;
@@ -471,7 +472,6 @@
       }
       scope.hasFirstLevel = false;
       if (scope.formType == 3 && scope.servicesParamsMapTwo[scope.service.id]) {
-        console.log("QWERTY", scope.servicesParamsMapTwo[scope.service.id])
         scope.firstLevelArray = [];
         scope.secondLevelMap = {};
         scope.chosenFieldNameTwo = scope.servicesParamsMapTwo[scope.service.id][0].name;
@@ -504,7 +504,6 @@
         this.on('mount', function () {
           amountField.style.display = 'none';
         });
-        console.log("QWERTY222", scope.servicesParamsMapFour[scope.service.id], "333", scope.servicesParamsMapFive[scope.service.id])
         scope.firstLevelArray = [];
         scope.secondLevelMap = {};
         scope.chosenFieldNameTwo = scope.servicesParamsMapFour[scope.service.id][0].name;
@@ -885,12 +884,29 @@
 
         console.log("OPTS", opts);
 
-        console.log('scope.fieldArray[0]', scope.fieldArray[0])
+        console.log('USSD', scope.fieldArray[0].ussd_query)
+
+        console.log('firstFieldText', firstFieldText)
+
+        console.log('formtype', formtype)
+        console.log('communalParam', communalParam)
+        console.log('internetPackageParam', internetPackageParam)
+
+
         if (modeOfApp.offlineMode) {
+
+          var ussdQuery = scope.fieldArray[0].ussd_query;
+
+
+          ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
+          ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
+          ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+
+          console.log(ussdQuery)
 
           phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-            "*880*1" + "%23",
+            ussdQuery + "%23",
             function (err) {
               if (err == "empty") {
                 scope.clickPinError = false;
@@ -945,6 +961,36 @@
         var amountText = {"amountText": nominal};
         var internetPackageParam = {"internetPackageParam": null};
         var isInFavorites = {"isInFavorites": !scope.enterButton};
+
+        var ussdQuery = scope.fieldArray[0].ussd_query;
+        ussdQuery = ussdQuery.replace('{nominal}', nominal);
+        ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+
+        console.log(ussdQuery)
+
+        if (modeOfApp.offlineMode) {
+
+          var ussdQuery = scope.fieldArray[0].ussd_query;
+          ussdQuery = ussdQuery.replace('{nominal}', nominal);
+          ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+          console.log(ussdQuery)
+
+          phonedialer.dial(
+//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
+            ussdQuery + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                riot.update();
+              }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
+          );
+        }
 
         scope.formTypeTwoOptsArray = [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites];
 

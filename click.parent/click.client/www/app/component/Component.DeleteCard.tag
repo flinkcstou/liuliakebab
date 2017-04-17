@@ -7,12 +7,9 @@
     <p class="delete-button-cancel" ontouchend="cancelDeleteCardTouchEnd()">{window.languages.ComponentDeleteTextNo}</p>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
     var scope = this;
-    scope.showError = false;
+    scope.parent.showError = false;
 
     deleteCardTouchEnd = function () {
       event.preventDefault();
@@ -50,18 +47,25 @@
 
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
-            scope.clickPinError = false;
-            scope.errorNote = 'Карта успешно удалена';
-            scope.showError = true;
+            scope.parent.clickPinError = false;
+            scope.parent.errorNote = 'Карта успешно удалена';
+            scope.parent.showError = true;
+            scope.parent.tags['component-card-carousel'].onComponentCreated();
+
+            var cardNumber = JSON.parse(localStorage.getItem("cardNumber"));
+
+            cardNumber = (cardNumber - 1 >= 0) ? (cardNumber - 1) : (0);
+            localStorage.setItem("cardNumber", cardNumber);
+
             riot.update();
-            deleteCardComponentId.style.display = 'none'
+            deleteCardComponentId.style.display = 'none';
 //              updateCard();
-            return
+            return;
           }
           else {
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
+            scope.parent.clickPinError = false;
+            scope.parent.errorNote = result[0][0].error_note;
+            scope.parent.showError = true;
             riot.update();
           }
         },

@@ -76,7 +76,7 @@
 
     invoiceBlockTouchStart = function () {
       touchStartInvoiceOne = event.changedTouches[0].pageX;
-    }
+    };
 
     invoiceBlockTouchEnd = function (invoice) {
 
@@ -123,9 +123,9 @@
           riot.mount('view-payment-detail', params);
         }
       }
-    }
+    };
 
-    addCard = function (withoutBalance) {
+    scope.addCard = addCard = function (withoutBalance) {
 
       if (localStorage.getItem('click_client_accountInfo')) {
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
@@ -173,7 +173,7 @@
           defaultAccount = false;
 
         numberOfCardPartOne = getAccountsCards[i].accno[0] + getAccountsCards[i].accno[1]
-          + getAccountsCards[i].accno[2] + getAccountsCards[i].accno[3]
+            + getAccountsCards[i].accno[2] + getAccountsCards[i].accno[3]
         numberOfCardPartTwo = getAccountsCards[i].accno[getAccountsCards[i].accno.length - 4] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 3] + +getAccountsCards[i].accno[getAccountsCards[i].accno.length - 2] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 1];
 
 
@@ -212,7 +212,7 @@
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
         writeBalance();
       }
-    }
+    };
 
     scope.invoiceCheck = false;
 
@@ -231,7 +231,7 @@
         },
         scope: this,
         onSuccess: function (result) {
-          if (result[0][0].error == 0) {
+          if (result[0][0].error == 0 && viewMainPage.atMainPage) {
             if (result[1]) {
               if (result[1][0]) {
                 console.log('invoice', result[1])
@@ -274,7 +274,7 @@
                   }
                 }
 
-                addCard(true);
+                addCard();
               }
               else {
                 scope.invoiceCheck = false;
@@ -298,7 +298,7 @@
       });
     };
 
-    onComponentCreated = function () {
+    scope.onComponentCreated = onComponentCreated = function () {
 
       console.log("onComponentCreated STARTED");
 
@@ -516,8 +516,8 @@
 
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-    if(info)
-    var sessionKey = info.session_key;
+    if (info)
+      var sessionKey = info.session_key;
 
     var carouselTouchStartX, carouselTouchEndX;
     //    scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
@@ -655,7 +655,7 @@
             }
           }
           htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-            'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
+              'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
           riotTags.innerHTML = "<view-my-cards>";
           riot.mount("view-my-cards", [sendChosenCardId]);
           this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';

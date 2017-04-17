@@ -4840,7 +4840,7 @@ var css = {
 
   transferTwoNextButtonInnerContainer: ".transfertwo-next-button-inner-container" +
   "{" +
-  "height: 5%;" +
+  "height: " + 74 * widthK + "px;" +
   "top: 41%;" +
   "font-size: " + 32 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
@@ -4974,7 +4974,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 44%;" +
-  "height: 5%;" +
+  "height: " + 74 * widthK + "px;" +
   "bottom: 10%;" +
   "background-color: #00a8f1;" +
   "color: white;" +
@@ -5244,7 +5244,7 @@ var css = {
   transferFourButtonEnter: ".transferfour-button-enter" +
   "{" +
   "background-color: #00a8f1;" +
-  "height: 5%;" +
+  "height: " + 74 * widthK + "px;" +
   "bottom: 10%;" +
   "color: white;" +
   "padding: 0;" +
@@ -5361,13 +5361,21 @@ var css = {
   codeConfirmButtonEnter: ".code-confirm-button-enter" +
   "{" +
   "bottom: 24%;" +
-  "position: absolute;" +
-  "width: 54%;" +
-  "height: 17%;" +
-  "border-radius:" + 80 * widthK + "px; " +
-  "left: 22%;" +
   "margin: 0;" +
-  "background-color: rgb(1, 124, 227);" +
+  "float: left;" +
+  "text-align: center;" +
+  "background-color: #017ce3;" +
+  "font-size: " + 29 * widthK + "px;" +
+  "height: " + 74 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "width: 63%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-transform: capitalize;" +
+  "left: 19%;" +
+  "position: absolute;" +
   "}",
 
   codeConfirmButtonEnterLabel: ".code-confirm-button-enter-label" +
@@ -5627,16 +5635,21 @@ var css = {
 
   InProcessingNextButtonInnerContainer: ".in-processing-next-button-inner-container" +
   "{" +
-  "position: relative;" +
-  "height: 6%;" +
-  "left: -2%;" +
-  "width: 48%;" +
   "top: 83%;" +
-  "display: table;" +
+  "height: " + 74 * widthK + "px;" +
+  "margin: 0 auto 0 auto;" +
   "background-color: #027fe4;" +
-  "border-radius:" + 50 * widthK + "px;" +
-  "margin-right: auto;" +
-  "margin-left: auto;" +
+  "padding: 0;" +
+  "font-size: " + 38 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
+  "position: relative;" +
+  "left: -2%;" +
+  "display: table;" +
   "}",
 
   InProcessingNextButtonLabel: ".in-processing-next-button-label" +
@@ -7494,7 +7507,7 @@ var css = {
   "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
-  "padding-top:" + 60 * widthK + "px;" +
+  "padding-top:" + 33 * widthK + "px;" +
   "}",
 
   transferDetailButtonAccept: ".transfer-detail-button-accept" +
@@ -7503,7 +7516,7 @@ var css = {
   "margin: 0;" +
   "float: left;" +
   "text-align: center;" +
-  "margin-left: 3%;" +
+  "margin-left: 4%;" +
   "background-color: #00a8f1;" +
   "font-size: " + 29 * widthK + "px;" +
   "height: " + 74 * widthK + "px;" +
@@ -7519,7 +7532,7 @@ var css = {
   transferDetailButtonCancel: ".transfer-detail-button-cancel" +
   "{" +
   "margin: 0;" +
-  "margin-right: 3%;" +
+  "margin-right: 4%;" +
   "background-color: #f46b5b;" +
   "font-size: " + 29 * widthK + "px;" +
   "position: relative;" +
@@ -7803,7 +7816,7 @@ var css = {
   "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
-  "padding-top:" + 60 * widthK + "px;" +
+  "padding-top:" + 33 * widthK + "px;" +
   "}",
 
   //accountDetailButtonAccept: ".account-detail-button-accept" +
@@ -7844,7 +7857,7 @@ var css = {
   "margin: 0;" +
   "float: left;" +
   "text-align: center;" +
-  "margin-left: 3%;" +
+  "margin-left: 4%;" +
   "background-color: #00a8f1;" +
   "font-size: " + 29 * widthK + "px;" +
   "height: " + 74 * widthK + "px;" +
@@ -7860,7 +7873,7 @@ var css = {
   accountDetailButtonCancel: ".account-detail-button-cancel" +
   "{" +
   "margin: 0;" +
-  "margin-right: 3%;" +
+  "margin-right: 4%;" +
   "background-color: #f46b5b;" +
   "font-size: " + 29 * widthK + "px;" +
   "position: relative;" +
@@ -8336,7 +8349,7 @@ var css = {
   "width: 44%;" +
   "background-color: #01B8FE;" +
   "border-radius: " + 10 * widthK + "px;" +
-  "font-size: " + 38 * widthK + "px;" +
+  "font-size: " + 27 * widthK + "px;" +
   "color: #ffffff;" +
   "bottom: " + 38 * widthK + "px;" +
   "text-transform: uppercase;" +
@@ -9007,7 +9020,7 @@ var css = {
   viewAddNextButton: ".view-add-next-button " +
   "{" +
   "position: absolute;" +
-  "height: 5%;" +
+  "height: 74px;" +
   "top: 60%;" +
   "background-color: #00a8f1;" +
   "padding: 0;" +
@@ -9019,6 +9032,7 @@ var css = {
   "width: 44%;" +
   "border-radius: " + 10 * widthK + "px;" +
   "color: #ffffff;" +
+  "text-transform: capitalize;" +
   "}",
 
   addCardCardField: ".add-card-card-field " +

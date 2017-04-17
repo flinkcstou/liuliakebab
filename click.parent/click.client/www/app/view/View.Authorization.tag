@@ -498,7 +498,7 @@
                         var filename = icon.substr(icon.lastIndexOf('/') + 1);
 
                         var newIconBool = checkImageURL;
-                        newIconBool('www/resources/icons/ViewPay/category/', 'category', filename, icon, j, function (bool, index, fileName) {
+                        newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
 
                           if (bool) {
                             scope.categoryList[index]['icon'] = cordova.file.dataDirectory + fileName;//
@@ -586,7 +586,7 @@
                           var filename = icon.substr(icon.lastIndexOf('/') + 1);
 
                           var newIconBool = checkImageURL;
-                          newIconBool('www/resources/icons/ViewPay/service/', 'service', filename, icon, j, function (bool, index, fileName) {
+                          newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
 
                             if (bool) {
                               scope.serviceList[index]['image'] = cordova.file.dataDirectory + fileName;//

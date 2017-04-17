@@ -51,7 +51,7 @@
     </div>
 
     <button class="view-add-next-button"
-            ontouchend="createCardTouchEnd()">ДОБАВИТЬ
+            ontouchend="createCardTouchEnd()">добавить
     </button>
   </div>
 
