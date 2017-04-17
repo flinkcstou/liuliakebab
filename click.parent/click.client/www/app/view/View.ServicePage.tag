@@ -900,10 +900,10 @@
           var ussdQuery = scope.fieldArray[0].ussd_query;
 
           if (formtype.formtype == 1) {
-            if(firstFieldText.firstFieldText) {
+            if (firstFieldText.firstFieldText) {
               ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
             }
-            else{
+            else {
               ussdQuery = ussdQuery.replace('*{param}', firstFieldText.firstFieldText);
             }
             ussdQuery = ussdQuery.replace('{option}', firstFieldId.firstFieldId);
@@ -952,6 +952,7 @@
             function (success) {
             }
           );
+          return
         }
         else {
           this.riotTags.innerHTML = "<view-service-pincards>";

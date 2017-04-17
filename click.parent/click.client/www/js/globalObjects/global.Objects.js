@@ -144,6 +144,11 @@ window.amountTransform = function (amount) {
 
 window.inputVerification = {};
 
+window.inputVerification.spaceDeleter = function (data) {
+
+  data = data.replace(new RegExp('[^0-9]', 'g'), '');
+  return data.split(",").join();
+}
 
 window.inputVerification.telVerification = function (phoneNumber) {
 

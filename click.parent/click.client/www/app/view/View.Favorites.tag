@@ -96,13 +96,51 @@
           viewServicePage.firstFieldTitle = scope.favoritePaymentsList[i].firstFieldTitle;
           viewPayConfirm.isInFavorites = true;
           if (modeOfApp.offlineMode) {
-            var firstVar = scope.favoritePaymentsList[i].opts[2].firstFieldText
-            var secondVar = scope.favoritePaymentsList[i].opts[5].amountText
+            var firstFieldText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].opts[2].firstFieldText)
+            var amountText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].opts[5].amountText)
+            var formtype = scope.favoritePaymentsList[i].opts[0].formtype
+            var communalParam = scope.favoritePaymentsList[i].opts[4].communalParam
+            var firstFieldId = scope.favoritePaymentsList[i].opts[1].firstFieldId
 
-            var ussdQuery = scope.favoritePaymentsList[i].ussd;
-            ussdQuery = ussdQuery.replace('{param}', firstVar);
-            ussdQuery = ussdQuery.replace('{amount}', secondVar);
-            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+
+            var ussdQuery = scope.fieldArray[0].ussd_query;
+
+            if (formtype == 1) {
+              if (firstFieldText.firstFieldText) {
+                ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+              }
+              else {
+                ussdQuery = ussdQuery.replace('*{param}', firstFieldText);
+              }
+              ussdQuery = ussdQuery.replace('{option}', firstFieldId.firstFieldId);
+              ussdQuery = ussdQuery.replace('{amount}', amountText);
+              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+              console.log(ussdQuery)
+            }
+
+            if (formtype == 2) {
+              ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+              ussdQuery = ussdQuery.replace('{amount}', amountText);
+              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+              console.log(ussdQuery)
+            }
+
+            if (formtype == 3) {
+              ussdQuery = ussdQuery.replace('{communal_para}', communalParam);
+              ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+              ussdQuery = ussdQuery.replace('{amount}', amountText);
+              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+              console.log(ussdQuery)
+            }
+
+            if (formtype == 4) {
+              ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+              ussdQuery = ussdQuery.replace('{amount}', amountText);
+              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+              console.log(ussdQuery)
+            }
+
+
             console.log(ussdQuery)
 
             phonedialer.dial(
