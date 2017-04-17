@@ -279,8 +279,8 @@
                   if (modeOfApp.offlineMode) {
                     riotTags.innerHTML = "<view-qr>";
                     riot.mount('view-qr', {
-                      "name": result.format,
-                      "address": result.text,
+//                      "name": result.format,
+//                      "address": result.text,
                       "id": id,
                       "image": "www/resources/icons/ViewPay/logo_indoor.png"
                     });
