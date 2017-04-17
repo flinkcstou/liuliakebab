@@ -8,7 +8,10 @@ window.api.init = function () {
     window.api.initSocket();
   }
   catch (error) {
-    window.api.init()
+
+    while (!window.isConnected) {
+      window.api.init()
+    }
   }
 };
 
