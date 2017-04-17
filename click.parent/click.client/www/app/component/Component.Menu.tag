@@ -29,7 +29,7 @@
       <div class="side-menu-containers-name side-menu-containers-name-favorite">Избранные</div>
     </div>
 
-    <div class="side-menu-auto-pay-container" ontouchstart="goToAutoPayStart()" ontouchend="goToAutoPayEnd()">
+    <div style="display: none" class="side-menu-auto-pay-container" ontouchstart="goToAutoPayStart()" ontouchend="goToAutoPayEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-autopayment"></div>
       <div class="side-menu-containers-name side-menu-containers-name-autopayment">Автоплатеж</div>
     </div>
@@ -65,7 +65,7 @@
     }
 
     if (modeOfApp.offlineMode) {
-      scope.photo = 'www/resources/icons/icon/icon.png'
+      scope.photo = "resources/icons/icon/icon.png"
     }
 
     scope.showError = false;
@@ -182,8 +182,14 @@
       if (checkBoxChangeId.checked) {
         modeOfApp.onlineMode = true
         modeOfApp.offlineMode = false;
-        this.riotTags.innerHTML = "<view-authorization>";
-        riot.mount('view-authorization');
+        if (localStorage.getItem('click_client_token')) {
+          this.riotTags.innerHTML = "<view-authorization>";
+          riot.mount('view-authorization');
+        }
+        else {
+          this.riotTags.innerHTML = "<view-registration-device>";
+          riot.mount('view-registration-device');
+        }
         return
       }
       else {
@@ -259,6 +265,7 @@
       if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX) < 20) {
 //        closeMenu()
         if (device.platform != 'BrowserStand') {
+
           cordova.plugins.barcodeScanner.scan(
             function (result) {
               console.log(result)
@@ -282,7 +289,7 @@
 //                      "name": result.format,
 //                      "address": result.text,
                       "id": id,
-                      "image": "www/resources/icons/ViewPay/logo_indoor.png"
+                      "image": "resources/icons/ViewPay/logo_indoor.png"
                     });
                   }
                   else {
