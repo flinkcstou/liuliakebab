@@ -64,6 +64,10 @@
 
     }
 
+    if (modeOfApp.offlineMode) {
+      scope.photo = 'www/resources/icons/icon/icon.png'
+    }
+
     scope.showError = false;
 
     if (modeOfApp.onlineMode) {
@@ -95,6 +99,7 @@
       closeMenu();
       event.preventDefault();
       event.stopPropagation();
+      if (modeOfApp.offlineMode)return
       riotTags.innerHTML = "<view-general-settings>";
       riot.mount("view-general-settings");
     }
@@ -273,7 +278,12 @@
                 if (id) {
                   if (modeOfApp.offlineMode) {
                     riotTags.innerHTML = "<view-qr>";
-                    riot.mount('view-qr', {"name": result.format, "address": result.text, "id": id, "image": "www/resources/icons/ViewPay/logo_indoor.png"});
+                    riot.mount('view-qr', {
+                      "name": result.format,
+                      "address": result.text,
+                      "id": id,
+                      "image": "www/resources/icons/ViewPay/logo_indoor.png"
+                    });
                   }
                   else {
                     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
