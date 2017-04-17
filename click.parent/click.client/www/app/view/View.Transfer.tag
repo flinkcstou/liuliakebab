@@ -642,9 +642,14 @@
 
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
-//              console.log("result of P2P CARD INFO ", result[1][0].card_owner);
-            ownerCardDsiplayId.style.display = 'block'
-            scope.cardOwner = result[1][0].card_owner;
+//              console.log("result of P2P CARD INFO ", result[1][0].card_owner)
+            try {
+              ownerCardDsiplayId.style.display = 'block'
+              scope.cardOwner = result[1][0].card_owner;
+            }
+            catch (error) {
+              console.log(error)
+            }
             riot.update()
           }
           else {
