@@ -76,9 +76,14 @@
       if (modeOfApp.offlineMode)return
 
 
-      this.riotTags.innerHTML = "<view-mycard-list>";
-      riot.mount('view-mycard-list');
-    }
+      console.log("modeOfApp", modeOfApp);
+
+      if (modeOfApp.onlineMode) {
+
+        this.riotTags.innerHTML = "<view-mycard-list>";
+        riot.mount('view-mycard-list');
+      }
+    };
 
     blockForSwipeTouchStart = function () {
       touchStartX = event.changedTouches[0].pageX;
@@ -86,7 +91,7 @@
       sideMenuId.style.webkitTransition = '0s';
       mainPageId.style.webkitTransition = '0s';
       sideMenuBackPageId.style.webkitTransition = '0s';
-    }
+    };
 
     blockForSwipeTouchEnd = function () {
       event.stopPropagation()

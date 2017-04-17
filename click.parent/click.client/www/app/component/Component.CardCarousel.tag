@@ -298,7 +298,7 @@
       });
     };
 
-    scope.onComponentCreated = onComponentCreated = function () {
+    scope.onComponentCreated = onComponentCreated = function (cardNumberParameter) {
 
       console.log("onComponentCreated STARTED");
 
@@ -328,6 +328,7 @@
               arrayAccountInfo = [];
 
               if (result[0][0].error == 0) {
+
 //                console.log('CARDS UPDATE()', result[1])
 //                console.log(result[1])
                 if (device.platform != 'BrowserStand') {
@@ -629,7 +630,7 @@
         changePosition();
       }
       else if (!viewMainPage.myCards) {
-        if (!modeOfApp.offlineMode.balance) {
+        if (!modeOfApp.offlineMode.balance && modeOfApp.onlineMode) {
 
           scope.cardNumber = (scope.invoiceCheck && scope.cardNumber) ? (scope.cardNumber - 1) : (scope.cardNumber);
 

@@ -52,8 +52,9 @@
     }
 
     scope.categoryList = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_payCategoryList")) : (offlinePayCategoryList));
+
     scope.serviceList = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_payServiceList")) : (offlinePayServiceList));
-    scope.serviceNamesMap = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_payServiceNamesMap")) : offlinePayServiceNamesMap);
+    scope.serviceNamesMap = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_payServiceNamesMap")) : (offlinePayServiceNamesMap));
     scope.servicesMapByCategory = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesMapByCategory")) : offlineServicesMapByCategory);
     scope.servicesMap = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesMap")) : offlineServicesMap);
     scope.servicesParams = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesParams")) : offlineServicesParams);
