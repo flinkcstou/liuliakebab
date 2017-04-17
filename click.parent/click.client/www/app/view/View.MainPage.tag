@@ -75,6 +75,7 @@
       event.stopPropagation();
       if (modeOfApp.offlineMode)return
 
+
       this.riotTags.innerHTML = "<view-mycard-list>";
       riot.mount('view-mycard-list');
     }
