@@ -76,7 +76,7 @@
 
     invoiceBlockTouchStart = function () {
       touchStartInvoiceOne = event.changedTouches[0].pageX;
-    }
+    };
 
     invoiceBlockTouchEnd = function (invoice) {
 
@@ -123,9 +123,9 @@
           riot.mount('view-payment-detail', params);
         }
       }
-    }
+    };
 
-    addCard = function (withoutBalance) {
+    scope.addCard = addCard = function (withoutBalance) {
 
       if (localStorage.getItem('click_client_accountInfo')) {
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
@@ -212,7 +212,7 @@
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
         writeBalance();
       }
-    }
+    };
 
     scope.invoiceCheck = false;
 
@@ -274,7 +274,7 @@
                   }
                 }
 
-                addCard(true);
+                addCard();
               }
               else {
                 scope.invoiceCheck = false;
@@ -298,7 +298,7 @@
       });
     };
 
-    onComponentCreated = function () {
+    scope.onComponentCreated = onComponentCreated = function () {
 
       console.log("onComponentCreated STARTED");
 
