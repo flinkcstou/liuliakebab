@@ -4704,7 +4704,7 @@ var css = {
 
   transferNextButtonInnerContainer: ".transfer-next-button-inner-container" +
   "{" +
-  "height: 5%;" +
+  "height: " + 74 * widthK + "px;" +
   "top: 41%;" +
   "font-size: " + 32 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
@@ -8253,18 +8253,22 @@ var css = {
 
   reportFilterReadyButton: ".report-filter-ready-button" +
   "{" +
-  "position: absolute;" +
   "transform: translate3d(-50%, 0, 0);" +
   "bottom: " + 81 * widthK + "px;" +
-  "height: " + 74 * widthK + "px;" +
   "text-transform: capitalize;" +
   "left: 50.5%;" +
-  "width: " + 286 * widthK + "px;" +
-  "border: none;" +
   "font-size: " + 27 * widthK + "px;" +
   "background-color: #00A1EC;" +
-  "color: white;" +
-  "outline: none" +
+  "height: " + 74 * widthK + "px;" +
+  "margin: 0 auto 0 auto;" +
+  "padding: 0;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
   "}",
 
   reportFilterFilterInfoContainer: ".report-filter-filter-info-container" +
