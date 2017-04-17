@@ -50,12 +50,12 @@
             scope.parent.clickPinError = false;
             scope.parent.errorNote = 'Карта успешно удалена';
             scope.parent.showError = true;
-            scope.parent.tags['component-card-carousel'].onComponentCreated();
-
             var cardNumber = JSON.parse(localStorage.getItem("cardNumber"));
 
             cardNumber = (cardNumber - 1 >= 0) ? (cardNumber - 1) : (0);
             localStorage.setItem("cardNumber", cardNumber);
+
+            scope.parent.tags['component-card-carousel'].onComponentCreated(cardNumber);
 
             riot.update();
             deleteCardComponentId.style.display = 'none';
