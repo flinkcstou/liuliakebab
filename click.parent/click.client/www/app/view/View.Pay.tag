@@ -51,15 +51,14 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    scope.categoryList = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_payCategoryList")) : (offlinePayCategoryList));
-
-    scope.serviceList = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_payServiceList")) : (offlinePayServiceList));
-    scope.serviceNamesMap = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_payServiceNamesMap")) : (offlinePayServiceNamesMap));
-    scope.servicesMapByCategory = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesMapByCategory")) : offlineServicesMapByCategory);
-    scope.servicesMap = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesMap")) : offlineServicesMap);
-    scope.servicesParams = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesParams")) : offlineServicesParams);
-    scope.servicesParamsMapOne = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesParamsMapOne")) : offlineServicesParamsMapOne);
-    scope.categoryNamesMap = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_categoryNamesMap")) : offlineCategoryNamesMap);
+    scope.categoryList = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) : (offlinePayCategoryList);
+    scope.serviceList = (modeOfApp.onlineMode) ? JSON.parse((localStorage.getItem("click_client_payServiceList"))) : (offlinePayServiceList);
+    scope.serviceNamesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"))) : (offlinePayServiceNamesMap);
+    scope.servicesMapByCategory = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"))) : (offlineServicesMapByCategory);
+    scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
+    scope.servicesParams = (modeOfApp.onlineMode) ? JSON.parse((localStorage.getItem("click_client_servicesParams"))) : (offlineServicesParams);
+    scope.servicesParamsMapOne = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
+    scope.categoryNamesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
 
     //    console.log("click_client_payCategoryList", localStorage.getItem("click_client_payCategoryList"));
     //    console.log("click_client_payServiceList", localStorage.getItem("click_client_payServiceList"));

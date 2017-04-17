@@ -28,7 +28,7 @@
       <div class="servicepage-dropdown-icon"></div>
     </div>
 
-    <div class="servicepage-first-field" id="firstField">
+    <div class="servicepage-first-field" id="firstField" hidden="{!(modeOfApp.offlineMode && this.id == 'mynumber')}">
       <p class="servicepage-text-field">{chosenFieldName}</p>
       <p class="servicepage-number-first-part" if="{phoneFieldBool}">+{window.languages.CodeOfCountry}</p>
       <input class="{servicepage-number-input-part: phoneFieldBool, servicepage-number-input-part-two: !phoneFieldBool && isNumber,
@@ -176,13 +176,13 @@
     console.log('OPTS', opts);
 
     var scope = this;
-    scope.servicesMap = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesMap")) : offlineServicesMap);
-    scope.categoryNamesMap = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_categoryNamesMap")) : offlineCategoryNamesMap);
-    scope.servicesParamsMapOne = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesParamsMapOne")) : offlineServicesParamsMapOne);
-    scope.servicesParamsMapTwo = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesParamsMapTwo")) : offlineServicesParamsMapTwo);
-    scope.servicesParamsMapThree = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesParamsMapThree")) : offlineServicesParamsMapThree);
-    scope.servicesParamsMapFour = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesParamsMapFour")) : offlineServicesParamsMapFour);
-    scope.servicesParamsMapFive = JSON.parse((modeOfApp.onlineMode) ? (localStorage.getItem("click_client_servicesParamsMapFive")) : offlineServicesParamsMapFive);
+    scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
+    scope.categoryNamesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
+    scope.servicesParamsMapOne = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
+    scope.servicesParamsMapTwo = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"))) : (offlineServicesParamsMapTwo);
+    scope.servicesParamsMapThree = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"))) : (offlineServicesParamsMapThree);
+    scope.servicesParamsMapFour = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFour"))) : (offlineServicesParamsMapFour);
+    scope.servicesParamsMapFive = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"))) : (offlineServicesParamsMapFive);
 
     //    console.log("click_client_servicesParamsMapTwo", localStorage.getItem("click_client_servicesParamsMapTwo"));
     //    console.log("click_client_servicesParamsMapThree", localStorage.getItem("click_client_servicesParamsMapThree"));
@@ -724,10 +724,10 @@
 
 
     var maskOne = /[0-9]/g,
-      maskTwo = /[0-9' ']/g,
-      amountForPayTransaction = 0,
-      checkFirst = false,
-      defaultAccount;
+        maskTwo = /[0-9' ']/g,
+        amountForPayTransaction = 0,
+        checkFirst = false,
+        defaultAccount;
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     for (var i in cards) {
@@ -812,14 +812,14 @@
 
     enterButton = function () {
 
-      if (scope.phoneFieldBool && firstFieldInput.value.length < 9) {
+      if (scope.phoneFieldBool && firstFieldInput.value.length < 9 && !(modeOfApp.offlineMode && viewPay.chosenServiceId == "mynumber")) {
         scope.clickPinError = false;
         scope.errorNote = "Неправильно введён номер телефона";
         scope.showError = true;
         riot.update();
 
         return;
-      } else if (firstFieldInput.value.length == 0) {
+      } else if (firstFieldInput.value.length == 0 && !(modeOfApp.offlineMode && viewPay.chosenServiceId == "mynumber")) {
         scope.clickPinError = false;
         scope.errorNote = "Введите значение первого поля";
         scope.showError = true;
@@ -906,18 +906,18 @@
 
           phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-            ussdQuery + "%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
-                scope.showError = true;
-                riot.update();
+              ussdQuery + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  riot.update();
+                }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
               }
-              else console.log("Dialer Error:" + err);
-            },
-            function (success) {
-            }
           );
         }
         else {
@@ -977,18 +977,18 @@
 
           phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-            ussdQuery + "%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
-                scope.showError = true;
-                riot.update();
+              ussdQuery + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  riot.update();
+                }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
               }
-              else console.log("Dialer Error:" + err);
-            },
-            function (success) {
-            }
           );
         }
 
