@@ -28,7 +28,8 @@
       <div class="servicepage-dropdown-icon"></div>
     </div>
 
-    <div class="servicepage-first-field" id="firstField" hidden="{!(modeOfApp.offlineMode && this.id == 'mynumber')}">
+    <div class="servicepage-first-field" id="firstField"
+         hidden="{modeOfApp.offlineMode && viewPay.chosenServiceId == 'mynumber'}">
       <p class="servicepage-text-field">{chosenFieldName}</p>
       <p class="servicepage-number-first-part" if="{phoneFieldBool}">+{window.languages.CodeOfCountry}</p>
       <input class="{servicepage-number-input-part: phoneFieldBool, servicepage-number-input-part-two: !phoneFieldBool && isNumber,

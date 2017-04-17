@@ -44,20 +44,21 @@
     var scope = this;
     var leftOfDelta;
     var cardNumberOfService = 0;
-    scope.popularServiceList = JSON.parse(localStorage.getItem("click_client_popularServiceList"));
+    scope.popularServiceList = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_popularServiceList"))) : (offlinePopularServiceList);
     scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-    if(JSON.parse(localStorage.getItem('click_client_loginInfo')))
-    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    if (JSON.parse(localStorage.getItem('click_client_loginInfo')) && modeOfApp.onlineMode)
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
-    if(phoneNumber)
-    scope.operatorKey = phoneNumber.substr(3, 2);
+    if (phoneNumber && modeOfApp.onlineMode)
+      scope.operatorKey = phoneNumber.substr(3, 2);
     scope.addFavoriteBool = true;
 
     scope.showError = false;
 
-    if (!scope.popularServiceList) {
+    if (!scope.popularServiceList && modeOfApp.onlineMode) {
       scope.popularServiceList = [];
       window.api.call({
         method: 'get.popular.services',
