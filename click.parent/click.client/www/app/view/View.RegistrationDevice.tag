@@ -127,7 +127,7 @@
 
       if (phoneNumber.length != 12) {
         scope.clickPinError = false;
-        scope.errorNote = "incorrect number";
+        scope.errorNote = "Неправильно введен номер телефона";
         scope.showError = true;
         riot.update();
 

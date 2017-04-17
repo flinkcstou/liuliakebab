@@ -52,10 +52,10 @@
 
     history.arrayOfHistory = [];
     history.arrayOfHistory.push(
-        {
-          "view": 'view-main-page',
-          "params": opts
-        }
+      {
+        "view": 'view-main-page',
+        "params": opts
+      }
     );
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
@@ -73,6 +73,7 @@
     myCardList = function () {
       event.preventDefault();
       event.stopPropagation();
+      if (modeOfApp.offlineMode)return
 
       this.riotTags.innerHTML = "<view-mycard-list>";
       riot.mount('view-mycard-list');

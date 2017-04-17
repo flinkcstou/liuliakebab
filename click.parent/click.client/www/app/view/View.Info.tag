@@ -19,7 +19,7 @@
     <div if="{!modeOfflineMode.check}" class="view-info-reload-icon" ontouchend="reloadBalanceTouchEnd()"></div>
   </div>
 
-  <div class="view-info-my-finance-container">
+  <div class="view-info-my-finance-container" style="display: none">
     <div class="view-info-my-finance-icon"></div>
     <div class="view-info-open-icon"></div>
     <p class="view-info-my-finance-title">{window.languages.ViewInfoMyFinanceTitle}</p>

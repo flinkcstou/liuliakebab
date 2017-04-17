@@ -1524,11 +1524,11 @@ var css = {
   sideMenuUserIcon: ".side-menu-user-icon " +
   "{" +
   "position: absolute;" +
-  "height:" + 99 * widthK + "px;" +
-  "width:" + 95 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "width:" + 100 * widthK + "px;" +
   "left: 52%;" +
   "border:" + 4 * widthK + "px solid white;" +
-  "border-radius:" + 50 * widthK + "px;" +
+  "border-radius:" + 100 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "background-position: center;" +
@@ -2460,7 +2460,8 @@ var css = {
   "right:" + 30 * widthK + "px;" +
   "left:" + 30 * widthK + "px;" +
   "height:" + 125 * widthK + "px;" +
-  "top:" + 408 * widthK + "px;" +
+  "top:" + 280 * widthK + "px;" +
+  //"top:" + 408 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #f4f4f4;" +
   "}",
 

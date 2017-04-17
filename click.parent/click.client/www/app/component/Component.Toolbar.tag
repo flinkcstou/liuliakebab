@@ -40,6 +40,7 @@
     bellButton = function () {
       event.preventDefault();
       event.stopPropagation();
+      if (modeOfApp.offlineMode)return
 
       viewNewsId.style.display = 'block'
 
