@@ -984,6 +984,7 @@
       event.stopPropagation();
 
       console.log('scope.fieldArray[0]', scope.fieldArray)
+
       onTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20) {
