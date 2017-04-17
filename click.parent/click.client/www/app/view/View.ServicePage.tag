@@ -919,12 +919,21 @@
             console.log(ussdQuery)
           }
 
+          if (formtype.formtype == 3) {
+            ussdQuery = ussdQuery.replace('{communal_para}', communalParam.communalParam);
+            ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
+            ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
+            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+            console.log(ussdQuery)
+          }
+
           if (formtype.formtype == 4) {
             ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
             ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
             ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
             console.log(ussdQuery)
           }
+
 
           console.log(ussdQuery)
 
@@ -974,7 +983,7 @@
     scope.onTouchEndOfPincard = onTouchEndOfPincard = function (nominal, cardId) {
       event.stopPropagation();
 
-      console.log('scope.fieldArray[0]', scope.fieldArray[0])
+      console.log('scope.fieldArray[0]', scope.fieldArray)
       onTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20) {
