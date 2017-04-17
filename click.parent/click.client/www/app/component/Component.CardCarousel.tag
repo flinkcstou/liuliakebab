@@ -451,6 +451,12 @@
     }
     onComponentCreated();
 
+    if (modeOfApp.offlineMode) {
+
+      scope.cardsarray = offlineCard;
+      riot.update();
+    }
+
     this.on("mount", function () {
 //      console.log("CARDS", JSON.parse(localStorage.getItem("click_client_cards")))
 
