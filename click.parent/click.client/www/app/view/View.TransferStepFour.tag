@@ -69,9 +69,9 @@
       <p class="code-confirm-code-text">{secretCode}</p>
       <p class="code-confirm-message-text">Передайте код получателю для завершения перевода</p>
 
-      <div class="code-confirm-button-enter" ontouchend="closeSecretCodePage()">
-        <p class="code-confirm-button-enter-label">OK</p>
-      </div>
+      <button class="code-confirm-button-enter" ontouchend="closeSecretCodePage()">
+        OK
+      </button>
     </div>
   </code-confirm>
   <component-success id="componentSuccessId"
@@ -93,10 +93,10 @@
   <script>
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer-stepfour',
-          "params": opts
-        }
+          {
+            "view": 'view-transfer-stepfour',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -219,7 +219,7 @@
     }
 
     findCards = function (saveCard) {
-      console.log('SAVE CARD',saveCard)
+      console.log('SAVE CARD', saveCard)
 
       var transferCards = [];
       var codeOfBank = saveCard.replace(/\s/g, '').substring(3, 6);

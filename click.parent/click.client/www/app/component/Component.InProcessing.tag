@@ -3,9 +3,9 @@
   <p class="in-processing-operation-success-message-part-two">{opts.operationmessageparttwo}</p>
   <div class="in-processing-success-icon"></div>
 
-  <div class="in-processing-next-button-inner-container" ontouchend="closeSuccessMessageForm()">
-    <p class="in-processing-next-button-label">{window.languages.ComponentSuccessNext}</p>
-  </div>
+  <button class="in-processing-next-button-inner-container" ontouchend="closeSuccessMessageForm()">
+    {window.languages.ComponentSuccessNext}
+  </button>
 
   <script>
     var scope = this;
