@@ -2989,8 +2989,8 @@ var offlinePayCategoryList = [
       "chosenCard": false,
       "default_account": true,
       //"access": 2,
-      "background_color_bottom": "195,195,195",
-      "background_color_top": "82,82,82",
+      //"background_color_bottom": "195,195,195",
+      //"background_color_top": "82,82,82",
       "font_color": "45,45,45",
       //"removable": 1,
       //"salaryOriginal": "153409"

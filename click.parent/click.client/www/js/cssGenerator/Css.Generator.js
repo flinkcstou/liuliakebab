@@ -1066,6 +1066,7 @@ var css = {
 
   card: ".card " +
   "{" +
+  "background-color: #d7d7d7;" +
   "-webkit-appearance: none;" +
   "height:" + 289 * widthK + "px;" +
   "width:" + 510 * widthK + "px;" +

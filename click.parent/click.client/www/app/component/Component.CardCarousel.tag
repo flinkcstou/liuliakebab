@@ -567,6 +567,7 @@
 //      clearInterval(changingColor)
 //
 //      firstEnter = true;
+
       carouselTouchStartX = event.changedTouches[0].pageX;
       left = -((540 * scope.cardNumber) * widthK) - carouselTouchStartX;
       delta = left;
@@ -650,10 +651,10 @@
             if (scope.invoiceCheck) {
               scope.cardsarray[i].countCard--;
             }
-            console.log("ASDASDASDSADDAS", scope.cardsarray[i].countCard);
+
             if (scope.cardsarray[i].countCard == scope.cardNumber) {
               scope.cardsarray[i].chosenCard = true;
-              console.log("ASDASDASDSADDAS", scope.cardsarray[i]);
+
               sendChosenCardId = scope.cardsarray[i].card_id
               localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
             }
@@ -882,6 +883,11 @@
 
     function changePosition() {
 //      clearInterval(changingColor);
+
+      if (modeOfApp.offlineMode) {
+
+        count = 1;
+      }
 
       if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber < count - 1) {
         ++scope.cardNumber;
