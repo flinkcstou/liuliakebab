@@ -2572,7 +2572,8 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 250 * widthK + "px;" +
-  "top:" + 600 * widthK + "px;" +
+  "top:" + 465 * widthK + "px;" +
+  //"top:" + 600 * widthK + "px;" +
   "overflow-x: auto;" +
   "overflow-y: hidden;" +
   "font-size:" + 23 * widthK + "px;" +
@@ -2596,7 +2597,8 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 68 * widthK + "px;" +
-  "top:" + 535 * widthK + "px;" +
+  //"top:" + 535 * widthK + "px;" +
+  "top:" + 400 * widthK + "px;" +
   "}",
 
   viewInfoOperationsLabel: ".view-info-operations-label " +
