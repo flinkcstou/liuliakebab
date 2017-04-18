@@ -23,7 +23,7 @@
 
   <script>
 
-    this.titleName = window.languages.ComponentBankOperationsAutoPay;
+    this.titleName = window.languages.ViewAutoPayTitleName;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-auto-pay') {
       history.arrayOfHistory.push(
@@ -47,8 +47,8 @@
     addAutoPay = function () {
       event.preventDefault();
       event.stopPropagation();
-      riotTags.innerHTML = "<view-autopay-method>";
-      riot.mount("view-autopay-method");
+      riotTags.innerHTML = "<view-pay>";
+      riot.mount("view-pay", ['ADDAUTOPAY']);
     }
 
     componentMenu.check = false;

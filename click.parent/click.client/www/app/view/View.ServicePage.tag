@@ -253,7 +253,8 @@
       }
       else if (scope.formType != 2)
         amount.value = 0
-    })
+    });
+
     goToBack = function () {
       viewServicePage.phoneText = null;
       viewServicePage.amountText = null;

@@ -364,6 +364,11 @@ var RU_LANGUAGES =
   "Downloading": "Загрузка...",
 
   "AuthorizationInProgress": "Выполняется вход...",
+
+  "ViewAutoPayTitleName": "АВТОПЛАТЕЖ",
+  "ViewAutoPayMethodChooseText": "Выберите тип автоплатежа:",
+  "ViewAutoPayMethodEventText": "По событию",
+  "ViewAutoPayMethodSchedulerText": "По расписанию",
 };
 
 window.languages = RU_LANGUAGES;

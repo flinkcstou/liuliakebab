@@ -39,14 +39,20 @@
     //TODO: OPTIMIZE THIS PAGE SLOW DOWNLOADING CATEGORIES AND SERVICES
     var scope = this;
     scope.checkOfSearch = false;
-    this.titleName = window.languages.ViewPayTitleName;
+
+    console.log('opts', opts)
+
+    if (!opts[0])
+      this.titleName = window.languages.ViewPayTitleName;
+    else if (opts[0] == 'ADDAUTOPAY')
+      this.titleName = window.languages.ViewAutoPayTitleName;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-pay',
-            "params": opts
-          }
+        {
+          "view": 'view-pay',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -488,14 +494,22 @@
       onTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20 || scope.checkOfSearch) {
-        console.log("chosen id in pay view=", id);
-        viewPay.chosenServiceId = id;
-        opts.id = id;
-        event.stopPropagation();
+        if (opts[0] == 'ADDAUTOPAY' && scope.servicesMap[id][0].autopay_available) {
+          event.preventDefault();
+          event.stopPropagation();
+          riotTags.innerHTML = "<view-autopay-method>";
+          riot.mount("view-autopay-method", [id]);
+        }
+        else {
+          console.log("chosen id in pay view=", id);
+          viewPay.chosenServiceId = id;
+          opts.id = id;
+          event.stopPropagation();
 
-        localStorage.setItem('chosenServiceId', id);
-        riotTags.innerHTML = "<view-service-page>";
-        riot.mount("view-service-page", opts);
+          localStorage.setItem('chosenServiceId', id);
+          riotTags.innerHTML = "<view-service-page>";
+          riot.mount("view-service-page", opts);
+        }
       }
     };
 

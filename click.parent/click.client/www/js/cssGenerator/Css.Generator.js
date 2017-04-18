@@ -2573,7 +2573,7 @@ var css = {
   "width: 100%;" +
   "height:" + 250 * widthK + "px;" +
   "top:" + 465 * widthK + "px;" +
-  //"top:" + 600 * widthK + "px;" +
+    //"top:" + 600 * widthK + "px;" +
   "overflow-x: auto;" +
   "overflow-y: hidden;" +
   "font-size:" + 23 * widthK + "px;" +
@@ -2597,7 +2597,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 68 * widthK + "px;" +
-  //"top:" + 535 * widthK + "px;" +
+    //"top:" + 535 * widthK + "px;" +
   "top:" + 400 * widthK + "px;" +
   "}",
 
@@ -6721,7 +6721,7 @@ var css = {
   "position: absolute;" +
   "left: 50%;" +
   "width: 1px;" +
-  "height: 55%%;" +
+  "height: 55%;" +
   "top: 40%;" +
   "background-color: lightgrey;" +
   "}",
@@ -11722,12 +11722,103 @@ var css = {
   autopayMethodPageTitle: ".autopay-method-page-title" +
   "{" +
   "font-size: " + 36 * widthK + "px; " +
+
+  "}",
+
+  autopayMethodServiceIcon: ".autopay-method-service-icon" +
+  "{" +
+  "display: block; " +
   "}",
 
   autopayMethodBackButton: ".autopay-method-back-button" +
   "{" +
-  "top: " + 10 * widthK + "px; " +
+  "top: " + -10 * widthK + "px; " +
   "}",
+
+  autopayMethodEventContainer: ".autopay-method-event-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 45%;" +
+  "height: 100%;" +
+  "left: 4%;" +
+  "}",
+
+  autopayMethodScheduleContainer: ".autopay-method-schedule-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 45%;" +
+  "height: 100%;" +
+  "left: 51%;" +
+  "}",
+
+  autopayMethodChooseText: ".autopay-method-choose-text" +
+  "{" +
+  "color: darkgray;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "top: 4%;" +
+  "left: 10%;" +
+  "position: absolute;" +
+  "}",
+
+
+  autopayMethodContainer: ".autopay-method-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 25%;" +
+  "top: 9%;" +
+  "}",
+
+
+  autopayMethodEventIcon: ".autopay-method-event-icon" +
+  "{" +
+  "position: relative;" +
+  "width: " + 170 * widthK + "px; " +
+  "height: " + 170 * widthK + "px; " +
+  "top: 0%;" +
+  "left: 20%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 65%;" +
+  "background-position: center;" +
+  "background-image: url('resources/icons/ViewAutoPay/autopayment_event.png');" +
+  "}",
+
+  autopayMethodScheduleIcon: ".autopay-method-schedule-icon" +
+  "{" +
+  "position: relative;" +
+  "width: " + 170 * widthK + "px; " +
+  "height: " + 170 * widthK + "px; " +
+  "top: 0%;" +
+  "left: 28%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 65%;" +
+  "background-position: center;" +
+  "background-image: url('resources/icons/ViewAutoPay/autopayment_scheduler.png');" +
+  "}",
+
+  autopayMethodText: ".autopay-method-text" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "text-align: center;" +
+  "padding: 0;" +
+  "bottom: 0%;" +
+  "color: #585658;" +
+  "font-size:" + 31 * widthK + "px;" +
+  "}",
+
+  autopayMethodLineBetween: ".autopay-method-line-between" +
+  "{" +
+  "position: absolute;" +
+  "left: 50%;" +
+  "width: 1px;" +
+  "height: 20%;" +
+  "top: 25%;" +
+  "background-color: lightgrey;" +
+  "}",
+
 
 }
 
