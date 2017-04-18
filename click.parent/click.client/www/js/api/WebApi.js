@@ -38,6 +38,25 @@ window.api.initSocket = function () {
     if (!window.isConnected) {
 
       alert("Соединение установлено");
+
+      if (window.api.socket.readyState == 1 && window.lastSocketMethodToSend) {
+        socket.send(window.lastSocketMethodToSend);
+        window.lastSocketMethodToSend = undefined;
+      } else {
+
+        switch (window.api.socket.readyState) {
+
+          case 0:
+            console.log("Is connecting");
+            break;
+          case 2:
+            console.log("Is closing");
+            break;
+          case 3:
+            console.log("Is closed");
+            break;
+        }
+      }
     }
 
     window.isConnected = true;
@@ -59,7 +78,7 @@ window.api.initSocket = function () {
       SpinnerPlugin.activityStop();
 
     var parsedData = JSON.parse(event.data);
-    console.log(parsedData)
+    console.log(parsedData);
     try {
 
 
@@ -186,6 +205,11 @@ window.api.call = function (params) {
       }));
     } else {
 
+      window.lastSocketMethodToSend = JSON.stringify({
+        method: method,
+        parameters: input
+      });
+
       switch (window.api.socket.readyState) {
 
         case 0:
@@ -200,6 +224,11 @@ window.api.call = function (params) {
       }
     }
   } else if (modeOfApp.onlineMode) {
+
+    window.lastSocketMethodToSend = JSON.stringify({
+      method: method,
+      parameters: input
+    });
 
     alert("Возможно отсутствует соединение с интернетом");
   }

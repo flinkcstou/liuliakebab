@@ -12,6 +12,8 @@ viewAuthorization.check = false;
 
 window.isConnected = true;
 
+window.lastSocketMethodToSend;
+
 window.viewRegistrationDevice = {};
 
 window.viewSms = {};
