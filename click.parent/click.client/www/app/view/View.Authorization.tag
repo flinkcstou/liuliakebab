@@ -802,72 +802,72 @@
       }
     }
 
-    //    if (device.platform == 'Android') {
-    //
-    //      function isAvailableSuccess(result) {
-    //        console.log("FingerprintAuth available: " + JSON.stringify(result));
-    //        result.isAvailable = true;
-    //        if (result.isAvailable) {
-    //          var encryptConfig = {
-    //            clientId: "myAppName",
-    //            username: "currentUser",
-    //            password: "currentUserPassword"
-    //
-    //          }; // See config object for required parameters
-    //          FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
-    //        }
-    //      }
-    //
-    //      function isAvailableError(message) {
-    //        console.log("isAvailableError(): " + message);
-    //      }
-    //
-    //      function encryptSuccessCallback(result) {
-    //        console.log("successCallback(): " + JSON.stringify(result));
-    //        if (result.withFingerprint) {
-    //          console.log("Successfully encrypted credentials.");
-    //          console.log("Encrypted credentials: " + result.token);
-    //          pin = '11111';
-    //          enter();
-    //        } else if (result.withBackup) {
-    //          console.log("Authenticated with backup password");
-    //        }
-    //      }
-    //
-    //      function encryptErrorCallback(error) {
-    //        if (error === "Cancelled") {
-    //          console.log("FingerprintAuth Dialog Cancelled!");
-    //        } else {
-    //          console.log("FingerprintAuth Error: " + error);
-    //        }
-    //      }
-    //
-    //      FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
-    //
-    //    }
-    //
-    //    if (device.platform == 'iOS') {
-    //      function successCallback(success) {
-    //        alert('success', success)
-    //        var text = 'hello';
-    //        touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
-    //      }
-    //
-    //      function notSupportedCallback(error) {
-    //        alert('error', error)
-    //      }
-    //
-    //      touchid.checkSupport(successCallback, notSupportedCallback);
-    //
-    //      function successCallbackOfAuth(success) {
-    //        alert(success)
-    //      }
-    //
-    //      function failureCallbackOfAuth(error) {
-    //        alert(error)
-    //      }
-    //
-    //    }
+        if (device.platform == 'Android') {
+
+          function isAvailableSuccess(result) {
+            console.log("FingerprintAuth available: " + JSON.stringify(result));
+            result.isAvailable = true;
+            if (result.isAvailable) {
+              var encryptConfig = {
+                clientId: "myAppName",
+                username: "currentUser",
+                password: "currentUserPassword"
+
+              }; // See config object for required parameters
+              FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
+            }
+          }
+
+          function isAvailableError(message) {
+            console.log("isAvailableError(): " + message);
+          }
+
+          function encryptSuccessCallback(result) {
+            console.log("successCallback(): " + JSON.stringify(result));
+            if (result.withFingerprint) {
+              console.log("Successfully encrypted credentials.");
+              console.log("Encrypted credentials: " + result.token);
+              pin = '11111';
+              enter();
+            } else if (result.withBackup) {
+              console.log("Authenticated with backup password");
+            }
+          }
+
+          function encryptErrorCallback(error) {
+            if (error === "Cancelled") {
+              console.log("FingerprintAuth Dialog Cancelled!");
+            } else {
+              console.log("FingerprintAuth Error: " + error);
+            }
+          }
+
+          FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
+
+        }
+
+        if (device.platform == 'iOS') {
+          function successCallback(success) {
+            alert('success', success)
+            var text = 'hello';
+            touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
+          }
+
+          function notSupportedCallback(error) {
+            alert('error', error)
+          }
+
+          touchid.checkSupport(successCallback, notSupportedCallback);
+
+          function successCallbackOfAuth(success) {
+            alert(success)
+          }
+
+          function failureCallbackOfAuth(error) {
+            alert(error)
+          }
+
+        }
 
 
   </script>
