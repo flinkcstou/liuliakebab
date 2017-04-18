@@ -12,7 +12,8 @@
         {window.languages.ViewPaymentDetailTitleOne}</p>
 
       <p class="transfer-to-card-transfer-title-part-two">
-        {(opts.is_friend_help)?(window.languages.ViewPaymentDetailTitleTwo):(window.languages.ViewPaymentDetailTitleTwoIfNotFriendsHelp)}</p>
+        {(opts.is_friend_help)?(window.languages.ViewPaymentDetailTitleTwo):(window.languages.ViewPaymentDetailTitleTwoIfNotFriendsHelp
+        + " " + opts.serviceName)}</p>
 
       <p class="transfer-to-card-transfer-title-phone" if="{opts.is_friend_help}">
         +{opts.phoneNumber}</p>

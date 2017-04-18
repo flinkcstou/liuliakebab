@@ -100,7 +100,7 @@
             amount: invoice.amount,
             invoiceId: invoice.invoice_id,
             time: invoice.time,
-            date: invoice.date
+            date: invoice.date,
           };
 
           history.arrayOfHistory.push({view: "view-transfer-detail"});
@@ -115,7 +115,8 @@
             invoiceId: invoice.invoice_id,
             phoneNumber: invoice.merchant_phone,
             accountNumber: invoice.parameter,
-            serviceName: invoice.service_name
+            serviceName: invoice.service_name,
+            is_friend_help: invoice.is_friend_help
           };
 
           history.arrayOfHistory.push({view: "view-payment-detail"});
