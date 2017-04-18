@@ -9022,7 +9022,7 @@ var css = {
   viewAddNextButton: ".view-add-next-button " +
   "{" +
   "position: absolute;" +
-  "height: 74px;" +
+  "height: " + 74 * widthK + "px;" +
   "top: 60%;" +
   "background-color: #00a8f1;" +
   "padding: 0;" +

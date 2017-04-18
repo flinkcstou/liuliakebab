@@ -77,7 +77,6 @@ window.api.initSocket = function () {
 
 
         callBack.ok(parsedData.data);
-        window.isConnected = true;
         return;
       }
 
@@ -99,12 +98,12 @@ window.api.initSocket = function () {
       console.log("ERROR", window.isConnected);
       console.log("ERROR", ERROR);
 
-      if (window.isConnected) {
+      try {
 
+        var error = parsedData.data[0][0].error_note;
 
-        window.isConnected = false;
+        var result = confirm(error);
 
-        var result = confirm(parsedData.data[0][0].error_note);
         if (result) {
 
           riotTags.innerHTML = "<view-authorization>";
@@ -114,6 +113,9 @@ window.api.initSocket = function () {
 
           navigator.app.exitApp();
         }
+      } catch (error) {
+
+        console.log(error);
       }
     }
 

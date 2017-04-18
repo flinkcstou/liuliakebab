@@ -60,14 +60,14 @@
     scope.servicesParamsMapOne = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.categoryNamesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
 
-    console.log("click_client_payCategoryList", localStorage.getItem("click_client_payCategoryList"));
-    console.log("click_client_payServiceList", localStorage.getItem("click_client_payServiceList"));
-    console.log("click_client_payServiceNamesMap", localStorage.getItem("click_client_payServiceNamesMap"));
-    console.log("click_client_servicesMapByCategory", localStorage.getItem("click_client_servicesMapByCategory"));
-    console.log("click_client_servicesMap", localStorage.getItem("click_client_servicesMap"));
-    console.log("click_client_servicesParams", localStorage.getItem("click_client_servicesParams"));
-    console.log("click_client_servicesParamsMapOne", localStorage.getItem("click_client_servicesParamsMapOne"));
-    console.log("click_client_categoryNamesMap", localStorage.getItem("click_client_categoryNamesMap"));
+    //    console.log("click_client_payCategoryList", localStorage.getItem("click_client_payCategoryList"));
+    //    console.log("click_client_payServiceList", localStorage.getItem("click_client_payServiceList"));
+    //    console.log("click_client_payServiceNamesMap", localStorage.getItem("click_client_payServiceNamesMap"));
+    //    console.log("click_client_servicesMapByCategory", localStorage.getItem("click_client_servicesMapByCategory"));
+    //    console.log("click_client_servicesMap", localStorage.getItem("click_client_servicesMap"));
+    //    console.log("click_client_servicesParams", localStorage.getItem("click_client_servicesParams"));
+    //    console.log("click_client_servicesParamsMapOne", localStorage.getItem("click_client_servicesParamsMapOne"));
+    //    console.log("click_client_categoryNamesMap", localStorage.getItem("click_client_categoryNamesMap"));
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
