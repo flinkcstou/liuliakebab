@@ -90,7 +90,7 @@
                         scope.popularServiceList[index]['image'] = cordova.file.dataDirectory + fileName;
                         console.log("1.index=", index, ",imageUrl=", scope.popularServiceList[index]['image']);
                       } else {
-                        scope.popularServiceList[index]['image'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/service/' + fileName;
+                        scope.popularServiceList[index]['image'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/' + fileName;
                         console.log("2.index=", index, ",imageUrl=", scope.popularServiceList[index]['image']);
                       }
 

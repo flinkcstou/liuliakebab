@@ -9,9 +9,8 @@ window.api.init = function () {
   }
   catch (error) {
 
-    while (!window.isConnected) {
-      window.api.init()
-    }
+    //while (!window.isConnected) {
+    //}
   }
 };
 
@@ -82,9 +81,20 @@ window.api.initSocket = function () {
         }
       }
     }
-    callBack.err(parsedData.api_status, parsedData.api_status_message, parsedData.data);
+
+    try {
+      callBack.err(parsedData.api_status, parsedData.api_status_message, parsedData.data);
+    }
+    catch (error) {
+      console.log("error", error);
+    }
   };
   this.socket.onerror = function (error) {
+
+    console.log("ENTERED_SADASDASDASDA_WEB_API_ERROR");
+
+    window.api.init()
+
     console.log('Error with socket ' + error.message);
   };
 };
@@ -111,6 +121,9 @@ window.api.call = function (params) {
       onSuccess.call(scope, data);
     },
     err: function (api_status, api_status_message, data) {
+
+      console.log("CONNECTION ERROR WEB SOCKET ON FAIL CALL");
+
       onFail.call(scope, api_status, api_status_message, data);
     }
   };

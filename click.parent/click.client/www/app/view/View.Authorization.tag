@@ -503,7 +503,7 @@
                           if (bool) {
                             scope.categoryList[index]['icon'] = cordova.file.dataDirectory + fileName;//
                           } else {
-                            scope.categoryList[index]['icon'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/category/' + fileName;
+                            scope.categoryList[index]['icon'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/' + fileName;
                           }
 
 
@@ -591,7 +591,7 @@
                             if (bool) {
                               scope.serviceList[index]['image'] = cordova.file.dataDirectory + fileName;//
                             } else {
-                              scope.serviceList[index]['image'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/service/' + fileName;
+                              scope.serviceList[index]['image'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/' + fileName;
                             }
 
                             if (!scope.servicesMapByCategory[scope.serviceList[index].category_id]) {
