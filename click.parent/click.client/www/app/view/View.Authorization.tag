@@ -237,17 +237,6 @@
       var password = hex_sha512(token + date + hex_md5(pin));
       localStorage.setItem("pinForStand", pin);
       authorization(phoneNumber, deviceId, password, date);
-
-      if (device.platform != 'BrowserStand') {
-
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.AuthorizationInProgress, options, function () {
-          console.log("Spinner Started");
-        }, function () {
-          console.log("Spinner closed error");
-        });
-      }
     };
 
     function authorization(phoneNumber, deviceId, password, date) {
@@ -434,11 +423,6 @@
                 console.log("errornote=", scope.errorNote);
                 riot.update();
 
-              }
-
-              if (device.platform != 'BrowserStand') {
-
-                SpinnerPlugin.activityStop();
               }
             },
 
