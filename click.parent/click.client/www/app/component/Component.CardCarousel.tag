@@ -177,7 +177,7 @@
           defaultAccount = false;
 
         numberOfCardPartOne = getAccountsCards[i].accno[0] + getAccountsCards[i].accno[1]
-            + getAccountsCards[i].accno[2] + getAccountsCards[i].accno[3]
+          + getAccountsCards[i].accno[2] + getAccountsCards[i].accno[3]
         numberOfCardPartTwo = getAccountsCards[i].accno[getAccountsCards[i].accno.length - 4] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 3] + +getAccountsCards[i].accno[getAccountsCards[i].accno.length - 2] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 1];
 
 
@@ -476,7 +476,7 @@
         if (scope.invoiceCheck) {
 
           var cardsNumber = JSON.parse(localStorage.getItem("click_client_countCard")),
-              cardNumber = JSON.parse(localStorage.getItem("cardNumber"));
+            cardNumber = JSON.parse(localStorage.getItem("cardNumber"));
           cardsNumber = JSON.stringify((cardsNumber) ? (cardsNumber - 1) : (0));
           cardNumber = JSON.stringify((cardNumber) ? (cardNumber - 1) : (0));
           localStorage.setItem("click_client_countCard", cardsNumber);
@@ -718,7 +718,7 @@
             }
           }
           htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-              'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
+            'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
           riotTags.innerHTML = "<view-my-cards>";
           riot.mount("view-my-cards", [sendChosenCardId]);
           this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -938,6 +938,7 @@
 
     function changePosition() {
 //      clearInterval(changingColor);
+      console.log('scope.cardNumber', scope.cardNumber);
 
       if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber < count - 1) {
 

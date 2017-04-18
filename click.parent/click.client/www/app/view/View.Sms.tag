@@ -36,10 +36,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-sms') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-sms',
-            "params": opts
-          }
+        {
+          "view": 'view-sms',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -104,6 +104,17 @@
     }
 
     function registrationConfirm(sms, phoneNumber, deviceId) {
+
+      if (device.platform != 'BrowserStand') {
+        var options = {dimBackground: true};
+
+        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+          console.log("Started");
+        }, function () {
+          console.log("closed");
+        });
+      }
+
 
       window.api.call({
         method: 'device.register.confirm',

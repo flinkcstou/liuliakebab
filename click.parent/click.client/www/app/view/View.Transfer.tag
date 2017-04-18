@@ -311,6 +311,8 @@
 
 
     openBanksListPage = function () {
+      if (modeOfApp.offlineMode)return
+
       if (JSON.parse(localStorage.getItem("click_client_p2p_bank_list"))) {
         scope.bankList = JSON.parse(localStorage.getItem("click_client_p2p_bank_list"));
 //        console.log("bank list", scope.bankList);

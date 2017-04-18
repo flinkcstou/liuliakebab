@@ -188,15 +188,6 @@ window.api.call = function (params) {
 
   if (modeOfApp.onlineMode && window.isConnected) {
 
-    if (device.platform != 'BrowserStand' && method != "get.balance") {
-      var options = {dimBackground: true};
-
-      SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-        console.log("Started");
-      }, function () {
-        console.log("closed");
-      });
-    }
 
     if (window.api.socket.readyState == 1) {
       this.socket.send(JSON.stringify({
@@ -230,7 +221,12 @@ window.api.call = function (params) {
       parameters: input
     });
 
-    alert("Возможно отсутствует соединение с интернетом");
+    var result = confirm("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?");
+    if (result) {
+      modeOfApp.offlineMode = true;
+      modeOfApp.onlineMode = false;
+      riot.update()
+    }
   }
 };
 
@@ -248,7 +244,12 @@ function offlineDetector() {
 
   if (modeOfApp.onlineMode && window.isConnected) {
 
-    alert("Возможно отсутствует соединение с интернетом");
+    var result = confirm("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?");
+    if (result) {
+      modeOfApp.offlineMode = true;
+      modeOfApp.onlineMode = false;
+      riot.update()
+    }
   }
 
   console.log("OFFLINE DETECTOR");
