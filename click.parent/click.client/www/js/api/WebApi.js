@@ -189,7 +189,7 @@ window.api.call = function (params) {
       switch (window.api.socket.readyState) {
 
         case 0:
-          console.log("Is connection");
+          console.log("Is connecting");
           break;
         case 2:
           console.log("Is closing");
@@ -199,7 +199,7 @@ window.api.call = function (params) {
           break;
       }
     }
-  } else {
+  } else if (modeOfApp.onlineMode) {
 
     alert("Возможно отсутствует соединение с интернетом");
   }

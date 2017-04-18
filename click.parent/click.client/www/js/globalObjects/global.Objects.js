@@ -10,7 +10,7 @@ viewMyCards.chosenCardId = '';
 window.viewAuthorization = {};
 viewAuthorization.check = false;
 
-window.isConnected = false;
+window.isConnected = true;
 
 window.viewRegistrationDevice = {};
 
