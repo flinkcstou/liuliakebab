@@ -461,9 +461,9 @@
     }
     onComponentCreated();
 
+    //TODO: update scope.cardsarray at each in component-card
     scope.switchToOfflineMode = function () {
 
-      scope.invoiceCheck = false;
       scope.invoiceList = [];
 
       var cardsTemp = JSON.parse(localStorage.getItem("click_client_cards"));
@@ -471,8 +471,36 @@
       if (cardsTemp) {
 
         scope.cardsarray = cardsTemp;
+        count = 0;
+
+        if (scope.invoiceCheck) {
+
+          var cardsNumber = JSON.parse(localStorage.getItem("click_client_countCard")),
+              cardNumber = JSON.parse(localStorage.getItem("cardNumber"));
+          cardsNumber = JSON.stringify((cardsNumber) ? (cardsNumber - 1) : (0));
+          cardNumber = JSON.stringify((cardNumber) ? (cardNumber - 1) : (0));
+          localStorage.setItem("click_client_countCard", cardsNumber);
+          localStorage.setItem("cardNumber", cardNumber);
+
+          scope.invoiceCheck = false;
+
+          for (var index in scope.cardsarray) {
+
+            count++;
+            scope.cardsarray[index].countCard--;
+          }
+
+          scope.cardNumber = cardNumber;
+
+          console.log(scope.cardNumber, count);
+        }
+
+        localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
+
       } else {
 
+        scope.cardNumber = 0;
+        count = 1;
         scope.cardsarray = offlineCard;
       }
 
@@ -911,12 +939,8 @@
     function changePosition() {
 //      clearInterval(changingColor);
 
-      if (modeOfApp.offlineMode) {
-
-        count = 1;
-      }
-
       if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber < count - 1) {
+
         ++scope.cardNumber;
         riot.update(scope.cardNumber);
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -927,6 +951,7 @@
       }
 
       if (carouselTouchEndX > carouselTouchStartX && scope.cardNumber == 0) {
+
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
@@ -934,6 +959,7 @@
       }
 
       if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber == count - 1) {
+
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
@@ -942,6 +968,7 @@
       }
 
       if (carouselTouchEndX > carouselTouchStartX && scope.cardNumber > 0) {
+
         --scope.cardNumber;
         riot.update(scope.cardNumber);
         this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
