@@ -506,8 +506,10 @@
         scope.cardsarray = offlineCard;
       }
 
-      cards.style.transform = "translate3d(0, 0, 0)";
-      cards.style.webkitTransform = "translate3d(0, 0, 0)";
+      if (cards) {
+        cards.style.transform = "translate3d(0, 0, 0)";
+        cards.style.webkitTransform = "translate3d(0, 0, 0)";
+      }
 
       riot.update();
     };
