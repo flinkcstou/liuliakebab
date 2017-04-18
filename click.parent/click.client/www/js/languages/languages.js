@@ -287,6 +287,7 @@ var RU_LANGUAGES =
 
   "ViewPaymentDetailTitleOne": "Получен счет",
   "ViewPaymentDetailTitleTwo": "от пользователя CLICK",
+  "ViewPaymentDetailTitleTwoIfNotFriendsHelp": "от",
   "ViewPaymentDetailTitle": "ДЕТАЛИ СЧЕТА #",
   "ViewPaymentDetailTitleSum": "Сумма платежа:",
   "ViewPaymentDetailTitlePayFor": "Оплата за",
