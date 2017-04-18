@@ -9,10 +9,9 @@
     <div class="view-autopay-block-containter" each="{j in autopayList}">
       <div id="p{j.id}" class="view-autopay-block-inner-containter"
            ontouchend="openFavoritePayment(this.id)">
-        <div class="view-autopay-icon"
-        ></div>
+        <div class="view-autopay-icon" style="background-image: url({j.service_icon});"></div>
         <div class="view-autopay-info-container">
-          <p class="view-autopay-info-name">{j.service_name}</p>
+          <p class="view-autopay-info-name">{j.service_title}</p>
           <div class="view-autopay-info-balance">{j.amount}</div>
           <div class="view-autopay-info-currency-field">сум</div>
           <p class="view-autopay-info-number">{j.cntrg_param2}</p>
@@ -48,8 +47,8 @@
     addAutoPay = function () {
       event.preventDefault();
       event.stopPropagation();
-      riotTags.innerHTML = "<view-pay>";
-      riot.mount("view-pay", ['ADDFAVORITE']);
+      riotTags.innerHTML = "<view-autopay-method>";
+      riot.mount("view-autopay-method");
     }
 
     componentMenu.check = false;
@@ -60,6 +59,7 @@
 
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+    scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     if (info)
       var sessionKey = info.session_key;
 
@@ -95,7 +95,6 @@
       riot.update(scope.autopayList);
     }
     else {
-      console.log("kekreke");
       scope.autopayList = [];
       window.api.call({
         method: 'autopay.list',
@@ -109,7 +108,18 @@
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
 
-            scope.autopayList = result[1];
+            for (var i in result[1]) {
+
+              result[1][i].service_title = scope.servicesMap[result[1][i].service_id][0].name;
+              result[1][i].service_icon = scope.servicesMap[result[1][i].service_id][0].image;
+
+              console.log("ss", result[1][i].service_title, ", dd", result[1][i].service_icon);
+
+              scope.autopayList.push(result[1][i]);
+
+            }
+            console.log("L=", result[1]);
+//            scope.autopayList = result[1];
             console.log("Autopay list", scope.autopayList);
             riot.update(scope.autopayList);
             localStorage.setItem('click_client_autopayList', JSON.stringify(scope.autopayList));

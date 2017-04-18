@@ -93,20 +93,20 @@
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization' && !JSON.parse(localStorage.getItem('onResume'))) {
         history.arrayOfHistory.push(
-            {
-              "view": 'view-authorization',
-              "params": opts
-            }
+          {
+            "view": 'view-authorization',
+            "params": opts
+          }
         );
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
       }
     }
     else {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-authorization',
-            "params": opts
-          }
+        {
+          "view": 'view-authorization',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -654,7 +654,7 @@
 
                     for (var i in result[1]) {
                       if (result[1][i].is_visible == 1) {
-//                        console.log("service id=", result[1][i].id, ", element:", result[1][i]);
+                        console.log("service id=", result[1][i].id, ", element:", result[1][i]);
 
                         scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
                         scope.serviceList.push(result[1][i]);

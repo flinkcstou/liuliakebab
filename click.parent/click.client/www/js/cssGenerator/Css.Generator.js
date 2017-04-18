@@ -11703,6 +11703,29 @@ var css = {
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "}",
 
+//  View autopay method
+
+  autopayMethodBodyContainer: ".autopay-method-body-container" +
+  "{" +
+  "position: absolute;" +
+    //"height:" + 1150 * widthK + "px; " +
+  "width:" + 720 * widthK + "px; " +
+  "top:" + 145 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: white; " +
+  "overflow-y: auto; " +
+  "overflow-x: hidden; " +
+  "}",
+
+  autopayMethodPageTitle: ".autopay-method-page-title" +
+  "{" +
+  "font-size: " + 36 * widthK + "px; " +
+  "}",
+
+  autopayMethodBackButton: ".autopay-method-back-button" +
+  "{" +
+  "top: " + 10 * widthK + "px; " +
+  "}",
 
 }
 
