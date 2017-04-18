@@ -641,6 +641,10 @@ window.fakedSocket.register("get.service.list", function (input) {
   array.push([
 
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 6,
         cost: 1,
         form_type: 1,
@@ -664,6 +668,10 @@ window.fakedSocket.register("get.service.list", function (input) {
         status: 1
       },
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 3,
         cost: 1,
         form_type: 1,
@@ -687,6 +695,10 @@ window.fakedSocket.register("get.service.list", function (input) {
         status: 1
       },
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 8,
         cost: 1,
         form_type: 3,
@@ -710,6 +722,10 @@ window.fakedSocket.register("get.service.list", function (input) {
         status: 1
       },
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 5,
         cost: 1,
         form_type: 1,
@@ -733,73 +749,10 @@ window.fakedSocket.register("get.service.list", function (input) {
         status: 1
       },
       {
-        category_id: 9,
-        cost: 1,
-        form_type: 1,
-        is_visible: 1,
-        id: 48,
-        image: "https://m.click.uz/static/merchant/logo/logo_48.png",
-        is_communal: 0,
-        is_mobile: 0,
-        lang_amount_hint: null,
-        lang_amount_placeholder: "Введите сумму оплаты",
-        lang_amount_title: "Сумма",
-        lang_max_amount: "Максимальная сумма для оплаты 1000000.00 сум ",
-        lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
-        max_pay_limit: 1000000,
-        min_pay_limit: 1000,
-        name: "Taxi Aist",
-        priority: 0,
-        service_parameters: "0",
-        service_short_name: "AIST_TAXI",
-        lang_amount_currency: "сум",
-        status: 0
-      },
-      {
-        category_id: 6,
-        cost: 1,
-        form_type: 1,
-        is_visible: 1,
-        id: 51,
-        image: "https://m.click.uz/static/merchant/logo/logo_51.png",
-        is_mobile: 0,
-        lang_amount_hint: null,
-        lang_amount_placeholder: "Введите сумму оплаты",
-        lang_amount_title: "Сумма",
-        lang_max_amount: "Максимальная сумма для оплаты 1000000.00 сум ",
-        lang_min_amount: "Минимальная сумма для оплаты 100.00 сум",
-        max_pay_limit: 1000000,
-        min_pay_limit: 100,
-        name: "Matbuot Tarkatuvchi",
-        priority: 0,
-        service_parameters: "0",
-        service_short_name: "mt",
-        lang_amount_currency: "сум",
-        status: 0
-      },
-      {
-        category_id: 6,
-        cost: 1,
-        form_type: 1,
-        is_visible: 1,
-        id: 184,
-        image: "https://m.click.uz/static/merchant/logo/logo_184.png",
-        is_mobile: 0,
-        lang_amount_hint: null,
-        lang_amount_placeholder: "Введите сумму оплаты",
-        lang_amount_title: "Сумма",
-        lang_max_amount: "Максимальная сумма для оплаты 500000.00 сум ",
-        lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
-        max_pay_limit: 500000,
-        min_pay_limit: 1000,
-        name: "Arba.uz",
-        priority: 0,
-        service_parameters: "0",
-        service_short_name: "arba.uz",
-        lang_amount_currency: "сум",
-        status: 0
-      },
-      {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: "^(95)(\d{7})$",
         category_id: 1,
         cost: 1,
         form_type: 1,
@@ -822,6 +775,16 @@ window.fakedSocket.register("get.service.list", function (input) {
         status: 1
       },
       {
+        autopay_available: 1,
+        autopay_available_amounts: [
+          "5000.0000",
+          "10000.0000",
+          "15000.0000",
+          "20000.0000",
+          "50000.0000"
+        ],
+        autopay_available_steps: [{step_title: "0.1$", step_value: "2"}, {step_title: "1$", step_value: "1"}],
+        validation: "^(93|94)(\d{7})$",
         category_id: 1,
         cost: 1,
         form_type: 1,
@@ -844,6 +807,16 @@ window.fakedSocket.register("get.service.list", function (input) {
         status: 1
       },
       {
+        autopay_available: 1,
+        autopay_available_amounts: [
+          "5000.0000",
+          "10000.0000",
+          "15000.0000",
+          "20000.0000",
+          "50000.0000"
+        ],
+        autopay_available_steps: {step_title: "1$", step_value: "1"},
+        validation: "^(90|91)(\d{7})$",
         category_id: 1,
         cost: 1,
         form_type: 1,
@@ -864,8 +837,13 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "BEELINE",
         lang_amount_currency: "сум",
         status: 1
-      },
+      }
+      ,
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: "^(99)(\d{7})$",
         category_id: 1,
         cost: 1,
         form_type: 1,
@@ -886,8 +864,13 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "UzmobileGSM",
         lang_amount_currency: "сум",
         status: 1
-      },
+      }
+      ,
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: "^(97)(\d{7})$",
         category_id: 1,
         cost: 1,
         form_type: 1,
@@ -908,8 +891,13 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "UMS",
         lang_amount_currency: "сум",
         status: 1
-      },
+      }
+      ,
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 7,
         cost: 1,
         form_type: 2,
@@ -930,9 +918,13 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "TELEGRAF",
         lang_amount_currency: "сум",
         status: 1
-      },
+      }
+      ,
       {
-
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 7,
         cost: 1,
         form_type: 2,
@@ -953,8 +945,13 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "Telekarta",
         lang_amount_currency: "сум",
         status: 1
-      },
+      }
+      ,
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 6,
         cost: 1,
         form_type: 2,
@@ -975,8 +972,13 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "Dastur.uz",
         lang_amount_currency: "сум",
         status: 1
-      },
+      }
+      ,
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 7,
         cost: 1,
         form_type: 2,
@@ -997,8 +999,13 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "Oxygen Networks",
         lang_amount_currency: "сум",
         status: 1
-      },
+      }
+      ,
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 2,
         cost: 1,
         form_type: 2,
@@ -1019,8 +1026,13 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "SONET.UZ PINCARD",
         lang_amount_currency: "сум",
         status: 1
-      },
+      }
+      ,
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 2,
         cost: 1,
         form_type: 1,
@@ -1041,8 +1053,13 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "SHARQTELEKOM",
         lang_amount_currency: "сум",
         status: 1
-      },
+      }
+      ,
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 2,
         cost: 1,
         form_type: 1,
@@ -1063,8 +1080,13 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "SARKORTELEKOM",
         lang_amount_currency: "сум",
         status: 1
-      },
+      }
+      ,
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 2,
         cost: 1,
         form_type: 1,
@@ -1087,6 +1109,10 @@ window.fakedSocket.register("get.service.list", function (input) {
         status: 1
       },
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 2,
         cost: 1,
         form_type: 1,
@@ -1109,6 +1135,10 @@ window.fakedSocket.register("get.service.list", function (input) {
         status: 1
       },
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 7,
         cost: 1,
         form_type: 1,
@@ -1131,6 +1161,10 @@ window.fakedSocket.register("get.service.list", function (input) {
         status: 1
       },
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 2,
         cost: 1,
         form_type: 1,
@@ -1153,6 +1187,10 @@ window.fakedSocket.register("get.service.list", function (input) {
         status: 1
       },
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 8,
         cost: 1,
         form_type: 3,
@@ -1175,6 +1213,10 @@ window.fakedSocket.register("get.service.list", function (input) {
         status: 1
       },
       {
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        validation: null,
         category_id: 11,
         cost: 1,
         form_type: 4,
@@ -1198,7 +1240,8 @@ window.fakedSocket.register("get.service.list", function (input) {
       }
 
     ]
-  );
+  )
+  ;
 
   if (localStorage.getItem("click_client_token"))
     return array;
@@ -3051,6 +3094,144 @@ window.fakedSocket.register("get.news", function (input) {
           "news_id": 4,
           "image": "https://m.click.uz/static/content/news/2.png",
           "datetime": "2017-04-11",
+        }
+      ]
+    ];
+
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});
+
+window.fakedSocket.register("autopay.list", function (input) {
+
+  if (input)
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": ""
+      }],
+      [
+        {
+          account_id: 4834489,
+          amount: "1 500",
+          autopay_type: 1,
+          cntrg_param1: null,
+          cntrg_param2: "974647747",
+          cntrg_param3: null,
+          cntrg_param4: null,
+          cntrg_param5: null,
+          cntrg_param_id: 1,
+          created: "2017-04-17T13:56:33.086Z",
+          id: 49317,
+          month_day: 24,
+          paytime: "1970-01-01T19:00:00.000Z",
+          service_id: 2,
+          service_name: null,
+          status: 1,
+          step: 0,
+          title: "Автоплатёж &#039;UMS - 1500&#039;",
+          type: 3,
+          week_day: null
+        },
+
+        {
+          account_id: 4834489,
+          amount: "1 500",
+          autopay_type: 1,
+          cntrg_param1: null,
+          cntrg_param2: "974647747",
+          cntrg_param3: null,
+          cntrg_param4: null,
+          cntrg_param5: null,
+          cntrg_param_id: 1,
+          created: "2017-04-17T13:54:52.830Z",
+          id: 49316,
+          month_day: 27,
+          paytime: "1970-01-01T02:43:00.000Z",
+          service_id: 148,
+          service_name: null,
+          status: 1,
+          step: 0,
+          title: "Автоплатёж &#039;Uzmobile (GSM) - 1500&#039;",
+          type: 3,
+          week_day: null
+        },
+
+        {
+          account_id: 4834489,
+          amount: "1 000",
+          autopay_type: 1,
+          cntrg_param1: null,
+          cntrg_param2: "x541",
+          cntrg_param3: null,
+          cntrg_param4: null,
+          cntrg_param5: null,
+          cntrg_param_id: 2,
+          created: "2017-04-17T13:54:23.396Z",
+          id: 49315,
+          month_day: null,
+          paytime: "1970-01-01T00:00:00.000Z",
+          service_id: 3,
+          service_name: null,
+          status: 1,
+          step: 0,
+          title: "Автоплатёж &#039;ISTV - 1000&#039;",
+          type: 4,
+          week_day: null
+        },
+
+        {
+          account_id: 4834489,
+          amount: "5 000",
+          autopay_type: 2,
+          cntrg_param1: null,
+          cntrg_param2: "998933974546",
+          cntrg_param3: null,
+          cntrg_param4: null,
+          cntrg_param5: null,
+          cntrg_param_id: null,
+          created: "2017-04-17T13:53:48.550Z",
+          id: 404373,
+          month_day: null,
+          paytime: null,
+          service_id: 5,
+          service_name: "UCELL",
+          status: 1,
+          step: 2,
+          title: "Автоплатёж &#039;Ucell - 5000&#039;",
+          type: null,
+          week_day: null
+        },
+
+        {
+          account_id: 4834489,
+          amount: "1 000",
+          autopay_type: 1,
+          cntrg_param1: null,
+          cntrg_param2: "974647747",
+          cntrg_param3: null,
+          cntrg_param4: null,
+          cntrg_param5: null,
+          cntrg_param_id: 1,
+          created: "2017-04-17T13:53:16.940Z",
+          id: 49314,
+          month_day: null,
+          paytime: "1970-01-01T22:56:00.000Z",
+          service_id: 2,
+          service_name: null,
+          status: 1,
+          step: 0,
+          title: "Автоплатёжtgjj &#039;UMS - 1000&#039;",
+          type: 2,
+          week_day: 3
         }
       ]
     ];
