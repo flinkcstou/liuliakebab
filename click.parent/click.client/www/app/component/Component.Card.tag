@@ -1,5 +1,5 @@
 <component-card class="card"
-                style="background-image: url({opts.background}); color: rgb({opts.fontcolor}); left:{leftOfCard}px">
+                style="background-image: url({opts.background}); color: rgb({opts.fontcolor}); left:{(540 * opts.countcard + 100) * widthK}px">
 
   <div class="card-bank-name" style="background-image: url({opts.bankname})"></div>
   <div class="card-salary-title">{opts.name}</div>
@@ -27,7 +27,6 @@
 
     var scope = this;
     scope.showError = false;
-    scope.leftOfCard = (540 * opts.countcard + 100) * widthK;
 
     scope.on("mount", function () {
 
