@@ -254,7 +254,13 @@
                 var arrayOfInvoice = [];
                 for (var i = 0; i < result[1].length; i++) {
 
-                  result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
+                  //TODO: FIX
+                  try {
+                    result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
+                  } catch (error) {
+
+                    console.log(error);
+                  }
 
                   arrayOfInvoice.push(result[1][i]);
                 }

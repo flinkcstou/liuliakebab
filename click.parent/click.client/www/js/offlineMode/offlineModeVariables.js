@@ -646,10 +646,10 @@ var offlinePayCategoryList = [
       "service_short_name": "UMS Internet Paketi",
       "lang_amount_currency": "сум",
       "status": 1
-    }],
+    }
+  ],
 
-  offlinePayServiceNamesMap =
-  {
+  offlinePayServiceNamesMap = {
     "2": "UMS",
     "3": "Билайн",
     "5": "Ucell",
@@ -677,8 +677,7 @@ var offlinePayCategoryList = [
     "4422": "UMS Internet Paketi"
   },
 
-  offlineServicesMapByCategory =
-  {
+  offlineServicesMapByCategory = {
     "1": [
       {
         "name": "Мой номер",
@@ -1250,8 +1249,7 @@ var offlinePayCategoryList = [
       }]
   },
 
-  offlineServicesMap =
-  {
+  offlineServicesMap = {
     "mynumber": [
       {
         "category_id": 1,
@@ -2401,7 +2399,9 @@ var offlinePayCategoryList = [
         "sum_cost": 10071,
         "type": 4,
         "usd_cost": 3
-      }]],
+      }
+    ]
+  ],
 
   offlineServicesParamsMapOne = {
     "mynumber": [

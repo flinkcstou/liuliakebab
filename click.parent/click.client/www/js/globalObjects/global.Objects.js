@@ -70,7 +70,7 @@ window.standCheckRegistration = false;
 checkPhoneForTransfer = true;
 checkCardForTransfer = false;
 
-window.componentMenu = {}
+window.componentMenu = {};
 componentMenu.checkOpen = false;
 
 window.modeOfApp = {};
@@ -84,8 +84,8 @@ invoiceActions.ACCEPT = 1;
 invoiceActions.DECLINE = 2;
 
 window.input_codes = {};
-input_codes.BACKSPACE_CODE = 8
-input_codes.NEXT = 9
+input_codes.BACKSPACE_CODE = 8;
+input_codes.NEXT = 9;
 
 window.componentMenu = {};
 componentMenu.check = false;

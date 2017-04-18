@@ -237,17 +237,6 @@
       var password = hex_sha512(token + date + hex_md5(pin));
       localStorage.setItem("pinForStand", pin);
       authorization(phoneNumber, deviceId, password, date);
-
-      if (device.platform != 'BrowserStand') {
-
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.AuthorizationInProgress, options, function () {
-          console.log("Spinner Started");
-        }, function () {
-          console.log("Spinner closed error");
-        });
-      }
     };
 
     function authorization(phoneNumber, deviceId, password, date) {
@@ -435,11 +424,6 @@
                 riot.update();
 
               }
-
-              if (device.platform != 'BrowserStand') {
-
-                SpinnerPlugin.activityStop();
-              }
             },
 
 
@@ -503,7 +487,7 @@
                           if (bool) {
                             scope.categoryList[index]['icon'] = cordova.file.dataDirectory + fileName;//
                           } else {
-                            scope.categoryList[index]['icon'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/category/' + fileName;
+                            scope.categoryList[index]['icon'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/' + fileName;
                           }
 
 
@@ -591,7 +575,7 @@
                             if (bool) {
                               scope.serviceList[index]['image'] = cordova.file.dataDirectory + fileName;//
                             } else {
-                              scope.serviceList[index]['image'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/service/' + fileName;
+                              scope.serviceList[index]['image'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/' + fileName;
                             }
 
                             if (!scope.servicesMapByCategory[scope.serviceList[index].category_id]) {
