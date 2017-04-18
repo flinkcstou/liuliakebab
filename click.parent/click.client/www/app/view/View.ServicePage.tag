@@ -185,10 +185,10 @@
     scope.servicesParamsMapFour = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFour"))) : (offlineServicesParamsMapFour);
     scope.servicesParamsMapFive = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"))) : (offlineServicesParamsMapFive);
 
-    //    console.log("click_client_servicesParamsMapTwo", localStorage.getItem("click_client_servicesParamsMapTwo"));
-    //    console.log("click_client_servicesParamsMapThree", localStorage.getItem("click_client_servicesParamsMapThree"));
-    //    console.log("click_client_servicesParamsMapFour", localStorage.getItem("click_client_servicesParamsMapFour"));
-    //    console.log("click_client_servicesParamsMapFive", localStorage.getItem("click_client_servicesParamsMapFive"));
+        console.log("click_client_servicesParamsMapTwo", localStorage.getItem("click_client_servicesParamsMapTwo"));
+        console.log("click_client_servicesParamsMapThree", localStorage.getItem("click_client_servicesParamsMapThree"));
+        console.log("click_client_servicesParamsMapFour", localStorage.getItem("click_client_servicesParamsMapFour"));
+        console.log("click_client_servicesParamsMapFive", localStorage.getItem("click_client_servicesParamsMapFive"));
 
     riot.update(scope.categoryNamesMap);
 
