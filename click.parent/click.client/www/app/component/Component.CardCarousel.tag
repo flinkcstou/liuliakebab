@@ -4,7 +4,8 @@
        ontouchstart="startTouchCarousel()">
     <div></div>
     <div id="cards" class="cards">
-      <div if="{viewMainPage.atMainPage && invoiceList[0]}" class="bills-holder" ontouchend="stopPropagation()">
+      <div if="{viewMainPage.atMainPage && invoiceList[0] && modeOfApp.onlineMode}" class="bills-holder"
+           ontouchend="stopPropagation()">
         <div each="{invoice in invoiceList}" title="{JSON.stringify(invoice)}"
              class="{invoice-card-part-one: invoice == invoiceList[0], invoice-card-part-two: invoice == invoiceList[1]}"
              style="left: {invoiceLeft}px;"
@@ -99,7 +100,7 @@
             amount: invoice.amount,
             invoiceId: invoice.invoice_id,
             time: invoice.time,
-            date: invoice.date
+            date: invoice.date,
           };
 
           history.arrayOfHistory.push({view: "view-transfer-detail"});
@@ -114,7 +115,8 @@
             invoiceId: invoice.invoice_id,
             phoneNumber: invoice.merchant_phone,
             accountNumber: invoice.parameter,
-            serviceName: invoice.service_name
+            serviceName: invoice.service_name,
+            is_friend_help: invoice.is_friend_help
           };
 
           history.arrayOfHistory.push({view: "view-payment-detail"});
@@ -126,6 +128,8 @@
     };
 
     scope.addCard = addCard = function (withoutBalance) {
+
+      if (modeOfApp.offlineMode) return;
 
       if (localStorage.getItem('click_client_accountInfo')) {
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
@@ -426,7 +430,7 @@
 //
 //      var splitTop = copyCardsArray[defaultAccountId].background_color_top.split(',')
 //
-//      cMount1 = splitTop[0]
+//      cMount1 = splitTowp[0]
 //      cMount2 = splitTop[1]
 //      cMount3 = splitTop[2]
 //
@@ -457,10 +461,27 @@
     }
     onComponentCreated();
 
+    scope.switchToOfflineMode = function () {
+
+      scope.invoiceCheck = false;
+      scope.invoiceList = [];
+
+      var cardsTemp = JSON.parse(localStorage.getItem("click_client_cards"));
+
+      if (cardsTemp) {
+
+        scope.cardsarray = cardsTemp;
+      } else {
+
+        scope.cardsarray = offlineCard;
+      }
+
+      riot.update();
+    };
+
     if (modeOfApp.offlineMode) {
 
-      scope.cardsarray = offlineCard;
-      riot.update();
+      scope.switchToOfflineMode();
     }
 
     this.on("mount", function () {
