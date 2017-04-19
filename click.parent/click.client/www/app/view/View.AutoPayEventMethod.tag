@@ -135,7 +135,7 @@
       chosenStep = id;
       document.getElementById(chosenStep).style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
       console.log("Step chosen=", id);
-      if (oldChosenStep != -1)
+      if (oldChosenStep != -1 && oldChosenStep != id)
         document.getElementById(oldChosenStep).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
     }
 

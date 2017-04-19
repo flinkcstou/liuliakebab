@@ -41,16 +41,9 @@
   </div>
 
   <div id="dateChooseBlockId" class="schedule-date-block">
-    <p class="component-alert-message">{window.languages.ViewAutoPayMethodScheduleChoseDate}</p>
+    <hr class="schedule-date-block-title-line"/>
+    <p class="schedule-date-block-title">{window.languages.ViewAutoPayMethodScheduleChoseDate}</p>
 
-    <div class="component-alert-clickpin-error-container" if="{opts.clickpinerror}">
-      <p class="component-alert-message component-alert-clickpin-message-one">
-        {window.languages.ComponentAlertClickPinErrorTextOne}</p>
-      <p class="component-alert-message component-alert-clickpin-message-two">
-        {window.languages.ComponentAlertClickPinErrorTextTwo}</p>
-      <p class="component-alert-message component-alert-clickpin-message-three">
-        {window.languages.ComponentAlertClickPinErrorTextThree}</p>
-    </div>
 
     <button class="schedule-date-block-button-choose" ontouchend="chooseDate()">
       {window.languages.ComponentAlertOk}

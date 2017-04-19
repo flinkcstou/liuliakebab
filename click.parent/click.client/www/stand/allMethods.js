@@ -783,13 +783,7 @@ window.fakedSocket.register("get.service.list", function (input) {
           "20000.0000",
           "50000.0000"
         ],
-        autopay_available_steps: [{step_title: "0.1$", step_value: "2"}, {
-          step_title: "1$",
-          step_value: "1"
-        }, {step_title: "1$", step_value: "1"}, {step_title: "1$", step_value: "1"}, {
-          step_title: "1$",
-          step_value: "1"
-        }, {step_title: "1$", step_value: "1"}, {step_title: "1$", step_value: "1"}],
+        autopay_available_steps: [{step_title: "0.1$", step_value: "2"}, {step_title: "1$", step_value: "1"}],
         validation: "^(93|94)(\d{7})$",
         category_id: 1,
         cost: 1,

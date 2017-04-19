@@ -12050,7 +12050,17 @@ var css = {
   "display: none;" +
   "}",
 
-  scheduleDateBlockTitle: ".component-alert-message" +
+  scheduleDateBlockTitleLine: ".schedule-date-block-title-line" +
+  "{" +
+  "position: relative;" +
+  "color: white;" +
+  "width: 65%;" +
+  "margin-top: " + 42 * widthK + "px;" +
+  "margin-bottom: " + 30 * widthK + "px;" +
+  "top:" + 410 * widthK + "px;" +
+  "}",
+
+  scheduleDateBlockTitle: ".schedule-date-block-title" +
   "{" +
   "position: relative;" +
   "color: #1d1d1f;" +
