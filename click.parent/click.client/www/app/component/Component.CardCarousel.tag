@@ -466,9 +466,11 @@
 
       scope.invoiceList = [];
 
-      var cardsTemp = JSON.parse(localStorage.getItem("click_client_cards"));
+      var cardsTemp = localStorage.getItem("click_client_cards");
 
       if (cardsTemp) {
+
+        cardsTemp = JSON.parse(cardsTemp);
 
         scope.cardsarray = cardsTemp;
         count = 0;
@@ -503,21 +505,14 @@
 
         scope.cardNumber = 0;
         count = 1;
-        scope.cardsarray = offlineCard;
+        scope.cardsarray = window.offlineCard;
       }
 
-      if (cards) {
-        cards.style.transform = "translate3d(0, 0, 0)";
-        cards.style.webkitTransform = "translate3d(0, 0, 0)";
-      }
+      cards.style.transform = "translate3d(0, 0, 0)";
+      cards.style.webkitTransform = "translate3d(0, 0, 0)";
 
       riot.update();
     };
-
-    if (modeOfApp.offlineMode) {
-
-      scope.switchToOfflineMode();
-    }
 
     this.on("mount", function () {
 //      console.log("CARDS", JSON.parse(localStorage.getItem("click_client_cards")))
@@ -527,6 +522,11 @@
 
       cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+
+      if (modeOfApp.offlineMode) {
+
+        scope.switchToOfflineMode();
+      }
     });
 
     //
