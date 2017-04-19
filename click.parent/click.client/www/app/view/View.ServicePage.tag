@@ -177,13 +177,13 @@
     console.log('OPTS', opts);
 
     var scope = this;
-    scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
-    scope.categoryNamesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
-    scope.servicesParamsMapOne = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
-    scope.servicesParamsMapTwo = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"))) : (offlineServicesParamsMapTwo);
-    scope.servicesParamsMapThree = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"))) : (offlineServicesParamsMapThree);
-    scope.servicesParamsMapFour = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFour"))) : (offlineServicesParamsMapFour);
-    scope.servicesParamsMapFive = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"))) : (offlineServicesParamsMapFive);
+    scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
+    scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
+    scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
+    scope.servicesParamsMapTwo = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapTwo"))) : (offlineServicesParamsMapTwo);
+    scope.servicesParamsMapThree = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"))) : (offlineServicesParamsMapThree);
+    scope.servicesParamsMapFour = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFour"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFour"))) : (offlineServicesParamsMapFour);
+    scope.servicesParamsMapFive = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"))) : (offlineServicesParamsMapFive);
 
     //    console.log("click_client_servicesParamsMapTwo", localStorage.getItem("click_client_servicesParamsMapTwo"));
     //    console.log("click_client_servicesParamsMapThree", localStorage.getItem("click_client_servicesParamsMapThree"));
@@ -194,10 +194,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-service-page',
-            "params": opts
-          }
+        {
+          "view": 'view-service-page',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -398,36 +398,82 @@
       riot.update(blockAmountCalculatorId);
     }
 
-    if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId') && modeOfApp.onlineMode) {
-      scope.service = scope.servicesMap[localStorage.getItem('myNumberOperatorId')][0];
-      scope.titleName = 'Мой номер';
-      scope.serviceIcon = 'resources/icons/ViewPay/myphone.png';
-      viewServicePage.phoneText = localStorage.getItem('click_client_phoneNumber');
-      viewServicePage.phoneText = viewServicePage.phoneText.substr(3, viewServicePage.phoneText.length - 3);
-      scope.fieldArray = scope.servicesParamsMapOne[localStorage.getItem('myNumberOperatorId')];
-      viewPay.chosenServiceId = localStorage.getItem('myNumberOperatorId');
+    if ((viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) || (modeOfApp.offlineMode && viewPay.chosenServiceId == 'mynumber')) {
 
-      this.on('mount', function () {
-        firstField.style.display = 'none';
-        amountField.style.top = '5.5%';
+      console.log("MY NUMBER ID")
+
+      if (modeOfApp.onlineMode || viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
+        scope.service = scope.servicesMap[localStorage.getItem('myNumberOperatorId')][0];
+        scope.titleName = 'Мой номер';
+        scope.serviceIcon = 'resources/icons/ViewPay/myphone.png';
+        viewServicePage.phoneText = localStorage.getItem('click_client_phoneNumber');
+        viewServicePage.phoneText = viewServicePage.phoneText ? viewServicePage.phoneText.substr(3, viewServicePage.phoneText.length - 3) : '';
+        scope.fieldArray = scope.servicesParamsMapOne[localStorage.getItem('myNumberOperatorId')];
+        console.log('FIELDARRAY', scope.fieldArray)
+        viewPay.chosenServiceId = localStorage.getItem('myNumberOperatorId');
+
+        this.on('mount', function () {
+          firstField.style.display = 'none';
+          amountField.style.top = '5.5%';
 
 
-        if (viewServicePage.amountText)
-          if (viewServicePage.amountText.length > 0) {
-            amount.value = viewServicePage.amountText;
-            checkFirst = true;
-            amountForPayTransaction = viewServicePage.amountWithoutSpace;
+          if (viewServicePage.amountText)
+            if (viewServicePage.amountText.length > 0) {
+              amount.value = viewServicePage.amountText;
+              checkFirst = true;
+              amountForPayTransaction = viewServicePage.amountWithoutSpace;
 
-            if (!amountForPayTransaction) {
-              amountForPayTransaction = (viewServicePage.amountText) ? (viewServicePage.amountText) : (0);
-              amountForPayTransaction = parseInt(amountForPayTransaction);
+              if (!amountForPayTransaction) {
+                amountForPayTransaction = (viewServicePage.amountText) ? (viewServicePage.amountText) : (0);
+                amountForPayTransaction = parseInt(amountForPayTransaction);
+              }
             }
-          }
-          else
-            amount.value = 0;
+            else
+              amount.value = 0;
 
 
-      });
+        });
+      }
+      else {
+        console.log('scope.servicesMap', scope.servicesMap['mynumber'])
+        console.log('scope.servicesParamsMapOne', scope.servicesParamsMapOne)
+        scope.service = localStorage.getItem('myNumberOperatorId') ? scope.servicesMap[localStorage.getItem('myNumberOperatorId')][0] : scope.servicesMap['mynumber'][0];
+        scope.titleName = 'Мой номер';
+        scope.serviceIcon = 'resources/icons/ViewPay/myphone.png';
+        viewServicePage.phoneText = localStorage.getItem('click_client_phoneNumber');
+        viewServicePage.phoneText = viewServicePage.phoneText ? viewServicePage.phoneText.substr(3, viewServicePage.phoneText.length - 3) : '';
+        scope.fieldArray = [];
+        scope.fieldArray[0] = {ussd_query: "*880*0199999*1*{amount}#", title: "Мой номер"}
+        console.log('scope.fieldArray', scope.fieldArray)
+        viewPay.chosenServiceId = localStorage.getItem('myNumberOperatorId') ? localStorage.getItem('myNumberOperatorId') : 'mynumber';
+
+
+        scope.amountFieldTitle = 'Сумма'
+
+        console.log('TTTTTT', scope.service, scope.titleName, scope.fieldArray, viewPay.chosenServiceId)
+
+        this.on('mount', function () {
+          firstField.style.display = 'none';
+          amountField.style.top = '5.5%';
+
+
+          if (viewServicePage.amountText)
+            if (viewServicePage.amountText.length > 0) {
+              amount.value = viewServicePage.amountText;
+              checkFirst = true;
+              amountForPayTransaction = viewServicePage.amountWithoutSpace;
+
+              if (!amountForPayTransaction) {
+                amountForPayTransaction = (viewServicePage.amountText) ? (viewServicePage.amountText) : (0);
+                amountForPayTransaction = parseInt(amountForPayTransaction);
+              }
+            }
+            else
+              amount.value = 0;
+
+
+        });
+      }
     } else {
 
       scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
@@ -438,6 +484,7 @@
       scope.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
     }
 
+    console.log('scope.categoryNamesMap', scope.categoryNamesMap)
 
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     scope.formType = scope.service.form_type;
@@ -728,10 +775,10 @@
 
 
     var maskOne = /[0-9]/g,
-        maskTwo = /[0-9' ']/g,
-        amountForPayTransaction = 0,
-        checkFirst = false,
-        defaultAccount;
+      maskTwo = /[0-9' ']/g,
+      amountForPayTransaction = 0,
+      checkFirst = false,
+      defaultAccount;
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     for (var i in cards) {
@@ -816,14 +863,14 @@
 
     enterButton = function () {
 
-      if (scope.phoneFieldBool && firstFieldInput.value.length < 9 && !(modeOfApp.offlineMode && viewPay.chosenServiceId == "mynumber")) {
+      if (scope.phoneFieldBool && firstFieldInput.value.length < 9 && viewPay.chosenServiceId != "mynumber") {
         scope.clickPinError = false;
         scope.errorNote = "Неправильно введён номер телефона";
         scope.showError = true;
         riot.update();
 
         return;
-      } else if (firstFieldInput.value.length == 0 && !(modeOfApp.offlineMode && viewPay.chosenServiceId == "mynumber")) {
+      } else if (firstFieldInput.value.length == 0 && viewPay.chosenServiceId != "mynumber") {
         scope.clickPinError = false;
         scope.errorNote = "Введите значение первого поля";
         scope.showError = true;
@@ -909,6 +956,7 @@
             else {
               ussdQuery = ussdQuery.replace('*{param}', firstFieldText.firstFieldText);
             }
+            ussdQuery = ussdQuery.replace('{communal_param}', communalParam.communalParam);
             ussdQuery = ussdQuery.replace('{option}', firstFieldId.firstFieldId);
             ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
             ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
@@ -916,6 +964,7 @@
           }
 
           if (formtype.formtype == 2) {
+            ussdQuery = ussdQuery.replace('{communal_param}', communalParam.communalParam);
             ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
             ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
             ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
@@ -923,7 +972,7 @@
           }
 
           if (formtype.formtype == 3) {
-            ussdQuery = ussdQuery.replace('{communal_para}', communalParam.communalParam);
+            ussdQuery = ussdQuery.replace('{communal_param}', communalParam.communalParam);
             ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
             ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
             ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
@@ -931,6 +980,8 @@
           }
 
           if (formtype.formtype == 4) {
+            console.log('ussdQuery', ussdQuery)
+            ussdQuery = ussdQuery.replace('{communal_param}', communalParam.communalParam);
             ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
             ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
             ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
@@ -942,18 +993,18 @@
 
           phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-              ussdQuery + "%23",
-              function (err) {
-                if (err == "empty") {
-                  scope.clickPinError = false;
-                  scope.errorNote = ("Unknown phone number");
-                  scope.showError = true;
-                  riot.update();
-                }
-                else console.log("Dialer Error:" + err);
-              },
-              function (success) {
+            ussdQuery + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                riot.update();
               }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
           );
           return
         }
@@ -1012,18 +1063,18 @@
 
           phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-              ussdQuery + "%23",
-              function (err) {
-                if (err == "empty") {
-                  scope.clickPinError = false;
-                  scope.errorNote = ("Unknown phone number");
-                  scope.showError = true;
-                  riot.update();
-                }
-                else console.log("Dialer Error:" + err);
-              },
-              function (success) {
+            ussdQuery + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                riot.update();
               }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
           );
         }
 
