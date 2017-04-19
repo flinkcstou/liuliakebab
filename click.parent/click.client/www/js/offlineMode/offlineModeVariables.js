@@ -3339,7 +3339,8 @@ var offlinePopularServiceList = [
       "autopay_available_amounts": null,
       "autopay_available_steps": null
     }],
-    "4": [{
+    "4": [
+      {
       "id": -2,
       "name": "Переводы Click",
       "category_id": 4,
@@ -3392,7 +3393,8 @@ var offlinePopularServiceList = [
       "autopay_available_amounts": null,
       "autopay_available_steps": null
     }],
-    "5": [{
+    "5": [
+      {
       "id": 45,
       "name": "Regname.uz",
       "category_id": 5,
@@ -3445,7 +3447,8 @@ var offlinePopularServiceList = [
       "autopay_available_amounts": null,
       "autopay_available_steps": null
     }],
-    "6": [{
+    "6": [
+      {
       "id": 12,
       "name": "OLX.UZ",
       "category_id": 6,
@@ -4512,7 +4515,8 @@ var offlinePopularServiceList = [
       "autopay_available_amounts": null,
       "autopay_available_steps": null
     }],
-    "7": [{
+    "7": [
+      {
       "id": 7003,
       "name": "Toshkent-Taksofoni",
       "category_id": 7,
@@ -4669,7 +4673,8 @@ var offlinePopularServiceList = [
       "autopay_available_amounts": null,
       "autopay_available_steps": null
     }],
-    "8": [{
+    "8": [
+      {
       "id": 39,
       "name": "Mahsustrans",
       "category_id": 8,
@@ -4722,7 +4727,8 @@ var offlinePopularServiceList = [
       "autopay_available_amounts": null,
       "autopay_available_steps": null
     }],
-    "10": [{
+    "10": [
+      {
       "id": 107,
       "name": "GNK",
       "category_id": 10,
@@ -13752,22 +13758,22 @@ var offlinePopularServiceList = [
   offlineCard = {
 
     "1": {
-      "card_id": 4834489,
-      "name": "Карта UZCARD-Online",
-      "salary": "153 409",
-      "currency": "сум",
-      "numberPartOne": "8600",
-      "numberPartTwo": "4976",
-      "url": "https://my.click.uz/static/content/app/bank/aab.png",
-      "card_background_url": "https://my.click.uz/static/content/app/card/aab.png",
+      //"card_id": 4834489,
+      //"name": "Карта UZCARD-Online",
+      //"salary": "153 409",
+      //"currency": "сум",
+      //"numberPartOne": "8600",
+      //"numberPartTwo": "4976",
+      //"url": "https://my.click.uz/static/content/app/bank/aab.png",
+      //"card_background_url": "https://my.click.uz/static/content/app/card/aab.png",
       "countCard": 0,
-      "chosenCard": false,
-      "default_account": true,
-      "access": 2,
-      "background_color_bottom": "195,195,195",
-      "background_color_top": "82,82,82",
-      "font_color": "45,45,45",
-      "removable": 1,
-      "salaryOriginal": "153409"
+      //"chosenCard": false,
+      //"default_account": true,
+      //"access": 2,
+      //"background_color_bottom": "195,195,195",
+      //"background_color_top": "82,82,82",
+      //"font_color": "45,45,45",
+      //"removable": 1,
+      //"salaryOriginal": "153409"
     }
   };
