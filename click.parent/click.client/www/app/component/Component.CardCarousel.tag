@@ -468,6 +468,8 @@
 
       var cardsTemp = localStorage.getItem("click_client_cards");
 
+      console.log("CARDS IN LOCALSTORAGE", cardsTemp);
+
       if (cardsTemp) {
 
         cardsTemp = JSON.parse(cardsTemp);
@@ -494,15 +496,16 @@
           }
 
 //          console.log("CardNumber", scope.cardNumber);
-          console.log("ASDASDASD", JSON.stringify(scope.cardsarray), JSON.stringify(scope.cardNumber));
-
-          console.log(scope.cardNumber, count);
+//          console.log("ASDASDASD", JSON.stringify(scope.cardsarray), JSON.stringify(scope.cardNumber));
+//
+//          console.log(scope.cardNumber, count);
         }
 
         localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
 
       } else {
 
+        console.log("THERE IS NO CARDS IN LOCALSTORAGE");
         scope.cardNumber = 0;
         count = 1;
         scope.cardsarray = window.offlineCard;
@@ -525,7 +528,8 @@
 
       if (modeOfApp.offlineMode) {
 
-        scope.switchToOfflineMode();
+        setTimeout(scope.switchToOfflineMode, 0);
+
       }
     });
 
