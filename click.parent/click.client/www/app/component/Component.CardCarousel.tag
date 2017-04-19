@@ -472,20 +472,21 @@
 
       if (cardsTemp) {
 
-        cardsTemp = JSON.parse(cardsTemp);
+        var cardsNumber = JSON.parse(localStorage.getItem("click_client_countCard")),
+            cardNumber = 0;
 
+        cardsTemp = JSON.parse(cardsTemp);
         scope.cardsarray = cardsTemp;
         count = 0;
+        scope.cardNumber = 0;
+        localStorage.setItem("cardNumber", scope.cardNumber);
+
+        localStorage.setItem("cardNumber", cardNumber);
 
         if (scope.invoiceCheck) {
 
-          var cardsNumber = JSON.parse(localStorage.getItem("click_client_countCard")),
-              cardNumber = 0;
           cardsNumber = JSON.stringify((cardsNumber) ? (cardsNumber - 1) : (0));
-          scope.cardNumber = cardNumber;
-          cardNumber = JSON.stringify(cardNumber);
           localStorage.setItem("click_client_countCard", cardsNumber);
-          localStorage.setItem("cardNumber", cardNumber);
 
           scope.invoiceCheck = false;
 
@@ -498,7 +499,16 @@
 //          console.log("CardNumber", scope.cardNumber);
 //          console.log("ASDASDASD", JSON.stringify(scope.cardsarray), JSON.stringify(scope.cardNumber));
 //
-//          console.log(scope.cardNumber, count);
+          console.log(scope.cardNumber, count);
+        } else {
+
+          cardsNumber = JSON.stringify(cardsNumber);
+          localStorage.setItem("click_client_countCard", cardsNumber);
+
+          for (var index in scope.cardsarray) {
+
+            count++;
+          }
         }
 
         localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));

@@ -121,7 +121,8 @@
           riotTags.innerHTML = "<view-report>";
           riot.mount('view-report', {
             show_graph: true,
-            account_id: card
+            account_id: card,
+            card_name: cards[card].name
           });
         }
       }
