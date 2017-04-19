@@ -8313,9 +8313,10 @@ var css = {
   "{" +
   "width: " + 15 * widthK + "px;" +
   "height: " + 15 * widthK + "px;" +
-  "margin-left: " + 26 * widthK + "px;" +
-  "margin-right: " + 13 * widthK + "px;" +
-  "margin-bottom: " + 4 * widthK + "px;" +
+  "padding-left: " + 26 * widthK + "px;" +
+  "padding-right: " + 13 * widthK + "px;" +
+  "padding-bottom: " + 11 * widthK + "px;" +
+  "padding-top: " + 10 * widthK + "px;" +
   "}",
 
   reportFilterClearFiltersContainer: ".report-filter-clear-filters-container" +
