@@ -61,6 +61,7 @@ window.api.initSocket = function () {
 
     window.isConnected = true;
 
+
     if (device.platform != 'BrowserStand')
       SpinnerPlugin.activityStop();
   };
@@ -244,6 +245,8 @@ function onlineDetector() {
 }
 
 function offlineDetector() {
+
+  if (window.isConnected) window.api.socket.close()
 
   if (modeOfApp.onlineMode && window.isConnected) {
 
