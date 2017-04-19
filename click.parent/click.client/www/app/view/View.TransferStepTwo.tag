@@ -200,6 +200,7 @@
         minLimit = 5000;
       }
       if (sumForTransfer < minLimit) {
+        sumValueId.blur();
         scope.clickPinError = false;
         scope.errorNote = ('Минимальная сумма 5 000');
         scope.showError = true;
@@ -207,6 +208,7 @@
         return;
       }
       if (sumForTransfer > maxLimit) {
+        sumValueId.blur();
         scope.clickPinError = false;
         scope.errorNote = ('Максимальная сумма 5 000 000');
         scope.showError = true;
