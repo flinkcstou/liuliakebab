@@ -11819,6 +11819,170 @@ var css = {
   "background-color: lightgrey;" +
   "}",
 
+//  View autopay event method
+
+  autopayEventNumberField: ".autopay-event-number-field" +
+  "{" +
+  "height: 90px;" +
+  "top: 5%;" +
+  "}",
+
+  autopayEventStepField: ".autopay-event-step-field" +
+  "{" +
+  "position: absolute;" +
+  "left: 10%;" +
+  "width: 85%;" +
+  "height:" + 90 * widthK + "px;" +
+  "top: 19%;" +
+  "background-color: transparent;" +
+  "}",
+
+  autopayEventStepFieldText: ".autopay-event-step-field-text" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: -14%;" +
+  "}",
+
+  autopayEventStepContainer: ".autopay-event-step-container" +
+  "{" +
+  "position: relative;" +
+  "height:" + 80 * widthK + "px; " +
+  "width:" + 145 * widthK + "px; " +
+    //"left: 4%;" +
+  "top: 15%;" +
+  "margin-right: " + 32 * widthK + "px; " +
+  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "background-color: transparent;" +
+  "float: left;" +
+  "}",
+
+  autopayEventStepText: ".autopay-event-step-text" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 15 * widthK + "px; " +
+  "left: 1%;" +
+  "text-align: left;" +
+  "font-size:" + 45 * widthK + "px; " +
+  "color: #515151;" +
+  "}",
+
+  autopayEventStepCheckIcon: ".autopay-event-step-check-icon" +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 40%;" +
+  "height: 100%;" +
+  "top: 0;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 68%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/ViewService/unchecked.png);" +
+  "}",
+
+
+  autopayEventAmountDropdownField: ".autopay-event-amount-dropdown-field" +
+  "{" +
+  "position: relative;" +
+  "width: 79.5%;" +
+  "height: 9%;" +
+  "left: 10%;" +
+  "color: white;" +
+  "border-bottom:1px solid lightgray;" +
+  "top: 27%;" +
+  "}",
+
+  autopayEventAmountsDropdownComponent: ".autopay-event-amount-dropdown-component" +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.97;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "background-color: #353340;" +
+  "display: none;" +
+  "}",
+
+  autopayEventAmountDropdownFieldTwo: ".autopay-event-amount-dropdown-field-two" +
+  "{" +
+  "position: absolute;" +
+  "width: 79.5%;" +
+  "height: 8%;" +
+  "left: 10%;" +
+  "top: 12%;" +
+  "color: white;" +
+  "border-bottom:" + 5 * widthK + "px solid #95e6fd;" +
+  "}",
+
+  autopayEventDropdownTextField: ".autopay-event-dropdown-text-field" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "top: 40%;" +
+  "margin: 0;" +
+  "color: #515151;" +
+  "width: 92%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  autopayEventDropdownContainer: ".autopay-event-dropdown-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 55%;" +
+  "top: 22%;" +
+  "overflow: scroll;" +
+  "}",
+
+  autopayEventDropdownVariant: ".autopay-event-dropdown-variant" +
+  "{" +
+  "position: relative;" +
+  "width: 79.5%;" +
+  "height:" + 125 * widthK + "px;" +
+  "background-color: white;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "margin-bottom:" + 5 * widthK + "px;" +
+  "}",
+
+  autopayEventAmountsInfoText: ".autopay-event-amounts-info-text" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: 46%;" +
+  "left: 10%;" +
+  "}",
+
+  autopayEventAmountsInfoTextTwo: ".autopay-event-amounts-info-text-two" +
+  "{" +
+  "top: 49%;" +
+  "}",
+
+  autopayEventButtonEnter: " .autopay-event-button-enter" +
+  "{" +
+  "top: 87%;" +
+  "height:" + 70 * widthK + "px;" +
+  "margin: 0 auto 0 auto;" +
+  "background-color: #00a8f1;" +
+  "padding: 0;" +
+  "font-size: " + 32 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
+  "}",
+
 
 }
 

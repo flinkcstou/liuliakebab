@@ -370,6 +370,11 @@ var RU_LANGUAGES =
   "ViewAutoPayMethodChooseText": "Выберите тип автоплатежа:",
   "ViewAutoPayMethodEventText": "По событию",
   "ViewAutoPayMethodSchedulerText": "По расписанию",
+
+  "ViewAutoPayMethodEventPhoneNumber": "Номер абонента",
+  "ViewAutoPayMethodEventPutBalansText": "Пополнить баланс, если на счету меньше",
+  "ViewAutoPayMethodEventPayAmountText": "Сумма оплаты",
+  "ViewAutoPayMethodEventAmountCanBeText": "Сумма может быть:",
 };
 
 window.languages = RU_LANGUAGES;
