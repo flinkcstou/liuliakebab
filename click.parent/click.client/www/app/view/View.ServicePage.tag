@@ -863,8 +863,13 @@
 
     enterButton = function () {
 
-      this.firstFieldInput.blur();
-      this.amount.blur();
+      try {
+        this.firstFieldInput.blur();
+        this.amount.blur();
+      } catch (error) {
+
+        console.log(error);
+      }
 
       if (scope.phoneFieldBool && firstFieldInput.value.length < 9 && viewPay.chosenServiceId != "mynumber") {
         scope.clickPinError = false;
