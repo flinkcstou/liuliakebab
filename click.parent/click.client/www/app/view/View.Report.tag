@@ -114,6 +114,18 @@
       if (!modeOfApp.offlineMode) {
         writeBalance();
       }
+
+      if (opts.account_id) {
+
+        scope.tags["component-report-filter"].filterByAccount = opts.account_id;
+        riot.update();
+      }
+
+      if (opts.card_name) {
+
+        scope.tags["component-report-filter"].createdAccountFilter = opts.card_name;
+        riot.update();
+      }
     });
 
 
@@ -492,11 +504,6 @@
       var firstDay = scope.tags["component-report-filter"].filterDateFrom,
           lastDay = scope.tags["component-report-filter"].filterDateTo,
           accountId = scope.tags["component-report-filter"].filterByAccount;
-
-      if (opts.account_id) {
-
-        accountId = opts.account_id;
-      }
 
       if (!accountId) {
 

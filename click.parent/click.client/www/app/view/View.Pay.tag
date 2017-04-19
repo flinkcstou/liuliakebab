@@ -9,7 +9,8 @@
     <div class="pay-category-container" id="categoriesContainerId">
       <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
         <li each="{i in categoryList}" style="overflow: hidden;">
-          <div class="pay-service-block-containter" id="{i.id}" ontouchstart="onTouchStartOfCategory()"
+          <div if="{!(modeOfApp.offlineMode && i.id == 11)}" class="pay-service-block-containter" id="{i.id}"
+               ontouchstart="onTouchStartOfCategory()"
                ontouchend="onTouchEndOfCategory(this.id)"
                ontouchmove="onTouchMoveOfCategory()">
             <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
@@ -57,14 +58,14 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    scope.categoryList = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) : (offlinePayCategoryList);
-    scope.serviceList = (modeOfApp.onlineMode) ? JSON.parse((localStorage.getItem("click_client_payServiceList"))) : (offlinePayServiceList);
-    scope.serviceNamesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"))) : (offlinePayServiceNamesMap);
-    scope.servicesMapByCategory = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"))) : (offlineServicesMapByCategory);
-    scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
-    scope.servicesParams = (modeOfApp.onlineMode) ? JSON.parse((localStorage.getItem("click_client_servicesParams"))) : (offlineServicesParams);
-    scope.servicesParamsMapOne = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
-    scope.categoryNamesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
+    scope.categoryList = (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) ? (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) : (offlinePayCategoryList);
+    scope.serviceList = (JSON.parse(localStorage.getItem("click_client_payServiceList"))) ? (JSON.parse(localStorage.getItem("click_client_payServiceList"))) : (offlinePayServiceList);
+    scope.serviceNamesMap = (JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"))) : (offlinePayServiceNamesMap);
+    scope.servicesMapByCategory = (JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"))) : (offlineServicesMapByCategory);
+    scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
+    scope.servicesParams = (JSON.parse(localStorage.getItem("click_client_servicesParams"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParams"))) : (offlineServicesParams);
+    scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
+    scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
 
     //    console.log("click_client_payCategoryList", localStorage.getItem("click_client_payCategoryList"));
     //    console.log("click_client_payServiceList", localStorage.getItem("click_client_payServiceList"));
@@ -494,6 +495,7 @@
       onTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20 || scope.checkOfSearch) {
+        console.log('ID ID ID', id)
         if (opts[0] == 'ADDAUTOPAY' && scope.servicesMap[id][0].autopay_available) {
           event.preventDefault();
           event.stopPropagation();

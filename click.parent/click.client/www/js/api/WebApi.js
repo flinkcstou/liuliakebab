@@ -40,7 +40,7 @@ window.api.initSocket = function () {
       alert("Соединение установлено");
 
       if (window.api.socket.readyState == 1 && window.lastSocketMethodToSend) {
-        socket.send(window.lastSocketMethodToSend);
+        window.api.socket.send(window.lastSocketMethodToSend);
         window.lastSocketMethodToSend = undefined;
       } else {
 
@@ -119,12 +119,12 @@ window.api.initSocket = function () {
 
       try {
 
+        window.isConnected = false;
         var error = parsedData.data[0][0].error_note;
 
         var result = confirm(error);
 
         if (result) {
-
           riotTags.innerHTML = "<view-authorization>";
           riot.mount('view-authorization');
         }
@@ -225,6 +225,9 @@ window.api.call = function (params) {
     if (result) {
       modeOfApp.offlineMode = true;
       modeOfApp.onlineMode = false;
+
+      riotTags.innerHTML = "<view-main-page>";
+      riot.mount('view-main-page');
       riot.update()
     }
   }
@@ -248,15 +251,13 @@ function offlineDetector() {
     if (result) {
       modeOfApp.offlineMode = true;
       modeOfApp.onlineMode = false;
+
+      riotTags.innerHTML = "<view-main-page>";
+      riot.mount('view-main-page');
       riot.update()
     }
   }
 
   console.log("OFFLINE DETECTOR");
   window.isConnected = false;
-
-  if (window.api.socket.readyState == 1) {
-
-    window.api.socket.close();
-  }
 }

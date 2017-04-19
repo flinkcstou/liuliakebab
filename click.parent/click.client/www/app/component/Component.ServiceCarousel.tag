@@ -44,7 +44,8 @@
     var scope = this;
     var leftOfDelta;
     var cardNumberOfService = 0;
-    scope.popularServiceList = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_popularServiceList"))) : (offlinePopularServiceList);
+    if (modeOfApp.offlineMode)
+      scope.popularServiceList = localStorage.getItem("click_client_popularServiceList") ? (JSON.parse(localStorage.getItem("click_client_popularServiceList"))) : (offlinePopularServiceList);
     scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');

@@ -203,6 +203,7 @@
         }
         changeMode()
       }
+      else sideMenuTouchEnd()
 
     }
 

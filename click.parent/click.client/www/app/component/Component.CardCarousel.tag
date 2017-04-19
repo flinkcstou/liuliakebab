@@ -461,7 +461,6 @@
     }
     onComponentCreated();
 
-    //TODO: update scope.cardsarray at each in component-card
     scope.switchToOfflineMode = function () {
 
       scope.invoiceList = [];
@@ -472,33 +471,54 @@
 
       if (cardsTemp) {
 
-        cardsTemp = JSON.parse(cardsTemp);
+        var cardNumber = 0;
 
+        cardsTemp = JSON.parse(cardsTemp);
         scope.cardsarray = cardsTemp;
         count = 0;
+        scope.cardNumber = 0;
+        localStorage.setItem("cardNumber", scope.cardNumber);
 
         if (scope.invoiceCheck) {
 
-          var cardsNumber = JSON.parse(localStorage.getItem("click_client_countCard")),
-              cardNumber = 0;
-          cardsNumber = JSON.stringify((cardsNumber) ? (cardsNumber - 1) : (0));
-          scope.cardNumber = cardNumber;
-          cardNumber = JSON.stringify(cardNumber);
-          localStorage.setItem("click_client_countCard", cardsNumber);
-          localStorage.setItem("cardNumber", cardNumber);
-
           scope.invoiceCheck = false;
 
-          for (var index in scope.cardsarray) {
 
+          for (var index in scope.cardsarray) {
             count++;
+
             scope.cardsarray[index].countCard--;
           }
+
+          localStorage.setItem("click_client_countCard", count);
 
 //          console.log("CardNumber", scope.cardNumber);
 //          console.log("ASDASDASD", JSON.stringify(scope.cardsarray), JSON.stringify(scope.cardNumber));
 //
-//          console.log(scope.cardNumber, count);
+          console.log(scope.cardNumber, count);
+        } else {
+
+
+          var isThereElementAtZero = false;
+
+          for (var index in scope.cardsarray) {
+            count++;
+
+            if (scope.cardsarray[index].countCard == 0) {
+
+              isThereElementAtZero = true;
+            }
+          }
+
+          if (!isThereElementAtZero) {
+
+            for (var index in scope.cardsarray) {
+
+              scope.cardsarray[index].countCard--;
+            }
+          }
+
+          localStorage.setItem("click_client_countCard", count);
         }
 
         localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
@@ -509,6 +529,8 @@
         scope.cardNumber = 0;
         count = 1;
         scope.cardsarray = window.offlineCard;
+        localStorage.setItem("cardNumber", scope.cardNumber);
+        localStorage.setItem("click_client_countCard", count);
       }
 
       cards.style.transform = "translate3d(0, 0, 0)";
@@ -528,8 +550,9 @@
 
       if (modeOfApp.offlineMode) {
 
-        setTimeout(scope.switchToOfflineMode, 0);
+        console.log("scope.switchToOfflineMode");
 
+        setTimeout(scope.switchToOfflineMode, 10);
       }
     });
 
