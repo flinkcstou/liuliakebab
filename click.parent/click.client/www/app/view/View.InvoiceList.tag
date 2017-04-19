@@ -63,7 +63,9 @@
     scope.showError = false;
     scope.invoiceList = [];
     scope.titleName = languages.ViewInvoiceListTitle;
-    scope.toUser = true;
+    scope.toUser = opts.toUser;
+
+    console.log("TO USER", scope.toUser, opts.toUser);
 
     getInvoiceListToUser = function () {
 
@@ -172,13 +174,19 @@
       });
     };
 
-    getInvoiceListToUser();
+    if (scope.toUser) {
+
+      getInvoiceListToUser();
+    } else {
+
+      getInvoiceListFromUser();
+    }
 
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
-    }
+    };
 
     goToInvoiceHistoryDetailTouchEnd = function (invoice) {
 
@@ -190,6 +198,39 @@
 
         invoice = JSON.parse(invoice);
         console.log("Invoice for view.invoice-history-details", invoice);
+
+        if (history.arrayOfHistory.length != 0) {
+
+          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-invoice-list') {
+            history.arrayOfHistory.pop();
+
+            opts.toUser = scope.toUser;
+
+            history.arrayOfHistory.push(
+                {
+                  "view": 'view-invoice-list',
+                  "params": opts
+                }
+            );
+
+            console.log("HISTORY ARRAY_OF_HISTORY", history.arrayOfHistory);
+
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+          }
+        }
+        else {
+
+          opts.toUser = scope.toUser;
+
+          history.arrayOfHistory.push(
+              {
+                "view": 'view-invoice-list',
+                "params": opts
+              }
+          );
+
+          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+        }
 
         var params = {};
 

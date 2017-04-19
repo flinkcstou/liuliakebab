@@ -305,93 +305,93 @@
         if (device.platform != 'BrowserStand') {
 
           cordova.plugins.barcodeScanner.scan(
-            function (result) {
-              console.log(result)
+              function (result) {
+                console.log(result)
 
-              var string = result.text;
-              if (string.indexOf('click.uz') != -1) {
+                var string = result.text;
+                if (string.indexOf('click.uz') != -1) {
 
-                string = string.split('?')[1]
-                string = string.split('&')
-                var id = '';
-                for (var i in string) {
-                  if (string[i].split('=')[0] == 'id') {
-                    id = string[i].split('=')[1];
-                    console.log('ID', id)
+                  string = string.split('?')[1]
+                  string = string.split('&')
+                  var id = '';
+                  for (var i in string) {
+                    if (string[i].split('=')[0] == 'id') {
+                      id = string[i].split('=')[1];
+                      console.log('ID', id)
+                    }
                   }
-                }
-                if (id) {
-                  if (modeOfApp.offlineMode) {
-                    riotTags.innerHTML = "<view-qr>";
-                    riot.mount('view-qr', {
+                  if (id) {
+                    if (modeOfApp.offlineMode) {
+                      riotTags.innerHTML = "<view-qr>";
+                      riot.mount('view-qr', {
 //                      "name": result.format,
 //                      "address": result.text,
-                      "id": id,
-                      "image": "resources/icons/ViewPay/logo_indoor.png"
-                    });
-                  }
-                  else {
-                    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-                    var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-                    var sessionKey = info.session_key;
+                        "id": id,
+                        "image": "resources/icons/ViewPay/logo_indoor.png"
+                      });
+                    }
+                    else {
+                      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+                      var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+                      var sessionKey = info.session_key;
 
-                    window.api.call({
-                      method: 'get.indoor.service',
-                      input: {
-                        phone_num: phoneNumber,
-                        session_key: sessionKey,
-                        service_id: id,
+                      window.api.call({
+                        method: 'get.indoor.service',
+                        input: {
+                          phone_num: phoneNumber,
+                          session_key: sessionKey,
+                          service_id: id,
 
-                      },
+                        },
 
-                      scope: this,
+                        scope: this,
 
-                      onSuccess: function (result) {
-                        if (result[0][0].error == 0) {
-                          if (result[1]) {
-                            if (result[1][0]) {
-                              closeMenu();
-                              riotTags.innerHTML = "<view-qr>";
-                              riot.mount('view-qr', result[1][0]);
+                        onSuccess: function (result) {
+                          if (result[0][0].error == 0) {
+                            if (result[1]) {
+                              if (result[1][0]) {
+                                closeMenu();
+                                riotTags.innerHTML = "<view-qr>";
+                                riot.mount('view-qr', result[1][0]);
+                              }
                             }
+                            console.log("QR PAY", result);
                           }
-                          console.log("QR PAY", result);
-                        }
-                        else {
-                          scope.clickPinError = false;
-                          scope.errorNote = result[0][0].error_note;
-                          scope.showError = true;
-                          riot.update();
-                        }
-                      },
+                          else {
+                            scope.clickPinError = false;
+                            scope.errorNote = result[0][0].error_note;
+                            scope.showError = true;
+                            riot.update();
+                          }
+                        },
 
-                      onFail: function (api_status, api_status_message, data) {
-                        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                        console.error(data);
-                      }
-                    });
+                        onFail: function (api_status, api_status_message, data) {
+                          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                          console.error(data);
+                        }
+                      });
+                    }
                   }
                 }
+              },
+              function (error) {
+                scope.clickPinError = false;
+                scope.errorNote = "Scanning failed: " + error;
+                scope.showError = true;
+                riot.update();
+              },
+              {
+                preferFrontCamera: false, // iOS and Android
+                showFlipCameraButton: true, // iOS and Android
+                showTorchButton: true, // iOS and Android
+                torchOn: false, // Android, launch with the torch switched on (if available)
+                prompt: "Установите QR код в поле сканирования", // Android
+                resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+                formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
+                orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
+                disableAnimations: true, // iOS
+                disableSuccessBeep: false // iOS
               }
-            },
-            function (error) {
-              scope.clickPinError = false;
-              scope.errorNote = "Scanning failed: " + error;
-              scope.showError = true;
-              riot.update();
-            },
-            {
-              preferFrontCamera: false, // iOS and Android
-              showFlipCameraButton: true, // iOS and Android
-              showTorchButton: true, // iOS and Android
-              torchOn: false, // Android, launch with the torch switched on (if available)
-              prompt: "Установите QR код в поле сканирования", // Android
-              resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-              formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
-              orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
-              disableAnimations: true, // iOS
-              disableSuccessBeep: false // iOS
-            }
           );
         }
         else {
@@ -486,26 +486,31 @@
         closeMenu();
         if (modeOfApp.offlineMode) {
           phonedialer.dial(
-            "*880*00*98767" + "%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
-                scope.showError = true;
-                riot.update();
+              "*880*00*98767" + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  riot.update();
+                }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
               }
-              else console.log("Dialer Error:" + err);
-            },
-            function (success) {
-            }
           );
           return
         }
 
-        history.arrayOfHistory.push({view: "view-invoice-list"});
+        var params = {
+
+          toUser: true
+        };
+
+        history.arrayOfHistory.push({view: "view-invoice-list", params: params});
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
         riotTags.innerHTML = "<view-invoice-list>";
-        riot.mount("view-invoice-list");
+        riot.mount("view-invoice-list", params);
         return
       }
     };
