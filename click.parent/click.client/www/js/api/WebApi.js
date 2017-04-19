@@ -247,7 +247,6 @@ function onlineDetector() {
 function offlineDetector() {
 
   if (window.isConnected) window.api.socket.close()
-
   if (modeOfApp.onlineMode && window.isConnected) {
 
     var result = confirm("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?");
