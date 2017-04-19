@@ -26,7 +26,7 @@
         <div class="settings-block-next-icon"></div>
       </div>
 
-      <div class="settings-block-containter" ontouchend="goToInviteFriendSettings()">
+      <div style="display: none" class="settings-block-containter" ontouchend="goToInviteFriendSettings()">
         <div class="settings-block-icon"
              style="background-image: url('resources/icons/ViewSettings/settings_invite.png')"></div>
         <div class="settings-block-name-field">{window.languages.ViewInviteFriendSettingsTitle}</div>
