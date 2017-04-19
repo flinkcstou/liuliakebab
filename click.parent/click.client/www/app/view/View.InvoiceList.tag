@@ -149,7 +149,12 @@
 
                 for (var i = 0; i < result[1].length; i++) {
 
-                  result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
+                  try {
+                    result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
+                  } catch (error) {
+
+                    console.log(error);
+                  }
 
                   scope.invoiceList.push(result[1][i]);
                 }
