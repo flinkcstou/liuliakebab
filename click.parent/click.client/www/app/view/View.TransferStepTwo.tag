@@ -200,6 +200,7 @@
         minLimit = 5000;
       }
       if (sumForTransfer < minLimit) {
+
         sumValueId.blur();
         scope.clickPinError = false;
         scope.errorNote = ('Минимальная сумма 5 000');
