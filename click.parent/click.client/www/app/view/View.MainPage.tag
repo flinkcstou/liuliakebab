@@ -18,7 +18,8 @@
         <div class="bank-operation-button-my-cards-label">
           {window.languages.BankOperationsAutoPay}
         </div>
-        <div class="bank-operation-button-container" ontouchend="myCardList()"></div>
+        <div class="bank-operation-button-container" ontouchend="myCardListTouchEnd()"
+             ontouchstart="myCardListTouchStart()"></div>
       </div>
     </div>
   </div>
@@ -52,10 +53,10 @@
 
     history.arrayOfHistory = [];
     history.arrayOfHistory.push(
-        {
-          "view": 'view-main-page',
-          "params": opts
-        }
+      {
+        "view": 'view-main-page',
+        "params": opts
+      }
     );
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
@@ -70,19 +71,36 @@
     var width = window.innerWidth;
 
 
-    myCardList = function () {
+    var myCardListStartX, myCardListEndX, myCardListStartY, myCardListEndY
+
+    myCardListTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      if (modeOfApp.offlineMode)return
+
+      myCardListStartX = event.changedTouches[0].pageX;
+      myCardListStartY = event.changedTouches[0].pageY;
+    }
+    myCardListTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      myCardListEndX = event.changedTouches[0].pageX;
+      myCardListEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(myCardListStartX - myCardListEndX) <= 20 && Math.abs(myCardListStartY - myCardListEndY) <= 20) {
+
+        if (modeOfApp.offlineMode)return
 
 
-      console.log("modeOfApp", modeOfApp);
+        console.log("modeOfApp", modeOfApp);
 
-      if (modeOfApp.onlineMode) {
+        if (modeOfApp.onlineMode) {
 
-        this.riotTags.innerHTML = "<view-mycard-list>";
-        riot.mount('view-mycard-list');
+          this.riotTags.innerHTML = "<view-mycard-list>";
+          riot.mount('view-mycard-list');
+        }
       }
+      else return
     };
 
     blockForSwipeTouchStart = function () {
