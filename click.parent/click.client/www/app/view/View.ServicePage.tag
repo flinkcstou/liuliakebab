@@ -194,10 +194,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-service-page',
-          "params": opts
-        }
+          {
+            "view": 'view-service-page',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -775,10 +775,10 @@
 
 
     var maskOne = /[0-9]/g,
-      maskTwo = /[0-9' ']/g,
-      amountForPayTransaction = 0,
-      checkFirst = false,
-      defaultAccount;
+        maskTwo = /[0-9' ']/g,
+        amountForPayTransaction = 0,
+        checkFirst = false,
+        defaultAccount;
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     for (var i in cards) {
@@ -862,6 +862,14 @@
     };
 
     enterButton = function () {
+
+      try {
+        this.firstFieldInput.blur();
+        this.amount.blur();
+      } catch (error) {
+
+        console.log(error);
+      }
 
       if (scope.phoneFieldBool && firstFieldInput.value.length < 9 && viewPay.chosenServiceId != "mynumber") {
         scope.clickPinError = false;
@@ -993,18 +1001,18 @@
 
           phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-            ussdQuery + "%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
-                scope.showError = true;
-                riot.update();
+              ussdQuery + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  riot.update();
+                }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
               }
-              else console.log("Dialer Error:" + err);
-            },
-            function (success) {
-            }
           );
           return
         }
@@ -1063,18 +1071,18 @@
 
           phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-            ussdQuery + "%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
-                scope.showError = true;
-                riot.update();
+              ussdQuery + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  riot.update();
+                }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
               }
-              else console.log("Dialer Error:" + err);
-            },
-            function (success) {
-            }
           );
         }
 
