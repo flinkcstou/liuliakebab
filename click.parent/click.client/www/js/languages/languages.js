@@ -375,6 +375,15 @@ var RU_LANGUAGES =
   "ViewAutoPayMethodEventPutBalansText": "Пополнить баланс, если на счету меньше",
   "ViewAutoPayMethodEventPayAmountText": "Сумма оплаты",
   "ViewAutoPayMethodEventAmountCanBeText": "Сумма может быть:",
+
+  "ViewAutoPayMethodScheduleHowOftenText": "Как часто активировать автоплатеж:",
+  "ViewAutoPayMethodScheduleEveryMonth": "Ежемесячно",
+  "ViewAutoPayMethodScheduleEveryWeek": "Еженедельно",
+  "ViewAutoPayMethodScheduleLastDay": "в последний день",
+  "ViewAutoPayMethodScheduleChosenDay": "в указанный день",
+  "ViewAutoPayMethodScheduleChoseDate": "Выберите дату",
+  "ViewAutoPayMethodScheduleChoseTime": "Выберите время",
+  "ViewAutoPayMethodScheduleChoseWeekDay": "Выберите день недели",
 };
 
 window.languages = RU_LANGUAGES;
