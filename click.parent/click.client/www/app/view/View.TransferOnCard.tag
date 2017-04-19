@@ -8,7 +8,7 @@
 
   <div class="view-transfer-on-card-content-container">
 
-    <component-pincards transferoncard="true"></component-pincards>
+    <component-pincards transferoncard="true" clean="{true}"></component-pincards>
 
     <button class="transfer-on-card-ok-button" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
       {languages.ViewTransferOnCardAcceptButtonText}
@@ -23,6 +23,9 @@
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
                        operationmessagepartthree="{errorMessageFromTransfer}"></component-unsuccess>
+
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
 
   <script>
 
@@ -56,7 +59,27 @@
 
         console.log("Account ID and SECRET_KEY for accepting the TRANSFER INVOICE", accountId, opts.secret_key);
 
-        if (accountId == undefined) return;
+        if (accountId == undefined) {
+
+          scope.showError = true;
+          scope.errorNote = window.languages.ViewTransferOnCardCardNotChosen;
+          scope.clickPinError = false;
+
+          riot.update();
+
+          return;
+        }
+
+        if (!accountId && accountId != 0) {
+
+          scope.showError = true;
+          scope.errorNote = window.languages.ViewTransferOnCardCardNotChosen;
+          scope.clickPinError = false;
+
+          riot.update();
+
+          return;
+        }
 
         window.api.call({
           method: 'invoice.action',

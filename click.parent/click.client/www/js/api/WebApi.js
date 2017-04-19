@@ -1,5 +1,6 @@
 window.api = {};
 
+window.api.sessionErrorChecker = false;
 
 window.api.callBacks = {};
 
@@ -59,7 +60,9 @@ window.api.initSocket = function () {
       }
     }
 
+    console.log("window.isConnected onopen before", window.isConnected);
     window.isConnected = true;
+    console.log("window.isConnected onopen after", window.isConnected);
 
 
     if (device.platform != 'BrowserStand')
@@ -120,18 +123,23 @@ window.api.initSocket = function () {
 
       try {
 
-        window.isConnected = false;
         var error = parsedData.data[0][0].error_note;
 
-        var result = confirm(error);
+        if (!window.api.sessionErrorChecker) {
 
-        if (result) {
-          riotTags.innerHTML = "<view-authorization>";
-          riot.mount('view-authorization');
-        }
-        else {
+          window.api.sessionErrorChecker = true;
 
-          navigator.app.exitApp();
+          var result = confirm(error);
+
+          if (result) {
+
+            riotTags.innerHTML = "<view-authorization>";
+            riot.mount('view-authorization');
+          }
+          else {
+
+            navigator.app.exitApp();
+          }
         }
       } catch (error) {
 
@@ -159,8 +167,10 @@ window.api.initSocket = function () {
 
 window.api.call = function (params) {
 
+  window.api.sessionErrorChecker = false;
+
   var method = params.method;
-  console.log('METHOD', method)
+  console.log('METHOD', method);
   var input = params.input;
 
   var onSuccess = params.onSuccess;
@@ -188,7 +198,6 @@ window.api.call = function (params) {
   };
 
   if (modeOfApp.onlineMode && window.isConnected) {
-
 
     if (window.api.socket.readyState == 1) {
       this.socket.send(JSON.stringify({
@@ -224,6 +233,7 @@ window.api.call = function (params) {
 
     var result = confirm("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?");
     if (result) {
+
       modeOfApp.offlineMode = true;
       modeOfApp.onlineMode = false;
 
@@ -251,6 +261,7 @@ function offlineDetector() {
 
     var result = confirm("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?");
     if (result) {
+
       modeOfApp.offlineMode = true;
       modeOfApp.onlineMode = false;
 
@@ -261,5 +272,10 @@ function offlineDetector() {
   }
 
   console.log("OFFLINE DETECTOR");
+
+  console.log("window.isConnected offlineDetector before", window.isConnected);
+
   window.isConnected = false;
+
+  console.log("window.isConnected offlineDetector after", window.isConnected);
 }

@@ -34,7 +34,7 @@
         <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitlePayFrom}</p>
       </div>
 
-      <component-pincards paymentdetail="true"></component-pincards>
+      <component-pincards paymentdetail="{true}" clean="{true}"></component-pincards>
 
       <div class="account-detail-cover"></div>
 
@@ -156,11 +156,32 @@
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = loginInfo.session_key;
+
         var accountId = scope.tags["component-pincards"].getAccountCardId();
 
         console.log("Account ID for accepting the payment invoice", accountId);
 
-        if (accountId == undefined) return;
+        if (accountId == undefined) {
+
+          scope.showError = true;
+          scope.errorNote = window.languages.ViewPaymentDetailCardNotChosen;
+          scope.clickPinError = false;
+
+          riot.update();
+
+          return;
+        }
+
+        if (!accountId && accountId != 0) {
+
+          scope.showError = true;
+          scope.errorNote = window.languages.ViewPaymentDetailCardNotChosen;
+          scope.clickPinError = false;
+
+          riot.update();
+
+          return;
+        }
 
         window.api.call({
           method: 'invoice.action',
