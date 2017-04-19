@@ -16,7 +16,7 @@
             <p class="view-favorites-info-name">{j.service.name}</p>
             <div class="view-favorites-info-balance">{j.opts[5].amountText}</div>
             <div class="view-favorites-info-currency-field">сум</div>
-            <p class="view-favorites-info-number">{j.opts[2].firstFieldText}</p>
+            <p class="view-favorites-info-number">+{window.languages.CodeOfCountry}{j.opts[2].firstFieldText}</p>
           </div>
         </div>
         <div id="{j.service.id}" class="view-favorites-delete-icon" ontouchend="removeFromFavorites(this.id)"></div>
@@ -67,7 +67,7 @@
             if (scope.favoritePaymentsList[i].opts[5] && scope.favoritePaymentsList[i].opts[5].amountText)
               scope.favoritePaymentsList[i].opts[5].amountText = window.amountTransform(scope.favoritePaymentsList[i].opts[5].amountText)
             if (firstField.length == 9) {
-              firstField = '+' + window.languages.CodeOfCountry + ' ' + firstField.substr(0, 2) + ' ' + firstField.substr(2, 3) + ' ' + firstField.substr(5, 2) + ' ' +
+              firstField = firstField.substr(0, 2) + ' ' + firstField.substr(2, 3) + ' ' + firstField.substr(5, 2) + ' ' +
                 firstField.substr(7, 2);
             }
             scope.favoritePaymentsList[i].opts[2].firstFieldText = firstField;

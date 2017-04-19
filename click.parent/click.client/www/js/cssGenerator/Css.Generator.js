@@ -11984,6 +11984,130 @@ var css = {
   "color: #ffffff;" +
   "}",
 
+//  View autopay schedule method
+
+  autopayScheduleHowOftenText: ".autopay-schedule-howoften-text" +
+  "{" +
+  "top: 3%; " +
+  "}",
+
+  autopayScheduleBlockContainer: ".autopay-schedule-block-containter" +
+  "{" +
+  "position: relative;" +
+  "height:" + 110 * widthK + "px; " +
+  "width: 91%;" +
+  "left: 4%;" +
+  "margin-top: 1%;" +
+  "border-top:" + 1 * widthK + "px solid gainsboro;" +
+  "background-color: transparent;" +
+  "top: 8%; " +
+  "}",
+
+  autopayScheduleBlockText: ".autopay-schedule-block-text" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 26 * widthK + "px; " +
+  "left: 6%;" +
+  "text-align: left;" +
+  "font-size:" + 29 * widthK + "px; " +
+  "color: #585658;" +
+  "}",
+
+  autopayScheduleBlockNextIcon: ".autopay-schedule-block-next-icon" +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 10%;" +
+  "height: 100%;" +
+  "top: 0;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 17%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/ViewInfo/open.png);" +
+  "}",
+
+  autopayScheduleBlockDetailText: ".autopay-schedule-block-detail-text" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 31 * widthK + "px; " +
+  "left: 6%;" +
+  "text-align: left;" +
+  "font-size:" + 22 * widthK + "px; " +
+  "color: darkgray;" +
+  "width: 70%;" +
+  "}",
+
+  scheduleDateBlock: ".schedule-date-block " +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.92;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "background-color: #f4f4f4;" +
+  "z-index: 99999;" +
+  "display: none;" +
+  "}",
+
+  scheduleDateBlockTitle: ".component-alert-message" +
+  "{" +
+  "position: relative;" +
+  "color: #1d1d1f;" +
+  "width:" + 400 * widthK + "px;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 601 * widthK + "px;" +
+  "left:" + -10 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "}",
+
+
+  //componentAlertClickPinErrorMsgOne: ".component-alert-clickpin-message-one" +
+  //"{" +
+  //
+  //  //"color: #1d1d1f;" +
+  //"width:100%;" +
+  //"top:0;" +
+  //"left:0;" +
+  //"}",
+  //
+  //componentAlertClickPinErrorMsgTwo: ".component-alert-clickpin-message-two" +
+  //"{" +
+  //"color: #FFAE0A;" +
+  //"width:100%;" +
+  //"top:0;" +
+  //"left:0;" +
+  //"font-weight: bold;" +
+  //"}",
+  //
+  //componentAlertClickPinErrorMsgThree: ".component-alert-clickpin-message-three" +
+  //"{" +
+  //  //"color: yellow;" +
+  //"width:100%;" +
+  //"top:0;" +
+  //"left:0;" +
+  //"}",
+
+  scheduleDateBlockButtonChoose: ".schedule-date-block-button-choose " +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "height: " + 74 * widthK + "px;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "top: 82%;" +
+  "background-color: #01B8FE;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "bottom: 0;" +
+  "font-size: " + 38 * widthK + "px;" +
+  "color: #ffffff;" +
+  "}",
+
 
 }
 

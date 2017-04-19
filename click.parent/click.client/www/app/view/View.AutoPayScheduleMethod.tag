@@ -12,11 +12,49 @@
 
 
     <div class="autopay-method-body-container">
-      <div class="autopay-method-choose-text">{window.languages.ViewAutoPayMethodChooseText}</div>
+      <div class="autopay-method-choose-text autopay-schedule-howoften-text">
+        {window.languages.ViewAutoPayMethodScheduleHowOftenText}
+      </div>
+
+      <div class="autopay-schedule-block-containter" ontouchend="everyMonthLastDay()">
+        <div class="autopay-schedule-block-text">{window.languages.ViewAutoPayMethodScheduleEveryMonth}</div>
+        <div class="autopay-schedule-block-detail-text">
+          {window.languages.ViewAutoPayMethodScheduleLastDay}
+        </div>
+        <div class="autopay-schedule-block-next-icon"></div>
+      </div>
+      <div class="autopay-schedule-block-containter" ontouchend="goToCallCenterSettings()">
+        <div class="autopay-schedule-block-text">{window.languages.ViewAutoPayMethodScheduleEveryMonth}</div>
+        <div class="autopay-schedule-block-detail-text">
+          {window.languages.ViewAutoPayMethodScheduleChosenDay}
+        </div>
+        <div class="autopay-schedule-block-next-icon"></div>
+      </div>
+      <div class="autopay-schedule-block-containter" ontouchend="goToCallCenterSettings()">
+        <div class="autopay-schedule-block-text">{window.languages.ViewAutoPayMethodScheduleEveryWeek}</div>
+        <div class="autopay-schedule-block-next-icon"></div>
+      </div>
 
 
     </div>
 
+  </div>
+
+  <div id="dateChooseBlockId" class="schedule-date-block">
+    <p class="component-alert-message">{window.languages.ViewAutoPayMethodScheduleChoseDate}</p>
+
+    <div class="component-alert-clickpin-error-container" if="{opts.clickpinerror}">
+      <p class="component-alert-message component-alert-clickpin-message-one">
+        {window.languages.ComponentAlertClickPinErrorTextOne}</p>
+      <p class="component-alert-message component-alert-clickpin-message-two">
+        {window.languages.ComponentAlertClickPinErrorTextTwo}</p>
+      <p class="component-alert-message component-alert-clickpin-message-three">
+        {window.languages.ComponentAlertClickPinErrorTextThree}</p>
+    </div>
+
+    <button class="schedule-date-block-button-choose" ontouchend="chooseDate()">
+      {window.languages.ComponentAlertOk}
+    </button>
   </div>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
@@ -55,6 +93,14 @@
       event.stopPropagation();
       onBackKeyDown()
     };
+
+    everyMonthLastDay = function () {
+      dateChooseBlockId.style.display = 'block';
+    }
+
+    chooseDate = function () {
+      dateChooseBlockId.style.display = 'none';
+    }
 
 
   </script>
