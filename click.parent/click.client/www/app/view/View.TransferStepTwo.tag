@@ -179,7 +179,7 @@
       event.preventDefault()
       event.stopPropagation()
 //      console.log('objectForTransfer', objectForTransfer)
-      if (objectForTransfer.type == 1) {
+      if (objectForTransfer.type == 1 && modeOfApp.onlineMode) {
         var codeOfBank = objectForTransfer.name.replace(/\s/g, '').substring(3, 6);
         var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'));
         var maxLimit;
@@ -257,6 +257,7 @@
             }
           );
         }
+        return
       }
       else {
 
