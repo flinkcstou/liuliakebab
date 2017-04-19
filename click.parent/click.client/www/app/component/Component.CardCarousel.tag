@@ -143,16 +143,14 @@
         }
 
         if (JSON.parse(localStorage.getItem("click_client_cards"))) {
-          localStorage.removeItem("click_client_cards")
+//          localStorage.removeItem("click_client_cards")
           scope.cardsarray = {};
-          riot.update(scope.cardsarray);
         }
       }
 
       if (!scope.cardsarray) {
 
         scope.cardsarray = {};
-        riot.update(scope.cardsarray);
       }
 
       if (scope.invoiceCheck && viewMainPage.atMainPage) {
