@@ -1,7 +1,7 @@
 <component-pincards>
 
   <div
-    class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail,
+      class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail,
                                         transfer-on-card-pincard-all-cards-container: opts.transferoncard,
                                         changed-height-for-filter-account: opts.filteraccount}">
     <div class="pincard-card-container" each="{i in cardsArray}" ontouchend="chooseCardTouchEnd(this.id)"
@@ -149,6 +149,22 @@
       else return
 
     };
+
+    cleanChosenCards = function () {
+
+      for (var i in scope.cardsArray) {
+
+        scope.cardsArray[i].chosenCard = false;
+      }
+
+      localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))
+      riot.update();
+    };
+
+    if (opts.clean) {
+
+      cleanChosenCards();
+    }
 
     scope.getAccountCardId = function () {
 

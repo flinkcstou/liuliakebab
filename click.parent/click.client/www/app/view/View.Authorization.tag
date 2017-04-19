@@ -83,6 +83,8 @@
     //      }
     //    }
 
+    window.lastSocketMethodToSend = undefined;
+
     localStorage.setItem("click_client_authorized", JSON.stringify(false));
 
     var scope = this;
@@ -93,20 +95,20 @@
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization' && !JSON.parse(localStorage.getItem('onResume'))) {
         history.arrayOfHistory.push(
-          {
-            "view": 'view-authorization',
-            "params": opts
-          }
+            {
+              "view": 'view-authorization',
+              "params": opts
+            }
         );
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
       }
     }
     else {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-authorization',
-          "params": opts
-        }
+          {
+            "view": 'view-authorization',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }

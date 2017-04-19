@@ -129,7 +129,16 @@
 
       var secret_key = this.secretCodeInput.value;
 
-      if (!secret_key) return;
+      if (!secret_key) {
+
+        scope.showError = true;
+        scope.errorNote = window.languages.ViewTransferDetailCodeNotEntered;
+        scope.clickPinError = false;
+
+        riot.update();
+
+        return;
+      }
 
       if (Math.abs(touchEndAcceptSecretCodeX - touchStartAcceptSecretCodeX) < 20 &&
           Math.abs(touchEndAcceptSecretCodeY - touchStartAcceptSecretCodeY) < 20) {

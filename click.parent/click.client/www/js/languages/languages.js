@@ -268,6 +268,8 @@ var RU_LANGUAGES =
   "ViewTransferDetailTitleAccept": "Принять",
   "ViewTransferDetailTitleDecline": "Отклонить",
 
+  "ViewTransferDetailCodeNotEntered": "Введите секретный код",
+
   "ViewTransferDetailConfirmEnterCodeLabel": "Введите секретный код для получения перевода:",
   "ViewTransferDetailConfirmShouldSendCodeLabelFirstPart": "Пользователь",
   "ViewTransferDetailConfirmShouldSendCodeLabelSecondPart": "должен сообщить вам секретный код",
@@ -275,6 +277,7 @@ var RU_LANGUAGES =
   "ViewTransferOnCardTitleTextPartOne": "Зачислить средства в размере",
   "ViewTransferOnCardTitleTextPartTwo": "на карту:",
   "ViewTransferOnCardAcceptButtonText": "принять",
+  "ViewTransferOnCardCardNotChosen": "Выберите карты",
 
   "ViewAccountDetailTransferIconTitleOne": "Получен счет",
   "ViewAccountDetailTransferIconTitleTwo": "от пользователя CLICK",
@@ -292,6 +295,7 @@ var RU_LANGUAGES =
   "ViewPaymentDetailTitleSum": "Сумма платежа:",
   "ViewPaymentDetailTitlePayFor": "Оплата за",
   "ViewPaymentDetailTitlePayFrom": "Оплатить с:",
+  "ViewPaymentDetailCardNotChosen": "Выберите карты",
 
   "ViewTrustedDevicesTitle": "доверенные устройства",
 
