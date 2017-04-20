@@ -3781,7 +3781,7 @@ var css = {
   pincardButtonEnter: " .pincard-button-enter" +
   "{" +
   "top: 60%;" +
-  "height: 15%;" +
+  "height: " + 74 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
   "background-color: #00a8f1;" +
   "padding: 0;" +
