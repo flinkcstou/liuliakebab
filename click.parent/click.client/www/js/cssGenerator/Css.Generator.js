@@ -10090,6 +10090,38 @@ var css = {
   "background-position-x: center;" +
   "}",
 
+  componentConfirmButtonOkContainer: ".component-confirm-button-ok-container" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "height: " + 74 * widthK + "px;" +
+  "left: 52%;" +
+  "width: 40%;" +
+  "top: 82%;" +
+  "background-color: #01B8FE;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "bottom: 0;" +
+  "font-size: " + 38 * widthK + "px;" +
+  "color: #ffffff;" +
+  "}",
+
+  componentConfirmButtonCancelContainer: ".component-confirm-button-cancel-container" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "height: " + 74 * widthK + "px;" +
+  "left: 8%;" +
+  "width: 40%;" +
+  "top: 82%;" +
+    //"background-color: #01B8FE;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "bottom: 0;" +
+  "font-size: " + 38 * widthK + "px;" +
+  "color: #ffffff;" +
+  "}",
+
   //VIEW TRUSTED DEVICES
   trustedDevicesTitle: ".trusted-devices-title " +
   "{" +

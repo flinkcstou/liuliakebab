@@ -172,6 +172,8 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
+  <component-confirm if="{showConfirm}" confirmnote="{confirmNote}"></component-confirm>
+
   </div>
 
 
@@ -214,6 +216,7 @@
     console.log('opts', opts)
     scope.enterButton = opts[0] != 'ADDFAVORITE' ? true : false;
     scope.showError = false;
+    scope.showConfirm = false;
 
 
     telPayVerificationKeyDown = function (input) {
@@ -880,9 +883,13 @@
       }
 
       if (scope.phoneFieldBool && firstFieldInput.value.length < 9 && viewPay.chosenServiceId != "mynumber") {
-        scope.clickPinError = false;
-        scope.errorNote = "Неправильно введён номер телефона";
-        scope.showError = true;
+//        scope.clickPinError = false;
+//        scope.errorNote = "Неправильно введён номер телефона";
+//        scope.showError = true;
+//        riot.update();
+
+        scope.confirmNote = "Неправильно введён номер телефона";
+        scope.showConfirm = true;
         riot.update();
 
         return;
