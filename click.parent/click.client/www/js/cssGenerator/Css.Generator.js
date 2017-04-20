@@ -10868,11 +10868,20 @@ var css = {
 
 //  View Report Service
 
+  viewReportService: ".view-report-service" +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width:100%;" +
+  "z-index:999999;" +
+  "}",
+
   reportServiceUpperContainer: ".report-service-upper-container" +
   "{" +
   "position: absolute;" +
   "height:" + 382 * widthK + "px;" +
   "width:100%;" +
+  "background-color: #00a8f1;" +
   "}",
 
   reportServiceIcon: ".report-service-icon" +

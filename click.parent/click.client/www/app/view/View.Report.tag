@@ -90,7 +90,7 @@
     </div>
   </div>
 
-  <view-report-service hidden="{!checkReportServicePage}"></view-report-service>
+  <view-report-service hidden="{!showComponent}"></view-report-service>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
@@ -720,7 +720,7 @@
     //    paymentListUpdate();
 
 
-    scope.checkReportServicePage = false;
+    scope.showComponent = false;
 
     var paymentTouchStartY, paymentTouchEndY;
 
@@ -741,8 +741,9 @@
 
             console.log("scope.tags['view-report-service']", scope.tags)
             console.log("scope.tags['view-report-service']", scope)
-            scope.checkReportServicePage = true;
+            scope.showComponent = true;
             scope.tags['view-report-service'].opts = scope.paymentsList[i]
+            window.checkShowingComponent = scope.tags['view-report-service'];
 
             riot.update()
             break;

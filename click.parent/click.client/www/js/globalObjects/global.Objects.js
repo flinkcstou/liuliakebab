@@ -100,6 +100,8 @@ componentReportFilter.pastWeek = 4;
 componentReportFilter.currentMonth = 5;
 componentReportFilter.pastMonth = 6;
 
+window.checkShowingComponent = null;
+
 window.pickContactFromNativeChecker = false;
 
 window.representDotedDate = function (left, middle, right) {
