@@ -46,13 +46,10 @@
     var cardNumberOfService = 0;
     if (modeOfApp.offlineMode) {
       scope.popularServiceList = localStorage.getItem("click_client_popularServiceList") ? (JSON.parse(localStorage.getItem("click_client_popularServiceList"))) : (offlinePopularServiceList);
-
     }
     else {
       scope.popularServiceList = JSON.parse(localStorage.getItem("click_client_popularServiceList"));
-      console.log("GOOGLE", localStorage.getItem("click_client_popularServiceList"))
       riot.update(scope.popularServiceList);
-
     }
     scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
 
@@ -69,7 +66,7 @@
     scope.showError = false;
 
     if (!localStorage.getItem("click_client_popularServiceList") && modeOfApp.onlineMode) {
-
+      alert("A");
       scope.popularServiceList = [];
       window.api.call({
         method: 'get.popular.services',
