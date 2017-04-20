@@ -33,7 +33,8 @@
       {languages.ViewReportMonthsArray[mNumber].name}
       {languages.ViewReportsFilterMonthNotStartedYet}</p>
 
-    <div class="view-reports-body-container" id="reportBodyContainerId" if="{firstReportView}"
+    <div ontouchstart="reportsBodyContainerTouchStart()" ontouchend="reportsBodyContainerTouchEnd()"
+         class="view-reports-body-container" id="reportBodyContainerId" if="{firstReportView}"
          onscroll="reportsBodyContainerTouchMove()">
       <div class="view-reports-payments-container" each="{i in paymentDates}">
         <div class="view-reports-payment-date-containter">
@@ -454,6 +455,16 @@
 
       riot.update();
 
+      if (device.platform != 'BrowserStand') {
+        var options = {dimBackground: true};
+
+        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+          console.log("Started");
+        }, function () {
+          console.log("closed");
+        });
+      }
+
       window.api.call({
         method: 'get.payment.list',
         input: {
@@ -722,18 +733,19 @@
 
     scope.showComponent = false;
 
-    var paymentTouchStartY, paymentTouchEndY;
+    var paymentTouchStartY, paymentTouchStartX, paymentTouchEndY, paymentTouchEndX;
 
     paymentTouchEnd = function (paymentId) {
       event.preventDefault();
       event.stopPropagation();
 
       paymentTouchEndY = event.changedTouches[0].pageY;
+      paymentTouchEndX = event.changedTouches[0].pageX;
 
       console.log('settingsTouchStartY', paymentTouchStartY)
       console.log('settingsTouchEndY', paymentTouchEndY)
 
-      if (Math.abs(paymentTouchStartY - paymentTouchEndY) < 20) {
+      if (Math.abs(paymentTouchStartY - paymentTouchEndY) <= 20 && (Math.abs(paymentTouchStartX - paymentTouchEndX) <= 20)) {
 
         for (var i = 0; i < scope.paymentsList.length; i++) {
           if (scope.paymentsList[i].payment_id == paymentId) {
@@ -750,11 +762,39 @@
           }
         }
       }
+      else {
+        if (Math.abs(paymentTouchStartY - paymentTouchEndY) <= 100 && (Math.abs(paymentTouchStartX - paymentTouchEndX) > 20)) {
+          carouselTouchEndX = paymentTouchEndX
+          carouselTouchStartX = paymentTouchStartX
+          monthChanged = true
+          changePosition()
+        }
+      }
 
     }
 
     paymentTouchStart = function () {
       paymentTouchStartY = event.changedTouches[0].pageY;
+      paymentTouchStartX = event.changedTouches[0].pageX;
+    }
+
+    var reportBodyContainerStartX, reportBodyContainerStartY, reportBodyContainerEndX, reportBodyContainerEndY;
+    reportsBodyContainerTouchStart = function () {
+      reportBodyContainerStartY = event.changedTouches[0].pageY;
+      reportBodyContainerStartX = event.changedTouches[0].pageX;
+    }
+
+    reportsBodyContainerTouchEnd = function () {
+      reportBodyContainerEndY = event.changedTouches[0].pageY;
+      reportBodyContainerEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(paymentTouchStartY - paymentTouchEndY) <= 100 && (Math.abs(paymentTouchStartX - paymentTouchEndX) > 20)) {
+        carouselTouchEndX = reportBodyContainerEndX
+        carouselTouchStartX = reportBodyContainerStartX
+        monthChanged = true
+        changePosition()
+      }
+
     }
 
   </script>

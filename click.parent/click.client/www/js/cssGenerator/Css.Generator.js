@@ -8538,6 +8538,7 @@ var css = {
   "height:" + 150 * widthK + "px; " +
   "width: 91%;" +
   "left: 4%;" +
+  "z-index: 1;" +
     //"margin-top: 1%;" +
   "border-top:" + 1 * widthK + "px solid #f1f1f1;" +
   "background-color: transparent;" +
