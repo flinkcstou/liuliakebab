@@ -41,19 +41,20 @@
 
       if (device.platform == "Android") {
         phonedialer.dial(
-            "*880*2%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = "Unknown phone number";
-                scope.showError = true;
-                riot.update();
-              }
-              else console.log("Dialer Error:" + err);
-            },
-            function (success) {
+          "*880*2%23",
+          function (err) {
+            if (err == "empty") {
+              scope.clickPinError = false;
+              scope.errorNote = "Unknown phone number";
+              scope.showError = true;
+              riot.update();
             }
+            else console.log("Dialer Error:" + err);
+          },
+          function (success) {
+          }
         );
+        return
       }
     }
 

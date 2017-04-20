@@ -1084,6 +1084,7 @@
             function (success) {
             }
           );
+          return
         }
 
         scope.formTypeTwoOptsArray = [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites];
