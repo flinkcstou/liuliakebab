@@ -32,13 +32,14 @@ window.api.initSocket = function () {
 
 
   this.socket.onopen = function () {
+    //window.showAlert(false, "Соединение установлено", true);
 
 
     console.log('WebSocket is connected');
 
     if (!window.isConnected) {
 
-      alert("Соединение установлено");
+      //showAlert(false, "Соединение установлено", true);
 
       if (window.api.socket.readyState == 1 && window.lastSocketMethodToSend) {
         window.api.socket.send(window.lastSocketMethodToSend);
