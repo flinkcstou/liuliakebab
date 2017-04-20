@@ -18,7 +18,7 @@ window.api.init = function () {
 
   }
   catch (error) {
-
+    window.api.init();
 
 
     //while (!window.isConnected) {
@@ -157,6 +157,7 @@ window.api.initSocket = function () {
     }
   };
   this.socket.onerror = function (error) {
+    window.api.init();
 
 
     console.log("ENTERED_SADASDASDASDA_WEB_API_ERROR");

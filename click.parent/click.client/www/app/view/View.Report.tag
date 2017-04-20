@@ -130,14 +130,6 @@
       }
     });
 
-    reportsBodyContainerTouchMove = function () {
-      event.preventDefault();
-      event.stopPropagation();
-      var position = reportBodyContainerId.scrollTop;
-      console.log('POSITION', position)
-      console.log('HEight', reportBodyContainerId.style.height)
-    }
-
 
     touchStartTitle = function () {
       event.preventDefault();
@@ -211,6 +203,8 @@
     riot.update(scope.monthsArray);
 
 
+    var monthChanged = false;
+
     monthContainerTouchStart = function () {
 
       if ((scope.tags['component-report-filter'].filterDateFrom && scope.tags['component-report-filter'].filterDateTo)) {
@@ -243,6 +237,9 @@
       if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20) {
         changePosition();
       }
+      else {
+        monthChanged = false;
+      }
     };
 
 
@@ -265,34 +262,36 @@
 
     };
 
+
     function changePosition() {
 
+      monthChanged = true;
       if (carouselTouchEndX < carouselTouchStartX && scope.mNumber < count - 1) {
         ++scope.mNumber;
-        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
       if (carouselTouchEndX > carouselTouchStartX && scope.mNumber == 0) {
-        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
       if (carouselTouchEndX < carouselTouchStartX && scope.mNumber == count - 1) {
-        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
       if (carouselTouchEndX > carouselTouchStartX && scope.mNumber > 0) {
         --scope.mNumber;
-        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
@@ -323,30 +322,30 @@
 
       if (scope.mNumber < count - 1) {
         ++scope.mNumber;
-        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
       if (scope.mNumber == 0) {
-        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
       if (scope.mNumber == count - 1) {
-        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
       if (scope.mNumber > 0) {
         --scope.mNumber;
-        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
@@ -384,6 +383,27 @@
       return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
     }
 
+    scope.paymentsMap = {};
+    scope.paymentDates = [];
+    scope.paymentsList = [];
+    scope.pageNumberOptional = 1;
+
+    reportsBodyContainerTouchMove = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      console.log('reportBodyContainerId.offsetHeight', reportBodyContainerId.offsetHeight)
+      console.log('reportBodyContainerId.scrollTop', reportBodyContainerId.scrollTop)
+      console.log('reportBodyContainerId.scrollHeight', reportBodyContainerId.scrollHeight)
+      if ((reportBodyContainerId.scrollHeight - reportBodyContainerId.scrollTop) == reportBodyContainerId.offsetHeight) {
+        // you're at the bottom of the page
+        scope.pageNumberOptional++;
+        paymentListUpdate();
+      }
+//      var position = reportBodyContainerId.scrollTop;
+//      console.log('POSITION', position)
+//      console.log('HEight', reportBodyContainerId.style.height)
+    }
+
     scope.paymentListUpdate = paymentListUpdate = function () {
 
       if (scope.monthNotStartedYet) {
@@ -395,6 +415,15 @@
         riot.update();
 
         return;
+      }
+      else {
+        if (monthChanged) {
+          scope.pageNumberOptional = 1;
+          scope.paymentsMap = {};
+          scope.paymentDates = [];
+          scope.paymentsList = []
+          monthChanged = false;
+        }
       }
 
       var firstDay = scope.tags["component-report-filter"].filterDateFrom,
@@ -420,9 +449,6 @@
       console.log("firstDay=", firstDay);
       console.log("lastDay=", lastDay);
 
-      scope.paymentsMap = {};
-      scope.paymentDates = [];
-      scope.paymentsList = [];
 
       riot.update();
 
@@ -431,6 +457,7 @@
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
+          page_number: parseInt(scope.pageNumberOptional),
           date_start: firstDay,
           date_end: lastDay,
           account_id: accountId
@@ -438,10 +465,6 @@
         scope: this,
 
         onSuccess: function (result) {
-
-          scope.paymentsMap = {};
-          scope.paymentDates = [];
-          scope.paymentsList = [];
 
           console.log(result)
           console.log(result[0][0])
