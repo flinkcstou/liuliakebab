@@ -252,10 +252,6 @@
       console.log('event.keyCode', event.keyCode)
 
       if (boxFour.value.length >= 4 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-        boxFour.value = event.target.value.substring(0, event.target.value.length - 1);
-      }
-
-      if (boxFour.value.length == 4 && event.keyCode != input_codes.BACKSPACE_CODE) {
         if (boxOne.value == '8600') {
           boxDate.focus();
         }
@@ -263,6 +259,7 @@
           boxPin.focus();
         }
       }
+
     }
 
     boxDateKeyDown = function () {
