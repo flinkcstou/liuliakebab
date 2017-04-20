@@ -3678,9 +3678,9 @@ var css = {
 
   pincardChosenFriendContainer: ".pincard-chosen-friend-container" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "width: 100%;" +
-  "height:50%;" +
+  "height:55%;" +
     //"background-color: grey;" +
     //"left: 10%;" +
     //"top:" + 165 * widthK + "px;" +
@@ -3781,15 +3781,15 @@ var css = {
   pincardButtonEnter: " .pincard-button-enter" +
   "{" +
   "top: 60%;" +
-  "height: 15%;" +
-  "margin: 0 auto 0 auto;" +
+  "height: " + 74 * widthK + "px;" +
+  "margin: 3% auto 0 auto;" +
   "background-color: #00a8f1;" +
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "position: absolute;" +
+  "position: relative;" +
   "left: 28%;" +
   "width: 44%;" +
   "border-radius: " + 10 * widthK + "px;" +
@@ -6872,7 +6872,7 @@ var css = {
   //SETTINGS ADD FRIEND
   settingsAddFriendAddContainer: ".settings-add-friend-add-container" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "width: 100%;" +
     //"border-bottom: 1px solid gray;" +
   "height:" + 150 * widthK + "px;" +
@@ -6889,13 +6889,13 @@ var css = {
 
   settingsAddFriendContactPhoneField: ".settings-add-friend-contact-phone-field" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "left: 10%;" +
   "width: 79.5%;" +
   "height:" + 100 * widthK + "px;" +
   "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top: 17%" +
+  "margin-top: 10%" +
   "}",
 
   settingsAddFriendContactNumberInputPart: ".settings-add-friend-contact-number-input-part" +
@@ -6976,13 +6976,12 @@ var css = {
 
   settingsAddFriendNextButtonInnerContainer: ".settings-add-friend-next-button-inner-container" +
   "{" +
-  "top: 41%;" +
   "position: relative;" +
   "height: " + 74 * widthK + "px;" +
   "text-transform: capitalize;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
-  "margin: 0 auto 0 auto;" +
+  "margin: 15% auto 0 auto;" +
   "background-color: #00a8f1;" +
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px;" +

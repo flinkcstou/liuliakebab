@@ -89,16 +89,9 @@
 
       if (Math.abs(myCardListStartX - myCardListEndX) <= 20 && Math.abs(myCardListStartY - myCardListEndY) <= 20) {
 
-        if (modeOfApp.offlineMode)return
-
-
-        console.log("modeOfApp", modeOfApp);
-
-        if (modeOfApp.onlineMode) {
-
           this.riotTags.innerHTML = "<view-mycard-list>";
           riot.mount('view-mycard-list');
-        }
+
       }
       else return
     };

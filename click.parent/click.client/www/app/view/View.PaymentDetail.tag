@@ -66,14 +66,14 @@
 
   <script>
     var scope = this,
-        touchStartDeclineX,
-        touchStartDeclineY,
-        touchEndDeclineX,
-        touchEndDeclineY,
-        touchStartAcceptX,
-        touchStartAcceptY,
-        touchEndAcceptX,
-        touchEndAcceptY;
+      touchStartDeclineX,
+      touchStartDeclineY,
+      touchEndDeclineX,
+      touchEndDeclineY,
+      touchStartAcceptX,
+      touchStartAcceptY,
+      touchEndAcceptX,
+      touchEndAcceptY;
 
     scope.showError = false;
     scope.titleName = window.languages.ViewPaymentDetailTitle + opts.invoiceId;
@@ -101,12 +101,21 @@
       touchEndDeclineY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchEndDeclineX - touchStartDeclineX) < 20 &&
-          Math.abs(touchEndDeclineY - touchStartDeclineY) < 20) {
+        Math.abs(touchEndDeclineY - touchStartDeclineY) < 20) {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = loginInfo.session_key;
 
+        if (device.platform != 'BrowserStand') {
+          var options = {dimBackground: true};
+
+          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+            console.log("Started");
+          }, function () {
+            console.log("closed");
+          });
+        }
         window.api.call({
           method: 'invoice.action',
           input: {
@@ -151,7 +160,7 @@
       touchEndAcceptY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
-          Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
+        Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -181,6 +190,16 @@
           riot.update();
 
           return;
+        }
+
+        if (device.platform != 'BrowserStand') {
+          var options = {dimBackground: true};
+
+          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+            console.log("Started");
+          }, function () {
+            console.log("closed");
+          });
         }
 
         window.api.call({

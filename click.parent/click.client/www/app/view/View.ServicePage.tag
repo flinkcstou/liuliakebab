@@ -223,7 +223,8 @@
     telPayVerificationKeyUp = function () {
       if (event.keyCode != input_codes.BACKSPACE_CODE) {
         console.log(firstFieldInput.value)
-        firstFieldInput.value = inputVerification.telVerification(firstFieldInput.value)
+        if (firstFieldInput.type != 'text')
+          firstFieldInput.value = inputVerification.telVerification(firstFieldInput.value)
       }
     }
 
@@ -253,6 +254,10 @@
       }
       else if (scope.formType != 2)
         amount.value = 0
+
+      if(modeOfApp.offlineMode){
+        enterButtonId.innerText = 'Оплатить'
+      }
     });
 
     goToBack = function () {
@@ -1084,6 +1089,7 @@
             function (success) {
             }
           );
+          return
         }
 
         scope.formTypeTwoOptsArray = [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites];

@@ -274,6 +274,15 @@
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
+      if (device.platform != 'BrowserStand') {
+        var options = {dimBackground: true};
+
+        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+          console.log("Started");
+        }, function () {
+          console.log("closed");
+        });
+      }
 
       window.api.call({
         method: 'p2p.payment',

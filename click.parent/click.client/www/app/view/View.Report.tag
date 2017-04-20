@@ -34,7 +34,8 @@
       {languages.ViewReportsFilterMonthNotStartedYet}</p>
 
     <div class="view-reports-body-container" if="{firstReportView}">
-      <div class="view-reports-payments-container" each="{i in paymentDates}">
+      <div class="view-reports-payments-container" each="{i in paymentDates}"
+           ontouchmove="reportsBodyContainerTouchMove">
         <div class="view-reports-payment-date-containter">
           <div class="view-reports-payment-date-field">{i}</div>
         </div>
@@ -128,6 +129,12 @@
         riot.update();
       }
     });
+
+    reportsBodyContainerTouchMove = function () {
+      var position = document.getElementById('id').scrollTop;
+      console.log('POSITION', position)
+    }
+
 
 
     touchStartTitle = function () {

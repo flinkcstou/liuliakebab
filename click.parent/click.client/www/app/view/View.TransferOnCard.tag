@@ -81,6 +81,16 @@
           return;
         }
 
+        if (device.platform != 'BrowserStand') {
+          var options = {dimBackground: true};
+
+          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+            console.log("Started");
+          }, function () {
+            console.log("closed");
+          });
+        }
+
         window.api.call({
           method: 'invoice.action',
           input: {

@@ -200,6 +200,8 @@
 
         scope.cardsarray[getAccountsCards[i].id] = card;
 
+        console.log('scope.cardsarray', scope.cardsarray)
+
         localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
 
         count++;
@@ -764,7 +766,7 @@
             }
           }
           htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-              'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
+            'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
           riotTags.innerHTML = "<view-my-cards>";
           riot.mount("view-my-cards", [sendChosenCardId]);
           this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -991,8 +993,8 @@
 
         ++scope.cardNumber;
         riot.update(scope.cardNumber);
-        this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
@@ -1002,8 +1004,8 @@
 
         console.log("Move Touch Carousel2", scope.cardNumber);
 
-        this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
@@ -1012,8 +1014,8 @@
 
         console.log("Move Touch Carousel3", scope.cardNumber);
 
-        this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
@@ -1025,8 +1027,8 @@
 
         --scope.cardNumber;
         riot.update(scope.cardNumber);
-        this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }

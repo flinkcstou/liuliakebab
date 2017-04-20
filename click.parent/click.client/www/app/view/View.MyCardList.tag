@@ -16,7 +16,7 @@
         <div class="mycardlist-card-bank-name"></div>
         <div class="mycardlist-card-salary-title">{i.name}</div>
 
-        <div class="mycardlist-card-balance-currency-container">
+        <div if="{!modeOfApp.offlineMode}" class="mycardlist-card-balance-currency-container">
           <p class="mycardlist-card-balance">{i.salary}</p>
           <p class="mycardlist-card-currency">{i.currency}</p>
         </div>
@@ -37,18 +37,22 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-mycard-list') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-mycard-list',
-            "params": opts
-          }
+        {
+          "view": 'view-mycard-list',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    scope.cardsArray = JSON.parse(localStorage.getItem("click_client_cards"));
+    var getAccountsCards = []
+
+    if (JSON.parse(localStorage.getItem("click_client_cards")))
+      scope.cardsArray = JSON.parse(localStorage.getItem("click_client_cards"));
     riot.update(scope.cardsArray);
 
     refreshCards = function () {
+
 
       if (modeOfApp.onlineMode) {
         if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
@@ -166,25 +170,27 @@
       if (localStorage.getItem('click_client_accountInfo')) {
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
         var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'))
+
         for (var i = 0; i < getAccountsCards.length; i++) {
+          console.log('AAAAAAAAa')
+
           if (getAccountsCards[i].id == loginInfo.default_account) {
             var tmp = getAccountsCards[0];
             getAccountsCards[0] = getAccountsCards[i];
             getAccountsCards[i] = tmp;
+
           }
         }
 
+
         if (JSON.parse(localStorage.getItem("click_client_cards"))) {
-          localStorage.removeItem("click_client_cards")
           scope.cardsArray = {};
-          riot.update(scope.cardsArray);
         }
       }
 
       if (!scope.cardsArray) {
 
         scope.cardsArray = {};
-        riot.update(scope.cardsArray);
       }
 
       count = 0;
@@ -203,9 +209,8 @@
         else
           defaultAccount = false;
 
-        numberOfCardPartOne = getAccountsCards[i].accno[0] + getAccountsCards[i].accno[1]
-            + getAccountsCards[i].accno[2] + getAccountsCards[i].accno[3]
-        numberOfCardPartTwo = getAccountsCards[i].accno[getAccountsCards[i].accno.length - 4] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 3] + +getAccountsCards[i].accno[getAccountsCards[i].accno.length - 2] + getAccountsCards[i].accno[getAccountsCards[i].accno.length - 1];
+        numberOfCardPartOne = getAccountsCards[i].accno.substring(0, 4)
+        numberOfCardPartTwo = getAccountsCards[i].accno.substring(getAccountsCards[i].accno.length - 4, getAccountsCards[i].accno.length);
 
 
         card = {
@@ -229,6 +234,8 @@
         };
 
         scope.cardsArray[getAccountsCards[i].id] = card;
+
+        console.log('scope.cardsArray', scope.cardsArray);
 
         localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsArray));
 

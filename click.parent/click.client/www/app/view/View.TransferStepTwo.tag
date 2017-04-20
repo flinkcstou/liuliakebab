@@ -239,6 +239,7 @@
               console.log("*880*3*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23")
             }
           );
+          return
         }
         else {
           phonedialer.dial(

@@ -8,7 +8,7 @@
     <p if="{!modeOfApp.offlineMode}" class="card-balance">{opts.salary}</p>
     <p if="{!modeOfApp.offlineMode && opts.salary}" class="card-currency">{opts.currency}</p>
 
-    <a if="{modeOfApp.offlineMode}" class="offline-card-balance"
+    <a if="{modeOfApp.offlineMode}" style="color: rgb({opts.fontcolor});" class="offline-card-balance"
        ontouchstart="offlineBalanceTrueTouchStart()" ontouchend="offlineBalanceTrueTouchEnd()"
        ontouchmove="offlineBalanceTrueTouchMove()">Получить баланс</a>
   </div>
@@ -41,19 +41,20 @@
 
       if (device.platform == "Android") {
         phonedialer.dial(
-            "*880*2%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = "Unknown phone number";
-                scope.showError = true;
-                riot.update();
-              }
-              else console.log("Dialer Error:" + err);
-            },
-            function (success) {
+          "*880*2%23",
+          function (err) {
+            if (err == "empty") {
+              scope.clickPinError = false;
+              scope.errorNote = "Unknown phone number";
+              scope.showError = true;
+              riot.update();
             }
+            else console.log("Dialer Error:" + err);
+          },
+          function (success) {
+          }
         );
+        return
       }
     }
 
