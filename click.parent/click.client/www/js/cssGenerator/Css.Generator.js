@@ -12041,10 +12041,9 @@ var css = {
   scheduleDateBlock: ".schedule-date-block " +
   "{" +
   "position: absolute;" +
-  "opacity: 0.92;" +
   "height: 100%;" +
   "width: 100%;" +
-  "background-color: #f4f4f4;" +
+  "background-image:  url(resources/icons/transparent.png);" +
   "z-index: 99999;" +
   "display: none;" +
   "}",
@@ -12085,33 +12084,6 @@ var css = {
   "background-color: #f4f4f4;" +
   "}",
 
-
-  //componentAlertClickPinErrorMsgOne: ".component-alert-clickpin-message-one" +
-  //"{" +
-  //
-  //  //"color: #1d1d1f;" +
-  //"width:100%;" +
-  //"top:0;" +
-  //"left:0;" +
-  //"}",
-  //
-  //componentAlertClickPinErrorMsgTwo: ".component-alert-clickpin-message-two" +
-  //"{" +
-  //"color: #FFAE0A;" +
-  //"width:100%;" +
-  //"top:0;" +
-  //"left:0;" +
-  //"font-weight: bold;" +
-  //"}",
-  //
-  //componentAlertClickPinErrorMsgThree: ".component-alert-clickpin-message-three" +
-  //"{" +
-  //  //"color: yellow;" +
-  //"width:100%;" +
-  //"top:0;" +
-  //"left:0;" +
-  //"}",
-
   scheduleDateBlockButtonChoose: ".schedule-date-block-button-choose " +
   "{" +
   "border: none;" +
@@ -12133,9 +12105,10 @@ var css = {
   "position: absolute;" +
   "width: 400px;" +
   "height:600px;" +
-  "top: 28%;" +
+  "top: 310px;" +
   "left: 23%;" +
-  "background-color: #01B8FE;" +
+    //"background-color: #01B8FE;" +
+  "overflow: hidden;" +
     //"overflow-x: auto;" +
     //"overflow-y: hidden;" +
   "}",
@@ -12145,7 +12118,7 @@ var css = {
   "position: absolute;" +
   "width: 360px;" +
   "height:500px;" +
-  "top: 28%;" +
+    //"top: 28%;" +
     //"overflow-x: auto;" +
     //"overflow-y: hidden;" +
   "}",
@@ -12165,11 +12138,11 @@ var css = {
   scheduleDateBlockDayText: ".schedule-date-block-day-text " +
   "{" +
   "position: absolute;" +
-  "top: 10%;" +
   "margin: 0;" +
   "color: #c1c1c1;" +
-  "font-size: " + 170 * widthK + "px; " +
+  "font-size: " + 190 * widthK + "px; " +
   "width: 100%;" +
+  "text-align: center;" +
   "}",
 
 
