@@ -993,8 +993,8 @@
 
         ++scope.cardNumber;
         riot.update(scope.cardNumber);
-        this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
@@ -1004,8 +1004,8 @@
 
         console.log("Move Touch Carousel2", scope.cardNumber);
 
-        this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
@@ -1014,8 +1014,8 @@
 
         console.log("Move Touch Carousel3", scope.cardNumber);
 
-        this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
@@ -1027,8 +1027,8 @@
 
         --scope.cardNumber;
         riot.update(scope.cardNumber);
-        this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
         this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
