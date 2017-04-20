@@ -130,17 +130,17 @@ window.api.initSocket = function () {
           window.api.sessionErrorChecker = true;
 
           //var result =
-          showConfirmComponent(error);
+          showConfirmComponent(error, 'session');
 
-          if (result) {
-
-            riotTags.innerHTML = "<view-authorization>";
-            riot.mount('view-authorization');
-          }
-          else {
-
-            navigator.app.exitApp();
-          }
+          //if (result) {
+          //
+          //  riotTags.innerHTML = "<view-authorization>";
+          //  riot.mount('view-authorization');
+          //}
+          //else {
+          //
+          //  navigator.app.exitApp();
+          //}
         }
       } catch (error) {
 
@@ -261,7 +261,7 @@ function offlineDetector() {
   if (window.isConnected) window.api.socket.close()
   if (modeOfApp.onlineMode && window.isConnected) {
 
-   showConfirmComponent("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?");
+    showConfirmComponent("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?", 'internet');
     //if (result) {
     //
     //  modeOfApp.offlineMode = true;

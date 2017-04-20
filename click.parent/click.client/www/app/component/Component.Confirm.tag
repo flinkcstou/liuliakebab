@@ -30,12 +30,22 @@
 //        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 //        onBackKeyDown()
 //      }
-      modeOfApp.offlineMode = true;
-      modeOfApp.onlineMode = false;
 
-      riotTags.innerHTML = "<view-main-page>";
-      riot.mount('view-main-page');
-      riot.update()
+      if (opts.confirmtype == 'internet') {
+        modeOfApp.offlineMode = true;
+        modeOfApp.onlineMode = false;
+
+        riotTags.innerHTML = "<view-main-page>";
+        riot.mount('view-main-page');
+        riot.update()
+      } else if (opts.confirmtype == 'session') {
+        riotTags.innerHTML = "<view-authorization>";
+        riot.mount('view-authorization');
+      }
+      else {
+
+        navigator.app.exitApp();
+      }
       scope.outerShowAlertBool = true;
       console.log("close")
       console.log(scope.outerShowAlertBool)
