@@ -733,7 +733,9 @@
 
     scope.showComponent = false;
 
+
     var paymentTouchStartY, paymentTouchStartX, paymentTouchEndY, paymentTouchEndX;
+    var paymentTimeStart, paymentTimeEnd;
 
     paymentTouchEnd = function (paymentId) {
       event.preventDefault();
@@ -741,6 +743,7 @@
 
       paymentTouchEndY = event.changedTouches[0].pageY;
       paymentTouchEndX = event.changedTouches[0].pageX;
+      paymentTimeEnd = event.timeStamp.toFixed(0);
 
       console.log('settingsTouchStartY', paymentTouchStartY)
       console.log('settingsTouchEndY', paymentTouchEndY)
@@ -763,7 +766,7 @@
         }
       }
       else {
-        if (Math.abs(paymentTouchStartY - paymentTouchEndY) <= 100 && (Math.abs(paymentTouchStartX - paymentTouchEndX) > 20)) {
+        if (Math.abs(paymentTouchStartY - paymentTouchEndY) <= 100 && (Math.abs(paymentTouchStartX - paymentTouchEndX) > 20) && paymentTimeEnd - paymentTimeStart < 500) {
           carouselTouchEndX = paymentTouchEndX
           carouselTouchStartX = paymentTouchStartX
           monthChanged = true
@@ -776,19 +779,23 @@
     paymentTouchStart = function () {
       paymentTouchStartY = event.changedTouches[0].pageY;
       paymentTouchStartX = event.changedTouches[0].pageX;
+      paymentTimeStart = event.timeStamp.toFixed(0);
     }
 
     var reportBodyContainerStartX, reportBodyContainerStartY, reportBodyContainerEndX, reportBodyContainerEndY;
+    var reportBodyTimeStart, reportBodyTimeEnd;
     reportsBodyContainerTouchStart = function () {
       reportBodyContainerStartY = event.changedTouches[0].pageY;
       reportBodyContainerStartX = event.changedTouches[0].pageX;
+      reportBodyTimeStart = event.timeStamp.toFixed(0);
     }
 
     reportsBodyContainerTouchEnd = function () {
       reportBodyContainerEndY = event.changedTouches[0].pageY;
       reportBodyContainerEndX = event.changedTouches[0].pageX;
+      reportBodyTimeEnd = event.timeStamp.toFixed(0);
 
-      if (Math.abs(paymentTouchStartY - paymentTouchEndY) <= 100 && (Math.abs(paymentTouchStartX - paymentTouchEndX) > 20)) {
+      if (Math.abs(reportBodyContainerStartY - reportBodyContainerEndY) <= 100 && (Math.abs(reportBodyContainerStartX - reportBodyContainerEndX) > 20) && reportBodyTimeEnd - reportBodyTimeStart < 500) {
         carouselTouchEndX = reportBodyContainerEndX
         carouselTouchStartX = reportBodyContainerStartX
         monthChanged = true
