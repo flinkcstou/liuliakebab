@@ -31,8 +31,10 @@
           <mark class="invoice-list-invoice-sum-sym">сум</mark>
           <p class="invoice-list-invoice-sum">{invoice.amount}</p>
         </div>
-        <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p" if="{invoice.is_p2p == 0}">
-          {languages.ViewInvoiceListInvoiceIsNot2P2}</p>
+        <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p" if="{invoice.is_p2p == 0 && toUser}">
+          {languages.ViewInvoiceListInvoiceIsNot2P2ToUser}</p>
+        <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p" if="{invoice.is_p2p == 0 && !toUser}">
+          {languages.ViewInvoiceListInvoiceIsNot2P2FromUser}</p>
         <p class="invoice-list-from-whom-label invoice-list-invoice-is-p2p" if="{invoice.is_p2p == 1 && toUser}">
           {languages.ViewInvoiceListInvoiceIsP2PToUser}</p>
         <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p" if="{invoice.is_p2p == 1 && !toUser}">

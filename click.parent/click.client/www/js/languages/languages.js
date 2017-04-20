@@ -185,7 +185,8 @@ var RU_LANGUAGES =
   "ViewInvoiceListFromUser": "пользователем",
   "ViewInvoiceListInvoiceIsP2PToUser": "Получен перевод от:",
   "ViewInvoiceListInvoiceIsP2PFromUser": "Отправлен перевод на:",
-  "ViewInvoiceListInvoiceIsNot2P2": "Вам выставлен счет:",
+  "ViewInvoiceListInvoiceIsNot2P2ToUser": "Вам выставлен счет:",
+  "ViewInvoiceListInvoiceIsNot2P2FromUser": "Отправлен счет:",
 
   "ViewInvoiceHistoryDetailTransferTitle": "ДЕТАЛИ ПЕРЕВОДА",
   "ViewInvoiceHistoryDetailTransferToNumberLabel": "Перевод на номер",
