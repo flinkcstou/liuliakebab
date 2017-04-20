@@ -11824,7 +11824,7 @@ var css = {
 
   autopayEventNumberField: ".autopay-event-number-field" +
   "{" +
-  "height: 90px;" +
+  "height:" + 90 * widthK + "px;" +
   "top: 5%;" +
   "}",
 
@@ -12050,29 +12050,40 @@ var css = {
   "display: none;" +
   "}",
 
+  scheduleDateBlockTitleContainer: ".schedule-date-block-title-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 80%;" +
+    //"margin-top: " + 42 * widthK + "px;" +
+    //"margin-bottom: " + 30 * widthK + "px;" +
+  "top: 16%;" +
+  "left: 10%;" +
+  "height:" + 100 * widthK + "px;" +
+    //"background-color: #c1c1c1;" +
+  "}",
+
   scheduleDateBlockTitleLine: ".schedule-date-block-title-line" +
   "{" +
-  "position: relative;" +
-  "color: white;" +
-  "width: 65%;" +
-  "margin-top: " + 42 * widthK + "px;" +
-  "margin-bottom: " + 30 * widthK + "px;" +
-  "top:" + 410 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+    //"margin-top: " + 42 * widthK + "px;" +
+    //"margin-bottom: " + 30 * widthK + "px;" +
+  "top:34%;" +
   "}",
 
   scheduleDateBlockTitle: ".schedule-date-block-title" +
   "{" +
   "position: relative;" +
-  "color: #1d1d1f;" +
-  "width:" + 400 * widthK + "px;" +
+  "color: #8b8b8b;" +
+  "width:" + 300 * widthK + "px;" +
   "text-align: center;" +
   "margin-left: auto;" +
-  "margin-top: 0;" +
-  "margin-bottom: 0;" +
+  "margin-top: auto;" +
+  "margin-bottom: auto;" +
   "margin-right: auto;" +
-  "top:" + 601 * widthK + "px;" +
-  "left:" + -10 * widthK + "px;" +
-  "font-size:" + 36 * widthK + "px;" +
+  "top: 25%;" +
+  "font-size:" + 33 * widthK + "px;" +
+  "background-color: #f4f4f4;" +
   "}",
 
 
@@ -12116,6 +12127,50 @@ var css = {
   "bottom: 0;" +
   "font-size: " + 38 * widthK + "px;" +
   "color: #ffffff;" +
+  "}",
+
+  scheduleDateBlockDaysOuterContainer: ".schedule-date-block-days-outer-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 400px;" +
+  "height:600px;" +
+  "top: 28%;" +
+  "left: 23%;" +
+  "background-color: #01B8FE;" +
+    //"overflow-x: auto;" +
+    //"overflow-y: hidden;" +
+  "}",
+
+  scheduleDateBlockDaysContainer: ".schedule-date-block-days-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 360px;" +
+  "height:500px;" +
+  "top: 28%;" +
+    //"overflow-x: auto;" +
+    //"overflow-y: hidden;" +
+  "}",
+
+
+  scheduleDateBlockDay: ".schedule-date-block-day " +
+  "{" +
+  "position: absolute;" +
+  "height: 190px;" +
+  "width: 100%;" +
+    //"left: 103%;" +
+  "color: #8b8b8b;" +
+    //"transform: translate3d(-50%, 0, 0);" +
+  "text-align: center;" +
+  "}",
+
+  scheduleDateBlockDayText: ".schedule-date-block-day-text " +
+  "{" +
+  "position: absolute;" +
+  "top: 10%;" +
+  "margin: 0;" +
+  "color: #c1c1c1;" +
+  "font-size: " + 170 * widthK + "px; " +
+  "width: 100%;" +
   "}",
 
 

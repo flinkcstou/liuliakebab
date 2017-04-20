@@ -100,10 +100,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-report',
-            "params": opts
-          }
+        {
+          "view": 'view-report',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -389,8 +389,8 @@
       }
 
       var firstDay = scope.tags["component-report-filter"].filterDateFrom,
-          lastDay = scope.tags["component-report-filter"].filterDateTo,
-          accountId = scope.tags["component-report-filter"].filterByAccount;
+        lastDay = scope.tags["component-report-filter"].filterDateTo,
+        accountId = scope.tags["component-report-filter"].filterByAccount;
 
       if (!accountId) {
 
@@ -459,17 +459,14 @@
                 scope.paymentsMap[dateStr] = [];
                 scope.paymentDates.push(dateStr);
                 scope.paymentsMap[dateStr].push(result[1][i]);
-                console.log("A", result[1][i].payment_id);
               }
               else {
-                console.log("B", result[1][i].payment_id);
                 scope.paymentsMap[dateStr].push(result[1][i]);
               }
 
               scope.paymentsList.push(result[1][i]);
 
             }
-            console.log('ASAASASDASDFAAS', scope.paymentsMap);
             riot.update();
           }
           else {
@@ -503,8 +500,8 @@
       }
 
       var firstDay = scope.tags["component-report-filter"].filterDateFrom,
-          lastDay = scope.tags["component-report-filter"].filterDateTo,
-          accountId = scope.tags["component-report-filter"].filterByAccount;
+        lastDay = scope.tags["component-report-filter"].filterDateTo,
+        accountId = scope.tags["component-report-filter"].filterByAccount;
 
       if (!accountId) {
 
@@ -558,25 +555,25 @@
 
             if (scope.paymentsSum.length == 7) {
               scope.paymentsSum = scope.paymentsSum.substring(0, 1) + ' ' +
-                  scope.paymentsSum.substring(1, 4) + ' ' + scope.paymentsSum.substring(4, scope.paymentsSum.length)
+                scope.paymentsSum.substring(1, 4) + ' ' + scope.paymentsSum.substring(4, scope.paymentsSum.length)
 
             }
 
             if (scope.paymentsSum.length == 6) {
               scope.paymentsSum = scope.paymentsSum.substring(0, 3) + ' ' +
-                  scope.paymentsSum.substring(3, scope.paymentsSum.length)
+                scope.paymentsSum.substring(3, scope.paymentsSum.length)
 
             }
 
             if (scope.paymentsSum.length == 5) {
               scope.paymentsSum = scope.paymentsSum.substring(0, 2) + ' ' +
-                  scope.paymentsSum.substring(2, scope.paymentsSum.length)
+                scope.paymentsSum.substring(2, scope.paymentsSum.length)
 
             }
 
             if (scope.paymentsSum.length == 4) {
               scope.paymentsSum = scope.paymentsSum.substring(0, 1) + ' ' +
-                  scope.paymentsSum.substring(1, scope.paymentsSum.length)
+                scope.paymentsSum.substring(1, scope.paymentsSum.length)
 
             }
 
@@ -664,19 +661,19 @@
       console.log('DATA', data)
       var ctx = document.getElementById('myChart').getContext('2d');
       var myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: data,
-            options: {
-              cutoutPercentage: 55,
-              animateScale: false,
-              tooltips: {
-                enabled: false
-              },
-              events: [],
+          type: 'doughnut',
+          data: data,
+          options: {
+            cutoutPercentage: 55,
+            animateScale: false,
+            tooltips: {
+              enabled: false
+            },
+            events: [],
 
-            }
-          })
-          ;
+          }
+        })
+        ;
 
       for (var i in scope.arrayOfCoordinates) {
         if (document.getElementById('chartImageBlockId' + scope.arrayOfCoordinates[i].order)) {

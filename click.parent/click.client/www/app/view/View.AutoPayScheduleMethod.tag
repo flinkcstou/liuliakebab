@@ -35,18 +35,32 @@
         <div class="autopay-schedule-block-next-icon"></div>
       </div>
 
-
     </div>
 
   </div>
 
   <div id="dateChooseBlockId" class="schedule-date-block">
-    <hr class="schedule-date-block-title-line"/>
-    <p class="schedule-date-block-title">{window.languages.ViewAutoPayMethodScheduleChoseDate}</p>
+    <div class="schedule-date-block-title-container">
+      <hr class="schedule-date-block-title-line"/>
+      <div class="schedule-date-block-title">{window.languages.ViewAutoPayMethodScheduleChoseDate}</div>
+    </div>
+
+    <div class="schedule-date-block-days-outer-container">
+
+      <div id="monthContainerId" class="schedule-date-block-days-container" ontouchstart="monthContainerTouchStart()"
+           ontouchend="monthContainerTouchEnd()"
+           ontouchmove="monthContainerTouchMove()">
+        <div class="schedule-date-block-day" each="{i in daysArray}"
+             style="top:{topOfOperations*(i-2)}px;">
+          <p class="schedule-date-block-day-text">{i}</p>
+        </div>
+      </div>
+
+    </div>
 
 
     <button class="schedule-date-block-button-choose" ontouchend="chooseDate()">
-      {window.languages.ComponentAlertOk}
+      {window.languages.ViewAutoPayMethodScheduleChoseButtonLabel}
     </button>
   </div>
 
@@ -61,14 +75,6 @@
     console.log("ID of service=", opts);
     this.serviceName = scope.servicesMap[opts[0]][0].name;
     this.serviceIcon = scope.servicesMap[opts[0]][0].image;
-
-
-    //    this.on('mount', function () {
-    //
-    //
-    //      riot.update();
-    //
-    //    })
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-autopay-schedule-method') {
@@ -95,6 +101,121 @@
       dateChooseBlockId.style.display = 'none';
     }
 
+    scope.daysArray = window.languages.ViewAutoPayMethodScheduleDaysArray;
+    console.log("daysArray", scope.daysArray);
+    riot.update(scope.daysArray);
+
+    scope.topOfOperations = 200 * widthK;
+    var mNumber;
+    var count = 31;
+    localStorage.setItem('click_client_countCard', count);
+
+
+    if (!mNumber) {
+      mNumber = 0;
+
+      this.on('mount', function () {
+        changePositionTwo();
+      });
+
+    }
+
+
+    monthContainerTouchStart = function () {
+      console.log("in start touch=", mNumber);
+      carouselTouchStartY = event.changedTouches[0].pageY;
+      left = -((200 * mNumber) * widthK) - carouselTouchStartY;
+      delta = left;
+    }
+
+    monthContainerTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      carouselTouchEndY = event.changedTouches[0].pageY;
+      if (Math.abs(carouselTouchStartY - carouselTouchEndY) > 20) {
+        changePosition();
+      }
+    }
+
+
+    monthContainerTouchMove = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      this.monthContainerId.style.transition = '0s';
+      this.monthContainerId.style.webkitTransition = '0s';
+      this.monthContainerId.style.transform = "translate3d(0," + (event.changedTouches[0].pageY + delta ) + 'px' + ", 0)";
+      this.monthContainerId.style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + delta ) + 'px' + ", 0)";
+    }
+
+    function changePosition() {
+
+      if (carouselTouchEndY < carouselTouchStartY && mNumber < count - 1) {
+        ++mNumber;
+        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+      }
+
+      if (carouselTouchEndY > carouselTouchStartY && mNumber == 0) {
+        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+      }
+
+      if (carouselTouchEndY < carouselTouchStartY && mNumber == count - 1) {
+        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+      }
+
+      if (carouselTouchEndY > carouselTouchStartY && mNumber > 0) {
+        --mNumber;
+        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+      }
+
+
+      localStorage.setItem('mNumber', mNumber);
+    }
+
+    function changePositionTwo() {
+
+      if (mNumber < count - 1) {
+        ++mNumber;
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+      }
+
+      if (mNumber == 0) {
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+      }
+
+      if (mNumber == count - 1) {
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+      }
+
+      if (mNumber > 0) {
+        --mNumber;
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+      }
+
+    }
 
   </script>
 </view-autopay-schedule-method>
