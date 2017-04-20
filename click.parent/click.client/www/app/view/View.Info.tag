@@ -343,7 +343,7 @@
         console.log("Time to open");
         for (var i = 0; i < scope.lastOperationContainer.length; i++) {
           if (scope.lastOperationContainer[i].payment_id == paymentId) {
-            console.log("service report for=", scope.lastOperationContainer[i]);
+//            console.log("service report for=", scope.lastOperationContainer[i]);
             riotTags.innerHTML = "<view-report-service>";
             riot.mount("view-report-service", scope.lastOperationContainer[i]);
             break;

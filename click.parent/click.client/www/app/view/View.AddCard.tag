@@ -11,6 +11,7 @@
       <input maxlength="25" class="add-card-card-name-input-part"/>
     </div>
     <div class="add-card-card-field">
+      <div class="add-card-uzcard-icon"></div>
       <p class="add-card-card-text add-card-card-number-text">{window.languages.ViewAddCardNumberTitle}</p>
       <div id="cardNumberInput" class="add-card-card-number">
         <input type="tel" onkeyup="boxOneKeyUp()" onkeydown="boxOneKeyDown()" autofocus="true" maxlength="4"

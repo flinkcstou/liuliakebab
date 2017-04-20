@@ -9063,6 +9063,20 @@ var css = {
   "border-radius:" + 10 * heightK + "px;" +
   "}",
 
+
+  addCardUzcardIcon: ".add-card-uzcard-icon " +
+  "{" +
+  "position: absolute;" +
+  "top:4%;" +
+  "right:2%;" +
+  "width: 30%;" +
+  "height: 18%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 75%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/ViewAddCard/addcard_uzcard.png);" +
+  "}",
+
   addCardMainCardField: ".add-card-main-card-field " +
   "{" +
   "position: absolute;" +
