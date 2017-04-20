@@ -11,11 +11,11 @@
            class="report-service-icon"/>
 
       <div class="report-service-upper-info-container">
-        <div class="report-service-title">{opts.service_name}</div>
+        <div class="report-service-title">{opts.service_name ? opts.service_name}</div>
         <div class="report-service-payment-info-text">{window.languages.ViewReportServicePaymentNumber}
-          {amountTransform(opts.payment_id.toString())}
+          {opts.payment_id ? opts.payment_id}
         </div>
-        <div class="report-service-payment-info-text">{window.languages.ViewReportServicePaymentDate} {opts.created}
+        <div class="report-service-payment-info-text">{window.languages.ViewReportServicePaymentDate} {opts.created ? opts.created}
         </div>
       </div>
 
@@ -24,13 +24,13 @@
     <div class="report-service-body-container">
       <div class="report-service-body-info-container">
         <div class="report-service-phone-field">
-          <p class="report-service-text-field">{opts.parameter_name}</p>
-          <p class="report-service-phone-input">{opts.cntrg_info_param2}</p>
+          <p class="report-service-text-field">{opts.parameter_name ? opts.parameter_name}</p>
+          <p class="report-service-phone-input">{opts.cntrg_info_param2 ? opts.cntrg_info_param2}</p>
         </div>
         <div class="report-service-field">
           <p class="report-service-text-field">{window.languages.ViewReportServiceAmountOfPay}</p>
           <p class="report-service-info-input report-service-info-input-amount">-
-            {amountTransform(opts.amount.toString())} сум</p>
+            {(opts.amount ? amountTransform(opts.amount.toString())} сум</p>
         </div>
         <div class="report-service-field">
           <p class="report-service-text-field">{window.languages.ViewReportServicePayWithCard}</p>
@@ -41,7 +41,7 @@
           <p class="report-service-info-input {report-service-status-wait: opts.state == 1,
                                                report-service-status-error: opts.state == -1,
                                                report-service-status-success: opts.state == 0}">
-            {(opts.state == -1)?(opts.error):(opts.status_note)}</p>
+            {(opts.state ? opts.state == -1)?(opts.error ? opts.error):(opts.status_note ? opts.status_note)}</p>
         </div>
       </div>
 
@@ -77,12 +77,12 @@
 
   <script>
     var scope = this,
-        goToSupportTouchStartX,
-        goToSupportTouchEndX,
-        addToFavoritesTouchStartX,
-        addToFavoritesTouchEndX,
-        onTouchStartOfServiceX,
-        onTouchEndOfServiceX;
+      goToSupportTouchStartX,
+      goToSupportTouchEndX,
+      addToFavoritesTouchStartX,
+      addToFavoritesTouchEndX,
+      onTouchStartOfServiceX,
+      onTouchEndOfServiceX;
 
     scope.cards = localStorage.getItem("click_client_cards");
     scope.cards = JSON.parse(scope.cards);
@@ -101,10 +101,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report-service') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-report-service',
-            "params": opts
-          }
+        {
+          "view": 'view-report-service',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
