@@ -1,7 +1,6 @@
 <view-report>
   <component-report-filter></component-report-filter>
   <div id="reportPageId" class="view-reports-page">
-    <view-report-service></view-report-service>
     <div class="page-title" style="border: none;">
       <p class="name-title">{titleName}</p>
       <div id="backButton" ontouchend="touchStartTitle()"
@@ -91,7 +90,7 @@
     </div>
   </div>
 
-
+  <view-report-service></view-report-service>
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
@@ -743,7 +742,7 @@
             console.log("scope.tags['view-report-service']", scope)
             scope.checkReportServicePage = true;
             riot.update(scope.checkReportServicePage);
-            scope.tags['view-report-service'].opts = scope.paymentsList[i]
+//            scope.tags['view-report-service'].opts = scope.paymentsList[i]
             break;
           }
         }

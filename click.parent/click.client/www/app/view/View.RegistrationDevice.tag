@@ -189,7 +189,8 @@
           device_name: deviceName(),
           device_type: deviceType(),
           datetime: date,
-          imei: deviceImei()
+          imei: deviceImei(),
+          app_version: '1.0.1'
         },
 
         scope: this,
