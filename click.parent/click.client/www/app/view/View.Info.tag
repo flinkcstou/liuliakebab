@@ -37,7 +37,9 @@
 
   <div class="view-info-operations-container">
 
-    <div class="view-info-operations-icon" each="{i in lastOperationContainer}"
+    <div class="view-info-operations-icon" each="{i in lastOperationContainer}" id="{i.payment_id}"
+         ontouchstart="onTouchStartOfOperation()"
+         ontouchend="onTouchEndOfOperation(this.id)"
          style="left:{leftOfOperations*i.count + 50}px; background-image: url({i.image})">
 
       <div class="view-info-operation-info-container">
@@ -283,7 +285,7 @@
               }
             }
 //          }
-//                    console.log('scope.lastOperationContainer', scope.lastOperationContainer)
+            console.log('scope.lastOperationContainer', scope.lastOperationContainer)
             riot.update(scope.lastOperationContainer)
 //            console.log('scope.lastOperationContainer', scope.lastOperationContainer);
           }
@@ -328,5 +330,29 @@
       riot.mount('view-report');
 
     }
+
+    scope.onTouchStartOfOperation = onTouchStartOfOperation = function () {
+      carouselTouchStartX = event.changedTouches[0].pageX;
+    }
+
+    scope.onTouchEndOfOperation = onTouchEndOfOperation = function (paymentId) {
+      event.preventDefault();
+      event.stopPropagation();
+      carouselTouchEndX = event.changedTouches[0].pageX;
+      if (Math.abs(carouselTouchStartX - carouselTouchEndX) < 20) {
+        console.log("Time to open");
+        for (var i = 0; i < scope.lastOperationContainer.length; i++) {
+          if (scope.lastOperationContainer[i].payment_id == paymentId) {
+            console.log("service report for=", scope.lastOperationContainer[i]);
+            riotTags.innerHTML = "<view-report-service>";
+            riot.mount("view-report-service", scope.lastOperationContainer[i]);
+            break;
+          }
+        }
+      }
+
+    }
+
+
   </script>
 </view-info>

@@ -47,7 +47,7 @@
 
     <div class="schedule-date-block-days-outer-container">
 
-      <div id="monthContainerId" class="schedule-date-block-days-container" ontouchstart="monthContainerTouchStart()"
+      <div id="dateContainerId" class="schedule-date-block-days-container" ontouchstart="monthContainerTouchStart()"
            ontouchend="monthContainerTouchEnd()"
            ontouchmove="monthContainerTouchMove()">
         <div class="schedule-date-block-day" each="{i in daysArray}"
@@ -70,7 +70,7 @@
 
     <div class="schedule-date-block-days-outer-container">
 
-      <div id="monthContainerId" class="schedule-date-block-days-container" ontouchstart="monthContainerTouchStart()"
+      <div id="dateContainerId" class="schedule-date-block-days-container" ontouchstart="monthContainerTouchStart()"
            ontouchend="monthContainerTouchEnd()"
            ontouchmove="monthContainerTouchMove()">
         <div class="schedule-date-block-day" each="{i in daysArray}"
@@ -166,10 +166,10 @@
     monthContainerTouchMove = function () {
       event.preventDefault();
       event.stopPropagation();
-      this.monthContainerId.style.transition = '0s';
-      this.monthContainerId.style.webkitTransition = '0s';
-      this.monthContainerId.style.transform = "translate3d(0," + (event.changedTouches[0].pageY + delta ) + 'px' + ", 0)";
-      this.monthContainerId.style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + delta ) + 'px' + ", 0)";
+      this.dateContainerId.style.transition = '0s';
+      this.dateContainerId.style.webkitTransition = '0s';
+      this.dateContainerId.style.transform = "translate3d(0," + (event.changedTouches[0].pageY + delta ) + 'px' + ", 0)";
+      this.dateContainerId.style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + delta ) + 'px' + ", 0)";
     }
 
     function changePosition() {
@@ -177,34 +177,34 @@
       if (carouselTouchEndY < carouselTouchStartY && mNumber < count - 1) {
         document.getElementById("day" + mNumber).style.color = '#c1c1c1';
         ++mNumber;
-        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
         document.getElementById("day" + mNumber).style.color = '#01B8FE';
       }
 
       if (carouselTouchEndY > carouselTouchStartY && mNumber == 0) {
-        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
       }
 
       if (carouselTouchEndY < carouselTouchStartY && mNumber == count - 1) {
-        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
       }
 
       if (carouselTouchEndY > carouselTouchStartY && mNumber > 0) {
         document.getElementById("day" + mNumber).style.color = '#c1c1c1';
         --mNumber;
-        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
         document.getElementById("day" + mNumber).style.color = '#01B8FE';
       }
 
@@ -217,34 +217,34 @@
       if (mNumber < count - 1) {
         document.getElementById("day" + mNumber).style.color = '#c1c1c1';
         ++mNumber;
-        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
         document.getElementById("day" + mNumber).style.color = '#01B8FE';
       }
 
       if (mNumber == 0) {
-        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
       }
 
       if (mNumber == count - 1) {
-        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
       }
 
       if (mNumber > 0) {
         document.getElementById("day" + mNumber).style.color = '#c1c1c1';
         --mNumber;
-        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
         document.getElementById("day" + mNumber).style.color = '#01B8FE';
       }
 
