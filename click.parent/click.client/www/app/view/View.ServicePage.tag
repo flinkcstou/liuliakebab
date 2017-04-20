@@ -254,6 +254,10 @@
       }
       else if (scope.formType != 2)
         amount.value = 0
+
+      if(modeOfApp.offlineMode){
+        enterButtonId.innerText = 'Оплатить'
+      }
     });
 
     goToBack = function () {

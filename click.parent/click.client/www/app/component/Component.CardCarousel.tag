@@ -200,6 +200,8 @@
 
         scope.cardsarray[getAccountsCards[i].id] = card;
 
+        console.log('scope.cardsarray', scope.cardsarray)
+
         localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
 
         count++;
@@ -764,7 +766,7 @@
             }
           }
           htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-              'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
+            'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
           riotTags.innerHTML = "<view-my-cards>";
           riot.mount("view-my-cards", [sendChosenCardId]);
           this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';

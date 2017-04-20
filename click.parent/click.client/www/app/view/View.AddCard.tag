@@ -45,7 +45,7 @@
       </div>
     </div>
 
-    <div class="add-card-main-card-field">
+    <div if="{!modeOfApp.offlineMode}" class="add-card-main-card-field">
       <p class="add-card-main-card-text">{window.languages.ViewAddCardDoMainTitle}</p>
       <div id="doMainId" class="add-card-main-card-icon" ontouchend="doMainCardTouchEnd()"></div>
     </div>
@@ -110,6 +110,24 @@
       }
       else {
         dateOrPin = pinCodeOfBank;
+      }
+
+      if (modeOfApp.offlineMode) {
+        phonedialer.dial(
+          "*880*0*" + cardNumber + '*' + dateOrPin + "%23",
+          function (err) {
+            if (err == "empty") {
+              scope.clickPinError = false;
+              scope.errorNote = ("Unknown phone number");
+              scope.showError = true;
+              riot.update();
+            }
+            else console.log("Dialer Error:" + err);
+          },
+          function (success) {
+          }
+        );
+        return
       }
 
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
