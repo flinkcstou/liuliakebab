@@ -6,8 +6,8 @@
   </div>
 
   <div class="view-add-card">
-    <p class="add-card-text-field">{window.languages.ViewAddCardNameTitle}</p>
-    <div class="add-card-card-name-input-part-container">
+    <p if="{!modeOfApp.offlineMode}" class="add-card-text-field">{window.languages.ViewAddCardNameTitle}</p>
+    <div if="{!modeOfApp.offlineMode}" class="add-card-card-name-input-part-container">
       <input maxlength="25" class="add-card-card-name-input-part"/>
     </div>
     <div class="add-card-card-field">
@@ -252,10 +252,6 @@
       console.log('event.keyCode', event.keyCode)
 
       if (boxFour.value.length >= 4 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-        boxFour.value = event.target.value.substring(0, event.target.value.length - 1);
-      }
-
-      if (boxFour.value.length == 4 && event.keyCode != input_codes.BACKSPACE_CODE) {
         if (boxOne.value == '8600') {
           boxDate.focus();
         }
@@ -263,6 +259,7 @@
           boxPin.focus();
         }
       }
+
     }
 
     boxDateKeyDown = function () {

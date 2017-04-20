@@ -33,9 +33,9 @@
       {languages.ViewReportMonthsArray[mNumber].name}
       {languages.ViewReportsFilterMonthNotStartedYet}</p>
 
-    <div class="view-reports-body-container" if="{firstReportView}">
-      <div class="view-reports-payments-container" each="{i in paymentDates}"
-           ontouchmove="reportsBodyContainerTouchMove">
+    <div class="view-reports-body-container" id="reportBodyContainerId" if="{firstReportView}"
+         onscroll="reportsBodyContainerTouchMove()">
+      <div class="view-reports-payments-container" each="{i in paymentDates}">
         <div class="view-reports-payment-date-containter">
           <div class="view-reports-payment-date-field">{i}</div>
         </div>
@@ -131,10 +131,12 @@
     });
 
     reportsBodyContainerTouchMove = function () {
-      var position = document.getElementById('id').scrollTop;
+      event.preventDefault();
+      event.stopPropagation();
+      var position = reportBodyContainerId.scrollTop;
       console.log('POSITION', position)
+      console.log('HEight', reportBodyContainerId.style.height)
     }
-
 
 
     touchStartTitle = function () {
