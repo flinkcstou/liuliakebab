@@ -126,13 +126,13 @@
     riot.mount('component-alert', {"errornote": outerErrorNote});
   }
 
-  function showConfirmComponent(outerConfirmNote) {
+  function showConfirmComponent(outerConfirmNote, confirmType) {
     setTimeout(function () {
       alertComponentBlockId.style.opacity = 1;
     }, 500);
 
     scope.alertComponentBlockId.innerHTML = "<component-confirm>";
-    riot.mount('component-confirm', {"confirmnote": outerConfirmNote});
+    riot.mount('component-confirm', {"confirmnote": outerConfirmNote, "confirmtype": confirmType});
   }
 
   function checkImageURL(dirEntry, fileNamePrefix, fileName, assetURL, index, callback) {
