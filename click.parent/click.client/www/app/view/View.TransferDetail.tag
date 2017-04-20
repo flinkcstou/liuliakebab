@@ -191,6 +191,16 @@
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = loginInfo.session_key;
 
+        if (device.platform != 'BrowserStand') {
+          var options = {dimBackground: true};
+
+          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+            console.log("Started");
+          }, function () {
+            console.log("closed");
+          });
+        }
+
         window.api.call({
           method: 'invoice.action',
           input: {
