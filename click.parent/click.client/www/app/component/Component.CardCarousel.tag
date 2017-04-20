@@ -317,7 +317,6 @@
       if (modeOfApp.onlineMode) {
         if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-          var arrayAccountInfo = [];
           var phoneNumber = localStorage.getItem("click_client_phoneNumber");
           var sessionKey = info.session_key;
 
@@ -332,7 +331,7 @@
 
             onSuccess: function (result) {
 
-              arrayAccountInfo = [];
+              var arrayAccountInfo = [];
 
               if (result[0][0].error == 0) {
 
@@ -344,7 +343,12 @@
                     for (var i = 0; i < result[1].length; i++) {
 
                       j++;
+
+                      console.log('arrayAccountInfo_1' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
+
                       arrayAccountInfo.push(result[1][i]);
+
+                      console.log('arrayAccountInfo_2' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
 
                       var icon = result[1][i].card_background_url;
 
@@ -385,6 +389,11 @@
                             if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
                               localStorage.removeItem("click_client_accountInfo")
                             }
+
+                            console.log('arrayAccountInfo_1232131' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
+
+                            console.log('accountInfo', accountInfo);
+
                             localStorage.setItem("click_client_accountInfo", accountInfo);
                             addCard()
                           }
@@ -402,6 +411,8 @@
                   if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
                     localStorage.removeItem("click_client_accountInfo")
                   }
+
+                  console.log('accountInfo BROWSER STAND', accountInfo);
                   localStorage.setItem("click_client_accountInfo", accountInfo);
                   addCard()
                 }
@@ -753,7 +764,7 @@
             }
           }
           htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-            'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
+              'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
           riotTags.innerHTML = "<view-my-cards>";
           riot.mount("view-my-cards", [sendChosenCardId]);
           this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
