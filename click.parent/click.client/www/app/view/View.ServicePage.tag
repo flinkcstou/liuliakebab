@@ -221,8 +221,9 @@
 
     telPayVerificationKeyDown = function (input) {
 
-      if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+      if (input.value.length >= scope.inputMaxLength && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+        console.log("B", firstFieldInput.value);
       }
     }
 
@@ -515,6 +516,7 @@
         scope.defaultAmount = !viewServicePage.amountText ? 0 : viewServicePage.amountText;
 
         scope.inputMaxLength = scope.fieldArray[0].max_len;
+        console.log("INPUT LENGTH=", scope.inputMaxLength);
         if (scope.dropDownOn) {
           scope.chosenFieldParamId = scope.fieldArray[0].parameter_id;
           scope.oldFieldParamId = scope.fieldArray[1].parameter_id;
@@ -659,15 +661,16 @@
 
       for (var i = 0; i < scope.fieldArray.length; i++) {
 
-        console.log("Yahoo2", id, scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].parameter_id);
+//        console.log("Yahoo2", id, scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].parameter_id);
 
         if (scope.fieldArray[i].parameter_id == id) {
           scope.chosenFieldName = scope.fieldArray[i].title;
           scope.chosenFieldPlaceholder = scope.fieldArray[i].placeholder;
           scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1";
           scope.inputMaxLength = scope.fieldArray[i].max_len;
+          console.log("INPUT LENGTH=", scope.inputMaxLength);
 
-          console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
+//          console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
 
           if (scope.fieldArray[i].input_type == '1') {
             scope.inputType = 'tel';

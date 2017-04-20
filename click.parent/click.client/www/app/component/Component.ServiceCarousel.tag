@@ -44,9 +44,18 @@
     var scope = this;
     var leftOfDelta;
     var cardNumberOfService = 0;
-    if (modeOfApp.offlineMode)
+    if (modeOfApp.offlineMode) {
       scope.popularServiceList = localStorage.getItem("click_client_popularServiceList") ? (JSON.parse(localStorage.getItem("click_client_popularServiceList"))) : (offlinePopularServiceList);
+      alert("C");
+    }
+    else {
+      scope.popularServiceList = localStorage.getItem("click_client_popularServiceList");
+      console.log("GOOGLE", localStorage.getItem("click_client_popularServiceList"))
+      riot.update(scope.popularServiceList);
+      alert("B");
+    }
     scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
@@ -59,7 +68,8 @@
 
     scope.showError = false;
 
-    if (!scope.popularServiceList && modeOfApp.onlineMode) {
+    if (!localStorage.getItem("click_client_popularServiceList") && modeOfApp.onlineMode) {
+      alert("A");
       scope.popularServiceList = [];
       window.api.call({
         method: 'get.popular.services',

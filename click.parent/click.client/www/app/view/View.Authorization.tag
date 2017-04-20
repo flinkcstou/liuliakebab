@@ -95,20 +95,20 @@
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization' && !JSON.parse(localStorage.getItem('onResume'))) {
         history.arrayOfHistory.push(
-            {
-              "view": 'view-authorization',
-              "params": opts
-            }
+          {
+            "view": 'view-authorization',
+            "params": opts
+          }
         );
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
       }
     }
     else {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-authorization',
-            "params": opts
-          }
+        {
+          "view": 'view-authorization',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -538,6 +538,94 @@
             }
           });
         }
+
+//        if (!scope.popularServiceList && modeOfApp.onlineMode) {
+//          scope.popularServiceList = [];
+//          window.api.call({
+//            method: 'get.popular.services',
+//            input: {
+//              session_key: sessionKey,
+//              phone_num: phoneNumber
+//            },
+//            scope: this,
+//
+//            onSuccess: function (result) {
+//              if (result[0][0].error == 0) {
+//                if (result[1][0]) {
+//
+//                  if (device.platform != 'BrowserStand') {
+//                    window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+//                      var j = -1;
+//
+//                      for (var i = 0; i < 3; i++) {
+//                        j++;
+//                        scope.popularServiceList.push(result[1][i]);
+//
+//                        var icon = result[1][i].image;
+//                        var filename = icon.substr(icon.lastIndexOf('/') + 1);
+//
+//                        var newIconBool = checkImageURL;
+//                        newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
+//
+//                          if (bool) {
+//                            scope.popularServiceList[index]['image'] = cordova.file.dataDirectory + fileName;
+//                            console.log("1.index=", index, ",imageUrl=", scope.popularServiceList[index]['image']);
+//                          } else {
+//                            scope.popularServiceList[index]['image'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/' + fileName;
+//                            console.log("2.index=", index, ",imageUrl=", scope.popularServiceList[index]['image']);
+//                          }
+//
+//                          if (scope.popularServiceList.length == 3) {
+//                            var myNumberObject = {};
+//                            myNumberObject.name = 'Мой номер';
+//                            myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+//                            myNumberObject.id = 'mynumber' + localStorage.getItem('myNumberOperatorId');
+//                            scope.popularServiceList.push(myNumberObject);
+//                            console.log("popular services", scope.popularServiceList);
+//                            riot.update(scope.popularServiceList);
+//                            localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
+//                          }
+//                        });
+//                      }
+//
+//
+//                    }, onErrorLoadFs);
+//                  }
+//                  else {
+//                    for (var i in result[1]) {
+//                      if (scope.popularServiceList.length < 4) {
+//                        console.log("FTYFJUKVG", result[1][i]);
+//                        scope.popularServiceList.push(result[1][i]);
+//                      }
+//                    }
+//                    if (scope.popularServiceList.length == 3) {
+//                      var myNumberObject = {};
+//                      myNumberObject.name = 'Мой номер';
+//                      myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+//                      myNumberObject.id = 'mynumber' + localStorage.getItem('myNumberOperatorId');
+//                      scope.popularServiceList.push(myNumberObject);
+//                    }
+//
+//                    console.log("popular services", scope.popularServiceList);
+//                    riot.update(scope.popularServiceList);
+//                    localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
+//                  }
+//                }
+//              }
+//              else {
+//                scope.clickPinError = false;
+//                scope.errorNote = result[0][0].error_note;
+//                scope.showError = true;
+//                riot.update();
+//              }
+//
+//            },
+//            onFail: function (api_status, api_status_message, data) {
+//              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+//              console.error(data);
+//            }
+//          });
+//        }
 
         /*
          * Убрана проверка, так как по требованию в онлайн режиме всегда производится вызов сервисов.
