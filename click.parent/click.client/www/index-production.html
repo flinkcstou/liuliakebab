@@ -161,6 +161,15 @@
   //  }
 
   function onBackKeyDown() {
+
+    if (window.checkShowingComponent) {
+      console.log('window.checkShowingComponent', window.checkShowingComponent)
+      window.checkShowingComponent.parent.showComponent = false;
+      window.checkShowingComponent = null;
+      riot.update();
+      return
+    }
+
     history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
 
     if (history.arrayOfHistory.length != 0) {
