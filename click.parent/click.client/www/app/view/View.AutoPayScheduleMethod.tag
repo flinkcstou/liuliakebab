@@ -51,8 +51,8 @@
            ontouchend="monthContainerTouchEnd()"
            ontouchmove="monthContainerTouchMove()">
         <div class="schedule-date-block-day" each="{i in daysArray}"
-             style="top:{topOfOperations*(i-2)}px;">
-          <p class="schedule-date-block-day-text">{i}</p>
+             style="top:{topOfOperations*i}px;">
+          <p id="day{i-1}" class="schedule-date-block-day-text">{i}</p>
         </div>
       </div>
 
@@ -150,11 +150,13 @@
     function changePosition() {
 
       if (carouselTouchEndY < carouselTouchStartY && mNumber < count - 1) {
+        document.getElementById("day" + mNumber).style.color = '#c1c1c1';
         ++mNumber;
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        document.getElementById("day" + mNumber).style.color = '#01B8FE';
       }
 
       if (carouselTouchEndY > carouselTouchStartY && mNumber == 0) {
@@ -172,11 +174,13 @@
       }
 
       if (carouselTouchEndY > carouselTouchStartY && mNumber > 0) {
+        document.getElementById("day" + mNumber).style.color = '#c1c1c1';
         --mNumber;
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        document.getElementById("day" + mNumber).style.color = '#01B8FE';
       }
 
 
@@ -186,11 +190,13 @@
     function changePositionTwo() {
 
       if (mNumber < count - 1) {
+        document.getElementById("day" + mNumber).style.color = '#c1c1c1';
         ++mNumber;
         this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        document.getElementById("day" + mNumber).style.color = '#01B8FE';
       }
 
       if (mNumber == 0) {
@@ -208,11 +214,13 @@
       }
 
       if (mNumber > 0) {
+        document.getElementById("day" + mNumber).style.color = '#c1c1c1';
         --mNumber;
         this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        document.getElementById("day" + mNumber).style.color = '#01B8FE';
       }
 
     }
