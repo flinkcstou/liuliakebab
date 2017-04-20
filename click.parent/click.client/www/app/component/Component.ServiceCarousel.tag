@@ -66,7 +66,6 @@
     scope.showError = false;
 
     if (!localStorage.getItem("click_client_popularServiceList") && modeOfApp.onlineMode) {
-      alert("A");
       scope.popularServiceList = [];
       window.api.call({
         method: 'get.popular.services',
