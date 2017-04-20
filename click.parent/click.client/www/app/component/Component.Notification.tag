@@ -35,7 +35,13 @@
         console.log("PUSH NOTIFICATION OBJECT", notification);
         ++numberOfMessage;
 
-        scope.notificationText = notification.body;
+        if (device.platform == "iOS") {
+
+          scope.notificationText = notification.notification.body;
+        } else {
+
+          scope.notificationText = notification.body;
+        }
         scope.notificationAction = notification.action;
         scope.notificationElementId = notification.notify_id;
 
