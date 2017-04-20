@@ -6872,7 +6872,7 @@ var css = {
   //SETTINGS ADD FRIEND
   settingsAddFriendAddContainer: ".settings-add-friend-add-container" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "width: 100%;" +
     //"border-bottom: 1px solid gray;" +
   "height:" + 150 * widthK + "px;" +
@@ -6889,13 +6889,13 @@ var css = {
 
   settingsAddFriendContactPhoneField: ".settings-add-friend-contact-phone-field" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "left: 10%;" +
   "width: 79.5%;" +
   "height:" + 100 * widthK + "px;" +
   "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top: 17%" +
+  "margin-top: 10%" +
   "}",
 
   settingsAddFriendContactNumberInputPart: ".settings-add-friend-contact-number-input-part" +
@@ -6976,7 +6976,7 @@ var css = {
 
   settingsAddFriendNextButtonInnerContainer: ".settings-add-friend-next-button-inner-container" +
   "{" +
-  "top: 41%;" +
+  "top: 15%;" +
   "position: relative;" +
   "height: " + 74 * widthK + "px;" +
   "text-transform: capitalize;" +
