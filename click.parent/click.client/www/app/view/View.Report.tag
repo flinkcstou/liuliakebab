@@ -34,7 +34,8 @@
       {languages.ViewReportsFilterMonthNotStartedYet}</p>
 
     <div class="view-reports-body-container" if="{firstReportView}">
-      <div class="view-reports-payments-container" each="{i in paymentDates}">
+      <div class="view-reports-payments-container" each="{i in paymentDates}"
+           ontouchmove="reportsBodyContainerTouchMove">
         <div class="view-reports-payment-date-containter">
           <div class="view-reports-payment-date-field">{i}</div>
         </div>
@@ -100,10 +101,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-report',
-            "params": opts
-          }
+        {
+          "view": 'view-report',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -128,6 +129,12 @@
         riot.update();
       }
     });
+
+    reportsBodyContainerTouchMove = function () {
+      var position = document.getElementById('id').scrollTop;
+      console.log('POSITION', position)
+    }
+
 
 
     touchStartTitle = function () {
@@ -389,8 +396,8 @@
       }
 
       var firstDay = scope.tags["component-report-filter"].filterDateFrom,
-          lastDay = scope.tags["component-report-filter"].filterDateTo,
-          accountId = scope.tags["component-report-filter"].filterByAccount;
+        lastDay = scope.tags["component-report-filter"].filterDateTo,
+        accountId = scope.tags["component-report-filter"].filterByAccount;
 
       if (!accountId) {
 
@@ -503,8 +510,8 @@
       }
 
       var firstDay = scope.tags["component-report-filter"].filterDateFrom,
-          lastDay = scope.tags["component-report-filter"].filterDateTo,
-          accountId = scope.tags["component-report-filter"].filterByAccount;
+        lastDay = scope.tags["component-report-filter"].filterDateTo,
+        accountId = scope.tags["component-report-filter"].filterByAccount;
 
       if (!accountId) {
 
@@ -558,25 +565,25 @@
 
             if (scope.paymentsSum.length == 7) {
               scope.paymentsSum = scope.paymentsSum.substring(0, 1) + ' ' +
-                  scope.paymentsSum.substring(1, 4) + ' ' + scope.paymentsSum.substring(4, scope.paymentsSum.length)
+                scope.paymentsSum.substring(1, 4) + ' ' + scope.paymentsSum.substring(4, scope.paymentsSum.length)
 
             }
 
             if (scope.paymentsSum.length == 6) {
               scope.paymentsSum = scope.paymentsSum.substring(0, 3) + ' ' +
-                  scope.paymentsSum.substring(3, scope.paymentsSum.length)
+                scope.paymentsSum.substring(3, scope.paymentsSum.length)
 
             }
 
             if (scope.paymentsSum.length == 5) {
               scope.paymentsSum = scope.paymentsSum.substring(0, 2) + ' ' +
-                  scope.paymentsSum.substring(2, scope.paymentsSum.length)
+                scope.paymentsSum.substring(2, scope.paymentsSum.length)
 
             }
 
             if (scope.paymentsSum.length == 4) {
               scope.paymentsSum = scope.paymentsSum.substring(0, 1) + ' ' +
-                  scope.paymentsSum.substring(1, scope.paymentsSum.length)
+                scope.paymentsSum.substring(1, scope.paymentsSum.length)
 
             }
 
@@ -664,19 +671,19 @@
       console.log('DATA', data)
       var ctx = document.getElementById('myChart').getContext('2d');
       var myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: data,
-            options: {
-              cutoutPercentage: 55,
-              animateScale: false,
-              tooltips: {
-                enabled: false
-              },
-              events: [],
+          type: 'doughnut',
+          data: data,
+          options: {
+            cutoutPercentage: 55,
+            animateScale: false,
+            tooltips: {
+              enabled: false
+            },
+            events: [],
 
-            }
-          })
-          ;
+          }
+        })
+        ;
 
       for (var i in scope.arrayOfCoordinates) {
         if (document.getElementById('chartImageBlockId' + scope.arrayOfCoordinates[i].order)) {

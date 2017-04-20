@@ -6976,13 +6976,12 @@ var css = {
 
   settingsAddFriendNextButtonInnerContainer: ".settings-add-friend-next-button-inner-container" +
   "{" +
-  "top: 15%;" +
   "position: relative;" +
   "height: " + 74 * widthK + "px;" +
   "text-transform: capitalize;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
-  "margin: 0 auto 0 auto;" +
+  "margin: 15% auto 0 auto;" +
   "background-color: #00a8f1;" +
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px;" +
