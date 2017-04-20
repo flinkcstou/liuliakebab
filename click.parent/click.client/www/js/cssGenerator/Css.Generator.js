@@ -889,7 +889,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "background: transparent;" +
-  "background-image: url(resources/icons/toolbar/bells.png);" +
+  "background-image: url(resources/icons/toolbar/bell.png);" +
   "width:" + 40 * widthK + "px;" +
   "height:" + 46 * widthK + "px;" +
   "background-size: 100%;" +
