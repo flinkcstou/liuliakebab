@@ -23,7 +23,7 @@
         </div>
         <div class="autopay-schedule-block-next-icon"></div>
       </div>
-      <div class="autopay-schedule-block-containter" ontouchend="goToCallCenterSettings()">
+      <div class="autopay-schedule-block-containter" ontouchend="everyMonthChosenDay()">
         <div class="autopay-schedule-block-text">{window.languages.ViewAutoPayMethodScheduleEveryMonth}</div>
         <div class="autopay-schedule-block-detail-text">
           {window.languages.ViewAutoPayMethodScheduleChosenDay}
@@ -37,6 +37,29 @@
 
     </div>
 
+  </div>
+
+  <div id="dayChooseBlockId" class="schedule-date-block">
+    <div class="schedule-date-block-title-container">
+      <hr class="schedule-date-block-title-line"/>
+      <div class="schedule-date-block-title">{window.languages.ViewAutoPayMethodScheduleChoseDate}</div>
+    </div>
+
+    <div class="schedule-date-block-days-outer-container">
+
+      <div id="monthContainerId" class="schedule-date-block-days-container" ontouchstart="monthContainerTouchStart()"
+           ontouchend="monthContainerTouchEnd()"
+           ontouchmove="monthContainerTouchMove()">
+        <div class="schedule-date-block-day" each="{i in daysArray}"
+             style="top:{topOfOperations*i}px;">
+          <p id="day{i-1}" class="schedule-date-block-day-text">{i}</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="schedule-date-block-button-choose" ontouchend="chooseDate()">
+      {window.languages.ViewAutoPayMethodScheduleChoseButtonLabel}
+    </button>
   </div>
 
   <div id="dateChooseBlockId" class="schedule-date-block">
@@ -55,9 +78,7 @@
           <p id="day{i-1}" class="schedule-date-block-day-text">{i}</p>
         </div>
       </div>
-
     </div>
-
 
     <button class="schedule-date-block-button-choose" ontouchend="chooseDate()">
       {window.languages.ViewAutoPayMethodScheduleChoseButtonLabel}
@@ -92,6 +113,10 @@
       event.stopPropagation();
       onBackKeyDown()
     };
+
+    everyMonthChosenDay = function () {
+      dateChooseBlockId.style.display = 'block';
+    }
 
     everyMonthLastDay = function () {
       dateChooseBlockId.style.display = 'block';

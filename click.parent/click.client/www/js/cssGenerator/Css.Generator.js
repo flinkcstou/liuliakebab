@@ -3348,6 +3348,17 @@ var css = {
   "top: 2%;" +
   "}",
 
+  servicePageSecondDropdownFieldDifTop: ".servicepage-second-dropdown-field-diftop" +
+  "{" +
+  "position: relative;" +
+  "width: 79.5%;" +
+  "height: 9%;" +
+  "left: 10%;" +
+  "color: white;" +
+  "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
+  "top: 4%;" +
+  "}",
+
   servicePageDropdownIcon: ".servicepage-dropdown-icon" +
   "{" +
   "position: absolute;" +
