@@ -30,16 +30,15 @@ window.api.init = function () {
 
 window.api.initSocket = function () {
 
-
   this.socket.onopen = function () {
-    //window.showAlert(false, "Соединение установлено", true);
-
 
     console.log('WebSocket is connected');
 
     if (!window.isConnected) {
 
-      //showAlert(false, "Соединение установлено", true);
+      showAlertComponent("Соединение установлено");
+
+      //alert("Соединение установлено");
 
       if (window.api.socket.readyState == 1 && window.lastSocketMethodToSend) {
         window.api.socket.send(window.lastSocketMethodToSend);
@@ -130,7 +129,8 @@ window.api.initSocket = function () {
 
           window.api.sessionErrorChecker = true;
 
-          var result = confirm(error);
+          //var result =
+          showConfirmComponent(error);
 
           if (result) {
 
@@ -233,16 +233,16 @@ window.api.call = function (params) {
       parameters: input
     });
 
-    var result = confirm("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?");
-    if (result) {
-
-      modeOfApp.offlineMode = true;
-      modeOfApp.onlineMode = false;
-
-      riotTags.innerHTML = "<view-main-page>";
-      riot.mount('view-main-page');
-      riot.update()
-    }
+    showConfirmComponent("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?");
+    //if (result) {
+    //
+    //  modeOfApp.offlineMode = true;
+    //  modeOfApp.onlineMode = false;
+    //
+    //  riotTags.innerHTML = "<view-main-page>";
+    //  riot.mount('view-main-page');
+    //  riot.update()
+    //}
   }
 };
 
@@ -261,16 +261,16 @@ function offlineDetector() {
   if (window.isConnected) window.api.socket.close()
   if (modeOfApp.onlineMode && window.isConnected) {
 
-    var result = confirm("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?");
-    if (result) {
-
-      modeOfApp.offlineMode = true;
-      modeOfApp.onlineMode = false;
-
-      riotTags.innerHTML = "<view-main-page>";
-      riot.mount('view-main-page');
-      riot.update()
-    }
+   showConfirmComponent("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?");
+    //if (result) {
+    //
+    //  modeOfApp.offlineMode = true;
+    //  modeOfApp.onlineMode = false;
+    //
+    //  riotTags.innerHTML = "<view-main-page>";
+    //  riot.mount('view-main-page');
+    //  riot.update()
+    //}
   }
 
   console.log("OFFLINE DETECTOR");

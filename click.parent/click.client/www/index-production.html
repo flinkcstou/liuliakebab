@@ -33,6 +33,7 @@
 
 <body id="bodyId">
 <div id="indexNotificationBlockId"></div>
+<div id="alertComponentBlockId" style="opacity: 0;"></div>
 
 <div id="riotTags">
 </div>
@@ -63,11 +64,11 @@
           console.log('SIM permission is not turned on');
         }
         permissions.requestPermission(
-            permissions.READ_SMS,
-            function (status) {
-              if (!status.checkPermission) errorCallback();
-            },
-            errorCallback);
+          permissions.READ_SMS,
+          function (status) {
+            if (!status.checkPermission) errorCallback();
+          },
+          errorCallback);
       }
     }
 
@@ -77,11 +78,11 @@
           console.log('CALL permission is not turned on');
         }
         permissions.requestPermission(
-            permissions.CALL_PHONE,
-            function (status) {
-              if (!status.checkPermission) errorCallback();
-            },
-            errorCallback);
+          permissions.CALL_PHONE,
+          function (status) {
+            if (!status.checkPermission) errorCallback();
+          },
+          errorCallback);
       }
     }
 
@@ -164,9 +165,9 @@
 
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-main-page'
-          || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device'
-          || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization'
-          || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-client') {
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device'
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization'
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-client') {
         navigator.app.exitApp();
       }
       else {
@@ -204,6 +205,23 @@
 
       window.pushNotificationActions.retrievePushNotification();
     }, 0);
+  }
+  function showAlertComponent(outerErrorNote) {
+    setTimeout(function () {
+      alertComponentBlockId.style.opacity = 1;
+    }, 500);
+
+    scope.alertComponentBlockId.innerHTML = "<component-alert>";
+    riot.mount('component-alert', {"errornote": outerErrorNote});
+  }
+
+  function showConfirmComponent(outerConfirmNote) {
+    setTimeout(function () {
+      alertComponentBlockId.style.opacity = 1;
+    }, 500);
+
+    scope.alertComponentBlockId.innerHTML = "<component-confirm>";
+    riot.mount('component-confirm', {"confirmnote": outerConfirmNote});
   }
 
 

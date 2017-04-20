@@ -1,4 +1,4 @@
-<component-alert>
+<component-alert hidden="{outerShowAlertBool}">
   <div id="componentAlertId" class="component-alert">
     <div class="component-alert-icon"></div>
     <p class="component-alert-message" if="{!opts.clickpinerror}">{opts.errornote}</p>
@@ -20,30 +20,45 @@
 
   <script>
     var scope = this;
+    scope.outerShowAlertBool = false;
 
+    //    console.log("OPTS OF ALERT", opts)
+    //    if (opts[0] && opts[0].outerErrorNote) {
+    //      console.log("OPTS OF ALERTGCHFG")
+    //      scope.outerCall = true;
+    //      scope.outerErrorNote = opts[0].outerErrorNote;
+    //      riot.update();
+    //    }
 
     closeAlertForm = function () {
       event.preventDefault();
       event.stopPropagation();
-      scope.parent.showError = false;
 
-      if (opts.step_amount || opts.step_amount == 0) {
+      if (scope.parent) {
+        scope.parent.showError = false;
 
-        history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
-        console.log(history.arrayOfHistory)
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-        onBackKeyDown()
+        if (opts.step_amount || opts.step_amount == 0) {
+
+          history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
+          console.log(history.arrayOfHistory)
+          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+          onBackKeyDown()
+        }
+      } else {
+        scope.outerShowAlertBool = true;
+        console.log("close")
+        console.log(scope.outerShowAlertBool)
       }
 
       //OK
       riot.update()
     };
 
-    window.showAlert = function (clickPinError, errorNote, showError) {
-      scope.clickPinError = clickPinError;
-      scope.errorNote = errorNote;
-      scope.showError = showError;
-      riot.update();
-    }
+    //    window.showAlert = function (clickPinError, errorNote, showError) {
+    //      scope.parent.clickPinError = clickPinError;
+    //      scope.parent.errorNote = errorNote;
+    //      scope.parent.showError = showError;
+    //      riot.update();
+    //    }
   </script>
 </component-alert>

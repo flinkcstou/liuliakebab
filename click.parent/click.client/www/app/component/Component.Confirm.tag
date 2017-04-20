@@ -1,4 +1,4 @@
-<component-confirm>
+<component-confirm hidden="{outerShowAlertBool}">
   <div id="componentConfirmId" class="component-alert">
     <div class="component-alert-icon"></div>
     <p class="component-alert-message">{opts.confirmnote}</p>
@@ -16,20 +16,29 @@
 
   <script>
     var scope = this;
+    scope.outerShowAlertBool = false;
 
 
     okConfirm = function () {
       event.preventDefault();
       event.stopPropagation();
-      scope.parent.showConfirm = false;
 
-      if (opts.step_amount || opts.step_amount == 0) {
+//      if (opts.step_amount || opts.step_amount == 0) {
+//
+//        history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
+//        console.log(history.arrayOfHistory)
+//        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+//        onBackKeyDown()
+//      }
+      modeOfApp.offlineMode = true;
+      modeOfApp.onlineMode = false;
 
-        history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
-        console.log(history.arrayOfHistory)
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-        onBackKeyDown()
-      }
+      riotTags.innerHTML = "<view-main-page>";
+      riot.mount('view-main-page');
+      riot.update()
+      scope.outerShowAlertBool = true;
+      console.log("close")
+      console.log(scope.outerShowAlertBool)
 
       //OK
       riot.update()
@@ -38,22 +47,21 @@
     cancelConfirm = function () {
       event.preventDefault();
       event.stopPropagation();
-      scope.parent.showConfirm = false;
 
-      if (opts.step_amount || opts.step_amount == 0) {
-
-        history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
-        console.log(history.arrayOfHistory)
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-        onBackKeyDown()
-      }
+//      if (opts.step_amount || opts.step_amount == 0) {
+//
+//        history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
+//        console.log(history.arrayOfHistory)
+//        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+//        onBackKeyDown()
+//      }
+      scope.outerShowAlertBool = true;
+      console.log("close")
+      console.log(scope.outerShowAlertBool)
 
       //OK
       riot.update()
     }
 
-    window.showAlert = function () {
-
-    }
   </script>
 </component-confirm>

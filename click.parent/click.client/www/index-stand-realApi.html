@@ -35,6 +35,7 @@
 </head>
 
 <body id="bodyId">
+<div id="alertComponentBlockId" style="opacity: 0;"></div>
 
 <div id="riotTags">
 </div>
@@ -114,6 +115,24 @@
 
     }
 
+  }
+
+  function showAlertComponent(outerErrorNote) {
+    setTimeout(function () {
+      alertComponentBlockId.style.opacity = 1;
+    }, 500);
+
+    scope.alertComponentBlockId.innerHTML = "<component-alert>";
+    riot.mount('component-alert', {"errornote": outerErrorNote});
+  }
+
+  function showConfirmComponent(outerConfirmNote) {
+    setTimeout(function () {
+      alertComponentBlockId.style.opacity = 1;
+    }, 500);
+
+    scope.alertComponentBlockId.innerHTML = "<component-confirm>";
+    riot.mount('component-confirm', {"confirmnote": outerConfirmNote});
   }
 
   function checkImageURL(dirEntry, fileNamePrefix, fileName, assetURL, index, callback) {
