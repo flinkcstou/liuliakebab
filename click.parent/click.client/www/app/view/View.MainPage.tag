@@ -94,7 +94,7 @@
 
         console.log("modeOfApp", modeOfApp);
 
-        if (modeOfApp.onlineMode) {c
+        if (modeOfApp.onlineMode) {
 
           this.riotTags.innerHTML = "<view-mycard-list>";
           riot.mount('view-mycard-list');

@@ -223,7 +223,8 @@
     telPayVerificationKeyUp = function () {
       if (event.keyCode != input_codes.BACKSPACE_CODE) {
         console.log(firstFieldInput.value)
-        firstFieldInput.value = inputVerification.telVerification(firstFieldInput.value)
+        if (firstFieldInput.type != 'text')
+          firstFieldInput.value = inputVerification.telVerification(firstFieldInput.value)
       }
     }
 
