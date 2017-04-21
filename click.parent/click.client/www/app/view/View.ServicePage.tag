@@ -19,8 +19,7 @@
     <div class="servicepage-second-dropdown-field" if="{hasFirstLevel}"
          ontouchend="openDropDownTwo()">
       <p if="{formType==3}" class="servicepage-text-field servicepage-second-dropdown-field-text">
-        {(service.options_title)?(service.options_title):((firstLevelArray &&
-        firstLevelArray[0])?(firstLevelArray[0].name):(""))}</p>
+        {(service.options_title)?(service.options_title):("")}</p>
       <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
       <div class="servicepage-dropdown-icon"></div>
     </div>
@@ -28,8 +27,6 @@
     <div class="{servicepage-second-dropdown-field:formType!=3, servicepage-second-dropdown-field-diftop: formType==3}"
          if="{hasSecondLevel}"
          ontouchend="openDropDownThree()">
-      <p if="{formType==3}" class="servicepage-text-field servicepage-second-dropdown-field-text">
-        {(secondLevelArray && secondLevelArray[0])?(secondLevelArray[0].name):("")}</p>
       <p class="servicepage-dropdown-text-field">{chosenFieldNameThree}</p>
       <div class="servicepage-dropdown-icon"></div>
     </div>
@@ -564,6 +561,8 @@
 
         }
         console.log('Service=', scope.service)
+        console.log('firstLevel=', scope.firstLevelArray)
+        console.log('secondLevel=', scope.secondLevelArray)
 
       }
 
