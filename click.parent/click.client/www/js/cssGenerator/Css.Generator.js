@@ -10443,7 +10443,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:50%;" +
+  "height:55%;" +
     //"background-color: grey;" +
     //"left: 10%;" +
     //"top:" + 165 * widthK + "px;" +
