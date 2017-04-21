@@ -14,7 +14,7 @@
     <div class="pincard-payfrom-container">
       <p class="pincard-payfrom-field">{window.languages.ViewServicePinCardPayFromField}</p></div>
 
-    <component-pincards></component-pincards>
+    <component-pincards clean="{true}"></component-pincards>
     <div class="pincard-bottom-container">
 
       <div class="pincard-friend-help-container" if="{!friendHelpBool}" ontouchend="friendHelp()">
@@ -52,23 +52,23 @@
 
 
     console.log('OPTS', opts);
-    var arrayForTransfer = [];
-    arrayForTransfer.push(opts[0]);
-    arrayForTransfer.push(opts[1]);
-    arrayForTransfer.push(opts[2]);
-    arrayForTransfer.push(opts[3]);
-    arrayForTransfer.push(opts[4]);
-    arrayForTransfer.push(opts[5]);
-    arrayForTransfer.push(opts[6]);
-    arrayForTransfer.push(opts[7]);
-    console.log(arrayForTransfer);
+    var arrayForPay = [];
+    arrayForPay.push(opts[0]);
+    arrayForPay.push(opts[1]);
+    arrayForPay.push(opts[2]);
+    arrayForPay.push(opts[3]);
+    arrayForPay.push(opts[4]);
+    arrayForPay.push(opts[5]);
+    arrayForPay.push(opts[6]);
+    arrayForPay.push(opts[7]);
+    console.log(arrayForPay);
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-service-pincards',
-            "params": opts
-          }
+        {
+          "view": 'view-service-pincards',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -93,6 +93,16 @@
 
 
     goToPayConfirmView = function () {
+      var cardSumFromPinCards = scope.tags['component-pincards'].getAccountCardSum();
+
+      if (cardSumFromPinCards && cardSumFromPinCards < arrayForPay[5].amountText) {
+        console.log(cardSumFromPinCards, arrayForPay[5].amountText)
+        scope.clickPinError = false;
+        scope.errorNote = "На выбранной карте недостаточно средств";
+        scope.showError = true;
+        riot.update();
+        return;
+      }
       cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
       console.log("cardsArray=", cardsArray);
       console.log("BOOL=", scope.friendHelpBool);
@@ -101,7 +111,7 @@
         event.preventDefault();
         event.stopPropagation();
         this.riotTags.innerHTML = "<view-pay-confirm>";
-        riot.mount('view-pay-confirm', [arrayForTransfer, false, viewServicePinCards.chosenFriendForHelp]);
+        riot.mount('view-pay-confirm', [arrayForPay, false, viewServicePinCards.chosenFriendForHelp]);
       } else {
         for (var i in cardsArray) {
           if (cardsArray[i].chosenCard && cardsArray[i].access == 2) {
@@ -110,7 +120,7 @@
             event.preventDefault();
             event.stopPropagation();
             this.riotTags.innerHTML = "<view-pay-confirm>";
-            riot.mount('view-pay-confirm', [arrayForTransfer, true, scope.chosencardId]);
+            riot.mount('view-pay-confirm', [arrayForPay, true, scope.chosencardId]);
           }
         }
       }
