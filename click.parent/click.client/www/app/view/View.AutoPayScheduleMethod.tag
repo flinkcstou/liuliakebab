@@ -30,7 +30,7 @@
         </div>
         <div class="autopay-schedule-block-next-icon"></div>
       </div>
-      <div class="autopay-schedule-block-containter" ontouchend="goToCallCenterSettings()">
+      <div class="autopay-schedule-block-containter" ontouchend="everyWeek()">
         <div class="autopay-schedule-block-text">{window.languages.ViewAutoPayMethodScheduleEveryWeek}</div>
         <div class="autopay-schedule-block-next-icon"></div>
       </div>
@@ -39,20 +39,23 @@
 
   </div>
 
-  <div id="dateChooseBlockId" class="schedule-date-block" hidden="{dateBlockShow}">
+  <div id="dateChooseBlockId" class="schedule-date-block">
     <div class="schedule-date-block-title-container">
       <hr class="schedule-date-block-title-line"/>
-      <div class="schedule-date-block-title">{window.languages.ViewAutoPayMethodScheduleChoseDate}</div>
+      <div class="schedule-date-block-title">{dateBlockTitle}</div>
     </div>
 
     <div class="schedule-date-block-days-outer-container">
-
-      <div id="dateContainerId" class="schedule-date-block-days-container" ontouchstart="monthContainerTouchStart()"
+      <div id="monthContainerId" class="schedule-date-block-days-container" ontouchstart="monthContainerTouchStart()"
            ontouchend="monthContainerTouchEnd()"
            ontouchmove="monthContainerTouchMove()">
-        <div class="schedule-date-block-day" each="{i in daysArray}"
+        <div class="schedule-date-block-day" each="{i in dateBlockArray}" if="{!eachWeek}"
              style="top:{topOfOperations*i}px;">
           <p id="day{i-1}" class="schedule-date-block-day-text">{i}</p>
+        </div>
+        <div class="schedule-date-block-day" each="{i in dateBlockArray}" if="{eachWeek}"
+             style="top:{topOfWeekOperations*i.key}px;">
+          <p id="day{i.key-1}" class="schedule-date-block-day-text schedule-date-block-week-text">{i.val}</p>
         </div>
       </div>
     </div>
@@ -61,7 +64,6 @@
       {window.languages.ViewAutoPayMethodScheduleChoseButtonLabel}
     </button>
   </div>
-
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
@@ -74,7 +76,18 @@
     console.log("ID of service=", opts);
     this.serviceName = scope.servicesMap[opts[0]][0].name;
     this.serviceIcon = scope.servicesMap[opts[0]][0].image;
-    scope.dateBlockShow = false;
+
+    scope.daysArray = window.languages.ViewAutoPayMethodScheduleDaysArray;
+    scope.weekDaysArray = window.languages.ViewAutoPayMethodScheduleWeekDaysArray;
+    scope.hoursArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
+    scope.minutesArray = window.languages.ViewAutoPayMethodScheduleMinutesArray;
+
+
+    scope.shift = 200;
+    scope.topOfOperations = 200 * widthK;
+    scope.topOfWeekOperations = 100 * widthK;
+    var mNumber, count;
+    localStorage.setItem('click_client_countCard', count);
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-autopay-schedule-method') {
@@ -93,27 +106,44 @@
       onBackKeyDown()
     };
 
-    everyMonthChosenDay = function () {
-//      dateChooseBlockId.style.display = 'block';
-      scope.dateBlockShow = true;
+    everyMonthLastDay = function () {
+      count = 24;
+      scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseTime;
+      scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
+      scope.dateBlockArrayTwo = window.languages.ViewAutoPayMethodScheduleMinutesArray;
+      dateChooseBlockId.style.display = 'block';
+      console.log("LAST DAY, dateBlockArray", scope.dateBlockArray);
+      riot.update(scope.dateBlockTitle);
+      riot.update(scope.dateBlockArray);
     }
 
-    everyMonthLastDay = function () {
-//      timeChooseBlockId.style.display = 'block';
+    everyMonthChosenDay = function () {
+      count = 31;
+      scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseDate;
+      scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleDaysArray;
+      dateChooseBlockId.style.display = 'block';
+      console.log("CHOSEN DAY, dateBlockArray", scope.dateBlockArray);
+      riot.update(scope.dateBlockTitle);
+      riot.update(scope.dateBlockArray);
+    }
+
+    scope.eachWeek = false;
+    everyWeek = function () {
+      scope.shift = 100;
+      scope.eachWeek = true;
+      count = 7;
+      scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseWeekDay;
+      scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleWeekDaysArray;
+      dateChooseBlockId.style.display = 'block';
+      console.log("EVERY WEEK, dateBlockArray", scope.dateBlockArray);
+      riot.update(scope.dateBlockTitle);
+      riot.update(scope.dateBlockArray);
+      riot.update(scope.eachWeek);
     }
 
     chooseDate = function () {
       dateChooseBlockId.style.display = 'none';
     }
-
-    scope.daysArray = window.languages.ViewAutoPayMethodScheduleDaysArray;
-    console.log("daysArray", scope.daysArray);
-    riot.update(scope.daysArray);
-
-    scope.topOfOperations = 200 * widthK;
-    var mNumber;
-    var count = 31;
-    localStorage.setItem('click_client_countCard', count);
 
 
     if (!mNumber) {
@@ -129,7 +159,7 @@
     monthContainerTouchStart = function () {
       console.log("in start touch=", mNumber);
       carouselTouchStartY = event.changedTouches[0].pageY;
-      left = -((200 * mNumber) * widthK) - carouselTouchStartY;
+      left = -((scope.shift * mNumber) * widthK) - carouselTouchStartY;
       delta = left;
     }
 
@@ -146,10 +176,10 @@
     monthContainerTouchMove = function () {
       event.preventDefault();
       event.stopPropagation();
-      this.dateContainerId.style.transition = '0s';
-      this.dateContainerId.style.webkitTransition = '0s';
-      this.dateContainerId.style.transform = "translate3d(0," + (event.changedTouches[0].pageY + delta ) + 'px' + ", 0)";
-      this.dateContainerId.style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + delta ) + 'px' + ", 0)";
+      this.monthContainerId.style.transition = '0s';
+      this.monthContainerId.style.webkitTransition = '0s';
+      this.monthContainerId.style.transform = "translate3d(0," + (event.changedTouches[0].pageY + delta ) + 'px' + ", 0)";
+      this.monthContainerId.style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + delta ) + 'px' + ", 0)";
     }
 
     function changePosition() {
@@ -157,34 +187,34 @@
       if (carouselTouchEndY < carouselTouchStartY && mNumber < count - 1) {
         document.getElementById("day" + mNumber).style.color = '#c1c1c1';
         ++mNumber;
-        this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
         document.getElementById("day" + mNumber).style.color = '#01B8FE';
       }
 
       if (carouselTouchEndY > carouselTouchStartY && mNumber == 0) {
-        this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
       }
 
       if (carouselTouchEndY < carouselTouchStartY && mNumber == count - 1) {
-        this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
       }
 
       if (carouselTouchEndY > carouselTouchStartY && mNumber > 0) {
         document.getElementById("day" + mNumber).style.color = '#c1c1c1';
         --mNumber;
-        this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
         document.getElementById("day" + mNumber).style.color = '#01B8FE';
       }
 
@@ -197,34 +227,34 @@
       if (mNumber < count - 1) {
         document.getElementById("day" + mNumber).style.color = '#c1c1c1';
         ++mNumber;
-        this.dateContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
         document.getElementById("day" + mNumber).style.color = '#01B8FE';
       }
 
       if (mNumber == 0) {
-        this.dateContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
       }
 
       if (mNumber == count - 1) {
-        this.dateContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
       }
 
       if (mNumber > 0) {
         document.getElementById("day" + mNumber).style.color = '#c1c1c1';
         --mNumber;
-        this.dateContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.transform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
-        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * 200) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(0," + (-mNumber * scope.shift) * widthK + 'px' + ", 0)";
         document.getElementById("day" + mNumber).style.color = '#01B8FE';
       }
 

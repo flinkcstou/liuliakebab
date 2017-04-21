@@ -3051,7 +3051,7 @@ var css = {
   "height: 10%;" +
   "border-bottom:  " + 5 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top: 7%;" +
+  "top: 8%;" +
   "}",
 
   servicePagePhoneField: ".servicepage-phone-field" +
@@ -3086,7 +3086,7 @@ var css = {
   "height: 10%;" +
   "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
   "color: white;" +
-  "top: 10%" +
+  "top: 11%" +
   "}",
 
   servicePageAmountFieldTwo: ".servicepage-amount-field-two" +
@@ -3341,22 +3341,28 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 79.5%;" +
-  "height: 9%;" +
+  "height: 8%;" +
   "left: 10%;" +
   "color: white;" +
   "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
-  "top: 2%;" +
+  "top: 3%;" +
+  "}",
+
+  servicePageSecondDropdownFieldText: ".servicepage-second-dropdown-field-text" +
+  "{" +
+  "bottom: 75%;" +
+  "font-size:" + 23 * widthK + "px;" +
   "}",
 
   servicePageSecondDropdownFieldDifTop: ".servicepage-second-dropdown-field-diftop" +
   "{" +
   "position: relative;" +
   "width: 79.5%;" +
-  "height: 9%;" +
+  "height: 8%;" +
   "left: 10%;" +
   "color: white;" +
   "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
-  "top: 4%;" +
+  "top: 6%;" +
   "}",
 
   servicePageDropdownIcon: ".servicepage-dropdown-icon" +
@@ -8622,7 +8628,7 @@ var css = {
   "position: absolute;" +
   "right: 0;" +
   "width: 10%;" +
-  //"height: 100%;" +
+    //"height: 100%;" +
   "top: 15%;" +
   "font-size: " + 22 * widthK + "px; " +
   "margin: 0;" +
@@ -12172,12 +12178,10 @@ var css = {
   "position: absolute;" +
   "width: 400px;" +
   "height:600px;" +
-  "top: 310px;" +
+  "top: 335px;" +
   "left: 23%;" +
     //"background-color: #01B8FE;" +
   "overflow: hidden;" +
-    //"overflow-x: auto;" +
-    //"overflow-y: hidden;" +
   "}",
 
   scheduleDateBlockDaysContainer: ".schedule-date-block-days-container " +
@@ -12185,9 +12189,6 @@ var css = {
   "position: absolute;" +
   "width: 360px;" +
   "height:500px;" +
-    //"top: 28%;" +
-    //"overflow-x: auto;" +
-    //"overflow-y: hidden;" +
   "}",
 
 
@@ -12196,9 +12197,7 @@ var css = {
   "position: absolute;" +
   "height: 190px;" +
   "width: 100%;" +
-    //"left: 103%;" +
   "color: #8b8b8b;" +
-    //"transform: translate3d(-50%, 0, 0);" +
   "text-align: center;" +
   "}",
 
@@ -12210,6 +12209,11 @@ var css = {
   "font-size: " + 190 * widthK + "px; " +
   "width: 100%;" +
   "text-align: center;" +
+  "}",
+
+  scheduleDateBlockWeekText: ".schedule-date-block-week-text " +
+  "{" +
+  "font-size: " + 80 * widthK + "px; " +
   "}",
 
 

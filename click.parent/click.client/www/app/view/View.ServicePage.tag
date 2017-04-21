@@ -18,7 +18,8 @@
 
     <div class="servicepage-second-dropdown-field" if="{hasFirstLevel}"
          ontouchend="openDropDownTwo()">
-      <p if="{formType==3}" class="servicepage-text-field">{window.languages.ViewServicePageChooseCityLabel}</p>
+      <p if="{formType==3}" class="servicepage-text-field servicepage-second-dropdown-field-text">
+        {window.languages.ViewServicePageChooseCityLabel}</p>
       <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
       <div class="servicepage-dropdown-icon"></div>
     </div>
@@ -26,7 +27,8 @@
     <div class="{servicepage-second-dropdown-field:formType!=3, servicepage-second-dropdown-field-diftop: formType==3}"
          if="{hasSecondLevel}"
          ontouchend="openDropDownThree()">
-      <p if="{formType==3}" class="servicepage-text-field">{window.languages.ViewServicePageChooseDistrictLabel}</p>
+      <p if="{formType==3}" class="servicepage-text-field servicepage-second-dropdown-field-text">
+        {window.languages.ViewServicePageChooseDistrictLabel}</p>
       <p class="servicepage-dropdown-text-field">{chosenFieldNameThree}</p>
       <div class="servicepage-dropdown-icon"></div>
     </div>
