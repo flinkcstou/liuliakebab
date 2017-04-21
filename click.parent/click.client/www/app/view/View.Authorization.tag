@@ -36,6 +36,9 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
+  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
+                     confirmtype="{confirmType}"></component-confirm>
+
   <script>
 
     //    TEST = function () {
@@ -91,6 +94,7 @@
     scope.checkAndroid = false;
 
     scope.showError = false;
+    scope.confirmShowBool = false;
 
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization' && !JSON.parse(localStorage.getItem('onResume'))) {
@@ -129,13 +133,25 @@
       event.preventDefault();
       event.stopPropagation();
       var question = 'Подтвердите удаление данных'
-      var result = confirm(question)
-      if (result) {
-        localStorage.clear();
-        this.riotTags.innerHTML = "<view-registration-device>";
-        riot.mount('view-registration-device');
-        return
-      }
+//        confirm(question)
+      scope.confirmShowBool = true;
+      scope.confirmNote = question;
+      scope.confirmType = 'local';
+      scope.result = function (bool) {
+        if (bool) {
+          localStorage.clear();
+          riotTags.innerHTML = "<view-registration-device>";
+          riot.mount('view-registration-device');
+          return
+        }
+      };
+      riot.update();
+//      if (scope.result) {
+//        localStorage.clear();
+//        this.riotTags.innerHTML = "<view-registration-device>";
+//        riot.mount('view-registration-device');
+//        return
+//      }
     };
 
     var pin;

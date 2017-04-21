@@ -23,15 +23,10 @@
       event.preventDefault();
       event.stopPropagation();
 
-//      if (opts.step_amount || opts.step_amount == 0) {
-//
-//        history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
-//        console.log(history.arrayOfHistory)
-//        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-//        onBackKeyDown()
-//      }
-
-      if (opts.confirmtype == 'internet') {
+      if (opts.confirmtype == 'local') {
+        scope.parent.result(true);
+      }
+      else if (opts.confirmtype == 'internet') {
         modeOfApp.offlineMode = true;
         modeOfApp.onlineMode = false;
 
@@ -43,12 +38,10 @@
         riot.mount('view-authorization');
       }
       else {
-
         navigator.app.exitApp();
       }
       scope.outerShowAlertBool = true;
       console.log("close")
-      console.log(scope.outerShowAlertBool)
 
       //OK
       riot.update()
@@ -58,13 +51,6 @@
       event.preventDefault();
       event.stopPropagation();
 
-//      if (opts.step_amount || opts.step_amount == 0) {
-//
-//        history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
-//        console.log(history.arrayOfHistory)
-//        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-//        onBackKeyDown()
-//      }
       scope.outerShowAlertBool = true;
       console.log("close")
       console.log(scope.outerShowAlertBool)

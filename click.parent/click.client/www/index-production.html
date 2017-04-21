@@ -230,7 +230,10 @@
     }, 500);
 
     scope.alertComponentBlockId.innerHTML = "<component-confirm>";
-    riot.mount('component-confirm', {"confirmnote": outerConfirmNote, "confirmtype": confirmType});
+    riot.mount('component-confirm', {
+      "confirmnote": outerConfirmNote,
+      "confirmtype": confirmType
+    });
   }
 
 
