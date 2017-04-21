@@ -158,7 +158,7 @@
                       if (bool) {
                         arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
                       } else {
-                        arrayAccountInfo[index].card_background_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/' + fileName;
+                        arrayAccountInfo[index].card_background_url = url('resources/icons/cards/' + fileName);
                       }
 
                       var icon2 = arrayAccountInfo[index].image_url;
@@ -169,7 +169,7 @@
                         if (bool2) {
                           arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
                         } else {
-                          arrayAccountInfo[index2].image_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/logo/' + fileName2;
+                          arrayAccountInfo[index2].image_url = url('resources/icons/cards/logo/' + fileName2);
                         }
 
                         if (result[1].length == arrayAccountInfo.length) {
@@ -252,20 +252,20 @@
   //  );
 
   $(window.location).bind(
-      "change",
-      function (objEvent, objData) {
-        alert("YKJJJJ");
-        var jLog = $("#log");
-        // Add the URL change.
-        jLog.append(
-            "<li>" +
-            "Hash changed from " +
-            "<strong>" + objData.previousHash + "</strong>" +
-            " to " +
-            "<strong>" + objData.currentHash + "</strong>" +
-            "</li>"
-        );
-      }
+    "change",
+    function (objEvent, objData) {
+      alert("YKJJJJ");
+      var jLog = $("#log");
+      // Add the URL change.
+      jLog.append(
+        "<li>" +
+        "Hash changed from " +
+        "<strong>" + objData.previousHash + "</strong>" +
+        " to " +
+        "<strong>" + objData.currentHash + "</strong>" +
+        "</li>"
+      );
+    }
   );
 
 
@@ -319,7 +319,7 @@
                     if (bool) {
                       scope.categoryList[index]['icon'] = cordova.file.dataDirectory + fileName;//
                     } else {
-                      scope.categoryList[index]['icon'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/category/' + fileName;
+                      scope.categoryList[index]['icon'] = url('resources/icons/ViewPay/category/' + fileName);
                     }
 
 
@@ -356,7 +356,7 @@
   }
 
   if (!(localStorage.getItem("click_client_payServiceList") && localStorage.getItem("click_client_servicesMapByCategory")
-      && localStorage.getItem("click_client_servicesMap"))) {
+    && localStorage.getItem("click_client_servicesMap"))) {
     console.log("IN SERVICE LIST FUNC");
     scope.serviceList = [];
     scope.servicesMapByCategory = {};
@@ -414,7 +414,7 @@
                       if (bool) {
                         scope.serviceList[index]['image'] = cordova.file.dataDirectory + fileName;//
                       } else {
-                        scope.serviceList[index]['image'] = cordova.file.applicationDirectory + 'www/resources/icons/ViewPay/service/' + fileName;
+                        scope.serviceList[index]['image'] = url('resources/icons/ViewPay/service/' + fileName);
                       }
 
 

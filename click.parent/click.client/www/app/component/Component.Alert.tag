@@ -54,11 +54,6 @@
       riot.update()
     };
 
-    //    window.showAlert = function (clickPinError, errorNote, showError) {
-    //      scope.parent.clickPinError = clickPinError;
-    //      scope.parent.errorNote = errorNote;
-    //      scope.parent.showError = showError;
-    //      riot.update();
-    //    }
+
   </script>
 </component-alert>

@@ -74,10 +74,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-cards') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-my-cards',
-            "params": opts
-          }
+        {
+          "view": 'view-my-cards',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -107,7 +107,7 @@
       event.stopPropagation();
 
       var cardNumber = localStorage.getItem("cardNumber"),
-          cards = scope.tags["component-card-carousel"].cardsarray;
+        cards = scope.tags["component-card-carousel"].cardsarray;
       cardNumber = JSON.parse(cardNumber);
 
 //      console.log("ASDASDASDASDASD", cards);
@@ -193,7 +193,7 @@
     //                      if (bool) {
     //                        arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + 'cards' + fileName;
     //                      } else {
-    //                        arrayAccountInfo[index].card_background_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/' + fileName;
+    //                        arrayAccountInfo[index].card_background_url = url('resources/icons/cards/' + fileName);
     //                      }
     //
     //                      var icon2 = arrayAccountInfo[index].image_url;
@@ -204,7 +204,7 @@
     //                        if (bool2) {
     //                          arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + 'cards' + fileName2;
     //                        } else {
-    //                          arrayAccountInfo[index2].image_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/logo/' + fileName2;
+    //                          arrayAccountInfo[index2].image_url = url('resources/icons/cards/logo/' + fileName2);
     //                        }
     //
     //                        if (result[1].length == arrayAccountInfo.length) {
@@ -244,8 +244,8 @@
     //
     //    }
     var scope = this,
-        sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
-        phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
+      phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
     scope.showError = false;
 

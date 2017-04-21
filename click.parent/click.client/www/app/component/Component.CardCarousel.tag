@@ -367,7 +367,7 @@
                         } else {
                           count++;
 //                          alert("(2)new file name=" + fileName + "," + count);
-                          arrayAccountInfo[index].card_background_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/' + fileName;
+                          arrayAccountInfo[index].card_background_url = url('resources/icons/cards/' + fileName);
                         }
 
                         var icon2 = arrayAccountInfo[index].image_url;
@@ -382,7 +382,7 @@
                           } else {
                             count++;
 //                            alert("(12)new file name=" + fileName2 + "," + count);
-                            arrayAccountInfo[index2].image_url = cordova.file.applicationDirectory + 'www/resources/icons/cards/logo/' + fileName2;
+                            arrayAccountInfo[index2].image_url = url('resources/icons/cards/logo/' + fileName2);
                           }
 
                           if (count == (result[1].length * 2)) {
