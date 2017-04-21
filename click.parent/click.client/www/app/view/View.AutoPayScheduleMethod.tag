@@ -58,6 +58,9 @@
             {i.v}</p>
         </div>
       </div>
+      <div class="schedule-date-block-hmcolon-container" if="{timeMode && !weekMode && !dayMode}">
+        <p class="schedule-date-block-time-colon-text">{window.languages.ViewAutoPayMethodScheduleHMColonText}</p>
+      </div>
       <div id="minutesContainerId" if="{timeMode && !weekMode && !dayMode}"
            class="schedule-date-block-minutes-container"
            ontouchstart="minContainerTouchStart()"
@@ -69,6 +72,13 @@
              class="{schedule-date-block-day-text: !timeMode && !weekMode && dayMode, schedule-date-block-week-text: !timeMode && weekMode && !dayMode, schedule-date-block-time-text: timeMode && !weekMode && !dayMode}">
             {i.v}</p>
         </div>
+      </div>
+    </div>
+
+    <div class="schedule-date-block-hm-bottom" if="{timeMode && !weekMode && !dayMode}">
+      <hr class="schedule-date-block-hm-bottom-line"/>
+      <div class="schedule-date-block-hm-bottom-hour-text">{window.languages.ViewAutoPayMethodScheduleHourText}</div>
+      <div class="schedule-date-block-hm-bottom-min-text">{window.languages.ViewAutoPayMethodScheduleMinutesText}
       </div>
     </div>
 
@@ -101,7 +111,7 @@
     scope.shift = 200;
 
     //    scope.topOfWeekOperations = 100 * widthK;
-    var dateNumber, count, minuteNumber = 0;
+    var dateNumber, count, minuteNumber = 0, minutesCount = 60;
     localStorage.setItem('click_client_countCard', count);
 
 
@@ -137,7 +147,8 @@
       console.log("LAST DAY, dateBlockArray", scope.dateBlockArray);
       riot.update(scope.dateBlockTitle);
       riot.update(scope.dateBlockArray);
-      changePositionTwo();
+      changePositionInit();
+      changeMinutesPositionInit();
     }
 
     everyMonthChosenDay = function () {
@@ -154,7 +165,7 @@
       console.log("CHOSEN DAY, dateBlockArray", scope.dateBlockArray);
       riot.update(scope.dateBlockTitle);
       riot.update(scope.dateBlockArray);
-      changePositionTwo();
+      changePositionInit();
     }
 
     everyWeek = function () {
@@ -172,7 +183,7 @@
       riot.update(scope.dateBlockTitle);
       riot.update(scope.dateBlockArray);
       riot.update(scope.weekMode);
-      changePositionTwo();
+      changePositionInit();
     }
 
     chooseDate = function () {
@@ -184,7 +195,7 @@
       dateNumber = 0;
 
       this.on('mount', function () {
-        changePositionTwo();
+        changePositionInit();
       });
 
     }
@@ -255,7 +266,7 @@
       localStorage.setItem('dateNumber', dateNumber);
     }
 
-    function changePositionTwo() {
+    function changePositionInit() {
 
       if (dateNumber < count - 1) {
         document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
@@ -293,21 +304,21 @@
 
     }
 
-//    for minutes
+    //    for minutes
 
     minContainerTouchStart = function () {
       console.log("in start touch=", minuteNumber);
-      carouselTouchStartY = event.changedTouches[0].pageY;
-      left = -((scope.shift * minuteNumber) * widthK) - carouselTouchStartY;
-      delta = left;
+      minutesTouchStartY = event.changedTouches[0].pageY;
+      mleft = -((scope.shift * minuteNumber) * widthK) - minutesTouchStartY;
+      mdelta = mleft;
     }
 
     minContainerTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-      carouselTouchEndY = event.changedTouches[0].pageY;
-      if (Math.abs(carouselTouchStartY - carouselTouchEndY) > 20) {
-        changePosition();
+      minutesTouchEndY = event.changedTouches[0].pageY;
+      if (Math.abs(minutesTouchStartY - minutesTouchEndY) > 20) {
+        changeMinutesPosition();
       }
     }
 
@@ -317,83 +328,83 @@
       event.stopPropagation();
       this.minutesContainerId.style.transition = '0s';
       this.minutesContainerId.style.webkitTransition = '0s';
-      this.minutesContainerId.style.transform = "translate3d(0," + (event.changedTouches[0].pageY + delta ) + 'px' + ", 0)";
-      this.minutesContainerId.style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + delta ) + 'px' + ", 0)";
+      this.minutesContainerId.style.transform = "translate3d(0," + (event.changedTouches[0].pageY + mdelta ) + 'px' + ", 0)";
+      this.minutesContainerId.style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + mdelta ) + 'px' + ", 0)";
     }
 
-    function changePosition() {
+    function changeMinutesPosition() {
 
-      if (carouselTouchEndY < carouselTouchStartY && minuteNumber < count - 1) {
+      if (minutesTouchEndY < minutesTouchStartY && minuteNumber < minutesCount - 1) {
         document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
-        ++dateNumber;
+        ++minuteNumber;
         this.minutesContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.minutesContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        document.getElementById("min" + dateNumber).style.color = '#01B8FE';
+        this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+        document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
       }
 
-      if (carouselTouchEndY > carouselTouchStartY && dateNumber == 0) {
+      if (minutesTouchEndY > minutesTouchStartY && minuteNumber == 0) {
         this.minutesContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.minutesContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
       }
 
-      if (carouselTouchEndY < carouselTouchStartY && dateNumber == count - 1) {
+      if (minutesTouchEndY < minutesTouchStartY && minuteNumber == minutesCount - 1) {
         this.minutesContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.minutesContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
       }
 
-      if (carouselTouchEndY > carouselTouchStartY && dateNumber > 0) {
-        document.getElementById("min" + dateNumber).style.color = '#c1c1c1';
-        --dateNumber;
+      if (minutesTouchEndY > minutesTouchStartY && minuteNumber > 0) {
+        document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
+        --minuteNumber;
         this.minutesContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.minutesContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        document.getElementById("min" + dateNumber).style.color = '#01B8FE';
+        this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+        document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
       }
 
-      localStorage.setItem('dateNumber', dateNumber);
+      localStorage.setItem('minuteNumber', minuteNumber);
     }
 
-    function changePositionTwo() {
+    function changeMinutesPositionInit() {
 
-      if (dateNumber < count - 1) {
-        document.getElementById("min" + dateNumber).style.color = '#c1c1c1';
-        ++dateNumber;
+      if (minuteNumber < minutesCount - 1) {
+        document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
+        ++minuteNumber;
         this.minutesContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.minutesContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        document.getElementById("min" + dateNumber).style.color = '#01B8FE';
+        this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+        document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
       }
 
-      if (dateNumber == 0) {
+      if (minuteNumber == 0) {
         this.minutesContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.minutesContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
       }
 
-      if (dateNumber == count - 1) {
+      if (minuteNumber == minutesCount - 1) {
         this.minutesContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.minutesContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
       }
 
-      if (dateNumber > 0) {
-        document.getElementById("min" + dateNumber).style.color = '#c1c1c1';
-        --dateNumber;
+      if (minuteNumber > 0) {
+        document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
+        --minuteNumber;
         this.minutesContainerId.style.transition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.webkitTransition = '0.001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.minutesContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        document.getElementById("min" + dateNumber).style.color = '#01B8FE';
+        this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+        document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
       }
 
     }
