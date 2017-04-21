@@ -219,9 +219,13 @@ window.api.call = function (params) {
           break;
         case 2:
           console.log("Is closing");
+          window.isConnected = false;
+          window.api.init();
           break;
         case 3:
           console.log("Is closed");
+          window.isConnected = false;
+          window.api.init();
           break;
       }
     }
