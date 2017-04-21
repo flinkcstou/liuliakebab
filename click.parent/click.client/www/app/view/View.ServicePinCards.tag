@@ -93,9 +93,12 @@
 
 
     goToPayConfirmView = function () {
-      var cardSumFromPinCards = scope.tags['component-pincards'].getAccountCardSum();
 
-      if (cardSumFromPinCards && cardSumFromPinCards < arrayForPay[5].amountText) {
+      var cardSumFromPinCards = scope.tags['component-pincards'].getAccountCardSum();
+      console.log(cardSumFromPinCards, arrayForPay[5].amountText)
+      cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+      riot.update()
+      if (cardSumFromPinCards && cardSumFromPinCards < parseInt(arrayForPay[5].amountText)) {
         console.log(cardSumFromPinCards, arrayForPay[5].amountText)
         scope.clickPinError = false;
         scope.errorNote = "На выбранной карте недостаточно средств";

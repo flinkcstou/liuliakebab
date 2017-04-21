@@ -322,6 +322,7 @@
     var balance;
     var arrayAccountInfo = [];
     getAccount = function (e) {
+      console.log("QWEQWE")
       if (history.arrayOfHistory.length < 2) {
         localStorage.setItem('onResume', false)
       }
@@ -331,7 +332,9 @@
         var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = info.session_key;
 
+        console.log("WWRRRRRRRRR")
         if (!localStorage.getItem("click_client_accountInfo")) {
+          console.log("AAAAAAAAA")
 
           if (device.platform != 'BrowserStand') {
             var options = {dimBackground: true};
@@ -343,127 +346,131 @@
             });
           }
 
-          window.api.call({
-            method: 'get.accounts',
-            input: {
-              session_key: sessionKey,
-
-              phone_num: phoneNumber
-            },
-
-            scope: this,
-
-            onSuccess: function (result) {
-
-              if (result[0][0].error == 0) {
-                modeOfApp.onlineMode = true
-                modeOfApp.offlineMode = false;
-
-                if (device.platform != 'BrowserStand') {
-                  window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-                    var j = -1, count = 0;
-                    for (var i = 0; i < result[1].length; i++) {
-
-                      j++;
-                      arrayAccountInfo.push(result[1][i]);
-
-                      var icon = result[1][i].card_background_url;
-
-                      var filename = icon.substr(icon.lastIndexOf('/') + 1);
-//                      alert("filename=" + filename);
-
-                      var newIconBool = checkImageURL;
-                      newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
-
-                        if (bool) {
-                          count++;
-//                          alert("(1)new file name=" + fileName + "," + count);
-                          arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
-                        } else {
-                          count++;
-//                          alert("(2)new file name=" + fileName + "," + count);
-                          arrayAccountInfo[index].card_background_url = 'resources/icons/cards/' + fileName;
-                        }
-
-                        var icon2 = arrayAccountInfo[index].image_url;
-                        var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
-                        var newIcon = checkImageURL;
-                        newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
-
-                          if (bool2) {
-                            count++;
-//                            alert("(11)new file name=" + fileName2 + "," + count);
-                            arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
-                          } else {
-                            count++;
-//                            alert("(12)new file name=" + fileName2 + "," + count);
-                            arrayAccountInfo[index2].image_url = 'resources/icons/cards/logo/' + fileName2;
-                          }
-
-                          if (count == (result[1].length * 2)) {
-//                            alert("GHVCHGFUIHOI:JIJsave into localstorage");
-                            var accountInfo = JSON.stringify(arrayAccountInfo);
-                            localStorage.setItem("click_client_accountInfo", accountInfo);
-                            if (!JSON.parse(localStorage.getItem('onResume'))) {
-                              this.riotTags.innerHTML = "<view-main-page>";
-                              riot.mount('view-main-page');
-                            }
-                            else {
-                              if (history.arrayOfHistory) {
-                                if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
-                                  this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
-                                  riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
-                                  localStorage.setItem('onResume', false)
-                                }
-                              }
-                            }
-
-                          }
-
-                        });
-
-                      });
-
-                    }
-                  }, onErrorLoadFs);
-                } else {
-                  for (var i = 0; i < result[1].length; i++)
-                    arrayAccountInfo.push(result[1][i])
-                  var accountInfo = JSON.stringify(arrayAccountInfo);
-                  localStorage.setItem("click_client_accountInfo", accountInfo);
-                  if (!JSON.parse(localStorage.getItem('onResume'))) {
-                    this.riotTags.innerHTML = "<view-main-page>";
-                    riot.mount('view-main-page');
-                  }
-                  else {
-                    if (history.arrayOfHistory) {
-                      if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
-                        this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
-                        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
-                        localStorage.setItem('onResume', false)
-                      }
-                    }
-                  }
-                }
-              }
-              else {
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
-                console.log("errornote=", scope.errorNote);
-                riot.update();
-
-              }
-            },
-
-
-            onFail: function (api_status, api_status_message, data) {
-              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-              console.error(data);
-            }
-          })
+//          window.api.call({
+//            method: 'get.accounts',
+//            input: {
+//              session_key: sessionKey,
+//
+//              phone_num: phoneNumber
+//            },
+//
+//            scope: this,
+//
+//            onSuccess: function (result) {
+//
+//              if (result[0][0].error == 0) {
+//                modeOfApp.onlineMode = true
+//                modeOfApp.offlineMode = false;
+//
+//                if (device.platform != 'BrowserStand') {
+//                  window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+//                    var j = -1, count = 0;
+//                    for (var i = 0; i < result[1].length; i++) {
+//
+//                      j++;
+//                      arrayAccountInfo.push(result[1][i]);
+//
+//                      var icon = result[1][i].card_background_url;
+//
+//                      var filename = icon.substr(icon.lastIndexOf('/') + 1);
+////                      alert("filename=" + filename);
+//
+//                      var newIconBool = checkImageURL;
+//                      newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
+//
+//                        if (bool) {
+//                          count++;
+////                          alert("(1)new file name=" + fileName + "," + count);
+//                          arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
+//                        } else {
+//                          count++;
+////                          alert("(2)new file name=" + fileName + "," + count);
+//                          arrayAccountInfo[index].card_background_url = 'resources/icons/cards/' + fileName;
+//                        }
+//
+//                        var icon2 = arrayAccountInfo[index].image_url;
+//                        var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
+//                        var newIcon = checkImageURL;
+//                        newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
+//
+//                          if (bool2) {
+//                            count++;
+////                            alert("(11)new file name=" + fileName2 + "," + count);
+//                            arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
+//                          } else {
+//                            count++;
+////                            alert("(12)new file name=" + fileName2 + "," + count);
+//                            arrayAccountInfo[index2].image_url = 'resources/icons/cards/logo/' + fileName2;
+//                          }
+//
+//                          if (count == (result[1].length * 2)) {
+////                            alert("GHVCHGFUIHOI:JIJsave into localstorage");
+//                            var accountInfo = JSON.stringify(arrayAccountInfo);
+//                            localStorage.setItem("click_client_accountInfo", accountInfo);
+//                            if (!JSON.parse(localStorage.getItem('onResume'))) {
+//                              this.riotTags.innerHTML = "<view-main-page>";
+//                              riot.mount('view-main-page');
+//                            }
+//                            else {
+//                              if (history.arrayOfHistory) {
+//                                if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
+//                                  this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+//                                  riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
+//                                  localStorage.setItem('onResume', false)
+//                                }
+//                              }
+//                            }
+//
+//                          }
+//
+//                        });
+//
+//                      });
+//
+//                    }
+//                  }, onErrorLoadFs);
+//                } else {
+//                  for (var i = 0; i < result[1].length; i++)
+//                    arrayAccountInfo.push(result[1][i])
+//                  var accountInfo = JSON.stringify(arrayAccountInfo);
+//                  localStorage.setItem("click_client_accountInfo", accountInfo);
+//                  if (!JSON.parse(localStorage.getItem('onResume'))) {
+//                    this.riotTags.innerHTML = "<view-main-page>";
+//                    riot.mount('view-main-page');
+//                  }
+//                  else {
+//                    if (history.arrayOfHistory) {
+//                      if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
+//                        this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+//                        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
+//                        localStorage.setItem('onResume', false)
+//                      }
+//                    }
+//                  }
+//                }
+//              }
+//              else {
+//                scope.clickPinError = false;
+//                scope.errorNote = result[0][0].error_note;
+//                scope.showError = true;
+//                console.log("errornote=", scope.errorNote);
+//                riot.update();
+//
+//              }
+//            },
+//
+//
+//            onFail: function (api_status, api_status_message, data) {
+//              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+//              console.error(data);
+//            }
+//          })
+          this.riotTags.innerHTML = "<view-main-page>";
+          riot.mount('view-main-page');
         } else {
+          console.log("DDDD")
           if (!JSON.parse(localStorage.getItem('onResume'))) {
+            console.log("QWE")
             this.riotTags.innerHTML = "<view-main-page>";
             riot.mount('view-main-page');
           }
@@ -478,6 +485,7 @@
             }
           }
         }
+
 
         if (!localStorage.getItem("click_client_payCategoryList")) {
 

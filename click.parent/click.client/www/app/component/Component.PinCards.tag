@@ -4,7 +4,7 @@
     class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail,
                                         transfer-on-card-pincard-all-cards-container: opts.transferoncard,
                                         changed-height-for-filter-account: opts.filteraccount}">
-    <div class="pincard-card-container" each="{i in cardsArray}" hidden="{i.salaryOriginal && i.salaryOriginal == 0}"
+    <div class="pincard-card-container" each="{i in cardsArray}"
          ontouchend="chooseCardTouchEnd(this.id)"
          ontouchstart="chooseCardTouchStart()"
          id="{i.card_id}" if="{i.access == 2}">
@@ -152,6 +152,7 @@
     };
 
     scope.cleanChosenCards = function () {
+      scope.checkedId = '';
 
       for (var i in scope.cardsArray) {
 
@@ -162,6 +163,7 @@
       riot.update();
     };
 
+    console.log('OPTS PINCARDS', opts)
     if (opts.clean) {
 
       scope.cleanChosenCards();
