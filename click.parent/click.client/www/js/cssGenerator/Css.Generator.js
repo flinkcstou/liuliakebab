@@ -11494,7 +11494,7 @@ var css = {
   "font-size:" + 24 * widthK + "px; " +
   "width: 88%; " +
   "margin:" + 35 * widthK + "px auto 0 auto;  " +
-  "color: #777a7a;" +
+  "color: #4f4f4f;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "text-align: justify;" +
