@@ -84,6 +84,11 @@
       onTouchStartOfServiceX,
       onTouchEndOfServiceX;
 
+    this.on('mount', function () {
+      if (device.platform != 'BrowserStand')
+        StatusBar.backgroundColorByHexString("#00a8f1");
+    })
+
 
     scope.cards = localStorage.getItem("click_client_cards");
     scope.cards = JSON.parse(scope.cards);
@@ -220,7 +225,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-        onBackKeyDown()
+      onBackKeyDown()
 
     };
 
