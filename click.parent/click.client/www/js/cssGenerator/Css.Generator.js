@@ -3497,7 +3497,7 @@ var css = {
   componentCalcButton: ".component-calc-button" +
   "{" +
   "position: relative;" +
-  "height: 85%;" +
+  "height:" + 74 * widthK + "px;" +
   "width: 34%;" +
   "display: table;" +
   "background-color: #01b9ff;" +
