@@ -7026,7 +7026,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top:" + 310 * widthK + "px;" +
+  "top:" + 365 * widthK + "px;" +
   "display: none;" +
   "}",
 
@@ -7037,7 +7037,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
-  "top:" + 435 * widthK + "px;" +
+  "top:" + 490 * widthK + "px;" +
   "display: none;" +
   "}",
 
