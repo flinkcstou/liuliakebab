@@ -39,7 +39,7 @@
 
   </div>
 
-  <div id="dayChooseBlockId" class="schedule-date-block">
+  <div id="dateChooseBlockId" class="schedule-date-block" hidden="{dateBlockShow}">
     <div class="schedule-date-block-title-container">
       <hr class="schedule-date-block-title-line"/>
       <div class="schedule-date-block-title">{window.languages.ViewAutoPayMethodScheduleChoseDate}</div>
@@ -62,28 +62,6 @@
     </button>
   </div>
 
-  <div id="dateChooseBlockId" class="schedule-date-block">
-    <div class="schedule-date-block-title-container">
-      <hr class="schedule-date-block-title-line"/>
-      <div class="schedule-date-block-title">{window.languages.ViewAutoPayMethodScheduleChoseDate}</div>
-    </div>
-
-    <div class="schedule-date-block-days-outer-container">
-
-      <div id="dateContainerId" class="schedule-date-block-days-container" ontouchstart="monthContainerTouchStart()"
-           ontouchend="monthContainerTouchEnd()"
-           ontouchmove="monthContainerTouchMove()">
-        <div class="schedule-date-block-day" each="{i in daysArray}"
-             style="top:{topOfOperations*i}px;">
-          <p id="day{i-1}" class="schedule-date-block-day-text">{i}</p>
-        </div>
-      </div>
-    </div>
-
-    <button class="schedule-date-block-button-choose" ontouchend="chooseDate()">
-      {window.languages.ViewAutoPayMethodScheduleChoseButtonLabel}
-    </button>
-  </div>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
@@ -96,6 +74,7 @@
     console.log("ID of service=", opts);
     this.serviceName = scope.servicesMap[opts[0]][0].name;
     this.serviceIcon = scope.servicesMap[opts[0]][0].image;
+    scope.dateBlockShow = false;
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-autopay-schedule-method') {
@@ -115,11 +94,12 @@
     };
 
     everyMonthChosenDay = function () {
-      dateChooseBlockId.style.display = 'block';
+//      dateChooseBlockId.style.display = 'block';
+      scope.dateBlockShow = true;
     }
 
     everyMonthLastDay = function () {
-      dateChooseBlockId.style.display = 'block';
+//      timeChooseBlockId.style.display = 'block';
     }
 
     chooseDate = function () {

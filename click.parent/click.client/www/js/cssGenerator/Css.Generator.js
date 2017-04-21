@@ -10003,10 +10003,11 @@ var css = {
   componentAlert: ".component-alert " +
   "{" +
   "position: absolute;" +
-  "opacity: 0.92;" +
+    //"opacity: 0.92;" +
   "height: 100%;" +
   "width: 100%;" +
-  "background-color: white;" +
+    //"background-color: white;" +
+  "background-image: url(resources/icons/transparent.png);" +
   "z-index: 99999;" +
   "}",
 
