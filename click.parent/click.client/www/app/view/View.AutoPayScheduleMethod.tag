@@ -50,12 +50,12 @@
            ontouchend="monthContainerTouchEnd()"
            ontouchmove="monthContainerTouchMove()">
         <div class="schedule-date-block-day" each="{i in dateBlockArray}" if="{!eachWeek}"
-             style="top:{topOfOperations*i}px;">
-          <p id="day{i-1}" class="schedule-date-block-day-text">{i}</p>
+             style="top:{topOfOperations*i.k}px;">
+          <p id="day{i.k-1}" class="schedule-date-block-day-text">{i.v}</p>
         </div>
         <div class="schedule-date-block-day" each="{i in dateBlockArray}" if="{eachWeek}"
-             style="top:{topOfWeekOperations*i.key}px;">
-          <p id="day{i.key-1}" class="schedule-date-block-day-text schedule-date-block-week-text">{i.val}</p>
+             style="top:{topOfWeekOperations*i.k}px;">
+          <p id="day{i.k-1}" class="schedule-date-block-day-text schedule-date-block-week-text">{i.v}</p>
         </div>
       </div>
     </div>
@@ -82,6 +82,7 @@
     scope.hoursArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
     scope.minutesArray = window.languages.ViewAutoPayMethodScheduleMinutesArray;
 
+    scope.eachWeek = false;
 
     scope.shift = 200;
     scope.topOfOperations = 200 * widthK;
@@ -107,6 +108,8 @@
     };
 
     everyMonthLastDay = function () {
+      scope.eachWeek = false;
+      scope.shift = 200;
       count = 24;
       scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseTime;
       scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
@@ -118,6 +121,8 @@
     }
 
     everyMonthChosenDay = function () {
+      scope.eachWeek = false;
+      scope.shift = 200;
       count = 31;
       scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseDate;
       scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleDaysArray;
@@ -127,7 +132,6 @@
       riot.update(scope.dateBlockArray);
     }
 
-    scope.eachWeek = false;
     everyWeek = function () {
       scope.shift = 100;
       scope.eachWeek = true;
