@@ -4,13 +4,11 @@
       class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail,
                                         transfer-on-card-pincard-all-cards-container: opts.transferoncard,
                                         changed-height-for-filter-account: opts.filteraccount}">
-    <div class="pincard-card-container" each="{i in cardsArray}" ontouchend="chooseCardTouchEnd(this.id)"
+    <div class="pincard-card-container" each="{i in cardsArray}" if="{i.salaryOriginal>0}" ontouchend="chooseCardTouchEnd(this.id)"
          ontouchstart="chooseCardTouchStart()"
          id="{i.card_id}" if="{i.access == 2}">
       <div class="pincard-card-logo-container" if="{i.salaryOriginal>0}"
            style="background-image: url({i.url})"></div>
-      <div class="pincard-card-logo-container" if="{i.salaryOriginal<=0}"
-           style="opacity:0.3; filter: grayscale(100%);background-image: url({i.url})"></div>
       <div class="pincard-card-info-container">
         <p class="pincard-card-info-text-one">{i.name}</p>
         <p if="{i.salaryOriginal > 0}" class="pincard-card-info-text-two" if="{i.salaryOriginal>0}">{i.salary}
