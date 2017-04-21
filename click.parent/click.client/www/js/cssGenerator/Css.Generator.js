@@ -9407,7 +9407,7 @@ var css = {
   "overflow-x: hidden; " +
   "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
-  "background-position-y:  108.7%;" +
+  "background-position-y:" + 750 * widthK + "px;" +
   "background-size: 100%;" +
   "}",
 
