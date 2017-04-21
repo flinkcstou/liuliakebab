@@ -9,10 +9,11 @@ public class CompileCordovaIos extends AbstractCompileCordova {
     if (!clickClient.file("cordova/platforms/ios").exists()) {
       clickClient.cd("cordova").cmd("cordova platform add ios");
     }
-    
+
     addPluginPickcontact();
 
     clickClient.cd("cordova").cmd("cp www/index-stand-demo.html platforms/ios/www");
+    clickClient.cd("cordova").cmd("cp GoogleService-Info.plist platforms/ios/Click/Resources");
     //clickClient.cd("cordova").cmd("cordova plugin add https://github.com/Rohfosho/CordovaCallNumberPlugin.git");
   }
 }

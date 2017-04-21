@@ -8286,7 +8286,7 @@ var css = {
   "font-size: " + 27 * widthK + "px;" +
   "background-color: #00A1EC;" +
   "height: " + 74 * widthK + "px;" +
-  "margin: 15% auto 0 auto;" +
+  "margin:" + 40 * widthK + " auto 0 auto;" +
   "padding: 0;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
@@ -8622,7 +8622,7 @@ var css = {
   "position: absolute;" +
   "right: 0;" +
   "width: 10%;" +
-  //"height: 100%;" +
+    //"height: 100%;" +
   "top: 15%;" +
   "font-size: " + 22 * widthK + "px; " +
   "margin: 0;" +
