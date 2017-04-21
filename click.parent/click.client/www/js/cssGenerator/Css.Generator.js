@@ -11020,8 +11020,8 @@ var css = {
   "color: gray;" +
   "text-overflow: ellipsis;" +
   "width: " + 625 * widthK + "px;" +
+  "max-height: " + 80 * widthK + "px;" +
   "overflow: hidden;" +
-  "white-space: nowrap;" +
   "}",
 
   reportServiceInfoInputAmount: ".report-service-info-input-amount" +
