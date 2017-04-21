@@ -12212,6 +12212,11 @@ var css = {
 
   scheduleDateBlockWeekText: ".schedule-date-block-week-text " +
   "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: #c1c1c1;" +
+  "width: 100%;" +
+  "text-align: center;" +
   "font-size: " + 80 * widthK + "px; " +
   "}",
 

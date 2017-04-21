@@ -19,7 +19,8 @@
     <div class="servicepage-second-dropdown-field" if="{hasFirstLevel}"
          ontouchend="openDropDownTwo()">
       <p if="{formType==3}" class="servicepage-text-field servicepage-second-dropdown-field-text">
-        {window.languages.ViewServicePageChooseCityLabel}</p>
+        {(service.options_title)?(service.options_title):((firstLevelArray &&
+        firstLevelArray[0])?(firstLevelArray[0].name):(""))}</p>
       <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
       <div class="servicepage-dropdown-icon"></div>
     </div>
@@ -28,7 +29,7 @@
          if="{hasSecondLevel}"
          ontouchend="openDropDownThree()">
       <p if="{formType==3}" class="servicepage-text-field servicepage-second-dropdown-field-text">
-        {window.languages.ViewServicePageChooseDistrictLabel}</p>
+        {(secondLevelArray && secondLevelArray[0])?(secondLevelArray[0].name):("")}</p>
       <p class="servicepage-dropdown-text-field">{chosenFieldNameThree}</p>
       <div class="servicepage-dropdown-icon"></div>
     </div>
@@ -562,7 +563,8 @@
           scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].id];
 
         }
-        console.log('firstLevelArray', scope.firstLevelArray)
+        console.log('Service=', scope.service)
+
       }
 
       if (scope.formType == 4 && scope.servicesParamsMapFour[scope.service.id] && scope.servicesParamsMapFive[scope.service.id]) {

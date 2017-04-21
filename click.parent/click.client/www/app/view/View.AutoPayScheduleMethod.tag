@@ -49,13 +49,10 @@
       <div id="monthContainerId" class="schedule-date-block-days-container" ontouchstart="monthContainerTouchStart()"
            ontouchend="monthContainerTouchEnd()"
            ontouchmove="monthContainerTouchMove()">
-        <div class="schedule-date-block-day" each="{i in dateBlockArray}" if="{!eachWeek}"
+        <div class="schedule-date-block-day" each="{i in dateBlockArray}"
              style="top:{topOfOperations*i.k}px;">
-          <p id="day{i.k-1}" class="schedule-date-block-day-text">{i.v}</p>
-        </div>
-        <div class="schedule-date-block-day" each="{i in dateBlockArray}" if="{eachWeek}"
-             style="top:{topOfWeekOperations*i.k}px;">
-          <p id="day{i.k-1}" class="schedule-date-block-day-text schedule-date-block-week-text">{i.v}</p>
+          <p id="day{i.k-1}" class="{schedule-date-block-day-text: !eachWeek, schedule-date-block-week-text: eachWeek}">
+            {i.v}</p>
         </div>
       </div>
     </div>
@@ -85,8 +82,8 @@
     scope.eachWeek = false;
 
     scope.shift = 200;
-    scope.topOfOperations = 200 * widthK;
-    scope.topOfWeekOperations = 100 * widthK;
+
+    //    scope.topOfWeekOperations = 100 * widthK;
     var mNumber, count;
     localStorage.setItem('click_client_countCard', count);
 
@@ -108,8 +105,9 @@
     };
 
     everyMonthLastDay = function () {
+      scope.topOfOperations = 150 * widthK;
       scope.eachWeek = false;
-      scope.shift = 200;
+      scope.shift = 150;
       count = 24;
       scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseTime;
       scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
@@ -121,6 +119,7 @@
     }
 
     everyMonthChosenDay = function () {
+      scope.topOfOperations = 200 * widthK;
       scope.eachWeek = false;
       scope.shift = 200;
       count = 31;
@@ -133,6 +132,7 @@
     }
 
     everyWeek = function () {
+      scope.topOfOperations = 100 * widthK;
       scope.shift = 100;
       scope.eachWeek = true;
       count = 7;
