@@ -233,7 +233,7 @@ window.api.call = function (params) {
       parameters: input
     });
 
-    showConfirmComponent("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?");
+    showConfirmComponent("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?", 'internet');
     //if (result) {
     //
     //  modeOfApp.offlineMode = true;
