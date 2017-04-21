@@ -9,7 +9,7 @@
     <div class="transferthree-menus-container">
       <p id="cardLabelId" class="transferthree-menu-name-label">{window.languages.ViewTransferThreeMenuTitle}</p>
     </div>
-    <component-pincards></component-pincards>
+    <component-pincards clean="{true}"></component-pincards>
 
     <button class="transferthree-next-button-inner-container" ontouchend="goToTransferFour()">
       {window.languages.ViewTransferThreeNext}
