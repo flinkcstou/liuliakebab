@@ -225,7 +225,7 @@
         console.log("opts[0].name.replace(/\s/g, '')", opts[0].name.replace(/\s/g, ''))
         if (opts[0].type == 2) {
           phonedialer.dial(
-            "*880*3*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "#",
+            "*880*3*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
             function (err) {
               if (err == "empty") {
                 scope.clickPinError = false;
@@ -236,14 +236,15 @@
               else console.log("Dialer Error:" + err);
             },
             function (success) {
-              console.log("*880*3*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "#")
+              console.log('success', success)
+              console.log("*880*3*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23")
             }
           );
           return
         }
         else {
           phonedialer.dial(
-            "*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "#",
+            "*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
             function (err) {
               if (err == "empty") {
                 scope.clickPinError = false;
@@ -254,7 +255,8 @@
               else console.log("Dialer Error:" + err);
             },
             function (success) {
-              console.log("*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "#")
+              console.log('success', success)
+              console.log("*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23")
             }
           );
         }

@@ -193,7 +193,7 @@
     //                      if (bool) {
     //                        arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + 'cards' + fileName;
     //                      } else {
-    //                        arrayAccountInfo[index].card_background_url = url('resources/icons/cards/' + fileName);
+    //                        arrayAccountInfo[index].card_background_url = 'resources/icons/cards/' + fileName;
     //                      }
     //
     //                      var icon2 = arrayAccountInfo[index].image_url;

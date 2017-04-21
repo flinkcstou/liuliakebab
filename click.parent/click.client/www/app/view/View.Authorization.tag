@@ -331,6 +331,7 @@
             method: 'get.accounts',
             input: {
               session_key: sessionKey,
+
               phone_num: phoneNumber
             },
 
@@ -365,7 +366,7 @@
                         } else {
                           count++;
 //                          alert("(2)new file name=" + fileName + "," + count);
-                          arrayAccountInfo[index].card_background_url = url('resources/icons/cards/' + fileName);
+                          arrayAccountInfo[index].card_background_url = 'resources/icons/cards/' + fileName;
                         }
 
                         var icon2 = arrayAccountInfo[index].image_url;
@@ -380,7 +381,7 @@
                           } else {
                             count++;
 //                            alert("(12)new file name=" + fileName2 + "," + count);
-                            arrayAccountInfo[index2].image_url = url('resources/icons/cards/logo/' + fileName2);
+                            arrayAccountInfo[index2].image_url = 'resources/icons/cards/logo/' + fileName2;
                           }
 
                           if (count == (result[1].length * 2)) {
@@ -500,7 +501,7 @@
                           if (bool) {
                             scope.categoryList[index]['icon'] = cordova.file.dataDirectory + fileName;//
                           } else {
-                            scope.categoryList[index]['icon'] = url('resources/icons/ViewPay/' + fileName);
+                            scope.categoryList[index]['icon'] = 'resources/icons/ViewPay/' + fileName;
                           }
 
 
@@ -571,7 +572,7 @@
 //                            scope.popularServiceList[index]['image'] = cordova.file.dataDirectory + fileName;
 //                            console.log("1.index=", index, ",imageUrl=", scope.popularServiceList[index]['image']);
 //                          } else {
-//                            scope.popularServiceList[index]['image'] = url('resources/icons/ViewPay/' + fileName);
+//                            scope.popularServiceList[index]['image'] = 'resources/icons/ViewPay/' + fileName;
 //                            console.log("2.index=", index, ",imageUrl=", scope.popularServiceList[index]['image']);
 //                          }
 //
@@ -676,7 +677,7 @@
                             if (bool) {
                               scope.serviceList[index]['image'] = cordova.file.dataDirectory + fileName;//
                             } else {
-                              scope.serviceList[index]['image'] = url('resources/icons/ViewPay/' + fileName);
+                              scope.serviceList[index]['image'] = 'resources/icons/ViewPay/' + fileName;
                             }
 
                             if (!scope.servicesMapByCategory[scope.serviceList[index].category_id]) {
