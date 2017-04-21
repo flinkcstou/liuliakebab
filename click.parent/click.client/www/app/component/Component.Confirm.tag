@@ -41,7 +41,6 @@
         navigator.app.exitApp();
       }
       scope.outerShowAlertBool = true;
-      console.log("close")
 
       //OK
       riot.update()
@@ -52,10 +51,8 @@
       event.stopPropagation();
 
       scope.outerShowAlertBool = true;
-      console.log("close")
       console.log(scope.outerShowAlertBool)
 
-      //OK
       riot.update()
     }
 
