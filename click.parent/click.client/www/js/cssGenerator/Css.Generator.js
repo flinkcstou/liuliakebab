@@ -895,7 +895,6 @@ var css = {
   "background-size: 100%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "opacity: 0.5;" +
   "right:" + 20 * widthK + "px;" +
   "top:" + -2 * widthK + "px;" +
   "}",
@@ -3490,7 +3489,7 @@ var css = {
   componentCalcButtonsContainer: ".component-calc-buttons-container" +
   "{" +
   "position: absolute;" +
-  "height: 12%;" +
+  "height:" + 230 * widthK + "px;" +
   "width: 100%;" +
   "top: 67%;" +
   "}",
@@ -11174,7 +11173,7 @@ var css = {
   "left: 12%; " +
   "margin: 0; " +
   "margin-top: 10%; " +
-  "color: #48e0ff; " +
+  "color: white; " +
   "font-size:" + 35 * widthK + "px; " +
   "}",
 
@@ -11309,7 +11308,7 @@ var css = {
   "left: 13%; " +
   "top: 5%; " +
   "margin: 0; " +
-  "color: #48e0ff; " +
+  "color: white; " +
   "font-size:" + 35 * widthK + "px; " +
   "}",
 
