@@ -9,7 +9,7 @@
     <div class="transferthree-menus-container">
       <p id="cardLabelId" class="transferthree-menu-name-label">{window.languages.ViewTransferThreeMenuTitle}</p>
     </div>
-    <component-pincards></component-pincards>
+    <component-pincards clean="{true}"></component-pincards>
 
     <button class="transferthree-next-button-inner-container" ontouchend="goToTransferFour()">
       {window.languages.ViewTransferThreeNext}
@@ -27,7 +27,7 @@
       objectForTransfer = opts[0],
       checkChosenCard = false,
       chosenCard;
-    console.log('OOOOPts',opts)
+    console.log('OOOOPts', opts)
 
     if (opts[0].owner)
       var owner = opts[0].owner;
@@ -52,7 +52,7 @@
       this.titleName = window.languages.ViewTransferThreeTitle + ' +' + transferTitle;
     else
       this.titleName = window.languages.ViewTransferThreeTitle + ' ' + transferTitle;
-    ;
+
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepthree') {
       history.arrayOfHistory.push(
@@ -88,6 +88,19 @@
           break;
         }
       }
+
+      var cardSumFromPinCards = scope.tags['component-pincards'].getAccountCardSum();
+
+      console.log(cardSumFromPinCards, parseInt(opts[1].sum))
+      if (cardSumFromPinCards && cardSumFromPinCards < parseInt(opts[1].sum)) {
+        console.log(cardSumFromPinCards, opts[1].sum)
+        scope.clickPinError = false;
+        scope.errorNote = "На выбранной карте недостаточно средств";
+        scope.showError = true;
+        riot.update();
+        return;
+      }
+
       if (checkChosenCard) {
         arrayForTransfer.push(chosenCard)
         riotTags.innerHTML = "<view-transfer-stepfour>";

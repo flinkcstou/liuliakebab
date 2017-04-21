@@ -14,7 +14,7 @@
     <div class="qr-pincard-payfrom-container">
       <p class="qr-pincard-payfrom-field">{window.languages.ViewServicePinCardPayFromField}</p></div>
 
-    <component-pincards friendhelpbool="{friendHelpBool}"></component-pincards>
+    <component-pincards clean="{true}" friendhelpbool="{friendHelpBool}"></component-pincards>
     <div class="qr-pincard-bottom-container">
 
       <div class="qr-pincard-friend-help-container" if="{!friendHelpBool}" ontouchend="friendHelp()">
@@ -101,6 +101,18 @@
             scope.checked = true;
             event.preventDefault();
             event.stopPropagation();
+
+            var cardSumFromPinCards = scope.tags['component-pincards'].getAccountCardSum();
+
+            if (cardSumFromPinCards && cardSumFromPinCards < parseInt(opts.qrSum)) {
+              console.log(cardSumFromPinCards, opts.qrSum)
+              scope.clickPinError = false;
+              scope.errorNote = "На выбранной карте недостаточно средств";
+              scope.showError = true;
+              riot.update();
+              return;
+            }
+
             this.riotTags.innerHTML = "<view-qr-pay-confirm>";
             riot.mount('view-qr-pay-confirm', [true, scope.chosencardId, opts]);
           }

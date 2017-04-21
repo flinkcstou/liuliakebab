@@ -1,13 +1,14 @@
 <component-pincards>
 
   <div
-      class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail,
+    class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail,
                                         transfer-on-card-pincard-all-cards-container: opts.transferoncard,
                                         changed-height-for-filter-account: opts.filteraccount}">
-    <div class="pincard-card-container" each="{i in cardsArray}" if="{i.salaryOriginal>0}" ontouchend="chooseCardTouchEnd(this.id)"
+    <div class="pincard-card-container" each="{i in cardsArray}" hidden="{i.salaryOriginal && i.salaryOriginal == 0}"
+         ontouchend="chooseCardTouchEnd(this.id)"
          ontouchstart="chooseCardTouchStart()"
          id="{i.card_id}" if="{i.access == 2}">
-      <div class="pincard-card-logo-container" if="{i.salaryOriginal>0}"
+      <div class="pincard-card-logo-container"
            style="background-image: url({i.url})"></div>
       <div class="pincard-card-info-container">
         <p class="pincard-card-info-text-one">{i.name}</p>
@@ -28,22 +29,23 @@
     var scope = this;
 
 
-    if (!viewTransfer.check) {
-      scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-    }
-    else {
-      scope.cardsArray = [];
-      var cards = JSON.parse(localStorage.getItem('click_client_cards'));
-      for (var j in cards) {
-        if (cards[j].numberPartOne == '8600' && (parseInt(viewTransferStepTwo.sumWithoutSpace) <= parseInt(cards[j].salary.replace(/\s/g, '')))) {
-          console.log(cards[j])
-          scope.cardsArray.push(cards[j])
-        }
-      }
-      riot.update()
-    }
+    //    if (!viewTransfer.check) {
+    scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+
+    //    else {
+    //      scope.cardsArray = [];
+    //      var cards = JSON.parse(localStorage.getItem('click_client_cards'));
+    //      for (var j in cards) {
+    //        if (cards[j].numberPartOne == '8600' && (parseInt(viewTransferStepTwo.sumWithoutSpace) <= parseInt(cards[j].salary.replace(/\s/g, '')))) {
+    //          console.log(cards[j])
+    //          scope.cardsArray.push(cards[j])
+    //        }
+    //      }
+    //      riot.update()
+    //    }
     scope.checked = false;
     scope.cardId = undefined;
+    scope.cardSum = 0;
     scope.index = -1;
     console.log(' scope.cardsArray', scope.cardsArray)
 
@@ -134,6 +136,7 @@
           if (scope.cardsArray[i].card_id == id && scope.cardsArray[i].access == 2) {
             scope.cardsArray[i].chosenCard = true;
             scope.cardName = scope.cardsArray[i].name;
+            scope.cardSum = scope.cardsArray[i].salaryOriginal
           }
           else
             scope.cardsArray[i].chosenCard = false;
@@ -148,7 +151,7 @@
 
     };
 
-    cleanChosenCards = function () {
+    scope.cleanChosenCards = function () {
 
       for (var i in scope.cardsArray) {
 
@@ -161,7 +164,7 @@
 
     if (opts.clean) {
 
-      cleanChosenCards();
+      scope.cleanChosenCards();
     }
 
     scope.getAccountCardId = function () {
@@ -172,6 +175,11 @@
     scope.getAccountCardName = function () {
 
       return scope.cardName;
+    };
+
+    scope.getAccountCardSum = function () {
+
+      return scope.cardSum;
     };
 
 

@@ -203,6 +203,9 @@
           console.log(result)
           console.log(result[0][0])
           if (result[0][0].error == 0) {
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
             riotTags.innerHTML = "<view-authorization>";
             riot.mount('view-authorization', {from: "registration-client"});
             window.standCheckRegistration = true;
