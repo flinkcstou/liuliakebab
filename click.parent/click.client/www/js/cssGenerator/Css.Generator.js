@@ -8281,18 +8281,17 @@ var css = {
   reportFilterReadyButton: ".report-filter-ready-button" +
   "{" +
   "transform: translate3d(-50%, 0, 0);" +
-  "bottom: " + 81 * widthK + "px;" +
   "text-transform: capitalize;" +
   "left: 50.5%;" +
   "font-size: " + 27 * widthK + "px;" +
   "background-color: #00A1EC;" +
   "height: " + 74 * widthK + "px;" +
-  "margin: 0 auto 0 auto;" +
+  "margin: 15% auto 0 auto;" +
   "padding: 0;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "position: absolute;" +
+  "position: relative;" +
   "width: 44%;" +
   "border-radius: " + 10 * widthK + "px;" +
   "color: #ffffff;" +
@@ -8623,7 +8622,7 @@ var css = {
   "position: absolute;" +
   "right: 0;" +
   "width: 10%;" +
-  "height: 100%;" +
+  //"height: 100%;" +
   "top: 15%;" +
   "font-size: " + 22 * widthK + "px; " +
   "margin: 0;" +
@@ -10131,7 +10130,7 @@ var css = {
   "left: 8%;" +
   "width: 40%;" +
   "top: 82%;" +
-    //"background-color: #01B8FE;" +
+  "background-color: lightgrey;" +
   "border-radius: " + 10 * widthK + "px;" +
   "bottom: 0;" +
   "font-size: " + 38 * widthK + "px;" +

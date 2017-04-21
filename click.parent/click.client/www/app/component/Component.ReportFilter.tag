@@ -19,6 +19,11 @@
 
         <component-pincards filteraccount="true"></component-pincards>
 
+        <button class="report-filter-ready-button" if="{filterDate || filterAccount}" ontouchstart="readyButtonTouchStart()"
+                ontouchend="readyButtonTouchEnd()">
+          {languages.ComponentReportFilterReadyButton}
+        </button>
+
       </div>
 
     </div>
@@ -61,6 +66,12 @@
              style="border: none;">
           <div class="filter-menu-name-field">{languages.ComponentReportFilterDatePastMonth}</div>
         </div>
+
+        <button class="report-filter-ready-button" if="{filterDate || filterAccount}" ontouchstart="readyButtonTouchStart()"
+                ontouchend="readyButtonTouchEnd()">
+          {languages.ComponentReportFilterReadyButton}
+        </button>
+
       </div>
 
     </div>
@@ -101,10 +112,6 @@
       <button class="report-filter-ok-button" ontouchend="closeMenu()">ok</button>
     </div>
 
-    <button class="report-filter-ready-button" if="{filterDate || filterAccount}" ontouchstart="readyButtonTouchStart()"
-            ontouchend="readyButtonTouchEnd()">
-      {languages.ComponentReportFilterReadyButton}
-    </button>
 
   </div>
   <script>

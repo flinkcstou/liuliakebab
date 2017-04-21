@@ -487,7 +487,7 @@
 
               console.log("C", result[1][i].payment_id);
 
-              var date = new Date(result[1][i].created);
+              var date = new Date(result[1][i].created_timestamp * 1000);
               var dateStr = date.getDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getMonth()] + ' ' + date.getFullYear();
               if (date.getMinutes() < 10 && date.getHours() < 10) {
                 result[1][i].paymentTime = '0' + date.getHours() + ':' + '0' + date.getMinutes();
@@ -512,6 +512,9 @@
               scope.paymentsList.push(result[1][i]);
 
             }
+
+            console.log('scope.paymentDates', scope.paymentDates)
+            console.log('scope.paymentsMap', scope.paymentsMap)
             riot.update();
           }
           else {
