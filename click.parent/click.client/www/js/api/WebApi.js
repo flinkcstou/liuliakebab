@@ -132,15 +132,6 @@ window.api.initSocket = function () {
           //var result =
           showConfirmComponent(error, 'session');
 
-          //if (result) {
-          //
-          //  riotTags.innerHTML = "<view-authorization>";
-          //  riot.mount('view-authorization');
-          //}
-          //else {
-          //
-          //  navigator.app.exitApp();
-          //}
         }
       } catch (error) {
 
@@ -153,6 +144,14 @@ window.api.initSocket = function () {
       callBack.err(parsedData.api_status, parsedData.api_status_message, parsedData.data);
     }
     catch (error) {
+      if (!window.api.sessionErrorChecker) {
+
+        window.api.sessionErrorChecker = true;
+
+        //var result =
+        showConfirmComponent(error, 'session');
+
+      }
 
       console.log("error", error);
     }
