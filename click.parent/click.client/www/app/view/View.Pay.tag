@@ -495,12 +495,18 @@
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20 || scope.checkOfSearch) {
         console.log('ID ID ID', id)
-        if (opts.mode == 'ADDAUTOPAY' && scope.servicesMap[id][0].autopay_available) {
+        if (opts.mode == 'ADDAUTOPAY') {
+          viewPay.chosenServiceId = id;
+          opts.id = id;
           event.preventDefault();
           event.stopPropagation();
-          opts.id = id;
-          riotTags.innerHTML = "<view-autopay-method>";
-          riot.mount("view-autopay-method", opts);
+          if (scope.servicesMap[id][0].autopay_available) {
+            riotTags.innerHTML = "<view-autopay-method>";
+            riot.mount("view-autopay-method", opts);
+          } else {
+            riotTags.innerHTML = "<view-autopay-schedule-method>";
+            riot.mount("view-autopay-schedule-method", opts);
+          }
         }
         else {
           if (!opts.mode) opts.mode = 'USUAL';

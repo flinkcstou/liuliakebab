@@ -6,7 +6,7 @@
     <div ontouchend="goToBack()"
          class="servicepage-button-back">
     </div>
-    <div type="button" class="servicepage-service-icon"
+    <div type="button" class="servicepage-service-icon" if="{opts[8]=='ADDAUTOPAY'}"
          style="background-image: url({serviceIcon})"></div>
   </div>
 

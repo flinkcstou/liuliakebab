@@ -12381,6 +12381,11 @@ var css = {
   "float: left;" +
   "}",
 
+  autoPayNameInputPart: ".autopay-name-input-part" +
+  "{" +
+  "width: 96%;" +
+  "}",
+
 
 }
 

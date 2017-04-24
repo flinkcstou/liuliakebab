@@ -559,9 +559,6 @@
           scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].id];
 
         }
-        console.log('Service=', scope.service)
-        console.log('firstLevel=', scope.firstLevelArray)
-        console.log('secondLevel=', scope.secondLevelArray)
 
       }
 
@@ -951,23 +948,20 @@
 
       if (opts.mode == 'USUAL') {
 
-        alert("SP usual mode")
-
-
         event.preventDefault();
         event.stopPropagation();
-        console.log(formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites)
-
-        console.log("OPTS", opts);
-
-        console.log('USSD', scope.fieldArray[0].ussd_query)
-        console.log('fieldArray', scope.fieldArray[0])
-
-        console.log('firstFieldText', firstFieldText)
-
-        console.log('formtype', formtype)
-        console.log('communalParam', communalParam)
-        console.log('internetPackageParam', internetPackageParam)
+//        console.log(formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites)
+//
+//        console.log("OPTS", opts);
+//
+//        console.log('USSD', scope.fieldArray[0].ussd_query)
+//        console.log('fieldArray', scope.fieldArray[0])
+//
+//        console.log('firstFieldText', firstFieldText)
+//
+//        console.log('formtype', formtype)
+//        console.log('communalParam', communalParam)
+//        console.log('internetPackageParam', internetPackageParam)
 
 
         if (modeOfApp.offlineMode) {
@@ -1038,7 +1032,7 @@
           riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
         }
       } else if (opts.mode == 'ADDFAVORITE') {
-        alert("SP addfavorite mode");
+
         addToFavorites([formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
 
         event.preventDefault();
@@ -1052,7 +1046,6 @@
         onBackKeyDown();
         onBackKeyDown();
       } else if (opts.mode == 'ADDAUTOPAY') {
-        alert("SP addautopay mode")
         this.riotTags.innerHTML = "<view-service-pincards>";
         riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
       }

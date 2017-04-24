@@ -5,7 +5,7 @@
       {(opts[8]=='ADDAUTOPAY')?(window.languages.ViewAutoPayTitleName):("")}
       {titleName}</p>
     <p class="servicepage-category-field">{(opts[8]=='ADDAUTOPAY')?
-      (window.languages.ViewAutoPayMethodSchedulerText):(categoryName)}</p>
+      (autoPayTypeText):(categoryName)}</p>
     <div ontouchend="touchStartTitle()"
          class="{servicepage-button-back:opts[8]!='ADDAUTOPAY', autopay-method-back-button:opts[8]=='ADDAUTOPAY'}">
     </div>
@@ -91,10 +91,13 @@
     scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
     scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
 
+    if (opts[8] == 'ADDAUTOPAY') {
+      this.autoPayTypeText = localStorage.getItem('autoPayType');
+      console.log("autoPayType=", this.autoPayTypeText);
+    }
 
     this.titleName = scope.service.name;
     this.serviceIcon = scope.service.image;
-
     this.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
 
 
@@ -128,8 +131,14 @@
             scope.checked = true;
             event.preventDefault();
             event.stopPropagation();
-            this.riotTags.innerHTML = "<view-pay-confirm>";
-            riot.mount('view-pay-confirm', [arrayForPay, true, scope.chosencardId]);
+            if (opts[8] == 'ADDAUTOPAY') {
+              this.riotTags.innerHTML = "<view-autopay-name>";
+              riot.mount('view-autopay-name', [arrayForPay, true, scope.chosencardId]);
+
+            } else {
+              this.riotTags.innerHTML = "<view-pay-confirm>";
+              riot.mount('view-pay-confirm', [arrayForPay, true, scope.chosencardId]);
+            }
           }
         }
       }

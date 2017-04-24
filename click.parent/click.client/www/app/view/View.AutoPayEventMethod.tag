@@ -13,12 +13,11 @@
 
     <div class="autopay-method-body-container">
 
-
       <div class="servicepage-first-field autopay-event-number-field" id="firstField">
         <p class="servicepage-text-field">{window.languages.ViewAutoPayMethodEventPhoneNumber}</p>
         <p class="servicepage-number-first-part">+{window.languages.CodeOfCountry}</p>
         <input class="servicepage-number-input-part" type="tel" id="firstFieldInput"
-               onfocus="bordersColor()" autofocus="true"
+               autofocus="true"
                onkeydown="telPayVerificationKeyDown(this)"
                onkeyup="telPayVerificationKeyUp()"/>
         <div class="servicepage-phone-icon" ontouchend="searchContact()"></div>
@@ -45,9 +44,8 @@
 
 
       <button class="autopay-event-button-enter"
-              ontouchend="goToPayConfirmView()">{window.languages.ViewServicePageEnterLabel}
+              ontouchend="chooseCardToPay()">{window.languages.ViewServicePageEnterLabel}
       </button>
-
 
     </div>
 
@@ -71,7 +69,7 @@
   <script>
     var scope = this;
     scope.showError = false;
-    this.titleName = "АВТОПЛАТЕЖ";
+    this.titleName = window.languages.ViewAutoPayTitleName;
 
     scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     console.log("ID of srevice=", opts.id);
@@ -128,14 +126,14 @@
       onBackKeyDown()
     };
 
-    var oldChosenStep = -1, chosenStep;
+    var oldChosenStep, chosenStep;
 
     chooseStep = function (id) {
       oldChosenStep = chosenStep;
       chosenStep = id;
       document.getElementById(chosenStep).style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
       console.log("Step chosen=", id);
-      if (oldChosenStep != -1 && oldChosenStep != id)
+      if (oldChosenStep && oldChosenStep != id)
         document.getElementById(oldChosenStep).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
     }
 
@@ -169,17 +167,12 @@
 
         for (var i = 0; i < scope.amountsArray.length; i++) {
 
-          console.log("Yahoo2", id, scope.amountsArray, scope.amountsArray[i]);
 
           if (scope.amountsArray[i] == id) {
             scope.chosenAmount = scope.amountsArray[i];
 
-
-            console.log("Yahoooo_2", scope.amountsArray, scope.amountsArray[i]);
-
             scope.oldFieldParamId = scope.chosenFieldParamId;
             scope.chosenFieldParamId = id;
-            firstFieldInput.value = '';
             riot.update(scope.chosenAmount);
             break;
           }
@@ -224,6 +217,45 @@
         console.log('error', error)
       });
 
+    }
+
+    chooseCardToPay = function () {
+      if (firstFieldInput.value.length < 9) {
+        scope.clickPinError = false;
+        scope.errorNote = "Неправильно введён номер телефона";
+        scope.showError = true;
+        riot.update();
+        return;
+      } else if (firstFieldInput.value.length == 0) {
+        scope.clickPinError = false;
+        scope.errorNote = "Введите значение первого поля";
+        scope.showError = true;
+        riot.update();
+        return;
+      }
+
+      if (!chosenStep) {
+        scope.clickPinError = false;
+        scope.errorNote = "Выберите условную сумму для пополнения баланса";
+        scope.showError = true;
+        riot.update();
+        return;
+      }
+
+      var formtype = {"formtype": 1};
+      var firstFieldId = {"firstFieldId": 1};
+      var firstFieldText = {"firstFieldText": firstFieldInput.value};
+      var cardTypeId = {"cardTypeId": null};
+      var communalParam = {"communalParam": null};
+      var internetPackageParam = {"internetPackageParam": null};
+      var amountText = {"amountText": scope.chosenAmount};
+
+      viewServicePage.firstFieldTitle = "Номер абонента";
+      viewServicePage.phoneText = firstFieldInput.value;
+      var isInFavorites = {"isInFavorites": false};
+
+      this.riotTags.innerHTML = "<view-service-pincards>";
+      riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
     }
 
 

@@ -462,6 +462,8 @@ var RU_LANGUAGES =
 
   "ComponentConfirmOk": "ОК",
   "ComponentConfirmCancel": "ОТМЕНА",
+
+  "ViewAutoPayNameFieldText": "Название автоплатежа",
 };
 
 window.languages = RU_LANGUAGES;

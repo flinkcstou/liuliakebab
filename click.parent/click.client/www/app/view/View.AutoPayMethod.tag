@@ -44,17 +44,10 @@
     this.serviceIcon = scope.servicesMap[opts.id][0].image;
 
 
-    //    this.on('mount', function () {
-    //
-    //
-    //      riot.update();
-    //
-    //    })
-
-
     eventTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+      localStorage.setItem('autoPayType', window.languages.ViewAutoPayMethodEventText);
       riotTags.innerHTML = "<view-autopay-event-method>";
       riot.mount("view-autopay-event-method", opts);
 
@@ -63,6 +56,7 @@
     scheduleTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+      localStorage.setItem('autoPayType', window.languages.ViewAutoPayMethodSchedulerText);
       riotTags.innerHTML = "<view-autopay-schedule-method>";
       riot.mount("view-autopay-schedule-method", opts);
     }
