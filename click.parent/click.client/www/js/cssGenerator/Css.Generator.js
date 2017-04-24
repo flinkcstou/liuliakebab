@@ -12230,15 +12230,24 @@ var css = {
   scheduleDateBlockHoursContainer: ".schedule-date-block-hours-container " +
   "{" +
   "position: absolute;" +
-  "width: 300px;" +
+  "width: 250px;" +
   "height:500px;" +
   "left: 0;" +
+  "}",
+
+  scheduleDateBlockHMColonContainer: ".schedule-date-block-hmcolon-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 50px;" +
+  "height:500px;" +
+  "left: 275px;" +
+    //"background-color: #01B8FE;" +
   "}",
 
   scheduleDateBlockMinutesContainer: ".schedule-date-block-minutes-container " +
   "{" +
   "position: absolute;" +
-  "width: 300px;" +
+  "width: 250px;" +
   "height:500px;" +
   "right: 0;" +
   "}",
@@ -12281,6 +12290,64 @@ var css = {
   "width: 100%;" +
   "text-align: center;" +
   "font-size: " + 120 * widthK + "px; " +
+  "}",
+
+  scheduleDateBlockTimeColonText: ".schedule-date-block-time-colon-text " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: #c1c1c1;" +
+  "width: 100%;" +
+  "text-align: center;" +
+  "font-size: " + 120 * widthK + "px; " +
+  "top: 135px;" +
+  "color: #01B8FE;" +
+  "}",
+
+  scheduleDateBlockHMBottom: ".schedule-date-block-hm-bottom" +
+  "{" +
+  "position: absolute;" +
+  "width: 80%;" +
+  "top: 62%;" +
+  "left: 10%;" +
+  "height:" + 100 * widthK + "px;" +
+  "}",
+
+  scheduleDateBlockHMBottomLine: ".schedule-date-block-hm-bottom-line" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+    //"margin-top: " + 42 * widthK + "px;" +
+    //"margin-bottom: " + 30 * widthK + "px;" +
+  "top:34%;" +
+  "}",
+
+  scheduleDateBlockHMBottomHourText: ".schedule-date-block-hm-bottom-hour-text" +
+  "{" +
+  "position: relative;" +
+  "color: #8b8b8b;" +
+  "width:" + 55 * widthK + "px;" +
+  "text-align: center;" +
+  "top: 25%;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "background-color: #f4f4f4;" +
+  "left: 13%;" +
+  "margin: 0;" +
+  "float: left;" +
+  "}",
+
+  scheduleDateBlockHMBottomMinText: ".schedule-date-block-hm-bottom-min-text" +
+  "{" +
+  "position: relative;" +
+  "color: #8b8b8b;" +
+  "width:" + 55 * widthK + "px;" +
+  "text-align: center;" +
+  "top: 25%;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "background-color: #f4f4f4;" +
+  "left: 65%;" +
+  "margin: 0;" +
+  "float: left;" +
   "}",
 
 

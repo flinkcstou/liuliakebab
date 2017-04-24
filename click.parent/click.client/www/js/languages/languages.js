@@ -392,6 +392,7 @@ var RU_LANGUAGES =
   "ViewAutoPayMethodScheduleChoseTime": "Выберите время",
   "ViewAutoPayMethodScheduleHourText": "час",
   "ViewAutoPayMethodScheduleMinutesText": "мин",
+  "ViewAutoPayMethodScheduleHMColonText": ":",
   "ViewAutoPayMethodScheduleChoseWeekDay": "Выберите день недели",
   "ViewAutoPayMethodScheduleChoseButtonLabel": "Выбрать",
 
