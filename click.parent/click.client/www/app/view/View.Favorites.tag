@@ -52,8 +52,9 @@
     addFavorite = function () {
       event.preventDefault();
       event.stopPropagation();
+      opts.mode = 'ADDFAVORITE';
       riotTags.innerHTML = "<view-pay>";
-      riot.mount("view-pay", ['ADDFAVORITE']);
+      riot.mount("view-pay", opts);
     }
 
     if (scope.favoritePaymentsList) {

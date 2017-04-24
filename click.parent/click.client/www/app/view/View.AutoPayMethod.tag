@@ -39,9 +39,9 @@
     scope.showError = false;
     this.titleName = "АВТОПЛАТЕЖ";
     scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
-    console.log("ID of srevice=", opts);
-    this.serviceName = scope.servicesMap[opts[0]][0].name;
-    this.serviceIcon = scope.servicesMap[opts[0]][0].image;
+    console.log("ID of srevice=", opts.id);
+    this.serviceName = scope.servicesMap[opts.id][0].name;
+    this.serviceIcon = scope.servicesMap[opts.id][0].image;
 
 
     //    this.on('mount', function () {

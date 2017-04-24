@@ -95,9 +95,9 @@
     scope.showError = false;
     this.titleName = "АВТОПЛАТЕЖ";
     scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
-    console.log("ID of service=", opts);
-    this.serviceName = scope.servicesMap[opts[0]][0].name;
-    this.serviceIcon = scope.servicesMap[opts[0]][0].image;
+    console.log("ID of service=", opts.id);
+    this.serviceName = scope.servicesMap[opts.id][0].name;
+    this.serviceIcon = scope.servicesMap[opts.id][0].image;
 
     scope.daysArray = window.languages.ViewAutoPayMethodScheduleDaysArray;
     scope.weekDaysArray = window.languages.ViewAutoPayMethodScheduleWeekDaysArray;
@@ -187,7 +187,17 @@
     }
 
     chooseDate = function () {
-      dateChooseBlockId.style.display = 'none';
+//      dateChooseBlockId.style.display = 'none';
+      if (scope.timeMode) {
+
+        console.log("in opts now=", opts);
+
+        event.stopPropagation();
+
+        riotTags.innerHTML = "<view-service-page>";
+        riot.mount("view-service-page", opts);
+      }
+
     }
 
 

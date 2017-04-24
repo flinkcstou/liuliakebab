@@ -213,7 +213,7 @@
 
 
     console.log('opts', opts)
-    scope.enterButton = opts[0] != 'ADDFAVORITE' ? true : false;
+    scope.enterButton = opts.mode != 'ADDFAVORITE' ? true : false;
     scope.showError = false;
     scope.showConfirm = false;
 
@@ -441,8 +441,6 @@
             }
             else
               amount.value = 0;
-
-
         });
       }
       else {
@@ -457,7 +455,6 @@
         scope.fieldArray[0] = {ussd_query: "*880*0199999*1*{amount}#", title: "Мой номер"}
         console.log('scope.fieldArray', scope.fieldArray)
         viewPay.chosenServiceId = localStorage.getItem('myNumberOperatorId') ? localStorage.getItem('myNumberOperatorId') : 'mynumber';
-
 
         scope.amountFieldTitle = 'Сумма'
 
@@ -1036,7 +1033,7 @@
           this.riotTags.innerHTML = "<view-service-pincards>";
           riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
         }
-      } else {
+      } else if (opts.mode == 'ADDFAVORITE') {
         addToFavorites([formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
 
         event.preventDefault();
@@ -1049,7 +1046,9 @@
         viewServicePinCards.chosenFriendForHelp = null;
         onBackKeyDown();
         onBackKeyDown();
-
+      } else if (opts.mode == 'ADDAUTOPAY') {
+        this.riotTags.innerHTML = "<view-service-pincards>";
+        riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
       }
     };
 
@@ -1132,11 +1131,9 @@
         scope.showError = true;
         riot.update();
       }
-
     };
 
     addToFavorites = function (array) {
-
 
       console.log('scope.fieldArray[0]', scope.fieldArray[0].ussd_query)
 

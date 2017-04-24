@@ -47,8 +47,9 @@
     addAutoPay = function () {
       event.preventDefault();
       event.stopPropagation();
+      opts.mode = 'ADDAUTOPAY';
       riotTags.innerHTML = "<view-pay>";
-      riot.mount("view-pay", ['ADDAUTOPAY']);
+      riot.mount("view-pay", opts);
     }
 
     componentMenu.check = false;

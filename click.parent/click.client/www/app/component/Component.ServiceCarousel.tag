@@ -361,8 +361,9 @@
       if (Math.abs(onTouchStartX2 - onTouchEndX2) <= 20) {
         console.log("ADD NEW FAVORITE");
         event.stopPropagation();
+        opts.mode = 'ADDFAVORITE';
         this.riotTags.innerHTML = "<view-pay>";
-        riot.mount('view-pay', ['ADDFAVORITE']);
+        riot.mount('view-pay', opts);
       }
       if (touchStartX != touchEndX)
         changePosition();

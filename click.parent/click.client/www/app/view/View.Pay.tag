@@ -43,9 +43,9 @@
 
     console.log('opts', opts)
 
-    if (!opts[0])
+    if (!opts.mode)
       this.titleName = window.languages.ViewPayTitleName;
-    else if (opts[0] == 'ADDAUTOPAY')
+    else if (opts.mode == 'ADDAUTOPAY')
       this.titleName = window.languages.ViewAutoPayTitleName;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay') {
@@ -496,11 +496,12 @@
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20 || scope.checkOfSearch) {
         console.log('ID ID ID', id)
-        if (opts[0] == 'ADDAUTOPAY' && scope.servicesMap[id][0].autopay_available) {
+        if (opts.mode == 'ADDAUTOPAY' && scope.servicesMap[id][0].autopay_available) {
           event.preventDefault();
           event.stopPropagation();
+          opts.id = id;
           riotTags.innerHTML = "<view-autopay-method>";
-          riot.mount("view-autopay-method", [id]);
+          riot.mount("view-autopay-method", opts);
         }
         else {
           console.log("chosen id in pay view=", id);

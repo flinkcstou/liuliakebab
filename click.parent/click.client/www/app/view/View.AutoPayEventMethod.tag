@@ -74,11 +74,11 @@
     this.titleName = "АВТОПЛАТЕЖ";
 
     scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
-    console.log("ID of srevice=", opts);
-    this.serviceName = scope.servicesMap[opts[0]][0].name;
-    this.serviceIcon = scope.servicesMap[opts[0]][0].image;
-    this.amountsArray = scope.servicesMap[opts[0]][0].autopay_available_amounts;
-    this.stepsArray = scope.servicesMap[opts[0]][0].autopay_available_steps;
+    console.log("ID of srevice=", opts.id);
+    this.serviceName = scope.servicesMap[opts.id][0].name;
+    this.serviceIcon = scope.servicesMap[opts.id][0].image;
+    this.amountsArray = scope.servicesMap[opts.id][0].autopay_available_amounts;
+    this.stepsArray = scope.servicesMap[opts.id][0].autopay_available_steps;
 
     scope.amountsArrayExist = this.amountsArray ? true : false;
     scope.stepsArrayExist = this.stepsArray ? true : false;
