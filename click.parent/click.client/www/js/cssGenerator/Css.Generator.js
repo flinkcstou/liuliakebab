@@ -885,6 +885,21 @@ var css = {
   "background-position: center;" +
   "}",
 
+  bellButtonNewsCounter: ".bell-button-news-counter " +
+  "{" +
+  "position: absolute;" +
+  "left:" + 20 * widthK + "px;" +
+  "font-size:" + 16 * widthK + "px;" +
+  "width:" + 28 * widthK + "px;" +
+  "height:" + 28 * widthK + "px;" +
+  "line-height:" + 28 * widthK + "px;" +
+  "border-radius:" + 100 * widthK + "px;" +
+  "background-color: orange;" +
+  "text-align: center;" +
+  "color: white;" +
+  "overflow: hidden;" +
+  "}",
+
   bellIcon: ".bell-icon " +
   "{" +
   "position: absolute;" +
@@ -3657,7 +3672,7 @@ var css = {
 
   pincardFriendHelpContainer: ".pincard-friend-help-container" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "width: 50%;" +
   "height: 50%;" +
   "top: 3%;" +
@@ -3796,7 +3811,7 @@ var css = {
 
   pincardButtonEnter: " .pincard-button-enter" +
   "{" +
-  "top: 60%;" +
+  //"top: " + 230 * heightK + "px;" +
   "height: " + 74 * widthK + "px;" +
   "margin: 3% auto 0 auto;" +
   "background-color: #00a8f1;" +
