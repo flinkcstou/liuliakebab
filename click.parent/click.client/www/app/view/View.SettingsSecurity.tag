@@ -20,23 +20,23 @@
         <div class="settings-block-next-icon"></div>
       </div>
 
-      <div class="settings-block-containter settings-security-scanner-block" ontouchend="" if="{false}">
+      <div class="settings-block-containter settings-security-scanner-block" ontouchend="fingerPrintTouchEnd()">
         <div class="settings-block-icon"
              style="background-image: url('resources/icons/ViewSettingsSecurity/security_fingerprint.png')"></div>
         <div class="settings-block-name-field settings-security-scanner-block-name">
           {window.languages.ViewSecuritySettingsTouchScanUseTitle}
         </div>
-        <div class="settings-security-check-icon"></div>
+        <div id="securityFingerPrintIconId" class="settings-security-check-icon"></div>
       </div>
 
-      <div class="settings-block-containter settings-security-block">
+      <div class="settings-block-containter settings-security-block" ontouchend="blockWithPin()">
         <div class="settings-block-icon"
              style="background-image: url('resources/icons/ViewSettingsSecurity/security_block.png')"></div>
         <div class="settings-block-name-field">{window.languages.ViewSecuritySettingsBlockTitle}</div>
         <div class="settings-security-block-detail-text" style="width: 70%;">
           {window.languages.ViewSecuritySettingsBlockText}
         </div>
-        <div id="blockWithPinIconId" class="settings-security-check-icon" ontouchend="blockWithPin()"></div>
+        <div id="blockWithPinIconId" class="settings-security-check-icon"></div>
       </div>
 
       <div class="settings-block-containter">
@@ -63,6 +63,7 @@
 
     var isVisible = localStorage.getItem('click_client_loginInfo').visibility;
     var isBlocked = JSON.parse(localStorage.getItem('settings_block'));
+    var fingerPrint = JSON.parse(localStorage.getItem("settings_finger_print"))
 
     this.on('mount', function () {
       if (isVisible) {
@@ -74,6 +75,13 @@
       }
       else {
         blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+      }
+
+      if (fingerPrint) {
+        securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
+      }
+      else {
+        securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
       }
     });
 
@@ -171,6 +179,25 @@
       riotTags.innerHTML = "<view-trusted-devices>";
       riot.mount("view-trusted-devices");
     };
+
+    fingerPrintTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      console.log("QQQ")
+      if (!fingerPrint) {
+        console.log()
+        securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)"
+        fingerPrint = true
+        console.log("true")
+        localStorage.setItem("settings_finger_print", true)
+      }
+      else {
+        securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+        fingerPrint = false
+        localStorage.setItem("settings_finger_print", false)
+      }
+      riot.update()
+    }
 
   </script>
 </view-security-settings>

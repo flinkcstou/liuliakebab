@@ -7309,7 +7309,6 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 63%;" +
   "background-position: center;" +
-  "background-image: url(resources/icons/ViewSettingsGeneral/general_save.png);" +
   "}",
 
   settingsSecurityScannerBlock: ".settings-security-scanner-block" +
@@ -8647,6 +8646,19 @@ var css = {
   "font-size: " + 22 * widthK + "px; " +
   "margin: 0;" +
   "color: #8b8b8b;" +
+  "}",
+
+  viewReportsPaymentInfoStateImage: ".view-reports-payment-info-state-image " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 60 * widthK + "px;" +
+  "right:" + 5 * widthK + "px;" +
+  "height:" + 60 * widthK + "px;" +
+    //"height: 100%;" +
+  "top: 50%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "margin: 0;" +
   "}",
 
   //graph
