@@ -1,9 +1,9 @@
 <view-autopay-method>
   <div>
     <div class="pay-page-title" style="border-style: none;">
-      <p class="servicepage-title autopay-method-page-title">{titleName} {serviceName}</p>
+      <p class="autopay-method-page-title">{titleName} {serviceName}</p>
       <div ontouchend="goToBack()"
-           class="servicepage-button-back autopay-method-back-button">
+           class="autopay-method-back-button">
       </div>
       <div type="button" class="servicepage-service-icon autopay-method-service-icon"
            style="background-image: url({serviceIcon})"></div>

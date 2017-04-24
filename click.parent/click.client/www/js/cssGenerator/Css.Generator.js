@@ -1091,9 +1091,9 @@ var css = {
   "border-radius:" + 14 * widthK + "px;" +
   "background-size: cover;" +
   "color: white;" +
-  //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
   "}",
 
   invoiceCardPartOne: ".invoice-card-part-one " +
@@ -1106,9 +1106,9 @@ var css = {
   "background-color: white;" +
   "background-size: cover;" +
   "color: white;" +
-  //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
   "}",
 
   invoiceCardPartTwo: ".invoice-card-part-two" +
@@ -2954,7 +2954,7 @@ var css = {
   "right: 4%;" +
   "background-size: 150%;" +
   "background-color: white;" +
-  "display:none;" +
+    //"display:none;" +
   "}",
 
   servicePageBodyContainer: ".servicepage-body-container" +
@@ -3811,7 +3811,7 @@ var css = {
 
   pincardButtonEnter: " .pincard-button-enter" +
   "{" +
-  //"top: " + 230 * heightK + "px;" +
+    //"top: " + 230 * heightK + "px;" +
   "height: " + 74 * widthK + "px;" +
   "margin: 3% auto 0 auto;" +
   "background-color: #00a8f1;" +
@@ -11808,8 +11808,17 @@ var css = {
 
   autopayMethodPageTitle: ".autopay-method-page-title" +
   "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "left: 13%;" +
+  "top: 36%;" +
+  "margin: 0;" +
+  "color: #fffaf9;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "width: 60%;" +
   "font-size: " + 36 * widthK + "px; " +
-
   "}",
 
   autopayMethodServiceIcon: ".autopay-method-service-icon" +
@@ -11819,6 +11828,16 @@ var css = {
 
   autopayMethodBackButton: ".autopay-method-back-button" +
   "{" +
+  "position: absolute;" +
+  "width: 17%;" +
+  "height: 140%;" +
+  "background-image: url('resources/icons/back/back.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 20%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 20%;" +
+  "left: -4%;" +
   "top: " + -10 * widthK + "px; " +
   "}",
 

@@ -43,10 +43,9 @@
 
     console.log('opts', opts)
 
-    if (!opts.mode)
-      this.titleName = window.languages.ViewPayTitleName;
-    else if (opts.mode == 'ADDAUTOPAY')
+    if (opts.mode == 'ADDAUTOPAY')
       this.titleName = window.languages.ViewAutoPayTitleName;
+    else this.titleName = window.languages.ViewPayTitleName;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay') {
       history.arrayOfHistory.push(
@@ -504,6 +503,7 @@
           riot.mount("view-autopay-method", opts);
         }
         else {
+          if (!opts.mode) opts.mode = 'USUAL';
           console.log("chosen id in pay view=", id);
           viewPay.chosenServiceId = id;
           opts.id = id;

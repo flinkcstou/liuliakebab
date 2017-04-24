@@ -1,10 +1,10 @@
 <view-autopay-schedule-method>
   <div>
     <div class="pay-page-title" style="border-style: none;">
-      <p class="servicepage-title autopay-method-page-title">{titleName} {serviceName}</p>
+      <p class="autopay-method-page-title">{titleName} {serviceName}</p>
       <p class="servicepage-category-field">{window.languages.ViewAutoPayMethodSchedulerText}</p>
       <div ontouchend="goToBack()"
-           class="servicepage-button-back autopay-method-back-button">
+           class="autopay-method-back-button">
       </div>
       <div type="button" class="servicepage-service-icon autopay-method-service-icon"
            style="background-image: url({serviceIcon})"></div>
@@ -93,7 +93,7 @@
   <script>
     var scope = this;
     scope.showError = false;
-    this.titleName = "АВТОПЛАТЕЖ";
+    this.titleName = window.languages.ViewAutoPayTitleName;
     scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     console.log("ID of service=", opts.id);
     this.serviceName = scope.servicesMap[opts.id][0].name;
@@ -191,11 +191,27 @@
       if (scope.timeMode) {
 
         console.log("in opts now=", opts);
-
         event.stopPropagation();
-
         riotTags.innerHTML = "<view-service-page>";
         riot.mount("view-service-page", opts);
+      } else {
+        dateNumber = 0;
+        minuteNumber = 0;
+        scope.topOfOperations = 150 * widthK;
+        scope.weekMode = false;
+        scope.timeMode = true;
+        scope.dayMode = false;
+        scope.shift = 150;
+        count = 24;
+        scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseTime;
+        scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
+        scope.dateBlockArrayTwo = window.languages.ViewAutoPayMethodScheduleMinutesArray;
+        dateChooseBlockId.style.display = 'block';
+        console.log("LAST DAY, dateBlockArray", scope.dateBlockArray);
+        riot.update(scope.dateBlockTitle);
+        riot.update(scope.dateBlockArray);
+        changePositionInit();
+        changeMinutesPositionInit();
       }
 
     }

@@ -240,7 +240,7 @@
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var serviceId = viewPay.chosenServiceId;
-      var amount = inputVerification.spaceDeleter(opts[0][5].amountText)
+      var amount = inputVerification.spaceDeleter(opts[0][5].amountText.toString())
       var accountId;
       var friendPhone;
 //      console.log("AMOUNT UPDATED=", amount)

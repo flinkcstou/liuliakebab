@@ -1,11 +1,14 @@
 <view-service-page class="view-service-page">
   <div class="pay-page-title" style="border-style: none;">
-    <p class="servicepage-title">{titleName}</p>
-    <p class="servicepage-category-field">{categoryName}</p>
+    <p class="{servicepage-title :opts.mode!='ADDAUTOPAY', autopay-method-page-title:opts.mode=='ADDAUTOPAY'}">
+      {(opts.mode=='ADDAUTOPAY')?(window.languages.ViewAutoPayTitleName):("")}
+      {titleName}</p>
+    <p class="servicepage-category-field">{(opts.mode=='ADDAUTOPAY')?
+      (window.languages.ViewAutoPayMethodSchedulerText):(categoryName)}</p>
     <div ontouchend="goToBack()"
-         class="servicepage-button-back">
+         class="{servicepage-button-back:opts.mode!='ADDAUTOPAY', autopay-method-back-button:opts.mode=='ADDAUTOPAY'}">
     </div>
-    <div type="button" class="servicepage-service-icon"
+    <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
          style="background-image: url({serviceIcon})"></div>
   </div>
 
@@ -212,7 +215,6 @@
     }
 
 
-    console.log('opts', opts)
     scope.enterButton = opts.mode != 'ADDFAVORITE' ? true : false;
     scope.showError = false;
     scope.showConfirm = false;
@@ -947,7 +949,9 @@
       viewServicePage.phoneText = firstFieldInput.value;
       var isInFavorites = {"isInFavorites": !scope.enterButton};
 
-      if (scope.enterButton) {
+      if (opts.mode == 'USUAL') {
+
+        alert("SP usual mode")
 
 
         event.preventDefault();
@@ -1034,6 +1038,7 @@
           riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
         }
       } else if (opts.mode == 'ADDFAVORITE') {
+        alert("SP addfavorite mode");
         addToFavorites([formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
 
         event.preventDefault();
@@ -1047,8 +1052,9 @@
         onBackKeyDown();
         onBackKeyDown();
       } else if (opts.mode == 'ADDAUTOPAY') {
+        alert("SP addautopay mode")
         this.riotTags.innerHTML = "<view-service-pincards>";
-        riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
+        riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
       }
     };
 
@@ -1104,15 +1110,21 @@
 
         scope.formTypeTwoOptsArray = [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites];
 
-        if (scope.enterButton) {
+        if (opts.mode == 'USUAL') {
+          alert("SP usual mode")
           event.preventDefault();
           event.stopPropagation();
           this.riotTags.innerHTML = "<view-service-pincards>";
           riot.mount('view-service-pincards', scope.formTypeTwoOptsArray);
-        } else {
+        } else if (opts.mode == 'ADDFAVORITE') {
+          alert("SP addfav mode")
           formTypeTwoBtnSaveId.style.pointerEvents = 'auto';
           formTypeTwoBtnSaveId.style.backgroundColor = 'rgb(1, 124, 227)';
           riot.update(formTypeTwoBtnSaveId);
+        } else if (opts.mode == 'ADDAUTOPAY') {
+          alert("SP addautopay mode")
+          this.riotTags.innerHTML = "<view-service-pincards>";
+          riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
         }
       }
     };
@@ -1135,7 +1147,7 @@
 
     addToFavorites = function (array) {
 
-      console.log('scope.fieldArray[0]', scope.fieldArray[0].ussd_query)
+//      console.log('scope.fieldArray[0]', scope.fieldArray[0].ussd_query)
 
       if (!localStorage.getItem('favoritePaymentsList')) {
         var favoritePaymentsList = [];

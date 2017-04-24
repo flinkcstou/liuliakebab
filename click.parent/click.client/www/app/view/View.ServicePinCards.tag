@@ -1,12 +1,15 @@
 <view-service-pincards class="view-service-pincards">
 
   <div class="pay-page-title" style="border-style: none;">
-    <p class="servicepage-title">{titleName}</p>
-    <p class="servicepage-category-field">{categoryName}</p>
+    <p class="{servicepage-title :opts[8]!='ADDAUTOPAY', autopay-method-page-title:opts[8]=='ADDAUTOPAY'}">
+      {(opts[8]=='ADDAUTOPAY')?(window.languages.ViewAutoPayTitleName):("")}
+      {titleName}</p>
+    <p class="servicepage-category-field">{(opts[8]=='ADDAUTOPAY')?
+      (window.languages.ViewAutoPayMethodSchedulerText):(categoryName)}</p>
     <div ontouchend="touchStartTitle()"
-         class="servicepage-button-back">
+         class="{servicepage-button-back:opts[8]!='ADDAUTOPAY', autopay-method-back-button:opts[8]=='ADDAUTOPAY'}">
     </div>
-    <div type="button" class="servicepage-service-icon"
+    <div type="button" class="servicepage-service-icon" if="{opts[8]=='ADDAUTOPAY'}"
          style="background-image: url({serviceIcon})"></div>
   </div>
 
@@ -17,13 +20,14 @@
     <component-pincards clean="{true}"></component-pincards>
     <div class="pincard-bottom-container">
 
-      <div class="pincard-friend-help-container" if="{!friendHelpBool}" ontouchend="friendHelp()">
+      <div class="pincard-friend-help-container" if="{!friendHelpBool && opts[8]!='ADDAUTOPAY'}"
+           ontouchend="friendHelp()">
         <div class="pincard-friend-help-icon"></div>
         <div class="pincard-friend-help-text">{window.languages.ViewServicePinCardHelpText}</div>
       </div>
 
 
-      <div class="pincard-chosen-friend-container" if="{friendHelpBool}">
+      <div class="pincard-chosen-friend-container" if="{friendHelpBool && opts[8]!='ADDAUTOPAY'}">
         <div class="pincard-friend-help-text-two">{window.languages.ViewServicePinCardHelpText}</div>
         <div class="pincard-chosen-friend-inner-container"
              ontouchend="firstSuggestionBlock()">
@@ -61,6 +65,8 @@
     arrayForPay.push(opts[5]);
     arrayForPay.push(opts[6]);
     arrayForPay.push(opts[7]);
+    //    8 - mode for titlename
+    arrayForPay.push(opts[8]);
     console.log(arrayForPay);
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards') {
