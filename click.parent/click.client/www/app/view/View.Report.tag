@@ -52,6 +52,7 @@
             <p class="view-reports-payment-info-number">{j.cntrg_info_param2}</p>
           </div>
           <p class="view-reports-payment-info-time">{j.paymentTime}</p>
+          <div class="view-reports-payment-info-state-image" style="background-image: url({j.state_image})"></div>
         </div>
       </div>
     </div>
@@ -499,6 +500,17 @@
                 result[1][i].paymentTime = date.getHours() + ':' + date.getMinutes();
               }
 
+              if(result[1][i].state == -1){
+                result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
+              }
+
+              if(result[1][i].state == 0){
+                result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
+              }
+
+              if(result[1][i].state == 1){
+                result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
+              }
 
               if (!scope.paymentsMap[dateStr]) {
                 scope.paymentsMap[dateStr] = [];

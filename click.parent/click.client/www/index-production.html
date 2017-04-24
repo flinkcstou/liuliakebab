@@ -42,9 +42,9 @@
 
   api.init();
   scope = this;
-  console.log = function () {
-    return
-  }
+//  console.log = function () {
+//    return
+//  }
 
   permissionAccess = function () {
 
@@ -124,7 +124,10 @@
 
 
       if (!localStorage.getItem('settings_block')) {
-        localStorage.setItem('click_client_block', false)
+        localStorage.setItem('settings_block', false)
+      }
+      if (!localStorage.getItem('settings_finger_print')) {
+        localStorage.setItem('settings_finger_print', false)
       }
 
       localStorage.setItem('onResume', false);

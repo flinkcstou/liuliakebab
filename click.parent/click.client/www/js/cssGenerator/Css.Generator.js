@@ -1091,9 +1091,9 @@ var css = {
   "border-radius:" + 14 * widthK + "px;" +
   "background-size: cover;" +
   "color: white;" +
-  //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
   "}",
 
   invoiceCardPartOne: ".invoice-card-part-one " +
@@ -1106,9 +1106,9 @@ var css = {
   "background-color: white;" +
   "background-size: cover;" +
   "color: white;" +
-  //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
   "}",
 
   invoiceCardPartTwo: ".invoice-card-part-two" +
@@ -3811,7 +3811,7 @@ var css = {
 
   pincardButtonEnter: " .pincard-button-enter" +
   "{" +
-  //"top: " + 230 * heightK + "px;" +
+    //"top: " + 230 * heightK + "px;" +
   "height: " + 74 * widthK + "px;" +
   "margin: 3% auto 0 auto;" +
   "background-color: #00a8f1;" +
@@ -7309,7 +7309,6 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 63%;" +
   "background-position: center;" +
-  "background-image: url(resources/icons/ViewSettingsGeneral/general_save.png);" +
   "}",
 
   settingsSecurityScannerBlock: ".settings-security-scanner-block" +
@@ -8647,6 +8646,19 @@ var css = {
   "font-size: " + 22 * widthK + "px; " +
   "margin: 0;" +
   "color: #8b8b8b;" +
+  "}",
+
+  viewReportsPaymentInfoStateImage: ".view-reports-payment-info-state-image " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 60 * widthK + "px;" +
+  "right:" + 5 * widthK + "px;" +
+  "height:" + 60 * widthK + "px;" +
+    //"height: 100%;" +
+  "top: 50%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "margin: 0;" +
   "}",
 
   //graph
