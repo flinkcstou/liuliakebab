@@ -88,7 +88,7 @@
 
     window.lastSocketMethodToSend = undefined;
 
-    localStorage.setItem("click_client_authorized", JSON.stringify(false));
+    localStorage.setItem("click_client_authorized", false);
 
     var scope = this;
     scope.checkAndroid = false;
@@ -280,7 +280,7 @@
               console.log('JsonInfo', result[1][0])
               checkSessionKey = true;
               viewAuthorization.check = false;
-              localStorage.setItem("click_client_authorized", JSON.stringify(false));
+              localStorage.setItem("click_client_authorized", true);
               getAccount();
               window.pushNotificationActions.retrievePushNotification();
             }
@@ -336,15 +336,15 @@
         if (!localStorage.getItem("click_client_accountInfo")) {
           console.log("AAAAAAAAA")
 
-          if (device.platform != 'BrowserStand') {
-            var options = {dimBackground: true};
-
-            SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-              console.log("Started");
-            }, function () {
-              console.log("closed");
-            });
-          }
+//          if (device.platform != 'BrowserStand') {
+//            var options = {dimBackground: true};
+//
+//            SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+//              console.log("Started");
+//            }, function () {
+//              console.log("closed");
+//            });
+//          }
 
 //          window.api.call({
 //            method: 'get.accounts',

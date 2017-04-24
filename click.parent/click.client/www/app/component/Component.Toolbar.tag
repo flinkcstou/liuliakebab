@@ -8,6 +8,7 @@
     </div>
 
     <div class="bell-button bell-icon" ontouchend="bellButton()">
+      <div if="{window.News.newsCounter != 0}" class="bell-button-news-counter">{window.News.newsCounter}</div>
     </div>
 
   </div>
@@ -43,6 +44,8 @@
       if (modeOfApp.offlineMode)return
 
       viewNewsId.style.display = 'block'
+
+      window.News.newsCounter = 0;
 
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-news') {
         history.arrayOfHistory.push(

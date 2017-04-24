@@ -45,7 +45,7 @@
         scope.notificationAction = notification.action;
         scope.notificationElementId = notification.notify_id;
 
-        var authorized = localStorage.getItem("click_client_authorized");
+        var authorized = JSON.parse(localStorage.getItem("click_client_authorized"));
         authorized = JSON.parse(authorized);
 
         if (notification.tap && !authorized) {
@@ -72,6 +72,14 @@
           if (scope.notificationAction == "payment") {
 
             background_notification.action = "getPaymentList";
+            background_notification.params = scope.notificationElementId;
+
+            sessionStorage.setItem("push_notification", JSON.stringify(background_notification));
+          }
+
+          if (scope.notificationAction == "news") {
+
+            background_notification.action = "getInvoiceFunction";
             background_notification.params = scope.notificationElementId;
 
             sessionStorage.setItem("push_notification", JSON.stringify(background_notification));
@@ -124,6 +132,11 @@
       if (scope.notificationAction == "payment") {
 
         window.pushNotificationActions.getPaymentList(scope.notificationElementId);
+      }
+
+      if (scope.notificationAction == "news") {
+
+        window.pushNotificationActions.getNewsFunction(scope.notificationElementId);
       }
     };
 

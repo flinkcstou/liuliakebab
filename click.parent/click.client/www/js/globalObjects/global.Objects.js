@@ -104,6 +104,9 @@ window.checkShowingComponent = null;
 
 window.pickContactFromNativeChecker = false;
 
+window.News = {};
+window.News.newsCounter = 0;
+
 window.representDotedDate = function (left, middle, right) {
 
   return dateAddZero(left) + "." + dateAddZero(middle) + "." + dateAddZero(right);
@@ -372,6 +375,11 @@ window.pushNotificationActions = {
       }
     });
   },
+
+  getNewsFunction: function (newsId) {
+    window.News.newsCounter++;
+  },
+
   refreshCardCarousel: function (cardId) {
 
     var view = history.arrayOfHistory[history.arrayOfHistory.length - 1].view;
