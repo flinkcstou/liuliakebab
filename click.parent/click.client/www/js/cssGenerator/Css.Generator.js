@@ -3997,6 +3997,29 @@ var css = {
   "top: 9%;" +
   "height: 60%;" +
   "background-color: transparent;" +
+  "margin: auto;" +
+  "}",
+
+  payconfirmActionContainerAutoPayNone: ".payconfirm-action-containter-autopay-none" +
+  "{" +
+  "position: relative;" +
+  "float: left;" +
+  "width: 50%;" +
+  "top: 9%;" +
+  "height: 60%;" +
+  "background-color: transparent;" +
+  "display: none;" +
+  "}",
+
+  payconfirmActionContainerFavoriteCenter: ".payconfirm-action-containter-favorite-center" +
+  "{" +
+  "position: relative;" +
+    //"float: left;" +
+  "width: 50%;" +
+  "top: 9%;" +
+  "height: 60%;" +
+  "background-color: transparent;" +
+  "margin: auto;" +
   "}",
 
   payconfirmActionIconOne: ".payconfirm-action-icon-one" +

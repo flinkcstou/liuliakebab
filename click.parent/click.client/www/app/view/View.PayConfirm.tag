@@ -50,17 +50,21 @@
     </div>
     <div class="payconfirm-bottom-container">
       <div class="payconfirm-action-autopay-container">
-        <div class="payconfirm-action-containter">
-          <div class="payconfirm-action-icon-one"
+        <div
+          class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
+          <div class="payconfirm-action-icon-one" if="{!isInFavorites}"
                style="background-image: url('resources/icons/ViewService/addfavorite.png');"></div>
           <div class="payconfirm-action-text" ontouchend="addToFavorites()" if="{!isInFavorites}">
             {window.languages.ViewPayConfirmAddToFavorites}
           </div>
+          <div class="payconfirm-action-icon-one" if="{isInFavorites}"
+               style="background-image: url('resources/icons/ViewService/addfavorite.png');"></div>
           <div class="payconfirm-action-text" ontouchend="removeFromFavorites()" if="{isInFavorites}">
             {window.languages.ViewPayConfirmRemoveFromFavorites}
           </div>
         </div>
-        <div id="addToAutoPayContainerId" class="payconfirm-action-containter">
+        <div id="addToAutoPayContainerId"
+             class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-autopay-none:!cardOrFriendBool}">
           <div class="payconfirm-action-icon-two"
                style="background-image: url('resources/icons/ViewService/addautopay.png');"></div>
           <div class="payconfirm-action-text">{window.languages.ViewPayConfirmAddToAutoPay}</div>
@@ -166,6 +170,7 @@
     scope.serviceIcon = scope.service.image;
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     scope.cardOrFriendBool = opts[1];
+    //    riot.update()
 
     if (scope.cardOrFriendBool) {
       var chosenCardId = opts[2];
@@ -184,9 +189,9 @@
       scope.friendNumber = friendForHelp.number;
       scope.friendFirstLetterOfName = friendForHelp.firstLetterOfName;
       scope.friendPhoto = friendForHelp.photo;
-      this.on('mount', function () {
-        addToAutoPayContainerId.style.display = 'none';
-      });
+//      this.on('mount', function () {
+//        addToAutoPayContainerId.style.display = 'none';
+//      });
     }
     riot.update();
 
