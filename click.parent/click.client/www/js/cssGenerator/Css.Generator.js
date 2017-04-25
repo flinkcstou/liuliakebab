@@ -12233,20 +12233,21 @@ var css = {
   "height: " + 74 * widthK + "px;" +
   "left: 28%;" +
   "width: 44%;" +
-  "top: 82%;" +
+    //"top: 82%;" +
   "background-color: #01B8FE;" +
   "border-radius: " + 10 * widthK + "px;" +
   "bottom: 0;" +
   "font-size: " + 38 * widthK + "px;" +
   "color: #ffffff;" +
+  "bottom: 6%;" +
   "}",
 
   scheduleDateBlockDaysOuterContainer: ".schedule-date-block-days-outer-container " +
   "{" +
   "position: absolute;" +
-  "width: 600px;" +
-  "height:600px;" +
-  "top: 335px;" +
+  "width: " + 600 * widthK + "px;" +
+  "height:" + 600 * widthK + "px;" +
+  "top:" + 320 * widthK + "px;" +
   "left: 7%;" +
     //"background-color: #01B8FE;" +
   "overflow: hidden;" +
@@ -12254,10 +12255,10 @@ var css = {
 
   scheduleDateBlockTimeOuterContainer: ".schedule-date-block-time-outer-container " +
   "{" +
-  "position: absolute;" +
-  "width: 600px;" +
-  "height:450px;" +
-  "top: 335px;" +
+  "position: relative;" +
+  "width: " + 600 * widthK + "px;" +
+  "height:" + 450 * widthK + "px;" +
+  "top: " + 335 * widthK + "px;" +
   "left: 7%;" +
     //"background-color: #01B8FE;" +
   "overflow: hidden;" +
@@ -12266,9 +12267,9 @@ var css = {
   scheduleDateBlockWeekOuterContainer: ".schedule-date-block-week-outer-container " +
   "{" +
   "position: absolute;" +
-  "width: 600px;" +
-  "height:300px;" +
-  "top: 335px;" +
+  "width: " + 600 * widthK + "px;" +
+  "height:" + 300 * widthK + "px;" +
+  "top:  " + 335 * widthK + "px;" +
   "left: 7%;" +
     //"background-color: #01B8FE;" +
   "overflow: hidden;" +
@@ -12277,32 +12278,32 @@ var css = {
   scheduleDateBlockDaysContainer: ".schedule-date-block-days-container " +
   "{" +
   "position: absolute;" +
-  "width: 600px;" +
-  "height:500px;" +
+  "width:" + 600 * widthK + "px;" +
+  "height:" + 500 * widthK + "px;" +
   "}",
 
   scheduleDateBlockHoursContainer: ".schedule-date-block-hours-container " +
   "{" +
   "position: absolute;" +
-  "width: 250px;" +
-  "height:500px;" +
+  "width: " + 250 * widthK + "px;" +
+  "height:" + 500 * widthK + "px;" +
   "left: 0;" +
   "}",
 
   scheduleDateBlockHMColonContainer: ".schedule-date-block-hmcolon-container " +
   "{" +
   "position: absolute;" +
-  "width: 50px;" +
-  "height:500px;" +
-  "left: 275px;" +
+  "width: " + 50 * widthK + "px;" +
+  "height:" + 500 * widthK + "px;" +
+  "left: " + 275 * widthK + "px;" +
     //"background-color: #01B8FE;" +
   "}",
 
   scheduleDateBlockMinutesContainer: ".schedule-date-block-minutes-container " +
   "{" +
   "position: absolute;" +
-  "width: 250px;" +
-  "height:500px;" +
+  "width: " + 250 * widthK + "px;" +
+  "height:" + 500 * widthK + "px;" +
   "right: 0;" +
   "}",
 
@@ -12310,7 +12311,7 @@ var css = {
   scheduleDateBlockDay: ".schedule-date-block-day " +
   "{" +
   "position: absolute;" +
-  "height: 190px;" +
+  "height: " + 190 * widthK + "px;" +
   "width: 100%;" +
   "color: #8b8b8b;" +
   "text-align: center;" +
@@ -12354,15 +12355,15 @@ var css = {
   "width: 100%;" +
   "text-align: center;" +
   "font-size: " + 120 * widthK + "px; " +
-  "top: 135px;" +
+  "top: " + 135 * widthK + "px;" +
   "color: #01B8FE;" +
   "}",
 
   scheduleDateBlockHMBottom: ".schedule-date-block-hm-bottom" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "width: 80%;" +
-  "top: 62%;" +
+  "top: 30%;" +
   "left: 10%;" +
   "height:" + 100 * widthK + "px;" +
   "}",
