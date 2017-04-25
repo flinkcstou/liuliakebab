@@ -178,6 +178,7 @@
       event.stopPropagation();
 
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      localStorage.setItem("click_client_pin", JSON.stringify(hex_md5(pin)))
 
       if (device.platform != 'BrowserStand') {
         var options = {dimBackground: true};
@@ -203,11 +204,15 @@
           console.log(result)
           console.log(result[0][0])
           if (result[0][0].error == 0) {
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
-            riotTags.innerHTML = "<view-authorization>";
-            riot.mount('view-authorization', {from: "registration-client"});
+            console.log('REGISTRATION CLIENT', result)
+//            scope.clickPinError = false;
+//            scope.errorNote = result[0][0].error_note;
+//            scope.showError = true;
+            localStorage.setItem("registration_check_id", JSON.stringify(result[1][0].check_id))
+            localStorage.setItem("registration_check_hash", JSON.stringify(result[1][0].check_hash))
+//            riotTags.innerHTML = "<view-authorization>";
+//            riot.mount('view-authorization', {from: "registration-client"});
+            setInterval(checkRegistrationFunction(), 5000)
             window.standCheckRegistration = true;
             localStorage.setItem('click_client_registered', true)
             return
@@ -229,6 +234,45 @@
       })
 
     };
+
+    checkRegistrationFunction = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+      window.api.call({
+        method: 'registration.check',
+        input: {
+          phone_num: phoneNumber,
+          check_id: JSON.parse(localStorage.getItem("registration_check_id")),
+          check_hash: JSON.parse(localStorage.getItem("registration_check_hash")),
+        },
+        scope: this,
+
+        onSuccess: function (result) {
+          console.log(result)
+          console.log(result[0][0])
+          if (result[0][0].error == 0) {
+            console.log('REGISTRATION CHECK', result)
+          }
+          else {
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
+            riot.update();
+            riotTags.innerHTML = "<view-registration-client>";
+            riot.mount('view-registration-client');
+          }
+
+        },
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      })
+
+    }
 
     changePin = function (pin) {
       event.preventDefault();

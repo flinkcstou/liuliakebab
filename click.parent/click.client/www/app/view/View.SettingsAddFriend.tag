@@ -6,6 +6,16 @@
     </div>
     <div class="settings-container">
 
+      <div id="contactPhoneFieldId" class="settings-add-friend-contact-phone-field">
+        <div class="settings-add-friend-contact-phone-icon" ontouchend="pickContactFromNative()"></div>
+        <p class="settings-add-friend-contact-text-field">{window.languages.ViewSettingsAddFriendPhoneNumberTitle}</p>
+        <p class="settings-add-friend-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
+        <input onchange="contactPhoneBlurAndChange()" onfocus="contactPhoneBlurAndChange()"
+               id="contactPhoneNumberId"
+               class="settings-add-friend-contact-number-input-part" type="tel"
+               maxlength="9" onkeyup="searchContacts()"/>
+      </div>
+
       <div class="settings-add-friend-add-container">
         <p class="settings-add-friend-add-title">{window.languages.ViewSettingsAddFriendNameTitle}</p>
         <div id="namePhoneFieldId" class="settings-add-friend-name-phone-field">
@@ -15,15 +25,6 @@
                  class="settings-add-friend-name-number-input-part"
                  type="text"/>
         </div>
-      </div>
-      <div id="contactPhoneFieldId" class="settings-add-friend-contact-phone-field">
-        <div class="settings-add-friend-contact-phone-icon" ontouchend="pickContactFromNative()"></div>
-        <p class="settings-add-friend-contact-text-field">{window.languages.ViewSettingsAddFriendPhoneNumberTitle}</p>
-        <p class="settings-add-friend-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
-        <input onchange="contactPhoneBlurAndChange()" onfocus="contactPhoneBlurAndChange()"
-               id="contactPhoneNumberId"
-               class="settings-add-friend-contact-number-input-part" type="tel"
-               maxlength="9" onkeyup="searchContacts()"/>
       </div>
 
       <div id="firstSuggestionBlockId" class="settings-add-friend-contact-found-container-one"
@@ -141,14 +142,17 @@
 
       window.plugins.PickContact.chooseContact(function (contactInfo) {
         window.pickContactFromNativeChecker = true;
-//        console.log('CONTACTINFO', contactInfo)
+        console.log('CONTACTINFO', contactInfo)
         setTimeout(function () {
           var phoneNumber
-          if (device.platform == 'iOS')
+          if (device.platform == 'iOS') {
             phoneNumber = contactInfo.phoneNr;
+            contactNameId.value = contactInfo.displayName
+          }
 
           if (device.platform == 'Android') {
             phoneNumber = contactInfo.nameFormated
+            contactNameId.value = contactInfo.displayName
           }
           var digits = phoneNumber.match(maskOne);
           var phone = '';
@@ -366,6 +370,12 @@
       scope.suggestionOne.phoneNumber = phone;
       contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length);
 
+//      if(scope.suggestionOne.fName)
+//      contactNameId.value = scope.suggestionOne.fName
+//      else{
+//        contactNameId.value = scope.suggestionOne.lName
+//      }
+
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
 
@@ -388,6 +398,12 @@
       scope.suggestionTwo.phoneNumber = phone;
 
       contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length);
+
+//      if(scope.suggestionOne.fName)
+//        contactNameId.value = scope.suggestionTwo.fName
+//      else{
+//        contactNameId.value = scope.suggestionTwo.lName
+//      }
 
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'

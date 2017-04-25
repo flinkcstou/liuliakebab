@@ -240,7 +240,7 @@
         circleThree.style.backgroundColor = '#01cfff';
         circleFour.style.backgroundColor = '#01cfff';
         circleFive.style.backgroundColor = '#01cfff';
-        pin = enteredPin;
+        pin = hex_md5(enteredPin);
         enter();
       }
     };
@@ -252,7 +252,7 @@
       var date = parseInt(Date.now() / 1000);
 //      console.log(date);
       var token = localStorage.getItem('click_client_token');
-      var password = hex_sha512(token + date + hex_md5(pin));
+      var password = hex_sha512(token + date + pin);
       localStorage.setItem("pinForStand", pin);
       authorization(phoneNumber, deviceId, password, date);
     };
@@ -272,7 +272,7 @@
 //          console.log(result[0][0])
           if (result[0][0].error == 0) {
             if (!result[1][0].error) {
-              localStorage.setItem('click_client_pin', pin)
+              localStorage.setItem('click_client_pin', hex_md5(pin))
 //              console.log("APP LOGIN RESULT", result);
               localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
               modeOfflineMode.check = false;
@@ -955,7 +955,7 @@
           if (result.withFingerprint) {
             console.log("Successfully encrypted credentials.");
             console.log("Encrypted credentials: " + result.token);
-            pin = localStorage.getItem('click_client_pin');
+            pin = JSON.parse(localStorage.getItem('click_client_pin'));
             enter();
           } else if (result.withBackup) {
             console.log("Authenticated with backup password");
