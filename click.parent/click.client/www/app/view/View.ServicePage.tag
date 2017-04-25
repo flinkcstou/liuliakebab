@@ -1060,7 +1060,7 @@
     scope.onTouchEndOfPincard = onTouchEndOfPincard = function (nominal, cardId) {
       event.stopPropagation();
 
-      console.log('scope.fieldArray[0]', scope.fieldArray)
+//      console.log('scope.fieldArray[0]', scope.fieldArray)
 
       onTouchEndY = event.changedTouches[0].pageY;
 
@@ -1076,7 +1076,6 @@
 
 
         if (modeOfApp.offlineMode) {
-
 
           var ussdQuery = scope.fieldArray[0].ussd_query;
           ussdQuery = ussdQuery.replace('{nominal}', nominal);
@@ -1104,18 +1103,16 @@
         scope.formTypeTwoOptsArray = [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites];
 
         if (opts.mode == 'USUAL') {
-          alert("SP usual mode")
           event.preventDefault();
           event.stopPropagation();
           this.riotTags.innerHTML = "<view-service-pincards>";
           riot.mount('view-service-pincards', scope.formTypeTwoOptsArray);
         } else if (opts.mode == 'ADDFAVORITE') {
-          alert("SP addfav mode")
           formTypeTwoBtnSaveId.style.pointerEvents = 'auto';
           formTypeTwoBtnSaveId.style.backgroundColor = 'rgb(1, 124, 227)';
           riot.update(formTypeTwoBtnSaveId);
         } else if (opts.mode == 'ADDAUTOPAY') {
-          alert("SP addautopay mode")
+
           this.riotTags.innerHTML = "<view-service-pincards>";
           riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
         }
@@ -1144,8 +1141,8 @@
 
       if (!localStorage.getItem('favoritePaymentsList')) {
         var favoritePaymentsList = [];
-        console.log("OPTS TO SAVE=", array);
-        console.log("Chosen Service =", scope.service);
+//        console.log("OPTS TO SAVE=", array);
+//        console.log("Chosen Service =", scope.service);
         favoritePaymentsList.push({
           "opts": array,
           "service": scope.service,
@@ -1157,8 +1154,8 @@
 
       } else {
         var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
-        console.log("OPTS TO SAVE=", array);
-        console.log("Chosen Service =", scope.service);
+//        console.log("OPTS TO SAVE=", array);
+//        console.log("Chosen Service =", scope.service);
         favoritePaymentsList.push({
           "opts": array,
           "service": scope.service,

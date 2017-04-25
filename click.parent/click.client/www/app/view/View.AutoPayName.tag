@@ -2,7 +2,7 @@
   <div>
     <div class="pay-page-title" style="border-style: none;">
       <p class="autopay-method-page-title">{titleName} {serviceName}</p>
-      <p class="servicepage-category-field">{window.languages.ViewAutoPayMethodEventText}</p>
+      <p class="servicepage-category-field">{autoPayTypeText}</p>
       <div ontouchend="goToBack()"
            class="autopay-method-back-button">
       </div>
@@ -36,6 +36,8 @@
     var scope = this;
     scope.showError = false;
     this.titleName = window.languages.ViewAutoPayTitleName;
+    scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+    this.autoPayTypeText = scope.autoPayData.title;
 
     scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
 
@@ -68,8 +70,8 @@
         riot.update();
         return;
       }
-
-      console.log("OPTS in AutoPayName", opts)
+      scope.autoPayData.name = autoPayNameInput.value;
+      localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
       this.riotTags.innerHTML = "<view-pay-confirm>";
       riot.mount('view-pay-confirm', [opts[0], opts[1], opts[2], 'ADDAUTOPAY']);

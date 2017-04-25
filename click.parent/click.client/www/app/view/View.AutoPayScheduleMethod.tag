@@ -95,7 +95,8 @@
     scope.showError = false;
     this.titleName = window.languages.ViewAutoPayTitleName;
     scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
-    console.log("ID of service=", opts.id);
+    scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+    //    console.log("ID of service=", opts.id);
     this.serviceName = scope.servicesMap[opts.id][0].name;
     this.serviceIcon = scope.servicesMap[opts.id][0].image;
 
@@ -132,6 +133,7 @@
     };
 
     everyMonthLastDay = function () {
+      scope.autoPayData.type = 4;
       dateNumber = 0;
       minuteNumber = 0;
       scope.topOfOperations = 150 * widthK;
@@ -144,7 +146,7 @@
       scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
       scope.dateBlockArrayTwo = window.languages.ViewAutoPayMethodScheduleMinutesArray;
       dateChooseBlockId.style.display = 'block';
-      console.log("LAST DAY, dateBlockArray", scope.dateBlockArray);
+//      console.log("LAST DAY, dateBlockArray", scope.dateBlockArray);
       riot.update(scope.dateBlockTitle);
       riot.update(scope.dateBlockArray);
       changePositionInit();
@@ -152,6 +154,7 @@
     }
 
     everyMonthChosenDay = function () {
+      scope.autoPayData.type = 3;
       dateNumber = 0;
       scope.topOfOperations = 200 * widthK;
       scope.weekMode = false;
@@ -162,13 +165,14 @@
       scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseDate;
       scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleDaysArray;
       dateChooseBlockId.style.display = 'block';
-      console.log("CHOSEN DAY, dateBlockArray", scope.dateBlockArray);
+//      console.log("CHOSEN DAY, dateBlockArray", scope.dateBlockArray);
       riot.update(scope.dateBlockTitle);
       riot.update(scope.dateBlockArray);
       changePositionInit();
     }
 
     everyWeek = function () {
+      scope.autoPayData.type = 2;
       dateNumber = 0;
       scope.topOfOperations = 100 * widthK;
       scope.shift = 100;
@@ -179,7 +183,7 @@
       scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseWeekDay;
       scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleWeekDaysArray;
       dateChooseBlockId.style.display = 'block';
-      console.log("EVERY WEEK, dateBlockArray", scope.dateBlockArray);
+//      console.log("EVERY WEEK, dateBlockArray", scope.dateBlockArray);
       riot.update(scope.dateBlockTitle);
       riot.update(scope.dateBlockArray);
       riot.update(scope.weekMode);
@@ -189,12 +193,23 @@
     chooseDate = function () {
 //      dateChooseBlockId.style.display = 'none';
       if (scope.timeMode) {
-
-        console.log("in opts now=", opts);
+        console.log("HOUR=", dateNumber);
+        console.log("MIN=", minuteNumber);
+        scope.autoPayData.hour = dateNumber + 1;
+        scope.autoPayData.minute = minuteNumber + 1;
+        localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
         event.stopPropagation();
         riotTags.innerHTML = "<view-service-page>";
         riot.mount("view-service-page", opts);
       } else {
+        if (scope.dayMode) {
+          console.log("dayMode, Number=", dateNumber);
+          scope.autoPayData.month_day = dateNumber + 1;
+        }
+        else if (scope.weekMode) {
+          console.log("weekMode, Number=", dateNumber);
+          scope.autoPayData.week_day = dateNumber + 1;
+        }
         dateNumber = 0;
         minuteNumber = 0;
         scope.topOfOperations = 150 * widthK;
@@ -207,7 +222,7 @@
         scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
         scope.dateBlockArrayTwo = window.languages.ViewAutoPayMethodScheduleMinutesArray;
         dateChooseBlockId.style.display = 'block';
-        console.log("LAST DAY, dateBlockArray", scope.dateBlockArray);
+//        console.log("LAST DAY, dateBlockArray", scope.dateBlockArray);
         riot.update(scope.dateBlockTitle);
         riot.update(scope.dateBlockArray);
         changePositionInit();

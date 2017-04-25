@@ -70,19 +70,18 @@
     var scope = this;
     scope.showError = false;
     this.titleName = window.languages.ViewAutoPayTitleName;
-
     scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
-    console.log("ID of srevice=", opts.id);
+    scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+    //    console.log("ID of srevice=", opts.id);
     this.serviceName = scope.servicesMap[opts.id][0].name;
     this.serviceIcon = scope.servicesMap[opts.id][0].image;
     this.amountsArray = scope.servicesMap[opts.id][0].autopay_available_amounts;
     this.stepsArray = scope.servicesMap[opts.id][0].autopay_available_steps;
-
     scope.amountsArrayExist = this.amountsArray ? true : false;
     scope.stepsArrayExist = this.stepsArray ? true : false;
     scope.chosenStep = this.stepsArray ? this.stepsArray[0].step_value : null;
-
     scope.amountsCanBeText = "";
+
 
     if (scope.amountsArrayExist) {
       scope.chosenFieldParamId = this.amountsArray[0];
@@ -98,16 +97,7 @@
       }
     }
 
-
     riot.update(scope.amountsCanBeText);
-
-
-    //    this.on('mount', function () {
-    //
-    //
-    //      riot.update();
-    //
-    //    })
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-autopay-event-method') {
@@ -132,7 +122,6 @@
       oldChosenStep = chosenStep;
       chosenStep = id;
       document.getElementById(chosenStep).style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
-      console.log("Step chosen=", id);
       if (oldChosenStep && oldChosenStep != id)
         document.getElementById(oldChosenStep).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
     }
@@ -166,8 +155,6 @@
         this.blockFirstFieldId.style.display = 'none';
 
         for (var i = 0; i < scope.amountsArray.length; i++) {
-
-
           if (scope.amountsArray[i] == id) {
             scope.chosenAmount = scope.amountsArray[i];
 
@@ -241,6 +228,11 @@
         riot.update();
         return;
       }
+
+      scope.autoPayData.step = chosenStep;
+      scope.autoPayData.cntrg_phone_num = firstFieldInput.value;
+      scope.autoPayData.amount = scope.chosenAmount;
+      localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
       var formtype = {"formtype": 1};
       var firstFieldId = {"firstFieldId": 1};

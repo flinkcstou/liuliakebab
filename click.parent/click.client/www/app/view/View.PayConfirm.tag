@@ -1,12 +1,15 @@
 <view-pay-confirm class="view-pay-confirm">
 
   <div class="pay-page-title" style="border-style: none;">
-    <p class="servicepage-title">{titleName}</p>
-    <p class="servicepage-category-field">{categoryName}</p>
+    <p class="{servicepage-title :opts[3]!='ADDAUTOPAY', autopay-method-page-title:opts[3]=='ADDAUTOPAY'}">
+      {(opts[3]=='ADDAUTOPAY')?(window.languages.ViewAutoPayTitleName):("")}
+      {titleName}</p>
+    <p class="servicepage-category-field">{(opts[3]=='ADDAUTOPAY')?
+      (autoPayTypeText):(categoryName)}</p>
     <div ontouchend="goToBack()"
-         class="servicepage-button-back">
+         class="{servicepage-button-back:opts[3]!='ADDAUTOPAY', autopay-method-back-button:opts[3]=='ADDAUTOPAY'}">
     </div>
-    <div type="button" class="servicepage-service-icon" if="{opts[8]=='ADDAUTOPAY'}"
+    <div type="button" class="servicepage-service-icon" if="{opts[3]=='ADDAUTOPAY'}"
          style="background-image: url({serviceIcon})"></div>
   </div>
 
@@ -49,7 +52,7 @@
 
     </div>
     <div class="payconfirm-bottom-container">
-      <div class="payconfirm-action-autopay-container">
+      <div class="payconfirm-action-autopay-container" if="{opts[3]!='ADDAUTOPAY'}">
         <div
           class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
           <div class="payconfirm-action-icon-one" if="{!isInFavorites}"
@@ -70,8 +73,10 @@
           <div class="payconfirm-action-text">{window.languages.ViewPayConfirmAddToAutoPay}</div>
         </div>
       </div>
-      <button class="payconfirm-button-enter" ontouchend="payService()">{window.languages.ViewPayConfirmPay}
+      <button class="payconfirm-button-enter" ontouchend="payService()">
+        {(opts[3]=='ADDAUTOPAY')? window.languages.ViewAutoPayCreateButtonText : window.languages.ViewPayConfirmPay}
       </button>
+
     </div>
   </div>
 
@@ -111,6 +116,16 @@
     scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
     scope.isInFavorites = opts[0][7].isInFavorites;
 
+    if (opts[3] == 'ADDAUTOPAY') {
+      scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+      scope.autoPayTypeText = scope.autoPayData.title;
+      console.log("autoPayType=", scope.autoPayTypeText);
+    }
+    scope.titleName = scope.service.name;
+    scope.serviceIcon = scope.service.image;
+    scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
+    scope.cardOrFriendBool = opts[1];
+
     if (scope.isInFavorites)
       this.viewPage = 'view-main-page';
     else this.viewPage = 'view-pay';
@@ -134,7 +149,6 @@
       var firstFieldtext = opts[0][2].firstFieldText;
       console.log("text in else=", firstFieldtext)
     }
-
 
     this.cardTypeId = opts[0][3].cardTypeId;
     this.amountText = opts[0][5].amountText;
@@ -166,10 +180,6 @@
     }
 
 
-    scope.titleName = scope.service.name;
-    scope.serviceIcon = scope.service.image;
-    scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
-    scope.cardOrFriendBool = opts[1];
     //    riot.update()
 
     if (scope.cardOrFriendBool) {
@@ -273,14 +283,14 @@
           "value": firstFieldtext,
           "transaction_id": parseInt(Date.now() / 1000)
         };
-        paymentFunction(payment_data);
+        opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
       }
       else if (opts[0][0].formtype == 2) {
         var payment_data = {
           "pin_param": opts[0][3].cardTypeId,
           "transaction_id": parseInt(Date.now() / 1000)
         };
-        paymentFunction(payment_data);
+        opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
       }
       else if (opts[0][0].formtype == 3) {
         var payment_data = {
@@ -289,7 +299,7 @@
           "communal_param": opts[0][4].communalParam,
           "transaction_id": parseInt(Date.now() / 1000)
         };
-        paymentFunction(payment_data);
+        opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
 
       }
       else if (opts[0][0].formtype == 4) {
@@ -299,7 +309,7 @@
           "internetPackageParam": opts[0][6].internetPackageParam,
           "transaction_id": parseInt(Date.now() / 1000)
         };
-        paymentFunction(payment_data);
+        opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
       }
 
       function paymentFunction(payment_data) {
@@ -354,6 +364,56 @@
             console.error(data);
           }
         });
+      }
+
+      function createAutoPay(payment_data) {
+        console.log("in create autopay func", scope.autoPayData);
+        if (scope.autoPayData) {
+          if (scope.autoPayData.autopay_type == 2) {
+            window.api.call({
+              method: 'autopay.add.by.event',
+              input: {
+                session_key: sessionKey,
+                phone_num: phoneNumber,
+                service_id: Number(serviceId),
+                account_id: Number(accountId),
+                amount: Number(amount),
+                cntrg_phone_num: scope.autoPayData.cntrg_phone_num,
+                step: scope.autoPayData.step,
+                title: scope.autoPayData.name
+              },
+
+              scope: this,
+
+              onSuccess: function (result) {
+                if (result[0][0].error == 0) {
+                  console.log("result of autopay.add.by.event", result);
+//                  if (result[1])
+//                    if (result[1][0].payment_id || result[1][0].invoice_id) {
+//                      console.log("result of autopay.add.by.event", result);
+////                      viewServicePage.phoneText = '';
+////                      window.viewServicePage = {};
+////                      viewServicePage.amountText = '';
+////                      viewServicePage.amountWithoutSpace = '';
+////                      viewServicePinCards.friendHelpPaymentMode = false;
+////                      viewServicePinCards.chosenFriendForHelp = null;
+//                      componentSuccessId.style.display = 'block';
+//                    }
+                }
+                else {
+                  console.log("result of autopay.add.by.event", result);
+//                  componentUnsuccessId.style.display = 'block';
+                }
+              },
+
+              onFail: function (api_status, api_status_message, data) {
+                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                console.error(data);
+              }
+            });
+          }
+        }
+
       }
     }
 

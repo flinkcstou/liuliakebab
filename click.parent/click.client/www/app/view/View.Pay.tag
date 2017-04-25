@@ -496,14 +496,21 @@
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20 || scope.checkOfSearch) {
         console.log('ID ID ID', id)
         if (opts.mode == 'ADDAUTOPAY') {
+          scope.autoPayData = {};
+          scope.autoPayData.service_id = id;
           viewPay.chosenServiceId = id;
           opts.id = id;
           event.preventDefault();
           event.stopPropagation();
           if (scope.servicesMap[id][0].autopay_available) {
+            localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
             riotTags.innerHTML = "<view-autopay-method>";
             riot.mount("view-autopay-method", opts);
           } else {
+            scope.autoPayData.title = window.languages.ViewAutoPayMethodSchedulerText;
+            scope.autoPayData.autopay_type = 1;
+            localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+//            localStorage.setItem('autoPayType', window.languages.ViewAutoPayMethodSchedulerText);
             riotTags.innerHTML = "<view-autopay-schedule-method>";
             riot.mount("view-autopay-schedule-method", opts);
           }

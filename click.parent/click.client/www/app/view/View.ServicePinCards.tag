@@ -92,7 +92,8 @@
     scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
 
     if (opts[8] == 'ADDAUTOPAY') {
-      this.autoPayTypeText = localStorage.getItem('autoPayType');
+      scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+      this.autoPayTypeText = scope.autoPayData.title;
       console.log("autoPayType=", this.autoPayTypeText);
     }
 
