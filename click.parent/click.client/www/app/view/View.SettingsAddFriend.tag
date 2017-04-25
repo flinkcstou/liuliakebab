@@ -48,7 +48,8 @@
         <div class="transfer-contact-found-text-two">{suggestionTwo.phoneNumber}</div>
       </div>
 
-      <button id="nextButtonId" class="settings-add-friend-next-button-inner-container" ontouchend="addFriendTouchEnd()">{window.languages.ViewPayTransferNext}
+      <button id="nextButtonId" class="settings-add-friend-next-button-inner-container"
+              ontouchend="addFriendTouchEnd()">{window.languages.ViewPayTransferNext}
       </button>
     </div>
 
@@ -64,10 +65,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-friend') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-add-friend',
-            "params": opts
-          }
+        {
+          "view": 'view-add-friend',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -97,6 +98,7 @@
     scope.suggestionOne.photo = '';
     scope.suggestionOne.fName = '';
     scope.suggestionOne.lName = '';
+    scope.suggestionOne.displayName = '';
     scope.suggestionOne.phoneNumber = '';
     scope.suggestionOne.firstLetterOfName = '';
 
@@ -104,6 +106,7 @@
     scope.suggestionTwo.photo = '';
     scope.suggestionTwo.fName = '';
     scope.suggestionTwo.lName = '';
+    scope.suggestionTwo.displayName = '';
     scope.suggestionTwo.phoneNumber = '';
     scope.suggestionTwo.firstLetterOfName = '';
 
@@ -274,6 +277,7 @@
             scope.suggestionOne.phoneNumber = wordOfFunction.phoneNumbers[objectPos].value;
             scope.suggestionOne.fName = wordOfFunction.name.givenName;
             scope.suggestionOne.lName = wordOfFunction.name.familyName;
+            scope.suggestionOne.displayName = wordOfFunction.name.displayName;
 
             if (wordOfFunction.photos != null) {
               if (wordOfFunction.photos[0] != null) {
@@ -314,6 +318,7 @@
             scope.suggestionTwo.phoneNumber = wordOfFunction.phoneNumbers[objectPos].value;
             scope.suggestionTwo.fName = wordOfFunction.name.givenName;
             scope.suggestionTwo.lName = wordOfFunction.name.familyName;
+            scope.suggestionTwo.displayName = wordOfFunction.name.displayName;
 
             if (wordOfFunction.photos != null) {
               if (wordOfFunction.photos[0] != null) {
@@ -370,11 +375,8 @@
       scope.suggestionOne.phoneNumber = phone;
       contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length);
 
-//      if(scope.suggestionOne.fName)
-//      contactNameId.value = scope.suggestionOne.fName
-//      else{
-//        contactNameId.value = scope.suggestionOne.lName
-//      }
+
+      contactNameId.value = scope.suggestionOne.displayName
 
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
@@ -399,11 +401,9 @@
 
       contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length);
 
-//      if(scope.suggestionOne.fName)
-//        contactNameId.value = scope.suggestionTwo.fName
-//      else{
-//        contactNameId.value = scope.suggestionTwo.lName
-//      }
+
+      contactNameId.value = scope.suggestionTwo.displayName
+
 
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
