@@ -14,7 +14,7 @@
           <p class="view-autopay-info-name">{j.service_title}</p>
           <div class="view-autopay-info-balance">{j.amount}</div>
           <div class="view-autopay-info-currency-field">сум</div>
-          <p class="view-autopay-info-condition">{j.service_title}</p>
+          <p class="view-autopay-info-condition">{j.condition_text}</p>
           <p class="view-autopay-info-number">{j.cntrg_param2}</p>
         </div>
       </div>
@@ -114,6 +114,29 @@
 
               result[1][i].service_title = scope.servicesMap[result[1][i].service_id][0].name;
               result[1][i].service_icon = scope.servicesMap[result[1][i].service_id][0].image;
+              if (result[1][i].type && result[1][i].autopay_type == 1) {
+                if (result[1][i].type == 2) {
+                  result[1][i].condition_text = window.languages.ViewAutoPayEveryWeekText + window.languages.ViewAutoPayMethodScheduleWeekDaysArray[(result[1][i].week_day) - 1].text +
+                    result[1][i].paytime;
+                } else if (result[1][i].type == 3) {
+                  result[1][i].condition_text = window.languages.ViewAutoPayEveryMonthText + result[1][i].month_day + window.languages.ViewAutoPayAtText +
+                    result[1][i].paytime;
+                } else if (result[1][i].type == 4) {
+                  result[1][i].condition_text = window.languages.ViewAutoPayEveryMonthLastDayText + window.languages.ViewAutoPayAtText +
+                    result[1][i].paytime;
+                }
+              } else if (result[1][i].autopay_type == 2) {
+                console.log("autopay type 2");
+                for (var j in scope.servicesMap[result[1][i].service_id][0].autopay_available_steps)
+                  if (scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j].step_value == result[1][i].step) {
+                    result[1][i].condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j].step_title;
+                    console.log("STep title=", scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j].step_title);
+                  }
+                  else
+                    console.log("not found", scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j]);
+
+//
+              }
 
               console.log("ss", result[1][i].service_title, ", dd", result[1][i].service_icon);
 

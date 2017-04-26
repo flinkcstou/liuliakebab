@@ -418,13 +418,14 @@
               input: {
                 session_key: sessionKey,
                 phone_num: phoneNumber,
+                type: scope.autoPayData.type,
                 service_id: Number(serviceId),
                 account_id: Number(accountId),
                 amount: Number(amount),
                 payment_data: payment_data,
-//                paytime: scope.autoPayData.hour,
-                week_day: scope.autoPayData.week_day,
-                month_day: scope.autoPayData.month_day,
+                paytime: scope.autoPayData.paytime,
+                week_day: scope.autoPayData.week_day ? scope.autoPayData.week_day : null,
+                month_day: scope.autoPayData.month_day ? scope.autoPayData.month_day : null,
                 title: scope.autoPayData.name
               },
 
@@ -432,7 +433,7 @@
 
               onSuccess: function (result) {
                 if (result[0][0].error == 0) {
-                  console.log("result of autopay.add.by.event", result);
+                  console.log("result of autopay.add.by.schedule", result);
 //                  if (result[1])
 //                    if (result[1][0].payment_id || result[1][0].invoice_id) {
 //                      console.log("result of autopay.add.by.event", result);
@@ -446,7 +447,7 @@
 //                    }
                 }
                 else {
-                  console.log("result of autopay.add.by.event", result);
+                  console.log("result of autopay.add.by.schedule", result);
 //                  componentUnsuccessId.style.display = 'block';
                 }
               },
