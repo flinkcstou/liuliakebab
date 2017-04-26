@@ -107,6 +107,9 @@ window.pickContactFromNativeChecker = false;
 window.News = {};
 window.News.newsCounter = 0;
 
+window.fingerPrint = {};
+window.fingerPrint.check = false;
+
 window.representDotedDate = function (left, middle, right) {
 
   return dateAddZero(left) + "." + dateAddZero(middle) + "." + dateAddZero(right);

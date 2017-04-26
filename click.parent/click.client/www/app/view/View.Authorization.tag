@@ -272,7 +272,8 @@
 //          console.log(result[0][0])
           if (result[0][0].error == 0) {
             if (!result[1][0].error) {
-              localStorage.setItem('click_client_pin', hex_md5(pin))
+              localStorage.setItem('click_client_pin', pin)
+              console.log('pin', pin)
 //              console.log("APP LOGIN RESULT", result);
               localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
               modeOfflineMode.check = false;
@@ -932,22 +933,20 @@
     if (localStorage.getItem('settings_finger_print') && JSON.parse(localStorage.getItem('settings_finger_print')) === true && localStorage.getItem('click_client_pin')) {
       if (device.platform == 'Android') {
 
-        function isAvailableSuccess(result) {
-          console.log("FingerprintAuth available: " + JSON.stringify(result));
-          result.isAvailable = true;
-          if (result.isAvailable) {
-            var encryptConfig = {
-              clientId: "myAppName",
-              username: "currentUser",
-              password: "currentUserPassword"
+        if (window.fingerPrint.check) {
+          var encryptConfig = {
+            clientId: "myAppName",
+            clientSecret: "currentUser",
+            password: "currentUser",
+            token: "currentUser",
+            locale: "ru",
+            disableBackup: false,
+//              userAuthRequired: false,
+            dialogHint: "Повторите попытку, или выбросите телефон XD TEST",
+            dialogTitle: "Сканирование для Click"
 
-            }; // See config object for required parameters
-            FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
-          }
-        }
-
-        function isAvailableError(message) {
-          console.log("isAvailableError(): " + message);
+          }; // See config object for required parameters
+          FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
         }
 
         function encryptSuccessCallback(result) {
@@ -955,10 +954,14 @@
           if (result.withFingerprint) {
             console.log("Successfully encrypted credentials.");
             console.log("Encrypted credentials: " + result.token);
-            pin = JSON.parse(localStorage.getItem('click_client_pin'));
+            pin = localStorage.getItem('click_client_pin');
+            console.log('pin', pin)
             enter();
           } else if (result.withBackup) {
             console.log("Authenticated with backup password");
+            pin = localStorage.getItem('click_client_pin');
+            console.log('pin', pin)
+            enter();
           }
         }
 
@@ -975,25 +978,19 @@
       }
 
       if (device.platform == 'iOS') {
-        function successCallback(success) {
-          alert('success', success)
-          var text = 'hello';
-          touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
-        }
-
-        function notSupportedCallback(error) {
-          alert('error', error)
-        }
-
-        touchid.checkSupport(successCallback, notSupportedCallback);
 
         function successCallbackOfAuth(success) {
-          alert(success)
+          console.log(success)
+          pin = JSON.parse(localStorage.getItem('click_client_pin'));
+          enter();
         }
 
         function failureCallbackOfAuth(error) {
-          alert(error)
+          console.log(error)
         }
+
+        var text = 'hello';
+        touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
 
       }
     }
