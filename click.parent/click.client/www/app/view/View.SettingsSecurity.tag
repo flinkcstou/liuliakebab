@@ -20,7 +20,8 @@
         <div class="settings-block-next-icon"></div>
       </div>
 
-      <div class="settings-block-containter settings-security-scanner-block" ontouchend="fingerPrintTouchEnd()">
+      <div hidden="{!window.fingerPrint.check}" class="settings-block-containter settings-security-scanner-block"
+           ontouchend="fingerPrintTouchEnd()">
         <div class="settings-block-icon"
              style="background-image: url('resources/icons/ViewSettingsSecurity/security_fingerprint.png')"></div>
         <div class="settings-block-name-field settings-security-scanner-block-name">
@@ -64,9 +65,9 @@
     var isVisible = localStorage.getItem('click_client_loginInfo').visibility;
     var isBlocked = JSON.parse(localStorage.getItem('settings_block'));
     var fingerPrint = JSON.parse(localStorage.getItem("settings_finger_print"))
-    window.fingerPrint.check = false;
 
     this.on('mount', function () {
+
       if (isVisible) {
         hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
       }
@@ -84,37 +85,9 @@
       else {
         securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
       }
+      riot.update()
     });
 
-    if (device.platform == 'Android') {
-
-      function isAvailableSuccess(result) {
-        console.log("FingerprintAuth available: " + JSON.stringify(result));
-        result.isAvailable = true;
-        window.fingerPrint.check = true;
-      }
-
-      function isAvailableError(message) {
-        console.log("isAvailableError(): " + message);
-        window.fingerPrint.check = false;
-      }
-
-      FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
-
-    }
-    else if (device.platform == 'iOS') {
-      function successCallback(success) {
-        window.fingerPrint.check = true;
-        console.log('success', success)
-      }
-
-      function notSupportedCallback(error) {
-        console.log('error', error)
-        window.fingerPrint.check = false;
-      }
-
-      touchid.checkSupport(successCallback, notSupportedCallback);
-    }
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-security-settings') {
       history.arrayOfHistory.push(

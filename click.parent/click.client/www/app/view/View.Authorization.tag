@@ -930,24 +930,42 @@
       }
     }
 
-    if (localStorage.getItem('settings_finger_print') && JSON.parse(localStorage.getItem('settings_finger_print')) === true && localStorage.getItem('click_client_pin')) {
+    if (localStorage.getItem('settings_finger_print') && localStorage.getItem('click_client_pin')) {
       if (device.platform == 'Android') {
 
-        if (window.fingerPrint.check) {
-          var encryptConfig = {
-            clientId: "myAppName",
-            clientSecret: "currentUser",
-            password: "currentUser",
-            token: "currentUser",
-            locale: "ru",
-            disableBackup: false,
-//              userAuthRequired: false,
-            dialogHint: "Повторите попытку, или выбросите телефон XD TEST",
-            dialogTitle: "Сканирование для Click"
+        function isAvailableSuccess(result) {
+          console.log("FingerprintAuth available: " + JSON.stringify(result));
+          result.isAvailable = true;
+          window.fingerPrint.check = true;
 
-          }; // See config object for required parameters
-          FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
+          if (window.fingerPrint.check) {
+            var encryptConfig = {
+              clientId: "myAppName",
+              clientSecret: "currentUser",
+              password: "currentUser",
+              token: "currentUser",
+              locale: "ru",
+              disableBackup: false,
+//              userAuthRequired: false,
+              dialogHint: "Повторите попытку, или выбросите телефон XD TEST",
+              dialogTitle: "Сканирование для Click"
+
+            }; // See config object for required parameters
+
+            if (localStorage.getItem("settings_finger_print")) {
+              if (JSON.parse(localStorage.getItem("settings_finger_print")) === true)
+                FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
+            }
+          }
         }
+
+        function isAvailableError(message) {
+          console.log("isAvailableError(): " + message);
+          window.fingerPrint.check = false;
+        }
+
+        FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
+
 
         function encryptSuccessCallback(result) {
           console.log("successCallback(): " + JSON.stringify(result));
@@ -973,11 +991,23 @@
           }
         }
 
-        FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
-
       }
+      else if (device.platform == 'iOS') {
 
-      if (device.platform == 'iOS') {
+        function successCallback(success) {
+          window.fingerPrint.check = true;
+          console.log('success', success)
+          var text = 'hello';
+          touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
+        }
+
+        function notSupportedCallback(error) {
+          console.log('error', error)
+          window.fingerPrint.check = false;
+        }
+
+
+        touchid.checkSupport(successCallback, notSupportedCallback);
 
         function successCallbackOfAuth(success) {
           console.log(success)
@@ -989,8 +1019,6 @@
           console.log(error)
         }
 
-        var text = 'hello';
-        touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
 
       }
     }

@@ -586,7 +586,9 @@
           onSuccess: function (result) {
             if (result[0][0].error == 0) {
               if (result[1][0]) {
+                if(scope.cardsarray[result[1][0].account_id])
                 scope.cardsarray[result[1][0].account_id].salaryOriginal = result[1][0].balance.toFixed(0);
+
 
                 result[1][0].balance = result[1][0].balance.toFixed(0).toString();
 
