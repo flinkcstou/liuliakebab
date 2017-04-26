@@ -164,7 +164,8 @@
     };
 
     console.log('OPTS PINCARDS', opts)
-    if (opts.clean) {
+
+    if (opts.clean && viewMainPage.myCards !== true) {
 
       scope.cleanChosenCards();
     }
