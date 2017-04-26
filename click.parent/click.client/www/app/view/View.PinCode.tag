@@ -236,8 +236,8 @@
     };
 
     checkRegistrationFunction = function () {
-      event.preventDefault();
-      event.stopPropagation();
+//      event.preventDefault();
+//      event.stopPropagation();
 
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 

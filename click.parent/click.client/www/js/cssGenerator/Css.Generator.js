@@ -11728,7 +11728,7 @@ var css = {
   viewAutopayBlockContainer: ".view-autopay-block-containter" +
   "{" +
   "position: relative;" +
-  "height:" + 150 * widthK + "px; " +
+  "height:" + 180 * widthK + "px; " +
   "width: 91%;" +
   "left: 4%;" +
   "margin-top: 1%;" +
@@ -11747,13 +11747,13 @@ var css = {
   viewAutopayIcon: ".view-autopay-icon " +
   "{" +
     //"top:" + 50 * widthK + "px;" +
-  "background-size: 80%;" +
+  "background-size: 100%;" +
   "position: absolute;" +
   "width:" + 125 * widthK + "px;" +
   "height:" + 125 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "top: 6%;" +
+  "top: 10%;" +
   "}",
 
   viewAutopayInfoContainer: ".view-autopay-info-container " +
@@ -11769,7 +11769,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: 25%;" +
-  "top: 15%;" +
+  "top: 14%;" +
   "left: 8%;" +
   "margin: 0;" +
   "font-size:" + 22 * widthK + "px; " +
@@ -11782,7 +11782,7 @@ var css = {
   viewAutopayInfoBalance: ".view-autopay-info-balance " +
   "{" +
   "position: relative;" +
-  "top: 30%;" +
+  "top: 25%;" +
   "left: 8%;" +
   "margin: 0;" +
   "font-size:" + 45 * widthK + "px;" +
@@ -11793,7 +11793,7 @@ var css = {
   viewAutopayInfoCurrencyField: ".view-autopay-info-currency-field" +
   "{" +
   "position: relative;" +
-  "top: 42%;" +
+  "top: 33%;" +
   "left: 9%;" +
   "margin: 0;" +
   "font-size:" + 26 * widthK + "px;" +
@@ -11801,11 +11801,26 @@ var css = {
   "float: left;" +
   "}",
 
+  viewAutopayInfoCondition: ".view-autopay-info-condition " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 50%;" +
+  "left: 8%;" +
+  "margin: 0;" +
+  "font-size: " + 23 * widthK + "px; " +
+  "width: 75%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "color: #353340;" +
+  "}",
+
   viewAutopayInfoNumber: ".view-autopay-info-number " +
   "{" +
   "position: absolute;" +
   "height: 25%;" +
-  "top: 65%;" +
+  "top: 70%;" +
   "left: 8%;" +
   "margin: 0;" +
   "font-size: " + 22 * widthK + "px; " +

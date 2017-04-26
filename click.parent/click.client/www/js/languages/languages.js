@@ -374,6 +374,22 @@ var RU_LANGUAGES =
   "AuthorizationInProgress": "Выполняется вход...",
 
   "ViewAutoPayTitleName": "АВТОПЛАТЕЖ",
+
+  "ViewAutoPayEveryMonthLastDayText": "Ежемесячно в последний день ",
+  "ViewAutoPayEveryMonthText": "Ежемесячно ",
+  "ViewAutoPayAtText": " в ",
+  "ViewAutoPayEveryWeekText": "Еженедельно ",
+  "ViewAutoPayMondayText": "в понедельник в ",
+  "ViewAutoPayTuesdayText": "во вторник в ",
+  "ViewAutoPayWednesdayText": "в среду в ",
+  "ViewAutoPayThursdayText": "в четверг в ",
+  "ViewAutoPayFridayText": "в пятницу в ",
+  "ViewAutoPaySaturdayText": "в субботу в ",
+  "ViewAutoPaySundayText": "в воскресенье в ",
+
+  "ViewAutoPayAfterMinimumBalansText": "При балансе меньше ",
+
+
   "ViewAutoPayMethodChooseText": "Выберите тип автоплатежа:",
   "ViewAutoPayMethodEventText": "По событию",
   "ViewAutoPayMethodSchedulerText": "По расписанию",

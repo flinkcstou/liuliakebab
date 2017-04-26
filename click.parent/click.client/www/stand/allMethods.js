@@ -1,7 +1,13 @@
 window.fakedSocket.register("registration", function (input) {
   window.standCheckRegistration = true;
 
-  return [[{"method": input.method, "success": 1, "error": 0, "error_note": ""}]];
+  return [
+    [{"method": input.method, "success": 1, "error": 0, "error_note": ""}],
+    [{
+      "check_id": 777,
+      "check_hash": "hash_string",
+    }]
+  ];
 });
 
 window.fakedSocket.register("device.register.request", function (input) {
@@ -70,8 +76,28 @@ window.fakedSocket.register("app.login", function (input) {
       [{
         "method": input.method,
         "success": 1,
-        "error": -31,
-        "error_note": 'Neverniy PIN CODE'
+        "error": 0,
+        "error_note": ''
+      }],
+      [{
+        default_account: "4891447",
+        firstname: "Jasur",
+        gender: "M",
+        help_status: false,
+        language: "RU",
+        lastname: "Ganiev ",
+        my_service_id: 2,
+        p2p_comission: 1.5,
+        p2p_max_limit: 5000000,
+        p2p_min_limit: 5000,
+        profile_image_url: "https://m.click.uz/mapi/uploads/998974647747_80116.jpg",
+        session_key: "998974647747920ece824e0411e63347ec4a60003604517",
+        update_categories: false,
+        update_faq: false,
+        update_help: null,
+        update_services: false,
+        update_terms: false,
+        visibility: false
       }]
     ];
 
@@ -3351,6 +3377,18 @@ window.fakedSocket.register("autopay.list", function (input) {
       "success": 1,
       "error": -4,
       "error_note": 'wrong'
+    }
+  ];
+});
+
+
+window.fakedSocket.register("registration.check", function (input) {
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": 0,
+      "error_note": ""
     }
   ];
 });

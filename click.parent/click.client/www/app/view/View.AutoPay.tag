@@ -14,6 +14,7 @@
           <p class="view-autopay-info-name">{j.service_title}</p>
           <div class="view-autopay-info-balance">{j.amount}</div>
           <div class="view-autopay-info-currency-field">сум</div>
+          <p class="view-autopay-info-condition">{j.service_title}</p>
           <p class="view-autopay-info-number">{j.cntrg_param2}</p>
         </div>
       </div>

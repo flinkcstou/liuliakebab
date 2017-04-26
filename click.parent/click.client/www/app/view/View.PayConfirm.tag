@@ -370,6 +370,7 @@
         console.log("in create autopay func", scope.autoPayData);
         if (scope.autoPayData) {
           if (scope.autoPayData.autopay_type == 2) {
+            console.log(Number(amount));
             window.api.call({
               method: 'autopay.add.by.event',
               input: {
@@ -377,9 +378,53 @@
                 phone_num: phoneNumber,
                 service_id: Number(serviceId),
                 account_id: Number(accountId),
-                amount: Number(amount),
+                amount: amount,
                 cntrg_phone_num: scope.autoPayData.cntrg_phone_num,
                 step: scope.autoPayData.step,
+                title: scope.autoPayData.name
+              },
+
+              scope: this,
+
+              onSuccess: function (result) {
+                if (result[0][0].error == 0) {
+                  console.log("result of autopay.add.by.event", result);
+//                  if (result[1])
+//                    if (result[1][0].payment_id || result[1][0].invoice_id) {
+//                      console.log("result of autopay.add.by.event", result);
+////                      viewServicePage.phoneText = '';
+////                      window.viewServicePage = {};
+////                      viewServicePage.amountText = '';
+////                      viewServicePage.amountWithoutSpace = '';
+////                      viewServicePinCards.friendHelpPaymentMode = false;
+////                      viewServicePinCards.chosenFriendForHelp = null;
+//                      componentSuccessId.style.display = 'block';
+//                    }
+                }
+                else {
+                  console.log("result of autopay.add.by.event", result);
+//                  componentUnsuccessId.style.display = 'block';
+                }
+              },
+
+              onFail: function (api_status, api_status_message, data) {
+                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                console.error(data);
+              }
+            });
+          } else if (scope.autoPayData.autopay_type == 1) {
+            window.api.call({
+              method: 'autopay.add.by.schedule',
+              input: {
+                session_key: sessionKey,
+                phone_num: phoneNumber,
+                service_id: Number(serviceId),
+                account_id: Number(accountId),
+                amount: Number(amount),
+                payment_data: payment_data,
+//                paytime: scope.autoPayData.hour,
+                week_day: scope.autoPayData.week_day,
+                month_day: scope.autoPayData.month_day,
                 title: scope.autoPayData.name
               },
 
