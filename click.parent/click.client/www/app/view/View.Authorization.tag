@@ -165,7 +165,7 @@
       if (enteredPin.length < 5 && myValue != 'x') {
         enteredPin += myValue;
       }
-      if (myValue == 'x' && enteredPin != 4) {
+      if (myValue == 'x') {
         enteredPin = enteredPin.substring(0, enteredPin.length - 1);
       }
 

@@ -255,7 +255,7 @@
           console.log(result[0][0])
           if (result[0][0].error == 0) {
             console.log('REGISTRATION CHECK', result)
-            if(result[1][0].registered == -1){
+            if(result[1][0].registered == 0){
               setInterval(checkRegistrationFunction(), 30000)
             }
           }
