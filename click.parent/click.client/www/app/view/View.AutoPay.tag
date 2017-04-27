@@ -130,25 +130,20 @@
                 for (var j in scope.servicesMap[result[1][i].service_id][0].autopay_available_steps)
                   if (scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j].step_value == result[1][i].step) {
                     result[1][i].condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j].step_title;
-                    console.log("STep title=", scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j].step_title);
+//                    console.log("STep title=", scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j].step_title);
+                    break;
                   }
                   else
-                    console.log("not found", scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j]);
-
-//
+                    console.log("not found", scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j]);//
               }
-
-              console.log("ss", result[1][i].service_title, ", dd", result[1][i].service_icon);
-
+//              console.log("ss", result[1][i].service_title, ", dd", result[1][i].service_icon);
               scope.autopayList.push(result[1][i]);
-
             }
             console.log("L=", result[1]);
 //            scope.autopayList = result[1];
             console.log("Autopay list", scope.autopayList);
             riot.update(scope.autopayList);
             localStorage.setItem('click_client_autopayList', JSON.stringify(scope.autopayList));
-
           }
           else
             alert(result[0][0].error_note);

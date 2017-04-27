@@ -269,6 +269,7 @@
     }
 
     function changePosition() {
+      console.log("1", dateNumber);
 
       if (carouselTouchEndY < carouselTouchStartY && dateNumber < count - 1) {
         document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
@@ -278,23 +279,32 @@
         this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
         this.dateContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
         document.getElementById("day" + dateNumber).style.color = '#01B8FE';
-      }
+        console.log("2", dateNumber);
 
-      if (carouselTouchEndY > carouselTouchStartY && dateNumber == 0) {
+
+      } else if (carouselTouchEndY > carouselTouchStartY && dateNumber == 0) {
+        document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
+        dateNumber = count - 1;
         this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
         this.dateContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-      }
+        document.getElementById("day" + dateNumber).style.color = '#01B8FE';
+        console.log("3", dateNumber);
 
-      if (carouselTouchEndY < carouselTouchStartY && dateNumber == count - 1) {
+
+      } else if (carouselTouchEndY < carouselTouchStartY && dateNumber == count - 1) {
+        document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
+        dateNumber = 0;
         this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
         this.dateContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-      }
+        document.getElementById("day" + dateNumber).style.color = '#01B8FE';
+        console.log("4", dateNumber);
 
-      if (carouselTouchEndY > carouselTouchStartY && dateNumber > 0) {
+
+      } else if (carouselTouchEndY > carouselTouchStartY && dateNumber > 0) {
         document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
         --dateNumber;
         this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -302,6 +312,7 @@
         this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
         this.dateContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
         document.getElementById("day" + dateNumber).style.color = '#01B8FE';
+        console.log("5", dateNumber);
       }
 
       localStorage.setItem('dateNumber', dateNumber);
@@ -383,23 +394,26 @@
         this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
         this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
         document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
-      }
 
-      if (minutesTouchEndY > minutesTouchStartY && minuteNumber == 0) {
+      } else if (minutesTouchEndY > minutesTouchStartY && minuteNumber == 0) {
+        document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
+        minuteNumber = minutesCount - 1;
         this.minutesContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
         this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
-      }
+        document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
 
-      if (minutesTouchEndY < minutesTouchStartY && minuteNumber == minutesCount - 1) {
+      } else if (minutesTouchEndY < minutesTouchStartY && minuteNumber == minutesCount - 1) {
+        document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
+        minuteNumber = 0;
         this.minutesContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
         this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
-      }
+        document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
 
-      if (minutesTouchEndY > minutesTouchStartY && minuteNumber > 0) {
+      } else if (minutesTouchEndY > minutesTouchStartY && minuteNumber > 0) {
         document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
         --minuteNumber;
         this.minutesContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';

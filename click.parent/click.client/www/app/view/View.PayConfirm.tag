@@ -24,9 +24,11 @@
         <p class="payconfirm-phone-input">{amountTextCopy} {currency}</p>
       </div>
       <div class="payconfirm-field">
-        <p class="payconfirm-text-field">{window.languages.ViewPayConfirmCategory}</p>
+        <p class="payconfirm-text-field">{(opts[3]=='ADDAUTOPAY')?
+          (window.languages.ViewAutoPayConditionFieldText):(window.languages.ViewPayConfirmCategory)}</p>
         <p class="payconfirm-phone-input" style="text-decoration: underline">
-          {categoryName}</p>
+          {(opts[3]=='ADDAUTOPAY')?
+          (autoPayConditionText):(categoryName)}</p>
       </div>
       <div class="payconfirm-card-field" if="{cardOrFriendBool}">
         <div class="payconfirm-card-info-container">
@@ -119,7 +121,8 @@
     if (opts[3] == 'ADDAUTOPAY') {
       scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
       scope.autoPayTypeText = scope.autoPayData.title;
-      console.log("autoPayType=", scope.autoPayTypeText);
+      scope.autoPayConditionText = scope.autoPayData.condition_text;
+      console.log("autoPayData=", scope.autoPayData);
     }
     scope.titleName = scope.service.name;
     scope.serviceIcon = scope.service.image;

@@ -12030,12 +12030,12 @@ var css = {
   "{" +
   "position: absolute;" +
   "right: 0;" +
-  "width: 40%;" +
+  "width: 60%;" +
   "height: 100%;" +
   "top: 0;" +
   "background-repeat: no-repeat;" +
-  "background-size: 68%;" +
-  "background-position: center;" +
+  "background-size: 50%;" +
+  "background-position: 80%;" +
   "background-image: url(resources/icons/ViewService/unchecked.png);" +
   "}",
 
