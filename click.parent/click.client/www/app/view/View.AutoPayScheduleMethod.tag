@@ -97,8 +97,8 @@
     scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
     //    console.log("ID of service=", opts.id);
-    this.serviceName = scope.servicesMap[opts.id][0].name;
-    this.serviceIcon = scope.servicesMap[opts.id][0].image;
+    this.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
+    this.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
 
     scope.daysArray = window.languages.ViewAutoPayMethodScheduleDaysArray;
     scope.weekDaysArray = window.languages.ViewAutoPayMethodScheduleWeekDaysArray;

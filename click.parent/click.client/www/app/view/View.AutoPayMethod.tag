@@ -40,9 +40,15 @@
     this.titleName = window.languages.ViewAutoPayTitleName;
     scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     console.log("ID of srevice=", opts.id);
-    this.serviceName = scope.servicesMap[opts.id][0].name;
-    this.serviceIcon = scope.servicesMap[opts.id][0].image;
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+
+    if (modeOfApp.onlineMode || viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
+      scope.serviceName = 'Мой номер';
+      scope.serviceIcon = 'resources/icons/ViewPay/myphone.png';
+    } else {
+      this.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
+      this.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
+    }
 
 
     eventTouchEnd = function () {

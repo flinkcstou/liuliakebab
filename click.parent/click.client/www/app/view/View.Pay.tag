@@ -497,12 +497,18 @@
         console.log('ID ID ID', id)
         if (opts.mode == 'ADDAUTOPAY') {
           scope.autoPayData = {};
-          scope.autoPayData.service_id = id;
           viewPay.chosenServiceId = id;
           opts.id = id;
+          if (id == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
+            console.log("MYNUMBER WWW");
+            scope.autoPayData.service_id = localStorage.getItem('myNumberOperatorId');
+//            opts.id = localStorage.getItem('myNumberOperatorId');
+          } else {
+            scope.autoPayData.service_id = id;
+          }
           event.preventDefault();
           event.stopPropagation();
-          if (scope.servicesMap[id][0].autopay_available) {
+          if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available) {
             localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
             riotTags.innerHTML = "<view-autopay-method>";
             riot.mount("view-autopay-method", opts);

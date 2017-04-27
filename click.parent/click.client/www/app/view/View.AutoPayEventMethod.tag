@@ -17,7 +17,7 @@
         <p class="servicepage-text-field">{window.languages.ViewAutoPayMethodEventPhoneNumber}</p>
         <p class="servicepage-number-first-part">+{window.languages.CodeOfCountry}</p>
         <input class="servicepage-number-input-part" type="tel" id="firstFieldInput"
-               autofocus="true"
+               autofocus="true" value="{defaultNumber}"
                onkeydown="telPayVerificationKeyDown(this)"
                onkeyup="telPayVerificationKeyUp()"/>
         <div class="servicepage-phone-icon" ontouchend="searchContact()"></div>
@@ -72,11 +72,24 @@
     this.titleName = window.languages.ViewAutoPayTitleName;
     scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
-    //    console.log("ID of srevice=", opts.id);
-    this.serviceName = scope.servicesMap[opts.id][0].name;
-    this.serviceIcon = scope.servicesMap[opts.id][0].image;
-    this.amountsArray = scope.servicesMap[opts.id][0].autopay_available_amounts;
-    this.stepsArray = scope.servicesMap[opts.id][0].autopay_available_steps;
+    console.log("ID of srevice in event=", opts.id);
+
+    if (modeOfApp.onlineMode || viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
+      scope.serviceName = 'Мой номер';
+      scope.serviceIcon = 'resources/icons/ViewPay/myphone.png';
+      viewServicePage.phoneText = localStorage.getItem('click_client_phoneNumber');
+      viewServicePage.phoneText = viewServicePage.phoneText ? viewServicePage.phoneText.substr(3, viewServicePage.phoneText.length - 3) : '';
+      viewPay.chosenServiceId = localStorage.getItem('myNumberOperatorId');
+    } else {
+      this.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
+      this.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
+    }
+
+    scope.defaultNumber = !viewServicePage.phoneText ? null : viewServicePage.phoneText;
+
+
+    this.amountsArray = scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_amounts;
+    this.stepsArray = scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps;
     scope.amountsArrayExist = this.amountsArray ? true : false;
     scope.stepsArrayExist = this.stepsArray ? true : false;
     scope.chosenStep = this.stepsArray ? this.stepsArray[0].step_value : null;
