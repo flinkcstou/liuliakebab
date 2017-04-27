@@ -305,6 +305,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown();
+      scope.unmount()
     };
 
     goToCardPage = function (cardId) {
@@ -326,6 +327,8 @@
 
       riotTags.innerHTML = "<view-my-cards>";
       riot.mount('view-my-cards', [cardId]);
+
+      scope.unmount()
     }
 
     addCardTouchEnd = function () {
@@ -334,6 +337,8 @@
 
       riotTags.innerHTML = "<view-add-card>";
       riot.mount('view-add-card');
+
+      scope.unmount()
     }
 
 

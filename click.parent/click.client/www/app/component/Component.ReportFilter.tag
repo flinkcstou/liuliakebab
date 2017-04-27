@@ -482,6 +482,7 @@
       event.stopPropagation();
       riotTags.innerHTML = "<view-general-settings>";
       riot.mount("view-general-settings");
+//      scope.unmount()
     };
 
     closeMenu = function () {
@@ -597,6 +598,7 @@
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
         riotTags.innerHTML = "<view-invoice-list>";
         riot.mount("view-invoice-list");
+//        scope.unmount()
         return
       }
     };
@@ -616,6 +618,7 @@
         closeMenu();
         riotTags.innerHTML = "<view-favorites>";
         riot.mount("view-favorites");
+//        scope.unmount()
         return
       }
       else sideMenuTouchEnd()

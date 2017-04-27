@@ -47,6 +47,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
     addFavorite = function () {
@@ -55,6 +56,8 @@
       opts.mode = 'ADDFAVORITE';
       riotTags.innerHTML = "<view-pay>";
       riot.mount("view-pay", opts);
+
+      scope.unmount()
     }
 
     if (scope.favoritePaymentsList) {
@@ -164,6 +167,8 @@
           this.riotTags.innerHTML = "<view-service-pincards>";
           riot.mount('view-service-pincards', scope.favoritePaymentsList[i].opts);
 
+          scope.unmount()
+
         }
       }
 
@@ -184,6 +189,8 @@
       event.stopPropagation();
       riotTags.innerHTML = "<view-favorites>";
       riot.mount("view-favorites");
+
+      scope.unmount()
     }
 
 

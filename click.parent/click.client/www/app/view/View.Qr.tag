@@ -75,6 +75,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
     var touchStartAcceptX, touchStartAcceptY, touchStartDeclineX, touchStartDeclineY
@@ -114,6 +115,8 @@
         if (parseInt(sumForQrPay) <= opts.max_pay_limit && parseInt(sumForQrPay) >= opts.min_pay_limit) {
           riotTags.innerHTML = "<view-qr-pincards>";
           riot.mount('view-qr-pincards', opts);
+
+          scope.unmount()
         }
         else {
           scope.clickPinError = false;

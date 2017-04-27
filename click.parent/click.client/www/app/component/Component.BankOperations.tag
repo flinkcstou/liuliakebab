@@ -49,6 +49,7 @@
       if (Math.abs(payStartX - payEndX) <= 20 && Math.abs(payStartY - payEndY) <= 20) {
         riotTags.innerHTML = "<view-pay>";
         riot.mount('view-pay');
+//        scope.unmount()
       }
       else return
     }
@@ -70,6 +71,7 @@
       if (Math.abs(transferStartX - transferEndX) <= 20 && Math.abs(transferStartY - transferEndY) <= 20) {
         riotTags.innerHTML = "<view-transfer>";
         riot.mount('view-transfer');
+//        scope.unmount()
       }
       else return;
     }
@@ -94,6 +96,7 @@
       if (Math.abs(autoPayStartX - autoPayEndX) <= 20 && Math.abs(autoPayStartY - autoPayEndY) <= 20) {
         riotTags.innerHTML = "<view-auto-pay>";
         riot.mount('view-auto-pay');
+//        scope.unmount();
       }
     }
 

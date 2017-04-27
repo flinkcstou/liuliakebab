@@ -52,6 +52,7 @@
       event.stopPropagation();
 
       onBackKeyDown()
+      scope.unmount()
     };
 
     sendMessageTouchEnd = function () {

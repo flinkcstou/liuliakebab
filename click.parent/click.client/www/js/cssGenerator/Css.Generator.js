@@ -8680,6 +8680,7 @@ var css = {
     //"height: 100%;" +
   "top: 50%;" +
   "background-repeat: no-repeat;" +
+  "background-size: 60%;" +
   "background-position: center;" +
   "margin: 0;" +
   "}",
@@ -11448,7 +11449,7 @@ var css = {
   "display: none;" +
   "z-index: 999999;" +
   "background-image: url('resources/icons/transparent.png');" +
-  "background-repeat: no-repeat;" +
+  //"background-repeat: no-repeat;" +
   "background-position-y: center;" +
   "background-size: 100%;" +
   "}",

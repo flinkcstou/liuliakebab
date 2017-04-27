@@ -236,6 +236,7 @@
         localStorage.setItem('chosenServiceId', id);
         riotTags.innerHTML = "<view-service-page>";
         riot.mount("view-service-page");
+//        scope.unmount()
       }
       if (touchStartX != touchEndX)
         changePosition();
@@ -342,6 +343,7 @@
 
             this.riotTags.innerHTML = "<view-service-pincards>";
             riot.mount('view-service-pincards', scope.favoritePaymentsList[i].opts);
+//            scope.unmount()
 
           }
 
@@ -364,6 +366,7 @@
         opts.mode = 'ADDFAVORITE';
         this.riotTags.innerHTML = "<view-pay>";
         riot.mount('view-pay', opts);
+//        scope.unmount()
       }
       if (touchStartX != touchEndX)
         changePosition();

@@ -87,6 +87,7 @@
 //      console.log("BACK")
       }
       onBackKeyDown()
+      scope.unmount()
     };
 
     onTouchStartDecline = function () {

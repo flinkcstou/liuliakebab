@@ -142,6 +142,7 @@
           localStorage.clear();
           riotTags.innerHTML = "<view-registration-device>";
           riot.mount('view-registration-device');
+          scope.unmount()
           return
         }
       };
@@ -183,6 +184,7 @@
       if (loginInfo) {
         this.riotTags.innerHTML = "<view-main-page>";
         riot.mount('view-main-page');
+        scope.unmount()
       }
       else {
         scope.clickPinError = false;
@@ -469,12 +471,14 @@
 //          })
           this.riotTags.innerHTML = "<view-main-page>";
           riot.mount('view-main-page');
+          scope.unmount()
         } else {
           console.log("DDDD")
           if (!JSON.parse(localStorage.getItem('onResume'))) {
             console.log("QWE")
             this.riotTags.innerHTML = "<view-main-page>";
             riot.mount('view-main-page');
+            scope.unmount()
           }
           else {
 
@@ -483,6 +487,7 @@
                 this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
                 riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
                 localStorage.setItem('onResume', false)
+                scope.unmount()
               }
             }
           }

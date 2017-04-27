@@ -85,6 +85,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
@@ -125,6 +126,7 @@
         event.stopPropagation();
         this.riotTags.innerHTML = "<view-pay-confirm>";
         riot.mount('view-pay-confirm', [arrayForPay, false, viewServicePinCards.chosenFriendForHelp]);
+        scope.unmount()
       } else {
         for (var i in cardsArray) {
           if (cardsArray[i].chosenCard && cardsArray[i].access == 2) {
@@ -135,10 +137,12 @@
             if (opts[8] == 'ADDAUTOPAY') {
               this.riotTags.innerHTML = "<view-autopay-name>";
               riot.mount('view-autopay-name', [arrayForPay, true, scope.chosencardId]);
+              scope.unmount()
 
             } else {
               this.riotTags.innerHTML = "<view-pay-confirm>";
               riot.mount('view-pay-confirm', [arrayForPay, true, scope.chosencardId]);
+              scope.unmount()
             }
           }
         }
@@ -161,6 +165,7 @@
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-friend-help-settings>";
       riot.mount('view-friend-help-settings');
+      scope.unmount()
     }
 
     if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {

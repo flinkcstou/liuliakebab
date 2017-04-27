@@ -114,6 +114,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
     var oldChosenStep, chosenStep;
@@ -248,6 +249,7 @@
 
       this.riotTags.innerHTML = "<view-service-pincards>";
       riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
+      scope.unmount()
     }
 
 

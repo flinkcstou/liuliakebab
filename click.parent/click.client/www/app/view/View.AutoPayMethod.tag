@@ -54,6 +54,7 @@
 //      localStorage.setItem('autoPayType', window.languages.ViewAutoPayMethodEventText);
       riotTags.innerHTML = "<view-autopay-event-method>";
       riot.mount("view-autopay-event-method", opts);
+      scope.unmount()
     }
 
     scheduleTouchEnd = function () {
@@ -65,6 +66,7 @@
 //      localStorage.setItem('autoPayType', window.languages.ViewAutoPayMethodSchedulerText);
       riotTags.innerHTML = "<view-autopay-schedule-method>";
       riot.mount("view-autopay-schedule-method", opts);
+      scope.unmount()
     }
 
 
@@ -82,6 +84,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
 

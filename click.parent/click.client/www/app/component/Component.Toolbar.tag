@@ -74,6 +74,7 @@
 
         this.riotTags.innerHTML = '<view-info>';
         riot.mount('view-info');
+//        scope.unmount()
       }
     };
   </script>

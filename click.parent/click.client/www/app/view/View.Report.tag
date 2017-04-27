@@ -140,6 +140,7 @@
       event.stopPropagation();
 
       onBackKeyDown()
+      scope.unmount()
     };
 
     scope.leftOfOperations = 320 * widthK;

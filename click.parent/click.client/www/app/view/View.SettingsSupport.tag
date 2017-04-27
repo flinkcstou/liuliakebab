@@ -51,6 +51,7 @@
       event.stopPropagation();
 
       onBackKeyDown();
+      scope.unmount()
     };
 
     goToSettingsStepTwo = function (titleOfHelp, keyOfHelp) {
@@ -59,6 +60,8 @@
 
       riotTags.innerHTML = "<view-settings-support-part-two>";
       riot.mount('view-settings-support-part-two', {title: titleOfHelp, key: keyOfHelp});
+
+      scope.unmount()
     }
 
 

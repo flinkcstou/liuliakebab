@@ -92,6 +92,8 @@
           this.riotTags.innerHTML = "<view-mycard-list>";
           riot.mount('view-mycard-list');
 
+        scope.unmount()
+
       }
       else return
     };

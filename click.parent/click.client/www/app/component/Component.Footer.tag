@@ -128,6 +128,7 @@
             "object": scope.firstContactObject,
           }
       );
+//      scope.unmount()
     }
 
     contactTwoTouchEnd = function () {
@@ -140,6 +141,7 @@
             "object": scope.secondContactObject,
           }
       );
+//      scope.unmount()
     }
 
     contactThreeTouchEnd = function () {
@@ -152,6 +154,7 @@
             "object": scope.thirdContactObject,
           }
       );
+//      scope.unmount()
     }
 
     contactFourTouchEnd = function () {
@@ -164,6 +167,7 @@
             "object": scope.fourContactObject,
           }
       );
+//      scope.unmount()
     }
 
     contactFiveTouchEnd = function () {
@@ -176,6 +180,7 @@
             "object": scope.fiveContactObject,
           }
       );
+//      scope.unmount()
     }
 
 

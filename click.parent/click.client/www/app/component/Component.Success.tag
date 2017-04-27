@@ -21,6 +21,7 @@
 
         riotTags.innerHTML = "<" + opts.viewpage + ">";
         riot.mount(opts.viewpage);
+//        scope.unmount()
       }
 
       if (opts.close_action) {

@@ -193,6 +193,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
     goToInvoiceHistoryDetailTouchEnd = function (invoice) {
@@ -259,6 +260,8 @@
           sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
           riotTags.innerHTML = "<view-invoice-history-detail>";
           riot.mount("view-invoice-history-detail", params);
+
+          scope.unmount()
         } else {
 
 
@@ -277,6 +280,8 @@
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
             riotTags.innerHTML = "<view-transfer-detail>";
             riot.mount('view-transfer-detail', params);
+
+            scope.unmount()
           } else {
 
             params = {
@@ -293,6 +298,8 @@
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
             riotTags.innerHTML = "<view-payment-detail>";
             riot.mount('view-payment-detail', params);
+
+            this.unmount()
           }
         }
       }

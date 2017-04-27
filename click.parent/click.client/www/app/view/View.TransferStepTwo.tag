@@ -173,6 +173,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     }
 
     goToTransferThree = function () {
@@ -273,6 +274,8 @@
 
         riotTags.innerHTML = "<view-transfer-stepthree>";
         riot.mount('view-transfer-stepthree', [objectForTransfer, sum, comment, scope.tax, owner]);
+
+        scope.unmount()
       }
     }
 

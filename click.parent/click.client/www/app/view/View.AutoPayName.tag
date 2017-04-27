@@ -59,6 +59,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
 
@@ -75,6 +76,7 @@
 
       this.riotTags.innerHTML = "<view-pay-confirm>";
       riot.mount('view-pay-confirm', [opts[0], opts[1], opts[2], 'ADDAUTOPAY']);
+      scope.unmount()
     }
 
 

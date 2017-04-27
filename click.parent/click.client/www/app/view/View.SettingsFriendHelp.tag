@@ -41,6 +41,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
     goToAddFriendView = function () {
@@ -48,6 +49,8 @@
       event.stopPropagation();
       riotTags.innerHTML = "<view-add-friend>";
       riot.mount("view-add-friend");
+
+      scope.unmount()
     }
     scope.arrayOfFriends = [];
 

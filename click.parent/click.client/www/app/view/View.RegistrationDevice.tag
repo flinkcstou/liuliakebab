@@ -105,6 +105,7 @@
       modeOfApp.offlineMode = true;
       this.riotTags.innerHTML = "<view-main-page>";
       riot.mount('view-main-page');
+      scope.unmount()
     }
 
     goToDemo = function () {
@@ -150,6 +151,7 @@
 
       riotTags.innerHTML = "<view-help>";
       riot.mount('view-help');
+      scope.unmount()
     }
 
     function deviceType() {
@@ -209,6 +211,7 @@
                 localStorage.setItem('confirm_needed', true);
                 this.riotTags.innerHTML = "<view-sms>";
                 riot.mount('view-sms');
+                scope.unmount()
               }
               else {
                 window.pushNotificationInitialize();
@@ -216,6 +219,7 @@
                 localStorage.setItem('click_client_registered', true)
                 this.riotTags.innerHTML = "<view-authorization>";
                 riot.mount('view-authorization');
+                scope.unmount()
               }
             }
           }

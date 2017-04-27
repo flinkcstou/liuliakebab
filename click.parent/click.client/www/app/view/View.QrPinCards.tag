@@ -73,6 +73,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
     this.titleName = opts.name
@@ -94,6 +95,8 @@
         event.stopPropagation();
         this.riotTags.innerHTML = "<view-qr-pay-confirm>";
         riot.mount('view-qr-pay-confirm', [false, viewServicePinCards.chosenFriendForHelp, opts]);
+
+        scope.unmount()
       } else {
         for (var i in cardsArray) {
           if (cardsArray[i].chosenCard && cardsArray[i].access == 2) {
@@ -115,6 +118,7 @@
 
             this.riotTags.innerHTML = "<view-qr-pay-confirm>";
             riot.mount('view-qr-pay-confirm', [true, scope.chosencardId, opts]);
+            scope.unmount()
           }
         }
       }
@@ -136,6 +140,7 @@
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-friend-help-settings>";
       riot.mount('view-friend-help-settings');
+      scope.unmount()
     }
 
     if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {

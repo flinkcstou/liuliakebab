@@ -120,6 +120,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
     contactPhoneBlurAndChange = function () {
