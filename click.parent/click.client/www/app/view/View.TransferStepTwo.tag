@@ -14,7 +14,7 @@
     <div class="transfertwo-contact-phone-field">
       <p if="{opts[0].type == 1}" class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
         {window.languages.Currency}</p>
-      <input maxlength="9" class="transfertwo-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
+      <input maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
              onmouseup="sumMouseUp()"
              type="tel" pattern="[0-9]" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
     </div>
@@ -181,29 +181,36 @@
 //      console.log('objectForTransfer', objectForTransfer)
       if (objectForTransfer.type == 1 && modeOfApp.onlineMode) {
         var codeOfBank = objectForTransfer.name.replace(/\s/g, '').substring(3, 6);
+        console.log('CODE OF BANK', codeOfBank)
+        console.log("objectForTransfer.name.replace(/\s/g, '')", objectForTransfer.name.replace(/\s/g, ''))
         var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'));
-        var maxLimit;
-        var minLimit;
+        var maxLimit = 0;
+        var minLimit = 0;
         for (var i = 0; i < bankList.length; i++) {
+          console.log('bankList[i].code', bankList[i].code)
           if (bankList[i].code == codeOfBank) {
+            console.log("EQUAL")
             maxLimit = bankList[i].p2p_max_limit
             minLimit = bankList[i].p2p_min_limit
             break;
           }
         }
       }
-      if (!maxLimit) {
+
+      console.log('maxLimit', maxLimit)
+      console.log('minLimit', minLimit)
+      if (maxLimit == 0) {
         maxLimit = 5000000;
       }
 
-      if (!minLimit) {
+      if (minLimit == 0) {
         minLimit = 5000;
       }
       if (sumForTransfer < minLimit) {
 
         sumValueId.blur();
         scope.clickPinError = false;
-        scope.errorNote = ('Минимальная сумма 5 000');
+        scope.errorNote = ('Минимальная сумма ' + minLimit);
         scope.showError = true;
         riot.update();
         return;
@@ -211,7 +218,7 @@
       if (sumForTransfer > maxLimit) {
         sumValueId.blur();
         scope.clickPinError = false;
-        scope.errorNote = ('Максимальная сумма 5 000 000');
+        scope.errorNote = ('Максимальная сумма ' + maxLimit);
         scope.showError = true;
         riot.update();
         return;
