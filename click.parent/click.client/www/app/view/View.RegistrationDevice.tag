@@ -28,7 +28,7 @@
     <div class="registration-container-offline" ontouchend="registrationOfflineTouchEnd()">
       <div class="registration-button-offline">{window.languages.ViewRegistrationDeviceButtonOffline}</div>
     </div>
-    <a id="demoContainer" class="registration-container-demo-version">
+    <a href="index-stand-demo.html" id="demoContainer" class="registration-container-demo-version">
       <div class="registration-button-demo-version">{window.languages.ViewRegistrationDeviceButtonDemoVersion}
       </div>
     </a>

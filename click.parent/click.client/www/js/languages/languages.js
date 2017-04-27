@@ -379,16 +379,8 @@ var RU_LANGUAGES =
   "ViewAutoPayEveryMonthText": "Ежемесячно ",
   "ViewAutoPayAtText": " в ",
   "ViewAutoPayEveryWeekText": "Еженедельно ",
-  "ViewAutoPayMondayText": "в понедельник в ",
-  "ViewAutoPayTuesdayText": "во вторник в ",
-  "ViewAutoPayWednesdayText": "в среду в ",
-  "ViewAutoPayThursdayText": "в четверг в ",
-  "ViewAutoPayFridayText": "в пятницу в ",
-  "ViewAutoPaySaturdayText": "в субботу в ",
-  "ViewAutoPaySundayText": "в воскресенье в ",
 
   "ViewAutoPayAfterMinimumBalansText": "При балансе меньше ",
-
 
   "ViewAutoPayMethodChooseText": "Выберите тип автоплатежа:",
   "ViewAutoPayMethodEventText": "По событию",
@@ -428,12 +420,20 @@ var RU_LANGUAGES =
       "v": '27'
     }, {"k": 28, "v": '28'}, {"k": 29, "v": '29'}, {"k": 30, "v": '30'},
     {"k": 31, "v": '31'}],
-  "ViewAutoPayMethodScheduleWeekDaysArray": [{"k": 1, "v": "ПОНЕДЕЛЬНИК"}, {"k": 2, "v": "ВТОРНИК"}, {
+  "ViewAutoPayMethodScheduleWeekDaysArray": [{"k": 1, "v": "ПОНЕДЕЛЬНИК", "text": "в понедельник в "}, {
+    "k": 2,
+    "v": "ВТОРНИК",
+    "text": "во вторник в "
+  }, {
     "k": 3,
-    "v": "СРЕДА"
-  }, {"k": 4, "v": "ЧЕТВЕРГ"}, {"k": 5, "v": "ПЯТНИЦА"}, {"k": 6, "v": "СУББОТА"}, {
+    "v": "СРЕДА", "text": "в среду в "
+  }, {"k": 4, "v": "ЧЕТВЕРГ", "text": "в четверг в "}, {"k": 5, "v": "ПЯТНИЦА", "text": "в пятницу в "}, {
+    "k": 6,
+    "v": "СУББОТА",
+    "text": "в субботу в "
+  }, {
     "k": 7,
-    "v": "ВОСКРЕСЕНЬЕ"
+    "v": "ВОСКРЕСЕНЬЕ", "text": "в воскресенье в "
   }],
   "ViewAutoPayMethodScheduleHoursArray": [{"k": 1, "v": '01'}, {"k": 2, "v": '02'}, {"k": 3, "v": '03'}, {
     "k": 4,

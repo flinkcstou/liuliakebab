@@ -195,8 +195,8 @@
       if (scope.timeMode) {
         console.log("HOUR=", dateNumber);
         console.log("MIN=", minuteNumber);
-        scope.autoPayData.hour = dateNumber + 1;
-        scope.autoPayData.minute = minuteNumber + 1;
+        scope.autoPayData.paytime = window.languages.ViewAutoPayMethodScheduleHoursArray[dateNumber].v + ':' + window.languages.ViewAutoPayMethodScheduleMinutesArray[minuteNumber].v;
+        console.log("autoPayData=", scope.autoPayData);
         localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
         event.stopPropagation();
         riotTags.innerHTML = "<view-service-page>";
