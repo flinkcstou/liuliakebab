@@ -501,9 +501,7 @@
           viewPay.chosenServiceId = id;
           opts.id = id;
           if (id == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
-            console.log("MYNUMBER WWW");
             scope.autoPayData.service_id = localStorage.getItem('myNumberOperatorId');
-//            opts.id = localStorage.getItem('myNumberOperatorId');
           } else {
             scope.autoPayData.service_id = id;
           }
@@ -513,13 +511,11 @@
             localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
             riotTags.innerHTML = "<view-autopay-method>";
             riot.mount("view-autopay-method", opts);
-
             scope.unmount()
           } else {
             scope.autoPayData.title = window.languages.ViewAutoPayMethodSchedulerText;
             scope.autoPayData.autopay_type = 1;
             localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-//            localStorage.setItem('autoPayType', window.languages.ViewAutoPayMethodSchedulerText);
             riotTags.innerHTML = "<view-autopay-schedule-method>";
             riot.mount("view-autopay-schedule-method", opts);
             scope.unmount()

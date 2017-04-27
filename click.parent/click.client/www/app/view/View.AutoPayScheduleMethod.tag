@@ -196,8 +196,20 @@
       if (scope.timeMode) {
         console.log("HOUR=", dateNumber);
         console.log("MIN=", minuteNumber);
-        scope.autoPayData.paytime = window.languages.ViewAutoPayMethodScheduleHoursArray[dateNumber].v + ':' + window.languages.ViewAutoPayMethodScheduleMinutesArray[minuteNumber].v;
+        scope.autoPayData.paytime = window.languages.ViewAutoPayMethodScheduleHoursArray[dateNumber + 1].v + ':' + window.languages.ViewAutoPayMethodScheduleMinutesArray[minuteNumber + 1].v;
         console.log("autoPayData=", scope.autoPayData);
+
+        if (scope.autoPayData.type == 2) {
+          scope.autoPayData.condition_text = window.languages.ViewAutoPayMethodScheduleWeekDaysArray[scope.autoPayData.week_day].v + ", " +
+            scope.autoPayData.paytime;
+        } else if (scope.autoPayData.type == 3) {
+          scope.autoPayData.condition_text = scope.autoPayData.month_day + ", " +
+            scope.autoPayData.paytime;
+        } else if (scope.autoPayData.type == 4) {
+          scope.autoPayData.condition_text = window.languages.ViewAutoPayEveryMonthLastDayTextTwo + ", " +
+            scope.autoPayData.paytime;
+        }
+
         localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
         event.stopPropagation();
         riotTags.innerHTML = "<view-service-page>";

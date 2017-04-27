@@ -246,6 +246,7 @@
       scope.autoPayData.step = chosenStep;
       scope.autoPayData.cntrg_phone_num = firstFieldInput.value;
       scope.autoPayData.amount = scope.chosenAmount;
+      scope.autoPayData.condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + chosenStep;
       localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
       var formtype = {"formtype": 1};

@@ -26,7 +26,7 @@
       <div class="payconfirm-field">
         <p class="payconfirm-text-field">{(opts[3]=='ADDAUTOPAY')?
           (window.languages.ViewAutoPayConditionFieldText):(window.languages.ViewPayConfirmCategory)}</p>
-        <p class="payconfirm-phone-input" style="text-decoration: underline">
+        <p class="{payconfirm-category-input:opts[3]!='ADDAUTOPAY',payconfirm-phone-input:opts[3]=='ADDAUTOPAY'}">
           {(opts[3]=='ADDAUTOPAY')?
           (autoPayConditionText):(categoryName)}</p>
       </div>
