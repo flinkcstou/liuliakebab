@@ -38,6 +38,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");

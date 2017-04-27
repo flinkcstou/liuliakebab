@@ -41,6 +41,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
     userAgreementTouchEnd = function () {
@@ -49,6 +50,8 @@
 
       riotTags.innerHTML = "<view-settings-user-agreement>";
       riot.mount("view-settings-user-agreement");
+
+      scope.unmount()
     }
 
     rankInGooglePlayTouchEnd = function () {

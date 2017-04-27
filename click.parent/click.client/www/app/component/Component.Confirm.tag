@@ -33,9 +33,11 @@
         riotTags.innerHTML = "<view-main-page>";
         riot.mount('view-main-page');
         riot.update()
+//        scope.unmount()
       } else if (opts.confirmtype == 'session') {
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
+//        scope.unmount()
       }
       else {
         navigator.app.exitApp();

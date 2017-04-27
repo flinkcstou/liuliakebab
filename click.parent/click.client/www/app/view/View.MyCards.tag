@@ -91,6 +91,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     }
 
     editCard = function () {
@@ -99,6 +100,8 @@
       event.stopPropagation();
       riotTags.innerHTML = "<view-card-edit>";
       riot.mount('view-card-edit', [scope.card]);
+
+      scope.unmount()
     };
 
     goToReports = function () {
@@ -124,6 +127,7 @@
             account_id: card,
             card_name: cards[card].name
           });
+          scope.unmount()
         }
       }
     };
@@ -351,6 +355,8 @@
       if (scope.card.access == 2) {
         riotTags.innerHTML = "<view-pay>";
         riot.mount('view-pay');
+
+        scope.unmount()
       }
       else {
         scope.clickPinError = false;
@@ -377,6 +383,8 @@
       if (scope.card.access == 2) {
         riotTags.innerHTML = "<view-transfer>";
         riot.mount('view-transfer');
+
+        scope.unmount()
       }
       else {
         scope.clickPinError = false;

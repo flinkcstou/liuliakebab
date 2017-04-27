@@ -604,6 +604,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     }
 
     searchCard = function (input) {
@@ -1024,6 +1025,8 @@
                 "type": 2,
               }
             ]);
+
+            scope.unmount()
             return
           }
         }
@@ -1077,6 +1080,8 @@
                 "owner": scope.cardOwner
               }
             ]);
+
+            scope.unmount()
             return
           }
         }

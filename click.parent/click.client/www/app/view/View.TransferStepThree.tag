@@ -69,6 +69,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     }
 
     scope.backbuttoncheck = true;
@@ -105,6 +106,8 @@
         arrayForTransfer.push(chosenCard)
         riotTags.innerHTML = "<view-transfer-stepfour>";
         riot.mount('view-transfer-stepfour', [arrayForTransfer, opts[3], owner]);
+
+        scope.unmount()
       }
       else {
         scope.clickPinError = false;

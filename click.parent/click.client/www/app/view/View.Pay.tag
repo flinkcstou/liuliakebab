@@ -93,6 +93,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
     if (localStorage.getItem("click_client_payCategoryList")) {
 //      alert("in Category list of PAY");
@@ -512,6 +513,8 @@
             localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
             riotTags.innerHTML = "<view-autopay-method>";
             riot.mount("view-autopay-method", opts);
+
+            scope.unmount()
           } else {
             scope.autoPayData.title = window.languages.ViewAutoPayMethodSchedulerText;
             scope.autoPayData.autopay_type = 1;
@@ -519,6 +522,7 @@
 //            localStorage.setItem('autoPayType', window.languages.ViewAutoPayMethodSchedulerText);
             riotTags.innerHTML = "<view-autopay-schedule-method>";
             riot.mount("view-autopay-schedule-method", opts);
+            scope.unmount()
           }
         }
         else {
@@ -531,6 +535,8 @@
           localStorage.setItem('chosenServiceId', id);
           riotTags.innerHTML = "<view-service-page>";
           riot.mount("view-service-page", opts);
+
+          scope.unmount()
         }
       }
     };

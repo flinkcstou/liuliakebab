@@ -130,6 +130,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
     everyMonthLastDay = function () {
@@ -201,6 +202,8 @@
         event.stopPropagation();
         riotTags.innerHTML = "<view-service-page>";
         riot.mount("view-service-page", opts);
+
+        scope.unmount()
       } else {
         if (scope.dayMode) {
           console.log("dayMode, Number=", dateNumber);

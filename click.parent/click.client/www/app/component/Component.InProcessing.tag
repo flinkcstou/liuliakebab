@@ -23,6 +23,7 @@
 
       riotTags.innerHTML = "<" + opts.viewpage + ">";
       riot.mount(opts.viewpage);
+//      scope.unmount()
     }
   </script>
 </component-in-processing>

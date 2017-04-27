@@ -91,6 +91,7 @@
       componentPinResetId.style.display = 'none';
       this.riotTags.innerHTML = "<view-registration-device>";
       riot.mount('view-registration-device');
+//      scope.unmount()
     };
 
   </script>

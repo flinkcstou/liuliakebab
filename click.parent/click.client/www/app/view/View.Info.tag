@@ -200,8 +200,11 @@
       event.preventDefault();
       event.stopPropagation();
 
-      this.riotTags.innerHTML = '<view-main-page>';
-      riot.mount('view-main-page');
+//      this.riotTags.innerHTML = '<view-main-page>';
+//      riot.mount('view-main-page');
+      onBackKeyDown()
+
+      scope.unmount()
 
     }
 
@@ -329,6 +332,8 @@
       riotTags.innerHTML = "<view-report>";
       riot.mount('view-report');
 
+      scope.unmount()
+
     }
 
     scope.onTouchStartOfOperation = onTouchStartOfOperation = function () {
@@ -346,6 +351,8 @@
 //            console.log("service report for=", scope.lastOperationContainer[i]);
             riotTags.innerHTML = "<view-report-service>";
             riot.mount("view-report-service", scope.lastOperationContainer[i]);
+
+            scope.unmount()
             break;
           }
         }

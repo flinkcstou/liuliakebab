@@ -43,6 +43,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
     addAutoPay = function () {
@@ -51,6 +52,7 @@
       opts.mode = 'ADDAUTOPAY';
       riotTags.innerHTML = "<view-pay>";
       riot.mount("view-pay", opts);
+      scope.unmount()
     }
 
     componentMenu.check = false;

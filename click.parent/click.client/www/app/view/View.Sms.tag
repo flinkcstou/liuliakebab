@@ -137,11 +137,15 @@
                 localStorage.setItem('click_client_registered', true)
                 this.riotTags.innerHTML = "<view-authorization>";
                 riot.mount('view-authorization');
+
+                scope.unmount()
               }
               else {
                 localStorage.setItem('click_client_registered', false)
                 this.riotTags.innerHTML = "<view-registration-client>";
                 riot.mount('view-registration-client');
+
+                scope.unmount()
               }
             }
             else {

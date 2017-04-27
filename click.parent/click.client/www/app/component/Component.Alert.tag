@@ -43,6 +43,7 @@
           console.log(history.arrayOfHistory)
           sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
           onBackKeyDown()
+//          scope.unmount()
         }
       } else {
         scope.outerShowAlertBool = true;

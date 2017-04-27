@@ -26,7 +26,7 @@
         <div class="settings-block-next-icon"></div>
       </div>
 
-      <div style="display: none" class="settings-block-containter" ontouchend="goToInviteFriendSettings()">
+      <div class="settings-block-containter" ontouchend="goToInviteFriendSettings()">
         <div class="settings-block-icon"
              style="background-image: url('resources/icons/ViewSettings/settings_invite.png')"></div>
         <div class="settings-block-name-field">{window.languages.ViewInviteFriendSettingsTitle}</div>
@@ -79,6 +79,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+//      scope.unmount()
     };
 
     goToMainSettings = function () {
@@ -87,6 +88,8 @@
 
       riotTags.innerHTML = "<view-general-settings>";
       riot.mount("view-general-settings");
+
+      this.unmount()
     }
 
     goToSecuritySettings = function () {
@@ -95,6 +98,8 @@
 
       riotTags.innerHTML = "<view-security-settings>";
       riot.mount("view-security-settings");
+
+      scope.unmount()
     }
 
     goToFriendHelpSettings = function () {
@@ -103,6 +108,8 @@
 
       riotTags.innerHTML = "<view-friend-help-settings>";
       riot.mount("view-friend-help-settings");
+
+      scope.unmount()
     }
 
     goToAboutSettings = function () {
@@ -111,11 +118,15 @@
 
       riotTags.innerHTML = "<view-about-program>";
       riot.mount("view-about-program");
+
+      scope.unmount()
     }
 
     goToInviteFriendSettings = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      window.plugins.socialsharing.share('Message only', null, null, null)
 
     }
 

@@ -30,7 +30,7 @@
       <div class="side-menu-containers-name side-menu-containers-name-favorite">Избранные</div>
     </div>
 
-    <div style="display: none" class="side-menu-auto-pay-container" ontouchstart="goToAutoPayStart()"
+    <div if="{!modeOfApp.offlineMode}" class="side-menu-auto-pay-container" ontouchstart="goToAutoPayStart()"
          ontouchend="goToAutoPayEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-autopayment"></div>
       <div class="side-menu-containers-name side-menu-containers-name-autopayment">Автоплатеж</div>
@@ -104,6 +104,7 @@
       if (modeOfApp.offlineMode)return
       riotTags.innerHTML = "<view-general-settings>";
       riot.mount("view-general-settings");
+//      scope.unmount()
     }
 
     closeMenu = function () {
@@ -220,10 +221,12 @@
         if (localStorage.getItem('click_client_token')) {
           this.riotTags.innerHTML = "<view-authorization>";
           riot.mount('view-authorization');
+//          scope.unmount()
         }
         else {
           this.riotTags.innerHTML = "<view-registration-device>";
           riot.mount('view-registration-device');
+//          scope.unmount()
         }
         return
       }
@@ -283,6 +286,7 @@
         closeMenu();
         riotTags.innerHTML = "<view-auto-pay>";
         riot.mount('view-auto-pay');
+//        scope.unmount()
       }
       else sideMenuTouchEnd()
 
@@ -329,6 +333,7 @@
                         "id": id,
                         "image": "resources/icons/ViewPay/logo_indoor.png"
                       });
+//                      scope.unmount()
                     }
                     else {
                       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
@@ -353,6 +358,7 @@
                                 closeMenu();
                                 riotTags.innerHTML = "<view-qr>";
                                 riot.mount('view-qr', result[1][0]);
+//                                scope.unmount()
                               }
                             }
                             console.log("QR PAY", result);
@@ -417,6 +423,7 @@
                     closeMenu();
                     riotTags.innerHTML = "<view-qr>";
                     riot.mount('view-qr', result[1][0]);
+//                    scope.unmount()
                   }
                 }
                 console.log("QR PAY", result);
@@ -462,6 +469,7 @@
         closeMenu()
         riotTags.innerHTML = "<view-settings>";
         riot.mount("view-settings");
+//        scope.unmount()
         return
       }
       else sideMenuTouchEnd()
@@ -511,6 +519,7 @@
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
         riotTags.innerHTML = "<view-invoice-list>";
         riot.mount("view-invoice-list", params);
+//        scope.unmount()
         return
       }
     };
@@ -530,6 +539,7 @@
         closeMenu();
         riotTags.innerHTML = "<view-favorites>";
         riot.mount("view-favorites");
+//        scope.unmount()
         return
       }
       else sideMenuTouchEnd()

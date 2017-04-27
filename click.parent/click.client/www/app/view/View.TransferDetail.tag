@@ -101,6 +101,7 @@
         event.stopPropagation();
       }
       onBackKeyDown()
+      scope.unmount()
     };
 
     verifyInput = function (input) {
@@ -151,6 +152,8 @@
 
         riotTags.innerHTML = "<view-transfer-on-card>";
         riot.mount("view-transfer-on-card", params);
+
+        scope.unmount()
       }
     };
 

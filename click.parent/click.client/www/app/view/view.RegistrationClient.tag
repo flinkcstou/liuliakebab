@@ -322,6 +322,7 @@
       if (cardNumber.length == 16 && (scope.cardDateOriginal || scope.cardPinOriginal )) {
         riotTags.innerHTML = "<view-pin-code>";
         riot.mount('view-pin-code', ['view-registration-client', cardNumber, secondParameter]);
+        scope.unmount()
       }
       else {
 //        alert('error')

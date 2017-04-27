@@ -85,6 +85,8 @@
       this.riotTags.innerHTML = "<view-main-page>";
       riot.mount('view-main-page');
 
+      scope.unmount()
+
     }
 
     updateEnteredPin = function () {
@@ -304,6 +306,7 @@
             riot.update();
 
             onBackKeyDown();
+            scope.unmount()
           }
           else {
             scope.showError = true;
@@ -312,6 +315,7 @@
             riot.update();
 
             onBackKeyDown();
+            scope.unmount()
           }
 
         },

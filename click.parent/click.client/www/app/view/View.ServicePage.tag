@@ -276,6 +276,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
     searchContact = function () {
@@ -1029,7 +1030,8 @@
         }
         else {
           this.riotTags.innerHTML = "<view-service-pincards>";
-          riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
+          riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites])
+          scope.unmount()
         }
       } else if (opts.mode == 'ADDFAVORITE') {
 
@@ -1048,6 +1050,7 @@
       } else if (opts.mode == 'ADDAUTOPAY') {
         this.riotTags.innerHTML = "<view-service-pincards>";
         riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
+        scope.unmount()
       }
     };
 
@@ -1107,6 +1110,7 @@
           event.stopPropagation();
           this.riotTags.innerHTML = "<view-service-pincards>";
           riot.mount('view-service-pincards', scope.formTypeTwoOptsArray);
+          scope.unmount()
         } else if (opts.mode == 'ADDFAVORITE') {
           formTypeTwoBtnSaveId.style.pointerEvents = 'auto';
           formTypeTwoBtnSaveId.style.backgroundColor = 'rgb(1, 124, 227)';
@@ -1115,6 +1119,7 @@
 
           this.riotTags.innerHTML = "<view-service-pincards>";
           riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
+          scope.unmount()
         }
       }
     };
@@ -1126,6 +1131,7 @@
         event.stopPropagation();
         this.riotTags.innerHTML = "<view-main-page>";
         riot.mount('view-main-page');
+        scope.unmount()
       }
       else {
         scope.clickPinError = false;

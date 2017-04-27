@@ -41,6 +41,7 @@
       event.stopPropagation()
 
       onBackKeyDown()
+      scope.unmount()
     }
 
     var touchStartY, touchEndY;

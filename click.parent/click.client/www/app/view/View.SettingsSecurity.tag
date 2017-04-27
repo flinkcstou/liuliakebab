@@ -103,6 +103,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
+      scope.unmount()
     };
 
     hideMyNumber = function () {
@@ -156,6 +157,8 @@
 
       riotTags.innerHTML = "<view-pin-code>";
       riot.mount('view-pin-code', ['view-security-settings']);
+
+      scope.unmount()
     };
 
     blockWithPin = function () {
@@ -182,6 +185,8 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
       riotTags.innerHTML = "<view-trusted-devices>";
       riot.mount("view-trusted-devices");
+
+      scope.unmount()
     };
 
     fingerPrintTouchEnd = function () {

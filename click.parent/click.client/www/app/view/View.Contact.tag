@@ -136,6 +136,8 @@
             if (id) {
               riotTags.innerHTML = "<view-service-page>";
               riot.mount("view-service-page", {number: scope.arrayOfNumbers[0].value});
+
+              scope.unmount()
             }
             else {
               scope.clickPinError = false;
@@ -175,6 +177,8 @@
 
           riotTags.innerHTML = "<view-service-page>";
           riot.mount("view-service-page", {number: phone});
+
+          scope.unmount()
         }
         else {
           scope.clickPinError = false;
@@ -186,6 +190,8 @@
       else {
         riotTags.innerHTML = "<view-transfer>";
         riot.mount('view-transfer', {number: phone});
+
+        scope.unmount()
       }
     }
 
@@ -218,6 +224,8 @@
             scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length);
             riotTags.innerHTML = "<view-transfer>";
             riot.mount('view-transfer', {number: scope.arrayOfNumbers[0].value});
+
+            scope.unmount()
           }
         }
       }
@@ -235,6 +243,7 @@
       event.preventDefault()
       event.stopPropagation()
       onBackKeyDown()
+      scope.unmount()
     }
 
 
