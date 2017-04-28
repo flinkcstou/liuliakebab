@@ -49,7 +49,7 @@
 
     if (JSON.parse(localStorage.getItem("click_client_cards")))
       scope.cardsArray = JSON.parse(localStorage.getItem("click_client_cards"));
-    riot.update(scope.cardsArray);
+    riot.update();
 
     refreshCards = function () {
 
@@ -243,7 +243,7 @@
         localStorage.setItem('click_client_countCard', count);
       }
 
-      riot.update(scope.cardsArray);
+      riot.update();
 
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
         writeBalance();
@@ -323,7 +323,7 @@
           scope.cardsArray[cardId].chosenCard = false;
       }
 
-      riot.update(scope.cardsArray);
+      riot.update();
 
       riotTags.innerHTML = "<view-my-cards>";
       riot.mount('view-my-cards', [cardId]);

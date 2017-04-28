@@ -122,7 +122,7 @@
                     scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
                     scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
 
-                    riot.update(scope.fullBalanceCopy);
+                    riot.update();
                   }
                   else
                     scope.attention = true;
@@ -150,7 +150,7 @@
         });
       }
 
-      riot.update(scope.fullBalanceCopy);
+      riot.update();
     }
 
     offlineBalanceInfoTrue = function () {
@@ -289,7 +289,7 @@
             }
 //          }
             console.log('scope.lastOperationContainer', scope.lastOperationContainer)
-            riot.update(scope.lastOperationContainer)
+            riot.update()
 //            console.log('scope.lastOperationContainer', scope.lastOperationContainer);
           }
           else {
