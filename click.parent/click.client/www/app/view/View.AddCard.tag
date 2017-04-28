@@ -16,16 +16,16 @@
       <div id="cardNumberInput" class="add-card-card-number">
         <input type="tel" onkeyup="boxOneKeyUp()" onkeydown="boxOneKeyDown()" autofocus="true" maxlength="4"
                id="boxOne"
-               class="add-card-card-number-box registration-client-card-number-box-one">
+               class="add-card-card-number-box add-card-card-number-box-one">
         </input>
         <input type="tel" onkeyup="boxTwoKeyUp()" onkeydown="boxTwoKeyDown()" maxlength="4" id="boxTwo"
-               class="add-card-card-number-box registration-client-card-number-box-two">
+               class="add-card-card-number-box add-card-card-number-box-two">
         </input>
         <input type="tel" onkeyup="boxThreeKeyUp()" onkeydown="boxThreeKeyDown()" maxlength="4" id="boxThree"
-               class="add-card-card-number-box registration-client-card-number-box-three">
+               class="add-card-card-number-box add-card-card-number-box-three">
         </input>
         <input type="tel" onkeyup="boxFourKeyUp()" onkeydown="boxFourKeyDown()" maxlength="4" id="boxFour"
-               class="add-card-card-number-box registration-client-card-number-box-four">
+               class="add-card-card-number-box add-card-card-number-box-four">
         </input>
       </div>
 
