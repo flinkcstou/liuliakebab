@@ -7,8 +7,8 @@
     <component-toolbar></component-toolbar>
     <component-bank-operations></component-bank-operations>
     <component-service-carousel></component-service-carousel>
-    <component-footer></component-footer>
     <component-card-carousel></component-card-carousel>
+    <component-footer></component-footer>
 
     <view-news></view-news>
 

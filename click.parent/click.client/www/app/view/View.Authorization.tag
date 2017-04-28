@@ -27,7 +27,7 @@
       {window.languages.ViewAuthorizationResetLocalStorageLabel}
     </div>
   </div>
-  <div if="{checkAndroid}" class="authorization-button-offline" ontouchstart="offlineMode()">
+  <div if="{device.platform != 'iOS'}" class="authorization-button-offline" ontouchstart="offlineMode()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
 

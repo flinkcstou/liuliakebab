@@ -1506,9 +1506,9 @@ var css = {
   "height: 100%;" +
   "width:" + 538 * widthK + "px;" +
   "overflow: hidden;" +
-  "transform: translate3d(-100%, 0, 0);" +
-  "-webkit-transform: translate3d(-100%, 0, 0);" +
-  "-ms-transform: translate3d(-100%, 0, 0);" +
+  "transform: translate(-100%, 0);" +
+  "-webkit-transform: translate(-100%, 0);" +
+  "-ms-transform: translate(-100%, 0);" +
   "background-color: #22a0e0;" +
   "z-index: 1;" +
     //"top:" + topOfIos + "px;" +
@@ -1826,9 +1826,9 @@ var css = {
   "height: 100%;" +
   "width: 100%;" +
   "overflow: hidden;" +
-  "transform: translate3d(0, 0, 0);" +
-  "-webkit-transform: translate3d(0, 0, 0);" +
-  "-ms-transform: translate3d(0, 0, 0);" +
+  "transform: translate(0, 0);" +
+  "-webkit-transform: translate(0, 0);" +
+  "-ms-transform: translate(0, 0);" +
   "background-color: rgba(0, 0, 0, 0.6);" +
   "opacity: 0;" +
   "}",
@@ -1940,9 +1940,9 @@ var css = {
   "-webkit-transition: 0.3s;" +
   "height:" + 300 * widthK + "px;" +
   "width: 100%;" +
-  "transform: translate3d(0, " + 200 * widthK + "px, 0);" +
-  "-webkit-transform: translate3d(0," + 200 * widthK + "px, 0);" +
-  "-ms-transform: translate3d(0," + 200 * widthK + "px, 0);" +
+  "transform: translate(0, " + 200 * widthK + "px);" +
+  "-webkit-transform: translate(0," + 200 * widthK + "px);" +
+  "-ms-transform: translate(0," + 200 * widthK + "px);" +
   "}",
 
   footerContactLabel: ".footer-contacts-label " +
@@ -8112,7 +8112,7 @@ var css = {
   "width: 50%;" +
   "left: 103%;" +
   "color: #8b8b8b;" +
-  "transform: translate3d(-50%, 0, 0);" +
+  "transform: translate(-50%, 0);" +
   "text-align: center;" +
   "}",
 
@@ -8130,7 +8130,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "transform: translate3d(-50%, 0, 0);" +
+  "transform: translate(-50%, 0);" +
   "width: 100%;" +
   "top: " + 540 * widthK + "px;" +
   "left: 50%;" +
@@ -8179,7 +8179,7 @@ var css = {
   "transition: 3s;" +
   "width:" + 79 * heightK + "px; " +
   "height:" + 79 * heightK + "px; " +
-    //"transform: translate3d(-50%, -50%, 0); " +
+    //"transform: translate(-50%, -50%); " +
   "}",
 
   viewReportsGraphPercent: ".view-reports-graph-percent" +
@@ -8212,9 +8212,9 @@ var css = {
   "height: 100%;" +
   "width:" + 610 * widthK + "px;" +
   "overflow: hidden;" +
-  "transform: translate3d(0, -100%, 0);" +
-  "-webkit-transform: translate3d(0, -100%, 0);" +
-  "-ms-transform: translate3d(0, -100%, 0);" +
+  "transform: translate(0, -100%);" +
+  "-webkit-transform: translate(0, -100%);" +
+  "-ms-transform: translate(0, -100%);" +
   "z-index: 1;" +
   "right:0;" +
     //"top:" + topOfIos + "px;" +
@@ -8333,7 +8333,7 @@ var css = {
 
   reportFilterReadyButton: ".report-filter-ready-button" +
   "{" +
-  "transform: translate3d(-50%, 0, 0);" +
+  "transform: translate(-50%, 0);" +
   "text-transform: capitalize;" +
   "left: 50.5%;" +
   "font-size: " + 27 * widthK + "px;" +
@@ -11643,7 +11643,7 @@ var css = {
   "height:" + 200 * widthK + "px;  " +
   "width: 100%;  " +
   "z-index: 9999999;  " +
-  "transform: translate3d(0, -100%, 0);  " +
+  "transform: translate(0, -100%);  " +
   "background-color: #f1eff3;  " +
   "}",
 
@@ -11654,7 +11654,7 @@ var css = {
 
   componentNotificationShow: ".component-notification-show" +
   "{" +
-  "transform: translate3d(0, 0, 0);  " +
+  "transform: translate(0, 0);  " +
   "}",
 
   ComponentNotificationButtonsContainer: ".component-notification-buttons-container" +

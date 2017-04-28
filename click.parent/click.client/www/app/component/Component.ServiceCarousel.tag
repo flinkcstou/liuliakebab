@@ -49,7 +49,7 @@
     }
     else {
       scope.popularServiceList = JSON.parse(localStorage.getItem("click_client_popularServiceList"));
-      riot.update(scope.popularServiceList);
+      riot.update();
     }
     scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
 
@@ -108,7 +108,7 @@
                         myNumberObject.id = 'mynumber' + localStorage.getItem('myNumberOperatorId');
                         scope.popularServiceList.push(myNumberObject);
                         console.log("popular services", scope.popularServiceList);
-                        riot.update(scope.popularServiceList);
+                        riot.update();
                         localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
                       }
                     });
@@ -133,7 +133,7 @@
                 }
 
                 console.log("popular services", scope.popularServiceList);
-                riot.update(scope.popularServiceList);
+                riot.update();
                 localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
               }
             }
@@ -167,8 +167,7 @@
       }
       if (scope.favPaymentsList.length >= 4)
         scope.addFavoriteBool = false;
-      riot.update(scope.favPaymentsList);
-      riot.update(scope.addFavoriteBool);
+      riot.update();
     }
 
     var delta;
@@ -191,23 +190,23 @@
       this.containerService.style.webkitTransition = '0s';
       event.preventDefault();
       event.stopPropagation();
-      this.containerService.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
-      this.containerService.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
+      this.containerService.style.transform = "translate(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0)";
+      this.containerService.style.webkitTransform = "translate(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0)";
     }
 
     changePosition = function () {
       if (touchEndX < touchStartX) {
         cardNumberOfService = 1;
-        this.containerService.style.transform = "translate3d(" + -540 * widthK + "px, 0, 0)";
-        this.containerService.style.webkitTransform = "translate3d(" + -540 * widthK + "px, 0, 0)";
+        this.containerService.style.transform = "translate(" + -540 * widthK + "px, 0)";
+        this.containerService.style.webkitTransform = "translate(" + -540 * widthK + "px, 0)";
         this.containerService.style.transition = '0.3s';
         this.containerService.style.webkitTransition = '0.3s';
       }
 
       if (touchEndX > touchStartX) {
         cardNumberOfService = 0;
-        this.containerService.style.transform = "translate3d(0, 0, 0)";
-        this.containerService.style.webkitTransform = "translate3d(0, 0, 0)";
+        this.containerService.style.transform = "translate(0, 0)";
+        this.containerService.style.webkitTransform = "translate(0, 0)";
         this.containerService.style.transition = '0.3s';
         this.containerService.style.webkitTransition = '0.3s';
       }
@@ -247,8 +246,8 @@
       this.containerService.style.webkitTransition = '0s';
       event.preventDefault();
       event.stopPropagation();
-      this.containerService.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
-      this.containerService.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
+      this.containerService.style.transform = "translate(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0)";
+      this.containerService.style.webkitTransform = "translate(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0)";
     }
 
     scope.ontouchStartOfPayment = ontouchStartOfPayment = function () {

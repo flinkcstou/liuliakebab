@@ -25,7 +25,7 @@
 
 
   <div class="registration-buttons-container">
-    <div class="registration-container-offline" ontouchend="registrationOfflineTouchEnd()">
+    <div if="{device.platform != 'iOS'}" class="registration-container-offline" ontouchend="registrationOfflineTouchEnd()">
       <div class="registration-button-offline">{window.languages.ViewRegistrationDeviceButtonOffline}</div>
     </div>
     <a href="index-stand-demo.html" id="demoContainer" class="registration-container-demo-version">

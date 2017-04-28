@@ -10,7 +10,7 @@
       <p class="side-menu-user-second-name">{firstName}</p>
       <p class="side-menu-user-first-name">{lastName}</p>
     </div>
-    <div id="changeModeContainerId" class="side-menu-change-mode">
+    <div if="{device.platform != 'iOS'}" id="changeModeContainerId" class="side-menu-change-mode">
       <div id="changeModeIconId" class="side-menu-change-mode-icon"></div>
       <p class="side-menu-change-mode-text">{modeOfApplication}</p>
       <label class="switch-menu" ontouchstart="changeModeTouchStart()" ontouchend="changeModeTouchEnd()">
@@ -118,8 +118,8 @@
       sideMenuId.style.webkitTransition = '0.3s';
       sideMenuBackPageId.style.opacity = '0';
       sideMenuBackPageId.style.webkitTransition = '0';
-      sideMenuId.style.webkitTransform = "translate3d(-100%, 0, 0)";
-      sideMenuId.style.Transform = "translate3d(-100%, 0, 0)";
+      sideMenuId.style.webkitTransform = "translate(-100%, 0)";
+      sideMenuId.style.Transform = "translate(-100%, 0)";
       mainPageId.style.opacity = '1';
       mainPageId.style.zIndex = '0';
       riot.update();
@@ -170,7 +170,7 @@
       mainPageId.style.opacity = deltaForMainPage;
 
       if (touchMoveX - touchStartX <= 0) {
-        sideMenuId.style.webkitTransform = 'translate3d(' + (touchMoveX - touchStartX) + 'px,0,0)'
+        sideMenuId.style.webkitTransform = 'translate(' + (touchMoveX - touchStartX) + 'px,0)'
         touchEndMove = touchMoveX - touchStartX
         componentMenu.checkOpen = true;
       }

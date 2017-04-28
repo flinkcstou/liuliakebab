@@ -243,8 +243,8 @@
                   cards.style.transition = '0s';
                   cards.style.webkitTransition = '0s';
 
-                  cards.style.transform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
-                  cards.style.webkitTransform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
+                  cards.style.transform = "translate(" + (-540) * widthK + 'px' + ", 0)";
+                  cards.style.webkitTransform = "translate(" + (-540) * widthK + 'px' + ", 0)";
                 } catch (error) {
                   console.log("INVOICE LIST ERROR", error);
                 }
@@ -543,8 +543,8 @@
         localStorage.setItem("click_client_countCard", count);
       }
 
-      cards.style.transform = "translate3d(0, 0, 0)";
-      cards.style.webkitTransform = "translate3d(0, 0, 0)";
+      cards.style.transform = "translate(0, 0)";
+      cards.style.webkitTransform = "translate(0, 0)";
 
       riot.update();
     };
@@ -555,8 +555,8 @@
       cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
 
-      cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-      cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+      cards.style.transform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
+      cards.style.webkitTransform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
 
       if (modeOfApp.offlineMode) {
 
@@ -773,8 +773,8 @@
           riot.mount("view-my-cards", [sendChosenCardId]);
           this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
           this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-          this.cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
-          this.cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+          this.cards.style.transform = "translate(" + (-pos) + 'px' + ", 0)";
+          this.cards.style.webkitTransform = "translate(" + (-pos) + 'px' + ", 0)";
         }
         else
           modeOfApp.offlineMode.balance = false;
@@ -894,8 +894,8 @@
 
       this.cards.style.transition = '0s';
       this.cards.style.webkitTransition = '0s';
-      this.cards.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
-      this.cards.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
+      this.cards.style.transform = "translate(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0)";
+      this.cards.style.webkitTransform = "translate(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0)";
 
       //Test
       //
@@ -997,8 +997,8 @@
         riot.update(scope.cardNumber);
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
+        this.cards.style.webkitTransform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
 
       }
 
@@ -1008,8 +1008,8 @@
 
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
+        this.cards.style.webkitTransform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
       }
 
       if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber == count - 1) {
@@ -1018,8 +1018,8 @@
 
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
+        this.cards.style.webkitTransform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
 
       }
 
@@ -1031,8 +1031,8 @@
         riot.update(scope.cardNumber);
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.transform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
+        this.cards.style.webkitTransform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
       }
 
 
