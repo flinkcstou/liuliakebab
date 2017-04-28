@@ -29,6 +29,7 @@
 
   <script>
     var scope = this;
+
     scope.newsArray = []
     scope.newsOpened = false;
 
@@ -42,6 +43,11 @@
       event.stopPropagation()
 
       onBackKeyDown()
+
+//      if (viewNewsId.parentNode) {
+//        viewNewsId.parentNode.removeChild(viewNewsId);
+//      }
+
       scope.unmount()
     }
 
@@ -76,7 +82,7 @@
           document.getElementById(containerId).setAttribute('opened', false)
         }
 
-        riot.update()
+
       }
       else
         return

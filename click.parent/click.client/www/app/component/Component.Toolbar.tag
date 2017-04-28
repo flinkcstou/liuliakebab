@@ -8,12 +8,14 @@
     </div>
 
     <div class="bell-button bell-icon" ontouchend="bellButton()">
-      <div if="{window.News.newsCounter != 0 && !modeOfApp.offlineMode}" class="bell-button-news-counter">{window.News.newsCounter}</div>
+      <div if="{window.News.newsCounter != 0 && !modeOfApp.offlineMode}" class="bell-button-news-counter">
+        {window.News.newsCounter}
+      </div>
     </div>
 
   </div>
 
-  <script>
+  <script id="toolbarScriptId">
     var scope = this,
       goToViewInfoTouchStartX,
       goToViewInfoTouchStartY,

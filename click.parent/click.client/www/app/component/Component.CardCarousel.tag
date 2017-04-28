@@ -210,7 +210,7 @@
 //        localStorage.setItem('cardNumber', cardNumber);
       }
 
-      riot.update(scope.cardsarray);
+//      riot.update(scope.cardsarray);
 
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
         writeBalance();
@@ -243,8 +243,8 @@
                   cards.style.transition = '0s';
                   cards.style.webkitTransition = '0s';
 
-                  cards.style.transform = "translate(" + (-540) * widthK + 'px' + ", 0)";
-                  cards.style.webkitTransform = "translate(" + (-540) * widthK + 'px' + ", 0)";
+                  cards.style.transform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
+                  cards.style.webkitTransform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
                 } catch (error) {
                   console.log("INVOICE LIST ERROR", error);
                 }
@@ -252,8 +252,8 @@
                 scope.invoiceCheck = true;
                 scope.cardNumber = 1;
 
-                riot.update(scope.invoiceCheck);
-                riot.update(scope.cardNumber);
+//                scope.update(scope.invoiceCheck);
+//                scope.update(scope.cardNumber);
                 var arrayOfInvoice = [];
                 for (var i = 0; i < result[1].length; i++) {
 
@@ -287,7 +287,7 @@
               }
               else {
                 scope.invoiceCheck = false;
-                riot.update(scope.invoiceCheck);
+                scope.update();
               }
             }
           }
@@ -295,7 +295,7 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
         }
         ,
@@ -423,7 +423,7 @@
                 scope.clickPinError = false;
                 scope.errorNote = result[0][0].error_note;
                 scope.showError = true;
-                riot.update();
+                scope.update();
               }
             },
 
@@ -543,10 +543,10 @@
         localStorage.setItem("click_client_countCard", count);
       }
 
-      cards.style.transform = "translate(0, 0)";
-      cards.style.webkitTransform = "translate(0, 0)";
+      cards.style.transform = "translate3d(0, 0, 0)";
+      cards.style.webkitTransform = "translate3d(0, 0, 0)";
 
-      riot.update();
+      scope.update();
     };
 
     this.on("mount", function () {
@@ -555,8 +555,8 @@
       cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
 
-      cards.style.transform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
-      cards.style.webkitTransform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
+      cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+      cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       if (modeOfApp.offlineMode) {
 
@@ -597,14 +597,14 @@
                 scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
                 localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
 
-                riot.update();
+                scope.update();
               }
             }
             else {
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
           },
 
@@ -641,7 +641,7 @@
     if (!scope.cardNumber) {
       scope.cardNumber = 0;
     }
-    riot.update(scope.cardNumber);
+//    riot.update(scope.cardNumber);
 
     var pos = 0;
     var count = localStorage.getItem('click_client_countCard');
@@ -773,8 +773,8 @@
           riot.mount("view-my-cards", [sendChosenCardId]);
           this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
           this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-          this.cards.style.transform = "translate(" + (-pos) + 'px' + ", 0)";
-          this.cards.style.webkitTransform = "translate(" + (-pos) + 'px' + ", 0)";
+          this.cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+          this.cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
         }
         else
           modeOfApp.offlineMode.balance = false;
@@ -894,8 +894,8 @@
 
       this.cards.style.transition = '0s';
       this.cards.style.webkitTransition = '0s';
-      this.cards.style.transform = "translate(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0)";
-      this.cards.style.webkitTransform = "translate(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0)";
+      this.cards.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
+      this.cards.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
 
       //Test
       //
@@ -994,11 +994,11 @@
         console.log("Move Touch Carousel1", scope.cardNumber);
 
         ++scope.cardNumber;
-        riot.update(scope.cardNumber);
+//        riot.update(scope.cardNumber);
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
-        this.cards.style.webkitTransform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
+        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       }
 
@@ -1008,8 +1008,8 @@
 
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
-        this.cards.style.webkitTransform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
+        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
       if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber == count - 1) {
@@ -1018,8 +1018,8 @@
 
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
-        this.cards.style.webkitTransform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
+        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       }
 
@@ -1028,11 +1028,11 @@
         console.log("Move Touch Carousel4", scope.cardNumber);
 
         --scope.cardNumber;
-        riot.update(scope.cardNumber);
+//        riot.update(scope.cardNumber);
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
-        this.cards.style.webkitTransform = "translate(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0)";
+        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
 

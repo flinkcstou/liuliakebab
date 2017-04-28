@@ -47,7 +47,7 @@
               scope.clickPinError = false;
               scope.errorNote = "Unknown phone number";
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
             else console.log("Dialer Error:" + err);
           },

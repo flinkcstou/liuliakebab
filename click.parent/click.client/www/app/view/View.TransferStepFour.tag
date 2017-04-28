@@ -308,7 +308,7 @@
                 if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
                   blockCodeConfirmId.style.display = 'block';
                   scope.secretCode = result[1][0].secret_code;
-                  riot.update(scope.secretCode);
+                  riot.update();
 
                 }
                 if (result[1][0].secret_code == 0) {

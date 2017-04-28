@@ -280,8 +280,6 @@
           fourthCardSuggestionId.style.display = 'none';
           fifthCardSuggestionId.style.display = 'none';
         }
-
-        riot.update();
         card();
       }
     })
@@ -316,10 +314,11 @@
       if (JSON.parse(localStorage.getItem("click_client_p2p_bank_list"))) {
         scope.bankList = JSON.parse(localStorage.getItem("click_client_p2p_bank_list"));
 //        console.log("bank list", scope.bankList);
-        riot.update(scope.bankList);
       }
       componentBankListId.style.display = 'block';
-      riot.update(componentBankListId);
+      scope.update();
+      console.log('scope.update()', scope.update())
+
     };
 
     closeComponent = function () {
@@ -426,8 +425,7 @@
 
       scope.contactMode = true
       scope.cardMode = false
-      riot.update(scope.contactMode);
-      riot.update(scope.cardMode);
+      riot.update();
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
         firstSuggestionBlockId.style.display = 'none';
@@ -653,7 +651,7 @@
             catch (error) {
               console.log(error)
             }
-            riot.update()
+//            riot.update()
           }
           else {
 //              alert(result[0][0].error_note);
@@ -723,7 +721,7 @@
           if (checkCardFifthBlock) {
             fifthCardSuggestionId.style.display = 'block';
           }
-          riot.update();
+//          riot.update();
           return
         }
       }
@@ -763,7 +761,7 @@
               scope.cardSuggestionOne.photo = '';
 
 
-            riot.update(scope.cardSuggestionOne)
+//            riot.update(scope.cardSuggestionOne)
 
             firstCardSuggestionId.style.display = 'block';
             secondCardSuggestionId.style.display = 'none';
@@ -781,7 +779,7 @@
             else
               scope.cardSuggestionTwo.photo = '';
 
-            riot.update(scope.cardSuggestionTwo)
+//            riot.update(scope.cardSuggestionTwo)
 
             secondCardSuggestionId.style.display = 'block';
           }
@@ -928,7 +926,7 @@
       }
 
       j = 0;
-      riot.update();
+//      riot.update();
 
     }
 
@@ -1178,7 +1176,6 @@
           if (checkFifthBlock) {
             fifthSuggestionBlockId.style.display = 'block';
           }
-          riot.update();
           return
         }
       }
@@ -1250,8 +1247,6 @@
             }
 
 
-            riot.update(scope.suggestionOne)
-
             firstSuggestionBlockId.style.display = 'block';
             secondSuggestionBlockId.style.display = 'none';
           }
@@ -1289,7 +1284,6 @@
               }
             }
 
-            riot.update(scope.suggestionTwo)
 
             secondSuggestionBlockId.style.display = 'block';
           }
@@ -1540,7 +1534,6 @@
       }
 
       j = 0;
-      riot.update();
 
     }
     if (viewTransfer.type == 2)

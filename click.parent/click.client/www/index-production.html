@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" id="htmlId"
-      onselectstart="return false"  onCopy="return false" onCut="return false"
+      onselectstart="return false" onCopy="return false" onCut="return false"
       onDrag="return false" onDrop="return false" autocomplete=off unselectable="on">
 <head>
   <meta charset="UTF-8">
@@ -155,7 +155,7 @@
         }
       };
 
-      document.addEventListener("backbutton", onBackKeyDown, false);
+      document.addEventListener("backbutton", setTimeout(onBackKeyDown, 0), false);
       document.addEventListener("pause", onPauseFunction, false);
       document.addEventListener("resume", onResumeFunction, false);
       document.addEventListener("online", onlineDetector, false);

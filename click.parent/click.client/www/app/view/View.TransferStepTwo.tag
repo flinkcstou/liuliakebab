@@ -173,7 +173,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
-      scope.unmount()
+
     }
 
     goToTransferThree = function () {
