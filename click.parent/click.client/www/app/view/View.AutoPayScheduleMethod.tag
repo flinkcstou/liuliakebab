@@ -296,49 +296,53 @@
     function changePosition(nShift) {
 //      console.log("NSHIFT", nShift);
 
-      if (carouselTouchEndY < carouselTouchStartY && dateNumber < count - 1) {
+      if (carouselTouchEndY < carouselTouchStartY) {
+        console.log("111", dateNumber + Number(nShift));
         document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
-        dateNumber = dateNumber + Number(nShift);
+        dateNumber = (dateNumber + Number(nShift)) > (count - 1) ? (dateNumber + Number(nShift) - count) : (dateNumber + Number(nShift));
         this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
         this.dateContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
         document.getElementById("day" + dateNumber).style.color = '#01B8FE';
-//        console.log("2", dateNumber);
+        console.log("2=", dateNumber);
 
 
-      } else if (carouselTouchEndY > carouselTouchStartY && dateNumber == 0) {
+      } else if (carouselTouchEndY > carouselTouchStartY) {
+//        console.log("222", dateNumber - Number(nShift));
+//        console.log("222 =", (count + (dateNumber - Number(nShift))));
         document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
-        dateNumber = count - 1;
-        this.dateContainerId.style.transition = '0.0001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.webkitTransition = '0.0001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        document.getElementById("day" + dateNumber).style.color = '#01B8FE';
-//        console.log("33", dateNumber);
-
-
-      } else if (carouselTouchEndY < carouselTouchStartY && dateNumber == count - 1) {
-        document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
-        dateNumber = 0;
-        this.dateContainerId.style.transition = '0.0001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.webkitTransition = '0.0001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-        this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
-        document.getElementById("day" + dateNumber).style.color = '#01B8FE';
-//        console.log("44", dateNumber);
-
-
-      } else if (carouselTouchEndY > carouselTouchStartY && dateNumber > 0) {
-        document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
-        dateNumber = dateNumber - Number(nShift);
+        dateNumber = (dateNumber - Number(nShift)) < 0 ? (count + (dateNumber - Number(nShift))) : (dateNumber - Number(nShift));
         this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
         this.dateContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
         document.getElementById("day" + dateNumber).style.color = '#01B8FE';
-        //console.log("5", dateNumber);
+        console.log("5=", dateNumber);
       }
+//      else if (carouselTouchEndY > carouselTouchStartY && dateNumber <= 0) {
+//        document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
+//        dateNumber = count - 1;
+//        this.dateContainerId.style.transition = '0.0001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+//        this.dateContainerId.style.webkitTransition = '0.0001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+//        this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
+//        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
+//        document.getElementById("day" + dateNumber).style.color = '#01B8FE';
+//        console.log("3=", dateNumber);
+//
+//      }
+//      else if (carouselTouchEndY < carouselTouchStartY && dateNumber >= count - 1) {
+//        document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
+//        dateNumber = 0;
+//        this.dateContainerId.style.transition = '0.0001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+//        this.dateContainerId.style.webkitTransition = '0.0001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+//        this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
+//        this.dateContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
+//        document.getElementById("day" + dateNumber).style.color = '#01B8FE';
+//        console.log("4=", dateNumber);
+//
+//      }
+
       localStorage.setItem('dateNumber', dateNumber);
     }
 
@@ -422,7 +426,7 @@
         this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
         document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
 
-      } else if (minutesTouchEndY > minutesTouchStartY && minuteNumber == 0) {
+      } else if (minutesTouchEndY > minutesTouchStartY && minuteNumber < 0) {
         document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
         minuteNumber = minutesCount - 1;
         this.minutesContainerId.style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -431,7 +435,7 @@
         this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
         document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
 
-      } else if (minutesTouchEndY < minutesTouchStartY && minuteNumber == minutesCount - 1) {
+      } else if (minutesTouchEndY < minutesTouchStartY && minuteNumber > minutesCount - 1) {
         document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
         minuteNumber = 0;
         this.minutesContainerId.style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
