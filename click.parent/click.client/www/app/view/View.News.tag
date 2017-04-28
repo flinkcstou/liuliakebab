@@ -98,6 +98,7 @@
       scope: this,
 
       onSuccess: function (result) {
+        scope.newsArray = []
         if (result[0][0].error == 0) {
           console.log("NEWS", result);
           for (var i in result[1]) {
