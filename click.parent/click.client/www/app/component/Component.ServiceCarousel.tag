@@ -49,7 +49,7 @@
     }
     else {
       scope.popularServiceList = JSON.parse(localStorage.getItem("click_client_popularServiceList"));
-      riot.update();
+      scope.update();
     }
     scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
 
@@ -108,7 +108,7 @@
                         myNumberObject.id = 'mynumber' + localStorage.getItem('myNumberOperatorId');
                         scope.popularServiceList.push(myNumberObject);
                         console.log("popular services", scope.popularServiceList);
-                        riot.update();
+                        scope.update();
                         localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
                       }
                     });
@@ -133,7 +133,7 @@
                 }
 
                 console.log("popular services", scope.popularServiceList);
-                riot.update();
+                scope.update();
                 localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
               }
             }
@@ -142,7 +142,7 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
 
         },
@@ -167,7 +167,7 @@
       }
       if (scope.favPaymentsList.length >= 4)
         scope.addFavoriteBool = false;
-      riot.update();
+      scope.update();
     }
 
     var delta;
@@ -190,23 +190,23 @@
       this.containerService.style.webkitTransition = '0s';
       event.preventDefault();
       event.stopPropagation();
-      this.containerService.style.transform = "translate(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0)";
-      this.containerService.style.webkitTransform = "translate(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0)";
+      this.containerService.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
+      this.containerService.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
     }
 
     changePosition = function () {
       if (touchEndX < touchStartX) {
         cardNumberOfService = 1;
-        this.containerService.style.transform = "translate(" + -540 * widthK + "px, 0)";
-        this.containerService.style.webkitTransform = "translate(" + -540 * widthK + "px, 0)";
+        this.containerService.style.transform = "translate3d(" + -540 * widthK + "px, 0, 0)";
+        this.containerService.style.webkitTransform = "translate3d(" + -540 * widthK + "px, 0, 0)";
         this.containerService.style.transition = '0.3s';
         this.containerService.style.webkitTransition = '0.3s';
       }
 
       if (touchEndX > touchStartX) {
         cardNumberOfService = 0;
-        this.containerService.style.transform = "translate(0, 0)";
-        this.containerService.style.webkitTransform = "translate(0, 0)";
+        this.containerService.style.transform = "translate3d(0, 0, 0)";
+        this.containerService.style.webkitTransform = "translate3d(0, 0, 0)";
         this.containerService.style.transition = '0.3s';
         this.containerService.style.webkitTransition = '0.3s';
       }
@@ -235,7 +235,7 @@
         localStorage.setItem('chosenServiceId', id);
         riotTags.innerHTML = "<view-service-page>";
         riot.mount("view-service-page");
-//        scope.unmount()
+        scope.unmount()
       }
       if (touchStartX != touchEndX)
         changePosition();
@@ -246,8 +246,8 @@
       this.containerService.style.webkitTransition = '0s';
       event.preventDefault();
       event.stopPropagation();
-      this.containerService.style.transform = "translate(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0)";
-      this.containerService.style.webkitTransform = "translate(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0)";
+      this.containerService.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
+      this.containerService.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
     }
 
     scope.ontouchStartOfPayment = ontouchStartOfPayment = function () {
@@ -330,7 +330,7 @@
                     scope.clickPinError = false;
                     scope.errorNote = ("Unknown phone number");
                     scope.showError = true;
-                    riot.update();
+                    scope.update();
                   }
                   else console.log("Dialer Error:" + err);
                 },
@@ -342,7 +342,7 @@
 
             this.riotTags.innerHTML = "<view-service-pincards>";
             riot.mount('view-service-pincards', scope.favoritePaymentsList[i].opts);
-//            scope.unmount()
+            scope.unmount()
 
           }
 
@@ -365,7 +365,7 @@
         opts.mode = 'ADDFAVORITE';
         this.riotTags.innerHTML = "<view-pay>";
         riot.mount('view-pay', opts);
-//        scope.unmount()
+        scope.unmount()
       }
       if (touchStartX != touchEndX)
         changePosition();

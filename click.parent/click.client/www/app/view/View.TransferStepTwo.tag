@@ -133,7 +133,7 @@
       viewTransferStepTwo.sumWithoutSpace = sumForTransfer;
 
       scope.tax = sumForTransfer * objectForTransfer.percent / 100;
-      riot.update()
+      scope.update()
     }
 
     scope.backbuttoncheck = true;
@@ -173,7 +173,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
-      scope.unmount()
+
     }
 
     goToTransferThree = function () {
@@ -213,7 +213,7 @@
         scope.clickPinError = false;
         scope.errorNote = ('Минимальная сумма ' + minLimit);
         scope.showError = true;
-        riot.update();
+        scope.update();
         return;
       }
       if (sumForTransfer > maxLimit) {
@@ -221,7 +221,7 @@
         scope.clickPinError = false;
         scope.errorNote = ('Максимальная сумма ' + maxLimit);
         scope.showError = true;
-        riot.update();
+        scope.update();
         return;
       }
       var sum = {"sum": sumForTransfer};
@@ -239,7 +239,7 @@
                 scope.clickPinError = false;
                 scope.errorNote = ("Unknown phone number");
                 scope.showError = true;
-                riot.update();
+                scope.update();
               }
               else console.log("Dialer Error:" + err);
             },
@@ -258,7 +258,7 @@
                 scope.clickPinError = false;
                 scope.errorNote = ("Unknown phone number");
                 scope.showError = true;
-                riot.update();
+                scope.update();
               }
               else console.log("Dialer Error:" + err);
             },

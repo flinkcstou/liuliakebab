@@ -173,7 +173,7 @@
         scope.from_mm = dateFrom.getMonth() + 1;
         scope.from_yyyy = dateFrom.getFullYear();
 
-        riot.update();
+        scope.update();
       }
 
       datePicker.show(options, onSuccess);
@@ -213,7 +213,7 @@
         scope.to_mm = dateTo.getMonth() + 1;
         scope.to_yyyy = dateTo.getFullYear();
 
-        riot.update();
+        scope.update();
       };
 
       datePicker.show(options, onSuccess);
@@ -233,7 +233,7 @@
         scope.createdAccountFilter = "";
         scope.filterByAccount = "";
 
-        riot.update();
+        scope.update();
       }
     };
 
@@ -252,7 +252,7 @@
         scope.filterDateFrom = "";
         scope.filterDateTo = "";
 
-        riot.update();
+        scope.update();
       }
     };
 
@@ -382,7 +382,7 @@
         }
       }
 
-      riot.update();
+      scope.update();
     };
 
     readyButtonTouchStart = function () {
@@ -427,7 +427,7 @@
 
         scope.filterDate = false;
         scope.filterAccount = false;
-        riot.update();
+        scope.update();
       }
     };
 
@@ -456,7 +456,7 @@
 
         scope.filterDate = true;
         scope.filterAccount = false;
-        riot.update();
+        scope.update();
       }
     };
 
@@ -473,7 +473,7 @@
 
         scope.filterDate = false;
         scope.filterAccount = true;
-        riot.update();
+        scope.update();
       }
     };
 
@@ -502,7 +502,7 @@
       filterMenuId.style.Transform = "translate3d(0, -100%, 0)";
       reportPageId.style.opacity = '1';
       reportPageId.style.zIndex = '0';
-      riot.update();
+      scope.update();
 
       console.log("ASDASDASD", scope.parent);
 

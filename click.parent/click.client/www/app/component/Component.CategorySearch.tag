@@ -106,9 +106,7 @@
               scope.fourPartTwo = scope.suggestionFour.name.substring(index, scope.searchWord.length + scope.fourPartOne.length);
               scope.fourPartThree = scope.suggestionFour.name.substring(scope.fourPartTwo.length + scope.fourPartOne.length, scope.suggestionFour.name.length);
 
-              riot.update(scope.fourPartOne);
-              riot.update(scope.fourPartTwo);
-              riot.update(scope.fourPartThree);
+              scope.update();
             }
             if (countOfSuggestionWord == 2) {
 
@@ -129,9 +127,7 @@
               scope.threePartTwo = scope.suggestionThree.name.substring(index, scope.searchWord.length + scope.threePartOne.length);
               scope.threePartThree = scope.suggestionThree.name.substring(scope.threePartTwo.length + scope.threePartOne.length, scope.suggestionThree.name.length);
 
-              riot.update(scope.threePartOne);
-              riot.update(scope.threePartTwo);
-              riot.update(scope.threePartThree);
+              scope.update();
 
             }
             if (countOfSuggestionWord == 1) {
@@ -152,9 +148,7 @@
               scope.twoPartTwo = scope.suggestionTwo.name.substring(index, scope.searchWord.length + scope.twoPartOne.length);
               scope.twoPartThree = scope.suggestionTwo.name.substring(scope.twoPartTwo.length + scope.twoPartOne.length, scope.suggestionTwo.name.length);
 
-              riot.update(scope.twoPartOne);
-              riot.update(scope.twoPartTwo);
-              riot.update(scope.twoPartThree);
+              scope.update();
 
             }
             if (countOfSuggestionWord == 0) {
@@ -175,9 +169,7 @@
               scope.onePartTwo = scope.suggestionOne.name.substring(index, scope.searchWord.length + scope.onePartOne.length);
               scope.onePartThree = scope.suggestionOne.name.substring(scope.onePartTwo.length + scope.onePartOne.length, scope.suggestionOne.name.length);
 
-              riot.update(scope.onePartOne);
-              riot.update(scope.onePartTwo);
-              riot.update(scope.onePartThree);
+              scope.update();
             }
             if (countOfSuggestionWord == 3)
               return
@@ -205,7 +197,7 @@
       event.stopPropagation();
       blockSearchId.style.display = 'none';
       scope.parent.checkOfSearch = true;
-      riot.update(scope.parent.checkOfSearch)
+      scope.update(scope.parent.checkOfSearch)
 
       if (scope.suggestionOne.form_type) {
         scope.parent.onTouchEndOfService(scope.suggestionOne.id)
@@ -220,7 +212,7 @@
       event.stopPropagation();
       blockSearchId.style.display = 'none';
       scope.parent.checkOfSearch = true;
-      riot.update(scope.parent.checkOfSearch)
+      scope.update(scope.parent.checkOfSearch)
       if (scope.suggestionTwo.form_type) {
         scope.parent.onTouchEndOfService(scope.suggestionTwo.id)
       }
@@ -235,7 +227,7 @@
       event.stopPropagation();
       blockSearchId.style.display = 'none';
       scope.parent.checkOfSearch = true;
-      riot.update(scope.parent.checkOfSearch)
+      scope.update(scope.parent.checkOfSearch)
       if (scope.suggestionThree.form_type) {
         scope.parent.onTouchEndOfService(scope.suggestionThree.id)
       }
@@ -250,7 +242,7 @@
       event.stopPropagation();
       blockSearchId.style.display = 'none';
       scope.parent.checkOfSearch = true;
-      riot.update(scope.parent.checkOfSearch)
+      scope.update(scope.parent.checkOfSearch)
 
       if (scope.suggestionFour.form_type) {
         scope.parent.onTouchEndOfService(scope.suggestionFour.id)

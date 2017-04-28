@@ -207,11 +207,11 @@
 //        addToAutoPayContainerId.style.display = 'none';
 //      });
     }
-    riot.update();
+    scope.update();
 
     addToFavorites = function () {
       scope.isInFavorites = true;
-      riot.update(scope.isInFavorites);
+      scope.update(scope.isInFavorites);
       opts[0][7].isInFavorites = true;
 
       if (!localStorage.getItem('favoritePaymentsList')) {
@@ -248,7 +248,7 @@
           console.log(favoritePaymentsList);
           scope.isInFavorites = false;
           localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-          riot.update(scope.isInFavorites);
+          scope.update(scope.isInFavorites);
         }
     }
 
@@ -277,7 +277,7 @@
         scope.operationMessage = window.languages.ComponentSuccessMessageForPayFriendHelp;
       }
 
-      riot.update();
+      scope.update();
       console.log("accountId", accountId);
       console.log("friendPhone", friendPhone);
 

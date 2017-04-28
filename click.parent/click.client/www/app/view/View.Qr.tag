@@ -102,7 +102,7 @@
                 scope.clickPinError = false;
                 scope.errorNote = ("Unknown phone number");
                 scope.showError = true;
-                riot.update();
+                scope.update();
               }
               else console.log("Dialer Error:" + err);
             },
@@ -127,7 +127,7 @@
             scope.errorNote = opts.lang_min_amount
           }
           scope.showError = true;
-          riot.update();
+          scope.update();
 //          alert(opts.lang_max_amount)
         }
 
@@ -201,7 +201,7 @@
         sumValueId.selectionEnd = 0
       }
 
-      riot.update()
+      scope.update()
     }
 
 

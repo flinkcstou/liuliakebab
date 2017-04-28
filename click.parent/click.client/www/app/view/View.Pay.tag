@@ -97,7 +97,7 @@
     };
     if (localStorage.getItem("click_client_payCategoryList")) {
 //      alert("in Category list of PAY");
-      riot.update(scope.categoryList);
+      scope.update(scope.categoryList);
 //      scope.categoryList = [];
 //      scope.categoryNamesMap = {};
 //      window.api.call({
@@ -214,9 +214,7 @@
         }
 
 
-        riot.update(scope.index);
-        riot.update(scope.currentList);
-        riot.update(scope.show);
+        scope.update();
       }
     };
 
@@ -230,10 +228,10 @@
         hintContainerId.style.display = 'block';
         scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
         scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
-        riot.update(hintContainerId);
+        scope.update();
       } else {
         hintContainerId.style.display = 'none';
-        riot.update(hintContainerId);
+        scope.update();
 
       }
 

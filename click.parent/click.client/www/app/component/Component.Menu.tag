@@ -94,7 +94,7 @@
         changeModeContainerId.style.backgroundColor = '#e56c47'
         changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
       }
-      riot.update();
+      scope.update();
     })
 
     userIconTouchEnd = function () {
@@ -103,7 +103,7 @@
       event.stopPropagation();
       if (modeOfApp.offlineMode)return
       riotTags.innerHTML = "<view-general-settings>";
-      riot.mount("view-general-settings");
+      scope.mount("view-general-settings");
 //      scope.unmount()
     }
 
@@ -118,11 +118,11 @@
       sideMenuId.style.webkitTransition = '0.3s';
       sideMenuBackPageId.style.opacity = '0';
       sideMenuBackPageId.style.webkitTransition = '0';
-      sideMenuId.style.webkitTransform = "translate(-100%, 0)";
-      sideMenuId.style.Transform = "translate(-100%, 0)";
+      sideMenuId.style.webkitTransform = "translate3d(-100%, 0, 0)";
+      sideMenuId.style.Transform = "translate3d(-100%, 0, 0)";
       mainPageId.style.opacity = '1';
       mainPageId.style.zIndex = '0';
-      riot.update();
+      scope.update();
     }
 
     var touchStartX, touchEndX, touchMoveX, touchEndMove, timeStartX, timeEndXs;
@@ -170,7 +170,7 @@
       mainPageId.style.opacity = deltaForMainPage;
 
       if (touchMoveX - touchStartX <= 0) {
-        sideMenuId.style.webkitTransform = 'translate(' + (touchMoveX - touchStartX) + 'px,0)'
+        sideMenuId.style.webkitTransform = 'translate3d(' + (touchMoveX - touchStartX) + 'px,0,0)'
         touchEndMove = touchMoveX - touchStartX
         componentMenu.checkOpen = true;
       }
@@ -249,7 +249,7 @@
         changeModeContainerId.style.backgroundColor = '#e56c47'
         changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
       }
-      riot.update()
+      scope.update()
     }
 
     //    menuBackPageTouchEnd = function () {
@@ -309,95 +309,95 @@
         if (device.platform != 'BrowserStand') {
 
           cordova.plugins.barcodeScanner.scan(
-              function (result) {
-                console.log(result)
+            function (result) {
+              console.log(result)
 
-                var string = result.text;
-                if (string.indexOf('click.uz') != -1) {
+              var string = result.text;
+              if (string.indexOf('click.uz') != -1) {
 
-                  string = string.split('?')[1]
-                  string = string.split('&')
-                  var id = '';
-                  for (var i in string) {
-                    if (string[i].split('=')[0] == 'id') {
-                      id = string[i].split('=')[1];
-                      console.log('ID', id)
-                    }
-                  }
-                  if (id) {
-                    if (modeOfApp.offlineMode) {
-                      riotTags.innerHTML = "<view-qr>";
-                      riot.mount('view-qr', {
-//                      "name": result.format,
-//                      "address": result.text,
-                        "id": id,
-                        "image": "resources/icons/ViewPay/logo_indoor.png"
-                      });
-//                      scope.unmount()
-                    }
-                    else {
-                      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-                      var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-                      var sessionKey = info.session_key;
-
-                      window.api.call({
-                        method: 'get.indoor.service',
-                        input: {
-                          phone_num: phoneNumber,
-                          session_key: sessionKey,
-                          service_id: id,
-
-                        },
-
-                        scope: this,
-
-                        onSuccess: function (result) {
-                          if (result[0][0].error == 0) {
-                            if (result[1]) {
-                              if (result[1][0]) {
-                                closeMenu();
-                                riotTags.innerHTML = "<view-qr>";
-                                riot.mount('view-qr', result[1][0]);
-//                                scope.unmount()
-                              }
-                            }
-                            console.log("QR PAY", result);
-                          }
-                          else {
-                            scope.clickPinError = false;
-                            scope.errorNote = result[0][0].error_note;
-                            scope.showError = true;
-                            riot.update();
-                          }
-                        },
-
-                        onFail: function (api_status, api_status_message, data) {
-                          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                          console.error(data);
-                        }
-                      });
-                    }
+                string = string.split('?')[1]
+                string = string.split('&')
+                var id = '';
+                for (var i in string) {
+                  if (string[i].split('=')[0] == 'id') {
+                    id = string[i].split('=')[1];
+                    console.log('ID', id)
                   }
                 }
-              },
-              function (error) {
-                scope.clickPinError = false;
-                scope.errorNote = "Scanning failed: " + error;
-                scope.showError = true;
-                riot.update();
-              },
-              {
-                preferFrontCamera: false, // iOS and Android
-                showFlipCameraButton: true, // iOS and Android
-                showTorchButton: true, // iOS and Android
-                torchOn: false, // Android, launch with the torch switched on (if available)
-                prompt: "Установите QR код в поле сканирования", // Android
-                resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-                formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
-                orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
-                disableAnimations: true, // iOS
-                disableSuccessBeep: false // iOS
+                if (id) {
+                  if (modeOfApp.offlineMode) {
+                    riotTags.innerHTML = "<view-qr>";
+                    riot.mount('view-qr', {
+//                      "name": result.format,
+//                      "address": result.text,
+                      "id": id,
+                      "image": "resources/icons/ViewPay/logo_indoor.png"
+                    });
+//                      scope.unmount()
+                  }
+                  else {
+                    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+                    var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+                    var sessionKey = info.session_key;
+
+                    window.api.call({
+                      method: 'get.indoor.service',
+                      input: {
+                        phone_num: phoneNumber,
+                        session_key: sessionKey,
+                        service_id: id,
+
+                      },
+
+                      scope: this,
+
+                      onSuccess: function (result) {
+                        if (result[0][0].error == 0) {
+                          if (result[1]) {
+                            if (result[1][0]) {
+                              closeMenu();
+                              riotTags.innerHTML = "<view-qr>";
+                              riot.mount('view-qr', result[1][0]);
+//                                scope.unmount()
+                            }
+                          }
+                          console.log("QR PAY", result);
+                        }
+                        else {
+                          scope.clickPinError = false;
+                          scope.errorNote = result[0][0].error_note;
+                          scope.showError = true;
+                          scope.update();
+                        }
+                      },
+
+                      onFail: function (api_status, api_status_message, data) {
+                        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                        console.error(data);
+                      }
+                    });
+                  }
+                }
               }
+            },
+            function (error) {
+              scope.clickPinError = false;
+              scope.errorNote = "Scanning failed: " + error;
+              scope.showError = true;
+              scope.update();
+            },
+            {
+              preferFrontCamera: false, // iOS and Android
+              showFlipCameraButton: true, // iOS and Android
+              showTorchButton: true, // iOS and Android
+              torchOn: false, // Android, launch with the torch switched on (if available)
+              prompt: "Установите QR код в поле сканирования", // Android
+              resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+              formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
+              orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
+              disableAnimations: true, // iOS
+              disableSuccessBeep: false // iOS
+            }
           );
         }
         else {
@@ -433,7 +433,7 @@
                 scope.showError = true;
                 scope.clickPinError = false;
                 scope.errorNote = result[0][0].error_note;
-                riot.update();
+                scope.update();
 //                alert(result[0][0].error_note);
               }
             },
@@ -494,18 +494,18 @@
         closeMenu();
         if (modeOfApp.offlineMode) {
           phonedialer.dial(
-              "*880*00*98767" + "%23",
-              function (err) {
-                if (err == "empty") {
-                  scope.clickPinError = false;
-                  scope.errorNote = ("Unknown phone number");
-                  scope.showError = true;
-                  riot.update();
-                }
-                else console.log("Dialer Error:" + err);
-              },
-              function (success) {
+            "*880*00*98767" + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                scope.update();
               }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
           );
           return
         }

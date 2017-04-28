@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" id="htmlId"
-      onselectstart="return false"  onCopy="return false" onCut="return false"
+      onselectstart="return false" onCopy="return false" onCut="return false"
       onDrag="return false" onDrop="return false" autocomplete=off unselectable="on">
 <head>
   <meta charset="UTF-8">
@@ -41,8 +41,8 @@
 </div>
 
 <script>
-  //  console.log = function() { return}
-  
+    console.log = function() { return}
+
   api.init();
   scope = this;
   if (window.cordova) {
@@ -95,9 +95,10 @@
       console.log('window.checkShowingComponent', window.checkShowingComponent)
       window.checkShowingComponent.parent.showComponent = false;
       window.checkShowingComponent = null;
-      riot.update();
+//      riot.update();
       return
     }
+    history.arrayOfHistory = []
     history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
 
     if (history.arrayOfHistory.length != 0) {
@@ -115,6 +116,7 @@
       }
 
     }
+
 
   }
 

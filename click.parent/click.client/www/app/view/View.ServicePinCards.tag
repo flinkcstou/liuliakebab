@@ -107,8 +107,8 @@
 
       var cardSumFromPinCards = scope.tags['component-pincards'].getAccountCardSum();
       console.log(cardSumFromPinCards, arrayForPay[5].amountText)
-      cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-      riot.update()
+      var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+      scope.update()
       if (cardSumFromPinCards && cardSumFromPinCards < parseInt(arrayForPay[5].amountText)) {
         console.log(cardSumFromPinCards, arrayForPay[5].amountText)
         scope.clickPinError = false;
@@ -151,7 +151,7 @@
         scope.clickPinError = false;
         scope.errorNote = "Выберите карту для оплаты";
         scope.showError = true;
-        riot.update();
+        scope.update();
         return;
 
       }
@@ -177,7 +177,7 @@
         scope.phoneNumber = viewServicePinCards.chosenFriendForHelp.number;
         scope.photo = viewServicePinCards.chosenFriendForHelp.photo;
       }
-      riot.update();
+      scope.update();
     } else {
 //      console.log("BBB");
       scope.friendHelpBool = false;
@@ -185,7 +185,7 @@
 
     refreshFunction = function (bool) {
       scope.friendHelpBool = bool;
-      riot.update(scope.friendHelpBool);
+      scope.update(scope.friendHelpBool);
     }
 
   </script>

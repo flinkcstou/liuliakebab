@@ -101,7 +101,7 @@
 
       scope.cardName = "UNKNOWN";
     }
-    riot.update(scope.cardName);
+    scope.update(scope.cardName);
 
     console.log("OPTS=", opts);
 

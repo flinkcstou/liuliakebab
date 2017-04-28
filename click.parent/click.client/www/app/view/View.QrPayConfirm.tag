@@ -98,7 +98,7 @@
     scope.serviceIcon = opts[2].image
     scope.categoryName = opts[2].name
 
-    riot.update()
+    scope.update()
     console.log(opts[0])
     //
     //    if (scope.isInFavorites)
@@ -125,7 +125,7 @@
       scope.friendPhoto = friendForHelp.photo;
 
     }
-    riot.update();
+    scope.update();
 
 
     if (scope.cardOrFriendBool) {
@@ -149,14 +149,14 @@
           scope.phoneNumber = viewServicePinCards.chosenFriendForHelp.number;
           scope.photo = viewServicePinCards.chosenFriendForHelp.photo;
         }
-        riot.update();
+        scope.update();
       } else {
 
         scope.friendHelpBool = false;
       }
 
     }
-    riot.update();
+    scope.update();
 
     payService = function () {
 
@@ -214,7 +214,7 @@
           }
           else {
             console.log("result of APP.PAYMENT 3", result);
-            riot.update();
+            scope.update();
             componentUnsuccessId.style.display = 'block';
           }
         },

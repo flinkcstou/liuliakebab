@@ -94,7 +94,7 @@
       }
       console.log(scope.phoneNumber)
       console.log(scope.maskPhoneNumber)
-      riot.update(scope.maskPhoneNumber);
+      scope.update(scope.maskPhoneNumber);
     }
 
     registrationOfflineTouchEnd = function () {
@@ -130,7 +130,7 @@
         scope.clickPinError = false;
         scope.errorNote = "Неправильно введен номер телефона";
         scope.showError = true;
-        riot.update();
+        scope.update();
 
         correctPhoneNumber = false;
       }
@@ -228,7 +228,7 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
 
 

@@ -96,7 +96,7 @@
 
     if (scope.autopayList) {
       console.log("Autopay list", scope.autopayList);
-      riot.update(scope.autopayList);
+      scope.update(scope.autopayList);
     }
     else {
       scope.autopayList = [];
@@ -143,7 +143,7 @@
 //            console.log("L=", result[1]);
 //            scope.autopayList = result[1];
             console.log("Autopay list", scope.autopayList);
-            riot.update(scope.autopayList);
+            scope.update(scope.autopayList);
             localStorage.setItem('click_client_autopayList', JSON.stringify(scope.autopayList));
           }
           else

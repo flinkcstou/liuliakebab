@@ -73,7 +73,7 @@
 
       scope.invoiceList = [];
       scope.toUser = true;
-      riot.update();
+      scope.update();
 
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -105,7 +105,7 @@
                   scope.invoiceList.push(result[1][i]);
                 }
 
-                riot.update(scope.invoiceList);
+                scope.update(scope.invoiceList);
 
                 localStorage.setItem('click_client_invoice_list', JSON.stringify(scope.invoiceList));
               }
@@ -115,7 +115,7 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
         },
 
@@ -130,7 +130,7 @@
 
       scope.invoiceList = [];
       scope.toUser = false;
-      riot.update();
+      scope.update();
 
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -161,7 +161,7 @@
                   scope.invoiceList.push(result[1][i]);
                 }
 
-                riot.update(scope.invoiceList);
+                scope.update(scope.invoiceList);
 //                localStorage.setItem('click_client_invoice_list', JSON.stringify(scope.invoiceList));
               }
             }
@@ -170,7 +170,7 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
         },
 

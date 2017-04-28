@@ -243,7 +243,7 @@
           scope.clickPinError = false;
           scope.errorNote = 'Failed because: ' + message;
           scope.showError = true;
-          riot.update();
+          scope.update();
         }
       }
       else {
@@ -293,7 +293,7 @@
           scope.arrayOfPhotos[i].contactLname = arrayOfConnectedContacts[i].name.givenName;
         }
       }
-      riot.update();
+      scope.update();
 
       localStorage.setItem('transferContacts', JSON.stringify(arrayOfConnectedContacts))
     }

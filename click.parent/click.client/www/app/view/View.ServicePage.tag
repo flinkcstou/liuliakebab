@@ -197,7 +197,7 @@
     //    console.log("click_client_servicesParamsMapFour", localStorage.getItem("click_client_servicesParamsMapFour"));
     //    console.log("click_client_servicesParamsMapFive", localStorage.getItem("click_client_servicesParamsMapFive"));
 
-    riot.update(scope.categoryNamesMap);
+    scope.update(scope.categoryNamesMap);
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
       history.arrayOfHistory.push(
@@ -250,7 +250,7 @@
 
       if (opts && opts.number) {
         firstFieldInput.value = opts.number
-        riot.update();
+        scope.update();
 
       }
 
@@ -344,13 +344,13 @@
 //              console.log("API returned = ", scope.currencyRate);
 //              localStorage.setItem('click_client_currency_rate', scope.currencyRate);
 
-            riot.update(scope.currencyRate);
+            scope.update(scope.currencyRate);
           }
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
         },
 
@@ -367,12 +367,12 @@
       //      }
 
       blockAmountCalculatorId.style.display = 'block';
-      riot.update(blockAmountCalculatorId);
+      scope.update(blockAmountCalculatorId);
     }
 
     closeComponent = function () {
       blockAmountCalculatorId.style.display = 'none';
-      riot.update(blockAmountCalculatorId);
+      scope.update(blockAmountCalculatorId);
     }
 
     var converted;
@@ -393,12 +393,12 @@
         convertedAmountFieldId.style.borderBottomColor = 'red';
         acceptConvertedBtnId.style.pointerEvents = 'none';
         scope.convertedAmount = converted;
-        riot.update(scope.convertedAmount);
+        scope.update(scope.convertedAmount);
       } else {
         convertedAmountFieldId.style.borderBottomColor = '#01cfff';
         acceptConvertedBtnId.style.pointerEvents = 'auto';
         scope.convertedAmount = converted;
-        riot.update(scope.convertedAmount);
+        scope.update(scope.convertedAmount);
       }
     }
 
@@ -409,7 +409,7 @@
         amountForPayTransaction = converted;
       }
       blockAmountCalculatorId.style.display = 'none';
-      riot.update(blockAmountCalculatorId);
+      scope.update(blockAmountCalculatorId);
     }
 
     if ((viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) || (modeOfApp.offlineMode && viewPay.chosenServiceId == 'mynumber')) {
@@ -682,8 +682,8 @@
           scope.oldFieldParamId = scope.chosenFieldParamId;
           scope.chosenFieldParamId = id;
           firstFieldInput.value = '';
-          riot.update(scope.chosenFieldName);
-          riot.update(scope.phoneFieldBool);
+          scope.update(scope.chosenFieldName);
+          scope.update(scope.phoneFieldBool);
           break;
         }
       }
@@ -715,8 +715,8 @@
                   scope.chosenFieldParamIdThree = null;
                 }
               }
-              riot.update(scope.chosenFieldNameTwo);
-              riot.update(scope.secondLevelArray);
+              scope.update();
+
               break;
             }
           }
@@ -734,8 +734,7 @@
                   scope.chosenFieldParamIdThree = null;
                 }
               }
-              riot.update(scope.chosenFieldNameTwo);
-              riot.update(scope.secondLevelArray);
+              scope.update();
               break;
             }
           }
@@ -764,7 +763,7 @@
                 scope.oldFieldParamIdThree = scope.chosenFieldParamIdThree;
               scope.chosenFieldParamIdThree = id;
 
-              riot.update(scope.chosenFieldNameThree);
+              scope.update(scope.chosenFieldNameThree);
               break;
             }
           }
@@ -778,7 +777,7 @@
               scope.amountOfFormTypeFour = scope.secondLevelArray[i].sum_cost;
               viewServicePage.amountText = scope.secondLevelArray[i].usd_cost;
               amountForPayTransaction = scope.amountOfFormTypeFour;
-              riot.update(scope.chosenFieldNameThree);
+              scope.update(scope.chosenFieldNameThree);
               break;
             }
           }
@@ -888,28 +887,28 @@
         scope.clickPinError = false;
         scope.errorNote = "Неправильно введён номер телефона";
         scope.showError = true;
-        riot.update();
+        scope.update();
 
         return;
       } else if (firstFieldInput.value.length == 0 && viewPay.chosenServiceId != "mynumber") {
         scope.clickPinError = false;
         scope.errorNote = "Введите значение первого поля";
         scope.showError = true;
-        riot.update();
+        scope.update();
         return;
       }
       if (amountForPayTransaction < scope.service.min_pay_limit) {
         scope.clickPinError = false;
         scope.errorNote = "Сумма должна быть больше " + scope.service.min_pay_limit;
         scope.showError = true;
-        riot.update();
+        scope.update();
         return;
       }
       if (amountForPayTransaction > scope.service.max_pay_limit) {
         scope.clickPinError = false;
         scope.errorNote = "Сумма должна быть меньше " + scope.service.max_pay_limit;
         scope.showError = true;
-        riot.update();
+        scope.update();
         return;
       }
 
@@ -933,7 +932,7 @@
           scope.clickPinError = false;
           scope.errorNote = "Выберите интернет пакет";
           scope.showError = true;
-          riot.update();
+          scope.update();
           return;
         }
       }
@@ -1019,7 +1018,7 @@
                 scope.clickPinError = false;
                 scope.errorNote = ("Unknown phone number");
                 scope.showError = true;
-                riot.update();
+                scope.update();
               }
               else console.log("Dialer Error:" + err);
             },
@@ -1093,7 +1092,7 @@
                 scope.clickPinError = false;
                 scope.errorNote = ("Unknown phone number");
                 scope.showError = true;
-                riot.update();
+                scope.update();
               }
               else console.log("Dialer Error:" + err);
             },
@@ -1114,7 +1113,7 @@
         } else if (opts.mode == 'ADDFAVORITE') {
           formTypeTwoBtnSaveId.style.pointerEvents = 'auto';
           formTypeTwoBtnSaveId.style.backgroundColor = 'rgb(1, 124, 227)';
-          riot.update(formTypeTwoBtnSaveId);
+          scope.update(formTypeTwoBtnSaveId);
         } else if (opts.mode == 'ADDAUTOPAY') {
 
           this.riotTags.innerHTML = "<view-service-pincards>";
@@ -1137,7 +1136,7 @@
         scope.clickPinError = false;
         scope.errorNote = "Попробуйте еще раз";
         scope.showError = true;
-        riot.update();
+        scope.update();
       }
     };
 

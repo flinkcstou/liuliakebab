@@ -308,7 +308,7 @@
                 if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
                   blockCodeConfirmId.style.display = 'block';
                   scope.secretCode = result[1][0].secret_code;
-                  riot.update(scope.secretCode);
+                  scope.update();
 
                 }
                 if (result[1][0].secret_code == 0) {
@@ -321,7 +321,7 @@
           else {
             scope.errorMessageFromTransfer = result[0][0].error_note
             componentUnsuccessId.style.display = 'block';
-            riot.update();
+            scope.update();
           }
         },
 

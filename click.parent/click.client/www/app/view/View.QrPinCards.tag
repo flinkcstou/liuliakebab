@@ -126,7 +126,7 @@
         scope.clickPinError = false;
         scope.errorNote = "Выберите карту для оплаты";
         scope.showError = true;
-        riot.update();
+        scope.update();
         return;
 
       }
@@ -152,7 +152,7 @@
         scope.phoneNumber = viewServicePinCards.chosenFriendForHelp.number;
         scope.photo = viewServicePinCards.chosenFriendForHelp.photo;
       }
-      riot.update();
+      scope.update();
     } else {
 //      console.log("BBB");
       scope.friendHelpBool = false;
@@ -160,7 +160,7 @@
 
     refreshFunction = function (bool) {
       scope.friendHelpBool = bool;
-      riot.update(scope.friendHelpBool);
+      scope.update(scope.friendHelpBool);
     }
 
 

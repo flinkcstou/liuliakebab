@@ -84,7 +84,7 @@
 
     this.on('mount', function () {
       scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-      riot.update();
+      scope.update();
     })
 
     touchStartTitle = function () {
@@ -149,7 +149,7 @@
         scope.clickPinError = false;
         scope.errorNote = 'You cant delete this card';
         scope.showError = true;
-        riot.update();
+        scope.update();
       }
     }
 
@@ -290,7 +290,7 @@
       console.log("You clicked on card - ", cardIdFromCarousel);
 
       scope.arrayOfOperationsByAccount = [];
-      riot.update()
+      scope.update()
 //      console.log(scope.card)
 
       if (scope.card)
@@ -316,7 +316,7 @@
                   }
                 }
 //                this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
-                riot.update(scope.arrayOfOperationsByAccount);
+                scope.update(scope.arrayOfOperationsByAccount);
                 console.log('scope.arrayOfOperationsByAccount', scope.arrayOfOperationsByAccount)
               }
             }
@@ -324,7 +324,7 @@
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
 
           },
@@ -362,7 +362,7 @@
         scope.clickPinError = false;
         scope.errorNote = 'Извининте, вы не можете произвести оплату с этой карты';
         scope.showError = true;
-        riot.update();
+        scope.update();
       }
     }
 
@@ -390,7 +390,7 @@
         scope.clickPinError = false;
         scope.errorNote = 'Извининте, вы не можете произвести перевод с этой карты';
         scope.showError = true;
-        riot.update();
+        scope.update();
       }
     }
 

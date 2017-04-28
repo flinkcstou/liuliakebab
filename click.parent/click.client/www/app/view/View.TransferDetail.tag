@@ -136,7 +136,7 @@
         scope.errorNote = window.languages.ViewTransferDetailCodeNotEntered;
         scope.clickPinError = false;
 
-        riot.update();
+        scope.update();
 
         return;
       }
@@ -172,7 +172,7 @@
           Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
 
         scope.showConfirmPanel = true;
-        riot.update(scope.showConfirmPanel);
+        scope.update(scope.showConfirmPanel);
       }
     };
 
@@ -224,7 +224,7 @@
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
           },
 
