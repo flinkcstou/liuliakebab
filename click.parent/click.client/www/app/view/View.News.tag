@@ -19,7 +19,7 @@
         <p id="newsTextId{i.news_id}" class="view-news-block-text">{i.content_short}</p>
 
         <p class="view-news-block-date">{i.datetime}</p>
-        <div style="display: none" class="view-news-block-readmore-container">Подробнее
+        <div if={!newsOpened} class="view-news-block-readmore-container">Подробнее
           <div class="view-news-block-readmore-icon"></div>
         </div>
       </div>
@@ -30,6 +30,7 @@
   <script>
     var scope = this;
     scope.newsArray = []
+    scope.newsOpened = false;
 
     this.on('mount', function () {
 
@@ -64,9 +65,11 @@
           document.getElementById(imageId).style.display = 'block'
           document.getElementById(containerId).style.height = 'auto';
           document.getElementById(textId).innerHTML = longText;
+          scope.newsOpened = true;
         }
         else {
-          document.getElementById(containerId).style.height = '27%';
+          scope.newsOpened = false;
+          document.getElementById(containerId).style.height = 330 * widthK + 'px';
           document.getElementById(imageId).style.display = 'false'
           document.getElementById(imageId).style.display = 'none'
           document.getElementById(textId).innerHTML = shortText;
@@ -95,6 +98,7 @@
       scope: this,
 
       onSuccess: function (result) {
+        scope.newsArray = []
         if (result[0][0].error == 0) {
           console.log("NEWS", result);
           for (var i in result[1]) {

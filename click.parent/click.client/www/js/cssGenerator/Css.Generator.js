@@ -9092,7 +9092,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "bottom: 0;" +
-  "top:" + 92 * heightK + "px;" +
+  "top:" + 92 * widthK + "px;" +
   "overflow: hidden;" +
   "background-size: contain;" +
   "background-color: white;" +
@@ -9121,7 +9121,7 @@ var css = {
   "{" +
   "position: relative;" +
   "top:" + 177 * heightK + "px;" +
-  "width:" + 600 * heightK + "px;" +
+  "width:" + 600 * widthK + "px;" +
   "height:" + 320 * heightK + "px;" +
   "border:" + 3 * heightK + "px solid #e7e7e7;" +
   "background-color: white;" +
@@ -9200,7 +9200,7 @@ var css = {
   "color: white;" +
   "background-color: white;" +
   "border:" + 3 * heightK + "px solid #e7e7e7;" +
-  "width: 86%;" +
+  "width:" + 520 * widthK + "px;" +
   "height: 19%;" +
   "left: 6%;" +
   "top: 26%;" +
@@ -9209,7 +9209,7 @@ var css = {
   addCardCardNumberBox: ".add-card-card-number-box " +
   "{" +
   "position: absolute;" +
-  "width:" + 90 * widthK + "px;" +
+  "width:" + 100 * widthK + "px;" +
   "height: 55%;" +
   "top: 18%;" +
   "background-color: transparent;" +
@@ -9220,22 +9220,22 @@ var css = {
 
   addCardCardNumberBoxOne: ".add-card-card-number-box-one " +
   "{" +
-  "left: 6%;" +
+  "left:" + 20 * widthK + "px;" +
   "}",
 
   addCardCardNumberBoxTwo: ".add-card-card-number-box-two " +
   "{" +
-  "left: 29%;" +
+  "left:" + 145 * widthK + "px;" +
   "}",
 
   addCardCardNumberBoxThree: ".add-card-card-number-box-three " +
   "{" +
-  "right: 29%;" +
+  "left:" + 270 * widthK + "px;" +
   "}",
 
   addCardCardNumberBoxFour: ".add-card-card-number-box-four " +
   "{" +
-  "right: 6%;" +
+  "left:" + 395 * widthK + "px;" +
   "}",
 
   addCardCardText: ".add-card-card-text " +
@@ -9277,8 +9277,8 @@ var css = {
   addCardCardDateBox: ".add-card-card-date-box " +
   "{" +
   "position: absolute;" +
-  "width: 75%;" +
-  "left: 16%;" +
+  "width:" + 125 * widthK + "px;" +
+  "left: 12%;" +
   "height: 60%;" +
   "top: 20%;" +
   "background-color: transparent;" +
@@ -11481,7 +11481,7 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "margin: 0 auto 3% auto;" +
-  "height: 27%;" +
+  "height:" + 330 * widthK + "px;" +
   "contain: content;" +
   "background-image: url('resources/icons/ViewNews/news.png');" +
   "background-repeat: no-repeat;" +
@@ -11620,7 +11620,7 @@ var css = {
   "right: 3%;  " +
   "top: 0;  " +
   "width: 23%;  " +
-  "height: 70%;  " +
+  "height:" + 32 * widthK + "px; " +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "background-repeat: no-repeat;" +
   "background-position-y: center;" +

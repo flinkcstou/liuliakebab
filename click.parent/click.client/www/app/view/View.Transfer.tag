@@ -1034,6 +1034,16 @@
         if (viewTransfer.type == 1) {
           if (modeOfApp.onlineMode) {
             var transferCards = [];
+            var firstFourSymbols = cardInputId.value.replace(/\s/g, '').substring(0, 4);
+            console.log('firstFourSymbols', firstFourSymbols)
+            if (firstFourSymbols != '8600') {
+              scope.clickPinError = false;
+              scope.errorNote = 'Неверные данные';
+              scope.showError = true;
+              riot.update();
+//            alert('Неверный код банка');
+              return;
+            }
             var codeOfBank = cardInputId.value.replace(/\s/g, '').substring(3, 6);
             var checkOfCode = false;
 //          console.log('CODE OF BANK', codeOfBank)

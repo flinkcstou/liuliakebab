@@ -133,7 +133,7 @@
         riotTags.innerHTML = "<view-settings-support-part-two>";
         riot.mount('view-settings-support-part-two', {title: window.languages.VewSettingsSupportPay, key: 'PAY'});
 
-        scope.unmount()
+//        scope.unmount()
       }
     };
 
@@ -220,7 +220,7 @@
 
         riotTags.innerHTML = "<view-service-page>";
         riot.mount("view-service-page", param);
-        scope.unmount()
+//        scope.unmount()
       }
     };
 
@@ -229,7 +229,7 @@
       event.stopPropagation();
 
       onBackKeyDown()
-      scope.unmount()
+//      scope.unmount()
 
     };
 
