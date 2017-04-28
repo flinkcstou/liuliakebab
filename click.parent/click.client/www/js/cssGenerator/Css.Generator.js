@@ -3876,6 +3876,17 @@ var css = {
   "color: gray;" +
   "}",
 
+  payconfirmCategoryField: ".payconfirm-category-input" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 8%;" +
+  "top: 47%;" +
+  "font-size: " + 40 * widthK + "px; " +
+  "color: gray;" +
+  "text-decoration: underline" +
+  "}",
+
   payconfirmField: ".payconfirm-field" +
   "{" +
   "position: relative;" +
@@ -11449,7 +11460,7 @@ var css = {
   "display: none;" +
   "z-index: 999999;" +
   "background-image: url('resources/icons/transparent.png');" +
-  //"background-repeat: no-repeat;" +
+    //"background-repeat: no-repeat;" +
   "background-position-y: center;" +
   "background-size: 100%;" +
   "}",

@@ -376,6 +376,7 @@ var RU_LANGUAGES =
   "ViewAutoPayTitleName": "АВТОПЛАТЕЖ",
 
   "ViewAutoPayEveryMonthLastDayText": "Ежемесячно в последний день ",
+  "ViewAutoPayEveryMonthLastDayTextTwo": "Конец месяца",
   "ViewAutoPayEveryMonthText": "Ежемесячно ",
   "ViewAutoPayAtText": " в ",
   "ViewAutoPayEveryWeekText": "Еженедельно ",

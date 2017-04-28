@@ -97,8 +97,8 @@
     scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
     //    console.log("ID of service=", opts.id);
-    this.serviceName = scope.servicesMap[opts.id][0].name;
-    this.serviceIcon = scope.servicesMap[opts.id][0].image;
+    this.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
+    this.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
 
     scope.daysArray = window.languages.ViewAutoPayMethodScheduleDaysArray;
     scope.weekDaysArray = window.languages.ViewAutoPayMethodScheduleWeekDaysArray;
@@ -196,8 +196,20 @@
       if (scope.timeMode) {
         console.log("HOUR=", dateNumber);
         console.log("MIN=", minuteNumber);
-        scope.autoPayData.paytime = window.languages.ViewAutoPayMethodScheduleHoursArray[dateNumber].v + ':' + window.languages.ViewAutoPayMethodScheduleMinutesArray[minuteNumber].v;
+        scope.autoPayData.paytime = window.languages.ViewAutoPayMethodScheduleHoursArray[dateNumber + 1].v + ':' + window.languages.ViewAutoPayMethodScheduleMinutesArray[minuteNumber + 1].v;
         console.log("autoPayData=", scope.autoPayData);
+
+        if (scope.autoPayData.type == 2) {
+          scope.autoPayData.condition_text = window.languages.ViewAutoPayMethodScheduleWeekDaysArray[scope.autoPayData.week_day].v + ", " +
+            scope.autoPayData.paytime;
+        } else if (scope.autoPayData.type == 3) {
+          scope.autoPayData.condition_text = scope.autoPayData.month_day + ", " +
+            scope.autoPayData.paytime;
+        } else if (scope.autoPayData.type == 4) {
+          scope.autoPayData.condition_text = window.languages.ViewAutoPayEveryMonthLastDayTextTwo + ", " +
+            scope.autoPayData.paytime;
+        }
+
         localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
         event.stopPropagation();
         riotTags.innerHTML = "<view-service-page>";
