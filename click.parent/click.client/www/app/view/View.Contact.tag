@@ -143,7 +143,7 @@
               scope.clickPinError = false;
               scope.errorNote = 'Вы не можете оплатить за этот номер';
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
 
           }
@@ -184,7 +184,7 @@
           scope.clickPinError = false;
           scope.errorNote = 'Вы не можете оплатить за этот номер';
           scope.showError = true;
-          riot.update();
+          scope.update();
         }
       }
       else {

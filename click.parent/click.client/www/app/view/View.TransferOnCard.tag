@@ -65,7 +65,7 @@
           scope.errorNote = window.languages.ViewTransferOnCardCardNotChosen;
           scope.clickPinError = false;
 
-          riot.update();
+          scope.update();
 
           return;
         }
@@ -76,7 +76,7 @@
           scope.errorNote = window.languages.ViewTransferOnCardCardNotChosen;
           scope.clickPinError = false;
 
-          riot.update();
+          scope.update();
 
           return;
         }

@@ -68,7 +68,7 @@
         scope.clickPinError = false;
         scope.errorNote = "Введите название автоплатежа";
         scope.showError = true;
-        riot.update();
+        scope.update();
         return;
       }
       scope.autoPayData.name = autoPayNameInput.value;

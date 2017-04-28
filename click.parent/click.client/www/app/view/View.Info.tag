@@ -122,7 +122,7 @@
                     scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
                     scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
 
-                    riot.update();
+                    scope.update();
                   }
                   else
                     scope.attention = true;
@@ -139,7 +139,7 @@
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
           },
 
@@ -150,7 +150,7 @@
         });
       }
 
-      riot.update();
+      scope.update();
     }
 
     offlineBalanceInfoTrue = function () {
@@ -166,13 +166,13 @@
               scope.clickPinError = false;
               scope.errorNote = "Unknown phone number";
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
             else {
               scope.clickPinError = false;
               scope.errorNote = "Dialer Error:" + err;
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
           },
           function (success) {
@@ -289,14 +289,14 @@
             }
 //          }
             console.log('scope.lastOperationContainer', scope.lastOperationContainer)
-            riot.update()
+            scope.update()
 //            console.log('scope.lastOperationContainer', scope.lastOperationContainer);
           }
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
 
         },
@@ -319,7 +319,7 @@
               scope.clickPinError = false;
               scope.errorNote = ("Unknown phone number");
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
             else console.log("Dialer Error:" + err);
           },

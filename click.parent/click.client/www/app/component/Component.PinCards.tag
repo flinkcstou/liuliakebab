@@ -123,7 +123,7 @@
 //
 //        } else {
         scope.checkedId = "check" + id;
-        riot.update(scope.checkedId);
+        scope.update(scope.checkedId);
 
         if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
           this.parent.refreshFunction(false);
@@ -145,7 +145,7 @@
 
 
         localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))
-        riot.update(scope.cardsArray)
+        scope.update(scope.cardsArray)
       }
       else return
 
@@ -160,7 +160,7 @@
       }
 
       localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))
-      riot.update();
+      scope.update();
     };
 
     console.log('OPTS PINCARDS', opts)

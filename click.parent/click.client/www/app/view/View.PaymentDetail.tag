@@ -137,7 +137,7 @@
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
           },
 
@@ -177,7 +177,7 @@
           scope.errorNote = window.languages.ViewPaymentDetailCardNotChosen;
           scope.clickPinError = false;
 
-          riot.update();
+          scope.update();
 
           return;
         }
@@ -188,7 +188,7 @@
           scope.errorNote = window.languages.ViewPaymentDetailCardNotChosen;
           scope.clickPinError = false;
 
-          riot.update();
+          scope.update();
 
           return;
         }

@@ -49,7 +49,7 @@
 
     if (JSON.parse(localStorage.getItem("click_client_cards")))
       scope.cardsArray = JSON.parse(localStorage.getItem("click_client_cards"));
-    riot.update();
+    scope.update();
 
     refreshCards = function () {
 
@@ -148,7 +148,7 @@
                 scope.clickPinError = false;
                 scope.errorNote = result[0][0].error_note;
                 scope.showError = true;
-                riot.update();
+                scope.update();
               }
             },
 
@@ -243,7 +243,7 @@
         localStorage.setItem('click_client_countCard', count);
       }
 
-      riot.update();
+      scope.update();
 
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
         writeBalance();
@@ -280,14 +280,14 @@
                 scope.cardsArray[result[1][0].account_id].salary = result[1][0].balance;
                 localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
 
-                riot.update();
+                scope.update();
               }
             }
             else {
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
           },
 
@@ -323,7 +323,7 @@
           scope.cardsArray[cardId].chosenCard = false;
       }
 
-      riot.update();
+      scope.update();
 
       riotTags.innerHTML = "<view-my-cards>";
       riot.mount('view-my-cards', [cardId]);

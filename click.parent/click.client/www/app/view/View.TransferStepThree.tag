@@ -98,7 +98,7 @@
         scope.clickPinError = false;
         scope.errorNote = "На выбранной карте недостаточно средств";
         scope.showError = true;
-        riot.update();
+        scope.update();
         return;
       }
 
@@ -113,7 +113,7 @@
         scope.clickPinError = false;
         scope.errorNote = ('Выберите карту');
         scope.showError = true;
-        riot.update();
+        scope.update();
       }
     }
 

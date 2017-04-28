@@ -124,13 +124,13 @@
       if (opts.account_id) {
 
         scope.tags["component-report-filter"].filterByAccount = opts.account_id;
-        riot.update();
+        scope.update();
       }
 
       if (opts.card_name) {
 
         scope.tags["component-report-filter"].createdAccountFilter = opts.card_name;
-        riot.update();
+        scope.update();
       }
     });
 
@@ -182,7 +182,7 @@
     graphView = function () {
 
       scope.firstReportView = !scope.firstReportView;
-      riot.update(scope.firstReportView);
+      scope.update(scope.firstReportView);
 
       var date = new Date();
       var firstDay = new Date(date.getFullYear(), scope.mNumber, 1);
@@ -205,7 +205,7 @@
 
     scope.monthsArray = window.languages.ViewReportMonthsArray;
     console.log("monthsArray", scope.monthsArray);
-    riot.update(scope.monthsArray);
+    scope.update(scope.monthsArray);
 
 
     var monthChanged = false;
@@ -306,12 +306,12 @@
       if (dateForComparison.getMonth() < scope.mNumber) {
 
         scope.monthNotStartedYet = true;
-        riot.update();
+        scope.update();
 
       } else {
 
         scope.monthNotStartedYet = false;
-        riot.update();
+        scope.update();
       }
 
       if (scope.firstReportView) {
@@ -360,12 +360,12 @@
       if (dateForComparison.getMonth() < scope.mNumber) {
 
         scope.monthNotStartedYet = true;
-        riot.update();
+        scope.update();
 
       } else {
 
         scope.monthNotStartedYet = false;
-        riot.update();
+        scope.update();
       }
 
       if (scope.firstReportView) {
@@ -417,7 +417,7 @@
         scope.paymentDates = [];
         scope.paymentsList = [];
 
-        riot.update();
+        scope.update();
 
         return;
       }
@@ -455,7 +455,7 @@
       console.log("lastDay=", lastDay);
 
 
-      riot.update();
+      scope.update();
 
       if (device.platform != 'BrowserStand') {
         var options = {dimBackground: true};
@@ -528,13 +528,13 @@
 
             console.log('scope.paymentDates', scope.paymentDates)
             console.log('scope.paymentsMap', scope.paymentsMap)
-            riot.update();
+            scope.update();
           }
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
 
         },
@@ -555,7 +555,7 @@
 
         createGraph([]);
 
-        riot.update();
+        scope.update();
 
         return;
       }
@@ -585,7 +585,7 @@
 
       scope.graphList = [];
       scope.paymentsSum = 0;
-      riot.update();
+      scope.update();
       window.api.call({
         method: 'history.chart.data',
         input: {
@@ -638,8 +638,8 @@
 
             }
 
-            riot.update(scope.graphList);
-            riot.update(scope.paymentsSum);
+            scope.update();
+
             console.log('history chart data', scope.graphList);
 
             createGraph(scope.graphList);
@@ -648,7 +648,7 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
 
         },
@@ -717,7 +717,7 @@
 
         scope.count = j;
       }
-      riot.update()
+      scope.update()
       console.log("ARRAY OF COORDINATES", scope.arrayOfCoordinates)
       console.log('DATA', data)
       var ctx = document.getElementById('myChart').getContext('2d');
@@ -776,7 +776,7 @@
             scope.tags['view-report-service'].opts = scope.paymentsList[i]
             window.checkShowingComponent = scope.tags['view-report-service'];
 
-            riot.update()
+            scope.update()
             break;
           }
         }

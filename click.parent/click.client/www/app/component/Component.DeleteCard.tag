@@ -57,7 +57,7 @@
 
             scope.parent.tags['component-card-carousel'].onComponentCreated(cardNumber);
 
-            riot.update();
+            scope.update();
             deleteCardComponentId.style.display = 'none';
 //              updateCard();
             return;
@@ -66,7 +66,7 @@
             scope.parent.clickPinError = false;
             scope.parent.errorNote = result[0][0].error_note;
             scope.parent.showError = true;
-            riot.update();
+            scope.update();
           }
         },
 

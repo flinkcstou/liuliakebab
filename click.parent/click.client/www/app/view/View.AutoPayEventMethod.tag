@@ -110,7 +110,7 @@
       }
     }
 
-    riot.update(scope.amountsCanBeText);
+    scope.update(scope.amountsCanBeText);
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-autopay-event-method') {
@@ -174,7 +174,7 @@
 
             scope.oldFieldParamId = scope.chosenFieldParamId;
             scope.chosenFieldParamId = id;
-            riot.update(scope.chosenAmount);
+            scope.update(scope.chosenAmount);
             break;
           }
         }
@@ -225,13 +225,13 @@
         scope.clickPinError = false;
         scope.errorNote = "Неправильно введён номер телефона";
         scope.showError = true;
-        riot.update();
+        scope.update();
         return;
       } else if (firstFieldInput.value.length == 0) {
         scope.clickPinError = false;
         scope.errorNote = "Введите значение первого поля";
         scope.showError = true;
-        riot.update();
+        scope.update();
         return;
       }
 
@@ -239,7 +239,7 @@
         scope.clickPinError = false;
         scope.errorNote = "Выберите условную сумму для пополнения баланса";
         scope.showError = true;
-        riot.update();
+        scope.update();
         return;
       }
 

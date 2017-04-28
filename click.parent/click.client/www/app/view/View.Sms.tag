@@ -52,7 +52,7 @@
       if (myValue == 'x') {
         scope.confirmSms = scope.confirmSms.substring(0, scope.confirmSms.length - 1);
       }
-      riot.update();
+      scope.update();
       if (scope.confirmSms.length == 5) {
         var sms = scope.confirmSms;
         viewSms.getSms(sms);
@@ -66,7 +66,7 @@
 
     timer = function () {
 
-      riot.update();
+      scope.update();
       seconds--;
       if (seconds < 10)
         scope.time = minutes + ':0' + seconds;
@@ -75,7 +75,7 @@
       if (minutes == 0 && seconds == 0) {
         scope.messageTitle = window.languages.ViewSmsMessageTitle;
         scope.messageTitleTwo = window.languages.ViewSmsMessageTitleTwo;
-        riot.update();
+        scope.update();
         clearInterval(time);
       }
       if (seconds == 0) {
@@ -89,7 +89,7 @@
     var token;
     viewSms.getSms = function (sms) {
       scope.confirmSms = sms;
-      riot.update(scope.confirmSms)
+      scope.update(scope.confirmSms)
       event.preventDefault();
       event.stopPropagation();
 
@@ -152,7 +152,7 @@
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_code;
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
         },
 
@@ -171,7 +171,7 @@
       scope.clickPinError = false;
       scope.errorNote = window.languages.ViewSmsResendText + localStorage.getItem('click_client_phoneNumber');
       scope.showError = true;
-      riot.update();
+      scope.update();
 //      alert(window.languages.ViewSmsResendText + localStorage.getItem('click_client_phoneNumber'));
       resendSms();
     }

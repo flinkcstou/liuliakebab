@@ -120,7 +120,7 @@
         scope.clickPinError = false;
         scope.errorNote = 'Failed because: ' + message;
         scope.showError = true;
-        riot.update();
+        scope.update();
 //        alert('Failed because: ' + message);
       }
     }
@@ -160,7 +160,7 @@
               scope.suggestionOne.photo = '';
 
 
-            riot.update(scope.suggestionOne)
+            scope.update(scope.suggestionOne)
 
             firstSuggestionBlockId.style.display = 'block';
             secondSuggestionBlockId.style.display = 'none';
@@ -183,7 +183,7 @@
             else
               scope.suggestionTwo.photo = '';
 
-            riot.update(scope.suggestionTwo)
+            scope.update(scope.suggestionTwo)
 
             firstSuggestionBlockId.style.display = 'block';
             secondSuggestionBlockId.style.display = 'block';
@@ -206,7 +206,7 @@
             else
               scope.suggestionThree.photo = '';
 
-            riot.update(scope.suggestionThree)
+            scope.update(scope.suggestionThree)
 
             firstSuggestionBlockId.style.display = 'block';
             secondSuggestionBlockId.style.display = 'block';
@@ -230,7 +230,7 @@
             else
               scope.suggestionFour.photo = '';
 
-            riot.update(scope.suggestionFour)
+            scope.update(scope.suggestionFour)
 
             firstSuggestionBlockId.style.display = 'block';
             secondSuggestionBlockId.style.display = 'block';
@@ -262,7 +262,7 @@
       Keyboard.hide();
 
       scope.parent.defaultNumber = scope.suggestionOne.phoneNumber.substring(3, scope.suggestionOne.phoneNumber.length).replace(/\s/g, '');
-      riot.update(scope.parent.defaultNumber);
+      scope.update(scope.parent.defaultNumber);
 
       //contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(3, scope.suggestionOne.phoneNumber.length).replace(/\s/g, '');
     }
@@ -278,7 +278,7 @@
       Keyboard.hide();
 
       scope.parent.defaultNumber = scope.suggestionTwo.phoneNumber.substring(3, scope.suggestionTwo.phoneNumber.length).replace(/\s/g, '');
-      riot.update(scope.parent.defaultNumber);
+      scope.update(scope.parent.defaultNumber);
     }
 
     thirdSuggestionBlock = function () {
@@ -292,7 +292,7 @@
       Keyboard.hide();
 
       scope.parent.defaultNumber = scope.suggestionThree.phoneNumber.substring(3, scope.suggestionThree.phoneNumber.length).replace(/\s/g, '');
-      riot.update(scope.parent.defaultNumber);
+      scope.update(scope.parent.defaultNumber);
     }
 
     fourthSuggestionBlock = function () {
@@ -306,7 +306,7 @@
       Keyboard.hide();
 
       scope.parent.defaultNumber = scope.suggestionFour.phoneNumber.substring(3, scope.suggestionFour.phoneNumber.length).replace(/\s/g, '');
-      riot.update(scope.parent.defaultNumber);
+      scope.update(scope.parent.defaultNumber);
     }
 
 

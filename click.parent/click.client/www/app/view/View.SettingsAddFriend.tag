@@ -80,7 +80,7 @@
       if (contactPhoneNumberId.value.length != 9) {
         nextButtonId.style.display = 'none'
       }
-      riot.update();
+      scope.update();
 
 //      firstSuggestionBlockId.style.display = 'block';
 //      secondSuggestionBlockId.style.display = 'block';
@@ -90,7 +90,7 @@
 
       namePhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #01cfff"
       contactPhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #cbcbcb"
-      riot.update();
+      scope.update();
 
     }
 
@@ -139,7 +139,7 @@
       namePhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #cbcbcb"
       contactPhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #01cfff"
 
-      riot.update();
+      scope.update();
     }
 
     pickContactFromNative = function () {
@@ -212,7 +212,7 @@
         scope.clickPinError = false;
         scope.errorNote = 'Failed because: ' + message;
         scope.showError = true;
-        riot.update();
+        scope.update();
       }
     }
     if (device.platform != 'BrowserStand')
@@ -241,7 +241,7 @@
 
           firstSuggestionBlockId.style.display = 'none';
           secondSuggestionBlockId.style.display = 'none';
-          riot.update();
+          scope.update();
           return
         }
       }
@@ -308,7 +308,7 @@
             }
 
 
-            riot.update(scope.suggestionOne)
+            scope.update(scope.suggestionOne)
 
             firstSuggestionBlockId.style.display = 'block';
             secondSuggestionBlockId.style.display = 'none';
@@ -348,7 +348,7 @@
               }
             }
 
-            riot.update(scope.suggestionTwo)
+            scope.update(scope.suggestionTwo)
 
             secondSuggestionBlockId.style.display = 'block';
           }

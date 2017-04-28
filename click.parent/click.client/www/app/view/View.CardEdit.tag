@@ -50,11 +50,11 @@
       this.defaultName = scope.card.name;
       if (Object.keys(scope.cardsArray).length < 2) {
         scope.onlyOneCard = true;
-        riot.update(scope.onlyOneCard);
+        scope.update(scope.onlyOneCard);
       }
       else {
         scope.onlyOneCard = false;
-        riot.update(scope.onlyOneCard);
+        scope.update(scope.onlyOneCard);
         var isMain = scope.card.default_account;
         this.on('mount', function () {
           if (isMain) {
@@ -132,7 +132,7 @@
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
 
           },
@@ -189,7 +189,7 @@
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
           },
           onFail: function (api_status, api_status_message, data) {
@@ -219,7 +219,7 @@
         makeMainCheckId.style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
       }
 
-      riot.update(makeMainCheckId);
+      scope.update();
     }
 
 

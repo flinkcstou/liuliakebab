@@ -54,14 +54,14 @@
         if (result[0][0].error == 0) {
           if (result[1][0]) {
             scope.helpText = result[1][0].content;
-            riot.update();
+            scope.update();
           }
         }
         else {
           scope.clickPinError = false;
           scope.errorNote = result[0][0].error_note;
           scope.showError = true;
-          riot.update();
+          scope.update();
         }
       },
 

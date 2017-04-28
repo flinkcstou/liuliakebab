@@ -74,7 +74,7 @@
         enteredPin = enteredPin.substring(0, enteredPin.length - 1);
       }
 
-      riot.update();
+      scope.update();
       updateEnteredPin();
     }
 
@@ -153,8 +153,7 @@
             scope.showError = true;
             scope.checkPin = true;
             scope.checkPinConfirm = false;
-            riot.update(scope.checkPin);
-            riot.update(scope.checkPinConfirm);
+            scope.update();
             console.log('scope.checkPin', scope.checkPin, 'scope.checkPinConfirm', scope.checkPinConfirm)
             pinConfirm = '';
             pin = '';
@@ -169,7 +168,7 @@
           scope.checkPin = false;
           scope.checkPinConfirm = true;
           enteredPin = '';
-          riot.update();
+          scope.update();
           updateEnteredPin()
         }
       }
@@ -223,7 +222,7 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
             riotTags.innerHTML = "<view-registration-client>";
             riot.mount('view-registration-client');
           }
@@ -265,7 +264,7 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
             riotTags.innerHTML = "<view-registration-client>";
             riot.mount('view-registration-client');
           }
@@ -303,7 +302,7 @@
           if (result[0][0].error == 0) {
             scope.clickPinError = false;
             scope.errorNote = "Успешно изменен пин";
-            riot.update();
+            scope.update();
 
             onBackKeyDown();
             scope.unmount()
@@ -312,7 +311,7 @@
             scope.showError = true;
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
-            riot.update();
+            scope.update();
 
             onBackKeyDown();
             scope.unmount()

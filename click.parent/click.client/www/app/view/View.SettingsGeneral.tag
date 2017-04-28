@@ -92,7 +92,7 @@
         femaleTitleId.style.color = 'black'
       }
 
-      riot.update();
+      scope.update();
 
     })
 
@@ -124,7 +124,7 @@
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
           },
 
@@ -164,13 +164,13 @@
             scope.clickPinError = false;
             scope.errorNote = 'Изменения сохранены';
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
         },
 
@@ -234,7 +234,7 @@
                           scope.clickPinError = false;
                           scope.errorNote = result[0][0].error_note;
                           scope.showError = true;
-                          riot.update();
+                          scope.update();
                         }
                       },
 

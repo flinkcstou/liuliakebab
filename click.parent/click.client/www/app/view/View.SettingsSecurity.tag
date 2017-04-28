@@ -85,7 +85,7 @@
       else {
         securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
       }
-      riot.update()
+      scope.update()
     });
 
 
@@ -117,7 +117,7 @@
         isVisible = true;
         hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
       }
-      riot.update(hideMyNumberIconId);
+      scope.update(hideMyNumberIconId);
 
       window.api.call({
         method: 'settings.change.visibility',
@@ -135,13 +135,13 @@
             scope.clickPinError = false;
             scope.errorNote = ("Изменена видимость номера");
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
 
         },
@@ -175,7 +175,7 @@
         blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
         localStorage.setItem('settings_block', true)
       }
-      riot.update(hideMyNumberIconId);
+      scope.update(hideMyNumberIconId);
     };
 
 
@@ -184,7 +184,7 @@
       history.arrayOfHistory.push({view: "view-trusted-devices"});
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
       riotTags.innerHTML = "<view-trusted-devices>";
-      riot.mount("view-trusted-devices");
+      scope.mount("view-trusted-devices");
 
       scope.unmount()
     };
@@ -205,7 +205,7 @@
         fingerPrint = false
         localStorage.setItem("settings_finger_print", false)
       }
-      riot.update()
+      scope.update()
     }
 
   </script>

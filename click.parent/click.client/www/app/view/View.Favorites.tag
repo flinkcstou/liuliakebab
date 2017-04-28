@@ -82,7 +82,7 @@
         else break;
       }
 //      console.log("favorites=", scope.favPaymentsList);
-      riot.update(scope.favPaymentsList);
+      scope.update(scope.favPaymentsList);
     }
 
     openFavoritePayment = function (id) {
@@ -155,7 +155,7 @@
                   scope.clickPinError = false;
                   scope.errorNote = ("Unknown phone number");
                   scope.showError = true;
-                  riot.update();
+                  scope.update();
                 }
                 else console.log("Dialer Error:" + err);
               },
@@ -183,7 +183,7 @@
           favoritePaymentsList.splice(i, 1);
           console.log(favoritePaymentsList);
           localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-          riot.update(scope.favPaymentsList);
+          scope.update(scope.favPaymentsList);
         }
 
       event.stopPropagation();

@@ -88,7 +88,7 @@
             scope.clickPinError = false;
             scope.errorNote = 'Удачно отправлено';
             scope.showError = true;
-            riot.update();
+            scope.update();
 //            alert('Удачно отправлено');
           }
           else {
@@ -96,7 +96,7 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
         },
 

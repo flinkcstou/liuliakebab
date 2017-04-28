@@ -148,8 +148,7 @@
       scope.dateBlockArrayTwo = window.languages.ViewAutoPayMethodScheduleMinutesArray;
       dateChooseBlockId.style.display = 'block';
 //      console.log("LAST DAY, dateBlockArray", scope.dateBlockArray);
-      riot.update(scope.dateBlockTitle);
-      riot.update(scope.dateBlockArray);
+      scope.update();
       changePositionInit();
       changeMinutesPositionInit();
     }
@@ -167,8 +166,7 @@
       scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleDaysArray;
       dateChooseBlockId.style.display = 'block';
 //      console.log("CHOSEN DAY, dateBlockArray", scope.dateBlockArray);
-      riot.update(scope.dateBlockTitle);
-      riot.update(scope.dateBlockArray);
+      scope.update();
       changePositionInit();
     }
 
@@ -185,9 +183,7 @@
       scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleWeekDaysArray;
       dateChooseBlockId.style.display = 'block';
 //      console.log("EVERY WEEK, dateBlockArray", scope.dateBlockArray);
-      riot.update(scope.dateBlockTitle);
-      riot.update(scope.dateBlockArray);
-      riot.update(scope.weekMode);
+      scope.update();
       changePositionInit();
     }
 
@@ -238,8 +234,7 @@
         scope.dateBlockArrayTwo = window.languages.ViewAutoPayMethodScheduleMinutesArray;
         dateChooseBlockId.style.display = 'block';
 //        console.log("LAST DAY, dateBlockArray", scope.dateBlockArray);
-        riot.update(scope.dateBlockTitle);
-        riot.update(scope.dateBlockArray);
+        scope.update();
         changePositionInit();
         changeMinutesPositionInit();
       }

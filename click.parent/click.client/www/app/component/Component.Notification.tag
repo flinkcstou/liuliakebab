@@ -27,7 +27,7 @@
     setTimeout(function () {
 
       scope.setTransition = true;
-      riot.update();
+      scope.update();
     }, 1000);
 
     if (device.platform != 'BrowserStand') {
@@ -90,7 +90,7 @@
           scope.show = true;
         }
 
-        riot.update();
+        scope.update();
 
         window.FirebasePlugin.setBadgeNumber(numberOfMessage);
 
@@ -108,14 +108,14 @@
 
       scope.show = false;
       scope.notificationText = "";
-      riot.update();
+      scope.update();
     };
 
     onTouchStartNotificationAccept = function () {
 
       scope.show = false;
       scope.notificationText = "";
-      riot.update();
+      scope.update();
 
       if (scope.notificationAction == "invoice") {
 

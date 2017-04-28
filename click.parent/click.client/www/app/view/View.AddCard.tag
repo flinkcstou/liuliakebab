@@ -121,7 +121,7 @@
               scope.clickPinError = false;
               scope.errorNote = ("Unknown phone number");
               scope.showError = true;
-              riot.update();
+              scope.update();
             }
             else console.log("Dialer Error:" + err);
           },
@@ -154,13 +154,13 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
         },
 

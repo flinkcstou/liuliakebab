@@ -200,13 +200,13 @@
       if (myValue != 'x') {
         if (!scope.checkReturn && checkOne && scope.cardNumberPartOne.length < 4) {
           scope.cardNumberPartOne += myValue;
-          riot.update(scope.cardNumberPartOne)
+          scope.update(scope.cardNumberPartOne)
           if (scope.cardNumberPartOne.length == 4) {
             if (scope.cardNumberPartOne == '8600') {
               checkDate = true;
               checkPin = false;
               scope.cardPin = '';
-              riot.update();
+              scope.update();
             }
             else {
               checkDate = false;
@@ -219,7 +219,7 @@
 
         if (!scope.checkReturn && checkTwo && scope.cardNumberPartTwo.length < 4) {
           scope.cardNumberPartTwo += myValue;
-          riot.update(scope.cardNumberPartTwo)
+          scope.update(scope.cardNumberPartTwo)
           if (scope.cardNumberPartTwo.length == 4) {
             touchEndBoxThree()
             scope.checkReturn = true;
@@ -228,7 +228,7 @@
 
         if (!scope.checkReturn && checkThree && scope.cardNumberPartThree.length < 4) {
           scope.cardNumberPartThree += myValue;
-          riot.update(scope.cardNumberPartThree)
+          scope.update(scope.cardNumberPartThree)
           if (scope.cardNumberPartThree.length == 4) {
             touchEndBoxFour()
             scope.checkReturn = true;
@@ -240,7 +240,7 @@
             scope.cardDate += '/'
           scope.cardDate += myValue;
           scope.cardDateOriginal += myValue;
-          riot.update(scope.cardDate)
+          scope.update(scope.cardDate)
           if (scope.cardDate.length == 4) {
             scope.checkReturn = true;
           }
@@ -248,7 +248,7 @@
 
         if (!scope.checkReturn && checkFour && scope.cardNumberPartFour.length < 4) {
           scope.cardNumberPartFour += myValue;
-          riot.update(scope.cardNumberPartFour)
+          scope.update(scope.cardNumberPartFour)
           if (scope.cardNumberPartFour.length == 4) {
             if (checkDate)
               touchEndBoxData()
@@ -261,7 +261,7 @@
         if (checkPinCopy && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardPinOriginal.length < 4) {
           scope.cardPin += ' * ';
           scope.cardPinOriginal += myValue;
-          riot.update(scope.cardPin)
+          scope.update(scope.cardPin)
           if (scope.cardPin.length == 4) {
             scope.checkReturn = true;
           }
@@ -271,34 +271,34 @@
       else {
         if (checkOne) {
           scope.cardNumberPartOne = scope.cardNumberPartOne.substring(0, scope.cardNumberPartOne.length - 1);
-          riot.update(scope.cardNumberPartOne)
+          scope.update(scope.cardNumberPartOne)
         }
 
         if (checkTwo) {
           scope.cardNumberPartTwo = scope.cardNumberPartTwo.substring(0, scope.cardNumberPartTwo.length - 1);
-          riot.update(scope.cardNumberPartTwo)
+          scope.update(scope.cardNumberPartTwo)
         }
 
         if (checkThree) {
           scope.cardNumberPartThree = scope.cardNumberPartThree.substring(0, scope.cardNumberPartThree.length - 1);
-          riot.update(scope.cardNumberPartThree)
+          scope.update(scope.cardNumberPartThree)
         }
 
         if (checkFour) {
           scope.cardNumberPartFour = scope.cardNumberPartFour.substring(0, scope.cardNumberPartFour.length - 1);
-          riot.update(scope.cardNumberPartFour)
+          scope.update(scope.cardNumberPartFour)
         }
 
         if (checkDateCopy) {
           scope.cardDate = scope.cardDate.substring(0, scope.cardDate.length - 1);
           scope.cardDateOriginal = scope.cardDateOriginal.substring(0, scope.cardDateOriginal.length - 1);
-          riot.update(scope.cardDate)
+          scope.update(scope.cardDate)
         }
         if (checkPinCopy) {
           scope.cardPin = scope.cardPin.substring(0, scope.cardPin.length - 3);
           scope.cardPinOriginal = scope.cardPinOriginal.substring(0, scope.cardPinOriginal.length - 1);
 
-          riot.update(scope.cardPin)
+          scope.update(scope.cardPin)
         }
       }
 
@@ -329,7 +329,7 @@
         scope.clickPinError = false;
         scope.errorNote = 'Error';
         scope.showError = true;
-        riot.update();
+        scope.update();
       }
 
       console.log('cardNumber', cardNumber, secondParameter)

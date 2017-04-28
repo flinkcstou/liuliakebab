@@ -60,16 +60,14 @@
             console.log("result of PIN RESET ", result);
             scope.firstMessage = result[1][0].text1;
             scope.secondMessage = result[1][0].text2;
-            riot.update(scope.firstMessage);
-            riot.update(scope.secondMessage);
             scope.firstStage = false;
-            riot.update(scope.firstStage);
+            scope.update();
           }
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
         },
 

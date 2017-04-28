@@ -32,7 +32,7 @@
 
         riotTags.innerHTML = "<view-main-page>";
         riot.mount('view-main-page');
-        riot.update()
+        scope.update()
 //        scope.unmount()
       } else if (opts.confirmtype == 'session') {
         riotTags.innerHTML = "<view-authorization>";
@@ -45,7 +45,7 @@
       scope.outerShowAlertBool = true;
 
       //OK
-      riot.update()
+      scope.update()
     };
 
     cancelConfirm = function () {
@@ -55,7 +55,7 @@
       scope.outerShowAlertBool = true;
       console.log(scope.outerShowAlertBool)
 
-      riot.update()
+      scope.update()
     }
 
   </script>

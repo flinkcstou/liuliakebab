@@ -146,7 +146,7 @@
           return
         }
       };
-      riot.update();
+      scope.update();
 //      if (scope.result) {
 //        localStorage.clear();
 //        this.riotTags.innerHTML = "<view-registration-device>";
@@ -170,7 +170,7 @@
         enteredPin = enteredPin.substring(0, enteredPin.length - 1);
       }
 
-      riot.update();
+      scope.update();
       updateEnteredPin();
     }
 
@@ -190,7 +190,7 @@
         scope.clickPinError = false;
         scope.errorNote = 'Do first enter with Internet';
         scope.showError = true;
-        riot.update();
+        scope.update();
       }
 
     };
@@ -304,7 +304,7 @@
               console.log("errornote=", scope.errorNote);
             }
             scope.showError = true;
-            riot.update(scope.showError);
+            scope.update(scope.showError);
             enteredPin = '';
             updateEnteredPin();
             return
@@ -538,7 +538,7 @@
 
                           if (result[1].length == scope.categoryList.length) {
 //                            console.log("save into localstorage, categoryList=", scope.categoryList);
-                            riot.update(scope.categoryList);
+                            scope.update(scope.categoryList);
                             localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
                             localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
                           }

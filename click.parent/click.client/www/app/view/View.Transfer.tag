@@ -354,7 +354,7 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
         },
 
@@ -425,7 +425,7 @@
 
       scope.contactMode = true
       scope.cardMode = false
-      riot.update();
+      scope.update();
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
         firstSuggestionBlockId.style.display = 'none';
@@ -459,7 +459,7 @@
       else
         nextButtonId.style.display = 'none'
 
-      riot.update();
+      scope.update();
     }
 
 
@@ -658,7 +658,7 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            riot.update();
+            scope.update();
           }
         },
 
@@ -943,7 +943,7 @@
       this.cardLabelId.style.color = 'gray';
       this.contactIconId.style.opacity = '1'
       this.cardIconId.style.opacity = '0.5';
-      riot.update();
+      scope.update();
 
       if (viewTransfer.phoneNumber)
         this.contactPhoneNumberId.value = viewTransfer.phoneNumber;
@@ -963,7 +963,7 @@
       contactPhoneNumberId.value = '';
       scope.cardMode = true;
       scope.contactMode = false;
-      riot.update();
+      scope.update();
       this.menuContainerId.style.backgroundImage = 'url(resources/icons/ViewTransfer/cardMenu.png)';
       this.cardLabelId.style.color = 'black';
       this.contactLabelId.style.color = 'gray';
@@ -998,7 +998,7 @@
         scope.clickPinError = false;
         scope.errorNote = 'Write phone number or card number for transfer';
         scope.showError = true;
-        riot.update();
+        scope.update();
 //        alert('Write phone number or card number for transfer')
       }
       else {
@@ -1010,7 +1010,7 @@
             scope.clickPinError = false;
             scope.errorNote = 'Incorrect phone number';
             scope.showError = true;
-            riot.update();
+            scope.update();
 //            alert('Incorrect phone number')
             return
           }
@@ -1038,7 +1038,7 @@
               scope.clickPinError = false;
               scope.errorNote = 'Неверные данные';
               scope.showError = true;
-              riot.update();
+              scope.update();
 //            alert('Неверный код банка');
               return;
             }
@@ -1062,7 +1062,7 @@
               scope.clickPinError = false;
               scope.errorNote = 'Неверный код банка';
               scope.showError = true;
-              riot.update();
+              scope.update();
 //            alert('Неверный код банка');
               return;
             }
@@ -1074,7 +1074,7 @@
             scope.clickPinError = false;
             scope.errorNote = 'Incorrect card number';
             scope.showError = true;
-            riot.update();
+            scope.update();
 //            alert('Incorrect card number')
             return
           }
@@ -1125,7 +1125,7 @@
         scope.clickPinError = false;
         scope.errorNote = 'Failed because: ' + message;
         scope.showError = true;
-        riot.update();
+        scope.update();
 //        alert('Failed because: ' + message);
       }
     }

@@ -52,7 +52,7 @@
       }
 
       //OK
-      riot.update()
+      scope.update()
     };
 
 
