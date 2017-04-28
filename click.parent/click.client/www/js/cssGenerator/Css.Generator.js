@@ -11481,7 +11481,7 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "margin: 0 auto 3% auto;" +
-  "height: 27%;" +
+  "height:" + 330 * widthK + "px;" +
   "contain: content;" +
   "background-image: url('resources/icons/ViewNews/news.png');" +
   "background-repeat: no-repeat;" +
@@ -11620,7 +11620,7 @@ var css = {
   "right: 3%;  " +
   "top: 0;  " +
   "width: 23%;  " +
-  "height: 70%;  " +
+  "height:" + 32 * widthK + "px; " +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "background-repeat: no-repeat;" +
   "background-position-y: center;" +
