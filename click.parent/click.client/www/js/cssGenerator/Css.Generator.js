@@ -9092,7 +9092,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "bottom: 0;" +
-  "top:" + 92 * heightK + "px;" +
+  "top:" + 92 * widthK + "px;" +
   "overflow: hidden;" +
   "background-size: contain;" +
   "background-color: white;" +
