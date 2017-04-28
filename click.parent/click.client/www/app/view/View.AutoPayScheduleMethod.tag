@@ -260,6 +260,7 @@
     dateContainerTouchStart = function () {
       console.log("in start touch=", dateNumber);
       carouselTouchStartY = event.changedTouches[0].pageY;
+//      touchStartTime = new Date().getTime();
       left = -((scope.shift * dateNumber) * widthK) - carouselTouchStartY;
       delta = left;
     }
@@ -268,8 +269,17 @@
       event.preventDefault();
       event.stopPropagation();
       carouselTouchEndY = event.changedTouches[0].pageY;
+//      touchEndTime = new Date().getTime();
+//      var speed = Math.abs((carouselTouchEndY - carouselTouchStartY) / (touchEndTime - touchStartTime));
+//      console.log("SPEED=", speed);
+//      console.log("startY=", carouselTouchStartY);
+//      console.log("endY=", carouselTouchEndY);
+//      console.log("N to Move=", Math.abs(carouselTouchStartY - carouselTouchEndY) / scope.shift);
+      console.log("N fixed=", (Math.abs(carouselTouchStartY - carouselTouchEndY) / scope.shift).toFixed(0));
+      nShift = (Math.abs(carouselTouchStartY - carouselTouchEndY) / scope.shift).toFixed(0);
+
       if (Math.abs(carouselTouchStartY - carouselTouchEndY) > 20) {
-        changePosition();
+        changePosition(nShift);
       }
     }
 
@@ -283,12 +293,12 @@
       this.dateContainerId.style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + delta ) + 'px' + ", 0)";
     }
 
-    function changePosition() {
-//      console.log("1", dateNumber);
+    function changePosition(nShift) {
+//      console.log("NSHIFT", nShift);
 
       if (carouselTouchEndY < carouselTouchStartY && dateNumber < count - 1) {
         document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
-        ++dateNumber;
+        dateNumber = dateNumber + Number(nShift);
         this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
@@ -321,7 +331,7 @@
 
       } else if (carouselTouchEndY > carouselTouchStartY && dateNumber > 0) {
         document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
-        --dateNumber;
+        dateNumber = dateNumber - Number(nShift);
         this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
@@ -329,7 +339,6 @@
         document.getElementById("day" + dateNumber).style.color = '#01B8FE';
         //console.log("5", dateNumber);
       }
-
       localStorage.setItem('dateNumber', dateNumber);
     }
 
@@ -384,8 +393,11 @@
       event.preventDefault();
       event.stopPropagation();
       minutesTouchEndY = event.changedTouches[0].pageY;
+      console.log("N fixed=", (Math.abs(minutesTouchStartY - minutesTouchEndY) / scope.shift).toFixed(0));
+      mShift = (Math.abs(minutesTouchStartY - minutesTouchEndY) / scope.shift).toFixed(0);
+
       if (Math.abs(minutesTouchStartY - minutesTouchEndY) > 20) {
-        changeMinutesPosition();
+        changeMinutesPosition(mShift);
       }
     }
 
@@ -399,11 +411,11 @@
       this.minutesContainerId.style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + mdelta ) + 'px' + ", 0)";
     }
 
-    function changeMinutesPosition() {
+    function changeMinutesPosition(mShift) {
 
       if (minutesTouchEndY < minutesTouchStartY && minuteNumber < minutesCount - 1) {
         document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
-        ++minuteNumber;
+        minuteNumber = minuteNumber + Number(mShift);
         this.minutesContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
@@ -430,7 +442,7 @@
 
       } else if (minutesTouchEndY > minutesTouchStartY && minuteNumber > 0) {
         document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
-        --minuteNumber;
+        minuteNumber = minuteNumber - Number(mShift);
         this.minutesContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
         this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
