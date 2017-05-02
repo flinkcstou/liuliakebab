@@ -14,8 +14,7 @@
 
     <div class="view-qr-contact-phone-field-container">
       <div class="view-qr-contact-phone-field">
-        <p style="display: none" class="view-qr-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
-          {window.languages.Currency}</p>
+        <p class="view-qr-contact-text-field">Сумма</p>
         <input maxlength="14" class="view-qr-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
                onmouseup="sumMouseUp()"
                type="tel" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
