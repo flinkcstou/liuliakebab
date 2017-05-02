@@ -160,7 +160,7 @@
       }
 
       localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))
-      scope.update();
+      riot.update();
     };
 
     console.log('OPTS PINCARDS', opts)

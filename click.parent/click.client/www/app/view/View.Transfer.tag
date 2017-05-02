@@ -25,7 +25,8 @@
       <div class="transfer-contact-phone-field">
         <p class="transfer-contact-text-field">{window.languages.ViewPayTransferContactTextField}</p>
         <p class="transfer-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
-        <input onchange="contactPhoneBlurAndChange()" onfocus="contactPhoneBlurAndChange()"
+        <input onpaste="searchContacts()" onchange="contactPhoneBlurAndChange()"
+               onfocus="contactPhoneBlurAndChange()"
                id="contactPhoneNumberId"
                class="transfer-contact-number-input-part" type="tel"
                onkeyup="searchContacts()"
@@ -94,7 +95,8 @@
     <div id="cardInputFieldId" class="transfer-contact-body-container">
       <div class="transfer-contact-phone-field">
         <p class="transfer-contact-text-field">{window.languages.ViewPayTransferCardTextField}</p>
-        <input onchange="cardPhoneBlurAndChange()" onfocus="cardPhoneBlurAndChange()"
+        <input onpaste="cardVerificationOnPaste()" onchange="cardPhoneBlurAndChange()"
+               onfocus="cardPhoneBlurAndChange()"
                id="cardInputId" class="transfer-card-number-input-part" type="tel"
                onkeydown="searchCard(this)" onkeyup="cardOnKeyUp()"
                maxlength="19"
@@ -445,6 +447,7 @@
       event.preventDefault();
       event.stopPropagation();
 
+      console.log('qwewe')
       scope.cardMode = true
       scope.contactMode = false
 
@@ -580,6 +583,8 @@
     var checkCardFifthBlock = false;
     var checkCardMenu = false;
 
+    var onPaste = false;
+
 
     scope.searchWord = '';
     scope.backbuttoncheck = true;
@@ -671,8 +676,17 @@
       });
     }
 
+    cardVerificationOnPaste = function () {
+      onPaste = true;
+      cardOnKeyUp()
+    }
+
     cardOnKeyUp = function () {
 
+      if (onPaste) {
+        cardInputId.value = inputVerification.cardVerification(event.target.value);
+        onPaste = false;
+      }
 
       if (cardInputId.value.length <= 19 && (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT))
         cardInputId.value = inputVerification.cardVerification(cardInputId.value);
