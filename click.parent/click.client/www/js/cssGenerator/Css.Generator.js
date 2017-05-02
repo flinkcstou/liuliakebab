@@ -9226,7 +9226,7 @@ var css = {
   addCardCardNumberBox: ".add-card-card-number-box " +
   "{" +
   "position: absolute;" +
-  "width:" + 100 * widthK + "px;" +
+  "width:" + 480 * widthK + "px;" +
   "height: 55%;" +
   "top: 18%;" +
   "background-color: transparent;" +
@@ -9238,21 +9238,6 @@ var css = {
   addCardCardNumberBoxOne: ".add-card-card-number-box-one " +
   "{" +
   "left:" + 20 * widthK + "px;" +
-  "}",
-
-  addCardCardNumberBoxTwo: ".add-card-card-number-box-two " +
-  "{" +
-  "left:" + 145 * widthK + "px;" +
-  "}",
-
-  addCardCardNumberBoxThree: ".add-card-card-number-box-three " +
-  "{" +
-  "left:" + 270 * widthK + "px;" +
-  "}",
-
-  addCardCardNumberBoxFour: ".add-card-card-number-box-four " +
-  "{" +
-  "left:" + 395 * widthK + "px;" +
   "}",
 
   addCardCardText: ".add-card-card-text " +

@@ -14,18 +14,9 @@
       <div class="add-card-uzcard-icon"></div>
       <p class="add-card-card-text add-card-card-number-text">{window.languages.ViewAddCardNumberTitle}</p>
       <div id="cardNumberInput" class="add-card-card-number">
-        <input type="tel" onkeyup="boxOneKeyUp()" onkeydown="boxOneKeyDown()" autofocus="true" maxlength="4"
+        <input type="tel" onkeyup="boxOneKeyUp()" onkeydown="boxOneKeyDown()" autofocus="true"
                id="boxOne"
                class="add-card-card-number-box add-card-card-number-box-one">
-        </input>
-        <input type="tel" onkeyup="boxTwoKeyUp()" onkeydown="boxTwoKeyDown()" maxlength="4" id="boxTwo"
-               class="add-card-card-number-box add-card-card-number-box-two">
-        </input>
-        <input type="tel" onkeyup="boxThreeKeyUp()" onkeydown="boxThreeKeyDown()" maxlength="4" id="boxThree"
-               class="add-card-card-number-box add-card-card-number-box-three">
-        </input>
-        <input type="tel" onkeyup="boxFourKeyUp()" onkeydown="boxFourKeyDown()" maxlength="4" id="boxFour"
-               class="add-card-card-number-box add-card-card-number-box-four">
         </input>
       </div>
 
@@ -40,7 +31,7 @@
       <p style="display: none" id="cardPinInputTitleId" class="add-card-card-text add-card-card-text-pin">
         {window.languages.ViewAddCardPinTitle}</p>
       <div style="display: none" id="cardPinInputId" class="add-card-card-pin">
-        <input onkeyup="boxPinKeyUp()" type="tel" maxlength="4" id="boxPin"
+        <input oninput="boxPinKeyUp()" onkeyup="boxPinKeyUp()" type="tel" maxlength="4" id="boxPin"
                class="add-card-card-date-pin-box">
         </input>
       </div>
@@ -97,14 +88,8 @@
       event.stopPropagation()
 
       boxOne.blur()
-      boxTwo.blur()
-      boxThree.blur()
-      boxFour.blur()
-      boxFour.blur()
-      boxDate.blur()
 
-
-      cardNumber = boxOne.value + boxTwo.value + boxThree.value + boxFour.value
+      cardNumber = boxOne.value
 
       if (boxOne.value == '8600') {
         dateOrPin = boxDate.value;
@@ -176,94 +161,21 @@
       event.preventDefault()
       event.stopPropagation()
 
-      if (event.keyCode != input_codes.BACKSPACE_CODE) {
-        boxOne.value = inputVerification.telVerification(boxOne.value)
-      }
+      if (boxOne.value.length <= 19 && (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT))
+        boxOne.value = inputVerification.cardVerification(boxOne.value);
 
-      if (boxOne.value.length == 4 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-        if (boxOne.value == '8600') {
-          cardPinInputId.style.display = 'none';
-          cardPinInputTitleId.style.display = 'none';
-
-          cardDateInputId.style.display = 'block';
-          cardDateInputTitleId.style.display = 'block';
-        }
-        else {
-          cardDateInputId.style.display = 'none';
-          cardDateInputTitleId.style.display = 'none';
-
-//          cardPinInputId.style.display = 'block';
-//          cardPinInputTitleId.style.display = 'block';
-        }
-      }
-    }
-
-    boxTwoKeyUp = function () {
-      event.preventDefault()
-      event.stopPropagation()
-
-      if (event.keyCode != input_codes.BACKSPACE_CODE) {
-        boxTwo.value = inputVerification.telVerification(boxTwo.value)
-      }
-    }
-
-    boxThreeKeyUp = function () {
-      event.preventDefault()
-      event.stopPropagation()
-
-      if (event.keyCode != input_codes.BACKSPACE_CODE) {
-        boxThree.value = inputVerification.telVerification(boxThree.value)
-      }
-    }
-
-    boxFourKeyUp = function () {
-      event.preventDefault()
-      event.stopPropagation()
-
-      if (event.keyCode != input_codes.BACKSPACE_CODE) {
-        boxFour.value = inputVerification.telVerification(boxFour.value)
-      }
     }
 
 
     boxOneKeyDown = function () {
-
-      if (boxOne.value.length == 4 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-
-        boxTwo.focus();
+      if (boxOne.value.length >= 19 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+        boxOne.value = event.target.value.substring(0, event.target.value.length - 1);
       }
     }
 
-    boxTwoKeyDown = function () {
-
-      if (boxTwo.value.length == 4 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-        boxThree.focus();
-      }
-    }
-
-    boxThreeKeyDown = function () {
-
-      if (boxThree.value.length == 4 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-        boxFour.focus();
-      }
-
-    }
-
-    boxFourKeyDown = function () {
-      console.log('event.keyCode', event.keyCode)
-
-      if (boxFour.value.length >= 4 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-        if (boxOne.value == '8600') {
-          boxDate.focus();
-        }
-        else {
-          boxPin.focus();
-        }
-      }
-
-    }
 
     boxDateKeyDown = function () {
+
     }
 
     boxDateKeyUp = function () {
