@@ -282,6 +282,8 @@
         }
         card();
       }
+
+
     })
 
     telTransferVerificationKeyDown = function (input) {
@@ -615,7 +617,7 @@
 //
 //      }
 
-      if (input.value.length >= 19 && event.keyCode != input_codes.BACKSPACE_CODEevent.keyCode != input_codes.NEXT) {
+      if (input.value.length >= 19 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         cardInputId.value = event.target.value.substring(0, event.target.value.length - 1);
       }
 
@@ -926,7 +928,7 @@
       }
 
       j = 0;
-//      riot.update();
+      scope.update();
 
     }
 

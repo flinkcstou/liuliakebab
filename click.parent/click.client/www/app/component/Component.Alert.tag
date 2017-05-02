@@ -33,6 +33,7 @@
     closeAlertForm = function () {
       event.preventDefault();
       event.stopPropagation();
+      console.log('QQQ')
 
       if (scope.parent) {
         scope.parent.showError = false;
@@ -52,7 +53,7 @@
       }
 
       //OK
-      scope.update()
+      riot.update()
     };
 
 

@@ -377,7 +377,15 @@
       contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length);
 
 
-      contactNameId.value = scope.suggestionOne.displayName
+      if (scope.suggestionOne.displayName)
+        contactNameId.value = scope.suggestionOne.displayName
+      else {
+        if (scope.contactNameId.value = scope.suggestionOne.fName.fName)
+          contactNameId.value = scope.suggestionOne.fName
+        else {
+          contactNameId.value = scope.suggestionOne.lName
+        }
+      }
 
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
@@ -403,7 +411,15 @@
       contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length);
 
 
-      contactNameId.value = scope.suggestionTwo.displayName
+      if (scope.suggestionTwo.displayName)
+        contactNameId.value = scope.suggestionTwo.displayName
+      else {
+        if (scope.contactNameId.value = scope.suggestionTwo.fName.fName)
+          contactNameId.value = scope.suggestionTwo.fName
+        else {
+          contactNameId.value = scope.suggestionTwo.lName
+        }
+      }
 
 
       if (contactPhoneNumberId.value.length == 9) {
