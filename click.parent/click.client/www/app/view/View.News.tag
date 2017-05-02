@@ -43,11 +43,6 @@
       event.stopPropagation()
 
       onBackKeyDown()
-
-//      if (viewNewsId.parentNode) {
-//        viewNewsId.parentNode.removeChild(viewNewsId);
-//      }
-
       scope.unmount()
     }
 
@@ -119,6 +114,7 @@
             }
             scope.newsArray.push(result[1][i])
           }
+          scope.update()
         }
         else
           alert(result[0][0].error_note);

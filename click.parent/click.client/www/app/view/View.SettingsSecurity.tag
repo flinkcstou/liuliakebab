@@ -175,7 +175,7 @@
         blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
         localStorage.setItem('settings_block', true)
       }
-      scope.update(hideMyNumberIconId);
+      scope.update();
     };
 
 
@@ -184,7 +184,7 @@
       history.arrayOfHistory.push({view: "view-trusted-devices"});
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
       riotTags.innerHTML = "<view-trusted-devices>";
-      scope.mount("view-trusted-devices");
+      riot.mount("view-trusted-devices");
 
       scope.unmount()
     };
@@ -207,6 +207,7 @@
       }
       scope.update()
     }
+
 
   </script>
 </view-security-settings>
