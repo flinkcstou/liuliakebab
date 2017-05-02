@@ -380,7 +380,7 @@
       if (scope.suggestionOne.displayName)
         contactNameId.value = scope.suggestionOne.displayName
       else {
-        if (scope.contactNameId.value = scope.suggestionOne.fName.fName)
+        if (scope.suggestionOne.fName)
           contactNameId.value = scope.suggestionOne.fName
         else {
           contactNameId.value = scope.suggestionOne.lName
@@ -395,6 +395,8 @@
       }
       else
         nextButtonId.style.display = 'none'
+
+      scope.update()
     }
 
     secondSuggestionBlock = function () {
@@ -414,7 +416,7 @@
       if (scope.suggestionTwo.displayName)
         contactNameId.value = scope.suggestionTwo.displayName
       else {
-        if (scope.contactNameId.value = scope.suggestionTwo.fName.fName)
+        if (scope.suggestionTwo.fName)
           contactNameId.value = scope.suggestionTwo.fName
         else {
           contactNameId.value = scope.suggestionTwo.lName
@@ -429,6 +431,8 @@
       }
       else
         nextButtonId.style.display = 'none'
+
+      scope.update()
     }
 
     //    searchContactsForAdding = function (number) {
