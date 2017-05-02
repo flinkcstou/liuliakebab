@@ -13,7 +13,7 @@
         <input onchange="contactPhoneBlurAndChange()" onfocus="contactPhoneBlurAndChange()"
                id="contactPhoneNumberId"
                class="settings-add-friend-contact-number-input-part" type="tel"
-               maxlength="9" onkeyup="searchContacts()"/>
+               maxlength="9" onkeyup="searchContacts()" oninput="searchContacts()"/>
       </div>
 
       <div class="settings-add-friend-add-container">

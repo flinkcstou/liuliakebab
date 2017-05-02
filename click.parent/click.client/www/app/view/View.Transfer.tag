@@ -25,7 +25,9 @@
       <div class="transfer-contact-phone-field">
         <p class="transfer-contact-text-field">{window.languages.ViewPayTransferContactTextField}</p>
         <p class="transfer-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
-        <input onpaste="searchContacts()" onchange="contactPhoneBlurAndChange()"
+        <input onpaste="onPasteTrigger()"
+               oninput="contactPhoneBlurAndChange('onInput')"
+               onchange="contactPhoneBlurAndChange()"
                onfocus="contactPhoneBlurAndChange()"
                id="contactPhoneNumberId"
                class="transfer-contact-number-input-part" type="tel"
@@ -95,7 +97,9 @@
     <div id="cardInputFieldId" class="transfer-contact-body-container">
       <div class="transfer-contact-phone-field">
         <p class="transfer-contact-text-field">{window.languages.ViewPayTransferCardTextField}</p>
-        <input onpaste="cardVerificationOnPaste()" onchange="cardPhoneBlurAndChange()"
+        <input onpaste="onPasteTrigger()"
+               oninput="cardPhoneBlurAndChange('onInput')"
+               onchange="cardPhoneBlurAndChange()"
                onfocus="cardPhoneBlurAndChange()"
                id="cardInputId" class="transfer-card-number-input-part" type="tel"
                onkeydown="searchCard(this)" onkeyup="cardOnKeyUp()"
@@ -423,9 +427,15 @@
 
     }
 
-    contactPhoneBlurAndChange = function () {
+    var onPaste = false;
+    contactPhoneBlurAndChange = function (from) {
       event.preventDefault();
       event.stopPropagation();
+      console.log('from', from)
+      if (onPaste) {
+        contactPhoneNumberId.value = inputVerification.telVerification(contactPhoneNumberId.value)
+        onPaste = false;
+      }
 
       scope.contactMode = true
       scope.cardMode = false
@@ -443,13 +453,18 @@
       }
     }
 
+
     cardPhoneBlurAndChange = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      console.log('qwewe')
       scope.cardMode = true
       scope.contactMode = false
+      console.log('event.keyCode', event)
+      if (onPaste) {
+        cardInputId.value = inputVerification.cardVerification(cardInputId.value)
+        onPaste = false;
+      }
 
       if (cardInputId.value.replace(/\s/g, '').length == 16) {
         cardOwnerFunction();
@@ -465,6 +480,10 @@
         nextButtonId.style.display = 'none'
 
       scope.update();
+    }
+
+    onPasteTrigger = function () {
+      onPaste = true;
     }
 
 
@@ -583,8 +602,6 @@
     var checkCardFifthBlock = false;
     var checkCardMenu = false;
 
-    var onPaste = false;
-
 
     scope.searchWord = '';
     scope.backbuttoncheck = true;
@@ -652,8 +669,11 @@
           if (result[0][0].error == 0) {
 //              console.log("result of P2P CARD INFO ", result[1][0].card_owner)
             try {
-              ownerCardDsiplayId.style.display = 'block'
-              scope.cardOwner = result[1][0].card_owner;
+              if (result[1] && result[1][0]) {
+                scope.cardOwner = result[1][0].card_owner;
+                if (scope.cardOwner)
+                  ownerCardDsiplayId.style.display = 'block'
+              }
             }
             catch (error) {
               console.log(error)
@@ -676,17 +696,8 @@
       });
     }
 
-    cardVerificationOnPaste = function () {
-      onPaste = true;
-      cardOnKeyUp()
-    }
-
     cardOnKeyUp = function () {
-
-      if (onPaste) {
-        cardInputId.value = inputVerification.cardVerification(event.target.value);
-        onPaste = false;
-      }
+      console.log('cardInputId.value.length', cardInputId.value.length)
 
       if (cardInputId.value.length <= 19 && (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT))
         cardInputId.value = inputVerification.cardVerification(cardInputId.value);

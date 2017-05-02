@@ -45,6 +45,7 @@
              onfocus="bordersColor()"
              autofocus="true"
              value="{defaultNumber || opts.first_field_value}" onkeydown="telPayVerificationKeyDown(this)"
+             oninput="telPayVerificationKeyUp()"
              onkeyup="telPayVerificationKeyUp()"/>
       <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
     </div>
@@ -56,7 +57,7 @@
              id="amount"
              pattern="[0-9]"
              onfocus="amountFocus()" onblur="amountOnBlur()"
-             onmouseup="eraseAmountDefault()" onkeyup="sumForPay()"/>
+             onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
       <div if="{!modeOfApp.offlineMode}" class="servicepage-amount-icon" ontouchend="amountCalculator()"></div>
     </div>
 
