@@ -166,6 +166,13 @@ window.inputVerification.telVerification = function (phoneNumber) {
   return phoneNumber.split(",").join();
 }
 
+window.inputVerification.telLengthVerification = function (phoneNumber, length) {
+
+  phoneNumber = phoneNumber.replace(new RegExp('[^0-9]', 'g'), '');
+  phoneNumber = phoneNumber.split(",").join();
+  return phoneNumber.length > length ? phoneNumber.substring(phoneNumber.length - length, phoneNumber.length) : phoneNumber;
+}
+
 window.inputVerification.dateVerification = function (date) {
 
   date = date.replace(new RegExp('[^0-9]', 'g'), '');

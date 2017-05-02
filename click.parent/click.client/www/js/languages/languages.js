@@ -5,6 +5,7 @@ localStorage.setItem('settings_language', 'ru');
 var RU_LANGUAGES =
 {
   "CodeOfCountry": "998",
+  "PhoneNumberLength": 9,
   "Currency": "сум",
 
   "ComponentBankOperationsPay": "ОПЛАТА",
@@ -458,6 +459,7 @@ var RU_LANGUAGES =
   "ViewAutoPayNameFieldText": "Название автоплатежа",
   "ViewAutoPayConditionFieldText": "Условие",
   "ViewAutoPayCreateButtonText": "СОЗДАТЬ",
+  "ViewAutoPayDeleteButtonText": "УДАЛИТЬ",
 };
 
 window.languages = RU_LANGUAGES;

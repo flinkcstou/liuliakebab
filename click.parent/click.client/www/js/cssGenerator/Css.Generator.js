@@ -4098,6 +4098,23 @@ var css = {
   "color: white;" +
   "}",
 
+  payconfirmButtonDelete: ".payconfirm-button-delete" +
+  "{" +
+  "height: " + 74 * widthK + "px;" +
+  "text-transform: capitalize;" +
+  "position: relative;" +
+  "background-color: #ee4d3d;" +
+  "padding: 0;" +
+  "font-size: " + 32 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
+  "}",
+
   //COMPONENT SEARCH
 
   componentSearch: ".component-search " +

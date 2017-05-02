@@ -7,8 +7,8 @@
 
   <div class="view-autopay-container">
     <div class="view-autopay-block-containter" each="{j in autopayList}">
-      <div id="p{j.id}" class="view-autopay-block-inner-containter"
-           ontouchend="openFavoritePayment(this.id)">
+      <div id="{j.id}" class="view-autopay-block-inner-containter"
+           ontouchend="openAutoPayment(this.id)">
         <div class="view-autopay-icon" style="background-image: url({j.service_icon});"></div>
         <div class="view-autopay-info-container">
           <p class="view-autopay-info-name">{j.service_title}</p>
@@ -18,7 +18,7 @@
           <p class="view-autopay-info-number">{j.cntrg_param2}</p>
         </div>
       </div>
-      <div id="{j.id}" class="view-autopay-next-icon" ontouchend="removeFromFavorites(this.id)"></div>
+      <div class="view-autopay-next-icon"></div>
     </div>
   </div>
 
@@ -156,6 +156,51 @@
         }
       });
     }
+
+    openAutoPayment = function (id) {
+      console.log("autoPayment ID to open=", id);
+      for (var i in scope.autopayList) {
+        if (scope.autopayList[i].id == id) {
+          scope.autoPayData = {};
+          scope.autoPayData.id = id;
+          viewPay.chosenServiceId = scope.autopayList[i].service_id;
+          scope.autoPayData.service_id = scope.autopayList[i].service_id;
+          scope.autoPayData.name = scope.autopayList[i].name;// autoPayNameInput.value;
+          scope.autoPayData.autopay_type = scope.autopayList[i].autopay_type; //1;
+          scope.autoPayData.isNew = false;
+
+          if (scope.autopayList[i].autopay_type == 2) {
+            console.log("WWW");
+            scope.autoPayData.step = scope.autopayList[i].step;//chosenStep;
+            scope.autoPayData.cntrg_phone_num = scope.autopayList[i].cntrg_param2; //firstFieldInput.value;
+            scope.autoPayData.amount = scope.autopayList[i].amount; //scope.chosenAmount;
+            scope.autoPayData.condition_text = scope.autopayList[i].condition_text;
+            scope.autoPayData.title = window.languages.ViewAutoPayMethodEventText;
+            localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+
+            var formtype = {"formtype": 1};
+            var firstFieldId = {"firstFieldId": 1};
+            var firstFieldText = {"firstFieldText": scope.autopayList[i].cntrg_param2};
+            var cardTypeId = {"cardTypeId": null};
+            var communalParam = {"communalParam": null};
+            var internetPackageParam = {"internetPackageParam": null};
+            var amountText = {"amountText": scope.autopayList[i].amount};
+
+            viewServicePage.firstFieldTitle = "Номер абонента";
+            viewServicePage.phoneText = scope.autopayList[i].cntrg_param2;
+            var isInFavorites = {"isInFavorites": false};
+
+          }
+
+          var paramsArray = [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites];
+
+          this.riotTags.innerHTML = "<view-pay-confirm>";
+          riot.mount('view-pay-confirm', [paramsArray, true, scope.autopayList[i].account_id, 'ADDAUTOPAY']);
+          scope.unmount()
+
+        }
+      }
+    };
 
     //    window.api.call({
     //      method: 'get.terms',
