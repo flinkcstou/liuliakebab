@@ -1142,7 +1142,6 @@
     };
 
     addToFavorites = function (array) {
-
 //      console.log('scope.fieldArray[0]', scope.fieldArray[0].ussd_query)
 
       if (!localStorage.getItem('favoritePaymentsList')) {

@@ -72,6 +72,7 @@
         return;
       }
       scope.autoPayData.name = autoPayNameInput.value;
+      scope.autoPayData.isNew = true;
       localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
       this.riotTags.innerHTML = "<view-pay-confirm>";

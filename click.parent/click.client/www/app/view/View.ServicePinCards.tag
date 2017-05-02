@@ -153,10 +153,8 @@
         scope.showError = true;
         scope.update();
         return;
-
       }
-
-    }
+    };
 
     friendHelp = function () {
       viewServicePinCards.friendHelpPaymentMode = true;

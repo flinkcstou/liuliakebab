@@ -89,7 +89,6 @@ window.api.initSocket = function () {
     console.log(parsedData);
     try {
 
-
       var method = parsedData.data[0][0].method;
       //console.log("PARSED DATA", parsedData)
 

@@ -75,8 +75,12 @@
           <div class="payconfirm-action-text">{window.languages.ViewPayConfirmAddToAutoPay}</div>
         </div>
       </div>
-      <button class="payconfirm-button-enter" ontouchend="payService()">
+      <button class="payconfirm-button-enter" ontouchend="payService()" if="{!autoPayDelete}">
         {(opts[3]=='ADDAUTOPAY')? window.languages.ViewAutoPayCreateButtonText : window.languages.ViewPayConfirmPay}
+      </button>
+      <button class="payconfirm-button-delete" ontouchend="deleteAutoPay()"
+              if="{autoPayDelete && opts[3]=='ADDAUTOPAY'}">
+        {window.languages.ViewAutoPayDeleteButtonText}
       </button>
 
     </div>
@@ -123,6 +127,7 @@
       scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
       scope.autoPayTypeText = scope.autoPayData.title;
       scope.autoPayConditionText = scope.autoPayData.condition_text;
+      scope.autoPayDelete = !scope.autoPayData.isNew;
       console.log("autoPayData=", scope.autoPayData);
     }
     scope.titleName = scope.service.name;
@@ -142,7 +147,8 @@
 
 
     if (opts[0][1].firstFieldId == '1') {
-      opts[0][2].firstFieldText = inputVerification.telVerification(opts[0][2].firstFieldText)
+//      console.log("TEL LENGTH VERIFICATION=", inputVerification.telLengthVerification(opts[0][2].firstFieldText, window.languages.PhoneNumberLength));
+      opts[0][2].firstFieldText = inputVerification.telLengthVerification(opts[0][2].firstFieldText, window.languages.PhoneNumberLength);
 
       this.firstFieldText = "+" + window.languages.CodeOfCountry + opts[0][2].firstFieldText;
       var firstFieldtext = "+" + window.languages.CodeOfCountry + opts[0][2].firstFieldText;
@@ -393,6 +399,8 @@
               onSuccess: function (result) {
                 if (result[0][0].error == 0) {
                   console.log("result of autopay.add.by.event", result);
+                  scope.autoPayDelete = true;
+                  scope.update(scope.autoPayDelete);
 //                  if (result[1])
 //                    if (result[1][0].payment_id || result[1][0].invoice_id) {
 //                      console.log("result of autopay.add.by.event", result);
@@ -465,8 +473,52 @@
         }
 
       }
-    }
+    };
 
+    deleteAutoPay = function () {
+      console.log("delete autopay =", scope.autoPayData);
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      window.api.call({
+        method: 'autopay.delete',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          autopay_id: scope.autoPayData.id,
+          autopay_type: scope.autoPayData.type
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+            console.log("result of autopay.delete", result);
+            onBackKeyDown();
+//                  if (result[1])
+//                    if (result[1][0].payment_id || result[1][0].invoice_id) {
+//                      console.log("result of autopay.add.by.event", result);
+////                      viewServicePage.phoneText = '';
+////                      window.viewServicePage = {};
+////                      viewServicePage.amountText = '';
+////                      viewServicePage.amountWithoutSpace = '';
+////                      viewServicePinCards.friendHelpPaymentMode = false;
+////                      viewServicePinCards.chosenFriendForHelp = null;
+//                      componentSuccessId.style.display = 'block';
+//                    }
+          }
+          else {
+            console.log("result of autopay.delete", result);
+//                  componentUnsuccessId.style.display = 'block';
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+
+    }
 
   </script>
 </view-pay-confirm>

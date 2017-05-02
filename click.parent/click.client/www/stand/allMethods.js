@@ -3393,6 +3393,39 @@ window.fakedSocket.register("registration.check", function (input) {
   ];
 });
 
+window.fakedSocket.register("autopay.add.by.event", function (input) {
+  return [[
+    {
+      "method": input.method,
+      "success": 1,
+      "error": 0,
+      "error_note": ""
+    }
+  ]];
+});
+
+window.fakedSocket.register("autopay.add.by.schedule", function (input) {
+  return [[
+    {
+      "method": input.method,
+      "success": 1,
+      "error": 0,
+      "error_note": ""
+    }
+  ]];
+});
+
+window.fakedSocket.register("autopay.delete", function (input) {
+  return [[
+    {
+      "method": input.method,
+      "success": 1,
+      "error": 0,
+      "error_note": ""
+    }
+  ]];
+});
+
 window.notificationInvoice = {
 
   action: "invoice",
