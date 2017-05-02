@@ -771,7 +771,7 @@
 
                     for (var i in result[1]) {
                       if (result[1][i].is_visible == 1) {
-//                        console.log("service id=", result[1][i].id, ", element:", result[1][i]);
+                        console.log("service id=", result[1][i].id, ", element:", result[1][i]);
 
                         scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
                         scope.serviceList.push(result[1][i]);

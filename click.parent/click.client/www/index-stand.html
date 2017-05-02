@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" id="htmlId"
-      onselectstart="return false"  onCopy="return false" onCut="return false"
+      onselectstart="return false" onCopy="return false" onCut="return false"
       onDrag="return false" onDrop="return false" autocomplete=off unselectable="on">
 <head>
   <meta charset="UTF-8">
@@ -144,11 +144,13 @@
 
     firstMount.firstStep = function () {
       if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
-
+        //if (localStorage.getItem('demo_version') == true) alert("demo is true");
+        //else alert("demo is false");
         scope.riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization')
       }
       else {
+        //alert("demo is false");
         scope.riotTags.innerHTML = "<view-registration-device>";
         riot.mount('view-registration-device');
       }

@@ -460,6 +460,9 @@ var RU_LANGUAGES =
   "ViewAutoPayConditionFieldText": "Условие",
   "ViewAutoPayCreateButtonText": "СОЗДАТЬ",
   "ViewAutoPayDeleteButtonText": "УДАЛИТЬ",
+  "ViewAutoPayCreatedSuccessTextOne": "Автоплатеж ",
+  "ViewAutoPayCreatedSuccessTextTwo": " успешно создан!",
+  "ViewAutoPayDeletedSuccessText": "Автоплатеж успешно удален!",
 };
 
 window.languages = RU_LANGUAGES;
