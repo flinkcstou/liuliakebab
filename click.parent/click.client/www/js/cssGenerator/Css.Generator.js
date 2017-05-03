@@ -9281,11 +9281,11 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 125 * widthK + "px;" +
-  "left: 12%;" +
+  "left: 17%;" +
   "height: 60%;" +
   "top: 20%;" +
   "background-color: transparent;" +
-    //"outline: none;" +
+  "outline: none;" +
   "border: none;" +
   "font-size:" + 32 * widthK + "px;" +
   "letter-spacing:" + 5 * widthK + "px;" +
