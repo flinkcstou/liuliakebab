@@ -89,6 +89,7 @@
     };
 
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
+    console.log("servicesMap=", scope.servicesMap);
     scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
     scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
 

@@ -2,7 +2,9 @@
   <p class="success-operation-success-message">{opts.operationmessage}</p>
   <div class="success-success-icon"></div>
 
-  <button class="success-next-button-inner-container" ontouchend="closeSuccessMessageForm()">{window.languages.ComponentSuccessNext}</button>
+  <button class="success-next-button-inner-container" ontouchend="closeSuccessMessageForm()">
+    {window.languages.ComponentSuccessNext}
+  </button>
 
   <script>
     var scope = this;
@@ -24,8 +26,8 @@
 //        scope.unmount()
       }
 
-      if (opts.close_action) {
 
+      if (opts.close_action) {
         opts.close_action();
       }
     }

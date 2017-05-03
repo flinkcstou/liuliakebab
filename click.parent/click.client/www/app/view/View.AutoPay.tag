@@ -67,95 +67,64 @@
     if (info)
       var sessionKey = info.session_key;
 
-    scope.autopayList = JSON.parse(localStorage.getItem('click_client_autopayList'));
 
-    //    if (scope.favoritePaymentsList) {
-    ////      console.log("favorite list", scope.favoritePaymentsList);
-    //      scope.favPaymentsList = [];
-    //      for (var i in scope.favoritePaymentsList) {
-    //        if (scope.favPaymentsList.length < 4) {
-    //          if (scope.favoritePaymentsList[i].opts[1].firstFieldId == '1') {
-    //            var firstField = scope.favoritePaymentsList[i].opts[2].firstFieldText.toString();
-    //            console.log(scope.favoritePaymentsList[i].opts[5])
-    //            if (scope.favoritePaymentsList[i].opts[5] && scope.favoritePaymentsList[i].opts[5].amountText)
-    //              scope.favoritePaymentsList[i].opts[5].amountText = window.amountTransform(scope.favoritePaymentsList[i].opts[5].amountText)
-    //            if (firstField.length == 9) {
-    //              firstField = '+' + window.languages.CodeOfCountry + ' ' + firstField.substr(0, 2) + ' ' + firstField.substr(2, 3) + ' ' + firstField.substr(5, 2) + ' ' +
-    //                firstField.substr(7, 2);
-    //            }
-    //            scope.favoritePaymentsList[i].opts[2].firstFieldText = firstField;
-    //          }
-    //          scope.favPaymentsList.push(scope.favoritePaymentsList[i]);
-    //        }
-    //
-    //        else break;
-    //      }
-    ////      console.log("favorites=", scope.favPaymentsList);
-    //      riot.update(scope.favPaymentsList);
-    //    }
+    scope.autopayList = [];
+    window.api.call({
+      method: 'autopay.list',
+      input: {
+        phone_num: phoneNumber,
+        session_key: sessionKey,
+      },
 
-    if (scope.autopayList) {
-      console.log("Autopay list", scope.autopayList);
-      scope.update(scope.autopayList);
-    }
-    else {
-      scope.autopayList = [];
-      window.api.call({
-        method: 'autopay.list',
-        input: {
-          phone_num: phoneNumber,
-          session_key: sessionKey,
-        },
+      scope: this,
 
-        scope: this,
+      onSuccess: function (result) {
+        if (result[0][0].error == 0) {
 
-        onSuccess: function (result) {
-          if (result[0][0].error == 0) {
+          for (var i in result[1]) {
 
-            for (var i in result[1]) {
+            result[1][i].service_title = scope.servicesMap[result[1][i].service_id][0].name;
+            result[1][i].service_icon = scope.servicesMap[result[1][i].service_id][0].image;
 
-              result[1][i].service_title = scope.servicesMap[result[1][i].service_id][0].name;
-              result[1][i].service_icon = scope.servicesMap[result[1][i].service_id][0].image;
-
-              if (result[1][i].type && result[1][i].autopay_type == 1) {
-                if (result[1][i].type == 2) {
-                  result[1][i].condition_text = window.languages.ViewAutoPayMethodScheduleWeekDaysArray[(result[1][i].week_day) - 1].v + ", " +
-                    result[1][i].paytime;
-                } else if (result[1][i].type == 3) {
-                  result[1][i].condition_text = result[1][i].month_day + ", " +
-                    result[1][i].paytime;
-                } else if (result[1][i].type == 4) {
-                  result[1][i].condition_text = window.languages.ViewAutoPayEveryMonthLastDayTextTwo + ", " +
-                    result[1][i].paytime;
-                }
-              } else if (result[1][i].autopay_type == 2) {
-//                console.log("autopay type 2");
-                for (var j in scope.servicesMap[result[1][i].service_id][0].autopay_available_steps)
-                  if (scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j].step_value == result[1][i].step) {
-                    result[1][i].condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j].step_title;
-//                    console.log("STep title=", scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j].step_title);
-                    break;
-                  }
+            if (result[1][i].type && result[1][i].autopay_type == 1) {
+              if (result[1][i].type == 2) {
+                result[1][i].condition_text = window.languages.ViewAutoPayMethodScheduleWeekDaysArray[(result[1][i].week_day) - 1].v + ", " +
+                  result[1][i].paytime;
+              } else if (result[1][i].type == 3) {
+                result[1][i].condition_text = result[1][i].month_day + ", " +
+                  result[1][i].paytime;
+              } else if (result[1][i].type == 4) {
+                result[1][i].condition_text = window.languages.ViewAutoPayEveryMonthLastDayTextTwo + ", " +
+                  result[1][i].paytime;
               }
-//              console.log("ss", result[1][i].service_title, ", dd", result[1][i].service_icon);
-              scope.autopayList.push(result[1][i]);
+            } else if (result[1][i].autopay_type == 2) {
+//                console.log("autopay type 2");
+              for (var j in scope.servicesMap[result[1][i].service_id][0].autopay_available_steps)
+                if (scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j].step_value == result[1][i].step) {
+                  result[1][i].condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j].step_title;
+//                    console.log("STep title=", scope.servicesMap[result[1][i].service_id][0].autopay_available_steps[j].step_title);
+                  break;
+                }
             }
+//              console.log("ss", result[1][i].service_title, ", dd", result[1][i].service_icon);
+            scope.autopayList.push(result[1][i]);
+          }
 //            console.log("L=", result[1]);
 //            scope.autopayList = result[1];
-            console.log("Autopay list", scope.autopayList);
-            scope.update(scope.autopayList);
-            localStorage.setItem('click_client_autopayList', JSON.stringify(scope.autopayList));
-          }
-          else
-            alert(result[0][0].error_note);
-        },
-
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
+          console.log("Autopay list", scope.autopayList);
+          scope.update(scope.autopayList);
+          localStorage.setItem('click_client_autopayList', JSON.stringify(scope.autopayList));
         }
-      });
-    }
+        else
+          alert(result[0][0].error_note);
+      },
+
+      onFail: function (api_status, api_status_message, data) {
+        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+        console.error(data);
+      }
+    });
+
 
     openAutoPayment = function (id) {
       console.log("autoPayment ID to open=", id);
@@ -170,7 +139,6 @@
           scope.autoPayData.isNew = false;
 
           if (scope.autopayList[i].autopay_type == 2) {
-            console.log("WWW");
             scope.autoPayData.step = scope.autopayList[i].step;//chosenStep;
             scope.autoPayData.cntrg_phone_num = scope.autopayList[i].cntrg_param2; //firstFieldInput.value;
             scope.autoPayData.amount = scope.autopayList[i].amount; //scope.chosenAmount;
@@ -189,6 +157,8 @@
             viewServicePage.firstFieldTitle = "Номер абонента";
             viewServicePage.phoneText = scope.autopayList[i].cntrg_param2;
             var isInFavorites = {"isInFavorites": false};
+
+          } else if (scope.autopayList[i].autopay_type == 1) {
 
           }
 
