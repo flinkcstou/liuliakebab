@@ -22,12 +22,12 @@
           {languages.ViewInvoiceListFromUser}</p>
       </div>
     </div>
-    <div class="invoice-list-invoices-holder">
+    <div id="invoiceListInvoicesId" class="invoice-list-invoices-holder" ontouchmove="invoiceListInvoicesTouchMove()">
       <div each="{invoice in invoiceList}" title="{JSON.stringify(invoice)}" class="invoice-list-invoice"
            ontouchend="goToInvoiceHistoryDetailTouchEnd(this.title)"
            ontouchstart="goToInvoiceHistoryDetailTouchStart()">
         <div
-            class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
+          class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
           <mark class="invoice-list-invoice-sum-sym">сум</mark>
           <p class="invoice-list-invoice-sum">{invoice.amount}</p>
         </div>
@@ -49,16 +49,20 @@
     </div>
   </div>
 
+  <view-transfer-detail hidden="{!showComponentTransfer}"></view-transfer-detail>
+  <view-payment-detail hidden="{!showComponentPayment}"></view-payment-detail>
+  <view-invoice-history-detail hidden="{!showComponentHistory}"></view-invoice-history-detail>
+
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
 
     var scope = this,
-        goToInvoiceHistoryDetailTouchStartX,
-        goToInvoiceHistoryDetailTouchEndX,
-        goToInvoiceHistoryDetailTouchStartY,
-        goToInvoiceHistoryDetailTouchEndY;
+      goToInvoiceHistoryDetailTouchStartX,
+      goToInvoiceHistoryDetailTouchEndX,
+      goToInvoiceHistoryDetailTouchStartY,
+      goToInvoiceHistoryDetailTouchEndY;
 
     componentMenu.check = false;
 
@@ -69,9 +73,35 @@
 
     console.log("TO USER", scope.toUser, opts.toUser);
 
-    getInvoiceListToUser = function () {
+    var invoiceListPageNumber = 1;
 
-      scope.invoiceList = [];
+    scope.showComponentTransfer = false;
+    scope.showComponentPayment = false;
+    scope.showComponentHistory = false;
+
+    invoiceListInvoicesTouchMove = function () {
+
+      if ((invoiceListInvoicesId.scrollHeight - invoiceListInvoicesId.scrollTop) == invoiceListInvoicesId.offsetHeight) {
+        console.log(scope.toUser)
+        if (scope.toUser) {
+          console.log("ASDQQQ");
+          invoiceListPageNumber++;
+          getInvoiceListToUser()
+        }
+        else {
+          console.log("ASDQQQ");
+          invoiceListPageNumber++;
+          getInvoiceListFromUser()
+        }
+      }
+    }
+
+    scope.invoiceList = [];
+
+    getInvoiceListToUser = function () {
+      console.log("ASDQQQ");
+
+      if (!scope.toUser)scope.invoiceList = [];
       scope.toUser = true;
       scope.update();
 
@@ -83,7 +113,8 @@
         method: 'invoice.list',
         input: {
           session_key: sessionKey,
-          phone_num: phoneNumber
+          phone_num: phoneNumber,
+          page_number: parseInt(invoiceListPageNumber),
         },
         scope: this,
         onSuccess: function (result) {
@@ -127,8 +158,9 @@
     };
 
     getInvoiceListFromUser = function () {
+      console.log("QWE")
 
-      scope.invoiceList = [];
+      if (scope.toUser)scope.invoiceList = [];
       scope.toUser = false;
       scope.update();
 
@@ -140,7 +172,8 @@
         method: 'invoice.history',
         input: {
           session_key: sessionKey,
-          phone_num: phoneNumber
+          phone_num: phoneNumber,
+          page_number: parseInt(invoiceListPageNumber)
         },
         scope: this,
         onSuccess: function (result) {
@@ -202,7 +235,7 @@
       goToInvoiceHistoryDetailTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goToInvoiceHistoryDetailTouchEndX - goToInvoiceHistoryDetailTouchStartX) < 20 &&
-          Math.abs(goToInvoiceHistoryDetailTouchEndY - goToInvoiceHistoryDetailTouchStartY) < 20) {
+        Math.abs(goToInvoiceHistoryDetailTouchEndY - goToInvoiceHistoryDetailTouchStartY) < 20) {
 
         invoice = JSON.parse(invoice);
         console.log("Invoice for view.invoice-history-details", invoice);
@@ -215,10 +248,10 @@
             opts.toUser = scope.toUser;
 
             history.arrayOfHistory.push(
-                {
-                  "view": 'view-invoice-list',
-                  "params": opts
-                }
+              {
+                "view": 'view-invoice-list',
+                "params": opts
+              }
             );
 
             console.log("HISTORY ARRAY_OF_HISTORY", history.arrayOfHistory);
@@ -231,10 +264,10 @@
           opts.toUser = scope.toUser;
 
           history.arrayOfHistory.push(
-              {
-                "view": 'view-invoice-list',
-                "params": opts
-              }
+            {
+              "view": 'view-invoice-list',
+              "params": opts
+            }
           );
 
           sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))

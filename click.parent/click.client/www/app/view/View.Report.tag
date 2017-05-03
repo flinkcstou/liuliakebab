@@ -396,9 +396,7 @@
     reportsBodyContainerTouchMove = function () {
       event.preventDefault();
       event.stopPropagation();
-      console.log('reportBodyContainerId.offsetHeight', reportBodyContainerId.offsetHeight)
-      console.log('reportBodyContainerId.scrollTop', reportBodyContainerId.scrollTop)
-      console.log('reportBodyContainerId.scrollHeight', reportBodyContainerId.scrollHeight)
+
       if ((reportBodyContainerId.scrollHeight - reportBodyContainerId.scrollTop) == reportBodyContainerId.offsetHeight) {
         // you're at the bottom of the page
         scope.pageNumberOptional++;
