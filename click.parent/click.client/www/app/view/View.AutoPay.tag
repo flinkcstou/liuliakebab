@@ -36,8 +36,6 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    this.on('mount', function () {
-    })
 
     goToBack = function () {
       event.preventDefault();
@@ -85,6 +83,7 @@
 
             result[1][i].service_title = scope.servicesMap[result[1][i].service_id][0].name;
             result[1][i].service_icon = scope.servicesMap[result[1][i].service_id][0].image;
+            result[1][i].form_type = scope.servicesMap[result[1][i].service_id][0].form_type;
 
             if (result[1][i].type && result[1][i].autopay_type == 1) {
               if (result[1][i].type == 2) {
@@ -136,13 +135,16 @@
           scope.autoPayData.service_id = scope.autopayList[i].service_id;
           scope.autoPayData.name = scope.autopayList[i].name;// autoPayNameInput.value;
           scope.autoPayData.autopay_type = scope.autopayList[i].autopay_type; //1;
+          scope.autoPayData.amount = scope.autopayList[i].amount; //scope.chosenAmount;
           scope.autoPayData.isNew = false;
+          scope.autoPayData.cntrg_phone_num = scope.autopayList[i].cntrg_param2; //firstFieldInput.value;
+          scope.autoPayData.condition_text = scope.autopayList[i].condition_text;
+          var amountText = {"amountText": scope.autopayList[i].amount};
+
 
           if (scope.autopayList[i].autopay_type == 2) {
             scope.autoPayData.step = scope.autopayList[i].step;//chosenStep;
-            scope.autoPayData.cntrg_phone_num = scope.autopayList[i].cntrg_param2; //firstFieldInput.value;
-            scope.autoPayData.amount = scope.autopayList[i].amount; //scope.chosenAmount;
-            scope.autoPayData.condition_text = scope.autopayList[i].condition_text;
+
             scope.autoPayData.title = window.languages.ViewAutoPayMethodEventText;
             localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
@@ -152,13 +154,35 @@
             var cardTypeId = {"cardTypeId": null};
             var communalParam = {"communalParam": null};
             var internetPackageParam = {"internetPackageParam": null};
-            var amountText = {"amountText": scope.autopayList[i].amount};
+
 
             viewServicePage.firstFieldTitle = "Номер абонента";
             viewServicePage.phoneText = scope.autopayList[i].cntrg_param2;
             var isInFavorites = {"isInFavorites": false};
 
           } else if (scope.autopayList[i].autopay_type == 1) {
+            scope.autoPayData.title = window.languages.ViewAutoPayMethodSchedulerText;
+            localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+
+            if (scope.autopayList[i].form_type == 3) {
+              var internetPackageParam = {"internetPackageParam": null};
+              var communalParam = {"communalParam": scope.autopayList[i].cntrg_param5};
+            } else if (scope.autopayList[i].form_type == 1) {
+              var communalParam = {"communalParam": null};
+              var internetPackageParam = {"internetPackageParam": null};
+            } else if (scope.autopayList[i].form_type == 4) {
+              var communalParam = {"communalParam": null};
+              var internetPackageParam = {"internetPackageParam": scope.autopayList[i].cntrg_param5};
+            }
+
+            var formtype = {"formtype": scope.autopayList[i].form_type};
+            var firstFieldId = {"firstFieldId": 2};
+            var firstFieldText = {"firstFieldText": scope.autopayList[i].cntrg_param2};
+            var cardTypeId = {"cardTypeId": null};
+
+            viewServicePage.firstFieldTitle = "Номер абонента";
+            viewServicePage.phoneText = scope.autopayList[i].cntrg_param2;
+            var isInFavorites = {"isInFavorites": false};
 
           }
 

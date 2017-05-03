@@ -2756,6 +2756,7 @@ var css = {
   "top:" + 78 * widthK + "px; " +
   "position:fixed;" +
   "display: none;" +
+  "box-shadow: 0 0 20px rgba(0,0,0,0.5);" +
   "}",
 
   payServicesBlock: ".pay-services-block" +

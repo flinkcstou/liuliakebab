@@ -63,7 +63,7 @@
             {window.languages.ViewPayConfirmAddToFavorites}
           </div>
           <div class="payconfirm-action-icon-one" if="{isInFavorites}"
-               style="background-image: url('resources/icons/ViewService/addfavorite.png');"></div>
+               style="background-image: url('resources/icons/ViewService/addedfavorite.png');"></div>
           <div class="payconfirm-action-text" ontouchend="removeFromFavorites()" if="{isInFavorites}">
             {window.languages.ViewPayConfirmRemoveFromFavorites}
           </div>
@@ -510,7 +510,6 @@
           console.error(data);
         }
       });
-
     }
 
   </script>
