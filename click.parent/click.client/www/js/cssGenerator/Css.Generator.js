@@ -9231,13 +9231,14 @@ var css = {
   "top: 20%;" +
   "background-color: transparent;" +
   "border: none;" +
+  "outline: none;" +
   "font-size:" + 32 * widthK + "px;" +
   "letter-spacing:" + 5 * widthK + "px;" +
   "}",
 
   addCardCardNumberBoxOne: ".add-card-card-number-box-one " +
   "{" +
-  "left:" + 65 * widthK + "px;" +
+  "left:" + 60 * widthK + "px;" +
   "}",
 
   addCardCardText: ".add-card-card-text " +
