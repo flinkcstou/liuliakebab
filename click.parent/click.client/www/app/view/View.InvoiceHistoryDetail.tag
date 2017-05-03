@@ -1,4 +1,4 @@
-<view-invoice-history-detail>
+<view-invoice-history-detail class="view-invoice-history">
 
   <div class="invoice-history-detail-title-container">
     <div class="page-title invoice-history-detail-title">
@@ -8,7 +8,7 @@
     </div>
 
     <div
-        class="invoice-history-detail-icon {invoice-history-detail-payment-icon: !opts.is_p2p, invoice-history-detail-transfer-icon: opts.is_p2p}">
+      class="invoice-history-detail-icon {invoice-history-detail-payment-icon: !opts.is_p2p, invoice-history-detail-transfer-icon: opts.is_p2p}">
     </div>
     <p class="invoice-history-detail-title-part-one">
       {(opts.is_p2p)?(languages.ViewInvoiceHistoryDetailTransferToNumberLabel):(languages.ViewInvoiceHistoryDetailPaymentToNumberLabel)}</p>
@@ -83,7 +83,7 @@
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
-      scope.unmount()
+//      scope.unmount()
     }
 
   </script>

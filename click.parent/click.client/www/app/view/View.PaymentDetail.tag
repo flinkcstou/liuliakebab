@@ -1,5 +1,4 @@
-<view-payment-detail>
-  <div>
+<view-payment-detail class="view-payment-detail">
 
     <div class="transfer-to-card-title-container">
       <div class="page-title account-detail-page-title">
@@ -62,8 +61,6 @@
     <component-alert if="{showError}" clickpinerror="{clickPinError}"
                      errornote="{errorNote}"></component-alert>
 
-  </div>
-
   <script>
     var scope = this,
       touchStartDeclineX,
@@ -76,7 +73,7 @@
       touchEndAcceptY;
 
     scope.showError = false;
-    scope.titleName = window.languages.ViewPaymentDetailTitle + opts.invoiceId;
+    scope.titleName = window.languages.ViewPaymentDetailTitle + scope.opts.invoiceId;
 
     goToBack = function (doNotPrevent) {
 
@@ -87,7 +84,7 @@
 //      console.log("BACK")
       }
       onBackKeyDown()
-      scope.unmount()
+//      scope.unmount()
     };
 
     onTouchStartDecline = function () {
@@ -122,7 +119,7 @@
           input: {
             session_key: sessionKey,
             phone_num: phoneNumber,
-            invoice_id: opts.invoiceId,
+            invoice_id: scope.opts.invoiceId,
             action: invoiceActions.DECLINE
           },
           scope: this,
@@ -208,7 +205,7 @@
           input: {
             session_key: sessionKey,
             phone_num: phoneNumber,
-            invoice_id: opts.invoiceId,
+            invoice_id: scope.opts.invoiceId,
             action: invoiceActions.ACCEPT,
             account_id: accountId
           },

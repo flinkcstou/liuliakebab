@@ -85,15 +85,23 @@
     });
 
     chooseCardTouchStart = function () {
+      event.preventDefault()
+      event.stopPropagation()
       touchStartY = event.changedTouches[0].pageY;
+      console.log('qweqweqw')
     };
 
 
     chooseCardTouchEnd = function (id) {
+      event.preventDefault()
+      event.stopPropagation()
 
       scope.cardId = id;
 
       touchEndY = event.changedTouches[0].pageY;
+
+      console.log('CARD ID', scope.cardId)
+      console.log('touchStartY - touchEndY', touchStartY - touchEndY)
 
       if (Math.abs(touchStartY - touchEndY) < 20) {
 
@@ -123,7 +131,8 @@
 //
 //        } else {
         scope.checkedId = "check" + id;
-        scope.update(scope.checkedId);
+        console.log('scope.checkedId', document.getElementById(scope.checkedId))
+        riot.update();
 
         if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
           this.parent.refreshFunction(false);
@@ -145,7 +154,7 @@
 
 
         localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))
-        scope.update(scope.cardsArray)
+        riot.update()
       }
       else return
 
@@ -163,9 +172,9 @@
       riot.update();
     };
 
-    console.log('OPTS PINCARDS', opts)
+    console.log('OPTS PINCARDS', scope.opts)
 
-    if (opts.clean && viewMainPage.myCards !== true) {
+    if (scope.opts.clean && viewMainPage.myCards !== true) {
 
       scope.cleanChosenCards();
     }

@@ -1,57 +1,56 @@
-<view-transfer-detail>
-  <div>
-    <div class="transfer-detail-title-container">
+<view-transfer-detail class="view-transfer-detail">
 
-      <div class="page-title transfer-detail-page-title">
-        <p class="name-title">{titleName}</p>
-        <div id="backButton" ontouchend="goToBack()" class="settings-general-back-button"></div>
-      </div>
-      <div class="transfer-detail-transfer-icon"></div>
-      <p class="transfer-detail-transfer-icon-title-part-one">
-        {window.languages.ViewTransferDetailTransferIconTitleOne}</p>
+  <div class="transfer-detail-title-container">
 
-      <p class="transfer-detail-transfer-icon-title-part-two">
-        {window.languages.ViewTransferDetailTransferIconTitleTwo}</p>
+    <div class="page-title transfer-detail-page-title">
+      <p class="name-title">{titleName}</p>
+      <div id="backButton" ontouchend="transferDetailGoToBack()" class="settings-general-back-button"></div>
+    </div>
+    <div class="transfer-detail-transfer-icon"></div>
+    <p class="transfer-detail-transfer-icon-title-part-one">
+      {window.languages.ViewTransferDetailTransferIconTitleOne}</p>
 
-      <p class="transfer-detail-transfer-icon-title-phone">
-        +{opts.phoneNumber}</p>
+    <p class="transfer-detail-transfer-icon-title-part-two">
+      {window.languages.ViewTransferDetailTransferIconTitleTwo}</p>
 
+    <p class="transfer-detail-transfer-icon-title-phone">
+      +{opts.phoneNumber}</p>
+
+  </div>
+
+  <div class="transfer-detail-container">
+    <div class="transfer-detail-transfer-container">
+      <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleSum}</p>
+      <p class="transfer-detail-sum">{opts.amount} сум</p>
+    </div>
+    <div class="transfer-detail-transfer-container">
+      <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleNumber}</p>
+      <p class="transfer-detail-number">{opts.invoiceId}</p>
+    </div>
+    <div class="transfer-detail-transfer-container">
+      <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleDate}</p>
+      <p class="transfer-detail-date">{opts.time} {opts.date}</p>
+    </div>
+    <div class="transfer-detail-transfer-container">
+      <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleStatus}</p>
+      <p class="transfer-detail-status">Ожидает подтверждения</p>
     </div>
 
-    <div class="transfer-detail-container">
-      <div class="transfer-detail-transfer-container">
-        <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleSum}</p>
-        <p class="transfer-detail-sum">{opts.amount} сум</p>
-      </div>
-      <div class="transfer-detail-transfer-container">
-        <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleNumber}</p>
-        <p class="transfer-detail-number">{opts.invoiceId}</p>
-      </div>
-      <div class="transfer-detail-transfer-container">
-        <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleDate}</p>
-        <p class="transfer-detail-date">{opts.time} {opts.date}</p>
-      </div>
-      <div class="transfer-detail-transfer-container">
-        <p class="transfer-detail-title">{window.languages.ViewTransferDetailTitleStatus}</p>
-        <p class="transfer-detail-status">Ожидает подтверждения</p>
-      </div>
+    <div class="transfer-detail-cover"></div>
 
-      <div class="transfer-detail-cover"></div>
-
-      <div class="transfer-detail-buttons-container">
-        <button class="transfer-detail-button-accept" ontouchend="onTouchEndAccept()"
-                ontouchstart="onTouchStartAccept()">
-          {window.languages.ViewTransferDetailTitleAccept}
-        </button>
-        <button class="transfer-detail-button-cancel" ontouchend="onTouchEndDecline()"
-                ontouchstart="onTouchStartDecline()">
-          {window.languages.ViewTransferDetailTitleDecline}
-        </button>
-      </div>
-
+    <div class="transfer-detail-buttons-container">
+      <button class="transfer-detail-button-accept" ontouchend="transferDetailOnTouchEndAccept()"
+              ontouchstart="transferDetailOnTouchStartAccept()">
+        {window.languages.ViewTransferDetailTitleAccept}
+      </button>
+      <button class="transfer-detail-button-cancel" ontouchend="transferDetailOnTouchEndDecline()"
+              ontouchstart="transferDetailOnTouchStartDecline()">
+        {window.languages.ViewTransferDetailTitleDecline}
+      </button>
     </div>
 
   </div>
+
 
   <code-confirm id="blockCodeConfirmId" class="transfer-detail-code-confirm" if="{showConfirmPanel}">
 
@@ -74,26 +73,31 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
+  <view-transfer-on-card hidden="{!showComponent}"></view-transfer-on-card>
+
   <script>
     var scope = this,
-        touchStartDeclineX,
-        touchEndDeclineX,
-        touchStartDeclineY,
-        touchEndDeclineY,
-        touchStartAcceptX,
-        touchEndAcceptX,
-        touchStartAcceptY,
-        touchEndAcceptY,
-        touchStartAcceptSecretCodeX,
-        touchEndAcceptSecretCodeX,
-        touchStartAcceptSecretCodeY,
-        touchEndAcceptSecretCodeY;
+      touchStartDeclineX,
+      touchEndDeclineX,
+      touchStartDeclineY,
+      touchEndDeclineY,
+      touchStartAcceptX,
+      touchEndAcceptX,
+      touchStartAcceptY,
+      touchEndAcceptY,
+      touchStartAcceptSecretCodeX,
+      touchEndAcceptSecretCodeX,
+      touchStartAcceptSecretCodeY,
+      touchEndAcceptSecretCodeY;
 
     scope.titleName = window.languages.ViewTransferDetailTitle;
     scope.showConfirmPanel = false;
     scope.showError = false;
+    scope.showComponent = false;
 
-    goToBack = function (doNotPrevent) {
+    console.log('WWWWWWWWWW')
+
+    transferDetailGoToBack = function (doNotPrevent) {
 
       if (!doNotPrevent) {
 
@@ -101,7 +105,7 @@
         event.stopPropagation();
       }
       onBackKeyDown()
-      scope.unmount()
+//      scope.unmount()
     };
 
     verifyInput = function (input) {
@@ -116,6 +120,8 @@
     };
 
     onTouchStartAcceptSecretCode = function () {
+      event.preventDefault();
+      event.stopPropagation();
 
       console.log("Secret Code For Confirmation", this.secretCodeInput.value);
 
@@ -124,6 +130,8 @@
     };
 
     onTouchEndAcceptSecretCode = function () {
+      event.preventDefault();
+      event.stopPropagation();
 
       touchEndAcceptSecretCodeX = event.changedTouches[0].pageX;
       touchEndAcceptSecretCodeY = event.changedTouches[0].pageY;
@@ -142,53 +150,71 @@
       }
 
       if (Math.abs(touchEndAcceptSecretCodeX - touchStartAcceptSecretCodeX) < 20 &&
-          Math.abs(touchEndAcceptSecretCodeY - touchStartAcceptSecretCodeY) < 20) {
+        Math.abs(touchEndAcceptSecretCodeY - touchStartAcceptSecretCodeY) < 20) {
+//        riot.update();
+        console.log('OPTS IN TRANSFER DETAIL', scope.opts)
 
-        params = {
-          amount: opts.amount,
+        var params = {
+          amount: scope.opts.amount,
           secret_key: secret_key,
-          invoiceId: opts.invoiceId
+          invoiceId: scope.opts.invoiceId
         };
 
-        riotTags.innerHTML = "<view-transfer-on-card>";
-        riot.mount("view-transfer-on-card", params);
+        scope.showComponent = true;
+        console.log('PARAMS', params)
+        scope.tags['view-transfer-on-card'].opts = params
+        window.checkShowingComponent = scope.tags['view-transfer-on-card'];
+        scope.update();
 
-        scope.unmount()
+//        riotTags.innerHTML = "<view-transfer-on-card>";
+//        riot.mount("view-transfer-on-card", params);
+
+//        scope.unmount()
       }
     };
 
-    onTouchStartAccept = function () {
+    transferDetailOnTouchStartAccept = function () {
+      event.preventDefault();
+      event.stopPropagation();
 
       touchStartAcceptX = event.changedTouches[0].pageX;
       touchStartAcceptY = event.changedTouches[0].pageY;
     };
 
-    onTouchEndAccept = function () {
+    transferDetailOnTouchEndAccept = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      console.log("ACCEPT OPTS", opts)
 
       touchEndAcceptX = event.changedTouches[0].pageX;
       touchEndAcceptY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
-          Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
+        Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
 
         scope.showConfirmPanel = true;
         scope.update(scope.showConfirmPanel);
       }
     };
 
-    onTouchStartDecline = function () {
+    transferDetailOnTouchStartDecline = function () {
+      event.preventDefault();
+      event.stopPropagation();
 
       touchStartDeclineX = event.changedTouches[0].pageX;
       touchStartDeclineY = event.changedTouches[0].pageY;
     };
 
-    onTouchEndDecline = function () {
+    transferDetailOnTouchEndDecline = function () {
+      event.preventDefault();
+      event.stopPropagation();
 
       touchEndDeclineX = event.changedTouches[0].pageX;
       touchEndDeclineY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchEndDeclineX - touchStartDeclineX) < 20 &&
-          Math.abs(touchEndDeclineY - touchStartDeclineY) < 20) {
+        Math.abs(touchEndDeclineY - touchStartDeclineY) < 20) {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -209,7 +235,7 @@
           input: {
             session_key: sessionKey,
             phone_num: phoneNumber,
-            invoice_id: opts.invoiceId,
+            invoice_id: scope.opts.invoiceId,
             action: invoiceActions.DECLINE
           },
           scope: this,

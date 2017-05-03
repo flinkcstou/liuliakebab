@@ -49,9 +49,9 @@
     </div>
   </div>
 
-  <view-transfer-detail hidden="{!showComponentTransfer}"></view-transfer-detail>
-  <view-payment-detail hidden="{!showComponentPayment}"></view-payment-detail>
-  <view-invoice-history-detail hidden="{!showComponentHistory}"></view-invoice-history-detail>
+  <view-transfer-detail hidden="{!showComponentTransfer || !showComponent}"></view-transfer-detail>
+  <view-payment-detail hidden="{!showComponentPayment || !showComponent}"></view-payment-detail>
+  <view-invoice-history-detail hidden="{!showComponentHistory || !showComponent}"></view-invoice-history-detail>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
@@ -78,6 +78,7 @@
     scope.showComponentTransfer = false;
     scope.showComponentPayment = false;
     scope.showComponentHistory = false;
+    scope.showComponent = false;
 
     invoiceListInvoicesTouchMove = function () {
 
@@ -108,6 +109,16 @@
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = loginInfo.session_key;
+
+      if (device.platform != 'BrowserStand') {
+        var options = {dimBackground: true};
+
+        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+          console.log("Started");
+        }, function () {
+          console.log("closed");
+        });
+      }
 
       window.api.call({
         method: 'invoice.list',
@@ -167,6 +178,16 @@
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = loginInfo.session_key;
+
+      if (device.platform != 'BrowserStand') {
+        var options = {dimBackground: true};
+
+        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+          console.log("Started");
+        }, function () {
+          console.log("closed");
+        });
+      }
 
       window.api.call({
         method: 'invoice.history',
@@ -236,6 +257,9 @@
 
       if (Math.abs(goToInvoiceHistoryDetailTouchEndX - goToInvoiceHistoryDetailTouchStartX) < 20 &&
         Math.abs(goToInvoiceHistoryDetailTouchEndY - goToInvoiceHistoryDetailTouchStartY) < 20) {
+        scope.showComponentPayment = false;
+        scope.showComponentHistory = false;
+        scope.showComponentTransfer = false;
 
         invoice = JSON.parse(invoice);
         console.log("Invoice for view.invoice-history-details", invoice);
@@ -289,16 +313,24 @@
             status: invoice.status_note
           };
 
-          history.arrayOfHistory.push({view: "view-invoice-history-detail"});
-          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-          riotTags.innerHTML = "<view-invoice-history-detail>";
-          riot.mount("view-invoice-history-detail", params);
+          scope.showComponent = true;
+          scope.showComponentHistory = true;
+          scope.tags['view-invoice-history-detail'].opts = params
+          window.checkShowingComponent = scope.tags['view-invoice-history-detail'];
 
-          scope.unmount()
+          scope.update();
+
+//          history.arrayOfHistory.push({view: "view-invoice-history-detail"});
+//          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+//          riotTags.innerHTML = "<view-invoice-history-detail>";
+//          riot.mount("view-invoice-history-detail", params);
+
+//          scope.unmount()
         } else {
 
 
           if (invoice.is_p2p) {
+            console.log("TRANSFER")
 
             params = {
 
@@ -309,13 +341,24 @@
               date: invoice.date
             };
 
-            history.arrayOfHistory.push({view: "view-transfer-detail"});
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-            riotTags.innerHTML = "<view-transfer-detail>";
-            riot.mount('view-transfer-detail', params);
+            console.log('PARAMS IN INVOICE LIST', params)
 
-            scope.unmount()
+            scope.showComponent = true;
+            scope.showComponentTransfer = true;
+            scope.tags['view-transfer-detail'].opts = params
+            console.log("scope.tags['view-transfer-detail'].opts", scope.tags['view-transfer-detail'].opts)
+            window.checkShowingComponent = scope.tags['view-transfer-detail'];
+            riot.update();
+
+//            history.arrayOfHistory.push({view: "view-transfer-detail"});
+//            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+//            riotTags.innerHTML = "<view-transfer-detail>";
+//            riot.mount('view-transfer-detail', params);
+//
+//            scope.unmount()
           } else {
+
+            console.log("PAYMENT")
 
             params = {
 
@@ -327,12 +370,18 @@
               is_friend_help: invoice.is_friend_help
             };
 
-            history.arrayOfHistory.push({view: "view-payment-detail"});
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-            riotTags.innerHTML = "<view-payment-detail>";
-            riot.mount('view-payment-detail', params);
+            scope.showComponent = true;
+            scope.showComponentPayment = true;
+            scope.tags['view-payment-detail'].opts = params
+            window.checkShowingComponent = scope.tags['view-payment-detail'];
+            scope.update();
 
-            this.unmount()
+//            history.arrayOfHistory.push({view: "view-payment-detail"});
+//            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+//            riotTags.innerHTML = "<view-payment-detail>";
+//            riot.mount('view-payment-detail', params);
+//
+//            this.unmount()
           }
         }
       }

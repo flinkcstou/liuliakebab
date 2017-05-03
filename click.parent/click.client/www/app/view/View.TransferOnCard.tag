@@ -1,4 +1,4 @@
-<view-transfer-on-card>
+<view-transfer-on-card class="view-transfer-on-card">
 
   <div class="view-transfer-on-card-title-container">
     <p class="view-transfer-on-card-title-text-part-one">{languages.ViewTransferOnCardTitleTextPartOne}</p>
@@ -8,9 +8,9 @@
 
   <div class="view-transfer-on-card-content-container">
 
-    <component-pincards transferoncard="true" clean="{true}"></component-pincards>
+    <component-pincards clean="{true}" transferoncard="true"></component-pincards>
 
-    <button class="transfer-on-card-ok-button" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
+    <button class="transfer-on-card-ok-button" ontouchend="transferOnCardOnTouchEndAccept()" ontouchstart="transferOnCardOnTouchStartAccept()">
       {languages.ViewTransferOnCardAcceptButtonText}
     </button>
 
@@ -30,34 +30,36 @@
   <script>
 
     var scope = this,
-        touchStartAcceptX,
-        touchStartAcceptY,
-        touchEndAcceptX,
-        touchEndAcceptY;
+      touchStartAcceptX,
+      touchStartAcceptY,
+      touchEndAcceptX,
+      touchEndAcceptY;
 
     scope.success = false;
     scope.fail = false;
 
-    onTouchStartAccept = function () {
+    console.log('opts.amount', scope.opts)
+
+    transferOnCardOnTouchStartAccept = function () {
 
       touchStartAcceptX = event.changedTouches[0].pageX;
       touchStartAcceptY = event.changedTouches[0].pageY;
     };
 
-    onTouchEndAccept = function () {
+    transferOnCardOnTouchEndAccept = function () {
 
       touchEndAcceptX = event.changedTouches[0].pageX;
       touchEndAcceptY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
-          Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
+        Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = loginInfo.session_key;
         var accountId = scope.tags["component-pincards"].getAccountCardId();
 
-        console.log("Account ID and SECRET_KEY for accepting the TRANSFER INVOICE", accountId, opts.secret_key);
+        console.log("Account ID and SECRET_KEY for accepting the TRANSFER INVOICE", accountId, scope.opts.secret_key);
 
         if (accountId == undefined) {
 
@@ -96,10 +98,10 @@
           input: {
             session_key: sessionKey,
             phone_num: phoneNumber,
-            invoice_id: opts.invoiceId,
+            invoice_id: scope.opts.invoiceId,
             action: invoiceActions.ACCEPT,
             account_id: accountId,
-            secret_key: opts.secret_key
+            secret_key: scope.opts.secret_key
           },
           scope: this,
           onSuccess: function (result) {

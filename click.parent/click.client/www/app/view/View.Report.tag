@@ -612,29 +612,8 @@
 
             scope.paymentsSum = scope.paymentsSum.toString();
 
-            if (scope.paymentsSum.length == 7) {
-              scope.paymentsSum = scope.paymentsSum.substring(0, 1) + ' ' +
-                scope.paymentsSum.substring(1, 4) + ' ' + scope.paymentsSum.substring(4, scope.paymentsSum.length)
-
-            }
-
-            if (scope.paymentsSum.length == 6) {
-              scope.paymentsSum = scope.paymentsSum.substring(0, 3) + ' ' +
-                scope.paymentsSum.substring(3, scope.paymentsSum.length)
-
-            }
-
-            if (scope.paymentsSum.length == 5) {
-              scope.paymentsSum = scope.paymentsSum.substring(0, 2) + ' ' +
-                scope.paymentsSum.substring(2, scope.paymentsSum.length)
-
-            }
-
-            if (scope.paymentsSum.length == 4) {
-              scope.paymentsSum = scope.paymentsSum.substring(0, 1) + ' ' +
-                scope.paymentsSum.substring(1, scope.paymentsSum.length)
-
-            }
+            if(scope.paymentsSum)
+            scope.paymentsSum = window.amountTransform(scope.paymentsSum);
 
             scope.update();
 

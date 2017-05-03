@@ -7447,7 +7447,7 @@ var css = {
   "position: absolute;" +
   "height:" + 380 * widthK + "px;" +
   "width:100%;" +
-  "background-color: transparent;" +
+  "background-color: #00a8f1;" +
   "}",
 
   transferDetailPageTitle: ".transfer-detail-page-title " +
@@ -7976,6 +7976,14 @@ var css = {
 
   //VIEW TRANSFER TO CARD ----> VIEW PAYMENT DETAIL
 
+  viewTransferDetail: ".view-transfer-detail" +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width:100%;" +
+  "z-index:999999;" +
+  "}",
+
   transferToCardContainer: ".transfer-to-card-container" +
   "{" +
   "position: absolute;" +
@@ -7992,7 +8000,7 @@ var css = {
   "position: absolute;" +
   "height:" + 380 * widthK + "px;" +
   "width:100%;" +
-  "background-color: transparent;" +
+  "background-color: #00a8f1;" +
   "}",
 
   transferToCardTransferTitlePartOne: ".transfer-to-card-transfer-title-part-one " +
@@ -8042,6 +8050,14 @@ var css = {
   changedHeightForFilterAccount: ".changed-height-for-filter-account" +
   "{" +
   "height: 60%;" +
+  "}",
+
+  viewPaymentDetail: ".view-payment-detail" +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width:100%;" +
+  "z-index:999999;" +
   "}",
 
   paymentDetailPaymentIcon: ".payment-detail-payment-icon" +
@@ -9385,12 +9401,20 @@ var css = {
   "}",
 
   //VIEW INVOICE HISTORY DETAIL
+  viewInvoiceHistory: ".view-invoice-history" +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width:100%;" +
+  "z-index:999999;" +
+  "}",
+
   invoiceHistoryDetailTitleContainer: ".invoice-history-detail-title-container" +
   "{" +
   "position: absolute;" +
   "height:" + 340 * widthK + "px;" +
   "width:100%;" +
-  "background-color: transparent;" +
+  "background-color: #00a8f1;" +
   "}",
 
   invoiceHistoryDetailTitle: ".invoice-history-detail-title" +
@@ -10001,12 +10025,21 @@ var css = {
 
   //VIEW TRANSFER ON CARD
 
+  viewTransferOnCard: ".view-transfer-on-card" +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width:100%;" +
+  "z-index:999999;" +
+  "}",
+
   viewTransferOnCardTitleContainer: ".view-transfer-on-card-title-container" +
   "{" +
   "position: absolute;" +
   "top: 0;" +
   "height:" + 220 * widthK + "px;" +
   "width: 100%;" +
+  "background-color: #00a8f1;" +
   "}",
 
   viewTransferOnCardTitleTextPartOne: ".view-transfer-on-card-title-text-part-one" +
