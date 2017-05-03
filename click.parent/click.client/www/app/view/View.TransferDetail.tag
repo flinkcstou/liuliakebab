@@ -73,7 +73,7 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
-  <view-transfer-on-card hidden="{!showComponent}"></view-transfer-on-card>
+
 
   <script>
     var scope = this,
@@ -160,16 +160,16 @@
           invoiceId: scope.opts.invoiceId
         };
 
-        scope.showComponent = true;
-        console.log('PARAMS', params)
-        scope.tags['view-transfer-on-card'].opts = params
-        window.checkShowingComponent = scope.tags['view-transfer-on-card'];
-        scope.update();
+//        scope.showComponent = true;
+//        console.log('PARAMS', params)
+//        scope.tags['view-transfer-on-card'].opts = params
+//        window.checkShowingComponent = scope.tags['view-transfer-on-card'];
+//        riot.update();
 
-//        riotTags.innerHTML = "<view-transfer-on-card>";
-//        riot.mount("view-transfer-on-card", params);
+        riotTags.innerHTML = "<view-transfer-on-card>";
+        riot.mount("view-transfer-on-card", params);
 
-//        scope.unmount()
+        scope.unmount()
       }
     };
 

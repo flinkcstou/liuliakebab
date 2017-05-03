@@ -1,65 +1,65 @@
 <view-payment-detail class="view-payment-detail">
 
-    <div class="transfer-to-card-title-container">
-      <div class="page-title account-detail-page-title">
-        <p class="name-title">{titleName}</p>
-        <div id="backButton" ontouchstart="goToBack()" class="settings-general-back-button"></div>
-      </div>
-
-      <div class="payment-detail-payment-icon"></div>
-      <p class="transfer-to-card-transfer-title-part-one">
-        {window.languages.ViewPaymentDetailTitleOne}</p>
-
-      <p class="transfer-to-card-transfer-title-part-two">
-        {(opts.is_friend_help)?(window.languages.ViewPaymentDetailTitleTwo):(window.languages.ViewPaymentDetailTitleTwoIfNotFriendsHelp
-        + " " + opts.serviceName)}</p>
-
-      <p class="transfer-to-card-transfer-title-phone" if="{opts.is_friend_help}">
-        +{opts.phoneNumber}</p>
-
+  <div class="transfer-to-card-title-container">
+    <div class="page-title account-detail-page-title">
+      <p class="name-title">{window.languages.ViewPaymentDetailTitle + opts.invoiceId}</p>
+      <div id="backButton" ontouchstart="paymentDetailGoToBack()" class="settings-general-back-button"></div>
     </div>
 
-    <div class="transfer-to-card-container">
+    <div class="payment-detail-payment-icon"></div>
+    <p class="transfer-to-card-transfer-title-part-one">
+      {window.languages.ViewPaymentDetailTitleOne}</p>
 
-      <div class="payment-detail-payment-container">
-        <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitleSum}</p>
-        <p class="payment-detail-sum">{opts.amount} сум</p>
-      </div>
-      <div class="payment-detail-payment-container">
-        <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitlePayFor} {opts.serviceName}:</p>
-        <p class="payment-detail-number">{opts.accountNumber}</p>
-      </div>
-      <div class="payment-detail-payment-container">
-        <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitlePayFrom}</p>
-      </div>
+    <p class="transfer-to-card-transfer-title-part-two">
+      {(opts.is_friend_help)?(window.languages.ViewPaymentDetailTitleTwo):(window.languages.ViewPaymentDetailTitleTwoIfNotFriendsHelp
+      + " " + opts.serviceName)}</p>
 
-      <component-pincards paymentdetail="{true}" clean="{true}"></component-pincards>
+    <p class="transfer-to-card-transfer-title-phone" if="{opts.is_friend_help}">
+      +{opts.phoneNumber}</p>
 
-      <div class="account-detail-cover"></div>
+  </div>
 
-      <div class="account-detail-buttons-container">
-        <button class="account-detail-button-accept" ontouchend="onTouchEndAccept()"
-                ontouchstart="onTouchStartAccept()">
-          {window.languages.ViewAccountDetailTitlePay}
-        </button>
-        <button class="account-detail-button-cancel" ontouchend="onTouchEndDecline()"
-                ontouchstart="onTouchStartDecline()">
-          {window.languages.ViewAccountDetailTitleDecline}
-        </button>
-      </div>
+  <div class="transfer-to-card-container">
+
+    <div class="payment-detail-payment-container">
+      <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitleSum}</p>
+      <p class="payment-detail-sum">{opts.amount} сум</p>
+    </div>
+    <div class="payment-detail-payment-container">
+      <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitlePayFor} {opts.serviceName}:</p>
+      <p class="payment-detail-number">{opts.accountNumber}</p>
+    </div>
+    <div class="payment-detail-payment-container">
+      <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitlePayFrom}</p>
     </div>
 
+    <component-pincards paymentdetail="{true}" clean="{true}"></component-pincards>
 
-    <component-success id="componentSuccessId"
-                       operationmessage="{window.languages.ComponentSuccessMessageForPay}"
-                       viewpage="{undefined}" step_amount="{0}" close_action="{goToBack}"></component-success>
-    <component-unsuccess id="componentUnsuccessId"
-                         operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
-                         operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                         operationmessagepartthree="{errorMessageFromTransfer}"></component-unsuccess>
+    <div class="account-detail-cover"></div>
 
-    <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                     errornote="{errorNote}"></component-alert>
+    <div class="account-detail-buttons-container">
+      <button class="account-detail-button-accept" ontouchend="paymentDetailOnTouchEndAccept()"
+              ontouchstart="paymentDetailOnTouchStartAccept()">
+        {window.languages.ViewAccountDetailTitlePay}
+      </button>
+      <button class="account-detail-button-cancel" ontouchend="paymentDetailOnTouchEndDecline()"
+              ontouchstart="paymentDetailOnTouchStartDecline()">
+        {window.languages.ViewAccountDetailTitleDecline}
+      </button>
+    </div>
+  </div>
+
+
+  <component-success id="componentSuccessId"
+                     operationmessage="{window.languages.ComponentSuccessMessageForPay}"
+                     viewpage="{undefined}" step_amount="{0}" close_action="{goToBack}"></component-success>
+  <component-unsuccess id="componentUnsuccessId"
+                       operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
+                       operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
+                       operationmessagepartthree="{errorMessageFromTransfer}"></component-unsuccess>
+
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
 
   <script>
     var scope = this,
@@ -73,9 +73,9 @@
       touchEndAcceptY;
 
     scope.showError = false;
-    scope.titleName = window.languages.ViewPaymentDetailTitle + scope.opts.invoiceId;
+//    scope.titleName = window.languages.ViewPaymentDetailTitle + scope.opts.invoiceId;
 
-    goToBack = function (doNotPrevent) {
+    paymentDetailGoToBack = function (doNotPrevent) {
 
       if (!doNotPrevent) {
 
@@ -87,13 +87,13 @@
 //      scope.unmount()
     };
 
-    onTouchStartDecline = function () {
+    paymentDetailOnTouchStartDecline = function () {
 
       touchStartDeclineX = event.changedTouches[0].pageX;
       touchStartDeclineY = event.changedTouches[0].pageY;
     };
 
-    onTouchEndDecline = function () {
+    paymentDetailOnTouchEndDecline = function () {
 
       touchEndDeclineX = event.changedTouches[0].pageX;
       touchEndDeclineY = event.changedTouches[0].pageY;
@@ -128,7 +128,8 @@
             console.log("result of invoice payment decline", result);
 
             if (result[0][0].error == 0) {
-              goToBack(true);
+              scope.parent.invoiceList =
+              paymentDetailGoToBack(true);
             }
             else {
               scope.clickPinError = false;
@@ -146,13 +147,13 @@
       }
     };
 
-    onTouchStartAccept = function () {
+    paymentDetailOnTouchStartAccept = function () {
 
       touchStartAcceptX = event.changedTouches[0].pageX;
       touchStartAcceptY = event.changedTouches[0].pageY;
     };
 
-    onTouchEndAccept = function () {
+    paymentDetailOnTouchEndAccept = function () {
 
       touchEndAcceptX = event.changedTouches[0].pageX;
       touchEndAcceptY = event.changedTouches[0].pageY;

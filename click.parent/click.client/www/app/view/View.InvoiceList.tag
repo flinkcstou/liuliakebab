@@ -211,7 +211,7 @@
 
                     console.log(error);
                   }
-
+                  result[1][i].deleted = false;
                   scope.invoiceList.push(result[1][i]);
                 }
 
@@ -370,11 +370,13 @@
               is_friend_help: invoice.is_friend_help
             };
 
+            console.log("PAYMENT PARAMS", params)
+
             scope.showComponent = true;
             scope.showComponentPayment = true;
             scope.tags['view-payment-detail'].opts = params
             window.checkShowingComponent = scope.tags['view-payment-detail'];
-            scope.update();
+            riot.update();
 
 //            history.arrayOfHistory.push({view: "view-payment-detail"});
 //            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
