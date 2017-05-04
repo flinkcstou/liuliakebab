@@ -23,7 +23,8 @@
       </div>
     </div>
     <div id="invoiceListInvoicesId" class="invoice-list-invoices-holder" ontouchmove="invoiceListInvoicesTouchMove()">
-      <div each="{invoice in invoiceList}" title="{JSON.stringify(invoice)}" class="invoice-list-invoice"
+      <div each="{invoice in invoiceList}" if="{!invoice.deleted}" title="{JSON.stringify(invoice)}"
+           class="invoice-list-invoice"
            ontouchend="goToInvoiceHistoryDetailTouchEnd(this.title)"
            ontouchstart="goToInvoiceHistoryDetailTouchStart()">
         <div
@@ -143,7 +144,7 @@
 
                     console.log(error);
                   }
-
+                  result[1][i].deleted = false;
                   scope.invoiceList.push(result[1][i]);
                 }
 

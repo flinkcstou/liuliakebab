@@ -73,7 +73,7 @@
       touchEndAcceptY;
 
     scope.showError = false;
-//    scope.titleName = window.languages.ViewPaymentDetailTitle + scope.opts.invoiceId;
+    //    scope.titleName = window.languages.ViewPaymentDetailTitle + scope.opts.invoiceId;
 
     paymentDetailGoToBack = function (doNotPrevent) {
 
@@ -105,6 +105,14 @@
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = loginInfo.session_key;
 
+        for (var i in scope.parent.invoiceList) {
+          if (scope.parent.invoiceList[i].invoice_id == scope.opts.invoiceId) {
+            scope.parent.invoiceList[i].deleted = true;
+//            alert('TRUE')
+          }
+        }
+        riot.update(scope.parent.invoiceList);
+
         if (device.platform != 'BrowserStand') {
           var options = {dimBackground: true};
 
@@ -128,7 +136,6 @@
             console.log("result of invoice payment decline", result);
 
             if (result[0][0].error == 0) {
-              scope.parent.invoiceList =
               paymentDetailGoToBack(true);
             }
             else {
