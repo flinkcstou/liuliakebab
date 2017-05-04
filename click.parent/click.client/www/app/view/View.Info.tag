@@ -40,7 +40,7 @@
     <div class="view-info-operations-icon" each="{i in lastOperationContainer}" id="{i.payment_id}"
          ontouchstart="onTouchStartOfOperation()"
          ontouchend="onTouchEndOfOperation(this.id)"
-         style="left:{leftOfOperations*i.count + 50}px; background-image: url({i.image})">
+         style="top:{leftOfOperations*i.count + 50 * widthK}px; background-image: url({i.image})">
 
       <div class="view-info-operation-info-container">
         <p class="view-info-operation-info-name">{i.service_name}</p>
@@ -48,6 +48,8 @@
         <p class="view-info-operation-info-balance">{}</p>
         <p class="view-info-operation-info-number">{i.cntrg_info_param2}</p>
         <p class="view-info-operation-info-date">{i.created}</p>
+
+        <div class="view-info-state-image" style="background-image: url({i.state_image})"></div>
       </div>
 
     </div>
@@ -193,7 +195,7 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    scope.leftOfOperations = 470 * widthK;
+    scope.leftOfOperations = 200 * widthK;
     scope.lastOperationContainer = [];
 
     onTouchEndBack = function () {
@@ -282,6 +284,18 @@
                 result[1][i].amount = result[1][i].amount.toString();
                 result[1][i].amount = window.amountTransform(result[1][i].amount);
 
+                if (result[1][i].state == -1) {
+                  result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
+                }
+
+                if (result[1][i].state == 0) {
+                  result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
+                }
+
+                if (result[1][i].state == 1) {
+                  result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
+                }
+
                 scope.lastOperationContainer.push(result[1][i])
 
                 j++;
@@ -337,13 +351,13 @@
     }
 
     scope.onTouchStartOfOperation = onTouchStartOfOperation = function () {
-      carouselTouchStartX = event.changedTouches[0].pageX;
+      carouselTouchStartX = event.changedTouches[0].pageY;
     }
 
     scope.onTouchEndOfOperation = onTouchEndOfOperation = function (paymentId) {
       event.preventDefault();
       event.stopPropagation();
-      carouselTouchEndX = event.changedTouches[0].pageX;
+      carouselTouchEndX = event.changedTouches[0].pageY;
       if (Math.abs(carouselTouchStartX - carouselTouchEndX) < 20) {
         console.log("Time to open");
         for (var i = 0; i < scope.lastOperationContainer.length; i++) {

@@ -74,7 +74,6 @@
                    errornote="{errorNote}"></component-alert>
 
 
-
   <script>
     var scope = this,
       touchStartDeclineX,
@@ -185,6 +184,7 @@
       event.preventDefault();
       event.stopPropagation();
 
+
       console.log("ACCEPT OPTS", opts)
 
       touchEndAcceptX = event.changedTouches[0].pageX;
@@ -210,11 +210,22 @@
       event.preventDefault();
       event.stopPropagation();
 
+
       touchEndDeclineX = event.changedTouches[0].pageX;
       touchEndDeclineY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchEndDeclineX - touchStartDeclineX) < 20 &&
         Math.abs(touchEndDeclineY - touchStartDeclineY) < 20) {
+
+        for (var i in scope.parent.invoiceList) {
+//          console.log("scope.parent.invoiceList[i]", scope.parent.invoiceList[i])
+          if (scope.parent.invoiceList[i].invoice_id == scope.opts.invoiceId) {
+            scope.parent.invoiceList[i].deleted = true;
+//            console.log("QWEQW")
+//            alert('TRUE')
+          }
+        }
+        riot.update(scope.parent.invoiceList);
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));

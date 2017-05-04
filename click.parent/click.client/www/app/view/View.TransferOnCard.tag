@@ -10,7 +10,8 @@
 
     <component-pincards clean="{true}" transferoncard="true"></component-pincards>
 
-    <button class="transfer-on-card-ok-button" ontouchend="transferOnCardOnTouchEndAccept()" ontouchstart="transferOnCardOnTouchStartAccept()">
+    <button class="transfer-on-card-ok-button" ontouchend="transferOnCardOnTouchEndAccept()"
+            ontouchstart="transferOnCardOnTouchStartAccept()">
       {languages.ViewTransferOnCardAcceptButtonText}
     </button>
 
@@ -18,7 +19,7 @@
 
   <component-success id="componentSuccessId"
                      operationmessage="{window.languages.ComponentSuccessMessage}"
-                     viewpage="{undefined}" step_amount="{0}" close_action="{goToBack}"></component-success>
+                     viewpage="{'view-invoice-list'}" step_amount="{0}"></component-success>
   <component-unsuccess id="componentUnsuccessId"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
@@ -110,6 +111,16 @@
 
             if (result[0][0].error == 0) {
               componentSuccessId.style.display = 'block';
+
+//              for (var i in scope.parent.invoiceList) {
+////          console.log("scope.parent.invoiceList[i]", scope.parent.invoiceList[i])
+//                if (scope.parent.invoiceList[i].invoice_id == scope.opts.invoiceId) {
+//                  scope.parent.invoiceList[i].deleted = true;
+////            console.log("QWEQW")
+////            alert('TRUE')
+//                }
+//              }
+//              riot.update(scope.parent.invoiceList);
             }
             else {
 

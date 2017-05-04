@@ -2366,6 +2366,7 @@ var css = {
   "width: 100%;" +
   "height: 100%;" +
   "overflow-x: hidden;" +
+  "overflow-y: hidden;" +
   "background-color: #ffffff;" +
   "}",
 
@@ -2585,11 +2586,11 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 250 * widthK + "px;" +
+  "height:" + 765 * widthK + "px;" +
   "top:" + 465 * widthK + "px;" +
     //"top:" + 600 * widthK + "px;" +
-  "overflow-x: auto;" +
-  "overflow-y: hidden;" +
+  "overflow-y: auto;" +
+  "overflow-x: hidden;" +
   "font-size:" + 23 * widthK + "px;" +
   "}",
 
@@ -2597,6 +2598,7 @@ var css = {
   "{" +
   "top:" + 50 * widthK + "px;" +
   "background-size: 80%;" +
+  "left: 5%;" +
   "position: absolute;" +
   "width:" + 125 * widthK + "px;" +
   "height:" + 125 * widthK + "px;" +
@@ -2604,6 +2606,20 @@ var css = {
   "background-position: center;" +
     //"border-radius:" + 100 * widthK + "px;" +
     //"border:solid 1px #b7b7b7;" +
+  "}",
+
+  viewInfoStateImage: ".view-info-state-image " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 60 * widthK + "px;" +
+  "right:" + 5 * widthK + "px;" +
+  "height:" + 60 * widthK + "px;" +
+    //"height: 100%;" +
+  "top: 50%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 60%;" +
+  "background-position: center;" +
+  "margin: 0;" +
   "}",
 
   viewInfoOperationTitle: ".view-info-operations-title " +
@@ -2628,7 +2644,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: 100%;" +
-  "width: 300%;" +
+  "width: 440%;" +
   "left: 103%;" +
   "color: #8b8b8b;" +
   "}",
