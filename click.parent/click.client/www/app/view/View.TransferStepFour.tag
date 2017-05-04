@@ -93,10 +93,10 @@
   <script>
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-transfer-stepfour',
-            "params": opts
-          }
+        {
+          "view": 'view-transfer-stepfour',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -305,6 +305,12 @@
 //              console.log("result of TRANSFER ", result);
             if (result[1])
               if (result[1][0]) {
+                viewTransfer.phoneNumber = 0
+                viewTransfer.cardNumber = 0
+                viewTransfer.cardNumber = 0
+                viewTransferStepTwo.sum = 0;
+                viewTransferStepTwo.sumWithoutSpace = 0;
+
                 if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
                   blockCodeConfirmId.style.display = 'block';
                   scope.secretCode = result[1][0].secret_code;
