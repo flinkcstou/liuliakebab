@@ -32,10 +32,10 @@
   <script>
 
     var scope = this,
-      touchStartAcceptX,
-      touchStartAcceptY,
-      touchEndAcceptX,
-      touchEndAcceptY;
+        touchStartAcceptX,
+        touchStartAcceptY,
+        touchEndAcceptX,
+        touchEndAcceptY;
 
     scope.success = false;
     scope.fail = false;
@@ -54,7 +54,7 @@
       touchEndAcceptY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
-        Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
+          Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));

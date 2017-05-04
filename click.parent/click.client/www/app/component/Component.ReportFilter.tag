@@ -19,7 +19,8 @@
 
         <component-pincards filteraccount="true"></component-pincards>
 
-        <button class="report-filter-ready-button" if="{filterDate || filterAccount}" ontouchstart="readyButtonTouchStart()"
+        <button class="report-filter-ready-button" if="{filterDate || filterAccount}"
+                ontouchstart="readyButtonTouchStart()"
                 ontouchend="readyButtonTouchEnd()">
           {languages.ComponentReportFilterReadyButton}
         </button>
@@ -67,7 +68,8 @@
           <div class="filter-menu-name-field">{languages.ComponentReportFilterDatePastMonth}</div>
         </div>
 
-        <button class="report-filter-ready-button" if="{filterDate || filterAccount}" ontouchstart="readyButtonTouchStart()"
+        <button class="report-filter-ready-button" if="{filterDate || filterAccount}"
+                ontouchstart="readyButtonTouchStart()"
                 ontouchend="readyButtonTouchEnd()">
           {languages.ComponentReportFilterReadyButton}
         </button>
@@ -109,7 +111,7 @@
         <img class="report-filter-clear-filters-icon" src="resources/icons/ViewReport/reports_filters_clear.png">
       </div>
 
-      <button class="report-filter-ok-button" ontouchend="closeMenu()">ok</button>
+      <button class="report-filter-ok-button" ontouchend="attachFilters()">ok</button>
     </div>
 
 
@@ -485,7 +487,8 @@
 //      scope.unmount()
     };
 
-    closeMenu = function () {
+    attachFilters = function () {
+
       if (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -527,6 +530,35 @@
         }
       }
     };
+
+    closeMenu = function () {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      componentMenu.checkOpen = false;
+
+      scope.filterAccount = false;
+      scope.filterDate = false;
+
+      filterMenuId.style.webkitTransition = '0.3s';
+      filterMenuBackPageId.style.opacity = '0';
+      filterMenuBackPageId.style.webkitTransition = '0';
+      filterMenuId.style.webkitTransform = "translate3d(0, -100%, 0)";
+      filterMenuId.style.Transform = "translate3d(0, -100%, 0)";
+      reportPageId.style.opacity = '1';
+      reportPageId.style.zIndex = '0';
+
+      scope.filterDateFrom = "";
+      scope.filterDateTo = "";
+
+      scope.createdDateFilter = "";
+      scope.filterByAccount = "";
+      scope.createdAccountFilter = "";
+
+      riot.update();
+    }
+    ;
 
     var touchStartX, touchEndX, touchMoveX, touchEndMove, timeStartX, timeEndXs;
     var width = window.innerWidth;

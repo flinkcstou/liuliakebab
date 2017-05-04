@@ -214,6 +214,9 @@
 
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
         writeBalance();
+      } else {
+
+        scope.update();
       }
     };
 
@@ -283,7 +286,10 @@
                   }
                 }
 
-                addCard();
+                setTimeout(function () {
+
+                  addCard(true)
+                }, 500);
               }
               else {
                 scope.invoiceCheck = false;
@@ -397,7 +403,10 @@
                             console.log('accountInfo', accountInfo);
 
                             localStorage.setItem("click_client_accountInfo", accountInfo);
-                            addCard()
+                            setTimeout(function () {
+
+                              addCard()
+                            }, 500);
                           }
 
                         });
@@ -416,7 +425,10 @@
 
                   console.log('accountInfo BROWSER STAND', accountInfo);
                   localStorage.setItem("click_client_accountInfo", accountInfo);
-                  addCard()
+                  setTimeout(function () {
+
+                    addCard()
+                  }, 500);
                 }
               }
               else {
@@ -469,6 +481,7 @@
     if (viewMainPage.atMainPage) {
       invoiceCheckFunction();
     }
+
     onComponentCreated();
 
     scope.switchToOfflineMode = function () {
@@ -582,7 +595,7 @@
             card_num_crypted: getAccountsCards[i].card_num_crypted
           },
           //TODO: DO CARDS
-//          scope: this,
+          scope: this,
           onSuccess: function (result) {
             if (result[0][0].error == 0) {
               if (result[1][0]) {
@@ -647,7 +660,7 @@
     if (!scope.cardNumber) {
       scope.cardNumber = 0;
     }
-    //    riot.update(scope.cardNumber);
+//    riot.update(scope.cardNumber);
 
     var pos = 0;
     var count = localStorage.getItem('click_client_countCard');
@@ -1062,7 +1075,10 @@
       localStorage.setItem('cardNumber', scope.cardNumber);
     }
 
-    addCard(true);
+    setTimeout(function () {
+
+      addCard(true)
+    }, 500);
 
 
   </script>

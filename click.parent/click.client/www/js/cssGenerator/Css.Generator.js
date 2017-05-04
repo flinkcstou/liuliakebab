@@ -8389,7 +8389,7 @@ var css = {
   "font-size: " + 27 * widthK + "px;" +
   "background-color: #00A1EC;" +
   "height: " + 74 * widthK + "px;" +
-  "margin:" + 40 * widthK + " auto 0 auto;" +
+  "margin:" + 40 * widthK + "px auto 0 auto;" +
   "padding: 0;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
