@@ -940,27 +940,31 @@
 
         function isAvailableSuccess(result) {
           console.log("FingerprintAuth available: " + JSON.stringify(result));
-          result.isAvailable = true;
-          window.fingerPrint.check = true;
+          if (result.isAvailable && result.hasEnrolledFingerprints) {
+            window.fingerPrint.check = true;
 
-          if (window.fingerPrint.check) {
-            var encryptConfig = {
-              clientId: "myAppName",
-              clientSecret: "currentUser",
-              password: "currentUser",
-              token: "currentUser",
-              locale: "ru",
-              disableBackup: false,
+            if (window.fingerPrint.check) {
+              var encryptConfig = {
+                clientId: "myAppName",
+                clientSecret: "currentUser",
+                password: "currentUser",
+                token: "currentUser",
+                locale: "ru",
+                disableBackup: false,
 //              userAuthRequired: false,
-              dialogHint: "Повторите попытку, или выбросите телефон XD TEST",
-              dialogTitle: "Сканирование для Click"
+                dialogHint: "Повторите попытку, или выбросите телефон XD TEST",
+                dialogTitle: "Сканирование для Click"
 
-            }; // See config object for required parameters
+              }; // See config object for required parameters
 
-            if (localStorage.getItem("settings_finger_print")) {
-              if (JSON.parse(localStorage.getItem("settings_finger_print")) === true)
-                FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
+              if (localStorage.getItem("settings_finger_print")) {
+                if (JSON.parse(localStorage.getItem("settings_finger_print")) === true)
+                  FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
+              }
             }
+          }
+          else {
+            window.fingerPrint.check = false
           }
         }
 

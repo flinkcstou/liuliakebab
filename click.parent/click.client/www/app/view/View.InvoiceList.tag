@@ -85,10 +85,11 @@
     scope.showComponentPayment = false;
     scope.showComponentHistory = false;
     scope.showComponent = false;
+    var canDownloadInvoiceList = true;
 
     invoiceListInvoicesTouchMove = function () {
 
-      if ((invoiceListInvoicesId.scrollHeight - invoiceListInvoicesId.scrollTop) == invoiceListInvoicesId.offsetHeight) {
+      if ((invoiceListInvoicesId.scrollHeight - invoiceListInvoicesId.scrollTop) == invoiceListInvoicesId.offsetHeight && canDownloadInvoiceList) {
         console.log(scope.toUser)
         if (scope.toUser) {
           console.log("ASDQQQ");
@@ -108,7 +109,12 @@
     getInvoiceListToUser = function () {
       console.log("ASDQQQ");
 
-      if (!scope.toUser)scope.invoiceList = [];
+      if (!scope.toUser) {
+        scope.invoiceList = [];
+        invoiceListPageNumber = 1;
+        canDownloadInvoiceList = true;
+      }
+
       scope.toUser = true;
       scope.update();
 
@@ -138,8 +144,12 @@
 
           if (result[0][0].error == 0) {
             if (result[1]) {
+              if (result[1].length == 0) {
+                canDownloadInvoiceList = false;
+              }
               if (result[1][0]) {
                 console.log('invoice to user', result[1])
+                console.log('LENGTH', result[1].length)
 
                 for (var i = 0; i < result[1].length; i++) {
 
@@ -177,7 +187,11 @@
     getInvoiceListFromUser = function () {
       console.log("QWE")
 
-      if (scope.toUser)scope.invoiceList = [];
+      if (scope.toUser) {
+        scope.invoiceList = [];
+        invoiceListPageNumber = 1;
+        canDownloadInvoiceList = true;
+      }
       scope.toUser = false;
       scope.update();
 
@@ -206,8 +220,12 @@
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
             if (result[1]) {
+              if (result[1].length == 0) {
+                canDownloadInvoiceList = false;
+              }
               if (result[1][0]) {
                 console.log('invoice from user', result[1])
+
 
                 for (var i = 0; i < result[1].length; i++) {
 
