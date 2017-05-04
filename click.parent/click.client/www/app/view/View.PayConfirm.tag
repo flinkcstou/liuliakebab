@@ -88,7 +88,7 @@
 
   <component-success id="componentSuccessId"
                      operationmessage="{operationMessage}"
-                     viewpage="{viewPage}" step_amount="{3}"></component-success>
+                     viewpage="{viewPage}" step_amount="{stepAmount}"></component-success>
   <component-unsuccess id="componentUnsuccessId"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
@@ -138,6 +138,8 @@
     if (scope.isInFavorites)
       this.viewPage = 'view-main-page';
     else this.viewPage = 'view-pay';
+
+    scope.stepAmount = 3;
 
 
     console.log("OPTS=", opts);
@@ -492,8 +494,15 @@
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
             console.log("result of autopay.delete", result);
+            viewServicePage.phoneText = '';
+            window.viewServicePage = {};
+            viewServicePage.amountText = '';
+            viewServicePage.amountWithoutSpace = '';
+            viewServicePinCards.friendHelpPaymentMode = false;
+            viewServicePinCards.chosenFriendForHelp = null;
             scope.operationMessage = window.languages.ViewAutoPayDeletedSuccessText;
             scope.viewPage = 'view-auto-pay';
+            scope.stepAmount = 1;
             scope.update();
             componentSuccessId.style.display = 'block';
 
