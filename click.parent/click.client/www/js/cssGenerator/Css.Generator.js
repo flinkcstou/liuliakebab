@@ -2772,7 +2772,10 @@ var css = {
   "top:" + 78 * widthK + "px; " +
   "position:fixed;" +
   "display: none;" +
-  "box-shadow: 0 0 20px rgba(0,0,0,0.5);" +
+    //"box-shadow: 0 0 20px rgba(0,0,0,0.5);" +
+  "-webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.5);" +
+  "-moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.5);" +
+  "box-shadow: 0 8px 6px -6px rgba(0,0,0,0.5);" +
   "}",
 
   payServicesBlock: ".pay-services-block" +
@@ -2971,7 +2974,7 @@ var css = {
   "right: 4%;" +
   "background-size: 150%;" +
   "background-color: white;" +
-    //"display:none;" +
+  "display:none;" +
   "}",
 
   servicePageBodyContainer: ".servicepage-body-container" +
@@ -4119,7 +4122,7 @@ var css = {
   "{" +
   "height: " + 74 * widthK + "px;" +
   "text-transform: capitalize;" +
-  "position: relative;" +
+  "position: absolute;" +
   "background-color: #ee4d3d;" +
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px;" +
@@ -4130,6 +4133,7 @@ var css = {
   "width: 44%;" +
   "border-radius: " + 10 * widthK + "px;" +
   "color: #ffffff;" +
+  "bottom:" + 100 * widthK + "px;" +
   "}",
 
   //COMPONENT SEARCH
@@ -11907,6 +11911,24 @@ var css = {
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "}",
 
+  autopayButton: ".autopay-button" +
+  "{" +
+  "position: absolute;" +
+  "height: " + 74 * widthK + "px;" +
+  "text-transform: capitalize;" +
+  "background-color: #00a8f1;" +
+  "padding: 0;" +
+  "font-size: " + 32 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
+  "bottom:" + 100 * widthK + "px; " +
+  "}",
+
 //  View autopay method
 
   autopayMethodBodyContainer: ".autopay-method-body-container" +
@@ -11932,14 +11954,14 @@ var css = {
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
-  "width: 60%;" +
+  "width: 75%;" +
   "font-size: " + 36 * widthK + "px; " +
   "}",
 
-  autopayMethodServiceIcon: ".autopay-method-service-icon" +
-  "{" +
-  "display: block; " +
-  "}",
+  //autopayMethodServiceIcon: ".autopay-method-service-icon" +
+  //"{" +
+  //"display: block; " +
+  //"}",
 
   autopayMethodBackButton: ".autopay-method-back-button" +
   "{" +
@@ -12189,7 +12211,7 @@ var css = {
   autopayEventButtonEnter: " .autopay-event-button-enter" +
   "{" +
   "top: 87%;" +
-  "height:" + 70 * widthK + "px;" +
+  "height:" + 74 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
   "background-color: #00a8f1;" +
   "padding: 0;" +

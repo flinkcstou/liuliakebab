@@ -21,7 +21,7 @@
 
     <div class="servicepage-second-dropdown-field" if="{hasFirstLevel}"
          ontouchend="openDropDownTwo()">
-      <p if="{formType==3}" class="servicepage-text-field servicepage-second-dropdown-field-text">
+      <p if="{formType==3 || formType==4}" class="servicepage-text-field servicepage-second-dropdown-field-text">
         {(service.options_title)?(service.options_title):("")}</p>
       <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
       <div class="servicepage-dropdown-icon"></div>
@@ -120,7 +120,6 @@
     </div>
   </div>
 
-
   <div class="servicepage-formtype-two-container" if="{formType==2}">
 
     <div class="{servicepage-pincards-container-two: !enterButton, servicepage-pincards-container: enterButton}">
@@ -139,7 +138,6 @@
       {window.languages.ViewServicePageSaveLabel}
     </button>
   </div>
-
 
   <div id="blockAmountCalculatorId" class="component-calc">
     <div id="rightButton" type="button" class="component-banklist-close-button" ontouchend="closeComponent()"></div>
