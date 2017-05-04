@@ -582,22 +582,27 @@
             card_num_crypted: getAccountsCards[i].card_num_crypted
           },
           //TODO: DO CARDS
-          scope: this,
+//          scope: this,
           onSuccess: function (result) {
             if (result[0][0].error == 0) {
               if (result[1][0]) {
-                if(scope.cardsarray[result[1][0].account_id])
-                scope.cardsarray[result[1][0].account_id].salaryOriginal = result[1][0].balance.toFixed(0);
+                try {
+                  if (scope.cardsarray[result[1][0].account_id])
+                    scope.cardsarray[result[1][0].account_id].salaryOriginal = result[1][0].balance.toFixed(0);
 
 
-                result[1][0].balance = result[1][0].balance.toFixed(0).toString();
+                  result[1][0].balance = result[1][0].balance.toFixed(0).toString();
 
-                result[1][0].balance = window.amountTransform(result[1][0].balance.toString());
+                  result[1][0].balance = window.amountTransform(result[1][0].balance.toString());
 
-                scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
-                localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+                  scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
+                  localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
 
-                scope.update();
+                  scope.update();
+                }
+                catch (error) {
+                  console.log(error)
+                }
               }
             }
             else {
@@ -641,7 +646,7 @@
     if (!scope.cardNumber) {
       scope.cardNumber = 0;
     }
-//    riot.update(scope.cardNumber);
+    //    riot.update(scope.cardNumber);
 
     var pos = 0;
     var count = localStorage.getItem('click_client_countCard');
