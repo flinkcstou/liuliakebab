@@ -32,6 +32,7 @@
 
     if (device.platform != 'BrowserStand') {
       window.FirebasePlugin.onNotificationOpen(function (notification) {
+
         console.log("PUSH NOTIFICATION OBJECT", notification);
         ++numberOfMessage;
 
@@ -49,6 +50,7 @@
         authorized = JSON.parse(authorized);
 
         if (notification.tap && !authorized) {
+          window.FirebasePlugin.setBadgeNumber(0);
 
           var background_notification = {};
 
@@ -92,9 +94,18 @@
 
         scope.update();
 
+        window.FirebasePlugin.logEvent(scope.notificationText, {
+          content_type: scope.notificationAction,
+          item_id: scope.notificationElementId
+        });
+        if (localStorage.getItem('click_client_phoneNumber')) {
+          window.FirebasePlugin.setUserId(localStorage.getItem('click_client_phoneNumber'));
+        }
+
         window.FirebasePlugin.setBadgeNumber(numberOfMessage);
 
       }, function (error) {
+        window.cordova.plugins.firebase.crash.report(error);
         console.error(error);
       });
     }
@@ -106,12 +117,26 @@
 
     onTouchStartNotificationDecline = function () {
 
+      window.FirebasePlugin.logEvent("DECLINE", {
+        content_type: scope.notificationAction,
+        item_id: scope.notificationElementId
+      });
+      if (localStorage.getItem('click_client_phoneNumber')) {
+        window.FirebasePlugin.setUserId(localStorage.getItem('click_client_phoneNumber'));
+      }
       scope.show = false;
       scope.notificationText = "";
       scope.update();
     };
 
     onTouchStartNotificationAccept = function () {
+      window.FirebasePlugin.logEvent("ACCEPT", {
+        content_type: scope.notificationAction,
+        item_id: scope.notificationElementId
+      });
+      if (localStorage.getItem('click_client_phoneNumber')) {
+        window.FirebasePlugin.setUserId(localStorage.getItem('click_client_phoneNumber'));
+      }
 
       scope.show = false;
       scope.notificationText = "";

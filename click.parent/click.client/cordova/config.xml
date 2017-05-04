@@ -24,6 +24,7 @@
   <plugin name="cordova-plugin-network-information"/>
 
   <plugin name="cordova-plugin-x-socialsharing"/>
+  <plugin name="cordova-plugin-firebase-crash"/>
 
   <plugin name="cordova-plugin-spinner"/>
   <plugin name="cordova-plugin-datepicker"/>

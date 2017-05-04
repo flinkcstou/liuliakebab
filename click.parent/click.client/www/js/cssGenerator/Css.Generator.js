@@ -290,7 +290,7 @@ var css = {
   "height: 100%;" +
   "overflow: hidden;" +
   "background-image: url('resources/icons/background/transparent.png');" +
-  "background-size: contain;" +
+  "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
   registrationDeviceFlexContainer: ".registration-device-flex-container " +
@@ -583,7 +583,7 @@ var css = {
   "height: 100%;" +
   "overflow: hidden;" +
   "background-image: url('resources/icons/background/transparent.png');" +
-  "background-size: contain;" +
+  "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
 
@@ -678,7 +678,7 @@ var css = {
   "height: 100%;" +
   "overflow: hidden;" +
   "background-image: url('resources/icons/background/transparent.png');" +
-  "background-size: contain;" +
+  "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
 
@@ -6028,7 +6028,7 @@ var css = {
   "height: 100%;" +
   "overflow: hidden;" +
   "background-image: url('resources/icons/background/transparent.png');" +
-  "background-size: contain;" +
+  "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
 
@@ -6226,7 +6226,7 @@ var css = {
   "height: 100%;" +
   "overflow: hidden;" +
   "background-image: url('resources/icons/background/transparent.png');" +
-  "background-size: contain;" +
+  "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
 

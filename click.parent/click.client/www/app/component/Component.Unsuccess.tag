@@ -13,6 +13,12 @@
     closeUnsuccessMessageForm = function () {
       console.log('OPTS', opts)
       componentUnsuccessId.style.display = 'none';
+      if (opts.viewpage) {
+
+        riotTags.innerHTML = "<" + opts.viewpage + ">";
+        riot.mount(opts.viewpage);
+//        scope.unmount()
+      }
     }
 
   </script>

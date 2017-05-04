@@ -21,6 +21,7 @@
                      operationmessage="{window.languages.ComponentSuccessMessage}"
                      viewpage="{'view-invoice-list'}" step_amount="{0}"></component-success>
   <component-unsuccess id="componentUnsuccessId"
+                       viewpage="{'view-invoice-list'}"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
                        operationmessagepartthree="{errorMessageFromTransfer}"></component-unsuccess>

@@ -309,6 +309,7 @@
     };
 
     goToCardPage = function (cardId) {
+      if (modeOfApp.offlineMode) return
       event.preventDefault();
       event.stopPropagation();
       console.log('cardId', cardId);

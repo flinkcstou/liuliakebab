@@ -70,7 +70,12 @@
     scope.showError = false;
     scope.invoiceList = [];
     scope.titleName = languages.ViewInvoiceListTitle;
-    scope.toUser = opts.toUser;
+    if (opts.toUser)
+      scope.toUser = opts.toUser;
+    else {
+      scope.toUser = true;
+    }
+    window.checkShowingComponent = null;
 
     console.log("TO USER", scope.toUser, opts.toUser);
 
