@@ -38,6 +38,8 @@
 
 
     goToBack = function () {
+      viewServicePage.phoneText = null;
+      viewServicePage.amountText = null;
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
@@ -178,7 +180,7 @@
             var formtype = {"formtype": scope.autopayList[i].form_type};
             var firstFieldId = {"firstFieldId": 2};
             var firstFieldText = {"firstFieldText": scope.autopayList[i].cntrg_param2};
-            var cardTypeId = {"cardTypeId": null};
+            var cardTypeId = {"cardTypeId": scope.autopayList[i].cntrg_param5};
 
             viewServicePage.firstFieldTitle = "Номер абонента";
             viewServicePage.phoneText = scope.autopayList[i].cntrg_param2;

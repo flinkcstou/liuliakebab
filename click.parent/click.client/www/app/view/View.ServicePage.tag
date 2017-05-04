@@ -944,7 +944,7 @@
       var cardTypeId = {"cardTypeId": null};
 
       viewServicePage.firstFieldTitle = scope.chosenFieldName;
-      viewServicePage.phoneText = firstFieldInput.value;
+      viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
       var isInFavorites = {"isInFavorites": !scope.enterButton};
 
       if (opts.mode == 'USUAL') {

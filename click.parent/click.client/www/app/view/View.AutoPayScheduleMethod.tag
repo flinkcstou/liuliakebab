@@ -256,31 +256,27 @@
       console.log("in start touch=", dateNumber);
       carouselTouchStartY = event.changedTouches[0].pageY;
       console.log("startY=", carouselTouchStartY);
-      touchStartTime = new Date().getTime();
+      tempStartY = carouselTouchStartY;
+      nNew = dateNumber;
+//      touchStartTime = new Date().getTime();
       left = -((scope.shift * dateNumber) * widthK) - carouselTouchStartY;
       delta = left;
-    }
+      console.log("nNew=", nNew);
+    };
 
     dateContainerTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
       carouselTouchEndY = event.changedTouches[0].pageY;
-//      touchEndTime = new Date().getTime();
-//      var speed = Math.abs((carouselTouchEndY - carouselTouchStartY) / (touchEndTime - touchStartTime));
-//      console.log("SPEED=", speed);
 
-//      console.log("endY=", carouselTouchEndY);
-//      console.log("N to Move=", Math.abs(carouselTouchStartY - carouselTouchEndY) / scope.shift);
-//      console.log("N fixed=", (Math.abs(carouselTouchStartY - carouselTouchEndY) / scope.shift).toFixed(0));
       nShift = Math.round(Math.abs(carouselTouchEndY - carouselTouchStartY) / (scope.shift * widthK));
-//      console.log("potential move=", Math.ceil(speed) * nShift);
 
       if (Math.abs(carouselTouchStartY - carouselTouchEndY) > 20) {
-        changePosition(nShift, carouselTouchEndY);
+        changePosition(nShift);
       }
-    }
+    };
 
-    var end, oldS, s;
+    var tempEndY, oldShift, tempShift, nOld = 0, nNew = 0, tempStartY, counter = 0;
 
     dateContainerTouchMove = function () {
       event.preventDefault();
@@ -293,32 +289,41 @@
 //      console.log("xx=", event.changedTouches[0].pageY + delta);
 
 //      changePosition(event.changedTouches[0].pageY + delta);
-      s = Math.round(Math.abs(event.changedTouches[0].pageY + delta - carouselTouchStartY) / (scope.shift * widthK));
-      end = event.changedTouches[0].pageY + delta;
-      console.log("s=", s);
-      if (s != oldS) {
-        changeColor(end);
-        oldS = s;
+      tempShift = Math.round(Math.abs(event.changedTouches[0].pageY + delta) / (scope.shift * widthK));
+      tempEndY = event.changedTouches[0].pageY;
+//      console.log("s=", tempShift);
+      if (tempShift != oldShift) {
+        if (counter == 0) {
+          document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
+        }
+        changeColor(tempEndY);
+        oldShift = tempShift;
+        counter++;
       }
     };
 
-    function changeColor(end) {
-      document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
-      console.log("datenumber=", dateNumber);
-      ++dateNumber;
-      document.getElementById("day" + dateNumber).style.color = '#01B8FE';
+    function changeColor(tempEndY) {
+//      nNew = Math.abs(nNew - dateNumber) == 0 ? dateNumber : nNew;
 
-      if (end < carouselTouchStartY) {
-        console.log("first");
-      } else if (end > carouselTouchStartY) {
-        console.log("second");
+      document.getElementById("day" + nOld).style.color = '#c1c1c1';
+      console.log("nNew in move=", nNew);
+
+      if (tempEndY < tempStartY) {
+        ++nNew;
+      } else if (tempEndY > tempStartY) {
+        --nNew;
       }
+      document.getElementById("day" + nNew).style.color = '#01B8FE';
+      nOld = nNew;
+      tempStartY = tempEndY;
 
     }
 
 
-    function changePosition(nShift, carouselTouchEndY) {
+    function changePosition(nShift) {
       //      console.log("NSHIFT", nShift);
+      document.getElementById("day" + nOld).style.color = '#c1c1c1';
+      document.getElementById("day" + nNew).style.color = '#c1c1c1';
 
       if (carouselTouchEndY < carouselTouchStartY) {
         //        console.log("111", dateNumber + Number(nShift));
@@ -365,6 +370,7 @@
         //console.log("5=", dateNumber);
       }
 
+      counter = 0;
       localStorage.setItem('dateNumber', dateNumber);
     }
 
@@ -413,6 +419,8 @@
       console.log("in start touch=", minuteNumber);
       minutesTouchStartY = event.changedTouches[0].pageY;
 //      mtouchStartTime = new Date().getTime();
+      mtempStartY = minutesTouchStartY;
+      mnNew = minuteNumber;
       mleft = -((scope.shift * minuteNumber) * widthK) - minutesTouchStartY;
       mdelta = mleft;
     }
@@ -434,6 +442,8 @@
       }
     }
 
+    var mtempEndY, moldShift, mtempShift, mnOld = 0, mnNew = 0, mtempStartY, mcounter = 0;
+
 
     minContainerTouchMove = function () {
       event.preventDefault();
@@ -442,9 +452,41 @@
       this.minutesContainerId.style.webkitTransition = '0s';
       this.minutesContainerId.style.transform = "translate3d(0," + (event.changedTouches[0].pageY + mdelta ) + 'px' + ", 0)";
       this.minutesContainerId.style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + mdelta ) + 'px' + ", 0)";
+
+      mtempShift = Math.round(Math.abs(event.changedTouches[0].pageY + mdelta) / (scope.shift * widthK));
+      mtempEndY = event.changedTouches[0].pageY;
+//      console.log("s=", tempShift);
+      if (mtempShift != moldShift) {
+        if (mcounter == 0) {
+          document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
+        }
+        changeMinutesColor(mtempEndY);
+        moldShift = mtempShift;
+        mcounter++;
+      }
+    }
+
+    function changeMinutesColor(mtempEndY) {
+//      nNew = Math.abs(nNew - dateNumber) == 0 ? dateNumber : nNew;
+
+      document.getElementById("min" + mnOld).style.color = '#c1c1c1';
+      console.log("nNew in move=", mnNew);
+
+      if (mtempEndY < mtempStartY) {
+        ++mnNew;
+      } else if (mtempEndY > mtempStartY) {
+        --mnNew;
+      }
+      document.getElementById("min" + mnNew).style.color = '#01B8FE';
+      mnOld = mnNew;
+      mtempStartY = mtempEndY;
+
     }
 
     function changeMinutesPosition(mShift) {
+
+      document.getElementById("min" + mnOld).style.color = '#c1c1c1';
+      document.getElementById("min" + mnNew).style.color = '#c1c1c1';
 
       if (minutesTouchEndY < minutesTouchStartY) {
         document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
@@ -456,10 +498,10 @@
           this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
         } else {
           minuteNumber = minuteNumber + Number(mShift);
-//          this.minutesContainerId.style.transition = '0.1s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-//          this.minutesContainerId.style.webkitTransition = '0.1s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-//          this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
-//          this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+          this.minutesContainerId.style.transition = '0.1s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.minutesContainerId.style.webkitTransition = '0.1s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+          this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
         }
         document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
 
@@ -473,52 +515,15 @@
           this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
         } else {
           minuteNumber = minuteNumber - Number(mShift);
-//          this.minutesContainerId.style.transition = '0.1s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-//          this.minutesContainerId.style.webkitTransition = '0.1s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-//          this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
-//          this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+          this.minutesContainerId.style.transition = '0.1s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.minutesContainerId.style.webkitTransition = '0.1s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
+          this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
         }
         document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
       }
 
-
-//      if (minutesTouchEndY < minutesTouchStartY && minuteNumber < minutesCount - 1) {
-//        document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
-//        minuteNumber = minuteNumber + Number(mShift);
-//        this.minutesContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-//        this.minutesContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-//        this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
-//        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
-//        document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
-//
-//      } else if (minutesTouchEndY > minutesTouchStartY && minuteNumber < 0) {
-//        document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
-//        minuteNumber = minutesCount - 1;
-//        this.minutesContainerId.style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-//        this.minutesContainerId.style.webkitTransition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-//        this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
-//        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
-//        document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
-//
-//      } else if (minutesTouchEndY < minutesTouchStartY && minuteNumber > minutesCount - 1) {
-//        document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
-//        minuteNumber = 0;
-//        this.minutesContainerId.style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-//        this.minutesContainerId.style.webkitTransition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-//        this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
-//        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
-//        document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
-//
-//      } else if (minutesTouchEndY > minutesTouchStartY && minuteNumber > 0) {
-//        document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
-//        minuteNumber = minuteNumber - Number(mShift);
-//        this.minutesContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-//        this.minutesContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-//        this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
-//        this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * scope.shift) * widthK + 'px' + ", 0)";
-//        document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
-//      }
-
+      mcounter = 0;
       localStorage.setItem('minuteNumber', minuteNumber);
     }
 
