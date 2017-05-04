@@ -1,7 +1,7 @@
 <component-pincards>
 
   <div
-    class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail,
+      class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail,
                                         transfer-on-card-pincard-all-cards-container: opts.transferoncard,
                                         changed-height-for-filter-account: opts.filteraccount}">
     <div class="pincard-card-container" each="{i in cardsArray}"
@@ -20,7 +20,7 @@
         <p class="pincard-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
       </div>
       <div id="check{i.card_id}"
-           class="{pincard-card-uncheckmark: 'check'+i.card_id != checkedId, pincard-card-checkmark:'check'+i.card_id == checkedId}">
+           class="{pincard-card-uncheckmark: 'check'+i.card_id != checkedId, pincard-card-checkmark: 'check'+i.card_id == checkedId}">
       </div>
     </div>
   </div>
@@ -47,8 +47,7 @@
     scope.cardId = undefined;
     scope.cardSum = 0;
     scope.index = -1;
-    console.log(' scope.cardsArray', scope.cardsArray)
-
+    console.log(' scope.cardsArray', scope.cardsArray);
 
     if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
       for (var i in scope.cardsArray) {
@@ -132,7 +131,7 @@
 //        } else {
         scope.checkedId = "check" + id;
         console.log('scope.checkedId', document.getElementById(scope.checkedId))
-        riot.update();
+//        scope.update(scope.checkedId);
 
         if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
           this.parent.refreshFunction(false);
@@ -154,13 +153,14 @@
 
 
         localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))
-        riot.update()
+        scope.update(scope.cardsArray)
       }
       else return
 
     };
 
     scope.cleanChosenCards = function () {
+
       scope.checkedId = '';
 
       for (var i in scope.cardsArray) {

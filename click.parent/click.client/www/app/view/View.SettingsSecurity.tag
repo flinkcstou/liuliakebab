@@ -59,12 +59,24 @@
 
     scope.showError = false;
     this.titleName = window.languages.ViewSecuritySettingsTitle;
-    sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-    var isVisible = localStorage.getItem('click_client_loginInfo').visibility;
-    var isBlocked = JSON.parse(localStorage.getItem('settings_block'));
-    var fingerPrint = JSON.parse(localStorage.getItem("settings_finger_print"))
+    if (localStorage.getItem('click_client_loginInfo'))
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+
+    if (localStorage.getItem('click_client_phoneNumber'))
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+    if (localStorage.getItem('click_client_loginInfo'))
+      var isVisible = localStorage.getItem('click_client_loginInfo').visibility;
+
+    if (localStorage.getItem('settings_block'))
+      var isBlocked = JSON.parse(localStorage.getItem('settings_block'));
+
+    if (localStorage.getItem("settings_finger_print"))
+      var fingerPrint = JSON.parse(localStorage.getItem("settings_finger_print"))
+
+    if (localStorage.getItem("settings_finger_print_enrolled"))
+      var fingerPrintEnrolled = JSON.parse(localStorage.getItem("settings_finger_print_enrolled"))
 
     this.on('mount', function () {
 
@@ -192,6 +204,14 @@
     fingerPrintTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      if (!fingerPrintEnrolled) {
+        scope.showError = true;
+        scope.errorNote = 'Опция не включена на устройстве!'
+        scope.clickPinError = false
+        scope.update()
+        return
+      }
       console.log("QQQ")
       if (!fingerPrint) {
         console.log()

@@ -940,7 +940,13 @@
 
         function isAvailableSuccess(result) {
           console.log("FingerprintAuth available: " + JSON.stringify(result));
-          if (result.isAvailable && result.hasEnrolledFingerprints) {
+          if (result.isAvailable) {
+            if (result.hasEnrolledFingerprints) {
+              localStorage.setItem('settings_finger_print_enrolled', true)
+            }
+            else {
+              localStorage.setItem('settings_finger_print_enrolled', false)
+            }
             window.fingerPrint.check = true;
 
             if (window.fingerPrint.check) {
