@@ -290,7 +290,7 @@ var css = {
   "height: 100%;" +
   "overflow: hidden;" +
   "background-image: url('resources/icons/background/transparent.png');" +
-  "background-size: contain;" +
+  "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
   registrationDeviceFlexContainer: ".registration-device-flex-container " +
@@ -583,7 +583,7 @@ var css = {
   "height: 100%;" +
   "overflow: hidden;" +
   "background-image: url('resources/icons/background/transparent.png');" +
-  "background-size: contain;" +
+  "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
 
@@ -678,7 +678,7 @@ var css = {
   "height: 100%;" +
   "overflow: hidden;" +
   "background-image: url('resources/icons/background/transparent.png');" +
-  "background-size: contain;" +
+  "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
 
@@ -2635,7 +2635,7 @@ var css = {
   "{" +
   "font-size:" + 24 * widthK + "px;" +
   "position: absolute;" +
-  "top: 26%;" +
+  "top: 10%;" +
   "left: 7%;" +
   "color: #8b8b8b;" +
   "}",
@@ -6028,7 +6028,7 @@ var css = {
   "height: 100%;" +
   "overflow: hidden;" +
   "background-image: url('resources/icons/background/transparent.png');" +
-  "background-size: contain;" +
+  "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
 
@@ -6226,7 +6226,7 @@ var css = {
   "height: 100%;" +
   "overflow: hidden;" +
   "background-image: url('resources/icons/background/transparent.png');" +
-  "background-size: contain;" +
+  "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
 

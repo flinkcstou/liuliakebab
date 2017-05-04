@@ -103,7 +103,7 @@
       event.stopPropagation();
       if (modeOfApp.offlineMode)return
       riotTags.innerHTML = "<view-general-settings>";
-      scope.mount("view-general-settings");
+      riot.mount("view-general-settings");
 //      scope.unmount()
     }
 
