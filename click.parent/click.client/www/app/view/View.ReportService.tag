@@ -96,21 +96,21 @@
     //    console.log("ASDASDASDASD", scope.cards, opts.account_id);
     try {
 
-      scope.cardName = scope.cards[opts.account_id].name + " " + scope.cards[opts.account_id].numberPartOne + " **** **** " + scope.cards[opts.account_id].numberPartTwo;
+      scope.cardName = scope.cards[scope.opts.account_id].name + " " + scope.cards[scope.opts.account_id].numberPartOne + " **** **** " + scope.cards[scope.opts.account_id].numberPartTwo;
     } catch (err) {
 
       scope.cardName = "UNKNOWN";
     }
     scope.update(scope.cardName);
 
-    console.log("OPTS=", opts);
+    console.log("OPTS=", scope.opts);
 
     if (scope.parent == null)
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report-service') {
         history.arrayOfHistory.push(
           {
             "view": 'view-report-service',
-            "params": opts
+            "params": scope.opts
           }
         );
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
@@ -130,6 +130,7 @@
         event.preventDefault();
         event.stopPropagation();
 
+        window.checkShowingComponent = null;
         riotTags.innerHTML = "<view-settings-support-part-two>";
         riot.mount('view-settings-support-part-two', {title: window.languages.VewSettingsSupportPay, key: 'PAY'});
 
@@ -151,15 +152,15 @@
         var servicesMap = localStorage.getItem("click_client_servicesMap");
         servicesMap = JSON.parse(servicesMap);
 
-        console.log("Preparing inputs for favorites", localStorage.getItem("click_client_servicesMap"), opts.service_id, servicesMap, servicesMap[opts.service_id][0]);
+        console.log("Preparing inputs for favorites", localStorage.getItem("click_client_servicesMap"), scope.opts.service_id, servicesMap, servicesMap[opts.service_id][0]);
 
-        var formType = {"formtype": servicesMap[opts.service_id][0].form_type};
-        var firstFieldId = {"firstFieldId": servicesMap[opts.service_id][0].service_parameters};
-        var firstFieldText = {"firstFieldText": opts.cntrg_info_param2};
-        var cardTypeId = {"cardTypeId": opts.account_id};
+        var formType = {"formtype": servicesMap[scope.opts.service_id][0].form_type};
+        var firstFieldId = {"firstFieldId": servicesMap[scope.opts.service_id][0].service_parameters};
+        var firstFieldText = {"firstFieldText": scope.opts.cntrg_info_param2};
+        var cardTypeId = {"cardTypeId": scope.opts.account_id};
         var communalParam = {"communalParam": opts.cntrg_info_param5};
-        var amountText = {"amountText": opts.amount};
-        var internetPackageParam = {"internetPackageParam": opts.cntrg_info_param5};
+        var amountText = {"amountText": scope.opts.amount};
+        var internetPackageParam = {"internetPackageParam": scope.opts.cntrg_info_param5};
         var isInFavorites = {"isInFavorites": true};
 
         var array = [formType, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites];
@@ -171,12 +172,12 @@
         favoritePaymentsList = (favoritePaymentsList) ? (favoritePaymentsList) : ([]);
 
         console.log("OPTS TO SAVE=", array);
-        console.log("Chosen Service =", servicesMap[opts.service_id][0]);
+        console.log("Chosen Service =", servicesMap[scope.opts.service_id][0]);
 
         favoritePaymentsList.push({
           "opts": array,
-          "service": servicesMap[opts.service_id][0],
-          "firstFieldTitle": opts.parameter_name
+          "service": servicesMap[scope.opts.service_id][0],
+          "firstFieldTitle": scope.opts.parameter_name
         });
 
         console.log("favoritePaymentsList=", favoritePaymentsList);
@@ -193,7 +194,7 @@
       onTouchStartOfServiceX = event.changedTouches[0].pageX;
     };
 
-    console.log('OPTS', opts);
+    console.log('OPTS', scope.opts);
 
     onTouchEndOfService = function () {
 
@@ -209,17 +210,16 @@
         }
 
         var param = {
-          first_field_value: opts.cntrg_info_param2
+          first_field_value: scope.opts.cntrg_info_param2
         };
 
-        console.log("chosen id in pay view=", opts.service_id);
+        console.log("chosen id in pay view=", scope.opts.service_id);
 
-        localStorage.setItem('chosenServiceId', opts.service_id);
-        viewPay.chosenServiceId = opts.service_id;
-        console.log('CHOOSEN SERVICE OPTS', opts.service_id)
+        localStorage.setItem('chosenServiceId', scope.opts.service_id);
+        viewPay.chosenServiceId = scope.opts.service_id;
+        console.log('CHOOSEN SERVICE OPTS', scope.opts.service_id)
         console.log('CHOOSEN SERVICE', viewPay.chosenServiceId)
-        viewServicePage.amountText = opts.amount + ' ' + defaultAccount.currency;
-
+        viewServicePage.amountText = scope.opts.amount + ' ' + defaultAccount.currency;
         riotTags.innerHTML = "<view-service-page>";
         riot.mount("view-service-page", param);
 //        scope.unmount()

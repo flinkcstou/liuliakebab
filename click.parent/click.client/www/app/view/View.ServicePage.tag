@@ -182,6 +182,8 @@
 
   <script>
 
+    window.checkShowingComponent = null;
+
     console.log('OPTS', opts);
 
     var scope = this;
