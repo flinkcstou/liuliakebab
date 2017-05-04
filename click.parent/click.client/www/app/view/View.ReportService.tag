@@ -216,6 +216,8 @@
 
         localStorage.setItem('chosenServiceId', opts.service_id);
         viewPay.chosenServiceId = opts.service_id;
+        console.log('CHOOSEN SERVICE OPTS', opts.service_id)
+        console.log('CHOOSEN SERVICE', viewPay.chosenServiceId)
         viewServicePage.amountText = opts.amount + ' ' + defaultAccount.currency;
 
         riotTags.innerHTML = "<view-service-page>";

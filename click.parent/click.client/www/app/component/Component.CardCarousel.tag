@@ -593,6 +593,7 @@
 
                   result[1][0].balance = result[1][0].balance.toFixed(0).toString();
 
+                  if(result[1][0].balance != 0)
                   result[1][0].balance = window.amountTransform(result[1][0].balance.toString());
 
                   scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
