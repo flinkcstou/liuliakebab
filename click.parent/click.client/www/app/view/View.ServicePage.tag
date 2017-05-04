@@ -512,7 +512,7 @@
         scope.amountFieldTitle = scope.service.lang_amount_title;
         scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
         if (scope.phoneFieldBool)
-          scope.defaultNumber = !viewServicePage.phoneText ? null : viewServicePage.phoneText;
+          scope.defaultNumber = !viewServicePage.phoneText ? null : inputVerification.telLengthVerification(viewServicePage.phoneText, window.languages.PhoneNumberLength)
         scope.defaultAmount = !viewServicePage.amountText ? 0 : viewServicePage.amountText;
 
         scope.inputMaxLength = scope.fieldArray[0].max_len;
