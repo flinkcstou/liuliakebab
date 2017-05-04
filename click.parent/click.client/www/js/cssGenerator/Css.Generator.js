@@ -2635,7 +2635,7 @@ var css = {
   "{" +
   "font-size:" + 24 * widthK + "px;" +
   "position: absolute;" +
-  "top: 26%;" +
+  "top: 10%;" +
   "left: 7%;" +
   "color: #8b8b8b;" +
   "}",
