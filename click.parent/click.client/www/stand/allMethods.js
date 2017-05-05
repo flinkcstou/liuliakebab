@@ -972,8 +972,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "BEELINE",
         lang_amount_currency: "сум",
         status: 1
-      }
-      ,
+      },
       {
         autopay_available: 0,
         autopay_available_amounts: null,
@@ -999,8 +998,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "UzmobileGSM",
         lang_amount_currency: "сум",
         status: 1
-      }
-      ,
+      },
       {
         autopay_available: 0,
         autopay_available_amounts: null,
@@ -1026,8 +1024,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "UMS",
         lang_amount_currency: "сум",
         status: 1
-      }
-      ,
+      },
       {
         autopay_available: 0,
         autopay_available_amounts: null,
@@ -1053,8 +1050,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "TELEGRAF",
         lang_amount_currency: "сум",
         status: 1
-      }
-      ,
+      },
       {
         autopay_available: 0,
         autopay_available_amounts: null,
@@ -1080,8 +1076,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "Telekarta",
         lang_amount_currency: "сум",
         status: 1
-      }
-      ,
+      },
       {
         autopay_available: 0,
         autopay_available_amounts: null,
@@ -1107,8 +1102,7 @@ window.fakedSocket.register("get.service.list", function (input) {
         service_short_name: "Dastur.uz",
         lang_amount_currency: "сум",
         status: 1
-      }
-      ,
+      },
       {
         autopay_available: 0,
         autopay_available_amounts: null,

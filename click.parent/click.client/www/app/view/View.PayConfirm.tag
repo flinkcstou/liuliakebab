@@ -75,10 +75,11 @@
           <div class="payconfirm-action-text">{window.languages.ViewPayConfirmAddToAutoPay}</div>
         </div>
       </div>
-      <button class="payconfirm-button-enter" ontouchend="payService()" if="{!autoPayDelete}">
+      <button class="{payconfirm-button-enter:opts[3]!='ADDAUTOPAY', autopay-button:opts[3]=='ADDAUTOPAY'}"
+              ontouchend="payService()" if="{!autoPayDelete}">
         {(opts[3]=='ADDAUTOPAY')? window.languages.ViewAutoPayCreateButtonText : window.languages.ViewPayConfirmPay}
       </button>
-      <button class="payconfirm-button-delete" ontouchend="deleteAutoPay()"
+      <button class="payconfirm-button-delete autopay-button" ontouchend="deleteAutoPay()"
               if="{autoPayDelete && opts[3]=='ADDAUTOPAY'}">
         {window.languages.ViewAutoPayDeleteButtonText}
       </button>
@@ -203,6 +204,7 @@
         scope.salary = cardsArray[chosenCardId].salary;
         scope.currency = cardsArray[chosenCardId].currency;
         scope.url = cardsArray[chosenCardId].url;
+        scope.update();
       }
     }
     else {
@@ -353,9 +355,15 @@
 
           onSuccess: function (result) {
             if (result[0][0].error == 0) {
-              if (result[1])
-                if (result[1][0].payment_id || result[1][0].invoice_id) {
-                  console.log("result of APP.PAYMENT 1", result);
+              if (result[1]) {
+                console.log("result of APP.PAYMENT 1", result);
+                if (result[1][0].payment_id && !result[1][0].invoice_id) {
+                  console.log("Payment id");
+                  checkPaymentStatus(result[1][0].payment_id);
+                }
+                else if (result[1][0].invoice_id && !result[1][0].payment_id) {
+                  console.log("Invoice id");
+
                   viewServicePage.phoneText = '';
                   window.viewServicePage = {};
                   viewServicePage.amountText = '';
@@ -364,6 +372,7 @@
                   viewServicePinCards.chosenFriendForHelp = null;
                   componentSuccessId.style.display = 'block';
                 }
+              }
             }
             else {
               console.log("result of APP.PAYMENT 3", result);
@@ -378,9 +387,53 @@
         });
       }
 
+      function checkPaymentStatus(payment_id) {
+
+        console.log("check payment status");
+
+        viewServicePage.phoneText = '';
+        window.viewServicePage = {};
+        viewServicePage.amountText = '';
+        viewServicePage.amountWithoutSpace = '';
+        viewServicePinCards.friendHelpPaymentMode = false;
+        viewServicePinCards.chosenFriendForHelp = null;
+        componentSuccessId.style.display = 'block';
+
+        window.api.call({
+          method: 'get.payment',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            payment_id: payment_id,
+          },
+
+          scope: this,
+
+          onSuccess: function (result) {
+            if (result[0][0].error == 0) {
+              console.log("result of get.payment success=", result);
+              if (result[1][0]) {
+                console.log(result[1][0]);
+              }
+
+            }
+            else {
+              console.log("result of GET.PAYMENT in else", result);
+              componentUnsuccessId.style.display = 'block';
+            }
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+      }
+
       function createAutoPay(payment_data) {
         scope.operationMessage = window.languages.ViewAutoPayCreatedSuccessTextOne + "\"" + scope.autoPayData.name + "\"" + window.languages.ViewAutoPayCreatedSuccessTextTwo;
         scope.viewPage = 'view-auto-pay';
+        scope.stepAmount = 6;
         scope.update();
         console.log("in create autopay func", scope.autoPayData);
         if (scope.autoPayData) {
@@ -404,8 +457,8 @@
               onSuccess: function (result) {
                 if (result[0][0].error == 0) {
                   console.log("result of autopay.add.by.event", result);
-                  scope.autoPayDelete = true;
-                  scope.update(scope.autoPayDelete);
+//                  scope.autoPayDelete = true;
+//                  scope.update(scope.autoPayDelete);
 
                   viewServicePage.phoneText = '';
                   window.viewServicePage = {};

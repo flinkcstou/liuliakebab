@@ -136,8 +136,8 @@
             event.preventDefault();
             event.stopPropagation();
             if (opts[8] == 'ADDAUTOPAY') {
-              this.riotTags.innerHTML = "<view-autopay-name>";
-              riot.mount('view-autopay-name', [arrayForPay, true, scope.chosencardId]);
+              this.riotTags.innerHTML = "<view-pay-confirm>";
+              riot.mount('view-pay-confirm', [arrayForPay, true, scope.chosencardId, 'ADDAUTOPAY']);
               scope.unmount()
 
             } else {

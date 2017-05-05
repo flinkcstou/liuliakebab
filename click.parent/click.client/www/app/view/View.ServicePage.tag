@@ -14,6 +14,14 @@
 
 
   <div class="servicepage-body-container" if="{formType!=2}">
+
+    <div class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
+      <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
+
+      <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
+             autofocus="true"/>
+    </div>
+
     <div class="servicepage-fields-dropdown" if="{dropDownOn}" ontouchend="openDropDown()" id="firstFieldChoiceId">
       <p class="servicepage-dropdown-text-field">{chosenFieldName}</p>
       <div class="servicepage-dropdown-icon"></div>
@@ -122,7 +130,16 @@
 
   <div class="servicepage-formtype-two-container" if="{formType==2}">
 
-    <div class="{servicepage-pincards-container-two: !enterButton, servicepage-pincards-container: enterButton}">
+    <div class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
+      <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
+
+      <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
+             autofocus="true"/>
+    </div>
+
+    <div
+      class="{servicepage-pincards-container-two: !enterButton, servicepage-pincards-container: enterButton && opts.mode!='ADDAUTOPAY',
+      servicepage-pincards-container-three: enterButton && opts.mode=='ADDAUTOPAY'}">
       <div class="servicepage-pincards-block-container" each="{i in pincardIds}">
         <div class="servicepage-pincard-title">{pincardsMap[i][0].name}</div>
         <div class="servicepage-pincard-nominal-container" each="{j in pincardsMap[i]}"
@@ -429,7 +446,7 @@
 
         this.on('mount', function () {
           firstField.style.display = 'none';
-          amountField.style.top = '5.5%';
+          amountField.style.top = '7%';
 
 
           if (viewServicePage.amountText)
@@ -1048,6 +1065,19 @@
         onBackKeyDown();
         onBackKeyDown();
       } else if (opts.mode == 'ADDAUTOPAY') {
+
+        if (autoPayNameInput.value.length < 1) {
+          scope.clickPinError = false;
+          scope.errorNote = "Введите название автоплатежа";
+          scope.showError = true;
+          scope.update();
+          return;
+        }
+        scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+        scope.autoPayData.name = autoPayNameInput.value;
+        scope.autoPayData.isNew = true;
+        localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+
         this.riotTags.innerHTML = "<view-service-pincards>";
         riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
         scope.unmount()
@@ -1116,6 +1146,18 @@
           formTypeTwoBtnSaveId.style.backgroundColor = 'rgb(1, 124, 227)';
           scope.update(formTypeTwoBtnSaveId);
         } else if (opts.mode == 'ADDAUTOPAY') {
+
+          if (autoPayNameInput.value.length < 1) {
+            scope.clickPinError = false;
+            scope.errorNote = "Введите название автоплатежа";
+            scope.showError = true;
+            scope.update();
+            return;
+          }
+          scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+          scope.autoPayData.name = autoPayNameInput.value;
+          scope.autoPayData.isNew = true;
+          localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
           this.riotTags.innerHTML = "<view-service-pincards>";
           riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);

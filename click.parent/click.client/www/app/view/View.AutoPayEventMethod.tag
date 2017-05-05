@@ -13,6 +13,13 @@
 
     <div class="autopay-method-body-container">
 
+      <div class="servicepage-first-field autopay-event-name-field">
+        <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
+
+        <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
+               autofocus="true"/>
+      </div>
+
       <div class="servicepage-first-field autopay-event-number-field" id="firstField">
         <p class="servicepage-text-field">{window.languages.ViewAutoPayMethodEventPhoneNumber}</p>
         <p class="servicepage-number-first-part">+{window.languages.CodeOfCountry}</p>
@@ -74,18 +81,20 @@
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
     console.log("ID of srevice in event=", opts.id);
 
-    if (modeOfApp.onlineMode || viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
+    if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
+      console.log("My number part");
       scope.serviceName = 'Мой номер';
       scope.serviceIcon = 'resources/icons/ViewPay/myphone.png';
       viewServicePage.phoneText = localStorage.getItem('click_client_phoneNumber');
       viewServicePage.phoneText = viewServicePage.phoneText ? viewServicePage.phoneText.substr(3, viewServicePage.phoneText.length - 3) : '';
+      scope.defaultNumber = !viewServicePage.phoneText ? null : viewServicePage.phoneText;
       viewPay.chosenServiceId = localStorage.getItem('myNumberOperatorId');
     } else {
       this.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
       this.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
     }
 
-    scope.defaultNumber = !viewServicePage.phoneText ? null : viewServicePage.phoneText;
+    //    scope.defaultNumber = !viewServicePage.phoneText ? null : viewServicePage.phoneText;
 
 
     this.amountsArray = scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_amounts;
@@ -221,6 +230,14 @@
     }
 
     chooseCardToPay = function () {
+      if (autoPayNameInput.value.length < 1) {
+        scope.clickPinError = false;
+        scope.errorNote = "Введите название автоплатежа";
+        scope.showError = true;
+        scope.update();
+        return;
+      }
+
       if (firstFieldInput.value.length < 9) {
         scope.clickPinError = false;
         scope.errorNote = "Неправильно введён номер телефона";
@@ -242,6 +259,10 @@
         scope.update();
         return;
       }
+
+      scope.autoPayData.name = autoPayNameInput.value;
+      scope.autoPayData.isNew = true;
+      localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
       scope.autoPayData.step = chosenStep;
       scope.autoPayData.cntrg_phone_num = firstFieldInput.value;

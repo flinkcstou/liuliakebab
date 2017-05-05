@@ -42,7 +42,9 @@
     console.log("ID of srevice=", opts.id);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
 
-    if (modeOfApp.onlineMode || viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
+    console.log("chosenServiceId=", viewPay.chosenServiceId);
+
+    if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
       scope.serviceName = 'Мой номер';
       scope.serviceIcon = 'resources/icons/ViewPay/myphone.png';
     } else {

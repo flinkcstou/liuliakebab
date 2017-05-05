@@ -97,8 +97,13 @@
     scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
     //    console.log("ID of service=", opts.id);
-    this.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
-    this.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
+    if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
+      scope.serviceName = 'Мой номер';
+      scope.serviceIcon = 'resources/icons/ViewPay/myphone.png';
+    } else {
+      this.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
+      this.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
+    }
 
     scope.daysArray = window.languages.ViewAutoPayMethodScheduleDaysArray;
     scope.weekDaysArray = window.languages.ViewAutoPayMethodScheduleWeekDaysArray;
@@ -196,7 +201,7 @@
         console.log("autoPayData=", scope.autoPayData);
 
         if (scope.autoPayData.type == 2) {
-          scope.autoPayData.condition_text = window.languages.ViewAutoPayMethodScheduleWeekDaysArray[scope.autoPayData.week_day].v + ", " +
+          scope.autoPayData.condition_text = window.languages.ViewAutoPayMethodScheduleWeekDaysArray[scope.autoPayData.week_day - 1].v + ", " +
             scope.autoPayData.paytime;
         } else if (scope.autoPayData.type == 3) {
           scope.autoPayData.condition_text = scope.autoPayData.month_day + ", " +
@@ -214,11 +219,11 @@
         scope.unmount()
       } else {
         if (scope.dayMode) {
-          //console.log("dayMode, Number=", dateNumber);
+          console.log("dayMode, Number=", dateNumber + 1);
           scope.autoPayData.month_day = dateNumber + 1;
         }
         else if (scope.weekMode) {
-          //console.log("weekMode, Number=", dateNumber);
+          console.log("weekMode, Number=", dateNumber + 1);
           scope.autoPayData.week_day = dateNumber + 1;
         }
         dateNumber = 0;
@@ -239,7 +244,7 @@
         changeMinutesPositionInit();
       }
 
-    }
+    };
 
 
     if (!dateNumber) {
@@ -253,7 +258,7 @@
 
 
     dateContainerTouchStart = function () {
-      //console.log("in start touch=", dateNumber);
+      console.log("in start touch=", dateNumber);
       carouselTouchStartY = event.changedTouches[0].pageY;
 //      console.log("startY=", carouselTouchStartY);
       tempStartY = carouselTouchStartY;
