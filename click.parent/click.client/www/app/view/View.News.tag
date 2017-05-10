@@ -22,6 +22,9 @@
         <div if={!newsOpened} class="view-news-block-readmore-container">Подробнее
           <div class="view-news-block-readmore-icon"></div>
         </div>
+        <div if={newsOpened} class="view-news-block-readmore-container">
+          <div class="view-news-block-opened-icon"></div>
+        </div>
       </div>
     </div>
     <div class="view-news-block-space"></div>
@@ -77,6 +80,7 @@
           document.getElementById(containerId).setAttribute('opened', false)
         }
 
+        scope.update()
 
       }
       else

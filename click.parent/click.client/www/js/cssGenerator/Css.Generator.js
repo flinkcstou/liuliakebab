@@ -11711,6 +11711,19 @@ var css = {
   "background-size: 27%;" +
   "}",
 
+  viewNewsBlockOpenedIcon: ".view-news-block-opened-icon " +
+  "{" +
+  "position: absolute;" +
+  "right: 3%;  " +
+  "top: 0;  " +
+  "width: 23%;  " +
+  "height:" + 32 * widthK + "px; " +
+  "background-image: url(resources/icons/ViewPay/catclose.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position-y: center;" +
+  "background-size: 40%;" +
+  "}",
+
   viewNewsBlockSpace: ".view-news-block-space " +
   "{" +
   "position: relative;" +
