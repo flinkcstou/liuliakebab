@@ -161,6 +161,7 @@ var RU_LANGUAGES =
   "ComponentSuccessMessageForAddingToFavorites": "Платёж успешно добавлен в избранные",
 
   "ComponentInProcessingPartOne": "Перевод передан на обработку.",
+  "ComponentInProcessingPartOneForPay": "Оплата передана на обработку.",
   "ComponentInProcessingPartTwo": "Ждите СМС с результатом!",
 
   "ComponentUnsuccessMessagePart1": 'Извините,',
@@ -246,7 +247,7 @@ var RU_LANGUAGES =
   "ViewAboutSettingsRateUsTitle": "Оцените нас в Google Play",
 
   "ViewSettingsAboutProgramTitleName": "О ПРОГРАММЕ",
-  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 1.0 BETA",
+  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.0 BETA",
   "ViewSettingsAboutProgramVersionTitleNamePartTwo": "5 марта, 2017",
   "ViewSettingsAboutProgramUserAgreementTitleName": "Пользовательское соглашение",
   "ViewSettingsAboutProgramRankTitleName": "Оцените нас в Google Play",

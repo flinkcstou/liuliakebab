@@ -3420,6 +3420,51 @@ window.fakedSocket.register("autopay.delete", function (input) {
   ]];
 });
 
+window.fakedSocket.register("get.payment", function (input) {
+
+  if (input)
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": ""
+      }],
+      [
+        {
+          "payment_id": 277019456,
+          "amount": '22543',
+          "cntrg_info_param2": "974647747",
+          "cntrg_info_param3": null,
+          "cntrg_info_param4": null,
+          "cntrg_info_param5": null,
+          "status_note": "Успешно проведен",
+          "state": 2,
+          image: "https://m.click.uz/static/merchant/logo/logo_2.png",
+          "paydoc_state": 2,
+          "service_name": "UMS (97 4647747)",
+          "created": "2016-11-30T12:56:01.596Z",
+          "created_timestamp": 1480512361,
+          "abs_type": "SMARTV    ",
+          "description": '',
+          "account_id": 3487271,
+          "service_id": 2,
+          "is_invoice": 0,
+          "comission_amount": 0
+        }
+      ]
+    ];
+
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});
+
 window.notificationInvoice = {
 
   action: "invoice",

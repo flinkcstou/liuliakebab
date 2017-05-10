@@ -7146,6 +7146,7 @@ var css = {
   "width: 100%;" +
   "height:" + 418 * widthK + "px;" +
   "background-color: #00a8f1;" +
+  "text-align: center;" +
   "}",
 
   settingsAboutProgramUserAgreementContainer: ".settings-about-program-user-agreement-container" +
