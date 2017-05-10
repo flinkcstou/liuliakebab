@@ -87,11 +87,11 @@ window.api.initSocket = function () {
 
     var parsedData = JSON.parse(event.data);
     console.log(parsedData);
-    if(parsedData.api_status == 0)
-    try {
+    if (parsedData.api_status == 0)
+      try {
 
 
-          var method = parsedData.data[0][0].method;
+        var method = parsedData.data[0][0].method;
         //console.log("PARSED DATA", parsedData)
 
         var callBack = me.callBacks[method];
@@ -101,49 +101,48 @@ window.api.initSocket = function () {
         //console.log('CALLBACK', callBack)
 
 
-
-      if (parsedData.api_status == 0) {
-
-
-        callBack.ok(parsedData.data);
-        return;
-      }
+        if (parsedData.api_status == 0) {
 
 
-    }
-    catch (ERROR) {
-
-
-
-      //var options = {dimBackground: true};
-      //
-      //SpinnerPlugin.activityStart(languages.ConnectionSocket, options, function () {
-      //  window.api.init();
-      //  console.log("Started");
-      //}, function () {
-      //  console.log("closed");
-      //});
-
-      console.log("ERROR", window.isConnected);
-      console.log("ERROR", ERROR);
-
-      try {
-
-        var error = parsedData.data[0][0].error_note;
-
-        if (!window.api.sessionErrorChecker) {
-
-          window.api.sessionErrorChecker = true;
-
-          //var result =
-          showConfirmComponent(error, 'session');
-
+          callBack.ok(parsedData.data);
+          return;
         }
-      } catch (error) {
 
-        console.log(error);
+
       }
-    }
+      catch (ERROR) {
+
+
+
+        //var options = {dimBackground: true};
+        //
+        //SpinnerPlugin.activityStart(languages.ConnectionSocket, options, function () {
+        //  window.api.init();
+        //  console.log("Started");
+        //}, function () {
+        //  console.log("closed");
+        //});
+
+        console.log("ERROR", window.isConnected);
+        console.log("ERROR", ERROR);
+
+        try {
+
+          var error = parsedData.data[0][0].error_note;
+
+          if (!window.api.sessionErrorChecker) {
+
+            window.api.sessionErrorChecker = true;
+
+            //var result =
+            showConfirmComponent(error, 'session');
+
+          }
+        } catch (error) {
+
+          console.log(error);
+        }
+      }
 
 
     try {
@@ -156,7 +155,8 @@ window.api.initSocket = function () {
         window.api.sessionErrorChecker = true;
 
         //var result =
-        showConfirmComponent(error, 'session');
+        if (parsedData.api_status == 0)
+          showConfirmComponent(error, 'session');
 
       }
 

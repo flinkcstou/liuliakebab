@@ -158,21 +158,31 @@
       else {
         if (scope.checkSumOfHash) {
           scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-          if (localStorage.getItem('click_client_countCard'))
-            count = 1;
-          else
-            count = 0;
 
           if (scope.invoiceCheck && viewMainPage.atMainPage) {
+            if (localStorage.getItem('click_client_countCard'))
+              count = 1;
+            else
+              count = 0;
+
             for (var i in scope.cardsarray) {
-              scope.cardsarray[i].countCard = ++count;
+              scope.cardsarray[i].countCard = count;
+              count++;
             }
 
             localStorage.setItem('click_client_countCard', count)
-            localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray))
+//            localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray))
 
             console.log('CARD NUMBER', scope.cardNumber)
 
+          }
+          else {
+            count = 0;
+
+            for (var i in scope.cardsarray) {
+              scope.cardsarray[i].countCard = count;
+              count++;
+            }
           }
           riot.update()
         }
@@ -213,6 +223,9 @@
 
           card = {
             card_id: getAccountsCards[i].id,
+            id: getAccountsCards[i].id,
+            card_num_hash: getAccountsCards[i].card_num_hash,
+            card_num_crypted: getAccountsCards[i].card_num_crypted,
             bankName: typeOfCard,
             name: getAccountsCards[i].description,
             salary: '',
@@ -645,8 +658,20 @@
     writeBalance = function () {
 
       console.log("BALANCE STARTED");
+      console.log("BALANCE STARTED", getAccountsCards);
 
-      for (var i = 0; i < getAccountsCards.length; i++) {
+      if (getAccountsCards.length == 0) {
+        if (localStorage.getItem('click_client_cards'))
+          getAccountsCards = JSON.parse(localStorage.getItem('click_client_cards'))
+
+        console.log("JSON.parse(localStorage.getItem('click_client_cards'))", JSON.parse(localStorage.getItem('click_client_cards')))
+      }
+
+      console.log('getAccountsCards', getAccountsCards)
+
+      for (var i in getAccountsCards) {
+        console.log('getAccountsCards', getAccountsCards[i])
+        console.log('Balance request')
         window.api.call({
           method: 'get.balance',
           input: {
@@ -662,6 +687,8 @@
             if (result[0][0].error == 0) {
               if (result[1][0]) {
                 try {
+                  console.log('SCOPE.CARDSARRAY', scope.cardsarray)
+
                   if (scope.cardsarray[result[1][0].account_id])
                     scope.cardsarray[result[1][0].account_id].salaryOriginal = result[1][0].balance.toFixed(0);
 
@@ -672,6 +699,7 @@
                     result[1][0].balance = window.amountTransform(result[1][0].balance.toString());
 
                   scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
+                  console.log('SCOPE.CARDSARRAY', scope.cardsarray)
                   localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
 
                   scope.update();
