@@ -1,4 +1,4 @@
-<view-settings-user-agreement>
+<view-settings-user-agreement class="riot-tags-main-container">
 
   <div class="pay-page-title">
     <p class="settings-user-agreement-name-title">{titleName}</p>

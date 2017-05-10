@@ -1,10 +1,10 @@
-<view-report-service class="view-report-service">
+<view-report-service class="view-report-service riot-tags-main-container">
   <div>
 
     <div class="report-service-upper-container">
 
       <div class="page-title settings-general-page-title">
-        <div id="backButton" ontouchend="goToBack()" class="settings-general-back-button"></div>
+        <div id="backButton" ontouchend="reportServiceGoToBack()" class="settings-general-back-button"></div>
       </div>
 
       <img src="{opts.image}" id="serviceIconId"
@@ -61,7 +61,8 @@
           <a class="report-service-button-action">{languages.ViewReportServiceGetSupportHelp}</a>
         </div>
 
-        <button class="report-service-repeat-button" if="{!opts.is_indoor}" ontouchend="onTouchEndOfService()"
+        <button if="{opts.service_id != -4}" class="report-service-repeat-button" if="{!opts.is_indoor}"
+                ontouchend="onTouchEndOfService()"
                 ontouchstart="onTouchStartOfService()">
           {languages.ViewReportServiceRepeatButtonLabel}
         </button>
@@ -87,6 +88,8 @@
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#00a8f1");
+
+      scope.update();
     })
 
 
@@ -215,22 +218,25 @@
 
         console.log("chosen id in pay view=", scope.opts.service_id);
 
+
         localStorage.setItem('chosenServiceId', scope.opts.service_id);
         viewPay.chosenServiceId = scope.opts.service_id;
         console.log('CHOOSEN SERVICE OPTS', scope.opts.service_id)
         console.log('CHOOSEN SERVICE', viewPay.chosenServiceId)
         viewServicePage.amountText = scope.opts.amount + ' ' + defaultAccount.currency;
+        scope.update();
         riotTags.innerHTML = "<view-service-page>";
         riot.mount("view-service-page", param);
 //        scope.unmount()
       }
     };
 
-    goToBack = function () {
+    reportServiceGoToBack = function () {
       event.preventDefault();
       event.stopPropagation();
 
       onBackKeyDown()
+      riot.update()
 //      scope.unmount()
 
     };

@@ -1,5 +1,5 @@
 <view-security-settings>
-  <div>
+  <div class="riot-tags-main-container">
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
       <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>

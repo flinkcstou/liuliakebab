@@ -1,4 +1,4 @@
-<view-invoice-list>
+<view-invoice-list class="riot-tags-main-container">
 
   <div class="invoice-list-page-title">
     <p class="invoice-list-name-title">{titleName}</p>

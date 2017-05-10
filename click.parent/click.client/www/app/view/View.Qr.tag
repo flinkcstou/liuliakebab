@@ -1,4 +1,4 @@
-<view-qr>
+<view-qr class="riot-tags-main-container">
   <div class="view-qr-blue-container">
     <div class="view-qr-page-title">
       <p class="view-qr-name-title">{titleName}</p>

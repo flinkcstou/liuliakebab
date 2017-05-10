@@ -1,4 +1,4 @@
-<view-registration-device class="view-registration-device">
+<view-registration-device class="view-registration-device riot-tags-main-container">
   <div class="registration-device-flex-container">
     <div class="registration-device-unchangable-container">
       <div class="registration-device-phone-field">

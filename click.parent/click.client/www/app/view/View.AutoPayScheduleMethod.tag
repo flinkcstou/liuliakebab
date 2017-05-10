@@ -1,5 +1,5 @@
 <view-autopay-schedule-method>
-  <div>
+  <div class="riot-tags-main-container">
     <div class="pay-page-title" style="border-style: none;">
       <p class="autopay-method-page-title">{titleName} {serviceName}</p>
       <p class="servicepage-category-field">{window.languages.ViewAutoPayMethodSchedulerText}</p>

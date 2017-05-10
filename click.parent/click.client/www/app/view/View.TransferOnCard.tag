@@ -1,4 +1,4 @@
-<view-transfer-on-card class="view-transfer-on-card">
+<view-transfer-on-card class="view-transfer-on-card riot-tags-main-container">
 
   <div class="view-transfer-on-card-title-container">
     <p class="view-transfer-on-card-title-text-part-one">{languages.ViewTransferOnCardTitleTextPartOne}</p>

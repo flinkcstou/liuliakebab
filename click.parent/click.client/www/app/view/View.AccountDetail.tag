@@ -1,5 +1,5 @@
 <view-account-detail>
-  <div>
+  <div class="riot-tags-main-container">
     <div class="account-detail-title-container">
 
       <div class="page-title account-detail-page-title">

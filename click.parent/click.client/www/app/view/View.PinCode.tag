@@ -1,4 +1,4 @@
-<view-pin-code class="view-pincode">
+<view-pin-code class="view-pincode riot-tags-main-container">
 
   <div class="pincode-flex-container">
     <div class="pincode-unchangable-container">

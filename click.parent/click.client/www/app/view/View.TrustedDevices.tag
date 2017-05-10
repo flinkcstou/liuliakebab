@@ -1,4 +1,4 @@
-<view-trusted-devices>
+<view-trusted-devices class="riot-tags-main-container">
 
   <div class="trusted-devices-page-title">
     <p class="trusted-devices-title">{languages.ViewTrustedDevicesTitle}</p>

@@ -9,7 +9,7 @@
   <script src="js/languages/languages.js"></script>
   <script src="js/mOperators/mOperators.js"></script>
   <!-- CSS -->
-  <!--<link id="mainPageCss" href="css/MainPage.css" rel="stylesheet">-->
+  <link id="mainPageCss" href="css/animation.css" rel="stylesheet">
   <script src="js/cssGenerator/Css.Generator.js"></script>
 
   <!-- JS COMMON -->
@@ -37,11 +37,11 @@
 <body id="bodyId">
 <div id="alertComponentBlockId" style="opacity: 0;"></div>
 
-<div id="riotTags">
+<div id="riotTags" class="riot-tags-main-container">
 </div>
 
 <script>
-//    console.log = function() { return}
+  //    console.log = function() { return}
 
   api.init();
   scope = this;
@@ -53,6 +53,7 @@
       document.head.appendChild(GENERATOR);
 
       firstMount.firstStep = function () {
+
         if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
           scope.riotTags.innerHTML = "<view-authorization>";
           riot.mount('view-authorization')

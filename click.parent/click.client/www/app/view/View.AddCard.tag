@@ -1,4 +1,4 @@
-<view-add-card>
+<view-add-card class="riot-tags-main-container">
 
   <div class="add-card-page-title">
     <p class="add-card-name-title">{titleName}</p>

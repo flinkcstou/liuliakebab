@@ -1,4 +1,4 @@
-<view-settings-support id="settingsSupportId" class="view-settings-support">
+<view-settings-support id="settingsSupportId" class="view-settings-support riot-tags-main-container">
   <div class="settings-support-blue-container">
 
     <div class="settings-support-page-title">

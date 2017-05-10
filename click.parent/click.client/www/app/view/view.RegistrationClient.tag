@@ -1,4 +1,4 @@
-<view-registration-client class="view-registration-client">
+<view-registration-client class="view-registration-client riot-tags-main-container">
   <p class="registration-client-text-field">Заполните данные вашей первой карты</p>
   <div class="registration-client-card-field">
     <p class="registration-client-card-text registration-client-card-number-text">Номер карты</p>

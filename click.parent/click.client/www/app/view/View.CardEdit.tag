@@ -1,4 +1,4 @@
-<view-card-edit class="view-my-cards">
+<view-card-edit class="view-my-cards riot-tags-main-container">
   <div class="page-title">
     <p class="name-title">{window.languages.ViewCardEditTitleName}</p>
     <div id="backButton" ontouchend="touchStartTitle()"

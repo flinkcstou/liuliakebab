@@ -1,4 +1,4 @@
-<view-service-pincards class="view-service-pincards">
+<view-service-pincards class="view-service-pincards riot-tags-main-container">
 
   <div class="pay-page-title" style="border-style: none;">
     <p class="{servicepage-title :opts[8]!='ADDAUTOPAY', autopay-method-page-title:opts[8]=='ADDAUTOPAY'}">

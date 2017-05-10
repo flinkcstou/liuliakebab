@@ -1,5 +1,5 @@
 <view-general-settings>
-  <div>
+  <div class="riot-tags-main-container">
     <div class="settings-general-user-info-container">
 
       <div class="page-title settings-general-page-title">

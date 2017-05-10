@@ -1,4 +1,4 @@
-<view-info class="view-info">
+<view-info class="view-info riot-tags-main-container" >
   <div class="view-info-title-container">
     <div class="view-info-back-button" ontouchstart="onTouchEndBack()"></div>
   </div>

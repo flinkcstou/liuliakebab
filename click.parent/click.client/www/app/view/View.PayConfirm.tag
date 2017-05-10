@@ -1,4 +1,4 @@
-<view-pay-confirm class="view-pay-confirm">
+<view-pay-confirm class="view-pay-confirm riot-tags-main-container">
 
   <div class="pay-page-title" style="border-style: none;">
     <p class="{servicepage-title :opts[3]!='ADDAUTOPAY', autopay-method-page-title:opts[3]=='ADDAUTOPAY'}">

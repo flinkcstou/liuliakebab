@@ -1,4 +1,4 @@
-<view-service-page class="view-service-page">
+<view-service-page class="view-service-page riot-tags-main-container">
   <div class="pay-page-title" style="border-style: none;">
     <p class="{servicepage-title :opts.mode!='ADDAUTOPAY', autopay-method-page-title:opts.mode=='ADDAUTOPAY'}">
       {(opts.mode=='ADDAUTOPAY')?(window.languages.ViewAutoPayTitleName):("")}

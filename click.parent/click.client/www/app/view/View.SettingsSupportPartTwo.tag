@@ -1,4 +1,4 @@
-<view-settings-support-part-two class="view-settings-support-part-two">
+<view-settings-support-part-two class="view-settings-support-part-two riot-tags-main-container">
 
   <div class="settings-support-part-two-container">
     <div class="settings-support-part-two-page-title">

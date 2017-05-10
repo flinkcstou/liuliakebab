@@ -1,4 +1,4 @@
-<view-contact>
+<view-contact class="riot-tags-main-container">
 
   <div class="view-contact-page-title">
     <p class="view-contact-name-title">{titleName}</p>

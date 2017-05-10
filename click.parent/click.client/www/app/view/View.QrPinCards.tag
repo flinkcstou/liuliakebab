@@ -1,4 +1,4 @@
-<view-qr-pincards class="view-service-pincards">
+<view-qr-pincards class="view-service-pincards riot-tags-main-container">
 
   <div class="qr-pay-page-title" style="border-style: none;">
     <p class="qr-servicepage-title">{titleName}</p>

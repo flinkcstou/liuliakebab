@@ -1,5 +1,5 @@
 <view-pay>
-  <div id="viewPayId" class="view-pay">
+  <div id="viewPayId" class="view-pay riot-tags-main-container">
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
       <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
@@ -42,6 +42,10 @@
     scope.checkOfSearch = false;
 
     console.log('opts', opts)
+
+    this.on('mount', function () {
+
+    })
 
     if (opts.mode == 'ADDAUTOPAY')
       this.titleName = window.languages.ViewAutoPayTitleName;

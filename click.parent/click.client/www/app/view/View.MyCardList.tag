@@ -1,5 +1,5 @@
 <view-mycard-list>
-  <div class="view-mycard-list">
+  <div class="view-mycard-list riot-tags-main-container">
     <div class="page-title">
       <p class="name-title">{titleName}</p>
       <div id="backButton" ontouchend="goToMainPage()"

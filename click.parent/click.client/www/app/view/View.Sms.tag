@@ -1,4 +1,4 @@
-<view-sms class="view-sms">
+<view-sms class="view-sms riot-tags-main-container">
   <div class="sms-flex-container">
     <div class="sms-unchangable-container">
       <div class="sms-phone-field">

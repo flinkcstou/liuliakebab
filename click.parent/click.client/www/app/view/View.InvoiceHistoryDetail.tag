@@ -1,4 +1,4 @@
-<view-invoice-history-detail class="view-invoice-history">
+<view-invoice-history-detail class="view-invoice-history riot-tags-main-container">
 
   <div class="invoice-history-detail-title-container">
     <div class="page-title invoice-history-detail-title">

@@ -1,4 +1,4 @@
-<view-qr-pay-confirm class="view-pay-confirm">
+<view-qr-pay-confirm class="view-pay-confirm riot-tags-main-container">
 
   <div class="qr-pay-page-title" style="border-style: none;">
     <p class="qr-servicepage-title">{titleName}</p>

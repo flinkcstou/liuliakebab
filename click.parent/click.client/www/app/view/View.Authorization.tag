@@ -1,4 +1,4 @@
-<view-authorization class="view-authorization">
+<view-authorization class="view-authorization riot-tags-main-container">
 
   <div class="authorization-flex-container">
     <div class="authorization-unchangable-container">

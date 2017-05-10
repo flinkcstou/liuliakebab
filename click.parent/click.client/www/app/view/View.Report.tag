@@ -1,4 +1,4 @@
-<view-report>
+<view-report class="riot-tags-main-container">
   <component-report-filter></component-report-filter>
   <div id="reportPageId" class="view-reports-page">
     <div class="page-title" style="border: none;">

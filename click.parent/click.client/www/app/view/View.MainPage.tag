@@ -1,4 +1,4 @@
-<view-main-page>
+<view-main-page class="riot-tags-main-container">
   <div class="side-menu-block-for-swipe" ontouchend="blockForSwipeTouchEnd()"
        ontouchstart="blockForSwipeTouchStart()" ontouchmove="blockForSwipeTouchMove()"></div>
   <component-menu></component-menu>
@@ -89,8 +89,8 @@
 
       if (Math.abs(myCardListStartX - myCardListEndX) <= 20 && Math.abs(myCardListStartY - myCardListEndY) <= 20) {
 
-          this.riotTags.innerHTML = "<view-mycard-list>";
-          riot.mount('view-mycard-list');
+        this.riotTags.innerHTML = "<view-mycard-list>";
+        riot.mount('view-mycard-list');
 
         scope.unmount()
 

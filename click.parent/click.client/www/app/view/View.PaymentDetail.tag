@@ -1,4 +1,4 @@
-<view-payment-detail class="view-payment-detail">
+<view-payment-detail class="view-payment-detail riot-tags-main-container">
 
   <div class="transfer-to-card-title-container">
     <div class="page-title account-detail-page-title">

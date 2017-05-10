@@ -1,4 +1,4 @@
-<view-transfer-detail class="view-transfer-detail">
+<view-transfer-detail class="view-transfer-detail riot-tags-main-container">
 
   <div class="transfer-detail-title-container">
 

@@ -1,5 +1,5 @@
 <view-settings>
-  <div>
+  <div class="riot-tags-main-container">
     <div class="settings-page-title">
       <p class="settings-name-title">{titleName}</p>
       <div id="backButton" ontouchend="goToBack()" class="settings-back-button"></div>

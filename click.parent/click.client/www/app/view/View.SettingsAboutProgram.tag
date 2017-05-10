@@ -1,4 +1,4 @@
-<view-about-program>
+<view-about-program class="riot-tags-main-container">
   <div class="settings-about-program-blue-container">
     <div class="settings-about-program-page-title">
       <p class="settings-about-program-name-title">{titleName}</p>

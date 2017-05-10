@@ -44,6 +44,21 @@ var css = {
   "color:inherit;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
+
+  riotTagsMainContainer: "riot-tags-main-container" +
+  "{ " +
+  "-webkit-animation-name: mountAnimation; " +
+  "-webkit-animation-duration: 3s; " +
+  "animation-name:mountAnimation;" +
+  "animation-duration: 3s;" +
+  "}",
+
+  keyFrameMountAnimation: "@keyframes mountAnimation" +
+  "{ " +
+  "from {opacity: 0;}; " +
+  "to {opacity: 1;}; " +
+  "}",
+
   htmlId: "#htmlId " +
   "{" +
   "width: 100%;" +
@@ -12543,5 +12558,6 @@ for (key in css) {
 }
 style.appendChild(document.createTextNode(allCss));
 document.getElementsByTagName("head")[0].appendChild(style);
+riotTags.setAttribute('class', 'riot-tags-main-container')
 firstMount.firstStep();
 

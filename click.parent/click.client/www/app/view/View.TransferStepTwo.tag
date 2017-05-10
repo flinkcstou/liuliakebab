@@ -1,4 +1,4 @@
-<view-transfer-steptwo>
+<view-transfer-steptwo class="riot-tags-main-container">
   <div class="transfer-page-title">
     <p class="transfer-name-title">{titleName}</p>
     <div id="backButton" ontouchstart="goToBack()" class="{transfer-back-button: backbuttoncheck}"></div>

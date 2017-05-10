@@ -1,4 +1,4 @@
-<view-news id="viewNewsId" class="view-news">
+<view-news id="viewNewsId" class="view-news riot-tags-main-container">
   <div class="view-news-page-title">
     <p class="view-news-name-title">УВЕДОМЛЕНИЯ</p>
     <div id="closeButton" ontouchend="closeNewsTouchEnd()" class="view-news-right-button"></div>
