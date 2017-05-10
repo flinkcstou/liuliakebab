@@ -217,15 +217,19 @@
       if (Math.abs(touchEndDeclineX - touchStartDeclineX) < 20 &&
         Math.abs(touchEndDeclineY - touchStartDeclineY) < 20) {
 
-        for (var i in scope.parent.invoiceList) {
+        if(scope.parent) {
+          for (var i in scope.parent.invoiceList) {
 //          console.log("scope.parent.invoiceList[i]", scope.parent.invoiceList[i])
-          if (scope.parent.invoiceList[i].invoice_id == scope.opts.invoiceId) {
-            scope.parent.invoiceList[i].deleted = true;
+            if (scope.parent.invoiceList[i].invoice_id == scope.opts.invoiceId) {
+              scope.parent.invoiceList[i].deleted = true;
 //            console.log("QWEQW")
 //            alert('TRUE')
+            }
           }
+          riot.update(scope.parent.invoiceList);
         }
-        riot.update(scope.parent.invoiceList);
+
+        console.log('INVOICE OPTS', opts)
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -255,7 +259,7 @@
             console.log("result of invoice transfer decline", result);
 
             if (result[0][0].error == 0) {
-              goToBack(true);
+              transferDetailGoToBack(true);
             }
             else {
               scope.clickPinError = false;
