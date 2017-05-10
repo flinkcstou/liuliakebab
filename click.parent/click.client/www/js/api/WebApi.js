@@ -145,7 +145,7 @@ window.api.initSocket = function () {
       }
     }
 
-    if(parsedData.api_status == 0)
+
     try {
 
       callBack.err(parsedData.api_status, parsedData.api_status_message, parsedData.data);

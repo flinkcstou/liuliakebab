@@ -129,7 +129,7 @@
       }
     };
 
-    scope.addCard = addCard = function (withoutBalance) {
+    scope.addCard = addCard = function (withoutBalance, invoice) {
 
       if (modeOfApp.offlineMode) return;
 
@@ -156,20 +156,40 @@
         scope.cardsarray = {};
       }
       else {
-        if (scope.checkSumOfHash)
+        if (scope.checkSumOfHash) {
           scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-//        if (scope.invoiceCheck && viewMainPage.atMainPage)
-//          for (var i in scope.cardsarray) {
-//            scope.cardsarray[i].countCard += 1;
-//          }
+          if (localStorage.getItem('click_client_countCard'))
+            count = 1;
+          else
+            count = 0;
+
+          if (scope.invoiceCheck && viewMainPage.atMainPage) {
+            for (var i in scope.cardsarray) {
+              scope.cardsarray[i].countCard = ++count;
+            }
+
+            localStorage.setItem('click_client_countCard', count)
+            localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray))
+
+            console.log('CARD NUMBER', scope.cardNumber)
+
+          }
+          riot.update()
+        }
       }
 
-      if (scope.invoiceCheck && viewMainPage.atMainPage) {
-        console.log("COUNT EQUAL",count)
-        count = 1;
+      if (scope.invoiceCheck && viewMainPage.atMainPage && !scope.checkSumOfHash) {
+        if (localStorage.getItem('click_client_countCard'))
+          count = 1;
+        else {
+          count = 0
+        }
+
+        riot.update()
       }
       else {
-        count = 0;
+        if (!scope.checkSumOfHash)
+          count = 0;
       }
 
       var numberOfCardPartOne;
@@ -226,8 +246,6 @@
       console.log('CARDSARRAY', scope.cardsarray)
 
 //      riot.update(scope.cardsarray);
-
-      scope.update();
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
         writeBalance();
       } else {
@@ -304,7 +322,7 @@
 
                 setTimeout(function () {
 
-                  addCard(true)
+                  addCard(true, true)
                 }, 500);
               }
               else {
