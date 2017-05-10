@@ -90,10 +90,14 @@
   <component-success id="componentSuccessId"
                      operationmessage="{operationMessage}"
                      viewpage="{viewPage}" step_amount="{stepAmount}"></component-success>
-  <component-unsuccess id="componentUnsuccessId"
+  <component-unsuccess id="componentUnsuccessId" viewpage="{viewPage}"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
                        operationmessagepartthree="{window.languages.ComponentUnsuccessMessagePart3ForPay}"></component-unsuccess>
+
+  <component-in-processing id="componentInProcessingId" viewpage="{viewPage}"
+                           operationmessagepartone="{window.languages.ComponentInProcessingPartOneForPay}"
+                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"></component-in-processing>
 
 
   <script>
@@ -391,13 +395,6 @@
 
         console.log("check payment status");
 
-        viewServicePage.phoneText = '';
-        window.viewServicePage = {};
-        viewServicePage.amountText = '';
-        viewServicePage.amountWithoutSpace = '';
-        viewServicePinCards.friendHelpPaymentMode = false;
-        viewServicePinCards.chosenFriendForHelp = null;
-        componentSuccessId.style.display = 'block';
 
         window.api.call({
           method: 'get.payment',
@@ -410,10 +407,36 @@
           scope: this,
 
           onSuccess: function (result) {
-            if (result[0][0].error == 0) {
+            if (result[0][0].error == 0 && result[1][0]) {
+
               console.log("result of get.payment success=", result);
-              if (result[1][0]) {
-                console.log(result[1][0]);
+              if (result[1][0].state == -1) {
+                scope.viewPage = 'view-service-page';
+                scope.update();
+                console.log("state=-1 error");
+                componentUnsuccessId.style.display = 'block';
+              } else if (result[1][0].state == 2) {
+                viewServicePage.phoneText = '';
+                window.viewServicePage = {};
+                viewServicePage.amountText = '';
+                viewServicePage.amountWithoutSpace = '';
+                viewServicePinCards.friendHelpPaymentMode = false;
+                viewServicePinCards.chosenFriendForHelp = null;
+                scope.viewPage = 'view-pay';
+                scope.update();
+                console.log("state=2 success");
+                componentSuccessId.style.display = 'block';
+              } else if (result[1][0].state == 1) {
+                viewServicePage.phoneText = '';
+                window.viewServicePage = {};
+                viewServicePage.amountText = '';
+                viewServicePage.amountWithoutSpace = '';
+                viewServicePinCards.friendHelpPaymentMode = false;
+                viewServicePinCards.chosenFriendForHelp = null;
+                scope.viewPage = 'view-pay';
+                scope.update();
+                console.log("state=1 waiting");
+                componentInProcessingId.style.display = 'block';
               }
 
             }
