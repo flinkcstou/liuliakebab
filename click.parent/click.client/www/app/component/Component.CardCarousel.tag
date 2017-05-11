@@ -61,6 +61,20 @@
 
     scope.checkSumOfHash = true;
 
+    //    this.on('mount', function () {
+    //      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
+    //
+    //      if (!scope.invoiceCheck) {
+    //        count = 0;
+    //        for (var i in scope.cardsarray) {
+    //          scope.cardsarray[i].countCard = count;
+    //          count++;
+    //        }
+    //      }
+    //      scope.update()
+    //
+    //    })
+
     //    scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
     //    scope.cardsarray = (scope.cardsarray) ? (scope.cardsarray) : ({});
     //    riot.update(scope.cardsarray);
@@ -160,10 +174,7 @@
           scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
 
           if (scope.invoiceCheck && viewMainPage.atMainPage) {
-            if (localStorage.getItem('click_client_countCard'))
-              count = 1;
-            else
-              count = 0;
+            count = 1;
 
             for (var i in scope.cardsarray) {
               scope.cardsarray[i].countCard = count;
@@ -177,29 +188,30 @@
 
           }
           else {
-            count = 0;
+            if (!viewMainPage.atMainPage)
+              count = 0;
+            else {
+              if (viewMainPage.atMainPage && !scope.invoiceCheck) {
+                count = 0
+              }
+            }
 
             for (var i in scope.cardsarray) {
               scope.cardsarray[i].countCard = count;
               count++;
             }
           }
-          scope.update()
+//          scope.update()
         }
       }
 
       if (scope.invoiceCheck && viewMainPage.atMainPage && !scope.checkSumOfHash) {
-        if (localStorage.getItem('click_client_countCard'))
-          count = 1;
-        else {
-          count = 0
-        }
-
-        scope.update()
+        count = 1;
+//        scope.update()
       }
       else {
         if (!scope.checkSumOfHash)
-          count = 0;
+          count = 1;
       }
 
       var numberOfCardPartOne;
@@ -226,6 +238,7 @@
             id: getAccountsCards[i].id,
             card_num_hash: getAccountsCards[i].card_num_hash,
             card_num_crypted: getAccountsCards[i].card_num_crypted,
+            checksum: getAccountsCards[i].checksum,
             bankName: typeOfCard,
             name: getAccountsCards[i].description,
             salary: '',
@@ -258,12 +271,12 @@
 
       console.log('CARDSARRAY', scope.cardsarray)
 
-//      riot.update(scope.cardsarray);
+//      scope.update(scope.cardsarray);
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
         writeBalance();
       } else {
 
-        scope.update();
+//        scope.update();
       }
     };
 
@@ -334,10 +347,9 @@
                 }
 
                 setTimeout(function () {
-
+                  addCard(true, true)
                   scope.update()
-//                  addCard(true, true)
-                }, 500);
+                }, 0);
               }
               else {
                 scope.invoiceCheck = false;
@@ -394,9 +406,12 @@
                 if (localStorage.getItem('click_client_cards')) {
                   var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'))
                   for (var i in result[1]) {
-                    if (cardsArray[result[1].id]) {
+                    console.log('cardsArray[result[1].id]', cardsArray[result[1][i].id])
+                    if (cardsArray[result[1][i].id]) {
 
-                      if (cardsArray[result[1].id].checksum != result[1][i].checksum) {
+                      console.log('HASH SUM CHECKING', cardsArray[result[1][i].id].checksum, result[1][i].checksum)
+
+                      if (cardsArray[result[1][i].id].checksum != result[1][i].checksum) {
                         scope.checkSumOfHash = false;
                       }
                     }
@@ -475,7 +490,7 @@
                               setTimeout(function () {
 
                                 addCard()
-                              }, 500);
+                              }, 0);
                             }
 
                           });
@@ -497,14 +512,14 @@
                     setTimeout(function () {
 
                       addCard()
-                    }, 500);
+                    }, 0);
                   }
                 }
                 else {
                   setTimeout(function () {
 
                     addCard()
-                  }, 500);
+                  }, 0);
                 }
               }
               else {
@@ -557,6 +572,7 @@
     if (viewMainPage.atMainPage) {
       invoiceCheckFunction();
     }
+
 
     onComponentCreated();
 
@@ -641,6 +657,16 @@
     this.on("mount", function () {
 //      console.log("CARDS", JSON.parse(localStorage.getItem("click_client_cards")))
 
+//      if (!scope.invoiceCheck) {
+//        count = 0;
+//        scope.cardNumber = 1;
+//        for (var i in scope.cardsarray) {
+//          scope.cardsarray[i].countCard = count;
+//          count++;
+//        }
+//      }
+      scope.update()
+
       cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
 
@@ -703,7 +729,8 @@
                   console.log('SCOPE.CARDSARRAY', scope.cardsarray)
                   localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
 
-                  scope.update();
+                  if (!viewMainPage.atMainPage)
+                    scope.update();
                 }
                 catch (error) {
                   console.log(error)
@@ -1098,6 +1125,10 @@
 
     function changePosition() {
 //      clearInterval(changingColor);
+
+//      if (!scope.invoiceCheck && count != 0)
+//        count -= 1;
+
       console.log(carouselTouchEndX, carouselTouchStartX, count, count)
 
       if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber < count - 1) {
@@ -1170,7 +1201,7 @@
     setTimeout(function () {
 
       addCard(true)
-    }, 500);
+    }, 0);
 
 
   </script>
