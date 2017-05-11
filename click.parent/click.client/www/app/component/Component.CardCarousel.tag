@@ -193,6 +193,7 @@
             else {
               if (viewMainPage.atMainPage && !scope.invoiceCheck) {
                 count = 0
+
               }
             }
 
@@ -205,20 +206,20 @@
         }
       }
 
-      if (scope.invoiceCheck && viewMainPage.atMainPage && !scope.checkSumOfHash) {
-        count = 1;
-//        scope.update()
-      }
-      else {
-        if (!scope.checkSumOfHash)
-          count = 1;
-      }
+//      if (scope.invoiceCheck && viewMainPage.atMainPage && !scope.checkSumOfHash) {
+//        count = 1;
+////        scope.update()
+//      }
+//      else {
+//        if(!scope.invoiceCheck && viewMainPage.atMainPage)
+//          count = 0;
+//      }
 
       var numberOfCardPartOne;
       var numberOfCardPartTwo;
       var typeOfCard;
 
-      if (!scope.checkSumOfHash)
+      if (!scope.checkSumOfHash){
         for (var i = 0; i < getAccountsCards.length; i++) {
 
 
@@ -241,7 +242,7 @@
             checksum: getAccountsCards[i].checksum,
             bankName: typeOfCard,
             name: getAccountsCards[i].description,
-            salary: '',
+            salary: getAccountsCards[i].salary,
             currency: getAccountsCards[i].currency_name.trim(),
             numberPartOne: numberOfCardPartOne,
             numberPartTwo: numberOfCardPartTwo,
@@ -268,6 +269,7 @@
           localStorage.setItem('click_client_countCard', count);
 //        localStorage.setItem('cardNumber', cardNumber);
         }
+    }
 
       console.log('CARDSARRAY', scope.cardsarray)
 
@@ -415,6 +417,9 @@
                         scope.checkSumOfHash = false;
                       }
                     }
+                    else {
+                      scope.checkSumOfHash = false;
+                    }
                   }
 
                   console.log("CARDS RESULT", result[1], cardsArray)
@@ -518,7 +523,7 @@
                 else {
                   setTimeout(function () {
 
-                    addCard()
+                    addCard(false)
                   }, 0);
                 }
               }
@@ -731,6 +736,10 @@
 
                   if (!viewMainPage.atMainPage)
                     scope.update();
+
+                  if(!scope.checkSumOfHash)
+                    scope.update(scope.cardsarray[result[1][0].account_id].salary);
+
                 }
                 catch (error) {
                   console.log(error)
