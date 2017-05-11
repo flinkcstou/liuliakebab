@@ -204,7 +204,7 @@ var css = {
   invoiceListInvoice: ".invoice-list-invoice" +
   "{" +
   "height:" + 132 * widthK + "px;" +
-  "border-bottom:" + 5 * widthK + "px solid #f7f7f7;" +
+  "border-bottom:" + 3 * widthK + "px solid #f7f7f7;" +
   "padding-top:" + 29 * widthK + "px;" +
   "padding-left:" + 25 * widthK + "px;" +
   "}",
@@ -330,7 +330,7 @@ var css = {
   "left:" + 80 * widthK + "px;" +
   "width:" + 560 * widthK + "px;" +
   "height:" + 107 * widthK + "px;" +
-  "border-bottom:" + 6 * widthK + "px solid rgba(163, 222, 238, 0.95);" +
+  "border-bottom:" + 3 * widthK + "px solid rgba(163, 222, 238, 0.95);" +
   "bottom:" + 210 * widthK + "px;" +
   "color: white;" +
   "}",
@@ -437,7 +437,7 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "background-size: contain;" +
   "color: white;" +
-  "border-bottom:" + 2 + "px solid white;" +
+  "border-bottom:" + 1 + "px solid white;" +
   "bottom:" + 40 * widthK + "px;" +
   "text-align: center;" +
   "margin-left: 0;" +
@@ -457,7 +457,7 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "background-size: contain;" +
   "color: #b7f1ff;" +
-  "border-bottom:" + 2 + "px solid #b7f1ff;" +
+  "border-bottom:" + 1 + "px solid #b7f1ff;" +
   "bottom:" + 40 * widthK + "px;" +
   "margin-left:" + 80 * widthK + "px;" +
   "margin-bottom:" + 14 * widthK + "px;" +
@@ -473,7 +473,7 @@ var css = {
   "width:" + 125 * widthK + "px;" +
   "background-size: contain;" +
   "color: #b7f1ff;" +
-  "border-bottom:" + 2 + "px solid #b7f1ff;" +
+  "border-bottom:" + 1 + "px solid #b7f1ff;" +
   "}",
   registrationButtonRegistration: ".registration-button-registration " +
   "{" +
@@ -483,7 +483,7 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "background-size: contain;" +
   "color: white;" +
-  "border-bottom:" + 2 + "px solid white;" +
+  "border-bottom:" + 1 + "px solid white;" +
   "}",
   registrationTextField: ".registration-text-field " +
   "{" +
@@ -636,7 +636,7 @@ var css = {
   "left:" + 85 * widthK + "px;" +
   "width:" + 560 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
-  "border-bottom:" + 6 * widthK + "px solid rgba(163, 222, 238, 0.95);" +
+  "border-bottom:" + 3 * widthK + "px solid rgba(163, 222, 238, 0.95);" +
   "color: white;" +
   "}",
 
@@ -787,7 +787,7 @@ var css = {
   "left: 0;" +
   "background-size: contain;" +
   "color: #05eeff;" +
-  "border-bottom:" + 2 + "px solid #05eeff;" +
+  "border-bottom:" + 1 + "px solid #05eeff;" +
   "}",
 
   authorizationButtonRegistration: ".authorization-button-registration " +
@@ -797,7 +797,7 @@ var css = {
   "background-size: contain;" +
   "color: white;" +
   "right: 0;" +
-  "border-bottom:" + 2 + "px solid white;" +
+  "border-bottom:" + 1 + "px solid white;" +
   "}",
 
   authorizationButtonOffline: ".authorization-button-offline " +
@@ -807,7 +807,7 @@ var css = {
   "width:" + 240 * widthK + "px;" +
   "background-size: contain;" +
   "color: white;" +
-  "border-bottom:" + 2 + "px solid white;" +
+  "border-bottom:" + 1 + "px solid white;" +
   "text-align: center;" +
   "bottom:" + 40 * widthK + "px;" +
   "left:" + 240 * widthK + "px;" +
@@ -2168,7 +2168,7 @@ var css = {
   "font-size:" + 30 * widthK + "px;" +
   "color: white;" +
   "top:" + 30 * widthK + "px;" +
-  "border-bottom: 2px solid #95e6fd;" +
+  "border-bottom: 1px solid #95e6fd;" +
   "}",
 
   myCardsButtonBlockCard: ".my-cards-button-block-card " +
@@ -2234,7 +2234,7 @@ var css = {
   "top:" + 80 * widthK + "px;" +
   "width: 100%;" +
   "height:" + 160 * widthK + "px;" +
-  "border-bottom:" + 2 + "px solid #dedfe0;" +
+  "border-bottom:" + 1 + "px solid #dedfe0;" +
   "overflow: hidden;" +
   "}",
 
@@ -2314,7 +2314,7 @@ var css = {
   "left: 10%;" +
   "width: 79.5%;" +
   "height: 9%;" +
-  "border-bottom:  " + 5 * widthK + "px solid #01cfff;" +
+  "border-bottom:  " + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
   "top: 6%" +
   "}",
@@ -2772,7 +2772,7 @@ var css = {
   "min-height:" + 100 * widthK + "px; " +
   "width: 100%;" +
   "margin-top: 1%;" +
-  "border-bottom:" + 3 * widthK + "px solid gainsboro;" +
+  "border-bottom:" + 1 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
 
@@ -3044,7 +3044,7 @@ var css = {
   "height: 9%;" +
   "left: 10%;" +
   "color: white;" +
-  "border-bottom:" + 5 * widthK + "px solid lightgray;" +
+  "border-bottom:" + 3 * widthK + "px solid lightgray;" +
   "top: 5%;" +
   "}",
 
@@ -3056,7 +3056,7 @@ var css = {
   "left: 10%;" +
   "top: 12%;" +
   "color: white;" +
-  "border-bottom:" + 5 * widthK + "px solid #95e6fd;" +
+  "border-bottom:" + 3 * widthK + "px solid #95e6fd;" +
   "}",
 
   servicePageDropdownTextField: ".servicepage-dropdown-text-field" +
@@ -3099,7 +3099,7 @@ var css = {
   "left: 10%;" +
   "width: 79.5%;" +
   "height: 10%;" +
-  "border-bottom:  " + 5 * widthK + "px solid #01cfff;" +
+  "border-bottom:  " + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
   "top: 8%;" +
   "}",
@@ -3110,7 +3110,7 @@ var css = {
   "left: 10%;" +
   "width: 79.5%;" +
   "height: 9%;" +
-  "border-bottom:" + 5 * widthK + "px solid lightgray;" +
+  "border-bottom:" + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
   "top: 4.5%" +
   "}",
@@ -3134,7 +3134,7 @@ var css = {
   "left: 10%;" +
   "width: 79.5%;" +
   "height: 10%;" +
-  "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
+  "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
   "top: 11%" +
   "}",
@@ -3144,7 +3144,7 @@ var css = {
   "left: 10%;" +
   "width: 79.5%;" +
   "height: 8%;" +
-  "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
+  "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
   "top: 11%;" +
   "}",
@@ -3404,7 +3404,7 @@ var css = {
   "height: 8%;" +
   "left: 10%;" +
   "color: white;" +
-  "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
+  "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "top: 5%;" +
   "}",
 
@@ -3421,7 +3421,7 @@ var css = {
   "height: 8%;" +
   "left: 10%;" +
   "color: white;" +
-  "border-bottom:  " + 5 * widthK + "px solid lightgray;" +
+  "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "top: 6%;" +
   "}",
 
@@ -3473,7 +3473,7 @@ var css = {
   "left: 8%;" +
   "width: 85%;" +
   "height:" + 90 * widthK + "px;" +
-  "border-bottom:" + 4 * widthK + "px solid #01cfff;" +
+  "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
   "top: 8%;" +
   "}",
@@ -3518,7 +3518,7 @@ var css = {
   "left: 8%;" +
   "width: 85%;" +
   "height:" + 90 * widthK + "px;" +
-  "border-bottom:" + 4 * widthK + "px solid #01cfff;" +
+  "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
   "top: 40%;" +
   "}",
@@ -4233,7 +4233,7 @@ var css = {
   "font-size:" + 32 * widthK + "px;" +
   "background: none;" +
   "border: none;" +
-  "border-bottom:" + 5 * widthK + "px solid #a3deee;" +
+  "border-bottom:" + 3 * widthK + "px solid #a3deee;" +
   "width: 98%;" +
   "height: 10%;" +
   "top: 18%;" +
@@ -4324,7 +4324,7 @@ var css = {
   "left:" + 25 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom:" + 5 * widthK + "px solid rgb(149, 230, 253);" +
+  "border-bottom:" + 3 * widthK + "px solid rgb(149, 230, 253);" +
   "}",
 
   mycardlistAddButton: ".mycardlist-add-button " +
@@ -4652,7 +4652,7 @@ var css = {
   "left: 10%;" +
   "width: 79.5%;" +
   "height:" + 100 * widthK + "px;" +
-  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
+  "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
   "top: 7%;" +
   "}",
@@ -4944,7 +4944,7 @@ var css = {
   "left: 10%;" +
   "width: 79.5%;" +
   "height:" + 100 * widthK + "px;" +
-  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
+  "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
   "top:" + 100 * widthK + "px;" +
   "}",
@@ -5097,7 +5097,7 @@ var css = {
   "left: 10%;" +
   "width: 79.5%;" +
   "height: 103px;" +
-  "border-bottom: 5px solid #01cfff;" +
+  "border-bottom: 3px solid #01cfff;" +
   "color: white;" +
   "top: 45px;" +
   "margin-bottom: 8%;" +
@@ -5476,7 +5476,7 @@ var css = {
   "margin-top: 0;" +
   "color: white;" +
   "text-align: center;" +
-  "border-bottom:" + 5 * widthK + "px solid #6abfff;" +
+  "border-bottom:" + 3 * widthK + "px solid #6abfff;" +
   "font-size:" + 100 * widthK + "px;" +
   "}",
 
@@ -5593,7 +5593,7 @@ var css = {
   "left: 2%;" +
   "width: 96%;" +
   "height:" + 100 * widthK + "px;" +
-  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
+  "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
   "top:14%;" +
   "}",
@@ -6350,7 +6350,7 @@ var css = {
   "left: 0;" +
   "background-size: contain;" +
   "color: #05eeff;" +
-  "border-bottom:" + 2 + "px solid #05eeff;" +
+  "border-bottom:" + 1 + "px solid #05eeff;" +
   "}",
 
   pinCodeButtonRegistration: ".pincode-button-registration " +
@@ -6360,7 +6360,7 @@ var css = {
   "background-size: contain;" +
   "color: white;" +
   "right: 0;" +
-  "border-bottom:" + 2 + "px solid white;" +
+  "border-bottom:" + 1 + "px solid white;" +
   "}",
 
   pinCodeButtonOffline: ".pincode-button-offline " +
@@ -6370,7 +6370,7 @@ var css = {
   "width:" + 240 * widthK + "px;" +
   "background-size: contain;" +
   "color: white;" +
-  "border-bottom:" + 2 + "px solid white;" +
+  "border-bottom:" + 1 + "px solid white;" +
   "text-align: center;" +
   "bottom:" + 40 * widthK + "px;" +
   "left:" + 240 * widthK + "px;" +
@@ -6636,7 +6636,7 @@ var css = {
   "width: 91%;" +
   "left: 4%;" +
   "margin-top: 1%;" +
-  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "border-bottom:" + 1  + "px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
 
@@ -6874,7 +6874,7 @@ var css = {
   "width: 84.5%;" +
   "height: 17%;" +
   "bottom: 29%;" +
-  "border-bottom:" + 5 * widthK + "px solid #05d0ff;" +
+  "border-bottom:" + 3 * widthK + "px solid #05d0ff;" +
   "left: 8.5%;" +
   "}",
 
@@ -7022,7 +7022,7 @@ var css = {
   "left: 10%;" +
   "width: 79.5%;" +
   "height:" + 100 * widthK + "px;" +
-  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
+  "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
   "margin-top: 10%" +
   "}",
@@ -7063,7 +7063,7 @@ var css = {
   "left: 10%;" +
   "width: 79.5%;" +
   "height:" + 100 * widthK + "px;" +
-  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
+  "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
   "top: 36%" +
   "}",
@@ -7716,7 +7716,7 @@ var css = {
   "color: white;" +
   "text-align: center;" +
   "border: none;" +
-  "border-bottom:" + 5 * widthK + "px solid #6abfff;" +
+  "border-bottom:" + 3 * widthK + "px solid #6abfff;" +
   "font-size:" + 100 * widthK + "px;" +
   "background: none;" +
   "margin:" + 35 * widthK + "px " + 125 * widthK + "px;" +
@@ -9994,7 +9994,7 @@ var css = {
   "left: 7.5%;" +
   "width: 85%;" +
   "height:" + 150 * widthK + "px;" +
-  "border-bottom:" + 5 * widthK + "px solid #01cfff;" +
+  "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
   "top:" + 5 * widthK + "px;" +
   "}",
@@ -11841,7 +11841,7 @@ var css = {
   "width: 91%;" +
   "left: 4%;" +
   "margin-top: 1%;" +
-  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "border-bottom:" + 1 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
 
@@ -12143,7 +12143,7 @@ var css = {
     //"left: 4%;" +
   "top: 15%;" +
   "margin-right: " + 32 * widthK + "px; " +
-  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "border-bottom:" + 1 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "float: left;" +
   "}",
@@ -12202,7 +12202,7 @@ var css = {
   "left: 10%;" +
   "top: 12%;" +
   "color: white;" +
-  "border-bottom:" + 5 * widthK + "px solid #95e6fd;" +
+  "border-bottom:" + 3 * widthK + "px solid #95e6fd;" +
   "}",
 
   autopayEventDropdownTextField: ".autopay-event-dropdown-text-field" +

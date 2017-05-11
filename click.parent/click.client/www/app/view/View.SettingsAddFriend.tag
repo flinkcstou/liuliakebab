@@ -75,8 +75,8 @@
 
     this.on('mount', function () {
 
-      namePhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #01cfff"
-      contactPhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #cbcbcb"
+      namePhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff"
+      contactPhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb"
       if (contactPhoneNumberId.value.length != 9) {
         nextButtonId.style.display = 'none'
       }
@@ -88,8 +88,8 @@
 
     namePhoneFieldTouchEnd = function () {
 
-      namePhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #01cfff"
-      contactPhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #cbcbcb"
+      namePhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff"
+      contactPhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb"
       scope.update();
 
     }
@@ -136,8 +136,8 @@
         nextButtonId.style.display = 'none'
       }
 
-      namePhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #cbcbcb"
-      contactPhoneFieldId.style.borderBottom = "" + 5 * widthK + "px solid #01cfff"
+      namePhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb"
+      contactPhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff"
 
       scope.update();
     }
