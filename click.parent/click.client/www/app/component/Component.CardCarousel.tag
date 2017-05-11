@@ -184,7 +184,7 @@
               count++;
             }
           }
-          riot.update()
+          scope.update()
         }
       }
 
@@ -195,7 +195,7 @@
           count = 0
         }
 
-        riot.update()
+        scope.update()
       }
       else {
         if (!scope.checkSumOfHash)
@@ -335,7 +335,8 @@
 
                 setTimeout(function () {
 
-                  addCard(true, true)
+                  scope.update()
+//                  addCard(true, true)
                 }, 500);
               }
               else {
