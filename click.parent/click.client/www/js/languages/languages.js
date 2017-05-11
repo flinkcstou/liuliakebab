@@ -467,6 +467,9 @@ var RU_LANGUAGES =
   "ViewAutoPayCreatedSuccessTextOne": "Автоплатеж ",
   "ViewAutoPayCreatedSuccessTextTwo": " успешно создан!",
   "ViewAutoPayDeletedSuccessText": "Автоплатеж успешно удален!",
+
+  "ViewServiceInfoButtonNextText": "ДАЛЕЕ",
+  "ViewServiceInfoButtonGoToPaymentText": "ПЕРЕЙТИ К ОПЛАТЕ",
 };
 
 window.languages = RU_LANGUAGES;

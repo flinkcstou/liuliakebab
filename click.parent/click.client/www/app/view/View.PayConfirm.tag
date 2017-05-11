@@ -276,6 +276,7 @@
       var amount = inputVerification.spaceDeleter(opts[0][5].amountText.toString());
       var accountId;
       var friendPhone;
+      var payment_data;
 //      console.log("AMOUNT UPDATED=", amount)
 
       // friend help or own payment
@@ -296,7 +297,7 @@
       console.log("friendPhone", friendPhone);
 
       if (opts[0][0].formtype == 1) {
-        var payment_data = {
+        payment_data = {
           "param": opts[0][1].firstFieldId,
           "value": firstFieldtext,
           "transaction_id": parseInt(Date.now() / 1000)
@@ -304,14 +305,14 @@
         opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
       }
       else if (opts[0][0].formtype == 2) {
-        var payment_data = {
+        payment_data = {
           "pin_param": opts[0][3].cardTypeId,
           "transaction_id": parseInt(Date.now() / 1000)
         };
         opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
       }
       else if (opts[0][0].formtype == 3) {
-        var payment_data = {
+        payment_data = {
           "param": opts[0][1].firstFieldId,
           "value": firstFieldtext,
           "communal_param": opts[0][4].communalParam,
@@ -321,7 +322,7 @@
 
       }
       else if (opts[0][0].formtype == 4) {
-        var payment_data = {
+        payment_data = {
           "param": opts[0][1].firstFieldId,
           "value": firstFieldtext,
           "internetPackageParam": opts[0][6].internetPackageParam,
