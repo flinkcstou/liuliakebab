@@ -2793,6 +2793,18 @@ var css = {
   "box-shadow: 0 8px 6px -6px rgba(0,0,0,0.5);" +
   "}",
 
+  payHintIconTick: ".pay-hint-icon-tick " +
+  "{" +
+  "position: relative;" +
+  "left:" + 653 * widthK + "px;" +
+  "background-size: contain;" +
+  "background-image: url(resources/icons/ViewPay/catclose.png);" +
+  "background-repeat: no-repeat;" +
+  "width:" + 19 * widthK + "px;" +
+  "height:" + 18 * widthK + "px;" +
+  "top:" + 9 * widthK + "px;" +
+  "}",
+
   payServicesBlock: ".pay-services-block" +
   "{" +
   "position: relative;" +
@@ -12556,6 +12568,100 @@ var css = {
   autoPayNameInputPart: ".autopay-name-input-part" +
   "{" +
   "width: 96%;" +
+  "}",
+
+  //VIEW SERVICE INFO
+
+  serviceInfoOptions: ".serviceinfo-options" +
+  "{" +
+  "width: 100%;" +
+  "height: 85%;" +
+  "overflow: scroll;" +
+    //"border-bottom: 1px solid lightgray;" +
+  "}",
+
+
+  serviceInfoOptionTextContainer: ".serviceinfo-option-text-container" +
+  "{" +
+  "position: relative;" +
+  "background-color: transparent;" +
+  "width: 100%;" +
+  "height: 7.5%;" +
+    //"border-bottom: 1px solid lightgray;" +
+  "}",
+
+  serviceInfoOptionText: ".serviceinfo-option-text" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 27 * widthK + "px; " +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "left: 8%;" +
+  "top:40%;" +
+  "}",
+
+  serviceInfoOptionContainer: ".serviceinfo-option-containter" +
+  "{" +
+  "position: relative;" +
+  "height:" + 145 * widthK + "px; " +
+  "width: 91%;" +
+  "left: 4%;" +
+  "margin-top: 1%;" +
+  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "background-color: transparent;" +
+  "}",
+
+  serviceInfoOptionTitleText: ".serviceinfo-option-title-text" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 30 * widthK + "px; " +
+  "left: 4%;" +
+  "text-align: left;" +
+  "font-size:" + 25 * widthK + "px; " +
+  "color: gray;" +
+  "float: left;" +
+  "}",
+
+  serviceInfoOptionValueText: ".serviceinfo-option-value-text" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 26 * widthK + "px; " +
+  "left: 5%;" +
+  "text-align: left;" +
+  "font-size:" + 29 * widthK + "px; " +
+  "color: gray;" +
+    //"float: left;" +
+  "}",
+
+  serviceInfoOptionCheckIcon: ".serviceinfo-option-check-icon" +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 10%;" +
+  "height: 100%;" +
+  "top: 0;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 63%;" +
+  "background-position-y:" + 50 * widthK + "px; " +
+  "background-image: url(resources/icons/ViewService/unchecked.png);" +
+  "}",
+
+  serviceInfoButtonNext: ".serviceinfo-button-next" +
+  "{" +
+  "position: absolute;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "height: " + 74 * widthK + "px;" +
+  "background-color: #00a8f1;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "bottom: " + 55 * widthK + "px; " +
+  "font-size: " + 32 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "color: #ffffff;" +
+  "border: none;" +
+  "outline: none;" +
   "}",
 
 

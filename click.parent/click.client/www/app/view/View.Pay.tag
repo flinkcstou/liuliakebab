@@ -32,6 +32,7 @@
         <div class="pay-category-icon" style="background-image: url({showCategoryIcon})"></div>
         <div class="pay-category-name-field">{showCategoryName}
         </div>
+        <div class="pay-hint-icon-tick"></div>
       </div>
     </div>
   </div>
@@ -228,15 +229,17 @@
 
       var element = document.getElementById(scope.index);
 
-      if (categoriesContainerId.scrollTop > element.offsetTop) {
-        hintContainerId.style.display = 'block';
-        scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
-        scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
-        scope.update();
-      } else {
-        hintContainerId.style.display = 'none';
-        scope.update();
+      if (element) {
+        if (categoriesContainerId.scrollTop > element.offsetTop) {
+          hintContainerId.style.display = 'block';
+          scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
+          scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
+          scope.update();
+        } else {
+          hintContainerId.style.display = 'none';
+          scope.update();
 
+        }
       }
 
     }

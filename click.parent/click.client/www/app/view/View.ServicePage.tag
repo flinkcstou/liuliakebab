@@ -891,6 +891,8 @@
       amountField.style.borderBottom = 5 * widthK + 'px solid lightgrey';
     };
 
+    var payment_data;
+
     enterButton = function () {
 
       try {
@@ -930,6 +932,11 @@
         return;
       }
 
+      var formtype = {"formtype": scope.formType};
+      var firstFieldId = {"firstFieldId": scope.chosenFieldParamId};
+      var firstFieldText = {"firstFieldText": firstFieldInput.value};
+      var cardTypeId = {"cardTypeId": null};
+
       if (scope.formType == 3) {
         var internetPackageParam = {"internetPackageParam": null};
         var amountText = {"amountText": amountForPayTransaction};
@@ -937,15 +944,36 @@
           var communalParam = {"communalParam": scope.chosenFieldParamIdThree};
         else
           var communalParam = {"communalParam": scope.chosenFieldParamIdTwo};
+
+        payment_data = {
+          "param": firstFieldId.firstFieldId,
+          "value": firstFieldText.firstFieldText,
+          "communal_param": communalParam.communalParam,
+          "transaction_id": parseInt(Date.now() / 1000)
+        };
+
       } else if (scope.formType == 1) {
         var communalParam = {"communalParam": null};
         var internetPackageParam = {"internetPackageParam": null};
         var amountText = {"amountText": amountForPayTransaction};
+
+        payment_data = {
+          "param": firstFieldId.firstFieldId,
+          "value": firstFieldText.firstFieldText,
+          "transaction_id": parseInt(Date.now() / 1000)
+        };
       } else if (scope.formType == 4) {
         var communalParam = {"communalParam": null};
         if (scope.chosenFieldParamIdThree && scope.amountOfFormTypeFour) {
           var amountText = {"amountText": scope.amountOfFormTypeFour};
           var internetPackageParam = {"internetPackageParam": scope.chosenFieldParamIdThree};
+
+          payment_data = {
+            "param": firstFieldId.firstFieldId,
+            "value": firstFieldText.firstFieldText,
+            "internetPackageParam": internetPackageParam.internetPackageParam,
+            "transaction_id": parseInt(Date.now() / 1000)
+          };
         } else {
           scope.clickPinError = false;
           scope.errorNote = "Выберите интернет пакет";
@@ -955,14 +983,11 @@
         }
       }
 
-      var formtype = {"formtype": scope.formType};
-      var firstFieldId = {"firstFieldId": scope.chosenFieldParamId};
-      var firstFieldText = {"firstFieldText": firstFieldInput.value};
-      var cardTypeId = {"cardTypeId": null};
 
       viewServicePage.firstFieldTitle = scope.chosenFieldName;
       viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
       var isInFavorites = {"isInFavorites": !scope.enterButton};
+      var payment_data = {"payment_data": payment_data};
 
       if (opts.mode == 'USUAL') {
 
@@ -1046,9 +1071,18 @@
           return
         }
         else {
-          this.riotTags.innerHTML = "<view-service-pincards>";
-          riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites])
-          scope.unmount()
+
+          if (scope.service.additional_information_type == 0) {
+            this.riotTags.innerHTML = "<view-service-pincards>";
+            riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites])
+            scope.unmount()
+          } else {
+            this.riotTags.innerHTML = "<view-service-info>";
+            riot.mount('view-service-info', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, payment_data])
+            scope.unmount()
+          }
+
+
         }
       } else if (opts.mode == 'ADDFAVORITE') {
 
