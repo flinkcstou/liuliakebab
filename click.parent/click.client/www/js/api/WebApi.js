@@ -11,6 +11,7 @@ window.api.init = function () {
 
 
     window.api.socket = new WebSocket("wss://my.click.uz:8443");
+    //window.api.socket = new WebSocket("ws://localhost:8080/WebSocketTest/open");
 
 
     window.api.initSocket();
