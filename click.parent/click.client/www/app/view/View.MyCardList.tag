@@ -57,7 +57,6 @@
       if (modeOfApp.onlineMode) {
         if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-          var arrayAccountInfo = [];
           var phoneNumber = localStorage.getItem("click_client_phoneNumber");
           var sessionKey = info.session_key;
 
@@ -72,76 +71,127 @@
 
             onSuccess: function (result) {
 
-              arrayAccountInfo = [];
+              var arrayAccountInfo = [];
+
 
               if (result[0][0].error == 0) {
+                if (localStorage.getItem('click_client_cards')) {
+                  var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'))
+                  for (var i in result[1]) {
+                    console.log('cardsArray[result[1].id]', cardsArray[result[1][i].id])
+                    if (cardsArray[result[1][i].id]) {
 
-                if (device.platform != 'BrowserStand') {
-                  window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-                    var j = -1, count = 0;
-                    for (var i = 0; i < result[1].length; i++) {
+                      console.log('HASH SUM CHECKING', cardsArray[result[1][i].id].checksum, result[1][i].checksum)
 
-                      j++;
-                      arrayAccountInfo.push(result[1][i]);
+                      if (cardsArray[result[1][i].id].checksum != result[1][i].checksum) {
+                        scope.checkSumOfHash = false;
+                      }
+                    }
+                  }
 
-                      var icon = result[1][i].card_background_url;
+                  console.log("CARDS RESULT", result[1], cardsArray)
 
-                      var filename = icon.substr(icon.lastIndexOf('/') + 1);
+                }
+                else {
+                  scope.checkSumOfHash = false;
+                }
+
+                console.log('HASH SUM CHECK', scope.checkSumOfHash)
+
+//                console.log('CARDS UPDATE()', result[1])
+//                console.log(result[1])
+                if (!scope.checkSumOfHash) {
+                  if (device.platform != 'BrowserStand') {
+                    window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+                      var j = -1, count = 0;
+                      for (var i = 0; i < result[1].length; i++) {
+
+                        j++;
+
+                        console.log('arrayAccountInfo_1' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
+
+                        arrayAccountInfo.push(result[1][i]);
+
+                        console.log('arrayAccountInfo_2' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
+
+                        var icon = result[1][i].card_background_url;
+
+                        var filename = icon.substr(icon.lastIndexOf('/') + 1);
 //                      alert("filename=" + filename);
 
-                      var newIconBool = checkImageURL;
-                      newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
+                        var newIconBool = checkImageURL;
+                        newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
 
-                        if (bool) {
-                          count++;
-//                          alert("(1)new file name=" + fileName + "," + count);
-                          arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
-                        } else {
-                          count++;
-//                          alert("(2)new file name=" + fileName + "," + count);
-                          arrayAccountInfo[index].card_background_url = 'resources/icons/cards/' + fileName;
-                        }
-
-                        var icon2 = arrayAccountInfo[index].image_url;
-                        var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
-                        var newIcon = checkImageURL;
-                        newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
-
-                          if (bool2) {
+                          if (bool) {
                             count++;
-//                            alert("(11)new file name=" + fileName2 + "," + count);
-                            arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
+//                          alert("(1)new file name=" + fileName + "," + count);
+                            arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
                           } else {
                             count++;
-//                            alert("(12)new file name=" + fileName2 + "," + count);
-                            arrayAccountInfo[index2].image_url = url('resources/icons/cards/logo/' + fileName2);
+//                          alert("(2)new file name=" + fileName + "," + count);
+                            arrayAccountInfo[index].card_background_url = 'resources/icons/cards/' + fileName;
                           }
 
-                          if (count == (result[1].length * 2)) {
-//                            alert("GHVCHGFUIHOI:JIJsave into localstorage");
-                            var accountInfo = JSON.stringify(arrayAccountInfo);
-                            if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
-                              localStorage.removeItem("click_client_accountInfo")
+                          var icon2 = arrayAccountInfo[index].image_url;
+                          var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
+                          var newIcon = checkImageURL;
+                          newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
+
+                            if (bool2) {
+                              count++;
+//                            alert("(11)new file name=" + fileName2 + "," + count);
+                              arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
+                            } else {
+                              count++;
+//                            alert("(12)new file name=" + fileName2 + "," + count);
+                              arrayAccountInfo[index2].image_url = 'resources/icons/cards/logo/' + fileName2;
                             }
-                            localStorage.setItem("click_client_accountInfo", accountInfo);
-                            addCard()
-                          }
+
+                            if (count == (result[1].length * 2)) {
+//                            alert("GHVCHGFUIHOI:JIJsave into localstorage");
+                              var accountInfo = JSON.stringify(arrayAccountInfo);
+                              if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
+                                localStorage.removeItem("click_client_accountInfo")
+                              }
+
+                              console.log('arrayAccountInfo_1232131' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
+
+                              console.log('accountInfo', accountInfo);
+
+                              localStorage.setItem("click_client_accountInfo", accountInfo);
+                              setTimeout(function () {
+
+                                addCard()
+                              }, 0);
+                            }
+
+                          });
 
                         });
 
-                      });
-
+                      }
+                    }, onErrorLoadFs);
+                  } else {
+                    for (var i = 0; i < result[1].length; i++)
+                      arrayAccountInfo.push(result[1][i])
+                    var accountInfo = JSON.stringify(arrayAccountInfo);
+                    if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
+                      localStorage.removeItem("click_client_accountInfo")
                     }
-                  }, onErrorLoadFs);
-                } else {
-                  for (var i = 0; i < result[1].length; i++)
-                    arrayAccountInfo.push(result[1][i])
-                  var accountInfo = JSON.stringify(arrayAccountInfo);
-                  if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
-                    localStorage.removeItem("click_client_accountInfo")
+
+                    console.log('accountInfo BROWSER STAND', accountInfo);
+                    localStorage.setItem("click_client_accountInfo", accountInfo);
+                    setTimeout(function () {
+
+                      addCard()
+                    }, 0);
                   }
-                  localStorage.setItem("click_client_accountInfo", accountInfo);
-                  addCard()
+                }
+                else {
+                  setTimeout(function () {
+
+                    addCard()
+                  }, 0);
                 }
               }
               else {
@@ -159,94 +209,143 @@
             }
           });
         }
-      } else {
-
-        addCard(true);
       }
     };
 
     addCard = function (withoutBalance) {
 
-      if (localStorage.getItem('click_client_accountInfo')) {
+      if (modeOfApp.offlineMode) return;
+
+      if (localStorage.getItem('click_client_accountInfo') && !scope.checkSumOfHash) {
+        console.log('STEP', 0)
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
         var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'))
-
         for (var i = 0; i < getAccountsCards.length; i++) {
-          console.log('AAAAAAAAa')
-
           if (getAccountsCards[i].id == loginInfo.default_account) {
             var tmp = getAccountsCards[0];
             getAccountsCards[0] = getAccountsCards[i];
             getAccountsCards[i] = tmp;
-
           }
         }
 
-
         if (JSON.parse(localStorage.getItem("click_client_cards"))) {
-          scope.cardsArray = {};
+//          localStorage.removeItem("click_client_cards")
+          scope.cardsarray = {};
         }
       }
 
-      if (!scope.cardsArray) {
+      if (!scope.cardsarray && !scope.checkSumOfHash) {
 
-        scope.cardsArray = {};
+        scope.cardsarray = {};
+      }
+      else {
+        if (scope.checkSumOfHash) {
+          scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
+
+          if (scope.invoiceCheck && viewMainPage.atMainPage) {
+            count = 1;
+
+            for (var i in scope.cardsarray) {
+              scope.cardsarray[i].countCard = count;
+              count++;
+            }
+
+            localStorage.setItem('click_client_countCard', count)
+//            localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray))
+
+            console.log('CARD NUMBER', scope.cardNumber)
+
+          }
+          else {
+            if (!viewMainPage.atMainPage)
+              count = 0;
+            else {
+              if (viewMainPage.atMainPage && !scope.invoiceCheck) {
+                count = 0
+              }
+            }
+
+            for (var i in scope.cardsarray) {
+              scope.cardsarray[i].countCard = count;
+              count++;
+            }
+          }
+//          scope.update()
+        }
       }
 
-      count = 0;
+      if (scope.invoiceCheck && viewMainPage.atMainPage && !scope.checkSumOfHash) {
+        count = 1;
+//        scope.update()
+      }
+      else {
+        if (!scope.checkSumOfHash)
+          count = 1;
+      }
 
       var numberOfCardPartOne;
       var numberOfCardPartTwo;
       var typeOfCard;
 
-      for (var i = 0; i < getAccountsCards.length; i++) {
+      if (!scope.checkSumOfHash)
+        for (var i = 0; i < getAccountsCards.length; i++) {
 
 
-        if (getAccountsCards[i].access == 0) break;
-        if (loginInfo.default_account == getAccountsCards[i].id) {
-          var defaultAccount = true;
+          if (getAccountsCards[i].access == 0) break;
+          if (loginInfo.default_account == getAccountsCards[i].id) {
+            var defaultAccount = true;
+          }
+          else
+            defaultAccount = false;
+
+          numberOfCardPartOne = getAccountsCards[i].accno.substring(0, 4)
+          numberOfCardPartTwo = getAccountsCards[i].accno.substring(getAccountsCards[i].accno.length - 4, getAccountsCards[i].accno.length);
+
+
+          card = {
+            card_id: getAccountsCards[i].id,
+            id: getAccountsCards[i].id,
+            card_num_hash: getAccountsCards[i].card_num_hash,
+            card_num_crypted: getAccountsCards[i].card_num_crypted,
+            checksum: getAccountsCards[i].checksum,
+            bankName: typeOfCard,
+            name: getAccountsCards[i].description,
+            salary: '',
+            currency: getAccountsCards[i].currency_name.trim(),
+            numberPartOne: numberOfCardPartOne,
+            numberPartTwo: numberOfCardPartTwo,
+            url: getAccountsCards[i].image_url,
+            card_background_url: getAccountsCards[i].card_background_url,
+            countCard: count,
+            chosenCard: false,
+            default_account: defaultAccount,
+            access: getAccountsCards[i].access,
+            background_color_bottom: getAccountsCards[i].background_color_bottom,
+            background_color_top: getAccountsCards[i].background_color_top,
+            font_color: getAccountsCards[i].font_color,
+            removable: getAccountsCards[i].removable,
+          };
+
+          scope.cardsarray[getAccountsCards[i].id] = card;
+
+          console.log('scope.cardsarray', scope.cardsarray)
+
+          localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
+
+          count++;
+//        cardNumber %= count;
+          localStorage.setItem('click_client_countCard', count);
+//        localStorage.setItem('cardNumber', cardNumber);
         }
-        else
-          defaultAccount = false;
 
-        numberOfCardPartOne = getAccountsCards[i].accno.substring(0, 4)
-        numberOfCardPartTwo = getAccountsCards[i].accno.substring(getAccountsCards[i].accno.length - 4, getAccountsCards[i].accno.length);
+      console.log('CARDSARRAY', scope.cardsarray)
 
-
-        card = {
-          card_id: getAccountsCards[i].id,
-          bankName: typeOfCard,
-          name: getAccountsCards[i].description,
-          salary: '',
-          currency: getAccountsCards[i].currency_name.trim(),
-          numberPartOne: numberOfCardPartOne,
-          numberPartTwo: numberOfCardPartTwo,
-          url: getAccountsCards[i].image_url,
-          card_background_url: getAccountsCards[i].card_background_url,
-          countCard: count,
-          chosenCard: false,
-          default_account: defaultAccount,
-          access: getAccountsCards[i].access,
-          background_color_bottom: getAccountsCards[i].background_color_bottom,
-          background_color_top: getAccountsCards[i].background_color_top,
-          font_color: getAccountsCards[i].font_color,
-          removable: getAccountsCards[i].removable,
-        };
-
-        scope.cardsArray[getAccountsCards[i].id] = card;
-
-        console.log('scope.cardsArray', scope.cardsArray);
-
-        localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsArray));
-
-        count++;
-        localStorage.setItem('click_client_countCard', count);
-      }
-
-      scope.update();
-
+//      scope.update(scope.cardsarray);
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
         writeBalance();
+      } else {
+
+//        scope.update();
       }
     };
 
@@ -257,7 +356,17 @@
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var sessionKey = info.session_key;
 
-      for (var i = 0; i < getAccountsCards.length; i++) {
+      if (getAccountsCards.length == 0) {
+        if (localStorage.getItem('click_client_cards'))
+          getAccountsCards = JSON.parse(localStorage.getItem('click_client_cards'))
+
+        console.log("JSON.parse(localStorage.getItem('click_client_cards'))", JSON.parse(localStorage.getItem('click_client_cards')))
+      }
+
+
+      for (var i in getAccountsCards) {
+        console.log('getAccountsCards', getAccountsCards[i])
+        console.log('Balance request')
         window.api.call({
           method: 'get.balance',
           input: {
@@ -267,20 +376,33 @@
             card_num_hash: getAccountsCards[i].card_num_hash,
             card_num_crypted: getAccountsCards[i].card_num_crypted
           },
+          //TODO: DO CARDS
           scope: this,
           onSuccess: function (result) {
             if (result[0][0].error == 0) {
               if (result[1][0]) {
-                scope.cardsArray[result[1][0].account_id].salaryOriginal = result[1][0].balance.toFixed(0);
+                try {
+                  console.log('SCOPE.CARDSARRAY', scope.cardsarray)
 
-                result[1][0].balance = result[1][0].balance.toFixed(0).toString();
+                  if (scope.cardsarray[result[1][0].account_id])
+                    scope.cardsarray[result[1][0].account_id].salaryOriginal = result[1][0].balance.toFixed(0);
 
-                result[1][0].balance = window.amountTransform(result[1][0].balance.toString());
 
-                scope.cardsArray[result[1][0].account_id].salary = result[1][0].balance;
-                localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
+                  result[1][0].balance = result[1][0].balance.toFixed(0).toString();
 
-                scope.update();
+                  if (result[1][0].balance != 0)
+                    result[1][0].balance = window.amountTransform(result[1][0].balance.toString());
+
+                  scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
+                  console.log('SCOPE.CARDSARRAY', scope.cardsarray)
+                  localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+
+                  if (!viewMainPage.atMainPage)
+                    scope.update();
+                }
+                catch (error) {
+                  console.log(error)
+                }
               }
             }
             else {
