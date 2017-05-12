@@ -99,7 +99,7 @@
       }
 
       console.log(cardNumber, dateOrPin)
-      return;
+
 
       if (modeOfApp.offlineMode) {
         phonedialer.dial(
