@@ -84,8 +84,6 @@
     });
 
     chooseCardTouchStart = function () {
-      event.preventDefault()
-      event.stopPropagation()
       touchStartY = event.changedTouches[0].pageY;
       console.log('qweqweqw')
     };

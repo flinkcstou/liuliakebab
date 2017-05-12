@@ -22,7 +22,7 @@
     <component-keyboard></component-keyboard>
   </div>
 
-  <div class="pincode-button-offline" ontouchstart="offlineMode()">
+  <div class="pincode-button-offline" ontouchstart="offlineModeTouchStart()" ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
 
@@ -94,31 +94,60 @@
       fromRegistration = false;
     }
 
+    var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
+
+    componentKeyboard.returnStartValue = function () {
+      keyboardTouchStartX = event.changedTouches[0].pageX
+      keyboardTouchStartY = event.changedTouches[0].pageY
+    }
 
     componentKeyboard.returnValue = function (myValue) {
       event.preventDefault();
       event.stopPropagation();
 
-      if (enteredPin.length < 5 && myValue != 'x') {
-        enteredPin += myValue;
-      }
-      if (myValue == 'x' && enteredPin != 4) {
-        enteredPin = enteredPin.substring(0, enteredPin.length - 1);
-      }
+      keyboardTouchEndX = event.changedTouches[0].pageX
+      keyboardTouchEndY = event.changedTouches[0].pageY
 
-      scope.update();
-      updateEnteredPin();
+
+      if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
+
+        if (enteredPin.length < 5 && myValue != 'x') {
+          enteredPin += myValue;
+        }
+        if (myValue == 'x' && enteredPin != 4) {
+          enteredPin = enteredPin.substring(0, enteredPin.length - 1);
+        }
+
+        scope.update();
+        updateEnteredPin();
+      }
     }
 
-    offlineMode = function () {
+    var offlineModeTouchStartX, offlineModeTouchEndX, offlineModeTouchStartY, offlineModeTouchEndY;
+
+    offlineModeTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      modeOfflineMode.check = true;
-      this.riotTags.innerHTML = "<view-main-page>";
-      riot.mount('view-main-page');
 
-      scope.unmount()
+      offlineModeTouchStartX = event.changedTouches[0].pageX;
+      offlineModeTouchStartY = event.changedTouches[0].pageY;
 
+    }
+
+    offlineModeTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      offlineModeTouchEndX = event.changedTouches[0].pageX;
+      offlineModeTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(offlineModeTouchStartX - offlineModeTouchEndX) <= 20 && Math.abs(offlineModeTouchStartY - offlineModeTouchEndY) <= 20) {
+
+        modeOfflineMode.check = true;
+        this.riotTags.innerHTML = "<view-main-page>";
+        riot.mount('view-main-page');
+
+        scope.unmount()
+      }
     }
 
     updateEnteredPin = function () {
@@ -206,6 +235,7 @@
       }
     }
 
+    var registrationInterval;
     enter = function (pin) {
       event.preventDefault();
       event.stopPropagation();
@@ -214,6 +244,10 @@
       scope.showRegistrationProcess = true;
       scope.update();
       scope.registrationProcessInterval = setInterval(function () {
+        if (scope.registrationSuccess) {
+          clearInterval(scope.registrationProcessInterval)
+          return
+        }
         registrationProcessingId.style.opacity = '0.' + processOpacity;
 //        console.log('Changing Opacity')
         processOpacity++;
@@ -257,8 +291,7 @@
             localStorage.setItem("registration_check_hash", JSON.stringify(result[1][0].check_hash))
 //            riotTags.innerHTML = "<view-authorization>";
 //            riot.mount('view-authorization', {from: "registration-client"});
-            scope.registrationInterval = setInterval(checkRegistrationFunction(), 5000)
-            return
+            setTimeout(checkRegistrationFunction(), 5000)
           }
           else {
             scope.clickPinError = false;
@@ -281,6 +314,7 @@
     scope.registrationSuccess = 0;
 
     checkRegistrationFunction = function () {
+      console.log("CHECK REGISTRATION")
 //      event.preventDefault();
 //      event.stopPropagation();
 
@@ -302,22 +336,29 @@
             console.log('REGISTRATION CHECK', result)
             if (result[1][0].registered == 0) {
               scope.registrationSuccess = 0;
+              setTimeout(checkRegistrationFunction(), 5000)
+              console.log("ANSWER OF CHECK REGISTRATION", 0)
+              return;
             }
             else {
               if (result[1][0].registered == -1) {
                 scope.registrationSuccess = -1;
-                clearInterval(scope.registrationInterval)
+//                clearInterval(registrationInterval)
+
+                console.log("ANSWER OF CHECK REGISTRATION", -1)
 
                 setTimeout(function () {
                   riotTags.innerHTML = "<view-registration-client>";
                   riot.mount('view-registration-client')
-                }, 1000)
+                }, 10000)
               }
               if (result[1][0].registered == 1) {
                 window.standCheckRegistration = true;
                 localStorage.setItem('click_client_registered', true)
                 scope.registrationSuccess = 1;
-                clearInterval(scope.registrationInterval)
+//                clearInterval(registrationInterval)
+
+                console.log("ANSWER OF CHECK REGISTRATION", 1)
 
                 setTimeout(function () {
                   riotTags.innerHTML = "<view-authorization>";

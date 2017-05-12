@@ -4,12 +4,13 @@
       <div class="registration-device-phone-field">
         <p class="registration-device-text-field">{window.languages.ViewRegistrationTextField}</p>
         <p class="registration-device-phone-input">{maskPhoneNumber}</p>
-        <div class="registration-device-remember" ontouchend="touchEndRemember()">
+        <div class="registration-device-remember" ontouchend="rememberTouchEnd()" ontouchstart="rememberTouchStart()">
           <p class="registration-device-remember-label">
             {window.languages.ViewRegistrationDeviceRememberLabel}</p>
           <div id="rememberIcon" class="registration-device-remember-icon"></div>
         </div>
-        <div class="registration-button-enter button-enter" ontouchend="getPhoneNumber()">
+        <div class="registration-button-enter button-enter" ontouchend="getPhoneNumberTouchEnd()"
+             ontouchstart="getPhoneNumberTouchStart()">
           <div class="button-enter-label">{window.languages.ViewRegistrationDeviceButtonEnterLabel}</div>
         </div>
       </div>
@@ -17,7 +18,7 @@
   </div>
 
   <div class="registration-keyboard-field keyboard-field">
-    <div class="registration-button-help" ontouchend="helpTouchEnd()">
+    <div class="registration-button-help" ontouchend="helpTouchEnd()" ontouchstart="helpTouchStart()">
       {window.languages.ViewRegistrationDeviceButtonHelp}
     </div>
     <component-keyboard></component-keyboard>
@@ -25,7 +26,8 @@
 
 
   <div class="registration-buttons-container">
-    <div if="{device.platform != 'iOS'}" class="registration-container-offline" ontouchend="registrationOfflineTouchEnd()">
+    <div if="{device.platform != 'iOS'}" class="registration-container-offline"
+         ontouchend="registrationOfflineTouchEnd()">
       <div class="registration-button-offline">{window.languages.ViewRegistrationDeviceButtonOffline}</div>
     </div>
     <a href="index-stand-demo.html" id="demoContainer" class="registration-container-demo-version">
@@ -41,22 +43,39 @@
 
 
     var checkRemember = false;
-    touchEndRemember = function () {
+
+    var rememberTouchStartX, rememberTouchStartY, rememberTouchEndX, rememberTouchEndY;
+    rememberTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      if (!checkRemember) {
-        this.rememberIcon.style.opacity = '1';
-        localStorage.setItem('device_remember', true);
-        checkRemember = true;
-        return;
+      rememberTouchStartX = event.changedTouches[0].pageX
+      rememberTouchStartY = event.changedTouches[0].pageY
 
-      }
-      else {
-        this.rememberIcon.style.opacity = '0.3';
-        localStorage.setItem('device_remember', false);
-        checkRemember = false;
-        return;
+    };
+
+    rememberTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      rememberTouchEndX = event.changedTouches[0].pageX
+      rememberTouchEndY = event.changedTouches[0].pageY
+
+
+      if (Math.abs(rememberTouchStartX - rememberTouchEndX) <= 20 && Math.abs(rememberTouchStartY - rememberTouchEndY) <= 20) {
+        if (!checkRemember) {
+          this.rememberIcon.style.opacity = '1';
+          localStorage.setItem('device_remember', true);
+          checkRemember = true;
+          return;
+
+        }
+        else {
+          this.rememberIcon.style.opacity = '0.3';
+          localStorage.setItem('device_remember', false);
+          checkRemember = false;
+          return;
+        }
       }
     };
 
@@ -76,10 +95,24 @@
     scope.phoneNumber = '+' + window.languages.CodeOfCountry;
     scope.maskPhoneNumber = '+' + window.languages.CodeOfCountry;
 
+    var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
+
+    componentKeyboard.returnStartValue = function () {
+      keyboardTouchStartX = event.changedTouches[0].pageX
+      keyboardTouchStartY = event.changedTouches[0].pageY
+    }
+
 
     componentKeyboard.returnValue = function (myValue) {
       event.preventDefault();
       event.stopPropagation();
+
+      keyboardTouchEndX = event.changedTouches[0].pageX
+      keyboardTouchEndY = event.changedTouches[0].pageY
+
+
+      if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20){
+
       if (scope.maskPhoneNumber.length < 14 && myValue != 'x') {
         if (scope.maskPhoneNumber.length == 4)
           scope.maskPhoneNumber += ' ';
@@ -95,6 +128,7 @@
       console.log(scope.phoneNumber)
       console.log(scope.maskPhoneNumber)
       scope.update(scope.maskPhoneNumber);
+    }
     }
 
     registrationOfflineTouchEnd = function () {
@@ -119,39 +153,71 @@
       this.demoContainer.classList.add('hide')
     }
 
-    getPhoneNumber = function () {
+    var getPhoneNumberTouchStartX, getPhoneNumberTouchStartY, getPhoneNumberTouchEndX, getPhoneNumberTouchEndY
+
+    getPhoneNumberTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      var correctPhoneNumber = true;
-      var phoneNumber = scope.phoneNumber.substring(1, scope.phoneNumber.length);
+      getPhoneNumberTouchStartX = event.changedTouches[0].pageX
+      getPhoneNumberTouchStartY = event.changedTouches[0].pageY
 
-      if (phoneNumber.length != 12) {
-        scope.clickPinError = false;
-        scope.errorNote = "Неправильно введен номер телефона";
-        scope.showError = true;
-        scope.update();
+    };
 
-        correctPhoneNumber = false;
-      }
+    getPhoneNumberTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      getPhoneNumberTouchEndX = event.changedTouches[0].pageX
+      getPhoneNumberTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(getPhoneNumberTouchStartX - getPhoneNumberTouchEndX) <= 20 && Math.abs(getPhoneNumberTouchStartY - getPhoneNumberTouchEndY) <= 20) {
+        var correctPhoneNumber = true;
+        var phoneNumber = scope.phoneNumber.substring(1, scope.phoneNumber.length);
+
+        if (phoneNumber.length != 12) {
+          scope.clickPinError = false;
+          scope.errorNote = "Неправильно введен номер телефона";
+          scope.showError = true;
+          scope.update();
+
+          correctPhoneNumber = false;
+        }
 //      console.log(phoneNumber);
 
 
-      if (correctPhoneNumber) {
-        localStorage.setItem('click_client_phoneNumber', phoneNumber);
-        var date = parseInt(Date.now() / 1000);
-        registrationDevice(phoneNumber, date);
+        if (correctPhoneNumber) {
+          localStorage.setItem('click_client_phoneNumber', phoneNumber);
+          var date = parseInt(Date.now() / 1000);
+          registrationDevice(phoneNumber, date);
+        }
       }
 
     };
+
+    var helpTouchStartX, helpTouchStartY, helpTouchEndX, helpTouchEndY;
+    helpTouchStart = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      helpTouchStartX = event.changedTouches[0].pageX
+      helpTouchStartY = event.changedTouches[0].pageY
+
+    }
 
     helpTouchEnd = function () {
       event.preventDefault()
       event.stopPropagation()
 
-      riotTags.innerHTML = "<view-help>";
-      riot.mount('view-help');
-      scope.unmount()
+      helpTouchEndX = event.changedTouches[0].pageX
+      helpTouchEndY = event.changedTouches[0].pageY
+
+
+      if (Math.abs(helpTouchStartX - helpTouchEndX) <= 20 && Math.abs(helpTouchStartY - helpTouchEndY) <= 20) {
+        riotTags.innerHTML = "<view-help>";
+        riot.mount('view-help');
+        scope.unmount()
+      }
     }
 
     function deviceType() {

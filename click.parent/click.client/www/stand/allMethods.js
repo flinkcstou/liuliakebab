@@ -3427,13 +3427,19 @@ window.fakedSocket.register("autopay.list", function (input) {
 
 
 window.fakedSocket.register("registration.check", function (input) {
-  return [
+  return [[
     {
       "method": input.method,
       "success": 1,
       "error": 0,
       "error_note": ""
     }
+  ],
+    [
+      {
+        "registered": 1
+      }
+    ]
   ];
 });
 

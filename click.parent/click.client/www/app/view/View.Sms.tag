@@ -45,18 +45,34 @@
     }
     scope.confirmSms = '';
 
+    var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
+
+    componentKeyboard.returnStartValue = function () {
+      keyboardTouchStartX = event.changedTouches[0].pageX
+      keyboardTouchStartY = event.changedTouches[0].pageY
+    }
+
+
     componentKeyboard.returnValue = function (myValue) {
-      if (scope.confirmSms.length < 5 && myValue != 'x') {
-        scope.confirmSms += myValue;
-      }
-      if (myValue == 'x') {
-        scope.confirmSms = scope.confirmSms.substring(0, scope.confirmSms.length - 1);
-      }
-      scope.update();
-      if (scope.confirmSms.length == 5) {
-        var sms = scope.confirmSms;
-        viewSms.getSms(sms);
-        return;
+
+      keyboardTouchEndX = event.changedTouches[0].pageX
+      keyboardTouchEndY = event.changedTouches[0].pageY
+
+
+      if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
+
+        if (scope.confirmSms.length < 5 && myValue != 'x') {
+          scope.confirmSms += myValue;
+        }
+        if (myValue == 'x') {
+          scope.confirmSms = scope.confirmSms.substring(0, scope.confirmSms.length - 1);
+        }
+        scope.update();
+        if (scope.confirmSms.length == 5) {
+          var sms = scope.confirmSms;
+          viewSms.getSms(sms);
+          return;
+        }
       }
     }
 

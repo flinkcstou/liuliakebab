@@ -159,19 +159,33 @@
     var enteredPin = '';
     var checkSessionKey = false;
 
+    var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
+
+    componentKeyboard.returnStartValue = function () {
+      keyboardTouchStartX = event.changedTouches[0].pageX
+      keyboardTouchStartY = event.changedTouches[0].pageY
+    }
+
     componentKeyboard.returnValue = function (myValue) {
-      event.preventDefault();
-      event.stopPropagation();
+      keyboardTouchEndX = event.changedTouches[0].pageX
+      keyboardTouchEndY = event.changedTouches[0].pageY
 
-      if (enteredPin.length < 5 && myValue != 'x') {
-        enteredPin += myValue;
-      }
-      if (myValue == 'x') {
-        enteredPin = enteredPin.substring(0, enteredPin.length - 1);
-      }
 
-      scope.update();
-      updateEnteredPin();
+      if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (enteredPin.length < 5 && myValue != 'x') {
+          enteredPin += myValue;
+        }
+        if (myValue == 'x') {
+          enteredPin = enteredPin.substring(0, enteredPin.length - 1);
+        }
+
+        scope.update();
+        updateEnteredPin();
+      }
     }
 
     offlineMode = function () {
