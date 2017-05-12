@@ -432,7 +432,7 @@
 
     if ((viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) || (modeOfApp.offlineMode && viewPay.chosenServiceId == 'mynumber')) {
 
-      console.log("MY NUMBER ID")
+      console.log("MY NUMBER ID");
 
       if (modeOfApp.onlineMode || viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
         scope.service = scope.servicesMap[localStorage.getItem('myNumberOperatorId')][0];
@@ -465,21 +465,21 @@
         });
       }
       else {
-        console.log('scope.servicesMap', scope.servicesMap['mynumber'])
-        console.log('scope.servicesParamsMapOne', scope.servicesParamsMapOne)
+        console.log('scope.servicesMap', scope.servicesMap['mynumber']);
+        console.log('scope.servicesParamsMapOne', scope.servicesParamsMapOne);
         scope.service = localStorage.getItem('myNumberOperatorId') ? scope.servicesMap[localStorage.getItem('myNumberOperatorId')][0] : scope.servicesMap['mynumber'][0];
         scope.titleName = 'Мой номер';
         scope.serviceIcon = 'resources/icons/ViewPay/myphone.png';
         viewServicePage.phoneText = localStorage.getItem('click_client_phoneNumber');
         viewServicePage.phoneText = viewServicePage.phoneText ? viewServicePage.phoneText.substr(3, viewServicePage.phoneText.length - 3) : '';
         scope.fieldArray = [];
-        scope.fieldArray[0] = {ussd_query: "*880*0199999*1*{amount}#", title: "Мой номер"}
+        scope.fieldArray[0] = {ussd_query: "*880*0199999*1*{amount}#", title: "Мой номер"};
         console.log('scope.fieldArray', scope.fieldArray)
         viewPay.chosenServiceId = localStorage.getItem('myNumberOperatorId') ? localStorage.getItem('myNumberOperatorId') : 'mynumber';
 
-        scope.amountFieldTitle = 'Сумма'
+        scope.amountFieldTitle = 'Сумма';
 
-        console.log('TTTTTT', scope.service, scope.titleName, scope.fieldArray, viewPay.chosenServiceId)
+        console.log('TTTTTT', scope.service, scope.titleName, scope.fieldArray, viewPay.chosenServiceId);
 
         this.on('mount', function () {
           firstField.style.display = 'none';
@@ -883,8 +883,8 @@
 
     bordersColor = function () {
 
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
 
       firstField.style.borderBottom = 3 * widthK + 'px solid #01cfff';

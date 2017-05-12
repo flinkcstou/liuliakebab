@@ -121,8 +121,8 @@
     }
 
 
-    scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
-    scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
+    scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
+    scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
     cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
     var serviceId = localStorage.getItem('chosenServiceId');
     scope.service = scope.servicesMap[viewPay.chosenServiceId][0];

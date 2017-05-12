@@ -113,10 +113,10 @@
       scope.unmount()
     };
 
-    scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
+    scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
+    scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
     console.log("servicesMap=", scope.servicesMap);
     scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
-    scope.categoryNamesMap = JSON.parse(localStorage.getItem("click_client_categoryNamesMap"));
     scope.type = 0;
 
     if (opts[8] == 'ADDAUTOPAY') {
