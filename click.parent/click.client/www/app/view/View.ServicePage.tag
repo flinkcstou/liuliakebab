@@ -832,8 +832,8 @@
         amount.selectionEnd = 0;
       }
 
-      amountField.style.borderBottom = 5 * widthK + 'px solid #01cfff';
-      firstField.style.borderBottom = 5 * widthK + 'px solid lightgrey';
+      amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+      firstField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
 
     };
 
@@ -887,8 +887,8 @@
       event.stopPropagation()
 
 
-      firstField.style.borderBottom = 5 * widthK + 'px solid #01cfff';
-      amountField.style.borderBottom = 5 * widthK + 'px solid lightgrey';
+      firstField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+      amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
     };
 
     var payment_data;

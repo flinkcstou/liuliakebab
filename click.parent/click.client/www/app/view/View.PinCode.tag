@@ -29,6 +29,10 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
+  <div if="{!showRegistrationProcess}" class="registration-process">
+    <div></div>
+  </div>
+
 
   <script>
 
@@ -53,6 +57,7 @@
     scope.checkPinConfirm = false;
     scope.showError = false;
     var fromRegistration
+    scope.showRegistrationProcess = false;
 
     if (opts[0] == 'view-registration-client') {
       fromRegistration = true;
@@ -178,6 +183,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      scope.showRegistrationProcess = true;
+
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       localStorage.setItem("click_client_pin", JSON.stringify(hex_md5(pin)))
 
@@ -236,6 +243,8 @@
 
     };
 
+    scope.registrationSuccess = 0;
+
     checkRegistrationFunction = function () {
 //      event.preventDefault();
 //      event.stopPropagation();
@@ -256,8 +265,18 @@
           console.log(result[0][0])
           if (result[0][0].error == 0) {
             console.log('REGISTRATION CHECK', result)
-            if(result[1][0].registered == 0){
-              setInterval(checkRegistrationFunction(), 30000)
+            if (result[1][0].registered == 0) {
+              setInterval(checkRegistrationFunction(), 5000)
+              scope.registrationSuccess = 0;
+            }
+            else {
+              if (result[1][0].registered == -1) {
+                scope.registrationSuccess = -1;
+              }
+              if (result[1][0].registered == 1) {
+                scope.registrationSuccess = 1;
+              }
+
             }
           }
           else {

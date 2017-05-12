@@ -296,6 +296,31 @@ var css = {
   "color: #FF544A;" +
   "}",
 
+
+  registrationProcess: ".registration-process " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "overflow: hidden;" +
+  "z-index: 999999;" +
+  "background-image: url('resources/icons/background/transparent.png');" +
+  "background-size: cover;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
+  registrationProcess: ".registration-process " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "overflow: hidden;" +
+  "z-index: 999999;" +
+  "background-image: url('resources/icons/background/transparent.png');" +
+  "background-size: cover;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
   //VIEW REGISTRATION DEVICE
 
   viewRegistrationDevice: ".view-registration-device " +
@@ -6648,7 +6673,7 @@ var css = {
   "width: 91%;" +
   "left: 4%;" +
   "margin-top: 1%;" +
-  "border-bottom:" + 1  + "px solid gainsboro;" +
+  "border-bottom:" + 1 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
 
