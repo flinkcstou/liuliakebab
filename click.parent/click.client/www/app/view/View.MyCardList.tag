@@ -87,6 +87,9 @@
                         scope.checkSumOfHash = false;
                       }
                     }
+                    else {
+                      scope.checkSumOfHash = false;
+                    }
                   }
 
                   console.log("CARDS RESULT", result[1], cardsArray)
@@ -190,7 +193,7 @@
                 else {
                   setTimeout(function () {
 
-                    addCard()
+                    addCard(false)
                   }, 0);
                 }
               }
@@ -262,6 +265,7 @@
             else {
               if (viewMainPage.atMainPage && !scope.invoiceCheck) {
                 count = 0
+
               }
             }
 
@@ -272,22 +276,26 @@
           }
 //          scope.update()
         }
+        else {
+          if (!viewMainPage.atMainPage)
+            count = 0;
+        }
       }
 
-      if (scope.invoiceCheck && viewMainPage.atMainPage && !scope.checkSumOfHash) {
-        count = 1;
-//        scope.update()
-      }
-      else {
-        if (!scope.checkSumOfHash)
-          count = 1;
-      }
+//      if (scope.invoiceCheck && viewMainPage.atMainPage && !scope.checkSumOfHash) {
+//        count = 1;
+////        scope.update()
+//      }
+//      else {
+//        if(!scope.invoiceCheck && viewMainPage.atMainPage)
+//          count = 0;
+//      }
 
       var numberOfCardPartOne;
       var numberOfCardPartTwo;
       var typeOfCard;
 
-      if (!scope.checkSumOfHash)
+      if (!scope.checkSumOfHash) {
         for (var i = 0; i < getAccountsCards.length; i++) {
 
 
@@ -310,7 +318,7 @@
             checksum: getAccountsCards[i].checksum,
             bankName: typeOfCard,
             name: getAccountsCards[i].description,
-            salary: '',
+            salary: getAccountsCards[i].salary,
             currency: getAccountsCards[i].currency_name.trim(),
             numberPartOne: numberOfCardPartOne,
             numberPartTwo: numberOfCardPartTwo,
@@ -337,6 +345,7 @@
           localStorage.setItem('click_client_countCard', count);
 //        localStorage.setItem('cardNumber', cardNumber);
         }
+      }
 
       console.log('CARDSARRAY', scope.cardsarray)
 
@@ -396,9 +405,7 @@
                   scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
                   console.log('SCOPE.CARDSARRAY', scope.cardsarray)
                   localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
-
-                  if (!viewMainPage.atMainPage)
-                    scope.update();
+                  scope.update();
                 }
                 catch (error) {
                   console.log(error)
@@ -421,7 +428,7 @@
       }
     };
 
-    refreshCards();
+//    refreshCards();
 
     goToMainPage = function () {
       event.preventDefault();

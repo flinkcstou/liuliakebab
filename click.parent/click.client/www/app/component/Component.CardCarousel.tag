@@ -61,6 +61,11 @@
 
     scope.checkSumOfHash = true;
 
+//    if (localStorage.getItem('click_client_cards')) {
+//      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'))
+////      scope.update();
+//    }
+
     //    this.on('mount', function () {
     //      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
     //
@@ -281,8 +286,8 @@
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
         writeBalance();
       } else {
-
-//        scope.update();
+        if(invoice)
+        riot.update();
       }
     };
 
@@ -354,7 +359,7 @@
 
                 setTimeout(function () {
                   addCard(true, true)
-                  scope.update()
+//                  scope.update()
                 }, 0);
               }
               else {
