@@ -239,11 +239,11 @@
 
 
     telPayVerificationKeyDown = function (input) {
-
-//      if (input.value.length >= scope.inputMaxLength && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-//        firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
-//        console.log("B", firstFieldInput.value);
-//      }
+//      console.log(event.target.value)
+      if (scope.phoneFieldBool)
+        if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+          firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+        }
     }
 
     telPayVerificationKeyUp = function () {

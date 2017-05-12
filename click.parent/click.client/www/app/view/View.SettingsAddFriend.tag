@@ -13,7 +13,10 @@
         <input onchange="contactPhoneBlurAndChange()" onfocus="contactPhoneBlurAndChange()"
                id="contactPhoneNumberId"
                class="settings-add-friend-contact-number-input-part" type="tel"
-               maxlength="9" onkeyup="searchContacts()" oninput="searchContacts()"/>
+               onkeyup="searchContacts()"
+               oninput="contactPhoneBlurAndChange()"
+               onpaste="onPasteTriggered()"
+               onkeydown="contactTelVerificationKeyDown(this)"/>
       </div>
 
       <div class="settings-add-friend-add-container">
@@ -127,6 +130,11 @@
       event.preventDefault();
       event.stopPropagation();
 
+      if (scope.onPaste) {
+        contactPhoneNumberId.value = inputVerification.telVerification(contactPhoneNumberId.value)
+        scope.onPaste = false;
+      }
+
       if (contactPhoneNumberId.value.length == 9) {
         nextButtonId.style.display = 'block'
         firstSuggestionBlockId.style.display = 'none';
@@ -140,6 +148,13 @@
       contactPhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff"
 
       scope.update();
+    }
+
+    contactTelVerificationKeyDown = function (input) {
+//      console.log(event.target.value)
+      if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+        contactPhoneNumberId.value = event.target.value.substring(0, event.target.value.length - 1);
+      }
     }
 
     pickContactFromNative = function () {
@@ -217,6 +232,13 @@
     }
     if (device.platform != 'BrowserStand')
       findContacts();
+
+    scope.onPaste = false;
+
+    onPasteTriggered = function () {
+
+      scope.onPaste = true;
+    }
 
     searchContacts = function () {
 

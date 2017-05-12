@@ -329,49 +329,50 @@
 
     };
 
+
+    window.api.call({
+      method: 'p2p.bank.list',
+      input: {
+        session_key: sessionKey,
+        phone_num: phoneNumber,
+
+      },
+
+      scope: this,
+
+      onSuccess: function (result) {
+        if (result[0][0].error == 0) {
+          for (var i in result[1]) {
+            result[1][i].amount = result[1][i].p2p_max_limit.toString();
+//              console.log('result[1][i]', result[1][i])
+
+            result[1][i].amount = window.amountTransform(result[1][i].amount);
+
+//              console.log("!!!!!", result[1][i].p2p_max_limit);
+          }
+//            console.log("result of P2P BANK LIST ", result[1]);
+          if (localStorage.getItem('click_client_p2p_bank_list') != JSON.stringify(result[1]))
+            localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(result[1]))
+        }
+        else {
+          scope.clickPinError = false;
+          scope.errorNote = result[0][0].error_note;
+          scope.showError = true;
+          scope.update();
+        }
+      },
+
+      onFail: function (api_status, api_status_message, data) {
+        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+        console.error(data);
+      }
+    });
+
     closeComponent = function () {
       bankListContainerId.scrollTop = 0;
       componentBankListId.style.display = 'none';
     }
 
-    if (!JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))) {
-      window.api.call({
-        method: 'p2p.bank.list',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-
-        },
-
-        scope: this,
-
-        onSuccess: function (result) {
-          if (result[0][0].error == 0) {
-            for (var i in result[1]) {
-              result[1][i].amount = result[1][i].p2p_max_limit.toString();
-//              console.log('result[1][i]', result[1][i])
-
-              result[1][i].amount = window.amountTransform(result[1][i].amount);
-
-//              console.log("!!!!!", result[1][i].p2p_max_limit);
-            }
-//            console.log("result of P2P BANK LIST ", result[1]);
-            localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(result[1]))
-          }
-          else {
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
-            scope.update();
-          }
-        },
-
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      });
-    }
 
     var maskOne = /[0-9]/g;
 
