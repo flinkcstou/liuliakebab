@@ -161,8 +161,14 @@ window.inputVerification.spaceDeleter = function (data) {
 }
 
 window.inputVerification.telVerification = function (phoneNumber) {
+  console.log('PHONE NUMBER BEFORE', phoneNumber)
 
   phoneNumber = phoneNumber.replace(new RegExp('[^0-9]', 'g'), '');
+
+  if (phoneNumber.length > 9) {
+    phoneNumber = phoneNumber.substring(phoneNumber.length - 9, phoneNumber.length)
+  }
+  console.log('PHONE NUMBER AFTER', phoneNumber)
   return phoneNumber.split(",").join();
 }
 
