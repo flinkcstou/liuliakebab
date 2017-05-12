@@ -6648,7 +6648,7 @@ var css = {
   "width: 91%;" +
   "left: 4%;" +
   "margin-top: 1%;" +
-  "border-bottom:" + 1  + "px solid gainsboro;" +
+  "border-bottom:" + 1 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
 
@@ -12662,6 +12662,36 @@ var css = {
   "color: #ffffff;" +
   "border: none;" +
   "outline: none;" +
+  "}",
+
+  serviceInfoInformField: ".serviceinfo-inform-field" +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "height:" + 115 * widthK + "px; " +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
+  "color: white;" +
+  "left: 5%;" +
+  "}",
+
+  serviceInfoInformFieldTitle: ".serviceinfo-inform-field-title" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "left: 4%;" +
+  "top: 25%;" +
+  "}",
+
+  serviceInfoInformFieldValue: ".serviceinfo-inform-field-value" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 4%;" +
+  "top: 47%;" +
+  "font-size: " + 40 * widthK + "px; " +
+  "color: gray;" +
   "}",
 
 

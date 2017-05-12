@@ -33,6 +33,38 @@
     </div>
 
     <div class="serviceinfo-options" if="{type==1}">
+      <div class="serviceinfo-inform-field">
+        <p class="serviceinfo-inform-field-title">Номер счета:</p>
+        <p class="serviceinfo-inform-field-value">0579 0795 7987</p>
+      </div>
+      <div class="serviceinfo-inform-field">
+        <p class="serviceinfo-inform-field-title">ФИО:</p>
+        <p class="serviceinfo-inform-field-value">Ганиев Жасур</p>
+      </div>
+      <div class="serviceinfo-inform-field">
+        <p class="serviceinfo-inform-field-title">Адрес:</p>
+        <p class="serviceinfo-inform-field-value">ул. Дустлик, 95</p>
+      </div>
+      <div class="serviceinfo-inform-field">
+        <p class="serviceinfo-inform-field-title">Период:</p>
+        <p class="serviceinfo-inform-field-value">Март, 2017 г.</p>
+      </div>
+      <div class="serviceinfo-inform-field">
+        <p class="serviceinfo-inform-field-title">Начислено:</p>
+        <p class="serviceinfo-inform-field-value">78 900 сум</p>
+      </div>
+      <div class="serviceinfo-inform-field">
+        <p class="serviceinfo-inform-field-title">Поступления:</p>
+        <p class="serviceinfo-inform-field-value">0 сум</p>
+      </div>
+      <div class="serviceinfo-inform-field">
+        <p class="serviceinfo-inform-field-title">Электронные поступления:</p>
+        <p class="serviceinfo-inform-field-value">0 сум</p>
+      </div>
+      <div class="serviceinfo-inform-field">
+        <p class="serviceinfo-inform-field-title">Баланс:</p>
+        <p class="serviceinfo-inform-field-value">-568 000 сум</p>
+      </div>
 
     </div>
 
@@ -117,9 +149,13 @@
           console.log("result of GET ADDITIONAL INFO 0", result);
           if (result[1]) {
             scope.serviceData = result[1];
-            if (result[1][0].information_type == 3) {
+            if (result[1][0].information_type == 1) {
               scope.optionsArray = result[1][0].options;
               scope.type = 3;
+              scope.update();
+            } else if (result[1][0].information_type == 3) {
+              console.log("ADFDSFDS");
+              scope.type = 1;
               scope.update();
             }
 
@@ -153,7 +189,6 @@
       this.riotTags.innerHTML = "<view-service-pincards>";
       riot.mount('view-service-pincards', opts);
       scope.unmount()
-
     };
 
 
