@@ -296,6 +296,76 @@ var css = {
   "color: #FF544A;" +
   "}",
 
+  //REGISTRATION ANIMATION
+  registrationProcess: ".registration-process " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "overflow: hidden;" +
+  "z-index: 999999;" +
+  "background-image: url('resources/icons/background/transparent.png');" +
+  "background-size: cover;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
+  registrationProcessText: ".registration-process-text " +
+  "{" +
+  "position: relative;" +
+  "text-align: center;" +
+  "color: #b7f1ff;" +
+  "width: 70%;" +
+  "top:" + 90 * widthK + "px;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "}",
+
+  registrationProcessContainer: ".registration-process-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 450 * widthK + "px;" +
+  "top:" + 400 * widthK + "px;" +
+  "overflow: hidden;" +
+  "}",
+
+  registrationProcessProcessing: ".registration-process-processing " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "left:" + 300 * widthK + "px;" +
+  //"top:" + 400 * widthK + "px;" +
+  "background-image: url('resources/icons/animation/reg_process.png');" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
+  registrationProcessOk: ".registration-process-ok " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "left:" + 300 * widthK + "px;" +
+  "top:" + 400 * widthK + "px;" +
+  "background-image: url('resources/icons/animation/reg_ok.png');" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
+  registrationProcessX: ".registration-process-x " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "left:" + 300 * widthK + "px;" +
+  "top:" + 400 * widthK + "px;" +
+  "background-image: url('resources/icons/animation/reg_error.png');" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
   //VIEW REGISTRATION DEVICE
 
   viewRegistrationDevice: ".view-registration-device " +

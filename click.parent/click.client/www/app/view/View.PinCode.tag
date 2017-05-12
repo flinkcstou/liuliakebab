@@ -29,6 +29,37 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
+  <div if="{showRegistrationProcess}" class="registration-process">
+    <div if="{registrationSuccess == 0}" class="registration-process-container">
+      <div id="registrationProcessingId" class="registration-process-processing">
+      </div>
+      <div class="registration-process-text">
+        <p style="margin-bottom: 4px">Пожалуйста, подождите.<br>Мы регистрируем вашу кату в системе CLICK!</p>
+      </div>
+    </div>
+
+    <div if="{registrationSuccess == 1}" class="registration-process-container">
+      <div class="registration-process-ok">
+      </div>
+      <div class="registration-process-text">
+        <p style="margin-bottom: 4px">Ваша карта<br>успешно зарегестрирована!</p>
+
+      </div>
+    </div>
+
+    <div if="{registrationSuccess == -1}" class="registration-process-container">
+      <div class="registration-process-x">
+      </div>
+      <div class="registration-process-text">
+        <p style="margin-bottom: 4px">Возникли неполадки при регистрации Вашей карты.<br>Провертье статус регистрации
+          через несколько минут</p>
+
+      </div>
+    </div>
+
+
+  </div>
+
 
   <script>
 
@@ -53,6 +84,7 @@
     scope.checkPinConfirm = false;
     scope.showError = false;
     var fromRegistration
+    scope.showRegistrationProcess = false;
 
     if (opts[0] == 'view-registration-client') {
       fromRegistration = true;
@@ -178,18 +210,30 @@
       event.preventDefault();
       event.stopPropagation();
 
+      var processOpacity = 10;
+      scope.showRegistrationProcess = true;
+      scope.update();
+      scope.registrationProcessInterval = setInterval(function () {
+        registrationProcessingId.style.opacity = '0.' + processOpacity;
+//        console.log('Changing Opacity')
+        processOpacity++;
+        if (processOpacity == 99) {
+          processOpacity = 10;
+        }
+      }, 20)
+
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       localStorage.setItem("click_client_pin", JSON.stringify(hex_md5(pin)))
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
-        }, function () {
-          console.log("closed");
-        });
-      }
+//      if (device.platform != 'BrowserStand') {
+//        var options = {dimBackground: true};
+//
+//        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+//          console.log("Started");
+//        }, function () {
+//          console.log("closed");
+//        });
+//      }
 
       window.api.call({
         method: 'registration',
@@ -213,9 +257,7 @@
             localStorage.setItem("registration_check_hash", JSON.stringify(result[1][0].check_hash))
 //            riotTags.innerHTML = "<view-authorization>";
 //            riot.mount('view-authorization', {from: "registration-client"});
-            setInterval(checkRegistrationFunction(), 5000)
-            window.standCheckRegistration = true;
-            localStorage.setItem('click_client_registered', true)
+            scope.registrationInterval = setInterval(checkRegistrationFunction(), 5000)
             return
           }
           else {
@@ -235,6 +277,8 @@
       })
 
     };
+
+    scope.registrationSuccess = 0;
 
     checkRegistrationFunction = function () {
 //      event.preventDefault();
@@ -256,9 +300,33 @@
           console.log(result[0][0])
           if (result[0][0].error == 0) {
             console.log('REGISTRATION CHECK', result)
-            if(result[1][0].registered == 0){
-              setInterval(checkRegistrationFunction(), 30000)
+            if (result[1][0].registered == 0) {
+              scope.registrationSuccess = 0;
             }
+            else {
+              if (result[1][0].registered == -1) {
+                scope.registrationSuccess = -1;
+                clearInterval(scope.registrationInterval)
+
+                setTimeout(function () {
+                  riotTags.innerHTML = "<view-registration-client>";
+                  riot.mount('view-registration-client')
+                }, 1000)
+              }
+              if (result[1][0].registered == 1) {
+                window.standCheckRegistration = true;
+                localStorage.setItem('click_client_registered', true)
+                scope.registrationSuccess = 1;
+                clearInterval(scope.registrationInterval)
+
+                setTimeout(function () {
+                  riotTags.innerHTML = "<view-authorization>";
+                  riot.mount('view-authorization', {from: "registration-client"});
+                }, 1000)
+              }
+
+            }
+            scope.update();
           }
           else {
             scope.clickPinError = false;

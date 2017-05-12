@@ -61,6 +61,11 @@
 
     scope.checkSumOfHash = true;
 
+//    if (localStorage.getItem('click_client_cards')) {
+//      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'))
+////      scope.update();
+//    }
+
     //    this.on('mount', function () {
     //      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
     //
@@ -204,6 +209,10 @@
           }
 //          scope.update()
         }
+        else {
+          if (!viewMainPage.atMainPage)
+            count = 0;
+        }
       }
 
 //      if (scope.invoiceCheck && viewMainPage.atMainPage && !scope.checkSumOfHash) {
@@ -219,7 +228,7 @@
       var numberOfCardPartTwo;
       var typeOfCard;
 
-      if (!scope.checkSumOfHash){
+      if (!scope.checkSumOfHash) {
         for (var i = 0; i < getAccountsCards.length; i++) {
 
 
@@ -269,7 +278,7 @@
           localStorage.setItem('click_client_countCard', count);
 //        localStorage.setItem('cardNumber', cardNumber);
         }
-    }
+      }
 
       console.log('CARDSARRAY', scope.cardsarray)
 
@@ -277,8 +286,8 @@
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
         writeBalance();
       } else {
-
-//        scope.update();
+        if(invoice)
+        riot.update();
       }
     };
 
@@ -350,7 +359,7 @@
 
                 setTimeout(function () {
                   addCard(true, true)
-                  scope.update()
+//                  scope.update()
                 }, 0);
               }
               else {
@@ -737,7 +746,7 @@
                   if (!viewMainPage.atMainPage)
                     scope.update();
 
-                  if(!scope.checkSumOfHash)
+                  if (!scope.checkSumOfHash)
                     scope.update(scope.cardsarray[result[1][0].account_id].salary);
 
                 }
