@@ -12184,7 +12184,7 @@ var css = {
   "width: " + 170 * widthK + "px; " +
   "height: " + 170 * widthK + "px; " +
   "top: 0%;" +
-  "left: 20%;" +
+  "left: 23%;" +
   "background-repeat: no-repeat;" +
   "background-size: 65%;" +
   "background-position: center;" +
@@ -12197,7 +12197,7 @@ var css = {
   "width: " + 170 * widthK + "px; " +
   "height: " + 170 * widthK + "px; " +
   "top: 0%;" +
-  "left: 28%;" +
+  "left: 23%;" +
   "background-repeat: no-repeat;" +
   "background-size: 65%;" +
   "background-position: center;" +

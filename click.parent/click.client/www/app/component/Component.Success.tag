@@ -13,14 +13,16 @@
       event.preventDefault();
       event.stopPropagation();
       componentSuccessId.style.display = 'none';
-      history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
-      console.log(history.arrayOfHistory)
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-      console.log('opts', opts)
       if (opts.goback) {
         onBackKeyDown()
         return
       }
+
+      history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
+      console.log(history.arrayOfHistory)
+      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+      console.log('opts', opts)
+
 
       console.log('viewpage', opts.viewpage)
 
@@ -28,9 +30,7 @@
 
         riotTags.innerHTML = "<" + opts.viewpage + ">";
         riot.mount(opts.viewpage);
-//        scope.unmount()
       }
-
 
       if (opts.close_action) {
         opts.close_action();

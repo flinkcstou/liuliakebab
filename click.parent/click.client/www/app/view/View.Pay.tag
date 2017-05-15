@@ -260,12 +260,9 @@
           scope.autoPayData = {};
           viewPay.chosenServiceId = id;
           opts.id = id;
-          console.log("000 my number id=", localStorage.getItem('myNumberOperatorId'));
           if (id == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
-            console.log("111");
             scope.autoPayData.service_id = localStorage.getItem('myNumberOperatorId');
           } else {
-            console.log("222");
             scope.autoPayData.service_id = id;
           }
           scope.autoPayData.fromView = 'PAY';

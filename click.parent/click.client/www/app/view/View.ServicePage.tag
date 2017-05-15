@@ -993,7 +993,7 @@
       viewServicePage.firstFieldTitle = scope.chosenFieldName;
       viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
       var isInFavorites = {"isInFavorites": !scope.enterButton};
-      var payment_data = {"payment_data": payment_data};
+
 
       if (opts.mode == 'USUAL') {
 

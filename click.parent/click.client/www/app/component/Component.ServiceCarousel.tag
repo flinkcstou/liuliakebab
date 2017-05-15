@@ -231,11 +231,12 @@
       if (Math.abs(onTouchStartX - onTouchEndX) <= 20) {
         console.log("chosen id in service carousel=", id);
         viewPay.chosenServiceId = id;
+        opts.mode = 'USUAL';
         event.stopPropagation();
 
         localStorage.setItem('chosenServiceId', id);
         riotTags.innerHTML = "<view-service-page>";
-        riot.mount("view-service-page");
+        riot.mount("view-service-page", opts);
         scope.unmount()
       }
       if (touchStartX != touchEndX)

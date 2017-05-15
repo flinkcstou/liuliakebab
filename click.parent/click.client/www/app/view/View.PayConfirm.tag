@@ -135,10 +135,16 @@
 
     if (opts[3] == 'ADDAUTOPAY') {
       scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
-      scope.autoPayTypeText = scope.autoPayData.title;
-      scope.autoPayConditionText = scope.autoPayData.condition_text;
-      scope.autoPayDelete = !scope.autoPayData.isNew;
-      console.log("autoPayData=", scope.autoPayData);
+      if (scope.autoPayData.fromView == 'PAYCONFIRM') {
+        opts[3] = 'USUAL';
+        console.log('OPTS[3]', opts)
+        scope.update();
+      } else {
+        scope.autoPayTypeText = scope.autoPayData.title;
+        scope.autoPayConditionText = scope.autoPayData.condition_text;
+        scope.autoPayDelete = !scope.autoPayData.isNew;
+        console.log("autoPayData=", scope.autoPayData);
+      }
     }
     scope.titleName = scope.service.name;
     scope.serviceIcon = scope.service.image;
@@ -511,12 +517,8 @@
                     viewServicePinCards.friendHelpPaymentMode = false;
                     viewServicePinCards.chosenFriendForHelp = null;
 //                    localStorage.setItem('autoPayData', null);
-                  } else {
-                    console.log("OPTS BEFORE AUTOPAY", opts);
-                    opts[3] = 'USUAL';
-                    scope.autoPayData.optsForPayConfirm = opts;
-                    localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
                   }
+                  scope.autoPayData.isNew = false;
                   componentSuccessId.style.display = 'block';
 
                 }
@@ -554,12 +556,15 @@
                 if (result[0][0].error == 0) {
                   console.log("result of autopay.add.by.schedule", result);
 //                  localStorage.setItem('autoPayData', null);
-                  viewServicePage.phoneText = '';
-                  window.viewServicePage = {};
-                  viewServicePage.amountText = '';
-                  viewServicePage.amountWithoutSpace = '';
-                  viewServicePinCards.friendHelpPaymentMode = false;
-                  viewServicePinCards.chosenFriendForHelp = null;
+                  if (scope.autoPayData.fromView != 'PAYCONFIRM') {
+                    viewServicePage.phoneText = '';
+                    window.viewServicePage = {};
+                    viewServicePage.amountText = '';
+                    viewServicePage.amountWithoutSpace = '';
+                    viewServicePinCards.friendHelpPaymentMode = false;
+                    viewServicePinCards.chosenFriendForHelp = null;
+                  }
+                  scope.autoPayData.isNew = false;
                   componentSuccessId.style.display = 'block';
 
                 }
