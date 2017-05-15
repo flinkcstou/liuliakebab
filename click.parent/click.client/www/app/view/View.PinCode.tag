@@ -141,6 +141,8 @@
 
     }
 
+
+
     offlineModeTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -149,7 +151,9 @@
 
       if (Math.abs(offlineModeTouchStartX - offlineModeTouchEndX) <= 20 && Math.abs(offlineModeTouchStartY - offlineModeTouchEndY) <= 20) {
 
-        modeOfflineMode.check = true;
+        modeOfApp.onlineMode = false;
+        modeOfApp.offlineMode = true;
+
         this.riotTags.innerHTML = "<view-main-page>";
         riot.mount('view-main-page');
 

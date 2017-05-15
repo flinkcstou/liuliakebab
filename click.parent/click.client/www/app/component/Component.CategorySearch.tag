@@ -7,25 +7,29 @@
   <div id="searchContainerId" class="search-container">
     <input autofocus="true" id="searchInputId" class="search-input" onkeyup="searchSuggestion()"/>
     <div class="search-suggestion-container">
-      <div id="suggestionOneId" class="search-suggestion-field-one" ontouchend="suggestionFieldOne()">
+      <div id="suggestionOneId" class="search-suggestion-field-one" ontouchstart="suggestionFieldOneTouchStart()"
+           ontouchend="suggestionFieldOneTouchEnd()">
         <p class="search-part-of-suggestion">{onePartOne}
           <mark class="search-selected-field-color">{onePartTwo}</mark>
           {onePartThree}
         </p>
       </div>
-      <div id="suggestionTwoId" class="search-suggestion-field-two" ontouchend="suggestionFieldTwo()">
+      <div id="suggestionTwoId" class="search-suggestion-field-two" ontouchstart="suggestionFieldTwoTouchStart()"
+           ontouchend="suggestionFieldTwoTouchEnd()">
         <p class="search-part-of-suggestion">{twoPartOne}
           <mark class="search-selected-field-color">{twoPartTwo}</mark>
           {twoPartThree}
         </p>
       </div>
-      <div id="suggestionThreeId" class="search-suggestion-field-three" ontouchend="suggestionFieldThree()">
+      <div id="suggestionThreeId" class="search-suggestion-field-three" ontouchstart="suggestionFieldThreeTouchStart()"
+           ontouchend="suggestionFieldThreeTouchEnd()">
         <p class="search-part-of-suggestion">{threePartOne}
           <mark class="search-selected-field-color">{threePartTwo}</mark>
           {threePartThree}
         </p>
       </div>
-      <div id="suggestionFourId" class="search-suggestion-field-four" ontouchend="suggestionFieldFour()">
+      <div id="suggestionFourId" class="search-suggestion-field-four" ontouchstart="suggestionFieldFourTouchStart()"
+           ontouchend="suggestionFieldFourTouchEnd()">
         <p class="search-part-of-suggestion">{fourPartOne}
           <mark class="search-selected-field-color">{fourPartTwo}</mark>
           {fourPartThree}
@@ -190,65 +194,149 @@
         })
     }
 
+    var suggestionOneTouchStartX,
+      suggestionOneTouchStartY,
+      suggestionOneTouchEndX,
+      suggestionOneTouchEndY;
 
-    suggestionFieldOne = function () {
-      searchInputId.autofocus = false;
+    suggestionFieldOneTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      blockSearchId.style.display = 'none';
-      scope.parent.checkOfSearch = true;
-      scope.update(scope.parent.checkOfSearch)
 
-      if (scope.suggestionOne.form_type) {
-        scope.parent.onTouchEndOfService(scope.suggestionOne.id)
-      }
-      else
-        scope.parent.onTouchEndOfCategory(scope.suggestionOne.id);
-    }
+      suggestionOneTouchStartX = event.changedTouches[0].pageX;
+      suggestionOneTouchStartY = event.changedTouches[0].pageY;
 
-    suggestionFieldTwo = function () {
-      searchInputId.autofocus = false;
-      event.preventDefault();
-      event.stopPropagation();
-      blockSearchId.style.display = 'none';
-      scope.parent.checkOfSearch = true;
-      scope.update(scope.parent.checkOfSearch)
-      if (scope.suggestionTwo.form_type) {
-        scope.parent.onTouchEndOfService(scope.suggestionTwo.id)
-      }
-      else
-        scope.parent.onTouchEndOfCategory(scope.suggestionTwo.id);
     }
 
 
-    suggestionFieldThree = function () {
-      searchInputId.autofocus = false;
+    suggestionFieldOneTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-      blockSearchId.style.display = 'none';
-      scope.parent.checkOfSearch = true;
-      scope.update(scope.parent.checkOfSearch)
-      if (scope.suggestionThree.form_type) {
-        scope.parent.onTouchEndOfService(scope.suggestionThree.id)
+
+      suggestionOneTouchEndX = event.changedTouches[0].pageX;
+      suggestionOneTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(suggestionOneTouchStartX - suggestionOneTouchEndX) <= 20 && Math.abs(suggestionOneTouchStartY - suggestionOneTouchEndY) <= 20) {
+
+        searchInputId.autofocus = false;
+        blockSearchId.style.display = 'none';
+        scope.parent.checkOfSearch = true;
+        scope.update(scope.parent.checkOfSearch)
+
+        if (scope.suggestionOne.form_type) {
+          scope.parent.onTouchEndOfService(scope.suggestionOne.id)
+        }
+        else
+          scope.parent.onTouchEndOfCategory(scope.suggestionOne.id);
       }
-      else
-        scope.parent.onTouchEndOfCategory(scope.suggestionThree.id);
+    }
+
+    var suggestionTwoTouchStartX,
+      suggestionTwoTouchStartY,
+      suggestionTwoTouchEndX,
+      suggestionTwoTouchEndY;
+
+    suggestionFieldTwoTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      suggestionTwoTouchStartX = event.changedTouches[0].pageX;
+      suggestionTwoTouchStartY = event.changedTouches[0].pageY;
+
+    }
+
+    suggestionFieldTwoTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      suggestionTwoTouchEndX = event.changedTouches[0].pageX;
+      suggestionTwoTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(suggestionTwoTouchStartX - suggestionTwoTouchEndX) <= 20 && Math.abs(suggestionTwoTouchStartY - suggestionTwoTouchEndY) <= 20) {
+
+        searchInputId.autofocus = false;
+        blockSearchId.style.display = 'none';
+        scope.parent.checkOfSearch = true;
+        scope.update(scope.parent.checkOfSearch)
+        if (scope.suggestionTwo.form_type) {
+          scope.parent.onTouchEndOfService(scope.suggestionTwo.id)
+        }
+        else
+          scope.parent.onTouchEndOfCategory(scope.suggestionTwo.id);
+      }
+    }
+
+    var suggestionThreeTouchStartX,
+      suggestionThreeTouchStartY,
+      suggestionThreeTouchEndX,
+      suggestionThreeTouchEndY;
+
+    suggestionFieldThreeTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      suggestionThreeTouchStartX = event.changedTouches[0].pageX;
+      suggestionThreeTouchStartY = event.changedTouches[0].pageY;
+
     }
 
 
-    suggestionFieldFour = function () {
-      searchInputId.autofocus = false;
+    suggestionFieldThreeTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-      blockSearchId.style.display = 'none';
-      scope.parent.checkOfSearch = true;
-      scope.update(scope.parent.checkOfSearch)
 
-      if (scope.suggestionFour.form_type) {
-        scope.parent.onTouchEndOfService(scope.suggestionFour.id)
+      suggestionThreeTouchEndX = event.changedTouches[0].pageX;
+      suggestionThreeTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(suggestionThreeTouchStartX - suggestionThreeTouchEndX) <= 20 && Math.abs(suggestionThreeTouchStartY - suggestionThreeTouchEndY) <= 20) {
+
+
+        searchInputId.autofocus = false;
+        blockSearchId.style.display = 'none';
+        scope.parent.checkOfSearch = true;
+        scope.update(scope.parent.checkOfSearch)
+        if (scope.suggestionThree.form_type) {
+          scope.parent.onTouchEndOfService(scope.suggestionThree.id)
+        }
+        else
+          scope.parent.onTouchEndOfCategory(scope.suggestionThree.id);
       }
-      else
-        scope.parent.onTouchEndOfCategory(scope.suggestionFour.id);
+    }
+
+    var suggestionFourTouchStartX,
+      suggestionFourTouchStartY,
+      suggestionFourTouchEndX,
+      suggestionFourTouchEndY;
+
+    suggestionFieldFourTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      suggestionFourTouchStartX = event.changedTouches[0].pageX;
+      suggestionFourTouchStartY = event.changedTouches[0].pageY;
+
+    }
+
+    suggestionFieldFourTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      suggestionFourTouchEndX = event.changedTouches[0].pageX;
+      suggestionFourTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(suggestionFourTouchStartX - suggestionFourTouchEndX) <= 20 && Math.abs(suggestionFourTouchStartY - suggestionFourTouchEndY) <= 20) {
+
+        searchInputId.autofocus = false;
+        blockSearchId.style.display = 'none';
+        scope.parent.checkOfSearch = true;
+        scope.update(scope.parent.checkOfSearch)
+
+        if (scope.suggestionFour.form_type) {
+          scope.parent.onTouchEndOfService(scope.suggestionFour.id)
+        }
+        else
+          scope.parent.onTouchEndOfCategory(scope.suggestionFour.id);
+      }
     }
 
   </script>

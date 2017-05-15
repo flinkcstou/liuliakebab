@@ -151,7 +151,7 @@
           closeMenu();
         }
         else
-          menuOpen()
+          menuOpenTouchEnd(true)
       }
     }
 

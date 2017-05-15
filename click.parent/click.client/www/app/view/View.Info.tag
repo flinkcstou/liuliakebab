@@ -278,7 +278,7 @@
 //            }, onErrorLoadFs);
 //          } else {
             for (var i in result[1]) {
-              if (result[1][i].state == 0) {
+              if (result[1][i].state == 2) {
                 result[1][i].count = j;
 
                 result[1][i].amount = result[1][i].amount.toString();
