@@ -198,7 +198,6 @@
             else {
               if (viewMainPage.atMainPage && !scope.invoiceCheck) {
                 count = 0
-
               }
             }
 
@@ -287,7 +286,7 @@
         writeBalance();
       } else {
         if(invoice)
-        riot.update();
+        scope.update();
       }
     };
 
@@ -313,18 +312,20 @@
               if (result[1][0]) {
                 console.log('invoice', result[1])
 
-                try {
-                  cards.style.transition = '0s';
-                  cards.style.webkitTransition = '0s';
+                if(result[1].length != 0) {
+                  try {
+                    cards.style.transition = '0s';
+                    cards.style.webkitTransition = '0s';
 
-                  cards.style.transform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
-                  cards.style.webkitTransform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
-                } catch (error) {
-                  console.log("INVOICE LIST ERROR", error);
+                    cards.style.transform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
+                    cards.style.webkitTransform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
+                  } catch (error) {
+                    console.log("INVOICE LIST ERROR", error);
+                  }
+                  scope.invoiceCheck = true;
+                  scope.cardNumber = 1;
                 }
 
-                scope.invoiceCheck = true;
-                scope.cardNumber = 1;
 
 //                scope.update(scope.invoiceCheck);
 //                scope.update(scope.cardNumber);
@@ -357,6 +358,7 @@
                   }
                 }
 
+                if(scope.invoiceList)
                 setTimeout(function () {
                   addCard(true, true)
 //                  scope.update()
@@ -364,8 +366,13 @@
               }
               else {
                 scope.invoiceCheck = false;
+                scope.cardNumber = 0;
                 scope.update();
               }
+            }
+            else{
+              scope.invoiceCheck = false;
+              scope.cardNumber = 0;
             }
           }
           else {

@@ -98,20 +98,23 @@
       touchEndDeclineX = event.changedTouches[0].pageX;
       touchEndDeclineY = event.changedTouches[0].pageY;
 
-      if (Math.abs(touchEndDeclineX - touchStartDeclineX) < 20 &&
-        Math.abs(touchEndDeclineY - touchStartDeclineY) < 20) {
+      if (Math.abs(touchEndDeclineX - touchStartDeclineX) <= 20 &&
+        Math.abs(touchEndDeclineY - touchStartDeclineY) <= 20) {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = loginInfo.session_key;
+        console.log('scope.parent.invoiceList',scope)
 
-        for (var i in scope.parent.invoiceList) {
-          if (scope.parent.invoiceList[i].invoice_id == scope.opts.invoiceId) {
-            scope.parent.invoiceList[i].deleted = true;
+        if(scope.parent) {
+          for (var i in scope.parent.invoiceList) {
+            if (scope.parent.invoiceList[i].invoice_id == scope.opts.invoiceId) {
+              scope.parent.invoiceList[i].deleted = true;
 //            alert('TRUE')
+            }
           }
         }
-        riot.update(scope.parent.invoiceList);
+        scope.update();
 
         if (device.platform != 'BrowserStand') {
           var options = {dimBackground: true};
