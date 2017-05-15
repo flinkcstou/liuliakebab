@@ -81,7 +81,7 @@
               ontouchend="payService()" if="{!autoPayDelete}">
         {(opts[3]=='ADDAUTOPAY')? window.languages.ViewAutoPayCreateButtonText : window.languages.ViewPayConfirmPay}
       </button>
-      <button class="payconfirm-button-delete autopay-button" ontouchend="deleteAutoPay()"
+      <button class="payconfirm-button-delete" ontouchend="deleteAutoPay()"
               if="{autoPayDelete && opts[3]=='ADDAUTOPAY'}">
         {window.languages.ViewAutoPayDeleteButtonText}
       </button>
@@ -91,6 +91,7 @@
 
   <component-success id="componentSuccessId"
                      operationmessage="{operationMessage}"
+                     goback="{goBack}"
                      viewpage="{viewPage}" step_amount="{stepAmount}"></component-success>
   <component-unsuccess id="componentUnsuccessId" viewpage="{viewPage}"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
@@ -465,8 +466,17 @@
 
       function createAutoPay(payment_data) {
         scope.operationMessage = window.languages.ViewAutoPayCreatedSuccessTextOne + "\"" + scope.autoPayData.name + "\"" + window.languages.ViewAutoPayCreatedSuccessTextTwo;
-        scope.viewPage = 'view-auto-pay';
-        scope.stepAmount = 6;
+        if (scope.autoPayData && scope.autoPayData.fromView == 'PAYCONFIRM') {
+          scope.viewPage = 'view-pay-confirm';
+          scope.stepAmount = 2;
+          scope.goBack = true;
+
+        } else {
+          scope.viewPage = 'view-auto-pay';
+          scope.stepAmount = 6;
+
+        }
+
         scope.update();
         console.log("in create autopay func", scope.autoPayData);
         if (scope.autoPayData) {
@@ -493,12 +503,20 @@
 //                  scope.autoPayDelete = true;
 //                  scope.update(scope.autoPayDelete);
 
-                  viewServicePage.phoneText = '';
-                  window.viewServicePage = {};
-                  viewServicePage.amountText = '';
-                  viewServicePage.amountWithoutSpace = '';
-                  viewServicePinCards.friendHelpPaymentMode = false;
-                  viewServicePinCards.chosenFriendForHelp = null;
+                  if (scope.autoPayData.fromView != 'PAYCONFIRM') {
+                    viewServicePage.phoneText = '';
+                    window.viewServicePage = {};
+                    viewServicePage.amountText = '';
+                    viewServicePage.amountWithoutSpace = '';
+                    viewServicePinCards.friendHelpPaymentMode = false;
+                    viewServicePinCards.chosenFriendForHelp = null;
+//                    localStorage.setItem('autoPayData', null);
+                  } else {
+                    console.log("OPTS BEFORE AUTOPAY", opts);
+                    opts[3] = 'USUAL';
+                    scope.autoPayData.optsForPayConfirm = opts;
+                    localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+                  }
                   componentSuccessId.style.display = 'block';
 
                 }
@@ -535,7 +553,7 @@
               onSuccess: function (result) {
                 if (result[0][0].error == 0) {
                   console.log("result of autopay.add.by.schedule", result);
-
+//                  localStorage.setItem('autoPayData', null);
                   viewServicePage.phoneText = '';
                   window.viewServicePage = {};
                   viewServicePage.amountText = '';
@@ -580,6 +598,7 @@
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
             console.log("result of autopay.delete", result);
+            localStorage.setItem('autoPayData', null);
             viewServicePage.phoneText = '';
             window.viewServicePage = {};
             viewServicePage.amountText = '';
@@ -607,10 +626,12 @@
 
     addToAutoPay = function () {
       opts.mode = 'ADDAUTOPAY';
+      opts[3] = 'ADDAUTOPAY';
       scope.autoPayData = {};
       opts.id = viewPay.chosenServiceId;
       scope.autoPayData.service_id = viewPay.chosenServiceId;
       scope.autoPayData.fromView = 'PAYCONFIRM';
+      scope.autoPayData.isNew = true;
 
       event.preventDefault();
       event.stopPropagation();

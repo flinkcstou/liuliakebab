@@ -16,6 +16,11 @@
       history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
       console.log(history.arrayOfHistory)
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+      console.log('opts', opts)
+      if (opts.goback) {
+        onBackKeyDown()
+        return
+      }
 
       console.log('viewpage', opts.viewpage)
 

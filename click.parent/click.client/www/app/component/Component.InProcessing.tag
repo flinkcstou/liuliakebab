@@ -3,14 +3,14 @@
   <p class="in-processing-operation-success-message-part-two">{opts.operationmessageparttwo}</p>
   <div class="in-processing-success-icon"></div>
 
-  <button class="in-processing-next-button-inner-container" ontouchend="closeSuccessMessageForm()">
+  <button class="in-processing-next-button-inner-container" ontouchend="closeInProcessingMessageForm()">
     {window.languages.ComponentSuccessNext}
   </button>
 
   <script>
     var scope = this;
 
-    closeSuccessMessageForm = function () {
+    closeInProcessingMessageForm = function () {
       event.preventDefault();
       event.stopPropagation();
       componentInProcessingId.style.display = 'none';

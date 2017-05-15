@@ -209,6 +209,11 @@
     scope.servicesParamsMapThree = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"))) : (offlineServicesParamsMapThree);
     scope.servicesParamsMapFour = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFour"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFour"))) : (offlineServicesParamsMapFour);
     scope.servicesParamsMapFive = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"))) : (offlineServicesParamsMapFive);
+    scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+    scope.autoPayFromConfirm = false;
+    if (scope.autoPayData && scope.autoPayData.fromView == 'PAYCONFIRM' && opts[0]) {
+      scope.autoPayFromConfirm = true;
+    }
 
     //    console.log("click_client_servicesParamsMapTwo", localStorage.getItem("click_client_servicesParamsMapTwo"));
     //    console.log("click_client_servicesParamsMapThree", localStorage.getItem("click_client_servicesParamsMapThree"));
@@ -524,8 +529,9 @@
 
       if (scope.fieldArray) {
         scope.dropDownOn = scope.fieldArray.length > 1;
-        scope.chosenFieldName = scope.fieldArray[0].title;
-        scope.chosenFieldParamId = scope.fieldArray[0].parameter_id;
+        scope.chosenFieldName = scope.autoPayFromConfirm ? viewServicePage.firstFieldTitle : scope.fieldArray[0].title;
+        scope.chosenFieldParamId = scope.autoPayFromConfirm ? opts[0][1].firstFieldId : scope.fieldArray[0].parameter_id;
+        opts.first_field_value = scope.autoPayFromConfirm ? opts[0][2].firstFieldText : null;
         scope.amountFieldTitle = scope.service.lang_amount_title;
         scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
         if (scope.phoneFieldBool)
@@ -535,7 +541,7 @@
         scope.inputMaxLength = scope.fieldArray[0].max_len;
         console.log("INPUT LENGTH=", scope.inputMaxLength);
         if (scope.dropDownOn) {
-          scope.chosenFieldParamId = scope.fieldArray[0].parameter_id;
+          scope.chosenFieldParamId = scope.autoPayFromConfirm ? opts[0][1].firstFieldId : scope.fieldArray[0].parameter_id;
           scope.oldFieldParamId = scope.fieldArray[1].parameter_id;
         }
 
@@ -1107,13 +1113,22 @@
           scope.update();
           return;
         }
-        scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+
         scope.autoPayData.name = autoPayNameInput.value;
         localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
-        this.riotTags.innerHTML = "<view-service-pincards>";
-        riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
-        scope.unmount()
+        if (scope.autoPayFromConfirm) {
+          this.riotTags.innerHTML = "<view-pay-confirm>";
+          riot.mount('view-pay-confirm', opts);
+          scope.unmount()
+
+        } else {
+          this.riotTags.innerHTML = "<view-service-pincards>";
+          riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
+          scope.unmount()
+        }
+
+
       }
     };
 

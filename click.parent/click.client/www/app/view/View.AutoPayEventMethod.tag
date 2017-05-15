@@ -92,6 +92,8 @@
     } else {
       this.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
       this.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
+      if (scope.autoPayData.fromView == 'PAYCONFIRM' && opts[0][2].firstFieldText)
+        scope.defaultNumber = opts[0][2].firstFieldText;
     }
 
     //    scope.defaultNumber = !viewServicePage.phoneText ? null : viewServicePage.phoneText;
@@ -270,21 +272,29 @@
       scope.autoPayData.condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + chosenStep;
       localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
-      var formtype = {"formtype": 1};
-      var firstFieldId = {"firstFieldId": 1};
-      var firstFieldText = {"firstFieldText": firstFieldInput.value};
-      var cardTypeId = {"cardTypeId": null};
-      var communalParam = {"communalParam": null};
-      var internetPackageParam = {"internetPackageParam": null};
-      var amountText = {"amountText": scope.chosenAmount};
+      if (scope.autoPayData.fromView == 'PAY') {
+        var formtype = {"formtype": 1};
+        var firstFieldId = {"firstFieldId": 1};
+        var firstFieldText = {"firstFieldText": firstFieldInput.value};
+        var cardTypeId = {"cardTypeId": null};
+        var communalParam = {"communalParam": null};
+        var internetPackageParam = {"internetPackageParam": null};
+        var amountText = {"amountText": scope.chosenAmount};
 
-      viewServicePage.firstFieldTitle = "Номер абонента";
-      viewServicePage.phoneText = firstFieldInput.value;
-      var isInFavorites = {"isInFavorites": false};
+        viewServicePage.firstFieldTitle = "Номер абонента";
+        viewServicePage.phoneText = firstFieldInput.value;
+        var isInFavorites = {"isInFavorites": false};
 
-      this.riotTags.innerHTML = "<view-service-pincards>";
-      riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
-      scope.unmount()
+        this.riotTags.innerHTML = "<view-service-pincards>";
+        riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
+        scope.unmount()
+      }
+      else if (scope.autoPayData.fromView == 'PAYCONFIRM') {
+        this.riotTags.innerHTML = "<view-pay-confirm>";
+        riot.mount('view-pay-confirm', opts);
+        scope.unmount()
+
+      }
     }
 
 

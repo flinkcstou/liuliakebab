@@ -40,6 +40,7 @@
     goToBack = function () {
       viewServicePage.phoneText = null;
       viewServicePage.amountText = null;
+      localStorage.setItem('autoPayData', null);
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
@@ -64,6 +65,7 @@
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
+    localStorage.setItem('autoPayData', null);
     if (info)
       var sessionKey = info.session_key;
 

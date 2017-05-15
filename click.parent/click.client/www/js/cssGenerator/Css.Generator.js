@@ -337,7 +337,7 @@ var css = {
   "height:" + 190 * widthK + "px;" +
   "left:" + 260 * widthK + "px;" +
   "top:" + 65 * widthK + "px;" +
-  //"top:" + 400 * widthK + "px;" +
+    //"top:" + 400 * widthK + "px;" +
   "background-image: url('resources/icons/animation/reg_process.png');" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
@@ -349,7 +349,7 @@ var css = {
   "width:" + 190 * widthK + "px;" +
   "height:" + 190 * widthK + "px;" +
   "left:" + 285 * widthK + "px;" +
-  //"top:" + 400 * widthK + "px;" +
+    //"top:" + 400 * widthK + "px;" +
   "background-image: url('resources/icons/animation/reg_ok.png');" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
@@ -361,7 +361,7 @@ var css = {
   "width:" + 140 * widthK + "px;" +
   "height:" + 140 * widthK + "px;" +
   "left:" + 300 * widthK + "px;" +
-  //"top:" + 400 * widthK + "px;" +
+    //"top:" + 400 * widthK + "px;" +
   "background-image: url('resources/icons/animation/reg_error.png');" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
@@ -378,7 +378,7 @@ var css = {
   "left: 33%;" +
   "width: 34%;" +
   "background-color: #ffffff;" +
-  //"border-radius: " + 10 * widthK + "px;" +
+    //"border-radius: " + 10 * widthK + "px;" +
   "bottom: " + 33 * widthK + "px;" +
   "color: #555555;" +
   "}",
@@ -394,7 +394,7 @@ var css = {
   "left: 13%;" +
   "width: 74%;" +
   "background-color: #ffffff;" +
-  //"border-radius: " + 10 * widthK + "px;" +
+    //"border-radius: " + 10 * widthK + "px;" +
   "bottom: " + 33 * widthK + "px;" +
   "color: #555555;" +
   "}",
@@ -12093,6 +12093,7 @@ var css = {
   "bottom:" + 100 * widthK + "px; " +
   "}",
 
+
 //  View autopay method
 
   autopayMethodBodyContainer: ".autopay-method-body-container" +
@@ -12237,7 +12238,7 @@ var css = {
   autopayEventNameField: ".autopay-event-name-field" +
   "{" +
   "height:" + 90 * widthK + "px;" +
-  "top: 5%;" +
+  "top: 4%;" +
   "}",
 
   autopayEventStepField: ".autopay-event-step-field" +
