@@ -13,16 +13,17 @@
       event.preventDefault();
       event.stopPropagation();
       componentSuccessId.style.display = 'none';
-      if (opts.goback) {
-        onBackKeyDown()
-        return
-      }
-
+      console.log("before", history.arrayOfHistory)
       history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
       console.log(history.arrayOfHistory)
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-      console.log('opts', opts)
 
+      if (opts.goback) {
+        console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
+        riotTags.innerHTML = "<" + opts.viewpage + ">";
+        riot.mount(opts.viewpage, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+        return;
+      }
 
       console.log('viewpage', opts.viewpage)
 
@@ -30,7 +31,9 @@
 
         riotTags.innerHTML = "<" + opts.viewpage + ">";
         riot.mount(opts.viewpage);
+//        scope.unmount()
       }
+
 
       if (opts.close_action) {
         opts.close_action();

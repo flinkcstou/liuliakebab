@@ -135,7 +135,7 @@
 
     if (opts[3] == 'ADDAUTOPAY') {
       scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
-      if (scope.autoPayData.fromView == 'PAYCONFIRM') {
+      if (scope.autoPayData.fromView == 'AFTERCREATION') {
         opts[3] = 'USUAL';
         console.log('OPTS[3]', opts)
         scope.update();
@@ -474,7 +474,7 @@
         scope.operationMessage = window.languages.ViewAutoPayCreatedSuccessTextOne + "\"" + scope.autoPayData.name + "\"" + window.languages.ViewAutoPayCreatedSuccessTextTwo;
         if (scope.autoPayData && scope.autoPayData.fromView == 'PAYCONFIRM') {
           scope.viewPage = 'view-pay-confirm';
-          scope.stepAmount = 2;
+          scope.stepAmount = 0;
           scope.goBack = true;
 
         } else {
@@ -517,8 +517,11 @@
                     viewServicePinCards.friendHelpPaymentMode = false;
                     viewServicePinCards.chosenFriendForHelp = null;
 //                    localStorage.setItem('autoPayData', null);
+                  } else {
+                    scope.autoPayData.fromView = 'AFTERCREATION';
                   }
                   scope.autoPayData.isNew = false;
+                  localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
                   componentSuccessId.style.display = 'block';
 
                 }
@@ -534,6 +537,7 @@
               }
             });
           } else if (scope.autoPayData.autopay_type == 1) {
+
             window.api.call({
               method: 'autopay.add.by.schedule',
               input: {
@@ -563,8 +567,11 @@
                     viewServicePage.amountWithoutSpace = '';
                     viewServicePinCards.friendHelpPaymentMode = false;
                     viewServicePinCards.chosenFriendForHelp = null;
+                  } else {
+                    scope.autoPayData.fromView = 'AFTERCREATION';
                   }
                   scope.autoPayData.isNew = false;
+                  localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
                   componentSuccessId.style.display = 'block';
 
                 }
