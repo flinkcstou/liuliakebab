@@ -10278,6 +10278,7 @@ var css = {
   "position: absolute;" +
     //"opacity: 0.92;" +
   "height: 100%;" +
+  "top: 0;" +
   "width: 100%;" +
     //"background-color: white;" +
   "background-image: url(resources/icons/transparent.png);" +

@@ -24,7 +24,7 @@
          ontouchend="pinResetTouchEnd()">
       {window.languages.ViewAuthorizationForgetPinLabel}
     </div>
-    <div class="authorization-button-registration" ontouchend="resetLocalStorageTouchEnd()">
+    <div class="authorization-button-registration" ontouchstart="resetLocalStorageTouchStart()" ontouchend="resetLocalStorageTouchEnd()">
       {window.languages.ViewAuthorizationResetLocalStorageLabel}
     </div>
   </div>
