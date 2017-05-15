@@ -28,6 +28,13 @@
     var scope = this;
     scope.showError = false;
 
+//    if(!opts.background){
+//      console.log('QWEQ')
+//      opts.background =
+//      console.log('opts.background',opts.background)
+//      scope.update()
+//    }
+
     scope.on("mount", function () {
 
 //      console.log("ASD_scope.leftOfCard", scope.leftOfCard);

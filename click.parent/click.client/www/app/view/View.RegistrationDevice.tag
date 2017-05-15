@@ -258,15 +258,15 @@
 
     function registrationDevice(phoneNumber, date) {
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
-        }, function () {
-          console.log("closed");
-        });
-      }
+//      if (device.platform != 'BrowserStand') {
+//        var options = {dimBackground: true};
+//
+//        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+//          console.log("Started");
+//        }, function () {
+//          console.log("closed");
+//        });
+//      }
 
       window.api.call({
         method: 'device.register.request',
