@@ -203,8 +203,6 @@
 
       offlineTouchStartX = event.changedTouches[0].pageX
       offlineTouchStartY = event.changedTouches[0].pageY
-
-
     }
 
     registrationClientOfflineTouchEnd = function () {
@@ -395,7 +393,7 @@
         else {
 //        alert('error')
           scope.clickPinError = false;
-          scope.errorNote = 'Error';
+          scope.errorNote = 'Неверные данные о карте';
           scope.showError = true;
           scope.update();
         }

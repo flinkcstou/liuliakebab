@@ -119,11 +119,11 @@
       console.log('touchMoveX', touchMoveX)
       console.log('widthK', 269 * widthK)
       if (touchMoveX > 269 * widthK) {
-        menuOpen();
+        menuOpenTouchEnd(true);
       }
       else {
         if (timeEndX - timeStartX < 500 && touchEndX - touchStartX > 20) {
-          menuOpen();
+          menuOpenTouchEnd(true);
         }
         else
           closeMenu()

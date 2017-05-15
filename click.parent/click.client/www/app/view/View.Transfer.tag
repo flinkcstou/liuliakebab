@@ -36,7 +36,7 @@
         <div class="transfer-contact-phone-icon" ontouchend="pickContactFromNative()"></div>
       </div>
       <div id="firstSuggestionBlockId" class="transfer-contact-found-container-one"
-           ontouchend="firstSuggestionBlock()">
+           ontouchend="firstSuggestionBlockTouchEnd()" ontouchstart="firstSuggestionBlockTouchStart()">
         <div class="transfer-contact-found-photo" style="background-image: url({suggestionOne.photo})">
           {suggestionOne.firstLetterOfName}
         </div>
@@ -46,7 +46,7 @@
         <div class="transfer-contact-found-text-two">{suggestionOne.phoneNumber}</div>
       </div>
       <div id="secondSuggestionBlockId" class="transfer-contact-found-container-two"
-           ontouchend="secondSuggestionBlock()">
+           ontouchend="secondSuggestionBlockTouchEnd()" ontouchstart="secondSuggestionBlockTouchStart()">
         <div class="transfer-contact-found-photo" style="background-image: url({suggestionTwo.photo})">
           {suggestionTwo.firstLetterOfName}
         </div>
@@ -58,7 +58,7 @@
 
 
       <div id="thirdSuggestionBlockId" class="transfer-contact-found-container-three"
-           ontouchend="thirdSuggestionBlock()">
+           ontouchend="thirdSuggestionBlockTouchEnd()" ontouchstart="thirdSuggestionBlockTouchStart()">
         <div class="transfer-contact-found-photo" style="background-image: url({suggestionThree.photo})">
           {suggestionThree.firstLetterOfName}
         </div>
@@ -70,7 +70,7 @@
 
 
       <div id="fourthSuggestionBlockId" class="transfer-contact-found-container-four"
-           ontouchend="fourthSuggestionBlock()">
+           ontouchend="fourthSuggestionBlockTouchEnd()" ontouchstart="fourthSuggestionBlockTouchStart()">
         <div class="transfer-contact-found-photo" style="background-image: url({suggestionFour.photo})">
           {suggestionFour.firstLetterOfName}
         </div>
@@ -82,7 +82,7 @@
 
 
       <div id="fifthSuggestionBlockId" class="transfer-contact-found-container-five"
-           ontouchend="fifthSuggestionBlock()">
+           ontouchend="fifthSuggestionBlockTouchEnd()" ontouchstart="fifthSuggestionBlockTouchStart()">
         <div class="transfer-contact-found-photo" style="background-image: url({suggestionFive.photo})">
           {suggestionFive.firstLetterOfName}
         </div>
@@ -112,7 +112,7 @@
       </div>
 
       <div id="firstCardSuggestionId" class="transfer-contact-found-container-one"
-           ontouchend="firstCardSuggestionBlock()">
+           ontouchend="firstCardSuggestionBlockTouchEnd()" ontouchstart="firstCardSuggestionBlockTouchStart()">
         <div class="transfer-card-found-photo" style="background-image: url({cardSuggestionOne.photo})"></div>
         <div class="transfer-contact-found-text-container">
           <div class="transfer-contact-found-text-one">{cardSuggestionOne.fName} {cardSuggestionOne.lName}</div>
@@ -123,7 +123,7 @@
       </div>
 
       <div id="secondCardSuggestionId" class="transfer-contact-found-container-two"
-           ontouchend="secondCardSuggestionBlock()">
+           ontouchend="secondCardSuggestionBlockTouchEnd()" ontouchstart="secondCardSuggestionBlockTouchStart()">
         <div class="transfer-card-found-photo" style="background-image: url({cardSuggestionTwo.photo})"></div>
         <div class="transfer-contact-found-text-container">
           <div class="transfer-contact-found-text-one">{cardSuggestionTwo.fName} {cardSuggestionTwo.lName}</div>
@@ -134,7 +134,7 @@
       </div>
 
       <div id="thirdCardSuggestionId" class="transfer-contact-found-container-three"
-           ontouchend="thirdCardSuggestionBlock()">
+           ontouchend="thirdCardSuggestionBlockTouchEnd()" ontouchstart="thirdCardSuggestionBlockTouchStart()">
         <div class="transfer-card-found-photo" style="background-image: url({cardSuggestionThree.photo})"></div>
         <div class="transfer-contact-found-text-container">
           <div class="transfer-contact-found-text-one">{cardSuggestionThree.fName} {cardSuggestionThree.lName}</div>
@@ -145,7 +145,7 @@
       </div>
 
       <div id="fourthCardSuggestionId" class="transfer-contact-found-container-four"
-           ontouchend="fourthCardSuggestionBlock()">
+           ontouchend="fourthCardSuggestionBlockTouchEnd()" ontouchstart="fourthCardSuggestionBlockTouchStart()">
         <div class="transfer-card-found-photo" style="background-image: url({cardSuggestionFour.photo})"></div>
         <div class="transfer-contact-found-text-container">
           <div class="transfer-contact-found-text-one">{cardSuggestionFour.fName} {cardSuggestionFour.lName}</div>
@@ -156,7 +156,7 @@
       </div>
 
       <div id="fifthCardSuggestionId" class="transfer-contact-found-container-five"
-           ontouchend="fifthCardSuggestionBlock()">
+           ontouchend="fifthCardSuggestionBlockTouchEnd()" ontouchstart="fifthCardSuggestionBlockTouchStart()">
         <div class="transfer-card-found-photo" style="background-image: url({cardSuggestionFive.photo})"></div>
         <div class="transfer-contact-found-text-container">
           <div class="transfer-contact-found-text-one">{cardSuggestionFive.fName} {cardSuggestionFive.lName}</div>
@@ -301,10 +301,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer',
-          "params": opts,
-        }
+          {
+            "view": 'view-transfer',
+            "params": opts,
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -490,9 +490,9 @@
 
     this.titleName = window.languages.ViewPayTransferTitle;
     var scope = this,
-      phoneNumberForTransfer = '',
-      cardNumberForTransfer = '',
-      arrayOfContacts = [];
+        phoneNumberForTransfer = '',
+        cardNumberForTransfer = '',
+        arrayOfContacts = [];
 
     scope.showError = false;
 
@@ -1573,226 +1573,395 @@
     }
 
 
-    firstSuggestionBlock = function () {
+    var firstSuggestionBlockTouchStartX, firstSuggestionBlockTouchStartY, firstSuggestionBlockTouchEndX, firstSuggestionBlockTouchEndY;
+
+    firstSuggestionBlockTouchStart = function () {
+
       event.preventDefault();
       event.stopPropagation();
 
-      var digits = scope.suggestionOne.phoneNumber.match(maskOne);
-      var phone = '';
-      for (var i in digits) {
-        phone += digits[i]
-      }
-      scope.suggestionOne.phoneNumber = phone;
+      firstSuggestionBlockTouchStartX = event.changedTouches[0].pageX
+      firstSuggestionBlockTouchStartY = event.changedTouches[0].pageY
+    }
+
+    firstSuggestionBlockTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      firstSuggestionBlockTouchEndX = event.changedTouches[0].pageX
+      firstSuggestionBlockTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(firstSuggestionBlockTouchEndX - firstSuggestionBlockTouchStartX) <= 20 && Math.abs(firstSuggestionBlockTouchStartY - firstSuggestionBlockTouchEndY) <= 20) {
+
+        var digits = scope.suggestionOne.phoneNumber.match(maskOne);
+        var phone = '';
+        for (var i in digits) {
+          phone += digits[i]
+        }
+        scope.suggestionOne.phoneNumber = phone;
 //      console.log(scope.suggestionOne.phoneNumber)
-      contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length);
+        contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length);
 
-      if (contactPhoneNumberId.value.length == 9) {
-        nextButtonId.style.display = 'block'
+        if (contactPhoneNumberId.value.length == 9) {
+          nextButtonId.style.display = 'block'
 
-        firstSuggestionBlockId.style.display = 'none';
-        secondSuggestionBlockId.style.display = 'none';
-        thirdSuggestionBlockId.style.display = 'none';
-        fourthSuggestionBlockId.style.display = 'none';
-        fifthSuggestionBlockId.style.display = 'none';
+          firstSuggestionBlockId.style.display = 'none';
+          secondSuggestionBlockId.style.display = 'none';
+          thirdSuggestionBlockId.style.display = 'none';
+          fourthSuggestionBlockId.style.display = 'none';
+          fifthSuggestionBlockId.style.display = 'none';
+        }
+        else
+          nextButtonId.style.display = 'none'
       }
-      else
-        nextButtonId.style.display = 'none'
     }
 
-    secondSuggestionBlock = function () {
+    var secondSuggestionBlockTouchStartX, secondSuggestionBlockTouchStartY, secondSuggestionBlockTouchEndX, secondSuggestionBlockTouchEndY;
+
+    secondSuggestionBlockTouchStart = function () {
+
       event.preventDefault();
       event.stopPropagation();
 
-      var digits = scope.suggestionTwo.phoneNumber.match(maskOne);
-      var phone = '';
-      for (var i in digits) {
-        phone += digits[i]
-      }
-      scope.suggestionTwo.phoneNumber = phone;
-
-      contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length);
-
-      if (contactPhoneNumberId.value.length == 9) {
-        nextButtonId.style.display = 'block'
-        firstSuggestionBlockId.style.display = 'none';
-        secondSuggestionBlockId.style.display = 'none';
-        thirdSuggestionBlockId.style.display = 'none';
-        fourthSuggestionBlockId.style.display = 'none';
-        fifthSuggestionBlockId.style.display = 'none';
-      }
-      else
-        nextButtonId.style.display = 'none'
+      secondSuggestionBlockTouchStartX = event.changedTouches[0].pageX
+      secondSuggestionBlockTouchStartY = event.changedTouches[0].pageY
     }
 
-    thirdSuggestionBlock = function () {
+    secondSuggestionBlockTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      var digits = scope.suggestionThree.phoneNumber.match(maskOne);
-      var phone = '';
-      for (var i in digits) {
-        phone += digits[i]
-      }
-      scope.suggestionThree.phoneNumber = phone;
+      secondSuggestionBlockTouchEndX = event.changedTouches[0].pageX
+      secondSuggestionBlockTouchEndY = event.changedTouches[0].pageY
 
-      contactPhoneNumberId.value = scope.suggestionThree.phoneNumber.substring(scope.suggestionThree.phoneNumber.length - 9, scope.suggestionThree.phoneNumber.length);
+      if (Math.abs(secondSuggestionBlockTouchEndX - secondSuggestionBlockTouchStartX) <= 20 && Math.abs(secondSuggestionBlockTouchStartY - secondSuggestionBlockTouchEndY) <= 20) {
 
-      if (contactPhoneNumberId.value.length == 9) {
-        nextButtonId.style.display = 'block'
-        firstSuggestionBlockId.style.display = 'none';
-        secondSuggestionBlockId.style.display = 'none';
-        thirdSuggestionBlockId.style.display = 'none';
-        fourthSuggestionBlockId.style.display = 'none';
-        fifthSuggestionBlockId.style.display = 'none';
+        var digits = scope.suggestionTwo.phoneNumber.match(maskOne);
+        var phone = '';
+        for (var i in digits) {
+          phone += digits[i]
+        }
+        scope.suggestionTwo.phoneNumber = phone;
+
+        contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length);
+
+        if (contactPhoneNumberId.value.length == 9) {
+          nextButtonId.style.display = 'block'
+          firstSuggestionBlockId.style.display = 'none';
+          secondSuggestionBlockId.style.display = 'none';
+          thirdSuggestionBlockId.style.display = 'none';
+          fourthSuggestionBlockId.style.display = 'none';
+          fifthSuggestionBlockId.style.display = 'none';
+        }
+        else
+          nextButtonId.style.display = 'none'
       }
-      else
-        nextButtonId.style.display = 'none'
     }
 
-    fourthSuggestionBlock = function () {
+    var thirdSuggestionBlockTouchStartX, thirdSuggestionBlockTouchStartY, thirdSuggestionBlockTouchEndX, thirdSuggestionBlockTouchEndY;
+
+    thirdSuggestionBlockTouchStart = function () {
+
       event.preventDefault();
       event.stopPropagation();
 
-      var digits = scope.suggestionFour.phoneNumber.match(maskOne);
-      var phone = '';
-      for (var i in digits) {
-        phone += digits[i]
-      }
-      scope.suggestionFour.phoneNumber = phone;
-
-      contactPhoneNumberId.value = scope.suggestionFour.phoneNumber.substring(scope.suggestionFour.phoneNumber.length - 9, scope.suggestionFour.phoneNumber.length);
-
-      if (contactPhoneNumberId.value.length == 9) {
-        nextButtonId.style.display = 'block'
-        firstSuggestionBlockId.style.display = 'none';
-        secondSuggestionBlockId.style.display = 'none';
-        thirdSuggestionBlockId.style.display = 'none';
-        fourthSuggestionBlockId.style.display = 'none';
-        fifthSuggestionBlockId.style.display = 'none';
-      }
-      else
-        nextButtonId.style.display = 'none'
+      thirdSuggestionBlockTouchStartX = event.changedTouches[0].pageX
+      thirdSuggestionBlockTouchStartY = event.changedTouches[0].pageY
     }
 
-    fifthSuggestionBlock = function () {
+    thirdSuggestionBlockTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      var digits = scope.suggestionFive.phoneNumber.match(maskOne);
-      var phone = '';
-      for (var i in digits) {
-        phone += digits[i]
-      }
-      scope.suggestionFive.phoneNumber = phone;
+      thirdSuggestionBlockTouchEndX = event.changedTouches[0].pageX
+      thirdSuggestionBlockTouchEndY = event.changedTouches[0].pageY
 
-      contactPhoneNumberId.value = scope.suggestionFive.phoneNumber.substring(scope.suggestionFive.phoneNumber.length - 9, scope.suggestionFive.phoneNumber.length);
+      if (Math.abs(thirdSuggestionBlockTouchEndX - thirdSuggestionBlockTouchStartX) <= 20 && Math.abs(thirdSuggestionBlockTouchStartY - thirdSuggestionBlockTouchEndY) <= 20) {
 
-      if (contactPhoneNumberId.value.length == 9) {
-        nextButtonId.style.display = 'block'
-        firstSuggestionBlockId.style.display = 'none';
-        secondSuggestionBlockId.style.display = 'none';
-        thirdSuggestionBlockId.style.display = 'none';
-        fourthSuggestionBlockId.style.display = 'none';
-        fifthSuggestionBlockId.style.display = 'none';
+        var digits = scope.suggestionThree.phoneNumber.match(maskOne);
+        var phone = '';
+        for (var i in digits) {
+          phone += digits[i]
+        }
+        scope.suggestionThree.phoneNumber = phone;
+
+        contactPhoneNumberId.value = scope.suggestionThree.phoneNumber.substring(scope.suggestionThree.phoneNumber.length - 9, scope.suggestionThree.phoneNumber.length);
+
+        if (contactPhoneNumberId.value.length == 9) {
+          nextButtonId.style.display = 'block'
+          firstSuggestionBlockId.style.display = 'none';
+          secondSuggestionBlockId.style.display = 'none';
+          thirdSuggestionBlockId.style.display = 'none';
+          fourthSuggestionBlockId.style.display = 'none';
+          fifthSuggestionBlockId.style.display = 'none';
+        }
+        else
+          nextButtonId.style.display = 'none'
       }
-      else
-        nextButtonId.style.display = 'none'
     }
 
+    var fourthSuggestionBlockTouchStartX, fourthSuggestionBlockTouchStartY, fourthSuggestionBlockTouchEndX, fourthSuggestionBlockTouchEndY;
 
-    firstCardSuggestionBlock = function () {
+    fourthSuggestionBlockTouchStart = function () {
+
       event.preventDefault();
       event.stopPropagation();
 
-      cardInputId.value = scope.cardSuggestionOne.cardNumber;
-
-      if (cardInputId.value.replace(/\s/g, '').length == 16) {
-        cardOwnerFunction();
-        nextButtonId.style.display = 'block'
-        firstCardSuggestionId.style.display = 'none';
-        secondCardSuggestionId.style.display = 'none';
-        thirdCardSuggestionId.style.display = 'none';
-        fourthCardSuggestionId.style.display = 'none';
-        fifthCardSuggestionId.style.display = 'none';
-      }
-      else
-        nextButtonId.style.display = 'none'
+      fourthSuggestionBlockTouchStartX = event.changedTouches[0].pageX
+      fourthSuggestionBlockTouchStartY = event.changedTouches[0].pageY
     }
 
-    secondCardSuggestionBlock = function () {
+    fourthSuggestionBlockTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      cardInputId.value = scope.cardSuggestionTwo.cardNumber;
+      fourthSuggestionBlockTouchEndX = event.changedTouches[0].pageX
+      fourthSuggestionBlockTouchEndY = event.changedTouches[0].pageY
 
-      if (cardInputId.value.replace(/\s/g, '').length == 16) {
-        cardOwnerFunction();
-        nextButtonId.style.display = 'block'
-        firstCardSuggestionId.style.display = 'none';
-        secondCardSuggestionId.style.display = 'none';
-        thirdCardSuggestionId.style.display = 'none';
-        fourthCardSuggestionId.style.display = 'none';
-        fifthCardSuggestionId.style.display = 'none';
+      if (Math.abs(fourthSuggestionBlockTouchEndX - fourthSuggestionBlockTouchStartX) <= 20 && Math.abs(fourthSuggestionBlockTouchStartY - fourthSuggestionBlockTouchEndY) <= 20) {
+
+        var digits = scope.suggestionFour.phoneNumber.match(maskOne);
+        var phone = '';
+        for (var i in digits) {
+          phone += digits[i]
+        }
+        scope.suggestionFour.phoneNumber = phone;
+
+        contactPhoneNumberId.value = scope.suggestionFour.phoneNumber.substring(scope.suggestionFour.phoneNumber.length - 9, scope.suggestionFour.phoneNumber.length);
+
+        if (contactPhoneNumberId.value.length == 9) {
+          nextButtonId.style.display = 'block'
+          firstSuggestionBlockId.style.display = 'none';
+          secondSuggestionBlockId.style.display = 'none';
+          thirdSuggestionBlockId.style.display = 'none';
+          fourthSuggestionBlockId.style.display = 'none';
+          fifthSuggestionBlockId.style.display = 'none';
+        }
+        else
+          nextButtonId.style.display = 'none'
       }
-      else
-        nextButtonId.style.display = 'none'
     }
 
-    thirdCardSuggestionBlock = function () {
+    var fifthSuggestionBlockTouchStartX, fifthSuggestionBlockTouchStartY, fifthSuggestionBlockTouchEndX, fifthSuggestionBlockTouchEndY;
+
+    fifthSuggestionBlockTouchStart = function () {
+
       event.preventDefault();
       event.stopPropagation();
 
-      cardInputId.value = scope.cardSuggestionThree.cardNumber;
-
-      if (cardInputId.value.replace(/\s/g, '').length == 16) {
-        cardOwnerFunction();
-        nextButtonId.style.display = 'block'
-        firstCardSuggestionId.style.display = 'none';
-        secondCardSuggestionId.style.display = 'none';
-        thirdCardSuggestionId.style.display = 'none';
-        fourthCardSuggestionId.style.display = 'none';
-        fifthCardSuggestionId.style.display = 'none';
-      }
-      else
-        nextButtonId.style.display = 'none'
+      fifthSuggestionBlockTouchStartX = event.changedTouches[0].pageX
+      fifthSuggestionBlockTouchStartY = event.changedTouches[0].pageY
     }
 
-    fourthCardSuggestionBlock = function () {
+    fifthSuggestionBlockTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      cardInputId.value = scope.cardSuggestionFour.cardNumber;
+      fifthSuggestionBlockTouchEndX = event.changedTouches[0].pageX
+      fifthSuggestionBlockTouchEndY = event.changedTouches[0].pageY
 
-      if (cardInputId.value.replace(/\s/g, '').length == 16) {
-        cardOwnerFunction();
-        nextButtonId.style.display = 'block'
-        firstCardSuggestionId.style.display = 'none';
-        secondCardSuggestionId.style.display = 'none';
-        thirdCardSuggestionId.style.display = 'none';
-        fourthCardSuggestionId.style.display = 'none';
-        fifthCardSuggestionId.style.display = 'none';
+      if (Math.abs(fifthSuggestionBlockTouchEndX - fifthSuggestionBlockTouchStartX) <= 20 && Math.abs(fifthSuggestionBlockTouchStartY - fifthSuggestionBlockTouchEndY) <= 20) {
+
+        var digits = scope.suggestionFive.phoneNumber.match(maskOne);
+        var phone = '';
+        for (var i in digits) {
+          phone += digits[i]
+        }
+        scope.suggestionFive.phoneNumber = phone;
+
+        contactPhoneNumberId.value = scope.suggestionFive.phoneNumber.substring(scope.suggestionFive.phoneNumber.length - 9, scope.suggestionFive.phoneNumber.length);
+
+        if (contactPhoneNumberId.value.length == 9) {
+          nextButtonId.style.display = 'block'
+          firstSuggestionBlockId.style.display = 'none';
+          secondSuggestionBlockId.style.display = 'none';
+          thirdSuggestionBlockId.style.display = 'none';
+          fourthSuggestionBlockId.style.display = 'none';
+          fifthSuggestionBlockId.style.display = 'none';
+        }
+        else
+          nextButtonId.style.display = 'none'
       }
-      else
-        nextButtonId.style.display = 'none'
     }
 
-    fifthCardSuggestionBlock = function () {
+    var firstCardSuggestionBlockTouchStartX, firstCardSuggestionBlockTouchStartY, firstCardSuggestionBlockTouchEndX, firstCardSuggestionBlockTouchEndY;
+
+    firstCardSuggestionBlockTouchStart = function () {
+
       event.preventDefault();
       event.stopPropagation();
 
-      cardInputId.value = scope.cardSuggestionFive.cardNumber;
+      firstCardSuggestionBlockTouchStartX = event.changedTouches[0].pageX
+      firstCardSuggestionBlockTouchStartY = event.changedTouches[0].pageY
+    }
 
-      if (cardInputId.value.replace(/\s/g, '').length == 16) {
-        cardOwnerFunction();
-        nextButtonId.style.display = 'block'
-        firstCardSuggestionId.style.display = 'none';
-        secondCardSuggestionId.style.display = 'none';
-        thirdCardSuggestionId.style.display = 'none';
-        fourthCardSuggestionId.style.display = 'none';
-        fifthCardSuggestionId.style.display = 'none';
+    firstCardSuggestionBlockTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      firstCardSuggestionBlockTouchEndX = event.changedTouches[0].pageX
+      firstCardSuggestionBlockTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(firstCardSuggestionBlockTouchEndX - firstCardSuggestionBlockTouchStartX) <= 20 && Math.abs(firstCardSuggestionBlockTouchStartY - firstCardSuggestionBlockTouchEndY) <= 20) {
+
+        cardInputId.value = scope.cardSuggestionOne.cardNumber;
+
+        if (cardInputId.value.replace(/\s/g, '').length == 16) {
+          cardOwnerFunction();
+          nextButtonId.style.display = 'block'
+          firstCardSuggestionId.style.display = 'none';
+          secondCardSuggestionId.style.display = 'none';
+          thirdCardSuggestionId.style.display = 'none';
+          fourthCardSuggestionId.style.display = 'none';
+          fifthCardSuggestionId.style.display = 'none';
+        }
+        else
+          nextButtonId.style.display = 'none'
       }
-      else
-        nextButtonId.style.display = 'none'
+    }
+
+    var secondCardSuggestionBlockTouchStartX, secondCardSuggestionBlockTouchStartY, secondCardSuggestionBlockTouchEndX, secondCardSuggestionBlockTouchEndY;
+
+    secondCardSuggestionBlockTouchStart = function () {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      secondCardSuggestionBlockTouchStartX = event.changedTouches[0].pageX
+      secondCardSuggestionBlockTouchStartY = event.changedTouches[0].pageY
+    }
+
+    secondCardSuggestionBlockTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      secondCardSuggestionBlockTouchEndX = event.changedTouches[0].pageX
+      secondCardSuggestionBlockTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(secondCardSuggestionBlockTouchEndX - secondCardSuggestionBlockTouchStartX) <= 20 && Math.abs(secondCardSuggestionBlockTouchStartY - secondCardSuggestionBlockTouchEndY) <= 20) {
+
+        cardInputId.value = scope.cardSuggestionTwo.cardNumber;
+
+        if (cardInputId.value.replace(/\s/g, '').length == 16) {
+          cardOwnerFunction();
+          nextButtonId.style.display = 'block'
+          firstCardSuggestionId.style.display = 'none';
+          secondCardSuggestionId.style.display = 'none';
+          thirdCardSuggestionId.style.display = 'none';
+          fourthCardSuggestionId.style.display = 'none';
+          fifthCardSuggestionId.style.display = 'none';
+        }
+        else
+          nextButtonId.style.display = 'none'
+      }
+    }
+
+    var thirdCardSuggestionBlockTouchStartX, thirdCardSuggestionBlockTouchStartY, thirdCardSuggestionBlockTouchEndX, thirdCardSuggestionBlockTouchEndY;
+
+    thirdCardSuggestionBlockTouchStart = function () {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      thirdCardSuggestionBlockTouchStartX = event.changedTouches[0].pageX
+      thirdCardSuggestionBlockTouchStartY = event.changedTouches[0].pageY
+    }
+
+    thirdCardSuggestionBlockTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      thirdCardSuggestionBlockTouchEndX = event.changedTouches[0].pageX
+      thirdCardSuggestionBlockTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(thirdCardSuggestionBlockTouchEndX - thirdCardSuggestionBlockTouchStartX) <= 20 && Math.abs(thirdCardSuggestionBlockTouchStartY - thirdCardSuggestionBlockTouchEndY) <= 20) {
+
+        cardInputId.value = scope.cardSuggestionThree.cardNumber;
+
+        if (cardInputId.value.replace(/\s/g, '').length == 16) {
+          cardOwnerFunction();
+          nextButtonId.style.display = 'block'
+          firstCardSuggestionId.style.display = 'none';
+          secondCardSuggestionId.style.display = 'none';
+          thirdCardSuggestionId.style.display = 'none';
+          fourthCardSuggestionId.style.display = 'none';
+          fifthCardSuggestionId.style.display = 'none';
+        }
+        else
+          nextButtonId.style.display = 'none'
+      }
+    }
+
+    var fourthCardSuggestionBlockTouchStartX, fourthCardSuggestionBlockTouchStartY, fourthCardSuggestionBlockTouchEndX, fourthCardSuggestionBlockTouchEndY;
+
+    fourthCardSuggestionBlockTouchStart = function () {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      fourthCardSuggestionBlockTouchStartX = event.changedTouches[0].pageX
+      fourthCardSuggestionBlockTouchStartY = event.changedTouches[0].pageY
+    }
+
+    fourthCardSuggestionBlockTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      fourthCardSuggestionBlockTouchEndX = event.changedTouches[0].pageX
+      fourthCardSuggestionBlockTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(fourthCardSuggestionBlockTouchEndX - fourthCardSuggestionBlockTouchStartX) <= 20 && Math.abs(fourthCardSuggestionBlockTouchStartY - fourthCardSuggestionBlockTouchEndY) <= 20) {
+
+        cardInputId.value = scope.cardSuggestionFour.cardNumber;
+
+        if (cardInputId.value.replace(/\s/g, '').length == 16) {
+          cardOwnerFunction();
+          nextButtonId.style.display = 'block'
+          firstCardSuggestionId.style.display = 'none';
+          secondCardSuggestionId.style.display = 'none';
+          thirdCardSuggestionId.style.display = 'none';
+          fourthCardSuggestionId.style.display = 'none';
+          fifthCardSuggestionId.style.display = 'none';
+        }
+        else
+          nextButtonId.style.display = 'none'
+      }
+    }
+
+    var fifthCardSuggestionBlockTouchStartX, fifthCardSuggestionBlockTouchStartY, fifthCardSuggestionBlockTouchEndX, fifthCardSuggestionBlockTouchEndY;
+
+    fifthCardSuggestionBlockTouchStart = function () {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      fifthCardSuggestionBlockTouchStartX = event.changedTouches[0].pageX
+      fifthCardSuggestionBlockTouchStartY = event.changedTouches[0].pageY
+    }
+
+    fifthCardSuggestionBlockTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      fifthCardSuggestionBlockTouchEndX = event.changedTouches[0].pageX
+      fifthCardSuggestionBlockTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(fifthCardSuggestionBlockTouchEndX - fifthCardSuggestionBlockTouchStartX) <= 20 && Math.abs(fifthCardSuggestionBlockTouchStartY - fifthCardSuggestionBlockTouchEndY) <= 20) {
+
+        cardInputId.value = scope.cardSuggestionFive.cardNumber;
+
+        if (cardInputId.value.replace(/\s/g, '').length == 16) {
+          cardOwnerFunction();
+          nextButtonId.style.display = 'block'
+          firstCardSuggestionId.style.display = 'none';
+          secondCardSuggestionId.style.display = 'none';
+          thirdCardSuggestionId.style.display = 'none';
+          fourthCardSuggestionId.style.display = 'none';
+          fifthCardSuggestionId.style.display = 'none';
+        }
+        else
+          nextButtonId.style.display = 'none'
+      }
     }
 
 

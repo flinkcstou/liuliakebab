@@ -503,7 +503,7 @@
                 result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
               }
 
-              if(result[1][i].state == 0){
+              if(result[1][i].state == 2){
                 result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
               }
 
