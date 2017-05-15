@@ -44,7 +44,7 @@
                       numberpartone="{i.numberPartOne}"
                       numberparttwo="{i.numberPartTwo}"
                       bankname="{i.bankName}" url="{i.url}"
-                      background="{i.card_background_url}"
+                      background="{(i.card_background_url)?(i.card_background_url):('resources/icons/cards/all.png')}"
                       fontcolor="{i.font_color}"></component-card>
     </div>
   </div>

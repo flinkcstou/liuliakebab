@@ -1216,6 +1216,7 @@ var css = {
   "-moz-border-radius:" + 14 * widthK + "px;" +
   "border-radius:" + 14 * widthK + "px;" +
   "background-size: cover;" +
+  //"background-image: url(resources/icons/cards/all.png);" +
   "color: white;" +
     //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
     //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
