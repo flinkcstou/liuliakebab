@@ -251,7 +251,7 @@
             checksum: getAccountsCards[i].checksum,
             bankName: typeOfCard,
             name: getAccountsCards[i].description,
-            salary: getAccountsCards[i].salary,
+            salary: '',
             currency: getAccountsCards[i].currency_name.trim(),
             numberPartOne: numberOfCardPartOne,
             numberPartTwo: numberOfCardPartTwo,
@@ -503,7 +503,7 @@
                               localStorage.setItem("click_client_accountInfo", accountInfo);
                               setTimeout(function () {
 
-                                addCard()
+                                addCard(false)
                               }, 0);
                             }
 
@@ -532,7 +532,7 @@
                 else {
                   setTimeout(function () {
 
-                    addCard(false)
+                    addCard()
                   }, 0);
                 }
               }
@@ -739,6 +739,7 @@
                   if (result[1][0].balance != 0)
                     result[1][0].balance = window.amountTransform(result[1][0].balance.toString());
 
+
                   scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
                   console.log('SCOPE.CARDSARRAY', scope.cardsarray)
                   localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
@@ -747,7 +748,9 @@
                     scope.update();
 
                   if (!scope.checkSumOfHash)
-                    scope.update(scope.cardsarray[result[1][0].account_id].salary);
+                    scope.update();
+
+//                  riot.update()
 
                 }
                 catch (error) {

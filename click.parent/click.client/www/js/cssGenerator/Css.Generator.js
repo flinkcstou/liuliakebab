@@ -65,7 +65,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/payconfirm.png);" +
+    //"background-image: url(resources/draft/registration.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -325,17 +325,18 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 450 * widthK + "px;" +
-  "top:" + 400 * widthK + "px;" +
+  "height:" + 860 * widthK + "px;" +
+  "top:" + 290 * widthK + "px;" +
   "overflow: hidden;" +
   "}",
 
   registrationProcessProcessing: ".registration-process-processing " +
   "{" +
   "position: absolute;" +
-  "width:" + 100 * widthK + "px;" +
-  "height:" + 100 * widthK + "px;" +
-  "left:" + 300 * widthK + "px;" +
+  "width:" + 215 * widthK + "px;" +
+  "height:" + 190 * widthK + "px;" +
+  "left:" + 260 * widthK + "px;" +
+  "top:" + 65 * widthK + "px;" +
   //"top:" + 400 * widthK + "px;" +
   "background-image: url('resources/icons/animation/reg_process.png');" +
   "background-size: contain;" +
@@ -345,9 +346,9 @@ var css = {
   registrationProcessOk: ".registration-process-ok " +
   "{" +
   "position: absolute;" +
-  "width:" + 100 * widthK + "px;" +
-  "height:" + 100 * widthK + "px;" +
-  "left:" + 300 * widthK + "px;" +
+  "width:" + 190 * widthK + "px;" +
+  "height:" + 190 * widthK + "px;" +
+  "left:" + 285 * widthK + "px;" +
   //"top:" + 400 * widthK + "px;" +
   "background-image: url('resources/icons/animation/reg_ok.png');" +
   "background-size: contain;" +
@@ -357,13 +358,53 @@ var css = {
   registrationProcessX: ".registration-process-x " +
   "{" +
   "position: absolute;" +
-  "width:" + 100 * widthK + "px;" +
-  "height:" + 100 * widthK + "px;" +
+  "width:" + 140 * widthK + "px;" +
+  "height:" + 140 * widthK + "px;" +
   "left:" + 300 * widthK + "px;" +
   //"top:" + 400 * widthK + "px;" +
   "background-image: url('resources/icons/animation/reg_error.png');" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
+  "}",
+
+  registrationProcessButtonNext: ".registration-process-button-next" +
+  "{" +
+  "height: " + 62 * widthK + "px;" +
+  "font-size: " + 30 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "left: 33%;" +
+  "width: 34%;" +
+  "background-color: #ffffff;" +
+  //"border-radius: " + 10 * widthK + "px;" +
+  "bottom: " + 33 * widthK + "px;" +
+  "color: #555555;" +
+  "}",
+
+  registrationProcessButtonCheckStatus: ".registration-process-button-check-status" +
+  "{" +
+  "height: " + 62 * widthK + "px;" +
+  "font-size: " + 30 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "left: 13%;" +
+  "width: 74%;" +
+  "background-color: #ffffff;" +
+  //"border-radius: " + 10 * widthK + "px;" +
+  "bottom: " + 33 * widthK + "px;" +
+  "color: #555555;" +
+  "}",
+
+  registrationProcessCheckStatusLabel: ".registration-process-check-status-label" +
+  "{" +
+  "margin-top: 54%;" +
+  "width: 90%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "}",
 
   //VIEW REGISTRATION DEVICE
