@@ -56,18 +56,18 @@
 
 
     console.log('OPTS', opts);
-    var arrayForPay = [];
-    arrayForPay.push(opts[0]);
-    arrayForPay.push(opts[1]);
-    arrayForPay.push(opts[2]);
-    arrayForPay.push(opts[3]);
-    arrayForPay.push(opts[4]);
-    arrayForPay.push(opts[5]);
-    arrayForPay.push(opts[6]);
-    arrayForPay.push(opts[7]);
-    //    8 - mode for titlename
-    arrayForPay.push(opts[8]);
-    console.log(arrayForPay);
+    //    var arrayForPay = [];
+    //    arrayForPay.push(opts[0]);
+    //    arrayForPay.push(opts[1]);
+    //    arrayForPay.push(opts[2]);
+    //    arrayForPay.push(opts[3]);
+    //    arrayForPay.push(opts[4]);
+    //    arrayForPay.push(opts[5]);
+    //    arrayForPay.push(opts[6]);
+    //    arrayForPay.push(opts[7]);
+    //    //    8 - mode for titlename
+    //    arrayForPay.push(opts[8]);
+    //    console.log(arrayForPay);
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards') {
       history.arrayOfHistory.push(
@@ -108,11 +108,11 @@
     goToPayConfirmView = function () {
 
       var cardSumFromPinCards = scope.tags['component-pincards'].getAccountCardSum();
-      console.log(cardSumFromPinCards, arrayForPay[5].amountText)
+      console.log(cardSumFromPinCards, opts[5].amountText)
       var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
       scope.update()
-      if (cardSumFromPinCards && cardSumFromPinCards < parseInt(arrayForPay[5].amountText)) {
-        console.log(cardSumFromPinCards, arrayForPay[5].amountText)
+      if (cardSumFromPinCards && cardSumFromPinCards < parseInt(opts[5].amountText)) {
+        console.log(cardSumFromPinCards, opts[5].amountText)
         scope.clickPinError = false;
         scope.errorNote = "На выбранной карте недостаточно средств";
         scope.showError = true;
@@ -127,7 +127,7 @@
         event.preventDefault();
         event.stopPropagation();
         this.riotTags.innerHTML = "<view-pay-confirm>";
-        riot.mount('view-pay-confirm', [arrayForPay, false, viewServicePinCards.chosenFriendForHelp]);
+        riot.mount('view-pay-confirm', [opts, false, viewServicePinCards.chosenFriendForHelp]);
         scope.unmount()
       } else {
         for (var i in cardsArray) {
@@ -138,12 +138,12 @@
             event.stopPropagation();
             if (opts[8] == 'ADDAUTOPAY') {
               this.riotTags.innerHTML = "<view-pay-confirm>";
-              riot.mount('view-pay-confirm', [arrayForPay, true, scope.chosencardId, 'ADDAUTOPAY']);
+              riot.mount('view-pay-confirm', [opts, true, scope.chosencardId, 'ADDAUTOPAY']);
               scope.unmount()
 
             } else {
               this.riotTags.innerHTML = "<view-pay-confirm>";
-              riot.mount('view-pay-confirm', [arrayForPay, true, scope.chosencardId]);
+              riot.mount('view-pay-confirm', [opts, true, scope.chosencardId]);
               scope.unmount()
             }
           }

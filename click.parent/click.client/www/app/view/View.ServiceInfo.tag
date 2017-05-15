@@ -81,18 +81,6 @@
 
 
     console.log('OPTS', opts);
-    var arrayForPay = [];
-    arrayForPay.push(opts[0]);
-    arrayForPay.push(opts[1]);
-    arrayForPay.push(opts[2]);
-    arrayForPay.push(opts[3]);
-    arrayForPay.push(opts[4]);
-    arrayForPay.push(opts[5]);
-    arrayForPay.push(opts[6]);
-    arrayForPay.push(opts[7]);
-    //    8 - mode for titlename
-    arrayForPay.push(opts[8]);
-    console.log(arrayForPay);
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-info') {
       history.arrayOfHistory.push(
@@ -129,17 +117,51 @@
     this.serviceIcon = scope.service.image;
     this.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
 
-    console.log("PAYMENT_DATA=", opts[8].payment_data)
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-    scope.serviceData;
+    var payment_data, optionAttribute;
+
+    if (opts[0].formtype == 1) {
+      payment_data = {
+        "param": opts[1].firstFieldId,
+        "value": opts[2].firstFieldText,
+        "transaction_id": parseInt(Date.now() / 1000)
+      };
+//      opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+    }
+    else if (opts[0].formtype == 2) {
+      payment_data = {
+        "pin_param": opts[3].cardTypeId,
+        "transaction_id": parseInt(Date.now() / 1000)
+      };
+//      opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+    }
+    else if (opts[0].formtype == 3) {
+      payment_data = {
+        "param": opts[1].firstFieldId,
+        "value": opts[2].firstFieldText,
+        "communal_param": opts[4].communalParam,
+        "transaction_id": parseInt(Date.now() / 1000)
+      };
+//      opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+
+    }
+    else if (opts[0].formtype == 4) {
+      payment_data = {
+        "param": opts[1].firstFieldId,
+        "value": opts[2].firstFieldText,
+        "internetPackageParam": opts[6].internetPackageParam,
+        "transaction_id": parseInt(Date.now() / 1000)
+      };
+//      opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+    }
 
     window.api.call({
       method: 'get.additional.information',
       input: {
         phone_num: phoneNumber,
         service_id: viewPay.chosenServiceId,
-        payment_data: opts[8].payment_data
+        payment_data: payment_data
       },
 
       scope: this,
@@ -148,12 +170,14 @@
         if (result[0][0].error == 0) {
           console.log("result of GET ADDITIONAL INFO 0", result);
           if (result[1]) {
-            scope.serviceData = result[1];
-            if (result[1][0].information_type == 1) {
+            scope.serviceData = result[1][0];
+            if (result[1][0].information_type == 3) {
               scope.optionsArray = result[1][0].options;
+              optionAttribute = result[1][0].options[0].option_payment_attribute;
+              opts.optionAttribute = optionAttribute;
               scope.type = 3;
               scope.update();
-            } else if (result[1][0].information_type == 3) {
+            } else if (result[1][0].information_type == 1 || result[1][0].information_type == 4) {
               console.log("ADFDSFDS");
               scope.type = 1;
               scope.update();
@@ -180,15 +204,29 @@
         document.getElementById("check" + scope.index).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
       document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
       scope.index = id;
+      opts.optionValue = id;
     }
 
 
     goToNextPage = function () {
       console.log("dfkl");
+      console.log(scope.index)
+      console.log(scope.serviceData.information_type)
+      console.log(opts.optionAttribute)
+      console.log(opts.optionValue)
 
-      this.riotTags.innerHTML = "<view-service-pincards>";
-      riot.mount('view-service-pincards', opts);
-      scope.unmount()
+      if (scope.index == -1 && scope.serviceData.information_type == 3) {
+        console.log("asd");
+        scope.clickPinError = false;
+        scope.errorNote = "Выберите из вариантов";
+        scope.showError = true;
+        scope.update();
+      } else {
+        this.riotTags.innerHTML = "<view-service-pincards>";
+        riot.mount('view-service-pincards', opts);
+        scope.unmount()
+      }
+
     };
 
 

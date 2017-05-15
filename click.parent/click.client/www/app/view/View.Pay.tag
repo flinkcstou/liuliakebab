@@ -44,9 +44,6 @@
 
     console.log('opts', opts)
 
-    this.on('mount', function () {
-
-    })
 
     if (opts.mode == 'ADDAUTOPAY')
       this.titleName = window.languages.ViewAutoPayTitleName;
@@ -513,6 +510,9 @@
             console.log("222");
             scope.autoPayData.service_id = id;
           }
+          scope.autoPayData.fromView = 'PAY';
+          scope.autoPayData.isNew = true;
+
           event.preventDefault();
           event.stopPropagation();
           if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available) {

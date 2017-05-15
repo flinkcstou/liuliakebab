@@ -4229,7 +4229,7 @@ var css = {
   payconfirmActionText: ".payconfirm-action-text" +
   "{" +
   "top: 30%;" +
-  "left: 4%;" +
+  "left: 1%;" +
   "position: relative;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
