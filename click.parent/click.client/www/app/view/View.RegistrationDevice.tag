@@ -26,7 +26,7 @@
 
 
   <div class="registration-buttons-container">
-    <div if="{device.platform != 'iOS'}" class="registration-container-offline"
+    <div if="{device.platform != 'iOS'}" class="registration-container-offline" ontouchstart="registrationOfflineTouchStart()"
          ontouchend="registrationOfflineTouchEnd()">
       <div class="registration-button-offline">{window.languages.ViewRegistrationDeviceButtonOffline}</div>
     </div>
@@ -131,15 +131,34 @@
     }
     }
 
+    var offlineTouchStartX, offlineTouchStartY, offlineTouchEndX, offlineTouchEndY;
+
+    registrationOfflineTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      offlineTouchStartX = event.changedTouches[0].pageX
+      offlineTouchStartY = event.changedTouches[0].pageY
+
+
+    }
+
     registrationOfflineTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      modeOfApp.onlineMode = false;
-      modeOfApp.offlineMode = true;
-      this.riotTags.innerHTML = "<view-main-page>";
-      riot.mount('view-main-page');
-      scope.unmount()
+      offlineTouchEndX = event.changedTouches[0].pageX
+      offlineTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(offlineTouchStartX - offlineTouchEndX) <= 20 && Math.abs(offlineTouchStartY - offlineTouchEndY) <= 20) {
+
+        modeOfApp.onlineMode = false;
+        modeOfApp.offlineMode = true;
+
+        this.riotTags.innerHTML = "<view-main-page>";
+        riot.mount('view-main-page');
+        scope.unmount()
+      }
     }
 
     goToDemo = function () {

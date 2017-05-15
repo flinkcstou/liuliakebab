@@ -4,7 +4,7 @@
       <div class="sms-phone-field">
         <p class="sms-text-field-one">{window.languages.ViewSmsFieldOne}</p>
         <p class="sms-phone-input">{confirmSms}</p>
-        <div class="sms-timer" ontouchend="touchEndResend()">{time}
+        <div class="sms-timer" ontouchend="touchEndResend()" ontouchstart="touchStartResend()">{time}
           <div class="sms-resend-icon"></div>
         </div>
 
@@ -180,16 +180,32 @@
 
     }
 
+    var resendTouchStartX, resendTouchStartY, resendTouchEndX, resendTouchEndY;
+
+    touchStartResend = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      resendTouchStartX = event.changedTouches[0].pageX
+      resendTouchStartY = event.changedTouches[0].pageY
+    }
+
     touchEndResend = function () {
 
       event.preventDefault();
       event.stopPropagation();
-      scope.clickPinError = false;
-      scope.errorNote = window.languages.ViewSmsResendText + localStorage.getItem('click_client_phoneNumber');
-      scope.showError = true;
-      scope.update();
+
+      resendTouchEndX = event.changedTouches[0].pageX
+      resendTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(resendTouchStartX - resendTouchEndX) <= 20 && Math.abs(resendTouchStartY - resendTouchEndY) <= 20) {
+        scope.clickPinError = false;
+        scope.errorNote = window.languages.ViewSmsResendText + localStorage.getItem('click_client_phoneNumber');
+        scope.showError = true;
+        scope.update();
 //      alert(window.languages.ViewSmsResendText + localStorage.getItem('click_client_phoneNumber'));
-      resendSms();
+        resendSms();
+      }
     }
 
     resendSms = function () {

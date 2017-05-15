@@ -20,14 +20,16 @@
   </div>
 
   <div class="authorization-buttons-container">
-    <div id="TESTID" class="authorization-button-forget-pin" ontouchend="pinReset()">
+    <div id="TESTID" class="authorization-button-forget-pin" ontouchstart="pinResetTouchStart()"
+         ontouchend="pinResetTouchEnd()">
       {window.languages.ViewAuthorizationForgetPinLabel}
     </div>
     <div class="authorization-button-registration" ontouchend="resetLocalStorageTouchEnd()">
       {window.languages.ViewAuthorizationResetLocalStorageLabel}
     </div>
   </div>
-  <div if="{device.platform != 'iOS'}" class="authorization-button-offline" ontouchstart="offlineMode()">
+  <div if="{device.platform != 'iOS'}" class="authorization-button-offline" ontouchstart="offlineModeTouchStart()"
+       ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
 
@@ -125,34 +127,70 @@
       scope.checkAndroid = true;
     }
 
-    pinReset = function () {
-      componentPinResetId.style.display = 'block';
+    var pinResetTouchStartX, pinResetTouchStartY, pinResetTouchEndX, pinResetTouchEndY;
+
+    pinResetTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      pinResetTouchStartX = event.changedTouches[0].pageX
+      pinResetTouchStartY = event.changedTouches[0].pageY
+
+
     };
+
+
+    pinResetTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      pinResetTouchEndX = event.changedTouches[0].pageX
+      pinResetTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(pinResetTouchStartX - pinResetTouchEndX) <= 20 && Math.abs(pinResetTouchStartY - pinResetTouchEndY) <= 20) {
+        componentPinResetId.style.display = 'block';
+      }
+    };
+
+    var resetLocalStorageTouchStartX, resetLocalStorageTouchStartY, resetLocalStorageTouchEndX, resetLocalStorageTouchEndY;
+
+    resetLocalStorageTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      resetLocalStorageTouchStartX = event.changedTouches[0].pageX
+      resetLocalStorageTouchStartY = event.changedTouches[0].pageY
+
+    }
 
     resetLocalStorageTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-      var question = 'Подтвердите удаление данных'
+
+      resetLocalStorageTouchEndX = event.changedTouches[0].pageX
+      resetLocalStorageTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(resetLocalStorageTouchStartX - resetLocalStorageTouchEndX) <= 20 && Math.abs(resetLocalStorageTouchStartY - resetLocalStorageTouchEndY) <= 20) {
+        var question = 'Подтвердите удаление данных'
 //        confirm(question)
-      scope.confirmShowBool = true;
-      scope.confirmNote = question;
-      scope.confirmType = 'local';
-      scope.result = function (bool) {
-        if (bool) {
-          localStorage.clear();
-          riotTags.innerHTML = "<view-registration-device>";
-          riot.mount('view-registration-device');
-          scope.unmount()
-          return
-        }
-      };
-      scope.update();
+        scope.confirmShowBool = true;
+        scope.confirmNote = question;
+        scope.confirmType = 'local';
+        scope.result = function (bool) {
+          if (bool) {
+            localStorage.clear();
+            riotTags.innerHTML = "<view-registration-device>";
+            riot.mount('view-registration-device');
+            scope.unmount()
+            return
+          }
+        };
+        scope.update();
 //      if (scope.result) {
 //        localStorage.clear();
 //        this.riotTags.innerHTML = "<view-registration-device>";
 //        riot.mount('view-registration-device');
 //        return
 //      }
+      }
     };
 
     var pin;
@@ -188,24 +226,32 @@
       }
     }
 
-    offlineMode = function () {
+    var offlineModeTouchStartX, offlineModeTouchStartY, offlineModeTouchEndX, offlineModeTouchEndY;
+
+    offlineModeTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      modeOfApp.onlineMode = false
-      modeOfApp.offlineMode = true;
-      var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-//      console.log('sessionKey', sessionKey)
-      if (loginInfo) {
+
+      offlineModeTouchStartX = event.changedTouches[0].pageX
+      offlineModeTouchStartY = event.changedTouches[0].pageY
+
+    }
+    offlineModeTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      offlineModeTouchEndX = event.changedTouches[0].pageX
+      offlineModeTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(offlineModeTouchStartX - offlineModeTouchEndX) <= 20 && Math.abs(offlineModeTouchStartY - offlineModeTouchEndY) <= 20) {
+        modeOfApp.onlineMode = false
+        modeOfApp.offlineMode = true;
+
         this.riotTags.innerHTML = "<view-main-page>";
         riot.mount('view-main-page');
         scope.unmount()
       }
-      else {
-        scope.clickPinError = false;
-        scope.errorNote = 'Do first enter with Internet';
-        scope.showError = true;
-        scope.update();
-      }
+
 
     };
 
