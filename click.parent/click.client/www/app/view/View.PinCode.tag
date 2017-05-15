@@ -34,7 +34,7 @@
       <div id="registrationProcessingId" class="registration-process-processing">
       </div>
       <div class="registration-process-text">
-        <p style="margin-bottom: 4px">Пожалуйста, подождите.<br>Мы регистрируем вашу кату в системе CLICK!</p>
+        <p style="margin-top: 55%">Пожалуйста, подождите.<br><br>Мы регистрируем вашу карту в системе CLICK!</p>
       </div>
     </div>
 
@@ -42,19 +42,26 @@
       <div class="registration-process-ok">
       </div>
       <div class="registration-process-text">
-        <p style="margin-bottom: 4px">Ваша карта<br>успешно зарегестрирована!</p>
+        <p style="margin-top: 54%">Ваша карта<br>успешно зарегестрирована!</p>
 
       </div>
+
+      <button class="registration-process-button-next" ontouchstart="registrationProcessNextTouchStart()"
+              ontouchend="registrationProcessNextTouchEnd()">ДАЛЕЕ
+      </button>
     </div>
 
     <div if="{registrationSuccess == -1}" class="registration-process-container">
       <div class="registration-process-x">
       </div>
       <div class="registration-process-text">
-        <p style="margin-bottom: 4px">Возникли неполадки при регистрации Вашей карты.<br>Провертье статус регистрации
-          через несколько минут</p>
+        <p class="registration-process-check-status-label" id="registrationProcessErorrId"></p>
 
       </div>
+
+      <button class="registration-process-button-check-status" ontouchstart="registrationProcessCheckStatusTouchStart()"
+              ontouchend="registrationProcessCheckStatusTouchEnd()">ПОВТОРИТЬ РЕГИСТРАЦИЮ
+      </button>
     </div>
 
 
@@ -150,6 +157,58 @@
       }
     }
 
+
+    var registrationNextTouchStartX, registrationNextTouchStartY, registrationNextTouchEndX, registrationNextTouchEndY;
+
+    registrationProcessNextTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      registrationNextTouchStartX = event.changedTouches[0].pageX;
+      registrationNextTouchStartY = event.changedTouches[0].pageY;
+    }
+
+    registrationProcessNextTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      registrationNextTouchEndX = event.changedTouches[0].pageX;
+      registrationNextTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(registrationNextTouchStartX - registrationNextTouchEndX) <= 20 && Math.abs(registrationNextTouchStartY - registrationNextTouchEndY) <= 20) {
+
+        riotTags.innerHTML = "<view-authorization>";
+        riot.mount('view-authorization', {from: "registration-client"});
+
+        scope.unmount()
+      }
+    }
+
+    var registrationCheckStatusTouchStartX, registrationCheckStatusTouchStartY, registrationCheckStatusTouchEndX, registrationCheckStatusTouchEndY;
+
+    registrationProcessCheckStatusTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      registrationCheckStatusTouchStartX = event.changedTouches[0].pageX;
+      registrationCheckStatusTouchStartY = event.changedTouches[0].pageY;
+    }
+
+    registrationProcessCheckStatusTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      registrationCheckStatusTouchEndX = event.changedTouches[0].pageX;
+      registrationCheckStatusTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(registrationCheckStatusTouchStartX - registrationCheckStatusTouchEndX) <= 20 && Math.abs(registrationCheckStatusTouchStartY - registrationCheckStatusTouchEndY) <= 20) {
+
+        riotTags.innerHTML = "<view-registration-client>";
+        riot.mount('view-registration-client');
+
+      }
+    }
+
     updateEnteredPin = function () {
 
 
@@ -240,22 +299,6 @@
       event.preventDefault();
       event.stopPropagation();
 
-      var processOpacity = 10;
-      scope.showRegistrationProcess = true;
-      scope.update();
-      scope.registrationProcessInterval = setInterval(function () {
-        if (scope.registrationSuccess) {
-          clearInterval(scope.registrationProcessInterval)
-          return
-        }
-        registrationProcessingId.style.opacity = '0.' + processOpacity;
-//        console.log('Changing Opacity')
-        processOpacity++;
-        if (processOpacity == 99) {
-          processOpacity = 10;
-        }
-      }, 20)
-
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       localStorage.setItem("click_client_pin", JSON.stringify(hex_md5(pin)))
 
@@ -283,6 +326,22 @@
           console.log(result)
           console.log(result[0][0])
           if (result[0][0].error == 0) {
+
+            var processOpacity = 10;
+            scope.showRegistrationProcess = true;
+            scope.update();
+            scope.registrationProcessInterval = setInterval(function () {
+              if (scope.registrationSuccess != 0) {
+                clearInterval(scope.registrationProcessInterval)
+                return
+              }
+              registrationProcessingId.style.opacity = '0.' + processOpacity;
+//        console.log('Changing Opacity')
+              processOpacity++;
+              if (processOpacity == 99) {
+                processOpacity = 10;
+              }
+            }, 20)
             console.log('REGISTRATION CLIENT', result)
 //            scope.clickPinError = false;
 //            scope.errorNote = result[0][0].error_note;
@@ -343,14 +402,16 @@
             else {
               if (result[1][0].registered == -1) {
                 scope.registrationSuccess = -1;
+                registrationProcessErorrId.innerText = result[0][0].error_note;
 //                clearInterval(registrationInterval)
 
                 console.log("ANSWER OF CHECK REGISTRATION", -1)
 
-                setTimeout(function () {
-                  riotTags.innerHTML = "<view-registration-client>";
-                  riot.mount('view-registration-client')
-                }, 10000)
+//
+//                setTimeout(function () {
+//                  riotTags.innerHTML = "<view-registration-client>";
+//                  riot.mount('view-registration-client')
+//                }, 10000)
               }
               if (result[1][0].registered == 1) {
                 window.standCheckRegistration = true;
@@ -360,10 +421,6 @@
 
                 console.log("ANSWER OF CHECK REGISTRATION", 1)
 
-                setTimeout(function () {
-                  riotTags.innerHTML = "<view-authorization>";
-                  riot.mount('view-authorization', {from: "registration-client"});
-                }, 1000)
               }
 
             }
