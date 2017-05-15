@@ -203,8 +203,6 @@
 
       offlineTouchStartX = event.changedTouches[0].pageX
       offlineTouchStartY = event.changedTouches[0].pageY
-
-
     }
 
     registrationClientOfflineTouchEnd = function () {
