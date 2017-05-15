@@ -26,6 +26,9 @@
 
   </div>
 
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
 
     var scope = this;
@@ -94,9 +97,17 @@
       autoPayEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(autoPayStartX - autoPayEndX) <= 20 && Math.abs(autoPayStartY - autoPayEndY) <= 20) {
-        riotTags.innerHTML = "<view-auto-pay>";
-        riot.mount('view-auto-pay');
+        if (modeOfApp.onlineMode) {
+
+          riotTags.innerHTML = "<view-auto-pay>";
+          riot.mount('view-auto-pay');
 //        scope.unmount();
+        } else {
+          scope.clickPinError = false;
+          scope.errorNote = "Раздел автоплатежей доступен только в онлайн режиме";
+          scope.showError = true;
+          scope.update();
+        }
       }
     }
 

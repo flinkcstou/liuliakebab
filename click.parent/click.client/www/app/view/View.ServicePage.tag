@@ -945,35 +945,35 @@
         else
           var communalParam = {"communalParam": scope.chosenFieldParamIdTwo};
 
-        payment_data = {
-          "param": firstFieldId.firstFieldId,
-          "value": firstFieldText.firstFieldText,
-          "communal_param": communalParam.communalParam,
-          "transaction_id": parseInt(Date.now() / 1000)
-        };
+//        payment_data = {
+//          "param": firstFieldId.firstFieldId,
+//          "value": firstFieldText.firstFieldText,
+//          "communal_param": communalParam.communalParam,
+//          "transaction_id": parseInt(Date.now() / 1000)
+//        };
 
       } else if (scope.formType == 1) {
         var communalParam = {"communalParam": null};
         var internetPackageParam = {"internetPackageParam": null};
         var amountText = {"amountText": amountForPayTransaction};
 
-        payment_data = {
-          "param": firstFieldId.firstFieldId,
-          "value": firstFieldText.firstFieldText,
-          "transaction_id": parseInt(Date.now() / 1000)
-        };
+//        payment_data = {
+//          "param": firstFieldId.firstFieldId,
+//          "value": firstFieldText.firstFieldText,
+//          "transaction_id": parseInt(Date.now() / 1000)
+//        };
       } else if (scope.formType == 4) {
         var communalParam = {"communalParam": null};
         if (scope.chosenFieldParamIdThree && scope.amountOfFormTypeFour) {
           var amountText = {"amountText": scope.amountOfFormTypeFour};
           var internetPackageParam = {"internetPackageParam": scope.chosenFieldParamIdThree};
 
-          payment_data = {
-            "param": firstFieldId.firstFieldId,
-            "value": firstFieldText.firstFieldText,
-            "internetPackageParam": internetPackageParam.internetPackageParam,
-            "transaction_id": parseInt(Date.now() / 1000)
-          };
+//          payment_data = {
+//            "param": firstFieldId.firstFieldId,
+//            "value": firstFieldText.firstFieldText,
+//            "internetPackageParam": internetPackageParam.internetPackageParam,
+//            "transaction_id": parseInt(Date.now() / 1000)
+//          };
         } else {
           scope.clickPinError = false;
           scope.errorNote = "Выберите интернет пакет";
@@ -1078,7 +1078,7 @@
             scope.unmount()
           } else {
             this.riotTags.innerHTML = "<view-service-info>";
-            riot.mount('view-service-info', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, payment_data])
+            riot.mount('view-service-info', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites])
             scope.unmount()
           }
 
@@ -1109,7 +1109,6 @@
         }
         scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
         scope.autoPayData.name = autoPayNameInput.value;
-        scope.autoPayData.isNew = true;
         localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
         this.riotTags.innerHTML = "<view-service-pincards>";
@@ -1190,7 +1189,6 @@
           }
           scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
           scope.autoPayData.name = autoPayNameInput.value;
-          scope.autoPayData.isNew = true;
           localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
           this.riotTags.innerHTML = "<view-service-pincards>";

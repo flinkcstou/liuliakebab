@@ -336,7 +336,7 @@ var css = {
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "left:" + 300 * widthK + "px;" +
-  //"top:" + 400 * widthK + "px;" +
+    //"top:" + 400 * widthK + "px;" +
   "background-image: url('resources/icons/animation/reg_process.png');" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
@@ -348,7 +348,7 @@ var css = {
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "left:" + 300 * widthK + "px;" +
-  //"top:" + 400 * widthK + "px;" +
+    //"top:" + 400 * widthK + "px;" +
   "background-image: url('resources/icons/animation/reg_ok.png');" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
@@ -360,7 +360,7 @@ var css = {
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "left:" + 300 * widthK + "px;" +
-  //"top:" + 400 * widthK + "px;" +
+    //"top:" + 400 * widthK + "px;" +
   "background-image: url('resources/icons/animation/reg_error.png');" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
@@ -4188,7 +4188,7 @@ var css = {
   payconfirmActionText: ".payconfirm-action-text" +
   "{" +
   "top: 30%;" +
-  "left: 4%;" +
+  "left: 1%;" +
   "position: relative;" +
   "margin-right: auto;" +
   "margin-left: auto;" +

@@ -72,7 +72,9 @@
              class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-autopay-none:!cardOrFriendBool}">
           <div class="payconfirm-action-icon-two"
                style="background-image: url('resources/icons/ViewService/addautopay.png');"></div>
-          <div class="payconfirm-action-text">{window.languages.ViewPayConfirmAddToAutoPay}</div>
+          <div class="payconfirm-action-text" ontouchend="addToAutoPay()">
+            {window.languages.ViewPayConfirmAddToAutoPay}
+          </div>
         </div>
       </div>
       <button class="{payconfirm-button-enter:opts[3]!='ADDAUTOPAY', autopay-button:opts[3]=='ADDAUTOPAY'}"
@@ -101,6 +103,8 @@
 
 
   <script>
+
+    console.log("OPTS PAYCONFIRM", opts)
 
     var scope = this;
     goToBack = function () {
@@ -343,6 +347,11 @@
           });
         }
 
+
+        if (opts[0].optionAttribute && opts[0].optionValue) {
+          payment_data[opts[0].optionAttribute] = opts[0].optionValue;
+        }
+
         window.api.call({
           method: 'app.payment',
           input: {
@@ -582,8 +591,6 @@
             scope.stepAmount = 1;
             scope.update();
             componentSuccessId.style.display = 'block';
-
-
           }
           else {
             console.log("result of autopay.delete", result);
@@ -597,6 +604,32 @@
         }
       });
     }
+
+    addToAutoPay = function () {
+      opts.mode = 'ADDAUTOPAY';
+      scope.autoPayData = {};
+      opts.id = viewPay.chosenServiceId;
+      scope.autoPayData.service_id = viewPay.chosenServiceId;
+      scope.autoPayData.fromView = 'PAYCONFIRM';
+
+      event.preventDefault();
+      event.stopPropagation();
+      if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available) {
+        localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+        riotTags.innerHTML = "<view-autopay-method>";
+        riot.mount("view-autopay-method", opts);
+        scope.unmount()
+      } else {
+        scope.autoPayData.title = window.languages.ViewAutoPayMethodSchedulerText;
+        scope.autoPayData.autopay_type = 1;
+        localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+        riotTags.innerHTML = "<view-autopay-schedule-method>";
+        riot.mount("view-autopay-schedule-method", opts);
+        scope.unmount()
+      }
+
+    }
+
 
   </script>
 </view-pay-confirm>

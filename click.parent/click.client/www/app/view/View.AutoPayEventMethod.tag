@@ -79,7 +79,7 @@
     this.titleName = window.languages.ViewAutoPayTitleName;
     scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
-    console.log("ID of srevice in event=", opts.id);
+    console.log("OPTS AutoPayMethod EVENT=", opts);
 
     if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
       console.log("My number part");

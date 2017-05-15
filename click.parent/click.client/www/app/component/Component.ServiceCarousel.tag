@@ -52,6 +52,7 @@
       scope.update();
     }
     scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+    scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
 
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -340,9 +341,18 @@
               return
             }
 
-            this.riotTags.innerHTML = "<view-service-pincards>";
-            riot.mount('view-service-pincards', scope.favoritePaymentsList[i].opts);
-            scope.unmount()
+            scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
+
+            if (scope.service.additional_information_type == 3) {
+              this.riotTags.innerHTML = "<view-service-info>";
+              riot.mount('view-service-info', scope.favoritePaymentsList[i].opts)
+              scope.unmount()
+            } else {
+              this.riotTags.innerHTML = "<view-service-pincards>";
+              riot.mount('view-service-pincards', scope.favoritePaymentsList[i].opts);
+              scope.unmount()
+            }
+
 
           }
 

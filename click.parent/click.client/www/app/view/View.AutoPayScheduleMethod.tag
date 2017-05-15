@@ -91,6 +91,8 @@
                    errornote="{errorNote}"></component-alert>
 
   <script>
+
+    console.log("OPTS AutoPayMethod SCHEDULE=", opts);
     var scope = this;
     scope.showError = false;
     this.titleName = window.languages.ViewAutoPayTitleName;
