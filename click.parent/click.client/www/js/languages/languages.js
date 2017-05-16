@@ -405,7 +405,7 @@ var RU_LANGUAGES =
   "ViewAutoPayMethodScheduleMinutesText": "мин",
   "ViewAutoPayMethodScheduleHMColonText": ":",
   "ViewAutoPayMethodScheduleChoseWeekDay": "Выберите день недели",
-  "ViewAutoPayMethodScheduleChoseButtonLabel": "Выбрать",
+  "ViewAutoPayMethodScheduleChoseButtonLabel": "ВЫБРАТЬ",
 
   "ViewAutoPayMethodScheduleDaysArray": [{"k": -3, "v": '28'}, {"k": -2, "v": '29'}, {"k": -1, "v": '30'},
     {"k": 0, "v": '31'}, {"k": 1, "v": '01'}, {"k": 2, "v": '02'}, {"k": 3, "v": '03'},

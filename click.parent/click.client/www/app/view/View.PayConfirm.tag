@@ -137,7 +137,6 @@
       scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
       if (scope.autoPayData.fromView == 'AFTERCREATION') {
         opts[3] = 'USUAL';
-        console.log('OPTS[3]', opts)
         scope.update();
       } else {
         scope.autoPayTypeText = scope.autoPayData.title;
@@ -212,6 +211,7 @@
 
     if (scope.cardOrFriendBool) {
       var chosenCardId = opts[2];
+
       if (cardsArray[chosenCardId]) {
         scope.cardName = cardsArray[chosenCardId].name;
         scope.numberPartOne = cardsArray[chosenCardId].numberPartOne;

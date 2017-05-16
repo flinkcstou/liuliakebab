@@ -12474,7 +12474,7 @@ var css = {
   "position: absolute;" +
   "height: 100%;" +
   "width: 100%;" +
-  "background-image:  url(resources/icons/transparent.png);" +
+  "background-image:  url(resources/icons/timeblock.png);" +
   "z-index: 99999;" +
   "display: none;" +
   "}",
@@ -12527,9 +12527,9 @@ var css = {
   "background-color: #01B8FE;" +
   "border-radius: " + 10 * widthK + "px;" +
   "bottom: 0;" +
-  "font-size: " + 38 * widthK + "px;" +
+  "font-size: " + 32 * widthK + "px;" +
   "color: #ffffff;" +
-  "bottom: 6%;" +
+  "bottom: 17%;" +
   "}",
 
   scheduleDateBlockDaysOuterContainer: ".schedule-date-block-days-outer-container " +
@@ -12546,10 +12546,10 @@ var css = {
   scheduleDateBlockTimeOuterContainer: ".schedule-date-block-time-outer-container " +
   "{" +
   "position: relative;" +
-  "width: " + 600 * widthK + "px;" +
-  "height:" + 450 * widthK + "px;" +
-  "top: " + 335 * widthK + "px;" +
-  "left: 7%;" +
+  "width: " + 440 * widthK + "px;" +
+  "height:" + 440 * widthK + "px;" +
+  "top: " + 311 * widthK + "px;" +
+  "left:" + 140 * widthK + "px;" +
     //"background-color: #01B8FE;" +
   "overflow: hidden;" +
   "}",
@@ -12575,8 +12575,8 @@ var css = {
   scheduleDateBlockHoursContainer: ".schedule-date-block-hours-container " +
   "{" +
   "position: absolute;" +
-  "width: " + 250 * widthK + "px;" +
-  "height:" + 500 * widthK + "px;" +
+  "width: " + 200 * widthK + "px;" +
+  "height:" + 440 * widthK + "px;" +
   "left: 0;" +
   "}",
 
@@ -12584,17 +12584,17 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: " + 50 * widthK + "px;" +
-  "height:" + 500 * widthK + "px;" +
-  "left: " + 275 * widthK + "px;" +
+  "height:" + 440 * widthK + "px;" +
+  "left: " + 195 * widthK + "px;" +
     //"background-color: #01B8FE;" +
   "}",
 
   scheduleDateBlockMinutesContainer: ".schedule-date-block-minutes-container " +
   "{" +
   "position: absolute;" +
-  "width: " + 250 * widthK + "px;" +
-  "height:" + 500 * widthK + "px;" +
-  "right: 0;" +
+  "width: " + 200 * widthK + "px;" +
+  "height:" + 440 * widthK + "px;" +
+  "right:" + 10 * widthK + "px;" +
   "}",
 
 
@@ -12653,7 +12653,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 80%;" +
-  "top: 30%;" +
+  "top: 24%;" +
   "left: 10%;" +
   "height:" + 100 * widthK + "px;" +
   "}",
@@ -12676,7 +12676,7 @@ var css = {
   "top: 25%;" +
   "font-size:" + 25 * widthK + "px;" +
   "background-color: #f4f4f4;" +
-  "left: 13%;" +
+  "left: 25%;" +
   "margin: 0;" +
   "float: left;" +
   "}",
@@ -12690,7 +12690,7 @@ var css = {
   "top: 25%;" +
   "font-size:" + 25 * widthK + "px;" +
   "background-color: #f4f4f4;" +
-  "left: 65%;" +
+  "left: 55%;" +
   "margin: 0;" +
   "float: left;" +
   "}",
