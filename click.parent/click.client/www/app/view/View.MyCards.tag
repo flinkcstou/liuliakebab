@@ -94,6 +94,7 @@
       event.stopPropagation();
       onBackKeyDown()
       scope.unmount()
+
     }
 
     editCard = function () {
