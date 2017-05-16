@@ -10,7 +10,7 @@
       <p class="side-menu-user-second-name">{firstName}</p>
       <p class="side-menu-user-first-name">{lastName}</p>
     </div>
-    <div if="{device.platform != 'iOS'}" id="changeModeContainerId" class="side-menu-change-mode">
+    <div hidden="{device.platform == 'iOS'}" id="changeModeContainerId" class="side-menu-change-mode">
       <div id="changeModeIconId" class="side-menu-change-mode-icon"></div>
       <p class="side-menu-change-mode-text">{modeOfApplication}</p>
       <label class="switch-menu" ontouchstart="changeModeTouchStart()" ontouchend="changeModeTouchEnd()">
@@ -82,19 +82,23 @@
     }
 
     this.on('mount', function () {
-      if (modeOfApp.onlineMode) {
-        scope.modeOfApplication = window.languages.ComponentMenuOnlineMode
-        scope.checkModeOfApplication = true;
-        changeModeContainerId.style.backgroundColor = '#92bf3a'
-        changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_online.png)';
+      try {
+        if (modeOfApp.onlineMode) {
+          scope.modeOfApplication = window.languages.ComponentMenuOnlineMode
+          scope.checkModeOfApplication = true;
+          changeModeContainerId.style.backgroundColor = '#92bf3a'
+          changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_online.png)';
+        }
+        if (modeOfApp.offlineMode) {
+          scope.modeOfApplication = window.languages.ComponentMenuOfflineMode
+          scope.checkModeOfApplication = false;
+          changeModeContainerId.style.backgroundColor = '#e56c47'
+          changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
+        }
+        scope.update();
+      }catch (e){
+        console.log(e)
       }
-      if (modeOfApp.offlineMode) {
-        scope.modeOfApplication = window.languages.ComponentMenuOfflineMode
-        scope.checkModeOfApplication = false;
-        changeModeContainerId.style.backgroundColor = '#e56c47'
-        changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
-      }
-      scope.update();
     })
 
     userIconTouchEnd = function () {

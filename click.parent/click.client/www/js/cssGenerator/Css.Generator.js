@@ -16,6 +16,7 @@ else {
 }
 
 var css = {
+
   sfuiDisplay: "@font-face " +
   "{" +
   "font-family: 'SFUIDisplay-Light';" +
@@ -33,6 +34,21 @@ var css = {
   "font-weight: normal;" +
   "font-style: normal;" +
   "}",
+
+
+  //riotTagsMainContainer: ".riot-tags-main-container " +
+  //"{" +
+  //"-webkit-animation-name: mountAnimation !important;" +
+  //"-webkit-animation-duration: 0.2s !important;" +
+  //"animation-name:mountAnimation !important;" +
+  //"animation-duration: 0.2s !important;" +
+  //"}",
+  //
+  //mountAnimation: "@keyframes mountAnimation " +
+  //"{" +
+  //"from {opacity: 0 !important;}" +
+  //"to {opacity: 1 !important;}" +
+  //"}",
 
   html: "html" +
   "{ " +
@@ -1216,7 +1232,7 @@ var css = {
   "-moz-border-radius:" + 14 * widthK + "px;" +
   "border-radius:" + 14 * widthK + "px;" +
   "background-size: cover;" +
-  //"background-image: url(resources/icons/cards/all.png);" +
+    //"background-image: url(resources/icons/cards/all.png);" +
   "color: white;" +
     //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
     //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
