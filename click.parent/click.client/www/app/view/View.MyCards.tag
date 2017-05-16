@@ -100,6 +100,8 @@
 //      console.log("card for edit=", scope.card);
       event.preventDefault();
       event.stopPropagation();
+      if(modeOfApp.demoVersion)return
+
       riotTags.innerHTML = "<view-card-edit>";
       riot.mount('view-card-edit', [scope.card]);
 
@@ -137,6 +139,8 @@
     confirmToDeleteCardTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      if(modeOfApp.demoVersion)return
 
       deleteCardComponentId.style.display = 'block'
 
