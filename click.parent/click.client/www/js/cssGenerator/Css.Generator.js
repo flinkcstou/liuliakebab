@@ -81,14 +81,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/registration.png);" +
+    //"background-image: url(resources/draft/autpaylist.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -3069,6 +3069,7 @@ var css = {
   //  //"background-image: url('resources/draft/mycardList.png');" +
   //"background-image: url('resources/icons/background/transparent.png');" +
   //"}",
+  //
 
   payIconTick: ".pay-icon-tick " +
   "{" +
@@ -11985,7 +11986,7 @@ var css = {
   viewAutopayBlockContainer: ".view-autopay-block-containter" +
   "{" +
   "position: relative;" +
-  "height:" + 180 * widthK + "px; " +
+  "height:" + 197 * widthK + "px; " +
   "width: 91%;" +
   "left: 4%;" +
   "margin-top: 1%;" +
@@ -11998,6 +11999,7 @@ var css = {
   "position: absolute;" +
   "height:100%;" +
   "width: 90%;" +
+  "left: 4%;" +
   "}",
 
 
@@ -12010,7 +12012,7 @@ var css = {
   "height:" + 125 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "top: 10%;" +
+  "top: 15%;" +
   "}",
 
   viewAutopayInfoContainer: ".view-autopay-info-container " +
@@ -12026,10 +12028,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: 25%;" +
-  "top: 14%;" +
+  "top: 17%;" +
   "left: 8%;" +
   "margin: 0;" +
-  "font-size:" + 22 * widthK + "px; " +
+  "font-size:" + 24 * widthK + "px; " +
   "width: 75%;" +
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
@@ -12039,7 +12041,7 @@ var css = {
   viewAutopayInfoBalance: ".view-autopay-info-balance " +
   "{" +
   "position: relative;" +
-  "top: 25%;" +
+  "top: 27%;" +
   "left: 8%;" +
   "margin: 0;" +
   "font-size:" + 45 * widthK + "px;" +
@@ -12050,8 +12052,8 @@ var css = {
   viewAutopayInfoCurrencyField: ".view-autopay-info-currency-field" +
   "{" +
   "position: relative;" +
-  "top: 33%;" +
-  "left: 9%;" +
+  "top: 36%;" +
+  "left: 11%;" +
   "margin: 0;" +
   "font-size:" + 26 * widthK + "px;" +
   "color: #ee4d3d;" +
@@ -12063,9 +12065,9 @@ var css = {
   "position: absolute;" +
   "height: 25%;" +
   "top: 50%;" +
-  "left: 8%;" +
+  "left: 9%;" +
   "margin: 0;" +
-  "font-size: " + 23 * widthK + "px; " +
+  "font-size: " + 25 * widthK + "px; " +
   "width: 75%;" +
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
@@ -12080,7 +12082,7 @@ var css = {
   "top: 70%;" +
   "left: 8%;" +
   "margin: 0;" +
-  "font-size: " + 22 * widthK + "px; " +
+  "font-size: " + 24 * widthK + "px; " +
   "width: 75%;" +
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
@@ -12096,6 +12098,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 20%;" +
   "background-position: center;" +
+  "background-position-x: 74%;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "}",
 
@@ -12481,7 +12484,7 @@ var css = {
   "position: absolute;" +
   "height: 100%;" +
   "width: 100%;" +
-  "background-image:  url(resources/icons/dayblock.png);" +
+  "background-image:  url(resources/icons/transparent.png);" +
   "z-index: 99999;" +
   "display: none;" +
   "}",
@@ -12632,7 +12635,7 @@ var css = {
   "color: #c1c1c1;" +
   "width: 100%;" +
   "text-align: center;" +
-  "font-size: " + 80 * widthK + "px; " +
+  "font-size: " + 70 * widthK + "px; " +
   "}",
 
   scheduleDateBlockTimeText: ".schedule-date-block-time-text " +
