@@ -28,7 +28,7 @@
       {window.languages.ViewAuthorizationResetLocalStorageLabel}
     </div>
   </div>
-  <div if="{device.platform != 'iOS'}" class="authorization-button-offline" ontouchstart="offlineModeTouchStart()"
+  <div hidden="{device.platform == 'iOS'}" class="authorization-button-offline" ontouchstart="offlineModeTouchStart()"
        ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
@@ -1069,30 +1069,30 @@
       }
       else if (device.platform == 'iOS') {
 
-        function successCallback(success) {
-          window.fingerPrint.check = true;
-          console.log('success', success)
-          var text = 'hello';
-          touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
-        }
-
-        function notSupportedCallback(error) {
-          console.log('error', error)
-          window.fingerPrint.check = false;
-        }
-
-
-        touchid.checkSupport(successCallback, notSupportedCallback);
-
-        function successCallbackOfAuth(success) {
-          console.log(success)
-          pin = JSON.parse(localStorage.getItem('click_client_pin'));
-          enter();
-        }
-
-        function failureCallbackOfAuth(error) {
-          console.log(error)
-        }
+//        function successCallback(success) {
+//          window.fingerPrint.check = true;
+//          console.log('success', success)
+//          var text = 'Приложите палец для сканирования';
+//          touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
+//        }
+//
+//        function notSupportedCallback(error) {
+//          console.log('error', error)
+//          window.fingerPrint.check = false;
+//        }
+//
+//
+//        touchid.checkSupport(successCallback, notSupportedCallback);
+//
+//        function successCallbackOfAuth(success) {
+//          console.log(success)
+//          pin = JSON.parse(localStorage.getItem('click_client_pin'));
+//          enter();
+//        }
+//
+//        function failureCallbackOfAuth(error) {
+//          console.log(error)
+//        }
 
 
       }

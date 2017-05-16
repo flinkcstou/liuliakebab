@@ -80,7 +80,7 @@ window.fakedSocket.register("app.login", function (input) {
         "error_note": ''
       }],
       [{
-        default_account: "4891447",
+        default_account: "2484171",
         firstname: "Jasur",
         gender: "M",
         help_status: false,
@@ -106,7 +106,7 @@ window.fakedSocket.register("app.login", function (input) {
     [{
       "session_key": "99890988081996E4e71383c9ed9b1a3fb05fb0002499744",
       "language": "RU",
-      "default_account": "3487271",
+      "default_account": "2484171",
       "my_service_id": "3",
       "visibility": false,
       "help_status": false,
@@ -130,7 +130,7 @@ window.fakedSocket.register("get.accounts", function (input) {
     {
       acc_abs: "DUET    ",
       access: 2,
-      accno: "1234 **** **** 5678",
+      accno: "8600 **** **** 0880",
       background_url: "https://my.click.uz/static/content/app/card/aab.png",
       bank_name: "UZCARD",
       branch: "00000",
@@ -141,22 +141,23 @@ window.fakedSocket.register("get.accounts", function (input) {
       background_color_bottom: "255,141,101",
       background_color_top: "192,62,108",
       font_color: "255,255,255",
-      card_background_url: 'https://merchant.click.uz/static/content/app/card/1.png',
+      card_background_url: 'resources/icons/cards/aab.png',
       currency_code: "UZS",
       currency_name: "тенге                                               ",
-      description: "Карта KAZKOM-Online Kazakhstan Halyk Bank Group",
+      description: "Карта UZCARD-Online",
       expire_date: "1806",
       id: 2484171,
       image_url: "https://my.click.uz/static/content/app/bank/aab.png",
       is_uzcard: 1,
+      checksum: 1,
       removable: 1,
       short_name: "aloq"
     },
     {
       acc_abs: "SMARTV    ",
       access: 2,
-      accno: "8600 **** **** 5865",
-      background_url: "https://my.click.uz/static/content/app/card/aab.png",
+      accno: "8600 **** **** 0890",
+      background_url: "https://my.click.uz/static/content/app/card/hitech.png",
       bank_name: "UZCARD",
       branch: "00000",
       card_num: "2300 **** **** 1111",
@@ -166,23 +167,24 @@ window.fakedSocket.register("get.accounts", function (input) {
       background_color_bottom: "255,33,101",
       background_color_top: "6,62,12",
       font_color: "255,255,255",
-      card_background_url: 'https://my.click.uz/static/content/app/card/aab.png',
+      card_background_url: 'resources/icons/cards/hitech.png',
       currency_code: "UZS",
       currency_name: "сум                                               ",
-      description: "СБЕРБАНК",
+      description: "Карта UZCARD-Online",
       expire_date: "1806",
       id: 7487271,
-      image_url: "https://my.click.uz/static/content/app/bank/aab.png",
+      image_url: "https://my.click.uz/static/content/app/bank/hitech.png",
       is_uzcard: 1,
       removable: 1,
+      checksum: 2,
       short_name: "aloq"
     },
 
     {
       acc_abs: "SMARTV    ",
       access: 1,
-      accno: "8600 **** **** 5865",
-      background_url: "https://my.click.uz/static/content/app/card/aab.png",
+      accno: "8600 **** **** 0900",
+      background_url: "https://my.click.uz/static/content/app/card/nbu.png",
       bank_name: "UZCARD",
       branch: "00000",
       card_num: "8600 **** **** 5865",
@@ -193,22 +195,23 @@ window.fakedSocket.register("get.accounts", function (input) {
       background_color_bottom: "12,141,44",
       background_color_top: "3,55,22",
       font_color: "255,255,255",
-      card_background_url: 'https://my.click.uz/static/content/app/card/aab.png',
+      card_background_url: 'resources/icons/cards/nbu.png',
       currency_name: "сум                                               ",
       description: "Карта UZCARD-Online",
       expire_date: "1806",
       id: 3487271,
-      image_url: "https://my.click.uz/static/content/app/bank/aab.png",
+      image_url: "https://my.click.uz/static/content/app/bank/nbu.png",
       is_uzcard: 1,
       removable: 1,
+      checksum: 3,
       short_name: "aloq"
     },
 
     {
       acc_abs: "SMARTV    ",
       access: 2,
-      accno: "3333 **** **** 2222",
-      background_url: "https://my.click.uz/static/content/app/card/aab.png",
+      accno: "8600 **** **** 0910",
+      background_url: "https://my.click.uz/static/content/app/card/ofb.png",
       bank_name: "UZCARD",
       branch: "00000",
       card_num: "3333 **** **** 2222",
@@ -218,43 +221,18 @@ window.fakedSocket.register("get.accounts", function (input) {
       background_color_bottom: "155,141,22",
       background_color_top: "192,33,4",
       font_color: "255,255,255",
-      card_background_url: 'https://my.click.uz/static/content/app/card/aab.png',
-      currency_code: "UZS",
-      currency_name: "сум                                               ",
-      description: "СБЕРБАНК",
-      expire_date: "1806",
-      id: 1287271,
-      image_url: "https://my.click.uz/static/content/app/card/aab.png",
-      is_uzcard: 1,
-      removable: 1,
-      short_name: "aloq"
-    },
-
-    {
-      acc_abs: "SMARTV    ",
-      access: 2,
-      accno: "8600 **** **** 5865",
-      background_url: "https://my.click.uz/static/content/app/card/aab.png",
-      bank_name: "UZCARD",
-      branch: "00000",
-      card_num: "8600 **** **** 5865",
-      card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw=",
-      card_num_hash: "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
-      currency: "000",
-      background_color_bottom: "132,141,101",
-      background_color_top: "4,62,23",
-      font_color: "255,255,255",
-      card_background_url: 'https://my.click.uz/static/content/app/card/aab.png',
+      card_background_url: 'resources/icons/cards/ofb.png',
       currency_code: "UZS",
       currency_name: "сум                                               ",
       description: "Карта UZCARD-Online",
       expire_date: "1806",
-      id: 5487271,
-      image_url: "https://my.click.uz/static/content/app/card/aab.png",
+      id: 1287271,
+      image_url: "https://my.click.uz/static/content/app/card/ofb.png",
       is_uzcard: 1,
       removable: 1,
+      checksum: 4,
       short_name: "aloq"
-    }
+    },
   ]);
 
   if (localStorage.getItem("click_client_token"))
@@ -266,6 +244,26 @@ window.fakedSocket.register("get.accounts", function (input) {
 
 window.fakedSocket.register("get.balance", function (input) {
 
+  if (input.parameters.account_id == 2484171) {
+    return [
+      [{"method": 'get.balance', "success": 1, "error": 0, "error_note": ""}],
+      [{
+        "account_id": input.parameters.account_id,
+        "balance": 2000000
+      }]
+    ];
+  }
+
+  if (input.parameters.account_id == 7487271) {
+    return [
+      [{"method": 'get.balance', "success": 1, "error": 0, "error_note": ""}],
+      [{
+        "account_id": input.parameters.account_id,
+        "balance": 3000000
+      }]
+    ];
+  }
+
   if (localStorage.getItem("click_client_token")) {
 
     if (input.parameters.account_id == 3487271) {
@@ -273,7 +271,7 @@ window.fakedSocket.register("get.balance", function (input) {
         [{"method": 'get.balance', "success": 1, "error": 0, "error_note": ""}],
         [{
           "account_id": input.parameters.account_id,
-          "balance": 6000
+          "balance": 4000000
         }]
       ];
     }
@@ -283,17 +281,7 @@ window.fakedSocket.register("get.balance", function (input) {
         [{"method": 'get.balance', "success": 1, "error": 0, "error_note": ""}],
         [{
           "account_id": input.parameters.account_id,
-          "balance": 433552122
-        }]
-      ];
-    }
-
-    if (input.parameters.account_id == 2484171) {
-      return [
-        [{"method": 'get.balance', "success": 1, "error": 0, "error_note": ""}],
-        [{
-          "account_id": input.parameters.account_id,
-          "balance": 0
+          "balance": 5000000
         }]
       ];
     }
@@ -308,15 +296,6 @@ window.fakedSocket.register("get.balance", function (input) {
       ];
     }
 
-    if (input.parameters.account_id == 7487271) {
-      return [
-        [{"method": 'get.balance', "success": 1, "error": 0, "error_note": ""}],
-        [{
-          "account_id": input.parameters.account_id,
-          "balance": 52300
-        }]
-      ];
-    }
   }
   else
     return [{
@@ -2147,7 +2126,7 @@ window.fakedSocket.register("settings.change.default.account", function (input) 
         "error_note": ""
       }],
       [{
-        "default_account_id": 1287271
+        "default_account_id": 2484171
       }]
     ];
   return [

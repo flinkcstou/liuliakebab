@@ -16,6 +16,7 @@ else {
 }
 
 var css = {
+
   sfuiDisplay: "@font-face " +
   "{" +
   "font-family: 'SFUIDisplay-Light';" +
@@ -33,6 +34,21 @@ var css = {
   "font-weight: normal;" +
   "font-style: normal;" +
   "}",
+
+
+  //riotTagsMainContainer: ".riot-tags-main-container " +
+  //"{" +
+  //"-webkit-animation-name: mountAnimation !important;" +
+  //"-webkit-animation-duration: 0.2s !important;" +
+  //"animation-name:mountAnimation !important;" +
+  //"animation-duration: 0.2s !important;" +
+  //"}",
+  //
+  //mountAnimation: "@keyframes mountAnimation " +
+  //"{" +
+  //"from {opacity: 0 !important;}" +
+  //"to {opacity: 1 !important;}" +
+  //"}",
 
   html: "html" +
   "{ " +
