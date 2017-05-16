@@ -280,6 +280,26 @@
 
     payService = function () {
 
+      if(modeOfApp.demoVersion){
+        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+        scope.confirmShowBool = true;
+        scope.confirmNote = question;
+        scope.confirmType = 'local';
+        scope.result = function (bool) {
+          if (bool) {
+            localStorage.clear();
+            riotTags.innerHTML = "<view-registration-device>";
+            riot.mount('view-registration-device');
+            scope.unmount()
+            return
+          }
+        };
+        scope.update();
+
+        return
+      }
+
       var date = parseInt(Date.now() / 1000);
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
