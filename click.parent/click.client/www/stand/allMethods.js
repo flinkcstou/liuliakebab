@@ -143,7 +143,7 @@ window.fakedSocket.register("get.accounts", function (input) {
       font_color: "42,42,42",
       card_background_url: 'resources/icons/cards/aab.png',
       currency_code: "UZS",
-      currency_name: "тенге                                               ",
+      currency_name: "сум                                               ",
       description: "Карта UZCARD-Online",
       expire_date: "1806",
       id: 2484171,

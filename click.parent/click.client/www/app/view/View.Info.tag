@@ -124,6 +124,7 @@
                     scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
                     scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
 
+//                    console.log('INFO BALANCEE', )
                     scope.update();
                   }
                   else

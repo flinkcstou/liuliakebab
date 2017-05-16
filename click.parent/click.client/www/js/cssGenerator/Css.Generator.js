@@ -214,6 +214,7 @@ var css = {
   "position: absolute;" +
   "top:" + 120 * widthK + "px;" +
   "bottom: 0;" +
+  "-webkit-overflow-scrolling: touch;" +
   "padding: 0 " + 25 * widthK + "px 0 " + 30 * widthK + "px;" +
   "}",
 
@@ -2331,7 +2332,9 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "top:" + 835 * widthK + "px;" +
-  "overflow: auto;" +
+  "overflow-y: scroll; " +
+  "overflow-x: hidden; " +
+  "-webkit-overflow-scrolling: touch; " +
   "background-color: #ffffff;" +
   "bottom: 0;" +
   "}",
@@ -2732,7 +2735,8 @@ var css = {
   "height:" + 765 * widthK + "px;" +
   "top:" + 465 * widthK + "px;" +
     //"top:" + 600 * widthK + "px;" +
-  "overflow-y: auto;" +
+  "overflow-y: scroll;" +
+  "-webkit-overflow-scrolling: touch;" +
   "overflow-x: hidden;" +
   "font-size:" + 23 * widthK + "px;" +
   "}",
@@ -8369,8 +8373,9 @@ var css = {
   "top:" + 160 * widthK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
-  "overflow-y: auto; " +
+  "overflow-y: scroll; " +
   "overflow-x: hidden; " +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
   viewReportsGraphBodyContainer: ".view-reports-graph-body-container" +
@@ -10475,7 +10480,9 @@ var css = {
   "width: 91.4%;" +
   "padding: 0 4.3%;" +
   "background: white;" +
-  "overflow-y: scroll;" +
+  "overflow-y: scroll; " +
+  "overflow-x: hidden; " +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
   trustedDevicesDeviceInfoContainer: ".trusted-devices-device-info-container" +
