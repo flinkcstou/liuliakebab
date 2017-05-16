@@ -78,6 +78,7 @@ componentMenu.checkOpen = false;
 window.modeOfApp = {};
 modeOfApp.onlineMode = true;
 modeOfApp.offlineMode = false;
+modeOfApp.demoVersion = false;
 
 window.componentDeleteCard = {};
 
@@ -109,6 +110,7 @@ window.News.newsCounter = 0;
 
 window.fingerPrint = {};
 window.fingerPrint.check = false;
+
 
 window.representDotedDate = function (left, middle, right) {
 
