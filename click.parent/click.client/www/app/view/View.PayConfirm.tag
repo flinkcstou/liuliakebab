@@ -102,6 +102,9 @@
                            operationmessagepartone="{window.languages.ComponentInProcessingPartOneForPay}"
                            operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"></component-in-processing>
 
+  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
+                     confirmtype="{confirmType}"></component-confirm>
+
 
   <script>
 
