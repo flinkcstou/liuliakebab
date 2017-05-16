@@ -90,6 +90,9 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
+  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
+                     confirmtype="{confirmType}"></component-confirm>
+
   <script>
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
       history.arrayOfHistory.push(
@@ -270,6 +273,30 @@
     }
 
     transferStep = function () {
+
+      if(modeOfApp.demoVersion){
+        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+        scope.confirmShowBool = true;
+        scope.confirmNote = question;
+        scope.confirmType = 'local';
+        scope.result = function (bool) {
+          if (bool) {
+            localStorage.clear();
+            riotTags.innerHTML = "<view-registration-device>";
+            riot.mount('view-registration-device');
+            scope.unmount()
+            return
+          }
+          else{
+            scope.confirmShowBool = false;
+            return
+          }
+        };
+        scope.update();
+
+        return
+      }
 
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');

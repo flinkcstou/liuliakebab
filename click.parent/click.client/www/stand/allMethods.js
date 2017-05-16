@@ -182,7 +182,7 @@ window.fakedSocket.register("get.accounts", function (input) {
 
     {
       acc_abs: "SMARTV    ",
-      access: 1,
+      access: 2,
       accno: "8600 **** **** 0900",
       background_url: "https://my.click.uz/static/content/app/card/nbu.png",
       bank_name: "UZCARD",
@@ -227,7 +227,7 @@ window.fakedSocket.register("get.accounts", function (input) {
       description: "Карта UZCARD-Online",
       expire_date: "1806",
       id: 1287271,
-      image_url: "https://my.click.uz/static/content/app/card/ofb.png",
+      image_url: "https://my.click.uz/static/content/app/bank/ofb.png",
       is_uzcard: 1,
       removable: 1,
       checksum: 4,
@@ -2014,8 +2014,7 @@ window.fakedSocket.register("p2p.card.info", function (input) {
         "error_note": ""
       }],
       [{
-        "invoice_id": null,
-        "payment_id": "xzsa"
+        "card_owner": "Click Demo Version",
       }]
     ];
   return [

@@ -198,6 +198,12 @@
           }
         }
       }
+      else {
+          maxLimit = 5000000;
+
+          minLimit = 5000;
+
+      }
 
       console.log('maxLimit', maxLimit)
       console.log('minLimit', minLimit)
