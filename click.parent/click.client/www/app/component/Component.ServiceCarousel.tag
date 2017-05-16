@@ -371,6 +371,7 @@
       touchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(onTouchStartX2 - onTouchEndX2) <= 20) {
+        if(modeOfApp.demoVersion)return
         console.log("ADD NEW FAVORITE");
         event.stopPropagation();
         opts.mode = 'ADDFAVORITE';

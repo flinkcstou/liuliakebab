@@ -309,7 +309,7 @@
               if (result[1][0]) {
                 var j = 0;
                 for (var i in result[1]) {
-                  if (result[1][i].account_id == scope.card.card_id && result[1][i].state == 0) {
+                  if (result[1][i].account_id == scope.card.card_id && result[1][i].state == 2) {
                     result[1][i].count = j;
                     result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
 
@@ -318,7 +318,7 @@
                   }
                 }
 //                this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
-                scope.update(scope.arrayOfOperationsByAccount);
+                scope.update();
                 console.log('scope.arrayOfOperationsByAccount', scope.arrayOfOperationsByAccount)
               }
             }
