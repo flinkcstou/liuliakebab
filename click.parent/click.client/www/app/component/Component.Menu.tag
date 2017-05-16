@@ -287,6 +287,8 @@
       autoPayTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(autoPayTouchStartX - autoPayTouchEndX) < 20) {
+        if(modeOfApp.demoVersion)return
+
         closeMenu();
         riotTags.innerHTML = "<view-auto-pay>";
         riot.mount('view-auto-pay');
@@ -309,6 +311,7 @@
       qrScannerTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX) < 20) {
+        if(modeOfApp.demoVersion)return
 //        closeMenu()
         if (device.platform != 'BrowserStand') {
 
@@ -470,6 +473,7 @@
       console.log('settingsTouchEndX', settingsTouchEndX)
 
       if (Math.abs(settingsTouchStartX - settingsTouchEndX) < 20) {
+        if(modeOfApp.demoVersion)return
         closeMenu()
         riotTags.innerHTML = "<view-settings>";
         riot.mount("view-settings");
@@ -495,6 +499,7 @@
       billingsTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(billingsTouchEndX - billingsTouchStartX) < 20) {
+        if(modeOfApp.demoVersion)return
         closeMenu();
         if (modeOfApp.offlineMode) {
           phonedialer.dial(
