@@ -97,6 +97,8 @@
       autoPayEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(autoPayStartX - autoPayEndX) <= 20 && Math.abs(autoPayStartY - autoPayEndY) <= 20) {
+        if(modeOfApp.demoVersion)return
+
         if (modeOfApp.onlineMode) {
 
           riotTags.innerHTML = "<view-auto-pay>";
