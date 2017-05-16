@@ -116,7 +116,7 @@
     scope.timeMode = false;
     scope.dayMode = false;
 
-    scope.shift = 200;
+    scope.shift = 170;
 
     //    scope.topOfWeekOperations = 100 * widthK;
     var dateNumber, count, minuteNumber = 0, minutesCount = 60;
@@ -163,11 +163,11 @@
     everyMonthChosenDay = function () {
       scope.autoPayData.type = 3;
       dateNumber = 0;
-      scope.topOfOperations = 200 * widthK;
+      scope.topOfOperations = 170 * widthK;
       scope.weekMode = false;
       scope.timeMode = false;
       scope.dayMode = true;
-      scope.shift = 200;
+      scope.shift = 170;
       count = 31;
       scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseDate;
       scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleDaysArray;

@@ -12474,7 +12474,7 @@ var css = {
   "position: absolute;" +
   "height: 100%;" +
   "width: 100%;" +
-  "background-image:  url(resources/icons/timeblock.png);" +
+  "background-image:  url(resources/icons/dayblock.png);" +
   "z-index: 99999;" +
   "display: none;" +
   "}",
@@ -12536,9 +12536,9 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: " + 600 * widthK + "px;" +
-  "height:" + 600 * widthK + "px;" +
-  "top:" + 320 * widthK + "px;" +
-  "left: 7%;" +
+  "height:" + 530 * widthK + "px;" +
+  "top:" + 309 * widthK + "px;" +
+  "left: 8%;" +
     //"background-color: #01B8FE;" +
   "overflow: hidden;" +
   "}",
@@ -12601,7 +12601,7 @@ var css = {
   scheduleDateBlockDay: ".schedule-date-block-day " +
   "{" +
   "position: absolute;" +
-  "height: " + 190 * widthK + "px;" +
+  "height: " + 170 * widthK + "px;" +
   "width: 100%;" +
   "color: #8b8b8b;" +
   "text-align: center;" +
@@ -12615,6 +12615,7 @@ var css = {
   "font-size: " + 190 * widthK + "px; " +
   "width: 100%;" +
   "text-align: center;" +
+  "top: " + -15 * widthK + "px; " +
   "}",
 
   scheduleDateBlockWeekText: ".schedule-date-block-week-text " +
