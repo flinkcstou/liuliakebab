@@ -37,6 +37,7 @@
 <body id="bodyId">
 <div id="riotTags" class="riotTags">
   <view-main-page></view-main-page>
+  <div>QQQ</div>
 </div>
 
 
@@ -45,6 +46,55 @@
   api.init();
   scope = this;
   modeOfApp.demoVersion = true;
+
+  permissionAccess = function () {
+
+    var permissions = cordova.plugins.permissions;
+    permissions.checkPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
+    permissions.checkPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
+    window.plugins.sim.getSimInfo(successOfSim, errorOfSim);
+
+    function successOfSim(success) {
+      console.log(success)
+    }
+
+    function errorOfSim(error) {
+      console.log(error)
+    }
+
+    function checkPermissionCallbackOfSim(status) {
+      if (!status.checkPermission) {
+        var errorCallback = function () {
+          console.log('SIM permission is not turned on');
+        }
+        permissions.requestPermission(
+          permissions.READ_SMS,
+          function (status) {
+            if (!status.checkPermission) errorCallback();
+          },
+          errorCallback);
+      }
+    }
+
+    function checkPermissionCallbackOfCall(status) {
+      if (!status.checkPermission) {
+        var errorCallback = function () {
+          console.log('CALL permission is not turned on');
+        }
+        permissions.requestPermission(
+          permissions.CALL_PHONE,
+          function (status) {
+            if (!status.checkPermission) errorCallback();
+          },
+          errorCallback);
+      }
+    }
+
+    window.FirebasePlugin.hasPermission(function (data) {
+      console.log('FIREBASE ACCESS', data.isEnabled);
+    });
+
+  }
 
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
