@@ -392,7 +392,7 @@
 
                 if (scope.invoiceList)
                   setTimeout(function () {
-                    addCard(true, true)
+                    addCard()
 //                  scope.update()
                   }, 0);
               }
