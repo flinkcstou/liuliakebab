@@ -52,6 +52,7 @@
       event.stopPropagation();
 
       scope.outerShowAlertBool = true;
+      if(scope.parent)
       scope.parent.confirmShowBool = false;
       console.log(scope.outerShowAlertBool)
 

@@ -214,6 +214,7 @@
 
     changeMode = function () {
       console.log('asd')
+      console.log('MENU PARENT', scope.parent)
       if (event) {
         event.preventDefault();
         event.stopPropagation();

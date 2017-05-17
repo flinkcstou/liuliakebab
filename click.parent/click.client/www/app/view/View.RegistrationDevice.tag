@@ -26,7 +26,8 @@
 
 
   <div class="registration-buttons-container">
-    <div if="{device.platform != 'iOS'}" class="registration-container-offline" ontouchstart="registrationOfflineTouchStart()"
+    <div if="{device.platform != 'iOS'}" class="registration-container-offline"
+         ontouchstart="registrationOfflineTouchStart()"
          ontouchend="registrationOfflineTouchEnd()">
       <div class="registration-button-offline">{window.languages.ViewRegistrationDeviceButtonOffline}</div>
     </div>
@@ -40,6 +41,8 @@
                    errornote="{errorNote}"></component-alert>
 
   <script>
+
+//    localStorage.clear()
 
 
     var checkRemember = false;
@@ -111,24 +114,24 @@
       keyboardTouchEndY = event.changedTouches[0].pageY
 
 
-      if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20){
+      if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
-      if (scope.maskPhoneNumber.length < 14 && myValue != 'x') {
-        if (scope.maskPhoneNumber.length == 4)
-          scope.maskPhoneNumber += ' ';
-        scope.maskPhoneNumber += myValue;
+        if (scope.maskPhoneNumber.length < 14 && myValue != 'x') {
+          if (scope.maskPhoneNumber.length == 4)
+            scope.maskPhoneNumber += ' ';
+          scope.maskPhoneNumber += myValue;
+        }
+        if (scope.phoneNumber.length < 13 && myValue != 'x') {
+          scope.phoneNumber += myValue;
+        }
+        if (myValue == 'x' && scope.phoneNumber.length != 4) {
+          scope.phoneNumber = scope.phoneNumber.substring(0, scope.phoneNumber.length - 1);
+          scope.maskPhoneNumber = scope.maskPhoneNumber.substring(0, scope.maskPhoneNumber.length - 1);
+        }
+        console.log(scope.phoneNumber)
+        console.log(scope.maskPhoneNumber)
+        scope.update(scope.maskPhoneNumber);
       }
-      if (scope.phoneNumber.length < 13 && myValue != 'x') {
-        scope.phoneNumber += myValue;
-      }
-      if (myValue == 'x' && scope.phoneNumber.length != 4) {
-        scope.phoneNumber = scope.phoneNumber.substring(0, scope.phoneNumber.length - 1);
-        scope.maskPhoneNumber = scope.maskPhoneNumber.substring(0, scope.maskPhoneNumber.length - 1);
-      }
-      console.log(scope.phoneNumber)
-      console.log(scope.maskPhoneNumber)
-      scope.update(scope.maskPhoneNumber);
-    }
     }
 
     var offlineTouchStartX, offlineTouchStartY, offlineTouchEndX, offlineTouchEndY;

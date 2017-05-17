@@ -13766,7 +13766,7 @@ var offlinePopularServiceList = [
       //"numberPartTwo": "4976",
       //"url": "https://my.click.uz/static/content/app/bank/aab.png",
       //"card_background_url": "https://my.click.uz/static/content/app/card/aab.png",
-      "countCard": 0,
+      "countCard": 1,
       //"chosenCard": false,
       //"default_account": true,
       //"access": 2,

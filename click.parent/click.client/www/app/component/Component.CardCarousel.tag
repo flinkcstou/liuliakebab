@@ -643,77 +643,83 @@
     scope.switchToOfflineMode = function () {
 
       scope.invoiceList = [];
+      scope.invoiceCheck = false;
+//
+//      var cardsTemp = localStorage.getItem("click_client_cards");
+//
+//      console.log("CARDS IN LOCALSTORAGE", cardsTemp);
+//
+//      if (cardsTemp) {
+//
+//        var cardNumber = 0;
+//
+//        cardsTemp = JSON.parse(cardsTemp);
+//        scope.cardsarray = cardsTemp;
+//        count = 1;
+//        scope.cardNumber = 1;
+////        localStorage.setItem("cardNumber", scope.cardNumber);
+//
+//        if (scope.invoiceCheck) {
+//
+//          scope.invoiceCheck = false;
+////
+////
+////          for (var index in scope.cardsarray) {
+////            count++;
+////
+////            scope.cardsarray[index].countCard--;
+////          }
+////
+////          localStorage.setItem("click_client_countCard", count);
+//
+////          console.log("CardNumber", scope.cardNumber);
+////          console.log("ASDASDASD", JSON.stringify(scope.cardsarray), JSON.stringify(scope.cardNumber));
+////
+//          console.log(scope.cardNumber, count);
+//        } else {
+//
+//
+//          var isThereElementAtZero = false;
+////
+////          for (var index in scope.cardsarray) {
+////            count++;
+////
+////            if (scope.cardsarray[index].countCard == 0) {
+////
+////              isThereElementAtZero = true;
+////            }
+////          }
+////
+////          if (!isThereElementAtZero) {
+////
+////            for (var index in scope.cardsarray) {
+////
+////              scope.cardsarray[index].countCard--;
+////            }
+////          }
+//
+////          localStorage.setItem("click_client_countCard", count);
+//        }
+//
+////        localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
+//
+//      } else {
 
-      var cardsTemp = localStorage.getItem("click_client_cards");
-
-      console.log("CARDS IN LOCALSTORAGE", cardsTemp);
-
-      if (cardsTemp) {
-
-        var cardNumber = 0;
-
-        cardsTemp = JSON.parse(cardsTemp);
-        scope.cardsarray = cardsTemp;
-        count = 1;
+      console.log("THERE IS NO CARDS IN LOCALSTORAGE");
+      if (!localStorage.getItem('click_client_cards')) {
         scope.cardNumber = 1;
-        localStorage.setItem("cardNumber", scope.cardNumber);
-
-        if (scope.invoiceCheck) {
-
-          scope.invoiceCheck = false;
-//
-//
-//          for (var index in scope.cardsarray) {
-//            count++;
-//
-//            scope.cardsarray[index].countCard--;
-//          }
-//
-//          localStorage.setItem("click_client_countCard", count);
-
-//          console.log("CardNumber", scope.cardNumber);
-//          console.log("ASDASDASD", JSON.stringify(scope.cardsarray), JSON.stringify(scope.cardNumber));
-//
-          console.log(scope.cardNumber, count);
-        } else {
-
-
-          var isThereElementAtZero = false;
-//
-//          for (var index in scope.cardsarray) {
-//            count++;
-//
-//            if (scope.cardsarray[index].countCard == 0) {
-//
-//              isThereElementAtZero = true;
-//            }
-//          }
-//
-//          if (!isThereElementAtZero) {
-//
-//            for (var index in scope.cardsarray) {
-//
-//              scope.cardsarray[index].countCard--;
-//            }
-//          }
-
-//          localStorage.setItem("click_client_countCard", count);
-        }
-
-//        localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
-
-      } else {
-
-        console.log("THERE IS NO CARDS IN LOCALSTORAGE");
-        scope.cardNumber = 1;
-        count = 1;
+        count = 2;
         scope.cardsarray = window.offlineCard;
         localStorage.setItem("cardNumber", scope.cardNumber);
         localStorage.setItem("click_client_countCard", count);
       }
-
-      cards.style.transform = "translate3d(0, 0, 0)";
-      cards.style.webkitTransform = "translate3d(0, 0, 0)";
+      changePosition()
+//        localStorage.setItem("cardNumber", scope.cardNumber);
+////        localStorage.setItem("click_client_countCard", count);
+//      }
+//
+//      cards.style.transform = "translate3d(0, 0, 0)";
+//      cards.style.webkitTransform = "translate3d(0, 0, 0)";
 
       scope.update();
     };
@@ -853,10 +859,10 @@
     if (!count)
       count = 1;
 
-//    if (!viewMainPage.atMainPage) {
-//      scope.cardNumber = 0;
-////      count = 0;
-//    }
+    //    if (!viewMainPage.atMainPage) {
+    //      scope.cardNumber = 0;
+    ////      count = 0;
+    //    }
 
     var cNow1, cNow2, cNow3, vNow1, vNow2, vNow3;
     var cNext1, cNext2, cNext3, vNext1, vNext2, vNext3;
