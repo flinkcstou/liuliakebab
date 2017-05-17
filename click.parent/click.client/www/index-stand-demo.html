@@ -38,6 +38,8 @@
 <div id="riotTags" class="riotTags">
   <view-main-page></view-main-page>
 </div>
+<div class="demo-version-button-exit" if="{modeOfApp.demoVersion}" ontouchstart="demoVersionTouchStart()"
+     ontouchend="demoVersionTouchEnd()"></div>
 
 
 <script>
@@ -45,6 +47,84 @@
   api.init();
   scope = this;
   modeOfApp.demoVersion = true;
+  riot.update()
+
+  var demoTouchStartX, demoTouchStartY, demoTouchEndX, demoTouchEndY;
+
+  demoVersionTouchStart = function () {
+    event.preventDefault()
+    event.stopPropagation()
+
+    demoTouchStartX = event.changedTouches[0].pageX
+    demoTouchStartY = event.changedTouches[0].pageY
+  }
+
+  demoVersionTouchEnd = function () {
+    event.preventDefault()
+    event.stopPropagation()
+
+    demoTouchEndX = event.changedTouches[0].pageX
+    demoTouchEndY = event.changedTouches[0].pageY
+
+    if (Math.abs(demoTouchStartX - demoTouchEndX) <= 20 && Math.abs(demoTouchStartY - demoTouchEndY) <= 20) {
+      localStorage.clear();
+
+      if(device.platform != "BrowserStand")
+      window.location.href = "index.html";
+      else{
+        window.location.href = "index-stand-realApi.html";
+      }
+    }
+  }
+
+  permissionAccess = function () {
+
+    var permissions = cordova.plugins.permissions;
+    permissions.checkPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
+    permissions.checkPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
+    window.plugins.sim.getSimInfo(successOfSim, errorOfSim);
+
+    function successOfSim(success) {
+      console.log(success)
+    }
+
+    function errorOfSim(error) {
+      console.log(error)
+    }
+
+    function checkPermissionCallbackOfSim(status) {
+      if (!status.checkPermission) {
+        var errorCallback = function () {
+          console.log('SIM permission is not turned on');
+        }
+        permissions.requestPermission(
+          permissions.READ_SMS,
+          function (status) {
+            if (!status.checkPermission) errorCallback();
+          },
+          errorCallback);
+      }
+    }
+
+    function checkPermissionCallbackOfCall(status) {
+      if (!status.checkPermission) {
+        var errorCallback = function () {
+          console.log('CALL permission is not turned on');
+        }
+        permissions.requestPermission(
+          permissions.CALL_PHONE,
+          function (status) {
+            if (!status.checkPermission) errorCallback();
+          },
+          errorCallback);
+      }
+    }
+
+    window.FirebasePlugin.hasPermission(function (data) {
+      console.log('FIREBASE ACCESS', data.isEnabled);
+    });
+
+  }
 
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
@@ -128,8 +208,8 @@
 //
 //      scope.checkSumOfHash = true;
 
-      this.riotTags.innerHTML = "<view-main-page>";
-      riot.mount('view-main-page');
+    this.riotTags.innerHTML = "<view-main-page>";
+    riot.mount('view-main-page');
 //
 //
 //      if (!localStorage.getItem("click_client_accountInfo")) {

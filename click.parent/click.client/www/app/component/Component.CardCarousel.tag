@@ -61,10 +61,10 @@
 
     scope.checkSumOfHash = true;
 
-    //    if (localStorage.getItem('click_client_cards')) {
-    //      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'))
-    ////      scope.update();
-    //    }
+    if (localStorage.getItem('click_client_cards')) {
+      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'))
+      scope.update();
+    }
 
     //    this.on('mount', function () {
     //      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
@@ -306,6 +306,7 @@
 //        cardNumber %= count;
           localStorage.setItem('click_client_countCard', count);
 //        localStorage.setItem('cardNumber', cardNumber);
+          riot.update()
         }
       }
 
@@ -455,19 +456,29 @@
               if (result[0][0].error == 0) {
                 if (localStorage.getItem('click_client_cards')) {
                   var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'))
-                  for (var i in result[1]) {
-                    console.log('cardsArray[result[1].id]', cardsArray[result[1][i].id])
-                    if (cardsArray[result[1][i].id]) {
+                  var countLocalStorageCard = 0;
+                  for (var k in cardsArray) {
+                    countLocalStorageCard++;
+                  }
+                  console.log('cardsArraycardsArraycardsArraycardsArray', cardsArray)
+                  if (countLocalStorageCard == result[1].length) {
+                    for (var i in result[1]) {
+                      console.log('cardsArray[result[1].id]', cardsArray[result[1][i].id])
+                      if (cardsArray[result[1][i].id]) {
 
-                      console.log('HASH SUM CHECKING', cardsArray[result[1][i].id].checksum, result[1][i].checksum)
+                        console.log('HASH SUM CHECKING', cardsArray[result[1][i].id].checksum, result[1][i].checksum)
 
-                      if (cardsArray[result[1][i].id].checksum != result[1][i].checksum) {
+                        if (cardsArray[result[1][i].id].checksum != result[1][i].checksum) {
+                          scope.checkSumOfHash = false;
+                        }
+                      }
+                      else {
                         scope.checkSumOfHash = false;
                       }
                     }
-                    else {
-                      scope.checkSumOfHash = false;
-                    }
+                  }
+                  else {
+                    scope.checkSumOfHash = false;
                   }
 
                   console.log("CARDS RESULT", result[1], cardsArray)
@@ -483,17 +494,29 @@
 //                console.log(result[1])
                 if (!scope.checkSumOfHash) {
                   if (device.platform != 'BrowserStand') {
+                    var count = 2;
+                    var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+
                     window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-                      var j = -1, count = 1;
+                      var j = -1;
                       for (var i = 0; i < result[1].length; i++) {
 
                         j++;
 
                         console.log('arrayAccountInfo_1' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
 
-                        arrayAccountInfo.push(result[1][i]);
+                        if (result[1][i].id == loginInfo.default_account) {
+                          result[1][i].countCard = 1;
+                        }
+                        else {
+                          result[1][i].countCard = count;
+                          count++;
+                        }
+                        arrayAccountInfo.push(result[1][i])
 
-                        console.log('arrayAccountInfo_2' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
+//                        arrayAccountInfo.push(result[1][i]);
+
+                          console.log('arrayAccountInfo_2' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
 
                         var icon = result[1][i].card_background_url;
 
@@ -539,11 +562,6 @@
 
                               console.log('accountInfo', accountInfo);
 
-                              localStorage.setItem("click_client_accountInfo", accountInfo);
-                              setTimeout(function () {
-
-                                addCard(false)
-                              }, 0);
                             }
 
                           });
@@ -551,6 +569,14 @@
                         });
 
                       }
+
+                      localStorage.setItem("click_client_accountInfo", JSON.stringify(arrayAccountInfo));
+
+                      setTimeout(function () {
+
+                        addCard(false)
+                      }, 0);
+
                     }, onErrorLoadFs);
                   } else {
                     var count = 2;
@@ -644,66 +670,6 @@
 
       scope.invoiceList = [];
       scope.invoiceCheck = false;
-//
-//      var cardsTemp = localStorage.getItem("click_client_cards");
-//
-//      console.log("CARDS IN LOCALSTORAGE", cardsTemp);
-//
-//      if (cardsTemp) {
-//
-//        var cardNumber = 0;
-//
-//        cardsTemp = JSON.parse(cardsTemp);
-//        scope.cardsarray = cardsTemp;
-//        count = 1;
-//        scope.cardNumber = 1;
-////        localStorage.setItem("cardNumber", scope.cardNumber);
-//
-//        if (scope.invoiceCheck) {
-//
-//          scope.invoiceCheck = false;
-////
-////
-////          for (var index in scope.cardsarray) {
-////            count++;
-////
-////            scope.cardsarray[index].countCard--;
-////          }
-////
-////          localStorage.setItem("click_client_countCard", count);
-//
-////          console.log("CardNumber", scope.cardNumber);
-////          console.log("ASDASDASD", JSON.stringify(scope.cardsarray), JSON.stringify(scope.cardNumber));
-////
-//          console.log(scope.cardNumber, count);
-//        } else {
-//
-//
-//          var isThereElementAtZero = false;
-////
-////          for (var index in scope.cardsarray) {
-////            count++;
-////
-////            if (scope.cardsarray[index].countCard == 0) {
-////
-////              isThereElementAtZero = true;
-////            }
-////          }
-////
-////          if (!isThereElementAtZero) {
-////
-////            for (var index in scope.cardsarray) {
-////
-////              scope.cardsarray[index].countCard--;
-////            }
-////          }
-//
-////          localStorage.setItem("click_client_countCard", count);
-//        }
-//
-////        localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
-//
-//      } else {
 
       console.log("THERE IS NO CARDS IN LOCALSTORAGE");
       if (!localStorage.getItem('click_client_cards')) {
@@ -713,13 +679,9 @@
         localStorage.setItem("cardNumber", scope.cardNumber);
         localStorage.setItem("click_client_countCard", count);
       }
+
       changePosition()
-//        localStorage.setItem("cardNumber", scope.cardNumber);
-////        localStorage.setItem("click_client_countCard", count);
-//      }
-//
-//      cards.style.transform = "translate3d(0, 0, 0)";
-//      cards.style.webkitTransform = "translate3d(0, 0, 0)";
+
 
       scope.update();
     };
