@@ -61,7 +61,19 @@ var css = {
   "font-size:" + 32 * widthK + "px;" +
   "}",
 
-  riotTagsMainContainer: "riot-tags-main-container" +
+  demoVersionButtonExit: ".demo-version-button-exit" +
+  "{ " +
+  "position: absolute;" +
+  "width:" + 130 * widthK + "px;" +
+  "height:" + 130 * widthK + "px;" +
+  "bottom:" + 65 * widthK + "px;" +
+  "right:" + 40 * widthK + "px;" +
+  "background-image: url(resources/demo/demo_close.png);" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
+  riotTagsMainContainer: ".riot-tags-main-container" +
   "{ " +
   "-webkit-animation-name: mountAnimation; " +
   "-webkit-animation-duration: 3s; " +
@@ -81,7 +93,7 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/autpaylist.png);" +
+    //"background-image: url(resources/draft/demo_draft.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
