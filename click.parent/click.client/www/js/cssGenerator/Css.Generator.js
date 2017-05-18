@@ -3,9 +3,10 @@ heightK = window.innerHeight / 1232;
 var heightOfMobile;
 var topOfIos;
 
-if (device.platform == 'iOS') {
+if (device.platform == 'iOS' || device.platform =='BrowserStand') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
+  if(device.platform == 'iOS')
   cordova.plugins.Keyboard.disableScroll(true);
   topOfIos = 20;
 }
@@ -165,26 +166,18 @@ var css = {
   "top: " + 1050 * heightK + "px;" +
   "color: #555555;" +
   "}",
-
-  riotTagsMainContainer: ".riot-tags-main-container" +
-  "{ " +
-  "-webkit-animation-name: mountAnimation; " +
-  "-webkit-animation-duration: 0.2s; " +
-  "animation-name:mountAnimation;" +
-  "animation-duration: 0.2s;" +
-  "}",
-
-  keyFrameMountAnimation: "@keyframes mountAnimation" +
-  "{ " +
-  "from {opacity: 0;}; " +
-  "to {opacity: 1;}; " +
-  "}",
-
-  webkitKeyFrameMountAnimation: "@-webkit-keyframes mountAnimation" +
-  "{ " +
-  "from {opacity: 0;}; " +
-  "to {opacity: 1;}; " +
-  "}",
+  //
+  //riotTagsMainContainer: ".riot-tags-main-container" +
+  //"{ " +
+  //"-webkit-animation-name: mountAnimation; " +
+  //"-webkit-animation-duration: 0.2s; " +
+  //"}",
+  //
+  //webkitKeyFrameMountAnimation: "@-webkit-keyframes mountAnimation" +
+  //"{ " +
+  //"from {opacity: 0;}; " +
+  //"to {opacity: 1;}; " +
+  //"}",
 
   body: "body{" +
   "margin: 0;" +
