@@ -20,10 +20,6 @@
 
       <div class="serviceinfo-option-containter" ontouchend="chooseOption(this.id)" each="{i in optionsArray}"
            id="{i.option_value}">
-        <div class="serviceinfo-option-title-text">{i.option_object[0].title}:</div>
-        <div class="serviceinfo-option-value-text">
-          {i.option_object[0].value}
-        </div>
         <div class="serviceinfo-option-title-text">{i.option_object[1].title}:</div>
         <div class="serviceinfo-option-value-text">
           {i.option_object[1].value}
