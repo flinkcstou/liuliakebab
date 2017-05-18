@@ -12868,6 +12868,9 @@ var css = {
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
   "width: 80%;" +
+  "height: " + 105 * widthK + "px; " +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
     //"float: left;" +
   "}",
 
