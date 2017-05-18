@@ -204,7 +204,7 @@
       }
     };
 
-    sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
     scope.monthsArray = window.languages.ViewReportMonthsArray;

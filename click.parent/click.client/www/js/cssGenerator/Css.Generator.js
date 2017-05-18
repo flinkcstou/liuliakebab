@@ -180,6 +180,12 @@ var css = {
   "to {opacity: 1;}; " +
   "}",
 
+  webkitKeyFrameMountAnimation: "@-webkit-keyframes mountAnimation" +
+  "{ " +
+  "from {opacity: 0;}; " +
+  "to {opacity: 1;}; " +
+  "}",
+
   body: "body{" +
   "margin: 0;" +
   "position: absolute;" +
