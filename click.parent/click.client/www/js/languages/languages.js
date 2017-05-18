@@ -156,7 +156,7 @@ var RU_LANGUAGES =
   "ComponentSuccessMessage": "Перевод прошел успешно!",
   "ComponentSuccessMessageForPay": "Оплата проведена успешно!",
   "ComponentSuccessMessageForPayFriendHelp": "Запрос передан в обработку",
-  "ComponentSuccessNext": "OK",
+  "ComponentSuccessNext": "Oк",
 
   "ComponentSuccessMessageForAddingToFavorites": "Платёж успешно добавлен в избранные",
 
@@ -172,8 +172,8 @@ var RU_LANGUAGES =
   "ComponentUnsuccessNext": "OK",
 
   "ComponentDeleteText": "Вы действительно хотите удалить карту из приложения?",
-  "ComponentDeleteTextYes": "ДА",
-  "ComponentDeleteTextNo": "НЕТ",
+  "ComponentDeleteTextYes": "Да",
+  "ComponentDeleteTextNo": "Нет",
 
   "ViewPinCodeClickPinLabel": "Установите CLICK-PIN",
   "ViewPinCodeConfirmClickPinLabel": "Подтвердите CLICK-PIN",
@@ -457,18 +457,18 @@ var RU_LANGUAGES =
     {"k": 57, "v": '57'}, {"k": 58, "v": '58'}, {"k": 59, "v": '59'}, {"k": 60, "v": '00'}, {"k": 61, "v": '01'},
     {"k": 62, "v": '02'}, {"k": 63, "v": '03'}, {"k": 64, "v": '04'}, {"k": 65, "v": '05'}, {"k": 66, "v": '06'}],
 
-  "ComponentConfirmOk": "ОК",
-  "ComponentConfirmCancel": "ОТМЕНА",
+  "ComponentConfirmOk": "Ок",
+  "ComponentConfirmCancel": "Отмена",
 
   "ViewAutoPayNameFieldText": "Название автоплатежа",
   "ViewAutoPayConditionFieldText": "Условие",
-  "ViewAutoPayCreateButtonText": "СОЗДАТЬ",
-  "ViewAutoPayDeleteButtonText": "УДАЛИТЬ",
+  "ViewAutoPayCreateButtonText": "Создать",
+  "ViewAutoPayDeleteButtonText": "Удалить",
   "ViewAutoPayCreatedSuccessTextOne": "Автоплатеж ",
   "ViewAutoPayCreatedSuccessTextTwo": " успешно создан!",
   "ViewAutoPayDeletedSuccessText": "Автоплатеж успешно удален!",
 
-  "ViewServiceInfoButtonNextText": "ДАЛЕЕ",
+  "ViewServiceInfoButtonNextText": "Далее",
   "ViewServiceInfoButtonGoToPaymentText": "ПЕРЕЙТИ К ОПЛАТЕ",
 };
 

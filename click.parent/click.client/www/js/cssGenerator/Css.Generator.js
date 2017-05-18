@@ -417,7 +417,7 @@ var css = {
   "text-align: center;" +
   "color: #b7f1ff;" +
   "width: 70%;" +
-  "top:" + 90 * widthK + "px;" +
+  "top:" + 35 + "%;" +
   "font-size:" + 30 * widthK + "px;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
@@ -427,7 +427,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 860 * widthK + "px;" +
+  "height:" + 860 * heightK + "px;" +
   "top:" + 290 * widthK + "px;" +
   "overflow: hidden;" +
   "}",
@@ -481,7 +481,7 @@ var css = {
   "width: 34%;" +
   "background-color: #ffffff;" +
     //"border-radius: " + 10 * widthK + "px;" +
-  "bottom: " + 33 * widthK + "px;" +
+  "top: " + 80 + "%;" +
   "color: #555555;" +
   "}",
 
@@ -497,7 +497,7 @@ var css = {
   "width: 74%;" +
   "background-color: #ffffff;" +
     //"border-radius: " + 10 * widthK + "px;" +
-  "bottom: " + 33 * widthK + "px;" +
+  "top: " + 80 + "%;" +
   "color: #555555;" +
   "}",
 

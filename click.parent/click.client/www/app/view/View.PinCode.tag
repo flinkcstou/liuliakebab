@@ -34,7 +34,7 @@
       <div id="registrationProcessingId" class="registration-process-processing">
       </div>
       <div class="registration-process-text">
-        <p style="margin-top: 55%">Пожалуйста, подождите.<br><br>Мы регистрируем вашу карту в системе CLICK!</p>
+        <p>Пожалуйста, подождите.<br><br>Мы регистрируем вашу карту в системе CLICK!</p>
       </div>
     </div>
 
@@ -42,7 +42,7 @@
       <div class="registration-process-ok">
       </div>
       <div class="registration-process-text">
-        <p style="margin-top: 54%">Ваша карта<br>успешно зарегестрирована!</p>
+        <p>Ваша карта<br>успешно зарегестрирована!</p>
 
       </div>
 
@@ -55,7 +55,7 @@
       <div class="registration-process-x">
       </div>
       <div class="registration-process-text">
-        <p class="registration-process-check-status-label" id="registrationProcessErorrId"></p>
+        <p class="registration-process-check-status-label" id="registrationProcessErorrId">{errorRegistrationProcess}</p>
 
       </div>
 
@@ -406,7 +406,7 @@
             else {
               if (result[1][0].registered == -1) {
                 scope.registrationSuccess = -1;
-                registrationProcessErorrId.innerText = result[0][0].error_note;
+                scope.errorRegistrationProcess = result[0][0].error_note;
 //                clearInterval(registrationInterval)
 
                 console.log("ANSWER OF CHECK REGISTRATION", -1)
