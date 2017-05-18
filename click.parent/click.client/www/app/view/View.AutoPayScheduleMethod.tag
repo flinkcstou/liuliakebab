@@ -262,6 +262,7 @@
     dateContainerTouchStart = function () {
       console.log("in start touch=", dateNumber);
       carouselTouchStartY = event.changedTouches[0].pageY;
+      carouselTouchStartX = event.changedTouches[0].pageX;
 //      console.log("startY=", carouselTouchStartY);
       tempStartY = carouselTouchStartY;
       nNew = dateNumber;
@@ -275,10 +276,11 @@
       event.preventDefault();
       event.stopPropagation();
       carouselTouchEndY = event.changedTouches[0].pageY;
+      carouselTouchEndX = event.changedTouches[0].pageX;
 
       nShift = Math.round(Math.abs(carouselTouchEndY - carouselTouchStartY) / (scope.shift * widthK));
 
-      if (Math.abs(carouselTouchStartY - carouselTouchEndY) > 20) {
+      if (Math.abs(carouselTouchStartY - carouselTouchEndY) > 20 && Math.abs(carouselTouchStartX - carouselTouchEndX) > 20) {
         changePosition(nShift);
       }
     };
@@ -416,10 +418,12 @@
     }
 
     //    for minutes
+    var minutesTouchStartY, minutesTouchStartX, minutesTouchEndY, minutesTouchEndX;
 
     minContainerTouchStart = function () {
 //      console.log("in start touch=", minuteNumber);
       minutesTouchStartY = event.changedTouches[0].pageY;
+      minutesTouchStartX = event.changedTouches[0].pageX;
 //      mtouchStartTime = new Date().getTime();
       mtempStartY = minutesTouchStartY;
       mnNew = minuteNumber;
@@ -432,6 +436,7 @@
 
       event.stopPropagation();
       minutesTouchEndY = event.changedTouches[0].pageY;
+      minutesTouchEndX = event.changedTouches[0].pageX;
 //      mtouchEndTime = new Date().getTime();
 //      var mspeed = Math.abs((minutesTouchEndY - minutesTouchStartY) / (mtouchEndTime - mtouchStartTime));
 //      console.log("SPEED=", mspeed);
@@ -439,7 +444,7 @@
       mShift = Math.round(Math.abs(minutesTouchStartY - minutesTouchEndY) / (scope.shift * widthK));
 //      console.log("potential move=", Math.ceil(mspeed) * mShift);
 
-      if (Math.abs(minutesTouchStartY - minutesTouchEndY) > 20) {
+      if (Math.abs(minutesTouchStartY - minutesTouchEndY) > 20 && Math.abs(minutesTouchStartX - minutesTouchEndX) > 20) {
         changeMinutesPosition(mShift);
       }
     }

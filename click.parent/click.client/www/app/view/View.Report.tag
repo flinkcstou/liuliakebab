@@ -209,6 +209,7 @@
 
 
     var monthChanged = false;
+    var carouselTouchStartY, carouselTouchEndY;
 
     monthContainerTouchStart = function () {
 
@@ -219,6 +220,7 @@
 
       console.log("in start touch=", scope.mNumber);
       carouselTouchStartX = event.changedTouches[0].pageX;
+      carouselTouchStartY = event.changedTouches[0].pageY;
 
       percentageTouche = (carouselTouchStartX * 100.0) / window.innerHeight;
 
@@ -239,7 +241,8 @@
       }
 
       carouselTouchEndX = event.changedTouches[0].pageX;
-      if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20) {
+      carouselTouchEndY = event.changedTouches[0].pageY;
+      if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20 && Math.abs(carouselTouchStartY - carouselTouchEndY) > 20) {
         changePosition();
       }
       else {
@@ -499,15 +502,15 @@
                 result[1][i].paymentTime = date.getHours() + ':' + date.getMinutes();
               }
 
-              if(result[1][i].state == -1){
+              if (result[1][i].state == -1) {
                 result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
               }
 
-              if(result[1][i].state == 2){
+              if (result[1][i].state == 2) {
                 result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
               }
 
-              if(result[1][i].state == 1){
+              if (result[1][i].state == 1) {
                 result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
               }
 
@@ -612,8 +615,8 @@
 
             scope.paymentsSum = scope.paymentsSum.toString();
 
-            if(scope.paymentsSum)
-            scope.paymentsSum = window.amountTransform(scope.paymentsSum);
+            if (scope.paymentsSum)
+              scope.paymentsSum = window.amountTransform(scope.paymentsSum);
 
             scope.update();
 

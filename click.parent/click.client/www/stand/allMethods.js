@@ -3520,7 +3520,7 @@ window.fakedSocket.register("get.additional.information", function (input) {
               value: "Ганиев Жасур"
             }, {
               title: "Адрес объекта",
-              value: "ул. Олимлар, 25, 18"
+              value: "ул. Буюк Ипак Йули, дом 123, кв. 29 "
             }],
             option_payment_attribute: "additional_param4",
             option_value: "10:09:02:02:02:5127:0002:029"
@@ -3530,11 +3530,45 @@ window.fakedSocket.register("get.additional.information", function (input) {
               value: "Юлдашев Александр"
             }, {
               title: "Адрес объекта",
-              value: "ул. Богишамол, 15,31"
+              value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29 "
             }],
             option_payment_attribute: "additional_param4",
             option_value: "66P03489500934"
-          }]
+          },
+            {
+              option_object: [{
+                title: "Ф.И.О.",
+                value: "Юлдашев Александр"
+              }, {
+                title: "Адрес объекта",
+                value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29"
+              }],
+              option_payment_attribute: "additional_param4",
+              option_value: "66P03489500934"
+            },
+            {
+              option_object: [{
+                title: "Ф.И.О.",
+                value: "Юлдашев Александр"
+              }, {
+                title: "Адрес объекта",
+                value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29"
+              }],
+              option_payment_attribute: "additional_param4",
+              option_value: "66P03489500934"
+            },
+            {
+              option_object: [{
+                title: "Ф.И.О.",
+                value: "Юлдашев Александр"
+              }, {
+                title: "Адрес объекта",
+                value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29"
+              }],
+              option_payment_attribute: "additional_param4",
+              option_value: "66P03489500934"
+            }
+          ]
         }
       ]];
 

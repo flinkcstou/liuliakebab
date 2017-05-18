@@ -99,9 +99,9 @@ var css = {
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-    "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -12757,7 +12757,8 @@ var css = {
   serviceInfoOptionContainer: ".serviceinfo-option-containter" +
   "{" +
   "position: relative;" +
-  "height:" + 145 * widthK + "px; " +
+  "height: auto;" +
+  "min-height:" + 240 * widthK + "px; " +
   "width: 91%;" +
   "left: 4%;" +
   "margin-top: 1%;" +
@@ -12772,20 +12773,21 @@ var css = {
   "top: " + 30 * widthK + "px; " +
   "left: 4%;" +
   "text-align: left;" +
-  "font-size:" + 25 * widthK + "px; " +
+  "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
-  "float: left;" +
+    //"float: left;" +
   "}",
 
   serviceInfoOptionValueText: ".serviceinfo-option-value-text" +
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "top: " + 26 * widthK + "px; " +
-  "left: 5%;" +
+  "top: " + 45 * widthK + "px; " +
+  "left: 4%;" +
   "text-align: left;" +
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
+  "width: 80%;" +
     //"float: left;" +
   "}",
 
@@ -12798,7 +12800,7 @@ var css = {
   "top: 0;" +
   "background-repeat: no-repeat;" +
   "background-size: 63%;" +
-  "background-position-y:" + 50 * widthK + "px; " +
+  "background-position-y: 40%;" +
   "background-image: url(resources/icons/ViewService/unchecked.png);" +
   "}",
 
