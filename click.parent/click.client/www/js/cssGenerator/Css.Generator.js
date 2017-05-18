@@ -71,6 +71,7 @@ var css = {
   "background-image: url(resources/demo/demo_close.png);" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
+  "z-index: 999999999;" +
   "}",
 
   riotTagsMainContainer: ".riot-tags-main-container" +
@@ -6602,7 +6603,7 @@ var css = {
   "height: 6%;" +
     //"left: -2%;" +
   "width: 100%;" +
-  "top: 36%;" +
+  "top:" + 500 * widthK + "px;" +
   "display: table;" +
   "margin-right: auto;" +
   "margin-left: auto;" +

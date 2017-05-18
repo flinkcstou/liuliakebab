@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" id="htmlId"
       onselectstart="return false" onCopy="return false" onCut="return false"
-      onDrag="return false" onDrop="return false" autocomplete=off unselectable="on">
+      onDrag="return false" onDrop="return false" autocomplete=off unselectable="on"
+      style="position:absolute; width: 100%; height: 100%; background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
@@ -45,9 +46,9 @@
 
   api.init();
   var scope = this;
-//  console.log = function () {
-//    return
-//  }
+  //  console.log = function () {
+  //    return
+  //  }
 
   permissionAccess = function () {
 
@@ -100,6 +101,8 @@
 
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
+
+//      localStorage.setItem('device', JSON.stringify(device))
 
       var versionOfApp = '1.0.3'
       if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {

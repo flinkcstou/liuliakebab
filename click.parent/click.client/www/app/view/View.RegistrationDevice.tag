@@ -31,7 +31,7 @@
          ontouchend="registrationOfflineTouchEnd()">
       <div class="registration-button-offline">{window.languages.ViewRegistrationDeviceButtonOffline}</div>
     </div>
-    <a href="index-stand-demo.html" id="demoContainer" class="registration-container-demo-version">
+    <a id="demoContainer" class="registration-container-demo-version" ontouchend="goToDemoTouchEnd()">
       <div class="registration-button-demo-version">{window.languages.ViewRegistrationDeviceButtonDemoVersion}
       </div>
     </a>
@@ -42,7 +42,9 @@
 
   <script>
 
-//    localStorage.clear()
+    localStorage.setItem('device.platform', device.platform)
+
+    //    localStorage.clear()
 
 
     var checkRemember = false;
@@ -164,16 +166,17 @@
       }
     }
 
-    goToDemo = function () {
+    goToDemoTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-      localStorage.setItem('demo_version', true);
+      window.location = "index-stand-demo.html"
+//      localStorage.setItem('demo_version', true);
     }
-    closeDemo = function () {
-      event.preventDefault();
-      event.stopPropagation();
-      this.demoContainer.classList.add('hide')
-    }
+    //    closeDemo = function () {
+    //      event.preventDefault();
+    //      event.stopPropagation();
+    //      this.demoContainer.classList.add('hide')
+    //    }
 
     var getPhoneNumberTouchStartX, getPhoneNumberTouchStartY, getPhoneNumberTouchEndX, getPhoneNumberTouchEndY
 

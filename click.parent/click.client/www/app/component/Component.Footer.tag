@@ -308,8 +308,9 @@
       footerOpenTouchEndY = event.changedTouches[0].pageY;
 
 
-      if (Math.abs(footerOpenTouchStartX - footerOpenTouchEndX) <= 20 && Math.abs(footerOpenTouchStartY - footerOpenTouchEndY) <= 20) {
 
+      if (Math.abs(footerOpenTouchStartX - footerOpenTouchEndX) <= 20 && Math.abs(footerOpenTouchStartY - footerOpenTouchEndY) <= 20) {
+        scope.update()
         if (!check) {
           this.iconTickId.style.transform = "rotate3d(1, 0, 0, 180deg)";
           this.iconTickId.style.webkitTransform = "rotate3d(1, 0, 0, 180deg)";
@@ -337,7 +338,9 @@
 
 
     findContacts = function () {
+      console.log("FOOTER FIND CONTACTS")
       if (!localStorage.getItem('transferContacts')) {
+        console.log("WRITING CONTACTS...")
         var options = new ContactFindOptions();
         options.filter = "";
         options.multiple = true;
@@ -375,8 +378,12 @@
         writeContacts(arrayOfContacts);
       }
     }
-    if (device.platform != 'BrowserStand')
+
+    console.log(device.platform)
+    if (device.platform != 'BrowserStand') {
       findContacts();
+      console.log('FINDCONTACTS() RUN')
+    }
 
     function writeContacts(arrayOfConnectedContacts) {
       var j = 0;
@@ -421,6 +428,8 @@
 
       localStorage.setItem('transferContacts', JSON.stringify(arrayOfConnectedContacts))
     }
+
+    console.log("FOOTER SCRIPT")
 
   </script>
 </component-footer>

@@ -5,6 +5,7 @@ window.device_fake.platform = 'BrowserStand';
 window.device_fake.info = 'Apple 9.3.5 iPhone4,1';
 window.device_fake.check = false;
 
+console.log("FAKE PLUGIN")
 window.Keyboard_fake = {};
 window.Keyboard_fake.hide = function (){
   //alert('keyboard is hidden')
@@ -18,10 +19,6 @@ if(!window.Keyboard){
   window.Keyboard = window.Keyboard_fake;
 }
 
-if (!window.device) {
-  window.device = window.device_fake;
-}
-
 window.contact_fake = {};
 
 contact_fake.ContactFindOptions = function () {
@@ -30,5 +27,9 @@ contact_fake.ContactFindOptions = function () {
 
 if (!window.ContactFindOptions) {
   window.ContactFindOptions = contact_fake.ContactFindOptions();
+}
+
+if (!window.device) {
+  window.device = window.device_fake;
 }
 

@@ -9,6 +9,10 @@ window.fakedSocket.start = function () {
       window.fakedSocket.readyState = 1;
       window.fakedSocket.onopen();
       console.log("Faked socket opened");
+
+      if (modeOfApp.demoVersion) {
+        firstMount.firstStep(true);
+      }
     }
   }, 0);
 

@@ -8,6 +8,8 @@ public class PrepareCordovaWWW {
 
     DirOperations dir = Util.clickClientDir();
     dir.cd("cordova").delete("www");
+    dir.cd("cordova").delete("www");
+    dir.cmd("npm install");
 
     String indexName = a.indexName();
 

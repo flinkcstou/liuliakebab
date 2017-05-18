@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" id="htmlId"
       onselectstart="return false" onCopy="return false" onCut="return false"
-      onDrag="return false" onDrop="return false" autocomplete=off unselectable="on">
+      onDrag="return false" onDrop="return false" autocomplete=off unselectable="on"
+      style="position:absolute; width: 100%; height: 100%; background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
+
+  <script src="cordova.js"></script>
+  <script src="js/globalObjects/global.Objects.js"></script>
   <script src="js/languages/languages.js"></script>
   <script src="js/mOperators/mOperators.js"></script>
   <!-- CSS -->
   <link id="mainPageCss" href="css/animation.css" rel="stylesheet">
+  <!--<link id="mainPageCss" href="css/MainPage.css" rel="stylesheet">-->
 
   <script src="stand/plugins/sms_fake.js"></script>
   <script src="stand/plugins/plugins_fake.js"></script>
@@ -23,35 +28,54 @@
   <script src="js/encryption/sha512.js"></script>
   <script src="js/encryption/md5.js"></script>
 
+  <!--Resize Image-->
+  <script src="js/resizeImage/ImageTools.js"></script>
+
+  <!--Chart Library-->
+  <script src="js/chart/Chart.js"></script>
+
   <!--RealApi-->
   <script src="js/api/WebApi.js"></script>
-  <script src="js/globalObjects/global.Objects.js"></script>
   <script src="js/offlineMode/offlineModeVariables.js"></script>
 
   <!-- FAKES -->
   <script src="stand/fakedSocket.js"></script>
   <script src="stand/allMethods.js"></script>
 
+
 </head>
 
 <body id="bodyId">
 <div id="riotTags" class="riotTags">
-  <view-main-page></view-main-page>
 </div>
-<div class="demo-version-button-exit" if="{modeOfApp.demoVersion}" ontouchstart="demoVersionTouchStart()"
-     ontouchend="demoVersionTouchEnd()"></div>
+<div class="demo-version-button-exit" if="{modeOfApp.demoVersion}" ontouchstart="modeDemoVersionTouchStart()"
+     ontouchend="modeDemoVersionTouchEnd()"></div>
 
 
 <script>
 
-  api.init();
-  scope = this;
   modeOfApp.demoVersion = true;
-  riot.update()
+
+  api.init();
+
+  var GENERATOR = document.createElement('script');
+  GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
+  document.head.appendChild(GENERATOR);
+
+
+  var scope = this;
+
+  document.addEventListener("deviceready", function () {
+    console.log("DEVICE READY")
+    runDemoInitialize();
+
+    if (device.platform == 'Android')
+      permissionAccess();
+  })
 
   var demoTouchStartX, demoTouchStartY, demoTouchEndX, demoTouchEndY;
 
-  demoVersionTouchStart = function () {
+  modeDemoVersionTouchStart = function () {
     event.preventDefault()
     event.stopPropagation()
 
@@ -59,7 +83,7 @@
     demoTouchStartY = event.changedTouches[0].pageY
   }
 
-  demoVersionTouchEnd = function () {
+  modeDemoVersionTouchEnd = function () {
     event.preventDefault()
     event.stopPropagation()
 
@@ -67,11 +91,15 @@
     demoTouchEndY = event.changedTouches[0].pageY
 
     if (Math.abs(demoTouchStartX - demoTouchEndX) <= 20 && Math.abs(demoTouchStartY - demoTouchEndY) <= 20) {
+//      alert(device.platform)
       localStorage.clear();
+      sessionStorage.clear()
 
-      if(device.platform != "BrowserStand")
-      window.location.href = "index.html";
-      else{
+      console.log('device.platform', device.platform)
+//      return
+      if (device.platform != "BrowserStand")
+        window.location.href = "index.html";
+      else {
         window.location.href = "index-stand-realApi.html";
       }
     }
@@ -126,39 +154,369 @@
 
   }
 
-  if (window.cordova) {
-    document.addEventListener("deviceready", function () {
 
-      if (device.platform == 'Android')
-        permissionAccess();
+  runDemoInitialize = function () {
 
-      var GENERATOR = document.createElement('script');
-      GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
-      document.head.appendChild(GENERATOR);
+    prepareLoginData();
+    scope.categoryList = JSON.parse(localStorage.getItem("click_client_payCategoryList"));
+    scope.serviceList = JSON.parse(localStorage.getItem("click_client_payServiceList"));
+    scope.serviceNamesMap = JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"));
+    scope.servicesMapByCategory = JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"));
+    scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
+    scope.servicesParams = JSON.parse(localStorage.getItem("click_client_servicesParams"));
+    scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
 
 
-      firstMount.firstStep = function () {
-        prepareLoginData();
-      };
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+    scope.operatorKey = phoneNumber.substr(3, 2);
+    phoneNumber = phoneNumber.substring(3, phoneNumber.length);
 
-      document.addEventListener("backbutton", onBackKeyDown, false);
-    }, false);
+    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+
+    //  if (!localStorage.getItem("click_client_payCategoryList")) {
+    scope.categoryList = [];
+    scope.categoryNamesMap = {};
+    window.api.call({
+      method: 'get.service.category.list',
+      input: {
+        session_key: sessionKey,
+        phone_num: phoneNumber
+      },
+      scope: this,
+
+      onSuccess: function (result) {
+        if (result[0][0].error == 0)
+          if (result[1][0]) {
+
+            if (device.platform != 'BrowserStand') {
+              window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+                var j = -1;
+
+                for (var i in result[1]) {
+
+                  scope.categoryNamesMap[result[1][i].id] = {
+                    "name": result[1][i].name,
+                    "icon": result[1][i].icon
+                  };
+                  j++;
+                  scope.categoryList.push(result[1][i]);
+
+                  var icon = result[1][i].icon;
+                  var filename = icon.substr(icon.lastIndexOf('/') + 1);
+
+                  var newIconBool = checkImageURL;
+                  newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
+
+                    if (bool) {
+                      scope.categoryList[index]['icon'] = cordova.file.dataDirectory + fileName;//
+                    } else {
+                      scope.categoryList[index]['icon'] = 'resources/icons/ViewPay/' + fileName;
+                    }
+
+                    if (result[1].length == scope.categoryList.length) {
+//                            console.log("save into localstorage, categoryList=", scope.categoryList);
+                      scope.update(scope.categoryList);
+                      localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
+                      localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
+                    }
+                  });
+                }
+              }, onErrorLoadFs);
+            }
+            else {
+              for (var i in result[1]) {
+
+                scope.categoryList.push(result[1][i]);
+                scope.categoryNamesMap[result[1][i].id] = {
+                  "name": result[1][i].name,
+                  "icon": result[1][i].icon
+                };
+              }
+//                    riot.update(scope.categoryList);
+              localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
+              localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
+            }
+          }
+
+        scope.id = 0;
+
+      },
+      onFail: function (api_status, api_status_message, data) {
+        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+        console.error(data);
+      }
+    });
+    //  }
+
+    //  refreshServiceList = function () {
+    //          console.log("IN SERVICE LIST FUNC");
+    scope.serviceList = [];
+    scope.servicesMapByCategory = {};
+    scope.servicesMap = {};
+    scope.serviceNamesMap = {};
+    scope.operatorKey = phoneNumber.substr(3, 2);
+    //          console.log("MOPERATORS!!!!!!!!!!!!!!", window.mOperators[scope.operatorKey]);
+    window.api.call({
+      method: 'get.service.list',
+      input: {
+        session_key: sessionKey,
+        phone_num: phoneNumber
+      },
+      scope: this,
+
+      onSuccess: function (result) {
+        if (result[0][0].error == 0)
+          if (result[1][0]) {
+
+            var firstService;
+
+            if (device.platform != 'BrowserStand') {
+              window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+                var inVisibleNum = 0, j = -1;
+
+                for (var i in result[1]) {
+                  if (result[1][i].is_visible == 1) {
+
+                    console.log("service id=", result[1][i].id, ", element:", result[1][i]);
+
+                    scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
+                    j++;
+                    scope.serviceList.push(result[1][i]);
+
+                    var icon = result[1][i].image;
+                    var filename = icon.substr(icon.lastIndexOf('/') + 1);
+
+                    var newIconBool = checkImageURL;
+                    newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
+
+                      if (bool) {
+                        scope.serviceList[index]['image'] = cordova.file.dataDirectory + fileName;//
+                      } else {
+                        scope.serviceList[index]['image'] = 'resources/icons/ViewPay/' + fileName;
+                      }
+
+                      if (!scope.servicesMapByCategory[scope.serviceList[index].category_id]) {
+                        scope.servicesMapByCategory[scope.serviceList[index].category_id] = [];
+                        if (scope.serviceList[index].category_id === 1 && (scope.serviceList[index].id === window.mOperators[scope.operatorKey])) {
+                          localStorage.setItem('myNumberOperatorId', scope.serviceList[index].id);
+//                                console.log("MY NUMBER ID", scope.serviceList[index].id);
+
+                          var myNumberObject = {};
+                          myNumberObject.name = 'Мой номер';
+                          myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+                          myNumberObject.id = 'mynumber' + scope.serviceList[index].id;
+                          scope.servicesMapByCategory[scope.serviceList[index].category_id].push(myNumberObject);
+
+                        } else if (scope.serviceList[index].category_id === 1) {
+                          firstService = scope.serviceList[index];
+//                                console.log("FIRST SERVICE=", firstService);
+                        }
+                        scope.servicesMapByCategory[scope.serviceList[index].category_id].push(scope.serviceList[index]);
+                      }
+                      else {
+                        if (scope.serviceList[index].category_id === 1 && (scope.serviceList[index].id === window.mOperators[scope.operatorKey])) {
+                          localStorage.setItem('myNumberOperatorId', scope.serviceList[index].id);
+//                                console.log("MY NUMBER ID", scope.serviceList[index].id);
+
+                          var myNumberObject = {};
+                          myNumberObject.name = 'Мой номер';
+                          myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+                          myNumberObject.id = 'mynumber' + scope.serviceList[index].id;
+                          scope.servicesMapByCategory[scope.serviceList[index].category_id][0] = myNumberObject;
+                          scope.servicesMapByCategory[scope.serviceList[index].category_id].push(firstService);
+                        }
+                        scope.servicesMapByCategory[scope.serviceList[index].category_id].push(scope.serviceList[index]);
+                      }
+
+
+                      if (!scope.servicesMap[scope.serviceList[index].id + '']) {
+                        scope.servicesMap[scope.serviceList[index].id + ''] = [];
+                        scope.servicesMap[scope.serviceList[index].id + ''].push(scope.serviceList[index]);
+                      }
+                      else {
+                        scope.servicesMap[scope.serviceList[index].id + ''].push(scope.serviceList[index]);
+                      }
+
+
+                      if ((result[1].length - inVisibleNum) == scope.serviceList.length) {
+//                              console.log("save into localstorage");
+                        localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
+                        localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
+                        localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
+                        localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
+                      }
+
+                    });
+                  } else
+                    inVisibleNum++;
+                }
+              }, onErrorLoadFs);
+            } else {
+
+              for (var i in result[1]) {
+                if (result[1][i].is_visible == 1) {
+//                        console.log("service id=", result[1][i].id, ", element:", result[1][i]);
+
+                  scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
+                  scope.serviceList.push(result[1][i]);
+
+
+                  if (!scope.servicesMapByCategory[result[1][i].category_id]) {
+                    scope.servicesMapByCategory[result[1][i].category_id] = [];
+                    if (result[1][i].category_id === 1 && (result[1][i].id === window.mOperators[scope.operatorKey])) {
+                      localStorage.setItem('myNumberOperatorId', result[1][i].id);
+//                                console.log("MY NUMBER ID", scope.serviceList[index].id);
+
+                      var myNumberObject = {};
+                      myNumberObject.name = 'Мой номер';
+                      myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+                      myNumberObject.id = 'mynumber' + result[1][i].id;
+                      scope.servicesMapByCategory[result[1][i].category_id].push(myNumberObject);
+
+                    } else if (result[1][i].category_id === 1) {
+                      firstService = result[1][i];
+//                                console.log("FIRST SERVICE=", firstService);
+                    }
+                    scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
+                  }
+                  else {
+                    if (result[1][i].category_id === 1 && (result[1][i].id === window.mOperators[scope.operatorKey])) {
+                      localStorage.setItem('myNumberOperatorId', result[1][i].id);
+//                                console.log("MY NUMBER ID", scope.serviceList[index].id);
+
+                      var myNumberObject = {};
+                      myNumberObject.name = 'Мой номер';
+                      myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+                      myNumberObject.id = 'mynumber' + result[1][i].id;
+                      scope.servicesMapByCategory[result[1][i].category_id][0] = myNumberObject;
+                      scope.servicesMapByCategory[result[1][i].category_id].push(firstService);
+                    }
+                    scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
+                  }
+
+                  ///////////////////////////////////////////////////
+
+
+                  if (!scope.servicesMap[result[1][i].id + '']) {
+                    scope.servicesMap[result[1][i].id + ''] = [];
+                    scope.servicesMap[result[1][i].id + ''].push(result[1][i]);
+                  }
+                  else {
+                    scope.servicesMap[result[1][i].id + ''].push(result[1][i]);
+                  }
+                }
+              }
+              localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
+              localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
+              localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
+              localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
+
+            }
+          }
+
+
+//          servicesParamsInit();
+      },
+      onFail: function (api_status, api_status_message, data) {
+        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+        console.error(data);
+      }
+    })
+    //  };
+
+
+    //  servicesParamsInit = function () {
+    //          console.log("IN SERVICES PARAMS INIT");
+    scope.servicesParams = [];
+    scope.servicesParamsMapOne = {};
+    scope.servicesParamsMapTwo = {};
+    scope.servicesParamsMapThree = {};
+    scope.servicesParamsMapFour = {};
+    scope.servicesParamsMapFive = {};
+    window.api.call({
+      method: 'get.service.parameters.list',
+      input: {
+        session_key: sessionKey,
+        phone_num: phoneNumber
+      },
+
+      scope: this,
+
+      onSuccess: function (result) {
+        if (result[0][0].error == 0) {
+          if (result[1])
+            for (var i in result[1]) {
+//                    console.log("1. service id=", result[1][i].service_id, "element:", result[1][i]);
+              if (!scope.servicesParamsMapOne[result[1][i].service_id]) {
+                scope.servicesParamsMapOne[result[1][i].service_id] = [];
+                scope.servicesParamsMapOne[result[1][i].service_id].push(result[1][i]);
+              }
+              else
+                scope.servicesParamsMapOne[result[1][i].service_id].push(result[1][i]);
+
+
+            }
+          if (result[2])
+            for (var i in result[2]) {
+//                    console.log("2. service id=", result[2][i].service_id, "element:", result[2][i]);
+              if (!scope.servicesParamsMapTwo[result[2][i].service_id]) {
+                scope.servicesParamsMapTwo[result[2][i].service_id] = [];
+                scope.servicesParamsMapTwo[result[2][i].service_id].push(result[2][i]);
+              }
+              else
+                scope.servicesParamsMapTwo[result[2][i].service_id].push(result[2][i]);
+
+            }
+          if (result[3])
+            for (var i in result[3]) {
+//                    console.log("3. service id=", result[3][i].service_id, "element:", result[3][i]);
+              if (!scope.servicesParamsMapThree[result[3][i].service_id]) {
+                scope.servicesParamsMapThree[result[3][i].service_id] = [];
+                scope.servicesParamsMapThree[result[3][i].service_id].push(result[3][i]);
+              }
+              else
+                scope.servicesParamsMapThree[result[3][i].service_id].push(result[3][i]);
+
+            }
+          if (result[4])
+            for (var i in result[4]) {
+//                    console.log("4. service id=", result[4][i].service_id, "element:", result[4][i]);
+              if (!scope.servicesParamsMapFour[result[4][i].service_id]) {
+                scope.servicesParamsMapFour[result[4][i].service_id] = [];
+                scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
+              }
+              else
+                scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
+            }
+          if (result[5])
+            for (var i in result[5]) {
+//                    console.log("5. service id=", result[5][i].service_id, "element:", result[5][i]);
+              if (!scope.servicesParamsMapFive[result[5][i].service_id]) {
+                scope.servicesParamsMapFive[result[5][i].service_id] = [];
+                scope.servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
+              }
+              else
+                scope.servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
+            }
+          localStorage.setItem('click_client_servicesParams', JSON.stringify(result));
+          localStorage.setItem('click_client_servicesParamsMapOne', JSON.stringify(scope.servicesParamsMapOne));
+          localStorage.setItem('click_client_servicesParamsMapTwo', JSON.stringify(scope.servicesParamsMapTwo));
+          localStorage.setItem('click_client_servicesParamsMapThree', JSON.stringify(scope.servicesParamsMapThree));
+          localStorage.setItem('click_client_servicesParamsMapFour', JSON.stringify(scope.servicesParamsMapFour));
+          localStorage.setItem('click_client_servicesParamsMapFive', JSON.stringify(scope.servicesParamsMapFive));
+        }
+      },
+
+      onFail: function (api_status, api_status_message, data) {
+        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+        console.error(data);
+      }
+    });
   }
-  else {
-    var GENERATOR = document.createElement('script');
-    GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
-    document.head.appendChild(GENERATOR);
-
-    firstMount.firstStep = function () {
-      prepareLoginData();
-
-    }
-  }
 
 
-  //  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
-  //    this.closeDemo();
-  //  }
+  document.addEventListener("backbutton", onBackKeyDown, false);
+
 
   function prepareLoginData() {
     var phoneNumber = "998971111111";
@@ -190,185 +548,11 @@
     localStorage.setItem('click_client_loginInfo', JSON.stringify(JsonInfo));
     localStorage.setItem('demo_version', true);
     localStorage.setItem('myNumberOperatorId', "3");
-    getAccount();
-    //getLists();
 
-  }
-
-
-  var arrayAccountInfo = [];
-  getAccount = function (e) {
-//    console.log("in getAccounts");
-//    if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
-//      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-//      var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-//      var sessionKey = info.session_key;
-//
-//      console.log("in getAccounts 2");
-//
-//      scope.checkSumOfHash = true;
-
-    this.riotTags.innerHTML = "<view-main-page>";
+    scope.riotTags.innerHTML = "<view-main-page>";
     riot.mount('view-main-page');
-//
-//
-//      if (!localStorage.getItem("click_client_accountInfo")) {
-//        window.api.call({
-//          method: 'get.accounts',
-//          input: {
-//            session_key: sessionKey,
-//            phone_num: phoneNumber
-//          },
-//
-//          scope: this,
-//
-//          onSuccess: function (result) {
-//
-//            var arrayAccountInfo = [];
-//
-//
-//            if (result[0][0].error == 0) {
-//              if (localStorage.getItem('click_client_cards')) {
-//                var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'))
-//                for (var i in result[1]) {
-//                  console.log('cardsArray[result[1].id]', cardsArray[result[1][i].id])
-//                  if (cardsArray[result[1][i].id]) {
-//
-//                    console.log('HASH SUM CHECKING', cardsArray[result[1][i].id].checksum, result[1][i].checksum)
-//
-//                    if (cardsArray[result[1][i].id].checksum != result[1][i].checksum) {
-//                      scope.checkSumOfHash = false;
-//                    }
-//                  }
-//                  else {
-//                    scope.checkSumOfHash = false;
-//                  }
-//                }
-//
-//                console.log("CARDS RESULT", result[1], cardsArray)
-//
-//              }
-//              else {
-//                scope.checkSumOfHash = false;
-//              }
-//
-//              console.log('HASH SUM CHECK', scope.checkSumOfHash)
-//
-////                console.log('CARDS UPDATE()', result[1])
-////                console.log(result[1])
-//              if (!scope.checkSumOfHash) {
-//                if (device.platform != 'BrowserStand') {
-//                  window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-//                    var j = -1, count = 0;
-//                    for (var i = 0; i < result[1].length; i++) {
-//
-//                      j++;
-//
-//                      console.log('arrayAccountInfo_1' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
-//
-//                      arrayAccountInfo.push(result[1][i]);
-//
-//                      console.log('arrayAccountInfo_2' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
-//
-//                      var icon = result[1][i].card_background_url;
-//
-//                      var filename = icon.substr(icon.lastIndexOf('/') + 1);
-////                      alert("filename=" + filename);
-//
-//                      var newIconBool = checkImageURL;
-//                      newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
-//
-//                        if (bool) {
-//                          count++;
-////                          alert("(1)new file name=" + fileName + "," + count);
-//                          arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
-//                        } else {
-//                          count++;
-////                          alert("(2)new file name=" + fileName + "," + count);
-//                          arrayAccountInfo[index].card_background_url = 'resources/icons/cards/' + fileName;
-//                        }
-//
-//                        var icon2 = arrayAccountInfo[index].image_url;
-//                        var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
-//                        var newIcon = checkImageURL;
-//                        newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
-//
-//                          if (bool2) {
-//                            count++;
-////                            alert("(11)new file name=" + fileName2 + "," + count);
-//                            arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
-//                          } else {
-//                            count++;
-////                            alert("(12)new file name=" + fileName2 + "," + count);
-//                            arrayAccountInfo[index2].image_url = 'resources/icons/cards/logo/' + fileName2;
-//                          }
-//
-//                          if (count == (result[1].length * 2)) {
-////                            alert("GHVCHGFUIHOI:JIJsave into localstorage");
-//                            var accountInfo = JSON.stringify(arrayAccountInfo);
-//                            if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
-//                              localStorage.removeItem("click_client_accountInfo")
-//                            }
-//
-//                            console.log('arrayAccountInfo_1232131' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
-//
-//                            console.log('accountInfo', accountInfo);
-//
-//                            localStorage.setItem("click_client_accountInfo", accountInfo);
-//
-//                          }
-//
-//                        });
-//
-//                      });
-//
-//                    }
-//                  }, onErrorLoadFs);
-//
-//                  this.riotTags.innerHTML = "<view-main-page>";
-//                  riot.mount('view-main-page');
-//
-//                } else {
-//                  for (var i = 0; i < result[1].length; i++)
-//                    arrayAccountInfo.push(result[1][i])
-//                  var accountInfo = JSON.stringify(arrayAccountInfo);
-//                  if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
-//                    localStorage.removeItem("click_client_accountInfo")
-//                  }
-//
-//                  console.log('accountInfo BROWSER STAND', accountInfo);
-//                  localStorage.setItem("click_client_accountInfo", accountInfo);
-//
-//
-//                  this.riotTags.innerHTML = "<view-main-page>";
-//                  riot.mount('view-main-page');
-//                }
-//              }
-//              else {
-//                this.riotTags.innerHTML = "<view-main-page>";
-//                riot.mount('view-main-page');
-//
-//              }
-//            }
-//            else {
-//              scope.clickPinError = false;
-//              scope.errorNote = result[0][0].error_note;
-//              scope.showError = true;
-//              scope.update();
-//            }
-//          },
-//
-//
-//          onFail: function (api_status, api_status_message, data) {
-//            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-//            console.error(data);
-//          }
-//        });
-//      } else {
-//        this.riotTags.innerHTML = "<view-main-page>";
-//        riot.mount('view-main-page');
-//      }
 
+    //getLists();
 
   }
 
@@ -376,6 +560,8 @@
   function onBackKeyDown() {
 
     history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+
+    console.log('DEMO HISTORY', history.arrayOfHistory)
 
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-main-page') {
@@ -397,394 +583,6 @@
     }
   }
 
-  window.beforeunload = function (e) {
-
-    //    return 'Dialog text here.';
-  };
-  //
-  //  $(window.location).trigger(
-  //    "change",
-  //    {
-  //      currentHref: strLocation,
-  //      currentHash: fnCleanHash(strHash),
-  //      previousHref: strPrevLocation,
-  //      previousHash: fnCleanHash(strPrevHash)
-  //    }
-  //  );
-
-  $(window.location).bind(
-    "change",
-    function (objEvent, objData) {
-      console.log("YKJJJJ");
-      var jLog = $("#log");
-      // Add the URL change.
-      jLog.append(
-        "<li>" +
-        "Hash changed from " +
-        "<strong>" + objData.previousHash + "</strong>" +
-        " to " +
-        "<strong>" + objData.currentHash + "</strong>" +
-        "</li>"
-      );
-    }
-  );
-
-
-  scope.categoryList = JSON.parse(localStorage.getItem("click_client_payCategoryList"));
-  scope.serviceList = JSON.parse(localStorage.getItem("click_client_payServiceList"));
-  scope.serviceNamesMap = JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"));
-  scope.servicesMapByCategory = JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"));
-  scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
-  scope.servicesParams = JSON.parse(localStorage.getItem("click_client_servicesParams"));
-  scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
-
-
-  var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-  scope.operatorKey = phoneNumber.substr(3, 2);
-  phoneNumber = phoneNumber.substring(3, phoneNumber.length);
-
-  var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-
-  //  if (!localStorage.getItem("click_client_payCategoryList")) {
-  scope.categoryList = [];
-  scope.categoryNamesMap = {};
-  window.api.call({
-    method: 'get.service.category.list',
-    input: {
-      session_key: sessionKey,
-      phone_num: phoneNumber
-    },
-    scope: this,
-
-    onSuccess: function (result) {
-      if (result[0][0].error == 0)
-        if (result[1][0]) {
-
-          if (device.platform != 'BrowserStand') {
-            window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-              var j = -1;
-
-              for (var i in result[1]) {
-
-                scope.categoryNamesMap[result[1][i].id] = {
-                  "name": result[1][i].name,
-                  "icon": result[1][i].icon
-                };
-                j++;
-                scope.categoryList.push(result[1][i]);
-
-                var icon = result[1][i].icon;
-                var filename = icon.substr(icon.lastIndexOf('/') + 1);
-
-                var newIconBool = checkImageURL;
-                newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
-
-                  if (bool) {
-                    scope.categoryList[index]['icon'] = cordova.file.dataDirectory + fileName;//
-                  } else {
-                    scope.categoryList[index]['icon'] = 'resources/icons/ViewPay/' + fileName;
-                  }
-
-                  if (result[1].length == scope.categoryList.length) {
-//                            console.log("save into localstorage, categoryList=", scope.categoryList);
-                    scope.update(scope.categoryList);
-                    localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
-                    localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
-                  }
-                });
-              }
-            }, onErrorLoadFs);
-          }
-          else {
-            for (var i in result[1]) {
-
-              scope.categoryList.push(result[1][i]);
-              scope.categoryNamesMap[result[1][i].id] = {
-                "name": result[1][i].name,
-                "icon": result[1][i].icon
-              };
-            }
-//                    riot.update(scope.categoryList);
-            localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
-            localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
-          }
-        }
-
-      scope.id = 0;
-
-    },
-    onFail: function (api_status, api_status_message, data) {
-      console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-      console.error(data);
-    }
-  });
-  //  }
-
-  //  refreshServiceList = function () {
-  //          console.log("IN SERVICE LIST FUNC");
-  scope.serviceList = [];
-  scope.servicesMapByCategory = {};
-  scope.servicesMap = {};
-  scope.serviceNamesMap = {};
-  scope.operatorKey = phoneNumber.substr(3, 2);
-  //          console.log("MOPERATORS!!!!!!!!!!!!!!", window.mOperators[scope.operatorKey]);
-  window.api.call({
-    method: 'get.service.list',
-    input: {
-      session_key: sessionKey,
-      phone_num: phoneNumber
-    },
-    scope: this,
-
-    onSuccess: function (result) {
-      if (result[0][0].error == 0)
-        if (result[1][0]) {
-
-          var firstService;
-
-          if (device.platform != 'BrowserStand') {
-            window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-              var inVisibleNum = 0, j = -1;
-
-              for (var i in result[1]) {
-                if (result[1][i].is_visible == 1) {
-
-                  console.log("service id=", result[1][i].id, ", element:", result[1][i]);
-
-                  scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
-                  j++;
-                  scope.serviceList.push(result[1][i]);
-
-                  var icon = result[1][i].image;
-                  var filename = icon.substr(icon.lastIndexOf('/') + 1);
-
-                  var newIconBool = checkImageURL;
-                  newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
-
-                    if (bool) {
-                      scope.serviceList[index]['image'] = cordova.file.dataDirectory + fileName;//
-                    } else {
-                      scope.serviceList[index]['image'] = 'resources/icons/ViewPay/' + fileName;
-                    }
-
-                    if (!scope.servicesMapByCategory[scope.serviceList[index].category_id]) {
-                      scope.servicesMapByCategory[scope.serviceList[index].category_id] = [];
-                      if (scope.serviceList[index].category_id === 1 && (scope.serviceList[index].id === window.mOperators[scope.operatorKey])) {
-                        localStorage.setItem('myNumberOperatorId', scope.serviceList[index].id);
-//                                console.log("MY NUMBER ID", scope.serviceList[index].id);
-
-                        var myNumberObject = {};
-                        myNumberObject.name = 'Мой номер';
-                        myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
-                        myNumberObject.id = 'mynumber' + scope.serviceList[index].id;
-                        scope.servicesMapByCategory[scope.serviceList[index].category_id].push(myNumberObject);
-
-                      } else if (scope.serviceList[index].category_id === 1) {
-                        firstService = scope.serviceList[index];
-//                                console.log("FIRST SERVICE=", firstService);
-                      }
-                      scope.servicesMapByCategory[scope.serviceList[index].category_id].push(scope.serviceList[index]);
-                    }
-                    else {
-                      if (scope.serviceList[index].category_id === 1 && (scope.serviceList[index].id === window.mOperators[scope.operatorKey])) {
-                        localStorage.setItem('myNumberOperatorId', scope.serviceList[index].id);
-//                                console.log("MY NUMBER ID", scope.serviceList[index].id);
-
-                        var myNumberObject = {};
-                        myNumberObject.name = 'Мой номер';
-                        myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
-                        myNumberObject.id = 'mynumber' + scope.serviceList[index].id;
-                        scope.servicesMapByCategory[scope.serviceList[index].category_id][0] = myNumberObject;
-                        scope.servicesMapByCategory[scope.serviceList[index].category_id].push(firstService);
-                      }
-                      scope.servicesMapByCategory[scope.serviceList[index].category_id].push(scope.serviceList[index]);
-                    }
-
-
-                    if (!scope.servicesMap[scope.serviceList[index].id + '']) {
-                      scope.servicesMap[scope.serviceList[index].id + ''] = [];
-                      scope.servicesMap[scope.serviceList[index].id + ''].push(scope.serviceList[index]);
-                    }
-                    else {
-                      scope.servicesMap[scope.serviceList[index].id + ''].push(scope.serviceList[index]);
-                    }
-
-
-                    if ((result[1].length - inVisibleNum) == scope.serviceList.length) {
-//                              console.log("save into localstorage");
-                      localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
-                      localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
-                      localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
-                      localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
-                    }
-
-                  });
-                } else
-                  inVisibleNum++;
-              }
-            }, onErrorLoadFs);
-          } else {
-
-            for (var i in result[1]) {
-              if (result[1][i].is_visible == 1) {
-//                        console.log("service id=", result[1][i].id, ", element:", result[1][i]);
-
-                scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
-                scope.serviceList.push(result[1][i]);
-
-
-                if (!scope.servicesMapByCategory[result[1][i].category_id]) {
-                  scope.servicesMapByCategory[result[1][i].category_id] = [];
-                  if (result[1][i].category_id === 1 && (result[1][i].id === window.mOperators[scope.operatorKey])) {
-                    localStorage.setItem('myNumberOperatorId', result[1][i].id);
-//                                console.log("MY NUMBER ID", scope.serviceList[index].id);
-
-                    var myNumberObject = {};
-                    myNumberObject.name = 'Мой номер';
-                    myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
-                    myNumberObject.id = 'mynumber' + result[1][i].id;
-                    scope.servicesMapByCategory[result[1][i].category_id].push(myNumberObject);
-
-                  } else if (result[1][i].category_id === 1) {
-                    firstService = result[1][i];
-//                                console.log("FIRST SERVICE=", firstService);
-                  }
-                  scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
-                }
-                else {
-                  if (result[1][i].category_id === 1 && (result[1][i].id === window.mOperators[scope.operatorKey])) {
-                    localStorage.setItem('myNumberOperatorId', result[1][i].id);
-//                                console.log("MY NUMBER ID", scope.serviceList[index].id);
-
-                    var myNumberObject = {};
-                    myNumberObject.name = 'Мой номер';
-                    myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
-                    myNumberObject.id = 'mynumber' + result[1][i].id;
-                    scope.servicesMapByCategory[result[1][i].category_id][0] = myNumberObject;
-                    scope.servicesMapByCategory[result[1][i].category_id].push(firstService);
-                  }
-                  scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
-                }
-
-                ///////////////////////////////////////////////////
-
-
-                if (!scope.servicesMap[result[1][i].id + '']) {
-                  scope.servicesMap[result[1][i].id + ''] = [];
-                  scope.servicesMap[result[1][i].id + ''].push(result[1][i]);
-                }
-                else {
-                  scope.servicesMap[result[1][i].id + ''].push(result[1][i]);
-                }
-              }
-            }
-            localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
-            localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
-            localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
-            localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
-
-          }
-        }
-
-
-      servicesParamsInit();
-    },
-    onFail: function (api_status, api_status_message, data) {
-      console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-      console.error(data);
-    }
-  })
-  //  };
-
-
-  //  servicesParamsInit = function () {
-  //          console.log("IN SERVICES PARAMS INIT");
-  scope.servicesParams = [];
-  scope.servicesParamsMapOne = {};
-  scope.servicesParamsMapTwo = {};
-  scope.servicesParamsMapThree = {};
-  scope.servicesParamsMapFour = {};
-  scope.servicesParamsMapFive = {};
-  window.api.call({
-    method: 'get.service.parameters.list',
-    input: {
-      session_key: sessionKey,
-      phone_num: phoneNumber
-    },
-
-    scope: this,
-
-    onSuccess: function (result) {
-      if (result[0][0].error == 0) {
-        if (result[1])
-          for (var i in result[1]) {
-//                    console.log("1. service id=", result[1][i].service_id, "element:", result[1][i]);
-            if (!scope.servicesParamsMapOne[result[1][i].service_id]) {
-              scope.servicesParamsMapOne[result[1][i].service_id] = [];
-              scope.servicesParamsMapOne[result[1][i].service_id].push(result[1][i]);
-            }
-            else
-              scope.servicesParamsMapOne[result[1][i].service_id].push(result[1][i]);
-
-
-          }
-        if (result[2])
-          for (var i in result[2]) {
-//                    console.log("2. service id=", result[2][i].service_id, "element:", result[2][i]);
-            if (!scope.servicesParamsMapTwo[result[2][i].service_id]) {
-              scope.servicesParamsMapTwo[result[2][i].service_id] = [];
-              scope.servicesParamsMapTwo[result[2][i].service_id].push(result[2][i]);
-            }
-            else
-              scope.servicesParamsMapTwo[result[2][i].service_id].push(result[2][i]);
-
-          }
-        if (result[3])
-          for (var i in result[3]) {
-//                    console.log("3. service id=", result[3][i].service_id, "element:", result[3][i]);
-            if (!scope.servicesParamsMapThree[result[3][i].service_id]) {
-              scope.servicesParamsMapThree[result[3][i].service_id] = [];
-              scope.servicesParamsMapThree[result[3][i].service_id].push(result[3][i]);
-            }
-            else
-              scope.servicesParamsMapThree[result[3][i].service_id].push(result[3][i]);
-
-          }
-        if (result[4])
-          for (var i in result[4]) {
-//                    console.log("4. service id=", result[4][i].service_id, "element:", result[4][i]);
-            if (!scope.servicesParamsMapFour[result[4][i].service_id]) {
-              scope.servicesParamsMapFour[result[4][i].service_id] = [];
-              scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
-            }
-            else
-              scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
-          }
-        if (result[5])
-          for (var i in result[5]) {
-//                    console.log("5. service id=", result[5][i].service_id, "element:", result[5][i]);
-            if (!scope.servicesParamsMapFive[result[5][i].service_id]) {
-              scope.servicesParamsMapFive[result[5][i].service_id] = [];
-              scope.servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
-            }
-            else
-              scope.servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
-          }
-        localStorage.setItem('click_client_servicesParams', JSON.stringify(result));
-        localStorage.setItem('click_client_servicesParamsMapOne', JSON.stringify(scope.servicesParamsMapOne));
-        localStorage.setItem('click_client_servicesParamsMapTwo', JSON.stringify(scope.servicesParamsMapTwo));
-        localStorage.setItem('click_client_servicesParamsMapThree', JSON.stringify(scope.servicesParamsMapThree));
-        localStorage.setItem('click_client_servicesParamsMapFour', JSON.stringify(scope.servicesParamsMapFour));
-        localStorage.setItem('click_client_servicesParamsMapFive', JSON.stringify(scope.servicesParamsMapFive));
-      }
-    },
-
-    onFail: function (api_status, api_status_message, data) {
-      console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-      console.error(data);
-    }
-  });
-  //  };
 
   function checkImageURL(dirEntry, fileNamePrefix, fileName, assetURL, index, callback) {
 
