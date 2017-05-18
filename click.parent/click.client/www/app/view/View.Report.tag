@@ -150,14 +150,15 @@
     scope.firstReportView = true;
     scope.showError = false;
 
-    var count = 12;
-    localStorage.setItem('click_client_countCard', count);
+    scope.count = 12;
+    //    localStorage.setItem('click_client_countCard', count);
 
     scope.firstReportView = !opts.show_graph;
 
 
     if (!scope.mNumber) {
       scope.mNumber = new Date().getMonth();
+      console.log('MONTH NUMBER', scope.mNumber)
 
       scope.monthNotStartedYet = false;
 
@@ -212,7 +213,10 @@
 
 
     var monthChanged = false;
-    var carouselTouchStartY, carouselTouchEndY;
+    var carouselTouchStartX, carouselTouchStartY, carouselTouchEndX, carouselTouchEndY
+    var left;
+    var delta;
+    var percentageTouche;
 
     monthContainerTouchStart = function () {
 
@@ -233,7 +237,9 @@
       delta = left;
     };
 
+
     monthContainerTouchEnd = function () {
+
 
       event.preventDefault();
       event.stopPropagation();
@@ -245,7 +251,10 @@
 
       carouselTouchEndX = event.changedTouches[0].pageX;
       carouselTouchEndY = event.changedTouches[0].pageY;
-      if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20 && Math.abs(carouselTouchStartY - carouselTouchEndY) > 20) {
+      console.log(Math.abs(carouselTouchStartX - carouselTouchEndX))
+      console.log(Math.abs(carouselTouchStartY - carouselTouchEndY))
+      if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20) {
+        console.log('Touch end of carousel')
         changePosition();
       }
       else {
@@ -254,8 +263,8 @@
     };
 
 
+    var toucheInPercentage;
     monthContainerTouchMove = function () {
-
       event.preventDefault();
       event.stopPropagation();
 
@@ -274,10 +283,12 @@
     };
 
 
-    function changePosition() {
+    changePosition = function () {
+      console.log("One")
+      console.log("scope.count",scope.count)
 
       monthChanged = true;
-      if (carouselTouchEndX < carouselTouchStartX && scope.mNumber < count - 1) {
+      if (carouselTouchEndX < carouselTouchStartX && scope.mNumber < scope.count - 1) {
         ++scope.mNumber;
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
@@ -292,7 +303,7 @@
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
-      if (carouselTouchEndX < carouselTouchStartX && scope.mNumber == count - 1) {
+      if (carouselTouchEndX < carouselTouchStartX && scope.mNumber == scope.count - 1) {
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
@@ -329,9 +340,10 @@
       localStorage.setItem('mNumber', scope.mNumber);
     }
 
-    function changePositionTwo() {
+    changePositionTwo = function () {
+      console.log("TWO")
 
-      if (scope.mNumber < count - 1) {
+      if (scope.mNumber < scope.count - 1) {
         ++scope.mNumber;
         this.monthContainerId.style.transition = '0.001s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
@@ -346,7 +358,7 @@
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
-      if (scope.mNumber == count - 1) {
+      if (scope.mNumber == scope.count - 1) {
         this.monthContainerId.style.transition = '0.001s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.001s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
@@ -644,7 +656,7 @@
     };
 
     createGraph = function (arrayForGraph) {
-      scope.count = 0;
+      scope.countForGraph = 0;
 
       var data = {
         datasets: [
@@ -698,7 +710,7 @@
         scope.arrayOfCoordinates.push(coordinates);
         j++;
 
-        scope.count = j;
+        scope.countForGraph = j;
       }
       scope.update()
       console.log("ARRAY OF COORDINATES", scope.arrayOfCoordinates)
@@ -749,7 +761,7 @@
 
       if (Math.abs(paymentTouchStartY - paymentTouchEndY) <= 20 && (Math.abs(paymentTouchStartX - paymentTouchEndX) <= 20)) {
 
-        if(modeOfApp.demoVersion){
+        if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
           scope.confirmShowBool = true;
@@ -762,7 +774,7 @@
               scope.unmount()
               return
             }
-            else{
+            else {
               scope.confirmShowBool = false;
               return
             }

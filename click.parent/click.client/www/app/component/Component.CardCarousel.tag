@@ -927,22 +927,7 @@
           pos = (scope.cardNumber) * 540 * widthK;
           var sendChosenCardId;
           console.log("ASD", scope.cardsarray, scope.cardNumber);
-          for (var i in scope.cardsarray) {
 
-//            if (scope.invoiceCheck) {
-//              scope.cardsarray[i].countCard--;
-//            }
-
-            if (scope.cardsarray[i].countCard == scope.cardNumber) {
-              scope.cardsarray[i].chosenCard = true;
-
-              sendChosenCardId = scope.cardsarray[i].card_id
-              localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
-            }
-            else {
-              scope.cardsarray[i].chosenCard = false;
-            }
-          }
 //          htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
 //            'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
           riotTags.innerHTML = "<view-my-cards>";
