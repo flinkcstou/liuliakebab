@@ -168,14 +168,16 @@
     scope.onTouchStartOfAmountDropdown = onTouchStartOfAmountDropdown = function () {
       event.stopPropagation();
       onTouchStartY = event.changedTouches[0].pageY;
+      onTouchStartX = event.changedTouches[0].pageX;
     };
 
     scope.onTouchEndOfAmountDropdown = onTouchEndOfAmountDropdown = function (id) {
       event.stopPropagation();
 
       onTouchEndY = event.changedTouches[0].pageY;
+      onTouchEndX = event.changedTouches[0].pageX;
 
-      if (Math.abs(onTouchStartY - onTouchEndY) <= 20) {
+      if (Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) {
 
         this.blockFirstFieldId.style.display = 'none';
 

@@ -33,6 +33,10 @@
                    errornote="{errorNote}"></component-alert>
 
   <script>
+
+    // THIS VIEW IS NOT USED FOR NOW
+
+
     var scope = this;
     scope.showError = false;
     this.titleName = window.languages.ViewAutoPayTitleName;

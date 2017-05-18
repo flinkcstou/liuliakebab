@@ -516,7 +516,7 @@
 
 //                        arrayAccountInfo.push(result[1][i]);
 
-                          console.log('arrayAccountInfo_2' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
+                        console.log('arrayAccountInfo_2' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
 
                         var icon = result[1][i].card_background_url;
 

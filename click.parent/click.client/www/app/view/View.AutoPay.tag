@@ -131,6 +131,7 @@
     onTouchStartOfAutoPayment = function () {
       event.stopPropagation();
       onTouchStartY = event.changedTouches[0].pageY;
+      onTouchStartX = event.changedTouches[0].pageX;
     }
 
 
@@ -138,10 +139,11 @@
       event.stopPropagation();
 
       onTouchEndY = event.changedTouches[0].pageY;
+      onTouchEndX = event.changedTouches[0].pageX;
 //      console.log(onTouchEndY)
 
 
-      if (Math.abs(onTouchStartY - onTouchEndY) <= 20) {
+      if (Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) {
         console.log("autoPayment ID to open=", id);
         for (var i in scope.autopayList) {
           if (scope.autopayList[i].id == id) {

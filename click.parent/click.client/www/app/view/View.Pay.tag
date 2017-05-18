@@ -174,23 +174,25 @@
 
     scope.index = -1;
     scope.show = false;
-    var onTouchStartY;
-    var onTouchEndY;
+    var onTouchStartY, onTouchStartX;
+    var onTouchEndY, onTouchEndX;
     var count = 1;
 
     scope.onTouchStartOfCategory = onTouchStartOfCategory = function () {
       event.stopPropagation();
       onTouchStartY = event.changedTouches[0].pageY;
+      onTouchStartX = event.changedTouches[0].pageX;
     };
 
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
       event.stopPropagation();
 
       onTouchEndY = event.changedTouches[0].pageY;
+      onTouchEndX = event.changedTouches[0].pageX;
 //      console.log(onTouchEndY)
 
 
-      if (Math.abs(onTouchStartY - onTouchEndY) <= 20 || scope.checkOfSearch) {
+      if ((Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) || scope.checkOfSearch) {
         if (scope.index == id) {
           scope.index = -1;
         } else {
@@ -245,6 +247,7 @@
     scope.onTouchStartOfService = onTouchStartOfService = function () {
       event.stopPropagation();
       onTouchStartY = event.changedTouches[0].pageY;
+      onTouchStartX = event.changedTouches[0].pageX;
     };
 
     console.log('OPTS', opts);
@@ -253,8 +256,9 @@
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
       event.stopPropagation();
       onTouchEndY = event.changedTouches[0].pageY;
+      onTouchEndX = event.changedTouches[0].pageX;
 
-      if (Math.abs(onTouchStartY - onTouchEndY) <= 20 || scope.checkOfSearch) {
+      if ((Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) || scope.checkOfSearch) {
         console.log('ID ID ID', id)
         if (opts.mode == 'ADDAUTOPAY') {
           scope.autoPayData = {};

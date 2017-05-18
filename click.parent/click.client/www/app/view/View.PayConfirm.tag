@@ -402,7 +402,7 @@
               if (result[1]) {
                 console.log("result of APP.PAYMENT 1", result);
                 if (result[1][0].payment_id && !result[1][0].invoice_id) {
-                  console.log("Payment id", new Date());
+                  console.log("Payment id");
                   if (device.platform != 'BrowserStand') {
                     var options = {dimBackground: true};
 
@@ -445,7 +445,7 @@
 
       function checkPaymentStatus(payment_id) {
 
-        console.log("check payment status", new Date());
+        console.log("check payment status");
 
 
         window.api.call({
