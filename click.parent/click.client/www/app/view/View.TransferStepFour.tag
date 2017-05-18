@@ -283,8 +283,7 @@
         scope.result = function (bool) {
           if (bool) {
             localStorage.clear();
-            riotTags.innerHTML = "<view-registration-device>";
-            riot.mount('view-registration-device');
+            window.location = 'index.html'
             scope.unmount()
             return
           }

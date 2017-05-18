@@ -238,6 +238,25 @@
     scope.update();
 
     addToFavorites = function () {
+
+      if (modeOfApp.demoVersion) {
+        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+        scope.confirmShowBool = true;
+        scope.confirmNote = question;
+        scope.confirmType = 'local';
+        scope.result = function (bool) {
+          if (bool) {
+            localStorage.clear();
+            window.location = 'index.html'
+            scope.unmount()
+            return
+          }
+        };
+        scope.update();
+
+        return
+      }
       scope.isInFavorites = true;
       scope.update(scope.isInFavorites);
       opts[0][7].isInFavorites = true;
@@ -292,8 +311,7 @@
         scope.result = function (bool) {
           if (bool) {
             localStorage.clear();
-            riotTags.innerHTML = "<view-registration-device>";
-            riot.mount('view-registration-device');
+            window.location = 'index.html'
             scope.unmount()
             return
           }
@@ -672,6 +690,26 @@
     }
 
     addToAutoPay = function () {
+
+      if (modeOfApp.demoVersion) {
+        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+        scope.confirmShowBool = true;
+        scope.confirmNote = question;
+        scope.confirmType = 'local';
+        scope.result = function (bool) {
+          if (bool) {
+            localStorage.clear();
+            window.location = 'index.html'
+            scope.unmount()
+            return
+          }
+        };
+        scope.update();
+
+        return
+      }
+
       opts.mode = 'ADDAUTOPAY';
       opts[3] = 'ADDAUTOPAY';
       scope.autoPayData = {};

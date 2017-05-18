@@ -29,6 +29,9 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
+  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
+                     confirmtype="{confirmType}"></component-confirm>
+
   <script>
 
     var scope = this;
@@ -97,7 +100,28 @@
       autoPayEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(autoPayStartX - autoPayEndX) <= 20 && Math.abs(autoPayStartY - autoPayEndY) <= 20) {
-        if(modeOfApp.demoVersion)return
+        if(modeOfApp.demoVersion){
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+          scope.confirmShowBool = true;
+          scope.confirmNote = question;
+          scope.confirmType = 'local';
+          scope.result = function (bool) {
+            if (bool) {
+              localStorage.clear();
+              window.location = 'index.html'
+              scope.unmount()
+              return
+            }
+            else{
+              scope.confirmShowBool = false;
+              return
+            }
+          };
+          scope.update();
+
+          return
+        }
 
         if (modeOfApp.onlineMode) {
 

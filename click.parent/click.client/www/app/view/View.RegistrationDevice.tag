@@ -31,7 +31,7 @@
          ontouchend="registrationOfflineTouchEnd()">
       <div class="registration-button-offline">{window.languages.ViewRegistrationDeviceButtonOffline}</div>
     </div>
-    <a id="demoContainer" class="registration-container-demo-version" ontouchend="goToDemoTouchEnd()">
+    <a id="demoContainer" class="registration-container-demo-version" ontouchend="goToDemoTouchEnd()" ontouchstart="goToDemoTouchStart()">
       <div class="registration-button-demo-version">{window.languages.ViewRegistrationDeviceButtonDemoVersion}
       </div>
     </a>
@@ -39,6 +39,22 @@
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
+
+  <div hidden id="demoContinueContainer" class="demo-version-continue riot-tags-main-container">
+    <p class="demo-version-demonstration-text">Демонстрационный режим</p>
+    <div class="demo-version-continue-container">
+      <div class="demo-version-continue-continue">
+      </div>
+      <div class="demo-version-continue-text">
+        <p>В данном режиме отображаются демонстрационные данные.<br>Полноценный функционал приложения недоступен. Для
+          использования всех функций приложения авторизуйтесь.</p>
+      </div>
+
+      <button class="demo-version-continue-button-continue" ontouchstart="demoContinueTouchStart()"
+              ontouchend="demoContinueTouchEnd()">ПРОДОЛЖИТЬ
+      </button>
+    </div>
+  </div>
 
   <script>
 
@@ -166,10 +182,58 @@
       }
     }
 
+    var demoContinueTouchStartX, demoContinueTouchStartY, demoContinueTouchEndX, demoContinueTouchEndY;
+
+    demoContinueTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+
+      demoContinueTouchStartX = event.changedTouches[0].pageX
+      demoContinueTouchStartY = event.changedTouches[0].pageY
+    }
+
+    demoContinueTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      demoContinueTouchEndX = event.changedTouches[0].pageX
+      demoContinueTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(demoContinueTouchStartX - demoContinueTouchEndX) <= 20 && Math.abs(demoContinueTouchStartY - demoContinueTouchEndY) <= 20) {
+
+        window.location = "index-stand-demo.html"
+      }
+    }
+
+    var demoOpenTouchStartX, demoOpenTouchStartY, demoOpenTouchEndX, demoOpenTouchEndY;
+
+
+    goToDemoTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      demoOpenTouchStartX = event.changedTouches[0].pageX
+      demoOpenTouchStartY = event.changedTouches[0].pageY
+
+    }
+
     goToDemoTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-      window.location = "index-stand-demo.html"
+
+      demoOpenTouchEndX = event.changedTouches[0].pageX
+      demoOpenTouchEndY = event.changedTouches[0].pageY
+
+      console.log(demoOpenTouchStartX,demoOpenTouchStartY )
+      console.log(demoOpenTouchEndX,demoOpenTouchEndY )
+
+      if (Math.abs(demoOpenTouchStartX - demoOpenTouchEndX) <= 20 && Math.abs(demoOpenTouchStartY - demoOpenTouchEndY) <= 20) {
+
+
+        demoContinueContainer.style.display = 'block'
+      }
+
 //      localStorage.setItem('demo_version', true);
     }
     //    closeDemo = function () {

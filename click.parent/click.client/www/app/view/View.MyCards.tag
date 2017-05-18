@@ -68,6 +68,9 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
+  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
+                     confirmtype="{confirmType}"></component-confirm>
+
   <script>
 
     viewMainPage.atMainPage = false;
@@ -101,7 +104,28 @@
 //      console.log("card for edit=", scope.card);
       event.preventDefault();
       event.stopPropagation();
-      if(modeOfApp.demoVersion)return
+      if(modeOfApp.demoVersion){
+        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+        scope.confirmShowBool = true;
+        scope.confirmNote = question;
+        scope.confirmType = 'local';
+        scope.result = function (bool) {
+          if (bool) {
+            localStorage.clear();
+            window.location = 'index.html'
+            scope.unmount()
+            return
+          }
+          else{
+            scope.confirmShowBool = false;
+            return
+          }
+        };
+        scope.update();
+
+        return
+      }
 
       riotTags.innerHTML = "<view-card-edit>";
       riot.mount('view-card-edit', [scope.card]);
@@ -141,7 +165,28 @@
       event.preventDefault();
       event.stopPropagation();
 
-      if(modeOfApp.demoVersion)return
+      if(modeOfApp.demoVersion){
+        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+        scope.confirmShowBool = true;
+        scope.confirmNote = question;
+        scope.confirmType = 'local';
+        scope.result = function (bool) {
+          if (bool) {
+            localStorage.clear();
+            window.location = 'index.html'
+            scope.unmount()
+            return
+          }
+          else{
+            scope.confirmShowBool = false;
+            return
+          }
+        };
+        scope.update();
+
+        return
+      }
 
       deleteCardComponentId.style.display = 'block'
 

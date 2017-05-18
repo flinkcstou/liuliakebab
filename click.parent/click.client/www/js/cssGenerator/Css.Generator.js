@@ -52,6 +52,22 @@ var css = {
 
   html: "html" +
   "{ " +
+  "width: 100%;" +
+  "height: 100%;" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+    //"background-image: url(resources/draft/demo_continue.png);" +
+    //"opacity: 0.6;" +
+    //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+    //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+    //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "font-family: SFUIDisplay-Light;" +
+  "margin: 0;" +
+  "overflow: hidden;" +
+  "bottom: 0;" +
   "-webkit-user-select: none; " +
   "-webkit-touch-callout: none; " +
   "-webkit-user-drag: none; " +
@@ -60,6 +76,8 @@ var css = {
   "color:inherit;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
+
+  //DEMO
 
   demoVersionButtonExit: ".demo-version-button-exit" +
   "{ " +
@@ -74,38 +92,92 @@ var css = {
   "z-index: 999999999;" +
   "}",
 
+  demoVersionContinue: ".demo-version-continue " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "overflow: hidden;" +
+  "z-index: 999999;" +
+  "background-image: url('resources/icons/background/transparent.png');" +
+  "background-size: cover;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
+  demoVersionDemonstrationText: ".demo-version-demonstration-text " +
+  "{" +
+  "position: relative;" +
+  "text-align: center;" +
+  "color: #b7f1ff;" +
+  "width: 50%;" +
+  "top:" + 37 * heightK + "px;" +
+  "font-size:" + 37 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "}",
+
+  demoVersionContinueText: ".demo-version-continue-text " +
+  "{" +
+  "position: relative;" +
+  "text-align: center;" +
+  "color: #b7f1ff;" +
+  "width: 80%;" +
+  "top:" + 770 * heightK + "px;" +
+  "font-size:" + 27 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "}",
+
+  demoVersionContinueContainer: ".demo-version-continue-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 1232 * heightK + "px;" +
+  "top:" + 0 * widthK + "px;" +
+  "overflow: hidden;" +
+  "}",
+
+  demoVersionContinueContinue: ".demo-version-continue-continue " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 450 * widthK + "px;" +
+  "height:" + 530 * widthK + "px;" +
+  "left:" + 135 * widthK + "px;" +
+  "top:" + 215 * heightK + "px;" +
+    //"top:" + 400 * widthK + "px;" +
+  "background-image: url('resources/demo/demo_entrance.png');" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
+  demoVersionContinueButtonContinue: ".demo-version-continue-button-continue" +
+  "{" +
+  "height: " + 62 * widthK + "px;" +
+  "font-size: " + 30 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "left: 29%;" +
+  "width: 42%;" +
+  "background-color: #ffffff;" +
+    //"border-radius: " + 10 * widthK + "px;" +
+  "top: " + 1050 * heightK + "px;" +
+  "color: #555555;" +
+  "}",
+
   riotTagsMainContainer: ".riot-tags-main-container" +
   "{ " +
   "-webkit-animation-name: mountAnimation; " +
-  "-webkit-animation-duration: 3s; " +
+  "-webkit-animation-duration: 0.2s; " +
   "animation-name:mountAnimation;" +
-  "animation-duration: 3s;" +
+  "animation-duration: 0.2s;" +
   "}",
 
   keyFrameMountAnimation: "@keyframes mountAnimation" +
   "{ " +
   "from {opacity: 0;}; " +
   "to {opacity: 1;}; " +
-  "}",
-
-  htmlId: "#htmlId " +
-  "{" +
-  "width: 100%;" +
-  "height: 100%;" +
-  "background-size: contain;" +
-  "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/demo_draft.png);" +
-    //"opacity: 0.6;" +
-    //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-    //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-    //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "font-family: SFUIDisplay-Light;" +
-  "margin: 0;" +
-  "overflow: hidden;" +
-  "bottom: 0;" +
   "}",
 
   body: "body{" +
@@ -4157,13 +4229,14 @@ var css = {
   payconfirmCardLogoContainer: ".payconfirm-card-logo-container" +
   "{" +
   "position: absolute;" +
-  "width: 40%;" +
-  "height: 100%;" +
-  "left: 60%;" +
+  "width: 25%;" +
+  "height: 67%;" +
+  "left: 70%;" +
+  "top: 15%;" +
   "background-color: transparent;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "background-size: 55%;" +
+  "background-size: contain;" +
   "float: left;" +
   "}",
 
@@ -5435,13 +5508,14 @@ var css = {
   transferFourCardLogoContainer: ".transferfour-card-logo-container" +
   "{" +
   "position: absolute;" +
-  "width: 40%;" +
-  "height: 100%;" +
-  "left: 60%;" +
+  "width: 25%;" +
+  "height: 67%;" +
+  "left: 70%;" +
+  "top: 15%;" +
   "background-color: transparent;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "background-size: 55%;" +
+  "background-size: contain;" +
   "float: left;" +
   "}",
 

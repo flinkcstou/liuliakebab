@@ -39,6 +39,9 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
+  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
+                     confirmtype="{confirmType}"></component-confirm>
+
   <script>
 
     var scope = this;
@@ -367,11 +370,34 @@
     scope.ontouchEndOfAddFavorite = ontouchEndOfAddFavorite = function () {
       event.stopPropagation();
 
+
+
       onTouchEndX2 = event.changedTouches[0].pageX;
       touchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(onTouchStartX2 - onTouchEndX2) <= 20) {
-        if(modeOfApp.demoVersion)return
+        if(modeOfApp.demoVersion){
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+          scope.confirmShowBool = true;
+          scope.confirmNote = question;
+          scope.confirmType = 'local';
+          scope.result = function (bool) {
+            if (bool) {
+              localStorage.clear();
+              window.location = 'index.html'
+              scope.unmount()
+              return
+            }
+            else{
+              scope.confirmShowBool = false;
+              return
+            }
+          };
+          scope.update();
+
+          return
+        }
         console.log("ADD NEW FAVORITE");
         event.stopPropagation();
         opts.mode = 'ADDFAVORITE';

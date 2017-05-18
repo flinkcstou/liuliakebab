@@ -59,6 +59,9 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
+  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
+                     confirmtype="{confirmType}"></component-confirm>
+
   <script>
     var scope = this;
     scope.showError = false;
@@ -360,6 +363,30 @@
       event.stopPropagation();
       carouselTouchEndX = event.changedTouches[0].pageY;
       if (Math.abs(carouselTouchStartX - carouselTouchEndX) < 20) {
+
+        if(modeOfApp.demoVersion){
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+          scope.confirmShowBool = true;
+          scope.confirmNote = question;
+          scope.confirmType = 'local';
+          scope.result = function (bool) {
+            if (bool) {
+              localStorage.clear();
+              window.location = 'index.html'
+              scope.unmount()
+              return
+            }
+            else{
+              scope.confirmShowBool = false;
+              return
+            }
+          };
+          scope.update();
+
+          return
+        }
+
         console.log("Time to open");
         for (var i = 0; i < scope.lastOperationContainer.length; i++) {
           if (scope.lastOperationContainer[i].payment_id == paymentId) {

@@ -57,6 +57,7 @@
   modeOfApp.demoVersion = true;
 
   api.init();
+  sessionStorage.clear();
 
   var GENERATOR = document.createElement('script');
   GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
@@ -92,6 +93,7 @@
 
     if (Math.abs(demoTouchStartX - demoTouchEndX) <= 20 && Math.abs(demoTouchStartY - demoTouchEndY) <= 20) {
 //      alert(device.platform)
+      modeOfApp.demoVersion = false;
       localStorage.clear();
       sessionStorage.clear()
 
@@ -535,7 +537,7 @@
       "default_account": "2484171",
       "visibility": false,
       "help_status": false,
-      "firstname": "Click",
+      "firstname": "Пользователь",
       "lastname": "Click",
       "gender": "M",
       "profile_image_url": null,

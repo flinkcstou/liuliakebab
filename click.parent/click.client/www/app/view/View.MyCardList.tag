@@ -31,6 +31,8 @@
 
   </div>
 
+  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
+                     confirmtype="{confirmType}"></component-confirm>
   <script>
     var scope = this;
     this.titleName = window.languages.ViewMyCardListTitleName;
@@ -464,6 +466,29 @@
     addCardTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      if(modeOfApp.demoVersion){
+        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+        scope.confirmShowBool = true;
+        scope.confirmNote = question;
+        scope.confirmType = 'local';
+        scope.result = function (bool) {
+          if (bool) {
+            localStorage.clear();
+            window.location = 'index.html'
+            scope.unmount()
+            return
+          }
+          else{
+            scope.confirmShowBool = false;
+            return
+          }
+        };
+        scope.update();
+
+        return
+      }
 
       riotTags.innerHTML = "<view-add-card>";
       riot.mount('view-add-card');

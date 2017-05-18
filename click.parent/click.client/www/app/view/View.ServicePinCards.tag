@@ -51,6 +51,8 @@
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
+  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
+                     confirmtype="{confirmType}"></component-confirm>
 
   <script>
 
@@ -159,6 +161,26 @@
     };
 
     friendHelp = function () {
+
+      if (modeOfApp.demoVersion) {
+        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+        scope.confirmShowBool = true;
+        scope.confirmNote = question;
+        scope.confirmType = 'local';
+        scope.result = function (bool) {
+          if (bool) {
+            localStorage.clear();
+            window.location = 'index.html'
+            scope.unmount()
+            return
+          }
+        };
+        scope.update();
+
+        return
+      }
+
       viewServicePinCards.friendHelpPaymentMode = true;
       viewServicePinCards.chosenFriendForHelp = null;
       event.preventDefault();

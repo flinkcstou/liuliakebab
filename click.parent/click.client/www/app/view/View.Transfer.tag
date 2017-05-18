@@ -198,6 +198,9 @@
   </div>
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
+
+  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
+                     confirmtype="{confirmType}"></component-confirm>
   <script>
 
     viewTransfer.check = true;
@@ -318,6 +321,29 @@
 
     openBanksListPage = function () {
       if (modeOfApp.offlineMode)return
+
+      if(modeOfApp.demoVersion){
+        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+        scope.confirmShowBool = true;
+        scope.confirmNote = question;
+        scope.confirmType = 'local';
+        scope.result = function (bool) {
+          if (bool) {
+            localStorage.clear();
+            window.location = 'index.html'
+            scope.unmount()
+            return
+          }
+          else{
+            scope.confirmShowBool = false;
+            return
+          }
+        };
+        scope.update();
+
+        return
+      }
 
       if (JSON.parse(localStorage.getItem("click_client_p2p_bank_list"))) {
         scope.bankList = JSON.parse(localStorage.getItem("click_client_p2p_bank_list"));

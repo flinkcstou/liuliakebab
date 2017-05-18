@@ -55,6 +55,9 @@
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
+
+  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
+                     confirmtype="{confirmType}"></component-confirm>
   <script>
     var scope = this;
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -105,7 +108,28 @@
       closeMenu();
       event.preventDefault();
       event.stopPropagation();
-      if (modeOfApp.offlineMode)return
+      if(modeOfApp.demoVersion){
+        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+        scope.confirmShowBool = true;
+        scope.confirmNote = question;
+        scope.confirmType = 'local';
+        scope.result = function (bool) {
+          if (bool) {
+            localStorage.clear();
+            window.location = 'index.html'
+            scope.unmount()
+            return
+          }
+          else{
+            scope.confirmShowBool = false;
+            return
+          }
+        };
+        scope.update();
+
+        return
+      }
       riotTags.innerHTML = "<view-general-settings>";
       riot.mount("view-general-settings");
 //      scope.unmount()
@@ -199,6 +223,31 @@
       changeModeEnd = event.changedTouches[0].pageX;
 
       if (Math.abs(changeModeStart - changeModeEnd) < 20) {
+
+        if(modeOfApp.demoVersion){
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+          scope.confirmShowBool = true;
+          scope.confirmNote = question;
+          scope.confirmType = 'local';
+          scope.result = function (bool) {
+            if (bool) {
+              localStorage.clear();
+              window.location = 'index.html'
+              scope.unmount()
+              return
+            }
+            else{
+              scope.confirmShowBool = false;
+              return
+            }
+          };
+          scope.update();
+
+          return
+        }
+
+
         console.log('QQ')
         if (checkBoxChangeId.checked) {
           checkBoxChangeId.checked = false;
@@ -288,7 +337,28 @@
       autoPayTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(autoPayTouchStartX - autoPayTouchEndX) < 20) {
-        if(modeOfApp.demoVersion)return
+        if(modeOfApp.demoVersion){
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+          scope.confirmShowBool = true;
+          scope.confirmNote = question;
+          scope.confirmType = 'local';
+          scope.result = function (bool) {
+            if (bool) {
+              localStorage.clear();
+              window.location = 'index.html'
+              scope.unmount()
+              return
+            }
+            else{
+              scope.confirmShowBool = false;
+              return
+            }
+          };
+          scope.update();
+
+          return
+        }
 
         closeMenu();
         riotTags.innerHTML = "<view-auto-pay>";
@@ -312,7 +382,28 @@
       qrScannerTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX) < 20) {
-        if(modeOfApp.demoVersion)return
+        if(modeOfApp.demoVersion){
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+          scope.confirmShowBool = true;
+          scope.confirmNote = question;
+          scope.confirmType = 'local';
+          scope.result = function (bool) {
+            if (bool) {
+              localStorage.clear();
+              window.location = 'index.html'
+              scope.unmount()
+              return
+            }
+            else{
+              scope.confirmShowBool = false;
+              return
+            }
+          };
+          scope.update();
+
+          return
+        }
 //        closeMenu()
         if (device.platform != 'BrowserStand') {
 
@@ -474,7 +565,28 @@
       console.log('settingsTouchEndX', settingsTouchEndX)
 
       if (Math.abs(settingsTouchStartX - settingsTouchEndX) < 20) {
-        if(modeOfApp.demoVersion)return
+        if(modeOfApp.demoVersion){
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+          scope.confirmShowBool = true;
+          scope.confirmNote = question;
+          scope.confirmType = 'local';
+          scope.result = function (bool) {
+            if (bool) {
+              localStorage.clear();
+              window.location = 'index.html'
+              scope.unmount()
+              return
+            }
+            else{
+              scope.confirmShowBool = false;
+              return
+            }
+          };
+          scope.update();
+
+          return
+        }
         closeMenu()
         riotTags.innerHTML = "<view-settings>";
         riot.mount("view-settings");
@@ -500,7 +612,28 @@
       billingsTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(billingsTouchEndX - billingsTouchStartX) < 20) {
-        if(modeOfApp.demoVersion)return
+        if(modeOfApp.demoVersion){
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+          scope.confirmShowBool = true;
+          scope.confirmNote = question;
+          scope.confirmType = 'local';
+          scope.result = function (bool) {
+            if (bool) {
+              localStorage.clear();
+              window.location = 'index.html'
+              scope.unmount()
+              return
+            }
+            else{
+              scope.confirmShowBool = false;
+              return
+            }
+          };
+          scope.update();
+
+          return
+        }
         closeMenu();
         if (modeOfApp.offlineMode) {
           phonedialer.dial(
@@ -546,6 +679,28 @@
       console.log('settingsTouchEndX', favoritesTouchEndX)
 
       if (Math.abs(favoritesTouchStartX - favoritesTouchEndX) < 20) {
+        if(modeOfApp.demoVersion){
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+          scope.confirmShowBool = true;
+          scope.confirmNote = question;
+          scope.confirmType = 'local';
+          scope.result = function (bool) {
+            if (bool) {
+              localStorage.clear();
+              window.location = 'index.html'
+              scope.unmount()
+              return
+            }
+            else{
+              scope.confirmShowBool = false;
+              return
+            }
+          };
+          scope.update();
+
+          return
+        }
         closeMenu();
         riotTags.innerHTML = "<view-favorites>";
         riot.mount("view-favorites");
