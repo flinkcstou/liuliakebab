@@ -178,6 +178,7 @@
 
     console.log('OPTS', opts);
     localStorage.setItem('autoPayData', null);
+    localStorage.setItem('servicepage_fields', null);
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
       event.stopPropagation();

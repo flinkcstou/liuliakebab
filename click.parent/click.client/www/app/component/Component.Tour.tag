@@ -1,4 +1,4 @@
-<component-tour id="componentTourId">
+<component-tour id="componentTourId" style="display:none;">
 
 
   <div id="monthContainerId" class="view-reports-months-container" ontouchstart="monthContainerTouchStart()"
