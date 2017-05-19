@@ -61,6 +61,11 @@
 
   <script>
 
+    this.on('mount', function () {
+      if (device.platform == 'iOS')
+        demoContainer.style.left = 100 * widthK + 'px';
+    })
+
     localStorage.setItem('device.platform', device.platform)
 
     //    localStorage.clear()

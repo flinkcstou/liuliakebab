@@ -6,9 +6,9 @@
   <div class="view-info-balance-container">
     <p class="view-info-balance-label">{window.languages.ViewInfoBalanceTitle}</p>
     <div class="view-info-card-balance-currency-container">
-      <div if="{!modeOfflineMode.check}" class="view-info-card-balance">
+      <div if="{!modeOfApp.offlineMode}" class="view-info-card-balance">
         <p class="view-info-card-balance-sum">{fullBalanceCopy}</p>
-        <p if=" {!modeOfflineMode.check}" class="view-info-card-currency">сум</p>
+        <p if=" {!modeOfApp.offlineMode}" class="view-info-card-currency">сум</p>
       </div>
 
       <a if="{modeOfApp.offlineMode}" class="offline-card-balance"
