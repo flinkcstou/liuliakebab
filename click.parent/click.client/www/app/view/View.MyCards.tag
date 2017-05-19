@@ -13,7 +13,8 @@
   </div>
 
   <div class="my-cards-button-container">
-    <div class="my-cards-button-field my-cards-button-field-transfer" ontouchend="goToTransferView()">
+    <div class="my-cards-button-field my-cards-button-field-transfer" ontouchstart="transferOnTouchStart()"
+         ontouchend="goToTransferView()">
       <div class="my-cards-button-icon my-cards-button-icon-transfer">
       </div>
 
@@ -25,7 +26,8 @@
       <div class="my-cards-button-icon my-cards-button-icon-payment">
       </div>
 
-      <div class="my-cards-button-label" ontouchend="goToPayView()">{window.languages.ViewMyCardPay}
+      <div class="my-cards-button-label" ontouchstart="payOnTouchStart()" ontouchend="goToPayView()">
+        {window.languages.ViewMyCardPay}
       </div>
     </div>
 
@@ -33,13 +35,15 @@
       <div class="my-cards-button-icon my-cards-button-icon-report">
       </div>
 
-      <div class="my-cards-button-label" style="border: none;" ontouchend="goToReports()">
+      <div class="my-cards-button-label" style="border: none;" ontouchstart="reportsOnTouchStart()"
+           ontouchend="goToReports()">
         {window.languages.ViewMyCardReports}
       </div>
     </div>
   </div>
 
-  <div class="my-cards-button-block-card" ontouchend="confirmToDeleteCardTouchEnd()">
+  <div class="my-cards-button-block-card" ontouchstart="deleteOnTouchStart()"
+       ontouchend="confirmToDeleteCardTouchEnd()">
     <div class="my-cards-button-icon my-cards-button-icon-block"></div>
     <div class="my-cards-button-block-card-label">{window.languages.ViewMyCardBlock}</div>
   </div>
@@ -87,7 +91,7 @@
 
     this.on('mount', function () {
       scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-      console.log('scope.parent',scope)
+      console.log('scope.parent', scope)
 //      scope.update(scope.tags['component-card-carousel']);
       riot.update()
     })
@@ -104,7 +108,7 @@
 //      console.log("card for edit=", scope.card);
       event.preventDefault();
       event.stopPropagation();
-      if(modeOfApp.demoVersion){
+      if (modeOfApp.demoVersion) {
         var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
         scope.confirmShowBool = true;
@@ -117,7 +121,7 @@
             scope.unmount()
             return
           }
-          else{
+          else {
             scope.confirmShowBool = false;
             return
           }
@@ -133,75 +137,105 @@
       scope.unmount()
     };
 
-    goToReports = function () {
+    reportsOnTouchStart = function () {
+      event.stopPropagation();
+      myCardsOnTouchStartY = event.changedTouches[0].pageY;
+      myCardsOnTouchStartX = event.changedTouches[0].pageX;
+    }
 
-      event.preventDefault();
+    goToReports = function () {
       event.stopPropagation();
 
-      var cardNumber = localStorage.getItem("cardNumber"),
-        cards = scope.tags["component-card-carousel"].cardsarray;
-      cardNumber = JSON.parse(cardNumber);
+      myCardsOnTouchEndY = event.changedTouches[0].pageY;
+      myCardsOnTouchEndX = event.changedTouches[0].pageX;
+//      console.log(onTouchEndY)
+
+
+      if (Math.abs(myCardsOnTouchStartY - myCardsOnTouchEndY) <= 20 && Math.abs(myCardsOnTouchStartX - myCardsOnTouchEndX) <= 20) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        var cardNumber = localStorage.getItem("cardNumber"),
+          cards = scope.tags["component-card-carousel"].cardsarray;
+        cardNumber = JSON.parse(cardNumber);
 
 //      console.log("ASDASDASDASDASD", cards);
 
-      for (card in cards) {
+        for (card in cards) {
 
 //        console.log("ASDASDASDASDASD", card, cards[card], cards[card].countCard, cardNumber);
 
-        if (cards[card].countCard == cardNumber) {
+          if (cards[card].countCard == cardNumber) {
 
-          riotTags.innerHTML = "<view-report>";
-          riot.mount('view-report', {
-            show_graph: true,
-            account_id: card,
-            card_name: cards[card].name
-          });
-          scope.unmount()
+            riotTags.innerHTML = "<view-report>";
+            riot.mount('view-report', {
+              show_graph: true,
+              account_id: card,
+              card_name: cards[card].name
+            });
+            scope.unmount()
+          }
         }
       }
     };
 
+    deleteOnTouchStart = function () {
+      event.stopPropagation();
+      myCardsOnTouchStartY = event.changedTouches[0].pageY;
+      myCardsOnTouchStartX = event.changedTouches[0].pageX;
+    }
+
     confirmToDeleteCardTouchEnd = function () {
-      event.preventDefault();
       event.stopPropagation();
 
-      if(modeOfApp.demoVersion){
-        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+      myCardsOnTouchEndY = event.changedTouches[0].pageY;
+      myCardsOnTouchEndX = event.changedTouches[0].pageX;
+//      console.log(onTouchEndY)
+
+
+      if (Math.abs(myCardsOnTouchStartY - myCardsOnTouchEndY) <= 20 && Math.abs(myCardsOnTouchStartX - myCardsOnTouchEndX) <= 20) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (modeOfApp.demoVersion) {
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-        scope.confirmShowBool = true;
-        scope.confirmNote = question;
-        scope.confirmType = 'local';
-        scope.result = function (bool) {
-          if (bool) {
-            localStorage.clear();
-            window.location = 'index.html'
-            scope.unmount()
-            return
-          }
-          else{
-            scope.confirmShowBool = false;
-            return
-          }
-        };
-        scope.update();
+          scope.confirmShowBool = true;
+          scope.confirmNote = question;
+          scope.confirmType = 'local';
+          scope.result = function (bool) {
+            if (bool) {
+              localStorage.clear();
+              window.location = 'index.html'
+              scope.unmount()
+              return
+            }
+            else {
+              scope.confirmShowBool = false;
+              return
+            }
+          };
+          scope.update();
 
-        return
-      }
+          return
+        }
 
-      deleteCardComponentId.style.display = 'block'
+        deleteCardComponentId.style.display = 'block'
 
-      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-      var account_id = scope.card.card_id;
-      var removable = scope.card.removable;
+        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+        var account_id = scope.card.card_id;
+        var removable = scope.card.removable;
 
-      if (removable == 1)
-        componentDeleteCard.getInformation(sessionKey, phoneNumber, account_id);
-      else {
-        scope.clickPinError = false;
-        scope.errorNote = 'You cant delete this card';
-        scope.showError = true;
-        scope.update();
+        if (removable == 1)
+          componentDeleteCard.getInformation(sessionKey, phoneNumber, account_id);
+        else {
+          scope.clickPinError = false;
+          scope.errorNote = 'You cant delete this card';
+          scope.showError = true;
+          scope.update();
+        }
       }
     }
 
@@ -301,7 +335,8 @@
     //    }
     var scope = this,
       sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
-      phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      phoneNumber = localStorage.getItem('click_client_phoneNumber'),
+      myCardsOnTouchStartY, myCardsOnTouchStartX, myCardsOnTouchEndY, myCardsOnTouchEndX;
 
     scope.showError = false;
 
@@ -390,59 +425,90 @@
 
     scope.cardInformation(scope.cardId);
 
-    goToPayView = function () {
-      for (var i in scope.cardsArray) {
-        if (scope.cardsArray[i].card_id == scope.card.card_id) {
-          scope.cardsArray[i].chosenCard = true;
-        }
-        else
-          scope.cardsArray[i].chosenCard = false;
-      }
-      localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
+    payOnTouchStart = function () {
+      event.stopPropagation();
+      myCardsOnTouchStartY = event.changedTouches[0].pageY;
+      myCardsOnTouchStartX = event.changedTouches[0].pageX;
+    }
 
-      event.preventDefault();
+    goToPayView = function () {
       event.stopPropagation();
 
+      myCardsOnTouchEndY = event.changedTouches[0].pageY;
+      myCardsOnTouchEndX = event.changedTouches[0].pageX;
+//      console.log(onTouchEndY)
 
-      if (scope.card.access == 2) {
-        riotTags.innerHTML = "<view-pay>";
-        riot.mount('view-pay');
 
-        scope.unmount()
-      }
-      else {
-        scope.clickPinError = false;
-        scope.errorNote = 'Извининте, вы не можете произвести оплату с этой карты';
-        scope.showError = true;
-        scope.update();
+      if (Math.abs(myCardsOnTouchStartY - myCardsOnTouchEndY) <= 20 && Math.abs(myCardsOnTouchStartX - myCardsOnTouchEndX) <= 20) {
+        for (var i in scope.cardsArray) {
+          if (scope.cardsArray[i].card_id == scope.card.card_id) {
+            scope.cardsArray[i].chosenCard = true;
+          }
+          else
+            scope.cardsArray[i].chosenCard = false;
+        }
+        localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
+
+        event.preventDefault();
+        event.stopPropagation();
+
+
+        if (scope.card.access == 2) {
+          riotTags.innerHTML = "<view-pay>";
+          riot.mount('view-pay');
+
+          scope.unmount()
+        }
+        else {
+          scope.clickPinError = false;
+          scope.errorNote = 'Извининте, вы не можете произвести оплату с этой карты';
+          scope.showError = true;
+          scope.update();
+        }
       }
     }
 
-    goToTransferView = function () {
-      for (var i in scope.cardsArray) {
-        if (scope.cardsArray[i].card_id == scope.card.card_id && scope.cardsArray[i].access == 2) {
-          scope.cardsArray[i].chosenCard = true;
-        }
-        else
-          scope.cardsArray[i].chosenCard = false;
-      }
-      localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
+    transferOnTouchStart = function () {
+      event.stopPropagation();
+      myCardsOnTouchStartY = event.changedTouches[0].pageY;
+      myCardsOnTouchStartX = event.changedTouches[0].pageX;
+    }
 
-      event.preventDefault();
+    goToTransferView = function () {
       event.stopPropagation();
 
-//      console.log(scope.card)
-      if (scope.card.access == 2) {
-        riotTags.innerHTML = "<view-transfer>";
-        riot.mount('view-transfer');
+      myCardsOnTouchEndY = event.changedTouches[0].pageY;
+      myCardsOnTouchEndX = event.changedTouches[0].pageX;
+//      console.log(onTouchEndY)
 
-        scope.unmount()
-      }
-      else {
-        scope.clickPinError = false;
-        scope.errorNote = 'Извининте, вы не можете произвести перевод с этой карты';
-        scope.showError = true;
-        scope.update();
+
+      if (Math.abs(myCardsOnTouchStartY - myCardsOnTouchEndY) <= 20 && Math.abs(myCardsOnTouchStartX - myCardsOnTouchEndX) <= 20) {
+
+        for (var i in scope.cardsArray) {
+          if (scope.cardsArray[i].card_id == scope.card.card_id && scope.cardsArray[i].access == 2) {
+            scope.cardsArray[i].chosenCard = true;
+          }
+          else
+            scope.cardsArray[i].chosenCard = false;
+        }
+        localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
+
+        event.preventDefault();
+        event.stopPropagation();
+
+//      console.log(scope.card)
+        if (scope.card.access == 2) {
+          riotTags.innerHTML = "<view-transfer>";
+          riot.mount('view-transfer');
+
+          scope.unmount()
+        }
+        else {
+          scope.clickPinError = false;
+          scope.errorNote = 'Извининте, вы не можете произвести перевод с этой карты';
+          scope.showError = true;
+          scope.update();
+        }
       }
     }
 
