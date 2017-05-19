@@ -12851,7 +12851,7 @@ var css = {
   "{" +
   "position: relative;" +
   "height: " + 150 * widthK + "px; " +
-  "width: 85%;" +
+  "width: 90%;" +
     //"border:" + 1 * widthK + "px solid red;" +
   "overflow:hidden;" +
   "}",
@@ -13013,6 +13013,42 @@ var css = {
   "background-position-x:center;" +
   "background-size: 27%;" +
   "top:" + 0 * widthK + "px;" +
+  "}",
+
+  tourCardCarousel: ".tour-card-carousel " +
+  "{" +
+  "position: absolute;" +
+  "height:90%;" +
+  "width: 100%;" +
+  "display: inline-block;" +
+  "top:5%;" +
+  "background: lightgrey;" +
+  "}",
+
+  tourCards: ".tour-cards " +
+  "{" +
+  "position: relative;" +
+  "-webkit-animation: mymove 5s infinite;" +
+  "animation: mymove 5s infinite;" +
+  "}",
+
+  card: ".card " +
+  "{" +
+  "background-color: #d7d7d7;" +
+  "-webkit-appearance: none;" +
+  "height:" + 289 * widthK + "px;" +
+  "width:" + 510 * widthK + "px;" +
+  "position: absolute;" +
+  "top:" + 7 * widthK + "px;" +
+  "-webkit-border-radius:" + 14 * widthK + "px;" +
+  "-moz-border-radius:" + 14 * widthK + "px;" +
+  "border-radius:" + 14 * widthK + "px;" +
+  "background-size: cover;" +
+    //"background-image: url(resources/icons/cards/all.png);" +
+  "color: white;" +
+    //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
   "}",
 
 

@@ -1,4 +1,6 @@
-<component-tour-card id="componentTourCardId" class="component-tour">
+<component-tour-card id="componentTourCardId" class="component-tour"
+                     style=" left:{(540 * opts.countcard + 100) * widthK}px">
+
   <div type="button" class="tour-close-button" ontouchend="closeTour()"></div>
   <p class="tour-message">{opts.operationmessage}</p>
   <div class="tour-icon"></div>
