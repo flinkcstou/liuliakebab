@@ -31,7 +31,8 @@
          ontouchend="registrationOfflineTouchEnd()">
       <div class="registration-button-offline">{window.languages.ViewRegistrationDeviceButtonOffline}</div>
     </div>
-    <a id="demoContainer" class="registration-container-demo-version" ontouchend="goToDemoTouchEnd()" ontouchstart="goToDemoTouchStart()">
+    <a id="demoContainer" class="registration-container-demo-version" ontouchend="goToDemoTouchEnd()"
+       ontouchstart="goToDemoTouchStart()">
       <div class="registration-button-demo-version">{window.languages.ViewRegistrationDeviceButtonDemoVersion}
       </div>
     </a>
@@ -39,6 +40,8 @@
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
+
+  <component-tour operationmessage="{operationMessage}"></component-tour>
 
   <div hidden id="demoContinueContainer" class="demo-version-continue riot-tags-main-container">
     <p class="demo-version-demonstration-text">Демонстрационный режим</p>
@@ -225,8 +228,8 @@
       demoOpenTouchEndX = event.changedTouches[0].pageX
       demoOpenTouchEndY = event.changedTouches[0].pageY
 
-      console.log(demoOpenTouchStartX,demoOpenTouchStartY )
-      console.log(demoOpenTouchEndX,demoOpenTouchEndY )
+      console.log(demoOpenTouchStartX, demoOpenTouchStartY)
+      console.log(demoOpenTouchEndX, demoOpenTouchEndY)
 
       if (Math.abs(demoOpenTouchStartX - demoOpenTouchEndX) <= 20 && Math.abs(demoOpenTouchStartY - demoOpenTouchEndY) <= 20) {
 
@@ -303,9 +306,11 @@
 
 
       if (Math.abs(helpTouchStartX - helpTouchEndX) <= 20 && Math.abs(helpTouchStartY - helpTouchEndY) <= 20) {
-        riotTags.innerHTML = "<view-help>";
-        riot.mount('view-help');
-        scope.unmount()
+//        riotTags.innerHTML = "<view-help>";
+//        riot.mount('view-help');
+//        scope.unmount()
+        scope.operationMessage = "Hello World!";
+        componentTourId.style.display = "block";
       }
     }
 

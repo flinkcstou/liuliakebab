@@ -1,22 +1,19 @@
 <view-service-info class="view-service-pincards">
 
   <div class="pay-page-title" style="border-style: none;">
-    <p class="{servicepage-title :opts[8]!='ADDAUTOPAY', autopay-method-page-title:opts[8]=='ADDAUTOPAY'}">
-      {(opts[8]=='ADDAUTOPAY')?(window.languages.ViewAutoPayTitleName):("")}
-      {titleName}</p>
-    <p class="servicepage-category-field">{(opts[8]=='ADDAUTOPAY')?
-      (autoPayTypeText):(categoryName)}</p>
-    <div ontouchend="touchStartTitle()"
-         class="{servicepage-button-back:opts[8]!='ADDAUTOPAY', autopay-method-back-button:opts[8]=='ADDAUTOPAY'}">
+    <p class="servicepage-title">{titleName}</p>
+    <p class="servicepage-category-field">{categoryName}</p>
+    <div ontouchend="goToBack()"
+         class="servicepage-button-back">
     </div>
-    <div type="button" class="servicepage-service-icon" if="{opts[8]=='ADDAUTOPAY'}"
+    <div type="button" class="servicepage-service-icon"
          style="background-image: url({serviceIcon})"></div>
   </div>
 
   <div class="pincard-body-container">
     <div class="serviceinfo-options" if="{type==3}">
       <div class="serviceinfo-option-text-container">
-        <p class="serviceinfo-option-text">{window.languages.ViewServicePinCardPayFromField}</p></div>
+        <p class="serviceinfo-option-text">{optionsHeader}</p></div>
 
       <div class="serviceinfo-option-containter" ontouchend="chooseOption(this.id)" each="{i in optionsArray}"
            id="{i.option_value}">
@@ -181,6 +178,7 @@
               scope.serviceData = result[1][0];
               if (result[1][0].information_type == 3) {
                 scope.optionsArray = result[1][0].options;
+                scope.optionsHeader = result[1][0].options_header;
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
                 opts.optionAttribute = optionAttribute;
                 scope.type = 3;

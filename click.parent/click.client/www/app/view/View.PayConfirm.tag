@@ -465,7 +465,6 @@
 
         console.log("check payment status");
 
-
         window.api.call({
           method: 'get.payment',
           input: {

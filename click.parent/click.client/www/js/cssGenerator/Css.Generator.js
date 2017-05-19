@@ -12927,6 +12927,80 @@ var css = {
   "color: gray;" +
   "}",
 
+//  COMPONENT TOUR
+
+  componentTour: ".component-tour " +
+  "{" +
+  "position: absolute;" +
+  "opacity: 1;" +
+  "height: 90%;" +
+  "width: 84%;" +
+  "top: 5%;" +
+  "left: 8%;" +
+  "background-color: white;" +
+  "display: none;" +
+  "}",
+
+  tourMessage: ".tour-message" +
+  "{" +
+  "position: relative;" +
+  "color: white;" +
+  "width:" + 300 * widthK + "px;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 601 * widthK + "px;" +
+  "left:" + -10 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "}",
+
+  tourNextButtonInnerContainer: ".tour-next-button-inner-container" +
+  "{" +
+  "top: 83%;" +
+  "height: " + 74 * widthK + "px;" +
+  "margin: 0 auto 0 auto;" +
+  "background-color: #027fe4;" +
+  "padding: 0;" +
+  "font-size: " + 38 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
+  "}",
+
+  tourIcon: ".tour-icon" +
+  "{" +
+  "position: absolute;" +
+  "top:" + 200 * widthK + "px;" +
+  "width:" + 270 * widthK + "px;" +
+  "height:" + 250 * widthK + "px;" +
+  "left:" + 195 * widthK + "px;" +
+  "background-image: url(resources/icons/ViewSuccessUnsuccess/ok.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 93%;" +
+  "}",
+
+  tourCloseButton: ".tour-close-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 127 * widthK + "px;" +
+  "height:" + 86 * widthK + "px;" +
+  "left:85%;" +
+  "background-image: url(resources/icons/ViewTransfer/banks_close.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 55%;" +
+  "background-position-y: center;" +
+  "background-position-x:center;" +
+  "background-size: 27%;" +
+  "top:" + 0 * widthK + "px;" +
+  "}",
+
 
 }
 

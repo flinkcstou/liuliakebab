@@ -3514,6 +3514,7 @@ window.fakedSocket.register("get.additional.information", function (input) {
           information_object: null,
           information_type: 3,
           validation_result: null,
+          options_header: "",
           options: [{
             option_object: [{
               title: "Ф.И.О.",

@@ -167,17 +167,17 @@
 
     scope.onTouchStartOfAmountDropdown = onTouchStartOfAmountDropdown = function () {
       event.stopPropagation();
-      onTouchStartY = event.changedTouches[0].pageY;
-      onTouchStartX = event.changedTouches[0].pageX;
+      amountOnTouchStartY = event.changedTouches[0].pageY;
+      amountOnTouchStartX = event.changedTouches[0].pageX;
     };
 
     scope.onTouchEndOfAmountDropdown = onTouchEndOfAmountDropdown = function (id) {
       event.stopPropagation();
 
-      onTouchEndY = event.changedTouches[0].pageY;
-      onTouchEndX = event.changedTouches[0].pageX;
+      amountOnTouchEndY = event.changedTouches[0].pageY;
+      amountOnTouchEndX = event.changedTouches[0].pageX;
 
-      if (Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) {
+      if (Math.abs(amountOnTouchStartY - amountOnTouchEndY) <= 20 && Math.abs(amountOnTouchStartX - amountOnTouchEndX) <= 20) {
 
         this.blockFirstFieldId.style.display = 'none';
 

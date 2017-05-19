@@ -351,7 +351,7 @@
 
     amountCalculator = function () {
 
-      if(modeOfApp.demoVersion){
+      if (modeOfApp.demoVersion) {
         var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
         scope.confirmShowBool = true;
@@ -364,7 +364,7 @@
             scope.unmount()
             return
           }
-          else{
+          else {
             scope.confirmShowBool = false;
             return
           }
@@ -739,17 +739,19 @@
       }
     };
 
+    var servicePageTouchStartY, servicePageTouchEndY
+
     scope.onTouchStartOfDropdownTwo = onTouchStartOfDropdownTwo = function () {
       event.stopPropagation();
-      onTouchStartY = event.changedTouches[0].pageY;
+      servicePageTouchStartY = event.changedTouches[0].pageY;
     };
 
     scope.onTouchEndOfDropdownTwo = onTouchEndOfDropdownTwo = function (id) {
       event.stopPropagation();
 
-      onTouchEndY = event.changedTouches[0].pageY;
+      servicePageTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(onTouchStartY - onTouchEndY) <= 20) {
+      if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20) {
         this.blockFirstDropdownId.style.display = 'none';
         if (scope.formType == 3) {
           for (var i = 0; i < scope.firstLevelArray.length; i++) {
@@ -795,15 +797,15 @@
 
     scope.onTouchStartOfDropdownThree = onTouchStartOfDropdownThree = function () {
       event.stopPropagation();
-      onTouchStartY = event.changedTouches[0].pageY;
+      servicePageTouchStartY = event.changedTouches[0].pageY;
     };
 
     scope.onTouchEndOfDropdownThree = onTouchEndOfDropdownThree = function (id) {
       event.stopPropagation();
 
-      onTouchEndY = event.changedTouches[0].pageY;
+      servicePageTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(onTouchStartY - onTouchEndY) <= 20) {
+      if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20) {
         this.blockSecondDropdownId.style.display = 'none';
         if (scope.formType == 3) {
           for (var i = 0; i < scope.secondLevelArray.length; i++) {
@@ -1161,7 +1163,7 @@
 
     scope.onTouchStartOfPincard = onTouchStartOfPincard = function () {
       event.stopPropagation();
-      onTouchStartY = event.changedTouches[0].pageY;
+      servicePageTouchStartY = event.changedTouches[0].pageY;
     };
 
     scope.onTouchEndOfPincard = onTouchEndOfPincard = function (nominal, cardId) {
@@ -1169,9 +1171,9 @@
 
 //      console.log('scope.fieldArray[0]', scope.fieldArray)
 
-      onTouchEndY = event.changedTouches[0].pageY;
+      servicePageTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(onTouchStartY - onTouchEndY) <= 20) {
+      if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20) {
         var formtype = {"formtype": scope.formType};
         var firstFieldId = {"firstFieldId": null};
         var firstFieldText = {"firstFieldText": null};

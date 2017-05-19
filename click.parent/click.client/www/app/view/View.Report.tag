@@ -213,7 +213,7 @@
 
 
     var monthChanged = false;
-    var carouselTouchStartX, carouselTouchStartY, carouselTouchEndX, carouselTouchEndY
+    var mCarouselTouchStartX, mCarouselTouchStartY, mCarouselTouchEndX, mCarouselTouchEndY
     var left;
     var delta;
     var percentageTouche;
@@ -226,10 +226,10 @@
       }
 
       console.log("in start touch=", scope.mNumber);
-      carouselTouchStartX = event.changedTouches[0].pageX;
-      carouselTouchStartY = event.changedTouches[0].pageY;
+      mCarouselTouchStartX = event.changedTouches[0].pageX;
+      mCarouselTouchStartY = event.changedTouches[0].pageY;
 
-      percentageTouche = (carouselTouchStartX * 100.0) / window.innerHeight;
+      percentageTouche = (mCarouselTouchStartX * 100.0) / window.innerHeight;
 
       console.log("touche started at %", percentageTouche);
 
@@ -249,11 +249,11 @@
         return;
       }
 
-      carouselTouchEndX = event.changedTouches[0].pageX;
-      carouselTouchEndY = event.changedTouches[0].pageY;
-      console.log(Math.abs(carouselTouchStartX - carouselTouchEndX))
-      console.log(Math.abs(carouselTouchStartY - carouselTouchEndY))
-      if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20) {
+      mCarouselTouchEndX = event.changedTouches[0].pageX;
+      mCarouselTouchEndY = event.changedTouches[0].pageY;
+      console.log(Math.abs(mCarouselTouchStartX - mCarouselTouchEndX))
+      console.log(Math.abs(mCarouselTouchStartY - mCarouselTouchEndY))
+      if (Math.abs(mCarouselTouchStartX - mCarouselTouchEndX) > 20) {
         console.log('Touch end of carousel')
         changePosition();
       }
@@ -285,10 +285,10 @@
 
     changePosition = function () {
       console.log("One")
-      console.log("scope.count",scope.count)
+      console.log("scope.count", scope.count)
 
       monthChanged = true;
-      if (carouselTouchEndX < carouselTouchStartX && scope.mNumber < scope.count - 1) {
+      if (mCarouselTouchEndX < mCarouselTouchStartX && scope.mNumber < scope.count - 1) {
         ++scope.mNumber;
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
@@ -296,21 +296,21 @@
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
-      if (carouselTouchEndX > carouselTouchStartX && scope.mNumber == 0) {
+      if (mCarouselTouchEndX > mCarouselTouchStartX && scope.mNumber == 0) {
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
-      if (carouselTouchEndX < carouselTouchStartX && scope.mNumber == scope.count - 1) {
+      if (mCarouselTouchEndX < mCarouselTouchStartX && scope.mNumber == scope.count - 1) {
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
         this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
       }
 
-      if (carouselTouchEndX > carouselTouchStartX && scope.mNumber > 0) {
+      if (mCarouselTouchEndX > mCarouselTouchStartX && scope.mNumber > 0) {
         --scope.mNumber;
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
@@ -801,8 +801,8 @@
       }
       else {
         if (Math.abs(paymentTouchStartY - paymentTouchEndY) <= 100 && (Math.abs(paymentTouchStartX - paymentTouchEndX) > 20) && paymentTimeEnd - paymentTimeStart < 500) {
-          carouselTouchEndX = paymentTouchEndX
-          carouselTouchStartX = paymentTouchStartX
+          mCarouselTouchEndX = paymentTouchEndX
+          mCarouselTouchStartX = paymentTouchStartX
           monthChanged = true
           changePosition()
         }
@@ -830,8 +830,8 @@
       reportBodyTimeEnd = event.timeStamp.toFixed(0);
 
       if (Math.abs(reportBodyContainerStartY - reportBodyContainerEndY) <= 100 && (Math.abs(reportBodyContainerStartX - reportBodyContainerEndX) > 20) && reportBodyTimeEnd - reportBodyTimeStart < 500) {
-        carouselTouchEndX = reportBodyContainerEndX
-        carouselTouchStartX = reportBodyContainerStartX
+        mCarouselTouchEndX = reportBodyContainerEndX
+        mCarouselTouchStartX = reportBodyContainerStartX
         monthChanged = true
         changePosition()
       }

@@ -261,13 +261,13 @@
 
     dateContainerTouchStart = function () {
       console.log("in start touch=", dateNumber);
-      carouselTouchStartY = event.changedTouches[0].pageY;
-      carouselTouchStartX = event.changedTouches[0].pageX;
-//      console.log("startY=", carouselTouchStartY);
-      tempStartY = carouselTouchStartY;
+      dateCarouselTouchStartY = event.changedTouches[0].pageY;
+      dateCarouselTouchStartX = event.changedTouches[0].pageX;
+//      console.log("startY=", dateCarouselTouchStartY);
+      tempStartY = dateCarouselTouchStartY;
       nNew = dateNumber;
 //      touchStartTime = new Date().getTime();
-      left = -((scope.shift * dateNumber) * widthK) - carouselTouchStartY;
+      left = -((scope.shift * dateNumber) * widthK) - dateCarouselTouchStartY;
       delta = left;
 //      console.log("nNew=", nNew);
     };
@@ -275,12 +275,12 @@
     dateContainerTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-      carouselTouchEndY = event.changedTouches[0].pageY;
-      carouselTouchEndX = event.changedTouches[0].pageX;
+      dateCarouselTouchEndY = event.changedTouches[0].pageY;
+      dateCarouselTouchEndX = event.changedTouches[0].pageX;
 
-      nShift = Math.round(Math.abs(carouselTouchEndY - carouselTouchStartY) / (scope.shift * widthK));
+      nShift = Math.round(Math.abs(dateCarouselTouchEndY - dateCarouselTouchStartY) / (scope.shift * widthK));
 
-      if (Math.abs(carouselTouchStartY - carouselTouchEndY) > 20 && Math.abs(carouselTouchStartX - carouselTouchEndX) > 20) {
+      if (Math.abs(dateCarouselTouchStartY - dateCarouselTouchEndY) > 20 && Math.abs(dateCarouselTouchStartX - dateCarouselTouchEndX) > 20) {
         changePosition(nShift);
       }
     };
@@ -333,7 +333,7 @@
       document.getElementById("day" + nOld).style.color = '#c1c1c1';
       document.getElementById("day" + nNew).style.color = '#c1c1c1';
 
-      if (carouselTouchEndY < carouselTouchStartY) {
+      if (dateCarouselTouchEndY < dateCarouselTouchStartY) {
         //        console.log("111", dateNumber + Number(nShift));
         document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
         if ((dateNumber + Number(nShift)) > (count - 1)) {
@@ -353,7 +353,7 @@
 
         document.getElementById("day" + dateNumber).style.color = '#01B8FE';
         //        console.log("2=", dateNumber);
-      } else if (carouselTouchEndY > carouselTouchStartY) {
+      } else if (dateCarouselTouchEndY > dateCarouselTouchStartY) {
         //        console.log("222", dateNumber - Number(nShift));
         //        console.log("222 =", (count + (dateNumber - Number(nShift))));
         document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
