@@ -3,11 +3,11 @@ heightK = window.innerHeight / 1232;
 var heightOfMobile;
 var topOfIos;
 
-if (device.platform == 'iOS' || device.platform =='BrowserStand') {
+if (device.platform == 'iOS' || device.platform == 'BrowserStand') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
-  if(device.platform == 'iOS')
-  cordova.plugins.Keyboard.disableScroll(true);
+  if (device.platform == 'iOS')
+    cordova.plugins.Keyboard.disableScroll(true);
   topOfIos = 20;
 }
 else {
@@ -12830,13 +12830,30 @@ var css = {
   serviceInfoOptionContainer: ".serviceinfo-option-containter" +
   "{" +
   "position: relative;" +
-  "height: auto;" +
+    //"height: auto;" +
   "min-height:" + 240 * widthK + "px; " +
   "width: 91%;" +
   "left: 4%;" +
   "margin-top: 1%;" +
   "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
   "background-color: transparent;" +
+  "}",
+
+  serviceInfoOptionInfoContainer: ".serviceinfo-option-info-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "padding: 0;" +
+    //"border:" + 1 * widthK + "px solid gainsboro;" +
+  "}",
+
+  serviceInfoOptionDetail: ".serviceinfo-option-detail" +
+  "{" +
+  "position: relative;" +
+  "height: " + 150 * widthK + "px; " +
+  "width: 85%;" +
+    //"border:" + 1 * widthK + "px solid red;" +
+  "overflow:hidden;" +
   "}",
 
   serviceInfoOptionTitleText: ".serviceinfo-option-title-text" +
@@ -12848,7 +12865,6 @@ var css = {
   "text-align: left;" +
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
-    //"float: left;" +
   "}",
 
   serviceInfoOptionValueText: ".serviceinfo-option-value-text" +
@@ -12861,10 +12877,9 @@ var css = {
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
   "width: 80%;" +
-  "height: " + 105 * widthK + "px; " +
+  "height: " + 70 * widthK + "px; " +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
-    //"float: left;" +
   "}",
 
   serviceInfoOptionCheckIcon: ".serviceinfo-option-check-icon" +

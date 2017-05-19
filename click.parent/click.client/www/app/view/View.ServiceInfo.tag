@@ -15,13 +15,19 @@
       <div class="serviceinfo-option-text-container">
         <p class="serviceinfo-option-text">{optionsHeader}</p></div>
 
-      <div class="serviceinfo-option-containter" ontouchend="chooseOption(this.id)" each="{i in optionsArray}"
+      <div class="serviceinfo-option-containter" ontouchstart="optionOnTouchStart()"
+           ontouchend="optionOnTouchEnd(this.id)"
+           each="{i in optionsArray}"
            id="{i.option_value}">
-        <div class="serviceinfo-option-title-text">{i.option_object[1].title}:</div>
-        <div class="serviceinfo-option-value-text">
-          {i.option_object[1].value}
-        </div>
-        <div id="check{i.option_value}" class="serviceinfo-option-check-icon"></div>
+        <ul class="serviceinfo-option-info-container" style="list-style:none">
+          <li class="serviceinfo-option-detail" each="{j in i.option_object}">
+            <div class="serviceinfo-option-title-text">{j.title}:</div>
+            <div class="serviceinfo-option-value-text">
+              {j.value}
+            </div>
+          </li>
+        </ul>
+        <div id="check{i.option_value}" class="serviceinfo-option-check-icon" if="{checkIconShow}"></div>
       </div>
     </div>
 
@@ -100,11 +106,6 @@
     scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
     scope.type = 0;
 
-    if (opts[8] == 'ADDAUTOPAY') {
-      scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
-      this.autoPayTypeText = scope.autoPayData.title;
-      console.log("autoPayType=", this.autoPayTypeText);
-    }
 
     this.titleName = scope.service.name;
     this.serviceIcon = scope.service.image;
@@ -179,8 +180,11 @@
               if (result[1][0].information_type == 3) {
                 scope.optionsArray = result[1][0].options;
                 scope.optionsHeader = result[1][0].options_header;
+                console.log("OPTIONS length=", result[1][0].options.length)
+                scope.checkIconShow = result[1][0].options.length > 1;
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
                 opts.optionAttribute = optionAttribute;
+                opts.optionValue = scope.checkIconShow ? null : result[1][0].options[0].option_value;
                 scope.type = 3;
                 scope.update();
               } else if (result[1][0].information_type == 1 || result[1][0].information_type == 4) {
@@ -204,14 +208,32 @@
       });
     }
 
+    var optionOnTouchStartY, optionOnTouchStartX, optionOnTouchEndY, optionOnTouchEndX;
+
+    optionOnTouchStart = function () {
+      event.stopPropagation();
+      optionOnTouchStartY = event.changedTouches[0].pageY;
+      optionOnTouchStartX = event.changedTouches[0].pageX;
+    }
+
 
     scope.index = -1;
-    chooseOption = function (id) {
-      if (scope.index != -1 && scope.index != id)
-        document.getElementById("check" + scope.index).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
-      document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
-      scope.index = id;
-      opts.optionValue = id;
+    optionOnTouchEnd = function (id) {
+      event.stopPropagation();
+
+      optionOnTouchEndY = event.changedTouches[0].pageY;
+      optionOnTouchEndX = event.changedTouches[0].pageX;
+//      console.log(onTouchEndY)
+
+
+      if (Math.abs(optionOnTouchStartY - optionOnTouchEndY) <= 20 && Math.abs(optionOnTouchStartX - optionOnTouchEndX) <= 20) {
+
+        if (scope.index != -1 && scope.index != id)
+          document.getElementById("check" + scope.index).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+        document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
+        scope.index = id;
+        opts.optionValue = id;
+      }
     }
 
 
@@ -222,7 +244,7 @@
       console.log(opts.optionAttribute)
       console.log(opts.optionValue)
 
-      if (scope.index == -1 && scope.serviceData.information_type == 3) {
+      if (scope.index == -1 && scope.serviceData.information_type == 3 && scope.checkIconShow) {
         console.log("asd");
         scope.clickPinError = false;
         scope.errorNote = "Выберите из вариантов";

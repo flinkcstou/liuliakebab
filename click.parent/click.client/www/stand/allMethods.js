@@ -424,7 +424,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
   var error = true;
   array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
 
-  if(!input.parameters.date_start){
+  if (!input.parameters.date_start) {
     array.push([
       {
         "payment_id": 272319456,
@@ -623,38 +623,38 @@ window.fakedSocket.register("get.payment.list", function (input) {
   }
 
   var realMonth = new Date().getMonth() + 1;
-  if(realMonth.toString.length == 1){
-    realMonth = '0'+ realMonth
+  if (realMonth.toString.length == 1) {
+    realMonth = '0' + realMonth
   }
 
-  console.log('MONTH LENGTH',realMonth)
+  console.log('MONTH LENGTH', realMonth)
 
   var yesterday = new Date().getMonth().toString();
-  if(yesterday.length == 1){
-    yesterday = '0'+ yesterday
+  if (yesterday.length == 1) {
+    yesterday = '0' + yesterday
   }
   var dayBeforeYesterday = new Date().getMonth() - 1;
   dayBeforeYesterday = dayBeforeYesterday.toString()
-  if(dayBeforeYesterday.length == 1){
-    dayBeforeYesterday = '0'+ dayBeforeYesterday
+  if (dayBeforeYesterday.length == 1) {
+    dayBeforeYesterday = '0' + dayBeforeYesterday
   }
 
-  console.log("MONTH input.parameters.date_start.split('-')[1]",input.parameters.date_start.split('-')[1])
-  console.log('realMonth',realMonth)
-  console.log('yesterday',yesterday)
-  console.log('dayBeforeYesterday',dayBeforeYesterday)
-  if(input.parameters.date_start.split('-')[1].toString() == realMonth.toString() || input.parameters.date_start.split('-')[1].toString() == yesterday.toString() || input.parameters.date_start.split('-')[1].toString() == dayBeforeYesterday.toString()){
+  console.log("MONTH input.parameters.date_start.split('-')[1]", input.parameters.date_start.split('-')[1])
+  console.log('realMonth', realMonth)
+  console.log('yesterday', yesterday)
+  console.log('dayBeforeYesterday', dayBeforeYesterday)
+  if (input.parameters.date_start.split('-')[1].toString() == realMonth.toString() || input.parameters.date_start.split('-')[1].toString() == yesterday.toString() || input.parameters.date_start.split('-')[1].toString() == dayBeforeYesterday.toString()) {
     error = false
   }
-  else{
+  else {
     error = true
   }
   console.log('ERROR', error)
-  if(input.parameters.date_start){
+  if (input.parameters.date_start) {
 
-  if(error) {
-    return [[{"method": input.method, "success": 1, "error": -4, "error_note": 'Отсутсуют данные о месяце '}]];
-  }
+    if (error) {
+      return [[{"method": input.method, "success": 1, "error": -4, "error_note": 'Отсутсуют данные о месяце '}]];
+    }
   }
 
 
@@ -662,150 +662,20 @@ window.fakedSocket.register("get.payment.list", function (input) {
   console.log('yesterday MONTH', yesterday)
   console.log('dayBeforeYesterday MONTH', dayBeforeYesterday)
 
-  if(input.parameters.date_start.split('-')[1] == realMonth)
-  array.push([{
-    "payment_id": 277019456,
-    "amount": '22543AAA ',
-    "cntrg_info_param2": "974647747",
-    "cntrg_info_param3": null,
-    "cntrg_info_param4": null,
-    "cntrg_info_param5": null,
-    "status_note": "Успешно проведен",
-    "state": 2,
-    image: "https://m.click.uz/static/merchant/logo/logo_-1.png",
-    "paydoc_state": 2,
-    "service_name": "P2P",
-    "created": "2016-11-30T12:56:01.596Z",
-    "created_timestamp": 1480512361,
-    "abs_type": "SMARTV    ",
-    "description": '',
-    "account_id": 3487271,
-    "service_id": 2,
-    "is_invoice": 0,
-    "comission_amount": 0
-  },
-    {
-      "payment_id": 272319456,
-      "amount": '12322 ',
-      "cntrg_info_param2": "974647747",
-      "cntrg_info_param3": null,
-      "cntrg_info_param4": null,
-      "cntrg_info_param5": null,
-      "status_note": "Успешно проведен",
-      "state": 2,
-      image: "https://m.click.uz/static/merchant/logo/logo_3.png",
-      "paydoc_state": 2,
-      "service_name": "Билайн",
-      "created": "2016-11-30T12:56:01.596Z",
-      "created_timestamp": 1480512361,
-      "abs_type": "SMARTV    ",
-      "description": '',
-      "account_id": 3487271,
-      "service_id": 2,
-      "is_invoice": 0,
-      "comission_amount": 0
-    },
-
-    {
-      "payment_id": 127019456,
-      "amount": '444442 ',
-      "cntrg_info_param2": "974647747",
-      "cntrg_info_param3": null,
-      "cntrg_info_param4": null,
-      "cntrg_info_param5": null,
-      "status_note": "Успешно проведен",
-      "state": 2,
-      image: "https://m.click.uz/static/merchant/logo/logo_2.png",
-      "paydoc_state": 2,
-      "service_name": "UMS",
-      "created": "2016-11-30T12:56:01.596Z",
-      "created_timestamp": 1480512361,
-      "abs_type": "SMARTV    ",
-      "description": '',
-      "account_id": 3487271,
-      "service_id": 2,
-      "is_invoice": 0,
-      "comission_amount": 0
-    },
-
-    {
-      "payment_id": 277010056,
-      "amount": '123412 ',
-      "cntrg_info_param2": "974647747",
-      "cntrg_info_param3": null,
-      "cntrg_info_param4": null,
-      "cntrg_info_param5": null,
-      "status_note": "Успешно проведен",
-      "state": 2,
-      image: "https://m.click.uz/static/merchant/logo/logo_5.png",
-      "paydoc_state": 2,
-      "service_name": "Ucell",
-      "created": "2016-11-30T12:56:01.596Z",
-      "created_timestamp": 1480512361,
-      "abs_type": "SMARTV    ",
-      "description": '',
-      "account_id": 3487271,
-      "service_id": 2,
-      "is_invoice": 0,
-      "comission_amount": 0
-    },
-
-    {
-      "payment_id": 277129456,
-      "amount": '55322 ',
-      "cntrg_info_param2": "974647747",
-      "cntrg_info_param3": null,
-      "cntrg_info_param4": null,
-      "cntrg_info_param5": null,
-      "status_note": "Успешно проведен",
-      "state": 2,
-      image: "https://m.click.uz/static/merchant/logo/logo_6.png",
-      "paydoc_state": 2,
-      "service_name": "UZ mobile",
-      "created": "2016-11-30T12:56:01.596Z",
-      "created_timestamp": 1480512361,
-      "abs_type": "SMARTV    ",
-      "description": '',
-      "account_id": 3487271,
-      "service_id": 2,
-      "is_invoice": 0,
-      "comission_amount": 0
-    },
-
-    {
-      "payment_id": 277019776,
-      "amount": '66675 ',
-      "cntrg_info_param2": "974647747",
-      "cntrg_info_param3": null,
-      "cntrg_info_param4": null,
-      "cntrg_info_param5": null,
-      "status_note": "Успешно проведен",
-      "state": 2,
-      image: "https://m.click.uz/static/merchant/logo/logo_7.png",
-      "paydoc_state": 2,
-      "service_name": "Sharq Telekom",
-      "created": "2016-11-30T12:56:01.596Z",
-      "created_timestamp": 1480512361,
-      "abs_type": "SMARTV    ",
-      "description": '',
-      "account_id": 3487271,
-      "service_id": 2,
-      "is_invoice": 0,
-      "comission_amount": 0
-    },
-    {
+  if (input.parameters.date_start.split('-')[1] == realMonth)
+    array.push([{
       "payment_id": 277019456,
-      "amount": 554356,
-      "cntrg_info_param2": "222222222",
+      "amount": '22543AAA ',
+      "cntrg_info_param2": "974647747",
       "cntrg_info_param3": null,
       "cntrg_info_param4": null,
       "cntrg_info_param5": null,
       "status_note": "Успешно проведен",
       "state": 2,
-      image: "https://m.click.uz/static/merchant/logo/logo_9.png",
+      image: "https://m.click.uz/static/merchant/logo/logo_-1.png",
       "paydoc_state": 2,
-      "service_name": "Телефония",
-      "created": "2016-11-30T13:26:01.596Z",
+      "service_name": "P2P",
+      "created": "2016-11-30T12:56:01.596Z",
       "created_timestamp": 1480512361,
       "abs_type": "SMARTV    ",
       "description": '',
@@ -814,29 +684,159 @@ window.fakedSocket.register("get.payment.list", function (input) {
       "is_invoice": 0,
       "comission_amount": 0
     },
-    {
-      "payment_id": 123456789,
-      "amount": 1580,
-      "cntrg_info_param2": "974647747",
-      "cntrg_info_param3": null,
-      "cntrg_info_param4": null,
-      "cntrg_info_param5": null,
-      "status_note": "Успешно проведен",
-      "state": 2,
-      image: "https://m.click.uz/static/merchant/logo/logo_10.png",
-      "paydoc_state": 2,
-      "service_name": "Skyline",
-      "created": "2016-11-30T14:20:01.596Z",
-      "created_timestamp": 1480512361,
-      "abs_type": "SMARTV    ",
-      "description": '',
-      "account_id": 2484171,
-      "service_id": 2,
-      "is_invoice": 0,
-      "comission_amount": 0
-    },]);
+      {
+        "payment_id": 272319456,
+        "amount": '12322 ',
+        "cntrg_info_param2": "974647747",
+        "cntrg_info_param3": null,
+        "cntrg_info_param4": null,
+        "cntrg_info_param5": null,
+        "status_note": "Успешно проведен",
+        "state": 2,
+        image: "https://m.click.uz/static/merchant/logo/logo_3.png",
+        "paydoc_state": 2,
+        "service_name": "Билайн",
+        "created": "2016-11-30T12:56:01.596Z",
+        "created_timestamp": 1480512361,
+        "abs_type": "SMARTV    ",
+        "description": '',
+        "account_id": 3487271,
+        "service_id": 2,
+        "is_invoice": 0,
+        "comission_amount": 0
+      },
 
-  if(input.parameters.date_start.split('-')[1] == yesterday){
+      {
+        "payment_id": 127019456,
+        "amount": '444442 ',
+        "cntrg_info_param2": "974647747",
+        "cntrg_info_param3": null,
+        "cntrg_info_param4": null,
+        "cntrg_info_param5": null,
+        "status_note": "Успешно проведен",
+        "state": 2,
+        image: "https://m.click.uz/static/merchant/logo/logo_2.png",
+        "paydoc_state": 2,
+        "service_name": "UMS",
+        "created": "2016-11-30T12:56:01.596Z",
+        "created_timestamp": 1480512361,
+        "abs_type": "SMARTV    ",
+        "description": '',
+        "account_id": 3487271,
+        "service_id": 2,
+        "is_invoice": 0,
+        "comission_amount": 0
+      },
+
+      {
+        "payment_id": 277010056,
+        "amount": '123412 ',
+        "cntrg_info_param2": "974647747",
+        "cntrg_info_param3": null,
+        "cntrg_info_param4": null,
+        "cntrg_info_param5": null,
+        "status_note": "Успешно проведен",
+        "state": 2,
+        image: "https://m.click.uz/static/merchant/logo/logo_5.png",
+        "paydoc_state": 2,
+        "service_name": "Ucell",
+        "created": "2016-11-30T12:56:01.596Z",
+        "created_timestamp": 1480512361,
+        "abs_type": "SMARTV    ",
+        "description": '',
+        "account_id": 3487271,
+        "service_id": 2,
+        "is_invoice": 0,
+        "comission_amount": 0
+      },
+
+      {
+        "payment_id": 277129456,
+        "amount": '55322 ',
+        "cntrg_info_param2": "974647747",
+        "cntrg_info_param3": null,
+        "cntrg_info_param4": null,
+        "cntrg_info_param5": null,
+        "status_note": "Успешно проведен",
+        "state": 2,
+        image: "https://m.click.uz/static/merchant/logo/logo_6.png",
+        "paydoc_state": 2,
+        "service_name": "UZ mobile",
+        "created": "2016-11-30T12:56:01.596Z",
+        "created_timestamp": 1480512361,
+        "abs_type": "SMARTV    ",
+        "description": '',
+        "account_id": 3487271,
+        "service_id": 2,
+        "is_invoice": 0,
+        "comission_amount": 0
+      },
+
+      {
+        "payment_id": 277019776,
+        "amount": '66675 ',
+        "cntrg_info_param2": "974647747",
+        "cntrg_info_param3": null,
+        "cntrg_info_param4": null,
+        "cntrg_info_param5": null,
+        "status_note": "Успешно проведен",
+        "state": 2,
+        image: "https://m.click.uz/static/merchant/logo/logo_7.png",
+        "paydoc_state": 2,
+        "service_name": "Sharq Telekom",
+        "created": "2016-11-30T12:56:01.596Z",
+        "created_timestamp": 1480512361,
+        "abs_type": "SMARTV    ",
+        "description": '',
+        "account_id": 3487271,
+        "service_id": 2,
+        "is_invoice": 0,
+        "comission_amount": 0
+      },
+      {
+        "payment_id": 277019456,
+        "amount": 554356,
+        "cntrg_info_param2": "222222222",
+        "cntrg_info_param3": null,
+        "cntrg_info_param4": null,
+        "cntrg_info_param5": null,
+        "status_note": "Успешно проведен",
+        "state": 2,
+        image: "https://m.click.uz/static/merchant/logo/logo_9.png",
+        "paydoc_state": 2,
+        "service_name": "Телефония",
+        "created": "2016-11-30T13:26:01.596Z",
+        "created_timestamp": 1480512361,
+        "abs_type": "SMARTV    ",
+        "description": '',
+        "account_id": 3487271,
+        "service_id": 2,
+        "is_invoice": 0,
+        "comission_amount": 0
+      },
+      {
+        "payment_id": 123456789,
+        "amount": 1580,
+        "cntrg_info_param2": "974647747",
+        "cntrg_info_param3": null,
+        "cntrg_info_param4": null,
+        "cntrg_info_param5": null,
+        "status_note": "Успешно проведен",
+        "state": 2,
+        image: "https://m.click.uz/static/merchant/logo/logo_10.png",
+        "paydoc_state": 2,
+        "service_name": "Skyline",
+        "created": "2016-11-30T14:20:01.596Z",
+        "created_timestamp": 1480512361,
+        "abs_type": "SMARTV    ",
+        "description": '',
+        "account_id": 2484171,
+        "service_id": 2,
+        "is_invoice": 0,
+        "comission_amount": 0
+      },]);
+
+  if (input.parameters.date_start.split('-')[1] == yesterday) {
     array.push([
       {
         "payment_id": 272319456,
@@ -860,26 +860,26 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "comission_amount": 0
       },
       {
-      "payment_id": 277019456,
-      "amount": '22543AAA ',
-      "cntrg_info_param2": "974647747",
-      "cntrg_info_param3": null,
-      "cntrg_info_param4": null,
-      "cntrg_info_param5": null,
-      "status_note": "Успешно проведен",
-      "state": 2,
-      image: "https://m.click.uz/static/merchant/logo/logo_-1.png",
-      "paydoc_state": 2,
-      "service_name": "P2P",
-      "created": "2016-11-30T12:56:01.596Z",
-      "created_timestamp": 1480512361,
-      "abs_type": "SMARTV    ",
-      "description": '',
-      "account_id": 3487271,
-      "service_id": 2,
-      "is_invoice": 0,
-      "comission_amount": 0
-    },
+        "payment_id": 277019456,
+        "amount": '22543AAA ',
+        "cntrg_info_param2": "974647747",
+        "cntrg_info_param3": null,
+        "cntrg_info_param4": null,
+        "cntrg_info_param5": null,
+        "status_note": "Успешно проведен",
+        "state": 2,
+        image: "https://m.click.uz/static/merchant/logo/logo_-1.png",
+        "paydoc_state": 2,
+        "service_name": "P2P",
+        "created": "2016-11-30T12:56:01.596Z",
+        "created_timestamp": 1480512361,
+        "abs_type": "SMARTV    ",
+        "description": '',
+        "account_id": 3487271,
+        "service_id": 2,
+        "is_invoice": 0,
+        "comission_amount": 0
+      },
       {
         "payment_id": 127019456,
         "amount": '444442 ',
@@ -1033,7 +1033,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
     ]);
   }
 
-  if(input.parameters.date_start.split('-')[1] == dayBeforeYesterday){
+  if (input.parameters.date_start.split('-')[1] == dayBeforeYesterday) {
     array.push([
       {
         "payment_id": 272319456,
@@ -1231,8 +1231,8 @@ window.fakedSocket.register("get.payment.list", function (input) {
       },]);
   }
 
-    if (localStorage.getItem("click_client_token"))
-      return array;
+  if (localStorage.getItem("click_client_token"))
+    return array;
 
   return [[{"method": input.method, "success": 1, "error": -4, "error_note": 'error '}]];
 });
@@ -4108,7 +4108,7 @@ window.fakedSocket.register("get.additional.information", function (input) {
           information_object: null,
           information_type: 3,
           validation_result: null,
-          options_header: "",
+          options_header: "Выбор имущества",
           options: [{
             option_object: [{
               title: "Ф.И.О.",
@@ -4119,47 +4119,22 @@ window.fakedSocket.register("get.additional.information", function (input) {
             }],
             option_payment_attribute: "additional_param4",
             option_value: "10:09:02:02:02:5127:0002:029"
-          }, {
-            option_object: [{
-              title: "Ф.И.О.",
-              value: "Юлдашев Александр"
-            }, {
-              title: "Адрес объекта",
-              value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29 "
-            }],
-            option_payment_attribute: "additional_param4",
-            option_value: "66P03489500934"
-          },
-            {
+          }
+            , {
               option_object: [{
                 title: "Ф.И.О.",
                 value: "Юлдашев Александр"
               }, {
                 title: "Адрес объекта",
-                value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29"
-              }],
-              option_payment_attribute: "additional_param4",
-              option_value: "66P03489500934"
-            },
-            {
-              option_object: [{
-                title: "Ф.И.О.",
-                value: "Юлдашев Александр"
-              }, {
-                title: "Адрес объекта",
-                value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29"
-              }],
-              option_payment_attribute: "additional_param4",
-              option_value: "66P03489500934"
-            },
-            {
-              option_object: [{
-                title: "Ф.И.О.",
-                value: "Юлдашев Александр"
-              }, {
-                title: "Адрес объекта",
-                value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29"
-              }],
+                value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29 "
+              },
+                {
+                  title: "Адрес объекта",
+                  value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29 "
+                }, {
+                  title: "Адрес объекта",
+                  value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29 "
+                }],
               option_payment_attribute: "additional_param4",
               option_value: "66P03489500934"
             }

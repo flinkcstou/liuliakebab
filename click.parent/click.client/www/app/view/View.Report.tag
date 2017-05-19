@@ -245,7 +245,6 @@
       event.stopPropagation();
 
       if ((scope.tags['component-report-filter'].filterDateFrom && scope.tags['component-report-filter'].filterDateTo)) {
-
         return;
       }
 
