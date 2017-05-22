@@ -1,129 +1,208 @@
-<component-tour id="componentTourId" style="display:none;">
+<component-tour id="componentTourId" class="component-tour">
+
+  <p class="tour-title-text">{window.languages.ComponentTourRegistrationTitleText}</p>
+
+  <div type="button" class="tour-close-icon" ontouchend="closeTour()"></div>
 
 
-  <div id="monthContainerId" class="view-reports-months-container" ontouchstart="monthContainerTouchStart()"
-       ontouchend="monthContainerTouchEnd()"
-       ontouchmove="monthContainerTouchMove()">
-    <div class="view-reports-month-info-container" each="{i in monthsArray}"
-         style="left:{50*i.count}%;">
-      <p class="view-reports-month-info-name">{i.name}</p>
+  <div id="tourContainerId" class="tour-card-carousel" ontouchstart="tourContainerTouchStart()"
+       ontouchend="tourContainerTouchEnd()"
+       ontouchmove="tourContainerTouchMove()">
+
+
+    <div class="component-tour-card" each="{i in tourCardsArray}"
+         style="left:{78+100*(i.counter-1)}%;background-image: url({i.text})"></div>
+
+
+  </div>
+
+  <div class="tour-circles-container">
+    <div class="tour-circles-field">
+      <div id="circle{i.counter-1}" style="left: {(i.counter)*50*widthK }px;" class="tour-circles pincode-pin-one"
+           each="{i in tourCardsArray}"></div>
+
     </div>
   </div>
 
+  <div class="tour-buttons-container" if="{!registrButton}">
+    <div class="tour-next-button tour-close-button" ontouchend="closeTour()">
+      <p class="tour-button-label tour-close-button-label">{window.languages.ComponentTourCloseButtonText}</p>
+    </div>
+    <div class="tour-next-button" ontouchend="nextTourCard()">
+      <p class="tour-button-label">{window.languages.ComponentTourNextButtonText}</p>
+    </div>
+  </div>
+
+  <div class="tour-buttons-container" if="{registrButton}">
+    <div class="tour-registration-button" ontouchend="closeTour()">
+      <p class="tour-registration-button-label">
+        {window.languages.ComponentTourRegistrationButtonText}</p>
+    </div>
+  </div>
+
+
   <script>
 
-    //    <div class="tour-card-carousel" ontouchend="endTouchTourCarousel()"
-    //    ontouchmove="moveTouchTourCarousel()"
-    //    ontouchstart="startTouchTourCarousel()">
-    //
-    //      <div id="tourCards">
-    //      <component-tour-card each="{i in tourCardsArray}"
-    //    operationmessage="{i.text}"
-    //    countcard="{i.counter}"></component-tour-card>
-    //      </div>
-    //      </div>
 
     var scope = this;
-    var tourOnTouchStartY, tourOnTouchStartX, tourOnTouchEndY, tourOnTouchEndX;
+
     console.log("component tour");
 
-    scope.monthsArray = window.languages.ViewReportMonthsArray;
-    console.log("monthsArray", scope.monthsArray);
-    scope.update(scope.monthsArray);
-    scope.count = 12;
-    scope.mNumber = 0;
-    var mCarouselTouchStartX, mCarouselTouchStartY, mCarouselTouchEndX, mCarouselTouchEndY
+    scope.tourCardsArray = [{counter: 1, text: "resources/icons/ComponentTour/tutorial_1.png"}, {
+      counter: 2,
+      text: "resources/icons/ComponentTour/tutorial_2.png"
+    }, {
+      counter: 3,
+      text: "resources/icons/ComponentTour/tutorial_3.png"
+    }, {
+      counter: 4,
+      text: "resources/icons/ComponentTour/tutorial_4.png"
+    },
+      {
+        counter: 5,
+        text: "resources/icons/ComponentTour/tutorial_5.png"
+      }];
+
+    scope.count = 5;
+    scope.tNumber = 0;
+    var tourCarouselTouchStartX, tourCarouselTouchStartY, tourCarouselTouchEndX, tourCarouselTouchEndY;
     var left;
     var delta;
+    scope.registrButton = false;
 
-    monthContainerTouchStart = function () {
+    scope.on('mount', function () {
+      document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'grey';
+    });
 
-      console.log("in start touch=", scope.mNumber);
-      mCarouselTouchStartX = event.changedTouches[0].pageX;
-      mCarouselTouchStartY = event.changedTouches[0].pageY;
+    tourContainerTouchStart = function () {
 
-      percentageTouche = (mCarouselTouchStartX * 100.0) / window.innerHeight;
+      tourCarouselTouchStartX = event.changedTouches[0].pageX;
+      tourCarouselTouchStartY = event.changedTouches[0].pageY;
+
+      percentageTouche = (tourCarouselTouchStartX * 100.0) / window.innerHeight;
 
       console.log("touche started at %", percentageTouche);
 
-      left = -(50 * scope.mNumber) - percentageTouche;
+      left = -(100 * scope.tNumber) - percentageTouche;
       delta = left;
     };
 
 
-    monthContainerTouchEnd = function () {
+    tourContainerTouchEnd = function () {
 
 
       event.preventDefault();
       event.stopPropagation();
 
-      mCarouselTouchEndX = event.changedTouches[0].pageX;
-      mCarouselTouchEndY = event.changedTouches[0].pageY;
-      console.log(Math.abs(mCarouselTouchStartX - mCarouselTouchEndX))
-      console.log(Math.abs(mCarouselTouchStartY - mCarouselTouchEndY))
-      if (Math.abs(mCarouselTouchStartX - mCarouselTouchEndX) > 20) {
+      tourCarouselTouchEndX = event.changedTouches[0].pageX;
+      tourCarouselTouchEndY = event.changedTouches[0].pageY;
+      console.log(Math.abs(tourCarouselTouchStartX - tourCarouselTouchEndX));
+      console.log(Math.abs(tourCarouselTouchStartY - tourCarouselTouchEndY));
+      if (Math.abs(tourCarouselTouchStartX - tourCarouselTouchEndX) > 20) {
         console.log('Touch end of carousel')
         changePosition();
-      }
-      else {
-        monthChanged = false;
       }
     };
 
 
     var toucheInPercentage;
-    monthContainerTouchMove = function () {
+    tourContainerTouchMove = function () {
       event.preventDefault();
       event.stopPropagation();
 
 
       toucheInPercentage = (event.changedTouches[0].pageX * 100.0) / window.innerHeight;
 
-      this.monthContainerId.style.transition = '0s';
-      this.monthContainerId.style.webkitTransition = '0s';
-      this.monthContainerId.style.transform = "translate3d(" + (toucheInPercentage + delta ) + '%' + ", 0, 0)";
-      this.monthContainerId.style.webkitTransform = "translate3d(" + (toucheInPercentage + delta ) + '%' + ", 0, 0)";
+      this.tourContainerId.style.transition = '0s';
+      this.tourContainerId.style.webkitTransition = '0s';
+      this.tourContainerId.style.transform = "translate3d(" + (toucheInPercentage + delta ) + '%' + ", 0, 0)";
+      this.tourContainerId.style.webkitTransform = "translate3d(" + (toucheInPercentage + delta ) + '%' + ", 0, 0)";
 
     };
 
+    scope.shift = 100;
+
+    nextTourCard = function () {
+      changePositionWithButton();
+
+    }
 
     changePosition = function () {
-      console.log("One")
-      console.log("scope.count", scope.count)
+      console.log("scope.tNumber", scope.tNumber);
 
-      monthChanged = true;
-      if (mCarouselTouchEndX < mCarouselTouchStartX && scope.mNumber < scope.count - 1) {
-        ++scope.mNumber;
-        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+      if (tourCarouselTouchEndX < tourCarouselTouchStartX && scope.tNumber == scope.count - 2) {
+        scope.registrButton = true;
+        scope.update();
+      } else if (tourCarouselTouchEndX > tourCarouselTouchStartX && scope.tNumber == scope.count - 1) {
+        scope.registrButton = false;
+        scope.update();
       }
 
-      if (mCarouselTouchEndX > mCarouselTouchStartX && scope.mNumber == 0) {
-        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+      if (tourCarouselTouchEndX < tourCarouselTouchStartX && scope.tNumber < scope.count - 1) {
+        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'lightgray';
+        ++scope.tNumber;
+        this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
+        this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
+        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'grey';
       }
 
-      if (mCarouselTouchEndX < mCarouselTouchStartX && scope.mNumber == scope.count - 1) {
-        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+      if (tourCarouselTouchEndX > tourCarouselTouchStartX && scope.tNumber == 0) {
+        this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
+        this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
       }
 
-      if (mCarouselTouchEndX > mCarouselTouchStartX && scope.mNumber > 0) {
-        --scope.mNumber;
-        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
-        this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
-        this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+      if (tourCarouselTouchEndX < tourCarouselTouchStartX && scope.tNumber == scope.count - 1) {
+        this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
+        this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
+      }
+
+      if (tourCarouselTouchEndX > tourCarouselTouchStartX && scope.tNumber > 0) {
+        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'lightgray';
+        --scope.tNumber;
+        this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
+        this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
+        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'grey';
       }
 
 
-      localStorage.setItem('mNumber', scope.mNumber);
+//      localStorage.setItem('tNumber', scope.tNumber);
+    }
+
+    changePositionWithButton = function () {
+      console.log("scope.tNumber", scope.tNumber);
+
+      if (scope.tNumber == scope.count - 2) {
+        scope.registrButton = true;
+        console.log("scope.registrButton", scope.registrButton);
+        scope.update();
+      }
+
+      if (scope.tNumber < scope.count - 1) {
+        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'lightgray';
+        ++scope.tNumber;
+        this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
+        this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
+        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'grey';
+      }
+
+      if (tourCarouselTouchEndX < tourCarouselTouchStartX && scope.tNumber == scope.count - 1) {
+        this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
+        this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
+      }
+
+
     }
 
 
@@ -133,93 +212,6 @@
       componentTourId.style.display = 'none';
     }
 
-    scope.cardNumber = 0, count = 3;
-    scope.tourCardsArray = [{counter: 1, text: "Hello"}, {counter: 2, text: "World"}, {
-      counter: 3,
-      text: "And others!"
-    }];
-
-
-    startTouchTourCarousel = function () {
-//      console.log("Start Touch Carousel", scope.cardNumber);
-
-      tourOnTouchStartX = event.changedTouches[0].pageX;
-      left = -((540 * scope.cardNumber) * widthK) - tourOnTouchStartX;
-      delta = left;
-    }
-
-    //    moveTouchTourCarousel = function () {
-    //      event.preventDefault();
-    //      event.stopPropagation();
-    //      this.tourCards.style.transition = '0s';
-    //      this.tourCards.style.webkitTransition = '0s';
-    //      this.tourCards.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
-    //      this.tourCards.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
-    //    }
-    //
-    //    endTouchTourCarousel = function () {
-    //
-    //      event.preventDefault();
-    //      event.stopPropagation();
-    //      tourOnTouchEndX = event.changedTouches[0].pageX;
-    //      if (Math.abs(tourOnTouchStartX - tourOnTouchEndX) > 20) {
-    //        changePosition();
-    //      }
-    //    }
-    //
-    //    function changePosition() {
-    //
-    //      console.log(tourOnTouchEndX, tourOnTouchStartX, count, count)
-    //
-    //      if (tourOnTouchEndX < tourOnTouchStartX && scope.cardNumber < count - 1) {
-    //
-    //        console.log("Move Touch Carousel1", scope.cardNumber);
-    //
-    //        ++scope.cardNumber;
-    ////        riot.update(scope.cardNumber);
-    //        this.tourCards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-    //        this.tourCards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-    //        this.tourCards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-    //        this.tourCards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-    //
-    //      }
-    //
-    //      if (tourOnTouchEndX > tourOnTouchStartX && scope.cardNumber == 0) {
-    //
-    //        console.log("Move Touch Carousel2", scope.cardNumber);
-    //
-    //        this.tourCards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-    //        this.tourCards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-    //        this.tourCards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-    //        this.tourCards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-    //      }
-    //
-    //      if (tourOnTouchEndX < tourOnTouchStartX && scope.cardNumber == count - 1) {
-    //
-    //        console.log("Move Touch Carousel3", scope.cardNumber);
-    //
-    //        this.tourCards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-    //        this.tourCards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-    //        this.tourCards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-    //        this.tourCards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-    //
-    //      }
-    //
-    //      if (tourOnTouchEndX > tourOnTouchStartX && scope.cardNumber > 0) {
-    //
-    //        console.log("Move Touch Carousel4", scope.cardNumber);
-    //
-    //        --scope.cardNumber;
-    ////        riot.update(scope.cardNumber);
-    //        this.tourCards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-    //        this.tourCards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-    //        this.tourCards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-    //        this.tourCards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-    //      }
-    //
-    //
-    ////      localStorage.setItem('cardNumber', scope.cardNumber);
-    //    }
 
   </script>
 </component-tour>

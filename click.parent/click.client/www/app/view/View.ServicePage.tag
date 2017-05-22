@@ -532,8 +532,6 @@
             }
             else
               amount.value = 0;
-
-
         });
       }
     } else {

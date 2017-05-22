@@ -37,7 +37,7 @@ window.api.initSocket = function () {
 
     if (!window.isConnected) {
 
-      showAlertComponent("Соединение установлено");
+      //showAlertComponent("Соединение установлено");
 
       //alert("Соединение установлено");
 

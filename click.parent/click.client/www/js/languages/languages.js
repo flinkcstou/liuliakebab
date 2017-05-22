@@ -470,6 +470,11 @@ var RU_LANGUAGES =
 
   "ViewServiceInfoButtonNextText": "Далее",
   "ViewServiceInfoButtonGoToPaymentText": "ПЕРЕЙТИ К ОПЛАТЕ",
+
+  "ComponentTourRegistrationTitleText": "Помощь в регистрации",
+  "ComponentTourNextButtonText": "Далее",
+  "ComponentTourCloseButtonText": "Закрыть",
+  "ComponentTourRegistrationButtonText": "Начать регистрацию",
 };
 
 window.languages = RU_LANGUAGES;

@@ -315,7 +315,7 @@
 //        riot.mount('view-help');
 //        scope.unmount()
         scope.operationMessage = "Hello World!";
-//        componentTourId.style.display = "block";
+        componentTourId.style.display = "block";
       }
     }
 
