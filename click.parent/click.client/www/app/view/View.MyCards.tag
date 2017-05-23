@@ -339,10 +339,11 @@
       myCardsOnTouchStartY, myCardsOnTouchStartX, myCardsOnTouchEndY, myCardsOnTouchEndX;
 
     scope.showError = false;
+    console.log("MY CARDS VIEW, OPTS=", opts);
 
     if (opts[0]) {
       scope.cardId = opts[0];
-//      console.log('scope.cardId', scope.cardId)
+      console.log('scope.cardId', scope.cardId)
     }
 
     scope.top = 160 * widthK;
@@ -378,7 +379,7 @@
 
       scope.arrayOfOperationsByAccount = [];
       scope.update()
-//      console.log(scope.card)
+      console.log("Scope.Card=", scope.card)
 
       if (scope.card)
         window.api.call({

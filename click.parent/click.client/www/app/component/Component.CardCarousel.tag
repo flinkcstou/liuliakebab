@@ -927,6 +927,16 @@
           pos = (scope.cardNumber) * 540 * widthK;
           var sendChosenCardId;
           console.log("ASD", scope.cardsarray, scope.cardNumber);
+          var j = 1;
+          for (var i in scope.cardsarray) {
+            if (j == scope.cardNumber) {
+              sendChosenCardId = i;
+              console.log("sendChosenCardId", sendChosenCardId);
+              break;
+            }
+            console.log("j=", j);
+            j++;
+          }
 
 //          htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
 //            'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
