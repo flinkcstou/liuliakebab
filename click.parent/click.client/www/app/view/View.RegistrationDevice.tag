@@ -41,7 +41,7 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
-  <component-tour operationmessage="{operationMessage}"></component-tour>
+  <component-tour view="registration"></component-tour>
 
   <div hidden id="demoContinueContainer" class="demo-version-continue riot-tags-main-container">
     <p class="demo-version-demonstration-text">Демонстрационный режим</p>

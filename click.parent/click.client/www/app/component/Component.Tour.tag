@@ -46,24 +46,35 @@
 
     var scope = this;
 
-    console.log("component tour");
+    console.log("component tour view=", opts.view);
 
-    scope.tourCardsArray = [{counter: 1, text: "resources/icons/ComponentTour/tutorial_1.png"}, {
-      counter: 2,
-      text: "resources/icons/ComponentTour/tutorial_2.png"
-    }, {
-      counter: 3,
-      text: "resources/icons/ComponentTour/tutorial_3.png"
-    }, {
-      counter: 4,
-      text: "resources/icons/ComponentTour/tutorial_4.png"
-    },
-      {
-        counter: 5,
-        text: "resources/icons/ComponentTour/tutorial_5.png"
+    if (opts.view == "registration") {
+      scope.tourCardsArray = [{counter: 1, text: "resources/icons/ComponentTour/tutorial_1.png"}, {
+        counter: 2,
+        text: "resources/icons/ComponentTour/tutorial_2.png"
+      }, {
+        counter: 3,
+        text: "resources/icons/ComponentTour/tutorial_3.png"
+      }, {
+        counter: 4,
+        text: "resources/icons/ComponentTour/tutorial_4.png"
+      },
+        {
+          counter: 5,
+          text: "resources/icons/ComponentTour/tutorial_5.png"
+        }];
+
+      scope.count = 5;
+    } else {
+      scope.tourCardsArray = [{counter: 1, text: "resources/icons/ComponentTour/tutorial_1.png"}, {
+        counter: 2,
+        text: "resources/icons/ComponentTour/tutorial_2.png"
       }];
 
-    scope.count = 5;
+      scope.count = 2;
+    }
+
+
     scope.tNumber = 0;
     var tourCarouselTouchStartX, tourCarouselTouchStartY, tourCarouselTouchEndX, tourCarouselTouchEndY;
     var left;
