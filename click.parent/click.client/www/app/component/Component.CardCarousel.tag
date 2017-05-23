@@ -931,10 +931,8 @@
           for (var i in scope.cardsarray) {
             if (j == scope.cardNumber) {
               sendChosenCardId = i;
-              console.log("sendChosenCardId", sendChosenCardId);
               break;
             }
-            console.log("j=", j);
             j++;
           }
 

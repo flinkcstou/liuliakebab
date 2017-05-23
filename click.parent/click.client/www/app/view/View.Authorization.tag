@@ -24,7 +24,8 @@
          ontouchend="pinResetTouchEnd()">
       {window.languages.ViewAuthorizationForgetPinLabel}
     </div>
-    <div class="authorization-button-registration" ontouchstart="resetLocalStorageTouchStart()" ontouchend="resetLocalStorageTouchEnd()">
+    <div class="authorization-button-registration" ontouchstart="resetLocalStorageTouchStart()"
+         ontouchend="resetLocalStorageTouchEnd()">
       {window.languages.ViewAuthorizationResetLocalStorageLabel}
     </div>
   </div>
@@ -345,6 +346,15 @@
               checkSessionKey = true;
               viewAuthorization.check = false;
               localStorage.setItem("click_client_authorized", true);
+              if (device.platform != 'BrowserStand') {
+                var options = {dimBackground: true};
+
+                SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+                  console.log("Started");
+                }, function () {
+                  console.log("closed");
+                });
+              }
               getAccount();
               window.pushNotificationActions.retrievePushNotification();
             }

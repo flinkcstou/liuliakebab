@@ -23,6 +23,9 @@
 
   </div>
 
+  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
+                     confirmtype="{confirmType}"></component-confirm>
+
   <script>
     var scope = this;
     this.titleName = window.languages.ViewSecuritySettingsFriendHelpTitle;
@@ -87,28 +90,35 @@
 
       event.preventDefault();
       event.stopPropagation();
-      var question = "Подтердите удаление друга"
-      var result = confirm(question);
-      if (result) {
-        var idOfBlock = 'id' + idWithoutPrefix;
-        idOfBlock = idOfBlock.substring(2, idOfBlock.length);
-        console.log('idWithoutPrefix', idWithoutPrefix)
+      var question = "Подтердите удаление друга";
 
-        var arrayOfFriends = JSON.parse(localStorage.getItem('click_client_friends'));
-        arrayOfFriends.filter(function (wordOfFunction, indexOfFind) {
-          console.log("ASD TSET", indexOfFind);
-          var index = wordOfFunction.number.indexOf(idWithoutPrefix);
-          console.log(index)
-          if (index != -1) {
-            console.log('index', indexOfFind)
-            arrayOfFriends.splice(indexOfFind, 1);
-            console.log(arrayOfFriends)
-            localStorage.setItem('click_client_friends', JSON.stringify(arrayOfFriends))
-            id.parentNode.removeChild(id);
-            return;
-          }
-        })
-      }
+
+      scope.confirmShowBool = true;
+      scope.confirmNote = question;
+      scope.confirmType = 'local';
+      scope.result = function (bool) {
+        if (bool) {
+          var idOfBlock = 'id' + idWithoutPrefix;
+          idOfBlock = idOfBlock.substring(2, idOfBlock.length);
+          console.log('idWithoutPrefix', idWithoutPrefix)
+
+          var arrayOfFriends = JSON.parse(localStorage.getItem('click_client_friends'));
+          arrayOfFriends.filter(function (wordOfFunction, indexOfFind) {
+            console.log("ASD TSET", indexOfFind);
+            var index = wordOfFunction.number.indexOf(idWithoutPrefix);
+            console.log(index)
+            if (index != -1) {
+              console.log('index', indexOfFind)
+              arrayOfFriends.splice(indexOfFind, 1);
+              console.log(arrayOfFriends)
+              localStorage.setItem('click_client_friends', JSON.stringify(arrayOfFriends))
+              id.parentNode.removeChild(id);
+              return;
+            }
+          })
+        }
+      };
+      scope.update();
 
     }
 

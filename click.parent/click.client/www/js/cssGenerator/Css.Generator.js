@@ -587,6 +587,17 @@ var css = {
   "opacity: 0.3;" +
   "}",
 
+  registrationRememberIconContainer: ".registration-device-remember-icon-container " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 30 * widthK + "px;" +
+  "height:" + 30 * widthK + "px;" +
+  "left:" + 496 * widthK + "px;" +
+  "top:" + 31 * widthK + "px;" +
+  "opacity: 0.3;" +
+  "border:4px solid white;" +
+  "}",
+
 
   buttonEnter: ".button-enter " +
   "{" +
@@ -2816,7 +2827,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 765 * widthK + "px;" +
+  "height:" + 710 * widthK + "px;" +
   "top:" + 465 * widthK + "px;" +
     //"top:" + 600 * widthK + "px;" +
   "overflow-y: scroll;" +
@@ -2900,7 +2911,7 @@ var css = {
   "left: 8%;" +
   "margin: 0;" +
   "font-size:" + 45 * widthK + "px;" +
-  "color: #ee4d3d;" +
+  "color: #595759;" +
   "}",
 
   viewInfoOperationInfoNumber: ".view-info-operation-info-number " +
@@ -8954,7 +8965,7 @@ var css = {
   "left: 8%;" +
   "margin: 0;" +
   "font-size:" + 45 * widthK + "px;" +
-  "color: #ee4d3d;" +
+  "color: #595759;" +
   "float: left;" +
   "}",
 
@@ -8965,7 +8976,7 @@ var css = {
   "left: 9%;" +
   "margin: 0;" +
   "font-size:" + 26 * widthK + "px;" +
-  "color: #ee4d3d;" +
+  "color: #595759;" +
   "float: left;" +
   "}",
 
@@ -9094,7 +9105,7 @@ var css = {
   "left: 2%;" +
   "margin: 0;" +
   "font-size:" + 45 * widthK + "px;" +
-  "color: #ee4d3d;" +
+  "color: #595759;" +
   "float: left;" +
   "}",
 
@@ -9105,7 +9116,8 @@ var css = {
   "left: 3%;" +
   "margin: 0;" +
   "font-size:" + 29 * widthK + "px;" +
-  "color: #ee4d3d;" +
+  "color: #595759;" +
+    //"color: #ee4d3d;" +
   "float: left;" +
   "}",
 
@@ -9356,7 +9368,7 @@ var css = {
   "left: 8%;" +
   "margin: 0;" +
   "font-size:" + 45 * widthK + "px;" +
-  "color: #ee4d3d;" +
+  "color: #595759;" +
   "float: left;" +
   "}",
 
@@ -9367,7 +9379,7 @@ var css = {
   "left: 9%;" +
   "margin: 0;" +
   "font-size:" + 26 * widthK + "px;" +
-  "color: #ee4d3d;" +
+  "color: #595759;" +
   "float: left;" +
   "}",
 
@@ -12131,7 +12143,7 @@ var css = {
   "left: 8%;" +
   "margin: 0;" +
   "font-size:" + 45 * widthK + "px;" +
-  "color: #ee4d3d;" +
+  "color: #595759;" +
   "float: left;" +
   "}",
 
@@ -12142,7 +12154,7 @@ var css = {
   "left: 11%;" +
   "margin: 0;" +
   "font-size:" + 26 * widthK + "px;" +
-  "color: #ee4d3d;" +
+  "color: #595759;" +
   "float: left;" +
   "}",
 
@@ -12976,6 +12988,7 @@ var css = {
   "transform: translate(-84%, 0);" +
   "background-position: center;" +
   "background-size: 118%;" +
+  "background-repeat: no-repeat;" +
   "}",
 
   tourMessage: ".tour-message" +

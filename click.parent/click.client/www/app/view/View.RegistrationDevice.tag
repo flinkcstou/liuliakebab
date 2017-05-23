@@ -7,6 +7,7 @@
         <div class="registration-device-remember" ontouchend="rememberTouchEnd()" ontouchstart="rememberTouchStart()">
           <p class="registration-device-remember-label">
             {window.languages.ViewRegistrationDeviceRememberLabel}</p>
+          <div class="registration-device-remember-icon-container"></div>
           <div id="rememberIcon" class="registration-device-remember-icon"></div>
         </div>
         <div class="registration-button-enter button-enter" ontouchend="getPhoneNumberTouchEnd()"

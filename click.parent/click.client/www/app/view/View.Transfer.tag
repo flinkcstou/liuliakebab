@@ -304,10 +304,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-transfer',
-            "params": opts,
-          }
+        {
+          "view": 'view-transfer',
+          "params": opts,
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -322,7 +322,7 @@
     openBanksListPage = function () {
       if (modeOfApp.offlineMode)return
 
-      if(modeOfApp.demoVersion){
+      if (modeOfApp.demoVersion) {
         var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
         scope.confirmShowBool = true;
@@ -335,7 +335,7 @@
             scope.unmount()
             return
           }
-          else{
+          else {
             scope.confirmShowBool = false;
             return
           }
@@ -516,9 +516,9 @@
 
     this.titleName = window.languages.ViewPayTransferTitle;
     var scope = this,
-        phoneNumberForTransfer = '',
-        cardNumberForTransfer = '',
-        arrayOfContacts = [];
+      phoneNumberForTransfer = '',
+      cardNumberForTransfer = '',
+      arrayOfContacts = [];
 
     scope.showError = false;
 
@@ -1098,9 +1098,10 @@
             }
             var codeOfBank = cardInputId.value.replace(/\s/g, '').substring(3, 6);
             var checkOfCode = false;
-//          console.log('CODE OF BANK', codeOfBank)
+            console.log('CODE OF BANK', codeOfBank)
 
             var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))
+            console.log("BANKLIST", bankList);
             var percentOfBank = 0;
             for (var i = 0; i < bankList.length; i++) {
               if (codeOfBank == bankList[i].code) {
@@ -1114,7 +1115,7 @@
             }
             if (!checkOfCode) {
               scope.clickPinError = false;
-              scope.errorNote = 'Неверный код банка';
+              scope.errorNote = 'Карта "ххххххх" банка временно недоступна для перевода средств';
               scope.showError = true;
               scope.update();
 //            alert('Неверный код банка');
