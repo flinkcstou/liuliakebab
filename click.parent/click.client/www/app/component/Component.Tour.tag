@@ -18,7 +18,7 @@
 
   <div class="tour-circles-container">
     <div class="tour-circles-field">
-      <div id="circle{i.counter-1}" style="left: {(i.counter)*50*widthK }px;" class="tour-circles pincode-pin-one"
+      <div id="circle{i.counter-1}" style="left: {(i.counter)*40*widthK }px;" class="tour-circles pincode-pin-one"
            each="{i in tourCardsArray}"></div>
 
     </div>
@@ -99,7 +99,6 @@
       console.log(Math.abs(tourCarouselTouchStartX - tourCarouselTouchEndX));
       console.log(Math.abs(tourCarouselTouchStartY - tourCarouselTouchEndY));
       if (Math.abs(tourCarouselTouchStartX - tourCarouselTouchEndX) > 20) {
-        console.log('Touch end of carousel')
         changePosition();
       }
     };
@@ -128,7 +127,6 @@
     }
 
     changePosition = function () {
-      console.log("scope.tNumber", scope.tNumber);
 
       if (tourCarouselTouchEndX < tourCarouselTouchStartX && scope.tNumber == scope.count - 2) {
         scope.registrButton = true;
@@ -177,11 +175,9 @@
     }
 
     changePositionWithButton = function () {
-      console.log("scope.tNumber", scope.tNumber);
 
       if (scope.tNumber == scope.count - 2) {
         scope.registrButton = true;
-        console.log("scope.registrButton", scope.registrButton);
         scope.update();
       }
 
@@ -209,6 +205,15 @@
     closeTour = function () {
       event.preventDefault();
       event.stopPropagation();
+      document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'lightgray';
+      scope.tNumber = 0;
+      this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+      this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+      this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
+      this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
+      document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'grey';
+      scope.registrButton = false;
+      scope.update();
       componentTourId.style.display = 'none';
     }
 

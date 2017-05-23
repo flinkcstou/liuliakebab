@@ -57,8 +57,8 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/draft/demo_continue.png);" +
-    //"opacity: 0.6;" +
+  //"background-image: url(resources/5.png);" +
+  //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -12947,13 +12947,22 @@ var css = {
   "{" +
   "position: absolute;" +
   "opacity: 1;" +
-  "height: 90%;" +
+  "height: 95%;" +
   "width: 84%;" +
-  "top: 5%;" +
+    //"top: 5%;" +
   "left: 8%;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "display:none;" +
+  "}",
+
+  tourCardCarousel: ".tour-card-carousel " +
+  "{" +
+  "position: absolute;" +
+  "height:65%;" +
+  "width: 100%;" +
+  "top: 12%;" +
+  "display: inline-block;" +
   "}",
 
   componentTourCard: ".component-tour-card " +
@@ -12966,7 +12975,7 @@ var css = {
     //"background-color: #ee4d3d;" +
   "transform: translate(-84%, 0);" +
   "background-position: center;" +
-  "background-size: 110%;" +
+  "background-size: 118%;" +
   "}",
 
   tourMessage: ".tour-message" +
@@ -13034,7 +13043,7 @@ var css = {
   "position: absolute;" +
   "width:" + 127 * widthK + "px;" +
   "height:" + 86 * widthK + "px;" +
-  "left:81%;" +
+  "left:80%;" +
   "background-image: url(resources/icons/ComponentTour/tutorial_close.png);" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 55%;" +
@@ -13044,14 +13053,6 @@ var css = {
   "top:1%;" +
   "}",
 
-  tourCardCarousel: ".tour-card-carousel " +
-  "{" +
-  "position: absolute;" +
-  "height:65%;" +
-  "width: 100%;" +
-  "top: 10%;" +
-  "display: inline-block;" +
-  "}",
 
   tourCards: ".tour-cards " +
   "{" +
@@ -13063,7 +13064,7 @@ var css = {
   tourButtonsContainer: ".tour-buttons-container" +
   "{" +
   "position: absolute;" +
-  "height: 11%;" +
+  "height: 10%;" +
   "width: 100%;" +
     //"top:" + 500 * widthK + "px;" +
   "bottom:4%;" +
@@ -13076,7 +13077,7 @@ var css = {
   "{" +
   "position: relative;" +
   "height: 85%;" +
-  "width: 38%;" +
+  "width: 40%;" +
   "top: 36%;" +
   "display: table;" +
   "background-color: #0CA5E2;" +
@@ -13085,14 +13086,14 @@ var css = {
   "margin-left: auto;" +
   "float: left;" +
   "left:10%;" +
-  "margin-right: 5%;" +
+  "margin-right: 4%;" +
   "}",
 
   tourButtonLabel: ".tour-button-label" +
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "font-size:" + 30 * widthK + "px;" +
+  "font-size:" + 35 * widthK + "px;" +
   "color: #ffffff;" +
   "text-align: center;" +
   "display: table-cell;" +
@@ -13103,6 +13104,7 @@ var css = {
   "{" +
   "background-color: transparent;" +
   "border: 2px solid #c1c1c1;" +
+  "width: 35%;" +
   "}",
 
   tourCloseButtonLabel: ".tour-close-button-label" +
@@ -13129,7 +13131,7 @@ var css = {
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "font-size:" + 35 * widthK + "px;" +
   "color: #595759;" +
   "text-align: center;" +
   "display: table-cell;" +
@@ -13142,27 +13144,29 @@ var css = {
   "width:" + 320 * widthK + "px;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
-  "height:" + 100 * widthK + "px;" +
-  "top: 76%;" +
+  "height:" + 50 * widthK + "px;" +
+  "top: 78%;" +
   "}",
 
   tourCirclesField: ".tour-circles-field " +
   "{" +
   "position: relative;" +
-  "height:" + 40 * widthK + "px;" +
+    //"height:" + 40 * widthK + "px;" +
   "width:" + 320 * widthK + "px;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
   "margin-top:" + 20 * widthK + "px;" +
+  "display: inline-block;" +
+  "left: 12%;" +
   "}",
 
   tourCircle: ".tour-circles " +
   "{" +
   "position: absolute;" +
-  "width:" + 15 * widthK + "px;" +
-  "height:" + 15 * widthK + "px;" +
+  "width:" + 12 * widthK + "px;" +
+  "height:" + 12 * widthK + "px;" +
   "background-color:lightgray;" +
-  "border-radius:" + 40 * widthK + "px;" +
+  "border-radius:" + 50 * widthK + "px;" +
   "}",
 
 }
