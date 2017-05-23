@@ -4096,6 +4096,52 @@ window.fakedSocket.register("get.payment", function (input) {
 window.fakedSocket.register("get.additional.information", function (input) {
 
   if (input)
+  //return [
+  //  [{
+  //    "method": input.method,
+  //    "success": 1,
+  //    "error": 0,
+  //    "error_note": ""
+  //  }],
+  //  [
+  //    {
+  //      information_object: null,
+  //      information_type: 3,
+  //      validation_result: null,
+  //      options_header: "Выбор имущества",
+  //      options: [{
+  //        option_object: [{
+  //          title: "Ф.И.О.",
+  //          value: "Ганиев Жасур"
+  //        }, {
+  //          title: "Адрес объекта",
+  //          value: "ул. Буюк Ипак Йули, дом 123, кв. 29 "
+  //        }],
+  //        option_payment_attribute: "additional_param4",
+  //        option_value: "10:09:02:02:02:5127:0002:029"
+  //      }
+  //        , {
+  //          option_object: [{
+  //            title: "Ф.И.О.",
+  //            value: "Юлдашев Александр"
+  //          }, {
+  //            title: "Адрес объекта",
+  //            value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29 "
+  //          },
+  //            {
+  //              title: "Адрес объекта",
+  //              value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29 "
+  //            }, {
+  //              title: "Адрес объекта",
+  //              value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29 "
+  //            }],
+  //          option_payment_attribute: "additional_param4",
+  //          option_value: "66P03489500934"
+  //        }
+  //      ]
+  //    }
+  //  ]];
+  //else
     return [
       [{
         "method": input.method,
@@ -4105,40 +4151,17 @@ window.fakedSocket.register("get.additional.information", function (input) {
       }],
       [
         {
-          information_object: null,
-          information_type: 3,
+          information_object: [{
+            title: "Ф.И.О.",
+            value: "NIG?MATOVA NIGORA RUSTAM QIZI"
+          }, {
+            title: "Вид нарушения",
+            value: "TEZLIKNI OSHIRISH (20 - 40 KM ORALIGIDA BULGAN)"
+          }],
+          information_type: 1,
           validation_result: null,
-          options_header: "Выбор имущества",
-          options: [{
-            option_object: [{
-              title: "Ф.И.О.",
-              value: "Ганиев Жасур"
-            }, {
-              title: "Адрес объекта",
-              value: "ул. Буюк Ипак Йули, дом 123, кв. 29 "
-            }],
-            option_payment_attribute: "additional_param4",
-            option_value: "10:09:02:02:02:5127:0002:029"
-          }
-            , {
-              option_object: [{
-                title: "Ф.И.О.",
-                value: "Юлдашев Александр"
-              }, {
-                title: "Адрес объекта",
-                value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29 "
-              },
-                {
-                  title: "Адрес объекта",
-                  value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29 "
-                }, {
-                  title: "Адрес объекта",
-                  value: "МИРЗО-УЛУГБЕКСКИЙ РАЙОН ПАРКЕНТ КФЙ HАВБАХОР КУЧАСИ Д.123  КВ.29 "
-                }],
-              option_payment_attribute: "additional_param4",
-              option_value: "66P03489500934"
-            }
-          ]
+          options_header: null,
+          options: null
         }
       ]];
 

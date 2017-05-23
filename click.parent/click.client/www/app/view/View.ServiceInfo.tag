@@ -32,37 +32,9 @@
     </div>
 
     <div class="serviceinfo-options" if="{type==1}">
-      <div class="serviceinfo-inform-field">
-        <p class="serviceinfo-inform-field-title">Номер счета:</p>
-        <p class="serviceinfo-inform-field-value">0579 0795 7987</p>
-      </div>
-      <div class="serviceinfo-inform-field">
-        <p class="serviceinfo-inform-field-title">ФИО:</p>
-        <p class="serviceinfo-inform-field-value">Ганиев Жасур</p>
-      </div>
-      <div class="serviceinfo-inform-field">
-        <p class="serviceinfo-inform-field-title">Адрес:</p>
-        <p class="serviceinfo-inform-field-value">ул. Дустлик, 95</p>
-      </div>
-      <div class="serviceinfo-inform-field">
-        <p class="serviceinfo-inform-field-title">Период:</p>
-        <p class="serviceinfo-inform-field-value">Март, 2017 г.</p>
-      </div>
-      <div class="serviceinfo-inform-field">
-        <p class="serviceinfo-inform-field-title">Начислено:</p>
-        <p class="serviceinfo-inform-field-value">78 900 сум</p>
-      </div>
-      <div class="serviceinfo-inform-field">
-        <p class="serviceinfo-inform-field-title">Поступления:</p>
-        <p class="serviceinfo-inform-field-value">0 сум</p>
-      </div>
-      <div class="serviceinfo-inform-field">
-        <p class="serviceinfo-inform-field-title">Электронные поступления:</p>
-        <p class="serviceinfo-inform-field-value">0 сум</p>
-      </div>
-      <div class="serviceinfo-inform-field">
-        <p class="serviceinfo-inform-field-title">Баланс:</p>
-        <p class="serviceinfo-inform-field-value">-568 000 сум</p>
+      <div class="serviceinfo-inform-field" each="{i in infoArray}">
+        <p class="serviceinfo-inform-field-title">{i.title}:</p>
+        <p class="serviceinfo-inform-field-value">{i.value}</p>
       </div>
 
     </div>
@@ -188,6 +160,7 @@
                 scope.type = 3;
                 scope.update();
               } else if (result[1][0].information_type == 1 || result[1][0].information_type == 4) {
+                scope.infoArray = result[1][0].information_object;
                 console.log("ADFDSFDS");
                 scope.type = 1;
                 scope.update();

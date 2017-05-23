@@ -12927,7 +12927,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 90%;" +
-  "height:" + 115 * widthK + "px; " +
+  "height:" + 120 * widthK + "px; " +
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   "left: 5%;" +
@@ -12940,7 +12940,7 @@ var css = {
   "color: darkgray;" +
   "font-size: " + 24 * widthK + "px; " +
   "left: 4%;" +
-  "top: 25%;" +
+  "top: 17%;" +
   "}",
 
   serviceInfoInformFieldValue: ".serviceinfo-inform-field-value" +
@@ -12948,9 +12948,13 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "left: 4%;" +
-  "top: 47%;" +
-  "font-size: " + 40 * widthK + "px; " +
+  "top: 39%;" +
+  "font-size: " + 29 * widthK + "px; " +
   "color: gray;" +
+  "width: 90%;" +
+  "height: " + 70 * widthK + "px; " +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
 //  COMPONENT TOUR
