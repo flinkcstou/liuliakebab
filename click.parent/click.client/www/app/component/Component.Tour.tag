@@ -1,6 +1,6 @@
 <component-tour id="componentTourId" class="component-tour">
 
-  <p class="tour-title-text">{window.languages.ComponentTourRegistrationTitleText}</p>
+  <p class="tour-title-text">{tourTitle}</p>
 
   <div type="button" class="tour-close-icon" ontouchend="closeTour()"></div>
 
@@ -34,9 +34,12 @@
   </div>
 
   <div class="tour-buttons-container" if="{registrButton}">
-    <div class="tour-registration-button" ontouchend="closeTour()">
+    <div
+      class="{tour-registration-button: opts.view=='registration', tour-close-button-center:opts.view!='registration'}"
+      ontouchend="closeTour()">
       <p class="tour-registration-button-label">
-        {window.languages.ComponentTourRegistrationButtonText}</p>
+        {opts.view == "registration"?
+        window.languages.ComponentTourRegistrationButtonText:window.languages.ComponentTourCloseButtonText}</p>
     </div>
   </div>
 
@@ -62,15 +65,18 @@
         {
           counter: 5,
           text: "resources/icons/ComponentTour/tutorial_5.png"
-        }];
+        }
+      ];
 
+      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
       scope.count = 5;
-    } else {
-      scope.tourCardsArray = [{counter: 1, text: "resources/icons/ComponentTour/tutorial_1.png"}, {
+    } else if (opts.view == "mainpage") {
+      scope.tourCardsArray = [{counter: 1, text: "resources/icons/ComponentTour/tutorial_main_1.png"}, {
         counter: 2,
-        text: "resources/icons/ComponentTour/tutorial_2.png"
+        text: "resources/icons/ComponentTour/tutorial_main_2.png"
       }];
 
+      scope.tourTitle = window.languages.ComponentTourMainPageTitleText;
       scope.count = 2;
     }
 
@@ -225,6 +231,13 @@
       document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'grey';
       scope.registrButton = false;
       scope.update();
+      if (opts.view != "registration") {
+        scope.tourData = JSON.parse(localStorage.getItem("tour_data"));
+        scope.tourData[opts.view] = true;
+        console.log("New tourData", scope.tourData);
+        localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
+      }
+
       componentTourId.style.display = 'none';
     }
 

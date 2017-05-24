@@ -152,7 +152,6 @@
               if (result[1][0].information_type == 3) {
                 scope.optionsArray = result[1][0].options;
                 scope.optionsHeader = result[1][0].options_header;
-                console.log("OPTIONS length=", result[1][0].options.length)
                 scope.checkIconShow = result[1][0].options.length > 1;
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
                 opts.optionAttribute = optionAttribute;
@@ -161,7 +160,7 @@
                 scope.update();
               } else if (result[1][0].information_type == 1 || result[1][0].information_type == 4) {
                 scope.infoArray = result[1][0].information_object;
-                console.log("ADFDSFDS");
+
                 scope.type = 1;
                 scope.update();
               }
@@ -211,14 +210,13 @@
 
 
     goToNextPage = function () {
-      console.log("dfkl");
       console.log(scope.index)
       console.log(scope.serviceData.information_type)
       console.log(opts.optionAttribute)
       console.log(opts.optionValue)
 
       if (scope.index == -1 && scope.serviceData.information_type == 3 && scope.checkIconShow) {
-        console.log("asd");
+
         scope.clickPinError = false;
         scope.errorNote = "Выберите из вариантов";
         scope.showError = true;

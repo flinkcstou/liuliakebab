@@ -55,7 +55,8 @@
       <div class="registration-process-x">
       </div>
       <div class="registration-process-text">
-        <p class="registration-process-check-status-label" id="registrationProcessErorrId">{errorRegistrationProcess}</p>
+        <p class="registration-process-check-status-label" id="registrationProcessErorrId">
+          {errorRegistrationProcess}</p>
 
       </div>
 
@@ -140,7 +141,6 @@
       offlineModeTouchStartY = event.changedTouches[0].pageY;
 
     }
-
 
 
     offlineModeTouchEnd = function () {
@@ -350,6 +350,8 @@
 //            scope.clickPinError = false;
 //            scope.errorNote = result[0][0].error_note;
 //            scope.showError = true;
+            scope.tourData = {mainpage: false, transfer: false};
+            localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
             localStorage.setItem("registration_check_id", JSON.stringify(result[1][0].check_id))
             localStorage.setItem("registration_check_hash", JSON.stringify(result[1][0].check_hash))
 //            riotTags.innerHTML = "<view-authorization>";

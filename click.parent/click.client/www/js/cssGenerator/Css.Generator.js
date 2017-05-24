@@ -13144,6 +13144,21 @@ var css = {
   "margin-left: auto;" +
   "}",
 
+  tourCloseButtonCenter: ".tour-close-button-center" +
+  "{" +
+  "position: relative;" +
+  "height: 85%;" +
+    //"left: -2%;" +
+  "width: 35%;" +
+  "top: 36%;" +
+  "display: table;" +
+  "background-color: transparent;" +
+  "border: 2px solid #c1c1c1;" +
+  "border-radius:" + 50 * widthK + "px;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "}",
+
   tourRegistrationButtonLabel: ".tour-registration-button-label" +
   "{" +
   "position: relative;" +
@@ -13169,7 +13184,7 @@ var css = {
   "{" +
   "position: relative;" +
     //"height:" + 40 * widthK + "px;" +
-  "width:" + 320 * widthK + "px;" +
+  "width:" + 130 * widthK + "px;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
   "margin-top:" + 20 * widthK + "px;" +

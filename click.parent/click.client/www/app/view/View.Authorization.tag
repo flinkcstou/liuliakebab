@@ -546,6 +546,7 @@
           console.log("DDDD")
           if (!JSON.parse(localStorage.getItem('onResume'))) {
             console.log("QWE")
+//            localStorage.setItem("showTour", true);
             this.riotTags.innerHTML = "<view-main-page>";
             riot.mount('view-main-page');
             scope.unmount()

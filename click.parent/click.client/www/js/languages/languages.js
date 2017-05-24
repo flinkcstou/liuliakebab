@@ -472,6 +472,7 @@ var RU_LANGUAGES =
   "ViewServiceInfoButtonGoToPaymentText": "ПЕРЕЙТИ К ОПЛАТЕ",
 
   "ComponentTourRegistrationTitleText": "Помощь в регистрации",
+  "ComponentTourMainPageTitleText": "Тур по приложению",
   "ComponentTourNextButtonText": "Далее",
   "ComponentTourCloseButtonText": "Закрыть",
   "ComponentTourRegistrationButtonText": "Начать регистрацию",
