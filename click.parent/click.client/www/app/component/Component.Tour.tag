@@ -17,7 +17,7 @@
   </div>
 
   <div class="tour-circles-container"
-       style="width: {(tourCardsArray.length) * 40*widthK + 52}px">
+       style="width: {((tourCardsArray.length) * 40 + 52)*widthK}px">
 
     <div id="circle{i.counter-1}" style="left: {(i.counter)*40*widthK }px;" class="tour-circles pincode-pin-one"
          each="{i in tourCardsArray}"></div>

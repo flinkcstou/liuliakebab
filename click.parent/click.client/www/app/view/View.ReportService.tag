@@ -35,7 +35,7 @@
         <div class="report-service-field">
           <p class="report-service-text-field">{window.languages.ViewReportServicePayWithCard}</p>
           <p class="report-service-info-input">{(cards[opts.account_id])? (cards[opts.account_id].name+ " " +
-            cards[opts.account_id].numberPartOne + " **** **** " + cards[opts.account_id].numberPartTwo):"nothing"}</p>
+            cards[opts.account_id].numberPartOne + " **** **** " + cards[opts.account_id].numberPartTwo):"UNKNOWN"}</p>
         </div>
         <div class="report-service-field report-service-last-field">
           <p class="report-service-text-field">{window.languages.ViewReportServiceStatus}</p>
@@ -106,7 +106,7 @@
     //
     //      scope.cardName = "UNKNOWN";
     //    }
-    scope.update(scope.cardName);
+    //    scope.update(scope.cardName);
 
     //    console.log("OPTS=", scope.opts);
 
