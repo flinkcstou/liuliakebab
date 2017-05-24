@@ -16,12 +16,13 @@
 
   </div>
 
-  <div class="tour-circles-container">
-    <div class="tour-circles-field">
-      <div id="circle{i.counter-1}" style="left: {(i.counter)*40*widthK }px;" class="tour-circles pincode-pin-one"
-           each="{i in tourCardsArray}"></div>
+  <div class="tour-circles-container"
+       style="width: {(tourCardsArray.length) * 40 + 52}px">
 
-    </div>
+    <div id="circle{i.counter-1}" style="left: {(i.counter)*40*widthK }px;" class="tour-circles pincode-pin-one"
+         each="{i in tourCardsArray}"></div>
+
+
   </div>
 
   <div class="tour-buttons-container" if="{!registrButton}">
@@ -35,8 +36,8 @@
 
   <div class="tour-buttons-container" if="{registrButton}">
     <div
-      class="{tour-registration-button: opts.view=='registration', tour-close-button-center:opts.view!='registration'}"
-      ontouchend="closeTour()">
+        class="{tour-registration-button: opts.view=='registration', tour-close-button-center:opts.view!='registration'}"
+        ontouchend="closeTour()">
       <p class="tour-registration-button-label">
         {opts.view == "registration"?
         window.languages.ComponentTourRegistrationButtonText:window.languages.ComponentTourCloseButtonText}</p>
@@ -51,7 +52,7 @@
 
     console.log("component tour view=", opts.view);
 
-    if (opts.view == "registration") {
+    if (opts.view != "registration") {
       scope.tourCardsArray = [{counter: 1, text: "resources/icons/ComponentTour/tutorial_1.png"}, {
         counter: 2,
         text: "resources/icons/ComponentTour/tutorial_2.png"
@@ -70,7 +71,7 @@
 
       scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
       scope.count = 5;
-    } else if (opts.view == "mainpage") {
+    } else { //if (opts.view == "mainpage")
       scope.tourCardsArray = [{counter: 1, text: "resources/icons/ComponentTour/tutorial_main_1.png"}, {
         counter: 2,
         text: "resources/icons/ComponentTour/tutorial_main_2.png"
