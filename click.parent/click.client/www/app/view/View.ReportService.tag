@@ -34,7 +34,8 @@
         </div>
         <div class="report-service-field">
           <p class="report-service-text-field">{window.languages.ViewReportServicePayWithCard}</p>
-          <p class="report-service-info-input">{cardName}</p>
+          <p class="report-service-info-input">{(cards[opts.account_id])? (cards[opts.account_id].name+ " " +
+            cards[opts.account_id].numberPartOne + " **** **** " + cards[opts.account_id].numberPartTwo):"nothing"}</p>
         </div>
         <div class="report-service-field report-service-last-field">
           <p class="report-service-text-field">{window.languages.ViewReportServiceStatus}</p>
@@ -97,16 +98,17 @@
     scope.cards = JSON.parse(scope.cards);
 
     //    console.log("ASDASDASDASD", scope.cards, opts.account_id);
-    try {
-
-      scope.cardName = scope.cards[scope.opts.account_id].name + " " + scope.cards[scope.opts.account_id].numberPartOne + " **** **** " + scope.cards[scope.opts.account_id].numberPartTwo;
-    } catch (err) {
-
-      scope.cardName = "UNKNOWN";
-    }
+    //    try {
+    //      console.log("TRY CARD NAME");
+    //
+    //      scope.cardName = scope.cards[scope.opts.account_id].name + " " + scope.cards[scope.opts.account_id].numberPartOne + " **** **** " + scope.cards[scope.opts.account_id].numberPartTwo;
+    //    } catch (err) {
+    //
+    //      scope.cardName = "UNKNOWN";
+    //    }
     scope.update(scope.cardName);
 
-    console.log("OPTS=", scope.opts);
+    //    console.log("OPTS=", scope.opts);
 
     if (scope.parent == null)
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report-service') {

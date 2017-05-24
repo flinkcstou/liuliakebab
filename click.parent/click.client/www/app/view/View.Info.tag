@@ -1,4 +1,4 @@
-<view-info class="view-info riot-tags-main-container" >
+<view-info class="view-info riot-tags-main-container">
   <div class="view-info-title-container">
     <div class="view-info-back-button" ontouchstart="onTouchEndBack()"></div>
   </div>
@@ -364,7 +364,7 @@
       carouselTouchEndX = event.changedTouches[0].pageY;
       if (Math.abs(carouselTouchStartX - carouselTouchEndX) < 20) {
 
-        if(modeOfApp.demoVersion){
+        if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
           scope.confirmShowBool = true;
@@ -377,7 +377,7 @@
               scope.unmount()
               return
             }
-            else{
+            else {
               scope.confirmShowBool = false;
               return
             }
@@ -390,7 +390,7 @@
         console.log("Time to open");
         for (var i = 0; i < scope.lastOperationContainer.length; i++) {
           if (scope.lastOperationContainer[i].payment_id == paymentId) {
-//            console.log("service report for=", scope.lastOperationContainer[i]);
+//            console.log("FROM VIEW INFO service report for=", scope.lastOperationContainer[i]);
             riotTags.innerHTML = "<view-report-service>";
             riot.mount("view-report-service", scope.lastOperationContainer[i]);
 

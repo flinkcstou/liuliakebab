@@ -504,17 +504,14 @@
 
               console.log("C", result[1][i].payment_id);
 
+//              console.log("created=", result[1][i].created.split(" ")[1].substr(0, 5));
+
+//              result[1][i].paymentTime = result[1][i].created.split(" ")[1].substr(0, 5);
+
+              if (result[1][i].created.split(" ")[1].substr(0, 5))
+                result[1][i].paymentTime = result[1][i].created.split(" ")[1].substr(0, 5);
               var date = new Date(result[1][i].created_timestamp * 1000);
               var dateStr = date.getDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getMonth()] + ' ' + date.getFullYear();
-              if (date.getMinutes() < 10 && date.getHours() < 10) {
-                result[1][i].paymentTime = '0' + date.getHours() + ':' + '0' + date.getMinutes();
-              } else if (date.getMinutes() < 10 && date.getHours() >= 10) {
-                result[1][i].paymentTime = date.getHours() + ':' + '0' + date.getMinutes();
-              } else if (date.getMinutes() >= 10 && date.getHours() < 10) {
-                result[1][i].paymentTime = '0' + date.getHours() + ':' + date.getMinutes();
-              } else {
-                result[1][i].paymentTime = date.getHours() + ':' + date.getMinutes();
-              }
 
               if (result[1][i].state == -1) {
                 result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
@@ -785,7 +782,7 @@
 
         for (var i = 0; i < scope.paymentsList.length; i++) {
           if (scope.paymentsList[i].payment_id == paymentId) {
-            console.log("service report for=", scope.paymentsList[i]);
+//            console.log("FROM VIEW REPORT service report for=", scope.paymentsList[i]);
 
             console.log("scope.tags['view-report-service']", scope.tags)
             console.log("scope.tags['view-report-service']", scope)
