@@ -12224,9 +12224,9 @@ var css = {
   autopayMethodBodyContainer: ".autopay-method-body-container" +
   "{" +
   "position: absolute;" +
-    //"height:" + 1150 * widthK + "px; " +
+  "height: " + 1092 * heightK + "px; " +
   "width:" + 720 * widthK + "px; " +
-  "top:" + 145 * widthK + "px; " +
+  "top:" + 140 * widthK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
   "overflow-y: auto; " +
@@ -12527,6 +12527,7 @@ var css = {
   autopayScheduleHowOftenText: ".autopay-schedule-howoften-text" +
   "{" +
   "top: 3%; " +
+  "position:relative;" +
   "}",
 
   autopayScheduleBlockContainer: ".autopay-schedule-block-containter" +
@@ -12538,7 +12539,7 @@ var css = {
   "margin-top: 1%;" +
   "border-top:" + 1 * widthK + "px solid gainsboro;" +
   "background-color: transparent;" +
-  "top: 8%; " +
+  "top: 6%; " +
   "}",
 
   autopayScheduleBlockText: ".autopay-schedule-block-text" +
