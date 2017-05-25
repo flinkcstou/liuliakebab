@@ -577,15 +577,15 @@ var css = {
   registrationRememberIcon: ".registration-device-remember-icon " +
   "{" +
   "position: absolute;" +
-  "background-image: url(resources/icons/authorization/remember.png);" +
+  "background-image: url(resources/icons/authorization/deselected.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "background-position: center;" +
-  "width:" + 32 * widthK + "px;" +
-  "height:" + 30 * widthK + "px;" +
-    //"left:" + 490 * widthK + "px;" +
-    //"top:" + 30 * widthK + "px;" +
-  "opacity: 0.3;" +
+  "width:" + 55 * widthK + "px;" +
+  "height:" + 55 * widthK + "px;" +
+  "left:" + 490 * widthK + "px;" +
+  "top:" + 30 * widthK + "px;" +
+  "opacity: 1;" +
   "}",
 
   registrationRememberIconContainer: ".registration-device-remember-icon-container " +
@@ -800,7 +800,7 @@ var css = {
   keyboardButtonsActive: ".keyboard-buttons:active " +
   "{" +
   "background: radial-gradient(rgba(255, 255, 255, 0.23), rgba(255, 255, 255, 0.04), transparent);" +
-  //"border-radius:" + 80 * widthK + "px;" +
+    //"border-radius:" + 80 * widthK + "px;" +
   "}",
 
   keyboardButtonX: ".keyboard-button-x " +

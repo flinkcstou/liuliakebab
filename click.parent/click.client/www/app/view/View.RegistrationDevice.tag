@@ -7,9 +7,7 @@
         <div class="registration-device-remember" ontouchend="rememberTouchEnd()" ontouchstart="rememberTouchStart()">
           <p class="registration-device-remember-label">
             {window.languages.ViewRegistrationDeviceRememberLabel}</p>
-          <div class="registration-device-remember-icon-container">
-            <div id="rememberIcon" class="registration-device-remember-icon"></div>
-          </div>
+          <div id="rememberIcon" class="registration-device-remember-icon"></div>
         </div>
         <div class="registration-button-enter button-enter" ontouchend="getPhoneNumberTouchEnd()"
              ontouchstart="getPhoneNumberTouchStart()">
@@ -95,14 +93,16 @@
 
       if (Math.abs(rememberTouchStartX - rememberTouchEndX) <= 20 && Math.abs(rememberTouchStartY - rememberTouchEndY) <= 20) {
         if (!checkRemember) {
-          this.rememberIcon.style.opacity = '1';
+//          this.rememberIcon.style.opacity = '1';
+          this.rememberIcon.style.backgroundImage = "url(resources/icons/authorization/selected.png)";
           localStorage.setItem('device_remember', true);
           checkRemember = true;
           return;
 
         }
         else {
-          this.rememberIcon.style.opacity = '0.3';
+//          this.rememberIcon.style.opacity = '0.3';
+          this.rememberIcon.style.backgroundImage = "url(resources/icons/authorization/deselected.png)";
           localStorage.setItem('device_remember', false);
           checkRemember = false;
           return;
