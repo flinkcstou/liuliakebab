@@ -5734,9 +5734,10 @@ var css = {
 
   codeConfirmButtonEnter: ".code-confirm-button-enter" +
   "{" +
-  "bottom: 24%;" +
+  //"bottom: 24%;" +
   "margin: 0;" +
-  "float: left;" +
+  "margin-top: 25%;" +
+  //"float: left;" +
   "text-align: center;" +
   "background-color: #017ce3;" +
   "font-size: " + 29 * widthK + "px;" +
@@ -7967,7 +7968,8 @@ var css = {
   transferDetailCodeConfirmButtonEnter: ".transfer-detail-code-confirm-button-enter" +
   "{" +
   "margin: 0;" +
-  "float: left;" +
+  "margin-top: 10%;" +
+  //"float: left;" +
   "text-align: center;" +
   "background-color: #017ce3;" +
   "font-size: " + 29 * widthK + "px;" +
@@ -7981,7 +7983,7 @@ var css = {
   "text-transform: capitalize;" +
   "left: 19%;" +
   "bottom: 4.4%;" +
-  "position: absolute;" +
+  "position: relative;" +
   "}",
 
   //transferDetailCodeConfirmButtonEnterLabel: ".transfer-detail-code-confirm-button-enter-label" +
