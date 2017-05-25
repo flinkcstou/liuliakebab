@@ -92,6 +92,7 @@ window.fakedSocket.register("app.login", function (input) {
         p2p_min_limit: 5000,
         profile_image_url: "https://m.click.uz/mapi/uploads/998974647747_80116.jpg",
         session_key: "998974647747920ece824e0411e63347ec4a60003604517",
+        update_bank_list: false,
         update_categories: false,
         update_faq: false,
         update_help: null,

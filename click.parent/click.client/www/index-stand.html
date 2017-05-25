@@ -232,45 +232,45 @@
 
 
   function checkImageURL(dirEntry, fileNamePrefix, fileName, assetURL, index, callback) {
+//
+//    var xhr = new XMLHttpRequest();
+//
+//    xhr.open('GET', cordova.file.applicationDirectory + dirEntry + fileName, true);
+//    xhr.responseType = 'blob';
+//
+//    xhr.onload = function () {
+//      console.log("in onload");
+//
+//      var blob = new Blob([this.response], {type: 'image/png'});
+//      console.log("status 200 For " + fileName);
+//      //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
+//      callback(false, index, fileName);
+//
+//    };
+//
+//    xhr.onerror = function () {
+    console.log("filename= " + fileName);
 
-    var xhr = new XMLHttpRequest();
+    var convertFunction = convertFileToDataURLviaFileReader;
 
-    xhr.open('GET', cordova.file.applicationDirectory + dirEntry + fileName, true);
-    xhr.responseType = 'blob';
+    convertFunction(assetURL, function (base64Img) {
+      console.log("base64 length=" + base64Img.length);
+      // Split the base64 string in data and contentType
+      var block = base64Img.split(";");
+      // Get the content type
+      var dataType = block[0].split(":")[1];// In this case "image/png"
+      // get the real base64 content of the file
+      var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
 
-    xhr.onload = function () {
-      console.log("in onload");
+      var folderpath = cordova.file.dataDirectory;
 
-      var blob = new Blob([this.response], {type: 'image/png'});
-      console.log("status 200 For " + fileName);
-      //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
-      callback(false, index, fileName);
+      savebase64AsImageFile(folderpath, fileNamePrefix + fileName, realData, dataType);
 
-    };
-
-    xhr.onerror = function () {
-      console.log("error for " + fileName);
-
-      var convertFunction = convertFileToDataURLviaFileReader;
-
-      convertFunction(assetURL, function (base64Img) {
-        console.log("base64 length=" + base64Img.length);
-        // Split the base64 string in data and contentType
-        var block = base64Img.split(";");
-        // Get the content type
-        var dataType = block[0].split(":")[1];// In this case "image/png"
-        // get the real base64 content of the file
-        var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
-
-        var folderpath = cordova.file.dataDirectory;
-
-        savebase64AsImageFile(folderpath, fileNamePrefix + fileName, realData, dataType);
-
-        callback(true, index, fileNamePrefix + fileName);
-      });
-      event.preventDefault();
-    };
-    xhr.send();
+      callback(true, index, fileNamePrefix + fileName);
+    });
+//    event.preventDefault();
+//    };
+//    xhr.send();
   }
 
 

@@ -85,6 +85,7 @@
       }
     }
 
+
     var pin;
     var pinConfirm;
     var enteredPin = '';
