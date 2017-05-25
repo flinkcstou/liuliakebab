@@ -199,9 +199,7 @@
         riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
 
       }
-
     }
-
   }
 
   function onPauseFunction() {
@@ -228,6 +226,8 @@
       window.pushNotificationActions.retrievePushNotification();
     }, 0);
   }
+
+
   function showAlertComponent(outerErrorNote) {
     setTimeout(function () {
       alertComponentBlockId.style.opacity = 1;
@@ -252,51 +252,36 @@
 
   function checkImageURL(dirEntry, fileNamePrefix, fileName, assetURL, index, callback) {
 
-    var xhr = new XMLHttpRequest();
-
-    xhr.open('GET', cordova.file.applicationDirectory + dirEntry + fileName, true);
-    xhr.responseType = 'blob';
-
-    xhr.onload = function () {
-//      console.log("in onload");
-
-      var blob = new Blob([this.response], {type: 'image/png'});
-//      console.log("status 200 For " + fileName);
-      //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
-      callback(false, index, fileName);
-
-//      if (this.status == 200) {
+//    var xhr = new XMLHttpRequest();
 //
-//        var blob = new Blob([this.response], {type: 'image/png'});
-//        console.log("status 200 For " + fileName);
-//        //object[fieldName] = cordova.file.applicationDirectory + dirEntry + fileName;
-//        callback(false, index, fileName);
-//      }
-    };
+//    xhr.open('GET', cordova.file.applicationDirectory + dirEntry + fileName, true);
+//    xhr.responseType = 'blob';
+//
+//    xhr.onload = function () {
+//      var blob = new Blob([this.response], {type: 'image/png'});
+//      callback(false, index, fileName);
+//    };
+//
+//    xhr.onerror = function () {
 
-    xhr.onerror = function () {
-//      console.log("error for " + fileName);
+    var convertFunction = convertFileToDataURLviaFileReader;
 
-      var convertFunction = convertFileToDataURLviaFileReader;
+    convertFunction(assetURL, function (base64Img) {
 
-      convertFunction(assetURL, function (base64Img) {
-//        console.log("base64 length=" + base64Img.length);
-        // Split the base64 string in data and contentType
-        var block = base64Img.split(";");
-        // Get the content type
-        var dataType = block[0].split(":")[1];// In this case "image/png"
-        // get the real base64 content of the file
-        var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
+      var block = base64Img.split(";");
+      // Get the content type
+      var dataType = block[0].split(":")[1];// In this case "image/png"
+      // get the real base64 content of the file
+      var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
+      var folderpath = cordova.file.dataDirectory;
 
-        var folderpath = cordova.file.dataDirectory;
+      savebase64AsImageFile(folderpath, fileNamePrefix + fileName, realData, dataType);
 
-        savebase64AsImageFile(folderpath, fileNamePrefix + fileName, realData, dataType);
-
-        callback(true, index, fileNamePrefix + fileName);
-      });
-      event.preventDefault();
-    };
-    xhr.send();
+      callback(true, index, fileNamePrefix + fileName);
+    });
+//    event.preventDefault();
+//    };
+//    xhr.send();
   }
 
 
@@ -308,10 +293,10 @@
 
     window.resolveLocalFileSystemURL(folderpath, function (dir) {
 //      console.log("Access to the directory granted succesfully");
-      dir.getFile(filename, {create: true, exclusive: false}, function (file) {
+      dir.getFile(filename, {create: true, exclusive: true}, function (file) {
 //        console.log("File created succesfully.");
         file.createWriter(function (fileWriter) {
-          ("Writing content to file");
+          console.log("Writing content to file");
           fileWriter.write(DataBlob);
         }, function () {
           alert('Unable to save file in path ' + folderpath);
