@@ -7963,6 +7963,7 @@ var css = {
   "background: none;" +
   "margin:" + 35 * widthK + "px " + 125 * widthK + "px;" +
   "outline: none;" +
+  "padding: 0;" +
   "}",
 
   transferDetailCodeConfirmButtonEnter: ".transfer-detail-code-confirm-button-enter" +
@@ -11818,7 +11819,7 @@ var css = {
   "background-image: url('resources/icons/ViewNews/news.png');" +
   "background-repeat: no-repeat;" +
   "background-position-y: bottom;" +
-  "background-size: 100%;" +
+  "background-size: contain;" +
   "background-color: white;" +
   "border-bottom-right-radius:" + 70 * widthK + "px;" +
   "}",
