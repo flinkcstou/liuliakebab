@@ -277,11 +277,11 @@ function offlineDetector() {
   if (window.isConnected) window.api.socket.close()
   if (modeOfApp.onlineMode && window.isConnected) {
 
-    if (device.platform == 'Android')
-      showConfirmComponent("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?", 'internet');
-    else {
-      showAlertComponent("Отсутствует соединение с интернетом");
-    }
+    //if (device.platform == 'Android')
+    //  showConfirmComponent("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?", 'internet');
+    //else {
+    //  showAlertComponent("Отсутствует соединение с интернетом");
+    //}
     //if (result) {
     //
     //  modeOfApp.offlineMode = true;
