@@ -3,7 +3,7 @@ heightK = window.innerHeight / 1232;
 var heightOfMobile;
 var topOfIos;
 
-if (device.platform == 'iOS' || device.platform == 'BrowserStand') {
+if (device.platform == 'iOS') {
   heightK = (window.innerHeight - 20) / 1232;
   heightOfMobile = window.innerHeight - 20;
   if (device.platform == 'iOS')
@@ -580,10 +580,11 @@ var css = {
   "background-image: url(resources/icons/authorization/remember.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
-  "width:" + 52 * widthK + "px;" +
-  "height:" + 72 * widthK + "px;" +
-  "left:" + 490 * widthK + "px;" +
-  "top:" + 30 * widthK + "px;" +
+  "background-position: center;" +
+  "width:" + 32 * widthK + "px;" +
+  "height:" + 30 * widthK + "px;" +
+    //"left:" + 490 * widthK + "px;" +
+    //"top:" + 30 * widthK + "px;" +
   "opacity: 0.3;" +
   "}",
 
@@ -595,7 +596,7 @@ var css = {
   "left:" + 496 * widthK + "px;" +
   "top:" + 31 * widthK + "px;" +
   "opacity: 0.3;" +
-  "border:4px solid white;" +
+  "border:" + 4 * widthK + "px solid white;" +
   "}",
 
 
@@ -1360,9 +1361,6 @@ var css = {
   "background-color: white;" +
   "background-size: cover;" +
   "color: white;" +
-  "-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  "-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  "box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
   "}",
 
   invoiceCardInfoHolder: ".invoice-card-info-holder" +

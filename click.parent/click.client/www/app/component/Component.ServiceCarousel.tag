@@ -174,7 +174,7 @@
       scope.update();
     }
 
-    var delta;
+    var delta, touchEndX, touchStartX;
     touchStartService = function () {
       touchStartX = event.changedTouches[0].pageX;
       leftOfDelta = -(540 * cardNumberOfService * widthK) - touchStartX;
@@ -184,9 +184,12 @@
     touchEndService = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      console.log('TOUCH END SERVICE',touchEndX, touchStartX)
       touchEndX = event.changedTouches[0].pageX;
-      if (touchStartX != touchEndX)
-        changePosition();
+      if (touchStartX != touchEndX) {
+        changePositionOfServiceCarousel();
+      }
     }
 
     touchMoveService = function () {
@@ -198,7 +201,8 @@
       this.containerService.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
     }
 
-    changePosition = function () {
+    changePositionOfServiceCarousel = function () {
+      console.log('CHANGE POSITION',touchStartX)
       if (touchEndX < touchStartX) {
         cardNumberOfService = 1;
         this.containerService.style.transform = "translate3d(" + -540 * widthK + "px, 0, 0)";
@@ -243,7 +247,7 @@
         scope.unmount()
       }
       if (touchStartX != touchEndX)
-        changePosition();
+        changePositionOfServiceCarousel();
     };
 
     ontouchMoveOfService = function () {
@@ -364,19 +368,18 @@
 
       }
       if (touchStartX != touchEndX)
-        changePosition();
+        changePositionOfServiceCarousel();
     };
 
     scope.ontouchEndOfAddFavorite = ontouchEndOfAddFavorite = function () {
       event.stopPropagation();
 
 
-
       onTouchEndX2 = event.changedTouches[0].pageX;
       touchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(onTouchStartX2 - onTouchEndX2) <= 20) {
-        if(modeOfApp.demoVersion){
+        if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
           scope.confirmShowBool = true;
@@ -389,7 +392,7 @@
               scope.unmount()
               return
             }
-            else{
+            else {
               scope.confirmShowBool = false;
               return
             }
@@ -406,7 +409,7 @@
         scope.unmount()
       }
       if (touchStartX != touchEndX)
-        changePosition();
+        changePositionOfServiceCarousel();
     };
 
 

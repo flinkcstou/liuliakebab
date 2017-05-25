@@ -425,6 +425,8 @@ window.fakedSocket.register("get.payment.list", function (input) {
   var error = true;
   array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
 
+  console.log('INPUT PARAMETER DATA', input.parameters.date_start)
+
   if (!input.parameters.date_start) {
     array.push([
       {
@@ -536,7 +538,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
 
       {
         "payment_id": 277129456,
-        "amount": '55322 ',
+        "amount": '55322',
         "cntrg_info_param2": "974647747",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
@@ -663,7 +665,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
   console.log('yesterday MONTH', yesterday)
   console.log('dayBeforeYesterday MONTH', dayBeforeYesterday)
 
-  if (input.parameters.date_start.split('-')[1] == realMonth)
+  if (input.parameters.date_start.split('-')[1] == realMonth) {
     array.push([{
       "payment_id": 277019456,
       "amount": '22543AAA ',
@@ -677,7 +679,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       "paydoc_state": 2,
       "service_name": "P2P",
       "created": "2016-11-30T12:56:01.596Z",
-      "created_timestamp": 1480512361,
+      "created_timestamp": new Date().getTime()/1000,
       "abs_type": "SMARTV    ",
       "description": '',
       "account_id": 3487271,
@@ -698,7 +700,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "Билайн",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().getTime()/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -720,7 +722,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "UMS",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().getTime()/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -742,7 +744,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "Ucell",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().getTime()/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -764,7 +766,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "UZ mobile",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().getTime()/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -786,7 +788,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "Sharq Telekom",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().getTime()/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -807,7 +809,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "Телефония",
         "created": "2016-11-30T13:26:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().getTime()/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -828,7 +830,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "Skyline",
         "created": "2016-11-30T14:20:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().getTime()/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 2484171,
@@ -836,6 +838,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "is_invoice": 0,
         "comission_amount": 0
       },]);
+  }
 
   if (input.parameters.date_start.split('-')[1] == yesterday) {
     array.push([
@@ -852,7 +855,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "Билайн",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().setMonth(new Date().getMonth() - 1)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -862,7 +865,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       },
       {
         "payment_id": 277019456,
-        "amount": '22543AAA ',
+        "amount": '2252243',
         "cntrg_info_param2": "974647747",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
@@ -873,7 +876,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "P2P",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp":new Date().setMonth(new Date().getMonth() - 1)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -883,7 +886,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       },
       {
         "payment_id": 127019456,
-        "amount": '444442 ',
+        "amount": '44444',
         "cntrg_info_param2": "974647747",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
@@ -894,7 +897,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "UMS",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().setMonth(new Date().getMonth() - 1)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -915,7 +918,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "Sharq Telekom",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().setMonth(new Date().getMonth() - 1)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -926,7 +929,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
 
       {
         "payment_id": 277010056,
-        "amount": '123412 ',
+        "amount": '123412',
         "cntrg_info_param2": "974647747",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
@@ -937,7 +940,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "Ucell",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().setMonth(new Date().getMonth() - 1)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -959,7 +962,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "UZ mobile",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().setMonth(new Date().getMonth() - 1)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -981,7 +984,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "Телефония",
         "created": "2016-11-30T13:26:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().setMonth(new Date().getMonth() - 1)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -1002,31 +1005,10 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "Skyline",
         "created": "2016-11-30T14:20:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().setMonth(new Date().getMonth() - 1)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 2484171,
-        "service_id": 2,
-        "is_invoice": 0,
-        "comission_amount": 0
-      },
-      {
-        "payment_id": 272319456,
-        "amount": '12322 ',
-        "cntrg_info_param2": "974647747",
-        "cntrg_info_param3": null,
-        "cntrg_info_param4": null,
-        "cntrg_info_param5": null,
-        "status_note": "Успешно проведен",
-        "state": 2,
-        image: "https://m.click.uz/static/merchant/logo/logo_3.png",
-        "paydoc_state": 2,
-        "service_name": "Билайн",
-        "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
-        "abs_type": "SMARTV    ",
-        "description": '',
-        "account_id": 3487271,
         "service_id": 2,
         "is_invoice": 0,
         "comission_amount": 0
@@ -1038,7 +1020,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
     array.push([
       {
         "payment_id": 272319456,
-        "amount": '12322 ',
+        "amount": '1222 ',
         "cntrg_info_param2": "974647747",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
@@ -1049,7 +1031,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "Билайн",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().setMonth(new Date().getMonth() - 2)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -1060,7 +1042,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
 
       {
         "payment_id": 277019456,
-        "amount": '22543AAA ',
+        "amount": '225430',
         "cntrg_info_param2": "974647747",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
@@ -1071,7 +1053,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "P2P",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().setMonth(new Date().getMonth() - 2)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -1082,7 +1064,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
 
       {
         "payment_id": 277129456,
-        "amount": '55322 ',
+        "amount": '553202 ',
         "cntrg_info_param2": "974647747",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
@@ -1093,7 +1075,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "UZ mobile",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().setMonth(new Date().getMonth() - 2)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -1115,7 +1097,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "UMS",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().setMonth(new Date().getMonth() - 2)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -1137,7 +1119,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "Ucell",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().setMonth(new Date().getMonth() - 2)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -1148,7 +1130,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
 
       {
         "payment_id": 277019776,
-        "amount": '66675 ',
+        "amount": '666750',
         "cntrg_info_param2": "974647747",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
@@ -1159,7 +1141,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "Sharq Telekom",
         "created": "2016-11-30T12:56:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().setMonth(new Date().getMonth() - 2)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -1180,7 +1162,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "Skyline",
         "created": "2016-11-30T14:20:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().setMonth(new Date().getMonth() - 2)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 2484171,
@@ -1201,7 +1183,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "paydoc_state": 2,
         "service_name": "Телефония",
         "created": "2016-11-30T13:26:01.596Z",
-        "created_timestamp": 1480512361,
+        "created_timestamp": new Date().setMonth(new Date().getMonth() - 2)/1000,
         "abs_type": "SMARTV    ",
         "description": '',
         "account_id": 3487271,
@@ -1209,27 +1191,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
         "is_invoice": 0,
         "comission_amount": 0
       },
-      {
-        "payment_id": 123456789,
-        "amount": 1580,
-        "cntrg_info_param2": "974647747",
-        "cntrg_info_param3": null,
-        "cntrg_info_param4": null,
-        "cntrg_info_param5": null,
-        "status_note": "Успешно проведен",
-        "state": 2,
-        image: "https://m.click.uz/static/merchant/logo/logo_10.png",
-        "paydoc_state": 2,
-        "service_name": "Skyline",
-        "created": "2016-11-30T14:20:01.596Z",
-        "created_timestamp": 1480512361,
-        "abs_type": "SMARTV    ",
-        "description": '',
-        "account_id": 2484171,
-        "service_id": 2,
-        "is_invoice": 0,
-        "comission_amount": 0
-      },]);
+    ]);
   }
 
   if (localStorage.getItem("click_client_token"))
@@ -2891,36 +2853,178 @@ window.fakedSocket.register("history.chart.data", function (input) {
 
   var array = [];
   array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
+
+  var error = true;
+
+  var realMonth = new Date().getMonth() + 1;
+  if (realMonth.toString.length == 1) {
+    realMonth = '0' + realMonth
+  }
+
+  console.log('MONTH LENGTH', realMonth)
+
+  var yesterday = new Date().getMonth().toString();
+  if (yesterday.length == 1) {
+    yesterday = '0' + yesterday
+  }
+  var dayBeforeYesterday = new Date().getMonth() - 1;
+  dayBeforeYesterday = dayBeforeYesterday.toString()
+  if (dayBeforeYesterday.length == 1) {
+    dayBeforeYesterday = '0' + dayBeforeYesterday
+  }
+
+  console.log("MONTH input.parameters.date_start.split('-')[1]", input.parameters.date_start.split('-')[1])
+  console.log('realMonth', realMonth)
+  console.log('yesterday', yesterday)
+  console.log('dayBeforeYesterday', dayBeforeYesterday)
+  if (input.parameters.date_start.split('-')[1].toString() == realMonth.toString() || input.parameters.date_start.split('-')[1].toString() == yesterday.toString() || input.parameters.date_start.split('-')[1].toString() == dayBeforeYesterday.toString()) {
+    error = false
+  }
+  else {
+    error = true
+  }
+  console.log('ERROR', error)
+  if (input.parameters.date_start) {
+
+    if (error) {
+      return [[{"method": input.method, "success": 1, "error": -4, "error_note": 'Отсутсуют данные о месяце '}]];
+    }
+  }
+
+  if(input.parameters.date_start.split('-')[1].toString() == realMonth.toString())
   array.push([
     {
       category_id: 1,
       category_name: "Мобильные операторы",
-      amount: "81 600",
-      percent: 34.42,
-      image: "https://merchant.click.uz/static/merchant/categories/1.png",
+      amount: "645 719",
+      percent: 50.02,
+      image: "https://merchant.click.uz/static/content/app/icons/category/mobile.png",
+      image_inner: "https://merchant.click.uz/static/content/app/icons/category/mobile_inner.png",
+      color_hex: "#90CC39",
+      color_rgb: "144,204,57",
+
     },
     {
       category_id: 4,
       category_name: "Перевод средств",
-      amount: "105 199",
-      percent: 44.38,
-      image: "https://merchant.click.uz/static/merchant/categories/4.png",
+      amount: "22 543",
+      percent: 1.7,
+      image: "https://merchant.click.uz/static/content/app/icons/category/transfer.png",
+      image_inner: "https://merchant.click.uz/static/content/app/icons/category/transfer_inner.png",
+      color_hex: "#3CA9F5",
+      color_rgb: "60,169,245",
     },
     {
-      category_id: 6,
-      category_name: "Интернет-сервисы",
-      amount: "8 500",
-      percent: 3.59,
-      image: "https://merchant.click.uz/static/merchant/categories/6.png",
+      category_id: 7,
+      category_name: "Телефония",
+      amount: "554 356",
+      percent: 42.9,
+      image: "https://merchant.click.uz/static/content/app/icons/category/telephony.png",
+      image_inner: "https://merchant.click.uz/static/content/app/icons/category/mobile_inner.png",
+      color_hex: "#DB8FEB",
+      color_rgb: "219,143,235",
     },
     {
-      category_id: 11,
-      category_name: "Интернет пакеты",
-      amount: "41 763",
-      percent: 17.62,
-      image: "https://merchant.click.uz/static/merchant/categories/11.png",
+      category_id: 2,
+      category_name: "Интернет провайдеры",
+      amount: "68 255",
+      percent: 5.2,
+      image: "https://merchant.click.uz/static/content/app/icons/category/internet.png",
+      image_inner: "https://merchant.click.uz/static/content/app/icons/category/internet_inner.png",
+      color_hex: "#17B9DF",
+      color_rgb: "23,185,223",
     }]
   );
+
+  if(input.parameters.date_start.split('-')[1].toString() == yesterday.toString())
+    array.push([
+      {
+        category_id: 1,
+        category_name: "Мобильные операторы",
+        amount: "235 500",
+        percent: 7.5,
+        image: "https://merchant.click.uz/static/content/app/icons/category/mobile.png",
+        image_inner: "https://merchant.click.uz/static/content/app/icons/category/mobile_inner.png",
+        color_hex: "#90CC39",
+        color_rgb: "144,204,57",
+
+      },
+      {
+        category_id: 4,
+        category_name: "Перевод средств",
+        amount: "2 252 243",
+        percent: 72.4,
+        image: "https://merchant.click.uz/static/content/app/icons/category/transfer.png",
+        image_inner: "https://merchant.click.uz/static/content/app/icons/category/transfer_inner.png",
+        color_hex: "#3CA9F5",
+        color_rgb: "60,169,245",
+      },
+      {
+        category_id: 7,
+        category_name: "Телефония",
+        amount: "554 356",
+        percent: 17.8,
+        image: "https://merchant.click.uz/static/content/app/icons/category/telephony.png",
+        image_inner: "https://merchant.click.uz/static/content/app/icons/category/mobile_inner.png",
+        color_hex: "#DB8FEB",
+        color_rgb: "219,143,235",
+      },
+      {
+        category_id: 2,
+        category_name: "Интернет провайдеры",
+        amount: "68 255",
+        percent: 2.1,
+        image: "https://merchant.click.uz/static/content/app/icons/category/internet.png",
+        image_inner: "https://merchant.click.uz/static/content/app/icons/category/internet_inner.png",
+        color_hex: "#17B9DF",
+        color_rgb: "23,185,223",
+      }]
+    );
+
+  if(input.parameters.date_start.split('-')[1].toString() == dayBeforeYesterday.toString())
+    array.push([
+      {
+        category_id: 1,
+        category_name: "Мобильные операторы",
+        amount: "1 122 278",
+        percent: 43.6,
+        image: "https://merchant.click.uz/static/content/app/icons/category/mobile.png",
+        image_inner: "https://merchant.click.uz/static/content/app/icons/category/mobile_inner.png",
+        color_hex: "#90CC39",
+        color_rgb: "144,204,57",
+
+      },
+      {
+        category_id: 4,
+        category_name: "Перевод средств",
+        amount: "225 430",
+        percent: 8.7,
+        image: "https://merchant.click.uz/static/content/app/icons/category/transfer.png",
+        image_inner: "https://merchant.click.uz/static/content/app/icons/category/transfer_inner.png",
+        color_hex: "#3CA9F5",
+        color_rgb: "60,169,245",
+      },
+      {
+        category_id: 7,
+        category_name: "Телефония",
+        amount: "554 356",
+        percent: 21.5,
+        image: "https://merchant.click.uz/static/content/app/icons/category/telephony.png",
+        image_inner: "https://merchant.click.uz/static/content/app/icons/category/mobile_inner.png",
+        color_hex: "#DB8FEB",
+        color_rgb: "219,143,235",
+      },
+      {
+        category_id: 2,
+        category_name: "Интернет провайдеры",
+        amount: "668 330",
+        percent: 26.0,
+        image: "https://merchant.click.uz/static/content/app/icons/category/internet.png",
+        image_inner: "https://merchant.click.uz/static/content/app/icons/category/internet_inner.png",
+        color_hex: "#17B9DF",
+        color_rgb: "23,185,223",
+      }]
+    );
 
   if (localStorage.getItem("click_client_token"))
     return array;
