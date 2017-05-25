@@ -20,19 +20,19 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-settings-user-agreement') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-settings-user-agreement',
-            "params": opts
-          }
+        {
+          "view": 'view-settings-user-agreement',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
     scope.contentOfAgreement = '';
-
-    this.on('mount', function () {
-      console.log('AGREEMENT', scope.contentOfAgreement)
-    })
+    //
+    //    this.on('mount', function () {
+    //      console.log('AGREEMENT', scope.contentOfAgreement)
+    //    })
 
     goToBack = function () {
       event.preventDefault();
@@ -41,38 +41,46 @@
       scope.unmount()
     };
 
+    if (localStorage.getItem("click_client_agreement")) {
+      scope.contentOfAgreement = localStorage.getItem("click_client_agreement");
+      scope.update();
+    }
+
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = loginInfo.session_key;
 
-
-    window.api.call({
-      method: 'get.terms',
-      input: {
-        session_key: sessionKey,
-        phone_num: phoneNumber,
-      },
-      scope: this,
-      onSuccess: function (result) {
-        if (result[0][0].error == 0) {
-          if (result[1][0]) {
-            scope.contentOfAgreement = result[1][0].content;
+    if (!localStorage.getItem("click_client_agreement") || loginInfo.update_terms) {
+      window.api.call({
+        method: 'get.terms',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+        },
+        scope: this,
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+            if (result[1][0]) {
+              scope.contentOfAgreement = result[1][0].content;
+              console.log("from FTRDFTYFIYV");
+              localStorage.setItem("click_client_agreement", scope.contentOfAgreement);
+              scope.update();
+            }
+          }
+          else {
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
             scope.update();
           }
-        }
-        else {
-          scope.clickPinError = false;
-          scope.errorNote = result[0][0].error_note;
-          scope.showError = true;
-          scope.update();
-        }
-      },
+        },
 
-      onFail: function (api_status, api_status_message, data) {
-        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-        console.error(data);
-      }
-    });
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
 
 
   </script>
