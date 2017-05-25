@@ -74,6 +74,15 @@
     GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
     document.head.appendChild(GENERATOR);
 
+    var versionOfApp = '5.0'
+    if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
+
+    }
+    else {
+      localStorage.clear()
+      localStorage.setItem('version', versionOfApp)
+    }
+
     firstMount.firstStep = function () {
       if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
         scope.riotTags.innerHTML = "<view-authorization>";

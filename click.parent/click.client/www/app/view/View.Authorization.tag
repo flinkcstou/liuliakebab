@@ -321,13 +321,15 @@
     };
 
     function authorization(phoneNumber, deviceId, password, date) {
+//      var version = localStorage.getItem('version')
       window.api.call({
         method: 'app.login',
         input: {
           phone_num: phoneNumber,
           device_id: deviceId,
           password: password,
-          datetime: date
+          datetime: date,
+//          app_version: version
         },
         scope: this,
 

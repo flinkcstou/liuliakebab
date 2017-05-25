@@ -166,7 +166,7 @@
 
       if (device.platform == "Android") {
         phonedialer.dial(
-          "*880*3%23",
+          "*880*2%23",
           function (err) {
             if (err == "empty") {
               scope.clickPinError = false;
