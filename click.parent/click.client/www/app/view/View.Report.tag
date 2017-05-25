@@ -482,6 +482,14 @@
         });
       }
 
+      if(window.fakedSocket)
+      if(window.fakedSocket.readyState == 1){
+        scope.pageNumberOptional = 1;
+        scope.paymentsMap = {};
+        scope.paymentDates = [];
+        scope.paymentsList = []
+      }
+
       window.api.call({
         method: 'get.payment.list',
         input: {
@@ -508,6 +516,8 @@
 
 //              result[1][i].paymentTime = result[1][i].created.split(" ")[1].substr(0, 5);
 
+              if(result[1][i].created)
+                if(result[1][i].created.split(" ")[1])
               if (result[1][i].created.split(" ")[1].substr(0, 5))
                 result[1][i].paymentTime = result[1][i].created.split(" ")[1].substr(0, 5);
               var date = new Date(result[1][i].created_timestamp * 1000);
@@ -525,6 +535,7 @@
                 result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
               }
 
+              console.log("DATE DATE", dateStr)
               if (!scope.paymentsMap[dateStr]) {
                 scope.paymentsMap[dateStr] = [];
                 scope.paymentDates.push(dateStr);
@@ -547,6 +558,7 @@
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
             scope.update();
+
           }
 
         },
@@ -636,6 +648,8 @@
             createGraph(scope.graphList);
           }
           else {
+            scope.graphList = []
+            createGraph(scope.graphList);
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;

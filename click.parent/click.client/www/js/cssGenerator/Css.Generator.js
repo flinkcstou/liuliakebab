@@ -1361,9 +1361,6 @@ var css = {
   "background-color: white;" +
   "background-size: cover;" +
   "color: white;" +
-  "-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  "-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  "box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
   "}",
 
   invoiceCardInfoHolder: ".invoice-card-info-holder" +

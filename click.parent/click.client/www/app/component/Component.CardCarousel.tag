@@ -162,7 +162,7 @@
         console.log("AFTER getAccountsCards", getAccountsCards)
       }
 
-      if (!scope.cardsarray && !scope.checkSumOfHash) {
+      if (!scope.checkSumOfHash) {
 
         scope.cardsarray = {};
       }
