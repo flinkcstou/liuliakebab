@@ -757,7 +757,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "top:" + 360 * widthK + "px;" +
   "}",
-  keyboardFieldFive: ".keyboard-buttons " +
+  keyboardFieldFive: ".keyboard-field-five " +
   "{" +
   "position: absolute;" +
   "width: " + 140 * widthK + "px;" +
@@ -784,11 +784,6 @@ var css = {
   "top:" + 16 * widthK + "px;" +
   "margin: 0;" +
   "}",
-  keyboardButtonsActive: ".keyboard-buttons:active " +
-  "{" +
-  "background: radial-gradient(rgba(255, 255, 255, 0.23), rgba(255, 255, 255, 0.04), transparent);" +
-  "border-radius:" + 80 * widthK + "px;" +
-  "}",
   keyboardButtonOne: ".keyboard-button-one {left: 0;}",
   keyboardButtonTwo: ".keyboard-button-two {left:" + 180 * widthK + "px;}",
   keyboardButtonThree: ".keyboard-button-three {right: 0;}",
@@ -800,7 +795,13 @@ var css = {
   keyboardButtonNine: ".keyboard-button-nine {right: 0;}",
   keyboardSpace: ".keyboard-space {left: 0;}",
   keyboardButtonZero: ".keyboard-button-zero {left:" + 180 * widthK + "px;}",
-  keyboardButtonenter: ".keyboard-button-enter {position: absolute;}",
+  keyboardButtonEnter: ".keyboard-button-enter {position: absolute;}",
+
+  keyboardButtonsActive: ".keyboard-buttons:active " +
+  "{" +
+  "background: radial-gradient(rgba(255, 255, 255, 0.23), rgba(255, 255, 255, 0.04), transparent);" +
+  //"border-radius:" + 80 * widthK + "px;" +
+  "}",
 
   keyboardButtonX: ".keyboard-button-x " +
   "{" +

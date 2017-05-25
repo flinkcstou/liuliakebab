@@ -1090,7 +1090,7 @@
             console.log('firstFourSymbols', firstFourSymbols)
             if (firstFourSymbols != '8600') {
               scope.clickPinError = false;
-              scope.errorNote = 'Неверные данные';
+              scope.errorNote = 'Карта "ххххххх" банка временно недоступна для перевода средствska';
               scope.showError = true;
               scope.update();
 //            alert('Неверный код банка');
