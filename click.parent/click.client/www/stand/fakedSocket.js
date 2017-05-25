@@ -10,9 +10,9 @@ window.fakedSocket.start = function () {
       window.fakedSocket.onopen();
       console.log("Faked socket opened");
 
-      if (modeOfApp.demoVersion) {
-        firstMount.firstStep(true);
-      }
+      //if (modeOfApp.demoVersion) {
+      //  firstMount.firstStep(true);
+      //}
     }
   }, 0);
 
