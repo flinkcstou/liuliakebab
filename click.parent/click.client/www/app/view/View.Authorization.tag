@@ -354,6 +354,15 @@
                   console.log("closed");
                 });
               }
+              scope.tourData = {
+                mainpage: false,
+                transfer: false,
+                invoice: false,
+                autopaymethod: false,
+                calculator: false,
+                friendhelp: false
+              };
+              localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
               getAccount();
               window.pushNotificationActions.retrievePushNotification();
             }

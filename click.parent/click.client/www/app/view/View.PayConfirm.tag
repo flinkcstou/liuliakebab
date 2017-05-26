@@ -93,7 +93,7 @@
                      operationmessage="{operationMessage}"
                      goback="{goBack}"
                      viewpage="{viewPage}" step_amount="{stepAmount}"></component-success>
-  <component-unsuccess id="componentUnsuccessId" viewpage="{viewPage}"
+  <component-unsuccess id="componentUnsuccessId" viewpage="{viewPage}" step_amount="{stepAmount}"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
                        operationmessagepartthree="{window.languages.ComponentUnsuccessMessagePart3ForPay}"></component-unsuccess>

@@ -317,6 +317,7 @@
 //        });
 //      }
 
+
       window.api.call({
         method: 'registration',
         input: {
@@ -351,15 +352,7 @@
 //            scope.clickPinError = false;
 //            scope.errorNote = result[0][0].error_note;
 //            scope.showError = true;
-            scope.tourData = {
-              mainpage: false,
-              transfer: false,
-              invoice: false,
-              autopaymethod: false,
-              calculator: false,
-              friendhelp: false
-            };
-            localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
+
             localStorage.setItem("registration_check_id", JSON.stringify(result[1][0].check_id))
             localStorage.setItem("registration_check_hash", JSON.stringify(result[1][0].check_hash))
 //            riotTags.innerHTML = "<view-authorization>";

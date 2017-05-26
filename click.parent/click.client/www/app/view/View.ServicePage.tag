@@ -74,7 +74,7 @@
       {window.languages.ViewServicePageEnterLabel}
     </button>
 
-    <button class="servicepage-button-enter" if="{!enterButton}" ontouchend="enterButton()">
+    <button id="saveButtonId" class="servicepage-button-enter" if="{!enterButton}" ontouchend="enterButton()">
       {window.languages.ViewServicePageSaveLabel}
     </button>
 
@@ -942,10 +942,14 @@
       viewServicePage.amountWithoutSpace = amountForPayTransaction;
 
       if (amount.value.length >= 1 && amount.value != 0) {
-        enterButtonId.style.display = 'block'
+        if (scope.enterButton)
+          enterButtonId.style.display = 'block';
+        else saveButtonId.style.display = 'block';
       }
       else {
-        enterButtonId.style.display = 'none'
+        if (scope.enterButton)
+          enterButtonId.style.display = 'none';
+        else saveButtonId.style.display = 'none';
       }
 
     };

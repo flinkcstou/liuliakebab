@@ -16,7 +16,8 @@
             <p class="view-favorites-info-name">{j.service.name}</p>
             <div class="view-favorites-info-balance">{j.opts[5].amountText}</div>
             <div class="view-favorites-info-currency-field">сум</div>
-            <p class="view-favorites-info-number">+{window.languages.CodeOfCountry}{j.opts[2].firstFieldText}</p>
+            <p class="view-favorites-info-number">{(j.opts[1].firstFieldId==1)? ("+" + window.languages.CodeOfCountry +"
+              "+j.opts[2].firstFieldText):(j.opts[2].firstFieldText)}</p>
           </div>
         </div>
         <div id="{j.service.id}" class="view-favorites-delete-icon" ontouchend="removeFromFavorites(this.id)"></div>

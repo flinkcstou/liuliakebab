@@ -294,7 +294,7 @@
 
     window.resolveLocalFileSystemURL(folderpath, function (dir) {
 //      console.log("Access to the directory granted succesfully");
-      dir.getFile(filename, {create: true, exclusive: true}, function (file) {
+      dir.getFile(filename, {create: true, exclusive: false}, function (file) {
 //        console.log("File created succesfully.");
         file.createWriter(function (fileWriter) {
           console.log("Writing content to file");
