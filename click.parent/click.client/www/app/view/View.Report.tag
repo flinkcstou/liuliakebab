@@ -163,7 +163,7 @@
       scope.monthNotStartedYet = false;
 
       this.on('mount', function () {
-        changePositionTwo();
+        changePositionReportInit();
       });
     }
 
@@ -254,7 +254,7 @@
       console.log(Math.abs(mCarouselTouchStartY - mCarouselTouchEndY))
       if (Math.abs(mCarouselTouchStartX - mCarouselTouchEndX) > 20) {
         console.log('Touch end of carousel')
-        changePosition();
+        changePositionReport();
       }
       else {
         monthChanged = false;
@@ -282,7 +282,7 @@
     };
 
 
-    changePosition = function () {
+    changePositionReport = function () {
       console.log("One")
       console.log("scope.count", scope.count)
 
@@ -339,7 +339,7 @@
       localStorage.setItem('mNumber', scope.mNumber);
     }
 
-    changePositionTwo = function () {
+    changePositionReportInit = function () {
       console.log("TWO")
 
       if (scope.mNumber < scope.count - 1) {
@@ -814,7 +814,7 @@
           mCarouselTouchEndX = paymentTouchEndX
           mCarouselTouchStartX = paymentTouchStartX
           monthChanged = true
-          changePosition()
+          changePositionReport()
         }
       }
 
@@ -843,7 +843,7 @@
         mCarouselTouchEndX = reportBodyContainerEndX
         mCarouselTouchStartX = reportBodyContainerStartX
         monthChanged = true
-        changePosition()
+        changePositionReport()
       }
 
     }
