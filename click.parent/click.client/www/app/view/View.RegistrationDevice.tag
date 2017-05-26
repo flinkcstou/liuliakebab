@@ -316,6 +316,9 @@
 //        riot.mount('view-help');
 //        scope.unmount()
         componentTourId.style.display = "block";
+//        tourBackPageId.style.opacity = '1';
+
+
       }
     }
 

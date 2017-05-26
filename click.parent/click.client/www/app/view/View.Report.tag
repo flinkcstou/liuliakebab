@@ -482,13 +482,13 @@
         });
       }
 
-      if(window.fakedSocket)
-      if(window.fakedSocket.readyState == 1){
-        scope.pageNumberOptional = 1;
-        scope.paymentsMap = {};
-        scope.paymentDates = [];
-        scope.paymentsList = []
-      }
+      if (window.fakedSocket)
+        if (window.fakedSocket.readyState == 1) {
+          scope.pageNumberOptional = 1;
+          scope.paymentsMap = {};
+          scope.paymentDates = [];
+          scope.paymentsList = []
+        }
 
       window.api.call({
         method: 'get.payment.list',
@@ -516,10 +516,10 @@
 
 //              result[1][i].paymentTime = result[1][i].created.split(" ")[1].substr(0, 5);
 
-              if(result[1][i].created)
-                if(result[1][i].created.split(" ")[1])
-              if (result[1][i].created.split(" ")[1].substr(0, 5))
-                result[1][i].paymentTime = result[1][i].created.split(" ")[1].substr(0, 5);
+              if (result[1][i].created)
+                if (result[1][i].created.split(" ")[1])
+                  if (result[1][i].created.split(" ")[1].substr(0, 5))
+                    result[1][i].paymentTime = result[1][i].created.split(" ")[1].substr(0, 5);
               var date = new Date(result[1][i].created_timestamp * 1000);
               var dateStr = date.getDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getMonth()] + ' ' + date.getFullYear();
 

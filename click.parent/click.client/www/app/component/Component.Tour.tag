@@ -1,52 +1,57 @@
-<component-tour id="componentTourId"
-                class="{component-tour:opts.view=='registration', component-tour-in: opts.view!='registration'}">
+<component-tour id="componentTourId" style="display: none;">
 
-  <p class="tour-title-text">{tourTitle}</p>
+  <div class="component-tour">
 
-  <div type="button" class="tour-close-icon" ontouchend="closeTour()"></div>
+    <p class="tour-title-text">{tourTitle}</p>
 
-
-  <div id="tourContainerId"
-       class="{tour-card-carousel:opts.view=='registration',tour-card-carousel-in:opts.view!='registration'}"
-       ontouchstart="tourContainerTouchStart()"
-       ontouchend="tourContainerTouchEnd()"
-       ontouchmove="tourContainerTouchMove()">
+    <div type="button" class="tour-close-icon" ontouchend="closeTour()"></div>
 
 
-    <div class="{component-tour-card: opts.view=='registration',component-tour-card-in: opts.view!='registration'}"
-         each="{i in tourCardsArray}"
-         style="left:{84+100*(i.counter-1)}%;background-image: url({i.text})"></div>
+    <div id="tourContainerId"
+         class="{tour-card-carousel:opts.view=='registration',tour-card-carousel-in:opts.view!='registration'}"
+         ontouchstart="tourContainerTouchStart()"
+         ontouchend="tourContainerTouchEnd()"
+         ontouchmove="tourContainerTouchMove()">
 
 
-  </div>
-
-  <div class="tour-circles-container"
-       style="width: {((tourCardsArray.length) * 40 + 52)*widthK}px">
-
-    <div id="circle{i.counter-1}" style="left: {(i.counter)*40*widthK }px;" class="tour-circles pincode-pin-one"
-         each="{i in tourCardsArray}"></div>
+      <div class="{component-tour-card: opts.view=='registration',component-tour-card-in: opts.view!='registration'}"
+           each="{i in tourCardsArray}"
+           style="left:{84+100*(i.counter-1)}%;background-image: url({i.text})"></div>
 
 
-  </div>
-
-  <div class="tour-buttons-container" if="{!registrButton}">
-    <div class="tour-next-button tour-close-button" ontouchend="closeTour()">
-      <p class="tour-button-label tour-close-button-label">{window.languages.ComponentTourCloseButtonText}</p>
     </div>
-    <div class="tour-next-button" ontouchend="nextTourCard()">
-      <p class="tour-button-label">{window.languages.ComponentTourNextButtonText}</p>
+
+    <div class="tour-circles-container"
+         style="width: {((tourCardsArray.length) * 40 + 52)*widthK}px">
+
+      <div id="circle{i.counter-1}" style="left: {(i.counter)*40*widthK }px;" class="tour-circles pincode-pin-one"
+           each="{i in tourCardsArray}"></div>
+
+
     </div>
+
+    <div class="tour-buttons-container" if="{!registrButton}">
+      <div class="tour-next-button tour-close-button" ontouchend="closeTour()">
+        <p class="tour-button-label tour-close-button-label">{window.languages.ComponentTourCloseButtonText}</p>
+      </div>
+      <div class="tour-next-button" ontouchend="nextTourCard()">
+        <p class="tour-button-label">{window.languages.ComponentTourNextButtonText}</p>
+      </div>
+    </div>
+
+    <div class="tour-buttons-container" if="{registrButton}">
+      <div
+        class="tour-registration-button"
+        ontouchend="closeTour()">
+        <p class="tour-registration-button-label">
+          {opts.view == "registration"?
+          window.languages.ComponentTourRegistrationButtonText:window.languages.ComponentTourCloseButtonTextIn}</p>
+      </div>
+    </div>
+
   </div>
 
-  <div class="tour-buttons-container" if="{registrButton}">
-    <div
-      class="tour-registration-button"
-      ontouchend="closeTour()">
-      <p class="tour-registration-button-label">
-        {opts.view == "registration"?
-        window.languages.ComponentTourRegistrationButtonText:window.languages.ComponentTourCloseButtonTextIn}</p>
-    </div>
-  </div>
+  <div id="tourBackPageId" class="tour-back-page"></div>
 
 
   <script>

@@ -22,6 +22,9 @@
     </div>
   </div>
 
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
   <script>
 
     this.titleName = window.languages.ViewAutoPayTitleName;

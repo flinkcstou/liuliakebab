@@ -3011,7 +3011,7 @@ var css = {
   "background-color: white;" +
   "top:" + 78 * widthK + "px; " +
   "position:fixed;" +
-  "display: none;" +
+    //"display: none;" +
     //"box-shadow: 0 0 20px rgba(0,0,0,0.5);" +
   "-webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.5);" +
   "-moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.5);" +
@@ -12961,8 +12961,23 @@ var css = {
 
 //  COMPONENT TOUR
 
+  tourBackPage: ".tour-back-page " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "overflow: hidden;" +
+  "overflow: hidden;" +
+  "transform: translate(0, 0);" +
+  "-webkit-transform: translate(0, 0);" +
+  "-ms-transform: translate(0, 0);" +
+  "background-color: rgba(0, 0, 0, 0.6);" +
+  "opacity: 1;" +
+  "}",
+
   componentTour: ".component-tour " +
   "{" +
+  "top: 1%;" +
   "position: absolute;" +
   "opacity: 1;" +
   "height: 95%;" +
@@ -12971,7 +12986,8 @@ var css = {
   "left: 8%;" +
   "background-color: white;" +
   "overflow: hidden;" +
-  "display:none;" +
+    //"display:none;" +
+  "z-index:999;" +
   "}",
 
   tourCardCarousel: ".tour-card-carousel " +
@@ -13124,7 +13140,7 @@ var css = {
   "height: 10%;" +
   "width: 100%;" +
     //"top:" + 500 * widthK + "px;" +
-  "bottom:4%;" +
+  "bottom:4.5%;" +
   "display: table;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
@@ -13160,7 +13176,7 @@ var css = {
   tourCloseButton: ".tour-close-button" +
   "{" +
   "background-color: transparent;" +
-  "border: 2px solid #c1c1c1;" +
+  "border: 2px solid gainsboro;" +
   "width: 35%;" +
   "}",
 
@@ -13178,7 +13194,7 @@ var css = {
   "top: 36%;" +
   "display: table;" +
   "background-color: transparent;" +
-  "border: 2px solid #c1c1c1;" +
+  "border: 2px solid gainsboro;" +
   "border-radius:" + 50 * widthK + "px;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
@@ -13217,7 +13233,7 @@ var css = {
   "margin-right: auto;" +
   "margin-left: auto;" +
   "height:" + 50 * widthK + "px;" +
-  "top: 79%;" +
+  "top: 80%;" +
   "}",
 
   tourCirclesField: ".tour-circles-field " +

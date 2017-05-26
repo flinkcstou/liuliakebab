@@ -307,6 +307,16 @@
 
     enter = function () {
 
+      if (device.platform != 'BrowserStand') {
+        var options = {dimBackground: true};
+
+        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+          console.log("Started");
+        }, function () {
+          console.log("closed");
+        });
+      }
+
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
       var date = parseInt(Date.now() / 1000);
@@ -345,15 +355,7 @@
               checkSessionKey = true;
               viewAuthorization.check = false;
               localStorage.setItem("click_client_authorized", true);
-              if (device.platform != 'BrowserStand') {
-                var options = {dimBackground: true};
 
-                SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                  console.log("Started");
-                }, function () {
-                  console.log("closed");
-                });
-              }
               scope.tourData = {
                 mainpage: false,
                 transfer: false,

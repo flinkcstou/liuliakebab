@@ -28,7 +28,7 @@
           </div>
         </li>
       </ul>
-      <div class="pay-service-hint-containter" id="hintContainerId">
+      <div class="pay-service-hint-containter" id="hintContainerId" if="{hintShow}">
         <div class="pay-category-icon" style="background-image: url({showCategoryIcon})"></div>
         <div class="pay-category-name-field">{showCategoryName}
         </div>
@@ -81,13 +81,11 @@
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
 
     if (phoneNumber) {
-
       scope.operatorKey = phoneNumber.substr(3, 2);
       phoneNumber = phoneNumber.substring(3, phoneNumber.length);
     }
 
     if (loginInfo) {
-
       var sessionKey = loginInfo.session_key;
     }
 
@@ -148,6 +146,8 @@
       }
     };
 
+    scope.hintShow = false;
+
 
     onTouchMoveOfCategory = function () {
       event.stopPropagation();
@@ -156,12 +156,14 @@
 
       if (element) {
         if (categoriesContainerId.scrollTop > element.offsetTop) {
-          hintContainerId.style.display = 'block';
+//          hintContainerId.style.display = 'block';
+          scope.hintShow = true;
           scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
           scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
           scope.update();
         } else {
-          hintContainerId.style.display = 'none';
+          scope.hintShow = false;
+//          hintContainerId.style.display = 'none';
           scope.update();
 
         }
