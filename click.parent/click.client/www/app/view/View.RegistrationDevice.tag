@@ -135,8 +135,6 @@
 
 
     componentKeyboard.returnValue = function (myValue) {
-      event.preventDefault();
-      event.stopPropagation();
 
       keyboardTouchEndX = event.changedTouches[0].pageX
       keyboardTouchEndY = event.changedTouches[0].pageY
@@ -158,8 +156,9 @@
         }
         console.log(scope.phoneNumber)
         console.log(scope.maskPhoneNumber)
-        scope.update(scope.maskPhoneNumber);
+        scope.update();
       }
+      return
     }
 
     var offlineTouchStartX, offlineTouchStartY, offlineTouchEndX, offlineTouchEndY;
