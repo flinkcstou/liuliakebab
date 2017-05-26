@@ -212,9 +212,6 @@
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
-        event.preventDefault();
-        event.stopPropagation();
-
         if (enteredPin.length < 5 && myValue != 'x') {
           enteredPin += myValue;
         }

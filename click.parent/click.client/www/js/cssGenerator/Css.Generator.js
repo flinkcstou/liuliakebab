@@ -799,8 +799,7 @@ var css = {
 
   keyboardButtonsActive: ".keyboard-buttons:active " +
   "{" +
-  "background: radial-gradient(rgba(255, 255, 255, 0.23), rgba(255, 255, 255, 0.04), transparent);" +
-    //"border-radius:" + 80 * widthK + "px;" +
+  "background: radial-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.08), transparent);" +
   "}",
 
   keyboardButtonX: ".keyboard-button-x " +
@@ -5734,9 +5733,10 @@ var css = {
 
   codeConfirmButtonEnter: ".code-confirm-button-enter" +
   "{" +
-  "bottom: 24%;" +
+  //"bottom: 24%;" +
   "margin: 0;" +
-  "float: left;" +
+  "margin-top: 25%;" +
+  //"float: left;" +
   "text-align: center;" +
   "background-color: #017ce3;" +
   "font-size: " + 29 * widthK + "px;" +
@@ -7962,12 +7962,14 @@ var css = {
   "background: none;" +
   "margin:" + 35 * widthK + "px " + 125 * widthK + "px;" +
   "outline: none;" +
+  "padding: 0;" +
   "}",
 
   transferDetailCodeConfirmButtonEnter: ".transfer-detail-code-confirm-button-enter" +
   "{" +
   "margin: 0;" +
-  "float: left;" +
+  "margin-top: 10%;" +
+  //"float: left;" +
   "text-align: center;" +
   "background-color: #017ce3;" +
   "font-size: " + 29 * widthK + "px;" +
@@ -7981,7 +7983,7 @@ var css = {
   "text-transform: capitalize;" +
   "left: 19%;" +
   "bottom: 4.4%;" +
-  "position: absolute;" +
+  "position: relative;" +
   "}",
 
   //transferDetailCodeConfirmButtonEnterLabel: ".transfer-detail-code-confirm-button-enter-label" +
@@ -11816,7 +11818,7 @@ var css = {
   "background-image: url('resources/icons/ViewNews/news.png');" +
   "background-repeat: no-repeat;" +
   "background-position-y: bottom;" +
-  "background-size: 100%;" +
+  "background-size: contain;" +
   "background-color: white;" +
   "border-bottom-right-radius:" + 70 * widthK + "px;" +
   "}",

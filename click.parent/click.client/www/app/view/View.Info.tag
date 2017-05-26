@@ -72,6 +72,17 @@
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
+    var objectAccount = {};
+    var accountsForBalance = [];
+
+    for (var j in getAccountsCards) {
+      objectAccount.account_id = getAccountsCards[j].id
+      objectAccount.card_num_hash = getAccountsCards[j].card_num_hash
+      objectAccount.card_num_crypted = getAccountsCards[j].card_num_crypted
+      accountsForBalance.push(objectAccount);
+      objectAccount = {};
+    }
+    console.log("GETACCOUNTS", accountsForBalance)
 
     if (JSON.parse(localStorage.getItem('click_client_loginInfo')))
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
@@ -87,74 +98,84 @@
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#e5e5e5");
-
+      var accountsForBalance = [];
+      var objectAccount = {};
       if (!modeOfApp.offlineMode) {
-        writeBalance();
+        writeBalanceInfo(accountsForBalance);
       }
     })
 
     reloadBalanceTouchEnd = function () {
-      writeBalance();
+      writeBalanceInfo(accountsForBalance);
     }
 
-    writeBalance = function () {
+    writeBalanceInfo = function () {
       var j = 0;
       scope.fullBalance = 0;
       scope.fullBalanceCopy = 0;
-      for (var i = 0; i < getAccountsCards.length; i++) {
-        window.api.call({
-          method: 'get.balance',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            account_id: getAccountsCards[i].id,
-            card_num_hash: getAccountsCards[i].card_num_hash,
-            card_num_crypted: getAccountsCards[i].card_num_crypted
-          },
-          //TODO: DO CARDS
-          scope: this,
-          onSuccess: function (result) {
-            if (result[0][0].error == 0) {
-              if (result[1][0]) {
+
+      window.api.call({
+        method: 'get.balance.multiple',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          accounts: accountsForBalance,
+        },
+        //TODO: DO CARDS
+        scope: this,
+        onSuccess: function (result) {
+          scope.fullBalanceCopy = 0;
+          scope.fullBalance = 0
+          if (result[0][0].error == 0) {
+            if (result[1]) {
 //                console.log('getAccountsCards[j].currency_name', getAccountsCards[j].currency_name)
 //                console.log('defaultAccount.currency', defaultAccount.currency)
-                try {
-                  if (getAccountsCards[j].currency_name.trim() == defaultAccount.currency.trim()) {
-                    scope.fullBalance = parseInt(scope.fullBalance);
-                    scope.fullBalance += result[1][0].balance;
-                    scope.fullBalanceCopy = scope.fullBalance;
-
-                    scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
-                    scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
-
-//                    console.log('INFO BALANCEE', )
-                    scope.update();
-                  }
-                  else
-                    scope.attention = true;
-                } catch (Error) {
-
-                  console.log("VIEW INFO WRITE BALANCE", Error);
+              try {
+                console.log('INFO BALANCE res', result)
+                for (var i in result[1]) {
+                  scope.fullBalance += result[1][i].balance;
                 }
+                scope.fullBalanceCopy = scope.fullBalance;
 
-                j++;
+                scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
+                scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
+                scope.update()
+//                if (getAccountsCards[j].currency_name.trim() == defaultAccount.currency.trim()) {
+//                  scope.fullBalance = parseInt(scope.fullBalance);
+//                  scope.fullBalance += result[1][0].balance;
+//                  scope.fullBalanceCopy = scope.fullBalance;
+//
+//                  scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
+//                  scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
+//
+////                    console.log('INFO BALANCEE', )
+//                  scope.update();
+//                }
+//                else
+//                  scope.attention = true;
+              } catch (Error) {
 
+                console.log("VIEW INFO WRITE BALANCE", Error);
               }
-            }
-            else {
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
-              scope.update();
-            }
-          },
 
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
+              j++;
+
+            }
           }
-        });
-      }
+          else {
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
+            scope.update();
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+
 
       scope.update();
     }
