@@ -206,7 +206,7 @@
             }
 
             arrayToSend.push(contact)
-            writeContacts(arrayToSend)
+            writeContactsFooter(arrayToSend)
 //            console.log('The following contact has been selected:', contact);
 //            scope.arrayOfPhotos[0].contactFname = contact.name.givenName;
 //            scope.arrayOfPhotos[0].contactLname = contact.name.familyName;
@@ -252,7 +252,7 @@
 //
 //                arrayOfConnectedContacts = arrayOfPhotosContacts.concat(arrayWithoutPhotosContacts);
 //
-//                writeContacts(arrayOfConnectedContacts);
+//                writeContactsFooter(arrayOfConnectedContacts);
 //              }
 //
 //              function error(message) {
@@ -369,7 +369,7 @@
 
             console.log("ARRAY TO SEND", arrayToSend)
             arrayToSend.push(contact)
-            writeContacts(arrayToSend)
+            writeContactsFooter(arrayToSend)
           }, function (err) {
             console.log('Error: ' + err);
           });
@@ -444,7 +444,7 @@
 
 
             arrayToSend.push(contact)
-            writeContacts(arrayToSend)
+            writeContactsFooter(arrayToSend)
           }, function (err) {
             console.log('Error: ' + err);
           });
@@ -519,7 +519,7 @@
 
 
             arrayToSend.push(contact)
-            writeContacts(arrayToSend)
+            writeContactsFooter(arrayToSend)
           }, function (err) {
             console.log('Error: ' + err);
           });
@@ -592,7 +592,7 @@
 
 
             arrayToSend.push(contact)
-            writeContacts(arrayToSend)
+            writeContactsFooter(arrayToSend)
           }, function (err) {
             console.log('Error: ' + err);
           });
@@ -650,7 +650,7 @@
     var arrayOfConnectedContacts = [];
 
     //
-    //    findContacts = function () {
+    //    findContactsFooter = function () {
     //      console.log("FOOTER FIND CONTACTS")
     //      if (!localStorage.getItem('transferContacts')) {
     //        console.log("WRITING CONTACTS...")
@@ -676,7 +676,7 @@
     //
     //          arrayOfConnectedContacts = arrayOfPhotosContacts.concat(arrayWithoutPhotosContacts);
     //
-    //          writeContacts(arrayOfConnectedContacts);
+    //          writeContactsFooter(arrayOfConnectedContacts);
     //        }
     //
     //        function error(message) {
@@ -688,30 +688,30 @@
     //      }
     //      else {
     //        var arrayOfContacts = JSON.parse(localStorage.getItem('transferContacts'));
-    //        writeContacts(arrayOfContacts);
+    //        writeContactsFooter(arrayOfContacts);
     //      }
     //    }
     //
 
-    findContacts = function () {
+    findContactsFooter = function () {
       if (!localStorage.getItem('transferContacts')) {
         scope.firstContactObject.addContact = true;
         scope.update()
       }
       else {
         var arrayOfContacts = JSON.parse(localStorage.getItem('transferContacts'));
-        writeContacts(arrayOfContacts);
+        writeContactsFooter(arrayOfContacts);
       }
     }
 
-    //    findContacts()
+    //    findContactsFooter()
     console.log(device.platform)
     if (device.platform != 'BrowserStand') {
-      findContacts();
+      findContactsFooter();
       console.log('FINDCONTACTS() RUN')
     }
 
-    function writeContacts(arrayOfConnectedContacts) {
+    function writeContactsFooter(arrayOfConnectedContacts) {
       var j = 0;
       if (arrayOfConnectedContacts.length >= 5) {
         j = 5;
