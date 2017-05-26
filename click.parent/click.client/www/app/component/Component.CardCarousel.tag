@@ -680,7 +680,7 @@
         localStorage.setItem("click_client_countCard", count);
       }
 
-      changePosition()
+      changePositionCardCarousel()
 
 
       scope.update();
@@ -913,7 +913,7 @@
       event.stopPropagation();
       carouselTouchEndX = event.changedTouches[0].pageX;
       if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20) {
-        changePosition();
+        changePositionCardCarousel();
       }
       else if (!viewMainPage.myCards) {
         if (!modeOfApp.offlineMode.balance && modeOfApp.onlineMode) {
@@ -949,7 +949,7 @@
           modeOfApp.offlineMode.balance = false;
       }
       else
-        changePosition()
+        changePositionCardCarousel()
     }
 
     moveTouchCarousel = function () {
@@ -1155,7 +1155,7 @@
 
     //    var changingColor;
 
-    function changePosition() {
+    function changePositionCardCarousel() {
 //      clearInterval(changingColor);
 
 //      if (!scope.invoiceCheck && count != 0)
