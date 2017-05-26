@@ -144,9 +144,8 @@
       contactOneTouchEndY;
 
     var arrayToSend = []
-    if(localStorage.getItem('transferContacts')){
+    if (localStorage.getItem('transferContacts')) {
       arrayToSend = JSON.parse(localStorage.getItem('transferContacts'))
-      writeContacts(arrayToSend)
     }
 
     contactOneTouchStart = function () {
@@ -180,6 +179,32 @@
 
           navigator.contacts.pickContact(function (contact) {
             console.log('CONTACT PICK', contact)
+
+            scope.showError = false;
+
+            if(!contact.phoneNumbers){
+              scope.showError = true;
+              scope.errorNote = 'Отсутствует номер контакта'
+              scope.update()
+              return
+            }
+
+            if(!contact.name){
+              scope.showError = true;
+              scope.errorNote = 'Отсутствует имя контакта'
+              scope.update()
+              return
+            }
+
+            for (var i in arrayToSend) {
+              if (arrayToSend[i].id == contact.id) {
+                scope.showError = true;
+                scope.errorNote = 'Этот контакт уже добавлен'
+                scope.update()
+                return
+              }
+            }
+
             arrayToSend.push(contact)
             writeContacts(arrayToSend)
 //            console.log('The following contact has been selected:', contact);
@@ -310,11 +335,38 @@
             }
           );
         }
-        else{
+        else {
           arrayToSend = JSON.parse(localStorage.getItem('transferContacts'))
           window.pickContactFromNativeChecker = true;
 
           navigator.contacts.pickContact(function (contact) {
+
+            scope.showError = false;
+
+            if(!contact.phoneNumbers){
+              scope.showError = true;
+              scope.errorNote = 'Отсутствует номер контакта'
+              scope.update()
+              return
+            }
+
+            if(!contact.name){
+              scope.showError = true;
+              scope.errorNote = 'Отсутствует имя контакта'
+              scope.update()
+              return
+            }
+
+            for (var i in arrayToSend) {
+              console.log(arrayToSend[i].id, contact.id)
+              if (arrayToSend[i].id == contact.id) {
+                scope.showError = true;
+                scope.errorNote = 'Этот контакт уже добавлен'
+                scope.update()
+                return
+              }
+            }
+
             console.log("ARRAY TO SEND", arrayToSend)
             arrayToSend.push(contact)
             writeContacts(arrayToSend)
@@ -357,12 +409,40 @@
             }
           );
         }
-        else{
+        else {
           arrayToSend = JSON.parse(localStorage.getItem('transferContacts'))
 
           window.pickContactFromNativeChecker = true;
 
           navigator.contacts.pickContact(function (contact) {
+
+            scope.showError = false;
+
+            if(!contact.phoneNumbers){
+              scope.showError = true;
+              scope.errorNote = 'Отсутствует номер контакта'
+              scope.update()
+              return
+            }
+
+            if(!contact.name){
+              scope.showError = true;
+              scope.errorNote = 'Отсутствует имя контакта'
+              scope.update()
+              return
+            }
+
+            for (var i in arrayToSend) {
+              console.log(arrayToSend[i].id, contact.id)
+              if (arrayToSend[i].id == contact.id) {
+                scope.showError = true;
+                scope.errorNote = 'Этот контакт уже добавлен'
+                scope.update()
+                return
+              }
+            }
+
+
             arrayToSend.push(contact)
             writeContacts(arrayToSend)
           }, function (err) {
@@ -404,12 +484,40 @@
             }
           );
         }
-        else{
+        else {
           arrayToSend = JSON.parse(localStorage.getItem('transferContacts'))
 
           window.pickContactFromNativeChecker = true;
 
           navigator.contacts.pickContact(function (contact) {
+
+            scope.showError = false;
+
+            if(!contact.phoneNumbers){
+              scope.showError = true;
+              scope.errorNote = 'Отсутствует номер контакта'
+              scope.update()
+              return
+            }
+
+            if(!contact.name){
+              scope.showError = true;
+              scope.errorNote = 'Отсутствует имя контакта'
+              scope.update()
+              return
+            }
+
+            for (var i in arrayToSend) {
+              console.log(arrayToSend[i].id, contact.id)
+              if (arrayToSend[i].id == contact.id) {
+                scope.showError = true;
+                scope.errorNote = 'Этот контакт уже добавлен'
+                scope.update()
+                return
+              }
+            }
+
+
             arrayToSend.push(contact)
             writeContacts(arrayToSend)
           }, function (err) {
@@ -443,19 +551,46 @@
       if (Math.abs(contactFiveTouchStartX - contactFiveTouchEndX) <= 20 && Math.abs(contactFiveTouchStartY - contactFiveTouchEndY) <= 20) {
 
         if (scope.fiveContactObject.exist) {
-        riotTags.innerHTML = "<view-contact>";
-        riot.mount('view-contact',
-          {
-            "object": scope.fiveContactObject,
-          }
-        );
-      }
-        else{
+          riotTags.innerHTML = "<view-contact>";
+          riot.mount('view-contact',
+            {
+              "object": scope.fiveContactObject,
+            }
+          );
+        }
+        else {
           arrayToSend = JSON.parse(localStorage.getItem('transferContacts'))
 
           window.pickContactFromNativeChecker = true;
 
           navigator.contacts.pickContact(function (contact) {
+            scope.showError = false;
+
+            if(!contact.phoneNumbers){
+              scope.showError = true;
+              scope.errorNote = 'Отсутствует номер контакта'
+              scope.update()
+              return
+            }
+
+            if(!contact.name){
+              scope.showError = true;
+              scope.errorNote = 'Отсутствует имя контакта'
+              scope.update()
+              return
+            }
+
+            for (var i in arrayToSend) {
+              console.log(arrayToSend[i].id, contact.id)
+              if (arrayToSend[i].id == contact.id) {
+                scope.showError = true;
+                scope.errorNote = 'Этот контакт уже добавлен'
+                scope.update()
+                return
+              }
+            }
+
+
             arrayToSend.push(contact)
             writeContacts(arrayToSend)
           }, function (err) {
@@ -563,10 +698,10 @@
         scope.firstContactObject.addContact = true;
         scope.update()
       }
-//      else {
-//        var arrayOfContacts = JSON.parse(localStorage.getItem('transferContacts'));
-//        writeContacts(arrayOfContacts);
-//      }
+      else {
+        var arrayOfContacts = JSON.parse(localStorage.getItem('transferContacts'));
+        writeContacts(arrayOfContacts);
+      }
     }
 
     //    findContacts()
@@ -590,6 +725,7 @@
       for (var i = 0; i < j; i++) {
         scope.arrayOfPhotos[i].exist = true;
         scope.arrayOfPhotos[i].addContact = false;
+        scope.arrayOfPhotos[i].id = arrayOfConnectedContacts[i].id;
         if (arrayOfConnectedContacts[i].photos != null) {
           scope.arrayOfPhotos[i].contactPhoto = arrayOfConnectedContacts[i].photos[0].value;
           scope.arrayOfPhotos[i].firstLetter = '';

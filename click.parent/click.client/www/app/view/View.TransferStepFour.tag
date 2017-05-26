@@ -345,7 +345,7 @@
                 }
                 if (result[1][0].secret_code == 0) {
                   componentSuccessId.style.display = 'block';
-                  findCards(scope.objectTypeForTransfer.name);
+//                  findCards(scope.objectTypeForTransfer.name);
                 }
               }
 

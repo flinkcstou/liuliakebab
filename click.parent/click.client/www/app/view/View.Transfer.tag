@@ -1241,6 +1241,7 @@
           if (checkFifthBlock) {
             fifthSuggestionBlockId.style.display = 'block';
           }
+          scope.update()
           return
         }
       }
@@ -1361,6 +1362,8 @@
           secondSuggestionBlockId.style.display = 'none';
         }
       });
+
+      scope.update()
     }
 
     contactSuggestionFunction = function () {
@@ -1378,6 +1381,7 @@
 
       var j = 0;
       for (var i = 0; i < transferContacts.length; i++) {
+        console.log("CONTACT IN TRANSFER", transferContacts[i])
 
         if (j == 4) {
           if (transferContacts[i] != null && transferContacts[i].phoneNumbers != null && transferContacts[i].phoneNumbers[0] != null && transferContacts[i].phoneNumbers[0].value != null) {
