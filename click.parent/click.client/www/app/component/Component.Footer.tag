@@ -21,7 +21,7 @@
           </p>
         </div>
 
-        <div class="footer-contacts-blocks footer-contacts-block-two">
+        <div class="footer-contacts-blocks footer-contacts-block-two" if="{firstContactObject.exist}">
           <div id="photoTwo" class="footer-favourite-contacts-circles footer-contact-two"
                style="background-image: url({secondContactObject.contactPhoto})" ontouchstart="contactTwoTouchStart()"
                ontouchend="contactTwoTouchEnd()">
@@ -32,7 +32,7 @@
             {secondContactObject.contactLname}</p>
         </div>
 
-        <div class="footer-contacts-blocks footer-contacts-block-three">
+        <div class="footer-contacts-blocks footer-contacts-block-three" if="{secondContactObject.exist}">
           <div id="photoThree" class="footer-favourite-contacts-circles footer-contact-three"
                style="background-image: url({thirdContactObject.contactPhoto})" ontouchstart="contactThreeTouchStart()"
                ontouchend="contactThreeTouchEnd()">
@@ -43,7 +43,7 @@
             {thirdContactObject.contactLname}</p>
         </div>
 
-        <div class="footer-contacts-blocks footer-contacts-block-four">
+        <div class="footer-contacts-blocks footer-contacts-block-four" if="{thirdContactObject.exist}">
           <div id="photoFour" class="footer-favourite-contacts-circles footer-contact-four"
                style="background-image: url({fourContactObject.contactPhoto})" ontouchstart="contactFourTouchStart()"
                ontouchend="contactFourTouchEnd()">
@@ -54,7 +54,7 @@
             {fourContactObject.contactLname}</p>
         </div>
 
-        <div class="footer-contacts-blocks footer-contacts-block-five">
+        <div class="footer-contacts-blocks footer-contacts-block-five" if="{fourContactObject.exist}">
           <div id="photoFive" class="footer-favourite-contacts-circles footer-contact-five"
                style="background-image: url({fiveContactObject.contactPhoto})" ontouchstart="contactFiveTouchStart()"
                ontouchend="contactFiveTouchEnd()">
@@ -83,38 +83,53 @@
     scope.firstContactObject = {};
     scope.firstContactObject.contactFname = '';
     scope.firstContactObject.contactLname = '';
-    scope.firstContactObject.contactPhoto = '';
+    scope.firstContactObject.id = '';
+    scope.firstContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
     scope.firstContactObject.firstLetter = '';
     scope.firstContactObject.phoneNumbers = [];
+    scope.firstContactObject.exist = false;
+    scope.firstContactObject.addContact = false;
 
     scope.secondContactObject = {};
     scope.secondContactObject.contactFname = '';
     scope.secondContactObject.contactLname = '';
-    scope.secondContactObject.contactPhoto = '';
+    scope.secondContactObject.id = '';
+    scope.secondContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
     scope.secondContactObject.firstLetter = '';
     scope.secondContactObject.phoneNumbers = [];
+    scope.secondContactObject.exist = false;
+    scope.secondContactObject.addContact = false;
 
     scope.thirdContactObject = {};
     scope.thirdContactObject.contactFname = '';
     scope.thirdContactObject.contactLname = '';
-    scope.thirdContactObject.contactPhoto = '';
+    scope.thirdContactObject.id = '';
+    scope.thirdContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
     scope.thirdContactObject.firstLetter = '';
     scope.thirdContactObject.phoneNumbers = [];
+    scope.thirdContactObject.exist = false;
+    scope.thirdContactObject.addContact = false;
 
     scope.fourContactObject = {};
     scope.fourContactObject.contactFname = '';
     scope.fourContactObject.contactLname = '';
-    scope.fourContactObject.contactPhoto = '';
+    scope.fourContactObject.id = '';
+    scope.fourContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
     scope.fourContactObject.firstLetter = '';
     scope.fourContactObject.phoneNumbers = [];
+    scope.fourContactObject.exist = false;
+    scope.fourContactObject.addContact = false;
 
 
     scope.fiveContactObject = {};
     scope.fiveContactObject.contactFname = '';
     scope.fiveContactObject.contactLname = '';
-    scope.fiveContactObject.contactPhoto = '';
+    scope.fiveContactObject.id = '';
+    scope.fiveContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
     scope.fiveContactObject.firstLetter = '';
     scope.fiveContactObject.phoneNumbers = [];
+    scope.fiveContactObject.exist = false;
+    scope.fiveContactObject.addContact = false;
 
     scope.arrayOfPhotos = [];
     scope.arrayOfPhotos.push(scope.firstContactObject);
@@ -128,9 +143,15 @@
       contactOneTouchEndX,
       contactOneTouchEndY;
 
+    var arrayToSend = []
+    if(localStorage.getItem('transferContacts')){
+      arrayToSend = JSON.parse(localStorage.getItem('transferContacts'))
+      writeContacts(arrayToSend)
+    }
+
     contactOneTouchStart = function () {
-      event.preventDefault();
-      event.stopPropagation();
+//      event.preventDefault();
+//      event.stopPropagation();
 
       contactOneTouchStartX = event.changedTouches[0].pageX;
       contactOneTouchStartY = event.changedTouches[0].pageY;
@@ -146,12 +167,115 @@
 
       if (Math.abs(contactOneTouchStartX - contactOneTouchEndX) <= 20 && Math.abs(contactOneTouchStartY - contactOneTouchEndY) <= 20) {
 
-        riotTags.innerHTML = "<view-contact>";
-        riot.mount('view-contact',
-          {
-            "object": scope.firstContactObject,
-          }
-        );
+        if (scope.firstContactObject.exist) {
+          riotTags.innerHTML = "<view-contact>";
+          riot.mount('view-contact',
+            {
+              "object": scope.firstContactObject,
+            }
+          );
+        }
+        else {
+          window.pickContactFromNativeChecker = true;
+
+          navigator.contacts.pickContact(function (contact) {
+            console.log('CONTACT PICK', contact)
+            arrayToSend.push(contact)
+            writeContacts(arrayToSend)
+//            console.log('The following contact has been selected:', contact);
+//            scope.arrayOfPhotos[0].contactFname = contact.name.givenName;
+//            scope.arrayOfPhotos[0].contactLname = contact.name.familyName;
+//            scope.arrayOfPhotos[0].contactPhoto = contact.photos[0].value;
+//            if(!scope.arrayOfPhotos[0].contactPhoto) {
+//              if (contact.name.givenName) {
+//                scope.arrayOfPhotos[0].firstLetter = contact.name.givenName[0];
+//              }
+//              else if (contact.name.familyName) {
+//                scope.arrayOfPhotos[0].firstLetter = contact.name.familyName[0];
+//              }
+//            }
+//            scope.arrayOfPhotos[0].phoneNumbers.push(contact.phoneNumbers);
+//            scope.arrayOfPhotos[0].exist = true;
+//            scope.arrayOfPhotos[0].addContact = false;
+//            scope.update();
+          }, function (err) {
+            console.log('Error: ' + err);
+          });
+
+//          window.plugins.PickContact.chooseContact(function (contactInfo) {
+//            alert(contactInfo)
+//            console.log('CONTACTINFO', contactInfo)
+//            setTimeout(function () {
+//              console.log("CONTACT INFO", contactInfo)
+//
+//              var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.photos];
+//              navigator.contacts.find(fields, success, error, options);
+//
+//              function success(contacts) {
+//                //alert(JSON.stringify(contacts));
+//                for (var i = 0; i < contacts.length; i++) {
+//                  if (contacts[i].photos != null) {
+//                    if (contacts[i].photos[0].value != null && contacts[i].name != null && contacts[i].phoneNumbers != null) {
+//                      arrayOfPhotosContacts.push(contacts[i]);
+//
+//                      if (arrayOfPhotosContacts.length >= 5) break;
+//                    }
+//                  }
+//                  else if (contacts[i].name != null && contacts[i].phoneNumbers != null && arrayWithoutPhotosContacts.length <= 5)
+//                    arrayWithoutPhotosContacts.push(contacts[i])
+//                }
+//
+//                arrayOfConnectedContacts = arrayOfPhotosContacts.concat(arrayWithoutPhotosContacts);
+//
+//                writeContacts(arrayOfConnectedContacts);
+//              }
+//
+//              function error(message) {
+//                scope.clickPinError = false;
+//                scope.errorNote = 'Failed because: ' + message;
+//                scope.showError = true;
+//                scope.update();
+//              }
+//
+////              var phoneNumber
+////              if (device.platform == 'iOS')
+////                phoneNumber = contactInfo.phoneNr;
+////
+////              if (device.platform == 'Android') {
+////                phoneNumber = contactInfo.nameFormated
+////              }
+////              var digits = phoneNumber.match(maskOne);
+////              var phone = '';
+////              for (var i in digits) {
+////                phone += digits[i]
+////              }
+////              contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
+////              if (contactPhoneNumberId.value.length != 0) {
+////                checkPhoneForTransfer = true;
+////                checkCardForTransfer = false;
+//////            console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
+//////                if (contactPhoneNumberId.value.length == 9) {
+//////                  nextButtonId.style.display = 'block'
+//////
+//////                  firstSuggestionBlockId.style.display = 'none';
+//////                  secondSuggestionBlockId.style.display = 'none';
+//////                  thirdSuggestionBlockId.style.display = 'none';
+//////                  fourthSuggestionBlockId.style.display = 'none';
+//////                  fifthSuggestionBlockId.style.display = 'none';
+//////
+//////                }
+//////                else
+//////                  nextButtonId.style.display = 'none'
+////
+////              }// use time-out to fix iOS alert problem
+//
+//            }, 0);
+//          }, function (error) {
+//            console.log('error', error)
+////            checkPhoneForTransfer = false;
+////            checkCardForTransfer = false;
+//          });
+        }
       }
 //      scope.unmount()
     }
@@ -178,12 +302,26 @@
 
       if (Math.abs(contactTwoTouchStartX - contactTwoTouchEndX) <= 20 && Math.abs(contactTwoTouchStartY - contactTwoTouchEndY) <= 20) {
 
-        riotTags.innerHTML = "<view-contact>";
-        riot.mount('view-contact',
-          {
-            "object": scope.secondContactObject,
-          }
-        );
+        if (scope.secondContactObject.exist) {
+          riotTags.innerHTML = "<view-contact>";
+          riot.mount('view-contact',
+            {
+              "object": scope.secondContactObject,
+            }
+          );
+        }
+        else{
+          arrayToSend = JSON.parse(localStorage.getItem('transferContacts'))
+          window.pickContactFromNativeChecker = true;
+
+          navigator.contacts.pickContact(function (contact) {
+            console.log("ARRAY TO SEND", arrayToSend)
+            arrayToSend.push(contact)
+            writeContacts(arrayToSend)
+          }, function (err) {
+            console.log('Error: ' + err);
+          });
+        }
       }
 //      scope.unmount()
     }
@@ -211,13 +349,26 @@
 
       if (Math.abs(contactThreeTouchStartX - contactThreeTouchEndX) <= 20 && Math.abs(contactThreeTouchStartY - contactThreeTouchEndY) <= 20) {
 
+        if (scope.thirdContactObject.exist) {
+          riotTags.innerHTML = "<view-contact>";
+          riot.mount('view-contact',
+            {
+              "object": scope.thirdContactObject,
+            }
+          );
+        }
+        else{
+          arrayToSend = JSON.parse(localStorage.getItem('transferContacts'))
 
-        riotTags.innerHTML = "<view-contact>";
-        riot.mount('view-contact',
-          {
-            "object": scope.thirdContactObject,
-          }
-        );
+          window.pickContactFromNativeChecker = true;
+
+          navigator.contacts.pickContact(function (contact) {
+            arrayToSend.push(contact)
+            writeContacts(arrayToSend)
+          }, function (err) {
+            console.log('Error: ' + err);
+          });
+        }
       }
 //      scope.unmount()
     }
@@ -245,12 +396,26 @@
 
       if (Math.abs(contactFourTouchStartX - contactFourTouchEndX) <= 20 && Math.abs(contactFourTouchStartY - contactFourTouchEndY) <= 20) {
 
-        riotTags.innerHTML = "<view-contact>";
-        riot.mount('view-contact',
-          {
-            "object": scope.fourContactObject,
-          }
-        );
+        if (scope.fourContactObject.exist) {
+          riotTags.innerHTML = "<view-contact>";
+          riot.mount('view-contact',
+            {
+              "object": scope.fourContactObject,
+            }
+          );
+        }
+        else{
+          arrayToSend = JSON.parse(localStorage.getItem('transferContacts'))
+
+          window.pickContactFromNativeChecker = true;
+
+          navigator.contacts.pickContact(function (contact) {
+            arrayToSend.push(contact)
+            writeContacts(arrayToSend)
+          }, function (err) {
+            console.log('Error: ' + err);
+          });
+        }
       }
 //      scope.unmount()
     }
@@ -277,12 +442,26 @@
 
       if (Math.abs(contactFiveTouchStartX - contactFiveTouchEndX) <= 20 && Math.abs(contactFiveTouchStartY - contactFiveTouchEndY) <= 20) {
 
+        if (scope.fiveContactObject.exist) {
         riotTags.innerHTML = "<view-contact>";
         riot.mount('view-contact',
           {
             "object": scope.fiveContactObject,
           }
         );
+      }
+        else{
+          arrayToSend = JSON.parse(localStorage.getItem('transferContacts'))
+
+          window.pickContactFromNativeChecker = true;
+
+          navigator.contacts.pickContact(function (contact) {
+            arrayToSend.push(contact)
+            writeContacts(arrayToSend)
+          }, function (err) {
+            console.log('Error: ' + err);
+          });
+        }
       }
 //      scope.unmount()
     }
@@ -306,7 +485,6 @@
 
       footerOpenTouchEndX = event.changedTouches[0].pageX;
       footerOpenTouchEndY = event.changedTouches[0].pageY;
-
 
 
       if (Math.abs(footerOpenTouchStartX - footerOpenTouchEndX) <= 20 && Math.abs(footerOpenTouchStartY - footerOpenTouchEndY) <= 20) {
@@ -336,49 +514,62 @@
     var arrayWithoutPhotosContacts = [];
     var arrayOfConnectedContacts = [];
 
+    //
+    //    findContacts = function () {
+    //      console.log("FOOTER FIND CONTACTS")
+    //      if (!localStorage.getItem('transferContacts')) {
+    //        console.log("WRITING CONTACTS...")
+    //        var options = new ContactFindOptions();
+    //        options.filter = "";
+    //        options.multiple = true;
+    //        var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.photos];
+    //        navigator.contacts.find(fields, success, error, options);
+    //
+    //        function success(contacts) {
+    //          //alert(JSON.stringify(contacts));
+    //          for (var i = 0; i < contacts.length; i++) {
+    //            if (contacts[i].photos != null) {
+    //              if (contacts[i].photos[0].value != null && contacts[i].name != null && contacts[i].phoneNumbers != null) {
+    //                arrayOfPhotosContacts.push(contacts[i]);
+    //
+    //                if (arrayOfPhotosContacts.length >= 5) break;
+    //              }
+    //            }
+    //            else if (contacts[i].name != null && contacts[i].phoneNumbers != null && arrayWithoutPhotosContacts.length <= 5)
+    //              arrayWithoutPhotosContacts.push(contacts[i])
+    //          }
+    //
+    //          arrayOfConnectedContacts = arrayOfPhotosContacts.concat(arrayWithoutPhotosContacts);
+    //
+    //          writeContacts(arrayOfConnectedContacts);
+    //        }
+    //
+    //        function error(message) {
+    //          scope.clickPinError = false;
+    //          scope.errorNote = 'Failed because: ' + message;
+    //          scope.showError = true;
+    //          scope.update();
+    //        }
+    //      }
+    //      else {
+    //        var arrayOfContacts = JSON.parse(localStorage.getItem('transferContacts'));
+    //        writeContacts(arrayOfContacts);
+    //      }
+    //    }
+    //
 
     findContacts = function () {
-      console.log("FOOTER FIND CONTACTS")
       if (!localStorage.getItem('transferContacts')) {
-        console.log("WRITING CONTACTS...")
-        var options = new ContactFindOptions();
-        options.filter = "";
-        options.multiple = true;
-        var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.photos];
-        navigator.contacts.find(fields, success, error, options);
-
-        function success(contacts) {
-          //alert(JSON.stringify(contacts));
-          for (var i = 0; i < contacts.length; i++) {
-            if (contacts[i].photos != null) {
-              if (contacts[i].photos[0].value != null && contacts[i].name != null && contacts[i].phoneNumbers != null) {
-                arrayOfPhotosContacts.push(contacts[i]);
-
-                if (arrayOfPhotosContacts.length >= 5) break;
-              }
-            }
-            else if (contacts[i].name != null && contacts[i].phoneNumbers != null && arrayWithoutPhotosContacts.length <= 5)
-              arrayWithoutPhotosContacts.push(contacts[i])
-          }
-
-          arrayOfConnectedContacts = arrayOfPhotosContacts.concat(arrayWithoutPhotosContacts);
-
-          writeContacts(arrayOfConnectedContacts);
-        }
-
-        function error(message) {
-          scope.clickPinError = false;
-          scope.errorNote = 'Failed because: ' + message;
-          scope.showError = true;
-          scope.update();
-        }
+        scope.firstContactObject.addContact = true;
+        scope.update()
       }
-      else {
-        var arrayOfContacts = JSON.parse(localStorage.getItem('transferContacts'));
-        writeContacts(arrayOfContacts);
-      }
+//      else {
+//        var arrayOfContacts = JSON.parse(localStorage.getItem('transferContacts'));
+//        writeContacts(arrayOfContacts);
+//      }
     }
 
+    //    findContacts()
     console.log(device.platform)
     if (device.platform != 'BrowserStand') {
       findContacts();
@@ -397,6 +588,8 @@
       }
 
       for (var i = 0; i < j; i++) {
+        scope.arrayOfPhotos[i].exist = true;
+        scope.arrayOfPhotos[i].addContact = false;
         if (arrayOfConnectedContacts[i].photos != null) {
           scope.arrayOfPhotos[i].contactPhoto = arrayOfConnectedContacts[i].photos[0].value;
           scope.arrayOfPhotos[i].firstLetter = '';

@@ -99,7 +99,7 @@
           changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
         }
         scope.update();
-      }catch (e){
+      } catch (e) {
         console.log(e)
       }
     })
@@ -108,7 +108,7 @@
       closeMenu();
       event.preventDefault();
       event.stopPropagation();
-      if(modeOfApp.demoVersion){
+      if (modeOfApp.demoVersion) {
         var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
         scope.confirmShowBool = true;
@@ -121,7 +121,7 @@
             scope.unmount()
             return
           }
-          else{
+          else {
             scope.confirmShowBool = false;
             return
           }
@@ -224,7 +224,7 @@
 
       if (Math.abs(changeModeStart - changeModeEnd) < 20) {
 
-        if(modeOfApp.demoVersion){
+        if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
           scope.confirmShowBool = true;
@@ -237,7 +237,7 @@
               scope.unmount()
               return
             }
-            else{
+            else {
               scope.confirmShowBool = false;
               return
             }
@@ -315,11 +315,12 @@
     //      else return
     //    }
 
-    var callTouchStartX, callTouchEndX
+    var callTouchStartX, callTouchStartY, callTouchEndX, callTouchEndY
     callToClickTouchEnd = function () {
       callTouchEndX = event.changedTouches[0].pageX;
+      callTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(callTouchStartX - callTouchEndX) < 20) {
+      if (Math.abs(callTouchStartX - callTouchEndX) < 20 && Math.abs(callTouchStartY - callTouchEndY) < 20) {
         closeMenu()
         componentMenu.checkOpen = false;
         window.open('tel:+998712310880')
@@ -330,14 +331,16 @@
 
     callToClickTouchStart = function () {
       callTouchStartX = event.changedTouches[0].pageX;
+      callTouchStartY = event.changedTouches[0].pageY;
     }
 
-    var autoPayTouchStartX, autoPayTouchEndX;
+    var autoPayTouchStartX, autoPayTouchStartY, autoPayTouchEndX, autoPayTouchEndY;
     goToAutoPayEnd = function () {
       autoPayTouchEndX = event.changedTouches[0].pageX;
+      autoPayTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(autoPayTouchStartX - autoPayTouchEndX) < 20) {
-        if(modeOfApp.demoVersion){
+      if (Math.abs(autoPayTouchStartX - autoPayTouchEndX) <= 20 && Math.abs(autoPayTouchStartY - autoPayTouchEndY) <= 20) {
+        if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
           scope.confirmShowBool = true;
@@ -350,7 +353,7 @@
               scope.unmount()
               return
             }
-            else{
+            else {
               scope.confirmShowBool = false;
               return
             }
@@ -371,18 +374,20 @@
 
     goToAutoPayStart = function () {
       autoPayTouchStartX = event.changedTouches[0].pageX;
+      autoPayTouchStartY = event.changedTouches[0].pageY;
     }
 
 
-    var qrScannerTouchStartX, qrScannerTouchEndX
+    var qrScannerTouchStartX, qrScannerTouchStartY, qrScannerTouchEndX, qrScannerTouchEndY
 
     goToQrScannerEnd = function () {
 
 
       qrScannerTouchEndX = event.changedTouches[0].pageX;
+      qrScannerTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX) < 20) {
-        if(modeOfApp.demoVersion){
+      if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX) < 20 && Math.abs(qrScannerTouchStartY - qrScannerTouchEndY) < 20) {
+        if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
           scope.confirmShowBool = true;
@@ -395,7 +400,7 @@
               scope.unmount()
               return
             }
-            else{
+            else {
               scope.confirmShowBool = false;
               return
             }
@@ -551,21 +556,23 @@
 
     goToQrScannerStart = function () {
       qrScannerTouchStartX = event.changedTouches[0].pageX;
+      qrScannerTouchStartY = event.changedTouches[0].pageY;
     }
 
-    var settingsTouchStartX, settingsTouchEndX
+    var settingsTouchStartX, settingsTouchStartY, settingsTouchEndX, settingsTouchEndY
 
     goToSettingsEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
       settingsTouchEndX = event.changedTouches[0].pageX;
+      settingsTouchEndY = event.changedTouches[0].pageY;
 
       console.log('settingsTouchStartX', settingsTouchStartX)
       console.log('settingsTouchEndX', settingsTouchEndX)
 
       if (Math.abs(settingsTouchStartX - settingsTouchEndX) < 20) {
-        if(modeOfApp.demoVersion){
+        if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
           scope.confirmShowBool = true;
@@ -578,7 +585,7 @@
               scope.unmount()
               return
             }
-            else{
+            else {
               scope.confirmShowBool = false;
               return
             }
@@ -612,7 +619,7 @@
       billingsTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(billingsTouchEndX - billingsTouchStartX) < 20) {
-        if(modeOfApp.demoVersion){
+        if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
           scope.confirmShowBool = true;
@@ -625,7 +632,7 @@
               scope.unmount()
               return
             }
-            else{
+            else {
               scope.confirmShowBool = false;
               return
             }
@@ -679,7 +686,7 @@
       console.log('settingsTouchEndX', favoritesTouchEndX)
 
       if (Math.abs(favoritesTouchStartX - favoritesTouchEndX) < 20) {
-        if(modeOfApp.demoVersion){
+        if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
           scope.confirmShowBool = true;
@@ -692,7 +699,7 @@
               scope.unmount()
               return
             }
-            else{
+            else {
               scope.confirmShowBool = false;
               return
             }

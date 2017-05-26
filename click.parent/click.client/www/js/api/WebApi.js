@@ -245,11 +245,15 @@ window.api.call = function (params) {
       parameters: input
     });
 
+    if (device.platform != 'BrowserStand')
+      SpinnerPlugin.activityStop();
+
     if (device.platform == 'Android')
       showConfirmComponent("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?", 'internet');
     else {
       showAlertComponent("Отсутствует соединение с интернетом");
     }
+
     //if (result) {
     //
     //  modeOfApp.offlineMode = true;
