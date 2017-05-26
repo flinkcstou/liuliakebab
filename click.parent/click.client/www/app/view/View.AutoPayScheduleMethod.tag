@@ -258,6 +258,8 @@
 
     }
 
+    var left, delta, mleft, mdelta;
+
 
     dateContainerTouchStart = function () {
       console.log("in start touch=", dateNumber);
@@ -269,6 +271,7 @@
 //      touchStartTime = new Date().getTime();
       left = -((scope.shift * dateNumber) * widthK) - dateCarouselTouchStartY;
       delta = left;
+      console.log('DELTA', delta)
 //      console.log("nNew=", nNew);
     };
 
@@ -280,7 +283,7 @@
 
       nShift = Math.round(Math.abs(dateCarouselTouchEndY - dateCarouselTouchStartY) / (scope.shift * widthK));
 
-      if (Math.abs(dateCarouselTouchStartY - dateCarouselTouchEndY) > 20 && Math.abs(dateCarouselTouchStartX - dateCarouselTouchEndX) > 20) {
+      if (Math.abs(dateCarouselTouchStartY - dateCarouselTouchEndY) > 20 && Math.abs(dateCarouselTouchStartX - dateCarouselTouchEndX) < 20) {
         changePosition(nShift);
       }
     };
@@ -296,7 +299,6 @@
       this.dateContainerId.style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + delta ) + 'px' + ", 0)";
 //      console.log("x=", event.changedTouches[0].pageY);
 //      console.log("xx=", event.changedTouches[0].pageY + delta);
-
 //      changePosition(event.changedTouches[0].pageY + delta);
       tempShift = Math.round(Math.abs(event.changedTouches[0].pageY + delta) / (scope.shift * widthK));
       tempEndY = event.changedTouches[0].pageY;
