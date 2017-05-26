@@ -2219,7 +2219,7 @@ var css = {
   "border-radius:" + 100 * widthK + "px;" +
   "border: none;" +
   "color: #027ee3;" +
-  //"background-color: #7ae4ff;" +
+    //"background-color: #7ae4ff;" +
   "top: 0;" +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
@@ -12971,7 +12971,7 @@ var css = {
   "transform: translate(0, 0);" +
   "-webkit-transform: translate(0, 0);" +
   "-ms-transform: translate(0, 0);" +
-  "background-color: rgba(0, 0, 0, 0.6);" +
+  "background-color: rgba(0, 0, 0, 0.8);" +
   "opacity: 1;" +
   "}",
 
@@ -13253,7 +13253,7 @@ var css = {
   "position: absolute;" +
   "width:" + 12 * widthK + "px;" +
   "height:" + 12 * widthK + "px;" +
-  "background-color:lightgray;" +
+  "background-color:gainsboro;" +
   "border-radius:" + 50 * widthK + "px;" +
   "}",
 

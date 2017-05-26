@@ -259,6 +259,7 @@
     }
 
     var left, delta, mleft, mdelta;
+    var tempEndY, oldShift, tempShift, nOld = 0, nNew = 0, tempStartY, counter = 0;
 
 
     dateContainerTouchStart = function () {
@@ -271,8 +272,8 @@
 //      touchStartTime = new Date().getTime();
       left = -((scope.shift * dateNumber) * widthK) - dateCarouselTouchStartY;
       delta = left;
-      console.log('DELTA', delta)
 //      console.log("nNew=", nNew);
+      oldShift = Math.round(Math.abs(event.changedTouches[0].pageY + delta) / (scope.shift * widthK));
     };
 
     dateContainerTouchEnd = function () {
@@ -288,7 +289,6 @@
       }
     };
 
-    var tempEndY, oldShift, tempShift, nOld = 0, nNew = 0, tempStartY, counter = 0;
 
     dateContainerTouchMove = function () {
       event.preventDefault();
@@ -379,6 +379,9 @@
         //console.log("5=", dateNumber);
       }
 
+      console.log("dateNumber after", dateNumber);
+      console.log();
+
       counter = 0;
       localStorage.setItem('dateNumber', dateNumber);
     }
@@ -423,6 +426,7 @@
 
     //    for minutes
     var minutesTouchStartY, minutesTouchStartX, minutesTouchEndY, minutesTouchEndX;
+    var mtempEndY, moldShift, mtempShift, mnOld = 0, mnNew = 0, mtempStartY, mcounter = 0;
 
     minContainerTouchStart = function () {
 //      console.log("in start touch=", minuteNumber);
@@ -433,6 +437,7 @@
       mnNew = minuteNumber;
       mleft = -((scope.shift * minuteNumber) * widthK) - minutesTouchStartY;
       mdelta = mleft;
+      moldShift = Math.round(Math.abs(event.changedTouches[0].pageY + mdelta) / (scope.shift * widthK));
     }
 
     minContainerTouchEnd = function () {
@@ -453,7 +458,6 @@
       }
     }
 
-    var mtempEndY, moldShift, mtempShift, mnOld = 0, mnNew = 0, mtempStartY, mcounter = 0;
 
     minContainerTouchMove = function () {
       event.preventDefault();
