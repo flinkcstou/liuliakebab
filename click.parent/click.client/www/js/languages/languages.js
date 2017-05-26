@@ -337,6 +337,7 @@ var RU_LANGUAGES =
   "ViewContactPay": "Оплатить за мобильный",
   "ViewContactTransfer": "Перевод по номеру телефона",
   "ViewContactChooseNumber": "ВЫБЕРИТЕ НОМЕР",
+  "ViewContactDeleteNumber": "Удалить контакт",
 
   "ComponentAlertClickPinErrorTextOne": 'CLICK-PIN набран неверно',
   "ComponentAlertClickPinErrorTextTwo": 'более 3 раз',

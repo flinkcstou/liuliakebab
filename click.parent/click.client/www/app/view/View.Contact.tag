@@ -22,6 +22,11 @@
       <p class="view-contact-transfer-title">{window.languages.ViewContactTransfer}</p>
       <div class="view-contact-open-icon"></div>
     </div>
+    <div class="view-contact-pay-delete-container" ontouchstart="contactDeleteTouchStart()"
+         ontouchend="contactDeleteTouchEnd()">
+      <div class="view-contact-delete-icon"></div>
+      <p class="view-contact-transfer-title">{window.languages.ViewContactDeleteNumber}</p>
+    </div>
   </div>
 
   <div class="view-contact-select-container" id="contactSelectContainerId">
@@ -68,6 +73,7 @@
     scope.contactPhoto = opts.object.contactPhoto;
     scope.firstLetter = opts.object.firstLetter;
     scope.arrayOfNumbers = opts.object.phoneNumbers[0];
+    scope.contactId = opts.object.id;
 
     if (scope.arrayOfNumbers) {
 
@@ -195,6 +201,48 @@
         riot.mount('view-transfer', {number: phone});
 
         scope.unmount()
+      }
+    }
+
+
+    var contactDeleteTouchStartX, contactDeleteTouchStartY, contactDeleteTouchEndX, contactDeleteTouchEndY;
+    contactDeleteTouchStart = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      contactDeleteTouchStartX = event.changedTouches[0].pageX
+      contactDeleteTouchStartY = event.changedTouches[0].pageY
+    }
+
+    contactDeleteTouchEnd = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      contactDeleteTouchEndX = event.changedTouches[0].pageX
+      contactDeleteTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(contactDeleteTouchStartX - contactDeleteTouchEndX) <= 20 && Math.abs(contactDeleteTouchStartY - contactDeleteTouchEndY) <= 20) {
+        var arrayOfContacts = JSON.parse(localStorage.getItem('transferContacts'))
+
+        var question = 'Контакт будет удален из списка'
+        scope.confirmShowBool = true;
+        scope.confirmNote = question;
+        scope.confirmType = 'local';
+        scope.update()
+        scope.result = function (bool) {
+          if (bool) {
+            for (var i = 0; i < arrayOfContacts.length; i++) {
+              if (arrayOfContacts[i].id == scope.contactId) {
+                arrayOfContacts.splice(i, 1);
+              }
+            }
+            localStorage.setItem('transferContacts', JSON.stringify(arrayOfContacts))
+            onBackKeyDown()
+            return
+          }
+        };
+
+
       }
     }
 

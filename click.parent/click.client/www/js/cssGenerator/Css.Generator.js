@@ -9991,6 +9991,29 @@ var css = {
   "height:" + 105 * widthK + "px;" +
   "}",
 
+  viewContactPayDeleteContainer: ".view-contact-pay-delete-container " +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "margin-left: auto;" +
+  "border-top: 1px solid #f3f3f3;" +
+  "margin-right: auto;" +
+  "height:" + 105 * widthK + "px;" +
+  "}",
+
+  viewContactDeleteIcon: ".view-contact-delete-icon " +
+  "{" +
+  "position: absolute;" +
+  "width: 8%;" +
+  "height: 80%;" +
+  "top: 7%;" +
+  "left: 1%;" +
+  "background-image: url(resources/icons/ViewContact/contact_remove.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position: left;" +
+  "background-size: 70%;" +
+  "}",
+
   viewContactPayIcon: ".view-contact-pay-icon " +
   "{" +
   "position: absolute;" +

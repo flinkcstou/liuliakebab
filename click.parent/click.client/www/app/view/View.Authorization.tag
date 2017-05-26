@@ -175,6 +175,7 @@
         scope.confirmShowBool = true;
         scope.confirmNote = question;
         scope.confirmType = 'local';
+        scope.update();
         scope.result = function (bool) {
           if (bool) {
             localStorage.clear();
@@ -184,7 +185,6 @@
             return
           }
         };
-        scope.update();
 //      if (scope.result) {
 //        localStorage.clear();
 //        this.riotTags.innerHTML = "<view-registration-device>";
