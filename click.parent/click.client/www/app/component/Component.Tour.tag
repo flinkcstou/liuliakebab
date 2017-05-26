@@ -24,7 +24,7 @@
     <div class="tour-circles-container"
          style="width: {((tourCardsArray.length) * 40 + 52)*widthK}px">
 
-      <div id="circle{i.counter-1}" style="left: {(i.counter)*40*widthK }px;" class="tour-circles pincode-pin-one"
+      <div id="circle{i.counter-1}" style="left: {(i.counter)*40*widthK }px;" class="tour-circles"
            each="{i in tourCardsArray}"></div>
 
 
@@ -101,7 +101,7 @@
     scope.registrButton = false;
 
     scope.on('mount', function () {
-      document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'grey';
+      document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
       if (scope.count == 1) {
         scope.registrButton = true;
         scope.update();
@@ -115,7 +115,6 @@
 
       percentageTouche = (tourCarouselTouchStartX * 100.0) / window.innerHeight;
 
-      console.log("touch started at %", percentageTouche);
 
       left = -(100 * scope.tNumber) - percentageTouche;
       delta = left;
@@ -171,13 +170,13 @@
       }
 
       if (tourCarouselTouchEndX < tourCarouselTouchStartX && scope.tNumber < scope.count - 1) {
-        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'lightgray';
+        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'gainsboro';
         ++scope.tNumber;
         this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
         this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
-        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'grey';
+        document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
       }
 
       if (tourCarouselTouchEndX > tourCarouselTouchStartX && scope.tNumber == 0) {
@@ -195,13 +194,13 @@
       }
 
       if (tourCarouselTouchEndX > tourCarouselTouchStartX && scope.tNumber > 0) {
-        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'lightgray';
+        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'gainsboro';
         --scope.tNumber;
         this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
         this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
-        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'grey';
+        document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
       }
 
 
@@ -216,13 +215,13 @@
       }
 
       if (scope.tNumber < scope.count - 1) {
-        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'lightgray';
+        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'gainsboro';
         ++scope.tNumber;
         this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
         this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
-        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'grey';
+        document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
       }
 
       if (tourCarouselTouchEndX < tourCarouselTouchStartX && scope.tNumber == scope.count - 1) {
@@ -239,13 +238,13 @@
     closeTour = function () {
       event.preventDefault();
       event.stopPropagation();
-      document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'lightgray';
+      document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'gainsboro';
       scope.tNumber = 0;
       this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
       this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
       this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
       this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
-      document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'grey';
+      document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
       scope.registrButton = false;
       scope.update();
       if (opts.view != "registration") {
