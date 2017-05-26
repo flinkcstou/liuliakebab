@@ -234,7 +234,7 @@
         scope.weekMode = false;
         scope.timeMode = true;
         scope.dayMode = false;
-        scope.shift = 150;
+        scope.shift = 170;
         count = 24;
         scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseTime;
         scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
@@ -283,7 +283,7 @@
 
       nShift = Math.round(Math.abs(dateCarouselTouchEndY - dateCarouselTouchStartY) / (scope.shift * widthK));
 
-      if (Math.abs(dateCarouselTouchStartY - dateCarouselTouchEndY) > 20 && Math.abs(dateCarouselTouchStartX - dateCarouselTouchEndX) < 20) {
+      if (Math.abs(dateCarouselTouchStartY - dateCarouselTouchEndY) > 20) {
         changePosition(nShift);
       }
     };
@@ -301,8 +301,10 @@
 //      console.log("xx=", event.changedTouches[0].pageY + delta);
 //      changePosition(event.changedTouches[0].pageY + delta);
       tempShift = Math.round(Math.abs(event.changedTouches[0].pageY + delta) / (scope.shift * widthK));
+      console.log(tempShift)
       tempEndY = event.changedTouches[0].pageY;
 //      console.log("s=", tempShift);
+      //TODO: OLDSHIFT incorrect rano zahodit v proverku
       if (tempShift != oldShift) {
         if (counter == 0) {
           document.getElementById("day" + dateNumber).style.color = '#c1c1c1';

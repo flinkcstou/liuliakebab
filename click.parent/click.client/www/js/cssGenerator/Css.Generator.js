@@ -2219,7 +2219,7 @@ var css = {
   "border-radius:" + 100 * widthK + "px;" +
   "border: none;" +
   "color: #027ee3;" +
-  "background-color: #7ae4ff;" +
+  //"background-color: #7ae4ff;" +
   "top: 0;" +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
