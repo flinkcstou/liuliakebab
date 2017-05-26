@@ -377,17 +377,24 @@
 
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
+            var bankListAvailable = [];
             for (var i in result[1]) {
               result[1][i].amount = result[1][i].p2p_max_limit.toString();
-//              console.log('result[1][i]', result[1][i])
+              console.log('result[1][i]', result[1][i])
 
               result[1][i].amount = window.amountTransform(result[1][i].amount);
+
+              if (result[1][i].p2p_status == 1)
+                bankListAvailable.push(result[1][i]);
 
 //              console.log("!!!!!", result[1][i].p2p_max_limit);
             }
 //            console.log("result of P2P BANK LIST ", result[1]);
-            if (localStorage.getItem('click_client_p2p_bank_list') != JSON.stringify(result[1]))
-              localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(result[1]))
+            if (localStorage.getItem('click_client_p2p_all_bank_list') != JSON.stringify(result[1])) {
+              localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(bankListAvailable));
+              localStorage.setItem('click_client_p2p_all_bank_list', JSON.stringify(result[1]));
+            }
+
           }
           else {
             scope.clickPinError = false;

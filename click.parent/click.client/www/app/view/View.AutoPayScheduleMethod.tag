@@ -51,8 +51,10 @@
            ontouchstart="dateContainerTouchStart()"
            ontouchend="dateContainerTouchEnd()"
            ontouchmove="dateContainerTouchMove()">
-        <div class="schedule-date-block-day" each="{i in dateBlockArray}"
-             style="top:{topOfOperations*i.k}px;">
+        <div
+          class="{schedule-date-block-day:!timeMode && !weekMode && dayMode,schedule-date-block-week:!timeMode && weekMode && !dayMode,schedule-date-block-time:timeMode && !weekMode && !dayMode}"
+          each="{i in dateBlockArray}"
+          style="top:{topOfOperations*i.k}px;">
           <p id="day{i.k-1}"
              class="{schedule-date-block-day-text: !timeMode && !weekMode && dayMode, schedule-date-block-week-text: !timeMode && weekMode && !dayMode, schedule-date-block-time-text: timeMode && !weekMode && !dayMode}">
             {i.v}</p>
@@ -116,7 +118,7 @@
     scope.timeMode = false;
     scope.dayMode = false;
 
-    scope.shift = 170;
+    //    scope.shift = 170;
 
     //    scope.topOfWeekOperations = 100 * widthK;
     var dateNumber, count, minuteNumber = 0, minutesCount = 60;
@@ -144,11 +146,11 @@
       scope.autoPayData.type = 4;
       dateNumber = 0;
       minuteNumber = 0;
-      scope.topOfOperations = 150 * widthK;
+      scope.topOfOperations = 143 * widthK;
       scope.weekMode = false;
       scope.timeMode = true;
       scope.dayMode = false;
-      scope.shift = 150;
+      scope.shift = 143;
       count = 24;
       scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseTime;
       scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
@@ -156,32 +158,32 @@
       dateChooseBlockId.style.display = 'block';
 //      console.log("LAST DAY, dateBlockArray", scope.dateBlockArray);
       scope.update();
-      changePositionInit();
+      changePositionInitAutoPay();
       changeMinutesPositionInit();
     }
 
     everyMonthChosenDay = function () {
       scope.autoPayData.type = 3;
       dateNumber = 0;
-      scope.topOfOperations = 170 * widthK;
+      scope.topOfOperations = 185 * widthK;
       scope.weekMode = false;
       scope.timeMode = false;
       scope.dayMode = true;
-      scope.shift = 170;
+      scope.shift = 185;
       count = 31;
       scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseDate;
       scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleDaysArray;
       dateChooseBlockId.style.display = 'block';
 //      console.log("CHOSEN DAY, dateBlockArray", scope.dateBlockArray);
       scope.update();
-      changePositionInit();
+      changePositionInitAutoPay();
     }
 
     everyWeek = function () {
       scope.autoPayData.type = 2;
       dateNumber = 0;
-      scope.topOfOperations = 100 * widthK;
-      scope.shift = 100;
+      scope.topOfOperations = 84 * widthK;
+      scope.shift = 84;
       scope.weekMode = true;
       scope.timeMode = false;
       scope.dayMode = false;
@@ -191,7 +193,7 @@
       dateChooseBlockId.style.display = 'block';
 //      console.log("EVERY WEEK, dateBlockArray", scope.dateBlockArray);
       scope.update();
-      changePositionInit();
+      changePositionInitAutoPay();
     }
 
     chooseDate = function () {
@@ -234,7 +236,7 @@
         scope.weekMode = false;
         scope.timeMode = true;
         scope.dayMode = false;
-        scope.shift = 170;
+        scope.shift = 150;
         count = 24;
         scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseTime;
         scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
@@ -242,7 +244,7 @@
         dateChooseBlockId.style.display = 'block';
 //        console.log("LAST DAY, dateBlockArray", scope.dateBlockArray);
         scope.update();
-        changePositionInit();
+        changePositionInitAutoPay();
         changeMinutesPositionInit();
       }
 
@@ -253,7 +255,7 @@
       dateNumber = 0;
 
       this.on('mount', function () {
-        changePositionInit();
+        changePositionInitAutoPay();
       });
 
     }
@@ -284,8 +286,8 @@
 
       nShift = Math.round(Math.abs(dateCarouselTouchEndY - dateCarouselTouchStartY) / (scope.shift * widthK));
 
-      if (Math.abs(dateCarouselTouchStartY - dateCarouselTouchEndY) > 20) {
-        changePosition(nShift);
+      if (Math.abs(dateCarouselTouchStartY - dateCarouselTouchEndY) > 20 && Math.abs(dateCarouselTouchStartX - dateCarouselTouchEndX) < 20) {
+        changePositionAutoPay(nShift);
       }
     };
 
@@ -301,10 +303,8 @@
 //      console.log("xx=", event.changedTouches[0].pageY + delta);
 //      changePosition(event.changedTouches[0].pageY + delta);
       tempShift = Math.round(Math.abs(event.changedTouches[0].pageY + delta) / (scope.shift * widthK));
-      console.log(tempShift)
       tempEndY = event.changedTouches[0].pageY;
 //      console.log("s=", tempShift);
-      //TODO: OLDSHIFT incorrect rano zahodit v proverku
       if (tempShift != oldShift) {
         if (counter == 0) {
           document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
@@ -332,7 +332,7 @@
 
     }
 
-    function changePosition(nShift) {
+    function changePositionAutoPay(nShift) {
       //      console.log("NSHIFT", nShift);
       document.getElementById("day" + nOld).style.color = '#c1c1c1';
       document.getElementById("day" + nNew).style.color = '#c1c1c1';
@@ -386,7 +386,7 @@
       localStorage.setItem('dateNumber', dateNumber);
     }
 
-    function changePositionInit() {
+    function changePositionInitAutoPay() {
 
       if (dateNumber < count - 1) {
         document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
@@ -453,7 +453,7 @@
       mShift = Math.round(Math.abs(minutesTouchStartY - minutesTouchEndY) / (scope.shift * widthK));
 //      console.log("potential move=", Math.ceil(mspeed) * mShift);
 
-      if (Math.abs(minutesTouchStartY - minutesTouchEndY) > 20 && Math.abs(minutesTouchStartX - minutesTouchEndX) > 20) {
+      if (Math.abs(minutesTouchStartY - minutesTouchEndY) > 20 && Math.abs(minutesTouchStartX - minutesTouchEndX) < 20) {
         changeMinutesPosition(mShift);
       }
     }

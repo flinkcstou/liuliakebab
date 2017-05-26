@@ -12668,7 +12668,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: " + 600 * widthK + "px;" +
-  "height:" + 300 * widthK + "px;" +
+  "height:" + 260 * widthK + "px;" +
   "top:  " + 335 * widthK + "px;" +
   "left: 7%;" +
     //"background-color: #01B8FE;" +
@@ -12711,7 +12711,25 @@ var css = {
   scheduleDateBlockDay: ".schedule-date-block-day " +
   "{" +
   "position: absolute;" +
-  "height: " + 170 * widthK + "px;" +
+  "height: " + 185 * widthK + "px;" +
+  "width: 100%;" +
+  "color: #8b8b8b;" +
+  "text-align: center;" +
+  "}",
+
+  scheduleDateBlockWeek: ".schedule-date-block-week " +
+  "{" +
+  "position: absolute;" +
+  "height: " + 84 * widthK + "px;" +
+  "width: 100%;" +
+  "color: #8b8b8b;" +
+  "text-align: center;" +
+  "}",
+
+  scheduleDateBlockTime: ".schedule-date-block-time " +
+  "{" +
+  "position: absolute;" +
+  "height: " + 143 * widthK + "px;" +
   "width: 100%;" +
   "color: #8b8b8b;" +
   "text-align: center;" +

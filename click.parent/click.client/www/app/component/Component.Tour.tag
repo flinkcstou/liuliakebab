@@ -101,6 +101,9 @@
     scope.registrButton = false;
 
     scope.on('mount', function () {
+      if (device.platform != 'BrowserStand') {
+        StatusBar.backgroundColorByHexString("#002334");
+      }
       document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
       if (scope.count == 1) {
         scope.registrButton = true;
@@ -254,6 +257,9 @@
         localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
       }
 
+      if (device.platform != 'BrowserStand') {
+        StatusBar.backgroundColorByHexString("#00a8f1");
+      }
       componentTourId.style.display = 'none';
     }
 
