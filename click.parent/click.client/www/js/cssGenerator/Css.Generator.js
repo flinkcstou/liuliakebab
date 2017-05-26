@@ -799,7 +799,7 @@ var css = {
 
   keyboardButtonsActive: ".keyboard-buttons:active " +
   "{" +
-  "background: radial-gradient(rgba(255, 255, 255, 0.23), rgba(255, 255, 255, 0.04), transparent);" +
+  "background: radial-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.08), transparent);" +
     //"border-radius:" + 80 * widthK + "px;" +
   "}",
 
