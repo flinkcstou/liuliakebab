@@ -57,14 +57,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/5.png);" +
-    //"opacity: 0.6;" +
+  "background-image: url(resources/total-balance.png);" +
+  "opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    //"background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    //"background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    //"background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -12995,6 +12995,43 @@ var css = {
   "background-repeat: no-repeat;" +
   "}",
 
+  componentTourIn: ".component-tour-in " +
+  "{" +
+  "position: absolute;" +
+  "opacity: 1;" +
+  "height: 91%;" +
+  "width: 81%;" +
+    //"top: 5%;" +
+  "left: 8%;" +
+  "background-color: white;" +
+  "overflow: hidden;" +
+  "display:none;" +
+  "top: 5%;" +
+  "}",
+
+  tourCardCarouselIn: ".tour-card-carousel-in " +
+  "{" +
+  "position: absolute;" +
+  "height:100%;" +
+  "width: 100%;" +
+    //"top: 12%;" +
+  "display: inline-block;" +
+  "}",
+
+  componentTourCardIn: ".component-tour-card-in " +
+  "{" +
+  "position: absolute;" +
+  "opacity: 1;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "left: 8%;" +
+    //"background-color: #ee4d3d;" +
+  "transform: translate(-84%, 0);" +
+  "background-position: center;" +
+  "background-size: 100%;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
   tourMessage: ".tour-message" +
   "{" +
   "position: relative;" +
@@ -13177,7 +13214,7 @@ var css = {
   "margin-right: auto;" +
   "margin-left: auto;" +
   "height:" + 50 * widthK + "px;" +
-  "top: 78%;" +
+  "top: 79%;" +
   "}",
 
   tourCirclesField: ".tour-circles-field " +

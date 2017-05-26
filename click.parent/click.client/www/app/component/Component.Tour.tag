@@ -1,17 +1,21 @@
-<component-tour id="componentTourId" class="component-tour">
+<component-tour id="componentTourId"
+                class="{component-tour:opts.view=='registration',component-tour-in: opts.view!='registration'}">
 
   <p class="tour-title-text">{tourTitle}</p>
 
   <div type="button" class="tour-close-icon" ontouchend="closeTour()"></div>
 
 
-  <div id="tourContainerId" class="tour-card-carousel" ontouchstart="tourContainerTouchStart()"
+  <div id="tourContainerId"
+       class="{tour-card-carousel:opts.view=='registration',tour-card-carousel-in:opts.view!='registration'}"
+       ontouchstart="tourContainerTouchStart()"
        ontouchend="tourContainerTouchEnd()"
        ontouchmove="tourContainerTouchMove()">
 
 
-    <div class="component-tour-card" each="{i in tourCardsArray}"
-         style="left:{78+100*(i.counter-1)}%;background-image: url({i.text})"></div>
+    <div class="{component-tour-card: opts.view=='registration',component-tour-card-in: opts.view!='registration'}"
+         each="{i in tourCardsArray}"
+         style="left:{leftX+100*(i.counter-1)}%;background-image: url({i.text})"></div>
 
 
   </div>
@@ -69,14 +73,17 @@
         }
       ];
 
+      scope.leftX = 78;
+
       scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
       scope.count = 5;
     } else if (opts.view == "mainpage") {
-      scope.tourCardsArray = [{counter: 1, text: "resources/icons/ComponentTour/tutorial_main_1.png"}, {
+      scope.tourCardsArray = [{counter: 1, text: "resources/icons/ComponentTour/mainpage/total-balance.png"}, {
         counter: 2,
-        text: "resources/icons/ComponentTour/tutorial_main_2.png"
+        text: "resources/icons/ComponentTour/mainpage/my-cards.png"
       }];
 
+      scope.leftX = 84;
       scope.tourTitle = window.languages.ComponentTourMainPageTitleText;
       scope.count = 2;
     }
