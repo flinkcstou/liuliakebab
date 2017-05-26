@@ -194,6 +194,8 @@
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
 
+  <component-tour view="calculator"></component-tour>
+
 
   </div>
 
@@ -275,6 +277,10 @@
 
 
     this.on('mount', function () {
+
+      if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).calculator) {
+        componentTourId.style.display = "block";
+      }
 
       if (opts && opts.number) {
         firstFieldInput.value = opts.number

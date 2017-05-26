@@ -54,6 +54,8 @@
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
 
+  <component-tour view="friendhelp"></component-tour>
+
   <script>
 
 
@@ -89,6 +91,13 @@
       onBackKeyDown()
       scope.unmount()
     };
+
+    this.on('mount', function () {
+
+      if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).friendhelp) {
+        componentTourId.style.display = "block";
+      }
+    });
 
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);

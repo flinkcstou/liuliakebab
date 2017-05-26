@@ -1,16 +1,45 @@
-window.tourCards = [];
+window.tourCards = {};
 
-tourCards = [
-  {
-    "xPos": "100",
-    "yPos": "100",
-    "message": "This is the first tip!",
-    "viewPage": "view-main-page"
+tourCards.registration =
+  [{counter: 1, text: "resources/icons/ComponentTour/registration/tutorial_1.png"}, {
+    counter: 2,
+    text: "resources/icons/ComponentTour/registration/tutorial_2.png"
+  }, {
+    counter: 3,
+    text: "resources/icons/ComponentTour/registration/tutorial_3.png"
+  }, {
+    counter: 4,
+    text: "resources/icons/ComponentTour/registration/tutorial_4.png"
   },
-  {
-    "xPos": "150",
-    "yPos": "150",
-    "message": "This is the second tip!",
-    "viewPage": "view-main-page"
-  }
-];
+    {
+      counter: 5,
+      text: "resources/icons/ComponentTour/registration/tutorial_5.png"
+    }
+  ];
+
+tourCards.mainpage = [{counter: 1, text: "resources/icons/ComponentTour/mainpage/total-balance.png"}, {
+  counter: 2,
+  text: "resources/icons/ComponentTour/mainpage/my-cards.png"
+}];
+
+tourCards.transfer = [{counter: 1, text: "resources/icons/ComponentTour/transfer/banks.png"}, {
+  counter: 2,
+  text: "resources/icons/ComponentTour/transfer/card.png"
+}, {
+  counter: 3,
+  text: "resources/icons/ComponentTour/transfer/contact.png"
+}];
+
+tourCards.invoice = [{counter: 1, text: "resources/icons/ComponentTour/invoice/invoice.png"}, {
+  counter: 2,
+  text: "resources/icons/ComponentTour/invoice/invoice-2.png"
+}];
+
+tourCards.autopaymethod = [{counter: 1, text: "resources/icons/ComponentTour/autopaymethod/event.png"}, {
+  counter: 2,
+  text: "resources/icons/ComponentTour/autopaymethod/schedule.png"
+}];
+
+tourCards.calculator = [{counter: 1, text: "resources/icons/ComponentTour/calculator.png"}];
+
+tourCards.friendhelp = [{counter: 1, text: "resources/icons/ComponentTour/friend-help.png"}];

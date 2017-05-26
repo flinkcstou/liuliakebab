@@ -475,6 +475,7 @@ var RU_LANGUAGES =
   "ComponentTourMainPageTitleText": "Тур по приложению",
   "ComponentTourNextButtonText": "Далее",
   "ComponentTourCloseButtonText": "Закрыть",
+  "ComponentTourCloseButtonTextIn": "ОК,я все понял",
   "ComponentTourRegistrationButtonText": "Начать регистрацию",
 };
 

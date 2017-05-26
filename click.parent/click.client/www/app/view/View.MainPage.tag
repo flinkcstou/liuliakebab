@@ -36,7 +36,7 @@
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#00a8f1");
-      console.log("MAINPAGE", JSON.parse(localStorage.getItem("tour_data")))
+
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).mainpage) {
         componentTourId.style.display = "block";
       }

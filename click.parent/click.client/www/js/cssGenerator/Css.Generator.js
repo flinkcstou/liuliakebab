@@ -57,14 +57,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  "background-image: url(resources/total-balance.png);" +
-  "opacity: 0.6;" +
+    //"background-image: url(resources/total-balance.png);" +
+    //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-    //"background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    //"background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    //"background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -5733,10 +5733,10 @@ var css = {
 
   codeConfirmButtonEnter: ".code-confirm-button-enter" +
   "{" +
-  //"bottom: 24%;" +
+    //"bottom: 24%;" +
   "margin: 0;" +
   "margin-top: 25%;" +
-  //"float: left;" +
+    //"float: left;" +
   "text-align: center;" +
   "background-color: #017ce3;" +
   "font-size: " + 29 * widthK + "px;" +
@@ -7969,7 +7969,7 @@ var css = {
   "{" +
   "margin: 0;" +
   "margin-top: 10%;" +
-  //"float: left;" +
+    //"float: left;" +
   "text-align: center;" +
   "background-color: #017ce3;" +
   "font-size: " + 29 * widthK + "px;" +
@@ -13107,6 +13107,7 @@ var css = {
   "background-position-x:center;" +
   "background-size: 25%;" +
   "top:1%;" +
+  "z-index: 999;" +
   "}",
 
 

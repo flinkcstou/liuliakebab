@@ -201,10 +201,16 @@
 
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
+
+  <component-tour view="transfer"></component-tour>
   <script>
 
     viewTransfer.check = true;
     this.on('mount', function () {
+
+      if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
+        componentTourId.style.display = "block";
+      }
 
       if (opts && opts.number) {
         contactPhoneNumberId.value = opts.number

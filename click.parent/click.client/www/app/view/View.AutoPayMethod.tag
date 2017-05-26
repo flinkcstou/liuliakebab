@@ -34,6 +34,8 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
+  <component-tour view="autopaymethod"></component-tour>
+
   <script>
     var scope = this;
     scope.showError = false;
@@ -51,6 +53,13 @@
       this.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
       this.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
     }
+
+    this.on('mount', function () {
+
+      if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).autopaymethod) {
+        componentTourId.style.display = "block";
+      }
+    });
 
 
     eventTouchEnd = function () {

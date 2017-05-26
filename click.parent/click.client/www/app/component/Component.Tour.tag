@@ -1,5 +1,5 @@
 <component-tour id="componentTourId"
-                class="{component-tour:opts.view=='registration',component-tour-in: opts.view!='registration'}">
+                class="{component-tour:opts.view=='registration', component-tour-in: opts.view!='registration'}">
 
   <p class="tour-title-text">{tourTitle}</p>
 
@@ -15,7 +15,7 @@
 
     <div class="{component-tour-card: opts.view=='registration',component-tour-card-in: opts.view!='registration'}"
          each="{i in tourCardsArray}"
-         style="left:{leftX+100*(i.counter-1)}%;background-image: url({i.text})"></div>
+         style="left:{84+100*(i.counter-1)}%;background-image: url({i.text})"></div>
 
 
   </div>
@@ -40,11 +40,11 @@
 
   <div class="tour-buttons-container" if="{registrButton}">
     <div
-      class="{tour-registration-button: opts.view=='registration', tour-close-button-center:opts.view!='registration'}"
+      class="tour-registration-button"
       ontouchend="closeTour()">
       <p class="tour-registration-button-label">
         {opts.view == "registration"?
-        window.languages.ComponentTourRegistrationButtonText:window.languages.ComponentTourCloseButtonText}</p>
+        window.languages.ComponentTourRegistrationButtonText:window.languages.ComponentTourCloseButtonTextIn}</p>
     </div>
   </div>
 
@@ -57,35 +57,35 @@
     console.log("component tour view=", opts.view);
 
     if (opts.view == "registration") {
-      scope.tourCardsArray = [{counter: 1, text: "resources/icons/ComponentTour/tutorial_1.png"}, {
-        counter: 2,
-        text: "resources/icons/ComponentTour/tutorial_2.png"
-      }, {
-        counter: 3,
-        text: "resources/icons/ComponentTour/tutorial_3.png"
-      }, {
-        counter: 4,
-        text: "resources/icons/ComponentTour/tutorial_4.png"
-      },
-        {
-          counter: 5,
-          text: "resources/icons/ComponentTour/tutorial_5.png"
-        }
-      ];
-
-      scope.leftX = 78;
+      scope.tourCardsArray = tourCards.registration;
 
       scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
       scope.count = 5;
+      scope.update();
     } else if (opts.view == "mainpage") {
-      scope.tourCardsArray = [{counter: 1, text: "resources/icons/ComponentTour/mainpage/total-balance.png"}, {
-        counter: 2,
-        text: "resources/icons/ComponentTour/mainpage/my-cards.png"
-      }];
-
-      scope.leftX = 84;
-      scope.tourTitle = window.languages.ComponentTourMainPageTitleText;
+      scope.tourCardsArray = tourCards.mainpage;
       scope.count = 2;
+      scope.update();
+    } else if (opts.view == "transfer") {
+      scope.tourCardsArray = tourCards.transfer;
+      scope.count = 3;
+      scope.update();
+    } else if (opts.view == "invoice") {
+      scope.tourCardsArray = tourCards.invoice;
+      scope.count = 2;
+      scope.update();
+    } else if (opts.view == "autopaymethod") {
+      scope.tourCardsArray = tourCards.autopaymethod;
+      scope.count = 2;
+      scope.update();
+    } else if (opts.view == "calculator") {
+      scope.tourCardsArray = tourCards.calculator;
+      scope.count = 1;
+      scope.update();
+    } else if (opts.view == "friendhelp") {
+      scope.tourCardsArray = tourCards.friendhelp;
+      scope.count = 1;
+      scope.update();
     }
 
 
@@ -97,6 +97,10 @@
 
     scope.on('mount', function () {
       document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'grey';
+      if (scope.count == 1) {
+        scope.registrButton = true;
+        scope.update();
+      }
     });
 
     tourContainerTouchStart = function () {
@@ -106,7 +110,7 @@
 
       percentageTouche = (tourCarouselTouchStartX * 100.0) / window.innerHeight;
 
-      console.log("touche started at %", percentageTouche);
+      console.log("touch started at %", percentageTouche);
 
       left = -(100 * scope.tNumber) - percentageTouche;
       delta = left;

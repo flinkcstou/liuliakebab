@@ -57,6 +57,8 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
+  <component-tour view="invoice"></component-tour>
+
   <script>
 
     var scope = this,
@@ -64,6 +66,7 @@
       goToInvoiceHistoryDetailTouchEndX,
       goToInvoiceHistoryDetailTouchStartY,
       goToInvoiceHistoryDetailTouchEndY;
+
 
     componentMenu.check = false;
 
@@ -78,6 +81,13 @@
     window.checkShowingComponent = null;
 
     console.log("TO USER", scope.toUser, opts.toUser);
+
+    this.on('mount', function () {
+
+      if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).invoice) {
+        componentTourId.style.display = "block";
+      }
+    });
 
     var invoiceListPageNumber = 1;
 
