@@ -319,9 +319,11 @@
     }
     //    console.log('OPTS', opts)
 
-    if (JSON.parse(localStorage.getItem('click_client_loginInfo'))) {
+    if (localStorage.getItem('click_client_loginInfo')) {
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+
+//      console.log('LOGIN INFO', logi)
     }
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -363,7 +365,7 @@
 
     };
 
-
+    console.log('BANK UPDATE',loginInfo.update_bank_list)
     if (!localStorage.getItem("click_client_p2p_bank_list") || loginInfo.update_bank_list) {
       window.api.call({
         method: 'p2p.bank.list',
@@ -1107,7 +1109,7 @@
             console.log('firstFourSymbols', firstFourSymbols)
             if (firstFourSymbols != '8600') {
               scope.clickPinError = false;
-              scope.errorNote = 'Карта "ххххххх" банка временно недоступна для перевода средствska';
+              scope.errorNote = 'Неверные данные о карте';
               scope.showError = true;
               scope.update();
 //            alert('Неверный код банка');
@@ -1115,14 +1117,21 @@
             }
             var codeOfBank = cardInputId.value.replace(/\s/g, '').substring(3, 6);
             var checkOfCode = false;
+            var statusOfBankToP2P = false;
+            var nameOfBank = '';
             console.log('CODE OF BANK', codeOfBank)
 
-            var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))
+            var bankList = JSON.parse(localStorage.getItem('click_client_p2p_all_bank_list'))
             console.log("BANKLIST", bankList);
             var percentOfBank = 0;
             for (var i = 0; i < bankList.length; i++) {
+              console.log('BANK LIST', bankList[i])
               if (codeOfBank == bankList[i].code) {
                 checkOfCode = true;
+                nameOfBank = bankList[i].bank_name;
+                if(bankList[i].p2p_status == 1){
+                  statusOfBankToP2P = true
+                }
                 percentOfBank = bankList[i].p2p_percent
                 break;
               }
@@ -1132,12 +1141,22 @@
             }
             if (!checkOfCode) {
               scope.clickPinError = false;
-              scope.errorNote = 'Карта "ххххххх" банка временно недоступна для перевода средств';
+              scope.errorNote = 'Неверный номер карты';
               scope.showError = true;
               scope.update();
 //            alert('Неверный код банка');
               return;
             }
+
+            if (checkOfCode && !statusOfBankToP2P) {
+              scope.clickPinError = false;
+              scope.errorNote = 'Карта "' + nameOfBank +'" банка временно недоступна для перевода средств';
+              scope.showError = true;
+              scope.update();
+//            alert('Неверный код банка');
+              return;
+            }
+
           }
           cardNumberForTransfer = cardInputId.value;
           viewTransfer.cardNumber = cardNumberForTransfer
