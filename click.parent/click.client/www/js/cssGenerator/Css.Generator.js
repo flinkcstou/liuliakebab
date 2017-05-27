@@ -13021,12 +13021,12 @@ var css = {
   "top: 1%;" +
   "position: absolute;" +
   "opacity: 1;" +
-  "height: 95%;" +
+  "height: 94%;" +
   "width: 84%;" +
     //"top: 5%;" +
   "left: 8%;" +
-    //"background-color: white;" +
-  "overflow: hidden;" +
+  "background-color: white;" +
+  "overflow : hidden;" +
     //"display:none;" +
   "z-index:999;" +
   "}",
