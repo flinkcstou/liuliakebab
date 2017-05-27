@@ -102,7 +102,7 @@
 
     scope.on('mount', function () {
       if (device.platform != 'BrowserStand') {
-        StatusBar.backgroundColorByHexString("#002334");
+//        StatusBar.backgroundColorByHexString("#002334");
       }
       document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
       if (scope.count == 1) {

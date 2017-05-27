@@ -272,9 +272,12 @@ window.api.call = function (params) {
     if (device.platform != 'BrowserStand')
       if(window.api.spinnerOn) {
         SpinnerPlugin.activityStop();
+        onBackKeyDown();
+        showAlertComponent("Сервис временно недоступен");
+
       }
 
-  }, 5000);
+  }, 10000);
 };
 
 function onlineDetector() {
