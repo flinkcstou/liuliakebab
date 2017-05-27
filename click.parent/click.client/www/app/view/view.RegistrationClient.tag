@@ -77,6 +77,8 @@
     this.on('mount', function () {
       boxOne.style.border = 'solid 1px gray';
       checkOne = true;
+
+      StatusBar.backgroundColorByHexString("#00b0eb");
     })
 
     var scope = this;

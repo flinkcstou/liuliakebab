@@ -122,7 +122,7 @@
 
 
     if (device.platform != 'BrowserStand')
-      StatusBar.backgroundColorByHexString("#00a8f1");
+      StatusBar.backgroundColorByHexString("#00b0eb");
 
     if (device.platform == 'Android') {
       scope.checkAndroid = true;

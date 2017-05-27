@@ -45,6 +45,12 @@
     }
     scope.confirmSms = '';
 
+    this.on('mount', function () {
+
+      StatusBar.backgroundColorByHexString("#00b0eb");
+    })
+
+
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
 
     componentKeyboard.returnStartValue = function () {

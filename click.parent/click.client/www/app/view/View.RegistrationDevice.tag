@@ -64,6 +64,8 @@
     this.on('mount', function () {
       if (device.platform == 'iOS')
         demoContainer.style.left = 100 * widthK + 'px';
+
+      StatusBar.backgroundColorByHexString("#00b0eb");
     })
 
     localStorage.setItem('device.platform', device.platform)
