@@ -268,16 +268,17 @@ window.api.call = function (params) {
     //}
   }
 
-  setTimeout(function(){
-    if (device.platform != 'BrowserStand')
-      if(window.api.spinnerOn) {
-        SpinnerPlugin.activityStop();
-        onBackKeyDown();
-        showAlertComponent("Сервис временно недоступен");
+  if (modeOfApp.onlineMode && (method == "get.additional.information" || method == "get.payment"))
+    setTimeout(function () {
+      if (device.platform != 'BrowserStand')
+        if (window.api.spinnerOn) {
+          SpinnerPlugin.activityStop();
+          onBackKeyDown();
+          showAlertComponent("Сервис временно недоступен");
 
-      }
+        }
 
-  }, 10000);
+    }, 10000);
 };
 
 function onlineDetector() {

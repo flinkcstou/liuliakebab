@@ -239,7 +239,7 @@
       contactDeleteTouchEndY = event.changedTouches[0].pageY
 
       if (Math.abs(contactDeleteTouchStartX - contactDeleteTouchEndX) <= 20 && Math.abs(contactDeleteTouchStartY - contactDeleteTouchEndY) <= 20) {
-        var arrayOfContacts = JSON.parse(localStorage.getItem('transferContacts'))
+        var arrayOfContacts = JSON.parse(localStorage.getItem('contactList'))
 
         var question = 'Контакт будет удален из списка'
         scope.confirmShowBool = true;
@@ -253,7 +253,7 @@
                 arrayOfContacts.splice(i, 1);
               }
             }
-            localStorage.setItem('transferContacts', JSON.stringify(arrayOfContacts))
+            localStorage.setItem('contactList', JSON.stringify(arrayOfContacts))
             onBackKeyDown()
             return
           }

@@ -5,7 +5,7 @@
          class="{transfer-back-button: backbuttoncheck}">
 
     </div>
-    <div id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"
+    <div if="{modeOfApp.onlineMode}" id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"
          ontouchend="openBanksListPage()"></div>
   </div>
 
@@ -365,8 +365,10 @@
 
     };
 
-    console.log('BANK UPDATE', loginInfo.update_bank_list)
+//    console.log('BANK UPDATE', loginInfo.update_bank_list)
+    if(loginInfo)
     if (!localStorage.getItem("click_client_p2p_bank_list") || loginInfo.update_bank_list) {
+      if(modeOfApp.onlineMode)
       window.api.call({
         method: 'p2p.bank.list',
         input: {
