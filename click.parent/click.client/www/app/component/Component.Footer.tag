@@ -87,7 +87,7 @@
     scope.firstContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
     scope.firstContactObject.firstLetter = '';
     scope.firstContactObject.phoneNumbers = [];
-    scope.firstContactObject.exist = true;
+    scope.firstContactObject.exist = false;
     scope.firstContactObject.addContact = false;
 
     scope.secondContactObject = {};
