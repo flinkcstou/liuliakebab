@@ -13021,8 +13021,10 @@ var css = {
   "top: 1%;" +
   "position: absolute;" +
   "opacity: 1;" +
-  "height: 94%;" +
-  "width: 84%;" +
+    //"height: 94%;" +
+    //"width: 84%;" +
+  "height:" + 1158.080 * heightK + "px;" +
+  "width:" + 604.797 * widthK + "px;" +
     //"top: 5%;" +
   "left: 8%;" +
   "background-color: white;" +
@@ -13081,8 +13083,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "opacity: 1;" +
-  "height: 100%;" +
-  "width: 100%;" +
+    //"height: 100%;" +
+    //"width: 100%;" +
+  "height:" + 1158.080 * widthK + "px;" +
+  "width:" + 604.797 * widthK + "px;" +
   "left: 8%;" +
     //"background-color: #ee4d3d;" +
   "transform: translate(-84%, 0);" +
