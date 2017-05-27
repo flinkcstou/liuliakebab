@@ -1,6 +1,7 @@
 window.api = {};
 
 window.api.sessionErrorChecker = false;
+window.api.spinnerOn = false;
 
 window.api.callBacks = {};
 
@@ -178,6 +179,7 @@ window.api.initSocket = function () {
 window.api.call = function (params) {
 
   window.api.sessionErrorChecker = false;
+  window.api.spinnerOn = true;
 
   var method = params.method;
   console.log('METHOD', method);
@@ -189,6 +191,7 @@ window.api.call = function (params) {
   console.log("IT IS INPUT ", input);
   this.callBacks[method] = {
     ok: function (data) {
+      window.api.spinnerOn = false;
       //console.log('ANSWER OF API ', data);
 
 
@@ -264,6 +267,14 @@ window.api.call = function (params) {
     //  riot.update()
     //}
   }
+
+  setTimeout(function(){
+    if (device.platform != 'BrowserStand')
+      if(window.api.spinnerOn) {
+        SpinnerPlugin.activityStop();
+      }
+
+  }, 5000);
 };
 
 function onlineDetector() {

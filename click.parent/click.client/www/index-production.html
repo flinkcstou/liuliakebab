@@ -44,6 +44,14 @@
 </div>
 
 <script>
+  var versionOfApp = '5.0'
+  if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
+
+  }
+  else {
+    localStorage.clear()
+    localStorage.setItem('version', versionOfApp)
+  }
 
   api.init();
   var scope = this;
@@ -73,11 +81,11 @@
           console.log('SIM permission is not turned on');
         }
         permissions.requestPermission(
-            permissions.READ_SMS,
-            function (status) {
-              if (!status.checkPermission) errorCallback();
-            },
-            errorCallback);
+          permissions.READ_SMS,
+          function (status) {
+            if (!status.checkPermission) errorCallback();
+          },
+          errorCallback);
       }
     }
 
@@ -87,11 +95,11 @@
           console.log('CALL permission is not turned on');
         }
         permissions.requestPermission(
-            permissions.CALL_PHONE,
-            function (status) {
-              if (!status.checkPermission) errorCallback();
-            },
-            errorCallback);
+          permissions.CALL_PHONE,
+          function (status) {
+            if (!status.checkPermission) errorCallback();
+          },
+          errorCallback);
       }
     }
 
@@ -105,16 +113,6 @@
     document.addEventListener("deviceready", function () {
 
 //      localStorage.setItem('device', JSON.stringify(device))
-
-      var versionOfApp = '5.0'
-      if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
-
-      }
-      else {
-        localStorage.clear()
-        localStorage.setItem('version', versionOfApp)
-      }
-
       localStorage.setItem("click_client_authorized", JSON.stringify(false));
 
 //      if (!window.isConnected) {
@@ -188,9 +186,9 @@
 
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-main-page'
-          || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device'
-          || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization'
-          || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-client') {
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device'
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization'
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-client') {
         navigator.app.exitApp();
       }
       else {
