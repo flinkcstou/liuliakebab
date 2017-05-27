@@ -108,10 +108,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-report',
-          "params": opts
-        }
+          {
+            "view": 'view-report',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -447,8 +447,8 @@
       }
 
       var firstDay = scope.tags["component-report-filter"].filterDateFrom,
-        lastDay = scope.tags["component-report-filter"].filterDateTo,
-        accountId = scope.tags["component-report-filter"].filterByAccount;
+          lastDay = scope.tags["component-report-filter"].filterDateTo,
+          accountId = scope.tags["component-report-filter"].filterByAccount;
 
       if (!accountId) {
 
@@ -585,8 +585,8 @@
       }
 
       var firstDay = scope.tags["component-report-filter"].filterDateFrom,
-        lastDay = scope.tags["component-report-filter"].filterDateTo,
-        accountId = scope.tags["component-report-filter"].filterByAccount;
+          lastDay = scope.tags["component-report-filter"].filterDateTo,
+          accountId = scope.tags["component-report-filter"].filterByAccount;
 
       if (!accountId) {
 
@@ -727,19 +727,19 @@
       console.log('DATA', data)
       var ctx = document.getElementById('myChart').getContext('2d');
       var myChart = new Chart(ctx, {
-          type: 'doughnut',
-          data: data,
-          options: {
-            cutoutPercentage: 55,
-            animateScale: false,
-            tooltips: {
-              enabled: false
-            },
-            events: [],
+            type: 'doughnut',
+            data: data,
+            options: {
+              cutoutPercentage: 55,
+              animateScale: false,
+              tooltips: {
+                enabled: false
+              },
+              events: [],
 
-          }
-        })
-        ;
+            }
+          })
+          ;
 
       for (var i in scope.arrayOfCoordinates) {
         if (document.getElementById('chartImageBlockId' + scope.arrayOfCoordinates[i].order)) {
@@ -802,6 +802,9 @@
             console.log("scope.tags['view-report-service']", scope)
             scope.showComponent = true;
             scope.tags['view-report-service'].opts = scope.paymentsList[i]
+
+            console.log("scope.tags['view-report-service']", scope.tags['view-report-service']);
+
             window.checkShowingComponent = scope.tags['view-report-service'];
 
             scope.update()

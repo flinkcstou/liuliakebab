@@ -64,13 +64,13 @@
           riot.mount('view-registration-device');
         }
         riot.mount('view-main-page');
-      }
+      };
 
       document.addEventListener("backbutton", onBackKeyDown, false);
     }, false);
   }
   else {
-    console.log('step', 0)
+    console.log('step', 0);
     var GENERATOR = document.createElement('script');
     GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
     document.head.appendChild(GENERATOR);
