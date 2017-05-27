@@ -43,7 +43,7 @@
 
     <div class="view-contact-select-phone-container">
       <div class="view-contact-select-phone-number-container" each="{i in arrayOfNumbers}"
-           ontouchend="choosePhoneNumberTouchEnd({i.value})">
+           ontouchstart="choosePhoneNumberTouchStart()" ontouchend="choosePhoneNumberTouchEnd({i.value})">
         <p class="view-contact-select-phone-number">+{i.value}</p>
       </div>
     </div>
@@ -161,46 +161,63 @@
 
     }
 
+    var contactChooseTouchStartX, contactChooseTouchStartY, contactChooseTouchEndX, contactChooseTouchEndY;
+    choosePhoneNumberTouchStart = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      contactChooseTouchStartX = event.changedTouches[0].pageX
+      contactChooseTouchStartY = event.changedTouches[0].pageY
+
+    }
+
     choosePhoneNumberTouchEnd = function (number) {
       event.preventDefault()
       event.stopPropagation()
-      console.log('NUMBER', number)
-      number = number.toString();
 
-      var maskOne = /[0-9]/g;
-
-      var digits = number.match(maskOne);
-      var phone = '';
-      for (var i in digits) {
-        phone += digits[i]
-      }
-      phone = phone.substring(phone.length - 9, phone.length);
+      contactChooseTouchEndX = event.changedTouches[0].pageX
+      contactChooseTouchEndY = event.changedTouches[0].pageY
 
 
-      if (goToPay) {
-        var id = window.mOperators[phone.substring(0, 2)]
-        if (id) {
-          viewPay.chosenServiceId = id;
+      if (Math.abs(contactChooseTouchStartX - contactChooseTouchEndX) <= 20 && Math.abs(contactChooseTouchStartY - contactChooseTouchEndY) <= 20) {
+        console.log('NUMBER', number)
+        number = number.toString();
 
-          console.log('ID', id)
+        var maskOne = /[0-9]/g;
 
-          riotTags.innerHTML = "<view-service-page>";
-          riot.mount("view-service-page", {number: phone});
+        var digits = number.match(maskOne);
+        var phone = '';
+        for (var i in digits) {
+          phone += digits[i]
+        }
+        phone = phone.substring(phone.length - 9, phone.length);
+
+
+        if (goToPay) {
+          var id = window.mOperators[phone.substring(0, 2)]
+          if (id) {
+            viewPay.chosenServiceId = id;
+
+            console.log('ID', id)
+
+            riotTags.innerHTML = "<view-service-page>";
+            riot.mount("view-service-page", {number: phone});
+
+            scope.unmount()
+          }
+          else {
+            scope.clickPinError = false;
+            scope.errorNote = 'Вы не можете оплатить за этот номер';
+            scope.showError = true;
+            scope.update();
+          }
+        }
+        else {
+          riotTags.innerHTML = "<view-transfer>";
+          riot.mount('view-transfer', {number: phone});
 
           scope.unmount()
         }
-        else {
-          scope.clickPinError = false;
-          scope.errorNote = 'Вы не можете оплатить за этот номер';
-          scope.showError = true;
-          scope.update();
-        }
-      }
-      else {
-        riotTags.innerHTML = "<view-transfer>";
-        riot.mount('view-transfer', {number: phone});
-
-        scope.unmount()
       }
     }
 

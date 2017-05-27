@@ -81,7 +81,7 @@
     scope.showError = false;
 
     scope.firstContactObject = {};
-    scope.firstContactObject.contactFname = '';
+    scope.firstContactObject.contactFname = 'Добавить';
     scope.firstContactObject.contactLname = '';
     scope.firstContactObject.id = '';
     scope.firstContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
@@ -91,7 +91,7 @@
     scope.firstContactObject.addContact = false;
 
     scope.secondContactObject = {};
-    scope.secondContactObject.contactFname = '';
+    scope.secondContactObject.contactFname = 'Добавить';
     scope.secondContactObject.contactLname = '';
     scope.secondContactObject.id = '';
     scope.secondContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
@@ -101,7 +101,7 @@
     scope.secondContactObject.addContact = false;
 
     scope.thirdContactObject = {};
-    scope.thirdContactObject.contactFname = '';
+    scope.thirdContactObject.contactFname = 'Добавить';
     scope.thirdContactObject.contactLname = '';
     scope.thirdContactObject.id = '';
     scope.thirdContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
@@ -111,7 +111,7 @@
     scope.thirdContactObject.addContact = false;
 
     scope.fourContactObject = {};
-    scope.fourContactObject.contactFname = '';
+    scope.fourContactObject.contactFname = 'Добавить';
     scope.fourContactObject.contactLname = '';
     scope.fourContactObject.id = '';
     scope.fourContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
@@ -122,7 +122,7 @@
 
 
     scope.fiveContactObject = {};
-    scope.fiveContactObject.contactFname = '';
+    scope.fiveContactObject.contactFname = 'Добавить';
     scope.fiveContactObject.contactLname = '';
     scope.fiveContactObject.id = '';
     scope.fiveContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
