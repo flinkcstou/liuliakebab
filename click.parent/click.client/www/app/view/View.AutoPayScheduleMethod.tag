@@ -45,16 +45,16 @@
     </div>
 
     <div
-      class="{schedule-date-block-days-outer-container: !timeMode && !weekMode && dayMode,schedule-date-block-week-outer-container: !timeMode && weekMode && !dayMode, schedule-date-block-time-outer-container: timeMode && !weekMode && !dayMode}">
+        class="{schedule-date-block-days-outer-container: !timeMode && !weekMode && dayMode,schedule-date-block-week-outer-container: !timeMode && weekMode && !dayMode, schedule-date-block-time-outer-container: timeMode && !weekMode && !dayMode}">
       <div id="dateContainerId"
            class="{schedule-date-block-days-container: !timeMode && (weekMode || dayMode), schedule-date-block-hours-container:timeMode && !weekMode && !dayMode}"
            ontouchstart="dateContainerTouchStart()"
            ontouchend="dateContainerTouchEnd()"
            ontouchmove="dateContainerTouchMove()">
         <div
-          class="{schedule-date-block-day:!timeMode && !weekMode && dayMode,schedule-date-block-week:!timeMode && weekMode && !dayMode,schedule-date-block-time:timeMode && !weekMode && !dayMode}"
-          each="{i in dateBlockArray}"
-          style="top:{topOfOperations*i.k}px;">
+            class="{schedule-date-block-day:!timeMode && !weekMode && dayMode,schedule-date-block-week:!timeMode && weekMode && !dayMode,schedule-date-block-time:timeMode && !weekMode && !dayMode}"
+            each="{i in dateBlockArray}"
+            style="top:{topOfOperations*i.k}px;">
           <p id="day{i.k-1}"
              class="{schedule-date-block-day-text: !timeMode && !weekMode && dayMode, schedule-date-block-week-text: !timeMode && weekMode && !dayMode, schedule-date-block-time-text: timeMode && !weekMode && !dayMode}">
             {i.v}</p>
@@ -128,10 +128,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-autopay-schedule-method') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-autopay-schedule-method',
-          "params": opts
-        }
+          {
+            "view": 'view-autopay-schedule-method',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -207,13 +207,13 @@
 
         if (scope.autoPayData.type == 2) {
           scope.autoPayData.condition_text = window.languages.ViewAutoPayMethodScheduleWeekDaysArray[scope.autoPayData.week_day - 1].v + ", " +
-            scope.autoPayData.paytime;
+              scope.autoPayData.paytime;
         } else if (scope.autoPayData.type == 3) {
           scope.autoPayData.condition_text = scope.autoPayData.month_day + ", " +
-            scope.autoPayData.paytime;
+              scope.autoPayData.paytime;
         } else if (scope.autoPayData.type == 4) {
           scope.autoPayData.condition_text = window.languages.ViewAutoPayEveryMonthLastDayTextTwo + ", " +
-            scope.autoPayData.paytime;
+              scope.autoPayData.paytime;
         }
 
         localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
@@ -268,7 +268,6 @@
     dateContainerTouchStart = function () {
       console.log("in start touch=", dateNumber);
       dateCarouselTouchStartY = event.changedTouches[0].pageY;
-      dateCarouselTouchStartX = event.changedTouches[0].pageX;
 //      console.log("startY=", dateCarouselTouchStartY);
       tempStartY = dateCarouselTouchStartY;
       nNew = dateNumber;
@@ -283,11 +282,10 @@
       event.preventDefault();
       event.stopPropagation();
       dateCarouselTouchEndY = event.changedTouches[0].pageY;
-      dateCarouselTouchEndX = event.changedTouches[0].pageX;
 
       nShift = Math.round(Math.abs(dateCarouselTouchEndY - dateCarouselTouchStartY) / (scope.shift * widthK));
 
-      if (Math.abs(dateCarouselTouchStartY - dateCarouselTouchEndY) > 20 && Math.abs(dateCarouselTouchStartX - dateCarouselTouchEndX) < 20) {
+      if (Math.abs(dateCarouselTouchStartY - dateCarouselTouchEndY) > 20) {
         changePositionAutoPay(nShift);
       }
     };
@@ -426,13 +424,12 @@
     }
 
     //    for minutes
-    var minutesTouchStartY, minutesTouchStartX, minutesTouchEndY, minutesTouchEndX;
+    var minutesTouchStartY, minutesTouchEndY;
     var mtempEndY, moldShift, mtempShift, mnOld = 0, mnNew = 0, mtempStartY, mcounter = 0;
 
     minContainerTouchStart = function () {
 //      console.log("in start touch=", minuteNumber);
       minutesTouchStartY = event.changedTouches[0].pageY;
-      minutesTouchStartX = event.changedTouches[0].pageX;
 //      mtouchStartTime = new Date().getTime();
       mtempStartY = minutesTouchStartY;
       mnNew = minuteNumber;
@@ -446,7 +443,6 @@
 
       event.stopPropagation();
       minutesTouchEndY = event.changedTouches[0].pageY;
-      minutesTouchEndX = event.changedTouches[0].pageX;
 //      mtouchEndTime = new Date().getTime();
 //      var mspeed = Math.abs((minutesTouchEndY - minutesTouchStartY) / (mtouchEndTime - mtouchStartTime));
 //      console.log("SPEED=", mspeed);
@@ -454,7 +450,7 @@
       mShift = Math.round(Math.abs(minutesTouchStartY - minutesTouchEndY) / (scope.shift * widthK));
 //      console.log("potential move=", Math.ceil(mspeed) * mShift);
 
-      if (Math.abs(minutesTouchStartY - minutesTouchEndY) > 20 && Math.abs(minutesTouchStartX - minutesTouchEndX) < 20) {
+      if (Math.abs(minutesTouchStartY - minutesTouchEndY) > 20) {
         changeMinutesPosition(mShift);
       }
     }
