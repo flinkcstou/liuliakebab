@@ -1401,9 +1401,9 @@
 
 
 //      console.log("JSON.parse(localStorage.getItem('transferContacts'))", JSON.parse(localStorage.getItem('transferContacts')))
-      if (JSON.parse(localStorage.getItem('transferContacts'))) {
+      if (JSON.parse(localStorage.getItem('p2pTransferContacts'))) {
 //        console.log("IN TRANSFER CONTACTS")
-        var transferContacts = JSON.parse(localStorage.getItem('transferContacts'));
+        var transferContacts = JSON.parse(localStorage.getItem('p2pTransferContacts'));
       }
       else {
 //        console.log("RETURN")
