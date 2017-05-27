@@ -486,7 +486,7 @@
             },
             function (error) {
               scope.clickPinError = false;
-              scope.errorNote = "Scanning failed: " + error;
+              scope.errorNote = "Отсутсвует доступ";
               scope.showError = true;
               scope.update();
             },
@@ -648,7 +648,7 @@
             function (err) {
               if (err == "empty") {
                 scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
+                scope.errorNote = ("Неверный номер");
                 scope.showError = true;
                 scope.update();
               }

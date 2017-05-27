@@ -99,11 +99,11 @@
             function (err) {
               if (err == "empty") {
                 scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
+                scope.errorNote = ("Неверный номер");
                 scope.showError = true;
                 scope.update();
               }
-              else console.log("Dialer Error:" + err);
+              else console.log("Ошибка USSD:" + err);
             },
             function (success) {
 
