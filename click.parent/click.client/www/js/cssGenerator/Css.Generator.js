@@ -10055,7 +10055,7 @@ var css = {
   viewContactPayTitle: ".view-contact-pay-title " +
   "{" +
   "position: absolute;" +
-  //"width: 60%;" +
+    //"width: 60%;" +
   "left: 10%;" +
   "top: 4%;" +
   "text-align: center;" +
@@ -10066,7 +10066,7 @@ var css = {
   viewContactTransferTitle: ".view-contact-transfer-title " +
   "{" +
   "position: absolute;" +
-  //"width: 65%;" +
+    //"width: 65%;" +
   "left: 10%;" +
   "top: 3%;" +
   "text-align: center;" +
@@ -13025,7 +13025,7 @@ var css = {
   "width: 84%;" +
     //"top: 5%;" +
   "left: 8%;" +
-  "background-color: white;" +
+    //"background-color: white;" +
   "overflow: hidden;" +
     //"display:none;" +
   "z-index:999;" +
