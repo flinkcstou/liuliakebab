@@ -365,7 +365,7 @@
 
     };
 
-    console.log('BANK UPDATE',loginInfo.update_bank_list)
+    console.log('BANK UPDATE', loginInfo.update_bank_list)
     if (!localStorage.getItem("click_client_p2p_bank_list") || loginInfo.update_bank_list) {
       window.api.call({
         method: 'p2p.bank.list',
@@ -1069,7 +1069,7 @@
 
       if (!checkPhoneForTransfer && !checkCardForTransfer) {
         scope.clickPinError = false;
-        scope.errorNote = 'Write phone number or card number for transfer';
+        scope.errorNote = 'Введите номер телефона или номер карты';
         scope.showError = true;
         scope.update();
 //        alert('Write phone number or card number for transfer')
@@ -1080,8 +1080,9 @@
           viewTransfer.phoneNumber = phoneNumberForTransfer;
           viewTransfer.type = 2;
           if (phoneNumberForTransfer.length != 9) {
+            contactPhoneNumberId.blur();
             scope.clickPinError = false;
-            scope.errorNote = 'Incorrect phone number';
+            scope.errorNote = 'Неверный номер телефона';
             scope.showError = true;
             scope.update();
 //            alert('Incorrect phone number')
@@ -1108,6 +1109,7 @@
             var firstFourSymbols = cardInputId.value.replace(/\s/g, '').substring(0, 4);
             console.log('firstFourSymbols', firstFourSymbols)
             if (firstFourSymbols != '8600') {
+              cardInputId.blur()
               scope.clickPinError = false;
               scope.errorNote = 'Неверные данные о карте';
               scope.showError = true;
@@ -1129,7 +1131,7 @@
               if (codeOfBank == bankList[i].code) {
                 checkOfCode = true;
                 nameOfBank = bankList[i].bank_name;
-                if(bankList[i].p2p_status == 1){
+                if (bankList[i].p2p_status == 1) {
                   statusOfBankToP2P = true
                 }
                 percentOfBank = bankList[i].p2p_percent
@@ -1140,6 +1142,7 @@
               }
             }
             if (!checkOfCode) {
+              cardInputId.blur()
               scope.clickPinError = false;
               scope.errorNote = 'Неверный номер карты';
               scope.showError = true;
@@ -1149,8 +1152,9 @@
             }
 
             if (checkOfCode && !statusOfBankToP2P) {
+              cardInputId.blur()
               scope.clickPinError = false;
-              scope.errorNote = 'Карта "' + nameOfBank +'" банка временно недоступна для перевода средств';
+              scope.errorNote = 'Карта "' + nameOfBank + '" банка временно недоступна для перевода средств';
               scope.showError = true;
               scope.update();
 //            alert('Неверный код банка');
@@ -1162,8 +1166,9 @@
           viewTransfer.cardNumber = cardNumberForTransfer
           viewTransfer.type = 1;
           if (cardNumberForTransfer.replace(/\s/g, '').length != 16) {
+            cardInputId.blur()
             scope.clickPinError = false;
-            scope.errorNote = 'Incorrect card number';
+            scope.errorNote = 'Неверный номер карты';
             scope.showError = true;
             scope.update();
 //            alert('Incorrect card number')
