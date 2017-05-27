@@ -10055,8 +10055,8 @@ var css = {
   viewContactPayTitle: ".view-contact-pay-title " +
   "{" +
   "position: absolute;" +
-  "width: 60%;" +
-  "left: 6%;" +
+  //"width: 60%;" +
+  "left: 10%;" +
   "top: 4%;" +
   "text-align: center;" +
   "font-size:" + 29 * widthK + "px;" +
@@ -10066,8 +10066,8 @@ var css = {
   viewContactTransferTitle: ".view-contact-transfer-title " +
   "{" +
   "position: absolute;" +
-  "width: 65%;" +
-  "left: 9%;" +
+  //"width: 65%;" +
+  "left: 10%;" +
   "top: 3%;" +
   "text-align: center;" +
   "font-size:" + 29 * widthK + "px;" +

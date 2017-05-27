@@ -87,7 +87,7 @@
     scope.firstContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
     scope.firstContactObject.firstLetter = '';
     scope.firstContactObject.phoneNumbers = [];
-    scope.firstContactObject.exist = false;
+    scope.firstContactObject.exist = true;
     scope.firstContactObject.addContact = false;
 
     scope.secondContactObject = {};
@@ -194,6 +194,15 @@
               scope.errorNote = 'Отсутствует имя контакта'
               scope.update()
               return
+            }
+
+            if(!contact.name.givenName){
+                if(!contact.name.familyName){
+                  scope.showError = true;
+                  scope.errorNote = 'Отсутствует имя контакта'
+                  scope.update()
+                  return
+                }
             }
 
             for (var i in arrayToSend) {
@@ -357,6 +366,15 @@
               return
             }
 
+            if(!contact.name.givenName){
+              if(!contact.name.familyName){
+                scope.showError = true;
+                scope.errorNote = 'Отсутствует имя контакта'
+                scope.update()
+                return
+              }
+            }
+
             for (var i in arrayToSend) {
               console.log(arrayToSend[i].id, contact.id)
               if (arrayToSend[i].id == contact.id) {
@@ -432,6 +450,15 @@
               return
             }
 
+            if(!contact.name.givenName){
+              if(!contact.name.familyName){
+                scope.showError = true;
+                scope.errorNote = 'Отсутствует имя контакта'
+                scope.update()
+                return
+              }
+            }
+
             for (var i in arrayToSend) {
               console.log(arrayToSend[i].id, contact.id)
               if (arrayToSend[i].id == contact.id) {
@@ -505,6 +532,15 @@
               scope.errorNote = 'Отсутствует имя контакта'
               scope.update()
               return
+            }
+
+            if(!contact.name.givenName){
+              if(!contact.name.familyName){
+                scope.showError = true;
+                scope.errorNote = 'Отсутствует имя контакта'
+                scope.update()
+                return
+              }
             }
 
             for (var i in arrayToSend) {
