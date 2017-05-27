@@ -144,8 +144,8 @@
       contactOneTouchEndY;
 
     var arrayToSend = []
-    if (localStorage.getItem('transferContacts')) {
-      arrayToSend = JSON.parse(localStorage.getItem('transferContacts'))
+    if (localStorage.getItem('contactList')) {
+      arrayToSend = JSON.parse(localStorage.getItem('contactList'))
     }
 
     contactOneTouchStart = function () {
@@ -345,7 +345,7 @@
           );
         }
         else {
-          arrayToSend = JSON.parse(localStorage.getItem('transferContacts'))
+          arrayToSend = JSON.parse(localStorage.getItem('contactList'))
           window.pickContactFromNativeChecker = true;
 
           navigator.contacts.pickContact(function (contact) {
@@ -428,7 +428,7 @@
           );
         }
         else {
-          arrayToSend = JSON.parse(localStorage.getItem('transferContacts'))
+          arrayToSend = JSON.parse(localStorage.getItem('contactList'))
 
           window.pickContactFromNativeChecker = true;
 
@@ -512,7 +512,7 @@
           );
         }
         else {
-          arrayToSend = JSON.parse(localStorage.getItem('transferContacts'))
+          arrayToSend = JSON.parse(localStorage.getItem('contactList'))
 
           window.pickContactFromNativeChecker = true;
 
@@ -595,7 +595,7 @@
           );
         }
         else {
-          arrayToSend = JSON.parse(localStorage.getItem('transferContacts'))
+          arrayToSend = JSON.parse(localStorage.getItem('contactList'))
 
           window.pickContactFromNativeChecker = true;
 
@@ -688,7 +688,7 @@
     //
     //    findContactsFooter = function () {
     //      console.log("FOOTER FIND CONTACTS")
-    //      if (!localStorage.getItem('transferContacts')) {
+    //      if (!localStorage.getItem('contactList')) {
     //        console.log("WRITING CONTACTS...")
     //        var options = new ContactFindOptions();
     //        options.filter = "";
@@ -723,19 +723,19 @@
     //        }
     //      }
     //      else {
-    //        var arrayOfContacts = JSON.parse(localStorage.getItem('transferContacts'));
+    //        var arrayOfContacts = JSON.parse(localStorage.getItem('contactList'));
     //        writeContactsFooter(arrayOfContacts);
     //      }
     //    }
     //
 
     findContactsFooter = function () {
-      if (!localStorage.getItem('transferContacts')) {
+      if (!localStorage.getItem('contactList')) {
         scope.firstContactObject.addContact = true;
         scope.update()
       }
       else {
-        var arrayOfContacts = JSON.parse(localStorage.getItem('transferContacts'));
+        var arrayOfContacts = JSON.parse(localStorage.getItem('contactList'));
         writeContactsFooter(arrayOfContacts);
       }
     }
@@ -791,7 +791,7 @@
       }
       scope.update();
 
-      localStorage.setItem('transferContacts', JSON.stringify(arrayOfConnectedContacts))
+      localStorage.setItem('contactList', JSON.stringify(arrayOfConnectedContacts))
     }
 
     console.log("FOOTER SCRIPT")
