@@ -122,7 +122,8 @@
 
     //    scope.topOfWeekOperations = 100 * widthK;
     var dateNumber, count, minuteNumber = 0, minutesCount = 60;
-    localStorage.setItem('click_client_countCard', count);
+    //TODO: ZACHEM ZACHEM NAPISANO NIJE STROKA, KOTORUYU YA ZAKOMMENTIROVAL
+    //    localStorage.setItem('click_client_countCard', count);
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-autopay-schedule-method') {
