@@ -49,7 +49,7 @@
 
     <div class="side-menu-call-container" ontouchend="callToClickTouchEnd()" ontouchstart="callToClickTouchStart()">
       <div class="side-menu-containers-icon side-menu-containers-icon-call"></div>
-      <div class="side-menu-containers-name side-menu-containers-name-call">Позвонить в Click</div>
+      <div class="side-menu-containers-name side-menu-containers-name-call">Позвонить в CLICK</div>
     </div>
   </div>
 
