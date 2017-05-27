@@ -13,6 +13,7 @@ var RU_LANGUAGES =
   "ComponentBankOperationsTransfer": "ПЕРЕВОДЫ",
 
   "ComponentBankOperationsAutoPay": "АВТОПЛАТЁЖ",
+  "ComponentBankOperationsQr": "СКАНЕР QR",
 
   "BankOperationsAutoPay": "МОИ КАРТЫ",
 

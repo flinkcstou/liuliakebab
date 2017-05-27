@@ -1187,6 +1187,11 @@ var css = {
   "left:" + 511 * widthK + "px;" +
   "}",
 
+  bankOperationButtonQr: ".bank-operation-button-qr " +
+  "{" +
+  "left:" + 511 * widthK + "px;" +
+  "}",
+
   topOperationsButtons: ".top-operations-buttons " +
   "{" +
   "position: absolute;" +
@@ -1279,6 +1284,11 @@ var css = {
   "left:" + 496 * widthK + "px;" +
   "}",
 
+  bankOperationLabelQr: ".bank-operation-label-qr " +
+  "{" +
+  "left:" + 505 * widthK + "px;" +
+  "}",
+
   operationPayIcon: ".operation-pay-icon " +
   "{" +
   "background-image: url(resources/icons/bank-operations/payment.png);" +
@@ -1292,10 +1302,10 @@ var css = {
   "background-size: 69%;" +
   "}",
 
-  operationAutopayIcon: ".operation-autopay-icon " +
+  operationQrIcon: ".operation-qr-icon " +
   "{" +
-  "background-image: url(resources/icons/bank-operations/autopays.png);" +
-  "background-size: 53%;" +
+  "background-image: url(resources/icons/bank-operations/qr.png);" +
+  "background-size: 70%;" +
   "}",
 
   //CAROUSEL COMPONENT
