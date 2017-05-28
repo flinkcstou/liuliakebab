@@ -210,6 +210,7 @@
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
         componentTourId.style.display = "block";
+        StatusBar.backgroundColorByHexString("#002334");
       }
 
       if (opts && opts.number) {

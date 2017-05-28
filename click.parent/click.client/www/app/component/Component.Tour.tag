@@ -241,6 +241,7 @@
     closeTour = function () {
       event.preventDefault();
       event.stopPropagation();
+
       document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'gainsboro';
       scope.tNumber = 0;
       this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
