@@ -489,7 +489,7 @@
 
 
           if (viewServicePage.amountText)
-            if (viewServicePage.amountText.length > 0) {
+            if (viewServicePage.amountText.length > 0 && opts) {
               amount.value = viewServicePage.amountText;
               checkFirst = true;
               amountForPayTransaction = viewServicePage.amountWithoutSpace;
