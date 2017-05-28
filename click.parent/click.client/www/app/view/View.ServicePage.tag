@@ -19,7 +19,7 @@
       <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
-             autofocus="true"/>
+              ="true"/>
     </div>
 
     <div class="servicepage-fields-dropdown" if="{dropDownOn}" ontouchend="openDropDown()" id="firstFieldChoiceId">
@@ -279,6 +279,7 @@
     this.on('mount', function () {
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).calculator) {
+        firstFieldInput.blur();
         componentTourId.style.display = "block";
         StatusBar.backgroundColorByHexString("#002334");
       }
