@@ -32,6 +32,8 @@
     viewServicePinCards.friendHelpPaymentMode = false;
     viewServicePinCards.chosenFriendForHelp = [];
     componentMenu.check = false;
+    viewServicePage.amountWithoutSpace = 0;
+    viewServicePage.amountTex = 0;
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')

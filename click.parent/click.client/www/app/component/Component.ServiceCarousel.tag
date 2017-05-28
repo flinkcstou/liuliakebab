@@ -239,7 +239,6 @@
         console.log("chosen id in service carousel=", id);
         viewPay.chosenServiceId = id;
         opts.mode = 'USUAL';
-        event.stopPropagation();
 
         localStorage.setItem('chosenServiceId', id);
         riotTags.innerHTML = "<view-service-page>";
