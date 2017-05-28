@@ -19,7 +19,7 @@
       <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
-              ="true"/>
+             autofocus="true"/>
     </div>
 
     <div class="servicepage-fields-dropdown" if="{dropDownOn}" ontouchend="openDropDown()" id="firstFieldChoiceId">
@@ -51,7 +51,6 @@
              type="{inputType}"
              id="firstFieldInput"
              onfocus="bordersColor()"
-             autofocus="true"
              value="{defaultNumber || opts.first_field_value}" onkeydown="telPayVerificationKeyDown(this)"
              oninput="telPayVerificationKeyUp()"
              onkeyup="telPayVerificationKeyUp()"/>
@@ -283,6 +282,10 @@
         componentTourId.style.display = "block";
         StatusBar.backgroundColorByHexString("#002334");
       }
+      else {
+        firstFieldInput.autofocus;
+        firstFieldInput.focus();
+      }
 
       if (opts && opts.number) {
         firstFieldInput.value = opts.number
@@ -291,7 +294,7 @@
       }
 
 
-      if (viewServicePage.amountWithoutSpace.length > 0 ) {
+      if (viewServicePage.amountWithoutSpace.length > 0) {
         amount.value = viewServicePage.amountText;
         checkFirst = true;
         amountForPayTransaction = viewServicePage.amountWithoutSpace;
@@ -579,7 +582,7 @@
 //          scope.defaultNumber = !viewServicePage.phoneText ? null : inputVerification.telLengthVerification(viewServicePage.phoneText, window.languages.PhoneNumberLength)
 //        scope.defaultAmount = !viewServicePage.amountText ? 0 : viewServicePage.amountText;
 
-        scope.inputMaxLength = scope.fieldArray[0].max_len;
+          scope.inputMaxLength = scope.fieldArray[0].max_len;
         console.log("INPUT LENGTH=", scope.inputMaxLength);
         if (scope.dropDownOn) {
           scope.chosenFieldParamId = scope.fieldsObject ? (scope.fieldsObject.firstFieldId ? scope.fieldsObject.firstFieldId : scope.fieldArray[0].parameter_id) : scope.fieldArray[0].parameter_id;
