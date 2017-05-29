@@ -926,14 +926,14 @@
 
           pos = (scope.cardNumber) * 540 * widthK;
           var sendChosenCardId;
-          console.log("ASD", scope.cardsarray, scope.cardNumber);
-          var j = 1;
+          console.log("CARD CARD CARD", scope.cardsarray);
+
           for (var i in scope.cardsarray) {
-            if (j == scope.cardNumber) {
+            if (scope.cardsarray[i].countCard == scope.cardNumber) {
               sendChosenCardId = i;
               break;
             }
-            j++;
+
           }
 
 //          htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
@@ -1229,8 +1229,9 @@
 
       if (viewMainPage.myCards) {
         for (i in scope.cardsarray) {
-          if (scope.cardsarray[i].countCard == scope.cardNumber)
+          if (scope.cardsarray[i].countCard == scope.cardNumber) {
             scope.parent.cardInformation(scope.cardsarray[i].card_id);
+          }
         }
       }
 
