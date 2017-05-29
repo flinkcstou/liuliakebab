@@ -130,10 +130,6 @@
     };
 
     onTouchStartNotificationAccept = function () {
-      window.FirebasePlugin.logEvent("ACCEPT", {
-        content_type: scope.notificationAction,
-        item_id: scope.notificationElementId
-      });
       if (localStorage.getItem('click_client_phoneNumber')) {
         window.FirebasePlugin.setUserId(localStorage.getItem('click_client_phoneNumber'));
       }
@@ -163,6 +159,11 @@
 
         window.pushNotificationActions.getNewsFunction(scope.notificationElementId);
       }
+
+      window.FirebasePlugin.logEvent("ACCEPT", {
+        content_type: scope.notificationAction,
+        item_id: scope.notificationElementId
+      });
     };
 
   </script>
