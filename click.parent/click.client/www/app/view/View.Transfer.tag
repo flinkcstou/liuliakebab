@@ -211,6 +211,7 @@
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
         componentTourId.style.display = "block";
+        if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#002334");
       }
 

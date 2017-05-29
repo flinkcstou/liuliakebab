@@ -232,7 +232,7 @@
           componentDeleteCard.getInformation(sessionKey, phoneNumber, account_id);
         else {
           scope.clickPinError = false;
-          scope.errorNote = 'You cant delete this card';
+          scope.errorNote = 'Вы не можете удалить эту карту!';
           scope.showError = true;
           scope.update();
         }
@@ -497,7 +497,7 @@
         event.preventDefault();
         event.stopPropagation();
 
-//      console.log(scope.card)
+      console.log(scope.card)
         if (scope.card.access == 2) {
           riotTags.innerHTML = "<view-transfer>";
           riot.mount('view-transfer');

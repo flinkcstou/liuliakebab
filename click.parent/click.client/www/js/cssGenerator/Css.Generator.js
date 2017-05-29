@@ -13035,8 +13035,8 @@ var css = {
   "opacity: 1;" +
     //"height: 94%;" +
     //"width: 84%;" +
-  "height:" + 1158.080 * heightK + "px;" +
-  "width:" + 604.797 * widthK + "px;" +
+  "height:" + 1200 * heightK + "px;" +
+  "width:" + 600 * widthK + "px;" +
     //"top: 5%;" +
   "left: 8%;" +
   "background-color: white;" +
@@ -13097,7 +13097,7 @@ var css = {
   "position: relative;" +
   "height:" + 258 * heightK + "px;" +
   "width: 100%;" +
-  "bottom:0;" +
+  "top:" + 110 * widthK + "px;" +
     //"background-color: #ee4d3d;" +
   "}",
 
@@ -13105,15 +13105,15 @@ var css = {
   "{" +
   "position: absolute;" +
   "opacity: 1;" +
-  "height:" + 900 * heightK + "px;" +
-  "width:" + 604.797 * widthK + "px;" +
+  "height:" + 900 * widthK + "px;" +
+  "width:" + 600 * widthK + "px;" +
   "left: 8%;" +
     //"background-color: #ee4d3d;" +
   "transform: translate(-84%, 0);" +
   "background-position: center;" +
-  "background-size: contain;" +
+  "background-size: 100%;" +
   "background-repeat: no-repeat;" +
-  "top: 0;" +
+  "top: -1px;" +
   "}",
 
   tourMessage: ".tour-message" +
