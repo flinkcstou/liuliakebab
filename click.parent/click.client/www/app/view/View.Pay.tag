@@ -201,6 +201,8 @@
           scope.autoPayData.fromView = 'PAY';
           scope.autoPayData.isNew = true;
 
+          console.log("autoPay data====", scope.autoPayData);
+
           event.preventDefault();
           event.stopPropagation();
           if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available) {

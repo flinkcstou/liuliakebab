@@ -45,16 +45,16 @@
     </div>
 
     <div
-        class="{schedule-date-block-days-outer-container: !timeMode && !weekMode && dayMode,schedule-date-block-week-outer-container: !timeMode && weekMode && !dayMode, schedule-date-block-time-outer-container: timeMode && !weekMode && !dayMode}">
+      class="{schedule-date-block-days-outer-container: !timeMode && !weekMode && dayMode,schedule-date-block-week-outer-container: !timeMode && weekMode && !dayMode, schedule-date-block-time-outer-container: timeMode && !weekMode && !dayMode}">
       <div id="dateContainerId"
            class="{schedule-date-block-days-container: !timeMode && (weekMode || dayMode), schedule-date-block-hours-container:timeMode && !weekMode && !dayMode}"
            ontouchstart="dateContainerTouchStart()"
            ontouchend="dateContainerTouchEnd()"
            ontouchmove="dateContainerTouchMove()">
         <div
-            class="{schedule-date-block-day:!timeMode && !weekMode && dayMode,schedule-date-block-week:!timeMode && weekMode && !dayMode,schedule-date-block-time:timeMode && !weekMode && !dayMode}"
-            each="{i in dateBlockArray}"
-            style="top:{topOfOperations*i.k}px;">
+          class="{schedule-date-block-day:!timeMode && !weekMode && dayMode,schedule-date-block-week:!timeMode && weekMode && !dayMode,schedule-date-block-time:timeMode && !weekMode && !dayMode}"
+          each="{i in dateBlockArray}"
+          style="top:{topOfOperations*i.k}px;">
           <p id="day{i.k-1}"
              class="{schedule-date-block-day-text: !timeMode && !weekMode && dayMode, schedule-date-block-week-text: !timeMode && weekMode && !dayMode, schedule-date-block-time-text: timeMode && !weekMode && !dayMode}">
             {i.v}</p>
@@ -98,7 +98,7 @@
     var scope = this;
     scope.showError = false;
     this.titleName = window.languages.ViewAutoPayTitleName;
-    scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
+    scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
     //    console.log("ID of service=", opts.id);
     if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
@@ -122,16 +122,13 @@
 
     //    scope.topOfWeekOperations = 100 * widthK;
     var dateNumber, count, minuteNumber = 0, minutesCount = 60;
-    //TODO: ZACHEM ZACHEM NAPISANO NIJE STROKA, KOTORUYU YA ZAKOMMENTIROVAL
-    //    localStorage.setItem('click_client_countCard', count);
-
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-autopay-schedule-method') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-autopay-schedule-method',
-            "params": opts
-          }
+        {
+          "view": 'view-autopay-schedule-method',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -192,7 +189,7 @@
       scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseWeekDay;
       scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleWeekDaysArray;
       dateChooseBlockId.style.display = 'block';
-//      console.log("EVERY WEEK, dateBlockArray", scope.dateBlockArray);
+      console.log("EVERY WEEK, count=", count);
       scope.update();
       changePositionInitAutoPay();
     }
@@ -207,13 +204,13 @@
 
         if (scope.autoPayData.type == 2) {
           scope.autoPayData.condition_text = window.languages.ViewAutoPayMethodScheduleWeekDaysArray[scope.autoPayData.week_day - 1].v + ", " +
-              scope.autoPayData.paytime;
+            scope.autoPayData.paytime;
         } else if (scope.autoPayData.type == 3) {
           scope.autoPayData.condition_text = scope.autoPayData.month_day + ", " +
-              scope.autoPayData.paytime;
+            scope.autoPayData.paytime;
         } else if (scope.autoPayData.type == 4) {
           scope.autoPayData.condition_text = window.languages.ViewAutoPayEveryMonthLastDayTextTwo + ", " +
-              scope.autoPayData.paytime;
+            scope.autoPayData.paytime;
         }
 
         localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
@@ -334,7 +331,7 @@
     }
 
     function changePositionAutoPay(nShift) {
-      //      console.log("NSHIFT", nShift);
+//      console.log("NSHIFT", Number(nShift));
       document.getElementById("day" + nOld).style.color = '#c1c1c1';
       document.getElementById("day" + nNew).style.color = '#c1c1c1';
 
@@ -342,7 +339,7 @@
         //        console.log("111", dateNumber + Number(nShift));
         document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
         if ((dateNumber + Number(nShift)) > (count - 1)) {
-          dateNumber = dateNumber + Number(nShift) - count;
+          dateNumber = (dateNumber + (Number(nShift) % count)) >= count ? ((dateNumber + (Number(nShift) % count)) - count) : (dateNumber + (Number(nShift) % count));
           this.dateContainerId.style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
           this.dateContainerId.style.webkitTransition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
           this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
@@ -363,7 +360,7 @@
         //        console.log("222 =", (count + (dateNumber - Number(nShift))));
         document.getElementById("day" + dateNumber).style.color = '#c1c1c1';
         if ((dateNumber - Number(nShift)) < 0) {
-          dateNumber = count + (dateNumber - Number(nShift));
+          dateNumber = (dateNumber - (Number(nShift) % count)) < 0 ? ((dateNumber - (Number(nShift) % count)) + count) : (dateNumber - (Number(nShift) % count));
           this.dateContainerId.style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
           this.dateContainerId.style.webkitTransition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
           this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
@@ -384,7 +381,6 @@
       console.log();
 
       counter = 0;
-      localStorage.setItem('dateNumber', dateNumber);
     }
 
     function changePositionInitAutoPay() {
@@ -432,8 +428,7 @@
     minContainerTouchStart = function () {
 //      console.log("in start touch=", minuteNumber);
       minutesTouchStartY = event.changedTouches[0].pageY;
-//      minutesTouchStartX = event.changedTouches[0].pageX;
-//      mtouchStartTime = new Date().getTime();
+
       mtempStartY = minutesTouchStartY;
       mnNew = minuteNumber;
       mleft = -((scope.shift * minuteNumber) * widthK) - minutesTouchStartY;
@@ -446,13 +441,9 @@
 
       event.stopPropagation();
       minutesTouchEndY = event.changedTouches[0].pageY;
-//      minutesTouchEndX = event.changedTouches[0].pageX;
-//      mtouchEndTime = new Date().getTime();
-//      var mspeed = Math.abs((minutesTouchEndY - minutesTouchStartY) / (mtouchEndTime - mtouchStartTime));
-//      console.log("SPEED=", mspeed);
-//      console.log("N fixed=", (Math.abs(minutesTouchStartY - minutesTouchEndY) / scope.shift).toFixed(0));
+
       mShift = Math.round(Math.abs(minutesTouchStartY - minutesTouchEndY) / (scope.shift * widthK));
-//      console.log("potential move=", Math.ceil(mspeed) * mShift);
+
 
       if (Math.abs(minutesTouchStartY - minutesTouchEndY) > 20) {
         changeMinutesPosition(mShift);
@@ -537,9 +528,8 @@
         }
         document.getElementById("min" + minuteNumber).style.color = '#01B8FE';
       }
-
       mcounter = 0;
-      localStorage.setItem('minuteNumber', minuteNumber);
+
     }
 
     function changeMinutesPositionInit() {

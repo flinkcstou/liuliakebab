@@ -40,11 +40,11 @@
     var scope = this;
     scope.showError = false;
     this.titleName = window.languages.ViewAutoPayTitleName;
-    scope.servicesMap = (modeOfApp.onlineMode) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
+    scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     console.log("OPTS AutoPayMethod=", opts);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
 
-    console.log("chosenServiceId=", viewPay.chosenServiceId);
+    //    console.log("chosenServiceId=", viewPay.chosenServiceId);
 
     if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
       scope.serviceName = 'Мой номер';
