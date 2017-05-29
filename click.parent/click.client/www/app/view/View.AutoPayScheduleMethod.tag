@@ -233,11 +233,11 @@
         }
         dateNumber = 0;
         minuteNumber = 0;
-        scope.topOfOperations = 150 * widthK;
+        scope.topOfOperations = 143 * widthK;
         scope.weekMode = false;
         scope.timeMode = true;
         scope.dayMode = false;
-        scope.shift = 150;
+        scope.shift = 143;
         count = 24;
         scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseTime;
         scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
@@ -268,6 +268,7 @@
     dateContainerTouchStart = function () {
       console.log("in start touch=", dateNumber);
       dateCarouselTouchStartY = event.changedTouches[0].pageY;
+//      dateCarouselTouchStartX = event.changedTouches[0].pageX;
 //      console.log("startY=", dateCarouselTouchStartY);
       tempStartY = dateCarouselTouchStartY;
       nNew = dateNumber;
@@ -282,6 +283,7 @@
       event.preventDefault();
       event.stopPropagation();
       dateCarouselTouchEndY = event.changedTouches[0].pageY;
+//      dateCarouselTouchEndX = event.changedTouches[0].pageX;
 
       nShift = Math.round(Math.abs(dateCarouselTouchEndY - dateCarouselTouchStartY) / (scope.shift * widthK));
 
@@ -430,6 +432,7 @@
     minContainerTouchStart = function () {
 //      console.log("in start touch=", minuteNumber);
       minutesTouchStartY = event.changedTouches[0].pageY;
+//      minutesTouchStartX = event.changedTouches[0].pageX;
 //      mtouchStartTime = new Date().getTime();
       mtempStartY = minutesTouchStartY;
       mnNew = minuteNumber;
@@ -443,6 +446,7 @@
 
       event.stopPropagation();
       minutesTouchEndY = event.changedTouches[0].pageY;
+//      minutesTouchEndX = event.changedTouches[0].pageX;
 //      mtouchEndTime = new Date().getTime();
 //      var mspeed = Math.abs((minutesTouchEndY - minutesTouchStartY) / (mtouchEndTime - mtouchStartTime));
 //      console.log("SPEED=", mspeed);
