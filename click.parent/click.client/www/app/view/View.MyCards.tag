@@ -486,6 +486,7 @@
       if (Math.abs(myCardsOnTouchStartY - myCardsOnTouchEndY) <= 20 && Math.abs(myCardsOnTouchStartX - myCardsOnTouchEndX) <= 20) {
 
         for (var i in scope.cardsArray) {
+//          console.log('scope.cardsArray[i].card_id', scope.cardsArray[i].card_id, 'scope.cardsArray[i].access', scope.cardsArray[i].access)
           if (scope.cardsArray[i].card_id == scope.card.card_id && scope.cardsArray[i].access == 2) {
             scope.cardsArray[i].chosenCard = true;
           }
@@ -497,7 +498,7 @@
         event.preventDefault();
         event.stopPropagation();
 
-      console.log(scope.card)
+        console.log('CARD CHOSEN ', JSON.parse(localStorage.getItem('click_client_cards')))
         if (scope.card.access == 2) {
           riotTags.innerHTML = "<view-transfer>";
           riot.mount('view-transfer');
