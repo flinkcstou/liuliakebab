@@ -4625,9 +4625,9 @@ var css = {
   "border-radius:" + 10 * widthK + "px;" +
   "background-size: cover;" +
   "color: white;" +
-  "-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  "-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  "box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+  //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+  //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+  //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
     //"margin-left: 20px;" +
   "float: left;" +
   "margin: " + 7 * widthK + "px;" +
@@ -9185,7 +9185,7 @@ var css = {
   "height: 90%;" +
   "top: 8%;" +
   "bottom: 0;" +
-  "overflow:auto;" +
+  "overflow:scroll;" +
   "margin-bottom: 15px;" +
   "}",
 

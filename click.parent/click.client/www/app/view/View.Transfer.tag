@@ -1,12 +1,12 @@
 <view-transfer class="riot-tags-main-container">
   <div class="transfer-page-title">
     <p class="transfer-name-title">{titleName}</p>
-    <div id="backButton" ontouchend="goToBack()"
+    <div id="backButton" ontouchend="goToBackFromTransferTouchEnd()" ontouchstart="goToBackFromTransferTouchStart()"
          class="{transfer-back-button: backbuttoncheck}">
 
     </div>
     <div if="{modeOfApp.onlineMode}" id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"
-         ontouchend="openBanksListPage()"></div>
+         ontouchend="openBanksListPageTouchEnd()" ontouchstart="openBanksListPageTouchStart()"></div>
   </div>
 
   <div class="transfer-body-container">
@@ -177,7 +177,8 @@
   <div id="componentBankListId" class="component-bank-list">
     <div class="page-title" style="border: none;">
       <p class="component-banklist-name-title">{window.languages.ViewBankListTitleName}</p>
-      <div id="rightButtons" type="button" class="component-banklist-close-button" ontouchend="closeComponent()"></div>
+      <div id="rightButtons" type="button" class="component-banklist-close-button"
+           ontouchend="closeComponentBankListTouchEnd()" ontouchstart="closeComponentBankListTouchStart()"></div>
     </div>
     <div id="bankListContainerId" class="component-banklist-container">
       <div class="component-banklist-card" each="{i in bankList}">
@@ -329,96 +330,132 @@
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
+    var openBankListTouchStartX, openBankListTouchStartY, openBankListTouchEndX, openBankListTouchEndY;
+    openBanksListPageTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
 
-    openBanksListPage = function () {
-      if (modeOfApp.offlineMode)return
+      openBankListTouchStartX = event.changedTouches[0].pageX
+      openBankListTouchStartY = event.changedTouches[0].pageY
 
-      if (modeOfApp.demoVersion) {
-        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-//        confirm(question)
-        scope.confirmShowBool = true;
-        scope.confirmNote = question;
-        scope.confirmType = 'local';
-        scope.result = function (bool) {
-          if (bool) {
-            localStorage.clear();
-            window.location = 'index.html'
-            scope.unmount()
-            return
-          }
-          else {
-            scope.confirmShowBool = false;
-            return
-          }
-        };
-        scope.update();
-
-        return
-      }
-
-      if (JSON.parse(localStorage.getItem("click_client_p2p_bank_list"))) {
-        scope.bankList = JSON.parse(localStorage.getItem("click_client_p2p_bank_list"));
-//        console.log("bank list", scope.bankList);
-      }
-      componentBankListId.style.display = 'block';
-      scope.update();
-      console.log('scope.update()', scope.update())
-
-    };
-
-//    console.log('BANK UPDATE', loginInfo.update_bank_list)
-    if(loginInfo)
-    if (!localStorage.getItem("click_client_p2p_bank_list") || loginInfo.update_bank_list) {
-      if(modeOfApp.onlineMode)
-      window.api.call({
-        method: 'p2p.bank.list',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-
-        },
-
-        scope: this,
-
-        onSuccess: function (result) {
-          if (result[0][0].error == 0) {
-            var bankListAvailable = [];
-            for (var i in result[1]) {
-              result[1][i].amount = result[1][i].p2p_max_limit.toString();
-              console.log('result[1][i]', result[1][i])
-
-              result[1][i].amount = window.amountTransform(result[1][i].amount);
-
-              if (result[1][i].p2p_status == 1)
-                bankListAvailable.push(result[1][i]);
-
-//              console.log("!!!!!", result[1][i].p2p_max_limit);
-            }
-//            console.log("result of P2P BANK LIST ", result[1]);
-            if (localStorage.getItem('click_client_p2p_all_bank_list') != JSON.stringify(result[1])) {
-              localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(bankListAvailable));
-              localStorage.setItem('click_client_p2p_all_bank_list', JSON.stringify(result[1]));
-            }
-
-          }
-          else {
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
-            scope.update();
-          }
-        },
-
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      });
     }
 
-    closeComponent = function () {
-      bankListContainerId.scrollTop = 0;
-      componentBankListId.style.display = 'none';
+
+    openBanksListPageTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      openBankListTouchEndX = event.changedTouches[0].pageX
+      openBankListTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(openBankListTouchStartX - openBankListTouchEndX) <= 20 && Math.abs(openBankListTouchStartY - openBankListTouchEndY) <= 20) {
+
+        if (modeOfApp.offlineMode)return
+
+        if (modeOfApp.demoVersion) {
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+          scope.confirmShowBool = true;
+          scope.confirmNote = question;
+          scope.confirmType = 'local';
+          scope.result = function (bool) {
+            if (bool) {
+              localStorage.clear();
+              window.location = 'index.html'
+              scope.unmount()
+              return
+            }
+            else {
+              scope.confirmShowBool = false;
+              return
+            }
+          };
+          scope.update();
+
+          return
+        }
+
+        if (JSON.parse(localStorage.getItem("click_client_p2p_bank_list"))) {
+          scope.bankList = JSON.parse(localStorage.getItem("click_client_p2p_bank_list"));
+//        console.log("bank list", scope.bankList);
+        }
+        componentBankListId.style.display = 'block';
+        scope.update();
+        console.log('scope.update()', scope.update())
+      }
+    };
+
+    //    console.log('BANK UPDATE', loginInfo.update_bank_list)
+    if (loginInfo)
+      if (!localStorage.getItem("click_client_p2p_bank_list") || loginInfo.update_bank_list) {
+        if (modeOfApp.onlineMode)
+          window.api.call({
+            method: 'p2p.bank.list',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber,
+
+            },
+
+            scope: this,
+
+            onSuccess: function (result) {
+              if (result[0][0].error == 0) {
+                var bankListAvailable = [];
+                for (var i in result[1]) {
+                  result[1][i].amount = result[1][i].p2p_max_limit.toString();
+                  console.log('result[1][i]', result[1][i])
+
+                  result[1][i].amount = window.amountTransform(result[1][i].amount);
+
+                  if (result[1][i].p2p_status == 1)
+                    bankListAvailable.push(result[1][i]);
+
+//              console.log("!!!!!", result[1][i].p2p_max_limit);
+                }
+//            console.log("result of P2P BANK LIST ", result[1]);
+                if (localStorage.getItem('click_client_p2p_all_bank_list') != JSON.stringify(result[1])) {
+                  localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(bankListAvailable));
+                  localStorage.setItem('click_client_p2p_all_bank_list', JSON.stringify(result[1]));
+                }
+
+              }
+              else {
+                scope.clickPinError = false;
+                scope.errorNote = result[0][0].error_note;
+                scope.showError = true;
+                scope.update();
+              }
+            },
+
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
+      }
+
+    var closeBankListTouchStartX, closeBankListTouchStartY, closeBankListTouchEndX, closeBankListTouchEndY;
+
+    closeComponentBankListTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      closeBankListTouchStartX = event.changedTouches[0].pageX
+      closeBankListTouchStartY = event.changedTouches[0].pageY
+    }
+
+    closeComponentBankListTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      closeBankListTouchEndX = event.changedTouches[0].pageX
+      closeBankListTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(closeBankListTouchStartX - closeBankListTouchEndX) <= 20 && Math.abs(closeBankListTouchStartY - closeBankListTouchEndY) <= 20) {
+        bankListContainerId.scrollTop = 0;
+        componentBankListId.style.display = 'none';
+      }
     }
 
 
@@ -671,11 +708,27 @@
       scope.cardMode = false;
     }
 
-    goToBack = function () {
+    var goToBackTransferTouchStartX, goToBackTransferTouchStartY, goToBackTransferTouchEndX, goToBackTransferTouchEndY;
+
+    goToBackFromTransferTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
-      scope.unmount()
+
+      goToBackTransferTouchStartX = event.changedTouches[0].pageX
+      goToBackTransferTouchStartY = event.changedTouches[0].pageY
+    }
+
+    goToBackFromTransferTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      goToBackTransferTouchEndX = event.changedTouches[0].pageX
+      goToBackTransferTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(goToBackTransferTouchStartX - goToBackTransferTouchEndX) <= 20 && Math.abs(goToBackTransferTouchStartY - goToBackTransferTouchEndY) <= 20) {
+        onBackKeyDown()
+        scope.unmount()
+      }
     }
 
     searchCard = function (input) {
