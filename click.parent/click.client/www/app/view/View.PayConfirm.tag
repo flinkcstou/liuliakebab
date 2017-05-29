@@ -503,7 +503,6 @@
                 statusCheckCounter++;
                 console.log("statusCheckCounter=", statusCheckCounter);
                 if (statusCheckCounter < 5) {
-                  console.log("sending one more request");
                   if (device.platform != 'BrowserStand') {
                     var options = {dimBackground: true};
 
@@ -517,7 +516,6 @@
                     checkPaymentStatus(result[1][0].payment_id);
                   }, 2000);
                 } else {
-                  console.log("no request any more");
                   viewServicePage.phoneText = '';
                   window.viewServicePage = {};
                   viewServicePage.amountText = '';

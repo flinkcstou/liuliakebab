@@ -2,7 +2,6 @@
 
   <div class="component-tour">
 
-    <p class="tour-title-text">{tourTitle}</p>
 
     <div type="button" class="tour-close-icon" ontouchend="closeTour()"></div>
 
@@ -63,8 +62,7 @@
 
     if (opts.view == "registration") {
       scope.tourCardsArray = tourCards.registration;
-
-      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
+//      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
       scope.count = 5;
       scope.update();
     } else if (opts.view == "mainpage") {

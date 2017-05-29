@@ -13097,14 +13097,15 @@ var css = {
   "opacity: 1;" +
     //"height: 100%;" +
     //"width: 100%;" +
-  "height:" + 1158.080 * widthK + "px;" +
+  "height:" + 900.080 * heightK + "px;" +
   "width:" + 604.797 * widthK + "px;" +
   "left: 8%;" +
     //"background-color: #ee4d3d;" +
   "transform: translate(-84%, 0);" +
   "background-position: center;" +
-  "background-size: 100%;" +
+  "background-size: contain;" +
   "background-repeat: no-repeat;" +
+  "top: 0;" +
   "}",
 
   tourMessage: ".tour-message" +

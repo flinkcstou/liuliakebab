@@ -1,19 +1,19 @@
 window.tourCards = {};
 
 tourCards.registration =
-  [{counter: 1, text: "resources/icons/ComponentTour/registration/tutorial_1.png"}, {
+  [{counter: 1, text: "resources/icons/ComponentTour/registration/1.png"}, {
     counter: 2,
-    text: "resources/icons/ComponentTour/registration/tutorial_2.png"
+    text: "resources/icons/ComponentTour/registration/2.png"
   }, {
     counter: 3,
-    text: "resources/icons/ComponentTour/registration/tutorial_3.png"
+    text: "resources/icons/ComponentTour/registration/3.png"
   }, {
     counter: 4,
-    text: "resources/icons/ComponentTour/registration/tutorial_4.png"
+    text: "resources/icons/ComponentTour/registration/4.png"
   },
     {
       counter: 5,
-      text: "resources/icons/ComponentTour/registration/tutorial_5.png"
+      text: "resources/icons/ComponentTour/registration/5.png"
     }
   ];
 

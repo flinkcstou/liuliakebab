@@ -809,7 +809,7 @@
                           newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
 
                             if (bool) {
-                              scope.serviceList[index]['image'] = cordova.file.dataDirectory + fileName;//
+                              scope.serviceList[index]['image'] = cordova.file.dataDirectory + fileName;
                             } else {
                               scope.serviceList[index]['image'] = 'resources/icons/ViewPay/' + fileName;
                             }
