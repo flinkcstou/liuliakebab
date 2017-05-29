@@ -203,7 +203,8 @@
 
     window.checkShowingComponent = null;
 
-    console.log('OPTS', opts);
+//    console.log('OPTS', opts);
+//    console.log('viewPay.chosenServiceId', viewPay.chosenServiceId);
 
     var scope = this;
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
@@ -281,7 +282,7 @@
         firstFieldInput.blur();
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#002334");
+          StatusBar.backgroundColorByHexString("#002334");
       }
       else {
         firstFieldInput.autofocus;
@@ -294,8 +295,10 @@
 
       }
 
+//      console.log("viewServicePage.amountWithoutSpace=", viewServicePage.amountWithoutSpace);
 
-      if (viewServicePage.amountWithoutSpace.length > 0) {
+
+      if (viewServicePage.amountWithoutSpace && viewServicePage.amountWithoutSpace.length > 0) {
         amount.value = viewServicePage.amountText;
         checkFirst = true;
         amountForPayTransaction = viewServicePage.amountWithoutSpace;
@@ -492,7 +495,7 @@
         console.log('FIELDARRAY', scope.fieldArray)
         viewPay.chosenServiceId = localStorage.getItem('myNumberOperatorId');
 
-        this.on('mount', function () {
+        scope.on('mount', function () {
           firstField.style.display = 'none';
           amountField.style.top = '7%';
 
