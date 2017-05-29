@@ -4625,9 +4625,9 @@ var css = {
   "border-radius:" + 10 * widthK + "px;" +
   "background-size: cover;" +
   "color: white;" +
-  //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+    //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
     //"margin-left: 20px;" +
   "float: left;" +
   "margin: " + 7 * widthK + "px;" +
@@ -13084,26 +13084,34 @@ var css = {
 
   tourCardCarouselIn: ".tour-card-carousel-in " +
   "{" +
-  "position: absolute;" +
-  "height:100%;" +
+  "position: relative;" +
+  "height:" + 900 * heightK + "px;" +
   "width: 100%;" +
-    //"top: 12%;" +
   "display: inline-block;" +
+  "top: 0;" +
+  "bottom:" + 258 * widthK + "px;" +
+  "}",
+
+  componentTourBottom: ".component-tour-bottom " +
+  "{" +
+  "position: relative;" +
+  "height:" + 258 * heightK + "px;" +
+  "width: 100%;" +
+  "bottom:0;" +
+    //"background-color: #ee4d3d;" +
   "}",
 
   componentTourCardIn: ".component-tour-card-in " +
   "{" +
   "position: absolute;" +
   "opacity: 1;" +
-    //"height: 100%;" +
-    //"width: 100%;" +
-  "height:" + 900 * widthK + "px;" +
-  "width:" + 600 * widthK + "px;" +
+  "height:" + 900 * heightK + "px;" +
+  "width:" + 604.797 * widthK + "px;" +
   "left: 8%;" +
     //"background-color: #ee4d3d;" +
   "transform: translate(-84%, 0);" +
   "background-position: center;" +
-  "background-size: 100%;" +
+  "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "top: 0;" +
   "}",
@@ -13194,11 +13202,11 @@ var css = {
 
   tourButtonsContainer: ".tour-buttons-container" +
   "{" +
-  "position: absolute;" +
-  "height: 10%;" +
-  "width: 100%;" +
-    //"top:" + 500 * widthK + "px;" +
-  "bottom:4.5%;" +
+  "position: relative;" +
+  "height: " + 115 * widthK + "px;" +
+  "width:" + 604.797 * widthK + "px;" +
+  "top:0;" +
+  "bottom:0;" +
   "display: table;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
@@ -13290,8 +13298,8 @@ var css = {
   "width:" + 320 * widthK + "px;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
-  "height:" + 50 * widthK + "px;" +
-  "top: 80%;" +
+  "height:" + 35 * widthK + "px;" +
+  "top: 0;" +
   "}",
 
   tourCirclesField: ".tour-circles-field " +

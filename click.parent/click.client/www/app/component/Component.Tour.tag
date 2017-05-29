@@ -17,36 +17,38 @@
            each="{i in tourCardsArray}"
            style="left:{84+100*(i.counter-1)}%;background-image: url({i.text})"></div>
 
-
     </div>
 
-    <div class="tour-circles-container"
-         style="width: {((tourCardsArray.length) * 40 + 52)*widthK}px">
+    <div class="component-tour-bottom">
 
-      <div id="circle{i.counter-1}" style="left: {(i.counter)*40*widthK }px;" class="tour-circles"
-           each="{i in tourCardsArray}"></div>
+      <div class="tour-circles-container"
+           style="width: {((tourCardsArray.length) * 40 + 52)*widthK}px">
 
+        <div id="circle{i.counter-1}" style="left: {(i.counter)*40*widthK }px;" class="tour-circles"
+             each="{i in tourCardsArray}"></div>
 
-    </div>
-
-    <div class="tour-buttons-container" if="{!registrButton}">
-      <div class="tour-next-button tour-close-button" ontouchend="closeTour()">
-        <p class="tour-button-label tour-close-button-label">{window.languages.ComponentTourCloseButtonText}</p>
       </div>
-      <div class="tour-next-button" ontouchend="nextTourCard()">
-        <p class="tour-button-label">{window.languages.ComponentTourNextButtonText}</p>
+
+      <div class="tour-buttons-container" if="{!registrButton}">
+        <div class="tour-next-button tour-close-button" ontouchend="closeTour()">
+          <p class="tour-button-label tour-close-button-label">{window.languages.ComponentTourCloseButtonText}</p>
+        </div>
+        <div class="tour-next-button" ontouchend="nextTourCard()">
+          <p class="tour-button-label">{window.languages.ComponentTourNextButtonText}</p>
+        </div>
+      </div>
+
+      <div class="tour-buttons-container" if="{registrButton}">
+        <div
+          class="tour-registration-button"
+          ontouchend="closeTour()">
+          <p class="tour-registration-button-label">
+            {opts.view == "registration"?
+            window.languages.ComponentTourRegistrationButtonText:window.languages.ComponentTourCloseButtonTextIn}</p>
+        </div>
       </div>
     </div>
 
-    <div class="tour-buttons-container" if="{registrButton}">
-      <div
-        class="tour-registration-button"
-        ontouchend="closeTour()">
-        <p class="tour-registration-button-label">
-          {opts.view == "registration"?
-          window.languages.ComponentTourRegistrationButtonText:window.languages.ComponentTourCloseButtonTextIn}</p>
-      </div>
-    </div>
 
   </div>
 
