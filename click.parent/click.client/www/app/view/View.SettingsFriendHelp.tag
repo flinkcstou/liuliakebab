@@ -90,7 +90,7 @@
 
       event.preventDefault();
       event.stopPropagation();
-      var question = "Подтердите удаление друга";
+      var question = "Подтвердите удаление из списка";
 
 
       scope.confirmShowBool = true;

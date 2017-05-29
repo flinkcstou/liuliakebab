@@ -241,7 +241,7 @@
       if (Math.abs(contactDeleteTouchStartX - contactDeleteTouchEndX) <= 20 && Math.abs(contactDeleteTouchStartY - contactDeleteTouchEndY) <= 20) {
         var arrayOfContacts = JSON.parse(localStorage.getItem('contactList'))
 
-        var question = 'Контакт будет удален из списка'
+        var question = 'Подтвердите удаление из списка'
         scope.confirmShowBool = true;
         scope.confirmNote = question;
         scope.confirmType = 'local';
