@@ -128,6 +128,116 @@
       scope.checkAndroid = true;
     }
 
+    if (localStorage.getItem('settings_finger_print') !== null) {
+      console.log("FINGER PRINT INITIALIZE")
+      if (device.platform == 'Android') {
+
+        function isAvailableSuccess(result) {
+          console.log("FingerprintAuth available: " + JSON.stringify(result));
+          if (result.isAvailable) {
+            if (result.hasEnrolledFingerprints) {
+              localStorage.setItem('settings_finger_print_enrolled', true)
+            }
+            else {
+              localStorage.setItem('settings_finger_print_enrolled', false)
+            }
+            window.fingerPrint.check = true;
+
+            if (window.fingerPrint.check) {
+              var encryptConfig = {
+                clientId: "myAppName",
+                clientSecret: "currentUser",
+                password: "currentUser",
+                token: "currentUser",
+                locale: "ru",
+                disableBackup: false,
+//              userAuthRequired: false,
+                dialogHint: "Повторите попытку",
+                dialogTitle: "Сканирование для Click"
+
+              }; // See config object for required parameters
+
+              if (localStorage.getItem("settings_finger_print") !== null) {
+                if (JSON.parse(localStorage.getItem("settings_finger_print")) === true)
+                  FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
+              }
+            }
+          }
+          else {
+            window.fingerPrint.check = false
+          }
+        }
+
+        function isAvailableError(message) {
+          console.log("isAvailableError(): " + message);
+          window.fingerPrint.check = false;
+        }
+
+        FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
+
+
+        function encryptSuccessCallback(result) {
+          console.log("successCallback(): " + JSON.stringify(result));
+          if (result.withFingerprint) {
+            console.log("Successfully encrypted credentials.");
+            console.log("Encrypted credentials: " + result.token);
+            pin = localStorage.getItem('click_client_pin');
+            console.log('pin', pin)
+            enter();
+          } else if (result.withBackup) {
+            console.log("Authenticated with backup password");
+            pin = localStorage.getItem('click_client_pin');
+            console.log('pin', pin)
+            enter();
+          }
+        }
+
+        function encryptErrorCallback(error) {
+          if (error === "Cancelled") {
+            console.log("FingerprintAuth Dialog Cancelled!");
+          } else {
+            console.log("FingerprintAuth Error: " + error);
+          }
+        }
+
+      }
+      else if (device.platform == 'iOS') {
+
+        function successCallback(success) {
+          window.fingerPrint.check = true;
+//          localStorage.setItem('settings_finger_print_enrolled', true)
+          console.log('success', success)
+        }
+
+        function notSupportedCallback(error) {
+          console.log('error', error)
+          window.fingerPrint.check = false;
+//          localStorage.setItem('settings_finger_print_enrolled', false)
+        }
+
+
+        touchid.checkSupport(successCallback, notSupportedCallback);
+
+
+        if (localStorage.getItem("settings_finger_print") !== null && window.fingerPrint.check) {
+          if (JSON.parse(localStorage.getItem("settings_finger_print")) === true) {
+            var text = 'Приложите палец для сканирования';
+            touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
+          }
+
+          function successCallbackOfAuth(success) {
+            console.log(success)
+            pin = JSON.parse(localStorage.getItem('click_client_pin'));
+            enter();
+          }
+
+          function failureCallbackOfAuth(error) {
+            console.log(error)
+          }
+        }
+      }
+    }
+
     var pinResetTouchStartX, pinResetTouchStartY, pinResetTouchEndX, pinResetTouchEndY;
 
     pinResetTouchStart = function () {
@@ -930,114 +1040,6 @@
       }
     }
 
-    if (localStorage.getItem('settings_finger_print') && localStorage.getItem('click_client_pin')) {
-      if (device.platform == 'Android') {
-
-        function isAvailableSuccess(result) {
-          console.log("FingerprintAuth available: " + JSON.stringify(result));
-          if (result.isAvailable) {
-            if (result.hasEnrolledFingerprints) {
-              localStorage.setItem('settings_finger_print_enrolled', true)
-            }
-            else {
-              localStorage.setItem('settings_finger_print_enrolled', false)
-            }
-            window.fingerPrint.check = true;
-
-            if (window.fingerPrint.check) {
-              var encryptConfig = {
-                clientId: "myAppName",
-                clientSecret: "currentUser",
-                password: "currentUser",
-                token: "currentUser",
-                locale: "ru",
-                disableBackup: false,
-//              userAuthRequired: false,
-                dialogHint: "Повторите попытку",
-                dialogTitle: "Сканирование для Click"
-
-              }; // See config object for required parameters
-
-              if (localStorage.getItem("settings_finger_print")) {
-                if (JSON.parse(localStorage.getItem("settings_finger_print")) === true)
-                  FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
-              }
-            }
-          }
-          else {
-            window.fingerPrint.check = false
-          }
-        }
-
-        function isAvailableError(message) {
-          console.log("isAvailableError(): " + message);
-          window.fingerPrint.check = false;
-        }
-
-        FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
-
-
-        function encryptSuccessCallback(result) {
-          console.log("successCallback(): " + JSON.stringify(result));
-          if (result.withFingerprint) {
-            console.log("Successfully encrypted credentials.");
-            console.log("Encrypted credentials: " + result.token);
-            pin = localStorage.getItem('click_client_pin');
-            console.log('pin', pin)
-            enter();
-          } else if (result.withBackup) {
-            console.log("Authenticated with backup password");
-            pin = localStorage.getItem('click_client_pin');
-            console.log('pin', pin)
-            enter();
-          }
-        }
-
-        function encryptErrorCallback(error) {
-          if (error === "Cancelled") {
-            console.log("FingerprintAuth Dialog Cancelled!");
-          } else {
-            console.log("FingerprintAuth Error: " + error);
-          }
-        }
-
-      }
-      else if (device.platform == 'iOS') {
-
-        function successCallback(success) {
-          window.fingerPrint.check = true;
-//          localStorage.setItem('settings_finger_print_enrolled', true)
-          console.log('success', success)
-        }
-
-        function notSupportedCallback(error) {
-          console.log('error', error)
-          window.fingerPrint.check = false;
-//          localStorage.setItem('settings_finger_print_enrolled', false)
-        }
-
-
-        touchid.checkSupport(successCallback, notSupportedCallback);
-
-
-        if (localStorage.getItem("settings_finger_print") && window.fingerPrint.check) {
-          if (JSON.parse(localStorage.getItem("settings_finger_print")) === true) {
-            var text = 'Приложите палец для сканирования';
-            touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
-          }
-
-          function successCallbackOfAuth(success) {
-            console.log(success)
-            pin = JSON.parse(localStorage.getItem('click_client_pin'));
-            enter();
-          }
-
-          function failureCallbackOfAuth(error) {
-            console.log(error)
-          }
-        }
-      }
-    }
 
 
   </script>
