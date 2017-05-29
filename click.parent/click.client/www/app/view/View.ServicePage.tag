@@ -312,6 +312,9 @@
       viewServicePage.amountText = null;
       viewServicePinCards.friendHelpPaymentMode = false;
       viewServicePinCards.chosenFriendForHelp = null;
+      window.viewServicePage = {};
+      window.viewServicePinCards = {};
+      localStorage.setItem('servicepage_fields', null);
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
