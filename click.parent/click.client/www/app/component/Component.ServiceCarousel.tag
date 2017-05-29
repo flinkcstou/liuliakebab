@@ -1,7 +1,7 @@
 <component-service-carousel>
   <div id="containerService" class="service-carousel" ontouchstart="touchStartService()"
        ontouchend="touchEndService()" ontouchmove="touchMoveService()">
-    <div class="service-component">
+    <div class="service-component" style="left: {leftOfServiceCarousel}px">
       <div class="service-title">{window.languages.ComponentPopularServicesTitle}</div>
       <div class="service-container">
         <div class="service-each-container" each="{i in popularServiceList}">
@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="service-component" style="left: {leftOfServiceCarousel}px">
+    <div class="service-component">
       <div class="service-title">{window.languages.ComponentFavoritePaymentsTitle}</div>
       <div class="service-container">
         <div class="service-each-container" each="{i in favPaymentsList}">
