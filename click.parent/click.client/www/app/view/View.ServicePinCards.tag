@@ -97,7 +97,7 @@
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).friendhelp) {
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#002334");
+          StatusBar.backgroundColorByHexString("#002334");
       }
     });
 
@@ -156,7 +156,7 @@
 
             } else {
               this.riotTags.innerHTML = "<view-pay-confirm>";
-              riot.mount('view-pay-confirm', [opts, true, scope.chosencardId]);
+              riot.mount('view-pay-confirm', [opts, true, scope.chosencardId, opts[8]]);
               scope.unmount()
             }
           }

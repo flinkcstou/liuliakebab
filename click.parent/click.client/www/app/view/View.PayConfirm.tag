@@ -153,14 +153,11 @@
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     scope.cardOrFriendBool = opts[1];
 
-    if (scope.isInFavorites)
-      this.viewPage = 'view-main-page';
-    else this.viewPage = 'view-pay';
-
     scope.stepAmount = 3;
 
 
-    console.log("OPTS=", opts);
+    //    console.log("OPTS=", opts);
+    //    console.log("OPTS.MODE=", opts[3]);
     this.formType = opts[0][0].formtype;
     this.firstFieldId = opts[0][1].firstFieldId;
     this.firstFieldTitle = viewServicePage.firstFieldTitle;
@@ -485,7 +482,7 @@
               if (result[1][0].state == -1) {
                 scope.viewPage = 'view-service-page';
                 scope.update();
-                console.log("state=-1 error");
+//                console.log("state=-1 error");
                 componentUnsuccessId.style.display = 'block';
               } else if (result[1][0].state == 2) {
                 viewServicePage.phoneText = '';
@@ -495,13 +492,13 @@
                 viewServicePinCards.friendHelpPaymentMode = false;
                 viewServicePinCards.chosenFriendForHelp = null;
                 localStorage.setItem('servicepage_fields', null);
-                scope.viewPage = 'view-pay';
+                scope.viewPage = (scope.isInFavorites || opts[3] == 'POPULAR') ? 'view-main-page' : 'view-pay';
                 scope.update();
-                console.log("state=2 success");
+//                console.log("state=2 success");
                 componentSuccessId.style.display = 'block';
               } else if (result[1][0].state == 1) {
                 statusCheckCounter++;
-                console.log("statusCheckCounter=", statusCheckCounter);
+//                console.log("statusCheckCounter=", statusCheckCounter);
                 if (statusCheckCounter < 5) {
                   if (device.platform != 'BrowserStand') {
                     var options = {dimBackground: true};
@@ -523,7 +520,7 @@
                   viewServicePinCards.friendHelpPaymentMode = false;
                   viewServicePinCards.chosenFriendForHelp = null;
                   localStorage.setItem('servicepage_fields', null);
-                  scope.viewPage = 'view-pay';
+                  scope.viewPage = (scope.isInFavorites || opts[3] == 'POPULAR') ? 'view-main-page' : 'view-pay';
                   scope.update();
                   console.log("state=1 waiting");
                   componentInProcessingId.style.display = 'block';

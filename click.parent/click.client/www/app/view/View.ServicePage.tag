@@ -203,8 +203,8 @@
 
     window.checkShowingComponent = null;
 
-//    console.log('OPTS', opts);
-//    console.log('viewPay.chosenServiceId', viewPay.chosenServiceId);
+    //    console.log('OPTS', opts);
+    //    console.log('viewPay.chosenServiceId', viewPay.chosenServiceId);
 
     var scope = this;
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
@@ -1073,7 +1073,7 @@
       localStorage.setItem("servicepage_fields", JSON.stringify(scope.fieldsObject));
 
 
-      if (opts.mode == 'USUAL') {
+      if (opts.mode == 'USUAL' || opts.mode == 'POPULAR') {
 
         event.preventDefault();
         event.stopPropagation();
@@ -1158,11 +1158,11 @@
 
           if (scope.service.additional_information_type == 0) {
             this.riotTags.innerHTML = "<view-service-pincards>";
-            riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites])
+            riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, opts.mode])
             scope.unmount()
           } else {
             this.riotTags.innerHTML = "<view-service-info>";
-            riot.mount('view-service-info', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites])
+            riot.mount('view-service-info', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, opts.mode])
             scope.unmount()
           }
 
@@ -1259,9 +1259,9 @@
           return
         }
 
-        scope.formTypeTwoOptsArray = [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites];
+        scope.formTypeTwoOptsArray = [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, opts.mode];
 
-        if (opts.mode == 'USUAL') {
+        if (opts.mode == 'USUAL' || opts.mode == 'POPULAR') {
           event.preventDefault();
           event.stopPropagation();
           this.riotTags.innerHTML = "<view-service-pincards>";

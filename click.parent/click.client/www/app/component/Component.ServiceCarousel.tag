@@ -185,7 +185,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      console.log('TOUCH END SERVICE',touchEndX, touchStartX)
+      console.log('TOUCH END SERVICE', touchEndX, touchStartX)
       touchEndX = event.changedTouches[0].pageX;
       if (touchStartX != touchEndX) {
         changePositionOfServiceCarousel();
@@ -202,7 +202,7 @@
     }
 
     changePositionOfServiceCarousel = function () {
-      console.log('CHANGE POSITION',touchStartX)
+      console.log('CHANGE POSITION', touchStartX)
       if (touchEndX < touchStartX) {
         cardNumberOfService = 1;
         this.containerService.style.transform = "translate3d(" + -540 * widthK + "px, 0, 0)";
@@ -238,7 +238,7 @@
       if (Math.abs(onTouchStartX - onTouchEndX) <= 20) {
         console.log("chosen id in service carousel=", id);
         viewPay.chosenServiceId = id;
-        opts.mode = 'USUAL';
+        opts.mode = 'POPULAR';
 
         localStorage.setItem('chosenServiceId', id);
         riotTags.innerHTML = "<view-service-page>";
