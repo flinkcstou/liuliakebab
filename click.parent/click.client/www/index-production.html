@@ -129,10 +129,10 @@
       window.FirebasePlugin.subscribe("news");
 
 
-      if (!localStorage.getItem('settings_block')) {
+      if (localStorage.getItem('settings_block')  === null) {
         localStorage.setItem('settings_block', false)
       }
-      if (!localStorage.getItem('settings_finger_print')) {
+      if (localStorage.getItem('settings_finger_print') === null) {
         localStorage.setItem('settings_finger_print', false)
       }
 
