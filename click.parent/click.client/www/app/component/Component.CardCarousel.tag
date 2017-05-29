@@ -909,6 +909,8 @@
 
 //      clearInterval(changingColor)
 
+
+
       event.preventDefault();
       event.stopPropagation();
       carouselTouchEndX = event.changedTouches[0].pageX;
