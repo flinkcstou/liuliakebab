@@ -31,7 +31,7 @@
       </div>
 
       <div id="firstSuggestionBlockId" class="settings-add-friend-contact-found-container-one"
-           ontouchend="firstSuggestionBlock()">
+           ontouchend="firstSuggestionBlockTouchEnd()" ontouchstart="firstSuggestionBlockTouchStart()">
         <div class="transfer-contact-found-photo" style="background-image: url({suggestionOne.photo})">
           {suggestionOne.firstLetterOfName}
         </div>
@@ -41,7 +41,7 @@
         <div class="transfer-contact-found-text-two">{suggestionOne.phoneNumber}</div>
       </div>
       <div id="secondSuggestionBlockId" class="settings-add-friend-contact-found-container-two"
-           ontouchend="secondSuggestionBlock()">
+           ontouchend="secondSuggestionBlockTouchEnd()" ontouchstart="secondSuggestionBlockTouchStart()">
         <div class="transfer-contact-found-photo" style="background-image: url({suggestionTwo.photo})">
           {suggestionTwo.firstLetterOfName}
         </div>
@@ -386,75 +386,107 @@
     }
 
 
-    firstSuggestionBlock = function () {
+    var firstSuggestionChooseTouchStartX, firstSuggestionChooseTouchStartY, firstSuggestionChooseTouchEndX, firstSuggestionChooseTouchEndY;
+    firstSuggestionBlockTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      var digits = scope.suggestionOne.phoneNumber.match(maskOne);
-      var phone = '';
-      for (var i in digits) {
-        phone += digits[i]
-      }
-      scope.suggestionOne.phoneNumber = phone;
-      contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length);
+      firstSuggestionChooseTouchStartX = event.changedTouches[0].pageX
+      firstSuggestionChooseTouchStartY = event.changedTouches[0].pageY
 
-
-      if (scope.suggestionOne.displayName)
-        contactNameId.value = scope.suggestionOne.displayName
-      else {
-        if (scope.suggestionOne.fName)
-          contactNameId.value = scope.suggestionOne.fName
-        else {
-          contactNameId.value = scope.suggestionOne.lName
-        }
-      }
-
-      if (contactPhoneNumberId.value.length == 9) {
-        nextButtonId.style.display = 'block'
-
-        firstSuggestionBlockId.style.display = 'none';
-        secondSuggestionBlockId.style.display = 'none';
-      }
-      else
-        nextButtonId.style.display = 'none'
-
-      scope.update()
     }
 
-    secondSuggestionBlock = function () {
+
+    firstSuggestionBlockTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      var digits = scope.suggestionTwo.phoneNumber.match(maskOne);
-      var phone = '';
-      for (var i in digits) {
-        phone += digits[i]
-      }
-      scope.suggestionTwo.phoneNumber = phone;
+      firstSuggestionChooseTouchEndX = event.changedTouches[0].pageX
+      firstSuggestionChooseTouchEndY = event.changedTouches[0].pageY
 
-      contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length);
-
-
-      if (scope.suggestionTwo.displayName)
-        contactNameId.value = scope.suggestionTwo.displayName
-      else {
-        if (scope.suggestionTwo.fName)
-          contactNameId.value = scope.suggestionTwo.fName
-        else {
-          contactNameId.value = scope.suggestionTwo.lName
+      if (Math.abs(firstSuggestionChooseTouchStartX - firstSuggestionChooseTouchEndX) <= 20 && Math.abs(firstSuggestionChooseTouchStartY - firstSuggestionChooseTouchEndY) <= 20) {
+        var digits = scope.suggestionOne.phoneNumber.match(maskOne);
+        var phone = '';
+        for (var i in digits) {
+          phone += digits[i]
         }
+        scope.suggestionOne.phoneNumber = phone;
+        contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length);
+
+
+        if (scope.suggestionOne.displayName)
+          contactNameId.value = scope.suggestionOne.displayName
+        else {
+          if (scope.suggestionOne.fName)
+            contactNameId.value = scope.suggestionOne.fName
+          else {
+            contactNameId.value = scope.suggestionOne.lName
+          }
+        }
+
+        if (contactPhoneNumberId.value.length == 9) {
+          nextButtonId.style.display = 'block'
+
+          firstSuggestionBlockId.style.display = 'none';
+          secondSuggestionBlockId.style.display = 'none';
+        }
+        else
+          nextButtonId.style.display = 'none'
+
+        scope.update()
       }
+    }
 
 
-      if (contactPhoneNumberId.value.length == 9) {
-        nextButtonId.style.display = 'block'
-        firstSuggestionBlockId.style.display = 'none';
-        secondSuggestionBlockId.style.display = 'none';
+    var secondSuggestionChooseTouchStartX, secondSuggestionChooseTouchStartY, secondSuggestionChooseTouchEndX, secondSuggestionChooseTouchEndY;
+
+    secondSuggestionBlockTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      secondSuggestionChooseTouchStartX = event.changedTouches[0].pageX
+      secondSuggestionChooseTouchStartY = event.changedTouches[0].pageY
+    }
+
+    secondSuggestionBlockTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      secondSuggestionChooseTouchEndX = event.changedTouches[0].pageX
+      secondSuggestionChooseTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(secondSuggestionChooseTouchStartX - secondSuggestionChooseTouchEndX) <= 20 && Math.abs(secondSuggestionChooseTouchStartY - secondSuggestionChooseTouchEndY) <= 20) {
+        var digits = scope.suggestionTwo.phoneNumber.match(maskOne);
+        var phone = '';
+        for (var i in digits) {
+          phone += digits[i]
+        }
+        scope.suggestionTwo.phoneNumber = phone;
+
+        contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length);
+
+
+        if (scope.suggestionTwo.displayName)
+          contactNameId.value = scope.suggestionTwo.displayName
+        else {
+          if (scope.suggestionTwo.fName)
+            contactNameId.value = scope.suggestionTwo.fName
+          else {
+            contactNameId.value = scope.suggestionTwo.lName
+          }
+        }
+
+
+        if (contactPhoneNumberId.value.length == 9) {
+          nextButtonId.style.display = 'block'
+          firstSuggestionBlockId.style.display = 'none';
+          secondSuggestionBlockId.style.display = 'none';
+        }
+        else
+          nextButtonId.style.display = 'none'
+
+        scope.update()
       }
-      else
-        nextButtonId.style.display = 'none'
-
-      scope.update()
     }
 
     //    searchContactsForAdding = function (number) {
