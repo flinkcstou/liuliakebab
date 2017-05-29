@@ -383,6 +383,8 @@
         opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
       }
 
+      var statusCheckCounter = 0;
+
       function paymentFunction(payment_data) {
 
         if (device.platform != 'BrowserStand') {
@@ -444,6 +446,7 @@
                   viewServicePage.amountWithoutSpace = '';
                   viewServicePinCards.friendHelpPaymentMode = false;
                   viewServicePinCards.chosenFriendForHelp = null;
+                  localStorage.setItem('servicepage_fields', null);
                   componentSuccessId.style.display = 'block';
                 }
               }
@@ -491,21 +494,43 @@
                 viewServicePage.amountWithoutSpace = '';
                 viewServicePinCards.friendHelpPaymentMode = false;
                 viewServicePinCards.chosenFriendForHelp = null;
+                localStorage.setItem('servicepage_fields', null);
                 scope.viewPage = 'view-pay';
                 scope.update();
                 console.log("state=2 success");
                 componentSuccessId.style.display = 'block';
               } else if (result[1][0].state == 1) {
-                viewServicePage.phoneText = '';
-                window.viewServicePage = {};
-                viewServicePage.amountText = '';
-                viewServicePage.amountWithoutSpace = '';
-                viewServicePinCards.friendHelpPaymentMode = false;
-                viewServicePinCards.chosenFriendForHelp = null;
-                scope.viewPage = 'view-pay';
-                scope.update();
-                console.log("state=1 waiting");
-                componentInProcessingId.style.display = 'block';
+                statusCheckCounter++;
+                console.log("statusCheckCounter=", statusCheckCounter);
+                if (statusCheckCounter < 5) {
+                  console.log("sending one more request");
+                  if (device.platform != 'BrowserStand') {
+                    var options = {dimBackground: true};
+
+                    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+                      console.log("Started");
+                    }, function () {
+                      console.log("closed");
+                    });
+                  }
+                  setTimeout(function () {
+                    checkPaymentStatus(result[1][0].payment_id);
+                  }, 2000);
+                } else {
+                  console.log("no request any more");
+                  viewServicePage.phoneText = '';
+                  window.viewServicePage = {};
+                  viewServicePage.amountText = '';
+                  viewServicePage.amountWithoutSpace = '';
+                  viewServicePinCards.friendHelpPaymentMode = false;
+                  viewServicePinCards.chosenFriendForHelp = null;
+                  localStorage.setItem('servicepage_fields', null);
+                  scope.viewPage = 'view-pay';
+                  scope.update();
+                  console.log("state=1 waiting");
+                  componentInProcessingId.style.display = 'block';
+                }
+
               }
 
             }

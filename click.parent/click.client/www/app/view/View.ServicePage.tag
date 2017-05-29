@@ -312,6 +312,9 @@
       viewServicePage.amountText = null;
       viewServicePinCards.friendHelpPaymentMode = false;
       viewServicePinCards.chosenFriendForHelp = null;
+      window.viewServicePage = {};
+      window.viewServicePinCards = {};
+      localStorage.setItem('servicepage_fields', null);
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
@@ -579,10 +582,10 @@
         scope.amountFieldTitle = scope.service.lang_amount_title;
         scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
         if (scope.phoneFieldBool)
-//          scope.defaultNumber = !viewServicePage.phoneText ? null : inputVerification.telLengthVerification(viewServicePage.phoneText, window.languages.PhoneNumberLength)
-//        scope.defaultAmount = !viewServicePage.amountText ? 0 : viewServicePage.amountText;
+          scope.defaultNumber = !viewServicePage.phoneText ? null : inputVerification.telLengthVerification(viewServicePage.phoneText, window.languages.PhoneNumberLength)
+        scope.defaultAmount = !viewServicePage.amountText ? 0 : viewServicePage.amountText;
 
-          scope.inputMaxLength = scope.fieldArray[0].max_len;
+        scope.inputMaxLength = scope.fieldArray[0].max_len;
         console.log("INPUT LENGTH=", scope.inputMaxLength);
         if (scope.dropDownOn) {
           scope.chosenFieldParamId = scope.fieldsObject ? (scope.fieldsObject.firstFieldId ? scope.fieldsObject.firstFieldId : scope.fieldArray[0].parameter_id) : scope.fieldArray[0].parameter_id;
