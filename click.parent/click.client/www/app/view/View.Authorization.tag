@@ -953,7 +953,7 @@
                 locale: "ru",
                 disableBackup: false,
 //              userAuthRequired: false,
-                dialogHint: "Повторите попытку, или выбросите телефон XD TEST",
+                dialogHint: "Повторите попытку",
                 dialogTitle: "Сканирование для Click"
 
               }; // See config object for required parameters
@@ -1004,32 +1004,38 @@
       }
       else if (device.platform == 'iOS') {
 
-//        function successCallback(success) {
-//          window.fingerPrint.check = true;
-//          console.log('success', success)
-//          var text = 'Приложите палец для сканирования';
-//          touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
-//        }
-//
-//        function notSupportedCallback(error) {
-//          console.log('error', error)
-//          window.fingerPrint.check = false;
-//        }
-//
-//
-//        touchid.checkSupport(successCallback, notSupportedCallback);
-//
-//        function successCallbackOfAuth(success) {
-//          console.log(success)
-//          pin = JSON.parse(localStorage.getItem('click_client_pin'));
-//          enter();
-//        }
-//
-//        function failureCallbackOfAuth(error) {
-//          console.log(error)
-//        }
+        function successCallback(success) {
+          window.fingerPrint.check = true;
+//          localStorage.setItem('settings_finger_print_enrolled', true)
+          console.log('success', success)
+        }
+
+        function notSupportedCallback(error) {
+          console.log('error', error)
+          window.fingerPrint.check = false;
+//          localStorage.setItem('settings_finger_print_enrolled', false)
+        }
 
 
+        touchid.checkSupport(successCallback, notSupportedCallback);
+
+
+        if (localStorage.getItem("settings_finger_print") && window.fingerPrint.check) {
+          if (JSON.parse(localStorage.getItem("settings_finger_print")) === true) {
+            var text = 'Приложите палец для сканирования';
+            touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
+          }
+
+          function successCallbackOfAuth(success) {
+            console.log(success)
+            pin = JSON.parse(localStorage.getItem('click_client_pin'));
+            enter();
+          }
+
+          function failureCallbackOfAuth(error) {
+            console.log(error)
+          }
+        }
       }
     }
 

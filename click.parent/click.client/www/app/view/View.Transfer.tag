@@ -1222,7 +1222,7 @@
 
       function error(message) {
         scope.clickPinError = false;
-        scope.errorNote = 'Failed because: ' + message;
+        scope.errorNote = 'Отсутствует доступ';
         scope.showError = true;
         scope.update();
 //        alert('Failed because: ' + message);

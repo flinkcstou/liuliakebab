@@ -2997,8 +2997,9 @@ var css = {
   "top:" + 86 * widthK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
-  "overflow-y: auto; " +
+  "overflow-y: scroll; " +
   "overflow-x: hidden; " +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
   payServiceBlockContainer: ".pay-service-block-containter" +
@@ -3867,7 +3868,8 @@ var css = {
   "top: 7.5%;" +
   "background-color: transparent;" +
   "overflow-x: hidden;" +
-  "overflow-y: auto;" +
+  "overflow-y: scroll;" +
+  "-webkit-overflow-scrolling: touch;" +
   "}",
 
   pincardCardContainer: ".pincard-card-container" +
