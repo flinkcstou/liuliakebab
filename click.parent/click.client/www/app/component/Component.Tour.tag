@@ -8,7 +8,7 @@
 
 
     <div id="tourContainerId"
-         class="{tour-card-carousel:opts.view=='registration',tour-card-carousel-in:opts.view!='registration'}"
+         class="tour-card-carousel-in"
          ontouchstart="tourContainerTouchStart()"
          ontouchend="tourContainerTouchEnd()"
          ontouchmove="tourContainerTouchMove()">
