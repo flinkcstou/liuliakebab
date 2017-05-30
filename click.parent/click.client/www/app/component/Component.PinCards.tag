@@ -23,6 +23,7 @@
            class="{pincard-card-uncheckmark: 'check'+i.card_id != checkedId, pincard-card-checkmark: 'check'+i.card_id == checkedId}">
       </div>
     </div>
+    <div class="pincard-allcards-transparent-block"></div>
   </div>
 
   <script>

@@ -3873,6 +3873,17 @@ var css = {
   "-webkit-overflow-scrolling: touch;" +
   "}",
 
+  pincardAllcardsTransparentBlock: ".pincard-allcards-transparent-block" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 10%;" +
+  "bottom: -2%;" +
+  "background-image: url(resources/icons/pinCard/cardBorder.png);" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
   pincardCardContainer: ".pincard-card-container" +
   "{" +
   "position: relative;" +
