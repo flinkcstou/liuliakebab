@@ -111,6 +111,8 @@
 
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
+      if(!localStorage.getItem('device_platform'))
+      localStorage.setItem('device_platform', device.platform)
 
 //      localStorage.setItem('device', JSON.stringify(device))
       localStorage.setItem("click_client_authorized", JSON.stringify(false));

@@ -209,10 +209,6 @@
       if (Math.abs(onTouchEndOfServiceX - onTouchStartOfServiceX) <= 20) {
 
         var cards = JSON.parse(localStorage.getItem('click_client_cards'));
-        for (var i in cards) {
-          if (cards[i].default_account === true)
-            defaultAccount = cards[i];
-        }
 
         var param = {
           first_field_value: scope.opts.cntrg_info_param2
@@ -225,10 +221,12 @@
         viewPay.chosenServiceId = scope.opts.service_id;
         console.log('CHOOSEN SERVICE OPTS', scope.opts.service_id)
         console.log('CHOOSEN SERVICE', viewPay.chosenServiceId)
-        viewServicePage.amountText = scope.opts.amount + ' ' + defaultAccount.currency;
-        scope.update();
+        viewServicePage.amountText = scope.opts.amount;
+        console.log('PARAM', param)
         riotTags.innerHTML = "<view-service-page>";
         riot.mount("view-service-page", param);
+
+        scope.update();
 //        scope.unmount()
       }
     };

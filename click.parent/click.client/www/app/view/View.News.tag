@@ -107,13 +107,14 @@
         if (result[0][0].error == 0) {
           console.log("NEWS", result);
           for (var i in result[1]) {
-            if (result[1][i].news_content_short.length > 120) {
+            if (result[1][i].news_content.length > 120) {
               if (result[1][i].news_image) {
                 result[1][i].image_exist = true;
               }
               else {
                 result[1][i].image_exist = false;
               }
+              if(result[1][i].news_content_short)
               result[1][i].content_short = result[1][i].news_content_short.substring(0, 120) + '...';
             }
             scope.newsArray.push(result[1][i])
