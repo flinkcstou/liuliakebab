@@ -18,12 +18,16 @@
   </div>
 
   <div class="registration-keyboard-field keyboard-field" style="bottom: {150*widthK}px">
-    <div class="registration-button-help" style="top: {560*widthK}px">{window.languages.ViewSmsButtonHelp}</div>
+    <div class="registration-button-help" ontouchend="helpTouchEndSms()" ontouchstart="helpTouchStartSms()"
+         style="top: {560*widthK}px">{window.languages.ViewSmsButtonHelp}
+    </div>
     <component-keyboard></component-keyboard>
   </div>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
+
+  <component-tour view="registration"></component-tour>
 
   <script>
 
@@ -79,6 +83,35 @@
           viewSms.getSms(sms);
           return;
         }
+      }
+    }
+
+    var helpTouchStartXSms, helpTouchStartYSms, helpTouchEndXSms, helpTouchEndYSms;
+    helpTouchStartSms = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      helpTouchStartXSms = event.changedTouches[0].pageX
+      helpTouchStartYSms = event.changedTouches[0].pageY
+
+    }
+
+    helpTouchEndSms = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      helpTouchEndXSms = event.changedTouches[0].pageX
+      helpTouchEndYSms = event.changedTouches[0].pageY
+
+
+      if (Math.abs(helpTouchStartXSms - helpTouchEndXSms) <= 20 && Math.abs(helpTouchStartYSms - helpTouchEndYSms) <= 20) {
+//        riotTags.innerHTML = "<view-help>";
+//        riot.mount('view-help');
+//        scope.unmount()
+        componentTourId.style.display = "block";
+//        tourBackPageId.style.opacity = '1';
+
+
       }
     }
 

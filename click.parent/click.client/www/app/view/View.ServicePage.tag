@@ -203,7 +203,7 @@
 
     window.checkShowingComponent = null;
 
-    //    console.log('OPTS', opts);
+    console.log('OPTS in ServicePage', opts);
     //    console.log('viewPay.chosenServiceId', viewPay.chosenServiceId);
 
     var scope = this;
@@ -1073,7 +1073,7 @@
       localStorage.setItem("servicepage_fields", JSON.stringify(scope.fieldsObject));
 
 
-      if (opts.mode == 'USUAL' || opts.mode == 'POPULAR') {
+      if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
 
         event.preventDefault();
         event.stopPropagation();

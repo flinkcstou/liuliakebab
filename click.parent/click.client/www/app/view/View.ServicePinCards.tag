@@ -59,7 +59,7 @@
   <script>
 
 
-    console.log('OPTS', opts);
+    console.log('OPTS in PINCARDS', opts);
     //    var arrayForPay = [];
     //    arrayForPay.push(opts[0]);
     //    arrayForPay.push(opts[1]);
@@ -197,7 +197,7 @@
       event.preventDefault();
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-friend-help-settings>";
-      riot.mount('view-friend-help-settings');
+      riot.mount('view-friend-help-settings', opts);
       scope.unmount()
     }
 

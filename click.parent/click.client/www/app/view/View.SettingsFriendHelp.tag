@@ -28,6 +28,7 @@
 
   <script>
     var scope = this;
+    console.log('OPTS in FriendHelp', opts);
     this.titleName = window.languages.ViewSecuritySettingsFriendHelpTitle;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-friend-help-settings') {
@@ -78,7 +79,7 @@
           if (scope.arrayOfFriends[i].number == number) {
             viewServicePinCards.chosenFriendForHelp = scope.arrayOfFriends[i];
             console.log(viewServicePinCards.chosenFriendForHelp);
-            onBackKeyDown();
+            onBackKeyDownWithParams(opts, 1);
           }
         }
 
