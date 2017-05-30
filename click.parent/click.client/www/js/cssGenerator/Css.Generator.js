@@ -3877,10 +3877,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height: 5%;" +
-  "top: 54.5%;" +
+  "height: 8%;" +
+  "top: 51%;" +
   "background-image: url(resources/icons/pinCard/cardBorder.png);" +
-  "background-size: contain;" +
+  "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
 

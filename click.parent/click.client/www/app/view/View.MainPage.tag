@@ -10,7 +10,7 @@
     <component-card-carousel></component-card-carousel>
     <component-footer></component-footer>
 
-    <view-news></view-news>
+    <view-news if="{!modeOfApp.offlineMode}"></view-news>
 
     <div class="bank-operation-button-my-cards">
       <div class="bank-operation-button-my-cards-container">
