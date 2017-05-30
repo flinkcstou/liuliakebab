@@ -175,6 +175,11 @@
         closeMenu();
       }
       else {
+        console.log('START END',touchStartX, touchEndX)
+        if (Math.abs(touchStartX - touchEndX) < 20) {
+          closeMenu();
+          return
+        }
         if (timeEndX - timeStartX < 500 && touchStartX - touchEndX > 20) {
           closeMenu();
         }

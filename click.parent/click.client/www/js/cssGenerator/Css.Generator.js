@@ -3877,8 +3877,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height: 10%;" +
-  "bottom: -2%;" +
+  "height: 5%;" +
+  "top: 54.5%;" +
   "background-image: url(resources/icons/pinCard/cardBorder.png);" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
