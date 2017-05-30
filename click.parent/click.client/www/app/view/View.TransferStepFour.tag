@@ -80,7 +80,8 @@
   <component-unsuccess id="componentUnsuccessId"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{errorMessageFromTransfer}"></component-unsuccess>
+                       operationmessagepartthree="{errorMessageFromTransfer}"
+                       ></component-unsuccess>
 
   <component-in-processing id="componentInProcessingId"
                            operationmessagepartone="{window.languages.ComponentInProcessingPartOne}"
