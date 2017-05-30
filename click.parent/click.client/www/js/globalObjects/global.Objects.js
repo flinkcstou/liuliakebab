@@ -245,6 +245,17 @@ window.pushNotificationInitialize = function () {
           if (result[0][0].error == 0) {
             console.log("PUSH", result);
             localStorage.setItem('push_registered', token)
+
+            window.FirebasePlugin.logEvent("Registration", {
+              token: token,
+              item_id: phoneNumber
+            });
+
+            window.FirebasePlugin.subscribe("news");
+
+            window.FirebasePlugin.logEvent("subscribe", {
+              topic: "news"
+            });
           }
           else
             alert(result[0][0].error_note);

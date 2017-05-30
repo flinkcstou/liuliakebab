@@ -105,7 +105,10 @@
         window.FirebasePlugin.setBadgeNumber(numberOfMessage);
 
       }, function (error) {
-        window.cordova.plugins.firebase.crash.report(error);
+        window.FirebasePlugin.logEvent(scope.notificationText, {
+          content_type: scope.notificationAction,
+          item_id: 'crash'
+        });
         console.error(error);
       });
     }
