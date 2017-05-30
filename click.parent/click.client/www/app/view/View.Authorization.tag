@@ -673,7 +673,7 @@
           else {
 
             if (localStorage.getItem('settings_block')) {
-              if (JSON.parse(localStorage.getItem('settings_block')) === true)
+              if (JSON.parse(localStorage.getItem('settings_block')) === true) {
                 if (history.arrayOfHistory) {
                   if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
                     this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
@@ -682,6 +682,12 @@
                     scope.unmount()
                   }
                 }
+              }
+              else{
+                this.riotTags.innerHTML = "<view-main-page>";
+                riot.mount('view-main-page');
+                scope.unmount()
+              }
             }
             else{
               this.riotTags.innerHTML = "<view-main-page>";
