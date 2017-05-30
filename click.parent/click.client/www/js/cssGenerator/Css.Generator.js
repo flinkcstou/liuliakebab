@@ -10451,7 +10451,7 @@ var css = {
   "width: 100%;" +
     //"background-color: white;" +
   "background-image: url(resources/icons/transparent.png);" +
-  "z-index: 99999;" +
+  "z-index: 999999999;" +
   "}",
 
   componentAlertMessage: ".component-alert-message" +
@@ -11837,7 +11837,7 @@ var css = {
   "width: 100%;" +
   "height: 100%;" +
   "display: none;" +
-  "z-index: 999999;" +
+  "z-index: 9999;" +
   "background-image: url('resources/icons/transparent.png');" +
     //"background-repeat: no-repeat;" +
   "background-position-y: center;" +
