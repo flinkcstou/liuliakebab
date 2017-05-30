@@ -125,6 +125,8 @@
     goToInviteFriendSettings = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      window.pickContactFromNativeChecker = true;
       var text = "Привет! Подключайтесь к CLICK с новыми возможностями! Управляйте своими картами, Проверяйте общий баланс карт, Переводите средства с карты на карту, Оплачивайте любые услуги и погашайте кредиты!" +"Набирайте '*880#', скачивайте новое приложение CLICK Uzbekistan http://click.uz/a или пользуйтесь персональным кабинетом http://my.click.uz"
         + "(Для подключения необходимо включить услугу смс-информирования)."
       var title = "CLICK"

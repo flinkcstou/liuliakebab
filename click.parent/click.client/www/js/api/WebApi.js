@@ -268,7 +268,7 @@ window.api.call = function (params) {
     //}
   }
 
-  if (modeOfApp.onlineMode && (method == "get.additional.information" || method == "get.payment"))
+  if (modeOfApp.onlineMode && (method == "get.additional.information" || method == "get.payment" || method == "app.login"))
     setTimeout(function () {
       if (device.platform != 'BrowserStand')
         if (window.api.spinnerOn) {

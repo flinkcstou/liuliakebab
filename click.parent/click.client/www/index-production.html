@@ -202,7 +202,7 @@
   }
 
   function onPauseFunction() {
-    if (componentMenu.check === true || window.pickContactFromNativeChecker === true) {
+    if (componentMenu.check === true || window.pickContactFromNativeChecker === true || modeOfApp.offlineMode) {
       window.pickContactFromNativeChecker = false;
       componentMenu.check = false;
       return
