@@ -683,13 +683,14 @@
                   }
                 }
               }
-              else{
+
+              else {
                 this.riotTags.innerHTML = "<view-main-page>";
                 riot.mount('view-main-page');
                 scope.unmount()
               }
             }
-            else{
+            else {
               this.riotTags.innerHTML = "<view-main-page>";
               riot.mount('view-main-page');
               scope.unmount()
