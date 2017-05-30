@@ -101,7 +101,12 @@
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
+      console.log("JSON.parse(localStorage.getItem('autoPayData'))", JSON.parse(localStorage.getItem('autoPayData')));
+      if (JSON.parse(localStorage.getItem('autoPayData')).fromView == 'PAYCONFIRM') {
+        opts.mode = 'USUAL';
+        opts[3] = 'USUAL';
+      }
+      onBackKeyDownWithParams(opts, 1);
       scope.unmount()
     };
 

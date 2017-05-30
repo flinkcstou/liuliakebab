@@ -210,10 +210,6 @@
 
         var cards = JSON.parse(localStorage.getItem('click_client_cards'));
 
-        var param = {
-          first_field_value: scope.opts.cntrg_info_param2
-        };
-
         console.log("chosen id in pay view=", scope.opts.service_id);
 
 
@@ -221,10 +217,29 @@
         viewPay.chosenServiceId = scope.opts.service_id;
         console.log('CHOOSEN SERVICE OPTS', scope.opts.service_id)
         console.log('CHOOSEN SERVICE', viewPay.chosenServiceId)
-        viewServicePage.amountText = scope.opts.amount;
-        console.log('PARAM', param)
+        viewServicePage.amountText = inputVerification.spaceDeleter(scope.opts.amount.toString());
+        viewServicePage.amountWithoutSpace = inputVerification.spaceDeleter(scope.opts.amount.toString());
+//        console.log('AMOUNT=', viewServicePage.amountText)
+
+        scope.fieldsObject = {
+//          formtype: formtype.formtype,
+//          firstFieldId: firstFieldId.firstFieldId,
+          firstFieldText: scope.opts.cntrg_info_param2,
+//          firstFieldTitle: scope.chosenFieldName,
+//          cardTypeId: cardTypeId.cardTypeId,
+//          communalParam: communalParam.communalParam,
+          amountText: scope.opts.amount,
+//          internetPackageParam: internetPackageParam.internetPackageParam,
+//          firstLevelParamId: scope.chosenFieldParamIdTwo,
+//          firstLevelFieldName: scope.chosenFieldNameTwo,
+//          secondLevelFieldName: scope.chosenFieldNameThree,
+        };
+        console.log("fieldsObject=", scope.fieldsObject);
+        localStorage.setItem("servicepage_fields", JSON.stringify(scope.fieldsObject));
+        opts.mode = 'USUAL';
+
         riotTags.innerHTML = "<view-service-page>";
-        riot.mount("view-service-page", param);
+        riot.mount("view-service-page", opts);
 
         scope.update();
 //        scope.unmount()

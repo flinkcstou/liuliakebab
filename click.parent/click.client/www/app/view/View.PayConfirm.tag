@@ -114,7 +114,7 @@
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
+      onBackKeyDownWithParams(opts[0], 1);
       scope.unmount()
     };
 

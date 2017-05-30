@@ -590,6 +590,37 @@
     }
   }
 
+  function onBackKeyDownWithParams(opts, n) {
+
+    if (window.checkShowingComponent) {
+      console.log('window.checkShowingComponent', window.checkShowingComponent)
+      window.checkShowingComponent.parent.showComponent = false;
+      window.checkShowingComponent = null;
+      riot.update();
+      return
+    }
+
+
+    history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+
+    if (history.arrayOfHistory.length != 0) {
+      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-main-page'
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device'
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization'
+        || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-client') {
+        navigator.app.exitApp();
+      }
+      else {
+        history.arrayOfHistory.pop();
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+        console.log(history.arrayOfHistory[history.arrayOfHistory.length - 1].view)
+        console.log("OPTS in ONBackKeyDownWithParams", opts)
+        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, opts);
+      }
+    }
+  }
+
 
   function checkImageURL(dirEntry, fileNamePrefix, fileName, assetURL, index, callback) {
 
