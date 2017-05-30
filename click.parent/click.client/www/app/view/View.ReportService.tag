@@ -157,7 +157,7 @@
         var servicesMap = localStorage.getItem("click_client_servicesMap");
         servicesMap = JSON.parse(servicesMap);
 
-        console.log("Preparing inputs for favorites", localStorage.getItem("click_client_servicesMap"), scope.opts.service_id, servicesMap, servicesMap[opts.service_id][0]);
+//        console.log("Preparing inputs for favorites", localStorage.getItem("click_client_servicesMap"), scope.opts.service_id, servicesMap, servicesMap[scope.opts.service_id][0]);
 
         var formType = {"formtype": servicesMap[scope.opts.service_id][0].form_type};
         var firstFieldId = {"firstFieldId": servicesMap[scope.opts.service_id][0].service_parameters};
