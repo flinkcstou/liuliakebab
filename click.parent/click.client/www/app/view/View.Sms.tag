@@ -152,6 +152,16 @@
         onSuccess: function (result) {
           if (result[0][0])
             if (result[0][0].error == 0) {
+              scope.tourData = {
+                mainpage: false,
+                transfer: false,
+                invoice: false,
+                autopaymethod: false,
+                calculator: false,
+                friendhelp: false
+              };
+              localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
+
               localStorage.setItem('confirm_needed', false);
               console.log(result)
               if (result[0][0].client_exists == 1) {

@@ -47,6 +47,10 @@
     var scope = this;
     var leftOfDelta;
     var cardNumberOfService = 0;
+    window.viewServicePage = {};
+    window.viewServicePinCards = {};
+    localStorage.setItem('servicepage_fields', null);
+
     if (modeOfApp.offlineMode) {
       scope.popularServiceList = localStorage.getItem("click_client_popularServiceList") ? (JSON.parse(localStorage.getItem("click_client_popularServiceList"))) : (offlinePopularServiceList);
     }
