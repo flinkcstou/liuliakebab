@@ -465,15 +465,6 @@
               viewAuthorization.check = false;
               localStorage.setItem("click_client_authorized", true);
 
-              scope.tourData = {
-                mainpage: false,
-                transfer: false,
-                invoice: false,
-                autopaymethod: false,
-                calculator: false,
-                friendhelp: false
-              };
-              localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
               getAccount();
               window.pushNotificationActions.retrievePushNotification();
             }
