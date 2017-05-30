@@ -262,7 +262,7 @@
               },
               function (error) {
                 scope.clickPinError = false;
-                scope.errorNote = "Отсутсвует доступ";
+                scope.errorNote = "Отсутствует доступ";
                 scope.showError = true;
                 scope.update();
               },
