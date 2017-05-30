@@ -2,12 +2,13 @@
 
   <div class="component-tour">
 
+    <p class="tour-title-text">{tourTitle}</p>
 
     <div type="button" class="tour-close-icon" ontouchend="closeTour()"></div>
 
 
     <div id="tourContainerId"
-         class="tour-card-carousel-in"
+         class="tour-card-carousel"
          ontouchstart="tourContainerTouchStart()"
          ontouchend="tourContainerTouchEnd()"
          ontouchmove="tourContainerTouchMove()">
@@ -15,12 +16,19 @@
 
       <div class="{component-tour-card: opts.view=='registration',component-tour-card-in: opts.view!='registration'}"
            each="{i in tourCardsArray}"
-           style="left:{84+100*(i.counter-1)}%;background-image: url({i.text})"></div>
+           style="left:{84+100*(i.counter-1)}%;">
+        <div class="component-card-upper-container" style="background-color: {i.back_color};">
+          <div class="component-card-upper-icon" style="background-image: url({i.image});"></div>
+        </div>
+        <div class="component-card-lower-container">
+          <p class="component-card-lower-title-text">{i.title}</p>
+          <p class="component-card-lower-body-text">{i.text}</p>
+        </div>
+      </div>
 
     </div>
 
     <div class="component-tour-bottom">
-
       <div class="tour-circles-container"
            style="width: {((tourCardsArray.length) * 40 + 52)*widthK}px">
 
@@ -64,31 +72,37 @@
 
     if (opts.view == "registration") {
       scope.tourCardsArray = tourCards.registration;
-//      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
+      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
       scope.count = 5;
       scope.update();
     } else if (opts.view == "mainpage") {
       scope.tourCardsArray = tourCards.mainpage;
+      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
       scope.count = 2;
       scope.update();
     } else if (opts.view == "transfer") {
       scope.tourCardsArray = tourCards.transfer;
+      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
       scope.count = 3;
       scope.update();
     } else if (opts.view == "invoice") {
       scope.tourCardsArray = tourCards.invoice;
+      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
       scope.count = 2;
       scope.update();
     } else if (opts.view == "autopaymethod") {
       scope.tourCardsArray = tourCards.autopaymethod;
+      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
       scope.count = 2;
       scope.update();
     } else if (opts.view == "calculator") {
       scope.tourCardsArray = tourCards.calculator;
+      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
       scope.count = 1;
       scope.update();
     } else if (opts.view == "friendhelp") {
       scope.tourCardsArray = tourCards.friendhelp;
+      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
       scope.count = 1;
       scope.update();
     }

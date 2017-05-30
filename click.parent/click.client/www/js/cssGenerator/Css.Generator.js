@@ -57,14 +57,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-    //"background-image: url(resources/total-balance.png);" +
-    //"opacity: 0.6;" +
+  "background-image: url(resources/tourcheck.png);" +
+  "opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    //"background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    //"background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    //"background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -2835,7 +2835,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  //"height:" + 710 * widthK + "px;" +
+    //"height:" + 710 * widthK + "px;" +
   "top:" + 465 * widthK + "px;" +
   "bottom:" + 0 * widthK + "px;" +
     //"top:" + 600 * widthK + "px;" +
@@ -13057,13 +13057,46 @@ var css = {
   "z-index:999;" +
   "}",
 
-  tourCardCarousel: ".tour-card-carousel " +
+  tourTitleText: ".tour-title-text" +
   "{" +
   "position: absolute;" +
-  "height:65%;" +
+  "color: #8b8b8b;" +
+  "width:70%;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:3%;" +
+  "left: 15%;" +
+  "font-size:" + 33 * widthK + "px;" +
+  "z-index: 999;" +
+  "}",
+
+  tourCloseIcon: ".tour-close-icon " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 127 * widthK + "px;" +
+  "height:" + 86 * widthK + "px;" +
+  "left:80%;" +
+  "background-image: url(resources/icons/ComponentTour/tutorial_close.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 55%;" +
+  "background-position-y: center;" +
+  "background-position-x:center;" +
+  "background-size: 25%;" +
+  "top:1%;" +
+  "z-index: 999;" +
+  "}",
+
+  tourCardCarousel: ".tour-card-carousel" +
+  "{" +
+  "position: relative;" +
+  "height:" + 900 * heightK + "px;" +
   "width: 100%;" +
-  "top: 12%;" +
   "display: inline-block;" +
+  "top: 0;" +
+  "bottom:" + 258 * widthK + "px;" +
   "}",
 
   componentTourCard: ".component-tour-card " +
@@ -13080,38 +13113,6 @@ var css = {
   "background-repeat: no-repeat;" +
   "}",
 
-  componentTourIn: ".component-tour-in " +
-  "{" +
-  "position: absolute;" +
-  "opacity: 1;" +
-  "height: 91%;" +
-  "width: 81%;" +
-    //"top: 5%;" +
-  "left: 8%;" +
-  "background-color: white;" +
-  "overflow: hidden;" +
-  "display:none;" +
-  "top: 5%;" +
-  "}",
-
-  tourCardCarouselIn: ".tour-card-carousel-in " +
-  "{" +
-  "position: relative;" +
-  "height:" + 900 * heightK + "px;" +
-  "width: 100%;" +
-  "display: inline-block;" +
-  "top: 0;" +
-  "bottom:" + 258 * widthK + "px;" +
-  "}",
-
-  componentTourBottom: ".component-tour-bottom " +
-  "{" +
-  "position: relative;" +
-  "height:" + 258 * heightK + "px;" +
-  "width: 100%;" +
-  "top:" + 110 * widthK + "px;" +
-    //"background-color: #ee4d3d;" +
-  "}",
 
   componentTourCardIn: ".component-tour-card-in " +
   "{" +
@@ -13128,34 +13129,75 @@ var css = {
   "top: -1px;" +
   "}",
 
-  tourMessage: ".tour-message" +
+  componentCardUpperContainer: ".component-card-upper-container " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 510 * widthK + "px;" +
+  "width: 100%;" +
+  "top:0;" +
+  "background-color: lightgray;" +
+  "}",
+
+  componentCardUpperIcon: ".component-card-upper-icon" +
+  "{" +
+  "position: absolute;" +
+  "height:83%;" +
+  "width:100%;" +
+  "top:17%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 68%;" +
+  "background-position: center;" +
+  "background-position-y: 60%;" +
+  "}",
+
+  componentCardLowerContainer: ".component-card-lower-container " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 390 * widthK + "px;" +
+  "width: 100%;" +
+  "top:" + 510 * widthK + "px;" +
+  "background-color: transparent;" +
+  "}",
+
+  componentCardLowerTitleText: ".component-card-lower-title-text " +
   "{" +
   "position: relative;" +
   "color: black;" +
-  "width:" + 300 * widthK + "px;" +
+  "width:" + 540 * widthK + "px;" +
   "text-align: center;" +
   "margin-left: auto;" +
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 601 * widthK + "px;" +
-  "left:" + -10 * widthK + "px;" +
-  "font-size:" + 36 * widthK + "px;" +
+  "top:9%;" +
+    //"left:" + -5 * widthK + "px;" +
+  "font-size:" + 35 * widthK + "px;" +
+  "font-weight: bold;" +
   "}",
 
-  tourTitleText: ".tour-title-text" +
+  componentCardLowerBodyText: ".component-card-lower-body-text " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "color: #8b8b8b;" +
-  "width:70%;" +
+  "width:80%;" +
   "text-align: center;" +
   "margin-left: auto;" +
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:3%;" +
-  "left: 15%;" +
+  "top:16%;" +
+    //"left:" + -5 * widthK + "px;" +
   "font-size:" + 33 * widthK + "px;" +
+  "font-weight: bold;" +
+  "}",
+
+  componentTourBottom: ".component-tour-bottom " +
+  "{" +
+  "position: relative;" +
+  "height:" + 258 * heightK + "px;" +
+  "width: 100%;" +
+  "top:" + 110 * widthK + "px;" +
+    //"background-color: #ee4d3d;" +
   "}",
 
   tourNextButtonInnerContainer: ".tour-next-button-inner-container" +
@@ -13176,48 +13218,13 @@ var css = {
   "color: #ffffff;" +
   "}",
 
-  tourIcon: ".tour-icon" +
-  "{" +
-  "position: absolute;" +
-  "top:" + 200 * widthK + "px;" +
-  "width:" + 270 * widthK + "px;" +
-  "height:" + 250 * widthK + "px;" +
-  "left:" + 195 * widthK + "px;" +
-  "background-image: url(resources/icons/ViewSuccessUnsuccess/ok.png);" +
-  "background-repeat: no-repeat;" +
-  "background-size: 93%;" +
-  "}",
-
-  tourCloseIcon: ".tour-close-icon " +
-  "{" +
-  "position: absolute;" +
-  "width:" + 127 * widthK + "px;" +
-  "height:" + 86 * widthK + "px;" +
-  "left:80%;" +
-  "background-image: url(resources/icons/ComponentTour/tutorial_close.png);" +
-  "background-repeat: no-repeat;" +
-  "-webkit-background-size: 55%;" +
-  "background-position-y: center;" +
-  "background-position-x:center;" +
-  "background-size: 25%;" +
-  "top:1%;" +
-  "z-index: 999;" +
-  "}",
-
-
-  tourCards: ".tour-cards " +
-  "{" +
-  "position: relative;" +
-  "-webkit-animation: mymove 5s infinite;" +
-  "animation: mymove 5s infinite;" +
-  "}",
 
   tourButtonsContainer: ".tour-buttons-container" +
   "{" +
   "position: relative;" +
   "height: " + 115 * widthK + "px;" +
   "width:" + 604.797 * widthK + "px;" +
-  "top:0;" +
+  "top:" + 58 * widthK + "px;" +
   "bottom:0;" +
   "display: table;" +
   "margin-right: auto;" +
@@ -13311,7 +13318,7 @@ var css = {
   "margin-right: auto;" +
   "margin-left: auto;" +
   "height:" + 35 * widthK + "px;" +
-  "top: 0;" +
+  "top:" + 24 * widthK + "px;" +
   "}",
 
   tourCirclesField: ".tour-circles-field " +
