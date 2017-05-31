@@ -407,6 +407,9 @@ window.pushNotificationActions = {
 
   getNewsFunction: function (newsId) {
     window.News.newsCounter++;
+
+    riotTags.innerHTML = "<view-main-page>";
+    riot.mount("view-main-page", {view : "news"});
   },
 
   refreshCardCarousel: function (cardId) {

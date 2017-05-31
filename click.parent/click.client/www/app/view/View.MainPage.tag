@@ -42,7 +42,25 @@
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).mainpage) {
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#002334");
+          StatusBar.backgroundColorByHexString("#002334");
+      }
+
+      if (opts) {
+        if (opts.view == "news") {
+          viewNewsId.style.display = 'block'
+
+//          window.News.newsCounter = 0;
+
+          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-news') {
+            history.arrayOfHistory.push(
+              {
+                "view": 'view-news',
+                "params": opts
+              }
+            );
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+          }
+        }
       }
     });
 

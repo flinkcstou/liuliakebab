@@ -11,7 +11,7 @@
     <div class="mycardlist-container">
       <div class="mycardlist-card" each="{i in cardsArray}"
            style="background-image: url({i.card_background_url}); color: rgb({i.font_color});"
-           ontouchend="goToCardPage({i.card_id})">
+           ontouchstart="goToCardPageTouchStart()" ontouchend="goToCardPageTouchEnd({i.card_id})">
 
         <div class="mycardlist-card-bank-name"></div>
         <div class="mycardlist-card-salary-title">{i.name}</div>
@@ -430,7 +430,7 @@
       }
     };
 
-//    refreshCards();
+    //    refreshCards();
 
     goToMainPage = function () {
       event.preventDefault();
@@ -439,35 +439,52 @@
       scope.unmount()
     };
 
-    goToCardPage = function (cardId) {
+    var goToCardTouchStartX, goToCardTouchStartY, goToCardTouchEndX, goToCardTouchEndY;
+    goToCardPageTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      goToCardTouchStartX = event.changedTouches[0].pageX
+      goToCardTouchStartY = event.changedTouches[0].pageY
+
+    }
+
+    goToCardPageTouchEnd = function (cardId) {
       if (modeOfApp.offlineMode) return
       event.preventDefault();
       event.stopPropagation();
-      console.log('cardId', cardId);
-      for (var i in scope.cardsArray) {
-        if (scope.cardsArray[i] == scope.cardsArray[cardId]) {
-          scope.cardsArray[cardId].chosenCard = true;
-          console.log('scope.cardsArray[cardId]', scope.cardsArray[cardId])
-          console.log('scope.cardsArray[i]', scope.cardsArray[i])
-          localStorage.setItem('cardNumber', scope.cardsArray[cardId].countCard);
+
+      goToCardTouchEndX = event.changedTouches[0].pageX
+      goToCardTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(goToCardTouchStartX - goToCardTouchEndX) <= 20 && Math.abs(goToCardTouchStartY - goToCardTouchEndY) <= 20) {
+
+        console.log('cardId', cardId);
+        for (var i in scope.cardsArray) {
+          if (scope.cardsArray[i] == scope.cardsArray[cardId]) {
+            scope.cardsArray[cardId].chosenCard = true;
+            console.log('scope.cardsArray[cardId]', scope.cardsArray[cardId])
+            console.log('scope.cardsArray[i]', scope.cardsArray[i])
+            localStorage.setItem('cardNumber', scope.cardsArray[cardId].countCard);
+          }
+          else
+            scope.cardsArray[cardId].chosenCard = false;
         }
-        else
-          scope.cardsArray[cardId].chosenCard = false;
+
+        scope.update();
+
+        riotTags.innerHTML = "<view-my-cards>";
+        riot.mount('view-my-cards', [cardId]);
+
+        scope.unmount()
       }
-
-      scope.update();
-
-      riotTags.innerHTML = "<view-my-cards>";
-      riot.mount('view-my-cards', [cardId]);
-
-      scope.unmount()
     }
 
     addCardTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      if(modeOfApp.demoVersion){
+      if (modeOfApp.demoVersion) {
         var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
         scope.confirmShowBool = true;
@@ -480,7 +497,7 @@
             scope.unmount()
             return
           }
-          else{
+          else {
             scope.confirmShowBool = false;
             return
           }
