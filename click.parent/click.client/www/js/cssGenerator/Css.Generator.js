@@ -11875,7 +11875,7 @@ var css = {
   "margin: 0 auto 3% auto;" +
   "padding-bottom: 0;" +
   "height:" + 330 * widthK + "px;" +
-  //"contain: content;" +
+    //"contain: content;" +
   "background-image: url('resources/icons/ViewNews/news.png');" +
   "background-repeat: no-repeat;" +
   "background-position-y: bottom;" +
@@ -13145,7 +13145,7 @@ var css = {
   "position: absolute;" +
   "height:83%;" +
   "width:100%;" +
-  "top:17%;" +
+  "top:20%;" +
   "background-repeat: no-repeat;" +
   "background-size: 68%;" +
   "background-position: center;" +
@@ -13235,10 +13235,10 @@ var css = {
 
   tourButtonsContainer: ".tour-buttons-container" +
   "{" +
-  "position: relative;" +
+  "position: absolute;" +
   "height: " + 97 * heightK + "px;" +
   "width:" + 604.797 * widthK + "px;" +
-  "top:" + 58 * widthK + "px;" +
+  "top:" + 90 * widthK + "px;" +
   "bottom:0;" +
   "display: table;" +
   "margin-right: auto;" +

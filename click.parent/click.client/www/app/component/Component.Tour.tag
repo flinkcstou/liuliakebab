@@ -19,7 +19,7 @@
            style="left:{84+100*(i.counter-1)}%;">
         <div class="component-card-upper-container" style="background-color: {i.back_color};">
           <div
-            class="component-card-upper-icon"
+            class="{classForPages}"
             style="background-image: url({i.image});background-size: {i.icon_size}%;background-position-y: {i.icon_y}%;"></div>
         </div>
         <div class="component-card-lower-container">
@@ -31,7 +31,7 @@
     </div>
 
     <div class="component-tour-bottom">
-      <div class="tour-circles-container"
+      <div class="tour-circles-container" if="{tourCirclesShow}"
            style="width: {((tourCardsArray.length) * 40 + 52)*widthK}px">
 
         <div id="circle{i.counter-1}" style="left: {(i.counter)*40*widthK }px;" class="tour-circles"
@@ -69,10 +69,16 @@
 
 
     var scope = this;
-
+    scope.classForPages = ''
 
     console.log("component tour view=", opts.view);
 
+    if (opts.view == 'registration') {
+      scope.classForPages = "component-card-upper-icon";
+    }
+    else
+      scope.classForPages = "component-card-upper-icon-in";
+    scope.update();
 
     if (opts.view == "registration") {
       scope.tourCardsArray = tourCards.registration;
@@ -117,6 +123,7 @@
     var left;
     var delta;
     scope.registrButton = false;
+    scope.tourCirclesShow = true;
 
     scope.on('mount', function () {
 //      if (device.platform != 'BrowserStand') {
@@ -126,6 +133,7 @@
       document.getElementById('tourTitleId').style.color = scope.tourCardsArray[scope.tNumber].title_color;
       if (scope.count == 1) {
         scope.registrButton = true;
+        scope.tourCirclesShow = false;
       }
       scope.update();
     });
@@ -185,19 +193,21 @@
       if (tourCarouselTouchEndX < tourCarouselTouchStartX && scope.tNumber == scope.count - 2) {
         scope.registrButton = true;
         scope.update();
-      } else if (tourCarouselTouchEndX > tourCarouselTouchStartX && scope.tNumber == scope.count - 1) {
+      } else if (tourCarouselTouchEndX > tourCarouselTouchStartX && scope.tNumber == scope.count - 1 && scope.count > 1) {
         scope.registrButton = false;
         scope.update();
       }
 
       if (tourCarouselTouchEndX < tourCarouselTouchStartX && scope.tNumber < scope.count - 1) {
-        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'gainsboro';
+        if (scope.tourCirclesShow)
+          document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'gainsboro';
         ++scope.tNumber;
         this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
         this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
-        document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
+        if (scope.tourCirclesShow)
+          document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
         this.tourTitleId.style.color = scope.tourCardsArray[scope.tNumber].title_color;
       }
 
@@ -216,13 +226,15 @@
       }
 
       if (tourCarouselTouchEndX > tourCarouselTouchStartX && scope.tNumber > 0) {
-        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'gainsboro';
+        if (scope.tourCirclesShow)
+          document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'gainsboro';
         --scope.tNumber;
         this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
         this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
         this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
-        document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
+        if (scope.tourCirclesShow)
+          document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
         this.tourTitleId.style.color = scope.tourCardsArray[scope.tNumber].title_color;
       }
 
@@ -260,13 +272,15 @@
       event.preventDefault();
       event.stopPropagation();
 
-      document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'gainsboro';
+      if (scope.tourCirclesShow)
+        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'gainsboro';
       scope.tNumber = 0;
       this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
       this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
       this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
       this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
-      document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
+      if (scope.tourCirclesShow)
+        document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
       this.tourTitleId.style.color = scope.tourCardsArray[scope.tNumber].title_color;
       scope.registrButton = false;
       scope.update();
