@@ -13058,7 +13058,7 @@ var css = {
   "top: 1%;" +
   "position: absolute;" +
   "opacity: 1;" +
-  "height:" + 1158 * widthK + "px;" +
+  "height:" + 1158 * heightK + "px;" +
   "width:" + 604.797 * widthK + "px;" +
     //"top: 5%;" +
   "left: 8%;" +
@@ -13106,7 +13106,7 @@ var css = {
   tourCardCarousel: ".tour-card-carousel" +
   "{" +
   "position: relative;" +
-  "height:" + 900 * widthK + "px;" +
+  "height:" + 900 * heightK + "px;" +
   "width: 100%;" +
   "display: inline-block;" +
   "top: 0;" +
@@ -13118,7 +13118,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "opacity: 1;" +
-  "height:" + 900 * widthK + "px;" +
+  "height:" + 900 * heightK + "px;" +
   "width:" + 604.797 * widthK + "px;" +
   "left: 8%;" +
     //"background-color: #ee4d3d;" +
@@ -13133,7 +13133,7 @@ var css = {
   "{" +
   "position: absolute;" +
     //"height:" + 510 * widthK + "px;" +
-  "height:" + 460 * widthK + "px;" +
+  "height:" + 460 * heightK + "px;" +
   "width: 100%;" +
   "top:0;" +
     //"background-color: lightgray;" +
@@ -13166,7 +13166,7 @@ var css = {
   componentCardLowerContainer: ".component-card-lower-container " +
   "{" +
   "position: absolute;" +
-  "height:" + 390 * widthK + "px;" +
+  "height:" + 390 * heightK + "px;" +
   "width: 100%;" +
   "top:" + 460 * widthK + "px;" +
   "background-color: transparent;" +
@@ -13207,7 +13207,7 @@ var css = {
   componentTourBottom: ".component-tour-bottom " +
   "{" +
   "position: relative;" +
-  "height:" + 258 * widthK + "px;" +
+  "height:" + 258 * heightK + "px;" +
   "width: 100%;" +
     //"top:" + 110 * widthK + "px;" +
     //"background-color: #ee4d3d;" +
@@ -13216,7 +13216,7 @@ var css = {
   tourNextButtonInnerContainer: ".tour-next-button-inner-container" +
   "{" +
   "top: 83%;" +
-  "height: " + 74 * widthK + "px;" +
+  "height: " + 74 * heightK + "px;" +
   "margin: 0 auto 0 auto;" +
   "background-color: #027fe4;" +
   "padding: 0;" +
@@ -13235,7 +13235,7 @@ var css = {
   tourButtonsContainer: ".tour-buttons-container" +
   "{" +
   "position: relative;" +
-  "height: " + 97 * widthK + "px;" +
+  "height: " + 97 * heightK + "px;" +
   "width:" + 604.797 * widthK + "px;" +
   "top:" + 58 * widthK + "px;" +
   "bottom:0;" +
@@ -13330,7 +13330,7 @@ var css = {
   "width:" + 320 * widthK + "px;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
-  "height:" + 35 * widthK + "px;" +
+  "height:" + 35 * heightK + "px;" +
   "top:" + 24 * widthK + "px;" +
   "}",
 
