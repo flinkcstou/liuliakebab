@@ -14,7 +14,7 @@
       <div class="view-news-block" shorttext="{i.content_short}" opened="false" title="{i.news_content}"
            id="newsContainerId{i.news_id}"
            ontouchstart="newsTouchStart()"
-           ontouchend="newsTouchEnd(this.id, 'newsTextId' + {i.news_id}, this.title, document.getElementById(this.id).getAttribute('shorttext'), 'newsImageId'+{i.news_id}), {i.news_id}">
+           ontouchend="newsTouchEnd(this.id, 'newsTextId' + {i.news_id}, this.title, document.getElementById(this.id).getAttribute('shorttext'), 'newsImageId'+{i.news_id}, {i.news_id})">
         <p class="view-news-block-title">{i.news_title}</p>
         <p id="newsTextId{i.news_id}" class="view-news-block-text">{i.content_short}</p>
 
@@ -71,6 +71,7 @@
 
         if (JSON.parse(document.getElementById(containerId).getAttribute('opened')) === false) {
           for(var i in scope.newsArray){
+            console.log(scope.newsArray[i].news_id, newsId)
             if(scope.newsArray[i].news_id == newsId){
               scope.newsArray[i].opened = true;
             }
@@ -86,7 +87,7 @@
         else {
           for(var i in scope.newsArray){
             if(scope.newsArray[i].news_id == newsId){
-              scope.newsArray[i].opened = true;
+              scope.newsArray[i].opened = false;
             }
           }
 //          scope.newsOpened = false;
