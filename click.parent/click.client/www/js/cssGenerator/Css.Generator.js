@@ -57,14 +57,14 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  "background-image: url(resources/tourcheck.png);" +
-  "opacity: 0.6;" +
+    //"background-image: url(resources/total-balance_check.png);" +
+    //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-    //"background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    //"background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    //"background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -13132,7 +13132,8 @@ var css = {
   componentCardUpperContainer: ".component-card-upper-container " +
   "{" +
   "position: absolute;" +
-  "height:" + 510 * widthK + "px;" +
+    //"height:" + 510 * widthK + "px;" +
+  "height:" + 460 * widthK + "px;" +
   "width: 100%;" +
   "top:0;" +
   "background-color: lightgray;" +
@@ -13148,6 +13149,18 @@ var css = {
   "background-size: 68%;" +
   "background-position: center;" +
   "background-position-y: 60%;" +
+  "}",
+
+  componentCardUpperIconIn: ".component-card-upper-icon-in" +
+  "{" +
+  "position: absolute;" +
+  "height:83%;" +
+  "width:100%;" +
+  "top:17%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 28%;" +
+  "background-position: center;" +
+  "background-position-y: 50%;" +
   "}",
 
   componentCardLowerContainer: ".component-card-lower-container " +
@@ -13172,7 +13185,7 @@ var css = {
   "top:9%;" +
     //"left:" + -5 * widthK + "px;" +
   "font-size:" + 35 * widthK + "px;" +
-  "font-weight: bold;" +
+    //"font-weight: bold;" +
   "}",
 
   componentCardLowerBodyText: ".component-card-lower-body-text " +
@@ -13188,15 +13201,15 @@ var css = {
   "top:16%;" +
     //"left:" + -5 * widthK + "px;" +
   "font-size:" + 33 * widthK + "px;" +
-  "font-weight: bold;" +
+    //"font-weight: bold;" +
   "}",
 
   componentTourBottom: ".component-tour-bottom " +
   "{" +
   "position: relative;" +
-  "height:" + 258 * heightK + "px;" +
+  "height:" + 258 * widthK + "px;" +
   "width: 100%;" +
-  "top:" + 110 * widthK + "px;" +
+    //"top:" + 110 * widthK + "px;" +
     //"background-color: #ee4d3d;" +
   "}",
 

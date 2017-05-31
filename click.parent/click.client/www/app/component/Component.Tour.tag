@@ -2,7 +2,7 @@
 
   <div class="component-tour">
 
-    <p class="tour-title-text">{tourTitle}</p>
+    <p class="tour-title-text" id="tourTitleId">{tourTitle}</p>
 
     <div type="button" class="tour-close-icon" ontouchend="closeTour()"></div>
 
@@ -18,7 +18,9 @@
            each="{i in tourCardsArray}"
            style="left:{84+100*(i.counter-1)}%;">
         <div class="component-card-upper-container" style="background-color: {i.back_color};">
-          <div class="component-card-upper-icon" style="background-image: url({i.image});"></div>
+          <div
+            class="{component-card-upper-icon-in: opts.view !='registration',component-card-upper-icon: opts.view =='registration'}"
+            style="background-image: url({i.image});"></div>
         </div>
         <div class="component-card-lower-container">
           <p class="component-card-lower-title-text">{i.title}</p>
@@ -77,32 +79,32 @@
       scope.update();
     } else if (opts.view == "mainpage") {
       scope.tourCardsArray = tourCards.mainpage;
-      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
+      scope.tourTitle = window.languages.ComponentTourMainPageTitleText;
       scope.count = 2;
       scope.update();
     } else if (opts.view == "transfer") {
       scope.tourCardsArray = tourCards.transfer;
-      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
+      scope.tourTitle = window.languages.ComponentTourMainPageTitleText;
       scope.count = 3;
       scope.update();
     } else if (opts.view == "invoice") {
       scope.tourCardsArray = tourCards.invoice;
-      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
+      scope.tourTitle = window.languages.ComponentTourMainPageTitleText;
       scope.count = 2;
       scope.update();
     } else if (opts.view == "autopaymethod") {
       scope.tourCardsArray = tourCards.autopaymethod;
-      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
+      scope.tourTitle = window.languages.ComponentTourMainPageTitleText;
       scope.count = 2;
       scope.update();
     } else if (opts.view == "calculator") {
       scope.tourCardsArray = tourCards.calculator;
-      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
+      scope.tourTitle = window.languages.ComponentTourMainPageTitleText;
       scope.count = 1;
       scope.update();
     } else if (opts.view == "friendhelp") {
       scope.tourCardsArray = tourCards.friendhelp;
-      scope.tourTitle = window.languages.ComponentTourRegistrationTitleText;
+      scope.tourTitle = window.languages.ComponentTourMainPageTitleText;
       scope.count = 1;
       scope.update();
     }
@@ -119,10 +121,11 @@
 //        StatusBar.backgroundColorByHexString("#002334");
       }
       document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
+      document.getElementById('tourTitleId').style.color = scope.tourCardsArray[scope.tNumber].title_color;
       if (scope.count == 1) {
         scope.registrButton = true;
-        scope.update();
       }
+      scope.update();
     });
 
     tourContainerTouchStart = function () {
@@ -173,7 +176,6 @@
 
     nextTourCard = function () {
       changePositionWithButton();
-
     }
 
     changePosition = function () {
@@ -194,6 +196,7 @@
         this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
         this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
         document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
+        this.tourTitleId.style.color = scope.tourCardsArray[scope.tNumber].title_color;
       }
 
       if (tourCarouselTouchEndX > tourCarouselTouchStartX && scope.tNumber == 0) {
@@ -218,10 +221,9 @@
         this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
         this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
         document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
+        this.tourTitleId.style.color = scope.tourCardsArray[scope.tNumber].title_color;
       }
 
-
-//      localStorage.setItem('tNumber', scope.tNumber);
     }
 
     changePositionWithButton = function () {
@@ -263,6 +265,7 @@
       this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
       this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
       document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
+      this.tourTitleId.style.color = scope.tourCardsArray[scope.tNumber].title_color;
       scope.registrButton = false;
       scope.update();
       if (opts.view != "registration") {

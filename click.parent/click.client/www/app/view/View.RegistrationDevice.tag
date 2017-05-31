@@ -64,8 +64,9 @@
     this.on('mount', function () {
       if (device.platform == 'iOS')
         demoContainer.style.left = 100 * widthK + 'px';
+      if (device.platform != 'BrowserStand')
+        StatusBar.backgroundColorByHexString("#00b0eb");
 
-      StatusBar.backgroundColorByHexString("#00b0eb");
     })
 
     localStorage.setItem('device.platform', device.platform)
@@ -314,11 +315,8 @@
 
 
       if (Math.abs(helpTouchStartX - helpTouchEndX) <= 20 && Math.abs(helpTouchStartY - helpTouchEndY) <= 20) {
-//        riotTags.innerHTML = "<view-help>";
-//        riot.mount('view-help');
-//        scope.unmount()
+
         componentTourId.style.display = "block";
-//        tourBackPageId.style.opacity = '1';
 
 
       }
