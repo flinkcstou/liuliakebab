@@ -19,7 +19,7 @@
            style="left:{84+100*(i.counter-1)}%;">
         <div class="component-card-upper-container" style="background-color: {i.back_color};">
           <div
-            class="{component-card-upper-icon-in: opts.view != registration,component-card-upper-icon: opts.view == registration}"
+            class="{classForPages}"
             style="background-image: url({i.image});"></div>
         </div>
         <div class="component-card-lower-container">
@@ -69,8 +69,17 @@
 
 
     var scope = this;
+    scope.classForPages = ''
 
     console.log("component tour view=", opts.view);
+
+    if(opts.view == 'registration') {
+      scope.classForPages = "component-card-upper-icon"
+    }
+    else
+      scope.classForPages = "component-card-upper-icon-in"
+//      component-card-upper-icon-in: opts.view != 'registration',component-card-upper-icon: opts.view == 'registration'
+    scope.update();
 
     if (opts.view == "registration") {
       scope.tourCardsArray = tourCards.registration;

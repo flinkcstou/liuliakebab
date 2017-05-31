@@ -19,10 +19,10 @@
         <p id="newsTextId{i.news_id}" class="view-news-block-text">{i.content_short}</p>
 
         <p class="view-news-block-date">{i.datetime}</p>
-        <div if="{i.opened === false}" class="view-news-block-readmore-container">Подробнее
+        <div if="{!i.opened}" class="view-news-block-readmore-container">Подробнее
           <div class="view-news-block-readmore-icon"></div>
         </div>
-        <div if="{i.opened === true}" class="view-news-block-readmore-container">
+        <div if="{i.opened}" class="view-news-block-readmore-container">
           <div class="view-news-block-opened-icon"></div>
         </div>
       </div>
@@ -62,11 +62,7 @@
       event.stopPropagation()
 
       touchEndY = event.changedTouches[0].pageY;
-      for(var i in newsArray){
-        if(newsArray[i].news_id == newsId){
-          newsArray[i].opened = true;
-        }
-      }
+
 //      console.log('NEWS ARRAY', newsArray)
 //      console.log('NEWS ARRAY[i]', newsArray[i])
 
@@ -74,15 +70,26 @@
       if (Math.abs(touchStartY - touchEndY) <= 20) {
 
         if (JSON.parse(document.getElementById(containerId).getAttribute('opened')) === false) {
+          for(var i in scope.newsArray){
+            if(scope.newsArray[i].news_id == newsId){
+              scope.newsArray[i].opened = true;
+            }
+          }
+
           document.getElementById(containerId).setAttribute('opened', true)
           document.getElementById(imageId).style.display = 'block'
           document.getElementById(containerId).style.height = 'auto';
           document.getElementById(textId).innerHTML = longText;
           console.log('document.getElementById(containerId)',document.getElementById(containerId).children)
-          scope.newsOpened = true;
+//          scope.newsOpened = true;
         }
         else {
-          scope.newsOpened = false;
+          for(var i in scope.newsArray){
+            if(scope.newsArray[i].news_id == newsId){
+              scope.newsArray[i].opened = true;
+            }
+          }
+//          scope.newsOpened = false;
           document.getElementById(containerId).style.height = 330 * widthK + 'px';
           document.getElementById(imageId).style.display = 'false'
           document.getElementById(imageId).style.display = 'none'
@@ -90,6 +97,7 @@
           document.getElementById(containerId).setAttribute('opened', false)
         }
 
+        console.log(scope.newsArray)
         scope.update()
 
       }
