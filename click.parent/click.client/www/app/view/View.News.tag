@@ -14,15 +14,15 @@
       <div class="view-news-block" shorttext="{i.content_short}" opened="false" title="{i.news_content}"
            id="newsContainerId{i.news_id}"
            ontouchstart="newsTouchStart()"
-           ontouchend="newsTouchEnd(this.id, 'newsTextId' + {i.news_id}, this.title, document.getElementById(this.id).getAttribute('shorttext'), 'newsImageId'+{i.news_id})">
+           ontouchend="newsTouchEnd(this.id, 'newsTextId' + {i.news_id}, this.title, document.getElementById(this.id).getAttribute('shorttext'), 'newsImageId'+{i.news_id}), {i.news_id}">
         <p class="view-news-block-title">{i.news_title}</p>
         <p id="newsTextId{i.news_id}" class="view-news-block-text">{i.content_short}</p>
 
         <p class="view-news-block-date">{i.datetime}</p>
-        <div if={!newsOpened} class="view-news-block-readmore-container">Подробнее
+        <div if="{i.opened === false}" class="view-news-block-readmore-container">Подробнее
           <div class="view-news-block-readmore-icon"></div>
         </div>
-        <div if={newsOpened} class="view-news-block-readmore-container">
+        <div if="{i.opened === true}" class="view-news-block-readmore-container">
           <div class="view-news-block-opened-icon"></div>
         </div>
       </div>
@@ -52,14 +52,23 @@
     var touchStartY, touchEndY;
 
     newsTouchStart = function () {
+      event.preventDefault()
+      event.stopPropagation()
       touchStartY = event.changedTouches[0].pageY;
     }
 
-    newsTouchEnd = function (containerId, textId, longText, shortText, imageId) {
+    newsTouchEnd = function (containerId, textId, longText, shortText, imageId, newsId) {
       event.preventDefault()
       event.stopPropagation()
 
       touchEndY = event.changedTouches[0].pageY;
+      for(var i in newsArray){
+        if(newsArray[i].news_id == newsId){
+          newsArray[i].opened = true;
+        }
+      }
+//      console.log('NEWS ARRAY', newsArray)
+//      console.log('NEWS ARRAY[i]', newsArray[i])
 
 
       if (Math.abs(touchStartY - touchEndY) <= 20) {
@@ -69,6 +78,7 @@
           document.getElementById(imageId).style.display = 'block'
           document.getElementById(containerId).style.height = 'auto';
           document.getElementById(textId).innerHTML = longText;
+          console.log('document.getElementById(containerId)',document.getElementById(containerId).children)
           scope.newsOpened = true;
         }
         else {
@@ -107,6 +117,7 @@
         if (result[0][0].error == 0) {
           console.log("NEWS", result);
           for (var i in result[1]) {
+            result[1][i].opened = false;
             if (result[1][i].news_content.length > 120) {
               if (result[1][i].news_image) {
                 result[1][i].image_exist = true;

@@ -14,12 +14,12 @@
          ontouchmove="tourContainerTouchMove()">
 
 
-      <div class="{component-tour-card: opts.view=='registration',component-tour-card-in: opts.view!='registration'}"
+      <div class="{component-tour-card: opts.view =='registration',component-tour-card-in: opts.view != 'registration'}"
            each="{i in tourCardsArray}"
            style="left:{84+100*(i.counter-1)}%;">
         <div class="component-card-upper-container" style="background-color: {i.back_color};">
           <div
-            class="{component-card-upper-icon-in: opts.view !='registration',component-card-upper-icon: opts.view =='registration'}"
+            class="{component-card-upper-icon-in: opts.view != registration,component-card-upper-icon: opts.view == registration}"
             style="background-image: url({i.image});"></div>
         </div>
         <div class="component-card-lower-container">
