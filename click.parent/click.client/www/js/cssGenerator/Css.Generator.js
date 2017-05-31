@@ -13286,7 +13286,7 @@ var css = {
   tourRegistrationButton: ".tour-registration-button" +
   "{" +
   "position: relative;" +
-  "height: 85%;" +
+  "height: 100%;" +
     //"left: -2%;" +
   "width: 80%;" +
   "top: 36%;" +

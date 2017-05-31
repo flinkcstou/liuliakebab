@@ -60,18 +60,7 @@
 
 
     console.log('OPTS in PINCARDS', opts);
-    //    var arrayForPay = [];
-    //    arrayForPay.push(opts[0]);
-    //    arrayForPay.push(opts[1]);
-    //    arrayForPay.push(opts[2]);
-    //    arrayForPay.push(opts[3]);
-    //    arrayForPay.push(opts[4]);
-    //    arrayForPay.push(opts[5]);
-    //    arrayForPay.push(opts[6]);
-    //    arrayForPay.push(opts[7]);
-    //    //    8 - mode for titlename
-    //    arrayForPay.push(opts[8]);
-    //    console.log(arrayForPay);
+
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards') {
       history.arrayOfHistory.push(
