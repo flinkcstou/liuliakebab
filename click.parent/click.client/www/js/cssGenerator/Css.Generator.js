@@ -3251,6 +3251,7 @@ var css = {
   "background-color: white;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
 
@@ -3263,6 +3264,7 @@ var css = {
   "background-color: white;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
   payconfirmBodyContainer: ".payconfirm-body-container" +
@@ -3274,6 +3276,7 @@ var css = {
   "background-color: white;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
+  "-webkit-overflow-scrolling: touch; " +
   "border-bottom: 1px solid black;" +
   "}",
 
@@ -3330,6 +3333,7 @@ var css = {
   "height: 55%;" +
   "top: 22%;" +
   "overflow: scroll;" +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
   servicePageDropdownVariant: ".servicepage-dropdown-variant" +
@@ -3580,6 +3584,7 @@ var css = {
   "top: 15%;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
   servicePagePincardsContainerTwo: ".servicepage-pincards-container-two" +
@@ -3589,6 +3594,7 @@ var css = {
   "width: " + 720 * widthK + "px; " +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
   servicePagePincardsContainer: ".servicepage-pincards-container" +
@@ -3598,6 +3604,7 @@ var css = {
   "width: " + 720 * widthK + "px; " +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
   servicePagePincardsBlockContainer: ".servicepage-pincards-block-container" +
@@ -4114,7 +4121,9 @@ var css = {
   "bottom:0;" +
   "background-color: transparent;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +
-  "overflow: scroll;" +
+  "overflow-y: scroll;" +
+  "overflow-x: hidden;" +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
   pincardButtonEnter: " .pincard-button-enter" +
@@ -4623,7 +4632,9 @@ var css = {
   "width: 100%;" +
   "top: 8%;" +
   "bottom: 0;" +
-  "overflow:scroll;" +
+  "overflow-y:scroll;" +
+  "overflow-x:hidden;" +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
   myCardListCard: ".mycardlist-card" +
@@ -9197,7 +9208,9 @@ var css = {
   "height: 90%;" +
   "top: 8%;" +
   "bottom: 0;" +
-  "overflow:scroll;" +
+  "overflow-y:scroll;" +
+  "overflow-x:hidden;" +
+  "-webkit-overflow-scrolling: touch; " +
   "margin-bottom: 15px;" +
   "}",
 
