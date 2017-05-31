@@ -69,7 +69,7 @@
 
     })
 
-    localStorage.setItem('device.platform', device.platform)
+//    localStorage.setItem('device.platform', device.platform)
 
     //    localStorage.clear()
 
