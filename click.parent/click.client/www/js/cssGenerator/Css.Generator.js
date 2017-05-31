@@ -1144,13 +1144,13 @@ var css = {
   "position: absolute;" +
   "background: transparent;" +
   "background-image: url(resources/icons/toolbar/bell.png);" +
-  "width:" + 40 * widthK + "px;" +
-  "height:" + 46 * widthK + "px;" +
-  "background-size: 100%;" +
+  "width:" + 80 * widthK + "px;" +
+  "height:" + 60 * widthK + "px;" +
+  "background-size: 50%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "right:" + 20 * widthK + "px;" +
-  "top:" + -2 * widthK + "px;" +
+  "right:" + -10 * widthK + "px;" +
+  "top:" + -7 * widthK + "px;" +
   "}",
 
   //BANK OPERATION COMPONENT
@@ -1792,7 +1792,7 @@ var css = {
   "border:" + 4 * widthK + "px solid white;" +
   "border-radius:" + 100 * widthK + "px;" +
   "background-repeat: no-repeat;" +
-  "background-size: 100%;" +
+  "background-size: cover;" +
   "background-position: center;" +
   "}",
 
@@ -11451,7 +11451,7 @@ var css = {
   "color: darkgray;" +
   "font-size: " + 23 * widthK + "px; " +
   "left: 4%;" +
-  "top: 25%;" +
+  "top: 15%;" +
   "}",
 
   reportServicePhoneInput: ".report-service-phone-input" +
@@ -11469,7 +11469,7 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "left: 4%;" +
-  "top: 49%;" +
+  "top: 45%;" +
   "font-size: " + 28 * widthK + "px; " +
   "color: gray;" +
   "text-overflow: ellipsis;" +
@@ -11488,7 +11488,7 @@ var css = {
   "position: relative;" +
   "width: 92%;" +
   "margin: 0 4% 0 4%;" +
-  "height: 22.4%;" +
+  "height: 21.5%;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
     //"top: 23%;" +

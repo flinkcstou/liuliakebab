@@ -268,7 +268,8 @@ window.api.call = function (params) {
     //}
   }
 
-  if (modeOfApp.onlineMode && (method == "get.additional.information" || method == "get.payment" || method == "app.login"))
+  if (modeOfApp.onlineMode && (method == "get.additional.information" || method == "get.payment" || method == "app.login"
+    || method == "device.register.request" || method == "device.register.request" || method == "device.register.confirm"))
     setTimeout(function () {
       if (device.platform != 'BrowserStand')
         if (window.api.spinnerOn) {

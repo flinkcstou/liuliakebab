@@ -144,6 +144,7 @@
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = loginInfo.session_key;
+      console.log('settingsUserNameId.value', settingsUserNameId.value)
 
       window.api.call({
         method: 'settings.change.profile.data',
@@ -157,6 +158,7 @@
         scope: this,
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
+            console.log(result[1])
             loginInfo.firstname = result[1][0].firstname
             loginInfo.lastname = result[1][0].lastname
             loginInfo.gender = result[1][0].gender
@@ -189,64 +191,71 @@
 
       var reader = new FileReader();
       if (event.target.files && event.target.files[0]) {
+        console.log('event PHOTO UPLOAD', event)
+        console.log('event.target', event.target)
+        console.log('event.target.files', event.target.files)
         reader.readAsDataURL(uploadUserAvatarId.files[0]);
+
+        console.log('uploadUserAvatarId.files[0]', uploadUserAvatarId.files[0])
 
         reader.onload = function (event) {
           console.log('uploadUserAvatarId.files[0]', uploadUserAvatarId.files[0])
           ImageTools.resize(uploadUserAvatarId.files[0], {
-                width: 320,
-                height: 240,
-              },
-              function (blob, didItResize) {
-                // didItResize will be true if it managed to resize it, otherwise false (and will return the original file as 'blob')
+              width: 240,
+              height: 320,
+            },
+            function (blob, didItResize) {
+              console.log('blob', blob)
+              console.log('didItResize', didItResize)
+              // didItResize will be true if it managed to resize it, otherwise false (and will return the original file as 'blob')
 //              imageUserAvatarId.src = window.URL.createObjectURL(blob);
-                var convertReader = new FileReader();
-                convertReader.readAsDataURL(blob);
+              var convertReader = new FileReader();
+              convertReader.readAsDataURL(blob);
 
-                convertReader.onload = function () {
-                  scope.base64Data = convertReader.result;
-                  var index = scope.base64Data.indexOf(',');
-                  var base64Cut = scope.base64Data.substring(index + 1, scope.base64Data.length)
+              convertReader.onload = function () {
+                scope.base64Data = convertReader.result;
+                var index = scope.base64Data.indexOf(',');
+                var base64Cut = scope.base64Data.substring(index + 1, scope.base64Data.length)
 
-                  var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-                  var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-                  var sessionKey = loginInfo.session_key;
+                var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+                var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+                var sessionKey = loginInfo.session_key;
 
-                  if (scope.base64Data)
-                    window.api.call({
-                      method: 'settings.photo.upload',
-                      input: {
-                        session_key: sessionKey,
-                        phone_num: phoneNumber,
-                        data: base64Cut,
-                      },
-                      scope: this,
-                      onSuccess: function (result) {
-                        console.log("RESULT PHOTO", result)
-                        if (result[0][0].error == 0) {
-                          if (result[1][0]) {
-                            imageUserAvatarId.src = scope.base64Data
-                            loginInfo.profile_image_url = result[1][0].profile_image_url;
-                            localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo))
-                          }
+                if (scope.base64Data)
+                  window.api.call({
+                    method: 'settings.photo.upload',
+                    input: {
+                      session_key: sessionKey,
+                      phone_num: phoneNumber,
+                      data: base64Cut,
+                    },
+                    scope: this,
+                    onSuccess: function (result) {
+                      console.log("RESULT PHOTO", result)
+                      if (result[0][0].error == 0) {
+                        if (result[1][0]) {
+                          imageUserAvatarId.src = scope.base64Data
+                          loginInfo.profile_image_url = result[1][0].profile_image_url;
+                          localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo))
                         }
-                        else {
-                          scope.clickPinError = false;
-                          scope.errorNote = result[0][0].error_note;
-                          scope.showError = true;
-                          scope.update();
-                        }
-                      },
-
-                      onFail: function (api_status, api_status_message, data) {
-                        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                        console.error(data);
                       }
-                    });
-                }
-                localStorage.setItem('click_client_avatar', imageUserAvatarId.src)
-                // you can also now upload this blob using an XHR.
-              });
+                      else {
+                        scope.clickPinError = false;
+                        scope.errorNote = result[0][0].error_note;
+                        scope.showError = true;
+                        scope.update();
+                      }
+                    },
+
+                    onFail: function (api_status, api_status_message, data) {
+                      console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                      console.error(data);
+                    }
+                  });
+              }
+              localStorage.setItem('click_client_avatar', imageUserAvatarId.src)
+              // you can also now upload this blob using an XHR.
+            });
         }
       }
     }
@@ -298,10 +307,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-general-settings') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-general-settings',
-            "params": opts
-          }
+        {
+          "view": 'view-general-settings',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }

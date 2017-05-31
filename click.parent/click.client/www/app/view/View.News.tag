@@ -52,8 +52,7 @@
     var touchStartY, touchEndY;
 
     newsTouchStart = function () {
-      event.preventDefault()
-      event.stopPropagation()
+
       touchStartY = event.changedTouches[0].pageY;
     }
 
@@ -102,8 +101,6 @@
         scope.update()
 
       }
-      else
-        return
     }
 
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
