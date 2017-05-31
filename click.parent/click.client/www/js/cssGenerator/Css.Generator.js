@@ -13049,7 +13049,7 @@ var css = {
   "transform: translate(0, 0);" +
   "-webkit-transform: translate(0, 0);" +
   "-ms-transform: translate(0, 0);" +
-  "background-color: rgba(0, 0, 0, 0.8);" +
+  "background-color: rgba(0, 0, 0, 0.6);" +
   "opacity: 1;" +
   "}",
 
@@ -13058,16 +13058,17 @@ var css = {
   "top: 1%;" +
   "position: absolute;" +
   "opacity: 1;" +
-    //"height: 94%;" +
-    //"width: 84%;" +
-  "height:" + 1200 * heightK + "px;" +
-  "width:" + 600 * widthK + "px;" +
+  "height:" + 1158 * widthK + "px;" +
+  "width:" + 604.797 * widthK + "px;" +
     //"top: 5%;" +
   "left: 8%;" +
   "background-color: white;" +
   "overflow : hidden;" +
     //"display:none;" +
   "z-index:999;" +
+  "-webkit-box-shadow: 0 0 10px rgba(0,0,0, .65);" +
+  "-moz-box-shadow: 0 0 10px rgba(0,0,0, .65);" +
+  "box-shadow: 0 0 10px rgba(0,0,0, .65);" +
   "}",
 
   tourTitleText: ".tour-title-text" +
@@ -13105,34 +13106,20 @@ var css = {
   tourCardCarousel: ".tour-card-carousel" +
   "{" +
   "position: relative;" +
-  "height:" + 900 * heightK + "px;" +
+  "height:" + 900 * widthK + "px;" +
   "width: 100%;" +
   "display: inline-block;" +
   "top: 0;" +
   "bottom:" + 258 * widthK + "px;" +
   "}",
 
+
   componentTourCard: ".component-tour-card " +
   "{" +
   "position: absolute;" +
   "opacity: 1;" +
-  "height: 100%;" +
-  "width: 84%;" +
-  "left: 8%;" +
-    //"background-color: #ee4d3d;" +
-  "transform: translate(-84%, 0);" +
-  "background-position: center;" +
-  "background-size: 118%;" +
-  "background-repeat: no-repeat;" +
-  "}",
-
-
-  componentTourCardIn: ".component-tour-card-in " +
-  "{" +
-  "position: absolute;" +
-  "opacity: 1;" +
   "height:" + 900 * widthK + "px;" +
-  "width:" + 600 * widthK + "px;" +
+  "width:" + 604.797 * widthK + "px;" +
   "left: 8%;" +
     //"background-color: #ee4d3d;" +
   "transform: translate(-84%, 0);" +
@@ -13149,7 +13136,7 @@ var css = {
   "height:" + 460 * widthK + "px;" +
   "width: 100%;" +
   "top:0;" +
-  "background-color: lightgray;" +
+    //"background-color: lightgray;" +
   "}",
 
   componentCardUpperIcon: ".component-card-upper-icon" +
@@ -13181,7 +13168,7 @@ var css = {
   "position: absolute;" +
   "height:" + 390 * widthK + "px;" +
   "width: 100%;" +
-  "top:" + 510 * widthK + "px;" +
+  "top:" + 460 * widthK + "px;" +
   "background-color: transparent;" +
   "}",
 
@@ -13195,10 +13182,10 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:9%;" +
+  "top:21%;" +
     //"left:" + -5 * widthK + "px;" +
   "font-size:" + 35 * widthK + "px;" +
-    //"font-weight: bold;" +
+  "font-weight: bold;" +
   "}",
 
   componentCardLowerBodyText: ".component-card-lower-body-text " +
@@ -13211,7 +13198,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:16%;" +
+  "top:28%;" +
     //"left:" + -5 * widthK + "px;" +
   "font-size:" + 33 * widthK + "px;" +
     //"font-weight: bold;" +
@@ -13248,7 +13235,7 @@ var css = {
   tourButtonsContainer: ".tour-buttons-container" +
   "{" +
   "position: relative;" +
-  "height: " + 115 * widthK + "px;" +
+  "height: " + 97 * widthK + "px;" +
   "width:" + 604.797 * widthK + "px;" +
   "top:" + 58 * widthK + "px;" +
   "bottom:0;" +
@@ -13260,7 +13247,7 @@ var css = {
   tourNextButton: ".tour-next-button" +
   "{" +
   "position: relative;" +
-  "height: 85%;" +
+  "height: 100%;" +
   "width: 40%;" +
   "top: 36%;" +
   "display: table;" +

@@ -282,7 +282,7 @@
         firstFieldInput.blur();
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#002334");
+          StatusBar.backgroundColorByHexString("#004663");
       }
       else {
         firstFieldInput.autofocus;

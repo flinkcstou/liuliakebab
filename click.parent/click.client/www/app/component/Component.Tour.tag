@@ -14,13 +14,13 @@
          ontouchmove="tourContainerTouchMove()">
 
 
-      <div class="{component-tour-card: opts.view =='registration',component-tour-card-in: opts.view != 'registration'}"
+      <div class="component-tour-card"
            each="{i in tourCardsArray}"
            style="left:{84+100*(i.counter-1)}%;">
         <div class="component-card-upper-container" style="background-color: {i.back_color};">
           <div
-            class="{classForPages}"
-            style="background-image: url({i.image});"></div>
+            class="component-card-upper-icon"
+            style="background-image: url({i.image});background-size: {i.icon_size}%;background-position-y: {i.icon_y}%;"></div>
         </div>
         <div class="component-card-lower-container">
           <p class="component-card-lower-title-text">{i.title}</p>
@@ -69,17 +69,10 @@
 
 
     var scope = this;
-    scope.classForPages = ''
+
 
     console.log("component tour view=", opts.view);
 
-    if(opts.view == 'registration') {
-      scope.classForPages = "component-card-upper-icon"
-    }
-    else
-      scope.classForPages = "component-card-upper-icon-in"
-//      component-card-upper-icon-in: opts.view != 'registration',component-card-upper-icon: opts.view == 'registration'
-    scope.update();
 
     if (opts.view == "registration") {
       scope.tourCardsArray = tourCards.registration;
@@ -126,9 +119,9 @@
     scope.registrButton = false;
 
     scope.on('mount', function () {
-      if (device.platform != 'BrowserStand') {
-//        StatusBar.backgroundColorByHexString("#002334");
-      }
+//      if (device.platform != 'BrowserStand') {
+//       StatusBar.backgroundColorByHexString("#002334");
+//      }
       document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
       document.getElementById('tourTitleId').style.color = scope.tourCardsArray[scope.tNumber].title_color;
       if (scope.count == 1) {

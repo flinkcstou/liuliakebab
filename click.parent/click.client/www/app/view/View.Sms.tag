@@ -51,7 +51,8 @@
 
     this.on('mount', function () {
 
-      StatusBar.backgroundColorByHexString("#00b0eb");
+      if (device.platform != 'BrowserStand')
+        StatusBar.backgroundColorByHexString("#00b0eb");
     })
 
 
@@ -110,6 +111,8 @@
 //        scope.unmount()
         componentTourId.style.display = "block";
 //        tourBackPageId.style.opacity = '1';
+        if (device.platform != 'BrowserStand')
+          StatusBar.backgroundColorByHexString("#024361");
 
 
       }

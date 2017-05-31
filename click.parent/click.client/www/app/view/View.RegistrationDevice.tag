@@ -317,7 +317,8 @@
       if (Math.abs(helpTouchStartX - helpTouchEndX) <= 20 && Math.abs(helpTouchStartY - helpTouchEndY) <= 20) {
 
         componentTourId.style.display = "block";
-
+        if (device.platform != 'BrowserStand')
+          StatusBar.backgroundColorByHexString("#024361");
 
       }
     }
