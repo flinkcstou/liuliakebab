@@ -795,148 +795,150 @@
 
                   var firstService;
 
-                  if (device.platform != 'BrowserStand') {
-                    window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-                      var inVisibleNum = 0, j = -1;
+//                  if (device.platform != 'BrowserStand') {
+//                    window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+//                      var inVisibleNum = 0, j = -1;
+//
+//                      for (var i in result[1]) {
+//                        if (result[1][i].is_visible == 1) {
+//
+//                          console.log("service id=", result[1][i].id, ", element:", result[1][i]);
+//
+//                          scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
+//                          j++;
+//                          scope.serviceList.push(result[1][i]);
+//
+//                          var icon = result[1][i].image;
+//                          var filename = icon.substr(icon.lastIndexOf('/') + 1);
+//
+//                          var newIconBool = checkImageURL;
+//                          newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
+//
+//                            if (bool) {
+//                              scope.serviceList[index]['image'] = cordova.file.dataDirectory + fileName;
+//                            } else {
+//                              scope.serviceList[index]['image'] = 'resources/icons/ViewPay/' + fileName;
+//                            }
+//
+//                            if (!scope.servicesMapByCategory[scope.serviceList[index].category_id]) {
+//                              scope.servicesMapByCategory[scope.serviceList[index].category_id] = [];
+//                              if (scope.serviceList[index].category_id === 1 && (scope.serviceList[index].id === window.mOperators[scope.operatorKey])) {
+//                                localStorage.setItem('myNumberOperatorId', scope.serviceList[index].id);
+////                                console.log("MY NUMBER ID", scope.serviceList[index].id);
+//
+//                                var myNumberObject = {};
+//                                myNumberObject.name = 'Мой номер';
+//                                myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+//                                myNumberObject.id = 'mynumber' + scope.serviceList[index].id;
+//                                scope.servicesMapByCategory[scope.serviceList[index].category_id].push(myNumberObject);
+//
+//                              } else if (scope.serviceList[index].category_id === 1) {
+//                                firstService = scope.serviceList[index];
+////                                console.log("FIRST SERVICE=", firstService);
+//                              }
+//                              scope.servicesMapByCategory[scope.serviceList[index].category_id].push(scope.serviceList[index]);
+//                            }
+//                            else {
+//                              if (scope.serviceList[index].category_id === 1 && (scope.serviceList[index].id === window.mOperators[scope.operatorKey])) {
+//                                localStorage.setItem('myNumberOperatorId', scope.serviceList[index].id);
+////                                console.log("MY NUMBER ID", scope.serviceList[index].id);
+//
+//                                var myNumberObject = {};
+//                                myNumberObject.name = 'Мой номер';
+//                                myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+//                                myNumberObject.id = 'mynumber' + scope.serviceList[index].id;
+//                                scope.servicesMapByCategory[scope.serviceList[index].category_id][0] = myNumberObject;
+//                                scope.servicesMapByCategory[scope.serviceList[index].category_id].push(firstService);
+//                              }
+//                              scope.servicesMapByCategory[scope.serviceList[index].category_id].push(scope.serviceList[index]);
+//                            }
+//
+//
+//                            if (!scope.servicesMap[scope.serviceList[index].id + '']) {
+//                              scope.servicesMap[scope.serviceList[index].id + ''] = [];
+//                              scope.servicesMap[scope.serviceList[index].id + ''].push(scope.serviceList[index]);
+//                            }
+//                            else {
+//                              scope.servicesMap[scope.serviceList[index].id + ''].push(scope.serviceList[index]);
+//                            }
+//
+//
+//                            if ((result[1].length - inVisibleNum) == scope.serviceList.length) {
+////                              console.log("save into localstorage");
+//                              localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
+//                              localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
+//                              localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
+//                              localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
+//                            }
+//
+//                          });
+//                        } else
+//                          inVisibleNum++;
+//                      }
+//                    }, onErrorLoadFs);
+//                  } else {
 
-                      for (var i in result[1]) {
-                        if (result[1][i].is_visible == 1) {
+                  for (var i in result[1]) {
+                    if (result[1][i].is_visible == 1) {
+//                      console.log("service id=", result[1][i].id, ", element:", result[1][i]);
 
-                          console.log("service id=", result[1][i].id, ", element:", result[1][i]);
+                      scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
+                      scope.serviceList.push(result[1][i]);
 
-                          scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
-                          j++;
-                          scope.serviceList.push(result[1][i]);
 
-                          var icon = result[1][i].image;
-                          var filename = icon.substr(icon.lastIndexOf('/') + 1);
-
-                          var newIconBool = checkImageURL;
-                          newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
-
-                            if (bool) {
-                              scope.serviceList[index]['image'] = cordova.file.dataDirectory + fileName;
-                            } else {
-                              scope.serviceList[index]['image'] = 'resources/icons/ViewPay/' + fileName;
-                            }
-
-                            if (!scope.servicesMapByCategory[scope.serviceList[index].category_id]) {
-                              scope.servicesMapByCategory[scope.serviceList[index].category_id] = [];
-                              if (scope.serviceList[index].category_id === 1 && (scope.serviceList[index].id === window.mOperators[scope.operatorKey])) {
-                                localStorage.setItem('myNumberOperatorId', scope.serviceList[index].id);
+                      if (!scope.servicesMapByCategory[result[1][i].category_id]) {
+                        scope.servicesMapByCategory[result[1][i].category_id] = [];
+                        if (result[1][i].category_id === 1 && (result[1][i].id === window.mOperators[scope.operatorKey])) {
+                          localStorage.setItem('myNumberOperatorId', result[1][i].id);
 //                                console.log("MY NUMBER ID", scope.serviceList[index].id);
 
-                                var myNumberObject = {};
-                                myNumberObject.name = 'Мой номер';
-                                myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
-                                myNumberObject.id = 'mynumber' + scope.serviceList[index].id;
-                                scope.servicesMapByCategory[scope.serviceList[index].category_id].push(myNumberObject);
+                          var myNumberObject = {};
+                          myNumberObject.name = 'Мой номер';
+                          myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+                          myNumberObject.id = 'mynumber' + result[1][i].id;
+                          scope.servicesMapByCategory[result[1][i].category_id].push(myNumberObject);
 
-                              } else if (scope.serviceList[index].category_id === 1) {
-                                firstService = scope.serviceList[index];
+                        } else if (result[1][i].category_id === 1) {
+                          firstService = result[1][i];
 //                                console.log("FIRST SERVICE=", firstService);
-                              }
-                              scope.servicesMapByCategory[scope.serviceList[index].category_id].push(scope.serviceList[index]);
-                            }
-                            else {
-                              if (scope.serviceList[index].category_id === 1 && (scope.serviceList[index].id === window.mOperators[scope.operatorKey])) {
-                                localStorage.setItem('myNumberOperatorId', scope.serviceList[index].id);
-//                                console.log("MY NUMBER ID", scope.serviceList[index].id);
-
-                                var myNumberObject = {};
-                                myNumberObject.name = 'Мой номер';
-                                myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
-                                myNumberObject.id = 'mynumber' + scope.serviceList[index].id;
-                                scope.servicesMapByCategory[scope.serviceList[index].category_id][0] = myNumberObject;
-                                scope.servicesMapByCategory[scope.serviceList[index].category_id].push(firstService);
-                              }
-                              scope.servicesMapByCategory[scope.serviceList[index].category_id].push(scope.serviceList[index]);
-                            }
-
-
-                            if (!scope.servicesMap[scope.serviceList[index].id + '']) {
-                              scope.servicesMap[scope.serviceList[index].id + ''] = [];
-                              scope.servicesMap[scope.serviceList[index].id + ''].push(scope.serviceList[index]);
-                            }
-                            else {
-                              scope.servicesMap[scope.serviceList[index].id + ''].push(scope.serviceList[index]);
-                            }
-
-
-                            if ((result[1].length - inVisibleNum) == scope.serviceList.length) {
-//                              console.log("save into localstorage");
-                              localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
-                              localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
-                              localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
-                              localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
-                            }
-
-                          });
-                        } else
-                          inVisibleNum++;
+                        }
+                        scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
                       }
-                    }, onErrorLoadFs);
-                  } else {
-
-                    for (var i in result[1]) {
-                      if (result[1][i].is_visible == 1) {
-                        console.log("service id=", result[1][i].id, ", element:", result[1][i]);
-
-                        scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
-                        scope.serviceList.push(result[1][i]);
-
-
-                        if (!scope.servicesMapByCategory[result[1][i].category_id]) {
-                          scope.servicesMapByCategory[result[1][i].category_id] = [];
-                          if (result[1][i].category_id === 1 && (result[1][i].id === window.mOperators[scope.operatorKey])) {
-                            localStorage.setItem('myNumberOperatorId', result[1][i].id);
+                      else {
+                        if (result[1][i].category_id === 1 && (result[1][i].id === window.mOperators[scope.operatorKey])) {
+                          localStorage.setItem('myNumberOperatorId', result[1][i].id);
 //                                console.log("MY NUMBER ID", scope.serviceList[index].id);
 
-                            var myNumberObject = {};
-                            myNumberObject.name = 'Мой номер';
-                            myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
-                            myNumberObject.id = 'mynumber' + result[1][i].id;
-                            scope.servicesMapByCategory[result[1][i].category_id].push(myNumberObject);
-
-                          } else if (result[1][i].category_id === 1) {
-                            firstService = result[1][i];
-//                                console.log("FIRST SERVICE=", firstService);
-                          }
-                          scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
+                          var myNumberObject = {};
+                          myNumberObject.name = 'Мой номер';
+                          myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+                          myNumberObject.id = 'mynumber' + result[1][i].id;
+                          scope.servicesMapByCategory[result[1][i].category_id][0] = myNumberObject;
+                          scope.servicesMapByCategory[result[1][i].category_id].push(firstService);
                         }
-                        else {
-                          if (result[1][i].category_id === 1 && (result[1][i].id === window.mOperators[scope.operatorKey])) {
-                            localStorage.setItem('myNumberOperatorId', result[1][i].id);
-//                                console.log("MY NUMBER ID", scope.serviceList[index].id);
+                        scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
+                      }
 
-                            var myNumberObject = {};
-                            myNumberObject.name = 'Мой номер';
-                            myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
-                            myNumberObject.id = 'mynumber' + result[1][i].id;
-                            scope.servicesMapByCategory[result[1][i].category_id][0] = myNumberObject;
-                            scope.servicesMapByCategory[result[1][i].category_id].push(firstService);
-                          }
-                          scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
-                        }
-
-                        ///////////////////////////////////////////////////
+                      ///////////////////////////////////////////////////
 
 
-                        if (!scope.servicesMap[result[1][i].id + '']) {
-                          scope.servicesMap[result[1][i].id + ''] = [];
-                          scope.servicesMap[result[1][i].id + ''].push(result[1][i]);
-                        }
-                        else {
-                          scope.servicesMap[result[1][i].id + ''].push(result[1][i]);
-                        }
+                      if (!scope.servicesMap[result[1][i].id + '']) {
+                        scope.servicesMap[result[1][i].id + ''] = [];
+                        scope.servicesMap[result[1][i].id + ''].push(result[1][i]);
+                      }
+                      else {
+                        scope.servicesMap[result[1][i].id + ''].push(result[1][i]);
                       }
                     }
-                    localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
-                    localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
-                    localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
-                    localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
-
                   }
+                  console.log("SAVING TO LOCALSTORAGE SERVICES!!!!!!!!!!!!!!!!!!!!!");
+                  localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
+                  localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
+                  localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
+                  localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
+                  serviceImagesCaching();
+
+//                  }
                 }
 
 
@@ -949,6 +951,51 @@
           })
         }
         ;
+
+        serviceImagesCaching = function () {
+          if (device.platform != 'BrowserStand') {
+            window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+              var j = -1, counter = 0;
+
+              for (var i in scope.serviceList) {
+                j++;
+
+                var icon = scope.serviceList[i].image;
+                var filename = icon.substr(icon.lastIndexOf('/') + 1);
+
+                var newIconBool = checkImageURL;
+                newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
+
+                  if (bool) {
+                    counter++;
+                    scope.serviceList[index].image = cordova.file.dataDirectory + fileName;
+                    scope.servicesMap[scope.serviceList[index].id + ''][0].image = cordova.file.dataDirectory + fileName;
+
+                    for (var k = 0; k < scope.servicesMapByCategory[scope.serviceList[index].category_id].length; k++) {
+                      if (scope.servicesMapByCategory[scope.serviceList[index].category_id][k].id != ('mynumber' + localStorage.getItem('myNumberOperatorId')) &&
+                        scope.servicesMapByCategory[scope.serviceList[index].category_id][k].id == scope.serviceList[index].id) {
+                        scope.servicesMapByCategory[scope.serviceList[index].category_id][k].image = cordova.file.dataDirectory + fileName;
+//                        console.log(scope.servicesMapByCategory[scope.serviceList[index].category_id][k].image);
+                      }
+                    }
+//                    console.log("service id IN CACH=", scope.serviceList[index].id, ", element:", scope.serviceList[index]);
+
+                    if (counter == scope.serviceList.length) {
+//                      console.log("SAVING TO LOCALSTORAGE SERVICES 2222!!!!!!!!!!!!!!!!!!!!!");
+                      localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
+                      localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
+                    }
+                  }
+//                  else {
+//                    scope.serviceList[index]['image'] = 'resources/icons/ViewPay/' + fileName;
+//                  }
+
+                });
+              }
+
+            }, onErrorLoadFs);
+          }
+        }
 
 //        refreshServiceList();
 
