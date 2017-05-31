@@ -11873,12 +11873,13 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "margin: 0 auto 3% auto;" +
+  "padding-bottom: 0;" +
   "height:" + 330 * widthK + "px;" +
-  "contain: content;" +
+  //"contain: content;" +
   "background-image: url('resources/icons/ViewNews/news.png');" +
   "background-repeat: no-repeat;" +
   "background-position-y: bottom;" +
-  "background-size: contain;" +
+  "background-size: 100%;" +
   "background-color: white;" +
   "border-bottom-right-radius:" + 70 * widthK + "px;" +
   "}",
