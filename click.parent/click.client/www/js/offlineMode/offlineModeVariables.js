@@ -14499,6 +14499,23 @@ var offlinePopularServiceList = [
       "card_type": "SONET",
       "nominal": 50000,
       "duration": null
+    }],
+    "7025": [{
+      "service_id": 7025,
+      "card_type_id": 14,
+      "name": "ARS INFORM",
+      "card_type_desc": "ARS INFORM",
+      "card_type": "ARS INFORM",
+      "nominal": 12000,
+      "duration": null
+    }, {
+      "service_id": 7025,
+      "card_type_id": 14,
+      "name": "ARS INFORM",
+      "card_type_desc": "ARS INFORM",
+      "card_type": "ARS INFORM",
+      "nominal": 50000,
+      "duration": null
     }]
   },
 
@@ -14513,65 +14530,65 @@ var offlinePopularServiceList = [
   offlineServicesParamsMapFive = {
     "4422": [{
       "service_id": 4422,
-      "code": "MB300M1",
+      "code": "FRGPRS450BONUS",
       "type": 1,
-      "name": "Интернет-пакет 300 Mb",
+      "name": "Интернет-пакет 300+50% FREE",
       "usd_cost": 5,
-      "sum_cost": 18395,
+      "sum_cost": 19232,
       "status": 1,
       "priority": 1
     }, {
       "service_id": 4422,
-      "code": "MB500M",
+      "code": "FRGPRS750BONUS",
       "type": 1,
-      "name": "Интернет-пакет 500 Mb",
+      "name": "Интернет-пакет 500+50% FREE",
       "usd_cost": 7,
-      "sum_cost": 25753,
+      "sum_cost": 26925,
       "status": 1,
       "priority": 2
     }, {
       "service_id": 4422,
-      "code": "MB1000M1",
+      "code": "FRGPRS1500BONUS",
       "type": 1,
-      "name": "Интернет-пакет 1000 Mb",
+      "name": "Интернет-пакет 1000+50% FREE",
       "usd_cost": 10,
-      "sum_cost": 36789,
+      "sum_cost": 38464,
       "status": 1,
       "priority": 3
     }, {
       "service_id": 4422,
-      "code": "MB2000M1",
+      "code": "FRGPRS3000BONUS",
       "type": 1,
-      "name": "Интернет-пакет 2000 Mb",
+      "name": "Интернет-пакет 2000+50% FREE",
       "usd_cost": 18,
-      "sum_cost": 66221,
+      "sum_cost": 69234,
       "status": 1,
       "priority": 4
     }, {
       "service_id": 4422,
-      "code": "MB3000M1",
+      "code": "FRGPRS4500BONUS",
       "type": 1,
-      "name": "Интернет-пакет 3000 Mb",
+      "name": "Интернет-пакет 3000+50% FREE",
       "usd_cost": 25,
-      "sum_cost": 91973,
+      "sum_cost": 96159,
       "status": 1,
       "priority": 5
     }, {
       "service_id": 4422,
-      "code": "MB5000M1",
+      "code": "FRGPRS7500BONUS",
       "type": 1,
-      "name": "Интернет-пакет 5000 Mb",
+      "name": "Интернет-пакет 5000+50% FREE",
       "usd_cost": 35,
-      "sum_cost": 128762,
+      "sum_cost": 134622,
       "status": 1,
       "priority": 6
     }, {
       "service_id": 4422,
-      "code": "MB10000M1",
+      "code": "FRGPRS15000BONUS",
       "type": 1,
-      "name": "Интернет-пакет 10000 Mb",
+      "name": "Интернет-пакет 10000+50% FREE",
       "usd_cost": 55,
-      "sum_cost": 202339,
+      "sum_cost": 211549,
       "status": 1,
       "priority": 7
     }, {
@@ -14579,8 +14596,8 @@ var offlinePopularServiceList = [
       "code": "FRGPRS50DAY",
       "type": 2,
       "name": "Суточный интернет-пакет 50 Mb",
-      "usd_cost": 1.5,
-      "sum_cost": 5519,
+      "usd_cost": 1,
+      "sum_cost": 3847,
       "status": 1,
       "priority": 1
     }, {
@@ -14588,8 +14605,8 @@ var offlinePopularServiceList = [
       "code": "FRGPRS100DAY",
       "type": 2,
       "name": "Суточный интернет-пакет 100 Mb",
-      "usd_cost": 2.5,
-      "sum_cost": 9198,
+      "usd_cost": 1.5,
+      "sum_cost": 5770,
       "status": 1,
       "priority": 2
     }, {
@@ -14598,7 +14615,7 @@ var offlinePopularServiceList = [
       "type": 3,
       "name": "Ночной интернет-пакет 1000 Mb",
       "usd_cost": 2,
-      "sum_cost": 7358,
+      "sum_cost": 7693,
       "status": 1,
       "priority": 1
     }, {
@@ -14607,7 +14624,7 @@ var offlinePopularServiceList = [
       "type": 3,
       "name": "Ночной интернет-пакет 2000 Mb",
       "usd_cost": 3.5,
-      "sum_cost": 12877,
+      "sum_cost": 13463,
       "status": 1,
       "priority": 2
     }, {
@@ -14616,7 +14633,7 @@ var offlinePopularServiceList = [
       "type": 3,
       "name": "Ночной интернет-пакет 3000 Mb",
       "usd_cost": 5,
-      "sum_cost": 18395,
+      "sum_cost": 19232,
       "status": 1,
       "priority": 3
     }, {
@@ -14625,7 +14642,7 @@ var offlinePopularServiceList = [
       "type": 3,
       "name": "Ночной интернет-пакет 5000 Mb",
       "usd_cost": 7,
-      "sum_cost": 25753,
+      "sum_cost": 26925,
       "status": 1,
       "priority": 4
     }, {
@@ -14634,7 +14651,7 @@ var offlinePopularServiceList = [
       "type": 3,
       "name": "Ночной интернет-пакет 10000 Mb",
       "usd_cost": 10,
-      "sum_cost": 36789,
+      "sum_cost": 38464,
       "status": 1,
       "priority": 5
     }, {
@@ -14643,7 +14660,7 @@ var offlinePopularServiceList = [
       "type": 3,
       "name": "Ночной интернет-пакет 20000 Mb",
       "usd_cost": 15,
-      "sum_cost": 55184,
+      "sum_cost": 57695,
       "status": 1,
       "priority": 6
     }, {
@@ -14652,7 +14669,7 @@ var offlinePopularServiceList = [
       "type": 3,
       "name": "Ночной интернет-пакет 50000 Mb",
       "usd_cost": 20,
-      "sum_cost": 73578,
+      "sum_cost": 76927,
       "status": 1,
       "priority": 7
     }, {
@@ -14661,7 +14678,7 @@ var offlinePopularServiceList = [
       "type": 4,
       "name": "Ночной DRIVE 1",
       "usd_cost": 3,
-      "sum_cost": 11037,
+      "sum_cost": 11539,
       "status": 1,
       "priority": 1
     }, {
@@ -14670,7 +14687,7 @@ var offlinePopularServiceList = [
       "type": 4,
       "name": "Ночной DRIVE 7",
       "usd_cost": 15,
-      "sum_cost": 55184,
+      "sum_cost": 57695,
       "status": 1,
       "priority": 2
     }, {
@@ -14679,7 +14696,7 @@ var offlinePopularServiceList = [
       "type": 4,
       "name": "Ночной DRIVE 30",
       "usd_cost": 40,
-      "sum_cost": 147156,
+      "sum_cost": 153854,
       "status": 1,
       "priority": 3
     }]
