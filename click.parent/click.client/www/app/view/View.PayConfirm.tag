@@ -135,6 +135,8 @@
     var serviceId = localStorage.getItem('chosenServiceId');
     scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
     scope.isInFavorites = opts[0][7].isInFavorites;
+    scope.fieldsObject = JSON.parse(localStorage.getItem("servicepage_fields"));
+    console.log("Fields in the history=", scope.fieldsObject);
 
     if (opts[3] == 'ADDAUTOPAY') {
       scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
@@ -155,12 +157,11 @@
 
     scope.stepAmount = 3;
 
-
-    //    console.log("OPTS=", opts);
-    //    console.log("OPTS.MODE=", opts[3]);
     this.formType = opts[0][0].formtype;
     this.firstFieldId = opts[0][1].firstFieldId;
-    this.firstFieldTitle = viewServicePage.firstFieldTitle;
+
+    this.firstFieldTitle = scope.isInFavorites ? opts[0][8] : viewServicePage.firstFieldTitle;
+    console.log("firstFieldTitle pay confirm=", this.firstFieldTitle);
 
 
     if (opts[0][1].firstFieldId == '1') {
@@ -480,9 +481,10 @@
 
               console.log("result of get.payment success=", result);
               if (result[1][0].state == -1) {
-                scope.viewPage = 'view-service-page';
+                scope.viewPage = (scope.isInFavorites || opts[3] == 'POPULAR') ? 'view-main-page' : 'view-service-page';
+                scope.stepAmount = (scope.isInFavorites || opts[3] == 'POPULAR') ? 2 : scope.stepAmount;
                 scope.update();
-//                console.log("state=-1 error");
+                console.log("state=-1 error,view=", scope.viewPage, ",step=", scope.stepAmount);
                 componentUnsuccessId.style.display = 'block';
               } else if (result[1][0].state == 2) {
                 viewServicePage.phoneText = '';
@@ -493,8 +495,9 @@
                 viewServicePinCards.chosenFriendForHelp = null;
                 localStorage.setItem('servicepage_fields', null);
                 scope.viewPage = (scope.isInFavorites || opts[3] == 'POPULAR') ? 'view-main-page' : 'view-pay';
+                scope.stepAmount = (scope.isInFavorites || opts[3] == 'POPULAR') ? 2 : scope.stepAmount;
                 scope.update();
-//                console.log("state=2 success");
+                console.log("state=2 success,view=", scope.viewPage, ",step=", scope.stepAmount);
                 componentSuccessId.style.display = 'block';
               } else if (result[1][0].state == 1) {
                 statusCheckCounter++;
@@ -521,8 +524,9 @@
                   viewServicePinCards.chosenFriendForHelp = null;
                   localStorage.setItem('servicepage_fields', null);
                   scope.viewPage = (scope.isInFavorites || opts[3] == 'POPULAR') ? 'view-main-page' : 'view-pay';
+                  scope.stepAmount = (scope.isInFavorites || opts[3] == 'POPULAR') ? 2 : scope.stepAmount;
                   scope.update();
-                  console.log("state=1 waiting");
+                  console.log("state=1 waiting,view=", scope.viewPage, ",step=", scope.stepAmount);
                   componentInProcessingId.style.display = 'block';
                 }
 

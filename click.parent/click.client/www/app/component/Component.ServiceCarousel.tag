@@ -283,7 +283,26 @@
             console.log("gnrf", scope.favoritePaymentsList[i].opts);
             viewPay.chosenServiceId = id;
             viewPay.categoryId = scope.favoritePaymentsList[i].categoryId;
-            viewServicePage.firstFieldTitle = scope.favoritePaymentsList[i].firstFieldTitle;
+//            viewServicePage.firstFieldTitle = scope.favoritePaymentsList[i].firstFieldTitle;
+            scope.favoritePaymentsList[i].opts[8] = scope.favoritePaymentsList[i].firstFieldTitle;
+
+//            scope.fieldsObject = {
+////              formtype: formtype.formtype,
+////              firstFieldId: firstFieldId.firstFieldId,
+////              firstFieldText: firstFieldText.firstFieldText,
+//              firstFieldTitle: scope.favoritePaymentsList[i].firstFieldTitle
+////              cardTypeId: cardTypeId.cardTypeId,
+////              communalParam: communalParam.communalParam,
+////              amountText: amountText.amountText,
+////              internetPackageParam: internetPackageParam.internetPackageParam,
+////              firstLevelParamId: scope.chosenFieldParamIdTwo,
+////              firstLevelFieldName: scope.chosenFieldNameTwo,
+////              secondLevelFieldName: scope.chosenFieldNameThree,
+//            };
+//            console.log("fieldsObject=", scope.fieldsObject);
+//            localStorage.setItem("servicepage_fields", JSON.stringify(scope.fieldsObject));
+//            console.log("firstFieldTitle serv carousel=", viewServicePage.firstFieldTitle);
+
             viewPayConfirm.isInFavorites = true;
 
             if (modeOfApp.offlineMode) {

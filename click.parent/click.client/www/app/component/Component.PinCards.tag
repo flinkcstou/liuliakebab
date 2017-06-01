@@ -1,7 +1,7 @@
 <component-pincards>
 
   <div
-      class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail,
+    class="pincard-allcards-container {changed-height-for-payment-detail: opts.paymentdetail,
                                         transfer-on-card-pincard-all-cards-container: opts.transferoncard,
                                         changed-height-for-filter-account: opts.filteraccount}">
     <div class="pincard-card-container" each="{i in cardsArray}"
@@ -103,31 +103,6 @@
 
       if (Math.abs(touchStartY - touchEndY) < 20) {
 
-//        if (opts.friendhelpbool) {
-//          if (scope.index == id) {
-//            scope.index = -1;
-//            scope.checkedId = "";
-//            riot.update(scope.checkedId);
-//          } else {
-//            scope.checkedId = "check" + id;
-//            riot.update(scope.checkedId);
-//            scope.index = id;
-//          }
-//
-//
-//          for (var i in scope.cardsArray) {
-//            if (scope.cardsArray[i].card_id == id && scope.cardsArray[i].access == 2) {
-//              if (scope.checkedId.length < 2)
-//                scope.cardsArray[i].chosenCard = false;
-//              else
-//                scope.cardsArray[i].chosenCard = true;
-//            }
-//            else
-//              scope.cardsArray[i].chosenCard = false;
-//          }
-//
-//
-//        } else {
         scope.checkedId = "check" + id;
         console.log('scope.checkedId', document.getElementById(scope.checkedId))
 //        scope.update(scope.checkedId);
