@@ -12418,15 +12418,20 @@ var offlinePopularServiceList = [
   },
 
   offlineCategoryNamesMap = {
-    "1": {"name": "Мобильные операторы", "icon": "resources/icons/ViewPay/1.png"},
-    "2": {"name": "Интернет-провайдеры", "icon": "resources/icons/ViewPay/2.png"},
-    "3": {"name": "Телевидение", "icon": "resources/icons/ViewPay/3.png"},
-    "5": {"name": "Хостинг и домены", "icon": "resources/icons/ViewPay/5.png"},
-    "6": {"name": "Интернет-сервисы", "icon": "resources/icons/ViewPay/6.png"},
-    "7": {"name": "Телефония", "icon": "resources/icons/ViewPay/7.png"},
-    "8": {"name": "Коммунальные платежи", "icon": "resources/icons/ViewPay/8.png"},
-    "10": {"name": "Налоги", "icon": "resources/icons/ViewPay/10.png"},
-    "11": {"name": "Интернет пакеты", "icon": "resources/icons/ViewPay/11.png"}
+    "1": {
+      "name": "Мобильные операторы",
+      "icon": "https://my.click.uz/static/content/app/categories/1.png"
+    },
+    "2": {"name": "Интернет-провайдеры", "icon": "https://my.click.uz/static/content/app/categories/2.png"},
+    "3": {"name": "Телевидение", "icon": "https://my.click.uz/static/content/app/categories/3.png"},
+    "5": {"name": "Хостинг и домены", "icon": "https://my.click.uz/static/content/app/categories/5.png"},
+    "6": {"name": "Интернет-сервисы", "icon": "https://my.click.uz/static/content/app/categories/6.png"},
+    "7": {"name": "Телефония", "icon": "https://my.click.uz/static/content/app/categories/7.png"},
+    "8": {"name": "Коммунальные платежи", "icon": "https://my.click.uz/static/content/app/categories/8.png"},
+    "10": {"name": "Налоги", "icon": "https://my.click.uz/static/content/app/categories/10.png"},
+    "11": {"name": "Интернет пакеты", "icon": "https://my.click.uz/static/content/app/categories/11.png"},
+    "12": {"name": "Погашение кредита", "icon": "https://my.click.uz/static/content/app/categories/12.png"},
+    "13": {"name": "Гос. платежи", "icon": "https://my.click.uz/static/content/app/categories/13.png"}
   },
 
   offlineServicesParamsMapTwo = {
@@ -14095,7 +14100,92 @@ var offlinePopularServiceList = [
       "parent": 0,
       "code": 2,
       "offline_code": "2"
-    }, {"service_id": 2685, "id": 3, "name": "Буз тумани", "parent": 0, "code": 3, "offline_code": "3"}]
+    }, {"service_id": 2685, "id": 3, "name": "Буз тумани", "parent": 0, "code": 3, "offline_code": "3"}],
+    "7045": [{
+      "service_id": 7045,
+      "id": 1,
+      "name": "Ташкент",
+      "parent": 0,
+      "code": 1,
+      "offline_code": "1"
+    }, {
+      "service_id": 7045,
+      "id": 2,
+      "name": "Таш. Обл.",
+      "parent": 0,
+      "code": 2,
+      "offline_code": "2"
+    }, {
+      "service_id": 7045,
+      "id": 3,
+      "name": "Бухара",
+      "parent": 0,
+      "code": 3,
+      "offline_code": "3"
+    }, {
+      "service_id": 7045,
+      "id": 4,
+      "name": "Самарканд",
+      "parent": 0,
+      "code": 4,
+      "offline_code": "4"
+    }, {
+      "service_id": 7045,
+      "id": 5,
+      "name": "Джизак",
+      "parent": 0,
+      "code": 5,
+      "offline_code": "5"
+    }, {"service_id": 7045, "id": 6, "name": "Навои", "parent": 0, "code": 6, "offline_code": "6"}, {
+      "service_id": 7045,
+      "id": 7,
+      "name": "Кашкадарья",
+      "parent": 0,
+      "code": 7,
+      "offline_code": "7"
+    }, {
+      "service_id": 7045,
+      "id": 8,
+      "name": "Фергана",
+      "parent": 0,
+      "code": 8,
+      "offline_code": "8"
+    }, {
+      "service_id": 7045,
+      "id": 9,
+      "name": "Наманган",
+      "parent": 0,
+      "code": 9,
+      "offline_code": "9"
+    }, {
+      "service_id": 7045,
+      "id": 10,
+      "name": "Андижан",
+      "parent": 0,
+      "code": 10,
+      "offline_code": "10"
+    }, {
+      "service_id": 7045,
+      "id": 11,
+      "name": "Сурхандарья",
+      "parent": 0,
+      "code": 11,
+      "offline_code": "11"
+    }, {
+      "service_id": 7045,
+      "id": 12,
+      "name": "Хорезм",
+      "parent": 0,
+      "code": 12,
+      "offline_code": "12"
+    }, {
+      "service_id": 7045,
+      "id": 13,
+      "name": "Сырдарья",
+      "parent": 0,
+      "code": 13,
+      "offline_code": "13"
+    }, {"service_id": 7045, "id": 14, "name": "Каракалпакстан", "parent": 0, "code": 14, "offline_code": "14"}]
   },
 
   offlineServicesParamsMapThree = {
