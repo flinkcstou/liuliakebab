@@ -59,6 +59,7 @@
             if (result[1]) {
               if (result[1].length == 0) {
                 scope.devices = []
+
                 scope.update()
               }
               if (result[1][0]) {
