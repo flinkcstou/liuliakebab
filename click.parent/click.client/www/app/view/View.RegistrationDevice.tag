@@ -288,6 +288,14 @@
 
 
         if (correctPhoneNumber) {
+          var versionOfApp = '5.0'
+          if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
+
+          }
+          else {
+            localStorage.clear()
+            localStorage.setItem('version', versionOfApp)
+          }
           localStorage.setItem('click_client_phoneNumber', phoneNumber);
           var date = parseInt(Date.now() / 1000);
           registrationDevice(phoneNumber, date);
@@ -341,15 +349,6 @@
 
 
     function registrationDevice(phoneNumber, date) {
-      var versionOfApp = '5.0'
-      if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
-
-      }
-      else {
-        localStorage.clear()
-        localStorage.setItem('version', versionOfApp)
-      }
-
 //      if (device.platform != 'BrowserStand') {
 //        var options = {dimBackground: true};
 //
