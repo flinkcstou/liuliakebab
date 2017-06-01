@@ -124,7 +124,6 @@
 
     timer = function () {
 
-      scope.update();
       seconds--;
       if (seconds < 10)
         scope.time = minutes + ':0' + seconds;
@@ -133,13 +132,14 @@
       if (minutes == 0 && seconds == 0) {
         scope.messageTitle = window.languages.ViewSmsMessageTitle;
         scope.messageTitleTwo = window.languages.ViewSmsMessageTitleTwo;
-        scope.update();
         clearInterval(time);
       }
       if (seconds == 0) {
         seconds = 59;
         minutes--;
       }
+
+      riot.update();
     }
     var time = setInterval(timer, 1000);
 
