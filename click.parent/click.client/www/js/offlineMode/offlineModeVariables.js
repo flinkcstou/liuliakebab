@@ -7873,3277 +7873,3391 @@ var offlinePopularServiceList = [
     }]
   },
 
-  offlineServicesParams = [
-    [
-      {
-        "method": "get.service.parameters.list",
-        "success": 1,
-        "error": 0,
-        "error_note": ""
-      }], [{
-      "service_id": -2,
-      "parameter_id": "1",
-      "input_type": 1,
-      "title": "Номер телефона",
-      "placeholder": "Введите номер телефона без 998",
-      "error_message": "Номер телефона введен неправильно",
-      "min_len": "0",
-      "max_len": "999999999",
-      "ussd_query": null
-    }, {
-      "service_id": -2,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": null
-    }, {
-      "service_id": -1,
-      "parameter_id": "8192",
-      "input_type": 0,
-      "title": "На счет",
-      "placeholder": "Выберите счет, на который нужно перевести средства",
-      "error_message": "Выберите счет, на который нужно перевести деньги",
-      "min_len": "1",
-      "max_len": "99999999999",
-      "ussd_query": null
-    }, {
-      "service_id": -1,
-      "parameter_id": "16384",
-      "input_type": 0,
-      "title": "Списать со счета",
-      "placeholder": "Выбирите счет, с которого будут переведены средства",
-      "error_message": "Выбирите счет, с которого будут переведены средства",
-      "min_len": "1",
-      "max_len": "99999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 2,
-      "parameter_id": "1",
-      "input_type": 1,
-      "title": "Номер телефона",
-      "placeholder": "Введите номер телефона без 998",
-      "error_message": "Номер телефона введен неправильно",
-      "min_len": "0",
-      "max_len": "999999999",
-      "ussd_query": "*880*01999001*{param}*{amount}#"
-    }, {
-      "service_id": 3,
-      "parameter_id": "1",
-      "input_type": 1,
-      "title": "Номер телефона",
-      "placeholder": "Введите номер телефона без 998",
-      "error_message": "Номер телефона введен неправильно",
-      "min_len": "0",
-      "max_len": "999999999",
-      "ussd_query": "*880*01999001*{param}*{amount}#"
-    }, {
-      "service_id": 4,
-      "parameter_id": "1",
-      "input_type": 1,
-      "title": "Номер телефона",
-      "placeholder": "Введите номер телефона без 998",
-      "error_message": "Номер телефона введен неправильно",
-      "min_len": "0",
-      "max_len": "999999999",
-      "ussd_query": "*880*01999001*{param}*{amount}#"
-    }, {
-      "service_id": 5,
-      "parameter_id": "1",
-      "input_type": 1,
-      "title": "Номер телефона",
-      "placeholder": "Введите номер телефона без 998",
-      "error_message": "Номер телефона введен неправильно",
-      "min_len": "0",
-      "max_len": "999999999",
-      "ussd_query": "*880*01999001*{param}*{amount}#"
-    }, {
-      "service_id": 6,
-      "parameter_id": "1",
-      "input_type": 1,
-      "title": "Номер телефона",
-      "placeholder": "Введите номер телефона без 998",
-      "error_message": "Номер телефона введен неправильно",
-      "min_len": "0",
-      "max_len": "999999999",
-      "ussd_query": "*880*01999001*{param}*{amount}#"
-    }, {
-      "service_id": 7,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": "*880*07999001*{option}*{param}*{amount}#"
-    }, {
-      "service_id": 7,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 7,
-      "parameter_id": "128",
-      "input_type": 1,
-      "title": "Кроссированный номер",
-      "placeholder": "Введите кроссированный номер",
-      "error_message": "Неверно введен кроссированный номер",
-      "min_len": "0",
-      "max_len": "998999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 9,
-      "parameter_id": "65536",
-      "input_type": 1,
-      "title": "Номер телефона",
-      "placeholder": "Введите номер телефона с кодом города (г.Ташкент(71), Таш. Обл.(70), Каракалпакстан(61), Сырдарья(67))\r\n",
-      "error_message": "Номер телефона введен неправильно",
-      "min_len": "0",
-      "max_len": "999999999",
-      "ussd_query": "*880*09999001*{communal_param}*{param}*{amount}#"
-    }, {
-      "service_id": 10,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": "*880*010999001*1*{param}*{amount}#"
-    }, {
-      "service_id": 10,
-      "parameter_id": "16",
-      "input_type": 2,
-      "title": "Лицевой счет абонента",
-      "placeholder": "Введите лицевой счет абонента",
-      "error_message": "Неверно набран лицевой счет",
-      "min_len": "0",
-      "max_len": "50",
-      "ussd_query": "*880*010999001*2*{param}*{amount}#"
-    }, {
-      "service_id": 12,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*012999001*{param}*{amount}#"
-    }, {
-      "service_id": 15,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": "*880*015999001*{option}*{param}*{amount}#"
-    }, {
-      "service_id": 15,
-      "parameter_id": "8",
-      "input_type": 1,
-      "title": "Номер договора",
-      "placeholder": "Введите номер договора",
-      "error_message": "Неверно введен номер договора",
-      "min_len": "0",
-      "max_len": "9999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 28,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*028999001*{param}*{amount}#"
-    }, {
-      "service_id": 31,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": "*880*031999001*{option}*{param}*{amount}#"
-    }, {
-      "service_id": 35,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*035999001*2*{param}*{amount}#"
-    }, {
-      "service_id": 35,
-      "parameter_id": "2048",
-      "input_type": 1,
-      "title": "PIN код",
-      "placeholder": "Введите первые 8 цифр PIN-кода",
-      "error_message": "Неверный введен пин код",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*035999001*3*{param}*{amount}#"
-    }, {
-      "service_id": 39,
-      "parameter_id": "16",
-      "input_type": 2,
-      "title": "Лицевой счет абонента",
-      "placeholder": "Введите лицевой счет абонента",
-      "error_message": "Неверно набран лицевой счет",
-      "min_len": "0",
-      "max_len": "50",
-      "ussd_query": "*880*039999001*{communal_param}*{param}*{amount}#"
-    }, {
-      "service_id": 40,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": "*880*040999001*{option}*{param}*{amount}#"
-    }, {
-      "service_id": 44,
-      "parameter_id": "32768",
-      "input_type": 3,
-      "title": "Выберите PIN-карту",
-      "placeholder": "Выберите PIN-карту и номинал карты, которую вы хотите приобрести",
-      "error_message": "Не выбрана PIN-карта",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*044999001*{card_type}*{nominal}#"
-    }, {
-      "service_id": 45,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*045999001*{param}*{amount}#"
-    }, {
-      "service_id": 54,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*054999001*{param}*{amount}# "
-    }, {
-      "service_id": 56,
-      "parameter_id": "16",
-      "input_type": 2,
-      "title": "Лицевой счет абонента",
-      "placeholder": "Введите лицевой счет абонента",
-      "error_message": "Неверно набран лицевой счет",
-      "min_len": "0",
-      "max_len": "50",
-      "ussd_query": "*880*056999001*{param}*{amount}#"
-    }, {
-      "service_id": 57,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*057999001*{param}*{amount}#"
-    }, {
-      "service_id": 70,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*070999001*{param}*{amount}#"
-    }, {
-      "service_id": 80,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*080999001*{param}*{amount}#"
-    }, {
-      "service_id": 83,
-      "parameter_id": "32768",
-      "input_type": 3,
-      "title": "Выберите PIN-карту",
-      "placeholder": "Выберите PIN-карту и номинал карты, которую вы хотите приобрести",
-      "error_message": "Не выбрана PIN-карта",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*083999001*9*{nominal}#"
-    }, {
-      "service_id": 87,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*087999001*{param}*{amount}#"
-    }, {
-      "service_id": 90,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*090999001*{param}*{amount}#"
-    }, {
-      "service_id": 95,
-      "parameter_id": "32768",
-      "input_type": 3,
-      "title": "Выберите PIN-карту",
-      "placeholder": "Выберите PIN-карту и номинал карты, которую вы хотите приобрести",
-      "error_message": "Не выбрана PIN-карта",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*095999001*11*{nominal}#"
-    }, {
-      "service_id": 100,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*0100999001*{param}*{amount}#"
-    }, {
-      "service_id": 101,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*0101999001*{param}*{amount}#"
-    }, {
-      "service_id": 102,
-      "parameter_id": "16",
-      "input_type": 2,
-      "title": "Лицевой счет абонента",
-      "placeholder": "Введите лицевой счет абонента",
-      "error_message": "Неверно набран лицевой счет",
-      "min_len": "0",
-      "max_len": "50",
-      "ussd_query": "*880*0102*{param}*{amount}#"
-    }, {
-      "service_id": 103,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*0103999001*{param}*{amount}#"
-    }, {
-      "service_id": 107,
-      "parameter_id": "8388608",
-      "input_type": 1,
-      "title": "ИНН",
-      "placeholder": "Введите ИНН",
-      "error_message": "ИНН введен не верно",
-      "min_len": "1",
-      "max_len": "999999999",
-      "ussd_query": "*880*0107999001*{communal_param}*{param}*{amount}#"
-    }, {
-      "service_id": 108,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*0108999001*{param}*{amount}#"
-    }, {
-      "service_id": 113,
-      "parameter_id": "8388608",
-      "input_type": 1,
-      "title": "ИНН",
-      "placeholder": "Введите ИНН",
-      "error_message": "ИНН введен не верно",
-      "min_len": "1",
-      "max_len": "999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 115,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 121,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*0121999001*{param}*{amount}#"
-    }, {
-      "service_id": 128,
-      "parameter_id": "1",
-      "input_type": 1,
-      "title": "Номер телефона",
-      "placeholder": "Введите номер телефона без 998",
-      "error_message": "Номер телефона введен неправильно",
-      "min_len": "0",
-      "max_len": "999999999",
-      "ussd_query": "*880*0128999001*1*{param}*{amount}#"
-    }, {
-      "service_id": 128,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": "*880*0128999001*2*{param}*{amount}#"
-    }, {
-      "service_id": 128,
-      "parameter_id": "16",
-      "input_type": 2,
-      "title": "Лицевой счет абонента",
-      "placeholder": "Введите лицевой счет абонента",
-      "error_message": "Неверно набран лицевой счет",
-      "min_len": "0",
-      "max_len": "50",
-      "ussd_query": "*880*0128999001*3*{param}*{amount}#"
-    }, {
-      "service_id": 132,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*0132999001*{param}*{amount}#"
-    }, {
-      "service_id": 139,
-      "parameter_id": "32768",
-      "input_type": 3,
-      "title": "Выберите PIN-карту",
-      "placeholder": "Выберите PIN-карту и номинал карты, которую вы хотите приобрести",
-      "error_message": "Не выбрана PIN-карта",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*0139999001*1*{nominal}#"
-    }, {
-      "service_id": 148,
-      "parameter_id": "1",
-      "input_type": 1,
-      "title": "Номер телефона",
-      "placeholder": "Введите номер телефона без 998",
-      "error_message": "Номер телефона введен неправильно",
-      "min_len": "0",
-      "max_len": "999999999",
-      "ussd_query": "*880*01999001*{param}*{amount}#"
-    }, {
-      "service_id": 157,
-      "parameter_id": "32768",
-      "input_type": 3,
-      "title": "Выберите PIN-карту",
-      "placeholder": "Выберите PIN-карту и номинал карты, которую вы хотите приобрести",
-      "error_message": "Не выбрана PIN-карта",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*0157999001*11*{nominal}#"
-    }, {
-      "service_id": 181,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 183,
-      "parameter_id": "16",
-      "input_type": 2,
-      "title": "Лицевой счет абонента",
-      "placeholder": "Введите лицевой счет абонента",
-      "error_message": "Неверно набран лицевой счет",
-      "min_len": "0",
-      "max_len": "50",
-      "ussd_query": "*880*0183999001*2*{option}*{param}*{amount}#"
-    }, {
-      "service_id": 183,
-      "parameter_id": "16777216",
-      "input_type": 2,
-      "title": "Номер контракта",
-      "placeholder": "Введите номер контракта",
-      "error_message": "Номер контракта введен неверно",
-      "min_len": "1",
-      "max_len": "50",
-      "ussd_query": "*880*0183999001*1*{option}*{param}*{amount}#"
-    }, {
-      "service_id": 198,
-      "parameter_id": "16",
-      "input_type": 2,
-      "title": "Лицевой счет абонента",
-      "placeholder": "Введите лицевой счет абонента",
-      "error_message": "Неверно набран лицевой счет",
-      "min_len": "0",
-      "max_len": "50",
-      "ussd_query": "*880*0198999001*{communal_param}*{param}*{amount}#"
-    }, {
-      "service_id": 1133,
-      "parameter_id": "32768",
-      "input_type": 3,
-      "title": "Выберите PIN-карту",
-      "placeholder": "Выберите PIN-карту и номинал карты, которую вы хотите приобрести",
-      "error_message": "Не выбрана PIN-карта",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*078999001*8*{nominal}#"
-    }, {
-      "service_id": 2512,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": "*880*02512999001*{param}*{amount}#"
-    }, {
-      "service_id": 2706,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*02706*{param}*{amount}#"
-    }, {
-      "service_id": 2812,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": null
-    }, {
-      "service_id": 2821,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": "*880*02821*{param}*{amount}#"
-    }, {
-      "service_id": 3032,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": "*880*03032*{param}*{amount}#"
-    }, {
-      "service_id": 3037,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*03037*{param}*{amount}#"
-    }, {
-      "service_id": 3040,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*03040*{param}*{amount}#"
-    }, {
-      "service_id": 3172,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 3175,
-      "parameter_id": "16",
-      "input_type": 2,
-      "title": "Лицевой счет абонента",
-      "placeholder": "Введите лицевой счет абонента",
-      "error_message": "Неверно набран лицевой счет",
-      "min_len": "0",
-      "max_len": "50",
-      "ussd_query": "*880*03175*{param}*{amount}#"
-    }, {
-      "service_id": 3177,
-      "parameter_id": "65536",
-      "input_type": 1,
-      "title": "Номер телефона",
-      "placeholder": "Введите номер телефона с кодом города (г.Ташкент(71), Таш. Обл.(70), Каракалпакстан(61), Сырдарья(67))\r\n",
-      "error_message": "Номер телефона введен неправильно",
-      "min_len": "0",
-      "max_len": "999999999",
-      "ussd_query": "*880*03177*{param}*{amount}#"
-    }, {
-      "service_id": 3184,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 3185,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": "*880*03185*{param}*{amount}#"
-    }, {
-      "service_id": 3198,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 3200,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 3213,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": null
-    }, {
-      "service_id": 3215,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 3217,
-      "parameter_id": "1",
-      "input_type": 1,
-      "title": "Номер телефона",
-      "placeholder": "Введите номер телефона без 998",
-      "error_message": "Номер телефона введен неправильно",
-      "min_len": "0",
-      "max_len": "999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4422,
-      "parameter_id": "1",
-      "input_type": 1,
-      "title": "Номер телефона",
-      "placeholder": "Введите номер телефона без 998",
-      "error_message": "Номер телефона введен неправильно",
-      "min_len": "0",
-      "max_len": "999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4423,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4641,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4646,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4652,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4659,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4660,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4663,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4666,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": null
-    }, {
-      "service_id": 4666,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4667,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": null
-    }, {
-      "service_id": 4667,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4668,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": null
-    }, {
-      "service_id": 4668,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4669,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": null
-    }, {
-      "service_id": 4669,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4670,
-      "parameter_id": "512",
-      "input_type": 2,
-      "title": "Номер карты",
-      "placeholder": "Введите номер карты",
-      "error_message": "Неверно введен номер карты",
-      "min_len": "0",
-      "max_len": "25",
-      "ussd_query": null
-    }, {
-      "service_id": 4673,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4674,
-      "parameter_id": "16",
-      "input_type": 2,
-      "title": "Лицевой счет абонента",
-      "placeholder": "Введите лицевой счет абонента",
-      "error_message": "Неверно набран лицевой счет",
-      "min_len": "0",
-      "max_len": "50",
-      "ussd_query": null
-    }, {
-      "service_id": 4675,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4676,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4677,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4678,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4680,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4688,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4688,
-      "parameter_id": "16",
-      "input_type": 2,
-      "title": "Лицевой счет абонента",
-      "placeholder": "Введите лицевой счет абонента",
-      "error_message": "Неверно набран лицевой счет",
-      "min_len": "0",
-      "max_len": "50",
-      "ussd_query": null
-    }, {
-      "service_id": 4689,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4689,
-      "parameter_id": "16",
-      "input_type": 2,
-      "title": "Лицевой счет абонента",
-      "placeholder": "Введите лицевой счет абонента",
-      "error_message": "Неверно набран лицевой счет",
-      "min_len": "0",
-      "max_len": "50",
-      "ussd_query": null
-    }, {
-      "service_id": 7003,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 7004,
-      "parameter_id": "2",
-      "input_type": 2,
-      "title": "Логин",
-      "placeholder": "Введите логин ",
-      "error_message": "Логин введен неправильно",
-      "min_len": "3",
-      "max_len": "50",
-      "ussd_query": null
-    }], [{
-      "service_id": 9,
-      "id": 1,
-      "name": "Абонентская плата",
-      "parent": 0,
-      "code": 1,
-      "offline_code": "1"
-    }, {
-      "service_id": 9,
-      "id": 2,
-      "name": "МТР (Междугородная)",
-      "parent": 0,
-      "code": 2,
-      "offline_code": "2"
-    }, {
-      "service_id": 39,
-      "id": 2,
-      "name": "Мирабадский район",
-      "parent": 0,
-      "code": -1,
-      "offline_code": "-1"
-    }, {
-      "service_id": 39,
-      "id": 4,
-      "name": "Мирзо-Улугбекский район",
-      "parent": 0,
-      "code": -1,
-      "offline_code": "-1"
-    }, {
-      "service_id": 39,
-      "id": 5,
-      "name": "Хамзинский район",
-      "parent": 0,
-      "code": -1,
-      "offline_code": "-1"
-    }, {
-      "service_id": 39,
-      "id": 6,
-      "name": "Шайхантахурский район",
-      "parent": 0,
-      "code": -1,
-      "offline_code": "-1"
-    }, {
-      "service_id": 39,
-      "id": 7,
-      "name": "Яккасарайский район",
-      "parent": 0,
-      "code": -1,
-      "offline_code": "-1"
-    }, {
-      "service_id": 39,
-      "id": 8,
-      "name": "Чиланзарский район",
-      "parent": 0,
-      "code": -1,
-      "offline_code": "-1"
-    }, {
-      "service_id": 39,
-      "id": 9,
-      "name": "Бектемирский район",
-      "parent": 0,
-      "code": -1,
-      "offline_code": "-1"
-    }, {
-      "service_id": 39,
-      "id": 10,
-      "name": "Алмазарский район",
-      "parent": 0,
-      "code": -1,
-      "offline_code": "-1"
-    }, {
-      "service_id": 39,
-      "id": 11,
-      "name": "Учтепинский район",
-      "parent": 0,
-      "code": -1,
-      "offline_code": "-1"
-    }, {
-      "service_id": 39,
-      "id": 12,
-      "name": "Сергелинский район",
-      "parent": 0,
-      "code": -1,
-      "offline_code": "-1"
-    }, {
-      "service_id": 39,
-      "id": 13,
-      "name": "Юнусабад",
-      "parent": 0,
-      "code": -1,
-      "offline_code": "-1"
-    }, {
-      "service_id": 107,
-      "id": 66,
-      "name": "Налог на имущество",
-      "parent": 0,
-      "code": 66,
-      "offline_code": "66"
-    }, {
-      "service_id": 107,
-      "id": 67,
-      "name": "Земельный налог",
-      "parent": 0,
-      "code": 67,
-      "offline_code": "67"
-    }, {
-      "service_id": 162,
-      "id": 0,
-      "name": "Оплата за бытовую электроэнергию",
-      "parent": 0,
-      "code": 0,
-      "offline_code": "0"
-    }, {
-      "service_id": 162,
-      "id": 5,
-      "name": "Оплата дополнительных услуг",
-      "parent": 0,
-      "code": 5,
-      "offline_code": "5"
-    }, {
-      "service_id": 162,
-      "id": 8,
-      "name": "Оплата за подключение",
-      "parent": 0,
-      "code": 8,
-      "offline_code": "8"
-    }, {
-      "service_id": 162,
-      "id": 14,
-      "name": "Оплата по актам нарушений",
-      "parent": 0,
-      "code": 14,
-      "offline_code": "14"
-    }, {
-      "service_id": 162,
-      "id": 10,
-      "name": "Оплата за пеню бытовых потребителей",
-      "parent": 0,
-      "code": 10,
-      "offline_code": "10"
-    }, {"service_id": 183, "id": 1, "name": "WiMAX", "parent": 0, "code": 1, "offline_code": "1"}, {
-      "service_id": 183,
-      "id": 2,
-      "name": "LTE",
-      "parent": 0,
-      "code": 2,
-      "offline_code": "2"
-    }, {"service_id": 198, "id": 1, "name": "Ташкент", "parent": 0, "code": 1, "offline_code": "1"}, {
-      "service_id": 198,
-      "id": 2,
-      "name": "Таш. Обл.",
-      "parent": 0,
-      "code": 2,
-      "offline_code": "2"
-    }, {"service_id": 198, "id": 3, "name": "Бухара", "parent": 0, "code": 3, "offline_code": "3"}, {
-      "service_id": 198,
-      "id": 4,
-      "name": "Самарканд",
-      "parent": 0,
-      "code": 4,
-      "offline_code": "4"
-    }, {"service_id": 198, "id": 5, "name": "Джизак", "parent": 0, "code": 5, "offline_code": "5"}, {
-      "service_id": 198,
-      "id": 6,
-      "name": "Навои",
-      "parent": 0,
-      "code": 6,
-      "offline_code": "6"
-    }, {
-      "service_id": 198,
-      "id": 7,
-      "name": "Кашкадарья",
-      "parent": 0,
-      "code": 7,
-      "offline_code": "7"
-    }, {"service_id": 198, "id": 8, "name": "Фергана", "parent": 0, "code": 8, "offline_code": "8"}, {
-      "service_id": 198,
-      "id": 9,
-      "name": "Наманган",
-      "parent": 0,
-      "code": 9,
-      "offline_code": "9"
-    }, {
-      "service_id": 198,
-      "id": 10,
-      "name": "Андижан",
-      "parent": 0,
-      "code": 10,
-      "offline_code": "10"
-    }, {
-      "service_id": 198,
-      "id": 11,
-      "name": "Сурхандарья",
-      "parent": 0,
-      "code": 11,
-      "offline_code": "11"
-    }, {"service_id": 198, "id": 12, "name": "Хорезм", "parent": 0, "code": 12, "offline_code": "12"}, {
-      "service_id": 198,
-      "id": 13,
-      "name": "Сырдарья",
-      "parent": 0,
-      "code": 13,
-      "offline_code": "13"
-    }, {
-      "service_id": 198,
-      "id": 14,
-      "name": "Каракалпакстан",
-      "parent": 0,
-      "code": 14,
-      "offline_code": "14"
-    }, {
-      "service_id": 198,
-      "id": 3,
-      "name": "Миробод тумани",
-      "parent": 1,
-      "code": 3,
-      "offline_code": "003"
-    }, {
-      "service_id": 198,
-      "id": 4,
-      "name": "М. Улугбек тумани",
-      "parent": 1,
-      "code": 4,
-      "offline_code": "004"
-    }, {
-      "service_id": 198,
-      "id": 5,
-      "name": "Яккасарой тумани",
-      "parent": 1,
-      "code": 5,
-      "offline_code": "005"
-    }, {
-      "service_id": 198,
-      "id": 6,
-      "name": "Олмазор тумани",
-      "parent": 1,
-      "code": 6,
-      "offline_code": "006"
-    }, {
-      "service_id": 198,
-      "id": 7,
-      "name": "Юнусобод тумани",
-      "parent": 1,
-      "code": 7,
-      "offline_code": "007"
-    }, {
-      "service_id": 198,
-      "id": 8,
-      "name": "Чилонзор тумани",
-      "parent": 1,
-      "code": 8,
-      "offline_code": "008"
-    }, {
-      "service_id": 198,
-      "id": 9,
-      "name": "Учтепа тумани",
-      "parent": 1,
-      "code": 9,
-      "offline_code": "009"
-    }, {
-      "service_id": 198,
-      "id": 10,
-      "name": "Сергели тумани",
-      "parent": 1,
-      "code": 10,
-      "offline_code": "010"
-    }, {
-      "service_id": 198,
-      "id": 11,
-      "name": "Хамза тумани",
-      "parent": 1,
-      "code": 11,
-      "offline_code": "011"
-    }, {
-      "service_id": 198,
-      "id": 12,
-      "name": "Шайхонтохур тумани",
-      "parent": 1,
-      "code": 12,
-      "offline_code": "012"
-    }, {
-      "service_id": 198,
-      "id": 13,
-      "name": "Бектемир тумани",
-      "parent": 1,
-      "code": 13,
-      "offline_code": "013"
-    }, {
-      "service_id": 198,
-      "id": 172,
-      "name": "Бухоро шахар",
-      "parent": 3,
-      "code": 172,
-      "offline_code": "172"
-    }, {
-      "service_id": 198,
-      "id": 174,
-      "name": "Ромитан тумани",
-      "parent": 3,
-      "code": 174,
-      "offline_code": "174"
-    }, {
-      "service_id": 198,
-      "id": 175,
-      "name": "Когон тумани",
-      "parent": 3,
-      "code": 175,
-      "offline_code": "175"
-    }, {
-      "service_id": 198,
-      "id": 176,
-      "name": "Гиждувон тумани",
-      "parent": 3,
-      "code": 176,
-      "offline_code": "176"
-    }, {
-      "service_id": 198,
-      "id": 177,
-      "name": "Бухоро тумани",
-      "parent": 3,
-      "code": 177,
-      "offline_code": "177"
-    }, {
-      "service_id": 198,
-      "id": 178,
-      "name": "Жондор тумани",
-      "parent": 3,
-      "code": 178,
-      "offline_code": "178"
-    }, {
-      "service_id": 198,
-      "id": 179,
-      "name": "Вобкент тумани",
-      "parent": 3,
-      "code": 179,
-      "offline_code": "179"
-    }, {
-      "service_id": 198,
-      "id": 180,
-      "name": "Пешку тумани",
-      "parent": 3,
-      "code": 180,
-      "offline_code": "180"
-    }, {
-      "service_id": 198,
-      "id": 181,
-      "name": "Шофиркон тумани",
-      "parent": 3,
-      "code": 181,
-      "offline_code": "181"
-    }, {
-      "service_id": 198,
-      "id": 182,
-      "name": "Коракул тумани",
-      "parent": 3,
-      "code": 182,
-      "offline_code": "182"
-    }, {
-      "service_id": 198,
-      "id": 183,
-      "name": "Олот тумани",
-      "parent": 3,
-      "code": 183,
-      "offline_code": "183"
-    }, {
-      "service_id": 198,
-      "id": 184,
-      "name": "Коровулбозор тумани",
-      "parent": 3,
-      "code": 184,
-      "offline_code": "184"
-    }, {
-      "service_id": 198,
-      "id": 186,
-      "name": "Зарафшон шахар",
-      "parent": 6,
-      "code": 186,
-      "offline_code": "186"
-    }, {
-      "service_id": 198,
-      "id": 187,
-      "name": "Кармана тумани",
-      "parent": 6,
-      "code": 187,
-      "offline_code": "187"
-    }, {
-      "service_id": 198,
-      "id": 188,
-      "name": "Кизилтепа тумани",
-      "parent": 6,
-      "code": 188,
-      "offline_code": "188"
-    }, {
-      "service_id": 198,
-      "id": 189,
-      "name": "Конимех тумани",
-      "parent": 6,
-      "code": 189,
-      "offline_code": "189"
-    }, {
-      "service_id": 198,
-      "id": 190,
-      "name": "Навоий шахар",
-      "parent": 6,
-      "code": 190,
-      "offline_code": "190"
-    }, {
-      "service_id": 198,
-      "id": 191,
-      "name": "Навбахор тумани",
-      "parent": 6,
-      "code": 191,
-      "offline_code": "191"
-    }, {
-      "service_id": 198,
-      "id": 192,
-      "name": "Нурота тумани",
-      "parent": 6,
-      "code": 192,
-      "offline_code": "192"
-    }, {
-      "service_id": 198,
-      "id": 193,
-      "name": "Хатирчи тумани",
-      "parent": 6,
-      "code": 193,
-      "offline_code": "193"
-    }, {
-      "service_id": 198,
-      "id": 208,
-      "name": "Нукус шахар",
-      "parent": 14,
-      "code": 208,
-      "offline_code": "208"
-    }, {
-      "service_id": 198,
-      "id": 209,
-      "name": "Нукус тумани",
-      "parent": 14,
-      "code": 209,
-      "offline_code": "209"
-    }, {
-      "service_id": 198,
-      "id": 210,
-      "name": "Кегеили тумани",
-      "parent": 14,
-      "code": 210,
-      "offline_code": "210"
-    }, {
-      "service_id": 198,
-      "id": 211,
-      "name": "Чимбой тумани",
-      "parent": 14,
-      "code": 211,
-      "offline_code": "211"
-    }, {
-      "service_id": 198,
-      "id": 212,
-      "name": "Караузяк тумани",
-      "parent": 14,
-      "code": 212,
-      "offline_code": "212"
-    }, {
-      "service_id": 198,
-      "id": 213,
-      "name": "Тахтакупир тумани",
-      "parent": 14,
-      "code": 213,
-      "offline_code": "213"
-    }, {
-      "service_id": 198,
-      "id": 214,
-      "name": "Хужайли тумани",
-      "parent": 14,
-      "code": 214,
-      "offline_code": "214"
-    }, {
-      "service_id": 198,
-      "id": 215,
-      "name": "Шуманай тумани",
-      "parent": 14,
-      "code": 215,
-      "offline_code": "215"
-    }, {
-      "service_id": 198,
-      "id": 216,
-      "name": "Канлыкуль тумани",
-      "parent": 14,
-      "code": 216,
-      "offline_code": "216"
-    }, {
-      "service_id": 198,
-      "id": 217,
-      "name": "Тахиаташ тумани",
-      "parent": 14,
-      "code": 217,
-      "offline_code": "217"
-    }, {
-      "service_id": 198,
-      "id": 218,
-      "name": "Кунград тумани",
-      "parent": 14,
-      "code": 218,
-      "offline_code": "218"
-    }, {
-      "service_id": 198,
-      "id": 219,
-      "name": "Муйнак тумани",
-      "parent": 14,
-      "code": 219,
-      "offline_code": "219"
-    }, {
-      "service_id": 198,
-      "id": 220,
-      "name": "Амурдарья тумани",
-      "parent": 14,
-      "code": 220,
-      "offline_code": "220"
-    }, {
-      "service_id": 198,
-      "id": 221,
-      "name": "Турткуль тумани",
-      "parent": 14,
-      "code": 221,
-      "offline_code": "221"
-    }, {
-      "service_id": 198,
-      "id": 222,
-      "name": "Элликкала тумани",
-      "parent": 14,
-      "code": 222,
-      "offline_code": "222"
-    }, {
-      "service_id": 198,
-      "id": 223,
-      "name": "Беруний тумани",
-      "parent": 14,
-      "code": 223,
-      "offline_code": "223"
-    }, {
-      "service_id": 198,
-      "id": 224,
-      "name": "Бозатау участок",
-      "parent": 14,
-      "code": 224,
-      "offline_code": "224"
-    }, {
-      "service_id": 198,
-      "id": 225,
-      "name": "Халкобод шахри",
-      "parent": 14,
-      "code": 225,
-      "offline_code": "225"
-    }, {
-      "service_id": 198,
-      "id": 195,
-      "name": "Халкобод шахри",
-      "parent": 12,
-      "code": 195,
-      "offline_code": "195"
-    }, {
-      "service_id": 198,
-      "id": 196,
-      "name": "Ургенч тумани",
-      "parent": 12,
-      "code": 196,
-      "offline_code": "196"
-    }, {
-      "service_id": 198,
-      "id": 197,
-      "name": "Хива тумани",
-      "parent": 12,
-      "code": 197,
-      "offline_code": "197"
-    }, {
-      "service_id": 198,
-      "id": 198,
-      "name": "Хонка тумани",
-      "parent": 12,
-      "code": 198,
-      "offline_code": "198"
-    }, {
-      "service_id": 198,
-      "id": 199,
-      "name": "Шовот тумани",
-      "parent": 12,
-      "code": 199,
-      "offline_code": "199"
-    }, {
-      "service_id": 198,
-      "id": 200,
-      "name": "Богот тумани",
-      "parent": 12,
-      "code": 200,
-      "offline_code": "200"
-    }, {
-      "service_id": 198,
-      "id": 201,
-      "name": "Янгиарик тумани",
-      "parent": 12,
-      "code": 201,
-      "offline_code": "201"
-    }, {
-      "service_id": 198,
-      "id": 202,
-      "name": "Янгибозор тумани",
-      "parent": 12,
-      "code": 202,
-      "offline_code": "202"
-    }, {
-      "service_id": 198,
-      "id": 203,
-      "name": "Гурлан тумани",
-      "parent": 12,
-      "code": 203,
-      "offline_code": "203"
-    }, {
-      "service_id": 198,
-      "id": 204,
-      "name": "Кушкупир тумани",
-      "parent": 12,
-      "code": 204,
-      "offline_code": "204"
-    }, {
-      "service_id": 198,
-      "id": 205,
-      "name": "Хазарасп тумани",
-      "parent": 12,
-      "code": 205,
-      "offline_code": "205"
-    }, {
-      "service_id": 198,
-      "id": 206,
-      "name": "Питнак тумани",
-      "parent": 12,
-      "code": 206,
-      "offline_code": "206"
-    }, {
-      "service_id": 198,
-      "id": 23,
-      "name": "Олмалик тумани",
-      "parent": 2,
-      "code": 23,
-      "offline_code": "023"
-    }, {
-      "service_id": 198,
-      "id": 24,
-      "name": "Ангрен тумани",
-      "parent": 2,
-      "code": 24,
-      "offline_code": "024"
-    }, {
-      "service_id": 198,
-      "id": 25,
-      "name": "Охангарон тумани",
-      "parent": 2,
-      "code": 25,
-      "offline_code": "025"
-    }, {
-      "service_id": 198,
-      "id": 26,
-      "name": "Оккургон тумани",
-      "parent": 2,
-      "code": 26,
-      "offline_code": "026"
-    }, {
-      "service_id": 198,
-      "id": 27,
-      "name": "Бекобод шахар",
-      "parent": 2,
-      "code": 27,
-      "offline_code": "027"
-    }, {
-      "service_id": 198,
-      "id": 28,
-      "name": "Бука тумани",
-      "parent": 2,
-      "code": 28,
-      "offline_code": "028"
-    }, {
-      "service_id": 198,
-      "id": 29,
-      "name": "Бустонлик(газалкент) тумани",
-      "parent": 2,
-      "code": 29,
-      "offline_code": "029"
-    }, {
-      "service_id": 198,
-      "id": 30,
-      "name": "Бекобод тумани",
-      "parent": 2,
-      "code": 30,
-      "offline_code": "030"
-    }, {
-      "service_id": 198,
-      "id": 31,
-      "name": "Зангиота тумани (эшонгузар)",
-      "parent": 2,
-      "code": 31,
-      "offline_code": "031"
-    }, {
-      "service_id": 198,
-      "id": 32,
-      "name": "Зангитоа тумани (келес)",
-      "parent": 2,
-      "code": 32,
-      "offline_code": "032"
-    }, {
-      "service_id": 198,
-      "id": 33,
-      "name": "Кибрай тумани",
-      "parent": 2,
-      "code": 33,
-      "offline_code": "033"
-    }, {
-      "service_id": 198,
-      "id": 34,
-      "name": "Паркент тумани",
-      "parent": 2,
-      "code": 34,
-      "offline_code": "034"
-    }, {
-      "service_id": 198,
-      "id": 35,
-      "name": "Пискент тумани",
-      "parent": 2,
-      "code": 35,
-      "offline_code": "035"
-    }, {
-      "service_id": 198,
-      "id": 36,
-      "name": "Куйичирчик(янгибозор) тумани",
-      "parent": 2,
-      "code": 36,
-      "offline_code": "036"
-    }, {
-      "service_id": 198,
-      "id": 37,
-      "name": "Уртачирчик(туйтепа) тумани",
-      "parent": 2,
-      "code": 37,
-      "offline_code": "037"
-    }, {
-      "service_id": 198,
-      "id": 38,
-      "name": "Филиал \"Чирчиктумангаз\"",
-      "parent": 2,
-      "code": 38,
-      "offline_code": "038"
-    }, {
-      "service_id": 198,
-      "id": 39,
-      "name": "Чиноз тумани",
-      "parent": 2,
-      "code": 39,
-      "offline_code": "039"
-    }, {
-      "service_id": 198,
-      "id": 40,
-      "name": "Юкоричирчик тумани",
-      "parent": 2,
-      "code": 40,
-      "offline_code": "040"
-    }, {
-      "service_id": 198,
-      "id": 41,
-      "name": "Янгийиул тумани",
-      "parent": 2,
-      "code": 41,
-      "offline_code": "041"
-    }, {
-      "service_id": 198,
-      "id": 42,
-      "name": "Красногорск шахар",
-      "parent": 2,
-      "code": 42,
-      "offline_code": "042"
-    }, {
-      "service_id": 198,
-      "id": 71,
-      "name": "Самарканд шахар",
-      "parent": 4,
-      "code": 71,
-      "offline_code": "071"
-    }, {
-      "service_id": 198,
-      "id": 72,
-      "name": "Самарканд тумани",
-      "parent": 4,
-      "code": 72,
-      "offline_code": "072"
-    }, {
-      "service_id": 198,
-      "id": 73,
-      "name": "Булунгур тумани",
-      "parent": 4,
-      "code": 73,
-      "offline_code": "073"
-    }, {
-      "service_id": 198,
-      "id": 74,
-      "name": "Жомбой тумани",
-      "parent": 4,
-      "code": 74,
-      "offline_code": "074"
-    }, {
-      "service_id": 198,
-      "id": 75,
-      "name": "Пастаргом тумани",
-      "parent": 4,
-      "code": 75,
-      "offline_code": "075"
-    }, {
-      "service_id": 198,
-      "id": 76,
-      "name": "Иштихон тумани",
-      "parent": 4,
-      "code": 76,
-      "offline_code": "076"
-    }, {
-      "service_id": 198,
-      "id": 77,
-      "name": "Каттакургон шахар",
-      "parent": 4,
-      "code": 77,
-      "offline_code": "077"
-    }, {
-      "service_id": 198,
-      "id": 78,
-      "name": "Нуробод тумани",
-      "parent": 4,
-      "code": 78,
-      "offline_code": "078"
-    }, {
-      "service_id": 198,
-      "id": 79,
-      "name": "Окдаре тумани",
-      "parent": 4,
-      "code": 79,
-      "offline_code": "079"
-    }, {
-      "service_id": 198,
-      "id": 80,
-      "name": "Нарпай тумани",
-      "parent": 4,
-      "code": 80,
-      "offline_code": "080"
-    }, {
-      "service_id": 198,
-      "id": 81,
-      "name": "Пайарик тумани",
-      "parent": 4,
-      "code": 81,
-      "offline_code": "081"
-    }, {
-      "service_id": 198,
-      "id": 82,
-      "name": "Каттакургон тумани",
-      "parent": 4,
-      "code": 82,
-      "offline_code": "082"
-    }, {
-      "service_id": 198,
-      "id": 83,
-      "name": "Пахтачи тумани",
-      "parent": 4,
-      "code": 83,
-      "offline_code": "083"
-    }, {
-      "service_id": 198,
-      "id": 84,
-      "name": "Тайлок тумани",
-      "parent": 4,
-      "code": 84,
-      "offline_code": "084"
-    }, {
-      "service_id": 198,
-      "id": 85,
-      "name": "Ургут тумани",
-      "parent": 4,
-      "code": 85,
-      "offline_code": "085"
-    }, {
-      "service_id": 198,
-      "id": 86,
-      "name": "Кушробод тумани",
-      "parent": 4,
-      "code": 86,
-      "offline_code": "086"
-    }, {
-      "service_id": 198,
-      "id": 228,
-      "name": "Гўзалкент тумани",
-      "parent": 4,
-      "code": 228,
-      "offline_code": "228"
-    }, {
-      "service_id": 198,
-      "id": 87,
-      "name": "Челак тумани",
-      "parent": 4,
-      "code": 87,
-      "offline_code": "087"
-    }, {
-      "service_id": 198,
-      "id": 56,
-      "name": "Жиззах шахар",
-      "parent": 5,
-      "code": 56,
-      "offline_code": "056"
-    }, {
-      "service_id": 198,
-      "id": 57,
-      "name": "Жиззах тумани",
-      "parent": 5,
-      "code": 57,
-      "offline_code": "057"
-    }, {
-      "service_id": 198,
-      "id": 58,
-      "name": "Галлаорол тумани",
-      "parent": 5,
-      "code": 58,
-      "offline_code": "058"
-    }, {
-      "service_id": 198,
-      "id": 59,
-      "name": "Бахмал тумани",
-      "parent": 5,
-      "code": 59,
-      "offline_code": "059"
-    }, {
-      "service_id": 198,
-      "id": 60,
-      "name": "Пахтакор тумани",
-      "parent": 5,
-      "code": 60,
-      "offline_code": "060"
-    }, {
-      "service_id": 198,
-      "id": 61,
-      "name": "Зафаробод тумани",
-      "parent": 5,
-      "code": 61,
-      "offline_code": "061"
-    }, {
-      "service_id": 198,
-      "id": 62,
-      "name": "Дустлик тумани",
-      "parent": 5,
-      "code": 62,
-      "offline_code": "062"
-    }, {
-      "service_id": 198,
-      "id": 63,
-      "name": "Арнасой тумани",
-      "parent": 5,
-      "code": 63,
-      "offline_code": "063"
-    }, {
-      "service_id": 198,
-      "id": 64,
-      "name": "Мирзачул тумани",
-      "parent": 5,
-      "code": 64,
-      "offline_code": "064"
-    }, {
-      "service_id": 198,
-      "id": 65,
-      "name": "Зарбдор тумани",
-      "parent": 5,
-      "code": 65,
-      "offline_code": "065"
-    }, {
-      "service_id": 198,
-      "id": 66,
-      "name": "Зомин тумани",
-      "parent": 5,
-      "code": 66,
-      "offline_code": "066"
-    }, {
-      "service_id": 198,
-      "id": 67,
-      "name": "Даштаобод тумани",
-      "parent": 5,
-      "code": 67,
-      "offline_code": "067"
-    }, {
-      "service_id": 198,
-      "id": 68,
-      "name": "Фориш тумани",
-      "parent": 5,
-      "code": 68,
-      "offline_code": "068"
-    }, {
-      "service_id": 198,
-      "id": 69,
-      "name": "Янгиобод тумани",
-      "parent": 5,
-      "code": 69,
-      "offline_code": "069"
-    }, {
-      "service_id": 198,
-      "id": 141,
-      "name": "Карши шахар",
-      "parent": 7,
-      "code": 141,
-      "offline_code": "141"
-    }, {
-      "service_id": 198,
-      "id": 142,
-      "name": "Шахрисабз тумани",
-      "parent": 7,
-      "code": 142,
-      "offline_code": "142"
-    }, {
-      "service_id": 198,
-      "id": 143,
-      "name": "Китоб тумани",
-      "parent": 7,
-      "code": 143,
-      "offline_code": "143"
-    }, {
-      "service_id": 198,
-      "id": 144,
-      "name": "Яккабог тумани",
-      "parent": 7,
-      "code": 144,
-      "offline_code": "144"
-    }, {
-      "service_id": 198,
-      "id": 145,
-      "name": "Чирокчи тумани",
-      "parent": 7,
-      "code": 145,
-      "offline_code": "145"
-    }, {
-      "service_id": 198,
-      "id": 146,
-      "name": "Камаши тумани",
-      "parent": 7,
-      "code": 146,
-      "offline_code": "146"
-    }, {
-      "service_id": 198,
-      "id": 147,
-      "name": "Гузор тумани",
-      "parent": 7,
-      "code": 147,
-      "offline_code": "147"
-    }, {
-      "service_id": 198,
-      "id": 148,
-      "name": "Карши тумани",
-      "parent": 7,
-      "code": 148,
-      "offline_code": "148"
-    }, {
-      "service_id": 198,
-      "id": 149,
-      "name": "Нишон тумани",
-      "parent": 7,
-      "code": 149,
-      "offline_code": "149"
-    }, {
-      "service_id": 198,
-      "id": 150,
-      "name": "Косон тумани",
-      "parent": 7,
-      "code": 150,
-      "offline_code": "150"
-    }, {
-      "service_id": 198,
-      "id": 151,
-      "name": "Касби тумани",
-      "parent": 7,
-      "code": 151,
-      "offline_code": "151"
-    }, {
-      "service_id": 198,
-      "id": 152,
-      "name": "Миришкор тумани",
-      "parent": 7,
-      "code": 152,
-      "offline_code": "152"
-    }, {
-      "service_id": 198,
-      "id": 153,
-      "name": "Муборак тумани",
-      "parent": 7,
-      "code": 153,
-      "offline_code": "153"
-    }, {
-      "service_id": 198,
-      "id": 154,
-      "name": "Дехконобод тумани",
-      "parent": 7,
-      "code": 154,
-      "offline_code": "154"
-    }, {
-      "service_id": 198,
-      "id": 88,
-      "name": "Маргилон шахар",
-      "parent": 8,
-      "code": 88,
-      "offline_code": "088"
-    }, {
-      "service_id": 198,
-      "id": 89,
-      "name": "Фаргона шахар",
-      "parent": 8,
-      "code": 89,
-      "offline_code": "089"
-    }, {
-      "service_id": 198,
-      "id": 90,
-      "name": "Кувасой шахар",
-      "parent": 8,
-      "code": 90,
-      "offline_code": "090"
-    }, {
-      "service_id": 198,
-      "id": 91,
-      "name": "Кукон шахар",
-      "parent": 8,
-      "code": 91,
-      "offline_code": "091"
-    }, {
-      "service_id": 198,
-      "id": 92,
-      "name": "Богдод тумани",
-      "parent": 8,
-      "code": 92,
-      "offline_code": "092"
-    }, {
-      "service_id": 198,
-      "id": 93,
-      "name": "Бешарик тумани",
-      "parent": 8,
-      "code": 93,
-      "offline_code": "093"
-    }, {
-      "service_id": 198,
-      "id": 94,
-      "name": "Бувайда тумани",
-      "parent": 8,
-      "code": 94,
-      "offline_code": "094"
-    }, {
-      "service_id": 198,
-      "id": 95,
-      "name": "Дангара тумани",
-      "parent": 8,
-      "code": 95,
-      "offline_code": "095"
-    }, {
-      "service_id": 198,
-      "id": 96,
-      "name": "Езъевон тумани",
-      "parent": 8,
-      "code": 96,
-      "offline_code": "096"
-    }, {
-      "service_id": 198,
-      "id": 97,
-      "name": "Олтиарик тумани",
-      "parent": 8,
-      "code": 97,
-      "offline_code": "097"
-    }, {
-      "service_id": 198,
-      "id": 98,
-      "name": "Куштепа тумани",
-      "parent": 8,
-      "code": 98,
-      "offline_code": "098"
-    }, {
-      "service_id": 198,
-      "id": 99,
-      "name": "Риштон тумани",
-      "parent": 8,
-      "code": 99,
-      "offline_code": "099"
-    }, {
-      "service_id": 198,
-      "id": 100,
-      "name": "Сух тумани",
-      "parent": 8,
-      "code": 100,
-      "offline_code": "100"
-    }, {
-      "service_id": 198,
-      "id": 101,
-      "name": "Тошлок тумани",
-      "parent": 8,
-      "code": 101,
-      "offline_code": "101"
-    }, {
-      "service_id": 198,
-      "id": 102,
-      "name": "Уч-куприк тумани",
-      "parent": 8,
-      "code": 102,
-      "offline_code": "102"
-    }, {
-      "service_id": 198,
-      "id": 103,
-      "name": "Фаргона тумани",
-      "parent": 8,
-      "code": 103,
-      "offline_code": "103"
-    }, {
-      "service_id": 198,
-      "id": 104,
-      "name": "Фуркат тумани",
-      "parent": 8,
-      "code": 104,
-      "offline_code": "104"
-    }, {
-      "service_id": 198,
-      "id": 105,
-      "name": "Узбекистон тумани",
-      "parent": 8,
-      "code": 105,
-      "offline_code": "105"
-    }, {
-      "service_id": 198,
-      "id": 106,
-      "name": "Кува тумани",
-      "parent": 8,
-      "code": 106,
-      "offline_code": "106"
-    }, {
-      "service_id": 198,
-      "id": 108,
-      "name": "Наманган шахар",
-      "parent": 9,
-      "code": 108,
-      "offline_code": "108"
-    }, {
-      "service_id": 198,
-      "id": 109,
-      "name": "Наманган шахар (2 база)",
-      "parent": 9,
-      "code": 109,
-      "offline_code": "109"
-    }, {
-      "service_id": 198,
-      "id": 110,
-      "name": "Косонсой тумани",
-      "parent": 9,
-      "code": 110,
-      "offline_code": "110"
-    }, {
-      "service_id": 198,
-      "id": 111,
-      "name": "Норин тумани",
-      "parent": 9,
-      "code": 111,
-      "offline_code": "111"
-    }, {
-      "service_id": 198,
-      "id": 112,
-      "name": "Учкургон тумани",
-      "parent": 9,
-      "code": 112,
-      "offline_code": "112"
-    }, {
-      "service_id": 198,
-      "id": 113,
-      "name": "Чорток тумани",
-      "parent": 9,
-      "code": 113,
-      "offline_code": "113"
-    }, {
-      "service_id": 198,
-      "id": 114,
-      "name": "Чуст тумани",
-      "parent": 9,
-      "code": 114,
-      "offline_code": "114"
-    }, {
-      "service_id": 198,
-      "id": 115,
-      "name": "Туракургон тумани",
-      "parent": 9,
-      "code": 115,
-      "offline_code": "115"
-    }, {
-      "service_id": 198,
-      "id": 116,
-      "name": "Поп тумани",
-      "parent": 9,
-      "code": 116,
-      "offline_code": "116"
-    }, {
-      "service_id": 198,
-      "id": 117,
-      "name": "Мингбулок тумани",
-      "parent": 9,
-      "code": 117,
-      "offline_code": "117"
-    }, {
-      "service_id": 198,
-      "id": 118,
-      "name": "Наманган тумани",
-      "parent": 9,
-      "code": 118,
-      "offline_code": "118"
-    }, {
-      "service_id": 198,
-      "id": 119,
-      "name": "Уйчи тумани",
-      "parent": 9,
-      "code": 119,
-      "offline_code": "119"
-    }, {
-      "service_id": 198,
-      "id": 120,
-      "name": "Янгикурган тумани",
-      "parent": 9,
-      "code": 120,
-      "offline_code": "120"
-    }, {
-      "service_id": 198,
-      "id": 122,
-      "name": "Андижон шахар",
-      "parent": 10,
-      "code": 122,
-      "offline_code": "122"
-    }, {
-      "service_id": 198,
-      "id": 123,
-      "name": "Андижон тумани",
-      "parent": 10,
-      "code": 123,
-      "offline_code": "123"
-    }, {
-      "service_id": 198,
-      "id": 124,
-      "name": "Асака шахар",
-      "parent": 10,
-      "code": 124,
-      "offline_code": "124"
-    }, {
-      "service_id": 198,
-      "id": 125,
-      "name": "Асака тумани",
-      "parent": 10,
-      "code": 125,
-      "offline_code": "125"
-    }, {
-      "service_id": 198,
-      "id": 126,
-      "name": "Баликчи тумани",
-      "parent": 10,
-      "code": 126,
-      "offline_code": "126"
-    }, {
-      "service_id": 198,
-      "id": 127,
-      "name": "Буз тумани",
-      "parent": 10,
-      "code": 127,
-      "offline_code": "127"
-    }, {
-      "service_id": 198,
-      "id": 128,
-      "name": "Булокбоши тумани",
-      "parent": 10,
-      "code": 128,
-      "offline_code": "128"
-    }, {
-      "service_id": 198,
-      "id": 129,
-      "name": "Жалолкудук тумани",
-      "parent": 10,
-      "code": 129,
-      "offline_code": "129"
-    }, {
-      "service_id": 198,
-      "id": 130,
-      "name": "Избоскан тумани",
-      "parent": 10,
-      "code": 130,
-      "offline_code": "130"
-    }, {
-      "service_id": 198,
-      "id": 131,
-      "name": "Кургонтепа тумани",
-      "parent": 10,
-      "code": 131,
-      "offline_code": "131"
-    }, {
-      "service_id": 198,
-      "id": 132,
-      "name": "Хонобод тумани",
-      "parent": 10,
-      "code": 132,
-      "offline_code": "132"
-    }, {
-      "service_id": 198,
-      "id": 133,
-      "name": "Карасув тумани",
-      "parent": 10,
-      "code": 133,
-      "offline_code": "133"
-    }, {
-      "service_id": 198,
-      "id": 134,
-      "name": "Мархамат тумани",
-      "parent": 10,
-      "code": 134,
-      "offline_code": "134"
-    }, {
-      "service_id": 198,
-      "id": 135,
-      "name": "Олтинкул тумани",
-      "parent": 10,
-      "code": 135,
-      "offline_code": "135"
-    }, {
-      "service_id": 198,
-      "id": 136,
-      "name": "Пахтаобод тумани",
-      "parent": 10,
-      "code": 136,
-      "offline_code": "136"
-    }, {
-      "service_id": 198,
-      "id": 137,
-      "name": "Улугнор тумани",
-      "parent": 10,
-      "code": 137,
-      "offline_code": "137"
-    }, {
-      "service_id": 198,
-      "id": 138,
-      "name": "Хужаобод тумани",
-      "parent": 10,
-      "code": 138,
-      "offline_code": "138"
-    }, {
-      "service_id": 198,
-      "id": 139,
-      "name": "Шахрихон тумани",
-      "parent": 10,
-      "code": 139,
-      "offline_code": "139"
-    }, {
-      "service_id": 198,
-      "id": 121,
-      "name": "Булокбоши тумани-2",
-      "parent": 10,
-      "code": 121,
-      "offline_code": "121"
-    }, {
-      "service_id": 198,
-      "id": 44,
-      "name": "Гулистон шахар",
-      "parent": 13,
-      "code": 44,
-      "offline_code": "044"
-    }, {
-      "service_id": 198,
-      "id": 45,
-      "name": "Янгиер шахар",
-      "parent": 13,
-      "code": 45,
-      "offline_code": "045"
-    }, {
-      "service_id": 198,
-      "id": 46,
-      "name": "Ширин шахар",
-      "parent": 13,
-      "code": 46,
-      "offline_code": "046"
-    }, {
-      "service_id": 198,
-      "id": 47,
-      "name": "Ок-олтин тумани",
-      "parent": 13,
-      "code": 47,
-      "offline_code": "047"
-    }, {
-      "service_id": 198,
-      "id": 48,
-      "name": "Боевут тумани",
-      "parent": 13,
-      "code": 48,
-      "offline_code": "048"
-    }, {
-      "service_id": 198,
-      "id": 49,
-      "name": "Гулистон тумани",
-      "parent": 13,
-      "code": 49,
-      "offline_code": "049"
-    }, {
-      "service_id": 198,
-      "id": 50,
-      "name": "Сирдарё тумани",
-      "parent": 13,
-      "code": 50,
-      "offline_code": "050"
-    }, {
-      "service_id": 198,
-      "id": 51,
-      "name": "Бахт шахар",
-      "parent": 13,
-      "code": 51,
-      "offline_code": "051"
-    }, {
-      "service_id": 198,
-      "id": 52,
-      "name": "Сайхунобод тумани",
-      "parent": 13,
-      "code": 52,
-      "offline_code": "052"
-    }, {
-      "service_id": 198,
-      "id": 53,
-      "name": "Хавос тумани",
-      "parent": 13,
-      "code": 53,
-      "offline_code": "053"
-    }, {
-      "service_id": 198,
-      "id": 54,
-      "name": "Мирзаобод тумани",
-      "parent": 13,
-      "code": 54,
-      "offline_code": "054"
-    }, {
-      "service_id": 198,
-      "id": 226,
-      "name": "Сардоба тумани",
-      "parent": 13,
-      "code": 226,
-      "offline_code": "226"
-    }, {
-      "service_id": 198,
-      "id": 55,
-      "name": "Участок Мехнатобод",
-      "parent": 13,
-      "code": 55,
-      "offline_code": "055"
-    }, {
-      "service_id": 198,
-      "id": 156,
-      "name": "Ангор тумани",
-      "parent": 11,
-      "code": 156,
-      "offline_code": "156"
-    }, {
-      "service_id": 198,
-      "id": 157,
-      "name": "Бойсун тумани",
-      "parent": 11,
-      "code": 157,
-      "offline_code": "157"
-    }, {
-      "service_id": 198,
-      "id": 158,
-      "name": "Бандыхан тумани",
-      "parent": 11,
-      "code": 158,
-      "offline_code": "158"
-    }, {
-      "service_id": 198,
-      "id": 159,
-      "name": "Денов шахар",
-      "parent": 11,
-      "code": 159,
-      "offline_code": "159"
-    }, {
-      "service_id": 198,
-      "id": 160,
-      "name": "Денов тумани",
-      "parent": 11,
-      "code": 160,
-      "offline_code": "160"
-    }, {
-      "service_id": 198,
-      "id": 161,
-      "name": "Жаркургон тумани",
-      "parent": 11,
-      "code": 161,
-      "offline_code": "161"
-    }, {
-      "service_id": 198,
-      "id": 162,
-      "name": "Кизирик тумани",
-      "parent": 11,
-      "code": 162,
-      "offline_code": "162"
-    }, {
-      "service_id": 198,
-      "id": 163,
-      "name": "Кумкурган тумани",
-      "parent": 11,
-      "code": 163,
-      "offline_code": "163"
-    }, {
-      "service_id": 198,
-      "id": 164,
-      "name": "Музрабад тумани",
-      "parent": 11,
-      "code": 164,
-      "offline_code": "164"
-    }, {
-      "service_id": 198,
-      "id": 165,
-      "name": "Олтинсай тумани",
-      "parent": 11,
-      "code": 165,
-      "offline_code": "165"
-    }, {
-      "service_id": 198,
-      "id": 166,
-      "name": "Сариосиё тумани",
-      "parent": 11,
-      "code": 166,
-      "offline_code": "166"
-    }, {
-      "service_id": 198,
-      "id": 167,
-      "name": "Термез шахар",
-      "parent": 11,
-      "code": 167,
-      "offline_code": "167"
-    }, {
-      "service_id": 198,
-      "id": 168,
-      "name": "Термез тумани",
-      "parent": 11,
-      "code": 168,
-      "offline_code": "168"
-    }, {
-      "service_id": 198,
-      "id": 169,
-      "name": "Шеробод тумани",
-      "parent": 11,
-      "code": 169,
-      "offline_code": "169"
-    }, {
-      "service_id": 198,
-      "id": 170,
-      "name": "Шурчи тумани",
-      "parent": 11,
-      "code": 170,
-      "offline_code": "170"
-    }, {
-      "service_id": 198,
-      "id": 171,
-      "name": "Узун тумани",
-      "parent": 11,
-      "code": 171,
-      "offline_code": "171"
-    }, {
-      "service_id": 2685,
-      "id": 1,
-      "name": "Асака тумани",
-      "parent": 0,
-      "code": 1,
-      "offline_code": "1"
-    }, {
-      "service_id": 2685,
-      "id": 2,
-      "name": "Баликчи тумани",
-      "parent": 0,
-      "code": 2,
-      "offline_code": "2"
-    }, {
-      "service_id": 2685,
-      "id": 3,
-      "name": "Буз тумани",
-      "parent": 0,
-      "code": 3,
-      "offline_code": "3"
-    }], [{
-      "service_id": 44,
-      "card_type_id": 1,
-      "name": "Центральный Телеграф",
-      "card_type_desc": "Central Telegraf",
-      "card_type": "STK",
-      "nominal": 5000,
-      "duration": null
-    }, {
-      "service_id": 44,
-      "card_type_id": 1,
-      "name": "Центральный Телеграф",
-      "card_type_desc": "Central Telegraf",
-      "card_type": "STK",
-      "nominal": 10000,
-      "duration": null
-    }, {
-      "service_id": 44,
-      "card_type_id": 1,
-      "name": "Центральный Телеграф",
-      "card_type_desc": "Central Telegraf",
-      "card_type": "STK",
-      "nominal": 20000,
-      "duration": null
-    }, {
-      "service_id": 44,
-      "card_type_id": 1,
-      "name": "Центральный Телеграф",
-      "card_type_desc": "Central Telegraf",
-      "card_type": "STK",
-      "nominal": 50000,
-      "duration": null
-    }, {
-      "service_id": 44,
-      "card_type_id": 1,
-      "name": "Центральный Телеграф",
-      "card_type_desc": "Central Telegraf",
-      "card_type": "STK",
-      "nominal": 100000,
-      "duration": null
-    }, {
-      "service_id": 44,
-      "card_type_id": 2,
-      "name": "Россия, Казахстан",
-      "card_type_desc": "Russia,Kazahstan",
-      "card_type": "RUS-KAZ",
-      "nominal": 4500,
-      "duration": 20
-    }, {
-      "service_id": 44,
-      "card_type_id": 2,
-      "name": "Россия, Казахстан",
-      "card_type_desc": "Russia,Kazahstan",
-      "card_type": "RUS-KAZ",
-      "nominal": 6600,
-      "duration": 30
-    }, {
-      "service_id": 44,
-      "card_type_id": 2,
-      "name": "Россия, Казахстан",
-      "card_type_desc": "Russia,Kazahstan",
-      "card_type": "RUS-KAZ",
-      "nominal": 13200,
-      "duration": 60
-    }, {
-      "service_id": 44,
-      "card_type_id": 3,
-      "name": "UzTelecom",
-      "card_type_desc": "UzTelecom",
-      "card_type": "UzT",
-      "nominal": 5000,
-      "duration": null
-    }, {
-      "service_id": 44,
-      "card_type_id": 3,
-      "name": "UzTelecom",
-      "card_type_desc": "UzTelecom",
-      "card_type": "UzT",
-      "nominal": 10000,
-      "duration": null
-    }, {
-      "service_id": 44,
-      "card_type_id": 3,
-      "name": "UzTelecom",
-      "card_type_desc": "UzTelecom",
-      "card_type": "UzT",
-      "nominal": 20000,
-      "duration": null
-    }, {
-      "service_id": 44,
-      "card_type_id": 3,
-      "name": "UzTelecom",
-      "card_type_desc": "UzTelecom",
-      "card_type": "UzT",
-      "nominal": 50000,
-      "duration": null
-    }, {
-      "service_id": 44,
-      "card_type_id": 3,
-      "name": "UzTelecom",
-      "card_type_desc": "UzTelecom",
-      "card_type": "UzT",
-      "nominal": 100000,
-      "duration": null
-    }, {
-      "service_id": 83,
-      "card_type_id": 6,
-      "name": "TELEKARTA",
-      "card_type_desc": "TELEKARTA",
-      "card_type": "TELEKARTA",
-      "nominal": 3000,
-      "duration": null
-    }, {
-      "service_id": 83,
-      "card_type_id": 6,
-      "name": "TELEKARTA",
-      "card_type_desc": "TELEKARTA",
-      "card_type": "TELEKARTA",
-      "nominal": 5000,
-      "duration": null
-    }, {
-      "service_id": 83,
-      "card_type_id": 6,
-      "name": "TELEKARTA",
-      "card_type_desc": "TELEKARTA",
-      "card_type": "TELEKARTA",
-      "nominal": 15000,
-      "duration": null
-    }, {
-      "service_id": 83,
-      "card_type_id": 6,
-      "name": "TELEKARTA",
-      "card_type_desc": "TELEKARTA",
-      "card_type": "TELEKARTA",
-      "nominal": 50000,
-      "duration": null
-    }, {
-      "service_id": 78,
-      "card_type_id": 7,
-      "name": "SONET",
-      "card_type_desc": "SONET",
-      "card_type": "SONET",
-      "nominal": 5000,
-      "duration": null
-    }, {
-      "service_id": 78,
-      "card_type_id": 7,
-      "name": "SONET",
-      "card_type_desc": "SONET",
-      "card_type": "SONET",
-      "nominal": 10000,
-      "duration": null
-    }, {
-      "service_id": 78,
-      "card_type_id": 7,
-      "name": "SONET",
-      "card_type_desc": "SONET",
-      "card_type": "SONET",
-      "nominal": 20000,
-      "duration": null
-    }, {
-      "service_id": 78,
-      "card_type_id": 7,
-      "name": "SONET",
-      "card_type_desc": "SONET",
-      "card_type": "SONET",
-      "nominal": 50000,
-      "duration": null
-    }, {
-      "service_id": 95,
-      "card_type_id": 9,
-      "name": "DASTUR.UZ",
-      "card_type_desc": "DASTUR",
-      "card_type": "DASTUR",
-      "nominal": 13000,
-      "duration": null
-    }, {
-      "service_id": 95,
-      "card_type_id": 9,
-      "name": "DASTUR.UZ",
-      "card_type_desc": "DASTUR",
-      "card_type": "DASTUR",
-      "nominal": 25000,
-      "duration": null
-    }, {
-      "service_id": 95,
-      "card_type_id": 9,
-      "name": "DASTUR.UZ",
-      "card_type_desc": "DASTUR",
-      "card_type": "DASTUR",
-      "nominal": 35000,
-      "duration": null
-    }, {
-      "service_id": 95,
-      "card_type_id": 9,
-      "name": "DASTUR.UZ",
-      "card_type_desc": "DASTUR",
-      "card_type": "DASTUR",
-      "nominal": 50000,
-      "duration": null
-    }, {
-      "service_id": 95,
-      "card_type_id": 9,
-      "name": "DASTUR.UZ",
-      "card_type_desc": "DASTUR",
-      "card_type": "DASTUR",
-      "nominal": 65000,
-      "duration": null
-    }, {
-      "service_id": 95,
-      "card_type_id": 9,
-      "name": "DASTUR.UZ",
-      "card_type_desc": "DASTUR",
-      "card_type": "DASTUR",
-      "nominal": 120000,
-      "duration": null
-    }, {
-      "service_id": 139,
-      "card_type_id": 10,
-      "name": "OXYGEN",
-      "card_type_desc": "OXYGEN",
-      "card_type": "OXYGEN",
-      "nominal": 3000,
-      "duration": null
-    }, {
-      "service_id": 139,
-      "card_type_id": 10,
-      "name": "OXYGEN",
-      "card_type_desc": "OXYGEN",
-      "card_type": "OXYGEN",
-      "nominal": 5000,
-      "duration": null
-    }, {
-      "service_id": 139,
-      "card_type_id": 10,
-      "name": "OXYGEN",
-      "card_type_desc": "OXYGEN",
-      "card_type": "OXYGEN",
-      "nominal": 10000,
-      "duration": null
-    }, {
-      "service_id": 139,
-      "card_type_id": 10,
-      "name": "OXYGEN",
-      "card_type_desc": "OXYGEN",
-      "card_type": "OXYGEN",
-      "nominal": 20000,
-      "duration": null
-    }, {
-      "service_id": 139,
-      "card_type_id": 10,
-      "name": "OXYGEN",
-      "card_type_desc": "OXYGEN",
-      "card_type": "OXYGEN",
-      "nominal": 50000,
-      "duration": null
-    }, {
-      "service_id": 157,
-      "card_type_id": 11,
-      "name": "ARXIV.UZ",
-      "card_type_desc": "ARXIV.UZ",
-      "card_type": "ARXIV.UZ",
-      "nominal": 5000,
-      "duration": null
-    }, {
-      "service_id": 157,
-      "card_type_id": 11,
-      "name": "ARXIV.UZ",
-      "card_type_desc": "ARXIV.UZ",
-      "card_type": "ARXIV.UZ",
-      "nominal": 13000,
-      "duration": null
-    }, {
-      "service_id": 1133,
-      "card_type_id": 13,
-      "name": "SONET",
-      "card_type_desc": "SONET",
-      "card_type": "SONET",
-      "nominal": 5000,
-      "duration": null
-    }, {
-      "service_id": 1133,
-      "card_type_id": 13,
-      "name": "SONET",
-      "card_type_desc": "SONET",
-      "card_type": "SONET",
-      "nominal": 10000,
-      "duration": null
-    }, {
-      "service_id": 1133,
-      "card_type_id": 13,
-      "name": "SONET",
-      "card_type_desc": "SONET",
-      "card_type": "SONET",
-      "nominal": 20000,
-      "duration": null
-    }, {
-      "service_id": 1133,
-      "card_type_id": 13,
-      "name": "SONET",
-      "card_type_desc": "SONET",
-      "card_type": "SONET",
-      "nominal": 50000,
-      "duration": null
-    }], [{"service_id": 4422, "type": 1, "name": "30 dney"}, {
-      "service_id": 4422,
-      "type": 2,
-      "name": "sutochnie"
-    }, {"service_id": 4422, "type": 3, "name": "nochnie"}, {
-      "service_id": 4422,
-      "type": 4,
-      "name": "nochnoy DRIVE"
-    }], [{
-      "service_id": 4422,
-      "code": "MB300M1",
-      "type": 1,
-      "name": "Интернет-пакет 300 Mb",
-      "usd_cost": 5,
-      "sum_cost": 18395,
-      "status": 1,
-      "priority": 1
-    }, {
-      "service_id": 4422,
-      "code": "MB500M",
-      "type": 1,
-      "name": "Интернет-пакет 500 Mb",
-      "usd_cost": 7,
-      "sum_cost": 25753,
-      "status": 1,
-      "priority": 2
-    }, {
-      "service_id": 4422,
-      "code": "MB1000M1",
-      "type": 1,
-      "name": "Интернет-пакет 1000 Mb",
-      "usd_cost": 10,
-      "sum_cost": 36789,
-      "status": 1,
-      "priority": 3
-    }, {
-      "service_id": 4422,
-      "code": "MB2000M1",
-      "type": 1,
-      "name": "Интернет-пакет 2000 Mb",
-      "usd_cost": 18,
-      "sum_cost": 66221,
-      "status": 1,
-      "priority": 4
-    }, {
-      "service_id": 4422,
-      "code": "MB3000M1",
-      "type": 1,
-      "name": "Интернет-пакет 3000 Mb",
-      "usd_cost": 25,
-      "sum_cost": 91973,
-      "status": 1,
-      "priority": 5
-    }, {
-      "service_id": 4422,
-      "code": "MB5000M1",
-      "type": 1,
-      "name": "Интернет-пакет 5000 Mb",
-      "usd_cost": 35,
-      "sum_cost": 128762,
-      "status": 1,
-      "priority": 6
-    }, {
-      "service_id": 4422,
-      "code": "MB10000M1",
-      "type": 1,
-      "name": "Интернет-пакет 10000 Mb",
-      "usd_cost": 55,
-      "sum_cost": 202339,
-      "status": 1,
-      "priority": 7
-    }, {
-      "service_id": 4422,
-      "code": "FRGPRS50DAY",
-      "type": 2,
-      "name": "Суточный интернет-пакет 50 Mb",
-      "usd_cost": 1.5,
-      "sum_cost": 5519,
-      "status": 1,
-      "priority": 1
-    }, {
-      "service_id": 4422,
-      "code": "FRGPRS100DAY",
-      "type": 2,
-      "name": "Суточный интернет-пакет 100 Mb",
-      "usd_cost": 2.5,
-      "sum_cost": 9198,
-      "status": 1,
-      "priority": 2
-    }, {
-      "service_id": 4422,
-      "code": "MB1000MNIGHT",
-      "type": 3,
-      "name": "Ночной интернет-пакет 1000 Mb",
-      "usd_cost": 2,
-      "sum_cost": 7358,
-      "status": 1,
-      "priority": 1
-    }, {
-      "service_id": 4422,
-      "code": "MB2000MNIGHT",
-      "type": 3,
-      "name": "Ночной интернет-пакет 2000 Mb",
-      "usd_cost": 3.5,
-      "sum_cost": 12877,
-      "status": 1,
-      "priority": 2
-    }, {
-      "service_id": 4422,
-      "code": "MB3000MNIGHT",
-      "type": 3,
-      "name": "Ночной интернет-пакет 3000 Mb",
-      "usd_cost": 5,
-      "sum_cost": 18395,
-      "status": 1,
-      "priority": 3
-    }, {
-      "service_id": 4422,
-      "code": "MB5000MNIGHT",
-      "type": 3,
-      "name": "Ночной интернет-пакет 5000 Mb",
-      "usd_cost": 7,
-      "sum_cost": 25753,
-      "status": 1,
-      "priority": 4
-    }, {
-      "service_id": 4422,
-      "code": "MB10000MNIGHT",
-      "type": 3,
-      "name": "Ночной интернет-пакет 10000 Mb",
-      "usd_cost": 10,
-      "sum_cost": 36789,
-      "status": 1,
-      "priority": 5
-    }, {
-      "service_id": 4422,
-      "code": "MB20000MNIGHT",
-      "type": 3,
-      "name": "Ночной интернет-пакет 20000 Mb",
-      "usd_cost": 15,
-      "sum_cost": 55184,
-      "status": 1,
-      "priority": 6
-    }, {
-      "service_id": 4422,
-      "code": "MB50000MNIGHT",
-      "type": 3,
-      "name": "Ночной интернет-пакет 50000 Mb",
-      "usd_cost": 20,
-      "sum_cost": 73578,
-      "status": 1,
-      "priority": 7
-    }, {
-      "service_id": 4422,
-      "code": "NIGHTDRIVE1",
-      "type": 4,
-      "name": "Ночной DRIVE 1",
-      "usd_cost": 3,
-      "sum_cost": 11037,
-      "status": 1,
-      "priority": 1
-    }, {
-      "service_id": 4422,
-      "code": "NIGHTDRIVE7",
-      "type": 4,
-      "name": "Ночной DRIVE 7",
-      "usd_cost": 15,
-      "sum_cost": 55184,
-      "status": 1,
-      "priority": 2
-    }, {
-      "service_id": 4422,
-      "code": "NIGHTDRIVE30",
-      "type": 4,
-      "name": "Ночной DRIVE 30",
-      "usd_cost": 40,
-      "sum_cost": 147156,
-      "status": 1,
-      "priority": 3
-    }], [{"service_id": 183, "parent_param_id": 16777216, "option_id": 1, "name": "ANP"}, {
-      "service_id": 183,
-      "parent_param_id": 16777216,
-      "option_id": 2,
-      "name": "BUP"
-    }, {"service_id": 183, "parent_param_id": 16777216, "option_id": 3, "name": "FEP"}, {
-      "service_id": 183,
-      "parent_param_id": 16777216,
-      "option_id": 4,
-      "name": "NAP"
-    }, {"service_id": 183, "parent_param_id": 16777216, "option_id": 5, "name": "SSP"}, {
-      "service_id": 183,
-      "parent_param_id": 16777216,
-      "option_id": 6,
-      "name": "KAP"
-    }, {"service_id": 183, "parent_param_id": 16777216, "option_id": 7, "name": "HAP"}, {
-      "service_id": 183,
-      "parent_param_id": 16777216,
-      "option_id": 8,
-      "name": "SDP"
-    }, {"service_id": 183, "parent_param_id": 16777216, "option_id": 9, "name": "SHP"}, {
-      "service_id": 183,
-      "parent_param_id": 16777216,
-      "option_id": 10,
-      "name": "NVP"
-    }, {"service_id": 183, "parent_param_id": 16777216, "option_id": 11, "name": "TSP"}, {
-      "service_id": 183,
-      "parent_param_id": 16777216,
-      "option_id": 12,
-      "name": "JKP"
-    }, {"service_id": 183, "parent_param_id": 16777216, "option_id": 13, "name": "KPP"}, {
-      "service_id": 183,
-      "parent_param_id": 16777216,
-      "option_id": 14,
-      "name": "TRC"
-    }, {"service_id": 183, "parent_param_id": 16777216, "option_id": 15, "name": "TRP"}, {
-      "service_id": 183,
-      "parent_param_id": 16,
-      "option_id": 1,
-      "name": "TS1-"
-    }, {"service_id": 183, "parent_param_id": 16, "option_id": 2, "name": "123-"}, {
-      "service_id": 183,
-      "parent_param_id": 16,
-      "option_id": 3,
-      "name": "Только цифры"
-    }, {"service_id": 7, "parent_param_id": 2, "option_id": 1, "name": "shs"}, {
-      "service_id": 7,
-      "parent_param_id": 2,
-      "option_id": 2,
-      "name": "shsts"
-    }, {"service_id": 7, "parent_param_id": 2, "option_id": 3, "name": "shssm"}, {
-      "service_id": 15,
-      "parent_param_id": 2,
-      "option_id": 1,
-      "name": "he-"
-    }, {"service_id": 15, "parent_param_id": 2, "option_id": 2, "name": "x-"}, {
-      "service_id": 15,
-      "parent_param_id": 2,
-      "option_id": 3,
-      "name": "ge-"
-    }, {"service_id": 31, "parent_param_id": 2, "option_id": 1, "name": "tps"}, {
-      "service_id": 40,
-      "parent_param_id": 2,
-      "option_id": 1,
-      "name": "f"
-    }, {"service_id": 40, "parent_param_id": 2, "option_id": 2, "name": "k"}, {
-      "service_id": 40,
-      "parent_param_id": 2,
-      "option_id": 3,
-      "name": "Только цифры"
-    }]],
+  offlineServicesParams = [[{
+    "method": "get.service.parameters.list",
+    "success": 1,
+    "error": 0,
+    "error_note": ""
+  }], [{
+    "service_id": -2,
+    "parameter_id": "1",
+    "input_type": 1,
+    "title": "Номер телефона",
+    "placeholder": "Введите номер телефона без 998",
+    "error_message": "Номер телефона введен неправильно",
+    "min_len": "0",
+    "max_len": "999999999",
+    "ussd_query": null
+  }, {
+    "service_id": -2,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": null
+  }, {
+    "service_id": -1,
+    "parameter_id": "8192",
+    "input_type": 0,
+    "title": "На счет",
+    "placeholder": "Выберите счет, на который нужно перевести средства",
+    "error_message": "Выберите счет, на который нужно перевести деньги",
+    "min_len": "1",
+    "max_len": "99999999999",
+    "ussd_query": null
+  }, {
+    "service_id": -1,
+    "parameter_id": "16384",
+    "input_type": 0,
+    "title": "Списать со счета",
+    "placeholder": "Выбирите счет, с которого будут переведены средства",
+    "error_message": "Выбирите счет, с которого будут переведены средства",
+    "min_len": "1",
+    "max_len": "99999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 2,
+    "parameter_id": "1",
+    "input_type": 1,
+    "title": "Номер телефона",
+    "placeholder": "Введите номер телефона без 998",
+    "error_message": "Номер телефона введен неправильно",
+    "min_len": "0",
+    "max_len": "999999999",
+    "ussd_query": "*880*01999001*{param}*{amount}#"
+  }, {
+    "service_id": 3,
+    "parameter_id": "1",
+    "input_type": 1,
+    "title": "Номер телефона",
+    "placeholder": "Введите номер телефона без 998",
+    "error_message": "Номер телефона введен неправильно",
+    "min_len": "0",
+    "max_len": "999999999",
+    "ussd_query": "*880*01999001*{param}*{amount}#"
+  }, {
+    "service_id": 4,
+    "parameter_id": "1",
+    "input_type": 1,
+    "title": "Номер телефона",
+    "placeholder": "Введите номер телефона без 998",
+    "error_message": "Номер телефона введен неправильно",
+    "min_len": "0",
+    "max_len": "999999999",
+    "ussd_query": "*880*01999001*{param}*{amount}#"
+  }, {
+    "service_id": 5,
+    "parameter_id": "1",
+    "input_type": 1,
+    "title": "Номер телефона",
+    "placeholder": "Введите номер телефона без 998",
+    "error_message": "Номер телефона введен неправильно",
+    "min_len": "0",
+    "max_len": "999999999",
+    "ussd_query": "*880*01999001*{param}*{amount}#"
+  }, {
+    "service_id": 6,
+    "parameter_id": "1",
+    "input_type": 1,
+    "title": "Номер телефона",
+    "placeholder": "Введите номер телефона без 998",
+    "error_message": "Номер телефона введен неправильно",
+    "min_len": "0",
+    "max_len": "999999999",
+    "ussd_query": "*880*01999001*{param}*{amount}#"
+  }, {
+    "service_id": 7,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": "*880*07999001*{option}*{param}*{amount}#"
+  }, {
+    "service_id": 7,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 7,
+    "parameter_id": "128",
+    "input_type": 1,
+    "title": "Кроссированный номер",
+    "placeholder": "Введите кроссированный номер",
+    "error_message": "Неверно введен кроссированный номер",
+    "min_len": "0",
+    "max_len": "998999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 9,
+    "parameter_id": "65536",
+    "input_type": 1,
+    "title": "Номер телефона",
+    "placeholder": "Введите номер телефона с кодом города (г.Ташкент(71), Таш. Обл.(70), Каракалпакстан(61), Сырдарья(67))\r\n",
+    "error_message": "Номер телефона введен неправильно",
+    "min_len": "0",
+    "max_len": "999999999",
+    "ussd_query": "*880*09999001*{communal_param}*{param}*{amount}#"
+  }, {
+    "service_id": 10,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": "*880*010999001*1*{param}*{amount}#"
+  }, {
+    "service_id": 10,
+    "parameter_id": "16",
+    "input_type": 2,
+    "title": "Лицевой счет абонента",
+    "placeholder": "Введите лицевой счет абонента",
+    "error_message": "Неверно набран лицевой счет",
+    "min_len": "0",
+    "max_len": "50",
+    "ussd_query": "*880*010999001*2*{param}*{amount}#"
+  }, {
+    "service_id": 12,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*012999001*{param}*{amount}#"
+  }, {
+    "service_id": 15,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": "*880*015999001*{option}*{param}*{amount}#"
+  }, {
+    "service_id": 15,
+    "parameter_id": "8",
+    "input_type": 1,
+    "title": "Номер договора",
+    "placeholder": "Введите номер договора",
+    "error_message": "Неверно введен номер договора",
+    "min_len": "0",
+    "max_len": "9999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 28,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*028999001*{param}*{amount}#"
+  }, {
+    "service_id": 31,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": "*880*031999001*{option}*{param}*{amount}#"
+  }, {
+    "service_id": 35,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*035999001*2*{param}*{amount}#"
+  }, {
+    "service_id": 35,
+    "parameter_id": "2048",
+    "input_type": 1,
+    "title": "PIN код",
+    "placeholder": "Введите первые 8 цифр PIN-кода",
+    "error_message": "Неверный введен пин код",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*035999001*3*{param}*{amount}#"
+  }, {
+    "service_id": 39,
+    "parameter_id": "16",
+    "input_type": 2,
+    "title": "Лицевой счет абонента",
+    "placeholder": "Введите лицевой счет абонента",
+    "error_message": "Неверно набран лицевой счет",
+    "min_len": "0",
+    "max_len": "50",
+    "ussd_query": "*880*039999001*{communal_param}*{param}*{amount}#"
+  }, {
+    "service_id": 40,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": "*880*040999001*{option}*{param}*{amount}#"
+  }, {
+    "service_id": 44,
+    "parameter_id": "32768",
+    "input_type": 3,
+    "title": "Выберите PIN-карту",
+    "placeholder": "Выберите PIN-карту и номинал карты, которую вы хотите приобрести",
+    "error_message": "Не выбрана PIN-карта",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*044999001*{card_type}*{nominal}#"
+  }, {
+    "service_id": 45,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*045999001*{param}*{amount}#"
+  }, {
+    "service_id": 54,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*054999001*{param}*{amount}# "
+  }, {
+    "service_id": 56,
+    "parameter_id": "16",
+    "input_type": 2,
+    "title": "Лицевой счет абонента",
+    "placeholder": "Введите лицевой счет абонента",
+    "error_message": "Неверно набран лицевой счет",
+    "min_len": "0",
+    "max_len": "50",
+    "ussd_query": "*880*056999001*{param}*{amount}#"
+  }, {
+    "service_id": 57,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*057999001*{param}*{amount}#"
+  }, {
+    "service_id": 70,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*070999001*{param}*{amount}#"
+  }, {
+    "service_id": 80,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*080999001*{param}*{amount}#"
+  }, {
+    "service_id": 83,
+    "parameter_id": "32768",
+    "input_type": 3,
+    "title": "Выберите PIN-карту",
+    "placeholder": "Выберите PIN-карту и номинал карты, которую вы хотите приобрести",
+    "error_message": "Не выбрана PIN-карта",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*083999001*9*{nominal}#"
+  }, {
+    "service_id": 87,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*087999001*{param}*{amount}#"
+  }, {
+    "service_id": 90,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*090999001*{param}*{amount}#"
+  }, {
+    "service_id": 95,
+    "parameter_id": "32768",
+    "input_type": 3,
+    "title": "Выберите PIN-карту",
+    "placeholder": "Выберите PIN-карту и номинал карты, которую вы хотите приобрести",
+    "error_message": "Не выбрана PIN-карта",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*095999001*11*{nominal}#"
+  }, {
+    "service_id": 100,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*0100999001*{param}*{amount}#"
+  }, {
+    "service_id": 101,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*0101999001*{param}*{amount}#"
+  }, {
+    "service_id": 102,
+    "parameter_id": "16",
+    "input_type": 2,
+    "title": "Лицевой счет абонента",
+    "placeholder": "Введите лицевой счет абонента",
+    "error_message": "Неверно набран лицевой счет",
+    "min_len": "0",
+    "max_len": "50",
+    "ussd_query": "*880*0102*{param}*{amount}#"
+  }, {
+    "service_id": 103,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*0103999001*{param}*{amount}#"
+  }, {
+    "service_id": 107,
+    "parameter_id": "8388608",
+    "input_type": 1,
+    "title": "ИНН",
+    "placeholder": "Введите ИНН",
+    "error_message": "ИНН введен не верно",
+    "min_len": "1",
+    "max_len": "999999999",
+    "ussd_query": "*880*0107999001*{communal_param}*{param}*{amount}#"
+  }, {
+    "service_id": 108,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*0108999001*{param}*{amount}#"
+  }, {
+    "service_id": 113,
+    "parameter_id": "8388608",
+    "input_type": 1,
+    "title": "ИНН",
+    "placeholder": "Введите ИНН",
+    "error_message": "ИНН введен не верно",
+    "min_len": "1",
+    "max_len": "999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 115,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 121,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*0121999001*{param}*{amount}#"
+  }, {
+    "service_id": 128,
+    "parameter_id": "1",
+    "input_type": 1,
+    "title": "Номер телефона",
+    "placeholder": "Введите номер телефона без 998",
+    "error_message": "Номер телефона введен неправильно",
+    "min_len": "0",
+    "max_len": "999999999",
+    "ussd_query": "*880*0128999001*1*{param}*{amount}#"
+  }, {
+    "service_id": 128,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": "*880*0128999001*2*{param}*{amount}#"
+  }, {
+    "service_id": 128,
+    "parameter_id": "16",
+    "input_type": 2,
+    "title": "Лицевой счет абонента",
+    "placeholder": "Введите лицевой счет абонента",
+    "error_message": "Неверно набран лицевой счет",
+    "min_len": "0",
+    "max_len": "50",
+    "ussd_query": "*880*0128999001*3*{param}*{amount}#"
+  }, {
+    "service_id": 139,
+    "parameter_id": "32768",
+    "input_type": 3,
+    "title": "Выберите PIN-карту",
+    "placeholder": "Выберите PIN-карту и номинал карты, которую вы хотите приобрести",
+    "error_message": "Не выбрана PIN-карта",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*0139999001*1*{nominal}#"
+  }, {
+    "service_id": 148,
+    "parameter_id": "1",
+    "input_type": 1,
+    "title": "Номер телефона",
+    "placeholder": "Введите номер телефона без 998",
+    "error_message": "Номер телефона введен неправильно",
+    "min_len": "0",
+    "max_len": "999999999",
+    "ussd_query": "*880*01999001*{param}*{amount}#"
+  }, {
+    "service_id": 157,
+    "parameter_id": "32768",
+    "input_type": 3,
+    "title": "Выберите PIN-карту",
+    "placeholder": "Выберите PIN-карту и номинал карты, которую вы хотите приобрести",
+    "error_message": "Не выбрана PIN-карта",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*0157999001*11*{nominal}#"
+  }, {
+    "service_id": 181,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 183,
+    "parameter_id": "16",
+    "input_type": 2,
+    "title": "Лицевой счет абонента",
+    "placeholder": "Введите лицевой счет абонента",
+    "error_message": "Неверно набран лицевой счет",
+    "min_len": "0",
+    "max_len": "50",
+    "ussd_query": "*880*0183999001*2*{option}*{param}*{amount}#"
+  }, {
+    "service_id": 198,
+    "parameter_id": "16",
+    "input_type": 2,
+    "title": "Лицевой счет абонента",
+    "placeholder": "Введите лицевой счет абонента",
+    "error_message": "Неверно набран лицевой счет",
+    "min_len": "0",
+    "max_len": "50",
+    "ussd_query": "*880*0198999001*{communal_param}*{param}*{amount}#"
+  }, {
+    "service_id": 1133,
+    "parameter_id": "32768",
+    "input_type": 3,
+    "title": "Выберите PIN-карту",
+    "placeholder": "Выберите PIN-карту и номинал карты, которую вы хотите приобрести",
+    "error_message": "Не выбрана PIN-карта",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*078999001*8*{nominal}#"
+  }, {
+    "service_id": 2512,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": "*880*02512999001*{param}*{amount}#"
+  }, {
+    "service_id": 2706,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*02706*{param}*{amount}#"
+  }, {
+    "service_id": 2812,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": null
+  }, {
+    "service_id": 2821,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": "*880*02821*{param}*{amount}#"
+  }, {
+    "service_id": 3032,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": "*880*03032*{param}*{amount}#"
+  }, {
+    "service_id": 3037,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*03037*{param}*{amount}#"
+  }, {
+    "service_id": 3040,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*03040*{param}*{amount}#"
+  }, {
+    "service_id": 3172,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 3175,
+    "parameter_id": "16",
+    "input_type": 2,
+    "title": "Лицевой счет абонента",
+    "placeholder": "Введите лицевой счет абонента",
+    "error_message": "Неверно набран лицевой счет",
+    "min_len": "0",
+    "max_len": "50",
+    "ussd_query": "*880*03175*{param}*{amount}#"
+  }, {
+    "service_id": 3177,
+    "parameter_id": "65536",
+    "input_type": 1,
+    "title": "Номер телефона",
+    "placeholder": "Введите номер телефона с кодом города (г.Ташкент(71), Таш. Обл.(70), Каракалпакстан(61), Сырдарья(67))\r\n",
+    "error_message": "Номер телефона введен неправильно",
+    "min_len": "0",
+    "max_len": "999999999",
+    "ussd_query": "*880*03177*{param}*{amount}#"
+  }, {
+    "service_id": 3184,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 3185,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": "*880*03185*{param}*{amount}#"
+  }, {
+    "service_id": 3186,
+    "parameter_id": "1",
+    "input_type": 1,
+    "title": "Номер телефона",
+    "placeholder": "Введите номер телефона без 998",
+    "error_message": "Номер телефона введен неправильно",
+    "min_len": "0",
+    "max_len": "999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 3198,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 3200,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 3213,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": null
+  }, {
+    "service_id": 3215,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 3217,
+    "parameter_id": "1",
+    "input_type": 1,
+    "title": "Номер телефона",
+    "placeholder": "Введите номер телефона без 998",
+    "error_message": "Номер телефона введен неправильно",
+    "min_len": "0",
+    "max_len": "999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 4422,
+    "parameter_id": "1",
+    "input_type": 1,
+    "title": "Номер телефона",
+    "placeholder": "Введите номер телефона без 998",
+    "error_message": "Номер телефона введен неправильно",
+    "min_len": "0",
+    "max_len": "999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 4423,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 4639,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 4641,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 4644,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": "*880*04644999001*{param}*{amount}#"
+  }, {
+    "service_id": 4646,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 4652,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 4659,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 4660,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 4666,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": null
+  }, {
+    "service_id": 4666,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 4667,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": null
+  }, {
+    "service_id": 4668,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": null
+  }, {
+    "service_id": 4669,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": null
+  }, {
+    "service_id": 4670,
+    "parameter_id": "512",
+    "input_type": 2,
+    "title": "Номер карты",
+    "placeholder": "Введите номер карты",
+    "error_message": "Неверно введен номер карты",
+    "min_len": "0",
+    "max_len": "25",
+    "ussd_query": null
+  }, {
+    "service_id": 4673,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 4674,
+    "parameter_id": "16",
+    "input_type": 2,
+    "title": "Лицевой счет абонента",
+    "placeholder": "Введите лицевой счет абонента",
+    "error_message": "Неверно набран лицевой счет",
+    "min_len": "0",
+    "max_len": "50",
+    "ussd_query": null
+  }, {
+    "service_id": 4675,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 4676,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 4677,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 4678,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": null
+  }, {
+    "service_id": 4688,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": null
+  }, {
+    "service_id": 4689,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 4689,
+    "parameter_id": "16",
+    "input_type": 2,
+    "title": "Лицевой счет абонента",
+    "placeholder": "Введите лицевой счет абонента",
+    "error_message": "Неверно набран лицевой счет",
+    "min_len": "0",
+    "max_len": "50",
+    "ussd_query": null
+  }, {
+    "service_id": 4694,
+    "parameter_id": "33554432",
+    "input_type": 1,
+    "title": "ID кредита",
+    "placeholder": "Введите ID кредита",
+    "error_message": "Введите ID кредита",
+    "min_len": "1",
+    "max_len": "9999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 7003,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 7004,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": null
+  }, {
+    "service_id": 7024,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 7025,
+    "parameter_id": "32768",
+    "input_type": 3,
+    "title": "Выберите PIN-карту",
+    "placeholder": "Выберите PIN-карту и номинал карты, которую вы хотите приобрести",
+    "error_message": "Не выбрана PIN-карта",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 7033,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 7043,
+    "parameter_id": "2",
+    "input_type": 2,
+    "title": "Логин",
+    "placeholder": "Введите логин ",
+    "error_message": "Логин введен неправильно",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": null
+  }, {
+    "service_id": 7044,
+    "parameter_id": "67108864",
+    "input_type": 2,
+    "title": "Номер постановления",
+    "placeholder": "Введите номер постановления",
+    "error_message": "Введите номер постановления",
+    "min_len": "3",
+    "max_len": "50",
+    "ussd_query": null
+  }, {
+    "service_id": 8409,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }, {
+    "service_id": 8414,
+    "parameter_id": "4",
+    "input_type": 1,
+    "title": "ID абонента",
+    "placeholder": "Введите ID абонента",
+    "error_message": "Неверный ID абонента",
+    "min_len": "0",
+    "max_len": "999999999999999",
+    "ussd_query": null
+  }], [{
+    "service_id": 9,
+    "id": 1,
+    "name": "Абонентская плата",
+    "parent": 0,
+    "code": 1,
+    "offline_code": "1"
+  }, {
+    "service_id": 9,
+    "id": 2,
+    "name": "МТР (Междугородная)",
+    "parent": 0,
+    "code": 2,
+    "offline_code": "2"
+  }, {
+    "service_id": 39,
+    "id": 2,
+    "name": "Мирабадский район",
+    "parent": 0,
+    "code": -1,
+    "offline_code": "-1"
+  }, {
+    "service_id": 39,
+    "id": 4,
+    "name": "Мирзо-Улугбекский район",
+    "parent": 0,
+    "code": -1,
+    "offline_code": "-1"
+  }, {
+    "service_id": 39,
+    "id": 5,
+    "name": "Хамзинский район",
+    "parent": 0,
+    "code": -1,
+    "offline_code": "-1"
+  }, {
+    "service_id": 39,
+    "id": 6,
+    "name": "Шайхантахурский район",
+    "parent": 0,
+    "code": -1,
+    "offline_code": "-1"
+  }, {
+    "service_id": 39,
+    "id": 7,
+    "name": "Яккасарайский район",
+    "parent": 0,
+    "code": -1,
+    "offline_code": "-1"
+  }, {
+    "service_id": 39,
+    "id": 8,
+    "name": "Чиланзарский район",
+    "parent": 0,
+    "code": -1,
+    "offline_code": "-1"
+  }, {
+    "service_id": 39,
+    "id": 9,
+    "name": "Бектемирский район",
+    "parent": 0,
+    "code": -1,
+    "offline_code": "-1"
+  }, {
+    "service_id": 39,
+    "id": 10,
+    "name": "Алмазарский район",
+    "parent": 0,
+    "code": -1,
+    "offline_code": "-1"
+  }, {
+    "service_id": 39,
+    "id": 11,
+    "name": "Учтепинский район",
+    "parent": 0,
+    "code": -1,
+    "offline_code": "-1"
+  }, {
+    "service_id": 39,
+    "id": 12,
+    "name": "Сергелинский район",
+    "parent": 0,
+    "code": -1,
+    "offline_code": "-1"
+  }, {
+    "service_id": 39,
+    "id": 13,
+    "name": "Юнусабад",
+    "parent": 0,
+    "code": -1,
+    "offline_code": "-1"
+  }, {
+    "service_id": 107,
+    "id": 66,
+    "name": "Налог на имущество",
+    "parent": 0,
+    "code": 66,
+    "offline_code": "66"
+  }, {
+    "service_id": 107,
+    "id": 67,
+    "name": "Земельный налог",
+    "parent": 0,
+    "code": 67,
+    "offline_code": "67"
+  }, {
+    "service_id": 162,
+    "id": 0,
+    "name": "Оплата за бытовую электроэнергию",
+    "parent": 0,
+    "code": 0,
+    "offline_code": "0"
+  }, {
+    "service_id": 162,
+    "id": 5,
+    "name": "Оплата дополнительных услуг",
+    "parent": 0,
+    "code": 5,
+    "offline_code": "5"
+  }, {
+    "service_id": 162,
+    "id": 8,
+    "name": "Оплата за подключение",
+    "parent": 0,
+    "code": 8,
+    "offline_code": "8"
+  }, {
+    "service_id": 162,
+    "id": 14,
+    "name": "Оплата по актам нарушений",
+    "parent": 0,
+    "code": 14,
+    "offline_code": "14"
+  }, {
+    "service_id": 162,
+    "id": 10,
+    "name": "Оплата за пеню бытовых потребителей",
+    "parent": 0,
+    "code": 10,
+    "offline_code": "10"
+  }, {"service_id": 183, "id": 1, "name": "WiMAX", "parent": 0, "code": 1, "offline_code": "1"}, {
+    "service_id": 183,
+    "id": 2,
+    "name": "LTE",
+    "parent": 0,
+    "code": 2,
+    "offline_code": "2"
+  }, {"service_id": 198, "id": 1, "name": "Ташкент", "parent": 0, "code": 1, "offline_code": "1"}, {
+    "service_id": 198,
+    "id": 2,
+    "name": "Таш. Обл.",
+    "parent": 0,
+    "code": 2,
+    "offline_code": "2"
+  }, {"service_id": 198, "id": 3, "name": "Бухара", "parent": 0, "code": 3, "offline_code": "3"}, {
+    "service_id": 198,
+    "id": 4,
+    "name": "Самарканд",
+    "parent": 0,
+    "code": 4,
+    "offline_code": "4"
+  }, {"service_id": 198, "id": 5, "name": "Джизак", "parent": 0, "code": 5, "offline_code": "5"}, {
+    "service_id": 198,
+    "id": 6,
+    "name": "Навои",
+    "parent": 0,
+    "code": 6,
+    "offline_code": "6"
+  }, {
+    "service_id": 198,
+    "id": 7,
+    "name": "Кашкадарья",
+    "parent": 0,
+    "code": 7,
+    "offline_code": "7"
+  }, {"service_id": 198, "id": 8, "name": "Фергана", "parent": 0, "code": 8, "offline_code": "8"}, {
+    "service_id": 198,
+    "id": 9,
+    "name": "Наманган",
+    "parent": 0,
+    "code": 9,
+    "offline_code": "9"
+  }, {
+    "service_id": 198,
+    "id": 10,
+    "name": "Андижан",
+    "parent": 0,
+    "code": 10,
+    "offline_code": "10"
+  }, {
+    "service_id": 198,
+    "id": 11,
+    "name": "Сурхандарья",
+    "parent": 0,
+    "code": 11,
+    "offline_code": "11"
+  }, {"service_id": 198, "id": 12, "name": "Хорезм", "parent": 0, "code": 12, "offline_code": "12"}, {
+    "service_id": 198,
+    "id": 13,
+    "name": "Сырдарья",
+    "parent": 0,
+    "code": 13,
+    "offline_code": "13"
+  }, {
+    "service_id": 198,
+    "id": 14,
+    "name": "Каракалпакстан",
+    "parent": 0,
+    "code": 14,
+    "offline_code": "14"
+  }, {
+    "service_id": 198,
+    "id": 3,
+    "name": "Миробод тумани",
+    "parent": 1,
+    "code": 3,
+    "offline_code": "003"
+  }, {
+    "service_id": 198,
+    "id": 4,
+    "name": "М. Улугбек тумани",
+    "parent": 1,
+    "code": 4,
+    "offline_code": "004"
+  }, {
+    "service_id": 198,
+    "id": 5,
+    "name": "Яккасарой тумани",
+    "parent": 1,
+    "code": 5,
+    "offline_code": "005"
+  }, {
+    "service_id": 198,
+    "id": 6,
+    "name": "Олмазор тумани",
+    "parent": 1,
+    "code": 6,
+    "offline_code": "006"
+  }, {
+    "service_id": 198,
+    "id": 7,
+    "name": "Юнусобод тумани",
+    "parent": 1,
+    "code": 7,
+    "offline_code": "007"
+  }, {
+    "service_id": 198,
+    "id": 8,
+    "name": "Чилонзор тумани",
+    "parent": 1,
+    "code": 8,
+    "offline_code": "008"
+  }, {
+    "service_id": 198,
+    "id": 9,
+    "name": "Учтепа тумани",
+    "parent": 1,
+    "code": 9,
+    "offline_code": "009"
+  }, {
+    "service_id": 198,
+    "id": 10,
+    "name": "Сергели тумани",
+    "parent": 1,
+    "code": 10,
+    "offline_code": "010"
+  }, {
+    "service_id": 198,
+    "id": 11,
+    "name": "Хамза тумани",
+    "parent": 1,
+    "code": 11,
+    "offline_code": "011"
+  }, {
+    "service_id": 198,
+    "id": 12,
+    "name": "Шайхонтохур тумани",
+    "parent": 1,
+    "code": 12,
+    "offline_code": "012"
+  }, {
+    "service_id": 198,
+    "id": 13,
+    "name": "Бектемир тумани",
+    "parent": 1,
+    "code": 13,
+    "offline_code": "013"
+  }, {
+    "service_id": 198,
+    "id": 172,
+    "name": "Бухоро шахар",
+    "parent": 3,
+    "code": 172,
+    "offline_code": "172"
+  }, {
+    "service_id": 198,
+    "id": 174,
+    "name": "Ромитан тумани",
+    "parent": 3,
+    "code": 174,
+    "offline_code": "174"
+  }, {
+    "service_id": 198,
+    "id": 175,
+    "name": "Когон тумани",
+    "parent": 3,
+    "code": 175,
+    "offline_code": "175"
+  }, {
+    "service_id": 198,
+    "id": 176,
+    "name": "Гиждувон тумани",
+    "parent": 3,
+    "code": 176,
+    "offline_code": "176"
+  }, {
+    "service_id": 198,
+    "id": 177,
+    "name": "Бухоро тумани",
+    "parent": 3,
+    "code": 177,
+    "offline_code": "177"
+  }, {
+    "service_id": 198,
+    "id": 178,
+    "name": "Жондор тумани",
+    "parent": 3,
+    "code": 178,
+    "offline_code": "178"
+  }, {
+    "service_id": 198,
+    "id": 179,
+    "name": "Вобкент тумани",
+    "parent": 3,
+    "code": 179,
+    "offline_code": "179"
+  }, {
+    "service_id": 198,
+    "id": 180,
+    "name": "Пешку тумани",
+    "parent": 3,
+    "code": 180,
+    "offline_code": "180"
+  }, {
+    "service_id": 198,
+    "id": 181,
+    "name": "Шофиркон тумани",
+    "parent": 3,
+    "code": 181,
+    "offline_code": "181"
+  }, {
+    "service_id": 198,
+    "id": 182,
+    "name": "Коракул тумани",
+    "parent": 3,
+    "code": 182,
+    "offline_code": "182"
+  }, {
+    "service_id": 198,
+    "id": 183,
+    "name": "Олот тумани",
+    "parent": 3,
+    "code": 183,
+    "offline_code": "183"
+  }, {
+    "service_id": 198,
+    "id": 184,
+    "name": "Коровулбозор тумани",
+    "parent": 3,
+    "code": 184,
+    "offline_code": "184"
+  }, {
+    "service_id": 198,
+    "id": 186,
+    "name": "Зарафшон шахар",
+    "parent": 6,
+    "code": 186,
+    "offline_code": "186"
+  }, {
+    "service_id": 198,
+    "id": 187,
+    "name": "Кармана тумани",
+    "parent": 6,
+    "code": 187,
+    "offline_code": "187"
+  }, {
+    "service_id": 198,
+    "id": 188,
+    "name": "Кизилтепа тумани",
+    "parent": 6,
+    "code": 188,
+    "offline_code": "188"
+  }, {
+    "service_id": 198,
+    "id": 189,
+    "name": "Конимех тумани",
+    "parent": 6,
+    "code": 189,
+    "offline_code": "189"
+  }, {
+    "service_id": 198,
+    "id": 190,
+    "name": "Навоий шахар",
+    "parent": 6,
+    "code": 190,
+    "offline_code": "190"
+  }, {
+    "service_id": 198,
+    "id": 191,
+    "name": "Навбахор тумани",
+    "parent": 6,
+    "code": 191,
+    "offline_code": "191"
+  }, {
+    "service_id": 198,
+    "id": 192,
+    "name": "Нурота тумани",
+    "parent": 6,
+    "code": 192,
+    "offline_code": "192"
+  }, {
+    "service_id": 198,
+    "id": 193,
+    "name": "Хатирчи тумани",
+    "parent": 6,
+    "code": 193,
+    "offline_code": "193"
+  }, {
+    "service_id": 198,
+    "id": 208,
+    "name": "Нукус шахар",
+    "parent": 14,
+    "code": 208,
+    "offline_code": "208"
+  }, {
+    "service_id": 198,
+    "id": 209,
+    "name": "Нукус тумани",
+    "parent": 14,
+    "code": 209,
+    "offline_code": "209"
+  }, {
+    "service_id": 198,
+    "id": 210,
+    "name": "Кегеили тумани",
+    "parent": 14,
+    "code": 210,
+    "offline_code": "210"
+  }, {
+    "service_id": 198,
+    "id": 211,
+    "name": "Чимбой тумани",
+    "parent": 14,
+    "code": 211,
+    "offline_code": "211"
+  }, {
+    "service_id": 198,
+    "id": 212,
+    "name": "Караузяк тумани",
+    "parent": 14,
+    "code": 212,
+    "offline_code": "212"
+  }, {
+    "service_id": 198,
+    "id": 213,
+    "name": "Тахтакупир тумани",
+    "parent": 14,
+    "code": 213,
+    "offline_code": "213"
+  }, {
+    "service_id": 198,
+    "id": 214,
+    "name": "Хужайли тумани",
+    "parent": 14,
+    "code": 214,
+    "offline_code": "214"
+  }, {
+    "service_id": 198,
+    "id": 215,
+    "name": "Шуманай тумани",
+    "parent": 14,
+    "code": 215,
+    "offline_code": "215"
+  }, {
+    "service_id": 198,
+    "id": 216,
+    "name": "Канлыкуль тумани",
+    "parent": 14,
+    "code": 216,
+    "offline_code": "216"
+  }, {
+    "service_id": 198,
+    "id": 217,
+    "name": "Тахиаташ тумани",
+    "parent": 14,
+    "code": 217,
+    "offline_code": "217"
+  }, {
+    "service_id": 198,
+    "id": 218,
+    "name": "Кунград тумани",
+    "parent": 14,
+    "code": 218,
+    "offline_code": "218"
+  }, {
+    "service_id": 198,
+    "id": 219,
+    "name": "Муйнак тумани",
+    "parent": 14,
+    "code": 219,
+    "offline_code": "219"
+  }, {
+    "service_id": 198,
+    "id": 220,
+    "name": "Амурдарья тумани",
+    "parent": 14,
+    "code": 220,
+    "offline_code": "220"
+  }, {
+    "service_id": 198,
+    "id": 221,
+    "name": "Турткуль тумани",
+    "parent": 14,
+    "code": 221,
+    "offline_code": "221"
+  }, {
+    "service_id": 198,
+    "id": 222,
+    "name": "Элликкала тумани",
+    "parent": 14,
+    "code": 222,
+    "offline_code": "222"
+  }, {
+    "service_id": 198,
+    "id": 223,
+    "name": "Беруний тумани",
+    "parent": 14,
+    "code": 223,
+    "offline_code": "223"
+  }, {
+    "service_id": 198,
+    "id": 224,
+    "name": "Бозатау участок",
+    "parent": 14,
+    "code": 224,
+    "offline_code": "224"
+  }, {
+    "service_id": 198,
+    "id": 225,
+    "name": "Халкобод шахри",
+    "parent": 14,
+    "code": 225,
+    "offline_code": "225"
+  }, {
+    "service_id": 198,
+    "id": 195,
+    "name": "Халкобод шахри",
+    "parent": 12,
+    "code": 195,
+    "offline_code": "195"
+  }, {
+    "service_id": 198,
+    "id": 196,
+    "name": "Ургенч тумани",
+    "parent": 12,
+    "code": 196,
+    "offline_code": "196"
+  }, {
+    "service_id": 198,
+    "id": 197,
+    "name": "Хива тумани",
+    "parent": 12,
+    "code": 197,
+    "offline_code": "197"
+  }, {
+    "service_id": 198,
+    "id": 198,
+    "name": "Хонка тумани",
+    "parent": 12,
+    "code": 198,
+    "offline_code": "198"
+  }, {
+    "service_id": 198,
+    "id": 199,
+    "name": "Шовот тумани",
+    "parent": 12,
+    "code": 199,
+    "offline_code": "199"
+  }, {
+    "service_id": 198,
+    "id": 200,
+    "name": "Богот тумани",
+    "parent": 12,
+    "code": 200,
+    "offline_code": "200"
+  }, {
+    "service_id": 198,
+    "id": 201,
+    "name": "Янгиарик тумани",
+    "parent": 12,
+    "code": 201,
+    "offline_code": "201"
+  }, {
+    "service_id": 198,
+    "id": 202,
+    "name": "Янгибозор тумани",
+    "parent": 12,
+    "code": 202,
+    "offline_code": "202"
+  }, {
+    "service_id": 198,
+    "id": 203,
+    "name": "Гурлан тумани",
+    "parent": 12,
+    "code": 203,
+    "offline_code": "203"
+  }, {
+    "service_id": 198,
+    "id": 204,
+    "name": "Кушкупир тумани",
+    "parent": 12,
+    "code": 204,
+    "offline_code": "204"
+  }, {
+    "service_id": 198,
+    "id": 205,
+    "name": "Хазарасп тумани",
+    "parent": 12,
+    "code": 205,
+    "offline_code": "205"
+  }, {
+    "service_id": 198,
+    "id": 206,
+    "name": "Питнак тумани",
+    "parent": 12,
+    "code": 206,
+    "offline_code": "206"
+  }, {
+    "service_id": 198,
+    "id": 23,
+    "name": "Олмалик тумани",
+    "parent": 2,
+    "code": 23,
+    "offline_code": "023"
+  }, {
+    "service_id": 198,
+    "id": 24,
+    "name": "Ангрен тумани",
+    "parent": 2,
+    "code": 24,
+    "offline_code": "024"
+  }, {
+    "service_id": 198,
+    "id": 25,
+    "name": "Охангарон тумани",
+    "parent": 2,
+    "code": 25,
+    "offline_code": "025"
+  }, {
+    "service_id": 198,
+    "id": 26,
+    "name": "Оккургон тумани",
+    "parent": 2,
+    "code": 26,
+    "offline_code": "026"
+  }, {
+    "service_id": 198,
+    "id": 27,
+    "name": "Бекобод шахар",
+    "parent": 2,
+    "code": 27,
+    "offline_code": "027"
+  }, {
+    "service_id": 198,
+    "id": 28,
+    "name": "Бука тумани",
+    "parent": 2,
+    "code": 28,
+    "offline_code": "028"
+  }, {
+    "service_id": 198,
+    "id": 29,
+    "name": "Бустонлик(газалкент) тумани",
+    "parent": 2,
+    "code": 29,
+    "offline_code": "029"
+  }, {
+    "service_id": 198,
+    "id": 30,
+    "name": "Бекобод тумани",
+    "parent": 2,
+    "code": 30,
+    "offline_code": "030"
+  }, {
+    "service_id": 198,
+    "id": 31,
+    "name": "Зангиота тумани (эшонгузар)",
+    "parent": 2,
+    "code": 31,
+    "offline_code": "031"
+  }, {
+    "service_id": 198,
+    "id": 32,
+    "name": "Зангитоа тумани (келес)",
+    "parent": 2,
+    "code": 32,
+    "offline_code": "032"
+  }, {
+    "service_id": 198,
+    "id": 33,
+    "name": "Кибрай тумани",
+    "parent": 2,
+    "code": 33,
+    "offline_code": "033"
+  }, {
+    "service_id": 198,
+    "id": 34,
+    "name": "Паркент тумани",
+    "parent": 2,
+    "code": 34,
+    "offline_code": "034"
+  }, {
+    "service_id": 198,
+    "id": 35,
+    "name": "Пискент тумани",
+    "parent": 2,
+    "code": 35,
+    "offline_code": "035"
+  }, {
+    "service_id": 198,
+    "id": 36,
+    "name": "Куйичирчик(янгибозор) тумани",
+    "parent": 2,
+    "code": 36,
+    "offline_code": "036"
+  }, {
+    "service_id": 198,
+    "id": 37,
+    "name": "Уртачирчик(туйтепа) тумани",
+    "parent": 2,
+    "code": 37,
+    "offline_code": "037"
+  }, {
+    "service_id": 198,
+    "id": 38,
+    "name": "Филиал \"Чирчиктумангаз\"",
+    "parent": 2,
+    "code": 38,
+    "offline_code": "038"
+  }, {
+    "service_id": 198,
+    "id": 39,
+    "name": "Чиноз тумани",
+    "parent": 2,
+    "code": 39,
+    "offline_code": "039"
+  }, {
+    "service_id": 198,
+    "id": 40,
+    "name": "Юкоричирчик тумани",
+    "parent": 2,
+    "code": 40,
+    "offline_code": "040"
+  }, {
+    "service_id": 198,
+    "id": 41,
+    "name": "Янгийиул тумани",
+    "parent": 2,
+    "code": 41,
+    "offline_code": "041"
+  }, {
+    "service_id": 198,
+    "id": 42,
+    "name": "Красногорск шахар",
+    "parent": 2,
+    "code": 42,
+    "offline_code": "042"
+  }, {
+    "service_id": 198,
+    "id": 71,
+    "name": "Самарканд шахар",
+    "parent": 4,
+    "code": 71,
+    "offline_code": "071"
+  }, {
+    "service_id": 198,
+    "id": 72,
+    "name": "Самарканд тумани",
+    "parent": 4,
+    "code": 72,
+    "offline_code": "072"
+  }, {
+    "service_id": 198,
+    "id": 73,
+    "name": "Булунгур тумани",
+    "parent": 4,
+    "code": 73,
+    "offline_code": "073"
+  }, {
+    "service_id": 198,
+    "id": 74,
+    "name": "Жомбой тумани",
+    "parent": 4,
+    "code": 74,
+    "offline_code": "074"
+  }, {
+    "service_id": 198,
+    "id": 75,
+    "name": "Пастаргом тумани",
+    "parent": 4,
+    "code": 75,
+    "offline_code": "075"
+  }, {
+    "service_id": 198,
+    "id": 76,
+    "name": "Иштихон тумани",
+    "parent": 4,
+    "code": 76,
+    "offline_code": "076"
+  }, {
+    "service_id": 198,
+    "id": 77,
+    "name": "Каттакургон шахар",
+    "parent": 4,
+    "code": 77,
+    "offline_code": "077"
+  }, {
+    "service_id": 198,
+    "id": 78,
+    "name": "Нуробод тумани",
+    "parent": 4,
+    "code": 78,
+    "offline_code": "078"
+  }, {
+    "service_id": 198,
+    "id": 79,
+    "name": "Окдаре тумани",
+    "parent": 4,
+    "code": 79,
+    "offline_code": "079"
+  }, {
+    "service_id": 198,
+    "id": 80,
+    "name": "Нарпай тумани",
+    "parent": 4,
+    "code": 80,
+    "offline_code": "080"
+  }, {
+    "service_id": 198,
+    "id": 81,
+    "name": "Пайарик тумани",
+    "parent": 4,
+    "code": 81,
+    "offline_code": "081"
+  }, {
+    "service_id": 198,
+    "id": 82,
+    "name": "Каттакургон тумани",
+    "parent": 4,
+    "code": 82,
+    "offline_code": "082"
+  }, {
+    "service_id": 198,
+    "id": 83,
+    "name": "Пахтачи тумани",
+    "parent": 4,
+    "code": 83,
+    "offline_code": "083"
+  }, {
+    "service_id": 198,
+    "id": 84,
+    "name": "Тайлок тумани",
+    "parent": 4,
+    "code": 84,
+    "offline_code": "084"
+  }, {
+    "service_id": 198,
+    "id": 85,
+    "name": "Ургут тумани",
+    "parent": 4,
+    "code": 85,
+    "offline_code": "085"
+  }, {
+    "service_id": 198,
+    "id": 86,
+    "name": "Кушробод тумани",
+    "parent": 4,
+    "code": 86,
+    "offline_code": "086"
+  }, {
+    "service_id": 198,
+    "id": 228,
+    "name": "Гўзалкент тумани",
+    "parent": 4,
+    "code": 228,
+    "offline_code": "228"
+  }, {
+    "service_id": 198,
+    "id": 87,
+    "name": "Челак тумани",
+    "parent": 4,
+    "code": 87,
+    "offline_code": "087"
+  }, {
+    "service_id": 198,
+    "id": 56,
+    "name": "Жиззах шахар",
+    "parent": 5,
+    "code": 56,
+    "offline_code": "056"
+  }, {
+    "service_id": 198,
+    "id": 57,
+    "name": "Жиззах тумани",
+    "parent": 5,
+    "code": 57,
+    "offline_code": "057"
+  }, {
+    "service_id": 198,
+    "id": 58,
+    "name": "Галлаорол тумани",
+    "parent": 5,
+    "code": 58,
+    "offline_code": "058"
+  }, {
+    "service_id": 198,
+    "id": 59,
+    "name": "Бахмал тумани",
+    "parent": 5,
+    "code": 59,
+    "offline_code": "059"
+  }, {
+    "service_id": 198,
+    "id": 60,
+    "name": "Пахтакор тумани",
+    "parent": 5,
+    "code": 60,
+    "offline_code": "060"
+  }, {
+    "service_id": 198,
+    "id": 61,
+    "name": "Зафаробод тумани",
+    "parent": 5,
+    "code": 61,
+    "offline_code": "061"
+  }, {
+    "service_id": 198,
+    "id": 62,
+    "name": "Дустлик тумани",
+    "parent": 5,
+    "code": 62,
+    "offline_code": "062"
+  }, {
+    "service_id": 198,
+    "id": 63,
+    "name": "Арнасой тумани",
+    "parent": 5,
+    "code": 63,
+    "offline_code": "063"
+  }, {
+    "service_id": 198,
+    "id": 64,
+    "name": "Мирзачул тумани",
+    "parent": 5,
+    "code": 64,
+    "offline_code": "064"
+  }, {
+    "service_id": 198,
+    "id": 65,
+    "name": "Зарбдор тумани",
+    "parent": 5,
+    "code": 65,
+    "offline_code": "065"
+  }, {
+    "service_id": 198,
+    "id": 66,
+    "name": "Зомин тумани",
+    "parent": 5,
+    "code": 66,
+    "offline_code": "066"
+  }, {
+    "service_id": 198,
+    "id": 67,
+    "name": "Даштаобод тумани",
+    "parent": 5,
+    "code": 67,
+    "offline_code": "067"
+  }, {
+    "service_id": 198,
+    "id": 68,
+    "name": "Фориш тумани",
+    "parent": 5,
+    "code": 68,
+    "offline_code": "068"
+  }, {
+    "service_id": 198,
+    "id": 69,
+    "name": "Янгиобод тумани",
+    "parent": 5,
+    "code": 69,
+    "offline_code": "069"
+  }, {
+    "service_id": 198,
+    "id": 141,
+    "name": "Карши шахар",
+    "parent": 7,
+    "code": 141,
+    "offline_code": "141"
+  }, {
+    "service_id": 198,
+    "id": 142,
+    "name": "Шахрисабз тумани",
+    "parent": 7,
+    "code": 142,
+    "offline_code": "142"
+  }, {
+    "service_id": 198,
+    "id": 143,
+    "name": "Китоб тумани",
+    "parent": 7,
+    "code": 143,
+    "offline_code": "143"
+  }, {
+    "service_id": 198,
+    "id": 144,
+    "name": "Яккабог тумани",
+    "parent": 7,
+    "code": 144,
+    "offline_code": "144"
+  }, {
+    "service_id": 198,
+    "id": 145,
+    "name": "Чирокчи тумани",
+    "parent": 7,
+    "code": 145,
+    "offline_code": "145"
+  }, {
+    "service_id": 198,
+    "id": 146,
+    "name": "Камаши тумани",
+    "parent": 7,
+    "code": 146,
+    "offline_code": "146"
+  }, {
+    "service_id": 198,
+    "id": 147,
+    "name": "Гузор тумани",
+    "parent": 7,
+    "code": 147,
+    "offline_code": "147"
+  }, {
+    "service_id": 198,
+    "id": 148,
+    "name": "Карши тумани",
+    "parent": 7,
+    "code": 148,
+    "offline_code": "148"
+  }, {
+    "service_id": 198,
+    "id": 149,
+    "name": "Нишон тумани",
+    "parent": 7,
+    "code": 149,
+    "offline_code": "149"
+  }, {
+    "service_id": 198,
+    "id": 150,
+    "name": "Косон тумани",
+    "parent": 7,
+    "code": 150,
+    "offline_code": "150"
+  }, {
+    "service_id": 198,
+    "id": 151,
+    "name": "Касби тумани",
+    "parent": 7,
+    "code": 151,
+    "offline_code": "151"
+  }, {
+    "service_id": 198,
+    "id": 152,
+    "name": "Миришкор тумани",
+    "parent": 7,
+    "code": 152,
+    "offline_code": "152"
+  }, {
+    "service_id": 198,
+    "id": 153,
+    "name": "Муборак тумани",
+    "parent": 7,
+    "code": 153,
+    "offline_code": "153"
+  }, {
+    "service_id": 198,
+    "id": 154,
+    "name": "Дехконобод тумани",
+    "parent": 7,
+    "code": 154,
+    "offline_code": "154"
+  }, {
+    "service_id": 198,
+    "id": 88,
+    "name": "Маргилон шахар",
+    "parent": 8,
+    "code": 88,
+    "offline_code": "088"
+  }, {
+    "service_id": 198,
+    "id": 89,
+    "name": "Фаргона шахар",
+    "parent": 8,
+    "code": 89,
+    "offline_code": "089"
+  }, {
+    "service_id": 198,
+    "id": 90,
+    "name": "Кувасой шахар",
+    "parent": 8,
+    "code": 90,
+    "offline_code": "090"
+  }, {
+    "service_id": 198,
+    "id": 91,
+    "name": "Кукон шахар",
+    "parent": 8,
+    "code": 91,
+    "offline_code": "091"
+  }, {
+    "service_id": 198,
+    "id": 92,
+    "name": "Богдод тумани",
+    "parent": 8,
+    "code": 92,
+    "offline_code": "092"
+  }, {
+    "service_id": 198,
+    "id": 93,
+    "name": "Бешарик тумани",
+    "parent": 8,
+    "code": 93,
+    "offline_code": "093"
+  }, {
+    "service_id": 198,
+    "id": 94,
+    "name": "Бувайда тумани",
+    "parent": 8,
+    "code": 94,
+    "offline_code": "094"
+  }, {
+    "service_id": 198,
+    "id": 95,
+    "name": "Дангара тумани",
+    "parent": 8,
+    "code": 95,
+    "offline_code": "095"
+  }, {
+    "service_id": 198,
+    "id": 96,
+    "name": "Езъевон тумани",
+    "parent": 8,
+    "code": 96,
+    "offline_code": "096"
+  }, {
+    "service_id": 198,
+    "id": 97,
+    "name": "Олтиарик тумани",
+    "parent": 8,
+    "code": 97,
+    "offline_code": "097"
+  }, {
+    "service_id": 198,
+    "id": 98,
+    "name": "Куштепа тумани",
+    "parent": 8,
+    "code": 98,
+    "offline_code": "098"
+  }, {
+    "service_id": 198,
+    "id": 99,
+    "name": "Риштон тумани",
+    "parent": 8,
+    "code": 99,
+    "offline_code": "099"
+  }, {
+    "service_id": 198,
+    "id": 100,
+    "name": "Сух тумани",
+    "parent": 8,
+    "code": 100,
+    "offline_code": "100"
+  }, {
+    "service_id": 198,
+    "id": 101,
+    "name": "Тошлок тумани",
+    "parent": 8,
+    "code": 101,
+    "offline_code": "101"
+  }, {
+    "service_id": 198,
+    "id": 102,
+    "name": "Уч-куприк тумани",
+    "parent": 8,
+    "code": 102,
+    "offline_code": "102"
+  }, {
+    "service_id": 198,
+    "id": 103,
+    "name": "Фаргона тумани",
+    "parent": 8,
+    "code": 103,
+    "offline_code": "103"
+  }, {
+    "service_id": 198,
+    "id": 104,
+    "name": "Фуркат тумани",
+    "parent": 8,
+    "code": 104,
+    "offline_code": "104"
+  }, {
+    "service_id": 198,
+    "id": 105,
+    "name": "Узбекистон тумани",
+    "parent": 8,
+    "code": 105,
+    "offline_code": "105"
+  }, {
+    "service_id": 198,
+    "id": 106,
+    "name": "Кува тумани",
+    "parent": 8,
+    "code": 106,
+    "offline_code": "106"
+  }, {
+    "service_id": 198,
+    "id": 108,
+    "name": "Наманган шахар",
+    "parent": 9,
+    "code": 108,
+    "offline_code": "108"
+  }, {
+    "service_id": 198,
+    "id": 109,
+    "name": "Наманган шахар (2 база)",
+    "parent": 9,
+    "code": 109,
+    "offline_code": "109"
+  }, {
+    "service_id": 198,
+    "id": 110,
+    "name": "Косонсой тумани",
+    "parent": 9,
+    "code": 110,
+    "offline_code": "110"
+  }, {
+    "service_id": 198,
+    "id": 111,
+    "name": "Норин тумани",
+    "parent": 9,
+    "code": 111,
+    "offline_code": "111"
+  }, {
+    "service_id": 198,
+    "id": 112,
+    "name": "Учкургон тумани",
+    "parent": 9,
+    "code": 112,
+    "offline_code": "112"
+  }, {
+    "service_id": 198,
+    "id": 113,
+    "name": "Чорток тумани",
+    "parent": 9,
+    "code": 113,
+    "offline_code": "113"
+  }, {
+    "service_id": 198,
+    "id": 114,
+    "name": "Чуст тумани",
+    "parent": 9,
+    "code": 114,
+    "offline_code": "114"
+  }, {
+    "service_id": 198,
+    "id": 115,
+    "name": "Туракургон тумани",
+    "parent": 9,
+    "code": 115,
+    "offline_code": "115"
+  }, {
+    "service_id": 198,
+    "id": 116,
+    "name": "Поп тумани",
+    "parent": 9,
+    "code": 116,
+    "offline_code": "116"
+  }, {
+    "service_id": 198,
+    "id": 117,
+    "name": "Мингбулок тумани",
+    "parent": 9,
+    "code": 117,
+    "offline_code": "117"
+  }, {
+    "service_id": 198,
+    "id": 118,
+    "name": "Наманган тумани",
+    "parent": 9,
+    "code": 118,
+    "offline_code": "118"
+  }, {
+    "service_id": 198,
+    "id": 119,
+    "name": "Уйчи тумани",
+    "parent": 9,
+    "code": 119,
+    "offline_code": "119"
+  }, {
+    "service_id": 198,
+    "id": 120,
+    "name": "Янгикурган тумани",
+    "parent": 9,
+    "code": 120,
+    "offline_code": "120"
+  }, {
+    "service_id": 198,
+    "id": 122,
+    "name": "Андижон шахар",
+    "parent": 10,
+    "code": 122,
+    "offline_code": "122"
+  }, {
+    "service_id": 198,
+    "id": 123,
+    "name": "Андижон тумани",
+    "parent": 10,
+    "code": 123,
+    "offline_code": "123"
+  }, {
+    "service_id": 198,
+    "id": 124,
+    "name": "Асака шахар",
+    "parent": 10,
+    "code": 124,
+    "offline_code": "124"
+  }, {
+    "service_id": 198,
+    "id": 125,
+    "name": "Асака тумани",
+    "parent": 10,
+    "code": 125,
+    "offline_code": "125"
+  }, {
+    "service_id": 198,
+    "id": 126,
+    "name": "Баликчи тумани",
+    "parent": 10,
+    "code": 126,
+    "offline_code": "126"
+  }, {
+    "service_id": 198,
+    "id": 127,
+    "name": "Буз тумани",
+    "parent": 10,
+    "code": 127,
+    "offline_code": "127"
+  }, {
+    "service_id": 198,
+    "id": 128,
+    "name": "Булокбоши тумани",
+    "parent": 10,
+    "code": 128,
+    "offline_code": "128"
+  }, {
+    "service_id": 198,
+    "id": 129,
+    "name": "Жалолкудук тумани",
+    "parent": 10,
+    "code": 129,
+    "offline_code": "129"
+  }, {
+    "service_id": 198,
+    "id": 130,
+    "name": "Избоскан тумани",
+    "parent": 10,
+    "code": 130,
+    "offline_code": "130"
+  }, {
+    "service_id": 198,
+    "id": 131,
+    "name": "Кургонтепа тумани",
+    "parent": 10,
+    "code": 131,
+    "offline_code": "131"
+  }, {
+    "service_id": 198,
+    "id": 132,
+    "name": "Хонобод тумани",
+    "parent": 10,
+    "code": 132,
+    "offline_code": "132"
+  }, {
+    "service_id": 198,
+    "id": 133,
+    "name": "Карасув тумани",
+    "parent": 10,
+    "code": 133,
+    "offline_code": "133"
+  }, {
+    "service_id": 198,
+    "id": 134,
+    "name": "Мархамат тумани",
+    "parent": 10,
+    "code": 134,
+    "offline_code": "134"
+  }, {
+    "service_id": 198,
+    "id": 135,
+    "name": "Олтинкул тумани",
+    "parent": 10,
+    "code": 135,
+    "offline_code": "135"
+  }, {
+    "service_id": 198,
+    "id": 136,
+    "name": "Пахтаобод тумани",
+    "parent": 10,
+    "code": 136,
+    "offline_code": "136"
+  }, {
+    "service_id": 198,
+    "id": 137,
+    "name": "Улугнор тумани",
+    "parent": 10,
+    "code": 137,
+    "offline_code": "137"
+  }, {
+    "service_id": 198,
+    "id": 138,
+    "name": "Хужаобод тумани",
+    "parent": 10,
+    "code": 138,
+    "offline_code": "138"
+  }, {
+    "service_id": 198,
+    "id": 139,
+    "name": "Шахрихон тумани",
+    "parent": 10,
+    "code": 139,
+    "offline_code": "139"
+  }, {
+    "service_id": 198,
+    "id": 121,
+    "name": "Булокбоши тумани-2",
+    "parent": 10,
+    "code": 121,
+    "offline_code": "121"
+  }, {
+    "service_id": 198,
+    "id": 44,
+    "name": "Гулистон шахар",
+    "parent": 13,
+    "code": 44,
+    "offline_code": "044"
+  }, {
+    "service_id": 198,
+    "id": 45,
+    "name": "Янгиер шахар",
+    "parent": 13,
+    "code": 45,
+    "offline_code": "045"
+  }, {
+    "service_id": 198,
+    "id": 46,
+    "name": "Ширин шахар",
+    "parent": 13,
+    "code": 46,
+    "offline_code": "046"
+  }, {
+    "service_id": 198,
+    "id": 47,
+    "name": "Ок-олтин тумани",
+    "parent": 13,
+    "code": 47,
+    "offline_code": "047"
+  }, {
+    "service_id": 198,
+    "id": 48,
+    "name": "Боевут тумани",
+    "parent": 13,
+    "code": 48,
+    "offline_code": "048"
+  }, {
+    "service_id": 198,
+    "id": 49,
+    "name": "Гулистон тумани",
+    "parent": 13,
+    "code": 49,
+    "offline_code": "049"
+  }, {
+    "service_id": 198,
+    "id": 50,
+    "name": "Сирдарё тумани",
+    "parent": 13,
+    "code": 50,
+    "offline_code": "050"
+  }, {
+    "service_id": 198,
+    "id": 51,
+    "name": "Бахт шахар",
+    "parent": 13,
+    "code": 51,
+    "offline_code": "051"
+  }, {
+    "service_id": 198,
+    "id": 52,
+    "name": "Сайхунобод тумани",
+    "parent": 13,
+    "code": 52,
+    "offline_code": "052"
+  }, {
+    "service_id": 198,
+    "id": 53,
+    "name": "Хавос тумани",
+    "parent": 13,
+    "code": 53,
+    "offline_code": "053"
+  }, {
+    "service_id": 198,
+    "id": 54,
+    "name": "Мирзаобод тумани",
+    "parent": 13,
+    "code": 54,
+    "offline_code": "054"
+  }, {
+    "service_id": 198,
+    "id": 226,
+    "name": "Сардоба тумани",
+    "parent": 13,
+    "code": 226,
+    "offline_code": "226"
+  }, {
+    "service_id": 198,
+    "id": 55,
+    "name": "Участок Мехнатобод",
+    "parent": 13,
+    "code": 55,
+    "offline_code": "055"
+  }, {
+    "service_id": 198,
+    "id": 156,
+    "name": "Ангор тумани",
+    "parent": 11,
+    "code": 156,
+    "offline_code": "156"
+  }, {
+    "service_id": 198,
+    "id": 157,
+    "name": "Бойсун тумани",
+    "parent": 11,
+    "code": 157,
+    "offline_code": "157"
+  }, {
+    "service_id": 198,
+    "id": 158,
+    "name": "Бандыхан тумани",
+    "parent": 11,
+    "code": 158,
+    "offline_code": "158"
+  }, {
+    "service_id": 198,
+    "id": 159,
+    "name": "Денов шахар",
+    "parent": 11,
+    "code": 159,
+    "offline_code": "159"
+  }, {
+    "service_id": 198,
+    "id": 160,
+    "name": "Денов тумани",
+    "parent": 11,
+    "code": 160,
+    "offline_code": "160"
+  }, {
+    "service_id": 198,
+    "id": 161,
+    "name": "Жаркургон тумани",
+    "parent": 11,
+    "code": 161,
+    "offline_code": "161"
+  }, {
+    "service_id": 198,
+    "id": 162,
+    "name": "Кизирик тумани",
+    "parent": 11,
+    "code": 162,
+    "offline_code": "162"
+  }, {
+    "service_id": 198,
+    "id": 163,
+    "name": "Кумкурган тумани",
+    "parent": 11,
+    "code": 163,
+    "offline_code": "163"
+  }, {
+    "service_id": 198,
+    "id": 164,
+    "name": "Музрабад тумани",
+    "parent": 11,
+    "code": 164,
+    "offline_code": "164"
+  }, {
+    "service_id": 198,
+    "id": 165,
+    "name": "Олтинсай тумани",
+    "parent": 11,
+    "code": 165,
+    "offline_code": "165"
+  }, {
+    "service_id": 198,
+    "id": 166,
+    "name": "Сариосиё тумани",
+    "parent": 11,
+    "code": 166,
+    "offline_code": "166"
+  }, {
+    "service_id": 198,
+    "id": 167,
+    "name": "Термез шахар",
+    "parent": 11,
+    "code": 167,
+    "offline_code": "167"
+  }, {
+    "service_id": 198,
+    "id": 168,
+    "name": "Термез тумани",
+    "parent": 11,
+    "code": 168,
+    "offline_code": "168"
+  }, {
+    "service_id": 198,
+    "id": 169,
+    "name": "Шеробод тумани",
+    "parent": 11,
+    "code": 169,
+    "offline_code": "169"
+  }, {
+    "service_id": 198,
+    "id": 170,
+    "name": "Шурчи тумани",
+    "parent": 11,
+    "code": 170,
+    "offline_code": "170"
+  }, {
+    "service_id": 198,
+    "id": 171,
+    "name": "Узун тумани",
+    "parent": 11,
+    "code": 171,
+    "offline_code": "171"
+  }, {
+    "service_id": 2685,
+    "id": 1,
+    "name": "Асака тумани",
+    "parent": 0,
+    "code": 1,
+    "offline_code": "1"
+  }, {
+    "service_id": 2685,
+    "id": 2,
+    "name": "Баликчи тумани",
+    "parent": 0,
+    "code": 2,
+    "offline_code": "2"
+  }, {
+    "service_id": 2685,
+    "id": 3,
+    "name": "Буз тумани",
+    "parent": 0,
+    "code": 3,
+    "offline_code": "3"
+  }, {"service_id": 7045, "id": 1, "name": "Ташкент", "parent": 0, "code": 1, "offline_code": "1"}, {
+    "service_id": 7045,
+    "id": 2,
+    "name": "Таш. Обл.",
+    "parent": 0,
+    "code": 2,
+    "offline_code": "2"
+  }, {"service_id": 7045, "id": 3, "name": "Бухара", "parent": 0, "code": 3, "offline_code": "3"}, {
+    "service_id": 7045,
+    "id": 4,
+    "name": "Самарканд",
+    "parent": 0,
+    "code": 4,
+    "offline_code": "4"
+  }, {"service_id": 7045, "id": 5, "name": "Джизак", "parent": 0, "code": 5, "offline_code": "5"}, {
+    "service_id": 7045,
+    "id": 6,
+    "name": "Навои",
+    "parent": 0,
+    "code": 6,
+    "offline_code": "6"
+  }, {
+    "service_id": 7045,
+    "id": 7,
+    "name": "Кашкадарья",
+    "parent": 0,
+    "code": 7,
+    "offline_code": "7"
+  }, {"service_id": 7045, "id": 8, "name": "Фергана", "parent": 0, "code": 8, "offline_code": "8"}, {
+    "service_id": 7045,
+    "id": 9,
+    "name": "Наманган",
+    "parent": 0,
+    "code": 9,
+    "offline_code": "9"
+  }, {
+    "service_id": 7045,
+    "id": 10,
+    "name": "Андижан",
+    "parent": 0,
+    "code": 10,
+    "offline_code": "10"
+  }, {
+    "service_id": 7045,
+    "id": 11,
+    "name": "Сурхандарья",
+    "parent": 0,
+    "code": 11,
+    "offline_code": "11"
+  }, {
+    "service_id": 7045,
+    "id": 12,
+    "name": "Хорезм",
+    "parent": 0,
+    "code": 12,
+    "offline_code": "12"
+  }, {
+    "service_id": 7045,
+    "id": 13,
+    "name": "Сырдарья",
+    "parent": 0,
+    "code": 13,
+    "offline_code": "13"
+  }, {
+    "service_id": 7045,
+    "id": 14,
+    "name": "Каракалпакстан",
+    "parent": 0,
+    "code": 14,
+    "offline_code": "14"
+  }], [{
+    "service_id": 44,
+    "card_type_id": 1,
+    "name": "Центральный Телеграф",
+    "card_type_desc": "Central Telegraf",
+    "card_type": "STK",
+    "nominal": 5000,
+    "duration": null
+  }, {
+    "service_id": 44,
+    "card_type_id": 1,
+    "name": "Центральный Телеграф",
+    "card_type_desc": "Central Telegraf",
+    "card_type": "STK",
+    "nominal": 10000,
+    "duration": null
+  }, {
+    "service_id": 44,
+    "card_type_id": 1,
+    "name": "Центральный Телеграф",
+    "card_type_desc": "Central Telegraf",
+    "card_type": "STK",
+    "nominal": 20000,
+    "duration": null
+  }, {
+    "service_id": 44,
+    "card_type_id": 1,
+    "name": "Центральный Телеграф",
+    "card_type_desc": "Central Telegraf",
+    "card_type": "STK",
+    "nominal": 50000,
+    "duration": null
+  }, {
+    "service_id": 44,
+    "card_type_id": 1,
+    "name": "Центральный Телеграф",
+    "card_type_desc": "Central Telegraf",
+    "card_type": "STK",
+    "nominal": 100000,
+    "duration": null
+  }, {
+    "service_id": 44,
+    "card_type_id": 2,
+    "name": "Россия, Казахстан",
+    "card_type_desc": "Russia,Kazahstan",
+    "card_type": "RUS-KAZ",
+    "nominal": 4500,
+    "duration": 20
+  }, {
+    "service_id": 44,
+    "card_type_id": 2,
+    "name": "Россия, Казахстан",
+    "card_type_desc": "Russia,Kazahstan",
+    "card_type": "RUS-KAZ",
+    "nominal": 6600,
+    "duration": 30
+  }, {
+    "service_id": 44,
+    "card_type_id": 2,
+    "name": "Россия, Казахстан",
+    "card_type_desc": "Russia,Kazahstan",
+    "card_type": "RUS-KAZ",
+    "nominal": 13200,
+    "duration": 60
+  }, {
+    "service_id": 44,
+    "card_type_id": 3,
+    "name": "UzTelecom",
+    "card_type_desc": "UzTelecom",
+    "card_type": "UzT",
+    "nominal": 5000,
+    "duration": null
+  }, {
+    "service_id": 44,
+    "card_type_id": 3,
+    "name": "UzTelecom",
+    "card_type_desc": "UzTelecom",
+    "card_type": "UzT",
+    "nominal": 10000,
+    "duration": null
+  }, {
+    "service_id": 44,
+    "card_type_id": 3,
+    "name": "UzTelecom",
+    "card_type_desc": "UzTelecom",
+    "card_type": "UzT",
+    "nominal": 20000,
+    "duration": null
+  }, {
+    "service_id": 44,
+    "card_type_id": 3,
+    "name": "UzTelecom",
+    "card_type_desc": "UzTelecom",
+    "card_type": "UzT",
+    "nominal": 50000,
+    "duration": null
+  }, {
+    "service_id": 44,
+    "card_type_id": 3,
+    "name": "UzTelecom",
+    "card_type_desc": "UzTelecom",
+    "card_type": "UzT",
+    "nominal": 100000,
+    "duration": null
+  }, {
+    "service_id": 83,
+    "card_type_id": 6,
+    "name": "TELEKARTA",
+    "card_type_desc": "TELEKARTA",
+    "card_type": "TELEKARTA",
+    "nominal": 3000,
+    "duration": null
+  }, {
+    "service_id": 83,
+    "card_type_id": 6,
+    "name": "TELEKARTA",
+    "card_type_desc": "TELEKARTA",
+    "card_type": "TELEKARTA",
+    "nominal": 5000,
+    "duration": null
+  }, {
+    "service_id": 83,
+    "card_type_id": 6,
+    "name": "TELEKARTA",
+    "card_type_desc": "TELEKARTA",
+    "card_type": "TELEKARTA",
+    "nominal": 15000,
+    "duration": null
+  }, {
+    "service_id": 83,
+    "card_type_id": 6,
+    "name": "TELEKARTA",
+    "card_type_desc": "TELEKARTA",
+    "card_type": "TELEKARTA",
+    "nominal": 50000,
+    "duration": null
+  }, {
+    "service_id": 78,
+    "card_type_id": 7,
+    "name": "SONET",
+    "card_type_desc": "SONET",
+    "card_type": "SONET",
+    "nominal": 5000,
+    "duration": null
+  }, {
+    "service_id": 78,
+    "card_type_id": 7,
+    "name": "SONET",
+    "card_type_desc": "SONET",
+    "card_type": "SONET",
+    "nominal": 10000,
+    "duration": null
+  }, {
+    "service_id": 78,
+    "card_type_id": 7,
+    "name": "SONET",
+    "card_type_desc": "SONET",
+    "card_type": "SONET",
+    "nominal": 20000,
+    "duration": null
+  }, {
+    "service_id": 78,
+    "card_type_id": 7,
+    "name": "SONET",
+    "card_type_desc": "SONET",
+    "card_type": "SONET",
+    "nominal": 50000,
+    "duration": null
+  }, {
+    "service_id": 95,
+    "card_type_id": 9,
+    "name": "DASTUR.UZ",
+    "card_type_desc": "DASTUR",
+    "card_type": "DASTUR",
+    "nominal": 13000,
+    "duration": null
+  }, {
+    "service_id": 95,
+    "card_type_id": 9,
+    "name": "DASTUR.UZ",
+    "card_type_desc": "DASTUR",
+    "card_type": "DASTUR",
+    "nominal": 25000,
+    "duration": null
+  }, {
+    "service_id": 95,
+    "card_type_id": 9,
+    "name": "DASTUR.UZ",
+    "card_type_desc": "DASTUR",
+    "card_type": "DASTUR",
+    "nominal": 35000,
+    "duration": null
+  }, {
+    "service_id": 95,
+    "card_type_id": 9,
+    "name": "DASTUR.UZ",
+    "card_type_desc": "DASTUR",
+    "card_type": "DASTUR",
+    "nominal": 50000,
+    "duration": null
+  }, {
+    "service_id": 95,
+    "card_type_id": 9,
+    "name": "DASTUR.UZ",
+    "card_type_desc": "DASTUR",
+    "card_type": "DASTUR",
+    "nominal": 65000,
+    "duration": null
+  }, {
+    "service_id": 95,
+    "card_type_id": 9,
+    "name": "DASTUR.UZ",
+    "card_type_desc": "DASTUR",
+    "card_type": "DASTUR",
+    "nominal": 120000,
+    "duration": null
+  }, {
+    "service_id": 139,
+    "card_type_id": 10,
+    "name": "OXYGEN",
+    "card_type_desc": "OXYGEN",
+    "card_type": "OXYGEN",
+    "nominal": 3000,
+    "duration": null
+  }, {
+    "service_id": 139,
+    "card_type_id": 10,
+    "name": "OXYGEN",
+    "card_type_desc": "OXYGEN",
+    "card_type": "OXYGEN",
+    "nominal": 5000,
+    "duration": null
+  }, {
+    "service_id": 139,
+    "card_type_id": 10,
+    "name": "OXYGEN",
+    "card_type_desc": "OXYGEN",
+    "card_type": "OXYGEN",
+    "nominal": 10000,
+    "duration": null
+  }, {
+    "service_id": 139,
+    "card_type_id": 10,
+    "name": "OXYGEN",
+    "card_type_desc": "OXYGEN",
+    "card_type": "OXYGEN",
+    "nominal": 20000,
+    "duration": null
+  }, {
+    "service_id": 139,
+    "card_type_id": 10,
+    "name": "OXYGEN",
+    "card_type_desc": "OXYGEN",
+    "card_type": "OXYGEN",
+    "nominal": 50000,
+    "duration": null
+  }, {
+    "service_id": 157,
+    "card_type_id": 11,
+    "name": "ARXIV.UZ",
+    "card_type_desc": "ARXIV.UZ",
+    "card_type": "ARXIV.UZ",
+    "nominal": 5000,
+    "duration": null
+  }, {
+    "service_id": 157,
+    "card_type_id": 11,
+    "name": "ARXIV.UZ",
+    "card_type_desc": "ARXIV.UZ",
+    "card_type": "ARXIV.UZ",
+    "nominal": 13000,
+    "duration": null
+  }, {
+    "service_id": 1133,
+    "card_type_id": 13,
+    "name": "SONET",
+    "card_type_desc": "SONET",
+    "card_type": "SONET",
+    "nominal": 5000,
+    "duration": null
+  }, {
+    "service_id": 1133,
+    "card_type_id": 13,
+    "name": "SONET",
+    "card_type_desc": "SONET",
+    "card_type": "SONET",
+    "nominal": 10000,
+    "duration": null
+  }, {
+    "service_id": 1133,
+    "card_type_id": 13,
+    "name": "SONET",
+    "card_type_desc": "SONET",
+    "card_type": "SONET",
+    "nominal": 20000,
+    "duration": null
+  }, {
+    "service_id": 1133,
+    "card_type_id": 13,
+    "name": "SONET",
+    "card_type_desc": "SONET",
+    "card_type": "SONET",
+    "nominal": 50000,
+    "duration": null
+  }, {
+    "service_id": 7025,
+    "card_type_id": 14,
+    "name": "ARS INFORM",
+    "card_type_desc": "ARS INFORM",
+    "card_type": "ARS INFORM",
+    "nominal": 12000,
+    "duration": null
+  }, {
+    "service_id": 7025,
+    "card_type_id": 14,
+    "name": "ARS INFORM",
+    "card_type_desc": "ARS INFORM",
+    "card_type": "ARS INFORM",
+    "nominal": 50000,
+    "duration": null
+  }], [{"service_id": 4422, "type": 1, "name": "30 dney"}, {
+    "service_id": 4422,
+    "type": 2,
+    "name": "sutochnie"
+  }, {"service_id": 4422, "type": 3, "name": "nochnie"}, {
+    "service_id": 4422,
+    "type": 4,
+    "name": "nochnoy DRIVE"
+  }], [{
+    "service_id": 4422,
+    "code": "FRGPRS450BONUS",
+    "type": 1,
+    "name": "Интернет-пакет 300+50% FREE",
+    "usd_cost": 5,
+    "sum_cost": 19232,
+    "status": 1,
+    "priority": 1
+  }, {
+    "service_id": 4422,
+    "code": "FRGPRS750BONUS",
+    "type": 1,
+    "name": "Интернет-пакет 500+50% FREE",
+    "usd_cost": 7,
+    "sum_cost": 26925,
+    "status": 1,
+    "priority": 2
+  }, {
+    "service_id": 4422,
+    "code": "FRGPRS1500BONUS",
+    "type": 1,
+    "name": "Интернет-пакет 1000+50% FREE",
+    "usd_cost": 10,
+    "sum_cost": 38464,
+    "status": 1,
+    "priority": 3
+  }, {
+    "service_id": 4422,
+    "code": "FRGPRS3000BONUS",
+    "type": 1,
+    "name": "Интернет-пакет 2000+50% FREE",
+    "usd_cost": 18,
+    "sum_cost": 69234,
+    "status": 1,
+    "priority": 4
+  }, {
+    "service_id": 4422,
+    "code": "FRGPRS4500BONUS",
+    "type": 1,
+    "name": "Интернет-пакет 3000+50% FREE",
+    "usd_cost": 25,
+    "sum_cost": 96159,
+    "status": 1,
+    "priority": 5
+  }, {
+    "service_id": 4422,
+    "code": "FRGPRS7500BONUS",
+    "type": 1,
+    "name": "Интернет-пакет 5000+50% FREE",
+    "usd_cost": 35,
+    "sum_cost": 134622,
+    "status": 1,
+    "priority": 6
+  }, {
+    "service_id": 4422,
+    "code": "FRGPRS15000BONUS",
+    "type": 1,
+    "name": "Интернет-пакет 10000+50% FREE",
+    "usd_cost": 55,
+    "sum_cost": 211549,
+    "status": 1,
+    "priority": 7
+  }, {
+    "service_id": 4422,
+    "code": "FRGPRS50DAY",
+    "type": 2,
+    "name": "Суточный интернет-пакет 50 Mb",
+    "usd_cost": 1,
+    "sum_cost": 3847,
+    "status": 1,
+    "priority": 1
+  }, {
+    "service_id": 4422,
+    "code": "FRGPRS100DAY",
+    "type": 2,
+    "name": "Суточный интернет-пакет 100 Mb",
+    "usd_cost": 1.5,
+    "sum_cost": 5770,
+    "status": 1,
+    "priority": 2
+  }, {
+    "service_id": 4422,
+    "code": "MB1000MNIGHT",
+    "type": 3,
+    "name": "Ночной интернет-пакет 1000 Mb",
+    "usd_cost": 2,
+    "sum_cost": 7693,
+    "status": 1,
+    "priority": 1
+  }, {
+    "service_id": 4422,
+    "code": "MB2000MNIGHT",
+    "type": 3,
+    "name": "Ночной интернет-пакет 2000 Mb",
+    "usd_cost": 3.5,
+    "sum_cost": 13463,
+    "status": 1,
+    "priority": 2
+  }, {
+    "service_id": 4422,
+    "code": "MB3000MNIGHT",
+    "type": 3,
+    "name": "Ночной интернет-пакет 3000 Mb",
+    "usd_cost": 5,
+    "sum_cost": 19232,
+    "status": 1,
+    "priority": 3
+  }, {
+    "service_id": 4422,
+    "code": "MB5000MNIGHT",
+    "type": 3,
+    "name": "Ночной интернет-пакет 5000 Mb",
+    "usd_cost": 7,
+    "sum_cost": 26925,
+    "status": 1,
+    "priority": 4
+  }, {
+    "service_id": 4422,
+    "code": "MB10000MNIGHT",
+    "type": 3,
+    "name": "Ночной интернет-пакет 10000 Mb",
+    "usd_cost": 10,
+    "sum_cost": 38464,
+    "status": 1,
+    "priority": 5
+  }, {
+    "service_id": 4422,
+    "code": "MB20000MNIGHT",
+    "type": 3,
+    "name": "Ночной интернет-пакет 20000 Mb",
+    "usd_cost": 15,
+    "sum_cost": 57695,
+    "status": 1,
+    "priority": 6
+  }, {
+    "service_id": 4422,
+    "code": "MB50000MNIGHT",
+    "type": 3,
+    "name": "Ночной интернет-пакет 50000 Mb",
+    "usd_cost": 20,
+    "sum_cost": 76927,
+    "status": 1,
+    "priority": 7
+  }, {
+    "service_id": 4422,
+    "code": "NIGHTDRIVE1",
+    "type": 4,
+    "name": "Ночной DRIVE 1",
+    "usd_cost": 3,
+    "sum_cost": 11539,
+    "status": 1,
+    "priority": 1
+  }, {
+    "service_id": 4422,
+    "code": "NIGHTDRIVE7",
+    "type": 4,
+    "name": "Ночной DRIVE 7",
+    "usd_cost": 15,
+    "sum_cost": 57695,
+    "status": 1,
+    "priority": 2
+  }, {
+    "service_id": 4422,
+    "code": "NIGHTDRIVE30",
+    "type": 4,
+    "name": "Ночной DRIVE 30",
+    "usd_cost": 40,
+    "sum_cost": 153854,
+    "status": 1,
+    "priority": 3
+  }], [{"service_id": 183, "parent_param_id": 16777216, "option_id": 1, "name": "ANP"}, {
+    "service_id": 183,
+    "parent_param_id": 16777216,
+    "option_id": 2,
+    "name": "BUP"
+  }, {"service_id": 183, "parent_param_id": 16777216, "option_id": 3, "name": "FEP"}, {
+    "service_id": 183,
+    "parent_param_id": 16777216,
+    "option_id": 4,
+    "name": "NAP"
+  }, {"service_id": 183, "parent_param_id": 16777216, "option_id": 5, "name": "SSP"}, {
+    "service_id": 183,
+    "parent_param_id": 16777216,
+    "option_id": 6,
+    "name": "KAP"
+  }, {"service_id": 183, "parent_param_id": 16777216, "option_id": 7, "name": "HAP"}, {
+    "service_id": 183,
+    "parent_param_id": 16777216,
+    "option_id": 8,
+    "name": "SDP"
+  }, {"service_id": 183, "parent_param_id": 16777216, "option_id": 9, "name": "SHP"}, {
+    "service_id": 183,
+    "parent_param_id": 16777216,
+    "option_id": 10,
+    "name": "NVP"
+  }, {"service_id": 183, "parent_param_id": 16777216, "option_id": 11, "name": "TSP"}, {
+    "service_id": 183,
+    "parent_param_id": 16777216,
+    "option_id": 12,
+    "name": "JKP"
+  }, {"service_id": 183, "parent_param_id": 16777216, "option_id": 13, "name": "KPP"}, {
+    "service_id": 183,
+    "parent_param_id": 16777216,
+    "option_id": 14,
+    "name": "TRC"
+  }, {"service_id": 183, "parent_param_id": 16777216, "option_id": 15, "name": "TRP"}, {
+    "service_id": 183,
+    "parent_param_id": 16,
+    "option_id": 1,
+    "name": "TS1-"
+  }, {"service_id": 183, "parent_param_id": 16, "option_id": 2, "name": "123-"}, {
+    "service_id": 183,
+    "parent_param_id": 16,
+    "option_id": 3,
+    "name": "Только цифры"
+  }, {"service_id": 7, "parent_param_id": 2, "option_id": 1, "name": "shs"}, {
+    "service_id": 7,
+    "parent_param_id": 2,
+    "option_id": 2,
+    "name": "shsts"
+  }, {"service_id": 7, "parent_param_id": 2, "option_id": 3, "name": "shssm"}, {
+    "service_id": 15,
+    "parent_param_id": 2,
+    "option_id": 1,
+    "name": "he-"
+  }, {"service_id": 15, "parent_param_id": 2, "option_id": 2, "name": "x-"}, {
+    "service_id": 15,
+    "parent_param_id": 2,
+    "option_id": 3,
+    "name": "ge-"
+  }, {"service_id": 31, "parent_param_id": 2, "option_id": 1, "name": "tps"}, {
+    "service_id": 40,
+    "parent_param_id": 2,
+    "option_id": 1,
+    "name": "f"
+  }, {"service_id": 40, "parent_param_id": 2, "option_id": 2, "name": "k"}, {
+    "service_id": 40,
+    "parent_param_id": 2,
+    "option_id": 3,
+    "name": "Только цифры"
+  }]],
 
   offlineServicesParamsMapOne = {
     "2": [{
@@ -11612,17 +11726,6 @@ var offlinePopularServiceList = [
       "max_len": "50",
       "ussd_query": "*880*0128999001*3*{param}*{amount}#"
     }],
-    "132": [{
-      "service_id": 132,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": "*880*0132999001*{param}*{amount}#"
-    }],
     "139": [{
       "service_id": 139,
       "parameter_id": "32768",
@@ -11677,16 +11780,6 @@ var offlinePopularServiceList = [
       "min_len": "0",
       "max_len": "50",
       "ussd_query": "*880*0183999001*2*{option}*{param}*{amount}#"
-    }, {
-      "service_id": 183,
-      "parameter_id": "16777216",
-      "input_type": 2,
-      "title": "Номер контракта",
-      "placeholder": "Введите номер контракта",
-      "error_message": "Номер контракта введен неверно",
-      "min_len": "1",
-      "max_len": "50",
-      "ussd_query": "*880*0183999001*1*{option}*{param}*{amount}#"
     }],
     "198": [{
       "service_id": 198,
@@ -11842,6 +11935,17 @@ var offlinePopularServiceList = [
       "max_len": "50",
       "ussd_query": "*880*03185*{param}*{amount}#"
     }],
+    "3186": [{
+      "service_id": 3186,
+      "parameter_id": "1",
+      "input_type": 1,
+      "title": "Номер телефона",
+      "placeholder": "Введите номер телефона без 998",
+      "error_message": "Номер телефона введен неправильно",
+      "min_len": "0",
+      "max_len": "999999999",
+      "ussd_query": null
+    }],
     "3198": [{
       "service_id": 3198,
       "parameter_id": "4",
@@ -11919,6 +12023,17 @@ var offlinePopularServiceList = [
       "max_len": "999999999999999",
       "ussd_query": null
     }],
+    "4639": [{
+      "service_id": 4639,
+      "parameter_id": "4",
+      "input_type": 1,
+      "title": "ID абонента",
+      "placeholder": "Введите ID абонента",
+      "error_message": "Неверный ID абонента",
+      "min_len": "0",
+      "max_len": "999999999999999",
+      "ussd_query": null
+    }],
     "4641": [{
       "service_id": 4641,
       "parameter_id": "4",
@@ -11929,6 +12044,17 @@ var offlinePopularServiceList = [
       "min_len": "0",
       "max_len": "999999999999999",
       "ussd_query": null
+    }],
+    "4644": [{
+      "service_id": 4644,
+      "parameter_id": "4",
+      "input_type": 1,
+      "title": "ID абонента",
+      "placeholder": "Введите ID абонента",
+      "error_message": "Неверный ID абонента",
+      "min_len": "0",
+      "max_len": "999999999999999",
+      "ussd_query": "*880*04644999001*{param}*{amount}#"
     }],
     "4646": [{
       "service_id": 4646,
@@ -11974,17 +12100,6 @@ var offlinePopularServiceList = [
       "max_len": "999999999999999",
       "ussd_query": null
     }],
-    "4663": [{
-      "service_id": 4663,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }],
     "4666": [{
       "service_id": 4666,
       "parameter_id": "2",
@@ -12016,16 +12131,6 @@ var offlinePopularServiceList = [
       "min_len": "3",
       "max_len": "50",
       "ussd_query": null
-    }, {
-      "service_id": 4667,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
     }],
     "4668": [{
       "service_id": 4668,
@@ -12037,16 +12142,6 @@ var offlinePopularServiceList = [
       "min_len": "3",
       "max_len": "50",
       "ussd_query": null
-    }, {
-      "service_id": 4668,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
     }],
     "4669": [{
       "service_id": 4669,
@@ -12057,16 +12152,6 @@ var offlinePopularServiceList = [
       "error_message": "Логин введен неправильно",
       "min_len": "3",
       "max_len": "50",
-      "ussd_query": null
-    }, {
-      "service_id": 4669,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
       "ussd_query": null
     }],
     "4670": [{
@@ -12137,44 +12222,23 @@ var offlinePopularServiceList = [
     }],
     "4678": [{
       "service_id": 4678,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }],
-    "4680": [{
-      "service_id": 4680,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
+      "parameter_id": "2",
+      "input_type": 2,
+      "title": "Логин",
+      "placeholder": "Введите логин ",
+      "error_message": "Логин введен неправильно",
+      "min_len": "3",
+      "max_len": "50",
       "ussd_query": null
     }],
     "4688": [{
       "service_id": 4688,
-      "parameter_id": "4",
-      "input_type": 1,
-      "title": "ID абонента",
-      "placeholder": "Введите ID абонента",
-      "error_message": "Неверный ID абонента",
-      "min_len": "0",
-      "max_len": "999999999999999",
-      "ussd_query": null
-    }, {
-      "service_id": 4688,
-      "parameter_id": "16",
+      "parameter_id": "2",
       "input_type": 2,
-      "title": "Лицевой счет абонента",
-      "placeholder": "Введите лицевой счет абонента",
-      "error_message": "Неверно набран лицевой счет",
-      "min_len": "0",
+      "title": "Логин",
+      "placeholder": "Введите логин ",
+      "error_message": "Логин введен неправильно",
+      "min_len": "3",
       "max_len": "50",
       "ussd_query": null
     }],
@@ -12199,6 +12263,17 @@ var offlinePopularServiceList = [
       "max_len": "50",
       "ussd_query": null
     }],
+    "4694": [{
+      "service_id": 4694,
+      "parameter_id": "33554432",
+      "input_type": 1,
+      "title": "ID кредита",
+      "placeholder": "Введите ID кредита",
+      "error_message": "Введите ID кредита",
+      "min_len": "1",
+      "max_len": "9999999999999999",
+      "ussd_query": null
+    }],
     "7003": [{
       "service_id": 7003,
       "parameter_id": "4",
@@ -12219,6 +12294,83 @@ var offlinePopularServiceList = [
       "error_message": "Логин введен неправильно",
       "min_len": "3",
       "max_len": "50",
+      "ussd_query": null
+    }],
+    "7024": [{
+      "service_id": 7024,
+      "parameter_id": "4",
+      "input_type": 1,
+      "title": "ID абонента",
+      "placeholder": "Введите ID абонента",
+      "error_message": "Неверный ID абонента",
+      "min_len": "0",
+      "max_len": "999999999999999",
+      "ussd_query": null
+    }],
+    "7025": [{
+      "service_id": 7025,
+      "parameter_id": "32768",
+      "input_type": 3,
+      "title": "Выберите PIN-карту",
+      "placeholder": "Выберите PIN-карту и номинал карты, которую вы хотите приобрести",
+      "error_message": "Не выбрана PIN-карта",
+      "min_len": "0",
+      "max_len": "999999999999999",
+      "ussd_query": null
+    }],
+    "7033": [{
+      "service_id": 7033,
+      "parameter_id": "4",
+      "input_type": 1,
+      "title": "ID абонента",
+      "placeholder": "Введите ID абонента",
+      "error_message": "Неверный ID абонента",
+      "min_len": "0",
+      "max_len": "999999999999999",
+      "ussd_query": null
+    }],
+    "7043": [{
+      "service_id": 7043,
+      "parameter_id": "2",
+      "input_type": 2,
+      "title": "Логин",
+      "placeholder": "Введите логин ",
+      "error_message": "Логин введен неправильно",
+      "min_len": "3",
+      "max_len": "50",
+      "ussd_query": null
+    }],
+    "7044": [{
+      "service_id": 7044,
+      "parameter_id": "67108864",
+      "input_type": 2,
+      "title": "Номер постановления",
+      "placeholder": "Введите номер постановления",
+      "error_message": "Введите номер постановления",
+      "min_len": "3",
+      "max_len": "50",
+      "ussd_query": null
+    }],
+    "8409": [{
+      "service_id": 8409,
+      "parameter_id": "4",
+      "input_type": 1,
+      "title": "ID абонента",
+      "placeholder": "Введите ID абонента",
+      "error_message": "Неверный ID абонента",
+      "min_len": "0",
+      "max_len": "999999999999999",
+      "ussd_query": null
+    }],
+    "8414": [{
+      "service_id": 8414,
+      "parameter_id": "4",
+      "input_type": 1,
+      "title": "ID абонента",
+      "placeholder": "Введите ID абонента",
+      "error_message": "Неверный ID абонента",
+      "min_len": "0",
+      "max_len": "999999999999999",
       "ussd_query": null
     }],
     "-2": [{
