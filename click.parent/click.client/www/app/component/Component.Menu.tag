@@ -1,5 +1,5 @@
 <component-menu>
-  <div id="sideMenuBackPageId" ontouchend="sideMenuTouchEnd()" ontouchstart="sideMenuTouchStart()"
+  <div id="sideMenuBackPageId" ontouchend="sideMenuTouchEnd(true)" ontouchstart="sideMenuTouchStart()"
        ontouchmove="sideMenuTouchMove()" class="side-menu-back-page"></div>
   <div ontouchend="sideMenuTouchEnd()" ontouchstart="sideMenuTouchStart()" ontouchmove="sideMenuTouchMove()"
        id="sideMenuId" class="side-menu">
@@ -105,6 +105,7 @@
     })
 
     userIconTouchEnd = function () {
+      if(modeOfApp.offlineMode) return
       closeMenu();
       event.preventDefault();
       event.stopPropagation();
@@ -165,7 +166,7 @@
 
     }
 
-    sideMenuTouchEnd = function () {
+    sideMenuTouchEnd = function (bool) {
 //      event.preventDefault();
 //      event.stopPropagation();
       touchEndX = event.changedTouches[0].pageX;
@@ -176,7 +177,7 @@
       }
       else {
         console.log('START END',touchStartX, touchEndX)
-        if (Math.abs(touchStartX - touchEndX) < 20) {
+        if (Math.abs(touchStartX - touchEndX) < 20 && bool) {
           closeMenu();
           return
         }

@@ -132,6 +132,7 @@
       if (minutes == 0 && seconds == 0) {
         scope.messageTitle = window.languages.ViewSmsMessageTitle;
         scope.messageTitleTwo = window.languages.ViewSmsMessageTitleTwo;
+        scope.update();
         clearInterval(time);
       }
       if (seconds == 0) {
@@ -139,7 +140,7 @@
         minutes--;
       }
 
-      riot.update();
+      scope.update();
     }
     var time = setInterval(timer, 1000);
 
