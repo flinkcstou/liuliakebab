@@ -10714,9 +10714,15 @@ var css = {
 
   trustedDevicesDeviceDeleteIcon: ".trusted-devices-device-delete-icon" +
   "{" +
-  "margin: " + 20 * widthK + "px 0 0 " + 21 * widthK + "px;" +
-  "height: " + 20 * widthK + "px;" +
-  "width: " + 20 * widthK + "px;" +
+  //"margin: " + 20 * widthK + "px 0 0 " + 21 * widthK + "px;" +
+  "position: absolute;" +
+  "height: " + 70 * widthK + "px;" +
+  "width: " + 70 * widthK + "px;" +
+  "right: " + 10 * widthK + "px;" +
+  "margin-top: " + -10 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/ViewSettingsFriendHelp/delete.png);" +
   "}",
 
   //VIEW QR PIN CARD

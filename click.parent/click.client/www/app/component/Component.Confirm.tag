@@ -25,6 +25,7 @@
 
       if (opts.confirmtype == 'local') {
         scope.parent.result(true);
+        scope.parent.confirmShowBool = false;;
       }
       else if (opts.confirmtype == 'internet') {
         modeOfApp.offlineMode = true;
