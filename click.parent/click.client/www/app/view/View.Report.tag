@@ -607,6 +607,16 @@
       console.log("firstDay=", firstDay);
       console.log("lastDay=", lastDay);
 
+      if (device.platform != 'BrowserStand') {
+        var options = {dimBackground: true};
+
+        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+          console.log("Started");
+        }, function () {
+          console.log("closed");
+        });
+      }
+
       scope.graphList = [];
       scope.paymentsSum = 0;
       scope.update();

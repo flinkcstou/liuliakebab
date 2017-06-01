@@ -34,7 +34,7 @@ tourCards.registration =
       title: "ШАГ 5",
       text: "Установите и подтвердите 5-ти значный CLICK-PIN для совершения любых операции с вашей картой",
       back_color: "transparent", title_color: "#8b8b8b",
-      icon_size: 68, icon_y: 110
+      icon_size: 66, icon_y: 110
     }
   ];
 
