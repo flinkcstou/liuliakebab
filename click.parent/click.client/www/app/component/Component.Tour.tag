@@ -16,7 +16,7 @@
 
       <div class="component-tour-card"
            each="{i in tourCardsArray}"
-           style="left:{84+100*(i.counter-1)}%;background-image: url({i.check});">
+           style="left:{84+100*(i.counter-1)}%;">
         <div class="component-card-upper-container" style="background-color: {i.back_color};">
           <div
             class="{classForPages}"
