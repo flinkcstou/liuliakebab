@@ -154,6 +154,15 @@
 
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
+      scope.tourData = {
+        mainpage: false,
+        transfer: false,
+        invoice: false,
+        autopaymethod: false,
+        calculator: false,
+        friendhelp: false
+      };
+      localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
       registrationConfirm(sms, phoneNumber, deviceId);
     }
     function deviceRemember() {
@@ -189,15 +198,6 @@
         onSuccess: function (result) {
           if (result[0][0])
             if (result[0][0].error == 0) {
-              scope.tourData = {
-                mainpage: false,
-                transfer: false,
-                invoice: false,
-                autopaymethod: false,
-                calculator: false,
-                friendhelp: false
-              };
-              localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
 
               localStorage.setItem('confirm_needed', false);
               console.log(result)

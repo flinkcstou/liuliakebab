@@ -14,6 +14,7 @@
       event.preventDefault();
       event.stopPropagation();
       componentInProcessingId.style.display = 'none';
+      console.log("before inProcessing", history.arrayOfHistory)
       history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 3)
       console.log(history.arrayOfHistory)
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
@@ -21,9 +22,11 @@
       console.log('viewpage', opts.viewpage)
 
 
-      riotTags.innerHTML = "<" + opts.viewpage + ">";
-      riot.mount(opts.viewpage);
+      if (opts.viewpage) {
+        riotTags.innerHTML = "<" + opts.viewpage + ">";
+        riot.mount(opts.viewpage);
 //      scope.unmount()
+      }
     }
   </script>
 </component-in-processing>

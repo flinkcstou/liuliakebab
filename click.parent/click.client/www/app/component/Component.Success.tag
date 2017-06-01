@@ -13,7 +13,7 @@
       event.preventDefault();
       event.stopPropagation();
       componentSuccessId.style.display = 'none';
-      console.log("before", history.arrayOfHistory)
+      console.log("before success", history.arrayOfHistory)
       history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
       console.log(history.arrayOfHistory)
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
