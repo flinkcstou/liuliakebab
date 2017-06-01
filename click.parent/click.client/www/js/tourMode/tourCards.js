@@ -3,38 +3,38 @@ window.tourCards = {};
 tourCards.registration =
   [{
     counter: 1, image: "resources/icons/ComponentTour/registration/1.png", title: "ШАГ 1",
-    text: "Для прохождения регистрации необходимо подключить услугу sms-информирование в любом инфо-киоске",
+    text: "Подключите услугу SMS-информирования в любом инфокиоске",
     back_color: "transparent", title_color: "#8b8b8b",
-    icon_size: 68, icon_y: 100
+    icon_size: 68, icon_y: 100, check: "resources/1.png"
   }, {
     counter: 2,
     image: "resources/icons/ComponentTour/registration/2.png",
     title: "ШАГ 2",
-    text: "Введите номер телефона с кодом оператора",
+    text: "Введите полный номер Вашего телефона",
     back_color: "transparent", title_color: "#8b8b8b",
-    icon_size: 68, icon_y: 100
+    icon_size: 68, icon_y: 100, check: "resources/2.png"
   }, {
     counter: 3,
     image: "resources/icons/ComponentTour/registration/3.png",
     title: "ШАГ 3",
-    text: "Введите код,полученный в SMS сообщении для подтверждения устройства",
+    text: "Для подтверждения устройства введите код, полученный по SMS",
     back_color: "transparent", title_color: "#8b8b8b",
-    icon_size: 68, icon_y: 100
+    icon_size: 68, icon_y: 100, check: "resources/3.png"
   }, {
     counter: 4,
     image: "resources/icons/ComponentTour/registration/4.png",
     title: "ШАГ 4",
-    text: "Введите 16-ти значный номер карты и срок ее действия",
+    text: "Введите 16-тизначный номер карты и срок её действия",
     back_color: "transparent", title_color: "#8b8b8b",
-    icon_size: 75, icon_y: 86
+    icon_size: 75, icon_y: 86, check: "resources/4.png"
   },
     {
       counter: 5,
       image: "resources/icons/ComponentTour/registration/5.png",
       title: "ШАГ 5",
-      text: "Установите и подтвердите 5-ти значный CLICK-PIN для совершения любых операции с вашей картой",
+      text: "Установите CLICK-PIN из 5 цифр для подтверждения операций в системе CLICK",
       back_color: "transparent", title_color: "#8b8b8b",
-      icon_size: 66, icon_y: 110
+      icon_size: 66, icon_y: 110, check: "resources/5.png"
     }
   ];
 

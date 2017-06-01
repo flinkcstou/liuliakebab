@@ -336,6 +336,7 @@ var css = {
   "overflow: hidden;" +
   "max-width:" + 245 * widthK + "px;" +
   "white-space: nowrap;" +
+  "color: #595759;" +
   "}",
 
   invoiceListInvoiceSumSym: ".invoice-list-invoice-sum-sym" +
@@ -346,6 +347,7 @@ var css = {
   "background-color: transparent;" +
   "color: inherit;" +
   "float: right;" +
+  "color: #595759;" +
   "}",
 
   invoiceListInvoicePhoneNumberHolder: ".invoice-list-invoice-phone-number-holder" +
@@ -10714,7 +10716,7 @@ var css = {
 
   trustedDevicesDeviceDeleteIcon: ".trusted-devices-device-delete-icon" +
   "{" +
-  //"margin: " + 20 * widthK + "px 0 0 " + 21 * widthK + "px;" +
+    //"margin: " + 20 * widthK + "px 0 0 " + 21 * widthK + "px;" +
   "position: absolute;" +
   "height: " + 70 * widthK + "px;" +
   "width: " + 70 * widthK + "px;" +
@@ -13199,16 +13201,19 @@ var css = {
   "{" +
   "position: relative;" +
   "color: #8b8b8b;" +
-  "width:80%;" +
+  "width:75%;" +
   "text-align: center;" +
   "margin-left: auto;" +
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:28%;" +
+  "top:27%;" +
     //"left:" + -5 * widthK + "px;" +
-  "font-size:" + 33 * widthK + "px;" +
+  "font-size:" + 34 * widthK + "px;" +
     //"font-weight: bold;" +
+  "letter-spacing: 1px;" +
+  "word-spacing: 1px;" +
+  "line-height:" + 46 * widthK + "px;" +
   "}",
 
   componentTourBottom: ".component-tour-bottom " +
