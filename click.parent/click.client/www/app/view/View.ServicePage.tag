@@ -554,10 +554,11 @@
       }
     } else {
 
-      if(scope.servicesMap[viewPay.chosenServiceId])
-      scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
-      scope.titleName = scope.service.name;
-      scope.serviceIcon = scope.service.image;
+      if (scope.servicesMap[viewPay.chosenServiceId]) {
+        scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
+        scope.titleName = scope.service.name;
+        scope.serviceIcon = scope.service.image;
+      }
 
       console.log("ASD");
       scope.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
