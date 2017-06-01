@@ -14,9 +14,11 @@
       event.stopPropagation();
       componentSuccessId.style.display = 'none';
       console.log("before success", history.arrayOfHistory)
-      history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
-      console.log(history.arrayOfHistory)
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+      if (opts.step_amount) {
+        history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
+        console.log(history.arrayOfHistory)
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+      }
 
       if (opts.goback) {
         console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params)

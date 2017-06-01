@@ -12134,7 +12134,7 @@ var css = {
   "margin: 0 auto 0 auto;" +
   "top: 15%;" +
   "overflow: hidden;" +
-  "font-size:" + 22 * widthK + "px;" +
+  "font-size:" + 24 * widthK + "px;" +
   "}",
 
 //  View AutoPay

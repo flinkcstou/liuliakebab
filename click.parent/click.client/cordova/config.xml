@@ -24,6 +24,7 @@
   <plugin name="cordova-plugin-network-information"/>
 
   <plugin name="cordova-plugin-x-socialsharing"/>
+  <plugin name="cordova-plugin-camera"/>
 
 
   <plugin name="cordova-plugin-spinner"/>

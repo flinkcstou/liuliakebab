@@ -238,6 +238,9 @@
 
       onTouchEndX = event.changedTouches[0].pageX;
       touchEndX = event.changedTouches[0].pageX;
+//      if(modeOfApp.offlineMode && id.indexOf('mynumber') != -1){
+//        return
+//      }
 
       if (Math.abs(onTouchStartX - onTouchEndX) <= 20) {
         console.log("chosen id in service carousel=", id);
