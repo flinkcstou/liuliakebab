@@ -271,9 +271,9 @@
         }
       }
 
-//      viewTransfer.phoneNumber = 0
-//      viewTransfer.cardNumber = 0
-//      viewTransfer.cardNumber = 0
+      viewTransfer.phoneNumber = 0
+      viewTransfer.cardNumber = 0
+      viewTransfer.cardNumber = 0
       viewTransferStepTwo.sum = 0;
       viewTransferStepTwo.sumWithoutSpace = 0;
     }
@@ -340,9 +340,9 @@
                 if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
                   blockCodeConfirmId.style.display = 'block';
                   scope.secretCode = result[1][0].secret_code;
-//                  viewTransfer.phoneNumber = 0
-//                  viewTransfer.cardNumber = 0
-//                  viewTransfer.cardNumber = 0
+                  viewTransfer.phoneNumber = 0
+                  viewTransfer.cardNumber = 0
+                  viewTransfer.cardNumber = 0
                   viewTransferStepTwo.sum = 0;
                   viewTransferStepTwo.sumWithoutSpace = 0;
                   scope.update();

@@ -1698,6 +1698,7 @@
       contactSuggestionFunction()
     else {
       checkCardMenu = true;
+      if(viewTransfer.cardNumber)
       if (viewTransfer.cardNumber.replace(/\s/g, '').length != 16)
         cardSuggestionFunction()
     }
