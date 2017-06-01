@@ -13094,6 +13094,7 @@ var css = {
   "left: 15%;" +
   "font-size:" + 33 * widthK + "px;" +
   "z-index: 999;" +
+  "font-weight: bold;" +
   "}",
 
   tourCloseIcon: ".tour-close-icon " +
@@ -13210,7 +13211,7 @@ var css = {
   "top:27%;" +
     //"left:" + -5 * widthK + "px;" +
   "font-size:" + 34 * widthK + "px;" +
-    //"font-weight: bold;" +
+  "font-weight: bold;" +
   "letter-spacing: 1px;" +
   "word-spacing: 1px;" +
   "line-height:" + 46 * widthK + "px;" +
