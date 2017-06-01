@@ -694,6 +694,7 @@
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;
 
+
     if (viewTransfer.phoneNumber.length > 0 || viewTransfer.cardNumber.length > 0) {
       if (viewTransfer.type == 2) {
         scope.contactMode = true;

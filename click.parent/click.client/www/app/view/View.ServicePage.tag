@@ -481,6 +481,7 @@
       scope.update(blockAmountCalculatorId);
     }
 
+    console.log('VIEWPAY SERVICE',viewPay.chosenServiceId, 'mynumber' + localStorage.getItem('myNumberOperatorId'))
     if ((viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) || (modeOfApp.offlineMode && viewPay.chosenServiceId == 'mynumber')) {
 
       console.log("MY NUMBER ID");

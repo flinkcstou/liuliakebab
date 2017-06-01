@@ -244,7 +244,12 @@
 
       if (Math.abs(onTouchStartX - onTouchEndX) <= 20) {
         console.log("chosen id in service carousel=", id);
-        viewPay.chosenServiceId = id;
+        if(modeOfApp.offlineMode && id.indexOf('mynumber') != -1) {
+          viewPay.chosenServiceId = 'mynumber';
+        }
+        else{
+          viewPay.chosenServiceId = id;
+        }
         opts.mode = 'POPULAR';
 
         localStorage.setItem('chosenServiceId', id);
