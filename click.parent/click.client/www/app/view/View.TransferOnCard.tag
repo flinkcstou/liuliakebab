@@ -112,6 +112,7 @@
 
             if (result[0][0].error == 0) {
               componentSuccessId.style.display = 'block';
+              window.updateBalanceGlobalFunction();
 
 //              for (var i in scope.parent.invoiceList) {
 ////          console.log("scope.parent.invoiceList[i]", scope.parent.invoiceList[i])
