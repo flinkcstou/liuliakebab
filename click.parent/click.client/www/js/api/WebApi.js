@@ -272,14 +272,15 @@ window.api.call = function (params) {
     || method == "device.register.request" || method == "registration" || method == "device.register.confirm"))
     setTimeout(function () {
       if (device.platform != 'BrowserStand')
-        if (window.api.spinnerOn) {
+        if (window.api.spinnerOn && modeOfApp.onlineMode && (method == "get.additional.information" || method == "get.payment" || method == "app.login"
+          || method == "device.register.request" || method == "registration" || method == "device.register.confirm")) {
           SpinnerPlugin.activityStop();
           //onBackKeyDown();
           showAlertComponent("Сервис временно недоступен");
 
         }
 
-    }, 10000);
+    }, 20000);
 };
 
 function onlineDetector() {

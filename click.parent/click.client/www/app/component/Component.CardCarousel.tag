@@ -326,6 +326,8 @@
     scope.invoiceCheck = false;
 
     invoiceCheckFunction = function () {
+      scope.invoiceList = [];
+      scope.update();
 
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
