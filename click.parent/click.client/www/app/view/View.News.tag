@@ -44,6 +44,7 @@
     })
 
 
+
     closeNewsTouchEnd = function () {
       event.preventDefault()
       event.stopPropagation()

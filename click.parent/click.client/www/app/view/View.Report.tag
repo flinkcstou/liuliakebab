@@ -735,7 +735,11 @@
       scope.update()
       console.log("ARRAY OF COORDINATES", scope.arrayOfCoordinates)
       console.log('DATA', data)
+      if(document.getElementById('myChart'))
       var ctx = document.getElementById('myChart').getContext('2d');
+      else{
+        return
+      }
       var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: data,

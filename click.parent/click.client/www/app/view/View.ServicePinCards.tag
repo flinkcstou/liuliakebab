@@ -42,7 +42,7 @@
         <div class="pincard-friend-change-text" ontouchend="friendHelp()">Изменить</div>
       </div>
 
-      <button class="pincard-button-enter autopay-button"
+      <button class="pincard-button-enter"
               ontouchend="goToPayConfirmView()">{window.languages.ViewServicePageEnterLabel}
       </button>
 

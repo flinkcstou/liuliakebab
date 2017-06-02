@@ -13178,7 +13178,7 @@ var css = {
   "position: absolute;" +
   "height:" + 390 * heightK + "px;" +
   "width: 100%;" +
-  "top:" + 460 * widthK + "px;" +
+  "top:" + 460 * heightK + "px;" +
   "background-color: transparent;" +
   "}",
 
@@ -13250,7 +13250,7 @@ var css = {
   "position: absolute;" +
   "height: " + 97 * heightK + "px;" +
   "width:" + 604.797 * widthK + "px;" +
-  "top:" + 90 * widthK + "px;" +
+  "top:" + 90 * heightK + "px;" +
   "bottom:0;" +
   "display: table;" +
   "margin-right: auto;" +
@@ -13344,7 +13344,7 @@ var css = {
   "margin-right: auto;" +
   "margin-left: auto;" +
   "height:" + 35 * heightK + "px;" +
-  "top:" + 24 * widthK + "px;" +
+  "top:" + 24 * heightK + "px;" +
   "}",
 
   tourCirclesField: ".tour-circles-field " +
@@ -13354,7 +13354,7 @@ var css = {
   "width:" + 130 * widthK + "px;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
-  "margin-top:" + 20 * widthK + "px;" +
+  "margin-top:" + 20 * heightK + "px;" +
   "display: inline-block;" +
   "left: 12%;" +
   "}",

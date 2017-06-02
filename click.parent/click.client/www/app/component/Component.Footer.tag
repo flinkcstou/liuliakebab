@@ -645,6 +645,7 @@
     openFooterTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
+      window.updateBalanceGlobalFunction();
 
       footerOpenTouchStartX = event.changedTouches[0].pageX;
       footerOpenTouchStartY = event.changedTouches[0].pageY;
