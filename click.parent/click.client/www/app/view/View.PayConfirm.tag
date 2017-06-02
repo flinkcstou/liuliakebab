@@ -487,6 +487,7 @@
                 console.log("state=-1 error,view=", scope.viewPage, ",step=", scope.stepAmount);
                 componentUnsuccessId.style.display = 'block';
               } else if (result[1][0].state == 2) {
+                window.updateBalanceGlobalFunction();
                 viewServicePage.phoneText = '';
                 window.viewServicePage = {};
                 viewServicePage.amountText = '';

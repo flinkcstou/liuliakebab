@@ -6367,7 +6367,7 @@ var css = {
   "margin-bottom:" + 20 * widthK + "px;" +
   "background-size: contain;" +
   "text-align: center;" +
-  "color: #4bd5ff;" +
+  "color: white;" +
   "font-size:" + 30 * widthK + "px;" +
   "top:" + 20 * widthK + "px;" +
   "}",

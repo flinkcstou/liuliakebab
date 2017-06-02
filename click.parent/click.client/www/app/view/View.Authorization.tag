@@ -968,7 +968,6 @@
             }
           })
         }
-        ;
 
         serviceImagesCaching = function () {
           if (device.platform != 'BrowserStand') {
