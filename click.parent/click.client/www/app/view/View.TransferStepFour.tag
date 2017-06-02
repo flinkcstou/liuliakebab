@@ -349,6 +349,7 @@
 
                 }
                 if (result[1][0].secret_code == 0) {
+                  window.updateBalanceGlobalFunction();
                   componentSuccessId.style.display = 'block';
                   transferFindCards(scope.objectTypeForTransfer.name);
                 }
