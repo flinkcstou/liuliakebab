@@ -1352,7 +1352,8 @@ window.fakedSocket.register("get.service.list", function (input) {
 
   var array = [];
   array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
-  array.push([{
+  array.push([
+    {
       "id": -4,
       "name": "Payme",
       "category_id": 4,
@@ -8480,6 +8481,11 @@ window.fakedSocket.register("get.service.list", function (input) {
       "autopay_available_amounts": null,
       "autopay_available_steps": null,
       "additional_information_type": 0
+    },
+    {
+      "name": "Мой номер",
+      "image": "resources/icons/ViewPay/myphone.png",
+      "id": "mynumber"
     }]
   )
   ;
@@ -9738,71 +9744,69 @@ window.fakedSocket.register("get.popular.services", function (input) {
   array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
   array.push([
     {
-      category_id: 1,
-      cost: 1,
-      form_type: 1,
-      is_visible: 1,
-      id: 3,
-      image: "https://m.click.uz/static/merchant/logo/logo_3.png",
-      is_mobile: 1,
-      lang_amount_hint: null,
-      lang_amount_placeholder: "Введите сумму оплаты",
-      lang_amount_title: "Сумма",
-      lang_max_amount: "Максимальная сумма для оплаты 600000.00 сум ",
-      lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
-      max_pay_limit: 600000,
-      min_pay_limit: 1000,
-      name: "Билайн",
-      priority: 5,
-      service_parameters: "1",
-      service_short_name: "BEELINE",
-      lang_amount_currency: "сум",
-      status: 1
-    },
-    {
-      category_id: 1,
-      cost: 1,
-      form_type: 1,
-      is_visible: 1,
-      id: 5,
-      image: "https://m.click.uz/static/merchant/logo/logo_5.png",
-      is_mobile: 1,
-      lang_amount_hint: null,
-      lang_amount_placeholder: "Введите сумму оплаты",
-      lang_amount_title: "Сумма",
-      lang_max_amount: "Максимальная сумма для оплаты 1000000.00 сум ",
-      lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
-      max_pay_limit: 1000000,
-      min_pay_limit: 1000,
-      name: "Ucell",
-      priority: 10,
-      service_parameters: "1",
-      service_short_name: "UCELL",
-      lang_amount_currency: "сум",
-      status: 1
-    },
-    {
-      category_id: 1,
-      cost: 1,
-      form_type: 1,
-      is_visible: 1,
-      id: 2,
-      image: "https://m.click.uz/static/merchant/logo/logo_2.png",
-      is_mobile: 1,
-      lang_amount_hint: null,
-      lang_amount_placeholder: "Введите сумму оплаты",
-      lang_amount_title: "Сумма",
-      lang_max_amount: "Максимальная сумма для оплаты 1000000.00 сум",
-      lang_min_amount: "Минимальная сумма для оплаты 1000.00 сум",
-      max_pay_limit: 1000000,
-      min_pay_limit: 1000,
-      name: "UMS",
-      priority: 25,
-      service_parameters: "1",
-      service_short_name: "UMS",
-      lang_amount_currency: "сум",
-      status: 1
-    }]
+      "id": 5,
+      "name": "Ucell",
+      "category_id": 1,
+      "service_short_name": "UCELL",
+      "min_pay_limit": 1000,
+      "max_pay_limit": 1000000,
+      "service_parameters": "1",
+      "status": 1,
+      "priority": 5,
+      "image": "resources/icons/ViewPay/logo_5.png",
+      "form_type": 1,
+      "cost": 1,
+      "is_mobile": 1,
+      "lang_amount_placeholder": "Введите сумму оплаты",
+      "lang_min_amount": "Минимальная сумма для оплаты 1000.00 сум",
+      "lang_max_amount": "Максимальная сумма для оплаты 1000000.00 сум ",
+      "lang_amount_hint": null,
+      "lang_amount_title": "Сумма",
+      "lang_amount_currency": "сум",
+      "is_visible": 1
+    }, {
+      "id": 3,
+      "name": "Билайн",
+      "category_id": 1,
+      "service_short_name": "BEELINE",
+      "min_pay_limit": 1000,
+      "max_pay_limit": 1000000,
+      "service_parameters": "1",
+      "status": 1,
+      "priority": 10,
+      "image": "resources/icons/ViewPay/logo_3.png",
+      "form_type": 1,
+      "cost": 1,
+      "is_mobile": 1,
+      "lang_amount_placeholder": "Введите сумму оплаты",
+      "lang_min_amount": "Минимальная сумма для оплаты 1000.00 сум",
+      "lang_max_amount": "Максимальная сумма для оплаты 1000000.00 сум",
+      "lang_amount_hint": null,
+      "lang_amount_title": "Сумма",
+      "lang_amount_currency": "сум",
+      "is_visible": 1
+    }, {
+      "id": 2,
+      "name": "UMS",
+      "category_id": 1,
+      "service_short_name": "UMS",
+      "min_pay_limit": 1000,
+      "max_pay_limit": 1500000,
+      "service_parameters": "1",
+      "status": 1,
+      "priority": 15,
+      "image": "resources/icons/ViewPay/logo_2.png",
+      "form_type": 1,
+      "cost": 1,
+      "is_mobile": 1,
+      "lang_amount_placeholder": "Введите сумму оплаты",
+      "lang_min_amount": "Минимальная сумма для оплаты 1000.00 сум",
+      "lang_max_amount": "Максимальная сумма для оплаты 1500000.00 сум",
+      "lang_amount_hint": null,
+      "lang_amount_title": "Сумма",
+      "lang_amount_currency": "сум",
+      "is_visible": 1
+    }, {"name": "Мой номер", "image": "resources/icons/ViewPay/myphone.png", "id": "mynumber2"}]
   );
 
   if (localStorage.getItem("click_client_token"))
