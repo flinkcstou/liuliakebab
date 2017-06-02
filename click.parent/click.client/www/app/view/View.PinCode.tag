@@ -123,7 +123,7 @@
         if (enteredPin.length < 5 && myValue != 'x') {
           enteredPin += myValue;
         }
-        if (myValue == 'x' && enteredPin != 4) {
+        if (myValue == 'x') {
           enteredPin = enteredPin.substring(0, enteredPin.length - 1);
         }
 
@@ -272,7 +272,7 @@
           }
           else {
             scope.clickPinError = false;
-            scope.errorNote = "Different pin codes";
+            scope.errorNote = "CLICK PIN не совпадает!";
 
             console.log('scope.checkPin', scope.checkPin, 'scope.checkPinConfirm', scope.checkPinConfirm)
             scope.showError = true;
