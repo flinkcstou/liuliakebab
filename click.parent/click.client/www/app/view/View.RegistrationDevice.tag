@@ -69,7 +69,7 @@
 
     })
 
-//    localStorage.setItem('device.platform', device.platform)
+    //    localStorage.setItem('device.platform', device.platform)
 
     //    localStorage.clear()
 
@@ -347,8 +347,10 @@
       return device.manufacturer + ' ' + device.version + ' ' + device.model;
     }
 
-
+    var countOfCall = 0;
     function registrationDevice(phoneNumber, date) {
+      countOfCall++;
+      var checkServiceAnswer = false;
 //      if (device.platform != 'BrowserStand') {
 //        var options = {dimBackground: true};
 //
@@ -374,6 +376,7 @@
         scope: this,
 
         onSuccess: function (result) {
+          checkServiceAnswer = true;
           if (result[0][0].error == 0) {
             if (result[1][0]) {
 
@@ -415,6 +418,21 @@
           console.error(data);
         }
       });
+
+      if (countOfCall <= 3 && !checkServiceAnswer && window.isConnected)
+        setTimeout(function () {
+          if (!checkServiceAnswer && modeOfApp.onlineMode) {
+            var date = parseInt(Date.now() / 1000);
+            registrationDevice(localStorage.setItem('click_client_phoneNumber'), date);
+          }
+          if (countOfCall == 3 && !checkServiceAnswer) {
+            scope.showError = true;
+            scope.errorNote = "Сервис временно недоступен";
+            countOfCall = 0;
+            scope.update();
+            return;
+          }
+        }, 10000);
     }
 
   </script>

@@ -241,7 +241,7 @@ window.api.call = function (params) {
           break;
       }
     }
-  } else if (modeOfApp.onlineMode) {
+  } else if (modeOfApp.onlineMode && !window.isConnected) {
 
     window.lastSocketMethodToSend = JSON.stringify({
       method: method,
@@ -252,9 +252,9 @@ window.api.call = function (params) {
       SpinnerPlugin.activityStop();
 
     if (device.platform == 'Android')
-      showConfirmComponent("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?", 'internet');
+      showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
     else {
-      showAlertComponent("Отсутствует соединение с интернетом");
+      showAlertComponent("Сервер временно недоступен");
     }
 
     //if (result) {
@@ -268,19 +268,19 @@ window.api.call = function (params) {
     //}
   }
 
-  if (modeOfApp.onlineMode && (method == "get.additional.information" || method == "get.payment" || method == "app.login"
-    || method == "device.register.request" || method == "registration" || method == "device.register.confirm"))
-    setTimeout(function () {
-      if (device.platform != 'BrowserStand')
-        if (window.api.spinnerOn && modeOfApp.onlineMode && (method == "get.additional.information" || method == "get.payment" || method == "app.login"
-          || method == "device.register.request" || method == "registration" || method == "device.register.confirm")) {
-          SpinnerPlugin.activityStop();
-          //onBackKeyDown();
-          showAlertComponent("Сервис временно недоступен");
-
-        }
-
-    }, 20000);
+  //if (modeOfApp.onlineMode && (method == "get.additional.information" || method == "get.payment" || method == "app.login"
+  //  || method == "device.register.request" || method == "registration" || method == "device.register.confirm"))
+  //  setTimeout(function () {
+  //    if (device.platform != 'BrowserStand')
+  //      if (window.api.spinnerOn && modeOfApp.onlineMode && (method == "get.additional.information" || method == "get.payment" || method == "app.login"
+  //        || method == "device.register.request" || method == "registration" || method == "device.register.confirm")) {
+  //        SpinnerPlugin.activityStop();
+  //        //onBackKeyDown();
+  //        showAlertComponent("Сервис временно недоступен");
+  //
+  //      }
+  //
+  //  }, 20000);
 };
 
 function onlineDetector() {

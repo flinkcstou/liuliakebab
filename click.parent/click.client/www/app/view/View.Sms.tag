@@ -171,8 +171,10 @@
       return 0;
     }
 
+    var countOfCall = 0;
     function registrationConfirm(sms, phoneNumber, deviceId) {
-
+      countOfCall++;
+      var checkServiceAnswer = false;
       if (device.platform != 'BrowserStand') {
         var options = {dimBackground: true};
 
@@ -196,6 +198,7 @@
         scope: this,
 
         onSuccess: function (result) {
+          checkServiceAnswer = true;
           if (result[0][0])
             if (result[0][0].error == 0) {
 
@@ -230,6 +233,22 @@
           console.error(data);
         }
       });
+
+      if (countOfCall <= 3 && !checkServiceAnswer && window.isConnected)
+        setTimeout(function () {
+          if (!checkServiceAnswer && modeOfApp.onlineMode) {
+            var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+            var deviceId = localStorage.getItem('click_client_deviceID');
+            registrationConfirm(scope.confirmSms, phoneNumber, deviceId);
+          }
+          if (countOfCall == 3 && !checkServiceAnswer) {
+            scope.showError = true;
+            scope.errorNote = "Сервис временно недоступен";
+            countOfCall = 0;
+            scope.update();
+            return;
+          }
+        }, 10000);
 
     }
 

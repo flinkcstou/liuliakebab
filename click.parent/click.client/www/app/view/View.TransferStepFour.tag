@@ -334,6 +334,8 @@
 
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
+            viewTransferStepTwo.sum = 0;
+            viewTransferStepTwo.sumWithoutSpace = 0;
 //              console.log("result of TRANSFER ", result);
             if (result[1])
               if (result[1][0]) {

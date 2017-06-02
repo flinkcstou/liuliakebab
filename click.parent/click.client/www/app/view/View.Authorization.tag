@@ -436,8 +436,11 @@
       authorization(phoneNumber, deviceId, password, date);
     };
 
+    var countOfCall = 0;
     function authorization(phoneNumber, deviceId, password, date) {
+      countOfCall++;
 //      var version = localStorage.getItem('version')
+      var checkServiceAnswer = false;
       window.api.call({
         method: 'app.login',
         input: {
@@ -451,6 +454,7 @@
 
         onSuccess: function (result) {
 //          console.log(result[0][0])
+          checkServiceAnswer = true;
           if (result[0][0].error == 0) {
             if (!result[1][0].error) {
               localStorage.setItem('click_client_pin', pin)
@@ -495,6 +499,19 @@
           console.error(data);
         }
       })
+
+      if(countOfCall <= 3 && !checkServiceAnswer && window.isConnected)
+      setTimeout(function () {
+        if (!checkServiceAnswer && modeOfApp.onlineMode)
+          enter();
+        if (countOfCall == 3 && !checkServiceAnswer) {
+          scope.showError = true;
+          scope.errorNote = "Сервис временно недоступен";
+          countOfCall = 0;
+          scope.update();
+          return;
+        }
+      }, 10000);
     }
 
     if (checkSessionKey) {

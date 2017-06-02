@@ -16,9 +16,8 @@
         <div id="editUserInfoIconId" class="settings-general-user-name-save" ontouchend="editUserInfoTouchEnd()"></div>
       </div>
       <div class="settings-general-download-delete-container">
-        <input id="uploadUserAvatarId" class="settings-general-user-upload-avatar" type="file" accept="image/*"
-               onchange="imageSelectedChange()"/>
-        <div class="settings-general-download-container">
+        <div id="uploadUserAvatarId" class="settings-general-user-upload-avatar"></div>
+        <div class="settings-general-download-container" ontouchend="imageSelectedChange()">
           <div class="settings-general-download-icon"></div>
           <p class="settings-general-download-title">{window.languages.ViewSettingsGeneralDownloadPhotoTitle}</p>
         </div>
@@ -56,6 +55,9 @@
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
+
+  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
+                     confirmtype="{confirmType}"></component-confirm>
 
   <script>
     var scope = this;
@@ -106,6 +108,17 @@
 
       var result = confirm('Подтвердите удаление фото')
       console.log(result)
+
+      scope.confirmShowBool = true;
+      scope.confirmType = 'local';
+      scope.confirmNote = 'Подтвердите удаление фото';
+      scope.update();
+      scope.result = function (bool) {
+        if (bool) {
+          result = true;
+        }
+        else result = false;
+      };
 
       if (result)
         window.api.call({
@@ -187,77 +200,190 @@
     imageSelectedChange = function () {
       event.preventDefault();
       event.stopPropagation();
+      scope.base64Data = '';
+
+      console.log("QWE")
+
+      var options = {
+        quality: 50,
+        destinationType: Camera.DestinationType.DATA_URL,
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        allowEdit: true,
+        encodingType: Camera.EncodingType.JPEG,
+        targetWidth: 100,
+        targetHeight: 100,
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: false,
+        correctOrientation: true
+      };
+
+      navigator.camera.getPicture(onSuccess, onFail, options);
+
+      function onSuccess(imageData) {
+        imageUserAvatarId.src = "data:image/jpeg;base64," +  imageData;
+        var canvas = document.createElement("canvas");
+        canvas.width = imageUserAvatarId.width;
+        canvas.height = imageUserAvatarId.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(imageUserAvatarId, 0, 0);
+        scope.base64Data = canvas.toDataURL("image/png");
+        var index = scope.base64Data.indexOf(',');
+        scope.base64Cut = scope.base64Data.substring(index + 1, scope.base64Data.length)
 
 
-      var reader = new FileReader();
-      if (event.target.files && event.target.files[0]) {
-        console.log('event PHOTO UPLOAD', event)
-        console.log('event.target', event.target)
-        console.log('event.target.files', event.target.files)
-        reader.readAsDataURL(uploadUserAvatarId.files[0]);
+        console.log('scope.base64Data', scope.base64Data)
+        console.log('scope.base64Cut', scope.base64Cut)
 
-        console.log('uploadUserAvatarId.files[0]', uploadUserAvatarId.files[0])
-
-        reader.onload = function (event) {
-          console.log('uploadUserAvatarId.files[0]', uploadUserAvatarId.files[0])
-          ImageTools.resize(uploadUserAvatarId.files[0], {
-              width: 240,
-              height: 320,
+        var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+        var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+        var sessionKey = loginInfo.session_key;
+        if (scope.base64Data)
+          window.api.call({
+            method: 'settings.photo.upload',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber,
+              data: scope.base64Cut,
             },
-            function (blob, didItResize) {
-              console.log('blob', blob)
-              console.log('didItResize', didItResize)
-              // didItResize will be true if it managed to resize it, otherwise false (and will return the original file as 'blob')
-//              imageUserAvatarId.src = window.URL.createObjectURL(blob);
-              var convertReader = new FileReader();
-              convertReader.readAsDataURL(blob);
-
-              convertReader.onload = function () {
-                scope.base64Data = convertReader.result;
-                var index = scope.base64Data.indexOf(',');
-                var base64Cut = scope.base64Data.substring(index + 1, scope.base64Data.length)
-
-                var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-                var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-                var sessionKey = loginInfo.session_key;
-
-                if (scope.base64Data)
-                  window.api.call({
-                    method: 'settings.photo.upload',
-                    input: {
-                      session_key: sessionKey,
-                      phone_num: phoneNumber,
-                      data: base64Cut,
-                    },
-                    scope: this,
-                    onSuccess: function (result) {
-                      console.log("RESULT PHOTO", result)
-                      if (result[0][0].error == 0) {
-                        if (result[1][0]) {
-                          imageUserAvatarId.src = scope.base64Data
-                          loginInfo.profile_image_url = result[1][0].profile_image_url;
-                          localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo))
-                        }
-                      }
-                      else {
-                        scope.clickPinError = false;
-                        scope.errorNote = result[0][0].error_note;
-                        scope.showError = true;
-                        scope.update();
-                      }
-                    },
-
-                    onFail: function (api_status, api_status_message, data) {
-                      console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                      console.error(data);
-                    }
-                  });
+            scope: this,
+            onSuccess: function (result) {
+              console.log("RESULT PHOTO", result)
+              if (result[0][0].error == 0) {
+                if (result[1][0]) {
+                  imageUserAvatarId.src = "data:image/jpeg;base64," +  imageData;
+                  loginInfo.profile_image_url = result[1][0].profile_image_url;
+                  localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo))
+                  localStorage.setItem('click_client_avatar', scope.base64Data)
+                }
               }
-              localStorage.setItem('click_client_avatar', imageUserAvatarId.src)
-              // you can also now upload this blob using an XHR.
-            });
-        }
+              else {
+                scope.clickPinError = false;
+                scope.errorNote = result[0][0].error_note;
+                scope.showError = true;
+                scope.update();
+              }
+            },
+
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
+
+        riot.update();
       }
+
+      function onFail(message) {
+        console.log('Failed because: ' + message);
+      }
+
+
+//      var reader = new FileReader();
+//      if (event.target.files && event.target.files[0]) {
+//        console.log('event PHOTO UPLOAD', event)
+//        console.log('event.target', event.target)
+//        console.log('event.target.files', event.target.files)
+//        reader.readAsDataURL(uploadUserAvatarId.files[0]);
+//
+//        console.log('uploadUserAvatarId.files[0]', uploadUserAvatarId.files[0])
+//
+//        reader.onload = function (event) {
+//          console.log('uploadUserAvatarId.files[0]', uploadUserAvatarId.files[0])
+//          ImageTools.resize(uploadUserAvatarId.files[0], {
+//              width: 240,
+//              height: 320,
+//            },
+//            function (blob, didItResize) {
+//              console.log('blob', blob)
+//              console.log('didItResize', didItResize)
+//              // didItResize will be true if it managed to resize it, otherwise false (and will return the original file as 'blob')
+////              imageUserAvatarId.src = window.URL.createObjectURL(blob);
+//              var convertReader = new FileReader();
+//              convertReader.readAsDataURL(blob);
+//              convertReader.onload = function () {
+//                scope.base64Data = convertReader.result;
+//                var exif =
+//
+//                console.log('EXIF',exif)
+//
+//                var index = scope.base64Data.indexOf(',');
+//                var base64Cut = scope.base64Data.substring(index + 1, scope.base64Data.length)
+//
+//                var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+//                var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+//                var sessionKey = loginInfo.session_key;
+//
+
+
+//      var reader = new FileReader();
+//      if (event.target.files && event.target.files[0]) {
+//        console.log('event PHOTO UPLOAD', event)
+//        console.log('event.target', event.target)
+//        console.log('event.target.files', event.target.files)
+//        reader.readAsDataURL(uploadUserAvatarId.files[0]);
+//
+//        console.log('uploadUserAvatarId.files[0]', uploadUserAvatarId.files[0])
+//
+//        reader.onload = function (event) {
+//          console.log('uploadUserAvatarId.files[0]', uploadUserAvatarId.files[0])
+//          ImageTools.resize(uploadUserAvatarId.files[0], {
+//              width: 240,
+//              height: 320,
+//            },
+//            function (blob, didItResize) {
+//              console.log('blob', blob)
+//              console.log('didItResize', didItResize)
+//              // didItResize will be true if it managed to resize it, otherwise false (and will return the original file as 'blob')
+////              imageUserAvatarId.src = window.URL.createObjectURL(blob);
+//              var convertReader = new FileReader();
+//              convertReader.readAsDataURL(blob);
+//
+//              convertReader.onload = function () {
+//                scope.base64Data = convertReader.result;
+//                var index = scope.base64Data.indexOf(',');
+//                var base64Cut = scope.base64Data.substring(index + 1, scope.base64Data.length)
+//
+//                var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+//                var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+//                var sessionKey = loginInfo.session_key;
+//
+//                if (scope.base64Data)
+//                  window.api.call({
+//                    method: 'settings.photo.upload',
+//                    input: {
+//                      session_key: sessionKey,
+//                      phone_num: phoneNumber,
+//                      data: base64Cut,
+//                    },
+//                    scope: this,
+//                    onSuccess: function (result) {
+//                      console.log("RESULT PHOTO", result)
+//                      if (result[0][0].error == 0) {
+//                        if (result[1][0]) {
+//                          imageUserAvatarId.src = scope.base64Data
+//                          loginInfo.profile_image_url = result[1][0].profile_image_url;
+//                          localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo))
+//                        }
+//                      }
+//                      else {
+//                        scope.clickPinError = false;
+//                        scope.errorNote = result[0][0].error_note;
+//                        scope.showError = true;
+//                        scope.update();
+//                      }
+//                    },
+//
+//                    onFail: function (api_status, api_status_message, data) {
+//                      console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+//                      console.error(data);
+//                    }
+//                  });
+//              }
+//              localStorage.setItem('click_client_avatar', imageUserAvatarId.src)
+//              // you can also now upload this blob using an XHR.
+//            });
+//        }
+//      }
     }
 
     maleTouchEnd = function () {
