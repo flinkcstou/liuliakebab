@@ -49,7 +49,7 @@
         var authorized = JSON.parse(localStorage.getItem("click_client_authorized"));
         authorized = JSON.parse(authorized);
 
-        if (notification.tap && !authorized) {
+        if (notification.tap) {
           window.FirebasePlugin.setBadgeNumber(0);
 
           var background_notification = {};
