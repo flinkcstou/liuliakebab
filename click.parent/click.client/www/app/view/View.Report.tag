@@ -186,7 +186,7 @@
     graphView = function () {
 
       scope.firstReportView = !scope.firstReportView;
-      scope.update(scope.firstReportView);
+      scope.update();
 
       var date = new Date();
       var firstDay = new Date(date.getFullYear(), scope.mNumber, 1);
@@ -196,7 +196,7 @@
 
       if (scope.firstReportView) {
         graphButtonId.style.backgroundImage = "url(resources/icons/ViewReport/reports_chart_off.png)";
-        paymentListUpdate();
+        paymentListUpdate('fromGraph');
       }
       else {
         graphButtonId.style.backgroundImage = "url(resources/icons/ViewReport/reports_chart_on.png)";
@@ -424,8 +424,14 @@
 //      console.log('HEight', reportBodyContainerId.style.height)
     }
 
-    scope.paymentListUpdate = paymentListUpdate = function () {
+    scope.paymentListUpdate = paymentListUpdate = function (from) {
 
+      if(from == 'fromGraph' || from == 'fromFilter'){
+        scope.pageNumberOptional = 1;
+        scope.paymentsMap = {};
+        scope.paymentDates = [];
+        scope.paymentsList = []
+      }
       if (scope.monthNotStartedYet) {
 
         scope.paymentsMap = {};
@@ -446,6 +452,7 @@
         }
       }
 
+      scope.update();
       var firstDay = scope.tags["component-report-filter"].filterDateFrom,
           lastDay = scope.tags["component-report-filter"].filterDateTo,
           accountId = scope.tags["component-report-filter"].filterByAccount;
@@ -573,6 +580,10 @@
 
 
     scope.graphListUpdate = graphListUpdate = function () {
+
+//      scope.paymentsMap = {};
+//      scope.paymentDates = [];
+//      scope.paymentsList = []
 
       if (scope.monthNotStartedYet) {
 

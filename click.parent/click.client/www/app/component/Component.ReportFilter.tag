@@ -1,12 +1,10 @@
 <component-report-filter>
-  <div id="filterMenuBackPageId" ontouchend="sideMenuTouchEnd()" ontouchstart="sideMenuTouchStart()"
-       ontouchmove="sideMenuTouchMove()" class="side-menu-back-page"></div>
+  <div id="filterMenuBackPageId" class="side-menu-back-page"></div>
 
-  <div ontouchend="sideMenuTouchEnd()" ontouchstart="sideMenuTouchStart()" ontouchmove="sideMenuTouchMove()"
-       id="filterMenuId"
+  <div id="filterMenuId"
        class="filter-menu {filter-minor-menu: filterDate || filterAccount, filter-main-menu: !(filterDate || filterAccount)}">
 
-    <div class="filter-menu-inside-button" ontouchend="closeMenu()">
+    <div class="filter-menu-inside-button" ontouchend="closeFilter()">
       <p class="view-reports-filter-text {filter-inside-text: filterDate || filterAccount, filter-inside-text-main: !(filterDate || filterAccount)}">
         {languages.ComponentReportFilterTitle}</p>
       <div type="button"
@@ -479,15 +477,10 @@
       }
     };
 
-    userIconTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-      riotTags.innerHTML = "<view-general-settings>";
-      riot.mount("view-general-settings");
-//      scope.unmount()
-    };
 
     attachFilters = function () {
+
+      console.log('PARENT',scope.parent)
 
       if (event) {
         event.preventDefault();
@@ -511,15 +504,11 @@
 
       if (scope.parent) {
 
-        console.log("ASDASDASD", scope.parent.paymentListUpdate);
-        console.log("ASDASDASD", scope.parent.graphListUpdate);
-        console.log("ASDASDASD", scope.parent.firstReportView);
-
         if (scope.parent.firstReportView) {
 
           if (scope.parent.paymentListUpdate) {
 
-            scope.parent.paymentListUpdate();
+            scope.parent.paymentListUpdate('fromFilter');
           }
         } else {
 
@@ -531,7 +520,7 @@
       }
     };
 
-    closeMenu = function () {
+    closeFilter = function () {
       if (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -556,110 +545,13 @@
       scope.filterByAccount = "";
       scope.createdAccountFilter = "";
 
-      riot.update();
-    }
-    ;
-
-    var touchStartX, touchEndX, touchMoveX, touchEndMove, timeStartX, timeEndXs;
-    var width = window.innerWidth;
-
-    sideMenuTouchStart = function () {
-//      filterMenuId.style.webkitTransition = '0s';
-//      reportPageId.style.webkitTransition = '0s';
-//      filterMenuBackPageId.style.webkitTransition = '0s';
-//      touchStartX = event.changedTouches[0].pageX;
-//      timeStartX = event.timeStamp.toFixed(0);
-
+      scope.update();
     };
 
-    sideMenuTouchEnd = function () {
-//      event.preventDefault();
-//      event.stopPropagation();
-//      touchEndX = event.changedTouches[0].pageX;
-//      timeEndX = event.timeStamp.toFixed(0);
-//
-//      console.log('touchEndMove', touchEndMove)
-//
-//      if ((Math.abs(touchEndMove) > 230 * widthK)) {
-//        closeMenu();
-//      }
-//      else {
-//        if (timeEndX - timeStartX < 500 && touchStartX - touchEndX > 20) {
-//          closeMenu();
-//        }
-//        else
-//          menuOpen()
-//      }
-    }
-
-    sideMenuTouchMove = function () {
-//      event.preventDefault();
-//      event.stopPropagation();
-//      touchMoveX = event.changedTouches[0].pageX;
-//      if (touchStartX < touchMoveX) return
-//      var deltaForMainPage = Math.abs((touchStartX - touchMoveX).toFixed(0) / width * 2);
-//      var deltaForSideMenuBack = 1 - deltaForMainPage;
-//      if (deltaForSideMenuBack < 0.1)
-//        deltaForSideMenuBack = 0.1
-//
-//      filterMenuBackPageId.style.opacity = deltaForSideMenuBack;
-//      //console.log('deltaForMainPage', deltaForMainPage)
-//      reportPageId.style.opacity = deltaForMainPage;
-//
-//      if (touchMoveX - touchStartX <= 0) {
-//        filterMenuId.style.webkitTransform = 'translate3d(' + (touchMoveX - touchStartX) + 'px,0,0)'
-//        touchEndMove = touchMoveX - touchStartX
-//      }
-    }
 
 
-    goToBillingsTouchStart = function () {
 
-      billingsTouchStartX = event.changedTouches[0].pageX;
-    };
 
-    goToBillingsTouchEnd = function () {
-
-      billingsTouchEndX = event.changedTouches[0].pageX;
-
-      if (Math.abs(billingsTouchEndX - billingsTouchStartX < 20)) {
-
-        closeMenu();
-
-        history.arrayOfHistory.push({view: "view-invoice-list"});
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-        riotTags.innerHTML = "<view-invoice-list>";
-        riot.mount("view-invoice-list");
-//        scope.unmount()
-        return
-      }
-    };
-
-    var favoritesTouchStartX, favoritesTouchEndX;
-
-    goToFavoritesEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      favoritesTouchEndX = event.changedTouches[0].pageX;
-
-      console.log('settingsTouchStartX', favoritesTouchStartX)
-      console.log('settingsTouchEndX', favoritesTouchEndX)
-
-      if (favoritesTouchStartX - favoritesTouchEndX < 20) {
-        closeMenu();
-        riotTags.innerHTML = "<view-favorites>";
-        riot.mount("view-favorites");
-//        scope.unmount()
-        return
-      }
-      else sideMenuTouchEnd()
-
-    }
-
-    goToFavoritesStart = function () {
-      favoritesTouchStartX = event.changedTouches[0].pageX;
-    }
 
 
   </script>

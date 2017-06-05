@@ -213,7 +213,8 @@
       demoContinueTouchEndY = event.changedTouches[0].pageY
 
       if (Math.abs(demoContinueTouchStartX - demoContinueTouchEndX) <= 20 && Math.abs(demoContinueTouchStartY - demoContinueTouchEndY) <= 20) {
-
+        if(!localStorage.getItem('device_platform'))
+          localStorage.setItem('device_platform', device.platform)
         window.location = "index-stand-demo.html"
       }
     }
