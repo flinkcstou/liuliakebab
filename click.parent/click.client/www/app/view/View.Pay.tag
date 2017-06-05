@@ -6,13 +6,18 @@
       <div id="rightButton" type="button" class="pay-search-button" ontouchend="search()"></div>
       <div style=""></div>
     </div>
-    <div class="pay-category-container" id="categoriesContainerId">
+    <div class="pay-service-hint-containter" id="hintContainerId" if="{hintShow}">
+      <div class="pay-category-icon" style="background-image: url({showCategoryIcon})"></div>
+      <div class="pay-category-name-field">{showCategoryName}
+      </div>
+      <div class="pay-hint-icon-tick"></div>
+    </div>
+    <div class="pay-category-container" id="categoriesContainerId" onscroll="onTouchMoveOfCategory()">
       <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
         <li each="{i in categoryList}" style="overflow: hidden;">
           <div if="{!(modeOfApp.offlineMode && i.id == 11)}" class="pay-service-block-containter" id="{i.id}"
                ontouchstart="onTouchStartOfCategory()"
-               ontouchend="onTouchEndOfCategory(this.id)"
-               ontouchmove="onTouchMoveOfCategory()">
+               ontouchend="onTouchEndOfCategory(this.id)">
             <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
             <div class="pay-category-name-field">{i.name}
             </div>
@@ -28,12 +33,6 @@
           </div>
         </li>
       </ul>
-      <div class="pay-service-hint-containter" id="hintContainerId" if="{hintShow}">
-        <div class="pay-category-icon" style="background-image: url({showCategoryIcon})"></div>
-        <div class="pay-category-name-field">{showCategoryName}
-        </div>
-        <div class="pay-hint-icon-tick"></div>
-      </div>
     </div>
   </div>
   <component-category-search></component-category-search>
@@ -42,8 +41,7 @@
     var scope = this;
     scope.checkOfSearch = false;
 
-    console.log('opts', opts)
-
+    console.log('opts', opts);
 
     if (opts.mode == 'ADDAUTOPAY')
       this.titleName = window.languages.ViewAutoPayTitleName;
@@ -139,6 +137,12 @@
         if (scope.index == id && scope.show) {
           document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
           viewPay.categoryId = id;
+
+          if (scope.hintShow) {
+            scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
+            scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
+            scope.update();
+          }
         }
 
 
@@ -150,26 +154,29 @@
 
 
     onTouchMoveOfCategory = function () {
+//      console.log("RTRTRTRT ", scope.index);
       event.stopPropagation();
 
       var element = document.getElementById(scope.index);
 
       if (element) {
+//        console.log("ssssssss ", scope.index);
         if (categoriesContainerId.scrollTop > element.offsetTop) {
 //          hintContainerId.style.display = 'block';
           scope.hintShow = true;
           scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
           scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
+//          console.log("open");
           scope.update();
         } else {
           scope.hintShow = false;
 //          hintContainerId.style.display = 'none';
+//          console.log("close");
           scope.update();
-
         }
       }
-
-    }
+      scope.update();
+    };
 
 
     scope.onTouchStartOfService = onTouchStartOfService = function () {

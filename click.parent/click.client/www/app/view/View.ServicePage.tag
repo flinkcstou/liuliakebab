@@ -81,6 +81,8 @@
 
 
   <div id="blockFirstFieldId" class="component-first-field">
+    <div type="button" class="servicepage-fields-dropdown-close-button"
+         ontouchend="closeFirstFieldDropdownTouchEnd()" ontouchstart="closeFirstFieldDropdownTouchStart()"></div>
     <div class="servicepage-fields-dropdown-two">
       <p class="servicepage-dropdown-text-field" style="color: white;">{chosenFieldName}</p>
     </div>
@@ -93,6 +95,8 @@
   </div>
 
   <div id="blockFirstDropdownId" class="component-first-field">
+    <div type="button" class="servicepage-fields-dropdown-close-button"
+         ontouchend="closeFirstDropdownTouchEnd()" ontouchstart="closeFirstDropdownTouchStart()"></div>
     <div class="servicepage-fields-dropdown-two">
       <p class="servicepage-dropdown-text-field" style="color: white;">
         {(service.options_title)?(service.options_title):((firstLevelArray &&
@@ -111,6 +115,8 @@
   </div>
 
   <div id="blockSecondDropdownId" class="component-first-field">
+    <div type="button" class="servicepage-fields-dropdown-close-button"
+         ontouchend="closeSecondDropdownTouchEnd()" ontouchstart="closeSecondDropdownTouchStart()"></div>
     <div class="servicepage-fields-dropdown-two">
       <p class="servicepage-dropdown-text-field" style="color: white;">
         {(secondLevelArray && secondLevelArray[0])?(secondLevelArray[0].name):("")}</p>
@@ -163,7 +169,7 @@
 
       <div class="component-calc-first-field">
         <p class="component-calc-first-field-text">{window.languages.ViewAmountCalculatorTextOne}</p>
-        <input id="amountCalcInputId" class="component-calc-first-field-input-part" type="number"
+        <input id="amountCalcInputId" class="component-calc-first-field-input-part" type="tel" autofocus="true"
                maxlength="19" onkeyup="convertAmount()"/>
       </div>
 
@@ -436,6 +442,7 @@
       //      }
 
       blockAmountCalculatorId.style.display = 'block';
+      amountCalcInputId.focus();
       scope.update(blockAmountCalculatorId);
     }
 
@@ -481,7 +488,7 @@
       scope.update(blockAmountCalculatorId);
     }
 
-    console.log('VIEWPAY SERVICE',viewPay.chosenServiceId, 'mynumber' + localStorage.getItem('myNumberOperatorId'))
+    console.log('VIEWPAY SERVICE', viewPay.chosenServiceId, 'mynumber' + localStorage.getItem('myNumberOperatorId'))
     if ((viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) || (modeOfApp.offlineMode && viewPay.chosenServiceId == 'mynumber')) {
 
       console.log("MY NUMBER ID");
@@ -561,8 +568,55 @@
         scope.serviceIcon = scope.service.image;
       }
 
-      console.log("ASD");
       scope.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
+
+      if (scope.service.form_type == 4)
+
+        window.api.call({
+          method: 'get.service.parameters',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            service_id: viewPay.chosenServiceId
+          },
+
+          scope: this,
+
+          onSuccess: function (result) {
+            if (result[0][0].error == 0) {
+              console.log('GET SERVICE PARAMETERS BY SERVICE', JSON.stringify(result))
+
+              if (result[4])
+                for (var i in result[4]) {
+//                    console.log("4. service id=", result[4][i].service_id, "element:", result[4][i]);
+                  if (!scope.servicesParamsMapFour[result[4][i].service_id]) {
+                    scope.servicesParamsMapFour[result[4][i].service_id] = [];
+                    scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
+                  }
+                  else
+                    scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
+                }
+              if (result[5])
+                for (var i in result[5]) {
+//                    console.log("5. service id=", result[5][i].service_id, "element:", result[5][i]);
+                  if (!scope.servicesParamsMapFive[result[5][i].service_id]) {
+                    scope.servicesParamsMapFive[result[5][i].service_id] = [];
+                    scope.servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
+                  }
+                  else
+                    scope.servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
+                }
+
+              console.log("NEW MAP FOUR AND FIVE");
+
+            }
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
     }
 
     console.log('scope.categoryNamesMap', scope.categoryNamesMap)
@@ -850,6 +904,70 @@
         }
       }
     };
+
+    var closeFirstFieldDropdownTouchStartX, closeFirstFieldDropdownTouchStartY, closeFirstFieldDropdownTouchEndX, closeFirstFieldDropdownTouchEndY;
+    var closeFirstDropdownTouchStartX, closeFirstDropdownTouchStartY, closeFirstDropdownTouchEndX, closeFirstDropdownTouchEndY;
+    var closeSecondDropdownTouchStartX, closeSecondDropdownTouchStartY, closeSecondDropdownTouchEndX, closeSecondDropdownTouchEndY;
+
+    closeFirstFieldDropdownTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      closeFirstFieldDropdownTouchStartX = event.changedTouches[0].pageX;
+      closeFirstFieldDropdownTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    closeFirstFieldDropdownTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      closeFirstFieldDropdownTouchEndX = event.changedTouches[0].pageX;
+      closeFirstFieldDropdownTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(closeFirstFieldDropdownTouchStartX - closeFirstFieldDropdownTouchEndX) <= 20 && Math.abs(closeFirstFieldDropdownTouchStartY - closeFirstFieldDropdownTouchEndY) <= 20) {
+        this.blockFirstFieldId.style.display = 'none';
+      }
+    };
+
+    closeFirstDropdownTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      closeFirstDropdownTouchStartX = event.changedTouches[0].pageX;
+      closeFirstDropdownTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    closeFirstDropdownTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      closeFirstDropdownTouchEndX = event.changedTouches[0].pageX;
+      closeFirstDropdownTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(closeFirstDropdownTouchStartX - closeFirstDropdownTouchEndX) <= 20 && Math.abs(closeFirstDropdownTouchStartY - closeFirstDropdownTouchEndY) <= 20) {
+        this.blockFirstDropdownId.style.display = 'none';
+      }
+    };
+
+    closeSecondDropdownTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      closeSecondDropdownTouchStartX = event.changedTouches[0].pageX;
+      closeSecondDropdownTouchStartY = event.changedTouches[0].pageY;
+    }
+
+    closeSecondDropdownTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      closeSecondDropdownTouchEndX = event.changedTouches[0].pageX;
+      closeSecondDropdownTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(closeSecondDropdownTouchStartX - closeSecondDropdownTouchEndX) <= 20 && Math.abs(closeSecondDropdownTouchStartY - closeSecondDropdownTouchEndY) <= 20) {
+        this.blockSecondDropdownId.style.display = 'none';
+      }
+    }
 
 
     scope.onTouchStartOfDropdownThree = onTouchStartOfDropdownThree = function () {
