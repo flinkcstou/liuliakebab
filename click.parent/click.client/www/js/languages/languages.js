@@ -38,7 +38,7 @@ var RU_LANGUAGES =
   "ViewSmsResendText": "Смс переотправлено на номер: ",
 
   "ViewAuthorizationClickPinLabel": "Введите CLICK-PIN",
-  "ViewAuthorizationForgetPinLabel": "Забыли Click-Pin?",
+  "ViewAuthorizationForgetPinLabel": "Забыли CLICK-PIN?",
   "ViewAuthorizationResetLocalStorageLabel": "Очистить данные",
   "ViewAuthorizationOfflineModeLabel": "Офлайн режим",
 
