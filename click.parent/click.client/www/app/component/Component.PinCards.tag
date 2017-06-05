@@ -23,13 +23,13 @@
            class="{pincard-card-uncheckmark: 'check'+i.card_id != checkedId, pincard-card-checkmark: 'check'+i.card_id == checkedId}">
       </div>
     </div>
+
   </div>
-  <div class="pincard-allcards-transparent-block"></div>
 
   <script>
     var scope = this;
 
-
+    //<div class="pincard-allcards-transparent-block"></div>
     //    if (!viewTransfer.check) {
     scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
 
