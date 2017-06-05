@@ -78,6 +78,8 @@ window.api.initSocket = function () {
 
     console.log('Connection is closed');
     console.log(event);
+
+    window.api.init();
   };
   var me = this;
 

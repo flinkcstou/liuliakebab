@@ -272,7 +272,7 @@
           }
           else {
             scope.clickPinError = false;
-            scope.errorNote = "CLICK PIN не совпадает!";
+            scope.errorNote = "Введенный CLICK-PIN не совпадает указанному ранее. Попробуйте еще раз!";
 
             console.log('scope.checkPin', scope.checkPin, 'scope.checkPinConfirm', scope.checkPinConfirm)
             scope.showError = true;

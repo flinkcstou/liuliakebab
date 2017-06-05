@@ -347,6 +347,7 @@
                   viewTransfer.cardNumber = 0
                   viewTransferStepTwo.sum = 0;
                   viewTransferStepTwo.sumWithoutSpace = 0;
+                  window.updateBalanceGlobalFunction();
                   scope.update();
 
                 }
