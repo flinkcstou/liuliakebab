@@ -3020,11 +3020,10 @@ var css = {
   "position: absolute;" +
   "height:" + 100 * widthK + "px; " +
   "width: 100%;" +
-  "margin-top: 1%;" +
+    //"margin-top: 1%;" +
   "z-index: 999999;" +
   "background-color: white;" +
-  "top:" + 78 * widthK + "px; " +
-  "position:fixed;" +
+  "top:" + 86 * widthK + "px; " +
     //"display: none;" +
     //"box-shadow: 0 0 20px rgba(0,0,0,0.5);" +
   "-webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.5);" +
@@ -3301,6 +3300,21 @@ var css = {
   "color: white;" +
   "border-bottom:" + 3 * widthK + "px solid lightgray;" +
   "top: 5%;" +
+  "}",
+
+  servicePageFieldsDropdownCloseButton: ".servicepage-fields-dropdown-close-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 144 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "right:" + -36 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewService/close_icon_grey.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 22%;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 54 * widthK + "px;" +
+  "background-size: 22%;" +
+  "top: 0;" +
   "}",
 
   servicePageFieldsDropdownTwo: ".servicepage-fields-dropdown-two" +
@@ -12904,7 +12918,7 @@ var css = {
   "{" +
   "width: 100%;" +
   "height: 85%;" +
-  "overflow: scroll;" +
+  "overflow: auto;" +
     //"border-bottom: 1px solid lightgray;" +
   "}",
 
@@ -12935,7 +12949,7 @@ var css = {
   "min-height:" + 240 * widthK + "px; " +
   "width: 91%;" +
   "left: 4%;" +
-  "margin-top: 1%;" +
+    //"margin-top: 1%;" +
   "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
@@ -12945,6 +12959,7 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "padding: 0;" +
+  "margin:0;" +
     //"border:" + 1 * widthK + "px solid gainsboro;" +
   "}",
 
