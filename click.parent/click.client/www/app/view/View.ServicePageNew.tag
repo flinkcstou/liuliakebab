@@ -1,4 +1,4 @@
-<view-service-page class="view-service-page riot-tags-main-container">
+<view-service-page-new class="view-service-page riot-tags-main-container">
   <div class="pay-page-title" style="border-style: none;">
     <p class="{servicepage-title :opts.mode!='ADDAUTOPAY', autopay-method-page-title:opts.mode=='ADDAUTOPAY'}">
       {(opts.mode=='ADDAUTOPAY')?(window.languages.ViewAutoPayTitleName):("")}
@@ -43,7 +43,7 @@
     </div>
 
     <div class="servicepage-first-field" id="firstField"
-         hidden="{modeOfApp.offlineMode && viewPay.chosenServiceId == 'mynumber'}">
+         hidden="{modeOfApp.offlineMode && opts.chosenServiceId == 'mynumber'}">
       <p class="servicepage-text-field">{chosenFieldName}</p>
       <p class="servicepage-number-first-part" if="{phoneFieldBool}">+{window.languages.CodeOfCountry}</p>
       <input class="{servicepage-number-input-part: phoneFieldBool, servicepage-number-input-part-two: !phoneFieldBool && isNumber,
@@ -209,8 +209,8 @@
 
     window.checkShowingComponent = null;
 
-    console.log('OPTS in ServicePage', opts);
-    //    console.log('viewPay.chosenServiceId', viewPay.chosenServiceId);
+    console.log('OPTS in ServicePage NEW ', opts);
+    //    console.log('opts.chosenServiceId', opts.chosenServiceId);
 
     var scope = this;
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
@@ -235,10 +235,10 @@
 
     scope.update(scope.categoryNamesMap);
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page-new') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-service-page',
+          "view": 'view-service-page-new',
           "params": opts
         }
       );
@@ -246,8 +246,7 @@
     }
 
     if (opts.id) {
-
-      viewPay.chosenServiceId = opts.id;
+      opts.chosenServiceId = opts.id;
     }
 
 
@@ -488,12 +487,12 @@
       scope.update(blockAmountCalculatorId);
     }
 
-    console.log('VIEWPAY SERVICE', viewPay.chosenServiceId, 'mynumber' + localStorage.getItem('myNumberOperatorId'))
-    if ((viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) || (modeOfApp.offlineMode && viewPay.chosenServiceId == 'mynumber')) {
+    console.log('VIEWPAY SERVICE', opts.chosenServiceId, 'mynumber' + localStorage.getItem('myNumberOperatorId'))
+    if ((opts.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) || (modeOfApp.offlineMode && opts.chosenServiceId == 'mynumber')) {
 
       console.log("MY NUMBER ID");
 
-      if (modeOfApp.onlineMode || viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
+      if (modeOfApp.onlineMode || opts.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
         scope.service = scope.servicesMap[localStorage.getItem('myNumberOperatorId')][0];
         scope.titleName = 'Мой номер';
         scope.serviceIcon = 'resources/icons/ViewPay/myphone.png';
@@ -501,7 +500,7 @@
         viewServicePage.phoneText = viewServicePage.phoneText ? viewServicePage.phoneText.substr(3, viewServicePage.phoneText.length - 3) : '';
         scope.fieldArray = scope.servicesParamsMapOne[localStorage.getItem('myNumberOperatorId')];
         console.log('FIELDARRAY', scope.fieldArray)
-        viewPay.chosenServiceId = localStorage.getItem('myNumberOperatorId');
+        opts.chosenServiceId = localStorage.getItem('myNumberOperatorId');
 
         scope.on('mount', function () {
           firstField.style.display = 'none';
@@ -534,11 +533,11 @@
         scope.fieldArray = [];
         scope.fieldArray[0] = {ussd_query: "*880*0199999*1*{amount}#", title: "Мой номер"};
         console.log('scope.fieldArray', scope.fieldArray)
-        viewPay.chosenServiceId = localStorage.getItem('myNumberOperatorId') ? localStorage.getItem('myNumberOperatorId') : 'mynumber';
+        opts.chosenServiceId = localStorage.getItem('myNumberOperatorId') ? localStorage.getItem('myNumberOperatorId') : 'mynumber';
 
         scope.amountFieldTitle = 'Сумма';
 
-        console.log('TTTTTT', scope.service, scope.titleName, scope.fieldArray, viewPay.chosenServiceId);
+        console.log('TTTTTT', scope.service, scope.titleName, scope.fieldArray, opts.chosenServiceId);
 
         this.on('mount', function () {
           firstField.style.display = 'none';
@@ -562,13 +561,13 @@
       }
     } else {
 
-      if (scope.servicesMap[viewPay.chosenServiceId]) {
-        scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
+      if (scope.servicesMap[opts.chosenServiceId]) {
+        scope.service = scope.servicesMap[opts.chosenServiceId][0];
         scope.titleName = scope.service.name;
         scope.serviceIcon = scope.service.image;
       }
 
-      scope.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
+      scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
 
       if (scope.service.form_type == 4)
 
@@ -577,7 +576,7 @@
           input: {
             session_key: sessionKey,
             phone_num: phoneNumber,
-            service_id: viewPay.chosenServiceId
+            service_id: opts.chosenServiceId
           },
 
           scope: this,
@@ -633,7 +632,7 @@
 
     if (scope.formType != 2) {
 
-      console.log("Yahoo1 formType=", scope.formType, ", Rest=", scope.fieldArray, scope.servicesParamsMapOne[viewPay.chosenServiceId], scope.servicesParamsMapOne, viewPay.chosenServiceId);
+      console.log("Yahoo1 formType=", scope.formType, ", Rest=", scope.fieldArray, scope.servicesParamsMapOne[opts.chosenServiceId], scope.servicesParamsMapOne, opts.chosenServiceId);
 
       if (scope.fieldArray) {
         scope.dropDownOn = scope.fieldArray.length > 1;
@@ -1109,14 +1108,14 @@
         console.log(error);
       }
 
-      if (scope.phoneFieldBool && firstFieldInput.value.length < 9 && viewPay.chosenServiceId != "mynumber") {
+      if (scope.phoneFieldBool && firstFieldInput.value.length < 9 && opts.chosenServiceId != "mynumber") {
         scope.clickPinError = false;
         scope.errorNote = "Неправильно введён номер телефона";
         scope.showError = true;
         scope.update();
 
         return;
-      } else if (firstFieldInput.value.length == 0 && viewPay.chosenServiceId != "mynumber") {
+      } else if (firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
         scope.clickPinError = false;
         scope.errorNote = "Введите значение первого поля";
         scope.showError = true;
@@ -1139,31 +1138,32 @@
         return;
       }
 
-      var formtype = {"formtype": scope.formType};
-      var firstFieldId = {"firstFieldId": scope.chosenFieldParamId};
-      var firstFieldText = {"firstFieldText": firstFieldInput.value};
-      var cardTypeId = {"cardTypeId": null};
+      opts.formtype = scope.formType;
+      opts.firstFieldId = scope.chosenFieldParamId;
+      opts.firstFieldText = firstFieldInput.value;
+      opts.firstFieldTitle = scope.chosenFieldName;
+      opts.cardTypeId = null;
+      opts.amountText = amountForPayTransaction;
+      opts.firstLevelParamId = scope.chosenFieldParamIdTwo;
+      opts.firstLevelFieldName = scope.chosenFieldNameTwo;
+      opts.secondLevelFieldName = scope.chosenFieldNameThree;
+      opts.isInFavorites = !scope.enterButton;
+
 
       if (scope.formType == 3) {
-        var internetPackageParam = {"internetPackageParam": null};
-        var amountText = {"amountText": amountForPayTransaction};
+//        opts.internetPackageParam = null;
         if (scope.hasSecondLevel)
-          var communalParam = {"communalParam": scope.chosenFieldParamIdThree};
+          opts.communalParam = scope.chosenFieldParamIdThree;
         else
-          var communalParam = {"communalParam": scope.chosenFieldParamIdTwo};
-
-      } else if (scope.formType == 1) {
-        var communalParam = {"communalParam": null};
-        var internetPackageParam = {"internetPackageParam": null};
-        var amountText = {"amountText": amountForPayTransaction};
+          opts.communalParam = scope.chosenFieldParamIdTwo;
 
       } else if (scope.formType == 4) {
-        var communalParam = {"communalParam": null};
-        if (scope.chosenFieldParamIdThree) {
-          var amountText = {"amountText": amountForPayTransaction};
-          var internetPackageParam = {"internetPackageParam": scope.chosenFieldParamIdThree};
+//        opts.communalParam = null;
+        if (scope.chosenFieldParamIdThree)
 
-        } else {
+          opts.internetPackageParam = scope.chosenFieldParamIdThree;
+
+        else {
           scope.clickPinError = false;
           scope.errorNote = "Выберите интернет пакет";
           scope.showError = true;
@@ -1173,25 +1173,24 @@
       }
 
 
-      viewServicePage.firstFieldTitle = scope.chosenFieldName;
       viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
-      var isInFavorites = {"isInFavorites": !scope.enterButton};
 
-      scope.fieldsObject = {
-        formtype: formtype.formtype,
-        firstFieldId: firstFieldId.firstFieldId,
-        firstFieldText: firstFieldText.firstFieldText,
-        firstFieldTitle: scope.chosenFieldName,
-        cardTypeId: cardTypeId.cardTypeId,
-        communalParam: communalParam.communalParam,
-        amountText: amountText.amountText,
-        internetPackageParam: internetPackageParam.internetPackageParam,
-        firstLevelParamId: scope.chosenFieldParamIdTwo,
-        firstLevelFieldName: scope.chosenFieldNameTwo,
-        secondLevelFieldName: scope.chosenFieldNameThree,
-      };
-      console.log("fieldsObject=", scope.fieldsObject);
-      localStorage.setItem("servicepage_fields", JSON.stringify(scope.fieldsObject));
+
+//      scope.fieldsObject = {
+//        formtype: formtype.formtype,
+//        firstFieldId: firstFieldId.firstFieldId,
+//        firstFieldText: firstFieldText.firstFieldText,
+//        firstFieldTitle: scope.chosenFieldName,
+//        cardTypeId: cardTypeId.cardTypeId,
+//        communalParam: communalParam.communalParam,
+//        amountText: amountText.amountText,
+//        internetPackageParam: internetPackageParam.internetPackageParam,
+//        firstLevelParamId: scope.chosenFieldParamIdTwo,
+//        firstLevelFieldName: scope.chosenFieldNameTwo,
+//        secondLevelFieldName: scope.chosenFieldNameThree
+//      };
+//      console.log("fieldsObject=", scope.fieldsObject);
+//      localStorage.setItem("servicepage_fields", JSON.stringify(scope.fieldsObject));
 
 
       if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
@@ -1216,41 +1215,41 @@
 
           var ussdQuery = scope.fieldArray[0].ussd_query;
 
-          if (formtype.formtype == 1) {
-            if (firstFieldText.firstFieldText) {
-              ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
+          if (opts.formtype == 1) {
+            if (opts.firstFieldText) {
+              ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
             }
             else {
-              ussdQuery = ussdQuery.replace('*{param}', firstFieldText.firstFieldText);
+              ussdQuery = ussdQuery.replace('*{param}', opts.firstFieldText);
             }
-            ussdQuery = ussdQuery.replace('{communal_param}', communalParam.communalParam);
-            ussdQuery = ussdQuery.replace('{option}', firstFieldId.firstFieldId);
-            ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
+            ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+            ussdQuery = ussdQuery.replace('{option}', opts.firstFieldId);
+            ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
             ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
             console.log(ussdQuery)
           }
 
           if (formtype.formtype == 2) {
-            ussdQuery = ussdQuery.replace('{communal_param}', communalParam.communalParam);
-            ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
-            ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
+            ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+            ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
+            ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
             ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
             console.log(ussdQuery)
           }
 
           if (formtype.formtype == 3) {
-            ussdQuery = ussdQuery.replace('{communal_param}', communalParam.communalParam);
-            ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
-            ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
+            ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+            ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
+            ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
             ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
             console.log(ussdQuery)
           }
 
           if (formtype.formtype == 4) {
             console.log('ussdQuery', ussdQuery)
-            ussdQuery = ussdQuery.replace('{communal_param}', communalParam.communalParam);
-            ussdQuery = ussdQuery.replace('{param}', firstFieldText.firstFieldText);
-            ussdQuery = ussdQuery.replace('{amount}', amountText.amountText);
+            ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+            ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
+            ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
             ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
             console.log(ussdQuery)
           }
@@ -1278,12 +1277,12 @@
         else {
 
           if (scope.service.additional_information_type == 0) {
-            this.riotTags.innerHTML = "<view-service-pincards>";
-            riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, opts.mode])
+            this.riotTags.innerHTML = "<view-service-pincards-new>";
+            riot.mount('view-service-pincards-new', opts);
             scope.unmount()
           } else {
             this.riotTags.innerHTML = "<view-service-info>";
-            riot.mount('view-service-info', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, opts.mode])
+            riot.mount('view-service-info', opts);
             scope.unmount()
           }
 
@@ -1291,7 +1290,7 @@
         }
       } else if (opts.mode == 'ADDFAVORITE') {
 
-        addToFavorites([formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites]);
+        addToFavorites(opts);
 
         event.preventDefault();
         event.stopPropagation();
@@ -1317,20 +1316,19 @@
         localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
         if (scope.autoPayFromConfirm) {
-          this.riotTags.innerHTML = "<view-pay-confirm>";
-          riot.mount('view-pay-confirm', opts);
+          this.riotTags.innerHTML = "<view-pay-confirm-new>";
+          riot.mount('view-pay-confirm-new', opts);
           scope.unmount()
 
         } else {
-          this.riotTags.innerHTML = "<view-service-pincards>";
-          riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
+          this.riotTags.innerHTML = "<view-service-pincards-new>";
+          riot.mount('view-service-pincards-new', opts);
           scope.unmount()
         }
 
 
       }
     };
-
 
 
     scope.onTouchStartOfPincard = onTouchStartOfPincard = function () {
@@ -1346,14 +1344,14 @@
       servicePageTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20) {
-        var formtype = {"formtype": scope.formType};
-        var firstFieldId = {"firstFieldId": null};
-        var firstFieldText = {"firstFieldText": null};
-        var cardTypeId = {"cardTypeId": cardId};
-        var communalParam = {"communalParam": null};
-        var amountText = {"amountText": nominal};
-        var internetPackageParam = {"internetPackageParam": null};
-        var isInFavorites = {"isInFavorites": !scope.enterButton};
+        opts.formtype = scope.formType;
+//        var firstFieldId = {"firstFieldId": null};
+//        var firstFieldText = {"firstFieldText": null};
+        opts.cardTypeId = cardId;
+//        var communalParam = {"communalParam": null};
+        opts.amountText = nominal;
+//        var internetPackageParam = {"internetPackageParam": null};
+        opts.isInFavorites = !scope.enterButton;
 
 
         if (modeOfApp.offlineMode) {
@@ -1381,13 +1379,11 @@
           return
         }
 
-        scope.formTypeTwoOptsArray = [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, opts.mode];
-
         if (opts.mode == 'USUAL' || opts.mode == 'POPULAR') {
           event.preventDefault();
           event.stopPropagation();
-          this.riotTags.innerHTML = "<view-service-pincards>";
-          riot.mount('view-service-pincards', scope.formTypeTwoOptsArray);
+          this.riotTags.innerHTML = "<view-service-pincards-new>";
+          riot.mount('view-service-pincards-new', opts);
           scope.unmount()
         } else if (opts.mode == 'ADDFAVORITE') {
           formTypeTwoBtnSaveId.style.pointerEvents = 'auto';
@@ -1406,16 +1402,16 @@
           scope.autoPayData.name = autoPayNameInput.value;
           localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
-          this.riotTags.innerHTML = "<view-service-pincards>";
-          riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
+          this.riotTags.innerHTML = "<view-service-pincards-new>";
+          riot.mount('view-service-pincards-new', opts);
           scope.unmount()
         }
       }
     };
 
     addToFavoritesforFormTypeTwo = function () {
-      if (scope.formTypeTwoOptsArray) {
-        addToFavorites(scope.formTypeTwoOptsArray);
+      if (opts) {
+        addToFavorites(opts);
         event.preventDefault();
         event.stopPropagation();
         this.riotTags.innerHTML = "<view-main-page>";
@@ -1440,7 +1436,7 @@
         favoritePaymentsList.push({
           "opts": array,
           "service": scope.service,
-          "firstFieldTitle": viewServicePage.firstFieldTitle,
+//          "firstFieldTitle": viewServicePage.firstFieldTitle,
           "ussd": scope.fieldArray[0].ussd_query
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);
@@ -1453,7 +1449,7 @@
         favoritePaymentsList.push({
           "opts": array,
           "service": scope.service,
-          "firstFieldTitle": viewServicePage.firstFieldTitle,
+//          "firstFieldTitle": viewServicePage.firstFieldTitle,
           "ussd": scope.fieldArray[0].ussd_query
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);
@@ -1463,4 +1459,4 @@
 
 
   </script>
-</view-service-page>
+</view-service-page-new>
