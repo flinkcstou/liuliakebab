@@ -77,6 +77,27 @@ var css = {
   "color:inherit;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
+  //
+  //htmlWebkitScrollBar: "html::-webkit-scrollbar" +
+  //"{ " +
+  //"width:" + 5 * widthK + "px;" +
+  //"}",
+  //
+  //htmlWebkitScrollBarTrack: "html::-webkit-scrollbar-track" +
+  //"{ " +
+  //"border-radius:" + 10 * widthK + "px;" +
+  //"}",
+  //
+  //htmlWebkitScrollBarThumb: "html::-webkit-scrollbar-thumb" +
+  //"{ " +
+  //"border-radius:" + 10 * widthK + "px;" +
+  //"background: rgb(169,169,169);" +
+  //"}",
+  //
+  //htmlWebkitScrollBarThumbWindowInactive: "html::-webkit-scrollbar-thumb:window-inactive" +
+  //"{ " +
+  //"background: rgb(128,128,128);" +
+  //"}",
 
   //DEMO
 
