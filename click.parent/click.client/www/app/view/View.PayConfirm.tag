@@ -379,7 +379,7 @@
         payment_data = {
           "param": opts[0][1].firstFieldId,
           "value": firstFieldtext,
-          "internetPackageParam": opts[0][6].internetPackageParam,
+          "internet_package_param": opts[0][6].internetPackageParam,
           "transaction_id": parseInt(Date.now() / 1000)
         };
         opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);

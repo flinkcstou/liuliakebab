@@ -98,7 +98,8 @@
           console.log("scope.favoritePaymentsList[i].service.id", scope.favoritePaymentsList[i].service.id);
           console.log("gnrf", scope.favoritePaymentsList[i]);
           viewPay.chosenServiceId = id;
-          viewServicePage.firstFieldTitle = scope.favoritePaymentsList[i].firstFieldTitle;
+//          viewServicePage.firstFieldTitle = scope.favoritePaymentsList[i].firstFieldTitle;
+          scope.favoritePaymentsList[i].opts[8] = scope.favoritePaymentsList[i].firstFieldTitle;
           viewPayConfirm.isInFavorites = true;
           if (modeOfApp.offlineMode) {
             var firstFieldText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].opts[2].firstFieldText)
