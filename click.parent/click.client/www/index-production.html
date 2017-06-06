@@ -276,14 +276,14 @@
                 scope.contentOfAgreement = result[1][0].content;
                 console.log("from FTRDFTYFIYV");
                 localStorage.setItem("click_client_agreement", scope.contentOfAgreement);
-                scope.update();
+                riot.update();
               }
             }
             else {
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
-              scope.update();
+//              scope.clickPinError = false;
+//              scope.errorNote = result[0][0].error_note;
+//              scope.showError = true;
+              riot.update();
             }
           },
 

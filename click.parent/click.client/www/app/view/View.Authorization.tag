@@ -216,12 +216,14 @@
 
             function successCallbackOfAuth(success) {
               console.log(success)
-              pin = JSON.parse(localStorage.getItem('click_client_pin'));
+              console.log('SUCCIESS FINGER PRINT')
+              pin = localStorage.getItem('click_client_pin');
               enter();
             }
 
             function failureCallbackOfAuth(error) {
               console.log(error)
+              console.log('FAIL FINGER PRINT')
             }
           }
         }
