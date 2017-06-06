@@ -356,21 +356,9 @@
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-          scope.confirmShowBool = true;
-          scope.confirmNote = question;
+          scope.showError = true;
+          scope.errorNote = question;
           scope.confirmType = 'local';
-          scope.result = function (bool) {
-            if (bool) {
-              localStorage.clear();
-              window.location = 'index.html'
-              scope.unmount()
-              return
-            }
-            else {
-              scope.confirmShowBool = false;
-              return
-            }
-          };
           scope.update();
 
           return
@@ -1676,6 +1664,7 @@
                 scope.suggestionOne.fName = '';
               }
               if (transferContacts[i].name.familyName != null) {
+                scope.suggestionOne.lName = transferContacts[i].name.familyName;
                 scope.suggestionOne.lName = transferContacts[i].name.familyName;
               }
               else {

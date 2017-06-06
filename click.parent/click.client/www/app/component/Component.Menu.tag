@@ -111,22 +111,24 @@
       event.stopPropagation();
       if (modeOfApp.demoVersion) {
         var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+        scope.showError = true;
+        scope.errorNote = question;
 //        confirm(question)
-        scope.confirmShowBool = true;
-        scope.confirmNote = question;
-        scope.confirmType = 'local';
-        scope.result = function (bool) {
-          if (bool) {
-            localStorage.clear();
-            window.location = 'index.html'
-            scope.unmount()
-            return
-          }
-          else {
-            scope.confirmShowBool = false;
-            return
-          }
-        };
+//        scope.confirmShowBool = true;
+//        scope.confirmNote = question;
+//        scope.confirmType = 'local';
+//        scope.result = function (bool) {
+//          if (bool) {
+//            localStorage.clear();
+//            window.location = 'index.html'
+//            scope.unmount()
+//            return
+//          }
+//          else {
+//            scope.confirmShowBool = false;
+//            return
+//          }
+//        };
         scope.update();
 
         return
@@ -233,21 +235,23 @@
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-          scope.confirmShowBool = true;
-          scope.confirmNote = question;
-          scope.confirmType = 'local';
-          scope.result = function (bool) {
-            if (bool) {
-              localStorage.clear();
-              window.location = 'index.html'
-              scope.unmount()
-              return
-            }
-            else {
-              scope.confirmShowBool = false;
-              return
-            }
-          };
+          scope.showError = true;
+          scope.errorNote = question;
+//          scope.confirmShowBool = true;
+//          scope.confirmNote = question;
+//          scope.confirmType = 'local';
+//          scope.result = function (bool) {
+//            if (bool) {
+//              localStorage.clear();
+//              window.location = 'index.html'
+//              scope.unmount()
+//              return
+//            }
+//            else {
+//              scope.confirmShowBool = false;
+//              return
+//            }
+//          };
           scope.update();
 
           return
@@ -348,22 +352,24 @@
       if (Math.abs(autoPayTouchStartX - autoPayTouchEndX) <= 20 && Math.abs(autoPayTouchStartY - autoPayTouchEndY) <= 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          scope.showError = true;
+          scope.errorNote = question;
 //        confirm(question)
-          scope.confirmShowBool = true;
-          scope.confirmNote = question;
-          scope.confirmType = 'local';
-          scope.result = function (bool) {
-            if (bool) {
-              localStorage.clear();
-              window.location = 'index.html'
-              scope.unmount()
-              return
-            }
-            else {
-              scope.confirmShowBool = false;
-              return
-            }
-          };
+//          scope.confirmShowBool = true;
+//          scope.confirmNote = question;
+//          scope.confirmType = 'local';
+//          scope.result = function (bool) {
+//            if (bool) {
+//              localStorage.clear();
+//              window.location = 'index.html'
+//              scope.unmount()
+//              return
+//            }
+//            else {
+//              scope.confirmShowBool = false;
+//              return
+//            }
+//          };
           scope.update();
 
           return
@@ -395,22 +401,24 @@
       if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX) < 20 && Math.abs(qrScannerTouchStartY - qrScannerTouchEndY) < 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          scope.showError = true;
+          scope.errorNote = question;
 //        confirm(question)
-          scope.confirmShowBool = true;
-          scope.confirmNote = question;
-          scope.confirmType = 'local';
-          scope.result = function (bool) {
-            if (bool) {
-              localStorage.clear();
-              window.location = 'index.html'
-              scope.unmount()
-              return
-            }
-            else {
-              scope.confirmShowBool = false;
-              return
-            }
-          };
+//          scope.confirmShowBool = true;
+//          scope.confirmNote = question;
+//          scope.confirmType = 'local';
+//          scope.result = function (bool) {
+//            if (bool) {
+//              localStorage.clear();
+//              window.location = 'index.html'
+//              scope.unmount()
+//              return
+//            }
+//            else {
+//              scope.confirmShowBool = false;
+//              return
+//            }
+//          };
           scope.update();
 
           return
@@ -580,22 +588,24 @@
       if (Math.abs(settingsTouchStartX - settingsTouchEndX) < 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          scope.showError = true;
+          scope.errorNote = question;
 //        confirm(question)
-          scope.confirmShowBool = true;
-          scope.confirmNote = question;
-          scope.confirmType = 'local';
-          scope.result = function (bool) {
-            if (bool) {
-              localStorage.clear();
-              window.location = 'index.html'
-              scope.unmount()
-              return
-            }
-            else {
-              scope.confirmShowBool = false;
-              return
-            }
-          };
+//          scope.confirmShowBool = true;
+//          scope.confirmNote = question;
+//          scope.confirmType = 'local';
+//          scope.result = function (bool) {
+//            if (bool) {
+//              localStorage.clear();
+//              window.location = 'index.html'
+//              scope.unmount()
+//              return
+//            }
+//            else {
+//              scope.confirmShowBool = false;
+//              return
+//            }
+//          };
           scope.update();
 
           return
@@ -627,22 +637,24 @@
       if (Math.abs(billingsTouchEndX - billingsTouchStartX) < 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          scope.showError = true;
+          scope.errorNote = question;
 //        confirm(question)
-          scope.confirmShowBool = true;
-          scope.confirmNote = question;
-          scope.confirmType = 'local';
-          scope.result = function (bool) {
-            if (bool) {
-              localStorage.clear();
-              window.location = 'index.html'
-              scope.unmount()
-              return
-            }
-            else {
-              scope.confirmShowBool = false;
-              return
-            }
-          };
+//          scope.confirmShowBool = true;
+//          scope.confirmNote = question;
+//          scope.confirmType = 'local';
+//          scope.result = function (bool) {
+//            if (bool) {
+//              localStorage.clear();
+//              window.location = 'index.html'
+//              scope.unmount()
+//              return
+//            }
+//            else {
+//              scope.confirmShowBool = false;
+//              return
+//            }
+//          };
           scope.update();
 
           return
@@ -694,22 +706,24 @@
       if (Math.abs(favoritesTouchStartX - favoritesTouchEndX) < 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          scope.showError = true;
+          scope.errorNote = question;
 //        confirm(question)
-          scope.confirmShowBool = true;
-          scope.confirmNote = question;
-          scope.confirmType = 'local';
-          scope.result = function (bool) {
-            if (bool) {
-              localStorage.clear();
-              window.location = 'index.html'
-              scope.unmount()
-              return
-            }
-            else {
-              scope.confirmShowBool = false;
-              return
-            }
-          };
+//          scope.confirmShowBool = true;
+//          scope.confirmNote = question;
+//          scope.confirmType = 'local';
+//          scope.result = function (bool) {
+//            if (bool) {
+//              localStorage.clear();
+//              window.location = 'index.html'
+//              scope.unmount()
+//              return
+//            }
+//            else {
+//              scope.confirmShowBool = false;
+//              return
+//            }
+//          };
           scope.update();
 
           return

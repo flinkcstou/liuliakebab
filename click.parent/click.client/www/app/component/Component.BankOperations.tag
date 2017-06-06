@@ -110,22 +110,24 @@
       if (Math.abs(autoPayStartX - autoPayEndX) <= 20 && Math.abs(autoPayStartY - autoPayEndY) <= 20) {
         if(modeOfApp.demoVersion){
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          scope.showError = true;
+          scope.errorNote = question;
 //        confirm(question)
-          scope.confirmShowBool = true;
-          scope.confirmNote = question;
-          scope.confirmType = 'local';
-          scope.result = function (bool) {
-            if (bool) {
-              localStorage.clear();
-              window.location = 'index.html'
-              scope.unmount()
-              return
-            }
-            else{
-              scope.confirmShowBool = false;
-              return
-            }
-          };
+//          scope.confirmShowBool = true;
+//          scope.confirmNote = question;
+//          scope.confirmType = 'local';
+//          scope.result = function (bool) {
+//            if (bool) {
+//              localStorage.clear();
+//              window.location = 'index.html'
+//              scope.unmount()
+//              return
+//            }
+//            else{
+//              scope.confirmShowBool = false;
+//              return
+//            }
+//          };
           scope.update();
 
           return
@@ -166,22 +168,24 @@
       if (Math.abs(qrPayStartX - qrPayEndX) <= 20 && Math.abs(qrPayStartY - qrPayEndY) <= 20) {
         if(modeOfApp.demoVersion){
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          scope.showError = true;
+          scope.errorNote = question;
 //        confirm(question)
-          scope.confirmShowBool = true;
-          scope.confirmNote = question;
-          scope.confirmType = 'local';
-          scope.result = function (bool) {
-            if (bool) {
-              localStorage.clear();
-              window.location = 'index.html'
-              scope.unmount()
-              return
-            }
-            else{
-              scope.confirmShowBool = false;
-              return
-            }
-          };
+//          scope.confirmShowBool = true;
+//          scope.confirmNote = question;
+//          scope.confirmType = 'local';
+//          scope.result = function (bool) {
+//            if (bool) {
+//              localStorage.clear();
+//              window.location = 'index.html'
+//              scope.unmount()
+//              return
+//            }
+//            else{
+//              scope.confirmShowBool = false;
+//              return
+//            }
+//          };
           scope.update();
 
           return

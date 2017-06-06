@@ -800,22 +800,24 @@
 
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          scope.showError = true;
+          scope.errorNote = question;
 //        confirm(question)
-          scope.confirmShowBool = true;
-          scope.confirmNote = question;
-          scope.confirmType = 'local';
-          scope.result = function (bool) {
-            if (bool) {
-              localStorage.clear();
-              window.location = 'index.html'
-              scope.unmount()
-              return
-            }
-            else {
-              scope.confirmShowBool = false;
-              return
-            }
-          };
+//          scope.confirmShowBool = true;
+//          scope.confirmNote = question;
+//          scope.confirmType = 'local';
+//          scope.result = function (bool) {
+//            if (bool) {
+//              localStorage.clear();
+//              window.location = 'index.html'
+//              scope.unmount()
+//              return
+//            }
+//            else {
+//              scope.confirmShowBool = false;
+//              return
+//            }
+//          };
           scope.update();
 
           return
