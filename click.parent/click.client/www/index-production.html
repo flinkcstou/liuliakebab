@@ -110,10 +110,11 @@
 
   }
 
+  var checkFirstStarting = false;
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
       window.FirebasePlugin.setBadgeNumber(0);
-
+      checkFirstStarting = true;
 
 
       if (!localStorage.getItem('device_platform'))
@@ -184,6 +185,7 @@
       console.log('window.checkShowingComponent', window.checkShowingComponent)
       window.checkShowingComponent.parent.showComponent = false;
       window.checkShowingComponent = null;
+      riot.update();
       return
     }
 
@@ -258,11 +260,12 @@
 
     console.log('balance')
 
-    setTimeout(function () {
+    if(!checkFirstStarting) {
+      setTimeout(function () {
 
-      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-      var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-      var sessionKey = loginInfo.session_key;
+        var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+        var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+        var sessionKey = loginInfo.session_key;
 
 
         window.api.call({
@@ -298,8 +301,12 @@
 //      if (localStorage.getItem('click_client_cards')) {
 //        window.updateBalanceGlobalFunction();
 //      }
-      window.pushNotificationActions.retrievePushNotification();
-    }, 0);
+        window.pushNotificationActions.retrievePushNotification();
+      }, 0);
+    }
+    else{
+      checkFirstStarting = false;
+    }
   }
 
 

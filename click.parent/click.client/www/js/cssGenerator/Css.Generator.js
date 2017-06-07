@@ -8546,7 +8546,7 @@ var css = {
   "background-color: white; " +
   "overflow-y: scroll; " +
   "overflow-x: hidden; " +
-  "-webkit-overflow-scrolling: touch; " +
+  "-webkit-overflow-scrolling: auto; " +
   "}",
 
   viewReportsGraphBodyContainer: ".view-reports-graph-body-container" +
