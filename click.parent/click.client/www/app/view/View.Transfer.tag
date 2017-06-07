@@ -198,7 +198,7 @@
     </div>
   </div>
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>   
+                   errornote="{errorNote}"></component-alert>
 
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
@@ -1051,6 +1051,9 @@
 
     contact = function () {
 
+      viewTransferStepTwo.sum = 0;
+      viewTransferStepTwo.sumWithoutSpace = 0;
+
       contactInputFieldId.style.display = 'block'
       cardInputFieldId.style.display = 'none'
       cardInputId.value = '';
@@ -1076,6 +1079,10 @@
     }
 
     card = function () {
+
+      viewTransferStepTwo.sum = 0;
+      viewTransferStepTwo.sumWithoutSpace = 0;
+
       contactInputFieldId.style.display = 'none'
       cardInputFieldId.style.display = 'block'
       viewTransfer.type = 1;
@@ -1687,9 +1694,9 @@
       contactSuggestionFunction()
     else {
       checkCardMenu = true;
-      if(viewTransfer.cardNumber)
-      if (viewTransfer.cardNumber.replace(/\s/g, '').length != 16)
-        cardSuggestionFunction()
+      if (viewTransfer.cardNumber)
+        if (viewTransfer.cardNumber.replace(/\s/g, '').length != 16)
+          cardSuggestionFunction()
     }
 
 
