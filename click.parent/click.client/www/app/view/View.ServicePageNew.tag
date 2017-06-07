@@ -222,7 +222,7 @@
     scope.servicesParamsMapFive = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"))) : (offlineServicesParamsMapFive);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
     scope.fieldsObject = JSON.parse(localStorage.getItem("servicepage_fields"));
-    console.log("Fields in the history=", scope.fieldsObject);
+    //    console.log("Fields in the history=", scope.fieldsObject);
     scope.autoPayFromConfirm = false;
     if (scope.autoPayData && scope.autoPayData.fromView == 'PAYCONFIRM' && opts[0]) {
       scope.autoPayFromConfirm = true;
