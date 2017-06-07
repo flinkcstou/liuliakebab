@@ -457,18 +457,18 @@
 
               if (result[0][0].error == 0) {
                 if (localStorage.getItem('click_client_cards')) {
-                  var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'))
+                  var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
                   var countLocalStorageCard = 0;
                   for (var k in cardsArray) {
                     countLocalStorageCard++;
                   }
-                  console.log('cardsArraycardsArraycardsArraycardsArray', cardsArray)
+                  console.log('cardsArraycardsArraycardsArraycardsArray', cardsArray);
                   if (countLocalStorageCard == result[1].length) {
                     for (var i in result[1]) {
-                      console.log('cardsArray[result[1].id]', cardsArray[result[1][i].id])
+                      console.log('cardsArray[result[1].id]', cardsArray[result[1][i].id]);
                       if (cardsArray[result[1][i].id]) {
 
-                        console.log('HASH SUM CHECKING', cardsArray[result[1][i].id].checksum, result[1][i].checksum)
+                        console.log('HASH SUM CHECKING', cardsArray[result[1][i].id].checksum, result[1][i].checksum);
 
                         if (cardsArray[result[1][i].id].checksum != result[1][i].checksum) {
                           scope.checkSumOfHash = false;
@@ -554,7 +554,7 @@
                             }
 
                             if (count == (result[1].length * 2)) {
-//                            alert("GHVCHGFUIHOI:JIJsave into localstorage");
+                              alert("GHVCHGFUIHOI:JIJsave into localstorage");
                               var accountInfo = JSON.stringify(arrayAccountInfo);
                               if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
                                 localStorage.removeItem("click_client_accountInfo")
@@ -910,7 +910,6 @@
     endTouchCarousel = function () {
 
 //      clearInterval(changingColor)
-
 
 
       event.preventDefault();

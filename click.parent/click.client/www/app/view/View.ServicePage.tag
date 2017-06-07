@@ -773,6 +773,12 @@
 
 
     openDropDown = function () {
+      try {
+        this.firstFieldInput.blur();
+        this.amount.blur();
+      } catch (error) {
+        console.log(error);
+      }
       this.blockFirstFieldId.style.display = 'block';
       console.log("id=", scope.chosenFieldParamId);
       if (scope.oldFieldParamId) {
@@ -784,6 +790,12 @@
     };
 
     openDropDownTwo = function () {
+      try {
+        this.firstFieldInput.blur();
+        this.amount.blur();
+      } catch (error) {
+        console.log(error);
+      }
       this.blockFirstDropdownId.style.display = 'block';
       if (scope.oldFieldParamIdTwo) {
         document.getElementById(scope.oldFieldParamIdTwo).style.backgroundColor = 'white';
@@ -796,6 +808,12 @@
     };
 
     openDropDownThree = function () {
+      try {
+        this.firstFieldInput.blur();
+        this.amount.blur();
+      } catch (error) {
+        console.log(error);
+      }
       if (scope.secondLevelArray) {
         this.blockSecondDropdownId.style.display = 'block';
         if (scope.oldFieldParamIdThree) {

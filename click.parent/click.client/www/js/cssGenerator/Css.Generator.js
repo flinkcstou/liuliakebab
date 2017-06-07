@@ -3366,9 +3366,10 @@ var css = {
   servicePageDropdownContainer: ".servicepage-dropdown-container" +
   "{" +
   "position: absolute;" +
-  "width: 100%;" +
+  "width: 79.5%;" +
   "height: 55%;" +
   "top: 22%;" +
+  "left:10%;" +
   "overflow: scroll;" +
   "-webkit-overflow-scrolling: touch; " +
   "}",
@@ -3376,11 +3377,11 @@ var css = {
   servicePageDropdownVariant: ".servicepage-dropdown-variant" +
   "{" +
   "position: relative;" +
-  "width: 79.5%;" +
+  "width: 100%;" +
   "height:" + 125 * widthK + "px;" +
   "background-color: white;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
+    //"margin-left: auto;" +
+    //"margin-right: auto;" +
   "margin-bottom:" + 5 * widthK + "px;" +
   "}",
 
@@ -13100,7 +13101,7 @@ var css = {
 
   componentTour: ".component-tour " +
   "{" +
-  "top: 1%;" +
+  "top: 2%;" +
   "position: absolute;" +
   "opacity: 1;" +
   "height:" + 1158 * heightK + "px;" +
