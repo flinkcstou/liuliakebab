@@ -99,6 +99,7 @@
     var onTouchStartY, onTouchStartX;
     var onTouchEndY, onTouchEndX;
     var count = 1;
+    var oldHeight, oldTop, top;
 
     scope.onTouchStartOfCategory = onTouchStartOfCategory = function () {
       event.stopPropagation();
@@ -115,11 +116,17 @@
 
 
       if ((Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) || scope.checkOfSearch) {
+
+
         if (scope.index == id) {
           scope.index = -1;
         } else {
-          if (scope.index != -1)
+          if (scope.index != -1) {
             document.getElementById("tick" + scope.index).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
+            oldHeight = document.getElementById(scope.index).offsetHeight;
+            oldTop = document.getElementById(scope.index).offsetTop;
+//            console.log("oldHeight=", oldHeight, ",top=", oldTop);
+          }
           scope.index = id;
         }
 
@@ -137,10 +144,18 @@
         if (scope.index == id && scope.show) {
           document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
           viewPay.categoryId = id;
+//          console.log("qwertysssl ", categoriesContainerId.scrollTop, ", new top=", document.getElementById(id).offsetTop);
+          top = document.getElementById(id).offsetTop > oldTop ? (document.getElementById(id).offsetTop - oldHeight) : document.getElementById(id).offsetTop;
 
-          if (scope.hintShow) {
+          if (categoriesContainerId.scrollTop - 40 > top) {
+//            console.log("qwerty");
+            scope.hintShow = true;
             scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
             scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
+            scope.update();
+          } else {
+            scope.hintShow = false;
+//            console.log("close");
             scope.update();
           }
         }
@@ -161,7 +176,7 @@
 
       if (element) {
 //        console.log("ssssssss ", scope.index);
-        if (categoriesContainerId.scrollTop > element.offsetTop) {
+        if (categoriesContainerId.scrollTop - 40 > element.offsetTop) {
 //          hintContainerId.style.display = 'block';
           scope.hintShow = true;
           scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;

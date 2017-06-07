@@ -13101,7 +13101,7 @@ var css = {
 
   componentTour: ".component-tour " +
   "{" +
-  "top: 2%;" +
+  "top: 1%;" +
   "position: absolute;" +
   "opacity: 1;" +
   "height:" + 1158 * heightK + "px;" +
