@@ -1287,7 +1287,6 @@
             scope.unmount()
           }
 
-
         }
       } else if (opts.mode == 'ADDFAVORITE') {
 
@@ -1330,7 +1329,6 @@
 
       }
     };
-
 
 
     scope.onTouchStartOfPincard = onTouchStartOfPincard = function () {

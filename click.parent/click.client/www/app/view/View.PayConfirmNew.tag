@@ -260,36 +260,37 @@
       scope.isInFavorites = true;
       scope.update(scope.isInFavorites);
       opts.isInFavorites = true;
+      var favoritePaymentsList;
 
       if (!localStorage.getItem('favoritePaymentsList')) {
-        var favoritePaymentsList = [];
+        favoritePaymentsList = [];
 
         favoritePaymentsList.push({
-          "opts": opts[0],
+          "params": opts,
           "service": scope.service,
-          "firstFieldTitle": opts.firstFieldTitle
+//          "firstFieldTitle": opts.firstFieldTitle
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);
 
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
       } else {
-        var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+        favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
         favoritePaymentsList.push({
-          "opts": opts[0],
+          "params": opts,
           "service": scope.service,
-          "firstFieldTitle": opts.firstFieldTitle
+//          "firstFieldTitle": opts.firstFieldTitle
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
       }
 
-    }
+    };
 
     removeFromFavorites = function () {
       var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
       console.log(favoritePaymentsList);
       for (var i in favoritePaymentsList)
-        if (favoritePaymentsList[i].service.id == viewPay.chosenServiceId) {
+        if (favoritePaymentsList[i].service.id == opts.chosenServiceId) {
           console.log("i=", i);
           favoritePaymentsList.splice(i, 1);
           console.log(favoritePaymentsList);
@@ -297,7 +298,7 @@
           localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
           scope.update(scope.isInFavorites);
         }
-    }
+    };
 
 
     payService = function () {
@@ -326,7 +327,7 @@
       var date = parseInt(Date.now() / 1000);
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-      var serviceId = viewPay.chosenServiceId;
+      var serviceId = opts.chosenServiceId;
       var amount = inputVerification.spaceDeleter(opts[0][5].amountText.toString());
       var accountId;
       var friendPhone;
@@ -715,7 +716,7 @@
           console.error(data);
         }
       });
-    }
+    };
 
     addToAutoPay = function () {
 
@@ -743,8 +744,8 @@
       opts.mode = 'ADDAUTOPAY';
       opts[3] = 'ADDAUTOPAY';
       scope.autoPayData = {};
-      opts.id = viewPay.chosenServiceId;
-      scope.autoPayData.service_id = viewPay.chosenServiceId;
+      opts.id = opts.chosenServiceId;
+      scope.autoPayData.service_id = opts.chosenServiceId;
       scope.autoPayData.fromView = 'PAYCONFIRM';
       scope.autoPayData.isNew = true;
 
