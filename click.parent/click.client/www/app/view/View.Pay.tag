@@ -300,10 +300,8 @@
     //          if (!opts.mode) opts.mode = 'USUAL';
     //          console.log("chosen id in pay view NEW =", id);
     //          opts.chosenServiceId = id;
-    //          opts.id = id;
     //          event.stopPropagation();
     //
-    ////          localStorage.setItem('chosenServiceId', id);
     //          riotTags.innerHTML = "<view-service-page-new>";
     //          riot.mount("view-service-page-new", opts);
     //

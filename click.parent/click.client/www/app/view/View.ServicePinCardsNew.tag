@@ -94,6 +94,9 @@
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
     console.log("servicesMap=", scope.servicesMap);
     scope.service = scope.servicesMap[opts.chosenServiceId][0];
+    this.titleName = scope.service.name;
+    this.serviceIcon = scope.service.image;
+    this.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
 
 
     if (opts.mode == 'ADDAUTOPAY') {
@@ -102,9 +105,7 @@
       console.log("autoPayType=", this.autoPayTypeText);
     }
 
-    this.titleName = scope.service.name;
-    this.serviceIcon = scope.service.image;
-    this.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
+
 
 
     goToPayConfirmView = function () {
@@ -173,7 +174,6 @@
           }
         };
         scope.update();
-
         return
       }
 
@@ -184,7 +184,7 @@
       this.riotTags.innerHTML = "<view-friend-help-settings>";
       riot.mount('view-friend-help-settings', opts);
       scope.unmount()
-    }
+    };
 
     if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
 //      console.log("AAA");

@@ -212,6 +212,30 @@
     console.log('OPTS in ServicePage NEW ', opts);
     //    console.log('opts.chosenServiceId', opts.chosenServiceId);
 
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page-new') {
+      history.arrayOfHistory.push(
+        {
+          "view": 'view-service-page-new',
+          "params": opts
+        }
+      );
+      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    }
+
+    goToBack = function () {
+      viewServicePage.phoneText = null;
+      viewServicePage.amountText = null;
+      viewServicePinCards.friendHelpPaymentMode = false;
+      viewServicePinCards.chosenFriendForHelp = null;
+      window.viewServicePage = {};
+      window.viewServicePinCards = {};
+      localStorage.setItem('servicepage_fields', null);
+      event.preventDefault();
+      event.stopPropagation();
+      onBackKeyDown()
+      scope.unmount()
+    };
+
     var scope = this;
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
@@ -224,9 +248,17 @@
     scope.fieldsObject = JSON.parse(localStorage.getItem("servicepage_fields"));
     //    console.log("Fields in the history=", scope.fieldsObject);
     scope.autoPayFromConfirm = false;
-    if (scope.autoPayData && scope.autoPayData.fromView == 'PAYCONFIRM' && opts[0]) {
+    if (scope.autoPayData && scope.autoPayData.fromView == 'PAYCONFIRM' && opts[0])
       scope.autoPayFromConfirm = true;
-    }
+
+    scope.enterButton = opts.mode != 'ADDFAVORITE' ? true : false;
+    scope.showError = false;
+    scope.showConfirm = false;
+    var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+    if (loginInfo)
+      var sessionKey = loginInfo.session_key;
+
 
     //    console.log("click_client_servicesParamsMapTwo", localStorage.getItem("click_client_servicesParamsMapTwo"));
     //    console.log("click_client_servicesParamsMapThree", localStorage.getItem("click_client_servicesParamsMapThree"));
@@ -235,25 +267,6 @@
 
     scope.update(scope.categoryNamesMap);
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-service-page-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
-
-    if (opts.id) {
-      opts.chosenServiceId = opts.id;
-    }
-
-
-    scope.enterButton = opts.mode != 'ADDFAVORITE' ? true : false;
-    scope.showError = false;
-    scope.showConfirm = false;
-
 
     telPayVerificationKeyDown = function (input) {
 //      console.log(event.target.value)
@@ -261,7 +274,7 @@
         if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
           firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
         }
-    }
+    };
 
     telPayVerificationKeyUp = function () {
       if (event.keyCode != input_codes.BACKSPACE_CODE) {
@@ -269,16 +282,7 @@
         if (firstFieldInput.type != 'text')
           firstFieldInput.value = inputVerification.telVerification(firstFieldInput.value)
       }
-    }
-
-    var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-
-    if (loginInfo) {
-
-      var sessionKey = loginInfo.session_key;
-    }
-
-    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+    };
 
 
     this.on('mount', function () {
@@ -295,7 +299,7 @@
       }
 
       if (opts && opts.number) {
-        firstFieldInput.value = opts.number
+        firstFieldInput.value = opts.number;
         scope.update();
 
       }
@@ -316,19 +320,6 @@
       }
     });
 
-    goToBack = function () {
-      viewServicePage.phoneText = null;
-      viewServicePage.amountText = null;
-      viewServicePinCards.friendHelpPaymentMode = false;
-      viewServicePinCards.chosenFriendForHelp = null;
-      window.viewServicePage = {};
-      window.viewServicePinCards = {};
-      localStorage.setItem('servicepage_fields', null);
-      event.preventDefault();
-      event.stopPropagation();
-      onBackKeyDown()
-      scope.unmount()
-    };
 
     searchContact = function () {
       window.pickContactFromNativeChecker = true;
@@ -1151,18 +1142,15 @@
 
 
       if (scope.formType == 3) {
-//        opts.internetPackageParam = null;
+
         if (scope.hasSecondLevel)
           opts.communalParam = scope.chosenFieldParamIdThree;
         else
           opts.communalParam = scope.chosenFieldParamIdTwo;
 
       } else if (scope.formType == 4) {
-//        opts.communalParam = null;
         if (scope.chosenFieldParamIdThree)
-
           opts.internetPackageParam = scope.chosenFieldParamIdThree;
-
         else {
           scope.clickPinError = false;
           scope.errorNote = "Выберите интернет пакет";
@@ -1172,25 +1160,7 @@
         }
       }
 
-
       viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
-
-
-//      scope.fieldsObject = {
-//        formtype: formtype.formtype,
-//        firstFieldId: firstFieldId.firstFieldId,
-//        firstFieldText: firstFieldText.firstFieldText,
-//        firstFieldTitle: scope.chosenFieldName,
-//        cardTypeId: cardTypeId.cardTypeId,
-//        communalParam: communalParam.communalParam,
-//        amountText: amountText.amountText,
-//        internetPackageParam: internetPackageParam.internetPackageParam,
-//        firstLevelParamId: scope.chosenFieldParamIdTwo,
-//        firstLevelFieldName: scope.chosenFieldNameTwo,
-//        secondLevelFieldName: scope.chosenFieldNameThree
-//      };
-//      console.log("fieldsObject=", scope.fieldsObject);
-//      localStorage.setItem("servicepage_fields", JSON.stringify(scope.fieldsObject));
 
 
       if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
@@ -1281,8 +1251,8 @@
             riot.mount('view-service-pincards-new', opts);
             scope.unmount()
           } else {
-            this.riotTags.innerHTML = "<view-service-info>";
-            riot.mount('view-service-info', opts);
+            this.riotTags.innerHTML = "<view-service-info-new>";
+            riot.mount('view-service-info-new', opts);
             scope.unmount()
           }
 

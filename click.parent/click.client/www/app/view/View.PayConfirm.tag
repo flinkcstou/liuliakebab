@@ -135,6 +135,8 @@
     var serviceId = localStorage.getItem('chosenServiceId');
     scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
     scope.isInFavorites = opts[0][7].isInFavorites;
+    scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
+    scope.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
     scope.fieldsObject = JSON.parse(localStorage.getItem("servicepage_fields"));
     console.log("Fields in the history=", scope.fieldsObject);
 
@@ -267,7 +269,8 @@
         favoritePaymentsList.push({
           "opts": opts[0],
           "service": scope.service,
-          "firstFieldTitle": viewServicePage.firstFieldTitle
+          "firstFieldTitle": viewServicePage.firstFieldTitle,
+          "ussd": scope.fieldArray[0].ussd_query
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);
 
@@ -277,7 +280,8 @@
         favoritePaymentsList.push({
           "opts": opts[0],
           "service": scope.service,
-          "firstFieldTitle": viewServicePage.firstFieldTitle
+          "firstFieldTitle": viewServicePage.firstFieldTitle,
+          "ussd": scope.fieldArray[0].ussd_query
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
@@ -475,7 +479,7 @@
           input: {
             session_key: sessionKey,
             phone_num: phoneNumber,
-            payment_id: payment_id,
+            payment_id: payment_id
           },
 
           scope: this,
