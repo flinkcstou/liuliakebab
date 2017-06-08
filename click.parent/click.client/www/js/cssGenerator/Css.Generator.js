@@ -8547,7 +8547,7 @@ var css = {
   "background-color: white; " +
   "overflow-y: scroll; " +
   "overflow-x: hidden; " +
-  "-webkit-overflow-scrolling: auto; " +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
   viewReportsGraphBodyContainer: ".view-reports-graph-body-container" +
@@ -13184,7 +13184,7 @@ var css = {
   "width: 100%;" +
   "top:0;" +
     //"background-color: lightgray;" +
-"}",
+  "}",
 
   componentCardUpperIcon: ".component-card-upper-icon" +
   "{" +
