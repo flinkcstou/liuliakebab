@@ -564,6 +564,11 @@
                               console.log('save into localstorage last ', arrayAccountInfo);
                               localStorage.setItem("click_client_accountInfo", JSON.stringify(arrayAccountInfo));
 
+                              setTimeout(function () {
+
+                                addCard(false)
+                              }, 0);
+
                             }
                           });
                         });
