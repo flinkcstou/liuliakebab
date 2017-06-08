@@ -19,7 +19,7 @@
              type="tel" pattern="[0-9]" onblur="sumOnBlur()" onkeyup="sumKeyUp()" oninput="sumKeyUp()"/>
     </div>
 
-    <button class="transfertwo-next-button-inner-container" ontouchend="goToTransferThree()">
+    <button class="transfertwo-next-button-inner-container" ontouchstart="goToTransferThreeTouchStart()" ontouchend="goToTransferThreeTouchEnd()">
       {window.languages.ViewTransferTwoNext}
     </button>
 
@@ -177,112 +177,129 @@
 
     }
 
-    goToTransferThree = function () {
+    var goToTransferThreeTouchStartX, goToTransferThreeTouchStartY, goToTransferThreeTouchEndX, goToTransferThreeTouchEndY;
+
+    goToTransferThreeTouchStart = function () {
       event.preventDefault()
       event.stopPropagation()
+
+      goToTransferThreeTouchStartX = event.changedTouches[0].pageX
+      goToTransferThreeTouchStartY = event.changedTouches[0].pageY
+    }
+
+    goToTransferThreeTouchEnd = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      goToTransferThreeTouchEndX = event.changedTouches[0].pageX
+      goToTransferThreeTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(goToTransferThreeTouchStartX - goToTransferThreeTouchEndX) <= 20 && Math.abs(goToTransferThreeTouchStartY - goToTransferThreeTouchEndY) <= 20) {
+
 //      console.log('objectForTransfer', objectForTransfer)
-      if (objectForTransfer.type == 1 && modeOfApp.onlineMode) {
-        var codeOfBank = objectForTransfer.name.replace(/\s/g, '').substring(3, 6);
-        console.log('CODE OF BANK', codeOfBank)
-        console.log("objectForTransfer.name.replace(/\s/g, '')", objectForTransfer.name.replace(/\s/g, ''))
-        var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'));
-        var maxLimit = 0;
-        var minLimit = 0;
-        for (var i = 0; i < bankList.length; i++) {
-          console.log('bankList[i].code', bankList[i].code)
-          if (bankList[i].code == codeOfBank) {
-            console.log("EQUAL")
-            maxLimit = bankList[i].p2p_max_limit
-            minLimit = bankList[i].p2p_min_limit
-            break;
+        if (objectForTransfer.type == 1 && modeOfApp.onlineMode) {
+          var codeOfBank = objectForTransfer.name.replace(/\s/g, '').substring(3, 6);
+          console.log('CODE OF BANK', codeOfBank)
+          console.log("objectForTransfer.name.replace(/\s/g, '')", objectForTransfer.name.replace(/\s/g, ''))
+          var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'));
+          var maxLimit = 0;
+          var minLimit = 0;
+          for (var i = 0; i < bankList.length; i++) {
+            console.log('bankList[i].code', bankList[i].code)
+            if (bankList[i].code == codeOfBank) {
+              console.log("EQUAL")
+              maxLimit = bankList[i].p2p_max_limit
+              minLimit = bankList[i].p2p_min_limit
+              break;
+            }
           }
         }
-      }
-      else {
+        else {
           maxLimit = 5000000;
 
           minLimit = 5000;
 
-      }
+        }
 
-      console.log('maxLimit', maxLimit)
-      console.log('minLimit', minLimit)
-      if (maxLimit == 0) {
-        maxLimit = 5000000;
-      }
+        console.log('maxLimit', maxLimit)
+        console.log('minLimit', minLimit)
+        if (maxLimit == 0) {
+          maxLimit = 5000000;
+        }
 
-      if (minLimit == 0) {
-        minLimit = 5000;
-      }
-      if (sumForTransfer < minLimit) {
+        if (minLimit == 0) {
+          minLimit = 5000;
+        }
+        if (sumForTransfer < minLimit) {
 
-        sumValueId.blur();
-        scope.clickPinError = false;
-        scope.errorNote = ('Минимальная сумма ' + minLimit);
-        scope.showError = true;
-        scope.update();
-        return;
-      }
-      if (sumForTransfer > maxLimit) {
-        sumValueId.blur();
-        scope.clickPinError = false;
-        scope.errorNote = ('Максимальная сумма ' + maxLimit);
-        scope.showError = true;
-        scope.update();
-        return;
-      }
-      var sum = {"sum": sumForTransfer};
-      var comment = {"comment": commentTextId.value};
+          sumValueId.blur();
+          scope.clickPinError = false;
+          scope.errorNote = ('Минимальная сумма ' + minLimit);
+          scope.showError = true;
+          scope.update();
+          return;
+        }
+        if (sumForTransfer > maxLimit) {
+          sumValueId.blur();
+          scope.clickPinError = false;
+          scope.errorNote = ('Максимальная сумма ' + maxLimit);
+          scope.showError = true;
+          scope.update();
+          return;
+        }
+        var sum = {"sum": sumForTransfer};
+        var comment = {"comment": commentTextId.value};
 
 
-      console.log(opts)
-      if (modeOfApp.offlineMode) {
-        console.log("opts[0].name.replace(/\s/g, '')", opts[0].name.replace(/\s/g, ''))
-        if (opts[0].type == 2) {
-          phonedialer.dial(
-            "*880*3*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
-                scope.showError = true;
-                scope.update();
+        console.log(opts)
+        if (modeOfApp.offlineMode) {
+          console.log("opts[0].name.replace(/\s/g, '')", opts[0].name.replace(/\s/g, ''))
+          if (opts[0].type == 2) {
+            phonedialer.dial(
+              "*880*3*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  scope.update();
+                }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
+                console.log('success', success)
+                console.log("*880*3*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23")
               }
-              else console.log("Dialer Error:" + err);
-            },
-            function (success) {
-              console.log('success', success)
-              console.log("*880*3*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23")
-            }
-          );
+            );
+            return
+          }
+          else {
+            phonedialer.dial(
+              "*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  scope.update();
+                }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
+                console.log('success', success)
+                console.log("*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23")
+              }
+            );
+          }
           return
         }
         else {
-          phonedialer.dial(
-            "*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
-                scope.showError = true;
-                scope.update();
-              }
-              else console.log("Dialer Error:" + err);
-            },
-            function (success) {
-              console.log('success', success)
-              console.log("*880*" + opts[0].name.replace(/\s/g, '') + "*" + parseInt(sumForTransfer) + "%23")
-            }
-          );
+
+          riotTags.innerHTML = "<view-transfer-stepthree>";
+          riot.mount('view-transfer-stepthree', [objectForTransfer, sum, comment, scope.tax, owner]);
+
+          scope.unmount()
         }
-        return
-      }
-      else {
-
-        riotTags.innerHTML = "<view-transfer-stepthree>";
-        riot.mount('view-transfer-stepthree', [objectForTransfer, sum, comment, scope.tax, owner]);
-
-        scope.unmount()
       }
     }
 
