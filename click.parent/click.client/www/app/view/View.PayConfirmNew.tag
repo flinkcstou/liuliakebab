@@ -111,12 +111,6 @@
     console.log("OPTS PAYCONFIRM NEW", opts)
 
     var scope = this;
-    goToBack = function () {
-      event.preventDefault();
-      event.stopPropagation();
-      onBackKeyDownWithParams(opts, 1);
-      scope.unmount()
-    };
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay-confirm-new') {
       history.arrayOfHistory.push(
@@ -127,6 +121,13 @@
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
+
+    goToBack = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      onBackKeyDownWithParams(opts, 1);
+      scope.unmount()
+    };
 
 
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);

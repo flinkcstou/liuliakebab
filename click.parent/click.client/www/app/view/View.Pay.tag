@@ -206,59 +206,6 @@
     window.viewServicePinCards = {};
     localStorage.setItem('servicepage_fields', null);
 
-    //    scope.onTouchEndOfService = onTouchEndOfService = function (id) {
-    //      event.stopPropagation();
-    //      onTouchEndY = event.changedTouches[0].pageY;
-    //      onTouchEndX = event.changedTouches[0].pageX;
-    //
-    //      if ((Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) || scope.checkOfSearch) {
-    //        console.log('ID ID ID', id)
-    //        if (opts.mode == 'ADDAUTOPAY') {
-    //          scope.autoPayData = {};
-    //          viewPay.chosenServiceId = id;
-    //          opts.id = id;
-    //          if (id == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
-    //            scope.autoPayData.service_id = localStorage.getItem('myNumberOperatorId');
-    //          } else {
-    //            scope.autoPayData.service_id = id;
-    //          }
-    //          scope.autoPayData.fromView = 'PAY';
-    //          scope.autoPayData.isNew = true;
-    //
-    //          console.log("autoPay data====", scope.autoPayData);
-    //
-    //          event.preventDefault();
-    //          event.stopPropagation();
-    //          if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available) {
-    //            localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-    //            riotTags.innerHTML = "<view-autopay-method>";
-    //            riot.mount("view-autopay-method", opts);
-    //            scope.unmount()
-    //          } else {
-    //            scope.autoPayData.title = window.languages.ViewAutoPayMethodSchedulerText;
-    //            scope.autoPayData.autopay_type = 1;
-    //            localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-    //            riotTags.innerHTML = "<view-autopay-schedule-method>";
-    //            riot.mount("view-autopay-schedule-method", opts);
-    //            scope.unmount()
-    //          }
-    //        }
-    //        else {
-    //          if (!opts.mode) opts.mode = 'USUAL';
-    //          console.log("chosen id in pay view=", id);
-    //          viewPay.chosenServiceId = id;
-    //          opts.id = id;
-    //          event.stopPropagation();
-    //
-    //          localStorage.setItem('chosenServiceId', id);
-    //          riotTags.innerHTML = "<view-service-page>";
-    //          riot.mount("view-service-page", opts);
-    //
-    //          scope.unmount()
-    //        }
-    //      }
-    //    };
-
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
       event.stopPropagation();
       onTouchEndY = event.changedTouches[0].pageY;
@@ -268,7 +215,7 @@
         console.log('ID ID ID', id)
         if (opts.mode == 'ADDAUTOPAY') {
           scope.autoPayData = {};
-          opts.chosenServiceId = id;
+          viewPay.chosenServiceId = id;
           opts.id = id;
           if (id == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
             scope.autoPayData.service_id = localStorage.getItem('myNumberOperatorId');
@@ -298,17 +245,70 @@
         }
         else {
           if (!opts.mode) opts.mode = 'USUAL';
-          console.log("chosen id in pay view NEW =", id);
-          opts.chosenServiceId = id;
+          console.log("chosen id in pay view=", id);
+          viewPay.chosenServiceId = id;
+          opts.id = id;
           event.stopPropagation();
 
-          riotTags.innerHTML = "<view-service-page-new>";
-          riot.mount("view-service-page-new", opts);
+          localStorage.setItem('chosenServiceId', id);
+          riotTags.innerHTML = "<view-service-page>";
+          riot.mount("view-service-page", opts);
 
           scope.unmount()
         }
       }
     };
+
+    //    scope.onTouchEndOfService = onTouchEndOfService = function (id) {
+    //      event.stopPropagation();
+    //      onTouchEndY = event.changedTouches[0].pageY;
+    //      onTouchEndX = event.changedTouches[0].pageX;
+    //
+    //      if ((Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) || scope.checkOfSearch) {
+    //        console.log('ID ID ID', id)
+    //        if (opts.mode == 'ADDAUTOPAY') {
+    //          scope.autoPayData = {};
+    //          opts.chosenServiceId = id;
+    //          opts.id = id;
+    //          if (id == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
+    //            scope.autoPayData.service_id = localStorage.getItem('myNumberOperatorId');
+    //          } else {
+    //            scope.autoPayData.service_id = id;
+    //          }
+    //          scope.autoPayData.fromView = 'PAY';
+    //          scope.autoPayData.isNew = true;
+    //
+    //          console.log("autoPay data====", scope.autoPayData);
+    //
+    //          event.preventDefault();
+    //          event.stopPropagation();
+    //          if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available) {
+    //            localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+    //            riotTags.innerHTML = "<view-autopay-method>";
+    //            riot.mount("view-autopay-method", opts);
+    //            scope.unmount()
+    //          } else {
+    //            scope.autoPayData.title = window.languages.ViewAutoPayMethodSchedulerText;
+    //            scope.autoPayData.autopay_type = 1;
+    //            localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+    //            riotTags.innerHTML = "<view-autopay-schedule-method>";
+    //            riot.mount("view-autopay-schedule-method", opts);
+    //            scope.unmount()
+    //          }
+    //        }
+    //        else {
+    //          if (!opts.mode) opts.mode = 'USUAL';
+    //          console.log("chosen id in pay view NEW =", id);
+    //          opts.chosenServiceId = id;
+    //          event.stopPropagation();
+    //
+    //          riotTags.innerHTML = "<view-service-page-new>";
+    //          riot.mount("view-service-page-new", opts);
+    //
+    //          scope.unmount()
+    //        }
+    //      }
+    //    };
 
   </script>
 </view-pay>

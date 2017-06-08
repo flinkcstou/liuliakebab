@@ -48,34 +48,12 @@
     scope.cardId = undefined;
     scope.cardSum = 0;
     scope.index = -1;
-    console.log(' scope.cardsArray', scope.cardsArray);
+    var pinCardtouchStartY, pinCardtouchEndY;
 
-    if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
-      for (var i in scope.cardsArray) {
-        if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
-          scope.cardsArray[i].chosenCard = false;
-        }
-      }
-      console.log("WWW");
-    }
-    else {
-      for (var i in scope.cardsArray) {
-        if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
-          scope.checkedId = "check" + scope.cardsArray[i].card_id;
-        }
-      }
-      console.log("QQQ");
-    }
-    var touchStartY;
-
-
-    var touchEndY;
-    //          scope.index = scope.cardsArray[i].card_id;
-    //          scope.index = scope.cardsArray[i].card_id;
-
+    console.log('OPTS PINCARDS Component', scope.opts);
+    console.log(' scope.cardsArray in component pincard', scope.cardsArray);
 
     scope.on("mount", function () {
-
       for (var i in scope.cardsArray) {
         if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
           scope.cardId = scope.cardsArray[i].card_id;
@@ -84,9 +62,24 @@
       }
     });
 
+    if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
+      for (var i in scope.cardsArray) {
+        if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
+          scope.cardsArray[i].chosenCard = false;
+        }
+      }
+    }
+    else {
+      for (var i in scope.cardsArray) {
+        if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
+          scope.checkedId = "check" + scope.cardsArray[i].card_id;
+        }
+      }
+    }
+
+
     chooseCardTouchStart = function () {
-      touchStartY = event.changedTouches[0].pageY;
-      console.log('qweqweqw')
+      pinCardtouchStartY = event.changedTouches[0].pageY;
     };
 
 
@@ -96,12 +89,12 @@
 
       scope.cardId = id;
 
-      touchEndY = event.changedTouches[0].pageY;
+      pinCardtouchEndY = event.changedTouches[0].pageY;
 
       console.log('CARD ID', scope.cardId)
-      console.log('touchStartY - touchEndY', touchStartY - touchEndY)
+      console.log('pinCardtouchStartY - pinCardtouchEndY', pinCardtouchStartY - pinCardtouchEndY)
 
-      if (Math.abs(touchStartY - touchEndY) < 20) {
+      if (Math.abs(pinCardtouchStartY - pinCardtouchEndY) < 20) {
 
         scope.checkedId = "check" + id;
         console.log('scope.checkedId', document.getElementById(scope.checkedId))
@@ -125,7 +118,6 @@
         }
 //        }
 
-
         localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))
         scope.update(scope.cardsArray)
       }
@@ -146,7 +138,6 @@
       riot.update();
     };
 
-    console.log('OPTS PINCARDS', scope.opts)
 
     if (scope.opts.clean && viewMainPage.myCards !== true) {
 
