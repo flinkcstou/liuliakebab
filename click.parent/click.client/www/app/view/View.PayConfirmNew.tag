@@ -136,8 +136,8 @@
     var serviceId = localStorage.getItem('chosenServiceId');
     scope.service = scope.servicesMap[opts.chosenServiceId][0];
     scope.isInFavorites = opts.isInFavorites;
-    scope.fieldsObject = JSON.parse(localStorage.getItem("servicepage_fields"));
-    console.log("Fields in the history=", scope.fieldsObject);
+    scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
+    scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
 
     if (opts.mode == 'ADDAUTOPAY') {
       scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
@@ -269,7 +269,7 @@
         favoritePaymentsList.push({
           "params": opts,
           "service": scope.service,
-//          "firstFieldTitle": opts.firstFieldTitle
+          "ussd": scope.fieldArray[0].ussd_query
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);
 
@@ -279,7 +279,7 @@
         favoritePaymentsList.push({
           "params": opts,
           "service": scope.service,
-//          "firstFieldTitle": opts.firstFieldTitle
+          "ussd": scope.fieldArray[0].ussd_query
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
@@ -444,13 +444,9 @@
                 else if (result[1][0].invoice_id && !result[1][0].payment_id) {
                   console.log("Invoice id");
 
-                  viewServicePage.phoneText = '';
-                  window.viewServicePage = {};
-                  viewServicePage.amountText = '';
-                  viewServicePage.amountWithoutSpace = '';
                   viewServicePinCards.friendHelpPaymentMode = false;
                   viewServicePinCards.chosenFriendForHelp = null;
-                  localStorage.setItem('servicepage_fields', null);
+
                   componentSuccessId.style.display = 'block';
                 }
               }
@@ -494,13 +490,10 @@
                 componentUnsuccessId.style.display = 'block';
               } else if (result[1][0].state == 2) {
                 window.updateBalanceGlobalFunction();
-                viewServicePage.phoneText = '';
-                window.viewServicePage = {};
-                viewServicePage.amountText = '';
-                viewServicePage.amountWithoutSpace = '';
+
                 viewServicePinCards.friendHelpPaymentMode = false;
                 viewServicePinCards.chosenFriendForHelp = null;
-                localStorage.setItem('servicepage_fields', null);
+
                 scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-pay';
                 scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 2 : scope.stepAmount;
                 scope.update();
@@ -523,13 +516,10 @@
                     checkPaymentStatus(result[1][0].payment_id);
                   }, 2000);
                 } else {
-                  viewServicePage.phoneText = '';
-                  window.viewServicePage = {};
-                  viewServicePage.amountText = '';
-                  viewServicePage.amountWithoutSpace = '';
+
                   viewServicePinCards.friendHelpPaymentMode = false;
                   viewServicePinCards.chosenFriendForHelp = null;
-                  localStorage.setItem('servicepage_fields', null);
+
                   scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-pay';
                   scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 2 : scope.stepAmount;
                   scope.update();
@@ -593,13 +583,10 @@
 //                  scope.update(scope.autoPayDelete);
 
                   if (scope.autoPayData.fromView != 'PAYCONFIRM') {
-                    viewServicePage.phoneText = '';
-                    window.viewServicePage = {};
-                    viewServicePage.amountText = '';
-                    viewServicePage.amountWithoutSpace = '';
+
                     viewServicePinCards.friendHelpPaymentMode = false;
                     viewServicePinCards.chosenFriendForHelp = null;
-//                    localStorage.setItem('autoPayData', null);
+
                   } else {
                     scope.autoPayData.fromView = 'AFTERCREATION';
                   }
@@ -644,10 +631,7 @@
                   console.log("result of autopay.add.by.schedule", result);
 //                  localStorage.setItem('autoPayData', null);
                   if (scope.autoPayData.fromView != 'PAYCONFIRM') {
-                    viewServicePage.phoneText = '';
-                    window.viewServicePage = {};
-                    viewServicePage.amountText = '';
-                    viewServicePage.amountWithoutSpace = '';
+
                     viewServicePinCards.friendHelpPaymentMode = false;
                     viewServicePinCards.chosenFriendForHelp = null;
                   } else {
@@ -694,12 +678,10 @@
           if (result[0][0].error == 0) {
             console.log("result of autopay.delete", result);
             localStorage.setItem('autoPayData', null);
-            viewServicePage.phoneText = '';
-            window.viewServicePage = {};
-            viewServicePage.amountText = '';
-            viewServicePage.amountWithoutSpace = '';
+
             viewServicePinCards.friendHelpPaymentMode = false;
             viewServicePinCards.chosenFriendForHelp = null;
+
             scope.operationMessage = window.languages.ViewAutoPayDeletedSuccessText;
             scope.viewPage = 'view-auto-pay';
             scope.stepAmount = 1;

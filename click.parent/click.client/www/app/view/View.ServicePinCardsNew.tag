@@ -106,8 +106,6 @@
     }
 
 
-
-
     goToPayConfirmView = function () {
 
       var cardSumFromPinCards = scope.tags['component-pincards'].getAccountCardSum();
