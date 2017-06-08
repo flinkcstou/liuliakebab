@@ -11,7 +11,8 @@
     </div>
     <component-pincards clean="{true}"></component-pincards>
 
-    <button class="transferthree-next-button-inner-container" ontouchend="goToTransferFour()">
+    <button class="transferthree-next-button-inner-container" ontouchstart="goToTransferFourTouchStart()"
+            ontouchend="goToTransferFourTouchEnd()">
       {window.languages.ViewTransferThreeNext}
     </button>
 
@@ -75,45 +76,62 @@
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = false;
 
+    var goToTransferFourTouchStartX, goToTransferFourTouchStartY, goToTransferFourTouchEndX, goToTransferFourTouchEndY;
 
-    goToTransferFour = function () {
-      var cards = JSON.parse(localStorage.getItem('click_client_cards'));
-      event.preventDefault()
-      event.stopPropagation()
+    goToTransferFourTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      goToTransferFourTouchStartX = event.changedTouches[0].pageX
+      goToTransferFourTouchStartY = event.changedTouches[0].pageY
+    }
+
+
+    goToTransferFourTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      goToTransferFourTouchEndX = event.changedTouches[0].pageX
+      goToTransferFourTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(goToTransferFourTouchStartX - goToTransferFourTouchEndX) <= 20 && Math.abs(goToTransferFourTouchStartY - goToTransferFourTouchEndY) <= 20) {
+        var cards = JSON.parse(localStorage.getItem('click_client_cards'));
+
 //      console.log(cards)
-      for (var i in cards) {
-        if (cards[i].chosenCard === true && cards[i].access == 2) {
+        for (var i in cards) {
+          if (cards[i].chosenCard === true && cards[i].access == 2) {
 //          console.log(cards[i])
-          checkChosenCard = true;
-          chosenCard = cards[i]
-          break;
+            checkChosenCard = true;
+            chosenCard = cards[i]
+            break;
+          }
         }
-      }
 
-      var cardSumFromPinCards = scope.tags['component-pincards'].getAccountCardSum();
+        var cardSumFromPinCards = scope.tags['component-pincards'].getAccountCardSum();
 
-      console.log(cardSumFromPinCards, parseInt(opts[1].sum))
-      if (cardSumFromPinCards && cardSumFromPinCards < parseInt(opts[1].sum)) {
-        console.log(cardSumFromPinCards, opts[1].sum)
-        scope.clickPinError = false;
-        scope.errorNote = "На выбранной карте недостаточно средств";
-        scope.showError = true;
-        scope.update();
-        return;
-      }
+        console.log(cardSumFromPinCards, parseInt(opts[1].sum))
+        if (cardSumFromPinCards && cardSumFromPinCards < parseInt(opts[1].sum)) {
+          console.log(cardSumFromPinCards, opts[1].sum)
+          scope.clickPinError = false;
+          scope.errorNote = "На выбранной карте недостаточно средств";
+          scope.showError = true;
+          scope.update();
+          return;
+        }
 
-      if (checkChosenCard) {
-        arrayForTransfer.push(chosenCard)
-        riotTags.innerHTML = "<view-transfer-stepfour>";
-        riot.mount('view-transfer-stepfour', [arrayForTransfer, opts[3], owner]);
+        if (checkChosenCard) {
+          arrayForTransfer.push(chosenCard)
+          riotTags.innerHTML = "<view-transfer-stepfour>";
+          riot.mount('view-transfer-stepfour', [arrayForTransfer, opts[3], owner]);
 
-        scope.unmount()
-      }
-      else {
-        scope.clickPinError = false;
-        scope.errorNote = ('Выберите карту');
-        scope.showError = true;
-        scope.update();
+          scope.unmount()
+        }
+        else {
+          scope.clickPinError = false;
+          scope.errorNote = ('Выберите карту');
+          scope.showError = true;
+          scope.update();
+        }
       }
     }
 
