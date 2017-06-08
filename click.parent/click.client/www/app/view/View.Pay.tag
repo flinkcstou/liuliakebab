@@ -202,8 +202,8 @@
 
     console.log('OPTS', opts);
     localStorage.setItem('autoPayData', null);
-    window.viewServicePage = {};
     window.viewServicePinCards = {};
+    window.viewServicePage = {};
     localStorage.setItem('servicepage_fields', null);
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {

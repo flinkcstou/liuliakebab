@@ -260,7 +260,7 @@
 
     console.log('balance')
 
-    if(!checkFirstStarting) {
+    if (!checkFirstStarting) {
       setTimeout(function () {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
@@ -304,7 +304,7 @@
         window.pushNotificationActions.retrievePushNotification();
       }, 0);
     }
-    else{
+    else {
       checkFirstStarting = false;
     }
   }
@@ -364,6 +364,40 @@
 //    event.preventDefault();
 //    };
 //    xhr.send();
+  }
+
+  function checkImageURLInProject(dirEntry, fileNamePrefix, fileName, assetURL, index, callback) {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', cordova.file.applicationDirectory + dirEntry + fileName, true);
+    xhr.responseType = 'blob';
+
+    xhr.onload = function () {
+      var blob = new Blob([this.response], {type: 'image/png'});
+      callback(false, index, fileName);
+    };
+
+    xhr.onerror = function () {
+
+      var convertFunction = convertFileToDataURLviaFileReader;
+
+      convertFunction(assetURL, function (base64Img) {
+
+        var block = base64Img.split(";");
+        // Get the content type
+        var dataType = block[0].split(":")[1];// In this case "image/png"
+        // get the real base64 content of the file
+        var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
+        var folderpath = cordova.file.dataDirectory;
+
+        savebase64AsImageFile(folderpath, fileNamePrefix + fileName, realData, dataType);
+
+        callback(true, index, fileNamePrefix + fileName);
+      });
+      event.preventDefault();
+    };
+    xhr.send();
   }
 
 

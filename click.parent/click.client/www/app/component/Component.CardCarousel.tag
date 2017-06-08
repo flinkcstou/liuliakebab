@@ -495,18 +495,17 @@
 //                console.log('CARDS UPDATE()', result[1])
 //                console.log(result[1])
                 if (!scope.checkSumOfHash) {
+                  var countCard = 2;
+                  var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+
                   if (device.platform != 'BrowserStand') {
                     var count = 0;
-                    var countCard = 2;
-                    var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
 
                     window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
                       var j = -1;
                       for (var i = 0; i < result[1].length; i++) {
-
                         j++;
-
-                        console.log('arrayAccountInfo_1' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
+//                        console.log('arrayAccountInfo_1' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
 
                         if (result[1][i].id == loginInfo.default_account) {
                           result[1][i].countCard = 1;
@@ -524,19 +523,19 @@
                         var icon = result[1][i].card_background_url;
 
                         var filename = icon.substr(icon.lastIndexOf('/') + 1);
-//                      alert("filename=" + filename);
+//                        alert("filename=" + filename);
 
                         var newIconBool = checkImageURL;
                         newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
 
                           if (bool) {
                             count++;
-//                          alert("(1)new file name=" + fileName + "," + count);
                             arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
+                            console.log("(1)new file name=" + arrayAccountInfo[index].card_background_url + "," + count);
                           } else {
                             count++;
-//                          alert("(2)new file name=" + fileName + "," + count);
                             arrayAccountInfo[index].card_background_url = 'resources/icons/cards/' + fileName;
+                            console.log("(2)new file name=" + arrayAccountInfo[index].card_background_url + "," + count);
                           }
 
                           var icon2 = arrayAccountInfo[index].image_url;
@@ -546,34 +545,30 @@
 
                             if (bool2) {
                               count++;
-//                            alert("(11)new file name=" + fileName2 + "," + count);
                               arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
+                              console.log("(11)new file name=" + arrayAccountInfo[index2].image_url + "," + count);
                             } else {
                               count++;
-//                            alert("(12)new file name=" + fileName2 + "," + count);
                               arrayAccountInfo[index2].image_url = 'resources/icons/cards/logo/' + fileName2;
+                              console.log("(12)new file name=" + arrayAccountInfo[index2].image_url + "," + count);
                             }
 
                             if (count == (result[1].length * 2)) {
-                              alert("GHVCHGFUIHOI:JIJsave into localstorage");
+                              console.log("GHVCHGFUIHOI:JIJsave into localstorage fake");
                               var accountInfo = JSON.stringify(arrayAccountInfo);
                               if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
                                 localStorage.removeItem("click_client_accountInfo")
                               }
-
                               console.log('arrayAccountInfo_1232131' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
-
                               console.log('accountInfo', accountInfo);
+                              console.log('save into localstorage last ', arrayAccountInfo);
+                              localStorage.setItem("click_client_accountInfo", JSON.stringify(arrayAccountInfo));
 
                             }
-
                           });
-
                         });
-
                       }
 
-                      localStorage.setItem("click_client_accountInfo", JSON.stringify(arrayAccountInfo));
 
                       setTimeout(function () {
 
@@ -582,8 +577,7 @@
 
                     }, onErrorLoadFs);
                   } else {
-                    var countCard = 2;
-                    var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+
                     for (var i = 0; i < result[1].length; i++) {
                       if (result[1][i].id == loginInfo.default_account) {
                         result[1][i].countCard = 1;
