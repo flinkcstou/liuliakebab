@@ -525,7 +525,7 @@
                         var filename = icon.substr(icon.lastIndexOf('/') + 1);
 //                        alert("filename=" + filename);
 
-                        var newIconBool = checkImageURL;
+                        var newIconBool = checkImageURLInProject;
                         newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
 
                           if (bool) {
@@ -540,7 +540,7 @@
 
                           var icon2 = arrayAccountInfo[index].image_url;
                           var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
-                          var newIcon = checkImageURL;
+                          var newIcon = checkImageURLInProject;
                           newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
 
                             if (bool2) {
