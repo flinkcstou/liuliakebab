@@ -54,7 +54,8 @@
       </div>
     </div>
 
-    <button class="transferfour-button-enter" ontouchend="transferStep()">
+    <button class="transferfour-button-enter" ontouchstart="transferStepTouchStart()"
+            ontouchend="transferStepTouchEnd()">
       {window.languages.ViewTransferFourPay}
     </button>
 
@@ -278,12 +279,25 @@
       viewTransferStepTwo.sumWithoutSpace = 0;
     }
 
-    transferStep = function () {
+    var transferStepTouchStartX, transferStepTouchStartY, transferStepTouchEndX, transferStepTouchEndY;
+    transferStepTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
 
-      if (modeOfApp.demoVersion) {
-        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-        scope.showError = true;
-        scope.errorNote = question;
+      transferStepTouchStartX = event.changedTouches[0].pageX
+      transferStepTouchStartY = event.changedTouches[0].pageY
+    }
+
+    transferStepTouchEnd = function () {
+
+      transferStepTouchEndX = event.changedTouches[0].pageX
+      transferStepTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(transferStepTouchStartX - transferStepTouchEndX) <= 20 && Math.abs(transferStepTouchStartY - transferStepTouchEndY) <= 20) {
+        if (modeOfApp.demoVersion) {
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          scope.showError = true;
+          scope.errorNote = question;
 
 //        confirm(question)
 //        scope.confirmShowBool = true;
@@ -301,79 +315,80 @@
 //            return
 //          }
 //        };
-        scope.update();
+          scope.update();
 
-        return
-      }
+          return
+        }
 
-      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
+        if (device.platform != 'BrowserStand') {
+          var options = {dimBackground: true};
 
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
-        }, function () {
-          console.log("closed");
-        });
-      }
+          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+            console.log("Started");
+          }, function () {
+            console.log("closed");
+          });
+        }
 
-      window.api.call({
-        method: 'p2p.payment',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          account_id: scope.objectCardForTransfer.card_id,
-          receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
-          amount: parseInt(scope.objectSumForTransfer.sum),
-          type: scope.objectTypeForTransfer.type,
-          transaction_id: parseInt(Date.now() / 1000)
+        window.api.call({
+          method: 'p2p.payment',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            account_id: scope.objectCardForTransfer.card_id,
+            receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
+            amount: parseInt(scope.objectSumForTransfer.sum),
+            type: scope.objectTypeForTransfer.type,
+            transaction_id: parseInt(Date.now() / 1000)
 //                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
 
-        },
+          },
 
-        scope: this,
+          scope: this,
 
-        onSuccess: function (result) {
-          if (result[0][0].error == 0) {
-            viewTransferStepTwo.sum = 0;
-            viewTransferStepTwo.sumWithoutSpace = 0;
+          onSuccess: function (result) {
+            if (result[0][0].error == 0) {
+              viewTransferStepTwo.sum = 0;
+              viewTransferStepTwo.sumWithoutSpace = 0;
 //              console.log("result of TRANSFER ", result);
-            if (result[1])
-              if (result[1][0]) {
-                if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
-                  blockCodeConfirmId.style.display = 'block';
-                  scope.secretCode = result[1][0].secret_code;
-                  viewTransfer.phoneNumber = 0
-                  viewTransfer.cardNumber = 0
-                  viewTransfer.cardNumber = 0
-                  viewTransferStepTwo.sum = 0;
-                  viewTransferStepTwo.sumWithoutSpace = 0;
-                  window.updateBalanceGlobalFunction();
-                  scope.update();
+              if (result[1])
+                if (result[1][0]) {
+                  if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
+                    blockCodeConfirmId.style.display = 'block';
+                    scope.secretCode = result[1][0].secret_code;
+                    viewTransfer.phoneNumber = 0
+                    viewTransfer.cardNumber = 0
+                    viewTransfer.cardNumber = 0
+                    viewTransferStepTwo.sum = 0;
+                    viewTransferStepTwo.sumWithoutSpace = 0;
+                    window.updateBalanceGlobalFunction();
+                    scope.update();
 
+                  }
+                  if (result[1][0].secret_code == 0) {
+                    window.updateBalanceGlobalFunction();
+                    componentSuccessId.style.display = 'block';
+                    transferFindCards(scope.objectTypeForTransfer.name);
+                  }
                 }
-                if (result[1][0].secret_code == 0) {
-                  window.updateBalanceGlobalFunction();
-                  componentSuccessId.style.display = 'block';
-                  transferFindCards(scope.objectTypeForTransfer.name);
-                }
-              }
 
-          }
-          else {
-            scope.errorMessageFromTransfer = result[0][0].error_note
-            componentUnsuccessId.style.display = 'block';
-            scope.update();
-          }
-        },
+            }
+            else {
+              scope.errorMessageFromTransfer = result[0][0].error_note
+              componentUnsuccessId.style.display = 'block';
+              scope.update();
+            }
+          },
 
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      });
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+      }
     }
 
     closeSecretCodePage = function () {

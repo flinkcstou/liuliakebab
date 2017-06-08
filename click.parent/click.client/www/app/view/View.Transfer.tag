@@ -11,12 +11,12 @@
 
   <div class="transfer-body-container">
     <div id="menuContainerId" class="transfer-menus-container">
-      <div class="transfer-menu-container-contact" ontouchend="contact()">
+      <div class="transfer-menu-container-contact" ontouchend="contactTouchEnd()" ontouchstart="contactTouchStart()">
         <div id="contactIconId" class="transfer-menu-contact-icon"></div>
         <p id="contactLabelId" class="transfer-menu-contact-label">
           {window.languages.ViewPayTransferMenuNameContact}</p>
       </div>
-      <div class="transfer-menu-container-card" ontouchend="card()">
+      <div class="transfer-menu-container-card" ontouchend="cardTouchEnd()" ontouchstart="cardTouchStart()">
         <div id="cardIconId" class="transfer-menu-card-icon"></div>
         <p id="cardLabelId" class="transfer-menu-card-label">{window.languages.ViewPayTransferMenuNameCard}</p>
       </div>
@@ -33,7 +33,8 @@
                class="transfer-contact-number-input-part" type="tel"
                onkeyup="searchContacts()"
                onkeydown="telTransferVerificationKeyDown(this)"/>
-        <div class="transfer-contact-phone-icon" ontouchend="pickContactFromNative()"></div>
+        <div class="transfer-contact-phone-icon" ontouchstart="pickContactFromNativeTouchStart()"
+             ontouchend="pickContactFromNativeTouchEnd()"></div>
       </div>
       <div id="firstSuggestionBlockId" class="transfer-contact-found-container-one"
            ontouchend="firstSuggestionBlockTouchEnd()" ontouchstart="firstSuggestionBlockTouchStart()">
@@ -168,7 +169,8 @@
 
     </div>
 
-    <button id="nextButtonId" class="transfer-next-button-inner-container" ontouchend="goToTransferStepTwo()">
+    <button id="nextButtonId" class="transfer-next-button-inner-container" ontouchstart="goToTransferStepTwoTouchStart()"
+            ontouchend="goToTransferStepTwoTouchEnd()">
       {window.languages.ViewPayTransferNext}
     </button>
 
@@ -228,7 +230,7 @@
 
       if (viewTransfer.type == 2) {
 //        console.log('ON MOUNT')
-        contact();
+        contactTouchEnd(true);
         if (checkFirstBlock) {
           firstSuggestionBlockId.style.display = 'block';
         }
@@ -298,7 +300,7 @@
           fourthCardSuggestionId.style.display = 'none';
           fifthCardSuggestionId.style.display = 'none';
         }
-        card();
+        cardTouchEnd(true);
       }
 
 
@@ -450,56 +452,69 @@
 
     var maskOne = /[0-9]/g;
 
-    pickContactFromNative = function () {
+    var pickFromNativeTouchStartX, pickFromNativeTouchStartY, pickFromNativeTouchEndX, pickFromNativeTouchEndY;
+
+    pickContactFromNativeTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
+      pickFromNativeTouchStartX = event.changedTouches[0].pageX
+      pickFromNativeTouchStartY = event.changedTouches[0].pageY
+    }
 
-      window.pickContactFromNativeChecker = true;
+    pickContactFromNativeTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
 
-      window.plugins.PickContact.chooseContact(function (contactInfo) {
+      pickFromNativeTouchEndX = event.changedTouches[0].pageX
+      pickFromNativeTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(pickFromNativeTouchStartX - pickFromNativeTouchEndX) <= 20 && Math.abs(pickFromNativeTouchStartY - pickFromNativeTouchEndY) <= 20) {
+        window.pickContactFromNativeChecker = true;
+
+        window.plugins.PickContact.chooseContact(function (contactInfo) {
 //        console.log('CONTACTINFO', contactInfo)
-        setTimeout(function () {
-          var phoneNumber
-          if (device.platform == 'iOS')
-            phoneNumber = contactInfo.phoneNr;
+          setTimeout(function () {
+            var phoneNumber
+            if (device.platform == 'iOS')
+              phoneNumber = contactInfo.phoneNr;
 
-          if (device.platform == 'Android') {
-            phoneNumber = contactInfo.nameFormated
-          }
-          var digits = phoneNumber.match(maskOne);
-          var phone = '';
-          for (var i in digits) {
-            phone += digits[i]
-          }
-          contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
-          if (contactPhoneNumberId.value.length != 0) {
-            checkPhoneForTransfer = true;
-            checkCardForTransfer = false;
-//            console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
-            if (contactPhoneNumberId.value.length == 9) {
-              nextButtonId.style.display = 'block'
-
-              firstSuggestionBlockId.style.display = 'none';
-              secondSuggestionBlockId.style.display = 'none';
-              thirdSuggestionBlockId.style.display = 'none';
-              fourthSuggestionBlockId.style.display = 'none';
-              fifthSuggestionBlockId.style.display = 'none';
-
+            if (device.platform == 'Android') {
+              phoneNumber = contactInfo.nameFormated
             }
-            else
-              nextButtonId.style.display = 'none'
+            var digits = phoneNumber.match(maskOne);
+            var phone = '';
+            for (var i in digits) {
+              phone += digits[i]
+            }
+            contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
+            if (contactPhoneNumberId.value.length != 0) {
+              checkPhoneForTransfer = true;
+              checkCardForTransfer = false;
+//            console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
+              if (contactPhoneNumberId.value.length == 9) {
+                nextButtonId.style.display = 'block'
 
-          }// use time-out to fix iOS alert problem
+                firstSuggestionBlockId.style.display = 'none';
+                secondSuggestionBlockId.style.display = 'none';
+                thirdSuggestionBlockId.style.display = 'none';
+                fourthSuggestionBlockId.style.display = 'none';
+                fifthSuggestionBlockId.style.display = 'none';
 
-        }, 0);
-      }, function (error) {
+              }
+              else
+                nextButtonId.style.display = 'none'
+
+            }// use time-out to fix iOS alert problem
+
+          }, 0);
+        }, function (error) {
 //        console.log('error', error)
-        checkPhoneForTransfer = false;
-        checkCardForTransfer = false;
-      });
+          checkPhoneForTransfer = false;
+          checkCardForTransfer = false;
+        });
 
-
+      }
     }
 
     var onPaste = false;
@@ -766,6 +781,7 @@
                 if (scope.cardOwner)
                   ownerCardDsiplayId.style.display = 'block'
               }
+              scope.update()
             }
             catch (error) {
               console.log(error)
@@ -1049,201 +1065,257 @@
 
     }
 
-    contact = function () {
+    var contactChooseTouchStartX, contactChooseTouchStartY, contactChooseTouchEndX, contactChooseTouchEndY;
 
-      viewTransferStepTwo.sum = 0;
-      viewTransferStepTwo.sumWithoutSpace = 0;
+    contactTouchStart = function () {
+      event.preventDefault()
+      event.stopPropagation()
 
-      contactInputFieldId.style.display = 'block'
-      cardInputFieldId.style.display = 'none'
-      cardInputId.value = '';
-      viewTransfer.type = 2;
-      scope.cardMode = false;
-      scope.contactMode = true;
-      this.menuContainerId.style.backgroundImage = 'url(resources/icons/ViewTransfer/contactMenu.png)';
-      this.contactLabelId.style.color = 'black';
-      this.cardLabelId.style.color = 'gray';
-      this.contactIconId.style.opacity = '1'
-      this.cardIconId.style.opacity = '0.5';
-      scope.update();
+      contactChooseTouchStartX = event.changedTouches[0].pageX
+      contactChooseTouchStartY = event.changedTouches[0].pageY
+    }
 
-      if (viewTransfer.phoneNumber)
-        this.contactPhoneNumberId.value = viewTransfer.phoneNumber;
+    contactTouchEnd = function (bool) {
 
-      if (!contactPhoneNumberId.value) {
-        nextButtonId.style.display = 'none'
+      contactChooseTouchEndX = event.changedTouches[0].pageX
+      contactChooseTouchEndY = event.changedTouches[0].pageY
+
+      console.log('Contact transfer')
+      console.log(contactChooseTouchStartX, contactChooseTouchStartY)
+      console.log(contactChooseTouchStartX, contactChooseTouchStartY)
+
+      if (Math.abs(contactChooseTouchStartX - contactChooseTouchEndX) <= 20 && Math.abs(contactChooseTouchStartY - contactChooseTouchEndY) <= 20 || bool) {
+        viewTransferStepTwo.sum = 0;
+        viewTransferStepTwo.sumWithoutSpace = 0;
+
+        contactInputFieldId.style.display = 'block'
+        cardInputFieldId.style.display = 'none'
+        cardInputId.value = '';
+        viewTransfer.type = 2;
+        scope.cardMode = false;
+        scope.contactMode = true;
+        this.menuContainerId.style.backgroundImage = 'url(resources/icons/ViewTransfer/contactMenu.png)';
+        this.contactLabelId.style.color = 'black';
+        this.cardLabelId.style.color = 'gray';
+        this.contactIconId.style.opacity = '1'
+        this.cardIconId.style.opacity = '0.5';
+        scope.update();
+
+        if (viewTransfer.phoneNumber)
+          this.contactPhoneNumberId.value = viewTransfer.phoneNumber;
+
+        if (!contactPhoneNumberId.value) {
+          nextButtonId.style.display = 'none'
+        }
+
+        contactSuggestionFunction();
       }
-
-      contactSuggestionFunction();
 
     }
 
-    card = function () {
 
-      viewTransferStepTwo.sum = 0;
-      viewTransferStepTwo.sumWithoutSpace = 0;
+    var cardChooseTouchStartX, cardChooseTouchStartY, cardChooseTouchEndX, cardChooseTouchEndY;
 
-      contactInputFieldId.style.display = 'none'
-      cardInputFieldId.style.display = 'block'
-      viewTransfer.type = 1;
-      contactPhoneNumberId.value = '';
-      scope.cardMode = true;
-      scope.contactMode = false;
-      scope.update();
-      this.menuContainerId.style.backgroundImage = 'url(resources/icons/ViewTransfer/cardMenu.png)';
-      this.cardLabelId.style.color = 'black';
-      this.contactLabelId.style.color = 'gray';
-      this.cardIconId.style.opacity = '1'
-      this.contactIconId.style.opacity = '0.5'
+    cardTouchStart = function () {
+      event.preventDefault()
+      event.stopPropagation()
 
-      if (viewTransfer.cardNumber) {
-        this.cardInputId.value = viewTransfer.cardNumber
+      cardChooseTouchStartX = event.changedTouches[0].pageX
+      cardChooseTouchStartY = event.changedTouches[0].pageY
+    }
 
-        if (cardInputId.value.replace(/\s/g, '').length == 16) {
-          cardOwnerFunction();
+
+    cardTouchEnd = function (bool) {
+
+
+      cardChooseTouchEndX = event.changedTouches[0].pageX
+      cardChooseTouchEndY = event.changedTouches[0].pageY
+
+      console.log('Card transfer')
+
+      if (Math.abs(cardChooseTouchStartX - cardChooseTouchEndX) <= 20 && Math.abs(cardChooseTouchStartY - cardChooseTouchEndY) <= 20 || bool) {
+        viewTransferStepTwo.sum = 0;
+        viewTransferStepTwo.sumWithoutSpace = 0;
+
+        contactInputFieldId.style.display = 'none'
+        cardInputFieldId.style.display = 'block'
+        viewTransfer.type = 1;
+        contactPhoneNumberId.value = '';
+        scope.cardMode = true;
+        scope.contactMode = false;
+        scope.update();
+        this.menuContainerId.style.backgroundImage = 'url(resources/icons/ViewTransfer/cardMenu.png)';
+        this.cardLabelId.style.color = 'black';
+        this.contactLabelId.style.color = 'gray';
+        this.cardIconId.style.opacity = '1'
+        this.contactIconId.style.opacity = '0.5'
+
+        if (viewTransfer.cardNumber) {
+          this.cardInputId.value = viewTransfer.cardNumber
+
+          if (cardInputId.value.replace(/\s/g, '').length == 16) {
+            cardOwnerFunction();
+          }
         }
-      }
 //      console.log('LENGTH ', cardInputId.value.length)
 
-      if (!cardInputId.value) {
-        nextButtonId.style.display = 'none'
-      }
+        if (!cardInputId.value) {
+          nextButtonId.style.display = 'none'
+        }
 
-      if (cardInputId.value.replace(/\s/g, '').length != 16) {
-        cardSuggestionFunction();
+        if (cardInputId.value.replace(/\s/g, '').length != 16) {
+          cardSuggestionFunction();
+        }
       }
 
     }
 
+    var goToTransferStepTwoTouchStartX, goToTransferStepTwoTouchStartY, goToTransferStepTwoTouchEndX, goToTransferStepTwoTouchEndY;
 
-    goToTransferStepTwo = function () {
+    goToTransferStepTwoTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      if (!checkPhoneForTransfer && !checkCardForTransfer) {
-        scope.clickPinError = false;
-        scope.errorNote = 'Введите номер телефона или номер карты';
-        scope.showError = true;
-        scope.update();
+      goToTransferStepTwoTouchStartX = event.changedTouches[0].pageX
+      goToTransferStepTwoTouchStartY = event.changedTouches[0].pageY
+
+
+    }
+
+
+    goToTransferStepTwoTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      goToTransferStepTwoTouchEndX = event.changedTouches[0].pageX
+      goToTransferStepTwoTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(goToTransferStepTwoTouchStartX - goToTransferStepTwoTouchEndX) <= 20 && Math.abs(goToTransferStepTwoTouchStartY - goToTransferStepTwoTouchEndY) <= 20) {
+
+        if (!checkPhoneForTransfer && !checkCardForTransfer) {
+          scope.clickPinError = false;
+          scope.errorNote = 'Введите номер телефона или номер карты';
+          scope.showError = true;
+          scope.update();
 //        alert('Write phone number or card number for transfer')
-      }
-      else {
-        if (viewTransfer.type == 2) {
-          phoneNumberForTransfer = contactPhoneNumberId.value;
-          viewTransfer.phoneNumber = phoneNumberForTransfer;
-          viewTransfer.type = 2;
-          if (phoneNumberForTransfer.length != 9) {
-            contactPhoneNumberId.blur();
-            scope.clickPinError = false;
-            scope.errorNote = 'Неверный номер телефона';
-            scope.showError = true;
-            scope.update();
-//            alert('Incorrect phone number')
-            return
-          }
-          else {
-            phoneNumberForTransfer = window.languages.CodeOfCountry + phoneNumberForTransfer
-            this.riotTags.innerHTML = "<view-transfer-steptwo>";
-            riot.mount('view-transfer-steptwo', [
-              {
-                "name": phoneNumberForTransfer,
-                "type": 2,
-              }
-            ]);
-
-            scope.unmount()
-            return
-          }
         }
-
-        if (viewTransfer.type == 1) {
-          if (modeOfApp.onlineMode) {
-            var transferCards = [];
-            var firstFourSymbols = cardInputId.value.replace(/\s/g, '').substring(0, 4);
-            console.log('firstFourSymbols', firstFourSymbols)
-            if (firstFourSymbols != '8600') {
-              cardInputId.blur()
+        else {
+          if (viewTransfer.type == 2) {
+            phoneNumberForTransfer = contactPhoneNumberId.value;
+            viewTransfer.phoneNumber = phoneNumberForTransfer;
+            viewTransfer.type = 2;
+            if (phoneNumberForTransfer.length != 9) {
+              contactPhoneNumberId.blur();
               scope.clickPinError = false;
-              scope.errorNote = 'Неверные данные о карте';
+              scope.errorNote = 'Неверный номер телефона';
               scope.showError = true;
               scope.update();
-//            alert('Неверный код банка');
-              return;
+//            alert('Incorrect phone number')
+              return
             }
-            var codeOfBank = cardInputId.value.replace(/\s/g, '').substring(3, 6);
-            var checkOfCode = false;
-            var statusOfBankToP2P = false;
-            var nameOfBank = '';
-            console.log('CODE OF BANK', codeOfBank)
-
-            var bankList = JSON.parse(localStorage.getItem('click_client_p2p_all_bank_list'))
-            console.log("BANKLIST", bankList);
-            var percentOfBank = 0;
-            for (var i = 0; i < bankList.length; i++) {
-              console.log('BANK LIST', bankList[i])
-              if (codeOfBank == bankList[i].code) {
-                checkOfCode = true;
-                nameOfBank = bankList[i].bank_name;
-                if (bankList[i].p2p_status == 1) {
-                  statusOfBankToP2P = true
+            else {
+              phoneNumberForTransfer = window.languages.CodeOfCountry + phoneNumberForTransfer
+              this.riotTags.innerHTML = "<view-transfer-steptwo>";
+              riot.mount('view-transfer-steptwo', [
+                {
+                  "name": phoneNumberForTransfer,
+                  "type": 2,
                 }
-                percentOfBank = bankList[i].p2p_percent
-                break;
-              }
-              else {
-                checkOfCode = false;
-              }
+              ]);
+
+              scope.unmount()
+              return
             }
-            if (!checkOfCode) {
+          }
+
+          if (viewTransfer.type == 1) {
+            if (modeOfApp.onlineMode) {
+              var transferCards = [];
+              var firstFourSymbols = cardInputId.value.replace(/\s/g, '').substring(0, 4);
+              console.log('firstFourSymbols', firstFourSymbols)
+              if (firstFourSymbols != '8600') {
+                cardInputId.blur()
+                scope.clickPinError = false;
+                scope.errorNote = 'Неверные данные о карте';
+                scope.showError = true;
+                scope.update();
+//            alert('Неверный код банка');
+                return;
+              }
+              var codeOfBank = cardInputId.value.replace(/\s/g, '').substring(3, 6);
+              var checkOfCode = false;
+              var statusOfBankToP2P = false;
+              var nameOfBank = '';
+              console.log('CODE OF BANK', codeOfBank)
+
+              var bankList = JSON.parse(localStorage.getItem('click_client_p2p_all_bank_list'))
+              console.log("BANKLIST", bankList);
+              var percentOfBank = 0;
+              for (var i = 0; i < bankList.length; i++) {
+                console.log('BANK LIST', bankList[i])
+                if (codeOfBank == bankList[i].code) {
+                  checkOfCode = true;
+                  nameOfBank = bankList[i].bank_name;
+                  if (bankList[i].p2p_status == 1) {
+                    statusOfBankToP2P = true
+                  }
+                  percentOfBank = bankList[i].p2p_percent
+                  break;
+                }
+                else {
+                  checkOfCode = false;
+                }
+              }
+              if (!checkOfCode) {
+                cardInputId.blur()
+                scope.clickPinError = false;
+                scope.errorNote = 'Неверный номер карты';
+                scope.showError = true;
+                scope.update();
+//            alert('Неверный код банка');
+                return;
+              }
+
+              if (checkOfCode && !statusOfBankToP2P) {
+                cardInputId.blur()
+                scope.clickPinError = false;
+                scope.errorNote = 'Карта "' + nameOfBank + '" банка временно недоступна для перевода средств';
+                scope.showError = true;
+                scope.update();
+//            alert('Неверный код банка');
+                return;
+              }
+
+            }
+            cardNumberForTransfer = cardInputId.value;
+            viewTransfer.cardNumber = cardNumberForTransfer
+            viewTransfer.type = 1;
+            if (cardNumberForTransfer.replace(/\s/g, '').length != 16) {
               cardInputId.blur()
               scope.clickPinError = false;
               scope.errorNote = 'Неверный номер карты';
               scope.showError = true;
               scope.update();
-//            alert('Неверный код банка');
-              return;
-            }
-
-            if (checkOfCode && !statusOfBankToP2P) {
-              cardInputId.blur()
-              scope.clickPinError = false;
-              scope.errorNote = 'Карта "' + nameOfBank + '" банка временно недоступна для перевода средств';
-              scope.showError = true;
-              scope.update();
-//            alert('Неверный код банка');
-              return;
-            }
-
-          }
-          cardNumberForTransfer = cardInputId.value;
-          viewTransfer.cardNumber = cardNumberForTransfer
-          viewTransfer.type = 1;
-          if (cardNumberForTransfer.replace(/\s/g, '').length != 16) {
-            cardInputId.blur()
-            scope.clickPinError = false;
-            scope.errorNote = 'Неверный номер карты';
-            scope.showError = true;
-            scope.update();
 //            alert('Incorrect card number')
-            return
-          }
-          else {
-            this.riotTags.innerHTML = "<view-transfer-steptwo>";
-            riot.mount('view-transfer-steptwo', [
-              {
-                "name": cardNumberForTransfer,
-                "type": 1,
-                "percent": percentOfBank,
-                "owner": scope.cardOwner
-              }
-            ]);
+              return
+            }
+            else {
+              this.riotTags.innerHTML = "<view-transfer-steptwo>";
+              riot.mount('view-transfer-steptwo', [
+                {
+                  "name": cardNumberForTransfer,
+                  "type": 1,
+                  "percent": percentOfBank,
+                  "owner": scope.cardOwner
+                }
+              ]);
 
-            scope.unmount()
-            return
+              scope.unmount()
+              return
+            }
           }
         }
       }
-
     }
 
     findContacts = function () {
