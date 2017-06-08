@@ -89,7 +89,7 @@
 
               if (device.platform != 'BrowserStand') {
                 window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-                  var j = -1;
+                  var j = -1, pCount = 0;
 
                   for (var i = 0; i < 3; i++) {
                     j++;
@@ -98,24 +98,26 @@
                     var icon = result[1][i].image;
                     var filename = icon.substr(icon.lastIndexOf('/') + 1);
 
-                    var newIconBool = checkImageURL;
+                    var newIconBool = checkImageURLInProject;
                     newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
 
                       if (bool) {
+                        pCount++;
                         scope.popularServiceList[index].image = cordova.file.dataDirectory + fileName;
-                        console.log("1.index=", index, ",imageUrl=", scope.popularServiceList[index]['image']);
+                        console.log("1.popular index=", index, ",imageUrl=", scope.popularServiceList[index]['image']);
                       } else {
+                        pCount++;
                         scope.popularServiceList[index].image = 'resources/icons/ViewPay/' + fileName;
-                        console.log("2.index=", index, ",imageUrl=", scope.popularServiceList[index]['image']);
+                        console.log("2.popular index=", index, ",imageUrl=", scope.popularServiceList[index]['image']);
                       }
 
-                      if (scope.popularServiceList.length == 3) {
+                      if (pCount == 3) {
                         var myNumberObject = {};
                         myNumberObject.name = 'Мой номер';
                         myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
                         myNumberObject.id = 'mynumber' + localStorage.getItem('myNumberOperatorId');
                         scope.popularServiceList.push(myNumberObject);
-                        console.log("popular services", scope.popularServiceList);
+                        console.log("popular services SAVING TO LOCALSTORAGE", scope.popularServiceList);
                         scope.update();
                         localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
                       }

@@ -20,7 +20,8 @@ window.api.init = function () {
 
   }
   catch (error) {
-    window.api.init();
+    if (modeOfApp.onlineMode)
+      window.api.init();
 
 
     //while (!window.isConnected) {
@@ -79,7 +80,8 @@ window.api.initSocket = function () {
     console.log('Connection is closed');
     console.log(event);
 
-    window.api.init();
+    if (window.isConnected && modeOfApp.onlineMode)
+      window.api.init();
   };
   var me = this;
 
@@ -169,7 +171,8 @@ window.api.initSocket = function () {
   };
   this.socket.onerror = function (error) {
     window.isConnected = false;
-    window.api.init();
+    if (modeOfApp.onlineMode)
+      window.api.init();
 
 
     console.log("ENTERED_SADASDASDASDA_WEB_API_ERROR");
@@ -291,6 +294,7 @@ function onlineDetector() {
 
     console.log("window.isConnected", window.isConnected);
 
+    if(modeOfApp.onlineMode)
     window.api.init();
   }
 }

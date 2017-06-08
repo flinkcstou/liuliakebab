@@ -57,9 +57,9 @@
   api.init();
   var scope = this;
   sessionStorage.clear();
-  //  console.log = function () {
-  //    return
-  //  }
+  console.log = function () {
+    return
+  }
 
   permissionAccess = function () {
 
@@ -139,7 +139,7 @@
         localStorage.setItem('settings_block', false)
       }
       if (localStorage.getItem('settings_finger_print') === null) {
-        localStorage.setItem('settings_finger_print', false)
+        localStorage.setItem('settings_finger_print', true)
       }
 
       localStorage.setItem('onResume', false);

@@ -135,13 +135,14 @@
         function isAvailableSuccess(result) {
           console.log("FingerprintAuth available: " + JSON.stringify(result));
           if (result.isAvailable) {
+            window.fingerPrint.check = true;
+            riot.update();
             if (result.hasEnrolledFingerprints) {
               localStorage.setItem('settings_finger_print_enrolled', true)
             }
             else {
               localStorage.setItem('settings_finger_print_enrolled', false)
             }
-            window.fingerPrint.check = true;
 
             if (window.fingerPrint.check) {
               var encryptConfig = {
@@ -153,7 +154,7 @@
                 disableBackup: false,
 //              userAuthRequired: false,
                 dialogHint: "Повторите попытку",
-                dialogTitle: "Сканирование для Click"
+                dialogTitle: "Сканирование для CLICK"
 
               }; // See config object for required parameters
 
@@ -165,12 +166,14 @@
           }
           else {
             window.fingerPrint.check = false
+            riot.update();
           }
         }
 
         function isAvailableError(message) {
           console.log("isAvailableError(): " + message);
           window.fingerPrint.check = false;
+          riot.update();
         }
 
         FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
@@ -205,6 +208,7 @@
 
         function successCallback(success) {
           window.fingerPrint.check = true;
+          riot.update();
           localStorage.setItem('settings_finger_print_enrolled', true)
           console.log('success', success)
 
@@ -219,6 +223,7 @@
         function notSupportedCallback(error) {
           console.log('error', error)
           window.fingerPrint.check = false;
+          riot.update();
           localStorage.setItem('settings_finger_print_enrolled', false)
         }
 

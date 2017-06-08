@@ -306,11 +306,10 @@
 //        cardNumber %= count;
           localStorage.setItem('click_client_countCard', count);
 //        localStorage.setItem('cardNumber', cardNumber);
-          riot.update()
         }
       }
 
-
+      scope.update()
       console.log('CARDSARRAY', scope.cardsarray)
 
 //      scope.update(scope.cardsarray);
@@ -566,7 +565,7 @@
 
                               setTimeout(function () {
 
-                                addCard(false)
+                                addCard()
                               }, 0);
 
                             }

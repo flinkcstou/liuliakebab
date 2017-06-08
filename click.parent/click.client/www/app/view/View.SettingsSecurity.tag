@@ -205,12 +205,14 @@
       event.preventDefault();
       event.stopPropagation();
 
-      if (!fingerPrintEnrolled && fingerPrintEnrolled !== null) {
-        scope.showError = true;
-        scope.errorNote = 'Опция не включена на устройстве!'
-        scope.clickPinError = false
-        scope.update()
-        return
+      if (!fingerPrintEnrolled && localStorage.getItem("settings_finger_print_enrolled") != null && device.platform == 'Android') {
+        if (JSON.parse(localStorage.getItem("settings_finger_print_enrolled")) === false) {
+          scope.showError = true;
+          scope.errorNote = 'Опция не включена на устройстве!'
+          scope.clickPinError = false
+          scope.update()
+          return
+        }
       }
       console.log("QQQ")
       if (!fingerPrint) {
