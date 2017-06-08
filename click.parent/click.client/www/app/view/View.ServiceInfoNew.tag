@@ -51,7 +51,7 @@
   <script>
 
 
-    console.log('OPTS', opts);
+    console.log('OPTS in ServiceInfo NEW', opts);
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-info-new') {
       history.arrayOfHistory.push(
@@ -75,51 +75,48 @@
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
     console.log("servicesMap=", scope.servicesMap);
-    scope.service = scope.servicesMap[viewPay.chosenServiceId][0];
-    scope.type = 0;
-
-
+    scope.service = scope.servicesMap[opts.chosenServiceId][0];
     this.titleName = scope.service.name;
     this.serviceIcon = scope.service.image;
     this.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
-
-
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var payment_data, optionAttribute;
+    scope.type = 0;
 
-    if (opts[0].formtype == 1) {
+
+    if (opts.formtype == 1) {
       payment_data = {
-        "param": opts[1].firstFieldId,
-        "value": opts[2].firstFieldText,
+        "param": opts.firstFieldId,
+        "value": opts.firstFieldText,
         "transaction_id": parseInt(Date.now() / 1000)
       };
-//      opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
-    }
-    else if (opts[0].formtype == 2) {
-      payment_data = {
-        "pin_param": opts[3].cardTypeId,
-        "transaction_id": parseInt(Date.now() / 1000)
-      };
-//      opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
-    }
-    else if (opts[0].formtype == 3) {
-      payment_data = {
-        "param": opts[1].firstFieldId,
-        "value": opts[2].firstFieldText,
-        "communal_param": opts[4].communalParam,
-        "transaction_id": parseInt(Date.now() / 1000)
-      };
-//      opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
 
     }
-    else if (opts[0].formtype == 4) {
+    else if (opts.formtype == 2) {
       payment_data = {
-        "param": opts[1].firstFieldId,
-        "value": opts[2].firstFieldText,
-        "internetPackageParam": opts[6].internetPackageParam,
+        "pin_param": opts.cardTypeId,
         "transaction_id": parseInt(Date.now() / 1000)
       };
-//      opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+
+    }
+    else if (opts.formtype == 3) {
+      payment_data = {
+        "param": opts.firstFieldId,
+        "value": opts.firstFieldText,
+        "communal_param": opts.communalParam,
+        "transaction_id": parseInt(Date.now() / 1000)
+      };
+
+
+    }
+    else if (opts.formtype == 4) {
+      payment_data = {
+        "param": opts.firstFieldId,
+        "value": opts.firstFieldText,
+        "internet_package_param": opts.internetPackageParam,
+        "transaction_id": parseInt(Date.now() / 1000)
+      };
+
     }
 
     if (device.platform != 'BrowserStand') {
@@ -138,7 +135,7 @@
         method: 'get.additional.information',
         input: {
           phone_num: phoneNumber,
-          service_id: viewPay.chosenServiceId,
+          service_id: opts.chosenServiceId,
           payment_data: payment_data
         },
 
@@ -160,7 +157,6 @@
                 scope.update();
               } else if (result[1][0].information_type == 1 || result[1][0].information_type == 4) {
                 scope.infoArray = result[1][0].information_object;
-
                 scope.type = 1;
                 scope.update();
               }
@@ -186,7 +182,7 @@
       event.stopPropagation();
       optionOnTouchStartY = event.changedTouches[0].pageY;
       optionOnTouchStartX = event.changedTouches[0].pageX;
-    }
+    };
 
 
     scope.index = -1;
@@ -195,8 +191,6 @@
 
       optionOnTouchEndY = event.changedTouches[0].pageY;
       optionOnTouchEndX = event.changedTouches[0].pageX;
-//      console.log(onTouchEndY)
-
 
       if (Math.abs(optionOnTouchStartY - optionOnTouchEndY) <= 20 && Math.abs(optionOnTouchStartX - optionOnTouchEndX) <= 20) {
 
@@ -206,14 +200,10 @@
         scope.index = id;
         opts.optionValue = id;
       }
-    }
+    };
 
 
     goToNextPage = function () {
-      console.log(scope.index)
-      console.log(scope.serviceData.information_type)
-      console.log(opts.optionAttribute)
-      console.log(opts.optionValue)
 
       if (scope.index == -1 && scope.serviceData.information_type == 3 && scope.checkIconShow) {
 
@@ -222,8 +212,8 @@
         scope.showError = true;
         scope.update();
       } else {
-        this.riotTags.innerHTML = "<view-service-pincards>";
-        riot.mount('view-service-pincards', opts);
+        this.riotTags.innerHTML = "<view-service-pincards-new>";
+        riot.mount('view-service-pincards-new', opts);
         scope.unmount()
       }
 
