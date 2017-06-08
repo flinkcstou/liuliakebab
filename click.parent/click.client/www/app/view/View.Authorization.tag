@@ -128,7 +128,7 @@
       scope.checkAndroid = true;
     }
 
-    if (localStorage.getItem('settings_finger_print') !== null) {
+    if (localStorage.getItem('settings_finger_print') !== null && localStorage.getItem('click_client_pin')) {
       console.log("FINGER PRINT INITIALIZE")
       if (device.platform == 'Android') {
 

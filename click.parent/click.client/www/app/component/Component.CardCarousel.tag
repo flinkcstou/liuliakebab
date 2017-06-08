@@ -496,7 +496,8 @@
 //                console.log(result[1])
                 if (!scope.checkSumOfHash) {
                   if (device.platform != 'BrowserStand') {
-                    var count = 2;
+                    var count = 0;
+                    var countCard = 2;
                     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
 
                     window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
@@ -511,8 +512,8 @@
                           result[1][i].countCard = 1;
                         }
                         else {
-                          result[1][i].countCard = count;
-                          count++;
+                          result[1][i].countCard = countCard;
+                          countCard++;
                         }
                         arrayAccountInfo.push(result[1][i])
 
@@ -581,15 +582,15 @@
 
                     }, onErrorLoadFs);
                   } else {
-                    var count = 2;
+                    var countCard = 2;
                     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
                     for (var i = 0; i < result[1].length; i++) {
                       if (result[1][i].id == loginInfo.default_account) {
                         result[1][i].countCard = 1;
                       }
                       else {
-                        result[1][i].countCard = count;
-                        count++;
+                        result[1][i].countCard = countCard;
+                        countCard++;
                       }
                       arrayAccountInfo.push(result[1][i])
                     }

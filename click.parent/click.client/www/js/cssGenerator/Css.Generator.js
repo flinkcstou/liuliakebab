@@ -4677,6 +4677,7 @@ var css = {
 
   myCardListCard: ".mycardlist-card" +
   "{" +
+  "background-image: url(resources/icons/cards/all.png);" +
   "height: " + 188 * widthK + "px;" +
   "width: " + 327 * widthK + "px;" +
   "position: relative;" +

@@ -205,7 +205,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      if (!fingerPrintEnrolled) {
+      if (!fingerPrintEnrolled && fingerPrintEnrolled !== null) {
         scope.showError = true;
         scope.errorNote = 'Опция не включена на устройстве!'
         scope.clickPinError = false
