@@ -1352,7 +1352,8 @@ var css = {
 
   card: ".card " +
   "{" +
-  "background-color: #d7d7d7;" +
+  //"background-color: #d7d7d7;" +
+  "background-image: url(resources/icons/cards/all.png);" +
   "-webkit-appearance: none;" +
   "height:" + 289 * widthK + "px;" +
   "width:" + 510 * widthK + "px;" +
@@ -1362,11 +1363,10 @@ var css = {
   "-moz-border-radius:" + 14 * widthK + "px;" +
   "border-radius:" + 14 * widthK + "px;" +
   "background-size: cover;" +
-    //"background-image: url(resources/icons/cards/all.png);" +
   "color: white;" +
-    //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-    //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-    //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+  "-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+  "-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+  "box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
   "}",
 
   invoiceCardPartOne: ".invoice-card-part-one " +

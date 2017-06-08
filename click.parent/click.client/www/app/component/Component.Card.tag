@@ -1,5 +1,5 @@
 <component-card class="card"
-                style="background-image: url({opts.background}); color: rgb({opts.fontcolor}); left:{(540 * opts.countcard + 100) * widthK}px">
+                style="background-image: url({(opts.background)}); color: rgb({opts.fontcolor}); left:{(540 * opts.countcard + 100) * widthK}px">
 
   <div class="card-bank-name" style="background-image: url({opts.bankname})"></div>
   <div class="card-salary-title">{opts.name}</div>
@@ -28,12 +28,12 @@
     var scope = this;
     scope.showError = false;
 
-//    if(!opts.background){
-//      console.log('QWEQ')
-//      opts.background =
-//      console.log('opts.background',opts.background)
-//      scope.update()
-//    }
+    if (!opts.background) {
+      console.log('QWEQ')
+      opts.background = 'background-image: url(resources/icons/cards/all.png)'
+      console.log('opts.background', opts.background)
+      scope.update()
+    }
 
     scope.on("mount", function () {
 
