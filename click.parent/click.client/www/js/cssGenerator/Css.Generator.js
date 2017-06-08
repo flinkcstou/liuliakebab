@@ -13184,7 +13184,7 @@ var css = {
   "width: 100%;" +
   "top:0;" +
     //"background-color: lightgray;" +
-  "}",
+"}",
 
   componentCardUpperIcon: ".component-card-upper-icon" +
   "{" +

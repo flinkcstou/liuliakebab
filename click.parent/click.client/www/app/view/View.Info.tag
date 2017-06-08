@@ -1,6 +1,6 @@
 <view-info class="view-info riot-tags-main-container">
   <div class="view-info-title-container">
-    <div class="view-info-back-button" ontouchstart="onTouchEndBack()"></div>
+    <div class="view-info-back-button" ontouchstart="onTouchStartBack()" ontouchend="onTouchEndBack()"></div>
   </div>
 
   <div class="view-info-balance-container">
@@ -25,7 +25,7 @@
     <p class="view-info-my-finance-title">{window.languages.ViewInfoMyFinanceTitle}</p>
   </div>
 
-  <div class="view-info-reports-container" ontouchend="goToReports()">
+  <div class="view-info-reports-container" ontouchend="goToReportsTouchEnd()" ontouchstart="goToReportsTouchStart()">
     <div class="view-info-reports-icon"></div>
     <div class="view-info-open-icon"></div>
     <p class="view-info-reports-title">{window.languages.ViewInfoReportsTitle}</p>
@@ -223,15 +223,30 @@
     scope.leftOfOperations = 200 * widthK;
     scope.lastOperationContainer = [];
 
+    var goBackTouchStartX, goBackTouchStartY, goBackTouchEndX, goBackTouchEndY;
     onTouchEndBack = function () {
       event.preventDefault();
       event.stopPropagation();
+      goBackTouchEndX = event.changedTouches[0].pageX
+      goBackTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(goBackTouchStartX - goBackTouchEndX) <= 20 && Math.abs(goBackTouchStartY - goBackTouchEndY) <= 20) {
 
 //      this.riotTags.innerHTML = '<view-main-page>';
 //      riot.mount('view-main-page');
-      onBackKeyDown()
+        onBackKeyDown()
 
-      scope.unmount()
+        scope.unmount()
+      }
+
+    }
+
+    onTouchStartBack = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      goBackTouchStartX = event.changedTouches[0].pageX
+      goBackTouchStartY = event.changedTouches[0].pageY
 
     }
 
@@ -346,32 +361,48 @@
         }
       });
 
-    goToReports = function () {
+    var goToReportsTouchStartX, goToReportsTouchStartY, goToReportsTouchEndX, goToReportsTouchEndY;
+
+    goToReportsTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      if (modeOfApp.offlineMode) {
-        phonedialer.dial(
-          "*880*00*3" + "%23",
-          function (err) {
-            if (err == "empty") {
-              scope.clickPinError = false;
-              scope.errorNote = ("Unknown phone number");
-              scope.showError = true;
-              scope.update();
+      goToReportsTouchStartX = event.changedTouches[0].pageX
+      goToReportsTouchStartY = event.changedTouches[0].pageY
+    }
+
+    goToReportsTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      goToReportsTouchEndX = event.changedTouches[0].pageX
+      goToReportsTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(goToReportsTouchStartX - goToReportsTouchEndX) <= 20 && Math.abs(goToReportsTouchStartY - goToReportsTouchEndY) <= 20) {
+
+        if (modeOfApp.offlineMode) {
+          phonedialer.dial(
+            "*880*00*3" + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                scope.update();
+              }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
             }
-            else console.log("Dialer Error:" + err);
-          },
-          function (success) {
-          }
-        );
-        return
+          );
+          return
+        }
+
+        riotTags.innerHTML = "<view-report>";
+        riot.mount('view-report');
+
+        scope.unmount()
       }
-
-      riotTags.innerHTML = "<view-report>";
-      riot.mount('view-report');
-
-      scope.unmount()
 
     }
 
