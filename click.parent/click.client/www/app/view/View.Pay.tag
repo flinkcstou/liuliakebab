@@ -99,7 +99,7 @@
     var onTouchStartY, onTouchStartX;
     var onTouchEndY, onTouchEndX;
     var count = 1;
-    var oldHeight, oldTop, top;
+    //    var oldHeight, oldTop, top;
 
     scope.onTouchStartOfCategory = onTouchStartOfCategory = function () {
       event.stopPropagation();
@@ -123,8 +123,8 @@
         } else {
           if (scope.index != -1) {
             document.getElementById("tick" + scope.index).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
-            oldHeight = document.getElementById(scope.index).offsetHeight;
-            oldTop = document.getElementById(scope.index).offsetTop;
+//            oldHeight = document.getElementById(scope.index).offsetHeight;
+//            oldTop = document.getElementById(scope.index).offsetTop;
 //            console.log("oldHeight=", oldHeight, ",top=", oldTop);
           }
           scope.index = id;
@@ -145,27 +145,31 @@
           document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
           viewPay.categoryId = id;
 //          console.log("qwertysssl ", categoriesContainerId.scrollTop, ", new top=", document.getElementById(id).offsetTop);
-          top = document.getElementById(id).offsetTop > oldTop ? (document.getElementById(id).offsetTop - oldHeight) : document.getElementById(id).offsetTop;
+//          top = document.getElementById(id).offsetTop > oldTop ? (document.getElementById(id).offsetTop - oldHeight) : document.getElementById(id).offsetTop;
 
-          if (categoriesContainerId.scrollTop - 40 > top) {
-//            console.log("qwerty");
-            scope.hintShow = true;
-            scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
-            scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
-            scope.update();
-          } else {
-            scope.hintShow = false;
-//            console.log("close");
-            scope.update();
-          }
+          hintUpdate(scope.index);
         }
-
 
         scope.update();
       }
     };
 
     scope.hintShow = false;
+
+    hintUpdate = function (index) {
+      console.log("in get top=", categoriesContainerId.scrollTop, document.getElementById(index).offsetTop);
+      if (categoriesContainerId.scrollTop - 40 > document.getElementById(index).offsetTop) {
+//            console.log("qwerty");
+        scope.hintShow = true;
+        scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
+        scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
+        scope.update();
+      } else {
+        scope.hintShow = false;
+//            console.log("close");
+        scope.update();
+      }
+    }
 
 
     onTouchMoveOfCategory = function () {
