@@ -211,19 +211,7 @@
           if (localStorage.getItem("settings_finger_print") !== null) {
             if (JSON.parse(localStorage.getItem("settings_finger_print")) === true) {
               var text = 'Приложите палец для сканирования';
-              touchid.authenticate(successCallbackOfAuth, failureCallbackOfAuth, text);
-            }
-
-            function successCallbackOfAuth(success) {
-              console.log(success)
-              console.log('SUCCIESS FINGER PRINT')
-              pin = localStorage.getItem('click_client_pin');
-              enter();
-            }
-
-            function failureCallbackOfAuth(error) {
-              console.log(error)
-              console.log('FAIL FINGER PRINT')
+              window.plugins.touchid.verifyFingerprint(text, successCallbackOfAuth, failureCallbackOfAuth);
             }
           }
         }
@@ -235,7 +223,19 @@
         }
 
 
-        touchid.checkSupport(successCallback, notSupportedCallback);
+        window.plugins.touchid.isAvailable(successCallback, notSupportedCallback);
+
+        function successCallbackOfAuth(success) {
+          console.log(success)
+          console.log('SUCCIESS FINGER PRINT')
+          pin = localStorage.getItem('click_client_pin');
+          enter();
+        }
+
+        function failureCallbackOfAuth(error) {
+          console.log(error)
+          console.log('FAIL FINGER PRINT')
+        }
       }
     }
 
