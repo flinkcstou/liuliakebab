@@ -301,10 +301,8 @@
     //          console.log("chosen id in pay view NEW =", id);
     //          opts.chosenServiceId = id;
     //          event.stopPropagation();
-    //
     //          riotTags.innerHTML = "<view-service-page-new>";
     //          riot.mount("view-service-page-new", opts);
-    //
     //          scope.unmount()
     //        }
     //      }
