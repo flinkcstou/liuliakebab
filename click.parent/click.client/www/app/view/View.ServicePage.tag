@@ -1399,16 +1399,27 @@
 
         scope.formTypeTwoOptsArray = [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, opts.mode];
 
-        if (opts.mode == 'USUAL' || opts.mode == 'POPULAR') {
+        if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
           event.preventDefault();
           event.stopPropagation();
-          this.riotTags.innerHTML = "<view-service-pincards>";
-          riot.mount('view-service-pincards', scope.formTypeTwoOptsArray);
-          scope.unmount()
+
+
+          if (scope.service.additional_information_type == 0) {
+            this.riotTags.innerHTML = "<view-service-pincards>";
+            riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, opts.mode])
+            scope.unmount()
+          } else {
+            this.riotTags.innerHTML = "<view-service-info>";
+            riot.mount('view-service-info', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, opts.mode])
+            scope.unmount()
+          }
+
+
         } else if (opts.mode == 'ADDFAVORITE') {
           formTypeTwoBtnSaveId.style.pointerEvents = 'auto';
           formTypeTwoBtnSaveId.style.backgroundColor = 'rgb(1, 124, 227)';
           scope.update(formTypeTwoBtnSaveId);
+
         } else if (opts.mode == 'ADDAUTOPAY') {
 
           if (autoPayNameInput.value.length < 1) {
@@ -1422,9 +1433,21 @@
           scope.autoPayData.name = autoPayNameInput.value;
           localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
-          this.riotTags.innerHTML = "<view-service-pincards>";
-          riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
-          scope.unmount()
+
+          if (scope.autoPayFromConfirm) {
+            this.riotTags.innerHTML = "<view-pay-confirm>";
+            riot.mount('view-pay-confirm', opts);
+            scope.unmount()
+
+          } else {
+            this.riotTags.innerHTML = "<view-service-pincards>";
+            riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
+            scope.unmount()
+          }
+
+//          this.riotTags.innerHTML = "<view-service-pincards>";
+//          riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
+//          scope.unmount()
         }
       }
     };

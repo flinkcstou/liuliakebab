@@ -1151,18 +1151,15 @@
 
 
       if (scope.formType == 3) {
-//        opts.internetPackageParam = null;
+
         if (scope.hasSecondLevel)
           opts.communalParam = scope.chosenFieldParamIdThree;
         else
           opts.communalParam = scope.chosenFieldParamIdTwo;
 
       } else if (scope.formType == 4) {
-//        opts.communalParam = null;
         if (scope.chosenFieldParamIdThree)
-
           opts.internetPackageParam = scope.chosenFieldParamIdThree;
-
         else {
           scope.clickPinError = false;
           scope.errorNote = "Выберите интернет пакет";
@@ -1172,25 +1169,7 @@
         }
       }
 
-
       viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
-
-
-//      scope.fieldsObject = {
-//        formtype: formtype.formtype,
-//        firstFieldId: firstFieldId.firstFieldId,
-//        firstFieldText: firstFieldText.firstFieldText,
-//        firstFieldTitle: scope.chosenFieldName,
-//        cardTypeId: cardTypeId.cardTypeId,
-//        communalParam: communalParam.communalParam,
-//        amountText: amountText.amountText,
-//        internetPackageParam: internetPackageParam.internetPackageParam,
-//        firstLevelParamId: scope.chosenFieldParamIdTwo,
-//        firstLevelFieldName: scope.chosenFieldNameTwo,
-//        secondLevelFieldName: scope.chosenFieldNameThree
-//      };
-//      console.log("fieldsObject=", scope.fieldsObject);
-//      localStorage.setItem("servicepage_fields", JSON.stringify(scope.fieldsObject));
 
 
       if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
@@ -1281,8 +1260,8 @@
             riot.mount('view-service-pincards-new', opts);
             scope.unmount()
           } else {
-            this.riotTags.innerHTML = "<view-service-info>";
-            riot.mount('view-service-info', opts);
+            this.riotTags.innerHTML = "<view-service-info-new>";
+            riot.mount('view-service-info-new', opts);
             scope.unmount()
           }
 
