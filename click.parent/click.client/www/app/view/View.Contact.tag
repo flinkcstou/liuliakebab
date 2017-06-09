@@ -137,7 +137,10 @@
             contactSelectContainerId.style.display = 'block'
           }
           else {
-            var id = window.mOperators[phone.substring(0, 2)]
+            scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length)
+            var id = window.mOperators[scope.arrayOfNumbers[0].value.substring(0, 2)]
+            console.log('OPERATOR', scope.arrayOfNumbers[0].value.substring(0, 2))
+            console.log('ID', id)
             viewPay.chosenServiceId = id;
             scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length);
 
@@ -192,12 +195,14 @@
         }
         phone = phone.substring(phone.length - 9, phone.length);
 
-
         if (goToPay) {
           var id = window.mOperators[phone.substring(0, 2)]
           if (id) {
             viewPay.chosenServiceId = id;
 
+            console.log('ID', id)
+
+            console.log('OPERATOR', phone.substring(0, 2))
             console.log('ID', id)
 
             riotTags.innerHTML = "<view-service-page>";
