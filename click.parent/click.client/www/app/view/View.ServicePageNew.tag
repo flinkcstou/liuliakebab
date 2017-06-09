@@ -425,12 +425,12 @@
       blockAmountCalculatorId.style.display = 'block';
       amountCalcInputId.focus();
       scope.update(blockAmountCalculatorId);
-    }
+    };
 
     closeComponent = function () {
       blockAmountCalculatorId.style.display = 'none';
       scope.update(blockAmountCalculatorId);
-    }
+    };
 
     var converted;
     scope.convertedAmount = 0;
@@ -457,7 +457,7 @@
         scope.convertedAmount = converted;
         scope.update(scope.convertedAmount);
       }
-    }
+    };
 
     acceptConvertedAmount = function () {
       amount.value = scope.convertedAmount + ' ' + defaultAccount.currency;
@@ -467,7 +467,7 @@
       }
       blockAmountCalculatorId.style.display = 'none';
       scope.update(blockAmountCalculatorId);
-    }
+    };
 
     console.log('VIEWPAY SERVICE', opts.chosenServiceId, 'mynumber' + localStorage.getItem('myNumberOperatorId'))
     if ((opts.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) || (modeOfApp.offlineMode && opts.chosenServiceId == 'mynumber')) {
@@ -623,7 +623,7 @@
         scope.amountFieldTitle = scope.service.lang_amount_title;
         scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
         if (scope.phoneFieldBool)
-          scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength)
+          scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
         scope.defaultAmount = !opts.amountText ? 0 : opts.amountText;
 
         scope.inputMaxLength = scope.fieldArray[0].max_len;
@@ -1157,18 +1157,6 @@
 
         event.preventDefault();
         event.stopPropagation();
-//        console.log(formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites)
-//
-//        console.log("OPTS", opts);
-//
-//        console.log('USSD', scope.fieldArray[0].ussd_query)
-//        console.log('fieldArray', scope.fieldArray[0])
-//
-//        console.log('firstFieldText', firstFieldText)
-//
-//        console.log('formtype', formtype)
-//        console.log('communalParam', communalParam)
-//        console.log('internetPackageParam', internetPackageParam)
 
 
         if (modeOfApp.offlineMode) {
@@ -1185,7 +1173,7 @@
             ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
             ussdQuery = ussdQuery.replace('{option}', opts.firstFieldId);
             ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
-            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
             console.log(ussdQuery)
           }
 
@@ -1193,7 +1181,7 @@
             ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
             ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
             ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
-            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
             console.log(ussdQuery)
           }
 
@@ -1201,7 +1189,7 @@
             ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
             ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
             ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
-            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
             console.log(ussdQuery)
           }
 
@@ -1210,7 +1198,7 @@
             ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
             ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
             ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
-            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
             console.log(ussdQuery)
           }
 
@@ -1272,15 +1260,16 @@
         scope.autoPayData.name = autoPayNameInput.value;
         localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
-        if (scope.autoPayFromConfirm) {
+        if (scope.autoPayData.fromView == 'PAY') {
+          this.riotTags.innerHTML = "<view-service-pincards-new>";
+          riot.mount('view-service-pincards-new', opts);
+          scope.unmount()
+
+        } else if (scope.autoPayData.fromView == 'PAYCONFIRM') {
           this.riotTags.innerHTML = "<view-pay-confirm-new>";
           riot.mount('view-pay-confirm-new', opts);
           scope.unmount()
 
-        } else {
-          this.riotTags.innerHTML = "<view-service-pincards-new>";
-          riot.mount('view-service-pincards-new', opts);
-          scope.unmount()
         }
 
 
@@ -1308,9 +1297,9 @@
         if (modeOfApp.offlineMode) {
 
           var ussdQuery = scope.fieldArray[0].ussd_query;
-          ussdQuery = ussdQuery.replace('{nominal}', nominal);
-          ussdQuery = ussdQuery.replace('{card_type}', cardId);
-          ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+          ussdQuery = ussdQuery.replace('{nominal}', opts.amountText);
+          ussdQuery = ussdQuery.replace('{card_type}', opts.cardTypeId);
+          ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
 
           phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
@@ -1330,16 +1319,25 @@
           return
         }
 
-        if (opts.mode == 'USUAL' || opts.mode == 'POPULAR') {
+        if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
           event.preventDefault();
           event.stopPropagation();
-          this.riotTags.innerHTML = "<view-service-pincards-new>";
-          riot.mount('view-service-pincards-new', opts);
-          scope.unmount()
+
+          if (scope.service.additional_information_type == 0) {
+            this.riotTags.innerHTML = "<view-service-pincards-new>";
+            riot.mount('view-service-pincards-new', opts);
+            scope.unmount()
+          } else {
+            this.riotTags.innerHTML = "<view-service-info-new>";
+            riot.mount('view-service-info-new', opts);
+            scope.unmount()
+          }
+
         } else if (opts.mode == 'ADDFAVORITE') {
           formTypeTwoBtnSaveId.style.pointerEvents = 'auto';
           formTypeTwoBtnSaveId.style.backgroundColor = 'rgb(1, 124, 227)';
           scope.update(formTypeTwoBtnSaveId);
+
         } else if (opts.mode == 'ADDAUTOPAY') {
 
           if (autoPayNameInput.value.length < 1) {
@@ -1353,9 +1351,17 @@
           scope.autoPayData.name = autoPayNameInput.value;
           localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
-          this.riotTags.innerHTML = "<view-service-pincards-new>";
-          riot.mount('view-service-pincards-new', opts);
-          scope.unmount()
+          if (scope.autoPayData.fromView == 'PAY') {
+            this.riotTags.innerHTML = "<view-service-pincards-new>";
+            riot.mount('view-service-pincards-new', opts);
+            scope.unmount()
+
+          } else if (scope.autoPayData.fromView == 'PAYCONFIRM') {
+            this.riotTags.innerHTML = "<view-pay-confirm-new>";
+            riot.mount('view-pay-confirm-new', opts);
+            scope.unmount()
+
+          }
         }
       }
     };
