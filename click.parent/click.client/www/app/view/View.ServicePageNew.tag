@@ -425,12 +425,12 @@
       blockAmountCalculatorId.style.display = 'block';
       amountCalcInputId.focus();
       scope.update(blockAmountCalculatorId);
-    }
+    };
 
     closeComponent = function () {
       blockAmountCalculatorId.style.display = 'none';
       scope.update(blockAmountCalculatorId);
-    }
+    };
 
     var converted;
     scope.convertedAmount = 0;
@@ -457,7 +457,7 @@
         scope.convertedAmount = converted;
         scope.update(scope.convertedAmount);
       }
-    }
+    };
 
     acceptConvertedAmount = function () {
       amount.value = scope.convertedAmount + ' ' + defaultAccount.currency;
@@ -467,7 +467,7 @@
       }
       blockAmountCalculatorId.style.display = 'none';
       scope.update(blockAmountCalculatorId);
-    }
+    };
 
     console.log('VIEWPAY SERVICE', opts.chosenServiceId, 'mynumber' + localStorage.getItem('myNumberOperatorId'))
     if ((opts.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) || (modeOfApp.offlineMode && opts.chosenServiceId == 'mynumber')) {
@@ -623,7 +623,7 @@
         scope.amountFieldTitle = scope.service.lang_amount_title;
         scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
         if (scope.phoneFieldBool)
-          scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength)
+          scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
         scope.defaultAmount = !opts.amountText ? 0 : opts.amountText;
 
         scope.inputMaxLength = scope.fieldArray[0].max_len;
@@ -1157,18 +1157,7 @@
 
         event.preventDefault();
         event.stopPropagation();
-//        console.log(formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites)
-//
-//        console.log("OPTS", opts);
-//
-//        console.log('USSD', scope.fieldArray[0].ussd_query)
-//        console.log('fieldArray', scope.fieldArray[0])
-//
-//        console.log('firstFieldText', firstFieldText)
-//
-//        console.log('formtype', formtype)
-//        console.log('communalParam', communalParam)
-//        console.log('internetPackageParam', internetPackageParam)
+
 
 
         if (modeOfApp.offlineMode) {
