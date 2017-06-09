@@ -95,7 +95,7 @@
           }
         }
 
-        scope.update();
+        riot.update();
 
         window.FirebasePlugin.logEvent(scope.notificationText, {
           content_type: scope.notificationAction,
