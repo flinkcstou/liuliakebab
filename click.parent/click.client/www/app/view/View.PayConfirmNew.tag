@@ -93,7 +93,7 @@
                      operationmessage="{operationMessage}"
                      goback="{goBack}"
                      viewpage="{viewPage}" step_amount="{stepAmount}"></component-success>
-  <component-unsuccess id="componentUnsuccessId" viewpage="{viewPage}" step_amount="{stepAmount}"
+  <component-unsuccess id="componentUnsuccessId" viewpage="{viewPage}" step_amount="{stepAmount}" goback="{goBack}"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
                        operationmessagepartthree="{window.languages.ComponentUnsuccessMessagePart3ForPay}"></component-unsuccess>
@@ -547,13 +547,13 @@
         scope.operationMessage = window.languages.ViewAutoPayCreatedSuccessTextOne + "\"" + scope.autoPayData.name + "\"" + window.languages.ViewAutoPayCreatedSuccessTextTwo;
         if (scope.autoPayData && scope.autoPayData.fromView == 'PAYCONFIRM') {
           scope.viewPage = 'view-pay-confirm-new';
-          scope.stepAmount = 0;
+          scope.stepAmount = 3;
           scope.goBack = true;
 
         } else {
           scope.viewPage = 'view-auto-pay-new';
           scope.stepAmount = 6;
-
+          scope.goBack = true;
         }
 
         scope.update();
@@ -582,20 +582,19 @@
 //                  scope.autoPayDelete = true;
 //                  scope.update(scope.autoPayDelete);
 
-                  if (scope.autoPayData.fromView != 'PAYCONFIRM') {
-
-                    viewServicePinCards.friendHelpPaymentMode = false;
-                    viewServicePinCards.chosenFriendForHelp = null;
-
-                  } else {
+                  if (scope.autoPayData.fromView == 'PAYCONFIRM')
                     scope.autoPayData.fromView = 'AFTERCREATION';
-                  }
+
                   scope.autoPayData.isNew = false;
                   localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
                   componentSuccessId.style.display = 'block';
 
                 }
                 else {
+                  if (scope.autoPayData.fromView == 'PAYCONFIRM')
+                    scope.autoPayData.fromView = 'AFTERCREATION';
+//                  scope.autoPayData.isNew = false;
+                  localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
                   console.log("result of autopay.add.by.event", result);
                   componentUnsuccessId.style.display = 'block';
                 }
@@ -630,19 +629,18 @@
                 if (result[0][0].error == 0) {
                   console.log("result of autopay.add.by.schedule", result);
 //                  localStorage.setItem('autoPayData', null);
-                  if (scope.autoPayData.fromView != 'PAYCONFIRM') {
-
-                    viewServicePinCards.friendHelpPaymentMode = false;
-                    viewServicePinCards.chosenFriendForHelp = null;
-                  } else {
+                  if (scope.autoPayData.fromView == 'PAYCONFIRM')
                     scope.autoPayData.fromView = 'AFTERCREATION';
-                  }
                   scope.autoPayData.isNew = false;
                   localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
                   componentSuccessId.style.display = 'block';
 
                 }
                 else {
+                  if (scope.autoPayData.fromView == 'PAYCONFIRM')
+                    scope.autoPayData.fromView = 'AFTERCREATION';
+//                  scope.autoPayData.isNew = false;
+                  localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
                   console.log("result of autopay.add.by.schedule", result);
                   componentUnsuccessId.style.display = 'block';
                 }

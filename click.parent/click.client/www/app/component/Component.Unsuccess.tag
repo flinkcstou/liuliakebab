@@ -20,6 +20,15 @@
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
       }
 
+      console.log("after unsuccess", history.arrayOfHistory)
+
+      if (opts.goback && opts.viewpage) {
+        console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
+        riotTags.innerHTML = "<" + opts.viewpage + ">";
+        riot.mount(opts.viewpage, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+        return;
+      }
+
       if (opts.viewpage) {
 
         riotTags.innerHTML = "<" + opts.viewpage + ">";
