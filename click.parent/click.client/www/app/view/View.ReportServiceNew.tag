@@ -46,9 +46,9 @@
         </div>
       </div>
 
-      <div class="report-service-data-button-info-container" if="{!opts.is_indoor}"
-           ontouchend="addToFavoritesTouchEnd()" ontouchstart="addToFavoritesTouchStart()">
-        <div class="report-service-button-info-container">
+      <div class="report-service-data-button-info-container" if="{!opts.is_indoor}">
+        <div class="report-service-button-info-container" ontouchend="addToFavoritesTouchEnd()"
+             ontouchstart="addToFavoritesTouchStart()" if="{canAddToFavorite}">
           <div class="report-service-button-icon report-service-button-favorites-icon"></div>
           <a class="report-service-button-action">{languages.ViewReportServiceAddToFavorites}</a>
         </div>
@@ -62,7 +62,7 @@
           <a class="report-service-button-action">{languages.ViewReportServiceGetSupportHelp}</a>
         </div>
 
-        <button if="{opts.service_id != -4}" class="report-service-repeat-button" if="{!opts.is_indoor}"
+        <button if="{canAddToFavorite && !opts.is_indoor}" class="report-service-repeat-button"
                 ontouchend="onTouchEndOfService()"
                 ontouchstart="onTouchStartOfService()">
           {languages.ViewReportServiceRepeatButtonLabel}
@@ -90,9 +90,17 @@
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#00a8f1");
-
       scope.update();
-    })
+    });
+
+    var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
+    var servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
+
+    if (servicesMap[scope.opts.service_id])
+      scope.canAddToFavorite = true;
+    else
+      scope.canAddToFavorite = false;
+    scope.update();
 
 
     scope.cards = localStorage.getItem("click_client_cards");
@@ -154,9 +162,6 @@
       addToFavoritesTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(addToFavoritesTouchEndX - addToFavoritesTouchStartX) < 20) {
-
-        var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
-        var servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
 
 //        console.log("Preparing inputs for favorites", localStorage.getItem("click_client_servicesMap"), scope.opts.service_id, servicesMap, servicesMap[scope.opts.service_id][0]);
         var newFavorite = {};
