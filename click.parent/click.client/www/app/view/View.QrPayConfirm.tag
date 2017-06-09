@@ -206,9 +206,11 @@
                 console.log("result of APP.PAYMENT 1", result);
                 viewServicePage.phoneText = null;
                 viewServicePage.amountText = null;
-                operationMessage = 'Оплата QR прошла успешно'
+
+                scope.operationMessage = 'Оплата QR прошла успешно'
                 viewServicePinCards.friendHelpPaymentMode = false;
 
+                scope.update();
                 componentSuccessId.style.display = 'block';
               }
           }

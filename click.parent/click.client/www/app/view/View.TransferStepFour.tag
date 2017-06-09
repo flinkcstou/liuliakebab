@@ -87,7 +87,7 @@
   <component-in-processing id="componentInProcessingId"
                            operationmessagepartone="{window.languages.ComponentInProcessingPartOne}"
                            operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"
-                           viewpage="view-transfer"></component-in-processing>
+                           step_amount="{3}"></component-in-processing>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>

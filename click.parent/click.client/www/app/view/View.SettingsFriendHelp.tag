@@ -6,7 +6,7 @@
       <div id="rightButton" ontouchend="goToAddFriendView()" class="settings-friend-help-add-button"></div>
     </div>
     <div id="mainContainerId" class="settings-container">
-      <div each="{i in arrayOfFriends}" id="{id+i.number}" class="settings-friend-help-contact-container">
+      <div each="{i in arrayOfFriends}" id="{'id'+i.number}" class="settings-friend-help-contact-container">
         <div class="settings-friend-help-contact-found-photo"
              style="background-image: url({i.photo})">{i.firstLetterOfName}
         </div>
@@ -29,6 +29,7 @@
   <script>
     var scope = this;
     console.log('OPTS in FriendHelp', opts);
+
     this.titleName = window.languages.ViewSecuritySettingsFriendHelpTitle;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-friend-help-settings') {
@@ -75,11 +76,17 @@
     chooseFriendForHelp = function (number) {
       if (viewServicePinCards.friendHelpPaymentMode) {
         console.log("in choose friend for help");
+        console.log("OPTS", opts)
         for (var i in scope.arrayOfFriends) {
           if (scope.arrayOfFriends[i].number == number) {
             viewServicePinCards.chosenFriendForHelp = scope.arrayOfFriends[i];
             console.log(viewServicePinCards.chosenFriendForHelp);
-            onBackKeyDownWithParams(opts, 1);
+
+              if (opts.from && opts.from == "view-qr")
+                onBackKeyDown()
+            else {
+              onBackKeyDownWithParams(opts, 1);
+            }
           }
         }
 

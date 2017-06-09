@@ -39,7 +39,7 @@
       </div>
 
       <button class="qr-pincard-button-enter"
-           ontouchend="goToQrPayConfirmView()">
+              ontouchend="goToQrPayConfirmView()">
         {window.languages.ViewServicePageEnterLabel}
       </button>
 
@@ -139,8 +139,8 @@
       event.preventDefault();
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-friend-help-settings>";
-      riot.mount('view-friend-help-settings');
-      scope.unmount()
+      riot.mount('view-friend-help-settings', {from:"view-qr"});
+//      scope.unmount()
     }
 
     if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
