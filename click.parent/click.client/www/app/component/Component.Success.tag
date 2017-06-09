@@ -18,20 +18,25 @@
         history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
         console.log(history.arrayOfHistory)
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
+        console.log("after success", history.arrayOfHistory)
+
+        if (history.arrayOfHistory.length != 0) {
+          console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
+          riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+          riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+          return;
+        } else {
+          console.log("unsuccess mounting main-page");
+          riotTags.innerHTML = "<view-main-page>";
+          riot.mount("view-main-page");
+        }
+      }else if (!opts.step_amount && opts.viewpage) {
+        riotTags.innerHTML = "<" + opts.viewpage + ">";
+        riot.mount(opts.viewpage);
       }
 
-      console.log("after success", history.arrayOfHistory)
 
-      if (history.arrayOfHistory.length != 0) {
-        console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
-        riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
-        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
-        return;
-      } else {
-        console.log("unsuccess mounting main-page");
-        riotTags.innerHTML = "<view-main-page>";
-        riot.mount("view-main-page");
-      }
 
 //      if (opts.goback && opts.viewpage) {
 //        console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
