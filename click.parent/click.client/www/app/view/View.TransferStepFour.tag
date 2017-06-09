@@ -237,13 +237,13 @@
       card.owner.secondName = '';
       var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))
 //      console.log('CODE OF BANK', codeOfBank)
-      if (JSON.parse(localStorage.getItem('p2pTransferContacts'))) {
-        transferCards = JSON.parse(localStorage.getItem('p2pTransferContacts'));
+      if (JSON.parse(localStorage.getItem('p2pTransferCards'))) {
+        transferCards = JSON.parse(localStorage.getItem('p2pTransferCards'));
         for (var j = 0; j < transferCards.length; j++) {
 
           if (transferCards[j].cardNumber == saveCard) {
             transferCards.splice(j, 1);
-            localStorage.setItem('p2pTransferContacts', JSON.stringify(transferCards));
+            localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
           }
 
         }
@@ -251,21 +251,21 @@
 
       for (var i = 0; i < bankList.length; i++) {
         if (codeOfBank == bankList[i].code) {
-          if (JSON.parse(localStorage.getItem('p2pTransferContacts'))) {
-            transferCards = JSON.parse(localStorage.getItem('p2pTransferContacts'));
+          if (JSON.parse(localStorage.getItem('p2pTransferCards'))) {
+            transferCards = JSON.parse(localStorage.getItem('p2pTransferCards'));
             card.image = bankList[i].image
             card.name = bankList[i].name
             card.cardNumber = saveCard;
             transferCards.unshift(card)
 
-            localStorage.setItem('p2pTransferContacts', JSON.stringify(transferCards));
+            localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
           }
           else {
             card.image = bankList[i].image
             card.name = bankList[i].name
             card.cardNumber = saveCard;
             transferCards.unshift(card)
-            localStorage.setItem('p2pTransferContacts', JSON.stringify(transferCards));
+            localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
 
           }
 

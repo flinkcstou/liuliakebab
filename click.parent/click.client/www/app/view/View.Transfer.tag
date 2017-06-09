@@ -169,7 +169,8 @@
 
     </div>
 
-    <button id="nextButtonId" class="transfer-next-button-inner-container" ontouchstart="goToTransferStepTwoTouchStart()"
+    <button id="nextButtonId" class="transfer-next-button-inner-container"
+            ontouchstart="goToTransferStepTwoTouchStart()"
             ontouchend="goToTransferStepTwoTouchEnd()">
       {window.languages.ViewPayTransferNext}
     </button>
@@ -811,8 +812,8 @@
         cardInputId.value = inputVerification.cardVerification(cardInputId.value);
 
       var arrayOfCards = [];
-      if (JSON.parse(localStorage.getItem('transferCards'))) {
-        arrayOfCards = JSON.parse(localStorage.getItem('transferCards'));
+      if (JSON.parse(localStorage.getItem('p2pTransferCards'))) {
+        arrayOfCards = JSON.parse(localStorage.getItem('p2pTransferCards'));
       }
 
       if (cardInputId.value.replace(/\s/g, '').length == 16) {
@@ -928,13 +929,14 @@
         }
       });
 
+      scope.update()
 
     }
 
     cardSuggestionFunction = function () {
 
-      if (JSON.parse(localStorage.getItem('transferCards'))) {
-        var transferCards = JSON.parse(localStorage.getItem('transferCards'));
+      if (JSON.parse(localStorage.getItem('p2pTransferCards'))) {
+        var transferCards = JSON.parse(localStorage.getItem('p2pTransferCards'));
       }
       else {
         return;
@@ -1016,7 +1018,10 @@
           }
         }
 
+        console.log("CHECK CARD MENU", checkCardMenu)
+        console.log("CHECK J", j)
         if (j == 0) {
+          console.log("CHECK CARD MENU", checkCardMenu)
           if (transferCards[i] != null && transferCards[i].cardNumber) {
             checkCardFirstBlock = true
             scope.cardSuggestionOne.cardNumber = transferCards[i].cardNumber;
@@ -1084,7 +1089,7 @@
       console.log(contactChooseTouchStartX, contactChooseTouchStartY)
       console.log(contactChooseTouchStartX, contactChooseTouchStartY)
 
-      if (Math.abs(contactChooseTouchStartX - contactChooseTouchEndX) <= 20 && Math.abs(contactChooseTouchStartY - contactChooseTouchEndY) <= 20 || bool) {
+      if ((Math.abs(contactChooseTouchStartX - contactChooseTouchEndX) <= 20 && Math.abs(contactChooseTouchStartY - contactChooseTouchEndY) <= 20) || bool) {
         viewTransferStepTwo.sum = 0;
         viewTransferStepTwo.sumWithoutSpace = 0;
 
@@ -1133,7 +1138,7 @@
 
       console.log('Card transfer')
 
-      if (Math.abs(cardChooseTouchStartX - cardChooseTouchEndX) <= 20 && Math.abs(cardChooseTouchStartY - cardChooseTouchEndY) <= 20 || bool) {
+      if ((Math.abs(cardChooseTouchStartX - cardChooseTouchEndX) <= 20 && Math.abs(cardChooseTouchStartY - cardChooseTouchEndY) <= 20) || bool) {
         viewTransferStepTwo.sum = 0;
         viewTransferStepTwo.sumWithoutSpace = 0;
 
@@ -1164,6 +1169,7 @@
         }
 
         if (cardInputId.value.replace(/\s/g, '').length != 16) {
+
           cardSuggestionFunction();
         }
       }
