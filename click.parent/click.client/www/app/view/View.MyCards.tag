@@ -94,7 +94,7 @@
       console.log('scope.parent', scope)
 //      scope.update(scope.tags['component-card-carousel']);
       riot.update()
-    })
+    });
 
     touchStartTitle = function () {
       event.preventDefault();
@@ -102,7 +102,7 @@
       onBackKeyDown()
       scope.unmount()
 
-    }
+    };
 
     editCard = function () {
 //      console.log("card for edit=", scope.card);

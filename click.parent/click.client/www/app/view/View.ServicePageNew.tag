@@ -222,6 +222,15 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    if (opts.id) {
+      opts.chosenServiceId = opts.id;
+    }
+    if (opts.amountText) {
+      opts.amountText = !opts.amountText ? 0 : window.amountTransform(opts.amountText);
+      console.log("111", opts.amountText);
+    }
+
+
     goToBack = function () {
       window.viewServicePinCards = {};
       event.preventDefault();
@@ -240,9 +249,6 @@
     scope.servicesParamsMapFive = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"))) : (offlineServicesParamsMapFive);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
 
-    scope.autoPayFromConfirm = false;
-    if (scope.autoPayData && scope.autoPayData.fromView == 'PAYCONFIRM' && opts[0])
-      scope.autoPayFromConfirm = true;
 
     scope.enterButton = opts.mode != 'ADDFAVORITE' ? true : false;
     scope.showError = false;
@@ -491,7 +497,7 @@
 
           if (opts.amountText)
             if (opts.amountText.length > 0 && opts) {
-              amount.value = opts.amountText;
+              amount.value = !opts.amountText ? 0 : window.amountTransform(opts.amountText);
               checkFirst = true;
               amountForPayTransaction = opts.amountWithoutSpace;
 
@@ -502,6 +508,8 @@
             }
             else
               amount.value = 0;
+
+          console.log("amount=1 = ", opts.amountText);
         });
       }
       else {
@@ -528,7 +536,7 @@
 
           if (opts.amountText)
             if (opts.amountText.length > 0 && opts) {
-              amount.value = opts.amountText;
+              amount.value = !opts.amountText ? 0 : window.amountTransform(opts.amountText);
               checkFirst = true;
               amountForPayTransaction = opts.amountWithoutSpace;
 
@@ -624,7 +632,9 @@
         scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
         if (scope.phoneFieldBool)
           scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
-        scope.defaultAmount = !opts.amountText ? 0 : opts.amountText;
+        scope.defaultAmount = !opts.amountText ? 0 : window.amountTransform(opts.amountText);
+        console.log("after tranform amount=", scope.defaultAmount);
+        scope.update();
 
         scope.inputMaxLength = scope.fieldArray[0].max_len;
         console.log("INPUT LENGTH=", scope.inputMaxLength);
@@ -999,6 +1009,7 @@
     }
 
     eraseAmountDefault = function () {
+      console.log("in erase amount default");
       event.preventDefault();
       event.stopPropagation();
 
@@ -1020,6 +1031,7 @@
     };
 
     sumForPay = function () {
+      console.log("in sumForPay");
       event.preventDefault();
       event.stopPropagation();
 
@@ -1392,7 +1404,7 @@
 //        console.log("OPTS TO SAVE=", array);
 //        console.log("Chosen Service =", scope.service);
         favoritePaymentsList.push({
-          "opts": array,
+          "params": array,
           "service": scope.service,
           "ussd": scope.fieldArray[0].ussd_query
         });
@@ -1403,7 +1415,7 @@
         favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
 
         favoritePaymentsList.push({
-          "opts": array,
+          "params": array,
           "service": scope.service,
           "ussd": scope.fieldArray[0].ussd_query
         });

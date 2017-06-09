@@ -521,6 +521,8 @@
             }
             else
               amount.value = 0;
+
+          console.log("amount=1 = ", viewServicePage.amountText);
         });
       }
       else {
@@ -558,6 +560,8 @@
             }
             else
               amount.value = 0;
+
+          console.log("amount=2 = ", amount.value);
         });
       }
     } else {
@@ -571,7 +575,6 @@
       scope.fieldArray = scope.servicesParamsMapOne[viewPay.chosenServiceId];
 
       if (scope.service.form_type == 4)
-
         window.api.call({
           method: 'get.service.parameters',
           input: {
@@ -617,6 +620,8 @@
             console.error(data);
           }
         });
+
+
     }
 
     console.log('scope.categoryNamesMap', scope.categoryNamesMap)
@@ -1102,6 +1107,8 @@
           enterButtonId.style.display = 'none';
         else saveButtonId.style.display = 'none';
       }
+
+      console.log("amount=sumForPay = ", amount.value);
 
     };
 

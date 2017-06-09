@@ -92,7 +92,7 @@
     </div>
   </div>
 
-  <view-report-service hidden="{!showComponent}"></view-report-service>
+  <view-report-service-new hidden="{!showComponent}"></view-report-service-new>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
@@ -108,10 +108,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-report',
-            "params": opts
-          }
+        {
+          "view": 'view-report',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -337,7 +337,7 @@
       }
 
       localStorage.setItem('mNumber', scope.mNumber);
-    }
+    };
 
     changePositionReportInit = function () {
       console.log("TWO")
@@ -391,7 +391,7 @@
         graphListUpdate();
       }
 
-    }
+    };
 
 
     function convertDate(date) {
@@ -426,7 +426,7 @@
 
     scope.paymentListUpdate = paymentListUpdate = function (from) {
 
-      if(from == 'fromGraph' || from == 'fromFilter'){
+      if (from == 'fromGraph' || from == 'fromFilter') {
         scope.pageNumberOptional = 1;
         scope.paymentsMap = {};
         scope.paymentDates = [];
@@ -454,8 +454,8 @@
 
       scope.update();
       var firstDay = scope.tags["component-report-filter"].filterDateFrom,
-          lastDay = scope.tags["component-report-filter"].filterDateTo,
-          accountId = scope.tags["component-report-filter"].filterByAccount;
+        lastDay = scope.tags["component-report-filter"].filterDateTo,
+        accountId = scope.tags["component-report-filter"].filterByAccount;
 
       if (!accountId) {
 
@@ -517,7 +517,7 @@
             console.log('PAYMENTLIST=', result[1]);
             for (var i in result[1]) {
 
-              console.log("C", result[1][i].payment_id);
+//              console.log("C", result[1][i].payment_id);
 
 //              console.log("created=", result[1][i].created.split(" ")[1].substr(0, 5));
 
@@ -542,7 +542,7 @@
                 result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
               }
 
-              console.log("DATE DATE", dateStr)
+//              console.log("DATE DATE", dateStr)
               if (!scope.paymentsMap[dateStr]) {
                 scope.paymentsMap[dateStr] = [];
                 scope.paymentDates.push(dateStr);
@@ -598,8 +598,8 @@
       }
 
       var firstDay = scope.tags["component-report-filter"].filterDateFrom,
-          lastDay = scope.tags["component-report-filter"].filterDateTo,
-          accountId = scope.tags["component-report-filter"].filterByAccount;
+        lastDay = scope.tags["component-report-filter"].filterDateTo,
+        accountId = scope.tags["component-report-filter"].filterByAccount;
 
       if (!accountId) {
 
@@ -748,25 +748,25 @@
       scope.update()
       console.log("ARRAY OF COORDINATES", scope.arrayOfCoordinates)
       console.log('DATA', data)
-      if(document.getElementById('myChart'))
-      var ctx = document.getElementById('myChart').getContext('2d');
-      else{
+      if (document.getElementById('myChart'))
+        var ctx = document.getElementById('myChart').getContext('2d');
+      else {
         return
       }
       var myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: data,
-            options: {
-              cutoutPercentage: 55,
-              animateScale: false,
-              tooltips: {
-                enabled: false
-              },
-              events: [],
+          type: 'doughnut',
+          data: data,
+          options: {
+            cutoutPercentage: 55,
+            animateScale: false,
+            tooltips: {
+              enabled: false
+            },
+            events: [],
 
-            }
-          })
-          ;
+          }
+        })
+        ;
 
       for (var i in scope.arrayOfCoordinates) {
         if (document.getElementById('chartImageBlockId' + scope.arrayOfCoordinates[i].order)) {
@@ -827,14 +827,14 @@
           if (scope.paymentsList[i].payment_id == paymentId) {
 //            console.log("FROM VIEW REPORT service report for=", scope.paymentsList[i]);
 
-            console.log("scope.tags['view-report-service']", scope.tags)
-            console.log("scope.tags['view-report-service']", scope)
+            console.log("scope.tags['view-report-service-new']", scope.tags)
+            console.log("scope.tags['view-report-service-new']", scope)
             scope.showComponent = true;
-            scope.tags['view-report-service'].opts = scope.paymentsList[i]
+            scope.tags['view-report-service-new'].opts = scope.paymentsList[i]
 
-            console.log("scope.tags['view-report-service']", scope.tags['view-report-service']);
+            console.log("scope.tags['view-report-service-new']", scope.tags['view-report-service-new']);
 
-            window.checkShowingComponent = scope.tags['view-report-service'];
+            window.checkShowingComponent = scope.tags['view-report-service-new'];
 
             scope.update()
             break;

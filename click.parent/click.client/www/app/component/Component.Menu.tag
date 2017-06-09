@@ -105,7 +105,7 @@
     })
 
     userIconTouchEnd = function () {
-      if(modeOfApp.offlineMode) return
+      if (modeOfApp.offlineMode) return
       closeMenu();
       event.preventDefault();
       event.stopPropagation();
@@ -178,7 +178,7 @@
         closeMenu();
       }
       else {
-        console.log('START END',touchStartX, touchEndX)
+        console.log('START END', touchStartX, touchEndX)
         if (Math.abs(touchStartX - touchEndX) < 20 && bool) {
           closeMenu();
           return
@@ -376,8 +376,8 @@
         }
 
         closeMenu();
-        riotTags.innerHTML = "<view-auto-pay>";
-        riot.mount('view-auto-pay');
+        riotTags.innerHTML = "<view-auto-pay-new>";
+        riot.mount('view-auto-pay-new');
 //        scope.unmount()
       }
       else sideMenuTouchEnd()
@@ -387,7 +387,7 @@
     goToAutoPayStart = function () {
       autoPayTouchStartX = event.changedTouches[0].pageX;
       autoPayTouchStartY = event.changedTouches[0].pageY;
-    }
+    };
 
 
     var qrScannerTouchStartX, qrScannerTouchStartY, qrScannerTouchEndX, qrScannerTouchEndY
@@ -729,8 +729,8 @@
           return
         }
         closeMenu();
-        riotTags.innerHTML = "<view-favorites>";
-        riot.mount("view-favorites");
+        riotTags.innerHTML = "<view-favorites-new>";
+        riot.mount("view-favorites-new");
 //        scope.unmount()
         return
       }

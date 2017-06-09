@@ -22,26 +22,35 @@
 
       console.log("after success", history.arrayOfHistory)
 
-      if (opts.goback && opts.viewpage) {
+      if (history.arrayOfHistory.length != 0) {
         console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
-        riotTags.innerHTML = "<" + opts.viewpage + ">";
-        riot.mount(opts.viewpage, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+        riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
         return;
+      } else {
+        console.log("unsuccess mounting main-page");
+        riotTags.innerHTML = "<view-main-page>";
+        riot.mount("view-main-page");
       }
 
-      console.log('viewpage', opts.viewpage)
+//      if (opts.goback && opts.viewpage) {
+//        console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
+//        riotTags.innerHTML = "<" + opts.viewpage + ">";
+//        riot.mount(opts.viewpage, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+//        return;
+//      }
 
-      if (opts.viewpage) {
-
-        riotTags.innerHTML = "<" + opts.viewpage + ">";
-        riot.mount(opts.viewpage);
-//        scope.unmount()
-      }
-
-
-      if (opts.close_action) {
-        opts.close_action();
-      }
+//      if (opts.viewpage) {
+//
+//        riotTags.innerHTML = "<" + opts.viewpage + ">";
+//        riot.mount(opts.viewpage);
+////        scope.unmount()
+//      }
+//
+//
+//      if (opts.close_action) {
+//        opts.close_action();
+//      }
     }
 
   </script>

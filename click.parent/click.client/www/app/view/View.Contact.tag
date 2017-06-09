@@ -141,13 +141,14 @@
             var id = window.mOperators[scope.arrayOfNumbers[0].value.substring(0, 2)]
             console.log('OPERATOR', scope.arrayOfNumbers[0].value.substring(0, 2))
             console.log('ID', id)
-            viewPay.chosenServiceId = id;
+            opts.chosenServiceId = id;
             scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length);
+            opts.number = scope.arrayOfNumbers[0].value;
 
             console.log('ID', id)
             if (id) {
-              riotTags.innerHTML = "<view-service-page>";
-              riot.mount("view-service-page", {number: scope.arrayOfNumbers[0].value});
+              riotTags.innerHTML = "<view-service-page-new>";
+              riot.mount("view-service-page-new", opts);
 
               scope.unmount()
             }

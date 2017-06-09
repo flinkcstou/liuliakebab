@@ -443,8 +443,8 @@
         for (var i = 0; i < scope.lastOperationContainer.length; i++) {
           if (scope.lastOperationContainer[i].payment_id == paymentId) {
 //            console.log("FROM VIEW INFO service report for=", scope.lastOperationContainer[i]);
-            riotTags.innerHTML = "<view-report-service>";
-            riot.mount("view-report-service", scope.lastOperationContainer[i]);
+            riotTags.innerHTML = "<view-report-service-new>";
+            riot.mount("view-report-service-new", scope.lastOperationContainer[i]);
 
             scope.unmount()
             break;

@@ -60,6 +60,7 @@
 
 
     console.log('OPTS in PINCARDS', opts);
+    console.log('sevice id=', viewPay.chosenServiceId);
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards') {

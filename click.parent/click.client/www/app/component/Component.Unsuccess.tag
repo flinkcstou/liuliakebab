@@ -22,19 +22,18 @@
 
       console.log("after unsuccess", history.arrayOfHistory)
 
-      if (opts.viewpage) {
+      if (history.arrayOfHistory.length != 0) {
         console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
-        riotTags.innerHTML = "<" + opts.viewpage + ">";
-        riot.mount(opts.viewpage, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+        riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
         return;
+      } else {
+        console.log("unsuccess mounting main-page");
+        riotTags.innerHTML = "<view-main-page>";
+        riot.mount("view-main-page");
       }
 
-//      if (opts.viewpage) {
-//
-//        riotTags.innerHTML = "<" + opts.viewpage + ">";
-//        riot.mount(opts.viewpage);
-////        scope.unmount()
-//      }
+
     }
 
   </script>

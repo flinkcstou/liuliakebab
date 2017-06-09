@@ -15,18 +15,40 @@
       event.stopPropagation();
       componentInProcessingId.style.display = 'none';
       console.log("before inProcessing", history.arrayOfHistory)
-      history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 3)
-      console.log(history.arrayOfHistory)
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
-      console.log('viewpage', opts.viewpage)
-
-
-      if (opts.viewpage) {
-        riotTags.innerHTML = "<" + opts.viewpage + ">";
-        riot.mount(opts.viewpage);
-//      scope.unmount()
+      if (opts.step_amount) {
+        history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
+        console.log(history.arrayOfHistory)
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+      } else {
+        history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 3)
+        console.log(history.arrayOfHistory)
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
       }
+
+      console.log("after inProcessing", history.arrayOfHistory)
+
+      if (history.arrayOfHistory.length != 0) {
+        console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
+        riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+        return;
+      } else {
+        console.log("unsuccess mounting main-page");
+        riotTags.innerHTML = "<view-main-page>";
+        riot.mount("view-main-page");
+      }
+
+//
+//
+//      console.log('viewpage', opts.viewpage)
+//
+//
+//      if (opts.viewpage) {
+//        riotTags.innerHTML = "<" + opts.viewpage + ">";
+//        riot.mount(opts.viewpage);
+////      scope.unmount()
+//      }
     }
   </script>
 </component-in-processing>

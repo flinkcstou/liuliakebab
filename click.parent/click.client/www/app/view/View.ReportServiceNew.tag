@@ -155,12 +155,15 @@
 
       if (Math.abs(addToFavoritesTouchEndX - addToFavoritesTouchStartX) < 20) {
 
-        var servicesMap = localStorage.getItem("click_client_servicesMap");
-        servicesMap = JSON.parse(servicesMap);
+        var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
         var servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
 
 //        console.log("Preparing inputs for favorites", localStorage.getItem("click_client_servicesMap"), scope.opts.service_id, servicesMap, servicesMap[scope.opts.service_id][0]);
         var newFavorite = {};
+
+//        console.log("serviceMap=", servicesMap);
+//        console.log("servicesParamsMapOne =", servicesParamsMapOne);
+        console.log("scope.opts.service_id=", scope.opts.service_id);
 
         newFavorite.formType = servicesMap[scope.opts.service_id][0].form_type;
         newFavorite.firstFieldId = servicesMap[scope.opts.service_id][0].service_parameters;
@@ -215,34 +218,18 @@
 
         console.log("chosen id in pay view=", scope.opts.service_id);
 
-
         localStorage.setItem('chosenServiceId', scope.opts.service_id);
-        viewPay.chosenServiceId = scope.opts.service_id;
+        opts.chosenServiceId = scope.opts.service_id;
         console.log('CHOOSEN SERVICE OPTS', scope.opts.service_id)
-        console.log('CHOOSEN SERVICE', viewPay.chosenServiceId)
-        viewServicePage.amountText = inputVerification.spaceDeleter(scope.opts.amount.toString());
-        viewServicePage.amountWithoutSpace = inputVerification.spaceDeleter(scope.opts.amount.toString());
-//        console.log('AMOUNT=', viewServicePage.amountText)
 
-        scope.fieldsObject = {
-//          formtype: formtype.formtype,
-//          firstFieldId: firstFieldId.firstFieldId,
-          firstFieldText: scope.opts.cntrg_info_param2,
-//          firstFieldTitle: scope.chosenFieldName,
-//          cardTypeId: cardTypeId.cardTypeId,
-//          communalParam: communalParam.communalParam,
-          amountText: scope.opts.amount,
-//          internetPackageParam: internetPackageParam.internetPackageParam,
-//          firstLevelParamId: scope.chosenFieldParamIdTwo,
-//          firstLevelFieldName: scope.chosenFieldNameTwo,
-//          secondLevelFieldName: scope.chosenFieldNameThree,
-        };
-        console.log("fieldsObject=", scope.fieldsObject);
-        localStorage.setItem("servicepage_fields", JSON.stringify(scope.fieldsObject));
+        opts.amountText = inputVerification.spaceDeleter(scope.opts.amount.toString());
+        opts.amountWithoutSpace = inputVerification.spaceDeleter(scope.opts.amount.toString());
+        opts.firstFieldText = scope.opts.cntrg_info_param2;
+
         opts.mode = 'USUAL';
 
-        riotTags.innerHTML = "<view-service-page>";
-        riot.mount("view-service-page", opts);
+        riotTags.innerHTML = "<view-service-page-new>";
+        riot.mount("view-service-page-new", opts);
 
         scope.update();
 //        scope.unmount()

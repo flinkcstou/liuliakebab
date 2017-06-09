@@ -69,7 +69,7 @@
             var firstField = scope.favoritePaymentsList[i].params.firstFieldText.toString();
             console.log(scope.favoritePaymentsList[i].params)
             if (scope.favoritePaymentsList[i].params && scope.favoritePaymentsList[i].params.amountText)
-              scope.favoritePaymentsList[i].params.amountText = window.amountTransform(scope.favoritePaymentsList[i].params.amountText)
+              scope.favoritePaymentsList[i].params.amountText = window.amountTransform(scope.favoritePaymentsList[i].params.amountText.toString())
             if (firstField.length == 9) {
               firstField = firstField.substr(0, 2) + ' ' + firstField.substr(2, 3) + ' ' + firstField.substr(5, 2) + ' ' +
                 firstField.substr(7, 2);
@@ -188,8 +188,8 @@
         }
 
       event.stopPropagation();
-      riotTags.innerHTML = "<view-favorites>";
-      riot.mount("view-favorites");
+      riotTags.innerHTML = "<view-favorites-new>";
+      riot.mount("view-favorites-new");
 
       scope.unmount()
     }
