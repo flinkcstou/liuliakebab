@@ -166,8 +166,8 @@
 
             opts.firstFieldId = scope.servicesParamsMapOne[opts.chosenServiceId][0].parameter_id;
             opts.firstFieldTitle = scope.servicesParamsMapOne[opts.chosenServiceId][0].title;
-            console.log("opts.firstFieldId=", opts.firstFieldId);
-            console.log("scope.servicesParamsMapOne[opts.chosenServiceId]=", scope.servicesParamsMapOne[opts.chosenServiceId]);
+//            console.log("opts.firstFieldId=", opts.firstFieldId);
+//            console.log("scope.servicesParamsMapOne[opts.chosenServiceId]=", scope.servicesParamsMapOne[opts.chosenServiceId]);
 
             opts.firstFieldText = scope.autopayList[i].cntrg_param2;
 

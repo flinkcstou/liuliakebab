@@ -1333,7 +1333,7 @@
         scope.autoPayData.name = autoPayNameInput.value;
         localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
-        if (scope.autoPayFromConfirm) {
+        if (scope.autoPayData.fromView == 'PAYCONFIRM') {
           this.riotTags.innerHTML = "<view-pay-confirm>";
           riot.mount('view-pay-confirm', opts);
           scope.unmount()
@@ -1434,7 +1434,7 @@
           localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
 
-          if (scope.autoPayFromConfirm) {
+          if (scope.autoPayData.fromView == 'PAYCONFIRM') {
             this.riotTags.innerHTML = "<view-pay-confirm>";
             riot.mount('view-pay-confirm', opts);
             scope.unmount()

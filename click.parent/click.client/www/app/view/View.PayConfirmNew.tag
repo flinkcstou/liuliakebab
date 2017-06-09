@@ -473,7 +473,7 @@
           input: {
             session_key: sessionKey,
             phone_num: phoneNumber,
-            payment_id: payment_id,
+            payment_id: payment_id
           },
 
           scope: this,

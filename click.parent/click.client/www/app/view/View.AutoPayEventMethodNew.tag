@@ -97,26 +97,31 @@
 
     this.titleName = window.languages.ViewAutoPayTitleName;
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
+    scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
     console.log("OPTS AutoPayMethod EVENT NEW=", opts);
 
-    if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
+    if (opts.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
       console.log("My number part");
       scope.serviceName = 'Мой номер';
       scope.serviceIcon = 'resources/icons/ViewPay/myphone.png';
-      viewServicePage.phoneText = localStorage.getItem('click_client_phoneNumber');
-      viewServicePage.phoneText = viewServicePage.phoneText ? viewServicePage.phoneText.substr(3, viewServicePage.phoneText.length - 3) : '';
-      scope.defaultNumber = !viewServicePage.phoneText ? null : viewServicePage.phoneText;
-      viewPay.chosenServiceId = localStorage.getItem('myNumberOperatorId');
+
+      opts.firstFieldText = localStorage.getItem('click_client_phoneNumber');
+      opts.firstFieldText = opts.firstFieldText ? opts.firstFieldText.substr(3, opts.firstFieldText.length - 3) : '';
+      scope.defaultNumber = !opts.firstFieldText ? null : opts.firstFieldText;
+      opts.chosenServiceId = localStorage.getItem('myNumberOperatorId');
+
     } else {
       this.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
       this.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
-      if (scope.autoPayData.fromView == 'PAYCONFIRM' && opts.firstFieldText)
-        scope.defaultNumber = opts.firstFieldText;
+      if (scope.autoPayData.fromView == 'PAYCONFIRM' && opts.firstFieldText) {
+        if (opts.firstFieldId == 1)
+          scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
+        else scope.defaultNumber = opts.firstFieldText;
+      }
     }
 
-    //    scope.defaultNumber = !viewServicePage.phoneText ? null : viewServicePage.phoneText;
-
+    scope.defaultAmount = !opts.amountText ? 0 : opts.amountText;
 
     this.amountsArray = scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_amounts;
     this.stepsArray = scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps;
@@ -268,8 +273,6 @@
 
       scope.autoPayData.name = autoPayNameInput.value;
       scope.autoPayData.isNew = true;
-      localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-
       scope.autoPayData.step = chosenStep;
       scope.autoPayData.cntrg_phone_num = firstFieldInput.value;
       scope.autoPayData.amount = scope.chosenAmount;
@@ -277,25 +280,22 @@
       localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
       if (scope.autoPayData.fromView == 'PAY') {
-        var formtype = {"formtype": 1};
-        var firstFieldId = {"firstFieldId": 1};
-        var firstFieldText = {"firstFieldText": firstFieldInput.value};
-        var cardTypeId = {"cardTypeId": null};
-        var communalParam = {"communalParam": null};
-        var internetPackageParam = {"internetPackageParam": null};
-        var amountText = {"amountText": scope.chosenAmount};
+        opts.formtype = 1;
+        opts.formtype = scope.servicesMap[opts.chosenServiceId][0].form_type;
+        opts.firstFieldId = scope.servicesParamsMapOne[opts.chosenServiceId][0].parameter_id;
+        opts.firstFieldTitle = scope.servicesParamsMapOne[opts.chosenServiceId][0].title;
+        opts.firstFieldText = firstFieldInput.value;
+        opts.amountText = scope.chosenAmount;
+        opts.isInFavorites = false;
+        opts.mode = 'ADDAUTOPAY';
 
-        viewServicePage.firstFieldTitle = "Номер абонента";
-        viewServicePage.phoneText = firstFieldInput.value;
-        var isInFavorites = {"isInFavorites": false};
-
-        this.riotTags.innerHTML = "<view-service-pincards>";
-        riot.mount('view-service-pincards', [formtype, firstFieldId, firstFieldText, cardTypeId, communalParam, amountText, internetPackageParam, isInFavorites, 'ADDAUTOPAY']);
+        this.riotTags.innerHTML = "<view-service-pincards-new>";
+        riot.mount('view-service-pincards-new', opts);
         scope.unmount()
       }
       else if (scope.autoPayData.fromView == 'PAYCONFIRM') {
-        this.riotTags.innerHTML = "<view-pay-confirm>";
-        riot.mount('view-pay-confirm', opts);
+        this.riotTags.innerHTML = "<view-pay-confirm-new>";
+        riot.mount('view-pay-confirm-new', opts);
         scope.unmount()
 
       }
