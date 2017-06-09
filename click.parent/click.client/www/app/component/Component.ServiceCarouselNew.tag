@@ -289,6 +289,7 @@
         }
         else {
           opts.chosenServiceId = id;
+          opts.id = id;
         }
         opts.mode = 'POPULAR';
 

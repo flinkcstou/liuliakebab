@@ -186,7 +186,7 @@
 
         favoritePaymentsList = (favoritePaymentsList) ? (favoritePaymentsList) : ([]);
 
-        console.log("OPTS TO SAVE=", newFavorite);
+//        console.log("OPTS TO SAVE=", newFavorite);
         console.log("Chosen Service =", servicesMap[scope.opts.service_id][0]);
 
         favoritePaymentsList.push({

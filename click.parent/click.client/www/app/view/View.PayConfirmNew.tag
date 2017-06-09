@@ -495,7 +495,7 @@
                 viewServicePinCards.chosenFriendForHelp = null;
 
                 scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-pay';
-                scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 2 : scope.stepAmount;
+                scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
                 scope.update();
                 console.log("state=2 success,view=", scope.viewPage, ",step=", scope.stepAmount);
                 componentSuccessId.style.display = 'block';
@@ -521,7 +521,7 @@
                   viewServicePinCards.chosenFriendForHelp = null;
 
                   scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-pay';
-                  scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 2 : scope.stepAmount;
+                  scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
                   scope.update();
                   console.log("state=1 waiting,view=", scope.viewPage, ",step=", scope.stepAmount);
                   componentInProcessingId.style.display = 'block';

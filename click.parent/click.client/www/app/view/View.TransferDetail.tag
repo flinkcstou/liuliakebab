@@ -57,7 +57,7 @@
     <div class="transfer-detail-code-confirm-code-container">
 
       <p class="transfer-detail-code-confirm-message-text">{languages.ViewTransferDetailConfirmEnterCodeLabel}</p>
-      <input id="secretCodeInput" class="transfer-detail-code-confirm-code-input" type="number"
+      <input id="secretCodeInput" class="transfer-detail-code-confirm-code-input" type="tel"
              onkeydown="verifyInput(this)"
              autofocus/>
       <p class="transfer-detail-code-confirm-message-text-info">
