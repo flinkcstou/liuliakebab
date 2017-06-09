@@ -920,6 +920,8 @@
       else if (!viewMainPage.myCards) {
         if (!modeOfApp.offlineMode.balance && modeOfApp.onlineMode) {
 
+          if (scope.invoiceCheck)
+            scope.cardNumber = 1;
           console.log("End Touch Carousel", scope.cardNumber);
 
 //          scope.cardNumber = (scope.invoiceCheck && scope.cardNumber) ? (scope.cardNumber - 2) : (scope.cardNumber);
