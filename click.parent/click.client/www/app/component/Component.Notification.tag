@@ -47,10 +47,9 @@
         scope.notificationElementId = notification.notify_id;
 
         var authorized = JSON.parse(localStorage.getItem("click_client_authorized"));
-        authorized = JSON.parse(authorized);
+//        authorized = JSON.parse(authorized);
 
         if (notification.tap) {
-          window.FirebasePlugin.setBadgeNumber(0);
 
           var background_notification = {};
 
@@ -80,6 +79,7 @@
           }
 
           if (scope.notificationAction == "news") {
+            window.News.newsCounter++;
 
             background_notification.action = "getInvoiceFunction";
             background_notification.params = scope.notificationElementId;
@@ -89,7 +89,10 @@
         }
         else {
 
-          scope.show = true;
+          if (modeOfApp.offlineMode) {
+            scope.show = true;
+            window.FirebasePlugin.setBadgeNumber(0);
+          }
         }
 
         scope.update();

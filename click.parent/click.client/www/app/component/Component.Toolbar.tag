@@ -90,6 +90,8 @@
 
         window.News.newsCounter = 0;
 
+        console.log('TOOLBAR SCOPE', scope.parent.tags['view-news'].showNewsFunction())
+
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-news') {
           history.arrayOfHistory.push(
             {

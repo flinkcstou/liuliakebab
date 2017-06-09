@@ -295,6 +295,7 @@
         scope.result = function (bool) {
           if (bool) {
             localStorage.clear();
+            if(device.platform != 'BrowserStand')
             window.FirebasePlugin.unregister();
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');
