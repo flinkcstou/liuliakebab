@@ -106,8 +106,7 @@
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = loginInfo.session_key;
 
-      var result = confirm('Подтвердите удаление фото')
-      console.log(result)
+      var result;
 
       scope.confirmShowBool = true;
       scope.confirmType = 'local';
