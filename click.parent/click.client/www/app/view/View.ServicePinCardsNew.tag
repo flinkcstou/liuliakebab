@@ -1,15 +1,15 @@
 <view-service-pincards-new class="view-service-pincards riot-tags-main-container">
 
   <div class="pay-page-title" style="border-style: none;">
-    <p class="{servicepage-title :opts[8]!='ADDAUTOPAY', autopay-method-page-title:opts[8]=='ADDAUTOPAY'}">
-      {(opts[8]=='ADDAUTOPAY')?(window.languages.ViewAutoPayTitleName):("")}
+    <p class="{servicepage-title :opts.mode!='ADDAUTOPAY', autopay-method-page-title:opts.mode=='ADDAUTOPAY'}">
+      {(opts.mode=='ADDAUTOPAY')?(window.languages.ViewAutoPayTitleName):("")}
       {titleName}</p>
-    <p class="servicepage-category-field">{(opts[8]=='ADDAUTOPAY')?
+    <p class="servicepage-category-field">{(opts.mode=='ADDAUTOPAY')?
       (autoPayTypeText):(categoryName)}</p>
     <div ontouchend="touchStartTitle()"
-         class="{servicepage-button-back:opts[8]!='ADDAUTOPAY', autopay-method-back-button:opts[8]=='ADDAUTOPAY'}">
+         class="{servicepage-button-back:opts.mode!='ADDAUTOPAY', autopay-method-back-button:opts.mode=='ADDAUTOPAY'}">
     </div>
-    <div type="button" class="servicepage-service-icon" if="{opts[8]=='ADDAUTOPAY'}"
+    <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
          style="background-image: url({serviceIcon})"></div>
   </div>
 
@@ -20,14 +20,14 @@
     <component-pincards clean="{true}"></component-pincards>
     <div class="pincard-bottom-container">
 
-      <div class="pincard-friend-help-container" if="{!friendHelpBool && opts[8]!='ADDAUTOPAY'}"
+      <div class="pincard-friend-help-container" if="{!friendHelpBool && opts.mode!='ADDAUTOPAY'}"
            ontouchend="friendHelp()">
         <div class="pincard-friend-help-icon"></div>
         <div class="pincard-friend-help-text">{window.languages.ViewServicePinCardHelpText}</div>
       </div>
 
 
-      <div class="pincard-chosen-friend-container" if="{friendHelpBool && opts[8]!='ADDAUTOPAY'}">
+      <div class="pincard-chosen-friend-container" if="{friendHelpBool && opts.mode!='ADDAUTOPAY'}">
         <div class="pincard-friend-help-text-two">{window.languages.ViewServicePinCardHelpText}</div>
         <div class="pincard-chosen-friend-inner-container"
              ontouchend="firstSuggestionBlock()">

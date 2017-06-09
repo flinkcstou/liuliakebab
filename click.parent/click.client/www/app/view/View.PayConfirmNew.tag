@@ -552,7 +552,7 @@
 
         } else {
           scope.viewPage = 'view-auto-pay-new';
-          scope.stepAmount = 6;
+          scope.stepAmount = 5;
           scope.goBack = true;
         }
 

@@ -47,19 +47,19 @@
       </div>
 
       <div class="report-service-data-button-info-container" if="{!opts.is_indoor}">
-        <div class="report-service-button-info-container" ontouchend="addToFavoritesTouchEnd()"
-             ontouchstart="addToFavoritesTouchStart()" if="{canAddToFavorite}">
+        <div class="report-service-button-info-container" if="{canAddToFavorite}">
           <div class="report-service-button-icon report-service-button-favorites-icon"></div>
-          <a class="report-service-button-action">{languages.ViewReportServiceAddToFavorites}</a>
+          <a class="report-service-button-action" ontouchend="addToFavoritesTouchEnd()"
+             ontouchstart="addToFavoritesTouchStart()">{languages.ViewReportServiceAddToFavorites}</a>
         </div>
         <div class="report-service-button-info-container" if="{false}">
           <div class="report-service-button-icon report-service-button-auto-payment-icon"></div>
           <a class="report-service-button-action">{languages.ViewReportServiceAddToAutoPayment}</a>
         </div>
-        <div class="report-service-button-info-container" ontouchend="goToSupportTouchEnd()"
-             ontouchstart="goToSupportTouchStart()">
+        <div class="report-service-button-info-container">
           <div class="report-service-button-icon report-service-button-support-icon"></div>
-          <a class="report-service-button-action">{languages.ViewReportServiceGetSupportHelp}</a>
+          <a class="report-service-button-action" ontouchend="goToSupportTouchEnd()"
+             ontouchstart="goToSupportTouchStart()">{languages.ViewReportServiceGetSupportHelp}</a>
         </div>
 
         <button if="{canAddToFavorite && !opts.is_indoor}" class="report-service-repeat-button"
