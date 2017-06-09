@@ -20,7 +20,9 @@
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
       }
 
-      if (opts.goback) {
+      console.log("after success", history.arrayOfHistory)
+
+      if (opts.goback && opts.viewpage) {
         console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
         riotTags.innerHTML = "<" + opts.viewpage + ">";
         riot.mount(opts.viewpage, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);

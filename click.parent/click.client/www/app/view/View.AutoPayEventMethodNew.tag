@@ -278,14 +278,13 @@
       scope.autoPayData.amount = scope.chosenAmount;
       scope.autoPayData.condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + chosenStep;
       localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+      opts.amountText = scope.chosenAmount;
 
       if (scope.autoPayData.fromView == 'PAY') {
-        opts.formtype = 1;
         opts.formtype = scope.servicesMap[opts.chosenServiceId][0].form_type;
         opts.firstFieldId = scope.servicesParamsMapOne[opts.chosenServiceId][0].parameter_id;
         opts.firstFieldTitle = scope.servicesParamsMapOne[opts.chosenServiceId][0].title;
         opts.firstFieldText = firstFieldInput.value;
-        opts.amountText = scope.chosenAmount;
         opts.isInFavorites = false;
         opts.mode = 'ADDAUTOPAY';
 

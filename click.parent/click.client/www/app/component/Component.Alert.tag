@@ -34,7 +34,7 @@
       event.preventDefault();
       event.stopPropagation();
       console.log('QQQ')
-      console.log('scope.parent',scope.parent)
+      console.log('scope.parent', scope.parent)
 
       if (scope.parent) {
         scope.parent.showError = false;
