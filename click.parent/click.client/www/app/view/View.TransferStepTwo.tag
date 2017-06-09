@@ -19,7 +19,8 @@
              type="tel" pattern="[0-9]" onblur="sumOnBlur()" onkeyup="sumKeyUp()" oninput="sumKeyUp()"/>
     </div>
 
-    <button class="transfertwo-next-button-inner-container" ontouchstart="goToTransferThreeTouchStart()" ontouchend="goToTransferThreeTouchEnd()">
+    <button class="transfertwo-next-button-inner-container" ontouchstart="goToTransferThreeTouchStart()"
+            ontouchend="goToTransferThreeTouchEnd()">
       {window.languages.ViewTransferTwoNext}
     </button>
 
@@ -41,9 +42,14 @@
         sumValueId.value = viewTransferStepTwo.sum;
         checkFirst = true;
         sumForTransfer = viewTransferStepTwo.sumWithoutSpace;
+        scope.tax = sumForTransfer * objectForTransfer.percent / 100;
       }
       else
         sumValueId.value = 0
+
+      setTimeout(function () {
+        riot.update()
+      }, 0)
     })
 
     if (modeOfApp.offlineMode) {
