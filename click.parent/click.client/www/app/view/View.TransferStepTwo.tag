@@ -103,7 +103,7 @@
 //      console.log('sumValueId.value', sumValueId.value[0])
 //      console.log('sumValueId.value.length', sumValueId.value.length)
       if (sumValueId.value.length == 1) {
-        sumValueId.value = window.amountTransform(sumValueId.value)
+        sumValueId.value = window.amountTransform(sumValueId.value.toString())
       }
 
       if (event.keyCode == 8) {
@@ -119,7 +119,7 @@
         sumForTransfer = sumValueId.value.substring(0, sumValueId.value.match(maskTwo).length);
         sumForTransfer = sumForTransfer.replace(new RegExp(' ', 'g'), '');
 
-        sumValueId.value = window.amountTransform(sumForTransfer)
+        sumValueId.value = window.amountTransform(sumForTransfer.toString())
         sumValueId.selectionStart = sumValueId.value.match(maskTwo).length
         sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length
 

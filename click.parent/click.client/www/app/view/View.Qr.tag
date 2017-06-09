@@ -174,7 +174,7 @@
     sumKeyUp = function () {
 
       if (sumValueId.value.length == 1) {
-        sumValueId.value = window.amountTransform(sumValueId.value)
+        sumValueId.value = window.amountTransform(sumValueId.value.toString())
       }
 
       if (event.keyCode == input_codes.BACKSPACE_CODE) {
@@ -190,7 +190,7 @@
         sumForQrPay = sumValueId.value.substring(0, sumValueId.value.match(maskTwo).length);
         sumForQrPay = sumForQrPay.replace(new RegExp(' ', 'g'), '');
 
-        sumValueId.value = window.amountTransform(sumForQrPay);
+        sumValueId.value = window.amountTransform(sumForQrPay.toString());
         sumValueId.selectionStart = sumValueId.value.match(maskTwo).length
         sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length
 

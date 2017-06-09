@@ -226,7 +226,7 @@
       opts.chosenServiceId = opts.id;
     }
     if (opts.amountText) {
-      opts.amountText = !opts.amountText ? 0 : window.amountTransform(opts.amountText);
+      opts.amountText = !opts.amountText ? 0 : window.amountTransform(opts.amountText.toString());
       console.log("111", opts.amountText);
     }
 
