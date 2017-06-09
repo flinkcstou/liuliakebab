@@ -142,7 +142,6 @@
         scope.showError = true;
         scope.errorNote = window.languages.ViewTransferDetailCodeNotEntered;
         scope.clickPinError = false;
-
         scope.update();
 
         return;
@@ -152,6 +151,7 @@
         Math.abs(touchEndAcceptSecretCodeY - touchStartAcceptSecretCodeY) < 20) {
 //        riot.update();
         console.log('OPTS IN TRANSFER DETAIL', scope.opts)
+
 
         var params = {
           amount: scope.opts.amount,
@@ -168,7 +168,7 @@
         riotTags.innerHTML = "<view-transfer-on-card>";
         riot.mount("view-transfer-on-card", params);
 
-        scope.unmount()
+//        scope.unmount()
       }
     };
 
@@ -194,8 +194,8 @@
         Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
 
         scope.showConfirmPanel = true;
-        scope.update(scope.showConfirmPanel);
       }
+      scope.update();
     };
 
     transferDetailOnTouchStartDecline = function () {
@@ -217,7 +217,7 @@
       if (Math.abs(touchEndDeclineX - touchStartDeclineX) < 20 &&
         Math.abs(touchEndDeclineY - touchStartDeclineY) < 20) {
 
-        if(scope.parent) {
+        if (scope.parent) {
           for (var i in scope.parent.invoiceList) {
 //          console.log("scope.parent.invoiceList[i]", scope.parent.invoiceList[i])
             if (scope.parent.invoiceList[i].invoice_id == scope.opts.invoiceId) {

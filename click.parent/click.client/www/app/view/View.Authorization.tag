@@ -517,6 +517,10 @@
             scope.showError = true;
             scope.errorNote = "Сервис временно недоступен";
             countOfCall = 0;
+            if (device.platform != 'BrowserStand') {
+              SpinnerPlugin.activityStop();
+            }
+            window.isConnected = false;
             scope.update();
             return;
           }
