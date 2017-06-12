@@ -46,8 +46,8 @@
         </div>
       </div>
 
-      <div class="report-service-data-button-info-container" if="{!opts.is_indoor}">
-        <div class="report-service-button-info-container" if="{canAddToFavorite}">
+      <div class="report-service-data-button-info-container" if="{opts.is_indoor != 1}">
+        <div class="report-service-button-info-container" if="{opts.is_indoor != 1 && opts.canAddToFavorite === true}">
           <div class="report-service-button-icon report-service-button-favorites-icon"></div>
           <a class="report-service-button-action" ontouchend="addToFavoritesTouchEnd()"
              ontouchstart="addToFavoritesTouchStart()">{languages.ViewReportServiceAddToFavorites}</a>
@@ -62,7 +62,7 @@
              ontouchstart="goToSupportTouchStart()">{languages.ViewReportServiceGetSupportHelp}</a>
         </div>
 
-        <button if="{canAddToFavorite && !opts.is_indoor}" class="report-service-repeat-button"
+        <button if="{opts.is_indoor != 1 && opts.canAddToFavorite === true}" class="report-service-repeat-button"
                 ontouchend="onTouchEndOfService()"
                 ontouchstart="onTouchStartOfService()">
           {languages.ViewReportServiceRepeatButtonLabel}
@@ -95,10 +95,10 @@
     var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
     var servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
 
-    if (servicesMap[scope.opts.service_id])
-      scope.canAddToFavorite = true;
-    else
-      scope.canAddToFavorite = false;
+    //    if (servicesMap[scope.opts.service_id])
+    //      scope.canAddToFavorite = true;
+    //    else
+    //      scope.canAddToFavorite = false;
     scope.update();
 
 

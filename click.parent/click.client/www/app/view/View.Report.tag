@@ -827,8 +827,18 @@
           if (scope.paymentsList[i].payment_id == paymentId) {
 //            console.log("FROM VIEW REPORT service report for=", scope.paymentsList[i]);
 
+            console.log(scope.paymentsList[i])
             console.log("scope.tags['view-report-service-new']", scope.tags)
             console.log("scope.tags['view-report-service-new']", scope)
+
+            var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
+            var servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
+
+            if (servicesMap[scope.paymentsList[i].service_id])
+              scope.paymentsList[i].canAddToFavorite = true;
+            else
+              scope.paymentsList[i].canAddToFavorite = false;
+
             scope.showComponent = true;
             scope.tags['view-report-service-new'].opts = scope.paymentsList[i]
 
@@ -836,7 +846,8 @@
 
             window.checkShowingComponent = scope.tags['view-report-service-new'];
 
-            scope.update()
+
+            riot.update()
             break;
           }
         }
