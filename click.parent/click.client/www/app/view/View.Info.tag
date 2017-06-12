@@ -442,7 +442,13 @@
         console.log("Time to open");
         for (var i = 0; i < scope.lastOperationContainer.length; i++) {
           if (scope.lastOperationContainer[i].payment_id == paymentId) {
+            var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
 //            console.log("FROM VIEW INFO service report for=", scope.lastOperationContainer[i]);
+            if (servicesMap[scope.lastOperationContainer[i].service_id])
+              scope.lastOperationContainer[i].canAddToFavorite = true;
+            else
+              scope.lastOperationContainer[i].canAddToFavorite = false;
+
             riotTags.innerHTML = "<view-report-service-new>";
             riot.mount("view-report-service-new", scope.lastOperationContainer[i]);
 

@@ -46,7 +46,7 @@
         </div>
       </div>
 
-      <div class="report-service-data-button-info-container" if="{opts.is_indoor != 1}">
+      <div class="report-service-data-button-info-container">
         <div class="report-service-button-info-container" if="{opts.is_indoor != 1 && opts.canAddToFavorite === true}">
           <div class="report-service-button-icon report-service-button-favorites-icon"></div>
           <a class="report-service-button-action" ontouchend="addToFavoritesTouchEnd()"

@@ -427,6 +427,7 @@
                 console.log("result of APP.PAYMENT 1", result);
                 if (result[1][0].payment_id && !result[1][0].invoice_id) {
                   console.log("Payment id");
+
                   if (device.platform != 'BrowserStand') {
                     var options = {dimBackground: true};
 
@@ -436,6 +437,7 @@
                       console.log("closed");
                     });
                   }
+
                   setTimeout(function () {
                     checkPaymentStatus(result[1][0].payment_id);
                   }, 2000);
@@ -487,6 +489,9 @@
                 scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 2 : scope.stepAmount;
                 scope.update();
                 console.log("state=-1 error,view=", scope.viewPage, ",step=", scope.stepAmount);
+                if (device.platform != 'BrowserStand') {
+                  SpinnerPlugin.activityStop();
+                }
                 componentUnsuccessId.style.display = 'block';
               } else if (result[1][0].state == 2) {
                 window.updateBalanceGlobalFunction();
@@ -498,6 +503,9 @@
                 scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
                 scope.update();
                 console.log("state=2 success,view=", scope.viewPage, ",step=", scope.stepAmount);
+                if (device.platform != 'BrowserStand') {
+                  SpinnerPlugin.activityStop();
+                }
                 componentSuccessId.style.display = 'block';
               } else if (result[1][0].state == 1) {
                 statusCheckCounter++;
@@ -516,6 +524,9 @@
                     checkPaymentStatus(result[1][0].payment_id);
                   }, 2000);
                 } else {
+                  if (device.platform != 'BrowserStand') {
+                    SpinnerPlugin.activityStop();
+                  }
 
                   viewServicePinCards.friendHelpPaymentMode = false;
                   viewServicePinCards.chosenFriendForHelp = null;
@@ -532,6 +543,9 @@
             }
             else {
               console.log("result of GET.PAYMENT in else", result);
+              if (device.platform != 'BrowserStand') {
+                SpinnerPlugin.activityStop();
+              }
               componentUnsuccessId.style.display = 'block';
             }
           },
