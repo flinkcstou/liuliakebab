@@ -276,15 +276,27 @@
       scope.autoPayData.step = chosenStep;
       scope.autoPayData.cntrg_phone_num = firstFieldInput.value;
       scope.autoPayData.amount = scope.chosenAmount;
-      scope.autoPayData.condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + chosenStep;
-      localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
       opts.amountText = scope.chosenAmount;
+
+      for (var j in scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps) {
+        console.log("STep =", scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j]);
+        if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j].step_value == chosenStep) {
+          scope.autoPayData.condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j].step_title;
+          console.log("STep title=", scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j].step_title);
+          break;
+        }
+      }
+      console.log("Autopay Data=", scope.autoPayData);
+//      scope.autoPayData.condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + chosenStep;
+      localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+
 
       if (scope.autoPayData.fromView == 'PAY') {
         opts.formtype = scope.servicesMap[opts.chosenServiceId][0].form_type;
         opts.firstFieldId = scope.servicesParamsMapOne[opts.chosenServiceId][0].parameter_id;
         opts.firstFieldTitle = scope.servicesParamsMapOne[opts.chosenServiceId][0].title;
         opts.firstFieldText = firstFieldInput.value;
+
         opts.isInFavorites = false;
         opts.mode = 'ADDAUTOPAY';
 
