@@ -480,9 +480,9 @@
       scope.update();
 
       if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
+        var options = {dimBackground: false};
 
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+        SpinnerPlugin.activityStart("", options, function () {
           console.log("Started");
         }, function () {
           console.log("closed");

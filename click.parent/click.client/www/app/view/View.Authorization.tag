@@ -295,8 +295,9 @@
         scope.result = function (bool) {
           if (bool) {
             localStorage.clear();
-            if(device.platform != 'BrowserStand')
-            window.FirebasePlugin.unregister();
+            if (device.platform != 'BrowserStand') {
+              window.FirebasePlugin.unsubscribe("news");
+            }
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');
             scope.unmount()

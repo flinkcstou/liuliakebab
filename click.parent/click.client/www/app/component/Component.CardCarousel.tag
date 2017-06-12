@@ -2,10 +2,8 @@
 
   <div id="containerCard" class="card-carousel" ontouchend="endTouchCarousel()" ontouchmove="moveTouchCarousel()"
        ontouchstart="startTouchCarousel()">
-    <div></div>
     <div id="cards" class="cards">
-      <div if="{viewMainPage.atMainPage && invoiceList[0] && modeOfApp.onlineMode}" class="bills-holder"
-           ontouchend="stopPropagation()">
+      <div if="{viewMainPage.atMainPage && invoiceList[0] && modeOfApp.onlineMode}" class="bills-holder">
         <div each="{invoice in invoiceList}" title="{JSON.stringify(invoice)}"
              class="{invoice-card-part-one: invoice == invoiceList[0], invoice-card-part-two: invoice == invoiceList[1]}"
              style="left: {invoiceLeft}px;"
@@ -84,20 +82,27 @@
     //    scope.cardsarray = (scope.cardsarray) ? (scope.cardsarray) : ({});
     //    riot.update(scope.cardsarray);
 
-    stopPropagation = function () {
 
-      billsHolderTouchEndX = event.changedTouches[0].pageX;
-      if (Math.abs(carouselTouchStartX - billsHolderTouchEndX) < 20) {
-        event.stopPropagation();
-        event.preventDefault();
-      }
-    };
+    //    stopPropagation = function () {
+    //
+    //      billsHolderTouchEndX = event.changedTouches[0].pageX;
+    //
+    //      console.log('billsHolderTouchEndX', billsHolderTouchEndX)
+    //      console.log('carouselTouchStartX', billsHolderTouchEndX)
+    //      if (Math.abs(carouselTouchStartX - billsHolderTouchEndX) < 20) {
+    //        event.stopPropagation();
+    //        event.preventDefault();
+    //        stopPropagationInvoice = true;
+    ////        return
+    //      }
+    //    };
 
     var touchStartInvoiceOne;
     var touchEndInvoiceOne;
 
     invoiceBlockTouchStart = function () {
       touchStartInvoiceOne = event.changedTouches[0].pageX;
+      console.log('touchStartInvoiceOne', touchStartInvoiceOne)
     };
 
     invoiceBlockTouchEnd = function (invoice) {
@@ -106,10 +111,14 @@
 
       touchEndInvoiceOne = event.changedTouches[0].pageX;
 
+      console.log('touchEndInvoiceOne', touchEndInvoiceOne)
+
       console.log('START', touchStartInvoiceOne)
       console.log('END', touchEndInvoiceOne)
 
       if (Math.abs(touchStartInvoiceOne - touchEndInvoiceOne) < 20) {
+        event.stopPropagation();
+        event.preventDefault();
 
         var params = {};
 
@@ -704,7 +713,7 @@
       cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
 
       cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-      cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+      cards.style.webkitTransform = "-webkit-translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       if (modeOfApp.offlineMode) {
 
@@ -835,6 +844,7 @@
     var firstEnter = false;
 
     startTouchCarousel = function () {
+      console.log('Carousel Touch Start', event)
 
       //
       //Test
@@ -907,20 +917,21 @@
     //    var leftCard = false, rightCard = false;
 
     endTouchCarousel = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      console.log('Carousel Touch End', event)
 
 //      clearInterval(changingColor)
 
-
-      event.preventDefault();
-      event.stopPropagation();
       carouselTouchEndX = event.changedTouches[0].pageX;
       if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20) {
         changePositionCardCarousel();
       }
-      else if (!viewMainPage.myCards) {
+      else if (!viewMainPage.myCards && !(scope.invoiceCheck && scope.cardNumber == 0)) {
         if (!modeOfApp.offlineMode.balance && modeOfApp.onlineMode) {
 
-          if (scope.invoiceCheck)
+          if (scope.invoiceCheck && scope.cardNumber == 0)
             scope.cardNumber = 1;
           console.log("End Touch Carousel", scope.cardNumber);
 
@@ -957,8 +968,8 @@
     }
 
     moveTouchCarousel = function () {
-      event.preventDefault();
-      event.stopPropagation();
+      event.preventDefault()
+      event.stopPropagation()
 
 //      if (scope.whereWasX < event.changedTouches[0].pageX && scope.direction == 1
 //        || scope.whereWasX > event.changedTouches[0].pageX && scope.direction == -1) {
@@ -1160,6 +1171,10 @@
     //    var changingColor;
 
     function changePositionCardCarousel() {
+      if(event){
+        event.preventDefault()
+        event.stopPropagation()
+      }
 //      clearInterval(changingColor);
 
 //      if (!scope.invoiceCheck && count != 0)
@@ -1183,7 +1198,7 @@
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "-webkit-translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       }
 
@@ -1194,7 +1209,7 @@
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "-webkit-translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
       if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber == count - 1) {
@@ -1204,7 +1219,7 @@
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "-webkit-translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       }
 
@@ -1217,7 +1232,7 @@
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "-webkit-translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
 
@@ -1240,6 +1255,7 @@
       }
 
       localStorage.setItem('cardNumber', scope.cardNumber);
+
     }
 
 

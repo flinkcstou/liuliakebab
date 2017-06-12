@@ -57,6 +57,9 @@ var css = {
   "height: 100%;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
+  "touch-action: manipulation;" +
+
+
     //"background-image: url(resources/total-balance_check.png);" +
     //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
@@ -1346,8 +1349,6 @@ var css = {
   cards: ".cards " +
   "{" +
   "position: relative;" +
-  "-webkit-animation: mymove 5s infinite;" +
-  "animation: mymove 5s infinite;" +
   "}",
 
   card: ".card " +
@@ -9223,6 +9224,8 @@ var css = {
 
   billsHolder: ".bills-holder " +
   "{" +
+  "position: absolute;" +
+  //"z-index: 99999999;" +
   "height:" + 305 * widthK + "px; " +
   "width:" + 627 * widthK + "px;" +
   "}",
