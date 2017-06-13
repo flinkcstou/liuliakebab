@@ -60,6 +60,8 @@
     <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
          id="amountField">
       <p class="servicepage-text-field">{amountFieldTitle}</p>
+      <p class="servicepage-amount-tax-text-field">{window.languages.ViewServicePageAmountTaxText} {tax}
+        {window.languages.Currency}</p>
       <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="9"
              id="amount"
              pattern="[0-9]"
@@ -208,6 +210,7 @@
   <script>
 
     window.checkShowingComponent = null;
+    var scope = this;
 
     console.log('OPTS in ServicePage NEW ', opts);
     //    console.log('opts.chosenServiceId', opts.chosenServiceId);
@@ -228,6 +231,8 @@
     if (opts.amountText) {
       opts.amountText = !opts.amountText ? 0 : window.amountTransform(opts.amountText.toString());
       console.log("111", opts.amountText);
+      scope.tax = opts.tax ? opts.tax : 0;
+      scope.update();
     }
 
 
@@ -239,7 +244,7 @@
       scope.unmount()
     };
 
-    var scope = this;
+
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
     scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
@@ -489,6 +494,7 @@
         scope.fieldArray = scope.servicesParamsMapOne[localStorage.getItem('myNumberOperatorId')];
         console.log('FIELDARRAY', scope.fieldArray)
         opts.chosenServiceId = localStorage.getItem('myNumberOperatorId');
+        scope.commissionPercent = scope.service.commission_percent;
 
         scope.on('mount', function () {
           firstField.style.display = 'none';
@@ -516,6 +522,7 @@
         console.log('scope.servicesMap', scope.servicesMap['mynumber']);
         console.log('scope.servicesParamsMapOne', scope.servicesParamsMapOne);
         scope.service = localStorage.getItem('myNumberOperatorId') ? scope.servicesMap[localStorage.getItem('myNumberOperatorId')][0] : scope.servicesMap['mynumber'][0];
+
         scope.titleName = 'Мой номер';
         scope.serviceIcon = 'resources/icons/ViewPay/myphone.png';
         opts.firstFieldText = localStorage.getItem('click_client_phoneNumber');
@@ -528,6 +535,7 @@
         scope.amountFieldTitle = 'Сумма';
 
         console.log('TTTTTT', scope.service, scope.titleName, scope.fieldArray, opts.chosenServiceId);
+        scope.commissionPercent = scope.service.commission_percent;
 
         this.on('mount', function () {
           firstField.style.display = 'none';
@@ -556,6 +564,10 @@
         scope.titleName = scope.service.name;
         scope.serviceIcon = scope.service.image;
       }
+
+      console.log("scope.service=", scope.service);
+      scope.commissionPercent = scope.service.commission_percent;
+
 
       scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
 
@@ -1076,6 +1088,12 @@
           enterButtonId.style.display = 'none';
         else saveButtonId.style.display = 'none';
       }
+
+      if (amountForPayTransaction >= 1000) {
+        scope.tax = amountForPayTransaction * scope.commissionPercent / 100;
+        opts.tax = scope.tax;
+      }
+      scope.update()
 
     };
 

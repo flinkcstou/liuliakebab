@@ -62,6 +62,7 @@ var RU_LANGUAGES =
   //"ViewServicePageChooseCity": "ВЫБЕРИТЕ ГОРОД",
   "ViewServicePageSaveLabel": "Сохранить",
   "ViewServicePageAmountTextLabel": "Сумма оплаты:",
+  "ViewServicePageAmountTaxText": "Комиссия: ",
 
 //{(secondLevelArray && secondLevelArray[0])?(secondLevelArray[0].name):("")}
 //{service.options_title}

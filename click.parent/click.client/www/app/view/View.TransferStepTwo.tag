@@ -67,6 +67,8 @@
       sumForTransfer = 0;
     owner = opts[2];
 
+    console.log("TAX=", objectForTransfer.percent);
+
     scope.showError = false;
 
     sumMouseUp = function () {

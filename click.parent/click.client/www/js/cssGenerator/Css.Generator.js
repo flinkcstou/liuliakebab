@@ -1353,7 +1353,7 @@ var css = {
 
   card: ".card " +
   "{" +
-  //"background-color: #d7d7d7;" +
+    //"background-color: #d7d7d7;" +
   "background-image: url(resources/icons/cards/all.png);" +
   "-webkit-appearance: none;" +
   "height:" + 289 * widthK + "px;" +
@@ -3442,6 +3442,15 @@ var css = {
   "top: 11%;" +
   "}",
 
+  servicePageAmountTaxTextField: ".servicepage-amount-tax-text-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "bottom: -50%;" +
+  "}",
+
   servicePageAmountIcon: ".servicepage-amount-icon" +
   "{" +
   "position: relative;" +
@@ -3550,7 +3559,7 @@ var css = {
   "{" +
   "height: " + 74 * widthK + "px;" +
   "text-transform: capitalize;" +
-  "margin-top: " + 160 * widthK + "px;" +
+  "top: " + 200 * widthK + "px;" +
   "background-color: #00a8f1;" +
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px;" +
@@ -9225,7 +9234,7 @@ var css = {
   billsHolder: ".bills-holder " +
   "{" +
   "position: absolute;" +
-  //"z-index: 99999999;" +
+    //"z-index: 99999999;" +
   "height:" + 305 * widthK + "px; " +
   "width:" + 627 * widthK + "px;" +
   "}",
