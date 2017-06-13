@@ -341,6 +341,8 @@
             phone += digits[i]
           }
           firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
+          console.log("PICK CONTACT=", firstFieldInput.value);
+          scope.update();
         }, 0);
       }, function (error) {
         console.log('error', error)
@@ -432,6 +434,13 @@
       //        scope.currencyRate = localStorage.getItem('click_client_currency_rate');
       //        console.log("currency rate is in localStorage=", scope.currencyRate);
       //      }
+
+      try {
+        this.firstFieldInput.blur();
+      } catch (error) {
+
+        console.log(error);
+      }
 
       blockAmountCalculatorId.style.display = 'block';
       amountCalcInputId.focus();
