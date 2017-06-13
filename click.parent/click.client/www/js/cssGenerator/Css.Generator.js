@@ -3451,6 +3451,7 @@ var css = {
   "bottom: -50%;" +
   "}",
 
+
   servicePageAmountIcon: ".servicepage-amount-icon" +
   "{" +
   "position: relative;" +
@@ -4260,6 +4261,46 @@ var css = {
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
     //"top: 23%;" +
+  "}",
+
+  payconfirmAmountField: ".payconfirm-amount-field" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: 24.5%;" +
+  "border-bottom:  " + 1 + "px solid lightgray;" +
+  "color: white;" +
+    //"top: 23%;" +
+  "}",
+
+  payconfirmAmountTextField: ".payconfirm-amount-text-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "left: 8%;" +
+  "top: 20%;" +
+  "}",
+
+  payconfirmAmountValue: ".payconfirm-amount-value" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 8%;" +
+  "top: 39%;" +
+  "font-size: " + 40 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  payconfirmAmountTaxField: ".payconfirm-amount-tax-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "left: 8%;" +
+  "top: 68%;" +
   "}",
 
   payconfirmCardField: ".payconfirm-card-field" +
