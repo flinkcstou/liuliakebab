@@ -9351,7 +9351,7 @@ var css = {
   componentBankListBankLogo: ".component-banklist-bank-logo" +
   "{" +
   "position: absolute;" +
-  "top:" + 40 * widthK + "px;" +
+  "top:" + 30 * widthK + "px;" +
   "right:" + 51 * widthK + "px;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
@@ -9369,7 +9369,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height: 34%;" +
-  "top: 65%;" +
+  "top: 60%;" +
   "display: inline-block;" +
   "margin: 0;" +
   "}",
@@ -9667,19 +9667,20 @@ var css = {
   addCardCardNumberBox: ".add-card-card-number-box " +
   "{" +
   "position: absolute;" +
-  "width:" + 430 * widthK + "px;" +
+  "width:" + 470 * widthK + "px;" +
   "height: 55%;" +
   "top: 20%;" +
   "background-color: transparent;" +
   "border: none;" +
   "outline: none;" +
-  "font-size:" + 32 * widthK + "px;" +
-  "letter-spacing:" + 5 * widthK + "px;" +
+  "font-size:" + 38 * widthK + "px;" +
+  //"letter-spacing:1px;" +
+  "word-spacing:" + 25 * widthK + "px;" +
   "}",
 
   addCardCardNumberBoxOne: ".add-card-card-number-box-one " +
   "{" +
-  "left:" + 60 * widthK + "px;" +
+  "left:" + 30 * widthK + "px;" +
   "}",
 
   addCardCardText: ".add-card-card-text " +
@@ -9722,14 +9723,15 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 125 * widthK + "px;" +
-  "left: 17%;" +
+  "left:" + 30 * widthK + "px;" +
+  //"left: 17%;" +
   "height: 60%;" +
   "top: 20%;" +
   "background-color: transparent;" +
   "outline: none;" +
   "border: none;" +
-  "font-size:" + 32 * widthK + "px;" +
-  "letter-spacing:" + 5 * widthK + "px;" +
+  "font-size:" + 38 * widthK + "px;" +
+  //"letter-spacing:1px;" +
   "}",
 
   addCardCardPin: ".add-card-card-pin " +

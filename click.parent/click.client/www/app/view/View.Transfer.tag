@@ -188,13 +188,13 @@
         <div class="component-banklist-bank-logo" style="background-image: url({i.image});"></div>
         <div class="component-banklist-bank-limit-container">
           <div class="component-banklist-bank-limit-receipt">{window.languages.ViewBankListReceiveLimitText}</div>
-          <div class="component-banklist-bank-limit-currency-receipt">{i.p2p_receipt_max_limit}
+          <div class="component-banklist-bank-limit-currency-receipt">{i.p2p_receipt_max_limit_transform}
             {window.languages.ViewBankListLimitForMonthText}
           </div>
 
           <div class="component-banklist-bank-limit-transfer">{window.languages.ViewBankListTransferLimitText}</div>
           <div class="component-banklist-bank-limit-currency-transfer">
-            {i.p2p_max_limit} {window.languages.ViewBankListLimitForMonthText}
+            {i.p2p_max_limit_transform} {window.languages.ViewBankListLimitForMonthText}
           </div>
         </div>
       </div>
@@ -399,6 +399,9 @@
                   console.log('result[1][i]', result[1][i])
 
                   result[1][i].amount = window.amountTransform(result[1][i].amount);
+                  result[1][i].p2p_receipt_max_limit_transform = window.amountTransform(result[1][i].p2p_receipt_max_limit);
+                  result[1][i].p2p_max_limit_transform = window.amountTransform(result[1][i].p2p_max_limit);
+                  console.log('BANK LIST', result[1][i])
 
                   if (result[1][i].p2p_status == 1)
                     bankListAvailable.push(result[1][i]);
