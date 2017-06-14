@@ -98,7 +98,7 @@
   <component-unsuccess id="componentUnsuccessId" viewpage="{viewPage}" step_amount="{stepAmount}" goback="{goBack}"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{window.languages.ComponentUnsuccessMessagePart3ForPay}"></component-unsuccess>
+                       operationmessagepartthree="{errorMessageFromPayment}"></component-unsuccess>
 
   <component-in-processing id="componentInProcessingId" viewpage="{viewPage}"
                            operationmessagepartone="{window.languages.ComponentInProcessingPartOneForPay}"
@@ -157,6 +157,7 @@
     scope.serviceIcon = scope.service.image;
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     scope.cardOrFriendBool = opts.payByCard;
+    scope.errorMessageFromPayment = '';
 
     scope.stepAmount = 3;
 
@@ -489,12 +490,15 @@
               if (result[1][0].state == -1) {
                 scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-service-page-new';
                 scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 2 : scope.stepAmount;
+                scope.errorMessageFromPayment = result[1][0].error;
                 scope.update();
                 console.log("state=-1 error,view=", scope.viewPage, ",step=", scope.stepAmount);
                 if (device.platform != 'BrowserStand') {
                   SpinnerPlugin.activityStop();
                 }
                 componentUnsuccessId.style.display = 'block';
+
+
               } else if (result[1][0].state == 2) {
                 window.updateBalanceGlobalFunction();
 
@@ -509,6 +513,8 @@
                   SpinnerPlugin.activityStop();
                 }
                 componentSuccessId.style.display = 'block';
+
+
               } else if (result[1][0].state == 1) {
                 statusCheckCounter++;
 //                console.log("statusCheckCounter=", statusCheckCounter);

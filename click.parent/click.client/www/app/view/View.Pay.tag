@@ -157,7 +157,7 @@
     scope.hintShow = false;
 
     hintUpdate = function (index) {
-      console.log("in get top=", categoriesContainerId.scrollTop, document.getElementById(index).offsetTop);
+//      console.log("in get top=", categoriesContainerId.scrollTop, document.getElementById(index).offsetTop);
       if (categoriesContainerId.scrollTop - 40 > document.getElementById(index).offsetTop) {
 //            console.log("qwerty");
         scope.hintShow = true;

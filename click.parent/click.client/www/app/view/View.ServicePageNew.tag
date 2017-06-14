@@ -291,6 +291,8 @@
 
     this.on('mount', function () {
 
+      console.log("ON SERVICEPAGE NEW ON MOUNT");
+
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).calculator) {
         firstFieldInput.blur();
         componentTourId.style.display = "block";
@@ -298,7 +300,8 @@
           StatusBar.backgroundColorByHexString("#004663");
       }
       else {
-        firstFieldInput.autofocus;
+        console.log("ON SERVICEPAGE NEW ON MOUNT autofocus first field");
+//        firstFieldInput.autofocus;
         firstFieldInput.focus();
       }
 
@@ -324,7 +327,6 @@
 
 
     searchContact = function () {
-      console.log("In PICK CONTACT func");
       window.pickContactFromNativeChecker = true;
       var maskOne = /[0-9]/g;
       window.plugins.PickContact.chooseContact(function (contactInfo) {
@@ -341,11 +343,7 @@
           for (var i in digits) {
             phone += digits[i]
           }
-          console.log("PICK CONTACT 0=", phone.substring(phone.length - 9, phone.length));
-//          firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
-          scope.defaultNumber = phone.substring(phone.length - 9, phone.length);
-          console.log("PICK CONTACT=", firstFieldInput.value);
-          scope.update();
+          firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
         }, 0);
       }, function (error) {
         console.log('error', error)
@@ -629,6 +627,19 @@
             console.error(data);
           }
         });
+
+      scope.on('mount', function () {
+
+        try {
+//          firstFieldInput.autofocus;
+          firstFieldInput.focus();
+          console.log("FOCUS FirstField");
+        } catch (error) {
+          console.log(error);
+        }
+      });
+
+
     }
 
     console.log('scope.categoryNamesMap', scope.categoryNamesMap)
