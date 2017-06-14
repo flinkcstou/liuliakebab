@@ -485,7 +485,7 @@ var RU_LANGUAGES =
   "ComponentTourNextButtonText": "Далее",
   "ComponentTourCloseButtonText": "Закрыть",
   "ComponentTourCloseButtonTextIn": "Понятно",
-  "ComponentTourRegistrationButtonText": "Начать регистрацию",
+  "ComponentTourRegistrationButtonText": "Понятно",
 };
 
 window.languages = RU_LANGUAGES;
