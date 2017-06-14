@@ -135,6 +135,7 @@ window.dateAddZero = function (date) {
 };
 
 window.amountTransform = function (amount) {
+  amount = amount.toString()
   if (amount.length == 1 && amount == 0) {
     return '';
   }
@@ -157,13 +158,14 @@ window.amountTransform = function (amount) {
 window.inputVerification = {};
 
 window.inputVerification.spaceDeleter = function (data) {
-
+  data = data.toString()
   data = data.replace(new RegExp('[^0-9]', 'g'), '');
   return data.split(",").join();
 }
 
 window.inputVerification.telVerification = function (phoneNumber) {
   console.log('PHONE NUMBER BEFORE', phoneNumber)
+  phoneNumber = phoneNumber.toString()
 
   phoneNumber = phoneNumber.replace(new RegExp('[^0-9]', 'g'), '');
 
@@ -175,13 +177,14 @@ window.inputVerification.telVerification = function (phoneNumber) {
 }
 
 window.inputVerification.telLengthVerification = function (phoneNumber, length) {
-
+  phoneNumber = phoneNumber.toString()
   phoneNumber = phoneNumber.replace(new RegExp('[^0-9]', 'g'), '');
   phoneNumber = phoneNumber.split(",").join();
   return phoneNumber.length > length ? phoneNumber.substring(phoneNumber.length - length, phoneNumber.length) : phoneNumber;
 }
 
 window.inputVerification.dateVerification = function (date) {
+  date = date.toString()
 
   date = date.replace(new RegExp('[^0-9]', 'g'), '');
   console.log(date)
@@ -201,6 +204,7 @@ window.inputVerification.dateVerification = function (date) {
 }
 
 window.inputVerification.cardVerification = function (card) {
+  card = card.toString()
 
   card = card.replace(new RegExp('[^0-9]', 'g'), '');
   card = card.split(",").join();
@@ -409,7 +413,7 @@ window.pushNotificationActions = {
     window.News.newsCounter++;
 
     riotTags.innerHTML = "<view-main-page>";
-    riot.mount("view-main-page", {view : "news"});
+    riot.mount("view-main-page", {view: "news"});
   },
 
   refreshCardCarousel: function (cardId) {
@@ -438,19 +442,19 @@ window.pushNotificationActions = {
   }
 };
 
-window.updateBalanceGlobalFunction = function (){
+window.updateBalanceGlobalFunction = function () {
 
 
-    if (localStorage.getItem('click_client_cards')) {
-      var getAccountsCards = JSON.parse(localStorage.getItem('click_client_cards'))
-      var arrayOfCard = JSON.parse(localStorage.getItem('click_client_cards'))
-      var phoneNumber = JSON.parse(localStorage.getItem('click_client_phoneNumber'))
-      var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-      if (loginInfo)
-        var sessionKey = loginInfo.session_key;
-    }
+  if (localStorage.getItem('click_client_cards')) {
+    var getAccountsCards = JSON.parse(localStorage.getItem('click_client_cards'))
+    var arrayOfCard = JSON.parse(localStorage.getItem('click_client_cards'))
+    var phoneNumber = JSON.parse(localStorage.getItem('click_client_phoneNumber'))
+    var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+    if (loginInfo)
+      var sessionKey = loginInfo.session_key;
+  }
 
-    console.log("JSON.parse(localStorage.getItem('click_client_cards'))", JSON.parse(localStorage.getItem('click_client_cards')))
+  console.log("JSON.parse(localStorage.getItem('click_client_cards'))", JSON.parse(localStorage.getItem('click_client_cards')))
 
 
   console.log('getAccountsCards', getAccountsCards)
