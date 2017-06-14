@@ -1768,7 +1768,7 @@ var css = {
   "height: 100%;" +
   "top:" + 90 * widthK + "px;" +
   "z-index: 1;" +
-  "width:" + 30 * widthK + "px;" +
+  "width:" + 20 * widthK + "px;" +
   "}",
 
   sideMenu: ".side-menu " +

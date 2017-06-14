@@ -47,7 +47,7 @@
     </button>
   </div>
 
-  <component-alert if="{showError}" step_amount="{0}" clickpinerror="{clickPinError}"
+  <component-alert if="{showError}"  clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
