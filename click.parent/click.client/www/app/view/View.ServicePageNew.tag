@@ -240,7 +240,7 @@
       window.viewServicePinCards = {};
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
+      onBackKeyDown();
       scope.unmount()
     };
 

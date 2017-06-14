@@ -199,15 +199,18 @@
         if (goToPay) {
           var id = window.mOperators[phone.substring(0, 2)]
           if (id) {
-            viewPay.chosenServiceId = id;
+
 
             console.log('ID', id)
 
             console.log('OPERATOR', phone.substring(0, 2))
             console.log('ID', id)
 
-            riotTags.innerHTML = "<view-service-page>";
-            riot.mount("view-service-page", {number: phone});
+            opts.chosenServiceId = id;
+            opts.number = phone;
+
+            riotTags.innerHTML = "<view-service-page-new>";
+            riot.mount("view-service-page-new", opts);
 
             scope.unmount()
           }

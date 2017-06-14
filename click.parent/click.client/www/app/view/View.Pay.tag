@@ -41,7 +41,7 @@
     var scope = this;
     scope.checkOfSearch = false;
 
-    console.log('opts', opts);
+    console.log('OPTS in PAY', opts);
 
     if (opts.mode == 'ADDAUTOPAY')
       this.titleName = window.languages.ViewAutoPayTitleName;
@@ -90,16 +90,31 @@
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
+      onBackKeyDown();
       scope.unmount()
     };
+
+    scope.on('mount', function () {
+      console.log("IN MOUNT FUNCTION PAY", viewPay.categoryId, viewPay.categoryScrollTop);
+      if (opts.categoryId) {
+        document.getElementById("tick" + viewPay.categoryId).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
+        hintUpdate(viewPay.categoryId);
+        scope.index = viewPay.categoryId;
+        scope.show = true;
+        scope.currentList = scope.servicesMapByCategory[viewPay.categoryId];
+      }
+      scope.update();
+      if (opts.categoryId)
+        categoriesContainerId.scrollTop = viewPay.categoryScrollTop;
+
+    });
 
     scope.index = -1;
     scope.show = false;
     var onTouchStartY, onTouchStartX;
     var onTouchEndY, onTouchEndX;
-    var count = 1;
-    //    var oldHeight, oldTop, top;
+    //    var count = 1;
+
 
     scope.onTouchStartOfCategory = onTouchStartOfCategory = function () {
       event.stopPropagation();
@@ -112,7 +127,6 @@
 
       onTouchEndY = event.changedTouches[0].pageY;
       onTouchEndX = event.changedTouches[0].pageX;
-//      console.log(onTouchEndY)
 
 
       if ((Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) || scope.checkOfSearch) {
@@ -123,15 +137,12 @@
         } else {
           if (scope.index != -1) {
             document.getElementById("tick" + scope.index).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
-//            oldHeight = document.getElementById(scope.index).offsetHeight;
-//            oldTop = document.getElementById(scope.index).offsetTop;
-//            console.log("oldHeight=", oldHeight, ",top=", oldTop);
           }
           scope.index = id;
         }
 
         scope.currentList = scope.servicesMapByCategory[id];
-        count = 1;
+//        count = 1;
 
 
         if (!scope.currentList) {
@@ -144,9 +155,7 @@
         if (scope.index == id && scope.show) {
           document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
           viewPay.categoryId = id;
-//          console.log("qwertysssl ", categoriesContainerId.scrollTop, ", new top=", document.getElementById(id).offsetTop);
-//          top = document.getElementById(id).offsetTop > oldTop ? (document.getElementById(id).offsetTop - oldHeight) : document.getElementById(id).offsetTop;
-
+          opts.categoryId = id;
           hintUpdate(scope.index);
         }
 
@@ -159,38 +168,30 @@
     hintUpdate = function (index) {
 //      console.log("in get top=", categoriesContainerId.scrollTop, document.getElementById(index).offsetTop);
       if (categoriesContainerId.scrollTop - 40 > document.getElementById(index).offsetTop) {
-//            console.log("qwerty");
         scope.hintShow = true;
         scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
         scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
         scope.update();
       } else {
         scope.hintShow = false;
-//            console.log("close");
         scope.update();
       }
-    }
+    };
 
 
     onTouchMoveOfCategory = function () {
-//      console.log("RTRTRTRT ", scope.index);
-      event.stopPropagation();
 
+      event.stopPropagation();
       var element = document.getElementById(scope.index);
 
       if (element) {
-//        console.log("ssssssss ", scope.index);
         if (categoriesContainerId.scrollTop - 40 > element.offsetTop) {
-//          hintContainerId.style.display = 'block';
           scope.hintShow = true;
           scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
           scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
-//          console.log("open");
           scope.update();
         } else {
           scope.hintShow = false;
-//          hintContainerId.style.display = 'none';
-//          console.log("close");
           scope.update();
         }
       }
@@ -269,6 +270,8 @@
       onTouchEndX = event.changedTouches[0].pageX;
 
       if ((Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) || scope.checkOfSearch) {
+        viewPay.categoryScrollTop = categoriesContainerId.scrollTop;
+
         console.log('ID ID ID', id)
         if (opts.mode == 'ADDAUTOPAY') {
           scope.autoPayData = {};

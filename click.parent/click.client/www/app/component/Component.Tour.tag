@@ -53,8 +53,7 @@
           class="tour-registration-button"
           ontouchend="closeTour()">
           <p class="tour-registration-button-label">
-            {opts.view == "registration"?
-            window.languages.ComponentTourRegistrationButtonText:window.languages.ComponentTourCloseButtonTextIn}</p>
+            {window.languages.ComponentTourCloseButtonTextIn}</p>
         </div>
       </div>
     </div>

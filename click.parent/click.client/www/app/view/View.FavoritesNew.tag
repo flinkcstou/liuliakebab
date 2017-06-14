@@ -98,7 +98,7 @@
           console.log("open favorite ", scope.favoritePaymentsList[i]);
 //          viewPay.chosenServiceId = id;
 
-          viewPayConfirm.isInFavorites = true;
+//          viewPayConfirm.isInFavorites = true;
           if (modeOfApp.offlineMode) {
 
             var firstFieldText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.firstFieldText);
