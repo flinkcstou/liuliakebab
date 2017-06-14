@@ -22,7 +22,8 @@
       <div class="payconfirm-amount-field">
         <p class="payconfirm-amount-text-field">{window.languages.ViewPayConfirmAmountOfPay}</p>
         <p class="payconfirm-amount-value">{amountTextCopy} {currency}</p>
-        <p class="payconfirm-amount-tax-field">{window.languages.ViewServicePageAmountTaxText} {opts.tax}
+        <p if="{opts.tax}" class="payconfirm-amount-tax-field">{window.languages.ViewServicePageAmountTaxText}
+          {opts.tax}
           {window.languages.Currency}</p>
       </div>
       <div class="payconfirm-field">

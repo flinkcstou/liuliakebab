@@ -60,7 +60,8 @@
     <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
          id="amountField">
       <p class="servicepage-text-field">{amountFieldTitle}</p>
-      <p class="servicepage-amount-tax-text-field">{window.languages.ViewServicePageAmountTaxText} {tax}
+      <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
+        {window.languages.ViewServicePageAmountTaxText} {tax}
         {window.languages.Currency}</p>
       <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="9"
              id="amount"
@@ -628,17 +629,6 @@
           }
         });
 
-      scope.on('mount', function () {
-
-        try {
-//          firstFieldInput.autofocus;
-          firstFieldInput.focus();
-          console.log("FOCUS FirstField");
-        } catch (error) {
-          console.log(error);
-        }
-      });
-
 
     }
 
@@ -1084,7 +1074,6 @@
     };
 
     sumForPay = function () {
-      console.log("in sumForPay");
       event.preventDefault();
       event.stopPropagation();
 
@@ -1169,22 +1158,58 @@
         return;
       } else if (firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
         scope.clickPinError = false;
-        scope.errorNote = "Введите значение первого поля";
+        if (scope.dropDownOn) {
+          for (var i = 0; i < scope.fieldArray.length; i++) {
+            if (scope.fieldArray[i].parameter_id == scope.chosenFieldParamId) {
+              scope.errorNote = scope.fieldArray[i].error_message;
+            }
+          }
+        } else {
+          scope.errorNote = scope.fieldArray[0].error_message;
+        }
         scope.showError = true;
         scope.update();
         return;
       }
+
+      if (scope.formType == 3) {
+
+        if (scope.hasSecondLevel)
+          opts.communalParam = scope.chosenFieldParamIdThree;
+        else
+          opts.communalParam = scope.chosenFieldParamIdTwo;
+
+        if (!opts.communalParam) {
+          scope.clickPinError = false;
+          scope.errorNote = "Выберите коммунальный параметр";
+          scope.showError = true;
+          scope.update();
+          return;
+        }
+
+      } else if (scope.formType == 4) {
+        if (scope.chosenFieldParamIdThree)
+          opts.internetPackageParam = scope.chosenFieldParamIdThree;
+        else {
+          scope.clickPinError = false;
+          scope.errorNote = "Выберите интернет пакет";
+          scope.showError = true;
+          scope.update();
+          return;
+        }
+      }
+
       if (amountForPayTransaction < scope.service.min_pay_limit) {
         console.log("amount=", amountForPayTransaction);
         scope.clickPinError = false;
-        scope.errorNote = "Сумма должна быть больше " + scope.service.min_pay_limit;
+        scope.errorNote = scope.service.lang_min_amount;
         scope.showError = true;
         scope.update();
         return;
       }
       if (amountForPayTransaction > scope.service.max_pay_limit) {
         scope.clickPinError = false;
-        scope.errorNote = "Сумма должна быть меньше " + scope.service.max_pay_limit;
+        scope.errorNote = scope.service.lang_max_amount;
         scope.showError = true;
         scope.update();
         return;
@@ -1201,25 +1226,6 @@
       opts.secondLevelFieldName = scope.chosenFieldNameThree;
       opts.isInFavorites = !scope.enterButton;
 
-
-      if (scope.formType == 3) {
-
-        if (scope.hasSecondLevel)
-          opts.communalParam = scope.chosenFieldParamIdThree;
-        else
-          opts.communalParam = scope.chosenFieldParamIdTwo;
-
-      } else if (scope.formType == 4) {
-        if (scope.chosenFieldParamIdThree)
-          opts.internetPackageParam = scope.chosenFieldParamIdThree;
-        else {
-          scope.clickPinError = false;
-          scope.errorNote = "Выберите интернет пакет";
-          scope.showError = true;
-          scope.update();
-          return;
-        }
-      }
 
 //      viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
 

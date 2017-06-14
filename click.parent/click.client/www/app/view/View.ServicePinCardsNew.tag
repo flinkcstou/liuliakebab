@@ -77,7 +77,10 @@
     touchStartTitle = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
+      if (opts.mode == 'USUAL')
+        onBackKeyDownWithParams(opts, 1);
+      else
+        onBackKeyDown();
       scope.unmount()
     };
 
