@@ -490,8 +490,8 @@
 
               console.log("result of get.payment success=", result);
               if (result[1][0].state == -1) {
-                scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-service-page-new';
-                scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 2 : scope.stepAmount;
+//                scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-service-page-new';
+                scope.stepAmount = 2;
                 scope.errorMessageFromPayment = result[1][0].error;
                 scope.update();
                 console.log("state=-1 error,view=", scope.viewPage, ",step=", scope.stepAmount);
@@ -507,7 +507,7 @@
                 viewServicePinCards.friendHelpPaymentMode = false;
                 viewServicePinCards.chosenFriendForHelp = null;
 
-                scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-pay';
+//                scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-pay';
                 scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
                 scope.update();
                 console.log("state=2 success,view=", scope.viewPage, ",step=", scope.stepAmount);
@@ -541,7 +541,7 @@
                   viewServicePinCards.friendHelpPaymentMode = false;
                   viewServicePinCards.chosenFriendForHelp = null;
 
-                  scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-pay';
+//                  scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-pay';
                   scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
                   scope.update();
                   console.log("state=1 waiting,view=", scope.viewPage, ",step=", scope.stepAmount);
