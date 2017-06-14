@@ -376,6 +376,8 @@
       }
 
       console.log("You clicked on card - ", cardIdFromCarousel);
+      console.log("You clicked scope.cardsArray - ", scope.cardsArray);
+      console.log("You clicked on scope.card - ", scope.card);
 
       scope.arrayOfOperationsByAccount = [];
       scope.update()
