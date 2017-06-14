@@ -694,21 +694,22 @@
     xhr.send();
   }
 
+
   function savebase64AsImageFile(folderpath, filename, content, contentType) {
     // Convert the base64 string in a Blob
     var DataBlob = b64toBlob(content, contentType);
 
-    console.log("Starting to write the file :3");
+//    console.log("Starting to write the file :3");
 
     window.resolveLocalFileSystemURL(folderpath, function (dir) {
-      console.log("Access to the directory granted succesfully");
+//      console.log("Access to the directory granted succesfully");
       dir.getFile(filename, {create: true, exclusive: false}, function (file) {
-        console.log("File created succesfully." + filename);
+//        console.log("File created succesfully.");
         file.createWriter(function (fileWriter) {
           console.log("Writing content to file");
           fileWriter.write(DataBlob);
         }, function () {
-          console.log('Unable to save file in path ' + folderpath);
+          alert('Unable to save file in path ' + folderpath);
         });
       });
     });
@@ -739,26 +740,17 @@
   }
 
   function convertFileToDataURLviaFileReader(url, callback) {
-    console.log("in convert!");
-    var xhr2 = new XMLHttpRequest();
-    xhr2.open('GET', url, true);
-    xhr2.responseType = 'blob';
-
-    xhr2.onload = function () {
-      console.log("in another onload 1");
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
       var reader = new FileReader();
       reader.onloadend = function () {
-        console.log("in another onload 2");
         callback(reader.result);
-      };
-      reader.readAsDataURL(xhr2.response);
+      }
+      reader.readAsDataURL(xhr.response);
     };
-
-    xhr2.onerror = function () {
-      console.log("Возможно у вас нет интернета, проверьте подключение.");
-    }
-
-    xhr2.send();
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.send();
   }
 
   function onErrorLoadFs() {

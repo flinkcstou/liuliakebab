@@ -215,7 +215,7 @@ window.api.call = function (params) {
     }
   };
 
-  if (modeOfApp.onlineMode && window.isConnected) {
+  if (modeOfApp.onlineMode && window.isConnected && window.api.socket) {
 
     if (window.api.socket.readyState == 1) {
       this.socket.send(JSON.stringify({
