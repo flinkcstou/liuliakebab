@@ -9578,7 +9578,8 @@ var css = {
   addCardCardField: ".add-card-card-field " +
   "{" +
   "position: relative;" +
-  "top:" + 177 * heightK + "px;" +
+  //"top:" + 177 * heightK + "px;" +
+  "top:" + 100 * heightK + "px;" +
   "width:" + 600 * widthK + "px;" +
   "height:" + 320 * heightK + "px;" +
   "border:" + 3 * heightK + "px solid #e7e7e7;" +

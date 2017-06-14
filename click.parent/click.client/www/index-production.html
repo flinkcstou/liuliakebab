@@ -154,7 +154,7 @@
         localStorage.setItem('settings_block', false)
       }
       if (localStorage.getItem('settings_finger_print') === null) {
-        localStorage.setItem('settings_finger_print', true)
+        localStorage.setItem('settings_finger_print', false)
       }
 
       localStorage.setItem('onResume', false);
@@ -275,12 +275,13 @@
 
     console.log('balance')
 
-    if (!checkFirstStarting) {
+    if (!checkFirstStarting && localStorage.getItem('click_client_token')) {
       setTimeout(function () {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-        var sessionKey = loginInfo.session_key;
+        if (loginInfo)
+          var sessionKey = loginInfo.session_key;
 
 
         window.api.call({

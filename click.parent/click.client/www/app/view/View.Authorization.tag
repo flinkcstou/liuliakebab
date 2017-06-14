@@ -128,7 +128,12 @@
       scope.checkAndroid = true;
     }
 
-    if (localStorage.getItem('settings_finger_print') !== null && localStorage.getItem('click_client_pin')) {
+    if (!localStorage.getItem('settings_finger_print')) {
+      localStorage.setItem('settings_finger_print', false)
+    }
+
+
+    if (localStorage.getItem('settings_finger_print') !== null) {
       console.log("FINGER PRINT INITIALIZE")
       if (device.platform == 'Android') {
 
@@ -136,7 +141,6 @@
           console.log("FingerprintAuth available: " + JSON.stringify(result));
           if (result.isAvailable) {
             window.fingerPrint.check = true;
-            riot.update();
             if (result.hasEnrolledFingerprints) {
               localStorage.setItem('settings_finger_print_enrolled', true)
             }
@@ -159,8 +163,31 @@
               }; // See config object for required parameters
 
               if (localStorage.getItem("settings_finger_print") !== null) {
-                if (JSON.parse(localStorage.getItem("settings_finger_print")) === true)
+                if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
                   FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
+                }
+                else {
+                  console.log('QWEQWE')
+                  console.log(localStorage.getItem('click_client_cards'))
+                  if (!localStorage.getItem('click_client_cards')) {
+                    onConfirm = function (index) {
+                      console.log("INDEX", index)
+                      if (index == 1) {
+                        localStorage.setItem('settings_finger_print', false)
+                      }
+                      else {
+                        localStorage.setItem('settings_finger_print', true)
+                      }
+                    }
+
+                    navigator.notification.confirm(
+                      'Хотите использовать ее для CLICK?',  // message
+                      onConfirm,              // callback to invoke with index of button pressed
+                      'Ваше устройтсво поддерживает технологию TouchID',            // title
+                      ['Нет', 'Да']          // buttonLabels
+                    );
+                  }
+                }
               }
             }
           }
@@ -213,9 +240,29 @@
           console.log('success', success)
 
           if (localStorage.getItem("settings_finger_print") !== null) {
-            if (JSON.parse(localStorage.getItem("settings_finger_print")) === true) {
+            if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
               var text = 'Приложите палец для сканирования';
               window.plugins.touchid.verifyFingerprint(text, successCallbackOfAuth, failureCallbackOfAuth);
+            }
+            else {
+              if (!localStorage.getItem('click_client_cards')) {
+                onConfirm = function (index) {
+                  console.log("INDEX", index)
+                  if (index == 1) {
+                    localStorage.setItem('settings_finger_print', false)
+                  }
+                  else {
+                    localStorage.setItem('settings_finger_print', true)
+                  }
+                }
+
+                navigator.notification.confirm(
+                  'Хотите использовать ее для CLICK?',  // message
+                  onConfirm,              // callback to invoke with index of button pressed
+                  'Ваше устройтсво поддерживает технологию TouchID',            // title
+                  ['Нет', 'Да']          // buttonLabels
+                );
+              }
             }
           }
         }
@@ -297,6 +344,7 @@
             localStorage.clear();
             if (device.platform != 'BrowserStand') {
               window.FirebasePlugin.unsubscribe("news");
+
             }
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');

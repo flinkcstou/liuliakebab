@@ -6,8 +6,8 @@
   </div>
 
   <div class="view-add-card">
-    <p if="{!modeOfApp.offlineMode}" class="add-card-text-field">{window.languages.ViewAddCardNameTitle}</p>
-    <div if="{!modeOfApp.offlineMode}" class="add-card-card-name-input-part-container">
+    <p hidden if="{!modeOfApp.offlineMode}" class="add-card-text-field">{window.languages.ViewAddCardNameTitle}</p>
+    <div hidden if="{!modeOfApp.offlineMode}" class="add-card-card-name-input-part-container">
       <input maxlength="25" class="add-card-card-name-input-part"/>
     </div>
     <div class="add-card-card-field">
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <div if="{!modeOfApp.offlineMode}" class="add-card-main-card-field">
+    <div hidden if="{!modeOfApp.offlineMode}" class="add-card-main-card-field">
       <p class="add-card-main-card-text">{window.languages.ViewAddCardDoMainTitle}</p>
       <div id="doMainId" class="add-card-main-card-icon" ontouchend="doMainCardTouchEnd()"></div>
     </div>
@@ -47,7 +47,7 @@
     </button>
   </div>
 
-  <component-alert if="{showError}"  clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
@@ -224,7 +224,9 @@
 
 
     this.on('mount', function () {
-
+      setTimeout(function () {
+        boxOne.focus()
+      }, 0)
     })
 
 

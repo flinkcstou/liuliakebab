@@ -303,7 +303,10 @@
       else {
         console.log("ON SERVICEPAGE NEW ON MOUNT autofocus first field");
 //        firstFieldInput.autofocus;
-        firstFieldInput.focus();
+        setTimeout(function () {
+          firstFieldInput.focus();
+        }, 0);
+
       }
 
       if (opts && opts.number) {

@@ -47,6 +47,8 @@
       else
         sumValueId.value = 0
 
+      console.log('scope.tax', scope.tax)
+
       setTimeout(function () {
         riot.update()
       }, 0)
