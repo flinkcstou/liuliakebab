@@ -324,6 +324,7 @@
 
 
     searchContact = function () {
+      console.log("In PICK CONTACT func");
       window.pickContactFromNativeChecker = true;
       var maskOne = /[0-9]/g;
       window.plugins.PickContact.chooseContact(function (contactInfo) {
@@ -340,7 +341,9 @@
           for (var i in digits) {
             phone += digits[i]
           }
-          firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
+          console.log("PICK CONTACT 0=", phone.substring(phone.length - 9, phone.length));
+//          firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
+          scope.defaultNumber = phone.substring(phone.length - 9, phone.length);
           console.log("PICK CONTACT=", firstFieldInput.value);
           scope.update();
         }, 0);
@@ -784,6 +787,12 @@
 
 
     openDropDown = function () {
+      try {
+        this.firstFieldInput.blur();
+        this.amount.blur();
+      } catch (error) {
+        console.log(error);
+      }
       this.blockFirstFieldId.style.display = 'block';
       console.log("id=", scope.chosenFieldParamId);
       if (scope.oldFieldParamId) {
@@ -795,6 +804,12 @@
     };
 
     openDropDownTwo = function () {
+      try {
+        this.firstFieldInput.blur();
+        this.amount.blur();
+      } catch (error) {
+        console.log(error);
+      }
       this.blockFirstDropdownId.style.display = 'block';
       if (scope.oldFieldParamIdTwo) {
         document.getElementById(scope.oldFieldParamIdTwo).style.backgroundColor = 'white';
@@ -807,6 +822,12 @@
     };
 
     openDropDownThree = function () {
+      try {
+        this.firstFieldInput.blur();
+        this.amount.blur();
+      } catch (error) {
+        console.log(error);
+      }
       if (scope.secondLevelArray) {
         this.blockSecondDropdownId.style.display = 'block';
         if (scope.oldFieldParamIdThree) {
