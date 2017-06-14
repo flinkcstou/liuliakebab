@@ -1180,8 +1180,12 @@
           opts.communalParam = scope.chosenFieldParamIdTwo;
 
         if (!opts.communalParam) {
+          if (scope.hasSecondLevel)
+            scope.errorNote = "Выберите город и район";
+          else
+            scope.errorNote = "Выберите район";
+
           scope.clickPinError = false;
-          scope.errorNote = "Выберите коммунальный параметр";
           scope.showError = true;
           scope.update();
           return;
