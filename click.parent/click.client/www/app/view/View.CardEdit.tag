@@ -210,6 +210,8 @@
         onBackKeyDown();
 
       }
+
+      console.log('PARENT', scope)
     };
 
     MakeMainCheck = function () {

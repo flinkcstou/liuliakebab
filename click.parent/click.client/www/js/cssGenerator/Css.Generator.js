@@ -8562,6 +8562,7 @@ var css = {
   "left: 103%;" +
   "color: #8b8b8b;" +
   "transform: translate(-50%, 0);" +
+  "-webkit-transform: translate(-50%, 0);" +
   "text-align: center;" +
   "}",
 
@@ -8580,6 +8581,7 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "transform: translate(-50%, 0);" +
+  "-webkit-transform: translate(-50%, 0);" +
   "width: 100%;" +
   "top: " + 540 * widthK + "px;" +
   "left: 50%;" +
@@ -8784,6 +8786,7 @@ var css = {
   reportFilterReadyButton: ".report-filter-ready-button" +
   "{" +
   "transform: translate(-50%, 0);" +
+  "-webkit-transform: translate(-50%, 0);" +
   "text-transform: capitalize;" +
   "left: 50.5%;" +
   "font-size: " + 27 * widthK + "px;" +
@@ -12147,7 +12150,7 @@ var css = {
   "height:" + 200 * widthK + "px;  " +
   "width: 100%;  " +
   "z-index: 9999999;  " +
-  "transform: translate(0, -100%);  " +
+  "-webkit-transform: translate(0, -100%);  " +
   "background-color: #f1eff3;  " +
   "}",
 
@@ -12158,6 +12161,7 @@ var css = {
 
   componentNotificationShow: ".component-notification-show" +
   "{" +
+  "-webkit-transform: translate(0, 0);  " +
   "transform: translate(0, 0);  " +
   "}",
 
@@ -13224,6 +13228,7 @@ var css = {
   "left: 8%;" +
     //"background-color: #ee4d3d;" +
   "transform: translate(-84%, 0);" +
+  "-webkit-transform: translate(-84%, 0);" +
   "background-position: center;" +
   "background-size: 100%;" +
   "background-repeat: no-repeat;" +

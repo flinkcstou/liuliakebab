@@ -92,6 +92,8 @@
     this.on('mount', function () {
       scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
       console.log('scope.parent', scope)
+
+
 //      scope.update(scope.tags['component-card-carousel']);
       riot.update()
     });
