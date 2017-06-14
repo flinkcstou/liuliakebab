@@ -185,8 +185,8 @@ var RU_LANGUAGES =
   "ViewCardEditMakeMainText": "Сделать основной",
 
   "ViewInvoiceListTitle": "ВЫСТАВЛЕННЫЕ СЧЕТА",
-  "ViewInvoiceListToUser": "пользователю",
-  "ViewInvoiceListFromUser": "пользователем",
+  "ViewInvoiceListToUser": "МНЕ",
+  "ViewInvoiceListFromUser": "ОТ МЕНЯ",
   "ViewInvoiceListInvoiceIsP2PToUser": "Получен перевод от:",
   "ViewInvoiceListInvoiceIsP2PFromUser": "Отправлен перевод на:",
   "ViewInvoiceListInvoiceIsNot2P2ToUser": "Вам выставлен счет:",
