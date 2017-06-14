@@ -9674,7 +9674,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "font-size:" + 38 * widthK + "px;" +
-  //"letter-spacing:1px;" +
+    //"letter-spacing:1px;" +
   "word-spacing:" + 25 * widthK + "px;" +
   "}",
 
@@ -9724,14 +9724,14 @@ var css = {
   "position: absolute;" +
   "width:" + 125 * widthK + "px;" +
   "left:" + 30 * widthK + "px;" +
-  //"left: 17%;" +
+    //"left: 17%;" +
   "height: 60%;" +
   "top: 20%;" +
   "background-color: transparent;" +
   "outline: none;" +
   "border: none;" +
   "font-size:" + 38 * widthK + "px;" +
-  //"letter-spacing:1px;" +
+    //"letter-spacing:1px;" +
   "}",
 
   addCardCardPin: ".add-card-card-pin " +
@@ -9809,7 +9809,7 @@ var css = {
   "width: 84%;" +
   "height: 6%;" +
   "font-size:" + 51 * widthK + "px;" +
-  "border-bottom:" + 3 * widthK + "px solid #e7e7e7;" +
+  "border:" + 3 * heightK + "px solid #e7e7e7;" +
   "color: #515151;" +
   "}",
 
@@ -9819,7 +9819,7 @@ var css = {
   "outline: none;" +
   "position: absolute;" +
   "padding: 0;" +
-  "top: 6%;" +
+  "top: 12%;" +
   "margin: 0;" +
   "width: 100%;" +
   "font-size:" + 39 * widthK + "px;" +
