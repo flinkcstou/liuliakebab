@@ -92,6 +92,8 @@
     this.on('mount', function () {
       scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
       console.log('scope.parent', scope)
+
+
 //      scope.update(scope.tags['component-card-carousel']);
       riot.update()
     });
@@ -376,6 +378,8 @@
       }
 
       console.log("You clicked on card - ", cardIdFromCarousel);
+      console.log("You clicked scope.cardsArray - ", scope.cardsArray);
+      console.log("You clicked on scope.card - ", scope.card);
 
       scope.arrayOfOperationsByAccount = [];
       scope.update()

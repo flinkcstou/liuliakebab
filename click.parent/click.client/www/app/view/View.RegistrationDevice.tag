@@ -420,13 +420,13 @@
         }
       });
 
-      if (countOfCall <= 3 && !checkServiceAnswer && window.isConnected)
+      if (countOfCall < 3 && !checkServiceAnswer && window.isConnected)
         setTimeout(function () {
           if (!checkServiceAnswer && modeOfApp.onlineMode) {
             var date = parseInt(Date.now() / 1000);
-            registrationDevice(localStorage.setItem('click_client_phoneNumber'), date);
+            registrationDevice(localStorage.getItem('click_client_phoneNumber'), date);
           }
-          if (countOfCall == 3 && !checkServiceAnswer) {
+          if (countOfCall == 2 && !checkServiceAnswer) {
             scope.showError = true;
             scope.errorNote = "Сервис временно недоступен";
             countOfCall = 0;

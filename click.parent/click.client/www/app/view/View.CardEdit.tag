@@ -23,10 +23,10 @@
   <script>
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-card-edit') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-card-edit',
-            "params": opts
-          }
+        {
+          "view": 'view-card-edit',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -36,6 +36,7 @@
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;
     scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+    var isMain
 
     touchStartTitle = function () {
       event.preventDefault();
@@ -44,27 +45,29 @@
       scope.unmount()
     };
 
-    if (opts[0]) {
-      scope.card = opts[0];
-      console.log('scope.card from opt', scope.card);
-      this.defaultName = scope.card.name;
-      if (Object.keys(scope.cardsArray).length < 2) {
-        scope.onlyOneCard = true;
-        scope.update(scope.onlyOneCard);
-      }
-      else {
-        scope.onlyOneCard = false;
-        scope.update(scope.onlyOneCard);
-        var isMain = scope.card.default_account;
-        this.on('mount', function () {
-          if (isMain) {
-            makeMainCheckId.style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
-          }
-        });
-        console.log("Initially isMain=", isMain);
+    this.on('mount', function () {
+      console.log("OPTS CARD", opts)
+      if (opts[0]) {
+        scope.card = opts[0];
+        console.log('scope.card from opt', scope.card);
+        this.defaultName = scope.card.name;
+        if (Object.keys(scope.cardsArray).length < 2) {
+          scope.onlyOneCard = true;
+          scope.update();
+        }
+        else {
+          scope.onlyOneCard = false;
+          isMain = scope.card.default_account;
+          scope.update();
+        }
+
       }
 
-    }
+      if (isMain) {
+        makeMainCheckId.style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
+      }
+    });
+
 
     //    cardEditFocus = function () {
     //      event.preventDefault()
@@ -160,11 +163,11 @@
 //            console.log(result);
 //            console.log(result[0][0]);
             if (result[0][0].error == 0 && result[1][0]) {
-              var j = 1;
+              var j = 2;
               for (var i in scope.cardsArray) {
                 if (scope.cardsArray[i].card_id == result[1][0].default_account_id) {
                   scope.cardsArray[i].default_account = true;
-                  scope.cardsArray[i].countCard = 0;
+                  scope.cardsArray[i].countCard = 1;
                 }
                 else {
                   scope.cardsArray[i].default_account = false;
@@ -172,18 +175,18 @@
                 }
               }
 
-              cardsarrayTwo = {};
-              for (var i = 0; i < Object.keys(scope.cardsArray).length; i++) {
+              scope.cardsarrayTwo = {};
+              for (var i = 1; i < Object.keys(scope.cardsArray).length + 1; i++) {
                 for (var k in scope.cardsArray) {
                   if (scope.cardsArray[k].countCard == i) {
-                    cardsarrayTwo[scope.cardsArray[k].card_id] = scope.cardsArray[k];
+                    scope.cardsarrayTwo[scope.cardsArray[k].card_id] = scope.cardsArray[k];
 //                    console.log("i=", i, ",card=", cardsarrayTwo[scope.cardsArray[k].card_id]);
                   }
                 }
               }
 //              console.log("Default account ID new=", result[1][0].default_account_id);
 //              console.log("bool of current card=", scope.cardsArray[scope.card.card_id].default_account);
-              localStorage.setItem('click_client_cards', JSON.stringify(cardsarrayTwo));
+              localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarrayTwo));
               onBackKeyDown();
             }
             else if (result[0][0].error != 0) {
@@ -207,6 +210,8 @@
         onBackKeyDown();
 
       }
+
+      console.log('PARENT', scope)
     };
 
     MakeMainCheck = function () {

@@ -57,32 +57,47 @@
   api.init();
   var scope = this;
   sessionStorage.clear();
-//  console.log = function () {
-//    return
-//  }
+  //  console.log = function () {
+  //    return
+  //  }
 
   permissionAccess = function () {
 
     var permissions = cordova.plugins.permissions;
-    permissions.checkPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
+//    permissions.checkPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
     permissions.checkPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
-    window.plugins.sim.getSimInfo(successOfSim, errorOfSim);
-
-    function successOfSim(success) {
-      console.log(success)
-    }
-
-    function errorOfSim(error) {
-      console.log(error)
-    }
-
-    function checkPermissionCallbackOfSim(status) {
+    permissions.checkPermission(permissions.READ_CONTACTS, checkPermissionCallbackOfContacts, null);
+//    window.plugins.sim.getSimInfo(successOfSim, errorOfSim);
+//
+//    function successOfSim(success) {
+//      console.log(success)
+//    }
+//
+//    function errorOfSim(error) {
+//      console.log(error)
+//    }
+//
+//    function checkPermissionCallbackOfSim(status) {
+//      if (!status.checkPermission) {
+//        var errorCallback = function () {
+//          console.log('SIM permission is not turned on');
+//        }
+//        permissions.requestPermission(
+//          permissions.READ_SMS,
+//          function (status) {
+//            if (!status.checkPermission) errorCallback();
+//          },
+//          errorCallback);
+//      }
+//    }//
+//
+    function checkPermissionCallbackOfContacts(status) {
       if (!status.checkPermission) {
         var errorCallback = function () {
-          console.log('SIM permission is not turned on');
+          console.log('Contacts permission is not turned on');
         }
         permissions.requestPermission(
-          permissions.READ_SMS,
+          permissions.READ_CONTACTS,
           function (status) {
             if (!status.checkPermission) errorCallback();
           },
@@ -461,7 +476,7 @@
 
 
   function onErrorLoadFs() {
-    alert("OnErrorLoadFS");
+    console.log("OnErrorLoadFS");
   }
 
 
