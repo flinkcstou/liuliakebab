@@ -585,7 +585,7 @@
 
       scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
 
-      if (scope.service.form_type == 4 && modeOfApp.onlineMode)
+      if (scope.service.form_type == 4 && modeOfApp.onlineMode && !modeOfApp.demoVersion)
         window.api.call({
           method: 'get.service.parameters',
           input: {

@@ -1790,11 +1790,11 @@ var css = {
   "position: absolute;" +
   "height: 6%;" +
   "width: 15%;" +
-  "top: 0.3%;" +
+  "top: 2%;" +
   "left: 4%;" +
-  "background-image: url(resources/icons/toolbar/menus.png);" +
+  "background-image: url(resources/icons/back/back.png);" +
   "background-repeat: no-repeat;" +
-  "background-size: 45%;" +
+  "background-size: 30%;" +
   "background-position: center;" +
   "}",
 
@@ -9578,7 +9578,7 @@ var css = {
   addCardCardField: ".add-card-card-field " +
   "{" +
   "position: relative;" +
-  //"top:" + 177 * heightK + "px;" +
+    //"top:" + 177 * heightK + "px;" +
   "top:" + 100 * heightK + "px;" +
   "width:" + 600 * widthK + "px;" +
   "height:" + 320 * heightK + "px;" +

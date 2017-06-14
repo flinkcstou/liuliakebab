@@ -103,10 +103,12 @@
         scope.show = true;
         scope.currentList = scope.servicesMapByCategory[viewPay.categoryId];
       }
-      scope.update();
       if (opts.categoryId)
         categoriesContainerId.scrollTop = viewPay.categoryScrollTop;
 
+      setTimeout(function () {
+        riot.update();
+      }, 0);
     });
 
     scope.index = -1;
