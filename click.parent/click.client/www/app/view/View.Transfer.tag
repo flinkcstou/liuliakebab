@@ -1387,9 +1387,21 @@
     if (device.platform != 'BrowserStand')
       findContacts();
 
+    var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
     searchContacts = function () {
-      if (event.keyCode != input_codes.BACKSPACE_CODE) {
+      cursorPositionSelectionStart = contactPhoneNumberId.selectionStart;
+      cursorPositionSelectionEnd = contactPhoneNumberId.selectionEnd;
+      oldValueOfNumber = contactPhoneNumberId.value
+      if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         contactPhoneNumberId.value = inputVerification.telVerification(contactPhoneNumberId.value)
+        if (oldValueOfNumber != contactPhoneNumberId.value) {
+          contactPhoneNumberId.selectionStart = cursorPositionSelectionStart - 1
+          contactPhoneNumberId.selectionEnd = cursorPositionSelectionEnd - 1
+        }
+        else {
+          contactPhoneNumberId.selectionStart = cursorPositionSelectionStart
+          contactPhoneNumberId.selectionEnd = cursorPositionSelectionEnd
+        }
       }
 
       if (contactPhoneNumberId.value.length == 9) {

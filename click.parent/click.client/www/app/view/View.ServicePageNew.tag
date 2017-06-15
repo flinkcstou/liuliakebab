@@ -281,11 +281,24 @@
         }
     };
 
+    var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
     telPayVerificationKeyUp = function () {
-      if (event.keyCode != input_codes.BACKSPACE_CODE) {
+
+      cursorPositionSelectionStart = firstFieldInput.selectionStart;
+      cursorPositionSelectionEnd = firstFieldInput.selectionEnd;
+      oldValueOfNumber = firstFieldInput.value
+      if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         console.log(firstFieldInput.value)
         if (firstFieldInput.type != 'text')
           firstFieldInput.value = inputVerification.telVerification(firstFieldInput.value)
+        if (oldValueOfNumber != firstFieldInput.value) {
+          firstFieldInput.selectionStart = cursorPositionSelectionStart - 1
+          firstFieldInput.selectionEnd = cursorPositionSelectionEnd - 1
+        }
+        else {
+          firstFieldInput.selectionStart = cursorPositionSelectionStart
+          firstFieldInput.selectionEnd = cursorPositionSelectionEnd
+        }
       }
     };
 
