@@ -77,7 +77,7 @@
     //            console.log("callback SUM " + num);
     //        });
 
-    localStorage.setItem('cardNumber', 0);
+    localStorage.setItem('cardNumber', 1);
 
     history.arrayOfHistory = [];
     history.arrayOfHistory.push(

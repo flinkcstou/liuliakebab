@@ -177,13 +177,13 @@
 
   </div>
 
-  <div id="componentBankListId" class="component-bank-list">
+  <div hidden="{!showComponent}" id="componentBankListId" class="component-bank-list">
     <div class="page-title" style="border: none;">
       <p class="component-banklist-name-title">{window.languages.ViewBankListTitleName}</p>
       <div id="rightButtons" type="button" class="component-banklist-close-button"
            ontouchend="closeComponentBankListTouchEnd()" ontouchstart="closeComponentBankListTouchStart()"></div>
     </div>
-    <div id="bankListContainerId" class="component-banklist-container">
+    <div id="bankListContainerId" class="component-banklist-container" onscroll="bankListTouchMove()">
       <div class="component-banklist-card" each="{i in bankList}">
         <div class="component-banklist-bank-logo" style="background-image: url({i.image});"></div>
         <div class="component-banklist-bank-limit-container">
@@ -344,6 +344,11 @@
 
     }
 
+    bankListTouchMove = function () {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
 
     openBanksListPageTouchEnd = function () {
       event.preventDefault();
@@ -371,9 +376,10 @@
           scope.bankList = JSON.parse(localStorage.getItem("click_client_p2p_bank_list"));
 //        console.log("bank list", scope.bankList);
         }
-        componentBankListId.style.display = 'block';
+        scope.showComponent = true
+        window.checkShowingComponent = scope;
+
         scope.update();
-        console.log('scope.update()', scope.update())
       }
     };
 
@@ -449,7 +455,9 @@
 
       if (Math.abs(closeBankListTouchStartX - closeBankListTouchEndX) <= 20 && Math.abs(closeBankListTouchStartY - closeBankListTouchEndY) <= 20) {
         bankListContainerId.scrollTop = 0;
-        componentBankListId.style.display = 'none';
+        scope.showComponent = false
+        window.checkShowingComponent = null;
+        scope.update()
       }
     }
 
@@ -588,7 +596,7 @@
       arrayOfContacts = [];
 
     scope.showError = false;
-
+    scope.showComponent = false;
 
     scope.suggestionOne = {};
     scope.suggestionOne.photo = '';
@@ -948,6 +956,7 @@
       var j = 0;
 
       for (var i = 0; i < transferCards.length; i++) {
+        console.log('transferCards', transferCards[i])
 
         if (j == 4) {
           if (transferCards[i] != null && transferCards[i].cardNumber) {
@@ -958,6 +967,9 @@
             }
             else {
               scope.cardSuggestionFive.photo = '';
+            }
+            if (transferCards[i].owner.firstName != null) {
+              scope.cardSuggestionFive.fName = transferCards[i].owner.firstName;
             }
             j++;
           }
@@ -975,6 +987,9 @@
             }
             else {
               scope.cardSuggestionFour.photo = '';
+            }
+            if (transferCards[i].owner.firstName != null) {
+              scope.cardSuggestionFour.fName = transferCards[i].owner.firstName;
             }
             j++;
           }
@@ -994,6 +1009,9 @@
             else {
               scope.cardSuggestionThree.photo = '';
             }
+            if (transferCards[i].owner.firstName != null) {
+              scope.cardSuggestionThree.fName = transferCards[i].owner.firstName;
+            }
             j++;
           }
           else {
@@ -1011,6 +1029,9 @@
             }
             else {
               scope.cardSuggestionTwo.photo = '';
+            }
+            if (transferCards[i].owner.firstName != null) {
+              scope.cardSuggestionTwo.fName = transferCards[i].owner.firstName;
             }
             j++;
 
@@ -1034,6 +1055,9 @@
             }
             else {
               scope.cardSuggestionOne.photo = '';
+            }
+            if (transferCards[i].owner.firstName != null) {
+              scope.cardSuggestionOne.fName = transferCards[i].owner.firstName;
             }
             j++;
 
@@ -1337,17 +1361,18 @@
 
       function success(contacts) {
         for (var i = 0; i < contacts.length; i++) {
-          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null) {
-            for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
-              var digits = contacts[i].phoneNumbers[j].value.match(maskOne);
-              var phone = '';
-              for (var k in digits) {
-                phone += digits[k]
+          if (contacts[i].name)
+            if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null) {
+              for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
+                var digits = contacts[i].phoneNumbers[j].value.match(maskOne);
+                var phone = '';
+                for (var k in digits) {
+                  phone += digits[k]
+                }
+                contacts[i].phoneNumbers[j].value = phone;
               }
-              contacts[i].phoneNumbers[j].value = phone;
+              arrayOfContacts.push(contacts[i])
             }
-            arrayOfContacts.push(contacts[i])
-          }
         }
       }
 

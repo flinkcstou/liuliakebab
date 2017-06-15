@@ -302,11 +302,17 @@
       }
       else {
         console.log("ON SERVICEPAGE NEW ON MOUNT autofocus first field");
-//        firstFieldInput.autofocus;
-        setTimeout(function () {
-          firstFieldInput.focus();
-        }, 0);
 
+        if (device.platform == 'iOS') {
+          firstFieldInput.autofocus;
+          firstFieldInput.focus();
+        } else {
+          setTimeout(function () {
+            firstFieldInput.focus();
+          }, 0);
+        }
+
+        scope.update()
       }
 
       if (opts && opts.number) {

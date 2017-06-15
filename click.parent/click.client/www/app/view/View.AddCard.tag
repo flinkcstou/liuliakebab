@@ -48,7 +48,7 @@
   </div>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
+                   errornote="{errorNote}" viewpage="{viewPage}"></component-alert>
 
   <script>
     var scope = this;
@@ -142,12 +142,14 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
+            scope.viewPage = 'view-main-page'
             scope.update();
           }
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
+            scope.viewPage = ''
             scope.update();
           }
         },
@@ -224,9 +226,15 @@
 
 
     this.on('mount', function () {
-      setTimeout(function () {
+      if (device.platform == 'iOS') {
+        boxOne.autofocus;
         boxOne.focus()
-      }, 0)
+      }
+      else {
+        setTimeout(function () {
+          boxOne.focus()
+        }, 0)
+      }
     })
 
 

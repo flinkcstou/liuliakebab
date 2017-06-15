@@ -39,6 +39,11 @@
       if (scope.parent) {
         scope.parent.showError = false;
 
+        if (opts.viewpage) {
+          riotTags.innerHTML = "<" + opts.viewpage + ">";
+          riot.mount(opts.viewpage);
+        }
+
         if (opts.step_amount || opts.step_amount == 0) {
 
           history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)

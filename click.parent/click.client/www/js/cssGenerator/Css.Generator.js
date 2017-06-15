@@ -5172,7 +5172,7 @@ var css = {
   transferContactFoundTextContainer: ".transfer-contact-found-text-container" +
   "{" +
   "position: absolute;" +
-  "left: 25%;" +
+  "left: 30%;" +
   "color: gray;" +
   "width: 20%;" +
   "height: 100%;" +
@@ -9292,7 +9292,7 @@ var css = {
   "height: 100%;" +
   "width: 100%;" +
   "background-color: #f0f1f4;" +
-  "display: none;" +
+  //"display: none;" +
   "}",
 
   componentBankListContainer: ".component-banklist-container" +

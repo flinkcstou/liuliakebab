@@ -233,7 +233,8 @@
       card.name = '';
       card.cardNumber = '';
       card.owner = {};
-      card.owner.firstName = '';
+      if(opts[2])
+      card.owner.firstName = opts[2];
       card.owner.secondName = '';
       var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))
 //      console.log('CODE OF BANK', codeOfBank)
