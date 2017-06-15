@@ -164,7 +164,7 @@
     </button>
   </div>
 
-  <div id="blockAmountCalculatorId" class="component-calc">
+  <div hidden="{!showComponent}" id="blockAmountCalculatorId" class="component-calc">
     <div id="rightButton" type="button" class="component-banklist-close-button" ontouchend="closeComponent()"></div>
     <div class="component-calc-name-title">{window.languages.ViewAmountCalculatorNameTitle}</div>
 
@@ -371,6 +371,7 @@
 
     }
 
+    scope.showComponent = false;
     amountOnBlur = function () {
       event.preventDefault()
       event.stopPropagation()
@@ -453,14 +454,18 @@
         console.log(error);
       }
 
-      blockAmountCalculatorId.style.display = 'block';
+      scope.showComponent = true
+      window.checkShowingComponent = scope;
+//      blockAmountCalculatorId.style.display = 'block';
       amountCalcInputId.focus();
-      scope.update(blockAmountCalculatorId);
+      scope.update();
     };
 
     closeComponent = function () {
-      blockAmountCalculatorId.style.display = 'none';
-      scope.update(blockAmountCalculatorId);
+//      blockAmountCalculatorId.style.display = 'none';
+      scope.showComponent = false;
+      window.checkShowingComponent = null;
+      scope.update();
     };
 
     var converted;

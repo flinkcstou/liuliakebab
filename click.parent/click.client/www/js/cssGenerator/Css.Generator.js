@@ -652,6 +652,30 @@ var css = {
   "top:" + 230 * widthK + "px;" +
   "}",
 
+
+  smsButtonEnterLabel: ".sms-button-enter-label " +
+  "{" +
+  "position: relative;" +
+  "top: 19%;" +
+  "width:" + 445 * widthK + "px;" +
+  "height:" + 40 * widthK + "px;" +
+  "font-size:" + 44 * widthK + "px;" +
+  "margin: auto;" +
+  "color: white;" +
+  "}",
+
+  smsButtonEnter: ".sms-button-enter " +
+  "{" +
+  "position: relative;" +
+  "width:" + 600 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-color: #01cfff;" +
+  "margin-right: auto;" +
+  "border-radius:" + 80 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-top: 2%;" +
+  "}",
+
   keyboardField: ".keyboard-field " +
   "{" +
   "position: absolute;" +
@@ -865,7 +889,7 @@ var css = {
   "width: 100%;" +
   "position: absolute;" +
   "height:" + 275 * widthK + "px;" +
-  "bottom:" + 20 + "%" +
+  "bottom:" + 30 + "%" +
   "}",
 
   smsTextField: ".sms-text-field " +
@@ -3751,7 +3775,7 @@ var css = {
   "height: 100%;" +
   "width: 100%;" +
   "background-color: #f0f1f4;" +
-  "display: none;" +
+  //"display: none;" +
   "}",
 
   componentCalcNameTitle: ".component-calc-name-title " +

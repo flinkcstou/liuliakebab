@@ -12,10 +12,15 @@
           <p style="margin-bottom: 4px">{messageTitle}<br>{messageTitleTwo}</p>
           <p id="deliveredPhoneNumber" style="margin: 0">{phoneNumber.substring(0, 3)}
             {phoneNumber.substring(3, phoneNumber.length)}</p>
+          <div class="sms-button-enter" ontouchend="goToBackRegistrationEnd()"
+               ontouchstart="goToBackRegistrationStart()">
+            <div class="sms-button-enter-label">{window.languages.ViewSmsButtonEnterLabel}</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 
   <div class="registration-keyboard-field keyboard-field" style="bottom: {150*widthK}px">
     <div class="registration-button-help" ontouchend="helpTouchEndSms()" ontouchstart="helpTouchStartSms()"
@@ -115,6 +120,27 @@
           StatusBar.backgroundColorByHexString("#024361");
 
 
+      }
+    }
+
+    var goBackTouchStartXSms, goBackTouchStartYSms, goBackTouchEndXSms, goBackTouchEndYSms;
+    goToBackRegistrationStart = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      goBackTouchStartXSms = event.changedTouches[0].pageX
+      goBackTouchStartYSms = event.changedTouches[0].pageY
+    }
+
+    goToBackRegistrationEnd = function () {
+      event.preventDefault()
+      event.stopPropagation()
+
+      goBackTouchEndXSms = event.changedTouches[0].pageX
+      goBackTouchEndYSms = event.changedTouches[0].pageY
+
+      if (Math.abs(goBackTouchStartXSms - goBackTouchEndXSms) <= 20 && Math.abs(goBackTouchStartYSms - goBackTouchEndYSms) <= 20) {
+        onBackKeyDown()
       }
     }
 
