@@ -667,7 +667,7 @@ var css = {
   smsButtonEnter: ".sms-button-enter " +
   "{" +
   "position: relative;" +
-  "width:" + 600 * widthK + "px;" +
+  "width:" + 550 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background-color: #01cfff;" +
   "margin-right: auto;" +
