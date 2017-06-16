@@ -1273,7 +1273,10 @@
 
           var ussdQuery = scope.fieldArray[0].ussd_query;
 
-          if (opts.formtype == 1) {
+          console.log('opts.formtype',opts.formtype)
+
+
+          if (opts.formtype == 1  && ussdQuery) {
             if (opts.firstFieldText) {
               ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
             }
@@ -1287,7 +1290,7 @@
             console.log(ussdQuery)
           }
 
-          if (formtype.formtype == 2) {
+          if (opts.formtype == 2 && ussdQuery) {
             ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
             ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
             ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
@@ -1295,7 +1298,7 @@
             console.log(ussdQuery)
           }
 
-          if (formtype.formtype == 3) {
+          if (opts.formtype == 3 && ussdQuery) {
             ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
             ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
             ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
@@ -1303,7 +1306,7 @@
             console.log(ussdQuery)
           }
 
-          if (formtype.formtype == 4) {
+          if (opts.formtype == 4 && ussdQuery) {
             console.log('ussdQuery', ussdQuery)
             ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
             ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
@@ -1312,6 +1315,13 @@
             console.log(ussdQuery)
           }
 
+          if(ussdQuery === null){
+            scope.clickPinError = false;
+            scope.errorNote = ("Сервис временно недоступен!");
+            scope.showError = true;
+            scope.update();
+            return
+          }
 
           console.log(ussdQuery)
 
