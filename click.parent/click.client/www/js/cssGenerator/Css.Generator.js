@@ -674,7 +674,7 @@ var css = {
   //"border-radius:" + 80 * widthK + "px;" +
   "margin-left: auto;" +
   //"margin-top: 10%;" +
-  "top:"+ 50 * widthK + "px;" +
+  "top:"+ 30 * widthK + "px;" +
   "border-bottom:1px solid #b7f1ff;" +
   "color:#b7f1ff;" +
   "}",

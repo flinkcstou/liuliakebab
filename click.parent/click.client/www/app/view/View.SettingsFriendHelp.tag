@@ -16,7 +16,7 @@
           <div class="settings-friend-help-contact-found-text-two">+{i.number}</div>
         </div>
         <div class="settings-friend-help-contact-cancel-icon"
-             ontouchend="deleteFriendTouchEnd({id+i.number}, {i.number})"></div>
+             ontouchend="deleteFriendTouchEnd({'id'+i.number}, {i.number})"></div>
       </div>
 
     </div>
