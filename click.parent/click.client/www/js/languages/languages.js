@@ -285,7 +285,7 @@ var RU_LANGUAGES =
   "ViewTransferOnCardTitleTextPartOne": "Зачислить средства в размере",
   "ViewTransferOnCardTitleTextPartTwo": "на карту:",
   "ViewTransferOnCardAcceptButtonText": "принять",
-  "ViewTransferOnCardCardNotChosen": "Выберите карты",
+  "ViewTransferOnCardCardNotChosen": "Выберите карту",
 
   "ViewAccountDetailTransferIconTitleOne": "Получен счет",
   "ViewAccountDetailTransferIconTitleTwo": "от пользователя CLICK",

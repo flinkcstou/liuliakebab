@@ -8035,14 +8035,14 @@ var css = {
   "padding-top:" + 33 * widthK + "px;" +
   "}",
 
-  transferDetailButtonAccept: ".transfer-detail-button-accept" +
+  transferDetailButtonCancel: ".transfer-detail-button-cancel" +
   "{" +
   "position: relative;" +
   "margin: 0;" +
   "float: left;" +
   "text-align: center;" +
   "margin-left: 4%;" +
-  "background-color: #00a8f1;" +
+  "background-color: #f46b5b;" +
   "font-size: " + 29 * widthK + "px;" +
   "height: " + 74 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
@@ -8054,11 +8054,11 @@ var css = {
   "text-transform: capitalize;" +
   "}",
 
-  transferDetailButtonCancel: ".transfer-detail-button-cancel" +
+  transferDetailButtonAccept: ".transfer-detail-button-accept" +
   "{" +
   "margin: 0;" +
   "margin-right: 4%;" +
-  "background-color: #f46b5b;" +
+  "background-color: #00a8f1;" +
   "font-size: " + 29 * widthK + "px;" +
   "position: relative;" +
   "float: right;" +
@@ -8378,14 +8378,14 @@ var css = {
   //"width: 44%;" +
   //"}",
 
-  accountDetailButtonAccept: ".account-detail-button-accept" +
+  accountDetailButtonAccept: ".account-detail-button-cancel" +
   "{" +
   "position: relative;" +
   "margin: 0;" +
   "float: left;" +
   "text-align: center;" +
   "margin-left: 4%;" +
-  "background-color: #00a8f1;" +
+  "background-color: #f46b5b;" +
   "font-size: " + 29 * widthK + "px;" +
   "height: " + 74 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
@@ -8397,11 +8397,11 @@ var css = {
   "text-transform: capitalize;" +
   "}",
 
-  accountDetailButtonCancel: ".account-detail-button-cancel" +
+  accountDetailButtonCancel: ".account-detail-button-accept" +
   "{" +
   "margin: 0;" +
   "margin-right: 4%;" +
-  "background-color: #f46b5b;" +
+  "background-color: #00a8f1;" +
   "font-size: " + 29 * widthK + "px;" +
   "position: relative;" +
   "float: right;" +

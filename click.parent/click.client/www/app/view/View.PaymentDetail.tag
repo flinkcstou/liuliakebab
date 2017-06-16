@@ -52,7 +52,7 @@
 
   <component-success id="componentSuccessId"
                      operationmessage="{window.languages.ComponentSuccessMessageForPay}"
-                     viewpage="{undefined}" step_amount="{0}" close_action="{goToBack}"></component-success>
+                     viewpage="{viewPage}" step_amount="{}" close_action="{goToBack}"></component-success>
   <component-unsuccess id="componentUnsuccessId"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
@@ -104,9 +104,9 @@
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = loginInfo.session_key;
-        console.log('scope.parent.invoiceList',scope)
+        console.log('scope.parent.invoiceList', scope)
 
-        if(scope.parent) {
+        if (scope.parent) {
           for (var i in scope.parent.invoiceList) {
             if (scope.parent.invoiceList[i].invoice_id == scope.opts.invoiceId) {
               scope.parent.invoiceList[i].deleted = true;
@@ -227,9 +227,22 @@
 
             if (result[0][0].error == 0) {
               componentSuccessId.style.display = 'block';
+
+              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
+              console.log(history.arrayOfHistory)
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
+              scope.viewPage = 'view-report'
+              scope.update()
             }
             else {
               componentUnsuccessId.style.display = 'block';
+              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
+              console.log(history.arrayOfHistory)
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
+              scope.viewPage = 'main-page'
+              scope.update()
             }
           },
 
