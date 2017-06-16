@@ -669,11 +669,14 @@ var css = {
   "position: relative;" +
   "width:" + 440 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
-  "background-color: #01cfff;" +
+  //"background-color: #01cfff;" +
   "margin-right: auto;" +
-  "border-radius:" + 80 * widthK + "px;" +
+  //"border-radius:" + 80 * widthK + "px;" +
   "margin-left: auto;" +
-  "margin-top: 2%;" +
+  //"margin-top: 10%;" +
+  "top:"+ 50 * widthK + "px;" +
+  "border-bottom:1px solid #b7f1ff;" +
+  "color:#b7f1ff;" +
   "}",
 
   keyboardField: ".keyboard-field " +

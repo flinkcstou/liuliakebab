@@ -36,7 +36,7 @@ var RU_LANGUAGES =
   "ViewSmsMessageTitle": "Мы позвоним вам через минуту,",
   "ViewSmsMessageTitleTwo": "чтобы сообщить код активации на номер:",
   "ViewSmsResendText": "Смс переотправлено на номер: ",
-  "ViewSmsButtonEnterLabel": "Назад",
+  "ViewSmsButtonEnterLabel": "Указать другой номер",
 
   "ViewAuthorizationClickPinLabel": "Введите CLICK-PIN",
   "ViewAuthorizationForgetPinLabel": "Забыли CLICK-PIN?",

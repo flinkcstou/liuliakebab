@@ -12,10 +12,9 @@
           <p style="margin-bottom: 4px">{messageTitle}<br>{messageTitleTwo}</p>
           <p id="deliveredPhoneNumber" style="margin: 0">{phoneNumber.substring(0, 3)}
             {phoneNumber.substring(3, phoneNumber.length)}</p>
-          <div class="sms-button-enter" ontouchend="goToBackRegistrationEnd()"
-               ontouchstart="goToBackRegistrationStart()">
-            <div class="sms-button-enter-label">{window.languages.ViewSmsButtonEnterLabel}</div>
-          </div>
+          <a class="sms-button-enter" ontouchend="goToBackRegistrationEnd()"
+             ontouchstart="goToBackRegistrationStart()">{window.languages.ViewSmsButtonEnterLabel}
+          </a>
         </div>
       </div>
     </div>
