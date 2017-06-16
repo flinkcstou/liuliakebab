@@ -80,10 +80,11 @@
         for (var i in scope.arrayOfFriends) {
           if (scope.arrayOfFriends[i].number == number) {
             viewServicePinCards.chosenFriendForHelp = scope.arrayOfFriends[i];
+            opts.chosenFriendForHelp = scope.arrayOfFriends[i];
             console.log(viewServicePinCards.chosenFriendForHelp);
 
-              if (opts.from && opts.from == "view-qr")
-                onBackKeyDown()
+            if (opts.from && opts.from == "view-qr")
+              onBackKeyDown()
             else {
               onBackKeyDownWithParams(opts, 1);
             }

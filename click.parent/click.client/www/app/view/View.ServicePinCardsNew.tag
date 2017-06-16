@@ -128,7 +128,7 @@
       console.log("BOOL=", scope.friendHelpBool);
       if (scope.friendHelpBool) {
         opts.payByCard = false;
-        opts.chosenFriendForHelp = viewServicePinCards.chosenFriendForHelp;
+        opts.chosenFriendForHelp = opts.chosenFriendForHelp ? opts.chosenFriendForHelp : viewServicePinCards.chosenFriendForHelp;
         scope.checked = true;
         event.preventDefault();
         event.stopPropagation();
