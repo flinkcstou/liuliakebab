@@ -342,7 +342,7 @@
 
               var ussdQuery = scope.favoritePaymentsList[i].ussd;
 
-              if (formtype == 1) {
+              if (formtype == 1 && ussdQuery) {
                 if (firstFieldText) {
                   ussdQuery = ussdQuery.replace('{param}', firstFieldText);
                 }
@@ -355,14 +355,14 @@
                 console.log(ussdQuery)
               }
 
-              if (formtype == 2) {
+              if (formtype == 2 && ussdQuery) {
                 ussdQuery = ussdQuery.replace('{param}', firstFieldText);
                 ussdQuery = ussdQuery.replace('{amount}', amountText);
                 ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
                 console.log(ussdQuery)
               }
 
-              if (formtype == 3) {
+              if (formtype == 3 && ussdQuery) {
                 ussdQuery = ussdQuery.replace('{communal_para}', communalParam);
                 ussdQuery = ussdQuery.replace('{param}', firstFieldText);
                 ussdQuery = ussdQuery.replace('{amount}', amountText);
@@ -370,13 +370,20 @@
                 console.log(ussdQuery)
               }
 
-              if (formtype == 4) {
+              if (formtype == 4 && ussdQuery) {
                 ussdQuery = ussdQuery.replace('{param}', firstFieldText);
                 ussdQuery = ussdQuery.replace('{amount}', amountText);
                 ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
                 console.log(ussdQuery)
               }
 
+              if (ussdQuery === null) {
+                scope.clickPinError = false;
+                scope.errorNote = ("Сервис временно недоступен!");
+                scope.showError = true;
+                scope.update();
+                return
+              }
 
               console.log(ussdQuery);
 

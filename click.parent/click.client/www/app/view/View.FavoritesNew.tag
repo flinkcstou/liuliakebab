@@ -109,6 +109,13 @@
 
 
             var ussdQuery = scope.favoritePaymentsList[i].ussd;
+            if (ussdQuery === null) {
+              scope.clickPinError = false;
+              scope.errorNote = ("Сервис временно недоступен!");
+              scope.showError = true;
+              scope.update();
+              return
+            }
 
             if (formtype == 1) {
               if (firstFieldText) {

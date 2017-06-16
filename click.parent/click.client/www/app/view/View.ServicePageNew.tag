@@ -344,6 +344,7 @@
         amount.value = 0
 
       if (modeOfApp.offlineMode) {
+        if(typeof enterButtonId != 'undefined')
         enterButtonId.innerText = 'Оплатить'
       }
     });
@@ -1417,9 +1418,17 @@
         if (modeOfApp.offlineMode) {
 
           var ussdQuery = scope.fieldArray[0].ussd_query;
+          if(ussdQuery === null){
+            scope.clickPinError = false;
+            scope.errorNote = ("Сервис временно недоступен!");
+            scope.showError = true;
+            scope.update();
+            return
+          }
           ussdQuery = ussdQuery.replace('{nominal}', opts.amountText);
           ussdQuery = ussdQuery.replace('{card_type}', opts.cardTypeId);
           ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
+
 
           phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
