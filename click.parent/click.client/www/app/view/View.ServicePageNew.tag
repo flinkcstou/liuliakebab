@@ -514,8 +514,10 @@
         checkFirst = true;
         amountForPayTransaction = converted;
       }
-      blockAmountCalculatorId.style.display = 'none';
-      scope.update(blockAmountCalculatorId);
+//      blockAmountCalculatorId.style.display = 'none';
+      scope.showComponent = false;
+      window.checkShowingComponent = null;
+      scope.update();
     };
 
     console.log('VIEWPAY SERVICE', opts.chosenServiceId, 'mynumber' + localStorage.getItem('myNumberOperatorId'))
