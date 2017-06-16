@@ -259,12 +259,14 @@
     }
   }
 
+  var waitingMinutes = 0;
   function onPauseFunction() {
     if (componentMenu.check === true || window.pickContactFromNativeChecker === true || modeOfApp.offlineMode) {
       window.pickContactFromNativeChecker = false;
       componentMenu.check = false;
       return
     }
+    waitingMinutes = new Date().getMinutes();
     setTimeout(function () {
 
       console.log('ON onResume EVENT IS TRIGGERED')
@@ -282,6 +284,12 @@
     console.log('balance')
 
     if (!checkFirstStarting && localStorage.getItem('click_client_token')) {
+      var nowMinutes = new Date().getMinutes();
+      if(Math.abs(waitingMinutes - nowMinutes) > 5  ){
+        var text = "Сессия устарела или заблокирована, необходимо повторно авторизоваться в системе"
+        showConfirmComponent(text, 'session');
+        return
+      }
       setTimeout(function () {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");

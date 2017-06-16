@@ -49,7 +49,11 @@
 
       console.log('scope.tax', scope.tax)
 
+      if (device.platform == 'iOS') {
+        sumValueId.focus()
+      }
       setTimeout(function () {
+        sumValueId.focus()
         riot.update()
       }, 0)
     })

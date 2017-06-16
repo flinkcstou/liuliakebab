@@ -924,7 +924,7 @@ var css = {
   "top:" + -20 * widthK + "px;" +
   "left: 0;" +
   "text-align: center;" +
-  "color: #4bd5ff;" +
+  "color: #b7f1ff;" +
   "font-size:" + 30 * widthK + "px;" +
   "margin: 0;" +
   "}",
