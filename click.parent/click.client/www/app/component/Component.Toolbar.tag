@@ -44,10 +44,6 @@
 
       if ((Math.abs(openMenuTouchStartX - openMenuTouchEndX) <= 20 && Math.abs(openMenuTouchStartY - openMenuTouchEndY) <= 20) || open) {
 
-
-        componentMenu.check = true;
-
-
         componentMenu.checkOpen = true;
 
         this.sideMenuBackPageId.style.webkitTransition = '0.3s';

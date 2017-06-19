@@ -1109,8 +1109,10 @@
 
     contactTouchEnd = function (bool) {
 
-      contactChooseTouchEndX = event.changedTouches[0].pageX
-      contactChooseTouchEndY = event.changedTouches[0].pageY
+      if (!bool) {
+        contactChooseTouchEndX = event.changedTouches[0].pageX
+        contactChooseTouchEndY = event.changedTouches[0].pageY
+      }
 
       console.log('Contact transfer')
       console.log(contactChooseTouchStartX, contactChooseTouchStartY)
@@ -1160,9 +1162,10 @@
     cardTouchEnd = function (bool) {
 
 
-      cardChooseTouchEndX = event.changedTouches[0].pageX
-      cardChooseTouchEndY = event.changedTouches[0].pageY
-
+      if (!bool) {
+        cardChooseTouchEndX = event.changedTouches[0].pageX
+        cardChooseTouchEndY = event.changedTouches[0].pageY
+      }
       console.log('Card transfer')
 
       if ((Math.abs(cardChooseTouchStartX - cardChooseTouchEndX) <= 20 && Math.abs(cardChooseTouchStartY - cardChooseTouchEndY) <= 20) || bool) {

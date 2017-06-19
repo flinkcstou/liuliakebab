@@ -425,6 +425,7 @@
         }
 //        closeMenu()
         if (device.platform != 'BrowserStand') {
+          componentMenu.check = true;
 
           cordova.plugins.barcodeScanner.scan(
             function (result) {
