@@ -68,6 +68,8 @@ task compileAndroidProduction(type: JavaExec, group: 'client') {
 
   main = 'kz.greetgo.click.client.CompileCordovaAndroid'
   args = []
+
+
 }
 
 

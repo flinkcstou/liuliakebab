@@ -40,11 +40,11 @@
         <div id="blockWithPinIconId" class="settings-security-check-icon"></div>
       </div>
 
-      <div class="settings-block-containter">
+      <div class="settings-block-containter" ontouchend="hideMyNumber()">
         <div class="settings-block-icon"
              style="background-image: url('resources/icons/ViewSettingsSecurity/security_visibility.png')"></div>
         <div class="settings-block-name-field">{window.languages.ViewSecuritySettingsMyNumberHideTitle}</div>
-        <div id="hideMyNumberIconId" class="settings-security-check-icon" ontouchend="hideMyNumber()"></div>
+        <div id="hideMyNumberIconId" class="settings-security-check-icon"></div>
       </div>
 
     </div>
@@ -67,7 +67,7 @@
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
     if (localStorage.getItem('click_client_loginInfo'))
-      var isVisible = localStorage.getItem('click_client_loginInfo').visibility;
+      var isVisible = JSON.parse(localStorage.getItem('click_client_loginInfo')).visibility;
 
     if (localStorage.getItem('settings_block'))
       var isBlocked = JSON.parse(localStorage.getItem('settings_block'));
@@ -82,6 +82,9 @@
 
       if (isVisible) {
         hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
+      }
+      else{
+        hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
       }
 
       if (isBlocked) {
