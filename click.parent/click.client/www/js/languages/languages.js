@@ -487,6 +487,17 @@ var RU_LANGUAGES =
   "ComponentTourCloseButtonText": "Закрыть",
   "ComponentTourCloseButtonTextIn": "Понятно",
   "ComponentTourRegistrationButtonText": "Понятно",
+
+
+  "ViewAutoPayEmptyTitleText": "СПИСОК АВТОПЛАТЕЖЕЙ ПУСТ",
+  "ViewAutoPayEmptyBodyText": "Он нужен для того, чтобы сохранить платежи, которые вы совершаете чаще всего. Нажмите \"+\" для добавления платежа в избранное",
+  "ViewFavoriteEmptyTitleText": "ВЫ ЕЩЕ НЕ ДОБАВИЛИ НИ ОДНОГО ИЗБРАННОГО ПЛАТЕЖА",
+  "ViewFavoriteEmptyBodyText": "Он нужен для того, чтобы сохранить платежи, которые вы совершаете чаще всего. Нажмите " + " для добавления платежа в избранное",
+  "ViewInvoiceInEmptyTitleText": "В ПОСЛЕДНЕЕ ВРЕМЯ ВАМ НИКТО НЕ ВЫСТАВЛЯЛ СЧЕТ",
+  "ViewInvoiceInEmptyBodyText": "Он нужен для того, чтобы сохранить платежи, которые вы совершаете чаще всего. Нажмите " + " для добавления платежа в избранное",
+  "ViewInvoiceOutEmptyTitleText": "В ПОСЛЕДНЕЕ ВРЕМЯ ВЫ НИКОМУ НЕ ВЫСТАВЛЯЛИ СЧЕТ",
+  "ViewInvoiceOutEmptyBodyText": "Он нужен для того, чтобы сохранить платежи, которые вы совершаете чаще всего. Нажмите " + " для добавления платежа в избранное"
+
 };
 
 window.languages = RU_LANGUAGES;

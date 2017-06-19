@@ -60,14 +60,14 @@ var css = {
   "touch-action: manipulation;" +
 
 
-    //"background-image: url(resources/total-balance_check.png);" +
-    //"opacity: 0.6;" +
+  "background-image: url(resources/autopayment.png);" +
+  "opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    //"background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    //"background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+    //"background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -669,12 +669,12 @@ var css = {
   "position: relative;" +
   "width:" + 440 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
-  //"background-color: #01cfff;" +
+    //"background-color: #01cfff;" +
   "margin-right: auto;" +
-  //"border-radius:" + 80 * widthK + "px;" +
+    //"border-radius:" + 80 * widthK + "px;" +
   "margin-left: auto;" +
-  //"margin-top: 10%;" +
-  "top:"+ 30 * widthK + "px;" +
+    //"margin-top: 10%;" +
+  "top:" + 30 * widthK + "px;" +
   "border-bottom:1px solid #b7f1ff;" +
   "color:#b7f1ff;" +
   "}",
@@ -3778,7 +3778,7 @@ var css = {
   "height: 100%;" +
   "width: 100%;" +
   "background-color: #f0f1f4;" +
-  //"display: none;" +
+    //"display: none;" +
   "}",
 
   componentCalcNameTitle: ".component-calc-name-title " +
@@ -9319,7 +9319,7 @@ var css = {
   "height: 100%;" +
   "width: 100%;" +
   "background-color: #f0f1f4;" +
-  //"display: none;" +
+    //"display: none;" +
   "}",
 
   componentBankListContainer: ".component-banklist-container" +
@@ -12410,6 +12410,75 @@ var css = {
   "border-radius: " + 10 * widthK + "px;" +
   "color: #ffffff;" +
   "bottom:" + 100 * widthK + "px; " +
+  "}",
+
+
+  autoPayEmptyUpperContainer: ".autopay-empty-upper-container " +
+  "{" +
+  "position: absolute;" +
+    //"height:" + 510 * widthK + "px;" +
+  "height:" + 460 * heightK + "px;" +
+  "width: 100%;" +
+  "top:0;" +
+    //"background-color: lightgray;" +
+  "}",
+
+
+  autoPayEmptyUpperIconIn: ".autopay-empty-upper-icon" +
+  "{" +
+  "position: absolute;" +
+  "height:83%;" +
+  "width:100%;" +
+  "top:17%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 50%;" +
+  "background-position: center;" +
+  "background-position-y: 50%;" +
+  "background-image: url(resources/icons/ViewAutoPay/autopayment_empty.png);" +
+  "}",
+
+  autoPayEmptyLowerContainer: ".autopay-empty-lower-container " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 650 * heightK + "px;" +
+  "width: 100%;" +
+  "top:" + 460 * heightK + "px;" +
+  "background-color: transparent;" +
+  "}",
+
+  autoPayEmptyLowerTitleText: ".autopay-empty-lower-title-text " +
+  "{" +
+  "position: relative;" +
+  "color: black;" +
+  "width:" + 490 * widthK + "px;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:11%;" +
+    //"left:" + -5 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "font-weight: bold;" +
+  "}",
+
+  autoPayEmptyLowerBodyText: ".autopay-empty-lower-body-text " +
+  "{" +
+  "position: relative;" +
+  "color: #8b8b8b;" +
+  "width:59%;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:15%;" +
+    //"left:" + -5 * widthK + "px;" +
+  "font-size:" + 35 * widthK + "px;" +
+  "font-weight: bold;" +
+  "letter-spacing: 1px;" +
+  "word-spacing: 1px;" +
+  "line-height:" + 46 * widthK + "px;" +
   "}",
 
 

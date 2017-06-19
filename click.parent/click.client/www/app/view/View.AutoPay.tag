@@ -5,7 +5,7 @@
     <div id="rightButton" ontouchend="addAutoPay()" class="settings-friend-help-add-button"></div>
   </div>
 
-  <div class="view-autopay-container" if="{false}">
+  <div class="view-autopay-container">
     <div class="view-autopay-block-containter" each="{j in autopayList}">
       <div id="{j.id}" class="view-autopay-block-inner-containter" ontouchstart="onTouchStartOfAutoPayment()"
            ontouchend="onTouchEndOfAutoPayment(this.id)">
@@ -19,16 +19,6 @@
         </div>
       </div>
       <div class="view-autopay-next-icon"></div>
-    </div>
-  </div>
-  <div class="view-autopay-container" if="{true}">
-    <div class="component-card-upper-container">
-      <div class="component-card-upper-icon-in"
-           style="background-image: url('resources/icons/ViewAutoPay/autopayment_empty.png');background-size: 50%;background-position-y: 50%;"></div>
-    </div>
-    <div class="component-card-lower-container">
-      <p class="component-card-lower-title-text">Title</p>
-      <p class="component-card-lower-body-text">Text text</p>
     </div>
   </div>
 
@@ -48,8 +38,6 @@
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
-
-    alert("VGFTYVFYUI");
 
 
     goToBack = function () {

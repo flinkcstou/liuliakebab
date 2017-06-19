@@ -5,7 +5,7 @@
     <div id="rightButton" ontouchend="addAutoPay()" class="settings-friend-help-add-button"></div>
   </div>
 
-  <div class="view-autopay-container">
+  <div class="view-autopay-container" if="{false}">
     <div class="view-autopay-block-containter" each="{j in autopayList}">
       <div id="{j.id}" class="view-autopay-block-inner-containter" ontouchstart="onTouchStartOfAutoPayment()"
            ontouchend="onTouchEndOfAutoPayment(this.id)">
@@ -19,6 +19,17 @@
         </div>
       </div>
       <div class="view-autopay-next-icon"></div>
+    </div>
+  </div>
+
+  <div class="view-autopay-container" if="{true}">
+    <div class="autopay-empty-upper-container">
+      <div class="autopay-empty-upper-icon"
+           style="background-image: url('resources/icons/ViewAutoPay/autopayment_empty.png');background-size: 64%;background-position-x: 43%;"></div>
+    </div>
+    <div class="autopay-empty-lower-container">
+      <p class="autopay-empty-lower-title-text">{window.languages.ViewAutoPayEmptyTitleText}</p>
+      <p class="autopay-empty-lower-body-text">{window.languages.ViewAutoPayEmptyBodyText}</p>
     </div>
   </div>
 
