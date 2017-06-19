@@ -362,7 +362,7 @@ var RU_LANGUAGES =
 
   "ViewReportsFilterMonthNotStartedYet": "ещё не наступил",
 
-  "VewSettingsSupportMessage": "Если вы обнаружили ошибку, хотите получить помощь или внести предложение,пожалуйста, сообщите нам об этом",
+  "VewSettingsSupportMessage": "Если вы обнаружили ошибку, хотите получить помощь или внести предложение, пожалуйста, сообщите нам об этом",
   "VewSettingsSupportTheme": "ВЫБЕРИТЕ ТЕМУ ДЛЯ ОБРАЩЕНИЯ",
   "VewSettingsSupportRegistration": "РЕГИСТРАЦИЯ",
   "VewSettingsSupportPay": "ОПЛАТА",
