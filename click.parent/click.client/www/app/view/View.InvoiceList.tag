@@ -22,7 +22,8 @@
           {languages.ViewInvoiceListFromUser}</p>
       </div>
     </div>
-    <div id="invoiceListInvoicesId" class="invoice-list-invoices-holder" ontouchmove="invoiceListInvoicesTouchMove()">
+    <div id="invoiceListInvoicesId" class="invoice-list-invoices-holder" ontouchmove="invoiceListInvoicesTouchMove()"
+         if="{invoiceListShow}">
       <div each="{invoice in invoiceList}" if="{!invoice.deleted}" title="{JSON.stringify(invoice)}"
            class="invoice-list-invoice"
            ontouchend="goToInvoiceHistoryDetailTouchEnd(this.title)"
@@ -48,6 +49,23 @@
         <p class="invoice-list-invoice-date">{invoice.date} {invoice.time}</p>
       </div>
     </div>
+
+    <div id="invoiceListInvoicesId" class="invoice-list-invoices-holder" ontouchmove="invoiceListInvoicesTouchMove()"
+         if="{!invoiceListShow}">
+      <div class="empty-list-upper-container">
+        <div class="empty-list-upper-icon" if="{toUser}"
+             style="background-image: url('resources/icons/invoice/to-user_empty.png');background-size: 69%;background-position-x: 50%;background-position-y: 19%;"></div>
+        <div class="empty-list-upper-icon" if="{!toUser}"
+             style="background-image: url('resources/icons/invoice/from-user_empty.png');background-size: 70%;background-position-x: 50%;background-position-y: 9%;"></div>
+      </div>
+      <div class="empty-list-lower-container empty-list-invoice-lower-container">
+        <p class="empty-list-lower-title-text" style="top: 1%;">{toUser? window.languages.ViewInvoiceInEmptyTitleText :
+          window.languages.ViewInvoiceOutEmptyTitleText}</p>
+        <p class="empty-list-lower-body-text" style="top: 6%;">{window.languages.ViewAutoPayEmptyBodyText}</p>
+      </div>
+
+    </div>
+
   </div>
 
   <view-transfer-detail hidden="{!showComponentTransfer || !showComponent}"></view-transfer-detail>
@@ -98,6 +116,7 @@
     scope.showComponentHistory = false;
     scope.showComponent = false;
     var canDownloadInvoiceList = true;
+    scope.invoiceListShow = true;
 
     invoiceListInvoicesTouchMove = function () {
 
@@ -125,6 +144,7 @@
         scope.invoiceList = [];
         invoiceListPageNumber = 1;
         canDownloadInvoiceList = true;
+        scope.invoiceListShow = true;
       }
 
       scope.toUser = true;
@@ -158,6 +178,8 @@
             if (result[1]) {
               if (result[1].length == 0) {
                 canDownloadInvoiceList = false;
+                scope.invoiceListShow = false;
+                scope.update();
               }
               if (result[1][0]) {
                 console.log('invoice to user', result[1])
@@ -175,7 +197,7 @@
                   scope.invoiceList.push(result[1][i]);
                 }
 
-                scope.update(scope.invoiceList);
+                scope.update();
 
                 localStorage.setItem('click_client_invoice_list', JSON.stringify(scope.invoiceList));
               }
@@ -203,6 +225,7 @@
         scope.invoiceList = [];
         invoiceListPageNumber = 1;
         canDownloadInvoiceList = true;
+        scope.invoiceListShow = true;
       }
       scope.toUser = false;
       scope.update();
@@ -234,6 +257,8 @@
             if (result[1]) {
               if (result[1].length == 0) {
                 canDownloadInvoiceList = false;
+                scope.invoiceListShow = false;
+                scope.update();
               }
               if (result[1][0]) {
                 console.log('invoice from user', result[1])
@@ -251,7 +276,8 @@
                   scope.invoiceList.push(result[1][i]);
                 }
 
-                scope.update(scope.invoiceList);
+
+                scope.update();
 //                localStorage.setItem('click_client_invoice_list', JSON.stringify(scope.invoiceList));
               }
             }

@@ -60,14 +60,14 @@ var css = {
   "touch-action: manipulation;" +
 
 
-  "background-image: url(resources/autopayment.png);" +
-  "opacity: 0.6;" +
+    //"background-image: url(resources/from-user.png);" +
+    //"opacity: 0.6;" +
     //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
     //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-    //"background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    //"background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-    //"background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -324,6 +324,7 @@ var css = {
   "bottom: 0;" +
   "-webkit-overflow-scrolling: touch;" +
   "padding: 0 " + 25 * widthK + "px 0 " + 30 * widthK + "px;" +
+  "width:" + 665 * widthK + "px;" +
   "}",
 
   invoiceListInvoice: ".invoice-list-invoice" +
@@ -12413,7 +12414,7 @@ var css = {
   "}",
 
 
-  autoPayEmptyUpperContainer: ".autopay-empty-upper-container " +
+  emptyListUpperContainer: ".empty-list-upper-container " +
   "{" +
   "position: absolute;" +
     //"height:" + 510 * widthK + "px;" +
@@ -12421,10 +12422,11 @@ var css = {
   "width: 100%;" +
   "top:0;" +
     //"background-color: lightgray;" +
+  "left:0;" +
   "}",
 
 
-  autoPayEmptyUpperIconIn: ".autopay-empty-upper-icon" +
+  emptyListUpperIconIn: ".empty-list-upper-icon" +
   "{" +
   "position: absolute;" +
   "height:83%;" +
@@ -12437,16 +12439,22 @@ var css = {
   "background-image: url(resources/icons/ViewAutoPay/autopayment_empty.png);" +
   "}",
 
-  autoPayEmptyLowerContainer: ".autopay-empty-lower-container " +
+  emptyListLowerContainer: ".empty-list-lower-container " +
   "{" +
   "position: absolute;" +
   "height:" + 650 * heightK + "px;" +
   "width: 100%;" +
   "top:" + 460 * heightK + "px;" +
   "background-color: transparent;" +
+  "left:0;" +
   "}",
 
-  autoPayEmptyLowerTitleText: ".autopay-empty-lower-title-text " +
+  emptyListInvoiceLowerContainer: ".empty-list-invoice-lower-container " +
+  "{" +
+  "height:" + 550 * heightK + "px;" +
+  "}",
+
+  emptyListLowerTitleText: ".empty-list-lower-title-text " +
   "{" +
   "position: relative;" +
   "color: black;" +
@@ -12462,7 +12470,7 @@ var css = {
   "font-weight: bold;" +
   "}",
 
-  autoPayEmptyLowerBodyText: ".autopay-empty-lower-body-text " +
+  emptyListLowerBodyText: ".empty-list-lower-body-text " +
   "{" +
   "position: relative;" +
   "color: #8b8b8b;" +

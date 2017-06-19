@@ -6,7 +6,7 @@
       <div id="rightButton" ontouchend="addFavorite()" class="settings-friend-help-add-button"></div>
     </div>
 
-    <div class="view-favorites-container">
+    <div class="view-favorites-container" if="{favoriteListShow}">
       <div class="view-favorites-block-containter" each="{j in favPaymentsList}">
         <div id="p{j.service.id}" class="view-favorites-block-inner-containter"
              ontouchend="openFavoritePayment(this.id)">
@@ -24,6 +24,18 @@
       </div>
     </div>
 
+    <div class="view-favorites-container" if="{!favoriteListShow}">
+      <div class="empty-list-upper-container">
+        <div class="empty-list-upper-icon"
+             style="background-image: url('resources/icons/ViewFavorite/favorites_empty.png');background-size: 64%;background-position-x: 50%;"></div>
+      </div>
+      <div class="empty-list-lower-container">
+        <p class="empty-list-lower-title-text">{window.languages.ViewFavoriteEmptyTitleText}</p>
+        <p class="empty-list-lower-body-text">{window.languages.ViewAutoPayEmptyBodyText}</p>
+      </div>
+
+    </div>
+
 
   </div>
 
@@ -31,6 +43,7 @@
     var scope = this;
     this.titleName = 'ИЗБРАННОЕ';
     scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+    scope.favoriteListShow = true;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-favorites-new') {
       history.arrayOfHistory.push(
@@ -82,6 +95,8 @@
         else break;
       }
 //      console.log("favorites=", scope.favPaymentsList);
+      if (scope.favPaymentsList.length == 0) scope.favoriteListShow = false;
+
       scope.update(scope.favPaymentsList);
     }
 
@@ -189,6 +204,7 @@
       for (var i in favoritePaymentsList)
         if (favoritePaymentsList[i].service.id == id) {
           favoritePaymentsList.splice(i, 1);
+          if (favoritePaymentsList.length == 0) scope.favoriteListShow = false;
           console.log(favoritePaymentsList);
           localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
           scope.update(scope.favPaymentsList);

@@ -5,7 +5,7 @@
     <div id="rightButton" ontouchend="addAutoPay()" class="settings-friend-help-add-button"></div>
   </div>
 
-  <div class="view-autopay-container" if="{false}">
+  <div class="view-autopay-container" if="{autopayListShow}">
     <div class="view-autopay-block-containter" each="{j in autopayList}">
       <div id="{j.id}" class="view-autopay-block-inner-containter" ontouchstart="onTouchStartOfAutoPayment()"
            ontouchend="onTouchEndOfAutoPayment(this.id)">
@@ -22,14 +22,14 @@
     </div>
   </div>
 
-  <div class="view-autopay-container" if="{true}">
-    <div class="autopay-empty-upper-container">
-      <div class="autopay-empty-upper-icon"
+  <div class="view-autopay-container" if="{!autopayListShow}">
+    <div class="empty-list-upper-container">
+      <div class="empty-list-upper-icon"
            style="background-image: url('resources/icons/ViewAutoPay/autopayment_empty.png');background-size: 64%;background-position-x: 43%;"></div>
     </div>
-    <div class="autopay-empty-lower-container">
-      <p class="autopay-empty-lower-title-text">{window.languages.ViewAutoPayEmptyTitleText}</p>
-      <p class="autopay-empty-lower-body-text">{window.languages.ViewAutoPayEmptyBodyText}</p>
+    <div class="empty-list-lower-container">
+      <p class="empty-list-lower-title-text">{window.languages.ViewAutoPayEmptyTitleText}</p>
+      <p class="empty-list-lower-body-text">{window.languages.ViewAutoPayEmptyBodyText}</p>
     </div>
   </div>
 
@@ -73,6 +73,7 @@
     scope = this;
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;
+    scope.autopayListShow = true;
 
 
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
@@ -129,7 +130,8 @@
 //            console.log("L=", result[1]);
 //            scope.autopayList = result[1];
           console.log("Autopay list", scope.autopayList);
-          scope.update(scope.autopayList);
+          if (scope.autopayList.length == 0) scope.autopayListShow = false;
+          scope.update();
           localStorage.setItem('click_client_autopayList', JSON.stringify(scope.autopayList));
         }
         else
