@@ -585,6 +585,32 @@ var css = {
   "top:" + 30 * widthK + "px;" +
   "font-size:" + 64 * widthK + "px;" +
   "}",
+
+  registrationDevicePhoneCodePart: ".registration-device-phone-code-part " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "top:" + 30 * widthK + "px;" +
+  "font-size:" + 64 * widthK + "px;" +
+  "}",
+
+  registrationDevicePhoneInputPart: ".registration-device-phone-input-part " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "top:" + 30 * widthK + "px;" +
+  "font-size:" + 64 * widthK + "px;" +
+  "border: none;" +
+  "outline: none;" +
+  "color: white;" +
+  "left: " + 180 * widthK + "px;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "width: 65%;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "background-color: transparent;" +
+  "}",
+
   registrationDeviceRemember: ".registration-device-remember " +
   "{" +
   "position: absolute;" +
