@@ -98,6 +98,9 @@
       if (scope.favPaymentsList.length == 0) scope.favoriteListShow = false;
 
       scope.update(scope.favPaymentsList);
+    } else {
+      scope.favoriteListShow = false;
+      scope.update();
     }
 
     openFavoritePayment = function (id) {

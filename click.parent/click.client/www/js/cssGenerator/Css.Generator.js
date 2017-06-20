@@ -12469,6 +12469,8 @@ var css = {
     //"left:" + -5 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "font-weight: bold;" +
+  "letter-spacing: 1px;" +
+  "word-spacing: 1px;" +
   "}",
 
   emptyListLowerBodyText: ".empty-list-lower-body-text " +
