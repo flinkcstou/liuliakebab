@@ -3071,7 +3071,7 @@ var css = {
   "height:" + 100 * widthK + "px; " +
   "width: 100%;" +
     //"margin-top: 1%;" +
-  "z-index: 999999;" +
+  "z-index: 999;" +
   "background-color: white;" +
   "top:" + 86 * widthK + "px; " +
     //"display: none;" +
@@ -4561,6 +4561,7 @@ var css = {
   "width: 100%;" +
   "background-color: #353340;" +
   "display: none;" +
+  "z-index: 9999;" +
   "}",
 
   searchContainer: ".search-container" +
