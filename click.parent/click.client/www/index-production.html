@@ -285,7 +285,11 @@
 
     if (!checkFirstStarting && localStorage.getItem('click_client_token')) {
       var nowMinutes = new Date().getMinutes();
-      if(Math.abs(waitingMinutes - nowMinutes) > 5  ){
+      console.log("BEFORE MINUTES", waitingMinutes);
+      console.log("NOW MINUTES", nowMinutes);
+
+      if(Math.abs(parseInt(waitingMinutes) - parseInt(nowMinutes)) > 5  ){
+        console.log("5 minutes >");
         var text = "Сессия устарела или заблокирована, необходимо повторно авторизоваться в системе"
         showConfirmComponent(text, 'session');
         return
