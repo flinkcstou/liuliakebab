@@ -65,8 +65,8 @@
       event.preventDefault();
       event.stopPropagation();
       blockSearchId.style.display = 'none';
-      if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#007AE2");
+//      if (device.platform != 'BrowserStand')
+//        StatusBar.backgroundColorByHexString("#007AE2");
       scope.searchWord = '';
       searchInputId.autofocus = false;
     }
