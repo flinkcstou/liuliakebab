@@ -12485,7 +12485,7 @@ var css = {
   "{" +
   "position: relative;" +
   "color: #8b8b8b;" +
-  "width:59%;" +
+  "width:65%;" +
   "text-align: center;" +
   "margin-left: auto;" +
   "margin-top: 0;" +
