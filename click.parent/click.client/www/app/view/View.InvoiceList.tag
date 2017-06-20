@@ -58,7 +58,7 @@
         <div class="empty-list-upper-icon" if="{!toUser}"
              style="background-image: url('resources/icons/invoice/from-user_empty.png');background-size: 70%;background-position-x: 50%;background-position-y: 9%;"></div>
       </div>
-      <div class="empty-list-lower-container empty-list-invoice-lower-container">
+      <div class="empty-list-lower-container">
         <p class="empty-list-lower-title-text" style="top: 1%;">{toUser? window.languages.ViewInvoiceInEmptyTitleText :
           window.languages.ViewInvoiceOutEmptyTitleText}</p>
         <p class="empty-list-lower-body-text" style="top: 6%;">{window.languages.ViewAutoPayEmptyBodyText}</p>

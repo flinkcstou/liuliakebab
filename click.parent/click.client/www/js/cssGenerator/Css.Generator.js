@@ -12415,11 +12415,21 @@ var css = {
   "}",
 
 
+  emptyListContainer: ".empty-list-container " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 1130 * heightK + "px;" +
+  "width: 100%;" +
+  "top:0;" +
+    //"background-color: lightgray;" +
+  "left:0;" +
+  "}",
+
   emptyListUpperContainer: ".empty-list-upper-container " +
   "{" +
   "position: absolute;" +
-    //"height:" + 510 * widthK + "px;" +
-  "height:" + 460 * heightK + "px;" +
+    //"height:" + 460 * widthK + "px;" +
+  "height: 40.14%;" +
   "width: 100%;" +
   "top:0;" +
     //"background-color: lightgray;" +
@@ -12443,17 +12453,15 @@ var css = {
   emptyListLowerContainer: ".empty-list-lower-container " +
   "{" +
   "position: absolute;" +
-  "height:" + 650 * heightK + "px;" +
+    //"height:" + 650 * widthK + "px;" +
+  "height: 56.72%;" +
   "width: 100%;" +
-  "top:" + 460 * heightK + "px;" +
+    //"top:" + 460 * widthK + "px;" +
+  "top:40.14%;" +
   "background-color: transparent;" +
   "left:0;" +
   "}",
 
-  emptyListInvoiceLowerContainer: ".empty-list-invoice-lower-container " +
-  "{" +
-  "height:" + 550 * heightK + "px;" +
-  "}",
 
   emptyListLowerTitleText: ".empty-list-lower-title-text " +
   "{" +
@@ -12498,7 +12506,7 @@ var css = {
   autopayMethodBodyContainer: ".autopay-method-body-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 1092 * heightK + "px; " +
+  "height: " + 1092 * widthK + "px; " +
   "width:" + 720 * widthK + "px; " +
   "top:" + 140 * widthK + "px; " +
   "bottom:0; " +

@@ -25,13 +25,15 @@
     </div>
 
     <div class="view-favorites-container" if="{!favoriteListShow}">
-      <div class="empty-list-upper-container">
-        <div class="empty-list-upper-icon"
-             style="background-image: url('resources/icons/ViewFavorite/favorites_empty.png');background-size: 64%;background-position-x: 50%;"></div>
-      </div>
-      <div class="empty-list-lower-container">
-        <p class="empty-list-lower-title-text">{window.languages.ViewFavoriteEmptyTitleText}</p>
-        <p class="empty-list-lower-body-text">{window.languages.ViewAutoPayEmptyBodyText}</p>
+      <div class="empty-list-container">
+        <div class="empty-list-upper-container">
+          <div class="empty-list-upper-icon"
+               style="background-image: url('resources/icons/ViewFavorite/favorites_empty.png');background-size: 64%;background-position-x: 50%;"></div>
+        </div>
+        <div class="empty-list-lower-container">
+          <p class="empty-list-lower-title-text">{window.languages.ViewFavoriteEmptyTitleText}</p>
+          <p class="empty-list-lower-body-text">{window.languages.ViewAutoPayEmptyBodyText}</p>
+        </div>
       </div>
 
     </div>
