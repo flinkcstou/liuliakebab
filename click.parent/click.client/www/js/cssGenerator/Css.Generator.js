@@ -13497,7 +13497,6 @@ var css = {
 
 }
 
-riot.mount('component-notification');
 
 var style = document.createElement('style');
 style.type = 'text/css';

@@ -16,6 +16,7 @@ public class CompileCordovaAndroid extends AbstractCompileCordova {
 
     clickClient.xmlFile("cordova/platforms/android/AndroidManifest.xml")
       .modify(xml -> xml.changeAttr("/manifest/application/activity[@name='MainActivity']", "android:windowSoftInputMode", "adjustPan"))
+      .modify(xml -> xml.changeAttr("/manifest/application/activity[@name='MainActivity']", "android:resizeableActivity", "false"))
       .save();
 
     addPluginPickcontact();

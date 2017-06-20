@@ -283,12 +283,12 @@
 
     console.log('balance')
 
-    if (!checkFirstStarting && localStorage.getItem('click_client_token')) {
+    if (!checkFirstStarting && localStorage.getItem('click_client_token') && localStorage.getItem('click_client_loginInfo')) {
       var nowMinutes = new Date().getMinutes();
       console.log("BEFORE MINUTES", waitingMinutes);
       console.log("NOW MINUTES", nowMinutes);
 
-      if(Math.abs(parseInt(waitingMinutes) - parseInt(nowMinutes)) > 5  ){
+      if(Math.abs(parseInt(waitingMinutes) - parseInt(nowMinutes)) > 5 ){
         console.log("5 minutes >");
         var text = "Сессия устарела или заблокирована, необходимо повторно авторизоваться в системе"
         showConfirmComponent(text, 'session');
