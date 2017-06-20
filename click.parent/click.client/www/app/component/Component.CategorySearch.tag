@@ -57,6 +57,8 @@
       if (scope.categoryList)
         arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
 
+//      updateHintContainer(false);
+
     }
 
     searchCancelEnd = function () {

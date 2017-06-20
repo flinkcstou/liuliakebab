@@ -669,12 +669,12 @@ var css = {
   "position: relative;" +
   "width:" + 440 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
-  //"background-color: #01cfff;" +
+    //"background-color: #01cfff;" +
   "margin-right: auto;" +
-  //"border-radius:" + 80 * widthK + "px;" +
+    //"border-radius:" + 80 * widthK + "px;" +
   "margin-left: auto;" +
-  //"margin-top: 10%;" +
-  "top:"+ 30 * widthK + "px;" +
+    //"margin-top: 10%;" +
+  "top:" + 30 * widthK + "px;" +
   "border-bottom:1px solid #b7f1ff;" +
   "color:#b7f1ff;" +
   "}",
@@ -3070,7 +3070,7 @@ var css = {
   "height:" + 100 * widthK + "px; " +
   "width: 100%;" +
     //"margin-top: 1%;" +
-  "z-index: 999999;" +
+  "z-index: 999;" +
   "background-color: white;" +
   "top:" + 86 * widthK + "px; " +
     //"display: none;" +
@@ -3778,7 +3778,7 @@ var css = {
   "height: 100%;" +
   "width: 100%;" +
   "background-color: #f0f1f4;" +
-  //"display: none;" +
+    //"display: none;" +
   "}",
 
   componentCalcNameTitle: ".component-calc-name-title " +
@@ -4560,6 +4560,7 @@ var css = {
   "width: 100%;" +
   "background-color: #353340;" +
   "display: none;" +
+  "z-index: 9999;" +
   "}",
 
   searchContainer: ".search-container" +
@@ -9319,7 +9320,7 @@ var css = {
   "height: 100%;" +
   "width: 100%;" +
   "background-color: #f0f1f4;" +
-  //"display: none;" +
+    //"display: none;" +
   "}",
 
   componentBankListContainer: ".component-banklist-container" +

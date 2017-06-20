@@ -180,6 +180,11 @@
       }
     };
 
+//    updateHintContainer = function (bool) {
+//      scope.hintShow = bool;
+//      scope.update(scope.hintShow);
+//    }
+
 
     onTouchMoveOfCategory = function () {
 
