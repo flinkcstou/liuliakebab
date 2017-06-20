@@ -409,7 +409,7 @@ var css = {
   "margin: 0;" +
   "font-size:" + 22 * widthK + "px;" +
   "float: left;" +
-  "margin-top:" + 18 * widthK + "px;" +
+  "margin-top:" + 8 * widthK + "px;" +
   "word-spacing:" + 7 * widthK + "px;" +
   "color: #c2c2c2;" +
   "}",
