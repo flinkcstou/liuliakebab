@@ -1,13 +1,37 @@
-.riot-tags-main-container
-{
--webkit-animation-name: mountAnimation !important;
--webkit-animation-duration: 0.2s !important;
-animation-name:mountAnimation !important;
-animation-duration: 0.2s !important;
+.riot-tags-main-container {
+  -webkit-animation-name: mountAnimation !important;
+  -webkit-animation-duration: 0.2s !important;
+  animation-name: mountAnimation !important;
+  animation-duration: 0.2s !important;
 }
 
-@keyframes mountAnimation
-{
-from {opacity: 0 !important;}
-to {opacity: 1 !important;}
+@keyframes mountAnimation {
+  from {
+    opacity: 0 !important;
+  }
+  to {
+    opacity: 1 !important;
+  }
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes caret {
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+
+}
+
+/* Standard syntax */
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+
 }

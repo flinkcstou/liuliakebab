@@ -6,9 +6,9 @@
 
         <p class="registration-device-phone-code-part">+{window.languages.CodeOfCountry}</p>
         <input class="registration-device-phone-input-part"
-               type="tel"
-               id="firstFieldInput"
-               value="{maskPhoneNumber}"/>
+               id="regNumberInput"
+               value="{maskPhoneNumber}" ontouchend="onTouchendRegNumber()" disabled/>
+        <div id="inputCaret" class="registration-caret"></div>
 
         <div class="registration-device-remember" ontouchend="rememberTouchEnd()" ontouchstart="rememberTouchStart()">
           <p class="registration-device-remember-label">
@@ -175,6 +175,21 @@
         scope.update();
       }
       return
+    }
+
+    var regNumberTouchEndX, regNumberTouchEndY;
+
+
+    onTouchendRegNumber = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      regNumberTouchEndX = event.changedTouches[0].pageX;
+
+      console.log("regNumberTouchEndX=", regNumberTouchEndX, ",regNumberTouchEndY=", regNumberTouchEndY);
+      this.inputCaret.style.left = (regNumberTouchEndX - 80) + 'px';
+
+
     }
 
     var offlineTouchStartX, offlineTouchStartY, offlineTouchEndX, offlineTouchEndY;

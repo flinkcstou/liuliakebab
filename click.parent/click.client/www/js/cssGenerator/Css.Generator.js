@@ -611,6 +611,22 @@ var css = {
   "background-color: transparent;" +
   "}",
 
+  registrationCaret: ".registration-caret " +
+  "{" +
+  "position: absolute;" +
+  "top:" + 40 * widthK + "px;" +
+  "left:" + 180 * widthK + "px;" +
+  "width:" + 4 * widthK + "px;" +
+  "height:" + 60 * widthK + "px;" +
+  "background-color: white;" +
+  "-webkit-animation-name: caret; " +
+  "-webkit-animation-duration: 1.5s; " +
+  "-webkit-animation-iteration-count: infinite; " +
+  "animation-name: caret;" +
+  "animation-duration: 1.5s;" +
+  "animation-iteration-count: infinite;" +
+  "}",
+
   registrationDeviceRemember: ".registration-device-remember " +
   "{" +
   "position: absolute;" +
