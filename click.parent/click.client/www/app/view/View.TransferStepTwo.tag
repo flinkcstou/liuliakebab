@@ -14,6 +14,7 @@
     <div class="transfertwo-contact-phone-field">
       <p if="{opts[0].type == 1}" class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
         {window.languages.Currency}</p>
+      
       <input maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
              onmouseup="sumMouseUp()"
              type="tel" pattern="[0-9]" onblur="sumOnBlur()" onkeyup="sumKeyUp()" oninput="sumKeyUp()"/>

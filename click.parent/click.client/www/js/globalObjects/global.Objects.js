@@ -135,7 +135,11 @@ window.dateAddZero = function (date) {
 };
 
 window.amountTransform = function (amount) {
-  amount = amount.toString()
+  if(amount) {
+    amount = amount.toString()
+  }else{
+    return amount
+  }
   if (amount.length == 1 && amount == 0) {
     return '';
   }
