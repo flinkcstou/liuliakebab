@@ -133,7 +133,7 @@ var RU_LANGUAGES =
   "ViewTransferTwoTax": "Комиссия: ",
   "ViewTransferTwoNext": "Далее",
   "ViewTransferTwoTitle": "ПЕРЕВОД НА",
-  "ViewTransferTwoSum": "СУММА",
+  "ViewTransferTwoSum": "Введите сумму",
 
   "ViewTransferThreeTitle": "ПЕРЕВОД НА",
   "ViewTransferThreeMenuTitle": "ПЕРЕВЕСТИ С КАРТЫ",
