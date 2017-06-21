@@ -316,13 +316,24 @@
       else {
         console.log("ON SERVICEPAGE NEW ON MOUNT autofocus first field");
 
-        if (device.platform == 'iOS') {
-          firstFieldInput.autofocus;
-          firstFieldInput.focus();
-        } else {
-          setTimeout(function () {
+        if (opts.mode != 'ADDAUTOPAY') {
+          if (device.platform == 'iOS') {
+            firstFieldInput.autofocus;
             firstFieldInput.focus();
-          }, 0);
+          } else {
+            setTimeout(function () {
+              firstFieldInput.focus();
+            }, 0);
+          }
+        } else {
+          if (device.platform == 'iOS') {
+            autoPayNameInput.autofocus;
+            autoPayNameInput.focus();
+          } else {
+            setTimeout(function () {
+              autoPayNameInput.focus();
+            }, 0);
+          }
         }
 
         scope.update()
@@ -344,8 +355,8 @@
         amount.value = 0
 
       if (modeOfApp.offlineMode) {
-        if(typeof enterButtonId != 'undefined')
-        enterButtonId.innerText = 'Оплатить'
+        if (typeof enterButtonId != 'undefined')
+          enterButtonId.innerText = 'Оплатить'
       }
     });
 
@@ -1274,10 +1285,10 @@
 
           var ussdQuery = scope.fieldArray[0].ussd_query;
 
-          console.log('opts.formtype',opts.formtype)
+          console.log('opts.formtype', opts.formtype)
 
 
-          if (opts.formtype == 1  && ussdQuery) {
+          if (opts.formtype == 1 && ussdQuery) {
             if (opts.firstFieldText) {
               ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
             }
@@ -1316,7 +1327,7 @@
             console.log(ussdQuery)
           }
 
-          if(ussdQuery === null){
+          if (ussdQuery === null) {
             scope.clickPinError = false;
             scope.errorNote = ("Сервис временно недоступен!");
             scope.showError = true;
@@ -1418,7 +1429,7 @@
         if (modeOfApp.offlineMode) {
 
           var ussdQuery = scope.fieldArray[0].ussd_query;
-          if(ussdQuery === null){
+          if (ussdQuery === null) {
             scope.clickPinError = false;
             scope.errorNote = ("Сервис временно недоступен!");
             scope.showError = true;
