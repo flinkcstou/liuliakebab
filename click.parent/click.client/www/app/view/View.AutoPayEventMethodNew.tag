@@ -147,6 +147,18 @@
 
     scope.update(scope.amountsCanBeText);
 
+    this.on('mount', function () {
+      if (device.platform == 'iOS') {
+        autoPayNameInput.autofocus;
+        autoPayNameInput.focus();
+      } else {
+        setTimeout(function () {
+          autoPayNameInput.focus();
+        }, 0);
+      }
+
+    });
+
 
     var oldChosenStep, chosenStep;
 
