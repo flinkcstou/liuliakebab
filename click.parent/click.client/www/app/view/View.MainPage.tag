@@ -1,6 +1,4 @@
 <view-main-page class="riot-tags-main-container">
-  <div class="side-menu-block-for-swipe" ontouchend="blockForSwipeTouchEnd()"
-       ontouchstart="blockForSwipeTouchStart()" ontouchmove="blockForSwipeTouchMove()"></div>
   <component-menu></component-menu>
 
   <div id="mainPageId" class="view-main-page">
@@ -96,7 +94,6 @@
 
     var touchStartX, touchEndX, touchMoveX;
     var timeStartX, timeEndX;
-    var width = window.innerWidth;
 
 
     var myCardListStartX, myCardListEndX, myCardListStartY, myCardListEndY
@@ -125,53 +122,6 @@
       }
       else return
     };
-
-    blockForSwipeTouchStart = function () {
-      touchStartX = event.changedTouches[0].pageX;
-      timeStartX = event.timeStamp.toFixed(0);
-      sideMenuId.style.webkitTransition = '0s';
-      mainPageId.style.webkitTransition = '0s';
-      sideMenuBackPageId.style.webkitTransition = '0s';
-    };
-
-    blockForSwipeTouchEnd = function () {
-      event.stopPropagation()
-
-      touchEndX = event.changedTouches[0].pageX;
-      timeEndX = event.timeStamp.toFixed(0);
-
-//      if (touchEndX - touchStartX > 20) {
-//        menuOpen();
-//      }
-
-      console.log('touchMoveX', touchMoveX)
-      console.log('widthK', 269 * widthK)
-      if (touchMoveX > 269 * widthK) {
-        menuOpenTouchEnd(true);
-      }
-      else {
-        if (timeEndX - timeStartX < 500 && touchEndX - touchStartX > 20) {
-          menuOpenTouchEnd(true);
-        }
-        else
-          closeMenu()
-      }
-    }
-
-    blockForSwipeTouchMove = function () {
-      event.preventDefault()
-      event.stopPropagation()
-      var deltaForSideMenuBack = event.changedTouches[0].pageX.toFixed(0) / width;
-      var deltaForMainPage = 1 - deltaForSideMenuBack;
-      if (deltaForMainPage < 0.1)
-        deltaForMainPage = 0.1
-      if (event.changedTouches[0].pageX - 538 * widthK <= 0) {
-        sideMenuId.style.webkitTransform = 'translate3d(' + (event.changedTouches[0].pageX - 538 * widthK) + 'px,0,0)'
-        touchMoveX = event.changedTouches[0].pageX;
-      }
-      sideMenuBackPageId.style.opacity = deltaForSideMenuBack;
-      mainPageId.style.opacity = deltaForMainPage;
-    }
 
 
   </script>
