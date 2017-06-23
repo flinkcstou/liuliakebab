@@ -3741,6 +3741,17 @@ var css = {
   "top: 5%;" +
   "}",
 
+  servicePageSecondDropdownFieldPakety: ".servicepage-second-dropdown-field-pakety" +
+  "{" +
+  "position: relative;" +
+  "width: 79.5%;" +
+  "height: 8%;" +
+  "left: 10%;" +
+  "color: white;" +
+  "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
+  "top: 12%;" +
+  "}",
+
   servicePageSecondDropdownFieldText: ".servicepage-second-dropdown-field-text" +
   "{" +
   "bottom: 75%;" +
