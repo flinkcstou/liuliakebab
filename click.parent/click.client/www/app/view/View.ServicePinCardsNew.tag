@@ -115,7 +115,7 @@
       console.log(cardSumFromPinCards, opts.amountText)
       var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
       scope.update()
-      if (cardSumFromPinCards && cardSumFromPinCards < parseInt(opts.amountText)) {
+      if (cardSumFromPinCards && cardSumFromPinCards < parseInt(opts.amountText) && opts.mode != 'ADDAUTOPAY') {
         console.log(cardSumFromPinCards, opts.amountText)
         scope.clickPinError = false;
         scope.errorNote = "На выбранной карте недостаточно средств";
