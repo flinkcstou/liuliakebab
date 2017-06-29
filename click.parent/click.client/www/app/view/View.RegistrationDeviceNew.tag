@@ -158,22 +158,33 @@
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
-        console.log("inputFocusIndex",inputFocusIndex);
+        console.log("inputFocusIndex", inputFocusIndex);
 
         if (scope.maskPhoneNumber.length < 9 && myValue != 'x') {
 //          if (scope.maskPhoneNumber.length == 4)
 //            scope.maskPhoneNumber += ' ';
-          scope.maskPhoneNumber += myValue;
+//          scope.maskPhoneNumber += myValue;
+
+          scope.maskPhoneNumber = scope.maskPhoneNumber.slice(0, inputFocusIndex) + myValue + scope.maskPhoneNumber.slice(inputFocusIndex);
+          ++inputFocusIndex;
+          inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, inputFocusIndex)).width + inputLocalStartX + 'px';
+
+
         }
         if (scope.phoneNumber.length < 13 && myValue != 'x') {
           scope.phoneNumber += myValue;
         }
         if (myValue == 'x') {
+//          console.log("str=", regNumberInput.value, "result=", regNumberInput.value.slice(0, inputFocusIndex - 1) + regNumberInput.value.slice(inputFocusIndex))
+//          regNumberInput.value = regNumberInput.value.slice(0, inputFocusIndex - 1) + regNumberInput.value.slice(inputFocusIndex);
           scope.phoneNumber = scope.phoneNumber.substring(0, scope.phoneNumber.length - 1);
-          scope.maskPhoneNumber = scope.maskPhoneNumber.substring(0, scope.maskPhoneNumber.length - 1);
+          scope.maskPhoneNumber = scope.maskPhoneNumber.slice(0, inputFocusIndex - 1) + scope.maskPhoneNumber.slice(inputFocusIndex);
+//          console.log("111");
+          --inputFocusIndex;
+          inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, inputFocusIndex)).width + inputLocalStartX + 'px';
         }
-        console.log(scope.phoneNumber);
-        console.log(scope.maskPhoneNumber);
+        console.log("p=", scope.phoneNumber);
+        console.log("m=", scope.maskPhoneNumber);
         scope.update();
       }
       return
@@ -185,7 +196,10 @@
     var inputStartX = 260 * widthK;
     var inputLocalStartX = inputStartX - 80 * widthK;
     var inputEndX = 365 * widthK + inputStartX;
-    var inputFocusIndex;
+    var inputFocusIndex = 0;
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext("2d");
+    ctx.font = "64px SFUIDisplay-Light";
 
 
     onTouchendRegNumber = function () {
@@ -194,9 +208,7 @@
 
       regNumberTouchEndX = event.changedTouches[0].pageX;
 
-      var canvas = document.createElement('canvas');
-      var ctx = canvas.getContext("2d");
-      ctx.font = "64px SFUIDisplay-Light";
+
       var valueLength = ctx.measureText(regNumberInput.value).width;
 
       console.log("regNumberTouchEndX=", regNumberTouchEndX, ",text valueLength=", valueLength);
@@ -223,7 +235,7 @@
             } else if (regNumberTouchEndX > (ctx.measureText(regNumberInput.value.substring(0, i)).width + ctx.measureText(regNumberInput.value[i]).width / 2 + inputStartX)) {
               inputCaret.style.left = ctx.measureText(regNumberInput.value.substring(0, i + 1)).width + inputLocalStartX + 'px';
               console.log("222");
-              inputFocusIndex = i+1;
+              inputFocusIndex = i + 1;
             }
 
             console.log("bingo i=", i, "width=", ctx.measureText(regNumberInput.value.substring(0, i + 1)).width);
