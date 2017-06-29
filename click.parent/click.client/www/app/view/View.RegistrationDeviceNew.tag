@@ -158,6 +158,8 @@
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
+        console.log("inputFocusIndex",inputFocusIndex);
+
         if (scope.maskPhoneNumber.length < 9 && myValue != 'x') {
 //          if (scope.maskPhoneNumber.length == 4)
 //            scope.maskPhoneNumber += ' ';
@@ -183,6 +185,7 @@
     var inputStartX = 260 * widthK;
     var inputLocalStartX = inputStartX - 80 * widthK;
     var inputEndX = 365 * widthK + inputStartX;
+    var inputFocusIndex;
 
 
     onTouchendRegNumber = function () {
@@ -199,11 +202,13 @@
       console.log("regNumberTouchEndX=", regNumberTouchEndX, ",text valueLength=", valueLength);
       if ((regNumberTouchEndX < inputStartX) || (regNumberTouchEndX < ctx.measureText(regNumberInput.value[0]).width / 2 + inputStartX)) {
         inputCaret.style.left = inputLocalStartX + 'px';
+        inputFocusIndex = 0;
         console.log("asdd")
       }
       else if (regNumberTouchEndX > (valueLength + inputStartX)) {
         console.log("wwrrt")
         inputCaret.style.left = (valueLength + inputLocalStartX) + 'px';
+        inputFocusIndex = regNumberInput.value.length;
       } else {
         for (var i = 0; i < regNumberInput.value.length; i++) {
 
@@ -214,9 +219,11 @@
             if (regNumberTouchEndX < (ctx.measureText(regNumberInput.value.substring(0, i)).width + ctx.measureText(regNumberInput.value[i]).width / 2 + inputStartX)) {
               inputCaret.style.left = ctx.measureText(regNumberInput.value.substring(0, i)).width + inputLocalStartX + 'px';
               console.log("111");
+              inputFocusIndex = i;
             } else if (regNumberTouchEndX > (ctx.measureText(regNumberInput.value.substring(0, i)).width + ctx.measureText(regNumberInput.value[i]).width / 2 + inputStartX)) {
               inputCaret.style.left = ctx.measureText(regNumberInput.value.substring(0, i + 1)).width + inputLocalStartX + 'px';
               console.log("222");
+              inputFocusIndex = i+1;
             }
 
             console.log("bingo i=", i, "width=", ctx.measureText(regNumberInput.value.substring(0, i + 1)).width);
