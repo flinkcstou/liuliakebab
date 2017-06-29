@@ -141,6 +141,9 @@ window.api.initSocket = function () {
             window.api.sessionErrorChecker = true;
 
             //var result =
+            if(!error){
+              error = "Ooooops! Что-то пошло не так. При возникновении этой ошибки ещё раз, свяжитесь со службой поддержки по номеру +998 71 2310880."
+            }
             showConfirmComponent(error, 'session');
 
           }
