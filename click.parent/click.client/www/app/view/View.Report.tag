@@ -517,6 +517,8 @@
             console.log('PAYMENTLIST=', result[1]);
             for (var i in result[1]) {
 
+              console.log()
+
 //              console.log("C", result[1][i].payment_id);
 
 //              console.log("created=", result[1][i].created.split(" ")[1].substr(0, 5));
@@ -527,6 +529,7 @@
                 if (result[1][i].created.split(" ")[1])
                   if (result[1][i].created.split(" ")[1].substr(0, 5))
                     result[1][i].paymentTime = result[1][i].created.split(" ")[1].substr(0, 5);
+
               var date = new Date(result[1][i].created_timestamp * 1000);
               var dateStr = date.getDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getMonth()] + ' ' + date.getFullYear();
 
@@ -541,6 +544,8 @@
               if (result[1][i].state == 1) {
                 result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
               }
+
+              console.log("STATE ", result[1][i].state)
 
 //              console.log("DATE DATE", dateStr)
               if (!scope.paymentsMap[dateStr]) {
