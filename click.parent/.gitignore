@@ -30,3 +30,4 @@ Thumbs.db
 *.sqlite
 /classes
 /www/build/
+Будет удалено package-lock.json
