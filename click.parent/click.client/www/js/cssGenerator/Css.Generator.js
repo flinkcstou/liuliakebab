@@ -13516,6 +13516,7 @@ var styleSheet = style.stylesheet;
 for (key in css) {
   allCss += css[key];
 }
+
 style.appendChild(document.createTextNode(allCss));
 document.getElementsByTagName("head")[0].appendChild(style);
 riotTags.setAttribute('class', 'riot-tags-main-container')

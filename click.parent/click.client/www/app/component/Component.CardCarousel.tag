@@ -713,7 +713,7 @@
       cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
 
       cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-      cards.style.webkitTransform = "-webkit-translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+      cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       if (modeOfApp.offlineMode) {
 
@@ -1198,7 +1198,7 @@
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "-webkit-translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       }
 
@@ -1209,7 +1209,7 @@
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "-webkit-translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
       if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber == count - 1) {
@@ -1219,7 +1219,7 @@
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "-webkit-translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       }
 
@@ -1232,7 +1232,7 @@
         this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "-webkit-translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
 

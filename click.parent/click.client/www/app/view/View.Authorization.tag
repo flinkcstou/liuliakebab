@@ -497,7 +497,7 @@
     var countOfCall = 0;
     function authorization(phoneNumber, deviceId, password, date) {
       countOfCall++;
-//      var version = localStorage.getItem('version')
+      var version = localStorage.getItem('version')
       var checkServiceAnswer = false;
       window.api.call({
         method: 'app.login',
@@ -506,7 +506,7 @@
           device_id: deviceId,
           password: password,
           datetime: date,
-//          app_version: version
+          app_version: version
         },
         scope: this,
 
