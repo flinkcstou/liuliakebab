@@ -40,6 +40,7 @@ var RU_LANGUAGES =
 
   "ViewAuthorizationClickPinLabel": "Введите CLICK-PIN",
   "ViewAuthorizationForgetPinLabel": "Забыли CLICK-PIN?",
+  "ViewAuthorizationFirstEnterLabel": "Войти",
   "ViewAuthorizationResetLocalStorageLabel": "Очистить данные",
   "ViewAuthorizationOfflineModeLabel": "Офлайн режим",
 
