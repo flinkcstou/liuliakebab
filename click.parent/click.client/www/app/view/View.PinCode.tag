@@ -27,7 +27,7 @@
   </div>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
+                   errornote="{errorNote}" step_amount="{stepToBack}" viewpage="{viewpage}"></component-alert>
 
   <div if="{showRegistrationProcess}" class="registration-process">
     <div if="{registrationSuccess == 0}" class="registration-process-container">
@@ -86,13 +86,18 @@
     }
 
 
+    console.log("OPTS", opts)
+
+
     var pin;
     var pinConfirm;
     var enteredPin = '';
     scope.checkPin = true;
+    scope.stepToBack = null;
     scope.checkPinConfirm = false;
     scope.showError = false;
-    var fromRegistration
+    var fromRegistration = false;
+    var fromAuthorization = false;
     scope.showRegistrationProcess = false;
 
     if (opts[0] == 'view-registration-client') {
@@ -101,6 +106,9 @@
       var cardInformation = opts[2];
     } else if (opts[0] == 'view-security-settings') {
       fromRegistration = false;
+    }
+    else if (opts[0] == 'view-authorization') {
+      fromAuthorization = true;
     }
 
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
@@ -324,7 +332,7 @@
           phone_num: phoneNumber,
           card_number: cardNumber,
           card_data: cardInformation,
-          pin: pin
+          pin: hex_md5(pin)
         },
         scope: this,
 
@@ -465,7 +473,7 @@
           session_key: sessionKey,
           phone_num: phoneNumber,
           current_pin: currentPin,
-          new_pin: pin
+          new_pin: hex_md5(pin)
         },
         scope: this,
 
@@ -474,20 +482,36 @@
           console.log(result[0][0])
           if (result[0][0].error == 0) {
             scope.clickPinError = false;
-            scope.errorNote = "Успешно изменен пин";
+            scope.errorNote = "CLICK PIN успешно изменен";
+            scope.showError = true;
+
+            if (!fromRegistration)
+              scope.stepToBack = 1;
+            if (fromAuthorization) {
+              scope.stepToBack = null
+              scope.viewpage = 'view-main-page'
+            }
+            localStorage.setItem('pinForStand', hex_md5(pin));
             scope.update();
 
-            onBackKeyDown();
+            //onBackKeyDown();
 //            scope.unmount()
           }
           else {
             scope.showError = true;
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
+            if (!fromAuthorization)
+              scope.stepToBack = 1;
+            else {
+              sessionStorage.clear()
+              scope.viewpage = 'view-authorization'
+              scope.stepToBack = null
+            }
             scope.update();
 
-            onBackKeyDown();
-            scope.unmount()
+            //onBackKeyDown();
+            //scope.unmount()
           }
 
         },

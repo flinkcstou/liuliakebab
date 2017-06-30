@@ -653,10 +653,6 @@ var css = {
   "}",
 
 
-  authorizationFirstButtonEnter: ".authorization-first-button-enter " +
-  "{" +
-  "top:" + -70 * widthK + "px;" +
-  "}",
 
 
   smsButtonEnterLabel: ".sms-button-enter-label " +
@@ -988,6 +984,19 @@ var css = {
   "bottom:" + 610 * widthK + "px;" +
   "}",
 
+  authorizationButtonFirstEnter: ".authorization-button-first-enter " +
+  "{" +
+  "position: relative;" +
+  "width:" + 620 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "left:" + -20 * widthK + "px;" +
+  "top:" + -30 * widthK + "px;" +
+  "background-color: #01cfff;" +
+  //"margin-right: auto;" +
+  "border-radius:" + 80 * widthK + "px;" +
+  //"margin-left: auto;" +
+  "}",
+
   authorizationUnchangableContainer: ".authorization-unchangable-container " +
   "{" +
   "position: absolute;" +
@@ -1018,12 +1027,14 @@ var css = {
   authorizationPinInputFirstEnter: ".authorization-pin-input-first-enter " +
   "{" +
   "position: absolute;" +
-  "height:" + 40 * widthK + "px;" +
-  "top:" + -200 * widthK + "px;" +
-  "width:" + 390 * widthK + "px;" +
-  "left:" + 90 * widthK + "px;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "height:" + 90 * widthK + "px;" +
+  "top:" + -120 * widthK + "px;" +
+  "width:" + 620 * widthK + "px;" +
+  "left:" + -20 * widthK + "px;" +
+  "font-size:" + 100 * widthK + "px;" +
+  "border-radius:" + 60 * widthK + "px;" +
   "border: none;" +
+  "text-align: center;" +
   "outline: none;" +
   "}",
 
@@ -1082,7 +1093,8 @@ var css = {
   "left: 0;" +
   "background-size: contain;" +
   "color: #05eeff;" +
-  "border-bottom:" + 1 + "px solid #05eeff;" +
+  //"border-bottom:" + 1 + "px solid #05eeff;" +
+  "border-bottom:" + 1 + "px solid white;" +
   "}",
 
   authorizationButtonRegistration: ".authorization-button-registration " +
@@ -1117,7 +1129,7 @@ var css = {
   "color: white;" +
   "border-bottom:" + 1 + "px solid white;" +
   "text-align: center;" +
-  "top:" + 40 * widthK + "px;" +
+  "top:" + 10 * widthK + "px;" +
   "right:" + 50 * widthK + "px;" +
   "}",
 
@@ -1128,6 +1140,18 @@ var css = {
   "margin-right: auto;" +
   "background-size: contain;" +
   "width:" + 275 * widthK + "px;" +
+  "color: white;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "}",
+
+  authorizationFirstEnterPinLabel: ".authorization-first-enter-pin-label " +
+  "{" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "background-size: contain;" +
+  "width:" + 275 * widthK + "px;" +
+  "top:" + -200 * widthK + "px;" +
   "color: white;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",

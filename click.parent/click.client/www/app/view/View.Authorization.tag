@@ -19,9 +19,11 @@
     <component-keyboard></component-keyboard>
   </div>
 
+
   <div class="authorization-buttons-container">
-    <input class="authorization-pin-input-first-enter" if="{firstEnter}" id="firstPinInputId">
-    <div if="{firstEnter}" class="authorization-first-button-enter button-enter" ontouchend="firstPinEnterTouchEnd()"
+    <div if="{firstEnter}" class="authorization-first-enter-pin-label">{window.languages.ViewAuthorizationClickPinLabel}</div>
+    <input type="password" class="authorization-pin-input-first-enter" if="{firstEnter}" id="firstPinInputId">
+    <div if="{firstEnter}" class="authorization-button-first-enter" ontouchend="firstPinEnterTouchEnd()"
          ontouchstart="firstPinEnterTouchStart()">
       <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
     </div>
@@ -35,7 +37,9 @@
       {window.languages.ViewAuthorizationResetLocalStorageLabel}
     </div>
   </div>
-  <div hidden="{device.platform == 'iOS'}" class="{authorization-button-offline : !firstEnter, authorization-button-offline-first-enter : firstEnter}" ontouchstart="offlineModeTouchStart()"
+  <div hidden="{device.platform == 'iOS'}"
+       class="{authorization-button-offline : !firstEnter, authorization-button-offline-first-enter : firstEnter}"
+       ontouchstart="offlineModeTouchStart()"
        ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
@@ -96,6 +100,20 @@
     //      }
     //    }
 
+    this.on('mount', function () {
+      if (scope.firstEnter) {
+        if (device.platform == 'Android') {
+          setTimeout(function () {
+            firstPinInputId.focus();
+          }, 0)
+        }
+        else {
+          firstPinInputId.autofocus = true;
+          firstPinInputId.focus();
+        }
+      }
+    })
+
     window.lastSocketMethodToSend = undefined;
 
     localStorage.setItem("click_client_authorized", false);
@@ -103,7 +121,7 @@
     var scope = this;
     scope.checkAndroid = false;
 
-    if (localStorage.getItem("click_client_loginInfo")) {
+    if (localStorage.getItem("click_client_accountInfo")) {
       scope.firstEnter = false;
     }
     else {
@@ -585,8 +603,8 @@
             scope.showError = true;
             scope.update(scope.showError);
             enteredPin = '';
-            if(!scope.firstEnter)
-            updateEnteredPin();
+            if (!scope.firstEnter)
+              updateEnteredPin();
             return
           }
         },
@@ -637,12 +655,16 @@
 
         console.log("WWRRRRRRRRR")
 
-        if(scope.firstEnter){
-          riotTags.innerHTML = "<view-pin-code>";
-          riot.mount('view-pin-code', ['view-main-page']);
+        if (scope.firstEnter) {
+          var lengthOfPin = firstPinInputId.value.length;
+          var compareLength = window.inputVerification.spaceDeleter(firstPinInputId.value);
+
         }
-        else
-        if (!localStorage.getItem("click_client_accountInfo")) {
+        if (scope.firstEnter && lengthOfPin != compareLength.length && lengthOfPin == 6) {
+          riotTags.innerHTML = "<view-pin-code>";
+          riot.mount('view-pin-code', ['view-authorization']);
+        }
+        else if (!localStorage.getItem("click_client_accountInfo")) {
           console.log("AAAAAAAAA")
           this.riotTags.innerHTML = "<view-main-page>";
           riot.mount('view-main-page');
