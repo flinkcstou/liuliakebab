@@ -1,7 +1,6 @@
 <view-authorization class="view-authorization riot-tags-main-container">
 
   <div class="authorization-flex-container">
-    <input if="{firstEnter}">
     <div if="{!firstEnter}" class="authorization-unchangable-container">
       <div class="authorization-enter-pin-label">{window.languages.ViewAuthorizationClickPinLabel}</div>
       <div class="authorization-pin-container">
@@ -21,9 +20,9 @@
   </div>
 
   <div class="authorization-buttons-container">
-
-    <div if="{firstEnter}" class="authorization-first-button-enter button-enter" ontouchend="getPhoneNumberTouchEnd()"
-         ontouchstart="getPhoneNumberTouchStart()">
+    <input class="authorization-pin-input-first-enter" if="{firstEnter}" id="firstPinInputId">
+    <div if="{firstEnter}" class="authorization-first-button-enter button-enter" ontouchend="firstPinEnterTouchEnd()"
+         ontouchstart="firstPinEnterTouchStart()">
       <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
     </div>
 
@@ -36,7 +35,7 @@
       {window.languages.ViewAuthorizationResetLocalStorageLabel}
     </div>
   </div>
-  <div hidden="{device.platform == 'iOS'}" class="authorization-button-offline" ontouchstart="offlineModeTouchStart()"
+  <div hidden="{device.platform == 'iOS'}" class="{authorization-button-offline : !firstEnter, authorization-button-offline-first-enter : firstEnter}" ontouchstart="offlineModeTouchStart()"
        ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
@@ -104,10 +103,10 @@
     var scope = this;
     scope.checkAndroid = false;
 
-    if(localStorage.getItem("click_client_loginInfo")){
+    if (localStorage.getItem("click_client_loginInfo")) {
       scope.firstEnter = false;
     }
-    else{
+    else {
       scope.firstEnter = true;
     }
 
@@ -487,6 +486,29 @@
       }
     };
 
+    var firstPinEnterTouchStartX, firstPinEnterTouchStartY, firstPinEnterTouchEndX, firstPinEnterTouchEndY;
+
+    firstPinEnterTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      firstPinEnterTouchStartX = event.changedTouches[0].pageX
+      firstPinEnterTouchStartY = event.changedTouches[0].pageY
+    }
+
+    firstPinEnterTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      firstPinEnterTouchEndX = event.changedTouches[0].pageX
+      firstPinEnterTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(firstPinEnterTouchStartX - firstPinEnterTouchEndX) <= 20 && Math.abs(firstPinEnterTouchStartY - firstPinEnterTouchEndY) <= 20) {
+        pin = hex_md5(firstPinInputId.value);
+        enter()
+      }
+    }
+
     enter = function () {
 
       if (device.platform != 'BrowserStand') {
@@ -563,6 +585,7 @@
             scope.showError = true;
             scope.update(scope.showError);
             enteredPin = '';
+            if(!scope.firstEnter)
             updateEnteredPin();
             return
           }
@@ -600,6 +623,8 @@
     var balance;
     var arrayAccountInfo = [];
     getAccount = function (e) {
+
+
       console.log("QWEQWE")
       if (history.arrayOfHistory.length < 2) {
         localStorage.setItem('onResume', false)
@@ -611,6 +636,12 @@
         var sessionKey = info.session_key;
 
         console.log("WWRRRRRRRRR")
+
+        if(scope.firstEnter){
+          riotTags.innerHTML = "<view-pin-code>";
+          riot.mount('view-pin-code', ['view-main-page']);
+        }
+        else
         if (!localStorage.getItem("click_client_accountInfo")) {
           console.log("AAAAAAAAA")
           this.riotTags.innerHTML = "<view-main-page>";

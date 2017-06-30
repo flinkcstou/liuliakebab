@@ -1015,6 +1015,18 @@ var css = {
   "margin-top:" + 20 * widthK + "px;" +
   "}",
 
+  authorizationPinInputFirstEnter: ".authorization-pin-input-first-enter " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 40 * widthK + "px;" +
+  "top:" + -200 * widthK + "px;" +
+  "width:" + 390 * widthK + "px;" +
+  "left:" + 90 * widthK + "px;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "border: none;" +
+  "outline: none;" +
+  "}",
+
   authorizationPinCircle: ".authorization-pin-circles " +
   "{" +
   "position: absolute;" +
@@ -1094,6 +1106,19 @@ var css = {
   "text-align: center;" +
   "bottom:" + 40 * widthK + "px;" +
   "left:" + 240 * widthK + "px;" +
+  "}",
+
+  authorizationButtonOfflineFirstEnter: ".authorization-button-offline-first-enter " +
+  "{" +
+  "position: absolute;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "width:" + 240 * widthK + "px;" +
+  "background-size: contain;" +
+  "color: white;" +
+  "border-bottom:" + 1 + "px solid white;" +
+  "text-align: center;" +
+  "top:" + 40 * widthK + "px;" +
+  "right:" + 50 * widthK + "px;" +
   "}",
 
   authorizationEnterPinLabel: ".authorization-enter-pin-label " +

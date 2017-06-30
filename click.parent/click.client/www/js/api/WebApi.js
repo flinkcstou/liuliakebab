@@ -141,11 +141,13 @@ window.api.initSocket = function () {
             window.api.sessionErrorChecker = true;
 
             //var result =
-            if(!error){
-              error = "Ooooops! Что-то пошло не так. При возникновении этой ошибки ещё раз, свяжитесь со службой поддержки по номеру +998 71 2310880."
+            if (!error) {
+              showAlertComponent("Ooooops! Что-то пошло не так. При возникновении этой ошибки ещё раз, свяжитесь со службой поддержки по номеру +998 71 2310880.")
             }
+            else
             showConfirmComponent(error, 'session');
 
+            return
           }
         } catch (error) {
 
@@ -218,6 +220,10 @@ window.api.call = function (params) {
     }
   };
 
+  console.log('modeOfApp.onlineMode', modeOfApp.onlineMode)
+  console.log('window.isConnected', window.isConnected)
+  console.log('window.isConnected', window.api.socket)
+
   if (modeOfApp.onlineMode && window.isConnected && window.api.socket) {
 
     if (window.api.socket.readyState == 1) {
@@ -249,7 +255,7 @@ window.api.call = function (params) {
           break;
       }
     }
-  } else if (modeOfApp.onlineMode && !window.isConnected) {
+  } else if (modeOfApp.onlineMode && !window.isConnected && window.api.socket.readyState != 1) {
 
     window.lastSocketMethodToSend = JSON.stringify({
       method: method,
@@ -297,8 +303,8 @@ function onlineDetector() {
 
     console.log("window.isConnected", window.isConnected);
 
-    if(modeOfApp.onlineMode)
-    window.api.init();
+    if (modeOfApp.onlineMode)
+      window.api.init();
   }
 }
 

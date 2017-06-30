@@ -478,7 +478,7 @@
             scope.update();
 
             onBackKeyDown();
-            scope.unmount()
+//            scope.unmount()
           }
           else {
             scope.showError = true;
