@@ -1,7 +1,8 @@
 <view-authorization class="view-authorization riot-tags-main-container">
 
   <div class="authorization-flex-container">
-    <div class="authorization-unchangable-container">
+    <input if="{firstEnter}">
+    <div if="{!firstEnter}" class="authorization-unchangable-container">
       <div class="authorization-enter-pin-label">{window.languages.ViewAuthorizationClickPinLabel}</div>
       <div class="authorization-pin-container">
         <div class="authorization-pin-field">
@@ -15,11 +16,17 @@
     </div>
   </div>
 
-  <div class="authorization-keyboard-field keyboard-field">
+  <div if="{!firstEnter}" class="authorization-keyboard-field keyboard-field">
     <component-keyboard></component-keyboard>
   </div>
 
   <div class="authorization-buttons-container">
+
+    <div if="{firstEnter}" class="authorization-first-button-enter button-enter" ontouchend="getPhoneNumberTouchEnd()"
+         ontouchstart="getPhoneNumberTouchStart()">
+      <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
+    </div>
+
     <div id="TESTID" class="authorization-button-forget-pin" ontouchstart="pinResetTouchStart()"
          ontouchend="pinResetTouchEnd()">
       {window.languages.ViewAuthorizationForgetPinLabel}
@@ -43,6 +50,7 @@
                      confirmtype="{confirmType}"></component-confirm>
 
   <script>
+
 
     //    TEST = function () {
     //      CardIO.scan({
@@ -95,6 +103,13 @@
 
     var scope = this;
     scope.checkAndroid = false;
+
+    if(localStorage.getItem("click_client_loginInfo")){
+      scope.firstEnter = false;
+    }
+    else{
+      scope.firstEnter = true;
+    }
 
     scope.showError = false;
     scope.confirmShowBool = false;

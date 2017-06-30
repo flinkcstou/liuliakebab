@@ -653,6 +653,12 @@ var css = {
   "}",
 
 
+  authorizationFirstButtonEnter: ".authorization-first-button-enter " +
+  "{" +
+  "top:" + -70 * widthK + "px;" +
+  "}",
+
+
   smsButtonEnterLabel: ".sms-button-enter-label " +
   "{" +
   "position: relative;" +
