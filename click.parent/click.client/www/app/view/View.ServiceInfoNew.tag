@@ -134,10 +134,12 @@
 
     function getInformation() {
       var checkAnswer = false;
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
       window.api.call({
         method: 'get.additional.information',
         input: {
+          session_key: sessionKey,
           phone_num: phoneNumber,
           service_id: opts.chosenServiceId,
           payment_data: payment_data
