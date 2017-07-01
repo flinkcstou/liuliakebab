@@ -21,10 +21,13 @@
 
 
   <div class="authorization-buttons-container">
-    <div if="{firstEnter}" class="authorization-first-enter-pin-label">{window.languages.ViewAuthorizationClickPinLabel}</div>
-    <div class="authorization-pin-input-first-enter-container">
-    <input type="password" class="authorization-pin-input-first-enter"  if="{firstEnter}" id="firstPinInputId"/>
-    <div class="authorization-input-eye-button" onclick="eyeClicked()"></div>
+    <div if="{firstEnter}" class="authorization-first-enter-pin-label">
+      {window.languages.ViewAuthorizationClickPinLabel}
+    </div>
+    <div if="{firstEnter}" class="authorization-pin-input-first-enter-container">
+      <input type="password" class="authorization-pin-input-first-enter" onblur="inputPinBlur()"
+             id="firstPinInputId"/>
+      <div class="authorization-input-eye-button" onclick="eyeClicked()"></div>
     </div>
     <div if="{firstEnter}" class="authorization-button-first-enter" ontouchend="firstPinEnterTouchEnd()"
          ontouchstart="firstPinEnterTouchStart()">
@@ -128,7 +131,10 @@
       scope.firstEnter = false;
     }
     else {
-      scope.firstEnter = true;
+      if (JSON.parse(localStorage.getItem('click_client_registered')) == true && !localStorage.getItem("click_client_accountInfo") && opts && opts.from && opts.from == "registration-client")
+          scope.firstEnter = false;
+        else
+          scope.firstEnter = true;
     }
 
     scope.showError = false;
@@ -328,19 +334,28 @@
 
     var eyeInputShow = false;
 
-    eyeClicked = function (){
+    eyeClicked = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      if(!eyeInputShow){
+      if (!eyeInputShow) {
         firstPinInputId.type = "text"
         eyeInputShow = true;
       }
-      else{
+      else {
         firstPinInputId.type = "password"
         eyeInputShow = false;
       }
 
+    }
+
+    inputPinBlur = function () {
+//      event.preventDefault();
+//      event.stopPropagation();
+
+      console.log("BLUR")
+
+      firstPinInputId.blur();
     }
 
     var pinResetTouchStartX, pinResetTouchStartY, pinResetTouchEndX, pinResetTouchEndY;
@@ -362,6 +377,8 @@
       pinResetTouchEndY = event.changedTouches[0].pageY
 
       if (Math.abs(pinResetTouchStartX - pinResetTouchEndX) <= 20 && Math.abs(pinResetTouchStartY - pinResetTouchEndY) <= 20) {
+        if (scope.firstEnter)
+          firstPinInputId.blur();
         componentPinResetId.style.display = 'block';
       }
     };
@@ -385,6 +402,9 @@
       resetLocalStorageTouchEndY = event.changedTouches[0].pageY
 
       if (Math.abs(resetLocalStorageTouchStartX - resetLocalStorageTouchEndX) <= 20 && Math.abs(resetLocalStorageTouchStartY - resetLocalStorageTouchEndY) <= 20) {
+        if (scope.firstEnter)
+          firstPinInputId.blur();
+
         var question = 'Подтвердите удаление данных'
 //        confirm(question)
         scope.confirmShowBool = true;
@@ -680,7 +700,7 @@
           var compareLength = window.inputVerification.spaceDeleter(firstPinInputId.value);
 
         }
-        if (scope.firstEnter && lengthOfPin != compareLength.length && lengthOfPin == 6) {
+        if (scope.firstEnter && (lengthOfPin != compareLength.length || lengthOfPin > 5)) {
           riotTags.innerHTML = "<view-pin-code>";
           riot.mount('view-pin-code', ['view-authorization']);
         }

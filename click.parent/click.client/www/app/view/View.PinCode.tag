@@ -2,7 +2,7 @@
 
   <div class="pincode-flex-container">
     <div class="pincode-unchangable-container">
-      <div if="{checkPin}" class="pincode-enter-pin-label">{window.languages.ViewPinCodeClickPinLabel}</div>
+      <div if="{checkPin}" id="labelOfPinId" class="pincode-enter-pin-label">{labelOfTitle}</div>
       <div if="{checkPinConfirm}" class="pincode-enter-pin-confirm-label">
         {window.languages.ViewPinCodeConfirmClickPinLabel}
       </div>
@@ -100,6 +100,9 @@
     var fromAuthorization = false;
     scope.showRegistrationProcess = false;
 
+
+    scope.labelOfTitle = window.languages.ViewPinCodeClickPinLabel;
+
     if (opts[0] == 'view-registration-client') {
       fromRegistration = true;
       var cardNumber = opts[1];
@@ -109,6 +112,7 @@
     }
     else if (opts[0] == 'view-authorization') {
       fromAuthorization = true;
+      scope.labelOfTitle = "Для удобства пользования, просим установить новый CLICK-PIN из 5 цифр!"
     }
 
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
@@ -371,9 +375,8 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
+            scope.viewpage = "view-registration-client"
             scope.update();
-            riotTags.innerHTML = "<view-registration-client>";
-            riot.mount('view-registration-client');
           }
 
         },
@@ -445,9 +448,9 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
+            scope.viewpage = "view-registration-client"
             scope.update();
-            riotTags.innerHTML = "<view-registration-client>";
-            riot.mount('view-registration-client');
+
           }
 
         },

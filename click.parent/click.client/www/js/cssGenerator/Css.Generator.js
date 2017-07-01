@@ -6870,6 +6870,7 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "background-size: contain;" +
+  "text-align: center;" +
   "width:" + 320 * widthK + "px;" +
   "color: white;" +
   "font-size:" + 32 * widthK + "px;" +
