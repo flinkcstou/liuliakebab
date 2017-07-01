@@ -22,7 +22,10 @@
 
   <div class="authorization-buttons-container">
     <div if="{firstEnter}" class="authorization-first-enter-pin-label">{window.languages.ViewAuthorizationClickPinLabel}</div>
-    <input type="password" class="authorization-pin-input-first-enter" if="{firstEnter}" id="firstPinInputId">
+    <div class="authorization-pin-input-first-enter-container">
+    <input type="password" class="authorization-pin-input-first-enter"  if="{firstEnter}" id="firstPinInputId"/>
+    <div class="authorization-input-eye-button" onclick="eyeClicked()"></div>
+    </div>
     <div if="{firstEnter}" class="authorization-button-first-enter" ontouchend="firstPinEnterTouchEnd()"
          ontouchstart="firstPinEnterTouchStart()">
       <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
@@ -321,6 +324,23 @@
           console.log('FAIL FINGER PRINT')
         }
       }
+    }
+
+    var eyeInputShow = false;
+
+    eyeClicked = function (){
+      event.preventDefault();
+      event.stopPropagation();
+
+      if(!eyeInputShow){
+        firstPinInputId.type = "text"
+        eyeInputShow = true;
+      }
+      else{
+        firstPinInputId.type = "password"
+        eyeInputShow = false;
+      }
+
     }
 
     var pinResetTouchStartX, pinResetTouchStartY, pinResetTouchEndX, pinResetTouchEndY;

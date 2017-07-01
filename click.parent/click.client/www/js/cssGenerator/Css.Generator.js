@@ -1024,7 +1024,7 @@ var css = {
   "margin-top:" + 20 * widthK + "px;" +
   "}",
 
-  authorizationPinInputFirstEnter: ".authorization-pin-input-first-enter " +
+  authorizationPinInputFirstEnterContainer: ".authorization-pin-input-first-enter-container " +
   "{" +
   "position: absolute;" +
   "height:" + 90 * widthK + "px;" +
@@ -1033,6 +1033,20 @@ var css = {
   "left:" + -20 * widthK + "px;" +
   "font-size:" + 100 * widthK + "px;" +
   "border-radius:" + 60 * widthK + "px;" +
+  "background-color: white;" +
+  "border: none;" +
+  "text-align: center;" +
+  "outline: none;" +
+  "}",
+
+  authorizationPinInputFirstEnter: ".authorization-pin-input-first-enter " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 80 * widthK + "px;" +
+  "top:" + 5 * widthK + "px;" +
+  "width:" + 470 * widthK + "px;" +
+  "left:" + 70 * widthK + "px;" +
+  "font-size:" + 80 * widthK + "px;" +
   "border: none;" +
   "text-align: center;" +
   "outline: none;" +
@@ -1155,6 +1169,20 @@ var css = {
   "color: white;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
+
+  AuthorizationInputEyeButton: ".authorization-input-eye-button " +
+  "{" +
+  "position: absolute;" +
+  "background-image: url(resources/icons/authorization/eye.png);" +
+  "background-size: contain;" +
+  "background-position: center;" +
+  "background-repeat: no-repeat;" +
+  "width:" + 50 * widthK + "px;" +
+  "height:" + 50 * widthK + "px;" +
+  "top:" + 20 * widthK + "px;" +
+  "right:" + 20 * widthK + "px;" +
+  "}",
+
 
   //VIEW MAIN PAGE
 
