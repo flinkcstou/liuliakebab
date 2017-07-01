@@ -111,6 +111,8 @@
     console.log("OPTS PAYCONFIRM", opts)
 
     var scope = this;
+
+
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -303,6 +305,7 @@
         }
     }
 
+    var transactionOfPayment = parseInt(Date.now() / 1000);
 
     payService = function () {
 
@@ -358,14 +361,14 @@
         payment_data = {
           "param": opts[0][1].firstFieldId,
           "value": firstFieldtext,
-          "transaction_id": parseInt(Date.now() / 1000)
+          "transaction_id": transactionOfPayment
         };
         opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
       }
       else if (opts[0][0].formtype == 2) {
         payment_data = {
           "pin_param": opts[0][3].cardTypeId,
-          "transaction_id": parseInt(Date.now() / 1000)
+          "transaction_id": transactionOfPayment
         };
         opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
       }
@@ -374,7 +377,7 @@
           "param": opts[0][1].firstFieldId,
           "value": firstFieldtext,
           "communal_param": opts[0][4].communalParam,
-          "transaction_id": parseInt(Date.now() / 1000)
+          "transaction_id": transactionOfPayment
         };
         opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
 
@@ -384,7 +387,7 @@
           "param": opts[0][1].firstFieldId,
           "value": firstFieldtext,
           "internet_package_param": opts[0][6].internetPackageParam,
-          "transaction_id": parseInt(Date.now() / 1000)
+          "transaction_id": transactionOfPayment
         };
         opts[3] != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
       }
@@ -469,6 +472,7 @@
           }
         });
       }
+
 
       function checkPaymentStatus(payment_id) {
 

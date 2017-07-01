@@ -310,7 +310,7 @@ function onlineDetector() {
 
 function offlineDetector() {
 
-  //if (window.isConnected) window.api.socket.close()
+  if (window.isConnected) window.api.socket.close()
   if (modeOfApp.onlineMode && window.isConnected) {
 
     //if (device.platform == 'Android')
