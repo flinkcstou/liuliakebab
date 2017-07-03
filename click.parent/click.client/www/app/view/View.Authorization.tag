@@ -736,7 +736,7 @@
                 if (history.arrayOfHistory) {
                   if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
                     this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
-                    riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
+                    riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
                     localStorage.setItem('onResume', false)
                     scope.unmount()
                   }
