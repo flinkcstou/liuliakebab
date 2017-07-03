@@ -1106,7 +1106,7 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "left: 0;" +
   "background-size: contain;" +
-  "color: #05eeff;" +
+  "color: white;" +
   //"border-bottom:" + 1 + "px solid #05eeff;" +
   "border-bottom:" + 1 + "px solid white;" +
   "}",
@@ -7196,7 +7196,7 @@ var css = {
   "width:" + 135 * widthK + "px;" +
   "height:" + 92 * widthK + "px;" +
   "right:" + -36 * widthK + "px;" +
-  "background-image: url('resources/icons/ViewSettingsGeneral/general_save.png');" +
+  "background-image: url('resources/icons/ViewService/unchecked.png');" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 31%;" +
   "background-position-y: center;" +
@@ -10942,6 +10942,7 @@ var css = {
   "right: " + 10 * widthK + "px;" +
   "margin-top: " + -10 * widthK + "px;" +
   "background-repeat: no-repeat;" +
+  "background-size: 30%;" +
   "background-position: center;" +
   "background-image: url(resources/icons/ViewSettingsFriendHelp/delete.png);" +
   "}",

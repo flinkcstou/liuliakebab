@@ -102,8 +102,8 @@ window.api.initSocket = function () {
 
         var callBack = me.callBacks[method];
         //console.log('method', method)
-        if (method == 'get.payments')
-          var callBack = me.callBacks['get.payments'];
+        //if (method == 'get.payments')
+        //  var callBack = me.callBacks['get.payments'];
         //console.log('CALLBACK', callBack)
 
 
@@ -265,11 +265,14 @@ window.api.call = function (params) {
     if (device.platform != 'BrowserStand')
       SpinnerPlugin.activityStop();
 
+
     if (device.platform == 'Android')
       showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
     else {
       showAlertComponent("Сервер временно недоступен");
     }
+    window.api.init();
+
 
     //if (result) {
     //

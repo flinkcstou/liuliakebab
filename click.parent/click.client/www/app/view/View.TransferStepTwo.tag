@@ -15,9 +15,9 @@
       <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
         {window.languages.Currency}</p>
 
-      <input maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
+      <input id="sumValueId" type="tel" maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()"
              onmouseup="sumMouseUp()"
-             type="tel" pattern="[0-9]" onblur="sumOnBlur()" onkeyup="sumKeyUp()" oninput="sumKeyUp()"/>
+             onblur="sumOnBlur()" onkeyup="sumKeyUp()" oninput="sumKeyUp()"/>
     </div>
 
     <button class="transfertwo-next-button-inner-container" ontouchstart="goToTransferThreeTouchStart()"

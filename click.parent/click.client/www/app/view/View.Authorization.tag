@@ -592,6 +592,10 @@
     var countOfCall = 0;
     function authorization(phoneNumber, deviceId, password, date) {
       countOfCall++;
+
+      if (scope.firstEnter)
+        firstPinInputId.blur();
+
       var version = localStorage.getItem('version')
       var checkServiceAnswer = false;
       window.api.call({

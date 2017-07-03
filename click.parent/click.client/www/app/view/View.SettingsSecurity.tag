@@ -40,7 +40,7 @@
         <div id="blockWithPinIconId" class="settings-security-check-icon"></div>
       </div>
 
-      <div class="settings-block-containter" ontouchend="hideMyNumber()">
+      <div hidden class="settings-block-containter" ontouchend="hideMyNumber()">
         <div class="settings-block-icon"
              style="background-image: url('resources/icons/ViewSettingsSecurity/security_visibility.png')"></div>
         <div class="settings-block-name-field">{window.languages.ViewSecuritySettingsMyNumberHideTitle}</div>
