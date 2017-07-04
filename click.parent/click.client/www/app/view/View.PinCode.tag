@@ -2,6 +2,7 @@
 
   <div class="pincode-flex-container">
     <div class="pincode-unchangable-container">
+      <div if="{nowCheckPin}" id="labelOfNowPinId" class="pincode-enter-pin-label">{window.languages.ViewPinCodeNowClickPinLabel}</div>
       <div if="{checkPin}" id="labelOfPinId" class="pincode-enter-pin-label">{labelOfTitle}</div>
       <div if="{checkPinConfirm}" class="pincode-enter-pin-confirm-label">
         {window.languages.ViewPinCodeConfirmClickPinLabel}
@@ -73,6 +74,11 @@
 
     var scope = this;
 
+    this.on('mount', function () {
+      if (device.platform != 'BrowserStand')
+        StatusBar.backgroundColorByHexString("#00a8f1");
+    })
+
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pin-code') {
         history.arrayOfHistory.push(
@@ -92,12 +98,14 @@
     var pin;
     var pinConfirm;
     var enteredPin = '';
-    scope.checkPin = true;
+    scope.checkPin = false;
+    scope.nowCheckPin = true;
     scope.stepToBack = null;
     scope.checkPinConfirm = false;
     scope.showError = false;
     var fromRegistration = false;
     var fromAuthorization = false;
+    var fromSettings = false;
     scope.showRegistrationProcess = false;
 
 
@@ -105,13 +113,19 @@
 
     if (opts[0] == 'view-registration-client') {
       fromRegistration = true;
+      scope.checkPin = true;
+      scope.nowCheckPin = false
       var cardNumber = opts[1];
       var cardInformation = opts[2];
     } else if (opts[0] == 'view-security-settings') {
+      fromSettings = true;
+      fromAuthorization = false;
       fromRegistration = false;
     }
     else if (opts[0] == 'view-authorization') {
       fromAuthorization = true;
+      scope.checkPin = true;
+      scope.nowCheckPin = false
       scope.labelOfTitle = "Для удобства пользования, просим установить новый CLICK-PIN из 5 цифр!"
     }
 
@@ -299,7 +313,32 @@
           }
 
         }
-        else if (scope.checkPin) {
+        else if(scope.nowCheckPin){
+          if(hex_md5(enteredPin) == localStorage.getItem('pinForStand')){
+            scope.checkPin = true;
+            scope.nowCheckPin = false;
+            scope.checkPinConfirm = false;
+            pinConfirm = '';
+            pin = '';
+            enteredPin = '';
+            updateEnteredPin()
+            scope.update();
+          }
+          else{
+            scope.nowCheckPin = true;
+            scope.checkPin = false;
+            scope.clickPinError = false;
+            scope.errorNote = "Неверный текущий CLICK-PIN!";
+
+            scope.showError = true;
+            scope.checkPinConfirm = false;
+            pinConfirm = '';
+            pin = '';
+            enteredPin = '';
+            updateEnteredPin()
+            scope.update();
+          }
+        } else if (scope.checkPin) {
           console.log('qwewewww')
           pin = enteredPin;
           scope.checkPin = false;

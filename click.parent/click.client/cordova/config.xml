@@ -18,7 +18,7 @@
   <plugin name="cordova-plugin-android-fingerprint-auth"/>
   <plugin name="cordova-plugin-splashscreen"/>
   <plugin name="cordova-plugin-statusbar"/>
-
+  <plugin name="phonegap-plugin-barcodescanner"/>
   <plugin name="cordova-plugin-firebase" spec="0.1.21"/>
   <plugin name="cordova-plugin-network-information"/>
   <plugin name="cordova-plugin-x-socialsharing"/>

@@ -132,9 +132,9 @@
     }
     else {
       if (JSON.parse(localStorage.getItem('click_client_registered')) == true && !localStorage.getItem("click_client_accountInfo") && opts && opts.from && opts.from == "registration-client")
-          scope.firstEnter = false;
-        else
-          scope.firstEnter = true;
+        scope.firstEnter = false;
+      else
+        scope.firstEnter = true;
     }
 
     scope.showError = false;
@@ -214,18 +214,19 @@
                     onConfirm = function (index) {
                       console.log("INDEX", index)
                       if (index == 1) {
-                        localStorage.setItem('settings_finger_print', false)
+                        localStorage.setItem('settings_finger_print', true)
+
                       }
                       else {
-                        localStorage.setItem('settings_finger_print', true)
+                        localStorage.setItem('settings_finger_print', false)
                       }
                     }
 
                     navigator.notification.confirm(
                       'Хотите использовать ее для CLICK?',  // message
                       onConfirm,              // callback to invoke with index of button pressed
-                      'Ваше устройтсво поддерживает технологию TouchID',            // title
-                      ['Нет', 'Да']          // buttonLabels
+                      'Устройтсво поддерживает технологию TouchID',            // title
+                      ['Да', 'Нет']          // buttonLabels
                     );
                   }
                 }

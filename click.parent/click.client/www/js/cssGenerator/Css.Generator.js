@@ -2126,6 +2126,7 @@ var css = {
   "right: 7%;" +
   "height:" + 20 * widthK + "px;" +
   "border: 1px solid white;" +
+  "z-index: 2;" +
   "border-radius:" + 50 * widthK + "px;" +
   "}",
 
@@ -2775,6 +2776,7 @@ var css = {
   "background-size: 48%;" +
   "background-position: center;" +
   "background-color: #ffffff;" +
+  "z-index: 2;" +
   "}",
 
   viewInfoBalanceContainer: ".view-info-balance-container " +

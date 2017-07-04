@@ -180,6 +180,7 @@ var RU_LANGUAGES =
   "ComponentDeleteTextNo": "Нет",
 
   "ViewPinCodeClickPinLabel": "Установите CLICK-PIN",
+  "ViewPinCodeNowClickPinLabel": "Текущий CLICK-PIN",
   "ViewPinCodeConfirmClickPinLabel": "Подтвердите CLICK-PIN",
 
   "ViewCardEditTitleName": "НАСТРОЙКИ КАРТЫ",
