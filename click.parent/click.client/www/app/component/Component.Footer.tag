@@ -663,8 +663,8 @@
         if (!check) {
           this.iconTickId.style.transform = "rotate3d(1, 0, 0, 180deg)";
           this.iconTickId.style.webkitTransform = "rotate3d(1, 0, 0, 180deg)";
-          this.contactsContainer.style.webkitTransform = "translate(0," + -30 * widthK + "px)";
-          this.contactsContainer.style.Transform = "translate(0, -30px)";
+          this.contactsContainer.style.webkitTransform = "translate3d(0," + -30 * widthK + "px,0)";
+          this.contactsContainer.style.Transform = "translate3d(0, -30px,0)";
           check = true;
           return;
         }
@@ -672,8 +672,8 @@
         if (check) {
           this.iconTickId.style.transform = "rotate3d(0, 0, 0, 0deg)";
           this.iconTickId.style.webkitTransform = "rotate3d(0, 0, 0, 0deg)";
-          this.contactsContainer.style.webkitTransform = "translate(0," + 200 * widthK + "px)";
-          this.contactsContainer.style.Transform = "translate(0," + 200 * widthK + "px)";
+          this.contactsContainer.style.webkitTransform = "translate3d(0," + 200 * widthK + "px,0)";
+          this.contactsContainer.style.Transform = "translate3d(0," + 200 * widthK + "px,0)";
           check = false;
           return;
         }

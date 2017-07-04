@@ -653,8 +653,6 @@ var css = {
   "}",
 
 
-
-
   smsButtonEnterLabel: ".sms-button-enter-label " +
   "{" +
   "position: relative;" +
@@ -992,9 +990,9 @@ var css = {
   "left:" + -20 * widthK + "px;" +
   "top:" + -30 * widthK + "px;" +
   "background-color: #01cfff;" +
-  //"margin-right: auto;" +
+    //"margin-right: auto;" +
   "border-radius:" + 80 * widthK + "px;" +
-  //"margin-left: auto;" +
+    //"margin-left: auto;" +
   "}",
 
   authorizationUnchangableContainer: ".authorization-unchangable-container " +
@@ -1107,7 +1105,7 @@ var css = {
   "left: 0;" +
   "background-size: contain;" +
   "color: white;" +
-  //"border-bottom:" + 1 + "px solid #05eeff;" +
+    //"border-bottom:" + 1 + "px solid #05eeff;" +
   "border-bottom:" + 1 + "px solid white;" +
   "}",
 
@@ -2322,9 +2320,9 @@ var css = {
   "-webkit-transition: 0.3s;" +
   "height:" + 300 * widthK + "px;" +
   "width: 100%;" +
-  "transform: translate(0, " + 200 * widthK + "px);" +
-  "-webkit-transform: translate(0," + 200 * widthK + "px);" +
-  "-ms-transform: translate(0," + 200 * widthK + "px);" +
+  "transform: translate3d(0, " + 200 * widthK + "px,0);" +
+  "-webkit-transform: translate3d(0," + 200 * widthK + "px,0);" +
+  "-ms-transform: translate3d(0," + 200 * widthK + "px,0);" +
   "}",
 
   footerContactLabel: ".footer-contacts-label " +
