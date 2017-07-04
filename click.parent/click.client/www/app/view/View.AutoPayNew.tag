@@ -11,7 +11,7 @@
            ontouchend="onTouchEndOfAutoPayment(this.id)">
         <div class="view-autopay-icon" style="background-image: url({j.service_icon});"></div>
         <div class="view-autopay-info-container">
-          <p class="view-autopay-info-name">{j.service_title}</p>
+          <p class="view-autopay-info-name">{j.title}</p>
           <div class="view-autopay-info-balance">{j.amount}</div>
           <div class="view-autopay-info-currency-field">сум</div>
           <p class="view-autopay-info-condition">{j.condition_text}</p>
