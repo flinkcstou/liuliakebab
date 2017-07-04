@@ -668,7 +668,7 @@
 //    })
     };
 
-    if (viewMainPage.atMainPage && !modeOfApp.demoVersion) {
+    if (viewMainPage.atMainPage && !modeOfApp.demoVersion && modeOfApp.onlineMode) {
       console.log("INVOICE INVOICE")
       invoiceCheckFunction();
     }
@@ -684,7 +684,7 @@
       console.log("THERE IS NO CARDS IN LOCALSTORAGE");
       if (!localStorage.getItem('click_client_cards')) {
         scope.cardNumber = 1;
-        count = 2;
+        count = 1;
         scope.cardsarray = window.offlineCard;
         localStorage.setItem("cardNumber", scope.cardNumber);
         localStorage.setItem("click_client_countCard", count);
