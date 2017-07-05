@@ -1316,7 +1316,34 @@ var css = {
   bankOperationButtonTransfer: ".bank-operation-button-transfer " +
   "{" +
   "left:" + 280 * widthK + "px;" +
+  "overflow: hidden;" +
+  "border: none;" +
+  "outline: none;" +
+  "transition-duration: 0.4s;" +
   "}",
+  //
+  //bankOperationButtonTransferActive: ".bank-operation-button-transfer:active " +
+  //"{" +
+  //"content: '';" +
+  //"background: white;" +
+  //"position: absolute;" +
+  //"padding-top: 10%;" +
+  //"padding-left: 10%;" +
+  ////"margin-left: -20px!important;" +
+  ////"margin-top: 120%;" +
+  //"opacity: 0;" +
+  //"transition: all 0.8s;" +
+  //"border: none;" +
+  //"}",
+  //
+  //bankOperationButtonTransferActiveAfter: ".bank-operation-button-transfer:active:after " +
+  //"{" +
+  //"padding: 0;" +
+  //"margin: 0;" +
+  //"opacity: 1;" +
+  //"transition: 0s;" +
+  //"border: none;" +
+  //"}",
 
   bankOperationButtonAutoPay: ".bank-operation-button-autopay " +
   "{" +
