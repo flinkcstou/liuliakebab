@@ -225,7 +225,9 @@ window.api.call = function (params) {
     if (device.platform != 'BrowserStand')
       SpinnerPlugin.activityStop();
     window.api.init();
-
+  }
+  else{
+    window.api.init();
   }
 };
 

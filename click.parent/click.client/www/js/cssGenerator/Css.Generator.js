@@ -1238,6 +1238,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "background: transparent;" +
+  "z-index: 2;" +
   "background-image: url(resources/icons/toolbar/menus.png);" +
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
@@ -1277,6 +1278,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "background: transparent;" +
+  "z-index: 2;" +
   "background-image: url(resources/icons/toolbar/bell.png);" +
   "width:" + 80 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
