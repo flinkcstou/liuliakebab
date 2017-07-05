@@ -208,11 +208,9 @@
                   FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
                 }
                 else {
-                  console.log('QWEQWE')
-                  console.log(localStorage.getItem('click_client_cards'))
+
                   if (!localStorage.getItem('click_client_cards')) {
                     onConfirm = function (index) {
-                      console.log("INDEX", index)
                       if (index == 1) {
                         localStorage.setItem('settings_finger_print', true)
 
@@ -277,7 +275,6 @@
 
         function successCallback(success) {
           window.fingerPrint.check = true;
-          riot.update();
           localStorage.setItem('settings_finger_print_enrolled', true)
           console.log('success', success)
 
@@ -289,20 +286,19 @@
             else {
               if (!localStorage.getItem('click_client_cards')) {
                 onConfirm = function (index) {
-                  console.log("INDEX", index)
                   if (index == 1) {
-                    localStorage.setItem('settings_finger_print', false)
+                    localStorage.setItem('settings_finger_print', true)
                   }
                   else {
-                    localStorage.setItem('settings_finger_print', true)
+                    localStorage.setItem('settings_finger_print', false)
                   }
                 }
 
                 navigator.notification.confirm(
                   'Хотите использовать ее для CLICK?',  // message
                   onConfirm,              // callback to invoke with index of button pressed
-                  'Ваше устройтсво поддерживает технологию TouchID',            // title
-                  ['Нет', 'Да']          // buttonLabels
+                  'Устройтсво поддерживает технологию TouchID',            // title
+                  ['Да', 'Нет']          // buttonLabels
                 );
               }
             }
@@ -312,7 +308,6 @@
         function notSupportedCallback(error) {
           console.log('error', error)
           window.fingerPrint.check = false;
-          riot.update();
           localStorage.setItem('settings_finger_print_enrolled', false)
         }
 
@@ -354,7 +349,6 @@
 //      event.preventDefault();
 //      event.stopPropagation();
 
-      console.log("BLUR")
 
       firstPinInputId.blur();
     }
@@ -616,13 +610,13 @@
           if (result[0][0].error == 0) {
             if (!result[1][0].error) {
               localStorage.setItem('click_client_pin', pin)
-              console.log('pin', pin)
+
 //              console.log("APP LOGIN RESULT", result);
               localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
               modeOfflineMode.check = false;
               var JsonInfo = JSON.stringify(result[1][0]);
               localStorage.setItem('click_client_loginInfo', JsonInfo);
-              console.log('JsonInfo', result[1][0])
+
               checkSessionKey = true;
               viewAuthorization.check = false;
               localStorage.setItem("click_client_authorized", true);
@@ -687,8 +681,6 @@
     var arrayAccountInfo = [];
     getAccount = function (e) {
 
-
-      console.log("QWEQWE")
       if (history.arrayOfHistory.length < 2) {
         localStorage.setItem('onResume', false)
       }
@@ -697,8 +689,6 @@
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = info.session_key;
-
-        console.log("WWRRRRRRRRR")
 
         if (scope.firstEnter) {
           var lengthOfPin = firstPinInputId.value.length;
@@ -710,12 +700,12 @@
           riot.mount('view-pin-code', ['view-authorization']);
         }
         else if (!localStorage.getItem("click_client_accountInfo")) {
-          console.log("AAAAAAAAA")
+
           this.riotTags.innerHTML = "<view-main-page>";
           riot.mount('view-main-page');
           scope.unmount()
         } else {
-          console.log("DDDD")
+
           if (!JSON.parse(localStorage.getItem('onResume'))) {
 //            if (history.arrayOfHistory) {
 //              if (history.arrayOfHistory[history.arrayOfHistory.length - 1] && (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-device'

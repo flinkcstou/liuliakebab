@@ -10,10 +10,11 @@
       <p class="side-menu-user-second-name">{firstName}</p>
       <p class="side-menu-user-first-name">{lastName}</p>
     </div>
-    <div hidden="{device.platform == 'iOS'}" id="changeModeContainerId" class="side-menu-change-mode">
+    <div hidden="{device.platform == 'iOS'}" id="changeModeContainerId" class="side-menu-change-mode"
+         ontouchstart="changeModeTouchStart()" ontouchend="changeModeTouchEnd()">
       <div id="changeModeIconId" class="side-menu-change-mode-icon"></div>
       <p class="side-menu-change-mode-text">{modeOfApplication}</p>
-      <label class="switch-menu" ontouchstart="changeModeTouchStart()" ontouchend="changeModeTouchEnd()">
+      <label class="switch-menu">
         <input onchange="changeMode()"
                id="checkBoxChangeId" type="checkbox" checked="{checkModeOfApplication}">
         <div class="slider-menu round"></div>

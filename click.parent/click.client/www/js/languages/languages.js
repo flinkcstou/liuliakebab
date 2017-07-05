@@ -252,7 +252,7 @@ var RU_LANGUAGES =
   "ViewAboutSettingsRateUsTitle": "Оцените нас в Google Play",
 
   "ViewSettingsAboutProgramTitleName": "О ПРОГРАММЕ",
-  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.0 BETA",
+  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.0 CLICK Uzbekistan",
   "ViewSettingsAboutProgramVersionTitleNamePartTwo": "5 марта, 2017",
   "ViewSettingsAboutProgramUserAgreementTitleName": "Пользовательское соглашение",
   "ViewSettingsAboutProgramRankTitleName": "Оцените нас в Google Play",
