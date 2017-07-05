@@ -186,31 +186,15 @@
     this.cardTypeId = opts.cardTypeId;
     this.amountText = opts.amountText;
 
-    scope.amountTextCopy = this.amountText;
+    try {
+      scope.amountTextCopy = window.amountTransform(this.amountText);
+    }
+    catch (e){
+      scope.amountTextCopy = this.amountText;
+    }
 
     console.log("AMOUNT", this.amountText)
 
-    if (scope.amountTextCopy.length == 8) {
-      scope.amountTextCopy = scope.amountTextCopy.substring(0, 2) + ' ' +
-        scope.amountTextCopy.substring(2, 5) + ' ' + scope.amountTextCopy.substring(5, scope.amountTextCopy.length)
-    }
-
-    if (scope.amountTextCopy.length == 7) {
-      scope.amountTextCopy = scope.amountTextCopy.substring(0, 1) + ' ' +
-        scope.amountTextCopy.substring(1, 4) + ' ' + scope.amountTextCopy.substring(4, scope.amountTextCopy.length)
-    }
-
-    if (scope.amountTextCopy.length == 6) {
-      scope.amountTextCopy = scope.amountTextCopy.substring(0, 3) + ' ' + scope.amountTextCopy.substring(3, scope.amountTextCopy.length)
-    }
-
-    if (scope.amountTextCopy.length == 5) {
-      scope.amountTextCopy = scope.amountTextCopy.substring(0, 2) + ' ' + scope.amountTextCopy.substring(2, scope.amountTextCopy.length)
-    }
-
-    if (scope.amountTextCopy.length == 4) {
-      scope.amountTextCopy = scope.amountTextCopy.substring(0, 1) + ' ' + scope.amountTextCopy.substring(1, scope.amountTextCopy.length)
-    }
 
 
     //    riot.update()
