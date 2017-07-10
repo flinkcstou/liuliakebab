@@ -6332,7 +6332,7 @@ var css = {
   "top: 83%;" +
   "height: " + 74 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
-  "background-color: #027fe4;" +
+  "background-color: #00a8f1;" +
   "padding: 0;" +
   "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
@@ -6401,7 +6401,7 @@ var css = {
   "top: 83%;" +
   "height: " + 74 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
-  "background-color: #027fe4;" +
+  "background-color: #00a8f1;" +
   "padding: 0;" +
   "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
@@ -6550,7 +6550,7 @@ var css = {
   "top: 89%;" +
   "height: 6%;" +
   "margin: 0 auto 0 auto;" +
-  "background-color: #027fe4;" +
+  "background-color: #00a8f1;" +
   "padding: 0;" +
   "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
