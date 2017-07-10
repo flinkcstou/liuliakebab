@@ -52,6 +52,11 @@
       <div class="side-menu-containers-icon side-menu-containers-icon-call"></div>
       <div class="side-menu-containers-name side-menu-containers-name-call">Позвонить в CLICK</div>
     </div>
+
+    <div class="side-menu-call-container" ontouchend="exitFromAppTouchEnd()" ontouchstart="exitFromAppTouchStart()">
+      <div class="side-menu-containers-icon side-menu-containers-icon-exit"></div>
+      <div class="side-menu-containers-name side-menu-containers-name-call">Выход</div>
+    </div>
   </div>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
@@ -137,6 +142,26 @@
       riotTags.innerHTML = "<view-general-settings>";
       riot.mount("view-general-settings");
 //      scope.unmount()
+    }
+
+
+    var exitModeTouchStartX, exitModeTouchStartY, exitModeTouchEndX, exitModeTouchEndY;
+
+    exitFromAppTouchStart = function () {
+
+      exitModeTouchStartX = event.changedTouches[0].pageX
+      exitModeTouchStartY = event.changedTouches[0].pageY
+    }
+
+    exitFromAppTouchEnd = function (){
+
+      exitModeTouchEndX = event.changedTouches[0].pageX
+      exitModeTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(exitModeTouchStartX - exitModeTouchEndX) <= 20 && Math.abs(exitModeTouchStartY - exitModeTouchEndY) <= 20) {
+        navigator.app.exitApp();
+      }
+
     }
 
     closeMenu = function () {

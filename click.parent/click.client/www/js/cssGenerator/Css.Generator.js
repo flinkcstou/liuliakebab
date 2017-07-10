@@ -2163,6 +2163,13 @@ var css = {
   "top: 22%;" +
   "}",
 
+  sideMenuContainersIconExit: ".side-menu-containers-icon-exit" +
+  "{" +
+  //"background-image: url(resources/icons/menu/menu_call.png);" +
+  "background-size: 100%;" +
+  "top: 22%;" +
+  "}",
+
   sideMenuContainersIconFavorite: ".side-menu-containers-icon-favorite" +
   "{" +
   "background-image: url(resources/icons/menu/menu_favorites.png);" +
@@ -6330,8 +6337,9 @@ var css = {
   "height: 100%;" +
   "width: 100%;" +
     //"background-color: #353340;" +
-  "background-image: url(resources/icons/transparent.png);" +
+  //"background-image: url(resources/icons/transparent.png);" +
   "display: none;" +
+  "background-color: rgba(255,255,255,0.95);" +
   "}",
 
   InProcessingOperationSuccessMessagePartOne: ".in-processing-operation-success-message-part-one" +
@@ -6415,8 +6423,9 @@ var css = {
   "height: 100%;" +
   "width: 100%;" +
     //"background-color: #353340;" +
-  "background-image: url(resources/icons/transparent.png);" +
+  //"background-image: url(resources/icons/transparent.png);" +
   "display: none;" +
+  "background-color: rgba(255,255,255,0.95);" +
   "}",
 
   successOperationSuccessMessage: ".success-operation-success-message" +
