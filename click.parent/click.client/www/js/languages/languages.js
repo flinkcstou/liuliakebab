@@ -3,68 +3,68 @@ window.languages = {};
 localStorage.setItem('settings_language', 'ru');
 
 var RU_LANGUAGES =
-{
-  "CodeOfCountry": "998",
-  "PhoneNumberLength": 9,
-  "Currency": "сум",
+  {
+    "CodeOfCountry": "998",
+    "PhoneNumberLength": 9,
+    "Currency": "сум",
 
-  "ComponentBankOperationsPay": "ОПЛАТА",
+    "ComponentBankOperationsPay": "ОПЛАТА",
 
-  "ComponentBankOperationsTransfer": "ПЕРЕВОДЫ",
+    "ComponentBankOperationsTransfer": "ПЕРЕВОДЫ",
 
-  "ComponentBankOperationsAutoPay": "АВТОПЛАТЁЖ",
-  "ComponentBankOperationsQr": "СКАНЕР QR",
+    "ComponentBankOperationsAutoPay": "АВТОПЛАТЁЖ",
+    "ComponentBankOperationsQr": "СКАНЕР QR",
 
-  "BankOperationsAutoPay": "МОИ КАРТЫ",
+    "BankOperationsAutoPay": "МОИ КАРТЫ",
 
-  "ComponentPopularServicesTitle": "Популярные сервисы",
+    "ComponentPopularServicesTitle": "Популярные сервисы",
 
-  "ComponentFavoritePaymentsTitle": "Избранные платежи",
+    "ComponentFavoritePaymentsTitle": "Избранные платежи",
 
-  "ComponentFooterContactsLabel": "КОНТАКТЫ",
+    "ComponentFooterContactsLabel": "КОНТАКТЫ",
 
-  "ViewRegistrationTextField": "Введите номер телефона",
-  "ViewRegistrationDeviceRememberLabel": "Запомнить устройство",
-  "ViewRegistrationDeviceButtonEnterLabel": "Далее",
-  "ViewRegistrationDeviceButtonHelp": "Помощь",
-  "ViewRegistrationDeviceButtonOffline": "Офлайн режим",
-  "ViewRegistrationDeviceButtonDemoVersion": "Демо версия",
+    "ViewRegistrationTextField": "Введите номер телефона",
+    "ViewRegistrationDeviceRememberLabel": "Запомнить устройство",
+    "ViewRegistrationDeviceButtonEnterLabel": "Далее",
+    "ViewRegistrationDeviceButtonHelp": "Помощь",
+    "ViewRegistrationDeviceButtonOffline": "Офлайн режим",
+    "ViewRegistrationDeviceButtonDemoVersion": "Демо версия",
 
-  "ViewSmsFieldOne": "Введите код активации",
-  "ViewSmsButtonHelp": "Помощь",
-  "ViewSmsCodeActivationText": "Код активации выслан на номер:",
-  "ViewSmsMessageTitle": "Мы позвоним вам через минуту,",
-  "ViewSmsMessageTitleTwo": "чтобы сообщить код активации на номер:",
-  "ViewSmsResendText": "Смс переотправлено на номер: ",
-  "ViewSmsButtonEnterLabel": "Указать другой номер",
+    "ViewSmsFieldOne": "Введите код активации",
+    "ViewSmsButtonHelp": "Помощь",
+    "ViewSmsCodeActivationText": "Код активации выслан на номер:",
+    "ViewSmsMessageTitle": "Мы позвоним вам через минуту,",
+    "ViewSmsMessageTitleTwo": "чтобы сообщить код активации на номер:",
+    "ViewSmsResendText": "Смс переотправлено на номер: ",
+    "ViewSmsButtonEnterLabel": "Указать другой номер",
 
-  "ViewAuthorizationClickPinLabel": "Введите CLICK-PIN",
-  "ViewAuthorizationForgetPinLabel": "Забыли CLICK-PIN?",
-  "ViewAuthorizationFirstEnterLabel": "Войти",
-  "ViewAuthorizationResetLocalStorageLabel": "Очистить данные",
-  "ViewAuthorizationOfflineModeLabel": "Офлайн режим",
+    "ViewAuthorizationClickPinLabel": "Введите CLICK-PIN",
+    "ViewAuthorizationForgetPinLabel": "Забыли CLICK-PIN?",
+    "ViewAuthorizationFirstEnterLabel": "Войти",
+    "ViewAuthorizationResetLocalStorageLabel": "Очистить данные",
+    "ViewAuthorizationOfflineModeLabel": "Офлайн режим",
 
-  "ViewInfoBalanceTitle": "Общий баланс",
+    "ViewInfoBalanceTitle": "Общий баланс",
 
-  "ViewInfoMyFinanceTitle": "Мои финансы",
-  "ViewInfoReportsTitle": "Отчёты",
-  "ViewInfoLastOperations": "Последние операции",
+    "ViewInfoMyFinanceTitle": "Мои финансы",
+    "ViewInfoReportsTitle": "Отчёты",
+    "ViewInfoLastOperations": "Последние операции",
 
-  "ViewMyCardTransfer": "Переводы с карты на карту",
-  "ViewMyCardTitleName": "ДЕЙСТВИЯ С КАРТОЙ",
-  "ViewMyCardPay": "Оплата с карты",
-  "ViewMyCardReports": "Отчеты по карте",
-  "ViewMyCardBlock": "Удалить карту",
-  "ViewMyCardLastOperations": "Последние операции",
+    "ViewMyCardTransfer": "Переводы с карты на карту",
+    "ViewMyCardTitleName": "ДЕЙСТВИЯ С КАРТОЙ",
+    "ViewMyCardPay": "Оплата с карты",
+    "ViewMyCardReports": "Отчеты по карте",
+    "ViewMyCardBlock": "Удалить карту",
+    "ViewMyCardLastOperations": "Последние операции",
 
-  "ViewServicePageEnterLabel": "Далее",
-  "ViewServicePageChooseCityLabel": "Выберите город",
-  "ViewServicePageChooseDistrictLabel": "Выберите район",
-  //"ViewServicePageChooseRegion": "ВЫБЕРИТЕ РАЙОН",
-  //"ViewServicePageChooseCity": "ВЫБЕРИТЕ ГОРОД",
-  "ViewServicePageSaveLabel": "Сохранить",
-  "ViewServicePageAmountTextLabel": "Сумма оплаты:",
-  "ViewServicePageAmountTaxText": "Комиссия: ",
+    "ViewServicePageEnterLabel": "Далее",
+    "ViewServicePageChooseCityLabel": "Выберите город",
+    "ViewServicePageChooseDistrictLabel": "Выберите район",
+    //"ViewServicePageChooseRegion": "ВЫБЕРИТЕ РАЙОН",
+    //"ViewServicePageChooseCity": "ВЫБЕРИТЕ ГОРОД",
+    "ViewServicePageSaveLabel": "Сохранить",
+    "ViewServicePageAmountTextLabel": "Сумма оплаты:",
+    "ViewServicePageAmountTaxText": "Комиссия: ",
 
 //{(secondLevelArray && secondLevelArray[0])?(secondLevelArray[0].name):("")}
 //{service.options_title}
@@ -493,13 +493,13 @@ var RU_LANGUAGES =
 
 
   "ViewAutoPayEmptyTitleText": "СПИСОК АВТОПЛАТЕЖЕЙ ПУСТ",
-  "ViewAutoPayEmptyBodyText": "Он нужен для того, чтобы сохранить платежи, которые вы совершаете чаще всего. Нажмите \"+\" для добавления платежа в избранное",
+  "ViewAutoPayEmptyBodyText": "Нажмите на \"+\" для создания автоплатежа",
   "ViewFavoriteEmptyTitleText": "ВЫ ЕЩЕ НЕ ДОБАВИЛИ НИ ОДНОГО ИЗБРАННОГО ПЛАТЕЖА",
-  "ViewFavoriteEmptyBodyText": "Он нужен для того, чтобы сохранить платежи, которые вы совершаете чаще всего. Нажмите " + " для добавления платежа в избранное",
-  "ViewInvoiceInEmptyTitleText": "В ПОСЛЕДНЕЕ ВРЕМЯ ВАМ НИКТО НЕ ВЫСТАВЛЯЛ СЧЕТ",
-  "ViewInvoiceInEmptyBodyText": "Он нужен для того, чтобы сохранить платежи, которые вы совершаете чаще всего.",
-  "ViewInvoiceOutEmptyTitleText": "В ПОСЛЕДНЕЕ ВРЕМЯ ВЫ НИКОМУ НЕ ВЫСТАВЛЯЛИ СЧЕТ",
-  "ViewInvoiceOutEmptyBodyText": "Он нужен для того, чтобы сохранить платежи, которые вы совершаете чаще всего. "
+  "ViewFavoriteEmptyBodyText": "Нажмите на \"+\" для добавления платежа в избранное",
+  "ViewInvoiceInEmptyTitleText": "",
+  "ViewInvoiceInEmptyBodyText": "Пока вам никто не выставлял счёт",
+  "ViewInvoiceOutEmptyTitleText": "",
+  "ViewInvoiceOutEmptyBodyText": "Пока вы никому не выставляли счёт"
 
 };
 

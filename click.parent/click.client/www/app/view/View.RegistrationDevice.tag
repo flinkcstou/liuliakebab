@@ -3,7 +3,13 @@
     <div class="registration-device-unchangable-container">
       <div class="registration-device-phone-field">
         <p class="registration-device-text-field">{window.languages.ViewRegistrationTextField}</p>
-        <p class="registration-device-phone-input">{maskPhoneNumber}</p>
+
+        <p class="registration-device-phone-code-part">+{window.languages.CodeOfCountry}</p>
+        <input class="registration-device-phone-input-part"
+               id="regNumberInput"
+               value="{maskPhoneNumber}" ontouchend="onTouchendRegNumber()" disabled/>
+        <div id="inputCaret" class="registration-caret"></div>
+
         <div class="registration-device-remember" ontouchend="rememberTouchEnd()" ontouchstart="rememberTouchStart()">
           <p class="registration-device-remember-label">
             {window.languages.ViewRegistrationDeviceRememberLabel}</p>
@@ -126,8 +132,9 @@
 
     scope.showError = false;
 
-    scope.phoneNumber = '+' + window.languages.CodeOfCountry;
-    scope.maskPhoneNumber = '+' + window.languages.CodeOfCountry;
+    //    scope.phoneNumber = '+' + window.languages.CodeOfCountry;
+    scope.phoneNumber = '';
+    scope.maskPhoneNumber = '';
 
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
 
@@ -145,24 +152,105 @@
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
-        if (scope.maskPhoneNumber.length < 14 && myValue != 'x') {
-          if (scope.maskPhoneNumber.length == 4)
-            scope.maskPhoneNumber += ' ';
-          scope.maskPhoneNumber += myValue;
+        console.log("inputFocusIndex", inputFocusIndex);
+
+        if (scope.maskPhoneNumber.length < 9 && myValue != 'x') {
+
+          scope.maskPhoneNumber = scope.maskPhoneNumber.slice(0, inputFocusIndex) + myValue + scope.maskPhoneNumber.slice(inputFocusIndex);
+          scope.phoneNumber = '+' + window.languages.CodeOfCountry + scope.maskPhoneNumber;
+          ++inputFocusIndex;
+          inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, inputFocusIndex)).width + inputLocalStartX + 'px';
+
         }
-        if (scope.phoneNumber.length < 13 && myValue != 'x') {
-          scope.phoneNumber += myValue;
+
+        if (myValue == 'x') {
+
+          if (inputFocusIndex != 0) {
+            scope.maskPhoneNumber = scope.maskPhoneNumber.slice(0, inputFocusIndex - 1) + scope.maskPhoneNumber.slice(inputFocusIndex);
+            scope.phoneNumber = '+' + window.languages.CodeOfCountry + scope.maskPhoneNumber;
+            --inputFocusIndex;
+            inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, inputFocusIndex)).width + inputLocalStartX + 'px';
+          }
         }
-        if (myValue == 'x' && scope.phoneNumber.length != 4) {
-          scope.phoneNumber = scope.phoneNumber.substring(0, scope.phoneNumber.length - 1);
-          scope.maskPhoneNumber = scope.maskPhoneNumber.substring(0, scope.maskPhoneNumber.length - 1);
-        }
-        console.log(scope.phoneNumber)
-        console.log(scope.maskPhoneNumber)
+
+        console.log("p=", scope.phoneNumber);
+        console.log("m=", scope.maskPhoneNumber);
         scope.update();
       }
       return
+    };
+
+    var regNumberTouchEndX, regNumberTouchEndY;
+    //    var digitLength = 35 * widthK;
+    var totalLength = window.languages.PhoneNumberLength;
+    var inputStartX = 260 * widthK;
+    var inputLocalStartX = inputStartX - 80 * widthK;
+    var inputEndX = 365 * widthK + inputStartX;
+    var inputFocusIndex = 0;
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext("2d");
+    ctx.font = 64 * widthK + "px SFUIDisplay-Light";
+
+
+    onTouchendRegNumber = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      regNumberTouchEndX = event.changedTouches[0].pageX;
+
+
+      var valueLength = ctx.measureText(regNumberInput.value).width;
+
+//      console.log("regNumberTouchEndX=", regNumberTouchEndX, ",text valueLength=", valueLength);
+      if ((regNumberTouchEndX < inputStartX) || (regNumberTouchEndX < ctx.measureText(regNumberInput.value[0]).width / 2 + inputStartX)) {
+        inputCaret.style.left = inputLocalStartX + 'px';
+        inputFocusIndex = 0;
+//        console.log("asdd")
+      }
+      else if (regNumberTouchEndX > (valueLength + inputStartX)) {
+//        console.log("wwrrt")
+        inputCaret.style.left = (valueLength + inputLocalStartX) + 'px';
+        inputFocusIndex = regNumberInput.value.length;
+      } else {
+        for (var i = 0; i < regNumberInput.value.length; i++) {
+
+//          console.log("i=", i, regNumberInput.value.substring(0, i + 1), ctx.measureText(regNumberInput.value.substring(0, i)).width + inputStartX);
+
+          if (regNumberTouchEndX < (ctx.measureText(regNumberInput.value.substring(0, i + 1)).width + inputStartX)) {
+//            console.log("substr i+1=", regNumberInput.value.substring(0, i + 1), "substr i=", regNumberInput.value.substring(0, i), "value[i]", regNumberInput.value[i]);
+            if (regNumberTouchEndX < (ctx.measureText(regNumberInput.value.substring(0, i)).width + ctx.measureText(regNumberInput.value[i]).width / 2 + inputStartX)) {
+              inputCaret.style.left = ctx.measureText(regNumberInput.value.substring(0, i)).width + inputLocalStartX + 'px';
+//              console.log("111");
+              inputFocusIndex = i;
+            } else if (regNumberTouchEndX > (ctx.measureText(regNumberInput.value.substring(0, i)).width + ctx.measureText(regNumberInput.value[i]).width / 2 + inputStartX)) {
+              inputCaret.style.left = ctx.measureText(regNumberInput.value.substring(0, i + 1)).width + inputLocalStartX + 'px';
+//              console.log("222");
+              inputFocusIndex = i + 1;
+            }
+
+//            console.log("bingo i=", i, "width=", ctx.measureText(regNumberInput.value.substring(0, i + 1)).width);
+            break;
+          }
+
+        }
+
+      }
+    };
+
+    function updateTransition() {
+      var el = document.getElementById("inputCaret");
+
+      if (el.className == "registration-caret") {
+        el.className = "registration-caret-two";
+      } else {
+//        el = document.querySelector("div.box1");
+        el.className = "registration-caret";
+      }
+
+      return el;
     }
+
+    var intervalID = window.setInterval(updateTransition, 800);
 
     var offlineTouchStartX, offlineTouchStartY, offlineTouchEndX, offlineTouchEndY;
 
