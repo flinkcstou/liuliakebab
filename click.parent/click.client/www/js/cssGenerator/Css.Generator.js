@@ -609,6 +609,7 @@ var css = {
   "width: 65%;" +
   "font-family: 'SFUIDisplay-Light';" +
   "background-color: transparent;" +
+  "opacity:1;" +
   "}",
 
   registrationCaret: ".registration-caret " +
@@ -3709,6 +3710,10 @@ var css = {
   "color: #515151;" +
   "padding: 0;" +
   "margin: 0;" +
+  // "::-webkit-input-placeholder { color:#f00; }" +
+  // "::-moz-placeholder { color:#f00; }" + /* firefox 19+ */
+  // ":-ms-input-placeholder { color:#f00; }" + /* ie */
+  // "input:-moz-placeholder { color:#f00; }" +
   "}",
 
   servicePageNumberInputPart: ".servicepage-number-input-part" +
