@@ -6292,14 +6292,15 @@ var css = {
   "opacity: 0.95;" +
   "height: 100%;" +
   "width: 100%;" +
-  "background-color: #353340;" +
+  //"background-color: #353340;" +
+  "background-image: url(resources/icons/transparent.png);" +
   "display: none;" +
   "}",
 
   InProcessingOperationSuccessMessagePartOne: ".in-processing-operation-success-message-part-one" +
   "{" +
   "position: relative;" +
-  "color: white;" +
+  "color: black;" +
   "width: 100%;" +
   "text-align: center;" +
   "margin-left: auto;" +
@@ -6375,14 +6376,15 @@ var css = {
   "opacity: 0.95;" +
   "height: 100%;" +
   "width: 100%;" +
-  "background-color: #353340;" +
+  //"background-color: #353340;" +
+  "background-image: url(resources/icons/transparent.png);" +
   "display: none;" +
   "}",
 
   successOperationSuccessMessage: ".success-operation-success-message" +
   "{" +
   "position: relative;" +
-  "color: white;" +
+  "color: black;" +
   "width:" + 300 * widthK + "px;" +
   "text-align: center;" +
   "margin-left: auto;" +
@@ -6443,7 +6445,9 @@ var css = {
   "height: 100%;" +
   "width: 101%;" +
   "display: none;" +
-  "background-color: #efeff1;" +
+  //"background-color: #efeff1;" +
+  "background-image: url(resources/icons/transparent.png);" +
+  //"background-repeat: no-repeat;" +
   "}",
 
   deleteOperationConfirmMessage: ".delete-operation-confirm-message" +
@@ -6504,8 +6508,8 @@ var css = {
   "float: left;" +
   "text-align: center;" +
   "margin-left: 3%;" +
-  "color: #c8c8c8;" +
-  "background-color: #ffffff;" +
+  "color: #ffffff;" +
+  "background-color: #c8c8c8;" +
   "height:" + 62 * widthK + "px;" +
   "line-height:" + 63 * widthK + "px;" +
   "border-radius:" + 5 * widthK + "px;" +
@@ -6522,14 +6526,15 @@ var css = {
   "opacity: 0.95;" +
   "height: 100%;" +
   "width: 100%;" +
-  "background-color: #353340;" +
+  //"background-color: #353340;" +
+  "background-image: url(resources/icons/transparent.png);" +
   "display: none;" +
   "}",
 
   unsuccessOperationSuccessMessage: ".unsuccess-operation-success-message" +
   "{" +
   "position: relative;" +
-  "color: white;" +
+  "color: black;" +
   "width:" + 380 * widthK + "px;" +
   "text-align: center;" +
   "margin-left: auto;" +
@@ -6572,7 +6577,7 @@ var css = {
   unsuccessOperationSuccessMessagePartThree: ".unsuccess-operation-success-message-part-three" +
   "{" +
   "position: relative;" +
-  "color: #ff3c5e;" +
+  "color: black;" +
   "width:" + 640 * widthK + "px;" +
   "font-size:" + 30 * widthK + "px;" +
   "text-align: center;" +
