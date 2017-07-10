@@ -80,6 +80,7 @@
 
           if (scope.notificationAction == "news") {
             window.News.newsCounter++;
+            riot.update();
 
             background_notification.action = "getInvoiceFunction";
             background_notification.params = scope.notificationElementId;

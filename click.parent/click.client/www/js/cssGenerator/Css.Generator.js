@@ -1545,9 +1545,9 @@ var css = {
   "border-radius:" + 14 * widthK + "px;" +
   "background-size: cover;" +
   "color: white;" +
-  "-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  "-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  "box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+  "-webkit-box-shadow: 0px " + 50 * widthK + "px " + 50 * widthK + "px " + -50 * widthK + "px " + "rgba(0,0,0,1);" +
+  "-moz-box-shadow: 0px " + 50 * widthK + "px " + 50 * widthK + "px " + -50 * widthK + "px " + "rgba(0,0,0,1);" +
+  "box-shadow:  0px " + 50 * widthK + "px " + 50 * widthK + "px " + -50 * widthK + "px " + "rgba(0,0,0,1);" +
   "}",
 
   invoiceCardPartOne: ".invoice-card-part-one " +
@@ -3086,6 +3086,9 @@ var css = {
   "height:" + 68 * widthK + "px;" +
     //"top:" + 535 * widthK + "px;" +
   "top:" + 400 * widthK + "px;" +
+  "z-index:99;" +
+  "background-color: white;" +
+  "box-shadow:" + 0  * widthK + "px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
   "}",
 
   viewInfoOperationsLabel: ".view-info-operations-label " +
@@ -6292,7 +6295,7 @@ var css = {
   "opacity: 0.95;" +
   "height: 100%;" +
   "width: 100%;" +
-  //"background-color: #353340;" +
+    //"background-color: #353340;" +
   "background-image: url(resources/icons/transparent.png);" +
   "display: none;" +
   "}",
@@ -6332,15 +6335,16 @@ var css = {
   "top: 83%;" +
   "height: " + 74 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
-  "background-color: #00a8f1;" +
+  "background-color: white;" +
   "padding: 0;" +
   "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
-  "border: none;" +
+    //"border: none;" +
+  "border:" + 3 * widthK + "px solid #00a8f1;" +
   "outline: none;" +
   "width: 44%;" +
   "border-radius: " + 10 * widthK + "px;" +
-  "color: #ffffff;" +
+  "color: #00a8f1;" +
   "position: relative;" +
   "left: -2%;" +
   "display: table;" +
@@ -6376,7 +6380,7 @@ var css = {
   "opacity: 0.95;" +
   "height: 100%;" +
   "width: 100%;" +
-  //"background-color: #353340;" +
+    //"background-color: #353340;" +
   "background-image: url(resources/icons/transparent.png);" +
   "display: none;" +
   "}",
@@ -6401,17 +6405,18 @@ var css = {
   "top: 83%;" +
   "height: " + 74 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
-  "background-color: #00a8f1;" +
+  "background-color: white;" +
   "padding: 0;" +
   "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
-  "border: none;" +
+    //"border: none;" +
+  "border:" + 3 * widthK + "px solid #00a8f1;" +
   "outline: none;" +
   "position: absolute;" +
   "left: 28%;" +
   "width: 44%;" +
   "border-radius: " + 10 * widthK + "px;" +
-  "color: #ffffff;" +
+  "color: #00a8f1;" +
   "}",
 
   successNextButtonLabel: ".success-next-button-label" +
@@ -6445,9 +6450,9 @@ var css = {
   "height: 100%;" +
   "width: 101%;" +
   "display: none;" +
-  //"background-color: #efeff1;" +
+    //"background-color: #efeff1;" +
   "background-image: url(resources/icons/transparent.png);" +
-  //"background-repeat: no-repeat;" +
+    //"background-repeat: no-repeat;" +
   "}",
 
   deleteOperationConfirmMessage: ".delete-operation-confirm-message" +
@@ -6526,15 +6531,14 @@ var css = {
   "opacity: 0.95;" +
   "height: 100%;" +
   "width: 100%;" +
-  //"background-color: #353340;" +
-  "background-image: url(resources/icons/transparent.png);" +
+  "background-color: #353340;" +
   "display: none;" +
   "}",
 
   unsuccessOperationSuccessMessage: ".unsuccess-operation-success-message" +
   "{" +
   "position: relative;" +
-  "color: black;" +
+  "color: white;" +
   "width:" + 380 * widthK + "px;" +
   "text-align: center;" +
   "margin-left: auto;" +
@@ -6550,7 +6554,7 @@ var css = {
   "top: 89%;" +
   "height: 6%;" +
   "margin: 0 auto 0 auto;" +
-  "background-color: #00a8f1;" +
+  "background-color: #027fe4;" +
   "padding: 0;" +
   "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
@@ -6577,7 +6581,7 @@ var css = {
   unsuccessOperationSuccessMessagePartThree: ".unsuccess-operation-success-message-part-three" +
   "{" +
   "position: relative;" +
-  "color: black;" +
+  "color: #ff3c5e;" +
   "width:" + 640 * widthK + "px;" +
   "font-size:" + 30 * widthK + "px;" +
   "text-align: center;" +
