@@ -81,7 +81,7 @@
       <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="9"
              id="amount"
              pattern="[0-9]"
-             onfocus="amountFocus()" onblur="amountOnBlur()"
+             placeholder="{placeHolderText}"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
       <div if="{!modeOfApp.offlineMode}" class="servicepage-amount-icon" ontouchend="amountCalculator()"></div>
     </div>
@@ -228,8 +228,6 @@
     window.checkShowingComponent = null;
     var scope = this;
 
-    console.log('OPTS in ServicePage NEW ', opts);
-    //    console.log('opts.chosenServiceId', opts.chosenServiceId);
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page-new') {
       history.arrayOfHistory.push(
@@ -367,7 +365,7 @@
         amountForPayTransaction = opts.amountWithoutSpace;
       }
       else if (scope.formType != 2)
-        amount.value = 0
+//        amount.value = 0
 
       if (modeOfApp.offlineMode) {
         if (typeof enterButtonId != 'undefined')
@@ -401,25 +399,7 @@
 
     }
 
-    amountFocus = function () {
-      event.preventDefault()
-      event.stopPropagation()
 
-      if (amount.value.length == 1) {
-        amount.value = '';
-      }
-
-    }
-
-    scope.showComponent = false;
-    amountOnBlur = function () {
-      event.preventDefault()
-      event.stopPropagation()
-
-      if (amount.value.length == 0) {
-        amount.value = 0
-      }
-    }
 
     amountCalculator = function () {
 
@@ -567,10 +547,11 @@
           firstField.style.display = 'none';
           amountField.style.top = '7%';
 
+          console.log("opts.amountText", opts.amountText)
 
           if (opts.amountText)
             if (opts.amountText.length > 0 && opts) {
-              amount.value = !opts.amountText ? 0 : window.amountTransform(opts.amountText);
+              amount.value = window.amountTransform(opts.amountText);
               checkFirst = true;
               amountForPayTransaction = opts.amountWithoutSpace;
 
@@ -579,8 +560,8 @@
                 amountForPayTransaction = parseInt(amountForPayTransaction);
               }
             }
-            else
-              amount.value = 0;
+//            else
+//              amount.value = 0;
 
           console.log("amount=1 = ", opts.amountText);
         });
@@ -611,7 +592,7 @@
 
           if (opts.amountText)
             if (opts.amountText.length > 0 && opts) {
-              amount.value = !opts.amountText ? 0 : window.amountTransform(opts.amountText);
+              amount.value = window.amountTransform(opts.amountText);
               checkFirst = true;
               amountForPayTransaction = opts.amountWithoutSpace;
 
@@ -620,8 +601,8 @@
                 amountForPayTransaction = parseInt(amountForPayTransaction);
               }
             }
-            else
-              amount.value = 0;
+//            else
+//              amount.value = 0;
         });
       }
     } else {
@@ -713,7 +694,12 @@
         scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
         if (scope.phoneFieldBool)
           scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
-        scope.defaultAmount = !opts.amountText ? 0 : window.amountTransform(opts.amountText);
+
+        if(opts.amountText)
+        scope.defaultAmount = window.amountTransform(opts.amountText);
+        else{
+          scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " до " + window.amountTransform(scope.service.max_pay_limit) + " сум"
+        }
         console.log("after tranform amount=", scope.defaultAmount);
         scope.update();
 
@@ -1113,7 +1099,7 @@
       event.stopPropagation();
 
       if (!checkFirst) {
-        amount.value = '';
+//        amount.value = '';
         checkFirst = true;
       }
       if (amount.value.match(maskOne) != null && amount.value.match(maskOne).length != null) {
@@ -1142,7 +1128,7 @@
       }
 
       if (amount.value.length == 1 && amount.value == 0) {
-        amount.value = '';
+//        amount.value = '';
       }
 
       if (amount.value.match(maskTwo) != null && amount.value.match(maskTwo).length != null) {
