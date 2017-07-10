@@ -135,9 +135,9 @@ window.dateAddZero = function (date) {
 };
 
 window.amountTransform = function (amount) {
-  if(amount) {
+  if (amount) {
     amount = amount.toString()
-  }else{
+  } else {
     return amount
   }
   if (amount.length == 1 && amount == 0) {
@@ -159,7 +159,27 @@ window.amountTransform = function (amount) {
   return newAmount.split("").reverse().join("");
 }
 
+
 window.inputVerification = {};
+
+window.inputVerification.phoneTransform = function (amount) {
+
+  if (amount) {
+    amount = amount.toString()
+
+    amount = amount.replace(new RegExp('[^0-9]', 'g'), '');
+
+    if (amount.length > 2) {
+      var newAmount = amount.slice(0, 2) + ' ' + amount.slice(2);
+      return newAmount.split("").join("");
+    } else {
+      return amount.split("").join("");
+    }
+  }
+
+  return '';
+
+}
 
 window.inputVerification.spaceDeleter = function (data) {
   data = data.toString()

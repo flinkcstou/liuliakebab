@@ -617,16 +617,9 @@ var css = {
   "position: absolute;" +
   "top:" + 40 * widthK + "px;" +
   "left:" + 180 * widthK + "px;" +
-  "width:" + 4 * widthK + "px;" +
+  "width:" + 2 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
   "background-color: white;" +
-  // "-webkit-animation-name: caret; " +
-  // "-webkit-animation-duration: 1.5s; " +
-  // "-webkit-animation-iteration-count: infinite; " +
-  // "animation-name: caret;" +
-  // "animation-duration: 1.5s;" +
-  // "animation-iteration-count: infinite;" +
-
   "-webkit-transition-property: width height background-color left top opacity transform -webkit-transform opacity;" +
   "-webkit-transition-duration: 0s;" +
   "-webkit-transition-timing-function: step(1,end);" +
@@ -639,22 +632,46 @@ var css = {
   "position: absolute;" +
   "top:" + 40 * widthK + "px;" +
   "left:" + 180 * widthK + "px;" +
-  "width:" + 4 * widthK + "px;" +
+  "width:" + 2 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
   "background-color: white;" +
   "opacity:0;" +
-  // "-webkit-animation-name: caret; " +
-  // "-webkit-animation-duration: 1.5s; " +
-  // "-webkit-animation-iteration-count: infinite; " +
-  // "animation-name: caret;" +
-  // "animation-duration: 1.5s;" +
-  // "animation-iteration-count: infinite;" +
   "-webkit-transition-property: width height background-colorleft top opacity transform -webkit-transform opacity;" +
   "-webkit-transition-duration: 0s;" +
   "-webkit-transition-timing-function: step(1,end);" +
   "transition-property: width height background-color left top opacity transform -webkit-transform opacity;" +
   "transition-duration: 0s;" +
+  "}",
 
+  SmsCaret: ".sms-caret " +
+  "{" +
+  "position: absolute;" +
+  "top:" + 40 * widthK + "px;" +
+  // "left:" + 180 * widthK + "px;" +
+  "width:" + 2 * widthK + "px;" +
+  "height:" + 60 * widthK + "px;" +
+  "background-color: white;" +
+  "-webkit-transition-property: width height background-color left top opacity transform -webkit-transform opacity;" +
+  "-webkit-transition-duration: 0s;" +
+  "-webkit-transition-timing-function: step(1,end);" +
+  "transition-property: width height background-color left top opacity transform -webkit-transform opacity;" +
+  "transition-duration: 0s;" +
+  "}",
+
+  SmsCaretTwo: ".sms-caret-two " +
+  "{" +
+  "position: absolute;" +
+  "top:" + 40 * widthK + "px;" +
+  // "left:" + 180 * widthK + "px;" +
+  "width:" + 2 * widthK + "px;" +
+  "height:" + 60 * widthK + "px;" +
+  "background-color: white;" +
+  "opacity:0;" +
+  "-webkit-transition-property: width height background-color left top opacity transform -webkit-transform opacity;" +
+  "-webkit-transition-duration: 0s;" +
+  "-webkit-transition-timing-function: step(1,end);" +
+  "transition-property: width height background-color left top opacity transform -webkit-transform opacity;" +
+  "transition-duration: 0s;" +
   "}",
 
   registrationDeviceRemember: ".registration-device-remember " +
@@ -1008,6 +1025,16 @@ var css = {
   "margin: 0;" +
   "top:" + 30 * widthK + "px;" +
   "font-size:" + 64 * widthK + "px;" +
+  "border: none;" +
+  "outline: none;" +
+  "color: white;" +
+  // "left: " + 180 * widthK + "px;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "width: 65%;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "background-color: transparent;" +
+  "opacity:1;" +
   "}",
 
   smsTimer: ".sms-timer " +
@@ -3125,7 +3152,7 @@ var css = {
   "top:" + 400 * widthK + "px;" +
   "z-index:99;" +
   "background-color: white;" +
-  "box-shadow:" + 0  * widthK + "px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
+  "box-shadow:" + 0 * widthK + "px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
   "}",
 
   viewInfoOperationsLabel: ".view-info-operations-label " +
@@ -3713,18 +3740,24 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 22%;" +
+  "top: 25%;" +
   "width: 88%;" +
   "font-size:" + 54 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "padding: 0;" +
   "margin: 0;" +
-  // "::-webkit-input-placeholder { color:#f00; }" +
-  // "::-moz-placeholder { color:#f00; }" + /* firefox 19+ */
-  // ":-ms-input-placeholder { color:#f00; }" + /* ie */
-  // "input:-moz-placeholder { color:#f00; }" +
   "}",
+
+  servicePageAmountInputPlaceholder: "input::placeholder" +
+  "{" +
+  "font-size:" + 38 * widthK + "px;" +
+  "color: gainsboro;" +
+  "}",
+
+  // "-moz-placeholder { color:#f00; font-size:" + 40 * widthK + "px;}" + /* firefox 19+ */
+  // "-ms-input-placeholder { color:#f00; }" + /* ie */
+  // "input:-moz-placeholder { color:#f00; font-size:" + 40 * widthK + "px;}" +
 
   servicePageNumberInputPart: ".servicepage-number-input-part" +
   "{" +
@@ -6336,7 +6369,7 @@ var css = {
   "opacity: 0.95;" +
   "height: 100%;" +
   "width: 100%;" +
-    //"background-color: #353340;" +
+  //"background-color: #353340;" +
   //"background-image: url(resources/icons/transparent.png);" +
   "display: none;" +
   "background-color: rgba(255,255,255,0.95);" +
@@ -6381,7 +6414,7 @@ var css = {
   "padding: 0;" +
   "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
-    //"border: none;" +
+  //"border: none;" +
   "border:" + 3 * widthK + "px solid #00a8f1;" +
   "outline: none;" +
   "width: 44%;" +
@@ -6422,7 +6455,7 @@ var css = {
   "opacity: 0.95;" +
   "height: 100%;" +
   "width: 100%;" +
-    //"background-color: #353340;" +
+  //"background-color: #353340;" +
   //"background-image: url(resources/icons/transparent.png);" +
   "display: none;" +
   "background-color: rgba(255,255,255,0.95);" +
@@ -6452,7 +6485,7 @@ var css = {
   "padding: 0;" +
   "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
-    //"border: none;" +
+  //"border: none;" +
   "border:" + 3 * widthK + "px solid #00a8f1;" +
   "outline: none;" +
   "position: absolute;" +
@@ -6493,9 +6526,9 @@ var css = {
   "height: 100%;" +
   "width: 101%;" +
   "display: none;" +
-    //"background-color: #efeff1;" +
+  //"background-color: #efeff1;" +
   "background-image: url(resources/icons/transparent.png);" +
-    //"background-repeat: no-repeat;" +
+  //"background-repeat: no-repeat;" +
   "}",
 
   deleteOperationConfirmMessage: ".delete-operation-confirm-message" +

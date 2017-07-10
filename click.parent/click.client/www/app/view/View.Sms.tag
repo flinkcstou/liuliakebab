@@ -3,7 +3,8 @@
     <div class="sms-unchangable-container">
       <div class="sms-phone-field">
         <p class="sms-text-field-one">{window.languages.ViewSmsFieldOne}</p>
-        <p class="sms-phone-input">{confirmSms}</p>
+        <input class="sms-phone-input" value="{confirmSms}" ontouchend="onTouchendSmsNumber()"/>
+        <div id="inputCaretSms" class="sms-caret"></div>
         <div class="sms-timer" ontouchend="touchEndResend()" ontouchstart="touchStartResend()">{time}
           <div class="sms-resend-icon"></div>
         </div>
@@ -67,6 +68,30 @@
       keyboardTouchStartY = event.changedTouches[0].pageY
     }
 
+    //
+    //    componentKeyboard.returnValue = function (myValue) {
+    //
+    //      keyboardTouchEndX = event.changedTouches[0].pageX
+    //      keyboardTouchEndY = event.changedTouches[0].pageY
+    //
+    //
+    //      if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
+    //
+    //        if (scope.confirmSms.length < 5 && myValue != 'x') {
+    //          scope.confirmSms += myValue;
+    //        }
+    //        if (myValue == 'x') {
+    //          scope.confirmSms = scope.confirmSms.substring(0, scope.confirmSms.length - 1);
+    //        }
+    //        scope.update();
+    //        if (scope.confirmSms.length == 5) {
+    //          var sms = scope.confirmSms;
+    //          viewSms.getSms(sms);
+    //          return;
+    //        }
+    //      }
+    //    }
+
 
     componentKeyboard.returnValue = function (myValue) {
 
@@ -76,12 +101,26 @@
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
+        console.log("inputFocusIndexSms", inputFocusIndexSms);
+
         if (scope.confirmSms.length < 5 && myValue != 'x') {
-          scope.confirmSms += myValue;
+
+          scope.confirmSms = scope.confirmSms.slice(0, inputFocusIndexSms) + myValue + scope.confirmSms.slice(inputFocusIndexSms);
+          ++inputFocusIndexSms;
+          inputCaretSms.style.left = ctx.measureText(scope.confirmSms.substring(0, inputFocusIndexSms)).width + inputLocalStartXSms - 3 + 'px';
         }
+
         if (myValue == 'x') {
-          scope.confirmSms = scope.confirmSms.substring(0, scope.confirmSms.length - 1);
+
+          if (inputFocusIndexSms != 0) {
+            scope.confirmSms = scope.confirmSms.slice(0, inputFocusIndexSms - 1) + scope.confirmSms.slice(inputFocusIndexSms);
+            --inputFocusIndexSms;
+            inputCaretSms.style.left = ctx.measureText(scope.confirmSms.substring(0, inputFocusIndexSms)).width + inputLocalStartXSms - 3 + 'px';
+          }
         }
+
+
+        console.log("p=", scope.confirmSms);
         scope.update();
         if (scope.confirmSms.length == 5) {
           var sms = scope.confirmSms;
@@ -89,7 +128,73 @@
           return;
         }
       }
+    };
+
+    var regNumberTouchEndX, regNumberTouchEndY;
+
+    var inputStartXSms = 80 * widthK;
+    var inputLocalStartXSms = inputStartXSms - 80 * widthK;
+    var inputFocusIndexSms = 0;
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext("2d");
+    ctx.font = 64 * widthK + "px SFUIDisplay-Light";
+
+
+    onTouchendSmsNumber = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      regNumberTouchEndX = event.changedTouches[0].pageX;
+
+
+      var valueLength = ctx.measureText(scope.confirmSms).width;
+
+      if ((regNumberTouchEndX < inputStartXSms) || (regNumberTouchEndX < ctx.measureText(scope.confirmSms[0]).width / 2 + inputStartXSms)) {
+        inputCaretSms.style.left = inputLocalStartXSms - 3 + 'px';
+        inputFocusIndexSms = 0;
+      }
+      else if (regNumberTouchEndX > (valueLength + inputStartXSms)) {
+
+        inputCaretSms.style.left = (valueLength + inputLocalStartXSms - 3) + 'px';
+        inputFocusIndexSms = scope.confirmSms.length;
+      } else {
+        for (var i = 0; i < scope.confirmSms.length; i++) {
+
+          if (regNumberTouchEndX < (ctx.measureText(scope.confirmSms.substring(0, i + 1)).width + inputStartXSms)) {
+
+            if (regNumberTouchEndX < (ctx.measureText(scope.confirmSms.substring(0, i)).width + ctx.measureText(scope.confirmSms[i]).width / 2 + inputStartXSms)) {
+              inputCaretSms.style.left = ctx.measureText(scope.confirmSms.substring(0, i)).width + inputLocalStartXSms - 3 + 'px';
+              inputFocusIndexSms = i;
+            } else if (regNumberTouchEndX > (ctx.measureText(scope.confirmSms.substring(0, i)).width + ctx.measureText(scope.confirmSms[i]).width / 2 + inputStartXSms)) {
+              inputCaretSms.style.left = ctx.measureText(scope.confirmSms.substring(0, i + 1)).width + inputLocalStartXSms - 3 + 'px';
+              inputFocusIndexSms = i + 1;
+            }
+
+            break;
+          }
+
+        }
+
+      }
+    };
+
+    function updateTransition() {
+      var el = document.getElementById("inputCaretSms");
+
+      if (el) {
+        if (el.className == "sms-caret") {
+          el.className = "sms-caret-two";
+        } else {
+//        el = document.querySelector("div.box1");
+          el.className = "sms-caret";
+        }
+      }
+
+      return el;
     }
+
+    var intervalIDSms = window.setInterval(updateTransition, 800);
+
 
     var helpTouchStartXSms, helpTouchStartYSms, helpTouchEndXSms, helpTouchEndYSms;
     helpTouchStartSms = function () {
