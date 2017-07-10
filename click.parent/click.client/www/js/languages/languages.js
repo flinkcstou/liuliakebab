@@ -160,7 +160,7 @@ var RU_LANGUAGES =
   "ComponentSuccessMessage": "Перевод прошел успешно!",
   "ComponentSuccessMessageForPay": "Оплата проведена успешно!",
   "ComponentSuccessMessageForPayFriendHelp": "Запрос передан в обработку",
-  "ComponentSuccessNext": "Oк",
+  "ComponentSuccessNext": "Закрыть",
 
   "ComponentSuccessMessageForAddingToFavorites": "Платёж успешно добавлен в избранные",
 
@@ -173,7 +173,7 @@ var RU_LANGUAGES =
   "ComponentUnsuccessMessagePart3": "Проверьте правильность введенных данных или попробуйте повторить перевод позже",
 
   "ComponentUnsuccessMessagePart3ForPay": "Проверьте правильность введенных данных или попробуйте повторить оплату позже",
-  "ComponentUnsuccessNext": "OK",
+  "ComponentUnsuccessNext": "Закрыть",
 
   "ComponentDeleteText": "Вы действительно хотите удалить карту из приложения?",
   "ComponentDeleteTextYes": "Да",
@@ -234,6 +234,7 @@ var RU_LANGUAGES =
   "ViewAboutSettingsTitle": "О программе",
   "ViewSupportSettingsTitle": "Служба поддержки",
   "ViewCallCenterSettingsTitle": "Позвонить в Контактный центр",
+  "ClearLocalStorage": "Очистить данные",
 
   "ViewSecuritySettingsTrustedDevicesTitle": "Доверенные устройства",
   "ViewSecuritySettingsPinChangeTitle": "Сменить CLICK-PIN",

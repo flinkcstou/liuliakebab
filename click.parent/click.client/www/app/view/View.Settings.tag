@@ -53,9 +53,18 @@
         <div class="settings-block-name-field">{window.languages.ViewCallCenterSettingsTitle}</div>
         <div class="settings-block-next-icon"></div>
       </div>
+
+      <div class="settings-block-containter" ontouchstart="localStorageClearTouchStart()" ontouchend="localStorageClearTouchEnd()">
+        <div class="settings-block-icon"
+             style="background-image: url('resources/icons/')"></div>
+        <div class="settings-block-name-field">{window.languages.ClearLocalStorage}</div>
+        <div class="settings-block-next-icon"></div>
+      </div>
     </div>
 
   </div>
+  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
+                     confirmtype="{confirmType}"></component-confirm>
 
   <view-settings-support id="settingsSupportId" style="display: none"></view-settings-support>
 
@@ -158,6 +167,53 @@
       event.stopPropagation();
 
       window.open('tel:+998712310880')
+    }
+
+    var resetLocalStorageTouchStartX, resetLocalStorageTouchStartY, resetLocalStorageTouchEndX, resetLocalStorageTouchEndY;
+
+    localStorageClearTouchStart = function (){
+      event.preventDefault();
+      event.stopPropagation();
+
+      resetLocalStorageTouchStartX = event.changedTouches[0].pageX
+      resetLocalStorageTouchStartY = event.changedTouches[0].pageY
+    }
+
+    localStorageClearTouchEnd = function (){
+      event.preventDefault();
+      event.stopPropagation();
+
+      resetLocalStorageTouchEndX = event.changedTouches[0].pageX
+      resetLocalStorageTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(resetLocalStorageTouchStartX - resetLocalStorageTouchEndX) <= 20 && Math.abs(resetLocalStorageTouchStartY - resetLocalStorageTouchEndY) <= 20) {
+
+        var question = 'Подтвердите удаление данных'
+//        confirm(question)
+        scope.confirmShowBool = true;
+        scope.confirmNote = question;
+        scope.confirmType = 'local';
+        scope.update();
+        scope.result = function (bool) {
+          if (bool) {
+            localStorage.clear();
+            if (device.platform != 'BrowserStand') {
+              window.FirebasePlugin.unsubscribe("news");
+
+            }
+            riotTags.innerHTML = "<view-registration-device>";
+            riot.mount('view-registration-device');
+            scope.unmount()
+            return
+          }
+        };
+//      if (scope.result) {
+//        localStorage.clear();
+//        this.riotTags.innerHTML = "<view-registration-device>";
+//        riot.mount('view-registration-device');
+//        return
+//      }
+      }
     }
 
   </script>
