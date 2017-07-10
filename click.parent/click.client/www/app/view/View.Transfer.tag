@@ -1256,6 +1256,7 @@
                 {
                   "name": phoneNumberForTransfer,
                   "type": 2,
+                  "percent": JSON.parse(localStorage.getItem('click_client_loginInfo')).p2p_comission,
                 }
               ]);
 

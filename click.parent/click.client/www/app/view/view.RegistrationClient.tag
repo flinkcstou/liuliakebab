@@ -78,6 +78,7 @@
       boxOne.style.border = 'solid 1px gray';
       checkOne = true;
 
+      if(device.platform != "BrowserStand")
       StatusBar.backgroundColorByHexString("#00b0eb");
     })
 
@@ -377,9 +378,6 @@
       goToPinCodeTouchEndY = event.changedTouches[0].pageY
 
       if (Math.abs(goToPinCodeTouchStartX - goToPinCodeTouchEndX) <= 20 && Math.abs(goToPinCodeTouchStartY - goToPinCodeTouchEndY) <= 20) {
-
-        goToPinCodeTouchEndX = event.changedTouches[0].pageX
-        goToPinCodeTouchEndY = event.changedTouches[0].pageY
 
         var secondParameter;
         if (checkDate)

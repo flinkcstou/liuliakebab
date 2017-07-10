@@ -327,7 +327,7 @@ window.fakedSocket.register("get.payments.by.account", function (input) {
   array.push([{
     "payment_id": 277019456,
     "amount": 22543,
-    "cntrg_info_param2": "974647747",
+    "cntrg_info_param2": "97 9000000",
     "cntrg_info_param3": null,
     "cntrg_info_param4": null,
     "cntrg_info_param5": null,
@@ -335,7 +335,7 @@ window.fakedSocket.register("get.payments.by.account", function (input) {
     "state": 2,
     "paydoc_state": 2,
     image: "https://m.click.uz/static/merchant/logo/logo_2.png",
-    "service_name": "UMS (97 4647747)",
+    "service_name": "UMS",
     "created": "2016-11-30T12:56:01.596Z",
     "created_timestamp": 1480512361,
     "abs_type": "SMARTV    ",
@@ -348,14 +348,14 @@ window.fakedSocket.register("get.payments.by.account", function (input) {
     {
       "payment_id": 277019456,
       "amount": 345,
-      "cntrg_info_param2": "111111111",
+      "cntrg_info_param2": "97 9000000",
       "cntrg_info_param3": null,
       "cntrg_info_param4": null,
       "cntrg_info_param5": null,
       "status_note": "Успешно проведен",
       "state": 2,
       "paydoc_state": 2,
-      "service_name": "UMS (97 4647747)",
+      "service_name": "UMS",
       "created": "2016-11-30T13:26:01.596Z",
       "created_timestamp": 1480512361,
       "abs_type": "SMARTV    ",
@@ -368,14 +368,14 @@ window.fakedSocket.register("get.payments.by.account", function (input) {
     {
       "payment_id": 277019456,
       "amount": 345655,
-      "cntrg_info_param2": "222222222",
+      "cntrg_info_param2": "97 9000000",
       "cntrg_info_param3": null,
       "cntrg_info_param4": null,
       "cntrg_info_param5": null,
       "status_note": "Успешно проведен",
       "state": 2,
       "paydoc_state": 2,
-      "service_name": "UMS (97 4647747)",
+      "service_name": "UMS",
       "created": "2016-11-30T13:26:01.596Z",
       "created_timestamp": 1480512361,
       "abs_type": "SMARTV    ",
@@ -388,14 +388,14 @@ window.fakedSocket.register("get.payments.by.account", function (input) {
     {
       "payment_id": 123456789,
       "amount": 1580,
-      "cntrg_info_param2": "974647747",
+      "cntrg_info_param2": "97 9000000",
       "cntrg_info_param3": null,
       "cntrg_info_param4": null,
       "cntrg_info_param5": null,
       "status_note": "Успешно проведен",
       "state": 2,
       "paydoc_state": 2,
-      "service_name": "UMS (97 4647747)",
+      "service_name": "UMS",
       "created": "2016-11-30T14:20:01.596Z",
       "created_timestamp": 1480512361,
       "abs_type": "SMARTV    ",
@@ -408,14 +408,14 @@ window.fakedSocket.register("get.payments.by.account", function (input) {
     {
       "payment_id": 123456789,
       "amount": 3456556,
-      "cntrg_info_param2": "974647747",
+      "cntrg_info_param2": "97 9000000",
       "cntrg_info_param3": null,
       "cntrg_info_param4": null,
       "cntrg_info_param5": null,
       "status_note": "Успешно проведен",
       "state": 2,
       "paydoc_state": 2,
-      "service_name": "UMS (97 4647747)",
+      "service_name": "UMS",
       "created": "2016-11-30T13:26:01.596Z",
       "created_timestamp": 1480512361,
       "abs_type": "SMARTV    ",
@@ -444,7 +444,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 272319456,
         "amount": '12322 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "90 7000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -465,7 +465,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 277019456,
         "amount": '22543AAA ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "90 7000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -486,7 +486,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 127019456,
         "amount": '444442 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "97 9000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -507,7 +507,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 277019776,
         "amount": '66675 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "97 9000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -529,7 +529,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 277010056,
         "amount": '123412 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "93 1000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -551,7 +551,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 277129456,
         "amount": '55322',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "93 1000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -594,7 +594,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 123456789,
         "amount": 1580,
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "93 1000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -615,7 +615,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 272319456,
         "amount": '12322 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "90 7000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -681,7 +681,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
     array.push([{
       "payment_id": 277019456,
       "amount": '22543AAA ',
-      "cntrg_info_param2": "974647747",
+      "cntrg_info_param2": "90 7000000",
       "cntrg_info_param3": null,
       "cntrg_info_param4": null,
       "cntrg_info_param5": null,
@@ -702,7 +702,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 272319456,
         "amount": '12322 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "90 7000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -724,7 +724,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 127019456,
         "amount": '444442 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "97 9000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -746,7 +746,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 277010056,
         "amount": '123412 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "93 1000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -768,7 +768,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 277129456,
         "amount": '55322 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "93 1000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -790,7 +790,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 277019776,
         "amount": '66675 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "93 1000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -832,7 +832,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 123456789,
         "amount": 1580,
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "93 1000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -857,7 +857,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 272319456,
         "amount": '12322 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "90 7000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -878,7 +878,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 277019456,
         "amount": '2252243',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "90 7000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -899,7 +899,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 127019456,
         "amount": '44444',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "97 9000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -920,7 +920,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 277019776,
         "amount": '66675 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "97 9000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -942,7 +942,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 277010056,
         "amount": '123412',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "93 1000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -964,7 +964,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 277129456,
         "amount": '55322 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "93 1000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -1007,7 +1007,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 123456789,
         "amount": 1580,
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "93 1000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -1033,7 +1033,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 272319456,
         "amount": '1222 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "90 7000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -1055,7 +1055,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 277019456,
         "amount": '225430',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "90 7000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -1077,7 +1077,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 277129456,
         "amount": '553202 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "90 7000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -1099,7 +1099,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 127019456,
         "amount": '444442 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "97 9000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -1121,7 +1121,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 277010056,
         "amount": '123412 ',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "93 1000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -1143,7 +1143,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 277019776,
         "amount": '666750',
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "93 1000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,
@@ -1164,7 +1164,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
       {
         "payment_id": 123456789,
         "amount": 1580,
-        "cntrg_info_param2": "974647747",
+        "cntrg_info_param2": "93 1000000",
         "cntrg_info_param3": null,
         "cntrg_info_param4": null,
         "cntrg_info_param5": null,

@@ -1,7 +1,7 @@
 <view-authorization class="view-authorization riot-tags-main-container">
 
   <div class="authorization-flex-container">
-    <div class="authorization-unchangable-container">
+    <div if="{!firstEnter}" class="authorization-unchangable-container">
       <div class="authorization-enter-pin-label">{window.languages.ViewAuthorizationClickPinLabel}</div>
       <div class="authorization-pin-container">
         <div class="authorization-pin-field">
@@ -15,11 +15,25 @@
     </div>
   </div>
 
-  <div class="authorization-keyboard-field keyboard-field">
+  <div if="{!firstEnter}" class="authorization-keyboard-field keyboard-field">
     <component-keyboard></component-keyboard>
   </div>
 
+
   <div class="authorization-buttons-container">
+    <div if="{firstEnter}" class="authorization-first-enter-pin-label">
+      {window.languages.ViewAuthorizationClickPinLabel}
+    </div>
+    <div if="{firstEnter}" class="authorization-pin-input-first-enter-container">
+      <input type="password" class="authorization-pin-input-first-enter" onblur="inputPinBlur()"
+             id="firstPinInputId"/>
+      <div class="authorization-input-eye-button" onclick="eyeClicked()"></div>
+    </div>
+    <div if="{firstEnter}" class="authorization-button-first-enter" ontouchend="firstPinEnterTouchEnd()"
+         ontouchstart="firstPinEnterTouchStart()">
+      <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
+    </div>
+
     <div id="TESTID" class="authorization-button-forget-pin" ontouchstart="pinResetTouchStart()"
          ontouchend="pinResetTouchEnd()">
       {window.languages.ViewAuthorizationForgetPinLabel}
@@ -29,7 +43,9 @@
       {window.languages.ViewAuthorizationResetLocalStorageLabel}
     </div>
   </div>
-  <div hidden="{device.platform == 'iOS'}" class="authorization-button-offline" ontouchstart="offlineModeTouchStart()"
+  <div hidden="{device.platform == 'iOS'}"
+       class="{authorization-button-offline : !firstEnter, authorization-button-offline-first-enter : firstEnter}"
+       ontouchstart="offlineModeTouchStart()"
        ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
@@ -43,6 +59,7 @@
                      confirmtype="{confirmType}"></component-confirm>
 
   <script>
+
 
     //    TEST = function () {
     //      CardIO.scan({
@@ -89,12 +106,36 @@
     //      }
     //    }
 
+    this.on('mount', function () {
+      if (scope.firstEnter) {
+        if (device.platform == 'Android') {
+          setTimeout(function () {
+            firstPinInputId.focus();
+          }, 0)
+        }
+        else {
+          firstPinInputId.autofocus = true;
+          firstPinInputId.focus();
+        }
+      }
+    })
+
     window.lastSocketMethodToSend = undefined;
 
     localStorage.setItem("click_client_authorized", false);
 
     var scope = this;
     scope.checkAndroid = false;
+
+    if (localStorage.getItem("click_client_accountInfo")) {
+      scope.firstEnter = false;
+    }
+    else {
+      if (JSON.parse(localStorage.getItem('click_client_registered')) == true && !localStorage.getItem("click_client_accountInfo") && opts && opts.from && opts.from == "registration-client")
+        scope.firstEnter = false;
+      else
+        scope.firstEnter = true;
+    }
 
     scope.showError = false;
     scope.confirmShowBool = false;
@@ -167,24 +208,23 @@
                   FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
                 }
                 else {
-                  console.log('QWEQWE')
-                  console.log(localStorage.getItem('click_client_cards'))
+
                   if (!localStorage.getItem('click_client_cards')) {
                     onConfirm = function (index) {
-                      console.log("INDEX", index)
                       if (index == 1) {
-                        localStorage.setItem('settings_finger_print', false)
+                        localStorage.setItem('settings_finger_print', true)
+
                       }
                       else {
-                        localStorage.setItem('settings_finger_print', true)
+                        localStorage.setItem('settings_finger_print', false)
                       }
                     }
 
                     navigator.notification.confirm(
                       'Хотите использовать ее для CLICK?',  // message
                       onConfirm,              // callback to invoke with index of button pressed
-                      'Ваше устройтсво поддерживает технологию TouchID',            // title
-                      ['Нет', 'Да']          // buttonLabels
+                      'Устройтсво поддерживает технологию TouchID',            // title
+                      ['Да', 'Нет']          // buttonLabels
                     );
                   }
                 }
@@ -235,7 +275,6 @@
 
         function successCallback(success) {
           window.fingerPrint.check = true;
-          riot.update();
           localStorage.setItem('settings_finger_print_enrolled', true)
           console.log('success', success)
 
@@ -247,20 +286,19 @@
             else {
               if (!localStorage.getItem('click_client_cards')) {
                 onConfirm = function (index) {
-                  console.log("INDEX", index)
                   if (index == 1) {
-                    localStorage.setItem('settings_finger_print', false)
+                    localStorage.setItem('settings_finger_print', true)
                   }
                   else {
-                    localStorage.setItem('settings_finger_print', true)
+                    localStorage.setItem('settings_finger_print', false)
                   }
                 }
 
                 navigator.notification.confirm(
                   'Хотите использовать ее для CLICK?',  // message
                   onConfirm,              // callback to invoke with index of button pressed
-                  'Ваше устройтсво поддерживает технологию TouchID',            // title
-                  ['Нет', 'Да']          // buttonLabels
+                  'Устройтсво поддерживает технологию TouchID',            // title
+                  ['Да', 'Нет']          // buttonLabels
                 );
               }
             }
@@ -270,7 +308,6 @@
         function notSupportedCallback(error) {
           console.log('error', error)
           window.fingerPrint.check = false;
-          riot.update();
           localStorage.setItem('settings_finger_print_enrolled', false)
         }
 
@@ -289,6 +326,31 @@
           console.log('FAIL FINGER PRINT')
         }
       }
+    }
+
+    var eyeInputShow = false;
+
+    eyeClicked = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (!eyeInputShow) {
+        firstPinInputId.type = "text"
+        eyeInputShow = true;
+      }
+      else {
+        firstPinInputId.type = "password"
+        eyeInputShow = false;
+      }
+
+    }
+
+    inputPinBlur = function () {
+//      event.preventDefault();
+//      event.stopPropagation();
+
+
+      firstPinInputId.blur();
     }
 
     var pinResetTouchStartX, pinResetTouchStartY, pinResetTouchEndX, pinResetTouchEndY;
@@ -310,6 +372,8 @@
       pinResetTouchEndY = event.changedTouches[0].pageY
 
       if (Math.abs(pinResetTouchStartX - pinResetTouchEndX) <= 20 && Math.abs(pinResetTouchStartY - pinResetTouchEndY) <= 20) {
+        if (scope.firstEnter)
+          firstPinInputId.blur();
         componentPinResetId.style.display = 'block';
       }
     };
@@ -333,6 +397,9 @@
       resetLocalStorageTouchEndY = event.changedTouches[0].pageY
 
       if (Math.abs(resetLocalStorageTouchStartX - resetLocalStorageTouchEndX) <= 20 && Math.abs(resetLocalStorageTouchStartY - resetLocalStorageTouchEndY) <= 20) {
+        if (scope.firstEnter)
+          firstPinInputId.blur();
+
         var question = 'Подтвердите удаление данных'
 //        confirm(question)
         scope.confirmShowBool = true;
@@ -472,6 +539,29 @@
       }
     };
 
+    var firstPinEnterTouchStartX, firstPinEnterTouchStartY, firstPinEnterTouchEndX, firstPinEnterTouchEndY;
+
+    firstPinEnterTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      firstPinEnterTouchStartX = event.changedTouches[0].pageX
+      firstPinEnterTouchStartY = event.changedTouches[0].pageY
+    }
+
+    firstPinEnterTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      firstPinEnterTouchEndX = event.changedTouches[0].pageX
+      firstPinEnterTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(firstPinEnterTouchStartX - firstPinEnterTouchEndX) <= 20 && Math.abs(firstPinEnterTouchStartY - firstPinEnterTouchEndY) <= 20) {
+        pin = hex_md5(firstPinInputId.value);
+        enter()
+      }
+    }
+
     enter = function () {
 
       if (device.platform != 'BrowserStand') {
@@ -497,7 +587,11 @@
     var countOfCall = 0;
     function authorization(phoneNumber, deviceId, password, date) {
       countOfCall++;
-//      var version = localStorage.getItem('version')
+
+      if (scope.firstEnter)
+        firstPinInputId.blur();
+
+      var version = localStorage.getItem('version')
       var checkServiceAnswer = false;
       window.api.call({
         method: 'app.login',
@@ -506,7 +600,7 @@
           device_id: deviceId,
           password: password,
           datetime: date,
-//          app_version: version
+          app_version: version
         },
         scope: this,
 
@@ -516,13 +610,13 @@
           if (result[0][0].error == 0) {
             if (!result[1][0].error) {
               localStorage.setItem('click_client_pin', pin)
-              console.log('pin', pin)
+
 //              console.log("APP LOGIN RESULT", result);
               localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
               modeOfflineMode.check = false;
               var JsonInfo = JSON.stringify(result[1][0]);
               localStorage.setItem('click_client_loginInfo', JsonInfo);
-              console.log('JsonInfo', result[1][0])
+
               checkSessionKey = true;
               viewAuthorization.check = false;
               localStorage.setItem("click_client_authorized", true);
@@ -548,7 +642,8 @@
             scope.showError = true;
             scope.update(scope.showError);
             enteredPin = '';
-            updateEnteredPin();
+            if (!scope.firstEnter)
+              updateEnteredPin();
             return
           }
         },
@@ -585,7 +680,7 @@
     var balance;
     var arrayAccountInfo = [];
     getAccount = function (e) {
-      console.log("QWEQWE")
+
       if (history.arrayOfHistory.length < 2) {
         localStorage.setItem('onResume', false)
       }
@@ -595,14 +690,22 @@
         var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = info.session_key;
 
-        console.log("WWRRRRRRRRR")
-        if (!localStorage.getItem("click_client_accountInfo")) {
-          console.log("AAAAAAAAA")
+        if (scope.firstEnter) {
+          var lengthOfPin = firstPinInputId.value.length;
+          var compareLength = window.inputVerification.spaceDeleter(firstPinInputId.value);
+
+        }
+        if (scope.firstEnter && (lengthOfPin != compareLength.length || lengthOfPin > 5)) {
+          riotTags.innerHTML = "<view-pin-code>";
+          riot.mount('view-pin-code', ['view-authorization']);
+        }
+        else if (!localStorage.getItem("click_client_accountInfo")) {
+
           this.riotTags.innerHTML = "<view-main-page>";
           riot.mount('view-main-page');
           scope.unmount()
         } else {
-          console.log("DDDD")
+
           if (!JSON.parse(localStorage.getItem('onResume'))) {
 //            if (history.arrayOfHistory) {
 //              if (history.arrayOfHistory[history.arrayOfHistory.length - 1] && (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-device'
@@ -628,7 +731,7 @@
                 if (history.arrayOfHistory) {
                   if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
                     this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
-                    riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
+                    riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
                     localStorage.setItem('onResume', false)
                     scope.unmount()
                   }

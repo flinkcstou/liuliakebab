@@ -40,6 +40,7 @@ var RU_LANGUAGES =
 
   "ViewAuthorizationClickPinLabel": "Введите CLICK-PIN",
   "ViewAuthorizationForgetPinLabel": "Забыли CLICK-PIN?",
+  "ViewAuthorizationFirstEnterLabel": "Войти",
   "ViewAuthorizationResetLocalStorageLabel": "Очистить данные",
   "ViewAuthorizationOfflineModeLabel": "Офлайн режим",
 
@@ -179,6 +180,7 @@ var RU_LANGUAGES =
   "ComponentDeleteTextNo": "Нет",
 
   "ViewPinCodeClickPinLabel": "Установите CLICK-PIN",
+  "ViewPinCodeNowClickPinLabel": "Текущий CLICK-PIN",
   "ViewPinCodeConfirmClickPinLabel": "Подтвердите CLICK-PIN",
 
   "ViewCardEditTitleName": "НАСТРОЙКИ КАРТЫ",
@@ -250,7 +252,7 @@ var RU_LANGUAGES =
   "ViewAboutSettingsRateUsTitle": "Оцените нас в Google Play",
 
   "ViewSettingsAboutProgramTitleName": "О ПРОГРАММЕ",
-  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.0 BETA",
+  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.0 CLICK Uzbekistan",
   "ViewSettingsAboutProgramVersionTitleNamePartTwo": "5 марта, 2017",
   "ViewSettingsAboutProgramUserAgreementTitleName": "Пользовательское соглашение",
   "ViewSettingsAboutProgramRankTitleName": "Оцените нас в Google Play",

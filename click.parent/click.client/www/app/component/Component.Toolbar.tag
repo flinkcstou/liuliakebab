@@ -51,8 +51,8 @@
         this.mainPageId.style.zIndex = '-1';
         this.mainPageId.style.opacity = '0.1';
         this.sideMenuId.style.webkitTransition = '0.3s';
-        this.sideMenuId.style.transform = "translate(0, 0)";
-        this.sideMenuId.style.webkitTransform = "translate(0, 0)";
+        this.sideMenuId.style.transform = "translate3d(0, 0, 0)";
+        this.sideMenuId.style.webkitTransform = "translate3d(0, 0, 0)";
 
         this.sideMenuBackPageId.style.opacity = '1';
       }

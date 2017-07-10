@@ -27,7 +27,7 @@
       <div class="servicepage-dropdown-icon"></div>
     </div>
 
-    <div class="servicepage-second-dropdown-field" if="{hasFirstLevel}"
+    <div class="servicepage-second-dropdown-field" if="{hasFirstLevel && service.category_id!=11}"
          ontouchend="openDropDownTwo()">
       <p if="{formType==3 || formType==4}" class="servicepage-text-field servicepage-second-dropdown-field-text">
         {(service.options_title)?(service.options_title):("")}</p>
@@ -36,7 +36,7 @@
     </div>
 
     <div class="{servicepage-second-dropdown-field:formType!=3, servicepage-second-dropdown-field-diftop: formType==3}"
-         if="{hasSecondLevel}"
+         if="{hasSecondLevel&& service.category_id!=11}"
          ontouchend="openDropDownThree()">
       <p class="servicepage-dropdown-text-field">{chosenFieldNameThree}</p>
       <div class="servicepage-dropdown-icon"></div>
@@ -55,6 +55,21 @@
              oninput="telPayVerificationKeyUp()"
              onkeyup="telPayVerificationKeyUp()"/>
       <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
+    </div>
+
+    <div class="servicepage-second-dropdown-field-pakety" if="{hasFirstLevel&& service.category_id==11}"
+         ontouchend="openDropDownTwo()">
+      <p if="{formType==3 || formType==4}" class="servicepage-text-field servicepage-second-dropdown-field-text">
+        {(service.options_title)?(service.options_title):("")}</p>
+      <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
+      <div class="servicepage-dropdown-icon"></div>
+    </div>
+
+    <div class="servicepage-second-dropdown-field-pakety"
+         if="{hasSecondLevel&& service.category_id==11}"
+         ontouchend="openDropDownThree()">
+      <p class="servicepage-dropdown-text-field">{chosenFieldNameThree}</p>
+      <div class="servicepage-dropdown-icon"></div>
     </div>
 
     <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"

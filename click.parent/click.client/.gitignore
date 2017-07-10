@@ -26,8 +26,9 @@
 /cordova/platforms
 /cordova/plugins
 /cordova/www
-
-
+/cordova/node_modules
+/cordova/package.json
+/cordova/package-lock.json
 
 # OS generated files #
 ######################

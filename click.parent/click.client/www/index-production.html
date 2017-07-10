@@ -168,6 +168,7 @@
       GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
       document.head.appendChild(GENERATOR);
 
+
       firstMount.firstStep = function () {
         scope.indexNotificationBlockId.innerHTML = "<component-notification>";
         riot.mount('component-notification');
@@ -261,15 +262,15 @@
 
   var waitingMinutes = 0;
   function onPauseFunction() {
+    waitingMinutes = new Date().getMinutes();
+    console.log('ON onResume EVENT IS TRIGGERED')
+
     if (componentMenu.check === true || window.pickContactFromNativeChecker === true || modeOfApp.offlineMode) {
       window.pickContactFromNativeChecker = false;
       componentMenu.check = false;
       return
     }
-    waitingMinutes = new Date().getMinutes();
     setTimeout(function () {
-
-      console.log('ON onResume EVENT IS TRIGGERED')
       localStorage.setItem('onResume', true);
       if (JSON.parse(localStorage.getItem('settings_block')) === true) {
         riotTags.innerHTML = "<view-authorization>";

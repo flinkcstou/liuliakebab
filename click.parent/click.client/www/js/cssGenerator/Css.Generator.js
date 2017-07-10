@@ -1025,6 +1025,19 @@ var css = {
   "bottom:" + 610 * widthK + "px;" +
   "}",
 
+  authorizationButtonFirstEnter: ".authorization-button-first-enter " +
+  "{" +
+  "position: relative;" +
+  "width:" + 620 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "left:" + -20 * widthK + "px;" +
+  "top:" + -30 * widthK + "px;" +
+  "background-color: #01cfff;" +
+    //"margin-right: auto;" +
+  "border-radius:" + 80 * widthK + "px;" +
+    //"margin-left: auto;" +
+  "}",
+
   authorizationUnchangableContainer: ".authorization-unchangable-container " +
   "{" +
   "position: absolute;" +
@@ -1050,6 +1063,34 @@ var css = {
   "margin-right: auto;" +
   "margin-left: auto;" +
   "margin-top:" + 20 * widthK + "px;" +
+  "}",
+
+  authorizationPinInputFirstEnterContainer: ".authorization-pin-input-first-enter-container " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 90 * widthK + "px;" +
+  "top:" + -120 * widthK + "px;" +
+  "width:" + 620 * widthK + "px;" +
+  "left:" + -20 * widthK + "px;" +
+  "font-size:" + 100 * widthK + "px;" +
+  "border-radius:" + 60 * widthK + "px;" +
+  "background-color: white;" +
+  "border: none;" +
+  "text-align: center;" +
+  "outline: none;" +
+  "}",
+
+  authorizationPinInputFirstEnter: ".authorization-pin-input-first-enter " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 80 * widthK + "px;" +
+  "top:" + 5 * widthK + "px;" +
+  "width:" + 470 * widthK + "px;" +
+  "left:" + 70 * widthK + "px;" +
+  "font-size:" + 80 * widthK + "px;" +
+  "border: none;" +
+  "text-align: center;" +
+  "outline: none;" +
   "}",
 
   authorizationPinCircle: ".authorization-pin-circles " +
@@ -1106,8 +1147,9 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "left: 0;" +
   "background-size: contain;" +
-  "color: #05eeff;" +
-  "border-bottom:" + 1 + "px solid #05eeff;" +
+  "color: white;" +
+    //"border-bottom:" + 1 + "px solid #05eeff;" +
+  "border-bottom:" + 1 + "px solid white;" +
   "}",
 
   authorizationButtonRegistration: ".authorization-button-registration " +
@@ -1133,6 +1175,19 @@ var css = {
   "left:" + 240 * widthK + "px;" +
   "}",
 
+  authorizationButtonOfflineFirstEnter: ".authorization-button-offline-first-enter " +
+  "{" +
+  "position: absolute;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "width:" + 240 * widthK + "px;" +
+  "background-size: contain;" +
+  "color: white;" +
+  "border-bottom:" + 1 + "px solid white;" +
+  "text-align: center;" +
+  "top:" + 10 * widthK + "px;" +
+  "right:" + 50 * widthK + "px;" +
+  "}",
+
   authorizationEnterPinLabel: ".authorization-enter-pin-label " +
   "{" +
   "position: relative;" +
@@ -1143,6 +1198,32 @@ var css = {
   "color: white;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
+
+  authorizationFirstEnterPinLabel: ".authorization-first-enter-pin-label " +
+  "{" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "background-size: contain;" +
+  "width:" + 275 * widthK + "px;" +
+  "top:" + -200 * widthK + "px;" +
+  "color: white;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "}",
+
+  AuthorizationInputEyeButton: ".authorization-input-eye-button " +
+  "{" +
+  "position: absolute;" +
+  "background-image: url(resources/icons/authorization/eye.png);" +
+  "background-size: contain;" +
+  "background-position: center;" +
+  "background-repeat: no-repeat;" +
+  "width:" + 50 * widthK + "px;" +
+  "height:" + 50 * widthK + "px;" +
+  "top:" + 20 * widthK + "px;" +
+  "right:" + 20 * widthK + "px;" +
+  "}",
+
 
   //VIEW MAIN PAGE
 
@@ -1200,6 +1281,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "background: transparent;" +
+  "z-index: 2;" +
   "background-image: url(resources/icons/toolbar/menus.png);" +
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
@@ -1239,6 +1321,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "background: transparent;" +
+  "z-index: 2;" +
   "background-image: url(resources/icons/toolbar/bell.png);" +
   "width:" + 80 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
@@ -1276,7 +1359,34 @@ var css = {
   bankOperationButtonTransfer: ".bank-operation-button-transfer " +
   "{" +
   "left:" + 280 * widthK + "px;" +
+  "overflow: hidden;" +
+  "border: none;" +
+  "outline: none;" +
+  "transition-duration: 0.4s;" +
   "}",
+  //
+  //bankOperationButtonTransferActive: ".bank-operation-button-transfer:active " +
+  //"{" +
+  //"content: '';" +
+  //"background: white;" +
+  //"position: absolute;" +
+  //"padding-top: 10%;" +
+  //"padding-left: 10%;" +
+  ////"margin-left: -20px!important;" +
+  ////"margin-top: 120%;" +
+  //"opacity: 0;" +
+  //"transition: all 0.8s;" +
+  //"border: none;" +
+  //"}",
+  //
+  //bankOperationButtonTransferActiveAfter: ".bank-operation-button-transfer:active:after " +
+  //"{" +
+  //"padding: 0;" +
+  //"margin: 0;" +
+  //"opacity: 1;" +
+  //"transition: 0s;" +
+  //"border: none;" +
+  //"}",
 
   bankOperationButtonAutoPay: ".bank-operation-button-autopay " +
   "{" +
@@ -1847,9 +1957,9 @@ var css = {
   "height: 100%;" +
   "width:" + 538 * widthK + "px;" +
   "overflow: hidden;" +
-  "transform: translate(-100%, 0);" +
-  "-webkit-transform: translate(-100%, 0);" +
-  "-ms-transform: translate(-100%, 0);" +
+  "transform: translate3d(-100%, 0, 0);" +
+  "-webkit-transform: translate3d(-100%, 0,0);" +
+  "-ms-transform: translate3d(-100%, 0,0);" +
   "background-color: #22a0e0;" +
   "z-index: 1;" +
     //"top:" + topOfIos + "px;" +
@@ -2086,6 +2196,7 @@ var css = {
   "right: 7%;" +
   "height:" + 20 * widthK + "px;" +
   "border: 1px solid white;" +
+  "z-index: 2;" +
   "border-radius:" + 50 * widthK + "px;" +
   "}",
 
@@ -2167,9 +2278,9 @@ var css = {
   "height: 100%;" +
   "width: 100%;" +
   "overflow: hidden;" +
-  "transform: translate(0, 0);" +
-  "-webkit-transform: translate(0, 0);" +
-  "-ms-transform: translate(0, 0);" +
+  "transform: translate3d(0, 0,0);" +
+  "-webkit-transform: translate3d(0, 0,0);" +
+  "-ms-transform: translate3d(0, 0,0);" +
   "background-color: rgba(0, 0, 0, 0.6);" +
   "opacity: 0;" +
   "}",
@@ -2281,9 +2392,9 @@ var css = {
   "-webkit-transition: 0.3s;" +
   "height:" + 300 * widthK + "px;" +
   "width: 100%;" +
-  "transform: translate(0, " + 200 * widthK + "px);" +
-  "-webkit-transform: translate(0," + 200 * widthK + "px);" +
-  "-ms-transform: translate(0," + 200 * widthK + "px);" +
+  "transform: translate3d(0, " + 200 * widthK + "px,0);" +
+  "-webkit-transform: translate3d(0," + 200 * widthK + "px,0);" +
+  "-ms-transform: translate3d(0," + 200 * widthK + "px,0);" +
   "}",
 
   footerContactLabel: ".footer-contacts-label " +
@@ -2735,6 +2846,7 @@ var css = {
   "background-size: 48%;" +
   "background-position: center;" +
   "background-color: #ffffff;" +
+  "z-index: 2;" +
   "}",
 
   viewInfoBalanceContainer: ".view-info-balance-container " +
@@ -3782,6 +3894,17 @@ var css = {
   "color: white;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "top: 5%;" +
+  "}",
+
+  servicePageSecondDropdownFieldPakety: ".servicepage-second-dropdown-field-pakety" +
+  "{" +
+  "position: relative;" +
+  "width: 79.5%;" +
+  "height: 8%;" +
+  "left: 10%;" +
+  "color: white;" +
+  "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
+  "top: 12%;" +
   "}",
 
   servicePageSecondDropdownFieldText: ".servicepage-second-dropdown-field-text" +
@@ -5366,7 +5489,7 @@ var css = {
   transferTwoBodyContainer: ".transfertwo-body-container " +
   "{" +
   "position: absolute;" +
-  "height:" + 1139 * heightK + "px;" +
+  "height:" + 1150 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
   "top:" + 93 * widthK + "px;" +
   "background-color: white;" +
@@ -5490,7 +5613,7 @@ var css = {
   transferThreeBodyContainer: ".transferthree-body-container " +
   "{" +
   "position: absolute;" +
-  "height:" + 1139 * heightK + "px;" +
+  "height:" + 1150 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
   "top:" + 93 * widthK + "px;" +
   "background-color: white;" +
@@ -6819,6 +6942,7 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "background-size: contain;" +
+  "text-align: center;" +
   "width:" + 320 * widthK + "px;" +
   "color: white;" +
   "font-size:" + 32 * widthK + "px;" +
@@ -7144,7 +7268,7 @@ var css = {
   "width:" + 135 * widthK + "px;" +
   "height:" + 92 * widthK + "px;" +
   "right:" + -36 * widthK + "px;" +
-  "background-image: url('resources/icons/ViewSettingsGeneral/general_save.png');" +
+  "background-image: url('resources/icons/ViewService/unchecked.png');" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 31%;" +
   "background-position-y: center;" +
@@ -7697,7 +7821,7 @@ var css = {
   "{" +
   "position: relative;" +
   "font-size:" + 35 * widthK + "px; " +
-  "width:" + 255 * widthK + "px; " +
+  "width:" + 270 * widthK + "px; " +
   "margin: 0; " +
   "margin-left: auto; " +
   "margin-right: auto; " +
@@ -8632,8 +8756,8 @@ var css = {
   "width: 50%;" +
   "left: 103%;" +
   "color: #8b8b8b;" +
-  "transform: translate(-50%, 0);" +
-  "-webkit-transform: translate(-50%, 0);" +
+  "transform: translate3d(-50%, 0,0);" +
+  "-webkit-transform: translate3d(-50%, 0,0);" +
   "text-align: center;" +
   "}",
 
@@ -8651,8 +8775,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "transform: translate(-50%, 0);" +
-  "-webkit-transform: translate(-50%, 0);" +
+  "transform: translate3d(-50%, 0,0);" +
+  "-webkit-transform: translate3d(-50%, 0,0);" +
   "width: 100%;" +
   "top: " + 540 * widthK + "px;" +
   "left: 50%;" +
@@ -8735,9 +8859,9 @@ var css = {
   "height: 100%;" +
   "width:" + 610 * widthK + "px;" +
   "overflow: hidden;" +
-  "transform: translate(0, -100%);" +
-  "-webkit-transform: translate(0, -100%);" +
-  "-ms-transform: translate(0, -100%);" +
+  "transform: translate3d(0, -100%,0);" +
+  "-webkit-transform: translate3d(0, -100%,0);" +
+  "-ms-transform: translate3d(0, -100%,0);" +
   "z-index: 1;" +
   "right:0;" +
     //"top:" + topOfIos + "px;" +
@@ -8856,8 +8980,8 @@ var css = {
 
   reportFilterReadyButton: ".report-filter-ready-button" +
   "{" +
-  "transform: translate(-50%, 0);" +
-  "-webkit-transform: translate(-50%, 0);" +
+  "transform: translate3d(-50%, 0,0);" +
+  "-webkit-transform: translate3d(-50%, 0,0);" +
   "text-transform: capitalize;" +
   "left: 50.5%;" +
   "font-size: " + 27 * widthK + "px;" +
@@ -10890,6 +11014,7 @@ var css = {
   "right: " + 10 * widthK + "px;" +
   "margin-top: " + -10 * widthK + "px;" +
   "background-repeat: no-repeat;" +
+  "background-size: 30%;" +
   "background-position: center;" +
   "background-image: url(resources/icons/ViewSettingsFriendHelp/delete.png);" +
   "}",
@@ -12224,7 +12349,7 @@ var css = {
   "height:" + 200 * widthK + "px;  " +
   "width: 100%;  " +
   "z-index: 9999999;  " +
-  "-webkit-transform: translate(0, -100%);  " +
+  "-webkit-transform: translate3d(0, -100%,0);  " +
   "background-color: #f1eff3;  " +
   "}",
 
@@ -12235,8 +12360,8 @@ var css = {
 
   componentNotificationShow: ".component-notification-show" +
   "{" +
-  "-webkit-transform: translate(0, 0);  " +
-  "transform: translate(0, 0);  " +
+  "-webkit-transform: translate3d(0, 0,0);  " +
+  "transform: translate3d(0, 0,0);  " +
   "}",
 
   ComponentNotificationButtonsContainer: ".component-notification-buttons-container" +
@@ -13310,9 +13435,9 @@ var css = {
   "width: 100%;" +
   "overflow: hidden;" +
   "overflow: hidden;" +
-  "transform: translate(0, 0);" +
-  "-webkit-transform: translate(0, 0);" +
-  "-ms-transform: translate(0, 0);" +
+  "transform: translate3d(0, 0,0);" +
+  "-webkit-transform: translate3d(0, 0,0);" +
+  "-ms-transform: translate3d(0, 0,0);" +
   "background-color: rgba(0, 0, 0, 0.6);" +
   "opacity: 1;" +
   "}",
@@ -13387,8 +13512,8 @@ var css = {
   "width:" + 604.797 * widthK + "px;" +
   "left: 8%;" +
     //"background-color: #ee4d3d;" +
-  "transform: translate(-84%, 0);" +
-  "-webkit-transform: translate(-84%, 0);" +
+  "transform: translate3d(-84%, 0,0);" +
+  "-webkit-transform: translate3d(-84%, 0,0);" +
   "background-position: center;" +
   "background-size: 100%;" +
   "background-repeat: no-repeat;" +
@@ -13634,6 +13759,7 @@ var styleSheet = style.stylesheet;
 for (key in css) {
   allCss += css[key];
 }
+
 style.appendChild(document.createTextNode(allCss));
 document.getElementsByTagName("head")[0].appendChild(style);
 riotTags.setAttribute('class', 'riot-tags-main-container')

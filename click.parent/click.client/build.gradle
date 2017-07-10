@@ -14,7 +14,7 @@ buildscript {
 apply plugin: 'com.moowork.node'
 
 task cleanLibs(type: Delete) {
-  delete 'node_modules', 'www/lib', 'cordova/www', 'cordova/plugins', 'cordova/platforms', 'cordova/res'
+  delete 'node_modules', 'www/lib', 'cordova/www', 'cordova/plugins', 'cordova/platforms', 'cordova/res', 'cordova/node_modules'
 }
 
 clean.dependsOn cleanLibs

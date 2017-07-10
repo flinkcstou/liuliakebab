@@ -45,7 +45,7 @@
     </button>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}" step_amount="{stepAmount}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
@@ -129,11 +129,17 @@
       });
     }
 
-    if (modeOfApp.onlineMode) {
+    getInformation();
+
+
+    function getInformation() {
+      var checkAnswer = false;
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
       window.api.call({
         method: 'get.additional.information',
         input: {
+          session_key: sessionKey,
           phone_num: phoneNumber,
           service_id: opts.chosenServiceId,
           payment_data: payment_data
@@ -142,6 +148,7 @@
         scope: this,
 
         onSuccess: function (result) {
+          checkAnswer = true;
           if (result[0][0].error == 0) {
             console.log("result of GET ADDITIONAL INFO 0", result);
             if (result[1]) {
@@ -174,6 +181,23 @@
           console.error(data);
         }
       });
+
+      if (!checkAnswer && window.isConnected)
+        setTimeout(function () {
+          if (!checkAnswer) {
+            scope.showError = true;
+            scope.errorNote = "Сервис временно недоступен";
+            scope.stepAmount = 0;
+            scope.update();
+            if (device.platform != 'BrowserStand') {
+              SpinnerPlugin.activityStop();
+            }
+            window.isConnected = false;
+            return
+          }
+        }, 10000);
+
+
     }
 
     var optionOnTouchStartY, optionOnTouchStartX, optionOnTouchEndY, optionOnTouchEndX;

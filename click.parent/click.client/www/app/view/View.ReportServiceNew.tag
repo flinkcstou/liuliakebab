@@ -13,7 +13,7 @@
       <div class="report-service-upper-info-container">
         <div class="report-service-title">{(opts.service_name) ? (opts.service_name) : ("")}</div>
         <div class="report-service-payment-info-text">{window.languages.ViewReportServicePaymentNumber}
-          {(opts.payment_id) ? (opts.payment_id) : ("")}
+           {(opts.payment_id) ? (opts.payment_id) : ("")}
         </div>
         <div class="report-service-payment-info-text">{window.languages.ViewReportServicePaymentDate} {opts.created}
         </div>

@@ -12,12 +12,12 @@
     </div>
 
     <div class="transfertwo-contact-phone-field">
-      <p if="{opts[0].type == 1}" class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
+      <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
         {window.languages.Currency}</p>
-      
-      <input maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
+
+      <input id="sumValueId" type="tel" maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()"
              onmouseup="sumMouseUp()"
-             type="tel" pattern="[0-9]" onblur="sumOnBlur()" onkeyup="sumKeyUp()" oninput="sumKeyUp()"/>
+             onblur="sumOnBlur()" onkeyup="sumKeyUp()" oninput="sumKeyUp()"/>
     </div>
 
     <button class="transfertwo-next-button-inner-container" ontouchstart="goToTransferThreeTouchStart()"
@@ -43,6 +43,7 @@
         sumValueId.value = viewTransferStepTwo.sum;
         checkFirst = true;
         sumForTransfer = viewTransferStepTwo.sumWithoutSpace;
+
         scope.tax = sumForTransfer * objectForTransfer.percent / 100;
       }
       else
@@ -64,6 +65,8 @@
     }
 
     console.log(opts)
+    console.log(opts[0])
+    console.log(opts[0].percent)
     var scope = this,
       transferTitle,
       objectForTransfer = opts[0],

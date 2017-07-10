@@ -10,16 +10,22 @@ window.api.init = function () {
 
   try {
 
+
     window.api.socket = new WebSocket("wss://my.click.uz:8443");
+    //window.api.socket = new WebSocket("ws://localhost:8080/WebSocketTest/open");
+
 
     window.api.initSocket();
 
 
   }
   catch (error) {
-
     if (modeOfApp.onlineMode)
       window.api.init();
+
+
+    //while (!window.isConnected) {
+    //}
   }
 
 
@@ -31,11 +37,33 @@ window.api.initSocket = function () {
 
     console.log('WebSocket is connected');
 
-    if (!window.isConnected && modeOfApp.onlineMode) {
+    if (!window.isConnected) {
 
-      if (window.lastSocketMethodToSend) {
+      //showAlertComponent("Соединение установлено");
+
+      //alert("Соединение установлено");
+
+      if (window.api.socket.readyState == 1 && window.lastSocketMethodToSend) {
         window.api.socket.send(window.lastSocketMethodToSend);
         window.lastSocketMethodToSend = undefined;
+      } else {
+
+        switch (window.api.socket.readyState) {
+
+          case 0:
+            console.log("Is connecting");
+            break;
+          case 2:
+            console.log("Is closing");
+            window.isConnected = false;
+            window.api.init();
+            break;
+          case 3:
+            console.log("Is closed");
+            window.isConnected = false;
+            window.api.init();
+            break;
+        }
       }
     }
 
@@ -52,26 +80,13 @@ window.api.initSocket = function () {
     console.log('Connection is closed');
     console.log(event);
 
-    if (event.wasClean) {
-      return
-    }
-    else if (modeOfApp.onlineMode) {
-
-      if (window.isConnected) {
-        return
-      }
-
-      if (device.platform == 'Android')
-        showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
-      else {
-        showAlertComponent("Сервер временно недоступен");
-      }
-      return
-    }
+    if (window.isConnected && modeOfApp.onlineMode)
+      window.api.init();
   };
   var me = this;
 
   this.socket.onmessage = function (event) {
+
 
     if (device.platform != 'BrowserStand')
       SpinnerPlugin.activityStop();
@@ -81,10 +96,20 @@ window.api.initSocket = function () {
     if (parsedData.api_status == 0)
       try {
 
+
         var method = parsedData.data[0][0].method;
+        //console.log("PARSED DATA", parsedData)
+
         var callBack = me.callBacks[method];
+        //console.log('method', method)
+        //if (method == 'get.payments')
+        //  var callBack = me.callBacks['get.payments'];
+        //console.log('CALLBACK', callBack)
+
 
         if (parsedData.api_status == 0) {
+
+
           callBack.ok(parsedData.data);
           return;
         }
@@ -92,6 +117,17 @@ window.api.initSocket = function () {
 
       }
       catch (ERROR) {
+
+
+
+        //var options = {dimBackground: true};
+        //
+        //SpinnerPlugin.activityStart(languages.ConnectionSocket, options, function () {
+        //  window.api.init();
+        //  console.log("Started");
+        //}, function () {
+        //  console.log("closed");
+        //});
 
         console.log("ERROR", window.isConnected);
         console.log("ERROR", ERROR);
@@ -104,11 +140,12 @@ window.api.initSocket = function () {
 
             window.api.sessionErrorChecker = true;
 
+            //var result =
             if (!error) {
               showAlertComponent("Ooooops! Что-то пошло не так. При возникновении этой ошибки ещё раз, свяжитесь со службой поддержки по номеру +998 71 2310880.")
             }
             else
-              showConfirmComponent(error, 'session');
+            showConfirmComponent(error, 'session');
 
             return
           }
@@ -124,29 +161,32 @@ window.api.initSocket = function () {
       callBack.err(parsedData.api_status, parsedData.api_status_message, parsedData.data);
     }
     catch (error) {
+      if (!window.api.sessionErrorChecker) {
+
+        window.api.sessionErrorChecker = true;
+
+        //var result =
+        if (parsedData.api_status == 0)
+          showConfirmComponent(error, 'session');
+
+      }
+
       console.log("error", error);
     }
   };
-
   this.socket.onerror = function (error) {
     window.isConnected = false;
+    if (modeOfApp.onlineMode)
+      window.api.init();
+
+
+    console.log("ENTERED_SADASDASDASDA_WEB_API_ERROR");
 
     console.log('Error with socket ' + error.message);
-
-    if (device.platform == 'Android')
-      showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
-    else {
-      showAlertComponent("Сервер временно недоступен");
-    }
-
-    return
   };
 };
 
 window.api.call = function (params) {
-  if (!window.isConnected && modeOfApp.onlineMode)
-    window.api.init();
-
 
   window.api.sessionErrorChecker = false;
   window.api.spinnerOn = true;
@@ -224,11 +264,40 @@ window.api.call = function (params) {
 
     if (device.platform != 'BrowserStand')
       SpinnerPlugin.activityStop();
+
+
+    if (device.platform == 'Android')
+      showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
+    else {
+      showAlertComponent("Сервер временно недоступен");
+    }
     window.api.init();
+
+
+    //if (result) {
+    //
+    //  modeOfApp.offlineMode = true;
+    //  modeOfApp.onlineMode = false;
+    //
+    //  riotTags.innerHTML = "<view-main-page>";
+    //  riot.mount('view-main-page');
+    //  riot.update()
+    //}
   }
-  else{
-    window.api.init();
-  }
+
+  //if (modeOfApp.onlineMode && (method == "get.additional.information" || method == "get.payment" || method == "app.login"
+  //  || method == "device.register.request" || method == "registration" || method == "device.register.confirm"))
+  //  setTimeout(function () {
+  //    if (device.platform != 'BrowserStand')
+  //      if (window.api.spinnerOn && modeOfApp.onlineMode && (method == "get.additional.information" || method == "get.payment" || method == "app.login"
+  //        || method == "device.register.request" || method == "registration" || method == "device.register.confirm")) {
+  //        SpinnerPlugin.activityStop();
+  //        //onBackKeyDown();
+  //        showAlertComponent("Сервис временно недоступен");
+  //
+  //      }
+  //
+  //  }, 20000);
 };
 
 function onlineDetector() {
@@ -243,6 +312,31 @@ function onlineDetector() {
 }
 
 function offlineDetector() {
+
+  if (window.isConnected) window.api.socket.close()
+  if (modeOfApp.onlineMode && window.isConnected) {
+
+    //if (device.platform == 'Android')
+    //  showConfirmComponent("Отсутствует соединение с интернетом.\nПерейти в оффлайн режим ?", 'internet');
+    //else {
+    //  showAlertComponent("Отсутствует соединение с интернетом");
+    //}
+    //if (result) {
+    //
+    //  modeOfApp.offlineMode = true;
+    //  modeOfApp.onlineMode = false;
+    //
+    //  riotTags.innerHTML = "<view-main-page>";
+    //  riot.mount('view-main-page');
+    //  riot.update()
+    //}
+  }
+
+  console.log("OFFLINE DETECTOR");
+
+  console.log("window.isConnected offlineDetector before", window.isConnected);
+
   window.isConnected = false;
-  console.log('offline')
+
+  console.log("window.isConnected offlineDetector after", window.isConnected);
 }

@@ -324,16 +324,18 @@
                 result[1][i].amount = result[1][i].amount.toString();
                 result[1][i].amount = window.amountTransform(result[1][i].amount);
 
+              console.log("STATE ", result[1][i].state)
+
                 if (result[1][i].state == -1) {
                   result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
                 }
 
-                if (result[1][i].state == 0) {
-                  result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
+                if (result[1][i].state == 1) {
+                  result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
                 }
 
                 if (result[1][i].state == 2) {
-                  result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
+                  result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
                 }
 
                 scope.lastOperationContainer.push(result[1][i])
