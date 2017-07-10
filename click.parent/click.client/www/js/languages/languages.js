@@ -234,6 +234,7 @@ var RU_LANGUAGES =
   "ViewAboutSettingsTitle": "О программе",
   "ViewSupportSettingsTitle": "Служба поддержки",
   "ViewCallCenterSettingsTitle": "Позвонить в Контактный центр",
+  "ClearLocalStorage": "Очистить данные",
 
   "ViewSecuritySettingsTrustedDevicesTitle": "Доверенные устройства",
   "ViewSecuritySettingsPinChangeTitle": "Сменить CLICK-PIN",
