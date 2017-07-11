@@ -71,7 +71,6 @@
   <platform name="android">
     <allow-intent href="market:*"/>
     <preference name="android-minSdkVersion" value="14"/>
-    <preference name="android-targetSdkVersion" value="20"/>
     <preference name="Fullscreen" value="false"/>
     <preference name="AndroidPersistentFileLocation" value="Internal"/>
     <preference name="AndroidPersistentFileLocation" value="Compatibility"/>
@@ -94,5 +93,6 @@
     <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png"/>
   </platform>
   <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
+
 
 </widget>

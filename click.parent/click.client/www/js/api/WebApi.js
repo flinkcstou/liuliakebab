@@ -52,6 +52,10 @@ window.api.initSocket = function () {
     console.log('Connection is closed');
     console.log(event);
 
+    if (device.platform != 'BrowserStand') {
+      SpinnerPlugin.activityStop();
+    }
+
     if (event.wasClean) {
       return
     }

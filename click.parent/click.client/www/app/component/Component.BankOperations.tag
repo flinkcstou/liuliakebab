@@ -3,14 +3,14 @@
     <div class="top-operations-buttons">
       <div class="bank-operation-button bank-operation-button-pay" ontouchstart="goToPayViewStart()"
            ontouchend="goToPayViewEnd()">
-        <div class="bank-operation-icon operation-pay-icon">
+        <div id="payButtonId" class="bank-operation-icon operation-pay-icon">
         </div>
       </div>
       <label class="bank-operation-label bank-operation-label-pay">{window.languages.ComponentBankOperationsPay}</label>
 
       <div class="bank-operation-button bank-operation-button-transfer" ontouchstart="goToTransferViewStart()"
            ontouchend="goToTransferViewEnd()">
-        <div class="bank-operation-icon operation-transfer-icon">
+        <div id="transferButtonId" class="bank-operation-icon operation-transfer-icon">
         </div>
       </div>
       <label class="bank-operation-label bank-operation-label-transfer">{window.languages.ComponentBankOperationsTransfer}</label>
@@ -25,7 +25,7 @@
 
       <div class="bank-operation-button bank-operation-button-qr" ontouchstart="goToQrStart()"
            ontouchend="goToQrEnd()">
-        <div class="bank-operation-icon operation-qr-icon">
+        <div id="qrButtonId" class="bank-operation-icon operation-qr-icon">
         </div>
       </div>
       <label
@@ -49,6 +49,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      payButtonId.style.webkitTransform = 'scale(0.7)'
+
       payStartX = event.changedTouches[0].pageX;
       payStartY = event.changedTouches[0].pageY;
     }
@@ -56,6 +58,8 @@
     goToPayViewEnd = function (e) {
       event.preventDefault();
       event.stopPropagation();
+
+      payButtonId.style.webkitTransform = 'scale(1)'
 
       payEndX = event.changedTouches[0].pageX;
       payEndY = event.changedTouches[0].pageY;
@@ -73,6 +77,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      transferButtonId.style.webkitTransform = 'scale(0.7)'
+
       transferStartX = event.changedTouches[0].pageX;
       transferStartY = event.changedTouches[0].pageY;
 
@@ -81,6 +87,8 @@
     goToTransferViewEnd = function () {
       transferEndX = event.changedTouches[0].pageX;
       transferEndY = event.changedTouches[0].pageY;
+
+      transferButtonId.style.webkitTransform = 'scale(1)'
 
       if (Math.abs(transferStartX - transferEndX) <= 20 && Math.abs(transferStartY - transferEndY) <= 20) {
         riotTags.innerHTML = "<view-transfer>";
@@ -95,6 +103,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      qrButtonId.style.webkitTransform = 'scale(0.7)'
+
       autoPayStartX = event.changedTouches[0].pageX;
       autoPayStartY = event.changedTouches[0].pageY;
 
@@ -103,6 +113,8 @@
     goToAutoPayViewEnd = function (e) {
       event.preventDefault();
       event.stopPropagation();
+
+      qrButtonId.style.webkitTransform = 'scale(1)'
 
       autoPayEndX = event.changedTouches[0].pageX;
       autoPayEndY = event.changedTouches[0].pageY;
@@ -153,6 +165,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      qrButtonId.style.webkitTransform = 'scale(0.7)'
+
       qrPayStartX = event.changedTouches[0].pageX;
       qrPayStartY = event.changedTouches[0].pageY;
 
@@ -161,6 +175,8 @@
     goToQrEnd = function (e) {
       event.preventDefault();
       event.stopPropagation();
+
+      qrButtonId.style.webkitTransform = 'scale(1)'
 
       qrPayEndX = event.changedTouches[0].pageX;
       qrPayEndY = event.changedTouches[0].pageY;
