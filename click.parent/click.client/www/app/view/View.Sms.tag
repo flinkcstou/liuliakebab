@@ -107,7 +107,7 @@
 
           scope.confirmSms = scope.confirmSms.slice(0, inputFocusIndexSms) + myValue + scope.confirmSms.slice(inputFocusIndexSms);
           ++inputFocusIndexSms;
-          inputCaretSms.style.left = ctx.measureText(scope.confirmSms.substring(0, inputFocusIndexSms)).width + inputLocalStartXSms - 3 + 'px';
+          inputCaretSms.style.left = ctx.measureText(scope.confirmSms.substring(0, inputFocusIndexSms)).width + inputLocalStartXSms - 3 * widthK + 'px';
         }
 
         if (myValue == 'x') {
@@ -115,7 +115,7 @@
           if (inputFocusIndexSms != 0) {
             scope.confirmSms = scope.confirmSms.slice(0, inputFocusIndexSms - 1) + scope.confirmSms.slice(inputFocusIndexSms);
             --inputFocusIndexSms;
-            inputCaretSms.style.left = ctx.measureText(scope.confirmSms.substring(0, inputFocusIndexSms)).width + inputLocalStartXSms - 3 + 'px';
+            inputCaretSms.style.left = ctx.measureText(scope.confirmSms.substring(0, inputFocusIndexSms)).width + inputLocalStartXSms - 3 * widthK + 'px';
           }
         }
 
@@ -150,12 +150,12 @@
       var valueLength = ctx.measureText(scope.confirmSms).width;
 
       if ((regNumberTouchEndX < inputStartXSms) || (regNumberTouchEndX < ctx.measureText(scope.confirmSms[0]).width / 2 + inputStartXSms)) {
-        inputCaretSms.style.left = inputLocalStartXSms - 3 + 'px';
+        inputCaretSms.style.left = inputLocalStartXSms + 'px';
         inputFocusIndexSms = 0;
       }
       else if (regNumberTouchEndX > (valueLength + inputStartXSms)) {
 
-        inputCaretSms.style.left = (valueLength + inputLocalStartXSms - 3) + 'px';
+        inputCaretSms.style.left = (valueLength + inputLocalStartXSms) + 'px';
         inputFocusIndexSms = scope.confirmSms.length;
       } else {
         for (var i = 0; i < scope.confirmSms.length; i++) {
@@ -163,10 +163,10 @@
           if (regNumberTouchEndX < (ctx.measureText(scope.confirmSms.substring(0, i + 1)).width + inputStartXSms)) {
 
             if (regNumberTouchEndX < (ctx.measureText(scope.confirmSms.substring(0, i)).width + ctx.measureText(scope.confirmSms[i]).width / 2 + inputStartXSms)) {
-              inputCaretSms.style.left = ctx.measureText(scope.confirmSms.substring(0, i)).width + inputLocalStartXSms - 3 + 'px';
+              inputCaretSms.style.left = ctx.measureText(scope.confirmSms.substring(0, i)).width + inputLocalStartXSms - 3 * widthK + 'px';
               inputFocusIndexSms = i;
             } else if (regNumberTouchEndX > (ctx.measureText(scope.confirmSms.substring(0, i)).width + ctx.measureText(scope.confirmSms[i]).width / 2 + inputStartXSms)) {
-              inputCaretSms.style.left = ctx.measureText(scope.confirmSms.substring(0, i + 1)).width + inputLocalStartXSms - 3 + 'px';
+              inputCaretSms.style.left = ctx.measureText(scope.confirmSms.substring(0, i + 1)).width + inputLocalStartXSms - 3 * widthK + 'px';
               inputFocusIndexSms = i + 1;
             }
 
