@@ -183,7 +183,6 @@
           inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, inputFocusIndex)).width + inputLocalStartX - 3 + 'px';
         }
 
-//        console.log("m before transform=", scope.maskPhoneNumber);
 
 
         console.log("m=", scope.maskPhoneNumber);

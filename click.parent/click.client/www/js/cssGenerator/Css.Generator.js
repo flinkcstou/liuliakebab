@@ -13458,7 +13458,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 63%;" +
   "background-position-y: 40%;" +
-  "background-image: url(resources/icons/ViewService/unchecked.png);" +
+  "background-image: url(resources/icons/ViewService/radio_unselected.png);" +
   "}",
 
   serviceInfoButtonNext: ".serviceinfo-button-next" +
