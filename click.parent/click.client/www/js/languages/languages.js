@@ -163,6 +163,7 @@ var RU_LANGUAGES =
   "ComponentSuccessNext": "Закрыть",
 
   "ComponentSuccessMessageForAddingToFavorites": "Платёж успешно добавлен в избранные",
+  "ComponentSuccessMessageForRemovingFromFavorites": "Платёж успешно удален из избранных",
 
   "ComponentInProcessingPartOne": "Перевод передан на обработку.",
   "ComponentInProcessingPartOneForPay": "Оплата передана на обработку.",
@@ -323,6 +324,7 @@ var RU_LANGUAGES =
   "ViewReportMonthsArrayTwo": ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"],
 
   "ViewReportServiceAddToFavorites": "Добавить в избранные",
+  "ViewReportServiceRemoveFromFavorites": "Удалить из избранных",
   "ViewReportServiceAddToAutoPayment": "Добавить в автоплатеж",
   "ViewReportServiceGetSupportHelp": "Получить помощь поддержки",
   "ViewReportServiceRepeatButtonLabel": "повторить",

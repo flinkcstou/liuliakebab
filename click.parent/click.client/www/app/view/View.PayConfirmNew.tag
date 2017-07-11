@@ -189,12 +189,11 @@
     try {
       scope.amountTextCopy = window.amountTransform(this.amountText);
     }
-    catch (e){
+    catch (e) {
       scope.amountTextCopy = this.amountText;
     }
 
     console.log("AMOUNT", this.amountText)
-
 
 
     //    riot.update()

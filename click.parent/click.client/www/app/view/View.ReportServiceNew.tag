@@ -13,7 +13,7 @@
       <div class="report-service-upper-info-container">
         <div class="report-service-title">{(opts.service_name) ? (opts.service_name) : ("")}</div>
         <div class="report-service-payment-info-text">{window.languages.ViewReportServicePaymentNumber}
-           {(opts.payment_id) ? (opts.payment_id) : ("")}
+          {(opts.payment_id) ? (opts.payment_id) : ("")}
         </div>
         <div class="report-service-payment-info-text">{window.languages.ViewReportServicePaymentDate} {opts.created}
         </div>
@@ -48,9 +48,15 @@
 
       <div class="report-service-data-button-info-container">
         <div class="report-service-button-info-container" if="{opts.is_indoor != 1 && opts.canAddToFavorite === true}">
-          <div class="report-service-button-icon report-service-button-favorites-icon"></div>
-          <a class="report-service-button-action" ontouchend="addToFavoritesTouchEnd()"
+
+          <div class="report-service-button-icon report-service-button-favorites-icon" if="{!isInFavorites}"></div>
+          <a class="report-service-button-action" ontouchend="addToFavoritesTouchEnd()" if="{!isInFavorites}"
              ontouchstart="addToFavoritesTouchStart()">{languages.ViewReportServiceAddToFavorites}</a>
+
+          <div class="report-service-button-icon report-service-button-favorites-icon-added" if="{isInFavorites}"></div>
+          <a class="report-service-button-action" ontouchend="removeFromFavoritesTouchEnd()" if="{isInFavorites}"
+             ontouchstart="addToFavoritesTouchStart()">{languages.ViewReportServiceRemoveFromFavorites}</a>
+
         </div>
         <div class="report-service-button-info-container" if="{false}">
           <div class="report-service-button-icon report-service-button-auto-payment-icon"></div>
@@ -73,7 +79,7 @@
   </div>
 
   <component-success id="componentSuccessId"
-                     operationmessage="{window.languages.ComponentSuccessMessageForAddingToFavorites}"
+                     operationmessage="{operationMessage}"
                      viewpage="{undefined}" step_amount="{0}" close_action="{goToBack}"></component-success>
 
   <script>
@@ -94,6 +100,8 @@
 
     var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
     var servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
+
+    scope.isInFavorites = false;
 
     //    if (servicesMap[scope.opts.service_id])
     //      scope.canAddToFavorite = true;
@@ -177,6 +185,7 @@
         newFavorite.amountText = scope.opts.amount;
         newFavorite.internetPackageParam = scope.opts.cntrg_info_param5;
         newFavorite.isInFavorites = true;
+        scope.isInFavorites = true;
         newFavorite.firstFieldTitle = scope.opts.parameter_name;
         newFavorite.chosenServiceId = scope.opts.service_id;
 
@@ -198,7 +207,36 @@
         console.log("favoritePaymentsList=", favoritePaymentsList);
 
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+        scope.operationMessage = window.languages.ComponentSuccessMessageForAddingToFavorites;
+        console.log("operationMesssage=", scope.operationMessage);
+        scope.update(scope.operationMessage);
 
+        componentSuccessId.style.display = 'block';
+      }
+    };
+
+
+    removeFromFavoritesTouchEnd = function () {
+
+      addToFavoritesTouchEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(addToFavoritesTouchEndX - addToFavoritesTouchStartX) < 20) {
+
+        var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+        console.log(favoritePaymentsList);
+        for (var i in favoritePaymentsList)
+          if (favoritePaymentsList[i].service.id == scope.opts.service_id) {
+            favoritePaymentsList.splice(i, 1);
+            console.log(favoritePaymentsList);
+            scope.isInFavorites = false;
+            localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+            scope.update(scope.isInFavorites);
+          }
+
+
+        scope.operationMessage = window.languages.ComponentSuccessMessageForRemovingFromFavorites;
+        console.log("operationMesssage=", scope.operationMessage);
+        scope.update(scope.operationMessage);
         componentSuccessId.style.display = 'block';
       }
     };

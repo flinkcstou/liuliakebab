@@ -194,7 +194,7 @@
       return
     };
 
-    var regNumberTouchEndX, regNumberTouchEndY;
+    var regNumberTouchEndX;
     var inputStartX = 260 * widthK;
     var inputLocalStartX = inputStartX - 80 * widthK;
     var inputFocusIndex = 0;
@@ -212,34 +212,29 @@
 
       var valueLength = ctx.measureText(scope.maskPhoneNumber).width;
 
-//      console.log("regNumberTouchEndX=", regNumberTouchEndX, ",text valueLength=", valueLength);
       if ((regNumberTouchEndX < inputStartX) || (regNumberTouchEndX < ctx.measureText(scope.maskPhoneNumber[0]).width / 2 + inputStartX)) {
         inputCaret.style.left = inputLocalStartX - 3 * widthK + 'px';
         inputFocusIndex = 0;
-//        console.log("asdd")
       }
       else if (regNumberTouchEndX > (valueLength + inputStartX)) {
-//        console.log("wwrrt")
+
         inputCaret.style.left = (valueLength + inputLocalStartX - 3 * widthK) + 'px';
         inputFocusIndex = scope.maskPhoneNumber.length;
       } else {
         for (var i = 0; i < scope.maskPhoneNumber.length; i++) {
 
-//          console.log("i=", i, regNumberInput.value.substring(0, i + 1), ctx.measureText(regNumberInput.value.substring(0, i)).width + inputStartX);
-
           if (regNumberTouchEndX < (ctx.measureText(scope.maskPhoneNumber.substring(0, i + 1)).width + inputStartX)) {
-//            console.log("substr i+1=", regNumberInput.value.substring(0, i + 1), "substr i=", regNumberInput.value.substring(0, i), "value[i]", regNumberInput.value[i]);
+
             if (regNumberTouchEndX < (ctx.measureText(scope.maskPhoneNumber.substring(0, i)).width + ctx.measureText(scope.maskPhoneNumber[i]).width / 2 + inputStartX)) {
               inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, i)).width + inputLocalStartX - 3 * widthK + 'px';
-//              console.log("111", inputCaret.style.left);
+
               inputFocusIndex = i;
             } else if (regNumberTouchEndX > (ctx.measureText(scope.maskPhoneNumber.substring(0, i)).width + ctx.measureText(scope.maskPhoneNumber[i]).width / 2 + inputStartX)) {
               inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, i + 1)).width + inputLocalStartX - 3 * widthK + 'px';
-//              console.log("222", inputCaret.style.left);
+
               inputFocusIndex = i + 1;
             }
 
-//            console.log("bingo i=", i, "width=", ctx.measureText(regNumberInput.value.substring(0, i + 1)).width);
             break;
           }
         }

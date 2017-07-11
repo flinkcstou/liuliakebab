@@ -1434,7 +1434,6 @@
         formTypeTwoBtnId.style.pointerEvents = 'auto';
         formTypeTwoBtnId.style.backgroundColor = 'rgb(1, 124, 227)';
         scope.selectedId = 'radio' + cardId + nominal;
-        console.log("selectedId=", scope.selectedId)
         scope.update(scope.selectedId);
         scope.update(formTypeTwoBtnId);
 

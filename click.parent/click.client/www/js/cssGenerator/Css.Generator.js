@@ -11955,6 +11955,11 @@ var css = {
   "background-image: url(resources/icons/ViewReportService/details_favorites.png);" +
   "}",
 
+  reportServiceButtonFavoritesIconAdded: ".report-service-button-favorites-icon-added" +
+  "{" +
+  "background-image: url(resources/icons/ViewReportService/details_favoritesadded.png);" +
+  "}",
+
   reportServiceButtonAutoPaymentIcon: ".report-service-button-auto-payment-icon" +
   "{" +
   "background-image: url(resources/icons/ViewReportService/details_autopayment.png);" +

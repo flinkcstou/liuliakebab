@@ -185,7 +185,6 @@ window.inputVerification.phoneEnterTransform = function (i, val, amount) {
   if (amount) {
     amount = amount.toString();
     amount = amount.replace(new RegExp('[^0-9]', 'g'), '');
-    console.log("111");
     var newAmount = '';
     if (i == 2)
       newAmount = amount.slice(0, 2) + ' ' + val + amount.slice(2);
@@ -194,7 +193,6 @@ window.inputVerification.phoneEnterTransform = function (i, val, amount) {
     else if (i == 0)
       newAmount = val + amount.slice(0, 1) + ' ' + amount.slice(1);
   } else {
-    console.log("222");
     newAmount = val;
   }
   return newAmount;
