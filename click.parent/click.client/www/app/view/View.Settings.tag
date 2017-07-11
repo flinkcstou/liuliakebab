@@ -105,7 +105,9 @@
       event.preventDefault();
       event.stopPropagation();
 
-      mainSettingsButtonId.style.webkitTransform = 'scale(0.9)'
+//      mainSettingsButtonId.style.webkitTransform = 'scale(0.9)'
+
+      mainSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
 
       mainSettingsButtonStartX = event.changedTouches[0].pageX;
       mainSettingsButtonStartY = event.changedTouches[0].pageY;
@@ -116,7 +118,9 @@
       event.preventDefault();
       event.stopPropagation();
 
-      mainSettingsButtonId.style.webkitTransform = 'scale(1)'
+//      mainSettingsButtonId.style.webkitTransform = 'scale(1)'
+
+      mainSettingsButtonId.style.backgroundColor = 'transparent'
 
       mainSettingsButtonEndX = event.changedTouches[0].pageX;
       mainSettingsButtonEndY = event.changedTouches[0].pageY;
