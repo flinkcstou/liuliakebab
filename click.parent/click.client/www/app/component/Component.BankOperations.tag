@@ -25,7 +25,7 @@
 
       <div class="bank-operation-button bank-operation-button-qr" ontouchstart="goToQrStart()"
            ontouchend="goToQrEnd()">
-        <div class="bank-operation-icon operation-qr-icon">
+        <div id="testButtonId" class="bank-operation-icon operation-qr-icon">
         </div>
       </div>
       <label
@@ -153,6 +153,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      testButtonId.style.webkitTransform = 'scale(0.7)'
+
       qrPayStartX = event.changedTouches[0].pageX;
       qrPayStartY = event.changedTouches[0].pageY;
 
@@ -161,6 +163,8 @@
     goToQrEnd = function (e) {
       event.preventDefault();
       event.stopPropagation();
+
+      testButtonId.style.webkitTransform = 'scale(1)'
 
       qrPayEndX = event.changedTouches[0].pageX;
       qrPayEndY = event.changedTouches[0].pageY;

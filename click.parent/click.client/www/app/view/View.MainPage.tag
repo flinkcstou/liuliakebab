@@ -27,6 +27,8 @@
   <component-tour view="mainpage"></component-tour>
   <script>
 
+//    console.log('BASE64', atob('aWQ9MDEwMDAmYW1vdW50PTEyMjAwJm9yZGVyX2lkPTAxN0I1N0NFLUJDRUItNEE3MC04NEFFLUJFRTM0NUY4NUI1OQ=='))
+
     viewMainPage.atMainPage = true;
     viewTransfer.check = false;
     viewServicePinCards.friendHelpPaymentMode = false;

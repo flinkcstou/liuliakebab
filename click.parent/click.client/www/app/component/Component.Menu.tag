@@ -153,7 +153,7 @@
       exitModeTouchStartY = event.changedTouches[0].pageY
     }
 
-    exitFromAppTouchEnd = function (){
+    exitFromAppTouchEnd = function () {
 
       exitModeTouchEndX = event.changedTouches[0].pageX
       exitModeTouchEndY = event.changedTouches[0].pageY
@@ -464,10 +464,19 @@
                 string = string.split('?')[1]
                 string = string.split('&')
                 var id = '';
+                var rk = '';
                 for (var i in string) {
                   if (string[i].split('=')[0] == 'id') {
                     id = string[i].split('=')[1];
                     console.log('ID', id)
+                  }
+                  else {
+
+                    console.log('string', string)
+                    if (string[i].split('=')[0] == 'rk') {
+                      rk = string[i].split('=')[1];
+                      console.log('ID', id)
+                    }
                   }
                 }
                 if (id) {
