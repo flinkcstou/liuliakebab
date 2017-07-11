@@ -152,6 +152,8 @@
 //      event.preventDefault();
 //      event.stopPropagation();
 
+      photoOne.style.webkitTransform = 'scale(0.7)'
+
       contactOneTouchStartX = event.changedTouches[0].pageX;
       contactOneTouchStartY = event.changedTouches[0].pageY;
 
@@ -160,6 +162,8 @@
     contactOneTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      photoOne.style.webkitTransform = 'scale(1)'
 
       contactOneTouchEndX = event.changedTouches[0].pageX;
       contactOneTouchEndY = event.changedTouches[0].pageY;
@@ -323,6 +327,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      photoTwo.style.webkitTransform = 'scale(0.7)'
+
       contactTwoTouchStartX = event.changedTouches[0].pageX;
       contactTwoTouchStartY = event.changedTouches[0].pageY;
     }
@@ -330,6 +336,8 @@
     contactTwoTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      photoTwo.style.webkitTransform = 'scale(1)'
 
       contactTwoTouchEndX = event.changedTouches[0].pageX;
       contactTwoTouchEndY = event.changedTouches[0].pageY;
@@ -405,6 +413,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      photoThree.style.webkitTransform = 'scale(0.7)'
+
       contactThreeTouchStartX = event.changedTouches[0].pageX;
       contactThreeTouchStartY = event.changedTouches[0].pageY;
 
@@ -413,6 +423,8 @@
     contactThreeTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      photoThree.style.webkitTransform = 'scale(0.7)'
 
       contactThreeTouchEndX = event.changedTouches[0].pageX;
       contactThreeTouchEndY = event.changedTouches[0].pageY;
@@ -489,6 +501,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      photoFour.style.webkitTransform = 'scale(0.7)'
+
       contactFourTouchStartX = event.changedTouches[0].pageX;
       contactFourTouchStartY = event.changedTouches[0].pageY;
 
@@ -497,6 +511,8 @@
     contactFourTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      photoFour.style.webkitTransform = 'scale(1)'
 
       contactFourTouchEndX = event.changedTouches[0].pageX;
       contactFourTouchEndY = event.changedTouches[0].pageY;
@@ -573,6 +589,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      photoFive.style.webkitTransform = 'scale(0.7)'
+
       contactFiveTouchStartX = event.changedTouches[0].pageX;
       contactFiveTouchStartY = event.changedTouches[0].pageY;
     }
@@ -580,6 +598,8 @@
     contactFiveTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      photoFive.style.webkitTransform = 'scale(1)'
 
       contactFiveTouchEndX = event.changedTouches[0].pageX;
       contactFiveTouchEndY = event.changedTouches[0].pageY;
