@@ -167,7 +167,7 @@
             scope.phoneNumber = '+' + window.languages.CodeOfCountry + window.inputVerification.spaceDeleter(scope.maskPhoneNumber);
             ++inputFocusIndex
           }
-          inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, inputFocusIndex)).width + inputLocalStartX - 3 + 'px';
+          inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, inputFocusIndex)).width + inputLocalStartX - 3 * widthK + 'px';
         }
 
         if (myValue == 'x' && inputFocusIndex != 0) {
@@ -182,7 +182,7 @@
             --inputFocusIndex;
           }
           scope.phoneNumber = '+' + window.languages.CodeOfCountry + window.inputVerification.spaceDeleter(scope.maskPhoneNumber);
-          inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, inputFocusIndex)).width + inputLocalStartX - 3 + 'px';
+          inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, inputFocusIndex)).width + inputLocalStartX - 3 * widthK + 'px';
         }
 
 
@@ -214,13 +214,13 @@
 
 //      console.log("regNumberTouchEndX=", regNumberTouchEndX, ",text valueLength=", valueLength);
       if ((regNumberTouchEndX < inputStartX) || (regNumberTouchEndX < ctx.measureText(scope.maskPhoneNumber[0]).width / 2 + inputStartX)) {
-        inputCaret.style.left = inputLocalStartX - 3 + 'px';
+        inputCaret.style.left = inputLocalStartX - 3 * widthK + 'px';
         inputFocusIndex = 0;
 //        console.log("asdd")
       }
       else if (regNumberTouchEndX > (valueLength + inputStartX)) {
 //        console.log("wwrrt")
-        inputCaret.style.left = (valueLength + inputLocalStartX - 3) + 'px';
+        inputCaret.style.left = (valueLength + inputLocalStartX - 3 * widthK) + 'px';
         inputFocusIndex = scope.maskPhoneNumber.length;
       } else {
         for (var i = 0; i < scope.maskPhoneNumber.length; i++) {
@@ -230,11 +230,11 @@
           if (regNumberTouchEndX < (ctx.measureText(scope.maskPhoneNumber.substring(0, i + 1)).width + inputStartX)) {
 //            console.log("substr i+1=", regNumberInput.value.substring(0, i + 1), "substr i=", regNumberInput.value.substring(0, i), "value[i]", regNumberInput.value[i]);
             if (regNumberTouchEndX < (ctx.measureText(scope.maskPhoneNumber.substring(0, i)).width + ctx.measureText(scope.maskPhoneNumber[i]).width / 2 + inputStartX)) {
-              inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, i)).width + inputLocalStartX - 3 + 'px';
+              inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, i)).width + inputLocalStartX - 3 * widthK + 'px';
 //              console.log("111", inputCaret.style.left);
               inputFocusIndex = i;
             } else if (regNumberTouchEndX > (ctx.measureText(scope.maskPhoneNumber.substring(0, i)).width + ctx.measureText(scope.maskPhoneNumber[i]).width / 2 + inputStartX)) {
-              inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, i + 1)).width + inputLocalStartX - 3 + 'px';
+              inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, i + 1)).width + inputLocalStartX - 3 * widthK + 'px';
 //              console.log("222", inputCaret.style.left);
               inputFocusIndex = i + 1;
             }

@@ -3884,22 +3884,13 @@ var css = {
   "background-color: white;" +
   "}",
 
-  servicePagePincardsContainerThree: ".servicepage-pincards-container-three" +
-  "{" +
-  "position: absolute;" +
-  "height: 100%; " +
-  "width: " + 720 * widthK + "px; " +
-  "top: 15%;" +
-  "overflow-x: hidden;" +
-  "overflow-y: scroll;" +
-  "-webkit-overflow-scrolling: touch; " +
-  "}",
 
   servicePagePincardsContainerTwo: ".servicepage-pincards-container-two" +
   "{" +
   "position: absolute;" +
-  "height: " + 920 * heightK + "px; " +
+  "height: " + 760 * heightK + "px; " +
   "width: " + 720 * widthK + "px; " +
+  "top: 15%;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
   "-webkit-overflow-scrolling: touch; " +
@@ -3908,7 +3899,7 @@ var css = {
   servicePagePincardsContainer: ".servicepage-pincards-container" +
   "{" +
   "position: absolute;" +
-  "height: 100%; " +
+  "height: " + 920 * heightK + "px; " +
   "width: " + 720 * widthK + "px; " +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
@@ -3949,17 +3940,30 @@ var css = {
   "color: #595759;" +
   "}",
 
-  servicePagePincardChooseArrow: ".servicepage-pincard-choose-arrow" +
+  servicePagePincardRadioUnselected: ".servicepage-pincard-radio-unselected" +
   "{" +
   "position: absolute;" +
-  "background-image: url('resources/icons/ViewService/right.png');" +
-  "width: 3%;" +
-  "height: 36%;" +
+  "background-image: url('resources/icons/ViewService/radio_unselected.png');" +
+  "width: 5%;" +
+  "height: 45%;" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "background-position: center;" +
   "top: 31%;" +
-  "left: 95%;" +
+  "left: 94%;" +
+  "}",
+
+  servicePagePincardRadioSelected: ".servicepage-pincard-radio-selected" +
+  "{" +
+  "position: absolute;" +
+  "background-image: url('resources/icons/ViewService/radio_selected.png');" +
+  "width: 5%;" +
+  "height: 45%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "background-position: center;" +
+  "top: 31%;" +
+  "left: 94%;" +
   "}",
 
   servicePageSecondDropdownField: ".servicepage-second-dropdown-field" +
@@ -4286,8 +4290,8 @@ var css = {
   "background-color: transparent;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "background-size: 35%;" +
-  "background-image: url(resources/icons/ViewService/checked.png);" +
+  "background-size: 30%;" +
+  "background-image: url(resources/icons/ViewService/radio_selected.png);" +
   "}",
   pincardCardUnCheckmark: ".pincard-card-uncheckmark" +
   "{" +
@@ -4299,9 +4303,8 @@ var css = {
   "background-color: transparent;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "background-size: 35%;" +
-  "background-size: 35%;" +
-  "background-image: url(resources/icons/ViewService/unchecked.png);" +
+  "background-size: 30%;" +
+  "background-image: url(resources/icons/ViewService/radio_unselected.png);" +
   "}",
 
   pincardFriendHelpContainer: ".pincard-friend-help-container" +

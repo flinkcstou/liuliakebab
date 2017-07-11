@@ -161,21 +161,22 @@
     </div>
 
     <div
-      class="{servicepage-pincards-container-two: !enterButton, servicepage-pincards-container: enterButton && opts.mode!='ADDAUTOPAY',
-      servicepage-pincards-container-three: enterButton && opts.mode=='ADDAUTOPAY'}">
+      class="{servicepage-pincards-container: opts.mode!='ADDAUTOPAY',
+      servicepage-pincards-container-two: opts.mode=='ADDAUTOPAY'}">
       <div class="servicepage-pincards-block-container" each="{i in pincardIds}">
         <div class="servicepage-pincard-title">{pincardsMap[i][0].name}</div>
         <div class="servicepage-pincard-nominal-container" each="{j in pincardsMap[i]}"
              ontouchstart="onTouchStartOfPincard()" ontouchend="onTouchEndOfPincard({j.nominal},{j.card_type_id})">
           <p class="servicepage-pincard-nominal-value">{j.nominal}</p>
-          <div class="servicepage-pincard-choose-arrow"></div>
+          <div id="radio{j.card_type_id+j.nominal}" class="{servicepage-pincard-radio-selected:'radio'+j.card_type_id+j.nominal == selectedId,
+          servicepage-pincard-radio-unselected:'radio'+j.card_type_id+j.nominal != selectedId}"></div>
         </div>
       </div>
     </div>
 
-    <button id="formTypeTwoBtnSaveId" class="servicepage-button-save" if="{!enterButton}"
-            ontouchend="addToFavoritesforFormTypeTwo()">
-      {window.languages.ViewServicePageSaveLabel}
+    <button id="formTypeTwoBtnId" class="servicepage-button-save"
+            ontouchend="formTypeTwoButtonFunction()">
+      {!enterButton?window.languages.ViewServicePageSaveLabel:window.languages.ViewServicePageEnterLabel}
     </button>
   </div>
 
@@ -367,10 +368,10 @@
       else if (scope.formType != 2)
 //        amount.value = 0
 
-      if (modeOfApp.offlineMode) {
-        if (typeof enterButtonId != 'undefined')
-          enterButtonId.innerText = 'Оплатить'
-      }
+        if (modeOfApp.offlineMode) {
+          if (typeof enterButtonId != 'undefined')
+            enterButtonId.innerText = 'Оплатить'
+        }
     });
 
 
@@ -398,7 +399,6 @@
       });
 
     }
-
 
 
     amountCalculator = function () {
@@ -695,9 +695,9 @@
         if (scope.phoneFieldBool)
           scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
 
-        if(opts.amountText)
-        scope.defaultAmount = window.amountTransform(opts.amountText);
-        else{
+        if (opts.amountText)
+          scope.defaultAmount = window.amountTransform(opts.amountText);
+        else {
           scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " до " + window.amountTransform(scope.service.max_pay_limit) + " сум"
         }
         console.log("after tranform amount=", scope.defaultAmount);
@@ -980,9 +980,12 @@
       }
     };
 
-    var closeFirstFieldDropdownTouchStartX, closeFirstFieldDropdownTouchStartY, closeFirstFieldDropdownTouchEndX, closeFirstFieldDropdownTouchEndY;
-    var closeFirstDropdownTouchStartX, closeFirstDropdownTouchStartY, closeFirstDropdownTouchEndX, closeFirstDropdownTouchEndY;
-    var closeSecondDropdownTouchStartX, closeSecondDropdownTouchStartY, closeSecondDropdownTouchEndX, closeSecondDropdownTouchEndY;
+    var closeFirstFieldDropdownTouchStartX, closeFirstFieldDropdownTouchStartY, closeFirstFieldDropdownTouchEndX,
+      closeFirstFieldDropdownTouchEndY;
+    var closeFirstDropdownTouchStartX, closeFirstDropdownTouchStartY, closeFirstDropdownTouchEndX,
+      closeFirstDropdownTouchEndY;
+    var closeSecondDropdownTouchStartX, closeSecondDropdownTouchStartY, closeSecondDropdownTouchEndX,
+      closeSecondDropdownTouchEndY;
 
     closeFirstFieldDropdownTouchStart = function () {
       event.preventDefault();
@@ -1409,6 +1412,8 @@
       }
     };
 
+    scope.selectedId = '';
+
 
     scope.onTouchStartOfPincard = onTouchStartOfPincard = function () {
       event.stopPropagation();
@@ -1426,102 +1431,107 @@
         opts.amountText = nominal;
         opts.isInFavorites = !scope.enterButton;
 
+        formTypeTwoBtnId.style.pointerEvents = 'auto';
+        formTypeTwoBtnId.style.backgroundColor = 'rgb(1, 124, 227)';
+        scope.selectedId = 'radio' + cardId + nominal;
+        console.log("selectedId=", scope.selectedId)
+        scope.update(scope.selectedId);
+        scope.update(formTypeTwoBtnId);
 
-        if (modeOfApp.offlineMode) {
-
-          var ussdQuery = scope.fieldArray[0].ussd_query;
-          if (ussdQuery === null) {
-            scope.clickPinError = false;
-            scope.errorNote = ("Сервис временно недоступен!");
-            scope.showError = true;
-            scope.update();
-            return
-          }
-          ussdQuery = ussdQuery.replace('{nominal}', opts.amountText);
-          ussdQuery = ussdQuery.replace('{card_type}', opts.cardTypeId);
-          ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
-
-
-          phonedialer.dial(
-//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-            ussdQuery + "%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
-                scope.showError = true;
-                scope.update();
-              }
-              else console.log("Dialer Error:" + err);
-            },
-            function (success) {
-            }
-          );
-          return
-        }
-
-        if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
-          event.preventDefault();
-          event.stopPropagation();
-
-          if (scope.service.additional_information_type == 0) {
-            this.riotTags.innerHTML = "<view-service-pincards-new>";
-            riot.mount('view-service-pincards-new', opts);
-            scope.unmount()
-          } else {
-            this.riotTags.innerHTML = "<view-service-info-new>";
-            riot.mount('view-service-info-new', opts);
-            scope.unmount()
-          }
-
-        } else if (opts.mode == 'ADDFAVORITE') {
-          formTypeTwoBtnSaveId.style.pointerEvents = 'auto';
-          formTypeTwoBtnSaveId.style.backgroundColor = 'rgb(1, 124, 227)';
-          scope.update(formTypeTwoBtnSaveId);
-
-        } else if (opts.mode == 'ADDAUTOPAY') {
-
-          if (autoPayNameInput.value.length < 1) {
-            scope.clickPinError = false;
-            scope.errorNote = "Введите название автоплатежа";
-            scope.showError = true;
-            scope.update();
-            return;
-          }
-          scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
-          scope.autoPayData.name = autoPayNameInput.value;
-          localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-
-          if (scope.autoPayData.fromView == 'PAY') {
-            this.riotTags.innerHTML = "<view-service-pincards-new>";
-            riot.mount('view-service-pincards-new', opts);
-            scope.unmount()
-
-          } else if (scope.autoPayData.fromView == 'PAYCONFIRM') {
-            this.riotTags.innerHTML = "<view-pay-confirm-new>";
-            riot.mount('view-pay-confirm-new', opts);
-            scope.unmount()
-
-          }
-        }
       }
     };
 
-    addToFavoritesforFormTypeTwo = function () {
-      if (opts) {
-        addToFavorites(opts);
+    formTypeTwoButtonFunction = function () {
+
+      if (modeOfApp.offlineMode) {
+
+        var ussdQuery = scope.fieldArray[0].ussd_query;
+        if (ussdQuery === null) {
+          scope.clickPinError = false;
+          scope.errorNote = ("Сервис временно недоступен!");
+          scope.showError = true;
+          scope.update();
+          return
+        }
+        ussdQuery = ussdQuery.replace('{nominal}', opts.amountText);
+        ussdQuery = ussdQuery.replace('{card_type}', opts.cardTypeId);
+        ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
+
+
+        phonedialer.dial(
+//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
+          ussdQuery + "%23",
+          function (err) {
+            if (err == "empty") {
+              scope.clickPinError = false;
+              scope.errorNote = ("Unknown phone number");
+              scope.showError = true;
+              scope.update();
+            }
+            else console.log("Dialer Error:" + err);
+          },
+          function (success) {
+          }
+        );
+        return
+      }
+
+      if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
         event.preventDefault();
         event.stopPropagation();
-        this.riotTags.innerHTML = "<view-main-page>";
-        riot.mount('view-main-page');
-        scope.unmount()
+
+        if (scope.service.additional_information_type == 0) {
+          this.riotTags.innerHTML = "<view-service-pincards-new>";
+          riot.mount('view-service-pincards-new', opts);
+          scope.unmount()
+        } else {
+          this.riotTags.innerHTML = "<view-service-info-new>";
+          riot.mount('view-service-info-new', opts);
+          scope.unmount()
+        }
+
+      } else if (opts.mode == 'ADDFAVORITE') {
+        if (opts) {
+          addToFavorites(opts);
+          event.preventDefault();
+          event.stopPropagation();
+          this.riotTags.innerHTML = "<view-main-page>";
+          riot.mount('view-main-page');
+          scope.unmount()
+        }
+        else {
+          scope.clickPinError = false;
+          scope.errorNote = "Попробуйте еще раз";
+          scope.showError = true;
+          scope.update();
+        }
+
+      } else if (opts.mode == 'ADDAUTOPAY') {
+
+        if (autoPayNameInput.value.length < 1) {
+          scope.clickPinError = false;
+          scope.errorNote = "Введите название автоплатежа";
+          scope.showError = true;
+          scope.update();
+          return;
+        }
+        scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+        scope.autoPayData.name = autoPayNameInput.value;
+        localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+
+        if (scope.autoPayData.fromView == 'PAY') {
+          this.riotTags.innerHTML = "<view-service-pincards-new>";
+          riot.mount('view-service-pincards-new', opts);
+          scope.unmount()
+
+        } else if (scope.autoPayData.fromView == 'PAYCONFIRM') {
+          this.riotTags.innerHTML = "<view-pay-confirm-new>";
+          riot.mount('view-pay-confirm-new', opts);
+          scope.unmount()
+
+        }
       }
-      else {
-        scope.clickPinError = false;
-        scope.errorNote = "Попробуйте еще раз";
-        scope.showError = true;
-        scope.update();
-      }
+
     };
 
     addToFavorites = function (array) {
