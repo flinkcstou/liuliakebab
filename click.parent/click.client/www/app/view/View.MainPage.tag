@@ -13,7 +13,7 @@
     <view-news if="{!modeOfApp.offlineMode}"></view-news>
 
     <div class="bank-operation-button-my-cards">
-      <div class="bank-operation-button-my-cards-container">
+      <div id="myCardButtonId" class="bank-operation-button-my-cards-container">
         <div class="bank-operation-button-my-cards-icon"></div>
         <div class="bank-operation-button-my-cards-label">
           {window.languages.BankOperationsAutoPay}
@@ -107,12 +107,16 @@
       event.preventDefault();
       event.stopPropagation();
 
+      myCardButtonId.style.webkitTransform = 'scale(0.7)'
+
       myCardListStartX = event.changedTouches[0].pageX;
       myCardListStartY = event.changedTouches[0].pageY;
     }
     myCardListTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      myCardButtonId.style.webkitTransform = 'scale(1)'
 
       myCardListEndX = event.changedTouches[0].pageX;
       myCardListEndY = event.changedTouches[0].pageY;

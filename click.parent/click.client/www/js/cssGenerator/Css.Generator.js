@@ -1479,6 +1479,8 @@ var css = {
   "position: absolute;" +
   "top:" + 30 + "%;" +
   "left:" + 30 + "%;" +
+  "width:" + 270 * widthK + "px;" +
+  "height:" + 75 * widthK + "px;" +
   "}",
 
   bankOperationButtonMyCard: ".bank-operation-button-my-cards " +
