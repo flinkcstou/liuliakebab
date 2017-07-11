@@ -5,7 +5,7 @@
       <div class="service-title">{window.languages.ComponentPopularServicesTitle}</div>
       <div class="service-container">
         <div class="service-each-container" each="{i in popularServiceList}">
-          <div id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfService()"
+          <div id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfService(this.id)"
                ontouchend="ontouchEndOfService(this.id)" ontouchmove="ontouchMoveOfService()"
                style="background-image: url({i.image})">
           </div>
@@ -18,14 +18,14 @@
       <div class="service-title">{window.languages.ComponentFavoritePaymentsTitle}</div>
       <div class="service-container">
         <div class="service-each-container" each="{i in favPaymentsList}">
-          <div id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfPayment()"
+          <div id="{i.id+'index'}" class="service-buttons" ontouchstart="ontouchStartOfPayment(this.id)"
                ontouchend="ontouchEndOfPayment(this.id)" style="background-image: url({i.image})">
           </div>
           <p class="service-labels">{i.name}</p>
         </div>
         <div class="service-each-container" if="{addFavoriteBool}">
-          <div id="addFavoriteButtonId" class="service-buttons" ontouchstart="ontouchStartOfPayment()"
-               ontouchend="ontouchEndOfAddFavorite()"
+          <div id="addFavoriteButtonId" class="service-buttons" ontouchstart="ontouchStartOfPayment(this.id)"
+               ontouchend="ontouchEndOfAddFavorite(this.id)"
                style="background-image: url('resources/icons/services/favorites_add.png'); background-size: 46%;">
           </div>
           <p class="service-labels">Добавить</p>
@@ -265,8 +265,11 @@
     }
 
 
-    scope.ontouchStartOfService = ontouchStartOfService = function () {
+    scope.ontouchStartOfService = ontouchStartOfService = function (id) {
       event.stopPropagation();
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.7)'
+
       onTouchStartX = event.changedTouches[0].pageX;
       touchStartX = event.changedTouches[0].pageX;
       leftOfDelta = -(540 * cardNumberOfService * widthK) - touchStartX;
@@ -275,6 +278,10 @@
 
     scope.ontouchEndOfService = ontouchEndOfService = function (id) {
       event.stopPropagation();
+
+      console.log('ID ID ID', id)
+
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       onTouchEndX = event.changedTouches[0].pageX;
       touchEndX = event.changedTouches[0].pageX;
@@ -311,8 +318,11 @@
       this.containerService.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
     }
 
-    scope.ontouchStartOfPayment = ontouchStartOfPayment = function () {
+    scope.ontouchStartOfPayment = ontouchStartOfPayment = function (id) {
+      console.log("chosen id in payments START=", id)
+      document.getElementById(id).style.webkitTransform = 'scale(0.7)'
       event.stopPropagation();
+
       onTouchStartX2 = event.changedTouches[0].pageX;
       touchStartX = event.changedTouches[0].pageX;
       leftOfDelta = -(540 * cardNumberOfService * widthK) - touchStartX;
@@ -320,6 +330,12 @@
     };
 
     scope.ontouchEndOfPayment = ontouchEndOfPayment = function (id) {
+      console.log("chosen id in payments END=", id);
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
+
+      id = id.split("index")[0]
+
+
       event.stopPropagation();
 
       onTouchEndX2 = event.changedTouches[0].pageX;
@@ -427,9 +443,10 @@
         changePositionOfServiceCarousel();
     };
 
-    scope.ontouchEndOfAddFavorite = ontouchEndOfAddFavorite = function () {
+    scope.ontouchEndOfAddFavorite = ontouchEndOfAddFavorite = function (id) {
       event.stopPropagation();
 
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       onTouchEndX2 = event.changedTouches[0].pageX;
       touchEndX = event.changedTouches[0].pageX;

@@ -1,13 +1,13 @@
 <component-toolbar>
   <div id="toolbar" class="toolbar">
-    <div class="menu-button menu-icon" ontouchstart="menuOpenTouchStart()" ontouchend="menuOpenTouchEnd()">
+    <div id="menuButtonId" class="menu-button menu-icon" ontouchstart="menuOpenTouchStart()" ontouchend="menuOpenTouchEnd()">
     </div>
 
     <div id="circleMenuId" class="toolbar-circle-container" ontouchend="goToViewInfoTouchEnd()"
          ontouchstart="goToViewInfoTouchStart()">
     </div>
 
-    <div class="bell-button bell-icon" ontouchstart="bellButtonTouchStart()" ontouchend="bellButtonTouchEnd()">
+    <div id="bellButtonId" class="bell-button bell-icon" ontouchstart="bellButtonTouchStart()" ontouchend="bellButtonTouchEnd()">
       <div if="{window.News.newsCounter != 0 && !modeOfApp.offlineMode}" class="bell-button-news-counter">
         {window.News.newsCounter}
       </div>
@@ -31,6 +31,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      menuButtonId.style.webkitTransform = 'scale(0.7)'
+
       openMenuTouchStartX = event.changedTouches[0].pageX;
       openMenuTouchStartY = event.changedTouches[0].pageY;
     }
@@ -38,6 +40,8 @@
     menuOpenTouchEnd = function (open) {
       event.preventDefault();
       event.stopPropagation();
+
+      menuButtonId.style.webkitTransform = 'scale(1)'
 
       openMenuTouchEndX = event.changedTouches[0].pageX;
       openMenuTouchEndY = event.changedTouches[0].pageY;
@@ -67,6 +71,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      bellButtonId.style.webkitTransform = 'scale(0.7)'
+
       bellButtonTouchStartX = event.changedTouches[0].pageX;
       bellButtonTouchStartY = event.changedTouches[0].pageY;
     }
@@ -74,6 +80,8 @@
     bellButtonTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      bellButtonId.style.webkitTransform = 'scale(1)'
 
       bellButtonTouchEndX = event.changedTouches[0].pageX;
       bellButtonTouchEndY = event.changedTouches[0].pageY;
@@ -104,12 +112,16 @@
 
       goToViewInfoTouchStartX = event.changedTouches[0].pageX;
       goToViewInfoTouchStartY = event.changedTouches[0].pageY;
+
+      circleMenuId.style.webkitTransform = 'scale(0.7)'
     };
 
     goToViewInfoTouchEnd = function () {
 
       goToViewInfoTouchEndX = event.changedTouches[0].pageX;
       goToViewInfoTouchEndY = event.changedTouches[0].pageY;
+
+      circleMenuId.style.webkitTransform = 'scale(1)'
 
       if (Math.abs(goToViewInfoTouchEndX - goToViewInfoTouchStartX) < 20 &&
         Math.abs(goToViewInfoTouchEndY - goToViewInfoTouchStartY) < 20) {
