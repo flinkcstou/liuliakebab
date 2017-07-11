@@ -63,10 +63,10 @@
 
       <div id="clearButtonId" class="settings-block-containter" ontouchstart="localStorageClearTouchStart()"
            ontouchend="localStorageClearTouchEnd()">
-        <div class="settings-block-icon" if="{false}"
-             style="background-image: url('resources/icons/')"></div>
+        <div class="settings-block-icon"
+             style="background-image: url('resources/icons/ViewSettings/settings_clear.png')"></div>
         <div class="settings-block-name-field">{window.languages.ClearLocalStorage}</div>
-        <div class="settings-block-next-icon"></div>
+        <div class="settings-block-next-icon" if="{false}"></div>
       </div>
     </div>
 
