@@ -6425,8 +6425,8 @@ var css = {
   "width: 44%;" +
   "border-radius: " + 10 * widthK + "px;" +
   "color: #00a8f1;" +
-  "position: relative;" +
-  "left: -2%;" +
+  "position: absolute;" +
+  "left: 28%;" +
   "display: table;" +
   "}",
 
