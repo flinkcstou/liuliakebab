@@ -53,7 +53,8 @@
         <div class="settings-block-next-icon"></div>
       </div>
 
-      <div id="callSettingsButtonId" class="settings-block-containter" ontouchstart="goToCallCenterSettingsTouchStart()" ontouchend="goToCallCenterSettingsTouchEnd()">
+      <div id="callSettingsButtonId" class="settings-block-containter" ontouchstart="goToCallCenterSettingsTouchStart()"
+           ontouchend="goToCallCenterSettingsTouchEnd()">
         <div class="settings-block-icon"
              style="background-image: url('resources/icons/ViewSettings/settings_callcenter.png')"></div>
         <div class="settings-block-name-field">{window.languages.ViewCallCenterSettingsTitle}</div>
@@ -62,7 +63,7 @@
 
       <div id="clearButtonId" class="settings-block-containter" ontouchstart="localStorageClearTouchStart()"
            ontouchend="localStorageClearTouchEnd()">
-        <div class="settings-block-icon"
+        <div class="settings-block-icon" if="{false}"
              style="background-image: url('resources/icons/')"></div>
         <div class="settings-block-name-field">{window.languages.ClearLocalStorage}</div>
         <div class="settings-block-next-icon"></div>
@@ -128,7 +129,8 @@
       }
     }
 
-    var securitySettingsButtonStartX, securitySettingsButtonEndX, securitySettingsButtonStartY, securitySettingsButtonEndY;
+    var securitySettingsButtonStartX, securitySettingsButtonEndX, securitySettingsButtonStartY,
+      securitySettingsButtonEndY;
 
     goToSecuritySettingsTouchStart = function () {
       event.preventDefault();
@@ -158,7 +160,8 @@
       }
     }
 
-    var friendHelpSettingsButtonStartX, friendHelpSettingsButtonEndX, friendHelpSettingsButtonStartY, friendHelpSettingsButtonEndY;
+    var friendHelpSettingsButtonStartX, friendHelpSettingsButtonEndX, friendHelpSettingsButtonStartY,
+      friendHelpSettingsButtonEndY;
 
     goToFriendHelpSettingsTouchStart = function () {
       event.preventDefault();
@@ -190,7 +193,8 @@
     }
 
 
-    var goToAboutSettingsButtonStartX, goToAboutSettingsButtonEndX, goToAboutSettingsButtonStartY, goToAboutSettingsButtonEndY;
+    var goToAboutSettingsButtonStartX, goToAboutSettingsButtonEndX, goToAboutSettingsButtonStartY,
+      goToAboutSettingsButtonEndY;
 
     goToAboutSettingsTouchStart = function () {
       event.preventDefault();
@@ -252,7 +256,8 @@
     }
 
 
-    var goToSupportSettingsButtonStartX, goToSupportSettingsButtonEndX, goToSupportSettingsButtonStartY, goToSupportSettingsButtonEndY;
+    var goToSupportSettingsButtonStartX, goToSupportSettingsButtonEndX, goToSupportSettingsButtonStartY,
+      goToSupportSettingsButtonEndY;
 
     goToSupportSettingsTouchStart = function () {
       event.preventDefault();
@@ -317,7 +322,8 @@
       }
     }
 
-    var resetLocalStorageTouchStartX, resetLocalStorageTouchStartY, resetLocalStorageTouchEndX, resetLocalStorageTouchEndY;
+    var resetLocalStorageTouchStartX, resetLocalStorageTouchStartY, resetLocalStorageTouchEndX,
+      resetLocalStorageTouchEndY;
 
     localStorageClearTouchStart = function () {
       event.preventDefault();

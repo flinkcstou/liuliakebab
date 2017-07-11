@@ -2194,7 +2194,7 @@ var css = {
 
   sideMenuContainersIconExit: ".side-menu-containers-icon-exit" +
   "{" +
-  //"background-image: url(resources/icons/menu/menu_call.png);" +
+  "background-image: url(resources/icons/menu/menu_exit.png);" +
   "background-size: 100%;" +
   "top: 22%;" +
   "}",
