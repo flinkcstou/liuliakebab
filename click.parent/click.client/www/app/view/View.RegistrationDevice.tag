@@ -157,10 +157,11 @@
 
         if (window.inputVerification.spaceDeleter(scope.maskPhoneNumber).length < 9 && myValue != 'x') {
 
-          if (inputFocusIndex == 2) {
-            scope.maskPhoneNumber = scope.maskPhoneNumber.slice(0, inputFocusIndex) + ' ' + myValue + window.inputVerification.spaceDeleter(scope.maskPhoneNumber.slice(inputFocusIndex));
+          if (inputFocusIndex <= 2) {
+//            console.log("transform edit=", window.inputVerification.phoneEnterTransform(inputFocusIndex, myValue, scope.maskPhoneNumber));
+            scope.maskPhoneNumber = window.inputVerification.phoneEnterTransform(inputFocusIndex, myValue, scope.maskPhoneNumber);
             scope.phoneNumber = '+' + window.languages.CodeOfCountry + window.inputVerification.spaceDeleter(scope.maskPhoneNumber);
-            inputFocusIndex = inputFocusIndex + 2;
+            inputFocusIndex = inputFocusIndex == 2 ? 4 : (inputFocusIndex == 1 ? 2 : 1);
           } else {
             scope.maskPhoneNumber = scope.maskPhoneNumber.slice(0, inputFocusIndex) + myValue + scope.maskPhoneNumber.slice(inputFocusIndex);
             scope.phoneNumber = '+' + window.languages.CodeOfCountry + window.inputVerification.spaceDeleter(scope.maskPhoneNumber);
@@ -171,18 +172,18 @@
 
         if (myValue == 'x' && inputFocusIndex != 0) {
 
-          if (inputFocusIndex == 4) {
-            scope.maskPhoneNumber = scope.maskPhoneNumber.slice(0, inputFocusIndex - 2) + scope.maskPhoneNumber.slice(inputFocusIndex);
-            scope.phoneNumber = '+' + window.languages.CodeOfCountry + window.inputVerification.spaceDeleter(scope.maskPhoneNumber);
-            inputFocusIndex = inputFocusIndex - 2;
-          } else {
+          if (inputFocusIndex <= 4) {
+
+            scope.maskPhoneNumber = window.inputVerification.phoneDelTransform(inputFocusIndex, scope.maskPhoneNumber);
+            inputFocusIndex = inputFocusIndex == 4 ? 2 : ((inputFocusIndex == 3 || inputFocusIndex == 2) ? 1 : 0);
+          }
+          else {
             scope.maskPhoneNumber = scope.maskPhoneNumber.slice(0, inputFocusIndex - 1) + scope.maskPhoneNumber.slice(inputFocusIndex);
-            scope.phoneNumber = '+' + window.languages.CodeOfCountry + window.inputVerification.spaceDeleter(scope.maskPhoneNumber);
             --inputFocusIndex;
           }
+          scope.phoneNumber = '+' + window.languages.CodeOfCountry + window.inputVerification.spaceDeleter(scope.maskPhoneNumber);
           inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, inputFocusIndex)).width + inputLocalStartX - 3 + 'px';
         }
-
 
 
         console.log("m=", scope.maskPhoneNumber);

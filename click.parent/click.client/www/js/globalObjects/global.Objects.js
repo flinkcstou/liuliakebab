@@ -162,23 +162,42 @@ window.amountTransform = function (amount) {
 
 window.inputVerification = {};
 
-window.inputVerification.phoneTransform = function (amount) {
+window.inputVerification.phoneDelTransform = function (i, amount) {
 
   if (amount) {
-    amount = amount.toString()
-
+    amount = amount.toString();
     amount = amount.replace(new RegExp('[^0-9]', 'g'), '');
-
-    if (amount.length > 2) {
-      var newAmount = amount.slice(0, 2) + ' ' + amount.slice(2);
-      return newAmount.split("").join("");
-    } else {
-      return amount.split("").join("");
-    }
+    console.log("i=", i, ",amount=", amount);
+    var newAmount = '';
+    if (i == 4)
+      newAmount = amount.slice(0, 2) + ' ' + amount.slice(3);
+    else if (i == 3 || i == 2)
+      newAmount = amount.slice(0, 1) + amount.slice(2, 3) + ' ' + amount.slice(3);
+    else if (i == 1)
+      newAmount = amount.slice(1, 3) + ' ' + amount.slice(3);
   }
+  return newAmount;
+}
 
-  return '';
+window.inputVerification.phoneEnterTransform = function (i, val, amount) {
 
+  console.log("i=", i, ",val=", val, ",amount=", amount);
+  if (amount) {
+    amount = amount.toString();
+    amount = amount.replace(new RegExp('[^0-9]', 'g'), '');
+    console.log("111");
+    var newAmount = '';
+    if (i == 2)
+      newAmount = amount.slice(0, 2) + ' ' + val + amount.slice(2);
+    else if (i == 1)
+      newAmount = amount.slice(0, 1) + val + ' ' + amount.slice(1);
+    else if (i == 0)
+      newAmount = val + amount.slice(0, 1) + ' ' + amount.slice(1);
+  } else {
+    console.log("222");
+    newAmount = val;
+  }
+  return newAmount;
 }
 
 window.inputVerification.spaceDeleter = function (data) {
