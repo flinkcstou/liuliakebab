@@ -23,7 +23,7 @@
       <div class="transferfour-field-sum">
         <p class="transferfour-amount-field">{window.languages.ViewTransferFourAmountOfPay}</p>
         <p class="transferfour-amount-input">{maskSum} {objectCardForTransfer.currency}</p>
-        <p if="{opts[0][0].type != 2}" class="transferfour-tax-field">{window.languages.ViewTransferFourTax} {tax}
+        <p class="transferfour-tax-field">{window.languages.ViewTransferFourTax} {tax}
           {objectCardForTransfer.currency}</p>
       </div>
       <div id="categoryContainerId" class="transferfour-category-container">
