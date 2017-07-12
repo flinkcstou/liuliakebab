@@ -20,6 +20,7 @@
               "+j.params.firstFieldText):(j.params.firstFieldText)}</p>
           </div>
         </div>
+        <div id="e{j.service.id}" class="view-favorites-edit-icon" ontouchend="editFavoritePayment(this.id)"></div>
         <div id="{j.service.id}" class="view-favorites-delete-icon" ontouchend="removeFromFavorites(this.id)"></div>
       </div>
     </div>
@@ -194,6 +195,31 @@
           }
           this.riotTags.innerHTML = "<view-service-pincards-new>";
           riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
+
+          scope.unmount()
+
+        }
+      }
+
+    };
+
+    editFavoritePayment = function (id) {
+      event.stopPropagation();
+
+      console.log("id=", id);
+      id = id.substring(1, id.length);
+      console.log("id2=", id);
+
+      for (var i in scope.favoritePaymentsList) {
+        if (scope.favoritePaymentsList[i].service.id == id) {
+          console.log("scope.favoritePaymentsList[i].service.id", scope.favoritePaymentsList[i].service.id);
+          console.log("open favorite ", scope.favoritePaymentsList[i]);
+
+          scope.favoritePaymentsList[i].params.mode = 'ADDFAVORITE';
+
+
+          this.riotTags.innerHTML = "<view-service-page-new>";
+          riot.mount('view-service-page-new', scope.favoritePaymentsList[i].params);
 
           scope.unmount()
 

@@ -230,6 +230,9 @@
     var scope = this;
 
 
+    console.log("opts in ServicePageNew", opts);
+
+
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page-new') {
       history.arrayOfHistory.push(
         {
@@ -270,7 +273,7 @@
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
 
 
-    scope.enterButton = opts.mode != 'ADDFAVORITE' ? true : false;
+    scope.enterButton = opts.mode == 'ADDFAVORITE' ? false : true;
     scope.showError = false;
     scope.showConfirm = false;
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -1182,7 +1185,6 @@
       amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
     };
 
-    var payment_data;
 
     enterButton = function () {
 
@@ -1273,13 +1275,14 @@
       opts.firstLevelParamId = scope.chosenFieldParamIdTwo;
       opts.firstLevelFieldName = scope.chosenFieldNameTwo;
       opts.secondLevelFieldName = scope.chosenFieldNameThree;
-      opts.isInFavorites = !scope.enterButton;
 
 
 //      viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
 
 
       if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
+
+        opts.isInFavorites = !scope.enterButton;
 
         event.preventDefault();
         event.stopPropagation();
@@ -1374,7 +1377,15 @@
         }
       } else if (opts.mode == 'ADDFAVORITE') {
 
-        addToFavorites(opts);
+        console.log("isInFavorites=", opts.isInFavorites)
+
+
+        if (opts.isInFavorites)
+          editFavorite(opts);
+        else {
+          opts.isInFavorites = true;
+          addToFavoritesinServicePage(opts);
+        }
 
         event.preventDefault();
         event.stopPropagation();
@@ -1382,7 +1393,7 @@
         viewServicePinCards.friendHelpPaymentMode = false;
         viewServicePinCards.chosenFriendForHelp = null;
         onBackKeyDown();
-        onBackKeyDown();
+//        onBackKeyDown();
       } else if (opts.mode == 'ADDAUTOPAY') {
 
         if (autoPayNameInput.value.length < 1) {
@@ -1429,7 +1440,6 @@
         opts.formtype = scope.formType;
         opts.cardTypeId = cardId;
         opts.amountText = nominal;
-        opts.isInFavorites = !scope.enterButton;
 
         formTypeTwoBtnId.style.pointerEvents = 'auto';
         formTypeTwoBtnId.style.backgroundColor = 'rgb(1, 124, 227)';
@@ -1476,6 +1486,9 @@
       }
 
       if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
+
+        opts.isInFavorites = !scope.enterButton;
+
         event.preventDefault();
         event.stopPropagation();
 
@@ -1491,12 +1504,17 @@
 
       } else if (opts.mode == 'ADDFAVORITE') {
         if (opts) {
-          addToFavorites(opts);
+
+          if (opts.isInFavorites)
+            editFavorite(opts);
+          else {
+            opts.isInFavorites = true;
+            addToFavoritesinServicePage(opts);
+          }
           event.preventDefault();
           event.stopPropagation();
-          this.riotTags.innerHTML = "<view-main-page>";
-          riot.mount('view-main-page');
-          scope.unmount()
+          onBackKeyDown();
+//          onBackKeyDown();
         }
         else {
           scope.clickPinError = false;
@@ -1533,7 +1551,7 @@
 
     };
 
-    addToFavorites = function (array) {
+    addToFavoritesinServicePage = function (array) {
 //      console.log('scope.fieldArray[0]', scope.fieldArray[0].ussd_query)
       var favoritePaymentsList;
 
@@ -1560,6 +1578,22 @@
         console.log("favoritePaymentsList=", favoritePaymentsList);
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
       }
+    };
+
+    editFavorite = function (params) {
+      console.log('edit favorite', params)
+
+      console.log("Id to edit=", scope.service.id);
+      var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+//      console.log(favoritePaymentsList);
+      for (var i in favoritePaymentsList)
+        if (favoritePaymentsList[i].service.id == scope.service.id) {
+          favoritePaymentsList[i].params = params;
+          console.log("UPDATED FAVORITE", favoritePaymentsList[i]);
+          localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+          scope.update(scope.favPaymentsList);
+        }
+
     };
 
 
