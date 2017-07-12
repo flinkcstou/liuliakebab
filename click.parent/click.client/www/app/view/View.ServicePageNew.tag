@@ -87,12 +87,10 @@
     </div>
 
 
-    <button id="enterButtonId" class="servicepage-button-enter" if="{enterButton}" ontouchend="enterButton()">
-      {window.languages.ViewServicePageEnterLabel}
-    </button>
-
-    <button id="saveButtonId" class="servicepage-button-enter" if="{!enterButton}" ontouchend="enterButton()">
-      {window.languages.ViewServicePageSaveLabel}
+    <button id="enterButtonId"
+            class="{servicepage-button-enter-enabled: enterButtonEnabled,servicepage-button-enter-disabled:!enterButtonEnabled}"
+            ontouchend="enterButton()">
+      {enterButton ? window.languages.ViewServicePageEnterLabel:window.languages.ViewServicePageSaveLabel}
     </button>
 
   </div>
@@ -274,6 +272,7 @@
 
 
     scope.enterButton = opts.mode == 'ADDFAVORITE' ? false : true;
+    scope.enterButtonEnabled = false;
     scope.showError = false;
     scope.showConfirm = false;
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -288,6 +287,79 @@
     //    console.log("click_client_servicesParamsMapFive", localStorage.getItem("click_client_servicesParamsMapFive"));
 
     scope.update(scope.categoryNamesMap);
+
+
+    checkFieldsToActivateNext = function () {
+
+      if (this.firstFieldInput) {
+
+        if (scope.phoneFieldBool && firstFieldInput && opts.chosenServiceId != "mynumber") {
+          if (firstFieldInput.value.length < 9) {
+            console.log("Неправильно введён номер телефона");
+
+            scope.enterButtonEnabled = false;
+            scope.update(scope.enterButtonEnabled);
+
+            return;
+          }
+        } else if (firstFieldInput && firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
+          console.log("Нет значения первого поля");
+          scope.enterButtonEnabled = false;
+          scope.update(scope.enterButtonEnabled);
+          return;
+        }
+      }
+
+
+      if (scope.formType == 3) {
+
+        if (scope.hasSecondLevel)
+          opts.communalParam = scope.chosenFieldParamIdThree;
+        else
+          opts.communalParam = scope.chosenFieldParamIdTwo;
+
+        if (!opts.communalParam) {
+          if (scope.hasSecondLevel)
+            console.log("Выберите город и район");
+          else
+            console.log("Выберите район");
+
+          scope.enterButtonEnabled = false;
+          scope.update(scope.enterButtonEnabled);
+          return;
+        }
+
+      } else if (scope.formType == 4) {
+        if (scope.chosenFieldParamIdThree)
+          opts.internetPackageParam = scope.chosenFieldParamIdThree;
+        else {
+          console.log("Выберите интернет пакет");
+          scope.enterButtonEnabled = false;
+          scope.update(scope.enterButtonEnabled);
+          return;
+        }
+      }
+
+      if (amountForPayTransaction < scope.service.min_pay_limit) {
+        console.log("amount=", amountForPayTransaction);
+        console.log(scope.service.lang_min_amount);
+        scope.enterButtonEnabled = false;
+        scope.update(scope.enterButtonEnabled);
+        return;
+      }
+      if (amountForPayTransaction > scope.service.max_pay_limit) {
+        console.log(scope.service.lang_max_amount);
+        scope.enterButtonEnabled = false;
+        scope.update(scope.enterButtonEnabled);
+        return;
+      }
+
+
+      scope.enterButtonEnabled = true;
+      scope.update(scope.enterButtonEnabled);
+
+
+    }
 
 
     telPayVerificationKeyDown = function (input) {
@@ -317,6 +389,7 @@
           firstFieldInput.selectionEnd = cursorPositionSelectionEnd
         }
       }
+      checkFieldsToActivateNext();
     };
 
 
@@ -764,6 +837,8 @@
 
         }
 
+        checkFieldsToActivateNext();
+
       }
 
       if (scope.formType == 4 && scope.servicesParamsMapFour[scope.service.id] && scope.servicesParamsMapFive[scope.service.id]) {
@@ -811,6 +886,7 @@
           scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].type];
 
         }
+        checkFieldsToActivateNext();
       }
     }
 
@@ -980,6 +1056,7 @@
             }
           }
         }
+        checkFieldsToActivateNext();
       }
     };
 
@@ -1089,6 +1166,7 @@
             }
           }
         }
+        checkFieldsToActivateNext();
       }
     };
 
@@ -1157,14 +1235,10 @@
       opts.amountWithoutSpace = amountForPayTransaction;
 
       if (amount.value.length >= 1 && amount.value != 0) {
-        if (scope.enterButton)
-          enterButtonId.style.display = 'block';
-        else saveButtonId.style.display = 'block';
+        enterButtonId.style.display = 'block';
       }
       else {
-        if (scope.enterButton)
-          enterButtonId.style.display = 'none';
-        else saveButtonId.style.display = 'none';
+        enterButtonId.style.display = 'none';
       }
 
       if (amountForPayTransaction >= 1000) {
@@ -1172,6 +1246,8 @@
         opts.tax = scope.tax;
       }
       scope.update()
+
+      checkFieldsToActivateNext();
 
     };
 
@@ -1442,7 +1518,7 @@
         opts.amountText = nominal;
 
         formTypeTwoBtnId.style.pointerEvents = 'auto';
-        formTypeTwoBtnId.style.backgroundColor = 'rgb(1, 124, 227)';
+        formTypeTwoBtnId.style.backgroundColor = '#00a8f1';
         scope.selectedId = 'radio' + cardId + nominal;
         scope.update(scope.selectedId);
         scope.update(formTypeTwoBtnId);
