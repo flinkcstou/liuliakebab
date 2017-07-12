@@ -9836,7 +9836,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 36%;" +
   "background-position: center;" +
-  "background-image: url(resources/icons/services/delete.png);" +
+  "background-image: url(resources/icons/services/edit_favorite.png);" +
   "}",
 
 
