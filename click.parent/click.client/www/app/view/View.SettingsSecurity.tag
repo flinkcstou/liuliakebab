@@ -2,18 +2,21 @@
   <div class="riot-tags-main-container">
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
-      <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
+      <div id="backButton" ontouchstart="securityGoToBackStart()" ontouchend="securityGoToBackEnd()"
+           class="pay-back-button"></div>
     </div>
     <div class="settings-container">
 
-      <div class="settings-block-containter" ontouchend="goToTrustedDevices()">
+      <div id="trustedDevicesButtonId" class="settings-block-containter" ontouchstart="goToTrustedDevicesStart()"
+           ontouchend="goToTrustedDevicesEnd()">
         <div class="settings-block-icon"
              style="background-image: url('resources/icons/ViewSettingsSecurity/security_devices.png')"></div>
         <div class="settings-block-name-field">{window.languages.ViewSecuritySettingsTrustedDevicesTitle}</div>
         <div class="settings-block-next-icon"></div>
       </div>
 
-      <div class="settings-block-containter" ontouchend="changeClickPin()">
+      <div id="changePinButtonId" class="settings-block-containter" ontouchstart="changeClickPinStart()"
+           ontouchend="changeClickPinEnd()">
         <div class="settings-block-icon"
              style="background-image: url('resources/icons/ViewSettingsSecurity/security_changepin.png')"></div>
         <div class="settings-block-name-field">{window.languages.ViewSecuritySettingsPinChangeTitle}</div>
@@ -83,7 +86,7 @@
       if (isVisible) {
         hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
       }
-      else{
+      else {
         hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
       }
 
@@ -114,11 +117,30 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    goToBack = function () {
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    securityGoToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
-      scope.unmount()
+
+      backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+    }
+
+    securityGoToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+
+        onBackKeyDown()
+      }
     };
 
     hideMyNumber = function () {
@@ -167,13 +189,30 @@
       });
     };
 
+    var changePinButtonStartX, changePinButtonEndX, changePinButtonStartY, changePinButtonEndY;
 
-    changeClickPin = function () {
+    changeClickPinStart = function () {
 
-      riotTags.innerHTML = "<view-pin-code>";
-      riot.mount('view-pin-code', ['view-security-settings']);
+      changePinButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
 
-      scope.unmount()
+      changePinButtonStartX = event.changedTouches[0].pageX;
+      changePinButtonStartY = event.changedTouches[0].pageY;
+    };
+
+    changeClickPinEnd = function () {
+
+      changePinButtonId.style.backgroundColor = 'transparent'
+
+      changePinButtonEndX = event.changedTouches[0].pageX;
+      changePinButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(changePinButtonStartX - changePinButtonEndX) <= 20 && Math.abs(changePinButtonStartY - changePinButtonEndY) <= 20) {
+
+        riotTags.innerHTML = "<view-pin-code>";
+        riot.mount('view-pin-code', ['view-security-settings']);
+
+        scope.unmount()
+      }
     };
 
     blockWithPin = function () {
@@ -193,15 +232,31 @@
       scope.update();
     };
 
+    var goTrustedStartX, goTrustedEndX, goTrustedStartY, goTrustedEndY;
 
-    goToTrustedDevices = function () {
+    goToTrustedDevicesStart = function () {
 
-      history.arrayOfHistory.push({view: "view-trusted-devices"});
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-      riotTags.innerHTML = "<view-trusted-devices>";
-      riot.mount("view-trusted-devices");
+      trustedDevicesButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
 
-      scope.unmount()
+      goTrustedStartX = event.changedTouches[0].pageX;
+      goTrustedStartY = event.changedTouches[0].pageY;
+    };
+
+    goToTrustedDevicesEnd = function () {
+
+      trustedDevicesButtonId.style.backgroundColor = 'transparent'
+
+      goTrustedEndX = event.changedTouches[0].pageX;
+      goTrustedEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goTrustedStartX - goTrustedEndX) <= 20 && Math.abs(goTrustedStartY - goTrustedEndY) <= 20) {
+        history.arrayOfHistory.push({view: "view-trusted-devices"});
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        riotTags.innerHTML = "<view-trusted-devices>";
+        riot.mount("view-trusted-devices");
+
+        scope.unmount()
+      }
     };
 
     fingerPrintTouchEnd = function () {
