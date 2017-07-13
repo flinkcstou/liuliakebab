@@ -9111,14 +9111,14 @@ var css = {
 
   reportFilterReadyButton: ".report-filter-ready-button" +
   "{" +
-  "transform: translate3d(-50%, 0,0);" +
-  "-webkit-transform: translate3d(-50%, 0,0);" +
+  //"transform: translate3d(-50%, 0,0);" +
+  //"-webkit-transform: translate3d(-50%, 0,0);" +
   "text-transform: capitalize;" +
-  "left: 50.5%;" +
+  "left: 28.5%;" +
   "font-size: " + 27 * widthK + "px;" +
   "background-color: #00A1EC;" +
   "height: " + 74 * widthK + "px;" +
-  "margin:" + 40 * widthK + "px auto 0 auto;" +
+  "margin:" + 5 * widthK + "px auto 0 auto;" +
   "padding: 0;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
