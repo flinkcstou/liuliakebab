@@ -167,7 +167,7 @@ window.inputVerification.phoneDelTransform = function (i, amount) {
   if (amount) {
     amount = amount.toString();
     amount = amount.replace(new RegExp('[^0-9]', 'g'), '');
-    console.log("i=", i, ",amount=", amount);
+    // console.log("i=", i, ",amount=", amount);
     var newAmount = '';
     if (i == 4)
       newAmount = amount.slice(0, 2) + ' ' + amount.slice(3);
@@ -181,7 +181,7 @@ window.inputVerification.phoneDelTransform = function (i, amount) {
 
 window.inputVerification.phoneEnterTransform = function (i, val, amount) {
 
-  console.log("i=", i, ",val=", val, ",amount=", amount);
+  // console.log("i=", i, ",val=", val, ",amount=", amount);
   if (amount) {
     amount = amount.toString();
     amount = amount.replace(new RegExp('[^0-9]', 'g'), '');

@@ -193,9 +193,9 @@
         }
 
 
-        console.log("m=", scope.maskPhoneNumber);
-        console.log("p=", scope.phoneNumber);
-        console.log("inputFocusIndex end", inputFocusIndex);
+//        console.log("m=", scope.maskPhoneNumber);
+//        console.log("p=", scope.phoneNumber);
+//        console.log("inputFocusIndex end", inputFocusIndex);
         scope.update();
       }
       return
