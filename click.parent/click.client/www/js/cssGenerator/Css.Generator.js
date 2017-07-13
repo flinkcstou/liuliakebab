@@ -1136,13 +1136,14 @@ var css = {
   "border: none;" +
   "text-align: center;" +
   "outline: none;" +
+  "padding: 0;" +
   "}",
 
   authorizationPinInputFirstEnter: ".authorization-pin-input-first-enter " +
   "{" +
   "position: absolute;" +
   "height:" + 80 * widthK + "px;" +
-  "top:" + 5 * widthK + "px;" +
+  //"top:" + 5 * widthK + "px;" +
   "width:" + 470 * widthK + "px;" +
   "left:" + 70 * widthK + "px;" +
   "font-size:" + 80 * widthK + "px;" +
@@ -12133,17 +12134,17 @@ var css = {
 
   settingsSupportButtonsPay: ".settings-support-buttons-pay " +
   "{" +
-  "margin-top: -1%;" +
+  "margin-top: 0%;" +
   "}",
 
   settingsSupportButtonsBalance: ".settings-support-buttons-balance " +
   "{" +
-  "margin-top: -1.5%;" +
+  "margin-top: 0;" +
   "}",
 
   settingsSupportButtonsOther: ".settings-support-buttons-other " +
   "{" +
-  "margin-top: -1.5%;" +
+  "margin-top: 0;" +
   "border: none;" +
   "}",
 
