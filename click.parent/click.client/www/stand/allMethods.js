@@ -55,18 +55,18 @@ window.fakedSocket.register("device.register.confirm", function (input) {
           "method": input.method,
           "success": 1,
           "error": 0,
-          "error_note": ""
+          "error_note": "Neverniy sms"
         }]
       ];
   }
   else
     return [
-      {
+      [{
         "method": input.method,
         "success": 1,
         "error": -4,
         "error_note": 'Neverniy sms'
-      }
+      }]
     ];
 });
 
