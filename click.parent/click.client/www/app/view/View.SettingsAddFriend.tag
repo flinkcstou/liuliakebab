@@ -2,7 +2,7 @@
   <div class="riot-tags-main-container">
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
-      <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
+      <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="pay-back-button"></div>
     </div>
     <div class="settings-container">
 
@@ -52,7 +52,7 @@
       </div>
 
       <button id="nextButtonId" class="settings-add-friend-next-button-inner-container"
-              ontouchend="addFriendTouchEnd()">{window.languages.ViewPayTransferNext}
+              ontouchstart="addFriendTouchStart()" ontouchend="addFriendTouchEnd()">{window.languages.ViewPayTransferNext}
       </button>
     </div>
 
@@ -119,11 +119,32 @@
     var checkFirstBlock = false;
     var checkSecondBlock = false;
 
-    goToBack = function () {
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    goToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
-      scope.unmount()
+
+      backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
+    };
+
+    goToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+        scope.unmount()
+      }
     };
 
     contactPhoneBlurAndChange = function () {
@@ -534,9 +555,29 @@
     //    }
 
     var arrayOfFriends = [];
+
+    var addButtonStartX, addButtonEndX, addButtonStartY, addButtonEndY;
+
+    addFriendTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      nextButtonId.style.webkitTransform = 'scale(0.8)'
+
+      addButtonStartX = event.changedTouches[0].pageX;
+      addButtonStartY = event.changedTouches[0].pageY;
+    }
+
     addFriendTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      nextButtonId.style.webkitTransform = 'scale(1)'
+
+      addButtonEndX = event.changedTouches[0].pageX;
+      addButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(addButtonStartX - addButtonEndX) <= 20 && Math.abs(addButtonStartY - addButtonEndY) <= 20) {
 
       if (localStorage.getItem('click_client_friends') === null) {
         arrayOfFriends = []
@@ -584,6 +625,7 @@
 
       localStorage.setItem('click_client_friends', JSON.stringify(arrayOfFriends))
       onBackKeyDown()
+    }
     }
 
 

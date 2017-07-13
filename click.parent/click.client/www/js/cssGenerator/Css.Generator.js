@@ -8049,6 +8049,7 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/ViewSettingsFriendHelp/delete.png);" +
   "right: 2%;" +
+  "z-index: 2;" +
   "}",
 
 
