@@ -26,6 +26,7 @@
   <plugin name="cordova-plugin-camera"/>
   <plugin name="cordova-plugin-spinner"/>
   <plugin name="cordova-plugin-datepicker"/>
+  <plugin name="com.ionic.keyboard"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
