@@ -1136,13 +1136,14 @@ var css = {
   "border: none;" +
   "text-align: center;" +
   "outline: none;" +
+  "padding: 0;" +
   "}",
 
   authorizationPinInputFirstEnter: ".authorization-pin-input-first-enter " +
   "{" +
   "position: absolute;" +
   "height:" + 80 * widthK + "px;" +
-  "top:" + 5 * widthK + "px;" +
+  //"top:" + 5 * widthK + "px;" +
   "width:" + 470 * widthK + "px;" +
   "left:" + 70 * widthK + "px;" +
   "font-size:" + 80 * widthK + "px;" +
@@ -2134,7 +2135,7 @@ var css = {
   "{" +
   "position: relative;" +
   "top: 39.4%;" +
-  "height: 7%;" +
+  "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
   "border-bottom: 1px solid #43aee5;" +
@@ -2144,11 +2145,22 @@ var css = {
   sideMenuCallContainer: ".side-menu-call-container " +
   "{" +
   "position: relative;" +
-  "top: 38.7%;" +
+  "top: 39.4%;" +
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  //"border-bottom: 1px solid #43aee5;" +
+  //"margin-top: 2%;" +
+  "border-bottom: 1px solid #43aee5;" +
+  "}",
+
+  sideMenuExitContainer: ".side-menu-exit-container " +
+  "{" +
+  "position: relative;" +
+  "top: 39.4%;" +
+  "height: 6%;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  "border-bottom: 1px solid #43aee5;" +
   "}",
 
   sideMenuContainersIcon: ".side-menu-containers-icon " +
@@ -3040,6 +3052,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-size: 73%;" +
+  "transition: 0.5s;" +
   "}",
 
   viewInfoMyFinanceIcon: ".view-info-my-finance-icon " +
@@ -3104,7 +3117,7 @@ var css = {
   "color: #8b8b8b;" +
   "}",
 
-  viewInfoOperationContainer: ".view-info-operations-container " +
+  viewInfoOperationsContainer: ".view-info-operations-container " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
@@ -3116,6 +3129,13 @@ var css = {
   "-webkit-overflow-scrolling: touch;" +
   "overflow-x: hidden;" +
   "font-size:" + 23 * widthK + "px;" +
+  "}",
+
+  viewInfoOperationContainer: ".view-info-operation-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 200 * widthK + "px;" +
   "}",
 
   viewInfoOperationsIcon: ".view-info-operations-icon " +
@@ -7931,11 +7951,11 @@ var css = {
   "{" +
   "position: relative;" +
   "font-size:" + 35 * widthK + "px; " +
-  "width:" + 270 * widthK + "px; " +
+  "width:" + 330 * widthK + "px; " +
   "margin: 0; " +
   "margin-left: auto; " +
   "margin-right: auto; " +
-  "top: 10%; " +
+  "margin-top: 5%; " +
   "color: white;" +
   "}",
 
@@ -7947,7 +7967,7 @@ var css = {
   "margin: 0; " +
   "margin-left: auto; " +
   "margin-right: auto; " +
-  "top: 11%; " +
+  //"top: 11%; " +
   "color: white;" +
   "}",
 
@@ -9091,14 +9111,14 @@ var css = {
 
   reportFilterReadyButton: ".report-filter-ready-button" +
   "{" +
-  "transform: translate3d(-50%, 0,0);" +
-  "-webkit-transform: translate3d(-50%, 0,0);" +
+  //"transform: translate3d(-50%, 0,0);" +
+  //"-webkit-transform: translate3d(-50%, 0,0);" +
   "text-transform: capitalize;" +
-  "left: 50.5%;" +
+  "left: 28.5%;" +
   "font-size: " + 27 * widthK + "px;" +
   "background-color: #00A1EC;" +
   "height: " + 74 * widthK + "px;" +
-  "margin:" + 40 * widthK + "px auto 0 auto;" +
+  "margin:" + 5 * widthK + "px auto 0 auto;" +
   "padding: 0;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
@@ -12133,17 +12153,17 @@ var css = {
 
   settingsSupportButtonsPay: ".settings-support-buttons-pay " +
   "{" +
-  "margin-top: -1%;" +
+  "margin-top: 0%;" +
   "}",
 
   settingsSupportButtonsBalance: ".settings-support-buttons-balance " +
   "{" +
-  "margin-top: -1.5%;" +
+  "margin-top: 0;" +
   "}",
 
   settingsSupportButtonsOther: ".settings-support-buttons-other " +
   "{" +
-  "margin-top: -1.5%;" +
+  "margin-top: 0;" +
   "border: none;" +
   "}",
 

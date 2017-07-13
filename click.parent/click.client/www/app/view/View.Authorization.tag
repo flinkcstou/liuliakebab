@@ -29,7 +29,7 @@
              id="firstPinInputId"/>
       <div class="authorization-input-eye-button" onclick="eyeClicked()"></div>
     </div>
-    <div if="{firstEnter}" class="authorization-button-first-enter" ontouchend="firstPinEnterTouchEnd()"
+    <div if="{firstEnter}" id="firstEnterButtonId" class="authorization-button-first-enter" ontouchend="firstPinEnterTouchEnd()"
          ontouchstart="firstPinEnterTouchStart()">
       <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
     </div>
@@ -565,6 +565,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      firstEnterButtonId.style.webkitTransform = 'scale(0.8)'
+
       firstPinEnterTouchStartX = event.changedTouches[0].pageX
       firstPinEnterTouchStartY = event.changedTouches[0].pageY
     }
@@ -572,6 +574,8 @@
     firstPinEnterTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      firstEnterButtonId.style.webkitTransform = 'scale(1)'
 
       firstPinEnterTouchEndX = event.changedTouches[0].pageX
       firstPinEnterTouchEndY = event.changedTouches[0].pageY

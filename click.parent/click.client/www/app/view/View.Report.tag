@@ -3,7 +3,7 @@
   <div id="reportPageId" class="view-reports-page">
     <div class="page-title" style="border: none;">
       <p class="name-title">{titleName}</p>
-      <div id="backButton" ontouchend="touchStartTitle()"
+      <div id="backButtonId" ontouchstart="touchStartTitleStart()" ontouchend="touchStartTitleEnd()"
            class="back-button">
       </div>
       <div class="view-reports-filter-container" ontouchend="openFilter()">
@@ -41,7 +41,7 @@
           <div class="view-reports-payment-date-field">{i}</div>
         </div>
         <div class="view-reports-payment-block-containter" each="{j in paymentsMap[i]}" id="{j.payment_id}"
-             ontouchstart="paymentTouchStart()" ontouchend="paymentTouchEnd(this.id)">
+             ontouchstart="paymentTouchStart(this.id)" ontouchend="paymentTouchEnd(this.id)">
           <div class="view-reports-payment-icon"
                style="background-image: url({j.image})"></div>
           <div class="view-reports-payment-info-container">
@@ -137,13 +137,31 @@
       }
     });
 
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
-    touchStartTitle = function () {
+    touchStartTitleStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      onBackKeyDown()
-      scope.unmount()
+      backButtonId.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+    };
+
+    touchStartTitleEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButtonId.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+        scope.unmount()
+      }
     };
 
     scope.leftOfOperations = 320 * widthK;
@@ -794,6 +812,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      document.getElementById(paymentId).style.backgroundColor = 'transparent'
+
       paymentTouchEndY = event.changedTouches[0].pageY;
       paymentTouchEndX = event.changedTouches[0].pageX;
       paymentTimeEnd = event.timeStamp.toFixed(0);
@@ -868,10 +888,12 @@
 
     }
 
-    paymentTouchStart = function () {
+    paymentTouchStart = function (paymentId) {
       paymentTouchStartY = event.changedTouches[0].pageY;
       paymentTouchStartX = event.changedTouches[0].pageX;
       paymentTimeStart = event.timeStamp.toFixed(0);
+
+      document.getElementById(paymentId).style.backgroundColor = 'rgba(231,231,231,0.8)'
     }
 
     var reportBodyContainerStartX, reportBodyContainerStartY, reportBodyContainerEndX, reportBodyContainerEndY;

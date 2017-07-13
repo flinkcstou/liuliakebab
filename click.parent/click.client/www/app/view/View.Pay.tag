@@ -2,8 +2,8 @@
   <div id="viewPayId" class="view-pay riot-tags-main-container">
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
-      <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
-      <div id="rightButton" type="button" class="pay-search-button" ontouchend="search()"></div>
+      <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="pay-back-button"></div>
+      <div id="rightButton" type="button" class="pay-search-button" ontouchstart="searchStart()" ontouchend="searchEnd()"></div>
       <div style=""></div>
     </div>
     <div class="pay-service-hint-containter" id="hintContainerId" if="{hintShow}">
@@ -87,11 +87,32 @@
       var sessionKey = loginInfo.session_key;
     }
 
-    goToBack = function () {
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    goToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown();
-      scope.unmount()
+
+      backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
+    };
+
+    goToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+        scope.unmount()
+      }
     };
 
     scope.on('mount', function () {

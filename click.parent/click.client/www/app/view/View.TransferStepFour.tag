@@ -1,8 +1,8 @@
 <view-transfer-stepfour class="riot-tags-main-container">
   <div class="transfer-page-title">
     <p class="transfer-name-title">{titleName}</p>
-    <div id="backButton" ontouchstart="goToBack()"
-         class="{transfer-back-button: backbuttoncheck}">
+    <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
+         class="transfer-back-button">
 
     </div>
     <div id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"></div>
@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <button class="transferfour-button-enter" ontouchstart="transferStepTouchStart()"
+    <button id="transferButtonId" class="transferfour-button-enter" ontouchstart="transferStepTouchStart()"
             ontouchend="transferStepTouchEnd()">
       {window.languages.ViewTransferFourPay}
     </button>
@@ -150,6 +150,34 @@
       this.titleName = window.languages.ViewTransferFourTitle + ' +' + transferTitle;
     else
       this.titleName = window.languages.ViewTransferFourTitle + ' ' + transferTitle;
+
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    goToBackStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
+    };
+
+    goToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+        scope.unmount()
+      }
+    };
 
     findContacts = function (saveNumber) {
       var maskOne = /[0-9]/g;
@@ -285,11 +313,15 @@
       event.preventDefault();
       event.stopPropagation();
 
+      transferButtonId.style.webkitTransform = 'scale(0.8)'
+
       transferStepTouchStartX = event.changedTouches[0].pageX
       transferStepTouchStartY = event.changedTouches[0].pageY
     }
 
     transferStepTouchEnd = function () {
+
+      transferButtonId.style.webkitTransform = 'scale(1)'
 
       transferStepTouchEndX = event.changedTouches[0].pageX
       transferStepTouchEndY = event.changedTouches[0].pageY

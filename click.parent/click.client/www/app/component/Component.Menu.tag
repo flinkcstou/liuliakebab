@@ -4,7 +4,7 @@
   <div ontouchend="sideMenuTouchEnd()" ontouchstart="sideMenuTouchStart()" ontouchmove="sideMenuTouchMove()"
        id="sideMenuId" class="side-menu">
 
-    <div class="side-menu-inside-button" ontouchend="closeMenu()"></div>
+    <div id="closeMenuButtonId" class="side-menu-inside-button" ontouchstart="closeMenuStart()" ontouchend="closeMenu()"></div>
     <div class="side-menu-user-info-container">
       <div class="side-menu-user-icon" style="background-image: url({photo})" ontouchend="userIconTouchEnd()"></div>
       <p class="side-menu-user-second-name">{firstName}</p>
@@ -20,40 +20,46 @@
         <div class="slider-menu round"></div>
       </label>
     </div>
-    <div class="side-menu-billings-container" ontouchstart="goToBillingsTouchStart()"
+    <div id="billngsButtonId" class="side-menu-billings-container" ontouchstart="goToBillingsTouchStart()"
          ontouchend="goToBillingsTouchEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-billings"></div>
       <div class="side-menu-containers-name side-menu-containers-name-billings">Выставленные счета</div>
     </div>
 
-    <div class="side-menu-favorite-container" ontouchstart="goToFavoritesStart()" ontouchend="goToFavoritesEnd()">
+    <div id="favouriteButtonId" class="side-menu-favorite-container" ontouchstart="goToFavoritesStart()"
+         ontouchend="goToFavoritesEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-favorite"></div>
       <div class="side-menu-containers-name side-menu-containers-name-favorite">Избранные</div>
     </div>
 
-    <div if="{!modeOfApp.offlineMode}" class="side-menu-auto-pay-container" ontouchstart="goToAutoPayStart()"
+    <div id="autoPayButtonId" if="{!modeOfApp.offlineMode}" class="side-menu-auto-pay-container"
+         ontouchstart="goToAutoPayStart()"
          ontouchend="goToAutoPayEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-autopayment"></div>
       <div class="side-menu-containers-name side-menu-containers-name-autopayment">Автоплатеж</div>
     </div>
 
-    <div class="side-menu-scanner-qr-container" ontouchstart="goToQrScannerStart()" ontouchend="goToQrScannerEnd()">
+    <div id="qrScannerButtonId" class="side-menu-scanner-qr-container" ontouchstart="goToQrScannerStart()"
+         ontouchend="goToQrScannerEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-scanner-qr"></div>
       <div class="side-menu-containers-name side-menu-containers-name-scanner-qr">Сканер QR-кода</div>
     </div>
 
-    <div if="{!modeOfApp.offlineMode}" class="side-menu-settings-container" ontouchstart="goToSettingsStart()"
+    <div id="settingsButtonId" if="{!modeOfApp.offlineMode}" class="side-menu-settings-container"
+         ontouchstart="goToSettingsStart()"
          ontouchend="goToSettingsEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-settings"></div>
       <div class="side-menu-containers-name side-menu-containers-name-settings">Настройки</div>
     </div>
 
-    <div class="side-menu-call-container" ontouchend="callToClickTouchEnd()" ontouchstart="callToClickTouchStart()">
+    <div id="callButtonId" class="side-menu-call-container" ontouchend="callToClickTouchEnd()"
+         ontouchstart="callToClickTouchStart()">
       <div class="side-menu-containers-icon side-menu-containers-icon-call"></div>
       <div class="side-menu-containers-name side-menu-containers-name-call">Позвонить в CLICK</div>
     </div>
 
-    <div class="side-menu-call-container" ontouchend="exitFromAppTouchEnd()" ontouchstart="exitFromAppTouchStart()">
+    <div id="exitButtonId" class="side-menu-exit-container" ontouchend="exitFromAppTouchEnd()"
+         ontouchstart="exitFromAppTouchStart()">
       <div class="side-menu-containers-icon side-menu-containers-icon-exit"></div>
       <div class="side-menu-containers-name side-menu-containers-name-call">Выход</div>
     </div>
@@ -149,11 +155,15 @@
 
     exitFromAppTouchStart = function () {
 
+      exitButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+
       exitModeTouchStartX = event.changedTouches[0].pageX
       exitModeTouchStartY = event.changedTouches[0].pageY
     }
 
     exitFromAppTouchEnd = function () {
+
+      exitButtonId.style.backgroundColor = 'transparent'
 
       exitModeTouchEndX = event.changedTouches[0].pageX
       exitModeTouchEndY = event.changedTouches[0].pageY
@@ -164,7 +174,13 @@
 
     }
 
+    closeMenuStart = function () {
+      closeMenuButtonId.style.webkitTransform = 'scale(0.8)'
+    }
+
     closeMenu = function () {
+
+      closeMenuButtonId.style.webkitTransform = 'scale(1)'
 
       if (event) {
         event.preventDefault();
@@ -353,6 +369,9 @@
 
     var callTouchStartX, callTouchStartY, callTouchEndX, callTouchEndY
     callToClickTouchEnd = function () {
+
+      callButtonId.style.backgroundColor = 'transparent'
+
       callTouchEndX = event.changedTouches[0].pageX;
       callTouchEndY = event.changedTouches[0].pageY;
 
@@ -366,12 +385,18 @@
     }
 
     callToClickTouchStart = function () {
+
+      callButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+
       callTouchStartX = event.changedTouches[0].pageX;
       callTouchStartY = event.changedTouches[0].pageY;
     }
 
     var autoPayTouchStartX, autoPayTouchStartY, autoPayTouchEndX, autoPayTouchEndY;
     goToAutoPayEnd = function () {
+
+      autoPayButtonId.style.backgroundColor = 'transparent'
+
       autoPayTouchEndX = event.changedTouches[0].pageX;
       autoPayTouchEndY = event.changedTouches[0].pageY;
 
@@ -411,6 +436,9 @@
     }
 
     goToAutoPayStart = function () {
+
+      autoPayButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+
       autoPayTouchStartX = event.changedTouches[0].pageX;
       autoPayTouchStartY = event.changedTouches[0].pageY;
     };
@@ -420,6 +448,7 @@
 
     goToQrScannerEnd = function () {
 
+      qrScannerButtonId.style.backgroundColor = 'transparent'
 
       qrScannerTouchEndX = event.changedTouches[0].pageX;
       qrScannerTouchEndY = event.changedTouches[0].pageY;
@@ -606,6 +635,11 @@
     }
 
     goToQrScannerStart = function () {
+
+      console.log('qrButtonId', qrButtonId)
+
+      qrScannerButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+
       qrScannerTouchStartX = event.changedTouches[0].pageX;
       qrScannerTouchStartY = event.changedTouches[0].pageY;
     }
@@ -616,13 +650,15 @@
       event.preventDefault();
       event.stopPropagation();
 
+      settingsButtonId.style.backgroundColor = 'transparent'
+
       settingsTouchEndX = event.changedTouches[0].pageX;
       settingsTouchEndY = event.changedTouches[0].pageY;
 
       console.log('settingsTouchStartX', settingsTouchStartX)
       console.log('settingsTouchEndX', settingsTouchEndX)
 
-      if (Math.abs(settingsTouchStartX - settingsTouchEndX) < 20) {
+      if (Math.abs(settingsTouchStartX - settingsTouchEndX) < 20 && Math.abs(settingsTouchStartY - settingsTouchEndY) < 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
           scope.showError = true;
@@ -658,20 +694,29 @@
     }
 
     goToSettingsStart = function () {
+      settingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+
       settingsTouchStartX = event.changedTouches[0].pageX;
+      settingsTouchStartY = event.changedTouches[0].pageY;
     }
 
-
+    var billingsTouchStartX, billingsTouchStartY, billingsTouchEndX, billingsTouchEndY;
     goToBillingsTouchStart = function () {
 
+      billngsButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+
       billingsTouchStartX = event.changedTouches[0].pageX;
+      billingsTouchStartY = event.changedTouches[0].pageY;
     };
 
     goToBillingsTouchEnd = function () {
 
-      billingsTouchEndX = event.changedTouches[0].pageX;
+      billngsButtonId.style.backgroundColor = 'transparent'
 
-      if (Math.abs(billingsTouchEndX - billingsTouchStartX) < 20) {
+      billingsTouchEndX = event.changedTouches[0].pageX;
+      billingsTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(billingsTouchEndX - billingsTouchStartX) < 20 && Math.abs(billingsTouchStartY - billingsTouchEndY) < 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
           scope.showError = true;
@@ -729,18 +774,21 @@
       }
     };
 
-    var favoritesTouchStartX, favoritesTouchEndX;
+    var favoritesTouchStartX, favoritesTouchStartY, favoritesTouchEndX, favoritesTouchEndY;
 
     goToFavoritesEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
+      favouriteButtonId.style.backgroundColor = 'transparent'
+
       favoritesTouchEndX = event.changedTouches[0].pageX;
+      favoritesTouchEndY = event.changedTouches[0].pageY;
 
       console.log('settingsTouchStartX', favoritesTouchStartX)
       console.log('settingsTouchEndX', favoritesTouchEndX)
 
-      if (Math.abs(favoritesTouchStartX - favoritesTouchEndX) < 20) {
+      if (Math.abs(favoritesTouchStartX - favoritesTouchEndX) < 20 && Math.abs(favoritesTouchStartY - favoritesTouchEndY) < 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
           scope.showError = true;
@@ -776,7 +824,11 @@
     }
 
     goToFavoritesStart = function () {
+
+      favouriteButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+
       favoritesTouchStartX = event.changedTouches[0].pageX;
+      favoritesTouchStartY = event.changedTouches[0].pageY;
     }
 
 

@@ -2,7 +2,7 @@
 
   <div class="pay-page-title">
     <p class="settings-user-agreement-name-title">{titleName}</p>
-    <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
+    <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="pay-back-button"></div>
 
   </div>
 
@@ -34,11 +34,32 @@
     //      console.log('AGREEMENT', scope.contentOfAgreement)
     //    })
 
-    goToBack = function () {
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    goToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
-      scope.unmount()
+
+      backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
+    };
+
+    goToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+        scope.unmount()
+      }
     };
 
     if (localStorage.getItem("click_client_agreement")) {

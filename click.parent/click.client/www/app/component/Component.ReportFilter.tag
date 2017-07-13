@@ -5,7 +5,8 @@
        class="filter-menu {filter-minor-menu: filterDate || filterAccount, filter-main-menu: !(filterDate || filterAccount)}">
 
     <div class="filter-menu-inside-button" ontouchend="closeFilter()">
-      <p class="view-reports-filter-text {filter-inside-text: filterDate || filterAccount, filter-inside-text-main: !(filterDate || filterAccount)}">
+      <p
+        class="view-reports-filter-text {filter-inside-text: filterDate || filterAccount, filter-inside-text-main: !(filterDate || filterAccount)}">
         {languages.ComponentReportFilterTitle}</p>
       <div type="button"
            class="view-reports-filter-button {filter-inside-button: filterDate || filterAccount, filter-inside-button-main: !(filterDate || filterAccount)}"></div>
@@ -17,9 +18,9 @@
 
         <component-pincards filteraccount="true"></component-pincards>
 
-        <button class="report-filter-ready-button" if="{filterDate || filterAccount}"
-                ontouchstart="readyButtonTouchStart()"
-                ontouchend="readyButtonTouchEnd()">
+        <button id="readyButtonId" class="report-filter-ready-button" if="{filterDate || filterAccount}"
+                ontouchstart="readyButtonTouchStart(this.id)"
+                ontouchend="readyButtonTouchEnd(this.id)">
           {languages.ComponentReportFilterReadyButton}
         </button>
 
@@ -46,29 +47,35 @@
           <div class="filter-menu-date-next-icon"></div>
         </div>
 
-        <div class="filter-menu-block-containter" ontouchend="setDate(componentReportFilter.today)">
+        <div id="todayButtonId" class="filter-menu-block-containter" ontouchstart="setDateStart(this.id)"
+             ontouchend="setDate(componentReportFilter.today, this.id)">
           <div class="filter-menu-name-field">{languages.ComponentReportFilterDateToday}</div>
         </div>
-        <div class="filter-menu-block-containter" ontouchend="setDate(componentReportFilter.yesterday)">
+        <div id="yesterdayButtonId" class="filter-menu-block-containter" ontouchstart="setDateStart(this.id)"
+             ontouchend="setDate(componentReportFilter.yesterday, this.id)">
           <div class="filter-menu-name-field">{languages.ComponentReportFilterDateYesterday}</div>
         </div>
-        <div class="filter-menu-block-containter" ontouchend="setDate(componentReportFilter.currentWeek)">
+        <div id="weekButtonId" class="filter-menu-block-containter" ontouchstart="setDateStart(this.id)"
+             ontouchend="setDate(componentReportFilter.currentWeek, this.id)">
           <div class="filter-menu-name-field">{languages.ComponentReportFilterDateWeek}</div>
         </div>
-        <div class="filter-menu-block-containter" ontouchend="setDate(componentReportFilter.pastWeek)">
+        <div id="pastWeekButtonId" class="filter-menu-block-containter" ontouchstart="setDateStart(this.id)"
+             ontouchend="setDate(componentReportFilter.pastWeek, this.id)">
           <div class="filter-menu-name-field">{languages.ComponentReportFilterDatePastWeek}</div>
         </div>
-        <div class="filter-menu-block-containter" ontouchend="setDate(componentReportFilter.currentMonth)">
+        <div id="monthButtonId" class="filter-menu-block-containter" ontouchstart="setDateStart(this.id)"
+             ontouchend="setDate(componentReportFilter.currentMonth, this.id)">
           <div class="filter-menu-name-field">{languages.ComponentReportFilterDateCurrentMonth}</div>
         </div>
-        <div class="filter-menu-block-containter" ontouchend="setDate(componentReportFilter.pastMonth)"
+        <div id="pastMonthButtonId" class="filter-menu-block-containter" ontouchstart="setDateStart(this.id)"
+             ontouchend="setDate(componentReportFilter.pastMonth, this.id)"
              style="border: none;">
           <div class="filter-menu-name-field">{languages.ComponentReportFilterDatePastMonth}</div>
         </div>
 
-        <button class="report-filter-ready-button" if="{filterDate || filterAccount}"
-                ontouchstart="readyButtonTouchStart()"
-                ontouchend="readyButtonTouchEnd()">
+        <button id="secondReadyButtonId" class="report-filter-ready-button" if="{filterDate || filterAccount}"
+                ontouchstart="readyButtonTouchStart(this.id)"
+                ontouchend="readyButtonTouchEnd(this.id)">
           {languages.ComponentReportFilterReadyButton}
         </button>
 
@@ -109,26 +116,26 @@
         <img class="report-filter-clear-filters-icon" src="resources/icons/ViewReport/reports_filters_clear.png">
       </div>
 
-      <button class="report-filter-ok-button" ontouchend="attachFilters()">ok</button>
+      <button id="okButtonId" class="report-filter-ok-button" ontouchstart="attachFiltersStart()" ontouchend="attachFiltersEnd()">ok</button>
     </div>
 
 
   </div>
   <script>
     var scope = this,
-        filterDateTouchStartX,
-        filterDateTouchEndX,
-        filterAccountTouchStartX,
-        filterAccountTouchEndX,
-        readyButtonTouchStartX,
-        readyButtonTouchEndX,
-        deleteAccountFilterTouchStartX,
-        deleteAccountFilterTouchEndX,
-        deleteDateFilterTouchStartX,
-        deleteDateFilterTouchEndX,
-        date,
-        dateFrom,
-        dateTo;
+      filterDateTouchStartX,
+      filterDateTouchEndX,
+      filterAccountTouchStartX,
+      filterAccountTouchEndX,
+      readyButtonTouchStartX,
+      readyButtonTouchEndX,
+      deleteAccountFilterTouchStartX,
+      deleteAccountFilterTouchEndX,
+      deleteDateFilterTouchStartX,
+      deleteDateFilterTouchEndX,
+      date,
+      dateFrom,
+      dateTo;
 
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
     scope.firstName = loginInfo.firstname;
@@ -141,7 +148,7 @@
     pickDateFrom = function () {
 
       var currentDate = new Date(),
-          verifiedDate;
+        verifiedDate;
 
       var options = {
         date: new Date(),
@@ -182,7 +189,7 @@
     pickDateTo = function () {
 
       var currentDate = new Date(),
-          verifiedDate;
+        verifiedDate;
 
       var options = {
         date: new Date(),
@@ -256,141 +263,163 @@
       }
     };
 
-    setDate = function (forWhatDate) {
+    var dateButtonStartX, dateButtonEndX, dateButtonStartY, dateButtonEndY;
 
-      date = new Date();
+    setDateStart = function (id) {
 
-      //Filter Date To
-      switch (forWhatDate) {
+      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.8)'
 
-        case componentReportFilter.today:
-        case componentReportFilter.currentWeek:
-        case componentReportFilter.currentMonth:
-        {
-          scope.to_dd = date.getDate();
-          scope.to_mm = date.getMonth() + 1;
-          scope.to_yyyy = date.getFullYear();
+      dateButtonStartX = event.changedTouches[0].pageX;
+      dateButtonStartY = event.changedTouches[0].pageY;
+    }
 
-          break;
+    setDate = function (forWhatDate, id) {
+
+      document.getElementById(id).style.backgroundColor = 'transparent'
+
+      dateButtonEndX = event.changedTouches[0].pageX;
+      dateButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(dateButtonStartX - dateButtonEndX) <= 20 && Math.abs(dateButtonStartY - dateButtonEndY) <= 20) {
+
+        date = new Date();
+
+        //Filter Date To
+        switch (forWhatDate) {
+
+          case componentReportFilter.today:
+          case componentReportFilter.currentWeek:
+          case componentReportFilter.currentMonth:
+          {
+            scope.to_dd = date.getDate();
+            scope.to_mm = date.getMonth() + 1;
+            scope.to_yyyy = date.getFullYear();
+
+            break;
+          }
+          case componentReportFilter.yesterday:
+          {
+            date.setDate(date.getDate() - 1);
+
+            scope.to_dd = date.getDate();
+            scope.to_mm = date.getMonth() + 1;
+            scope.to_yyyy = date.getFullYear();
+
+            scope.from_dd = date.getDate();
+            scope.from_mm = date.getMonth() + 1;
+            scope.from_yyyy = date.getFullYear();
+
+            break;
+          }
+          case componentReportFilter.pastWeek:
+          {
+            day = date.getDay();
+
+            day = (day) ? (day) : (7);
+
+            day = date.getDate() - day;
+
+            date.setDate(day);
+
+            scope.to_dd = date.getDate();
+            scope.to_mm = date.getMonth() + 1;
+            scope.to_yyyy = date.getFullYear();
+
+            break;
+          }
+          case componentReportFilter.pastMonth:
+          {
+            date.setDate(0);
+
+            scope.to_dd = date.getDate();
+            scope.to_mm = date.getMonth() + 1;
+            scope.to_yyyy = date.getFullYear();
+
+            break;
+          }
         }
-        case componentReportFilter.yesterday:
-        {
-          date.setDate(date.getDate() - 1);
 
-          scope.to_dd = date.getDate();
-          scope.to_mm = date.getMonth() + 1;
-          scope.to_yyyy = date.getFullYear();
+        //Filter Date From
+        switch (forWhatDate) {
 
-          scope.from_dd = date.getDate();
-          scope.from_mm = date.getMonth() + 1;
-          scope.from_yyyy = date.getFullYear();
+          case componentReportFilter.today:
+          {
+            scope.from_dd = date.getDate();
+            scope.from_mm = date.getMonth() + 1;
+            scope.from_yyyy = date.getFullYear();
 
-          break;
+            break;
+          }
+          case componentReportFilter.currentWeek:
+          {
+            day = date.getDay();
+
+            day = (day) ? (day) : (7);
+            day--;
+
+            day = date.getDate() - day;
+
+            date.setDate(day);
+
+            scope.from_dd = date.getDate();
+            scope.from_mm = date.getMonth() + 1;
+            scope.from_yyyy = date.getFullYear();
+
+            break;
+          }
+          case componentReportFilter.currentMonth:
+          {
+            date.setDate(1);
+
+            scope.from_dd = date.getDate();
+            scope.from_mm = date.getMonth() + 1;
+            scope.from_yyyy = date.getFullYear();
+
+            break;
+          }
+          case componentReportFilter.pastWeek:
+          {
+            day = date.getDay();
+
+            day = (day) ? (day) : (7);
+            day--;
+
+            day = date.getDate() - day;
+
+            date.setDate(day);
+
+            scope.from_dd = date.getDate();
+            scope.from_mm = date.getMonth() + 1;
+            scope.from_yyyy = date.getFullYear();
+
+            break;
+          }
+          case componentReportFilter.pastMonth:
+          {
+            date.setDate(1);
+
+            scope.from_dd = date.getDate();
+            scope.from_mm = date.getMonth() + 1;
+            scope.from_yyyy = date.getFullYear();
+
+            break;
+          }
         }
-        case componentReportFilter.pastWeek:
-        {
-          day = date.getDay();
 
-          day = (day) ? (day) : (7);
-
-          day = date.getDate() - day;
-
-          date.setDate(day);
-
-          scope.to_dd = date.getDate();
-          scope.to_mm = date.getMonth() + 1;
-          scope.to_yyyy = date.getFullYear();
-
-          break;
-        }
-        case componentReportFilter.pastMonth:
-        {
-          date.setDate(0);
-
-          scope.to_dd = date.getDate();
-          scope.to_mm = date.getMonth() + 1;
-          scope.to_yyyy = date.getFullYear();
-
-          break;
-        }
+        scope.update();
       }
-
-      //Filter Date From
-      switch (forWhatDate) {
-
-        case componentReportFilter.today:
-        {
-          scope.from_dd = date.getDate();
-          scope.from_mm = date.getMonth() + 1;
-          scope.from_yyyy = date.getFullYear();
-
-          break;
-        }
-        case componentReportFilter.currentWeek:
-        {
-          day = date.getDay();
-
-          day = (day) ? (day) : (7);
-          day--;
-
-          day = date.getDate() - day;
-
-          date.setDate(day);
-
-          scope.from_dd = date.getDate();
-          scope.from_mm = date.getMonth() + 1;
-          scope.from_yyyy = date.getFullYear();
-
-          break;
-        }
-        case componentReportFilter.currentMonth:
-        {
-          date.setDate(1);
-
-          scope.from_dd = date.getDate();
-          scope.from_mm = date.getMonth() + 1;
-          scope.from_yyyy = date.getFullYear();
-
-          break;
-        }
-        case componentReportFilter.pastWeek:
-        {
-          day = date.getDay();
-
-          day = (day) ? (day) : (7);
-          day--;
-
-          day = date.getDate() - day;
-
-          date.setDate(day);
-
-          scope.from_dd = date.getDate();
-          scope.from_mm = date.getMonth() + 1;
-          scope.from_yyyy = date.getFullYear();
-
-          break;
-        }
-        case componentReportFilter.pastMonth:
-        {
-          date.setDate(1);
-
-          scope.from_dd = date.getDate();
-          scope.from_mm = date.getMonth() + 1;
-          scope.from_yyyy = date.getFullYear();
-
-          break;
-        }
-      }
-
-      scope.update();
     };
 
-    readyButtonTouchStart = function () {
+    readyButtonTouchStart = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
 
       readyButtonTouchStartX = event.changedTouches[0].pageX;
     };
 
-    readyButtonTouchEnd = function () {
+    readyButtonTouchEnd = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       readyButtonTouchEndX = event.changedTouches[0].pageX;
 
@@ -478,43 +507,63 @@
     };
 
 
-    attachFilters = function () {
 
-      console.log('PARENT',scope.parent)
+    var readyOkButtonStartX, readyOkButtonEndX, readyOkButtonStartY, readyOkButtonEndY;
 
-      if (event) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      componentMenu.checkOpen = false;
+    attachFiltersStart = function () {
 
-      scope.filterAccount = false;
-      scope.filterDate = false;
+      okButtonId.style.webkitTransform = 'scale(0.8)'
 
-      filterMenuId.style.webkitTransition = '0.3s';
-      filterMenuBackPageId.style.opacity = '0';
-      filterMenuBackPageId.style.webkitTransition = '0';
-      filterMenuId.style.webkitTransform = "translate3d(0, -100%, 0)";
-      filterMenuId.style.Transform = "translate3d(0, -100%, 0)";
-      reportPageId.style.opacity = '1';
-      reportPageId.style.zIndex = '0';
-      scope.update();
+      readyOkButtonStartX = event.changedTouches[0].pageX;
+      readyOkButtonStartY = event.changedTouches[0].pageY;
+    }
 
-      console.log("ASDASDASD", scope.parent);
 
-      if (scope.parent) {
+    attachFiltersEnd = function () {
 
-        if (scope.parent.firstReportView) {
+      okButtonId.style.webkitTransform = 'scale(1)'
 
-          if (scope.parent.paymentListUpdate) {
+      readyOkButtonEndX = event.changedTouches[0].pageX;
+      readyOkButtonEndY = event.changedTouches[0].pageY;
 
-            scope.parent.paymentListUpdate('fromFilter');
-          }
-        } else {
+      if (Math.abs(readyOkButtonStartX - readyOkButtonEndX) <= 20 && Math.abs(readyOkButtonStartY - readyOkButtonEndY) <= 20) {
 
-          if (scope.parent.graphListUpdate) {
+        console.log('PARENT', scope.parent)
 
-            scope.parent.graphListUpdate();
+        if (event) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        componentMenu.checkOpen = false;
+
+        scope.filterAccount = false;
+        scope.filterDate = false;
+
+        filterMenuId.style.webkitTransition = '0.3s';
+        filterMenuBackPageId.style.opacity = '0';
+        filterMenuBackPageId.style.webkitTransition = '0';
+        filterMenuId.style.webkitTransform = "translate3d(0, -100%, 0)";
+        filterMenuId.style.Transform = "translate3d(0, -100%, 0)";
+        reportPageId.style.opacity = '1';
+        reportPageId.style.zIndex = '0';
+        scope.update();
+
+        console.log("ASDASDASD", scope.parent);
+
+        if (scope.parent) {
+
+          if (scope.parent.firstReportView) {
+
+            if (scope.parent.paymentListUpdate) {
+
+              scope.parent.paymentListUpdate('fromFilter');
+            }
+          } else {
+
+            if (scope.parent.graphListUpdate) {
+
+              scope.parent.graphListUpdate();
+            }
           }
         }
       }
@@ -547,11 +596,6 @@
 
       scope.update();
     };
-
-
-
-
-
 
 
   </script>
