@@ -12996,7 +12996,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 50%;" +
   "background-position: 80%;" +
-  "background-image: url(resources/icons/ViewService/unchecked.png);" +
+  "background-image: url(resources/icons/ViewService/radio_unselected.png);" +
   "}",
 
 
@@ -13081,7 +13081,7 @@ var css = {
   "top: 65%;" +
   "}",
 
-  autopayEventButtonEnter: " .autopay-event-button-enter" +
+  autopayEventButtonEnterEnabled: " .autopay-event-button-enter-enabled" +
   "{" +
   "top: 87%;" +
   "height:" + 74 * widthK + "px;" +
@@ -13097,7 +13097,28 @@ var css = {
   "width: 44%;" +
   "border-radius: " + 10 * widthK + "px;" +
   "color: #ffffff;" +
+  "pointer-events: auto;" +
   "}",
+
+  autopayEventButtonEnterDisabled: " .autopay-event-button-enter-disabled" +
+  "{" +
+  "top: 87%;" +
+  "height:" + 74 * widthK + "px;" +
+  "margin: 0 auto 0 auto;" +
+  "background-color: #D2D2D2;" +
+  "padding: 0;" +
+  "font-size: " + 32 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #ffffff;" +
+  "pointer-events: none;" +
+  "}",
+
 
 //  View autopay schedule method
 

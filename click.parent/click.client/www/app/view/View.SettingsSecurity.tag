@@ -84,24 +84,24 @@
     this.on('mount', function () {
 
       if (isVisible) {
-        hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
+        hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
       }
       else {
-        hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+        hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
       }
 
       if (isBlocked) {
-        blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
+        blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
       }
       else {
-        blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+        blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
       }
 
       if (fingerPrint) {
-        securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
+        securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
       }
       else {
-        securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+        securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
       }
       scope.update()
     });
@@ -148,11 +148,11 @@
       if (isVisible) {
         console.log("false!!!");
         isVisible = false;
-        hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+        hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
       } else {
         console.log("true!!!");
         isVisible = true;
-        hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
+        hideMyNumberIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
       }
       scope.update(hideMyNumberIconId);
 
@@ -220,13 +220,13 @@
       if (isBlocked) {
         console.log("false!!!");
         isBlocked = false;
-        blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+        blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
         localStorage.setItem('settings_block', false)
 
       } else {
         console.log("true!!!");
         isBlocked = true;
-        blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
+        blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
         localStorage.setItem('settings_block', true)
       }
       scope.update();
@@ -275,13 +275,13 @@
       console.log("QQQ")
       if (!fingerPrint) {
         console.log()
-        securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)"
+        securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
         fingerPrint = true
         console.log("true")
         localStorage.setItem("settings_finger_print", true)
       }
       else {
-        securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+        securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
         fingerPrint = false
         localStorage.setItem("settings_finger_print", false)
       }

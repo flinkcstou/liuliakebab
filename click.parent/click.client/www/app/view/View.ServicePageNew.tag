@@ -19,7 +19,7 @@
       <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
-             autofocus="true"/>
+             autofocus="true" onkeyup="autoPayNameVerificationKeyUp()"/>
     </div>
 
     <div class="servicepage-fields-dropdown" if="{dropDownOn}" ontouchend="openDropDown()" id="firstFieldChoiceId">
@@ -155,7 +155,7 @@
       <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
-             autofocus="true"/>
+             autofocus="true" onkeyup="autoPayNameVerificationKeyUp()"/>
     </div>
 
     <div
@@ -291,6 +291,13 @@
 
     checkFieldsToActivateNext = function () {
 
+      if (opts.mode == 'ADDAUTOPAY' && this.autoPayNameInput.value.length < 1) {
+        console.log("Введите название автоплатежа");
+        scope.enterButtonEnabled = false;
+        scope.update(scope.enterButtonEnabled);
+        return;
+      }
+
       if (this.firstFieldInput) {
 
         if (scope.phoneFieldBool && firstFieldInput && opts.chosenServiceId != "mynumber") {
@@ -390,6 +397,30 @@
         }
       }
       checkFieldsToActivateNext();
+    };
+
+    autoPayNameVerificationKeyUp = function () {
+
+      if (scope.formType != 2)
+        checkFieldsToActivateNext();
+      else {
+
+        if (opts.mode == 'ADDAUTOPAY' && this.autoPayNameInput.value.length < 1) {
+          console.log("Введите название автоплатежа");
+          formTypeTwoBtnId.style.pointerEvents = 'none';
+          formTypeTwoBtnId.style.backgroundColor = '#D2D2D2';
+          scope.update(formTypeTwoBtnId);
+          return;
+        }
+
+        if (opts.cardTypeId || opts.amountText) {
+          formTypeTwoBtnId.style.pointerEvents = 'auto';
+          formTypeTwoBtnId.style.backgroundColor = '#00a8f1';
+          scope.update(formTypeTwoBtnId);
+        }
+
+      }
+
     };
 
 
@@ -1513,14 +1544,20 @@
       servicePageTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20) {
+        scope.selectedId = 'radio' + cardId + nominal;
+        scope.update(scope.selectedId);
         opts.formtype = scope.formType;
         opts.cardTypeId = cardId;
         opts.amountText = nominal;
 
+
+        if (opts.mode == 'ADDAUTOPAY' && this.autoPayNameInput.value.length < 1) {
+          console.log("Введите название автоплатежа");
+          return;
+        }
+
         formTypeTwoBtnId.style.pointerEvents = 'auto';
         formTypeTwoBtnId.style.backgroundColor = '#00a8f1';
-        scope.selectedId = 'radio' + cardId + nominal;
-        scope.update(scope.selectedId);
         scope.update(formTypeTwoBtnId);
 
       }

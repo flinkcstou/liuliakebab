@@ -17,7 +17,7 @@
         <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
-               autofocus="true"/>
+               autofocus="true" onkeyup="autoPayEventNameVerificationKeyUp()"/>
       </div>
 
       <div class="servicepage-first-field autopay-event-number-field" id="firstField">
@@ -50,8 +50,9 @@
       <p class="autopay-event-amounts-info-text autopay-event-amounts-info-text-two">{amountsCanBeText}сум</p>
 
 
-      <button class="autopay-event-button-enter"
-              ontouchend="chooseCardToPay()">{window.languages.ViewServicePageEnterLabel}
+      <button
+        class="{autopay-event-button-enter-enabled: enterButtonEnabled,autopay-event-button-enter-disabled:!enterButtonEnabled}"
+        ontouchend="chooseCardToPay()">{window.languages.ViewServicePageEnterLabel}
       </button>
 
     </div>
@@ -76,6 +77,7 @@
   <script>
     var scope = this;
     scope.showError = false;
+    scope.enterButtonEnabled = false;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-autopay-event-method-new') {
       history.arrayOfHistory.push(
@@ -165,9 +167,10 @@
     chooseStep = function (id) {
       oldChosenStep = chosenStep;
       chosenStep = id;
-      document.getElementById(chosenStep).style.backgroundImage = "url(resources/icons/ViewSettingsGeneral/general_save.png)";
+      document.getElementById(chosenStep).style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
       if (oldChosenStep && oldChosenStep != id)
-        document.getElementById(oldChosenStep).style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
+        document.getElementById(oldChosenStep).style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
+      checkFieldsEventToActivateNext();
     };
 
     openDropDown = function () {
@@ -225,6 +228,7 @@
         console.log(firstFieldInput.value)
         firstFieldInput.value = inputVerification.telVerification(firstFieldInput.value)
       }
+      checkFieldsEventToActivateNext();
     };
 
     searchContact = function () {
@@ -251,6 +255,84 @@
       });
 
     };
+
+    autoPayEventNameVerificationKeyUp = function () {
+
+      checkFieldsEventToActivateNext();
+    };
+
+    checkFieldsEventToActivateNext = function () {
+
+//      if (this.firstFieldInput) {
+//
+//        if (scope.phoneFieldBool && firstFieldInput && opts.chosenServiceId != "mynumber") {
+//          if (firstFieldInput.value.length < 9) {
+//            console.log("Неправильно введён номер телефона");
+//
+//            scope.enterButtonEnabled = false;
+//            scope.update(scope.enterButtonEnabled);
+//
+//            return;
+//          }
+//        } else if (firstFieldInput && firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
+//          console.log("Нет значения первого поля");
+//          scope.enterButtonEnabled = false;
+//          scope.update(scope.enterButtonEnabled);
+//          return;
+//        }
+//      }
+//
+//
+//      if (amountForPayTransaction < scope.service.min_pay_limit) {
+//        console.log("amount=", amountForPayTransaction);
+//        console.log(scope.service.lang_min_amount);
+//        scope.enterButtonEnabled = false;
+//        scope.update(scope.enterButtonEnabled);
+//        return;
+//      }
+//      if (amountForPayTransaction > scope.service.max_pay_limit) {
+//        console.log(scope.service.lang_max_amount);
+//        scope.enterButtonEnabled = false;
+//        scope.update(scope.enterButtonEnabled);
+//        return;
+//      }
+
+      if (this.autoPayNameInput.value.length < 1) {
+        console.log("Введите название автоплатежа");
+        scope.enterButtonEnabled = false;
+        scope.update(scope.enterButtonEnabled);
+
+        return;
+      }
+
+      if (this.firstFieldInput.value.length < 9) {
+        console.log("Неправильно введён номер телефона");
+        scope.enterButtonEnabled = false;
+        scope.update(scope.enterButtonEnabled);
+
+        return;
+      } else if (this.firstFieldInput.value.length == 0) {
+        console.log("Введите значение первого поля");
+        scope.enterButtonEnabled = false;
+        scope.update(scope.enterButtonEnabled);
+
+        return;
+      }
+
+      if (!chosenStep) {
+        console.log("Выберите условную сумму для пополнения баланса");
+        scope.enterButtonEnabled = false;
+        scope.update(scope.enterButtonEnabled);
+
+        return;
+      }
+
+
+      scope.enterButtonEnabled = true;
+      scope.update(scope.enterButtonEnabled);
+
+
+    }
 
     chooseCardToPay = function () {
       if (autoPayNameInput.value.length < 1) {
