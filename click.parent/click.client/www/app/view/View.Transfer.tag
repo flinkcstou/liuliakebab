@@ -188,12 +188,12 @@
         <div class="component-banklist-bank-logo" style="background-image: url({i.image});"></div>
         <div class="component-banklist-bank-limit-container">
           <div class="component-banklist-bank-limit-receipt">{window.languages.ViewBankListReceiveLimitText}</div>
-          <div class="component-banklist-bank-limit-currency-receipt">{i.p2p_receipt_max_limit}
+          <div class="component-banklist-bank-limit-currency-receipt">{i.p2p_receipt_max_limit_text}
           </div>
 
           <div class="component-banklist-bank-limit-transfer">{window.languages.ViewBankListTransferLimitText}</div>
           <div class="component-banklist-bank-limit-currency-transfer">
-            {i.p2p_max_limit}
+            {i.p2p_max_limit_text}
           </div>
         </div>
       </div>
