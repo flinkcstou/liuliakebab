@@ -7931,11 +7931,11 @@ var css = {
   "{" +
   "position: relative;" +
   "font-size:" + 35 * widthK + "px; " +
-  "width:" + 270 * widthK + "px; " +
+  "width:" + 330 * widthK + "px; " +
   "margin: 0; " +
   "margin-left: auto; " +
   "margin-right: auto; " +
-  "top: 10%; " +
+  "margin-top: 5%; " +
   "color: white;" +
   "}",
 
@@ -7947,7 +7947,7 @@ var css = {
   "margin: 0; " +
   "margin-left: auto; " +
   "margin-right: auto; " +
-  "top: 11%; " +
+  //"top: 11%; " +
   "color: white;" +
   "}",
 

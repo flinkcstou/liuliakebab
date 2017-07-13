@@ -2,7 +2,7 @@
   <div class="settings-support-blue-container">
 
     <div class="settings-support-page-title">
-      <div class="settings-support-x-button" ontouchend="closeSettingsSupportTouchEnd()"></div>
+      <div id="closeButtonId" class="settings-support-x-button" ontouchend="closeSettingsSupportTouchEnd()"></div>
     </div>
 
     <div class="settings-support-help-icon"></div>
