@@ -1,6 +1,7 @@
 <view-info class="view-info riot-tags-main-container">
   <div class="view-info-title-container">
-    <div class="view-info-back-button" ontouchstart="onTouchStartBack()" ontouchend="onTouchEndBack()"></div>
+    <div id="backButtonId" class="view-info-back-button" ontouchstart="onTouchStartBack()"
+         ontouchend="onTouchEndBack()"></div>
   </div>
 
   <div class="view-info-balance-container">
@@ -16,7 +17,8 @@
     </div>
     <div class="view-info-bag-icon"></div>
     <div if="{attention && !modeOfflineMode.check}" class="view-info-attention-icon"></div>
-    <div if="{!modeOfflineMode.check}" class="view-info-reload-icon" ontouchend="reloadBalanceTouchEnd()"></div>
+    <div id="reloadBalanceButtonId" if="{!modeOfflineMode.check}" class="view-info-reload-icon"
+         ontouchstart="reloadBalanceTouchStart()" ontouchend="reloadBalanceTouchEnd()"></div>
   </div>
 
   <div class="view-info-my-finance-container" style="display: none">
@@ -25,7 +27,8 @@
     <p class="view-info-my-finance-title">{window.languages.ViewInfoMyFinanceTitle}</p>
   </div>
 
-  <div class="view-info-reports-container" ontouchend="goToReportsTouchEnd()" ontouchstart="goToReportsTouchStart()">
+  <div id="reportButtonId" class="view-info-reports-container" ontouchend="goToReportsTouchEnd()"
+       ontouchstart="goToReportsTouchStart()">
     <div class="view-info-reports-icon"></div>
     <div class="view-info-open-icon"></div>
     <p class="view-info-reports-title">{window.languages.ViewInfoReportsTitle}</p>
@@ -36,22 +39,24 @@
   </div>
 
   <div class="view-info-operations-container">
-
-    <div class="view-info-operations-icon" each="{i in lastOperationContainer}" id="{i.payment_id}"
-         ontouchstart="onTouchStartOfOperation()"
+    <div class="view-info-operation-container" each="{i in lastOperationContainer}" id="{i.payment_id}"
+         ontouchstart="onTouchStartOfOperation(this.id)"
          ontouchend="onTouchEndOfOperation(this.id)"
-         style="top:{leftOfOperations*i.count + 50 * widthK}px; background-image: url({i.image})">
+         style="top:{leftOfOperations*i.count + 50 * widthK}px;">
 
-      <div class="view-info-operation-info-container">
-        <p class="view-info-operation-info-name">{i.service_name}</p>
-        <p class="view-info-operation-info-balance"> - {i.amount}</p>
-        <p class="view-info-operation-info-balance">{}</p>
-        <p class="view-info-operation-info-number">{i.cntrg_info_param2}</p>
-        <p class="view-info-operation-info-date">{i.created}</p>
+      <div class="view-info-operations-icon" style="background-image: url({i.image})">
 
-        <div class="view-info-state-image" style="background-image: url({i.state_image})"></div>
+        <div class="view-info-operation-info-container">
+          <p class="view-info-operation-info-name">{i.service_name}</p>
+          <p class="view-info-operation-info-balance"> - {i.amount}</p>
+          <p class="view-info-operation-info-balance">{}</p>
+          <p class="view-info-operation-info-number">{i.cntrg_info_param2}</p>
+          <p class="view-info-operation-info-date">{i.created}</p>
+
+          <div class="view-info-state-image" style="background-image: url({i.state_image})"></div>
+        </div>
+
       </div>
-
     </div>
 
   </div>
@@ -105,8 +110,29 @@
       }
     })
 
+    var balanceTouchStartX, balanceTouchStartY, balanceTouchEndX, balanceTouchEndY;
+
+    reloadBalanceTouchStart = function () {
+
+      reloadBalanceButtonId.style.webkitTransform = 'rotate(90deg)'
+
+      balanceTouchStartX = event.changedTouches[0].pageX
+      balanceTouchStartY = event.changedTouches[0].pageY
+    }
+
     reloadBalanceTouchEnd = function () {
-      writeBalanceInfo(accountsForBalance);
+
+      setTimeout(function () {
+        reloadBalanceButtonId.style.webkitTransform = 'rotate(0deg)'
+      }, 500)
+
+
+      balanceTouchEndX = event.changedTouches[0].pageX
+      balanceTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(balanceTouchStartX - balanceTouchEndX) <= 20 && Math.abs(balanceTouchStartY - balanceTouchEndY) <= 20) {
+        writeBalanceInfo(accountsForBalance);
+      }
     }
 
     writeBalanceInfo = function () {
@@ -227,6 +253,9 @@
     onTouchEndBack = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      backButtonId.style.webkitTransform = 'scale(1)'
+
       goBackTouchEndX = event.changedTouches[0].pageX
       goBackTouchEndY = event.changedTouches[0].pageY
 
@@ -244,6 +273,8 @@
     onTouchStartBack = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      backButtonId.style.webkitTransform = 'scale(0.8)'
 
       goBackTouchStartX = event.changedTouches[0].pageX
       goBackTouchStartY = event.changedTouches[0].pageY
@@ -319,28 +350,28 @@
 //          } else {
             for (var i in result[1]) {
 
-                result[1][i].count = j;
+              result[1][i].count = j;
 
-                result[1][i].amount = result[1][i].amount.toString();
-                result[1][i].amount = window.amountTransform(result[1][i].amount);
+              result[1][i].amount = result[1][i].amount.toString();
+              result[1][i].amount = window.amountTransform(result[1][i].amount);
 
               console.log("STATE ", result[1][i].state)
 
-                if (result[1][i].state == -1) {
-                  result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
-                }
+              if (result[1][i].state == -1) {
+                result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
+              }
 
-                if (result[1][i].state == 1) {
-                  result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
-                }
+              if (result[1][i].state == 1) {
+                result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
+              }
 
-                if (result[1][i].state == 2) {
-                  result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
-                }
+              if (result[1][i].state == 2) {
+                result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
+              }
 
-                scope.lastOperationContainer.push(result[1][i])
+              scope.lastOperationContainer.push(result[1][i])
 
-                j++;
+              j++;
 
             }
 //          }
@@ -369,6 +400,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      reportButtonId.style.backgroundColor = 'rgba(231,231,231,0.8)'
+
       goToReportsTouchStartX = event.changedTouches[0].pageX
       goToReportsTouchStartY = event.changedTouches[0].pageY
     }
@@ -376,6 +409,8 @@
     goToReportsTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      reportButtonId.style.backgroundColor = 'transparent'
 
       goToReportsTouchEndX = event.changedTouches[0].pageX
       goToReportsTouchEndY = event.changedTouches[0].pageY
@@ -408,15 +443,20 @@
 
     }
 
-    scope.onTouchStartOfOperation = onTouchStartOfOperation = function () {
-      carouselTouchStartX = event.changedTouches[0].pageY;
+    var operationInfoTouchStartY, operationInfoTouchEndY;
+    scope.onTouchStartOfOperation = onTouchStartOfOperation = function (paymentId) {
+      document.getElementById(paymentId).style.backgroundColor = 'rgba(231,231,231,0.8)'
+      operationInfoTouchStartY = event.changedTouches[0].pageY;
     }
 
     scope.onTouchEndOfOperation = onTouchEndOfOperation = function (paymentId) {
       event.preventDefault();
       event.stopPropagation();
-      carouselTouchEndX = event.changedTouches[0].pageY;
-      if (Math.abs(carouselTouchStartX - carouselTouchEndX) < 20) {
+
+      document.getElementById(paymentId).style.backgroundColor = 'transparent'
+
+      operationInfoTouchEndY = event.changedTouches[0].pageY;
+      if (Math.abs(operationInfoTouchStartY - operationInfoTouchEndY) < 20) {
 
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'

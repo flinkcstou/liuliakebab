@@ -3052,6 +3052,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-size: 73%;" +
+  "transition: 0.5s;" +
   "}",
 
   viewInfoMyFinanceIcon: ".view-info-my-finance-icon " +
@@ -3116,7 +3117,7 @@ var css = {
   "color: #8b8b8b;" +
   "}",
 
-  viewInfoOperationContainer: ".view-info-operations-container " +
+  viewInfoOperationsContainer: ".view-info-operations-container " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
@@ -3128,6 +3129,13 @@ var css = {
   "-webkit-overflow-scrolling: touch;" +
   "overflow-x: hidden;" +
   "font-size:" + 23 * widthK + "px;" +
+  "}",
+
+  viewInfoOperationContainer: ".view-info-operation-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 200 * widthK + "px;" +
   "}",
 
   viewInfoOperationsIcon: ".view-info-operations-icon " +
