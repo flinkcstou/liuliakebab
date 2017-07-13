@@ -87,12 +87,10 @@
     </div>
 
 
-    <button id="enterButtonId" class="servicepage-button-enter" if="{enterButton}" ontouchend="enterButton()">
-      {window.languages.ViewServicePageEnterLabel}
-    </button>
-
-    <button id="saveButtonId" class="servicepage-button-enter" if="{!enterButton}" ontouchend="enterButton()">
-      {window.languages.ViewServicePageSaveLabel}
+    <button id="enterButtonId"
+            class="{servicepage-button-enter-enabled: enterButtonEnabled,servicepage-button-enter-disabled:!enterButtonEnabled}"
+            ontouchend="enterButton()">
+      {enterButton ? window.languages.ViewServicePageEnterLabel:window.languages.ViewServicePageSaveLabel}
     </button>
 
   </div>
@@ -230,6 +228,9 @@
     var scope = this;
 
 
+    console.log("opts in ServicePageNew", opts);
+
+
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page-new') {
       history.arrayOfHistory.push(
         {
@@ -270,7 +271,8 @@
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
 
 
-    scope.enterButton = opts.mode != 'ADDFAVORITE' ? true : false;
+    scope.enterButton = opts.mode == 'ADDFAVORITE' ? false : true;
+    scope.enterButtonEnabled = false;
     scope.showError = false;
     scope.showConfirm = false;
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -285,6 +287,79 @@
     //    console.log("click_client_servicesParamsMapFive", localStorage.getItem("click_client_servicesParamsMapFive"));
 
     scope.update(scope.categoryNamesMap);
+
+
+    checkFieldsToActivateNext = function () {
+
+      if (this.firstFieldInput) {
+
+        if (scope.phoneFieldBool && firstFieldInput && opts.chosenServiceId != "mynumber") {
+          if (firstFieldInput.value.length < 9) {
+            console.log("Неправильно введён номер телефона");
+
+            scope.enterButtonEnabled = false;
+            scope.update(scope.enterButtonEnabled);
+
+            return;
+          }
+        } else if (firstFieldInput && firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
+          console.log("Нет значения первого поля");
+          scope.enterButtonEnabled = false;
+          scope.update(scope.enterButtonEnabled);
+          return;
+        }
+      }
+
+
+      if (scope.formType == 3) {
+
+        if (scope.hasSecondLevel)
+          opts.communalParam = scope.chosenFieldParamIdThree;
+        else
+          opts.communalParam = scope.chosenFieldParamIdTwo;
+
+        if (!opts.communalParam) {
+          if (scope.hasSecondLevel)
+            console.log("Выберите город и район");
+          else
+            console.log("Выберите район");
+
+          scope.enterButtonEnabled = false;
+          scope.update(scope.enterButtonEnabled);
+          return;
+        }
+
+      } else if (scope.formType == 4) {
+        if (scope.chosenFieldParamIdThree)
+          opts.internetPackageParam = scope.chosenFieldParamIdThree;
+        else {
+          console.log("Выберите интернет пакет");
+          scope.enterButtonEnabled = false;
+          scope.update(scope.enterButtonEnabled);
+          return;
+        }
+      }
+
+      if (amountForPayTransaction < scope.service.min_pay_limit) {
+        console.log("amount=", amountForPayTransaction);
+        console.log(scope.service.lang_min_amount);
+        scope.enterButtonEnabled = false;
+        scope.update(scope.enterButtonEnabled);
+        return;
+      }
+      if (amountForPayTransaction > scope.service.max_pay_limit) {
+        console.log(scope.service.lang_max_amount);
+        scope.enterButtonEnabled = false;
+        scope.update(scope.enterButtonEnabled);
+        return;
+      }
+
+
+      scope.enterButtonEnabled = true;
+      scope.update(scope.enterButtonEnabled);
+
+
+    }
 
 
     telPayVerificationKeyDown = function (input) {
@@ -314,6 +389,7 @@
           firstFieldInput.selectionEnd = cursorPositionSelectionEnd
         }
       }
+      checkFieldsToActivateNext();
     };
 
 
@@ -761,6 +837,8 @@
 
         }
 
+        checkFieldsToActivateNext();
+
       }
 
       if (scope.formType == 4 && scope.servicesParamsMapFour[scope.service.id] && scope.servicesParamsMapFive[scope.service.id]) {
@@ -808,6 +886,7 @@
           scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].type];
 
         }
+        checkFieldsToActivateNext();
       }
     }
 
@@ -977,6 +1056,7 @@
             }
           }
         }
+        checkFieldsToActivateNext();
       }
     };
 
@@ -1086,6 +1166,7 @@
             }
           }
         }
+        checkFieldsToActivateNext();
       }
     };
 
@@ -1154,14 +1235,10 @@
       opts.amountWithoutSpace = amountForPayTransaction;
 
       if (amount.value.length >= 1 && amount.value != 0) {
-        if (scope.enterButton)
-          enterButtonId.style.display = 'block';
-        else saveButtonId.style.display = 'block';
+        enterButtonId.style.display = 'block';
       }
       else {
-        if (scope.enterButton)
-          enterButtonId.style.display = 'none';
-        else saveButtonId.style.display = 'none';
+        enterButtonId.style.display = 'none';
       }
 
       if (amountForPayTransaction >= 1000) {
@@ -1169,6 +1246,8 @@
         opts.tax = scope.tax;
       }
       scope.update()
+
+      checkFieldsToActivateNext();
 
     };
 
@@ -1182,7 +1261,6 @@
       amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
     };
 
-    var payment_data;
 
     enterButton = function () {
 
@@ -1273,13 +1351,14 @@
       opts.firstLevelParamId = scope.chosenFieldParamIdTwo;
       opts.firstLevelFieldName = scope.chosenFieldNameTwo;
       opts.secondLevelFieldName = scope.chosenFieldNameThree;
-      opts.isInFavorites = !scope.enterButton;
 
 
 //      viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
 
 
       if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
+
+        opts.isInFavorites = !scope.enterButton;
 
         event.preventDefault();
         event.stopPropagation();
@@ -1374,7 +1453,15 @@
         }
       } else if (opts.mode == 'ADDFAVORITE') {
 
-        addToFavorites(opts);
+        console.log("isInFavorites=", opts.isInFavorites)
+
+
+        if (opts.isInFavorites)
+          editFavorite(opts);
+        else {
+          opts.isInFavorites = true;
+          addToFavoritesinServicePage(opts);
+        }
 
         event.preventDefault();
         event.stopPropagation();
@@ -1382,7 +1469,7 @@
         viewServicePinCards.friendHelpPaymentMode = false;
         viewServicePinCards.chosenFriendForHelp = null;
         onBackKeyDown();
-        onBackKeyDown();
+//        onBackKeyDown();
       } else if (opts.mode == 'ADDAUTOPAY') {
 
         if (autoPayNameInput.value.length < 1) {
@@ -1429,10 +1516,9 @@
         opts.formtype = scope.formType;
         opts.cardTypeId = cardId;
         opts.amountText = nominal;
-        opts.isInFavorites = !scope.enterButton;
 
         formTypeTwoBtnId.style.pointerEvents = 'auto';
-        formTypeTwoBtnId.style.backgroundColor = 'rgb(1, 124, 227)';
+        formTypeTwoBtnId.style.backgroundColor = '#00a8f1';
         scope.selectedId = 'radio' + cardId + nominal;
         scope.update(scope.selectedId);
         scope.update(formTypeTwoBtnId);
@@ -1476,6 +1562,9 @@
       }
 
       if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
+
+        opts.isInFavorites = !scope.enterButton;
+
         event.preventDefault();
         event.stopPropagation();
 
@@ -1491,12 +1580,17 @@
 
       } else if (opts.mode == 'ADDFAVORITE') {
         if (opts) {
-          addToFavorites(opts);
+
+          if (opts.isInFavorites)
+            editFavorite(opts);
+          else {
+            opts.isInFavorites = true;
+            addToFavoritesinServicePage(opts);
+          }
           event.preventDefault();
           event.stopPropagation();
-          this.riotTags.innerHTML = "<view-main-page>";
-          riot.mount('view-main-page');
-          scope.unmount()
+          onBackKeyDown();
+//          onBackKeyDown();
         }
         else {
           scope.clickPinError = false;
@@ -1533,7 +1627,7 @@
 
     };
 
-    addToFavorites = function (array) {
+    addToFavoritesinServicePage = function (array) {
 //      console.log('scope.fieldArray[0]', scope.fieldArray[0].ussd_query)
       var favoritePaymentsList;
 
@@ -1560,6 +1654,22 @@
         console.log("favoritePaymentsList=", favoritePaymentsList);
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
       }
+    };
+
+    editFavorite = function (params) {
+      console.log('edit favorite', params)
+
+      console.log("Id to edit=", scope.service.id);
+      var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+//      console.log(favoritePaymentsList);
+      for (var i in favoritePaymentsList)
+        if (favoritePaymentsList[i].service.id == scope.service.id) {
+          favoritePaymentsList[i].params = params;
+          console.log("UPDATED FAVORITE", favoritePaymentsList[i]);
+          localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+          scope.update(scope.favPaymentsList);
+        }
+
     };
 
 

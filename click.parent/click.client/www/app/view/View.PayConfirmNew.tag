@@ -62,7 +62,7 @@
           class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
           <div class="payconfirm-action-icon-one" if="{!isInFavorites}"
                style="background-image: url('resources/icons/ViewService/addfavorite.png');"></div>
-          <div class="payconfirm-action-text" ontouchend="addToFavorites()" if="{!isInFavorites}">
+          <div class="payconfirm-action-text" ontouchend="addToFavoritesinPayConfirm()" if="{!isInFavorites}">
             {window.languages.ViewPayConfirmAddToFavorites}
           </div>
           <div class="payconfirm-action-icon-one" if="{isInFavorites}"
@@ -223,7 +223,7 @@
     }
     scope.update();
 
-    addToFavorites = function () {
+    addToFavoritesinPayConfirm = function () {
 
       if (modeOfApp.demoVersion) {
         var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'

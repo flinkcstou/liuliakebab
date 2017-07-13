@@ -242,6 +242,7 @@
               inputFocusIndex = i + 1;
             }
 
+
             break;
           }
         }

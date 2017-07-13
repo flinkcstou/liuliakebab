@@ -3817,22 +3817,41 @@ var css = {
   "}",
 
 
-  servicePageButtonEnter: ".servicepage-button-enter" +
+  servicePageButtonEnterEnabled: ".servicepage-button-enter-enabled" +
   "{" +
+  "position: relative;" +
+  "left: 28%;" +
+  "width: 44%;" +
   "height: " + 74 * widthK + "px;" +
+  "background-color: #00a8f1;" +
+  "border-radius: " + 10 * widthK + "px;" +
   "text-transform: capitalize;" +
   "top: " + 200 * widthK + "px;" +
-  "background-color: #00a8f1;" +
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
+  "color: #ffffff;" +
+  "pointer-events: auto;" +
+  "}",
+  servicePageButtonEnterDisabled: ".servicepage-button-enter-disabled" +
+  "{" +
   "position: relative;" +
   "left: 28%;" +
   "width: 44%;" +
+  "height: " + 74 * widthK + "px;" +
+  "background-color: #D2D2D2;" +
   "border-radius: " + 10 * widthK + "px;" +
+  "text-transform: capitalize;" +
+  "top: " + 200 * widthK + "px;" +
+  "padding: 0;" +
+  "font-size: " + 32 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
   "color: #ffffff;" +
+  "pointer-events: none;" +
   "}",
 
   servicePageButtonSave: ".servicepage-button-save" +
@@ -3841,7 +3860,7 @@ var css = {
   "left: 28%;" +
   "width: 44%;" +
   "height: " + 74 * widthK + "px;" +
-  "background-color: #00a8f1;" +
+  "background-color: #D2D2D2;" +
   "border-radius: " + 10 * widthK + "px;" +
   "bottom: " + 55 * widthK + "px; " +
   "font-size: " + 32 * widthK + "px;" +
@@ -9825,6 +9844,18 @@ var css = {
   "background-size: 36%;" +
   "background-position: center;" +
   "background-image: url(resources/icons/services/delete.png);" +
+  "}",
+
+  viewFavoritesEditIcon: ".view-favorites-edit-icon" +
+  "{" +
+  "position: absolute;" +
+  "right: 10%;" +
+  "width: 10%;" +
+  "height: 100%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 36%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/services/edit_favorite.png);" +
   "}",
 
 
