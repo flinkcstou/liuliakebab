@@ -2,7 +2,7 @@
   <div class="search-title-container">
     <div id="searchButtonId" class="search-search-icon"></div>
     <p class="search-title-name">{window.languages.ComponentCategorySearchTitle}</p>
-    <div class="search-cancel-icon" ontouchend="searchCancelEnd()"></div>
+    <div id="closeSearchButtonId" class="search-cancel-icon" ontouchstart="searchCancelStart()" ontouchend="searchCancelEnd()"></div>
   </div>
   <div id="searchContainerId" class="search-container">
     <input autofocus="true" id="searchInputId" class="search-input" onkeyup="searchSuggestion()"/>
@@ -86,12 +86,32 @@
 
     }
 
+    var xButtonStartX, xButtonEndX, xButtonStartY, xButtonEndY;
+
+    searchCancelStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      closeSearchButtonId.style.webkitTransform = 'scale(0.8)'
+
+      xButtonStartX = event.changedTouches[0].pageX;
+      xButtonStartY = event.changedTouches[0].pageY;
+    }
+
     searchCancelEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-      blockSearchId.style.display = 'none';
-      scope.searchWord = '';
-      searchInputId.autofocus = false;
+
+      closeSearchButtonId.style.webkitTransform = 'scale(1)'
+
+      xButtonEndX = event.changedTouches[0].pageX;
+      xButtonEndY = event.changedTouches[0].pageY;
+
+      if ((Math.abs(xButtonStartX - xButtonEndX) <= 20 && Math.abs(xButtonStartY - xButtonEndY) <= 20)) {
+        blockSearchId.style.display = 'none';
+        scope.searchWord = '';
+        searchInputId.autofocus = false;
+      }
     }
 
     searchSuggestion = function () {
