@@ -15,7 +15,7 @@
             {window.languages.ViewRegistrationDeviceRememberLabel}</p>
           <div id="rememberIcon" class="registration-device-remember-icon"></div>
         </div>
-        <div class="registration-button-enter button-enter" ontouchend="getPhoneNumberTouchEnd()"
+        <div id="registrationNextButtonId" class="registration-button-enter button-enter" ontouchend="getPhoneNumberTouchEnd()"
              ontouchstart="getPhoneNumberTouchStart()">
           <div class="button-enter-label">{window.languages.ViewRegistrationDeviceButtonEnterLabel}</div>
         </div>
@@ -24,7 +24,7 @@
   </div>
 
   <div class="registration-keyboard-field keyboard-field">
-    <div class="registration-button-help" ontouchend="helpTouchEnd()" ontouchstart="helpTouchStart()">
+    <div id="registrationHelpButtonId" class="registration-button-help" ontouchend="helpTouchEnd()" ontouchstart="helpTouchStart()">
       {window.languages.ViewRegistrationDeviceButtonHelp}
     </div>
     <component-keyboard></component-keyboard>
@@ -32,7 +32,7 @@
 
 
   <div class="registration-buttons-container">
-    <div if="{device.platform != 'iOS'}" class="registration-container-offline"
+    <div if="{device.platform != 'iOS'}" id="registrationOfflineButtonId" class="registration-container-offline"
          ontouchstart="registrationOfflineTouchStart()"
          ontouchend="registrationOfflineTouchEnd()">
       <div class="registration-button-offline">{window.languages.ViewRegistrationDeviceButtonOffline}</div>
@@ -139,13 +139,20 @@
 
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
 
-    componentKeyboard.returnStartValue = function () {
+    componentKeyboard.returnStartValue = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+
       keyboardTouchStartX = event.changedTouches[0].pageX
       keyboardTouchStartY = event.changedTouches[0].pageY
     }
 
 
-    componentKeyboard.returnValue = function (myValue) {
+    componentKeyboard.returnValue = function (myValue, id) {
+
+      console.log("ID end", id)
+
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       keyboardTouchEndX = event.changedTouches[0].pageX
       keyboardTouchEndY = event.changedTouches[0].pageY
@@ -264,6 +271,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      registrationOfflineButtonId.style.webkitTransform = 'scale(0.8)'
+
       offlineTouchStartX = event.changedTouches[0].pageX
       offlineTouchStartY = event.changedTouches[0].pageY
 
@@ -273,6 +282,8 @@
     registrationOfflineTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      registrationOfflineButtonId.style.webkitTransform = 'scale(1)'
 
       offlineTouchEndX = event.changedTouches[0].pageX
       offlineTouchEndY = event.changedTouches[0].pageY
@@ -320,6 +331,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      demoContainer.style.webkitTransform = 'scale(0.8)'
+
       demoOpenTouchStartX = event.changedTouches[0].pageX
       demoOpenTouchStartY = event.changedTouches[0].pageY
 
@@ -328,6 +341,8 @@
     goToDemoTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      demoContainer.style.webkitTransform = 'scale(1)'
 
       demoOpenTouchEndX = event.changedTouches[0].pageX
       demoOpenTouchEndY = event.changedTouches[0].pageY
@@ -355,6 +370,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      registrationNextButtonId.style.webkitTransform = 'scale(0.8)'
+
       getPhoneNumberTouchStartX = event.changedTouches[0].pageX
       getPhoneNumberTouchStartY = event.changedTouches[0].pageY
 
@@ -363,6 +380,8 @@
     getPhoneNumberTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      registrationNextButtonId.style.webkitTransform = 'scale(1)'
 
       getPhoneNumberTouchEndX = event.changedTouches[0].pageX
       getPhoneNumberTouchEndY = event.changedTouches[0].pageY
@@ -404,6 +423,8 @@
       event.preventDefault()
       event.stopPropagation()
 
+      registrationHelpButtonId.style.webkitTransform = 'scale(0.8)'
+
       helpTouchStartX = event.changedTouches[0].pageX
       helpTouchStartY = event.changedTouches[0].pageY
 
@@ -412,6 +433,8 @@
     helpTouchEnd = function () {
       event.preventDefault()
       event.stopPropagation()
+
+      registrationHelpButtonId.style.webkitTransform = 'scale(1)'
 
       helpTouchEndX = event.changedTouches[0].pageX
       helpTouchEndY = event.changedTouches[0].pageY
