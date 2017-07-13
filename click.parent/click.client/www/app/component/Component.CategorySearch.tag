@@ -1,6 +1,6 @@
 <component-category-search id="blockSearchId" class="component-search">
   <div class="search-title-container">
-    <div class="search-search-icon"></div>
+    <div id="searchButtonId" class="search-search-icon"></div>
     <p class="search-title-name">{window.languages.ComponentCategorySearchTitle}</p>
     <div class="search-cancel-icon" ontouchend="searchCancelEnd()"></div>
   </div>
@@ -50,12 +50,39 @@
     scope.categoryList = JSON.parse(localStorage.getItem("click_client_payCategoryList")) ? JSON.parse(localStorage.getItem("click_client_payCategoryList")) : (offlinePayCategoryList);
     scope.serviceList = JSON.parse(localStorage.getItem("click_client_payServiceList")) ? JSON.parse(localStorage.getItem("click_client_payServiceList")) : (offlinePayServiceList);
 
-    search = function () {
+
+    var searchButtonStartX, searchButtonEndX, searchButtonStartY, searchButtonEndY;
+
+    searchStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      blockSearchId.style.display = 'block';
-      if (scope.categoryList)
-        arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
+
+      console.log('scope.parent', scope.parent)
+
+
+      rightButton.style.webkitTransform = 'scale(0.8)'
+
+      searchButtonStartX = event.changedTouches[0].pageX;
+      searchButtonStartY = event.changedTouches[0].pageY;
+
+
+    }
+
+    searchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      rightButton.style.webkitTransform = 'scale(1)'
+
+      searchButtonEndX = event.changedTouches[0].pageX;
+      searchButtonEndY = event.changedTouches[0].pageY;
+
+      if ((Math.abs(searchButtonStartX - searchButtonEndX) <= 20 && Math.abs(searchButtonStartY - searchButtonEndY) <= 20)) {
+
+        blockSearchId.style.display = 'block';
+        if (scope.categoryList)
+          arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
+      }
 
     }
 
