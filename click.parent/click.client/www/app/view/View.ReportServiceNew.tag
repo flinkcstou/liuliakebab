@@ -4,7 +4,8 @@
     <div class="report-service-upper-container">
 
       <div class="page-title settings-general-page-title">
-        <div id="backButton" ontouchend="reportServiceGoToBack()" class="settings-general-back-button"></div>
+        <div id="backButton" ontouchstart="reportServiceGoToBackStart()" ontouchend="reportServiceGoToBackEnd()"
+             class="settings-general-back-button"></div>
       </div>
 
       <img src="{opts.image}" id="serviceIconId"
@@ -50,12 +51,12 @@
         <div class="report-service-button-info-container" if="{opts.is_indoor != 1 && opts.canAddToFavorite === true}">
 
           <div class="report-service-button-icon report-service-button-favorites-icon" if="{!isInFavorites}"></div>
-          <a class="report-service-button-action" ontouchend="addToFavoritesTouchEnd()" if="{!isInFavorites}"
-             ontouchstart="addToFavoritesTouchStart()">{languages.ViewReportServiceAddToFavorites}</a>
+          <div id="addToFavouriteButtonId" class="report-service-button-action" ontouchend="addToFavoritesTouchEnd(this.id)" if="{!isInFavorites}"
+             ontouchstart="addToFavoritesTouchStart(this.id)">{languages.ViewReportServiceAddToFavorites}</div>
 
           <div class="report-service-button-icon report-service-button-favorites-icon-added" if="{isInFavorites}"></div>
-          <a class="report-service-button-action" ontouchend="removeFromFavoritesTouchEnd()" if="{isInFavorites}"
-             ontouchstart="addToFavoritesTouchStart()">{languages.ViewReportServiceRemoveFromFavorites}</a>
+          <div id="delToFavouriteButtonId" class="report-service-button-action" ontouchend="removeFromFavoritesTouchEnd(this.id)" if="{isInFavorites}"
+             ontouchstart="addToFavoritesTouchStart(this.id)">{languages.ViewReportServiceRemoveFromFavorites}</div>
 
         </div>
         <div class="report-service-button-info-container" if="{false}">
@@ -64,13 +65,13 @@
         </div>
         <div class="report-service-button-info-container">
           <div class="report-service-button-icon report-service-button-support-icon"></div>
-          <a class="report-service-button-action" ontouchend="goToSupportTouchEnd()"
-             ontouchstart="goToSupportTouchStart()">{languages.ViewReportServiceGetSupportHelp}</a>
+          <div id="supportButtonId" class="report-service-button-action" ontouchend="goToSupportTouchEnd(this.id)"
+             ontouchstart="goToSupportTouchStart(this.id)">{languages.ViewReportServiceGetSupportHelp}</div>
         </div>
 
-        <button if="{opts.is_indoor != 1 && opts.canAddToFavorite === true}" class="report-service-repeat-button"
-                ontouchend="onTouchEndOfService()"
-                ontouchstart="onTouchStartOfService()">
+        <button id="repeatButtinId" if="{opts.is_indoor != 1 && opts.canAddToFavorite === true}" class="report-service-repeat-button"
+                ontouchend="onTouchEndOfService(this.id)"
+                ontouchstart="onTouchStartOfService(this.id)">
           {languages.ViewReportServiceRepeatButtonLabel}
         </button>
       </div>
@@ -137,12 +138,16 @@
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
       }
 
-    goToSupportTouchStart = function () {
+    goToSupportTouchStart = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
 
       goToSupportTouchStartX = event.changedTouches[0].pageX;
     };
 
-    goToSupportTouchEnd = function () {
+    goToSupportTouchEnd = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       goToSupportTouchEndX = event.changedTouches[0].pageX;
 
@@ -159,12 +164,16 @@
       }
     };
 
-    addToFavoritesTouchStart = function () {
+    addToFavoritesTouchStart = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
 
       addToFavoritesTouchStartX = event.changedTouches[0].pageX;
     };
 
-    addToFavoritesTouchEnd = function () {
+    addToFavoritesTouchEnd = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       addToFavoritesTouchEndX = event.changedTouches[0].pageX;
 
@@ -216,7 +225,9 @@
     };
 
 
-    removeFromFavoritesTouchEnd = function () {
+    removeFromFavoritesTouchEnd = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       addToFavoritesTouchEndX = event.changedTouches[0].pageX;
 
@@ -241,7 +252,9 @@
       }
     };
 
-    onTouchStartOfService = onTouchStartOfService = function () {
+    onTouchStartOfService = onTouchStartOfService = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
 
       event.stopPropagation();
       onTouchStartOfServiceX = event.changedTouches[0].pageX;
@@ -249,7 +262,9 @@
 
     console.log('OPTS', scope.opts);
 
-    onTouchEndOfService = function () {
+    onTouchEndOfService = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       event.stopPropagation();
       onTouchEndOfServiceX = event.changedTouches[0].pageX;
@@ -278,12 +293,34 @@
       }
     };
 
-    reportServiceGoToBack = function () {
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    reportServiceGoToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      onBackKeyDown()
-      riot.update()
+      backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
+//      scope.unmount()
+
+    };
+
+    reportServiceGoToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+        scope.update()
+      }
 //      scope.unmount()
 
     };
