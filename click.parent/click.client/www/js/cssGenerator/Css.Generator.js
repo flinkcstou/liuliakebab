@@ -2135,7 +2135,7 @@ var css = {
   "{" +
   "position: relative;" +
   "top: 39.4%;" +
-  "height: 7%;" +
+  "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
   "border-bottom: 1px solid #43aee5;" +
@@ -2145,11 +2145,22 @@ var css = {
   sideMenuCallContainer: ".side-menu-call-container " +
   "{" +
   "position: relative;" +
-  "top: 38.7%;" +
+  "top: 39.4%;" +
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  //"border-bottom: 1px solid #43aee5;" +
+  //"margin-top: 2%;" +
+  "border-bottom: 1px solid #43aee5;" +
+  "}",
+
+  sideMenuExitContainer: ".side-menu-exit-container " +
+  "{" +
+  "position: relative;" +
+  "top: 39.4%;" +
+  "height: 6%;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  "border-bottom: 1px solid #43aee5;" +
   "}",
 
   sideMenuContainersIcon: ".side-menu-containers-icon " +
