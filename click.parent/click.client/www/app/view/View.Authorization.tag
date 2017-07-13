@@ -34,16 +34,16 @@
       <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
     </div>
 
-    <div id="TESTID" class="authorization-button-forget-pin" ontouchstart="pinResetTouchStart()"
+    <div id="forgetPinButtonId" class="authorization-button-forget-pin" ontouchstart="pinResetTouchStart()"
          ontouchend="pinResetTouchEnd()">
       {window.languages.ViewAuthorizationForgetPinLabel}
     </div>
-    <div class="authorization-button-registration" ontouchstart="resetLocalStorageTouchStart()"
+    <div id="resetLocalButtonId" class="authorization-button-registration" ontouchstart="resetLocalStorageTouchStart()"
          ontouchend="resetLocalStorageTouchEnd()">
       {window.languages.ViewAuthorizationResetLocalStorageLabel}
     </div>
   </div>
-  <div hidden="{device.platform == 'iOS'}"
+  <div id="authOfflineButtonId" hidden="{device.platform == 'iOS'}"
        class="{authorization-button-offline : !firstEnter, authorization-button-offline-first-enter : firstEnter}"
        ontouchstart="offlineModeTouchStart()"
        ontouchend="offlineModeTouchEnd()">
@@ -358,6 +358,9 @@
     pinResetTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      forgetPinButtonId.style.webkitTransform = 'scale(0.8)'
+
       pinResetTouchStartX = event.changedTouches[0].pageX
       pinResetTouchStartY = event.changedTouches[0].pageY
 
@@ -368,6 +371,9 @@
     pinResetTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      forgetPinButtonId.style.webkitTransform = 'scale(1)'
+
       pinResetTouchEndX = event.changedTouches[0].pageX
       pinResetTouchEndY = event.changedTouches[0].pageY
 
@@ -384,6 +390,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      resetLocalButtonId.style.webkitTransform = 'scale(0.8)'
+
       resetLocalStorageTouchStartX = event.changedTouches[0].pageX
       resetLocalStorageTouchStartY = event.changedTouches[0].pageY
 
@@ -392,6 +400,8 @@
     resetLocalStorageTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      resetLocalButtonId.style.webkitTransform = 'scale(1)'
 
       resetLocalStorageTouchEndX = event.changedTouches[0].pageX
       resetLocalStorageTouchEndY = event.changedTouches[0].pageY
@@ -434,12 +444,18 @@
 
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
 
-    componentKeyboard.returnStartValue = function () {
+    componentKeyboard.returnStartValue = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+
       keyboardTouchStartX = event.changedTouches[0].pageX
       keyboardTouchStartY = event.changedTouches[0].pageY
     }
 
-    componentKeyboard.returnValue = function (myValue) {
+    componentKeyboard.returnValue = function (myValue, id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
+
       keyboardTouchEndX = event.changedTouches[0].pageX
       keyboardTouchEndY = event.changedTouches[0].pageY
 
@@ -464,6 +480,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      authOfflineButtonId.style.webkitTransform = 'scale(0.8)'
+
       offlineModeTouchStartX = event.changedTouches[0].pageX
       offlineModeTouchStartY = event.changedTouches[0].pageY
 
@@ -471,6 +489,8 @@
     offlineModeTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      authOfflineButtonId.style.webkitTransform = 'scale(1)'
 
       offlineModeTouchEndX = event.changedTouches[0].pageX
       offlineModeTouchEndY = event.changedTouches[0].pageY

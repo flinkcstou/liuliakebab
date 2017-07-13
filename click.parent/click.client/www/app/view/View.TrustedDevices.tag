@@ -2,7 +2,7 @@
 
   <div class="trusted-devices-page-title">
     <p class="trusted-devices-title">{languages.ViewTrustedDevicesTitle}</p>
-    <div id="backButton" ontouchend="goToBack()" class="trusted-devices-back-button"></div>
+    <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="trusted-devices-back-button"></div>
   </div>
 
   <div class="trusted-devices-content-container">
@@ -15,7 +15,7 @@
         <p class="trusted-devices-device-info-name">{device.device_name}</p>
         <p class="trusted-devices-device-info-date">{device.date}</p>
         <div id="{device.device_id}" class="trusted-devices-device-delete-icon"
-             ontouchend="deleteDeviceOnTouchEnd(this.id)" ontouchstart="deleteDeviceOnTouchStart()"></div>
+             ontouchend="deleteDeviceOnTouchEnd(this.id)" ontouchstart="deleteDeviceOnTouchStart(this.id)"></div>
       </div>
     </div>
   </div>
@@ -33,6 +33,34 @@
 
 
     scope.showError = false;
+
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    goToBackStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
+    };
+
+    goToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+        scope.unmount()
+      }
+    };
 
     getTrustedDevicesList = function () {
 
@@ -88,13 +116,18 @@
       });
     };
 
-    deleteDeviceOnTouchStart = function () {
+    deleteDeviceOnTouchStart = function (device_id) {
+
+      document.getElementById(device_id).style.webkitTransform = 'scale(0.7)'
 
       deleteTouchStartX = event.changedTouches[0].pageX;
       deleteTouchStartY = event.changedTouches[0].pageY;
+
     };
 
     deleteDeviceOnTouchEnd = function (device_id) {
+
+      document.getElementById(device_id).style.webkitTransform = 'scale(1)'
 
       console.log("DELETE DEVICE FROM TRUSTED STARTED");
 

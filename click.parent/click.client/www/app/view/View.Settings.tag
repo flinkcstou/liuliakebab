@@ -2,7 +2,8 @@
   <div class="riot-tags-main-container">
     <div class="settings-page-title">
       <p class="settings-name-title">{titleName}</p>
-      <div id="backButton" ontouchend="goToBack()" class="settings-back-button"></div>
+      <div id="backButton" ontouchstart="settingsGoToBackStart()" ontouchend="settingsGoToBackEnd()"
+           class="settings-back-button"></div>
     </div>
     <div class="settings-container">
       <div id="mainSettingsButtonId" class="settings-block-containter" ontouchstart="goToMainSettingsTouchStart()"
@@ -92,10 +93,31 @@
     componentMenu.check = false;
     scope.supportShow = false;
 
-    goToBack = function () {
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    settingsGoToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
+
+      backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+    }
+
+    settingsGoToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+
+        onBackKeyDown()
+      }
 //      scope.unmount()
     };
 
@@ -140,7 +162,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      securitySettingsButtonId.style.webkitTransform = 'scale(0.9)'
+      securitySettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
 
       securitySettingsButtonStartX = event.changedTouches[0].pageX;
       securitySettingsButtonStartY = event.changedTouches[0].pageY;
@@ -151,7 +173,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      securitySettingsButtonId.style.webkitTransform = 'scale(1)'
+      securitySettingsButtonId.style.backgroundColor = 'transparent'
 
       securitySettingsButtonEndX = event.changedTouches[0].pageX;
       securitySettingsButtonEndY = event.changedTouches[0].pageY;
@@ -171,7 +193,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      friendHelpSettingsButtonId.style.webkitTransform = 'scale(0.9)'
+      friendHelpSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
 
       friendHelpSettingsButtonStartX = event.changedTouches[0].pageX;
       friendHelpSettingsButtonStartY = event.changedTouches[0].pageY;
@@ -183,7 +205,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      friendHelpSettingsButtonId.style.webkitTransform = 'scale(1)'
+      friendHelpSettingsButtonId.style.backgroundColor = 'transparent'
 
       friendHelpSettingsButtonEndX = event.changedTouches[0].pageX;
       friendHelpSettingsButtonEndY = event.changedTouches[0].pageY;
@@ -204,7 +226,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      goToAboutSettingsButtonId.style.webkitTransform = 'scale(0.9)'
+      goToAboutSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
 
       goToAboutSettingsButtonStartX = event.changedTouches[0].pageX;
       goToAboutSettingsButtonStartY = event.changedTouches[0].pageY;
@@ -214,7 +236,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      goToAboutSettingsButtonId.style.webkitTransform = 'scale(1)'
+      goToAboutSettingsButtonId.style.backgroundColor = 'transparent'
 
       goToAboutSettingsButtonEndX = event.changedTouches[0].pageX;
       goToAboutSettingsButtonEndY = event.changedTouches[0].pageY;
@@ -233,7 +255,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      inviteSettingsButtonId.style.webkitTransform = 'scale(0.9)'
+      inviteSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
 
       inviteSettingsButtonStartX = event.changedTouches[0].pageX;
       inviteSettingsButtonStartY = event.changedTouches[0].pageY;
@@ -244,7 +266,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      inviteSettingsButtonId.style.webkitTransform = 'scale(1)'
+      inviteSettingsButtonId.style.backgroundColor = 'transparent'
 
       inviteSettingsButtonEndX = event.changedTouches[0].pageX;
       inviteSettingsButtonEndY = event.changedTouches[0].pageY;
@@ -267,7 +289,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      goToSupportSettingsButtonId.style.webkitTransform = 'scale(0.9)'
+      goToSupportSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
 
       goToSupportSettingsButtonStartX = event.changedTouches[0].pageX;
       goToSupportSettingsButtonStartY = event.changedTouches[0].pageY;
@@ -278,7 +300,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      goToSupportSettingsButtonId.style.webkitTransform = 'scale(1)'
+      goToSupportSettingsButtonId.style.backgroundColor = 'transparent'
 
       goToSupportSettingsButtonEndX = event.changedTouches[0].pageX;
       goToSupportSettingsButtonEndY = event.changedTouches[0].pageY;
@@ -308,7 +330,7 @@
       callSettingsButtonStartX = event.changedTouches[0].pageX;
       callSettingsButtonStartY = event.changedTouches[0].pageY;
 
-      callSettingsButtonId.style.webkitTransform = 'scale(0.9)'
+      callSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
 
     }
 
@@ -316,7 +338,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      callSettingsButtonId.style.webkitTransform = 'scale(1)'
+      callSettingsButtonId.style.backgroundColor = 'transparent'
 
       callSettingsButtonEndX = event.changedTouches[0].pageX;
       callSettingsButtonEndY = event.changedTouches[0].pageY;
@@ -333,7 +355,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      clearButtonId.style.webkitTransform = 'scale(0.9)'
+      clearButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
 
       resetLocalStorageTouchStartX = event.changedTouches[0].pageX
       resetLocalStorageTouchStartY = event.changedTouches[0].pageY
@@ -346,7 +368,7 @@
       resetLocalStorageTouchEndX = event.changedTouches[0].pageX
       resetLocalStorageTouchEndY = event.changedTouches[0].pageY
 
-      clearButtonId.style.webkitTransform = 'scale(1)'
+      clearButtonId.style.backgroundColor = 'transparent'
 
       if (Math.abs(resetLocalStorageTouchStartX - resetLocalStorageTouchEndX) <= 20 && Math.abs(resetLocalStorageTouchStartY - resetLocalStorageTouchEndY) <= 20) {
 

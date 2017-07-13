@@ -37,7 +37,7 @@
       </div>
     </div>
   </div>
-  <div class="registration-client-button-enter registration-client-button-enter-container"
+  <div id="regClientNextButtonId" class="registration-client-button-enter registration-client-button-enter-container"
        ontouchstart="goToPinCodeTouchStart()" ontouchend="goToPinCodeTouchEnd()">
     <div class="button-enter-label">Далее</div>
   </div>
@@ -47,19 +47,35 @@
   </div>
 
   <div class="registration-client-buttons-container">
-    <div class="registration-container-offline">
-      <div class="registration-button-offline" ontouchstart="registrationClientOfflineTouchStart()"
-           ontouchend="registrationClientOfflineTouchEnd()">Офлайн режим
+    <div id="regClinetOfflineButtonId" class="registration-container-offline" ontouchstart="registrationClientOfflineTouchStart()"
+         ontouchend="registrationClientOfflineTouchEnd()">
+      <div class="registration-button-offline">Офлайн режим
       </div>
     </div>
-    <a id="demoContainer" class="registration-container-demo-version"
-    >
+    <div id="demoContainer" class="registration-container-demo-version" ontouchend="regClientGoToDemoTouchEnd()"
+         ontouchstart="regClientGoToDemoTouchStart()">
       <div class="registration-button-demo-version">Демо версия</div>
-    </a>
+    </div>
   </div>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
+
+  <div hidden id="demoContinueContainer" class="demo-version-continue riot-tags-main-container">
+    <p class="demo-version-demonstration-text">Демонстрационный режим</p>
+    <div class="demo-version-continue-container">
+      <div class="demo-version-continue-continue">
+      </div>
+      <div class="demo-version-continue-text">
+        <p>В данном режиме отображаются демонстрационные данные.<br>Полноценный функционал приложения недоступен. Для
+          использования всех функций приложения авторизуйтесь.</p>
+      </div>
+
+      <button class="demo-version-continue-button-continue" ontouchstart="demoContinueTouchStart()"
+              ontouchend="demoContinueTouchEnd()">ПРОДОЛЖИТЬ
+      </button>
+    </div>
+  </div>
 
   <script>
 
@@ -100,6 +116,37 @@
     var date = false;
     var checkOne = false, checkTwo = false, checkThree = false, checkFour = false, checkDate = false, checkPin = false, checkPinCopy = false, checkDateCopy = false;
 
+    regClientGoToDemoTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      demoContainer.style.webkitTransform = 'scale(0.8)'
+
+      demoOpenTouchStartX = event.changedTouches[0].pageX
+      demoOpenTouchStartY = event.changedTouches[0].pageY
+
+    }
+
+    regClientGoToDemoTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      demoContainer.style.webkitTransform = 'scale(1)'
+
+      demoOpenTouchEndX = event.changedTouches[0].pageX
+      demoOpenTouchEndY = event.changedTouches[0].pageY
+
+      console.log(demoOpenTouchStartX, demoOpenTouchStartY)
+      console.log(demoOpenTouchEndX, demoOpenTouchEndY)
+
+      if (Math.abs(demoOpenTouchStartX - demoOpenTouchEndX) <= 20 && Math.abs(demoOpenTouchStartY - demoOpenTouchEndY) <= 20) {
+
+
+        demoContinueContainer.style.display = 'block'
+      }
+
+//      localStorage.setItem('demo_version', true);
+    }
 
     touchEndBoxOne = function () {
 
@@ -204,6 +251,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      regClinetOfflineButtonId.style.webkitTransform = 'scale(0.8)'
+
       offlineTouchStartX = event.changedTouches[0].pageX
       offlineTouchStartY = event.changedTouches[0].pageY
     }
@@ -211,6 +260,8 @@
     registrationClientOfflineTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      regClinetOfflineButtonId.style.webkitTransform = 'scale(1)'
 
       offlineTouchEndX = event.changedTouches[0].pageX
       offlineTouchEndY = event.changedTouches[0].pageY
@@ -228,14 +279,17 @@
 
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
 
-    componentKeyboard.returnStartValue = function () {
+    componentKeyboard.returnStartValue = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
 
       keyboardTouchStartX = event.changedTouches[0].pageX
       keyboardTouchStartY = event.changedTouches[0].pageY
     }
 
-    componentKeyboard.returnValue = function (myValue) {
+    componentKeyboard.returnValue = function (myValue, id) {
 
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       keyboardTouchEndX = event.changedTouches[0].pageX
       keyboardTouchEndY = event.changedTouches[0].pageY
@@ -366,6 +420,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      regClientNextButtonId.style.webkitTransform = 'scale(0.8)'
+
       goToPinCodeTouchStartX = event.changedTouches[0].pageX
       goToPinCodeTouchStartY = event.changedTouches[0].pageY
     }
@@ -373,6 +429,8 @@
     goToPinCodeTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      regClientNextButtonId.style.webkitTransform = 'scale(1)'
 
       goToPinCodeTouchEndX = event.changedTouches[0].pageX
       goToPinCodeTouchEndY = event.changedTouches[0].pageY

@@ -4,7 +4,7 @@
 
       <div class="page-title settings-general-page-title">
         <p class="name-title">{titleName}</p>
-        <div id="backButton" ontouchend="goToBack()" class="settings-general-back-button"></div>
+        <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="settings-general-back-button"></div>
         <div id="rightButton" type="button" class="settings-general-check-button"
              ontouchend="saveEditedNameTouchEnd()"></div>
       </div>
@@ -17,11 +17,11 @@
       </div>
       <div class="settings-general-download-delete-container">
         <div id="uploadUserAvatarId" class="settings-general-user-upload-avatar"></div>
-        <div class="settings-general-download-container" ontouchend="imageSelectedChange()">
+        <div id="imageSelectButtinId" class="settings-general-download-container" ontouchstart="imageSelectedChangeStart()" ontouchend="imageSelectedChangeEnd()">
           <div class="settings-general-download-icon"></div>
           <p class="settings-general-download-title">{window.languages.ViewSettingsGeneralDownloadPhotoTitle}</p>
         </div>
-        <div class="settings-general-delete-container" ontouchend="photoDeleteTouchEnd()">
+        <div id="delButtonId" class="settings-general-delete-container" ontouchstart="photoDeleteTouchStart()" ontouchend="photoDeleteTouchEnd()">
           <div class="settings-general-delete-icon"></div>
           <p class="settings-general-delete-title">{window.languages.ViewSettingsGeneralDeletePhotoTitle}</p>
         </div>
@@ -98,9 +98,28 @@
 
     })
 
+    var delButtonStartX, delButtonEndX, delButtonStartY, delButtonEndY;
+
+    photoDeleteTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      delButtonId.style.webkitTransform = 'scale(0.8)'
+
+      delButtonStartX = event.changedTouches[0].pageX;
+      delButtonStartY = event.changedTouches[0].pageY;
+    }
+
     photoDeleteTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      delButtonId.style.webkitTransform = 'scale(1)'
+
+      delButtonEndX = event.changedTouches[0].pageX;
+      delButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(delButtonStartX - delButtonEndX) <= 20 && Math.abs(delButtonStartY - delButtonEndY) <= 20) {
 
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -146,7 +165,7 @@
           }
         });
 
-
+    }
     }
 
     saveEditedNameTouchEnd = function () {
@@ -196,85 +215,105 @@
     }
 
     scope.base64Data = '';
-    imageSelectedChange = function () {
+
+    var imageButtonStartX, imageButtonEndX, imageButtonStartY, imageButtonEndY;
+
+    imageSelectedChangeStart = function (){
+      event.preventDefault();
+      event.stopPropagation();
+
+      imageSelectButtinId.style.webkitTransform = 'scale(0.8)'
+
+      imageButtonStartX = event.changedTouches[0].pageX;
+      imageButtonStartY = event.changedTouches[0].pageY;
+    }
+
+    imageSelectedChangeEnd = function () {
       event.preventDefault();
       event.stopPropagation();
       scope.base64Data = '';
 
-      console.log("QWE")
+      imageSelectButtinId.style.webkitTransform = 'scale(1)'
 
-      var options = {
-        quality: 50,
-        destinationType: Camera.DestinationType.DATA_URL,
-        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-        allowEdit: true,
-        encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 100,
-        targetHeight: 100,
-        popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false,
-        correctOrientation: true
-      };
-
-      navigator.camera.getPicture(onSuccess, onFail, options);
-
-      function onSuccess(imageData) {
-        imageUserAvatarId.src = "data:image/jpeg;base64," +  imageData;
-        var canvas = document.createElement("canvas");
-        canvas.width = imageUserAvatarId.width;
-        canvas.height = imageUserAvatarId.height;
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(imageUserAvatarId, 0, 0);
-        scope.base64Data = canvas.toDataURL("image/png");
-        var index = scope.base64Data.indexOf(',');
-        scope.base64Cut = scope.base64Data.substring(index + 1, scope.base64Data.length)
+      imageButtonEndX = event.changedTouches[0].pageX;
+      imageButtonEndY = event.changedTouches[0].pageY;
 
 
-        console.log('scope.base64Data', scope.base64Data)
-        console.log('scope.base64Cut', scope.base64Cut)
+      if (Math.abs(imageButtonStartX - imageButtonEndX) <= 20 && Math.abs(imageButtonStartY - imageButtonEndY) <= 20) {
+        console.log("QWE")
 
-        var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-        var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-        var sessionKey = loginInfo.session_key;
-        if (scope.base64Data)
-          window.api.call({
-            method: 'settings.photo.upload',
-            input: {
-              session_key: sessionKey,
-              phone_num: phoneNumber,
-              data: scope.base64Cut,
-            },
-            scope: this,
-            onSuccess: function (result) {
-              console.log("RESULT PHOTO", result)
-              if (result[0][0].error == 0) {
-                if (result[1][0]) {
-                  imageUserAvatarId.src = "data:image/jpeg;base64," +  imageData;
-                  loginInfo.profile_image_url = result[1][0].profile_image_url;
-                  localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo))
-                  localStorage.setItem('click_client_avatar', scope.base64Data)
+        var options = {
+          quality: 50,
+          destinationType: Camera.DestinationType.DATA_URL,
+          sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+          allowEdit: true,
+          encodingType: Camera.EncodingType.JPEG,
+          targetWidth: 100,
+          targetHeight: 100,
+          popoverOptions: CameraPopoverOptions,
+          saveToPhotoAlbum: false,
+          correctOrientation: true
+        };
+
+        navigator.camera.getPicture(onSuccess, onFail, options);
+
+        function onSuccess(imageData) {
+          imageUserAvatarId.src = "data:image/jpeg;base64," + imageData;
+          var canvas = document.createElement("canvas");
+          canvas.width = imageUserAvatarId.width;
+          canvas.height = imageUserAvatarId.height;
+          var ctx = canvas.getContext("2d");
+          ctx.drawImage(imageUserAvatarId, 0, 0);
+          scope.base64Data = canvas.toDataURL("image/png");
+          var index = scope.base64Data.indexOf(',');
+          scope.base64Cut = scope.base64Data.substring(index + 1, scope.base64Data.length)
+
+
+          console.log('scope.base64Data', scope.base64Data)
+          console.log('scope.base64Cut', scope.base64Cut)
+
+          var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+          var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+          var sessionKey = loginInfo.session_key;
+          if (scope.base64Data)
+            window.api.call({
+              method: 'settings.photo.upload',
+              input: {
+                session_key: sessionKey,
+                phone_num: phoneNumber,
+                data: scope.base64Cut,
+              },
+              scope: this,
+              onSuccess: function (result) {
+                console.log("RESULT PHOTO", result)
+                if (result[0][0].error == 0) {
+                  if (result[1][0]) {
+                    imageUserAvatarId.src = "data:image/jpeg;base64," + imageData;
+                    loginInfo.profile_image_url = result[1][0].profile_image_url;
+                    localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo))
+                    localStorage.setItem('click_client_avatar', scope.base64Data)
+                  }
                 }
+                else {
+                  scope.clickPinError = false;
+                  scope.errorNote = result[0][0].error_note;
+                  scope.showError = true;
+                  scope.update();
+                }
+              },
+
+              onFail: function (api_status, api_status_message, data) {
+                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                console.error(data);
               }
-              else {
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
-                scope.update();
-              }
-            },
+            });
 
-            onFail: function (api_status, api_status_message, data) {
-              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-              console.error(data);
-            }
-          });
+          riot.update();
+        }
 
-        riot.update();
-      }
-
-      function onFail(message) {
-        console.log('Failed because: ' + message);
-      }
+        function onFail(message) {
+          console.log('Failed because: ' + message);
+        }
 
 
 //      var reader = new FileReader();
@@ -383,6 +422,7 @@
 //            });
 //        }
 //      }
+      }
     }
 
     maleTouchEnd = function () {
@@ -440,11 +480,32 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    goToBack = function () {
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    goToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
-      scope.unmount()
+
+      backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
+    };
+
+    goToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+        scope.unmount()
+      }
     };
 
 

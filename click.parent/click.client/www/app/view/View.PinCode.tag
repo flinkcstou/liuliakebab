@@ -23,7 +23,7 @@
     <component-keyboard></component-keyboard>
   </div>
 
-  <div class="pincode-button-offline" ontouchstart="offlineModeTouchStart()" ontouchend="offlineModeTouchEnd()">
+  <div id="pinOfflineButtonId" class="pincode-button-offline" ontouchstart="offlineModeTouchStart()" ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
 
@@ -131,14 +131,19 @@
 
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
 
-    componentKeyboard.returnStartValue = function () {
+    componentKeyboard.returnStartValue = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+
       keyboardTouchStartX = event.changedTouches[0].pageX
       keyboardTouchStartY = event.changedTouches[0].pageY
     }
 
-    componentKeyboard.returnValue = function (myValue) {
+    componentKeyboard.returnValue = function (myValue, id) {
       event.preventDefault();
       event.stopPropagation();
+
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       keyboardTouchEndX = event.changedTouches[0].pageX
       keyboardTouchEndY = event.changedTouches[0].pageY
@@ -164,6 +169,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      pinOfflineButtonId.style.webkitTransform = 'scale(0.8)'
+
       offlineModeTouchStartX = event.changedTouches[0].pageX;
       offlineModeTouchStartY = event.changedTouches[0].pageY;
 
@@ -173,6 +180,9 @@
     offlineModeTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      pinOfflineButtonId.style.webkitTransform = 'scale(1)'
+
       offlineModeTouchEndX = event.changedTouches[0].pageX;
       offlineModeTouchEndY = event.changedTouches[0].pageY;
 

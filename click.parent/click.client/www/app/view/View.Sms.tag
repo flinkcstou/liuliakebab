@@ -13,9 +13,9 @@
           <p style="margin-bottom: 4px">{messageTitle}<br>{messageTitleTwo}</p>
           <p id="deliveredPhoneNumber" style="margin: 0">{phoneNumber.substring(0, 3)}
             {phoneNumber.substring(3, phoneNumber.length)}</p>
-          <a class="sms-button-enter" ontouchend="goToBackRegistrationEnd()"
+          <div id="changeNumberButtonId" class="sms-button-enter" ontouchend="goToBackRegistrationEnd()"
              ontouchstart="goToBackRegistrationStart()">{window.languages.ViewSmsButtonEnterLabel}
-          </a>
+          </div>
         </div>
       </div>
     </div>
@@ -23,7 +23,8 @@
 
 
   <div class="registration-keyboard-field keyboard-field" style="bottom: {150*widthK}px">
-    <div class="registration-button-help" ontouchend="helpTouchEndSms()" ontouchstart="helpTouchStartSms()"
+    <div id="smsButtonHelpId" class="registration-button-help" ontouchend="helpTouchEndSms()"
+         ontouchstart="helpTouchStartSms()"
          style="top: {560*widthK}px">{window.languages.ViewSmsButtonHelp}
     </div>
     <component-keyboard></component-keyboard>
@@ -63,7 +64,10 @@
 
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
 
-    componentKeyboard.returnStartValue = function () {
+    componentKeyboard.returnStartValue = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+
       keyboardTouchStartX = event.changedTouches[0].pageX
       keyboardTouchStartY = event.changedTouches[0].pageY
     }
@@ -93,7 +97,9 @@
     //    }
 
 
-    componentKeyboard.returnValue = function (myValue) {
+    componentKeyboard.returnValue = function (myValue, id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       keyboardTouchEndX = event.changedTouches[0].pageX
       keyboardTouchEndY = event.changedTouches[0].pageY
@@ -201,6 +207,8 @@
       event.preventDefault()
       event.stopPropagation()
 
+      smsButtonHelpId.style.webkitTransform = 'scale(0.8)'
+
       helpTouchStartXSms = event.changedTouches[0].pageX
       helpTouchStartYSms = event.changedTouches[0].pageY
 
@@ -209,6 +217,8 @@
     helpTouchEndSms = function () {
       event.preventDefault()
       event.stopPropagation()
+
+      smsButtonHelpId.style.webkitTransform = 'scale(1)'
 
       helpTouchEndXSms = event.changedTouches[0].pageX
       helpTouchEndYSms = event.changedTouches[0].pageY
@@ -232,6 +242,8 @@
       event.preventDefault()
       event.stopPropagation()
 
+      changeNumberButtonId.style.webkitTransform = 'scale(0.8)'
+
       goBackTouchStartXSms = event.changedTouches[0].pageX
       goBackTouchStartYSms = event.changedTouches[0].pageY
     }
@@ -239,6 +251,8 @@
     goToBackRegistrationEnd = function () {
       event.preventDefault()
       event.stopPropagation()
+
+      changeNumberButtonId.style.webkitTransform = 'scale(1)'
 
       goBackTouchEndXSms = event.changedTouches[0].pageX
       goBackTouchEndYSms = event.changedTouches[0].pageY

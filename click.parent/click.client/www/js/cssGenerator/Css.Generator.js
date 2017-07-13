@@ -122,6 +122,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height: 100%;" +
+  "top: 0;" +
   "overflow: hidden;" +
   "z-index: 999999;" +
   "background-image: url('resources/icons/background/transparent.png');" +
@@ -757,8 +758,8 @@ var css = {
   smsButtonEnter: ".sms-button-enter " +
   "{" +
   "position: relative;" +
-  "width:" + 440 * widthK + "px;" +
-  "height:" + 100 * widthK + "px;" +
+  "width:" + 315 * widthK + "px;" +
+  //"height:" + 100 * widthK + "px;" +
   //"background-color: #01cfff;" +
   "margin-right: auto;" +
   //"border-radius:" + 80 * widthK + "px;" +
@@ -8048,6 +8049,7 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/ViewSettingsFriendHelp/delete.png);" +
   "right: 2%;" +
+  "z-index: 2;" +
   "}",
 
 
