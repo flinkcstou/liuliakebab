@@ -61,7 +61,8 @@
       <div class="empty-list-lower-container">
         <p class="empty-list-lower-title-text" style="top: 1%;">{toUser? window.languages.ViewInvoiceInEmptyTitleText :
           window.languages.ViewInvoiceOutEmptyTitleText}</p>
-        <p class="empty-list-lower-body-text" style="top: 6%;">{window.languages.ViewAutoPayEmptyBodyText}</p>
+        <p class="empty-list-lower-body-text" style="top: 6%;">{toUser? window.languages.ViewInvoiceInEmptyBodyText :
+          window.languages.ViewInvoiceOutEmptyBodyText}</p>
       </div>
 
     </div>

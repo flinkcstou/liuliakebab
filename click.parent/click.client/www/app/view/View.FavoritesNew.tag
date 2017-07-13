@@ -33,7 +33,7 @@
         </div>
         <div class="empty-list-lower-container">
           <p class="empty-list-lower-title-text">{window.languages.ViewFavoriteEmptyTitleText}</p>
-          <p class="empty-list-lower-body-text">{window.languages.ViewAutoPayEmptyBodyText}</p>
+          <p class="empty-list-lower-body-text">{window.languages.ViewFavoriteEmptyBodyText}</p>
         </div>
       </div>
 
