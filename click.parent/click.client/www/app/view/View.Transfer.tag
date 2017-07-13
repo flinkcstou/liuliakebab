@@ -180,7 +180,7 @@
   <div hidden="{!showComponent}" id="componentBankListId" class="component-bank-list">
     <div class="page-title" style="border: none;">
       <p class="component-banklist-name-title">{window.languages.ViewBankListTitleName}</p>
-      <div id="rightButtons" type="button" class="component-banklist-close-button"
+      <div id="closeBankListButtonId" type="button" class="component-banklist-close-button"
            ontouchend="closeComponentBankListTouchEnd()" ontouchstart="closeComponentBankListTouchStart()"></div>
     </div>
     <div id="bankListContainerId" class="component-banklist-container" onscroll="bankListTouchMove()">
@@ -338,6 +338,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      rightButton.style.webkitTransform = 'scale(0.8)'
+
       openBankListTouchStartX = event.changedTouches[0].pageX
       openBankListTouchStartY = event.changedTouches[0].pageY
 
@@ -352,6 +354,8 @@
     openBanksListPageTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      rightButton.style.webkitTransform = 'scale(1)'
 
       openBankListTouchEndX = event.changedTouches[0].pageX
       openBankListTouchEndY = event.changedTouches[0].pageY
@@ -441,6 +445,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      closeBankListButtonId.style.webkitTransform = 'scale(0.8)'
+
       closeBankListTouchStartX = event.changedTouches[0].pageX
       closeBankListTouchStartY = event.changedTouches[0].pageY
     }
@@ -448,6 +454,8 @@
     closeComponentBankListTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      closeBankListButtonId.style.webkitTransform = 'scale(1)'
 
       closeBankListTouchEndX = event.changedTouches[0].pageX
       closeBankListTouchEndY = event.changedTouches[0].pageY
@@ -730,6 +738,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      backButton.style.webkitTransform = 'scale(0.8)'
+
       goToBackTransferTouchStartX = event.changedTouches[0].pageX
       goToBackTransferTouchStartY = event.changedTouches[0].pageY
     }
@@ -737,6 +747,8 @@
     goToBackFromTransferTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(1)'
 
       goToBackTransferTouchEndX = event.changedTouches[0].pageX
       goToBackTransferTouchEndY = event.changedTouches[0].pageY
@@ -1212,6 +1224,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      nextButtonId.style.webkitTransform = "scale(0.8)"
+
       goToTransferStepTwoTouchStartX = event.changedTouches[0].pageX
       goToTransferStepTwoTouchStartY = event.changedTouches[0].pageY
 
@@ -1222,6 +1236,8 @@
     goToTransferStepTwoTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      nextButtonId.style.webkitTransform = "scale(1)"
 
       goToTransferStepTwoTouchEndX = event.changedTouches[0].pageX
       goToTransferStepTwoTouchEndY = event.changedTouches[0].pageY

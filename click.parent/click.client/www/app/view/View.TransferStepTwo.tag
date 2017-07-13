@@ -1,7 +1,7 @@
 <view-transfer-steptwo class="riot-tags-main-container">
   <div class="transfer-page-title">
     <p class="transfer-name-title">{titleName}</p>
-    <div id="backButton" ontouchstart="goToBack()" class="{transfer-back-button: backbuttoncheck}"></div>
+    <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="{transfer-back-button: backbuttoncheck}"></div>
     <div id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"></div>
   </div>
 
@@ -20,7 +20,7 @@
              onblur="sumOnBlur()" onkeyup="sumKeyUp()" oninput="sumKeyUp()"/>
     </div>
 
-    <button class="transfertwo-next-button-inner-container" ontouchstart="goToTransferThreeTouchStart()"
+    <button id="nextButtonId" class="transfertwo-next-button-inner-container" ontouchstart="goToTransferThreeTouchStart()"
             ontouchend="goToTransferThreeTouchEnd()">
       {window.languages.ViewTransferTwoNext}
     </button>
@@ -188,18 +188,41 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    goToBack = function () {
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    goToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
 
-    }
+      backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
+    };
+
+    goToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+        scope.unmount()
+      }
+    };
 
     var goToTransferThreeTouchStartX, goToTransferThreeTouchStartY, goToTransferThreeTouchEndX, goToTransferThreeTouchEndY;
 
     goToTransferThreeTouchStart = function () {
       event.preventDefault()
       event.stopPropagation()
+
+      nextButtonId.style.webkitTransform = 'scale(0.8)'
 
       goToTransferThreeTouchStartX = event.changedTouches[0].pageX
       goToTransferThreeTouchStartY = event.changedTouches[0].pageY
@@ -208,6 +231,8 @@
     goToTransferThreeTouchEnd = function () {
       event.preventDefault()
       event.stopPropagation()
+
+      nextButtonId.style.webkitTransform = 'scale(1)'
 
       goToTransferThreeTouchEndX = event.changedTouches[0].pageX
       goToTransferThreeTouchEndY = event.changedTouches[0].pageY

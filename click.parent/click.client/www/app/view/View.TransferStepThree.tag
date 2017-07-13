@@ -1,7 +1,7 @@
 <view-transfer-stepthree class="riot-tags-main-container">
   <div class="transfer-page-title">
     <p class="transfer-name-title">{titleName}</p>
-    <div id="backButton" ontouchstart="goToBack()" class="{transfer-back-button: backbuttoncheck}"></div>
+    <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="{transfer-back-button: backbuttoncheck}"></div>
     <div id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"></div>
   </div>
 
@@ -11,7 +11,7 @@
     </div>
     <component-pincards clean="{true}"></component-pincards>
 
-    <button class="transferthree-next-button-inner-container" ontouchstart="goToTransferFourTouchStart()"
+    <button id="nextButtonId" class="transferthree-next-button-inner-container" ontouchstart="goToTransferFourTouchStart()"
             ontouchend="goToTransferFourTouchEnd()">
       {window.languages.ViewTransferThreeNext}
     </button>
@@ -66,12 +66,33 @@
     }
 
 
-    goToBack = function () {
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    goToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
-      scope.unmount()
-    }
+
+      backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
+    };
+
+    goToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+        scope.unmount()
+      }
+    };
 
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = false;
@@ -82,6 +103,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      nextButtonId.style.webkitTransform = 'scale(0.8)'
+
       goToTransferFourTouchStartX = event.changedTouches[0].pageX
       goToTransferFourTouchStartY = event.changedTouches[0].pageY
     }
@@ -90,6 +113,8 @@
     goToTransferFourTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      nextButtonId.style.webkitTransform = 'scale(1)'
 
       goToTransferFourTouchEndX = event.changedTouches[0].pageX
       goToTransferFourTouchEndY = event.changedTouches[0].pageY
