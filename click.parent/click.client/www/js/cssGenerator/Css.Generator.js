@@ -940,10 +940,10 @@ var css = {
   keyboardButtonZero: ".keyboard-button-zero {left:" + 180 * widthK + "px;}",
   keyboardButtonEnter: ".keyboard-button-enter {position: absolute;}",
 
-  keyboardButtonsActive: ".keyboard-buttons:active " +
-  "{" +
-  "background: radial-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.08), transparent);" +
-  "}",
+  //keyboardButtonsActive: ".keyboard-buttons:active " +
+  //"{" +
+  //"background: radial-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.08), transparent);" +
+  //"}",
 
   keyboardButtonX: ".keyboard-button-x " +
   "{" +
