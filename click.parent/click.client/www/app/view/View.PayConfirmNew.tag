@@ -62,12 +62,14 @@
           class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
           <div class="payconfirm-action-icon-one" if="{!isInFavorites}"
                style="background-image: url('resources/icons/ViewService/addfavorite.png');"></div>
-          <div class="payconfirm-action-text" ontouchend="addToFavoritesinPayConfirm()" if="{!isInFavorites}">
+          <div class="payconfirm-action-text" ontouchstart="onTouchStartOfFavorite()"
+               ontouchend="addToFavoritesinPayConfirm()" if="{!isInFavorites}">
             {window.languages.ViewPayConfirmAddToFavorites}
           </div>
           <div class="payconfirm-action-icon-one" if="{isInFavorites}"
                style="background-image: url('resources/icons/ViewService/addedfavorite.png');"></div>
-          <div class="payconfirm-action-text" ontouchend="removeFromFavorites()" if="{isInFavorites}">
+          <div class="payconfirm-action-text" ontouchstart="onTouchStartOfFavorite()" ontouchend="removeFromFavorites()"
+               if="{isInFavorites}">
             {window.languages.ViewPayConfirmRemoveFromFavorites}
           </div>
         </div>
@@ -75,16 +77,16 @@
              class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-autopay-none:!cardOrFriendBool}">
           <div class="payconfirm-action-icon-two"
                style="background-image: url('resources/icons/ViewService/addautopay.png');"></div>
-          <div class="payconfirm-action-text" ontouchend="addToAutoPay()">
+          <div class="payconfirm-action-text" ontouchstart="onTouchStartOfAutoPay()" ontouchend="addToAutoPay()">
             {window.languages.ViewPayConfirmAddToAutoPay}
           </div>
         </div>
       </div>
       <button class="{payconfirm-button-enter:opts.mode!='ADDAUTOPAY', autopay-button:opts.mode=='ADDAUTOPAY'}"
-              ontouchend="payService()" if="{!autoPayDelete}">
+              ontouchend="payService()" ontouchstart="onTouchStartOfEnterPay()" if="{!autoPayDelete}">
         {(opts.mode=='ADDAUTOPAY')? window.languages.ViewAutoPayCreateButtonText : window.languages.ViewPayConfirmPay}
       </button>
-      <button class="payconfirm-button-delete" ontouchend="deleteAutoPay()"
+      <button class="payconfirm-button-delete" ontouchend="deleteAutoPay()" ontouchstart="onTouchStartOfAutoPay()"
               if="{autoPayDelete && opts.mode=='ADDAUTOPAY'}">
         {window.languages.ViewAutoPayDeleteButtonText}
       </button>
@@ -223,78 +225,95 @@
     }
     scope.update();
 
+    var favoriteStartY, favoriteStartX, favoriteEndY, favoriteEndX;
+
+    scope.onTouchStartOfFavorite = onTouchStartOfFavorite = function () {
+      event.stopPropagation();
+      favoriteStartY = event.changedTouches[0].pageY;
+      favoriteStartX = event.changedTouches[0].pageX;
+    };
+
     addToFavoritesinPayConfirm = function () {
+      event.stopPropagation();
 
-      if (modeOfApp.demoVersion) {
-        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-        scope.showError = true;
-        scope.errorNote = question;
-//        confirm(question)
-//        scope.confirmShowBool = true;
-//        scope.confirmNote = question;
-//        scope.confirmType = 'local';
-//        scope.result = function (bool) {
-//          if (bool) {
-//            localStorage.clear();
-//            window.location = 'index.html'
-//            scope.unmount()
-//            return
-//          }
-//        };
-        scope.update();
+      favoriteEndY = event.changedTouches[0].pageY;
+      favoriteEndX = event.changedTouches[0].pageX;
 
-        return
-      }
-      scope.isInFavorites = true;
-      scope.update(scope.isInFavorites);
-      opts.isInFavorites = true;
-      var favoritePaymentsList;
+      if (Math.abs(favoriteStartY - favoriteEndY) <= 20 && Math.abs(favoriteStartX - favoriteEndX) <= 20) {
 
-      if (!localStorage.getItem('favoritePaymentsList')) {
-        favoritePaymentsList = [];
+        if (modeOfApp.demoVersion) {
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          scope.showError = true;
+          scope.errorNote = question;
+          scope.update();
 
-        favoritePaymentsList.push({
-          "params": opts,
-          "service": scope.service,
-          "ussd": scope.fieldArray[0].ussd_query
-        });
-        console.log("favoritePaymentsList=", favoritePaymentsList);
+          return
+        }
+        scope.isInFavorites = true;
+        scope.update(scope.isInFavorites);
+        opts.isInFavorites = true;
+        var favoritePaymentsList;
 
-        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-      } else {
-        favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
-        favoritePaymentsList.push({
-          "params": opts,
-          "service": scope.service,
-          "ussd": scope.fieldArray[0].ussd_query
-        });
-        console.log("favoritePaymentsList=", favoritePaymentsList);
-        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+        if (!localStorage.getItem('favoritePaymentsList')) {
+          favoritePaymentsList = [];
+
+          favoritePaymentsList.push({
+            "params": opts,
+            "service": scope.service,
+            "ussd": scope.fieldArray[0].ussd_query
+          });
+          console.log("favoritePaymentsList=", favoritePaymentsList);
+
+          localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+        } else {
+          favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+          favoritePaymentsList.push({
+            "params": opts,
+            "service": scope.service,
+            "ussd": scope.fieldArray[0].ussd_query
+          });
+          console.log("favoritePaymentsList=", favoritePaymentsList);
+          localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+        }
       }
 
     };
 
     removeFromFavorites = function () {
-      var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
-      console.log(favoritePaymentsList);
-      for (var i in favoritePaymentsList)
-        if (favoritePaymentsList[i].service.id == opts.chosenServiceId) {
-          console.log("i=", i);
-          favoritePaymentsList.splice(i, 1);
-          console.log(favoritePaymentsList);
-          scope.isInFavorites = false;
-          localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-          scope.update(scope.isInFavorites);
-        }
+      event.stopPropagation();
+
+      favoriteEndY = event.changedTouches[0].pageY;
+      favoriteEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(favoriteStartY - favoriteEndY) <= 20 && Math.abs(favoriteStartX - favoriteEndX) <= 20) {
+        var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+        console.log(favoritePaymentsList);
+        for (var i in favoritePaymentsList)
+          if (favoritePaymentsList[i].service.id == opts.chosenServiceId) {
+            console.log("i=", i);
+            favoritePaymentsList.splice(i, 1);
+            console.log(favoritePaymentsList);
+            scope.isInFavorites = false;
+            localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+            scope.update(scope.isInFavorites);
+          }
+      }
     };
 
 
     payService = function () {
 
-      if (modeOfApp.demoVersion) {
-        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-        scope.showError = true;
-        scope.errorNote = question;
+      event.stopPropagation();
+
+      enterPayEndY = event.changedTouches[0].pageY;
+      enterPayEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(enterPayStartY - enterPayEndY) <= 20 && Math.abs(enterPayStartX - enterPayEndX) <= 20) {
+
+        if (modeOfApp.demoVersion) {
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          scope.showError = true;
+          scope.errorNote = question;
 //        confirm(question)
 //        scope.confirmShowBool = true;
 //        scope.confirmNote = question;
@@ -307,239 +326,411 @@
 //            return
 //          }
 //        };
-        scope.update();
+          scope.update();
 
-        return
-      }
+          return
+        }
 
-      var date = parseInt(Date.now() / 1000);
-      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-      var serviceId = opts.chosenServiceId;
-      var amount = inputVerification.spaceDeleter(opts.amountText.toString());
-      var accountId;
-      var friendPhone;
-      var payment_data;
+        var date = parseInt(Date.now() / 1000);
+        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+        var serviceId = opts.chosenServiceId;
+        var amount = inputVerification.spaceDeleter(opts.amountText.toString());
+        var accountId;
+        var friendPhone;
+        var payment_data;
 //      console.log("AMOUNT UPDATED=", amount)
 
-      // friend help or own payment
+        // friend help or own payment
 
-      if (scope.cardOrFriendBool) {
-        accountId = chosenCardId;
-        friendPhone = 0;
-        scope.operationMessage = window.languages.ComponentSuccessMessageForPay;
-      }
-      else {
-        accountId = 0;
-        friendPhone = scope.friendNumber;
-        scope.operationMessage = window.languages.ComponentSuccessMessageForPayFriendHelp;
-      }
+        if (scope.cardOrFriendBool) {
+          accountId = chosenCardId;
+          friendPhone = 0;
+          scope.operationMessage = window.languages.ComponentSuccessMessageForPay;
+        }
+        else {
+          accountId = 0;
+          friendPhone = scope.friendNumber;
+          scope.operationMessage = window.languages.ComponentSuccessMessageForPayFriendHelp;
+        }
 
-      scope.update();
-      console.log("accountId", accountId);
-      console.log("friendPhone", friendPhone);
+        scope.update();
+        console.log("accountId", accountId);
+        console.log("friendPhone", friendPhone);
 
-      if (opts.formtype == 1) {
-        payment_data = {
-          "param": opts.firstFieldId,
-          "value": firstFieldtext,
-          "transaction_id": parseInt(Date.now() / 1000)
-        };
-        opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
-      }
-      else if (opts.formtype == 2) {
-        payment_data = {
-          "pin_param": opts.cardTypeId,
-          "transaction_id": parseInt(Date.now() / 1000)
-        };
-        opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
-      }
-      else if (opts.formtype == 3) {
-        payment_data = {
-          "param": opts.firstFieldId,
-          "value": firstFieldtext,
-          "communal_param": opts.communalParam,
-          "transaction_id": parseInt(Date.now() / 1000)
-        };
-        opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+        if (opts.formtype == 1) {
+          payment_data = {
+            "param": opts.firstFieldId,
+            "value": firstFieldtext,
+            "transaction_id": parseInt(Date.now() / 1000)
+          };
+          opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+        }
+        else if (opts.formtype == 2) {
+          payment_data = {
+            "pin_param": opts.cardTypeId,
+            "transaction_id": parseInt(Date.now() / 1000)
+          };
+          opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+        }
+        else if (opts.formtype == 3) {
+          payment_data = {
+            "param": opts.firstFieldId,
+            "value": firstFieldtext,
+            "communal_param": opts.communalParam,
+            "transaction_id": parseInt(Date.now() / 1000)
+          };
+          opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
 
-      }
-      else if (opts.formtype == 4) {
-        payment_data = {
-          "param": opts.firstFieldId,
-          "value": firstFieldtext,
-          "internet_package_param": opts.internetPackageParam,
-          "transaction_id": parseInt(Date.now() / 1000)
-        };
-        opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
-      }
+        }
+        else if (opts.formtype == 4) {
+          payment_data = {
+            "param": opts.firstFieldId,
+            "value": firstFieldtext,
+            "internet_package_param": opts.internetPackageParam,
+            "transaction_id": parseInt(Date.now() / 1000)
+          };
+          opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+        }
 
-      var statusCheckCounter = 0;
+        var statusCheckCounter = 0;
 
-      function paymentFunction(payment_data) {
+        function paymentFunction(payment_data) {
 
-        if (device.platform != 'BrowserStand') {
-          var options = {dimBackground: true};
+          if (device.platform != 'BrowserStand') {
+            var options = {dimBackground: true};
 
-          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-            console.log("Started");
-          }, function () {
-            console.log("closed");
+            SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+              console.log("Started");
+            }, function () {
+              console.log("closed");
+            });
+          }
+
+
+          if (opts.optionAttribute && opts.optionValue) {
+            payment_data[opts.optionAttribute] = opts.optionValue;
+          }
+
+          window.api.call({
+            method: 'app.payment',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber,
+              service_id: Number(serviceId),
+              account_id: Number(accountId),
+              amount: Number(amount),
+              payment_data: payment_data,
+              datetime: date,
+              friend_phone: friendPhone
+            },
+
+            scope: this,
+
+            onSuccess: function (result) {
+              if (result[0][0].error == 0) {
+                if (result[1]) {
+                  console.log("result of APP.PAYMENT 1", result);
+                  if (result[1][0].payment_id && !result[1][0].invoice_id) {
+                    console.log("Payment id");
+
+                    if (device.platform != 'BrowserStand') {
+                      var options = {dimBackground: true};
+
+                      SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+                        console.log("Started");
+                      }, function () {
+                        console.log("closed");
+                      });
+                    }
+
+                    setTimeout(function () {
+                      checkPaymentStatus(result[1][0].payment_id);
+                    }, 2000);
+
+                  }
+                  else if (result[1][0].invoice_id && !result[1][0].payment_id) {
+                    console.log("Invoice id");
+
+                    viewServicePinCards.friendHelpPaymentMode = false;
+                    viewServicePinCards.chosenFriendForHelp = null;
+
+                    componentSuccessId.style.display = 'block';
+                  }
+                }
+              }
+              else {
+                scope.errorMessageFromPayment = result[0][0].error_note;
+                scope.update();
+                console.log("result of APP.PAYMENT 3", result);
+                componentUnsuccessId.style.display = 'block';
+              }
+            },
+
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
           });
         }
 
+        function checkPaymentStatus(payment_id) {
 
-        if (opts.optionAttribute && opts.optionValue) {
-          payment_data[opts.optionAttribute] = opts.optionValue;
+          console.log("check payment status");
+
+          window.api.call({
+            method: 'get.payment',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber,
+              payment_id: payment_id
+            },
+
+            scope: this,
+
+            onSuccess: function (result) {
+              if (result[0][0].error == 0 && result[1][0]) {
+
+                console.log("result of get.payment success=", result);
+                if (result[1][0].state == -1) {
+//                scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-service-page-new';
+                  scope.stepAmount = 2;
+                  scope.errorMessageFromPayment = result[1][0].error;
+                  scope.update();
+                  console.log("state=-1 error,view=", scope.viewPage, ",step=", scope.stepAmount);
+                  if (device.platform != 'BrowserStand') {
+                    SpinnerPlugin.activityStop();
+                  }
+                  componentUnsuccessId.style.display = 'block';
+
+
+                } else if (result[1][0].state == 2) {
+                  window.updateBalanceGlobalFunction();
+
+                  viewServicePinCards.friendHelpPaymentMode = false;
+                  viewServicePinCards.chosenFriendForHelp = null;
+
+//                scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-pay';
+                  scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
+                  scope.update();
+                  console.log("state=2 success,view=", scope.viewPage, ",step=", scope.stepAmount);
+                  if (device.platform != 'BrowserStand') {
+                    SpinnerPlugin.activityStop();
+                  }
+                  componentSuccessId.style.display = 'block';
+
+
+                } else if (result[1][0].state == 1) {
+                  statusCheckCounter++;
+//                console.log("statusCheckCounter=", statusCheckCounter);
+                  if (statusCheckCounter < 5) {
+                    if (device.platform != 'BrowserStand') {
+                      var options = {dimBackground: true};
+
+                      SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+                        console.log("Started");
+                      }, function () {
+                        console.log("closed");
+                      });
+                    }
+                    setTimeout(function () {
+                      checkPaymentStatus(result[1][0].payment_id);
+                    }, 2000);
+                  } else {
+                    if (device.platform != 'BrowserStand') {
+                      SpinnerPlugin.activityStop();
+                    }
+
+                    viewServicePinCards.friendHelpPaymentMode = false;
+                    viewServicePinCards.chosenFriendForHelp = null;
+
+//                  scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-pay';
+                    scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
+                    scope.update();
+                    console.log("state=1 waiting,view=", scope.viewPage, ",step=", scope.stepAmount);
+                    componentInProcessingId.style.display = 'block';
+                  }
+
+                }
+
+              }
+              else {
+                console.log("result of GET.PAYMENT in else", result);
+                if (device.platform != 'BrowserStand') {
+                  SpinnerPlugin.activityStop();
+                }
+                componentUnsuccessId.style.display = 'block';
+              }
+            },
+
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
         }
 
+        function createAutoPay(payment_data) {
+          scope.operationMessage = window.languages.ViewAutoPayCreatedSuccessTextOne + "\"" + scope.autoPayData.name + "\"" + window.languages.ViewAutoPayCreatedSuccessTextTwo;
+          if (scope.autoPayData && scope.autoPayData.fromView == 'PAYCONFIRM') {
+            scope.viewPage = 'view-pay-confirm-new';
+            scope.stepAmount = 3;
+            scope.goBack = true;
+
+          } else {
+            scope.viewPage = 'view-auto-pay-new';
+            scope.stepAmount = 5;
+            scope.goBack = true;
+          }
+
+          scope.update();
+          console.log("in create autopay func", scope.autoPayData);
+          if (scope.autoPayData) {
+            if (scope.autoPayData.autopay_type == 2) {
+              console.log(Number(amount));
+              window.api.call({
+                method: 'autopay.add.by.event',
+                input: {
+                  session_key: sessionKey,
+                  phone_num: phoneNumber,
+                  service_id: Number(serviceId),
+                  account_id: Number(accountId),
+                  amount: amount,
+                  cntrg_phone_num: scope.autoPayData.cntrg_phone_num,
+                  step: scope.autoPayData.step,
+                  title: scope.autoPayData.name
+                },
+
+                scope: this,
+
+                onSuccess: function (result) {
+                  if (result[0][0].error == 0) {
+                    console.log("result of autopay.add.by.event", result);
+//                  scope.autoPayDelete = true;
+//                  scope.update(scope.autoPayDelete);
+
+                    if (scope.autoPayData.fromView == 'PAYCONFIRM')
+                      scope.autoPayData.fromView = 'AFTERCREATION';
+
+                    scope.autoPayData.isNew = false;
+                    localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+                    componentSuccessId.style.display = 'block';
+
+                  }
+                  else {
+                    if (scope.autoPayData.fromView == 'PAYCONFIRM')
+                      scope.autoPayData.fromView = 'AFTERCREATION';
+//                  scope.autoPayData.isNew = false;
+                    localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+                    console.log("result of autopay.add.by.event", result);
+                    componentUnsuccessId.style.display = 'block';
+                  }
+                },
+
+                onFail: function (api_status, api_status_message, data) {
+                  console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                  console.error(data);
+                }
+              });
+            } else if (scope.autoPayData.autopay_type == 1) {
+
+              window.api.call({
+                method: 'autopay.add.by.schedule',
+                input: {
+                  session_key: sessionKey,
+                  phone_num: phoneNumber,
+                  type: scope.autoPayData.type,
+                  service_id: Number(serviceId),
+                  account_id: Number(accountId),
+                  amount: Number(amount),
+                  payment_data: payment_data,
+                  paytime: scope.autoPayData.paytime,
+                  week_day: scope.autoPayData.week_day ? scope.autoPayData.week_day : null,
+                  month_day: scope.autoPayData.month_day ? scope.autoPayData.month_day : null,
+                  title: scope.autoPayData.name
+                },
+
+                scope: this,
+
+                onSuccess: function (result) {
+                  if (result[0][0].error == 0) {
+                    console.log("result of autopay.add.by.schedule", result);
+//                  localStorage.setItem('autoPayData', null);
+                    if (scope.autoPayData.fromView == 'PAYCONFIRM')
+                      scope.autoPayData.fromView = 'AFTERCREATION';
+                    scope.autoPayData.isNew = false;
+                    localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+                    componentSuccessId.style.display = 'block';
+
+                  }
+                  else {
+                    if (scope.autoPayData.fromView == 'PAYCONFIRM')
+                      scope.autoPayData.fromView = 'AFTERCREATION';
+//                  scope.autoPayData.isNew = false;
+                    localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+                    console.log("result of autopay.add.by.schedule", result);
+                    componentUnsuccessId.style.display = 'block';
+                  }
+                },
+
+                onFail: function (api_status, api_status_message, data) {
+                  console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                  console.error(data);
+                }
+              });
+            }
+          }
+
+        }
+
+      }
+    };
+
+    var autoPayStartY, autoPayStartX, autoPayEndY, autoPayEndX;
+
+    scope.onTouchStartOfAutoPay = onTouchStartOfAutoPay = function () {
+      event.stopPropagation();
+      autoPayStartY = event.changedTouches[0].pageY;
+      autoPayStartX = event.changedTouches[0].pageX;
+    };
+
+    deleteAutoPay = function () {
+      event.stopPropagation();
+
+      autoPayEndY = event.changedTouches[0].pageY;
+      autoPayEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(autoPayStartY - autoPayEndY) <= 20 && Math.abs(autoPayStartX - autoPayEndX) <= 20) {
+        console.log("delete autopay =", scope.autoPayData);
+        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         window.api.call({
-          method: 'app.payment',
+          method: 'autopay.delete',
           input: {
             session_key: sessionKey,
             phone_num: phoneNumber,
-            service_id: Number(serviceId),
-            account_id: Number(accountId),
-            amount: Number(amount),
-            payment_data: payment_data,
-            datetime: date,
-            friend_phone: friendPhone
+            autopay_id: scope.autoPayData.id,
+            autopay_type: scope.autoPayData.autopay_type
           },
 
           scope: this,
 
           onSuccess: function (result) {
             if (result[0][0].error == 0) {
-              if (result[1]) {
-                console.log("result of APP.PAYMENT 1", result);
-                if (result[1][0].payment_id && !result[1][0].invoice_id) {
-                  console.log("Payment id");
+              console.log("result of autopay.delete", result);
+              localStorage.setItem('autoPayData', null);
 
-                  if (device.platform != 'BrowserStand') {
-                    var options = {dimBackground: true};
+              viewServicePinCards.friendHelpPaymentMode = false;
+              viewServicePinCards.chosenFriendForHelp = null;
 
-                    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                      console.log("Started");
-                    }, function () {
-                      console.log("closed");
-                    });
-                  }
-
-                  setTimeout(function () {
-                    checkPaymentStatus(result[1][0].payment_id);
-                  }, 2000);
-
-                }
-                else if (result[1][0].invoice_id && !result[1][0].payment_id) {
-                  console.log("Invoice id");
-
-                  viewServicePinCards.friendHelpPaymentMode = false;
-                  viewServicePinCards.chosenFriendForHelp = null;
-
-                  componentSuccessId.style.display = 'block';
-                }
-              }
-            }
-            else {
-              scope.errorMessageFromPayment = result[0][0].error_note;
+              scope.operationMessage = window.languages.ViewAutoPayDeletedSuccessText;
+              scope.viewPage = 'view-auto-pay-new';
+              scope.stepAmount = 1;
               scope.update();
-              console.log("result of APP.PAYMENT 3", result);
-              componentUnsuccessId.style.display = 'block';
-            }
-          },
-
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
-          }
-        });
-      }
-
-      function checkPaymentStatus(payment_id) {
-
-        console.log("check payment status");
-
-        window.api.call({
-          method: 'get.payment',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            payment_id: payment_id
-          },
-
-          scope: this,
-
-          onSuccess: function (result) {
-            if (result[0][0].error == 0 && result[1][0]) {
-
-              console.log("result of get.payment success=", result);
-              if (result[1][0].state == -1) {
-//                scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-service-page-new';
-                scope.stepAmount = 2;
-                scope.errorMessageFromPayment = result[1][0].error;
-                scope.update();
-                console.log("state=-1 error,view=", scope.viewPage, ",step=", scope.stepAmount);
-                if (device.platform != 'BrowserStand') {
-                  SpinnerPlugin.activityStop();
-                }
-                componentUnsuccessId.style.display = 'block';
-
-
-              } else if (result[1][0].state == 2) {
-                window.updateBalanceGlobalFunction();
-
-                viewServicePinCards.friendHelpPaymentMode = false;
-                viewServicePinCards.chosenFriendForHelp = null;
-
-//                scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-pay';
-                scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
-                scope.update();
-                console.log("state=2 success,view=", scope.viewPage, ",step=", scope.stepAmount);
-                if (device.platform != 'BrowserStand') {
-                  SpinnerPlugin.activityStop();
-                }
-                componentSuccessId.style.display = 'block';
-
-
-              } else if (result[1][0].state == 1) {
-                statusCheckCounter++;
-//                console.log("statusCheckCounter=", statusCheckCounter);
-                if (statusCheckCounter < 5) {
-                  if (device.platform != 'BrowserStand') {
-                    var options = {dimBackground: true};
-
-                    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                      console.log("Started");
-                    }, function () {
-                      console.log("closed");
-                    });
-                  }
-                  setTimeout(function () {
-                    checkPaymentStatus(result[1][0].payment_id);
-                  }, 2000);
-                } else {
-                  if (device.platform != 'BrowserStand') {
-                    SpinnerPlugin.activityStop();
-                  }
-
-                  viewServicePinCards.friendHelpPaymentMode = false;
-                  viewServicePinCards.chosenFriendForHelp = null;
-
-//                  scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-pay';
-                  scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
-                  scope.update();
-                  console.log("state=1 waiting,view=", scope.viewPage, ",step=", scope.stepAmount);
-                  componentInProcessingId.style.display = 'block';
-                }
-
-              }
-
+              componentSuccessId.style.display = 'block';
             }
             else {
-              console.log("result of GET.PAYMENT in else", result);
-              if (device.platform != 'BrowserStand') {
-                SpinnerPlugin.activityStop();
-              }
+              console.log("result of autopay.delete", result);
               componentUnsuccessId.style.display = 'block';
             }
           },
@@ -550,207 +741,47 @@
           }
         });
       }
-
-      function createAutoPay(payment_data) {
-        scope.operationMessage = window.languages.ViewAutoPayCreatedSuccessTextOne + "\"" + scope.autoPayData.name + "\"" + window.languages.ViewAutoPayCreatedSuccessTextTwo;
-        if (scope.autoPayData && scope.autoPayData.fromView == 'PAYCONFIRM') {
-          scope.viewPage = 'view-pay-confirm-new';
-          scope.stepAmount = 3;
-          scope.goBack = true;
-
-        } else {
-          scope.viewPage = 'view-auto-pay-new';
-          scope.stepAmount = 5;
-          scope.goBack = true;
-        }
-
-        scope.update();
-        console.log("in create autopay func", scope.autoPayData);
-        if (scope.autoPayData) {
-          if (scope.autoPayData.autopay_type == 2) {
-            console.log(Number(amount));
-            window.api.call({
-              method: 'autopay.add.by.event',
-              input: {
-                session_key: sessionKey,
-                phone_num: phoneNumber,
-                service_id: Number(serviceId),
-                account_id: Number(accountId),
-                amount: amount,
-                cntrg_phone_num: scope.autoPayData.cntrg_phone_num,
-                step: scope.autoPayData.step,
-                title: scope.autoPayData.name
-              },
-
-              scope: this,
-
-              onSuccess: function (result) {
-                if (result[0][0].error == 0) {
-                  console.log("result of autopay.add.by.event", result);
-//                  scope.autoPayDelete = true;
-//                  scope.update(scope.autoPayDelete);
-
-                  if (scope.autoPayData.fromView == 'PAYCONFIRM')
-                    scope.autoPayData.fromView = 'AFTERCREATION';
-
-                  scope.autoPayData.isNew = false;
-                  localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-                  componentSuccessId.style.display = 'block';
-
-                }
-                else {
-                  if (scope.autoPayData.fromView == 'PAYCONFIRM')
-                    scope.autoPayData.fromView = 'AFTERCREATION';
-//                  scope.autoPayData.isNew = false;
-                  localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-                  console.log("result of autopay.add.by.event", result);
-                  componentUnsuccessId.style.display = 'block';
-                }
-              },
-
-              onFail: function (api_status, api_status_message, data) {
-                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                console.error(data);
-              }
-            });
-          } else if (scope.autoPayData.autopay_type == 1) {
-
-            window.api.call({
-              method: 'autopay.add.by.schedule',
-              input: {
-                session_key: sessionKey,
-                phone_num: phoneNumber,
-                type: scope.autoPayData.type,
-                service_id: Number(serviceId),
-                account_id: Number(accountId),
-                amount: Number(amount),
-                payment_data: payment_data,
-                paytime: scope.autoPayData.paytime,
-                week_day: scope.autoPayData.week_day ? scope.autoPayData.week_day : null,
-                month_day: scope.autoPayData.month_day ? scope.autoPayData.month_day : null,
-                title: scope.autoPayData.name
-              },
-
-              scope: this,
-
-              onSuccess: function (result) {
-                if (result[0][0].error == 0) {
-                  console.log("result of autopay.add.by.schedule", result);
-//                  localStorage.setItem('autoPayData', null);
-                  if (scope.autoPayData.fromView == 'PAYCONFIRM')
-                    scope.autoPayData.fromView = 'AFTERCREATION';
-                  scope.autoPayData.isNew = false;
-                  localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-                  componentSuccessId.style.display = 'block';
-
-                }
-                else {
-                  if (scope.autoPayData.fromView == 'PAYCONFIRM')
-                    scope.autoPayData.fromView = 'AFTERCREATION';
-//                  scope.autoPayData.isNew = false;
-                  localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-                  console.log("result of autopay.add.by.schedule", result);
-                  componentUnsuccessId.style.display = 'block';
-                }
-              },
-
-              onFail: function (api_status, api_status_message, data) {
-                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                console.error(data);
-              }
-            });
-          }
-        }
-
-      }
-    };
-
-    deleteAutoPay = function () {
-      console.log("delete autopay =", scope.autoPayData);
-      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-      window.api.call({
-        method: 'autopay.delete',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          autopay_id: scope.autoPayData.id,
-          autopay_type: scope.autoPayData.autopay_type
-        },
-
-        scope: this,
-
-        onSuccess: function (result) {
-          if (result[0][0].error == 0) {
-            console.log("result of autopay.delete", result);
-            localStorage.setItem('autoPayData', null);
-
-            viewServicePinCards.friendHelpPaymentMode = false;
-            viewServicePinCards.chosenFriendForHelp = null;
-
-            scope.operationMessage = window.languages.ViewAutoPayDeletedSuccessText;
-            scope.viewPage = 'view-auto-pay-new';
-            scope.stepAmount = 1;
-            scope.update();
-            componentSuccessId.style.display = 'block';
-          }
-          else {
-            console.log("result of autopay.delete", result);
-            componentUnsuccessId.style.display = 'block';
-          }
-        },
-
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      });
     };
 
     addToAutoPay = function () {
-
-      if (modeOfApp.demoVersion) {
-        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-        scope.showError = true;
-        scope.errorNote = question;
-//        confirm(question)
-//        scope.confirmShowBool = true;
-//        scope.confirmNote = question;
-//        scope.confirmType = 'local';
-//        scope.result = function (bool) {
-//          if (bool) {
-//            localStorage.clear();
-//            window.location = 'index.html'
-//            scope.unmount()
-//            return
-//          }
-//        };
-        scope.update();
-
-        return
-      }
-
-      opts.mode = 'ADDAUTOPAY';
-      scope.autoPayData = {};
-      opts.id = opts.chosenServiceId;
-      scope.autoPayData.service_id = opts.chosenServiceId;
-      scope.autoPayData.fromView = 'PAYCONFIRM';
-      scope.autoPayData.isNew = true;
-
-      event.preventDefault();
       event.stopPropagation();
-      if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available) {
-        localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-        riotTags.innerHTML = "<view-autopay-method-new>";
-        riot.mount("view-autopay-method-new", opts);
-        scope.unmount()
-      } else {
-        scope.autoPayData.title = window.languages.ViewAutoPayMethodSchedulerText;
-        scope.autoPayData.autopay_type = 1;
-        localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-        riotTags.innerHTML = "<view-autopay-schedule-method-new>";
-        riot.mount("view-autopay-schedule-method-new", opts);
-        scope.unmount()
+
+      autoPayEndY = event.changedTouches[0].pageY;
+      autoPayEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(autoPayStartY - autoPayEndY) <= 20 && Math.abs(autoPayStartX - autoPayEndX) <= 20) {
+
+        if (modeOfApp.demoVersion) {
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          scope.showError = true;
+          scope.errorNote = question;
+          scope.update();
+
+          return
+        }
+
+        opts.mode = 'ADDAUTOPAY';
+        scope.autoPayData = {};
+        opts.id = opts.chosenServiceId;
+        scope.autoPayData.service_id = opts.chosenServiceId;
+        scope.autoPayData.fromView = 'PAYCONFIRM';
+        scope.autoPayData.isNew = true;
+
+        event.preventDefault();
+        event.stopPropagation();
+        if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available) {
+          localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+          riotTags.innerHTML = "<view-autopay-method-new>";
+          riot.mount("view-autopay-method-new", opts);
+          scope.unmount()
+        } else {
+          scope.autoPayData.title = window.languages.ViewAutoPayMethodSchedulerText;
+          scope.autoPayData.autopay_type = 1;
+          localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+          riotTags.innerHTML = "<view-autopay-schedule-method-new>";
+          riot.mount("view-autopay-schedule-method-new", opts);
+          scope.unmount()
+        }
       }
 
     }

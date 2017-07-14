@@ -42,7 +42,7 @@
         <div class="pincard-friend-change-text" ontouchend="friendHelp()">Изменить</div>
       </div>
 
-      <button class="pincard-button-enter"
+      <button class="pincard-button-enter" ontouchstart="onTouchStartOfEnterCard()"
               ontouchend="goToPayConfirmView()">{window.languages.ViewServicePageEnterLabel}
       </button>
 
@@ -108,53 +108,69 @@
       console.log("autoPayType=", this.autoPayTypeText);
     }
 
+    var enterCardStartY, enterCardStartX, enterCardEndY, enterCardEndX;
+
+    scope.onTouchStartOfEnterCard = onTouchStartOfEnterCard = function () {
+      event.stopPropagation();
+      enterCardStartY = event.changedTouches[0].pageY;
+      enterCardStartX = event.changedTouches[0].pageX;
+    };
+
 
     goToPayConfirmView = function () {
 
-      var cardSumFromPinCards = scope.tags['component-pincards'].getAccountCardSum();
-      console.log(cardSumFromPinCards, opts.amountText)
-      var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-      scope.update()
-      if (cardSumFromPinCards && cardSumFromPinCards < parseInt(opts.amountText) && opts.mode != 'ADDAUTOPAY') {
+      event.stopPropagation();
+
+      enterCardEndY = event.changedTouches[0].pageY;
+      enterCardEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(enterCardStartY - enterCardEndY) <= 20 && Math.abs(enterCardStartX - enterCardEndX) <= 20) {
+
+        var cardSumFromPinCards = scope.tags['component-pincards'].getAccountCardSum();
         console.log(cardSumFromPinCards, opts.amountText)
-        scope.clickPinError = false;
-        scope.errorNote = "На выбранной карте недостаточно средств";
-        scope.showError = true;
-        riot.update();
-        return;
-      }
-      cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-      console.log("cardsArray=", cardsArray);
-      console.log("BOOL=", scope.friendHelpBool);
-      if (scope.friendHelpBool) {
-        opts.payByCard = false;
-        opts.chosenFriendForHelp = opts.chosenFriendForHelp ? opts.chosenFriendForHelp : viewServicePinCards.chosenFriendForHelp;
-        scope.checked = true;
-        event.preventDefault();
-        event.stopPropagation();
-        this.riotTags.innerHTML = "<view-pay-confirm-new>";
-        riot.mount('view-pay-confirm-new', opts);
-        scope.unmount()
-      } else {
-        for (var i in cardsArray) {
-          if (cardsArray[i].chosenCard && cardsArray[i].access == 2) {
-            opts.chosenCardId = cardsArray[i].card_id;
-            opts.payByCard = true;
-            scope.checked = true;
-            event.preventDefault();
-            event.stopPropagation();
-            this.riotTags.innerHTML = "<view-pay-confirm-new>";
-            riot.mount('view-pay-confirm-new', opts);
-            scope.unmount();
+        var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+        scope.update()
+        if (cardSumFromPinCards && cardSumFromPinCards < parseInt(opts.amountText) && opts.mode != 'ADDAUTOPAY') {
+          console.log(cardSumFromPinCards, opts.amountText)
+          scope.clickPinError = false;
+          scope.errorNote = "На выбранной карте недостаточно средств";
+          scope.showError = true;
+          riot.update();
+          return;
+        }
+        cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+        console.log("cardsArray=", cardsArray);
+        console.log("BOOL=", scope.friendHelpBool);
+        if (scope.friendHelpBool) {
+          opts.payByCard = false;
+          opts.chosenFriendForHelp = opts.chosenFriendForHelp ? opts.chosenFriendForHelp : viewServicePinCards.chosenFriendForHelp;
+          scope.checked = true;
+          event.preventDefault();
+          event.stopPropagation();
+          this.riotTags.innerHTML = "<view-pay-confirm-new>";
+          riot.mount('view-pay-confirm-new', opts);
+          scope.unmount()
+        } else {
+          for (var i in cardsArray) {
+            if (cardsArray[i].chosenCard && cardsArray[i].access == 2) {
+              opts.chosenCardId = cardsArray[i].card_id;
+              opts.payByCard = true;
+              scope.checked = true;
+              event.preventDefault();
+              event.stopPropagation();
+              this.riotTags.innerHTML = "<view-pay-confirm-new>";
+              riot.mount('view-pay-confirm-new', opts);
+              scope.unmount();
+            }
           }
         }
-      }
-      if (!scope.checked) {
-        scope.clickPinError = false;
-        scope.errorNote = "Выберите карту для оплаты";
-        scope.showError = true;
-        scope.update();
-        return;
+        if (!scope.checked) {
+          scope.clickPinError = false;
+          scope.errorNote = "Выберите карту для оплаты";
+          scope.showError = true;
+          scope.update();
+          return;
+        }
       }
     };
 
