@@ -2,16 +2,16 @@
   <div class="view-mycard-list riot-tags-main-container">
     <div class="page-title">
       <p class="name-title">{titleName}</p>
-      <div id="backButton" ontouchend="goToMainPage()"
+      <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
            class="back-button">
       </div>
       <div class="mycardlist-add-button" ontouchend="addCardTouchEnd()"></div>
     </div>
 
     <div class="mycardlist-container">
-      <div class="mycardlist-card" each="{i in cardsArray}"
+      <div class="mycardlist-card" each="{i in cardsArray}" id="{i.card_id}"
            style="background-image: url({i.card_background_url}); color: rgb({i.font_color});"
-           ontouchstart="goToCardPageTouchStart()" ontouchend="goToCardPageTouchEnd({i.card_id})">
+           ontouchstart="goToCardPageTouchStart(this.id)" ontouchend="goToCardPageTouchEnd({i.card_id}, this.id)">
 
         <div class="mycardlist-card-bank-name"></div>
         <div class="mycardlist-card-salary-title">{i.name}</div>
@@ -51,6 +51,8 @@
 
     if (JSON.parse(localStorage.getItem("click_client_cards")))
       scope.cardsArray = JSON.parse(localStorage.getItem("click_client_cards"));
+
+    console.log('CARDS', scope.cardsArray)
     scope.update();
 
     refreshCards = function () {
@@ -432,27 +434,52 @@
 
     //    refreshCards();
 
-    goToMainPage = function () {
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    goToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown();
-      scope.unmount()
+
+      backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
+    };
+
+    goToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+        scope.unmount()
+      }
     };
 
     var goToCardTouchStartX, goToCardTouchStartY, goToCardTouchEndX, goToCardTouchEndY;
-    goToCardPageTouchStart = function () {
+    goToCardPageTouchStart = function (id) {
       event.preventDefault();
       event.stopPropagation();
 
       goToCardTouchStartX = event.changedTouches[0].pageX
       goToCardTouchStartY = event.changedTouches[0].pageY
 
+      document.getElementById(id).style.webkitTransform = 'scale(0.9)'
+
     }
 
-    goToCardPageTouchEnd = function (cardId) {
+    goToCardPageTouchEnd = function (cardId, id) {
       if (modeOfApp.offlineMode) return
       event.preventDefault();
       event.stopPropagation();
+
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       goToCardTouchEndX = event.changedTouches[0].pageX
       goToCardTouchEndY = event.changedTouches[0].pageY
