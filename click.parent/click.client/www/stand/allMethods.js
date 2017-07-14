@@ -10677,7 +10677,7 @@ window.fakedSocket.register("invoice.action", function (input) {
         [{
           "method": input.method,
           "success": 1,
-          "error": 0,
+          "error": 1,
           "error_note": ""
         }],
         [{
