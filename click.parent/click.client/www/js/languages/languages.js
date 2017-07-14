@@ -338,7 +338,7 @@ var RU_LANGUAGES =
   "ViewAddCardTitle": "ДОБАВИТЬ КАРТУ",
   "ViewAddCardNameTitle": "Введите название карты",
   "ViewAddCardNumberTitle": "Номер карты",
-  "ViewAddCardDateTitle": "Дата окончания",
+  "ViewAddCardDateTitle": "Срок действия",
   "ViewAddCardPinTitle": "Код банка",
   "ViewAddCardDoMainTitle": "Сделать основной",
 
