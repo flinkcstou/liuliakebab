@@ -5,7 +5,7 @@
       <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
            class="back-button">
       </div>
-      <div class="mycardlist-add-button" ontouchend="addCardTouchEnd()"></div>
+      <div id="myCardListButtonAddId" class="mycardlist-add-button" ontouchstart="addCardTouchStart()" ontouchend="addCardTouchEnd()"></div>
     </div>
 
     <div class="mycardlist-container">
@@ -507,14 +507,35 @@
       }
     }
 
+    var addTouchStartX, addTouchStartY, addTouchEndX, addTouchEndY;
+
+    addCardTouchStart = function () {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      myCardListButtonAddId.style.webkitTransform = 'scale(0.7)'
+
+      addTouchStartX = event.changedTouches[0].pageX
+      addTouchStartY = event.changedTouches[0].pageY
+
+    }
+
     addCardTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      if (modeOfApp.demoVersion) {
-        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-        scope.showError = true;
-        scope.errorNote = question;
+      myCardListButtonAddId.style.webkitTransform = 'scale(1)'
+
+      addTouchEndX = event.changedTouches[0].pageX
+      addTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(addTouchStartX - addTouchEndX) <= 20 && Math.abs(addTouchStartY - addTouchEndY) <= 20) {
+
+        if (modeOfApp.demoVersion) {
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          scope.showError = true;
+          scope.errorNote = question;
 //        confirm(question)
 //        scope.confirmShowBool = true;
 //        scope.confirmNote = question;
@@ -531,15 +552,16 @@
 //            return
 //          }
 //        };
-        scope.update();
+          scope.update();
 
-        return
+          return
+        }
+
+        riotTags.innerHTML = "<view-add-card>";
+        riot.mount('view-add-card');
+
+        scope.unmount()
       }
-
-      riotTags.innerHTML = "<view-add-card>";
-      riot.mount('view-add-card');
-
-      scope.unmount()
     }
 
 
