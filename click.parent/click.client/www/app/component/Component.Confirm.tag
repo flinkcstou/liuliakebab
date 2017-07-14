@@ -4,10 +4,10 @@
     <p class="component-alert-message">{opts.confirmnote}</p>
 
     <div class="component-calc-buttons-container">
-      <button class="component-confirm-button-cancel-container" ontouchend="cancelConfirm()">
+      <button id="confirmCancelButtonId" class="component-confirm-button-cancel-container" ontouchstart="cancelConfirmStart()" ontouchend="cancelConfirmEnd()">
         {window.languages.ComponentConfirmCancel}
       </button>
-      <button class="component-confirm-button-ok-container" ontouchend="okConfirm()">
+      <button id="confirmOkButtonId" class="component-confirm-button-ok-container" ontouchstart="okConfirmStart()" ontouchend="okConfirmEnd()">
         {window.languages.ComponentAlertOk}
       </button>
     </div>
@@ -18,46 +18,88 @@
     var scope = this;
     scope.outerShowAlertBool = false;
 
+    var okButtonStartX, okButtonEndX, okButtonStartY, okButtonEndY;
 
-    okConfirm = function () {
+    okConfirmStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      if (opts.confirmtype == 'local') {
-        scope.parent.result(true);
-        scope.parent.confirmShowBool = false;;
-      }
-      else if (opts.confirmtype == 'internet') {
-        modeOfApp.offlineMode = true;
-        modeOfApp.onlineMode = false;
+      okButtonStartX = event.changedTouches[0].pageX;
+      okButtonStartY = event.changedTouches[0].pageY;
 
-        riotTags.innerHTML = "<view-main-page>";
-        riot.mount('view-main-page');
-//        scope.unmount()
-      } else if (opts.confirmtype == 'session') {
-        riotTags.innerHTML = "<view-authorization>";
-        riot.mount('view-authorization');
-//        scope.unmount()
-      }
-      else {
-        navigator.app.exitApp();
-      }
-      scope.outerShowAlertBool = true;
+      confirmOkButtonId.style.webkitTransform = 'scale(0.8)'
+    }
 
-      //OK
-      riot.update()
+    okConfirmEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      confirmOkButtonId.style.webkitTransform = 'scale(1)'
+
+      okButtonEndX = event.changedTouches[0].pageX;
+      okButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(okButtonStartX - okButtonEndX) <= 20 && Math.abs(okButtonStartY - okButtonEndY) <= 20) {
+
+        if (opts.confirmtype == 'local') {
+          scope.parent.result(true);
+          scope.parent.confirmShowBool = false;
+
+        }
+        else if (opts.confirmtype == 'internet') {
+          modeOfApp.offlineMode = true;
+          modeOfApp.onlineMode = false;
+
+          riotTags.innerHTML = "<view-main-page>";
+          riot.mount('view-main-page');
+//        scope.unmount()
+        } else if (opts.confirmtype == 'session') {
+          riotTags.innerHTML = "<view-authorization>";
+          riot.mount('view-authorization');
+//        scope.unmount()
+        }
+        else {
+          navigator.app.exitApp();
+        }
+        scope.outerShowAlertBool = true;
+
+        //OK
+        riot.update()
+      }
     };
 
-    cancelConfirm = function () {
+    var cancelButtonStartX, cancelButtonEndX, cancelButtonStartY, cancelButtonEndY;
+
+    cancelConfirmStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      scope.outerShowAlertBool = true;
-      if(scope.parent)
-      scope.parent.confirmShowBool = false;
-      console.log(scope.outerShowAlertBool)
+      cancelButtonStartX = event.changedTouches[0].pageX;
+      cancelButtonStartY = event.changedTouches[0].pageY;
 
-      riot.update()
+      confirmCancelButtonId.style.webkitTransform = 'scale(0.8)'
+
+
+    }
+
+    cancelConfirmEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      confirmCancelButtonId.style.webkitTransform = 'scale(1)'
+
+      cancelButtonEndX = event.changedTouches[0].pageX;
+      cancelButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(cancelButtonStartX - cancelButtonEndX) <= 20 && Math.abs(cancelButtonStartY - cancelButtonEndY) <= 20) {
+
+        scope.outerShowAlertBool = true;
+        if (scope.parent)
+          scope.parent.confirmShowBool = false;
+        console.log(scope.outerShowAlertBool)
+
+        riot.update()
+      }
     }
 
   </script>
