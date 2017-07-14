@@ -9899,7 +9899,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: " + 74 * widthK + "px;" +
-  "top: 60%;" +
+  "top: " + 440 * heightK + "px;" +
+  //"top: 50%;" +
   "background-color: #00a8f1;" +
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px;" +
@@ -9920,7 +9921,8 @@ var css = {
   "top:" + 100 * heightK + "px;" +
   "width:" + 600 * widthK + "px;" +
   "height:" + 320 * heightK + "px;" +
-  "border:" + 3 * heightK + "px solid #e7e7e7;" +
+  "border:" + 1 + "px solid #e7e7e7;" +
+  //"border:" + 3 * heightK + "px solid #e7e7e7;" +
   "background-color: white;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
@@ -9984,7 +9986,7 @@ var css = {
   "position: absolute;" +
   "background-size: contain;" +
   "text-align: center;" +
-  "color: #bfbfbf;" +
+  "color: #757389;" +
   "font-size:" + 24 * widthK + "px;" +
   "top: 1%;" +
   "left: 8%;" +
@@ -9996,9 +9998,11 @@ var css = {
   "padding: 0;" +
   "color: white;" +
   "background-color: white;" +
-  "border:" + 3 * heightK + "px solid #e7e7e7;" +
+  "border:" + 1 + "px solid #e7e7e7;" +
+  //"border:" + 3 * heightK + "px solid #e7e7e7;" +
   "width:" + 520 * widthK + "px;" +
-  "height: 19%;" +
+  "height:" + 60 * widthK + "px;" +
+  //"height: 19%;" +
   "left: 6%;" +
   "top: 26%;" +
   "}",
@@ -10007,8 +10011,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 470 * widthK + "px;" +
-  "height: 55%;" +
-  "top: 20%;" +
+  "height: 100%;" +
+  "top: 0%;" +
   "background-color: transparent;" +
   "border: none;" +
   "outline: none;" +
@@ -10051,9 +10055,11 @@ var css = {
   "padding: 0;" +
   "color: white;" +
   "background-color: white;" +
-  "border:" + 3 * heightK + "px solid #e7e7e7;" +
+  //"border:" + 3 * heightK + "px solid #e7e7e7;" +
+  "border:" + 1  + "px solid #e7e7e7;" +
   "width: 27%;" +
-  "height: 18%;" +
+  //"height: 18%;" +
+  "height:" + 60 * widthK + "px;" +
   "left: 6%;" +
   "bottom: 14%;" +
   "}",
