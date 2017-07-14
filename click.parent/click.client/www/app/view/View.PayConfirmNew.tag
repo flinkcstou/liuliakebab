@@ -6,7 +6,7 @@
       {titleName}</p>
     <p class="servicepage-category-field">{(opts.mode=='ADDAUTOPAY')?
       (autoPayTypeText):(categoryName)}</p>
-    <div ontouchend="goToBack()"
+    <div ontouchend="goToBack()" ontouchstart="onTouchStartOfBack()"
          class="{servicepage-button-back:opts.mode!='ADDAUTOPAY', autopay-method-back-button:opts.mode=='ADDAUTOPAY'}">
     </div>
     <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
@@ -127,11 +127,26 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    goToBack = function () {
-      event.preventDefault();
+    var backStartY, backStartX, backEndY, backEndX;
+
+    scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
-      onBackKeyDownWithParams(opts, 1);
-      scope.unmount()
+      backStartY = event.changedTouches[0].pageY;
+      backStartX = event.changedTouches[0].pageX;
+    };
+
+    goToBack = function () {
+      event.stopPropagation();
+
+      backEndY = event.changedTouches[0].pageY;
+      backEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
+        event.preventDefault();
+        event.stopPropagation();
+        onBackKeyDownWithParams(opts, 1);
+        scope.unmount()
+      }
     };
 
 
@@ -233,6 +248,7 @@
       favoriteStartX = event.changedTouches[0].pageX;
     };
 
+
     addToFavoritesinPayConfirm = function () {
       event.stopPropagation();
 
@@ -298,6 +314,14 @@
             scope.update(scope.isInFavorites);
           }
       }
+    };
+
+    var enterPayStartY, enterPayStartX, enterPayEndY, enterPayEndX;
+
+    scope.onTouchStartOfEnterPay = onTouchStartOfEnterPay = function () {
+      event.stopPropagation();
+      enterPayStartY = event.changedTouches[0].pageY;
+      enterPayStartX = event.changedTouches[0].pageX;
     };
 
 

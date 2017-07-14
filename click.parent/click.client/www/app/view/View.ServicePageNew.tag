@@ -5,7 +5,7 @@
       {titleName}</p>
     <p class="servicepage-category-field">{(opts.mode=='ADDAUTOPAY')?
       (window.languages.ViewAutoPayMethodSchedulerText):(categoryName)}</p>
-    <div ontouchend="goToBack()"
+    <div ontouchend="goToBack()" ontouchstart="onTouchStartOfBack()"
          class="{servicepage-button-back:opts.mode!='ADDAUTOPAY', autopay-method-back-button:opts.mode=='ADDAUTOPAY'}">
     </div>
     <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
@@ -182,7 +182,8 @@
   </div>
 
   <div hidden="{!showComponent}" id="blockAmountCalculatorId" class="component-calc">
-    <div id="rightButton" type="button" class="component-banklist-close-button" ontouchend="closeComponent()"></div>
+    <div id="rightButton" type="button" class="component-banklist-close-button" ontouchstart="onTouchStartOfCloseIcon()"
+         ontouchend="closeComponent()"></div>
     <div class="component-calc-name-title">{window.languages.ViewAmountCalculatorNameTitle}</div>
 
     <div class="component-calc-fields-container">
@@ -200,11 +201,13 @@
       </div>
 
       <div class="component-calc-buttons-container">
-        <div class="component-calc-button component-calc-cancel-button" ontouchend="closeComponent()">
+        <div class="component-calc-button component-calc-cancel-button" ontouchstart="onTouchStartOfClose()"
+             ontouchend="closeAmountComponent()">
           <p class="component-calc-button-label component-calc-cancel-button-label">
             {window.languages.ViewAmountCalculatorCancelText}</p>
         </div>
-        <div id="acceptConvertedBtnId" class="component-calc-button" ontouchend="acceptConvertedAmount()">
+        <div id="acceptConvertedBtnId" class="component-calc-button" ontouchstart="onTouchStartOfAccept()"
+             ontouchend="acceptConvertedAmount()">
           <p class="component-calc-button-label">{window.languages.ViewAmountCalculatorAcceptText}</p>
         </div>
       </div>
@@ -254,13 +257,28 @@
       scope.update();
     }
 
+    var backStartY, backStartX, backEndY, backEndX;
+
+    scope.onTouchStartOfBack = onTouchStartOfBack = function () {
+      event.stopPropagation();
+      backStartY = event.changedTouches[0].pageY;
+      backStartX = event.changedTouches[0].pageX;
+    };
+
 
     goToBack = function () {
-      window.viewServicePinCards = {};
-      event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown();
-      scope.unmount()
+
+      backEndY = event.changedTouches[0].pageY;
+      backEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
+        window.viewServicePinCards = {};
+        event.preventDefault();
+        event.stopPropagation();
+        onBackKeyDown();
+        scope.unmount()
+      }
     };
 
 
@@ -618,12 +636,49 @@
       }
     }
 
+    var closeIconStartY, closeIconStartX, closeIconEndY, closeIconEndX;
+
+    scope.onTouchStartOfCloseIcon = onTouchStartOfCloseIcon = function () {
+      event.stopPropagation();
+      closeIconStartY = event.changedTouches[0].pageY;
+      closeIconStartX = event.changedTouches[0].pageX;
+    };
+
 
     closeComponent = function () {
+      event.stopPropagation();
+
+      closeIconEndY = event.changedTouches[0].pageY;
+      closeIconEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(closeIconStartY - closeIconEndY) <= 20 && Math.abs(closeIconStartX - closeIconEndX) <= 20) {
 //      blockAmountCalculatorId.style.display = 'none';
-      scope.showComponent = false;
-      window.checkShowingComponent = null;
-      scope.update();
+        scope.showComponent = false;
+        window.checkShowingComponent = null;
+        scope.update();
+      }
+    };
+
+    var closeStartY, closeStartX, closeEndY, closeEndX;
+
+    scope.onTouchStartOfClose = onTouchStartOfClose = function () {
+      event.stopPropagation();
+      closeStartY = event.changedTouches[0].pageY;
+      closeStartX = event.changedTouches[0].pageX;
+    };
+
+    closeAmountComponent = function () {
+      event.stopPropagation();
+
+      closeEndY = event.changedTouches[0].pageY;
+      closeEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(closeStartY - closeEndY) <= 20 && Math.abs(closeStartX - closeEndX) <= 20) {
+//      blockAmountCalculatorId.style.display = 'none';
+        scope.showComponent = false;
+        window.checkShowingComponent = null;
+        scope.update();
+      }
     };
 
     var converted;
@@ -653,16 +708,31 @@
       }
     };
 
+    var acceptStartY, acceptStartX, acceptEndY, acceptEndX;
+
+    scope.onTouchStartOfAccept = onTouchStartOfAccept = function () {
+      event.stopPropagation();
+      acceptStartY = event.changedTouches[0].pageY;
+      acceptStartX = event.changedTouches[0].pageX;
+    };
+
     acceptConvertedAmount = function () {
-      amount.value = scope.convertedAmount + ' ' + defaultAccount.currency;
-      if (amount.value.length > 0) {
-        checkFirst = true;
-        amountForPayTransaction = converted;
-      }
+      event.stopPropagation();
+
+      acceptEndY = event.changedTouches[0].pageY;
+      acceptEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(acceptStartY - acceptEndY) <= 20 && Math.abs(acceptStartX - acceptEndX) <= 20) {
+        amount.value = scope.convertedAmount + ' ' + defaultAccount.currency;
+        if (amount.value.length > 0) {
+          checkFirst = true;
+          amountForPayTransaction = converted;
+        }
 //      blockAmountCalculatorId.style.display = 'none';
-      scope.showComponent = false;
-      window.checkShowingComponent = null;
-      scope.update();
+        scope.showComponent = false;
+        window.checkShowingComponent = null;
+        scope.update();
+      }
     };
 
     console.log('VIEWPAY SERVICE', opts.chosenServiceId, 'mynumber' + localStorage.getItem('myNumberOperatorId'))

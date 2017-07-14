@@ -6,7 +6,7 @@
       {titleName}</p>
     <p class="servicepage-category-field">{(opts.mode=='ADDAUTOPAY')?
       (autoPayTypeText):(categoryName)}</p>
-    <div ontouchend="touchStartTitle()"
+    <div ontouchend="touchStartTitle()" ontouchstart="onTouchStartOfBack()"
          class="{servicepage-button-back:opts.mode!='ADDAUTOPAY', autopay-method-back-button:opts.mode=='ADDAUTOPAY'}">
     </div>
     <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
@@ -74,14 +74,30 @@
 
     var scope = this;
     scope.showError = false;
-    touchStartTitle = function () {
-      event.preventDefault();
+
+    var backStartY, backStartX, backEndY, backEndX;
+
+    scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
-      if (opts.mode == 'USUAL')
-        onBackKeyDownWithParams(opts, 1);
-      else
-        onBackKeyDown();
-      scope.unmount()
+      backStartY = event.changedTouches[0].pageY;
+      backStartX = event.changedTouches[0].pageX;
+    };
+
+    touchStartTitle = function () {
+      event.stopPropagation();
+
+      backEndY = event.changedTouches[0].pageY;
+      backEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (opts.mode == 'USUAL')
+          onBackKeyDownWithParams(opts, 1);
+        else
+          onBackKeyDown();
+        scope.unmount()
+      }
     };
 
     this.on('mount', function () {
