@@ -6,7 +6,7 @@
   </div>
 
   <div class="view-add-card">
-    <p hidden if="{!modeOfApp.offlineMode}" class="add-card-text-field">{window.languages.ViewAddCardNameTitle}</p>
+    <p class="add-card-text-field">{window.languages.ViewAddCardNameTitle}</p>
     <div hidden if="{!modeOfApp.offlineMode}" class="add-card-card-name-input-part-container">
       <input maxlength="25" class="add-card-card-name-input-part"/>
     </div>

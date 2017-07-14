@@ -9899,7 +9899,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: " + 74 * widthK + "px;" +
-  "top: 50%;" +
+  "top: " + 440 * heightK + "px;" +
+  //"top: 50%;" +
   "background-color: #00a8f1;" +
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px;" +
@@ -9985,7 +9986,7 @@ var css = {
   "position: absolute;" +
   "background-size: contain;" +
   "text-align: center;" +
-  "color: #bfbfbf;" +
+  "color: #757389;" +
   "font-size:" + 24 * widthK + "px;" +
   "top: 1%;" +
   "left: 8%;" +

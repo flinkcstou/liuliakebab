@@ -336,7 +336,8 @@ var RU_LANGUAGES =
   "ViewBankListReceiveLimitText": "Лимит на прием:",
 
   "ViewAddCardTitle": "ДОБАВИТЬ КАРТУ",
-  "ViewAddCardNameTitle": "Введите название карты",
+  //"ViewAddCardNameTitle": "Введите название карты",
+  "ViewAddCardNameTitle": "Введите 16-тизначный номер карты и срок её действия",
   "ViewAddCardNumberTitle": "Номер карты",
   "ViewAddCardDateTitle": "Срок действия",
   "ViewAddCardPinTitle": "Код банка",
