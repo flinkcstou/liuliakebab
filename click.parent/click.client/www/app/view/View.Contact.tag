@@ -2,7 +2,7 @@
 
   <div class="view-contact-page-title">
     <p class="view-contact-name-title">{titleName}</p>
-    <div id="backButton" ontouchend="goToBack()" class="view-contact-back-button"></div>
+    <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="view-contact-back-button"></div>
   </div>
 
   <div class="view-contact">
@@ -10,19 +10,19 @@
       <div class="view-contact-info-icon" style="background-image: url({contactPhoto})">{firstLetter}</div>
       <p class="view-contact-info-text">{firstName} {secondName}</p>
     </div>
-    <div class="view-contact-pay-transfer-container" ontouchstart="contactPayTouchStart()"
+    <div id="payButtonId" class="view-contact-pay-transfer-container" ontouchstart="contactPayTouchStart()"
          ontouchend="contactPayTouchEnd()">
       <div class="view-contact-pay-icon"></div>
       <p class="view-contact-pay-title">{window.languages.ViewContactPay}</p>
       <div class="view-contact-open-icon"></div>
     </div>
-    <div class="view-contact-pay-transfer-container" ontouchstart="contactTransferTouchStart()"
+    <div id="transferButtonId" class="view-contact-pay-transfer-container" ontouchstart="contactTransferTouchStart()"
          ontouchend="contactTransferTouchEnd()">
       <div class="view-contact-transfer-icon"></div>
       <p class="view-contact-transfer-title">{window.languages.ViewContactTransfer}</p>
       <div class="view-contact-open-icon"></div>
     </div>
-    <div class="view-contact-pay-delete-container" ontouchstart="contactDeleteTouchStart()"
+    <div id="delButtonId" class="view-contact-pay-delete-container" ontouchstart="contactDeleteTouchStart()"
          ontouchend="contactDeleteTouchEnd()">
       <div class="view-contact-delete-icon"></div>
       <p class="view-contact-transfer-title">{window.languages.ViewContactDeleteNumber}</p>
@@ -117,6 +117,9 @@
 
     contactPayTouchStart = function () {
       payTouchStart = event.changedTouches[0].pageY
+
+      payButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
+
       event.preventDefault()
       event.stopPropagation()
     }
@@ -124,6 +127,8 @@
     contactPayTouchEnd = function () {
       event.preventDefault()
       event.stopPropagation()
+
+      payButtonId.style.backgroundColor = 'transparent'
 
       payTouchEnd = event.changedTouches[0].pageY
 
@@ -236,6 +241,8 @@
       event.preventDefault()
       event.stopPropagation()
 
+      delButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
+
       contactDeleteTouchStartX = event.changedTouches[0].pageX
       contactDeleteTouchStartY = event.changedTouches[0].pageY
     }
@@ -243,6 +250,8 @@
     contactDeleteTouchEnd = function () {
       event.preventDefault()
       event.stopPropagation()
+
+      delButtonId.style.backgroundColor = 'transparent'
 
       contactDeleteTouchEndX = event.changedTouches[0].pageX
       contactDeleteTouchEndY = event.changedTouches[0].pageY
@@ -279,11 +288,15 @@
       transferTouchStart = event.changedTouches[0].pageY
       event.preventDefault()
       event.stopPropagation()
+
+      transferButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
     }
 
     contactTransferTouchEnd = function () {
       event.preventDefault()
       event.stopPropagation()
+
+      transferButtonId.style.backgroundColor = 'transparent'
 
       transferTouchEnd = event.changedTouches[0].pageY
 
@@ -316,12 +329,33 @@
       contactSelectContainerId.style.display = 'none'
     }
 
-    goToBack = function () {
-      event.preventDefault()
-      event.stopPropagation()
-      onBackKeyDown()
-      scope.unmount()
-    }
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    goToBackStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
+    };
+
+    goToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+        scope.unmount()
+      }
+    };
 
 
   </script>

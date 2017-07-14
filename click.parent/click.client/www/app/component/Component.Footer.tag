@@ -80,15 +80,26 @@
 
     scope.showError = false;
 
-    scope.firstContactObject = {};
-    scope.firstContactObject.contactFname = 'Добавить';
-    scope.firstContactObject.contactLname = '';
-    scope.firstContactObject.id = '';
-    scope.firstContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
-    scope.firstContactObject.firstLetter = '';
-    scope.firstContactObject.phoneNumbers = [];
-    scope.firstContactObject.exist = false;
-    scope.firstContactObject.addContact = false;
+//    scope.firstContactObject = {};
+//    scope.firstContactObject.contactFname = 'Egor';
+//    scope.firstContactObject.contactLname = 'Egorovi4';
+//    scope.firstContactObject.id = '12345';
+//    scope.firstContactObject.contactPhoto = "";
+//    scope.firstContactObject.firstLetter = 'E';
+//    scope.firstContactObject.phoneNumbers = [[{value: "998974647747"}]];
+//    scope.firstContactObject.exist = true;
+//    scope.firstContactObject.addContact = false;
+
+
+        scope.firstContactObject = {};
+        scope.firstContactObject.contactFname = 'Добавить';
+        scope.firstContactObject.contactLname = '';
+        scope.firstContactObject.id = '';
+        scope.firstContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
+        scope.firstContactObject.firstLetter = '';
+        scope.firstContactObject.phoneNumbers = [];
+        scope.firstContactObject.exist = false;
+        scope.firstContactObject.addContact = false;
 
     scope.secondContactObject = {};
     scope.secondContactObject.contactFname = 'Добавить';
@@ -186,27 +197,27 @@
 
             scope.showError = false;
 
-            if(!contact.phoneNumbers){
+            if (!contact.phoneNumbers) {
               scope.showError = true;
               scope.errorNote = 'Отсутствует номер контакта'
               scope.update()
               return
             }
 
-            if(!contact.name){
+            if (!contact.name) {
               scope.showError = true;
               scope.errorNote = 'Отсутствует имя контакта'
               scope.update()
               return
             }
 
-            if(!contact.name.givenName){
-                if(!contact.name.familyName){
-                  scope.showError = true;
-                  scope.errorNote = 'Отсутствует имя контакта'
-                  scope.update()
-                  return
-                }
+            if (!contact.name.givenName) {
+              if (!contact.name.familyName) {
+                scope.showError = true;
+                scope.errorNote = 'Отсутствует имя контакта'
+                scope.update()
+                return
+              }
             }
 
             for (var i in arrayToSend) {
@@ -360,22 +371,22 @@
 
             scope.showError = false;
 
-            if(!contact.phoneNumbers){
+            if (!contact.phoneNumbers) {
               scope.showError = true;
               scope.errorNote = 'Отсутствует номер контакта'
               scope.update()
               return
             }
 
-            if(!contact.name){
+            if (!contact.name) {
               scope.showError = true;
               scope.errorNote = 'Отсутствует имя контакта'
               scope.update()
               return
             }
 
-            if(!contact.name.givenName){
-              if(!contact.name.familyName){
+            if (!contact.name.givenName) {
+              if (!contact.name.familyName) {
                 scope.showError = true;
                 scope.errorNote = 'Отсутствует имя контакта'
                 scope.update()
@@ -448,22 +459,22 @@
 
             scope.showError = false;
 
-            if(!contact.phoneNumbers){
+            if (!contact.phoneNumbers) {
               scope.showError = true;
               scope.errorNote = 'Отсутствует номер контакта'
               scope.update()
               return
             }
 
-            if(!contact.name){
+            if (!contact.name) {
               scope.showError = true;
               scope.errorNote = 'Отсутствует имя контакта'
               scope.update()
               return
             }
 
-            if(!contact.name.givenName){
-              if(!contact.name.familyName){
+            if (!contact.name.givenName) {
+              if (!contact.name.familyName) {
                 scope.showError = true;
                 scope.errorNote = 'Отсутствует имя контакта'
                 scope.update()
@@ -536,22 +547,22 @@
 
             scope.showError = false;
 
-            if(!contact.phoneNumbers){
+            if (!contact.phoneNumbers) {
               scope.showError = true;
               scope.errorNote = 'Отсутствует номер контакта'
               scope.update()
               return
             }
 
-            if(!contact.name){
+            if (!contact.name) {
               scope.showError = true;
               scope.errorNote = 'Отсутствует имя контакта'
               scope.update()
               return
             }
 
-            if(!contact.name.givenName){
-              if(!contact.name.familyName){
+            if (!contact.name.givenName) {
+              if (!contact.name.familyName) {
                 scope.showError = true;
                 scope.errorNote = 'Отсутствует имя контакта'
                 scope.update()
@@ -622,14 +633,14 @@
           navigator.contacts.pickContact(function (contact) {
             scope.showError = false;
 
-            if(!contact.phoneNumbers){
+            if (!contact.phoneNumbers) {
               scope.showError = true;
               scope.errorNote = 'Отсутствует номер контакта'
               scope.update()
               return
             }
 
-            if(!contact.name){
+            if (!contact.name) {
               scope.showError = true;
               scope.errorNote = 'Отсутствует имя контакта'
               scope.update()
