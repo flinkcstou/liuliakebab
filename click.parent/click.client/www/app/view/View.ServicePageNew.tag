@@ -54,7 +54,8 @@
              value="{defaultNumber || opts.first_field_value}" onkeydown="telPayVerificationKeyDown(this)"
              oninput="telPayVerificationKeyUp()"
              onkeyup="telPayVerificationKeyUp()"/>
-      <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchend="searchContact()"></div>
+      <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchstart="onTouchStartOfSearchContact()"
+           ontouchend="onTouchEndOfSearchContact()"></div>
     </div>
 
     <div class="servicepage-second-dropdown-field-pakety" if="{hasFirstLevel&& service.category_id==11}"
@@ -83,13 +84,15 @@
              pattern="[0-9]"
              placeholder="{placeHolderText}"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
-      <div if="{!modeOfApp.offlineMode}" class="servicepage-amount-icon" ontouchend="amountCalculator()"></div>
+      <div if="{!modeOfApp.offlineMode}" class="servicepage-amount-icon" ontouchstart="onTouchStartOfAmountCalculator()"
+           ontouchend="onTouchEndOfAmountCalculator()"></div>
     </div>
 
 
     <button id="enterButtonId"
             class="{servicepage-button-enter-enabled: enterButtonEnabled,servicepage-button-enter-disabled:!enterButtonEnabled}"
-            ontouchend="enterButton()">
+            ontouchstart="onTouchStartOfEnter()"
+            ontouchend="onTouchEndOfEnter()">
       {enterButton ? window.languages.ViewServicePageEnterLabel:window.languages.ViewServicePageSaveLabel}
     </button>
 
@@ -172,7 +175,7 @@
       </div>
     </div>
 
-    <button id="formTypeTwoBtnId" class="servicepage-button-save"
+    <button id="formTypeTwoBtnId" class="servicepage-button-save" ontouchstart="onTouchStartOfEnter()"
             ontouchend="formTypeTwoButtonFunction()">
       {!enterButton?window.languages.ViewServicePageSaveLabel:window.languages.ViewServicePageEnterLabel}
     </button>
@@ -481,112 +484,140 @@
         }
     });
 
+    var searchContactStartY, searchContactStartX, searchContactEndY, searchContactEndX;
 
-    searchContact = function () {
-      window.pickContactFromNativeChecker = true;
-      var maskOne = /[0-9]/g;
-      window.plugins.PickContact.chooseContact(function (contactInfo) {
-        setTimeout(function () {
-          var phoneNumber
-          if (device.platform == 'iOS')
-            phoneNumber = contactInfo.phoneNr;
+    scope.onTouchStartOfSearchContact = onTouchStartOfSearchContact = function () {
+      event.stopPropagation();
+      searchContactStartY = event.changedTouches[0].pageY;
+      searchContactStartX = event.changedTouches[0].pageX;
+    };
 
-          if (device.platform == 'Android') {
-            phoneNumber = contactInfo.nameFormated
-          }
-          var digits = phoneNumber.match(maskOne);
-          var phone = '';
-          for (var i in digits) {
-            phone += digits[i]
-          }
-          firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
-        }, 0);
-      }, function (error) {
-        console.log('error', error)
-      });
+    scope.onTouchEndOfSearchContact = onTouchEndOfSearchContact = function () {
+      event.stopPropagation();
 
+      searchContactEndY = event.changedTouches[0].pageY;
+      searchContactEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(searchContactStartY - searchContactEndY) <= 20 && Math.abs(searchContactStartX - searchContactEndX) <= 20) {
+        window.pickContactFromNativeChecker = true;
+        var maskOne = /[0-9]/g;
+        window.plugins.PickContact.chooseContact(function (contactInfo) {
+          setTimeout(function () {
+            var phoneNumber
+            if (device.platform == 'iOS')
+              phoneNumber = contactInfo.phoneNr;
+
+            if (device.platform == 'Android') {
+              phoneNumber = contactInfo.nameFormated
+            }
+            var digits = phoneNumber.match(maskOne);
+            var phone = '';
+            for (var i in digits) {
+              phone += digits[i]
+            }
+            firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
+          }, 0);
+        }, function (error) {
+          console.log('error', error)
+        });
+      }
     }
 
 
-    amountCalculator = function () {
+    var amountCalcStartY, amountCalcStartX, amountCalcEndY, amountCalcEndX;
 
-      if (modeOfApp.demoVersion) {
-        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+    scope.onTouchStartOfAmountCalculator = onTouchStartOfAmountCalculator = function () {
+      event.stopPropagation();
+      amountCalcStartY = event.changedTouches[0].pageY;
+      amountCalcStartX = event.changedTouches[0].pageX;
+    };
+
+    scope.onTouchEndOfAmountCalculator = onTouchEndOfAmountCalculator = function () {
+      event.stopPropagation();
+
+      amountCalcEndY = event.changedTouches[0].pageY;
+      amountCalcEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(amountCalcStartY - amountCalcEndY) <= 20 && Math.abs(amountCalcStartX - amountCalcEndX) <= 20) {
+        if (modeOfApp.demoVersion) {
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-        scope.confirmShowBool = true;
-        scope.confirmNote = question;
-        scope.confirmType = 'local';
-        scope.result = function (bool) {
-          if (bool) {
-            localStorage.clear();
-            window.location = 'index.html'
-            scope.unmount()
-            return
-          }
-          else {
-            scope.confirmShowBool = false;
-            return
-          }
-        };
-        scope.update();
+          scope.confirmShowBool = true;
+          scope.confirmNote = question;
+          scope.confirmType = 'local';
+          scope.result = function (bool) {
+            if (bool) {
+              localStorage.clear();
+              window.location = 'index.html'
+              scope.unmount()
+              return
+            }
+            else {
+              scope.confirmShowBool = false;
+              return
+            }
+          };
+          scope.update();
 
-        return
-      }
+          return
+        }
 
 //      if (!localStorage.getItem('click_client_currency_rate')) {
 //        console.log("no currency rate in localStorage");
-      window.api.call({
-        method: 'rate.convert',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          amount: 1
-        },
+        window.api.call({
+          method: 'rate.convert',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            amount: 1
+          },
 
-        scope: this,
+          scope: this,
 
-        onSuccess: function (result) {
-          console.log('rate.convert', result);
-          if (result[0][0].error == 0) {
-            scope.currencyRate = result[1][0].current_rate;
+          onSuccess: function (result) {
+            console.log('rate.convert', result);
+            if (result[0][0].error == 0) {
+              scope.currencyRate = result[1][0].current_rate;
 //              console.log("API returned = ", scope.currencyRate);
 //              localStorage.setItem('click_client_currency_rate', scope.currencyRate);
 
-            scope.update(scope.currencyRate);
-          }
-          else {
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
-            scope.update();
-          }
-        },
+              scope.update(scope.currencyRate);
+            }
+            else {
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
+              scope.showError = true;
+              scope.update();
+            }
+          },
 
-        onFail: function (api_status, api_status_message, data) {
-          console.log('rate.convert');
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      });
+          onFail: function (api_status, api_status_message, data) {
+            console.log('rate.convert');
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
 //      }
 //    else {
-      //        scope.currencyRate = localStorage.getItem('click_client_currency_rate');
-      //        console.log("currency rate is in localStorage=", scope.currencyRate);
-      //      }
+        //        scope.currencyRate = localStorage.getItem('click_client_currency_rate');
+        //        console.log("currency rate is in localStorage=", scope.currencyRate);
+        //      }
 
-      try {
-        this.firstFieldInput.blur();
-      } catch (error) {
+        try {
+          this.firstFieldInput.blur();
+        } catch (error) {
 
-        console.log(error);
-      }
+          console.log(error);
+        }
 
-      scope.showComponent = true
-      window.checkShowingComponent = scope;
+        scope.showComponent = true
+        window.checkShowingComponent = scope;
 //      blockAmountCalculatorId.style.display = 'block';
-      amountCalcInputId.focus();
-      scope.update();
-    };
+        amountCalcInputId.focus();
+        scope.update();
+      }
+    }
+
 
     closeComponent = function () {
 //      blockAmountCalculatorId.style.display = 'none';
@@ -1293,242 +1324,260 @@
     };
 
 
-    enterButton = function () {
+    var enterStartY, enterStartX, enterEndY, enterEndX;
 
-      try {
-        this.firstFieldInput.blur();
-        this.amount.blur();
-      } catch (error) {
+    scope.onTouchStartOfEnter = onTouchStartOfEnter = function () {
+      event.stopPropagation();
+      enterStartY = event.changedTouches[0].pageY;
+      enterStartX = event.changedTouches[0].pageX;
+    };
 
-        console.log(error);
-      }
+    scope.onTouchEndOfEnter = onTouchEndOfEnter = function () {
+      event.stopPropagation();
 
-      if (scope.phoneFieldBool && firstFieldInput.value.length < 9 && opts.chosenServiceId != "mynumber") {
-        scope.clickPinError = false;
-        scope.errorNote = "Неправильно введён номер телефона";
-        scope.showError = true;
-        scope.update();
+      enterEndY = event.changedTouches[0].pageY;
+      enterEndX = event.changedTouches[0].pageX;
 
-        return;
-      } else if (firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
-        scope.clickPinError = false;
-        if (scope.dropDownOn) {
-          for (var i = 0; i < scope.fieldArray.length; i++) {
-            if (scope.fieldArray[i].parameter_id == scope.chosenFieldParamId) {
-              scope.errorNote = scope.fieldArray[i].error_message;
+      if (Math.abs(enterStartY - enterEndY) <= 20 && Math.abs(enterStartX - enterEndX) <= 20) {
+
+
+        try {
+          this.firstFieldInput.blur();
+          this.amount.blur();
+        } catch (error) {
+
+          console.log(error);
+        }
+
+        if (scope.phoneFieldBool && firstFieldInput.value.length < 9 && opts.chosenServiceId != "mynumber") {
+          scope.clickPinError = false;
+          scope.errorNote = "Неправильно введён номер телефона";
+          scope.showError = true;
+          scope.update();
+
+          return;
+        } else if (firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
+          scope.clickPinError = false;
+          if (scope.dropDownOn) {
+            for (var i = 0; i < scope.fieldArray.length; i++) {
+              if (scope.fieldArray[i].parameter_id == scope.chosenFieldParamId) {
+                scope.errorNote = scope.fieldArray[i].error_message;
+              }
             }
+          } else {
+            scope.errorNote = scope.fieldArray[0].error_message;
           }
-        } else {
-          scope.errorNote = scope.fieldArray[0].error_message;
+          scope.showError = true;
+          scope.update();
+          return;
         }
-        scope.showError = true;
-        scope.update();
-        return;
-      }
 
-      if (scope.formType == 3) {
+        if (scope.formType == 3) {
 
-        if (scope.hasSecondLevel)
-          opts.communalParam = scope.chosenFieldParamIdThree;
-        else
-          opts.communalParam = scope.chosenFieldParamIdTwo;
-
-        if (!opts.communalParam) {
           if (scope.hasSecondLevel)
-            scope.errorNote = "Выберите город и район";
+            opts.communalParam = scope.chosenFieldParamIdThree;
           else
-            scope.errorNote = "Выберите район";
+            opts.communalParam = scope.chosenFieldParamIdTwo;
 
+          if (!opts.communalParam) {
+            if (scope.hasSecondLevel)
+              scope.errorNote = "Выберите город и район";
+            else
+              scope.errorNote = "Выберите район";
+
+            scope.clickPinError = false;
+            scope.showError = true;
+            scope.update();
+            return;
+          }
+
+        } else if (scope.formType == 4) {
+          if (scope.chosenFieldParamIdThree)
+            opts.internetPackageParam = scope.chosenFieldParamIdThree;
+          else {
+            scope.clickPinError = false;
+            scope.errorNote = "Выберите интернет пакет";
+            scope.showError = true;
+            scope.update();
+            return;
+          }
+        }
+
+        if (amountForPayTransaction < scope.service.min_pay_limit) {
+          console.log("amount=", amountForPayTransaction);
           scope.clickPinError = false;
+          scope.errorNote = scope.service.lang_min_amount;
+          scope.showError = true;
+          scope.update();
+          return;
+        }
+        if (amountForPayTransaction > scope.service.max_pay_limit) {
+          scope.clickPinError = false;
+          scope.errorNote = scope.service.lang_max_amount;
           scope.showError = true;
           scope.update();
           return;
         }
 
-      } else if (scope.formType == 4) {
-        if (scope.chosenFieldParamIdThree)
-          opts.internetPackageParam = scope.chosenFieldParamIdThree;
-        else {
-          scope.clickPinError = false;
-          scope.errorNote = "Выберите интернет пакет";
-          scope.showError = true;
-          scope.update();
-          return;
-        }
-      }
-
-      if (amountForPayTransaction < scope.service.min_pay_limit) {
-        console.log("amount=", amountForPayTransaction);
-        scope.clickPinError = false;
-        scope.errorNote = scope.service.lang_min_amount;
-        scope.showError = true;
-        scope.update();
-        return;
-      }
-      if (amountForPayTransaction > scope.service.max_pay_limit) {
-        scope.clickPinError = false;
-        scope.errorNote = scope.service.lang_max_amount;
-        scope.showError = true;
-        scope.update();
-        return;
-      }
-
-      opts.formtype = scope.formType;
-      opts.firstFieldId = scope.chosenFieldParamId;
-      opts.firstFieldText = firstFieldInput.value;
-      opts.firstFieldTitle = scope.chosenFieldName;
-      opts.cardTypeId = null;
-      opts.amountText = amountForPayTransaction;
-      opts.firstLevelParamId = scope.chosenFieldParamIdTwo;
-      opts.firstLevelFieldName = scope.chosenFieldNameTwo;
-      opts.secondLevelFieldName = scope.chosenFieldNameThree;
+        opts.formtype = scope.formType;
+        opts.firstFieldId = scope.chosenFieldParamId;
+        opts.firstFieldText = firstFieldInput.value;
+        opts.firstFieldTitle = scope.chosenFieldName;
+        opts.cardTypeId = null;
+        opts.amountText = amountForPayTransaction;
+        opts.firstLevelParamId = scope.chosenFieldParamIdTwo;
+        opts.firstLevelFieldName = scope.chosenFieldNameTwo;
+        opts.secondLevelFieldName = scope.chosenFieldNameThree;
 
 
 //      viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
 
 
-      if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
+        if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
 
-        opts.isInFavorites = !scope.enterButton;
+          opts.isInFavorites = !scope.enterButton;
 
-        event.preventDefault();
-        event.stopPropagation();
-
-
-        if (modeOfApp.offlineMode) {
-
-          var ussdQuery = scope.fieldArray[0].ussd_query;
-
-          console.log('opts.formtype', opts.formtype)
+          event.preventDefault();
+          event.stopPropagation();
 
 
-          if (opts.formtype == 1 && ussdQuery) {
-            if (opts.firstFieldText) {
+          if (modeOfApp.offlineMode) {
+
+            var ussdQuery = scope.fieldArray[0].ussd_query;
+
+            console.log('opts.formtype', opts.formtype)
+
+
+            if (opts.formtype == 1 && ussdQuery) {
+              if (opts.firstFieldText) {
+                ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
+              }
+              else {
+                ussdQuery = ussdQuery.replace('*{param}', opts.firstFieldText);
+              }
+              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+              ussdQuery = ussdQuery.replace('{option}', opts.firstFieldId);
+              ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
+              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
+              console.log(ussdQuery)
+            }
+
+            if (opts.formtype == 2 && ussdQuery) {
+              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
               ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
+              ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
+              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
+              console.log(ussdQuery)
             }
-            else {
-              ussdQuery = ussdQuery.replace('*{param}', opts.firstFieldText);
+
+            if (opts.formtype == 3 && ussdQuery) {
+              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+              ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
+              ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
+              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
+              console.log(ussdQuery)
             }
-            ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
-            ussdQuery = ussdQuery.replace('{option}', opts.firstFieldId);
-            ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
-            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
-            console.log(ussdQuery)
-          }
 
-          if (opts.formtype == 2 && ussdQuery) {
-            ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
-            ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
-            ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
-            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
-            console.log(ussdQuery)
-          }
+            if (opts.formtype == 4 && ussdQuery) {
+              console.log('ussdQuery', ussdQuery)
+              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+              ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
+              ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
+              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
+              console.log(ussdQuery)
+            }
 
-          if (opts.formtype == 3 && ussdQuery) {
-            ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
-            ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
-            ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
-            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
-            console.log(ussdQuery)
-          }
+            if (ussdQuery === null) {
+              scope.clickPinError = false;
+              scope.errorNote = ("Сервис временно недоступен!");
+              scope.showError = true;
+              scope.update();
+              return
+            }
 
-          if (opts.formtype == 4 && ussdQuery) {
-            console.log('ussdQuery', ussdQuery)
-            ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
-            ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
-            ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
-            ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
             console.log(ussdQuery)
-          }
 
-          if (ussdQuery === null) {
-            scope.clickPinError = false;
-            scope.errorNote = ("Сервис временно недоступен!");
-            scope.showError = true;
-            scope.update();
+            phonedialer.dial(
+//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
+              ussdQuery + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  scope.update();
+                }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
+              }
+            );
             return
           }
+          else {
 
-          console.log(ussdQuery)
-
-          phonedialer.dial(
-//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-            ussdQuery + "%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
-                scope.showError = true;
-                scope.update();
-              }
-              else console.log("Dialer Error:" + err);
-            },
-            function (success) {
+            if (scope.service.additional_information_type == 0) {
+              this.riotTags.innerHTML = "<view-service-pincards-new>";
+              riot.mount('view-service-pincards-new', opts);
+              scope.unmount()
+            } else {
+              this.riotTags.innerHTML = "<view-service-info-new>";
+              riot.mount('view-service-info-new', opts);
+              scope.unmount()
             }
-          );
-          return
-        }
-        else {
 
-          if (scope.service.additional_information_type == 0) {
+
+          }
+        } else if (opts.mode == 'ADDFAVORITE') {
+
+          console.log("isInFavorites=", opts.isInFavorites)
+
+
+          if (opts.isInFavorites)
+            editFavorite(opts);
+          else {
+            opts.isInFavorites = true;
+            addToFavoritesinServicePage(opts);
+          }
+
+          event.preventDefault();
+          event.stopPropagation();
+
+          viewServicePinCards.friendHelpPaymentMode = false;
+          viewServicePinCards.chosenFriendForHelp = null;
+          onBackKeyDown();
+//        onBackKeyDown();
+        } else if (opts.mode == 'ADDAUTOPAY') {
+
+          if (autoPayNameInput.value.length < 1) {
+            scope.clickPinError = false;
+            scope.errorNote = "Введите название автоплатежа";
+            scope.showError = true;
+            scope.update();
+            return;
+          }
+
+          scope.autoPayData.name = autoPayNameInput.value;
+          localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+
+          if (scope.autoPayData.fromView == 'PAY') {
             this.riotTags.innerHTML = "<view-service-pincards-new>";
             riot.mount('view-service-pincards-new', opts);
             scope.unmount()
-          } else {
-            this.riotTags.innerHTML = "<view-service-info-new>";
-            riot.mount('view-service-info-new', opts);
+
+          } else if (scope.autoPayData.fromView == 'PAYCONFIRM') {
+            this.riotTags.innerHTML = "<view-pay-confirm-new>";
+            riot.mount('view-pay-confirm-new', opts);
             scope.unmount()
+
           }
 
 
         }
-      } else if (opts.mode == 'ADDFAVORITE') {
-
-        console.log("isInFavorites=", opts.isInFavorites)
-
-
-        if (opts.isInFavorites)
-          editFavorite(opts);
-        else {
-          opts.isInFavorites = true;
-          addToFavoritesinServicePage(opts);
-        }
-
-        event.preventDefault();
-        event.stopPropagation();
-
-        viewServicePinCards.friendHelpPaymentMode = false;
-        viewServicePinCards.chosenFriendForHelp = null;
-        onBackKeyDown();
-//        onBackKeyDown();
-      } else if (opts.mode == 'ADDAUTOPAY') {
-
-        if (autoPayNameInput.value.length < 1) {
-          scope.clickPinError = false;
-          scope.errorNote = "Введите название автоплатежа";
-          scope.showError = true;
-          scope.update();
-          return;
-        }
-
-        scope.autoPayData.name = autoPayNameInput.value;
-        localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-
-        if (scope.autoPayData.fromView == 'PAY') {
-          this.riotTags.innerHTML = "<view-service-pincards-new>";
-          riot.mount('view-service-pincards-new', opts);
-          scope.unmount()
-
-        } else if (scope.autoPayData.fromView == 'PAYCONFIRM') {
-          this.riotTags.innerHTML = "<view-pay-confirm-new>";
-          riot.mount('view-pay-confirm-new', opts);
-          scope.unmount()
-
-        }
-
 
       }
-    };
+    }
+
 
     scope.selectedId = '';
 
@@ -1563,102 +1612,110 @@
       }
     };
 
+
     formTypeTwoButtonFunction = function () {
+      event.stopPropagation();
 
-      if (modeOfApp.offlineMode) {
+      enterEndY = event.changedTouches[0].pageY;
+      enterEndX = event.changedTouches[0].pageX;
 
-        var ussdQuery = scope.fieldArray[0].ussd_query;
-        if (ussdQuery === null) {
-          scope.clickPinError = false;
-          scope.errorNote = ("Сервис временно недоступен!");
-          scope.showError = true;
-          scope.update();
+      if (Math.abs(enterStartY - enterEndY) <= 20 && Math.abs(enterStartX - enterEndX) <= 20) {
+
+        if (modeOfApp.offlineMode) {
+
+          var ussdQuery = scope.fieldArray[0].ussd_query;
+          if (ussdQuery === null) {
+            scope.clickPinError = false;
+            scope.errorNote = ("Сервис временно недоступен!");
+            scope.showError = true;
+            scope.update();
+            return
+          }
+          ussdQuery = ussdQuery.replace('{nominal}', opts.amountText);
+          ussdQuery = ussdQuery.replace('{card_type}', opts.cardTypeId);
+          ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
+
+
+          phonedialer.dial(
+//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
+            ussdQuery + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                scope.update();
+              }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
+          );
           return
         }
-        ussdQuery = ussdQuery.replace('{nominal}', opts.amountText);
-        ussdQuery = ussdQuery.replace('{card_type}', opts.cardTypeId);
-        ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
 
+        if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
 
-        phonedialer.dial(
-//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-          ussdQuery + "%23",
-          function (err) {
-            if (err == "empty") {
-              scope.clickPinError = false;
-              scope.errorNote = ("Unknown phone number");
-              scope.showError = true;
-              scope.update();
-            }
-            else console.log("Dialer Error:" + err);
-          },
-          function (success) {
-          }
-        );
-        return
-      }
+          opts.isInFavorites = !scope.enterButton;
 
-      if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
-
-        opts.isInFavorites = !scope.enterButton;
-
-        event.preventDefault();
-        event.stopPropagation();
-
-        if (scope.service.additional_information_type == 0) {
-          this.riotTags.innerHTML = "<view-service-pincards-new>";
-          riot.mount('view-service-pincards-new', opts);
-          scope.unmount()
-        } else {
-          this.riotTags.innerHTML = "<view-service-info-new>";
-          riot.mount('view-service-info-new', opts);
-          scope.unmount()
-        }
-
-      } else if (opts.mode == 'ADDFAVORITE') {
-        if (opts) {
-
-          if (opts.isInFavorites)
-            editFavorite(opts);
-          else {
-            opts.isInFavorites = true;
-            addToFavoritesinServicePage(opts);
-          }
           event.preventDefault();
           event.stopPropagation();
-          onBackKeyDown();
+
+          if (scope.service.additional_information_type == 0) {
+            this.riotTags.innerHTML = "<view-service-pincards-new>";
+            riot.mount('view-service-pincards-new', opts);
+            scope.unmount()
+          } else {
+            this.riotTags.innerHTML = "<view-service-info-new>";
+            riot.mount('view-service-info-new', opts);
+            scope.unmount()
+          }
+
+        } else if (opts.mode == 'ADDFAVORITE') {
+          if (opts) {
+
+            if (opts.isInFavorites)
+              editFavorite(opts);
+            else {
+              opts.isInFavorites = true;
+              addToFavoritesinServicePage(opts);
+            }
+            event.preventDefault();
+            event.stopPropagation();
+            onBackKeyDown();
 //          onBackKeyDown();
-        }
-        else {
-          scope.clickPinError = false;
-          scope.errorNote = "Попробуйте еще раз";
-          scope.showError = true;
-          scope.update();
-        }
+          }
+          else {
+            scope.clickPinError = false;
+            scope.errorNote = "Попробуйте еще раз";
+            scope.showError = true;
+            scope.update();
+          }
 
-      } else if (opts.mode == 'ADDAUTOPAY') {
+        } else if (opts.mode == 'ADDAUTOPAY') {
 
-        if (autoPayNameInput.value.length < 1) {
-          scope.clickPinError = false;
-          scope.errorNote = "Введите название автоплатежа";
-          scope.showError = true;
-          scope.update();
-          return;
-        }
-        scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
-        scope.autoPayData.name = autoPayNameInput.value;
-        localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+          if (autoPayNameInput.value.length < 1) {
+            scope.clickPinError = false;
+            scope.errorNote = "Введите название автоплатежа";
+            scope.showError = true;
+            scope.update();
+            return;
+          }
+          scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+          scope.autoPayData.name = autoPayNameInput.value;
+          localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
-        if (scope.autoPayData.fromView == 'PAY') {
-          this.riotTags.innerHTML = "<view-service-pincards-new>";
-          riot.mount('view-service-pincards-new', opts);
-          scope.unmount()
+          if (scope.autoPayData.fromView == 'PAY') {
+            this.riotTags.innerHTML = "<view-service-pincards-new>";
+            riot.mount('view-service-pincards-new', opts);
+            scope.unmount()
 
-        } else if (scope.autoPayData.fromView == 'PAYCONFIRM') {
-          this.riotTags.innerHTML = "<view-pay-confirm-new>";
-          riot.mount('view-pay-confirm-new', opts);
-          scope.unmount()
+          } else if (scope.autoPayData.fromView == 'PAYCONFIRM') {
+            this.riotTags.innerHTML = "<view-pay-confirm-new>";
+            riot.mount('view-pay-confirm-new', opts);
+            scope.unmount()
 
+          }
         }
       }
 
