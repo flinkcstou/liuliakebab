@@ -1,8 +1,9 @@
 <view-auto-pay-new class="riot-tags-main-container">
   <div class="pay-page-title">
     <p class="pay-name-title">{titleName}</p>
-    <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
-    <div id="rightButton" ontouchend="addAutoPay()" class="settings-friend-help-add-button"></div>
+    <div id="backButton" ontouchstart="onTouchStartOfBack()" ontouchend="goToBack()" class="pay-back-button"></div>
+    <div id="rightButton" ontouchstart="onTouchStartOfAddSign()" ontouchend="addAutoPay()"
+         class="settings-friend-help-add-button"></div>
   </div>
 
   <div class="view-autopay-container" if="{autopayListShow}">
@@ -50,24 +51,55 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    var backStartY, backStartX, backEndY, backEndX;
+
+    scope.onTouchStartOfBack = onTouchStartOfBack = function () {
+      event.stopPropagation();
+      backStartY = event.changedTouches[0].pageY;
+      backStartX = event.changedTouches[0].pageX;
+    };
+
 
     goToBack = function () {
-
-      localStorage.setItem('autoPayData', null);
-      event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown();
-      scope.unmount()
+
+      backEndY = event.changedTouches[0].pageY;
+      backEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
+        viewServicePage.phoneText = null;
+        viewServicePage.amountText = null;
+        localStorage.setItem('autoPayData', null);
+        event.preventDefault();
+        event.stopPropagation();
+        onBackKeyDown();
+        scope.unmount()
+      }
+    };
+
+    var addSignStartY, addSignStartX, addSignEndY, addSignEndX;
+
+    scope.onTouchStartOfAddSign = onTouchStartOfAddSign = function () {
+      event.stopPropagation();
+      addSignStartY = event.changedTouches[0].pageY;
+      addSignStartX = event.changedTouches[0].pageX;
     };
 
     addAutoPay = function () {
-      event.preventDefault();
       event.stopPropagation();
-      opts.mode = 'ADDAUTOPAY';
-      riotTags.innerHTML = "<view-pay>";
-      riot.mount("view-pay", opts);
-      scope.unmount()
-    }
+
+      addSignEndY = event.changedTouches[0].pageY;
+      addSignEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(addSignStartY - addSignEndY) <= 20 && Math.abs(addSignStartX - addSignEndX) <= 20) {
+        event.preventDefault();
+        event.stopPropagation();
+        opts.mode = 'ADDAUTOPAY';
+        riotTags.innerHTML = "<view-pay>";
+        riot.mount("view-pay", opts);
+        scope.unmount()
+      }
+    };
 
     componentMenu.check = false;
     scope = this;

@@ -2,8 +2,9 @@
   <div class="riot-tags-main-container">
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
-      <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
-      <div id="rightButton" ontouchend="addFavorite()" class="settings-friend-help-add-button"></div>
+      <div id="backButton" ontouchend="goToBack()" ontouchstart="onTouchStartOfBack()" class="pay-back-button"></div>
+      <div id="rightButton" ontouchend="addFavorite()" ontouchstart="onTouchStartOfAddSign()"
+           class="settings-friend-help-add-button"></div>
     </div>
 
     <div class="view-favorites-container" if="{favoriteListShow}">
@@ -20,8 +21,10 @@
               "+j.params.firstFieldText):(j.params.firstFieldText)}</p>
           </div>
         </div>
-        <div id="e{j.service.id}" class="view-favorites-edit-icon" ontouchend="editFavoritePayment(this.id)"></div>
-        <div id="{j.service.id}" class="view-favorites-delete-icon" ontouchend="removeFromFavorites(this.id)"></div>
+        <div id="e{j.service.id}" class="view-favorites-edit-icon" ontouchstart="onTouchStartOfEditFavorite()"
+             ontouchend="editFavoritePayment(this.id)"></div>
+        <div id="{j.service.id}" class="view-favorites-delete-icon" ontouchstart="onTouchStartOfRemoveFavorite()"
+             ontouchend="removeFromFavorites(this.id)"></div>
       </div>
     </div>
 
@@ -60,20 +63,51 @@
 
     componentMenu.check = false;
 
-    goToBack = function () {
-      event.preventDefault();
+    var backStartY, backStartX, backEndY, backEndX;
+
+    scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
-      onBackKeyDown()
-      scope.unmount()
+      backStartY = event.changedTouches[0].pageY;
+      backStartX = event.changedTouches[0].pageX;
+    };
+
+
+    goToBack = function () {
+      event.stopPropagation();
+
+      backEndY = event.changedTouches[0].pageY;
+      backEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
+        event.preventDefault();
+        event.stopPropagation();
+        onBackKeyDown()
+        scope.unmount()
+      }
+    };
+
+    var addSignStartY, addSignStartX, addSignEndY, addSignEndX;
+
+    scope.onTouchStartOfAddSign = onTouchStartOfAddSign = function () {
+      event.stopPropagation();
+      addSignStartY = event.changedTouches[0].pageY;
+      addSignStartX = event.changedTouches[0].pageX;
     };
 
     addFavorite = function () {
-      event.preventDefault();
       event.stopPropagation();
-      opts.mode = 'ADDFAVORITE';
-      riotTags.innerHTML = "<view-pay>";
-      riot.mount("view-pay", opts);
-      scope.unmount()
+
+      addSignEndY = event.changedTouches[0].pageY;
+      addSignEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(addSignStartY - addSignEndY) <= 20 && Math.abs(addSignStartX - addSignEndX) <= 20) {
+        event.preventDefault();
+        event.stopPropagation();
+        opts.mode = 'ADDFAVORITE';
+        riotTags.innerHTML = "<view-pay>";
+        riot.mount("view-pay", opts);
+        scope.unmount()
+      }
     }
 
     if (scope.favoritePaymentsList) {
@@ -203,49 +237,78 @@
 
     };
 
+    var editFavoriteStartY, editFavoriteStartX, editFavoriteEndY, editFavoriteEndX;
+
+    scope.onTouchStartOfEditFavorite = onTouchStartOfEditFavorite = function () {
+      event.stopPropagation();
+      editFavoriteStartY = event.changedTouches[0].pageY;
+      editFavoriteStartX = event.changedTouches[0].pageX;
+    };
+
+
     editFavoritePayment = function (id) {
       event.stopPropagation();
 
-      console.log("id=", id);
-      id = id.substring(1, id.length);
-      console.log("id2=", id);
+      editFavoriteEndY = event.changedTouches[0].pageY;
+      editFavoriteEndX = event.changedTouches[0].pageX;
 
-      for (var i in scope.favoritePaymentsList) {
-        if (scope.favoritePaymentsList[i].service.id == id) {
-          console.log("scope.favoritePaymentsList[i].service.id", scope.favoritePaymentsList[i].service.id);
-          console.log("open favorite ", scope.favoritePaymentsList[i]);
+      if (Math.abs(editFavoriteStartY - editFavoriteEndY) <= 20 && Math.abs(editFavoriteStartX - editFavoriteEndX) <= 20) {
 
-          scope.favoritePaymentsList[i].params.mode = 'ADDFAVORITE';
+        console.log("id=", id);
+        id = id.substring(1, id.length);
+        console.log("id2=", id);
+
+        for (var i in scope.favoritePaymentsList) {
+          if (scope.favoritePaymentsList[i].service.id == id) {
+            console.log("scope.favoritePaymentsList[i].service.id", scope.favoritePaymentsList[i].service.id);
+            console.log("open favorite ", scope.favoritePaymentsList[i]);
+
+            scope.favoritePaymentsList[i].params.mode = 'ADDFAVORITE';
 
 
-          this.riotTags.innerHTML = "<view-service-page-new>";
-          riot.mount('view-service-page-new', scope.favoritePaymentsList[i].params);
+            this.riotTags.innerHTML = "<view-service-page-new>";
+            riot.mount('view-service-page-new', scope.favoritePaymentsList[i].params);
 
-          scope.unmount()
+            scope.unmount()
 
+          }
         }
       }
+    };
 
+    var removeFavoriteStartY, removeFavoriteStartX, removeFavoriteEndY, removeFavoriteEndX;
+
+    scope.onTouchStartOfRemoveFavorite = onTouchStartOfRemoveFavorite = function () {
+      event.stopPropagation();
+      removeFavoriteStartY = event.changedTouches[0].pageY;
+      removeFavoriteStartX = event.changedTouches[0].pageX;
     };
 
     removeFromFavorites = function (id) {
-      console.log("Id to remove=", id);
-      var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
-      console.log(favoritePaymentsList);
-      for (var i in favoritePaymentsList)
-        if (favoritePaymentsList[i].service.id == id) {
-          favoritePaymentsList.splice(i, 1);
-          if (favoritePaymentsList.length == 0) scope.favoriteListShow = false;
-          console.log(favoritePaymentsList);
-          localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-          scope.update(scope.favPaymentsList);
-        }
-
       event.stopPropagation();
-      riotTags.innerHTML = "<view-favorites-new>";
-      riot.mount("view-favorites-new");
 
-      scope.unmount()
+      removeFavoriteEndY = event.changedTouches[0].pageY;
+      removeFavoriteEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(removeFavoriteStartY - removeFavoriteEndY) <= 20 && Math.abs(removeFavoriteStartX - removeFavoriteEndX) <= 20) {
+        console.log("Id to remove=", id);
+        var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+        console.log(favoritePaymentsList);
+        for (var i in favoritePaymentsList)
+          if (favoritePaymentsList[i].service.id == id) {
+            favoritePaymentsList.splice(i, 1);
+            if (favoritePaymentsList.length == 0) scope.favoriteListShow = false;
+            console.log(favoritePaymentsList);
+            localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+            scope.update(scope.favPaymentsList);
+          }
+
+        event.stopPropagation();
+        riotTags.innerHTML = "<view-favorites-new>";
+        riot.mount("view-favorites-new");
+
+        scope.unmount()
+      }
     }
 
 

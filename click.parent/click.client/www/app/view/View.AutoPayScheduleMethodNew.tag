@@ -3,7 +3,7 @@
     <div class="pay-page-title" style="border-style: none;">
       <p class="autopay-method-page-title">{titleName} {serviceName}</p>
       <p class="servicepage-category-field">{window.languages.ViewAutoPayMethodSchedulerText}</p>
-      <div ontouchend="goToBack()"
+      <div ontouchend="goToBack()" ontouchstart="onTouchStartOfBack()"
            class="autopay-method-back-button">
       </div>
       <div type="button" class="servicepage-service-icon autopay-method-service-icon"
@@ -84,7 +84,8 @@
       </div>
     </div>
 
-    <button class="schedule-date-block-button-choose" ontouchend="chooseDate()">
+    <button class="schedule-date-block-button-choose" ontouchstart="onTouchStartOfChooseDate()"
+            ontouchend="chooseDate()">
       {window.languages.ViewAutoPayMethodScheduleChoseButtonLabel}
     </button>
   </div>
@@ -108,14 +109,29 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    goToBack = function () {
-      event.preventDefault();
+    var backStartY, backStartX, backEndY, backEndX;
+
+    scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
-      if (JSON.parse(localStorage.getItem('autoPayData')).fromView == 'PAYCONFIRM') {
-        opts.mode = 'USUAL';
+      backStartY = event.changedTouches[0].pageY;
+      backStartX = event.changedTouches[0].pageX;
+    };
+
+    goToBack = function () {
+      event.stopPropagation();
+
+      backEndY = event.changedTouches[0].pageY;
+      backEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (JSON.parse(localStorage.getItem('autoPayData')).fromView == 'PAYCONFIRM') {
+          opts.mode = 'USUAL';
+        }
+        onBackKeyDownWithParams(opts, 1);
+        scope.unmount()
       }
-      onBackKeyDownWithParams(opts, 1);
-      scope.unmount()
     };
 
     this.titleName = window.languages.ViewAutoPayTitleName;
@@ -199,56 +215,72 @@
       changePositionInitAutoPay();
     }
 
+    var chooseDateStartY, chooseDateStartX, chooseDateEndY, chooseDateEndX;
+
+    scope.onTouchStartOfChooseDate = onTouchStartOfChooseDate = function () {
+      event.stopPropagation();
+      chooseDateStartY = event.changedTouches[0].pageY;
+      chooseDateStartX = event.changedTouches[0].pageX;
+    };
+
     chooseDate = function () {
+      event.stopPropagation();
+
+      chooseDateEndY = event.changedTouches[0].pageY;
+      chooseDateEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(chooseDateStartY - chooseDateEndY) <= 20 && Math.abs(chooseDateStartX - chooseDateEndX) <= 20) {
 //      dateChooseBlockId.style.display = 'none';
-      if (scope.timeMode) {
-        //console.log("HOUR=", dateNumber);
-        //console.log("MIN=", minuteNumber);
-        scope.autoPayData.paytime = window.languages.ViewAutoPayMethodScheduleHoursArray[dateNumber + 6].v + ':' + window.languages.ViewAutoPayMethodScheduleMinutesArray[minuteNumber + 6].v;
-        console.log("autoPayData=", scope.autoPayData);
+        if (scope.timeMode) {
+          //console.log("HOUR=", dateNumber);
+          //console.log("MIN=", minuteNumber);
+          scope.autoPayData.paytime = window.languages.ViewAutoPayMethodScheduleHoursArray[dateNumber + 6].v + ':' + window.languages.ViewAutoPayMethodScheduleMinutesArray[minuteNumber + 6].v;
+          console.log("autoPayData=", scope.autoPayData);
 
-        if (scope.autoPayData.type == 2) {
-          scope.autoPayData.condition_text = window.languages.ViewAutoPayMethodScheduleWeekDaysArray[scope.autoPayData.week_day - 1].v + ", " +
-            scope.autoPayData.paytime;
-        } else if (scope.autoPayData.type == 3) {
-          scope.autoPayData.condition_text = scope.autoPayData.month_day + ", " +
-            scope.autoPayData.paytime;
-        } else if (scope.autoPayData.type == 4) {
-          scope.autoPayData.condition_text = window.languages.ViewAutoPayEveryMonthLastDayTextTwo + ", " +
-            scope.autoPayData.paytime;
-        }
+          if (scope.autoPayData.type == 2) {
+            scope.autoPayData.condition_text = window.languages.ViewAutoPayMethodScheduleWeekDaysArray[scope.autoPayData.week_day - 1].v + ", " +
+              scope.autoPayData.paytime;
+          } else if (scope.autoPayData.type == 3) {
+            scope.autoPayData.condition_text = scope.autoPayData.month_day + ", " +
+              scope.autoPayData.paytime;
+          } else if (scope.autoPayData.type == 4) {
+            scope.autoPayData.condition_text = window.languages.ViewAutoPayEveryMonthLastDayTextTwo + ", " +
+              scope.autoPayData.paytime;
+          }
 
-        localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-        event.stopPropagation();
-        riotTags.innerHTML = "<view-service-page-new>";
-        riot.mount("view-service-page-new", opts);
+          localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+          event.stopPropagation();
+          riotTags.innerHTML = "<view-service-page-new>";
+          riot.mount("view-service-page-new", opts);
 
-        scope.unmount()
-      } else {
-        if (scope.dayMode) {
-          console.log("dayMode, Number=", dateNumber + 1);
-          scope.autoPayData.month_day = dateNumber + 1;
-        }
-        else if (scope.weekMode) {
-          console.log("weekMode, Number=", dateNumber + 1);
-          scope.autoPayData.week_day = dateNumber + 1;
-        }
-        dateNumber = 0;
-        minuteNumber = 0;
-        scope.topOfOperations = 143 * widthK;
-        scope.weekMode = false;
-        scope.timeMode = true;
-        scope.dayMode = false;
-        scope.shift = 143;
-        count = 24;
-        scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseTime;
-        scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
-        scope.dateBlockArrayTwo = window.languages.ViewAutoPayMethodScheduleMinutesArray;
-        dateChooseBlockId.style.display = 'block';
+          scope.unmount()
+        } else {
+          if (scope.dayMode) {
+            console.log("dayMode, Number=", dateNumber + 1);
+            scope.autoPayData.month_day = dateNumber + 1;
+          }
+          else if (scope.weekMode) {
+            console.log("weekMode, Number=", dateNumber + 1);
+            scope.autoPayData.week_day = dateNumber + 1;
+          }
+          dateNumber = 0;
+          minuteNumber = 0;
+          scope.topOfOperations = 143 * widthK;
+          scope.weekMode = false;
+          scope.timeMode = true;
+          scope.dayMode = false;
+          scope.shift = 143;
+          count = 24;
+          scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseTime;
+          scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
+          scope.dateBlockArrayTwo = window.languages.ViewAutoPayMethodScheduleMinutesArray;
+          dateChooseBlockId.style.display = 'block';
 //        console.log("LAST DAY, dateBlockArray", scope.dateBlockArray);
-        scope.update();
-        changePositionInitAutoPay();
-        changeMinutesPositionInit();
+          scope.update();
+          changePositionInitAutoPay();
+          changeMinutesPositionInit();
+        }
+
       }
 
     };
