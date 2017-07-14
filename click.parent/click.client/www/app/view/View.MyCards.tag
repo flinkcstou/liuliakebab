@@ -1,10 +1,10 @@
 <view-my-cards class="view-my-cards riot-tags-main-container">
   <div class="page-title">
     <p class="name-title">{titleName}</p>
-    <div id="backButton" ontouchend="touchStartTitle()"
+    <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
          class="{back-button: backbuttoncheck}">
     </div>
-    <div id="rightButton" type="button" class="{settings-button: rightbuttoncheck}" ontouchend="editCard()"></div>
+    <div id="rightButton" type="button" class="{settings-button: rightbuttoncheck}" ontouchstart="editCardStart()" ontouchend="editCardEnd()"></div>
   </div>
 
   <div class="my-cards-carousel">
@@ -13,7 +13,7 @@
   </div>
 
   <div class="my-cards-button-container">
-    <div class="my-cards-button-field my-cards-button-field-transfer" ontouchstart="transferOnTouchStart()"
+    <div id="transferButtonId" class="my-cards-button-field my-cards-button-field-transfer" ontouchstart="transferOnTouchStart()"
          ontouchend="goToTransferView()">
       <div class="my-cards-button-icon my-cards-button-icon-transfer">
       </div>
@@ -22,21 +22,21 @@
       </div>
     </div>
 
-    <div class="my-cards-button-field my-cards-button-field-payment">
+    <div id="payButtonId" class="my-cards-button-field my-cards-button-field-payment" ontouchstart="payOnTouchStart()" ontouchend="goToPayView()">
       <div class="my-cards-button-icon my-cards-button-icon-payment">
       </div>
 
-      <div class="my-cards-button-label" ontouchstart="payOnTouchStart()" ontouchend="goToPayView()">
+      <div class="my-cards-button-label">
         {window.languages.ViewMyCardPay}
       </div>
     </div>
 
-    <div class="my-cards-button-field my-cards-button-field-report">
+    <div id="reportButtonId" class="my-cards-button-field my-cards-button-field-report" ontouchstart="reportsOnTouchStart()"
+         ontouchend="goToReports()">
       <div class="my-cards-button-icon my-cards-button-icon-report">
       </div>
 
-      <div class="my-cards-button-label" style="border: none;" ontouchstart="reportsOnTouchStart()"
-           ontouchend="goToReports()">
+      <div class="my-cards-button-label" style="border: none;">
         {window.languages.ViewMyCardReports}
       </div>
     </div>
@@ -98,23 +98,64 @@
       riot.update()
     });
 
-    touchStartTitle = function () {
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    goToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
-      scope.unmount()
+
+      backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
 
     };
 
-    editCard = function () {
+    goToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+        scope.unmount()
+      }
+    };
+
+    var editButtonStartX, editButtonEndX, editButtonStartY, editButtonEndY;
+
+    editCardStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      rightButton.style.webkitTransform = 'scale(0.7)'
+
+      editButtonStartX = event.changedTouches[0].pageX;
+      editButtonStartY = event.changedTouches[0].pageY;
+
+    }
+
+    editCardEnd = function () {
 //      console.log("card for edit=", scope.card);
       event.preventDefault();
       event.stopPropagation();
-      if (modeOfApp.demoVersion) {
-        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+
+      rightButton.style.webkitTransform = 'scale(1)'
+
+      editButtonEndX = event.changedTouches[0].pageX;
+      editButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(editButtonStartX - editButtonEndX) <= 20 && Math.abs(editButtonStartY - editButtonEndY) <= 20) {
+
+        if (modeOfApp.demoVersion) {
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-        scope.showError = true;
-        scope.errorNote = question;
+          scope.showError = true;
+          scope.errorNote = question;
 //        scope.confirmType = 'local';
 //        scope.result = function (bool) {
 //          if (bool) {
@@ -128,25 +169,31 @@
 //            return
 //          }
 //        };
-        scope.update();
+          scope.update();
 
-        return
+          return
+        }
+
+        riotTags.innerHTML = "<view-card-edit>";
+        riot.mount('view-card-edit', [scope.card]);
+
+        scope.unmount()
       }
-
-      riotTags.innerHTML = "<view-card-edit>";
-      riot.mount('view-card-edit', [scope.card]);
-
-      scope.unmount()
     };
 
     reportsOnTouchStart = function () {
       event.stopPropagation();
+
+      reportButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+
       myCardsOnTouchStartY = event.changedTouches[0].pageY;
       myCardsOnTouchStartX = event.changedTouches[0].pageX;
     }
 
     goToReports = function () {
       event.stopPropagation();
+
+      reportButtonId.style.backgroundColor = ''
 
       myCardsOnTouchEndY = event.changedTouches[0].pageY;
       myCardsOnTouchEndX = event.changedTouches[0].pageX;
@@ -432,12 +479,17 @@
 
     payOnTouchStart = function () {
       event.stopPropagation();
+
+      payButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+
       myCardsOnTouchStartY = event.changedTouches[0].pageY;
       myCardsOnTouchStartX = event.changedTouches[0].pageX;
     }
 
     goToPayView = function () {
       event.stopPropagation();
+
+      payButtonId.style.backgroundColor = 'transparent'
 
       myCardsOnTouchEndY = event.changedTouches[0].pageY;
       myCardsOnTouchEndX = event.changedTouches[0].pageX;
@@ -475,12 +527,17 @@
 
     transferOnTouchStart = function () {
       event.stopPropagation();
+
+      transferButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+
       myCardsOnTouchStartY = event.changedTouches[0].pageY;
       myCardsOnTouchStartX = event.changedTouches[0].pageX;
     }
 
     goToTransferView = function () {
       event.stopPropagation();
+
+      transferButtonId.style.backgroundColor = 'transparent'
 
       myCardsOnTouchEndY = event.changedTouches[0].pageY;
       myCardsOnTouchEndX = event.changedTouches[0].pageX;

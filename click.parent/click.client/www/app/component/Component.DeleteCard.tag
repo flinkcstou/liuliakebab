@@ -3,25 +3,72 @@
   <p class="delete-operation-confirm-message">{window.languages.ComponentDeleteText}</p>
 
   <div class="delete-buttons-container">
-    <p class="delete-button-accept" ontouchend="deleteCardTouchEnd()">{window.languages.ComponentDeleteTextYes}</p>
-    <p class="delete-button-cancel" ontouchend="cancelDeleteCardTouchEnd()">{window.languages.ComponentDeleteTextNo}</p>
+    <p id="delButtonId" class="delete-button-accept" ontouchstart="deleteCardTouchStart()"
+       ontouchend="deleteCardTouchEnd()">{window.languages.ComponentDeleteTextYes}</p>
+    <p id="cancelDelButtonId" class="delete-button-cancel" ontouchstart="cancelDeleteCardTouchStart()"
+       ontouchend="cancelDeleteCardTouchEnd()">{window.languages.ComponentDeleteTextNo}</p>
   </div>
 
   <script>
     var scope = this;
     scope.parent.showError = false;
 
+    var delButtonStartX, delButtonEndX, delButtonStartY, delButtonEndY;
+
+    deleteCardTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      delButtonId.style.webkitTransform = 'scale(0.7)'
+
+      delButtonStartX = event.changedTouches[0].pageX;
+      delButtonStartY = event.changedTouches[0].pageY;
+
+
+    }
+
     deleteCardTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-      componentDeleteCard.deleteCard();
+
+      delButtonId.style.webkitTransform = 'scale(1)'
+
+      delButtonEndX = event.changedTouches[0].pageX;
+      delButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(delButtonStartX - delButtonEndX) <= 20 && Math.abs(delButtonStartY - delButtonEndY) <= 20) {
+
+        componentDeleteCard.deleteCard();
+      }
+    }
+
+    var cancelButtonStartX, cancelButtonEndX, cancelButtonStartY, cancelButtonEndY;
+
+    cancelDeleteCardTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      cancelDelButtonId.style.webkitTransform = 'scale(0.7)'
+
+      cancelButtonStartX = event.changedTouches[0].pageX;
+      cancelButtonStartY = event.changedTouches[0].pageY;
+
+
     }
 
     cancelDeleteCardTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      deleteCardComponentId.style.display = 'none'
+      cancelDelButtonId.style.webkitTransform = 'scale(1)'
+
+      cancelButtonEndX = event.changedTouches[0].pageX;
+      cancelButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(cancelButtonStartX - cancelButtonEndX) <= 20 && Math.abs(cancelButtonStartY - cancelButtonEndY) <= 20) {
+
+        deleteCardComponentId.style.display = 'none'
+      }
     }
     scope.sessionKey = ''
     scope.phoneNumber = ''
