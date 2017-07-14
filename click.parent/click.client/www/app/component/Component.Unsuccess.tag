@@ -3,14 +3,18 @@
   <p class="unsuccess-operation-success-message-part-three">{opts.operationmessagepartthree}</p>
   <div class="unsuccess-unsuccess-icon"></div>
 
-  <button class="unsuccess-next-button-inner-container" ontouchend="closeUnsuccessMessageForm()">
+  <button class="unsuccess-next-button-inner-container" ontouchstart="closeUnsuccessMessageFormStart()" ontouchend="closeUnsuccessMessageFormEnd()">
     {window.languages.ComponentUnsuccessNext}
   </button>
 
   <script>
     var scope = this;
 
-    closeUnsuccessMessageForm = function () {
+    closeUnsuccessMessageFormStart = function () {
+
+    }
+
+    closeUnsuccessMessageFormEnd = function () {
       console.log('OPTS', opts)
       componentUnsuccessId.style.display = 'none';
       console.log("before unsuccess", history.arrayOfHistory)
