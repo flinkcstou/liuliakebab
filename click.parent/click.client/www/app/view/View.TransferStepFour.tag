@@ -309,6 +309,7 @@
     }
 
     var transferStepTouchStartX, transferStepTouchStartY, transferStepTouchEndX, transferStepTouchEndY;
+
     transferStepTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();

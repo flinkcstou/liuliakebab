@@ -13,7 +13,8 @@
     </div>
 
 
-    <button class="component-alert-button-inner-container" ontouchend="closeAlertForm()">
+    <button id="alertOkButtonId" class="component-alert-button-inner-container" ontouchstart="closeAlertFormStart()"
+            ontouchend="closeAlertFormEnd()">
       {window.languages.ComponentAlertOk}
     </button>
   </div>
@@ -30,37 +31,57 @@
     //      riot.update();
     //    }
 
-    closeAlertForm = function () {
+    var okButtonStartX, okButtonEndX, okButtonStartY, okButtonEndY;
+
+    closeAlertFormStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      okButtonStartX = event.changedTouches[0].pageX;
+      okButtonStartY = event.changedTouches[0].pageY;
+
+      alertOkButtonId.style.webkitTransform = 'scale(0.8)'
+    }
+
+    closeAlertFormEnd = function () {
       event.preventDefault();
       event.stopPropagation();
       console.log('QQQ')
       console.log('scope.parent', scope.parent)
 
-      if (scope.parent) {
-        scope.parent.showError = false;
+      alertOkButtonId.style.webkitTransform = 'scale(1)'
 
-        if (opts.viewpage) {
-          riotTags.innerHTML = "<" + opts.viewpage + ">";
-          riot.mount(opts.viewpage);
-        }
+      okButtonEndX = event.changedTouches[0].pageX;
+      okButtonEndY = event.changedTouches[0].pageY;
 
-        if(opts.step_amount)
-        if (opts.step_amount || opts.step_amount == 0) {
-          console.log("opts.step_amount",opts)
-          history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
-          console.log(history.arrayOfHistory)
-          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-          onBackKeyDown()
+      if (Math.abs(okButtonStartX - okButtonEndX) <= 20 && Math.abs(okButtonStartY - okButtonEndY) <= 20) {
+
+        if (scope.parent) {
+          scope.parent.showError = false;
+
+          if (opts.viewpage) {
+            riotTags.innerHTML = "<" + opts.viewpage + ">";
+            riot.mount(opts.viewpage);
+          }
+
+          if (opts.step_amount)
+            if (opts.step_amount || opts.step_amount == 0) {
+              console.log("opts.step_amount", opts)
+              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
+              console.log(history.arrayOfHistory)
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+              onBackKeyDown()
 //          scope.unmount()
+            }
+        } else {
+          scope.outerShowAlertBool = true;
+          console.log("close")
+          console.log(scope.outerShowAlertBool)
         }
-      } else {
-        scope.outerShowAlertBool = true;
-        console.log("close")
-        console.log(scope.outerShowAlertBool)
-      }
 
-      //OK
-      riot.update()
+        //OK
+        riot.update()
+      }
     };
 
 

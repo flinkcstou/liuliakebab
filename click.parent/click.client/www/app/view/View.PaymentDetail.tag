@@ -56,7 +56,8 @@
   <component-unsuccess id="componentUnsuccessId"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{errorMessageFromTransfer}"></component-unsuccess>
+                       operationmessagepartthree="{errorMessageFromTransfer}"
+                       step_amount="{1}"></component-unsuccess>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
