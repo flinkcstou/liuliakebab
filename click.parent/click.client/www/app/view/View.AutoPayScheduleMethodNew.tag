@@ -16,21 +16,21 @@
         {window.languages.ViewAutoPayMethodScheduleHowOftenText}
       </div>
 
-      <div class="autopay-schedule-block-containter" ontouchend="everyMonthLastDay()">
+      <div id="everyMonthButtonId" class="autopay-schedule-block-containter" ontouchstart="everyMonthLastDayStart()" ontouchend="everyMonthLastDayEnd()">
         <div class="autopay-schedule-block-text">{window.languages.ViewAutoPayMethodScheduleEveryMonth}</div>
         <div class="autopay-schedule-block-detail-text">
           {window.languages.ViewAutoPayMethodScheduleLastDay}
         </div>
         <div class="autopay-schedule-block-next-icon"></div>
       </div>
-      <div class="autopay-schedule-block-containter" ontouchend="everyMonthChosenDay()">
+      <div id="everyMonthChosenDayButtonId" class="autopay-schedule-block-containter" ontouchstart="everyMonthChosenDayStart()" ontouchend="everyMonthChosenDayEnd()">
         <div class="autopay-schedule-block-text">{window.languages.ViewAutoPayMethodScheduleEveryMonth}</div>
         <div class="autopay-schedule-block-detail-text">
           {window.languages.ViewAutoPayMethodScheduleChosenDay}
         </div>
         <div class="autopay-schedule-block-next-icon"></div>
       </div>
-      <div class="autopay-schedule-block-containter" ontouchend="everyWeek()">
+      <div id="everyWeekButtonId" class="autopay-schedule-block-containter" ontouchstart="everyWeekStart()" ontouchend="everyWeekEnd()">
         <div class="autopay-schedule-block-text">{window.languages.ViewAutoPayMethodScheduleEveryWeek}</div>
         <div class="autopay-schedule-block-next-icon"></div>
       </div>
@@ -84,7 +84,7 @@
       </div>
     </div>
 
-    <button class="schedule-date-block-button-choose" ontouchstart="onTouchStartOfChooseDate()"
+    <button id="chooseAutoPayButtonId" class="schedule-date-block-button-choose" ontouchstart="onTouchStartOfChooseDate()"
             ontouchend="chooseDate()">
       {window.languages.ViewAutoPayMethodScheduleChoseButtonLabel}
     </button>
@@ -161,70 +161,137 @@
     var dateNumber, count, minuteNumber = 0, minutesCount = 60;
 
 
-    everyMonthLastDay = function () {
-      scope.autoPayData.type = 4;
-      dateNumber = 0;
-      minuteNumber = 0;
-      scope.topOfOperations = 143 * widthK;
-      scope.weekMode = false;
-      scope.timeMode = true;
-      scope.dayMode = false;
-      scope.shift = 143;
-      count = 24;
-      scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseTime;
-      scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
-      scope.dateBlockArrayTwo = window.languages.ViewAutoPayMethodScheduleMinutesArray;
-      dateChooseBlockId.style.display = 'block';
+    var everyMonthButtonStartX, everyMonthButtonEndX, everyMonthButtonStartY, everyMonthButtonEndY;
+
+    everyMonthLastDayStart = function () {
+
+      everyMonthButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
+
+      everyMonthButtonStartX = event.changedTouches[0].pageX;
+      everyMonthButtonStartY = event.changedTouches[0].pageY;
+
+    }
+
+    everyMonthLastDayEnd = function () {
+
+      everyMonthButtonId.style.backgroundColor = 'transparent'
+
+      everyMonthButtonEndX = event.changedTouches[0].pageX;
+      everyMonthButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(everyMonthButtonStartX - everyMonthButtonEndX) <= 20 && Math.abs(everyMonthButtonStartY - everyMonthButtonEndY) <= 20) {
+
+        scope.autoPayData.type = 4;
+        dateNumber = 0;
+        minuteNumber = 0;
+        scope.topOfOperations = 143 * widthK;
+        scope.weekMode = false;
+        scope.timeMode = true;
+        scope.dayMode = false;
+        scope.shift = 143;
+        count = 24;
+        scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseTime;
+        scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleHoursArray;
+        scope.dateBlockArrayTwo = window.languages.ViewAutoPayMethodScheduleMinutesArray;
+        dateChooseBlockId.style.display = 'block';
 //      console.log("LAST DAY, dateBlockArray", scope.dateBlockArray);
-      scope.update();
-      changePositionInitAutoPay();
-      changeMinutesPositionInit();
+        scope.update();
+        changePositionInitAutoPay();
+        changeMinutesPositionInit();
+      }
     }
 
-    everyMonthChosenDay = function () {
-      scope.autoPayData.type = 3;
-      dateNumber = 0;
-      scope.topOfOperations = 185 * widthK;
-      scope.weekMode = false;
-      scope.timeMode = false;
-      scope.dayMode = true;
-      scope.shift = 185;
-      count = 31;
-      scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseDate;
-      scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleDaysArray;
-      dateChooseBlockId.style.display = 'block';
+    var everyMonthChosenDayButtonStartX, everyMontChosenDayButtonEndX, everyMontChosenDayButtonStartY, everyMontChosenDayButtonEndY;
+
+    everyMonthChosenDayStart = function () {
+
+      everyMonthChosenDayButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
+
+      everyMonthChosenDayButtonStartX = event.changedTouches[0].pageX;
+      everyMontChosenDayButtonStartY = event.changedTouches[0].pageY;
+
+    }
+
+
+    everyMonthChosenDayEnd = function () {
+
+      everyMonthChosenDayButtonId.style.backgroundColor = 'transparent'
+
+      everyMontChosenDayButtonEndX = event.changedTouches[0].pageX;
+      everyMontChosenDayButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(everyMonthChosenDayButtonStartX - everyMontChosenDayButtonEndX) <= 20 && Math.abs(everyMontChosenDayButtonStartY - everyMontChosenDayButtonEndY) <= 20) {
+
+        scope.autoPayData.type = 3;
+        dateNumber = 0;
+        scope.topOfOperations = 185 * widthK;
+        scope.weekMode = false;
+        scope.timeMode = false;
+        scope.dayMode = true;
+        scope.shift = 185;
+        count = 31;
+        scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseDate;
+        scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleDaysArray;
+        dateChooseBlockId.style.display = 'block';
 //      console.log("CHOSEN DAY, dateBlockArray", scope.dateBlockArray);
-      scope.update();
-      changePositionInitAutoPay();
+        scope.update();
+        changePositionInitAutoPay();
+      }
     }
 
-    everyWeek = function () {
-      scope.autoPayData.type = 2;
-      dateNumber = 0;
-      scope.topOfOperations = 84 * widthK;
-      scope.shift = 84;
-      scope.weekMode = true;
-      scope.timeMode = false;
-      scope.dayMode = false;
-      count = 7;
-      scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseWeekDay;
-      scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleWeekDaysArray;
-      dateChooseBlockId.style.display = 'block';
-      console.log("EVERY WEEK, count=", count);
-      scope.update();
-      changePositionInitAutoPay();
+
+    var everyWeekButtonStartX, everyWeekButtonEndX, everyWeekButtonStartY, everyWeekButtonEndY;
+
+    everyWeekStart = function () {
+
+      everyWeekButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
+
+      everyWeekButtonStartX = event.changedTouches[0].pageX;
+      everyWeekButtonStartY = event.changedTouches[0].pageY;
+
+    }
+
+    everyWeekEnd = function () {
+
+      everyWeekButtonId.style.backgroundColor = 'transparent'
+
+      everyWeekButtonEndX = event.changedTouches[0].pageX;
+      everyWeekButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(everyWeekButtonStartX - everyWeekButtonEndX) <= 20 && Math.abs(everyWeekButtonStartY - everyWeekButtonEndY) <= 20) {
+
+        scope.autoPayData.type = 2;
+        dateNumber = 0;
+        scope.topOfOperations = 84 * widthK;
+        scope.shift = 84;
+        scope.weekMode = true;
+        scope.timeMode = false;
+        scope.dayMode = false;
+        count = 7;
+        scope.dateBlockTitle = window.languages.ViewAutoPayMethodScheduleChoseWeekDay;
+        scope.dateBlockArray = window.languages.ViewAutoPayMethodScheduleWeekDaysArray;
+        dateChooseBlockId.style.display = 'block';
+        console.log("EVERY WEEK, count=", count);
+        scope.update();
+        changePositionInitAutoPay();
+      }
     }
 
     var chooseDateStartY, chooseDateStartX, chooseDateEndY, chooseDateEndX;
 
     scope.onTouchStartOfChooseDate = onTouchStartOfChooseDate = function () {
       event.stopPropagation();
+
+      chooseAutoPayButtonId.style.webkitTransform = 'scale(0.8)'
+
       chooseDateStartY = event.changedTouches[0].pageY;
       chooseDateStartX = event.changedTouches[0].pageX;
     };
 
     chooseDate = function () {
       event.stopPropagation();
+
+      chooseAutoPayButtonId.style.webkitTransform = 'scale(1)'
 
       chooseDateEndY = event.changedTouches[0].pageY;
       chooseDateEndX = event.changedTouches[0].pageX;
