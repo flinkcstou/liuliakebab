@@ -3,7 +3,7 @@
     <div class="pay-page-title" style="border-style: none;">
       <p class="autopay-method-page-title">{titleName} {serviceName}</p>
       <p class="servicepage-category-field">{window.languages.ViewAutoPayMethodEventText}</p>
-      <div ontouchend="goToBack()"
+      <div ontouchend="goToBack()" ontouchstart="onTouchStartOfBack()"
            class="autopay-method-back-button">
       </div>
       <div type="button" class="servicepage-service-icon autopay-method-service-icon"
@@ -27,7 +27,8 @@
                autofocus="true" value="{defaultNumber}"
                onkeydown="telPayVerificationKeyDown(this)"
                onkeyup="telPayVerificationKeyUp()"/>
-        <div class="servicepage-phone-icon" ontouchend="searchContact()"></div>
+        <div class="servicepage-phone-icon" ontouchstart="onTouchStartOfSearchContact()"
+             ontouchend="searchContact()"></div>
       </div>
 
       <div id="convertedAmountFieldId" class="autopay-event-step-field">
@@ -52,7 +53,8 @@
 
       <button
         class="{autopay-event-button-enter-enabled: enterButtonEnabled,autopay-event-button-enter-disabled:!enterButtonEnabled}"
-        ontouchend="chooseCardToPay()">{window.languages.ViewServicePageEnterLabel}
+        ontouchend="chooseCardToPay()" ontouchstart="onTouchStartOfChooseCard()">
+        {window.languages.ViewServicePageEnterLabel}
       </button>
 
     </div>
@@ -89,11 +91,26 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    goToBack = function () {
-      event.preventDefault();
+    var backStartY, backStartX, backEndY, backEndX;
+
+    scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
-      onBackKeyDown();
-      scope.unmount()
+      backStartY = event.changedTouches[0].pageY;
+      backStartX = event.changedTouches[0].pageX;
+    };
+
+    goToBack = function () {
+      event.stopPropagation();
+
+      backEndY = event.changedTouches[0].pageY;
+      backEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
+        event.preventDefault();
+        event.stopPropagation();
+        onBackKeyDown();
+        scope.unmount()
+      }
     };
 
 
@@ -231,28 +248,44 @@
       checkFieldsEventToActivateNext();
     };
 
-    searchContact = function () {
-      window.pickContactFromNativeChecker = true;
-      var maskOne = /[0-9]/g;
-      window.plugins.PickContact.chooseContact(function (contactInfo) {
-        setTimeout(function () {
-          var phoneNumber;
-          if (device.platform == 'iOS')
-            phoneNumber = contactInfo.phoneNr;
+    var searchContactStartY, searchContactStartX, searchContactEndY, searchContactEndX;
 
-          if (device.platform == 'Android') {
-            phoneNumber = contactInfo.nameFormated
-          }
-          var digits = phoneNumber.match(maskOne);
-          var phone = '';
-          for (var i in digits) {
-            phone += digits[i]
-          }
-          firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
-        }, 0);
-      }, function (error) {
-        console.log('error', error)
-      });
+    scope.onTouchStartOfSearchContact = onTouchStartOfSearchContact = function () {
+      event.stopPropagation();
+      searchContactStartY = event.changedTouches[0].pageY;
+      searchContactStartX = event.changedTouches[0].pageX;
+    };
+
+    searchContact = function () {
+      event.stopPropagation();
+
+      searchContactEndY = event.changedTouches[0].pageY;
+      searchContactEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(searchContactStartY - searchContactEndY) <= 20 && Math.abs(searchContactStartX - searchContactEndX) <= 20) {
+        window.pickContactFromNativeChecker = true;
+        var maskOne = /[0-9]/g;
+        window.plugins.PickContact.chooseContact(function (contactInfo) {
+          setTimeout(function () {
+            var phoneNumber;
+            if (device.platform == 'iOS')
+              phoneNumber = contactInfo.phoneNr;
+
+            if (device.platform == 'Android') {
+              phoneNumber = contactInfo.nameFormated
+            }
+            var digits = phoneNumber.match(maskOne);
+            var phone = '';
+            for (var i in digits) {
+              phone += digits[i]
+            }
+            firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
+          }, 0);
+        }, function (error) {
+          console.log('error', error)
+        });
+
+      }
 
     };
 
@@ -262,40 +295,6 @@
     };
 
     checkFieldsEventToActivateNext = function () {
-
-//      if (this.firstFieldInput) {
-//
-//        if (scope.phoneFieldBool && firstFieldInput && opts.chosenServiceId != "mynumber") {
-//          if (firstFieldInput.value.length < 9) {
-//            console.log("Неправильно введён номер телефона");
-//
-//            scope.enterButtonEnabled = false;
-//            scope.update(scope.enterButtonEnabled);
-//
-//            return;
-//          }
-//        } else if (firstFieldInput && firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
-//          console.log("Нет значения первого поля");
-//          scope.enterButtonEnabled = false;
-//          scope.update(scope.enterButtonEnabled);
-//          return;
-//        }
-//      }
-//
-//
-//      if (amountForPayTransaction < scope.service.min_pay_limit) {
-//        console.log("amount=", amountForPayTransaction);
-//        console.log(scope.service.lang_min_amount);
-//        scope.enterButtonEnabled = false;
-//        scope.update(scope.enterButtonEnabled);
-//        return;
-//      }
-//      if (amountForPayTransaction > scope.service.max_pay_limit) {
-//        console.log(scope.service.lang_max_amount);
-//        scope.enterButtonEnabled = false;
-//        scope.update(scope.enterButtonEnabled);
-//        return;
-//      }
 
       if (this.autoPayNameInput.value.length < 1) {
         console.log("Введите название автоплатежа");
@@ -330,79 +329,93 @@
 
       scope.enterButtonEnabled = true;
       scope.update(scope.enterButtonEnabled);
-
-
     }
 
+    var chooseCardStartY, chooseCardStartX, chooseCardEndY, chooseCardEndX;
+
+    scope.onTouchStartOfChooseCard = onTouchStartOfChooseCard = function () {
+      event.stopPropagation();
+      chooseCardStartY = event.changedTouches[0].pageY;
+      chooseCardStartX = event.changedTouches[0].pageX;
+    };
+
     chooseCardToPay = function () {
-      if (autoPayNameInput.value.length < 1) {
-        scope.clickPinError = false;
-        scope.errorNote = "Введите название автоплатежа";
-        scope.showError = true;
-        scope.update();
-        return;
-      }
 
-      if (firstFieldInput.value.length < 9) {
-        scope.clickPinError = false;
-        scope.errorNote = "Неправильно введён номер телефона";
-        scope.showError = true;
-        scope.update();
-        return;
-      } else if (firstFieldInput.value.length == 0) {
-        scope.clickPinError = false;
-        scope.errorNote = "Введите значение первого поля";
-        scope.showError = true;
-        scope.update();
-        return;
-      }
+      event.stopPropagation();
 
-      if (!chosenStep) {
-        scope.clickPinError = false;
-        scope.errorNote = "Выберите условную сумму для пополнения баланса";
-        scope.showError = true;
-        scope.update();
-        return;
-      }
+      chooseCardEndY = event.changedTouches[0].pageY;
+      chooseCardEndX = event.changedTouches[0].pageX;
 
-      scope.autoPayData.name = autoPayNameInput.value;
-      scope.autoPayData.isNew = true;
-      scope.autoPayData.step = chosenStep;
-      scope.autoPayData.cntrg_phone_num = firstFieldInput.value;
-      scope.autoPayData.amount = scope.chosenAmount;
-      opts.amountText = scope.chosenAmount;
-
-      for (var j in scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps) {
-        console.log("STep =", scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j]);
-        if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j].step_value == chosenStep) {
-          scope.autoPayData.condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j].step_title;
-          console.log("STep title=", scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j].step_title);
-          break;
+      if (Math.abs(chooseCardStartY - chooseCardEndY) <= 20 && Math.abs(chooseCardStartX - chooseCardEndX) <= 20) {
+        if (autoPayNameInput.value.length < 1) {
+          scope.clickPinError = false;
+          scope.errorNote = "Введите название автоплатежа";
+          scope.showError = true;
+          scope.update();
+          return;
         }
-      }
-      console.log("Autopay Data=", scope.autoPayData);
+
+        if (firstFieldInput.value.length < 9) {
+          scope.clickPinError = false;
+          scope.errorNote = "Неправильно введён номер телефона";
+          scope.showError = true;
+          scope.update();
+          return;
+        } else if (firstFieldInput.value.length == 0) {
+          scope.clickPinError = false;
+          scope.errorNote = "Введите значение первого поля";
+          scope.showError = true;
+          scope.update();
+          return;
+        }
+
+        if (!chosenStep) {
+          scope.clickPinError = false;
+          scope.errorNote = "Выберите условную сумму для пополнения баланса";
+          scope.showError = true;
+          scope.update();
+          return;
+        }
+
+        scope.autoPayData.name = autoPayNameInput.value;
+        scope.autoPayData.isNew = true;
+        scope.autoPayData.step = chosenStep;
+        scope.autoPayData.cntrg_phone_num = firstFieldInput.value;
+        scope.autoPayData.amount = scope.chosenAmount;
+        opts.amountText = scope.chosenAmount;
+
+        for (var j in scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps) {
+          console.log("STep =", scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j]);
+          if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j].step_value == chosenStep) {
+            scope.autoPayData.condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j].step_title;
+            console.log("STep title=", scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j].step_title);
+            break;
+          }
+        }
+        console.log("Autopay Data=", scope.autoPayData);
 //      scope.autoPayData.condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + chosenStep;
-      localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+        localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
 
-      if (scope.autoPayData.fromView == 'PAY') {
-        opts.formtype = scope.servicesMap[opts.chosenServiceId][0].form_type;
-        opts.firstFieldId = scope.servicesParamsMapOne[opts.chosenServiceId][0].parameter_id;
-        opts.firstFieldTitle = scope.servicesParamsMapOne[opts.chosenServiceId][0].title;
-        opts.firstFieldText = firstFieldInput.value;
+        if (scope.autoPayData.fromView == 'PAY') {
+          opts.formtype = scope.servicesMap[opts.chosenServiceId][0].form_type;
+          opts.firstFieldId = scope.servicesParamsMapOne[opts.chosenServiceId][0].parameter_id;
+          opts.firstFieldTitle = scope.servicesParamsMapOne[opts.chosenServiceId][0].title;
+          opts.firstFieldText = firstFieldInput.value;
 
-        opts.isInFavorites = false;
-        opts.mode = 'ADDAUTOPAY';
+          opts.isInFavorites = false;
+          opts.mode = 'ADDAUTOPAY';
 
-        this.riotTags.innerHTML = "<view-service-pincards-new>";
-        riot.mount('view-service-pincards-new', opts);
-        scope.unmount()
-      }
-      else if (scope.autoPayData.fromView == 'PAYCONFIRM') {
-        this.riotTags.innerHTML = "<view-pay-confirm-new>";
-        riot.mount('view-pay-confirm-new', opts);
-        scope.unmount()
+          this.riotTags.innerHTML = "<view-service-pincards-new>";
+          riot.mount('view-service-pincards-new', opts);
+          scope.unmount()
+        }
+        else if (scope.autoPayData.fromView == 'PAYCONFIRM') {
+          this.riotTags.innerHTML = "<view-pay-confirm-new>";
+          riot.mount('view-pay-confirm-new', opts);
+          scope.unmount()
 
+        }
       }
     }
 
