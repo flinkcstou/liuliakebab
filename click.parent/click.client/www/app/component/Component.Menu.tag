@@ -493,7 +493,9 @@
                 string = string.split('?')[1]
                 string = string.split('&')
                 var id = '';
-                var rk = '';
+                var rkId = '';
+                var rkAmount = '';
+                var rkOrder = '';
                 for (var i in string) {
                   if (string[i].split('=')[0] == 'id') {
                     id = string[i].split('=')[1];
@@ -502,10 +504,23 @@
                   else {
 
                     console.log('string', string)
-                    if (string[i].split('=')[0] == 'rk') {
-                      rk = string[i].split('=')[1];
-                      console.log('ID', id)
+                    var decodeString = atob(string)
+                    console.log("DECODED STRING", decodeString)
+                    var splitedArray = decodeString.split('&');
+                    for(var j in splitedArray){
+                      if(splitedArray[j].split("=")[0] == 'id')
+                        id = splitedArray[j].split("=")[1]
+
+                      if(splitedArray[j].split("=")[0] == 'amount')
+                        rkAmount = splitedArray[j].split("=")[1]
+
+                      if(splitedArray[j].split("=")[0] == 'order_id')
+                        rkOrder = splitedArray[j].split("=")[1]
                     }
+
+                    console.log('id', id)
+                    console.log('rkAmount', rkAmount)
+                    console.log('rkOrder', rkOrder)
                   }
                 }
                 if (id) {
@@ -540,6 +555,14 @@
                           if (result[1]) {
                             if (result[1][0]) {
                               closeMenu();
+
+                              if(rkAmount){
+                                result[1][0].rk_amount = rkAmount
+                              }
+                              if(rkOrder){
+                                result[1][0].rk_order = rkOrder
+                              }
+
                               riotTags.innerHTML = "<view-qr>";
                               riot.mount('view-qr', result[1][0]);
 //                                scope.unmount()

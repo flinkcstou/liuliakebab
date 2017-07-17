@@ -48,13 +48,20 @@
     }
 
     this.on('mount', function () {
+
+      if (opts.rk_amount) {
+        sumValueId.value = window.amountTransform(opts.rk_amount)
+        sumForQrPay = opts.rk_amount
+      }
+      else {
+        sumValueId.value = 0
+      }
 //      if (viewTransferStepTwo.sum.length > 0) {
 //        sumValueId.value = viewTransferStepTwo.sum;
 //        checkFirst = true;
 //        sumForTransfer = viewTransferStepTwo.sumWithoutSpace;
 //      }
 //      else
-      sumValueId.value = 0
     })
 
     var checkFirst = false,
@@ -93,9 +100,9 @@
         Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
         opts.qrSum = sumForQrPay;
 
-        if(modeOfApp.offlineMode){
+        if (modeOfApp.offlineMode) {
           phonedialer.dial(
-            "*880*0" +opts.id + "*" + parseInt(sumForQrPay) + "%23",
+            "*880*0" + opts.id + "*" + parseInt(sumForQrPay) + "%23",
             function (err) {
               if (err == "empty") {
                 scope.clickPinError = false;
