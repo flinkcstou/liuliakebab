@@ -15,7 +15,9 @@
     </div>
 
     <div class="service-component">
-      <div class="service-title">{window.languages.ComponentFavoritePaymentsTitle}</div>
+      <div class="service-title" ontouchstart="openFavouriteStart()" ontouchend="openFavouriteEnd()">{window.languages.ComponentFavoritePaymentsTitle}
+      <div class="service-component-open-icon"></div>
+      </div>
       <div class="service-container">
         <div class="service-each-container" each="{i in favPaymentsList}">
           <div id="{i.id+'index'}" class="service-buttons" ontouchstart="ontouchStartOfPayment(this.id)"
@@ -215,6 +217,47 @@
       if (scope.favPaymentsList.length >= 4)
         scope.addFavoriteBool = false;
       scope.update();
+    }
+
+
+    var openFavouriteStartX, openFavouriteStartY, openFavouriteEndX, openFavouriteEndY;
+
+    openFavouriteStart = function () {
+      openFavouriteStartX = event.changedTouches[0].pageX;
+      openFavouriteStartY = event.changedTouches[0].pageY;
+    }
+    openFavouriteEnd = function () {
+      openFavouriteEndX = event.changedTouches[0].pageX;
+      openFavouriteEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(openFavouriteStartX - openFavouriteEndX) <= 20 && Math.abs(openFavouriteStartY - openFavouriteEndY) <= 20) {
+        if (modeOfApp.demoVersion) {
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          scope.showError = true;
+          scope.errorNote = question;
+//        confirm(question)
+//          scope.confirmShowBool = true;
+//          scope.confirmNote = question;
+//          scope.confirmType = 'local';
+//          scope.result = function (bool) {
+//            if (bool) {
+//              localStorage.clear();
+//              window.location = 'index.html'
+//              scope.unmount()
+//              return
+//            }
+//            else {
+//              scope.confirmShowBool = false;
+//              return
+//            }
+//          };
+          scope.update();
+
+          return
+        }
+        riotTags.innerHTML = "<view-favorites-new>";
+        riot.mount("view-favorites-new");
+      }
     }
 
     var delta, touchEndX, touchStartX;

@@ -1,8 +1,8 @@
 .riot-tags-main-container {
   -webkit-animation-name: mountAnimation !important;
-  -webkit-animation-duration: 0.2s !important;
+  -webkit-animation-duration: 1s !important;
   animation-name: mountAnimation !important;
-  animation-duration: 0.2s !important;
+  animation-duration: 1s !important;
 }
 
 @keyframes mountAnimation {

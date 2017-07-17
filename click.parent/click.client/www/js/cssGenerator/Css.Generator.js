@@ -40,9 +40,9 @@ var css = {
   //riotTagsMainContainer: ".riot-tags-main-container " +
   //"{" +
   //"-webkit-animation-name: mountAnimation !important;" +
-  //"-webkit-animation-duration: 0.2s !important;" +
+  //"-webkit-animation-duration: 1s !important;" +
   //"animation-name:mountAnimation !important;" +
-  //"animation-duration: 0.2s !important;" +
+  //"animation-duration: 1s !important;" +
   //"}",
   //
   //mountAnimation: "@keyframes mountAnimation " +
@@ -192,17 +192,17 @@ var css = {
   "color: #555555;" +
   "}",
   //
-  //riotTagsMainContainer: ".riot-tags-main-container" +
-  //"{ " +
-  //"-webkit-animation-name: mountAnimation; " +
-  //"-webkit-animation-duration: 0.2s; " +
-  //"}",
-  //
-  //webkitKeyFrameMountAnimation: "@-webkit-keyframes mountAnimation" +
-  //"{ " +
-  //"from {opacity: 0;}; " +
-  //"to {opacity: 1;}; " +
-  //"}",
+  riotTagsMainContainer: ".riot-tags-main-container" +
+  "{ " +
+  "-webkit-animation-name: mountAnimation; " +
+  "-webkit-animation-duration: 0.2s; " +
+  "}",
+
+  webkitKeyFrameMountAnimation: "@-webkit-keyframes mountAnimation" +
+  "{ " +
+  "from {opacity: 0;}; " +
+  "to {opacity: 1;}; " +
+  "}",
 
   body: "body{" +
   "margin: 0;" +
@@ -1887,6 +1887,20 @@ var css = {
   "background-color: #fefefe;" +
   "}",
 
+  serviceComponentOpenIcon: ".service-component-open-icon " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 20 * widthK + "px;" +
+  //"height:" + 338 * heightK + "px;" +
+  "height: 100%;" +
+  "top:" + 0 * heightK + "px;" +
+  "right:" + 0 * heightK + "px;" +
+  "background-image: url(resources/icons/ViewInfo/open.png);" +
+  "background-size: 50%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "}",
+
   serviceContainer: ".service-container " +
   "{" +
   "position: absolute;" +
@@ -1994,7 +2008,7 @@ var css = {
   "{" +
   "position: relative;" +
   "top:" + 38 * heightK + "px;" +
-  "width:" + 244 * widthK + "px;" +
+  "width:" + 260 * widthK + "px;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "background: transparent;" +
