@@ -12627,8 +12627,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "height:100%;" +
-  "width: 90%;" +
-  "left: 4%;" +
+  "width: 100%;" +
+  //"left: 4%;" +
   "}",
 
 
@@ -12637,6 +12637,7 @@ var css = {
   //"top:" + 50 * widthK + "px;" +
   "background-size: 100%;" +
   "position: absolute;" +
+  "left: 4%;" +
   "width:" + 125 * widthK + "px;" +
   "height:" + 125 * widthK + "px;" +
   "background-repeat: no-repeat;" +
@@ -12649,7 +12650,7 @@ var css = {
   "position: absolute;" +
   "height: 100%;" +
   "width: 72%;" +
-  "left: 21%;" +
+  "left: 25%;" +
   "color: #8b8b8b;" +
   "}",
 

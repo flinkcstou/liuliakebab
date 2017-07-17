@@ -1,14 +1,14 @@
 <view-auto-pay-new class="riot-tags-main-container">
   <div class="pay-page-title">
     <p class="pay-name-title">{titleName}</p>
-    <div id="backButton" ontouchstart="onTouchStartOfBack()" ontouchend="goToBack()" class="pay-back-button"></div>
+    <div id="autoPayBackButtonId" ontouchstart="onTouchStartOfBack()" ontouchend="goToBack()" class="pay-back-button"></div>
     <div id="rightButton" ontouchstart="onTouchStartOfAddSign()" ontouchend="addAutoPay()"
          class="settings-friend-help-add-button"></div>
   </div>
 
   <div class="view-autopay-container" if="{autopayListShow}">
     <div class="view-autopay-block-containter" each="{j in autopayList}">
-      <div id="{j.id}" class="view-autopay-block-inner-containter" ontouchstart="onTouchStartOfAutoPayment()"
+      <div id="{j.id}" class="view-autopay-block-inner-containter" ontouchstart="onTouchStartOfAutoPayment(this.id)"
            ontouchend="onTouchEndOfAutoPayment(this.id)">
         <div class="view-autopay-icon" style="background-image: url({j.service_icon});"></div>
         <div class="view-autopay-info-container">
@@ -55,6 +55,9 @@
 
     scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
+
+      autoPayBackButtonId.style.webkitTransform = 'scale(0.7)'
+
       backStartY = event.changedTouches[0].pageY;
       backStartX = event.changedTouches[0].pageX;
     };
@@ -62,6 +65,8 @@
 
     goToBack = function () {
       event.stopPropagation();
+
+      autoPayBackButtonId.style.webkitTransform = 'scale(1)'
 
       backEndY = event.changedTouches[0].pageY;
       backEndX = event.changedTouches[0].pageX;
@@ -81,12 +86,17 @@
 
     scope.onTouchStartOfAddSign = onTouchStartOfAddSign = function () {
       event.stopPropagation();
+
+      rightButton.style.webkitTransform = 'scale(0.7)'
+
       addSignStartY = event.changedTouches[0].pageY;
       addSignStartX = event.changedTouches[0].pageX;
     };
 
     addAutoPay = function () {
       event.stopPropagation();
+
+      rightButton.style.webkitTransform = 'scale(1)'
 
       addSignEndY = event.changedTouches[0].pageY;
       addSignEndX = event.changedTouches[0].pageX;
@@ -176,8 +186,11 @@
       }
     });
 
-    onTouchStartOfAutoPayment = function () {
+    onTouchStartOfAutoPayment = function (id) {
       event.stopPropagation();
+
+      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
+
       autoPayOnTouchStartY = event.changedTouches[0].pageY;
       autoPayOnTouchStartX = event.changedTouches[0].pageX;
     }
@@ -185,6 +198,8 @@
 
     onTouchEndOfAutoPayment = function (id) {
       event.stopPropagation();
+
+      document.getElementById(id).style.backgroundColor = 'transparent'
 
       autoPayOnTouchEndY = event.changedTouches[0].pageY;
       autoPayOnTouchEndX = event.changedTouches[0].pageX;
