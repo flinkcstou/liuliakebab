@@ -6,7 +6,7 @@
       {titleName}</p>
     <p class="servicepage-category-field">{(opts.mode=='ADDAUTOPAY')?
       (autoPayTypeText):(categoryName)}</p>
-    <div ontouchend="touchStartTitle()" ontouchstart="onTouchStartOfBack()"
+    <div id="pinCardBackButtonId" ontouchend="touchStartTitle()" ontouchstart="onTouchStartOfBack()"
          class="{servicepage-button-back:opts.mode!='ADDAUTOPAY', autopay-method-back-button:opts.mode=='ADDAUTOPAY'}">
     </div>
     <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
@@ -42,7 +42,7 @@
         <div class="pincard-friend-change-text" ontouchend="friendHelp()">Изменить</div>
       </div>
 
-      <button class="pincard-button-enter" ontouchstart="onTouchStartOfEnterCard()"
+      <button id="enterPinCardButtonId" class="pincard-button-enter" ontouchstart="onTouchStartOfEnterCard()"
               ontouchend="goToPayConfirmView()">{window.languages.ViewServicePageEnterLabel}
       </button>
 
@@ -79,12 +79,17 @@
 
     scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
+
+      pinCardBackButtonId.style.webkitTransform = 'scale(0.7)'
+
       backStartY = event.changedTouches[0].pageY;
       backStartX = event.changedTouches[0].pageX;
     };
 
     touchStartTitle = function () {
       event.stopPropagation();
+
+      pinCardBackButtonId.style.webkitTransform = 'scale(1)'
 
       backEndY = event.changedTouches[0].pageY;
       backEndX = event.changedTouches[0].pageX;
@@ -128,6 +133,9 @@
 
     scope.onTouchStartOfEnterCard = onTouchStartOfEnterCard = function () {
       event.stopPropagation();
+
+      enterPinCardButtonId.style.webkitTransform = 'scale(0.8)'
+
       enterCardStartY = event.changedTouches[0].pageY;
       enterCardStartX = event.changedTouches[0].pageX;
     };
@@ -136,6 +144,8 @@
     goToPayConfirmView = function () {
 
       event.stopPropagation();
+
+      enterPinCardButtonId.style.webkitTransform = 'scale(1)'
 
       enterCardEndY = event.changedTouches[0].pageY;
       enterCardEndX = event.changedTouches[0].pageX;

@@ -9781,7 +9781,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height:100%;" +
-  "width: 90%;" +
+  "width: 100%;" +
   "}",
 
 

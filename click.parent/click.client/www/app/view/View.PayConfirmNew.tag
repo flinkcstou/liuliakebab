@@ -6,7 +6,7 @@
       {titleName}</p>
     <p class="servicepage-category-field">{(opts.mode=='ADDAUTOPAY')?
       (autoPayTypeText):(categoryName)}</p>
-    <div ontouchend="goToBack()" ontouchstart="onTouchStartOfBack()"
+    <div id="payconfirmButtonId" ontouchend="goToBack()" ontouchstart="onTouchStartOfBack()"
          class="{servicepage-button-back:opts.mode!='ADDAUTOPAY', autopay-method-back-button:opts.mode=='ADDAUTOPAY'}">
     </div>
     <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
@@ -82,11 +82,11 @@
           </div>
         </div>
       </div>
-      <button class="{payconfirm-button-enter:opts.mode!='ADDAUTOPAY', autopay-button:opts.mode=='ADDAUTOPAY'}"
+      <button id="autoPayButtonId" class="{payconfirm-button-enter:opts.mode!='ADDAUTOPAY', autopay-button:opts.mode=='ADDAUTOPAY'}"
               ontouchend="payService()" ontouchstart="onTouchStartOfEnterPay()" if="{!autoPayDelete}">
         {(opts.mode=='ADDAUTOPAY')? window.languages.ViewAutoPayCreateButtonText : window.languages.ViewPayConfirmPay}
       </button>
-      <button class="payconfirm-button-delete" ontouchend="deleteAutoPay()" ontouchstart="onTouchStartOfAutoPay()"
+      <button id="deleteAutoPayButtonId" class="payconfirm-button-delete" ontouchend="deleteAutoPay()" ontouchstart="onTouchStartOfAutoPay()"
               if="{autoPayDelete && opts.mode=='ADDAUTOPAY'}">
         {window.languages.ViewAutoPayDeleteButtonText}
       </button>
@@ -131,12 +131,17 @@
 
     scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
+
+      payconfirmButtonId.style.webkitTransform = 'scale(0.7)'
+
       backStartY = event.changedTouches[0].pageY;
       backStartX = event.changedTouches[0].pageX;
     };
 
     goToBack = function () {
       event.stopPropagation();
+
+      payconfirmButtonId.style.webkitTransform = 'scale(1)'
 
       backEndY = event.changedTouches[0].pageY;
       backEndX = event.changedTouches[0].pageX;
@@ -320,6 +325,9 @@
 
     scope.onTouchStartOfEnterPay = onTouchStartOfEnterPay = function () {
       event.stopPropagation();
+
+      autoPayButtonId.style.webkitTransform = 'scale(0.8)'
+
       enterPayStartY = event.changedTouches[0].pageY;
       enterPayStartX = event.changedTouches[0].pageX;
     };
@@ -328,6 +336,8 @@
     payService = function () {
 
       event.stopPropagation();
+
+      autoPayButtonId.style.webkitTransform = 'scale(1)'
 
       enterPayEndY = event.changedTouches[0].pageY;
       enterPayEndX = event.changedTouches[0].pageX;
@@ -714,12 +724,18 @@
 
     scope.onTouchStartOfAutoPay = onTouchStartOfAutoPay = function () {
       event.stopPropagation();
+
+//      if(deleteAutoPayButtonId)
+//      deleteAutoPayButtonId.style.webkitTransform = 'scale(0.8)'
+
       autoPayStartY = event.changedTouches[0].pageY;
       autoPayStartX = event.changedTouches[0].pageX;
     };
 
     deleteAutoPay = function () {
       event.stopPropagation();
+
+//      deleteAutoPayButtonId.style.webkitTransform = 'scale(1)'
 
       autoPayEndY = event.changedTouches[0].pageY;
       autoPayEndX = event.changedTouches[0].pageX;
