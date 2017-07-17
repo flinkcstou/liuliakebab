@@ -5,7 +5,7 @@
       {titleName}</p>
     <p class="servicepage-category-field">{(opts.mode=='ADDAUTOPAY')?
       (window.languages.ViewAutoPayMethodSchedulerText):(categoryName)}</p>
-    <div ontouchend="goToBack()" ontouchstart="onTouchStartOfBack()"
+    <div id="servicePageBackButtonId" ontouchend="goToBack()" ontouchstart="onTouchStartOfBack()"
          class="{servicepage-button-back:opts.mode!='ADDAUTOPAY', autopay-method-back-button:opts.mode=='ADDAUTOPAY'}">
     </div>
     <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
@@ -261,6 +261,9 @@
 
     scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
+
+      servicePageBackButtonId.style.webkitTransform = 'scale(0.7)'
+
       backStartY = event.changedTouches[0].pageY;
       backStartX = event.changedTouches[0].pageX;
     };
@@ -268,6 +271,8 @@
 
     goToBack = function () {
       event.stopPropagation();
+
+      servicePageBackButtonId.style.webkitTransform = 'scale(1)'
 
       backEndY = event.changedTouches[0].pageY;
       backEndX = event.changedTouches[0].pageX;
@@ -1398,12 +1403,19 @@
 
     scope.onTouchStartOfEnter = onTouchStartOfEnter = function () {
       event.stopPropagation();
+
+      if(enterButtonId && scope.enterButtonEnabled)
+      enterButtonId.style.webkitTransform = 'scale(0.8)'
+
       enterStartY = event.changedTouches[0].pageY;
       enterStartX = event.changedTouches[0].pageX;
     };
 
     scope.onTouchEndOfEnter = onTouchEndOfEnter = function () {
       event.stopPropagation();
+
+      if(enterButtonId && scope.enterButtonEnabled)
+      enterButtonId.style.webkitTransform = 'scale(1)'
 
       enterEndY = event.changedTouches[0].pageY;
       enterEndX = event.changedTouches[0].pageX;
