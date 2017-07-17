@@ -2,7 +2,7 @@
 
   <div class="invoice-list-page-title">
     <p class="invoice-list-name-title">{titleName}</p>
-    <div id="backButton" ontouchend="goToBack()" class="invoice-list-back-button">
+    <div id="invoiceListBackButtonId" ontouchstart="invoiceGoToBackStart()" ontouchend="invoiceGoToBackEnd()" class="invoice-list-back-button">
 
     </div>
   </div>
@@ -22,12 +22,13 @@
           {languages.ViewInvoiceListFromUser}</p>
       </div>
     </div>
-    <div id="invoiceListInvoicesId" class="invoice-list-invoices-holder" ontouchmove="invoiceListInvoicesTouchMove()"
+    <div id="invoiceListInvoicesId" class="invoice-list-invoices-holder" onscroll="invoiceListInvoicesTouchMove()"
          if="{invoiceListShow}">
       <div each="{invoice in invoiceList}" if="{!invoice.deleted}" title="{JSON.stringify(invoice)}"
            class="invoice-list-invoice"
-           ontouchend="goToInvoiceHistoryDetailTouchEnd(this.title)"
-           ontouchstart="goToInvoiceHistoryDetailTouchStart()">
+           id="{invoice.invoice_id}"
+           ontouchend="goToInvoiceHistoryDetailTouchEnd(this.title, this.id)"
+           ontouchstart="goToInvoiceHistoryDetailTouchStart(this.id)">
         <div
           class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
           <mark class="invoice-list-invoice-sum-sym">сум</mark>
@@ -50,7 +51,7 @@
       </div>
     </div>
 
-    <div id="invoiceListInvoicesId" class="invoice-list-invoices-holder" ontouchmove="invoiceListInvoicesTouchMove()"
+    <div id="invoiceListInvoicesId" class="invoice-list-invoices-holder" onscroll="invoiceListInvoicesTouchMove()"
          if="{!invoiceListShow}">
       <div class="empty-list-upper-container">
         <div class="empty-list-upper-icon" if="{toUser}"
@@ -121,6 +122,10 @@
 
     invoiceListInvoicesTouchMove = function () {
 
+      event.preventDefault();
+      event.stopPropagation();
+
+
       if ((invoiceListInvoicesId.scrollHeight - invoiceListInvoicesId.scrollTop) == invoiceListInvoicesId.offsetHeight && canDownloadInvoiceList) {
         console.log(scope.toUser)
         if (scope.toUser) {
@@ -142,6 +147,7 @@
       console.log("ASDQQQ");
 
       if (!scope.toUser) {
+        scope.oldInvoiceList = scope.invoiceList;
         scope.invoiceList = [];
         invoiceListPageNumber = 1;
         canDownloadInvoiceList = true;
@@ -176,6 +182,7 @@
         onSuccess: function (result) {
 
           if (result[0][0].error == 0) {
+            console.log(result[1])
             if (result[1]) {
               if (result[1].length == 0) {
                 canDownloadInvoiceList = false;
@@ -202,6 +209,9 @@
 
                 localStorage.setItem('click_client_invoice_list', JSON.stringify(scope.invoiceList));
               }
+            }
+            else{
+              canDownloadInvoiceList = false;
             }
           }
           else {
@@ -306,14 +316,41 @@
       getInvoiceListFromUser();
     }
 
-    goToBack = function () {
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    invoiceGoToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
-      scope.unmount()
+      console.log("BACK BACK")
+
+      invoiceListBackButtonId.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
     };
 
-    goToInvoiceHistoryDetailTouchEnd = function (invoice) {
+    invoiceGoToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      invoiceListBackButtonId.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+        scope.unmount()
+      }
+    };
+
+    goToInvoiceHistoryDetailTouchEnd = function (invoice, id) {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      document.getElementById(id).style.backgroundColor = 'transparent'
 
       goToInvoiceHistoryDetailTouchEndX = event.changedTouches[0].pageX;
       goToInvoiceHistoryDetailTouchEndY = event.changedTouches[0].pageY;
@@ -452,7 +489,9 @@
       }
     };
 
-    goToInvoiceHistoryDetailTouchStart = function () {
+    goToInvoiceHistoryDetailTouchStart = function (id) {
+
+      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
 
       goToInvoiceHistoryDetailTouchStartX = event.changedTouches[0].pageX;
       goToInvoiceHistoryDetailTouchStartY = event.changedTouches[0].pageY;

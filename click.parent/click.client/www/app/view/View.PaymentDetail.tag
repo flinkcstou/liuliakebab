@@ -3,7 +3,7 @@
   <div class="transfer-to-card-title-container">
     <div class="page-title account-detail-page-title">
       <p class="name-title">{window.languages.ViewPaymentDetailTitle + opts.invoiceId}</p>
-      <div id="backButton" ontouchstart="paymentDetailGoToBack()" class="settings-general-back-button"></div>
+      <div id="paymentDetailBackButtonId" ontouchstart="paymentDetailGoToBackStart()" ontouchend="paymentDetailGoToBackEnd()" class="settings-general-back-button"></div>
     </div>
 
     <div class="payment-detail-payment-icon"></div>
@@ -38,11 +38,11 @@
     <div class="account-detail-cover"></div>
 
     <div class="account-detail-buttons-container">
-      <button class="account-detail-button-accept" ontouchend="paymentDetailOnTouchEndAccept()"
+      <button id="paymentAcceptButtonId" class="account-detail-button-accept" ontouchend="paymentDetailOnTouchEndAccept()"
               ontouchstart="paymentDetailOnTouchStartAccept()">
         {window.languages.ViewAccountDetailTitlePay}
       </button>
-      <button class="account-detail-button-cancel" ontouchend="paymentDetailOnTouchEndDecline()"
+      <button id="paymentCancelButtonId" class="account-detail-button-cancel" ontouchend="paymentDetailOnTouchEndDecline()"
               ontouchstart="paymentDetailOnTouchStartDecline()">
         {window.languages.ViewAccountDetailTitleDecline}
       </button>
@@ -76,25 +76,47 @@
     scope.showError = false;
     //    scope.titleName = window.languages.ViewPaymentDetailTitle + scope.opts.invoiceId;
 
-    paymentDetailGoToBack = function (doNotPrevent) {
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
-      if (!doNotPrevent) {
+    paymentDetailGoToBackStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
 
+      paymentDetailBackButtonId.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
+    };
+
+    paymentDetailGoToBackEnd = function (doNotPrevent) {
+
+      if(!doNotPrevent) {
         event.preventDefault();
         event.stopPropagation();
-//      console.log("BACK")
+
+        paymentDetailBackButtonId.style.webkitTransform = 'scale(1)'
+
+        goBackButtonEndX = event.changedTouches[0].pageX;
+        goBackButtonEndY = event.changedTouches[0].pageY;
       }
-      onBackKeyDown()
-//      scope.unmount()
+
+      if ((Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) || doNotPrevent) {
+        onBackKeyDown()
+      }
     };
 
     paymentDetailOnTouchStartDecline = function () {
+
+      paymentCancelButtonId.style.webkitTransform = 'scale(0.8)'
 
       touchStartDeclineX = event.changedTouches[0].pageX;
       touchStartDeclineY = event.changedTouches[0].pageY;
     };
 
     paymentDetailOnTouchEndDecline = function () {
+
+      paymentCancelButtonId.style.webkitTransform = 'scale(1)'
 
       touchEndDeclineX = event.changedTouches[0].pageX;
       touchEndDeclineY = event.changedTouches[0].pageY;
@@ -160,11 +182,15 @@
 
     paymentDetailOnTouchStartAccept = function () {
 
+      paymentAcceptButtonId.style.webkitTransform = 'scale(0.8)'
+
       touchStartAcceptX = event.changedTouches[0].pageX;
       touchStartAcceptY = event.changedTouches[0].pageY;
     };
 
     paymentDetailOnTouchEndAccept = function () {
+
+      paymentAcceptButtonId.style.webkitTransform = 'scale(1)'
 
       touchEndAcceptX = event.changedTouches[0].pageX;
       touchEndAcceptY = event.changedTouches[0].pageY;

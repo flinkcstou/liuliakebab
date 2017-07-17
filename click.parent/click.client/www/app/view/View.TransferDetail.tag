@@ -4,7 +4,8 @@
 
     <div class="page-title transfer-detail-page-title">
       <p class="name-title">{titleName}</p>
-      <div id="backButton" ontouchend="transferDetailGoToBack()" class="settings-general-back-button"></div>
+      <div id="transferDetailBackButtonId" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
+           class="settings-general-back-button"></div>
     </div>
     <div class="transfer-detail-transfer-icon"></div>
     <p class="transfer-detail-transfer-icon-title-part-one">
@@ -39,11 +40,13 @@
     <div class="transfer-detail-cover"></div>
 
     <div class="transfer-detail-buttons-container">
-      <button class="transfer-detail-button-accept" ontouchend="transferDetailOnTouchEndAccept()"
+      <button id="acceptTransferButtonId" class="transfer-detail-button-accept"
+              ontouchend="transferDetailOnTouchEndAccept()"
               ontouchstart="transferDetailOnTouchStartAccept()">
         {window.languages.ViewTransferDetailTitleAccept}
       </button>
-      <button class="transfer-detail-button-cancel" ontouchend="transferDetailOnTouchEndDecline()"
+      <button id="cancelTransferButtonId" class="transfer-detail-button-cancel"
+              ontouchend="transferDetailOnTouchEndDecline()"
               ontouchstart="transferDetailOnTouchStartDecline()">
         {window.languages.ViewTransferDetailTitleDecline}
       </button>
@@ -63,7 +66,8 @@
       <p class="transfer-detail-code-confirm-message-text-info">
         {languages.ViewTransferDetailConfirmShouldSendCodeLabelFirstPart} + {opts.phoneNumber}
         {languages.ViewTransferDetailConfirmShouldSendCodeLabelSecondPart}</p>
-      <button class="transfer-detail-code-confirm-button-enter" ontouchend="onTouchEndAcceptSecretCode()"
+      <button id="confirmTransferButtonId" class="transfer-detail-code-confirm-button-enter"
+              ontouchend="onTouchEndAcceptSecretCode()"
               ontouchstart="onTouchStartAcceptSecretCode()">
         OK
       </button>
@@ -96,15 +100,33 @@
 
     console.log('WWWWWWWWWW')
 
-    transferDetailGoToBack = function (doNotPrevent) {
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
+    goToBackStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      transferDetailBackButtonId.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
+    };
+
+    goToBackEnd = function (doNotPrevent) {
       if (!doNotPrevent) {
-
         event.preventDefault();
         event.stopPropagation();
+        transferDetailBackButtonId.style.webkitTransform = 'scale(1)'
+
+        goBackButtonEndX = event.changedTouches[0].pageX;
+        goBackButtonEndY = event.changedTouches[0].pageY;
       }
-      onBackKeyDown()
-//      scope.unmount()
+
+
+      if ((Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) || doNotPrevent) {
+        onBackKeyDown()
+      }
     };
 
     verifyInput = function (input) {
@@ -122,6 +144,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      confirmTransferButtonId.style.webkitTransform = 'scale(0.8)'
+
       console.log("Secret Code For Confirmation", this.secretCodeInput.value);
 
       touchStartAcceptSecretCodeX = event.changedTouches[0].pageX;
@@ -132,32 +156,37 @@
       event.preventDefault();
       event.stopPropagation();
 
+      confirmTransferButtonId.style.webkitTransform = 'scale(1)'
+
       touchEndAcceptSecretCodeX = event.changedTouches[0].pageX;
       touchEndAcceptSecretCodeY = event.changedTouches[0].pageY;
 
-      var secret_key = this.secretCodeInput.value;
+      if (Math.abs(touchStartAcceptSecretCodeX - touchEndAcceptSecretCodeX) < 20 &&
+        Math.abs(touchStartAcceptSecretCodeY - touchEndAcceptSecretCodeY) < 20) {
 
-      if (!secret_key) {
+        var secret_key = this.secretCodeInput.value;
 
-        scope.showError = true;
-        scope.errorNote = window.languages.ViewTransferDetailCodeNotEntered;
-        scope.clickPinError = false;
-        scope.update();
+        if (!secret_key) {
 
-        return;
-      }
+          scope.showError = true;
+          scope.errorNote = window.languages.ViewTransferDetailCodeNotEntered;
+          scope.clickPinError = false;
+          scope.update();
 
-      if (Math.abs(touchEndAcceptSecretCodeX - touchStartAcceptSecretCodeX) < 20 &&
-        Math.abs(touchEndAcceptSecretCodeY - touchStartAcceptSecretCodeY) < 20) {
+          return;
+        }
+
+        if (Math.abs(touchEndAcceptSecretCodeX - touchStartAcceptSecretCodeX) < 20 &&
+          Math.abs(touchEndAcceptSecretCodeY - touchStartAcceptSecretCodeY) < 20) {
 //        riot.update();
-        console.log('OPTS IN TRANSFER DETAIL', scope.opts)
+          console.log('OPTS IN TRANSFER DETAIL', scope.opts)
 
 
-        var params = {
-          amount: scope.opts.amount,
-          secret_key: secret_key,
-          invoiceId: scope.opts.invoiceId
-        };
+          var params = {
+            amount: scope.opts.amount,
+            secret_key: secret_key,
+            invoiceId: scope.opts.invoiceId
+          };
 
 //        scope.showComponent = true;
 //        console.log('PARAMS', params)
@@ -165,16 +194,19 @@
 //        window.checkShowingComponent = scope.tags['view-transfer-on-card'];
 //        riot.update();
 
-        riotTags.innerHTML = "<view-transfer-on-card>";
-        riot.mount("view-transfer-on-card", params);
+          riotTags.innerHTML = "<view-transfer-on-card>";
+          riot.mount("view-transfer-on-card", params);
 
 //        scope.unmount()
+        }
       }
     };
 
     transferDetailOnTouchStartAccept = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      acceptTransferButtonId.style.webkitTransform = 'scale(0.8)'
 
       touchStartAcceptX = event.changedTouches[0].pageX;
       touchStartAcceptY = event.changedTouches[0].pageY;
@@ -184,6 +216,7 @@
       event.preventDefault();
       event.stopPropagation();
 
+      acceptTransferButtonId.style.webkitTransform = 'scale(1)'
 
       console.log("ACCEPT OPTS", opts)
 
@@ -202,6 +235,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      cancelTransferButtonId.style.webkitTransform = 'scale(0.8)'
+
       touchStartDeclineX = event.changedTouches[0].pageX;
       touchStartDeclineY = event.changedTouches[0].pageY;
     };
@@ -209,6 +244,8 @@
     transferDetailOnTouchEndDecline = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      cancelTransferButtonId.style.webkitTransform = 'scale(1)'
 
 
       touchEndDeclineX = event.changedTouches[0].pageX;
@@ -259,7 +296,7 @@
             console.log("result of invoice transfer decline", result);
 
             if (result[0][0].error == 0) {
-              transferDetailGoToBack(true);
+              goToBackEnd(true);
             }
             else {
               scope.clickPinError = false;

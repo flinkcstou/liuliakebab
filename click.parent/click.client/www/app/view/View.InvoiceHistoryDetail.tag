@@ -4,7 +4,7 @@
     <div class="page-title invoice-history-detail-title">
       <p class="name-title">
         {(opts.is_p2p)?(languages.ViewInvoiceHistoryDetailTransferTitle):(languages.ViewInvoiceHistoryDetailPaymentTitle)}</p>
-      <div id="backButton" ontouchstart="goToBack()" class="invoice-history-detail-general-back-button"></div>
+      <div id="backButton" ontouchstart="invoiceHistoryGoToBackStart()" ontouchend="invoiceHistoryGoToBackEnd()" class="invoice-history-detail-general-back-button"></div>
     </div>
 
     <div
@@ -79,12 +79,32 @@
 
     var scope = this;
 
-    goToBack = function () {
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    invoiceHistoryGoToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
-//      scope.unmount()
-    }
+
+      backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
+    };
+
+    invoiceHistoryGoToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+      }
+    };
 
   </script>
 

@@ -545,6 +545,7 @@
                         phone_num: phoneNumber,
                         session_key: sessionKey,
                         service_id: id,
+                        value: rkOrder
 
                       },
 
@@ -598,7 +599,7 @@
               showFlipCameraButton: true, // iOS and Android
               showTorchButton: true, // iOS and Android
               torchOn: false, // Android, launch with the torch switched on (if available)
-              prompt: "Установите QR код в поле сканирования", // Android
+              prompt: "Наведите камеру к QR коду", // Android
               resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
               formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
               orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device

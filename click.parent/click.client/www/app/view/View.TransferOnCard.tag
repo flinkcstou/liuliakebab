@@ -10,7 +10,7 @@
 
     <component-pincards clean="{true}" transferoncard="true"></component-pincards>
 
-    <button class="transfer-on-card-ok-button" ontouchend="transferOnCardOnTouchEndAccept()"
+    <button id="acceptTransferOnCardButtonId" class="transfer-on-card-ok-button" ontouchend="transferOnCardOnTouchEndAccept()"
             ontouchstart="transferOnCardOnTouchStartAccept()">
       {languages.ViewTransferOnCardAcceptButtonText}
     </button>
@@ -44,11 +44,15 @@
 
     transferOnCardOnTouchStartAccept = function () {
 
+      acceptTransferOnCardButtonId.style.webkitTransform = 'scale(0.8)'
+
       touchStartAcceptX = event.changedTouches[0].pageX;
       touchStartAcceptY = event.changedTouches[0].pageY;
     };
 
     transferOnCardOnTouchEndAccept = function () {
+
+      acceptTransferOnCardButtonId.style.webkitTransform = 'scale(1)'
 
       touchEndAcceptX = event.changedTouches[0].pageX;
       touchEndAcceptY = event.changedTouches[0].pageY;
