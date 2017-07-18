@@ -94,6 +94,7 @@
       event.preventDefault();
       event.stopPropagation();
 
+      if(backButton)
       backButton.style.webkitTransform = 'scale(0.7)'
 
       goBackButtonStartX = event.changedTouches[0].pageX;
@@ -105,6 +106,7 @@
       event.preventDefault();
       event.stopPropagation();
 
+      if(backButton)
       backButton.style.webkitTransform = 'scale(1)'
 
       goBackButtonEndX = event.changedTouches[0].pageX;
@@ -230,7 +232,7 @@
 
     scope.onTouchStartOfService = onTouchStartOfService = function (id) {
       event.stopPropagation();
-
+      if(document.getElementById(id))
       document.getElementById(id).style.webkitTransform = 'scale(0.8)'
       onTouchStartY = event.changedTouches[0].pageY;
       onTouchStartX = event.changedTouches[0].pageX;
@@ -243,6 +245,7 @@
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
       event.stopPropagation();
 
+      if(document.getElementById(id))
       document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       onTouchEndY = event.changedTouches[0].pageY;

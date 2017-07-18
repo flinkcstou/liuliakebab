@@ -911,7 +911,7 @@
         if (opts.amountText)
           scope.defaultAmount = window.amountTransform(opts.amountText);
         else {
-          scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " до " + window.amountTransform(scope.service.max_pay_limit) + " сум"
+          scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " до " + window.amountTransform(scope.service.max_pay_limit)
         }
         console.log("after tranform amount=", scope.defaultAmount);
         scope.update();
@@ -1413,6 +1413,9 @@
 
     scope.onTouchEndOfEnter = onTouchEndOfEnter = function () {
       event.stopPropagation();
+
+      opts.cost = scope.service.cost
+      opts.lang_amount_title = scope.service.lang_amount_title
 
       if(enterButtonId && scope.enterButtonEnabled)
       enterButtonId.style.webkitTransform = 'scale(1)'

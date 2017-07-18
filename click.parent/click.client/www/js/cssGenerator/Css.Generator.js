@@ -4604,32 +4604,42 @@ var css = {
 
   payconfirmAmountTextField: ".payconfirm-amount-text-field" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "margin: 0;" +
   "color: darkgray;" +
   "font-size: " + 24 * widthK + "px; " +
   "left: 8%;" +
-  "top: 20%;" +
+  "top: 15%;" +
   "}",
 
   payconfirmAmountValue: ".payconfirm-amount-value" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "margin: 0;" +
   "left: 8%;" +
-  "top: 39%;" +
+  "top: 15%;" +
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
   "}",
 
   payconfirmAmountTaxField: ".payconfirm-amount-tax-field" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "margin: 0;" +
   "color: darkgray;" +
   "font-size: " + 24 * widthK + "px; " +
   "left: 8%;" +
-  "top: 68%;" +
+  "top: 8%;" +
+  "}",
+
+  payconfirmAmountCountField: ".payconfirm-amount-count-field" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "left: 8%;" +
+  "top: 8%;" +
   "}",
 
   payconfirmCardField: ".payconfirm-card-field" +

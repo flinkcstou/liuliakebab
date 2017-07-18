@@ -25,6 +25,9 @@
         <p if="{opts.tax}" class="payconfirm-amount-tax-field">{window.languages.ViewServicePageAmountTaxText}
           {opts.tax}
           {window.languages.Currency}</p>
+
+        <p if="{opts.cost > 1}" class="payconfirm-amount-count-field">{opts.lang_amount_title}:
+          {window.amountTransform(opts.amountWithoutSpace)}</p>
       </div>
       <div class="payconfirm-field">
         <p class="payconfirm-text-field">{(opts.mode=='ADDAUTOPAY')?
@@ -209,7 +212,7 @@
     this.amountText = opts.amountText;
 
     try {
-      scope.amountTextCopy = window.amountTransform(this.amountText);
+      scope.amountTextCopy = window.amountTransform(this.amountText * opts.cost);
     }
     catch (e) {
       scope.amountTextCopy = this.amountText;
@@ -725,8 +728,8 @@
     scope.onTouchStartOfAutoPay = onTouchStartOfAutoPay = function () {
       event.stopPropagation();
 
-      if(deleteAutoPayButtonId && deleteAutoPayButtonId.style)
-      deleteAutoPayButtonId.style.webkitTransform = 'scale(0.8)'
+      if(deleteAutoPayButtonId)
+//      deleteAutoPayButtonId.style.webkitTransform = 'scale(0.8)'
 
       autoPayStartY = event.changedTouches[0].pageY;
       autoPayStartX = event.changedTouches[0].pageX;
@@ -735,7 +738,7 @@
     deleteAutoPay = function () {
       event.stopPropagation();
 
-      deleteAutoPayButtonId.style.webkitTransform = 'scale(1)'
+//      deleteAutoPayButtonId.style.webkitTransform = 'scale(1)'
 
       autoPayEndY = event.changedTouches[0].pageY;
       autoPayEndX = event.changedTouches[0].pageX;
