@@ -49,7 +49,7 @@
 
     </div>
     <div class="qr-payconfirm-bottom-container">
-      <button class="qr-payconfirm-button-enter" ontouchend="payService()">
+      <button id="qrPayButtonId" class="qr-payconfirm-button-enter" ontouchstart="payServiceStart()" ontouchend="payServiceEnd()">
         {window.languages.ViewPayConfirmPay}
       </button>
     </div>
@@ -61,7 +61,8 @@
   <component-unsuccess id="componentUnsuccessId"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{window.languages.ComponentUnsuccessMessagePart3ForPay}"></component-unsuccess>
+                       operationmessagepartthree="{window.languages.ComponentUnsuccessMessagePart3ForPay}"
+                       step_amount="{0}"></component-unsuccess>
 
 
   <script>
@@ -158,74 +159,114 @@
     }
     scope.update();
 
-    payService = function () {
+    var qrPayButtonStartX, qrPayButtonEndX, qrPayButtonStartY,
+      qrPayButtonEndY;
 
-      var date = parseInt(Date.now() / 1000);
-      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-      var serviceId = opts[2].id;
-      var amount = opts[2].qrSum;
-      var accountId;
-      var friendPhone;
+    payServiceStart = function () {
 
-      // friend help or own payment
-      if (scope.cardOrFriendBool) {
-        accountId = chosenCardId;
-        friendPhone = 0;
-        scope.operationMessage = window.languages.ComponentSuccessMessageForPay;
-      }
-      else {
-        accountId = 0;
-        friendPhone = scope.friendNumber;
-        scope.operationMessage = window.languages.ComponentSuccessMessageForPayFriendHelp;
-      }
-      console.log("accountId", accountId);
-      console.log("friendPhone", friendPhone);
-      var payment_data = {"transaction_id": parseInt(Date.now() / 1000), "is_indoor": 1}
+      qrPayButtonStartX = event.changedTouches[0].pageX;
+      qrPayButtonStartY = event.changedTouches[0].pageY;
 
+      qrPayButtonId.style.webkitTransform = 'scale(0.8)'
+    }
 
-      window.api.call({
-        method: 'app.payment',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          service_id: Number(serviceId),
-          account_id: Number(accountId),
-          amount: Number(amount),
-          payment_data: payment_data,
-          datetime: date,
-          friend_phone: friendPhone
-        },
+    payServiceEnd = function () {
 
-        scope: this,
+      qrPayButtonEndX = event.changedTouches[0].pageX;
+      qrPayButtonEndY = event.changedTouches[0].pageY;
 
-        onSuccess: function (result) {
-          if (result[0][0].error == 0) {
-            if (result[1])
-              if (result[1][0].payment_id || result[1][0].invoice_id) {
-                console.log("result of APP.PAYMENT 1", result);
-                viewServicePage.phoneText = null;
-                viewServicePage.amountText = null;
+      qrPayButtonId.style.webkitTransform = 'scale(1)'
 
-                scope.operationMessage = 'Оплата QR прошла успешно'
-                viewServicePinCards.friendHelpPaymentMode = false;
+      if (Math.abs(qrPayButtonStartX - qrPayButtonEndX) <= 20 && Math.abs(qrPayButtonStartY - qrPayButtonEndY) <= 20) {
 
-                scope.update();
-                componentSuccessId.style.display = 'block';
-              }
-          }
-          else {
-            console.log("result of APP.PAYMENT 3", result);
-            scope.update();
-            componentUnsuccessId.style.display = 'block';
-          }
-        },
+        var date = parseInt(Date.now() / 1000);
+        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+        var serviceId = opts[2].id;
+        var amount = opts[2].qrSum;
+        var accountId;
+        var friendPhone;
 
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
+        // friend help or own payment
+        if (scope.cardOrFriendBool) {
+          accountId = chosenCardId;
+          friendPhone = 0;
+          scope.operationMessage = window.languages.ComponentSuccessMessageForPay;
         }
-      });
+        else {
+          accountId = 0;
+          friendPhone = scope.friendNumber;
+          scope.operationMessage = window.languages.ComponentSuccessMessageForPayFriendHelp;
+        }
+        console.log("accountId", accountId);
+        console.log("friendPhone", friendPhone);
+        var payment_data = {"transaction_id": parseInt(Date.now() / 1000), "is_indoor": 1}
+
+        var inputObject = {};
+        if (opts[2].rk_order) {
+
+          inputObject = {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            service_id: Number(serviceId),
+            account_id: Number(accountId),
+            amount: Number(amount),
+            payment_data: payment_data,
+            datetime: date,
+            friend_phone: friendPhone,
+            value: opts[2].rk_order
+          }
+        }
+        else {
+          inputObject = {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            service_id: Number(serviceId),
+            account_id: Number(accountId),
+            amount: Number(amount),
+            payment_data: payment_data,
+            datetime: date,
+            friend_phone: friendPhone
+          }
+        }
+
+        window.api.call({
+          method: 'app.payment',
+          input: inputObject,
+
+          scope: this,
+
+          onSuccess: function (result) {
+
+            console.log('RESULT QR QR', result)
+
+            if (result[0][0].error == 0) {
+              if (result[1])
+                if (result[1][0].payment_id || result[1][0].invoice_id) {
+                  console.log("result of APP.PAYMENT 1", result);
+                  viewServicePage.phoneText = null;
+                  viewServicePage.amountText = null;
+
+                  scope.operationMessage = 'Оплата QR прошла успешно'
+                  viewServicePinCards.friendHelpPaymentMode = false;
+
+                  scope.update();
+                  componentSuccessId.style.display = 'block';
+                }
+            }
+            else {
+              console.log("result of APP.PAYMENT 3", result);
+              scope.update();
+              componentUnsuccessId.style.display = 'block';
+            }
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+      }
 
     }
 

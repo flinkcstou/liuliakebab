@@ -4617,7 +4617,7 @@ var css = {
   "position: relative;" +
   "margin: 0;" +
   "left: 8%;" +
-  "top: 15%;" +
+  "top: 12%;" +
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
   "}",

@@ -545,13 +545,15 @@
                         phone_num: phoneNumber,
                         session_key: sessionKey,
                         service_id: id,
-                        value: rkOrder
 
                       },
 
                       scope: this,
 
                       onSuccess: function (result) {
+
+                        console.log('MAIN RESULT', result)
+
                         if (result[0][0].error == 0) {
                           if (result[1]) {
                             if (result[1][0]) {
@@ -572,6 +574,12 @@
                           console.log("QR PAY", result);
                         }
                         else {
+
+                          if(result[0][0].error == -202){
+                            if(result[0][0].error_url)
+                            window.open(result[0][0].error_url)
+                            return
+                          }
                           scope.clickPinError = false;
                           scope.errorNote = result[0][0].error_note;
                           scope.showError = true;

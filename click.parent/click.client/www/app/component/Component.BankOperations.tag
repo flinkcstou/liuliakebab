@@ -211,7 +211,7 @@
 
           cordova.plugins.barcodeScanner.scan(
             function (result) {
-              console.log(result)
+              console.log('QR RESULT', result)
 
               var string = result.text;
               if (string.indexOf('click.uz') != -1) {
@@ -271,7 +271,6 @@
                         phone_num: phoneNumber,
                         session_key: sessionKey,
                         service_id: id,
-                        value: rkOrder,
 
                       },
 
@@ -296,6 +295,11 @@
                           console.log("QR PAY", result);
                         }
                         else {
+                          if(result[0][0].error == -202){
+                            if(result[0][0].error_url)
+                            window.open(result[0][0].error_url)
+                            return
+                          }
                           scope.clickPinError = false;
                           scope.errorNote = result[0][0].error_note;
                           scope.showError = true;
