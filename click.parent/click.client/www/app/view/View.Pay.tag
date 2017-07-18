@@ -154,6 +154,9 @@
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
       event.stopPropagation();
 
+
+
+
       document.getElementById(id).style.backgroundColor = 'transparent'
 
       onTouchEndY = event.changedTouches[0].pageY;
@@ -189,6 +192,13 @@
           opts.categoryId = id;
           hintUpdate(scope.index);
         }
+
+        console.log("OFFSET TOP", document.getElementById(id).offsetTop)
+
+        document.getElementById(id).scrollIntoView();
+//        categoriesContainerId.scrollIntoView(document.getElementById(id).offsetTop)
+
+//        categoriesContainerId.scrollTop = event.changedTouches[0].pageY;
 
         scope.update();
       }
