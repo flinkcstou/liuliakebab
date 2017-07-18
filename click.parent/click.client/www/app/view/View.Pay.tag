@@ -17,7 +17,7 @@
       <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
         <li each="{i in categoryList}" style="overflow: hidden;">
           <div if="{!(modeOfApp.offlineMode && i.id == 11)}" class="pay-service-block-containter" id="{i.id}"
-               ontouchstart="onTouchStartOfCategory()"
+               ontouchstart="onTouchStartOfCategory(this.id)"
                ontouchend="onTouchEndOfCategory(this.id)">
             <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
             <div class="pay-category-name-field">{i.name}
@@ -26,7 +26,7 @@
             <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
               <li class="pay-service-containter" each="{j in currentList}">
                 <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}"
-                     ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService()">
+                     ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
                   <div class="pay-service-name-field">{j.name}</div>
                 </div>
               </li>
@@ -140,14 +140,19 @@
     //    var count = 1;
 
 
-    scope.onTouchStartOfCategory = onTouchStartOfCategory = function () {
+    scope.onTouchStartOfCategory = onTouchStartOfCategory = function (id) {
       event.stopPropagation();
+
+      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
+
       onTouchStartY = event.changedTouches[0].pageY;
       onTouchStartX = event.changedTouches[0].pageX;
     };
 
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
       event.stopPropagation();
+
+      document.getElementById(id).style.backgroundColor = 'transparent'
 
       onTouchEndY = event.changedTouches[0].pageY;
       onTouchEndX = event.changedTouches[0].pageX;
@@ -223,8 +228,10 @@
     };
 
 
-    scope.onTouchStartOfService = onTouchStartOfService = function () {
+    scope.onTouchStartOfService = onTouchStartOfService = function (id) {
       event.stopPropagation();
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
       onTouchStartY = event.changedTouches[0].pageY;
       onTouchStartX = event.changedTouches[0].pageX;
     };
@@ -235,6 +242,9 @@
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
       event.stopPropagation();
+
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
+
       onTouchEndY = event.changedTouches[0].pageY;
       onTouchEndX = event.changedTouches[0].pageX;
 

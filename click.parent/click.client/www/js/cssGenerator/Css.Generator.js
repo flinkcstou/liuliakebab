@@ -3318,7 +3318,7 @@ var css = {
   "position: relative;" +
   "min-height:" + 100 * widthK + "px; " +
   "width: 100%;" +
-  "margin-top: 1%;" +
+  "padding-top: 1%;" +
   "border-bottom:" + 1 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "}",

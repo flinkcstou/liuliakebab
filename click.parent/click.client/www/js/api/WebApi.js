@@ -71,6 +71,7 @@ window.api.initSocket = function () {
         showAlertComponent("Сервер временно недоступен");
       }
       return
+
     }
   };
   var me = this;
