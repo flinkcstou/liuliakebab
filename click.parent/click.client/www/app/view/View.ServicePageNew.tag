@@ -82,12 +82,12 @@
       <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="9"
              id="amount"
              pattern="[0-9]"
-             placeholder="Введите сумму"
+             placeholder="{placeHolderText}"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
       <div if="{!modeOfApp.offlineMode}" class="servicepage-amount-icon" ontouchstart="onTouchStartOfAmountCalculator()"
            ontouchend="onTouchEndOfAmountCalculator()"></div>
 
-      <p id="placeHolderSumId" class="servicepage-limit-title">{placeHolderText}</p>
+      <p if="{showErrorOfLimit}" id="placeHolderSumId" class="servicepage-limit-title">{placeHolderText}</p>
     </div>
 
 
@@ -235,6 +235,8 @@
     window.checkShowingComponent = null;
     var scope = this;
 
+    scope.showErrorOfLimit = false;
+
 
     console.log("opts in ServicePageNew", opts);
 
@@ -319,27 +321,37 @@
 
     checkFieldsToActivateNext = function (from) {
 
-      if (amountForPayTransaction < scope.service.min_pay_limit && from == 'sum') {
+        if(from =='sum')
+          console.log('length', amount.value.length)
+
+
+      if (amountForPayTransaction < scope.service.min_pay_limit && from == 'sum' && amount.value.length != 0 ) {
+        scope.showErrorOfLimit = true;
         amountField.style.borderBottom = 3 * widthK + 'px solid red';
-        placeHolderSumId.style.color = 'red';
         scope.enterButtonEnabled = false;
-        scope.update(scope.enterButtonEnabled);
+        scope.update();
+        placeHolderSumId.style.color = 'red';
+        return;
+      }
+      else if(from == 'sum' && amountField.length >= 1){
+        amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+//        placeHolderSumId.style.color = '#515151';
+        scope.showErrorOfLimit = false;
+        scope.update()
+      }
+      if (amountForPayTransaction > scope.service.max_pay_limit  && from == 'sum' &&  amount.value.length != 0) {
+        scope.showErrorOfLimit = true;
+        amountField.style.borderBottom = 3 * widthK + 'px solid red';
+        scope.enterButtonEnabled = false;
+        scope.update();
+        placeHolderSumId.style.color = 'red';
         return;
       }
       else if(from == 'sum'){
         amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-        placeHolderSumId.style.color = '#515151';
-      }
-      if (amountForPayTransaction > scope.service.max_pay_limit  && from == 'sum') {
-        amountField.style.borderBottom = 3 * widthK + 'px solid red';
-        placeHolderSumId.style.color = 'red';
-        scope.enterButtonEnabled = false;
-        scope.update(scope.enterButtonEnabled);
-        return;
-      }
-      else if(from == 'sum'){
-        amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-        placeHolderSumId.style.color = '#515151';
+//        placeHolderSumId.style.color = '#515151';
+        scope.showErrorOfLimit = false;
+        scope.update()
       }
 
 
@@ -1363,6 +1375,8 @@
 
       amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
       firstField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+
+      checkFieldsToActivateNext('sum')
 
     };
 

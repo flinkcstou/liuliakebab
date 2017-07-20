@@ -3731,7 +3731,7 @@ var css = {
   "{position: relative;" +
   "left: 10%;" +
   "width: 79.5%;" +
-  "height: 8%;" +
+  "height: 10%;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
   "top: 11%;" +
@@ -3786,7 +3786,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 15%;" +
+  "top:" + 20 * widthK + "px; " +
   "width: 88%;" +
   "font-size:" + 54 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
