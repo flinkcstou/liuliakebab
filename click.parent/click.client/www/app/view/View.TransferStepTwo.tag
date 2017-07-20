@@ -150,8 +150,11 @@
       viewTransferStepTwo.sum = sumValueId.value;
       viewTransferStepTwo.sumWithoutSpace = sumForTransfer;
 
-      if (sumForTransfer >= 5000)
+      if (sumForTransfer)
         scope.tax = sumForTransfer * objectForTransfer.percent / 100;
+      else{
+        scope.tax = 0
+      }
       scope.update()
     }
 
