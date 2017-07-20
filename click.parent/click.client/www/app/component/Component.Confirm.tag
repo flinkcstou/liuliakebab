@@ -24,17 +24,20 @@
       event.preventDefault();
       event.stopPropagation();
 
+      console.log(confirmOkButtonId)
+      console.log(this.confirmOkButtonId)
+
       okButtonStartX = event.changedTouches[0].pageX;
       okButtonStartY = event.changedTouches[0].pageY;
 
-      confirmOkButtonId.style.webkitTransform = 'scale(0.8)'
+      this.confirmOkButtonId.style.webkitTransform = 'scale(0.8)'
     }
 
     okConfirmEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      confirmOkButtonId.style.webkitTransform = 'scale(1)'
+      this.confirmOkButtonId.style.webkitTransform = 'scale(1)'
 
       okButtonEndX = event.changedTouches[0].pageX;
       okButtonEndY = event.changedTouches[0].pageY;
@@ -77,7 +80,7 @@
       cancelButtonStartX = event.changedTouches[0].pageX;
       cancelButtonStartY = event.changedTouches[0].pageY;
 
-      confirmCancelButtonId.style.webkitTransform = 'scale(0.8)'
+      this.confirmCancelButtonId.style.webkitTransform = 'scale(0.8)'
 
 
     }
@@ -86,7 +89,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      confirmCancelButtonId.style.webkitTransform = 'scale(1)'
+      this.confirmCancelButtonId.style.webkitTransform = 'scale(1)'
 
       cancelButtonEndX = event.changedTouches[0].pageX;
       cancelButtonEndY = event.changedTouches[0].pageY;

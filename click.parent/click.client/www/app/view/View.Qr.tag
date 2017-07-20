@@ -16,6 +16,7 @@
       <div class="view-qr-contact-phone-field">
         <p class="view-qr-contact-text-field">Сумма</p>
         <input maxlength="14" class="view-qr-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
+               autofocus
                onmouseup="sumMouseUp()"
                type="tel" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
       </div>
@@ -48,6 +49,16 @@
     }
 
     this.on('mount', function () {
+
+      if(device.platform ==
+        'Android')
+      setTimeout(function(){
+        sumValueId.focus()
+      }, 0);
+      else{
+        sumValueId.focus()
+        sumValueId.autofocus
+      }
 
       if (opts.rk_amount) {
         sumValueId.value = window.amountTransform(opts.rk_amount)

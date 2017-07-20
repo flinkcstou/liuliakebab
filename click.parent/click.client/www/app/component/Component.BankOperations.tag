@@ -34,6 +34,16 @@
 
   </div>
 
+  <div if="{window.checkShowingComponent != null}" class="iFrame-container">
+    <div class="iFrame-toolbar-container">
+      <p class="iFrame-title">QR сканер</p>
+      <div id="iFrameBackButton" ontouchstart="hideIFrameStart(this.id)" ontouchend="hideIFrameEnd(this.id)"
+           class="iFrame-back-button">
+      </div>
+    </div>
+    <iframe id="iFrameExternalUrlId" class="iFrame-main" frameborder="0"></iframe>
+  </div>
+
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
@@ -42,8 +52,34 @@
 
   <script>
 
+
+    var closeIFrameStartX, closeIFrameEndX, closeIFrameStartY, closeIFrameEndY;
+
+    hideIFrameStart = function (id) {
+      closeIFrameStartX = event.changedTouches[0].pageX;
+      closeIFrameStartY = event.changedTouches[0].pageY;
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+    }
+
+    hideIFrameEnd = function (id) {
+      closeIFrameEndX = event.changedTouches[0].pageX;
+      closeIFrameEndY = event.changedTouches[0].pageY;
+
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
+
+      if (Math.abs(closeIFrameStartX - closeIFrameEndX) <= 20 && Math.abs(closeIFrameStartY - closeIFrameEndY) <= 20) {
+        console.log('qweweeee')
+        window.checkShowingComponent = null;
+        riot.update()
+      }
+
+    }
+
     var scope = this;
     var payStartX, payEndX, payStartY, payEndY;
+
+    scope.showIFrame = false;
 
     goToPayViewStart = function (e) {
       event.preventDefault();
@@ -227,27 +263,32 @@
                     id = string[i].split('=')[1];
                     console.log('ID', id)
                   }
-                  else {
+                }
 
-                    console.log('string', string)
+                if (!id) {
+                  console.log('string', string)
+                  try {
                     var decodeString = atob(string)
-                    console.log("DECODED STRING", decodeString)
-                    var splitedArray = decodeString.split('&');
-                    for(var j in splitedArray){
-                      if(splitedArray[j].split("=")[0] == 'id')
+                  }
+                  catch (e) {
+                    console.log(e)
+                  }
+                  console.log("DECODED STRING", decodeString)
+                  var splitedArray = decodeString.split('&');
+                  for (var j in splitedArray) {
+                    if (splitedArray[j].split("=")[0] == 'id')
                       id = splitedArray[j].split("=")[1]
 
-                      if(splitedArray[j].split("=")[0] == 'amount')
-                        rkAmount = splitedArray[j].split("=")[1]
+                    if (splitedArray[j].split("=")[0] == 'amount')
+                      rkAmount = splitedArray[j].split("=")[1]
 
-                      if(splitedArray[j].split("=")[0] == 'order_id')
-                        rkOrder = splitedArray[j].split("=")[1]
-                    }
-
-                    console.log('id', id)
-                    console.log('rkAmount', rkAmount)
-                    console.log('rkOrder', rkOrder)
+                    if (splitedArray[j].split("=")[0] == 'order_id')
+                      rkOrder = splitedArray[j].split("=")[1]
                   }
+
+                  console.log('id', id)
+                  console.log('rkAmount', rkAmount)
+                  console.log('rkOrder', rkOrder)
                 }
                 if (id) {
                   if (modeOfApp.offlineMode) {
@@ -281,10 +322,10 @@
                           if (result[1]) {
                             if (result[1][0]) {
 
-                              if(rkAmount){
+                              if (rkAmount) {
                                 result[1][0].rk_amount = rkAmount
                               }
-                              if(rkOrder){
+                              if (rkOrder) {
                                 result[1][0].rk_order = rkOrder
                               }
                               riotTags.innerHTML = "<view-qr>";
@@ -295,10 +336,50 @@
                           console.log("QR PAY", result);
                         }
                         else {
-                          if(result[0][0].error == -202){
-                            if(result[0][0].error_url)
-                            window.open(result[0][0].error_url)
-                            return
+                          if (result[0][0].error == -202) {
+                            if (result[0][0].error_url) {
+
+                              window.checkShowingComponent = scope;
+                              scope.update()
+                              iFrameExternalUrlId.src = result[0][0].error_url
+
+
+
+
+//                               ref = cordova.InAppBrowser.open(result[0][0].error_url, '_blank', 'location=no');
+//
+//
+//                              //injecting the CSS
+//                              ref.addEventListener('loadstop', function () {
+//                                //injecting the CSS
+//                                ref.insertCSS({
+//                                  "code": ".youtube_done_button { position: absolute; width: 100%; background-color:#00a8f1; color: white; height:" + 140 * heightK + "px; top:" + -140 * heightK + "px; font-size:" + 50 * heightK + "px;}"
+//                                });
+//
+//                                ref.insertCSS({
+//                                  "code": "body{position:absolute; width:" + 720 * widthK + "px; height:" + 1072 * heightK + "px; top:" + 140 * heightK + "px;}"
+//                                });
+//
+//                                ref.insertCSS({
+//                                  "code": "html{position:absolute; width:" + 720 * widthK + "px; height:" + 1232 * widthK + "px; top:" + 0 * heightK + "px;}"
+//                                });
+//
+//                                //setting close to false when the InAppBrowser is opened
+//                                ref.executeScript({
+//                                  code: "localStorage.setItem('close', 'false');"
+//                                });
+//
+//                                //creating and attaching a button with click listener to the opened page
+//                                ref.executeScript({
+//                                  code: "(function () {var body = document.querySelector('body');var button = document.createElement('div');button.innerHTML = 'Назад в CLICK';button.classList.add('youtube_done_button');body.appendChild(button);button.addEventListener('click', function () {console.log('QWERTY'); ref.close()})})();"
+//                                });
+//
+//
+//
+//                              });
+
+                              return
+                            }
                           }
                           scope.clickPinError = false;
                           scope.errorNote = result[0][0].error_note;

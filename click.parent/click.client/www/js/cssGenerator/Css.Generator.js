@@ -3777,7 +3777,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 25%;" +
+  "top: 15%;" +
   "width: 88%;" +
   "font-size:" + 54 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
@@ -13947,6 +13947,60 @@ var css = {
   "height:" + 12 * widthK + "px;" +
   "background-color:gainsboro;" +
   "border-radius:" + 50 * widthK + "px;" +
+  "}",
+
+  iframeContainer: ".iFrame-container " +
+  "{" +
+  "position: absolute;" +
+  "top: 0;" +
+  "z-index: 99999;" +
+  "width:" + 720 * widthK + "px;" +
+  "height:" + heightOfMobile + "px;" +
+  "}",
+
+  iframeMain: ".iFrame-main " +
+  "{" +
+  "position: absolute;" +
+  "bottom: 0;" +
+  //"z-index: 99999;" +
+  "width: 100%;" +
+  "height: 93%;" +
+  "background-color: white;" +
+  "}",
+
+  iframeToolbarContainer: ".iFrame-toolbar-container " +
+  "{" +
+  "position: absolute;" +
+  "bottom: 92%;" +
+  "width: 100%;" +
+  "height: 10%;" +
+  "background-color: #00b8ff;" +
+  "}",
+
+  iFrameBackButton: ".iFrame-back-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 120 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y:" + 27 * widthK + "px;" +
+  "background-position-x:" + 44 * widthK + "px;" +
+  "background-size: 17%;" +
+  "left: 0%;" +
+  "top:" + 20 * widthK + "px;" +
+  "}",
+
+  iFrameTitle: ".iFrame-title " +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 35 * widthK + "px;" +
+  "left: 12.5%;" +
+  "top:" + 40 * widthK + "px;" +
+  "margin: 0;" +
+  "color: #fffaf9;" +
   "}",
 
 }

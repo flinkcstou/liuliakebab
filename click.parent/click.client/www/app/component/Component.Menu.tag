@@ -4,7 +4,8 @@
   <div ontouchend="sideMenuTouchEnd()" ontouchstart="sideMenuTouchStart()" ontouchmove="sideMenuTouchMove()"
        id="sideMenuId" class="side-menu">
 
-    <div id="closeMenuButtonId" class="side-menu-inside-button" ontouchstart="closeMenuStart()" ontouchend="closeMenu()"></div>
+    <div id="closeMenuButtonId" class="side-menu-inside-button" ontouchstart="closeMenuStart()"
+         ontouchend="closeMenu()"></div>
     <div class="side-menu-user-info-container">
       <div class="side-menu-user-icon" style="background-image: url({photo})" ontouchend="userIconTouchEnd()"></div>
       <p class="side-menu-user-second-name">{firstName}</p>
@@ -65,6 +66,16 @@
     </div>
   </div>
 
+  <div if="{window.checkShowingComponent != null}" class="iFrame-container">
+    <div class="iFrame-toolbar-container">
+      <p class="iFrame-title">QR сканер</p>
+      <div id="iFrameBackButtonId" ontouchstart="hideIFrameStart(this.id)" ontouchend="hideIFrameEnd(this.id)"
+           class="iFrame-back-button">
+      </div>
+    </div>
+    <iframe id="iFrameExternalUrlId" class="iFrame-main" frameborder="0"></iframe>
+  </div>
+
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
@@ -86,6 +97,7 @@
     }
 
     scope.showError = false;
+    scope.showIFrame = false;
 
     if (modeOfApp.onlineMode) {
       scope.modeOfApplication = window.languages.ComponentMenuOnlineMode
@@ -115,6 +127,32 @@
         console.log(e)
       }
     })
+
+
+    var closeIFrameStartX, closeIFrameEndX, closeIFrameStartY, closeIFrameEndY;
+
+    hideIFrameStart = function (id) {
+      closeIFrameStartX = event.changedTouches[0].pageX;
+      closeIFrameStartY = event.changedTouches[0].pageY;
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+    }
+
+    hideIFrameEnd = function (id) {
+      closeIFrameEndX = event.changedTouches[0].pageX;
+      closeIFrameEndY = event.changedTouches[0].pageY;
+
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
+
+      if (Math.abs(closeIFrameStartX - closeIFrameEndX) <= 20 && Math.abs(closeIFrameStartY - closeIFrameEndY) <= 20) {
+        console.log('qweweeee')
+        window.checkShowingComponent = null;
+
+        //scope.update() troubles
+        riot.update()
+      }
+
+    }
 
     userIconTouchEnd = function () {
       if (modeOfApp.offlineMode) return
@@ -501,27 +539,32 @@
                     id = string[i].split('=')[1];
                     console.log('ID', id)
                   }
-                  else {
+                }
 
+                if(!id){
                     console.log('string', string)
-                    var decodeString = atob(string)
+                    try {
+                      var decodeString = atob(string)
+                    }
+                    catch(e){
+                      console.log(e)
+                    }
                     console.log("DECODED STRING", decodeString)
                     var splitedArray = decodeString.split('&');
-                    for(var j in splitedArray){
-                      if(splitedArray[j].split("=")[0] == 'id')
+                    for (var j in splitedArray) {
+                      if (splitedArray[j].split("=")[0] == 'id')
                         id = splitedArray[j].split("=")[1]
 
-                      if(splitedArray[j].split("=")[0] == 'amount')
+                      if (splitedArray[j].split("=")[0] == 'amount')
                         rkAmount = splitedArray[j].split("=")[1]
 
-                      if(splitedArray[j].split("=")[0] == 'order_id')
+                      if (splitedArray[j].split("=")[0] == 'order_id')
                         rkOrder = splitedArray[j].split("=")[1]
                     }
 
                     console.log('id', id)
                     console.log('rkAmount', rkAmount)
                     console.log('rkOrder', rkOrder)
-                  }
                 }
                 if (id) {
                   if (modeOfApp.offlineMode) {
@@ -559,10 +602,10 @@
                             if (result[1][0]) {
                               closeMenu();
 
-                              if(rkAmount){
+                              if (rkAmount) {
                                 result[1][0].rk_amount = rkAmount
                               }
-                              if(rkOrder){
+                              if (rkOrder) {
                                 result[1][0].rk_order = rkOrder
                               }
 
@@ -575,9 +618,12 @@
                         }
                         else {
 
-                          if(result[0][0].error == -202){
-                            if(result[0][0].error_url)
-                            window.open(result[0][0].error_url)
+                          if (result[0][0].error == -202) {
+
+                            window.checkShowingComponent = scope;
+                            scope.update();
+                            iFrameExternalUrlId.src = result[0][0].error_url
+
                             return
                           }
                           scope.clickPinError = false;

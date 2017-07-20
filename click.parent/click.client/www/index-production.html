@@ -234,7 +234,13 @@
 
     if (window.checkShowingComponent) {
       console.log('window.checkShowingComponent', window.checkShowingComponent)
-      window.checkShowingComponent.parent.showComponent = false;
+      if (window.checkShowingComponent.parent) {
+        window.checkShowingComponent.parent.showComponent = false;
+      } else {
+        if (window.checkShowingComponent.parent === null && window.checkShowingComponent.showComponent) {
+          window.checkShowingComponent.showComponent = false;
+        }
+      }
       window.checkShowingComponent = null;
       riot.update();
       return
