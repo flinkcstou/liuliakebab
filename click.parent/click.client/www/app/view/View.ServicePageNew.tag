@@ -82,10 +82,12 @@
       <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="9"
              id="amount"
              pattern="[0-9]"
-             placeholder="{placeHolderText}"
+             placeholder="Введите сумму"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
       <div if="{!modeOfApp.offlineMode}" class="servicepage-amount-icon" ontouchstart="onTouchStartOfAmountCalculator()"
            ontouchend="onTouchEndOfAmountCalculator()"></div>
+
+      <p id="placeHolderSumId" class="servicepage-limit-title">{placeHolderText}</p>
     </div>
 
 
@@ -315,7 +317,31 @@
     scope.update(scope.categoryNamesMap);
 
 
-    checkFieldsToActivateNext = function () {
+    checkFieldsToActivateNext = function (from) {
+
+      if (amountForPayTransaction < scope.service.min_pay_limit && from == 'sum') {
+        amountField.style.borderBottom = 3 * widthK + 'px solid red';
+        placeHolderSumId.style.color = 'red';
+        scope.enterButtonEnabled = false;
+        scope.update(scope.enterButtonEnabled);
+        return;
+      }
+      else if(from == 'sum'){
+        amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        placeHolderSumId.style.color = '#515151';
+      }
+      if (amountForPayTransaction > scope.service.max_pay_limit  && from == 'sum') {
+        amountField.style.borderBottom = 3 * widthK + 'px solid red';
+        placeHolderSumId.style.color = 'red';
+        scope.enterButtonEnabled = false;
+        scope.update(scope.enterButtonEnabled);
+        return;
+      }
+      else if(from == 'sum'){
+        amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        placeHolderSumId.style.color = '#515151';
+      }
+
 
       if (opts.mode == 'ADDAUTOPAY' && this.autoPayNameInput.value.length < 1) {
         console.log("Введите название автоплатежа");
@@ -914,9 +940,9 @@
 
         if (opts.amountText)
           scope.defaultAmount = window.amountTransform(opts.amountText);
-        else {
-          scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " до " + window.amountTransform(scope.service.max_pay_limit)
-        }
+
+        scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " до " + window.amountTransform(scope.service.max_pay_limit)
+
         console.log("after tranform amount=", scope.defaultAmount);
         scope.update();
 
@@ -1388,7 +1414,7 @@
       }
       scope.update()
 
-      checkFieldsToActivateNext();
+      checkFieldsToActivateNext('sum');
 
     };
 

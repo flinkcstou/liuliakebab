@@ -3523,6 +3523,15 @@ var css = {
   "width: 60%;" +
   "}",
 
+  servicePageLimitTitle: ".servicepage-limit-title" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 20 * widthK + "px; " +
+  "bottom: " + -30 * widthK + "px; " +
+  "margin: 0;" +
+  "color: #515151;" +
+  "}",
+
   servicePageCategoryField: ".servicepage-category-field" +
   "{" +
   "position: absolute;" +
