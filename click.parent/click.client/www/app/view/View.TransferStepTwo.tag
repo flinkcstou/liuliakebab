@@ -18,6 +18,8 @@
       <input id="sumValueId" type="tel" maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()"
              onmouseup="sumMouseUp()"
              onblur="sumOnBlur()" onkeyup="sumKeyUp()" oninput="sumKeyUp()"/>
+
+      <p if="{showPlaceHolderError}" id="placeHolderSumId" class="transfertwo-limit-title">{placeHolderText}</p>
     </div>
 
     <button id="nextButtonId" class="transfertwo-next-button-inner-container" ontouchstart="goToTransferThreeTouchStart()"
@@ -49,6 +51,8 @@
       else
         sumValueId.value = 0
 
+
+
       console.log('scope.tax', scope.tax)
 
       if (device.platform == 'iOS') {
@@ -59,6 +63,7 @@
         riot.update()
       }, 0)
     })
+
 
     if (modeOfApp.offlineMode) {
       window.languages.ViewTransferTwoNext = 'Перевести'
@@ -76,6 +81,8 @@
       checkFirst = false,
       sumForTransfer = 0;
     owner = opts[2];
+
+    scope.showPlaceHolderError = false;
 
     console.log("TAX=", objectForTransfer.percent);
 
@@ -155,6 +162,20 @@
       else{
         scope.tax = 0
       }
+
+      scope.showPlaceHolderError = false;
+
+      if(sumForTransfer > maxLimit){
+
+        scope.placeHolderText = 'Максимальная сумма ' + maxLimit
+        scope.showPlaceHolderError = true;
+      }
+
+      if(sumForTransfer < minLimit) {
+        scope.placeHolderText = "Минимальная сумма " + minLimit
+        scope.showPlaceHolderError = true;
+      }
+
       scope.update()
     }
 
@@ -231,6 +252,30 @@
       goToTransferThreeTouchStartY = event.changedTouches[0].pageY
     }
 
+    if (objectForTransfer.type == 1 && modeOfApp.onlineMode) {
+      var codeOfBank = objectForTransfer.name.replace(/\s/g, '').substring(3, 6);
+      console.log('CODE OF BANK', codeOfBank)
+      console.log("objectForTransfer.name.replace(/\s/g, '')", objectForTransfer.name.replace(/\s/g, ''))
+      var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'));
+      var maxLimit = 0;
+      var minLimit = 0;
+      for (var i = 0; i < bankList.length; i++) {
+        console.log('bankList[i].code', bankList[i].code)
+        if (bankList[i].code == codeOfBank) {
+          console.log("EQUAL")
+          maxLimit = bankList[i].p2p_max_limit
+          minLimit = bankList[i].p2p_min_limit
+          break;
+        }
+      }
+    }
+    else {
+      maxLimit = 5000000;
+
+      minLimit = 5000;
+
+    }
+
     goToTransferThreeTouchEnd = function () {
       event.preventDefault()
       event.stopPropagation()
@@ -243,55 +288,24 @@
       if (Math.abs(goToTransferThreeTouchStartX - goToTransferThreeTouchEndX) <= 20 && Math.abs(goToTransferThreeTouchStartY - goToTransferThreeTouchEndY) <= 20) {
 
 //      console.log('objectForTransfer', objectForTransfer)
-        if (objectForTransfer.type == 1 && modeOfApp.onlineMode) {
-          var codeOfBank = objectForTransfer.name.replace(/\s/g, '').substring(3, 6);
-          console.log('CODE OF BANK', codeOfBank)
-          console.log("objectForTransfer.name.replace(/\s/g, '')", objectForTransfer.name.replace(/\s/g, ''))
-          var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'));
-          var maxLimit = 0;
-          var minLimit = 0;
-          for (var i = 0; i < bankList.length; i++) {
-            console.log('bankList[i].code', bankList[i].code)
-            if (bankList[i].code == codeOfBank) {
-              console.log("EQUAL")
-              maxLimit = bankList[i].p2p_max_limit
-              minLimit = bankList[i].p2p_min_limit
-              break;
-            }
-          }
-        }
-        else {
-          maxLimit = 5000000;
-
-          minLimit = 5000;
-
-        }
 
         console.log('maxLimit', maxLimit)
         console.log('minLimit', minLimit)
-        if (maxLimit == 0) {
-          maxLimit = 5000000;
+        scope.showPlaceHolderError = false;
+
+        if(sumForTransfer > maxLimit){
+
+          scope.placeHolderText = 'Максимальная сумма ' + maxLimit
+          scope.showPlaceHolderError = true;
+          scope.update()
+          return
         }
 
-        if (minLimit == 0) {
-          minLimit = 5000;
-        }
-        if (sumForTransfer < minLimit) {
-
-          sumValueId.blur();
-          scope.clickPinError = false;
-          scope.errorNote = ('Минимальная сумма ' + minLimit);
-          scope.showError = true;
-          scope.update();
-          return;
-        }
-        if (sumForTransfer > maxLimit) {
-          sumValueId.blur();
-          scope.clickPinError = false;
-          scope.errorNote = ('Максимальная сумма ' + maxLimit);
-          scope.showError = true;
-          scope.update();
-          return;
+        if(sumForTransfer < minLimit) {
+          scope.placeHolderText = "Минимальная сумма " + minLimit
+          scope.showPlaceHolderError = true;
+          scope.update()
+          return
         }
         var sum = {"sum": sumForTransfer};
         var comment = {"comment": commentTextId.value};

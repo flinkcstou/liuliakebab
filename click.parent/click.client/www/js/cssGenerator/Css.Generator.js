@@ -5668,7 +5668,7 @@ var css = {
   "margin: 0;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
-  "bottom: -50%;" +
+  "bottom:" + -55 * widthK + "px;" +
   "}",
 
   transferTwoContactNumberInputPart: ".transfertwo-contact-number-input-part" +
@@ -5760,6 +5760,15 @@ var css = {
   "position: absolute;" +
   "font-size:" + 27 * widthK + "px;" +
   "color: #515151;" +
+  "}",
+
+  transferTwoLimitTitle: ".transfertwo-limit-title" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 20 * widthK + "px; " +
+  "bottom: " + -30 * widthK + "px; " +
+  "margin: 0;" +
+  "color: red;" +
   "}",
 
 

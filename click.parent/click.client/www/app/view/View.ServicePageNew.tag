@@ -953,7 +953,7 @@
         if (opts.amountText)
           scope.defaultAmount = window.amountTransform(opts.amountText);
 
-        scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " до " + window.amountTransform(scope.service.max_pay_limit)
+        scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " сум " + " до " + window.amountTransform(scope.service.max_pay_limit) + " сум"
 
         console.log("after tranform amount=", scope.defaultAmount);
         scope.update();
