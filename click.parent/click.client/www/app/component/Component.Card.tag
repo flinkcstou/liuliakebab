@@ -1,5 +1,7 @@
 <component-card class="card"
-                style="background-image: url({(opts.background)}); color: rgb({opts.fontcolor}); left:{(540 * opts.countcard + 100) * widthK}px">
+                id="{'cardNumber'+opts.countcard}"
+                style="background-image: url({(opts.background)}); color: rgb({opts.fontcolor}); left:{(540 * opts.countcard + 100) * widthK}px"
+                ontouchstart="cardTouchStart(this.id)" ontouchend="cardTouchEnd(this.id)">
 
   <div class="card-bank-name" style="background-image: url({opts.bankname})"></div>
   <div class="card-salary-title">{opts.name}</div>
@@ -28,6 +30,8 @@
     var scope = this;
     scope.showError = false;
 
+    console.log("COMPONENT CARD OPTS", opts)
+
     if (!opts.background) {
       console.log('QWEQ')
       opts.background = 'background-image: url(resources/icons/cards/all.png)'
@@ -39,6 +43,16 @@
 
 //      console.log("ASD_scope.leftOfCard", scope.leftOfCard);
     });
+
+
+    cardTouchStart = function (id) {
+
+      //document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+    }
+
+    cardTouchEnd = function (id) {
+//      document.getElementById(id).style.webkitTransform = 'scale(1)'
+    }
 
     offlineBalanceTrueTouchStart = function () {
       event.stopPropagation();

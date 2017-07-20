@@ -505,6 +505,10 @@
           if (typeof enterButtonId != 'undefined')
             enterButtonId.innerText = 'Оплатить'
         }
+
+      checkFieldsToActivateNext()
+
+
     });
 
     var searchContactStartY, searchContactStartX, searchContactEndY, searchContactEndX;
@@ -1371,12 +1375,12 @@
       opts.amountText = amount.value;
       opts.amountWithoutSpace = amountForPayTransaction;
 
-      if (amount.value.length >= 1 && amount.value != 0) {
-        enterButtonId.style.display = 'block';
-      }
-      else {
-        enterButtonId.style.display = 'none';
-      }
+//      if (amount.value.length >= 1 && amount.value != 0) {
+//        enterButtonId.style.display = 'block';
+//      }
+//      else {
+//        enterButtonId.style.display = 'none';
+//      }
 
       if (amountForPayTransaction >= 1000) {
         scope.tax = amountForPayTransaction * scope.commissionPercent / 100;

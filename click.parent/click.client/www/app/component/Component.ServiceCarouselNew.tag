@@ -15,7 +15,7 @@
     </div>
 
     <div class="service-component">
-      <div class="service-title" ontouchstart="openFavouriteStart()" ontouchend="openFavouriteEnd()">{window.languages.ComponentFavoritePaymentsTitle}
+      <div id="openFavouriteId" class="service-title" ontouchstart="openFavouriteStart()" ontouchend="openFavouriteEnd()">{window.languages.ComponentFavoritePaymentsTitle}
       <div class="service-component-open-icon"></div>
       </div>
       <div class="service-container">
@@ -225,10 +225,14 @@
     openFavouriteStart = function () {
       openFavouriteStartX = event.changedTouches[0].pageX;
       openFavouriteStartY = event.changedTouches[0].pageY;
+
+      openFavouriteId.style.backgroundColor = 'rgba(150,150,150,0.5)'
     }
     openFavouriteEnd = function () {
       openFavouriteEndX = event.changedTouches[0].pageX;
       openFavouriteEndY = event.changedTouches[0].pageY
+
+      openFavouriteId.style.backgroundColor = 'transparent'
 
       if (Math.abs(openFavouriteStartX - openFavouriteEndX) <= 20 && Math.abs(openFavouriteStartY - openFavouriteEndY) <= 20) {
         if (modeOfApp.demoVersion) {

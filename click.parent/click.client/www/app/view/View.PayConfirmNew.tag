@@ -728,7 +728,7 @@
     scope.onTouchStartOfAutoPay = onTouchStartOfAutoPay = function () {
       event.stopPropagation();
 
-      if(deleteAutoPayButtonId)
+//      if(deleteAutoPayButtonId)
 //      deleteAutoPayButtonId.style.webkitTransform = 'scale(0.8)'
 
       autoPayStartY = event.changedTouches[0].pageY;
