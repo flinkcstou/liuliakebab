@@ -112,8 +112,13 @@ window.api.initSocket = function () {
             if (!error) {
               showAlertComponent("Ooooops! Что-то пошло не так. При возникновении этой ошибки ещё раз, свяжитесь со службой поддержки по номеру +998 71 2310880.")
             }
-            else
-              showConfirmComponent(error, 'session');
+            else {
+              //showConfirmComponent(error, 'session');
+              localStorage.setItem('session_broken', true)
+              riotTags.innerHTML = "<view-authorization>";
+              riot.mount('view-authorization');
+              return
+            }
 
             return
           }
@@ -231,7 +236,7 @@ window.api.call = function (params) {
       SpinnerPlugin.activityStop();
     window.api.init();
   }
-  else{
+  else {
     window.api.init();
   }
 };

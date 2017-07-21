@@ -131,7 +131,12 @@
 
       for (var i in scope.cardsArray) {
 
+        if(!scope.cardsArray[i].default_account)
         scope.cardsArray[i].chosenCard = false;
+        else{
+          scope.cardsArray[i].chosenCard = true;
+          scope.checkedId = "check" + scope.cardsArray[i].card_id;
+        }
       }
 
       localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))
@@ -140,7 +145,6 @@
 
 
     if (scope.opts.clean && viewMainPage.myCards !== true) {
-
       scope.cleanChosenCards();
     }
 

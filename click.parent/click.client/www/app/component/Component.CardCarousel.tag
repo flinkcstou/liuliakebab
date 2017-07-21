@@ -294,7 +294,7 @@
             numberPartTwo: numberOfCardPartTwo,
             url: getAccountsCards[i].image_url,
             card_background_url: getAccountsCards[i].card_background_url,
-            chosenCard: false,
+            chosenCard: defaultAccount,
             default_account: defaultAccount,
             access: getAccountsCards[i].access,
             background_color_bottom: getAccountsCards[i].background_color_bottom,

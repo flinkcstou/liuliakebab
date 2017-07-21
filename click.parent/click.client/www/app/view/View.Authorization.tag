@@ -141,7 +141,7 @@
     scope.confirmShowBool = false;
 
     if (history.arrayOfHistory.length != 0) {
-      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization' && !JSON.parse(localStorage.getItem('onResume'))) {
+      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization' && !JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken'))) {
         history.arrayOfHistory.push(
           {
             "view": 'view-authorization',
@@ -730,7 +730,7 @@
           scope.unmount()
         } else {
 
-          if (!JSON.parse(localStorage.getItem('onResume'))) {
+          if (!JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken'))) {
 //            if (history.arrayOfHistory) {
 //              if (history.arrayOfHistory[history.arrayOfHistory.length - 1] && (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-device'
 //                || history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-sms' || history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-client'
@@ -750,14 +750,19 @@
 //          }
           else {
 
-            if (localStorage.getItem('settings_block')) {
-              if (JSON.parse(localStorage.getItem('settings_block')) === true) {
+            if (localStorage.getItem('settings_block') || localStorage.getItem('session_broken')) {
+              if (JSON.parse(localStorage.getItem('settings_block')) === true  || JSON.parse(localStorage.getItem('session_broken')) === true) {
+                console.log("QWEQWEWWWWWWW")
                 if (history.arrayOfHistory) {
                   if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
                     this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
                     riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+                    if(JSON.parse(localStorage.getItem('settings_block')) === true)
                     localStorage.setItem('onResume', false)
+                    else
+                    localStorage.setItem('session_broken', false)
                     scope.unmount()
+                    return
                   }
                 }
               }

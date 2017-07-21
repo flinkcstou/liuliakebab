@@ -192,7 +192,8 @@ var css = {
   "color: #555555;" +
   "}",
   //
-  riotTagsMainContainer: ".riot-tags-main-container" +
+
+  riotTagsMainContainer:".riot-tags-main-container" +
   "{ " +
   "-webkit-animation-name: mountAnimation; " +
   "-webkit-animation-duration: 0.2s; " +
