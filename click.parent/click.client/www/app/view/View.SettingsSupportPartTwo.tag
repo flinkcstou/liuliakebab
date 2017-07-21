@@ -45,6 +45,19 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    this.on('mount', function () {
+        if (device.platform == 'Android') {
+          setTimeout(function () {
+            commentHelpTextId.focus();
+          }, 0)
+        }
+        else {
+          commentHelpTextId.autofocus = true;
+          commentHelpTextId.focus();
+        }
+
+    })
+
 
     scope.comment = 'Опишите вашу проблему';
 
