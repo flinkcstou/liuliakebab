@@ -64,14 +64,16 @@
         <div
           class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
           <div class="payconfirm-action-icon-one" if="{!isInFavorites}"
-               style="background-image: url('resources/icons/ViewService/addfavorite.png');" ontouchstart="onTouchStartOfFavorite()"
+               style="background-image: url('resources/icons/ViewService/addfavorite.png');"
+               ontouchstart="onTouchStartOfFavorite()"
                ontouchend="addToFavoritesinPayConfirm()"></div>
           <div class="payconfirm-action-text" ontouchstart="onTouchStartOfFavorite()"
                ontouchend="addToFavoritesinPayConfirm()" if="{!isInFavorites}">
             {window.languages.ViewPayConfirmAddToFavorites}
           </div>
           <div class="payconfirm-action-icon-one" if="{isInFavorites}"
-               style="background-image: url('resources/icons/ViewService/addedfavorite.png');" ontouchstart="onTouchStartOfFavorite()" ontouchend="removeFromFavorites()"></div>
+               style="background-image: url('resources/icons/ViewService/addedfavorite.png');"
+               ontouchstart="onTouchStartOfFavorite()" ontouchend="removeFromFavorites()"></div>
           <div class="payconfirm-action-text" ontouchstart="onTouchStartOfFavorite()" ontouchend="removeFromFavorites()"
                if="{isInFavorites}">
             {window.languages.ViewPayConfirmRemoveFromFavorites}
@@ -87,11 +89,13 @@
           </div>
         </div>
       </div>
-      <button id="autoPayButtonId" class="{payconfirm-button-enter:opts.mode!='ADDAUTOPAY', autopay-button:opts.mode=='ADDAUTOPAY'}"
+      <button id="autoPayButtonId"
+              class="{payconfirm-button-enter:opts.mode!='ADDAUTOPAY', autopay-button:opts.mode=='ADDAUTOPAY'}"
               ontouchend="payService()" ontouchstart="onTouchStartOfEnterPay()" if="{!autoPayDelete}">
         {(opts.mode=='ADDAUTOPAY')? window.languages.ViewAutoPayCreateButtonText : window.languages.ViewPayConfirmPay}
       </button>
-      <button id="deleteAutoPayButtonId" class="payconfirm-button-delete" ontouchend="deleteAutoPay()" ontouchstart="onTouchStartOfAutoPay()"
+      <button id="deleteAutoPayButtonId" class="payconfirm-button-delete" ontouchend="deleteAutoPay()"
+              ontouchstart="onTouchStartOfAutoPay()"
               if="{autoPayDelete && opts.mode=='ADDAUTOPAY'}">
         {window.languages.ViewAutoPayDeleteButtonText}
       </button>
@@ -166,6 +170,8 @@
     var serviceId = localStorage.getItem('chosenServiceId');
     scope.service = scope.servicesMap[opts.chosenServiceId][0];
     scope.isInFavorites = opts.isInFavorites;
+
+    console.log('FAVORITE',opts.isInFavorites)
     scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
 
@@ -314,15 +320,21 @@
       if (Math.abs(favoriteStartY - favoriteEndY) <= 20 && Math.abs(favoriteStartX - favoriteEndX) <= 20) {
         var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
         console.log(favoritePaymentsList);
-        for (var i in favoritePaymentsList)
+        for (var i in favoritePaymentsList) {
+
+          console.log(favoritePaymentsList[i].service.id, opts.chosenServiceId)
+
           if (favoritePaymentsList[i].service.id == opts.chosenServiceId) {
             console.log("i=", i);
             favoritePaymentsList.splice(i, 1);
             console.log(favoritePaymentsList);
             scope.isInFavorites = false;
-            localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+            opts.isInFavorites = false;
             scope.update(scope.isInFavorites);
           }
+        }
+
+        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
       }
     };
 
