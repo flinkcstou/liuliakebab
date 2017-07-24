@@ -25,7 +25,7 @@
       {window.languages.ViewAuthorizationClickPinLabel}
     </div>
     <div if="{firstEnter}" class="authorization-pin-input-first-enter-container">
-      <input type="password" class="authorization-pin-input-first-enter" onblur="inputPinBlur()"
+      <input autofocus type="password" class="authorization-pin-input-first-enter" onblur="inputPinBlur()"
              id="firstPinInputId"/>
       <div class="authorization-input-eye-button" onclick="eyeClicked()"></div>
     </div>
@@ -114,7 +114,7 @@
           }, 0)
         }
         else {
-          firstPinInputId.autofocus = true;
+          firstPinInputId.autofocus;
           firstPinInputId.focus();
         }
       }

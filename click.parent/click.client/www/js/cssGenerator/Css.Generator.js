@@ -3796,6 +3796,12 @@ var css = {
   "margin: 0;" +
   "}",
 
+  servicePageAmountInputPlaceHolder: ".servicepage-amount-input::-webkit-input-placeholder" +
+  "{" +
+  "font-size:" + 30 * widthK + "px; " +
+  //"line-height:" + 50 * widthK + "px; " +
+  "}",
+
   servicePageAmountInputPlaceholder: "input::placeholder" +
   "{" +
   "font-size:" + 38 * widthK + "px;" +

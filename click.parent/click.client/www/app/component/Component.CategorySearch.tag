@@ -82,6 +82,16 @@
         blockSearchId.style.display = 'block';
         if (scope.categoryList)
           arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
+
+        if(device.platform == 'Android'){
+          setTimeout(function(){
+            searchInputId.focus()
+          },0)
+        }
+        else{
+          searchInputId.autofocus;
+          searchInputId.focus()
+        }
       }
 
     }
