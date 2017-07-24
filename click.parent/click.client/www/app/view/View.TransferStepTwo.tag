@@ -12,14 +12,12 @@
     </div>
 
     <div class="transfertwo-contact-phone-field">
-      <p class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
-        {window.languages.Currency}</p>
-
       <input id="sumValueId" type="tel" maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()"
              onmouseup="sumMouseUp()"
              onblur="sumOnBlur()" onkeyup="sumKeyUp()" oninput="sumKeyUp()"/>
-
       <p if="{showPlaceHolderError}" id="placeHolderSumId" class="transfertwo-limit-title">{placeHolderText}</p>
+      <p if="{!showPlaceHolderError}" class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
+        {window.languages.Currency}</p>
     </div>
 
     <button id="nextButtonId" class="transfertwo-next-button-inner-container" ontouchstart="goToTransferThreeTouchStart()"
@@ -167,12 +165,12 @@
 
       if(sumForTransfer > maxLimit){
 
-        scope.placeHolderText = 'Максимальная сумма ' + maxLimit
+        scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(maxLimit)
         scope.showPlaceHolderError = true;
       }
 
       if(sumForTransfer < minLimit) {
-        scope.placeHolderText = "Минимальная сумма " + minLimit
+        scope.placeHolderText = "Минимальная сумма " + window.amountTransform(minLimit)
         scope.showPlaceHolderError = true;
       }
 

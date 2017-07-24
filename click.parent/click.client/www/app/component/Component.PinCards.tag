@@ -128,15 +128,30 @@
     scope.cleanChosenCards = function () {
 
       scope.checkedId = '';
+      var checkChosenCard = false;
+      var indexOfCard;
 
       for (var i in scope.cardsArray) {
 
-        if(!scope.cardsArray[i].default_account)
-        scope.cardsArray[i].chosenCard = false;
-        else{
-          scope.cardsArray[i].chosenCard = true;
-          scope.checkedId = "check" + scope.cardsArray[i].card_id;
+        if (!scope.cardsArray[i].default_account) {
+          if (scope.cardsArray[i].chosenCard) {
+            scope.cardsArray[i].chosenCard = true;
+            scope.cardName = scope.cardsArray[i].name;
+            scope.cardSum = scope.cardsArray[i].salaryOriginal
+            scope.checkedId = "check" + scope.cardsArray[i].card_id;
+            checkChosenCard = true;
+          }
         }
+        else {
+          indexOfCard = i;
+        }
+      }
+
+      if(!checkChosenCard) {
+        scope.cardsArray[indexOfCard].chosenCard = true;
+        scope.cardName = scope.cardsArray[indexOfCard].name;
+        scope.cardSum = scope.cardsArray[indexOfCard].salaryOriginal
+        scope.checkedId = "check" + scope.cardsArray[indexOfCard].card_id;
       }
 
       localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))

@@ -5665,11 +5665,11 @@ var css = {
 
   transferTwoContactTextField: ".transfertwo-contact-text-field" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "margin: 0;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
-  "bottom:" + -55 * widthK + "px;" +
+  "bottom:" + -15 * widthK + "px;" +
   "}",
 
   transferTwoContactNumberInputPart: ".transfertwo-contact-number-input-part" +
@@ -5765,9 +5765,9 @@ var css = {
 
   transferTwoLimitTitle: ".transfertwo-limit-title" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "font-size: " + 20 * widthK + "px; " +
-  "bottom: " + -30 * widthK + "px; " +
+  "bottom: " + -15 * widthK + "px; " +
   "margin: 0;" +
   "color: red;" +
   "}",
