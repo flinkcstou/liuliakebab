@@ -15,15 +15,16 @@
     </div>
 
     <div class="service-component">
-      <div id="openFavouriteId" class="service-title" ontouchstart="openFavouriteStart()" ontouchend="openFavouriteEnd()">{window.languages.ComponentFavoritePaymentsTitle}
-      <div class="service-component-open-icon"></div>
+      <div id="openFavouriteId" class="service-title" ontouchstart="openFavouriteStart()"
+           ontouchend="openFavouriteEnd()">{window.languages.ComponentFavoritePaymentsTitle}
+        <div class="service-component-open-icon"></div>
       </div>
       <div class="service-container">
-        <div class="service-each-container" each="{i in favPaymentsList}">
-          <div id="{i.id+'index'}" class="service-buttons" ontouchstart="ontouchStartOfPayment(this.id)"
-               ontouchend="ontouchEndOfPayment(this.id)" style="background-image: url({i.image})">
+        <div class="service-each-container" each="{i in favoritePaymentsList}">
+          <div id="{i.service.id+'index'}" class="service-buttons" ontouchstart="ontouchStartOfPayment(this.id)"
+               ontouchend="ontouchEndOfPayment(this.id)" style="background-image: url({i.service.image})">
           </div>
-          <p class="service-labels">{i.name}</p>
+          <p class="service-labels">{i.params.favoriteName?i.params.favoriteName: i.service.name}</p>
         </div>
         <div class="service-each-container" if="{addFavoriteBool}">
           <div id="addFavoriteButtonId" class="service-buttons" ontouchstart="ontouchStartOfPayment(this.id)"

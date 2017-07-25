@@ -171,7 +171,7 @@
     scope.service = scope.servicesMap[opts.chosenServiceId][0];
     scope.isInFavorites = opts.isInFavorites;
 
-    console.log('FAVORITE',opts.isInFavorites)
+    console.log('FAVORITE', opts.isInFavorites)
     scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
 
@@ -284,6 +284,7 @@
         scope.isInFavorites = true;
         scope.update(scope.isInFavorites);
         opts.isInFavorites = true;
+        opts.favoriteName = scope.service.name;
         var favoritePaymentsList;
 
         if (!localStorage.getItem('favoritePaymentsList')) {

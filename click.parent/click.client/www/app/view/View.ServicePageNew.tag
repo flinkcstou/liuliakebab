@@ -19,7 +19,16 @@
       <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
-             autofocus="true" onkeyup="autoPayNameVerificationKeyUp()"/>
+             autofocus="true" onkeyup="paymentNameVerificationKeyUp()"/>
+    </div>
+
+    <div class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
+      <p class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
+
+      <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="favoriteNameInput"
+             placeholder="{window.languages.ViewServicePageFavoriteNamePlaceholder}" autofocus="true"
+             value="{opts.favoriteName}"
+             onkeyup="paymentNameVerificationKeyUp()"/>
     </div>
 
     <div class="servicepage-fields-dropdown" if="{dropDownOn}" ontouchend="openDropDown()" id="firstFieldChoiceId">
@@ -160,12 +169,21 @@
       <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
-             autofocus="true" onkeyup="autoPayNameVerificationKeyUp()"/>
+             autofocus="true" onkeyup="paymentNameVerificationKeyUp()"/>
+    </div>
+
+    <div class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
+      <p class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
+
+      <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="favoriteNameInput"
+             placeholder="{window.languages.ViewServicePageFavoriteNamePlaceholder}" autofocus="true"
+             value="{opts.favoriteName}"
+             onkeyup="paymentNameVerificationKeyUp()"/>
     </div>
 
     <div
-      class="{servicepage-pincards-container: opts.mode!='ADDAUTOPAY',
-      servicepage-pincards-container-two: opts.mode=='ADDAUTOPAY'}">
+      class="{servicepage-pincards-container: opts.mode == 'USUAL',
+      servicepage-pincards-container-two: opts.mode != 'USUAL'}">
       <div class="servicepage-pincards-block-container" each="{i in pincardIds}">
         <div class="servicepage-pincard-title">{pincardsMap[i][0].name}</div>
         <div class="servicepage-pincard-nominal-container" each="{j in pincardsMap[i]}"
@@ -321,11 +339,11 @@
 
     checkFieldsToActivateNext = function (from) {
 
-        if(from =='sum')
-          console.log('length', amount.value.length)
+      if (from == 'sum')
+        console.log('length', amount.value.length)
 
 
-      if (amountForPayTransaction < scope.service.min_pay_limit && from == 'sum' && amount.value.length != 0 ) {
+      if (amountForPayTransaction < scope.service.min_pay_limit && from == 'sum' && amount.value.length != 0) {
         scope.showErrorOfLimit = true;
         amountField.style.borderBottom = 3 * widthK + 'px solid red';
         scope.enterButtonEnabled = false;
@@ -333,13 +351,13 @@
         placeHolderSumId.style.color = 'red';
         return;
       }
-      else if(from == 'sum' && amountField.length >= 1){
+      else if (from == 'sum' && amountField.length >= 1) {
         amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
 //        placeHolderSumId.style.color = '#515151';
         scope.showErrorOfLimit = false;
         scope.update()
       }
-      if (amountForPayTransaction > scope.service.max_pay_limit  && from == 'sum' &&  amount.value.length != 0) {
+      if (amountForPayTransaction > scope.service.max_pay_limit && from == 'sum' && amount.value.length != 0) {
         scope.showErrorOfLimit = true;
         amountField.style.borderBottom = 3 * widthK + 'px solid red';
         scope.enterButtonEnabled = false;
@@ -347,7 +365,7 @@
         placeHolderSumId.style.color = 'red';
         return;
       }
-      else if(from == 'sum'){
+      else if (from == 'sum') {
         amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
 //        placeHolderSumId.style.color = '#515151';
         scope.showErrorOfLimit = false;
@@ -355,8 +373,15 @@
       }
 
 
-      if (opts.mode == 'ADDAUTOPAY' && this.autoPayNameInput.value.length < 1) {
+      if (opts.mode == 'ADDAUTOPAY' && this.autoPayNameInput && this.autoPayNameInput.value.length < 1) {
         console.log("Введите название автоплатежа");
+        scope.enterButtonEnabled = false;
+        scope.update(scope.enterButtonEnabled);
+        return;
+      }
+
+      if (opts.mode == 'ADDFAVORITE' && this.favoriteNameInput && this.favoriteNameInput.value.length < 1) {
+        console.log("Введите название избранного платежа");
         scope.enterButtonEnabled = false;
         scope.update(scope.enterButtonEnabled);
         return;
@@ -463,14 +488,22 @@
       checkFieldsToActivateNext();
     };
 
-    autoPayNameVerificationKeyUp = function () {
+    paymentNameVerificationKeyUp = function () {
 
       if (scope.formType != 2)
         checkFieldsToActivateNext();
       else {
 
-        if (opts.mode == 'ADDAUTOPAY' && this.autoPayNameInput.value.length < 1) {
+        if (opts.mode == 'ADDAUTOPAY' && this.autoPayNameInput && this.autoPayNameInput.value.length < 1) {
           console.log("Введите название автоплатежа");
+          formTypeTwoBtnId.style.pointerEvents = 'none';
+          formTypeTwoBtnId.style.backgroundColor = '#D2D2D2';
+          scope.update(formTypeTwoBtnId);
+          return;
+        }
+
+        if (opts.mode == 'ADDFAVORITE' && this.favoriteNameInput && this.favoriteNameInput.value.length < 1) {
+          console.log("Введите название избранного плтаежа");
           formTypeTwoBtnId.style.pointerEvents = 'none';
           formTypeTwoBtnId.style.backgroundColor = '#D2D2D2';
           scope.update(formTypeTwoBtnId);
@@ -1448,8 +1481,8 @@
     scope.onTouchStartOfEnter = onTouchStartOfEnter = function () {
       event.stopPropagation();
 
-      if(enterButtonId && scope.enterButtonEnabled)
-      enterButtonId.style.webkitTransform = 'scale(0.8)'
+      if (this.enterButtonId && scope.enterButtonEnabled)
+        this.enterButtonId.style.webkitTransform = 'scale(0.8)'
 
       enterStartY = event.changedTouches[0].pageY;
       enterStartX = event.changedTouches[0].pageX;
@@ -1461,8 +1494,8 @@
       opts.cost = scope.service.cost
       opts.lang_amount_title = scope.service.lang_amount_title
 
-      if(enterButtonId && scope.enterButtonEnabled)
-      enterButtonId.style.webkitTransform = 'scale(1)'
+      if (this.enterButtonId && scope.enterButtonEnabled)
+        this.enterButtonId.style.webkitTransform = 'scale(1)'
 
       enterEndY = event.changedTouches[0].pageY;
       enterEndX = event.changedTouches[0].pageX;
@@ -1661,6 +1694,8 @@
 
           console.log("isInFavorites=", opts.isInFavorites)
 
+          opts.favoriteName = favoriteNameInput.value;
+
 
           if (opts.isInFavorites)
             editFavorite(opts);
@@ -1802,6 +1837,8 @@
 
         } else if (opts.mode == 'ADDFAVORITE') {
           if (opts) {
+
+            opts.favoriteName = favoriteNameInput.value;
 
             if (opts.isInFavorites)
               editFavorite(opts);

@@ -2,7 +2,8 @@
   <div class="riot-tags-main-container">
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
-      <div id="favouriteBackButtonId" ontouchend="favouriteGoToBackEnd()" ontouchstart="onTouchStartOfBack()" class="pay-back-button"></div>
+      <div id="favouriteBackButtonId" ontouchend="favouriteGoToBackEnd()" ontouchstart="onTouchStartOfBack()"
+           class="pay-back-button"></div>
       <div id="favouriteRightButtonId" ontouchend="addFavorite()" ontouchstart="onTouchStartOfAddSign()"
            class="settings-friend-help-add-button"></div>
     </div>
@@ -15,16 +16,18 @@
           <div class="view-favorites-icon"
                style="background-image: url({j.service.image})"></div>
           <div class="view-favorites-info-container">
-            <p class="view-favorites-info-name">{j.service.name}</p>
+            <p class="view-favorites-info-name">{j.params.favoriteName ?j.params.favoriteName: j.service.name}</p>
             <div class="view-favorites-info-balance">{j.params.amountText}</div>
             <div class="view-favorites-info-currency-field">сум</div>
             <p class="view-favorites-info-number">{(j.params.firstFieldId==1)? ("+" + window.languages.CodeOfCountry +"
               "+j.params.firstFieldText):(j.params.firstFieldText)}</p>
           </div>
         </div>
-        <div id="e{j.service.id}" class="view-favorites-edit-icon" ontouchstart="onTouchStartOfEditFavorite()"
+        <div id="e{j.service.id}+{j.params.favoriteName}" class="view-favorites-edit-icon"
+             ontouchstart="onTouchStartOfEditFavorite()"
              ontouchend="editFavoritePayment(this.id)"></div>
-        <div id="{j.service.id}" class="view-favorites-delete-icon" ontouchstart="onTouchStartOfRemoveFavorite()"
+        <div id="{j.service.id}+{j.params.favoriteName}" class="view-favorites-delete-icon"
+             ontouchstart="onTouchStartOfRemoveFavorite()"
              ontouchend="removeFromFavorites(this.id)"></div>
       </div>
     </div>
@@ -69,7 +72,7 @@
     scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
 
-      if(favouriteBackButtonId){
+      if (favouriteBackButtonId) {
         favouriteBackButtonId.style.webkitTransform = 'scale(0.7)'
       }
 
@@ -289,11 +292,13 @@
       if (Math.abs(editFavoriteStartY - editFavoriteEndY) <= 20 && Math.abs(editFavoriteStartX - editFavoriteEndX) <= 20) {
 
         console.log("id=", id);
-        id = id.substring(1, id.length);
-        console.log("id2=", id);
+        console.log("id after split=", id.split('+')[0]);
+        name = id.split('+')[1];
+        id = id.split('+')[0].substring(1, id.split('+')[0].length);
+        console.log("id2=", id, "name=", name);
 
         for (var i in scope.favoritePaymentsList) {
-          if (scope.favoritePaymentsList[i].service.id == id) {
+          if (scope.favoritePaymentsList[i].service.id == id && scope.favoritePaymentsList[i].params.favoriteName == name) {
             console.log("scope.favoritePaymentsList[i].service.id", scope.favoritePaymentsList[i].service.id);
             console.log("open favorite ", scope.favoritePaymentsList[i]);
 
@@ -325,11 +330,16 @@
       removeFavoriteEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(removeFavoriteStartY - removeFavoriteEndY) <= 20 && Math.abs(removeFavoriteStartX - removeFavoriteEndX) <= 20) {
-        console.log("Id to remove=", id);
+        name = id.split('+')[1];
+        console.log("id2=", id, "name=", name);
+        console.log("Id to remove=", id.split('+')[0]);
+
+        id = id.split('+')[0];
         var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+        console.log("favList=", favoritePaymentsList)
         console.log(favoritePaymentsList);
         for (var i in favoritePaymentsList)
-          if (favoritePaymentsList[i].service.id == id) {
+          if (favoritePaymentsList[i].service.id == id && favoritePaymentsList[i].params.favoriteName == name) {
             favoritePaymentsList.splice(i, 1);
             if (favoritePaymentsList.length == 0) scope.favoriteListShow = false;
             console.log(favoritePaymentsList);
