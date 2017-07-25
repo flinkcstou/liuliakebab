@@ -193,7 +193,7 @@ var css = {
   "}",
   //
 
-  riotTagsMainContainer:".riot-tags-main-container" +
+  riotTagsMainContainer: ".riot-tags-main-container" +
   "{ " +
   "-webkit-animation-name: mountAnimation; " +
   "-webkit-animation-duration: 0.2s; " +
@@ -4430,7 +4430,7 @@ var css = {
   "{" +
   //"top: 65%;" +
   "position: absolute;" +
-  "left: 36%;" +
+  "left: 9%;" +
   "color: grey;" +
   "font-size: " + 29 * widthK + "px; " +
   "text-align: center;" +
@@ -4451,37 +4451,37 @@ var css = {
   pincardChosenFriendInnerContainer: ".pincard-chosen-friend-inner-container" +
   "{" +
   "position: absolute;" +
-  "width: 79.5%;" +
-  "height:" + 115 * widthK + "px;" +
+  "width: 100%;" +
+  "height:" + 130 * widthK + "px;" +
   "background-color: #F0F1F4;" +
-  "left: 10%;" +
+  // "left: 10%;" +
   "top:22%;" +
   "}",
 
   pincardChosenFriendPhoto: ".pincard-chosen-friend-photo" +
   "{" +
-  "top:" + 8 * widthK + "px;" +
+  "top:" + 21 * widthK + "px;" +
   "position: absolute;" +
-  "width:" + 100 * widthK + "px;" +
-  "height:" + 100 * widthK + "px;" +
+  "width:" + 85 * widthK + "px;" +
+  "height:" + 85 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
   "background-position: center;" +
   "border-radius: 50%;" +
   "text-align: center;" +
-  "line-height:" + 100 * widthK + "px;" +
+  "line-height:" + 85 * widthK + "px;" +
   "font-size:" + 50 * widthK + "px;" +
   "background-color: #027fe3;" +
   "color: white;" +
-  "left: 5%;" +
+  "left: 12%;" +
   "}",
 
   pincardChosenFriendTextContainer: ".pincard-chosen-friend-text-container" +
   "{" +
   "position: absolute;" +
-  "left: 25%;" +
+  "left: 36%;" +
   "color: gray;" +
-  "width: 20%;" +
+  "width: 38%;" +
   "height: 100%;" +
   "display: table;" +
   "}",
@@ -4491,20 +4491,52 @@ var css = {
   "{" +
   "margin: 0;" +
   "color: gray;" +
-  "font-size:" + 24 * widthK + "px;" +
+  "font-size:" + 27 * widthK + "px;" +
   "display: table-cell;" +
   "vertical-align: middle;" +
+  "position: absolute;" +
+  "top: 15%;" +
+  "font-weight: bold;" +
+  "width: 100%;" +
+  "height: 48%;" +
+  "overflow: hidden;" +
+  "line-height: 30px;" +
   "}",
 
   pincardChosenFriendTextTwo: ".pincard-chosen-friend-text-two" +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left: 60%;" +
+  // "left: 60%;" +
   "color: gray;" +
-  "font-size:" + 24 * widthK + "px;" +
-  "top: 40%;" +
+  "font-size:" + 23 * widthK + "px;" +
+  "top: 60%;" +
   "}",
+
+  pincardChosenFriendEditIcon: ".pincard-chosen-friend-edit-icon" +
+  "{" +
+  "position: absolute;" +
+  "right: 14%;" +
+  "width: 10%;" +
+  "height: 100%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 44%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/ViewService/edit.png);" +
+  "}",
+
+  pincardChosenFriendRadioIcon: ".pincard-chosen-friend-radio-icon" +
+  "{" +
+  "position: absolute;" +
+  "right: 5%;" +
+  "width: 10%;" +
+  "height: 100%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 46%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/ViewService/radio_selected.png);" +
+  "}",
+
 
   pincardBottomContainer: ".pincard-bottom-container" +
   "{" +
@@ -9905,30 +9937,6 @@ var css = {
   "overflow: hidden;" +
   "}",
 
-  viewFavoritesDeleteIcon: ".view-favorites-delete-icon" +
-  "{" +
-  "position: absolute;" +
-  "right: 0;" +
-  "width: 10%;" +
-  "height: 100%;" +
-  "background-repeat: no-repeat;" +
-  "background-size: 36%;" +
-  "background-position: center;" +
-  "background-image: url(resources/icons/services/delete.png);" +
-  "}",
-
-  viewFavoritesEditIcon: ".view-favorites-edit-icon" +
-  "{" +
-  "position: absolute;" +
-  "right: 10%;" +
-  "width: 10%;" +
-  "height: 100%;" +
-  "background-repeat: no-repeat;" +
-  "background-size: 36%;" +
-  "background-position: center;" +
-  "background-image: url(resources/icons/services/edit_favorite.png);" +
-  "}",
-
 
   //VIEW ADD CARD
 
@@ -10105,7 +10113,7 @@ var css = {
   "color: white;" +
   "background-color: white;" +
   //"border:" + 3 * heightK + "px solid #e7e7e7;" +
-  "border:" + 1  + "px solid #e7e7e7;" +
+  "border:" + 1 + "px solid #e7e7e7;" +
   "width: 27%;" +
   //"height: 18%;" +
   "height:" + 60 * widthK + "px;" +
