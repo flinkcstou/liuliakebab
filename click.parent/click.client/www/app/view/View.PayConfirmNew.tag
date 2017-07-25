@@ -220,7 +220,10 @@
     this.amountText = opts.amountText;
 
     try {
+      if(opts.cost)
       scope.amountTextCopy = window.amountTransform(this.amountText * opts.cost);
+      else
+        scope.amountTextCopy = window.amountTransform(this.amountText);
     }
     catch (e) {
       scope.amountTextCopy = this.amountText;
