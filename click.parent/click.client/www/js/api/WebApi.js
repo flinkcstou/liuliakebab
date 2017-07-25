@@ -61,7 +61,7 @@ window.api.initSocket = function () {
     }
     else if (modeOfApp.onlineMode) {
 
-      if (window.isConnected) {
+      if (window.isConnected || modeOfApp.offlineMode) {
         return
       }
 
