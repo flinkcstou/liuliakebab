@@ -61,7 +61,7 @@ window.api.initSocket = function () {
     }
     else if (modeOfApp.onlineMode) {
 
-      if (window.isConnected) {
+      if (window.isConnected || modeOfApp.offlineMode) {
         return
       }
 
@@ -80,6 +80,8 @@ window.api.initSocket = function () {
 
     if (device.platform != 'BrowserStand')
       SpinnerPlugin.activityStop();
+
+    if (modeOfApp.offlineMode) return
 
     var parsedData = JSON.parse(event.data);
     console.log(parsedData);
