@@ -9243,27 +9243,33 @@ var css = {
 
   reportFilterClearFiltersContainer: ".report-filter-clear-filters-container" +
   "{" +
-  "height: " + 25 * widthK + "px;" +
+  "height: " + 92 * widthK + "px;" +
+  "width: " + 195 * widthK + "px;" +
   "position: absolute;" +
-  "bottom: " + 133 * widthK + "px;" +
-  "left: " + 163 * widthK + "px;" +
+  "top:0;" +
+  "left: " + 65 * widthK + "px;" +
   "}",
 
   reportFilterClearFiltersLabel: ".report-filter-clear-filters-label" +
   "{" +
   "margin: 0;" +
-  "float: left;" +
-  "font-size: " + 24 * widthK + "px;" +
+  "right:" + 30 * widthK + "px;" +
+  "top: 29%;" +
+  "position: absolute;" +
+  "font-size: " + 29 * widthK + "px;" +
   "color: white;" +
-  "text-decoration: underline;" +
   "}",
 
   reportFilterClearFiltersIcon: ".report-filter-clear-filters-icon" +
   "{" +
-  "margin-bottom: " + 6 * widthK + "px;" +
-  "margin-left: " + 19 * widthK + "px;" +
-  "height: " + 15 * widthK + "px;" +
-  "width: " + 15 * widthK + "px;" +
+  "height: " + 40 * widthK + "px;" +
+  "width: " + 30 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewReport/garbage.png');" +
+  "background-repeat: no-repeat;" +
+  "background-size: contain;" +
+  "background-position: center;" +
+  "position: absolute;" +
+  "top: 23%;" +
   "}",
 
   reportFilterOKButton: ".report-filter-ok-button" +
