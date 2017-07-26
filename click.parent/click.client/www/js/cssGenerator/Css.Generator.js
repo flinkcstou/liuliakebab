@@ -3827,6 +3827,11 @@ var css = {
   "color: #515151;" +
   "}",
 
+  servicePageNumberInputPartPlaceHolder: ".servicepage-number-input-part::-webkit-input-placeholder" +
+  "{" +
+  "font-size:" + 36 * widthK + "px; " +
+  "}",
+
   servicePageNumberInputPartTwo: ".servicepage-number-input-part-two" +
   "{" +
   "border: none;" +
