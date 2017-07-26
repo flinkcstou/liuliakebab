@@ -51,12 +51,16 @@
         <div class="report-service-button-info-container" if="{opts.is_indoor != 1 && opts.canAddToFavorite === true}">
 
           <div class="report-service-button-icon report-service-button-favorites-icon" if="{!isInFavorites}"></div>
-          <div id="addToFavouriteButtonId" class="report-service-button-action" ontouchend="addToFavoritesTouchEnd(this.id)" if="{!isInFavorites}"
-             ontouchstart="addToFavoritesTouchStart(this.id)">{languages.ViewReportServiceAddToFavorites}</div>
+          <div id="addToFavouriteButtonId" class="report-service-button-action"
+               ontouchend="addToFavoritesTouchEnd(this.id)" if="{!isInFavorites}"
+               ontouchstart="addToFavoritesTouchStart(this.id)">{languages.ViewReportServiceAddToFavorites}
+          </div>
 
           <div class="report-service-button-icon report-service-button-favorites-icon-added" if="{isInFavorites}"></div>
-          <div id="delToFavouriteButtonId" class="report-service-button-action" ontouchend="removeFromFavoritesTouchEnd(this.id)" if="{isInFavorites}"
-             ontouchstart="addToFavoritesTouchStart(this.id)">{languages.ViewReportServiceRemoveFromFavorites}</div>
+          <div id="delToFavouriteButtonId" class="report-service-button-action"
+               ontouchend="removeFromFavoritesTouchEnd(this.id)" if="{isInFavorites}"
+               ontouchstart="addToFavoritesTouchStart(this.id)">{languages.ViewReportServiceRemoveFromFavorites}
+          </div>
 
         </div>
         <div class="report-service-button-info-container" if="{false}">
@@ -66,10 +70,12 @@
         <div class="report-service-button-info-container">
           <div class="report-service-button-icon report-service-button-support-icon"></div>
           <div id="supportButtonId" class="report-service-button-action" ontouchend="goToSupportTouchEnd(this.id)"
-             ontouchstart="goToSupportTouchStart(this.id)">{languages.ViewReportServiceGetSupportHelp}</div>
+               ontouchstart="goToSupportTouchStart(this.id)">{languages.ViewReportServiceGetSupportHelp}
+          </div>
         </div>
 
-        <button id="repeatButtinId" if="{opts.is_indoor != 1 && opts.canAddToFavorite === true}" class="report-service-repeat-button"
+        <button id="repeatButtinId" if="{opts.is_indoor != 1 && opts.canAddToFavorite === true}"
+                class="report-service-repeat-button"
                 ontouchend="onTouchEndOfService(this.id)"
                 ontouchstart="onTouchStartOfService(this.id)">
           {languages.ViewReportServiceRepeatButtonLabel}
@@ -197,6 +203,7 @@
         scope.isInFavorites = true;
         newFavorite.firstFieldTitle = scope.opts.parameter_name;
         newFavorite.chosenServiceId = scope.opts.service_id;
+        newFavorite.favoriteName = servicesMap[scope.opts.service_id][0].name;
 
         console.log("ADD TO FAVORITES INPUT", newFavorite);
 

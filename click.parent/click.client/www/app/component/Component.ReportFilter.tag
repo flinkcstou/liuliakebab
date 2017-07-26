@@ -12,6 +12,13 @@
            class="view-reports-filter-button {filter-inside-button: filterDate || filterAccount, filter-inside-button-main: !(filterDate || filterAccount)}"></div>
     </div>
 
+    <div class="report-filter-clear-filters-container"
+         ontouchend="deleteAccountFilterTouchEnd(), deleteDateFilterTouchEnd()"
+         ontouchstart="deleteAccountFilterTouchStart(), deleteDateFilterTouchStart()">
+      <p class="report-filter-clear-filters-label">Очистить</p>
+      <div class="report-filter-clear-filters-icon"></div>
+    </div>
+
     <div if="{filterAccount}">
       <div class="filter-menu-title">{languages.ComponentReportFilterAccount}</div>
       <div class="filter-menu-body-container">
@@ -109,14 +116,9 @@
         </div>
       </div>
 
-      <div class="report-filter-clear-filters-container"
-           ontouchend="deleteAccountFilterTouchEnd(), deleteDateFilterTouchEnd()"
-           ontouchstart="deleteAccountFilterTouchStart(), deleteDateFilterTouchStart()">
-        <p class="report-filter-clear-filters-label">Очистить все фильтры</p>
-        <img class="report-filter-clear-filters-icon" src="resources/icons/ViewReport/reports_filters_clear.png">
-      </div>
-
-      <button id="okButtonId" class="report-filter-ok-button" ontouchstart="attachFiltersStart()" ontouchend="attachFiltersEnd()">ok</button>
+      <button id="okButtonId" class="report-filter-ok-button" ontouchstart="attachFiltersStart()"
+              ontouchend="attachFiltersEnd()">ok
+      </button>
     </div>
 
 
@@ -289,16 +291,14 @@
 
           case componentReportFilter.today:
           case componentReportFilter.currentWeek:
-          case componentReportFilter.currentMonth:
-          {
+          case componentReportFilter.currentMonth: {
             scope.to_dd = date.getDate();
             scope.to_mm = date.getMonth() + 1;
             scope.to_yyyy = date.getFullYear();
 
             break;
           }
-          case componentReportFilter.yesterday:
-          {
+          case componentReportFilter.yesterday: {
             date.setDate(date.getDate() - 1);
 
             scope.to_dd = date.getDate();
@@ -311,8 +311,7 @@
 
             break;
           }
-          case componentReportFilter.pastWeek:
-          {
+          case componentReportFilter.pastWeek: {
             day = date.getDay();
 
             day = (day) ? (day) : (7);
@@ -327,8 +326,7 @@
 
             break;
           }
-          case componentReportFilter.pastMonth:
-          {
+          case componentReportFilter.pastMonth: {
             date.setDate(0);
 
             scope.to_dd = date.getDate();
@@ -342,16 +340,14 @@
         //Filter Date From
         switch (forWhatDate) {
 
-          case componentReportFilter.today:
-          {
+          case componentReportFilter.today: {
             scope.from_dd = date.getDate();
             scope.from_mm = date.getMonth() + 1;
             scope.from_yyyy = date.getFullYear();
 
             break;
           }
-          case componentReportFilter.currentWeek:
-          {
+          case componentReportFilter.currentWeek: {
             day = date.getDay();
 
             day = (day) ? (day) : (7);
@@ -367,8 +363,7 @@
 
             break;
           }
-          case componentReportFilter.currentMonth:
-          {
+          case componentReportFilter.currentMonth: {
             date.setDate(1);
 
             scope.from_dd = date.getDate();
@@ -377,8 +372,7 @@
 
             break;
           }
-          case componentReportFilter.pastWeek:
-          {
+          case componentReportFilter.pastWeek: {
             day = date.getDay();
 
             day = (day) ? (day) : (7);
@@ -394,8 +388,7 @@
 
             break;
           }
-          case componentReportFilter.pastMonth:
-          {
+          case componentReportFilter.pastMonth: {
             date.setDate(1);
 
             scope.from_dd = date.getDate();
@@ -505,7 +498,6 @@
         scope.update();
       }
     };
-
 
 
     var readyOkButtonStartX, readyOkButtonEndX, readyOkButtonStartY, readyOkButtonEndY;

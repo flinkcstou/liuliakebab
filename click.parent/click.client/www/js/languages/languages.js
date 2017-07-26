@@ -503,7 +503,10 @@ var RU_LANGUAGES =
   "ViewInvoiceInEmptyTitleText": "",
   "ViewInvoiceInEmptyBodyText": "Пока вам никто не выставлял счёт",
   "ViewInvoiceOutEmptyTitleText": "",
-  "ViewInvoiceOutEmptyBodyText": "Пока вы никому не выставляли счёт"
+  "ViewInvoiceOutEmptyBodyText": "Пока вы никому не выставляли счёт",
+
+  "ViewServicePageFavoriteNameField": "Название",
+  "ViewServicePageFavoriteNamePlaceholder": "Введите название избранного",
 
 };
 

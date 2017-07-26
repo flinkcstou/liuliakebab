@@ -29,17 +29,20 @@
 
       <div class="pincard-chosen-friend-container" if="{friendHelpBool && opts.mode!='ADDAUTOPAY'}">
         <div class="pincard-friend-help-text-two">{window.languages.ViewServicePinCardHelpText}</div>
-        <div class="pincard-chosen-friend-inner-container"
-             ontouchend="firstSuggestionBlock()">
+        <div class="pincard-chosen-friend-inner-container">
           <div class="pincard-chosen-friend-photo" style="background-image: url({photo})">
             {firstLetterOfName}
           </div>
           <div class="pincard-chosen-friend-text-container">
             <div class="pincard-chosen-friend-text-one">{fName} {lName}</div>
+            <div class="pincard-chosen-friend-text-two">+{phoneNumber}</div>
           </div>
-          <div class="pincard-chosen-friend-text-two">+{phoneNumber}</div>
+
+          <div class="pincard-chosen-friend-edit-icon"
+               ontouchend="friendHelp()"></div>
+          <div class="pincard-chosen-friend-radio-icon"></div>
+
         </div>
-        <div class="pincard-friend-change-text" ontouchend="friendHelp()">Изменить</div>
       </div>
 
       <button id="enterPinCardButtonId" class="pincard-button-enter" ontouchstart="onTouchStartOfEnterCard()"
