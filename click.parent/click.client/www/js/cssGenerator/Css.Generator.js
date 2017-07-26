@@ -193,17 +193,17 @@ var css = {
   "}",
   //
 
-  riotTagsMainContainer: ".riot-tags-main-container" +
-  "{ " +
-  "-webkit-animation-name: mountAnimation; " +
-  "-webkit-animation-duration: 0.2s; " +
-  "}",
-
-  webkitKeyFrameMountAnimation: "@-webkit-keyframes mountAnimation" +
-  "{ " +
-  "from {opacity: 0;}; " +
-  "to {opacity: 1;}; " +
-  "}",
+  // riotTagsMainContainer: ".riot-tags-main-container" +
+  // "{ " +
+  // "-webkit-animation-name: mountAnimation; " +
+  // "-webkit-animation-duration: 0.2s; " +
+  // "}",
+  //
+  // webkitKeyFrameMountAnimation: "@-webkit-keyframes mountAnimation" +
+  // "{ " +
+  // "from {opacity: 0;}; " +
+  // "to {opacity: 1;}; " +
+  // "}",
 
   body: "body{" +
   "margin: 0;" +
@@ -1157,6 +1157,7 @@ var css = {
   "font-size:" + 80 * widthK + "px;" +
   "border: none;" +
   "text-align: center;" +
+  "padding: 0;" +
   "outline: none;" +
   "}",
 
