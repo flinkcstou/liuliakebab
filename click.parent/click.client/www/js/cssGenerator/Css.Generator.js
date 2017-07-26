@@ -938,7 +938,14 @@ var css = {
   keyboardButtonSeven: ".keyboard-button-seven {left: 0;}",
   keyboardButtonEight: ".keyboard-button-eight {left:" + 180 * widthK + "px;}",
   keyboardButtonNine: ".keyboard-button-nine {right: 0;}",
-  keyboardSpace: ".keyboard-space {left: 0;}",
+  keyboardSpace: ".keyboard-space {" +
+  "left: 0; " +
+  "background-size:" + 60 * widthK + "px;" +
+  "background-image: url('resources/icons/authorization/touchid.png');" +
+  "background-repeat: no-repeat;" +
+  "background-position-y:" + 25 * widthK + "px;" +
+  "background-position-x: center;" +
+  "}",
   keyboardButtonZero: ".keyboard-button-zero {left:" + 180 * widthK + "px;}",
   keyboardButtonEnter: ".keyboard-button-enter {position: absolute;}",
 

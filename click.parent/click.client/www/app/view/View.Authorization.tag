@@ -16,7 +16,7 @@
   </div>
 
   <div if="{!firstEnter}" class="authorization-keyboard-field keyboard-field">
-    <component-keyboard fingerprint="{window.fingerPrint.check}"></component-keyboard>
+    <component-keyboard fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print'))}"></component-keyboard>
   </div>
 
 
@@ -119,6 +119,7 @@
           firstPinInputId.focus();
         }
       }
+      scope.update()
     })
 
     window.lastSocketMethodToSend = undefined;
@@ -184,12 +185,7 @@
             console.log("FingerprintAuth available: " + JSON.stringify(result));
             if (result.isAvailable) {
               window.fingerPrint.check = true;
-              if (result.hasEnrolledFingerprints) {
                 localStorage.setItem('settings_finger_print_enrolled', true)
-              }
-              else {
-                localStorage.setItem('settings_finger_print_enrolled', false)
-              }
 
               if (window.fingerPrint.check) {
                 var encryptConfig = {
@@ -467,6 +463,8 @@
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
+        console.log("VALUE", myValue)
+
         if (enteredPin.length < 5 && myValue != 'x' && myValue != 'space') {
           enteredPin += myValue;
         }
@@ -474,7 +472,10 @@
           enteredPin = enteredPin.substring(0, enteredPin.length - 1);
         }
 
-        if (myValue == "space") {
+        console.log('MY VALUE', myValue)
+        console.log("JSON.parse(localStorage.getItem('settings_finger_print'))", JSON.parse(localStorage.getItem('settings_finger_print')))
+        if (myValue == "space" && JSON.parse(localStorage.getItem('settings_finger_print')) == true) {
+          console.log('space')
           fingerPrintTurnOn();
         }
 
