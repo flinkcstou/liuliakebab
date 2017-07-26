@@ -18,7 +18,8 @@
           <div class="settings-friend-help-contact-found-text-two">+{i.number}</div>
         </div>
         <div id="{'del' + i.number}" class="settings-friend-help-contact-cancel-icon"
-             ontouchstart="deleteFriendTouchStart(this.id)" ontouchend="deleteFriendTouchEnd({'id'+i.number}, {i.number}, this.id)"></div>
+             ontouchstart="deleteFriendTouchStart(this.id)"
+             ontouchend="deleteFriendTouchEnd({'id'+i.number}, {i.number}, this.id)"></div>
       </div>
 
     </div>
@@ -172,7 +173,11 @@
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
-        onBackKeyDown()
+        if (opts.from && opts.from == "view-qr")
+          onBackKeyDown()
+        else {
+          onBackKeyDownWithParams(opts, 1);
+        }
         scope.unmount()
       }
     };

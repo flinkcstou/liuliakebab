@@ -63,6 +63,7 @@
     });
 
     if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
+//    if (!scope.opts.clean) {
       for (var i in scope.cardsArray) {
         if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
           scope.cardsArray[i].chosenCard = false;
@@ -147,7 +148,7 @@
         }
       }
 
-      if(!checkChosenCard) {
+      if (!checkChosenCard) {
         scope.cardsArray[indexOfCard].chosenCard = true;
         scope.cardName = scope.cardsArray[indexOfCard].name;
         scope.cardSum = scope.cardsArray[indexOfCard].salaryOriginal

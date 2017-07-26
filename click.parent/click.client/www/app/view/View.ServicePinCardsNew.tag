@@ -17,7 +17,7 @@
     <div class="pincard-payfrom-container">
       <p class="pincard-payfrom-field">{window.languages.ViewServicePinCardPayFromField}</p></div>
 
-    <component-pincards clean="{true}"></component-pincards>
+    <component-pincards clean="{!friendHelpBool}"></component-pincards>
     <div class="pincard-bottom-container">
 
       <div class="pincard-friend-help-container" if="{!friendHelpBool && opts.mode!='ADDAUTOPAY'}"
@@ -40,7 +40,8 @@
 
           <div class="pincard-chosen-friend-edit-icon"
                ontouchend="friendHelp()"></div>
-          <div class="pincard-chosen-friend-radio-icon"></div>
+          <div class="pincard-chosen-friend-radio-icon" ontouchstart="friendRadioTouchStart()"
+               ontouchend="friendRadioTouchEnd()"></div>
 
         </div>
       </div>
@@ -144,6 +145,31 @@
     };
 
 
+    var friendRadioStartY, friendRadioStartX, friendRadioEndY, friendRadioEndX;
+
+    friendRadioTouchStart = function () {
+      event.stopPropagation();
+
+      friendRadioStartY = event.changedTouches[0].pageY;
+      friendRadioStartX = event.changedTouches[0].pageX;
+    }
+
+    friendRadioTouchEnd = function () {
+      event.stopPropagation();
+
+      friendRadioEndY = event.changedTouches[0].pageY;
+      friendRadioEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(friendRadioStartY - friendRadioEndY) <= 20 && Math.abs(friendRadioStartX - friendRadioEndX) <= 20) {
+        viewServicePinCards.friendHelpPaymentMode = false;
+        scope.friendHelpBool = false;
+        scope.tags["component-pincards"].cleanChosenCards();
+        scope.update(scope.friendHelpBool);
+      }
+
+    }
+
+
     goToPayConfirmView = function () {
 
       event.stopPropagation();
@@ -224,7 +250,8 @@
       }
 
       viewServicePinCards.friendHelpPaymentMode = true;
-      viewServicePinCards.chosenFriendForHelp = null;
+//      viewServicePinCards.chosenFriendForHelp = null;
+//      opts.chosenFriendForHelp = null;
       event.preventDefault();
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-friend-help-settings>";
@@ -233,14 +260,14 @@
     };
 
     if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
+//    if (opts.chosenFriendForHelp) {
 //      console.log("AAA");
       scope.friendHelpBool = true;
-      if (viewServicePinCards.chosenFriendForHelp) {
-        scope.firstLetterOfName = viewServicePinCards.chosenFriendForHelp.firstLetterOfName;
-        scope.fName = viewServicePinCards.chosenFriendForHelp.name;
-        scope.phoneNumber = viewServicePinCards.chosenFriendForHelp.number;
-        scope.photo = viewServicePinCards.chosenFriendForHelp.photo;
-      }
+      scope.firstLetterOfName = opts.chosenFriendForHelp.firstLetterOfName;
+      scope.fName = opts.chosenFriendForHelp.name;
+      scope.phoneNumber = opts.chosenFriendForHelp.number;
+      scope.photo = opts.chosenFriendForHelp.photo;
+
       scope.update();
     } else {
 //      console.log("BBB");
