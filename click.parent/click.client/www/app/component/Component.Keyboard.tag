@@ -37,7 +37,8 @@
         class="keyboard-buttons-label">9</p></div>
     </div>
     <div class="keyboard-field-four">
-      <div class="keyboard-buttons keyboard-space"></div>
+      <div id="fingerPrintButtonId" class="keyboard-buttons keyboard-space" if="{opts.fingerprint == true}" ontouchend="componentKeyboard.returnValue(getAttribute('value'), this.id)" ontouchstart="componentKeyboard.returnStartValue(this.id)"
+           value="space"></div>
       <div id="zeroButtonId" class="keyboard-buttons keyboard-button-zero" value="0"
            ontouchend="componentKeyboard.returnValue(getAttribute('value'), this.id)" ontouchstart="componentKeyboard.returnStartValue(this.id)"><p
         class="keyboard-buttons-label">0</p></div>
@@ -49,6 +50,8 @@
 
   <script>
     var scope = this;
+
+    console.log("KEYBOARD OPTS", opts)
 
   </script>
 </component-keyboard>
