@@ -16,7 +16,7 @@
   </div>
 
   <div if="{!firstEnter}" class="authorization-keyboard-field keyboard-field">
-    <component-keyboard></component-keyboard>
+    <component-keyboard fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print'))}"></component-keyboard>
   </div>
 
 
@@ -29,7 +29,8 @@
              id="firstPinInputId"/>
       <div class="authorization-input-eye-button" onclick="eyeClicked()"></div>
     </div>
-    <div if="{firstEnter}" id="firstEnterButtonId" class="authorization-button-first-enter" ontouchend="firstPinEnterTouchEnd()"
+    <div if="{firstEnter}" id="firstEnterButtonId" class="authorization-button-first-enter"
+         ontouchend="firstPinEnterTouchEnd()"
          ontouchstart="firstPinEnterTouchStart()">
       <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
     </div>
@@ -118,6 +119,7 @@
           firstPinInputId.focus();
         }
       }
+      scope.update()
     })
 
     window.lastSocketMethodToSend = undefined;
@@ -174,159 +176,158 @@
     }
 
 
-    if (localStorage.getItem('settings_finger_print') !== null) {
-      console.log("FINGER PRINT INITIALIZE")
-      if (device.platform == 'Android') {
+    fingerPrintTurnOn = function () {
+      if (localStorage.getItem('settings_finger_print') !== null) {
+        console.log("FINGER PRINT INITIALIZE")
+        if (device.platform == 'Android') {
 
-        function isAvailableSuccess(result) {
-          console.log("FingerprintAuth available: " + JSON.stringify(result));
-          if (result.isAvailable) {
-            window.fingerPrint.check = true;
-            if (result.hasEnrolledFingerprints) {
-              localStorage.setItem('settings_finger_print_enrolled', true)
-            }
-            else {
-              localStorage.setItem('settings_finger_print_enrolled', false)
-            }
+          function isAvailableSuccess(result) {
+            console.log("FingerprintAuth available: " + JSON.stringify(result));
+            if (result.isAvailable) {
+              window.fingerPrint.check = true;
+                localStorage.setItem('settings_finger_print_enrolled', true)
 
-            if (window.fingerPrint.check) {
-              var encryptConfig = {
-                clientId: "myAppName",
-                clientSecret: "currentUser",
-                password: "currentUser",
-                token: "currentUser",
-                locale: "ru",
-                disableBackup: false,
+              if (window.fingerPrint.check) {
+                var encryptConfig = {
+                  clientId: "myAppName",
+                  clientSecret: "currentUser",
+                  password: "currentUser",
+                  token: "currentUser",
+                  locale: "ru",
+                  disableBackup: false,
 //              userAuthRequired: false,
-                dialogHint: "Повторите попытку",
-                dialogTitle: "Сканирование для CLICK"
+                  dialogHint: "Повторите попытку",
+                  dialogTitle: "Сканирование для CLICK"
 
-              }; // See config object for required parameters
+                }; // See config object for required parameters
 
-              if (localStorage.getItem("settings_finger_print") !== null) {
-                if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
-                  FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
-                }
-                else {
-
-                  if (!localStorage.getItem('click_client_cards')) {
-                    onConfirm = function (index) {
-                      if (index == 1) {
-                        localStorage.setItem('settings_finger_print', true)
-
-                      }
-                      else {
-                        localStorage.setItem('settings_finger_print', false)
-                      }
-                    }
-
-                    navigator.notification.confirm(
-                      'Хотите использовать ее для CLICK?',  // message
-                      onConfirm,              // callback to invoke with index of button pressed
-                      'Устройтсво поддерживает технологию TouchID',            // title
-                      ['Да', 'Нет']          // buttonLabels
-                    );
-                  }
-                }
-              }
-            }
-          }
-          else {
-            window.fingerPrint.check = false
-            riot.update();
-          }
-        }
-
-        function isAvailableError(message) {
-          console.log("isAvailableError(): " + message);
-          window.fingerPrint.check = false;
-          riot.update();
-        }
-
-        FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
-
-
-        function encryptSuccessCallback(result) {
-          console.log("successCallback(): " + JSON.stringify(result));
-          if (result.withFingerprint) {
-            console.log("Successfully encrypted credentials.");
-            console.log("Encrypted credentials: " + result.token);
-            pin = localStorage.getItem('click_client_pin');
-            console.log('pin', pin)
-            enter();
-          } else if (result.withBackup) {
-            console.log("Authenticated with backup password");
-            pin = localStorage.getItem('click_client_pin');
-            console.log('pin', pin)
-            enter();
-          }
-        }
-
-        function encryptErrorCallback(error) {
-          if (error === "Cancelled") {
-            console.log("FingerprintAuth Dialog Cancelled!");
-          } else {
-            console.log("FingerprintAuth Error: " + error);
-          }
-        }
-
-      }
-      else if (device.platform == 'iOS') {
-
-        function successCallback(success) {
-          window.fingerPrint.check = true;
-          localStorage.setItem('settings_finger_print_enrolled', true)
-          console.log('success', success)
-
-          if (localStorage.getItem("settings_finger_print") !== null) {
-            if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
-              var text = 'Приложите палец для сканирования';
-              window.plugins.touchid.verifyFingerprint(text, successCallbackOfAuth, failureCallbackOfAuth);
-            }
-            else {
-              if (!localStorage.getItem('click_client_cards')) {
-                onConfirm = function (index) {
-                  if (index == 1) {
-                    localStorage.setItem('settings_finger_print', true)
+                if (localStorage.getItem("settings_finger_print") !== null) {
+                  if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
+                    FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
                   }
                   else {
-                    localStorage.setItem('settings_finger_print', false)
+
+                    if (!localStorage.getItem('click_client_cards')) {
+                      onConfirm = function (index) {
+                        if (index == 1) {
+                          localStorage.setItem('settings_finger_print', true)
+
+                        }
+                        else {
+                          localStorage.setItem('settings_finger_print', false)
+                        }
+                      }
+
+                      navigator.notification.confirm(
+                        'Хотите использовать ее для CLICK?',  // message
+                        onConfirm,              // callback to invoke with index of button pressed
+                        'Устройтсво поддерживает технологию TouchID',            // title
+                        ['Да', 'Нет']          // buttonLabels
+                      );
+                    }
                   }
                 }
+              }
+            }
+            else {
+              window.fingerPrint.check = false
+              riot.update();
+            }
+          }
 
-                navigator.notification.confirm(
-                  'Хотите использовать ее для CLICK?',  // message
-                  onConfirm,              // callback to invoke with index of button pressed
-                  'Устройтсво поддерживает технологию TouchID',            // title
-                  ['Да', 'Нет']          // buttonLabels
-                );
+          function isAvailableError(message) {
+            console.log("isAvailableError(): " + message);
+            window.fingerPrint.check = false;
+            riot.update();
+          }
+
+          FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
+
+
+          function encryptSuccessCallback(result) {
+            console.log("successCallback(): " + JSON.stringify(result));
+            if (result.withFingerprint) {
+              console.log("Successfully encrypted credentials.");
+              console.log("Encrypted credentials: " + result.token);
+              pin = localStorage.getItem('click_client_pin');
+              console.log('pin', pin)
+              enter();
+            } else if (result.withBackup) {
+              console.log("Authenticated with backup password");
+              pin = localStorage.getItem('click_client_pin');
+              console.log('pin', pin)
+              enter();
+            }
+          }
+
+          function encryptErrorCallback(error) {
+            if (error === "Cancelled") {
+              console.log("FingerprintAuth Dialog Cancelled!");
+            } else {
+              console.log("FingerprintAuth Error: " + error);
+            }
+          }
+
+        }
+        else if (device.platform == 'iOS') {
+
+          function successCallback(success) {
+            window.fingerPrint.check = true;
+            localStorage.setItem('settings_finger_print_enrolled', true)
+            console.log('success', success)
+
+            if (localStorage.getItem("settings_finger_print") !== null) {
+              if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
+                var text = 'Приложите палец для сканирования';
+                window.plugins.touchid.verifyFingerprint(text, successCallbackOfAuth, failureCallbackOfAuth);
+              }
+              else {
+                if (!localStorage.getItem('click_client_cards')) {
+                  onConfirm = function (index) {
+                    if (index == 1) {
+                      localStorage.setItem('settings_finger_print', true)
+                    }
+                    else {
+                      localStorage.setItem('settings_finger_print', false)
+                    }
+                  }
+
+                  navigator.notification.confirm(
+                    'Хотите использовать ее для CLICK?',  // message
+                    onConfirm,              // callback to invoke with index of button pressed
+                    'Устройтсво поддерживает технологию TouchID',            // title
+                    ['Да', 'Нет']          // buttonLabels
+                  );
+                }
               }
             }
           }
-        }
 
-        function notSupportedCallback(error) {
-          console.log('error', error)
-          window.fingerPrint.check = false;
-          localStorage.setItem('settings_finger_print_enrolled', false)
-        }
+          function notSupportedCallback(error) {
+            console.log('error', error)
+            window.fingerPrint.check = false;
+            localStorage.setItem('settings_finger_print_enrolled', false)
+          }
 
 
-        window.plugins.touchid.isAvailable(successCallback, notSupportedCallback);
+          window.plugins.touchid.isAvailable(successCallback, notSupportedCallback);
 
-        function successCallbackOfAuth(success) {
-          console.log(success)
-          console.log('SUCCIESS FINGER PRINT')
-          pin = localStorage.getItem('click_client_pin');
-          enter();
-        }
+          function successCallbackOfAuth(success) {
+            console.log(success)
+            console.log('SUCCIESS FINGER PRINT')
+            pin = localStorage.getItem('click_client_pin');
+            enter();
+          }
 
-        function failureCallbackOfAuth(error) {
-          console.log(error)
-          console.log('FAIL FINGER PRINT')
+          function failureCallbackOfAuth(error) {
+            console.log(error)
+            console.log('FAIL FINGER PRINT')
+          }
         }
       }
     }
+
+    fingerPrintTurnOn();
 
     var eyeInputShow = false;
 
@@ -462,11 +463,20 @@
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
-        if (enteredPin.length < 5 && myValue != 'x') {
+        console.log("VALUE", myValue)
+
+        if (enteredPin.length < 5 && myValue != 'x' && myValue != 'space') {
           enteredPin += myValue;
         }
         if (myValue == 'x') {
           enteredPin = enteredPin.substring(0, enteredPin.length - 1);
+        }
+
+        console.log('MY VALUE', myValue)
+        console.log("JSON.parse(localStorage.getItem('settings_finger_print'))", JSON.parse(localStorage.getItem('settings_finger_print')))
+        if (myValue == "space" && JSON.parse(localStorage.getItem('settings_finger_print')) == true) {
+          console.log('space')
+          fingerPrintTurnOn();
         }
 
         scope.update();
@@ -751,16 +761,16 @@
           else {
 
             if (localStorage.getItem('settings_block') || localStorage.getItem('session_broken')) {
-              if (JSON.parse(localStorage.getItem('settings_block')) === true  || JSON.parse(localStorage.getItem('session_broken')) === true) {
+              if (JSON.parse(localStorage.getItem('settings_block')) === true || JSON.parse(localStorage.getItem('session_broken')) === true) {
                 console.log("QWEQWEWWWWWWW")
                 if (history.arrayOfHistory) {
                   if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
                     this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
                     riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
-                    if(JSON.parse(localStorage.getItem('settings_block')) === true)
-                    localStorage.setItem('onResume', false)
+                    if (JSON.parse(localStorage.getItem('settings_block')) === true)
+                      localStorage.setItem('onResume', false)
                     else
-                    localStorage.setItem('session_broken', false)
+                      localStorage.setItem('session_broken', false)
                     scope.unmount()
                     return
                   }

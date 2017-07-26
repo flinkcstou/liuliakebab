@@ -193,7 +193,7 @@ var css = {
   "}",
   //
 
-  riotTagsMainContainer: ".riot-tags-main-container" +
+  riotTagsMainContainer:".riot-tags-main-container" +
   "{ " +
   "-webkit-animation-name: mountAnimation; " +
   "-webkit-animation-duration: 0.2s; " +
@@ -938,7 +938,14 @@ var css = {
   keyboardButtonSeven: ".keyboard-button-seven {left: 0;}",
   keyboardButtonEight: ".keyboard-button-eight {left:" + 180 * widthK + "px;}",
   keyboardButtonNine: ".keyboard-button-nine {right: 0;}",
-  keyboardSpace: ".keyboard-space {left: 0;}",
+  keyboardSpace: ".keyboard-space {" +
+  "left: 0; " +
+  "background-size:" + 60 * widthK + "px;" +
+  "background-image: url('resources/icons/authorization/touchid.png');" +
+  "background-repeat: no-repeat;" +
+  "background-position-y:" + 25 * widthK + "px;" +
+  "background-position-x: center;" +
+  "}",
   keyboardButtonZero: ".keyboard-button-zero {left:" + 180 * widthK + "px;}",
   keyboardButtonEnter: ".keyboard-button-enter {position: absolute;}",
 
@@ -3828,6 +3835,11 @@ var css = {
   "color: #515151;" +
   "}",
 
+  servicePageNumberInputPartPlaceHolder: ".servicepage-number-input-part::-webkit-input-placeholder" +
+  "{" +
+  "font-size:" + 36 * widthK + "px; " +
+  "}",
+
   servicePageNumberInputPartTwo: ".servicepage-number-input-part-two" +
   "{" +
   "border: none;" +
@@ -4431,7 +4443,7 @@ var css = {
   "{" +
   //"top: 65%;" +
   "position: absolute;" +
-  "left: 9%;" +
+  "left: 36%;" +
   "color: grey;" +
   "font-size: " + 29 * widthK + "px; " +
   "text-align: center;" +
@@ -4452,37 +4464,37 @@ var css = {
   pincardChosenFriendInnerContainer: ".pincard-chosen-friend-inner-container" +
   "{" +
   "position: absolute;" +
-  "width: 100%;" +
-  "height:" + 130 * widthK + "px;" +
+  "width: 79.5%;" +
+  "height:" + 115 * widthK + "px;" +
   "background-color: #F0F1F4;" +
-  // "left: 10%;" +
+  "left: 10%;" +
   "top:22%;" +
   "}",
 
   pincardChosenFriendPhoto: ".pincard-chosen-friend-photo" +
   "{" +
-  "top:" + 21 * widthK + "px;" +
+  "top:" + 8 * widthK + "px;" +
   "position: absolute;" +
-  "width:" + 85 * widthK + "px;" +
-  "height:" + 85 * widthK + "px;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
   "background-position: center;" +
   "border-radius: 50%;" +
   "text-align: center;" +
-  "line-height:" + 85 * widthK + "px;" +
+  "line-height:" + 100 * widthK + "px;" +
   "font-size:" + 50 * widthK + "px;" +
   "background-color: #027fe3;" +
   "color: white;" +
-  "left: 12%;" +
+  "left: 5%;" +
   "}",
 
   pincardChosenFriendTextContainer: ".pincard-chosen-friend-text-container" +
   "{" +
   "position: absolute;" +
-  "left: 36%;" +
+  "left: 25%;" +
   "color: gray;" +
-  "width: 38%;" +
+  "width: 20%;" +
   "height: 100%;" +
   "display: table;" +
   "}",
@@ -4492,52 +4504,20 @@ var css = {
   "{" +
   "margin: 0;" +
   "color: gray;" +
-  "font-size:" + 27 * widthK + "px;" +
+  "font-size:" + 24 * widthK + "px;" +
   "display: table-cell;" +
   "vertical-align: middle;" +
-  "position: absolute;" +
-  "top: 15%;" +
-  "font-weight: bold;" +
-  "width: 100%;" +
-  "height: 48%;" +
-  "overflow: hidden;" +
-  "line-height: 30px;" +
   "}",
 
   pincardChosenFriendTextTwo: ".pincard-chosen-friend-text-two" +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  // "left: 60%;" +
+  "left: 60%;" +
   "color: gray;" +
-  "font-size:" + 23 * widthK + "px;" +
-  "top: 60%;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: 40%;" +
   "}",
-
-  pincardChosenFriendEditIcon: ".pincard-chosen-friend-edit-icon" +
-  "{" +
-  "position: absolute;" +
-  "right: 14%;" +
-  "width: 10%;" +
-  "height: 100%;" +
-  "background-repeat: no-repeat;" +
-  "background-size: 44%;" +
-  "background-position: center;" +
-  "background-image: url(resources/icons/ViewService/edit.png);" +
-  "}",
-
-  pincardChosenFriendRadioIcon: ".pincard-chosen-friend-radio-icon" +
-  "{" +
-  "position: absolute;" +
-  "right: 5%;" +
-  "width: 10%;" +
-  "height: 100%;" +
-  "background-repeat: no-repeat;" +
-  "background-size: 46%;" +
-  "background-position: center;" +
-  "background-image: url(resources/icons/ViewService/radio_selected.png);" +
-  "}",
-
 
   pincardBottomContainer: ".pincard-bottom-container" +
   "{" +
@@ -9244,33 +9224,27 @@ var css = {
 
   reportFilterClearFiltersContainer: ".report-filter-clear-filters-container" +
   "{" +
-  "height: " + 92 * widthK + "px;" +
-  "width: " + 195 * widthK + "px;" +
+  "height: " + 25 * widthK + "px;" +
   "position: absolute;" +
-  "top:0;" +
-  "left: " + 65 * widthK + "px;" +
+  "bottom: " + 133 * widthK + "px;" +
+  "left: " + 163 * widthK + "px;" +
   "}",
 
   reportFilterClearFiltersLabel: ".report-filter-clear-filters-label" +
   "{" +
   "margin: 0;" +
-  "right:" + 30 * widthK + "px;" +
-  "top: 29%;" +
-  "position: absolute;" +
-  "font-size: " + 29 * widthK + "px;" +
+  "float: left;" +
+  "font-size: " + 24 * widthK + "px;" +
   "color: white;" +
+  "text-decoration: underline;" +
   "}",
 
   reportFilterClearFiltersIcon: ".report-filter-clear-filters-icon" +
   "{" +
-  "height: " + 40 * widthK + "px;" +
-  "width: " + 30 * widthK + "px;" +
-  "background-image: url('resources/icons/ViewReport/garbage.png');" +
-  "background-repeat: no-repeat;" +
-  "background-size: contain;" +
-  "background-position: center;" +
-  "position: absolute;" +
-  "top: 23%;" +
+  "margin-bottom: " + 6 * widthK + "px;" +
+  "margin-left: " + 19 * widthK + "px;" +
+  "height: " + 15 * widthK + "px;" +
+  "width: " + 15 * widthK + "px;" +
   "}",
 
   reportFilterOKButton: ".report-filter-ok-button" +
@@ -10120,7 +10094,7 @@ var css = {
   "color: white;" +
   "background-color: white;" +
   //"border:" + 3 * heightK + "px solid #e7e7e7;" +
-  "border:" + 1 + "px solid #e7e7e7;" +
+  "border:" + 1  + "px solid #e7e7e7;" +
   "width: 27%;" +
   //"height: 18%;" +
   "height:" + 60 * widthK + "px;" +
