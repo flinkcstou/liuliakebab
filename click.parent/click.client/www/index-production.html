@@ -288,6 +288,8 @@
 
   function onResumeFunction() {
 
+    if(modeOfApp.offlineMode) return
+
     console.log('balance')
 
     if (!checkFirstStarting && localStorage.getItem('click_client_token') && localStorage.getItem('click_client_loginInfo')) {

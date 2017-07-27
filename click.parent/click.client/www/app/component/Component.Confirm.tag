@@ -4,10 +4,10 @@
     <p class="component-alert-message">{opts.confirmnote}</p>
 
     <div class="component-calc-buttons-container">
-      <button id="confirmCancelButtonId" class="component-confirm-button-cancel-container" ontouchstart="cancelConfirmStart()" ontouchend="cancelConfirmEnd()">
+      <button id="confirmCancelButtonId" class="component-confirm-button-cancel-container" ontouchstart="cancelConfirmStart(this.id)" ontouchend="cancelConfirmEnd(this.id)">
         {window.languages.ComponentConfirmCancel}
       </button>
-      <button id="confirmOkButtonId" class="component-confirm-button-ok-container" ontouchstart="okConfirmStart()" ontouchend="okConfirmEnd()">
+      <button id="confirmOkButtonId" class="component-confirm-button-ok-container" ontouchstart="okConfirmStart(this.id)" ontouchend="okConfirmEnd(this.id)">
         {window.languages.ComponentAlertOk}
       </button>
     </div>
@@ -20,24 +20,21 @@
 
     var okButtonStartX, okButtonEndX, okButtonStartY, okButtonEndY;
 
-    okConfirmStart = function () {
+    okConfirmStart = function (id) {
       event.preventDefault();
       event.stopPropagation();
-
-      console.log(confirmOkButtonId)
-      console.log(this.confirmOkButtonId)
 
       okButtonStartX = event.changedTouches[0].pageX;
       okButtonStartY = event.changedTouches[0].pageY;
 
-      this.confirmOkButtonId.style.webkitTransform = 'scale(0.8)'
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
     }
 
-    okConfirmEnd = function () {
+    okConfirmEnd = function (id) {
       event.preventDefault();
       event.stopPropagation();
 
-      this.confirmOkButtonId.style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       okButtonEndX = event.changedTouches[0].pageX;
       okButtonEndY = event.changedTouches[0].pageY;
@@ -73,23 +70,23 @@
 
     var cancelButtonStartX, cancelButtonEndX, cancelButtonStartY, cancelButtonEndY;
 
-    cancelConfirmStart = function () {
+    cancelConfirmStart = function (id) {
       event.preventDefault();
       event.stopPropagation();
 
       cancelButtonStartX = event.changedTouches[0].pageX;
       cancelButtonStartY = event.changedTouches[0].pageY;
 
-      this.confirmCancelButtonId.style.webkitTransform = 'scale(0.8)'
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
 
 
     }
 
-    cancelConfirmEnd = function () {
+    cancelConfirmEnd = function (id) {
       event.preventDefault();
       event.stopPropagation();
 
-      this.confirmCancelButtonId.style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       cancelButtonEndX = event.changedTouches[0].pageX;
       cancelButtonEndY = event.changedTouches[0].pageY;
