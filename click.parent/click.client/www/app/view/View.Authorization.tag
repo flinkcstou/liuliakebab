@@ -685,7 +685,7 @@
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
-      })
+      });
 
       if (countOfCall <= 3 && !checkServiceAnswer && window.isConnected)
         setTimeout(function () {
