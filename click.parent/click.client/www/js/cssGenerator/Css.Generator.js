@@ -3810,8 +3810,8 @@ var css = {
   // "color: gainsboro;" +
   // //"line-height:" + 50 * widthK + "px; " +
   // "}",
-  //
-  servicePageAmountInputPlaceholder: "input::placeholder" +
+
+  servicePageAmountInputPlaceholder: "input::-webkit-input-placeholder" +
   "{" +
   "font-size:" + 30 * widthK + "px;" +
   "color: gainsboro;" +

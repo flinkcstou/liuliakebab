@@ -162,7 +162,7 @@
             console.log("result of invoice payment decline", result);
 
             if (result[0][0].error == 0) {
-              paymentDetailGoToBack(true);
+              paymentDetailGoToBackEnd(true);
             }
             else {
               scope.clickPinError = false;

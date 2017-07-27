@@ -1187,7 +1187,7 @@
         var invoiceVar = 1;
       }
 
-      console.log(carouselTouchEndX, carouselTouchStartX, count, count)
+      console.log(carouselTouchEndX, carouselTouchStartX, count, scope.cardNumber)
 
       if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber < count - 1) {
 
@@ -1212,7 +1212,7 @@
         this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
-      if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber == count - 1) {
+      if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber >= count - 1) {
 
         console.log("Move Touch Carousel3", scope.cardNumber);
 

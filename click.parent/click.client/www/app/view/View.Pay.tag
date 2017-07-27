@@ -41,6 +41,7 @@
     //TODO: OPTIMIZE THIS PAGE SLOW DOWNLOADING CATEGORIES AND SERVICES
     var scope = this;
     scope.checkOfSearch = false;
+    scope.changeBackground = true;
 
     console.log('OPTS in PAY', opts);
 
@@ -145,6 +146,12 @@
     scope.onTouchStartOfCategory = onTouchStartOfCategory = function (id) {
       event.stopPropagation();
 
+      setTimeout(function () {
+        if(scope.changeBackground){
+
+        }
+      }, 500)
+      if(scope.index != id)
       document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
 
       onTouchStartY = event.changedTouches[0].pageY;
@@ -153,6 +160,8 @@
 
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
       event.stopPropagation();
+
+      scope.changeBackground = true;
 
 
 
@@ -221,6 +230,8 @@
 
 
     onTouchMoveOfCategory = function () {
+
+      scope.changeBackground = false;
 
       event.stopPropagation();
       var element = document.getElementById(scope.index);

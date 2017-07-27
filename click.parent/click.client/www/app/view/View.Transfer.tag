@@ -1268,11 +1268,15 @@
             else {
               phoneNumberForTransfer = window.languages.CodeOfCountry + phoneNumberForTransfer
               this.riotTags.innerHTML = "<view-transfer-steptwo>";
+              if(JSON.parse(localStorage.getItem('click_client_loginInfo')))
+              var tax = JSON.parse(localStorage.getItem('click_client_loginInfo')).p2p_comission
+              else
+                var tax = 0;
               riot.mount('view-transfer-steptwo', [
                 {
                   "name": phoneNumberForTransfer,
                   "type": 2,
-                  "percent": JSON.parse(localStorage.getItem('click_client_loginInfo')).p2p_comission,
+                  "percent": tax,
                 }
               ]);
 
