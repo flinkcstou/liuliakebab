@@ -501,9 +501,9 @@ var RU_LANGUAGES =
   "ViewFavoriteEmptyTitleText": "ВЫ ЕЩЕ НЕ ДОБАВИЛИ НИ ОДНОГО ИЗБРАННОГО ПЛАТЕЖА",
   "ViewFavoriteEmptyBodyText": "Нажмите на \"+\" для добавления платежа в избранное",
   "ViewInvoiceInEmptyTitleText": "",
-  "ViewInvoiceInEmptyBodyText": "Пока вам никто не выставлял счёт",
+  "ViewInvoiceInEmptyBodyText": "ПОКА ВАМ НИКТО НЕ ВЫСТАВЛЯЛ СЧЕТ",
   "ViewInvoiceOutEmptyTitleText": "",
-  "ViewInvoiceOutEmptyBodyText": "Пока вы никому не выставляли счёт",
+  "ViewInvoiceOutEmptyBodyText": "ПОКА ВЫ НИКОМУ НЕ ВЫСТАВЛЯЛИ СЧЕТ",
 
   "ViewServicePageFavoriteNameField": "Название",
   "ViewServicePageFavoriteNamePlaceholder": "Введите название избранного",

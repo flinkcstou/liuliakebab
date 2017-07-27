@@ -2,7 +2,8 @@
 
   <div class="invoice-list-page-title">
     <p class="invoice-list-name-title">{titleName}</p>
-    <div id="invoiceListBackButtonId" ontouchstart="invoiceGoToBackStart()" ontouchend="invoiceGoToBackEnd()" class="invoice-list-back-button">
+    <div id="invoiceListBackButtonId" ontouchstart="invoiceGoToBackStart()" ontouchend="invoiceGoToBackEnd()"
+         class="invoice-list-back-button">
 
     </div>
   </div>
@@ -60,9 +61,7 @@
              style="background-image: url('resources/icons/invoice/from-user_empty.png');background-size: 70%;background-position-x: 50%;background-position-y: 9%;"></div>
       </div>
       <div class="empty-list-lower-container">
-        <p class="empty-list-lower-title-text" style="top: 1%;">{toUser? window.languages.ViewInvoiceInEmptyTitleText :
-          window.languages.ViewInvoiceOutEmptyTitleText}</p>
-        <p class="empty-list-lower-body-text" style="top: 6%;">{toUser? window.languages.ViewInvoiceInEmptyBodyText :
+        <p class="empty-list-lower-title-text" style="top: 1%;">{toUser? window.languages.ViewInvoiceInEmptyBodyText :
           window.languages.ViewInvoiceOutEmptyBodyText}</p>
       </div>
 
@@ -210,7 +209,7 @@
                 localStorage.setItem('click_client_invoice_list', JSON.stringify(scope.invoiceList));
               }
             }
-            else{
+            else {
               canDownloadInvoiceList = false;
             }
           }
