@@ -263,10 +263,10 @@
 //    if (opts.chosenFriendForHelp) {
 //      console.log("AAA");
       scope.friendHelpBool = true;
-      scope.firstLetterOfName = opts.chosenFriendForHelp.firstLetterOfName;
-      scope.fName = opts.chosenFriendForHelp.name;
-      scope.phoneNumber = opts.chosenFriendForHelp.number;
-      scope.photo = opts.chosenFriendForHelp.photo;
+      scope.firstLetterOfName = viewServicePinCards.chosenFriendForHelp.firstLetterOfName;
+      scope.fName = viewServicePinCards.chosenFriendForHelp.name;
+      scope.phoneNumber = viewServicePinCards.chosenFriendForHelp.number;
+      scope.photo = viewServicePinCards.chosenFriendForHelp.photo;
 
       scope.update();
     } else {
