@@ -37,19 +37,19 @@ var css = {
   "}",
 
 
-  //riotTagsMainContainer: ".riot-tags-main-container " +
-  //"{" +
-  //"-webkit-animation-name: mountAnimation !important;" +
-  //"-webkit-animation-duration: 1s !important;" +
-  //"animation-name:mountAnimation !important;" +
-  //"animation-duration: 1s !important;" +
-  //"}",
-  //
-  //mountAnimation: "@keyframes mountAnimation " +
-  //"{" +
-  //"from {opacity: 0 !important;}" +
-  //"to {opacity: 1 !important;}" +
-  //"}",
+  riotTagsMainContainer: ".riot-tags-main-container " +
+  "{" +
+  "-webkit-animation-name: mountAnimation !important;" +
+  "-webkit-animation-duration: 1s !important;" +
+  "animation-name:mountAnimation !important;" +
+  "animation-duration: 1s !important;" +
+  "}",
+
+  mountAnimation: "@keyframes mountAnimation " +
+  "{" +
+  "from {opacity: 0 !important;}" +
+  "to {opacity: 1 !important;}" +
+  "}",
 
   html: "html" +
   "{ " +
@@ -193,17 +193,17 @@ var css = {
   "}",
   //
 
-  // riotTagsMainContainer: ".riot-tags-main-container" +
-  // "{ " +
-  // "-webkit-animation-name: mountAnimation; " +
-  // "-webkit-animation-duration: 0.2s; " +
-  // "}",
-  //
-  // webkitKeyFrameMountAnimation: "@-webkit-keyframes mountAnimation" +
-  // "{ " +
-  // "from {opacity: 0;}; " +
-  // "to {opacity: 1;}; " +
-  // "}",
+  riotTagsMainContainer: ".riot-tags-main-container" +
+  "{ " +
+  "-webkit-animation-name: mountAnimation; " +
+  "-webkit-animation-duration: 0.2s; " +
+  "}",
+
+  webkitKeyFrameMountAnimation: "@-webkit-keyframes mountAnimation" +
+  "{ " +
+  "from {opacity: 0;}; " +
+  "to {opacity: 1;}; " +
+  "}",
 
   body: "body{" +
   "margin: 0;" +
