@@ -551,6 +551,12 @@
               var date = new Date(result[1][i].created_timestamp * 1000);
               var dateStr = date.getDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getMonth()] + ' ' + date.getFullYear();
 
+              if(date.getDate() == new Date().getDate() && date.getFullYear() == new Date().getFullYear())
+                dateStr = 'сегодня'
+
+              if(date.getDate() == new Date().getDate() - 1 && date.getFullYear() == new Date().getFullYear())
+                dateStr = 'вчера'
+
               if (result[1][i].state == -1) {
                 result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
               }
