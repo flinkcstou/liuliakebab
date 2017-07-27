@@ -9439,20 +9439,20 @@ var css = {
   viewReportsPaymentDateContainer: ".view-reports-payment-date-containter" +
   "{" +
   "position: relative;" +
-  "height:" + 75 * widthK + "px; " +
-  "width: 91%;" +
-  "left: 4%;" +
-  "margin-top: 1%;" +
+  "height:" + 45 * widthK + "px; " +
+  "width: 100%;" +
+  // "left: 4%;" +
+  // "margin-top: 1%;" +
   //"border-bottom:" + 1 * widthK + "px solid gainsboro;" +
-  "background-color: transparent;" +
+  "background-color: #f6f6f6;" +
   "}",
 
   viewReportsPaymentDateField: ".view-reports-payment-date-field" +
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "top: " + 26 * widthK + "px; " +
-  "left: 1%;" +
+  "top: " + 10 * widthK + "px; " +
+  "left: 9%;" +
   "text-align: left;" +
   "font-size:" + 24 * widthK + "px; " +
   "color: gray;" +
