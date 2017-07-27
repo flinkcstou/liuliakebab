@@ -218,10 +218,11 @@
 
     this.cardTypeId = opts.cardTypeId;
     this.amountText = opts.amountText;
+    console.log(opts.amountText, " amounts ", this.amountText);
 
     try {
-      if(opts.cost)
-      scope.amountTextCopy = window.amountTransform(this.amountText * opts.cost);
+      if (opts.cost)
+        scope.amountTextCopy = window.amountTransform(this.amountText * opts.cost);
       else
         scope.amountTextCopy = window.amountTransform(this.amountText);
     }
@@ -229,7 +230,7 @@
       scope.amountTextCopy = this.amountText;
     }
 
-    console.log("AMOUNT", this.amountText)
+    console.log("AMOUNT", this.amountText, " scope.amountTextCopy", scope.amountTextCopy)
 
 
     //    riot.update()
@@ -253,6 +254,13 @@
       scope.friendNumber = friendForHelp.number;
       scope.friendFirstLetterOfName = friendForHelp.firstLetterOfName;
       scope.friendPhoto = friendForHelp.photo;
+      for (var i in cardsArray) {
+        if (cardsArray[i].default_account) {
+          scope.currency = cardsArray[i].currency;
+          break;
+        }
+      }
+
 //      this.on('mount', function () {
 //        addToAutoPayContainerId.style.display = 'none';
 //      });

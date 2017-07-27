@@ -803,15 +803,35 @@
       acceptEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(acceptStartY - acceptEndY) <= 20 && Math.abs(acceptStartX - acceptEndX) <= 20) {
-        amount.value = scope.convertedAmount + ' ' + defaultAccount.currency;
-        if (amount.value.length > 0) {
+        amount.value = scope.convertedAmount;
+
+
+        if (amount.value.match(maskTwo) != null && amount.value.match(maskTwo).length != null) {
+
+          amount.value = amount.value.substring(0, amount.value.match(maskTwo).length);
+
+          amountForPayTransaction = amount.value.substring(0, amount.value.match(maskTwo).length);
+          amountForPayTransaction = amountForPayTransaction.replace(new RegExp(' ', 'g'), '');
+
+          amount.value = window.amountTransform(amountForPayTransaction);
           checkFirst = true;
-          amountForPayTransaction = converted;
         }
+
+        opts.amountText = amount.value;
+        opts.amountWithoutSpace = amountForPayTransaction;
+
+
+//        if (amount.value.length > 0) {
+//          checkFirst = true;
+//          amountForPayTransaction = converted;
+//          opts.amountText = amount.value;
+//          opts.amountWithoutSpace = amountForPayTransaction;
+//        }
 //      blockAmountCalculatorId.style.display = 'none';
         scope.showComponent = false;
         window.checkShowingComponent = null;
         scope.update();
+        checkFieldsToActivateNext();
       }
     };
 
