@@ -9951,6 +9951,30 @@ var css = {
   "overflow: hidden;" +
   "}",
 
+  viewFavoritesDeleteIcon: ".view-favorites-delete-icon" +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 10%;" +
+  "height: 100%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 36%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/services/delete.png);" +
+  "}",
+
+  viewFavoritesEditIcon: ".view-favorites-edit-icon" +
+  "{" +
+  "position: absolute;" +
+  "right: 10%;" +
+  "width: 10%;" +
+  "height: 100%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 36%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/services/edit_favorite.png);" +
+  "}",
+
 
   //VIEW ADD CARD
 
