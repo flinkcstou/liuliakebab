@@ -515,6 +515,8 @@
           scope.paymentsList = []
         }
 
+      var gotAnswer = false;
+
       window.api.call({
         method: 'get.payment.list',
         input: {
@@ -528,6 +530,8 @@
         scope: this,
 
         onSuccess: function (result) {
+
+          gotAnswer = true;
 
           console.log(result)
           console.log(result[0][0])
@@ -551,10 +555,10 @@
               var date = new Date(result[1][i].created_timestamp * 1000);
               var dateStr = date.getDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getMonth()] + ' ' + date.getFullYear();
 
-              if(date.getDate() == new Date().getDate() && date.getFullYear() == new Date().getFullYear())
+              if (date.getDate() == new Date().getDate() && date.getFullYear() == new Date().getFullYear())
                 dateStr = 'сегодня'
 
-              if(date.getDate() == new Date().getDate() - 1 && date.getFullYear() == new Date().getFullYear())
+              if (date.getDate() == new Date().getDate() - 1 && date.getFullYear() == new Date().getFullYear())
                 dateStr = 'вчера'
 
               if (result[1][i].state == -1) {
@@ -603,6 +607,22 @@
           console.error(data);
         }
       });
+
+
+      if (!gotAnswer && window.isConnected)
+        setTimeout(function () {
+          if (!gotAnswer) {
+            scope.showError = true;
+            scope.errorNote = "Сервис временно недоступен";
+            scope.stepAmount = 0;
+            scope.update();
+            if (device.platform != 'BrowserStand') {
+              SpinnerPlugin.activityStop();
+            }
+            window.isConnected = false;
+            return
+          }
+        }, 10000);
 
 
     };
@@ -661,6 +681,7 @@
 
       scope.graphList = [];
       scope.paymentsSum = 0;
+      var gotAnswer = false;
       scope.update();
       window.api.call({
         method: 'history.chart.data',
@@ -677,6 +698,7 @@
 
           scope.graphList = [];
           scope.paymentsSum = 0;
+          gotAnswer = true;
 
           console.log(result)
           console.log(result[0][0])
@@ -714,6 +736,21 @@
           console.error(data);
         }
       });
+
+      if (!gotAnswer && window.isConnected)
+        setTimeout(function () {
+          if (!gotAnswer) {
+            scope.showError = true;
+            scope.errorNote = "Сервис временно недоступен";
+            scope.stepAmount = 0;
+            scope.update();
+            if (device.platform != 'BrowserStand') {
+              SpinnerPlugin.activityStop();
+            }
+            window.isConnected = false;
+            return
+          }
+        }, 10000);
 
     };
 
@@ -795,7 +832,7 @@
 
           }
         })
-        ;
+      ;
 
       for (var i in scope.arrayOfCoordinates) {
         if (document.getElementById('chartImageBlockId' + scope.arrayOfCoordinates[i].order)) {
