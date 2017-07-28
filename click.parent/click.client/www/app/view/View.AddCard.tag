@@ -42,8 +42,8 @@
       <div id="doMainId" class="add-card-main-card-icon" ontouchend="doMainCardTouchEnd()"></div>
     </div>
 
-    <button class="view-add-next-button"
-            ontouchend="createCardTouchEnd()">добавить
+    <button id="createCardButtonId" class="view-add-next-button"
+            ontouchstart="createCardTouchStart(this.id)" ontouchend="createCardTouchEnd(this.id)">добавить
     </button>
   </div>
 
@@ -82,83 +82,126 @@
     }
 
     var dateOrPin = '';
-    var cardNumber = ''
-    createCardTouchEnd = function () {
+    var cardNumber = '';
+
+    var createButtonStartX, createButtonEndX, createButtonStartY, createButtonEndY;
+
+    createCardTouchStart = function (id) {
+
+      createButtonStartX = event.changedTouches[0].pageX;
+      createButtonStartY = event.changedTouches[0].pageY;
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+    }
+
+
+    createCardTouchEnd = function (id) {
       event.preventDefault()
       event.stopPropagation()
 
-      boxOne.blur()
+      createButtonEndX = event.changedTouches[0].pageX;
+      createButtonEndY = event.changedTouches[0].pageY;
 
-      cardNumber = inputVerification.spaceDeleter(boxOne.value)
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
-      if (cardNumber.substring(0, 4) == '8600') {
-        dateOrPin = boxDate.value;
-      }
-      else {
-        dateOrPin = pinCodeOfBank;
-      }
+      if (Math.abs(createButtonStartX - createButtonEndX) <= 20 && Math.abs(createButtonStartY - createButtonEndY) <= 20) {
 
-      console.log(cardNumber, dateOrPin)
+        boxOne.blur()
 
 
-      if (modeOfApp.offlineMode) {
-        phonedialer.dial(
-          "*880*0*" + cardNumber + '*' + dateOrPin + "%23",
-          function (err) {
-            if (err == "empty") {
+        cardNumber = inputVerification.spaceDeleter(boxOne.value)
+
+        if (cardNumber.substring(0, 4) == '8600') {
+          dateOrPin = boxDate.value;
+        }
+        else {
+          dateOrPin = pinCodeOfBank;
+        }
+
+        console.log(cardNumber, dateOrPin)
+
+
+        if (modeOfApp.offlineMode) {
+          phonedialer.dial(
+            "*880*0*" + cardNumber + '*' + dateOrPin + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+                scope.showError = true;
+                scope.update();
+              }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
+          );
+          return
+        }
+
+        var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+        var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+        var sessionKey = info.session_key;
+
+        if (device.platform != 'BrowserStand') {
+          var options = {dimBackground: true};
+
+          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+            console.log("Started");
+          }, function () {
+            console.log("closed");
+          });
+        }
+
+        var answerFromServer = false;
+
+        window.api.call({
+          method: 'card.add',
+          input : {
+            phone_num  : phoneNumber,
+            card_number: cardNumber,
+            card_data  : dateOrPin,
+            session_key: sessionKey,
+
+          },
+
+          scope: this,
+
+          onSuccess: function (result) {
+            answerFromServer = true;
+            if (result[0][0].error == 0) {
+              console.log("CARD ADD", result);
+
               scope.clickPinError = false;
-              scope.errorNote = ("Unknown phone number");
+              scope.errorNote = result[0][0].error_note;
               scope.showError = true;
+              scope.viewPage = 'view-main-page'
               scope.update();
             }
-            else console.log("Dialer Error:" + err);
+            else {
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
+              scope.showError = true;
+              scope.viewPage = ''
+              scope.update();
+            }
           },
-          function (success) {
+
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
           }
-        );
-        return
+        });
+
+        setTimeout(function () {
+          if(!answerFromServer){
+            if (device.platform != 'BrowserStand') {
+              SpinnerPlugin.activityStop();
+            }
+            return
+          }
+        }, 20000)
       }
-
-      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-      var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-      var sessionKey = info.session_key;
-
-      window.api.call({
-        method: 'card.add',
-        input: {
-          phone_num: phoneNumber,
-          card_number: cardNumber,
-          card_data: dateOrPin,
-          session_key: sessionKey,
-
-        },
-
-        scope: this,
-
-        onSuccess: function (result) {
-          if (result[0][0].error == 0) {
-            console.log("CARD ADD", result);
-
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
-            scope.viewPage = 'view-main-page'
-            scope.update();
-          }
-          else {
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
-            scope.viewPage = ''
-            scope.update();
-          }
-        },
-
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      });
 
     }
 
