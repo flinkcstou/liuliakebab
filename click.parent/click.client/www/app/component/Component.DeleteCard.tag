@@ -13,6 +13,8 @@
     var scope = this;
     scope.parent.showError = false;
 
+    console.log('scope.parent', scope.parent)
+
     var delButtonStartX, delButtonEndX, delButtonStartY, delButtonEndY;
 
     deleteCardTouchStart = function () {
@@ -84,10 +86,10 @@
 
       window.api.call({
         method: 'account.remove',
-        input: {
+        input : {
           session_key: scope.sessionKey,
-          phone_num: scope.phoneNumber,
-          account_id: scope.accountId,
+          phone_num  : scope.phoneNumber,
+          account_id : scope.accountId,
         },
 
         scope: this,
@@ -97,14 +99,15 @@
             scope.parent.clickPinError = false;
             scope.parent.errorNote = 'Карта успешно удалена';
             scope.parent.showError = true;
+            riot.update();
             var cardNumber = JSON.parse(localStorage.getItem("cardNumber"));
 
             cardNumber = (cardNumber - 1 >= 0) ? (cardNumber - 1) : (0);
             localStorage.setItem("cardNumber", cardNumber);
 
             scope.parent.tags['component-card-carousel'].onComponentCreated(cardNumber);
-
-            scope.update();
+            scope.parent.tags['component-card-carousel'].cardNumber = cardNumber;
+            scope.parent.tags['component-card-carousel'].cardNumber = changePositionCardCarousel();
             deleteCardComponentId.style.display = 'none';
 //              updateCard();
             return;
