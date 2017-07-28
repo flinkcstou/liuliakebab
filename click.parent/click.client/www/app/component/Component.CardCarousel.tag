@@ -956,10 +956,10 @@
 //            'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
           riotTags.innerHTML = "<view-my-cards>";
           riot.mount("view-my-cards", [sendChosenCardId]);
-          this.cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-          this.cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-          this.cards.style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
-          this.cards.style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+          document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          document.getElementById('cards').style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          document.getElementById('cards').style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+          document.getElementById('cards').style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
         }
         else
           modeOfApp.offlineMode.balance = false;
@@ -1077,10 +1077,10 @@
 //      }
 
 
-      this.cards.style.transition = '0s';
-      this.cards.style.webkitTransition = '0s';
-      this.cards.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
-      this.cards.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
+      document.getElementById('cards').style.transition = '0s';
+      document.getElementById('cards').style.webkitTransition = '0s';
+      document.getElementById('cards').style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
+      document.getElementById('cards').style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
 
       //Test
       //
@@ -1171,7 +1171,7 @@
 
     //    var changingColor;
 
-    function changePositionCardCarousel() {
+     scope.changePositionCardCarousel = changePositionCardCarousel = function () {
       if(event){
         event.preventDefault()
         event.stopPropagation()
@@ -1196,10 +1196,10 @@
 
         ++scope.cardNumber;
 //        riot.update(scope.cardNumber);
-        this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        document.getElementById('cards').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        document.getElementById('cards').style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        document.getElementById('cards').style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       }
 
@@ -1207,20 +1207,20 @@
 
         console.log("Move Touch Carousel2", scope.cardNumber);
 
-        this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        document.getElementById('cards').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        document.getElementById('cards').style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        document.getElementById('cards').style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
       if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber >= count - 1) {
 
         console.log("Move Touch Carousel3", scope.cardNumber);
 
-        this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        document.getElementById('cards').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        document.getElementById('cards').style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        document.getElementById('cards').style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       }
 
@@ -1230,10 +1230,10 @@
 
         --scope.cardNumber;
 //        riot.update(scope.cardNumber);
-        this.cards.style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        this.cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-        this.cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        document.getElementById('cards').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        document.getElementById('cards').style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        document.getElementById('cards').style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
 
@@ -1248,7 +1248,7 @@
 
 
       if (viewMainPage.myCards) {
-        for (i in scope.cardsarray) {
+        for (var i in scope.cardsarray) {
           if (scope.cardsarray[i].countCard == scope.cardNumber) {
             scope.parent.cardInformation(scope.cardsarray[i].card_id);
           }
