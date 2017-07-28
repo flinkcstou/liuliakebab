@@ -158,7 +158,8 @@
       if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
         event.preventDefault();
         event.stopPropagation();
-        onBackKeyDownWithParams(opts, 1);
+        window.opts = null;
+        onBackKeyDown(opts);
         scope.unmount()
       }
     };
@@ -840,6 +841,7 @@
         event.stopPropagation();
         if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available) {
           localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+          window.opts = null;
           riotTags.innerHTML = "<view-autopay-method-new>";
           riot.mount("view-autopay-method-new", opts);
           scope.unmount()
@@ -847,6 +849,7 @@
           scope.autoPayData.title = window.languages.ViewAutoPayMethodSchedulerText;
           scope.autoPayData.autopay_type = 1;
           localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+          window.opts = null;
           riotTags.innerHTML = "<view-autopay-schedule-method-new>";
           riot.mount("view-autopay-schedule-method-new", opts);
           scope.unmount()

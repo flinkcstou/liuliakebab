@@ -1,6 +1,8 @@
 window.viewMainPage = {};
 viewMainPage.myCards = false;
 
+window.opts = null;
+
 
 window.viewMyCards = {};
 viewMyCards.check = false;

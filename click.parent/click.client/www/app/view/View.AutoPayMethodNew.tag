@@ -68,11 +68,11 @@
       if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
         event.preventDefault();
         event.stopPropagation();
-        console.log("JSON.parse(localStorage.getItem('autoPayData'))", JSON.parse(localStorage.getItem('autoPayData')));
-        if (JSON.parse(localStorage.getItem('autoPayData')).fromView == 'PAYCONFIRM') {
+        window.opts = null;
+        if (scope.autoPayData.fromView == 'PAYCONFIRM') {
           opts.mode = 'USUAL';
         }
-        onBackKeyDownWithParams(opts, 1);
+        onBackKeyDown(opts);
         scope.unmount()
       }
     };
@@ -82,6 +82,8 @@
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     console.log("OPTS AutoPayMethod NEW=", opts);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+    window.opts = opts;
+    console.log("Window.opts=", window.opts)
 
     //    console.log("chosenServiceId=", viewPay.chosenServiceId);
 
@@ -123,6 +125,7 @@
         event.preventDefault();
         event.stopPropagation();
 //      localStorage.setItem('autoPayType', window.languages.ViewAutoPayMethodEventText);
+        window.opts = null;
         riotTags.innerHTML = "<view-autopay-event-method-new>";
         riot.mount("view-autopay-event-method-new", opts);
         scope.unmount()
@@ -150,6 +153,7 @@
         event.preventDefault();
         event.stopPropagation();
 //      localStorage.setItem('autoPayType', window.languages.ViewAutoPayMethodSchedulerText);
+        window.opts = null;
         riotTags.innerHTML = "<view-autopay-schedule-method-new>";
         riot.mount("view-autopay-schedule-method-new", opts);
         scope.unmount()
