@@ -836,7 +836,7 @@
     };
 
     console.log('VIEWPAY SERVICE', opts.chosenServiceId, 'mynumber' + localStorage.getItem('myNumberOperatorId'))
-    if ((opts.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) || (modeOfApp.offlineMode && opts.chosenServiceId == 'mynumber')) {
+    if ((opts.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) || (modeOfApp.offlineMode && opts.chosenServiceId == 'mynumber') || opts.chosenServiceId == 'mynumber') {
 
       console.log("MY NUMBER ID");
 
@@ -874,7 +874,7 @@
           console.log("amount=1 = ", opts.amountText);
         });
       }
-      else {
+      else if (opts.chosenServiceId == 'mynumber') {
         console.log('scope.servicesMap', scope.servicesMap['mynumber']);
         console.log('scope.servicesParamsMapOne', scope.servicesParamsMapOne);
         scope.service = localStorage.getItem('myNumberOperatorId') ? scope.servicesMap[localStorage.getItem('myNumberOperatorId')][0] : scope.servicesMap['mynumber'][0];
