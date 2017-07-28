@@ -620,7 +620,7 @@
   }
 
 
-  function onBackKeyDown() {
+  function onBackKeyDown(opts) {
 
     history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
 
@@ -640,8 +640,12 @@
         riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
         console.log(history.arrayOfHistory[history.arrayOfHistory.length - 1].view)
         console.log(history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
-        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
-
+        if (opts) {
+          console.log("111", opts);
+          riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, opts);
+        } else {
+          riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+        }
       }
     }
   }

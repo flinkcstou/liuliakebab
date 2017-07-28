@@ -16,21 +16,24 @@
         {window.languages.ViewAutoPayMethodScheduleHowOftenText}
       </div>
 
-      <div id="everyMonthButtonId" class="autopay-schedule-block-containter" ontouchstart="everyMonthLastDayStart()" ontouchend="everyMonthLastDayEnd()">
+      <div id="everyMonthButtonId" class="autopay-schedule-block-containter" ontouchstart="everyMonthLastDayStart()"
+           ontouchend="everyMonthLastDayEnd()">
         <div class="autopay-schedule-block-text">{window.languages.ViewAutoPayMethodScheduleEveryMonth}</div>
         <div class="autopay-schedule-block-detail-text">
           {window.languages.ViewAutoPayMethodScheduleLastDay}
         </div>
         <div class="autopay-schedule-block-next-icon"></div>
       </div>
-      <div id="everyMonthChosenDayButtonId" class="autopay-schedule-block-containter" ontouchstart="everyMonthChosenDayStart()" ontouchend="everyMonthChosenDayEnd()">
+      <div id="everyMonthChosenDayButtonId" class="autopay-schedule-block-containter"
+           ontouchstart="everyMonthChosenDayStart()" ontouchend="everyMonthChosenDayEnd()">
         <div class="autopay-schedule-block-text">{window.languages.ViewAutoPayMethodScheduleEveryMonth}</div>
         <div class="autopay-schedule-block-detail-text">
           {window.languages.ViewAutoPayMethodScheduleChosenDay}
         </div>
         <div class="autopay-schedule-block-next-icon"></div>
       </div>
-      <div id="everyWeekButtonId" class="autopay-schedule-block-containter" ontouchstart="everyWeekStart()" ontouchend="everyWeekEnd()">
+      <div id="everyWeekButtonId" class="autopay-schedule-block-containter" ontouchstart="everyWeekStart()"
+           ontouchend="everyWeekEnd()">
         <div class="autopay-schedule-block-text">{window.languages.ViewAutoPayMethodScheduleEveryWeek}</div>
         <div class="autopay-schedule-block-next-icon"></div>
       </div>
@@ -84,7 +87,8 @@
       </div>
     </div>
 
-    <button id="chooseAutoPayButtonId" class="schedule-date-block-button-choose" ontouchstart="onTouchStartOfChooseDate()"
+    <button id="chooseAutoPayButtonId" class="schedule-date-block-button-choose"
+            ontouchstart="onTouchStartOfChooseDate()"
             ontouchend="chooseDate()">
       {window.languages.ViewAutoPayMethodScheduleChoseButtonLabel}
     </button>
@@ -126,10 +130,11 @@
       if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
         event.preventDefault();
         event.stopPropagation();
-        if (JSON.parse(localStorage.getItem('autoPayData')).fromView == 'PAYCONFIRM') {
+        window.opts = null;
+        if (scope.autoPayData.fromView == 'PAYCONFIRM') {
           opts.mode = 'USUAL';
         }
-        onBackKeyDownWithParams(opts, 1);
+        onBackKeyDown(opts);
         scope.unmount()
       }
     };
@@ -137,6 +142,7 @@
     this.titleName = window.languages.ViewAutoPayTitleName;
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+    window.opts = opts;
     //    console.log("ID of service=", opts.id);
     if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
       scope.serviceName = 'Мой номер';
@@ -201,7 +207,8 @@
       }
     }
 
-    var everyMonthChosenDayButtonStartX, everyMontChosenDayButtonEndX, everyMontChosenDayButtonStartY, everyMontChosenDayButtonEndY;
+    var everyMonthChosenDayButtonStartX, everyMontChosenDayButtonEndX, everyMontChosenDayButtonStartY,
+      everyMontChosenDayButtonEndY;
 
     everyMonthChosenDayStart = function () {
 
@@ -317,6 +324,7 @@
 
           localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
           event.stopPropagation();
+          window.opts = null;
           riotTags.innerHTML = "<view-service-page-new>";
           riot.mount("view-service-page-new", opts);
 
