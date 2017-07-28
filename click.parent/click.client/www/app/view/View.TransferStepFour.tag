@@ -367,6 +367,8 @@
           });
         }
 
+        var answerFromServer = false;
+
         window.api.call({
           method: 'p2p.payment',
           input: {
@@ -384,6 +386,7 @@
           scope: this,
 
           onSuccess: function (result) {
+            answerFromServer = true;
             if (result[0][0].error == 0) {
               viewTransferStepTwo.sum = 0;
               viewTransferStepTwo.sumWithoutSpace = 0;
@@ -422,6 +425,15 @@
             console.error(data);
           }
         });
+
+        setTimeout(function () {
+          if(!answerFromServer){
+            if (device.platform != 'BrowserStand') {
+              SpinnerPlugin.activityStop();
+            }
+            return
+          }
+        }, 20000)
       }
     }
 

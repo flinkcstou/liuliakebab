@@ -472,6 +472,8 @@
             });
           }
 
+          var answerFromServer = false;
+
 
           if (opts.optionAttribute && opts.optionValue) {
             payment_data[opts.optionAttribute] = opts.optionValue;
@@ -493,6 +495,7 @@
             scope: this,
 
             onSuccess: function (result) {
+              answerFromServer = true;
               if (result[0][0].error == 0) {
                 if (result[1]) {
                   console.log("result of APP.PAYMENT 1", result);
@@ -537,6 +540,15 @@
               console.error(data);
             }
           });
+
+          setTimeout(function () {
+            if(!answerFromServer){
+              if (device.platform != 'BrowserStand') {
+                SpinnerPlugin.activityStop();
+              }
+              return
+            }
+          }, 20000)
         }
 
         function checkPaymentStatus(payment_id) {

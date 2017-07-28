@@ -230,6 +230,18 @@
           }
         }
 
+        if (device.platform != 'BrowserStand') {
+          var options = {dimBackground: true};
+
+          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+            console.log("Started");
+          }, function () {
+            console.log("closed");
+          });
+        }
+
+        var answerFromServer = false;
+
         window.api.call({
           method: 'app.payment',
           input: inputObject,
@@ -237,6 +249,8 @@
           scope: this,
 
           onSuccess: function (result) {
+
+            answerFromServer = true;
 
             console.log('RESULT QR QR', result)
 
@@ -266,6 +280,15 @@
             console.error(data);
           }
         });
+
+        setTimeout(function () {
+          if(!answerFromServer){
+            if (device.platform != 'BrowserStand') {
+              SpinnerPlugin.activityStop();
+            }
+            return
+          }
+        }, 20000)
       }
 
     }
