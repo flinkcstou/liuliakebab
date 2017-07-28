@@ -13,8 +13,8 @@
     </div>
 
 
-    <button id="alertOkButtonId" class="component-alert-button-inner-container" ontouchstart="closeAlertFormStart()"
-            ontouchend="closeAlertFormEnd()">
+    <button id="alertOkButtonId" class="component-alert-button-inner-container" ontouchstart="closeAlertFormStart(this.id)"
+            ontouchend="closeAlertFormEnd(this.id)">
       {window.languages.ComponentAlertOk}
     </button>
   </div>
@@ -33,23 +33,23 @@
 
     var okButtonStartX, okButtonEndX, okButtonStartY, okButtonEndY;
 
-    closeAlertFormStart = function () {
+    closeAlertFormStart = function (id) {
       event.preventDefault();
       event.stopPropagation();
 
       okButtonStartX = event.changedTouches[0].pageX;
       okButtonStartY = event.changedTouches[0].pageY;
 
-      alertOkButtonId.style.webkitTransform = 'scale(0.8)'
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
     }
 
-    closeAlertFormEnd = function () {
+    closeAlertFormEnd = function (id) {
       event.preventDefault();
       event.stopPropagation();
       console.log('QQQ')
       console.log('scope.parent', scope.parent)
 
-      alertOkButtonId.style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       okButtonEndX = event.changedTouches[0].pageX;
       okButtonEndY = event.changedTouches[0].pageY;

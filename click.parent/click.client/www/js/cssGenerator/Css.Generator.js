@@ -2759,6 +2759,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 24 * widthK + "px;" +
   "color: #8a8a8a;" +
+  "box-shadow: 0px 17px 63px -23px rgb(37, 36, 36);" +
   "}",
 
   myCardsLastOperationLabel: ".my-cards-last-operations-label " +
