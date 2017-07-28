@@ -472,6 +472,7 @@
                   }
                   console.log('cardsArraycardsArraycardsArraycardsArray', cardsArray);
                   if (countLocalStorageCard == result[1].length) {
+                    console.log("LENGHT IS EQUAL")
                     for (var i in result[1]) {
                       console.log('cardsArray[result[1].id]', cardsArray[result[1][i].id]);
                       if (cardsArray[result[1][i].id]) {
