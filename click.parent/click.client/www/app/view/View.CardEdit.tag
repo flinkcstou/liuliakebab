@@ -225,6 +225,7 @@
 //              console.log("bool of current card=", scope.cardsArray[scope.card.card_id].default_account);
                 localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarrayTwo));
                 onBackKeyDown();
+
               }
               else if (result[0][0].error != 0) {
                 scope.clickPinError = false;

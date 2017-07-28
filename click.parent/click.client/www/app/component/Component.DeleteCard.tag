@@ -13,7 +13,7 @@
     var scope = this;
     scope.parent.showError = false;
 
-    console.log('scope.parent', scope.parent)
+    console.log('scope.parent DELETE', scope.parent)
 
     var delButtonStartX, delButtonEndX, delButtonStartY, delButtonEndY;
 
@@ -106,8 +106,9 @@
             localStorage.setItem("cardNumber", cardNumber);
 
             scope.parent.tags['component-card-carousel'].onComponentCreated(cardNumber);
-            scope.parent.tags['component-card-carousel'].cardNumber = cardNumber;
-            scope.parent.tags['component-card-carousel'].cardNumber = changePositionCardCarousel();
+            scope.parent.tags['component-card-carousel'].cardNumber = 1;
+            scope.parent.tags['component-card-carousel'].changePositionCardCarousel();
+
             deleteCardComponentId.style.display = 'none';
 //              updateCard();
             return;
