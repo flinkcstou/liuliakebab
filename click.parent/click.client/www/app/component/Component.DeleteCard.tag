@@ -106,7 +106,7 @@
             localStorage.setItem("cardNumber", cardNumber);
 
             scope.parent.tags['component-card-carousel'].onComponentCreated(cardNumber);
-            scope.parent.tags['component-card-carousel'].cardNumber = 1;
+            scope.parent.tags['component-card-carousel'].cardNumber = cardNumber;
             scope.parent.tags['component-card-carousel'].changePositionCardCarousel();
 
             deleteCardComponentId.style.display = 'none';

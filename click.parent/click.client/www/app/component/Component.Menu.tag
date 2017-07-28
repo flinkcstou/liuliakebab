@@ -582,6 +582,18 @@
                     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
                     var sessionKey = info.session_key;
 
+                    if (device.platform != 'BrowserStand') {
+                      var options = {dimBackground: true};
+
+                      SpinnerPlugin.activityStart("Сканирование QR", options, function () {
+                        console.log("Started");
+                      }, function () {
+                        console.log("closed");
+                      });
+                    }
+
+                    var answerFromServer = false;
+
                     window.api.call({
                       method: 'get.indoor.service',
                       input: {
@@ -594,6 +606,8 @@
                       scope: this,
 
                       onSuccess: function (result) {
+
+                        answerFromServer = true;
 
                         console.log('MAIN RESULT', result)
 
@@ -638,6 +652,16 @@
                         console.error(data);
                       }
                     });
+
+                    setTimeout(function () {
+                      if (!answerFromServer) {
+                        if (device.platform != 'BrowserStand') {
+                          SpinnerPlugin.activityStop();
+                        }
+                      }
+
+                      return
+                    }, 15000)
                   }
                 }
               }

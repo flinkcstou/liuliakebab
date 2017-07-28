@@ -296,7 +296,7 @@
                     riot.mount('view-qr', {
 //                      "name": result.format,
 //                      "address": result.text,
-                      "id": id,
+                      "id"   : id,
                       "image": "resources/icons/ViewPay/logo_indoor.png"
                     });
 //                      scope.unmount()
@@ -306,18 +306,32 @@
                     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
                     var sessionKey = info.session_key;
 
+
+                    if (device.platform != 'BrowserStand') {
+                      var options = {dimBackground: true};
+
+                      SpinnerPlugin.activityStart("Сканирование QR", options, function () {
+                        console.log("Started");
+                      }, function () {
+                        console.log("closed");
+                      });
+                    }
+
+                    var answerFromServer = false;
+
                     window.api.call({
                       method: 'get.indoor.service',
-                      input: {
-                        phone_num: phoneNumber,
+                      input : {
+                        phone_num  : phoneNumber,
                         session_key: sessionKey,
-                        service_id: id,
+                        service_id : id,
 
                       },
 
                       scope: this,
 
                       onSuccess: function (result) {
+                        answerFromServer = true;
                         if (result[0][0].error == 0) {
                           if (result[1]) {
                             if (result[1][0]) {
@@ -342,8 +356,6 @@
                               window.checkShowingComponent = scope;
                               scope.update()
                               iFrameExternalUrlId.src = result[0][0].error_url
-
-
 
 
 //                               ref = cordova.InAppBrowser.open(result[0][0].error_url, '_blank', 'location=no');
@@ -393,6 +405,16 @@
                         console.error(data);
                       }
                     });
+
+                    setTimeout(function () {
+                      if (!answerFromServer) {
+                        if (device.platform != 'BrowserStand') {
+                          SpinnerPlugin.activityStop();
+                        }
+                      }
+
+                      return
+                    }, 15000)
                   }
                 }
               }
@@ -404,16 +426,16 @@
               scope.update();
             },
             {
-              preferFrontCamera: false, // iOS and Android
-              showFlipCameraButton: true, // iOS and Android
-              showTorchButton: true, // iOS and Android
-              torchOn: false, // Android, launch with the torch switched on (if available)
-              prompt: "Наведите камеру к QR коду", // Android
+              preferFrontCamera    : false, // iOS and Android
+              showFlipCameraButton : true, // iOS and Android
+              showTorchButton      : true, // iOS and Android
+              torchOn              : false, // Android, launch with the torch switched on (if available)
+              prompt               : "Наведите камеру к QR коду", // Android
               resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-              formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
-              orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
-              disableAnimations: true, // iOS
-              disableSuccessBeep: false // iOS
+              formats              : "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
+              orientation          : "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
+              disableAnimations    : true, // iOS
+              disableSuccessBeep   : false // iOS
             }
           );
         }
@@ -424,10 +446,10 @@
 
           window.api.call({
             method: 'get.indoor.service',
-            input: {
-              phone_num: phoneNumber,
+            input : {
+              phone_num  : phoneNumber,
               session_key: sessionKey,
-              service_id: 1234,
+              service_id : 1234,
 
             },
 
