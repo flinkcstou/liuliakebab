@@ -1,7 +1,8 @@
 window.viewMainPage = {};
 viewMainPage.myCards = false;
 
-window.opts = null;
+window.onBackParams = {};
+onBackParams.opts = null;
 
 
 window.viewMyCards = {};

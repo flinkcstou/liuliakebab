@@ -130,7 +130,7 @@
       if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
         event.preventDefault();
         event.stopPropagation();
-        window.opts = null;
+        onBackParams.opts = null;
         if (scope.autoPayData.fromView == 'PAYCONFIRM') {
           opts.mode = 'USUAL';
         }
@@ -142,7 +142,10 @@
     this.titleName = window.languages.ViewAutoPayTitleName;
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
-    window.opts = opts;
+    onBackParams.opts = opts;
+    if (scope.autoPayData.fromView == 'PAYCONFIRM') {
+      onBackParams.opts.mode = 'USUAL';
+    }
     //    console.log("ID of service=", opts.id);
     if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
       scope.serviceName = 'Мой номер';
@@ -324,7 +327,7 @@
 
           localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
           event.stopPropagation();
-          window.opts = null;
+          onBackParams.opts = null;
           riotTags.innerHTML = "<view-service-page-new>";
           riot.mount("view-service-page-new", opts);
 

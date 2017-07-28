@@ -118,6 +118,10 @@
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+    onBackParams.opts = opts;
+    if (scope.autoPayData.fromView == 'PAYCONFIRM') {
+      onBackParams.opts.mode = 'USUAL';
+    }
     console.log("OPTS AutoPayMethod EVENT NEW=", opts);
 
     if (opts.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
