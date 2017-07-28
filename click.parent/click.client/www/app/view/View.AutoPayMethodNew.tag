@@ -82,9 +82,10 @@
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     console.log("OPTS AutoPayMethod NEW=", opts);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
-    onBackParams.opts = opts;
+    onBackParams.opts = JSON.parse(JSON.stringify(opts));
     if (scope.autoPayData.fromView == 'PAYCONFIRM') {
       onBackParams.opts.mode = 'USUAL';
+      opts.mode = 'ADDAUTOPAY';
     }
     console.log("Window.opts=", onBackParams.opts)
 

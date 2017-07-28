@@ -142,10 +142,12 @@
     this.titleName = window.languages.ViewAutoPayTitleName;
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
-    onBackParams.opts = opts;
+    onBackParams.opts = JSON.parse(JSON.stringify(opts));
     if (scope.autoPayData.fromView == 'PAYCONFIRM') {
       onBackParams.opts.mode = 'USUAL';
+      opts.mode = 'ADDAUTOPAY';
     }
+    console.log("Window.opts=", onBackParams.opts)
     //    console.log("ID of service=", opts.id);
     if (viewPay.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
       scope.serviceName = 'Мой номер';

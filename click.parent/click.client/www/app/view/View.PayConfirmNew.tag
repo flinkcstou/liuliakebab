@@ -180,6 +180,7 @@
       scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
       if (scope.autoPayData.fromView == 'AFTERCREATION') {
         opts.mode = 'USUAL';
+        onBackParams.opts = JSON.parse(JSON.stringify(opts));
         scope.update();
       } else {
         scope.autoPayTypeText = scope.autoPayData.title;
