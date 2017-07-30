@@ -306,18 +306,19 @@
 
     })
 
-    var stopChanging = false;
+    var contactStopChanging = false;
+    var cardStopChanging = false;
 
     telTransferVerificationKeyDown = function (input) {
 //      console.log(event.target.value)
       console.log("INPUT", event)
       if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
 //        contactPhoneNumberId.value = event.target.value.substring(0, event.target.value.length - 1);
-        stopChanging = true;
+        contactStopChanging = true;
 
       }
       else{
-        stopChanging = false;
+        contactStopChanging = false;
       }
     }
 
@@ -550,6 +551,7 @@
       event.stopPropagation();
       console.log('from', from)
       if (onPaste) {
+
         contactPhoneNumberId.value = inputVerification.telVerification(contactPhoneNumberId.value)
         onPaste = false;
       }
@@ -778,7 +780,11 @@
 //      }
 
       if (input.value.length >= 19 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-        cardInputId.value = event.target.value.substring(0, event.target.value.length - 1);
+//        cardInputId.value = event.target.value.substring(0, event.target.value.length - 1);
+        cardStopChanging = true;
+      }
+      else{
+        cardStopChanging = false;
       }
 
     }
@@ -837,6 +843,10 @@
 
     cardOnKeyUp = function () {
       console.log('cardInputId.value.length', cardInputId.value.length)
+
+      if(cardStopChanging){
+        cardInputId.value = event.target.value.substring(0, event.target.value.length - 1);
+      }
 
       if (cardInputId.value.length <= 19 && (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT))
         cardInputId.value = inputVerification.cardVerification(cardInputId.value);
@@ -1421,7 +1431,7 @@
 
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
     searchContacts = function () {
-      if(stopChanging){
+      if(contactStopChanging){
         contactPhoneNumberId.value = event.target.value.substring(0, event.target.value.length - 1);
       }
       cursorPositionSelectionStart = contactPhoneNumberId.selectionStart;

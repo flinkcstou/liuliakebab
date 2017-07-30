@@ -674,7 +674,7 @@
               console.log("errornote=", scope.errorNote);
             }
             scope.showError = true;
-            scope.update(scope.showError);
+            scope.update();
             enteredPin = '';
             if (!scope.firstEnter)
               updateEnteredPin();

@@ -60,9 +60,9 @@
              type="{inputType}"
              id="firstFieldInput"
              onfocus="bordersColor()"
-             value="{defaultNumber || opts.first_field_value}" onkeydown="telPayVerificationKeyDown(this)"
-             oninput="telPayVerificationKeyUp()"
-             onkeyup="telPayVerificationKeyUp()"/>
+             value="{defaultNumber || opts.first_field_value}"
+             onkeyup="telPayVerificationKeyUp()"
+             onkeydown="telPayVerificationKeyDown(this)"/>
       <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchstart="onTouchStartOfSearchContact()"
            ontouchend="onTouchEndOfSearchContact()"></div>
     </div>
@@ -457,17 +457,25 @@
 
     }
 
-
+    var contactStopChanging = false
     telPayVerificationKeyDown = function (input) {
 //      console.log(event.target.value)
       if (scope.phoneFieldBool)
         if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-          firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+//          firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+          contactStopChanging = true;
+        }
+        else{
+          contactStopChanging = false;
         }
     };
 
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
-    telPayVerificationKeyUp = function () {
+    telPayVerificationKeyUp = function (from) {
+
+      if(contactStopChanging){
+        firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+      }
 
       cursorPositionSelectionStart = firstFieldInput.selectionStart;
       cursorPositionSelectionEnd = firstFieldInput.selectionEnd;
