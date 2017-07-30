@@ -708,7 +708,8 @@
 //          count++;
 //        }
 //      }
-      scope.update()
+
+      console.log("ON MOUNT CARD NUMBER", scope.cardNumber)
 
       cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';

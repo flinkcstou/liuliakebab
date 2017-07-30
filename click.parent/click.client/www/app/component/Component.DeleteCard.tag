@@ -99,16 +99,12 @@
             scope.parent.clickPinError = false;
             scope.parent.errorNote = 'Карта успешно удалена';
             scope.parent.showError = true;
+            scope.parent.cardDelete = true;
             riot.update();
             var cardNumber = JSON.parse(localStorage.getItem("cardNumber"));
 
             cardNumber = (cardNumber - 1 >= 0) ? (cardNumber - 1) : (0);
             localStorage.setItem("cardNumber", cardNumber);
-
-            scope.parent.tags['component-card-carousel'].onComponentCreated(cardNumber);
-            scope.parent.tags['component-card-carousel'].cardNumber = cardNumber;
-            scope.parent.tags['component-card-carousel'].changePositionCardCarousel();
-
             deleteCardComponentId.style.display = 'none';
 //              updateCard();
             return;

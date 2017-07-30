@@ -69,7 +69,7 @@
 
   <component-delete-card id="deleteCardComponentId"></component-delete-card>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" carddelete="{cardDelete}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
@@ -77,6 +77,8 @@
 
   <script>
 
+    var scope = this;
+    scope.cardDelete = false;
     viewMainPage.atMainPage = false;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-cards') {

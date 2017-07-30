@@ -59,6 +59,12 @@
         if (scope.parent) {
           scope.parent.showError = false;
 
+          if(opts.carddelete){
+            riotTags.innerHTML = "<view-my-cards>";
+            riot.mount('view-my-cards');
+            return
+          }
+
           if (opts.viewpage) {
             riotTags.innerHTML = "<" + opts.viewpage + ">";
             riot.mount(opts.viewpage);
