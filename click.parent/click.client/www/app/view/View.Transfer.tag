@@ -306,10 +306,18 @@
 
     })
 
+    var stopChanging = false;
+
     telTransferVerificationKeyDown = function (input) {
 //      console.log(event.target.value)
+      console.log("INPUT", event)
       if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-        contactPhoneNumberId.value = event.target.value.substring(0, event.target.value.length - 1);
+//        contactPhoneNumberId.value = event.target.value.substring(0, event.target.value.length - 1);
+        stopChanging = true;
+
+      }
+      else{
+        stopChanging = false;
       }
     }
 
@@ -1413,6 +1421,9 @@
 
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
     searchContacts = function () {
+      if(stopChanging){
+        contactPhoneNumberId.value = event.target.value.substring(0, event.target.value.length - 1);
+      }
       cursorPositionSelectionStart = contactPhoneNumberId.selectionStart;
       cursorPositionSelectionEnd = contactPhoneNumberId.selectionEnd;
       oldValueOfNumber = contactPhoneNumberId.value
