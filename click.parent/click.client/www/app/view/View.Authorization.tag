@@ -146,7 +146,7 @@
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization' && !JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken'))) {
         history.arrayOfHistory.push(
           {
-            "view": 'view-authorization',
+            "view"  : 'view-authorization',
             "params": opts
           }
         );
@@ -156,7 +156,7 @@
     else {
       history.arrayOfHistory.push(
         {
-          "view": 'view-authorization',
+          "view"  : 'view-authorization',
           "params": opts
         }
       );
@@ -185,19 +185,19 @@
             console.log("FingerprintAuth available: " + JSON.stringify(result));
             if (result.isAvailable) {
               window.fingerPrint.check = true;
-                localStorage.setItem('settings_finger_print_enrolled', true)
+              localStorage.setItem('settings_finger_print_enrolled', true)
 
               if (window.fingerPrint.check) {
                 var encryptConfig = {
-                  clientId: "myAppName",
-                  clientSecret: "currentUser",
-                  password: "currentUser",
-                  token: "currentUser",
-                  locale: "ru",
+                  clientId     : "myAppName",
+                  clientSecret : "currentUser",
+                  password     : "currentUser",
+                  token        : "currentUser",
+                  locale       : "ru",
                   disableBackup: false,
 //              userAuthRequired: false,
-                  dialogHint: "Повторите попытку",
-                  dialogTitle: "Сканирование для CLICK"
+                  dialogHint   : "Повторите попытку",
+                  dialogTitle  : "Сканирование для CLICK"
 
                 }; // See config object for required parameters
 
@@ -385,7 +385,8 @@
       }
     };
 
-    var resetLocalStorageTouchStartX, resetLocalStorageTouchStartY, resetLocalStorageTouchEndX, resetLocalStorageTouchEndY;
+    var resetLocalStorageTouchStartX, resetLocalStorageTouchStartY, resetLocalStorageTouchEndX,
+      resetLocalStorageTouchEndY;
 
     resetLocalStorageTouchStart = function () {
       event.preventDefault();
@@ -629,14 +630,14 @@
       var checkServiceAnswer = false;
       window.api.call({
         method: 'app.login',
-        input: {
-          phone_num: phoneNumber,
-          device_id: deviceId,
-          password: password,
-          datetime: date,
+        input : {
+          phone_num  : phoneNumber,
+          device_id  : deviceId,
+          password   : password,
+          datetime   : date,
           app_version: version
         },
-        scope: this,
+        scope : this,
 
         onSuccess: function (result) {
 //          console.log(result[0][0])
@@ -681,7 +682,7 @@
             return
           }
         },
-        onFail: function (api_status, api_status_message, data) {
+        onFail   : function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -698,7 +699,9 @@
             if (device.platform != 'BrowserStand') {
               SpinnerPlugin.activityStop();
             }
-            window.isConnected = false;
+//            window.isConnected = false;
+            this.riotTags.innerHTML = "<view-authorization>";
+            riot.mount('view-authorization');
             scope.update();
             return;
           }
@@ -798,11 +801,11 @@
           scope.categoryNamesMap = {};
           window.api.call({
             method: 'get.service.category.list',
-            input: {
+            input : {
               session_key: sessionKey,
-              phone_num: phoneNumber
+              phone_num  : phoneNumber
             },
-            scope: this,
+            scope : this,
 
             onSuccess: function (result) {
               if (result[0][0].error == 0)
@@ -864,7 +867,7 @@
               scope.id = 0;
 
             },
-            onFail: function (api_status, api_status_message, data) {
+            onFail   : function (api_status, api_status_message, data) {
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
               console.error(data);
             }
@@ -886,11 +889,11 @@
 //          console.log("MOPERATORS!!!!!!!!!!!!!!", window.mOperators[scope.operatorKey]);
           window.api.call({
             method: 'get.service.list',
-            input: {
+            input : {
               session_key: sessionKey,
-              phone_num: phoneNumber
+              phone_num  : phoneNumber
             },
-            scope: this,
+            scope : this,
 
             onSuccess: function (result) {
               if (result[0][0].error == 0)
@@ -1047,7 +1050,7 @@
 
               servicesParamsInit();
             },
-            onFail: function (api_status, api_status_message, data) {
+            onFail   : function (api_status, api_status_message, data) {
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
               console.error(data);
             }
@@ -1111,9 +1114,9 @@
           scope.servicesParamsMapFive = {};
           window.api.call({
             method: 'get.service.parameters.list',
-            input: {
+            input : {
               session_key: sessionKey,
-              phone_num: phoneNumber
+              phone_num  : phoneNumber
             },
 
             scope: this,
