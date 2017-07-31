@@ -10,7 +10,7 @@
       <div id="trustedDevicesButtonId" class="settings-block-containter" ontouchstart="goToTrustedDevicesStart()"
            ontouchend="goToTrustedDevicesEnd()">
         <div class="settings-block-icon"
-             style="background-image: url('resources/icons/ViewSettingsSecurity/security_devices.png')"></div>
+             style="background-image: url('resources/icons/ViewSettingsSecurity/security_devices.png');background-size: 60%;"></div>
         <div class="settings-block-name-field">{window.languages.ViewSecuritySettingsTrustedDevicesTitle}</div>
         <div class="settings-block-next-icon"></div>
       </div>
@@ -18,7 +18,7 @@
       <div id="changePinButtonId" class="settings-block-containter" ontouchstart="changeClickPinStart()"
            ontouchend="changeClickPinEnd()">
         <div class="settings-block-icon"
-             style="background-image: url('resources/icons/ViewSettingsSecurity/security_changepin.png')"></div>
+             style="background-image: url('resources/icons/ViewSettingsSecurity/security_changepin.png');background-size: 65%;"></div>
         <div class="settings-block-name-field">{window.languages.ViewSecuritySettingsPinChangeTitle}</div>
         <div class="settings-block-next-icon"></div>
       </div>
