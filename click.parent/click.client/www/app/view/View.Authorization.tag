@@ -54,7 +54,7 @@
   <component-pin-reset></component-pin-reset>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
+                   errornote="{errorNote}" errorcode="{errorCode}"></component-alert>
 
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
@@ -128,6 +128,7 @@
 
     var scope = this;
     scope.checkAndroid = false;
+    scope.errorCode = 0;
 
     if (localStorage.getItem("click_client_accountInfo")) {
       scope.firstEnter = false;
@@ -695,13 +696,12 @@
           if (countOfCall == 3 && !checkServiceAnswer) {
             scope.showError = true;
             scope.errorNote = "Сервис временно недоступен";
+            scope.errorCode = 1;
             countOfCall = 0;
             if (device.platform != 'BrowserStand') {
               SpinnerPlugin.activityStop();
             }
 //            window.isConnected = false;
-            this.riotTags.innerHTML = "<view-authorization>";
-            riot.mount('view-authorization');
             scope.update();
             return;
           }

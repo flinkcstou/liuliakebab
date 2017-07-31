@@ -65,6 +65,12 @@
             return
           }
 
+          if(opts.errorcode == 1){
+            riotTags.innerHTML = "<view-authorization>";
+            riot.mount('view-authorization');
+            return;
+          }
+
           if (opts.viewpage) {
             riotTags.innerHTML = "<" + opts.viewpage + ">";
             riot.mount(opts.viewpage);
