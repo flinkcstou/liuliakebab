@@ -41,7 +41,7 @@
           <div class="view-reports-payment-date-field">{i}</div>
         </div>
         <div class="view-reports-payment-block-containter" each="{j in paymentsMap[i]}" id="{j.payment_id}"
-             ontouchstart="paymentTouchStart(this.id)" ontouchend="paymentTouchEnd(this.id)">
+             ontouchstart="paymentTouchStart(this.id)" onclick="paymentTouchEnd(this.id)">
           <div class="view-reports-payment-icon"
                style="background-image: url({j.image})"></div>
           <div class="view-reports-payment-info-container">
@@ -851,18 +851,36 @@
     var paymentTouchStartY, paymentTouchStartX, paymentTouchEndY, paymentTouchEndX;
     var paymentTimeStart, paymentTimeEnd;
 
+    paymentOnClick = function () {
+      console.log("ONCLICK")
+    }
+
     paymentTouchEnd = function (paymentId) {
-      event.preventDefault();
-      event.stopPropagation();
 
-      document.getElementById(paymentId).style.backgroundColor = 'transparent'
 
-      paymentTouchEndY = event.changedTouches[0].pageY;
-      paymentTouchEndX = event.changedTouches[0].pageX;
+      console.log("TOUCHEND", event)
+
+      document.getElementById(paymentId).style.backgroundColor = 'rgba(231,231,231,0.8)'
+
+      setTimeout(function () {
+        document.getElementById(paymentId).style.backgroundColor = 'transparent'
+      },300)
+
+
+//      paymentTouchEndY = event.changedTouches[0].pageY;
+//      paymentTouchEndX = event.changedTouches[0].pageX;
+//      paymentTimeEnd = event.timeStamp.toFixed(0);
+
+      paymentTouchEndY = event.pageY;
+      paymentTouchEndX = event.pageX;
       paymentTimeEnd = event.timeStamp.toFixed(0);
 
       console.log('settingsTouchStartY', paymentTouchStartY)
       console.log('settingsTouchEndY', paymentTouchEndY)
+
+      setTimeout(function () {
+
+
 
       if (Math.abs(paymentTouchStartY - paymentTouchEndY) <= 20 && (Math.abs(paymentTouchStartX - paymentTouchEndX) <= 20)) {
 
@@ -928,6 +946,7 @@
           changePositionReport()
         }
       }
+      }, 100)
 
     }
 
@@ -935,8 +954,6 @@
       paymentTouchStartY = event.changedTouches[0].pageY;
       paymentTouchStartX = event.changedTouches[0].pageX;
       paymentTimeStart = event.timeStamp.toFixed(0);
-
-      document.getElementById(paymentId).style.backgroundColor = 'rgba(231,231,231,0.8)'
     }
 
     var reportBodyContainerStartX, reportBodyContainerStartY, reportBodyContainerEndX, reportBodyContainerEndY;
