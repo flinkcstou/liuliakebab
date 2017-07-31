@@ -169,6 +169,8 @@
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
     cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
     var serviceId = localStorage.getItem('chosenServiceId');
+    if (localStorage.getItem('settings_block_payAndTransfer'))
+      var payTransferBlocked = JSON.parse(localStorage.getItem('settings_block_payAndTransfer'));
     scope.service = scope.servicesMap[opts.chosenServiceId][0];
     scope.isInFavorites = opts.isInFavorites;
 
@@ -429,14 +431,16 @@
             "value": firstFieldtext,
             "transaction_id": parseInt(Date.now() / 1000)
           };
-          opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+          console.log("payment_data 111");
+          // opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
         }
         else if (opts.formtype == 2) {
           payment_data = {
             "pin_param": opts.cardTypeId,
             "transaction_id": parseInt(Date.now() / 1000)
           };
-          opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+          console.log("payment_data 222");
+          //opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
         }
         else if (opts.formtype == 3) {
           payment_data = {
@@ -445,7 +449,8 @@
             "communal_param": opts.communalParam,
             "transaction_id": parseInt(Date.now() / 1000)
           };
-          opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+          console.log("payment_data 333");
+          // opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
 
         }
         else if (opts.formtype == 4) {
@@ -455,10 +460,27 @@
             "internet_package_param": opts.internetPackageParam,
             "transaction_id": parseInt(Date.now() / 1000)
           };
-          opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+          console.log("payment_data 444");
+//          opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
         }
 
+        console.log("payTransferBlocked=", payTransferBlocked);
+        console.log("payment_data=", payment_data);
+
+        if (opts.mode != 'ADDAUTOPAY') {
+          if (payTransferBlocked) {
+            riotTags.innerHTML = "<view-pin-code>";
+            riot.mount('view-pin-code', ['view-pay-confirm', payment_data]);
+          } else {
+            paymentFunction(payment_data);
+          }
+        } else {
+          createAutoPay(payment_data);
+        }
+
+
         var statusCheckCounter = 0;
+
 
         function paymentFunction(payment_data) {
 
@@ -542,7 +564,7 @@
           });
 
           setTimeout(function () {
-            if(!answerFromServer){
+            if (!answerFromServer) {
               if (device.platform != 'BrowserStand') {
                 SpinnerPlugin.activityStop();
               }

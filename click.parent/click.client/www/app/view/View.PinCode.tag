@@ -2,7 +2,9 @@
 
   <div class="pincode-flex-container">
     <div class="pincode-unchangable-container">
-      <div if="{nowCheckPin}" id="labelOfNowPinId" class="pincode-enter-pin-label">{window.languages.ViewPinCodeNowClickPinLabel}</div>
+      <div if="{nowCheckPin}" id="labelOfNowPinId" class="pincode-enter-pin-label">
+        {window.languages.ViewPinCodeNowClickPinLabel}
+      </div>
       <div if="{checkPin}" id="labelOfPinId" class="pincode-enter-pin-label">{labelOfTitle}</div>
       <div if="{checkPinConfirm}" class="pincode-enter-pin-confirm-label">
         {window.languages.ViewPinCodeConfirmClickPinLabel}
@@ -23,7 +25,8 @@
     <component-keyboard></component-keyboard>
   </div>
 
-  <div id="pinOfflineButtonId" class="pincode-button-offline" ontouchstart="offlineModeTouchStart()" ontouchend="offlineModeTouchEnd()">
+  <div id="pinOfflineButtonId" class="pincode-button-offline" ontouchstart="offlineModeTouchStart()"
+       ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
 
@@ -225,7 +228,8 @@
       }
     }
 
-    var registrationCheckStatusTouchStartX, registrationCheckStatusTouchStartY, registrationCheckStatusTouchEndX, registrationCheckStatusTouchEndY;
+    var registrationCheckStatusTouchStartX, registrationCheckStatusTouchStartY, registrationCheckStatusTouchEndX,
+      registrationCheckStatusTouchEndY;
 
     registrationProcessCheckStatusTouchStart = function () {
       event.preventDefault();
@@ -323,8 +327,8 @@
           }
 
         }
-        else if(scope.nowCheckPin){
-          if(hex_md5(enteredPin) == localStorage.getItem('pinForStand')){
+        else if (scope.nowCheckPin) {
+          if (hex_md5(enteredPin) == localStorage.getItem('pinForStand')) {
             scope.checkPin = true;
             scope.nowCheckPin = false;
             scope.checkPinConfirm = false;
@@ -334,7 +338,7 @@
             updateEnteredPin()
             scope.update();
           }
-          else{
+          else {
             scope.nowCheckPin = true;
             scope.checkPin = false;
             scope.clickPinError = false;
