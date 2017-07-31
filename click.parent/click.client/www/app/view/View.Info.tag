@@ -41,7 +41,7 @@
   <div class="view-info-operations-container">
     <div class="view-info-operation-container" each="{i in lastOperationContainer}" id="{i.payment_id}"
          ontouchstart="onTouchStartOfOperation(this.id)"
-         ontouchend="onTouchEndOfOperation(this.id)"
+         onclick="onTouchEndOfOperation(this.id)"
          style="top:{leftOfOperations*i.count + 50 * widthK}px;">
 
       <div class="view-info-operations-icon" style="background-image: url({i.image})">
@@ -445,17 +445,23 @@
 
     var operationInfoTouchStartY, operationInfoTouchEndY;
     scope.onTouchStartOfOperation = onTouchStartOfOperation = function (paymentId) {
-      document.getElementById(paymentId).style.backgroundColor = 'rgba(231,231,231,0.8)'
       operationInfoTouchStartY = event.changedTouches[0].pageY;
     }
 
     scope.onTouchEndOfOperation = onTouchEndOfOperation = function (paymentId) {
-      event.preventDefault();
-      event.stopPropagation();
 
-      document.getElementById(paymentId).style.backgroundColor = 'transparent'
+      document.getElementById(paymentId).style.backgroundColor = 'rgba(231,231,231,0.8)'
 
-      operationInfoTouchEndY = event.changedTouches[0].pageY;
+      setTimeout(function () {
+        document.getElementById(paymentId).style.backgroundColor = 'transparent'
+      }, 300)
+
+
+      operationInfoTouchEndY = event.pageY;
+
+      setTimeout(function () {
+
+
       if (Math.abs(operationInfoTouchStartY - operationInfoTouchEndY) < 20) {
 
         if (modeOfApp.demoVersion) {
@@ -499,6 +505,7 @@
           }
         }
       }
+      }, 100)
 
     }
 
