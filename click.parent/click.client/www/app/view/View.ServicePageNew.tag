@@ -465,7 +465,7 @@
 //          firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
           contactStopChanging = true;
         }
-        else{
+        else {
           contactStopChanging = false;
         }
     };
@@ -473,7 +473,7 @@
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
     telPayVerificationKeyUp = function (from) {
 
-      if(contactStopChanging){
+      if (contactStopChanging) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
       }
 
@@ -484,6 +484,8 @@
         console.log(firstFieldInput.value)
         if (firstFieldInput.type != 'text')
           firstFieldInput.value = inputVerification.telVerification(firstFieldInput.value)
+        console.log("phone tranform=", inputVerification.phoneEnterTransform(2, '', firstFieldInput.value))
+        //firstFieldInput.value = inputVerification.phoneEnterTransform(2, '', firstFieldInput.value);
         if (oldValueOfNumber != firstFieldInput.value) {
           firstFieldInput.selectionStart = cursorPositionSelectionStart - 1
           firstFieldInput.selectionEnd = cursorPositionSelectionEnd - 1

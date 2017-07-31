@@ -37,7 +37,7 @@
          class="view-reports-body-container" id="reportBodyContainerId" if="{firstReportView}"
          onscroll="reportsBodyContainerTouchMove()">
       <div class="view-reports-payments-container" each="{i in paymentDates}">
-        <div class="view-reports-payment-date-containter">
+        <div class="view-reports-payment-date-containter" id="paymentDateContainerId">
           <div class="view-reports-payment-date-field">{i}</div>
         </div>
         <div class="view-reports-payment-block-containter" each="{j in paymentsMap[i]}" id="{j.payment_id}"
@@ -431,6 +431,12 @@
     reportsBodyContainerTouchMove = function () {
       event.preventDefault();
       event.stopPropagation();
+
+//      console.log("reportBodyContainerId.scrollHeight", reportBodyContainerId.scrollHeight);
+      console.log("reportBodyContainerId.scrollTop", reportBodyContainerId.scrollTop);
+//      console.log("reportBodyContainerId.offsetHeight", reportBodyContainerId.offsetHeight);
+//      console.log("paymentDateContainerId.scrollTop", paymentDateContainerId.scrollTop);
+
 
       if ((reportBodyContainerId.scrollHeight - reportBodyContainerId.scrollTop) == reportBodyContainerId.offsetHeight) {
         // you're at the bottom of the page
@@ -864,7 +870,7 @@
 
       setTimeout(function () {
         document.getElementById(paymentId).style.backgroundColor = 'transparent'
-      },300)
+      }, 300)
 
 
 //      paymentTouchEndY = event.changedTouches[0].pageY;
@@ -881,13 +887,12 @@
       setTimeout(function () {
 
 
+        if (Math.abs(paymentTouchStartY - paymentTouchEndY) <= 20 && (Math.abs(paymentTouchStartX - paymentTouchEndX) <= 20)) {
 
-      if (Math.abs(paymentTouchStartY - paymentTouchEndY) <= 20 && (Math.abs(paymentTouchStartX - paymentTouchEndX) <= 20)) {
-
-        if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
-          scope.errorNote = question;
+          if (modeOfApp.demoVersion) {
+            var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+            scope.showError = true;
+            scope.errorNote = question;
 //        confirm(question)
 //          scope.confirmShowBool = true;
 //          scope.confirmNote = question;
@@ -904,48 +909,48 @@
 //              return
 //            }
 //          };
-          scope.update();
+            scope.update();
 
-          return
-        }
+            return
+          }
 
-        for (var i = 0; i < scope.paymentsList.length; i++) {
-          if (scope.paymentsList[i].payment_id == paymentId) {
+          for (var i = 0; i < scope.paymentsList.length; i++) {
+            if (scope.paymentsList[i].payment_id == paymentId) {
 //            console.log("FROM VIEW REPORT service report for=", scope.paymentsList[i]);
 
-            console.log(scope.paymentsList[i])
-            console.log("scope.tags['view-report-service-new']", scope.tags)
-            console.log("scope.tags['view-report-service-new']", scope)
+              console.log(scope.paymentsList[i])
+              console.log("scope.tags['view-report-service-new']", scope.tags)
+              console.log("scope.tags['view-report-service-new']", scope)
 
-            var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
-            var servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
+              var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
+              var servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
 
-            if (servicesMap[scope.paymentsList[i].service_id])
-              scope.paymentsList[i].canAddToFavorite = true;
-            else
-              scope.paymentsList[i].canAddToFavorite = false;
+              if (servicesMap[scope.paymentsList[i].service_id])
+                scope.paymentsList[i].canAddToFavorite = true;
+              else
+                scope.paymentsList[i].canAddToFavorite = false;
 
-            scope.showComponent = true;
-            scope.tags['view-report-service-new'].opts = scope.paymentsList[i]
+              scope.showComponent = true;
+              scope.tags['view-report-service-new'].opts = scope.paymentsList[i]
 
-            console.log("scope.tags['view-report-service-new']", scope.tags['view-report-service-new']);
+              console.log("scope.tags['view-report-service-new']", scope.tags['view-report-service-new']);
 
-            window.checkShowingComponent = scope.tags['view-report-service-new'];
+              window.checkShowingComponent = scope.tags['view-report-service-new'];
 
 
-            riot.update()
-            break;
+              riot.update()
+              break;
+            }
           }
         }
-      }
-      else {
-        if (Math.abs(paymentTouchStartY - paymentTouchEndY) <= 100 && (Math.abs(paymentTouchStartX - paymentTouchEndX) > 20) && paymentTimeEnd - paymentTimeStart < 500) {
-          mCarouselTouchEndX = paymentTouchEndX
-          mCarouselTouchStartX = paymentTouchStartX
-          monthChanged = true
-          changePositionReport()
+        else {
+          if (Math.abs(paymentTouchStartY - paymentTouchEndY) <= 100 && (Math.abs(paymentTouchStartX - paymentTouchEndX) > 20) && paymentTimeEnd - paymentTimeStart < 500) {
+            mCarouselTouchEndX = paymentTouchEndX
+            mCarouselTouchStartX = paymentTouchStartX
+            monthChanged = true
+            changePositionReport()
+          }
         }
-      }
       }, 100)
 
     }
@@ -954,6 +959,14 @@
       paymentTouchStartY = event.changedTouches[0].pageY;
       paymentTouchStartX = event.changedTouches[0].pageX;
       paymentTimeStart = event.timeStamp.toFixed(0);
+    }
+
+    paymentTouchMove = function (paymentId) {
+
+      console.log("paymentId=", paymentId);
+      console.log("paymentId asdd=", document.getElementById(paymentId).childNodes[0]);
+
+      console.log("paymentId scrollTop =", paymentId.clientTop)
     }
 
     var reportBodyContainerStartX, reportBodyContainerStartY, reportBodyContainerEndX, reportBodyContainerEndY;

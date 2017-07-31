@@ -7446,7 +7446,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
-  "background-size: 50%;" +
+  "background-size: 55%;" +
   "}",
 
   settingsBlockNextIcon: ".settings-block-next-icon" +
@@ -13928,7 +13928,7 @@ var css = {
   "margin-right: auto;" +
   "margin-left: auto;" +
   "float: left;" +
-  "left:10%;" +
+  "left:" + 60.4 * widthK + "px;" +
   "margin-right: 4%;" +
   "}",
 
