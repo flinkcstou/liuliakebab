@@ -142,6 +142,7 @@ window.api.initSocket = function () {
 
   this.socket.onerror = function (error) {
     window.isConnected = false;
+    if (modeOfApp.offlineMode) return
 
     console.log('Error with socket ' + error.message);
 
