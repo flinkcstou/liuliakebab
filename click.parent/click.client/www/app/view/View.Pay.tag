@@ -18,7 +18,7 @@
         <li each="{i in categoryList}" style="overflow: hidden;">
           <div if="{!(modeOfApp.offlineMode && i.id == 11)}" class="pay-service-block-containter" id="{i.id}"
                ontouchstart="onTouchStartOfCategory(this.id)"
-               ontouchend="onTouchEndOfCategory(this.id)">
+               onclick="onTouchEndOfCategory(this.id)">
             <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
             <div class="pay-category-name-field">{i.name}
             </div>
@@ -145,23 +145,27 @@
     scope.onTouchStartOfCategory = onTouchStartOfCategory = function (id) {
       event.stopPropagation();
 
-      if(scope.index != id)
-      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
 
       onTouchStartY = event.changedTouches[0].pageY;
       onTouchStartX = event.changedTouches[0].pageX;
     };
 
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
-      event.stopPropagation();
+
+      if(scope.index != id)
+      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
 
 
+      setTimeout(function () {
+        document.getElementById(id).style.backgroundColor = 'transparent'
+      }, 100)
 
 
-      document.getElementById(id).style.backgroundColor = 'transparent'
+      onTouchEndY = event.pageY;
+      onTouchEndX = event.pageX;
 
-      onTouchEndY = event.changedTouches[0].pageY;
-      onTouchEndX = event.changedTouches[0].pageX;
+
+      setTimeout(function () {
 
 
       if ((Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) || scope.checkOfSearch) {
@@ -203,6 +207,7 @@
 
         scope.update();
       }
+      }, 100)
     };
 
     scope.hintShow = false;
