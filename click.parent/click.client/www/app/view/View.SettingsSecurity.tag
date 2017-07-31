@@ -43,6 +43,16 @@
         <div id="blockWithPinIconId" class="settings-security-check-icon"></div>
       </div>
 
+      <div class="settings-block-containter settings-security-block" ontouchend="blockPayAndTransfer()">
+        <div class="settings-block-icon"
+             style="background-image: url('resources/icons/ViewSettingsSecurity/security_lock_payments.png')"></div>
+        <div class="settings-block-name-field">{window.languages.ViewSecuritySettingsBlockPayTitle}</div>
+        <div class="settings-security-block-detail-text" style="width: 70%;">
+          {window.languages.ViewSecuritySettingsBlockPayText}
+        </div>
+        <div id="blockPayTransferIconId" class="settings-security-check-icon"></div>
+      </div>
+
       <div hidden class="settings-block-containter" ontouchend="hideMyNumber()">
         <div class="settings-block-icon"
              style="background-image: url('resources/icons/ViewSettingsSecurity/security_visibility.png')"></div>
@@ -75,6 +85,9 @@
     if (localStorage.getItem('settings_block'))
       var isBlocked = JSON.parse(localStorage.getItem('settings_block'));
 
+    if (localStorage.getItem('settings_block_payAndTransfer'))
+      var payTransferBlocked = JSON.parse(localStorage.getItem('settings_block_payAndTransfer'));
+
     if (localStorage.getItem("settings_finger_print"))
       var fingerPrint = JSON.parse(localStorage.getItem("settings_finger_print"))
 
@@ -95,6 +108,13 @@
       }
       else {
         blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
+      }
+
+      if (payTransferBlocked) {
+        blockPayTransferIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
+      }
+      else {
+        blockPayTransferIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
       }
 
       if (fingerPrint) {
@@ -228,6 +248,23 @@
         isBlocked = true;
         blockWithPinIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
         localStorage.setItem('settings_block', true)
+      }
+      scope.update();
+    };
+
+    blockPayAndTransfer = function () {
+
+      if (payTransferBlocked) {
+        console.log("false!!!");
+        payTransferBlocked = false;
+        blockPayTransferIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
+        localStorage.setItem('settings_block_payAndTransfer', false)
+
+      } else {
+        console.log("true!!!");
+        payTransferBlocked = true;
+        blockPayTransferIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
+        localStorage.setItem('settings_block_payAndTransfer', true)
       }
       scope.update();
     };

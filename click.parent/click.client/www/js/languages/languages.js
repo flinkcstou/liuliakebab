@@ -242,6 +242,8 @@ var RU_LANGUAGES =
   "ViewSecuritySettingsTouchScanUseTitle": "Использовать сканер отпечатка пальца",
   "ViewSecuritySettingsBlockTitle": "Блокировка",
   "ViewSecuritySettingsBlockText": "Запрашивать CLICK-PIN после каждого сворачивания приложения",
+  "ViewSecuritySettingsBlockPayTitle": "Блокировка платежей",
+  "ViewSecuritySettingsBlockPayText": "Запрашивать CLICK-PIN при каждой транзакции",
   "ViewSecuritySettingsMyNumberHideTitle": "Скрыть мой номер",
 
   "ViewFriendHelpSettingsAddFriendText": "Добавить друга",
