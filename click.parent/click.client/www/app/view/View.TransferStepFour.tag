@@ -151,6 +151,7 @@
     else
       this.titleName = window.languages.ViewTransferFourTitle + ' ' + transferTitle;
 
+
     if (localStorage.getItem('settings_block_payAndTransfer'))
       var payTransferBlocked = JSON.parse(localStorage.getItem('settings_block_payAndTransfer'));
 
@@ -424,13 +425,15 @@
               if (result[1][0]) {
                 if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
                   blockCodeConfirmId.style.display = 'block';
-                  scope.secretCode = result[1][0].secret_code;
+                  this.secretCode = result[1][0].secret_code;
                   viewTransfer.phoneNumber = 0
                   viewTransfer.cardNumber = 0
                   viewTransfer.cardNumber = 0
                   viewTransferStepTwo.sum = 0;
                   viewTransferStepTwo.sumWithoutSpace = 0;
                   window.updateBalanceGlobalFunction();
+
+
                   scope.update();
 
                 }
