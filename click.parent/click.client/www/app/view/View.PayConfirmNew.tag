@@ -693,7 +693,7 @@
       scope.operationMessage = window.languages.ViewAutoPayCreatedSuccessTextOne + "\"" + scope.autoPayData.name + "\"" + window.languages.ViewAutoPayCreatedSuccessTextTwo;
       if (scope.autoPayData && scope.autoPayData.fromView == 'PAYCONFIRM') {
         scope.viewPage = 'view-pay-confirm-new';
-        scope.stepAmount = 3;
+        scope.stepAmount = scope.servicesMap[scope.autoPayData.service_id][0].autopay_available ? ((scope.autoPayData.autopay_type == 2) ? 3 : 4) : 3;
         scope.goBack = true;
 
       } else {
