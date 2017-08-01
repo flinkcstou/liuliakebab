@@ -40,73 +40,87 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-friend-help-settings') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-friend-help-settings',
+          "view"  : 'view-friend-help-settings',
           "params": opts
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    //    function onSuccess(contacts) {
-    ////      alert('Found ' + contacts.length + ' contacts.');
-    //      console.log('contacts', contacts)
-    //
-    //      for(var i in contacts){
-    //        for(var j in contacts[i].phoneNumbers){
-    //          scope.arrayOfPhoneNumbers.push(contacts[i].phoneNumbers[j].value)
-    //        }
-    //      }
-    //
-    //      console.log('CONTACTS ARRAY', scope.arrayOfPhoneNumbers)
-    //
-          var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-          var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-          var sessionKey = info.session_key;
+    function onSuccess(contacts) {
+      //      alert('Found ' + contacts.length + ' contacts.');
+      console.log('contacts', contacts)
 
-          window.api.call({
-            method: 'check.contact.list',
-            input: {
-              phone_num: phoneNumber,
-              phone_list : scope.arrayOfPhoneNumbers,
-              session_key: sessionKey,
+      for (var i in contacts) {
+        var personObj = {};
+        if (contacts[i].phoneNumbers) {
+          personObj.phone = [];
+          for(var k in contacts[i].phoneNumbers){
+            personObj.phone.push(contacts[i].phoneNumbers[k].value)
+          }
+        }
+        else {
+          continue
+        }
+        if (contacts[i].name && contacts[i].name.familyName)
+          personObj.lastname = contacts[i].name.familyName
 
-            },
+        if (contacts[i].name && contacts[i].name.givenName)
+          personObj.firstname = contacts[i].name.givenName
 
-            scope: this,
+        scope.arrayOfPhoneNumbers.push(personObj)
+      }
 
-            onSuccess: function (result) {
-              if (result[0][0].error == 0) {
-                console.log("contact list checker method", result);
-                scope.update();
-              }
-              else {
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
-                scope.viewPage = ''
-                scope.update();
-              }
-            },
+      console.log('CONTACTS ARRAY', scope.arrayOfPhoneNumbers)
 
-            onFail: function (api_status, api_status_message, data) {
-              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-              console.error(data);
-            }
-          });
-        
-    //
-    //
-    //    function onError(contactError) {
-    ////      alert('onError!');
-    //      console.log('error', contactError)
-    //    }
-    //
-    //
-    //    // find all contacts with 'Bob' in any name field
-    //    var options = new ContactFindOptions();
-    //    options.multiple = true;
-    //    options.hasPhoneNumber = true;
-    //    navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
+      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+      var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+      var sessionKey = info.session_key;
+
+      window.api.call({
+        method: 'check.contact.list',
+        input : {
+          phone_num  : phoneNumber,
+          phone_list : scope.arrayOfPhoneNumbers,
+          session_key: sessionKey,
+
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+            console.log("contact list checker method", result);
+            scope.update();
+          }
+          else {
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
+            scope.viewPage = ''
+            scope.update();
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+
+
+    function onError(contactError) {
+      //      alert('onError!');
+      console.log('error', contactError)
+    }
+
+
+    // find all contacts with 'Bob' in any name field
+    var options = new ContactFindOptions();
+    options.multiple = true;
+    options.hasPhoneNumber = true;
+    navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
 
 
     //    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
