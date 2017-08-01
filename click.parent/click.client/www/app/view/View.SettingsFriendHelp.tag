@@ -47,6 +47,22 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    scope.arrayOfFriends = [];
+
+    if (localStorage.getItem('click_client_friends') === null) {
+      scope.arrayOfFriends = []
+    }
+    else {
+      scope.arrayOfFriends = JSON.parse(localStorage.getItem('click_client_friends'));
+      console.log('scope.arrayOfFriends', scope.arrayOfFriends)
+
+//      for(var i in scope.arrayOfFriends){
+//        if(scope.arrayOfFriends[i].photo === null){
+//
+//        }
+//      }
+    }
+
     function onSuccess(contacts) {
       //      alert('Found ' + contacts.length + ' contacts.');
       console.log('contacts', contacts)
@@ -55,7 +71,7 @@
         var personObj = {};
         if (contacts[i].phoneNumbers) {
           personObj.phone = [];
-          for(var k in contacts[i].phoneNumbers){
+          for (var k in contacts[i].phoneNumbers) {
             personObj.phone.push(contacts[i].phoneNumbers[k].value)
           }
         }
@@ -72,6 +88,8 @@
       }
 
       console.log('CONTACTS ARRAY', scope.arrayOfPhoneNumbers)
+
+      if(!scope.arrayOfPhoneNumbers) return
 
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -91,6 +109,38 @@
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
             console.log("contact list checker method", result);
+            var object = {};
+
+            if(result[1][0])
+            for(var i in result[1][0].phone_list){
+              object = {}
+              console.log('result[1][0]',result[1][0])
+              if(!result[1][0].phone_list[i].phone){
+                continue
+              }
+              if(result[1][0].phone_list[i].firstname && result[1][0].phone_list[i].lastname)
+              object.name = result[1][0].phone_list[i].firstname + " " + result[1][0].phone_list[i].lastname;
+              else {
+                if(result[1][0].phone_list[i].firstname)
+                object.name = result[1][0].phone_list[i].firstname;
+                else {
+                  if(result[1][0].phone_list[i].lastname){
+                    object.name = result[1][0].phone_list[i].lastname
+                  }
+                  else{
+                    object.name = 'Неизвестно'
+                  }
+                }
+              }
+              object.number = result[1][0].phone_list[i].phone;
+              if(object.name)
+              object.firstLetterOfName = object.name[0].toUpperCase();
+              object.photo = null;
+
+              scope.arrayOfFriends.push(object);
+            }
+
+//            localStorage.setItem('click_client_friends',JSON.stringify(scope.arrayOfFriends))
             scope.update();
           }
           else {
@@ -117,10 +167,13 @@
 
 
     // find all contacts with 'Bob' in any name field
-    var options = new ContactFindOptions();
-    options.multiple = true;
-    options.hasPhoneNumber = true;
-    navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
+
+    if (device.platform != 'BrowserStand') {
+      var options = new ContactFindOptions();
+      options.multiple = true;
+      options.hasPhoneNumber = true;
+      navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
+    }
 
 
     //    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
@@ -228,21 +281,6 @@
     }
 
 
-    scope.arrayOfFriends = [];
-
-    if (localStorage.getItem('click_client_friends') === null) {
-      scope.arrayOfFriends = []
-    }
-    else {
-      scope.arrayOfFriends = JSON.parse(localStorage.getItem('click_client_friends'));
-      console.log('scope.arrayOfFriends', scope.arrayOfFriends)
-
-//      for(var i in scope.arrayOfFriends){
-//        if(scope.arrayOfFriends[i].photo === null){
-//
-//        }
-//      }
-    }
 
     var chooseButtonStartX, chooseButtonEndX, chooseButtonStartY, chooseButtonEndY;
 
