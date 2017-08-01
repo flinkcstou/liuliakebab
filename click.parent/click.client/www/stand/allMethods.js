@@ -9589,7 +9589,7 @@ window.fakedSocket.register("app.payment", function (input) {
         "error_note": ""
       }],
       [{
-        "invoice_id": 555,
+        "invoice_id": null,
         "payment_id": "xzsa"
       }]
     ];

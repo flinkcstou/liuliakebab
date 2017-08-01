@@ -13,7 +13,8 @@
     </div>
 
 
-    <button id="alertOkButtonId" class="component-alert-button-inner-container" ontouchstart="closeAlertFormStart(this.id)"
+    <button id="alertOkButtonId" class="component-alert-button-inner-container"
+            ontouchstart="closeAlertFormStart(this.id)"
             ontouchend="closeAlertFormEnd(this.id)">
       {window.languages.ComponentAlertOk}
     </button>
@@ -59,13 +60,13 @@
         if (scope.parent) {
           scope.parent.showError = false;
 
-          if(opts.carddelete){
+          if (opts.carddelete) {
             riotTags.innerHTML = "<view-my-cards>";
             riot.mount('view-my-cards');
             return
           }
 
-          if(opts.errorcode == 1){
+          if (opts.errorcode == 1) {
             riotTags.innerHTML = "<view-authorization>";
             riot.mount('view-authorization');
             return;
@@ -76,15 +77,17 @@
             riot.mount(opts.viewpage);
           }
 
-          if (opts.step_amount)
-            if (opts.step_amount || opts.step_amount == 0) {
-              console.log("opts.step_amount", opts)
-              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
-              console.log(history.arrayOfHistory)
-              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-              onBackKeyDown()
+          console.log("OPTS in ALERT", opts)
+
+
+          if (opts.step_amount || opts.step_amount == 0) {
+            console.log("opts.step_amount", opts)
+            history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
+            console.log(history.arrayOfHistory)
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+            onBackKeyDown()
 //          scope.unmount()
-            }
+          }
         } else {
           scope.outerShowAlertBool = true;
           console.log("close")

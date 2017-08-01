@@ -91,7 +91,7 @@
       </div>
       <button id="autoPayButtonId"
               class="{payconfirm-button-enter:opts.mode!='ADDAUTOPAY', autopay-button:opts.mode=='ADDAUTOPAY'}"
-              ontouchend="payService()" ontouchstart="onTouchStartOfEnterPay()" if="{!autoPayDelete}">
+              ontouchend="onTouchEndOfEnterPay()" ontouchstart="onTouchStartOfEnterPay()" if="{!autoPayDelete}">
         {(opts.mode=='ADDAUTOPAY')? window.languages.ViewAutoPayCreateButtonText : window.languages.ViewPayConfirmPay}
       </button>
       <button id="deleteAutoPayButtonId" class="payconfirm-button-delete" ontouchend="deleteAutoPay()"
@@ -271,6 +271,16 @@
     }
     scope.update();
 
+
+    console.log("CONFIRMED=", sessionStorage.getItem('payTransferConfirmed'))
+    console.log("BLOCKED=", payTransferBlocked)
+
+    if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
+      console.log("payTransferConfirmed=", sessionStorage.getItem('payTransferConfirmed'))
+      payService();
+      sessionStorage.setItem('payTransferConfirmed', null);
+    }
+
     var favoriteStartY, favoriteStartX, favoriteEndY, favoriteEndX;
 
     scope.onTouchStartOfFavorite = onTouchStartOfFavorite = function () {
@@ -365,9 +375,9 @@
       enterPayStartX = event.changedTouches[0].pageX;
     };
 
+    var date, sessionKey, phoneNumber, serviceId, amount, accountId, friendPhone, payment_data;
 
-    payService = function () {
-
+    scope.onTouchEndOfEnterPay = onTouchEndOfEnterPay = function () {
       event.stopPropagation();
 
       autoPayButtonId.style.webkitTransform = 'scale(1)'
@@ -394,396 +404,403 @@
 //          }
 //        };
           scope.update();
-
           return
         }
 
-        var date = parseInt(Date.now() / 1000);
-        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-        var serviceId = opts.chosenServiceId;
-        var amount = inputVerification.spaceDeleter(opts.amountText.toString());
-        var accountId;
-        var friendPhone;
-        var payment_data;
-//      console.log("AMOUNT UPDATED=", amount)
+        console.log("777", sessionStorage.getItem('payTransferConfirmed'));
 
-        // friend help or own payment
+        if (opts.mode != 'ADDAUTOPAY' && payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) != true) {
+          console.log("888");
+          riotTags.innerHTML = "<view-pin-code>";
+          riot.mount('view-pin-code', ['view-pay-confirm']);
+          return
+        }
+        payService();
+      }
+    }
 
-        if (scope.cardOrFriendBool) {
-          accountId = chosenCardId;
-          friendPhone = 0;
-          scope.operationMessage = window.languages.ComponentSuccessMessageForPay;
-        }
-        else {
-          accountId = 0;
-          friendPhone = scope.friendNumber;
-          scope.operationMessage = window.languages.ComponentSuccessMessageForPayFriendHelp;
-        }
+    payService = function () {
 
-        scope.update();
-        console.log("accountId", accountId);
-        console.log("friendPhone", friendPhone);
+      date = parseInt(Date.now() / 1000);
+      sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+      phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      serviceId = opts.chosenServiceId;
+      amount = inputVerification.spaceDeleter(opts.amountText.toString());
 
-        if (opts.formtype == 1) {
-          payment_data = {
-            "param": opts.firstFieldId,
-            "value": firstFieldtext,
-            "transaction_id": parseInt(Date.now() / 1000)
-          };
-          console.log("payment_data 111");
-          // opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
-        }
-        else if (opts.formtype == 2) {
-          payment_data = {
-            "pin_param": opts.cardTypeId,
-            "transaction_id": parseInt(Date.now() / 1000)
-          };
-          console.log("payment_data 222");
-          //opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
-        }
-        else if (opts.formtype == 3) {
-          payment_data = {
-            "param": opts.firstFieldId,
-            "value": firstFieldtext,
-            "communal_param": opts.communalParam,
-            "transaction_id": parseInt(Date.now() / 1000)
-          };
-          console.log("payment_data 333");
-          // opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+      // friend help or own payment
 
-        }
-        else if (opts.formtype == 4) {
-          payment_data = {
-            "param": opts.firstFieldId,
-            "value": firstFieldtext,
-            "internet_package_param": opts.internetPackageParam,
-            "transaction_id": parseInt(Date.now() / 1000)
-          };
-          console.log("payment_data 444");
+      if (scope.cardOrFriendBool) {
+        accountId = chosenCardId;
+        friendPhone = 0;
+        scope.operationMessage = window.languages.ComponentSuccessMessageForPay;
+      }
+      else {
+        accountId = 0;
+        friendPhone = scope.friendNumber;
+        scope.operationMessage = window.languages.ComponentSuccessMessageForPayFriendHelp;
+      }
+
+      scope.update();
+      console.log("accountId", accountId);
+      console.log("friendPhone", friendPhone);
+
+      if (opts.formtype == 1) {
+        payment_data = {
+          "param": opts.firstFieldId,
+          "value": firstFieldtext,
+          "transaction_id": parseInt(Date.now() / 1000)
+        };
+        console.log("payment_data 111");
+        // opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+      }
+      else if (opts.formtype == 2) {
+        payment_data = {
+          "pin_param": opts.cardTypeId,
+          "transaction_id": parseInt(Date.now() / 1000)
+        };
+        console.log("payment_data 222");
+        //opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+      }
+      else if (opts.formtype == 3) {
+        payment_data = {
+          "param": opts.firstFieldId,
+          "value": firstFieldtext,
+          "communal_param": opts.communalParam,
+          "transaction_id": parseInt(Date.now() / 1000)
+        };
+        console.log("payment_data 333");
+        // opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
+
+      }
+      else if (opts.formtype == 4) {
+        payment_data = {
+          "param": opts.firstFieldId,
+          "value": firstFieldtext,
+          "internet_package_param": opts.internetPackageParam,
+          "transaction_id": parseInt(Date.now() / 1000)
+        };
+        console.log("payment_data 444");
 //          opts.mode != 'ADDAUTOPAY' ? paymentFunction(payment_data) : createAutoPay(payment_data);
-        }
+      }
 
-        console.log("payTransferBlocked=", payTransferBlocked);
-        console.log("payment_data=", payment_data);
+      console.log("payTransferBlocked=", payTransferBlocked);
+      console.log("payment_data=", payment_data);
 
-        if (opts.mode != 'ADDAUTOPAY') {
-          if (payTransferBlocked) {
-            riotTags.innerHTML = "<view-pin-code>";
-            riot.mount('view-pin-code', ['view-pay-confirm', payment_data]);
-          } else {
-            paymentFunction(payment_data);
+      if (opts.mode != 'ADDAUTOPAY') {
+
+        paymentFunction(payment_data);
+
+      } else {
+        createAutoPay(payment_data);
+      }
+
+    };
+
+    var statusCheckCounter = 0;
+
+
+    function paymentFunction(payment_data) {
+
+      if (device.platform != 'BrowserStand') {
+        var options = {dimBackground: true};
+
+        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+          console.log("Started");
+        }, function () {
+          console.log("closed");
+        });
+      }
+
+      var answerFromServer = false;
+
+
+      if (opts.optionAttribute && opts.optionValue) {
+        payment_data[opts.optionAttribute] = opts.optionValue;
+      }
+
+      window.api.call({
+        method: 'app.payment',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          service_id: Number(serviceId),
+          account_id: Number(accountId),
+          amount: Number(amount),
+          payment_data: payment_data,
+          datetime: date,
+          friend_phone: friendPhone
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          answerFromServer = true;
+          if (result[0][0].error == 0) {
+            if (result[1]) {
+              console.log("result of APP.PAYMENT 1", result);
+              if (result[1][0].payment_id && !result[1][0].invoice_id) {
+                console.log("Payment id");
+
+                if (device.platform != 'BrowserStand') {
+                  var options = {dimBackground: true};
+
+                  SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+                    console.log("Started");
+                  }, function () {
+                    console.log("closed");
+                  });
+                }
+
+                setTimeout(function () {
+                  checkPaymentStatus(result[1][0].payment_id);
+                }, 2000);
+
+              }
+              else if (result[1][0].invoice_id && !result[1][0].payment_id) {
+                console.log("Invoice id");
+
+                viewServicePinCards.friendHelpPaymentMode = false;
+                viewServicePinCards.chosenFriendForHelp = null;
+
+                componentSuccessId.style.display = 'block';
+              }
+            }
           }
-        } else {
-          createAutoPay(payment_data);
+          else {
+            scope.errorMessageFromPayment = result[0][0].error_note;
+            scope.update();
+            console.log("result of APP.PAYMENT 3", result);
+            componentUnsuccessId.style.display = 'block';
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
         }
+      });
 
-
-        var statusCheckCounter = 0;
-
-
-        function paymentFunction(payment_data) {
-
+      setTimeout(function () {
+        if (!answerFromServer) {
           if (device.platform != 'BrowserStand') {
-            var options = {dimBackground: true};
-
-            SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-              console.log("Started");
-            }, function () {
-              console.log("closed");
-            });
+            SpinnerPlugin.activityStop();
           }
+          return
+        }
+      }, 20000)
+    }
 
-          var answerFromServer = false;
+    function checkPaymentStatus(payment_id) {
+
+      console.log("check payment status");
+
+      window.api.call({
+        method: 'get.payment',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          payment_id: payment_id
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0 && result[1][0]) {
+
+            console.log("result of get.payment success=", result);
+            if (result[1][0].state == -1) {
+              scope.stepAmount = 2;
+              scope.errorMessageFromPayment = result[1][0].error;
+              scope.update();
+              console.log("state=-1 error,view=", scope.viewPage, ",step=", scope.stepAmount);
+              if (device.platform != 'BrowserStand') {
+                SpinnerPlugin.activityStop();
+              }
+              componentUnsuccessId.style.display = 'block';
 
 
-          if (opts.optionAttribute && opts.optionValue) {
-            payment_data[opts.optionAttribute] = opts.optionValue;
+            } else if (result[1][0].state == 2) {
+              window.updateBalanceGlobalFunction();
+
+              viewServicePinCards.friendHelpPaymentMode = false;
+              viewServicePinCards.chosenFriendForHelp = null;
+              scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
+              console.log("scope.operationMessage ", scope.operationMessage)
+              scope.operationMessage = window.languages.ComponentSuccessMessageForPay;
+              scope.update(scope.operationMessage);
+              scope.update();
+              console.log("state=2 success,view=", scope.viewPage, ",step=", scope.stepAmount);
+              if (device.platform != 'BrowserStand') {
+                SpinnerPlugin.activityStop();
+              }
+              componentSuccessId.style.display = 'block';
+
+
+            } else if (result[1][0].state == 1) {
+
+              statusCheckCounter++;
+
+              if (statusCheckCounter < 5) {
+
+                if (device.platform != 'BrowserStand') {
+                  var options = {dimBackground: true};
+
+                  SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+                    console.log("Started");
+                  }, function () {
+                    console.log("closed");
+                  });
+                }
+
+                setTimeout(function () {
+                  checkPaymentStatus(result[1][0].payment_id);
+                }, 2000);
+
+              } else {
+                if (device.platform != 'BrowserStand') {
+                  SpinnerPlugin.activityStop();
+                }
+
+                viewServicePinCards.friendHelpPaymentMode = false;
+                viewServicePinCards.chosenFriendForHelp = null;
+
+                scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
+                scope.update();
+                console.log("state=1 waiting,view=", scope.viewPage, ",step=", scope.stepAmount);
+                componentInProcessingId.style.display = 'block';
+              }
+
+            }
+
           }
+          else {
+            console.log("result of GET.PAYMENT in else", result);
+            if (device.platform != 'BrowserStand') {
+              SpinnerPlugin.activityStop();
+            }
+            componentUnsuccessId.style.display = 'block';
+          }
+        },
 
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+
+    function createAutoPay(payment_data) {
+      scope.operationMessage = window.languages.ViewAutoPayCreatedSuccessTextOne + "\"" + scope.autoPayData.name + "\"" + window.languages.ViewAutoPayCreatedSuccessTextTwo;
+      if (scope.autoPayData && scope.autoPayData.fromView == 'PAYCONFIRM') {
+        scope.viewPage = 'view-pay-confirm-new';
+        scope.stepAmount = 3;
+        scope.goBack = true;
+
+      } else {
+        scope.viewPage = 'view-auto-pay-new';
+        scope.stepAmount = 5;
+        scope.goBack = true;
+      }
+
+      scope.update();
+      console.log("in create autopay func", scope.autoPayData);
+      if (scope.autoPayData) {
+        if (scope.autoPayData.autopay_type == 2) {
+          console.log(Number(amount));
           window.api.call({
-            method: 'app.payment',
+            method: 'autopay.add.by.event',
             input: {
               session_key: sessionKey,
               phone_num: phoneNumber,
               service_id: Number(serviceId),
               account_id: Number(accountId),
-              amount: Number(amount),
-              payment_data: payment_data,
-              datetime: date,
-              friend_phone: friendPhone
+              amount: amount,
+              cntrg_phone_num: scope.autoPayData.cntrg_phone_num,
+              step: scope.autoPayData.step,
+              title: scope.autoPayData.name
             },
 
             scope: this,
 
             onSuccess: function (result) {
-              answerFromServer = true;
               if (result[0][0].error == 0) {
-                if (result[1]) {
-                  console.log("result of APP.PAYMENT 1", result);
-                  if (result[1][0].payment_id && !result[1][0].invoice_id) {
-                    console.log("Payment id");
-
-                    if (device.platform != 'BrowserStand') {
-                      var options = {dimBackground: true};
-
-                      SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                        console.log("Started");
-                      }, function () {
-                        console.log("closed");
-                      });
-                    }
-
-                    setTimeout(function () {
-                      checkPaymentStatus(result[1][0].payment_id);
-                    }, 2000);
-
-                  }
-                  else if (result[1][0].invoice_id && !result[1][0].payment_id) {
-                    console.log("Invoice id");
-
-                    viewServicePinCards.friendHelpPaymentMode = false;
-                    viewServicePinCards.chosenFriendForHelp = null;
-
-                    componentSuccessId.style.display = 'block';
-                  }
-                }
-              }
-              else {
-                scope.errorMessageFromPayment = result[0][0].error_note;
-                scope.update();
-                console.log("result of APP.PAYMENT 3", result);
-                componentUnsuccessId.style.display = 'block';
-              }
-            },
-
-            onFail: function (api_status, api_status_message, data) {
-              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-              console.error(data);
-            }
-          });
-
-          setTimeout(function () {
-            if (!answerFromServer) {
-              if (device.platform != 'BrowserStand') {
-                SpinnerPlugin.activityStop();
-              }
-              return
-            }
-          }, 20000)
-        }
-
-        function checkPaymentStatus(payment_id) {
-
-          console.log("check payment status");
-
-          window.api.call({
-            method: 'get.payment',
-            input: {
-              session_key: sessionKey,
-              phone_num: phoneNumber,
-              payment_id: payment_id
-            },
-
-            scope: this,
-
-            onSuccess: function (result) {
-              if (result[0][0].error == 0 && result[1][0]) {
-
-                console.log("result of get.payment success=", result);
-                if (result[1][0].state == -1) {
-//                scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-service-page-new';
-                  scope.stepAmount = 2;
-                  scope.errorMessageFromPayment = result[1][0].error;
-                  scope.update();
-                  console.log("state=-1 error,view=", scope.viewPage, ",step=", scope.stepAmount);
-                  if (device.platform != 'BrowserStand') {
-                    SpinnerPlugin.activityStop();
-                  }
-                  componentUnsuccessId.style.display = 'block';
-
-
-                } else if (result[1][0].state == 2) {
-                  window.updateBalanceGlobalFunction();
-
-                  viewServicePinCards.friendHelpPaymentMode = false;
-                  viewServicePinCards.chosenFriendForHelp = null;
-
-//                scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-pay';
-                  scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
-                  scope.update();
-                  console.log("state=2 success,view=", scope.viewPage, ",step=", scope.stepAmount);
-                  if (device.platform != 'BrowserStand') {
-                    SpinnerPlugin.activityStop();
-                  }
-                  componentSuccessId.style.display = 'block';
-
-
-                } else if (result[1][0].state == 1) {
-                  statusCheckCounter++;
-//                console.log("statusCheckCounter=", statusCheckCounter);
-                  if (statusCheckCounter < 5) {
-                    if (device.platform != 'BrowserStand') {
-                      var options = {dimBackground: true};
-
-                      SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                        console.log("Started");
-                      }, function () {
-                        console.log("closed");
-                      });
-                    }
-                    setTimeout(function () {
-                      checkPaymentStatus(result[1][0].payment_id);
-                    }, 2000);
-                  } else {
-                    if (device.platform != 'BrowserStand') {
-                      SpinnerPlugin.activityStop();
-                    }
-
-                    viewServicePinCards.friendHelpPaymentMode = false;
-                    viewServicePinCards.chosenFriendForHelp = null;
-
-//                  scope.viewPage = (scope.isInFavorites || opts.mode == 'POPULAR') ? 'view-main-page' : 'view-pay';
-                    scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
-                    scope.update();
-                    console.log("state=1 waiting,view=", scope.viewPage, ",step=", scope.stepAmount);
-                    componentInProcessingId.style.display = 'block';
-                  }
-
-                }
-
-              }
-              else {
-                console.log("result of GET.PAYMENT in else", result);
-                if (device.platform != 'BrowserStand') {
-                  SpinnerPlugin.activityStop();
-                }
-                componentUnsuccessId.style.display = 'block';
-              }
-            },
-
-            onFail: function (api_status, api_status_message, data) {
-              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-              console.error(data);
-            }
-          });
-        }
-
-        function createAutoPay(payment_data) {
-          scope.operationMessage = window.languages.ViewAutoPayCreatedSuccessTextOne + "\"" + scope.autoPayData.name + "\"" + window.languages.ViewAutoPayCreatedSuccessTextTwo;
-          if (scope.autoPayData && scope.autoPayData.fromView == 'PAYCONFIRM') {
-            scope.viewPage = 'view-pay-confirm-new';
-            scope.stepAmount = 3;
-            scope.goBack = true;
-
-          } else {
-            scope.viewPage = 'view-auto-pay-new';
-            scope.stepAmount = 5;
-            scope.goBack = true;
-          }
-
-          scope.update();
-          console.log("in create autopay func", scope.autoPayData);
-          if (scope.autoPayData) {
-            if (scope.autoPayData.autopay_type == 2) {
-              console.log(Number(amount));
-              window.api.call({
-                method: 'autopay.add.by.event',
-                input: {
-                  session_key: sessionKey,
-                  phone_num: phoneNumber,
-                  service_id: Number(serviceId),
-                  account_id: Number(accountId),
-                  amount: amount,
-                  cntrg_phone_num: scope.autoPayData.cntrg_phone_num,
-                  step: scope.autoPayData.step,
-                  title: scope.autoPayData.name
-                },
-
-                scope: this,
-
-                onSuccess: function (result) {
-                  if (result[0][0].error == 0) {
-                    console.log("result of autopay.add.by.event", result);
+                console.log("result of autopay.add.by.event", result);
 //                  scope.autoPayDelete = true;
 //                  scope.update(scope.autoPayDelete);
 
-                    if (scope.autoPayData.fromView == 'PAYCONFIRM')
-                      scope.autoPayData.fromView = 'AFTERCREATION';
+                if (scope.autoPayData.fromView == 'PAYCONFIRM')
+                  scope.autoPayData.fromView = 'AFTERCREATION';
 
-                    scope.autoPayData.isNew = false;
-                    localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-                    componentSuccessId.style.display = 'block';
+                scope.autoPayData.isNew = false;
+                localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+                componentSuccessId.style.display = 'block';
 
-                  }
-                  else {
-                    if (scope.autoPayData.fromView == 'PAYCONFIRM')
-                      scope.autoPayData.fromView = 'AFTERCREATION';
+              }
+              else {
+                if (scope.autoPayData.fromView == 'PAYCONFIRM')
+                  scope.autoPayData.fromView = 'AFTERCREATION';
 //                  scope.autoPayData.isNew = false;
-                    localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-                    console.log("result of autopay.add.by.event", result);
-                    componentUnsuccessId.style.display = 'block';
-                  }
-                },
+                localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+                console.log("result of autopay.add.by.event", result);
+                componentUnsuccessId.style.display = 'block';
+              }
+            },
 
-                onFail: function (api_status, api_status_message, data) {
-                  console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                  console.error(data);
-                }
-              });
-            } else if (scope.autoPayData.autopay_type == 1) {
-
-              window.api.call({
-                method: 'autopay.add.by.schedule',
-                input: {
-                  session_key: sessionKey,
-                  phone_num: phoneNumber,
-                  type: scope.autoPayData.type,
-                  service_id: Number(serviceId),
-                  account_id: Number(accountId),
-                  amount: Number(amount),
-                  payment_data: payment_data,
-                  paytime: scope.autoPayData.paytime,
-                  week_day: scope.autoPayData.week_day ? scope.autoPayData.week_day : null,
-                  month_day: scope.autoPayData.month_day ? scope.autoPayData.month_day : null,
-                  title: scope.autoPayData.name
-                },
-
-                scope: this,
-
-                onSuccess: function (result) {
-                  if (result[0][0].error == 0) {
-                    console.log("result of autopay.add.by.schedule", result);
-//                  localStorage.setItem('autoPayData', null);
-                    if (scope.autoPayData.fromView == 'PAYCONFIRM')
-                      scope.autoPayData.fromView = 'AFTERCREATION';
-                    scope.autoPayData.isNew = false;
-                    localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-                    componentSuccessId.style.display = 'block';
-
-                  }
-                  else {
-                    if (scope.autoPayData.fromView == 'PAYCONFIRM')
-                      scope.autoPayData.fromView = 'AFTERCREATION';
-//                  scope.autoPayData.isNew = false;
-                    localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-                    console.log("result of autopay.add.by.schedule", result);
-                    componentUnsuccessId.style.display = 'block';
-                  }
-                },
-
-                onFail: function (api_status, api_status_message, data) {
-                  console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                  console.error(data);
-                }
-              });
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
             }
-          }
+          });
+        } else if (scope.autoPayData.autopay_type == 1) {
 
+          window.api.call({
+            method: 'autopay.add.by.schedule',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber,
+              type: scope.autoPayData.type,
+              service_id: Number(serviceId),
+              account_id: Number(accountId),
+              amount: Number(amount),
+              payment_data: payment_data,
+              paytime: scope.autoPayData.paytime,
+              week_day: scope.autoPayData.week_day ? scope.autoPayData.week_day : null,
+              month_day: scope.autoPayData.month_day ? scope.autoPayData.month_day : null,
+              title: scope.autoPayData.name
+            },
+
+            scope: this,
+
+            onSuccess: function (result) {
+              if (result[0][0].error == 0) {
+                console.log("result of autopay.add.by.schedule", result);
+//                  localStorage.setItem('autoPayData', null);
+                if (scope.autoPayData.fromView == 'PAYCONFIRM')
+                  scope.autoPayData.fromView = 'AFTERCREATION';
+                scope.autoPayData.isNew = false;
+                localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+                componentSuccessId.style.display = 'block';
+
+              }
+              else {
+                if (scope.autoPayData.fromView == 'PAYCONFIRM')
+                  scope.autoPayData.fromView = 'AFTERCREATION';
+//                  scope.autoPayData.isNew = false;
+                localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+                console.log("result of autopay.add.by.schedule", result);
+                componentUnsuccessId.style.display = 'block';
+              }
+            },
+
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
         }
-
       }
-    };
+
+    }
 
     var autoPayStartY, autoPayStartX, autoPayEndY, autoPayEndX;
 

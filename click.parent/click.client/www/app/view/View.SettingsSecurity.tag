@@ -43,7 +43,7 @@
         <div id="blockWithPinIconId" class="settings-security-check-icon"></div>
       </div>
 
-      <div hidden class="settings-block-containter settings-security-block" ontouchend="blockPayAndTransfer()">
+      <div class="settings-block-containter settings-security-block" ontouchend="blockPayAndTransfer()">
         <div class="settings-block-icon"
              style="background-image: url('resources/icons/ViewSettingsSecurity/security_lock_payments.png')"></div>
         <div class="settings-block-name-field">{window.languages.ViewSecuritySettingsBlockPayTitle}</div>
