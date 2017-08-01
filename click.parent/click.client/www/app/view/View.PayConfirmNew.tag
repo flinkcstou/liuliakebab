@@ -627,7 +627,7 @@
               scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
               console.log("scope.operationMessage ", scope.operationMessage)
               scope.operationMessage = window.languages.ComponentSuccessMessageForPay;
-              scope.update(scope.operationMessage);
+              riot.update(scope.operationMessage);
               scope.update();
               console.log("state=2 success,view=", scope.viewPage, ",step=", scope.stepAmount);
               if (device.platform != 'BrowserStand') {

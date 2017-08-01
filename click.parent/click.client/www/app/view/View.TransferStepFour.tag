@@ -431,6 +431,9 @@
                   viewTransferStepTwo.sum = 0;
                   viewTransferStepTwo.sumWithoutSpace = 0;
                   window.updateBalanceGlobalFunction();
+                  console.log("secretCode =", scope.secretCode)
+                  riot.update(scope.secretCode);
+
                   scope.update();
 
                 }
