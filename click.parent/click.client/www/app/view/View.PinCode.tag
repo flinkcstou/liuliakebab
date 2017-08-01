@@ -127,7 +127,7 @@
       fromRegistration = false;
       fromPayOrTransfer = false;
     }
-    else if (opts[0] == 'view-pay-confirm') {
+    else if (opts[0] == 'view-pay-confirm' || opts[0] == 'view-transfer-stepfour') {
       fromSettings = false;
       fromAuthorization = false;
       fromRegistration = false;

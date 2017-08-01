@@ -151,6 +151,18 @@
     else
       this.titleName = window.languages.ViewTransferFourTitle + ' ' + transferTitle;
 
+    if (localStorage.getItem('settings_block_payAndTransfer'))
+      var payTransferBlocked = JSON.parse(localStorage.getItem('settings_block_payAndTransfer'));
+
+    console.log("CONFIRMED=", sessionStorage.getItem('payTransferConfirmed'))
+    console.log("BLOCKED=", payTransferBlocked)
+
+    if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
+      console.log("payTransferConfirmed=", sessionStorage.getItem('payTransferConfirmed'))
+      transfer();
+      sessionStorage.setItem('payTransferConfirmed', null);
+    }
+
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
     goToBackStart = function () {
@@ -261,8 +273,8 @@
       card.name = '';
       card.cardNumber = '';
       card.owner = {};
-      if(opts[2])
-      card.owner.firstName = opts[2];
+      if (opts[2])
+        card.owner.firstName = opts[2];
       card.owner.secondName = '';
       var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))
 //      console.log('CODE OF BANK', codeOfBank)
@@ -354,87 +366,104 @@
           return
         }
 
-        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+        console.log("777", sessionStorage.getItem('payTransferConfirmed'));
 
-        if (device.platform != 'BrowserStand') {
-          var options = {dimBackground: true};
-
-          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-            console.log("Started");
-          }, function () {
-            console.log("closed");
-          });
+        if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) != true) {
+          console.log("888");
+          riotTags.innerHTML = "<view-pin-code>";
+          riot.mount('view-pin-code', ['view-transfer-stepfour']);
+          return
         }
 
-        var answerFromServer = false;
+        transfer();
 
-        window.api.call({
-          method: 'p2p.payment',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            account_id: scope.objectCardForTransfer.card_id,
-            receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
-            amount: parseInt(scope.objectSumForTransfer.sum),
-            type: scope.objectTypeForTransfer.type,
-            transaction_id: parseInt(Date.now() / 1000)
+
+      }
+    }
+
+    transfer = function () {
+
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+      if (device.platform != 'BrowserStand') {
+        var options = {dimBackground: true};
+
+        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+          console.log("Started");
+        }, function () {
+          console.log("closed");
+        });
+      }
+
+      var answerFromServer = false;
+
+      window.api.call({
+        method: 'p2p.payment',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          account_id: scope.objectCardForTransfer.card_id,
+          receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
+          amount: parseInt(scope.objectSumForTransfer.sum),
+          type: scope.objectTypeForTransfer.type,
+          transaction_id: parseInt(Date.now() / 1000)
 //                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
 
-          },
+        },
 
-          scope: this,
+        scope: this,
 
-          onSuccess: function (result) {
-            answerFromServer = true;
-            if (result[0][0].error == 0) {
-              viewTransferStepTwo.sum = 0;
-              viewTransferStepTwo.sumWithoutSpace = 0;
+        onSuccess: function (result) {
+          answerFromServer = true;
+          if (result[0][0].error == 0) {
+            viewTransferStepTwo.sum = 0;
+            viewTransferStepTwo.sumWithoutSpace = 0;
 //              console.log("result of TRANSFER ", result);
-              if (result[1])
-                if (result[1][0]) {
-                  if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
-                    blockCodeConfirmId.style.display = 'block';
-                    scope.secretCode = result[1][0].secret_code;
-                    viewTransfer.phoneNumber = 0
-                    viewTransfer.cardNumber = 0
-                    viewTransfer.cardNumber = 0
-                    viewTransferStepTwo.sum = 0;
-                    viewTransferStepTwo.sumWithoutSpace = 0;
-                    window.updateBalanceGlobalFunction();
-                    scope.update();
+            if (result[1])
+              if (result[1][0]) {
+                if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
+                  blockCodeConfirmId.style.display = 'block';
+                  scope.secretCode = result[1][0].secret_code;
+                  viewTransfer.phoneNumber = 0
+                  viewTransfer.cardNumber = 0
+                  viewTransfer.cardNumber = 0
+                  viewTransferStepTwo.sum = 0;
+                  viewTransferStepTwo.sumWithoutSpace = 0;
+                  window.updateBalanceGlobalFunction();
+                  scope.update();
 
-                  }
-                  if (result[1][0].secret_code == 0) {
-                    window.updateBalanceGlobalFunction();
-                    componentSuccessId.style.display = 'block';
-                    transferFindCards(scope.objectTypeForTransfer.name);
-                  }
                 }
+                if (result[1][0].secret_code == 0) {
+                  window.updateBalanceGlobalFunction();
+                  componentSuccessId.style.display = 'block';
+                  transferFindCards(scope.objectTypeForTransfer.name);
+                }
+              }
 
-            }
-            else {
-              scope.errorMessageFromTransfer = result[0][0].error_note
-              componentUnsuccessId.style.display = 'block';
-              scope.update();
-            }
-          },
-
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
           }
-        });
-
-        setTimeout(function () {
-          if(!answerFromServer){
-            if (device.platform != 'BrowserStand') {
-              SpinnerPlugin.activityStop();
-            }
-            return
+          else {
+            scope.errorMessageFromTransfer = result[0][0].error_note
+            componentUnsuccessId.style.display = 'block';
+            scope.update();
           }
-        }, 20000)
-      }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+
+      setTimeout(function () {
+        if (!answerFromServer) {
+          if (device.platform != 'BrowserStand') {
+            SpinnerPlugin.activityStop();
+          }
+          return
+        }
+      }, 20000)
+
     }
 
     closeSecretCodePage = function () {
