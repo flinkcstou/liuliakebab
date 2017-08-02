@@ -183,6 +183,8 @@ var RU_LANGUAGES =
   "ViewPinCodeClickPinLabel": "Установите CLICK-PIN",
   "ViewPinCodeNowClickPinLabel": "Текущий CLICK-PIN",
   "ViewPinCodeConfirmClickPinLabel": "Подтвердите CLICK-PIN",
+  "ViewPinCodeConfirmPayTransferLabel": "Введите CLICK-PIN для подтверждения",
+  "ViewPinCodeConfirmPayTransferErrorPinLabel": "Неверно набран CLICK-PIN, пожалуйста повторите ввод",
 
   "ViewCardEditTitleName": "НАСТРОЙКИ КАРТЫ",
   "ViewCardEditCardNameText": "Название карты",
