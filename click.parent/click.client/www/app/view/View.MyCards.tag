@@ -4,7 +4,8 @@
     <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
          class="{back-button: backbuttoncheck}">
     </div>
-    <div id="rightButton" type="button" class="{settings-button: rightbuttoncheck}" ontouchstart="editCardStart()" ontouchend="editCardEnd()"></div>
+    <div id="rightButton" type="button" class="{settings-button: rightbuttoncheck}" ontouchstart="editCardStart()"
+         ontouchend="editCardEnd()"></div>
   </div>
 
   <div class="my-cards-carousel">
@@ -13,7 +14,8 @@
   </div>
 
   <div class="my-cards-button-container">
-    <div id="transferButtonId" class="my-cards-button-field my-cards-button-field-transfer" ontouchstart="transferOnTouchStart()"
+    <div id="transferButtonId" class="my-cards-button-field my-cards-button-field-transfer"
+         ontouchstart="transferOnTouchStart()"
          ontouchend="goToTransferView()">
       <div class="my-cards-button-icon my-cards-button-icon-transfer">
       </div>
@@ -22,7 +24,8 @@
       </div>
     </div>
 
-    <div id="payButtonId" class="my-cards-button-field my-cards-button-field-payment" ontouchstart="payOnTouchStart()" ontouchend="goToPayView()">
+    <div id="payButtonId" class="my-cards-button-field my-cards-button-field-payment" ontouchstart="payOnTouchStart()"
+         ontouchend="goToPayView()">
       <div class="my-cards-button-icon my-cards-button-icon-payment">
       </div>
 
@@ -31,7 +34,8 @@
       </div>
     </div>
 
-    <div id="reportButtonId" class="my-cards-button-field my-cards-button-field-report" ontouchstart="reportsOnTouchStart()"
+    <div id="reportButtonId" class="my-cards-button-field my-cards-button-field-report"
+         ontouchstart="reportsOnTouchStart()"
          ontouchend="goToReports()">
       <div class="my-cards-button-icon my-cards-button-icon-report">
       </div>
@@ -48,20 +52,20 @@
     <div class="my-cards-button-block-card-label">{window.languages.ViewMyCardBlock}</div>
   </div>
 
-  <div class="my-cards-last-operations">
-    <div class="my-cards-last-operations-container-label">
+  <div id="lastOperationMainContainerId" class="my-cards-last-operations">
+    <div class="my-cards-last-operations-container-label" ontouchstart="lastOperationsTouchStart()"
+         ontouchend="lastOperationsTouchEnd()">
       <p class="my-cards-last-operations-label">{window.languages.ViewMyCardLastOperations}</p>
+    </div>
 
-      <div id="lastOperationContainerId" class="my-cards-last-operations-container">
-        <div class="my-cards-last-operations-info" each="{i in arrayOfOperationsByAccount}"
-             style="top: {i.count*top}px">
-          <div class="my-cards-operation-amount">- {i.amount}</div>
-          <div class="my-cards-operation-currency">{i.lang_amount_currency}</div>
-          <div class="my-cards-firm-name">{i.service_name}</div>
-          <div class="my-cards-operation-date">{i.created}</div>
-        </div>
+    <div id="lastOperationContainerId" class="my-cards-last-operations-container">
+      <div class="my-cards-last-operations-info" each="{i in arrayOfOperationsByAccount}"
+           style="top: {i.count*top}px">
+        <div class="my-cards-operation-amount">- {i.amount}</div>
+        <div class="my-cards-operation-currency">{i.lang_amount_currency}</div>
+        <div class="my-cards-firm-name">{i.service_name}</div>
+        <div class="my-cards-operation-date">{i.created}</div>
       </div>
-
     </div>
 
 
@@ -84,7 +88,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-cards') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-my-cards',
+          "view"  : 'view-my-cards',
           "params": opts
         }
       );
@@ -99,6 +103,38 @@
 //      scope.update(scope.tags['component-card-carousel']);
       riot.update()
     });
+
+    var lastOperationButtonStartX, lastOperationButtonEndX, lastOperationButtonStartY, lastOperationButtonEndY;
+    var lastOperationTimeStart, lastOperationTimeEnd
+    var lastOperationCheck = false;
+    lastOperationsTouchStart = function () {
+      lastOperationButtonStartX = event.changedTouches[0].pageX;
+      lastOperationButtonStartY = event.changedTouches[0].pageY;
+      lastOperationTimeStart = event.timeStamp.toFixed(0);
+    }
+
+    lastOperationsTouchEnd = function () {
+      lastOperationButtonEndX = event.changedTouches[0].pageX;
+      lastOperationButtonEndY = event.changedTouches[0].pageY;
+      lastOperationTimeEnd = event.timeStamp.toFixed(0);
+
+      if (Math.abs(lastOperationButtonStartX - lastOperationButtonEndX) <= 100 && lastOperationButtonStartY > lastOperationButtonEndY && lastOperationTimeEnd - lastOperationTimeStart < 500 && !lastOperationCheck) {
+
+        lastOperationMainContainerId.style.webkitTransform = "translate3d(0,0,0)"
+//          lastOperationMainContainerId.top = "0"
+        lastOperationContainerId.style.height = 1155 * widthK + "px";
+        lastOperationCheck = true;
+
+      }
+      else {
+        if (Math.abs(lastOperationButtonStartX - lastOperationButtonEndX) <= 100 && lastOperationButtonStartY < lastOperationButtonEndY && lastOperationTimeEnd - lastOperationTimeStart < 500 && lastOperationCheck) {
+          lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 835 * widthK + "px,0)"
+//          lastOperationMainContainerId.top = "0"
+          lastOperationContainerId.style.height = 325 * widthK + "px";
+          lastOperationCheck = false;
+        }
+      }
+    }
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
@@ -223,7 +259,7 @@
             riot.mount('view-report', {
               show_graph: true,
               account_id: card,
-              card_name: cards[card].name
+              card_name : cards[card].name
             });
             scope.unmount()
           }
@@ -437,10 +473,10 @@
       if (scope.card)
         window.api.call({
           method: 'get.payments.by.account',
-          input: {
+          input : {
             session_key: sessionKey,
-            phone_num: phoneNumber,
-            account_id: scope.card.card_id
+            phone_num  : phoneNumber,
+            account_id : scope.card.card_id
           },
 
           onSuccess: function (result) {

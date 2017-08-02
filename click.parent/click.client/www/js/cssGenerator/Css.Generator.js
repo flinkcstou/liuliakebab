@@ -2735,18 +2735,23 @@ var css = {
   "width: 100%;" +
   "top:" + 80 * widthK + "px;" +
   "background-color: white;" +
+  "overflow-y: scroll;" +
+  "height:" + 325 * widthK + "px;" +
   "}",
 
   myCardsLastOperations: ".my-cards-last-operations " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top:" + 835 * widthK + "px;" +
-  "overflow-y: scroll; " +
-  "overflow-x: hidden; " +
-  "-webkit-overflow-scrolling: touch; " +
+  "height: 100%;" +
+  // "top:" + 835 * widthK + "px;" +
+  // "overflow-y: scroll; " +
+  "-webkit-transform: translate3d(0," + 835 * widthK  +"px,0); " +
+  // "overflow-x: hidden; " +
+  "-webkit-transition: 0.5s; " +
+  // "-webkit-overflow-scrolling: touch; " +
   "background-color: #ffffff;" +
-  "bottom: 0;" +
+  // "bottom: 0;" +
   "}",
 
   myCardsLastOperationsContainerLabel: ".my-cards-last-operations-container-label " +
@@ -2759,6 +2764,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 24 * widthK + "px;" +
   "color: #8a8a8a;" +
+  "z-index: 99999;" +
   "box-shadow: 0px 17px 63px -23px rgb(37, 36, 36);" +
   "}",
 
