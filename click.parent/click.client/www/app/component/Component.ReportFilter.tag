@@ -325,7 +325,7 @@
 
           }
           case componentReportFilter.currentWeek:{
-            day = date.getDay();
+            var day = date.getDay();
 
             day = (day) ? (day) : (7);
             day--;

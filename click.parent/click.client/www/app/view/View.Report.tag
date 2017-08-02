@@ -109,7 +109,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-report',
+          "view"  : 'view-report',
           "params": opts
         }
       );
@@ -529,15 +529,15 @@
 
       window.api.call({
         method: 'get.payment.list',
-        input: {
+        input : {
           session_key: sessionKey,
-          phone_num: phoneNumber,
+          phone_num  : phoneNumber,
           page_number: parseInt(scope.pageNumberOptional),
-          date_start: firstDay,
-          date_end: lastDay,
-          account_id: accountId
+          date_start : firstDay,
+          date_end   : lastDay,
+          account_id : accountId
         },
-        scope: this,
+        scope : this,
 
         onSuccess: function (result) {
 
@@ -548,8 +548,6 @@
           if (result[0][0].error == 0) {
             console.log('PAYMENTLIST=', result[1]);
             for (var i in result[1]) {
-
-              console.log()
 
 //              console.log("C", result[1][i].payment_id);
 
@@ -563,12 +561,14 @@
                     result[1][i].paymentTime = result[1][i].created.split(" ")[1].substr(0, 5);
 
               var date = new Date(result[1][i].created_timestamp * 1000);
-              var dateStr = date.getDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getMonth()] + ' ' + date.getFullYear();
+              console.log(date, result[1][i].service_name)
+              console.log(date.getUTCDate())
+              var dateStr = date.getUTCDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getUTCMonth()] + ' ' + date.getUTCFullYear();
 
-              if (date.getDate() == new Date().getDate() && date.getMonth() == new Date().getMonth() && date.getFullYear() == new Date().getFullYear())
+              if (date.getUTCDate() == new Date().getUTCDate() && date.getUTCMonth() == new Date().getUTCMonth() && date.getUTCFullYear() == new Date().getUTCFullYear())
                 dateStr = 'сегодня'
 
-              if (date.getDate() == new Date().getDate() - 1  && date.getMonth() == new Date().getMonth() && date.getFullYear() == new Date().getFullYear())
+              if (date.getUTCDate() == new Date().getUTCDate() - 1 && date.getUTCMonth() == new Date().getUTCMonth() && date.getUTCFullYear() == new Date().getUTCFullYear())
                 dateStr = 'вчера'
 
               if (result[1][i].state == -1) {
@@ -583,7 +583,6 @@
                 result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
               }
 
-              console.log("STATE ", result[1][i].state)
 
 //              console.log("DATE DATE", dateStr)
               if (!scope.paymentsMap[dateStr]) {
@@ -612,7 +611,7 @@
           }
 
         },
-        onFail: function (api_status, api_status_message, data) {
+        onFail   : function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -695,14 +694,14 @@
       scope.update();
       window.api.call({
         method: 'history.chart.data',
-        input: {
+        input : {
           session_key: sessionKey,
-          phone_num: phoneNumber,
-          date_start: firstDay,
-          date_end: lastDay,
-          account_id: accountId
+          phone_num  : phoneNumber,
+          date_start : firstDay,
+          date_end   : lastDay,
+          account_id : accountId
         },
-        scope: this,
+        scope : this,
 
         onSuccess: function (result) {
 
@@ -741,7 +740,7 @@
           }
 
         },
-        onFail: function (api_status, api_status_message, data) {
+        onFail   : function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -770,8 +769,8 @@
       var data = {
         datasets: [
           {
-            borderWidth: 0,
-            data: [],
+            borderWidth    : 0,
+            data           : [],
             backgroundColor: []
           }]
       };
@@ -807,12 +806,12 @@
         console.log('DATA', data)
         var percent = arrayForGraph[i].percent;
         var coordinates = {
-          x: x,
-          y: y,
-          percent: parseInt(percent),
-          image: arrayForGraph[i].image_inner,
-          order: j,
-          alpha: alpha,
+          x       : x,
+          y       : y,
+          percent : parseInt(percent),
+          image   : arrayForGraph[i].image_inner,
+          order   : j,
+          alpha   : alpha,
           position: position,
 //          width: width
         }
@@ -830,15 +829,15 @@
         return
       }
       var myChart = new Chart(ctx, {
-          type: 'doughnut',
-          data: data,
+          type   : 'doughnut',
+          data   : data,
           options: {
             cutoutPercentage: 55,
-            animateScale: false,
-            tooltips: {
+            animateScale    : false,
+            tooltips        : {
               enabled: false
             },
-            events: [],
+            events          : [],
 
           }
         })
@@ -983,7 +982,7 @@
 
     reportsBodyContainerTouchEnd = function () {
 
-      if(scope.filterOpen) return;
+      if (scope.filterOpen) return;
 
       reportBodyContainerEndY = event.changedTouches[0].pageY;
       reportBodyContainerEndX = event.changedTouches[0].pageX;
