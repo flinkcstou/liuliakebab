@@ -185,10 +185,14 @@
       });
     }
 
+    scope.filterOpen = false;
+
     openFilter = function () {
       event.stopPropagation();
 
-      componentMenu.checkOpen = true;
+      scope.filterOpen = true;
+
+//      componentMenu.checkOpen = false;
 
       this.filterMenuBackPageId.style.webkitTransition = '0.3s';
       this.reportPageId.style.webkitTransition = '0.3s';
@@ -978,6 +982,9 @@
     }
 
     reportsBodyContainerTouchEnd = function () {
+
+      if(scope.filterOpen) return;
+
       reportBodyContainerEndY = event.changedTouches[0].pageY;
       reportBodyContainerEndX = event.changedTouches[0].pageX;
       reportBodyTimeEnd = event.timeStamp.toFixed(0);

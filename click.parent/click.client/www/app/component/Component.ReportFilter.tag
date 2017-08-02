@@ -576,7 +576,11 @@
           event.preventDefault();
           event.stopPropagation();
         }
-        componentMenu.checkOpen = false;
+//        componentMenu.checkOpen = false;
+
+        if(!scope.createdDateFilter){
+          scope.parent.filterOpen = false;
+        }
 
         scope.filterAccount = false;
         scope.filterDate = false;
@@ -616,7 +620,16 @@
         event.preventDefault();
         event.stopPropagation();
       }
-      componentMenu.checkOpen = false;
+
+      scope.todayButton = false;
+      scope.yesterdayButton = false;
+      scope.weekButton = false;
+      scope.pastWeekButton = false;
+      scope.monthButton = false;
+      scope.pastMonthButton = false;
+//      componentMenu.checkOpen = false;
+
+      scope.parent.filterOpen = false;
 
       scope.filterAccount = false;
       scope.filterDate = false;
