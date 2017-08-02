@@ -57,27 +57,33 @@
         <div id="todayButtonId" class="filter-menu-block-containter" ontouchstart="setDateStart(this.id)"
              ontouchend="setDate(componentReportFilter.today, this.id)">
           <div class="filter-menu-name-field">{languages.ComponentReportFilterDateToday}</div>
+          <div class="{pincard-card-uncheckmark : !todayButton, pincard-card-checkmark : todayButton}"></div>
         </div>
         <div id="yesterdayButtonId" class="filter-menu-block-containter" ontouchstart="setDateStart(this.id)"
              ontouchend="setDate(componentReportFilter.yesterday, this.id)">
           <div class="filter-menu-name-field">{languages.ComponentReportFilterDateYesterday}</div>
+          <div class="{pincard-card-uncheckmark : !yesterdayButton, pincard-card-checkmark : yesterdayButton}"></div>
         </div>
         <div id="weekButtonId" class="filter-menu-block-containter" ontouchstart="setDateStart(this.id)"
              ontouchend="setDate(componentReportFilter.currentWeek, this.id)">
           <div class="filter-menu-name-field">{languages.ComponentReportFilterDateWeek}</div>
+          <div class="{pincard-card-uncheckmark : !weekButton, pincard-card-checkmark : weekButton}"></div>
         </div>
         <div id="pastWeekButtonId" class="filter-menu-block-containter" ontouchstart="setDateStart(this.id)"
              ontouchend="setDate(componentReportFilter.pastWeek, this.id)">
           <div class="filter-menu-name-field">{languages.ComponentReportFilterDatePastWeek}</div>
+          <div class="{pincard-card-uncheckmark : !pastWeekButton, pincard-card-checkmark : pastWeekButton}"></div>
         </div>
         <div id="monthButtonId" class="filter-menu-block-containter" ontouchstart="setDateStart(this.id)"
              ontouchend="setDate(componentReportFilter.currentMonth, this.id)">
           <div class="filter-menu-name-field">{languages.ComponentReportFilterDateCurrentMonth}</div>
+          <div class="{pincard-card-uncheckmark : !monthButton, pincard-card-checkmark : monthButton}"></div>
         </div>
         <div id="pastMonthButtonId" class="filter-menu-block-containter" ontouchstart="setDateStart(this.id)"
              ontouchend="setDate(componentReportFilter.pastMonth, this.id)"
              style="border: none;">
           <div class="filter-menu-name-field">{languages.ComponentReportFilterDatePastMonth}</div>
+          <div class="{pincard-card-uncheckmark : !pastMonthButton, pincard-card-checkmark : pastMonthButton}"></div>
         </div>
 
         <button id="secondReadyButtonId" class="report-filter-ready-button" if="{filterDate || filterAccount}"
@@ -138,6 +144,13 @@
       date,
       dateFrom,
       dateTo;
+
+    scope.todayButton = false;
+    scope.yesterdayButton = false;
+    scope.weekButton = false;
+    scope.pastWeekButton = false;
+    scope.monthButton = false;
+    scope.pastMonthButton = false;
 
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
     scope.firstName = loginInfo.firstname;
@@ -286,15 +299,58 @@
 
         date = new Date();
 
+        scope.todayButton = false;
+        scope.yesterdayButton = false;
+        scope.weekButton = false;
+        scope.pastWeekButton = false;
+        scope.monthButton = false;
+        scope.pastMonthButton = false;
+
         //Filter Date To
         switch (forWhatDate) {
 
-          case componentReportFilter.today:
-          case componentReportFilter.currentWeek:
+          case componentReportFilter.today:{
+
+            scope.to_dd = date.getDate();
+            scope.to_mm = date.getMonth() + 1;
+            scope.to_yyyy = date.getFullYear();
+
+            scope.from_dd = date.getDate();
+            scope.from_mm = date.getMonth() + 1;
+            scope.from_yyyy = date.getFullYear();
+
+            scope.todayButton = true;
+            scope.update()
+            break;
+
+          }
+          case componentReportFilter.currentWeek:{
+            day = date.getDay();
+
+            day = (day) ? (day) : (7);
+            day--;
+
+            day = date.getDate() - day;
+
+            date.setDate(day);
+
+            scope.from_dd = date.getDate();
+            scope.from_mm = date.getMonth() + 1;
+            scope.from_yyyy = date.getFullYear();
+
+            scope.weekButton = true;
+            scope.update()
+
+            break;
+
+          }
           case componentReportFilter.currentMonth: {
             scope.to_dd = date.getDate();
             scope.to_mm = date.getMonth() + 1;
             scope.to_yyyy = date.getFullYear();
+
+            scope.monthButton = true;
+            scope.update()
 
             break;
           }
@@ -309,6 +365,9 @@
             scope.from_mm = date.getMonth() + 1;
             scope.from_yyyy = date.getFullYear();
 
+            scope.yesterdayButton = true;
+            scope.update()
+
             break;
           }
           case componentReportFilter.pastWeek: {
@@ -323,6 +382,9 @@
             scope.to_dd = date.getDate();
             scope.to_mm = date.getMonth() + 1;
             scope.to_yyyy = date.getFullYear();
+
+            scope.pastWeekButton = true;
+            scope.update()
 
             break;
           }
@@ -333,42 +395,24 @@
             scope.to_mm = date.getMonth() + 1;
             scope.to_yyyy = date.getFullYear();
 
+            scope.pastMonthButton = true;
+            scope.update()
+
             break;
           }
         }
 
         //Filter Date From
         switch (forWhatDate) {
-
-          case componentReportFilter.today: {
-            scope.from_dd = date.getDate();
-            scope.from_mm = date.getMonth() + 1;
-            scope.from_yyyy = date.getFullYear();
-
-            break;
-          }
-          case componentReportFilter.currentWeek: {
-            day = date.getDay();
-
-            day = (day) ? (day) : (7);
-            day--;
-
-            day = date.getDate() - day;
-
-            date.setDate(day);
-
-            scope.from_dd = date.getDate();
-            scope.from_mm = date.getMonth() + 1;
-            scope.from_yyyy = date.getFullYear();
-
-            break;
-          }
           case componentReportFilter.currentMonth: {
             date.setDate(1);
 
             scope.from_dd = date.getDate();
             scope.from_mm = date.getMonth() + 1;
             scope.from_yyyy = date.getFullYear();
+
+            scope.monthButton = true;
+            scope.update()
 
             break;
           }
@@ -386,6 +430,9 @@
             scope.from_mm = date.getMonth() + 1;
             scope.from_yyyy = date.getFullYear();
 
+            scope.pastWeekButton = true;
+            scope.update()
+
             break;
           }
           case componentReportFilter.pastMonth: {
@@ -394,6 +441,9 @@
             scope.from_dd = date.getDate();
             scope.from_mm = date.getMonth() + 1;
             scope.from_yyyy = date.getFullYear();
+
+            scope.pastMonthButton = true;
+            scope.update()
 
             break;
           }
