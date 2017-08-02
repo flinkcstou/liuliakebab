@@ -86,7 +86,7 @@
           <div class="view-reports-graph-block-name-field">{j.category_name}</div>
           <div class="view-reports-graph-block-amount-field" style="color: {j.color_hex}">{j.amount}</div>
           <div class="view-reports-graph-block-currency-field" style="color: {j.color_hex}">сум</div>
-          <div class="view-reports-graph-block-next-icon"></div>
+          <div hidden class="view-reports-graph-block-next-icon"></div>
         </div>
       </div>
     </div>
