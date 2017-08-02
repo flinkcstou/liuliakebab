@@ -3,7 +3,7 @@
   <div class="pincode-flex-container">
     <div class="pincode-unchangable-container">
       <div if="{nowCheckPin}" id="labelOfNowPinId" class="pincode-enter-pin-label">
-        {window.languages.ViewPinCodeNowClickPinLabel}
+        {nowCheckPinTitle}
       </div>
       <div if="{checkPin}" id="labelOfPinId" class="pincode-enter-pin-label">{labelOfTitle}</div>
       <div if="{checkPinConfirm}" class="pincode-enter-pin-confirm-label">
@@ -111,6 +111,7 @@
     var fromSettings = false;
     var fromPayOrTransfer = false;
     scope.showRegistrationProcess = false;
+    scope.nowCheckPinTitle = window.languages.ViewPinCodeNowClickPinLabel;
 
 
     scope.labelOfTitle = window.languages.ViewPinCodeClickPinLabel;
@@ -128,6 +129,7 @@
       fromPayOrTransfer = false;
     }
     else if (opts[0] == 'view-pay-confirm' || opts[0] == 'view-transfer-stepfour') {
+      scope.nowCheckPinTitle = window.languages.ViewPinCodeConfirmPayTransferLabel;
       fromSettings = false;
       fromAuthorization = false;
       fromRegistration = false;
@@ -139,6 +141,8 @@
       scope.nowCheckPin = false
       scope.labelOfTitle = "Для удобства пользования, просим установить новый CLICK-PIN из 5 цифр!"
     }
+
+    scope.update();
 
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
 
@@ -310,10 +314,7 @@
         circleFour.style.backgroundColor = '#01cfff';
         circleFive.style.backgroundColor = '#01cfff';
 
-        console.log("111");
-
         if (scope.checkPinConfirm) {
-          console.log("222");
           pinConfirm = enteredPin;
           scope.checkPinConfirm = false;
           if (pin == pinConfirm) {
@@ -339,12 +340,10 @@
 
         }
         else if (scope.nowCheckPin) {
-          console.log("333");
           if (hex_md5(enteredPin) == localStorage.getItem('pinForStand')) {
-            console.log("444");
+
             if (fromPayOrTransfer) {
               sessionStorage.setItem('payTransferConfirmed', true);
-              console.log("4449898");
               onBackKeyDown();
             } else {
               scope.checkPin = true;
@@ -358,29 +357,25 @@
             }
           }
           else {
-            console.log("555");
             scope.clickPinError = false;
-            scope.errorNote = "Неверный текущий CLICK-PIN!";
-
             scope.showError = true;
 
             if (fromPayOrTransfer) {
+              scope.errorNote = window.languages.ViewPinCodeConfirmPayTransferErrorPinLabel;
               sessionStorage.setItem('payTransferConfirmed', false);
-              console.log("4449898");
-              scope.stepToBack = 0;
-              console.log("444!!!");
-              scope.update();
+
             } else {
-              console.log("nkjnkn");
-              scope.nowCheckPin = true;
-              scope.checkPin = false;
-              scope.checkPinConfirm = false;
-              pinConfirm = '';
-              pin = '';
-              enteredPin = '';
-              updateEnteredPin()
-              scope.update();
+              scope.errorNote = "Неверный текущий CLICK-PIN!";
             }
+
+            scope.nowCheckPin = true;
+            scope.checkPin = false;
+            scope.checkPinConfirm = false;
+            pinConfirm = '';
+            pin = '';
+            enteredPin = '';
+            updateEnteredPin()
+            scope.update();
           }
         } else if (scope.checkPin) {
           console.log('qwewewww')

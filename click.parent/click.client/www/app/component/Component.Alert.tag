@@ -79,15 +79,15 @@
 
           console.log("OPTS in ALERT", opts)
 
-
-          if (opts.step_amount || opts.step_amount == 0) {
-            console.log("opts.step_amount", opts)
-            history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
-            console.log(history.arrayOfHistory)
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-            onBackKeyDown()
+          if (opts.step_amount)
+            if (opts.step_amount || opts.step_amount == 0) {
+              console.log("opts.step_amount", opts)
+              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
+              console.log(history.arrayOfHistory)
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+              onBackKeyDown()
 //          scope.unmount()
-          }
+            }
         } else {
           scope.outerShowAlertBool = true;
           console.log("close")
