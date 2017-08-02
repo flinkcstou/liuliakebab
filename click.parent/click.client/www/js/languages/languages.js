@@ -184,7 +184,8 @@ var RU_LANGUAGES =
   "ViewPinCodeNowClickPinLabel": "Текущий CLICK-PIN",
   "ViewPinCodeConfirmClickPinLabel": "Подтвердите CLICK-PIN",
   "ViewPinCodeConfirmPayTransferLabel": "Введите CLICK-PIN для подтверждения",
-  "ViewPinCodeConfirmPayTransferErrorPinLabel": "Неверно набран CLICK-PIN, пожалуйста повторите ввод",
+  "ViewPinCodeConfirmPayTransferErrorAlertText": "Неверно набран CLICK-PIN, пожалуйста повторите ввод",
+  "ViewPinCodeConfirmPayTransferThirdErrorAlertText": "CLICK-PIN неверно набран 3 раза",
 
   "ViewCardEditTitleName": "НАСТРОЙКИ КАРТЫ",
   "ViewCardEditCardNameText": "Название карты",

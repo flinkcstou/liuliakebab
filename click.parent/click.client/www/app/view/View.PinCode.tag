@@ -141,6 +141,7 @@
       fromAuthorization = false;
       fromRegistration = false;
       fromPayOrTransfer = true;
+      var errorPinTimesCounter = 0;
     }
     else if (opts[0] == 'view-authorization') {
       fromAuthorization = true;
@@ -391,8 +392,14 @@
             scope.showError = true;
 
             if (fromPayOrTransfer) {
-              scope.errorNote = window.languages.ViewPinCodeConfirmPayTransferErrorPinLabel;
+              scope.errorNote = window.languages.ViewPinCodeConfirmPayTransferErrorAlertText;
               sessionStorage.setItem('payTransferConfirmed', false);
+              errorPinTimesCounter++;
+              if (errorPinTimesCounter == 3) {
+                console.log("OOPS");
+                scope.errorNote = window.languages.ViewPinCodeConfirmPayTransferThirdErrorAlertText;
+                scope.viewpage = "view-authorization";
+              }
 
             } else {
               scope.errorNote = "Неверный текущий CLICK-PIN!";
