@@ -185,7 +185,7 @@ var RU_LANGUAGES =
   "ViewPinCodeConfirmClickPinLabel": "Подтвердите CLICK-PIN",
   "ViewPinCodeConfirmPayTransferLabel": "Введите CLICK-PIN для подтверждения",
   "ViewPinCodeConfirmPayTransferErrorAlertText": "Неверно набран CLICK-PIN, пожалуйста повторите ввод",
-  "ViewPinCodeConfirmPayTransferThirdErrorAlertText": "CLICK-PIN неверно набран 3 раза",
+  "ViewPinCodeConfirmPayTransferThirdErrorAlertText": "CLICK-PIN набран неверно более 3 раз",
 
   "ViewCardEditTitleName": "НАСТРОЙКИ КАРТЫ",
   "ViewCardEditCardNameText": "Название карты",
@@ -243,7 +243,7 @@ var RU_LANGUAGES =
   "ViewSecuritySettingsTrustedDevicesTitle": "Доверенные устройства",
   "ViewSecuritySettingsPinChangeTitle": "Сменить CLICK-PIN",
   "ViewSecuritySettingsTouchScanUseTitle": "Использовать сканер отпечатка пальца",
-  "ViewSecuritySettingsBlockTitle": "Блокировка",
+  "ViewSecuritySettingsBlockTitle": "Блокировка приложения",
   "ViewSecuritySettingsBlockText": "Запрашивать CLICK-PIN после каждого сворачивания приложения",
   "ViewSecuritySettingsBlockPayTitle": "Блокировка платежей",
   "ViewSecuritySettingsBlockPayText": "Запрашивать CLICK-PIN при каждой транзакции",
