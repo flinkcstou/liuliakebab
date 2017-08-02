@@ -1,6 +1,11 @@
 <view-pin-code class="view-pincode riot-tags-main-container">
 
   <div class="pincode-flex-container">
+
+    <div id="backButton" ontouchend="goToBackFromPinCodeTouchEnd()" ontouchstart="goToBackFromPinCodeTouchStart()"
+         class="{pincode-back-button: backbuttoncheck}">
+    </div>
+
     <div class="pincode-unchangable-container">
       <div if="{nowCheckPin}" id="labelOfNowPinId" class="pincode-enter-pin-label">
         {nowCheckPinTitle}
@@ -112,6 +117,7 @@
     var fromPayOrTransfer = false;
     scope.showRegistrationProcess = false;
     scope.nowCheckPinTitle = window.languages.ViewPinCodeNowClickPinLabel;
+    scope.backbuttoncheck = false;
 
 
     scope.labelOfTitle = window.languages.ViewPinCodeClickPinLabel;
@@ -130,6 +136,7 @@
     }
     else if (opts[0] == 'view-pay-confirm' || opts[0] == 'view-transfer-stepfour') {
       scope.nowCheckPinTitle = window.languages.ViewPinCodeConfirmPayTransferLabel;
+      scope.backbuttoncheck = true;
       fromSettings = false;
       fromAuthorization = false;
       fromRegistration = false;
@@ -265,6 +272,29 @@
 
       }
     }
+
+    var backFromPinCodeTouchStartX, backFromPinCodeTouchStartY, backFromPinCodeTouchEndX,
+      backFromPinCodeTouchEndY;
+
+    goToBackFromPinCodeTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backFromPinCodeTouchStartX = event.changedTouches[0].pageX;
+      backFromPinCodeTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    goToBackFromPinCodeTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backFromPinCodeTouchEndX = event.changedTouches[0].pageX;
+      backFromPinCodeTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(backFromPinCodeTouchStartX - backFromPinCodeTouchEndX) <= 20 && Math.abs(backFromPinCodeTouchStartY - backFromPinCodeTouchEndY) <= 20) {
+        onBackKeyDown();
+      }
+    };
 
     updateEnteredPin = function () {
 

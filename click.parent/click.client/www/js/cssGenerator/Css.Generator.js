@@ -7054,6 +7054,21 @@ var css = {
   "bottom:" + 610 * widthK + "px;" +
   "}",
 
+  pinCodeBackButton: ".pincode-back-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 120 * widthK + "px;" +
+  "height:" + 91 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y: " + 45 * widthK + "px;" +
+  "background-position-x:" + 47 * widthK + "px;" +
+  "background-size: 20%;" +
+  // "left:" + -25 * widthK + "px;" +
+  "top: 0;" +
+  "}",
+
   pinCodeUnchangableContainer: ".pincode-unchangable-container " +
   "{" +
   "position: absolute;" +
