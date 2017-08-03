@@ -768,8 +768,18 @@
                 console.log("QWEQWEWWWWWWW")
                 if (history.arrayOfHistory) {
                   if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
-                    this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
-                    riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+                    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-news') {
+                      this.riotTags.innerHTML = "<view-main-page>";
+                      riot.mount("view-main-page");
+                    }
+                    else {
+                      this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+                      riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+                    }
+
+                    if (device.platform != 'BrowserStand')
+                      StatusBar.backgroundColorByHexString("#00a8f1");
+
                     if (JSON.parse(localStorage.getItem('settings_block')) === true)
                       localStorage.setItem('onResume', false)
                     else
