@@ -61,10 +61,15 @@
     <div id="lastOperationContainerId" class="my-cards-last-operations-container">
       <div class="my-cards-last-operations-info" each="{i in arrayOfOperationsByAccount}"
            style="top: {i.count*top}px">
+        <div class="my-cards-last-operations-date">
+          <p class="my-cards-last-operation-info-date-name">{i.show_date}</p>
+          <p class="my-cards-last-operation-info-time">{i.paymentTime}</p>
+        </div>
         <div class="my-cards-operation-amount">- {i.amount}</div>
         <div class="my-cards-operation-currency">{i.lang_amount_currency}</div>
         <div class="my-cards-firm-name">{i.service_name}</div>
         <div class="my-cards-operation-date">{i.created}</div>
+        <div class="my-cards-last-operations-info-state-image" style="background-image: url({i.state_image})"></div>
       </div>
     </div>
 
@@ -433,7 +438,7 @@
       console.log('scope.cardId', scope.cardId)
     }
 
-    scope.top = 160 * widthK;
+    scope.top = 200 * widthK;
     viewMyCards.check = true;
     viewMainPage.myCards = true;
     scope.backbuttoncheck = true;
@@ -484,9 +489,37 @@
               if (result[1][0]) {
                 var j = 0;
                 for (var i in result[1]) {
-                  if (result[1][i].account_id == scope.card.card_id && result[1][i].state == 2) {
+                  if (result[1][i].account_id == scope.card.card_id) {
                     result[1][i].count = j;
                     result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
+                    if (result[1][i].created)
+                      if (result[1][i].created.split(" ")[1])
+                        if (result[1][i].created.split(" ")[1].substr(0, 5))
+                          result[1][i].paymentTime = result[1][i].created.split(" ")[1].substr(0, 5);
+
+                    var date = new Date(result[1][i].created_timestamp * 1000);
+
+                    var dateStr = date.getUTCDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getUTCMonth()] + ' ' + date.getUTCFullYear();
+
+                    if (date.getUTCDate() == new Date().getUTCDate() && date.getUTCMonth() == new Date().getUTCMonth() && date.getUTCFullYear() == new Date().getUTCFullYear())
+                      dateStr = 'сегодня'
+
+                    if (date.getUTCDate() == new Date().getUTCDate() - 1 && date.getUTCMonth() == new Date().getUTCMonth() && date.getUTCFullYear() == new Date().getUTCFullYear())
+                      dateStr = 'вчера'
+
+                    if (result[1][i].state == -1) {
+                      result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
+                    }
+
+                    if (result[1][i].state == 2) {
+                      result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
+                    }
+
+                    if (result[1][i].state == 1) {
+                      result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
+                    }
+
+                    result[1][i].show_date = dateStr
 
                     j++;
                     scope.arrayOfOperationsByAccount.push(result[1][i]);

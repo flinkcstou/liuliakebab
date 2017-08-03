@@ -561,8 +561,7 @@
                     result[1][i].paymentTime = result[1][i].created.split(" ")[1].substr(0, 5);
 
               var date = new Date(result[1][i].created_timestamp * 1000);
-              console.log(date, result[1][i].service_name)
-              console.log(date.getUTCDate())
+
               var dateStr = date.getUTCDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getUTCMonth()] + ' ' + date.getUTCFullYear();
 
               if (date.getUTCDate() == new Date().getUTCDate() && date.getUTCMonth() == new Date().getUTCMonth() && date.getUTCFullYear() == new Date().getUTCFullYear())
