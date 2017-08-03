@@ -125,7 +125,7 @@
       lastOperationButtonEndY = event.changedTouches[0].pageY;
       lastOperationTimeEnd = event.timeStamp.toFixed(0);
 
-      if (Math.abs(lastOperationButtonStartX - lastOperationButtonEndX) <= 100 && lastOperationButtonStartY > lastOperationButtonEndY && lastOperationTimeEnd - lastOperationTimeStart < 500 && !lastOperationCheck) {
+      if (Math.abs(lastOperationButtonStartX - lastOperationButtonEndX) <= 100 && lastOperationButtonStartY > lastOperationButtonEndY && !lastOperationCheck) {
 
         lastOperationMainContainerId.style.webkitTransform = "translate3d(0,0,0)"
 //          lastOperationMainContainerId.top = "0"
@@ -135,7 +135,7 @@
 
       }
       else {
-        if (Math.abs(lastOperationButtonStartX - lastOperationButtonEndX) <= 100 && lastOperationButtonStartY < lastOperationButtonEndY && lastOperationTimeEnd - lastOperationTimeStart < 500 && lastOperationCheck) {
+        if (Math.abs(lastOperationButtonStartX - lastOperationButtonEndX) <= 100 && lastOperationButtonStartY < lastOperationButtonEndY && lastOperationCheck) {
           lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 835 * widthK + "px,0)"
 //          lastOperationMainContainerId.top = "0"
           lastOperationContainerId.style.height = 325 * widthK + "px";
