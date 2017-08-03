@@ -39,14 +39,18 @@
     scope.newsArray = []
     scope.newsOpened = false;
 
-    this.on('mount', function () {
-
-    })
-
 
     closeNewsTouchEnd = function () {
       event.preventDefault()
       event.stopPropagation()
+
+      console.log('SCOPE NEW', scope)
+
+      if(scope.parent.opts.view){
+        riotTags.innerHTML = "<view-authorization>";
+        riot.mount('view-authorization');
+        return
+      }
 
       onBackKeyDown()
       scope.unmount()

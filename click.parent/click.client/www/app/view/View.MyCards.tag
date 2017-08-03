@@ -55,6 +55,7 @@
   <div id="lastOperationMainContainerId" class="my-cards-last-operations">
     <div class="my-cards-last-operations-container-label" ontouchstart="lastOperationsTouchStart()"
          ontouchend="lastOperationsTouchEnd()">
+      <div id="myCardLastOperationContainerIconId" class="my-cards-last-operations-container-icon"></div>
       <p class="my-cards-last-operations-label">{window.languages.ViewMyCardLastOperations}</p>
     </div>
 
@@ -131,6 +132,7 @@
 //          lastOperationMainContainerId.top = "0"
         lastOperationContainerId.style.height = 1155 * widthK + "px";
         document.getElementById('containerCard').style.webkitTransform = "scale(0.2)"
+        document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(180deg)"
         lastOperationCheck = true;
 
       }
@@ -140,6 +142,7 @@
 //          lastOperationMainContainerId.top = "0"
           lastOperationContainerId.style.height = 325 * widthK + "px";
          document.getElementById('containerCard').style.webkitTransform = "scale(1)"
+          document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(0)"
           lastOperationCheck = false;
         }
       }

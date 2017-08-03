@@ -2764,12 +2764,25 @@ var css = {
   "top: 0;" +
   "height:" + 80 * widthK + "px;" +
   "width: 100%;" +
-  "background-color: #f7f7f7;" +
+  "background-color: white;" +
   "background-size: contain;" +
   "font-size:" + 24 * widthK + "px;" +
   "color: #8a8a8a;" +
   "z-index: 99999;" +
   "box-shadow: 0px 17px 63px -23px rgb(37, 36, 36);" +
+  "}",
+
+  myCardsLastOperationsContainerIcon: ".my-cards-last-operations-container-icon " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 40 * widthK + "px;" +
+  "width:" + 25 * widthK + "px;" +
+  "left:" + 350 * widthK + "px;" +
+  "background-image: url(resources/icons/ViewMyCards/double_arrow.png);" +
+  "background-size: contain;" +
+  "background-position: center;" +
+  "-webkit-transition: 1s;" +
+  "background-repeat: no-repeat;" +
   "}",
 
   myCardsLastOperationLabel: ".my-cards-last-operations-label " +
@@ -2785,7 +2798,7 @@ var css = {
   "position: absolute;" +
   "top:" + 80 * widthK + "px;" +
   "width: 100%;" +
-  "bakcground-color: white;" +
+  "background-color: white;" +
   "height:" + 200 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #dedfe0;" +
   "overflow: hidden;" +
