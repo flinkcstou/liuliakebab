@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="air.com.ssdsoftwaresolutions.clickuz" version="5.0.0" xmlns="http://www.w3.org/ns/widgets" android-versionCode="50000000">
+<widget id="air.com.ssdsoftwaresolutions.clickuz" version="5.0.0" xmlns="http://www.w3.org/ns/widgets"
+        android-versionCode="50000000">
   <name>CLICK Uzbekistan</name>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="Orientation" value="sensorPortrait"/>
@@ -19,7 +20,7 @@
   <plugin name="cordova-plugin-splashscreen"/>
   <plugin name="cordova-plugin-statusbar"/>
   <plugin name="phonegap-plugin-barcodescanner"/>
-  <plugin name="cordova-plugin-firebase" spec="0.1.21"/>
+  <plugin name="cordova-plugin-firebase" spec="0.1.22"/>
   <plugin name="cordova-plugin-network-information"/>
   <plugin name="cordova-plugin-x-socialsharing"/>
   <plugin name="cordova-plugin-dialogs"/>
