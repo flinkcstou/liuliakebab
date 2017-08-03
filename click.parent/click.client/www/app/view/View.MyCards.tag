@@ -119,6 +119,8 @@
     }
 
     lastOperationsTouchEnd = function () {
+      console.log('scope', scope)
+
       lastOperationButtonEndX = event.changedTouches[0].pageX;
       lastOperationButtonEndY = event.changedTouches[0].pageY;
       lastOperationTimeEnd = event.timeStamp.toFixed(0);
@@ -128,6 +130,7 @@
         lastOperationMainContainerId.style.webkitTransform = "translate3d(0,0,0)"
 //          lastOperationMainContainerId.top = "0"
         lastOperationContainerId.style.height = 1155 * widthK + "px";
+        document.getElementById('containerCard').style.webkitTransform = "scale(0.2)"
         lastOperationCheck = true;
 
       }
@@ -136,6 +139,7 @@
           lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 835 * widthK + "px,0)"
 //          lastOperationMainContainerId.top = "0"
           lastOperationContainerId.style.height = 325 * widthK + "px";
+         document.getElementById('containerCard').style.webkitTransform = "scale(1)"
           lastOperationCheck = false;
         }
       }

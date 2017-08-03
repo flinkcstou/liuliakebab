@@ -1596,6 +1596,8 @@ var css = {
   "display: inline-block;" +
   "top:" + 140 * widthK + "px;" +
   "background: transparent;" +
+  "transition: 1s;" +
+  "-webkit-transform: scale(1);" +
   "}",
 
   cards: ".cards " +
@@ -2750,7 +2752,7 @@ var css = {
   // "overflow-y: scroll; " +
   "-webkit-transform: translate3d(0," + 835 * widthK  +"px,0); " +
   // "overflow-x: hidden; " +
-  "-webkit-transition: 0.5s; " +
+  "-webkit-transition: 1s; " +
   // "-webkit-overflow-scrolling: touch; " +
   "background-color: #ffffff;" +
   // "bottom: 0;" +
