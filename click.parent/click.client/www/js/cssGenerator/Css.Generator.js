@@ -193,17 +193,19 @@ var css = {
   "}",
   //
 
-  riotTagsMainContainer: ".riot-tags-main-container" +
-  "{ " +
-  "-webkit-animation-name: mountAnimation; " +
-  "-webkit-animation-duration: 0.2s; " +
-  "}",
+  //animation
 
-  webkitKeyFrameMountAnimation: "@-webkit-keyframes mountAnimation" +
-  "{ " +
-  "from {opacity: 0;}; " +
-  "to {opacity: 1;}; " +
-  "}",
+  // riotTagsMainContainer: ".riot-tags-main-container" +
+  // "{ " +
+  // "-webkit-animation-name: mountAnimation; " +
+  // "-webkit-animation-duration: 0.2s; " +
+  // "}",
+  //
+  // webkitKeyFrameMountAnimation: "@-webkit-keyframes mountAnimation" +
+  // "{ " +
+  // "from {opacity: 0;}; " +
+  // "to {opacity: 1;}; " +
+  // "}",
 
   body: "body{" +
   "margin: 0;" +
@@ -1594,6 +1596,8 @@ var css = {
   "display: inline-block;" +
   "top:" + 140 * widthK + "px;" +
   "background: transparent;" +
+  "transition: 1s;" +
+  "-webkit-transform: scale(1);" +
   "}",
 
   cards: ".cards " +
@@ -2748,7 +2752,7 @@ var css = {
   // "overflow-y: scroll; " +
   "-webkit-transform: translate3d(0," + 835 * widthK  +"px,0); " +
   // "overflow-x: hidden; " +
-  "-webkit-transition: 0.5s; " +
+  "-webkit-transition: 1s; " +
   // "-webkit-overflow-scrolling: touch; " +
   "background-color: #ffffff;" +
   // "bottom: 0;" +
@@ -2760,12 +2764,25 @@ var css = {
   "top: 0;" +
   "height:" + 80 * widthK + "px;" +
   "width: 100%;" +
-  "background-color: #f7f7f7;" +
+  "background-color: white;" +
   "background-size: contain;" +
   "font-size:" + 24 * widthK + "px;" +
   "color: #8a8a8a;" +
   "z-index: 99999;" +
   "box-shadow: 0px 17px 63px -23px rgb(37, 36, 36);" +
+  "}",
+
+  myCardsLastOperationsContainerIcon: ".my-cards-last-operations-container-icon " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 40 * widthK + "px;" +
+  "width:" + 25 * widthK + "px;" +
+  "left:" + 350 * widthK + "px;" +
+  "background-image: url(resources/icons/ViewMyCards/double_arrow.png);" +
+  "background-size: contain;" +
+  "background-position: center;" +
+  "-webkit-transition: 1s;" +
+  "background-repeat: no-repeat;" +
   "}",
 
   myCardsLastOperationLabel: ".my-cards-last-operations-label " +
@@ -2781,10 +2798,58 @@ var css = {
   "position: absolute;" +
   "top:" + 80 * widthK + "px;" +
   "width: 100%;" +
-  "height:" + 160 * widthK + "px;" +
+  "background-color: white;" +
+  "height:" + 200 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #dedfe0;" +
   "overflow: hidden;" +
   "}",
+
+  myCardsLastOperationInfoStateImage: ".my-cards-last-operations-info-state-image " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 60 * widthK + "px;" +
+  "right:" + 5 * widthK + "px;" +
+  "height:" + 60 * widthK + "px;" +
+  //"height: 100%;" +
+  "top: 50%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 60%;" +
+  "background-position: center;" +
+  "margin: 0;" +
+  "}",
+
+  myCardsLastOperationDate: ".my-cards-last-operations-date " +
+  "{" +
+  "position: relative;" +
+  "background-color: #f6f6f6;" +
+  "width: 100%;" +
+  "height:" + 45 * widthK + "px;" +
+  "}",
+
+  myCardsLastOperationInfoTime: ".my-cards-last-operation-info-time " +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 10%;" +
+  //"height: 100%;" +
+  "top: 15%;" +
+  "font-size: " + 22 * widthK + "px; " +
+  "margin: 0;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  myCardsLastOperationInfoDateName: ".my-cards-last-operation-info-date-name " +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 10 * widthK + "px; " +
+  "left: 9%;" +
+  "margin: 0;" +
+  "text-align: left;" +
+  "font-size:" + 24 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
 
   myCardsOperationAmounts: ".my-cards-operation-amount " +
   "{" +
@@ -2793,8 +2858,8 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 48 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
-  "top:" + 8 * widthK + "px;" +
-  "left:" + 60 * widthK + "px;" +
+  "top:" + 40 * widthK + "px;" +
+  "left:" + 150 * widthK + "px;" +
   "float: left;" +
 
   "}",
@@ -2806,7 +2871,7 @@ var css = {
   "top:" + 26 * widthK + "px;" +
   "background-size: contain;" +
   "float: left;" +
-  "left:" + 70 * widthK + "px;" +
+  "left:" + 160 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
   "}",
 
@@ -2815,17 +2880,17 @@ var css = {
   "position: absolute;" +
   "color: #919191;" +
   "bottom:" + 30 * widthK + "px;" +
-  "left:" + 57 * widthK + "px;" +
+  "left:" + 150 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
   "}",
 
   myCardsFirmName: "    .my-cards-firm-name" +
   "{" +
-  "position: absolute;" +
-  "left:" + 58 * widthK + "px;" +
-  "top:" + 60 * widthK + "px;" +
+  "position: relative;" +
+  // "left:" + 150 * widthK + "px;" +
+  // "top:" + 60 * widthK + "px;" +
   "font-size:" + 34 * widthK + "px;" +
-  "color: #232323;" +
+  "color: #919191;" +
   "}",
 
   //VIEW CARD EDIT
@@ -12549,7 +12614,7 @@ var css = {
   "position: relative;" +
   "font-size:" + 34 * widthK + "px; " +
   "top:" + 40 * widthK + "px; " +
-  "height:" + 95 * widthK + "px; " +
+  // "height:" + 130 * widthK + "px; " +
   "width: 87%; " +
   "margin: 0 auto 0 auto;  " +
   "color: #00b8ff;" +

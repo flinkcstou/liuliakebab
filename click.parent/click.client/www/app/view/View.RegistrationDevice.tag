@@ -403,7 +403,7 @@
 
 
         if (correctPhoneNumber) {
-          var versionOfApp = '5.0'
+          var versionOfApp = '5.1'
           if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
 
           }
