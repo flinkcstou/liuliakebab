@@ -8,10 +8,12 @@ buildscript {
 
   dependencies {
     classpath "com.moowork.gradle:gradle-node-plugin:0.12"
+    classpath 'com.google.gms:google-services:3.0.0'
   }
 }
 
 apply plugin: 'com.moowork.node'
+apply plugin: 'com.google.gms.google-services'
 
 task cleanLibs(type: Delete) {
   delete 'node_modules', 'www/lib', 'cordova/www', 'cordova/plugins', 'cordova/platforms', 'cordova/res', 'cordova/node_modules'
@@ -21,7 +23,10 @@ clean.dependsOn cleanLibs
 
 dependencies {
   testCompile 'kz.greetgo.cordosencha:cordosencha.gradle:0.0.6'
+
 }
+
+
 
 task prepareCordovaStandWWW(type: JavaExec, group: 'client_inner') {
   dependsOn npmInstall
