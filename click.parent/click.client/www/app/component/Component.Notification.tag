@@ -90,8 +90,9 @@
         }
         else {
 
+          scope.show = true;
+
           if (modeOfApp.offlineMode) {
-            scope.show = true;
             window.FirebasePlugin.setBadgeNumber(0);
           }
         }
