@@ -8,41 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:206647793311:android:f7cbbf9468e1c780",
-        "android_client_info": {
-          "package_name": "uz.click"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "206647793311-q7dbt6caur07m4honsakk4ob4f1acs7n.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "206647793311-jstt6danm5mmeg1janro0gkrj596j6ma.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAzNcGccBPcKfjhp8Envmk2Jg7CZFJEhTA"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:206647793311:android:e3043f91e59893ec",
         "android_client_info": {
           "package_name": "air.com.ssdsoftwaresolutions.clickuz"
