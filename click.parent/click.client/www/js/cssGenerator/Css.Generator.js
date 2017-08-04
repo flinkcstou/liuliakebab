@@ -2750,7 +2750,7 @@ var css = {
   "height: 100%;" +
   // "top:" + 835 * widthK + "px;" +
   // "overflow-y: scroll; " +
-  "-webkit-transform: translate3d(0," + 835 * widthK  +"px,0); " +
+  "-webkit-transform: translate3d(0," + 835 * widthK + "px,0); " +
   // "overflow-x: hidden; " +
   "-webkit-transition: 1s; " +
   // "-webkit-overflow-scrolling: touch; " +
@@ -2793,10 +2793,16 @@ var css = {
   "top:" + 23 * widthK + "px;" +
   "}",
 
+  myCardsLastOperationsInnerContainer: ".my-cards-last-operations-inner-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "}",
+
   myCardsLastOperationInfo: ".my-cards-last-operations-info " +
   "{" +
-  "position: absolute;" +
-  "top:" + 80 * widthK + "px;" +
+  "position: relative;" +
+  // "top:" + 80 * widthK + "px;" +
   "width: 100%;" +
   "background-color: white;" +
   "height:" + 200 * widthK + "px;" +

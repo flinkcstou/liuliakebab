@@ -60,17 +60,18 @@
     </div>
 
     <div id="lastOperationContainerId" class="my-cards-last-operations-container">
-      <div class="my-cards-last-operations-info" each="{i in arrayOfOperationsByAccount}"
-           style="top: {i.count*top}px">
+      <div class="my-cards-last-operations-inner-container" each="{j in lastOperationsDates}">
         <div class="my-cards-last-operations-date">
-          <p class="my-cards-last-operation-info-date-name">{i.show_date}</p>
-          <p class="my-cards-last-operation-info-time">{i.paymentTime}</p>
+          <p class="my-cards-last-operation-info-date-name">{j}</p>
         </div>
-        <div class="my-cards-operation-amount">- {i.amount}</div>
-        <div class="my-cards-operation-currency">{i.lang_amount_currency}</div>
-        <div class="my-cards-firm-name">{i.service_name}</div>
-        <div class="my-cards-operation-date">{i.created}</div>
-        <div class="my-cards-last-operations-info-state-image" style="background-image: url({i.state_image})"></div>
+        <div class="my-cards-last-operations-info" each="{i in lastOperationsMap[j]}">
+          <div class="my-cards-operation-amount">- {i.amount}</div>
+          <div class="my-cards-operation-currency">{i.lang_amount_currency}</div>
+          <div class="my-cards-firm-name">{i.service_name}</div>
+          <div class="my-cards-operation-date">{i.created}</div>
+          <p class="my-cards-last-operation-info-time">{i.paymentTime}</p>
+          <div class="my-cards-last-operations-info-state-image" style="background-image: url({i.state_image})"></div>
+        </div>
       </div>
     </div>
 
@@ -94,7 +95,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-cards') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-my-cards',
+          "view": 'view-my-cards',
           "params": opts
         }
       );
@@ -141,7 +142,7 @@
           lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 835 * widthK + "px,0)"
 //          lastOperationMainContainerId.top = "0"
           lastOperationContainerId.style.height = 325 * widthK + "px";
-         document.getElementById('containerCard').style.webkitTransform = "scale(1)"
+          document.getElementById('containerCard').style.webkitTransform = "scale(1)"
           document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(0)"
           lastOperationCheck = false;
         }
@@ -271,7 +272,7 @@
             riot.mount('view-report', {
               show_graph: true,
               account_id: card,
-              card_name : cards[card].name
+              card_name: cards[card].name
             });
             scope.unmount()
           }
@@ -463,6 +464,8 @@
 
 
     scope.arrayOfOperationsByAccount = [];
+    scope.lastOperationsDates = [];
+    scope.lastOperationsMap = {};
 
     scope.cardInformation = cardInformation = function (cardIdFromCarousel) {
 
@@ -479,16 +482,18 @@
       console.log("You clicked on scope.card - ", scope.card);
 
       scope.arrayOfOperationsByAccount = [];
+      scope.lastOperationsDates = [];
+      scope.lastOperationsMap = {};
       scope.update()
       console.log("Scope.Card=", scope.card)
 
       if (scope.card)
         window.api.call({
           method: 'get.payments.by.account',
-          input : {
+          input: {
             session_key: sessionKey,
-            phone_num  : phoneNumber,
-            account_id : scope.card.card_id
+            phone_num: phoneNumber,
+            account_id: scope.card.card_id
           },
 
           onSuccess: function (result) {
@@ -528,6 +533,16 @@
 
                     result[1][i].show_date = dateStr
 
+                    console.log("DATE DATE", dateStr)
+                    if (!scope.lastOperationsMap[dateStr]) {
+                      scope.lastOperationsMap[dateStr] = [];
+                      scope.lastOperationsDates.push(dateStr);
+                      scope.lastOperationsMap[dateStr].push(result[1][i]);
+                    }
+                    else {
+                      scope.lastOperationsMap[dateStr].push(result[1][i]);
+                    }
+
                     j++;
                     scope.arrayOfOperationsByAccount.push(result[1][i]);
                   }
@@ -535,6 +550,8 @@
 //                this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
                 scope.update();
                 console.log('scope.arrayOfOperationsByAccount', scope.arrayOfOperationsByAccount)
+                console.log('scope.lastOperationsDates', scope.lastOperationsDates)
+                console.log('scope.lastOperationsMap', scope.lastOperationsMap)
               }
             }
             else {

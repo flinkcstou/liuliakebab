@@ -109,7 +109,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-report',
+          "view": 'view-report',
           "params": opts
         }
       );
@@ -529,15 +529,15 @@
 
       window.api.call({
         method: 'get.payment.list',
-        input : {
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber,
+          phone_num: phoneNumber,
           page_number: parseInt(scope.pageNumberOptional),
-          date_start : firstDay,
-          date_end   : lastDay,
-          account_id : accountId
+          date_start: firstDay,
+          date_end: lastDay,
+          account_id: accountId
         },
-        scope : this,
+        scope: this,
 
         onSuccess: function (result) {
 
@@ -610,7 +610,7 @@
           }
 
         },
-        onFail   : function (api_status, api_status_message, data) {
+        onFail: function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -693,14 +693,14 @@
       scope.update();
       window.api.call({
         method: 'history.chart.data',
-        input : {
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber,
-          date_start : firstDay,
-          date_end   : lastDay,
-          account_id : accountId
+          phone_num: phoneNumber,
+          date_start: firstDay,
+          date_end: lastDay,
+          account_id: accountId
         },
-        scope : this,
+        scope: this,
 
         onSuccess: function (result) {
 
@@ -739,7 +739,7 @@
           }
 
         },
-        onFail   : function (api_status, api_status_message, data) {
+        onFail: function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -768,8 +768,8 @@
       var data = {
         datasets: [
           {
-            borderWidth    : 0,
-            data           : [],
+            borderWidth: 0,
+            data: [],
             backgroundColor: []
           }]
       };
@@ -805,12 +805,12 @@
         console.log('DATA', data)
         var percent = arrayForGraph[i].percent;
         var coordinates = {
-          x       : x,
-          y       : y,
-          percent : parseInt(percent),
-          image   : arrayForGraph[i].image_inner,
-          order   : j,
-          alpha   : alpha,
+          x: x,
+          y: y,
+          percent: parseInt(percent),
+          image: arrayForGraph[i].image_inner,
+          order: j,
+          alpha: alpha,
           position: position,
 //          width: width
         }
@@ -828,15 +828,15 @@
         return
       }
       var myChart = new Chart(ctx, {
-          type   : 'doughnut',
-          data   : data,
+          type: 'doughnut',
+          data: data,
           options: {
             cutoutPercentage: 55,
-            animateScale    : false,
-            tooltips        : {
+            animateScale: false,
+            tooltips: {
               enabled: false
             },
-            events          : [],
+            events: [],
 
           }
         })
