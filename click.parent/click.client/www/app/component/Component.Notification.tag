@@ -79,14 +79,18 @@
           }
 
           if (scope.notificationAction == "news") {
+            console.log("NEWS NEWS NEWS")
             window.News.newsCounter++;
             riot.update();
 
-            background_notification.action = "getInvoiceFunction";
+            background_notification.action = "getNewsFunction";
             background_notification.params = scope.notificationElementId;
 
             sessionStorage.setItem("push_notification", JSON.stringify(background_notification));
+
           }
+
+          window.pushNotificationActions.retrievePushNotification();
         }
         else {
 

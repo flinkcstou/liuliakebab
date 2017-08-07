@@ -456,6 +456,8 @@ window.pushNotificationActions = {
   getNewsFunction: function (newsId) {
     window.News.newsCounter++;
 
+    console.log('running news')
+
     riotTags.innerHTML = "<view-main-page>";
     riot.mount("view-main-page", {view: "news"});
   },
@@ -476,12 +478,14 @@ window.pushNotificationActions = {
   },
   retrievePushNotification: function () {
 
-    var notification = sessionStorage.getItem("notification")
+    var notification = sessionStorage.getItem("push_notification")
     notification = JSON.parse(notification);
+
+    console.log('NOTIFICATION EXIST', notification)
 
     if (notification) {
 
-      window.pushNotificationActions[notification.action](params);
+      window.pushNotificationActions[notification.action](notification.params);
     }
   }
 };

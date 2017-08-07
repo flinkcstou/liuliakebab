@@ -27,7 +27,7 @@
   <component-tour view="mainpage"></component-tour>
   <script>
 
-//    console.log('BASE64', atob('aWQ9MDEwMDAmYW1vdW50PTEyMjAwJm9yZGVyX2lkPTAxN0I1N0NFLUJDRUItNEE3MC04NEFFLUJFRTM0NUY4NUI1OQ=='))
+    //    console.log('BASE64', atob('aWQ9MDEwMDAmYW1vdW50PTEyMjAwJm9yZGVyX2lkPTAxN0I1N0NFLUJDRUItNEE3MC04NEFFLUJFRTM0NUY4NUI1OQ=='))
 
     viewMainPage.atMainPage = true;
     viewTransfer.check = false;
@@ -56,7 +56,7 @@
           if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-news') {
             history.arrayOfHistory.push(
               {
-                "view": 'view-news',
+                "view"  : 'view-news',
                 "params": opts
               }
             );
@@ -84,7 +84,7 @@
     history.arrayOfHistory = [];
     history.arrayOfHistory.push(
       {
-        "view": 'view-main-page',
+        "view"  : 'view-main-page',
         "params": opts
       }
     );
@@ -177,6 +177,10 @@
       }
       sideMenuBackPageId.style.opacity = deltaForSideMenuBack;
       mainPageId.style.opacity = deltaForMainPage;
+    }
+
+    if (!localStorage.getItem('push_registered')) {
+      window.pushNotificationInitialize();
     }
 
 
