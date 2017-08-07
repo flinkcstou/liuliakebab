@@ -37,6 +37,7 @@
     viewServicePage.amountWithoutSpace = 0;
     viewServicePage.amountTex = 0;
 
+
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#00a8f1");
@@ -50,6 +51,7 @@
       if (opts) {
         if (opts.view == "news") {
           viewNewsId.style.display = 'block'
+          scope.tags['view-news'].showNewsFunction();
 
 //          window.News.newsCounter = 0;
 

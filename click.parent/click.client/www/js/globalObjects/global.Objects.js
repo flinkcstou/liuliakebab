@@ -278,12 +278,12 @@ window.pushNotificationInitialize = function () {
       console.log('token', token)
       window.api.call({
         method: 'push.register.token',
-        input: {
-          phone_num: phoneNumber,
-          token: token,
-          sign_string: signString,
+        input : {
+          phone_num    : phoneNumber,
+          token        : token,
+          sign_string  : signString,
           device_vendor: device.manufacturer,
-          device_model: device.model
+          device_model : device.model
 
         },
 
@@ -295,7 +295,7 @@ window.pushNotificationInitialize = function () {
             localStorage.setItem('push_registered', token)
 
             window.FirebasePlugin.logEvent("Registration", {
-              token: token,
+              token  : token,
               item_id: phoneNumber
             });
 
@@ -330,12 +330,12 @@ window.pushNotificationActions = {
     var sessionKey = loginInfo.session_key;
 
     window.api.call({
-      method: 'invoice.list',
-      input: {
+      method   : 'invoice.list',
+      input    : {
         session_key: sessionKey,
-        phone_num: phoneNumber
+        phone_num  : phoneNumber
       },
-      scope: this,
+      scope    : this,
       onSuccess: function (result) {
         if (result[0][0].error == 0) {
           if (result[1]) {
@@ -356,10 +356,10 @@ window.pushNotificationActions = {
                     params = {
 
                       phoneNumber: invoice.parameter,
-                      amount: invoice.amount,
-                      invoiceId: invoice.invoice_id,
-                      time: invoice.time,
-                      date: invoice.date
+                      amount     : invoice.amount,
+                      invoiceId  : invoice.invoice_id,
+                      time       : invoice.time,
+                      date       : invoice.date
                     };
 
                     history.arrayOfHistory.push({view: "view-transfer-detail"});
@@ -370,11 +370,11 @@ window.pushNotificationActions = {
 
                     params = {
 
-                      amount: invoice.amount,
-                      invoiceId: invoice.invoice_id,
-                      phoneNumber: invoice.merchant_phone,
+                      amount       : invoice.amount,
+                      invoiceId    : invoice.invoice_id,
+                      phoneNumber  : invoice.merchant_phone,
                       accountNumber: invoice.parameter,
-                      serviceName: invoice.service_name
+                      serviceName  : invoice.service_name
                     };
 
                     history.arrayOfHistory.push({view: "view-payment-detail"});
@@ -408,7 +408,7 @@ window.pushNotificationActions = {
       }
     });
   },
-  getPaymentList: function (paymentId) {
+  getPaymentList    : function (paymentId) {
 
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -419,11 +419,11 @@ window.pushNotificationActions = {
     scope.paymentsList = [];
     window.api.call({
       method: 'get.payment.list',
-      input: {
+      input : {
         session_key: sessionKey,
-        phone_num: phoneNumber
+        phone_num  : phoneNumber
       },
-      scope: this,
+      scope : this,
 
       onSuccess: function (result) {
         console.log(result)
@@ -446,7 +446,7 @@ window.pushNotificationActions = {
         }
 
       },
-      onFail: function (api_status, api_status_message, data) {
+      onFail   : function (api_status, api_status_message, data) {
         console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
         console.error(data);
       }
@@ -454,7 +454,7 @@ window.pushNotificationActions = {
   },
 
   getNewsFunction: function (newsId) {
-    window.News.newsCounter++;
+    window.News.newsCounter = 0;
 
     console.log('running news')
 
@@ -462,7 +462,7 @@ window.pushNotificationActions = {
     riot.mount("view-main-page", {view: "news"});
   },
 
-  refreshCardCarousel: function (cardId) {
+  refreshCardCarousel     : function (cardId) {
 
     var view = history.arrayOfHistory[history.arrayOfHistory.length - 1].view;
 
@@ -487,6 +487,8 @@ window.pushNotificationActions = {
 
       window.pushNotificationActions[notification.action](notification.params);
     }
+
+    sessionStorage.removeItem('push_notification');
   }
 };
 
@@ -511,16 +513,16 @@ window.updateBalanceGlobalFunction = function () {
     console.log('getAccountsCards', getAccountsCards[i])
     console.log('Balance request')
     window.api.call({
-      method: 'get.balance',
-      input: {
-        session_key: sessionKey,
-        phone_num: phoneNumber,
-        account_id: getAccountsCards[i].id,
-        card_num_hash: getAccountsCards[i].card_num_hash,
+      method   : 'get.balance',
+      input    : {
+        session_key     : sessionKey,
+        phone_num       : phoneNumber,
+        account_id      : getAccountsCards[i].id,
+        card_num_hash   : getAccountsCards[i].card_num_hash,
         card_num_crypted: getAccountsCards[i].card_num_crypted
       },
       //TODO: DO CARDS
-      scope: this,
+      scope    : this,
       onSuccess: function (result) {
         if (result[0][0].error == 0) {
           if (result[1][0]) {
