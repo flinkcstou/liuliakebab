@@ -622,7 +622,7 @@
             for (var i in digits) {
               phone += digits[i]
             }
-            firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
+            firstFieldInput.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
           }, 0);
         }, function (error) {
           console.log('error', error)
