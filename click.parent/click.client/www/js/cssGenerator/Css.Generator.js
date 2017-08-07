@@ -12596,7 +12596,7 @@ var css = {
   "position: relative;" +
   "font-size:" + 24 * widthK + "px; " +
   "width: 88%; " +
-  "margin:" + 35 * widthK + "px auto 0 auto;  " +
+  "margin:" + 50 * widthK + "px auto 0 auto;  " +
   "color: #4f4f4f;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
