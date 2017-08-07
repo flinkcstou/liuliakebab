@@ -2048,7 +2048,8 @@ var css = {
   "transform: translate3d(-100%, 0, 0);" +
   "-webkit-transform: translate3d(-100%, 0,0);" +
   "-ms-transform: translate3d(-100%, 0,0);" +
-  "background-color: #22a0e0;" +
+  // "background-color: #22a0e0;" +
+  "background-color: #00a8f1;" +
   "z-index: 1;" +
   //"top:" + topOfIos + "px;" +
   "}",
@@ -2125,7 +2126,8 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #43aee5;" +
+  "border-bottom: 1px solid #a8d6ee;" +
+  // "border-bottom: 1px solid #43aee5;" +
   "}",
 
   sideMenuFavoriteContainer: ".side-menu-favorite-container " +
@@ -2135,7 +2137,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #43aee5;" +
+  "border-bottom: 1px solid #a8d6ee;" +
   "}",
 
   sideMenuAutoPayContainer: ".side-menu-auto-pay-container " +
@@ -2145,7 +2147,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #43aee5;" +
+  "border-bottom: 1px solid #a8d6ee;" +
   "}",
 
   sideMenuScannerQrContainer: ".side-menu-scanner-qr-container " +
@@ -2155,7 +2157,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #43aee5;" +
+  "border-bottom: 1px solid #a8d6ee;" +
   "}",
 
   sideMenuSettingsContainer: ".side-menu-settings-container " +
@@ -2165,7 +2167,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #43aee5;" +
+  "border-bottom: 1px solid #a8d6ee;" +
   "}",
 
 
@@ -2177,7 +2179,7 @@ var css = {
   "width: 77%;" +
   "left: 8%;" +
   //"margin-top: 2%;" +
-  "border-bottom: 1px solid #43aee5;" +
+  "border-bottom: 1px solid #a8d6ee;" +
   "}",
 
   sideMenuExitContainer: ".side-menu-exit-container " +
@@ -2187,7 +2189,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #43aee5;" +
+  "border-bottom: 1px solid #a8d6ee;" +
   "}",
 
   sideMenuContainersIcon: ".side-menu-containers-icon " +
