@@ -417,7 +417,7 @@
         scope.autoPayData.name = autoPayNameInput.value;
         scope.autoPayData.isNew = true;
         scope.autoPayData.step = chosenStep;
-        scope.autoPayData.cntrg_phone_num = firstFieldInput.value;
+        scope.autoPayData.cntrg_phone_num = inputVerification.spaceDeleter(firstFieldInput.value);
         scope.autoPayData.amount = scope.chosenAmount;
         opts.amountText = scope.chosenAmount;
 
