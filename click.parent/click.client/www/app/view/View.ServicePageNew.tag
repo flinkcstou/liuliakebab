@@ -88,7 +88,7 @@
       <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
         {window.languages.ViewServicePageAmountTaxText} {tax}
         {window.languages.Currency}</p>
-      <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="9"
+      <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="10"
              id="amount"
              pattern="[0-9]"
              placeholder="{placeHolderText}"
@@ -328,7 +328,7 @@
     if (loginInfo)
       var sessionKey = loginInfo.session_key;
 
-    var numberForPayTransaction;
+    //var numberForPayTransaction;
 
 
     //    console.log("click_client_servicesParamsMapTwo", localStorage.getItem("click_client_servicesParamsMapTwo"));
@@ -392,7 +392,7 @@
       if (this.firstFieldInput) {
 
         if (scope.phoneFieldBool && firstFieldInput && opts.chosenServiceId != "mynumber") {
-          if (firstFieldInput.value.length < 9) {
+          if (firstFieldInput.value.length < 10) {
             //console.log("Неправильно введён номер телефона");
 
             scope.enterButtonEnabled = false;
@@ -1009,8 +1009,11 @@
         opts.first_field_value = opts.firstFieldText ? opts.firstFieldText : null;
         scope.amountFieldTitle = scope.service.lang_amount_title;
         scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
-        if (scope.phoneFieldBool)
-          scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
+        if (scope.phoneFieldBool) {
+          console.log("NUMBER FROM OPTS 1", opts.firstFieldText)
+          scope.defaultNumber = !opts.firstFieldText ? null : opts.firstFieldText;
+          console.log("NUMBER FROM OPTS 2", scope.defaultNumber)
+        }
 
         if (opts.amountText)
           scope.defaultAmount = window.amountTransform(opts.amountText);
@@ -1549,7 +1552,7 @@
           console.log(error);
         }
 
-        if (scope.phoneFieldBool && firstFieldInput.value.length < 9 && opts.chosenServiceId != "mynumber") {
+        if (scope.phoneFieldBool && firstFieldInput.value.length < 10 && opts.chosenServiceId != "mynumber") {
           scope.clickPinError = false;
           scope.errorNote = "Неправильно введён номер телефона";
           scope.showError = true;

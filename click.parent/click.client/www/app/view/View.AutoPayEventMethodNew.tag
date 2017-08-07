@@ -316,7 +316,7 @@
             for (var i in digits) {
               phone += digits[i]
             }
-            firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
+            firstFieldInput.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
           }, 0);
         }, function (error) {
           console.log('error', error)
@@ -341,7 +341,7 @@
         return;
       }
 
-      if (this.firstFieldInput.value.length < 9) {
+      if (this.firstFieldInput.value.length < 10) {
         console.log("Неправильно введён номер телефона");
         scope.enterButtonEnabled = false;
         scope.update(scope.enterButtonEnabled);
@@ -392,7 +392,7 @@
           return;
         }
 
-        if (firstFieldInput.value.length < 9) {
+        if (firstFieldInput.value.length < 10) {
           scope.clickPinError = false;
           scope.errorNote = "Неправильно введён номер телефона";
           scope.showError = true;
