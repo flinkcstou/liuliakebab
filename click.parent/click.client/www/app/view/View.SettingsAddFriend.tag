@@ -236,6 +236,7 @@
 
       function success(contacts) {
         for (var i = 0; i < contacts.length; i++) {
+          if (contacts[i].name)
           if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null) {
             for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
               var digits = contacts[i].phoneNumbers[j].value.match(maskOne);
