@@ -4,7 +4,7 @@
     <div id="closeButton" ontouchend="closeNewsTouchEnd()" class="view-news-right-button"></div>
   </div>
 
-  <div class="view-news-container">
+  <div class="view-news-container" id="newsMainContainerId" onscroll="newsScrollFunction()">
 
     <div class="view-news-block-of-all" each="{i in newsArray}">
 
@@ -58,6 +58,15 @@
 
       onBackKeyDown()
       scope.unmount()
+    }
+
+    var pageNumber = 1;
+    newsScrollFunction = function () {
+      if ((newsMainContainerId.scrollHeight - newsMainContainerId.scrollTop) == newsMainContainerId.offsetHeight) {
+        scope.showNewsFunction(pageNumber);
+        pageNumber++;
+      }
+
     }
 
     var touchStartY, touchEndY;
@@ -125,7 +134,7 @@
       }
     }
 
-    scope.showNewsFunction = function () {
+    scope.showNewsFunction = function (pageNumber) {
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var signString = hex_md5(phoneNumber.substring(0,5) + "CLICK" + phoneNumber.substring(phoneNumber.length - 7, phoneNumber.length))
 
@@ -135,13 +144,13 @@
         input: {
           phone_num: phoneNumber,
           sign_string: signString,
+          page_number : pageNumber,
 
         },
 
         scope: this,
 
         onSuccess: function (result) {
-          scope.newsArray = []
           if (result[0][0].error == 0) {
             console.log("NEWS", result);
             for (var i in result[1]) {
