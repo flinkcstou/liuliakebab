@@ -473,7 +473,7 @@
     };
 
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
-    telPayVerificationKeyUp = function (from) {
+    telPayVerificationKeyUp = function () {
 
       if (contactStopChanging) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
@@ -483,29 +483,15 @@
       cursorPositionSelectionEnd = firstFieldInput.selectionEnd;
       oldValueOfNumber = firstFieldInput.value
 
-      console.log('start', cursorPositionSelectionStart.toString(), ', end', cursorPositionSelectionEnd.toString())
-
       if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         if (firstFieldInput.type != 'text')
           firstFieldInput.value = inputVerification.telVerificationWithSpace(firstFieldInput.value)
-        //console.log("phone tranform=", inputVerification.phoneEnterTransform(2, '', firstFieldInput.value))
-        //firstFieldInput.value = inputVerification.phoneEnterTransform(2, '', firstFieldInput.value);
-
-        numberForPayTransaction = firstFieldInput.value.substring(0, firstFieldInput.value.match(maskTwo).length);
-        //console.log('amount 1', numberForPayTransaction.toString())
-        numberForPayTransaction = numberForPayTransaction.replace(new RegExp(' ', 'g'), '');
-
-        //console.log('amount 2', numberForPayTransaction.toString())
-        console.log('oldValueOfNumber', oldValueOfNumber.toString() + '/');
-        console.log('firstFieldInput.value', firstFieldInput.value.toString() + '/');
 
         firstFieldInput.selectionStart = cursorPositionSelectionStart
         firstFieldInput.selectionEnd = cursorPositionSelectionEnd
 
-        if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3) {
-          console.log('cursor =3')
+        if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3)
           firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
-        }
 
       }
       checkFieldsToActivateNext();
