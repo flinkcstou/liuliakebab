@@ -220,6 +220,22 @@ window.inputVerification.telVerification = function (phoneNumber) {
   return phoneNumber.split(",").join();
 }
 
+window.inputVerification.telVerificationWithSpace = function (phoneNumber) {
+  console.log('PHONE NUMBER BEFORE', phoneNumber)
+  phoneNumber = phoneNumber.toString()
+
+  phoneNumber = phoneNumber.replace(new RegExp('[^0-9]', 'g'), '');
+
+  var newNumber = '';
+
+  if (phoneNumber.length > 10) {
+    phoneNumber = phoneNumber.substring(phoneNumber.length - 10, phoneNumber.length)
+  }
+  newNumber = phoneNumber.slice(0, 2) + ' ' + phoneNumber.slice(2);
+  console.log('PHONE NUMBER AFTER', newNumber)
+  return newNumber;
+}
+
 window.inputVerification.telLengthVerification = function (phoneNumber, length) {
   phoneNumber = phoneNumber.toString()
   phoneNumber = phoneNumber.replace(new RegExp('[^0-9]', 'g'), '');

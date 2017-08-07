@@ -436,12 +436,6 @@
       event.preventDefault();
       event.stopPropagation();
 
-//      console.log("reportBodyContainerId.scrollHeight", reportBodyContainerId.scrollHeight);
-      console.log("reportBodyContainerId.scrollTop", reportBodyContainerId.scrollTop);
-//      console.log("reportBodyContainerId.offsetHeight", reportBodyContainerId.offsetHeight);
-//      console.log("paymentDateContainerId.scrollTop", paymentDateContainerId.scrollTop);
-
-
       if ((reportBodyContainerId.scrollHeight - reportBodyContainerId.scrollTop) == reportBodyContainerId.offsetHeight) {
         // you're at the bottom of the page
         scope.pageNumberOptional++;

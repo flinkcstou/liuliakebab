@@ -328,6 +328,8 @@
     if (loginInfo)
       var sessionKey = loginInfo.session_key;
 
+    var numberForPayTransaction;
+
 
     //    console.log("click_client_servicesParamsMapTwo", localStorage.getItem("click_client_servicesParamsMapTwo"));
     //    console.log("click_client_servicesParamsMapThree", localStorage.getItem("click_client_servicesParamsMapThree"));
@@ -391,7 +393,7 @@
 
         if (scope.phoneFieldBool && firstFieldInput && opts.chosenServiceId != "mynumber") {
           if (firstFieldInput.value.length < 9) {
-            console.log("Неправильно введён номер телефона");
+            //console.log("Неправильно введён номер телефона");
 
             scope.enterButtonEnabled = false;
             scope.update(scope.enterButtonEnabled);
@@ -461,7 +463,7 @@
     telPayVerificationKeyDown = function (input) {
 //      console.log(event.target.value)
       if (scope.phoneFieldBool)
-        if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+        if (input.value.length >= 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
 //          firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
           contactStopChanging = true;
         }
@@ -480,20 +482,31 @@
       cursorPositionSelectionStart = firstFieldInput.selectionStart;
       cursorPositionSelectionEnd = firstFieldInput.selectionEnd;
       oldValueOfNumber = firstFieldInput.value
+
+      console.log('start', cursorPositionSelectionStart.toString(), ', end', cursorPositionSelectionEnd.toString())
+
       if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-        console.log(firstFieldInput.value)
         if (firstFieldInput.type != 'text')
-          firstFieldInput.value = inputVerification.telVerification(firstFieldInput.value)
-        console.log("phone tranform=", inputVerification.phoneEnterTransform(2, '', firstFieldInput.value))
+          firstFieldInput.value = inputVerification.telVerificationWithSpace(firstFieldInput.value)
+        //console.log("phone tranform=", inputVerification.phoneEnterTransform(2, '', firstFieldInput.value))
         //firstFieldInput.value = inputVerification.phoneEnterTransform(2, '', firstFieldInput.value);
-        if (oldValueOfNumber != firstFieldInput.value) {
-          firstFieldInput.selectionStart = cursorPositionSelectionStart - 1
-          firstFieldInput.selectionEnd = cursorPositionSelectionEnd - 1
+
+        numberForPayTransaction = firstFieldInput.value.substring(0, firstFieldInput.value.match(maskTwo).length);
+        //console.log('amount 1', numberForPayTransaction.toString())
+        numberForPayTransaction = numberForPayTransaction.replace(new RegExp(' ', 'g'), '');
+
+        //console.log('amount 2', numberForPayTransaction.toString())
+        console.log('oldValueOfNumber', oldValueOfNumber.toString() + '/');
+        console.log('firstFieldInput.value', firstFieldInput.value.toString() + '/');
+
+        firstFieldInput.selectionStart = cursorPositionSelectionStart
+        firstFieldInput.selectionEnd = cursorPositionSelectionEnd
+
+        if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3) {
+          console.log('cursor =3')
+          firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
         }
-        else {
-          firstFieldInput.selectionStart = cursorPositionSelectionStart
-          firstFieldInput.selectionEnd = cursorPositionSelectionEnd
-        }
+
       }
       checkFieldsToActivateNext();
     };
@@ -1447,8 +1460,11 @@
       event.preventDefault();
       event.stopPropagation();
 
+      console.log('amount before', amount.value.toString())
+
       if (amount.value.length == 1) {
         amount.value = window.amountTransform(amount.value)
+        console.log('amount 11', amount.value.toString())
       }
 
       if (event.keyCode == 8) {
@@ -1465,10 +1481,16 @@
         amount.selectionStart = amount.value.match(maskTwo).length;
         amount.selectionEnd = amount.value.match(maskTwo).length;
 
+        console.log('amount 22', amount.value.toString())
+
         amountForPayTransaction = amount.value.substring(0, amount.value.match(maskTwo).length);
+        console.log('amount 22.5', amountForPayTransaction.toString())
         amountForPayTransaction = amountForPayTransaction.replace(new RegExp(' ', 'g'), '');
 
+        console.log('amount 33', amountForPayTransaction.toString())
+
         amount.value = window.amountTransform(amountForPayTransaction);
+        console.log('amount 44', amount.value.toString())
 
       } else {
         amount.selectionStart = 0;
