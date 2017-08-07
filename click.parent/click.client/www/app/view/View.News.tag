@@ -47,6 +47,10 @@
       console.log('SCOPE NEW', scope)
 
       if(scope.parent.opts.view){
+
+        if(sessionStorage.getItem("push_news")){
+          sessionStorage.setItem("push_news", false)
+        }
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
         return
@@ -123,16 +127,14 @@
 
     scope.showNewsFunction = function () {
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-      var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-      if (info)
-        var sessionKey = info.session_key;
+      var signString = hex_md5(phoneNumber.substring(0,5) + "CLICK" + phoneNumber.substring(phoneNumber.length - 7, phoneNumber.length))
 
 
       window.api.call({
         method: 'get.news',
         input: {
           phone_num: phoneNumber,
-          session_key: sessionKey,
+          sign_string: signString,
 
         },
 

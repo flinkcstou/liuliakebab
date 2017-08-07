@@ -2126,7 +2126,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #a8d6ee;" +
+  "border-bottom: 1px solid #54b4e6;" +
   // "border-bottom: 1px solid #43aee5;" +
   "}",
 
@@ -2137,7 +2137,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #a8d6ee;" +
+  "border-bottom: 1px solid #54b4e6;" +
   "}",
 
   sideMenuAutoPayContainer: ".side-menu-auto-pay-container " +
@@ -2147,7 +2147,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #a8d6ee;" +
+  "border-bottom: 1px solid #54b4e6;" +
   "}",
 
   sideMenuScannerQrContainer: ".side-menu-scanner-qr-container " +
@@ -2157,7 +2157,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #a8d6ee;" +
+  "border-bottom: 1px solid #54b4e6;" +
   "}",
 
   sideMenuSettingsContainer: ".side-menu-settings-container " +
@@ -2167,7 +2167,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #a8d6ee;" +
+  "border-bottom: 1px solid #54b4e6;" +
   "}",
 
 
@@ -2179,7 +2179,7 @@ var css = {
   "width: 77%;" +
   "left: 8%;" +
   //"margin-top: 2%;" +
-  "border-bottom: 1px solid #a8d6ee;" +
+  "border-bottom: 1px solid #54b4e6;" +
   "}",
 
   sideMenuExitContainer: ".side-menu-exit-container " +
@@ -2189,7 +2189,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #a8d6ee;" +
+  "border-bottom: 1px solid #54b4e6;" +
   "}",
 
   sideMenuContainersIcon: ".side-menu-containers-icon " +

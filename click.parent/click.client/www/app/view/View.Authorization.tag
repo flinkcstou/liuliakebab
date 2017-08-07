@@ -743,7 +743,7 @@
           scope.unmount()
         } else {
 
-          if (!JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken'))) {
+          if (!JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken')) && !sessionStorage.getItem("push_news")) {
 //            if (history.arrayOfHistory) {
 //              if (history.arrayOfHistory[history.arrayOfHistory.length - 1] && (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-device'
 //                || history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-sms' || history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-client'
@@ -763,7 +763,7 @@
 //          }
           else {
 
-            if (localStorage.getItem('settings_block') || localStorage.getItem('session_broken')) {
+            if (localStorage.getItem('settings_block') || localStorage.getItem('session_broken') || sessionStorage.getItem("push_news")) {
               if (JSON.parse(localStorage.getItem('settings_block')) === true || JSON.parse(localStorage.getItem('session_broken')) === true) {
                 console.log("QWEQWEWWWWWWW")
                 if (history.arrayOfHistory) {
@@ -782,8 +782,15 @@
 
                     if (JSON.parse(localStorage.getItem('settings_block')) === true)
                       localStorage.setItem('onResume', false)
-                    else
+                    else {
+                      if(JSON.parse(localStorage.getItem('session_broken')) === true)
                       localStorage.setItem('session_broken', false)
+                      else{
+                        if(JSON.parse(sessionStorage.getItem("push_news") === true)){
+                          sessionStorage.setItem("push_news", false)
+                        }
+                      }
+                    }
                     scope.unmount()
                     return
                   }

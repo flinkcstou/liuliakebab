@@ -456,6 +456,8 @@ window.pushNotificationActions = {
   getNewsFunction: function (newsId) {
     window.News.newsCounter = 0;
 
+    sessionStorage.setItem("push_news",true)
+
     console.log('running news')
 
     riotTags.innerHTML = "<view-main-page>";
