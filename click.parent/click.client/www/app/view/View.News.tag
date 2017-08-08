@@ -46,7 +46,7 @@
 
       console.log('SCOPE NEW', scope)
 
-      if(scope.parent.opts.view){
+      if (scope.parent.opts.view) {
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
         return
@@ -132,7 +132,7 @@
         method: 'get.news',
         input: {
           phone_num: phoneNumber,
-          session_key: sessionKey,
+          session_key: sessionKey
 
         },
 
