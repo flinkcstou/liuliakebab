@@ -239,17 +239,48 @@
       }
     };
 
+    var eventContactStopChanging = false
     telPayVerificationKeyDown = function (input) {
 
-      if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-        firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+      if (input.value.length >= 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+//          firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+        contactStopChanging = true;
+      }
+      else {
+        contactStopChanging = false;
       }
     };
 
     telPayVerificationKeyUp = function () {
-      if (event.keyCode != input_codes.BACKSPACE_CODE) {
-        console.log(firstFieldInput.value)
-        firstFieldInput.value = inputVerification.telVerification(firstFieldInput.value)
+
+
+      if (contactStopChanging) {
+        firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+      }
+
+      cursorPositionSelectionStart = firstFieldInput.selectionStart;
+      cursorPositionSelectionEnd = firstFieldInput.selectionEnd;
+      oldValueOfNumber = firstFieldInput.value
+
+      if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+        if (firstFieldInput.type != 'text')
+          firstFieldInput.value = inputVerification.telVerificationWithSpace(firstFieldInput.value)
+
+        // numberForPayTransaction = firstFieldInput.value.substring(0, firstFieldInput.value.match(maskTwo).length);
+        //console.log('amount 1', numberForPayTransaction.toString())
+        //numberForPayTransaction = numberForPayTransaction.replace(new RegExp(' ', 'g'), '');
+
+        console.log('oldValueOfNumber', oldValueOfNumber.toString() + '/');
+        console.log('firstFieldInput.value', firstFieldInput.value.toString() + '/');
+
+        firstFieldInput.selectionStart = cursorPositionSelectionStart
+        firstFieldInput.selectionEnd = cursorPositionSelectionEnd
+
+        if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3) {
+          console.log('cursor =3')
+          firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
+        }
+
       }
       checkFieldsEventToActivateNext();
     };
@@ -285,7 +316,7 @@
             for (var i in digits) {
               phone += digits[i]
             }
-            firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
+            firstFieldInput.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
           }, 0);
         }, function (error) {
           console.log('error', error)
@@ -310,7 +341,7 @@
         return;
       }
 
-      if (this.firstFieldInput.value.length < 9) {
+      if (this.firstFieldInput.value.length < 10) {
         console.log("Неправильно введён номер телефона");
         scope.enterButtonEnabled = false;
         scope.update(scope.enterButtonEnabled);
@@ -361,7 +392,7 @@
           return;
         }
 
-        if (firstFieldInput.value.length < 9) {
+        if (firstFieldInput.value.length < 10) {
           scope.clickPinError = false;
           scope.errorNote = "Неправильно введён номер телефона";
           scope.showError = true;
@@ -386,7 +417,7 @@
         scope.autoPayData.name = autoPayNameInput.value;
         scope.autoPayData.isNew = true;
         scope.autoPayData.step = chosenStep;
-        scope.autoPayData.cntrg_phone_num = firstFieldInput.value;
+        scope.autoPayData.cntrg_phone_num = inputVerification.spaceDeleter(firstFieldInput.value);
         scope.autoPayData.amount = scope.chosenAmount;
         opts.amountText = scope.chosenAmount;
 

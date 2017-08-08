@@ -1,13 +1,15 @@
 <component-toolbar>
   <div id="toolbar" class="toolbar">
-    <div id="menuButtonId" class="menu-button menu-icon" ontouchstart="menuOpenTouchStart()" ontouchend="menuOpenTouchEnd()">
+    <div id="menuButtonId" class="menu-button menu-icon" ontouchstart="menuOpenTouchStart()"
+         ontouchend="menuOpenTouchEnd()">
     </div>
 
     <div id="circleMenuId" class="toolbar-circle-container" ontouchend="goToViewInfoTouchEnd()"
          ontouchstart="goToViewInfoTouchStart()">
     </div>
 
-    <div id="bellButtonId" class="bell-button bell-icon" ontouchstart="bellButtonTouchStart()" ontouchend="bellButtonTouchEnd()">
+    <div id="bellButtonId" class="bell-button bell-icon" ontouchstart="bellButtonTouchStart()"
+         ontouchend="bellButtonTouchEnd()">
       <div if="{window.News.newsCounter != 0 && !modeOfApp.offlineMode}" class="bell-button-news-counter">
         {window.News.newsCounter}
       </div>
@@ -90,6 +92,7 @@
 
         if (modeOfApp.offlineMode)return
 
+        containerCard.style.filter = 'blur(5px)';
         viewNewsId.style.display = 'block'
 
         window.News.newsCounter = 0;

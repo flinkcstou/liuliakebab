@@ -1303,6 +1303,7 @@ var css = {
   "width: 100%;" +
   "height: 100%;" +
   "overflow: hidden;" +
+  // "filter: blur(5px);" +
   "}",
 
   //TOOLBAR COMPONENT
@@ -2780,6 +2781,7 @@ var css = {
   "height:" + 40 * widthK + "px;" +
   "width:" + 25 * widthK + "px;" +
   "left:" + 350 * widthK + "px;" +
+  "top:" + 7 * widthK + "px;" +
   "background-image: url(resources/icons/ViewMyCards/double_arrow.png);" +
   "background-size: contain;" +
   "background-position: center;" +
@@ -2807,7 +2809,7 @@ var css = {
   // "top:" + 80 * widthK + "px;" +
   "width: 100%;" +
   "background-color: white;" +
-  "height:" + 200 * widthK + "px;" +
+  "height:" + 150 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #dedfe0;" +
   "overflow: hidden;" +
   "}",
@@ -2816,10 +2818,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 60 * widthK + "px;" +
-  "right:" + 5 * widthK + "px;" +
+  "right:" + 14 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
   //"height: 100%;" +
-  "top: 50%;" +
+  "top: 40%;" +
   "background-repeat: no-repeat;" +
   "background-size: 60%;" +
   "background-position: center;" +
@@ -2858,11 +2860,26 @@ var css = {
   "color: gray;" +
   "}",
 
+  myCardsOperationServiceIcon: ".my-cards-operation-service-icon " +
+  "{" +
+  //"top:" + 50 * widthK + "px;" +
+  "background-size: 80%;" +
+  "position: absolute;" +
+  "width:" + 125 * widthK + "px;" +
+  "height:" + 125 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  //"border-radius:" + 100 * widthK + "px;" +
+  //"border:solid 1px #f1f1f1;" +
+  "top: 6%;" +
+  "left: 2%;" +
+  "}",
+
 
   myCardsOperationAmounts: ".my-cards-operation-amount " +
   "{" +
   "position: relative;" +
-  "color: #EB604D;" +
+  "color: #595759;" +
   "background-size: contain;" +
   "font-size:" + 48 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
@@ -2896,8 +2913,8 @@ var css = {
   "{" +
   "position: relative;" +
   // "left:" + 150 * widthK + "px;" +
-  // "top:" + 60 * widthK + "px;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "top:" + 15 * widthK + "px;" +
+  "font-size:" + 25 * widthK + "px;" +
   "color: #919191;" +
   "}",
 

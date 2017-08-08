@@ -65,10 +65,12 @@
           <p class="my-cards-last-operation-info-date-name">{j}</p>
         </div>
         <div class="my-cards-last-operations-info" each="{i in lastOperationsMap[j]}">
+          <div class="my-cards-operation-service-icon"
+               style="background-image: url({i.image})"></div>
           <div class="my-cards-operation-amount">- {i.amount}</div>
           <div class="my-cards-operation-currency">{i.lang_amount_currency}</div>
           <div class="my-cards-firm-name">{i.service_name}</div>
-          <div class="my-cards-operation-date">{i.created}</div>
+          <div class="my-cards-operation-date">{i.cntrg_info_param2}</div>
           <p class="my-cards-last-operation-info-time">{i.paymentTime}</p>
           <div class="my-cards-last-operations-info-state-image" style="background-image: url({i.state_image})"></div>
         </div>

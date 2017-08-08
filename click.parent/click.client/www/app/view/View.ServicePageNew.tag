@@ -88,7 +88,7 @@
       <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
         {window.languages.ViewServicePageAmountTaxText} {tax}
         {window.languages.Currency}</p>
-      <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="9"
+      <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="10"
              id="amount"
              pattern="[0-9]"
              placeholder="{placeHolderText}"
@@ -328,6 +328,8 @@
     if (loginInfo)
       var sessionKey = loginInfo.session_key;
 
+    //var numberForPayTransaction;
+
 
     //    console.log("click_client_servicesParamsMapTwo", localStorage.getItem("click_client_servicesParamsMapTwo"));
     //    console.log("click_client_servicesParamsMapThree", localStorage.getItem("click_client_servicesParamsMapThree"));
@@ -390,8 +392,8 @@
       if (this.firstFieldInput) {
 
         if (scope.phoneFieldBool && firstFieldInput && opts.chosenServiceId != "mynumber") {
-          if (firstFieldInput.value.length < 9) {
-            console.log("Неправильно введён номер телефона");
+          if (firstFieldInput.value.length < 10) {
+            //console.log("Неправильно введён номер телефона");
 
             scope.enterButtonEnabled = false;
             scope.update(scope.enterButtonEnabled);
@@ -461,7 +463,7 @@
     telPayVerificationKeyDown = function (input) {
 //      console.log(event.target.value)
       if (scope.phoneFieldBool)
-        if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+        if (input.value.length >= 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
 //          firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
           contactStopChanging = true;
         }
@@ -471,7 +473,7 @@
     };
 
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
-    telPayVerificationKeyUp = function (from) {
+    telPayVerificationKeyUp = function () {
 
       if (contactStopChanging) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
@@ -480,20 +482,17 @@
       cursorPositionSelectionStart = firstFieldInput.selectionStart;
       cursorPositionSelectionEnd = firstFieldInput.selectionEnd;
       oldValueOfNumber = firstFieldInput.value
+
       if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-        console.log(firstFieldInput.value)
         if (firstFieldInput.type != 'text')
-          firstFieldInput.value = inputVerification.telVerification(firstFieldInput.value)
-        console.log("phone tranform=", inputVerification.phoneEnterTransform(2, '', firstFieldInput.value))
-        //firstFieldInput.value = inputVerification.phoneEnterTransform(2, '', firstFieldInput.value);
-        if (oldValueOfNumber != firstFieldInput.value) {
-          firstFieldInput.selectionStart = cursorPositionSelectionStart - 1
-          firstFieldInput.selectionEnd = cursorPositionSelectionEnd - 1
-        }
-        else {
-          firstFieldInput.selectionStart = cursorPositionSelectionStart
-          firstFieldInput.selectionEnd = cursorPositionSelectionEnd
-        }
+          firstFieldInput.value = inputVerification.telVerificationWithSpace(firstFieldInput.value)
+
+        firstFieldInput.selectionStart = cursorPositionSelectionStart
+        firstFieldInput.selectionEnd = cursorPositionSelectionEnd
+
+        if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3)
+          firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
+
       }
       checkFieldsToActivateNext();
     };
@@ -623,7 +622,7 @@
             for (var i in digits) {
               phone += digits[i]
             }
-            firstFieldInput.value = phone.substring(phone.length - 9, phone.length);
+            firstFieldInput.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
           }, 0);
         }, function (error) {
           console.log('error', error)
@@ -1010,8 +1009,11 @@
         opts.first_field_value = opts.firstFieldText ? opts.firstFieldText : null;
         scope.amountFieldTitle = scope.service.lang_amount_title;
         scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
-        if (scope.phoneFieldBool)
-          scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
+        if (scope.phoneFieldBool) {
+          console.log("NUMBER FROM OPTS 1", opts.firstFieldText)
+          scope.defaultNumber = !opts.firstFieldText ? null : opts.firstFieldText;
+          console.log("NUMBER FROM OPTS 2", scope.defaultNumber)
+        }
 
         if (opts.amountText)
           scope.defaultAmount = window.amountTransform(opts.amountText);
@@ -1447,8 +1449,11 @@
       event.preventDefault();
       event.stopPropagation();
 
+      console.log('amount before', amount.value.toString())
+
       if (amount.value.length == 1) {
         amount.value = window.amountTransform(amount.value)
+        console.log('amount 11', amount.value.toString())
       }
 
       if (event.keyCode == 8) {
@@ -1465,10 +1470,16 @@
         amount.selectionStart = amount.value.match(maskTwo).length;
         amount.selectionEnd = amount.value.match(maskTwo).length;
 
+        console.log('amount 22', amount.value.toString())
+
         amountForPayTransaction = amount.value.substring(0, amount.value.match(maskTwo).length);
+        console.log('amount 22.5', amountForPayTransaction.toString())
         amountForPayTransaction = amountForPayTransaction.replace(new RegExp(' ', 'g'), '');
 
+        console.log('amount 33', amountForPayTransaction.toString())
+
         amount.value = window.amountTransform(amountForPayTransaction);
+        console.log('amount 44', amount.value.toString())
 
       } else {
         amount.selectionStart = 0;
@@ -1541,7 +1552,7 @@
           console.log(error);
         }
 
-        if (scope.phoneFieldBool && firstFieldInput.value.length < 9 && opts.chosenServiceId != "mynumber") {
+        if (scope.phoneFieldBool && firstFieldInput.value.length < 10 && opts.chosenServiceId != "mynumber") {
           scope.clickPinError = false;
           scope.errorNote = "Неправильно введён номер телефона";
           scope.showError = true;
