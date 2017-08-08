@@ -131,7 +131,7 @@
 
       if (Math.abs(lastOperationButtonStartX - lastOperationButtonEndX) <= 100 && lastOperationButtonStartY > lastOperationButtonEndY && !lastOperationCheck) {
 
-        lastOperationMainContainerId.style.webkitTransform = "translate3d(0,0,0)"
+        lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 85 * widthK + "px,0)"
 //          lastOperationMainContainerId.top = "0"
         lastOperationContainerId.style.height = 1155 * widthK + "px";
         document.getElementById('containerCard').style.webkitTransform = "scale(0.2)"
