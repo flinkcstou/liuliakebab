@@ -12514,7 +12514,7 @@ var css = {
   viewNews: ".view-news" +
   "{" +
   "position: absolute;" +
-  "width: 100%;" +
+  "width: 101%;" +
   "height: 100%;" +
   "display: none;" +
   "z-index: 9999;" +
