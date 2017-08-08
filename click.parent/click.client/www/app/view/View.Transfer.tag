@@ -104,7 +104,6 @@
                onfocus="cardPhoneBlurAndChange()"
                id="cardInputId" class="transfer-card-number-input-part" type="tel"
                onkeydown="searchCard(this)" onkeyup="cardOnKeyUp()"
-               maxlength="19"
         />
       </div>
       <div hidden id="ownerCardDsiplayId" class="transfer-card-owner-container">
@@ -581,7 +580,10 @@
       scope.contactMode = false
       console.log('event.keyCode', event)
       if (onPaste) {
-        cardInputId.value = inputVerification.cardVerification(cardInputId.value)
+        var cardWithouSpace = inputVerification.spaceDeleter(event.target.value)
+        console.log('cardWithouSpace', cardWithouSpace)
+        console.log('cardInputId.value', cardInputId.value)
+        cardInputId.value = inputVerification.cardVerification(cardWithouSpace)
         onPaste = false;
       }
 
@@ -779,7 +781,7 @@
 //
 //      }
 
-      if (input.value.length >= 20 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+      if (input.value.length >= 19 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
 //        cardInputId.value = event.target.value.substring(0, event.target.value.length - 1);
         cardStopChanging = true;
       }
