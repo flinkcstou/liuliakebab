@@ -376,6 +376,9 @@
       chooseCardStartX = event.changedTouches[0].pageX;
     };
 
+
+    var phoneRegexp = new RegExp(scope.servicesMap[scope.autoPayData.service_id][0].validation);
+
     chooseCardToPay = function () {
 
       event.stopPropagation();
@@ -391,6 +394,10 @@
           scope.update();
           return;
         }
+
+//        console.log("REGEXP =", phoneRegexp);
+//        console.log("REGEXP validation=", firstFieldInput.value.match(phoneRegexp));
+//        console.log("REGEXP validation=", phoneRegexp.test(firstFieldInput.value));
 
         if (firstFieldInput.value.length < 10) {
           scope.clickPinError = false;
