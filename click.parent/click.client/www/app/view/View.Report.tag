@@ -37,7 +37,7 @@
          class="view-reports-body-container" id="reportBodyContainerId" if="{firstReportView}"
          onscroll="reportsBodyContainerTouchMove()">
       <div class="view-reports-payments-container" each="{i in paymentDates}">
-        <div class="view-reports-payment-date-containter" id="paymentDateContainerId">
+        <div class="view-reports-payment-date-containter" id="{'id'+i}">
           <div class="view-reports-payment-date-field">{i}</div>
         </div>
         <div class="view-reports-payment-block-containter" each="{j in paymentsMap[i]}" id="{j.payment_id}"
@@ -434,6 +434,19 @@
     reportsBodyContainerTouchMove = function () {
       event.preventDefault();
       event.stopPropagation();
+
+//      for(var i in scope.paymentDates){
+//
+//        console.log('element',document.getElementById('id' + scope.paymentDates[i]).offsetTop)
+//        console.log('main div',reportBodyContainerId.scrollTop)
+//        if(document.getElementById('id' + scope.paymentDates[i]).offsetTop - reportBodyContainerId.scrollTop == 0 ){
+//          document.getElementById('id' + scope.paymentDates[i]).style.position = 'fixed'
+//        }
+////        else{
+////          document.getElementById('id' + scope.paymentDates[i]).style.position = 'relative'
+////        }
+//      }
+
 
       if ((reportBodyContainerId.scrollHeight - reportBodyContainerId.scrollTop) == reportBodyContainerId.offsetHeight) {
         // you're at the bottom of the page

@@ -2772,7 +2772,8 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "color: #8a8a8a;" +
   "z-index: 99999;" +
-  "box-shadow: 0px 17px 63px -23px rgb(37, 36, 36);" +
+  // "box-shadow: 0px 17px 63px -23px rgb(37, 36, 36);" +
+  "box-shadow: 0px "+  17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " +" rgb(37, 36, 36);" +
   "}",
 
   myCardsLastOperationsContainerIcon: ".my-cards-last-operations-container-icon " +
@@ -12514,7 +12515,7 @@ var css = {
   viewNews: ".view-news" +
   "{" +
   "position: absolute;" +
-  "width: 101%;" +
+  "width: 100%;" +
   "height: 100%;" +
   "display: none;" +
   "z-index: 9999;" +
