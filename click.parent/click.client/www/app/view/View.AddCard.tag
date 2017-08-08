@@ -14,7 +14,7 @@
       <div class="add-card-uzcard-icon"></div>
       <p class="add-card-card-text add-card-card-number-text">{window.languages.ViewAddCardNumberTitle}</p>
       <div id="cardNumberInput" class="add-card-card-number">
-        <input type="tel" onkeyup="boxOneKeyUp()" onkeydown="boxOneKeyDown()" autofocus="true"
+        <input type="tel" onpaste="boxOnePaste()" oninput="boxOneInput()" onkeyup="boxOneKeyUp()" onkeydown="boxOneKeyDown()" autofocus="true"
                id="boxOne"
                class="add-card-card-number-box add-card-card-number-box-one">
         </input>
@@ -203,6 +203,16 @@
         }, 20000)
       }
 
+    }
+
+    var onPaste = false;
+
+    boxOnePaste = function () {
+      onPaste = true;
+    }
+
+    boxOneInput = function () {
+      boxOne.value = inputVerification.cardVerification(boxOne.value);
     }
 
     boxOneKeyUp = function () {
