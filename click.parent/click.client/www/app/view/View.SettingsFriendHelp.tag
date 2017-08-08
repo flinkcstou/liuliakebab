@@ -12,8 +12,8 @@
              style="background-image: url({i.photo})">{i.firstLetterOfName}
         </div>
         <div class="settings-friend-help-contact-found-text-container"
-             ontouchstart="chooseFriendForHelpStart({'id'+i.number})"
-             ontouchend="chooseFriendForHelpEnd({i.number}, {'id'+i.number})">
+             ontouchstart="chooseFriendForHelpStart('id'+{i.number})"
+             ontouchend="chooseFriendForHelpEnd({i.number}, 'id'+{i.number})">
           <div class="settings-friend-help-contact-found-text-one">{i.name}</div>
           <div class="settings-friend-help-contact-found-text-two">+{i.number}</div>
         </div>
@@ -289,7 +289,7 @@
 
       console.log("ID", id)
 
-      id.style.backgroundColor = 'rgba(231,231,231,0.5)'
+      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
 
       chooseButtonStartX = event.changedTouches[0].pageX;
       chooseButtonStartY = event.changedTouches[0].pageY;
@@ -299,7 +299,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      id.style.backgroundColor = 'transparent'
+      document.getElementById(id).style.backgroundColor = 'transparent'
 
       chooseButtonEndX = event.changedTouches[0].pageX;
       chooseButtonEndY = event.changedTouches[0].pageY;

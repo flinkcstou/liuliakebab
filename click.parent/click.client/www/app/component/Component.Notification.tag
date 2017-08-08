@@ -79,14 +79,25 @@
           }
 
           if (scope.notificationAction == "news") {
-            console.log("NEWS NEWS NEWS")
-            window.News.newsCounter++;
-            riot.update();
 
-            background_notification.action = "getNewsFunction";
-            background_notification.params = scope.notificationElementId;
+//            window.News.newsCounter++;
+//            riot.update();
+//
+//            background_notification.action = "getNewsFunction";
+//            background_notification.params = scope.notificationElementId;
+//
+//            sessionStorage.setItem("push_notification", JSON.stringify(background_notification));
 
-            sessionStorage.setItem("push_notification", JSON.stringify(background_notification));
+            window.News.newsCounter = 0;
+
+            sessionStorage.setItem("push_news", true)
+
+            console.log('running news')
+
+            riotTags.innerHTML = "<view-main-page>";
+            riot.mount("view-main-page", {view: "news"});
+
+            return
 
           }
 
@@ -105,7 +116,7 @@
 
         window.FirebasePlugin.logEvent(scope.notificationText, {
           content_type: scope.notificationAction,
-          item_id: scope.notificationElementId
+          item_id     : scope.notificationElementId
         });
         if (localStorage.getItem('click_client_phoneNumber')) {
           window.FirebasePlugin.setUserId(localStorage.getItem('click_client_phoneNumber'));
@@ -116,7 +127,7 @@
       }, function (error) {
         window.FirebasePlugin.logEvent(scope.notificationText, {
           content_type: scope.notificationAction,
-          item_id: 'crash'
+          item_id     : 'crash'
         });
         console.error(error);
       });
@@ -131,7 +142,7 @@
 
       window.FirebasePlugin.logEvent("DECLINE", {
         content_type: scope.notificationAction,
-        item_id: scope.notificationElementId
+        item_id     : scope.notificationElementId
       });
       if (localStorage.getItem('click_client_phoneNumber')) {
         window.FirebasePlugin.setUserId(localStorage.getItem('click_client_phoneNumber'));
@@ -174,7 +185,7 @@
 
       window.FirebasePlugin.logEvent("ACCEPT", {
         content_type: scope.notificationAction,
-        item_id: scope.notificationElementId
+        item_id     : scope.notificationElementId
       });
     };
 
