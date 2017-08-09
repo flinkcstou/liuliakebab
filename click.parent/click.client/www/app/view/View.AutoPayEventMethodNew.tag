@@ -395,9 +395,9 @@
           return;
         }
 
-//        console.log("REGEXP =", phoneRegexp);
-//        console.log("REGEXP validation=", firstFieldInput.value.match(phoneRegexp));
-//        console.log("REGEXP validation=", phoneRegexp.test(firstFieldInput.value));
+        console.log("REGEXP =", phoneRegexp);
+        console.log("REGEXP validation=", firstFieldInput.value.match(phoneRegexp));
+        console.log("REGEXP validation=", phoneRegexp.test(inputVerification.spaceDeleter(firstFieldInput.value)));
 
         if (firstFieldInput.value.length < 10) {
           scope.clickPinError = false;
@@ -408,6 +408,14 @@
         } else if (firstFieldInput.value.length == 0) {
           scope.clickPinError = false;
           scope.errorNote = "Введите значение первого поля";
+          scope.showError = true;
+          scope.update();
+          return;
+        }
+
+        if (!phoneRegexp.test(inputVerification.spaceDeleter(firstFieldInput.value))) {
+          scope.clickPinError = false;
+          scope.errorNote = "Возможно вы ввели номер другого оператора";
           scope.showError = true;
           scope.update();
           return;
