@@ -935,7 +935,9 @@
 
       scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
 
-      if (scope.service.form_type == 4 && modeOfApp.onlineMode && !modeOfApp.demoVersion) {
+      console.log('disable cache', scope.service.disable_cache)
+
+      if (scope.service.disable_cache && modeOfApp.onlineMode && !modeOfApp.demoVersion) {
 //        console.log("")
         window.api.call({
           method: 'get.service.parameters',
