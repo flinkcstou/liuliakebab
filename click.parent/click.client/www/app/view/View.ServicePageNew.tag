@@ -1580,6 +1580,7 @@
 
 
     var enterStartY, enterStartX, enterEndY, enterEndX;
+    var phoneRegexp = new RegExp(scope.service.validation);
 
     scope.onTouchStartOfEnter = onTouchStartOfEnter = function () {
       event.stopPropagation();
@@ -1621,7 +1622,14 @@
           scope.update();
 
           return;
-        } else if (firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
+        } else if (scope.phoneFieldBool && phoneRegexp && !phoneRegexp.test(inputVerification.spaceDeleter(firstFieldInput.value)) && opts.chosenServiceId != "mynumber") {
+          scope.clickPinError = false;
+          scope.errorNote = "Возможно вы ввели номер другого оператора";
+          scope.showError = true;
+          scope.update();
+          return;
+        }
+        else if (firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
           scope.clickPinError = false;
           if (scope.dropDownOn) {
             for (var i = 0; i < scope.fieldArray.length; i++) {
