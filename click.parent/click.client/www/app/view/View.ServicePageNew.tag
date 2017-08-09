@@ -1067,7 +1067,7 @@
         scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
         if (scope.phoneFieldBool) {
           console.log("NUMBER FROM OPTS 1", opts.firstFieldText)
-          scope.defaultNumber = !opts.firstFieldText ? null : opts.firstFieldText;
+          scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(opts.firstFieldText);
           console.log("NUMBER FROM OPTS 2", scope.defaultNumber)
         }
 
