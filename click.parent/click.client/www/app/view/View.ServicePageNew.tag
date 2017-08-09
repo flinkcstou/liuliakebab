@@ -1622,7 +1622,8 @@
           scope.update();
 
           return;
-        } else if (scope.phoneFieldBool && phoneRegexp && !phoneRegexp.test(inputVerification.spaceDeleter(firstFieldInput.value)) && opts.chosenServiceId != "mynumber") {
+        } else if (scope.phoneFieldBool && scope.service.validation != null && !phoneRegexp.test(inputVerification.spaceDeleter(firstFieldInput.value)) && opts.chosenServiceId != "mynumber") {
+          console.log("scope.service.validation", scope.service.validation)
           scope.clickPinError = false;
           scope.errorNote = "Возможно вы ввели номер другого оператора";
           scope.showError = true;
