@@ -9,7 +9,7 @@
     </div>
 
     <div class="view-favorites-container" if="{favoriteListShow}">
-      <div class="view-favorites-block-containter" each="{j in favPaymentsList}">
+      <div class="view-favorites-block-containter" each="{j in favoritePaymentsList}">
         <div id="p{j.service.id}" class="view-favorites-block-inner-containter"
              ontouchstart="openFavoritePaymentStart(this.id)"
              ontouchend="openFavoritePaymentEnd(this.id)">
@@ -53,6 +53,10 @@
     var scope = this;
     this.titleName = 'ИЗБРАННОЕ';
     scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+    var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+    if (loginInfo)
+      var sessionKey = loginInfo.session_key;
     scope.favoriteListShow = true;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-favorites-new') {
@@ -127,30 +131,61 @@
     }
 
     if (scope.favoritePaymentsList) {
-//      console.log("favorite list", scope.favoritePaymentsList);
-      scope.favPaymentsList = [];
       for (var i in scope.favoritePaymentsList) {
-        if (scope.favPaymentsList.length < 4) {
-          if (scope.favoritePaymentsList[i].params.firstFieldId == '1') {
-            var firstField = scope.favoritePaymentsList[i].params.firstFieldText.toString();
-            console.log(scope.favoritePaymentsList[i].params)
-            if (scope.favoritePaymentsList[i].params && scope.favoritePaymentsList[i].params.amountText)
-              scope.favoritePaymentsList[i].params.amountText = window.amountTransform(scope.favoritePaymentsList[i].params.amountText.toString())
-            if (firstField.length == 9) {
-              firstField = firstField.substr(0, 2) + ' ' + firstField.substr(2, 3) + ' ' + firstField.substr(5, 2) + ' ' +
-                firstField.substr(7, 2);
-            }
-            scope.favoritePaymentsList[i].params.firstFieldText = firstField;
+
+        if (scope.favoritePaymentsList[i].params.firstFieldId == '1') {
+          var firstField = scope.favoritePaymentsList[i].params.firstFieldText.toString();
+          console.log(scope.favoritePaymentsList[i].params)
+          if (firstField.length == 9) {
+            firstField = firstField.substr(0, 2) + ' ' + firstField.substr(2, 3) + ' ' + firstField.substr(5, 2) + ' ' +
+              firstField.substr(7, 2);
           }
-          scope.favPaymentsList.push(scope.favoritePaymentsList[i]);
+          scope.favoritePaymentsList[i].params.firstFieldText = firstField;
         }
 
-        else break;
-      }
-//      console.log("favorites=", scope.favPaymentsList);
-      if (scope.favPaymentsList.length == 0) scope.favoriteListShow = false;
+        if (scope.favoritePaymentsList[i].service.form_type == 4 && scope.favoritePaymentsList[i].service.disable_cache && modeOfApp.onlineMode && !modeOfApp.demoVersion) {
 
-      scope.update(scope.favPaymentsList);
+          window.api.call({
+            method: 'get.service.parameters',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber,
+              service_id: scope.favoritePaymentsList[i].service.id
+            },
+
+            scope: this,
+
+            onSuccess: function (result) {
+              if (result[0][0].error == 0) {
+                console.log(' disable_cache, updating amountText')
+
+                if (result[5])
+                  for (var i in result[5]) {
+                    console.log("1");
+                    if (result[5][i].service_id == scope.favoritePaymentsList[i].service.id) {
+                      console.log("qwerty=", result[5][i].sum_cost);
+                      scope.favoritePaymentsList[i].params.amountText = window.amountTransform(result[5][i].sum_cost.toString())
+                      scope.update(scope.favoritePaymentsList);
+                      break;
+                    }
+                  }
+
+              }
+            },
+
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
+
+        } else if (scope.favoritePaymentsList[i].params.amountText)
+          scope.favoritePaymentsList[i].params.amountText = window.amountTransform(scope.favoritePaymentsList[i].params.amountText.toString())
+
+      }
+      if (scope.favoritePaymentsList.length == 0) scope.favoriteListShow = false;
+
+      scope.update(scope.favoritePaymentsList);
     } else {
       scope.favoriteListShow = false;
       scope.update();
