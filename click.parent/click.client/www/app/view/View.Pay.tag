@@ -94,8 +94,8 @@
       event.preventDefault();
       event.stopPropagation();
 
-      if(backButton)
-      backButton.style.webkitTransform = 'scale(0.7)'
+      if (backButton)
+        backButton.style.webkitTransform = 'scale(0.7)'
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;
@@ -106,8 +106,8 @@
       event.preventDefault();
       event.stopPropagation();
 
-      if(backButton)
-      backButton.style.webkitTransform = 'scale(1)'
+      if (backButton)
+        backButton.style.webkitTransform = 'scale(1)'
 
       goBackButtonEndX = event.changedTouches[0].pageX;
       goBackButtonEndY = event.changedTouches[0].pageY;
@@ -152,8 +152,8 @@
 
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
 
-      if(scope.index != id)
-      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
+      if (scope.index != id)
+        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
 
 
       setTimeout(function () {
@@ -168,45 +168,45 @@
       setTimeout(function () {
 
 
-      if ((Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) || scope.checkOfSearch) {
+        if ((Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) || scope.checkOfSearch) {
 
 
-        if (scope.index == id) {
-          scope.index = -1;
-        } else {
-          if (scope.index != -1) {
-            document.getElementById("tick" + scope.index).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
+          if (scope.index == id) {
+            scope.index = -1;
+          } else {
+            if (scope.index != -1) {
+              document.getElementById("tick" + scope.index).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
+            }
+            scope.index = id;
           }
-          scope.index = id;
-        }
 
-        scope.currentList = scope.servicesMapByCategory[id];
+          scope.currentList = scope.servicesMapByCategory[id];
 //        count = 1;
 
 
-        if (!scope.currentList) {
-          scope.show = false;
-        } else {
-          scope.show = true;
-          document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
-        }
+          if (!scope.currentList) {
+            scope.show = false;
+          } else {
+            scope.show = true;
+            document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
+          }
 
-        if (scope.index == id && scope.show) {
-          document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
-          viewPay.categoryId = id;
-          opts.categoryId = id;
-          hintUpdate(scope.index);
-        }
+          if (scope.index == id && scope.show) {
+            document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
+            viewPay.categoryId = id;
+            opts.categoryId = id;
+            hintUpdate(scope.index);
+          }
 
-        console.log("OFFSET TOP", document.getElementById(id).offsetTop)
+          console.log("OFFSET TOP", document.getElementById(id).offsetTop)
 
-        document.getElementById(id).scrollIntoView();
+          document.getElementById(id).scrollIntoView();
 //        categoriesContainerId.scrollIntoView(document.getElementById(id).offsetTop)
 
 //        categoriesContainerId.scrollTop = event.changedTouches[0].pageY;
 
-        scope.update();
-      }
+          scope.update();
+        }
       }, 100)
     };
 
@@ -248,8 +248,8 @@
 
     scope.onTouchStartOfService = onTouchStartOfService = function (id) {
       event.stopPropagation();
-      if(document.getElementById(id))
-      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+      if (document.getElementById(id))
+        document.getElementById(id).style.webkitTransform = 'scale(0.8)'
       onTouchStartY = event.changedTouches[0].pageY;
       onTouchStartX = event.changedTouches[0].pageX;
     };
@@ -257,12 +257,13 @@
     console.log('OPTS', opts);
     localStorage.setItem('autoPayData', null);
     window.viewServicePinCards = {};
+    opts = (!opts.mode || opts.mode == 'USUAL') ? {} : opts;
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
       event.stopPropagation();
 
-      if(document.getElementById(id))
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      if (document.getElementById(id))
+        document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       onTouchEndY = event.changedTouches[0].pageY;
       onTouchEndX = event.changedTouches[0].pageX;

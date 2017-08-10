@@ -1823,7 +1823,7 @@
           viewServicePinCards.friendHelpPaymentMode = false;
           viewServicePinCards.chosenFriendForHelp = null;
           onBackKeyDown();
-//        onBackKeyDown();
+          onBackKeyDown();
         } else if (opts.mode == 'ADDAUTOPAY') {
 
           if (autoPayNameInput.value.length < 1) {
@@ -1962,7 +1962,7 @@
             event.preventDefault();
             event.stopPropagation();
             onBackKeyDown();
-//          onBackKeyDown();
+            onBackKeyDown();
           }
           else {
             scope.clickPinError = false;

@@ -59,6 +59,8 @@
       var sessionKey = loginInfo.session_key;
     scope.favoriteListShow = true;
 
+    opts = {};
+
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-favorites-new') {
       history.arrayOfHistory.push(
         {
