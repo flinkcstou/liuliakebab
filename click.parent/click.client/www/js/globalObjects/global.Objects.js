@@ -321,8 +321,6 @@ window.pushNotificationInitialize = function () {
               topic: "news"
             });
           }
-          else
-            alert(result[0][0].error_note);
         },
 
         onFail: function (api_status, api_status_message, data) {

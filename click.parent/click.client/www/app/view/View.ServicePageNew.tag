@@ -94,7 +94,7 @@
              pattern="[0-9]"
              placeholder="{placeHolderText}"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
-      <div if="{!modeOfApp.offlineMode}" class="servicepage-amount-icon" ontouchstart="onTouchStartOfAmountCalculator()"
+      <div if="{!modeOfApp.offlineMode && service['amount_editable']}" class="servicepage-amount-icon" ontouchstart="onTouchStartOfAmountCalculator()"
            ontouchend="onTouchEndOfAmountCalculator()"></div>
 
       <p if="{showErrorOfLimit}" id="placeHolderSumId" class="servicepage-limit-title">{placeHolderText}</p>
