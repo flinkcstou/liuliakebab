@@ -113,7 +113,8 @@
             scope.parent.clickPinError = false;
             scope.parent.errorNote = result[0][0].error_note;
             scope.parent.showError = true;
-            scope.update();
+            deleteCardComponentId.style.display = "none"
+            riot.update();
           }
         },
 

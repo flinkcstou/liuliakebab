@@ -133,7 +133,7 @@
 
         lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 85 * widthK + "px,0)"
 //          lastOperationMainContainerId.top = "0"
-        lastOperationContainerId.style.height = 1155 * widthK + "px";
+        lastOperationContainerId.style.height = 1070 * widthK + "px";
         document.getElementById('containerCard').style.webkitTransform = "scale(0.2)"
         document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(180deg)"
         lastOperationCheck = true;

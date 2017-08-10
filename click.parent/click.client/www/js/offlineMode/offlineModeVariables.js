@@ -9937,7 +9937,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 7,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -9987,7 +9987,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 12,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10007,7 +10007,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 15,
     "parameter_id": "8",
-    "input_type": 1,
+    "input_type": 2,
     "title": "Номер договора",
     "placeholder": "Введите номер договора",
     "error_message": "Неверно введен номер договора",
@@ -10017,7 +10017,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 28,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10037,7 +10037,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 35,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10087,7 +10087,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 45,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10097,7 +10097,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 54,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10117,7 +10117,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 57,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10127,7 +10127,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 70,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10137,7 +10137,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 80,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10157,7 +10157,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 87,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10167,7 +10167,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 90,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10187,7 +10187,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 100,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10197,7 +10197,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 101,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10217,7 +10217,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 103,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10237,7 +10237,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 108,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10257,7 +10257,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 115,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10267,7 +10267,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 121,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10337,7 +10337,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 164,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10347,7 +10347,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 181,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10397,7 +10397,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 2706,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10437,7 +10437,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 3036,
     "parameter_id": "8",
-    "input_type": 1,
+    "input_type": 2,
     "title": "Номер договора",
     "placeholder": "Введите номер договора",
     "error_message": "Неверно введен номер договора",
@@ -10447,7 +10447,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 3037,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10457,7 +10457,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 3040,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10467,7 +10467,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 3172,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10497,7 +10497,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 3184,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10527,7 +10527,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 3198,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10537,7 +10537,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 3200,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10557,7 +10557,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 3215,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10587,7 +10587,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 4423,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10597,7 +10597,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 4639,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10607,7 +10607,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 4641,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10617,7 +10617,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 4644,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10627,7 +10627,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 4646,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10637,7 +10637,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 4652,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10647,7 +10647,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 4659,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10657,7 +10657,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 4660,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10677,7 +10677,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 4666,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10727,7 +10727,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 4673,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10747,7 +10747,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 4675,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10757,7 +10757,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 4676,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10767,7 +10767,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 4677,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10797,7 +10797,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 4689,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10827,7 +10827,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 7003,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10847,7 +10847,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 7024,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10877,7 +10877,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 7033,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10917,7 +10917,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 7045,
     "parameter_id": "8",
-    "input_type": 1,
+    "input_type": 2,
     "title": "Номер договора",
     "placeholder": "Введите номер договора",
     "error_message": "Неверно введен номер договора",
@@ -10927,7 +10927,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 8409,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -10937,7 +10937,7 @@ var offlinePopularServiceList = [{
   }, {
     "service_id": 8414,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -13400,7 +13400,7 @@ var offlinePopularServiceList = [{
     }, {
       "service_id": 7,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13453,7 +13453,7 @@ var offlinePopularServiceList = [{
     "12": [{
       "service_id": 12,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13474,7 +13474,7 @@ var offlinePopularServiceList = [{
     }, {
       "service_id": 15,
       "parameter_id": "8",
-      "input_type": 1,
+      "input_type": 2,
       "title": "Номер договора",
       "placeholder": "Введите номер договора",
       "error_message": "Неверно введен номер договора",
@@ -13485,7 +13485,7 @@ var offlinePopularServiceList = [{
     "28": [{
       "service_id": 28,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13507,7 +13507,7 @@ var offlinePopularServiceList = [{
     "35": [{
       "service_id": 35,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13561,7 +13561,7 @@ var offlinePopularServiceList = [{
     "45": [{
       "service_id": 45,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13572,7 +13572,7 @@ var offlinePopularServiceList = [{
     "54": [{
       "service_id": 54,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13594,7 +13594,7 @@ var offlinePopularServiceList = [{
     "57": [{
       "service_id": 57,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13605,7 +13605,7 @@ var offlinePopularServiceList = [{
     "70": [{
       "service_id": 70,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13616,7 +13616,7 @@ var offlinePopularServiceList = [{
     "80": [{
       "service_id": 80,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13638,7 +13638,7 @@ var offlinePopularServiceList = [{
     "87": [{
       "service_id": 87,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13649,7 +13649,7 @@ var offlinePopularServiceList = [{
     "90": [{
       "service_id": 90,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13671,7 +13671,7 @@ var offlinePopularServiceList = [{
     "100": [{
       "service_id": 100,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13682,7 +13682,7 @@ var offlinePopularServiceList = [{
     "101": [{
       "service_id": 101,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13704,7 +13704,7 @@ var offlinePopularServiceList = [{
     "103": [{
       "service_id": 103,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13726,7 +13726,7 @@ var offlinePopularServiceList = [{
     "108": [{
       "service_id": 108,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13748,7 +13748,7 @@ var offlinePopularServiceList = [{
     "115": [{
       "service_id": 115,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13759,7 +13759,7 @@ var offlinePopularServiceList = [{
     "121": [{
       "service_id": 121,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13834,7 +13834,7 @@ var offlinePopularServiceList = [{
     "164": [{
       "service_id": 164,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13845,7 +13845,7 @@ var offlinePopularServiceList = [{
     "181": [{
       "service_id": 181,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13900,7 +13900,7 @@ var offlinePopularServiceList = [{
     "2706": [{
       "service_id": 2706,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13944,7 +13944,7 @@ var offlinePopularServiceList = [{
     "3036": [{
       "service_id": 3036,
       "parameter_id": "8",
-      "input_type": 1,
+      "input_type": 2,
       "title": "Номер договора",
       "placeholder": "Введите номер договора",
       "error_message": "Неверно введен номер договора",
@@ -13955,7 +13955,7 @@ var offlinePopularServiceList = [{
     "3037": [{
       "service_id": 3037,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13966,7 +13966,7 @@ var offlinePopularServiceList = [{
     "3040": [{
       "service_id": 3040,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -13977,7 +13977,7 @@ var offlinePopularServiceList = [{
     "3172": [{
       "service_id": 3172,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14010,7 +14010,7 @@ var offlinePopularServiceList = [{
     "3184": [{
       "service_id": 3184,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14043,7 +14043,7 @@ var offlinePopularServiceList = [{
     "3198": [{
       "service_id": 3198,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14054,7 +14054,7 @@ var offlinePopularServiceList = [{
     "3200": [{
       "service_id": 3200,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14076,7 +14076,7 @@ var offlinePopularServiceList = [{
     "3215": [{
       "service_id": 3215,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14109,7 +14109,7 @@ var offlinePopularServiceList = [{
     "4423": [{
       "service_id": 4423,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14120,7 +14120,7 @@ var offlinePopularServiceList = [{
     "4639": [{
       "service_id": 4639,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14131,7 +14131,7 @@ var offlinePopularServiceList = [{
     "4641": [{
       "service_id": 4641,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14142,7 +14142,7 @@ var offlinePopularServiceList = [{
     "4644": [{
       "service_id": 4644,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14153,7 +14153,7 @@ var offlinePopularServiceList = [{
     "4646": [{
       "service_id": 4646,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14164,7 +14164,7 @@ var offlinePopularServiceList = [{
     "4652": [{
       "service_id": 4652,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14175,7 +14175,7 @@ var offlinePopularServiceList = [{
     "4659": [{
       "service_id": 4659,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14186,7 +14186,7 @@ var offlinePopularServiceList = [{
     "4660": [{
       "service_id": 4660,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14207,7 +14207,7 @@ var offlinePopularServiceList = [{
     }, {
       "service_id": 4666,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14262,7 +14262,7 @@ var offlinePopularServiceList = [{
     "4673": [{
       "service_id": 4673,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14284,7 +14284,7 @@ var offlinePopularServiceList = [{
     "4675": [{
       "service_id": 4675,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14295,7 +14295,7 @@ var offlinePopularServiceList = [{
     "4676": [{
       "service_id": 4676,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14306,7 +14306,7 @@ var offlinePopularServiceList = [{
     "4677": [{
       "service_id": 4677,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14339,7 +14339,7 @@ var offlinePopularServiceList = [{
     "4689": [{
       "service_id": 4689,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14371,7 +14371,7 @@ var offlinePopularServiceList = [{
     "7003": [{
       "service_id": 7003,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14393,7 +14393,7 @@ var offlinePopularServiceList = [{
     "7024": [{
       "service_id": 7024,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14426,7 +14426,7 @@ var offlinePopularServiceList = [{
     "7033": [{
       "service_id": 7033,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14470,7 +14470,7 @@ var offlinePopularServiceList = [{
     "7045": [{
       "service_id": 7045,
       "parameter_id": "8",
-      "input_type": 1,
+      "input_type": 2,
       "title": "Номер договора",
       "placeholder": "Введите номер договора",
       "error_message": "Неверно введен номер договора",
@@ -14481,7 +14481,7 @@ var offlinePopularServiceList = [{
     "8409": [{
       "service_id": 8409,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
@@ -14492,7 +14492,7 @@ var offlinePopularServiceList = [{
     "8414": [{
       "service_id": 8414,
       "parameter_id": "4",
-      "input_type": 1,
+      "input_type": 2,
       "title": "ID абонента",
       "placeholder": "Введите ID абонента",
       "error_message": "Неверный ID абонента",
