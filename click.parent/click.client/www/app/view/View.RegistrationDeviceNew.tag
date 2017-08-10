@@ -371,7 +371,7 @@
 
 
         if (correctPhoneNumber) {
-          var versionOfApp = '5.0';
+          var versionOfApp = '5.0.1';
           if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
 
           }
@@ -381,7 +381,7 @@
           }
           localStorage.setItem('click_client_phoneNumber', phoneNumber);
           var date = parseInt(Date.now() / 1000);
-          registrationDevice(phoneNumber, date);
+          registrationDevice(phoneNumber, date, versionOfApp);
         }
       }
 
@@ -431,18 +431,19 @@
     }
 
     var countOfCall = 0;
-    function registrationDevice(phoneNumber, date) {
+    function registrationDevice(phoneNumber, date, versionOfApp) {
       countOfCall++;
       var checkServiceAnswer = false;
-//      if (device.platform != 'BrowserStand') {
-//        var options = {dimBackground: true};
-//
-//        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-//          console.log("Started");
-//        }, function () {
-//          console.log("closed");
-//        });
-//      }
+
+      if (device.platform != 'BrowserStand') {
+        var options = {dimBackground: true};
+
+        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+          console.log("Started");
+        }, function () {
+          console.log("closed");
+        });
+      }
 
       window.api.call({
         method: 'device.register.request',
@@ -453,7 +454,7 @@
           device_type: deviceType(),
           datetime: date,
           imei: deviceImei(),
-          app_version: '1.0.1'
+          app_version: versionOfApp
         },
 
         scope: this,
@@ -502,13 +503,13 @@
         }
       });
 
-      if (countOfCall < 3 && !checkServiceAnswer && window.isConnected)
+      if (countOfCall <= 3 && !checkServiceAnswer && window.isConnected)
         setTimeout(function () {
           if (!checkServiceAnswer && modeOfApp.onlineMode) {
             var date = parseInt(Date.now() / 1000);
             registrationDevice(localStorage.getItem('click_client_phoneNumber'), date);
           }
-          if (countOfCall == 2 && !checkServiceAnswer) {
+          if (countOfCall == 3 && !checkServiceAnswer) {
             scope.showError = true;
             scope.errorNote = "Сервис временно недоступен";
             countOfCall = 0;
