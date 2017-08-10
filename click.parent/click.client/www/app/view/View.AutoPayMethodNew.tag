@@ -71,6 +71,7 @@
         onBackParams.opts = null;
         if (scope.autoPayData.fromView == 'PAYCONFIRM') {
           opts.mode = 'USUAL';
+          onBackParams.opts = JSON.parse(JSON.stringify(opts));
         }
         onBackKeyDown(opts);
         scope.unmount()
@@ -157,7 +158,7 @@
         event.preventDefault();
         event.stopPropagation();
 //      localStorage.setItem('autoPayType', window.languages.ViewAutoPayMethodSchedulerText);
-        onBackParams.opts = null;
+        //onBackParams.opts = null;
         riotTags.innerHTML = "<view-autopay-schedule-method-new>";
         riot.mount("view-autopay-schedule-method-new", opts);
         scope.unmount()

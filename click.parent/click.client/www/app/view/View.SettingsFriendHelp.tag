@@ -40,7 +40,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-friend-help-settings') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-friend-help-settings',
+          "view": 'view-friend-help-settings',
           "params": opts
         }
       );
@@ -97,9 +97,9 @@
 
       window.api.call({
         method: 'check.contact.list',
-        input : {
-          phone_num  : phoneNumber,
-          phone_list : scope.arrayOfPhoneNumbers,
+        input: {
+          phone_num: phoneNumber,
+          phone_list: scope.arrayOfPhoneNumbers,
           session_key: sessionKey,
 
         },
@@ -242,10 +242,12 @@
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
         onBackParams.opts = null;
         if (opts.from && opts.from == "view-qr") {
+          onBackParams.opts = null;
           onBackKeyDown()
         }
         else {
-          onBackKeyDown(opts);
+          onBackParams.opts = JSON.parse(JSON.stringify(opts));
+          onBackKeyDown();
         }
         scope.unmount()
       }
@@ -314,10 +316,13 @@
               opts.chosenFriendForHelp = scope.arrayOfFriends[i];
               console.log(viewServicePinCards.chosenFriendForHelp);
               onBackParams.opts = null;
-              if (opts.from && opts.from == "view-qr")
+              if (opts.from && opts.from == "view-qr") {
+                onBackParams.opts = null;
                 onBackKeyDown()
+              }
               else {
-                onBackKeyDown(opts);
+                onBackParams.opts = JSON.parse(JSON.stringify(opts));
+                onBackKeyDown();
               }
             }
           }

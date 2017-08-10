@@ -303,6 +303,7 @@
         window.viewServicePinCards = {};
         event.preventDefault();
         event.stopPropagation();
+        onBackParams.opts = JSON.parse(JSON.stringify(opts));
         onBackKeyDown();
         scope.unmount()
       }

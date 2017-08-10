@@ -108,6 +108,7 @@
       if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
         event.preventDefault();
         event.stopPropagation();
+        onBackParams.opts = JSON.parse(JSON.stringify(opts));
         onBackKeyDown();
         scope.unmount()
       }
@@ -244,17 +245,17 @@
 
       if (input.value.length >= 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
 //          firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
-        contactStopChanging = true;
+        eventContactStopChanging = true;
       }
       else {
-        contactStopChanging = false;
+        eventContactStopChanging = false;
       }
     };
 
     telPayVerificationKeyUp = function () {
 
 
-      if (contactStopChanging) {
+      if (eventContactStopChanging) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
       }
 

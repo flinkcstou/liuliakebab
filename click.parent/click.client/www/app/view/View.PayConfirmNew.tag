@@ -158,7 +158,7 @@
       if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
         event.preventDefault();
         event.stopPropagation();
-        onBackParams.opts = null;
+        onBackParams.opts = JSON.parse(JSON.stringify(opts));
         onBackKeyDown(opts);
         scope.unmount()
       }
@@ -174,7 +174,7 @@
     scope.service = scope.servicesMap[opts.chosenServiceId][0];
     scope.isInFavorites = opts.isInFavorites;
 
-    console.log('FAVORITE', opts.isInFavorites)
+    console.log('isInFavorites', opts.isInFavorites)
     scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
 
@@ -316,6 +316,7 @@
         scope.update(scope.isInFavorites);
         opts.isInFavorites = true;
         opts.favoriteName = scope.service.name;
+        onBackParams.opts = JSON.parse(JSON.stringify(opts));
         var favoritePaymentsList;
 
         if (!localStorage.getItem('favoritePaymentsList')) {
@@ -362,6 +363,7 @@
             console.log(favoritePaymentsList);
             scope.isInFavorites = false;
             opts.isInFavorites = false;
+            onBackParams.opts = JSON.parse(JSON.stringify(opts));
             scope.update(scope.isInFavorites);
           }
         }
@@ -897,7 +899,7 @@
         event.stopPropagation();
         if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available) {
           localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-          onBackParams.opts = null;
+          onBackParams.opts = JSON.parse(JSON.stringify(opts));
           riotTags.innerHTML = "<view-autopay-method-new>";
           riot.mount("view-autopay-method-new", opts);
           scope.unmount()
@@ -905,7 +907,7 @@
           scope.autoPayData.title = window.languages.ViewAutoPayMethodSchedulerText;
           scope.autoPayData.autopay_type = 1;
           localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-          onBackParams.opts = null;
+          onBackParams.opts = JSON.parse(JSON.stringify(opts));
           riotTags.innerHTML = "<view-autopay-schedule-method-new>";
           riot.mount("view-autopay-schedule-method-new", opts);
           scope.unmount()

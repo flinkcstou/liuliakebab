@@ -133,6 +133,7 @@
         onBackParams.opts = null;
         if (scope.autoPayData.fromView == 'PAYCONFIRM') {
           opts.mode = 'USUAL';
+          onBackParams.opts = JSON.parse(JSON.stringify(opts));
         }
         onBackKeyDown(opts);
         scope.unmount()
@@ -329,7 +330,7 @@
 
           localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
           event.stopPropagation();
-          onBackParams.opts = null;
+          //onBackParams.opts = null;
           riotTags.innerHTML = "<view-service-page-new>";
           riot.mount("view-service-page-new", opts);
 

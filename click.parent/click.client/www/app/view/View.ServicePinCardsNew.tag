@@ -101,8 +101,8 @@
       if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
         event.preventDefault();
         event.stopPropagation();
-        onBackParams.opts = null;
-        onBackKeyDown(opts);
+        onBackParams.opts = JSON.parse(JSON.stringify(opts));
+        onBackKeyDown();
         scope.unmount()
       }
     };
@@ -123,7 +123,7 @@
     this.titleName = scope.service.name;
     this.serviceIcon = scope.service.image;
     this.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
-    onBackParams.opts = opts;
+    onBackParams.opts = JSON.parse(JSON.stringify(opts));
 
 
     if (opts.mode == 'ADDAUTOPAY') {
@@ -201,7 +201,7 @@
           scope.checked = true;
           event.preventDefault();
           event.stopPropagation();
-          onBackParams.opts = null;
+          onBackParams.opts = JSON.parse(JSON.stringify(opts));
           this.riotTags.innerHTML = "<view-pay-confirm-new>";
           riot.mount('view-pay-confirm-new', opts);
           scope.unmount()
@@ -213,7 +213,7 @@
               scope.checked = true;
               event.preventDefault();
               event.stopPropagation();
-              onBackParams.opts = null;
+              onBackParams.opts = JSON.parse(JSON.stringify(opts));
               this.riotTags.innerHTML = "<view-pay-confirm-new>";
               riot.mount('view-pay-confirm-new', opts);
               scope.unmount();
@@ -255,7 +255,7 @@
 //      opts.chosenFriendForHelp = null;
       event.preventDefault();
       event.stopPropagation();
-      onBackParams.opts = null;
+      onBackParams.opts = JSON.parse(JSON.stringify(opts));
       this.riotTags.innerHTML = "<view-friend-help-settings>";
       riot.mount('view-friend-help-settings', opts);
       scope.unmount()
