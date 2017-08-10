@@ -12,7 +12,7 @@
     </div>
 
     <div class="transfertwo-contact-phone-field">
-      <input id="sumValueId" type="tel" maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()"
+      <input pattern="\d*" id="sumValueId" type="tel" maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()"
              onmouseup="sumMouseUp()"
              onblur="sumOnBlur()" onkeyup="sumKeyUp()" oninput="sumKeyUp()"/>
       <p if="{showPlaceHolderError}" id="placeHolderSumId" class="transfertwo-limit-title">{placeHolderText}</p>
