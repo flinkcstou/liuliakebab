@@ -306,6 +306,7 @@
           }
         }
         else {
+          opts = {};
           if (!opts.mode) opts.mode = 'USUAL';
           console.log("chosen id in pay view NEW =", id);
           opts.chosenServiceId = id;
