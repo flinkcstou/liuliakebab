@@ -13,7 +13,7 @@
     <view-news if="{!modeOfApp.offlineMode}"></view-news>
 
     <div class="bank-operation-button-my-cards">
-      <div id="myCardButtonId" class="bank-operation-button-my-cards-container">
+      <div class="bank-operation-button-my-cards-container">
         <div class="bank-operation-button-my-cards-icon"></div>
         <div class="bank-operation-button-my-cards-label">
           {window.languages.BankOperationsAutoPay}
@@ -27,8 +27,6 @@
   <component-tour view="mainpage"></component-tour>
   <script>
 
-    //    console.log('BASE64', atob('aWQ9MDEwMDAmYW1vdW50PTEyMjAwJm9yZGVyX2lkPTAxN0I1N0NFLUJDRUItNEE3MC04NEFFLUJFRTM0NUY4NUI1OQ=='))
-
     viewMainPage.atMainPage = true;
     viewTransfer.check = false;
     viewServicePinCards.friendHelpPaymentMode = false;
@@ -36,7 +34,6 @@
     componentMenu.check = false;
     viewServicePage.amountWithoutSpace = 0;
     viewServicePage.amountTex = 0;
-
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
@@ -51,16 +48,15 @@
       if (opts) {
         if (opts.view == "news") {
           viewNewsId.style.display = 'block'
-          scope.tags['view-news'].showNewsFunction();
 
 //          window.News.newsCounter = 0;
 
           if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-news') {
             history.arrayOfHistory.push(
-              {
-                "view"  : 'view-news',
-                "params": opts
-              }
+                {
+                  "view": 'view-news',
+                  "params": opts
+                }
             );
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
           }
@@ -85,10 +81,10 @@
 
     history.arrayOfHistory = [];
     history.arrayOfHistory.push(
-      {
-        "view"  : 'view-main-page',
-        "params": opts
-      }
+        {
+          "view": 'view-main-page',
+          "params": opts
+        }
     );
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
@@ -109,16 +105,12 @@
       event.preventDefault();
       event.stopPropagation();
 
-      myCardButtonId.style.webkitTransform = 'scale(0.7)'
-
       myCardListStartX = event.changedTouches[0].pageX;
       myCardListStartY = event.changedTouches[0].pageY;
     }
     myCardListTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-
-      myCardButtonId.style.webkitTransform = 'scale(1)'
 
       myCardListEndX = event.changedTouches[0].pageX;
       myCardListEndY = event.changedTouches[0].pageY;
@@ -179,10 +171,6 @@
       }
       sideMenuBackPageId.style.opacity = deltaForSideMenuBack;
       mainPageId.style.opacity = deltaForMainPage;
-    }
-
-    if (!localStorage.getItem('push_registered')) {
-      window.pushNotificationInitialize();
     }
 
 
