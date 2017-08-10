@@ -2743,6 +2743,7 @@ var css = {
   "top:" + 80 * widthK + "px;" +
   "background-color: white;" +
   "overflow-y: scroll;" +
+  "overflow-x: hidden;" +
   "height:" + 325 * widthK + "px;" +
   "}",
 
