@@ -240,7 +240,6 @@
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
-        onBackParams.opts = null;
         if (opts.from && opts.from == "view-qr") {
           onBackParams.opts = null;
           onBackKeyDown()
@@ -315,7 +314,6 @@
               viewServicePinCards.chosenFriendForHelp = scope.arrayOfFriends[i];
               opts.chosenFriendForHelp = scope.arrayOfFriends[i];
               console.log(viewServicePinCards.chosenFriendForHelp);
-              onBackParams.opts = null;
               if (opts.from && opts.from == "view-qr") {
                 onBackParams.opts = null;
                 onBackKeyDown()

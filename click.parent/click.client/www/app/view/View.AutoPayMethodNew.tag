@@ -68,7 +68,6 @@
       if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
         event.preventDefault();
         event.stopPropagation();
-        onBackParams.opts = null;
         if (scope.autoPayData.fromView == 'PAYCONFIRM') {
           opts.mode = 'USUAL';
           onBackParams.opts = JSON.parse(JSON.stringify(opts));
@@ -130,7 +129,7 @@
         event.preventDefault();
         event.stopPropagation();
 //      localStorage.setItem('autoPayType', window.languages.ViewAutoPayMethodEventText);
-        onBackParams.opts = null;
+        onBackParams.opts = JSON.parse(JSON.stringify(opts));
         riotTags.innerHTML = "<view-autopay-event-method-new>";
         riot.mount("view-autopay-event-method-new", opts);
         scope.unmount()
@@ -158,7 +157,7 @@
         event.preventDefault();
         event.stopPropagation();
 //      localStorage.setItem('autoPayType', window.languages.ViewAutoPayMethodSchedulerText);
-        //onBackParams.opts = null;
+        onBackParams.opts = JSON.parse(JSON.stringify(opts));
         riotTags.innerHTML = "<view-autopay-schedule-method-new>";
         riot.mount("view-autopay-schedule-method-new", opts);
         scope.unmount()

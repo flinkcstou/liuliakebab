@@ -130,7 +130,6 @@
       if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
         event.preventDefault();
         event.stopPropagation();
-        onBackParams.opts = null;
         if (scope.autoPayData.fromView == 'PAYCONFIRM') {
           opts.mode = 'USUAL';
           onBackParams.opts = JSON.parse(JSON.stringify(opts));
@@ -330,7 +329,7 @@
 
           localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
           event.stopPropagation();
-          //onBackParams.opts = null;
+          onBackParams.opts = JSON.parse(JSON.stringify(opts));
           riotTags.innerHTML = "<view-service-page-new>";
           riot.mount("view-service-page-new", opts);
 
