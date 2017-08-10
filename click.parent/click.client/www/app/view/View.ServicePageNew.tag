@@ -90,6 +90,7 @@
         {window.languages.Currency}</p>
       <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="10"
              id="amount"
+             readonly="{!service['amount_editable']}"
              pattern="[0-9]"
              placeholder="{placeHolderText}"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
@@ -341,6 +342,8 @@
 
 
     checkFieldsToActivateNext = function (from) {
+
+      if(!scope.service['amount_editable']) return
 
       if (from == 'sum')
         console.log('length', amount.value.length)
@@ -932,6 +935,20 @@
         scope.serviceIcon = scope.service.image;
         console.log("scope.service=", scope.service);
         scope.commissionPercent = scope.service.commission_percent;
+      }
+
+      //Editing amount input for non editable situations
+
+      if(!scope.service['amount_editable'] && scope.service['amount_value']){
+        scope.defaultAmount = window.amountTransform(scope.service['amount_value'])
+        opts.amountText = scope.service['amount_value']
+        if(scope.service['amount_information_text']){
+          scope.showErrorOfLimit = true;
+          scope.placeHolderText = scope.service['amount_information_text']
+        }
+
+        scope.enterButtonEnabled = true;
+        scope.update();
       }
 
 
