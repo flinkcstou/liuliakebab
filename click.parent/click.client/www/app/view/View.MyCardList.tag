@@ -33,6 +33,8 @@
 
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
   <script>
     var scope = this;
     this.titleName = window.languages.ViewMyCardListTitleName;
@@ -220,6 +222,8 @@
     };
 
     addCard = function (withoutBalance) {
+
+
 
       if (modeOfApp.offlineMode) return;
 
