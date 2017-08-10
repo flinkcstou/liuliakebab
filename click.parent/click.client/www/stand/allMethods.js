@@ -11166,8 +11166,8 @@ window.fakedSocket.register("autopay.add.by.event", function (input) {
     {
       "method": input.method,
       "success": 1,
-      "error": 0,
-      "error_note": ""
+      "error": 5,
+      "error_note": "cdcvdc"
     }
   ]];
 });
@@ -11177,8 +11177,8 @@ window.fakedSocket.register("autopay.add.by.schedule", function (input) {
     {
       "method": input.method,
       "success": 1,
-      "error": 0,
-      "error_note": ""
+      "error": 5,
+      "error_note": "asxdsdswd"
     }
   ]];
 });

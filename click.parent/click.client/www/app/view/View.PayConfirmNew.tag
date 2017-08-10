@@ -107,7 +107,7 @@
                      operationmessage="{operationMessage}"
                      goback="{goBack}"
                      viewpage="{viewPage}" step_amount="{stepAmount}"></component-success>
-  <component-unsuccess id="componentUnsuccessId" viewpage="{viewPage}" step_amount="{stepAmount}" goback="{goBack}"
+  <component-unsuccess id="componentUnsuccessId" viewpage="{viewPage}" step_amount="{stepErrorAmount}" goback="{goBack}"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
                        operationmessagepartthree="{errorMessageFromPayment}"></component-unsuccess>
@@ -198,6 +198,7 @@
     scope.errorMessageFromPayment = '';
 
     scope.stepAmount = 3;
+    scope.stepErrorAmount = 3;
 
     this.formType = opts.formtype;
     this.firstFieldId = opts.firstFieldId;
@@ -617,10 +618,10 @@
 
             console.log("result of get.payment success=", result);
             if (result[1][0].state == -1) {
-              scope.stepAmount = 2;
+              scope.stepErrorAmount = 2;
               scope.errorMessageFromPayment = result[1][0].error;
               scope.update();
-              console.log("state=-1 error,view=", scope.viewPage, ",step=", scope.stepAmount);
+              console.log("state=-1 error,view=", scope.viewPage, ",step=", scope.stepErrorAmount);
               if (device.platform != 'BrowserStand') {
                 SpinnerPlugin.activityStop();
               }
@@ -700,11 +701,13 @@
       if (scope.autoPayData && scope.autoPayData.fromView == 'PAYCONFIRM') {
         scope.viewPage = 'view-pay-confirm-new';
         scope.stepAmount = scope.servicesMap[scope.autoPayData.service_id][0].autopay_available ? ((scope.autoPayData.autopay_type == 2) ? 3 : 4) : 3;
+        scope.stepErrorAmount = 1;
         scope.goBack = true;
 
       } else {
         scope.viewPage = 'view-auto-pay-new';
         scope.stepAmount = 5;
+        scope.stepErrorAmount = 2;
         scope.goBack = true;
       }
 
@@ -743,11 +746,13 @@
 
               }
               else {
-                if (scope.autoPayData.fromView == 'PAYCONFIRM')
-                  scope.autoPayData.fromView = 'AFTERCREATION';
+                //if (scope.autoPayData.fromView == 'PAYCONFIRM')
+                //scope.autoPayData.fromView = 'AFTERCREATION';
 //                  scope.autoPayData.isNew = false;
-                localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+                //localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
                 console.log("result of autopay.add.by.event", result);
+                scope.errorMessageFromPayment = result[0][0].error_note;
+                scope.update();
                 componentUnsuccessId.style.display = 'block';
               }
             },
@@ -789,11 +794,13 @@
 
               }
               else {
-                if (scope.autoPayData.fromView == 'PAYCONFIRM')
-                  scope.autoPayData.fromView = 'AFTERCREATION';
-//                  scope.autoPayData.isNew = false;
-                localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+//                if (scope.autoPayData.fromView == 'PAYCONFIRM')
+//                  scope.autoPayData.fromView = 'AFTERCREATION';
+////                  scope.autoPayData.isNew = false;
+//                localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
                 console.log("result of autopay.add.by.schedule", result);
+                scope.errorMessageFromPayment = result[0][0].error_note;
+                scope.update();
                 componentUnsuccessId.style.display = 'block';
               }
             },
