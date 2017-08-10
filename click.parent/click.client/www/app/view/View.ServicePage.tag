@@ -143,7 +143,7 @@
     </div>
 
     <div
-      class="{servicepage-pincards-container-two: !enterButton, servicepage-pincards-container: enterButton && opts.mode!='ADDAUTOPAY',
+        class="{servicepage-pincards-container-two: !enterButton, servicepage-pincards-container: enterButton && opts.mode!='ADDAUTOPAY',
       servicepage-pincards-container-three: enterButton && opts.mode=='ADDAUTOPAY'}">
       <div class="servicepage-pincards-block-container" each="{i in pincardIds}">
         <div class="servicepage-pincard-title">{pincardsMap[i][0].name}</div>
@@ -237,10 +237,10 @@
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page') {
       history.arrayOfHistory.push(
-        {
-          "view": 'view-service-page',
-          "params": opts
-        }
+          {
+            "view": 'view-service-page',
+            "params": opts
+          }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -630,10 +630,10 @@
     scope.formType = scope.service.form_type;
 
     var maskOne = /[0-9]/g,
-      maskTwo = /[0-9' ']/g,
-      amountForPayTransaction = 0,
-      checkFirst = false,
-      defaultAccount;
+        maskTwo = /[0-9' ']/g,
+        amountForPayTransaction = 0,
+        checkFirst = false,
+        defaultAccount;
 
 
     if (scope.formType != 2) {
@@ -1285,18 +1285,18 @@
 
           phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-            ussdQuery + "%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
-                scope.showError = true;
-                scope.update();
+              ussdQuery + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  scope.update();
+                }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
               }
-              else console.log("Dialer Error:" + err);
-            },
-            function (success) {
-            }
           );
           return
         }
@@ -1388,18 +1388,18 @@
 
           phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-            ussdQuery + "%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
-                scope.showError = true;
-                scope.update();
+              ussdQuery + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Unknown phone number");
+                  scope.showError = true;
+                  scope.update();
+                }
+                else console.log("Dialer Error:" + err);
+              },
+              function (success) {
               }
-              else console.log("Dialer Error:" + err);
-            },
-            function (success) {
-            }
           );
           return
         }

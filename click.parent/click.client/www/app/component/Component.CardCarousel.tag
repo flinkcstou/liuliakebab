@@ -1084,7 +1084,7 @@
       //Test
       //
       //scope.whereWasX = event.changedTouches[0].pageX;
-    }
+    };
 
     //    if (modeOfApp.offlineMode) {
     //
