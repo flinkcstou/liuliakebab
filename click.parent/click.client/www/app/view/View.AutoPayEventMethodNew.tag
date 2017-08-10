@@ -23,7 +23,7 @@
       <div class="servicepage-first-field autopay-event-number-field" id="firstField">
         <p class="servicepage-text-field">{window.languages.ViewAutoPayMethodEventPhoneNumber}</p>
         <p class="servicepage-number-first-part">+{window.languages.CodeOfCountry}</p>
-        <input class="servicepage-number-input-part" type="tel" id="firstFieldInput"
+        <input class="servicepage-number-input-part" type="tel" id="PhoneNumberInput"
                autofocus="true" value="{defaultNumber}"
                onkeydown="telPayVerificationKeyDown(this)"
                onkeyup="telPayVerificationKeyUp()"/>
@@ -134,15 +134,15 @@
 
       opts.firstFieldText = localStorage.getItem('click_client_phoneNumber');
       opts.firstFieldText = opts.firstFieldText ? opts.firstFieldText.substr(3, opts.firstFieldText.length - 3) : '';
-      scope.defaultNumber = !opts.firstFieldText ? null : opts.firstFieldText;
       opts.chosenServiceId = localStorage.getItem('myNumberOperatorId');
+      scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(opts.firstFieldText);
 
     } else {
       this.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
       this.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
       if (scope.autoPayData.fromView == 'PAYCONFIRM' && opts.firstFieldText) {
         if (opts.firstFieldId == 1)
-          scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
+          scope.defaultNumber = !opts.firstFieldText ? null : (inputVerification.telVerificationWithSpace(opts.firstFieldText));
         else scope.defaultNumber = opts.firstFieldText;
       }
     }
@@ -244,7 +244,7 @@
     telPayVerificationKeyDown = function (input) {
 
       if (input.value.length >= 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-//          firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+//          PhoneNumberInput.value = event.target.value.substring(0, event.target.value.length - 1);
         eventContactStopChanging = true;
       }
       else {
@@ -256,30 +256,30 @@
 
 
       if (eventContactStopChanging) {
-        firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+        PhoneNumberInput.value = event.target.value.substring(0, event.target.value.length - 1);
       }
 
-      cursorPositionSelectionStart = firstFieldInput.selectionStart;
-      cursorPositionSelectionEnd = firstFieldInput.selectionEnd;
-      oldValueOfNumber = firstFieldInput.value
+      cursorPositionSelectionStart = PhoneNumberInput.selectionStart;
+      cursorPositionSelectionEnd = PhoneNumberInput.selectionEnd;
+      oldValueOfNumber = PhoneNumberInput.value
 
       if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-        if (firstFieldInput.type != 'text')
-          firstFieldInput.value = inputVerification.telVerificationWithSpace(firstFieldInput.value)
+        if (PhoneNumberInput.type != 'text')
+          PhoneNumberInput.value = inputVerification.telVerificationWithSpace(PhoneNumberInput.value)
 
-        // numberForPayTransaction = firstFieldInput.value.substring(0, firstFieldInput.value.match(maskTwo).length);
+        // numberForPayTransaction = PhoneNumberInput.value.substring(0, PhoneNumberInput.value.match(maskTwo).length);
         //console.log('amount 1', numberForPayTransaction.toString())
         //numberForPayTransaction = numberForPayTransaction.replace(new RegExp(' ', 'g'), '');
 
         console.log('oldValueOfNumber', oldValueOfNumber.toString() + '/');
-        console.log('firstFieldInput.value', firstFieldInput.value.toString() + '/');
+        console.log('PhoneNumberInput.value', PhoneNumberInput.value.toString() + '/');
 
-        firstFieldInput.selectionStart = cursorPositionSelectionStart
-        firstFieldInput.selectionEnd = cursorPositionSelectionEnd
+        PhoneNumberInput.selectionStart = cursorPositionSelectionStart
+        PhoneNumberInput.selectionEnd = cursorPositionSelectionEnd
 
-        if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3) {
+        if (oldValueOfNumber != PhoneNumberInput.value && cursorPositionSelectionStart == 3) {
           console.log('cursor =3')
-          firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
+          PhoneNumberInput.selectionStart = cursorPositionSelectionStart + 1;
         }
 
       }
@@ -317,7 +317,7 @@
             for (var i in digits) {
               phone += digits[i]
             }
-            firstFieldInput.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
+            PhoneNumberInput.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
           }, 0);
         }, function (error) {
           console.log('error', error)
@@ -342,13 +342,13 @@
         return;
       }
 
-      if (this.firstFieldInput.value.length < 10) {
+      if (this.PhoneNumberInput.value.length < 10) {
         console.log("Неправильно введён номер телефона");
         scope.enterButtonEnabled = false;
         scope.update(scope.enterButtonEnabled);
 
         return;
-      } else if (this.firstFieldInput.value.length == 0) {
+      } else if (this.PhoneNumberInput.value.length == 0) {
         console.log("Введите значение первого поля");
         scope.enterButtonEnabled = false;
         scope.update(scope.enterButtonEnabled);
@@ -396,17 +396,17 @@
           return;
         }
 
-        console.log("REGEXP =", phoneRegexp);
-        console.log("REGEXP validation=", firstFieldInput.value.match(phoneRegexp));
-        console.log("REGEXP validation=", phoneRegexp.test(inputVerification.spaceDeleter(firstFieldInput.value)));
+//        console.log("REGEXP =", phoneRegexp);
+//        console.log("REGEXP validation=", PhoneNumberInput.value.match(phoneRegexp));
+//        console.log("REGEXP validation=", phoneRegexp.test(inputVerification.spaceDeleter(PhoneNumberInput.value)));
 
-        if (firstFieldInput.value.length < 10) {
+        if (PhoneNumberInput.value.length < 10) {
           scope.clickPinError = false;
           scope.errorNote = "Неправильно введён номер телефона";
           scope.showError = true;
           scope.update();
           return;
-        } else if (firstFieldInput.value.length == 0) {
+        } else if (PhoneNumberInput.value.length == 0) {
           scope.clickPinError = false;
           scope.errorNote = "Введите значение первого поля";
           scope.showError = true;
@@ -414,7 +414,7 @@
           return;
         }
 
-        if (!phoneRegexp.test(inputVerification.spaceDeleter(firstFieldInput.value))) {
+        if (!phoneRegexp.test(inputVerification.spaceDeleter(PhoneNumberInput.value))) {
           scope.clickPinError = false;
           scope.errorNote = "Возможно вы ввели номер другого оператора";
           scope.showError = true;
@@ -433,7 +433,7 @@
         scope.autoPayData.name = autoPayNameInput.value;
         scope.autoPayData.isNew = true;
         scope.autoPayData.step = chosenStep;
-        scope.autoPayData.cntrg_phone_num = inputVerification.spaceDeleter(firstFieldInput.value);
+        scope.autoPayData.cntrg_phone_num = inputVerification.spaceDeleter(PhoneNumberInput.value);
         scope.autoPayData.amount = scope.chosenAmount;
         opts.amountText = scope.chosenAmount;
 
@@ -454,7 +454,7 @@
           opts.formtype = scope.servicesMap[opts.chosenServiceId][0].form_type;
           opts.firstFieldId = scope.servicesParamsMapOne[opts.chosenServiceId][0].parameter_id;
           opts.firstFieldTitle = scope.servicesParamsMapOne[opts.chosenServiceId][0].title;
-          opts.firstFieldText = firstFieldInput.value;
+          opts.firstFieldText = PhoneNumberInput.value;
 
           opts.isInFavorites = false;
           opts.mode = 'ADDAUTOPAY';
