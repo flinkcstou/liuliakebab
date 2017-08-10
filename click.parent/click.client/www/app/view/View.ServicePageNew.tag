@@ -488,6 +488,7 @@
         if (firstFieldInput.type != 'text' && scope.phoneFieldBool)
           firstFieldInput.value = inputVerification.telVerificationWithSpace(firstFieldInput.value)
 
+
         firstFieldInput.selectionStart = cursorPositionSelectionStart
         firstFieldInput.selectionEnd = cursorPositionSelectionEnd
 
