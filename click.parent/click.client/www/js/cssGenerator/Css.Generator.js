@@ -5379,9 +5379,9 @@ var css = {
   transferBodyContainer: ".transfer-body-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 1150 * heightK + "px;" +
+  "height:" + 1139 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 93 * widthK + "px;" +
+  "top:" + 93 * heightK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "border-bottom: 1px solid black;" +
@@ -5798,7 +5798,7 @@ var css = {
   "position: absolute;" +
   "height:" + 1150 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 93 * widthK + "px;" +
+  "top:" + 93 * heightK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
@@ -5931,7 +5931,7 @@ var css = {
   "position: absolute;" +
   "height:" + 1150 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 93 * widthK + "px;" +
+  "top:" + 93 * heightK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
@@ -6011,7 +6011,7 @@ var css = {
   "position: absolute;" +
   "height:" + 1142 * heightK + "px;" +
   "width:" + 720 * widthK + "px;" +
-  "top:" + 93 * widthK + "px;" +
+  "top:" + 93 * heightK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
