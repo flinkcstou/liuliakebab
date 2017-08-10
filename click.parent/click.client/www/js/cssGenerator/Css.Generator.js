@@ -2774,7 +2774,7 @@ var css = {
   "color: #8a8a8a;" +
   "z-index: 99999;" +
   // "box-shadow: 0px 17px 63px -23px rgb(37, 36, 36);" +
-  "box-shadow: 0px "+  17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " +" rgb(37, 36, 36);" +
+  "box-shadow: 0px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + " rgb(37, 36, 36);" +
   "}",
 
   myCardsLastOperationsContainerIcon: ".my-cards-last-operations-container-icon " +
@@ -13043,7 +13043,7 @@ var css = {
   autopayMethodBodyContainer: ".autopay-method-body-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 1092 * widthK + "px; " +
+  "height: " + 1092 * heightK + "px; " +
   "width:" + 720 * widthK + "px; " +
   "top:" + 140 * widthK + "px; " +
   "bottom:0; " +
@@ -13325,7 +13325,7 @@ var css = {
 
   autopayEventButtonEnterEnabled: " .autopay-event-button-enter-enabled" +
   "{" +
-  "top: 87%;" +
+  "top:" + 880 * widthK + "px;" +
   "height:" + 74 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
   "background-color: #00a8f1;" +
@@ -13344,7 +13344,7 @@ var css = {
 
   autopayEventButtonEnterDisabled: " .autopay-event-button-enter-disabled" +
   "{" +
-  "top: 87%;" +
+  "top:" + 880 * widthK + "px;" +
   "height:" + 74 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
   "background-color: #D2D2D2;" +
