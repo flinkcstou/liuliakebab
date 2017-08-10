@@ -1065,12 +1065,18 @@
         scope.chosenFieldParamId = opts.firstFieldId ? opts.firstFieldId : scope.fieldArray[0].parameter_id;
         opts.first_field_value = opts.firstFieldText ? opts.firstFieldText : null;
         scope.amountFieldTitle = scope.service.lang_amount_title;
+        console.log("PARAMETER ID ", scope.fieldArray[0].parameter_id, scope.fieldArray[0])
         scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1";
         if (scope.phoneFieldBool) {
           console.log("NUMBER FROM OPTS 1", opts.firstFieldText)
           scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(opts.firstFieldText);
           console.log("NUMBER FROM OPTS 2", scope.defaultNumber)
         }
+        scope.inputMaxLength = scope.fieldArray[0].max_len;
+        console.log("INPUT LENGTH=", scope.inputMaxLength);
+
+//          console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
+
 
         if (opts.amountText)
           scope.defaultAmount = window.amountTransform(opts.amountText);
@@ -1287,6 +1293,7 @@
         if (scope.fieldArray[i].parameter_id == id) {
           scope.chosenFieldName = scope.fieldArray[i].title;
           scope.chosenFieldPlaceholder = scope.fieldArray[i].placeholder;
+          console.log("PARAMETER ID ", scope.fieldArray[i].parameter_id)
           scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1";
           scope.inputMaxLength = scope.fieldArray[i].max_len;
           console.log("INPUT LENGTH=", scope.inputMaxLength);

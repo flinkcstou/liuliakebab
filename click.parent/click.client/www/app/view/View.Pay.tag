@@ -254,10 +254,11 @@
       onTouchStartX = event.changedTouches[0].pageX;
     };
 
-    console.log('OPTS', opts);
+
     localStorage.setItem('autoPayData', null);
     window.viewServicePinCards = {};
-    opts = (!opts.mode || opts.mode == 'USUAL') ? {} : opts;
+    //opts = (!opts.mode || opts.mode == 'USUAL') ? {} : opts;
+    console.log('OPTS', opts);
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
       event.stopPropagation();

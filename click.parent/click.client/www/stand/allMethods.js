@@ -9111,7 +9111,7 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
   }, {
     "service_id": 3040,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
@@ -9291,7 +9291,7 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
   }, {
     "service_id": 4652,
     "parameter_id": "4",
-    "input_type": 1,
+    "input_type": 2,
     "title": "ID абонента",
     "placeholder": "Введите ID абонента",
     "error_message": "Неверный ID абонента",
