@@ -2925,9 +2925,9 @@ var css = {
   cardEditBodyContainer: ".card-edit-body-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 1150 * widthK + "px; " +
+  "height:" + 1150 * heightK + "px; " +
   "width:" + 720 * widthK + "px; " +
-  "top:" + 86 * widthK + "px; " +
+  "top:" + 86 * heightK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
   "overflow-y: auto; " +
