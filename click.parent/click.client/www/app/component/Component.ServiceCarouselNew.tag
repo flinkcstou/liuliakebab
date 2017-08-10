@@ -393,7 +393,7 @@
         console.log("chosen id in payments carousel=", id);
         for (var i in scope.favoritePaymentsList) {
           if (scope.favoritePaymentsList[i].service.id == id) {
-            console.log("gnrf", scope.favoritePaymentsList[i].params);
+            console.log("gnrf", scope.favoritePaymentsList[i]);
 
 
             if (modeOfApp.offlineMode) {
@@ -469,16 +469,66 @@
               return
             }
 
-            scope.service = scope.servicesMap[scope.favoritePaymentsList[i].params.chosenServiceId][0];
+            //scope.service = scope.servicesMap[scope.favoritePaymentsList[i].params.chosenServiceId][0];
 
-            if (scope.service.additional_information_type == 3) {
-              this.riotTags.innerHTML = "<view-service-info>";
-              riot.mount('view-service-info', scope.favoritePaymentsList[i].params);
-              scope.unmount()
+
+            if (scope.favoritePaymentsList[i].service.form_type == 4 && scope.favoritePaymentsList[i].service.disable_cache && modeOfApp.onlineMode && !modeOfApp.demoVersion) {
+
+              window.api.call({
+                method: 'get.service.parameters',
+                input: {
+                  session_key: sessionKey,
+                  phone_num: phoneNumber,
+                  service_id: scope.favoritePaymentsList[i].service.id
+                },
+
+                scope: this,
+
+                onSuccess: function (result) {
+                  if (result[0][0].error == 0) {
+                    console.log(' disable_cache, updating amountText')
+
+                    if (result[5])
+                      for (var i in result[5]) {
+                        console.log("1");
+                        if (result[5][i].service_id == scope.favoritePaymentsList[i].service.id) {
+                          console.log("qwerty=", result[5][i].sum_cost);
+                          scope.favoritePaymentsList[i].params.amountText = window.amountTransform(result[5][i].sum_cost.toString())
+                          localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList))
+                          if (scope.favoritePaymentsList[i].service.additional_information_type == 3) {
+                            this.riotTags.innerHTML = "<view-service-info>";
+                            riot.mount('view-service-info', scope.favoritePaymentsList[i].params);
+                            scope.unmount()
+                          } else {
+                            this.riotTags.innerHTML = "<view-service-pincards-new>";
+                            riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
+                            scope.unmount()
+                          }
+                          break;
+                        }
+                      }
+
+                  }
+                },
+
+                onFail: function (api_status, api_status_message, data) {
+                  console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                  console.error(data);
+                }
+              });
+
             } else {
-              this.riotTags.innerHTML = "<view-service-pincards-new>";
-              riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
-              scope.unmount()
+
+
+              if (scope.favoritePaymentsList[i].service.additional_information_type == 3) {
+                this.riotTags.innerHTML = "<view-service-info>";
+                riot.mount('view-service-info', scope.favoritePaymentsList[i].params);
+                scope.unmount()
+              } else {
+                this.riotTags.innerHTML = "<view-service-pincards-new>";
+                riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
+                scope.unmount()
+              }
             }
 
 

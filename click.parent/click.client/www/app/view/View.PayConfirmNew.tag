@@ -221,18 +221,24 @@
     }
 
     this.cardTypeId = opts.cardTypeId;
+
     this.amountText = opts.amountText;
-    console.log(opts.amountText, " amounts ", this.amountText);
+    scope.amountTextCopy = opts.amountText;
+    console.log(opts.amountText, " amounts ", this.amountText, opts.cost);
 
     try {
-      if (opts.cost)
-        scope.amountTextCopy = window.amountTransform(this.amountText * opts.cost);
-      else
-        scope.amountTextCopy = window.amountTransform(this.amountText);
+      if (opts.cost) {
+        scope.amountTextCopy = window.amountTransform(window.inputVerification.spaceDeleter(opts.amountText) * opts.cost);
+      }
+      else {
+        scope.amountTextCopy = window.amountTransform(opts.amountText);
+      }
     }
     catch (e) {
-      scope.amountTextCopy = this.amountText;
+      scope.amountTextCopy = opts.amountText;
     }
+
+    scope.update(scope.amountTextCopy)
 
     console.log("AMOUNT", this.amountText, " scope.amountTextCopy", scope.amountTextCopy)
 
