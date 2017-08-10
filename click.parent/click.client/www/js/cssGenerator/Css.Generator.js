@@ -2127,7 +2127,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #54b4e6;" +
+  "border-bottom: 1px solid #2dadf0;" +
   // "border-bottom: 1px solid #43aee5;" +
   "}",
 
@@ -2138,7 +2138,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #54b4e6;" +
+  "border-bottom: 1px solid #2dadf0;" +
   "}",
 
   sideMenuAutoPayContainer: ".side-menu-auto-pay-container " +
@@ -2148,7 +2148,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #54b4e6;" +
+  "border-bottom: 1px solid #2dadf0;" +
   "}",
 
   sideMenuScannerQrContainer: ".side-menu-scanner-qr-container " +
@@ -2158,7 +2158,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #54b4e6;" +
+  "border-bottom: 1px solid #2dadf0;" +
   "}",
 
   sideMenuSettingsContainer: ".side-menu-settings-container " +
@@ -2168,7 +2168,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #54b4e6;" +
+  "border-bottom: 1px solid #2dadf0;" +
   "}",
 
 
@@ -2180,7 +2180,7 @@ var css = {
   "width: 77%;" +
   "left: 8%;" +
   //"margin-top: 2%;" +
-  "border-bottom: 1px solid #54b4e6;" +
+  "border-bottom: 1px solid #2dadf0;" +
   "}",
 
   sideMenuExitContainer: ".side-menu-exit-container " +
@@ -2190,7 +2190,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #54b4e6;" +
+  "border-bottom: 1px solid #2dadf0;" +
   "}",
 
   sideMenuContainersIcon: ".side-menu-containers-icon " +
