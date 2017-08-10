@@ -1808,22 +1808,25 @@
           console.log("isInFavorites=", opts.isInFavorites)
 
           opts.favoriteName = favoriteNameInput.value;
+          viewServicePinCards.friendHelpPaymentMode = false;
+          viewServicePinCards.chosenFriendForHelp = null;
 
-
-          if (opts.isInFavorites)
+          if (opts.isInFavorites) {
             editFavorite(opts);
+            event.preventDefault();
+            event.stopPropagation();
+            onBackKeyDown();
+          }
           else {
             opts.isInFavorites = true;
             addToFavoritesinServicePage(opts);
+            event.preventDefault();
+            event.stopPropagation();
+            onBackKeyDown();
+            onBackKeyDown();
           }
 
-          event.preventDefault();
-          event.stopPropagation();
 
-          viewServicePinCards.friendHelpPaymentMode = false;
-          viewServicePinCards.chosenFriendForHelp = null;
-          onBackKeyDown();
-          onBackKeyDown();
         } else if (opts.mode == 'ADDAUTOPAY') {
 
           if (autoPayNameInput.value.length < 1) {
@@ -1953,16 +1956,21 @@
 
             opts.favoriteName = favoriteNameInput.value;
 
-            if (opts.isInFavorites)
+            if (opts.isInFavorites) {
               editFavorite(opts);
+              event.preventDefault();
+              event.stopPropagation();
+              onBackKeyDown();
+            }
             else {
               opts.isInFavorites = true;
               addToFavoritesinServicePage(opts);
+              event.preventDefault();
+              event.stopPropagation();
+              onBackKeyDown();
+              onBackKeyDown();
             }
-            event.preventDefault();
-            event.stopPropagation();
-            onBackKeyDown();
-            onBackKeyDown();
+
           }
           else {
             scope.clickPinError = false;
