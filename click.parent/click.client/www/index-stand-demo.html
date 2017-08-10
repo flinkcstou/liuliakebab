@@ -620,46 +620,27 @@
   }
 
 
-  function onBackKeyDown(opts) {
+  function onBackKeyDown() {
 
-    history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+    console.log("OPTS in ONBackKeyDown", onBackParams.opts)
 
-    console.log('DEMO HISTORY', history.arrayOfHistory)
-
-    if (history.arrayOfHistory.length != 0) {
-      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-main-page') {
-
-        localStorage.clear();
-
-        window.location.href = "index.html";
-        //navigator.app.exitApp();
-      }
-      else {
-        history.arrayOfHistory.pop();
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-        riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
-        console.log(history.arrayOfHistory[history.arrayOfHistory.length - 1].view)
-        console.log(history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
-        if (opts) {
-          console.log("111", opts);
-          riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, opts);
-        } else {
-          riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
-        }
-      }
+    if (device.platform != 'BrowserStand') {
+      SpinnerPlugin.activityStop();
     }
-  }
-
-  function onBackKeyDownWithParams(opts, n) {
 
     if (window.checkShowingComponent) {
       console.log('window.checkShowingComponent', window.checkShowingComponent)
-      window.checkShowingComponent.parent.showComponent = false;
+      if (window.checkShowingComponent.parent) {
+        window.checkShowingComponent.parent.showComponent = false;
+      } else {
+        if (window.checkShowingComponent.parent === null && window.checkShowingComponent.showComponent) {
+          window.checkShowingComponent.showComponent = false;
+        }
+      }
       window.checkShowingComponent = null;
       riot.update();
       return
     }
-
 
     history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
 
@@ -674,9 +655,12 @@
         history.arrayOfHistory.pop();
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
         riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
-        console.log(history.arrayOfHistory[history.arrayOfHistory.length - 1].view)
-        console.log("OPTS in ONBackKeyDownWithParams", opts)
-        riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, opts);
+        if (onBackParams.opts) {
+          console.log("111", onBackParams.opts);
+          riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, onBackParams.opts);
+        } else {
+          riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+        }
       }
     }
   }
