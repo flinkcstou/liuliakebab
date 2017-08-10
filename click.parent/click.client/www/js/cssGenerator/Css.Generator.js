@@ -13187,11 +13187,11 @@ var css = {
 
   autopayEventStepField: ".autopay-event-step-field" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "left: 10%;" +
   "width: 85%;" +
   "height:" + 90 * widthK + "px;" +
-  "top: 35%;" +
+  "top: 18%;" +
   "background-color: transparent;" +
   "}",
 
@@ -13250,7 +13250,7 @@ var css = {
   "left: 10%;" +
   "color: white;" +
   "border-bottom:1px solid lightgray;" +
-  "top: 34%;" +
+  "top: 23%;" +
   "}",
 
   autopayEventAmountsDropdownComponent: ".autopay-event-amount-dropdown-component" +
@@ -13310,22 +13310,22 @@ var css = {
 
   autopayEventAmountsInfoText: ".autopay-event-amounts-info-text" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "margin: 0;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
-  "top: 62%;" +
+  "top: 24%;" +
   "left: 10%;" +
   "}",
 
   autopayEventAmountsInfoTextTwo: ".autopay-event-amounts-info-text-two" +
   "{" +
-  "top: 65%;" +
+  "top: 25%;" +
   "}",
 
   autopayEventButtonEnterEnabled: " .autopay-event-button-enter-enabled" +
   "{" +
-  "top:" + 880 * widthK + "px;" +
+  "top:" + 400 * heightK + "px;" +
   "height:" + 74 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
   "background-color: #00a8f1;" +
@@ -13334,7 +13334,7 @@ var css = {
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "position: absolute;" +
+  "position: relative;" +
   "left: 28%;" +
   "width: 44%;" +
   "border-radius: " + 10 * widthK + "px;" +
@@ -13344,7 +13344,7 @@ var css = {
 
   autopayEventButtonEnterDisabled: " .autopay-event-button-enter-disabled" +
   "{" +
-  "top:" + 880 * widthK + "px;" +
+  "top:" + 400 * heightK + "px;" +
   "height:" + 74 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
   "background-color: #D2D2D2;" +
@@ -13353,7 +13353,7 @@ var css = {
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "position: absolute;" +
+  "position: relative;" +
   "left: 28%;" +
   "width: 44%;" +
   "border-radius: " + 10 * widthK + "px;" +
