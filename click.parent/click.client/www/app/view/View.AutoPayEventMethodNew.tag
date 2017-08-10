@@ -414,13 +414,13 @@
           return;
         }
 
-        if (!phoneRegexp.test(inputVerification.spaceDeleter(PhoneNumberInput.value))) {
-          scope.clickPinError = false;
-          scope.errorNote = "Возможно вы ввели номер другого оператора";
-          scope.showError = true;
-          scope.update();
-          return;
-        }
+//        if (!phoneRegexp.test(inputVerification.spaceDeleter(PhoneNumberInput.value))) {
+//          scope.clickPinError = false;
+//          scope.errorNote = "Возможно вы ввели номер другого оператора";
+//          scope.showError = true;
+//          scope.update();
+//          return;
+//        }
 
         if (!chosenStep) {
           scope.clickPinError = false;

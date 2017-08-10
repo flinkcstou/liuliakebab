@@ -1085,7 +1085,6 @@
 
         console.log("after tranform amount=", scope.defaultAmount);
         scope.update();
-
         scope.inputMaxLength = scope.fieldArray[0].max_len;
         console.log("INPUT LENGTH=", scope.inputMaxLength);
         if (scope.dropDownOn) {
@@ -1588,7 +1587,7 @@
 
 
     var enterStartY, enterStartX, enterEndY, enterEndX;
-    var phoneRegexp = new RegExp(scope.service.validation);
+    //var phoneRegexp = new RegExp(scope.service.validation);
 
     scope.onTouchStartOfEnter = onTouchStartOfEnter = function () {
       event.stopPropagation();
@@ -1630,14 +1629,15 @@
           scope.update();
 
           return;
-        } else if (scope.phoneFieldBool && scope.service.validation != null && !phoneRegexp.test(inputVerification.spaceDeleter(firstFieldInput.value)) && opts.chosenServiceId != "mynumber") {
-          console.log("scope.service.validation", scope.service.validation)
-          scope.clickPinError = false;
-          scope.errorNote = "Возможно вы ввели номер другого оператора";
-          scope.showError = true;
-          scope.update();
-          return;
         }
+//        else if (scope.phoneFieldBool && scope.service.validation != null && !phoneRegexp.test(inputVerification.spaceDeleter(firstFieldInput.value)) && opts.chosenServiceId != "mynumber") {
+//          console.log("scope.service.validation", scope.service.validation)
+//          scope.clickPinError = false;
+//          scope.errorNote = "Возможно вы ввели номер другого оператора";
+//          scope.showError = true;
+//          scope.update();
+//          return;
+//        }
         else if (firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
           scope.clickPinError = false;
           if (scope.dropDownOn) {

@@ -455,7 +455,7 @@
       if (opts.formtype == 1) {
         payment_data = {
           "param": opts.firstFieldId,
-          "value": firstFieldtext,
+          "value": inputVerification.spaceDeleter(firstFieldtext),
           "transaction_id": parseInt(Date.now() / 1000)
         };
         console.log("payment_data 111");
@@ -472,7 +472,7 @@
       else if (opts.formtype == 3) {
         payment_data = {
           "param": opts.firstFieldId,
-          "value": firstFieldtext,
+          "value": inputVerification.spaceDeleter(firstFieldtext),
           "communal_param": opts.communalParam,
           "transaction_id": parseInt(Date.now() / 1000)
         };
@@ -483,7 +483,7 @@
       else if (opts.formtype == 4) {
         payment_data = {
           "param": opts.firstFieldId,
-          "value": firstFieldtext,
+          "value": inputVerification.spaceDeleter(firstFieldtext),
           "internet_package_param": opts.internetPackageParam,
           "transaction_id": parseInt(Date.now() / 1000)
         };
@@ -721,7 +721,7 @@
               service_id: Number(serviceId),
               account_id: Number(accountId),
               amount: amount,
-              cntrg_phone_num: scope.autoPayData.cntrg_phone_num,
+              cntrg_phone_num: inputVerification.spaceDeleter(scope.autoPayData.cntrg_phone_num),
               step: scope.autoPayData.step,
               title: scope.autoPayData.name
             },
