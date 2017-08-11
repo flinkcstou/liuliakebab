@@ -195,6 +195,7 @@
   //    this.closeDemo();
   //  }
 
+  var tempOpts;
   function onBackKeyDown() {
 
     console.log("OPTS in ONBackKeyDown", onBackParams.opts)
@@ -232,7 +233,9 @@
         riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
         if (onBackParams.opts) {
           console.log("111", onBackParams.opts);
-          riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, onBackParams.opts);
+          tempOpts = JSON.parse(JSON.stringify(onBackParams.opts));
+          onBackParams.opts = null;
+          riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, tempOpts);
         } else {
           riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
         }
