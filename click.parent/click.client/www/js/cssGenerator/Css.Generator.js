@@ -13045,7 +13045,7 @@ var css = {
   "position: absolute;" +
   "height: " + 1092 * heightK + "px; " +
   "width:" + 720 * widthK + "px; " +
-  "top:" + 140 * widthK + "px; " +
+  "top:" + 140 * heightK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
   "overflow-y: auto; " +

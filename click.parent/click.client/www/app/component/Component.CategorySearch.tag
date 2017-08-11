@@ -9,30 +9,22 @@
     <div class="search-suggestion-container">
       <div id="suggestionOneId" class="search-suggestion-field-one" ontouchstart="suggestionFieldOneTouchStart()"
            ontouchend="suggestionFieldOneTouchEnd()">
-        <p class="search-part-of-suggestion">{onePartOne}
-          <mark class="search-selected-field-color">{onePartTwo}</mark>
-          {onePartThree}
+        <p class="search-part-of-suggestion">{onePartOne}<mark class="search-selected-field-color">{onePartTwo}</mark>{onePartThree}
         </p>
       </div>
       <div id="suggestionTwoId" class="search-suggestion-field-two" ontouchstart="suggestionFieldTwoTouchStart()"
            ontouchend="suggestionFieldTwoTouchEnd()">
-        <p class="search-part-of-suggestion">{twoPartOne}
-          <mark class="search-selected-field-color">{twoPartTwo}</mark>
-          {twoPartThree}
+        <p class="search-part-of-suggestion">{twoPartOne}<mark class="search-selected-field-color">{twoPartTwo}</mark>{twoPartThree}
         </p>
       </div>
       <div id="suggestionThreeId" class="search-suggestion-field-three" ontouchstart="suggestionFieldThreeTouchStart()"
            ontouchend="suggestionFieldThreeTouchEnd()">
-        <p class="search-part-of-suggestion">{threePartOne}
-          <mark class="search-selected-field-color">{threePartTwo}</mark>
-          {threePartThree}
+        <p class="search-part-of-suggestion">{threePartOne}<mark class="search-selected-field-color">{threePartTwo}</mark>{threePartThree}
         </p>
       </div>
       <div id="suggestionFourId" class="search-suggestion-field-four" ontouchstart="suggestionFieldFourTouchStart()"
            ontouchend="suggestionFieldFourTouchEnd()">
-        <p class="search-part-of-suggestion">{fourPartOne}
-          <mark class="search-selected-field-color">{fourPartTwo}</mark>
-          {fourPartThree}
+        <p class="search-part-of-suggestion">{fourPartOne}<mark class="search-selected-field-color">{fourPartTwo}</mark>{fourPartThree}
         </p>
       </div>
     </div>
