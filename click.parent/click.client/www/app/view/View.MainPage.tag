@@ -36,6 +36,7 @@
     componentMenu.check = false;
     viewServicePage.amountWithoutSpace = 0;
     viewServicePage.amountTex = 0;
+    onBackParams.opts = null;
 
 
     this.on('mount', function () {
@@ -58,7 +59,7 @@
           if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-news') {
             history.arrayOfHistory.push(
               {
-                "view"  : 'view-news',
+                "view": 'view-news',
                 "params": opts
               }
             );
@@ -86,7 +87,7 @@
     history.arrayOfHistory = [];
     history.arrayOfHistory.push(
       {
-        "view"  : 'view-main-page',
+        "view": 'view-main-page',
         "params": opts
       }
     );
