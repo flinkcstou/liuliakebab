@@ -45,7 +45,7 @@
 </div>
 
 <script>
-  var versionOfApp = '5.0.2'
+  var versionOfApp = '5.0.3'
   if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
 
   }
@@ -129,6 +129,7 @@
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
       window.FirebasePlugin.setBadgeNumber(0);
+      MobileAccessibility.usePreferredTextZoom(false);
       checkFirstStarting = true;
 
 
@@ -265,6 +266,7 @@
   }
 
   function onResumeFunction() {
+    MobileAccessibility.usePreferredTextZoom(false);
 
     if (modeOfApp.offlineMode) return
 
