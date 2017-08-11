@@ -12,11 +12,11 @@
     </div>
 
     <div class="transfertwo-contact-phone-field">
-      <input pattern="\d*" id="sumValueId" type="tel" maxlength="13" class="transfertwo-contact-number-input-part" onfocus="sumFocus()"
+      <input pattern="\d*" id="sumValueId" type="tel" maxlength="14" class="transfertwo-contact-number-input-part" onfocus="sumFocus()"
              onmouseup="sumMouseUp()"
              onblur="sumOnBlur()" onkeyup="sumKeyUp()" oninput="sumKeyUp()"/>
       <p if="{showPlaceHolderError}" id="placeHolderSumId" class="transfertwo-limit-title">{placeHolderText}</p>
-      <p if="{!showPlaceHolderError}" class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
+      <p if="{!showPlaceHolderError && !modeOfApp.offlineMode}" class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
         {window.languages.Currency}</p>
     </div>
 
@@ -268,7 +268,7 @@
       }
     }
     else {
-      maxLimit = 5000000;
+      maxLimit = 99999999999;
 
       minLimit = 5000;
 
@@ -293,14 +293,14 @@
 
         if(sumForTransfer > maxLimit){
 
-          scope.placeHolderText = 'Максимальная сумма ' + maxLimit
+          scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(maxLimit)
           scope.showPlaceHolderError = true;
           scope.update()
           return
         }
 
         if(sumForTransfer < minLimit) {
-          scope.placeHolderText = "Минимальная сумма " + minLimit
+          scope.placeHolderText = "Минимальная сумма " + window.amountTransform(minLimit)
           scope.showPlaceHolderError = true;
           scope.update()
           return

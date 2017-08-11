@@ -1111,6 +1111,8 @@
         if (!scope.placeHolderText)
           scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " " + scope.service.lang_amount_currency + " до " + window.amountTransform(scope.service.max_pay_limit) + " " + scope.service.lang_amount_currency
 
+        console.log("CURRENCY", scope.service.lang_amount_currency)
+
         console.log("after tranform amount=", scope.defaultAmount);
         scope.update();
         scope.inputMaxLength = scope.fieldArray[0].max_len;
