@@ -940,15 +940,15 @@
                   console.log("fav payment i ", favoritePaymentsList[i].params)
                   if (favoritePaymentsList[i].params.paymentId && favoritePaymentsList[i].params.paymentId == paymentId) {
                     console.log("found ", favoritePaymentsList[i].params.paymentId)
-                    scope.paymentsList[i].isInFavorites = true;
+                    scope.tags['view-report-service-new'].isInFavorites = true;
                     break;
                   }
-                  scope.paymentsList[i].isInFavorites = false;
+                  scope.tags['view-report-service-new'].isInFavorites = false;
                 }
                 //console.log(" not found ")
 
               } else {
-                scope.paymentsList[i].isInFavorites = false;
+                scope.tags['view-report-service-new'].isInFavorites = false;
                 console.log(" NO FAV ")
               }
 
@@ -958,7 +958,7 @@
                 scope.paymentsList[i].canAddToFavorite = false;
 
               scope.showComponent = true;
-              scope.tags['view-report-service-new'].opts = scope.paymentsList[i]
+              scope.tags['view-report-service-new'].opts = scope.paymentsList[i];
 
               console.log("scope.tags['view-report-service-new']", scope.tags['view-report-service-new']);
 
