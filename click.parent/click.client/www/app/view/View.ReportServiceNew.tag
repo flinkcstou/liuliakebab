@@ -103,7 +103,9 @@
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#00a8f1");
-      scope.update();
+
+     scope.update()
+
     });
 
     var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));

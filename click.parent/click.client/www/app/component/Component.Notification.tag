@@ -46,6 +46,8 @@
         scope.notificationAction = notification.action;
         scope.notificationElementId = notification.notify_id;
 
+        scope.update();
+
         var authorized = JSON.parse(localStorage.getItem("click_client_authorized"));
 //        authorized = JSON.parse(authorized);
 
@@ -148,7 +150,7 @@
         window.FirebasePlugin.setUserId(localStorage.getItem('click_client_phoneNumber'));
       }
       scope.show = false;
-      scope.notificationText = "";
+//      scope.notificationText = "";
       scope.update();
     };
 
@@ -158,7 +160,7 @@
       }
 
       scope.show = false;
-      scope.notificationText = "";
+//      scope.notificationText = "";
       scope.update();
 
       if (scope.notificationAction == "invoice") {
