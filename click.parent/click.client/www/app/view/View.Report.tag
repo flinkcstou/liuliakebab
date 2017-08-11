@@ -934,7 +934,7 @@
               var servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
               var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
 
-              console.log(" starting check ", favoritePaymentsList)
+              console.log(" starting check", favoritePaymentsList)
               if (favoritePaymentsList) {
                 for (var i in favoritePaymentsList) {
                   console.log("fav payment i ", favoritePaymentsList[i].params)

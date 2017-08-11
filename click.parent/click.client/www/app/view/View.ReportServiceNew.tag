@@ -252,7 +252,7 @@
 
 
         scope.operationMessage = window.languages.ComponentSuccessMessageForRemovingFromFavorites;
-        console.log("operationMesssage=", scope.operationMessage);
+        console.log("operationMesssage ", scope.operationMessage);
         scope.update(scope.operationMessage);
         componentSuccessId.style.display = 'block';
       }
