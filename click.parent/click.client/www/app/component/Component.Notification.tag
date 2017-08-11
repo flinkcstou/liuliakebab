@@ -19,7 +19,6 @@
 
     scope.show = false;
     scope.setTransition = false;
-    scope.notificationText = "";
     scope.notificationAction = "";
 
     var numberOfMessage = 0;
@@ -36,17 +35,17 @@
         console.log("PUSH NOTIFICATION OBJECT", notification);
         ++numberOfMessage;
 
+        var notificationText = "";
+
         if (device.platform == "iOS") {
 
-          scope.notificationText = notification.notification.body;
+           notificationText = notification.notification.body;
         } else {
 
-          scope.notificationText = notification.body;
+           notificationText = notification.body;
         }
         scope.notificationAction = notification.action;
         scope.notificationElementId = notification.notify_id;
-
-        scope.update();
 
         var authorized = JSON.parse(localStorage.getItem("click_client_authorized"));
 //        authorized = JSON.parse(authorized);
@@ -108,13 +107,18 @@
         else {
 
           scope.show = true;
+          scope.notificationText = notificationText;
+          scope.update();
+
+          console.log('NOTIFICATION TEXT', scope.notificationText)
+
+          numberOfMessage = 0;
 
           if (modeOfApp.offlineMode) {
             window.FirebasePlugin.setBadgeNumber(0);
           }
         }
 
-        riot.update();
 
         window.FirebasePlugin.logEvent(scope.notificationText, {
           content_type: scope.notificationAction,
