@@ -462,49 +462,70 @@
       setTimeout(function () {
 
 
-      if (Math.abs(operationInfoTouchStartY - operationInfoTouchEndY) < 20) {
+        if (Math.abs(operationInfoTouchStartY - operationInfoTouchEndY) < 20) {
 
-        if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          if (modeOfApp.demoVersion) {
+            var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-          scope.confirmShowBool = true;
-          scope.confirmNote = question;
-          scope.confirmType = 'local';
-          scope.result = function (bool) {
-            if (bool) {
-              localStorage.clear();
-              window.location = 'index.html'
-              scope.unmount()
-              return
-            }
-            else {
-              scope.confirmShowBool = false;
-              return
-            }
-          };
-          scope.update();
+            scope.confirmShowBool = true;
+            scope.confirmNote = question;
+            scope.confirmType = 'local';
+            scope.result = function (bool) {
+              if (bool) {
+                localStorage.clear();
+                window.location = 'index.html'
+                scope.unmount()
+                return
+              }
+              else {
+                scope.confirmShowBool = false;
+                return
+              }
+            };
+            scope.update();
 
-          return
-        }
+            return
+          }
 
-        console.log("Time to open");
-        for (var i = 0; i < scope.lastOperationContainer.length; i++) {
-          if (scope.lastOperationContainer[i].payment_id == paymentId) {
-            var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
+          console.log("Time to open");
+          for (var i = 0; i < scope.lastOperationContainer.length; i++) {
+            if (scope.lastOperationContainer[i].payment_id == paymentId) {
+              var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
 //            console.log("FROM VIEW INFO service report for=", scope.lastOperationContainer[i]);
-            if (servicesMap[scope.lastOperationContainer[i].service_id])
-              scope.lastOperationContainer[i].canAddToFavorite = true;
-            else
-              scope.lastOperationContainer[i].canAddToFavorite = false;
 
-            riotTags.innerHTML = "<view-report-service-new>";
-            riot.mount("view-report-service-new", scope.lastOperationContainer[i]);
+              var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
 
-            scope.unmount()
-            break;
+              console.log(" starting check ", favoritePaymentsList)
+              if (favoritePaymentsList) {
+                for (var i in favoritePaymentsList) {
+                  console.log("fav payment i ", favoritePaymentsList[i].params)
+                  if (favoritePaymentsList[i].params.paymentId && favoritePaymentsList[i].params.paymentId == paymentId) {
+                    console.log("found ", favoritePaymentsList[i].params.paymentId)
+                    scope.lastOperationContainer[i].isInFavorites = true;
+                    break;
+                  }
+                  scope.lastOperationContainer[i].isInFavorites = false;
+                }
+                //console.log(" not found ")
+
+              } else {
+                scope.lastOperationContainer[i].isInFavorites = false;
+                console.log(" NO FAV ")
+              }
+
+              if (servicesMap[scope.lastOperationContainer[i].service_id])
+                scope.lastOperationContainer[i].canAddToFavorite = true;
+              else
+                scope.lastOperationContainer[i].canAddToFavorite = false;
+
+              riotTags.innerHTML = "<view-report-service-new>";
+              riot.mount("view-report-service-new", scope.lastOperationContainer[i]);
+
+              scope.unmount()
+              break;
+            }
           }
         }
-      }
       }, 100)
 
     }
