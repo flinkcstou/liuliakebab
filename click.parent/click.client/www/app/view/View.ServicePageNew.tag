@@ -574,7 +574,7 @@
       }
 
       if (opts && opts.number) {
-        firstFieldInput.value = opts.number;
+        firstFieldInput.value = inputVerification.telVerificationWithSpace(opts.number);
         scope.update();
 
       }
