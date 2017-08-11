@@ -7296,6 +7296,32 @@ offlineServicesMapByCategory = {
 },
 
   offlineServicesMap = {
+    "mynumber": [
+      {
+        "category_id": 1,
+        "cost": 1,
+        "form_type": 1,
+        "is_visible": 1,
+        //"id": 2,
+        "image": "resources/icons/ViewPay/myphone.png",
+        "is_mobile": 1,
+        "lang_amount_hint": null,
+        "lang_amount_placeholder": "Введите сумму оплаты",
+        "lang_amount_title": "Сумма",
+        "lang_max_amount": "Максимальная сумма для оплаты 1500000.00 сум",
+        "lang_min_amount": "Минимальная сумма для оплаты 1000.00 сум",
+        "max_pay_limit": 1500000,
+        "min_pay_limit": 1000,
+        //"name": "UMS",
+        //"priority": 25,
+        "service_parameters": "1",
+        //"service_short_name": "UMS",
+        "lang_amount_currency": "сум",
+        "status": 1,
+        "amount_editable"            : true,
+        "amount_value"               : null,
+        "amount_information_text"    : null
+      }],
     "2"   : [{
       "id"                         : 2,
       "name"                       : "UMS",

@@ -37,6 +37,16 @@
 
   <script>
 
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-steptwo') {
+      history.arrayOfHistory.push(
+        {
+          "view": 'view-transfer-steptwo',
+          "params": opts
+        }
+      );
+      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    }
+
 
     this.on('mount', function () {
       if (viewTransferStepTwo.sum.length > 0) {
@@ -199,16 +209,6 @@
     else
       this.titleName = window.languages.ViewTransferTwoTitle + ' ' + transferTitle;
 
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-steptwo') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer-steptwo',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
