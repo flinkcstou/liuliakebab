@@ -898,7 +898,7 @@
         opts.firstFieldText = localStorage.getItem('click_client_phoneNumber');
         opts.firstFieldText = opts.firstFieldText ? opts.firstFieldText.substr(3, opts.firstFieldText.length - 3) : '';
         scope.fieldArray = [];
-        scope.fieldArray[0] = {ussd_query: "*880*0199999*1*{amount}#", title: "Мой номер"};
+        scope.fieldArray[0] = {ussd_query: "*880*01999002*1*{amount}#", title: "Мой номер"};
         console.log('scope.fieldArray', scope.fieldArray)
         opts.chosenServiceId = localStorage.getItem('myNumberOperatorId') ? localStorage.getItem('myNumberOperatorId') : 'mynumber';
 

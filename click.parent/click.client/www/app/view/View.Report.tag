@@ -924,6 +924,10 @@
 
           for (var i = 0; i < scope.paymentsList.length; i++) {
             if (scope.paymentsList[i].payment_id == paymentId) {
+
+              console.log("PAYMENTID", paymentId)
+              console.log("scope.paymentsList[i].payment_id", scope.paymentsList[i].payment_id)
+
 //            console.log("FROM VIEW REPORT service report for=", scope.paymentsList[i]);
 
               console.log(scope.paymentsList[i])
