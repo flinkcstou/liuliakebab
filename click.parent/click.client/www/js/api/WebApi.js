@@ -83,6 +83,8 @@ window.api.initSocket = function () {
 
     if (modeOfApp.offlineMode) return
 
+
+
     var parsedData = JSON.parse(event.data);
     console.log(parsedData);
     if (parsedData.api_status == 0)
