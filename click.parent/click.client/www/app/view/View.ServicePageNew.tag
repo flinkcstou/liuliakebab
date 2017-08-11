@@ -539,8 +539,9 @@
     this.on('mount', function () {
 
       console.log("ON SERVICEPAGE NEW ON MOUNT");
+      console.log("calcOn on new mount", scope.calcOn)
 
-      if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).calculator) {
+      if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).calculator && scope.calcOn) {
         firstFieldInput.blur();
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
