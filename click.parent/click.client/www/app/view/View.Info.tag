@@ -497,10 +497,10 @@
 
               console.log(" starting check", favoritePaymentsList)
               if (favoritePaymentsList) {
-                for (var i in favoritePaymentsList) {
-                  console.log("fav payment i ", favoritePaymentsList[i].params)
-                  if (favoritePaymentsList[i].params.paymentId && favoritePaymentsList[i].params.paymentId == paymentId) {
-                    console.log("found ", favoritePaymentsList[i].params.paymentId)
+                for (var j in favoritePaymentsList) {
+                  console.log("fav payment j ", favoritePaymentsList[j].params)
+                  if (favoritePaymentsList[j].params.paymentId && favoritePaymentsList[j].params.paymentId == paymentId) {
+                    console.log("found ", favoritePaymentsList[j].params.paymentId)
                     scope.lastOperationContainer[i].isInFavorites = true;
                     break;
                   }

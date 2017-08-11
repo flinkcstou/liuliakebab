@@ -924,11 +924,7 @@
 
           for (var i = 0; i < scope.paymentsList.length; i++) {
             if (scope.paymentsList[i].payment_id == paymentId) {
-
-              console.log("PAYMENTID", paymentId)
-              console.log("scope.paymentsList[i].payment_id", scope.paymentsList[i].payment_id)
-
-//            console.log("FROM VIEW REPORT service report for=", scope.paymentsList[i]);
+              console.log("FROM VIEW REPORT service report for=", JSON.stringify(scope.paymentsList[i].service_name));
 
               console.log(scope.paymentsList[i])
               console.log("scope.tags['view-report-service-new']", scope.tags)
@@ -940,10 +936,10 @@
 
               console.log(" starting check", favoritePaymentsList)
               if (favoritePaymentsList) {
-                for (var i in favoritePaymentsList) {
-                  console.log("fav payment i ", favoritePaymentsList[i].params)
-                  if (favoritePaymentsList[i].params.paymentId && favoritePaymentsList[i].params.paymentId == paymentId) {
-                    console.log("found ", favoritePaymentsList[i].params.paymentId)
+                for (var j in favoritePaymentsList) {
+                  console.log("fav payment j ", favoritePaymentsList[j].params)
+                  if (favoritePaymentsList[j].params.paymentId && favoritePaymentsList[j].params.paymentId == paymentId) {
+                    console.log("found , saved to opts ", favoritePaymentsList[j].params.paymentId)
                     scope.tags['view-report-service-new'].isInFavorites = true;
                     break;
                   }
@@ -963,6 +959,7 @@
 
               scope.showComponent = true;
               scope.tags['view-report-service-new'].opts = scope.paymentsList[i];
+              console.log("PAYMENT", JSON.stringify(scope.tags['view-report-service-new'].opts.service_name));
 
               console.log("scope.tags['view-report-service-new']", scope.tags['view-report-service-new']);
 
