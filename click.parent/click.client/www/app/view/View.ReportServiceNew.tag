@@ -56,7 +56,8 @@
                ontouchstart="addToFavoritesTouchStart(this.id)">{languages.ViewReportServiceAddToFavorites}
           </div>
 
-          <div class="report-service-button-icon report-service-button-favorites-icon-added" if="{isInFavorites}"></div>
+          <div class="report-service-button-icon report-service-button-favorites-icon-added"
+               if="{isInFavorites}"></div>
           <div id="delToFavouriteButtonId" class="report-service-button-action"
                ontouchend="removeFromFavoritesTouchEnd(this.id)" if="{isInFavorites}"
                ontouchstart="addToFavoritesTouchStart(this.id)">{languages.ViewReportServiceRemoveFromFavorites}
@@ -107,14 +108,12 @@
 
     var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
     var servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
+    var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
 
-    scope.isInFavorites = false;
 
-    //    if (servicesMap[scope.opts.service_id])
-    //      scope.canAddToFavorite = true;
-    //    else
-    //      scope.canAddToFavorite = false;
-    scope.update();
+    scope.isInFavorites = scope.opts.isInFavorites;
+    console.log("scope.isInFavorites", scope.isInFavorites)
+    scope.update(scope.isInFavorites);
 
 
     scope.cards = localStorage.getItem("click_client_cards");
@@ -191,6 +190,7 @@
 //        console.log("serviceMap=", servicesMap);
 //        console.log("servicesParamsMapOne =", servicesParamsMapOne);
         console.log("scope.opts.service_id=", scope.opts.service_id);
+        console.log("scope.opts.payment_id=", scope.opts.payment_id);
 
         newFavorite.formType = servicesMap[scope.opts.service_id][0].form_type;
         newFavorite.firstFieldId = servicesMap[scope.opts.service_id][0].service_parameters;
@@ -204,10 +204,9 @@
         newFavorite.firstFieldTitle = scope.opts.parameter_name;
         newFavorite.chosenServiceId = scope.opts.service_id;
         newFavorite.favoriteName = servicesMap[scope.opts.service_id][0].name;
+        newFavorite.paymentId = scope.opts.payment_id;
 
         console.log("ADD TO FAVORITES INPUT", newFavorite);
-
-        var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
 
         favoritePaymentsList = (favoritePaymentsList) ? (favoritePaymentsList) : ([]);
 

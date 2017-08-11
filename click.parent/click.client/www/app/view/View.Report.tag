@@ -932,6 +932,25 @@
 
               var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
               var servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
+              var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+
+              console.log(" starting check ", favoritePaymentsList)
+              if (favoritePaymentsList) {
+                for (var i in favoritePaymentsList) {
+                  console.log("fav payment i ", favoritePaymentsList[i].params)
+                  if (favoritePaymentsList[i].params.paymentId && favoritePaymentsList[i].params.paymentId == paymentId) {
+                    console.log("found ", favoritePaymentsList[i].params.paymentId)
+                    scope.paymentsList[i].isInFavorites = true;
+                    break;
+                  }
+                  scope.paymentsList[i].isInFavorites = false;
+                }
+                //console.log(" not found ")
+
+              } else {
+                scope.paymentsList[i].isInFavorites = false;
+                console.log(" NO FAV ")
+              }
 
               if (servicesMap[scope.paymentsList[i].service_id])
                 scope.paymentsList[i].canAddToFavorite = true;
