@@ -1100,7 +1100,6 @@
 
 //          console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
 
-
         if (opts.amountText) {
           scope.defaultAmount = window.amountTransform(opts.amountText);
           amountForPayTransaction = inputVerification.spaceDeleter(opts.amountText)

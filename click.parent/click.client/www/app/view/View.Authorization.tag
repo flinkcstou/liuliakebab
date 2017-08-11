@@ -147,7 +147,7 @@
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization' && !JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken'))) {
         history.arrayOfHistory.push(
           {
-            "view"  : 'view-authorization',
+            "view": 'view-authorization',
             "params": opts
           }
         );
@@ -157,7 +157,7 @@
     else {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-authorization',
+          "view": 'view-authorization',
           "params": opts
         }
       );
@@ -190,15 +190,15 @@
 
               if (window.fingerPrint.check) {
                 var encryptConfig = {
-                  clientId     : "myAppName",
-                  clientSecret : "currentUser",
-                  password     : "currentUser",
-                  token        : "currentUser",
-                  locale       : "ru",
+                  clientId: "myAppName",
+                  clientSecret: "currentUser",
+                  password: "currentUser",
+                  token: "currentUser",
+                  locale: "ru",
                   disableBackup: false,
 //              userAuthRequired: false,
-                  dialogHint   : "Повторите попытку",
-                  dialogTitle  : "Сканирование для CLICK"
+                  dialogHint: "Повторите попытку",
+                  dialogTitle: "Сканирование для CLICK"
 
                 }; // See config object for required parameters
 
@@ -632,14 +632,14 @@
 
       window.api.call({
         method: 'app.login',
-        input : {
-          phone_num  : phoneNumber,
-          device_id  : deviceId,
-          password   : password,
-          datetime   : date,
+        input: {
+          phone_num: phoneNumber,
+          device_id: deviceId,
+          password: password,
+          datetime: date,
           app_version: version
         },
-        scope : this,
+        scope: this,
 
         onSuccess: function (result) {
 //          console.log(result[0][0])
@@ -684,7 +684,7 @@
             return
           }
         },
-        onFail   : function (api_status, api_status_message, data) {
+        onFail: function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -783,10 +783,10 @@
                     if (JSON.parse(localStorage.getItem('settings_block')) === true)
                       localStorage.setItem('onResume', false)
                     else {
-                      if(JSON.parse(localStorage.getItem('session_broken')) === true)
-                      localStorage.setItem('session_broken', false)
-                      else{
-                        if(JSON.parse(sessionStorage.getItem("push_news") === true)){
+                      if (JSON.parse(localStorage.getItem('session_broken')) === true)
+                        localStorage.setItem('session_broken', false)
+                      else {
+                        if (JSON.parse(sessionStorage.getItem("push_news") === true)) {
                           sessionStorage.setItem("push_news", false)
                         }
                       }
@@ -809,17 +809,17 @@
         }
 
 
-        if (!localStorage.getItem("click_client_payCategoryList") || info.update_categories) {
+        if ((!localStorage.getItem("click_client_payCategoryList") || info.update_categories) && modeOfApp.onlineMode) {
 
           scope.categoryList = [];
           scope.categoryNamesMap = {};
           window.api.call({
             method: 'get.service.category.list',
-            input : {
+            input: {
               session_key: sessionKey,
-              phone_num  : phoneNumber
+              phone_num: phoneNumber
             },
-            scope : this,
+            scope: this,
 
             onSuccess: function (result) {
               if (result[0][0].error == 0)
@@ -881,18 +881,17 @@
               scope.id = 0;
 
             },
-            onFail   : function (api_status, api_status_message, data) {
+            onFail: function (api_status, api_status_message, data) {
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
               console.error(data);
             }
           });
         }
-
         /*
          * Убрана проверка, так как по требованию в онлайн режиме всегда производится вызов сервисов.
          * */
-        if (!(localStorage.getItem("click_client_payServiceList") && localStorage.getItem("click_client_servicesMapByCategory")
-          && localStorage.getItem("click_client_servicesMap")) || info.update_services) {
+        if ((!(localStorage.getItem("click_client_payServiceList") && localStorage.getItem("click_client_servicesMapByCategory")
+          && localStorage.getItem("click_client_servicesMap")) || info.update_services) && modeOfApp.onlineMode) {
 //        refreshServiceList = function () {
 //          console.log("IN SERVICE LIST FUNC");
           scope.serviceList = [];
@@ -903,11 +902,11 @@
 //          console.log("MOPERATORS!!!!!!!!!!!!!!", window.mOperators[scope.operatorKey]);
           window.api.call({
             method: 'get.service.list',
-            input : {
+            input: {
               session_key: sessionKey,
-              phone_num  : phoneNumber
+              phone_num: phoneNumber
             },
-            scope : this,
+            scope: this,
 
             onSuccess: function (result) {
               if (result[0][0].error == 0)
@@ -1064,7 +1063,7 @@
 
               servicesParamsInit();
             },
-            onFail   : function (api_status, api_status_message, data) {
+            onFail: function (api_status, api_status_message, data) {
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
               console.error(data);
             }
@@ -1128,9 +1127,9 @@
           scope.servicesParamsMapFive = {};
           window.api.call({
             method: 'get.service.parameters.list',
-            input : {
+            input: {
               session_key: sessionKey,
-              phone_num  : phoneNumber
+              phone_num: phoneNumber
             },
 
             scope: this,
