@@ -229,9 +229,11 @@
     findContacts = function () {
 
       var options = new ContactFindOptions();
+      var fields = [''];
       options.filter = "";
       options.multiple = true;
-      var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.photos];
+      options.desiredFields=[navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.phoneNumbers];
+//
       navigator.contacts.find(fields, success, error, options);
 
       function success(contacts) {
