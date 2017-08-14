@@ -456,7 +456,7 @@
       if (opts.formtype == 1) {
         payment_data = {
           "param": opts.firstFieldId,
-          "value": inputVerification.spaceDeleter(firstFieldtext),
+          "value": firstFieldtext,
           "transaction_id": parseInt(Date.now() / 1000)
         };
         console.log("payment_data 111");
@@ -473,7 +473,7 @@
       else if (opts.formtype == 3) {
         payment_data = {
           "param": opts.firstFieldId,
-          "value": inputVerification.spaceDeleter(firstFieldtext),
+          "value": firstFieldtext,
           "communal_param": opts.communalParam,
           "transaction_id": parseInt(Date.now() / 1000)
         };
@@ -484,7 +484,7 @@
       else if (opts.formtype == 4) {
         payment_data = {
           "param": opts.firstFieldId,
-          "value": inputVerification.spaceDeleter(firstFieldtext),
+          "value": firstFieldtext,
           "internet_package_param": opts.internetPackageParam,
           "transaction_id": parseInt(Date.now() / 1000)
         };
