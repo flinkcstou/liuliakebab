@@ -8,8 +8,8 @@
     <p class="view-info-balance-label">{window.languages.ViewInfoBalanceTitle}</p>
     <div class="view-info-card-balance-currency-container">
       <div if="{!modeOfApp.offlineMode}" class="view-info-card-balance">
-        <p class="view-info-card-balance-sum">{fullBalanceCopy}</p>
-        <p if=" {!modeOfApp.offlineMode}" class="view-info-card-currency">сум</p>
+        <p class="view-info-card-balance-sum">{(fullBalanceCopy) ? (fullBalanceCopy) : (error_message)}</p>
+        <p if="{!modeOfApp.offlineMode && fullBalanceCopy}" class="view-info-card-currency">сум</p>
       </div>
 
       <a if="{modeOfApp.offlineMode}" class="offline-card-balance"
@@ -73,7 +73,8 @@
     var defaultAccount;
     scope.attention = false;
     scope.fullBalance = 0;
-    scope.fullBalanceCopy = 0;
+    scope.fullBalanceCopy = null;
+    scope.error_message = null;
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
@@ -150,8 +151,8 @@
         //TODO: DO CARDS
         scope: this,
         onSuccess: function (result) {
-          scope.fullBalanceCopy = 0;
-          scope.fullBalance = 0
+          scope.fullBalanceCopy = null;
+          scope.fullBalance = null;
           if (result[0][0].error == 0) {
             if (result[1]) {
 //                console.log('getAccountsCards[j].currency_name', getAccountsCards[j].currency_name)
@@ -189,9 +190,7 @@
             }
           }
           else {
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
+            scope.error_message = 'Ошибка'
             scope.update();
           }
         },

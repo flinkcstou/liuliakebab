@@ -7,7 +7,7 @@
   <div class="card-salary-title">{opts.name}</div>
 
   <div class="card-balance-currency-container">
-    <p if="{!modeOfApp.offlineMode}" class="card-balance">{opts.salary}</p>
+    <p if="{!modeOfApp.offlineMode}" class="card-balance">{(opts.salary) ? (opts.salary) : (opts.error_message)}</p>
     <p if="{!modeOfApp.offlineMode && opts.salary}" class="card-currency">{opts.currency}</p>
 
     <a if="{modeOfApp.offlineMode}" style="color: rgb({opts.fontcolor});" class="offline-card-balance"

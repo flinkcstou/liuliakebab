@@ -43,7 +43,8 @@
                       numberparttwo="{i.numberPartTwo}"
                       bankname="{i.bankName}" url="{i.url}"
                       background="{(i.card_background_url)?(i.card_background_url):('resources/icons/cards/all.png')}"
-                      fontcolor="{i.font_color}"></component-card>
+                      fontcolor="{i.font_color}"
+                      error_message="{i.error_message}"></component-card>
     </div>
   </div>
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
@@ -288,6 +289,7 @@
             bankName: typeOfCard,
             name: getAccountsCards[i].description,
             salary: '',
+            error_message: null,
             countCard: getAccountsCards[i].countCard,
             currency: getAccountsCards[i].currency_name.trim(),
             numberPartOne: numberOfCardPartOne,
@@ -784,9 +786,14 @@
               }
             }
             else {
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
+
+              console.log("STOP STOP STOP")
+
+              if (scope.cardsarray[result[1][0].account_id]){
+                scope.cardsarray[result[1][0].account_id].salary  = null;
+                scope.cardsarray[result[1][0].account_id].error_message  = "Ошибка баланса";
+                localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+              }
               scope.update();
             }
           },
