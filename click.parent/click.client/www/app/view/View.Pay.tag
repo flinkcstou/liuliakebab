@@ -272,6 +272,12 @@
       if ((Math.abs(onTouchStartY - onTouchEndY) <= 15 && Math.abs(onTouchStartX - onTouchEndX) <= 15) || scope.checkOfSearch) {
         viewPay.categoryScrollTop = categoriesContainerId.scrollTop;
 
+        var newOpts = {};
+        newOpts.mode = opts.mode;
+        newOpts.categoryId = opts.categoryId;
+        opts = JSON.parse(JSON.stringify(newOpts));
+        newOpts = null;
+
         console.log('ID ID ID', id)
         if (opts.mode == 'ADDAUTOPAY') {
           scope.autoPayData = {};
@@ -285,11 +291,9 @@
           scope.autoPayData.fromView = 'PAY';
           scope.autoPayData.isNew = true;
 
-          console.log("autoPay data====", scope.autoPayData);
 
           if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available) {
             localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-            console.log("view pay first");
             event.stopPropagation();
             riotTags.innerHTML = "<view-autopay-method-new>";
             riot.mount("view-autopay-method-new", opts);
@@ -298,7 +302,6 @@
             scope.autoPayData.title = window.languages.ViewAutoPayMethodSchedulerText;
             scope.autoPayData.autopay_type = 1;
             localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-            console.log("view pay second");
             event.stopPropagation();
             riotTags.innerHTML = "<view-autopay-schedule-method-new>";
             riot.mount("view-autopay-schedule-method-new", opts);
@@ -306,9 +309,7 @@
           }
         }
         else {
-          opts = {};
           if (!opts.mode) opts.mode = 'USUAL';
-          console.log("chosen id in pay view NEW =", id);
           opts.chosenServiceId = id;
           opts.id = id;
           event.stopPropagation();
