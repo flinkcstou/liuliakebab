@@ -2835,6 +2835,7 @@ var css = {
   "position: relative;" +
   "background-color: #f6f6f6;" +
   "width: 100%;" +
+  "overflow: hidden;" +
   "height:" + 45 * widthK + "px;" +
   "}",
 
