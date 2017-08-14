@@ -1394,13 +1394,13 @@ var css = {
   "background: transparent;" +
   "z-index: 2;" +
   "background-image: url(resources/icons/toolbar/bell.png);" +
-  "width:" + 80 * widthK + "px;" +
-  "height:" + 60 * widthK + "px;" +
-  "background-size: 50%;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-size: 40%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "right:" + -10 * widthK + "px;" +
-  "top:" + -7 * widthK + "px;" +
+  "right:" + -20 * widthK + "px;" +
+  "top:" + -25 * widthK + "px;" +
   "}",
 
   //BANK OPERATION COMPONENT

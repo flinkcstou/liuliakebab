@@ -542,6 +542,7 @@
       console.log("calcOn on new mount", scope.calcOn)
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).calculator && scope.calcOn) {
+        if(firstFieldInput)
         firstFieldInput.blur();
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
@@ -551,20 +552,22 @@
         console.log("ON SERVICEPAGE NEW ON MOUNT autofocus first field");
 
         if (opts.mode != 'ADDAUTOPAY') {
-          if (device.platform == 'iOS') {
+          if (device.platform == 'iOS' && typeof (firstFieldInput) == 'defined') {
             firstFieldInput.autofocus;
             firstFieldInput.focus();
           } else {
             setTimeout(function () {
+              if(typeof (firstFieldInput) == 'defined')
               firstFieldInput.focus();
             }, 0);
           }
         } else {
-          if (device.platform == 'iOS') {
+          if (device.platform == 'iOS' && typeof (autoPayNameInput) == 'defined') {
             autoPayNameInput.autofocus;
             autoPayNameInput.focus();
           } else {
             setTimeout(function () {
+              if(typeof (autoPayNameInput) == 'defined')
               autoPayNameInput.focus();
             }, 0);
           }
