@@ -8172,7 +8172,7 @@ var css = {
   "{" +
   "position: relative;" +
   "font-size:" + 24 * widthK + "px; " +
-  "width:" + 150 * widthK + "px; " +
+  "width:" + 250 * widthK + "px; " +
   "margin: 0; " +
   "margin-left: auto; " +
   "margin-right: auto; " +
