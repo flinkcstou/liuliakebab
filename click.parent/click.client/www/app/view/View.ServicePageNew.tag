@@ -1087,7 +1087,7 @@
         scope.amountFieldTitle = scope.service.lang_amount_title;
         console.log("PARAMETER ID ", scope.fieldArray[0].parameter_id, scope.fieldArray[0])
         console.log("Service ", scope.service)
-        scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536";
+        scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
         scope.calcOn = scope.service.cost == 1;
         console.log("calcOn ", scope.calcOn)
         if (scope.phoneFieldBool) {
@@ -1322,7 +1322,7 @@
           scope.chosenFieldName = scope.fieldArray[i].title;
           scope.chosenFieldPlaceholder = scope.fieldArray[i].placeholder;
           console.log("PARAMETER ID ", scope.fieldArray[i].parameter_id)
-          scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536";
+          scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
           scope.inputMaxLength = scope.fieldArray[i].max_len;
           console.log("INPUT LENGTH=", scope.inputMaxLength);
 
