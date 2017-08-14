@@ -542,8 +542,8 @@
       console.log("calcOn on new mount", scope.calcOn)
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).calculator && scope.calcOn) {
-        if(firstFieldInput)
-        firstFieldInput.blur();
+        if (firstFieldInput)
+          firstFieldInput.blur();
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
           StatusBar.backgroundColorByHexString("#004663");
@@ -557,8 +557,8 @@
             firstFieldInput.focus();
           } else {
             setTimeout(function () {
-              if(typeof (firstFieldInput) == 'defined')
-              firstFieldInput.focus();
+              if (typeof (firstFieldInput) == 'defined')
+                firstFieldInput.focus();
             }, 0);
           }
         } else {
@@ -567,8 +567,8 @@
             autoPayNameInput.focus();
           } else {
             setTimeout(function () {
-              if(typeof (autoPayNameInput) == 'defined')
-              autoPayNameInput.focus();
+              if (typeof (autoPayNameInput) == 'defined')
+                autoPayNameInput.focus();
             }, 0);
           }
         }
@@ -1760,6 +1760,7 @@
             var ussdQuery = scope.fieldArray[0].ussd_query;
 
             console.log('opts.formtype', opts.formtype)
+            console.log("opts in ussd", JSON.stringify(opts))
 
 
             if (opts.formtype == 1 && ussdQuery) {
