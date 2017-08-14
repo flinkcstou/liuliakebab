@@ -22,6 +22,7 @@
     scope.notificationAction = "";
 
     var numberOfMessage = 0;
+    var notificationText = "";
 
     setTimeout(function () {
 
@@ -34,8 +35,6 @@
 
         console.log("PUSH NOTIFICATION OBJECT", notification);
         ++numberOfMessage;
-
-        var notificationText = "";
 
         if (device.platform == "iOS") {
 
@@ -107,7 +106,7 @@
         else {
 
           scope.show = true;
-          scope.notificationText = notificationText;
+          scope.notificationText = JSON.stringify(notificationText);
           scope.update();
 
           console.log('NOTIFICATION TEXT', scope.notificationText)
