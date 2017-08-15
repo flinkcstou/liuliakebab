@@ -20,7 +20,8 @@
             <div class="view-favorites-info-balance">{j.params.amountText}</div>
             <div class="view-favorites-info-currency-field">сум</div>
             <p class="view-favorites-info-number">{(j.params.firstFieldId==1)? ("+" + window.languages.CodeOfCountry +"
-              "+j.params.firstFieldText):(j.params.firstFieldText)}</p>
+              "+j.params.firstFieldText):(j.params.chosenPrefixId? (j.params.chosenPrefixName+j.params.firstFieldText):
+              j.params.firstFieldText)}</p>
           </div>
         </div>
         <div id="e{j.service.id}+{j.params.favoriteName}" class="view-favorites-edit-icon"
@@ -64,7 +65,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-favorites-new') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-favorites-new',
+          "view"  : 'view-favorites-new',
           "params": opts
         }
       );
@@ -149,10 +150,10 @@
 
           window.api.call({
             method: 'get.service.parameters',
-            input: {
+            input : {
               session_key: sessionKey,
-              phone_num: phoneNumber,
-              service_id: scope.favoritePaymentsList[i].service.id
+              phone_num  : phoneNumber,
+              service_id : scope.favoritePaymentsList[i].service.id
             },
 
             scope: this,

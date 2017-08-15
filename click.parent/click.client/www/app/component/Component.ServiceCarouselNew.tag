@@ -352,6 +352,8 @@
         riotTags.innerHTML = "<view-service-page-new>";
         riot.mount("view-service-page-new", opts);
         scope.unmount()
+
+        return
       }
       if (touchStartX != touchEndX)
         changePositionOfServiceCarousel();
