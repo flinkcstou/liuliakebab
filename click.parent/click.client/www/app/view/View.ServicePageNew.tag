@@ -552,22 +552,29 @@
         console.log("ON SERVICEPAGE NEW ON MOUNT autofocus first field");
 
         if (opts.mode != 'ADDAUTOPAY') {
-          if (device.platform == 'iOS' && typeof (firstFieldInput) == 'defined') {
+          console.log('1')
+          if (device.platform == 'iOS' && this.firstFieldInput) {
             firstFieldInput.autofocus;
             firstFieldInput.focus();
+            console.log('2')
           } else {
+            console.log('3')
             setTimeout(function () {
-              if (typeof (firstFieldInput) == 'defined')
+              console.log('4')
+              if (this.firstFieldInput) {
+                console.log('5')
                 firstFieldInput.focus();
+              }
             }, 0);
           }
         } else {
-          if (device.platform == 'iOS' && typeof (autoPayNameInput) == 'defined') {
+          console.log('6')
+          if (device.platform == 'iOS' && this.autoPayNameInput) {
             autoPayNameInput.autofocus;
             autoPayNameInput.focus();
           } else {
             setTimeout(function () {
-              if (typeof (autoPayNameInput) == 'defined')
+              if (this.autoPayNameInput)
                 autoPayNameInput.focus();
             }, 0);
           }
@@ -1092,7 +1099,11 @@
         console.log("Service ", scope.service)
         scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
         scope.calcOn = scope.service.cost == 1;
-        console.log("calcOn ", scope.calcOn)
+        console.log("scope.servicesParamsMapOne[opts.chosenServiceId]", scope.servicesParamsMapOne[opts.chosenServiceId])
+        console.log("scope.servicesParamsMapTwo[opts.chosenServiceId]", scope.servicesParamsMapTwo[opts.chosenServiceId])
+        console.log("scope.servicesParamsMapThree[opts.chosenServiceId]", scope.servicesParamsMapThree[opts.chosenServiceId])
+        console.log("scope.servicesParamsMapFour[opts.chosenServiceId]", scope.servicesParamsMapFour[opts.chosenServiceId])
+        console.log("scope.servicesParamsMapFive[opts.chosenServiceId]", scope.servicesParamsMapFive[opts.chosenServiceId])
         if (scope.phoneFieldBool) {
           console.log("NUMBER FROM OPTS 1", opts.firstFieldText)
           scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(opts.firstFieldText);
@@ -1108,7 +1119,6 @@
           amountForPayTransaction = inputVerification.spaceDeleter(opts.amountText)
         }
 
-        console.log("SCOPE>SERVICE", scope.service)
 
         if (!scope.placeHolderText)
           scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " " + scope.service.lang_amount_currency + " до " + window.amountTransform(scope.service.max_pay_limit) + " " + scope.service.lang_amount_currency
@@ -1130,11 +1140,11 @@
           scope.inputType = 'tel';
           scope.isNumber = true;
         }
-        else if (scope.fieldArray[0].input_type == '2'  && modeOfApp.onlineMode) {
+        else if (scope.fieldArray[0].input_type == '2' && modeOfApp.onlineMode) {
           scope.inputType = 'text';
           scope.isNumber = false;
         }
-        else if(modeOfApp.offlineMode){
+        else if (modeOfApp.offlineMode) {
           scope.inputType = 'tel';
           scope.isNumber = true;
         }
@@ -1183,57 +1193,6 @@
 
       }
 
-//      if (scope.formType == 4 && scope.servicesParamsMapFour[scope.service.id] && scope.servicesParamsMapFive[scope.service.id]) {
-//        scope.on('mount', function () {
-//          amountField.style.display = 'none';
-//        });
-//        scope.firstLevelArray = [];
-//        scope.secondLevelMap = {};
-//        scope.chosenFieldNameTwo = scope.servicesParamsMapFour[scope.service.id][0].name;
-//        scope.hasSecondLevel = true;
-//        scope.hasFirstLevel = true;
-//
-//
-//        console.log("RRRRRR");
-//
-//
-//        for (var i = 0; i < scope.servicesParamsMapFour[scope.service.id].length; i++) {
-//          scope.firstLevelArray.push(scope.servicesParamsMapFour[scope.service.id][i]);
-//          console.log("RRRRRR 2222");
-//        }
-//        for (var i = 0; i < scope.servicesParamsMapFive[scope.service.id].length; i++) {
-//          if (!scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type]) {
-//            scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type] = [];
-//            scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type].push(scope.servicesParamsMapFive[scope.service.id][i]);
-//          }
-//          else {
-//            scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type].push(scope.servicesParamsMapFive[scope.service.id][i]);
-//          }
-//        }
-//
-//        if (!scope.hasSecondLevel && opts.internetPackageParam) {
-//          scope.chosenFieldParamIdTwo = opts.internetPackageParam;
-//          scope.chosenFieldNameTwo = opts.firstLevelFieldName;
-//          amountForPayTransaction = opts.amountText ? opts.amountText : opts.amountWithoutSpace;
-//        }
-//        else if (scope.hasSecondLevel && opts.internetPackageParam && opts.firstLevelParamId) {
-//          scope.chosenFieldParamIdTwo = opts.firstLevelParamId;
-//          scope.chosenFieldNameTwo = opts.firstLevelFieldName;
-//          scope.chosenFieldParamIdThree = opts.internetPackageParam;
-//          scope.chosenFieldNameThree = opts.secondLevelFieldName;
-//          amountForPayTransaction = opts.amountText ? opts.amountText : opts.amountWithoutSpace;
-//
-//          console.log("amount===", amountForPayTransaction)
-//        } else
-//          scope.chosenFieldParamIdTwo = scope.firstLevelArray[0].type;
-//
-//
-//        if (scope.hasSecondLevel && scope.secondLevelMap[scope.firstLevelArray[0].type]) {
-//          scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].type];
-//
-//        }
-//        checkFieldsToActivateNext();
-//      }
     }
 
 
@@ -1339,11 +1298,11 @@
             scope.inputType = 'tel';
             scope.isNumber = true;
           }
-          else if (scope.fieldArray[i].input_type == '2'  && modeOfApp.onlineMode) {
+          else if (scope.fieldArray[i].input_type == '2' && modeOfApp.onlineMode) {
             scope.inputType = 'text';
             scope.isNumber = false;
           }
-          else if(modeOfApp.offlineMode){
+          else if (modeOfApp.offlineMode) {
             scope.inputType = 'tel';
             scope.isNumber = true;
           }
@@ -1558,11 +1517,9 @@
       event.preventDefault();
       event.stopPropagation();
 
-      console.log('amount before', amount.value.toString())
 
       if (amount.value.length == 1) {
         amount.value = window.amountTransform(amount.value)
-        console.log('amount 11', amount.value.toString())
       }
 
       if (event.keyCode == 8) {
@@ -1579,16 +1536,10 @@
         amount.selectionStart = amount.value.match(maskTwo).length;
         amount.selectionEnd = amount.value.match(maskTwo).length;
 
-        console.log('amount 22', amount.value.toString())
-
         amountForPayTransaction = amount.value.substring(0, amount.value.match(maskTwo).length);
-        console.log('amount 22.5', amountForPayTransaction.toString())
         amountForPayTransaction = amountForPayTransaction.replace(new RegExp(' ', 'g'), '');
 
-        console.log('amount 33', amountForPayTransaction.toString())
-
         amount.value = window.amountTransform(amountForPayTransaction);
-        console.log('amount 44', amount.value.toString())
 
       } else {
         amount.selectionStart = 0;
