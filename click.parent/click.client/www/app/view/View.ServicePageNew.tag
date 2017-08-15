@@ -1369,6 +1369,9 @@
             scope.oldFieldParamId = scope.chosenFieldParamId;
             scope.chosenFieldParamId = id;
             firstFieldInput.value = '';
+            scope.chosenPrefixTitle = null;
+            scope.chosenPrefixId = null;
+            scope.chosenPrefixName = null;
 
             if (scope.servicesParamsMapSix[opts.chosenServiceId]) {
               scope.hasPrefixes = false;
