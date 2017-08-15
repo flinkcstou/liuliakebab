@@ -3731,7 +3731,7 @@ var css = {
   servicePagePrefixDropdown: ".servicepage-prefix-dropdown" +
   "{" +
   "position: relative;" +
-  "width:" + 150 * widthK + "px;" +
+  "width:" + 223 * widthK + "px;" +
   "height: " + 70 * widthK + "px;" +
   "border-bottom:" + 1 * widthK + "px solid lightgray;" +
   "top: 12%;" +
