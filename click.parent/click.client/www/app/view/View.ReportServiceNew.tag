@@ -104,7 +104,7 @@
       if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#00a8f1");
 
-     scope.update()
+      scope.update()
 
     });
 
@@ -207,6 +207,9 @@
         newFavorite.chosenServiceId = scope.opts.service_id;
         newFavorite.favoriteName = servicesMap[scope.opts.service_id][0].name;
         newFavorite.paymentId = scope.opts.payment_id;
+        newFavorite.chosenPrefixTitle = scope.opts.chosenPrefixTitle;
+        newFavorite.chosenPrefixId = scope.opts.chosenPrefixId;
+        newFavorite.chosenPrefixName = scope.opts.chosenPrefixName;
 
         console.log("ADD TO FAVORITES INPUT", newFavorite);
 
