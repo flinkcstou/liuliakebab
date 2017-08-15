@@ -1858,7 +1858,7 @@
 
             var ussdQuery = scope.fieldArray[0].ussd_query;
 
-            console.log('opts.formtype', opts.formtype)
+            console.log('opts.formtype', opts)
             console.log("opts in ussd", JSON.stringify(opts))
 
 
@@ -1869,15 +1869,16 @@
               else {
                 ussdQuery = ussdQuery.replace('*{param}', opts.firstFieldText);
               }
-              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
-              ussdQuery = ussdQuery.replace('{option}', opts.firstFieldId);
+//              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+              ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
               ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
               ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
               console.log(ussdQuery)
             }
 
             if (opts.formtype == 2 && ussdQuery) {
-              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+//              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+              ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
               ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
               ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
               ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
@@ -1886,6 +1887,7 @@
 
             if (opts.formtype == 3 && ussdQuery) {
               ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+              ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
               ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
               ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
               ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
@@ -1894,8 +1896,9 @@
 
             if (opts.formtype == 4 && ussdQuery) {
               console.log('ussdQuery', ussdQuery)
-              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+//              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
               ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
+              ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
               ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
               ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
               console.log(ussdQuery)
