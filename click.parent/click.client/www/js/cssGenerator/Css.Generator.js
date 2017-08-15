@@ -3728,6 +3728,46 @@ var css = {
   "top: 5%;" +
   "}",
 
+  servicePagePrefixDropdown: ".servicepage-prefix-dropdown" +
+  "{" +
+  "position: relative;" +
+  "width:" + 150 * widthK + "px;" +
+  "height: " + 70 * widthK + "px;" +
+  "border-bottom:" + 1 * widthK + "px solid lightgray;" +
+  "top: 12%;" +
+  "float: left;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "margin: 0;" +
+  "}",
+
+  servicePagePrefixDropdownTextField: ".servicepage-prefix-dropdown-text-field" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 54 * widthK + "px;" +
+  "top: 16%;" +
+  "margin: 0;" +
+  "color: #515151;" +
+  "width: 92%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  servicePagePrefixDropdownIcon: ".servicepage-prefix-dropdown-icon" +
+  "{" +
+  "position: absolute;" +
+  "background-image: url('resources/icons/ViewService/dropdown_icon.png');" +
+  "width: 25%;" +
+  "height: 36%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 65%;" +
+  "background-position: center;" +
+  "top: 45%;" +
+  "left: 80%;" +
+  "}",
+
   servicePageFieldsDropdownCloseButton: ".servicepage-fields-dropdown-close-button " +
   "{" +
   "position: absolute;" +
