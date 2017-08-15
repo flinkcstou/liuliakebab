@@ -1126,13 +1126,17 @@
 
         console.log("Yahoooo_1", scope.fieldArray, scope.fieldArray[0], scope.fieldArray[0].input_type);
 
-        if (scope.fieldArray[0].input_type == '1') {
+        if (scope.fieldArray[0].input_type == '1' && modeOfApp.onlineMode) {
           scope.inputType = 'tel';
           scope.isNumber = true;
         }
-        else if (scope.fieldArray[0].input_type == '2') {
+        else if (scope.fieldArray[0].input_type == '2'  && modeOfApp.onlineMode) {
           scope.inputType = 'text';
           scope.isNumber = false;
+        }
+        else if(modeOfApp.offlineMode){
+          scope.inputType = 'tel';
+          scope.isNumber = true;
         }
         scope.amountLength = ("" + scope.service.max_pay_limit).length;
       }
@@ -1331,13 +1335,17 @@
 
 //          console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
 
-          if (scope.fieldArray[i].input_type == '1') {
+          if (scope.fieldArray[i].input_type == '1' && modeOfApp.onlineMode) {
             scope.inputType = 'tel';
             scope.isNumber = true;
           }
-          else if (scope.fieldArray[i].input_type == '2') {
+          else if (scope.fieldArray[i].input_type == '2'  && modeOfApp.onlineMode) {
             scope.inputType = 'text';
             scope.isNumber = false;
+          }
+          else if(modeOfApp.offlineMode){
+            scope.inputType = 'tel';
+            scope.isNumber = true;
           }
           scope.oldFieldParamId = scope.chosenFieldParamId;
           scope.chosenFieldParamId = id;
@@ -1757,6 +1765,8 @@
 
           if (modeOfApp.offlineMode) {
 
+            console.log('USSD TEMPLATE', scope.fieldArray[0].ussd_query)
+
             var ussdQuery = scope.fieldArray[0].ussd_query;
 
             console.log('opts.formtype', opts.formtype)
@@ -1809,6 +1819,8 @@
               scope.update();
               return
             }
+
+            console.log('USSD', ussdQuery, opts)
 
             console.log(ussdQuery)
 
