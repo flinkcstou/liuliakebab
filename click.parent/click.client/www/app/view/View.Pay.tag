@@ -51,7 +51,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-pay',
+          "view"  : 'view-pay',
           "params": opts
         }
       );
@@ -310,8 +310,14 @@
         }
         else {
           if (!opts.mode) opts.mode = 'USUAL';
-          opts.chosenServiceId = id;
-          opts.id = id;
+
+          if (modeOfApp.offlineMode && id.indexOf('mynumber') != -1) {
+            opts.chosenServiceId = 'mynumber';
+          }
+          else {
+            opts.chosenServiceId = id;
+            opts.id = id;
+          }
           event.stopPropagation();
           riotTags.innerHTML = "<view-service-page-new>";
           riot.mount("view-service-page-new", opts);
