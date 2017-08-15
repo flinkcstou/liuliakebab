@@ -127,7 +127,7 @@
     </div>
     <div class="servicepage-dropdown-container">
       <div class="servicepage-dropdown-variant" each="{i in fieldArray}" id="{i.parameter_id}"
-           ontouchend="chooseFirstField(this.id)">
+           ontouchstart="onTouchStartOfDropdown()" ontouchend="chooseFirstField(this.id)">
         <p id="text{i.parameter_id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.title}</p>
       </div>
     </div>
@@ -140,8 +140,8 @@
       <p class="servicepage-dropdown-text-field" style="color: white;">{chosenPrefixTitle}</p>
     </div>
     <div class="servicepage-dropdown-container">
-      <div class="servicepage-dropdown-variant" each="{i in prefixesArray}" id="{i.option_id}"
-           ontouchend="choosePrefix(this.id)">
+      <div class="servicepage-dropdown-variant" each="{i in prefixesArray}" id="e{i.option_id}"
+           ontouchstart="onTouchStartOfDropdown()" ontouchend="choosePrefix(this.id)">
         <p id="text{i.option_id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.title}</p>
       </div>
     </div>
@@ -157,11 +157,11 @@
     </div>
     <div class="servicepage-dropdown-container">
       <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}" if="{formType==3}"
-           ontouchstart="onTouchStartOfDropdownTwo()" ontouchend="onTouchEndOfDropdownTwo({i.id})">
+           ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.id})">
         <p id="text{i.id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
       </div>
       <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.type}" if="{formType==4}"
-           ontouchstart="onTouchStartOfDropdownTwo()" ontouchend="onTouchEndOfDropdownTwo({i.type})">
+           ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.type})">
         <p id="text{i.type}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
       </div>
     </div>
@@ -1143,6 +1143,7 @@
             scope.hasPrefixes = true;
             scope.chosenPrefixTitle = scope.prefixesArray[0].title;
             scope.chosenPrefixId = scope.prefixesArray[0].option_id;
+            scope.chosenPrefixName = scope.prefixesArray[0].name;
             console.log("scope.hasPrefixes", scope.hasPrefixes);
           }
         }
@@ -1320,106 +1321,124 @@
         console.log(error);
       }
       this.blockPrefixId.style.display = 'block';
-      console.log("id=", scope.chosenPrefixId);
-      console.log("old=", scope.oldPrefixId);
+
       if (scope.oldPrefixId) {
-        document.getElementById(scope.oldPrefixId).style.backgroundColor = 'white';
+        document.getElementById('e' + scope.oldPrefixId).style.backgroundColor = 'white';
         document.getElementById('text' + scope.oldPrefixId).style.color = '#515151';
       }
-      document.getElementById(scope.chosenPrefixId).style.backgroundColor = '#0084E6';
+      document.getElementById('e' + scope.chosenPrefixId).style.backgroundColor = '#0084E6';
       document.getElementById('text' + scope.chosenPrefixId).style.color = 'white';
     };
 
     chooseFirstField = function (id) {
+      event.stopPropagation();
 
-      this.blockFirstFieldId.style.display = 'none';
+      servicePageTouchEndY = event.changedTouches[0].pageY;
+      servicePageTouchEndX = event.changedTouches[0].pageX;
 
-      for (var i = 0; i < scope.fieldArray.length; i++) {
+      if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20 && Math.abs(servicePageTouchStartX - servicePageTouchEndX) <= 20) {
+
+        this.blockFirstFieldId.style.display = 'none';
+
+        for (var i = 0; i < scope.fieldArray.length; i++) {
 
 //        console.log("Yahoo2", id, scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].parameter_id);
 
-        if (scope.fieldArray[i].parameter_id == id) {
-          scope.chosenFieldName = scope.fieldArray[i].title;
-          scope.chosenFieldPlaceholder = scope.fieldArray[i].placeholder;
-          console.log("PARAMETER ID ", scope.fieldArray[i].parameter_id)
-          scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
-          scope.inputMaxLength = scope.fieldArray[i].max_len;
-          console.log("INPUT LENGTH=", scope.inputMaxLength);
+          if (scope.fieldArray[i].parameter_id == id) {
+            scope.chosenFieldName = scope.fieldArray[i].title;
+            scope.chosenFieldPlaceholder = scope.fieldArray[i].placeholder;
+            console.log("PARAMETER ID ", scope.fieldArray[i].parameter_id)
+            scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
+            scope.inputMaxLength = scope.fieldArray[i].max_len;
+            console.log("INPUT LENGTH=", scope.inputMaxLength);
 
 //          console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
 
-          if (scope.fieldArray[i].input_type == '1' && modeOfApp.onlineMode) {
-            scope.inputType = 'tel';
-            scope.isNumber = true;
-          }
-          else if (scope.fieldArray[i].input_type == '2' && modeOfApp.onlineMode) {
-            scope.inputType = 'text';
-            scope.isNumber = false;
-          }
-          else if (modeOfApp.offlineMode) {
-            scope.inputType = 'tel';
-            scope.isNumber = true;
-          }
-          scope.oldFieldParamId = scope.chosenFieldParamId;
-          scope.chosenFieldParamId = id;
-          firstFieldInput.value = '';
-
-          if (scope.servicesParamsMapSix[opts.chosenServiceId]) {
-            scope.hasPrefixes = false;
-            scope.prefixesArray = [];
-            for (var i in scope.servicesParamsMapSix[opts.chosenServiceId]) {
-              if (scope.servicesParamsMapSix[opts.chosenServiceId][i].parent_param_id == scope.chosenFieldParamId)
-                scope.prefixesArray.push(scope.servicesParamsMapSix[opts.chosenServiceId][i]);
+            if (scope.fieldArray[i].input_type == '1' && modeOfApp.onlineMode) {
+              scope.inputType = 'tel';
+              scope.isNumber = true;
             }
-            if (scope.prefixesArray.length > 0) {
-              scope.hasPrefixes = true;
-              scope.chosenPrefixTitle = scope.prefixesArray[0].title;
-              scope.chosenPrefixId = scope.prefixesArray[0].option_id;
-              console.log("scope.hasPrefixes", scope.hasPrefixes);
+            else if (scope.fieldArray[i].input_type == '2' && modeOfApp.onlineMode) {
+              scope.inputType = 'text';
+              scope.isNumber = false;
             }
-          }
+            else if (modeOfApp.offlineMode) {
+              scope.inputType = 'tel';
+              scope.isNumber = true;
+            }
+            scope.oldFieldParamId = scope.chosenFieldParamId;
+            scope.chosenFieldParamId = id;
+            firstFieldInput.value = '';
 
-          scope.update();
-          break;
+            if (scope.servicesParamsMapSix[opts.chosenServiceId]) {
+              scope.hasPrefixes = false;
+              scope.prefixesArray = [];
+              for (var i in scope.servicesParamsMapSix[opts.chosenServiceId]) {
+                if (scope.servicesParamsMapSix[opts.chosenServiceId][i].parent_param_id == scope.chosenFieldParamId)
+                  scope.prefixesArray.push(scope.servicesParamsMapSix[opts.chosenServiceId][i]);
+              }
+              if (scope.prefixesArray.length > 0) {
+                scope.hasPrefixes = true;
+                scope.chosenPrefixTitle = scope.prefixesArray[0].title;
+                scope.chosenPrefixId = scope.prefixesArray[0].option_id;
+                scope.chosenPrefixName = scope.prefixesArray[0].name;
+                console.log("scope.hasPrefixes", scope.hasPrefixes);
+              }
+            }
+
+            scope.update();
+            break;
+          }
         }
       }
     };
 
     choosePrefix = function (id) {
+      event.stopPropagation();
 
-      this.blockPrefixId.style.display = 'none';
+      servicePageTouchEndY = event.changedTouches[0].pageY;
+      servicePageTouchEndX = event.changedTouches[0].pageX;
 
-      for (var i = 0; i < scope.prefixesArray.length; i++) {
+      if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20 && Math.abs(servicePageTouchStartX - servicePageTouchEndX) <= 20) {
+        id = id.substr(1);
+
+        this.blockPrefixId.style.display = 'none';
+
+        for (var i = 0; i < scope.prefixesArray.length; i++) {
 
 //        console.log("Yahoo2", id, scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].parameter_id);
 
-        if (scope.prefixesArray[i].option_id == id) {
-          scope.chosenPrefixTitle = scope.prefixesArray[i].title;
+          if (scope.prefixesArray[i].option_id == id) {
+            scope.chosenPrefixTitle = scope.prefixesArray[i].title;
+            scope.chosenPrefixName = scope.prefixesArray[i].name;
 
-          console.log("option ID ", scope.prefixesArray[i].option_id)
+            console.log("option ID ", scope.prefixesArray[i].option_id)
 
-          scope.oldPrefixId = scope.chosenPrefixId;
-          scope.chosenPrefixId = id;
-          //firstFieldInput.value = '';
-          scope.update(scope.chosenPrefixTitle);
-          break;
+            scope.oldPrefixId = scope.chosenPrefixId;
+            scope.chosenPrefixId = id;
+            //firstFieldInput.value = '';
+            scope.update(scope.chosenPrefixTitle);
+            break;
+          }
         }
       }
     };
 
-    var servicePageTouchStartY, servicePageTouchEndY
+    var servicePageTouchStartY, servicePageTouchEndY, servicePageTouchStartX, servicePageTouchEndX;
 
-    scope.onTouchStartOfDropdownTwo = onTouchStartOfDropdownTwo = function () {
+    scope.onTouchStartOfDropdown = onTouchStartOfDropdown = function () {
       event.stopPropagation();
       servicePageTouchStartY = event.changedTouches[0].pageY;
+      servicePageTouchStartX = event.changedTouches[0].pageX;
     };
 
     scope.onTouchEndOfDropdownTwo = onTouchEndOfDropdownTwo = function (id) {
       event.stopPropagation();
 
       servicePageTouchEndY = event.changedTouches[0].pageY;
+      servicePageTouchEndX = event.changedTouches[0].pageX;
 
-      if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20) {
+      if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20 && Math.abs(servicePageTouchStartX - servicePageTouchEndX) <= 20) {
         this.blockFirstDropdownId.style.display = 'none';
         if (scope.formType == 3) {
           for (var i = 0; i < scope.firstLevelArray.length; i++) {
