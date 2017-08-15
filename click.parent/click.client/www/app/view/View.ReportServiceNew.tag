@@ -138,7 +138,7 @@
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report-service-new') {
         history.arrayOfHistory.push(
           {
-            "view": 'view-report-service-new',
+            "view"  : 'view-report-service-new',
             "params": scope.opts
           }
         );
@@ -193,8 +193,9 @@
 //        console.log("servicesParamsMapOne =", servicesParamsMapOne);
         console.log("scope.opts.service_id=", scope.opts.service_id);
         console.log("scope.opts.payment_id=", scope.opts.payment_id);
+        console.log("scope.service=", servicesMap[scope.opts.service_id][0]);
 
-        newFavorite.formType = servicesMap[scope.opts.service_id][0].form_type;
+        newFavorite.formtype = servicesMap[scope.opts.service_id][0].form_type;
         newFavorite.firstFieldId = servicesMap[scope.opts.service_id][0].service_parameters;
         newFavorite.firstFieldText = scope.opts.cntrg_info_param2;
         newFavorite.cardTypeId = scope.opts.account_id;
@@ -219,9 +220,9 @@
         console.log("Chosen Service =", servicesMap[scope.opts.service_id][0]);
 
         favoritePaymentsList.push({
-          "params": newFavorite,
+          "params" : newFavorite,
           "service": servicesMap[scope.opts.service_id][0],
-          "ussd": servicesParamsMapOne[scope.opts.service_id][0].ussd_query
+          "ussd"   : servicesParamsMapOne[scope.opts.service_id][0].ussd_query
         });
 
         console.log("favoritePaymentsList=", favoritePaymentsList);
@@ -289,15 +290,34 @@
         localStorage.setItem('chosenServiceId', scope.opts.service_id);
         opts.chosenServiceId = scope.opts.service_id;
         console.log('CHOOSEN SERVICE OPTS', scope.opts.service_id)
+        console.log("scope.service=", servicesMap[scope.opts.service_id][0]);
 
         opts.amountText = inputVerification.spaceDeleter(scope.opts.amount.toString());
         opts.amountWithoutSpace = inputVerification.spaceDeleter(scope.opts.amount.toString());
+
+        //
+        opts.formtype = servicesMap[scope.opts.service_id][0].form_type;
+        opts.firstFieldId = scope.opts.parameter_id;
         opts.firstFieldText = scope.opts.cntrg_info_param2;
+        opts.firstFieldTitle = scope.opts.parameter_name;
+        opts.cardTypeId = scope.opts.account_id;
+        opts.communalParam = opts.cntrg_info_param5;
+        opts.internetPackageParam = scope.opts.cntrg_info_param5;
+        opts.isInFavorites = scope.isInFavorites;
+        opts.chosenServiceId = scope.opts.service_id;
+        opts.favoriteName = servicesMap[scope.opts.service_id][0].name;
+        opts.paymentId = scope.opts.payment_id;
+        opts.payByCard = true;
+        opts.mode = 'USUAL';
+        opts.categoryId = servicesMap[scope.opts.service_id][0].category_id;
+        opts.chosenCardId = scope.opts.account_id;
+
+        //
 
         opts.mode = 'USUAL';
 
-        riotTags.innerHTML = "<view-service-page-new>";
-        riot.mount("view-service-page-new", opts);
+        riotTags.innerHTML = "<view-pay-confirm-new>";
+        riot.mount("view-pay-confirm-new", opts);
 
         scope.update();
 //        scope.unmount()

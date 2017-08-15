@@ -1,7 +1,8 @@
 <view-auto-pay-new class="riot-tags-main-container">
   <div class="pay-page-title">
     <p class="pay-name-title">{titleName}</p>
-    <div id="autoPayBackButtonId" ontouchstart="onTouchStartOfBack()" ontouchend="goToBack()" class="pay-back-button"></div>
+    <div id="autoPayBackButtonId" ontouchstart="onTouchStartOfBack()" ontouchend="goToBack()"
+         class="pay-back-button"></div>
     <div id="rightButton" ontouchstart="onTouchStartOfAddSign()" ontouchend="addAutoPay()"
          class="settings-friend-help-add-button"></div>
   </div>
@@ -44,7 +45,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-auto-pay-new') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-auto-pay-new',
+          "view"  : 'view-auto-pay-new',
           "params": opts
         }
       );
@@ -130,8 +131,8 @@
     scope.autopayList = [];
     window.api.call({
       method: 'autopay.list',
-      input: {
-        phone_num: phoneNumber,
+      input : {
+        phone_num  : phoneNumber,
         session_key: sessionKey
       },
 
