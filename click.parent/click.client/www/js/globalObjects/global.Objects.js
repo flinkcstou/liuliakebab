@@ -279,61 +279,81 @@ window.inputVerification.cardVerification = function (card) {
     }
   }
   return newCard
-}
+};
+
+window.pushNotificationSaveTokenToServer = function (token) {
+
+  var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+  var tokenOfApp = localStorage.getItem("click_client_token");
+  var signString = hex_md5(phoneNumber.substring(0, 5) + token + phoneNumber.substring(phoneNumber.length - 4, phoneNumber.length))
+
+  console.log('token', token);
+  window.api.call({
+    method: 'push.register.token',
+    input: {
+      phone_num: phoneNumber,
+      token: token,
+      sign_string: signString,
+      device_vendor: device.manufacturer,
+      device_model: device.model
+
+    },
+
+    scope: this,
+
+    onSuccess: function (result) {
+      if (result[0][0].error == 0) {
+        console.log("PUSH", result);
+        localStorage.setItem('push_registered', token);
+
+        window.FirebasePlugin.logEvent("Registration", {
+          token: token,
+          item_id: phoneNumber
+        });
+
+        window.FirebasePlugin.subscribe("news");
+
+        window.FirebasePlugin.logEvent("subscribe", {
+          topic: "news"
+        });
+      }
+    },
+
+    onFail: function (api_status, api_status_message, data) {
+      console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+      console.error(data);
+    }
+  });
+  console.log('TOKEN PUSH', token);
+  console.log(token);
+};
 
 window.pushNotificationInitialize = function () {
   if (device.platform != 'BrowserStand')
     window.FirebasePlugin.getToken(function (token) {
       // save this server-side and use it to push notifications to this device
 
+      if (!token || typeof token == "undefined") {
 
-      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-      var tokenOfApp = localStorage.getItem("click_client_token");
-      var signString = hex_md5(phoneNumber.substring(0, 5) + token + phoneNumber.substring(phoneNumber.length - 4, phoneNumber.length))
+        console.log("No Token", token);
 
-      console.log('token', token)
-      window.api.call({
-        method: 'push.register.token',
-        input: {
-          phone_num: phoneNumber,
-          token: token,
-          sign_string: signString,
-          device_vendor: device.manufacturer,
-          device_model: device.model
+        window.FirebasePlugin.onTokenRefresh(function (token) {
 
-        },
+          console.log("Token On REFRESH", token);
+          window.pushNotificationSaveTokenToServer(token);
+        }, function (error) {
+          console.error(error);
+        });
+      } else {
 
-        scope: this,
+        console.log("Token Get Succeed", token);
+        window.pushNotificationSaveTokenToServer(token);
+      }
 
-        onSuccess: function (result) {
-          if (result[0][0].error == 0) {
-            console.log("PUSH", result);
-            localStorage.setItem('push_registered', token)
-
-            window.FirebasePlugin.logEvent("Registration", {
-              token: token,
-              item_id: phoneNumber
-            });
-
-            window.FirebasePlugin.subscribe("news");
-
-            window.FirebasePlugin.logEvent("subscribe", {
-              topic: "news"
-            });
-          }
-        },
-
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      });
-      console.log('TOKEN PUSH', token)
-      console.log(token);
     }, function (error) {
       console.error(error);
     });
-}
+};
 
 window.pushNotificationActions = {
 
@@ -449,8 +469,8 @@ window.pushNotificationActions = {
             if (result[1][i].payment_id == paymentId) {
 
               console.log("service report for=", result[1][i]);
-              riotTags.innerHTML = "<view-report-service>";
-              riot.mount("view-report-service", result[1][i]);
+              riotTags.innerHTML = "<view-report-service-new>";
+              riot.mount("view-report-service-new", result[1][i]);
               return;
             }
           }
