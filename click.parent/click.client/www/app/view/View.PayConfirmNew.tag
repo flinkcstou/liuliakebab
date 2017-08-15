@@ -215,7 +215,12 @@
       var firstFieldtext = "+" + window.languages.CodeOfCountry + opts.firstFieldText;
       console.log("text=", firstFieldtext)
     }
-    else {
+    else if (opts.chosenPrefixId) {
+      this.firstFieldText = opts.chosenPrefixName + opts.firstFieldText;
+      var firstFieldtext = opts.chosenPrefixName + opts.firstFieldText;
+      console.log("text if prefix=", firstFieldtext)
+
+    } else {
       this.firstFieldText = opts.firstFieldText;
       var firstFieldtext = opts.firstFieldText;
       console.log("text in else=", firstFieldtext)

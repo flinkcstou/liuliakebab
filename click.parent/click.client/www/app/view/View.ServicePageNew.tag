@@ -1141,9 +1141,9 @@
           }
           if (scope.prefixesArray.length > 0) {
             scope.hasPrefixes = true;
-            scope.chosenPrefixTitle = scope.prefixesArray[0].title;
-            scope.chosenPrefixId = scope.prefixesArray[0].option_id;
-            scope.chosenPrefixName = scope.prefixesArray[0].name;
+            scope.chosenPrefixTitle = opts.chosenPrefixTitle ? opts.chosenPrefixTitle : scope.prefixesArray[0].title;
+            scope.chosenPrefixId = opts.chosenPrefixId ? opts.chosenPrefixId : scope.prefixesArray[0].option_id;
+            scope.chosenPrefixName = opts.chosenPrefixName ? opts.chosenPrefixName : scope.prefixesArray[0].name;
             console.log("scope.hasPrefixes", scope.hasPrefixes);
           }
         }
@@ -1833,6 +1833,9 @@
         opts.firstLevelParamId = scope.chosenFieldParamIdTwo;
         opts.firstLevelFieldName = scope.chosenFieldNameTwo;
         opts.secondLevelFieldName = scope.chosenFieldNameThree;
+        opts.chosenPrefixTitle = scope.chosenPrefixTitle;
+        opts.chosenPrefixId = scope.chosenPrefixId;
+        opts.chosenPrefixName = scope.chosenPrefixName;
 
 
 //      viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
