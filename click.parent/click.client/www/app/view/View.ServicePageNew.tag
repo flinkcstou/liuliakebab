@@ -2097,6 +2097,7 @@
 
         } else if (opts.mode == 'ADDFAVORITE') {
           if (opts) {
+            console.log("PARAMS of favorite", opts)
 
             opts.favoriteName = favoriteNameInput.value;
 
@@ -2155,10 +2156,10 @@
     addToFavoritesinServicePage = function (array) {
 //      console.log('scope.fieldArray[0]', scope.fieldArray[0].ussd_query)
       var favoritePaymentsList;
+      console.log("OPTS TO SAVE for Favorite=", array);
 
       if (!localStorage.getItem('favoritePaymentsList')) {
         favoritePaymentsList = [];
-//        console.log("OPTS TO SAVE=", array);
 //        console.log("Chosen Service =", scope.service);
         favoritePaymentsList.push({
           "params": array,
