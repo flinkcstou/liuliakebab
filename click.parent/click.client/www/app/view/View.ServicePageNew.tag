@@ -55,8 +55,15 @@
          hidden="{modeOfApp.offlineMode && opts.chosenServiceId == 'mynumber'}">
       <p class="servicepage-text-field">{chosenFieldName}</p>
       <p class="servicepage-number-first-part" if="{phoneFieldBool}">+{window.languages.CodeOfCountry}</p>
-      <input class="{servicepage-number-input-part: phoneFieldBool, servicepage-number-input-part-two: !phoneFieldBool && isNumber,
-                           servicepage-number-input-part-three: !phoneFieldBool && !isNumber}"
+
+      <div class="servicepage-prefix-dropdown" if="{!phoneFieldBool && hasPrefixes}" ontouchend="openPrefixesDropDown()"
+           id="prefixChoiceId">
+        <p class="servicepage-prefix-dropdown-text-field">asd</p>
+        <div class="servicepage-prefix-dropdown-icon"></div>
+      </div>
+
+      <input class="{servicepage-number-input-part: phoneFieldBool || hasPrefixes, servicepage-number-input-part-two: !phoneFieldBool && isNumber && !hasPrefixes,
+                           servicepage-number-input-part-three: !phoneFieldBool && !isNumber && !hasPrefixes}"
              type="{inputType}"
              id="firstFieldInput"
              onfocus="bordersColor()"
@@ -122,6 +129,20 @@
       <div class="servicepage-dropdown-variant" each="{i in fieldArray}" id="{i.parameter_id}"
            ontouchend="chooseFirstField(this.id)">
         <p id="text{i.parameter_id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.title}</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="blockPrefixId" class="component-first-field">
+    <div type="button" class="servicepage-fields-dropdown-close-button"
+         ontouchend="closeFirstFieldDropdownTouchEnd()" ontouchstart="closeFirstFieldDropdownTouchStart()"></div>
+    <div class="servicepage-fields-dropdown-two">
+      <p class="servicepage-dropdown-text-field" style="color: white;">{chosenFieldName}</p>
+    </div>
+    <div class="servicepage-dropdown-container">
+      <div class="servicepage-dropdown-variant" each="{i in prefixesArray}" id="{i.option_id}"
+           ontouchend="chooseFirstField(this.id)">
+        <p id="text{i.option_id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.title}</p>
       </div>
     </div>
   </div>
@@ -319,6 +340,7 @@
     scope.servicesParamsMapThree = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"))) : (offlineServicesParamsMapThree);
     scope.servicesParamsMapFour = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFour"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFour"))) : (offlineServicesParamsMapFour);
     scope.servicesParamsMapFive = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapFive"))) : (offlineServicesParamsMapFive);
+    scope.servicesParamsMapSix = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapSix"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapSix"))) : (offlineServicesParamsMapSix);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
 
 
@@ -556,13 +578,9 @@
           if (device.platform == 'iOS' && this.firstFieldInput) {
             firstFieldInput.autofocus;
             firstFieldInput.focus();
-            console.log('2')
           } else {
-            console.log('3')
             setTimeout(function () {
-              console.log('4')
               if (this.firstFieldInput) {
-                console.log('5')
                 firstFieldInput.focus();
               }
             }, 0);
@@ -599,7 +617,7 @@
 //        amount.value = 0
 
         if (modeOfApp.offlineMode) {
-          if (typeof enterButtonId != 'undefined')
+          if (this.enterButtonId)
             enterButtonId.innerText = 'Оплатить'
         }
 
@@ -1104,6 +1122,7 @@
         console.log("scope.servicesParamsMapThree[opts.chosenServiceId]", scope.servicesParamsMapThree[opts.chosenServiceId])
         console.log("scope.servicesParamsMapFour[opts.chosenServiceId]", scope.servicesParamsMapFour[opts.chosenServiceId])
         console.log("scope.servicesParamsMapFive[opts.chosenServiceId]", scope.servicesParamsMapFive[opts.chosenServiceId])
+        console.log("scope.servicesParamsMapSix[opts.chosenServiceId]", scope.servicesParamsMapSix[opts.chosenServiceId])
         if (scope.phoneFieldBool) {
           console.log("NUMBER FROM OPTS 1", opts.firstFieldText)
           scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(opts.firstFieldText);
@@ -1111,6 +1130,15 @@
         }
         scope.inputMaxLength = scope.fieldArray[0].max_len;
         console.log("INPUT LENGTH=", scope.inputMaxLength);
+        scope.hasPrefixes = false;
+
+        if (scope.servicesParamsMapSix[opts.chosenServiceId]) {
+          scope.prefixesArray = scope.servicesParamsMapSix[opts.chosenServiceId];
+          scope.hasPrefixes = true;
+          scope.chosenPrefixTitle = scope.prefixesArray[0].title;
+          scope.chosenPrefixId = scope.prefixesArray[0].option_id;
+          console.log("scope.hasPrefixes", scope.hasPrefixes);
+        }
 
 //          console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
 
@@ -1150,6 +1178,7 @@
         }
         scope.amountLength = ("" + scope.service.max_pay_limit).length;
       }
+
       scope.hasFirstLevel = false;
       if (scope.formType == 3 && scope.servicesParamsMapTwo[scope.service.id]) {
         scope.firstLevelArray = [];
@@ -1274,6 +1303,23 @@
           document.getElementById('texttwo' + scope.chosenFieldParamIdThree).style.color = 'white';
         }
       }
+    };
+
+    openPrefixesDropDown = function () {
+      try {
+        this.firstFieldInput.blur();
+        this.amount.blur();
+      } catch (error) {
+        console.log(error);
+      }
+      this.blockPrefixId.style.display = 'block';
+      console.log("id=", scope.chosenFieldParamId);
+      if (scope.oldFieldParamId) {
+        document.getElementById(scope.oldFieldParamId).style.backgroundColor = 'white';
+        document.getElementById('text' + scope.oldFieldParamId).style.color = '#515151';
+      }
+      document.getElementById(scope.chosenFieldParamId).style.backgroundColor = '#0084E6';
+      document.getElementById('text' + scope.chosenFieldParamId).style.color = 'white';
     };
 
     chooseFirstField = function (id) {
