@@ -7298,31 +7298,31 @@ offlineServicesMapByCategory = {
   offlineServicesMap = {
     "mynumber": [
       {
-        "category_id": 1,
-        "cost": 1,
-        "form_type": 1,
-        "is_visible": 1,
+        "category_id"            : 1,
+        "cost"                   : 1,
+        "form_type"              : 1,
+        "is_visible"             : 1,
         //"id": 2,
-        "image": "resources/icons/ViewPay/myphone.png",
-        "is_mobile": 1,
-        "lang_amount_hint": null,
+        "image"                  : "resources/icons/ViewPay/myphone.png",
+        "is_mobile"              : 1,
+        "lang_amount_hint"       : null,
         "lang_amount_placeholder": "Введите сумму оплаты",
-        "lang_amount_title": "Сумма",
-        "lang_max_amount": "Максимальная сумма для оплаты 1500000.00 сум",
-        "lang_min_amount": "Минимальная сумма для оплаты 1000.00 сум",
-        "max_pay_limit": 1500000,
-        "min_pay_limit": 1000,
+        "lang_amount_title"      : "Сумма",
+        "lang_max_amount"        : "Максимальная сумма для оплаты 1500000.00 сум",
+        "lang_min_amount"        : "Минимальная сумма для оплаты 1000.00 сум",
+        "max_pay_limit"          : 1500000,
+        "min_pay_limit"          : 1000,
         //"name": "UMS",
         //"priority": 25,
-        "service_parameters": "1",
+        "service_parameters"     : "1",
         //"service_short_name": "UMS",
-        "lang_amount_currency": "сум",
-        "status": 1,
-        "amount_editable"            : true,
-        "amount_value"               : null,
-        "amount_information_text"    : null
+        "lang_amount_currency"   : "сум",
+        "status"                 : 1,
+        "amount_editable"        : true,
+        "amount_value"           : null,
+        "amount_information_text": null
       }],
-    "2"   : [{
+    "2"       : [{
       "id"                         : 2,
       "name"                       : "UMS",
       "category_id"                : 1,
@@ -7355,7 +7355,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3"   : [{
+    "3"       : [{
       "id"                         : 3,
       "name"                       : "Билайн",
       "category_id"                : 1,
@@ -7388,7 +7388,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4"   : [{
+    "4"       : [{
       "id"                         : 4,
       "name"                       : "Perfectum",
       "category_id"                : 1,
@@ -7421,7 +7421,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "5"   : [{
+    "5"       : [{
       "id"                         : 5,
       "name"                       : "Ucell",
       "category_id"                : 1,
@@ -7457,7 +7457,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "6"   : [{
+    "6"       : [{
       "id"                         : 6,
       "name"                       : "Uzmobile (CDMA)",
       "category_id"                : 1,
@@ -7490,7 +7490,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "7"   : [{
+    "7"       : [{
       "id"                         : 7,
       "name"                       : "Sharq Telekom",
       "category_id"                : 2,
@@ -7523,7 +7523,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "9"   : [{
+    "9"       : [{
       "id"                         : 9,
       "name"                       : "Городской телефон",
       "category_id"                : 7,
@@ -7556,7 +7556,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "10"  : [{
+    "10"      : [{
       "id"                         : 10,
       "name"                       : "Skyline",
       "category_id"                : 2,
@@ -7589,7 +7589,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "12"  : [{
+    "12"      : [{
       "id"                         : 12,
       "name"                       : "OLX.UZ",
       "category_id"                : 6,
@@ -7622,7 +7622,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "15"  : [{
+    "15"      : [{
       "id"                         : 15,
       "name"                       : "Sarkor Telekom",
       "category_id"                : 2,
@@ -7655,7 +7655,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "28"  : [{
+    "28"      : [{
       "id"                         : 28,
       "name"                       : "UZDIGITAL TV",
       "category_id"                : 3,
@@ -7688,7 +7688,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "31"  : [{
+    "31"      : [{
       "id"                         : 31,
       "name"                       : "TPS",
       "category_id"                : 2,
@@ -7721,7 +7721,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "35"  : [{
+    "35"      : [{
       "id"                         : 35,
       "name"                       : "Platinum Connect",
       "category_id"                : 2,
@@ -7754,7 +7754,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "39"  : [{
+    "39"      : [{
       "id"                         : 39,
       "name"                       : "Mahsustrans",
       "category_id"                : 8,
@@ -7787,7 +7787,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "40"  : [{
+    "40"      : [{
       "id"                         : 40,
       "name"                       : "COMNET",
       "category_id"                : 2,
@@ -7820,7 +7820,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "44"  : [{
+    "44"      : [{
       "id"                         : 44,
       "name"                       : "Карты междунар.связи UzTelecom/Централ.Телеграф",
       "category_id"                : 7,
@@ -7853,7 +7853,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "45"  : [{
+    "45"      : [{
       "id"                         : 45,
       "name"                       : "Regname.uz",
       "category_id"                : 5,
@@ -7886,7 +7886,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "54"  : [{
+    "54"      : [{
       "id"                         : 54,
       "name"                       : "EVO WiMAX",
       "category_id"                : 2,
@@ -7919,7 +7919,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "56"  : [{
+    "56"      : [{
       "id"                         : 56,
       "name"                       : "Uzonline",
       "category_id"                : 2,
@@ -7952,7 +7952,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "57"  : [{
+    "57"      : [{
       "id"                         : 57,
       "name"                       : "Kinopro.uz",
       "category_id"                : 6,
@@ -7985,7 +7985,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "70"  : [{
+    "70"      : [{
       "id"                         : 70,
       "name"                       : "Mediabay.uz",
       "category_id"                : 6,
@@ -8018,7 +8018,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "80"  : [{
+    "80"      : [{
       "id"                         : 80,
       "name"                       : "Dump.uz",
       "category_id"                : 6,
@@ -8051,7 +8051,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "83"  : [{
+    "83"      : [{
       "id"                         : 83,
       "name"                       : "Telekarta.uz",
       "category_id"                : 7,
@@ -8084,7 +8084,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "87"  : [{
+    "87"      : [{
       "id"                         : 87,
       "name"                       : "Fifa.uz",
       "category_id"                : 6,
@@ -8117,7 +8117,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "90"  : [{
+    "90"      : [{
       "id"                         : 90,
       "name"                       : "Myjob.uz",
       "category_id"                : 6,
@@ -8150,7 +8150,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "92"  : [{
+    "92"      : [{
       "id"                         : 92,
       "name"                       : "DTM",
       "category_id"                : 6,
@@ -8183,7 +8183,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : 2000,
       "amount_information_text"    : "Ответы получите после Решения Государственной Комиссии."
     }],
-    "95"  : [{
+    "95"      : [{
       "id"                         : 95,
       "name"                       : "Dastur.uz",
       "category_id"                : 6,
@@ -8216,7 +8216,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "100" : [{
+    "100"     : [{
       "id"                         : 100,
       "name"                       : "Uzbazar.uz",
       "category_id"                : 6,
@@ -8249,7 +8249,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "101" : [{
+    "101"     : [{
       "id"                         : 101,
       "name"                       : "Uzjobs.com",
       "category_id"                : 6,
@@ -8282,7 +8282,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "102" : [{
+    "102"     : [{
       "id"                         : 102,
       "name"                       : "Telecom TV",
       "category_id"                : 3,
@@ -8315,7 +8315,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "103" : [{
+    "103"     : [{
       "id"                         : 103,
       "name"                       : "JetNet.uz",
       "category_id"                : 6,
@@ -8348,7 +8348,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "107" : [{
+    "107"     : [{
       "id"                         : 107,
       "name"                       : "Оплата налогов",
       "category_id"                : 10,
@@ -8381,7 +8381,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "108" : [{
+    "108"     : [{
       "id"                         : 108,
       "name"                       : "Topsale.uz",
       "category_id"                : 6,
@@ -8414,7 +8414,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "113" : [{
+    "113"     : [{
       "id"                         : 113,
       "name"                       : "Оплата ЭЦП",
       "category_id"                : 10,
@@ -8447,7 +8447,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "115" : [{
+    "115"     : [{
       "id"                         : 115,
       "name"                       : "IRR.UZ",
       "category_id"                : 6,
@@ -8480,7 +8480,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "121" : [{
+    "121"     : [{
       "id"                         : 121,
       "name"                       : "Uzbekinvest",
       "category_id"                : 6,
@@ -8513,7 +8513,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "128" : [{
+    "128"     : [{
       "id"                         : 128,
       "name"                       : "East Telekom",
       "category_id"                : 7,
@@ -8546,7 +8546,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "139" : [{
+    "139"     : [{
       "id"                         : 139,
       "name"                       : "Oxygen Networks",
       "category_id"                : 7,
@@ -8579,7 +8579,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "148" : [{
+    "148"     : [{
       "id"                         : 148,
       "name"                       : "Uzmobile (GSM)",
       "category_id"                : 1,
@@ -8612,7 +8612,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "157" : [{
+    "157"     : [{
       "id"                         : 157,
       "name"                       : "Arxiv.uz",
       "category_id"                : 6,
@@ -8645,7 +8645,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "164" : [{
+    "164"     : [{
       "id"                         : 164,
       "name"                       : "itest.uz",
       "category_id"                : 6,
@@ -8678,7 +8678,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "181" : [{
+    "181"     : [{
       "id"                         : 181,
       "name"                       : "Evrika.uz",
       "category_id"                : 6,
@@ -8711,7 +8711,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "183" : [{
+    "183"     : [{
       "id"                         : 183,
       "name"                       : "EVO LTE",
       "category_id"                : 2,
@@ -8744,7 +8744,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "198" : [{
+    "198"     : [{
       "id"                         : 198,
       "name"                       : "Gaz",
       "category_id"                : 8,
@@ -8777,7 +8777,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "1133": [{
+    "1133"    : [{
       "id"                         : 1133,
       "name"                       : "SONET PINCARD",
       "category_id"                : 2,
@@ -8810,7 +8810,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "2512": [{
+    "2512"    : [{
       "id"                         : 2512,
       "name"                       : "Beeline-Buzton",
       "category_id"                : 2,
@@ -8843,7 +8843,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "2706": [{
+    "2706"    : [{
       "id"                         : 2706,
       "name"                       : "Uybor.uz",
       "category_id"                : 6,
@@ -8876,7 +8876,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "2812": [{
+    "2812"    : [{
       "id"                         : 2812,
       "name"                       : "Hostim.uz",
       "category_id"                : 5,
@@ -8909,7 +8909,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "2821": [{
+    "2821"    : [{
       "id"                         : 2821,
       "name"                       : "SONET",
       "category_id"                : 2,
@@ -8942,7 +8942,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3032": [{
+    "3032"    : [{
       "id"                         : 3032,
       "name"                       : "Nano Telecom",
       "category_id"                : 2,
@@ -8975,7 +8975,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3036": [{
+    "3036"    : [{
       "id"                         : 3036,
       "name"                       : "proname.uz",
       "category_id"                : 5,
@@ -9008,7 +9008,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3037": [{
+    "3037"    : [{
       "id"                         : 3037,
       "name"                       : "uztest.uz",
       "category_id"                : 6,
@@ -9041,7 +9041,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3040": [{
+    "3040"    : [{
       "id"                         : 3040,
       "name"                       : "muvi.uz",
       "category_id"                : 6,
@@ -9074,7 +9074,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3172": [{
+    "3172"    : [{
       "id"                         : 3172,
       "name"                       : "LaTienda.uz",
       "category_id"                : 6,
@@ -9107,7 +9107,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3175": [{
+    "3175"    : [{
       "id"                         : 3175,
       "name"                       : "registrator.uz",
       "category_id"                : 6,
@@ -9140,7 +9140,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3177": [{
+    "3177"    : [{
       "id"                         : 3177,
       "name"                       : "PFF.UZ",
       "category_id"                : 6,
@@ -9173,7 +9173,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3184": [{
+    "3184"    : [{
       "id"                         : 3184,
       "name"                       : "Uzsayt.uz",
       "category_id"                : 6,
@@ -9206,7 +9206,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3185": [{
+    "3185"    : [{
       "id"                         : 3185,
       "name"                       : "OK.RU",
       "category_id"                : 6,
@@ -9239,7 +9239,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3186": [{
+    "3186"    : [{
       "id"                         : 3186,
       "name"                       : "ABT.UZ",
       "category_id"                : 6,
@@ -9272,7 +9272,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3198": [{
+    "3198"    : [{
       "id"                         : 3198,
       "name"                       : "expert.uz",
       "category_id"                : 6,
@@ -9305,7 +9305,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3200": [{
+    "3200"    : [{
       "id"                         : 3200,
       "name"                       : "Zor.uz",
       "category_id"                : 6,
@@ -9338,7 +9338,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3213": [{
+    "3213"    : [{
       "id"                         : 3213,
       "name"                       : "SIMUS",
       "category_id"                : 2,
@@ -9371,7 +9371,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3215": [{
+    "3215"    : [{
       "id"                         : 3215,
       "name"                       : "Cron Telekom",
       "category_id"                : 2,
@@ -9404,7 +9404,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "3217": [{
+    "3217"    : [{
       "id"                         : 3217,
       "name"                       : "AliBobo",
       "category_id"                : 6,
@@ -9437,7 +9437,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4422": [{
+    "4422"    : [{
       "id"                         : 4422,
       "name"                       : "UMS Internet Paketi",
       "category_id"                : 11,
@@ -9470,7 +9470,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4423": [{
+    "4423"    : [{
       "id"                         : 4423,
       "name"                       : "AVTOBOR.UZ",
       "category_id"                : 6,
@@ -9503,7 +9503,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4639": [{
+    "4639"    : [{
       "id"                         : 4639,
       "name"                       : "station.uz",
       "category_id"                : 6,
@@ -9536,7 +9536,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4641": [{
+    "4641"    : [{
       "id"                         : 4641,
       "name"                       : "besttest.uz",
       "category_id"                : 6,
@@ -9569,7 +9569,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4644": [{
+    "4644"    : [{
       "id"                         : 4644,
       "name"                       : "OnlineTv",
       "category_id"                : 3,
@@ -9602,7 +9602,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4646": [{
+    "4646"    : [{
       "id"                         : 4646,
       "name"                       : "FileCloud.uz",
       "category_id"                : 6,
@@ -9635,7 +9635,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4652": [{
+    "4652"    : [{
       "id"                         : 4652,
       "name"                       : "OXO.UZ",
       "category_id"                : 6,
@@ -9668,7 +9668,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4659": [{
+    "4659"    : [{
       "id"                         : 4659,
       "name"                       : "Printing Service",
       "category_id"                : 6,
@@ -9701,7 +9701,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4660": [{
+    "4660"    : [{
       "id"                         : 4660,
       "name"                       : "tasx.uz",
       "category_id"                : 6,
@@ -9734,7 +9734,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4666": [{
+    "4666"    : [{
       "id"                         : 4666,
       "name"                       : "Net City",
       "category_id"                : 2,
@@ -9767,7 +9767,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4667": [{
+    "4667"    : [{
       "id"                         : 4667,
       "name"                       : "ISTV",
       "category_id"                : 2,
@@ -9800,7 +9800,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4668": [{
+    "4668"    : [{
       "id"                         : 4668,
       "name"                       : "FiberNet",
       "category_id"                : 2,
@@ -9833,7 +9833,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4669": [{
+    "4669"    : [{
       "id"                         : 4669,
       "name"                       : "Freelink",
       "category_id"                : 2,
@@ -9866,7 +9866,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4670": [{
+    "4670"    : [{
       "id"                         : 4670,
       "name"                       : "STARS TV",
       "category_id"                : 3,
@@ -9899,7 +9899,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4673": [{
+    "4673"    : [{
       "id"                         : 4673,
       "name"                       : "bizplan.uz",
       "category_id"                : 6,
@@ -9932,7 +9932,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4674": [{
+    "4674"    : [{
       "id"                         : 4674,
       "name"                       : "cyfral.uz",
       "category_id"                : 6,
@@ -9965,7 +9965,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4675": [{
+    "4675"    : [{
       "id"                         : 4675,
       "name"                       : "COBO.UZ",
       "category_id"                : 6,
@@ -9998,7 +9998,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4676": [{
+    "4676"    : [{
       "id"                         : 4676,
       "name"                       : "addirect.uz",
       "category_id"                : 6,
@@ -10031,7 +10031,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4677": [{
+    "4677"    : [{
       "id"                         : 4677,
       "name"                       : "schoolface.uz",
       "category_id"                : 6,
@@ -10064,7 +10064,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4678": [{
+    "4678"    : [{
       "id"                         : 4678,
       "name"                       : "Spectr IT",
       "category_id"                : 3,
@@ -10097,7 +10097,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4688": [{
+    "4688"    : [{
       "id"                         : 4688,
       "name"                       : "ISTV TV",
       "category_id"                : 3,
@@ -10130,7 +10130,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4689": [{
+    "4689"    : [{
       "id"                         : 4689,
       "name"                       : "ITV.UZ",
       "category_id"                : 3,
@@ -10163,7 +10163,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4694": [{
+    "4694"    : [{
       "id"                         : 4694,
       "name"                       : "Aloqabank",
       "category_id"                : 12,
@@ -10196,7 +10196,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "4695": [{
+    "4695"    : [{
       "id"                         : 4695,
       "name"                       : "AAB",
       "category_id"                : 12,
@@ -10229,7 +10229,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "7003": [{
+    "7003"    : [{
       "id"                         : 7003,
       "name"                       : "Toshkent-Taksofoni",
       "category_id"                : 7,
@@ -10262,7 +10262,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "7004": [{
+    "7004"    : [{
       "id"                         : 7004,
       "name"                       : "IPCam",
       "category_id"                : 6,
@@ -10295,7 +10295,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "7024": [{
+    "7024"    : [{
       "id"                         : 7024,
       "name"                       : "Prep.uz",
       "category_id"                : 6,
@@ -10328,7 +10328,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "7025": [{
+    "7025"    : [{
       "id"                         : 7025,
       "name"                       : "ARS INFORM",
       "category_id"                : 2,
@@ -10361,7 +10361,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "7027": [{
+    "7027"    : [{
       "id"                         : 7027,
       "name"                       : "SARKOR TV",
       "category_id"                : 3,
@@ -10394,7 +10394,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "7033": [{
+    "7033"    : [{
       "id"                         : 7033,
       "name"                       : "kinomania.uz",
       "category_id"                : 6,
@@ -10427,7 +10427,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "7035": [{
+    "7035"    : [{
       "id"                         : 7035,
       "name"                       : "uzbook.uz",
       "category_id"                : 6,
@@ -10460,7 +10460,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "7043": [{
+    "7043"    : [{
       "id"                         : 7043,
       "name"                       : "Spectr IT Internet",
       "category_id"                : 2,
@@ -10493,7 +10493,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "7044": [{
+    "7044"    : [{
       "id"                         : 7044,
       "name"                       : "Штрафы ГУБДД",
       "category_id"                : 13,
@@ -10526,7 +10526,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "7045": [{
+    "7045"    : [{
       "id"                         : 7045,
       "name"                       : "detskiy sad",
       "category_id"                : 13,
@@ -10559,7 +10559,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "8409": [{
+    "8409"    : [{
       "id"                         : 8409,
       "name"                       : "allplay.uz",
       "category_id"                : 3,
@@ -10592,7 +10592,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "8414": [{
+    "8414"    : [{
       "id"                         : 8414,
       "name"                       : "allmovies.uz",
       "category_id"                : 6,
@@ -10625,7 +10625,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "8755": [{
+    "8755"    : [{
       "id"                         : 8755,
       "name"                       : "Agrobank",
       "category_id"                : 12,
@@ -10658,7 +10658,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "8798": [{
+    "8798"    : [{
       "id"                         : 8798,
       "name"                       : "mykupon.uz",
       "category_id"                : 6,
@@ -10691,7 +10691,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "9041": [{
+    "9041"    : [{
       "id"                         : 9041,
       "name"                       : "Madad Invest",
       "category_id"                : 12,
@@ -10724,7 +10724,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "9042": [{
+    "9042"    : [{
       "id"                         : 9042,
       "name"                       : "SavdogarBank",
       "category_id"                : 12,
@@ -10757,7 +10757,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "9129": [{
+    "9129"    : [{
       "id"                         : 9129,
       "name"                       : "Xalqbank",
       "category_id"                : 12,
@@ -10790,7 +10790,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "9222": [{
+    "9222"    : [{
       "id"                         : 9222,
       "name"                       : "Штрафы ГУБДД",
       "category_id"                : 13,
@@ -10823,7 +10823,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "9308": [{
+    "9308"    : [{
       "id"                         : 9308,
       "name"                       : "Turonbank",
       "category_id"                : 12,
@@ -10856,7 +10856,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "-2"  : [{
+    "-2"      : [{
       "id"                         : -2,
       "name"                       : "Переводы Click",
       "category_id"                : 4,
@@ -10889,7 +10889,7 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
-    "-1"  : [{
+    "-1"      : [{
       "id"                         : -1,
       "name"                       : "Переброс между счетами",
       "category_id"                : 4,
@@ -18045,3 +18045,122 @@ offlineServicesMapByCategory = {
       //"salaryOriginal": "153409"
     }
   };
+
+
+offlineServicesParamsMapSix = {
+  "7"   : [{
+    "service_id"     : 7,
+    "parent_param_id": 2,
+    "option_id"      : 1,
+    "name"           : "shsts",
+    "title"          : "shsts"
+  }, {"service_id": 7, "parent_param_id": 2, "option_id": 2, "name": "volsts", "title": "volsts"}, {
+    "service_id"     : 7,
+    "parent_param_id": 2,
+    "option_id"      : 3,
+    "name"           : "rentts",
+    "title"          : "rentts"
+  }],
+  "15"  : [{
+    "service_id"     : 15,
+    "parent_param_id": 2,
+    "option_id"      : 1,
+    "name"           : "he-",
+    "title"          : "he-"
+  }, {"service_id": 15, "parent_param_id": 2, "option_id": 2, "name": "x-", "title": "x-"}, {
+    "service_id"     : 15,
+    "parent_param_id": 2,
+    "option_id"      : 3,
+    "name"           : "ge-",
+    "title"          : "ge-"
+  }, {"service_id": 15, "parent_param_id": 2, "option_id": 4, "name": "rw-", "title": "rw-"}],
+  "31"  : [{
+    "service_id"     : 31,
+    "parent_param_id": 2,
+    "option_id"      : 1,
+    "name"           : "tps",
+    "title"          : "tps"
+  }, {"service_id": 31, "parent_param_id": 2, "option_id": 2, "name": "tps00", "title": "tps00"}, {
+    "service_id"     : 31,
+    "parent_param_id": 2,
+    "option_id"      : 3,
+    "name"           : "tps01",
+    "title"          : "tps01"
+  }, {"service_id": 31, "parent_param_id": 2, "option_id": 4, "name": "fiber", "title": "fiber"}, {
+    "service_id"     : 31,
+    "parent_param_id": 2,
+    "option_id"      : 5,
+    "name"           : "fibernet",
+    "title"          : "fibernet"
+  }, {"service_id": 31, "parent_param_id": 2, "option_id": 6, "name": "jet", "title": "jet"}],
+  "40"  : [{
+    "service_id"     : 40,
+    "parent_param_id": 2,
+    "option_id"      : 1,
+    "name"           : "f",
+    "title"          : "f"
+  }, {"service_id": 40, "parent_param_id": 2, "option_id": 2, "name": "k", "title": "k"}, {
+    "service_id"     : 40,
+    "parent_param_id": 2,
+    "option_id"      : 3,
+    "name"           : "",
+    "title"          : "Только цифры"
+  }],
+  "3032": [{
+    "service_id"     : 3032,
+    "parent_param_id": 2,
+    "option_id"      : 1,
+    "name"           : "I/H-",
+    "title"          : "I/H-"
+  }],
+  "3213": [{
+    "service_id"     : 3213,
+    "parent_param_id": 2,
+    "option_id"      : 1,
+    "name"           : "volsfg",
+    "title"          : "volsfg"
+  }, {"service_id": 3213, "parent_param_id": 2, "option_id": 2, "name": "simfg", "title": "simfg"}, {
+    "service_id"     : 3213,
+    "parent_param_id": 2,
+    "option_id"      : 3,
+    "name"           : "wifisg",
+    "title"          : "wifisg"
+  }, {"service_id": 3213, "parent_param_id": 2, "option_id": 4, "name": "siman", "title": "siman"}, {
+    "service_id"     : 3213,
+    "parent_param_id": 2,
+    "option_id"      : 5,
+    "name"           : "simnm",
+    "title"          : "simnm"
+  }, {"service_id": 3213, "parent_param_id": 2, "option_id": 6, "name": "simbh", "title": "simbh"}, {
+    "service_id"     : 3213,
+    "parent_param_id": 2,
+    "option_id"      : 7,
+    "name"           : "shssm",
+    "title"          : "shssm"
+  }, {"service_id": 3213, "parent_param_id": 2, "option_id": 8, "name": "shsbh", "title": "shsbh"}, {
+    "service_id"     : 3213,
+    "parent_param_id": 2,
+    "option_id"      : 9,
+    "name"           : "hethsm",
+    "title"          : "hethsm"
+  }, {
+    "service_id"     : 3213,
+    "parent_param_id": 2,
+    "option_id"      : 10,
+    "name"           : "volssm",
+    "title"          : "volssm"
+  }, {
+    "service_id"     : 3213,
+    "parent_param_id": 2,
+    "option_id"      : 11,
+    "name"           : "wifism",
+    "title"          : "wifism"
+  }, {"service_id": 3213, "parent_param_id": 2, "option_id": 12, "name": "wifinm", "title": "wifinm"}],
+  "7043": [{
+    "service_id"     : 7043,
+    "parent_param_id": 2,
+    "option_id"      : 1,
+    "name"           : "SP",
+    "title"          : "SP"
+  }]
+}
