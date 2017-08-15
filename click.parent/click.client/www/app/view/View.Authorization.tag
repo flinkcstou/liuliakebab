@@ -178,6 +178,7 @@
 
 
     fingerPrintTurnOn = function () {
+      window.fingerPrint.fingerPrintInitialize = true;
       if (localStorage.getItem('settings_finger_print') !== null) {
         console.log("FINGER PRINT INITIALIZE")
         if (device.platform == 'Android') {
@@ -195,7 +196,7 @@
                   password: "currentUser",
                   token: "currentUser",
                   locale: "ru",
-                  disableBackup: false,
+                  disableBackup: true,
 //              userAuthRequired: false,
                   dialogHint: "Повторите попытку",
                   dialogTitle: "Сканирование для CLICK"
@@ -204,6 +205,7 @@
 
                 if (localStorage.getItem("settings_finger_print") !== null) {
                   if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
+
                     FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
                   }
                   else {
@@ -246,6 +248,7 @@
 
 
           function encryptSuccessCallback(result) {
+            window.fingerPrint.fingerPrintInitialize = false;
             console.log("successCallback(): " + JSON.stringify(result));
             if (result.withFingerprint) {
               console.log("Successfully encrypted credentials.");
@@ -262,6 +265,7 @@
           }
 
           function encryptErrorCallback(error) {
+            window.fingerPrint.fingerPrintInitialize = false;
             if (error === "Cancelled") {
               console.log("FingerprintAuth Dialog Cancelled!");
             } else {
@@ -314,6 +318,7 @@
           window.plugins.touchid.isAvailable(successCallback, notSupportedCallback);
 
           function successCallbackOfAuth(success) {
+            window.fingerPrint.fingerPrintInitialize = false;
             console.log(success)
             console.log('SUCCIESS FINGER PRINT')
             pin = localStorage.getItem('click_client_pin');
@@ -321,6 +326,7 @@
           }
 
           function failureCallbackOfAuth(error) {
+            window.fingerPrint.fingerPrintInitialize = false;
             console.log(error)
             console.log('FAIL FINGER PRINT')
           }
@@ -328,6 +334,7 @@
       }
     }
 
+    if(typeof window.fingerPrint.fingerPrintInitialize != undefined && window.fingerPrint.fingerPrintInitialize == false)
     fingerPrintTurnOn();
 
     var eyeInputShow = false;
@@ -605,8 +612,13 @@
       var date = parseInt(Date.now() / 1000);
 //      console.log(date);
       var token = localStorage.getItem('click_client_token');
+      if(!pin && localStorage.getItem('click_client_pin')){
+        pin = localStorage.getItem('click_client_pin');
+      }
       var password = hex_sha512(token + date + pin);
       localStorage.setItem("pinForStand", pin);
+
+      console.log(phoneNumber, deviceId, password, date, pin)
       authorization(phoneNumber, deviceId, password, date);
     };
 

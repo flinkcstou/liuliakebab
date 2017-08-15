@@ -113,6 +113,7 @@ window.News.newsCounter = 0;
 
 window.fingerPrint = {};
 window.fingerPrint.check = false;
+window.fingerPrint.fingerPrintInitialize = false;
 
 
 window.representDotedDate = function (left, middle, right) {
