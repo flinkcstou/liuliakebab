@@ -402,6 +402,7 @@
               var formtype = scope.favoritePaymentsList[i].params.formtype;
               var communalParam = scope.favoritePaymentsList[i].params.communalParam;
               var firstFieldId = scope.favoritePaymentsList[i].params.firstFieldId;
+              var chosenPrefixId = scope.favoritePaymentsList[i].params.chosenPrefixId;
 
 
               var ussdQuery = scope.favoritePaymentsList[i].ussd;
@@ -413,7 +414,7 @@
                 else {
                   ussdQuery = ussdQuery.replace('*{param}', firstFieldText);
                 }
-                ussdQuery = ussdQuery.replace('{option}', firstFieldId);
+                ussdQuery = ussdQuery.replace('{option}', chosenPrefixId);
                 ussdQuery = ussdQuery.replace('{amount}', amountText);
                 ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
                 console.log(ussdQuery)
@@ -421,6 +422,7 @@
 
               if (formtype == 2 && ussdQuery) {
                 ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                ussdQuery = ussdQuery.replace('{option}', chosenPrefixId);
                 ussdQuery = ussdQuery.replace('{amount}', amountText);
                 ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
                 console.log(ussdQuery)
@@ -429,6 +431,7 @@
               if (formtype == 3 && ussdQuery) {
                 ussdQuery = ussdQuery.replace('{communal_para}', communalParam);
                 ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                ussdQuery = ussdQuery.replace('{option}', chosenPrefixId);
                 ussdQuery = ussdQuery.replace('{amount}', amountText);
                 ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
                 console.log(ussdQuery)
@@ -436,6 +439,7 @@
 
               if (formtype == 4 && ussdQuery) {
                 ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                ussdQuery = ussdQuery.replace('{option}', chosenPrefixId);
                 ussdQuery = ussdQuery.replace('{amount}', amountText);
                 ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
                 console.log(ussdQuery)
