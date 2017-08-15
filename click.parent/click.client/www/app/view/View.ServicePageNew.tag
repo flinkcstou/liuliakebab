@@ -1131,13 +1131,20 @@
         scope.inputMaxLength = scope.fieldArray[0].max_len;
         console.log("INPUT LENGTH=", scope.inputMaxLength);
         scope.hasPrefixes = false;
+        scope.prefixesArray = [];
 
         if (scope.servicesParamsMapSix[opts.chosenServiceId]) {
-          scope.prefixesArray = scope.servicesParamsMapSix[opts.chosenServiceId];
-          scope.hasPrefixes = true;
-          scope.chosenPrefixTitle = scope.prefixesArray[0].title;
-          scope.chosenPrefixId = scope.prefixesArray[0].option_id;
-          console.log("scope.hasPrefixes", scope.hasPrefixes);
+
+          for (var i in scope.servicesParamsMapSix[opts.chosenServiceId]) {
+            if (scope.servicesParamsMapSix[opts.chosenServiceId][i].parent_param_id == scope.chosenFieldParamId)
+              scope.prefixesArray.push(scope.servicesParamsMapSix[opts.chosenServiceId][i]);
+          }
+          if (scope.prefixesArray.length > 0) {
+            scope.hasPrefixes = true;
+            scope.chosenPrefixTitle = scope.prefixesArray[0].title;
+            scope.chosenPrefixId = scope.prefixesArray[0].option_id;
+            console.log("scope.hasPrefixes", scope.hasPrefixes);
+          }
         }
 
 //          console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
@@ -1313,13 +1320,14 @@
         console.log(error);
       }
       this.blockPrefixId.style.display = 'block';
-      console.log("id=", scope.chosenFieldParamId);
-      if (scope.oldFieldParamId) {
-        document.getElementById(scope.oldFieldParamId).style.backgroundColor = 'white';
-        document.getElementById('text' + scope.oldFieldParamId).style.color = '#515151';
+      console.log("id=", scope.chosenPrefixId);
+      console.log("old=", scope.oldPrefixId);
+      if (scope.oldPrefixId) {
+        document.getElementById(scope.oldPrefixId).style.backgroundColor = 'white';
+        document.getElementById('text' + scope.oldPrefixId).style.color = '#515151';
       }
-      document.getElementById(scope.chosenFieldParamId).style.backgroundColor = '#0084E6';
-      document.getElementById('text' + scope.chosenFieldParamId).style.color = 'white';
+      document.getElementById(scope.chosenPrefixId).style.backgroundColor = '#0084E6';
+      document.getElementById('text' + scope.chosenPrefixId).style.color = 'white';
     };
 
     chooseFirstField = function (id) {
@@ -1355,8 +1363,23 @@
           scope.oldFieldParamId = scope.chosenFieldParamId;
           scope.chosenFieldParamId = id;
           firstFieldInput.value = '';
-          scope.update(scope.chosenFieldName);
-          scope.update(scope.phoneFieldBool);
+
+          if (scope.servicesParamsMapSix[opts.chosenServiceId]) {
+            scope.hasPrefixes = false;
+            scope.prefixesArray = [];
+            for (var i in scope.servicesParamsMapSix[opts.chosenServiceId]) {
+              if (scope.servicesParamsMapSix[opts.chosenServiceId][i].parent_param_id == scope.chosenFieldParamId)
+                scope.prefixesArray.push(scope.servicesParamsMapSix[opts.chosenServiceId][i]);
+            }
+            if (scope.prefixesArray.length > 0) {
+              scope.hasPrefixes = true;
+              scope.chosenPrefixTitle = scope.prefixesArray[0].title;
+              scope.chosenPrefixId = scope.prefixesArray[0].option_id;
+              console.log("scope.hasPrefixes", scope.hasPrefixes);
+            }
+          }
+
+          scope.update();
           break;
         }
       }
