@@ -58,7 +58,7 @@
 
       <div class="servicepage-prefix-dropdown" if="{!phoneFieldBool && hasPrefixes}" ontouchend="openPrefixesDropDown()"
            id="prefixChoiceId">
-        <p class="servicepage-prefix-dropdown-text-field">asd</p>
+        <p class="servicepage-prefix-dropdown-text-field">{chosenPrefixTitle}</p>
         <div class="servicepage-prefix-dropdown-icon"></div>
       </div>
 
@@ -135,13 +135,13 @@
 
   <div id="blockPrefixId" class="component-first-field">
     <div type="button" class="servicepage-fields-dropdown-close-button"
-         ontouchend="closeFirstFieldDropdownTouchEnd()" ontouchstart="closeFirstFieldDropdownTouchStart()"></div>
+         ontouchend="closePrefixDropdownTouchEnd()" ontouchstart="closePrefixDropdownTouchStart()"></div>
     <div class="servicepage-fields-dropdown-two">
-      <p class="servicepage-dropdown-text-field" style="color: white;">{chosenFieldName}</p>
+      <p class="servicepage-dropdown-text-field" style="color: white;">{chosenPrefixTitle}</p>
     </div>
     <div class="servicepage-dropdown-container">
       <div class="servicepage-dropdown-variant" each="{i in prefixesArray}" id="{i.option_id}"
-           ontouchend="chooseFirstField(this.id)">
+           ontouchend="choosePrefix(this.id)">
         <p id="text{i.option_id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.title}</p>
       </div>
     </div>
@@ -1362,6 +1362,28 @@
       }
     };
 
+    choosePrefix = function (id) {
+
+      this.blockPrefixId.style.display = 'none';
+
+      for (var i = 0; i < scope.prefixesArray.length; i++) {
+
+//        console.log("Yahoo2", id, scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].parameter_id);
+
+        if (scope.prefixesArray[i].option_id == id) {
+          scope.chosenPrefixTitle = scope.prefixesArray[i].title;
+
+          console.log("option ID ", scope.prefixesArray[i].option_id)
+
+          scope.oldPrefixId = scope.chosenPrefixId;
+          scope.chosenPrefixId = id;
+          //firstFieldInput.value = '';
+          scope.update(scope.chosenPrefixTitle);
+          break;
+        }
+      }
+    };
+
     var servicePageTouchStartY, servicePageTouchEndY
 
     scope.onTouchStartOfDropdownTwo = onTouchStartOfDropdownTwo = function () {
@@ -1420,6 +1442,8 @@
 
     var closeFirstFieldDropdownTouchStartX, closeFirstFieldDropdownTouchStartY, closeFirstFieldDropdownTouchEndX,
       closeFirstFieldDropdownTouchEndY;
+    var closePrefixDropdownTouchStartX, closePrefixDropdownTouchStartY, closePrefixDropdownTouchEndX,
+      closePrefixDropdownTouchEndY;
     var closeFirstDropdownTouchStartX, closeFirstDropdownTouchStartY, closeFirstDropdownTouchEndX,
       closeFirstDropdownTouchEndY;
     var closeSecondDropdownTouchStartX, closeSecondDropdownTouchStartY, closeSecondDropdownTouchEndX,
@@ -1442,6 +1466,26 @@
 
       if (Math.abs(closeFirstFieldDropdownTouchStartX - closeFirstFieldDropdownTouchEndX) <= 20 && Math.abs(closeFirstFieldDropdownTouchStartY - closeFirstFieldDropdownTouchEndY) <= 20) {
         this.blockFirstFieldId.style.display = 'none';
+      }
+    };
+
+    closePrefixDropdownTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      closePrefixDropdownTouchStartX = event.changedTouches[0].pageX;
+      closePrefixDropdownTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    closePrefixDropdownTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      closePrefixDropdownTouchEndX = event.changedTouches[0].pageX;
+      closePrefixDropdownTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(closePrefixDropdownTouchStartX - closePrefixDropdownTouchEndX) <= 20 && Math.abs(closePrefixDropdownTouchStartY - closePrefixDropdownTouchEndY) <= 20) {
+        this.blockPrefixId.style.display = 'none';
       }
     };
 
