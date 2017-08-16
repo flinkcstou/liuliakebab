@@ -316,6 +316,10 @@
 
         opts.mode = 'USUAL';
 
+        if(window.checkShowingComponent){
+          window.checkShowingComponent = null;
+        }
+
         riotTags.innerHTML = "<view-pay-confirm-new>";
         riot.mount("view-pay-confirm-new", opts);
 
