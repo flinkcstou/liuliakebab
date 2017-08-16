@@ -3,7 +3,7 @@
   <div class="pay-page-title" style="border-style: none;">
     <p class="servicepage-title">{titleName}</p>
     <p class="servicepage-category-field">{categoryName}</p>
-    <div ontouchend="goToBack()"
+    <div id="goBackServiceInfoButtonId" ontouchstart="goToBackServiceInfoStart()" ontouchend="goToBackServiceInfoEnd()"
          class="servicepage-button-back">
     </div>
     <div type="button" class="servicepage-service-icon"
@@ -65,12 +65,6 @@
 
     var scope = this;
     scope.showError = false;
-    touchStartTitle = function () {
-      event.preventDefault();
-      event.stopPropagation();
-      onBackKeyDown()
-      scope.unmount()
-    };
 
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
@@ -199,6 +193,35 @@
 
 
     }
+
+    var goBackStartY, goBackStartX, goBackEndY, goBackEndX;
+
+    goToBackServiceInfoStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      document.getElementById("goBackServiceInfoButtonId").style.webkitTransform = 'scale(0.7)'
+
+      goBackStartY = event.changedTouches[0].pageY;
+      goBackStartX = event.changedTouches[0].pageX;
+
+    };
+
+    goToBackServiceInfoEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      document.getElementById("goBackServiceInfoButtonId").style.webkitTransform = 'scale(1)'
+
+      goBackEndY = event.changedTouches[0].pageY;
+      goBackEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(goBackStartY - goBackEndY) <= 20 && Math.abs(goBackStartX - goBackEndX) <= 20) {
+
+        onBackKeyDown()
+        scope.unmount()
+      }
+    };
 
     var optionOnTouchStartY, optionOnTouchStartX, optionOnTouchEndY, optionOnTouchEndX;
 
