@@ -624,8 +624,15 @@
             console.log("result of get.payment success=", result);
             if (result[1][0].state == -1) {
               scope.stepErrorAmount = 2;
-              scope.errorMessageFromPayment = result[1][0].error;
-              scope.update();
+              //scope.errorMessageFromPayment = result[1][0].error;
+              window.languages.tempText = JSON.stringify(result[1][0].error);
+              this.errorMessageFromPayment = window.languages.tempText;
+              console.log("result error", result[1][0].error);
+              console.log("asd", scope.tags['component-unsuccess'].opts);
+              console.log("with this", this.errorMessageFromPayment);
+              scope.tags['component-unsuccess'].opts.operationmessagepartthree = result[1][0].error;
+              scope.tags['component-unsuccess'].errorMessage = result[1][0].error;
+              riot.update()
               console.log("state=-1 error,view=", scope.viewPage, ",step=", scope.stepErrorAmount);
               if (device.platform != 'BrowserStand') {
                 SpinnerPlugin.activityStop();

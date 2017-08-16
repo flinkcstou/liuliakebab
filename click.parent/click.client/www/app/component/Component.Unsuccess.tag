@@ -1,14 +1,18 @@
 <component-unsuccess id="componentUnsuccessId" class="component-unsuccess">
   <p class="unsuccess-operation-success-message">{opts.operationmessagepartone}<br>{opts.operationmessageparttwo}</p>
-  <p class="unsuccess-operation-success-message-part-three">{opts.operationmessagepartthree}</p>
+  <p class="unsuccess-operation-success-message-part-three">{opts.operationmessagepartthree.length()==0
+    ? opts.operationmessagepartthree :errorMessage}</p>
   <div class="unsuccess-unsuccess-icon"></div>
 
-  <button id="unsuccessButtonId" class="unsuccess-next-button-inner-container" ontouchstart="closeUnsuccessMessageFormStart()" ontouchend="closeUnsuccessMessageFormEnd()">
+  <button id="unsuccessButtonId" class="unsuccess-next-button-inner-container"
+          ontouchstart="closeUnsuccessMessageFormStart()" ontouchend="closeUnsuccessMessageFormEnd()">
     {window.languages.ComponentUnsuccessNext}
   </button>
 
   <script>
     var scope = this;
+
+    scope.errorMessage = '';
 
     var closeButtonStartX, closeButtonEndX, closeButtonStartY, closeButtonEndY;
 
@@ -28,6 +32,7 @@
 
       if (Math.abs(closeButtonStartX - closeButtonEndX) <= 20 && Math.abs(closeButtonStartY - closeButtonEndY) <= 20) {
         console.log('OPTS', opts)
+        console.log('errorMessage', scope.errorMessage)
         componentUnsuccessId.style.display = 'none';
         console.log("before unsuccess", history.arrayOfHistory)
         if (opts.step_amount) {
