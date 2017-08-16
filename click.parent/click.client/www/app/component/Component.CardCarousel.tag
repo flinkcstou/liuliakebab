@@ -482,15 +482,42 @@
                         console.log('HASH SUM CHECKING', cardsArray[result[1][i].id].checksum, result[1][i].checksum);
 
                         if (cardsArray[result[1][i].id].checksum != result[1][i].checksum) {
+                          if (device.platform != 'BrowserStand') {
+                            var options = {dimBackground: true};
+
+                            SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+                              console.log("Started");
+                            }, function () {
+                              console.log("closed");
+                            });
+                          }
                           scope.checkSumOfHash = false;
                         }
                       }
                       else {
+                        if (device.platform != 'BrowserStand') {
+                          var options = {dimBackground: true};
+
+                          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+                            console.log("Started");
+                          }, function () {
+                            console.log("closed");
+                          });
+                        }
                         scope.checkSumOfHash = false;
                       }
                     }
                   }
                   else {
+                    if (device.platform != 'BrowserStand') {
+                      var options = {dimBackground: true};
+
+                      SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+                        console.log("Started");
+                      }, function () {
+                        console.log("closed");
+                      });
+                    }
                     scope.checkSumOfHash = false;
                   }
 
@@ -616,9 +643,15 @@
                       addCard()
                     }, 0);
                   }
+
+                  if (device.platform != 'BrowserStand')
+                    SpinnerPlugin.activityStop();
                 }
                 else {
                   setTimeout(function () {
+
+                    if (device.platform != 'BrowserStand')
+                      SpinnerPlugin.activityStop();
 
                     addCard()
                   }, 0);

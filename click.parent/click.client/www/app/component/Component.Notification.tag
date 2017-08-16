@@ -33,18 +33,25 @@
     if (device.platform != 'BrowserStand') {
       window.FirebasePlugin.onNotificationOpen(function (notification) {
 
+        if(!scope.show){
+          sessionStorage.setItem("push_notification_real", JSON.stringify(notification));
+        }
+        else {
+          return
+        }
+
         console.log("PUSH NOTIFICATION OBJECT", notification);
         ++numberOfMessage;
 
         if (device.platform == "iOS") {
 
-           notificationText = notification.notification.body;
+           notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).notification.body;
         } else {
 
-           notificationText = notification.body;
+           notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).body;
         }
-        scope.notificationAction = notification.action;
-        scope.notificationElementId = notification.notify_id;
+        scope.notificationAction = JSON.parse(sessionStorage.getItem("push_notification_real")).action;
+        scope.notificationElementId = JSON.parse(sessionStorage.getItem("push_notification_real")).notify_id;
 
         var authorized = JSON.parse(localStorage.getItem("click_client_authorized"));
 //        authorized = JSON.parse(authorized);
@@ -107,11 +114,12 @@
 
           scope.show = true;
           scope.notificationText = JSON.stringify(notificationText);
-          scope.update();
 
           console.log('NOTIFICATION TEXT', scope.notificationText)
 
           numberOfMessage = 0;
+
+          scope.update();
 
           if (modeOfApp.offlineMode) {
             window.FirebasePlugin.setBadgeNumber(0);
