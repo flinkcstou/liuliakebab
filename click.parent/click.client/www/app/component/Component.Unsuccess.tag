@@ -12,6 +12,7 @@
   <script>
     var scope = this;
 
+
     scope.errorMessage = '';
 
     var closeButtonStartX, closeButtonEndX, closeButtonStartY, closeButtonEndY;
