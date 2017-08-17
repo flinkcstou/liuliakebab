@@ -107,7 +107,10 @@
                      operationmessage="{operationMessage}"
                      goback="{goBack}"
                      viewpage="{viewPage}" step_amount="{stepAmount}"></component-success>
-  <component-unsuccess id="componentUnsuccessId" viewpage="{viewPage}" step_amount="{stepErrorAmount}" goback="{goBack}"
+  <component-unsuccess id="componentUnsuccessId"
+                       viewpage="{viewPage}"
+                       step_amount="{stepErrorAmount}"
+                       goback="{goBack}"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
                        operationmessagepartthree="{errorMessageFromPayment}"></component-unsuccess>
@@ -195,7 +198,7 @@
     scope.serviceIcon = scope.service.image;
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     scope.cardOrFriendBool = opts.payByCard;
-    scope.errorMessageFromPayment = '';
+//    scope.errorMessageFromPayment = '';
 
     scope.stepAmount = 3;
     scope.stepErrorAmount = 3;
@@ -582,7 +585,7 @@
           }
           else {
             scope.errorMessageFromPayment = result[0][0].error_note;
-            console.log("result of APP.PAYMENT 3", result);
+            console.log("ERROR MESSAGE", result);
             componentUnsuccessId.style.display = 'block';
             scope.update();
           }
@@ -624,21 +627,14 @@
             console.log("result of get.payment success=", result);
             if (result[1][0].state == -1) {
               scope.stepErrorAmount = 2;
-              //scope.errorMessageFromPayment = result[1][0].error;
               window.languages.tempText = JSON.stringify(result[1][0].error);
-              this.errorMessageFromPayment = window.languages.tempText;
-              console.log("result error", result[1][0].error);
-              console.log("asd", scope.tags['component-unsuccess'].opts);
-              console.log("with this", this.errorMessageFromPayment);
-              scope.tags['component-unsuccess'].opts.operationmessagepartthree = result[1][0].error;
-              scope.tags['component-unsuccess'].errorMessage = result[1][0].error;
-              riot.update()
-              console.log("state=-1 error,view=", scope.viewPage, ",step=", scope.stepErrorAmount);
+              scope.errorMessageFromPayment = result[1][0].error;
               if (device.platform != 'BrowserStand') {
                 SpinnerPlugin.activityStop();
               }
               componentUnsuccessId.style.display = 'block';
-
+              riot.update()
+//              scope.tags["component-unsuccess"].unsuccessComponentUpdate(result[1][0].error);
 
             } else if (result[1][0].state == 2) {
               window.updateBalanceGlobalFunction();

@@ -1,7 +1,7 @@
 <component-unsuccess id="componentUnsuccessId" class="component-unsuccess">
   <p class="unsuccess-operation-success-message">{opts.operationmessagepartone}<br>{opts.operationmessageparttwo}</p>
   <p class="unsuccess-operation-success-message-part-three">{(opts.operationmessagepartthree)
-    ? opts.operationmessagepartthree :errorMessage}</p>
+    ? opts.operationmessagepartthree :window.languages.tempText}</p>
   <div class="unsuccess-unsuccess-icon"></div>
 
   <button id="unsuccessButtonId" class="unsuccess-next-button-inner-container"
@@ -11,7 +11,6 @@
 
   <script>
     var scope = this;
-
 
     scope.errorMessage = '';
 
