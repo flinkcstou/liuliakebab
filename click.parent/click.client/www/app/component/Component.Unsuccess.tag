@@ -1,6 +1,6 @@
 <component-unsuccess id="componentUnsuccessId" class="component-unsuccess">
   <p class="unsuccess-operation-success-message">{opts.operationmessagepartone}<br>{opts.operationmessageparttwo}</p>
-  <p class="unsuccess-operation-success-message-part-three">{opts.operationmessagepartthree.length()==0
+  <p class="unsuccess-operation-success-message-part-three">{(opts.operationmessagepartthree)
     ? opts.operationmessagepartthree :errorMessage}</p>
   <div class="unsuccess-unsuccess-icon"></div>
 

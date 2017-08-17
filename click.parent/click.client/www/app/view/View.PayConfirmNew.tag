@@ -582,9 +582,9 @@
           }
           else {
             scope.errorMessageFromPayment = result[0][0].error_note;
-            scope.update();
             console.log("result of APP.PAYMENT 3", result);
             componentUnsuccessId.style.display = 'block';
+            scope.update();
           }
         },
 
