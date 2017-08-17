@@ -63,10 +63,15 @@
 
   permissionAccess = function () {
 
-    var permissions = cordova.plugins.permissions;
+    try {
+      var permissions = cordova.plugins.permissions;
 //    permissions.checkPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
-    permissions.checkPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
-    permissions.checkPermission(permissions.READ_CONTACTS, checkPermissionCallbackOfContacts, null);
+      permissions.checkPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
+      permissions.checkPermission(permissions.READ_CONTACTS, checkPermissionCallbackOfContacts, null);
+    }
+    catch (e){
+      console.log(e)
+    }
 //    window.plugins.sim.getSimInfo(successOfSim, errorOfSim);
 //
 //    function successOfSim(success) {
@@ -119,9 +124,14 @@
       }
     }
 
-    window.FirebasePlugin.hasPermission(function (data) {
+    try{window.FirebasePlugin.hasPermission(function (data) {
       console.log('FIREBASE ACCESS', data.isEnabled);
     });
+    }
+    catch (e){
+      console.log("FIREBASE ERROR",e)
+    }
+
 
   }
 

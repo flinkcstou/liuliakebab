@@ -12576,7 +12576,8 @@ var css = {
   "top:" + 100 * widthK + "px;" +
   "height: 100%;" +
   "overflow-x: hidden;" +
-  "overflow-y: auto;" +
+  "overflow-y: scroll;" +
+  "-webkit-overflow-scrolling: touch;" +
   "}",
 
   viewNewsBlock: ".view-news-block" +
