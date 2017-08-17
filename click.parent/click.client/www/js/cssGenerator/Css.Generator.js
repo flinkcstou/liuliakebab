@@ -3955,6 +3955,7 @@ var css = {
   "{" +
   "font-size:" + 30 * widthK + "px;" +
   "color: gainsboro;" +
+  "bottom: 0;" +
   "}",
 
   // "-moz-placeholder { color:#f00; font-size:" + 40 * widthK + "px;}" + /* firefox 19+ */
