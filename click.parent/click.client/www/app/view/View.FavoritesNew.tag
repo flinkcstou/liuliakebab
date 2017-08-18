@@ -10,7 +10,7 @@
 
     <div class="view-favorites-container" if="{favoriteListShow}">
       <div class="view-favorites-block-containter" each="{j in favoritePaymentsList}">
-        <div id="p{j.service.id}" class="view-favorites-block-inner-containter"
+        <div id="p{j.id}" class="view-favorites-block-inner-containter"
              ontouchstart="openFavoritePaymentStart(this.id)"
              ontouchend="openFavoritePaymentEnd(this.id)">
           <div class="view-favorites-icon"
@@ -24,10 +24,10 @@
               j.params.firstFieldText)}</p>
           </div>
         </div>
-        <div id="e{j.service.id}+{j.params.favoriteName}" class="view-favorites-edit-icon"
+        <div id="e{j.id}" class="view-favorites-edit-icon"
              ontouchstart="onTouchStartOfEditFavorite()"
              ontouchend="editFavoritePayment(this.id)"></div>
-        <div id="{j.service.id}+{j.params.favoriteName}" class="view-favorites-delete-icon"
+        <div id="{j.id}" class="view-favorites-delete-icon"
              ontouchstart="onTouchStartOfRemoveFavorite()"
              ontouchend="removeFromFavorites(this.id)"></div>
       </div>
@@ -65,7 +65,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-favorites-new') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-favorites-new',
+          "view": 'view-favorites-new',
           "params": opts
         }
       );
@@ -150,10 +150,10 @@
 
           window.api.call({
             method: 'get.service.parameters',
-            input : {
+            input: {
               session_key: sessionKey,
-              phone_num  : phoneNumber,
-              service_id : scope.favoritePaymentsList[i].service.id
+              phone_num: phoneNumber,
+              service_id: scope.favoritePaymentsList[i].service.id
             },
 
             scope: this,
@@ -222,12 +222,11 @@
         console.log("id2=", id);
 
         for (var i in scope.favoritePaymentsList) {
-          if (scope.favoritePaymentsList[i].service.id == id) {
-            console.log("scope.favoritePaymentsList[i].service.id", scope.favoritePaymentsList[i].service.id);
+          if (scope.favoritePaymentsList[i].id == id) {
+            console.log("scope.favoritePaymentsList[i].id", scope.favoritePaymentsList[i].id);
             console.log("open favorite ", scope.favoritePaymentsList[i]);
-//          viewPay.chosenServiceId = id;
+            scope.favoritePaymentsList[i].params.favoriteId = scope.favoritePaymentsList[i].id;
 
-//          viewPayConfirm.isInFavorites = true;
             if (modeOfApp.offlineMode) {
 
               var firstFieldText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.firstFieldText);
@@ -330,17 +329,16 @@
       if (Math.abs(editFavoriteStartY - editFavoriteEndY) <= 20 && Math.abs(editFavoriteStartX - editFavoriteEndX) <= 20) {
 
         console.log("id=", id);
-        console.log("id after split=", id.split('+')[0]);
-        name = id.split('+')[1];
-        id = id.split('+')[0].substring(1, id.split('+')[0].length);
-        console.log("id2=", id, "name=", name);
+        id = id.substring(1, id.length);
+        console.log("id2=", id);
 
         for (var i in scope.favoritePaymentsList) {
-          if (scope.favoritePaymentsList[i].service.id == id && scope.favoritePaymentsList[i].params.favoriteName == name) {
-            console.log("scope.favoritePaymentsList[i].service.id", scope.favoritePaymentsList[i].service.id);
+          if (scope.favoritePaymentsList[i].id == id) {
+            console.log("scope.favoritePaymentsList[i].id", scope.favoritePaymentsList[i].id);
             console.log("open favorite ", scope.favoritePaymentsList[i]);
 
             scope.favoritePaymentsList[i].params.mode = 'ADDFAVORITE';
+            scope.favoritePaymentsList[i].params.favoriteId = scope.favoritePaymentsList[i].id;
 
 
             this.riotTags.innerHTML = "<view-service-page-new>";
@@ -368,16 +366,13 @@
       removeFavoriteEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(removeFavoriteStartY - removeFavoriteEndY) <= 20 && Math.abs(removeFavoriteStartX - removeFavoriteEndX) <= 20) {
-        name = id.split('+')[1];
-        console.log("id2=", id, "name=", name);
-        console.log("Id to remove=", id.split('+')[0]);
 
-        id = id.split('+')[0];
+
         var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
         console.log("favList=", favoritePaymentsList)
         console.log(favoritePaymentsList);
         for (var i in favoritePaymentsList)
-          if (favoritePaymentsList[i].service.id == id && favoritePaymentsList[i].params.favoriteName == name) {
+          if (favoritePaymentsList[i].id == id) {
             favoritePaymentsList.splice(i, 1);
             if (favoritePaymentsList.length == 0) scope.favoriteListShow = false;
             console.log(favoritePaymentsList);

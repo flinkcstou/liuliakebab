@@ -501,6 +501,7 @@
                   if (favoritePaymentsList[j].params.paymentId && favoritePaymentsList[j].params.paymentId == paymentId) {
                     console.log("found ", favoritePaymentsList[j].params.paymentId)
                     scope.lastOperationContainer[i].isInFavorites = true;
+                    scope.favoriteId = favoritePaymentsList[j].id;
                     break;
                   }
                   scope.lastOperationContainer[i].isInFavorites = false;
@@ -517,6 +518,7 @@
               else
                 scope.lastOperationContainer[i].canAddToFavorite = false;
 
+              scope.lastOperationContainer[i].favoriteId = scope.favoriteId;
               riotTags.innerHTML = "<view-report-service-new>";
               riot.mount("view-report-service-new", scope.lastOperationContainer[i]);
 

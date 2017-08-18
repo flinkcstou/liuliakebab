@@ -327,6 +327,9 @@
         opts.favoriteName = scope.service.name;
         onBackParams.opts = JSON.parse(JSON.stringify(opts));
         var favoritePaymentsList;
+        console.log("ID for favorite", Math.floor((Math.random() * 1000000) + 1))
+        var id = Math.floor((Math.random() * 1000000) + 1);
+        opts.favoriteId = id;
 
         if (!localStorage.getItem('favoritePaymentsList')) {
           favoritePaymentsList = [];
@@ -334,7 +337,8 @@
           favoritePaymentsList.push({
             "params": opts,
             "service": scope.service,
-            "ussd": scope.fieldArray[0].ussd_query
+            "ussd": scope.fieldArray[0].ussd_query,
+            "id": id
           });
           console.log("favoritePaymentsList=", favoritePaymentsList);
 
@@ -344,7 +348,8 @@
           favoritePaymentsList.push({
             "params": opts,
             "service": scope.service,
-            "ussd": scope.fieldArray[0].ussd_query
+            "ussd": scope.fieldArray[0].ussd_query,
+            "id": id
           });
           console.log("favoritePaymentsList=", favoritePaymentsList);
           localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
@@ -366,7 +371,7 @@
 
           console.log(favoritePaymentsList[i].service.id, opts.chosenServiceId)
 
-          if (favoritePaymentsList[i].service.id == opts.chosenServiceId) {
+          if (favoritePaymentsList[i].id == opts.favoriteId) {
             console.log("i=", i);
             favoritePaymentsList.splice(i, 1);
             console.log(favoritePaymentsList);

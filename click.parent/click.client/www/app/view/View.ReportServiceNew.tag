@@ -138,7 +138,7 @@
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report-service-new') {
         history.arrayOfHistory.push(
           {
-            "view"  : 'view-report-service-new',
+            "view": 'view-report-service-new',
             "params": scope.opts
           }
         );
@@ -212,17 +212,22 @@
         newFavorite.chosenPrefixId = scope.opts.chosenPrefixId;
         newFavorite.chosenPrefixName = scope.opts.chosenPrefixName;
 
+
         console.log("ADD TO FAVORITES INPUT", newFavorite);
 
         favoritePaymentsList = (favoritePaymentsList) ? (favoritePaymentsList) : ([]);
 
-//        console.log("OPTS TO SAVE=", newFavorite);
+        console.log("ID for favorite", Math.floor((Math.random() * 1000000) + 1))
+        var id = Math.floor((Math.random() * 1000000) + 1);
+        scope.opts.favoriteId = id;
+
         console.log("Chosen Service =", servicesMap[scope.opts.service_id][0]);
 
         favoritePaymentsList.push({
-          "params" : newFavorite,
+          "params": newFavorite,
           "service": servicesMap[scope.opts.service_id][0],
-          "ussd"   : servicesParamsMapOne[scope.opts.service_id][0].ussd_query
+          "ussd": servicesParamsMapOne[scope.opts.service_id][0].ussd_query,
+          "id": id
         });
 
         console.log("favoritePaymentsList=", favoritePaymentsList);
@@ -248,7 +253,7 @@
         var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
         console.log(favoritePaymentsList);
         for (var i in favoritePaymentsList)
-          if (favoritePaymentsList[i].service.id == scope.opts.service_id) {
+          if (favoritePaymentsList[i].id == scope.opts.favoriteId) {
             favoritePaymentsList.splice(i, 1);
             console.log(favoritePaymentsList);
             scope.isInFavorites = false;
@@ -316,7 +321,7 @@
 
         opts.mode = 'USUAL';
 
-        if(window.checkShowingComponent){
+        if (window.checkShowingComponent) {
           window.checkShowingComponent = null;
         }
 

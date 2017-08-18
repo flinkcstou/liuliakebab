@@ -21,7 +21,7 @@
       </div>
       <div class="service-container">
         <div class="service-each-container" each="{i in favoritePaymentsList}">
-          <div id="{i.service.id+'index'}" class="service-buttons" ontouchstart="ontouchStartOfPayment(this.id)"
+          <div id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfPayment(this.id)"
                ontouchend="ontouchEndOfPayment(this.id)" style="background-image: url({i.service.image})">
           </div>
           <p class="service-labels">{i.params.favoriteName?i.params.favoriteName: i.service.name}</p>
@@ -383,8 +383,6 @@
       console.log("chosen id in payments END=", id);
       document.getElementById(id).style.webkitTransform = 'scale(1)'
 
-      id = id.split("index")[0]
-
 
       event.stopPropagation();
 
@@ -394,8 +392,9 @@
       if (Math.abs(onTouchStartX2 - onTouchEndX2) <= 20) {
         console.log("chosen id in payments carousel=", id);
         for (var i in scope.favoritePaymentsList) {
-          if (scope.favoritePaymentsList[i].service.id == id) {
+          if (scope.favoritePaymentsList[i].id == id) {
             console.log("gnrf", scope.favoritePaymentsList[i]);
+            scope.favoritePaymentsList[i].params.favoriteId = scope.favoritePaymentsList[i].id;
 
 
             if (modeOfApp.offlineMode) {

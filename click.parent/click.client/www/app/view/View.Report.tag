@@ -934,13 +934,13 @@
               var servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
               var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
 
-              console.log(" starting check", favoritePaymentsList)
               if (favoritePaymentsList) {
                 for (var j in favoritePaymentsList) {
                   console.log("fav payment j ", favoritePaymentsList[j].params)
                   if (favoritePaymentsList[j].params.paymentId && favoritePaymentsList[j].params.paymentId == paymentId) {
                     console.log("found , saved to opts ", favoritePaymentsList[j].params.paymentId)
                     scope.tags['view-report-service-new'].isInFavorites = true;
+                    scope.favoriteId = favoritePaymentsList[j].id;
                     break;
                   }
                   scope.tags['view-report-service-new'].isInFavorites = false;
@@ -957,6 +957,7 @@
               else
                 scope.paymentsList[i].canAddToFavorite = false;
 
+              scope.paymentsList[i].favoriteId = scope.favoriteId;
               scope.showComponent = true;
               scope.tags['view-report-service-new'].opts = scope.paymentsList[i];
               console.log("PAYMENT", JSON.stringify(scope.tags['view-report-service-new'].opts.service_name));

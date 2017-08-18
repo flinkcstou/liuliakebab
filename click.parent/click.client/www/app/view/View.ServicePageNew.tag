@@ -663,7 +663,7 @@
             console.log('error', error)
           });
         }
-        catch(e){
+        catch (e) {
           console.log(e)
         }
       }
@@ -2169,7 +2169,9 @@
     addToFavoritesinServicePage = function (array) {
 //      console.log('scope.fieldArray[0]', scope.fieldArray[0].ussd_query)
       var favoritePaymentsList;
-      console.log("OPTS TO SAVE for Favorite=", array);
+      console.log("ID for favorite", Math.floor((Math.random() * 1000000) + 1))
+      var id = Math.floor((Math.random() * 1000000) + 1);
+
 
       if (!localStorage.getItem('favoritePaymentsList')) {
         favoritePaymentsList = [];
@@ -2177,7 +2179,8 @@
         favoritePaymentsList.push({
           "params": array,
           "service": scope.service,
-          "ussd": scope.fieldArray[0].ussd_query
+          "ussd": scope.fieldArray[0].ussd_query,
+          "id": id
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
@@ -2188,7 +2191,8 @@
         favoritePaymentsList.push({
           "params": array,
           "service": scope.service,
-          "ussd": scope.fieldArray[0].ussd_query
+          "ussd": scope.fieldArray[0].ussd_query,
+          "id": id
         });
         console.log("favoritePaymentsList=", favoritePaymentsList);
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
@@ -2202,7 +2206,7 @@
       var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
 //      console.log(favoritePaymentsList);
       for (var i in favoritePaymentsList)
-        if (favoritePaymentsList[i].service.id == scope.service.id) {
+        if (favoritePaymentsList[i].id == opts.favoriteId) {
           favoritePaymentsList[i].params = params;
           console.log("UPDATED FAVORITE", favoritePaymentsList[i]);
           localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
