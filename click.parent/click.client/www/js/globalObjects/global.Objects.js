@@ -589,12 +589,7 @@ window.updateBalanceGlobalFunction = function () {
             }
           }
         }
-        else {
-          scope.clickPinError = false;
-          scope.errorNote = result[0][0].error_note;
-          scope.showError = true;
-          scope.update();
-        }
+
       },
 
       onFail: function (api_status, api_status_message, data) {

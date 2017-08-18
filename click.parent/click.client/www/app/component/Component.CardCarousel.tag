@@ -763,6 +763,7 @@
     //
     writeBalance = function () {
 
+
       console.log("BALANCE STARTED");
       console.log("BALANCE STARTED", getAccountsCards);
 
@@ -816,6 +817,7 @@
                 catch (error) {
                   console.log(error)
                 }
+                dd()
               }
             }
             else {

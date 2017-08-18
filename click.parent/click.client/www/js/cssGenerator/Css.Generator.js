@@ -11236,7 +11236,7 @@ var css = {
   "height: " + 74 * widthK + "px;" +
   "left: 28%;" +
   "width: 44%;" +
-  "top: 82%;" +
+  "top: 90%;" +
   "background-color: #01B8FE;" +
   "border-radius: " + 10 * widthK + "px;" +
   "bottom: 0;" +
