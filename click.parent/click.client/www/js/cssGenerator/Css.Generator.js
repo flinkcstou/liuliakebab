@@ -3955,7 +3955,11 @@ var css = {
   "{" +
   "font-size:" + 30 * widthK + "px;" +
   "color: gainsboro;" +
-  "bottom: 0;" +
+  "padding: " + 20 * widthK + "px 0 0 0;" +
+  // "line-height: 100px;" +
+  // "text-indent: 100px;" +
+  // "text-align: bottom;" +
+  // "top: 300px;" +
   "}",
 
   // "-moz-placeholder { color:#f00; font-size:" + 40 * widthK + "px;}" + /* firefox 19+ */
@@ -10271,6 +10275,7 @@ var css = {
   "width:" + 470 * widthK + "px;" +
   "height: 100%;" +
   "top: 0%;" +
+  "padding: 0;" +
   "background-color: transparent;" +
   "border: none;" +
   "outline: none;" +
@@ -10328,8 +10333,9 @@ var css = {
   "width:" + 125 * widthK + "px;" +
   "left:" + 30 * widthK + "px;" +
   //"left: 17%;" +
-  "height: 60%;" +
+  // "height: 60%;" +
   "top: 20%;" +
+  "padding: 0;" +
   "background-color: transparent;" +
   "outline: none;" +
   "border: none;" +

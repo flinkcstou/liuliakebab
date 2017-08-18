@@ -219,8 +219,10 @@
       event.preventDefault()
       event.stopPropagation()
 
-      if (boxOne.value.length == 19)
+      if (boxOne.value.length == 19) {
+        boxDate.autofocus
         boxDate.focus()
+      }
 
       if (boxOne.value.length <= 19 && (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT))
         boxOne.value = inputVerification.cardVerification(boxOne.value);

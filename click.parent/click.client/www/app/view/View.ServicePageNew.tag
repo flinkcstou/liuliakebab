@@ -574,7 +574,7 @@
 
         if (opts.mode != 'ADDAUTOPAY') {
           console.log('1')
-          if (device.platform == 'iOS' && this.firstFieldInput) {
+          if (device.platform == 'iOS') {
             firstFieldInput.autofocus;
             firstFieldInput.focus();
           } else {
@@ -586,7 +586,7 @@
           }
         } else {
           console.log('6')
-          if (device.platform == 'iOS' && this.autoPayNameInput) {
+          if (device.platform == 'iOS') {
             autoPayNameInput.autofocus;
             autoPayNameInput.focus();
           } else {

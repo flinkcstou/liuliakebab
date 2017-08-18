@@ -277,6 +277,34 @@
         scope.messageTitle = window.languages.ViewSmsMessageTitle;
         scope.messageTitleTwo = window.languages.ViewSmsMessageTitleTwo;
         scope.update();
+
+        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+        var deviceId = localStorage.getItem('click_client_deviceID');
+        var timestamp = parseInt(Date.now() / 1000);
+        var signString = hex_md5(phoneNumber.substring(0,5) + timestamp + phoneNumber.substring(phoneNumber.length - 4, phoneNumber.length))
+
+
+        window.api.call({
+          method: 'call.ivr',
+          input: {
+            phone_num: phoneNumber,
+            device_id: deviceId,
+            timestamp: timestamp,
+            sign_string: signString
+          },
+
+          scope: this,
+
+          onSuccess: function (result) {
+
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+
         clearInterval(time);
       }
       if (seconds == 0) {

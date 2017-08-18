@@ -25,7 +25,7 @@
       {window.languages.ViewAuthorizationClickPinLabel}
     </div>
     <div if="{firstEnter}" class="authorization-pin-input-first-enter-container">
-      <input autofocus type="password" class="authorization-pin-input-first-enter" onblur="inputPinBlur()"
+      <input autofocus="true" type="password" class="authorization-pin-input-first-enter" onblur="inputPinBlur()"
              id="firstPinInputId"/>
       <div class="authorization-input-eye-button" onclick="eyeClicked()"></div>
     </div>
@@ -109,14 +109,14 @@
 
     this.on('mount', function () {
       if (scope.firstEnter) {
-        if (device.platform == 'Android') {
+        if (device.platform == 'iOS') {
+          firstPinInputId.autofocus;
+          firstPinInputId.focus();
+        }
+        else {
           setTimeout(function () {
             firstPinInputId.focus();
           }, 0)
-        }
-        else {
-          firstPinInputId.autofocus;
-          firstPinInputId.focus();
         }
       }
       scope.update()
@@ -316,6 +316,7 @@
 
 
           window.plugins.touchid.isAvailable(successCallback, notSupportedCallback);
+
 
           function successCallbackOfAuth(success) {
             window.fingerPrint.fingerPrintInitialize = false;

@@ -59,7 +59,7 @@
       <div class="side-menu-containers-name side-menu-containers-name-call">Позвонить в CLICK</div>
     </div>
 
-    <div id="exitButtonId" class="side-menu-exit-container" ontouchend="exitFromAppTouchEnd()"
+    <div if="{device.platfrom != 'iOS'}" id="exitButtonId" class="side-menu-exit-container" ontouchend="exitFromAppTouchEnd()"
          ontouchstart="exitFromAppTouchStart()">
       <div class="side-menu-containers-icon side-menu-containers-icon-exit"></div>
       <div class="side-menu-containers-name side-menu-containers-name-call">Выход</div>
