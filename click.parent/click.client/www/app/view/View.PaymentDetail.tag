@@ -296,6 +296,7 @@
       }
     };
 
+    var statusCheckCounter = 0;
 
     function checkPaymentStatus(payment_id) {
 
