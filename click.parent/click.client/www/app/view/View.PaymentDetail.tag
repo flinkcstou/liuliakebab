@@ -3,7 +3,8 @@
   <div class="transfer-to-card-title-container">
     <div class="page-title account-detail-page-title">
       <p class="name-title">{window.languages.ViewPaymentDetailTitle + opts.invoiceId}</p>
-      <div id="paymentDetailBackButtonId" ontouchstart="paymentDetailGoToBackStart()" ontouchend="paymentDetailGoToBackEnd()" class="settings-general-back-button"></div>
+      <div id="paymentDetailBackButtonId" ontouchstart="paymentDetailGoToBackStart()"
+           ontouchend="paymentDetailGoToBackEnd()" class="settings-general-back-button"></div>
     </div>
 
     <div class="payment-detail-payment-icon"></div>
@@ -38,11 +39,13 @@
     <div class="account-detail-cover"></div>
 
     <div class="account-detail-buttons-container">
-      <button id="paymentAcceptButtonId" class="account-detail-button-accept" ontouchend="paymentDetailOnTouchEndAccept()"
+      <button id="paymentAcceptButtonId" class="account-detail-button-accept"
+              ontouchend="paymentDetailOnTouchEndAccept()"
               ontouchstart="paymentDetailOnTouchStartAccept()">
         {window.languages.ViewAccountDetailTitlePay}
       </button>
-      <button id="paymentCancelButtonId" class="account-detail-button-cancel" ontouchend="paymentDetailOnTouchEndDecline()"
+      <button id="paymentCancelButtonId" class="account-detail-button-cancel"
+              ontouchend="paymentDetailOnTouchEndDecline()"
               ontouchstart="paymentDetailOnTouchStartDecline()">
         {window.languages.ViewAccountDetailTitleDecline}
       </button>
@@ -58,6 +61,9 @@
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
                        operationmessagepartthree="{errorMessageFromTransfer}"
                        step_amount="{1}"></component-unsuccess>
+  <component-in-processing id="componentInProcessingId" viewpage="{viewPage}"
+                           operationmessagepartone="{window.languages.ComponentInProcessingPartOneForPay}"
+                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"></component-in-processing>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
@@ -91,7 +97,7 @@
 
     paymentDetailGoToBackEnd = function (doNotPrevent) {
 
-      if(!doNotPrevent) {
+      if (!doNotPrevent) {
         event.preventDefault();
         event.stopPropagation();
 
@@ -253,14 +259,22 @@
             console.log("result of invoice payment accept", result);
 
             if (result[0][0].error == 0) {
-              componentSuccessId.style.display = 'block';
 
-              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
-              console.log(history.arrayOfHistory)
-              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
-              scope.viewPage = 'view-report'
-              scope.update()
+              if (device.platform != 'BrowserStand') {
+                var options = {dimBackground: true};
+
+                SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+                  console.log("Started");
+                }, function () {
+                  console.log("closed");
+                });
+              }
+
+              setTimeout(function () {
+                checkPaymentStatus(result[1][0].payment_id);
+              }, 2000);
+
             }
             else {
               componentUnsuccessId.style.display = 'block';
@@ -281,6 +295,106 @@
         });
       }
     };
+
+
+    function checkPaymentStatus(payment_id) {
+
+      console.log("check payment status");
+      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+      var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+      var sessionKey = loginInfo.session_key;
+
+      window.api.call({
+        method: 'get.payment',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          payment_id: payment_id
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0 && result[1][0]) {
+
+            console.log("result of get.payment success=", result);
+            if (result[1][0].state == -1) {
+
+              componentUnsuccessId.style.display = 'block';
+              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
+              console.log(history.arrayOfHistory)
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
+              scope.viewPage = 'main-page'
+              scope.errorMessageFromTransfer = result[1][0].error;
+              scope.update()
+
+
+            } else if (result[1][0].state == 2) {
+              window.updateBalanceGlobalFunction();
+
+              componentSuccessId.style.display = 'block';
+
+              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
+              console.log(history.arrayOfHistory)
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
+              scope.viewPage = 'view-report'
+              scope.update()
+
+            } else if (result[1][0].state == 1) {
+
+              statusCheckCounter++;
+
+              if (statusCheckCounter < 5) {
+
+                if (device.platform != 'BrowserStand') {
+                  var options = {dimBackground: true};
+
+                  SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+                    console.log("Started");
+                  }, function () {
+                    console.log("closed");
+                  });
+                }
+
+                setTimeout(function () {
+                  checkPaymentStatus(result[1][0].payment_id);
+                }, 2000);
+
+              } else {
+                if (device.platform != 'BrowserStand') {
+                  SpinnerPlugin.activityStop();
+                }
+
+                componentInProcessingId.style.display = 'block';
+                history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
+                console.log(history.arrayOfHistory)
+                sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
+                scope.viewPage = 'main-page'
+                scope.update();
+
+              }
+
+            }
+
+          }
+          else {
+            console.log("result of GET.PAYMENT in else", result);
+            if (device.platform != 'BrowserStand') {
+              SpinnerPlugin.activityStop();
+            }
+            componentUnsuccessId.style.display = 'block';
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
 
 
   </script>
