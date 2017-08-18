@@ -408,7 +408,7 @@
 
           }
           else {
-            localStorage.clear()
+//            localStorage.clear()
             localStorage.setItem('version', versionOfApp)
           }
           localStorage.setItem('click_client_phoneNumber', phoneNumber);

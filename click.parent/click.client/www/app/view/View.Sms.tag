@@ -283,6 +283,7 @@
         var timestamp = parseInt(Date.now() / 1000);
         var signString = hex_md5(phoneNumber.substring(0,5) + timestamp + phoneNumber.substring(phoneNumber.length - 4, phoneNumber.length))
 
+        console.log('CALL CALL CALL CALL CALL')
 
         window.api.call({
           method: 'call.ivr',
@@ -373,6 +374,7 @@
           checkServiceAnswer = true;
           if (result[0][0])
             if (result[0][0].error == 0) {
+              clearInterval(time);
 
               localStorage.setItem('confirm_needed', false);
               console.log(result)
