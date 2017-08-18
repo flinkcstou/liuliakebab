@@ -499,48 +499,52 @@
       if (Math.abs(pickFromNativeTouchStartX - pickFromNativeTouchEndX) <= 20 && Math.abs(pickFromNativeTouchStartY - pickFromNativeTouchEndY) <= 20) {
         window.pickContactFromNativeChecker = true;
 
-        window.plugins.PickContact.chooseContact(function (contactInfo) {
+        try {
+          window.plugins.PickContact.chooseContact(function (contactInfo) {
 //        console.log('CONTACTINFO', contactInfo)
-          setTimeout(function () {
-            var phoneNumber
-            if (device.platform == 'iOS')
-              phoneNumber = contactInfo.phoneNr;
+            setTimeout(function () {
+              var phoneNumber
+              if (device.platform == 'iOS')
+                phoneNumber = contactInfo.phoneNr;
 
-            if (device.platform == 'Android') {
-              phoneNumber = contactInfo.nameFormated
-            }
-            var digits = phoneNumber.match(maskOne);
-            var phone = '';
-            for (var i in digits) {
-              phone += digits[i]
-            }
-            contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
-            if (contactPhoneNumberId.value.length != 0) {
-              checkPhoneForTransfer = true;
-              checkCardForTransfer = false;
-//            console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
-              if (contactPhoneNumberId.value.length == 9) {
-                nextButtonId.style.display = 'block'
-
-                firstSuggestionBlockId.style.display = 'none';
-                secondSuggestionBlockId.style.display = 'none';
-                thirdSuggestionBlockId.style.display = 'none';
-                fourthSuggestionBlockId.style.display = 'none';
-                fifthSuggestionBlockId.style.display = 'none';
-
+              if (device.platform == 'Android') {
+                phoneNumber = contactInfo.nameFormated
               }
-              else
-                nextButtonId.style.display = 'none'
+              var digits = phoneNumber.match(maskOne);
+              var phone = '';
+              for (var i in digits) {
+                phone += digits[i]
+              }
+              contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
+              if (contactPhoneNumberId.value.length != 0) {
+                checkPhoneForTransfer = true;
+                checkCardForTransfer = false;
+//            console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
+                if (contactPhoneNumberId.value.length == 9) {
+                  nextButtonId.style.display = 'block'
 
-            }// use time-out to fix iOS alert problem
+                  firstSuggestionBlockId.style.display = 'none';
+                  secondSuggestionBlockId.style.display = 'none';
+                  thirdSuggestionBlockId.style.display = 'none';
+                  fourthSuggestionBlockId.style.display = 'none';
+                  fifthSuggestionBlockId.style.display = 'none';
 
-          }, 0);
-        }, function (error) {
+                }
+                else
+                  nextButtonId.style.display = 'none'
+
+              }// use time-out to fix iOS alert problem
+
+            }, 0);
+          }, function (error) {
 //        console.log('error', error)
-          checkPhoneForTransfer = false;
-          checkCardForTransfer = false;
-        });
-
+            checkPhoneForTransfer = false;
+            checkCardForTransfer = false;
+          });
+        }
+        catch (e) {
+          console.log(e)
+        }
       }
     }
 
@@ -1430,8 +1434,14 @@
 //        alert('Failed because: ' + message);
       }
     }
-    if (device.platform != 'BrowserStand')
-      findContacts();
+    if (device.platform != 'BrowserStand') {
+      try {
+        findContacts();
+      }
+      catch(e){
+        console.log(e)
+      }
+    }
 
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
     searchContacts = function () {

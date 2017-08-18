@@ -642,25 +642,30 @@
       if (Math.abs(searchContactStartY - searchContactEndY) <= 20 && Math.abs(searchContactStartX - searchContactEndX) <= 20) {
         window.pickContactFromNativeChecker = true;
         var maskOne = /[0-9]/g;
-        window.plugins.PickContact.chooseContact(function (contactInfo) {
-          setTimeout(function () {
-            var phoneNumber
-            if (device.platform == 'iOS')
-              phoneNumber = contactInfo.phoneNr;
+        try {
+          window.plugins.PickContact.chooseContact(function (contactInfo) {
+            setTimeout(function () {
+              var phoneNumber
+              if (device.platform == 'iOS')
+                phoneNumber = contactInfo.phoneNr;
 
-            if (device.platform == 'Android') {
-              phoneNumber = contactInfo.nameFormated
-            }
-            var digits = phoneNumber.match(maskOne);
-            var phone = '';
-            for (var i in digits) {
-              phone += digits[i]
-            }
-            firstFieldInput.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
-          }, 0);
-        }, function (error) {
-          console.log('error', error)
-        });
+              if (device.platform == 'Android') {
+                phoneNumber = contactInfo.nameFormated
+              }
+              var digits = phoneNumber.match(maskOne);
+              var phone = '';
+              for (var i in digits) {
+                phone += digits[i]
+              }
+              firstFieldInput.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
+            }, 0);
+          }, function (error) {
+            console.log('error', error)
+          });
+        }
+        catch(e){
+          console.log(e)
+        }
       }
     }
 

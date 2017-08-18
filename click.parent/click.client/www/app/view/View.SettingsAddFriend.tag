@@ -260,8 +260,14 @@
         scope.update();
       }
     }
-    if (device.platform != 'BrowserStand')
-      findContacts();
+    if (device.platform != 'BrowserStand') {
+      try {
+        findContacts();
+      }
+      catch(e){
+        console.log(e)
+      }
+    }
 
     scope.onPaste = false;
 

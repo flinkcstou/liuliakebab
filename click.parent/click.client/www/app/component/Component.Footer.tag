@@ -367,49 +367,54 @@
           arrayToSend = JSON.parse(localStorage.getItem('contactList'))
           window.pickContactFromNativeChecker = true;
 
-          navigator.contacts.pickContact(function (contact) {
+          try {
+            navigator.contacts.pickContact(function (contact) {
 
-            scope.showError = false;
+              scope.showError = false;
 
-            if (!contact.phoneNumbers) {
-              scope.showError = true;
-              scope.errorNote = 'Отсутствует номер контакта'
-              scope.update()
-              return
-            }
+              if (!contact.phoneNumbers) {
+                scope.showError = true;
+                scope.errorNote = 'Отсутствует номер контакта'
+                scope.update()
+                return
+              }
 
-            if (!contact.name) {
-              scope.showError = true;
-              scope.errorNote = 'Отсутствует имя контакта'
-              scope.update()
-              return
-            }
-
-            if (!contact.name.givenName) {
-              if (!contact.name.familyName) {
+              if (!contact.name) {
                 scope.showError = true;
                 scope.errorNote = 'Отсутствует имя контакта'
                 scope.update()
                 return
               }
-            }
 
-            for (var i in arrayToSend) {
-              console.log(arrayToSend[i].id, contact.id)
-              if (arrayToSend[i].id == contact.id) {
-                scope.showError = true;
-                scope.errorNote = 'Этот контакт уже добавлен'
-                scope.update()
-                return
+              if (!contact.name.givenName) {
+                if (!contact.name.familyName) {
+                  scope.showError = true;
+                  scope.errorNote = 'Отсутствует имя контакта'
+                  scope.update()
+                  return
+                }
               }
-            }
 
-            console.log("ARRAY TO SEND", arrayToSend)
-            arrayToSend.push(contact)
-            writeContactsFooter(arrayToSend)
-          }, function (err) {
-            console.log('Error: ' + err);
-          });
+              for (var i in arrayToSend) {
+                console.log(arrayToSend[i].id, contact.id)
+                if (arrayToSend[i].id == contact.id) {
+                  scope.showError = true;
+                  scope.errorNote = 'Этот контакт уже добавлен'
+                  scope.update()
+                  return
+                }
+              }
+
+              console.log("ARRAY TO SEND", arrayToSend)
+              arrayToSend.push(contact)
+              writeContactsFooter(arrayToSend)
+            }, function (err) {
+              console.log('Error: ' + err);
+            });
+          }
+          catch(e){
+            console.log(e)
+          }
         }
       }
 //      scope.unmount()
@@ -453,6 +458,7 @@
         else {
           arrayToSend = JSON.parse(localStorage.getItem('contactList'))
 
+          try{
           window.pickContactFromNativeChecker = true;
 
           navigator.contacts.pickContact(function (contact) {
@@ -498,6 +504,10 @@
           }, function (err) {
             console.log('Error: ' + err);
           });
+        }
+        catch(e){
+            console.log(e)
+        }
         }
       }
 //      scope.unmount()
@@ -543,49 +553,54 @@
 
           window.pickContactFromNativeChecker = true;
 
-          navigator.contacts.pickContact(function (contact) {
+          try {
+            navigator.contacts.pickContact(function (contact) {
 
-            scope.showError = false;
+              scope.showError = false;
 
-            if (!contact.phoneNumbers) {
-              scope.showError = true;
-              scope.errorNote = 'Отсутствует номер контакта'
-              scope.update()
-              return
-            }
+              if (!contact.phoneNumbers) {
+                scope.showError = true;
+                scope.errorNote = 'Отсутствует номер контакта'
+                scope.update()
+                return
+              }
 
-            if (!contact.name) {
-              scope.showError = true;
-              scope.errorNote = 'Отсутствует имя контакта'
-              scope.update()
-              return
-            }
-
-            if (!contact.name.givenName) {
-              if (!contact.name.familyName) {
+              if (!contact.name) {
                 scope.showError = true;
                 scope.errorNote = 'Отсутствует имя контакта'
                 scope.update()
                 return
               }
-            }
 
-            for (var i in arrayToSend) {
-              console.log(arrayToSend[i].id, contact.id)
-              if (arrayToSend[i].id == contact.id) {
-                scope.showError = true;
-                scope.errorNote = 'Этот контакт уже добавлен'
-                scope.update()
-                return
+              if (!contact.name.givenName) {
+                if (!contact.name.familyName) {
+                  scope.showError = true;
+                  scope.errorNote = 'Отсутствует имя контакта'
+                  scope.update()
+                  return
+                }
               }
-            }
+
+              for (var i in arrayToSend) {
+                console.log(arrayToSend[i].id, contact.id)
+                if (arrayToSend[i].id == contact.id) {
+                  scope.showError = true;
+                  scope.errorNote = 'Этот контакт уже добавлен'
+                  scope.update()
+                  return
+                }
+              }
 
 
-            arrayToSend.push(contact)
-            writeContactsFooter(arrayToSend)
-          }, function (err) {
-            console.log('Error: ' + err);
-          });
+              arrayToSend.push(contact)
+              writeContactsFooter(arrayToSend)
+            }, function (err) {
+              console.log('Error: ' + err);
+            });
+          }
+          catch(e){
+            console.log(e)
+          }
         }
       }
 //      scope.unmount()
@@ -628,41 +643,46 @@
         else {
           arrayToSend = JSON.parse(localStorage.getItem('contactList'))
 
-          window.pickContactFromNativeChecker = true;
+          try {
+            window.pickContactFromNativeChecker = true;
 
-          navigator.contacts.pickContact(function (contact) {
-            scope.showError = false;
+            navigator.contacts.pickContact(function (contact) {
+              scope.showError = false;
 
-            if (!contact.phoneNumbers) {
-              scope.showError = true;
-              scope.errorNote = 'Отсутствует номер контакта'
-              scope.update()
-              return
-            }
-
-            if (!contact.name) {
-              scope.showError = true;
-              scope.errorNote = 'Отсутствует имя контакта'
-              scope.update()
-              return
-            }
-
-            for (var i in arrayToSend) {
-              console.log(arrayToSend[i].id, contact.id)
-              if (arrayToSend[i].id == contact.id) {
+              if (!contact.phoneNumbers) {
                 scope.showError = true;
-                scope.errorNote = 'Этот контакт уже добавлен'
+                scope.errorNote = 'Отсутствует номер контакта'
                 scope.update()
                 return
               }
-            }
+
+              if (!contact.name) {
+                scope.showError = true;
+                scope.errorNote = 'Отсутствует имя контакта'
+                scope.update()
+                return
+              }
+
+              for (var i in arrayToSend) {
+                console.log(arrayToSend[i].id, contact.id)
+                if (arrayToSend[i].id == contact.id) {
+                  scope.showError = true;
+                  scope.errorNote = 'Этот контакт уже добавлен'
+                  scope.update()
+                  return
+                }
+              }
 
 
-            arrayToSend.push(contact)
-            writeContactsFooter(arrayToSend)
-          }, function (err) {
-            console.log('Error: ' + err);
-          });
+              arrayToSend.push(contact)
+              writeContactsFooter(arrayToSend)
+            }, function (err) {
+              console.log('Error: ' + err);
+            });
+          }
+          catch(e){
+            console.log(e)
+          }
         }
       }
 //      scope.unmount()
