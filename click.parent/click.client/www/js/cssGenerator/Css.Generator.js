@@ -12093,7 +12093,8 @@ var css = {
   "height:" + 140 * widthK + "px;" +
   "width:" + 140 * widthK + "px;" +
   "top:" + 64 * widthK + "px;" +
-  "left: 41%;" +
+  "left: 50%;" +
+  "-webkit-transform: translate3d(-50%, 0, 0);" +
   //"border:" + 4 * widthK + "px solid white;" +
   "border-radius:" + 90 * widthK + "px;" +
   "background-repeat: no-repeat;" +
