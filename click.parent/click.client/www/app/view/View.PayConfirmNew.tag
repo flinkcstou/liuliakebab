@@ -210,7 +210,7 @@
     console.log("firstFieldTitle pay confirm=", this.firstFieldTitle);
 
 
-    if (opts.firstFieldId == '1') {
+    if (opts.firstFieldId == '1' || opts.firstFieldId == '65536' || opts.firstFieldId == '128') {
 //      console.log("TEL LENGTH VERIFICATION=", inputVerification.telLengthVerification(opts[0][2].firstFieldText, window.languages.PhoneNumberLength));
       opts.firstFieldText = inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
 
