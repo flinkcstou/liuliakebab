@@ -5610,7 +5610,7 @@ var css = {
   "width: 13%;" +
   "height: 50%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 60%;" +
+  "background-size:" + 45 * widthK + "px;" +
   "background-position: center;" +
   "top: 34%;" +
   "right: -2%;" +
