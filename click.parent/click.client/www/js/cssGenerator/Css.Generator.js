@@ -1,8 +1,8 @@
-// widthK = window.innerWidth / 720;
-// heightK = window.innerHeight / 1232;
+widthK = window.innerWidth / 720;
+heightK = window.innerHeight / 1232;
 
-widthK = window.innerHeight / 1232;
-heightK = window.innerWidth / 720;
+// widthK = window.innerHeight / 1232;
+// heightK = window.innerWidth / 720;
 
 var heightOfMobile;
 var topOfIos;
@@ -7170,10 +7170,12 @@ var css = {
 
   registrationClientButtonsContainer: ".registration-client-buttons-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "width:" + 560 * widthK + "px;" +
   "bottom:" + -10 * widthK + "px;" +
-  "left:" + 84 * widthK + "px;" +
+  // "left:" + 84 * widthK + "px;" +
   "}",
 
   registrationClientButtonEnter: ".registration-client-button-enter " +
@@ -7183,9 +7185,11 @@ var css = {
 
   registrationClientKeyboardField: ".registration-client-keyboard-field " +
   "{" +
-  "position: absolute;" +
-  "bottom:" + 107 * heightK + "px;" +
-  "left:" + 110 * widthK + "px;" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "top:" + 30 * heightK + "px;" +
+  // "left:" + 110 * widthK + "px;" +
   "}",
 
   registrationClientButtonEnterContainer: ".registration-client-button-enter-container " +
