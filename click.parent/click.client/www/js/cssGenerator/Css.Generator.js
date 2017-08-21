@@ -3623,7 +3623,7 @@ var css = {
   payIconTick: ".pay-icon-tick " +
   "{" +
   "position: relative;" +
-  "left:" + 653 * widthK + "px;" +
+  "left: 91%;" +
   "background-size: contain;" +
   "background-image: url(resources/icons/ViewPay/catopen.png);" +
   "background-repeat: no-repeat;" +
