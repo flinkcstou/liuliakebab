@@ -1,8 +1,8 @@
-widthK = window.innerWidth / 720;
-heightK = window.innerHeight / 1232;
+// widthK = window.innerWidth / 720;
+// heightK = window.innerHeight / 1232;
 
-// widthK = window.innerHeight / 1232;
-// heightK = window.innerWidth / 720;
+widthK = window.innerHeight / 1232;
+heightK = window.innerWidth / 720;
 
 var heightOfMobile;
 var topOfIos;
@@ -1514,9 +1514,11 @@ var css = {
 
   bankOperationButtonMyCardContainer: ".bank-operation-button-my-cards-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "top:" + 30 + "%;" +
-  "left:" + 30 + "%;" +
+  // "left:" + 30 + "%;" +
   "width:" + 270 * widthK + "px;" +
   "height:" + 75 * widthK + "px;" +
   "}",
