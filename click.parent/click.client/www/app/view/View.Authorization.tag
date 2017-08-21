@@ -1,7 +1,7 @@
 <view-authorization class="view-authorization riot-tags-main-container">
 
-  <div class="authorization-flex-container">
-    <div if="{!firstEnter}" class="authorization-unchangable-container">
+  <div if="{!firstEnter}" class="authorization-flex-container">
+    <div class="authorization-unchangable-container">
       <div class="authorization-enter-pin-label">{window.languages.ViewAuthorizationClickPinLabel}</div>
       <div class="authorization-pin-container">
         <div class="authorization-pin-field">
@@ -20,7 +20,7 @@
   </div>
 
 
-  <div class="authorization-buttons-container">
+  <div id="authorizationButtonsContainerId" class="authorization-buttons-container">
     <div if="{firstEnter}" class="authorization-first-enter-pin-label">
       {window.languages.ViewAuthorizationClickPinLabel}
     </div>
@@ -109,6 +109,9 @@
 
     this.on('mount', function () {
       if (scope.firstEnter) {
+
+        authorizationButtonsContainerId.style.top = 400 * widthK + 'px'
+
         if (device.platform == 'iOS') {
           firstPinInputId.autofocus;
           firstPinInputId.focus();

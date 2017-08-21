@@ -1,8 +1,8 @@
-widthK = window.innerWidth / 720;
-heightK = window.innerHeight / 1232;
+// widthK = window.innerWidth / 720;
+// heightK = window.innerHeight / 1232;
 
-// widthK = window.innerHeight / 1232;
-// heightK = window.innerWidth / 720;
+widthK = window.innerHeight / 1232;
+heightK = window.innerWidth / 720;
 
 var heightOfMobile;
 var topOfIos;
@@ -1011,7 +1011,7 @@ var css = {
   "position: relative;" +
   "text-align: center;" +
   "color: #b7f1ff;" +
-  "top:" + 90 * widthK + "px;" +
+  "top:" + 120 * widthK + "px;" +
   "font-size:" + 30 * widthK + "px;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
@@ -1019,9 +1019,11 @@ var css = {
 
   smsPhoneField: ".sms-phone-field " +
   "{" +
-  "position: absolute;" +
-  "top:" + 15 * widthK + "px;" +
-  "left:" + 85 * widthK + "px;" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  // "top:" + 15 * widthK + "px;" +
+  // "left:" + 85 * widthK + "px;" +
   "width:" + 560 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "border-bottom:" + 3 * widthK + "px solid rgba(163, 222, 238, 0.95);" +
@@ -1162,12 +1164,13 @@ var css = {
   authorizationPinInputFirstEnter: ".authorization-pin-input-first-enter " +
   "{" +
   "position: absolute;" +
-  "height:" + 80 * widthK + "px;" +
+  // "height:" + 80 * widthK + "px;" +
   //"top:" + 5 * widthK + "px;" +
   "width:" + 470 * widthK + "px;" +
   "left:" + 70 * widthK + "px;" +
-  "font-size:" + 80 * widthK + "px;" +
+  "font-size:" + 62 * widthK + "px;" +
   "border: none;" +
+  "margin-top: 1%;" +
   "text-align: center;" +
   "padding: 0;" +
   "outline: none;" +
@@ -1204,7 +1207,10 @@ var css = {
 
   authorizationKeyboardField: ".authorization-keyboard-field " +
   "{" +
-  "bottom:" + 107 * widthK + "px;" +
+  "position: relative;" +
+  "top:" + 550 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "}",
 
   authorizationButtonEnter: ".authorization-button-enter " +
@@ -1214,10 +1220,12 @@ var css = {
 
   authorizationButtonsContainer: ".authorization-buttons-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "width:" + 580 * widthK + "px;" +
-  "left:" + 70 * widthK + "px;" +
-  "bottom:" + 700 * widthK + "px;" +
+  // "left:" + 70 * widthK + "px;" +
+  "bottom:" + 100 * widthK + "px;" +
   "height:" + 45 * widthK + "px;" +
   "}",
 
@@ -1244,15 +1252,17 @@ var css = {
 
   authorizationButtonOffline: ".authorization-button-offline " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "font-size:" + 34 * widthK + "px;" +
   "width:" + 240 * widthK + "px;" +
   "background-size: contain;" +
   "color: white;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "border-bottom:" + 1 + "px solid white;" +
   "text-align: center;" +
-  "bottom:" + 40 * widthK + "px;" +
-  "left:" + 240 * widthK + "px;" +
+  "top:" + 550 * widthK + "px;" +
+  // "left:" + 240 * widthK + "px;" +
   "}",
 
   authorizationButtonOfflineFirstEnter: ".authorization-button-offline-first-enter " +
