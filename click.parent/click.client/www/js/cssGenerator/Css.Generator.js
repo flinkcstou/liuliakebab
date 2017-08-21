@@ -1208,7 +1208,7 @@ var css = {
   authorizationKeyboardField: ".authorization-keyboard-field " +
   "{" +
   "position: relative;" +
-  "top:" + 550 * widthK + "px;" +
+  "top:" + 550 * heightK + "px;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "}",
@@ -1261,7 +1261,7 @@ var css = {
   "margin-right: auto;" +
   "border-bottom:" + 1 + "px solid white;" +
   "text-align: center;" +
-  "top:" + 550 * widthK + "px;" +
+  "top:" + 550 * heightK + "px;" +
   // "left:" + 240 * widthK + "px;" +
   "}",
 
@@ -1493,8 +1493,10 @@ var css = {
 
   topOperationsButtons: ".top-operations-buttons " +
   "{" +
-  "position: absolute;" +
-  "width: 100%;" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "width:" + 720 * widthK + "px;" +
   "height: 60%;" +
   //"bottom:" + 85 * heightK + "px;" +
   "top: 15%;" +
