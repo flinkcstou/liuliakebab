@@ -1,8 +1,8 @@
-// widthK = window.innerWidth / 720;
-// heightK = window.innerHeight / 1232;
+widthK = window.innerWidth / 720;
+heightK = window.innerHeight / 1232;
 
-widthK = window.innerHeight / 1232;
-heightK = window.innerWidth / 720;
+// widthK = window.innerHeight / 1232;
+// heightK = window.innerWidth / 720;
 
 var heightOfMobile;
 var topOfIos;
