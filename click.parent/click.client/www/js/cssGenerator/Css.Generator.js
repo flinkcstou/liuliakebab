@@ -333,7 +333,7 @@ var css = {
   "bottom: 0;" +
   "-webkit-overflow-scrolling: touch;" +
   "padding: 0 " + 25 * widthK + "px 0 " + 30 * widthK + "px;" +
-  "width:" + 665 * widthK + "px;" +
+  "width:95%;" +
   "}",
 
   invoiceListInvoice: ".invoice-list-invoice" +
@@ -6408,10 +6408,12 @@ var css = {
 
   codeConfirmCodeContainer: ".code-confirm-code-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
   "width:" + 450 * widthK + "px;" +
   "height:" + 450 * widthK + "px;" +
-  "left:" + 135 * widthK + "px;" +
+  // "left:" + 135 * widthK + "px;" +
   "top:" + 150 * widthK + "px;" +
   "}",
 
@@ -8476,7 +8478,7 @@ var css = {
   "{" +
   "position: absolute;" +
   //"height:" + 1150 * widthK + "px; " +
-  "width:" + 720 * widthK + "px; " +
+  "width:100%; " +
   "top:" + 380 * widthK + "px; " +
   "bottom:0; " +
   "background-color: #ffffff; " +
@@ -8686,10 +8688,12 @@ var css = {
 
   transferDetailCodeConfirmCodeContainer: ".transfer-detail-code-confirm-code-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "width:" + 450 * widthK + "px;" +
   "height:" + 450 * widthK + "px;" +
-  "left:" + 135 * widthK + "px;" +
+  // "left:" + 135 * widthK + "px;" +
   "top:" + 100 * widthK + "px;" +
   "}",
 
@@ -10067,7 +10071,7 @@ var css = {
   "{" +
   "position: absolute;" +
   //"height:" + 1150 * widthK + "px; " +
-  "width:" + 720 * widthK + "px; " +
+  "width: 100%; " +
   "top:" + 86 * widthK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
@@ -10576,7 +10580,7 @@ var css = {
   invoiceHistoryDetailContainer: ".invoice-history-detail-container" +
   "{" +
   "position: absolute;" +
-  "width:" + 720 * widthK + "px; " +
+  "width: 100%; " +
   "top:" + 340 * widthK + "px; " +
   "bottom:0; " +
   "background-color: #ffffff; " +
@@ -12907,7 +12911,7 @@ var css = {
   "{" +
   "position: absolute;" +
   //"height:" + 1150 * widthK + "px; " +
-  "width:" + 720 * widthK + "px; " +
+  "width: 100%; " +
   "top:" + 86 * widthK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
@@ -13146,7 +13150,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: " + 1092 * heightK + "px; " +
-  "width:" + 720 * widthK + "px; " +
+  "width: 100%; " +
   "top:" + 140 * heightK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
@@ -13597,21 +13601,25 @@ var css = {
   scheduleDateBlockTimeOuterContainer: ".schedule-date-block-time-outer-container " +
   "{" +
   "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "width: " + 440 * widthK + "px;" +
   "height:" + 440 * widthK + "px;" +
   "top: " + 311 * widthK + "px;" +
-  "left:" + 140 * widthK + "px;" +
+  // "left:" + 140 * widthK + "px;" +
   //"background-color: #01B8FE;" +
   "overflow: hidden;" +
   "}",
 
   scheduleDateBlockWeekOuterContainer: ".schedule-date-block-week-outer-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "width: " + 600 * widthK + "px;" +
   "height:" + 260 * widthK + "px;" +
   "top:  " + 335 * widthK + "px;" +
-  "left: 7%;" +
+  // "left: 7%;" +
   //"background-color: #01B8FE;" +
   "overflow: hidden;" +
   "}",
@@ -13926,6 +13934,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: 100%;" +
+  "top: 0;" +
   "width: 100%;" +
   "overflow: hidden;" +
   "overflow: hidden;" +
@@ -13938,13 +13947,16 @@ var css = {
 
   componentTour: ".component-tour " +
   "{" +
-  "top: 1%;" +
+  "top:" + 30 * heightK + "px;" +
   "position: absolute;" +
   "opacity: 1;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "height:" + 1158 * heightK + "px;" +
   "width:" + 604.797 * widthK + "px;" +
   //"top: 5%;" +
-  "left: 8%;" +
+  "left: 50%;" +
+  "-webkit-transform: translate3d(-50%, 0, 0);" +
   "background-color: white;" +
   "overflow : hidden;" +
   //"display:none;" +

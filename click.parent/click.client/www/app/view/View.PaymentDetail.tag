@@ -63,7 +63,8 @@
                        step_amount="{1}"></component-unsuccess>
   <component-in-processing id="componentInProcessingId" viewpage="{viewPage}"
                            operationmessagepartone="{window.languages.ComponentInProcessingPartOneForPay}"
-                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"></component-in-processing>
+                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"
+                           step_amount="{0}"></component-in-processing>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
@@ -317,6 +318,8 @@
 
         onSuccess: function (result) {
           if (result[0][0].error == 0 && result[1][0]) {
+
+            window.checkShowingComponent = null;
 
             console.log("result of get.payment success=", result);
             if (result[1][0].state == -1) {

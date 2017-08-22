@@ -34,6 +34,7 @@
           riot.mount("view-main-page");
         }
       } else if (!opts.step_amount && opts.viewpage) {
+        console.log('opts.viewpage',opts.viewpage)
         riotTags.innerHTML = "<" + opts.viewpage + ">";
         riot.mount(opts.viewpage);
       }
