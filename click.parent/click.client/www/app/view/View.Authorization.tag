@@ -761,7 +761,7 @@
           var compareLength = window.inputVerification.spaceDeleter(firstPinInputId.value);
 
         }
-        if (scope.firstEnter && (lengthOfPin != compareLength.length || lengthOfPin > 5)) {
+        if (scope.firstEnter && (lengthOfPin != compareLength.length || lengthOfPin != 5)) {
           riotTags.innerHTML = "<view-pin-code>";
           riot.mount('view-pin-code', ['view-authorization']);
         }

@@ -438,6 +438,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
+  "top: 0;" +
   "height: 100%;" +
   "overflow: hidden;" +
   "z-index: 999999;" +
