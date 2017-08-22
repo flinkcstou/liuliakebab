@@ -1502,8 +1502,9 @@ var css = {
   "margin-right: auto;" +
   "width:" + 720 * widthK + "px;" +
   "height: 60%;" +
-  //"bottom:" + 85 * heightK + "px;" +
-  "top: 15%;" +
+  // "bottom:" + 85 * heightK + "px;" +
+  "top:" + 30 * heightK + "px;" +
+  // "top: 15%;" +
   "}",
 
   bankOperationIcon: ".bank-operation-icon " +
