@@ -210,13 +210,18 @@
     console.log("firstFieldTitle pay confirm=", this.firstFieldTitle);
 
 
-    if (opts.firstFieldId == '1' || opts.firstFieldId == '65536' || opts.firstFieldId == '128') {
+    if (opts.firstFieldId == '1') {
 //      console.log("TEL LENGTH VERIFICATION=", inputVerification.telLengthVerification(opts[0][2].firstFieldText, window.languages.PhoneNumberLength));
       opts.firstFieldText = inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
 
-      this.firstFieldText = "+" + window.languages.CodeOfCountry + opts.firstFieldText;
+      this.firstFieldText = "+" + window.languages.CodeOfCountry + ' ' + opts.firstFieldText;
       var firstFieldtext = "+" + window.languages.CodeOfCountry + opts.firstFieldText;
       console.log("text=", firstFieldtext)
+    } else if (opts.firstFieldId == '65536' || opts.firstFieldId == '128') {
+      opts.firstFieldText = inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
+      this.firstFieldText = "+" + window.languages.CodeOfCountry + ' ' + opts.firstFieldText;
+      var firstFieldtext = inputVerification.spaceDeleter(opts.firstFieldText);
+      console.log("text in else=", firstFieldtext)
     }
     else if (opts.chosenPrefixId) {
       this.firstFieldText = opts.chosenPrefixName + opts.firstFieldText;
