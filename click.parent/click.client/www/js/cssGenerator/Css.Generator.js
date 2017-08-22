@@ -1,8 +1,11 @@
-widthK = window.innerWidth / 720;
-heightK = window.innerHeight / 1232;
-
-// widthK = window.innerHeight / 1232;
-// heightK = window.innerWidth / 720;
+if (window.innerWidth / window.innerHeight < 0.7) {
+  widthK = window.innerWidth / 720;
+  heightK = window.innerHeight / 1232;
+}
+else {
+  widthK = window.innerHeight / 1232;
+  heightK = window.innerWidth / 720;
+}
 
 var heightOfMobile;
 var topOfIos;
@@ -4579,8 +4582,8 @@ var css = {
   pincardFriendHelpText: ".pincard-friend-help-text" +
   "{" +
   "top: 65%;" +
-  "position: absolute;" +
-  "left: 23%;" +
+  "position: relative;" +
+  // "left: 23%;" +
   "color: rgb(1, 124, 227);" +
   "font-size: " + 29 * widthK + "px; " +
   "text-align: center;" +
@@ -5869,7 +5872,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height:" + 1150 * heightK + "px;" +
-  "width:" + 720 * widthK + "px;" +
+  "width: 100%;" +
   "top:" + 93 * heightK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
@@ -6002,7 +6005,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height:" + 1150 * heightK + "px;" +
-  "width:" + 720 * widthK + "px;" +
+  "width: 100%;" +
   "top:" + 93 * heightK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
@@ -6082,7 +6085,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height:" + 1142 * heightK + "px;" +
-  "width:" + 720 * widthK + "px;" +
+  "width: 100%;" +
   "top:" + 93 * heightK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
@@ -6749,14 +6752,17 @@ var css = {
 
   InProcessingSuccessIcon: ".in-processing-success-icon" +
   "{" +
-  "position: absolute;" +
-  "top:" + 338 * widthK + "px;" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "top:" + 230 * widthK + "px;" +
   "width:" + 270 * widthK + "px;" +
   "height:" + 250 * widthK + "px;" +
-  "left:" + 234 * widthK + "px;" +
+  // "left:" + 234 * widthK + "px;" +
   "background-image: url(resources/icons/ViewSuccessUnsuccess/processing.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 93%;" +
+  "background-position: center;" +
   "}",
 
   //COMPONENT SUCCESS
@@ -6819,14 +6825,17 @@ var css = {
 
   successSuccessIcon: ".success-success-icon" +
   "{" +
-  "position: absolute;" +
-  "top:" + 338 * widthK + "px;" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "top:" + 240 * widthK + "px;" +
   "width:" + 270 * widthK + "px;" +
   "height:" + 250 * widthK + "px;" +
-  "left:" + 234 * widthK + "px;" +
+  // "left:" + 234 * widthK + "px;" +
   "background-image: url(resources/icons/ViewSuccessUnsuccess/ok.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 93%;" +
+  "background-position: center;" +
   "}",
 
   //COMPONENT DELETE
@@ -6981,14 +6990,17 @@ var css = {
 
   unsuccessUnsuccessIcon: ".unsuccess-unsuccess-icon" +
   "{" +
-  "position: absolute;" +
-  "top:" + 307 * widthK + "px;" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "top:" + 175 * widthK + "px;" +
   "width:" + 270 * widthK + "px;" +
   "height:" + 250 * widthK + "px;" +
-  "left:" + 243 * widthK + "px;" +
+  // "left:" + 243 * widthK + "px;" +
   "background-image: url(resources/icons/ViewSuccessUnsuccess/fail.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 93%;" +
+  "background-position: center;" +
   "}",
 
   //OFFLINE MODE
@@ -7301,7 +7313,10 @@ var css = {
 
   pinCodeKeyboardField: ".pincode-keyboard-field " +
   "{" +
-  "bottom:" + 107 * widthK + "px;" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "top:" + 460 * heightK + "px;" +
   "}",
 
   pinCodeButtonEnter: ".pincode-button-enter " +
@@ -7340,15 +7355,17 @@ var css = {
 
   pinCodeButtonOffline: ".pincode-button-offline " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "font-size:" + 34 * widthK + "px;" +
   "width:" + 240 * widthK + "px;" +
   "background-size: contain;" +
   "color: white;" +
   "border-bottom:" + 1 + "px solid white;" +
   "text-align: center;" +
-  "bottom:" + 40 * widthK + "px;" +
-  "left:" + 240 * widthK + "px;" +
+  "top:" + 580 * heightK + "px;" +
+  // "left:" + 240 * widthK + "px;" +
   "}",
 
   pinCodeEnterPinLabel: ".pincode-enter-pin-label " +
@@ -9014,7 +9031,7 @@ var css = {
   transferToCardContainer: ".transfer-to-card-container" +
   "{" +
   "position: absolute;" +
-  "width:" + 720 * widthK + "px; " +
+  "width: 100%; " +
   "top:" + 380 * widthK + "px; " +
   "bottom:0; " +
   "background-color: #ffffff; " +
@@ -11213,8 +11230,8 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 601 * widthK + "px;" +
-  "left:" + -10 * widthK + "px;" +
+  "top:" + 370 * widthK + "px;" +
+  // "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
 
@@ -11287,11 +11304,13 @@ var css = {
 
   componentAlertIcon: ".component-alert-icon" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
   "top:" + 300 * widthK + "px;" +
   "width:" + 270 * widthK + "px;" +
   "height:" + 250 * widthK + "px;" +
-  "left:" + 225 * widthK + "px;" +
+  // "left:" + 225 * widthK + "px;" +
   "background-image: url(resources/icons/icon/alert_icon.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 85%;" +
@@ -12362,7 +12381,7 @@ var css = {
   "{" +
   "position: absolute;" +
   //"height:" + 1150 * widthK + "px; " +
-  "width:" + 720 * widthK + "px; " +
+  "width:100%; " +
   "top:" + 555 * heightK + "px; " +
   "bottom:0; " +
   "background-color: #00a8f1; " +
