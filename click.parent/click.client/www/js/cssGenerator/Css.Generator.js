@@ -2956,7 +2956,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height:" + 1150 * heightK + "px; " +
-  "width:" + 720 * widthK + "px; " +
+  "width: 100%; " +
   "top:" + 86 * heightK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
@@ -3036,7 +3036,7 @@ var css = {
   "width: 7%;" +
   "height: 36%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 100%;" +
+  "background-size: " + 35 * widthK + "px; " +
   "background-position: center;" +
   "top: 50%;" +
   "left: 93%;" +
@@ -8077,7 +8077,7 @@ var css = {
   "width: 13%;" +
   "height: 50%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 60%;" +
+  "background-size:" + 45 * widthK + "px;" +
   "background-position: center;" +
   "top: 34%;" +
   "right: -2%;" +
@@ -10960,7 +10960,7 @@ var css = {
   "{" +
   "position: absolute;" +
   //"height:" + 1150 * widthK + "px; " +
-  "width:" + 720 * widthK + "px; " +
+  "width: 100%; " +
   "top:" + 92 * widthK + "px; " +
   "bottom:0; " +
   "background-color: #f4f4f4; " +
@@ -11487,7 +11487,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: " + 1092 * heightK + "px; " +
-  "width: " + 720 * widthK + "px; " +
+  "width: 100%; " +
   "top: " + 140 * heightK + "px; " +
   "background-color: white;" +
   "overflow-x: hidden;" +
@@ -11633,8 +11633,8 @@ var css = {
   qrPincardFriendHelpText: ".qr-pincard-friend-help-text" +
   "{" +
   "top: 65%;" +
-  "position: absolute;" +
-  "left: 23%;" +
+  "position: relative;" +
+  // "left: 23%;" +
   "color: rgb(1, 124, 227);" +
   "font-size: " + 29 * widthK + "px; " +
   "text-align: center;" +
@@ -11761,7 +11761,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "height: " + 62 * widthK + "px;" +
+  "height: " + 74 * widthK + "px;" +
   "font-size: " + 32 * widthK + "px;" +
   "top: 60%;" +
   "background-color: #00a8f1;" +
@@ -11860,7 +11860,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: " + 1092 * heightK + "px; " +
-  "width: " + 720 * widthK + "px; " +
+  "width: 100%; " +
   "top: " + 140 * heightK + "px; " +
   "background-color: white;" +
   "overflow-x: hidden;" +
@@ -12063,7 +12063,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "height: " + 62 * widthK + "px;" +
+  "height: " + 74 * widthK + "px;" +
   "font-size: " + 32 * widthK + "px;" +
   "top: 60%;" +
   "background-color: #00a8f1;" +
@@ -12348,13 +12348,15 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "left: " + 210 * widthK + "px;" +
+  // "left: " + 210 * widthK + "px;" +
+  "left: 50%;" +
   "top: " + 24 * widthK + "px;" +
   "height: " + 74 * widthK + "px;" +
   "text-transform: capitalize;" +
   "width: " + 287 * widthK + "px;" +
   "font-size: " + 28 * widthK + "px;" +
   "color: white;" +
+  "-webkit-transform: translate3d(-50%, 0, 0);" +
   "border-radius: " + 10 * widthK + "px;" +
   "background-color: #00a8f1;" +
   "}",
