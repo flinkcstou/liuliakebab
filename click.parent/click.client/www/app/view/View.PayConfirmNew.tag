@@ -575,6 +575,10 @@
               }
               else if (result[1][0].invoice_id && !result[1][0].payment_id) {
 
+                if (device.platform != 'BrowserStand') {
+                  SpinnerPlugin.activityStop();
+                }
+
                 viewServicePinCards.friendHelpPaymentMode = false;
                 viewServicePinCards.chosenFriendForHelp = null;
 
@@ -654,30 +658,36 @@
 
               if (statusCheckCounter < 5) {
 
-                if (device.platform != 'BrowserStand') {
-                  var options = {dimBackground: true};
-
-                  SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                    console.log("Started");
-                  }, function () {
-                    console.log("closed");
-                  });
-                }
+//                if (device.platform != 'BrowserStand') {
+//                  var options = {dimBackground: true};
+//
+//                  SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+//                    console.log("Started");
+//                  }, function () {
+//                    console.log("closed");
+//                  });
+//                }
 
                 setTimeout(function () {
                   checkPaymentStatus(result[1][0].payment_id);
                 }, 2000);
 
               } else {
-                if (device.platform != 'BrowserStand') {
-                  SpinnerPlugin.activityStop();
-                }
+
+                console.log("stopping check")
 
                 viewServicePinCards.friendHelpPaymentMode = false;
                 viewServicePinCards.chosenFriendForHelp = null;
 
                 scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
                 scope.update();
+
+                window.api.spinnerOn = false;
+
+                if (device.platform != 'BrowserStand') {
+                  SpinnerPlugin.activityStop();
+                }
+
                 componentInProcessingId.style.display = 'block';
               }
 

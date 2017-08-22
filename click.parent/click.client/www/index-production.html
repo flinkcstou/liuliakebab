@@ -69,7 +69,7 @@
       permissions.checkPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
       permissions.checkPermission(permissions.READ_CONTACTS, checkPermissionCallbackOfContacts, null);
     }
-    catch (e){
+    catch (e) {
       console.log(e)
     }
 //    window.plugins.sim.getSimInfo(successOfSim, errorOfSim);
@@ -124,12 +124,13 @@
       }
     }
 
-    try{window.FirebasePlugin.hasPermission(function (data) {
-      console.log('FIREBASE ACCESS', data.isEnabled);
-    });
+    try {
+      window.FirebasePlugin.hasPermission(function (data) {
+        console.log('FIREBASE ACCESS', data.isEnabled);
+      });
     }
-    catch (e){
-      console.log("FIREBASE ERROR",e)
+    catch (e) {
+      console.log("FIREBASE ERROR", e)
     }
 
 

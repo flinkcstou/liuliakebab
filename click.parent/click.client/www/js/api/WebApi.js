@@ -84,7 +84,6 @@ window.api.initSocket = function () {
     if (modeOfApp.offlineMode) return
 
 
-
     var parsedData = JSON.parse(event.data);
     console.log(parsedData);
     if (parsedData.api_status == 0)
@@ -118,7 +117,7 @@ window.api.initSocket = function () {
             }
             else {
               //showConfirmComponent(error, 'session');
-              if(sessionStorage.getItem("push_news") && JOSN.parse(sessionStorage.getItem("push_news")) === true) return
+              if (sessionStorage.getItem("push_news") && JOSN.parse(sessionStorage.getItem("push_news")) === true) return
               localStorage.setItem('session_broken', true)
               riotTags.innerHTML = "<view-authorization>";
               riot.mount('view-authorization');
@@ -177,12 +176,15 @@ window.api.call = function (params) {
   console.log("IT IS INPUT ", input);
   this.callBacks[method] = {
     ok: function (data) {
-      window.api.spinnerOn = false;
-      //console.log('ANSWER OF API ', data);
+
+      if (method != "get.payment" && method != "app.payment") {
+        window.api.spinnerOn = false;
+        console.log('ANSWER OF API ', data);
 
 
-      if (device.platform != 'BrowserStand') {
-        SpinnerPlugin.activityStop();
+        if (device.platform != 'BrowserStand') {
+          SpinnerPlugin.activityStop();
+        }
       }
 
       onSuccess.call(scope, data);
