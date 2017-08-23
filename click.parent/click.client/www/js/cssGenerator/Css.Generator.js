@@ -547,7 +547,7 @@ var css = {
 
   //VIEW REGISTRATION DEVICE
 
-  viewRegistrationDevice                 : ".view-registration-device " +
+  viewRegistrationDevice: ".view-registration-device " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
@@ -557,7 +557,7 @@ var css = {
   "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
-  registrationDeviceFlexContainer        : ".registration-device-flex-container " +
+  registrationDeviceFlexContainer: ".registration-device-flex-container " +
   "{" +
   "position: absolute;" +
   "top: 0;" +
@@ -575,7 +575,7 @@ var css = {
   //"top:" + 155 * heightK + "px;" +
   "bottom:" + -80 * heightK + "px;" +
   "}",
-  registrationDevicePhoneField           : ".registration-device-phone-field " +
+  registrationDevicePhoneField: ".registration-device-phone-field " +
   "{" +
   "position: absolute;" +
   "left:" + 80 * widthK + "px;" +
@@ -585,12 +585,12 @@ var css = {
   "bottom:" + 210 * widthK + "px;" +
   "color: white;" +
   "}",
-  registrationDeviceTextField            : ".registration-device-text-field " +
+  registrationDeviceTextField: ".registration-device-text-field " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
   "}",
-  registrationDevicePhoneInput           : ".registration-device-phone-input " +
+  registrationDevicePhoneInput: ".registration-device-phone-input " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
@@ -686,7 +686,7 @@ var css = {
   "transition-duration: 0s;" +
   "}",
 
-  registrationDeviceRemember     : ".registration-device-remember " +
+  registrationDeviceRemember: ".registration-device-remember " +
   "{" +
   "position: absolute;" +
   "top:" + 110 * widthK + "px;" +
@@ -702,7 +702,7 @@ var css = {
   "margin: 0;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-  registrationRememberIcon       : ".registration-device-remember-icon " +
+  registrationRememberIcon: ".registration-device-remember-icon " +
   "{" +
   "position: absolute;" +
   "background-image: url(resources/icons/authorization/deselected.png);" +
@@ -739,7 +739,7 @@ var css = {
   "margin-left: auto;" +
   "}",
 
-  buttonEnterLabel       : ".button-enter-label " +
+  buttonEnterLabel: ".button-enter-label " +
   "{" +
   "position: relative;" +
   "top: 19%;" +
@@ -789,7 +789,7 @@ var css = {
   // "left:" + 110 * widthK + "px" +
   "}",
 
-  registrationKeyboardField       : ".registration-keyboard-field " +
+  registrationKeyboardField: ".registration-keyboard-field " +
   "{" +
   "position: relative;" +
   "margin-left: auto;" +
@@ -798,7 +798,7 @@ var css = {
   "top:" + 500 * heightK + "px;" +
   // "left:" + 110 * widthK + "px;" +
   "}",
-  registrationButtonsContainer    : ".registration-buttons-container " +
+  registrationButtonsContainer: ".registration-buttons-container " +
   "{" +
   "position: relative;" +
   "margin-left: auto;" +
@@ -808,7 +808,7 @@ var css = {
   "bottom:" + -535 * heightK + "px;" +
   // "left:" + 84 * widthK + "px;" +
   "}",
-  registrationContainerOffline    : ".registration-container-offline " +
+  registrationContainerOffline: ".registration-container-offline " +
   "{" +
   "position: absolute;" +
   "width:" + 300 * widthK + "px;" +
@@ -816,7 +816,7 @@ var css = {
   "top: 0;" +
   "left: 0;" +
   "}",
-  registrationButtonOffline       : ".registration-button-offline " +
+  registrationButtonOffline: ".registration-button-offline " +
   "{" +
   "position: absolute;" +
   "font-size:" + 34 * widthK + "px;" +
@@ -836,7 +836,7 @@ var css = {
   "top: 0;" +
   "right: 0;" +
   "}",
-  RegistrationButtonDemoVersion   : ".registration-button-demo-version " +
+  RegistrationButtonDemoVersion: ".registration-button-demo-version " +
   "{" +
   "position: absolute;" +
   "font-size:" + 34 * widthK + "px;" +
@@ -848,7 +848,7 @@ var css = {
   "margin-bottom:" + 14 * widthK + "px;" +
   "text-align: center;" +
   "}",
-  registrationButtonHelp          : ".registration-button-help " +
+  registrationButtonHelp: ".registration-button-help " +
   "{" +
   "position: relative;" +
   "font-size:" + 34 * widthK + "px;" +
@@ -860,7 +860,7 @@ var css = {
   "color: #b7f1ff;" +
   "border-bottom:" + 1 + "px solid #b7f1ff;" +
   "}",
-  registrationButtonRegistration  : ".registration-button-registration " +
+  registrationButtonRegistration: ".registration-button-registration " +
   "{" +
   "position: absolute;" +
   "top:" + 30 * widthK + "px;" +
@@ -870,7 +870,7 @@ var css = {
   "color: white;" +
   "border-bottom:" + 1 + "px solid white;" +
   "}",
-  registrationTextField           : ".registration-text-field " +
+  registrationTextField: ".registration-text-field " +
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
@@ -884,41 +884,41 @@ var css = {
 
   //KEYBOARD COMPONENT
 
-  keyboardContainer   : ".keyboard-container " +
+  keyboardContainer: ".keyboard-container " +
   "{" +
   "position: absolute;" +
   "width:" + 500 * widthK + "px;" +
   "height:" + 400 * widthK + "px;" +
   "}",
-  keyboardFieldOne    : ".keyboard-field-one " +
+  keyboardFieldOne: ".keyboard-field-one " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top: 0;" +
   "}",
-  keyboardFieldTwo    : ".keyboard-field-two " +
+  keyboardFieldTwo: ".keyboard-field-two " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 120 * widthK + "px;" +
   "}",
-  keyboardFieldThree  : ".keyboard-field-three " +
+  keyboardFieldThree: ".keyboard-field-three " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 240 * widthK + "px;" +
   "}",
-  keyboardFieldFour   : ".keyboard-field-four " +
+  keyboardFieldFour: ".keyboard-field-four " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 360 * widthK + "px;" +
   "}",
-  keyboardFieldFive   : ".keyboard-field-five " +
+  keyboardFieldFive: ".keyboard-field-five " +
   "{" +
   "position: absolute;" +
   "width: " + 140 * widthK + "px;" +
@@ -928,7 +928,7 @@ var css = {
   "font-size:" + 70 * widthK + "px;" +
   "text-align: center;" +
   "}",
-  keyboardButtons     : ".keyboard-buttons " +
+  keyboardButtons: ".keyboard-buttons " +
   "{" +
   "position: absolute;" +
   "width:" + 140 * widthK + "px;" +
@@ -945,16 +945,16 @@ var css = {
   "top:" + 16 * widthK + "px;" +
   "margin: 0;" +
   "}",
-  keyboardButtonOne   : ".keyboard-button-one {left: 0;}",
-  keyboardButtonTwo   : ".keyboard-button-two {left:" + 180 * widthK + "px;}",
-  keyboardButtonThree : ".keyboard-button-three {right: 0;}",
-  keyboardButtonFour  : ".keyboard-button-four {left: 0;}",
-  keyboardButtonFive  : ".keyboard-button-five {left:" + 180 * widthK + "px;}",
-  keyboardButtonSix   : ".keyboard-button-six {right: 0;}",
-  keyboardButtonSeven : ".keyboard-button-seven {left: 0;}",
-  keyboardButtonEight : ".keyboard-button-eight {left:" + 180 * widthK + "px;}",
-  keyboardButtonNine  : ".keyboard-button-nine {right: 0;}",
-  keyboardSpace       : ".keyboard-space {" +
+  keyboardButtonOne: ".keyboard-button-one {left: 0;}",
+  keyboardButtonTwo: ".keyboard-button-two {left:" + 180 * widthK + "px;}",
+  keyboardButtonThree: ".keyboard-button-three {right: 0;}",
+  keyboardButtonFour: ".keyboard-button-four {left: 0;}",
+  keyboardButtonFive: ".keyboard-button-five {left:" + 180 * widthK + "px;}",
+  keyboardButtonSix: ".keyboard-button-six {right: 0;}",
+  keyboardButtonSeven: ".keyboard-button-seven {left: 0;}",
+  keyboardButtonEight: ".keyboard-button-eight {left:" + 180 * widthK + "px;}",
+  keyboardButtonNine: ".keyboard-button-nine {right: 0;}",
+  keyboardSpace: ".keyboard-space {" +
   "left: 0; " +
   "background-size:" + 60 * widthK + "px;" +
   "background-image: url('resources/icons/authorization/touchid.png');" +
@@ -962,8 +962,8 @@ var css = {
   "background-position-y:" + 25 * widthK + "px;" +
   "background-position-x: center;" +
   "}",
-  keyboardButtonZero  : ".keyboard-button-zero {left:" + 180 * widthK + "px;}",
-  keyboardButtonEnter : ".keyboard-button-enter {position: absolute;}",
+  keyboardButtonZero: ".keyboard-button-zero {left:" + 180 * widthK + "px;}",
+  keyboardButtonEnter: ".keyboard-button-enter {position: absolute;}",
 
   //keyboardButtonsActive: ".keyboard-buttons:active " +
   //"{" +
@@ -4542,7 +4542,7 @@ var css = {
   "top: 51%;" +
   "}",
 
-  pincardCardCheckmark  : ".pincard-card-checkmark" +
+  pincardCardCheckmark: ".pincard-card-checkmark" +
   "{" +
   "position: absolute;" +
   "width: 17%;" +
@@ -11597,7 +11597,7 @@ var css = {
   "top: 51%;" +
   "}",
 
-  qrPincardCardCheckmark  : ".qr-pincard-card-checkmark" +
+  qrPincardCardCheckmark: ".qr-pincard-card-checkmark" +
   "{" +
   "position: absolute;" +
   "width: 17%;" +

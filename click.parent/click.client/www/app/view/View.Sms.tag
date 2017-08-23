@@ -3,7 +3,7 @@
     <div class="sms-unchangable-container">
       <div class="sms-phone-field">
         <p class="sms-text-field-one">{window.languages.ViewSmsFieldOne}</p>
-        <input class="sms-phone-input" value="{confirmSms}" ontouchend="onTouchendSmsNumber()"/>
+        <input class="sms-phone-input" value="{confirmSms}" ontouchend="onTouchendSmsNumber()" disabled/>
         <div id="inputCaretSms" class="sms-caret"></div>
         <div class="sms-timer" ontouchend="touchEndResend()" ontouchstart="touchStartResend()">{time}
           <div class="sms-resend-icon"></div>
@@ -14,7 +14,7 @@
           <p id="deliveredPhoneNumber" style="margin: 0">{phoneNumber.substring(0, 3)}
             {phoneNumber.substring(3, phoneNumber.length)}</p>
           <div id="changeNumberButtonId" class="sms-button-enter" ontouchend="goToBackRegistrationEnd()"
-             ontouchstart="goToBackRegistrationStart()">{window.languages.ViewSmsButtonEnterLabel}
+               ontouchstart="goToBackRegistrationStart()">{window.languages.ViewSmsButtonEnterLabel}
           </div>
         </div>
       </div>
@@ -281,7 +281,7 @@
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         var deviceId = localStorage.getItem('click_client_deviceID');
         var timestamp = parseInt(Date.now() / 1000);
-        var signString = hex_md5(phoneNumber.substring(0,5) + timestamp + phoneNumber.substring(phoneNumber.length - 4, phoneNumber.length))
+        var signString = hex_md5(phoneNumber.substring(0, 5) + timestamp + phoneNumber.substring(phoneNumber.length - 4, phoneNumber.length))
 
         console.log('CALL CALL CALL CALL CALL')
 
