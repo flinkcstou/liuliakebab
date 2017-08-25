@@ -134,7 +134,7 @@
 
         var cardSumFromPinCards = scope.tags['component-pincards'].getAccountCardSum();
 
-        console.log(cardSumFromPinCards, parseInt(opts[1].sum))
+        console.log("getAccountCardSum",cardSumFromPinCards, "opts", parseInt(opts[1].sum))
         if (cardSumFromPinCards && cardSumFromPinCards < parseInt(opts[1].sum)) {
           console.log(cardSumFromPinCards, opts[1].sum)
           scope.clickPinError = false;

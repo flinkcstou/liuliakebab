@@ -58,6 +58,7 @@
         if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
           scope.cardId = scope.cardsArray[i].card_id;
           scope.cardName = scope.cardsArray[i].name;
+          scope.cardSum = scope.cardsArray[i].salaryOriginal
         }
       }
     });
@@ -175,6 +176,7 @@
     };
 
     scope.getAccountCardSum = function () {
+      console.log('sum',scope)
 
       return scope.cardSum;
     };
