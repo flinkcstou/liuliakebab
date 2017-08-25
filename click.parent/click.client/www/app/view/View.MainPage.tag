@@ -52,7 +52,7 @@
       if (opts) {
         if (opts.view == "news") {
           viewNewsId.style.display = 'block'
-          scope.tags['view-news'].showNewsFunction();
+          scope.tags['view-news'].showNewsFunction(1);
 
 //          window.News.newsCounter = 0;
 

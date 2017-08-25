@@ -60,7 +60,7 @@
       scope.unmount()
     }
 
-    var pageNumber = 1;
+    var pageNumber = 2;
     newsScrollFunction = function () {
       if ((newsMainContainerId.scrollHeight - newsMainContainerId.scrollTop) == newsMainContainerId.offsetHeight) {
         scope.showNewsFunction(pageNumber);
@@ -110,7 +110,10 @@
             document.getElementById(imageId).style.display = 'block'
           document.getElementById(containerId).style.height = 'auto';
           document.getElementById(textId).innerHTML = longText;
-          console.log('document.getElementById(containerId)', document.getElementById(containerId).children)
+          riot.update();
+
+          console.log('LONG TEXT', longText)
+//          console.log('document.getElementById(containerId)', document.getElementById(containerId).children)
 //          scope.newsOpened = true;
         }
         else {
