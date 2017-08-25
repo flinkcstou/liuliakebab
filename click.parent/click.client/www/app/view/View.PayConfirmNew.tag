@@ -115,7 +115,7 @@
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
                        operationmessagepartthree="{errorMessageFromPayment}"></component-unsuccess>
 
-  <component-in-processing id="componentInProcessingId" viewpage="{viewPage}"
+  <component-in-processing id="componentInProcessingId" viewpage="{viewPage}" step_amount="{stepAmount}"
                            operationmessagepartone="{window.languages.ComponentInProcessingPartOneForPay}"
                            operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"></component-in-processing>
 
@@ -658,16 +658,6 @@
 
               if (statusCheckCounter < 5) {
 
-//                if (device.platform != 'BrowserStand') {
-//                  var options = {dimBackground: true};
-//
-//                  SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-//                    console.log("Started");
-//                  }, function () {
-//                    console.log("closed");
-//                  });
-//                }
-
                 setTimeout(function () {
                   checkPaymentStatus(result[1][0].payment_id);
                 }, 2000);
@@ -682,7 +672,6 @@
                 scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
                 scope.update();
 
-                window.api.spinnerOn = false;
 
                 if (device.platform != 'BrowserStand') {
                   SpinnerPlugin.activityStop();
@@ -692,6 +681,7 @@
               }
 
             }
+            window.api.spinnerOn = false;
 
           }
           else {
