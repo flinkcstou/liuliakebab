@@ -6423,13 +6423,19 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "height: 25%;" +
+  "left: 50%;" +
+  "-webkit-transform: translate3d(-50%,0,0);" +
+  // "height: 25%;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
   "margin-bottom: 0;" +
   "margin-top: 0;" +
   "color: white;" +
   "text-align: center;" +
+  "border: none;" +
+  "background-color: transparent;" +
+  "outline: none;" +
+  "padding: 0;" +
   "border-bottom:" + 3 * widthK + "px solid #6abfff;" +
   "font-size:" + 100 * widthK + "px;" +
   "}",

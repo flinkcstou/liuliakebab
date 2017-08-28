@@ -67,7 +67,7 @@
       <div class="code-confirm-cancel-icon" ontouchend="closeSecretCodePage()"></div>
     </div>
     <div class="code-confirm-code-container">
-      <p class="code-confirm-code-text">{secretCode}</p>
+      <input readonly value="{secretCode}" class="code-confirm-code-text"/>
       <p class="code-confirm-message-text">Передайте код получателю для завершения перевода</p>
 
       <button class="code-confirm-button-enter" ontouchend="closeSecretCodePage()">
