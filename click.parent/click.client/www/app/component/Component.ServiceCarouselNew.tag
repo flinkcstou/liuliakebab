@@ -20,7 +20,7 @@
         <div class="service-component-open-icon"></div>
       </div>
       <div class="service-container">
-        <div class="service-each-container" each="{i in favoritePaymentsList}">
+        <div class="service-each-container" each="{i in favPaymentsList}">
           <div id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfPayment(this.id)"
                ontouchend="ontouchEndOfPayment(this.id)" style="background-image: url({i.service.image})">
           </div>
@@ -211,10 +211,15 @@
 //      console.log("list", scope.favoritePaymentsList);
       scope.favPaymentsList = [];
       for (var i in scope.favoritePaymentsList) {
+        if(!scope.favoritePaymentsList[i].id){
+          scope.favoritePaymentsList[i].id = Math.floor((Math.random() * 1000000) + 1);
+          console.log("NO ID", scope.favoritePaymentsList[i])
+        }
         if (scope.favPaymentsList.length < 4)
-          scope.favPaymentsList.push(scope.favoritePaymentsList[i].service);
-        else break;
+          scope.favPaymentsList.push(scope.favoritePaymentsList[i]);
+        //else break;
       }
+      localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList));
       if (scope.favPaymentsList.length >= 4)
         scope.addFavoriteBool = false;
       scope.update();
