@@ -316,7 +316,7 @@
         contactStopChanging = true;
 
       }
-      else{
+      else {
         contactStopChanging = false;
       }
     }
@@ -324,7 +324,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-transfer',
+          "view"  : 'view-transfer',
           "params": opts,
         }
       );
@@ -400,9 +400,9 @@
         if (modeOfApp.onlineMode)
           window.api.call({
             method: 'p2p.bank.list',
-            input: {
+            input : {
               session_key: sessionKey,
-              phone_num: phoneNumber,
+              phone_num  : phoneNumber,
 
             },
 
@@ -789,7 +789,7 @@
 //        cardInputId.value = event.target.value.substring(0, event.target.value.length - 1);
         cardStopChanging = true;
       }
-      else{
+      else {
         cardStopChanging = false;
       }
 
@@ -806,9 +806,9 @@
 
       window.api.call({
         method: 'p2p.card.info',
-        input: {
+        input : {
           session_key: sessionKey,
-          phone_num: phoneNumber,
+          phone_num  : phoneNumber,
           card_number: cardInputId.value.replace(/\s/g, ''),
 
         },
@@ -850,7 +850,7 @@
     cardOnKeyUp = function () {
       console.log('cardInputId.value.length', cardInputId.value.length)
 
-      if(cardStopChanging){
+      if (cardStopChanging) {
         cardInputId.value = event.target.value.substring(0, event.target.value.length - 1);
       }
 
@@ -1292,14 +1292,14 @@
             else {
               phoneNumberForTransfer = window.languages.CodeOfCountry + phoneNumberForTransfer
               this.riotTags.innerHTML = "<view-transfer-steptwo>";
-              if(JSON.parse(localStorage.getItem('click_client_loginInfo')))
-              var tax = JSON.parse(localStorage.getItem('click_client_loginInfo')).p2p_comission
+              if (JSON.parse(localStorage.getItem('click_client_loginInfo')))
+                var tax = JSON.parse(localStorage.getItem('click_client_loginInfo')).p2p_comission
               else
                 var tax = 0;
               riot.mount('view-transfer-steptwo', [
                 {
-                  "name": phoneNumberForTransfer,
-                  "type": 2,
+                  "name"   : phoneNumberForTransfer,
+                  "type"   : 2,
                   "percent": tax,
                 }
               ]);
@@ -1384,10 +1384,10 @@
               this.riotTags.innerHTML = "<view-transfer-steptwo>";
               riot.mount('view-transfer-steptwo', [
                 {
-                  "name": cardNumberForTransfer,
-                  "type": 1,
+                  "name"   : cardNumberForTransfer,
+                  "type"   : 1,
                   "percent": percentOfBank,
-                  "owner": scope.cardOwner
+                  "owner"  : scope.cardOwner
                 }
               ]);
 
@@ -1405,8 +1405,12 @@
       var fields = [''];
       options.filter = "";
       options.multiple = true;
-      options.desiredFields=[navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.phoneNumbers];
-//
+      if (device.platform == 'Android') {
+        options.desiredFields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.phoneNumbers];
+      }
+      else{
+        options.desiredFields = [navigator.contacts.fieldType.name, navigator.contacts.fieldType.phoneNumbers];
+      }
       navigator.contacts.find(fields, success, error, options);
 
       function success(contacts) {
@@ -1438,14 +1442,14 @@
       try {
         findContacts();
       }
-      catch(e){
+      catch (e) {
         console.log(e)
       }
     }
 
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
     searchContacts = function () {
-      if(contactStopChanging){
+      if (contactStopChanging) {
         contactPhoneNumberId.value = event.target.value.substring(0, event.target.value.length - 1);
       }
       cursorPositionSelectionStart = contactPhoneNumberId.selectionStart;
