@@ -47,7 +47,7 @@
   </div>
 
   <div class="registration-client-buttons-container">
-    <div id="regClinetOfflineButtonId" class="registration-container-offline" ontouchstart="registrationClientOfflineTouchStart()"
+    <div if="{device.platform != 'iOS'}" id="regClinetOfflineButtonId" class="registration-container-offline" ontouchstart="registrationClientOfflineTouchStart()"
          ontouchend="registrationClientOfflineTouchEnd()">
       <div class="registration-button-offline">Офлайн режим
       </div>
