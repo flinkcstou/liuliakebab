@@ -281,6 +281,7 @@
       event.preventDefault();
       event.stopPropagation();
 
+
       backFromPinCodeTouchStartX = event.changedTouches[0].pageX;
       backFromPinCodeTouchStartY = event.changedTouches[0].pageY;
     };
@@ -603,6 +604,7 @@
             scope.clickPinError = false;
             scope.errorNote = "CLICK PIN успешно изменен";
             scope.showError = true;
+            localStorage.setItem("click_client_pin", JSON.stringify(hex_md5(pin)))
 
             if (!fromRegistration)
               scope.stepToBack = 1;

@@ -47,7 +47,7 @@
   </div>
 
   <div class="registration-client-buttons-container">
-    <div id="regClinetOfflineButtonId" class="registration-container-offline" ontouchstart="registrationClientOfflineTouchStart()"
+    <div if="{device.platform != 'iOS'}" id="regClinetOfflineButtonId" class="registration-container-offline" ontouchstart="registrationClientOfflineTouchStart()"
          ontouchend="registrationClientOfflineTouchEnd()">
       <div class="registration-button-offline">Офлайн режим
       </div>
@@ -93,6 +93,9 @@
     this.on('mount', function () {
       boxOne.style.border = 'solid 1px gray';
       checkOne = true;
+
+      if (device.platform == 'iOS')
+        demoContainer.style.left = 100 * widthK + 'px';
 
       if(device.platform != "BrowserStand")
       StatusBar.backgroundColorByHexString("#00b0eb");
