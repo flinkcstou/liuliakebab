@@ -184,7 +184,6 @@
             scope.errorNote = "Сервис временно недоступен";
             scope.viewOpts = opts;
             scope.stepAmount = 1;
-            //scope.viewPage = "view-service-page-new";
             scope.update();
             if (device.platform != 'BrowserStand') {
               SpinnerPlugin.activityStop();
