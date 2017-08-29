@@ -6709,7 +6709,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 601 * widthK + "px;" +
+  "top:" + 610 * widthK + "px;" +
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
@@ -6724,7 +6724,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 601 * widthK + "px;" +
+  "top:" + 610 * widthK + "px;" +
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
@@ -6798,7 +6798,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 601 * widthK + "px;" +
+  "top:" + 610 * widthK + "px;" +
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
@@ -6838,7 +6838,7 @@ var css = {
   "position: relative;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
-  "top:" + 240 * widthK + "px;" +
+  "top:" + 230 * widthK + "px;" +
   "width:" + 270 * widthK + "px;" +
   "height:" + 250 * widthK + "px;" +
   // "left:" + 234 * widthK + "px;" +
