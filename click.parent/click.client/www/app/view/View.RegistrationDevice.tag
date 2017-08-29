@@ -15,7 +15,8 @@
             {window.languages.ViewRegistrationDeviceRememberLabel}</p>
           <div id="rememberIcon" class="registration-device-remember-icon"></div>
         </div>
-        <div id="registrationNextButtonId" class="registration-button-enter button-enter" ontouchend="getPhoneNumberTouchEnd()"
+        <div id="registrationNextButtonId" class="registration-button-enter button-enter"
+             ontouchend="getPhoneNumberTouchEnd()"
              ontouchstart="getPhoneNumberTouchStart()">
           <div class="button-enter-label">{window.languages.ViewRegistrationDeviceButtonEnterLabel}</div>
         </div>
@@ -24,7 +25,8 @@
   </div>
 
   <div class="registration-keyboard-field keyboard-field">
-    <div id="registrationHelpButtonId" class="registration-button-help" ontouchend="helpTouchEnd()" ontouchstart="helpTouchStart()">
+    <div id="registrationHelpButtonId" class="registration-button-help" ontouchend="helpTouchEnd()"
+         ontouchstart="helpTouchStart()">
       {window.languages.ViewRegistrationDeviceButtonHelp}
     </div>
     <component-keyboard></component-keyboard>
@@ -403,17 +405,16 @@
 
 
         if (correctPhoneNumber) {
-          var versionOfApp = '5.0.4'
-          if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
+          if (localStorage.getItem('version') && localStorage.getItem('version') === AppVersion.version) {
 
           }
           else {
 //            localStorage.clear()
-            localStorage.setItem('version', versionOfApp)
+            localStorage.setItem('version', AppVersion.version)
           }
           localStorage.setItem('click_client_phoneNumber', phoneNumber);
           var date = parseInt(Date.now() / 1000);
-          registrationDevice(phoneNumber, date, versionOfApp);
+          registrationDevice(phoneNumber, date);
         }
       }
 
@@ -467,7 +468,7 @@
     }
 
     var countOfCall = 0;
-    function registrationDevice(phoneNumber, date, versionOfApp) {
+    function registrationDevice(phoneNumber, date) {
       countOfCall++;
       var checkServiceAnswer = false;
       if (device.platform != 'BrowserStand') {
@@ -489,7 +490,7 @@
           device_type: deviceType(),
           datetime: date,
           imei: deviceImei(),
-          app_version: versionOfApp
+          app_version: AppVersion.version
         },
 
         scope: this,

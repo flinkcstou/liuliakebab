@@ -32,6 +32,7 @@
   <plugin name="cordova-plugin-spinner"/>
   <plugin name="cordova-plugin-datepicker"/>
   <plugin name="cordova-plugin-inappbrowser"/>
+  <plugin name="cordova-plugin-appversion"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
@@ -43,13 +44,16 @@
 
     <config-file parent="NSContactsUsageDescription" target="*info.plist">
       <string>This data is used exclusively for the correct operation of the application with
-        functions such as: Selecting a phone number from the contact list.</string>
+        functions such as: Selecting a phone number from the contact list.
+      </string>
     </config-file>
 
     <config-file parent="NSCameraUsageDescription" target="*-Info.plist">
-      <string>This data is used exclusively for the correct operation of the application with functions such as: Selecting a phone number from the contact list,
+      <string>This data is used exclusively for the correct operation of the application with functions such as:
+        Selecting a phone number from the contact list,
         automatically inserting the code from sms, making USSD requests,
-        setting the profile photo, reading the QR code.</string>
+        setting the profile photo, reading the QR code.
+      </string>
     </config-file>
 
     <allow-intent href="itms:*"/>
@@ -60,7 +64,7 @@
     <preference name="SplashScreen" value="screen"/>
     <preference name="SplashScreenDelay" value="3000"/>
     <preference name="SplashMaintainAspectRatio" value="true"/>
-    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false"/>
     <icon height="57" src="resources/ios/icon/icon.png" width="57"/>
     <icon height="114" src="resources/ios/icon/icon@2x.png" width="114"/>
     <icon height="40" src="resources/ios/icon/icon-40.png" width="40"/>

@@ -45,14 +45,6 @@
 </div>
 
 <script>
-  var versionOfApp = '5.0.4'
-  if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
-
-  }
-  else {
-//    localStorage.clear()
-    localStorage.setItem('version', versionOfApp)
-  }
 
   api.init();
   var scope = this;
@@ -143,9 +135,21 @@
       MobileAccessibility.usePreferredTextZoom(false);
       checkFirstStarting = true;
 
+      console.log("Версия приложения из плагина", AppVersion.version);
+      console.log("Билд приложения из плагина", AppVersion.build);
+
+      window.languages.ViewSettingsAboutProgramVersionTitleNamePartOne = "Версия " + AppVersion.version;
+
+      if (localStorage.getItem('version') && localStorage.getItem('version') === AppVersion.version) {
+
+      }
+      else {
+//    localStorage.clear()
+        localStorage.setItem('version', AppVersion.version)
+      }
 
       if (!localStorage.getItem('device_platform'))
-        localStorage.setItem('device_platform', device.platform)
+        localStorage.setItem('device_platform', device.platform);
 
 //      localStorage.setItem('device', JSON.stringify(device))
       localStorage.setItem("click_client_authorized", JSON.stringify(false));
