@@ -852,7 +852,7 @@ var css = {
   "{" +
   "position: relative;" +
   "font-size:" + 34 * widthK + "px;" +
-  "top:" + -30 * widthK + "px;" +
+  "top:" + -24 * widthK + "px;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "width:" + 125 * widthK + "px;" +
@@ -6951,7 +6951,7 @@ var css = {
   "margin-right: auto;" +
   "margin-top: 0;" +
   "margin-bottom: 0;" +
-  "top:" + 575 * widthK + "px;" +
+  "top:" + 585 * widthK + "px;" +
   "font-size:" + 38 * widthK + "px;" +
   "}",
 
@@ -7003,7 +7003,7 @@ var css = {
   "position: relative;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
-  "top:" + 175 * widthK + "px;" +
+  "top:" + 165 * widthK + "px;" +
   "width:" + 270 * widthK + "px;" +
   "height:" + 250 * widthK + "px;" +
   // "left:" + 243 * widthK + "px;" +
