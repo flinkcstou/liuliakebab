@@ -48,7 +48,7 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}" step_amount="{stepAmount}" viewpage="{viewPage}"
                    viewmount="{true}" errornote="{errorNote}"></component-alert>
 
-  <component-unsuccess id="componentUnsuccessId"
+  <component-unsuccess id="componentUnsuccessId" step_amount="{stepAmount}"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
                        operationmessagepartthree="{errorMessage}"></component-unsuccess>
@@ -172,6 +172,7 @@
           else {
             console.log("result of GET ADDITIONAL INFO 2", result);
             scope.errorMessage = result[0][0].error_note;
+            scope.stepAmount = 1;
             componentUnsuccessId.style.display = 'block';
             scope.update();
           }
