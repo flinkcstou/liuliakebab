@@ -73,8 +73,16 @@
           }
 
           if (opts.viewpage) {
-            riotTags.innerHTML = "<" + opts.viewpage + ">";
-            riot.mount(opts.viewpage);
+            if (opts.viewopts) {
+              console.log(opts.viewopts)
+              riotTags.innerHTML = "<" + opts.viewpage + ">";
+              riot.mount(opts.viewpage, opts.viewopts);
+
+            } else {
+              riotTags.innerHTML = "<" + opts.viewpage + ">";
+              riot.mount(opts.viewpage);
+            }
+
           }
 
           console.log("OPTS in ALERT", opts)

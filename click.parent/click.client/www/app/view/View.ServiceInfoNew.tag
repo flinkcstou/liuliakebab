@@ -45,8 +45,8 @@
     </button>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}" step_amount="{stepAmount}"
-                   errornote="{errorNote}"></component-alert>
+  <component-alert if="{showError}" clickpinerror="{clickPinError}" step_amount="{stepAmount}" viewpage="{viewPage}"
+                   viewopts="{viewOpts}" errornote="{errorNote}"></component-alert>
 
   <script>
 
@@ -176,12 +176,14 @@
         }
       });
 
-      if (!checkAnswer && window.isConnected)
+      if (!checkAnswer && window.isConnected) {
+        console.log("wwww")
         setTimeout(function () {
           if (!checkAnswer) {
             scope.showError = true;
             scope.errorNote = "Сервис временно недоступен";
-            scope.stepAmount = 0;
+            scope.viewOpts = opts;
+            scope.viewPage = "view-service-page-new";
             scope.update();
             if (device.platform != 'BrowserStand') {
               SpinnerPlugin.activityStop();
@@ -190,6 +192,7 @@
             return
           }
         }, 10000);
+      }
 
 
     }
