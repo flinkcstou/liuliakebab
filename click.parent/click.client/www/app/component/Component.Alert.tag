@@ -73,15 +73,8 @@
           }
 
           if (opts.viewpage) {
-            if (opts.viewopts) {
-              console.log(opts.viewopts)
-              riotTags.innerHTML = "<" + opts.viewpage + ">";
-              riot.mount(opts.viewpage, opts.viewopts);
-
-            } else {
-              riotTags.innerHTML = "<" + opts.viewpage + ">";
-              riot.mount(opts.viewpage);
-            }
+            riotTags.innerHTML = "<" + opts.viewpage + ">";
+            riot.mount(opts.viewpage);
 
           }
 
@@ -93,7 +86,12 @@
               history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
               console.log(history.arrayOfHistory)
               sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-              onBackKeyDown()
+              if (!opts.viewmount)
+                onBackKeyDown()
+              else {
+                riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+                riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+              }
 //          scope.unmount()
             }
         } else {

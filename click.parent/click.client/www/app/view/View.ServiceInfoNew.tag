@@ -46,7 +46,7 @@
   </div>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}" step_amount="{stepAmount}" viewpage="{viewPage}"
-                   viewopts="{viewOpts}" errornote="{errorNote}"></component-alert>
+                   viewmount="{true}" errornote="{errorNote}"></component-alert>
 
   <script>
 
@@ -56,7 +56,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-info-new') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-service-info-new',
+          "view"  : 'view-service-info-new',
           "params": opts
         }
       );
@@ -80,23 +80,23 @@
 
     if (opts.formtype == 1) {
       payment_data = {
-        "param": opts.firstFieldId,
-        "value": opts.firstFieldText,
+        "param"         : opts.firstFieldId,
+        "value"         : opts.firstFieldText,
         "transaction_id": parseInt(Date.now() / 1000)
       };
 
     }
     else if (opts.formtype == 2) {
       payment_data = {
-        "pin_param": opts.cardTypeId,
+        "pin_param"     : opts.cardTypeId,
         "transaction_id": parseInt(Date.now() / 1000)
       };
 
     }
     else if (opts.formtype == 3) {
       payment_data = {
-        "param": opts.firstFieldId,
-        "value": opts.firstFieldText,
+        "param"         : opts.firstFieldId,
+        "value"         : opts.firstFieldText,
         "communal_param": opts.communalParam,
         "transaction_id": parseInt(Date.now() / 1000)
       };
@@ -105,10 +105,10 @@
     }
     else if (opts.formtype == 4) {
       payment_data = {
-        "param": opts.firstFieldId,
-        "value": opts.firstFieldText,
+        "param"                 : opts.firstFieldId,
+        "value"                 : opts.firstFieldText,
         "internet_package_param": opts.internetPackageParam,
-        "transaction_id": parseInt(Date.now() / 1000)
+        "transaction_id"        : parseInt(Date.now() / 1000)
       };
 
     }
@@ -132,10 +132,10 @@
 
       window.api.call({
         method: 'get.additional.information',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          service_id: opts.chosenServiceId,
+        input : {
+          session_key : sessionKey,
+          phone_num   : phoneNumber,
+          service_id  : opts.chosenServiceId,
           payment_data: payment_data
         },
 
@@ -183,7 +183,8 @@
             scope.showError = true;
             scope.errorNote = "Сервис временно недоступен";
             scope.viewOpts = opts;
-            scope.viewPage = "view-service-page-new";
+            scope.stepAmount = 1;
+            //scope.viewPage = "view-service-page-new";
             scope.update();
             if (device.platform != 'BrowserStand') {
               SpinnerPlugin.activityStop();
