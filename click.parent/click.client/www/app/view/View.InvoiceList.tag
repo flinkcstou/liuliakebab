@@ -159,6 +159,7 @@
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = loginInfo.session_key;
+      var checkAnswerToUser = false;
 
       if (device.platform != 'BrowserStand') {
         var options = {dimBackground: true};
@@ -171,14 +172,15 @@
       }
 
       window.api.call({
-        method: 'invoice.list',
-        input: {
+        method   : 'invoice.list',
+        input    : {
           session_key: sessionKey,
-          phone_num: phoneNumber,
+          phone_num  : phoneNumber,
           page_number: parseInt(invoiceListPageNumber),
         },
-        scope: this,
+        scope    : this,
         onSuccess: function (result) {
+          checkAnswerToUser = true;
 
           if (result[0][0].error == 0) {
             console.log(result[1])
@@ -226,6 +228,24 @@
           console.error(data);
         }
       });
+      if (!checkAnswerToUser && window.isConnected) {
+        console.log("wwww to user")
+        setTimeout(function () {
+          if (!checkAnswerToUser) {
+            console.log("STOP method")
+            if (device.platform != 'BrowserStand') {
+              SpinnerPlugin.activityStop();
+            }
+            scope.clickPinError = false;
+            scope.showError = true;
+            scope.errorNote = "Сервис временно недоступен";
+            scope.update();
+            window.isConnected = false;
+            return
+          }
+        }, 10000);
+      }
+
     };
 
     getInvoiceListFromUser = function () {
@@ -243,6 +263,7 @@
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = loginInfo.session_key;
+      var checkAnswerFromUser = false;
 
       if (device.platform != 'BrowserStand') {
         var options = {dimBackground: true};
@@ -255,14 +276,15 @@
       }
 
       window.api.call({
-        method: 'invoice.history',
-        input: {
+        method   : 'invoice.history',
+        input    : {
           session_key: sessionKey,
-          phone_num: phoneNumber,
+          phone_num  : phoneNumber,
           page_number: parseInt(invoiceListPageNumber)
         },
-        scope: this,
+        scope    : this,
         onSuccess: function (result) {
+          checkAnswerFromUser = true;
           if (result[0][0].error == 0) {
             if (result[1]) {
               if (result[1].length == 0) {
@@ -305,6 +327,25 @@
           console.error(data);
         }
       });
+
+      if (!checkAnswerFromUser && window.isConnected) {
+        console.log("wwww from user")
+        setTimeout(function () {
+          if (!checkAnswerFromUser) {
+            console.log("STOP method")
+            if (device.platform != 'BrowserStand') {
+              SpinnerPlugin.activityStop();
+            }
+            scope.clickPinError = false;
+            scope.showError = true;
+            scope.errorNote = "Сервис временно недоступен";
+            scope.update();
+            window.isConnected = false;
+            return
+          }
+        }, 10000);
+      }
+
     };
 
     if (scope.toUser) {
@@ -372,7 +413,7 @@
 
             history.arrayOfHistory.push(
               {
-                "view": 'view-invoice-list',
+                "view"  : 'view-invoice-list',
                 "params": opts
               }
             );
@@ -388,7 +429,7 @@
 
           history.arrayOfHistory.push(
             {
-              "view": 'view-invoice-list',
+              "view"  : 'view-invoice-list',
               "params": opts
             }
           );
@@ -401,15 +442,15 @@
         if (!scope.toUser) {
 
           params = {
-            is_p2p: invoice.is_p2p,
-            invoice_id: invoice.invoice_id,
-            inParameter: invoice.cntrg_info_param2, //????
-            amount: invoice.amount,
-            commission: invoice.p2p_comission_amount,
+            is_p2p      : invoice.is_p2p,
+            invoice_id  : invoice.invoice_id,
+            inParameter : invoice.cntrg_info_param2, //????
+            amount      : invoice.amount,
+            commission  : invoice.p2p_comission_amount,
             transferCode: invoice.p2p_secret_code,
-            time: invoice.time,
-            date: invoice.date,
-            status: invoice.status_note
+            time        : invoice.time,
+            date        : invoice.date,
+            status      : invoice.status_note
           };
 
           scope.showComponent = true;
@@ -434,10 +475,10 @@
             params = {
 
               phoneNumber: invoice.parameter,
-              amount: invoice.amount,
-              invoiceId: invoice.invoice_id,
-              time: invoice.time,
-              date: invoice.date
+              amount     : invoice.amount,
+              invoiceId  : invoice.invoice_id,
+              time       : invoice.time,
+              date       : invoice.date
             };
 
             console.log('PARAMS IN INVOICE LIST', params)
@@ -461,11 +502,11 @@
 
             params = {
 
-              amount: invoice.amount,
-              invoiceId: invoice.invoice_id,
-              phoneNumber: invoice.merchant_phone,
-              accountNumber: invoice.parameter,
-              serviceName: invoice.service_name,
+              amount        : invoice.amount,
+              invoiceId     : invoice.invoice_id,
+              phoneNumber   : invoice.merchant_phone,
+              accountNumber : invoice.parameter,
+              serviceName   : invoice.service_name,
               is_friend_help: invoice.is_friend_help
             };
 

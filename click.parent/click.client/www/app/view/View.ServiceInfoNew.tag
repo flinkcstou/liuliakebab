@@ -48,6 +48,11 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}" step_amount="{stepAmount}" viewpage="{viewPage}"
                    viewmount="{true}" errornote="{errorNote}"></component-alert>
 
+  <component-unsuccess id="componentUnsuccessId"
+                       operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
+                       operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
+                       operationmessagepartthree="{errorMessage}"></component-unsuccess>
+
   <script>
 
 
@@ -166,7 +171,9 @@
           }
           else {
             console.log("result of GET ADDITIONAL INFO 2", result);
-            //          componentUnsuccessId.style.display = 'block';
+            scope.errorMessage = result[0][0].error_note;
+            componentUnsuccessId.style.display = 'block';
+            scope.update();
           }
         },
 
@@ -182,7 +189,6 @@
           if (!checkAnswer) {
             scope.showError = true;
             scope.errorNote = "Сервис временно недоступен";
-            scope.viewOpts = opts;
             scope.stepAmount = 1;
             scope.update();
             if (device.platform != 'BrowserStand') {
