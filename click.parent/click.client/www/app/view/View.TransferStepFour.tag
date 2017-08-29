@@ -99,7 +99,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-transfer-stepfour',
+          "view"  : 'view-transfer-stepfour',
           "params": opts
         }
       );
@@ -401,13 +401,13 @@
 
       window.api.call({
         method: 'p2p.payment',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          account_id: scope.objectCardForTransfer.card_id,
-          receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
-          amount: parseInt(scope.objectSumForTransfer.sum),
-          type: scope.objectTypeForTransfer.type,
+        input : {
+          session_key   : sessionKey,
+          phone_num     : phoneNumber,
+          account_id    : scope.objectCardForTransfer.card_id,
+          receiver_data : scope.objectTypeForTransfer.name.replace(/\s/g, ''),
+          amount        : parseInt(scope.objectSumForTransfer.sum),
+          type          : scope.objectTypeForTransfer.type,
           transaction_id: parseInt(Date.now() / 1000)
 //                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
 
@@ -420,7 +420,7 @@
           if (result[0][0].error == 0) {
             viewTransferStepTwo.sum = 0;
             viewTransferStepTwo.sumWithoutSpace = 0;
-//              console.log("result of TRANSFER ", result);
+            console.log("result of TRANSFER ", result);
             if (result[1])
               if (result[1][0]) {
                 if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
@@ -438,9 +438,21 @@
 
                 }
                 if (result[1][0].secret_code == 0) {
-                  window.updateBalanceGlobalFunction();
-                  componentSuccessId.style.display = 'block';
-                  transferFindCards(scope.objectTypeForTransfer.name);
+
+                  if (device.platform != 'BrowserStand') {
+                    var options = {dimBackground: true};
+
+                    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+                      console.log("Started");
+                    }, function () {
+                      console.log("closed");
+                    });
+                  }
+
+                  setTimeout(function () {
+                    checkTransferStatus(result[1][0].payment_id);
+                  }, 2000);
+
                 }
               }
 
@@ -467,6 +479,88 @@
         }
       }, 20000)
 
+    }
+
+    var counter = 0;
+    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+    function checkTransferStatus(payment_id) {
+
+      console.log("check transfer status");
+
+      window.api.call({
+        method: 'get.payment',
+        input : {
+          session_key: sessionKey,
+          phone_num  : phoneNumber,
+          payment_id : payment_id
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0 && result[1][0]) {
+
+
+            if (result[1][0].state == -1) {
+
+              window.languages.tempText = JSON.stringify(result[1][0].error);
+              scope.errorMessageFromTransfer = result[1][0].error;
+              if (device.platform != 'BrowserStand') {
+                SpinnerPlugin.activityStop();
+              }
+              componentUnsuccessId.style.display = 'block';
+              riot.update()
+
+
+            } else if (result[1][0].state == 2) {
+
+              if (device.platform != 'BrowserStand') {
+                SpinnerPlugin.activityStop();
+              }
+
+              window.updateBalanceGlobalFunction();
+              componentSuccessId.style.display = 'block';
+              transferFindCards(scope.objectTypeForTransfer.name);
+
+
+            } else if (result[1][0].state == 1) {
+
+              counter++;
+
+              if (counter < 5) {
+
+                setTimeout(function () {
+                  checkTransferStatus(result[1][0].payment_id);
+                }, 2000);
+
+              } else {
+
+                if (device.platform != 'BrowserStand') {
+                  SpinnerPlugin.activityStop();
+                }
+
+                componentInProcessingId.style.display = 'block';
+              }
+
+            }
+            window.api.spinnerOn = false;
+
+          }
+          else {
+            if (device.platform != 'BrowserStand') {
+              SpinnerPlugin.activityStop();
+            }
+            componentUnsuccessId.style.display = 'block';
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
     }
 
     closeSecretCodePage = function () {

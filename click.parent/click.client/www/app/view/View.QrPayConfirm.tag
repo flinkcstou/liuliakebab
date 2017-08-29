@@ -49,7 +49,8 @@
 
     </div>
     <div class="qr-payconfirm-bottom-container">
-      <button id="qrPayButtonId" class="qr-payconfirm-button-enter" ontouchstart="payServiceStart()" ontouchend="payServiceEnd()">
+      <button id="qrPayButtonId" class="qr-payconfirm-button-enter" ontouchstart="payServiceStart()"
+              ontouchend="payServiceEnd()">
         {window.languages.ViewPayConfirmPay}
       </button>
     </div>
@@ -63,6 +64,11 @@
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
                        operationmessagepartthree="{window.languages.ComponentUnsuccessMessagePart3ForPay}"
                        step_amount="{0}"></component-unsuccess>
+
+  <component-in-processing id="componentInProcessingId"
+                           operationmessagepartone="{window.languages.ComponentInProcessingPartOneForPay}"
+                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"
+                           step_amount="{3}"></component-in-processing>
 
 
   <script>
@@ -79,7 +85,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr-pay-confirm') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-qr-pay-confirm',
+          "view"  : 'view-qr-pay-confirm',
           "params": opts
         }
       );
@@ -206,26 +212,26 @@
         if (opts[2].rk_order) {
 
           inputObject = {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            service_id: Number(serviceId),
-            account_id: Number(accountId),
-            amount: Number(amount),
+            session_key : sessionKey,
+            phone_num   : phoneNumber,
+            service_id  : Number(serviceId),
+            account_id  : Number(accountId),
+            amount      : Number(amount),
             payment_data: payment_data,
-            datetime: date,
+            datetime    : date,
             friend_phone: friendPhone,
-            value: opts[2].rk_order
+            value       : opts[2].rk_order
           }
         }
         else {
           inputObject = {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            service_id: Number(serviceId),
-            account_id: Number(accountId),
-            amount: Number(amount),
+            session_key : sessionKey,
+            phone_num   : phoneNumber,
+            service_id  : Number(serviceId),
+            account_id  : Number(accountId),
+            amount      : Number(amount),
             payment_data: payment_data,
-            datetime: date,
+            datetime    : date,
             friend_phone: friendPhone
           }
         }
@@ -244,7 +250,7 @@
 
         window.api.call({
           method: 'app.payment',
-          input: inputObject,
+          input : inputObject,
 
           scope: this,
 
@@ -256,7 +262,7 @@
 
             if (result[0][0].error == 0) {
               if (result[1])
-                if (result[1][0].payment_id || result[1][0].invoice_id) {
+                if (!result[1][0].payment_id && result[1][0].invoice_id) {
                   console.log("result of APP.PAYMENT 1", result);
                   viewServicePage.phoneText = null;
                   viewServicePage.amountText = null;
@@ -266,6 +272,22 @@
 
                   scope.update();
                   componentSuccessId.style.display = 'block';
+                } else if (result[1][0].payment_id && !result[1][0].invoice_id) {
+
+                  if (device.platform != 'BrowserStand') {
+                    var options = {dimBackground: true};
+
+                    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+                      console.log("Started");
+                    }, function () {
+                      console.log("closed");
+                    });
+                  }
+
+                  setTimeout(function () {
+                    checkQrPaymentStatus(result[1][0].payment_id);
+                  }, 2000);
+
                 }
             }
             else {
@@ -282,7 +304,7 @@
         });
 
         setTimeout(function () {
-          if(!answerFromServer){
+          if (!answerFromServer) {
             if (device.platform != 'BrowserStand') {
               SpinnerPlugin.activityStop();
             }
@@ -291,6 +313,93 @@
         }, 20000)
       }
 
+    }
+
+    var qrCounter = 0;
+    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+    function checkQrPaymentStatus(payment_id) {
+
+      console.log("check transfer status");
+
+      window.api.call({
+        method: 'get.payment',
+        input : {
+          session_key: sessionKey,
+          phone_num  : phoneNumber,
+          payment_id : payment_id
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0 && result[1][0]) {
+
+
+            if (result[1][0].state == -1) {
+
+              if (device.platform != 'BrowserStand') {
+                SpinnerPlugin.activityStop();
+              }
+              componentUnsuccessId.style.display = 'block';
+              riot.update()
+
+
+            } else if (result[1][0].state == 2) {
+
+              if (device.platform != 'BrowserStand') {
+                SpinnerPlugin.activityStop();
+              }
+
+              window.updateBalanceGlobalFunction();
+              console.log("result of APP.PAYMENT 1", result);
+              viewServicePage.phoneText = null;
+              viewServicePage.amountText = null;
+
+              scope.operationMessage = 'Оплата QR прошла успешно'
+              viewServicePinCards.friendHelpPaymentMode = false;
+
+              scope.update();
+              componentSuccessId.style.display = 'block';
+
+
+            } else if (result[1][0].state == 1) {
+
+              qrCounter++;
+
+              if (qrCounter < 5) {
+
+                setTimeout(function () {
+                  checkQrPaymentStatus(result[1][0].payment_id);
+                }, 2000);
+
+              } else {
+
+                if (device.platform != 'BrowserStand') {
+                  SpinnerPlugin.activityStop();
+                }
+
+                componentInProcessingId.style.display = 'block';
+              }
+
+            }
+            window.api.spinnerOn = false;
+
+          }
+          else {
+            if (device.platform != 'BrowserStand') {
+              SpinnerPlugin.activityStop();
+            }
+            componentUnsuccessId.style.display = 'block';
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
     }
 
 
