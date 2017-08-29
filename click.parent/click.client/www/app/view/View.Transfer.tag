@@ -208,6 +208,8 @@
   <script>
 
     viewTransfer.check = true;
+    var scope = this;
+    scope.numberLength = 10;
     this.on('mount', function () {
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
@@ -217,8 +219,9 @@
       }
 
       if (opts && opts.number) {
-        contactPhoneNumberId.value = opts.number
-        if (contactPhoneNumberId.value == 9) {
+        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(opts.number)
+        console.log('opts number with space=', contactPhoneNumberId.value)
+        if (contactPhoneNumberId.value == scope.numberLength) {
           firstSuggestionBlockId.style.display = 'none';
           secondSuggestionBlockId.style.display = 'none';
           thirdSuggestionBlockId.style.display = 'none';
@@ -250,7 +253,7 @@
           fifthSuggestionBlockId.style.display = 'block';
         }
 
-        if (contactPhoneNumberId.value.length == 9) {
+        if (contactPhoneNumberId.value.length == scope.numberLength) {
           nextButtonId.style.display = 'block'
           firstSuggestionBlockId.style.display = 'none';
           secondSuggestionBlockId.style.display = 'none';
@@ -311,7 +314,7 @@
     telTransferVerificationKeyDown = function (input) {
 //      console.log(event.target.value)
       console.log("INPUT", event)
-      if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+      if (input.value.length >= scope.numberLength && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
 //        contactPhoneNumberId.value = event.target.value.substring(0, event.target.value.length - 1);
         contactStopChanging = true;
 
@@ -324,7 +327,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-transfer',
+          "view": 'view-transfer',
           "params": opts,
         }
       );
@@ -400,9 +403,9 @@
         if (modeOfApp.onlineMode)
           window.api.call({
             method: 'p2p.bank.list',
-            input : {
+            input: {
               session_key: sessionKey,
-              phone_num  : phoneNumber,
+              phone_num: phoneNumber,
 
             },
 
@@ -520,7 +523,7 @@
                 checkPhoneForTransfer = true;
                 checkCardForTransfer = false;
 //            console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
-                if (contactPhoneNumberId.value.length == 9) {
+                if (contactPhoneNumberId.value.length == scope.numberLength) {
                   nextButtonId.style.display = 'block'
 
                   firstSuggestionBlockId.style.display = 'none';
@@ -555,14 +558,14 @@
       console.log('from', from)
       if (onPaste) {
 
-        contactPhoneNumberId.value = inputVerification.telVerification(contactPhoneNumberId.value)
+        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(contactPhoneNumberId.value)
         onPaste = false;
       }
 
       scope.contactMode = true
       scope.cardMode = false
       scope.update();
-      if (contactPhoneNumberId.value.length == 9) {
+      if (contactPhoneNumberId.value.length == scope.numberLength) {
         nextButtonId.style.display = 'block'
         firstSuggestionBlockId.style.display = 'none';
         secondSuggestionBlockId.style.display = 'none';
@@ -806,9 +809,9 @@
 
       window.api.call({
         method: 'p2p.card.info',
-        input : {
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber,
+          phone_num: phoneNumber,
           card_number: cardInputId.value.replace(/\s/g, ''),
 
         },
@@ -1277,7 +1280,7 @@
         }
         else {
           if (viewTransfer.type == 2) {
-            phoneNumberForTransfer = contactPhoneNumberId.value;
+            phoneNumberForTransfer = inputVerification.spaceDeleter(contactPhoneNumberId.value);
             viewTransfer.phoneNumber = phoneNumberForTransfer;
             viewTransfer.type = 2;
             if (phoneNumberForTransfer.length != 9) {
@@ -1298,8 +1301,8 @@
                 var tax = 0;
               riot.mount('view-transfer-steptwo', [
                 {
-                  "name"   : phoneNumberForTransfer,
-                  "type"   : 2,
+                  "name": phoneNumberForTransfer,
+                  "type": 2,
                   "percent": tax,
                 }
               ]);
@@ -1384,10 +1387,10 @@
               this.riotTags.innerHTML = "<view-transfer-steptwo>";
               riot.mount('view-transfer-steptwo', [
                 {
-                  "name"   : cardNumberForTransfer,
-                  "type"   : 1,
+                  "name": cardNumberForTransfer,
+                  "type": 1,
                   "percent": percentOfBank,
-                  "owner"  : scope.cardOwner
+                  "owner": scope.cardOwner
                 }
               ]);
 
@@ -1405,12 +1408,8 @@
       var fields = [''];
       options.filter = "";
       options.multiple = true;
-      if (device.platform == 'Android') {
-        options.desiredFields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.phoneNumbers];
-      }
-      else{
-        options.desiredFields = [navigator.contacts.fieldType.name, navigator.contacts.fieldType.phoneNumbers];
-      }
+      options.desiredFields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.phoneNumbers];
+//
       navigator.contacts.find(fields, success, error, options);
 
       function success(contacts) {
@@ -1456,18 +1455,26 @@
       cursorPositionSelectionEnd = contactPhoneNumberId.selectionEnd;
       oldValueOfNumber = contactPhoneNumberId.value
       if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-        contactPhoneNumberId.value = inputVerification.telVerification(contactPhoneNumberId.value)
-        if (oldValueOfNumber != contactPhoneNumberId.value) {
-          contactPhoneNumberId.selectionStart = cursorPositionSelectionStart - 1
-          contactPhoneNumberId.selectionEnd = cursorPositionSelectionEnd - 1
-        }
-        else {
-          contactPhoneNumberId.selectionStart = cursorPositionSelectionStart
-          contactPhoneNumberId.selectionEnd = cursorPositionSelectionEnd
-        }
+        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(contactPhoneNumberId.value)
+        console.log("after with space changing=", contactPhoneNumberId.value)
+
+        contactPhoneNumberId.selectionStart = cursorPositionSelectionStart
+        contactPhoneNumberId.selectionEnd = cursorPositionSelectionEnd
+
+        if (oldValueOfNumber != contactPhoneNumberId.value && cursorPositionSelectionStart == 3)
+          contactPhoneNumberId.selectionStart = cursorPositionSelectionStart + 1;
+
+//        if (oldValueOfNumber != contactPhoneNumberId.value) {
+//          contactPhoneNumberId.selectionStart = cursorPositionSelectionStart - 1
+//          contactPhoneNumberId.selectionEnd = cursorPositionSelectionEnd - 1
+//        }
+//        else {
+//          contactPhoneNumberId.selectionStart = cursorPositionSelectionStart
+//          contactPhoneNumberId.selectionEnd = cursorPositionSelectionEnd
+//        }
       }
 
-      if (contactPhoneNumberId.value.length == 9) {
+      if (contactPhoneNumberId.value.length == scope.numberLength) {
         nextButtonId.style.display = 'block'
 
 
@@ -1523,8 +1530,10 @@
       var countOfFound = 0;
       var check = false;
       var index = -1;
+      console.log("before", event.target.value)
+      console.log('spaces deleted for searchWord', inputVerification.spaceDeleter(event.target.value))
       if (event.keyCode != 16 && event.keyCode != 18)
-        scope.searchWord = event.target.value;
+        scope.searchWord = inputVerification.spaceDeleter(event.target.value);
 
       arrayOfContacts.filter(function (wordOfFunction) {
         var objectPos = '';
