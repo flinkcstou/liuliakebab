@@ -46,6 +46,12 @@
         functions such as: Selecting a phone number from the contact list.</string>
     </config-file>
 
+    <config-file parent="NSCameraUsageDescription" target="*-Info.plist">
+      <string>This data is used exclusively for the correct operation of the application with functions such as: Selecting a phone number from the contact list,
+        automatically inserting the code from sms, making USSD requests,
+        setting the profile photo, reading the QR code.</string>
+    </config-file>
+
     <allow-intent href="itms:*"/>
     <allow-intent href="itms-apps:*"/>
     <allow-intent href="tel:*" launch-external="yes"/>

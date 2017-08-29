@@ -852,7 +852,7 @@ var css = {
   "{" +
   "position: relative;" +
   "font-size:" + 34 * widthK + "px;" +
-  "top:" + -24 * widthK + "px;" +
+  "top:" + -18 * widthK + "px;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "width:" + 125 * widthK + "px;" +

@@ -30,7 +30,8 @@
     <component-keyboard></component-keyboard>
   </div>
 
-  <div id="pinOfflineButtonId" class="pincode-button-offline" ontouchstart="offlineModeTouchStart()"
+  <div if="{device.platform != 'iOS'}" id="pinOfflineButtonId" class="pincode-button-offline"
+       ontouchstart="offlineModeTouchStart()"
        ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
@@ -91,7 +92,7 @@
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pin-code') {
         history.arrayOfHistory.push(
           {
-            "view": 'view-pin-code',
+            "view"  : 'view-pin-code',
             "params": opts
           }
         );
@@ -448,13 +449,13 @@
 
       window.api.call({
         method: 'registration',
-        input: {
-          phone_num: phoneNumber,
+        input : {
+          phone_num  : phoneNumber,
           card_number: cardNumber,
-          card_data: cardInformation,
-          pin: hex_md5(pin)
+          card_data  : cardInformation,
+          pin        : hex_md5(pin)
         },
-        scope: this,
+        scope : this,
 
         onSuccess: function (result) {
           console.log(result)
@@ -496,7 +497,7 @@
           }
 
         },
-        onFail: function (api_status, api_status_message, data) {
+        onFail   : function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -515,12 +516,12 @@
 
       window.api.call({
         method: 'registration.check',
-        input: {
-          phone_num: phoneNumber,
-          check_id: JSON.parse(localStorage.getItem("registration_check_id")),
+        input : {
+          phone_num : phoneNumber,
+          check_id  : JSON.parse(localStorage.getItem("registration_check_id")),
           check_hash: JSON.parse(localStorage.getItem("registration_check_hash")),
         },
-        scope: this,
+        scope : this,
 
         onSuccess: function (result) {
           console.log(result)
@@ -570,7 +571,7 @@
           }
 
         },
-        onFail: function (api_status, api_status_message, data) {
+        onFail   : function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -589,13 +590,13 @@
 
       window.api.call({
         method: 'settings.change.pin',
-        input: {
+        input : {
           session_key: sessionKey,
-          phone_num: phoneNumber,
+          phone_num  : phoneNumber,
           current_pin: currentPin,
-          new_pin: hex_md5(pin)
+          new_pin    : hex_md5(pin)
         },
-        scope: this,
+        scope : this,
 
         onSuccess: function (result) {
           console.log(result)
@@ -636,7 +637,7 @@
           }
 
         },
-        onFail: function (api_status, api_status_message, data) {
+        onFail   : function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
