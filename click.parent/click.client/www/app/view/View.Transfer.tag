@@ -1412,7 +1412,7 @@
                   "name": cardNumberForTransfer,
                   "type": 1,
                   "percent": percentOfBank,
-                  "owner": scope.cardOwner
+                  "owner": (scope.cardOwner) ? (scope.cardOwner) : ('Нет данных')
                 }
               ]);
 
