@@ -7,15 +7,15 @@ window.device_fake.check = false;
 
 console.log("FAKE PLUGIN")
 window.Keyboard_fake = {};
-window.Keyboard_fake.hide = function (){
+window.Keyboard_fake.hide = function () {
   //alert('keyboard is hidden')
 };
 
-window.exitApp = function (){
+window.exitApp = function () {
   //alert('keyboard is hidden')
 };
 
-if(!window.Keyboard){
+if (!window.Keyboard) {
   window.Keyboard = window.Keyboard_fake;
 }
 
@@ -33,3 +33,10 @@ if (!window.device) {
   window.device = window.device_fake;
 }
 
+if (typeof AppVersion === "undefined") {
+
+  AppVersion = {
+    version: "5.0.4",
+    build: "5.0.4.1"
+  };
+}
