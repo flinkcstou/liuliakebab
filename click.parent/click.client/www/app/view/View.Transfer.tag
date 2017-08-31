@@ -1160,6 +1160,8 @@
         viewTransferStepTwo.sum = 0;
         viewTransferStepTwo.sumWithoutSpace = 0;
 
+        ownerCardDsiplayId.style.display = 'none'
+
         if (device.platform == 'iOS') {
           contactPhoneNumberId.autofocus;
           contactPhoneNumberId.focus();
