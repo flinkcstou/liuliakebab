@@ -117,8 +117,9 @@ window.api.initSocket = function () {
             }
             else {
               //showConfirmComponent(error, 'session');
-              if (sessionStorage.getItem("push_news") && JOSN.parse(sessionStorage.getItem("push_news")) === true) return
-              localStorage.setItem('session_broken', true)
+              if (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true) return
+              console.log("SESSION_BROKEN = TRUE");
+              localStorage.setItem('session_broken', true);
               riotTags.innerHTML = "<view-authorization>";
               riot.mount('view-authorization');
               return

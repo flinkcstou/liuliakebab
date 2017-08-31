@@ -747,32 +747,46 @@
     var arrayAccountInfo = [];
     getAccount = function (e) {
 
+      console.log("DEBUG GET ACCOUNT");
+
       if (history.arrayOfHistory.length < 2) {
+        console.log("DEBUG HISTORY", history);
         localStorage.setItem('onResume', false)
       }
+
+      console.log("DEBUG GET ACCOUNT2", JSON.parse(localStorage.getItem("click_client_loginInfo")));
 
       if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = info.session_key;
 
+        console.log("DEBUG HISTORY IF 1", scope.firstEnter);
+
         if (scope.firstEnter) {
           var lengthOfPin = firstPinInputId.value.length;
           var compareLength = window.inputVerification.spaceDeleter(firstPinInputId.value);
-
+          console.log("DEBUG HISTORY IF 2");
         }
+        console.log("DEBUG HISTORY IF 1_2", localStorage.getItem("click_client_accountInfo"));
         if (scope.firstEnter && (lengthOfPin != compareLength.length || lengthOfPin != 5)) {
+          console.log("DEBUG HISTORY IF 3");
           riotTags.innerHTML = "<view-pin-code>";
           riot.mount('view-pin-code', ['view-authorization']);
         }
         else if (!localStorage.getItem("click_client_accountInfo")) {
+
+          console.log("DEBUG HISTORY IF 4");
 
           this.riotTags.innerHTML = "<view-main-page>";
           riot.mount('view-main-page');
           scope.unmount()
         } else {
 
-          if (!JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken')) && !sessionStorage.getItem("push_news")) {
+          console.log("DEBUG HISTORY IF 5", JSON.parse(localStorage.getItem('onResume')), JSON.parse(localStorage.getItem('session_broken')), JSON.parse(sessionStorage.getItem("push_news")));
+
+          if (!JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken')) && !JSON.parse(sessionStorage.getItem("push_news"))) {
+            console.log("DEBUG HISTORY IF 6");
 //            if (history.arrayOfHistory) {
 //              if (history.arrayOfHistory[history.arrayOfHistory.length - 1] && (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-device'
 //                || history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-sms' || history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-client'
@@ -791,16 +805,24 @@
 //          }
           else {
 
+            console.log("DEBUG HISTORY IF 7", JSON.parse(localStorage.getItem('settings_block')), JSON.parse(localStorage.getItem('session_broken')), JSON.parse(sessionStorage.getItem("push_news")));
+
             if (localStorage.getItem('settings_block') || localStorage.getItem('session_broken') || sessionStorage.getItem("push_news")) {
+              console.log("DEBUG HISTORY IF 8");
               if (JSON.parse(localStorage.getItem('settings_block')) === true || JSON.parse(localStorage.getItem('session_broken')) === true || JSON.parse(sessionStorage.getItem("push_news")) === true) {
-                console.log("QWEQWEWWWWWWW")
+                console.log("QWEQWEWWWWWWW");
+                console.log("DEBUG HISTORY IF 9", history.arrayOfHistory);
                 if (history.arrayOfHistory) {
+                  console.log("DEBUG HISTORY IF 10", history.arrayOfHistory[history.arrayOfHistory.length - 1]);
                   if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
+                    console.log("DEBUG HISTORY IF 11");
                     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-news') {
+                      console.log("DEBUG HISTORY IF 12");
                       this.riotTags.innerHTML = "<view-main-page>";
                       riot.mount("view-main-page");
                     }
                     else {
+                      console.log("DEBUG HISTORY IF 13");
                       this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
                       riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
                     }
@@ -808,17 +830,27 @@
                     if (device.platform != 'BrowserStand')
                       StatusBar.backgroundColorByHexString("#00a8f1");
 
-                    if (JSON.parse(localStorage.getItem('settings_block')) === true)
-                      localStorage.setItem('onResume', false)
+                    console.log("DEBUG HISTORY IF 14", JSON.parse(localStorage.getItem('settings_block')), JSON.parse(localStorage.getItem('session_broken')), JSON.parse(sessionStorage.getItem("push_news")));
+
+                    if (JSON.parse(localStorage.getItem('settings_block')) === true) {
+                      console.log("DEBUG HISTORY IF 15");
+                      localStorage.setItem('onResume', false);
+                    }
                     else {
-                      if (JSON.parse(localStorage.getItem('session_broken')) === true)
-                        localStorage.setItem('session_broken', false)
+                      console.log("DEBUG HISTORY IF 16");
+                      if (JSON.parse(localStorage.getItem('session_broken')) === true) {
+                        console.log("DEBUG HISTORY IF 17");
+                        localStorage.setItem('session_broken', false);
+                      }
                       else {
-                        if (JSON.parse(sessionStorage.getItem("push_news") === true)) {
+                        console.log("DEBUG HISTORY IF 18");
+                        if (JSON.parse(sessionStorage.getItem("push_news")) === true) {
+                          console.log("DEBUG HISTORY IF 19");
                           sessionStorage.setItem("push_news", false)
                         }
                       }
                     }
+                    console.log("DEBUG HISTORY IF 20");
                     return
                   }
                 }

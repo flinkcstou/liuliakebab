@@ -45,18 +45,6 @@
 </div>
 
 <script>
-  var versionOfApp = '5.6'
-  if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
-
-  }
-  else {
-    localStorage.removeItem('click_client_payCategoryList');
-    localStorage.removeItem('click_client_categoryNamesMap');
-    localStorage.removeItem('click_client_payServiceList');
-    localStorage.removeItem('click_client_servicesMapByCategory');
-    localStorage.removeItem('click_client_servicesMap');
-    localStorage.setItem('version', versionOfApp)
-  }
 
   api.init();
   var scope = this;
@@ -147,9 +135,26 @@
       MobileAccessibility.usePreferredTextZoom(false);
       checkFirstStarting = true;
 
+      console.log("Версия приложения из плагина", AppVersion.version);
+      console.log("Билд приложения из плагина", AppVersion.build);
+
+      window.languages.ViewSettingsAboutProgramVersionTitleNamePartOne = "Версия " + AppVersion.version;
+
+      if (localStorage.getItem('version') && localStorage.getItem('version') === AppVersion.version) {
+
+      }
+      else {
+//    localStorage.clear()
+        localStorage.removeItem('click_client_payCategoryList');
+        localStorage.removeItem('click_client_categoryNamesMap');
+        localStorage.removeItem('click_client_payServiceList');
+        localStorage.removeItem('click_client_servicesMapByCategory');
+        localStorage.removeItem('click_client_servicesMap');
+        localStorage.setItem('version', AppVersion.version)
+      }
 
       if (!localStorage.getItem('device_platform'))
-        localStorage.setItem('device_platform', device.platform)
+        localStorage.setItem('device_platform', device.platform);
 
 //      localStorage.setItem('device', JSON.stringify(device))
       localStorage.setItem("click_client_authorized", JSON.stringify(false));
@@ -294,6 +299,7 @@
 
       if (Math.abs(parseInt(waitingMinutes) - parseInt(nowMinutes)) > 5) {
         console.log("5 minutes >");
+        console.log("SESSION_BROKEN = TRUE");
         localStorage.setItem('session_broken', true)
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
