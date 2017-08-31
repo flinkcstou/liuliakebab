@@ -123,7 +123,7 @@
 
     history.arrayOfHistory.push(
       {
-        "view"  : 'view-registration-device',
+        "view": 'view-registration-device',
         "params": opts
       }
     );
@@ -410,7 +410,11 @@
 
           }
           else {
-//            localStorage.clear()
+            localStorage.removeItem('click_client_payCategoryList');
+            localStorage.removeItem('click_client_categoryNamesMap');
+            localStorage.removeItem('click_client_payServiceList');
+            localStorage.removeItem('click_client_servicesMapByCategory');
+            localStorage.removeItem('click_client_servicesMap');
             localStorage.setItem('version', versionOfApp)
           }
           localStorage.setItem('click_client_phoneNumber', phoneNumber);
@@ -484,13 +488,13 @@
 
       window.api.call({
         method: 'device.register.request',
-        input : {
-          phone_num  : phoneNumber,
+        input: {
+          phone_num: phoneNumber,
           device_info: deviceInfo(),
           device_name: deviceName(),
           device_type: deviceType(),
-          datetime   : date,
-          imei       : deviceImei(),
+          datetime: date,
+          imei: deviceImei(),
           app_version: versionOfApp
         },
 
