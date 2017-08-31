@@ -9262,7 +9262,7 @@ var css = {
   "width:" + 470 * heightK + "px !important; " +
   "height:" + 470 * heightK + "px !important; " +
   "margin-left: auto; " +
-  // "overflow: hidden; " +
+  "overflow: visible; " +
   "margin-right: auto; " +
   "background-color: white; " +
   "}",
