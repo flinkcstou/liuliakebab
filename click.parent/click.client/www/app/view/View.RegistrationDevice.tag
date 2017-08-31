@@ -405,8 +405,7 @@
 
 
         if (correctPhoneNumber) {
-          var versionOfApp = '5.6'
-          if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
+          if (localStorage.getItem('version') && localStorage.getItem('version') === AppVersion.version) {
 
           }
           else {
@@ -415,11 +414,11 @@
             localStorage.removeItem('click_client_payServiceList');
             localStorage.removeItem('click_client_servicesMapByCategory');
             localStorage.removeItem('click_client_servicesMap');
-            localStorage.setItem('version', versionOfApp)
+            localStorage.setItem('version', AppVersion.version)
           }
           localStorage.setItem('click_client_phoneNumber', phoneNumber);
           var date = parseInt(Date.now() / 1000);
-          registrationDevice(phoneNumber, date, versionOfApp);
+          registrationDevice(phoneNumber, date);
         }
       }
 
@@ -473,7 +472,7 @@
     }
 
     var countOfCall = 0;
-    function registrationDevice(phoneNumber, date, versionOfApp) {
+    function registrationDevice(phoneNumber, date) {
       countOfCall++;
       var checkServiceAnswer = false;
       if (device.platform != 'BrowserStand') {
@@ -495,7 +494,7 @@
           device_type: deviceType(),
           datetime: date,
           imei: deviceImei(),
-          app_version: versionOfApp
+          app_version: AppVersion.version
         },
 
         scope: this,
