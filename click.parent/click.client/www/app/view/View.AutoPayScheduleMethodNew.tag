@@ -193,8 +193,8 @@
       if (Math.abs(everyMonthButtonStartX - everyMonthButtonEndX) <= 20 && Math.abs(everyMonthButtonStartY - everyMonthButtonEndY) <= 20) {
 
         scope.autoPayData.type = 4;
-        dateNumber = 0;
-        minuteNumber = 0;
+        dateNumber = -2;
+        minuteNumber = -2;
         scope.topOfOperations = 143 * widthK;
         scope.weekMode = false;
         scope.timeMode = true;
@@ -343,8 +343,8 @@
             console.log("weekMode, Number=", dateNumber + 1);
             scope.autoPayData.week_day = dateNumber + 1;
           }
-          dateNumber = 0;
-          minuteNumber = 0;
+          dateNumber = -2;
+          minuteNumber = -2;
           scope.topOfOperations = 143 * widthK;
           scope.weekMode = false;
           scope.timeMode = true;
