@@ -15,7 +15,8 @@
             {window.languages.ViewRegistrationDeviceRememberLabel}</p>
           <div id="rememberIcon" class="registration-device-remember-icon"></div>
         </div>
-        <div id="registrationNextButtonId" class="registration-button-enter button-enter" ontouchend="getPhoneNumberTouchEnd()"
+        <div id="registrationNextButtonId" class="registration-button-enter button-enter"
+             ontouchend="getPhoneNumberTouchEnd()"
              ontouchstart="getPhoneNumberTouchStart()">
           <div class="button-enter-label">{window.languages.ViewRegistrationDeviceButtonEnterLabel}</div>
         </div>
@@ -24,7 +25,8 @@
   </div>
 
   <div class="registration-keyboard-field keyboard-field">
-    <div id="registrationHelpButtonId" class="registration-button-help" ontouchend="helpTouchEnd()" ontouchstart="helpTouchStart()">
+    <div id="registrationHelpButtonId" class="registration-button-help" ontouchend="helpTouchEnd()"
+         ontouchstart="helpTouchStart()">
       {window.languages.ViewRegistrationDeviceButtonHelp}
     </div>
     <component-keyboard></component-keyboard>
@@ -121,7 +123,7 @@
 
     history.arrayOfHistory.push(
       {
-        "view": 'view-registration-device',
+        "view"  : 'view-registration-device',
         "params": opts
       }
     );
@@ -403,7 +405,7 @@
 
 
         if (correctPhoneNumber) {
-          var versionOfApp = '5.0.4'
+          var versionOfApp = '5.6'
           if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
 
           }
@@ -482,13 +484,13 @@
 
       window.api.call({
         method: 'device.register.request',
-        input: {
-          phone_num: phoneNumber,
+        input : {
+          phone_num  : phoneNumber,
           device_info: deviceInfo(),
           device_name: deviceName(),
           device_type: deviceType(),
-          datetime: date,
-          imei: deviceImei(),
+          datetime   : date,
+          imei       : deviceImei(),
           app_version: versionOfApp
         },
 

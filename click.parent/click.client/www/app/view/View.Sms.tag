@@ -263,7 +263,7 @@
     }
 
 
-    var minutes = 1;
+    var minutes = 0;
     var seconds = 60;
 
     timer = function () {

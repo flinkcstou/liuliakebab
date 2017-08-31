@@ -1160,6 +1160,16 @@
         viewTransferStepTwo.sum = 0;
         viewTransferStepTwo.sumWithoutSpace = 0;
 
+        if (device.platform == 'iOS') {
+          contactPhoneNumberId.autofocus;
+          contactPhoneNumberId.focus();
+        }
+        else {
+          setTimeout(function () {
+            contactPhoneNumberId.focus();
+          }, 0)
+        }
+
         contactInputFieldId.style.display = 'block'
         cardInputFieldId.style.display = 'none'
         cardInputId.value = '';
@@ -1209,6 +1219,16 @@
       if ((Math.abs(cardChooseTouchStartX - cardChooseTouchEndX) <= 20 && Math.abs(cardChooseTouchStartY - cardChooseTouchEndY) <= 20) || bool) {
         viewTransferStepTwo.sum = 0;
         viewTransferStepTwo.sumWithoutSpace = 0;
+
+        if (device.platform == 'iOS') {
+          cardInputId.autofocus;
+          cardInputId.focus();
+        }
+        else {
+          setTimeout(function () {
+            cardInputId.focus();
+          }, 0)
+        }
 
         contactInputFieldId.style.display = 'none'
         cardInputFieldId.style.display = 'block'
