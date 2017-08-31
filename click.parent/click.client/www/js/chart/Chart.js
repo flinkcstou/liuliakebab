@@ -10399,7 +10399,7 @@ module.exports = function(Chart) {
 		iframe.className = 'chartjs-hidden-iframe';
 		iframe.style.cssText =
 			'display:block;'+
-			'overflow:hidden;'+
+			// 'overflow:hidden;'+
 			'border:0;'+
 			'margin:0;'+
 			'top:0;'+
