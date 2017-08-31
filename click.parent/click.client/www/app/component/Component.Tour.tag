@@ -4,7 +4,7 @@
 
     <p class="tour-title-text" id="tourTitleId">{tourTitle}</p>
 
-    <div type="button" class="tour-close-icon" ontouchend="closeTour()"></div>
+    <div id="firstCloseButtonId" type="button" class="tour-close-icon" ontouchstart="closeTourStart(this.id)" ontouchend="closeTourEnd(this.id)"></div>
 
 
     <div id="tourContainerId"
@@ -40,18 +40,19 @@
       </div>
 
       <div class="tour-buttons-container" if="{!registrButton}">
-        <div class="tour-next-button tour-close-button" ontouchend="closeTour()">
+        <div id="secondCloseButtonId" class="tour-next-button tour-close-button" ontouchstart="closeTourStart(this.id)" ontouchend="closeTourEnd(this.id)">
           <p class="tour-button-label tour-close-button-label">{window.languages.ComponentTourCloseButtonText}</p>
         </div>
-        <div class="tour-next-button" ontouchend="nextTourCard()">
+        <div id="nextTourCardId" class="tour-next-button" ontouchstart="nextTourCardStart(this.id)" ontouchend="nextTourCardEnd(this.id)">
           <p class="tour-button-label">{window.languages.ComponentTourNextButtonText}</p>
         </div>
       </div>
 
       <div class="tour-buttons-container" if="{registrButton}">
         <div
+          id="thirdCloseButtonId"
           class="tour-registration-button"
-          ontouchend="closeTour()">
+          ontouchstart="closeTourStart(this.id)" ontouchend="closeTourEnd(this.id)">
           <p class="tour-registration-button-label">
             {window.languages.ComponentTourCloseButtonTextIn}</p>
         </div>
@@ -183,8 +184,26 @@
 
     scope.shift = 100;
 
-    nextTourCard = function () {
-      changePositionWithButton();
+    var nextStartX, nextEndX, nextStartY, nextEndY;
+
+    nextTourCardStart = function (id) {
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+
+      nextStartX = event.changedTouches[0].pageX;
+      nextStartY = event.changedTouches[0].pageY;
+    }
+
+    nextTourCardEnd = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
+
+      nextEndX = event.changedTouches[0].pageX;
+      nextEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(nextStartX - nextEndX) <= 20 && Math.abs(nextStartY - nextEndY) <= 20) {
+
+        changePositionWithButton();
+      }
     }
 
     changePosition = function () {
@@ -266,34 +285,53 @@
 
     }
 
+    var closeStartX, closeEndX, closeStartY, closeEndY;
 
-    closeTour = function () {
+    closeTourStart = function (id) {
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+
+      closeStartX = event.changedTouches[0].pageX;
+      closeStartY = event.changedTouches[0].pageY;
+
+    }
+
+
+    closeTourEnd = function (id) {
       event.preventDefault();
       event.stopPropagation();
 
-      if (scope.tourCirclesShow)
-        document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'gainsboro';
-      scope.tNumber = 0;
-      this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
-      this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
-      this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
-      this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
-      if (scope.tourCirclesShow)
-        document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
-      this.tourTitleId.style.color = scope.tourCardsArray[scope.tNumber].title_color;
-      scope.registrButton = false;
-      scope.update();
-      if (opts.view != "registration") {
-        scope.tourData = JSON.parse(localStorage.getItem("tour_data"));
-        scope.tourData[opts.view] = true;
-        console.log("New tourData", scope.tourData);
-        localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
-      }
+      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
-      if (device.platform != 'BrowserStand') {
-        StatusBar.backgroundColorByHexString("#00a8f1");
+      closeEndX = event.changedTouches[0].pageX;
+      closeEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(closeStartX - closeEndX) <= 20 && Math.abs(closeStartY - closeEndY) <= 20) {
+
+        if (scope.tourCirclesShow)
+          document.getElementById("circle" + scope.tNumber).style.backgroundColor = 'gainsboro';
+        scope.tNumber = 0;
+        this.tourContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.tourContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.tourContainerId.style.transform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
+        this.tourContainerId.style.webkitTransform = "translate3d(" + (-scope.tNumber * scope.shift) + '%' + ", 0, 0)";
+        if (scope.tourCirclesShow)
+          document.getElementById("circle" + scope.tNumber).style.backgroundColor = '#c1c1c1';
+        this.tourTitleId.style.color = scope.tourCardsArray[scope.tNumber].title_color;
+        scope.registrButton = false;
+        scope.update();
+        if (opts.view != "registration") {
+          scope.tourData = JSON.parse(localStorage.getItem("tour_data"));
+          scope.tourData[opts.view] = true;
+          console.log("New tourData", scope.tourData);
+          localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
+        }
+
+        if (device.platform != 'BrowserStand') {
+          StatusBar.backgroundColorByHexString("#00a8f1");
+        }
+        componentTourId.style.display = 'none';
       }
-      componentTourId.style.display = 'none';
     }
 
 
