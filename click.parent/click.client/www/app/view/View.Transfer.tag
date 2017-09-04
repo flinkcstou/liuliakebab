@@ -555,7 +555,7 @@
       console.log('from', from)
       if (onPaste) {
 
-        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(contactPhoneNumberId.value)
+        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(contactPhoneNumberId.value))
         onPaste = false;
       }
 
