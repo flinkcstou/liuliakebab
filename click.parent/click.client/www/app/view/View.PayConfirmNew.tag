@@ -334,11 +334,13 @@
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         console.log("sessionKey=", sessionKey, "phoneNumber", phoneNumber)
-        var favoritePaymentsList;
+        var favoritePaymentsList, favoritePaymentsListForApi;
         console.log("ID for favorite", Math.floor((Math.random() * 1000000) + 1))
         var id = Math.floor((Math.random() * 1000000) + 1);
         opts.favoriteId = id;
         favoritePaymentsList = localStorage.getItem('favoritePaymentsList') ? JSON.parse(localStorage.getItem('favoritePaymentsList')) : [];
+        favoritePaymentsListForApi = localStorage.getItem('favoritePaymentsListForApi') ? JSON.parse(localStorage.getItem('favoritePaymentsListForApi')) : [];
+
 
         var newFavorite = {
           "params": opts,
@@ -347,13 +349,23 @@
           "id": id
         };
         favoritePaymentsList.push(newFavorite);
+        favoritePaymentsListForApi.push({
+          "id": id,
+          "type": 1,
+          "body": JSON.stringify(newFavorite)
+        })
+
+        if (favoritePaymentsListForApi.length < favoritePaymentsList.length) {
+          //for(var i in favoritePaymentsList)
+            //favoritePaymentsListForApi
+        }
 
         window.api.call({
           method: 'add.favourite',
           input: {
             session_key: sessionKey,
             phone_num: phoneNumber,
-            wishlist_data: JSON.stringify(favoritePaymentsList)
+            wishlist_data: favoritePaymentsListForApi
           },
 
           scope: this,
