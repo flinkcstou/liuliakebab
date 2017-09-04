@@ -40,7 +40,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-friend-help-settings') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-friend-help-settings',
+          "view"  : 'view-friend-help-settings',
           "params": opts
         }
       );
@@ -89,7 +89,8 @@
 
       console.log('CONTACTS ARRAY', scope.arrayOfPhoneNumbers)
 
-      if (!scope.arrayOfPhoneNumbers) return
+      if (typeof scope.arrayOfPhoneNumbers === 'undefined' || scope.arrayOfPhoneNumbers.length < 1) return
+
 
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -97,9 +98,9 @@
 
       window.api.call({
         method: 'check.contact.list',
-        input: {
-          phone_num: phoneNumber,
-          phone_list: scope.arrayOfPhoneNumbers,
+        input : {
+          phone_num  : phoneNumber,
+          phone_list : scope.arrayOfPhoneNumbers,
           session_key: sessionKey,
 
         },

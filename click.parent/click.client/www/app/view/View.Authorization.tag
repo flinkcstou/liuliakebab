@@ -108,6 +108,9 @@
     //    }
 
     this.on('mount', function () {
+
+      localStorage.setItem('session_broken', false);
+
       if (scope.firstEnter) {
 
         authorizationButtonsContainerId.style.top = 400 * widthK + 'px'

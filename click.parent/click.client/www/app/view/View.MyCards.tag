@@ -64,7 +64,7 @@
         <div class="my-cards-last-operations-date">
           <p class="my-cards-last-operation-info-date-name">{j}</p>
         </div>
-        <div class="my-cards-last-operations-info" each="{i in lastOperationsMap[j]}">
+        <div class="my-cards-last-operations-info" each="{i in lastOperationsMap[j]}" id="{i.payment_id}" ontouchstart="onTouchStartOfOperation(this.id)" onclick="onTouchEndOfOperation(this.id)">
           <div class="my-cards-operation-service-icon"
                style="background-image: url({i.image})"></div>
           <div class="my-cards-operation-amount">- {i.amount}</div>
@@ -72,7 +72,7 @@
           <div class="my-cards-firm-name">{i.service_name}</div>
           <div class="my-cards-operation-date">{i.cntrg_info_param2}</div>
           <p class="my-cards-last-operation-info-time">{i.paymentTime}</p>
-          <div class="my-cards-last-operations-info-state-image" style="background-image: url({i.state_image})"></div>
+
         </div>
       </div>
     </div>
@@ -670,6 +670,96 @@
           scope.update();
         }
       }
+    }
+
+    var operationInfoTouchStartY, operationInfoTouchEndY;
+    scope.onTouchStartOfOperation = onTouchStartOfOperation = function (paymentId) {
+      console.log('Start')
+      operationInfoTouchStartY = event.changedTouches[0].pageY;
+    }
+
+    scope.onTouchEndOfOperation = onTouchEndOfOperation = function (paymentId) {
+
+      document.getElementById(paymentId).style.backgroundColor = 'rgba(231,231,231,0.8)'
+
+      setTimeout(function () {
+        document.getElementById(paymentId).style.backgroundColor = 'transparent'
+      }, 300)
+
+
+      operationInfoTouchEndY = event.pageY;
+
+      setTimeout(function () {
+
+
+        if (Math.abs(operationInfoTouchStartY - operationInfoTouchEndY) < 20) {
+
+          if (modeOfApp.demoVersion) {
+            var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+//        confirm(question)
+            scope.confirmShowBool = true;
+            scope.confirmNote = question;
+            scope.confirmType = 'local';
+            scope.result = function (bool) {
+              if (bool) {
+                localStorage.clear();
+                window.location = 'index.html'
+                scope.unmount()
+                return
+              }
+              else {
+                scope.confirmShowBool = false;
+                return
+              }
+            };
+            scope.update();
+
+            return
+          }
+
+          console.log("Time to open");
+          for (var i = 0; i < scope.arrayOfOperationsByAccount.length; i++) {
+            if (scope.arrayOfOperationsByAccount[i].payment_id == paymentId) {
+              var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
+//            console.log("FROM VIEW INFO service report for=", scope.arrayOfOperationsByAccount[i]);
+
+              var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+
+              console.log(" starting check", favoritePaymentsList)
+              if (favoritePaymentsList) {
+                for (var j in favoritePaymentsList) {
+                  console.log("fav payment j ", favoritePaymentsList[j].params)
+                  if (favoritePaymentsList[j].params.paymentId && favoritePaymentsList[j].params.paymentId == paymentId) {
+                    console.log("found ", favoritePaymentsList[j].params.paymentId)
+                    scope.arrayOfOperationsByAccount[i].isInFavorites = true;
+                    scope.favoriteId = favoritePaymentsList[j].id;
+                    break;
+                  }
+                  scope.arrayOfOperationsByAccount[i].isInFavorites = false;
+                }
+                //console.log(" not found ")
+
+              } else {
+                scope.arrayOfOperationsByAccount[i].isInFavorites = false;
+                console.log(" NO FAV ")
+              }
+
+              if (servicesMap[scope.arrayOfOperationsByAccount[i].service_id])
+                scope.arrayOfOperationsByAccount[i].canAddToFavorite = true;
+              else
+                scope.arrayOfOperationsByAccount[i].canAddToFavorite = false;
+
+              scope.arrayOfOperationsByAccount[i].favoriteId = scope.favoriteId;
+              riotTags.innerHTML = "<view-report-service-new>";
+              riot.mount("view-report-service-new", scope.arrayOfOperationsByAccount[i]);
+
+              scope.unmount()
+              break;
+            }
+          }
+        }
+      }, 100)
+
     }
 
   </script>

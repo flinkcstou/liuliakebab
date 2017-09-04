@@ -77,10 +77,9 @@ var css = {
   "margin: 0;" +
   "overflow: hidden;" +
   "bottom: 0;" +
-  "-webkit-user-select: none; " +
+  "-webkit-user-select: text; " +
   "-webkit-touch-callout: none; " +
   "-webkit-user-drag: none; " +
-  "-webkit-tap-highlight-color:rgba(0,0,0,0);" +
   "text-decoration:none;" +
   "color:inherit;" +
   "font-size:" + 32 * widthK + "px;" +
