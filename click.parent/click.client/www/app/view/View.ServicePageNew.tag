@@ -511,7 +511,7 @@
 
       if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         if (firstFieldInput.type != 'text' && scope.phoneFieldBool)
-          firstFieldInput.value = inputVerification.telVerificationWithSpace(firstFieldInput.value)
+          firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(firstFieldInput.value))
 
 
         firstFieldInput.selectionStart = cursorPositionSelectionStart
