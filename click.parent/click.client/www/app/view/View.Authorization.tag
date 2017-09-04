@@ -113,7 +113,7 @@
 
       if (scope.firstEnter) {
 
-        authorizationButtonsContainerId.style.top = 400 * widthK + 'px'
+        authorizationButtonsContainerId.style.top = 400 * widthK + 'px';
 
         if (device.platform == 'iOS') {
           firstPinInputId.autofocus;
@@ -125,8 +125,8 @@
           }, 0)
         }
       }
-      scope.update()
-    })
+      scope.update();
+    });
 
     window.lastSocketMethodToSend = undefined;
 
