@@ -341,6 +341,15 @@
         favoritePaymentsList = localStorage.getItem('favoritePaymentsList') ? JSON.parse(localStorage.getItem('favoritePaymentsList')) : [];
         favoritePaymentsListForApi = localStorage.getItem('favoritePaymentsListForApi') ? JSON.parse(localStorage.getItem('favoritePaymentsListForApi')) : [];
 
+        if (favoritePaymentsListForApi.length != favoritePaymentsList.length) {
+          favoritePaymentsListForApi = [];
+          for (var i in favoritePaymentsList)
+            favoritePaymentsListForApi.push({
+              "id": favoritePaymentsList[i].id,
+              "type": 1,
+              "body": JSON.stringify(favoritePaymentsList[i])
+            })
+        }
 
         var newFavorite = {
           "params": opts,
@@ -349,16 +358,13 @@
           "id": id
         };
         favoritePaymentsList.push(newFavorite);
+
         favoritePaymentsListForApi.push({
           "id": id,
           "type": 1,
           "body": JSON.stringify(newFavorite)
-        })
+        });
 
-        if (favoritePaymentsListForApi.length < favoritePaymentsList.length) {
-          //for(var i in favoritePaymentsList)
-            //favoritePaymentsListForApi
-        }
 
         window.api.call({
           method: 'add.favourite',
