@@ -72,7 +72,7 @@
 
           <div class="view-reports-graph-percent-image-container" each="{i in arrayOfCoordinates}"
                id="chartImageBlockId{i.order}" if="{i.percent > 15}"
-               style="top: {i.y * heightK}px; left: {i.x  * widthK}px; -webkit-transform: translate3d(-55%, -{i.position}% ,0);">
+               style="top: {i.y * heightK}px; left: {i.x  * heightK}px; -webkit-transform: translate3d(-55%, -{i.position}% ,0);">
             <p if="{i.percent > 10}" class="view-reports-graph-percent">{i.percent}%</p>
             <div class="view-reports-graph-image"
                  style="background-image: url({i.image})"></div>
