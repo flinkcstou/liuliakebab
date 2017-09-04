@@ -529,10 +529,12 @@
                 }
 
                 console.log('HASH SUM CHECK', scope.checkSumOfHash)
+                console.log('update_account_cache', info.update_account_cache)
 
 //                console.log('CARDS UPDATE()', result[1])
 //                console.log(result[1])
-                if (!scope.checkSumOfHash) {
+                if (!scope.checkSumOfHash || info.update_account_cache) {
+                  console.log("ASEWASEW");
                   var countCard = 2;
                   var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
 
@@ -824,9 +826,9 @@
 
               console.log("STOP STOP STOP")
 
-              if (scope.cardsarray[result[1][0].account_id]){
-                scope.cardsarray[result[1][0].account_id].salary  = null;
-                scope.cardsarray[result[1][0].account_id].error_message  = "Ошибка баланса";
+              if (scope.cardsarray[result[1][0].account_id]) {
+                scope.cardsarray[result[1][0].account_id].salary = null;
+                scope.cardsarray[result[1][0].account_id].error_message = "Ошибка баланса";
                 localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
               }
               scope.update();
@@ -883,7 +885,8 @@
     var cNow1, cNow2, cNow3, vNow1, vNow2, vNow3;
     var cNext1, cNext2, cNext3, vNext1, vNext2, vNext3;
     var cPrivious1, cPrivious2, cPrivious3, vPrivious1, vPrivious2, vPrivious3;
-    var fromChangableColor1, fromChangableColor2, fromChangableColor3, toChangableColor1, toChangableColor2, toChangableColor3;
+    var fromChangableColor1, fromChangableColor2, fromChangableColor3, toChangableColor1, toChangableColor2,
+      toChangableColor3;
     var cNowOriginal1, cNowOriginal2, cNowOriginal3, vNowOriginal1, vNowOriginal2, vNowOriginal3;
     var firstEnter = false;
 
@@ -1214,8 +1217,8 @@
 
     //    var changingColor;
 
-     scope.changePositionCardCarousel = changePositionCardCarousel = function () {
-      if(event){
+    scope.changePositionCardCarousel = changePositionCardCarousel = function () {
+      if (event) {
         event.preventDefault()
         event.stopPropagation()
       }
