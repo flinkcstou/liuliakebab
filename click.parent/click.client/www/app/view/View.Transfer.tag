@@ -515,7 +515,7 @@
               }
 
               var phone = inputVerification.telVerification(phoneNumber);
-              contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
+              contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
               if (contactPhoneNumberId.value.length != 0) {
                 checkPhoneForTransfer = true;
                 checkCardForTransfer = false;
