@@ -8,8 +8,9 @@
          ontouchstart="goToViewInfoTouchStart()">
     </div>
 
-    <div if="{!modeOfApp.offlineMode}" id="bellButtonId" class="bell-button bell-icon" ontouchstart="bellButtonTouchStart()"
-         ontouchend="bellButtonTouchEnd()">
+    <div if="{!modeOfApp.offlineMode}" id="bellButtonId" class="bell-button bell-icon"
+         ontouchstart="bellButtonTouchStart()"
+         ontouchend="bellButtonTouchEnd()" title="Новости">
       <div if="{window.News.newsCounter != 0 && !modeOfApp.offlineMode}" class="bell-button-news-counter">
         {window.News.newsCounter}
       </div>
