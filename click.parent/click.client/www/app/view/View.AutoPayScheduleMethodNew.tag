@@ -463,8 +463,8 @@
           this.dateContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
         } else {
           dateNumber = dateNumber + Number(nShift);
-          this.dateContainerId.style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-          this.dateContainerId.style.webkitTransition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
           this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
           this.dateContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
         }
@@ -484,8 +484,8 @@
           this.dateContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
         } else {
           dateNumber = dateNumber - Number(nShift);
-          this.dateContainerId.style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-          this.dateContainerId.style.webkitTransition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.dateContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.dateContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
           this.dateContainerId.style.transform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
           this.dateContainerId.style.webkitTransform = "translate3d(0," + (-dateNumber * scope.shift) * widthK + 'px' + ", 0)";
         }
@@ -616,14 +616,14 @@
         document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
         if ((minuteNumber + Number(mShift)) > (minutesCount - 1)) {
           minuteNumber = (minuteNumber + (Number(mShift) % minutesCount)) >= minutesCount ? ((minuteNumber + (Number(mShift) % minutesCount)) - minutesCount) : (minuteNumber + (Number(mShift) % minutesCount));
-          this.minutesContainerId.style.transition = '0.0001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-          this.minutesContainerId.style.webkitTransition = '0.0001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.minutesContainerId.style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.minutesContainerId.style.webkitTransition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
           this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * minShift) * widthKCopy + 'px' + ", 0)";
           this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * minShift) * widthKCopy + 'px' + ", 0)";
         } else {
           minuteNumber = minuteNumber + Number(mShift);
-          this.minutesContainerId.style.transition = '0.1s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-          this.minutesContainerId.style.webkitTransition = '0.1s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.minutesContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.minutesContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
           this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * minShift) * widthKCopy + 'px' + ", 0)";
           this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * minShift) * widthKCopy + 'px' + ", 0)";
         }
@@ -633,14 +633,14 @@
         document.getElementById("min" + minuteNumber).style.color = '#c1c1c1';
         if ((minuteNumber - Number(mShift)) < 0) {
           minuteNumber = (minuteNumber - (Number(mShift) % minutesCount)) < 0 ? ((minuteNumber - (Number(mShift) % minutesCount)) + minutesCount) : (minuteNumber - (Number(mShift) % minutesCount));
-          this.minutesContainerId.style.transition = '0.0001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-          this.minutesContainerId.style.webkitTransition = '0.0001s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.minutesContainerId.style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.minutesContainerId.style.webkitTransition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
           this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * minShift) * widthKCopy + 'px' + ", 0)";
           this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * minShift) * widthKCopy + 'px' + ", 0)";
         } else {
           minuteNumber = minuteNumber - Number(mShift);
-          this.minutesContainerId.style.transition = '0.1s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-          this.minutesContainerId.style.webkitTransition = '0.1s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.minutesContainerId.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+          this.minutesContainerId.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
           this.minutesContainerId.style.transform = "translate3d(0," + (-minuteNumber * minShift) * widthKCopy + 'px' + ", 0)";
           this.minutesContainerId.style.webkitTransform = "translate3d(0," + (-minuteNumber * minShift) * widthKCopy + 'px' + ", 0)";
         }
