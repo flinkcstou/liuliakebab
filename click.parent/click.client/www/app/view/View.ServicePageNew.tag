@@ -2168,35 +2168,73 @@
 
     addToFavoritesinServicePage = function (array) {
 //      console.log('scope.fieldArray[0]', scope.fieldArray[0].ussd_query)
-      var favoritePaymentsList;
+      var favoritePaymentsList, favoritePaymentsListForApi;
       console.log("ID for favorite", Math.floor((Math.random() * 1000000) + 1))
       var id = Math.floor((Math.random() * 1000000) + 1);
 
+      favoritePaymentsList = localStorage.getItem('favoritePaymentsList') ? JSON.parse(localStorage.getItem('favoritePaymentsList')) : [];
+      favoritePaymentsListForApi = localStorage.getItem('favoritePaymentsListForApi') ? JSON.parse(localStorage.getItem('favoritePaymentsListForApi')) : [];
 
-      if (!localStorage.getItem('favoritePaymentsList')) {
-        favoritePaymentsList = [];
-//        console.log("Chosen Service =", scope.service);
-        favoritePaymentsList.push({
-          "params": array,
-          "service": scope.service,
-          "ussd": scope.fieldArray[0].ussd_query,
-          "id": id
-        });
-        console.log("favoritePaymentsList=", favoritePaymentsList);
-        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-
-      } else {
-        favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
-
-        favoritePaymentsList.push({
-          "params": array,
-          "service": scope.service,
-          "ussd": scope.fieldArray[0].ussd_query,
-          "id": id
-        });
-        console.log("favoritePaymentsList=", favoritePaymentsList);
-        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+      if (favoritePaymentsListForApi.length != favoritePaymentsList.length) {
+        favoritePaymentsListForApi = [];
+        for (var i in favoritePaymentsList)
+          favoritePaymentsListForApi.push({
+            "id": favoritePaymentsList[i].id,
+            "type": 1,
+            "body": JSON.stringify(favoritePaymentsList[i])
+          })
       }
+
+      var newfavorite = {
+        "params": array,
+        "service": scope.service,
+        "ussd": scope.fieldArray[0].ussd_query,
+        "id": id
+      };
+
+      favoritePaymentsList.push(newfavorite);
+      favoritePaymentsListForApi.push({
+        "id": id,
+        "type": 1,
+        "body": JSON.stringify(newfavorite)
+      });
+
+      window.api.call({
+        method: 'add.favourite',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          wishlist_data: favoritePaymentsListForApi
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+
+          if (result[0][0].error == 0) {
+
+            console.log("SUCCESSFULLY ADDED")
+
+          }
+          else {
+            scope.showError = true;
+            scope.errorNote = result[0][0].error_note
+            scope.update();
+            console.log(result[0][0].error_note);
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+
+      console.log("favoritePaymentsList=", favoritePaymentsList);
+      localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+      localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
+
+
     };
 
     editFavorite = function (params) {
