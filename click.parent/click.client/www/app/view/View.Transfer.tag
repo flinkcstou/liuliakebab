@@ -513,11 +513,8 @@
               if (device.platform == 'Android') {
                 phoneNumber = contactInfo.nameFormated
               }
-              var digits = phoneNumber.match(maskOne);
-              var phone = '';
-              for (var i in digits) {
-                phone += digits[i]
-              }
+
+              var phone = inputVerification.telVerification(phoneNumber);
               contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
               if (contactPhoneNumberId.value.length != 0) {
                 checkPhoneForTransfer = true;
@@ -1439,11 +1436,8 @@
           if (contacts[i].name)
             if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null) {
               for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
-                var digits = contacts[i].phoneNumbers[j].value.match(maskOne);
-                var phone = '';
-                for (var k in digits) {
-                  phone += digits[k]
-                }
+                var phone = inputVerification.telVerification(contacts[i].phoneNumbers[j].value);
+
                 contacts[i].phoneNumbers[j].value = phone;
               }
               arrayOfContacts.push(contacts[i])
@@ -1933,11 +1927,7 @@
 
       if (Math.abs(firstSuggestionBlockTouchEndX - firstSuggestionBlockTouchStartX) <= 20 && Math.abs(firstSuggestionBlockTouchStartY - firstSuggestionBlockTouchEndY) <= 20) {
 
-        var digits = scope.suggestionOne.phoneNumber.match(maskOne);
-        var phone = '';
-        for (var i in digits) {
-          phone += digits[i]
-        }
+        var phone = inputVerification.telVerification(scope.suggestionOne.phoneNumber);
         scope.suggestionOne.phoneNumber = phone;
 //      console.log(scope.suggestionOne.phoneNumber)
         contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length);
@@ -1977,11 +1967,7 @@
 
       if (Math.abs(secondSuggestionBlockTouchEndX - secondSuggestionBlockTouchStartX) <= 20 && Math.abs(secondSuggestionBlockTouchStartY - secondSuggestionBlockTouchEndY) <= 20) {
 
-        var digits = scope.suggestionTwo.phoneNumber.match(maskOne);
-        var phone = '';
-        for (var i in digits) {
-          phone += digits[i]
-        }
+        var phone = inputVerification.telVerification(scope.suggestionTwo.phoneNumber);
         scope.suggestionTwo.phoneNumber = phone;
 
         contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length);
@@ -2020,11 +2006,7 @@
 
       if (Math.abs(thirdSuggestionBlockTouchEndX - thirdSuggestionBlockTouchStartX) <= 20 && Math.abs(thirdSuggestionBlockTouchStartY - thirdSuggestionBlockTouchEndY) <= 20) {
 
-        var digits = scope.suggestionThree.phoneNumber.match(maskOne);
-        var phone = '';
-        for (var i in digits) {
-          phone += digits[i]
-        }
+        var phone = inputVerification.telVerification(scope.suggestionThree.phoneNumber);
         scope.suggestionThree.phoneNumber = phone;
 
         contactPhoneNumberId.value = scope.suggestionThree.phoneNumber.substring(scope.suggestionThree.phoneNumber.length - 9, scope.suggestionThree.phoneNumber.length);
@@ -2063,11 +2045,8 @@
 
       if (Math.abs(fourthSuggestionBlockTouchEndX - fourthSuggestionBlockTouchStartX) <= 20 && Math.abs(fourthSuggestionBlockTouchStartY - fourthSuggestionBlockTouchEndY) <= 20) {
 
-        var digits = scope.suggestionFour.phoneNumber.match(maskOne);
-        var phone = '';
-        for (var i in digits) {
-          phone += digits[i]
-        }
+        var phone = inputVerification.telVerification(scope.suggestionFour.phoneNumber);
+
         scope.suggestionFour.phoneNumber = phone;
 
         contactPhoneNumberId.value = scope.suggestionFour.phoneNumber.substring(scope.suggestionFour.phoneNumber.length - 9, scope.suggestionFour.phoneNumber.length);
@@ -2106,11 +2085,7 @@
 
       if (Math.abs(fifthSuggestionBlockTouchEndX - fifthSuggestionBlockTouchStartX) <= 20 && Math.abs(fifthSuggestionBlockTouchStartY - fifthSuggestionBlockTouchEndY) <= 20) {
 
-        var digits = scope.suggestionFive.phoneNumber.match(maskOne);
-        var phone = '';
-        for (var i in digits) {
-          phone += digits[i]
-        }
+        var phone = inputVerification.telVerification(scope.suggestionFive.phoneNumber);
         scope.suggestionFive.phoneNumber = phone;
 
         contactPhoneNumberId.value = scope.suggestionFive.phoneNumber.substring(scope.suggestionFive.phoneNumber.length - 9, scope.suggestionFive.phoneNumber.length);
