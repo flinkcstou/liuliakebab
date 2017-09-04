@@ -9257,7 +9257,9 @@ var css = {
 
   viewReportsGraphFrame: ".view-reports-graph-frame" +
   "{" +
-  "position: relative;" +
+  "position: absolute;" +
+  "left: 50%;" +
+  "-webkit-transform:translate3d(-50%, 0, 0);" +
   "width:" + 470 * heightK + "px !important; " +
   "height:" + 470 * heightK + "px !important; " +
   "margin-left: auto; " +
