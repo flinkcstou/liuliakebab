@@ -518,7 +518,7 @@
               for (var i in digits) {
                 phone += digits[i]
               }
-              contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
+              contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
               if (contactPhoneNumberId.value.length != 0) {
                 checkPhoneForTransfer = true;
                 checkCardForTransfer = false;
@@ -1186,7 +1186,7 @@
         scope.update();
 
         if (viewTransfer.phoneNumber)
-          this.contactPhoneNumberId.value = viewTransfer.phoneNumber;
+          this.contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(viewTransfer.phoneNumber);
 
         if (!contactPhoneNumberId.value) {
           nextButtonId.style.display = 'none'
@@ -1940,9 +1940,9 @@
         }
         scope.suggestionOne.phoneNumber = phone;
 //      console.log(scope.suggestionOne.phoneNumber)
-        contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length);
+        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length));
 
-        if (contactPhoneNumberId.value.length == 9) {
+        if (contactPhoneNumberId.value.length == scope.numberLength) {
           nextButtonId.style.display = 'block'
 
           firstSuggestionBlockId.style.display = 'none';
@@ -1984,9 +1984,9 @@
         }
         scope.suggestionTwo.phoneNumber = phone;
 
-        contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length);
+        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length));
 
-        if (contactPhoneNumberId.value.length == 9) {
+        if (contactPhoneNumberId.value.length == scope.numberLength) {
           nextButtonId.style.display = 'block'
           firstSuggestionBlockId.style.display = 'none';
           secondSuggestionBlockId.style.display = 'none';
@@ -2027,9 +2027,9 @@
         }
         scope.suggestionThree.phoneNumber = phone;
 
-        contactPhoneNumberId.value = scope.suggestionThree.phoneNumber.substring(scope.suggestionThree.phoneNumber.length - 9, scope.suggestionThree.phoneNumber.length);
+        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(scope.suggestionThree.phoneNumber.substring(scope.suggestionThree.phoneNumber.length - 9, scope.suggestionThree.phoneNumber.length));
 
-        if (contactPhoneNumberId.value.length == 9) {
+        if (contactPhoneNumberId.value.length == scope.numberLength) {
           nextButtonId.style.display = 'block'
           firstSuggestionBlockId.style.display = 'none';
           secondSuggestionBlockId.style.display = 'none';
@@ -2070,9 +2070,9 @@
         }
         scope.suggestionFour.phoneNumber = phone;
 
-        contactPhoneNumberId.value = scope.suggestionFour.phoneNumber.substring(scope.suggestionFour.phoneNumber.length - 9, scope.suggestionFour.phoneNumber.length);
+        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(scope.suggestionFour.phoneNumber.substring(scope.suggestionFour.phoneNumber.length - 9, scope.suggestionFour.phoneNumber.length));
 
-        if (contactPhoneNumberId.value.length == 9) {
+        if (contactPhoneNumberId.value.length == scope.numberLength) {
           nextButtonId.style.display = 'block'
           firstSuggestionBlockId.style.display = 'none';
           secondSuggestionBlockId.style.display = 'none';
@@ -2113,9 +2113,9 @@
         }
         scope.suggestionFive.phoneNumber = phone;
 
-        contactPhoneNumberId.value = scope.suggestionFive.phoneNumber.substring(scope.suggestionFive.phoneNumber.length - 9, scope.suggestionFive.phoneNumber.length);
+        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(scope.suggestionFive.phoneNumber.substring(scope.suggestionFive.phoneNumber.length - 9, scope.suggestionFive.phoneNumber.length));
 
-        if (contactPhoneNumberId.value.length == 9) {
+        if (contactPhoneNumberId.value.length == scope.numberLength) {
           nextButtonId.style.display = 'block'
           firstSuggestionBlockId.style.display = 'none';
           secondSuggestionBlockId.style.display = 'none';
