@@ -10657,7 +10657,7 @@ var css = {
   "width: 100%;" +
   "bottom: 0;" +
   "background-color: #f4f4f4;" +
-  "top: 94.79%;" +
+  "top: 90%;" +
   "}",
 
   invoiceHistoryDetailData: ".invoice-history-detail-data" +

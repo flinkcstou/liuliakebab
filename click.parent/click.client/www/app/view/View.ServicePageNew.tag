@@ -68,6 +68,8 @@
              id="firstFieldInput"
              onfocus="bordersColor()"
              value="{defaultNumber || opts.first_field_value}"
+             oninput="telVerificationOnInput()"
+             onpaste="telVerificationOnPaste()"
              onkeyup="telPayVerificationKeyUp()"
              onkeydown="telPayVerificationKeyDown(this)"/>
       <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchstart="onTouchStartOfSearchContact()"
@@ -285,7 +287,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page-new') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-service-page-new',
+          "view"  : 'view-service-page-new',
           "params": opts
         }
       );
@@ -477,8 +479,6 @@
         scope.update(scope.enterButtonEnabled);
         return;
       }
-
-
       scope.enterButtonEnabled = true;
       scope.update(scope.enterButtonEnabled);
 
@@ -498,6 +498,29 @@
         }
     };
 
+    var onPaste = false;
+
+    telVerificationOnPaste = function () {
+      onPaste = true;
+    }
+
+    telVerificationOnInput = function () {
+      if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT && onPaste) {
+        if (firstFieldInput.type != 'text' && scope.phoneFieldBool)
+          firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(firstFieldInput.value))
+//
+//
+//        firstFieldInput.selectionStart = cursorPositionSelectionStart
+//        firstFieldInput.selectionEnd = cursorPositionSelectionEnd
+//
+//        if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3)
+//          firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
+
+        onPaste = false;
+
+      }
+    }
+
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
     telPayVerificationKeyUp = function () {
 
@@ -513,9 +536,10 @@
         if (firstFieldInput.type != 'text' && scope.phoneFieldBool)
           firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(firstFieldInput.value))
 
-
-        firstFieldInput.selectionStart = cursorPositionSelectionStart
-        firstFieldInput.selectionEnd = cursorPositionSelectionEnd
+        if (!onPaste) {
+          firstFieldInput.selectionStart = cursorPositionSelectionStart
+          firstFieldInput.selectionEnd = cursorPositionSelectionEnd
+        }
 
         if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3)
           firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
@@ -712,10 +736,10 @@
 //        console.log("no currency rate in localStorage");
         window.api.call({
           method: 'rate.convert',
-          input: {
+          input : {
             session_key: sessionKey,
-            phone_num: phoneNumber,
-            amount: 1
+            phone_num  : phoneNumber,
+            amount     : 1
           },
 
           scope: this,
@@ -2175,6 +2199,17 @@
       favoritePaymentsList = localStorage.getItem('favoritePaymentsList') ? JSON.parse(localStorage.getItem('favoritePaymentsList')) : [];
       favoritePaymentsListForApi = localStorage.getItem('favoritePaymentsListForApi') ? JSON.parse(localStorage.getItem('favoritePaymentsListForApi')) : [];
 
+      if (!localStorage.getItem('favoritePaymentsList')) {
+        favoritePaymentsList = [];
+//        console.log("Chosen Service =", scope.service);
+        favoritePaymentsList.push({
+          "params" : array,
+          "service": scope.service,
+          "ussd"   : scope.fieldArray[0].ussd_query,
+          "id"     : id
+        });
+        console.log("favoritePaymentsList=", favoritePaymentsList);
+        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
       if (favoritePaymentsListForApi.length != favoritePaymentsList.length) {
         favoritePaymentsListForApi = [];
         for (var i in favoritePaymentsList)
@@ -2236,6 +2271,15 @@
       localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
 
 
+        favoritePaymentsList.push({
+          "params" : array,
+          "service": scope.service,
+          "ussd"   : scope.fieldArray[0].ussd_query,
+          "id"     : id
+        });
+        console.log("favoritePaymentsList=", favoritePaymentsList);
+        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+      }
     };
 
     editFavorite = function (params) {
