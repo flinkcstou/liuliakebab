@@ -398,7 +398,9 @@
         });
 
         console.log("favoritePaymentsList=", favoritePaymentsList);
+        console.log("favoritePaymentsListForApi=", favoritePaymentsListForApi);
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+        localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
 
       }
 
