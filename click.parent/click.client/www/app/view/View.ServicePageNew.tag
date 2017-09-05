@@ -479,8 +479,6 @@
         scope.update(scope.enterButtonEnabled);
         return;
       }
-
-
       scope.enterButtonEnabled = true;
       scope.update(scope.enterButtonEnabled);
 
