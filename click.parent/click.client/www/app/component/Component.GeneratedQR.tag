@@ -1,12 +1,12 @@
 <component-generated-qr id="componentGeneratedQrId" class="component-generated-qr">
   <p class="generatedqr-operation-upper-info-message">{window.languages.ComponentGeneratedQrUpperInfoText}</p>
-  <div class="generatedqr-image"></div>
+  <div class="generatedqr-image" style="background-image: url({opts.qr_image})"></div>
   <p class="generatedqr-operation-info-message">{window.languages.ComponentGeneratedQrInfoTextFirstPart}<br/>{window.languages.ComponentGeneratedQrInfoTextSecondPart}<br/>
     {window.languages.ComponentGeneratedQrInfoTextThirdPart}
   </p>
 
 
-  <button id="closeButtonId" class="generatedqr-close-button-inner-container"
+  <button id="qrCloseButtonId" class="generatedqr-close-button-inner-container"
           ontouchstart="closeSuccessMessageFormStart()"
           ontouchend="closeSuccessMessageFormEnd()">
     {window.languages.ComponentSuccessNext}
@@ -24,7 +24,7 @@
       closeButtonStartX = event.changedTouches[0].pageX;
       closeButtonStartY = event.changedTouches[0].pageY;
 
-      closeButtonId.style.webkitTransform = 'scale(0.8)'
+      qrCloseButtonId.style.webkitTransform = 'scale(0.8)'
     }
 
     closeSuccessMessageFormEnd = function () {
@@ -34,7 +34,7 @@
       closeButtonEndX = event.changedTouches[0].pageX;
       closeButtonEndY = event.changedTouches[0].pageY;
 
-      closeButtonId.style.webkitTransform = 'scale(1)'
+      qrCloseButtonId.style.webkitTransform = 'scale(1)'
 
       if (Math.abs(closeButtonStartX - closeButtonEndX) <= 20 && Math.abs(closeButtonStartY - closeButtonEndY) <= 20) {
 

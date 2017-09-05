@@ -122,6 +122,10 @@
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
 
+  <component-generated-qr id="componentGeneratedQrId" qr_image="{qrImage}"
+                          viewpage="{viewPage}"
+                          step_amount="{stepAmount}"></component-generated-qr>
+
 
   <script>
 
@@ -738,7 +742,13 @@
               if (device.platform != 'BrowserStand') {
                 SpinnerPlugin.activityStop();
               }
-              componentSuccessId.style.display = 'block';
+
+              if (result[1][0].qr_image) {
+                scope.qrImage = result[1][0].qr_image;
+                scope.update();
+                componentGeneratedQrId.style.display = 'block';
+              } else
+                componentSuccessId.style.display = 'block';
 
 
             } else if (result[1][0].state == 1) {

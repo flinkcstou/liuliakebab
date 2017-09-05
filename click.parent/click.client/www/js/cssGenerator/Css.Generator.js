@@ -7021,7 +7021,7 @@ var css = {
   "width: 100%;" +
   //"background-color: #353340;" +
   //"background-image: url(resources/icons/transparent.png);" +
-  "display: block;" +
+  "display: none;" +
   "background-color: rgba(255,255,255,0.95);" +
   "}",
 
