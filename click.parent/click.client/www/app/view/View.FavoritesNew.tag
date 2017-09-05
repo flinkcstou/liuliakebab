@@ -3,9 +3,9 @@
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
       <div id="favouriteBackButtonId" ontouchend="favouriteGoToBackEnd()" ontouchstart="onTouchStartOfBack()"
-           class="pay-back-button"></div>
+           class="pay-back-button" role="button" aria-label="Назад"></div>
       <div id="favouriteRightButtonId" ontouchend="addFavorite()" ontouchstart="onTouchStartOfAddSign()"
-           class="settings-friend-help-add-button"></div>
+           class="settings-friend-help-add-button" role="button" aria-label="Добавить операцию"></div>
     </div>
 
     <div class="view-favorites-container" if="{favoriteListShow}">
@@ -26,10 +26,10 @@
         </div>
         <div id="e{j.id}" class="view-favorites-edit-icon"
              ontouchstart="onTouchStartOfEditFavorite()"
-             ontouchend="editFavoritePayment(this.id)"></div>
+             ontouchend="editFavoritePayment(this.id)" role="button" aria-label="Редактировать операцию"></div>
         <div id="{j.id}" class="view-favorites-delete-icon"
              ontouchstart="onTouchStartOfRemoveFavorite()"
-             ontouchend="removeFromFavorites(this.id)"></div>
+             ontouchend="removeFromFavorites(this.id)" role="button" aria-label="Удалить операцию"></div>
       </div>
     </div>
 

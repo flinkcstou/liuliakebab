@@ -10,7 +10,8 @@
                value="{maskPhoneNumber}" ontouchend="onTouchendRegNumber()" disabled/>
         <div id="inputCaret" class="registration-caret"></div>
 
-        <div class="registration-device-remember" ontouchend="rememberTouchEnd()" ontouchstart="rememberTouchStart()">
+        <div class="registration-device-remember" ontouchend="rememberTouchEnd()" ontouchstart="rememberTouchStart()"
+             role="button" aria-label="Запомнить устройство">
           <p class="registration-device-remember-label">
             {window.languages.ViewRegistrationDeviceRememberLabel}</p>
           <div id="rememberIcon" class="registration-device-remember-icon"></div>

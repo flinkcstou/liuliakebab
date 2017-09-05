@@ -27,7 +27,8 @@
     <div if="{firstEnter}" class="authorization-pin-input-first-enter-container">
       <input autofocus="true" type="password" class="authorization-pin-input-first-enter" onblur="inputPinBlur()"
              id="firstPinInputId"/>
-      <div class="authorization-input-eye-button" onclick="eyeClicked()"></div>
+      <div class="authorization-input-eye-button" role="button" aria-label="Показать введённый пароль"
+           onclick="eyeClicked()"></div>
     </div>
     <div if="{firstEnter}" id="firstEnterButtonId" class="authorization-button-first-enter"
          ontouchend="firstPinEnterTouchEnd()"

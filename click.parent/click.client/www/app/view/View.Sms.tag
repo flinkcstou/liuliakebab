@@ -6,7 +6,7 @@
         <input class="sms-phone-input" value="{confirmSms}" ontouchend="onTouchendSmsNumber()" disabled/>
         <div id="inputCaretSms" class="sms-caret"></div>
         <div class="sms-timer" ontouchend="touchEndResend()" ontouchstart="touchStartResend()">{time}
-          <div class="sms-resend-icon"></div>
+          <div class="sms-resend-icon" role="button" aria-label="Отправить заново смс код"></div>
         </div>
 
         <div class="sms-text-field">
