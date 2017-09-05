@@ -2,7 +2,7 @@
 <widget id="air.com.ssdsoftwaresolutions.clickuz"
         android-packageName="air.com.ssdsoftwaresolutions.clickuz"
         ios-CFBundleIdentifier="com.ssdsoftwaresolutions.clickuz"
-        version="5.7" xmlns="http://www.w3.org/ns/widgets"
+        version="5.6" xmlns="http://www.w3.org/ns/widgets"
         android-versionCode="50000004">
   <name>CLICK Uzbekistan</name>
   <preference name="DisallowOverscroll" value="true"/>

@@ -1,16 +1,17 @@
 <component-toolbar>
   <div id="toolbar" class="toolbar">
     <div id="menuButtonId" class="menu-button menu-icon" ontouchstart="menuOpenTouchStart()"
-         ontouchend="menuOpenTouchEnd()">
+         ontouchend="menuOpenTouchEnd()" role="button" aria-label="Открыть боковое меню">
     </div>
 
     <div id="circleMenuId" class="toolbar-circle-container" ontouchend="goToViewInfoTouchEnd()"
-         ontouchstart="goToViewInfoTouchStart()">
+         ontouchstart="goToViewInfoTouchStart()" role="button"
+         aria-label="Информация об общем балансе всех Ваших карт и история платежей">
     </div>
 
     <div if="{!modeOfApp.offlineMode}" id="bellButtonId" class="bell-button bell-icon"
          ontouchstart="bellButtonTouchStart()"
-         ontouchend="bellButtonTouchEnd()" title="Новости">
+         ontouchend="bellButtonTouchEnd()" role="button" aria-label="Открыть новости">
       <div if="{window.News.newsCounter != 0 && !modeOfApp.offlineMode}" class="bell-button-news-counter">
         {window.News.newsCounter}
       </div>
