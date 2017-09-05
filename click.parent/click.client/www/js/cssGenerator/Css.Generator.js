@@ -7083,7 +7083,7 @@ var css = {
   // "left:" + 234 * widthK + "px;" +
   //"background-image: url(resources/icons/ViewSuccessUnsuccess/ok.png);" +
   "background-repeat: no-repeat;" +
-  "background-size: 93%;" +
+  "background-size: 100%;" +
   "background-position: center;" +
   "background-color: grey;" +
   "}",
