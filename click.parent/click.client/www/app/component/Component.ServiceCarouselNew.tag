@@ -207,23 +207,27 @@
     scope.leftOfServiceCarousel = 640 * widthK;
 
 
-    if (scope.favoritePaymentsList) {
-//      console.log("list", scope.favoritePaymentsList);
-      scope.favPaymentsList = [];
-      for (var i in scope.favoritePaymentsList) {
-        if (!scope.favoritePaymentsList[i].id) {
-          scope.favoritePaymentsList[i].id = Math.floor((Math.random() * 1000000) + 1);
-          console.log("NO ID", scope.favoritePaymentsList[i])
+    fillFavorites = function () {
+      if (scope.favoritePaymentsList) {
+        console.log("fillFavorites");
+        scope.favPaymentsList = [];
+        for (var i in scope.favoritePaymentsList) {
+          if (!scope.favoritePaymentsList[i].id) {
+            scope.favoritePaymentsList[i].id = Math.floor((Math.random() * 1000000) + 1);
+            console.log("NO ID", scope.favoritePaymentsList[i])
+          }
+          if (scope.favPaymentsList.length < 4)
+            scope.favPaymentsList.push(scope.favoritePaymentsList[i]);
+          //else break;
         }
-        if (scope.favPaymentsList.length < 4)
-          scope.favPaymentsList.push(scope.favoritePaymentsList[i]);
-        //else break;
+        localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList));
+        if (scope.favPaymentsList.length >= 4)
+          scope.addFavoriteBool = false;
+        scope.update();
       }
-      localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList));
-      if (scope.favPaymentsList.length >= 4)
-        scope.addFavoriteBool = false;
-      scope.update();
     }
+
+    fillFavorites();
 
 
     if (!localStorage.getItem('favoritePaymentsList'))
@@ -246,10 +250,11 @@
               scope.favoritePaymentsList = [];
               localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(result[1]));
               for (var i in result[1]) {
-                scope.favoritePaymentsList.push(JSON.parse(result[1].body))
+                scope.favoritePaymentsList.push(JSON.parse(result[1][i].body))
               }
               localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList));
               console.log("favs processed", scope.favoritePaymentsList);
+              fillFavorites();
             }
 
           }

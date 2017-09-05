@@ -369,12 +369,19 @@
 
 
         var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+        var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
         console.log("favList=", favoritePaymentsList)
-        console.log(favoritePaymentsList);
+
         for (var i in favoritePaymentsList)
           if (favoritePaymentsList[i].id == id) {
             favoritePaymentsList.splice(i, 1);
             if (favoritePaymentsList.length == 0) scope.favoriteListShow = false;
+
+            for (var j in favoritePaymentsListForApi)
+              if (favoritePaymentsListForApi[j].id == id) {
+                favoritePaymentsListForApi.splice(j, 1);
+                break;
+              }
 
             window.api.call({
               method: 'delete.favourite',
@@ -390,7 +397,7 @@
 
                 if (result[0][0].error == 0) {
 
-                  console.log("SUCCESSFULLY edited")
+                  console.log("SUCCESSFULLY deleted")
 
                 }
                 else {
@@ -410,7 +417,8 @@
 
             console.log(favoritePaymentsList);
             localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-            scope.update(scope.favPaymentsList);
+            localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
+            break;
           }
 
         event.stopPropagation();
