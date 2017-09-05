@@ -2217,6 +2217,7 @@
 
           }
           else {
+            scope.clickPinError = false;
             scope.showError = true;
             scope.errorNote = result[0][0].error_note
             scope.update();
@@ -2242,13 +2243,63 @@
 
       console.log("Id to edit=", scope.service.id);
       var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
-//      console.log(favoritePaymentsList);
+      var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
+
       for (var i in favoritePaymentsList)
         if (favoritePaymentsList[i].id == opts.favoriteId) {
           favoritePaymentsList[i].params = params;
+
+          var editedfavorite = {
+            "id": favoritePaymentsList[i].id,
+            "type": 1,
+            "body": JSON.stringify(favoritePaymentsList[i])
+          };
+
+          for (var j in favoritePaymentsListForApi)
+            if (favoritePaymentsListForApi[i].id == opts.favoriteId) {
+              favoritePaymentsListForApi[i] = editedfavorite;
+              break;
+            }
+
+
+          window.api.call({
+            method: 'update.favourite',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber,
+              wishlist_data: editedfavorite
+            },
+
+            scope: this,
+
+            onSuccess: function (result) {
+
+              if (result[0][0].error == 0) {
+
+                console.log("SUCCESSFULLY edited")
+
+              }
+              else {
+                scope.clickPinError = false;
+                scope.showError = true;
+                scope.errorNote = result[0][0].error_note
+                scope.update();
+                console.log(result[0][0].error_note);
+              }
+            },
+
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
+
           console.log("UPDATED FAVORITE", favoritePaymentsList[i]);
           localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-          scope.update(scope.favPaymentsList);
+          localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
+
+          break;
+
         }
 
     };

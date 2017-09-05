@@ -211,7 +211,7 @@
 //      console.log("list", scope.favoritePaymentsList);
       scope.favPaymentsList = [];
       for (var i in scope.favoritePaymentsList) {
-        if(!scope.favoritePaymentsList[i].id){
+        if (!scope.favoritePaymentsList[i].id) {
           scope.favoritePaymentsList[i].id = Math.floor((Math.random() * 1000000) + 1);
           console.log("NO ID", scope.favoritePaymentsList[i])
         }
@@ -224,6 +224,49 @@
         scope.addFavoriteBool = false;
       scope.update();
     }
+
+
+    if (!localStorage.getItem('favoritePaymentsList'))
+      window.api.call({
+        method: 'get.wishlist',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          type: 1
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+
+          if (result[0][0].error == 0) {
+
+            console.log("SUCCESSFULLY got favs from api", result[1])
+            if (result[1].length != 0) {
+              scope.favoritePaymentsList = [];
+              localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(result[1]));
+              for (var i in result[1]) {
+                scope.favoritePaymentsList.push(JSON.parse(result[1].body))
+              }
+              localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList));
+              console.log("favs processed", scope.favoritePaymentsList);
+            }
+
+          }
+          else {
+            scope.clickPinError = false;
+            scope.showError = true;
+            scope.errorNote = result[0][0].error_note
+            scope.update();
+            console.log(result[0][0].error_note);
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
 
 
     var openFavouriteStartX, openFavouriteStartY, openFavouriteEndX, openFavouriteEndY;

@@ -375,6 +375,39 @@
           if (favoritePaymentsList[i].id == id) {
             favoritePaymentsList.splice(i, 1);
             if (favoritePaymentsList.length == 0) scope.favoriteListShow = false;
+
+            window.api.call({
+              method: 'delete.favourite',
+              input: {
+                session_key: sessionKey,
+                phone_num: phoneNumber,
+                wishlist_data: [{"id": id, "type": 1}]
+              },
+
+              scope: this,
+
+              onSuccess: function (result) {
+
+                if (result[0][0].error == 0) {
+
+                  console.log("SUCCESSFULLY edited")
+
+                }
+                else {
+                  scope.clickPinError = false;
+                  scope.showError = true;
+                  scope.errorNote = result[0][0].error_note
+                  scope.update();
+                  console.log(result[0][0].error_note);
+                }
+              },
+
+              onFail: function (api_status, api_status_message, data) {
+                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                console.error(data);
+              }
+            });
+
             console.log(favoritePaymentsList);
             localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
             scope.update(scope.favPaymentsList);
