@@ -414,6 +414,9 @@
 
       if (Math.abs(favoriteStartY - favoriteEndY) <= 20 && Math.abs(favoriteStartX - favoriteEndX) <= 20) {
         var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+        var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
+        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         console.log(favoritePaymentsList);
         for (var i in favoritePaymentsList) {
 
@@ -427,41 +430,53 @@
             opts.isInFavorites = false;
             onBackParams.opts = JSON.parse(JSON.stringify(opts));
             scope.update(scope.isInFavorites);
-            //        window.api.call({
-//          method: 'delete.favourite',
-//          input: {
-//            session_key: sessionKey,
-//            phone_num: phoneNumber,
-//            type: 1,
-//            wishlist_data:opts.favoriteId
-//          },
-//
-//          scope: this,
-//
-//          onSuccess: function (result) {
-//
-//            if (result[0][0].error == 0) {
-//
-//              console.log("SUCCESSFULLY ADDED")
-//
-//            }
-//            else {
-//              scope.showError = true;
-//              scope.errorNote = result[0][0].error_note
-//              scope.update();
-//              console.log(result[0][0].error_note);
-//            }
-//          },
-//
-//          onFail: function (api_status, api_status_message, data) {
-//            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-//            console.error(data);
-//          }
-//        });
+
+            for (var j in favoritePaymentsListForApi)
+              if (favoritePaymentsListForApi[j].id == opts.favoriteId) {
+                favoritePaymentsListForApi.splice(j, 1);
+                break;
+              }
+
+            window.api.call({
+              method: 'delete.favourite',
+              input: {
+                session_key: sessionKey,
+                phone_num: phoneNumber,
+                wishlist_data: [{"id": opts.favoriteId, "type": 1}]
+              },
+
+              scope: this,
+
+              onSuccess: function (result) {
+
+                if (result[0][0].error == 0) {
+
+                  console.log("SUCCESSFULLY deleted")
+
+                }
+                else {
+                  scope.clickPinError = false;
+                  scope.showError = true;
+                  scope.errorNote = result[0][0].error_note
+                  scope.update();
+                  console.log(result[0][0].error_note);
+                }
+              },
+
+              onFail: function (api_status, api_status_message, data) {
+                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                console.error(data);
+              }
+            });
+
+            localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+            localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
+            break;
+
           }
         }
 
-        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+
       }
     };
 
