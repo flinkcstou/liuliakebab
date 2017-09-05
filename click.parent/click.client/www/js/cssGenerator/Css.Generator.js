@@ -7012,6 +7012,82 @@ var css = {
   "background-position: center;" +
   "}",
 
+  //COMPONENT Generated qr
+  componentGeneratedQr: ".component-generated-qr " +
+  "{" +
+  "position: absolute;" +
+  "opacity: 0.99;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  //"background-color: #353340;" +
+  //"background-image: url(resources/icons/transparent.png);" +
+  "display: block;" +
+  "background-color: rgba(255,255,255,0.95);" +
+  "}",
+
+  generatedqrOperationUpperInfoMessage: ".generatedqr-operation-upper-info-message" +
+  "{" +
+  "position: relative;" +
+  "color: black;" +
+  "width:" + 500 * widthK + "px;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 150 * widthK + "px;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "}",
+
+  generatedqrOperationInfoMessage: ".generatedqr-operation-info-message" +
+  "{" +
+  "position: relative;" +
+  "color: #515151;" +
+  "width:" + 415 * widthK + "px;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 215 * widthK + "px;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "}",
+
+  generatedqrCloseButtonInnerContainer: ".generatedqr-close-button-inner-container" +
+  "{" +
+  "top: 83%;" +
+  "height: " + 74 * widthK + "px;" +
+  "margin: 0 auto 0 auto;" +
+  "background-color: white;" +
+  "padding: 0;" +
+  "font-size: " + 38 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  //"border: none;" +
+  "border:" + 3 * widthK + "px solid #00a8f1;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "color: #00a8f1;" +
+  "}",
+
+  generatedqrImage: ".generatedqr-image" +
+  "{" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "top:" + 175 * widthK + "px;" +
+  "width:" + 500 * widthK + "px;" +
+  "height:" + 500 * widthK + "px;" +
+  // "left:" + 234 * widthK + "px;" +
+  //"background-image: url(resources/icons/ViewSuccessUnsuccess/ok.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 93%;" +
+  "background-position: center;" +
+  "background-color: grey;" +
+  "}",
+
   //OFFLINE MODE
   offlineCardBalance: ".offline-card-balance " +
   "{" +
