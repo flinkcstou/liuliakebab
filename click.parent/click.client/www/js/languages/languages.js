@@ -531,7 +531,7 @@ var RU_LANGUAGES =
   "ViewServicePageFavoriteNameField": "Название",
   "ViewServicePageFavoriteNamePlaceholder": "Введите название избранного",
 
-  "ComponentGeneratedQrUpperInfoText": "Ваш электронный билет (QR-код):",
+  "ComponentGeneratedQrUpperInfoText": "Ваш электронный <br> билет (QR-код):",
 
 
 };

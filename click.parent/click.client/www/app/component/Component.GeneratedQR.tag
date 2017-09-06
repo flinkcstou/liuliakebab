@@ -1,8 +1,7 @@
 <component-generated-qr id="componentGeneratedQrId" class="component-generated-qr">
   <p class="generatedqr-operation-upper-info-message">{opts.qr_header}</p>
   <div class="generatedqr-image" style="background-image: url({opts.qr_image})"></div>
-  <p class="generatedqr-operation-info-message">{opts.qr_footer}
-  </p>
+  <p id="qrFooterTextId" class="generatedqr-operation-info-message"></p>
 
 
   <button id="qrCloseButtonId" class="generatedqr-close-button-inner-container"
@@ -15,6 +14,8 @@
     var scope = this;
 
     var closeButtonStartX, closeButtonEndX, closeButtonStartY, closeButtonEndY;
+
+
 
     closeGeneratedQrFormStart = function () {
       event.preventDefault();
