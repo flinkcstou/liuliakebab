@@ -2,7 +2,7 @@
                         class="component-notification {component-notification-show: show, component-notification-set-transition: setTransition}">
 
   <div style="display: none" class="component-notification-icon"></div>
-  <p class="component-notification-text">{notificationText}</p>
+  <p id="pushNotificationText" class="component-notification-text"></p>
 
   <div class="component-notification-buttons-container">
     <p class="component-notification-button-cancel" ontouchend="onTouchEndNotificationDecline()"
@@ -27,13 +27,14 @@
     setTimeout(function () {
 
       scope.setTransition = true;
+      pushNotificationText.innerHTML = "";
       scope.update();
     }, 1000);
 
     if (device.platform != 'BrowserStand') {
       window.FirebasePlugin.onNotificationOpen(function (notification) {
 
-        if(!scope.show){
+        if (!scope.show) {
           sessionStorage.setItem("push_notification_real", JSON.stringify(notification));
         }
         else {
@@ -45,10 +46,10 @@
 
         if (device.platform == "iOS") {
 
-           notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).notification.body;
+          notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).notification.body;
         } else {
 
-           notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).body;
+          notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).body;
         }
         scope.notificationAction = JSON.parse(sessionStorage.getItem("push_notification_real")).action;
         scope.notificationElementId = JSON.parse(sessionStorage.getItem("push_notification_real")).notify_id;
@@ -114,6 +115,7 @@
 
           scope.show = true;
           scope.notificationText = JSON.stringify(notificationText);
+          pushNotificationText.innerHTML = JSON.stringify(notificationText);
 
           console.log('NOTIFICATION TEXT', scope.notificationText)
 
@@ -129,7 +131,7 @@
 
         window.FirebasePlugin.logEvent(scope.notificationText, {
           content_type: scope.notificationAction,
-          item_id     : scope.notificationElementId
+          item_id: scope.notificationElementId
         });
         if (localStorage.getItem('click_client_phoneNumber')) {
           window.FirebasePlugin.setUserId(localStorage.getItem('click_client_phoneNumber'));
@@ -140,7 +142,7 @@
       }, function (error) {
         window.FirebasePlugin.logEvent(scope.notificationText, {
           content_type: scope.notificationAction,
-          item_id     : 'crash'
+          item_id: 'crash'
         });
         console.error(error);
       });
@@ -155,7 +157,7 @@
 
       window.FirebasePlugin.logEvent("DECLINE", {
         content_type: scope.notificationAction,
-        item_id     : scope.notificationElementId
+        item_id: scope.notificationElementId
       });
       if (localStorage.getItem('click_client_phoneNumber')) {
         window.FirebasePlugin.setUserId(localStorage.getItem('click_client_phoneNumber'));
@@ -198,7 +200,7 @@
 
       window.FirebasePlugin.logEvent("ACCEPT", {
         content_type: scope.notificationAction,
-        item_id     : scope.notificationElementId
+        item_id: scope.notificationElementId
       });
     };
 
