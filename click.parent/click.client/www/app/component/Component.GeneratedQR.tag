@@ -40,6 +40,7 @@
 
         componentGeneratedQrId.style.display = 'none';
         console.log("before success", history.arrayOfHistory)
+        console.log("OPTS in qr comp", opts)
         if (opts.step_amount) {
           history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
           console.log(history.arrayOfHistory)

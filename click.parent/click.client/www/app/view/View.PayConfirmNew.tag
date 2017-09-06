@@ -126,6 +126,9 @@
                           viewpage="{viewPage}"
                           step_amount="{stepAmount}"></component-generated-qr>
 
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
 
   <script>
 

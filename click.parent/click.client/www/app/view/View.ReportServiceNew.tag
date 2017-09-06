@@ -90,6 +90,14 @@
                      operationmessage="{operationMessage}"
                      viewpage="{undefined}" step_amount="{0}" close_action="{goToBack}"></component-success>
 
+
+  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+                   errornote="{errorNote}"></component-alert>
+
+  <component-generated-qr id="componentGeneratedQrId" qr_image="{qrImage}"
+                          viewpage="{viewPage}"
+                          step_amount="{stepAmount}"></component-generated-qr>
+
   <script>
     console.log("OPTS in ReportService New=", opts);
     var scope = this,
@@ -111,6 +119,9 @@
     var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
     var servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+    var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
+    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
 
     scope.isInFavorites = scope.opts.isInFavorites;
@@ -216,6 +227,7 @@
         console.log("ADD TO FAVORITES INPUT", newFavorite);
 
         favoritePaymentsList = (favoritePaymentsList) ? (favoritePaymentsList) : ([]);
+        favoritePaymentsListForApi = (favoritePaymentsListForApi) ? (favoritePaymentsListForApi) : ([]);
 
         console.log("ID for favorite", Math.floor((Math.random() * 1000000) + 1))
         var id = Math.floor((Math.random() * 1000000) + 1);
@@ -230,9 +242,48 @@
           "id": id
         });
 
+        favoritePaymentsListForApi.push({
+          "id": id,
+          "type": 1,
+          "body": JSON.stringify(newFavorite)
+        });
+
+
+        window.api.call({
+          method: 'add.favourite',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            wishlist_data: favoritePaymentsListForApi
+          },
+
+          scope: this,
+
+          onSuccess: function (result) {
+
+            if (result[0][0].error == 0) {
+
+              console.log("SUCCESSFULLY ADDED")
+
+            }
+            else {
+              scope.showError = true;
+              scope.errorNote = result[0][0].error_note
+              scope.update();
+              console.log(result[0][0].error_note);
+            }
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+
         console.log("favoritePaymentsList=", favoritePaymentsList);
 
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+        localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
         scope.operationMessage = window.languages.ComponentSuccessMessageForAddingToFavorites;
         console.log("operationMesssage=", scope.operationMessage);
         scope.update(scope.operationMessage);
@@ -251,14 +302,57 @@
       if (Math.abs(addToFavoritesTouchEndX - addToFavoritesTouchStartX) < 20) {
 
         var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+        var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
         console.log(favoritePaymentsList);
         for (var i in favoritePaymentsList)
           if (favoritePaymentsList[i].id == scope.opts.favoriteId) {
             favoritePaymentsList.splice(i, 1);
             console.log(favoritePaymentsList);
             scope.isInFavorites = false;
-            localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
             scope.update(scope.isInFavorites);
+
+            for (var j in favoritePaymentsListForApi)
+              if (favoritePaymentsListForApi[j].id == scope.opts.favoriteId) {
+                favoritePaymentsListForApi.splice(j, 1);
+                break;
+              }
+
+            window.api.call({
+              method: 'delete.favourite',
+              input: {
+                session_key: sessionKey,
+                phone_num: phoneNumber,
+                wishlist_data: [{"id": scope.opts.favoriteId, "type": 1}]
+              },
+
+              scope: this,
+
+              onSuccess: function (result) {
+
+                if (result[0][0].error == 0) {
+
+                  console.log("SUCCESSFULLY deleted")
+
+                }
+                else {
+                  scope.clickPinError = false;
+                  scope.showError = true;
+                  scope.errorNote = result[0][0].error_note
+                  scope.update();
+                  console.log(result[0][0].error_note);
+                }
+              },
+
+              onFail: function (api_status, api_status_message, data) {
+                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                console.error(data);
+              }
+            });
+
+            localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+            localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
+            break;
+
           }
 
 

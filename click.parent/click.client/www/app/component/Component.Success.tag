@@ -2,7 +2,8 @@
   <p class="success-operation-success-message">{opts.operationmessage}</p>
   <div class="success-success-icon"></div>
 
-  <button id="closeButtonId" class="success-next-button-inner-container" ontouchstart="closeSuccessMessageFormStart()" ontouchend="closeSuccessMessageFormEnd()">
+  <button id="closeButtonId" class="success-next-button-inner-container" ontouchstart="closeSuccessMessageFormStart()"
+          ontouchend="closeSuccessMessageFormEnd()">
     {window.languages.ComponentSuccessNext}
   </button>
 
@@ -34,6 +35,7 @@
 
         componentSuccessId.style.display = 'none';
         console.log("before success", history.arrayOfHistory)
+        console.log("OPTS in success component", opts)
         if (opts.step_amount) {
           history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
           console.log(history.arrayOfHistory)
