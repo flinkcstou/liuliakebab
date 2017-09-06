@@ -334,7 +334,7 @@ var RU_LANGUAGES =
   "ViewReportServiceAddToAutoPayment": "Добавить в автоплатеж",
   "ViewReportServiceGetSupportHelp": "Получить помощь поддержки",
   "ViewReportServiceRepeatButtonLabel": "повторить",
-  "ViewReportServiceShowQrButtonLabel": "qr showing",
+  "ViewReportServiceShowQrButtonLabel": "показать QR",
 
   "ViewBankListTitleName": "ДОСТУПНЫЕ БАНКИ",
   "ViewBankListLimitForMonthText": "сум",
