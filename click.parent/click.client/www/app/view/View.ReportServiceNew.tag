@@ -289,7 +289,7 @@
         console.log("operationMesssage=", scope.operationMessage);
         scope.update(scope.operationMessage);
 
-        componentSuccessId.style.display = 'block';
+        //componentSuccessId.style.display = 'block';
       }
     };
 
@@ -360,7 +360,7 @@
         scope.operationMessage = window.languages.ComponentSuccessMessageForRemovingFromFavorites;
         console.log("operationMesssage ", scope.operationMessage);
         scope.update(scope.operationMessage);
-        componentSuccessId.style.display = 'block';
+        //componentSuccessId.style.display = 'block';
       }
     };
 
