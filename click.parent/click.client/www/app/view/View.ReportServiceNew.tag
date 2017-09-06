@@ -236,17 +236,19 @@
 
         console.log("Chosen Service =", servicesMap[scope.opts.service_id][0]);
 
-        favoritePaymentsList.push({
+        var newItem = {
           "params": newFavorite,
           "service": servicesMap[scope.opts.service_id][0],
           "ussd": servicesParamsMapOne[scope.opts.service_id][0].ussd_query,
           "id": id
-        });
+        }
+
+        favoritePaymentsList.push(newItem);
 
         favoritePaymentsListForApi.push({
           "id": id,
           "type": 1,
-          "body": JSON.stringify(newFavorite)
+          "body": JSON.stringify(newItem)
         });
 
 

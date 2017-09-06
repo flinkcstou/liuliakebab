@@ -249,8 +249,9 @@
             if (result[1].length != 0) {
               scope.favoritePaymentsList = [];
               localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(result[1]));
-              for (var i in result[1]) {
-                scope.favoritePaymentsList.push(JSON.parse(result[1][i].body))
+              for (var j in result[1]) {
+                console.log("j", result[1][j].body)
+                scope.favoritePaymentsList.push(JSON.parse(result[1][j].body))
               }
               localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList));
               console.log("favs processed", scope.favoritePaymentsList);
