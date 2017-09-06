@@ -1,6 +1,7 @@
 <view-info class="view-info riot-tags-main-container">
   <div class="view-info-title-container">
-    <div id="backButtonId" class="view-info-back-button" ontouchstart="onTouchStartBack()"
+    <div id="backButtonId" role="button" aria-label="{window.languages.Back}" class="view-info-back-button"
+         ontouchstart="onTouchStartBack()"
          ontouchend="onTouchEndBack()"></div>
   </div>
 
@@ -17,7 +18,8 @@
     </div>
     <div class="view-info-bag-icon"></div>
     <div if="{attention && !modeOfflineMode.check}" class="view-info-attention-icon"></div>
-    <div id="reloadBalanceButtonId" if="{!modeOfflineMode.check}" class="view-info-reload-icon"
+    <div id="reloadBalanceButtonId" role="button" aria-label="{window.languages.ViewInfoAriaLabelReloadAmount}"
+         if="{!modeOfflineMode.check}" class="view-info-reload-icon"
          ontouchstart="reloadBalanceTouchStart()" ontouchend="reloadBalanceTouchEnd()"></div>
   </div>
 
@@ -27,7 +29,8 @@
     <p class="view-info-my-finance-title">{window.languages.ViewInfoMyFinanceTitle}</p>
   </div>
 
-  <div id="reportButtonId" class="view-info-reports-container" ontouchend="goToReportsTouchEnd()"
+  <div id="reportButtonId" role="button" aria-label="{window.languages.ViewInfoReportsTitle}"
+       class="view-info-reports-container" ontouchend="goToReportsTouchEnd()"
        ontouchstart="goToReportsTouchStart()">
     <div class="view-info-reports-icon"></div>
     <div class="view-info-open-icon"></div>
@@ -40,7 +43,7 @@
 
   <div class="view-info-operations-container">
     <div class="view-info-operation-container" each="{i in lastOperationContainer}" id="{i.payment_id}"
-         ontouchstart="onTouchStartOfOperation(this.id)"
+         ontouchstart="onTouchStartOfOperation(this.id)" role="button" aria-label="{i.service_name}"
          onclick="onTouchEndOfOperation(this.id)"
          style="top:{leftOfOperations*i.count + 50 * widthK}px;">
 

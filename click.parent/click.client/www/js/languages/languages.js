@@ -50,6 +50,8 @@ var RU_LANGUAGES =
 
     "ViewInfoBalanceTitle": "Общий баланс",
 
+    "ViewInfoAriaLabelReloadAmount": "Обновить баланс",
+
     "ViewInfoMyFinanceTitle": "Мои финансы",
     "ViewInfoReportsTitle": "Отчёты",
     "ViewInfoLastOperations": "Последние операции",
