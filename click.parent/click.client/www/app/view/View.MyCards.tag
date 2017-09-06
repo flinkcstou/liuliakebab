@@ -2,10 +2,10 @@
   <div class="page-title">
     <p class="name-title">{titleName}</p>
     <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
-         class="{back-button: backbuttoncheck}">
+         class="{back-button: backbuttoncheck}" role="button" aria-label="{window.languages.Back}">
     </div>
     <div id="rightButton" type="button" class="{settings-button: rightbuttoncheck}" ontouchstart="editCardStart()"
-         ontouchend="editCardEnd()"></div>
+         ontouchend="editCardEnd()" role="button" aria-label="{window.languages.ViewMyCardAriaLabelCardSettings}"></div>
   </div>
 
   <div class="my-cards-carousel">
@@ -54,7 +54,7 @@
 
   <div id="lastOperationMainContainerId" class="my-cards-last-operations">
     <div class="my-cards-last-operations-container-label" ontouchstart="lastOperationsTouchStart()"
-         ontouchend="lastOperationsTouchEnd()">
+         ontouchend="lastOperationsTouchEnd()" role="button" aria-label="{window.languages.ViewMyCardLastOperations}">
       <div id="myCardLastOperationContainerIconId" class="my-cards-last-operations-container-icon"></div>
       <p class="my-cards-last-operations-label">{window.languages.ViewMyCardLastOperations}</p>
     </div>
@@ -64,7 +64,9 @@
         <div class="my-cards-last-operations-date">
           <p class="my-cards-last-operation-info-date-name">{j}</p>
         </div>
-        <div class="my-cards-last-operations-info" each="{i in lastOperationsMap[j]}" id="{i.payment_id}" ontouchstart="onTouchStartOfOperation(this.id)" onclick="onTouchEndOfOperation(this.id)">
+        <div class="my-cards-last-operations-info" each="{i in lastOperationsMap[j]}" id="{i.payment_id}"
+             ontouchstart="onTouchStartOfOperation(this.id)" onclick="onTouchEndOfOperation(this.id)" role="button"
+             aria-label="{i.service_name}">
           <div class="my-cards-operation-service-icon"
                style="background-image: url({i.image})"></div>
           <div class="my-cards-operation-amount">- {i.amount}</div>

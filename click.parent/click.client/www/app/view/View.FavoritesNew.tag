@@ -3,9 +3,10 @@
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
       <div id="favouriteBackButtonId" ontouchend="favouriteGoToBackEnd()" ontouchstart="onTouchStartOfBack()"
-           class="pay-back-button" role="button" aria-label="Назад"></div>
+           class="pay-back-button" role="button" aria-label="{window.languages.Back}"></div>
       <div id="favouriteRightButtonId" ontouchend="addFavorite()" ontouchstart="onTouchStartOfAddSign()"
-           class="settings-friend-help-add-button" role="button" aria-label="Добавить операцию"></div>
+           class="settings-friend-help-add-button" role="button"
+           aria-label="{window.languages.ViewFavoriteAriaLabelAddOperation}"></div>
     </div>
 
     <div class="view-favorites-container" if="{favoriteListShow}">
@@ -26,10 +27,12 @@
         </div>
         <div id="e{j.id}" class="view-favorites-edit-icon"
              ontouchstart="onTouchStartOfEditFavorite()"
-             ontouchend="editFavoritePayment(this.id)" role="button" aria-label="Редактировать операцию"></div>
+             ontouchend="editFavoritePayment(this.id)" role="button"
+             aria-label="{window.languages.ViewFavoriteAriaLabelEditOperation}"></div>
         <div id="{j.id}" class="view-favorites-delete-icon"
              ontouchstart="onTouchStartOfRemoveFavorite()"
-             ontouchend="removeFromFavorites(this.id)" role="button" aria-label="Удалить операцию"></div>
+             ontouchend="removeFromFavorites(this.id)" role="button"
+             aria-label="{window.languages.ViewFavoriteAriaLabelRemoveOperation}"></div>
       </div>
     </div>
 

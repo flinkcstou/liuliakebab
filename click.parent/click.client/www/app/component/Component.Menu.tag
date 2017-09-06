@@ -4,10 +4,12 @@
   <div ontouchend="sideMenuTouchEnd()" ontouchstart="sideMenuTouchStart()" ontouchmove="sideMenuTouchMove()"
        id="sideMenuId" class="side-menu">
 
-    <div id="closeMenuButtonId" class="side-menu-inside-button" ontouchstart="closeMenuStart()"
+    <div id="closeMenuButtonId" role="button" aria-label="{window.languages.Close}" class="side-menu-inside-button"
+         ontouchstart="closeMenuStart()"
          ontouchend="closeMenu()"></div>
     <div class="side-menu-user-info-container">
-      <div class="side-menu-user-icon" style="background-image: url({photo})" ontouchend="userIconTouchEnd()"></div>
+      <div class="side-menu-user-icon" role="button" aria-label="{window.languages.ComponentMenuAriaLabelPersonalInfo}"
+           style="background-image: url({photo})" ontouchend="userIconTouchEnd()"></div>
       <p class="side-menu-user-second-name">{firstName}</p>
       <p class="side-menu-user-first-name">{lastName}</p>
     </div>
@@ -59,7 +61,8 @@
       <div class="side-menu-containers-name side-menu-containers-name-call">Позвонить в CLICK</div>
     </div>
 
-    <div if="{device.platform != 'iOS'}" id="exitButtonId" class="side-menu-exit-container" ontouchend="exitFromAppTouchEnd()"
+    <div if="{device.platform != 'iOS'}" id="exitButtonId" class="side-menu-exit-container"
+         ontouchend="exitFromAppTouchEnd()"
          ontouchstart="exitFromAppTouchStart()">
       <div class="side-menu-containers-icon side-menu-containers-icon-exit"></div>
       <div class="side-menu-containers-name side-menu-containers-name-call">Выход</div>
@@ -541,30 +544,30 @@
                   }
                 }
 
-                if(!id){
-                    console.log('string', string)
-                    try {
-                      var decodeString = atob(string)
-                    }
-                    catch(e){
-                      console.log(e)
-                    }
-                    console.log("DECODED STRING", decodeString)
-                    var splitedArray = decodeString.split('&');
-                    for (var j in splitedArray) {
-                      if (splitedArray[j].split("=")[0] == 'id')
-                        id = splitedArray[j].split("=")[1]
+                if (!id) {
+                  console.log('string', string)
+                  try {
+                    var decodeString = atob(string)
+                  }
+                  catch (e) {
+                    console.log(e)
+                  }
+                  console.log("DECODED STRING", decodeString)
+                  var splitedArray = decodeString.split('&');
+                  for (var j in splitedArray) {
+                    if (splitedArray[j].split("=")[0] == 'id')
+                      id = splitedArray[j].split("=")[1]
 
-                      if (splitedArray[j].split("=")[0] == 'amount')
-                        rkAmount = splitedArray[j].split("=")[1]
+                    if (splitedArray[j].split("=")[0] == 'amount')
+                      rkAmount = splitedArray[j].split("=")[1]
 
-                      if (splitedArray[j].split("=")[0] == 'order_id')
-                        rkOrder = splitedArray[j].split("=")[1]
-                    }
+                    if (splitedArray[j].split("=")[0] == 'order_id')
+                      rkOrder = splitedArray[j].split("=")[1]
+                  }
 
-                    console.log('id', id)
-                    console.log('rkAmount', rkAmount)
-                    console.log('rkOrder', rkOrder)
+                  console.log('id', id)
+                  console.log('rkAmount', rkAmount)
+                  console.log('rkOrder', rkOrder)
                 }
                 if (id) {
                   if (modeOfApp.offlineMode) {
