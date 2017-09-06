@@ -1,7 +1,8 @@
 <view-news id="viewNewsId" class="view-news riot-tags-main-container">
   <div class="view-news-page-title">
     <p class="view-news-name-title">УВЕДОМЛЕНИЯ</p>
-    <div id="closeButton" ontouchend="closeNewsTouchEnd()" class="view-news-right-button"></div>
+    <div id="closeButton" role="button" aria-label="{window.languages.Close}" ontouchend="closeNewsTouchEnd()"
+         class="view-news-right-button"></div>
   </div>
 
   <div class="view-news-container" id="newsMainContainerId" onscroll="newsScrollFunction()">
@@ -46,9 +47,9 @@
 
       console.log('SCOPE NEW', scope)
 
-      if(scope.parent.opts.view){
+      if (scope.parent.opts.view) {
 
-        if(sessionStorage.getItem("push_news")){
+        if (sessionStorage.getItem("push_news")) {
           sessionStorage.setItem("push_news", false)
         }
         riotTags.innerHTML = "<view-authorization>";
@@ -139,7 +140,7 @@
 
     scope.showNewsFunction = function (pageNumber) {
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-      var signString = hex_md5(phoneNumber.substring(0,5) + "CLICK" + phoneNumber.substring(phoneNumber.length - 7, phoneNumber.length))
+      var signString = hex_md5(phoneNumber.substring(0, 5) + "CLICK" + phoneNumber.substring(phoneNumber.length - 7, phoneNumber.length))
 
 
       window.api.call({
@@ -147,7 +148,7 @@
         input: {
           phone_num: phoneNumber,
           sign_string: signString,
-          page_number : pageNumber,
+          page_number: pageNumber,
 
         },
 
