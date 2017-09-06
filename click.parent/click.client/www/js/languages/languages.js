@@ -340,7 +340,7 @@ var RU_LANGUAGES =
   "ViewReportServiceAddToAutoPayment": "Добавить в автоплатеж",
   "ViewReportServiceGetSupportHelp": "Получить помощь поддержки",
   "ViewReportServiceRepeatButtonLabel": "повторить",
-  "ViewReportServiceShowQrButtonLabel": "Показать билет",
+  "ViewReportServiceShowQrButtonLabel": "Показать QR",
 
   "ViewBankListTitleName": "ДОСТУПНЫЕ БАНКИ",
   "ViewBankListLimitForMonthText": "сум",
