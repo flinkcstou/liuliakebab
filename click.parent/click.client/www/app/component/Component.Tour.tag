@@ -4,7 +4,7 @@
 
     <p class="tour-title-text" id="tourTitleId">{tourTitle}</p>
 
-    <div id="firstCloseButtonId" role="button" aria-label="Закрыть" type="button" class="tour-close-icon"
+    <div id="firstCloseButtonId" role="button" aria-label="{window.languages.Close}" type="button" class="tour-close-icon"
          ontouchstart="closeTourStart(this.id)" ontouchend="closeTourEnd(this.id)"></div>
 
 

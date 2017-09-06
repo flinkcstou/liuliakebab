@@ -11,7 +11,7 @@
         <div id="inputCaret" class="registration-caret"></div>
 
         <div class="registration-device-remember" ontouchend="rememberTouchEnd()" ontouchstart="rememberTouchStart()"
-             role="button" aria-label="Запомнить устройство">
+             role="button" aria-label="{window.languages.ViewRegistrationDeviceRememberLabel}">
           <p class="registration-device-remember-label">
             {window.languages.ViewRegistrationDeviceRememberLabel}</p>
           <div id="rememberIcon" class="registration-device-remember-icon"></div>

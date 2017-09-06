@@ -7,6 +7,8 @@ var RU_LANGUAGES =
     "CodeOfCountry": "998",
     "PhoneNumberLength": 9,
     "Currency": "сум",
+    "Back": "Назад",
+    "Close": "Закрыть",
 
     "ComponentBankOperationsPay": "ОПЛАТА",
 
@@ -30,6 +32,7 @@ var RU_LANGUAGES =
     "ViewRegistrationDeviceButtonOffline": "Офлайн режим",
     "ViewRegistrationDeviceButtonDemoVersion": "Демо версия",
 
+    "ViewSmsAriaLabelResendSms": "Отправить заново смс код",
     "ViewSmsFieldOne": "Введите код активации",
     "ViewSmsButtonHelp": "Помощь",
     "ViewSmsCodeActivationText": "Код активации выслан на номер:",
@@ -38,6 +41,7 @@ var RU_LANGUAGES =
     "ViewSmsResendText": "Смс переотправлено на номер: ",
     "ViewSmsButtonEnterLabel": "Указать другой номер",
 
+    "ViewAuthorizationFirstEnterAriaLabelShowPass": "Показать введённый пароль",
     "ViewAuthorizationClickPinLabel": "Введите CLICK-PIN",
     "ViewAuthorizationForgetPinLabel": "Забыли CLICK-PIN?",
     "ViewAuthorizationFirstEnterLabel": "Войти",
@@ -50,6 +54,7 @@ var RU_LANGUAGES =
     "ViewInfoReportsTitle": "Отчёты",
     "ViewInfoLastOperations": "Последние операции",
 
+    "ViewMyCardAriaLabelCardSettings": "Настройки карты",
     "ViewMyCardTransfer": "Переводы с карты на карту",
     "ViewMyCardTitleName": "ДЕЙСТВИЯ С КАРТОЙ",
     "ViewMyCardPay": "Оплата с карты",
@@ -494,6 +499,12 @@ var RU_LANGUAGES =
   "ViewServiceInfoButtonNextText": "Далее",
   "ViewServiceInfoButtonGoToPaymentText": "ПЕРЕЙТИ К ОПЛАТЕ",
 
+  "ComponentToolbarAriaLabelOpenSideMenu": "Открыть боковое меню",
+  "ComponentToolbarAriaLabelOpenBalanceInfo": "Информация об общем балансе всех Ваших карт и история платежей",
+  "ComponentToolbarAriaLabelOpenNews": "Открыть новости",
+
+  "ComponentKeyboardAriaLabelDeleteSym": "Удалить последний символ",
+
   "ComponentTourRegistrationTitleText": "Помощь в регистрации",
   "ComponentTourMainPageTitleText": "Тур по приложению",
   "ComponentTourNextButtonText": "Далее",
@@ -504,6 +515,9 @@ var RU_LANGUAGES =
 
   "ViewAutoPayEmptyTitleText": "СПИСОК АВТОПЛАТЕЖЕЙ ПУСТ",
   "ViewAutoPayEmptyBodyText": "Нажмите на \"+\" для создания автоплатежа",
+  "ViewFavoriteAriaLabelAddOperation": "Добавить операцию",
+  "ViewFavoriteAriaLabelEditOperation": "Редактировать операцию",
+  "ViewFavoriteAriaLabelRemoveOperation": "Удалить операцию",
   "ViewFavoriteEmptyTitleText": "ВЫ ЕЩЕ НЕ ДОБАВИЛИ НИ ОДНОГО ИЗБРАННОГО ПЛАТЕЖА",
   "ViewFavoriteEmptyBodyText": "Нажмите на \"+\" для добавления платежа в избранное",
   "ViewInvoiceInEmptyTitleText": "",

@@ -57,7 +57,7 @@
       <div id="xButtonId" class="keyboard-buttons keyboard-button-x" value="x"
            ontouchend="componentKeyboard.returnValue(getAttribute('value'), this.id)"
            ontouchstart="componentKeyboard.returnStartValue(this.id)" role="button"
-           aria-label="Удалить последний символ"><p class="keyboard-buttons-label"></p>
+           aria-label="{window.languages.ComponentKeyboardAriaLabelDeleteSym}"><p class="keyboard-buttons-label"></p>
       </div>
     </div>
   </div>
