@@ -79,7 +79,7 @@
                 class="report-service-repeat-button"
                 ontouchend="onTouchEndOfService(this.id)"
                 ontouchstart="onTouchStartOfService(this.id)">
-          {languages.ViewReportServiceRepeatButtonLabel}
+          {opts.qr_image? languages.ViewReportServiceShowQrButtonLabel : languages.ViewReportServiceRepeatButtonLabel}
         </button>
       </div>
 
@@ -94,9 +94,10 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
-  <component-generated-qr id="componentGeneratedQrId" qr_image="{qrImage}"
-                          viewpage="{viewPage}"
-                          step_amount="{stepAmount}"></component-generated-qr>
+  <component-generated-qr id="componentGeneratedQrId" qr_image="{opts.qr_image}" qr_header="{opts.qr_header}"
+                          qr_footer="{opts.qr_footer}"
+                          viewpage="{undefined}"
+                          step_amount="{0}"></component-generated-qr>
 
   <script>
     console.log("OPTS in ReportService New=", opts);
@@ -382,48 +383,53 @@
 
       if (Math.abs(onTouchEndOfServiceX - onTouchStartOfServiceX) <= 20) {
 
-        var cards = JSON.parse(localStorage.getItem('click_client_cards'));
+        if (!scope.opts.qr_image) {
 
-        console.log("chosen id in pay view=", scope.opts.service_id);
+          var cards = JSON.parse(localStorage.getItem('click_client_cards'));
 
-        localStorage.setItem('chosenServiceId', scope.opts.service_id);
-        opts.chosenServiceId = scope.opts.service_id;
-        console.log('CHOOSEN SERVICE OPTS', scope.opts.service_id)
-        console.log("scope.service=", servicesMap[scope.opts.service_id][0]);
+          console.log("chosen id in pay view=", scope.opts.service_id);
 
-        opts.amountText = inputVerification.spaceDeleter(scope.opts.amount.toString());
-        opts.amountWithoutSpace = inputVerification.spaceDeleter(scope.opts.amount.toString());
+          localStorage.setItem('chosenServiceId', scope.opts.service_id);
+          opts.chosenServiceId = scope.opts.service_id;
+          console.log('CHOOSEN SERVICE OPTS', scope.opts.service_id)
+          console.log("scope.service=", servicesMap[scope.opts.service_id][0]);
 
-        //
-        opts.formtype = servicesMap[scope.opts.service_id][0].form_type;
-        opts.firstFieldId = scope.opts.parameter_id;
-        opts.firstFieldText = scope.opts.cntrg_info_param2;
-        opts.firstFieldTitle = scope.opts.parameter_name;
-        opts.cardTypeId = scope.opts.account_id;
-        opts.communalParam = opts.cntrg_info_param5;
-        opts.internetPackageParam = scope.opts.cntrg_info_param5;
-        opts.isInFavorites = scope.isInFavorites;
-        opts.chosenServiceId = scope.opts.service_id;
-        opts.favoriteName = servicesMap[scope.opts.service_id][0].name;
-        opts.paymentId = scope.opts.payment_id;
-        opts.payByCard = true;
-        opts.mode = 'USUAL';
-        opts.categoryId = servicesMap[scope.opts.service_id][0].category_id;
-        opts.chosenCardId = scope.opts.account_id;
+          opts.amountText = inputVerification.spaceDeleter(scope.opts.amount.toString());
+          opts.amountWithoutSpace = inputVerification.spaceDeleter(scope.opts.amount.toString());
 
-        //
+          //
+          opts.formtype = servicesMap[scope.opts.service_id][0].form_type;
+          opts.firstFieldId = scope.opts.parameter_id;
+          opts.firstFieldText = scope.opts.cntrg_info_param2;
+          opts.firstFieldTitle = scope.opts.parameter_name;
+          opts.cardTypeId = scope.opts.account_id;
+          opts.communalParam = opts.cntrg_info_param5;
+          opts.internetPackageParam = scope.opts.cntrg_info_param5;
+          opts.isInFavorites = scope.isInFavorites;
+          opts.chosenServiceId = scope.opts.service_id;
+          opts.favoriteName = servicesMap[scope.opts.service_id][0].name;
+          opts.paymentId = scope.opts.payment_id;
+          opts.payByCard = true;
+          opts.mode = 'USUAL';
+          opts.categoryId = servicesMap[scope.opts.service_id][0].category_id;
+          opts.chosenCardId = scope.opts.account_id;
 
-        opts.mode = 'USUAL';
+          //
 
-        if (window.checkShowingComponent) {
-          window.checkShowingComponent = null;
-        }
+          opts.mode = 'USUAL';
 
-        riotTags.innerHTML = "<view-pay-confirm-new>";
-        riot.mount("view-pay-confirm-new", opts);
+          if (window.checkShowingComponent) {
+            window.checkShowingComponent = null;
+          }
 
-        scope.update();
+          riotTags.innerHTML = "<view-pay-confirm-new>";
+          riot.mount("view-pay-confirm-new", opts);
+
+          scope.update();
 //        scope.unmount()
+        } else {
+          componentGeneratedQrId.style.display = 'block';
+        }
       }
     };
 

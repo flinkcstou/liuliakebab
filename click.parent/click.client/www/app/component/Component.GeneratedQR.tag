@@ -1,14 +1,13 @@
 <component-generated-qr id="componentGeneratedQrId" class="component-generated-qr">
-  <p class="generatedqr-operation-upper-info-message">{window.languages.ComponentGeneratedQrUpperInfoText}</p>
+  <p class="generatedqr-operation-upper-info-message">{opts.qr_header}</p>
   <div class="generatedqr-image" style="background-image: url({opts.qr_image})"></div>
-  <p class="generatedqr-operation-info-message">{window.languages.ComponentGeneratedQrInfoTextFirstPart}<br/>{window.languages.ComponentGeneratedQrInfoTextSecondPart}<br/>
-    {window.languages.ComponentGeneratedQrInfoTextThirdPart}
+  <p class="generatedqr-operation-info-message">{opts.qr_footer}
   </p>
 
 
   <button id="qrCloseButtonId" class="generatedqr-close-button-inner-container"
-          ontouchstart="closeSuccessMessageFormStart()"
-          ontouchend="closeSuccessMessageFormEnd()">
+          ontouchstart="closeGeneratedQrFormStart()"
+          ontouchend="closeGeneratedQrFormEnd()">
     {window.languages.ComponentSuccessNext}
   </button>
 
@@ -17,7 +16,7 @@
 
     var closeButtonStartX, closeButtonEndX, closeButtonStartY, closeButtonEndY;
 
-    closeSuccessMessageFormStart = function () {
+    closeGeneratedQrFormStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
@@ -27,7 +26,7 @@
       qrCloseButtonId.style.webkitTransform = 'scale(0.8)'
     }
 
-    closeSuccessMessageFormEnd = function () {
+    closeGeneratedQrFormEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 

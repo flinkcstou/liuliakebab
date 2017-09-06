@@ -122,7 +122,7 @@
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
 
-  <component-generated-qr id="componentGeneratedQrId" qr_image="{qrImage}"
+  <component-generated-qr id="componentGeneratedQrId" qr_image="{qrImage}" qr_header="{qrHeader}" qr_footer="{qrFooter}"
                           viewpage="{viewPage}"
                           step_amount="{stepAmount}"></component-generated-qr>
 
@@ -748,6 +748,8 @@
 
               if (result[1][0].qr_image) {
                 scope.qrImage = result[1][0].qr_image;
+                scope.qrHeader = result[1][0].qr_header;
+                scope.qrFooter = result[1][0].qr_footer;
                 scope.update();
                 componentGeneratedQrId.style.display = 'block';
               } else

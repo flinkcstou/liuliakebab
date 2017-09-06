@@ -334,6 +334,7 @@ var RU_LANGUAGES =
   "ViewReportServiceAddToAutoPayment": "Добавить в автоплатеж",
   "ViewReportServiceGetSupportHelp": "Получить помощь поддержки",
   "ViewReportServiceRepeatButtonLabel": "повторить",
+  "ViewReportServiceShowQrButtonLabel": "qr showing",
 
   "ViewBankListTitleName": "ДОСТУПНЫЕ БАНКИ",
   "ViewBankListLimitForMonthText": "сум",
@@ -514,9 +515,7 @@ var RU_LANGUAGES =
   "ViewServicePageFavoriteNamePlaceholder": "Введите название избранного",
 
   "ComponentGeneratedQrUpperInfoText": "Ваш электронный билет (QR-код):",
-  "ComponentGeneratedQrInfoTextFirstPart": "Для прохода через турникет приложите экран телефона с билетом к считывателю.",
-  "ComponentGeneratedQrInfoTextSecondPart": "Внимание!",
-  "ComponentGeneratedQrInfoTextThirdPart": "Этот билет не предназначен для печати.",
+
 
 };
 
