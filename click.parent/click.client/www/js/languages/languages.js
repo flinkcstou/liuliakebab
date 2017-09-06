@@ -228,6 +228,7 @@ var RU_LANGUAGES =
   "ComponentPinResetNoButtonLabel": "НЕТ",
   "ComponentPinResetRegistrationButtonLabel": "РЕГИСТРАЦИЯ",
 
+  "ComponentMenuAriaLabelPersonalInfo": "Персональные данные",
   "ComponentMenuOnlineMode": "Активен онлайн режим",
   "ComponentMenuOfflineMode": "Активен USSD режим",
   "ComponentMenuBillings": "Активен USSD режим",
