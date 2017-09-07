@@ -240,60 +240,60 @@
 
         var answerFromServer = false;
 
-//        window.api.call({
-//          method: 'app.payment',
-//          input: inputObject,
-//
-//          scope: this,
-//
-//          onSuccess: function (result) {
-//
-//            answerFromServer = true;
-//
-//            console.log('RESULT QR QR', result)
-//
-//            if (result[0][0].error == 0) {
-//              if (result[1])
-//                if (!result[1][0].payment_id && result[1][0].invoice_id) {
-//                  console.log("result of APP.PAYMENT 1", result);
-//                  viewServicePage.phoneText = null;
-//                  viewServicePage.amountText = null;
-//
-//                  scope.operationMessage = 'Оплата QR прошла успешно'
-//                  viewServicePinCards.friendHelpPaymentMode = false;
-//
-//                  scope.update();
-//                  componentSuccessId.style.display = 'block';
-//                } else if (result[1][0].payment_id && !result[1][0].invoice_id) {
-//
-//                  if (device.platform != 'BrowserStand') {
-//                    var options = {dimBackground: true};
-//
-//                    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-//                      console.log("Started");
-//                    }, function () {
-//                      console.log("closed");
-//                    });
-//                  }
-//
-//                  setTimeout(function () {
-//                    checkQrPaymentStatus(result[1][0].payment_id);
-//                  }, 2000);
-//
-//                }
-//            }
-//            else {
-//              console.log("result of APP.PAYMENT 3", result);
-//              scope.update();
-//              componentUnsuccessId.style.display = 'block';
-//            }
-//          },
-//
-//          onFail: function (api_status, api_status_message, data) {
-//            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-//            console.error(data);
-//          }
-//        });
+        window.api.call({
+          method: 'app.payment',
+          input: inputObject,
+
+          scope: this,
+
+          onSuccess: function (result) {
+
+            answerFromServer = true;
+
+            console.log('RESULT QR QR', result)
+
+            if (result[0][0].error == 0) {
+              if (result[1])
+                if (!result[1][0].payment_id && result[1][0].invoice_id) {
+                  console.log("result of APP.PAYMENT 1", result);
+                  viewServicePage.phoneText = null;
+                  viewServicePage.amountText = null;
+
+                  scope.operationMessage = 'Оплата QR прошла успешно'
+                  viewServicePinCards.friendHelpPaymentMode = false;
+
+                  scope.update();
+                  componentSuccessId.style.display = 'block';
+                } else if (result[1][0].payment_id && !result[1][0].invoice_id) {
+
+                  if (device.platform != 'BrowserStand') {
+                    var options = {dimBackground: true};
+
+                    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+                      console.log("Started");
+                    }, function () {
+                      console.log("closed");
+                    });
+                  }
+
+                  setTimeout(function () {
+                    checkQrPaymentStatus(result[1][0].payment_id);
+                  }, 2000);
+
+                }
+            }
+            else {
+              console.log("result of APP.PAYMENT 3", result);
+              scope.update();
+              componentUnsuccessId.style.display = 'block';
+            }
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
 
         setTimeout(function () {
           if (!answerFromServer) {
