@@ -211,30 +211,19 @@
         var inputObject = {};
         if (opts[2].rk_order) {
 
-          inputObject = {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            service_id: Number(serviceId),
-            account_id: Number(accountId),
-            amount: Number(amount),
-            payment_data: payment_data,
-            datetime: date,
-            friend_phone: friendPhone,
-            value: opts[2].rk_order
-          }
+          payment_data.value = opts[2].rk_order;
         }
-        else {
-          inputObject = {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            service_id: Number(serviceId),
-            account_id: Number(accountId),
-            amount: Number(amount),
-            payment_data: payment_data,
-            datetime: date,
-            friend_phone: friendPhone
-          }
-        }
+
+        inputObject = {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          service_id: Number(serviceId),
+          account_id: Number(accountId),
+          amount: Number(amount),
+          payment_data: payment_data,
+          datetime: date,
+          friend_phone: friendPhone
+        };
 
         if (device.platform != 'BrowserStand') {
           var options = {dimBackground: true};
