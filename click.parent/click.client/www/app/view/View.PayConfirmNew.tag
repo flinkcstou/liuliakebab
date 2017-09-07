@@ -752,6 +752,7 @@
                 scope.qrFooter = result[1][0].qr_footer;
                 scope.update();
                 componentGeneratedQrId.style.display = 'block';
+                qrFooterTextId.innerHTML = result[1][0].qr_footer;
               } else
                 componentSuccessId.style.display = 'block';
 
