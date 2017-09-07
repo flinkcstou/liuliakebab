@@ -46,7 +46,8 @@
           <div class="view-reports-payment-date-field">{i}</div>
         </div>
         <div class="view-reports-payment-block-containter" each="{j in paymentsMap[i]}" id="{j.payment_id}"
-             ontouchstart="paymentTouchStart(this.id)" onclick="paymentTouchEnd(this.id)">
+             ontouchstart="paymentTouchStart(this.id)" onclick="paymentTouchEnd(this.id)" role="button"
+             aria-label="{j.service_name}">
           <div class="view-reports-payment-icon"
                style="background-image: url({j.image})"></div>
           <div class="view-reports-payment-info-container">
