@@ -430,9 +430,8 @@
           scope.update();
 //        scope.unmount()
         } else {
-
           componentGeneratedQrId.style.display = 'block';
-          qrFooterTextId.innerHTML = window.languages.ComponentGeneratedQrUpperInfoText;
+          qrFooterTextId.innerHTML = scope.opts.qr_footer;
         }
       }
     };

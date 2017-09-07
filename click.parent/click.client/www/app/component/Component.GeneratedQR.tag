@@ -16,7 +16,6 @@
     var closeButtonStartX, closeButtonEndX, closeButtonStartY, closeButtonEndY;
 
 
-
     closeGeneratedQrFormStart = function () {
       event.preventDefault();
       event.stopPropagation();
