@@ -545,6 +545,8 @@
     payService = function () {
 
       date = parseInt(Date.now() / 1000);
+      if (!opts.transactionId)
+        opts.transactionId = parseInt(Date.now() / 1000);
       sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       phoneNumber = localStorage.getItem('click_client_phoneNumber');
       serviceId = opts.chosenServiceId;
@@ -571,13 +573,13 @@
         payment_data = {
           "param": opts.firstFieldId,
           "value": firstFieldtext,
-          "transaction_id": parseInt(Date.now() / 1000)
+          "transaction_id": opts.transactionId
         };
       }
       else if (opts.formtype == 2) {
         payment_data = {
           "pin_param": opts.cardTypeId,
-          "transaction_id": parseInt(Date.now() / 1000)
+          "transaction_id": opts.transactionId
         };
       }
       else if (opts.formtype == 3) {
@@ -585,7 +587,7 @@
           "param": opts.firstFieldId,
           "value": firstFieldtext,
           "communal_param": opts.communalParam,
-          "transaction_id": parseInt(Date.now() / 1000)
+          "transaction_id": opts.transactionId
         };
       }
       else if (opts.formtype == 4) {
@@ -593,7 +595,7 @@
           "param": opts.firstFieldId,
           "value": firstFieldtext,
           "internet_package_param": opts.internetPackageParam,
-          "transaction_id": parseInt(Date.now() / 1000)
+          "transaction_id": opts.transactionId
         };
       }
 

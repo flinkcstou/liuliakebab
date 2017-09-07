@@ -178,7 +178,9 @@ window.api.call = function (params) {
   this.callBacks[method] = {
     ok: function (data) {
 
+
       if (method != "get.payment" && method != "app.payment") {
+        console.log("Stopping spinner from webApi")
         window.api.spinnerOn = false;
         console.log('ANSWER OF API ', data);
 

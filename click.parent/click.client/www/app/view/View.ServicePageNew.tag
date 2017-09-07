@@ -1885,6 +1885,7 @@
         opts.chosenPrefixTitle = scope.chosenPrefixTitle;
         opts.chosenPrefixId = scope.chosenPrefixId;
         opts.chosenPrefixName = scope.chosenPrefixName;
+        opts.transactionId = null;
 
 
 //      viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
@@ -2127,8 +2128,10 @@
         if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
 
           opts.isInFavorites = !scope.enterButton;
+          date = parseInt(Date.now() / 1000);
+          opts.transactionId =
 
-          event.preventDefault();
+            event.preventDefault();
           event.stopPropagation();
 
           if (scope.service.additional_information_type == 0) {
