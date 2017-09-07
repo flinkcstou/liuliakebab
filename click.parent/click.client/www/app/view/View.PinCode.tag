@@ -449,13 +449,13 @@
 
       window.api.call({
         method: 'registration',
-        input : {
-          phone_num  : phoneNumber,
+        input: {
+          phone_num: phoneNumber,
           card_number: cardNumber,
-          card_data  : cardInformation,
-          pin        : hex_md5(pin)
+          card_data: cardInformation,
+          pin: hex_md5(pin)
         },
-        scope : this,
+        scope: this,
 
         onSuccess: function (result) {
           console.log(result)
@@ -486,7 +486,7 @@
             localStorage.setItem("registration_check_hash", JSON.stringify(result[1][0].check_hash))
 //            riotTags.innerHTML = "<view-authorization>";
 //            riot.mount('view-authorization', {from: "registration-client"});
-            setTimeout(checkRegistrationFunction(), 5000)
+            setTimeout(function () {checkRegistrationFunction()}, 5000)
           }
           else {
             scope.clickPinError = false;
@@ -497,7 +497,7 @@
           }
 
         },
-        onFail   : function (api_status, api_status_message, data) {
+        onFail: function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -515,15 +515,15 @@
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
-        }, function () {
-          console.log("closed");
-        });
-      }
+//      if (device.platform != 'BrowserStand') {
+//        var options = {dimBackground: true};
+//
+//        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+//          console.log("Started");
+//        }, function () {
+//          console.log("closed");
+//        });
+//      }
 
       window.api.call({
         method: 'registration.check',
@@ -542,7 +542,7 @@
             console.log('REGISTRATION CHECK', result)
             if (result[1][0].registered == 0) {
               scope.registrationSuccess = 0;
-              setTimeout(checkRegistrationFunction(), 5000)
+              setTimeout(function () {checkRegistrationFunction()}, 5000)
               console.log("ANSWER OF CHECK REGISTRATION", 0)
               return;
             }
@@ -603,13 +603,13 @@
 
       window.api.call({
         method: 'settings.change.pin',
-        input : {
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber,
+          phone_num: phoneNumber,
           current_pin: currentPin,
-          new_pin    : hex_md5(pin)
+          new_pin: hex_md5(pin)
         },
-        scope : this,
+        scope: this,
 
         onSuccess: function (result) {
           console.log(result)
@@ -650,7 +650,7 @@
           }
 
         },
-        onFail   : function (api_status, api_status_message, data) {
+        onFail: function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
