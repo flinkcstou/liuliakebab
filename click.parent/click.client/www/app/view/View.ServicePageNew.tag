@@ -609,7 +609,6 @@
             }, 0);
           }
         } else if (opts.mode == 'ADDAUTOPAY') {
-          console.log('6')
           if (device.platform == 'iOS') {
             autoPayNameInput.autofocus;
             autoPayNameInput.focus();
@@ -620,7 +619,6 @@
             }, 0);
           }
         } else if (opts.mode == 'ADDFAVORITE') {
-          console.log('6')
           if (device.platform == 'iOS') {
             favoriteNameInput.autofocus;
             favoriteNameInput.focus();

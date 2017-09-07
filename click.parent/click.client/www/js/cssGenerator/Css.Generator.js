@@ -3953,7 +3953,7 @@ var css = {
   "{" +
   "float: left;" +
   "position: relative;" +
-  "top: 22%;" +
+  "top: 30%;" +
   "font-size: " + 54 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -3965,7 +3965,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top:" + 20 * widthK + "px; " +
+  "top:" + 26 * widthK + "px; " +
   "width: 88%;" +
   "font-size:" + 54 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
@@ -4001,7 +4001,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 22%;" +
+  "top: 30%;" +
   "padding: 0;" +
   "margin: 0;" +
   "margin-left: 3%;" +
