@@ -9,6 +9,7 @@ var RU_LANGUAGES =
     "Currency": "сум",
     "Back": "Назад",
     "Close": "Закрыть",
+    "Add": "Добавить",
 
     "ComponentBankOperationsPay": "ОПЛАТА",
 

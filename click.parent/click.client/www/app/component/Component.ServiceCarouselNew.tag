@@ -22,16 +22,17 @@
       <div class="service-container">
         <div class="service-each-container" each="{i in favPaymentsList}">
           <div id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfPayment(this.id)"
-               ontouchend="ontouchEndOfPayment(this.id)" style="background-image: url({i.service.image})">
+               ontouchend="ontouchEndOfPayment(this.id)" style="background-image: url({i.service.image})" role="button"
+               aria-label="{i.params.favoriteName?i.params.favoriteName: i.service.name}">
           </div>
           <p class="service-labels">{i.params.favoriteName?i.params.favoriteName: i.service.name}</p>
         </div>
         <div class="service-each-container" if="{addFavoriteBool}">
           <div id="addFavoriteButtonId" class="service-buttons" ontouchstart="ontouchStartOfPayment(this.id)"
-               ontouchend="ontouchEndOfAddFavorite(this.id)"
+               ontouchend="ontouchEndOfAddFavorite(this.id)" role="button" aria-label="{window.languages.Add}"
                style="background-image: url('resources/icons/services/favorites_add.png'); background-size: 46%;">
           </div>
-          <p class="service-labels">Добавить</p>
+          <p class="service-labels">{window.languages.Add}</p>
         </div>
       </div>
     </div>
