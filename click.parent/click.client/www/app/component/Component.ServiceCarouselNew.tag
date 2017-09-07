@@ -580,8 +580,8 @@
 
 
               if (scope.favoritePaymentsList[i].service.additional_information_type == 3) {
-                this.riotTags.innerHTML = "<view-service-info>";
-                riot.mount('view-service-info', scope.favoritePaymentsList[i].params);
+                this.riotTags.innerHTML = "<view-service-info-new>";
+                riot.mount('view-service-info-new', scope.favoritePaymentsList[i].params);
                 scope.unmount()
               } else {
                 this.riotTags.innerHTML = "<view-service-pincards-new>";
