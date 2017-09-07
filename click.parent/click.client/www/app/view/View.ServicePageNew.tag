@@ -596,7 +596,7 @@
       else {
         console.log("ON SERVICEPAGE NEW ON MOUNT autofocus first field");
 
-        if (opts.mode != 'ADDAUTOPAY') {
+        if (opts.mode != 'ADDAUTOPAY' && opts.mode != 'ADDFAVORITE') {
           console.log('1')
           if (device.platform == 'iOS') {
             firstFieldInput.autofocus;
@@ -608,7 +608,7 @@
               }
             }, 0);
           }
-        } else {
+        } else if (opts.mode == 'ADDAUTOPAY') {
           console.log('6')
           if (device.platform == 'iOS') {
             autoPayNameInput.autofocus;
@@ -617,6 +617,17 @@
             setTimeout(function () {
               if (this.autoPayNameInput)
                 autoPayNameInput.focus();
+            }, 0);
+          }
+        } else if (opts.mode == 'ADDFAVORITE') {
+          console.log('6')
+          if (device.platform == 'iOS') {
+            favoriteNameInput.autofocus;
+            favoriteNameInput.focus();
+          } else {
+            setTimeout(function () {
+              if (this.favoriteNameInput)
+                favoriteNameInput.focus();
             }, 0);
           }
         }
