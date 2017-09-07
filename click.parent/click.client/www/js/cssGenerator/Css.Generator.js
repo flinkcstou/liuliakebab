@@ -7017,7 +7017,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "opacity: 0.99;" +
-  "height: 100%;" +
+  "height:" + 1232 * heightK + "px;" +
   "width: 100%;" +
   //"background-color: #353340;" +
   //"background-image: url(resources/icons/transparent.png);" +
@@ -7035,7 +7035,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 150 * widthK + "px;" +
+  "top:" + 150 * heightK + "px;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
 
@@ -7049,13 +7049,13 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 215 * widthK + "px;" +
+  "top:" + 215 * heightK + "px;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
 
   generatedqrCloseButtonInnerContainer: ".generatedqr-close-button-inner-container" +
   "{" +
-  "top: 83%;" +
+  "top:" + 275 * heightK + "px;" +
   "height: " + 74 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
   "background-color: white;" +
@@ -7065,7 +7065,7 @@ var css = {
   //"border: none;" +
   "border:" + 3 * widthK + "px solid #00a8f1;" +
   "outline: none;" +
-  "position: absolute;" +
+  "position: relative;" +
   "left: 28%;" +
   "width: 44%;" +
   "border-radius: " + 10 * widthK + "px;" +
@@ -7077,7 +7077,7 @@ var css = {
   "position: relative;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
-  "top:" + 175 * widthK + "px;" +
+  "top:" + 175 * heightK + "px;" +
   "width:" + 500 * widthK + "px;" +
   "height:" + 500 * widthK + "px;" +
   // "left:" + 234 * widthK + "px;" +
