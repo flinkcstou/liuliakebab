@@ -99,7 +99,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-transfer-stepfour',
+          "view": 'view-transfer-stepfour',
           "params": opts
         }
       );
@@ -111,7 +111,7 @@
     scope.rightbuttoncheck = false;
     scope.showError = false;
 
-    console.log(opts)
+    console.log("TRANSFER STEP FOUR OPTS", opts)
     scope.tax = opts[1];
     scope.errorMessageFromTransfer = '';
 
@@ -367,10 +367,7 @@
           return
         }
 
-        console.log("777", sessionStorage.getItem('payTransferConfirmed'));
-
         if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) != true) {
-          console.log("888");
           riotTags.innerHTML = "<view-pin-code>";
           riot.mount('view-pin-code', ['view-transfer-stepfour']);
           return
@@ -386,6 +383,8 @@
 
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      if (!objectForTransfer.transactionId)
+        objectForTransfer.transactionId = parseInt(Date.now() / 1000);
 
       if (device.platform != 'BrowserStand') {
         var options = {dimBackground: true};
@@ -399,16 +398,18 @@
 
       var answerFromServer = false;
 
+      console.log("TRANSACTION_ID", objectForTransfer.transactionId)
+
       window.api.call({
         method: 'p2p.payment',
-        input : {
-          session_key   : sessionKey,
-          phone_num     : phoneNumber,
-          account_id    : scope.objectCardForTransfer.card_id,
-          receiver_data : scope.objectTypeForTransfer.name.replace(/\s/g, ''),
-          amount        : parseInt(scope.objectSumForTransfer.sum),
-          type          : scope.objectTypeForTransfer.type,
-          transaction_id: parseInt(Date.now() / 1000)
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          account_id: scope.objectCardForTransfer.card_id,
+          receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
+          amount: parseInt(scope.objectSumForTransfer.sum),
+          type: scope.objectTypeForTransfer.type,
+          transaction_id: opts[5].transactionId
 //                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
 
         },
@@ -491,10 +492,10 @@
 
       window.api.call({
         method: 'get.payment',
-        input : {
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber,
-          payment_id : payment_id
+          phone_num: phoneNumber,
+          payment_id: payment_id
         },
 
         scope: this,

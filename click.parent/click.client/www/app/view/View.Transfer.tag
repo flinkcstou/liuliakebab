@@ -208,6 +208,7 @@
   <script>
 
     viewTransfer.check = true;
+    console.log("TRANSFER OPTS", opts)
     var scope = this;
     scope.numberLength = 10;
     this.on('mount', function () {

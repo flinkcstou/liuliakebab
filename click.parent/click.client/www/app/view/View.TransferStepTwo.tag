@@ -1,7 +1,8 @@
 <view-transfer-steptwo class="riot-tags-main-container">
   <div class="transfer-page-title">
     <p class="transfer-name-title">{titleName}</p>
-    <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="{transfer-back-button: backbuttoncheck}"></div>
+    <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
+         class="{transfer-back-button: backbuttoncheck}"></div>
     <div id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"></div>
   </div>
 
@@ -12,15 +13,18 @@
     </div>
 
     <div class="transfertwo-contact-phone-field">
-      <input pattern="\d*" id="sumValueId" type="tel" maxlength="14" class="transfertwo-contact-number-input-part" onfocus="sumFocus()"
+      <input pattern="\d*" id="sumValueId" type="tel" maxlength="14" class="transfertwo-contact-number-input-part"
+             onfocus="sumFocus()"
              onmouseup="sumMouseUp()"
              onblur="sumOnBlur()" onkeyup="sumKeyUp()" oninput="sumKeyUp()"/>
       <p if="{showPlaceHolderError}" id="placeHolderSumId" class="transfertwo-limit-title">{placeHolderText}</p>
-      <p if="{!showPlaceHolderError && !modeOfApp.offlineMode}" class="transfertwo-contact-text-field">{window.languages.ViewTransferTwoTax} {tax}
+      <p if="{!showPlaceHolderError && !modeOfApp.offlineMode}" class="transfertwo-contact-text-field">
+        {window.languages.ViewTransferTwoTax} {tax}
         {window.languages.Currency}</p>
     </div>
 
-    <button id="nextButtonId" class="transfertwo-next-button-inner-container" ontouchstart="goToTransferThreeTouchStart()"
+    <button id="nextButtonId" class="transfertwo-next-button-inner-container"
+            ontouchstart="goToTransferThreeTouchStart()"
             ontouchend="goToTransferThreeTouchEnd()">
       {window.languages.ViewTransferTwoNext}
     </button>
@@ -36,6 +40,8 @@
                    errornote="{errorNote}"></component-alert>
 
   <script>
+
+    console.log("TRANSFER STEP TWO OPTS", opts)
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-steptwo') {
       history.arrayOfHistory.push(
@@ -58,7 +64,6 @@
       }
       else
         sumValueId.value = 0
-
 
 
       console.log('scope.tax', scope.tax)
@@ -167,19 +172,19 @@
 
       if (sumForTransfer)
         scope.tax = sumForTransfer * objectForTransfer.percent / 100;
-      else{
+      else {
         scope.tax = 0
       }
 
       scope.showPlaceHolderError = false;
 
-      if(sumForTransfer > maxLimit){
+      if (sumForTransfer > maxLimit) {
 
         scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(maxLimit)
         scope.showPlaceHolderError = true;
       }
 
-      if(sumForTransfer < minLimit) {
+      if (sumForTransfer < minLimit) {
         scope.placeHolderText = "Минимальная сумма " + window.amountTransform(minLimit)
         scope.showPlaceHolderError = true;
       }
@@ -238,7 +243,8 @@
       }
     };
 
-    var goToTransferThreeTouchStartX, goToTransferThreeTouchStartY, goToTransferThreeTouchEndX, goToTransferThreeTouchEndY;
+    var goToTransferThreeTouchStartX, goToTransferThreeTouchStartY, goToTransferThreeTouchEndX,
+      goToTransferThreeTouchEndY;
 
     goToTransferThreeTouchStart = function () {
       event.preventDefault()
@@ -291,7 +297,7 @@
         console.log('minLimit', minLimit)
         scope.showPlaceHolderError = false;
 
-        if(sumForTransfer > maxLimit){
+        if (sumForTransfer > maxLimit) {
 
           scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(maxLimit)
           scope.showPlaceHolderError = true;
@@ -299,7 +305,7 @@
           return
         }
 
-        if(sumForTransfer < minLimit) {
+        if (sumForTransfer < minLimit) {
           scope.placeHolderText = "Минимальная сумма " + window.amountTransform(minLimit)
           scope.showPlaceHolderError = true;
           scope.update()
@@ -307,6 +313,7 @@
         }
         var sum = {"sum": sumForTransfer};
         var comment = {"comment": commentTextId.value};
+        objectForTransfer.transactionId = parseInt(Date.now() / 1000);
 
 
         console.log(opts)

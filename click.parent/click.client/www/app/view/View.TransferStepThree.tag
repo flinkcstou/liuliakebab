@@ -1,7 +1,8 @@
 <view-transfer-stepthree class="riot-tags-main-container">
   <div class="transfer-page-title">
     <p class="transfer-name-title">{titleName}</p>
-    <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="{transfer-back-button: backbuttoncheck}"></div>
+    <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
+         class="{transfer-back-button: backbuttoncheck}"></div>
     <div id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"></div>
   </div>
 
@@ -11,7 +12,8 @@
     </div>
     <component-pincards clean="{true}"></component-pincards>
 
-    <button id="nextButtonId" class="transferthree-next-button-inner-container" ontouchstart="goToTransferFourTouchStart()"
+    <button id="nextButtonId" class="transferthree-next-button-inner-container"
+            ontouchstart="goToTransferFourTouchStart()"
             ontouchend="goToTransferFourTouchEnd()">
       {window.languages.ViewTransferThreeNext}
     </button>
@@ -134,7 +136,7 @@
 
         var cardSumFromPinCards = scope.tags['component-pincards'].getAccountCardSum();
 
-        console.log("getAccountCardSum",cardSumFromPinCards, "opts", parseInt(opts[1].sum))
+        console.log("getAccountCardSum", cardSumFromPinCards, "opts", parseInt(opts[1].sum))
         if (cardSumFromPinCards && cardSumFromPinCards < parseInt(opts[1].sum)) {
           console.log(cardSumFromPinCards, opts[1].sum)
           scope.clickPinError = false;

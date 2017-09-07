@@ -530,10 +530,7 @@
           return
         }
 
-        console.log("777", sessionStorage.getItem('payTransferConfirmed'));
-
         if (opts.mode != 'ADDAUTOPAY' && payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) != true) {
-          console.log("888");
           riotTags.innerHTML = "<view-pin-code>";
           riot.mount('view-pin-code', ['view-pay-confirm']);
           return
