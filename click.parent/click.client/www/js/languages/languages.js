@@ -337,6 +337,7 @@ var RU_LANGUAGES =
 
   "ViewReportMonthsArrayTwo": ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"],
 
+  "ViewReportAriaLabelToggleGraphic": "Показать/Скрыть график",
   "ViewReportServiceAddToFavorites": "Добавить в избранные",
   "ViewReportServiceRemoveFromFavorites": "Удалить из избранных",
   "ViewReportServiceAddToAutoPayment": "Добавить в автоплатеж",

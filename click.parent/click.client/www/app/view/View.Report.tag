@@ -3,14 +3,17 @@
   <div id="reportPageId" class="view-reports-page">
     <div class="page-title" style="border: none;">
       <p class="name-title">{titleName}</p>
-      <div id="backButtonId" ontouchstart="touchStartTitleStart()" ontouchend="touchStartTitleEnd()"
+      <div id="backButtonId" role="button" aria-label="{window.languages.Back}" ontouchstart="touchStartTitleStart()"
+           ontouchend="touchStartTitleEnd()"
            class="back-button">
       </div>
-      <div class="view-reports-filter-container" ontouchend="openFilter()">
+      <div class="view-reports-filter-container" role="button" aria-label="{languages.ComponentReportFilterTitle}"
+           ontouchend="openFilter()">
         <p class="view-reports-filter-text">{languages.ComponentReportFilterTitle}</p>
         <div type="button" class="view-reports-filter-button"></div>
       </div>
-      <div id="graphButtonId" type="button" class="view-reports-graph-button" ontouchend="graphView()"></div>
+      <div id="graphButtonId" role="button" aria-label="{window.languages.ViewReportAriaLabelToggleGraphic}"
+           type="button" class="view-reports-graph-button" ontouchend="graphView()"></div>
     </div>
 
 
@@ -20,7 +23,9 @@
          hidden="{(tags['component-report-filter'].filterDateFrom && tags['component-report-filter'].filterDateTo)}">
       <div class="view-reports-month-info-container" each="{i in monthsArray}"
            style="left:{50*i.count}%;">
-        <p class="view-reports-month-info-name">{i.name}</p>
+        <p class="view-reports-month-info-name"
+           ontouchend="changePositionReportVoiceOver({i.count})">
+          {i.name}</p>
       </div>
     </div>
 
@@ -281,6 +286,8 @@
       else {
         monthChanged = false;
       }
+
+      scope.monthContainerMoved = false;
     };
 
 
@@ -294,6 +301,8 @@
         return;
       }
 
+      scope.monthContainerMoved = true;
+
       toucheInPercentage = (event.changedTouches[0].pageX * 100.0) / window.innerHeight;
 
       this.monthContainerId.style.transition = '0s';
@@ -303,10 +312,58 @@
 
     };
 
+    changePositionReportVoiceOver = function (count) {
+      console.log("Voice Over changePosition");
+      console.log("count", count);
+      console.log("scope.mNumber", scope.mNumber);
+
+      if (scope.monthContainerMoved) return;
+      if (scope.mNumber == count - 1) return;
+
+      if (scope.mNumber < count - 1) {
+        ++scope.mNumber;
+        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+      }
+
+      if (scope.mNumber > count - 1) {
+        --scope.mNumber;
+        this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.webkitTransition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';
+        this.monthContainerId.style.transform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+        this.monthContainerId.style.webkitTransform = "translate3d(" + (-scope.mNumber * 50) + '%' + ", 0, 0)";
+      }
+
+      var dateForComparison = new Date();
+
+      if (dateForComparison.getMonth() < scope.mNumber) {
+
+        scope.monthNotStartedYet = true;
+        scope.update();
+
+      } else {
+
+        scope.monthNotStartedYet = false;
+        scope.update();
+      }
+
+      if (scope.firstReportView) {
+        paymentListUpdate();
+      } else {
+        graphListUpdate();
+      }
+
+      localStorage.setItem('mNumber', scope.mNumber);
+    };
 
     changePositionReport = function () {
-      console.log("One")
-      console.log("scope.count", scope.count)
+      console.log("One");
+      console.log("scope.count", scope.count);
+      console.log("scope.mNumber", scope.mNumber);
+      console.log("mCarouselTouchStartX", mCarouselTouchStartX);
+      console.log("mCarouselTouchEndX", mCarouselTouchEndX);
 
       monthChanged = true;
       if (mCarouselTouchEndX < mCarouselTouchStartX && scope.mNumber < scope.count - 1) {
