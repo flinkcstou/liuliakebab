@@ -321,6 +321,8 @@
       if (scope.monthContainerMoved) return;
       if (scope.mNumber == count - 1) return;
 
+      monthChanged = true;
+
       if (scope.mNumber < count - 1) {
         ++scope.mNumber;
         this.monthContainerId.style.transition = '0.3s cubic-bezier(0.3, 0.05, 0.39, 1.5)';

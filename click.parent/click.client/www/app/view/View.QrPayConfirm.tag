@@ -85,7 +85,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr-pay-confirm') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-qr-pay-confirm',
+          "view": 'view-qr-pay-confirm',
           "params": opts
         }
       );
@@ -212,26 +212,26 @@
         if (opts[2].rk_order) {
 
           inputObject = {
-            session_key : sessionKey,
-            phone_num   : phoneNumber,
-            service_id  : Number(serviceId),
-            account_id  : Number(accountId),
-            amount      : Number(amount),
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            service_id: Number(serviceId),
+            account_id: Number(accountId),
+            amount: Number(amount),
             payment_data: payment_data,
-            datetime    : date,
+            datetime: date,
             friend_phone: friendPhone,
-            value       : opts[2].rk_order
+            value: opts[2].rk_order
           }
         }
         else {
           inputObject = {
-            session_key : sessionKey,
-            phone_num   : phoneNumber,
-            service_id  : Number(serviceId),
-            account_id  : Number(accountId),
-            amount      : Number(amount),
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            service_id: Number(serviceId),
+            account_id: Number(accountId),
+            amount: Number(amount),
             payment_data: payment_data,
-            datetime    : date,
+            datetime: date,
             friend_phone: friendPhone
           }
         }
@@ -250,7 +250,7 @@
 
         window.api.call({
           method: 'app.payment',
-          input : inputObject,
+          input: inputObject,
 
           scope: this,
 
@@ -325,10 +325,10 @@
 
       window.api.call({
         method: 'get.payment',
-        input : {
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber,
-          payment_id : payment_id
+          phone_num: phoneNumber,
+          payment_id: payment_id
         },
 
         scope: this,

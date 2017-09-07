@@ -449,13 +449,13 @@
 
       window.api.call({
         method: 'registration',
-        input: {
-          phone_num: phoneNumber,
+        input : {
+          phone_num  : phoneNumber,
           card_number: cardNumber,
-          card_data: cardInformation,
-          pin: hex_md5(pin)
+          card_data  : cardInformation,
+          pin        : hex_md5(pin)
         },
-        scope: this,
+        scope : this,
 
         onSuccess: function (result) {
           console.log(result)
@@ -497,7 +497,7 @@
           }
 
         },
-        onFail: function (api_status, api_status_message, data) {
+        onFail   : function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -535,6 +535,7 @@
         scope: this,
 
         onSuccess: function (result) {
+          console.log("SUCCESS registration.check");
           console.log(result)
           console.log(result[0][0])
           if (result[0][0].error == 0) {
@@ -583,6 +584,7 @@
 
         },
         onFail: function (api_status, api_status_message, data) {
+          console.log("FAIL registration.check");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -601,13 +603,13 @@
 
       window.api.call({
         method: 'settings.change.pin',
-        input: {
+        input : {
           session_key: sessionKey,
-          phone_num: phoneNumber,
+          phone_num  : phoneNumber,
           current_pin: currentPin,
-          new_pin: hex_md5(pin)
+          new_pin    : hex_md5(pin)
         },
-        scope: this,
+        scope : this,
 
         onSuccess: function (result) {
           console.log(result)
@@ -648,7 +650,7 @@
           }
 
         },
-        onFail: function (api_status, api_status_message, data) {
+        onFail   : function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
