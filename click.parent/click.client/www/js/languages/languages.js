@@ -267,9 +267,9 @@ var RU_LANGUAGES =
   "ViewAboutSettingsRateUsTitle": "Оцените нас в Google Play",
 
   "ViewSettingsAboutProgramTitleName": "О ПРОГРАММЕ",
-  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.6",
+  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.0.5",
   "ViewSettingsAboutProgramVersionTitleNamePartOneClick": "CLICK Uzbekistan",
-  "ViewSettingsAboutProgramVersionTitleNamePartTwo": "29 августа, 2017",
+  "ViewSettingsAboutProgramVersionTitleNamePartTwo": "7 сентября, 2017",
   "ViewSettingsAboutProgramUserAgreementTitleName": "Пользовательское соглашение",
   "ViewSettingsAboutProgramRankTitleName": "Оцените нас в Google Play",
 
@@ -343,7 +343,7 @@ var RU_LANGUAGES =
   "ViewReportServiceAddToAutoPayment": "Добавить в автоплатеж",
   "ViewReportServiceGetSupportHelp": "Получить помощь поддержки",
   "ViewReportServiceRepeatButtonLabel": "повторить",
-  "ViewReportServiceShowQrButtonLabel": "Показать QR",
+  "ViewReportServiceShowQrButtonLabel": "Показать QR-Код",
 
   "ViewBankListTitleName": "ДОСТУПНЫЕ БАНКИ",
   "ViewBankListLimitForMonthText": "сум",
