@@ -139,7 +139,7 @@
       event.preventDefault();
       event.stopPropagation();
       this.riotTags.innerHTML = "<view-friend-help-settings>";
-      riot.mount('view-friend-help-settings', {from:"view-qr"});
+      riot.mount('view-friend-help-settings', {from: "view-qr"});
 //      scope.unmount()
     }
 

@@ -50,12 +50,12 @@
 
     this.on('mount', function () {
 
-      if(device.platform ==
+      if (device.platform ==
         'Android')
-      setTimeout(function(){
-        sumValueId.focus()
-      }, 0);
-      else{
+        setTimeout(function () {
+          sumValueId.focus()
+        }, 0);
+      else {
         sumValueId.focus()
         sumValueId.autofocus
       }
@@ -110,6 +110,7 @@
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
         Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
         opts.qrSum = sumForQrPay;
+        opts.transactionId = parseInt(Date.now() / 1000);
 
         if (modeOfApp.offlineMode) {
           phonedialer.dial(
