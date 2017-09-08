@@ -130,7 +130,7 @@
 
     console.log("enable_information_cache", localStorage.getItem('click_client_infoCacheEnabled'))
 
-    if (!localStorage.getItem('click_client_infoCacheEnabled') || JSON.parse(localStorage.getItem('click_client_infoCacheEnabled')) == null)
+    if (!JSON.parse(localStorage.getItem('click_client_infoCacheEnabled')))
       getInformation();
     else {
       scope.serviceData = JSON.parse(localStorage.getItem("click_client_infoCached"))
