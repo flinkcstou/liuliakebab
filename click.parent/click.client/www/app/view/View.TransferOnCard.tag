@@ -10,7 +10,8 @@
 
     <component-pincards clean="{true}" transferoncard="true"></component-pincards>
 
-    <button id="acceptTransferOnCardButtonId" class="transfer-on-card-ok-button" ontouchend="transferOnCardOnTouchEndAccept()"
+    <button id="acceptTransferOnCardButtonId" class="transfer-on-card-ok-button"
+            ontouchend="transferOnCardOnTouchEndAccept()"
             ontouchstart="transferOnCardOnTouchStartAccept()">
       {languages.ViewTransferOnCardAcceptButtonText}
     </button>
@@ -32,10 +33,10 @@
   <script>
 
     var scope = this,
-        touchStartAcceptX,
-        touchStartAcceptY,
-        touchEndAcceptX,
-        touchEndAcceptY;
+      touchStartAcceptX,
+      touchStartAcceptY,
+      touchEndAcceptX,
+      touchEndAcceptY;
 
     scope.success = false;
     scope.fail = false;
@@ -58,7 +59,7 @@
       touchEndAcceptY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
-          Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
+        Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -130,6 +131,8 @@
             }
             else {
 
+              scope.errorMessageFromTransfer = result[0][0].error_note;
+              scope.update();
               componentUnsuccessId.style.display = 'block';
 //              alert(result[0][0].error_note);
             }
@@ -138,6 +141,7 @@
           onFail: function (api_status, api_status_message, data) {
 
             componentUnsuccessId.style.display = 'block';
+
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }

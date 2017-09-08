@@ -1987,6 +1987,7 @@
               riot.mount('view-service-pincards-new', opts);
               scope.unmount()
             } else {
+              localStorage.setItem('click_client_infoCacheEnabled', null)
               this.riotTags.innerHTML = "<view-service-info-new>";
               riot.mount('view-service-info-new', opts);
               scope.unmount()
@@ -2139,6 +2140,7 @@
             riot.mount('view-service-pincards-new', opts);
             scope.unmount()
           } else {
+            localStorage.setItem('click_client_infoCacheEnabled', null)
             this.riotTags.innerHTML = "<view-service-info-new>";
             riot.mount('view-service-info-new', opts);
             scope.unmount()

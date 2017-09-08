@@ -581,6 +581,7 @@
 
 
               if (scope.favoritePaymentsList[i].service.additional_information_type == 3) {
+                localStorage.setItem('click_client_infoCacheEnabled', null)
                 this.riotTags.innerHTML = "<view-service-info-new>";
                 riot.mount('view-service-info-new', scope.favoritePaymentsList[i].params);
                 scope.unmount()
