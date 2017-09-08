@@ -12826,3 +12826,26 @@ window.notificationCardAddBack = {
   "notify_id": "8600330432558946",
   "tap": true
 };
+
+window.fakedSocket.register("get.wishlist", function (input) {
+
+  if (input) {
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": ""
+      }], []
+    ];
+  }
+
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});

@@ -409,7 +409,7 @@
           receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
           amount: parseInt(scope.objectSumForTransfer.sum),
           type: scope.objectTypeForTransfer.type,
-          transaction_id: opts[5].transactionId
+          transaction_id: objectForTransfer.transactionId
 //                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
 
         },
