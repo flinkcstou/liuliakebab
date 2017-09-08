@@ -128,8 +128,30 @@
       });
     }
 
-    //if (!localStorage.getItem('get_info_called'))
-    getInformation();
+    console.log("enable_information_cache", localStorage.getItem('click_client_infoCacheEnabled'))
+
+    if (!localStorage.getItem('click_client_infoCacheEnabled') || JSON.parse(localStorage.getItem('click_client_infoCacheEnabled')) == null)
+      getInformation();
+    else {
+      scope.serviceData = JSON.parse(localStorage.getItem("click_client_infoCached"))
+
+      console.log("Displaying cached info")
+      if (scope.serviceData.information_type == 3) {
+        scope.optionsArray = scope.serviceData.options;
+        scope.optionsHeader = scope.serviceData.options_header;
+        scope.checkIconShow = scope.serviceData.options.length > 1;
+        optionAttribute = scope.serviceData.options[0].option_payment_attribute;
+        opts.optionAttribute = optionAttribute;
+        opts.optionValue = scope.checkIconShow ? null : scope.serviceData.options[0].option_value;
+        scope.type = 3;
+        scope.update();
+      } else if (scope.serviceData.information_type == 1 || scope.serviceData.information_type == 4) {
+        scope.infoArray = scope.serviceData.information_object;
+        scope.type = 1;
+        scope.update();
+      }
+
+    }
 
 
     function getInformation() {
@@ -152,7 +174,9 @@
           if (result[0][0].error == 0) {
             console.log("result of GET ADDITIONAL INFO 0", result);
             if (result[1]) {
-              localStorage.getItem('get_info_called', true)
+              localStorage.setItem('click_client_infoCacheEnabled', result[1][0].enable_information_cache)
+              if (result[1][0].enable_information_cache)
+                localStorage.setItem("click_client_infoCached", JSON.stringify(result[1][0]))
               scope.serviceData = result[1][0];
               if (result[1][0].information_type == 3) {
                 scope.optionsArray = result[1][0].options;
