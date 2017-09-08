@@ -6,18 +6,22 @@
     </div>
     <div class="settings-about-program-click-icon"></div>
     <p class="settings-about-program-version-title-part-one">
-      {window.languages.ViewSettingsAboutProgramVersionTitleNamePartOne} <br>{window.languages.ViewSettingsAboutProgramVersionTitleNamePartOneClick}</p>
+      {window.languages.ViewSettingsAboutProgramVersionTitleNamePartOne} <br>{window.languages.ViewSettingsAboutProgramVersionTitleNamePartOneClick}
+    </p>
     <p class="settings-about-program-version-title-part-two">
       {window.languages.ViewSettingsAboutProgramVersionTitleNamePartTwo}</p>
   </div>
   <div class="settings-container settings-about-program-container">
-    <div id="agreementButtonId" class="settings-about-program-user-agreement-container" ontouchstart="userAgreementTouchStart()" ontouchend="userAgreementTouchEnd()">
+    <div id="agreementButtonId" class="settings-about-program-user-agreement-container"
+         ontouchstart="userAgreementTouchStart()" ontouchend="userAgreementTouchEnd()">
       <p class="settings-about-program-user-agreement-title">
         {window.languages.ViewSettingsAboutProgramUserAgreementTitleName}</p>
       <div class="settings-about-program-user-agreement-icon"></div>
     </div>
-    <div id="rankButtonId" class="settings-about-program-rank-container" ontouchstart="rankInGooglePlayTouchStart()" ontouchend="rankInGooglePlayTouchEnd()">
-      <p class="settings-about-program-rank-title">{window.languages.ViewSettingsAboutProgramRankTitleName}</p>
+    <div id="rankButtonId" class="settings-about-program-rank-container" ontouchstart="rankAppTouchStart()"
+         ontouchend="rankAppTouchEnd()">
+      <p id="rankText" class="settings-about-program-rank-title">{(device.platform == "iOS")?
+        (window.languages.ViewSettingsAboutProgramIOSRankTitleName):(window.languages.ViewSettingsAboutProgramRankTitleName)}</p>
       <div class="settings-about-program-rank-icon"></div>
     </div>
   </div>
@@ -97,7 +101,7 @@
 
     var rankButtonStartX, rankButtonEndX, rankButtonStartY, rankButtonEndY;
 
-    rankInGooglePlayTouchStart = function () {
+    rankAppTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
@@ -107,7 +111,7 @@
       rankButtonStartY = event.changedTouches[0].pageY;
     }
 
-    rankInGooglePlayTouchEnd = function () {
+    rankAppTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
@@ -118,7 +122,13 @@
 
       if (Math.abs(rankButtonStartX - rankButtonEndX) <= 20 && Math.abs(rankButtonStartY - rankButtonEndY) <= 20) {
 
-        window.open('https://play.google.com/store/apps/details?id=air.com.ssdsoftwaresolutions.clickuz')
+        if (device.platform === "iOS") {
+
+          window.open('https://itunes.apple.com/us/app/click-uzbekistan/id768132591?mt=8');
+        } else {
+
+          window.open('https://play.google.com/store/apps/details?id=air.com.ssdsoftwaresolutions.clickuz');
+        }
       }
     }
 

@@ -57,42 +57,45 @@
 
     try {
       var permissions = cordova.plugins.permissions;
-//    permissions.checkPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
       permissions.checkPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
       permissions.checkPermission(permissions.READ_CONTACTS, checkPermissionCallbackOfContacts, null);
+
+      if (device.platform === 'Android') {
+        permissions.checkPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
+        function checkPermissionCallbackOfSim(status) {
+          if (!status.checkPermission) {
+            var errorCallback = function () {
+              console.log('SIM permission is not turned on');
+            };
+            permissions.requestPermission(
+              permissions.READ_SMS,
+              function (status) {
+                if (!status.checkPermission) errorCallback();
+              },
+              errorCallback);
+          }
+        }
+      }
     }
     catch (e) {
       console.log(e)
     }
+
 //    window.plugins.sim.getSimInfo(successOfSim, errorOfSim);
 //
 //    function successOfSim(success) {
-//      console.log(success)
+//      console.log("SIM INFO SUCCESS", success)
 //    }
 //
 //    function errorOfSim(error) {
-//      console.log(error)
+//      console.log("SIM INFO ERROR", error)
 //    }
-//
-//    function checkPermissionCallbackOfSim(status) {
-//      if (!status.checkPermission) {
-//        var errorCallback = function () {
-//          console.log('SIM permission is not turned on');
-//        }
-//        permissions.requestPermission(
-//          permissions.READ_SMS,
-//          function (status) {
-//            if (!status.checkPermission) errorCallback();
-//          },
-//          errorCallback);
-//      }
-//    }//
-//
+
     function checkPermissionCallbackOfContacts(status) {
       if (!status.checkPermission) {
         var errorCallback = function () {
           console.log('Contacts permission is not turned on');
-        }
+        };
         permissions.requestPermission(
           permissions.READ_CONTACTS,
           function (status) {
@@ -106,7 +109,7 @@
       if (!status.checkPermission) {
         var errorCallback = function () {
           console.log('CALL permission is not turned on');
-        }
+        };
         permissions.requestPermission(
           permissions.CALL_PHONE,
           function (status) {
@@ -124,9 +127,7 @@
     catch (e) {
       console.log("FIREBASE ERROR", e)
     }
-
-
-  }
+  };
 
   var checkFirstStarting = false;
   if (window.cordova) {
@@ -182,7 +183,7 @@
 
       StatusBar.backgroundColorByHexString("#00b0eb");
 
-      if (device.platform == 'Android')
+      if (device.platform === 'Android')
         permissionAccess();
 
       var GENERATOR = document.createElement('script');

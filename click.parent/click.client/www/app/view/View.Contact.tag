@@ -2,7 +2,8 @@
 
   <div class="view-contact-page-title">
     <p class="view-contact-name-title">{titleName}</p>
-    <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="view-contact-back-button"></div>
+    <div id="backButton" ontouchstart="goToBackStart()" role="button" aria-label="{window.languages.Back}"
+         ontouchend="goToBackEnd()" class="view-contact-back-button"></div>
   </div>
 
   <div class="view-contact">

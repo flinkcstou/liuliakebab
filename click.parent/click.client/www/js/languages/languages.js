@@ -274,6 +274,8 @@ var RU_LANGUAGES =
   "ViewSettingsAboutProgramUserAgreementTitleName": "Пользовательское соглашение",
   "ViewSettingsAboutProgramRankTitleName": "Оцените нас в Google Play",
 
+  "ViewSettingsAboutProgramIOSRankTitleName": "Оцените нас в Apple Store",
+
   "ViewSettingsAddFriendTitleName": "ДОБАВИТЬ ДРУГА",
   "ViewSettingsAddFriendPhoneNumberTitle": "Номер телефона",
   "ViewSettingsAddFriendNameTitle": "Имя друга",
