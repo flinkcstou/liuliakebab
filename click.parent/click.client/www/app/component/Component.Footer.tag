@@ -1,6 +1,7 @@
 <component-footer>
   <div id="contactsContainer" class="footer-contacts-container">
-    <div id="contactsId" class="footer" ontouchstart="openFooterTouchStart()" ontouchend="openFooterTouchEnd()">
+    <div id="contactsId" role="button" aria-label="{window.languages.ComponentFooterContactsLabel}" class="footer"
+         ontouchstart="openFooterTouchStart()" ontouchend="openFooterTouchEnd()">
       <div class="footer-contacts-label-icon-container">
         <p class="footer-contacts-label" align="center">{window.languages.ComponentFooterContactsLabel}</p>
         <div id="iconTickId" class="footer-icon-tick"></div>
@@ -13,7 +14,8 @@
         <div class="footer-contacts-blocks footer-contacts-block-one">
           <div id="photoOne" class="footer-favourite-contacts-circles footer-contact-one"
                style="background-image: url({firstContactObject.contactPhoto})" ontouchstart="contactOneTouchStart()"
-               ontouchend="contactOneTouchEnd()">
+               ontouchend="contactOneTouchEnd()" role="button"
+               aria-label="{firstContactObject.contactFname} {firstContactObject.contactLname}">
             {firstContactObject.firstLetter}
           </div>
           <p class="footer-favourite-contacts-label footer-favourite-contacts-label-one">
@@ -80,26 +82,26 @@
 
     scope.showError = false;
 
-//    scope.firstContactObject = {};
-//    scope.firstContactObject.contactFname = 'Egor';
-//    scope.firstContactObject.contactLname = 'Egorovi4';
-//    scope.firstContactObject.id = '12345';
-//    scope.firstContactObject.contactPhoto = "";
-//    scope.firstContactObject.firstLetter = 'E';
-//    scope.firstContactObject.phoneNumbers = [[{value: "998974647747"}]];
-//    scope.firstContactObject.exist = true;
-//    scope.firstContactObject.addContact = false;
+    //    scope.firstContactObject = {};
+    //    scope.firstContactObject.contactFname = 'Egor';
+    //    scope.firstContactObject.contactLname = 'Egorovi4';
+    //    scope.firstContactObject.id = '12345';
+    //    scope.firstContactObject.contactPhoto = "";
+    //    scope.firstContactObject.firstLetter = 'E';
+    //    scope.firstContactObject.phoneNumbers = [[{value: "998974647747"}]];
+    //    scope.firstContactObject.exist = true;
+    //    scope.firstContactObject.addContact = false;
 
 
-        scope.firstContactObject = {};
-        scope.firstContactObject.contactFname = 'Добавить';
-        scope.firstContactObject.contactLname = '';
-        scope.firstContactObject.id = '';
-        scope.firstContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
-        scope.firstContactObject.firstLetter = '';
-        scope.firstContactObject.phoneNumbers = [];
-        scope.firstContactObject.exist = false;
-        scope.firstContactObject.addContact = false;
+    scope.firstContactObject = {};
+    scope.firstContactObject.contactFname = 'Добавить';
+    scope.firstContactObject.contactLname = '';
+    scope.firstContactObject.id = '';
+    scope.firstContactObject.contactPhoto = "resources/icons/ViewContact/contact_plus.png";
+    scope.firstContactObject.firstLetter = '';
+    scope.firstContactObject.phoneNumbers = [];
+    scope.firstContactObject.exist = false;
+    scope.firstContactObject.addContact = false;
 
     scope.secondContactObject = {};
     scope.secondContactObject.contactFname = 'Добавить';
@@ -412,7 +414,7 @@
               console.log('Error: ' + err);
             });
           }
-          catch(e){
+          catch (e) {
             console.log(e)
           }
         }
@@ -458,56 +460,56 @@
         else {
           arrayToSend = JSON.parse(localStorage.getItem('contactList'))
 
-          try{
-          window.pickContactFromNativeChecker = true;
+          try {
+            window.pickContactFromNativeChecker = true;
 
-          navigator.contacts.pickContact(function (contact) {
+            navigator.contacts.pickContact(function (contact) {
 
-            scope.showError = false;
+              scope.showError = false;
 
-            if (!contact.phoneNumbers) {
-              scope.showError = true;
-              scope.errorNote = 'Отсутствует номер контакта'
-              scope.update()
-              return
-            }
+              if (!contact.phoneNumbers) {
+                scope.showError = true;
+                scope.errorNote = 'Отсутствует номер контакта'
+                scope.update()
+                return
+              }
 
-            if (!contact.name) {
-              scope.showError = true;
-              scope.errorNote = 'Отсутствует имя контакта'
-              scope.update()
-              return
-            }
-
-            if (!contact.name.givenName) {
-              if (!contact.name.familyName) {
+              if (!contact.name) {
                 scope.showError = true;
                 scope.errorNote = 'Отсутствует имя контакта'
                 scope.update()
                 return
               }
-            }
 
-            for (var i in arrayToSend) {
-              console.log(arrayToSend[i].id, contact.id)
-              if (arrayToSend[i].id == contact.id) {
-                scope.showError = true;
-                scope.errorNote = 'Этот контакт уже добавлен'
-                scope.update()
-                return
+              if (!contact.name.givenName) {
+                if (!contact.name.familyName) {
+                  scope.showError = true;
+                  scope.errorNote = 'Отсутствует имя контакта'
+                  scope.update()
+                  return
+                }
               }
-            }
+
+              for (var i in arrayToSend) {
+                console.log(arrayToSend[i].id, contact.id)
+                if (arrayToSend[i].id == contact.id) {
+                  scope.showError = true;
+                  scope.errorNote = 'Этот контакт уже добавлен'
+                  scope.update()
+                  return
+                }
+              }
 
 
-            arrayToSend.push(contact)
-            writeContactsFooter(arrayToSend)
-          }, function (err) {
-            console.log('Error: ' + err);
-          });
-        }
-        catch(e){
+              arrayToSend.push(contact)
+              writeContactsFooter(arrayToSend)
+            }, function (err) {
+              console.log('Error: ' + err);
+            });
+          }
+          catch (e) {
             console.log(e)
-        }
+          }
         }
       }
 //      scope.unmount()
@@ -598,7 +600,7 @@
               console.log('Error: ' + err);
             });
           }
-          catch(e){
+          catch (e) {
             console.log(e)
           }
         }
@@ -680,7 +682,7 @@
               console.log('Error: ' + err);
             });
           }
-          catch(e){
+          catch (e) {
             console.log(e)
           }
         }
