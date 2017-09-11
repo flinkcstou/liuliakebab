@@ -11,6 +11,7 @@ var RU_LANGUAGES =
     "Close": "Закрыть",
     "Add": "Добавить",
     "Save": "Сохранить",
+    "ChooseFromContacts": "Выбрать контакт из телефонной книги",
 
     "ComponentBankOperationsPay": "ОПЛАТА",
 
@@ -72,7 +73,6 @@ var RU_LANGUAGES =
     //"ViewServicePageChooseRegion": "ВЫБЕРИТЕ РАЙОН",
     //"ViewServicePageChooseCity": "ВЫБЕРИТЕ ГОРОД",
     "ViewServicePageSaveLabel": "Сохранить",
-    "ViewServicePageVoiceOverContacts": "Выбрать контакт из телефонной книги",
     "ViewServicePageVoiceOverOpenCalculator": "Открыть калькулятор",
     "ViewServicePageAmountTextLabel": "Сумма оплаты:",
     "ViewServicePageAmountTaxText": "Комиссия: ",

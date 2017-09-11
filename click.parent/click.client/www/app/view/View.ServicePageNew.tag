@@ -73,7 +73,7 @@
              onpaste="telVerificationOnPaste()"
              onkeyup="telPayVerificationKeyUp()"
              onkeydown="telPayVerificationKeyDown(this)"/>
-      <div class="servicepage-phone-icon" role="button" aria-label="{window.languages.ViewServicePageVoiceOverContacts}"
+      <div class="servicepage-phone-icon" role="button" aria-label="{window.languages.ChooseFromContacts}"
            if="{phoneFieldBool}" ontouchstart="onTouchStartOfSearchContact()"
            ontouchend="onTouchEndOfSearchContact()"></div>
     </div>
