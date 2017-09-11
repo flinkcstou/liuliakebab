@@ -2,7 +2,8 @@
 
   <div class="settings-support-part-two-container">
     <div class="settings-support-part-two-page-title">
-      <div id="closeButtonId" class="settings-support-part-two-x-button"
+      <div id="closeButtonId" role="button" aria-label="{window.languages.Close}"
+           class="settings-support-part-two-x-button"
            ontouchstart="closeSettingsSupportTwoTouchStart()" ontouchend="closeSettingsSupportTwoTouchEnd()"></div>
     </div>
 
@@ -12,7 +13,8 @@
       <textarea id="commentHelpTextId" maxlength="255" class="settings-support-part-two-input"
                 type="text" placeholder={comment}></textarea>
     </div>
-    <div id="sendButtonId" class="settings-support-part-two-send-button" ontouchstart="sendMessageTouchStart()" ontouchend="sendMessageTouchEnd()">
+    <div id="sendButtonId" class="settings-support-part-two-send-button" ontouchstart="sendMessageTouchStart()"
+         ontouchend="sendMessageTouchEnd()">
       {window.languages.VewSettingsSupportPartTwoSend}
     </div>
   </div>
@@ -46,15 +48,15 @@
     }
 
     this.on('mount', function () {
-        if (device.platform == 'Android') {
-          setTimeout(function () {
-            commentHelpTextId.focus();
-          }, 0)
-        }
-        else {
-          commentHelpTextId.autofocus = true;
+      if (device.platform == 'Android') {
+        setTimeout(function () {
           commentHelpTextId.focus();
-        }
+        }, 0)
+      }
+      else {
+        commentHelpTextId.autofocus = true;
+        commentHelpTextId.focus();
+      }
 
     })
 
