@@ -2,7 +2,7 @@
   <div class="view-qr-blue-container">
     <div class="view-qr-page-title">
       <p class="view-qr-name-title">{titleName}</p>
-      <div id="backButton" ontouchend="goToBack()"
+      <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchend="goToBack()"
            class="pay-back-button"></div>
     </div>
     <div class="view-qr-company-icon" style="background-image: url({opts.image})"></div>
