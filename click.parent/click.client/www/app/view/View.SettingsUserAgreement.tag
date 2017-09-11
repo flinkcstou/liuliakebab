@@ -2,7 +2,8 @@
 
   <div class="pay-page-title">
     <p class="settings-user-agreement-name-title">{titleName}</p>
-    <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="pay-back-button"></div>
+    <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
+         ontouchend="goToBackEnd()" class="pay-back-button"></div>
 
   </div>
 
