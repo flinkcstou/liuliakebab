@@ -6,7 +6,8 @@
       {titleName}</p>
     <p class="servicepage-category-field">{(opts.mode=='ADDAUTOPAY')?
       (autoPayTypeText):(categoryName)}</p>
-    <div id="pinCardBackButtonId" ontouchend="touchStartTitle()" ontouchstart="onTouchStartOfBack()"
+    <div id="pinCardBackButtonId" role="button" aria-label="{window.languages.Back}" ontouchend="touchStartTitle()"
+         ontouchstart="onTouchStartOfBack()"
          class="{servicepage-button-back:opts.mode!='ADDAUTOPAY', autopay-method-back-button:opts.mode=='ADDAUTOPAY'}">
     </div>
     <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"

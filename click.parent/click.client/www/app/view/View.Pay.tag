@@ -2,8 +2,10 @@
   <div id="viewPayId" class="view-pay riot-tags-main-container">
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
-      <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="pay-back-button"></div>
-      <div id="rightButton" type="button" class="pay-search-button" ontouchstart="searchStart()"
+      <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
+           ontouchend="goToBackEnd()" class="pay-back-button"></div>
+      <div id="rightButton" role="button" aria-label="{window.languages.ViewPayVoiceOverSearch}" type="button"
+           class="pay-search-button" ontouchstart="searchStart()"
            ontouchend="searchEnd()"></div>
       <div style=""></div>
     </div>
@@ -25,7 +27,8 @@
             <div class="pay-icon-tick" id="tick{i.id}"></div>
             <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
               <li class="pay-service-containter" each="{j in currentList}">
-                <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}"
+                <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}" role="button"
+                     aria-label="{j.name}"
                      ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
                   <div class="pay-service-name-field">{j.name}</div>
                 </div>
@@ -51,7 +54,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-pay',
+          "view": 'view-pay',
           "params": opts
         }
       );

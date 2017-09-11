@@ -1,14 +1,16 @@
 <component-bank-operations>
   <div class="bank-operations">
     <div class="top-operations-buttons">
-      <div class="bank-operation-button bank-operation-button-pay" ontouchstart="goToPayViewStart()"
+      <div class="bank-operation-button bank-operation-button-pay" role="button"
+           aria-label="{window.languages.ComponentBankOperationsPay}" ontouchstart="goToPayViewStart()"
            ontouchend="goToPayViewEnd()">
         <div id="payButtonId" class="bank-operation-icon operation-pay-icon">
         </div>
       </div>
       <label class="bank-operation-label bank-operation-label-pay">{window.languages.ComponentBankOperationsPay}</label>
 
-      <div class="bank-operation-button bank-operation-button-transfer" ontouchstart="goToTransferViewStart()"
+      <div class="bank-operation-button bank-operation-button-transfer" role="button"
+           aria-label="{window.languages.ComponentBankOperationsTransfer}" ontouchstart="goToTransferViewStart()"
            ontouchend="goToTransferViewEnd()">
         <div id="transferButtonId" class="bank-operation-icon operation-transfer-icon">
         </div>
@@ -23,13 +25,14 @@
       <label hidden
              class="bank-operation-label bank-operation-label-autopay">{window.languages.ComponentBankOperationsAutoPay}</label>
 
-      <div class="bank-operation-button bank-operation-button-qr" ontouchstart="goToQrStart()"
+      <div class="bank-operation-button bank-operation-button-qr" role="button"
+           aria-label="{window.languages.ComponentBankOperationsQr}" ontouchstart="goToQrStart()"
            ontouchend="goToQrEnd()">
         <div id="qrButtonId" class="bank-operation-icon operation-qr-icon">
         </div>
       </div>
       <label
-        class="bank-operation-label bank-operation-label-qr">{window.languages.ComponentBankOperationsQr}</label>
+          class="bank-operation-label bank-operation-label-qr">{window.languages.ComponentBankOperationsQr}</label>
     </div>
 
   </div>
@@ -296,7 +299,7 @@
                     riot.mount('view-qr', {
 //                      "name": result.format,
 //                      "address": result.text,
-                      "id"   : id,
+                      "id": id,
                       "image": "resources/icons/ViewPay/logo_indoor.png"
                     });
 //                      scope.unmount()
@@ -321,10 +324,10 @@
 
                     window.api.call({
                       method: 'get.indoor.service',
-                      input : {
-                        phone_num  : phoneNumber,
+                      input: {
+                        phone_num: phoneNumber,
                         session_key: sessionKey,
-                        service_id : id,
+                        service_id: id,
 
                       },
 
@@ -426,16 +429,16 @@
               scope.update();
             },
             {
-              preferFrontCamera    : false, // iOS and Android
-              showFlipCameraButton : true, // iOS and Android
-              showTorchButton      : true, // iOS and Android
-              torchOn              : false, // Android, launch with the torch switched on (if available)
-              prompt               : "Наведите камеру к QR коду", // Android
+              preferFrontCamera: false, // iOS and Android
+              showFlipCameraButton: true, // iOS and Android
+              showTorchButton: true, // iOS and Android
+              torchOn: false, // Android, launch with the torch switched on (if available)
+              prompt: "Наведите камеру к QR коду", // Android
               resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-              formats              : "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
-              orientation          : "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
-              disableAnimations    : true, // iOS
-              disableSuccessBeep   : false // iOS
+              formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
+              orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
+              disableAnimations: true, // iOS
+              disableSuccessBeep: false // iOS
             }
           );
         }
@@ -446,10 +449,10 @@
 
           window.api.call({
             method: 'get.indoor.service',
-            input : {
-              phone_num  : phoneNumber,
+            input: {
+              phone_num: phoneNumber,
               session_key: sessionKey,
-              service_id : 1234,
+              service_id: 1234,
 
             },
 
