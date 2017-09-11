@@ -4,7 +4,8 @@
 
     <div class="page-title transfer-detail-page-title">
       <p class="name-title">{titleName}</p>
-      <div id="transferDetailBackButtonId" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
+      <div id="transferDetailBackButtonId" role="button" aria-label="{window.languages.Back}"
+           ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
            class="settings-general-back-button"></div>
     </div>
     <div class="transfer-detail-transfer-icon"></div>
