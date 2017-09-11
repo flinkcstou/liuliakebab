@@ -114,6 +114,8 @@ var RU_LANGUAGES =
 
   "ViewPayTitleName": "ОПЛАТА",
 
+  "ViewPayVoiceOverSearch": "Поиск сервисов",
+
   "ComponentCategorySearchTitle": "ВЫБОР КАТЕГОРИИ",
 
   "ComponentContactSearchTitle": "ВЫБОР КОНТАКТА",
