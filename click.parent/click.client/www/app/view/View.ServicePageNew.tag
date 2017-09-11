@@ -38,7 +38,7 @@
     </div>
 
     <div class="servicepage-second-dropdown-field" if="{hasFirstLevel && service.category_id!=11}"
-         ontouchend="openDropDownTwo()">
+         ontouchend="openDropDownTwo()" role="button" aria-label="{chosenFieldNameTwo}">
       <p if="{formType==3 || formType==4}" class="servicepage-text-field servicepage-second-dropdown-field-text">
         {(service.options_title)?(service.options_title):("")}</p>
       <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
@@ -47,7 +47,7 @@
 
     <div class="{servicepage-second-dropdown-field:formType!=3, servicepage-second-dropdown-field-diftop: formType==3}"
          if="{hasSecondLevel&& service.category_id!=11}"
-         ontouchend="openDropDownThree()">
+         ontouchend="openDropDownThree()" role="button" aria-label="{chosenFieldNameThree}">
       <p class="servicepage-dropdown-text-field">{chosenFieldNameThree}</p>
       <div class="servicepage-dropdown-icon"></div>
     </div>
@@ -80,7 +80,7 @@
 
     <div class="servicepage-second-dropdown-field-pakety" role="button" aria-label="{chosenFieldNameTwo}"
          if="{hasFirstLevel&& service.category_id==11}"
-         ontouchend="openDropDownTwo()">
+         ontouchend="openDropDownTwo()" role="button" aria-label="{chosenFieldNameTwo}">
       <p if="{formType==3 || formType==4}" class="servicepage-text-field servicepage-second-dropdown-field-text">
         {(service.options_title)?(service.options_title):("")}</p>
       <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
@@ -89,7 +89,7 @@
 
     <div class="servicepage-second-dropdown-field-pakety" role="button" aria-label="{chosenFieldNameThree}"
          if="{hasSecondLevel&& service.category_id==11}"
-         ontouchend="openDropDownThree()">
+         ontouchend="openDropDownThree()" role="button" aria-label="{chosenFieldNameThree}">
       <p class="servicepage-dropdown-text-field">{chosenFieldNameThree}</p>
       <div class="servicepage-dropdown-icon"></div>
     </div>
