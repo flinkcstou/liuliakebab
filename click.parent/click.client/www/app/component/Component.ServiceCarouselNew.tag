@@ -53,7 +53,6 @@
     var cardNumberOfService = 0;
     window.viewServicePage = {};
     window.viewServicePinCards = {};
-    localStorage.setItem('servicepage_fields', null);
 
     if (modeOfApp.offlineMode) {
       scope.popularServiceList = localStorage.getItem("click_client_popularServiceList") ? (JSON.parse(localStorage.getItem("click_client_popularServiceList"))) : (offlinePopularServiceList);
@@ -230,8 +229,14 @@
 
     fillFavorites();
 
+    console.log("AppVersion", AppVersion.version, "; localStorage.getItem('version')", localStorage.getItem('version'))
 
-    if (!localStorage.getItem('favoritePaymentsList'))
+
+    if (modeOfApp.onlineMode && (!localStorage.getItem('favoritePaymentsList') ||
+      (localStorage.getItem('version') !== AppVersion.version && localStorage.getItem('favoritePaymentsList')))) {
+
+      console.log("WishList call");
+
       window.api.call({
         method: 'get.wishlist',
         input: {
@@ -247,7 +252,7 @@
           if (result[0][0].error == 0) {
 
             console.log("SUCCESSFULLY got favs from api", result[1])
-            if (result[1].length != 0) {
+            if (result[1].length != 0 && !localStorage.getItem('favoritePaymentsList')) {
               scope.favoritePaymentsList = [];
               localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(result[1]));
               for (var j in result[1]) {
@@ -257,6 +262,56 @@
               localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList));
               console.log("favs processed", scope.favoritePaymentsList);
               fillFavorites();
+            } else if (localStorage.getItem('favoritePaymentsList')) {
+
+              var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+              var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
+
+
+              if (favoritePaymentsListForApi.length != favoritePaymentsList.length) {
+                favoritePaymentsListForApi = [];
+                for (var i in favoritePaymentsList)
+                  favoritePaymentsListForApi.push({
+                    "id": favoritePaymentsList[i].id,
+                    "type": 1,
+                    "body": JSON.stringify(favoritePaymentsList[i])
+                  })
+
+                localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
+              }
+
+              window.api.call({
+                method: 'add.favourite',
+                input: {
+                  session_key: sessionKey,
+                  phone_num: phoneNumber,
+                  wishlist_data: favoritePaymentsListForApi
+                },
+
+                scope: this,
+
+                onSuccess: function (result) {
+
+                  if (result[0][0].error == 0) {
+
+                    console.log("SUCCESSFULLY ADDED")
+
+                  }
+                  else {
+                    scope.clickPinError = false;
+                    scope.showError = true;
+                    scope.errorNote = result[0][0].error_note
+                    scope.update();
+                    console.log(result[0][0].error_note);
+                  }
+                },
+
+                onFail: function (api_status, api_status_message, data) {
+                  console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                  console.error(data);
+                }
+              });
+
             }
 
           }
@@ -274,6 +329,7 @@
           console.error(data);
         }
       });
+    }
 
 
     var openFavouriteStartX, openFavouriteStartY, openFavouriteEndX, openFavouriteEndY;
