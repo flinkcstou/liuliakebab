@@ -65,7 +65,8 @@
   <code-confirm id="blockCodeConfirmId" class="code-confirm">
     <div class="code-confirm-title-container">
       <p class="code-confirm-title-name">{window.languages.ComponentCodeConfirmTitle}</p>
-      <div class="code-confirm-cancel-icon" ontouchend="closeSecretCodePage()"></div>
+      <div class="code-confirm-cancel-icon" role="button" aria-label="{window.languages.Close}"
+           ontouchend="closeSecretCodePage()"></div>
     </div>
     <div class="code-confirm-code-container">
       <input readonly value="{secretCode}" class="code-confirm-code-text"/>
