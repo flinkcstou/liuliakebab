@@ -245,6 +245,8 @@ var RU_LANGUAGES =
   "ViewMainSettingsTitleTwo": "ПЕРСОНАЛЬНЫЕ ДАННЫЕ",
   "ViewSecuritySettingsTitle": "Безопасность",
   "ViewFriendHelpSettingsTitle": "Помощь друга",
+  "ViewFriendHelpSettingsVoiceOverAddFriend": "Добавить друга",
+  "ViewFriendHelpSettingsVoiceOverDeleteFriend": "Удалить друга",
   "ViewSecuritySettingsFriendHelpTitle": "ПОМОЩЬ ДРУГА",
   "ViewInviteFriendSettingsTitle": "Пригласить друга",
   "ViewAboutSettingsTitle": "О программе",
