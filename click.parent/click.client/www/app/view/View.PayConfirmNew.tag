@@ -6,7 +6,8 @@
       {titleName}</p>
     <p class="servicepage-category-field">{(opts.mode=='ADDAUTOPAY')?
       (autoPayTypeText):(categoryName)}</p>
-    <div id="payconfirmButtonId" ontouchend="goToBack()" ontouchstart="onTouchStartOfBack()"
+    <div id="payconfirmButtonId" role="button" aria-label="{window.languages.Back}" ontouchend="goToBack()"
+         ontouchstart="onTouchStartOfBack()"
          class="{servicepage-button-back:opts.mode!='ADDAUTOPAY', autopay-method-back-button:opts.mode=='ADDAUTOPAY'}">
     </div>
     <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
@@ -62,7 +63,7 @@
     <div class="payconfirm-bottom-container">
       <div class="payconfirm-action-autopay-container" if="{opts.mode!='ADDAUTOPAY'}">
         <div
-          class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
+            class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
           <div class="payconfirm-action-icon-one" if="{!isInFavorites}"
                style="background-image: url('resources/icons/ViewService/addfavorite.png');"
                ontouchstart="onTouchStartOfFavorite()"
