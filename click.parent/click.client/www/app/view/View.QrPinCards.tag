@@ -4,7 +4,7 @@
     <p class="qr-servicepage-title">{titleName}</p>
     <p class="qr-servicepage-category-field">{categoryName}</p>
     <div ontouchend="touchStartTitle()"
-         class="qr-servicepage-button-back">
+         class="qr-servicepage-button-back" role="button" aria-label="{window.languages.Back}">
     </div>
     <div type="button" class="qr-servicepage-service-icon"
          style="background-image: url({serviceIcon})"></div>
