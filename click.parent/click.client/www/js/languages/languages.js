@@ -110,6 +110,7 @@ var RU_LANGUAGES =
   "ViewAmountCalculatorAcceptText": "Принять",
 
   "ViewMyCardListTitleName": "МОИ КАРТЫ",
+  "ViewMyCardListVoiceOverAddCard": "Добавить карту",
 
   "ViewPayTitleName": "ОПЛАТА",
 
