@@ -2,7 +2,8 @@
   <div class="settings-about-program-blue-container">
     <div class="settings-about-program-page-title">
       <p class="settings-about-program-name-title">{titleName}</p>
-      <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="pay-back-button"></div>
+      <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
+           ontouchend="goToBackEnd()" class="pay-back-button"></div>
     </div>
     <div class="settings-about-program-click-icon"></div>
     <p class="settings-about-program-version-title-part-one">
