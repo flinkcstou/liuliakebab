@@ -266,8 +266,8 @@ window.api.call = function (params) {
       parameters: input
     });
 
-    // if (device.platform != 'BrowserStand')
-    //   SpinnerPlugin.activityStop();
+    if (device.platform != 'BrowserStand')
+      SpinnerPlugin.activityStop();
     window.api.init();
   }
   else {
