@@ -110,6 +110,7 @@
       scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
       console.log('scope.parent', scope)
 
+      scope.lastOperationsHidden = true;
 
 //      scope.update(scope.tags['component-card-carousel']);
       riot.update()
@@ -125,11 +126,37 @@
     }
 
     lastOperationsTouchEnd = function () {
+
       console.log('scope', scope)
 
       lastOperationButtonEndX = event.changedTouches[0].pageX;
       lastOperationButtonEndY = event.changedTouches[0].pageY;
       lastOperationTimeEnd = event.timeStamp.toFixed(0);
+
+      if (Math.abs(lastOperationButtonStartX - lastOperationButtonEndX) <= 20) {
+
+        if (scope.lastOperationsHidden) {
+
+          lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 85 * widthK + "px,0)"
+//          lastOperationMainContainerId.top = "0"
+          lastOperationContainerId.style.height = 1070 * widthK + "px";
+          document.getElementById('containerCard').style.webkitTransform = "scale(0.2)"
+          document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(180deg)"
+          lastOperationCheck = true;
+        } else {
+
+          lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 835 * widthK + "px,0)"
+//          lastOperationMainContainerId.top = "0"
+          lastOperationContainerId.style.height = 325 * widthK + "px";
+          document.getElementById('containerCard').style.webkitTransform = "scale(1)"
+          document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(0)"
+          lastOperationCheck = false;
+        }
+
+        scope.lastOperationsHidden = !scope.lastOperationsHidden;
+
+        return;
+      }
 
       if (Math.abs(lastOperationButtonStartX - lastOperationButtonEndX) <= 100 && lastOperationButtonStartY > lastOperationButtonEndY && !lastOperationCheck) {
 
