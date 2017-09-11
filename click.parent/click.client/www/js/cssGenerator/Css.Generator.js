@@ -13864,6 +13864,7 @@ var css = {
   "{" +
   "width: 96%;" +
   "margin-left: 0;" +
+  "top: 25%;" +
   "}",
 
   //VIEW SERVICE INFO

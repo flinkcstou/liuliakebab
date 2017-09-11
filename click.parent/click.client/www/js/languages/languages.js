@@ -10,6 +10,7 @@ var RU_LANGUAGES =
     "Back": "Назад",
     "Close": "Закрыть",
     "Add": "Добавить",
+    "Save": "Сохранить",
 
     "ComponentBankOperationsPay": "ОПЛАТА",
 
@@ -280,6 +281,7 @@ var RU_LANGUAGES =
   "ViewSettingsAddFriendPhoneNumberTitle": "Номер телефона",
   "ViewSettingsAddFriendNameTitle": "Имя друга",
 
+  "ViewSettingsGeneralVoiceOverEditName": "Изменить Имя",
   "ViewSettingsGeneralDownloadPhotoTitle": "Загрузить фото",
   "ViewSettingsGeneralDeletePhotoTitle": "Удалить фото",
   "ViewSettingsGeneralGenderMaleTitle": "Муж",

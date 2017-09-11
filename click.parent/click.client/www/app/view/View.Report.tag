@@ -1020,6 +1020,7 @@
               scope.paymentsList[i].favoriteId = scope.favoriteId;
               scope.showComponent = true;
               scope.tags['view-report-service-new'].opts = scope.paymentsList[i];
+              console.log("VIEW REPORT SERVICE NEW OPTS", scope.paymentsList[i]);
               console.log("PAYMENT", JSON.stringify(scope.tags['view-report-service-new'].opts.service_name));
 
               console.log("scope.tags['view-report-service-new']", scope.tags['view-report-service-new']);

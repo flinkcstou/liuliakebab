@@ -4,8 +4,10 @@
 
       <div class="page-title settings-general-page-title">
         <p class="name-title">{titleName}</p>
-        <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="settings-general-back-button"></div>
-        <div id="rightButton" type="button" class="settings-general-check-button"
+        <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
+             class="settings-general-back-button" role="button" aria-label="{window.languages.Back}"></div>
+        <div id="rightButton" type="button" role="button" aria-label="{window.languages.Save}"
+             class="settings-general-check-button"
              ontouchend="saveEditedNameTouchEnd()"></div>
       </div>
 
@@ -13,15 +15,18 @@
            class="settings-general-user-icon"/>
       <div class="settings-general-user-name-container">
         <input id="settingsUserNameId" readonly="true" class="settings-general-user-first-name"/>
-        <div id="editUserInfoIconId" class="settings-general-user-name-save" ontouchend="editUserInfoTouchEnd()"></div>
+        <div id="editUserInfoIconId" role="button" aria-label="{window.languages.ViewSettingsGeneralVoiceOverEditName}"
+             class="settings-general-user-name-save" ontouchend="editUserInfoTouchEnd()"></div>
       </div>
       <div class="settings-general-download-delete-container">
         <div id="uploadUserAvatarId" class="settings-general-user-upload-avatar"></div>
-        <div id="imageSelectButtinId" class="settings-general-download-container" ontouchstart="imageSelectedChangeStart()" ontouchend="imageSelectedChangeEnd()">
+        <div id="imageSelectButtinId" class="settings-general-download-container"
+             ontouchstart="imageSelectedChangeStart()" ontouchend="imageSelectedChangeEnd()">
           <div class="settings-general-download-icon"></div>
           <p class="settings-general-download-title">{window.languages.ViewSettingsGeneralDownloadPhotoTitle}</p>
         </div>
-        <div id="delButtonId" class="settings-general-delete-container" ontouchstart="photoDeleteTouchStart()" ontouchend="photoDeleteTouchEnd()">
+        <div id="delButtonId" class="settings-general-delete-container" ontouchstart="photoDeleteTouchStart()"
+             ontouchend="photoDeleteTouchEnd()">
           <div class="settings-general-delete-icon"></div>
           <p class="settings-general-delete-title">{window.languages.ViewSettingsGeneralDeletePhotoTitle}</p>
         </div>
@@ -121,51 +126,51 @@
 
       if (Math.abs(delButtonStartX - delButtonEndX) <= 20 && Math.abs(delButtonStartY - delButtonEndY) <= 20) {
 
-      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-      var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-      var sessionKey = loginInfo.session_key;
+        var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+        var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+        var sessionKey = loginInfo.session_key;
 
-      var result;
+        var result;
 
-      scope.confirmShowBool = true;
-      scope.confirmType = 'local';
-      scope.confirmNote = 'Подтвердите удаление фото';
-      scope.update();
-      scope.result = function (bool) {
-        if (bool) {
-          result = true;
-        }
-        else result = false;
-      };
-
-      if (result)
-        window.api.call({
-          method: 'settings.photo.remove',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-          },
-          scope: this,
-          onSuccess: function (result) {
-            console.log(result)
-            if (result[0][0].error == 0) {
-
-            }
-            else {
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
-              scope.update();
-            }
-          },
-
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
+        scope.confirmShowBool = true;
+        scope.confirmType = 'local';
+        scope.confirmNote = 'Подтвердите удаление фото';
+        scope.update();
+        scope.result = function (bool) {
+          if (bool) {
+            result = true;
           }
-        });
+          else result = false;
+        };
 
-    }
+        if (result)
+          window.api.call({
+            method: 'settings.photo.remove',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber,
+            },
+            scope: this,
+            onSuccess: function (result) {
+              console.log(result)
+              if (result[0][0].error == 0) {
+
+              }
+              else {
+                scope.clickPinError = false;
+                scope.errorNote = result[0][0].error_note;
+                scope.showError = true;
+                scope.update();
+              }
+            },
+
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
+
+      }
     }
 
     saveEditedNameTouchEnd = function () {
@@ -218,7 +223,7 @@
 
     var imageButtonStartX, imageButtonEndX, imageButtonStartY, imageButtonEndY;
 
-    imageSelectedChangeStart = function (){
+    imageSelectedChangeStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
