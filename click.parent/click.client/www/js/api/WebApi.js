@@ -160,6 +160,9 @@ window.api.initSocket = function () {
 };
 
 window.api.call = function (params) {
+
+  //var answered = false;
+
   if (!window.isConnected && modeOfApp.onlineMode)
     window.api.init();
 
@@ -179,6 +182,8 @@ window.api.call = function (params) {
   console.log("IT IS INPUT ", input);
   this.callBacks[method] = {
     ok: function (data) {
+
+      //answered = true;
 
 
       // if (method != "get.payment" && method != "app.payment") {
@@ -208,7 +213,10 @@ window.api.call = function (params) {
       onSuccess.call(scope, data);
     },
     err: function (api_status, api_status_message, data) {
-
+      //answered = true;
+      if (device.platform != 'BrowserStand') {
+        SpinnerPlugin.activityStop();
+      }
 
       console.log("CONNECTION ERROR WEB SOCKET ON FAIL CALL");
 
@@ -258,13 +266,26 @@ window.api.call = function (params) {
       parameters: input
     });
 
-    if (device.platform != 'BrowserStand')
-      SpinnerPlugin.activityStop();
+    // if (device.platform != 'BrowserStand')
+    //   SpinnerPlugin.activityStop();
     window.api.init();
   }
   else {
     window.api.init();
   }
+
+  // if (!answered) {
+  //   console.log("Time is out")
+  //   setTimeout(function () {
+  //     if (!answered) {
+  //       if (device.platform != 'BrowserStand') {
+  //         SpinnerPlugin.activityStop();
+  //       }
+  //       showAlertComponent("Сервис временно недоступен");
+  //
+  //     }
+  //   }, 10000);
+  // }
 };
 
 function onlineDetector() {

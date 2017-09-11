@@ -196,6 +196,7 @@
             }
           }
           else {
+            checkAnswer = true;
             console.log("result of GET ADDITIONAL INFO 2", result);
             scope.errorMessage = result[0][0].error_note;
             scope.stepAmount = 1;
@@ -205,6 +206,7 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
+          componentUnsuccessId.style.display = 'block';
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }

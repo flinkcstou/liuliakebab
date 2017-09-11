@@ -133,6 +133,8 @@
           });
         }
 
+        var checkAnswer = false;
+
         window.api.call({
           method: 'invoice.action',
           stopSpinner: false,
@@ -146,6 +148,7 @@
           },
           scope: this,
           onSuccess: function (result) {
+            checkAnswer = true;
 
             if (device.platform != 'BrowserStand') {
               SpinnerPlugin.activityStop();
@@ -178,6 +181,7 @@
           },
 
           onFail: function (api_status, api_status_message, data) {
+            checkAnswer = true;
 
             componentUnsuccessId.style.display = 'block';
 
@@ -185,6 +189,25 @@
             console.error(data);
           }
         });
+
+        if (!checkAnswer && window.isConnected) {
+          console.log("wwww")
+          setTimeout(function () {
+            if (!checkAnswer) {
+              scope.showError = true;
+              scope.errorNote = "Сервис временно недоступен";
+              scope.stepAmount = 1;
+              scope.clickPinError = false;
+              scope.update();
+              if (device.platform != 'BrowserStand') {
+                SpinnerPlugin.activityStop();
+              }
+              window.isConnected = false;
+              return
+            }
+          }, 10000);
+        }
+
       }
     };
 
