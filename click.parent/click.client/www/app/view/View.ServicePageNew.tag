@@ -5,7 +5,8 @@
       {titleName}</p>
     <p class="servicepage-category-field">{(opts.mode=='ADDAUTOPAY')?
       (window.languages.ViewAutoPayMethodSchedulerText):(categoryName)}</p>
-    <div id="servicePageBackButtonId" ontouchend="goToBack()" ontouchstart="onTouchStartOfBack()"
+    <div id="servicePageBackButtonId" role="button" aria-label="{window.languages.Back}" ontouchend="goToBack()"
+         ontouchstart="onTouchStartOfBack()"
          class="{servicepage-button-back:opts.mode!='ADDAUTOPAY', autopay-method-back-button:opts.mode=='ADDAUTOPAY'}">
     </div>
     <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
@@ -72,11 +73,13 @@
              onpaste="telVerificationOnPaste()"
              onkeyup="telPayVerificationKeyUp()"
              onkeydown="telPayVerificationKeyDown(this)"/>
-      <div class="servicepage-phone-icon" if="{phoneFieldBool}" ontouchstart="onTouchStartOfSearchContact()"
+      <div class="servicepage-phone-icon" role="button" aria-label="{window.languages.ViewServicePageVoiceOverContacts}"
+           if="{phoneFieldBool}" ontouchstart="onTouchStartOfSearchContact()"
            ontouchend="onTouchEndOfSearchContact()"></div>
     </div>
 
-    <div class="servicepage-second-dropdown-field-pakety" if="{hasFirstLevel&& service.category_id==11}"
+    <div class="servicepage-second-dropdown-field-pakety" role="button" aria-label="{chosenFieldNameTwo}"
+         if="{hasFirstLevel&& service.category_id==11}"
          ontouchend="openDropDownTwo()">
       <p if="{formType==3 || formType==4}" class="servicepage-text-field servicepage-second-dropdown-field-text">
         {(service.options_title)?(service.options_title):("")}</p>
@@ -84,7 +87,7 @@
       <div class="servicepage-dropdown-icon"></div>
     </div>
 
-    <div class="servicepage-second-dropdown-field-pakety"
+    <div class="servicepage-second-dropdown-field-pakety" role="button" aria-label="{chosenFieldNameThree}"
          if="{hasSecondLevel&& service.category_id==11}"
          ontouchend="openDropDownThree()">
       <p class="servicepage-dropdown-text-field">{chosenFieldNameThree}</p>
@@ -104,7 +107,8 @@
              placeholder="{placeHolderText}"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
       <div if="{!modeOfApp.offlineMode && service['amount_editable'] && calcOn}" class="servicepage-amount-icon"
-           ontouchstart="onTouchStartOfAmountCalculator()"
+           ontouchstart="onTouchStartOfAmountCalculator()" role="button"
+           aria-label="{window.languages.ViewServicePageVoiceOverOpenCalculator}"
            ontouchend="onTouchEndOfAmountCalculator()"></div>
 
       <p if="{showErrorOfLimit}" id="placeHolderSumId" class="servicepage-limit-title">{placeHolderText}</p>
@@ -122,7 +126,8 @@
 
 
   <div id="blockFirstFieldId" class="component-first-field">
-    <div type="button" class="servicepage-fields-dropdown-close-button"
+    <div type="button" class="servicepage-fields-dropdown-close-button" role="button"
+         aria-label="{window.languages.Close}"
          ontouchend="closeFirstFieldDropdownTouchEnd()" ontouchstart="closeFirstFieldDropdownTouchStart()"></div>
     <div class="servicepage-fields-dropdown-two">
       <p class="servicepage-dropdown-text-field" style="color: white;">{chosenFieldName}</p>
@@ -136,7 +141,8 @@
   </div>
 
   <div id="blockPrefixId" class="component-first-field">
-    <div type="button" class="servicepage-fields-dropdown-close-button"
+    <div type="button" class="servicepage-fields-dropdown-close-button" role="button"
+         aria-label="{window.languages.Close}"
          ontouchend="closePrefixDropdownTouchEnd()" ontouchstart="closePrefixDropdownTouchStart()"></div>
     <div class="servicepage-fields-dropdown-two">
       <p class="servicepage-dropdown-text-field" style="color: white;">{chosenPrefixTitle}</p>
@@ -150,7 +156,8 @@
   </div>
 
   <div id="blockFirstDropdownId" class="component-first-field">
-    <div type="button" class="servicepage-fields-dropdown-close-button"
+    <div type="button" class="servicepage-fields-dropdown-close-button" role="button"
+         aria-label="{window.languages.Close}"
          ontouchend="closeFirstDropdownTouchEnd()" ontouchstart="closeFirstDropdownTouchStart()"></div>
     <div class="servicepage-fields-dropdown-two">
       <p class="servicepage-dropdown-text-field" style="color: white;">
@@ -170,7 +177,8 @@
   </div>
 
   <div id="blockSecondDropdownId" class="component-first-field">
-    <div type="button" class="servicepage-fields-dropdown-close-button"
+    <div type="button" class="servicepage-fields-dropdown-close-button" role="button"
+         aria-label="{window.languages.Close}"
          ontouchend="closeSecondDropdownTouchEnd()" ontouchstart="closeSecondDropdownTouchStart()"></div>
     <div class="servicepage-fields-dropdown-two">
       <p class="servicepage-dropdown-text-field" style="color: white;">
@@ -207,7 +215,7 @@
     </div>
 
     <div
-      class="{servicepage-pincards-container: opts.mode == 'USUAL',
+        class="{servicepage-pincards-container: opts.mode == 'USUAL',
       servicepage-pincards-container-two: opts.mode != 'USUAL'}">
       <div class="servicepage-pincards-block-container" each="{i in pincardIds}">
         <div class="servicepage-pincard-title">{pincardsMap[i][0].name}</div>
@@ -227,7 +235,8 @@
   </div>
 
   <div hidden="{!showComponent}" id="blockAmountCalculatorId" class="component-calc">
-    <div id="rightButton" type="button" class="component-banklist-close-button" ontouchstart="onTouchStartOfCloseIcon()"
+    <div id="rightButton" type="button" role="button" aria-label="{window.languages.Close}"
+         class="component-banklist-close-button" ontouchstart="onTouchStartOfCloseIcon()"
          ontouchend="closeComponent()"></div>
     <div class="component-calc-name-title">{window.languages.ViewAmountCalculatorNameTitle}</div>
 
