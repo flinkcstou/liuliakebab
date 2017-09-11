@@ -1,7 +1,8 @@
 <view-transfer-stepthree class="riot-tags-main-container">
   <div class="transfer-page-title">
     <p class="transfer-name-title">{titleName}</p>
-    <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
+    <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
+         ontouchend="goToBackEnd()"
          class="{transfer-back-button: backbuttoncheck}"></div>
     <div id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"></div>
   </div>
