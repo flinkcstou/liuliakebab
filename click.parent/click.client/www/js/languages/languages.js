@@ -333,6 +333,7 @@ var RU_LANGUAGES =
   "ViewPaymentDetailCardNotChosen": "Выберите карты",
 
   "ViewTrustedDevicesTitle": "доверенные устройства",
+  "ViewTrustedDevicesVoiceOverRemove": "Удалить доверенное устройство",
 
   "ViewReportMonthsArray": [{"name": "Январь", "count": 1}, {"name": "Февраль", "count": 2}, {
     "name": "Март",
