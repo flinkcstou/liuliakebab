@@ -6,6 +6,9 @@
     <p class="view-transfer-on-card-title-text-part-three">{languages.ViewTransferOnCardTitleTextPartTwo}</p>
   </div>
 
+  <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
+       class="view-transfer-on-card-back-button"></div>
+
   <div class="view-transfer-on-card-content-container">
 
     <component-pincards clean="{true}" transferoncard="true"></component-pincards>
@@ -42,6 +45,36 @@
     scope.fail = false;
 
     console.log('opts.amount', scope.opts)
+
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    goToBackStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (backButton)
+        backButton.style.webkitTransform = 'scale(0.7)'
+
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+
+    };
+
+    goToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (backButton)
+        backButton.style.webkitTransform = 'scale(1)'
+
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown()
+        scope.unmount()
+      }
+    };
 
     transferOnCardOnTouchStartAccept = function () {
 
@@ -102,6 +135,7 @@
 
         window.api.call({
           method: 'invoice.action',
+          stopSpinner: false,
           input: {
             session_key: sessionKey,
             phone_num: phoneNumber,
@@ -113,9 +147,14 @@
           scope: this,
           onSuccess: function (result) {
 
+            if (device.platform != 'BrowserStand') {
+              SpinnerPlugin.activityStop();
+            }
+
             console.log("result of invoice transfer accept", result);
 
             if (result[0][0].error == 0) {
+
               componentSuccessId.style.display = 'block';
               window.updateBalanceGlobalFunction();
 

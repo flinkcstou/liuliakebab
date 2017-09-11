@@ -170,6 +170,8 @@ window.api.call = function (params) {
   var method = params.method;
   console.log('METHOD', method);
   var input = params.input;
+  console.log("stopeSpinner", params.stopSpinner)
+  var stopSpinner = params.stopSpinner === undefined ? true : params.stopSpinner;
 
   var onSuccess = params.onSuccess;
   var onFail = params.onFail;
@@ -179,10 +181,23 @@ window.api.call = function (params) {
     ok: function (data) {
 
 
-      if (method != "get.payment" && method != "app.payment") {
+      // if (method != "get.payment" && method != "app.payment") {
+      //   console.log("Stopping spinner from webApi")
+      //   window.api.spinnerOn = false;
+      //   console.log('ANSWER OF API ', data);
+      //
+      //
+      //   if (device.platform != 'BrowserStand') {
+      //     SpinnerPlugin.activityStop();
+      //   }
+      // }
+
+      console.log("Stop SPinner param=", stopSpinner)
+      console.log('ANSWER OF API ', data);
+
+      if (stopSpinner) {
         console.log("Stopping spinner from webApi")
         window.api.spinnerOn = false;
-        console.log('ANSWER OF API ', data);
 
 
         if (device.platform != 'BrowserStand') {

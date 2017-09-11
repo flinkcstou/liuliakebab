@@ -248,6 +248,7 @@
 
         window.api.call({
           method: 'invoice.action',
+          stopSpinner: false,
           input: {
             session_key: sessionKey,
             phone_num: phoneNumber,
@@ -263,15 +264,15 @@
             if (result[0][0].error == 0) {
 
 
-              if (device.platform != 'BrowserStand') {
-                var options = {dimBackground: true};
-
-                SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                  console.log("Started");
-                }, function () {
-                  console.log("closed");
-                });
-              }
+//              if (device.platform != 'BrowserStand') {
+//                var options = {dimBackground: true};
+//
+//                SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+//                  console.log("Started");
+//                }, function () {
+//                  console.log("closed");
+//                });
+//              }
 
               setTimeout(function () {
                 checkPaymentStatus(result[1][0].payment_id);
@@ -309,6 +310,7 @@
 
       window.api.call({
         method: 'get.payment',
+        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
@@ -325,6 +327,10 @@
             console.log("result of get.payment success=", result);
             if (result[1][0].state == -1) {
 
+              if (device.platform != 'BrowserStand') {
+                SpinnerPlugin.activityStop();
+              }
+
               componentUnsuccessId.style.display = 'block';
               history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
               console.log(history.arrayOfHistory)
@@ -336,6 +342,10 @@
 
 
             } else if (result[1][0].state == 2) {
+
+              if (device.platform != 'BrowserStand') {
+                SpinnerPlugin.activityStop();
+              }
               window.updateBalanceGlobalFunction();
 
               componentSuccessId.style.display = 'block';
@@ -353,15 +363,15 @@
 
               if (statusCheckCounter < 5) {
 
-                if (device.platform != 'BrowserStand') {
-                  var options = {dimBackground: true};
-
-                  SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                    console.log("Started");
-                  }, function () {
-                    console.log("closed");
-                  });
-                }
+//                if (device.platform != 'BrowserStand') {
+//                  var options = {dimBackground: true};
+//
+//                  SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+//                    console.log("Started");
+//                  }, function () {
+//                    console.log("closed");
+//                  });
+//                }
 
                 setTimeout(function () {
                   checkPaymentStatus(result[1][0].payment_id);

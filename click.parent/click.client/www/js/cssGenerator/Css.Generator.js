@@ -11229,6 +11229,21 @@ var css = {
   "z-index:999999;" +
   "}",
 
+  viewTransferOnCardBackButton: ".view-transfer-on-card-back-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 113 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-image: url(resources/icons/back/back.png);" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 19%;" +
+  "background-position-y: 90%;" +
+  "background-position-x: center;" +
+  "background-size: 21%;" +
+  "right: 87%;" +
+  "}",
+
+
   viewTransferOnCardTitleContainer: ".view-transfer-on-card-title-container" +
   "{" +
   "position: absolute;" +

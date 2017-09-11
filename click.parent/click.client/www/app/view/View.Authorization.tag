@@ -665,6 +665,7 @@
 
       window.api.call({
         method: 'app.login',
+        stopSpinner: false,
         input: {
           phone_num: phoneNumber,
           device_id: deviceId,

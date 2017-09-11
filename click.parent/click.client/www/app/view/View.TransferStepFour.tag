@@ -402,6 +402,7 @@
 
       window.api.call({
         method: 'p2p.payment',
+        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
@@ -425,6 +426,11 @@
             if (result[1])
               if (result[1][0]) {
                 if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
+
+                  if (device.platform != 'BrowserStand') {
+                    SpinnerPlugin.activityStop();
+                  }
+
                   blockCodeConfirmId.style.display = 'block';
                   this.secretCode = result[1][0].secret_code;
                   viewTransfer.phoneNumber = 0
@@ -434,21 +440,20 @@
                   viewTransferStepTwo.sumWithoutSpace = 0;
                   window.updateBalanceGlobalFunction();
 
-
                   scope.update();
 
                 }
                 if (result[1][0].secret_code == 0) {
 
-                  if (device.platform != 'BrowserStand') {
-                    var options = {dimBackground: true};
-
-                    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                      console.log("Started");
-                    }, function () {
-                      console.log("closed");
-                    });
-                  }
+//                  if (device.platform != 'BrowserStand') {
+//                    var options = {dimBackground: true};
+//
+//                    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+//                      console.log("Started");
+//                    }, function () {
+//                      console.log("closed");
+//                    });
+//                  }
 
                   setTimeout(function () {
                     checkTransferStatus(result[1][0].payment_id);
@@ -492,6 +497,7 @@
 
       window.api.call({
         method: 'get.payment',
+        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,

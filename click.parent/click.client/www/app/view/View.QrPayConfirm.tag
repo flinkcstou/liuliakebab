@@ -242,6 +242,7 @@
 
         window.api.call({
           method: 'app.payment',
+          stopSpinner: false,
           input: inputObject,
 
           scope: this,
@@ -255,6 +256,10 @@
             if (result[0][0].error == 0) {
               if (result[1])
                 if (!result[1][0].payment_id && result[1][0].invoice_id) {
+
+                  if (device.platform != 'BrowserStand') {
+                    SpinnerPlugin.activityStop();
+                  }
                   console.log("result of APP.PAYMENT 1", result);
                   viewServicePage.phoneText = null;
                   viewServicePage.amountText = null;
@@ -266,15 +271,15 @@
                   componentSuccessId.style.display = 'block';
                 } else if (result[1][0].payment_id && !result[1][0].invoice_id) {
 
-                  if (device.platform != 'BrowserStand') {
-                    var options = {dimBackground: true};
-
-                    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                      console.log("Started");
-                    }, function () {
-                      console.log("closed");
-                    });
-                  }
+//                  if (device.platform != 'BrowserStand') {
+//                    var options = {dimBackground: true};
+//
+//                    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+//                      console.log("Started");
+//                    }, function () {
+//                      console.log("closed");
+//                    });
+//                  }
 
                   setTimeout(function () {
                     checkQrPaymentStatus(result[1][0].payment_id);
@@ -317,6 +322,7 @@
 
       window.api.call({
         method: 'get.payment',
+        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,

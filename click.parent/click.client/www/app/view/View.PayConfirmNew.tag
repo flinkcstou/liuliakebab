@@ -63,7 +63,7 @@
     <div class="payconfirm-bottom-container">
       <div class="payconfirm-action-autopay-container" if="{opts.mode!='ADDAUTOPAY'}">
         <div
-            class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
+          class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
           <div class="payconfirm-action-icon-one" if="{!isInFavorites}"
                style="background-image: url('resources/icons/ViewService/addfavorite.png');"
                ontouchstart="onTouchStartOfFavorite()"
@@ -634,6 +634,7 @@
 
       window.api.call({
         method: 'app.payment',
+        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
@@ -654,15 +655,15 @@
 
               if (result[1][0].payment_id && !result[1][0].invoice_id) {
 
-                if (device.platform != 'BrowserStand') {
-                  var options = {dimBackground: true};
-
-                  SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                    console.log("Started");
-                  }, function () {
-                    console.log("closed");
-                  });
-                }
+//                if (device.platform != 'BrowserStand') {
+//                  var options = {dimBackground: true};
+//
+//                  SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+//                    console.log("Started");
+//                  }, function () {
+//                    console.log("closed");
+//                  });
+//                }
 
                 setTimeout(function () {
                   checkPaymentStatus(result[1][0].payment_id);
@@ -711,6 +712,7 @@
 
       window.api.call({
         method: 'get.payment',
+        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
