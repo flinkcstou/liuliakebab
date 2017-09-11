@@ -4,11 +4,13 @@
     <div class="page-title invoice-history-detail-title">
       <p class="name-title">
         {(opts.is_p2p)?(languages.ViewInvoiceHistoryDetailTransferTitle):(languages.ViewInvoiceHistoryDetailPaymentTitle)}</p>
-      <div id="backButton" ontouchstart="invoiceHistoryGoToBackStart()" ontouchend="invoiceHistoryGoToBackEnd()" class="invoice-history-detail-general-back-button"></div>
+      <div id="backButton" role="button" aria-label="{window.languages.Back}"
+           ontouchstart="invoiceHistoryGoToBackStart()" ontouchend="invoiceHistoryGoToBackEnd()"
+           class="invoice-history-detail-general-back-button"></div>
     </div>
 
     <div
-      class="invoice-history-detail-icon {invoice-history-detail-payment-icon: !opts.is_p2p, invoice-history-detail-transfer-icon: opts.is_p2p}">
+        class="invoice-history-detail-icon {invoice-history-detail-payment-icon: !opts.is_p2p, invoice-history-detail-transfer-icon: opts.is_p2p}">
     </div>
     <p class="invoice-history-detail-title-part-one">
       {(opts.is_p2p)?(languages.ViewInvoiceHistoryDetailTransferToNumberLabel):(languages.ViewInvoiceHistoryDetailPaymentToNumberLabel)}</p>
