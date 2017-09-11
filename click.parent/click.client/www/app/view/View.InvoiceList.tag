@@ -2,7 +2,8 @@
 
   <div class="invoice-list-page-title">
     <p class="invoice-list-name-title">{titleName}</p>
-    <div id="invoiceListBackButtonId" ontouchstart="invoiceGoToBackStart()" ontouchend="invoiceGoToBackEnd()"
+    <div id="invoiceListBackButtonId" role="button" aria-label="{window.languages.Back}"
+         ontouchstart="invoiceGoToBackStart()" ontouchend="invoiceGoToBackEnd()"
          class="invoice-list-back-button">
 
     </div>
@@ -31,7 +32,7 @@
            ontouchend="goToInvoiceHistoryDetailTouchEnd(this.title, this.id)"
            ontouchstart="goToInvoiceHistoryDetailTouchStart(this.id)">
         <div
-          class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
+            class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
           <mark class="invoice-list-invoice-sum-sym">сум</mark>
           <p class="invoice-list-invoice-sum">{invoice.amount}</p>
         </div>
@@ -172,13 +173,13 @@
       }
 
       window.api.call({
-        method   : 'invoice.list',
-        input    : {
+        method: 'invoice.list',
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber,
+          phone_num: phoneNumber,
           page_number: parseInt(invoiceListPageNumber),
         },
-        scope    : this,
+        scope: this,
         onSuccess: function (result) {
           checkAnswerToUser = true;
 
@@ -276,13 +277,13 @@
       }
 
       window.api.call({
-        method   : 'invoice.history',
-        input    : {
+        method: 'invoice.history',
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber,
+          phone_num: phoneNumber,
           page_number: parseInt(invoiceListPageNumber)
         },
-        scope    : this,
+        scope: this,
         onSuccess: function (result) {
           checkAnswerFromUser = true;
           if (result[0][0].error == 0) {
@@ -413,7 +414,7 @@
 
             history.arrayOfHistory.push(
               {
-                "view"  : 'view-invoice-list',
+                "view": 'view-invoice-list',
                 "params": opts
               }
             );
@@ -429,7 +430,7 @@
 
           history.arrayOfHistory.push(
             {
-              "view"  : 'view-invoice-list',
+              "view": 'view-invoice-list',
               "params": opts
             }
           );
@@ -442,15 +443,15 @@
         if (!scope.toUser) {
 
           params = {
-            is_p2p      : invoice.is_p2p,
-            invoice_id  : invoice.invoice_id,
-            inParameter : invoice.cntrg_info_param2, //????
-            amount      : invoice.amount,
-            commission  : invoice.p2p_comission_amount,
+            is_p2p: invoice.is_p2p,
+            invoice_id: invoice.invoice_id,
+            inParameter: invoice.cntrg_info_param2, //????
+            amount: invoice.amount,
+            commission: invoice.p2p_comission_amount,
             transferCode: invoice.p2p_secret_code,
-            time        : invoice.time,
-            date        : invoice.date,
-            status      : invoice.status_note
+            time: invoice.time,
+            date: invoice.date,
+            status: invoice.status_note
           };
 
           scope.showComponent = true;
@@ -475,10 +476,10 @@
             params = {
 
               phoneNumber: invoice.parameter,
-              amount     : invoice.amount,
-              invoiceId  : invoice.invoice_id,
-              time       : invoice.time,
-              date       : invoice.date
+              amount: invoice.amount,
+              invoiceId: invoice.invoice_id,
+              time: invoice.time,
+              date: invoice.date
             };
 
             console.log('PARAMS IN INVOICE LIST', params)
@@ -502,11 +503,11 @@
 
             params = {
 
-              amount        : invoice.amount,
-              invoiceId     : invoice.invoice_id,
-              phoneNumber   : invoice.merchant_phone,
-              accountNumber : invoice.parameter,
-              serviceName   : invoice.service_name,
+              amount: invoice.amount,
+              invoiceId: invoice.invoice_id,
+              phoneNumber: invoice.merchant_phone,
+              accountNumber: invoice.parameter,
+              serviceName: invoice.service_name,
               is_friend_help: invoice.is_friend_help
             };
 
