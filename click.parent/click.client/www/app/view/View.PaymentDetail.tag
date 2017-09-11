@@ -3,7 +3,8 @@
   <div class="transfer-to-card-title-container">
     <div class="page-title account-detail-page-title">
       <p class="name-title">{window.languages.ViewPaymentDetailTitle + opts.invoiceId}</p>
-      <div id="paymentDetailBackButtonId" ontouchstart="paymentDetailGoToBackStart()"
+      <div id="paymentDetailBackButtonId" role="button" aria-label="{window.languages.Back}"
+           ontouchstart="paymentDetailGoToBackStart()"
            ontouchend="paymentDetailGoToBackEnd()" class="settings-general-back-button"></div>
     </div>
 
