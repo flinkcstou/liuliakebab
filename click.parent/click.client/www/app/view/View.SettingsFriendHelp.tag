@@ -2,8 +2,11 @@
   <div class="riot-tags-main-container">
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
-      <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="pay-back-button"></div>
-      <div id="rightButton" ontouchstart="goToAddFriendViewStart()" ontouchend="goToAddFriendViewEnd()"
+      <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
+           ontouchend="goToBackEnd()" class="pay-back-button"></div>
+      <div id="rightButton" role="button" aria-label="{window.languages.ViewFriendHelpSettingsVoiceOverAddFriend}"
+           ontouchstart="goToAddFriendViewStart()"
+           ontouchend="goToAddFriendViewEnd()"
            class="settings-friend-help-add-button"></div>
     </div>
     <div id="mainContainerId" class="settings-container">
@@ -19,7 +22,8 @@
         </div>
         <div id="{'del' + i.number}" class="settings-friend-help-contact-cancel-icon"
              ontouchstart="deleteFriendTouchStart(this.id)"
-             ontouchend="deleteFriendTouchEnd({'id'+i.number}, {i.number}, this.id)"></div>
+             ontouchend="deleteFriendTouchEnd({'id'+i.number}, {i.number}, this.id)" role="button"
+             aria-label="{window.languages.ViewFriendHelpSettingsVoiceOverDeleteFriend}"></div>
       </div>
 
     </div>
@@ -40,7 +44,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-friend-help-settings') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-friend-help-settings',
+          "view": 'view-friend-help-settings',
           "params": opts
         }
       );
@@ -98,9 +102,9 @@
 
       window.api.call({
         method: 'check.contact.list',
-        input : {
-          phone_num  : phoneNumber,
-          phone_list : scope.arrayOfPhoneNumbers,
+        input: {
+          phone_num: phoneNumber,
+          phone_list: scope.arrayOfPhoneNumbers,
           session_key: sessionKey,
 
         },

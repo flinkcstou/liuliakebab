@@ -2,7 +2,8 @@
 
   <div class="add-card-page-title">
     <p class="add-card-name-title">{titleName}</p>
-    <div id="backButton" ontouchend="goToBack()" class="add-card-back-button"></div>
+    <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchend="goToBack()"
+         class="add-card-back-button"></div>
   </div>
 
   <div class="view-add-card">
@@ -14,7 +15,8 @@
       <div class="add-card-uzcard-icon"></div>
       <p class="add-card-card-text add-card-card-number-text">{window.languages.ViewAddCardNumberTitle}</p>
       <div id="cardNumberInput" class="add-card-card-number">
-        <input type="tel" onpaste="boxOnePaste()" oninput="boxOneInput()" onkeyup="boxOneKeyUp()" onkeydown="boxOneKeyDown()" autofocus="true"
+        <input type="tel" onpaste="boxOnePaste()" oninput="boxOneInput()" onkeyup="boxOneKeyUp()"
+               onkeydown="boxOneKeyDown()" autofocus="true"
                id="boxOne"
                class="add-card-card-number-box add-card-card-number-box-one">
         </input>
@@ -157,10 +159,10 @@
 
         window.api.call({
           method: 'card.add',
-          input : {
-            phone_num  : phoneNumber,
+          input: {
+            phone_num: phoneNumber,
             card_number: cardNumber,
-            card_data  : dateOrPin,
+            card_data: dateOrPin,
             session_key: sessionKey,
 
           },
@@ -194,7 +196,7 @@
         });
 
         setTimeout(function () {
-          if(!answerFromServer){
+          if (!answerFromServer) {
             if (device.platform != 'BrowserStand') {
               SpinnerPlugin.activityStop();
             }

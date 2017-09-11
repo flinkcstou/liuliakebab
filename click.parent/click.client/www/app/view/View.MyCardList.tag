@@ -2,10 +2,13 @@
   <div class="view-mycard-list riot-tags-main-container">
     <div class="page-title">
       <p class="name-title">{titleName}</p>
-      <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
+      <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
+           ontouchend="goToBackEnd()"
            class="back-button">
       </div>
-      <div id="myCardListButtonAddId" class="mycardlist-add-button" ontouchstart="addCardTouchStart()" ontouchend="addCardTouchEnd()"></div>
+      <div id="myCardListButtonAddId" role="button" aria-label="{window.languages.ViewMyCardListVoiceOverAddCard}"
+           class="mycardlist-add-button" ontouchstart="addCardTouchStart()"
+           ontouchend="addCardTouchEnd()"></div>
     </div>
 
     <div class="mycardlist-container">
@@ -222,7 +225,6 @@
     };
 
     addCard = function (withoutBalance) {
-
 
 
       if (modeOfApp.offlineMode) return;

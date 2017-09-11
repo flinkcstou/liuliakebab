@@ -2,7 +2,8 @@
   <div class="riot-tags-main-container">
     <div class="settings-page-title">
       <p class="settings-name-title">{titleName}</p>
-      <div id="backButton" ontouchstart="settingsGoToBackStart()" ontouchend="settingsGoToBackEnd()"
+      <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="settingsGoToBackStart()"
+           ontouchend="settingsGoToBackEnd()"
            class="settings-back-button"></div>
     </div>
     <div class="settings-container">

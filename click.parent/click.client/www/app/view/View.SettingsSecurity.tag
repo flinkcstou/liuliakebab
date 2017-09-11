@@ -3,7 +3,7 @@
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
       <div id="backButton" ontouchstart="securityGoToBackStart()" ontouchend="securityGoToBackEnd()"
-           class="pay-back-button"></div>
+           class="pay-back-button" role="button" aria-label="{window.languages.Back}"></div>
     </div>
     <div class="settings-container">
 

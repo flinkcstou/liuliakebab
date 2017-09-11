@@ -2,7 +2,8 @@
   <div class="settings-support-blue-container">
 
     <div class="settings-support-page-title">
-      <div id="closeButtonId" class="settings-support-x-button" ontouchstart="closeSettingsSupportTouchStart()" ontouchend="closeSettingsSupportTouchEnd()"></div>
+      <div id="closeButtonId" role="button" aria-label="{window.languages.Close}" class="settings-support-x-button"
+           ontouchstart="closeSettingsSupportTouchStart()" ontouchend="closeSettingsSupportTouchEnd()"></div>
     </div>
 
     <div class="settings-support-help-icon"></div>

@@ -2,12 +2,14 @@
   <div class="riot-tags-main-container">
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
-      <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="pay-back-button"></div>
+      <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
+           ontouchend="goToBackEnd()" class="pay-back-button"></div>
     </div>
     <div class="settings-container">
 
       <div id="contactPhoneFieldId" class="settings-add-friend-contact-phone-field">
-        <div class="settings-add-friend-contact-phone-icon" ontouchend="pickContactFromNative()"></div>
+        <div class="settings-add-friend-contact-phone-icon" role="button"
+             aria-label="{window.languages.ChooseFromContacts}" ontouchend="pickContactFromNative()"></div>
         <p class="settings-add-friend-contact-text-field">{window.languages.ViewSettingsAddFriendPhoneNumberTitle}</p>
         <p class="settings-add-friend-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
         <input onchange="contactPhoneBlurAndChange()" onfocus="contactPhoneBlurAndChange()"
@@ -52,7 +54,8 @@
       </div>
 
       <button id="nextButtonId" class="settings-add-friend-next-button-inner-container"
-              ontouchstart="addFriendTouchStart()" ontouchend="addFriendTouchEnd()">{window.languages.ViewPayTransferNext}
+              ontouchstart="addFriendTouchStart()" ontouchend="addFriendTouchEnd()">
+        {window.languages.ViewPayTransferNext}
       </button>
     </div>
 
@@ -179,7 +182,7 @@
 //        contactPhoneNumberId.value = event.target.value.substring(0, event.target.value.length - 1);
         contactStopChanging = true;
       }
-      else{
+      else {
         contactStopChanging = false;
       }
     }
@@ -230,20 +233,20 @@
       var fields = [''];
       options.filter = "";
       options.multiple = true;
-      options.desiredFields=[navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.phoneNumbers];
+      options.desiredFields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.phoneNumbers];
 //
       navigator.contacts.find(fields, success, error, options);
 
       function success(contacts) {
         for (var i = 0; i < contacts.length; i++) {
           if (contacts[i].name)
-          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null) {
-            for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
-              var phone = inputVerification.telVerification(contacts[i].phoneNumbers[j].value);
-              contacts[i].phoneNumbers[j].value = phone;
+            if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null) {
+              for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
+                var phone = inputVerification.telVerification(contacts[i].phoneNumbers[j].value);
+                contacts[i].phoneNumbers[j].value = phone;
+              }
+              arrayOfContacts.push(contacts[i])
             }
-            arrayOfContacts.push(contacts[i])
-          }
         }
       }
 
@@ -258,7 +261,7 @@
       try {
         findContacts();
       }
-      catch(e){
+      catch (e) {
         console.log(e)
       }
     }
@@ -273,7 +276,7 @@
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
     searchContacts = function () {
 
-      if(contactStopChanging){
+      if (contactStopChanging) {
         contactPhoneNumberId.value = event.target.value.substring(0, event.target.value.length - 1);
       }
 
@@ -433,7 +436,8 @@
     }
 
 
-    var firstSuggestionChooseTouchStartX, firstSuggestionChooseTouchStartY, firstSuggestionChooseTouchEndX, firstSuggestionChooseTouchEndY;
+    var firstSuggestionChooseTouchStartX, firstSuggestionChooseTouchStartY, firstSuggestionChooseTouchEndX,
+      firstSuggestionChooseTouchEndY;
     firstSuggestionBlockTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -481,7 +485,8 @@
     }
 
 
-    var secondSuggestionChooseTouchStartX, secondSuggestionChooseTouchStartY, secondSuggestionChooseTouchEndX, secondSuggestionChooseTouchEndY;
+    var secondSuggestionChooseTouchStartX, secondSuggestionChooseTouchStartY, secondSuggestionChooseTouchEndX,
+      secondSuggestionChooseTouchEndY;
 
     secondSuggestionBlockTouchStart = function () {
       event.preventDefault();
@@ -584,53 +589,53 @@
 
       if (Math.abs(addButtonStartX - addButtonEndX) <= 20 && Math.abs(addButtonStartY - addButtonEndY) <= 20) {
 
-      if (localStorage.getItem('click_client_friends') === null) {
-        arrayOfFriends = []
-      }
-      else {
-        arrayOfFriends = JSON.parse(localStorage.getItem('click_client_friends'));
-      }
-      var object = {};
-      object.name = contactNameId.value.toString();
-      object.number = window.languages.CodeOfCountry + contactPhoneNumberId.value;
-      object.firstLetterOfName = '';
+        if (localStorage.getItem('click_client_friends') === null) {
+          arrayOfFriends = []
+        }
+        else {
+          arrayOfFriends = JSON.parse(localStorage.getItem('click_client_friends'));
+        }
+        var object = {};
+        object.name = contactNameId.value.toString();
+        object.number = window.languages.CodeOfCountry + contactPhoneNumberId.value;
+        object.firstLetterOfName = '';
 
-      var index = -1;
-      arrayOfContacts.filter(function (wordOfFunction) {
-        var objectPos = '';
-        if (wordOfFunction.phoneNumbers) {
-          for (var i in wordOfFunction.phoneNumbers) {
-            index = wordOfFunction.phoneNumbers[i].value.indexOf(contactPhoneNumberId.value);
-            if (index != -1) {
-              objectPos = i;
-              break;
+        var index = -1;
+        arrayOfContacts.filter(function (wordOfFunction) {
+          var objectPos = '';
+          if (wordOfFunction.phoneNumbers) {
+            for (var i in wordOfFunction.phoneNumbers) {
+              index = wordOfFunction.phoneNumbers[i].value.indexOf(contactPhoneNumberId.value);
+              if (index != -1) {
+                objectPos = i;
+                break;
+              }
             }
           }
-        }
-        else
-          index = -1;
+          else
+            index = -1;
 
-        if (index != -1) {
+          if (index != -1) {
 //            scope.suggestionOne.phoneNumber = wordOfFunction.phoneNumbers[objectPos].value;
 //            scope.suggestionOne.fName = wordOfFunction.name.givenName;
 //            scope.suggestionOne.lName = wordOfFunction.name.familyName
 
-          if (wordOfFunction.photos != null) {
-            if (wordOfFunction.photos[0] != null) {
-              object.photo = wordOfFunction.photos[0].value;
+            if (wordOfFunction.photos != null) {
+              if (wordOfFunction.photos[0] != null) {
+                object.photo = wordOfFunction.photos[0].value;
+              }
             }
           }
+        });
+
+        if (!object.photo) {
+          object.firstLetterOfName = object.name[0].toUpperCase();
         }
-      });
+        arrayOfFriends.unshift(object)
 
-      if (!object.photo) {
-        object.firstLetterOfName = object.name[0].toUpperCase();
+        localStorage.setItem('click_client_friends', JSON.stringify(arrayOfFriends))
+        onBackKeyDown()
       }
-      arrayOfFriends.unshift(object)
-
-      localStorage.setItem('click_client_friends', JSON.stringify(arrayOfFriends))
-      onBackKeyDown()
-    }
     }
 
 

@@ -2,19 +2,21 @@
 
   <div class="trusted-devices-page-title">
     <p class="trusted-devices-title">{languages.ViewTrustedDevicesTitle}</p>
-    <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()" class="trusted-devices-back-button"></div>
+    <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
+         ontouchend="goToBackEnd()" class="trusted-devices-back-button"></div>
   </div>
 
   <div class="trusted-devices-content-container">
     <div each="{device in devices}" class="trusted-devices-device-info-container">
       <div
-        class="trusted-devices-device-info-icon-container {trusted-devices-android-device-icon: device.device_type == 1,
+          class="trusted-devices-device-info-icon-container {trusted-devices-android-device-icon: device.device_type == 1,
                                                               trusted-devices-ios-device-icon: device.device_type == 2,
                                                               trusted-devices-web-device-icon: device.device_type == 3}"></div>
       <div class="trusted-devices-info-container">
         <p class="trusted-devices-device-info-name">{device.device_name}</p>
         <p class="trusted-devices-device-info-date">{device.date}</p>
-        <div id="{device.device_id}" class="trusted-devices-device-delete-icon"
+        <div id="{device.device_id}" class="trusted-devices-device-delete-icon" role="button"
+             aria-label="{window.languages.ViewTrustedDevicesVoiceOverRemove}"
              ontouchend="deleteDeviceOnTouchEnd(this.id)" ontouchstart="deleteDeviceOnTouchStart(this.id)"></div>
       </div>
     </div>

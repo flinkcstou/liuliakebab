@@ -11,6 +11,7 @@ var RU_LANGUAGES =
     "Close": "Закрыть",
     "Add": "Добавить",
     "Save": "Сохранить",
+    "ChooseFromContacts": "Выбрать контакт из телефонной книги",
 
     "ComponentBankOperationsPay": "ОПЛАТА",
 
@@ -72,6 +73,7 @@ var RU_LANGUAGES =
     //"ViewServicePageChooseRegion": "ВЫБЕРИТЕ РАЙОН",
     //"ViewServicePageChooseCity": "ВЫБЕРИТЕ ГОРОД",
     "ViewServicePageSaveLabel": "Сохранить",
+    "ViewServicePageVoiceOverOpenCalculator": "Открыть калькулятор",
     "ViewServicePageAmountTextLabel": "Сумма оплаты:",
     "ViewServicePageAmountTaxText": "Комиссия: ",
 
@@ -108,6 +110,7 @@ var RU_LANGUAGES =
   "ViewAmountCalculatorAcceptText": "Принять",
 
   "ViewMyCardListTitleName": "МОИ КАРТЫ",
+  "ViewMyCardListVoiceOverAddCard": "Добавить карту",
 
   "ViewPayTitleName": "ОПЛАТА",
 
@@ -243,6 +246,8 @@ var RU_LANGUAGES =
   "ViewMainSettingsTitleTwo": "ПЕРСОНАЛЬНЫЕ ДАННЫЕ",
   "ViewSecuritySettingsTitle": "Безопасность",
   "ViewFriendHelpSettingsTitle": "Помощь друга",
+  "ViewFriendHelpSettingsVoiceOverAddFriend": "Добавить друга",
+  "ViewFriendHelpSettingsVoiceOverDeleteFriend": "Удалить друга",
   "ViewSecuritySettingsFriendHelpTitle": "ПОМОЩЬ ДРУГА",
   "ViewInviteFriendSettingsTitle": "Пригласить друга",
   "ViewAboutSettingsTitle": "О программе",
@@ -329,6 +334,7 @@ var RU_LANGUAGES =
   "ViewPaymentDetailCardNotChosen": "Выберите карты",
 
   "ViewTrustedDevicesTitle": "доверенные устройства",
+  "ViewTrustedDevicesVoiceOverRemove": "Удалить доверенное устройство",
 
   "ViewReportMonthsArray": [{"name": "Январь", "count": 1}, {"name": "Февраль", "count": 2}, {
     "name": "Март",
