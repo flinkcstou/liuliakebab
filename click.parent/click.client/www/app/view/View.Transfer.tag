@@ -2,10 +2,12 @@
   <div class="transfer-page-title">
     <p class="transfer-name-title">{titleName}</p>
     <div id="backButton" ontouchend="goToBackFromTransferTouchEnd()" ontouchstart="goToBackFromTransferTouchStart()"
-         class="{transfer-back-button: backbuttoncheck}">
+         class="{transfer-back-button: backbuttoncheck}" role="button" aria-label="{window.languages.Back}">
 
     </div>
-    <div if="{modeOfApp.onlineMode}" id="rightButton" type="button" class="{transfer-i-button: rightbuttoncheck}"
+    <div if="{modeOfApp.onlineMode}" id="rightButton" role="button"
+         aria-label="{window.languages.ViewBankListTitleName}" type="button"
+         class="{transfer-i-button: rightbuttoncheck}"
          ontouchend="openBanksListPageTouchEnd()" ontouchstart="openBanksListPageTouchStart()"></div>
   </div>
 
@@ -33,7 +35,8 @@
                class="transfer-contact-number-input-part" type="tel"
                onkeyup="searchContacts()"
                onkeydown="telTransferVerificationKeyDown(this)"/>
-        <div class="transfer-contact-phone-icon" ontouchstart="pickContactFromNativeTouchStart()"
+        <div class="transfer-contact-phone-icon" role="button" aria-label="{window.languages.ChooseFromContacts}"
+             ontouchstart="pickContactFromNativeTouchStart()"
              ontouchend="pickContactFromNativeTouchEnd()"></div>
       </div>
       <div id="firstSuggestionBlockId" class="transfer-contact-found-container-one"
