@@ -4,7 +4,6 @@
     <p class="settings-user-agreement-name-title">{titleName}</p>
     <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
          ontouchend="goToBackEnd()" class="pay-back-button"></div>
-
   </div>
 
   <div class="settings-container">
