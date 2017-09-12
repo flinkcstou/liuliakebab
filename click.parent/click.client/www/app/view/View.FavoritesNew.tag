@@ -68,7 +68,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-favorites-new') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-favorites-new',
+          "view"  : 'view-favorites-new',
           "params": opts
         }
       );
@@ -152,16 +152,21 @@
         if (scope.favoritePaymentsList[i].service.form_type == 4 && scope.favoritePaymentsList[i].service.disable_cache && modeOfApp.onlineMode && !modeOfApp.demoVersion) {
 
           window.api.call({
-            method: 'get.service.parameters',
-            input: {
+            method     : 'get.service.parameters',
+            stopSpinner: false,
+            input      : {
               session_key: sessionKey,
-              phone_num: phoneNumber,
-              service_id: scope.favoritePaymentsList[i].service.id
+              phone_num  : phoneNumber,
+              service_id : scope.favoritePaymentsList[i].service.id
             },
 
             scope: this,
 
             onSuccess: function (result) {
+              if (device.platform != 'BrowserStand') {
+                console.log("Spinner Stop View Favorites new 167");
+                SpinnerPlugin.activityStop();
+              }
               if (result[0][0].error == 0) {
                 console.log(' disable_cache, updating amountText')
 
@@ -388,9 +393,9 @@
 
             window.api.call({
               method: 'delete.favourite',
-              input: {
-                session_key: sessionKey,
-                phone_num: phoneNumber,
+              input : {
+                session_key  : sessionKey,
+                phone_num    : phoneNumber,
                 wishlist_data: [{"id": id, "type": 1}]
               },
 

@@ -59,7 +59,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-card') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-add-card',
+          "view"  : 'view-add-card',
           "params": opts
         }
       );
@@ -158,11 +158,12 @@
         var answerFromServer = false;
 
         window.api.call({
-          method: 'card.add',
-          input: {
-            phone_num: phoneNumber,
+          method     : 'card.add',
+          stopSpinner: false,
+          input      : {
+            phone_num  : phoneNumber,
             card_number: cardNumber,
-            card_data: dateOrPin,
+            card_data  : dateOrPin,
             session_key: sessionKey,
 
           },
@@ -170,6 +171,10 @@
           scope: this,
 
           onSuccess: function (result) {
+            if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Add Card 175");
+              SpinnerPlugin.activityStop();
+            }
             answerFromServer = true;
             if (result[0][0].error == 0) {
               console.log("CARD ADD", result);
