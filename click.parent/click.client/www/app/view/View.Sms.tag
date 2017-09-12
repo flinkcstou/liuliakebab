@@ -419,6 +419,7 @@
             scope.errorNote = "Сервис временно недоступен";
             countOfCall = 0;
             if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View SMS 422");
               SpinnerPlugin.activityStop();
             }
             window.isConnected = false;

@@ -691,6 +691,7 @@
             scope.stepAmount = 0;
             scope.update();
             if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Report 694");
               SpinnerPlugin.activityStop();
             }
             window.isConnected = false;
@@ -819,6 +820,7 @@
             scope.stepAmount = 0;
             scope.update();
             if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Report 823");
               SpinnerPlugin.activityStop();
             }
             window.isConnected = false;

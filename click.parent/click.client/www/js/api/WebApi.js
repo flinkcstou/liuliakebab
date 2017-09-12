@@ -44,8 +44,10 @@ window.api.initSocket = function () {
     console.log("window.isConnected onopen after", window.isConnected);
 
 
-    if (device.platform != 'BrowserStand')
-      SpinnerPlugin.activityStop();
+    // if (device.platform != 'BrowserStand') {
+    //   console.log("Spinner Stop WebApi 48");
+    //   SpinnerPlugin.activityStop();
+    // }
   };
   this.socket.onclose = function (event) {
 
@@ -53,6 +55,7 @@ window.api.initSocket = function () {
     console.log(event);
 
     if (device.platform != 'BrowserStand') {
+      console.log("Spinner Stop WebApi 58");
       SpinnerPlugin.activityStop();
     }
 
@@ -78,8 +81,10 @@ window.api.initSocket = function () {
 
   this.socket.onmessage = function (event) {
 
-    if (device.platform != 'BrowserStand')
-      SpinnerPlugin.activityStop();
+    // if (device.platform != 'BrowserStand') {
+    //   console.log("Spinner Stop WebApi 85");
+    //   SpinnerPlugin.activityStop();
+    // }
 
     if (modeOfApp.offlineMode) return
 
@@ -119,6 +124,10 @@ window.api.initSocket = function () {
               //showConfirmComponent(error, 'session');
               if (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true) return
               console.log("SESSION_BROKEN = TRUE");
+              if (device.platform != 'BrowserStand') {
+                console.log("Spinner Stop WebApi 128");
+                SpinnerPlugin.activityStop();
+              }
               localStorage.setItem('session_broken', true);
               riotTags.innerHTML = "<view-authorization>";
               riot.mount('view-authorization');
@@ -173,8 +182,9 @@ window.api.call = function (params) {
   var method = params.method;
   console.log('METHOD', method);
   var input = params.input;
-  console.log("stopeSpinner", params.stopSpinner)
+  console.log("params.stopSpinner", params.stopSpinner);
   var stopSpinner = params.stopSpinner === undefined ? true : params.stopSpinner;
+  console.log("stopSpinner", stopSpinner);
 
   var onSuccess = params.onSuccess;
   var onFail = params.onFail;
@@ -206,6 +216,7 @@ window.api.call = function (params) {
 
 
         if (device.platform != 'BrowserStand') {
+          console.log("Spinner Stop WebApi 210");
           SpinnerPlugin.activityStop();
         }
       }
@@ -215,6 +226,7 @@ window.api.call = function (params) {
     err: function (api_status, api_status_message, data) {
       //answered = true;
       if (device.platform != 'BrowserStand') {
+        console.log("Spinner Stop WebApi 224");
         SpinnerPlugin.activityStop();
       }
 
@@ -266,8 +278,10 @@ window.api.call = function (params) {
       parameters: input
     });
 
-    if (device.platform != 'BrowserStand')
+    if (device.platform != 'BrowserStand') {
+      console.log("Spinner Stop WebApi 277");
       SpinnerPlugin.activityStop();
+    }
     window.api.init();
   }
   else {

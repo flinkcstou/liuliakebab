@@ -414,7 +414,6 @@
           type: scope.objectTypeForTransfer.type,
           transaction_id: objectForTransfer.transactionId
 //                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
-
         },
 
         scope: this,
@@ -430,14 +429,15 @@
                 if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
 
                   if (device.platform != 'BrowserStand') {
+                    console.log("Spinner Stop Transfer Step Four 432");
                     SpinnerPlugin.activityStop();
                   }
 
                   blockCodeConfirmId.style.display = 'block';
                   this.secretCode = result[1][0].secret_code;
-                  viewTransfer.phoneNumber = 0
-                  viewTransfer.cardNumber = 0
-                  viewTransfer.cardNumber = 0
+                  viewTransfer.phoneNumber = 0;
+                  viewTransfer.cardNumber = 0;
+                  viewTransfer.cardNumber = 0;
                   viewTransferStepTwo.sum = 0;
                   viewTransferStepTwo.sumWithoutSpace = 0;
                   window.updateBalanceGlobalFunction();
@@ -466,6 +466,11 @@
 
           }
           else {
+
+            if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Transfer Step Four 471");
+              SpinnerPlugin.activityStop();
+            }
             scope.errorMessageFromTransfer = result[0][0].error_note
             componentUnsuccessId.style.display = 'block';
             scope.update();
@@ -481,6 +486,7 @@
       setTimeout(function () {
         if (!answerFromServer) {
           if (device.platform != 'BrowserStand') {
+            console.log("Spinner Stop Transfer Step Four 484");
             SpinnerPlugin.activityStop();
           }
           return
@@ -509,6 +515,9 @@
         scope: this,
 
         onSuccess: function (result) {
+
+          console.log("GET PAYMENT RESULT", result);
+
           if (result[0][0].error == 0 && result[1][0]) {
 
 
@@ -517,6 +526,7 @@
               window.languages.tempText = JSON.stringify(result[1][0].error);
               scope.errorMessageFromTransfer = result[1][0].error;
               if (device.platform != 'BrowserStand') {
+                console.log("Spinner Stop Transfer Step Four 524");
                 SpinnerPlugin.activityStop();
               }
               componentUnsuccessId.style.display = 'block';
@@ -526,6 +536,7 @@
             } else if (result[1][0].state == 2) {
 
               if (device.platform != 'BrowserStand') {
+                console.log("Spinner Stop Transfer Step Four 534");
                 SpinnerPlugin.activityStop();
               }
 
@@ -536,6 +547,7 @@
 
             } else if (result[1][0].state == 1) {
 
+              console.log("COUNTER COUNTER+1", counter, counter + 1);
               counter++;
 
               if (counter < 5) {
@@ -547,6 +559,7 @@
               } else {
 
                 if (device.platform != 'BrowserStand') {
+                  console.log("Spinner Stop Transfer Step Four 557");
                   SpinnerPlugin.activityStop();
                 }
 
@@ -559,6 +572,7 @@
           }
           else {
             if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop Transfer Step Four 570");
               SpinnerPlugin.activityStop();
             }
             componentUnsuccessId.style.display = 'block';

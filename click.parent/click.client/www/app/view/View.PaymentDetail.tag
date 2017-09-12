@@ -328,6 +328,7 @@
             if (result[1][0].state == -1) {
 
               if (device.platform != 'BrowserStand') {
+                console.log("Spinner Stop View Payment Detail 331");
                 SpinnerPlugin.activityStop();
               }
 
@@ -344,6 +345,7 @@
             } else if (result[1][0].state == 2) {
 
               if (device.platform != 'BrowserStand') {
+                console.log("Spinner Stop View Payment Detail 348");
                 SpinnerPlugin.activityStop();
               }
               window.updateBalanceGlobalFunction();
@@ -379,6 +381,7 @@
 
               } else {
                 if (device.platform != 'BrowserStand') {
+                  console.log("Spinner Stop View Payment Detail 384");
                   SpinnerPlugin.activityStop();
                 }
 
@@ -398,6 +401,7 @@
           else {
             console.log("result of GET.PAYMENT in else", result);
             if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Payment Detail 404");
               SpinnerPlugin.activityStop();
             }
             componentUnsuccessId.style.display = 'block';

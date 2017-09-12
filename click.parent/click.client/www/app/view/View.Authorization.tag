@@ -734,6 +734,7 @@
             scope.errorCode = 1;
             countOfCall = 0;
             if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop Authorization 737");
               SpinnerPlugin.activityStop();
             }
 //            window.isConnected = false;
@@ -1203,6 +1204,7 @@
       }
 
       if (device.platform != 'BrowserStand') {
+        console.log("Spinner Stop View Authorization 1207");
         SpinnerPlugin.activityStop();
       }
     }

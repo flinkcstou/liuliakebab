@@ -151,6 +151,7 @@
             checkAnswer = true;
 
             if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Transfer On Card 154");
               SpinnerPlugin.activityStop();
             }
 
@@ -200,6 +201,7 @@
               scope.clickPinError = false;
               scope.update();
               if (device.platform != 'BrowserStand') {
+                console.log("Spinner Stop View Transfer On Card 204");
                 SpinnerPlugin.activityStop();
               }
               window.isConnected = false;

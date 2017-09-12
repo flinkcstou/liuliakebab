@@ -673,6 +673,7 @@
               else if (result[1][0].invoice_id && !result[1][0].payment_id) {
 
                 if (device.platform != 'BrowserStand') {
+                  console.log("Spinner Stop View Pay Confirm New 676");
                   SpinnerPlugin.activityStop();
                 }
 
@@ -701,6 +702,7 @@
       setTimeout(function () {
         if (!answerFromServer) {
           if (device.platform != 'BrowserStand') {
+            console.log("Spinner Stop View Pay Confirm New 705");
             SpinnerPlugin.activityStop();
           }
           return
@@ -732,6 +734,7 @@
               window.languages.tempText = JSON.stringify(result[1][0].error);
               scope.errorMessageFromPayment = result[1][0].error;
               if (device.platform != 'BrowserStand') {
+                console.log("Spinner Stop View Pay Confirm New 737");
                 SpinnerPlugin.activityStop();
               }
               componentUnsuccessId.style.display = 'block';
@@ -747,6 +750,7 @@
               this.operationMessage = window.languages.ComponentSuccessMessageForPay;
               scope.update();
               if (device.platform != 'BrowserStand') {
+                console.log("Spinner Stop View Pay Confirm New 753");
                 SpinnerPlugin.activityStop();
               }
 
@@ -783,6 +787,7 @@
 
 
                 if (device.platform != 'BrowserStand') {
+                  console.log("Spinner Stop View Pay Confirm New 790");
                   SpinnerPlugin.activityStop();
                 }
 
@@ -795,6 +800,7 @@
           }
           else {
             if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Pay Confirm New 803");
               SpinnerPlugin.activityStop();
             }
             componentUnsuccessId.style.display = 'block';

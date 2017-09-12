@@ -412,6 +412,7 @@
                     setTimeout(function () {
                       if (!answerFromServer) {
                         if (device.platform != 'BrowserStand') {
+                          console.log("Spinner Stop Compnent Bank Operations 415");
                           SpinnerPlugin.activityStop();
                         }
                       }

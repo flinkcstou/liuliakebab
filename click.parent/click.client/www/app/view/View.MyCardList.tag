@@ -388,6 +388,7 @@
         console.log('Balance request')
         window.api.call({
           method: 'get.balance',
+          stopSpinner: false,
           input: {
             session_key: sessionKey,
             phone_num: phoneNumber,

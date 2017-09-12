@@ -198,6 +198,7 @@
         setTimeout(function () {
           if (!answerFromServer) {
             if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Add Card 201");
               SpinnerPlugin.activityStop();
             }
             return

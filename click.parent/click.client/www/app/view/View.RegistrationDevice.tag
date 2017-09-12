@@ -556,6 +556,7 @@
             countOfCall = 0;
             scope.update();
             if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Registration Device 559");
               SpinnerPlugin.activityStop();
             }
             window.isConnected = false;

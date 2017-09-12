@@ -646,14 +646,18 @@
                     }, 0);
                   }
 
-                  if (device.platform != 'BrowserStand')
+                  if (device.platform != 'BrowserStand') {
+                    console.log("Spinner Stop Component Card Carousel 650");
                     SpinnerPlugin.activityStop();
+                  }
                 }
                 else {
                   setTimeout(function () {
 
-                    if (device.platform != 'BrowserStand')
+                    if (device.platform != 'BrowserStand') {
+                      console.log("Spinner Stop Component Card Carousel 657");
                       SpinnerPlugin.activityStop();
+                    }
 
                     addCard()
                   }, 0);
@@ -783,6 +787,7 @@
         console.log('Balance request')
         window.api.call({
           method: 'get.balance',
+          stopSpinner: false,
           input: {
             session_key: sessionKey,
             phone_num: phoneNumber,

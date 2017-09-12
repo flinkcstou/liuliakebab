@@ -235,6 +235,7 @@
           if (!checkAnswerToUser) {
             console.log("STOP method")
             if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Invoice List 238");
               SpinnerPlugin.activityStop();
             }
             scope.clickPinError = false;
@@ -335,6 +336,7 @@
           if (!checkAnswerFromUser) {
             console.log("STOP method")
             if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Invoice List 339");
               SpinnerPlugin.activityStop();
             }
             scope.clickPinError = false;

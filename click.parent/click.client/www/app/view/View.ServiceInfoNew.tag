@@ -221,6 +221,7 @@
             scope.stepAmount = 1;
             scope.update();
             if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Service Info New 224");
               SpinnerPlugin.activityStop();
             }
             window.isConnected = false;

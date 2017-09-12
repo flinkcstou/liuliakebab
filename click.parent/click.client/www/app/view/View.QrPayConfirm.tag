@@ -258,6 +258,7 @@
                 if (!result[1][0].payment_id && result[1][0].invoice_id) {
 
                   if (device.platform != 'BrowserStand') {
+                    console.log("Spinner Stop View QR Pay Confirm 261");
                     SpinnerPlugin.activityStop();
                   }
                   console.log("result of APP.PAYMENT 1", result);
@@ -303,6 +304,7 @@
         setTimeout(function () {
           if (!answerFromServer) {
             if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View QR Pay Confirm 307");
               SpinnerPlugin.activityStop();
             }
             return
@@ -338,6 +340,7 @@
             if (result[1][0].state == -1) {
 
               if (device.platform != 'BrowserStand') {
+                console.log("Spinner Stop View QR Pay Confirm 343");
                 SpinnerPlugin.activityStop();
               }
               componentUnsuccessId.style.display = 'block';
@@ -347,6 +350,7 @@
             } else if (result[1][0].state == 2) {
 
               if (device.platform != 'BrowserStand') {
+                console.log("Spinner Stop View QR Pay Confirm 353");
                 SpinnerPlugin.activityStop();
               }
 
@@ -375,6 +379,7 @@
               } else {
 
                 if (device.platform != 'BrowserStand') {
+                  console.log("Spinner Stop View QR Pay Confirm 382");
                   SpinnerPlugin.activityStop();
                 }
 
@@ -387,6 +392,7 @@
           }
           else {
             if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View QR Pay Confirm 395");
               SpinnerPlugin.activityStop();
             }
             componentUnsuccessId.style.display = 'block';
