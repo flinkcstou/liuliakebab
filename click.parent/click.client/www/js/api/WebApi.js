@@ -34,8 +34,28 @@ window.api.initSocket = function () {
     if (!window.isConnected && modeOfApp.onlineMode) {
 
       if (window.lastSocketMethodToSend) {
-        window.api.socket.send(window.lastSocketMethodToSend);
-        window.lastSocketMethodToSend = undefined;
+        if (window.api.socket.readyState == 1) {
+          window.api.socket.send(window.lastSocketMethodToSend);
+          window.lastSocketMethodToSend = undefined;
+        } else {
+
+          switch (window.api.socket.readyState) {
+
+            case 0:
+              console.log("Is connecting");
+              break;
+            case 2:
+              console.log("Is closing");
+              window.isConnected = false;
+              window.api.init();
+              break;
+            case 3:
+              console.log("Is closed");
+              window.isConnected = false;
+              window.api.init();
+              break;
+          }
+        }
       }
     }
 
