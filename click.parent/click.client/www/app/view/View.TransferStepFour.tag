@@ -13,7 +13,7 @@
     <div class="transferfour-data-container">
       <div class="transferfour-phone-field" if="{viewServicePage.formType!=2}">
         <p class="transferfour-text-field">{cardOrPhone}</p>
-        <p class="transferfour-phone-input">{plus}{objectTypeForTransfer.name}</p>
+        <p class="transferfour-phone-input">{plus}{cardOrPhoneValue}</p>
       </div>
 
       <div id="ownerContainerId" class="transferfour-owner-container" if="{cardType}">
@@ -142,10 +142,12 @@
     if (objectForTransfer.type == 1) {
       transferTitle = objectForTransfer.name.substring(0, 4) + ' **** ' + objectForTransfer.name.substring(15, objectForTransfer.name.length)
       scope.cardOrPhone = window.languages.ViewTransferFourEnterCard;
+      scope.cardOrPhoneValue = objectForTransfer.name;
     }
     else {
-      transferTitle = objectForTransfer.name;
+      transferTitle = objectForTransfer.name.substring(0, 3) + ' ' + inputVerification.telVerificationWithSpace(objectForTransfer.name.substring(3, objectForTransfer.name.length));
       scope.cardOrPhone = window.languages.ViewTransferFourEnterPhone;
+      scope.cardOrPhoneValue = transferTitle;
     }
 
     if (objectForTransfer.type == 2)

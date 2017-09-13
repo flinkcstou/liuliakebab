@@ -208,7 +208,7 @@
       transferTitle = objectForTransfer.name.substring(0, 4) + ' **** ' + objectForTransfer.name.substring(15, objectForTransfer.name.length)
     }
     else
-      transferTitle = objectForTransfer.name
+      transferTitle = objectForTransfer.name.substring(0, 3) + ' ' + inputVerification.telVerificationWithSpace(objectForTransfer.name.substring(3, objectForTransfer.name.length));
 
     if (objectForTransfer.type == 2)
       this.titleName = window.languages.ViewTransferTwoTitle + ' +' + transferTitle;
