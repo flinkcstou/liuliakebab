@@ -36,7 +36,9 @@
           </div>
           <div class="pincard-chosen-friend-text-container">
             <div class="pincard-chosen-friend-text-one">{fName} {lName}</div>
-            <div class="pincard-chosen-friend-text-two">+{phoneNumber}</div>
+            <div class="pincard-chosen-friend-text-two">+{phoneNumber.substring(0, 3) + ' ' +
+              inputVerification.telVerificationWithSpace(phoneNumber.substring(3, phoneNumber.length))}
+            </div>
           </div>
 
           <div class="pincard-chosen-friend-edit-icon"

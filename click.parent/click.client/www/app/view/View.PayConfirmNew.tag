@@ -52,7 +52,8 @@
         <div class="payconfirm-card-info-container">
           <p class="payconfirm-text-one">{window.languages.ViewPayConfirmFriendHelp}</p>
           <p class="payconfirm-text-two">{friendName}</p>
-          <p class="payconfirm-detail-text">+{friendNumber}</p>
+          <p class="payconfirm-detail-text">+{friendNumber.substring(0, 3) + ' ' +
+            inputVerification.telVerificationWithSpace(friendNumber.substring(3, friendNumber.length))}</p>
         </div>
         <div class="payconfirm-chosen-friend-photo" style="background-image: url({friendPhoto})">
           {friendFirstLetterOfName}
