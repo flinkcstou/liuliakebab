@@ -67,6 +67,7 @@
   <script>
     var scope = this;
     scope.showError = false;
+    scope.numberLength = 10;
     this.titleName = window.languages.ViewSettingsAddFriendTitleName;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-friend') {
@@ -83,7 +84,7 @@
 
       namePhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff"
       contactPhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb"
-      if (contactPhoneNumberId.value.length != 9) {
+      if (contactPhoneNumberId.value.length != scope.numberLength) {
         nextButtonId.style.display = 'none'
       }
       scope.update();
@@ -155,11 +156,11 @@
       event.stopPropagation();
 
       if (scope.onPaste) {
-        contactPhoneNumberId.value = inputVerification.telVerification(contactPhoneNumberId.value)
+        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(contactPhoneNumberId.value)
         scope.onPaste = false;
       }
 
-      if (contactPhoneNumberId.value.length == 9) {
+      if (contactPhoneNumberId.value.length == scope.numberLength) {
         nextButtonId.style.display = 'block'
         firstSuggestionBlockId.style.display = 'none';
         secondSuggestionBlockId.style.display = 'none';
@@ -178,7 +179,7 @@
 
     contactTelVerificationKeyDown = function (input) {
 //      console.log(event.target.value)
-      if (input.value.length >= 9 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+      if (input.value.length >= scope.numberLength && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
 //        contactPhoneNumberId.value = event.target.value.substring(0, event.target.value.length - 1);
         contactStopChanging = true;
       }
@@ -206,10 +207,10 @@
 
           var phone = inputVerification.telVerification(phoneNumber);
 
-          contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
+          contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
           if (contactPhoneNumberId.value.length != 0) {
 //            console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
-            if (contactPhoneNumberId.value.length == 9) {
+            if (contactPhoneNumberId.value.length == scope.numberLength) {
               nextButtonId.style.display = 'block'
 
               firstSuggestionBlockId.style.display = 'none';
@@ -285,18 +286,18 @@
       oldValueOfNumber = contactPhoneNumberId.value
 
       if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-        contactPhoneNumberId.value = inputVerification.telVerification(contactPhoneNumberId.value)
-        if (oldValueOfNumber != contactPhoneNumberId.value) {
-          contactPhoneNumberId.selectionStart = cursorPositionSelectionStart - 1
-          contactPhoneNumberId.selectionEnd = cursorPositionSelectionEnd - 1
-        }
-        else {
-          contactPhoneNumberId.selectionStart = cursorPositionSelectionStart
-          contactPhoneNumberId.selectionEnd = cursorPositionSelectionEnd
-        }
+
+        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(contactPhoneNumberId.value)
+        console.log("after with space changing=", contactPhoneNumberId.value)
+
+        contactPhoneNumberId.selectionStart = cursorPositionSelectionStart
+        contactPhoneNumberId.selectionEnd = cursorPositionSelectionEnd
+
+        if (oldValueOfNumber != contactPhoneNumberId.value && cursorPositionSelectionStart == 3)
+          contactPhoneNumberId.selectionStart = cursorPositionSelectionStart + 1;
       }
 
-      if (contactPhoneNumberId.value.length == 9) {
+      if (contactPhoneNumberId.value.length == scope.numberLength) {
         nextButtonId.style.display = 'block'
 
 
@@ -325,7 +326,7 @@
       var check = false;
       var index = -1;
       if (event.keyCode != 16 && event.keyCode != 18)
-        scope.searchWord = event.target.value;
+        scope.searchWord = inputVerification.spaceDeleter(event.target.value);
 
       arrayOfContacts.filter(function (wordOfFunction) {
         var objectPos = '';
@@ -458,7 +459,7 @@
       if (Math.abs(firstSuggestionChooseTouchStartX - firstSuggestionChooseTouchEndX) <= 20 && Math.abs(firstSuggestionChooseTouchStartY - firstSuggestionChooseTouchEndY) <= 20) {
         var phone = inputVerification.telVerification(scope.suggestionOne.phoneNumber)
         scope.suggestionOne.phoneNumber = phone;
-        contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length);
+        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(scope.suggestionOne.phoneNumber.substring(scope.suggestionOne.phoneNumber.length - 9, scope.suggestionOne.phoneNumber.length));
 
 
         if (scope.suggestionOne.displayName)
@@ -471,7 +472,7 @@
           }
         }
 
-        if (contactPhoneNumberId.value.length == 9) {
+        if (contactPhoneNumberId.value.length == scope.numberLength) {
           nextButtonId.style.display = 'block'
 
           firstSuggestionBlockId.style.display = 'none';
@@ -507,7 +508,7 @@
         var phone = inputVerification.telVerification(scope.suggestionTwo.phoneNumber)
         scope.suggestionTwo.phoneNumber = phone;
 
-        contactPhoneNumberId.value = scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length);
+        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(scope.suggestionTwo.phoneNumber.substring(scope.suggestionTwo.phoneNumber.length - 9, scope.suggestionTwo.phoneNumber.length));
 
 
         if (scope.suggestionTwo.displayName)
@@ -521,7 +522,7 @@
         }
 
 
-        if (contactPhoneNumberId.value.length == 9) {
+        if (contactPhoneNumberId.value.length == scope.numberLength) {
           nextButtonId.style.display = 'block'
           firstSuggestionBlockId.style.display = 'none';
           secondSuggestionBlockId.style.display = 'none';
@@ -597,7 +598,7 @@
         }
         var object = {};
         object.name = contactNameId.value.toString();
-        object.number = window.languages.CodeOfCountry + contactPhoneNumberId.value;
+        object.number = window.languages.CodeOfCountry + inputVerification.spaceDeleter(contactPhoneNumberId.value);
         object.firstLetterOfName = '';
 
         var index = -1;

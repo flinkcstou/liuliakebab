@@ -1484,14 +1484,6 @@
         if (oldValueOfNumber != contactPhoneNumberId.value && cursorPositionSelectionStart == 3)
           contactPhoneNumberId.selectionStart = cursorPositionSelectionStart + 1;
 
-//        if (oldValueOfNumber != contactPhoneNumberId.value) {
-//          contactPhoneNumberId.selectionStart = cursorPositionSelectionStart - 1
-//          contactPhoneNumberId.selectionEnd = cursorPositionSelectionEnd - 1
-//        }
-//        else {
-//          contactPhoneNumberId.selectionStart = cursorPositionSelectionStart
-//          contactPhoneNumberId.selectionEnd = cursorPositionSelectionEnd
-//        }
       }
 
       if (contactPhoneNumberId.value.length == scope.numberLength) {

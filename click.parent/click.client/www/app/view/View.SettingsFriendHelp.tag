@@ -18,7 +18,9 @@
              ontouchstart="chooseFriendForHelpStart('id'+{i.number})"
              ontouchend="chooseFriendForHelpEnd({i.number}, 'id'+{i.number})">
           <div class="settings-friend-help-contact-found-text-one">{i.name}</div>
-          <div class="settings-friend-help-contact-found-text-two">+{i.number}</div>
+          <div class="settings-friend-help-contact-found-text-two">+{i.number.substring(0, 3) + ' ' +
+            inputVerification.telVerificationWithSpace(i.number.substring(3, i.number.length))}
+          </div>
         </div>
         <div id="{'del' + i.number}" class="settings-friend-help-contact-cancel-icon"
              ontouchstart="deleteFriendTouchStart(this.id)"
