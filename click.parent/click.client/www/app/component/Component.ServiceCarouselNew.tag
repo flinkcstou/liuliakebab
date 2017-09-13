@@ -80,11 +80,11 @@
       scope.popularServiceList = [];
       window.api.call({
         method: 'get.popular.services',
-        input: {
+        input : {
           session_key: sessionKey,
-          phone_num: phoneNumber
+          phone_num  : phoneNumber
         },
-        scope: this,
+        scope : this,
 
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
@@ -158,7 +158,7 @@
           }
 
         },
-        onFail: function (api_status, api_status_message, data) {
+        onFail   : function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -239,10 +239,10 @@
 
       window.api.call({
         method: 'get.wishlist',
-        input: {
+        input : {
           session_key: sessionKey,
-          phone_num: phoneNumber,
-          type: 1
+          phone_num  : phoneNumber,
+          type       : 1
         },
 
         scope: this,
@@ -254,17 +254,26 @@
             console.log("SUCCESSFULLY got favs from api", result[1])
             if (result[1].length != 0 && !localStorage.getItem('favoritePaymentsList')) {
               scope.favoritePaymentsList = [];
-              localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(result[1]));
+
               for (var j in result[1]) {
-                console.log("j=", j, result[1][j])
                 var fav = JSON.parse(result[1][j].body);
                 fav.service.image = scope.servicesMap[fav.service.id][0].image;
                 scope.favoritePaymentsList.push(fav);
+                console.log("image changed for ", fav)
               }
+              favoritePaymentsListForApi = [];
+              for (var i in scope.favoritePaymentsList)
+                favoritePaymentsListForApi.push({
+                  "id"  : scope.favoritePaymentsList[i].id,
+                  "type": 1,
+                  "body": JSON.stringify(scope.favoritePaymentsList[i])
+                })
+
+              localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
               localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList));
               console.log("favs processed", scope.favoritePaymentsList);
               fillFavorites();
-            } else if (localStorage.getItem('favoritePaymentsList')) {
+            } else if (result[1].length == 0 && localStorage.getItem('favoritePaymentsList')) {
 
               var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
               var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
@@ -274,7 +283,7 @@
                 favoritePaymentsListForApi = [];
                 for (var i in favoritePaymentsList)
                   favoritePaymentsListForApi.push({
-                    "id": favoritePaymentsList[i].id,
+                    "id"  : favoritePaymentsList[i].id,
                     "type": 1,
                     "body": JSON.stringify(favoritePaymentsList[i])
                   })
@@ -284,9 +293,9 @@
 
               window.api.call({
                 method: 'add.favourite',
-                input: {
-                  session_key: sessionKey,
-                  phone_num: phoneNumber,
+                input : {
+                  session_key  : sessionKey,
+                  phone_num    : phoneNumber,
                   wishlist_data: favoritePaymentsListForApi
                 },
 
@@ -594,10 +603,10 @@
 
               window.api.call({
                 method: 'get.service.parameters',
-                input: {
+                input : {
                   session_key: sessionKey,
-                  phone_num: phoneNumber,
-                  service_id: scope.favoritePaymentsList[i].service.id
+                  phone_num  : phoneNumber,
+                  service_id : scope.favoritePaymentsList[i].service.id
                 },
 
                 scope: this,
