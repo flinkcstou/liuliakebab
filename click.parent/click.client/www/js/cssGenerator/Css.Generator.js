@@ -544,6 +544,14 @@ var css = {
   "margin-right: auto;" +
   "}",
 
+  registrationProcessCheckStatusLabelNotRegisteredYet: ".registration-process-check-status-label-not-registered-yet" +
+  "{" +
+  "margin-top: 34%;" +
+  "width: 90%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "}",
+
   //VIEW REGISTRATION DEVICE
 
   viewRegistrationDevice: ".view-registration-device " +

@@ -40,6 +40,7 @@
                    errornote="{errorNote}" step_amount="{stepToBack}" viewpage="{viewpage}"></component-alert>
 
   <div if="{showRegistrationProcess}" class="registration-process">
+
     <div if="{registrationSuccess == 0}" class="registration-process-container">
       <div id="registrationProcessingId" class="registration-process-processing">
       </div>
@@ -48,12 +49,23 @@
       </div>
     </div>
 
+    <div if="{registrationSuccess == -2}" class="registration-process-container">
+      <div class="registration-process-x">
+      </div>
+      <div class="registration-process-text">
+        <p class="registration-process-check-status-label-not-registered-yet">
+          Ваша карта ещё не добавлена.<br><br>Проверьте статус регистрации через несколько минут</p>
+      </div>
+      <button class="registration-process-button-check-status" ontouchstart="checkRegistrationTouchStart()"
+              ontouchend="checkRegistrationTouchEnd()">ПРОВЕРИТЬ СТАТУС РЕГИСТРАЦИИ
+      </button>
+    </div>
+
     <div if="{registrationSuccess == 1}" class="registration-process-container">
       <div class="registration-process-ok">
       </div>
       <div class="registration-process-text">
         <p>Ваша карта<br>успешно зарегестрирована!</p>
-
       </div>
 
       <button class="registration-process-button-next" ontouchstart="registrationProcessNextTouchStart()"
@@ -66,12 +78,11 @@
       </div>
       <div class="registration-process-text">
         <p class="registration-process-check-status-label" id="registrationProcessErorrId">
-          {errorRegistrationProcess}</p>
-
+          Произошла ошибка при регистрации.<br>Попробуйте ещё раз</p>
       </div>
 
       <button class="registration-process-button-check-status" ontouchstart="registrationProcessCheckStatusTouchStart()"
-              ontouchend="registrationProcessCheckStatusTouchEnd()">ПОВТОРИТЬ РЕГИСТРАЦИЮ
+              ontouchend="registrationProcessCheckStatusTouchEnd()">ЗАРЕГИСТРИРОВАТЬСЯ ЗАНОВО
       </button>
     </div>
 
@@ -82,6 +93,9 @@
   <script>
 
     var scope = this;
+
+    scope.timeouts = [5000, 5000, 10000, 10000, 10000, 10000, 10000];
+    scope.timeoutIndex = 0;
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
@@ -466,15 +480,19 @@
             scope.showRegistrationProcess = true;
             scope.update();
             scope.registrationProcessInterval = setInterval(function () {
-              if (scope.registrationSuccess != 0) {
+              if (scope.registrationSuccess != 0 && scope.registrationSuccess != -2) {
                 clearInterval(scope.registrationProcessInterval)
                 return
               }
-              registrationProcessingId.style.opacity = '0.' + processOpacity;
+
+              if (window["registrationProcessingId"] && typeof window["registrationProcessingId"] !== "undefined") {
+
+                registrationProcessingId.style.opacity = '0.' + processOpacity;
 //        console.log('Changing Opacity')
-              processOpacity++;
-              if (processOpacity == 99) {
-                processOpacity = 10;
+                processOpacity++;
+                if (processOpacity == 99) {
+                  processOpacity = 10;
+                }
               }
             }, 20)
             console.log('REGISTRATION CLIENT', result)
@@ -486,6 +504,7 @@
             localStorage.setItem("registration_check_hash", JSON.stringify(result[1][0].check_hash))
 //            riotTags.innerHTML = "<view-authorization>";
 //            riot.mount('view-authorization', {from: "registration-client"});
+            scope.timeoutIndex = 0;
             setTimeout(function () {checkRegistrationFunction()}, 5000)
           }
           else {
@@ -506,6 +525,32 @@
     };
 
     scope.registrationSuccess = 0;
+
+    var checkRegistrationTouchStartX, checkRegistrationTouchStartY, checkRegistrationTouchEndX,
+      checkRegistrationTouchEndY;
+
+    checkRegistrationTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      checkRegistrationTouchStartX = event.changedTouches[0].pageX;
+      checkRegistrationTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    checkRegistrationTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      checkRegistrationTouchEndX = event.changedTouches[0].pageX;
+      checkRegistrationTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(checkRegistrationTouchStartX - checkRegistrationTouchEndX) <= 20 && Math.abs(checkRegistrationTouchStartY - checkRegistrationTouchEndY) <= 20) {
+        scope.registrationSuccess = 0; //Выполнить повторную проверку
+        scope.timeoutIndex = 0;
+        scope.update();
+        checkRegistrationFunction()
+      }
+    };
 
     checkRegistrationFunction = function () {
       console.log("CHECK REGISTRATION")
@@ -541,8 +586,20 @@
           if (result[0][0].error == 0) {
             console.log('REGISTRATION CHECK', result)
             if (result[1][0].registered == 0) {
-              scope.registrationSuccess = 0;
-              setTimeout(function () {checkRegistrationFunction()}, 5000)
+
+              if (scope.timeouts.length > scope.timeoutIndex) {
+
+                setTimeout(function () {checkRegistrationFunction()}, scope.timeouts[scope.timeoutIndex]);
+                scope.registrationSuccess = 0;
+                scope.timeoutIndex++;
+              } else {
+
+                scope.registrationSuccess = -2;
+                scope.timeoutIndex %= scope.timeouts.length;
+              }
+
+              scope.update();
+
               console.log("ANSWER OF CHECK REGISTRATION", 0)
               return;
             }
