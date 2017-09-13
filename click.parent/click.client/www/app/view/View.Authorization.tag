@@ -679,11 +679,6 @@
 //          console.log(result[0][0])
           checkServiceAnswer = true;
 
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner Stop Authorization 683");
-            SpinnerPlugin.activityStop();
-          }
-
           if (result[0][0].error == 0) {
             if (!result[1][0].error) {
               localStorage.setItem('click_client_pin', pin)
@@ -703,6 +698,11 @@
             }
           }
           else {
+            if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop Authorization 702");
+              SpinnerPlugin.activityStop();
+            }
+
             if (result[0][0].error == -31) {
               scope.clickPinError = true;
               console.log("click pin error");
