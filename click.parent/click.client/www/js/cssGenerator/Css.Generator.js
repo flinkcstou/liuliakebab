@@ -5162,6 +5162,7 @@ var css = {
   "background-position-y: center;" +
   "background-position-x: 70%;" +
   "background-size: 20%;" +
+  "z-index: 1;" +
   "}",
 
   searchInput: ".search-input " +

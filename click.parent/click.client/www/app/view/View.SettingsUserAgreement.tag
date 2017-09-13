@@ -74,6 +74,7 @@
     if (!localStorage.getItem("click_client_agreement") || loginInfo.update_terms) {
       window.api.call({
         method: 'get.terms',
+        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
