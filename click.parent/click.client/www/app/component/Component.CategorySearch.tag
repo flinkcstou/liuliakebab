@@ -103,6 +103,10 @@
       event.preventDefault();
       event.stopPropagation();
 
+      console.log("Search Cancel Start");
+      console.log("Search Cancel Start", event.changedTouches[0].pageX);
+      console.log("Search Cancel Start", event.changedTouches[0].pageY);
+
       closeSearchButtonId.style.webkitTransform = 'scale(0.8)'
 
       xButtonStartX = event.changedTouches[0].pageX;
@@ -112,6 +116,10 @@
     searchCancelEnd = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      console.log("Search Cancel End");
+      console.log("Search Cancel End", event.changedTouches[0].pageX);
+      console.log("Search Cancel End", event.changedTouches[0].pageY);
 
       closeSearchButtonId.style.webkitTransform = 'scale(1)'
 
