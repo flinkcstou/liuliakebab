@@ -506,10 +506,11 @@ window.pushNotificationActions = {
     if (view == "view-main-page" || view == "view-my-cards") {
 
       onComponentCreated();
-    }
+    } else {
 
-    riotTags.innerHTML = "<view-my-cards>";
-    riot.mount("view-my-cards", [cardId]);
+      riotTags.innerHTML = "<view-my-cards>";
+      riot.mount("view-my-cards", [cardId]);
+    }
   },
   retrievePushNotification: function () {
 
