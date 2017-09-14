@@ -176,32 +176,94 @@
 //      scope.notificationText = "";
       scope.update();
 
+      var authorized = false,
+        notification;
+
+      try {
+
+        authorized = JSON.parse(localStorage.getItem("click_client_authorized"));
+      } catch (error) {
+
+        console.error(error);
+      }
+
       if (scope.notificationAction == "invoice") {
 
 
-        window.pushNotificationActions.getInvoiceFunction(scope.notificationElementId);
+        if (authorized) {
+
+          window.pushNotificationActions.getInvoiceFunction(scope.notificationElementId);
+        } else {
+
+          notification = {
+            action: "getInvoiceFunction",
+            params: scope.notificationElementId
+          };
+
+          sessionStorage.setItem("push_notification", JSON.stringify(notification));
+        }
       }
 
       if (scope.notificationAction == "card.add") {
 
+        if (authorized) {
 
-        window.pushNotificationActions.refreshCardCarousel(scope.notificationElementId);
+          window.pushNotificationActions.refreshCardCarousel(scope.notificationElementId);
+        } else {
+
+          notification = {
+            action: "refreshCardCarousel",
+            params: scope.notificationElementId
+          };
+
+          sessionStorage.setItem("push_notification", JSON.stringify(notification));
+        }
       }
 
       if (scope.notificationAction == "payment") {
 
-        window.pushNotificationActions.getPaymentList(scope.notificationElementId);
+        if (authorized) {
+
+          window.pushNotificationActions.getPaymentList(scope.notificationElementId);
+        } else {
+
+          notification = {
+            action: "getPaymentList",
+            params: scope.notificationElementId
+          };
+
+          sessionStorage.setItem("push_notification", JSON.stringify(notification));
+        }
       }
 
       if (scope.notificationAction == "news") {
 
-        window.pushNotificationActions.getNewsFunction(scope.notificationElementId);
+        if (authorized) {
+
+          window.pushNotificationActions.getNewsFunction(scope.notificationElementId);
+        } else {
+
+          notification = {
+            action: "getNewsFunction",
+            params: scope.notificationElementId
+          };
+
+          sessionStorage.setItem("push_notification", JSON.stringify(notification));
+
+          console.log(JSON.parse(sessionStorage.getItem("push_notification")));
+        }
       }
 
       window.FirebasePlugin.logEvent("ACCEPT", {
         content_type: scope.notificationAction,
         item_id: scope.notificationElementId
       });
+
+      if (!authorized) {
+
+        riotTags.innerHTML = "<view-authorization>";
+        riot.mount("view-authorization");
+      }
     };
 
   </script>
