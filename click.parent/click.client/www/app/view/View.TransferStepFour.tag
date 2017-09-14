@@ -80,7 +80,7 @@
   <component-success id="componentSuccessId"
                      operationmessage="{window.languages.ComponentSuccessMessage}"
                      viewpage="view-transfer" step_amount="{3}"></component-success>
-  <component-unsuccess id="componentUnsuccessId"
+  <component-unsuccess id="componentUnsuccessId" step_amount="{3}"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
                        operationmessagepartthree="{errorMessageFromTransfer}"
