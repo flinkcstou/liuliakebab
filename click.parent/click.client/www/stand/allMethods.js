@@ -12635,7 +12635,7 @@ window.fakedSocket.register("registration.check", function (input) {
   ],
     [
       {
-        "registered": 1
+        "registered": -1
       }
     ]
   ];

@@ -53,7 +53,7 @@
       <div class="registration-process-x">
       </div>
       <div class="registration-process-text">
-        <p class="registration-process-check-status-label-not-registered-yet">
+        <p class="registration-process-check-status-label">
           Ваша карта ещё не добавлена.<br><br>Проверьте статус регистрации через несколько минут</p>
       </div>
       <button class="registration-process-button-check-status" ontouchstart="checkRegistrationTouchStart()"
