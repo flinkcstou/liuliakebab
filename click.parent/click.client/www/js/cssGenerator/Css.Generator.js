@@ -538,7 +538,7 @@ var css = {
 
   registrationProcessCheckStatusLabel: ".registration-process-check-status-label" +
   "{" +
-  "margin-top: 54%;" +
+  "margin-top: 34%;" +
   "width: 90%;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
