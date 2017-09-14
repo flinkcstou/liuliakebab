@@ -215,7 +215,7 @@
     </div>
 
     <div
-        class="{servicepage-pincards-container: opts.mode == 'USUAL',
+      class="{servicepage-pincards-container: opts.mode == 'USUAL',
       servicepage-pincards-container-two: opts.mode != 'USUAL'}">
       <div class="servicepage-pincards-block-container" each="{i in pincardIds}">
         <div class="servicepage-pincard-title">{pincardsMap[i][0].name}</div>
@@ -276,7 +276,7 @@
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
 
-  <component-tour view="calculator"></component-tour>
+  <component-tour view="calculator" focusfield="{true}"></component-tour>
 
 
   </div>
@@ -603,43 +603,7 @@
           StatusBar.backgroundColorByHexString("#004663");
       }
       else {
-        console.log("ON SERVICEPAGE NEW ON MOUNT autofocus first field");
-
-        if (opts.mode != 'ADDAUTOPAY' && opts.mode != 'ADDFAVORITE') {
-          console.log('1')
-          if (device.platform == 'iOS') {
-            firstFieldInput.autofocus;
-            firstFieldInput.focus();
-          } else {
-            setTimeout(function () {
-              if (this.firstFieldInput) {
-                firstFieldInput.focus();
-              }
-            }, 0);
-          }
-        } else if (opts.mode == 'ADDAUTOPAY') {
-          if (device.platform == 'iOS') {
-            autoPayNameInput.autofocus;
-            autoPayNameInput.focus();
-          } else {
-            setTimeout(function () {
-              if (this.autoPayNameInput)
-                autoPayNameInput.focus();
-            }, 0);
-          }
-        } else if (opts.mode == 'ADDFAVORITE') {
-          if (device.platform == 'iOS') {
-            favoriteNameInput.autofocus;
-            favoriteNameInput.focus();
-          } else {
-            setTimeout(function () {
-              if (this.favoriteNameInput)
-                favoriteNameInput.focus();
-            }, 0);
-          }
-        }
-
-        scope.update()
+        focusFieldAfterTourClosed();
       }
 
       if (opts && opts.number) {
@@ -666,6 +630,47 @@
 
 
     });
+
+    focusFieldAfterTourClosed = function () {
+
+      console.log("ON SERVICEPAGE autofocus first field");
+
+      if (opts.mode != 'ADDAUTOPAY' && opts.mode != 'ADDFAVORITE') {
+        console.log('1')
+        if (device.platform == 'iOS') {
+          firstFieldInput.autofocus;
+          firstFieldInput.focus();
+        } else {
+          setTimeout(function () {
+            if (this.firstFieldInput) {
+              firstFieldInput.focus();
+            }
+          }, 0);
+        }
+      } else if (opts.mode == 'ADDAUTOPAY') {
+        if (device.platform == 'iOS') {
+          autoPayNameInput.autofocus;
+          autoPayNameInput.focus();
+        } else {
+          setTimeout(function () {
+            if (this.autoPayNameInput)
+              autoPayNameInput.focus();
+          }, 0);
+        }
+      } else if (opts.mode == 'ADDFAVORITE') {
+        if (device.platform == 'iOS') {
+          favoriteNameInput.autofocus;
+          favoriteNameInput.focus();
+        } else {
+          setTimeout(function () {
+            if (this.favoriteNameInput)
+              favoriteNameInput.focus();
+          }, 0);
+        }
+      }
+      scope.update()
+
+    }
 
     var searchContactStartY, searchContactStartX, searchContactEndY, searchContactEndX;
 
