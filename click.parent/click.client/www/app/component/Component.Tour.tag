@@ -4,7 +4,8 @@
 
     <p class="tour-title-text" id="tourTitleId">{tourTitle}</p>
 
-    <div id="firstCloseButtonId" role="button" aria-label="{window.languages.Close}" type="button" class="tour-close-icon"
+    <div id="firstCloseButtonId" role="button" aria-label="{window.languages.Close}" type="button"
+         class="tour-close-icon"
          ontouchstart="closeTourStart(this.id)" ontouchend="closeTourEnd(this.id)"></div>
 
 
@@ -20,8 +21,8 @@
            style="left:{84+100*(i.counter-1)}%;">
         <div class="component-card-upper-container" style="background-color: {i.back_color};">
           <div
-              class="{classForPages}"
-              style="background-image: url({i.image});background-size: {i.icon_size}%;background-position-y: {i.icon_y}%;"></div>
+            class="{classForPages}"
+            style="background-image: url({i.image});background-size: {i.icon_size}%;background-position-y: {i.icon_y}%;"></div>
         </div>
         <div class="component-card-lower-container">
           <p class="component-card-lower-title-text">{i.title}</p>
@@ -53,9 +54,9 @@
 
       <div class="tour-buttons-container" if="{registrButton}">
         <div
-            id="thirdCloseButtonId"
-            class="tour-registration-button"
-            ontouchstart="closeTourStart(this.id)" ontouchend="closeTourEnd(this.id)">
+          id="thirdCloseButtonId"
+          class="tour-registration-button"
+          ontouchstart="closeTourStart(this.id)" ontouchend="closeTourEnd(this.id)">
           <p class="tour-registration-button-label">
             {window.languages.ComponentTourCloseButtonTextIn}</p>
         </div>
@@ -334,6 +335,9 @@
           StatusBar.backgroundColorByHexString("#00a8f1");
         }
         componentTourId.style.display = 'none';
+        if (opts.focusfield) {
+          this.parent.focusFieldAfterTourClosed();
+        }
       }
     }
 

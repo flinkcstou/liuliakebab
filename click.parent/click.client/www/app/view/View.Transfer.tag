@@ -207,17 +207,20 @@
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
 
-  <component-tour view="transfer"></component-tour>
+  <component-tour view="transfer" focusfield="{true}"></component-tour>
   <script>
 
     viewTransfer.check = true;
     console.log("TRANSFER OPTS", opts)
     var scope = this;
     scope.numberLength = 10;
+    scope.tourClosed = true;
     this.on('mount', function () {
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
         componentTourId.style.display = "block";
+        scope.tourClosed = false;
+
         if (device.platform != 'BrowserStand')
           StatusBar.backgroundColorByHexString("#004663");
       }
@@ -311,6 +314,26 @@
 
 
     })
+
+    focusFieldAfterTourClosed = function () {
+
+      scope.tourClosed = true;
+
+      console.log("focusing fields", scope.tourClosed)
+
+
+      if (device.platform == 'iOS') {
+        contactPhoneNumberId.autofocus;
+        contactPhoneNumberId.focus();
+      }
+      else {
+        setTimeout(function () {
+          contactPhoneNumberId.focus();
+        }, 0)
+      }
+
+    }
+
 
     var contactStopChanging = false;
     var cardStopChanging = false;
@@ -1148,6 +1171,8 @@
 
     contactTouchEnd = function (bool) {
 
+      console.log("tourClosed", scope.tourClosed)
+
       if (!bool) {
         contactChooseTouchEndX = event.changedTouches[0].pageX
         contactChooseTouchEndY = event.changedTouches[0].pageY
@@ -1163,14 +1188,18 @@
 
         ownerCardDsiplayId.style.display = 'none'
 
-        if (device.platform == 'iOS') {
-          contactPhoneNumberId.autofocus;
-          contactPhoneNumberId.focus();
-        }
-        else {
-          setTimeout(function () {
+        if (scope.tourClosed) {
+          console.log("focusing fields")
+
+          if (device.platform == 'iOS') {
+            contactPhoneNumberId.autofocus;
             contactPhoneNumberId.focus();
-          }, 0)
+          }
+          else {
+            setTimeout(function () {
+              contactPhoneNumberId.focus();
+            }, 0)
+          }
         }
 
         contactInputFieldId.style.display = 'block'
