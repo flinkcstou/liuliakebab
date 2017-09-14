@@ -46,7 +46,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-friend-help-settings') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-friend-help-settings',
+          "view"  : 'view-friend-help-settings',
           "params": opts
         }
       );
@@ -55,7 +55,7 @@
 
     scope.arrayOfFriends = [];
 
-    if (localStorage.getItem('click_client_friends') === null) {
+    if (JSON.parse(localStorage.getItem('click_client_friends')) === null) {
       scope.arrayOfFriends = []
     }
     else {
@@ -104,9 +104,9 @@
 
       window.api.call({
         method: 'check.contact.list',
-        input: {
-          phone_num: phoneNumber,
-          phone_list: scope.arrayOfPhoneNumbers,
+        input : {
+          phone_num  : phoneNumber,
+          phone_list : scope.arrayOfPhoneNumbers,
           session_key: sessionKey,
 
         },
@@ -117,6 +117,7 @@
           if (result[0][0].error == 0) {
             console.log("contact list checker method", result);
             var object = {};
+            var counter = 0;
 
             if (result[1][0])
               for (var i in result[1][0].phone_list) {
@@ -143,11 +144,13 @@
                 if (object.name)
                   object.firstLetterOfName = object.name[0].toUpperCase();
                 object.photo = null;
+                counter++;
 
                 scope.arrayOfFriends.push(object);
               }
 
-//            localStorage.setItem('click_client_friends',JSON.stringify(scope.arrayOfFriends))
+            localStorage.setItem('click_client_friends', JSON.stringify(scope.arrayOfFriends))
+            localStorage.setItem('click_client_friendsOuter_count', counter);
             scope.update();
           }
           else {
@@ -175,11 +178,15 @@
 
     // find all contacts with 'Bob' in any name field
 
-    if (device.platform != 'BrowserStand') {
-      var options = new ContactFindOptions();
-      options.multiple = true;
-      options.hasPhoneNumber = true;
-      navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
+    if (!localStorage.getItem('click_client_friendsOuter_count')) {
+      console.log("requesting friend list")
+
+      if (device.platform != 'BrowserStand') {
+        var options = new ContactFindOptions();
+        options.multiple = true;
+        options.hasPhoneNumber = true;
+        navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
+      }
     }
 
 
