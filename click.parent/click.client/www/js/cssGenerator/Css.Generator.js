@@ -6731,7 +6731,8 @@ var css = {
 
   InProcessingNextButtonInnerContainer: ".in-processing-next-button-inner-container" +
   "{" +
-  "top: 83%;" +
+  // "top: 83%;" +
+  "bottom: " + 114.2 * heightK + "px;" +
   "height: " + 74 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
   "background-color: white;" +
