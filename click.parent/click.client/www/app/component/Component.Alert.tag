@@ -16,7 +16,7 @@
     <button id="alertOkButtonId" class="component-alert-button-inner-container"
             ontouchstart="closeAlertFormStart(this.id)"
             ontouchend="closeAlertFormEnd(this.id)">
-      {window.languages.ComponentAlertOk}
+      {opts.errorcode==2? window.languages.ComponentAlertRegister: window.languages.ComponentAlertOk}
     </button>
   </div>
 
@@ -69,6 +69,13 @@
           if (opts.errorcode == 1) {
             riotTags.innerHTML = "<view-authorization>";
             riot.mount('view-authorization');
+            return;
+          }
+
+          if (opts.errorcode == 2) {
+            console.log("errorcode = 2")
+            riotTags.innerHTML = "<view-registration-device>";
+            riot.mount('view-registration-device');
             return;
           }
 

@@ -716,6 +716,10 @@
             if (result[0][0].error == -31) {
               scope.clickPinError = true;
               console.log("click pin error");
+            } else if (result[0][0].error == -799) {
+              scope.errorNote = result[0][0].error_note;
+              scope.errorCode = 2;
+              console.log("client not registered error");
             } else {
               console.log(opts)
               if (opts.from == "registration-client") {
