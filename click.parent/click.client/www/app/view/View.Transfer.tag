@@ -890,21 +890,13 @@
       if (cardInputId.value.length <= 19 && (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT)) {
         cardInputId.value = inputVerification.cardVerification(cardInputId.value);
 
-//        cardInputId.selectionStart = cardCursorPositionSelectionStart
-//        cardInputId.selectionEnd = cardCursorPositionSelectionEnd
-
-//        if (cardOldValueOfNumber != cardInputId.value)
-//          cardInputId.selectionStart = cardCursorPositionSelectionStart + 1;
-
-        console.log("cardInput val=", cardInputId.value, "old=", cardOldValueOfNumber)
-
         if (cardOldValueOfNumber.length != cardInputId.value.length && inputVerification.spaceDeleter(cardOldValueOfNumber) == inputVerification.spaceDeleter(cardInputId.value)) {
-          console.log("111")
+
           cardInputId.selectionStart = cardCursorPositionSelectionStart + 1
           cardInputId.selectionEnd = cardCursorPositionSelectionEnd + 1
         }
         else {
-          console.log("222")
+
           cardInputId.selectionStart = cardCursorPositionSelectionStart
           cardInputId.selectionEnd = cardCursorPositionSelectionEnd
         }
@@ -915,25 +907,6 @@
         arrayOfCards = JSON.parse(localStorage.getItem('p2pTransferCards'));
       }
 
-      /////
-//      if (contactStopChanging) {
-//        contactPhoneNumberId.value = event.target.value.substring(0, event.target.value.length - 1);
-//      }
-//      cursorPositionSelectionStart = contactPhoneNumberId.selectionStart;
-//      cursorPositionSelectionEnd = contactPhoneNumberId.selectionEnd;
-//      oldValueOfNumber = contactPhoneNumberId.value
-//      if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-//        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(contactPhoneNumberId.value)
-//        console.log("after with space changing=", contactPhoneNumberId.value)
-//
-//        contactPhoneNumberId.selectionStart = cursorPositionSelectionStart
-//        contactPhoneNumberId.selectionEnd = cursorPositionSelectionEnd
-//
-//        if (oldValueOfNumber != contactPhoneNumberId.value && cursorPositionSelectionStart == 3)
-//          contactPhoneNumberId.selectionStart = cursorPositionSelectionStart + 1;
-//
-//      }
-      /////
 
       if (cardInputId.value.replace(/\s/g, '').length == 16) {
         cardOwnerFunction();
