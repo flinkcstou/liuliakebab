@@ -361,40 +361,71 @@
         circleFour.style.backgroundColor = '#01cfff';
         circleFive.style.backgroundColor = '#01cfff';
 
-        if (scope.checkPinConfirm) {
-          pinConfirm = enteredPin;
-          scope.checkPinConfirm = false;
-          if (pin == pinConfirm) {
-            if (fromRegistration)
-              enter(pin);
-            else changePin(pin);
-          }
-          else {
-            scope.clickPinError = false;
-            scope.errorNote = "Введенный CLICK-PIN не совпадает указанному ранее. Попробуйте еще раз!";
+        console.log("enteredPin", enteredPin)
 
-            console.log('scope.checkPin', scope.checkPin, 'scope.checkPinConfirm', scope.checkPinConfirm)
-            scope.showError = true;
-            scope.checkPin = true;
+        setTimeout(function () {
+          if (scope.checkPinConfirm) {
+            pinConfirm = enteredPin;
             scope.checkPinConfirm = false;
-            scope.update();
-            console.log('scope.checkPin', scope.checkPin, 'scope.checkPinConfirm', scope.checkPinConfirm)
-            pinConfirm = '';
-            pin = '';
-            enteredPin = '';
-            updateEnteredPin()
-          }
+            if (pin == pinConfirm) {
+              if (fromRegistration)
+                enter(pin);
+              else changePin(pin);
+            }
+            else {
+              scope.clickPinError = false;
+              scope.errorNote = "Введенный CLICK-PIN не совпадает указанному ранее. Попробуйте еще раз!";
 
-        }
-        else if (scope.nowCheckPin) {
-          if (hex_md5(enteredPin) == localStorage.getItem('pinForStand')) {
-
-            if (fromPayOrTransfer) {
-              sessionStorage.setItem('payTransferConfirmed', true);
-              onBackKeyDown();
-            } else {
+              console.log('scope.checkPin', scope.checkPin, 'scope.checkPinConfirm', scope.checkPinConfirm)
+              scope.showError = true;
               scope.checkPin = true;
-              scope.nowCheckPin = false;
+              scope.checkPinConfirm = false;
+              scope.update();
+              console.log('scope.checkPin', scope.checkPin, 'scope.checkPinConfirm', scope.checkPinConfirm)
+              pinConfirm = '';
+              pin = '';
+              enteredPin = '';
+              updateEnteredPin()
+            }
+
+          }
+          else if (scope.nowCheckPin) {
+            if (hex_md5(enteredPin) == localStorage.getItem('pinForStand')) {
+
+              if (fromPayOrTransfer) {
+                sessionStorage.setItem('payTransferConfirmed', true);
+                onBackKeyDown();
+              } else {
+                scope.checkPin = true;
+                scope.nowCheckPin = false;
+                scope.checkPinConfirm = false;
+                pinConfirm = '';
+                pin = '';
+                enteredPin = '';
+                updateEnteredPin()
+                scope.update();
+              }
+            }
+            else {
+              scope.clickPinError = false;
+              scope.showError = true;
+
+              if (fromPayOrTransfer) {
+                scope.errorNote = window.languages.ViewPinCodeConfirmPayTransferErrorAlertText;
+                sessionStorage.setItem('payTransferConfirmed', false);
+                errorPinTimesCounter++;
+                if (errorPinTimesCounter == 3) {
+                  console.log("OOPS");
+                  scope.errorNote = window.languages.ViewPinCodeConfirmPayTransferThirdErrorAlertText;
+                  scope.viewpage = "view-authorization";
+                }
+
+              } else {
+                scope.errorNote = "Неверный текущий CLICK-PIN!";
+              }
+
+              scope.nowCheckPin = true;
+              scope.checkPin = false;
               scope.checkPinConfirm = false;
               pinConfirm = '';
               pin = '';
@@ -402,50 +433,25 @@
               updateEnteredPin()
               scope.update();
             }
-          }
-          else {
-            scope.clickPinError = false;
-            scope.showError = true;
-
-            if (fromPayOrTransfer) {
-              scope.errorNote = window.languages.ViewPinCodeConfirmPayTransferErrorAlertText;
-              sessionStorage.setItem('payTransferConfirmed', false);
-              errorPinTimesCounter++;
-              if (errorPinTimesCounter == 3) {
-                console.log("OOPS");
-                scope.errorNote = window.languages.ViewPinCodeConfirmPayTransferThirdErrorAlertText;
-                scope.viewpage = "view-authorization";
-              }
-
-            } else {
-              scope.errorNote = "Неверный текущий CLICK-PIN!";
-            }
-
-            scope.nowCheckPin = true;
+          } else if (scope.checkPin) {
+            console.log('qwewewww')
+            pin = enteredPin;
             scope.checkPin = false;
-            scope.checkPinConfirm = false;
-            pinConfirm = '';
-            pin = '';
+            scope.checkPinConfirm = true;
             enteredPin = '';
-            updateEnteredPin()
             scope.update();
+            updateEnteredPin()
           }
-        } else if (scope.checkPin) {
-          console.log('qwewewww')
-          pin = enteredPin;
-          scope.checkPin = false;
-          scope.checkPinConfirm = true;
-          enteredPin = '';
-          scope.update();
-          updateEnteredPin()
-        }
+        }, 100)
+
+
       }
     }
 
     var registrationInterval;
     enter = function (pin) {
-      event.preventDefault();
-      event.stopPropagation();
+      //event.preventDefault();
+      //event.stopPropagation();
 
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       localStorage.setItem("click_client_pin", JSON.stringify(hex_md5(pin)))
@@ -505,7 +511,9 @@
 //            riotTags.innerHTML = "<view-authorization>";
 //            riot.mount('view-authorization', {from: "registration-client"});
             scope.timeoutIndex = 0;
-            setTimeout(function () {checkRegistrationFunction()}, 5000)
+            setTimeout(function () {
+              checkRegistrationFunction()
+            }, 5000)
           }
           else {
             scope.clickPinError = false;
@@ -589,7 +597,9 @@
 
               if (scope.timeouts.length > scope.timeoutIndex) {
 
-                setTimeout(function () {checkRegistrationFunction()}, scope.timeouts[scope.timeoutIndex]);
+                setTimeout(function () {
+                  checkRegistrationFunction()
+                }, scope.timeouts[scope.timeoutIndex]);
                 scope.registrationSuccess = 0;
                 scope.timeoutIndex++;
               } else {
@@ -651,8 +661,8 @@
 
     changePin = function (pin) {
       console.log("aaa");
-      event.preventDefault();
-      event.stopPropagation();
+      //event.preventDefault();
+      //event.stopPropagation();
 
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
