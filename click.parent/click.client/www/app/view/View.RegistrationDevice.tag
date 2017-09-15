@@ -488,6 +488,7 @@
 
       window.api.call({
         method: 'device.register.request',
+        stopSpinner: false,
         input: {
           phone_num: phoneNumber,
           device_info: deviceInfo(),
@@ -504,6 +505,11 @@
           checkServiceAnswer = true;
           if (result[0][0].error == 0) {
             if (result[1][0]) {
+
+              if (device.platform != 'BrowserStand') {
+                console.log("Spinner Stop RegistrationDevice 510");
+                SpinnerPlugin.activityStop();
+              }
 
               localStorage.setItem('onResume', false)
 
