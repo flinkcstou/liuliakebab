@@ -73,7 +73,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-friend') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-add-friend',
+          "view"  : 'view-add-friend',
           "params": opts
         }
       );
@@ -590,7 +590,7 @@
 
       if (Math.abs(addButtonStartX - addButtonEndX) <= 20 && Math.abs(addButtonStartY - addButtonEndY) <= 20) {
 
-        if (localStorage.getItem('click_client_friends') === null) {
+        if (JSON.parse(localStorage.getItem('click_client_friends')) === null) {
           arrayOfFriends = []
         }
         else {

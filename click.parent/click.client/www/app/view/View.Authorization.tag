@@ -683,7 +683,7 @@
             if (!result[1][0].error) {
               localStorage.setItem('click_client_pin', pin)
 
-//              console.log("APP LOGIN RESULT", result);
+              console.log("APP LOGIN RESULT", result);
               localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
               modeOfflineMode.check = false;
               var JsonInfo = JSON.stringify(result[1][0]);
@@ -692,6 +692,16 @@
               checkSessionKey = true;
               viewAuthorization.check = false;
               localStorage.setItem("click_client_authorized", true);
+
+              if (localStorage.getItem('click_client_friends') && JSON.parse(localStorage.getItem('click_client_friends'))) {
+                var friends = JSON.parse(localStorage.getItem('click_client_friends'));
+                var outerFriendsCount = JSON.parse(localStorage.getItem('click_client_friendsOuter_count'));
+                friends.splice(friends.length - outerFriendsCount, outerFriendsCount);
+                console.log("deleted outer friends, ", outerFriendsCount, friends)
+                localStorage.setItem('click_client_friends', JSON.stringify(friends));
+                localStorage.removeItem('click_client_friendsOuter_count')
+              }
+
 
               getAccount();
               window.pushNotificationActions.retrievePushNotification();
