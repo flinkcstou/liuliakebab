@@ -56,6 +56,9 @@
     scope.invoiceLeft = 100 * widthK;
     scope.invoiceList = [];
 
+    scope.arrayOfPhoneNumbers = [];
+    scope.arrayOfFriends = (JSON.parse(localStorage.getItem('click_client_friends')) === null) ? [] : JSON.parse(localStorage.getItem('click_client_friends'));
+
     scope.showError = false;
 
     scope.checkSumOfHash = true;
@@ -147,8 +150,10 @@
             phoneNumber: invoice.merchant_phone,
             accountNumber: invoice.parameter,
             serviceName: invoice.service_name,
-            is_friend_help: invoice.is_friend_help
+            is_friend_help: invoice.is_friend_help,
+            friend_name: invoice.friend_name
           };
+
 
           history.arrayOfHistory.push({view: "view-payment-detail"});
           sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
@@ -375,11 +380,22 @@
 //                scope.update(scope.invoiceCheck);
 //                scope.update(scope.cardNumber);
                 var arrayOfInvoice = [];
+                console.log("scope.arrayOfFriends", scope.arrayOfFriends)
                 for (var i = 0; i < result[1].length; i++) {
 
                   //TODO: FIX
                   try {
                     result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
+                    if (result[1][i].is_friend_help && scope.arrayOfFriends.length != 0) {
+                      for (var j = 0; j < scope.arrayOfFriends.length; j++) {
+                        if (scope.arrayOfFriends[j].number === result[1][i].merchant_phone) {
+                          console.log("friend name assigning", result[1][i].friend_name)
+                          result[1][i].friend_name = scope.arrayOfFriends[j].name;
+                        }
+                      }
+                    }
+
+
                   } catch (error) {
 
                     console.log(error);
@@ -435,6 +451,125 @@
         }
       });
     };
+
+
+    function onSuccess(contacts) {
+      //      alert('Found ' + contacts.length + ' contacts.');
+      console.log('contacts', contacts)
+
+      for (var i in contacts) {
+        var personObj = {};
+        if (contacts[i].phoneNumbers) {
+          personObj.phone = [];
+          for (var k in contacts[i].phoneNumbers) {
+            personObj.phone.push(window.inputVerification.spaceDeleter(contacts[i].phoneNumbers[k].value))
+          }
+        }
+        else {
+          continue
+        }
+        if (contacts[i].name && contacts[i].name.familyName)
+          personObj.lastname = contacts[i].name.familyName
+
+        if (contacts[i].name && contacts[i].name.givenName)
+          personObj.firstname = contacts[i].name.givenName
+
+        scope.arrayOfPhoneNumbers.push(personObj)
+      }
+
+      console.log('CONTACTS ARRAY', scope.arrayOfPhoneNumbers)
+
+      if (typeof scope.arrayOfPhoneNumbers === 'undefined' || scope.arrayOfPhoneNumbers.length < 1) return
+
+
+      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+      var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+      var sessionKey = info.session_key;
+
+      window.api.call({
+        method: 'check.contact.list',
+        input: {
+          phone_num: phoneNumber,
+          phone_list: scope.arrayOfPhoneNumbers,
+          session_key: sessionKey,
+
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+            console.log("contact list checker method", result);
+            var object = {};
+            var counter = 0;
+
+            if (result[1][0])
+              for (var i in result[1][0].phone_list) {
+                object = {}
+                console.log('result[1][0]', result[1][0])
+                if (!result[1][0].phone_list[i].phone) {
+                  continue
+                }
+                if (result[1][0].phone_list[i].firstname && result[1][0].phone_list[i].lastname)
+                  object.name = result[1][0].phone_list[i].firstname + " " + result[1][0].phone_list[i].lastname;
+                else {
+                  if (result[1][0].phone_list[i].firstname)
+                    object.name = result[1][0].phone_list[i].firstname;
+                  else {
+                    if (result[1][0].phone_list[i].lastname) {
+                      object.name = result[1][0].phone_list[i].lastname
+                    }
+                    else {
+                      object.name = 'Неизвестно'
+                    }
+                  }
+                }
+                object.number = result[1][0].phone_list[i].phone;
+                if (object.name)
+                  object.firstLetterOfName = object.name[0].toUpperCase();
+                object.photo = null;
+                counter++;
+
+                scope.arrayOfFriends.push(object);
+              }
+
+            localStorage.setItem('click_client_friends', JSON.stringify(scope.arrayOfFriends))
+            localStorage.setItem('click_client_friendsOuter_count', counter);
+            scope.update();
+          }
+          else {
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
+            scope.viewPage = ''
+            scope.update();
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+
+
+    function onError(contactError) {
+      //      alert('onError!');
+      console.log('error', contactError)
+    }
+
+
+    if (!localStorage.getItem('click_client_friendsOuter_count')) {
+      console.log("requesting friend list")
+
+      if (device.platform != 'BrowserStand') {
+        var options = new ContactFindOptions();
+        options.multiple = true;
+        options.hasPhoneNumber = true;
+        navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
+      }
+    }
 
     scope.onComponentCreated = onComponentCreated = function (cardNumberParameter) {
 

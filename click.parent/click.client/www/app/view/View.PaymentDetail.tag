@@ -10,10 +10,11 @@
 
     <div class="payment-detail-payment-icon"></div>
     <p class="transfer-to-card-transfer-title-part-one">
-      {window.languages.ViewPaymentDetailTitleOne}</p>
+      {(opts.is_friend_help)? window.languages.ViewPaymentDetailTitleFriendHelpOne :
+      window.languages.ViewPaymentDetailTitleOne}</p>
 
     <p class="transfer-to-card-transfer-title-part-two">
-      {(opts.is_friend_help)?(window.languages.ViewPaymentDetailTitleTwo):(window.languages.ViewPaymentDetailTitleTwoIfNotFriendsHelp
+      {(opts.is_friend_help)?(window.languages.ViewPaymentDetailTitleFriendHelpTwo):(window.languages.ViewPaymentDetailTitleTwoIfNotFriendsHelp
       + " " + opts.serviceName)}</p>
 
     <p class="transfer-to-card-transfer-title-phone" if="{opts.is_friend_help}">
@@ -83,6 +84,8 @@
 
     scope.showError = false;
     //    scope.titleName = window.languages.ViewPaymentDetailTitle + scope.opts.invoiceId;
+
+    console.log("OPTS Payment Detail", opts)
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
