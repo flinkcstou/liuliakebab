@@ -402,6 +402,12 @@
 
         if (modeOfApp.offlineMode)return
 
+        if (viewTransfer.type == 2)
+          contactPhoneNumberId.blur();
+        else if (viewTransfer.type == 1)
+          cardInputId.blur();
+
+
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
@@ -891,12 +897,12 @@
         cardInputId.value = inputVerification.cardVerification(cardInputId.value);
 
         if (cardOldValueOfNumber.length != cardInputId.value.length && inputVerification.spaceDeleter(cardOldValueOfNumber) == inputVerification.spaceDeleter(cardInputId.value)) {
-
+          console.log("111")
           cardInputId.selectionStart = cardCursorPositionSelectionStart + 1
           cardInputId.selectionEnd = cardCursorPositionSelectionEnd + 1
         }
         else {
-
+          console.log("222")
           cardInputId.selectionStart = cardCursorPositionSelectionStart
           cardInputId.selectionEnd = cardCursorPositionSelectionEnd
         }

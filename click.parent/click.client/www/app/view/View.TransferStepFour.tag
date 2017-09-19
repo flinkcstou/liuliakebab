@@ -480,6 +480,7 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
+          componentUnsuccessId.style.display = 'block';
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -582,6 +583,7 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
+          componentUnsuccessId.style.display = 'block';
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
