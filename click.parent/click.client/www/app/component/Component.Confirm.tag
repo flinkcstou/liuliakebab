@@ -4,10 +4,12 @@
     <p class="component-alert-message">{opts.confirmnote}</p>
 
     <div class="component-calc-buttons-container">
-      <button id="confirmCancelButtonId" class="component-confirm-button-cancel-container" ontouchstart="cancelConfirmStart(this.id)" ontouchend="cancelConfirmEnd(this.id)">
+      <button id="confirmCancelButtonId" class="component-confirm-button-cancel-container"
+              ontouchstart="cancelConfirmStart(this.id)" ontouchend="cancelConfirmEnd(this.id)">
         {window.languages.ComponentConfirmCancel}
       </button>
-      <button id="confirmOkButtonId" class="component-confirm-button-ok-container" ontouchstart="okConfirmStart(this.id)" ontouchend="okConfirmEnd(this.id)">
+      <button id="confirmOkButtonId" class="component-confirm-button-ok-container"
+              ontouchstart="okConfirmStart(this.id)" ontouchend="okConfirmEnd(this.id)">
         {window.languages.ComponentAlertOk}
       </button>
     </div>
@@ -96,9 +98,11 @@
         scope.outerShowAlertBool = true;
         if (scope.parent)
           scope.parent.confirmShowBool = false;
-        console.log(scope.outerShowAlertBool)
-
         riot.update()
+        riotTags.innerHTML = "<view-authorization>";
+        riot.mount('view-authorization');
+
+
       }
     }
 
