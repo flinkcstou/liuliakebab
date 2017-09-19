@@ -117,7 +117,6 @@ window.api.initSocket = function () {
       try {
 
 
-
         if (parsedData.api_status == 0) {
           callBack.ok(parsedData.data);
           return;
