@@ -739,6 +739,13 @@
           }
         },
         onFail: function (api_status, api_status_message, data) {
+          scope.errorNote = "Сервис временно недоступен";
+          scope.showError = true;
+          scope.clickPinError = false;
+          scope.errorCode = 1;
+          scope.update();
+          console.log("App.login error, auth view 747")
+
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
