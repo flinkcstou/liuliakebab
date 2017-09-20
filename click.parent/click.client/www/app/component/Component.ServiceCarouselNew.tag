@@ -80,11 +80,11 @@
       scope.popularServiceList = [];
       window.api.call({
         method: 'get.popular.services',
-        input : {
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber
+          phone_num: phoneNumber
         },
-        scope : this,
+        scope: this,
 
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
@@ -158,7 +158,7 @@
           }
 
         },
-        onFail   : function (api_status, api_status_message, data) {
+        onFail: function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -239,10 +239,10 @@
 
       window.api.call({
         method: 'get.wishlist',
-        input : {
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber,
-          type       : 1
+          phone_num: phoneNumber,
+          type: 1
         },
 
         scope: this,
@@ -264,7 +264,7 @@
               favoritePaymentsListForApi = [];
               for (var i in scope.favoritePaymentsList)
                 favoritePaymentsListForApi.push({
-                  "id"  : scope.favoritePaymentsList[i].id,
+                  "id": scope.favoritePaymentsList[i].id,
                   "type": 1,
                   "body": JSON.stringify(scope.favoritePaymentsList[i])
                 })
@@ -283,7 +283,7 @@
                 favoritePaymentsListForApi = [];
                 for (var i in favoritePaymentsList)
                   favoritePaymentsListForApi.push({
-                    "id"  : favoritePaymentsList[i].id,
+                    "id": favoritePaymentsList[i].id,
                     "type": 1,
                     "body": JSON.stringify(favoritePaymentsList[i])
                   })
@@ -293,9 +293,9 @@
 
               window.api.call({
                 method: 'add.favourite',
-                input : {
-                  session_key  : sessionKey,
-                  phone_num    : phoneNumber,
+                input: {
+                  session_key: sessionKey,
+                  phone_num: phoneNumber,
                   wishlist_data: favoritePaymentsListForApi
                 },
 
@@ -598,65 +598,78 @@
 
             //scope.service = scope.servicesMap[scope.favoritePaymentsList[i].params.chosenServiceId][0];
 
+            console.log("localStorage cards", localStorage.getItem('click_client_cards'))
 
-            if (scope.favoritePaymentsList[i].service.form_type == 4 && scope.favoritePaymentsList[i].service.disable_cache && modeOfApp.onlineMode && !modeOfApp.demoVersion) {
+            if (localStorage.getItem('click_client_cards')) {
 
-              window.api.call({
-                method: 'get.service.parameters',
-                input : {
-                  session_key: sessionKey,
-                  phone_num  : phoneNumber,
-                  service_id : scope.favoritePaymentsList[i].service.id
-                },
 
-                scope: this,
+              if (scope.favoritePaymentsList[i].service.form_type == 4 && scope.favoritePaymentsList[i].service.disable_cache && modeOfApp.onlineMode && !modeOfApp.demoVersion) {
 
-                onSuccess: function (result) {
-                  if (result[0][0].error == 0) {
-                    console.log(' disable_cache, updating amountText')
+                window.api.call({
+                  method: 'get.service.parameters',
+                  input: {
+                    session_key: sessionKey,
+                    phone_num: phoneNumber,
+                    service_id: scope.favoritePaymentsList[i].service.id
+                  },
 
-                    if (result[5])
-                      for (var i in result[5]) {
-                        console.log("1");
-                        if (result[5][i].service_id == scope.favoritePaymentsList[i].service.id) {
-                          console.log("qwerty=", result[5][i].sum_cost);
-                          scope.favoritePaymentsList[i].params.amountText = window.amountTransform(result[5][i].sum_cost.toString())
-                          localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList))
-                          if (scope.favoritePaymentsList[i].service.additional_information_type == 3) {
-                            this.riotTags.innerHTML = "<view-service-info>";
-                            riot.mount('view-service-info', scope.favoritePaymentsList[i].params);
-                            scope.unmount()
-                          } else {
-                            this.riotTags.innerHTML = "<view-service-pincards-new>";
-                            riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
-                            scope.unmount()
+                  scope: this,
+
+                  onSuccess: function (result) {
+                    if (result[0][0].error == 0) {
+                      console.log(' disable_cache, updating amountText')
+
+                      if (result[5])
+                        for (var i in result[5]) {
+                          console.log("1");
+                          if (result[5][i].service_id == scope.favoritePaymentsList[i].service.id) {
+                            console.log("qwerty=", result[5][i].sum_cost);
+                            scope.favoritePaymentsList[i].params.amountText = window.amountTransform(result[5][i].sum_cost.toString())
+                            localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList))
+                            if (scope.favoritePaymentsList[i].service.additional_information_type == 3) {
+                              this.riotTags.innerHTML = "<view-service-info>";
+                              riot.mount('view-service-info', scope.favoritePaymentsList[i].params);
+                              scope.unmount()
+                            } else {
+                              this.riotTags.innerHTML = "<view-service-pincards-new>";
+                              riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
+                              scope.unmount()
+                            }
+                            break;
                           }
-                          break;
                         }
-                      }
 
+                    }
+                  },
+
+                  onFail: function (api_status, api_status_message, data) {
+                    console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                    console.error(data);
                   }
-                },
+                });
 
-                onFail: function (api_status, api_status_message, data) {
-                  console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                  console.error(data);
+              } else {
+
+
+                if (scope.favoritePaymentsList[i].service.additional_information_type == 3) {
+                  localStorage.setItem('click_client_infoCacheEnabled', null)
+                  this.riotTags.innerHTML = "<view-service-info-new>";
+                  riot.mount('view-service-info-new', scope.favoritePaymentsList[i].params);
+                  scope.unmount()
+                } else {
+                  this.riotTags.innerHTML = "<view-service-pincards-new>";
+                  riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
+                  scope.unmount()
                 }
-              });
+              }
 
             } else {
 
+              scope.clickPinError = false;
+              scope.errorNote = ("Подождите, данные для избранных платежей еще не подгрузились");
+              scope.showError = true;
+              scope.update();
 
-              if (scope.favoritePaymentsList[i].service.additional_information_type == 3) {
-                localStorage.setItem('click_client_infoCacheEnabled', null)
-                this.riotTags.innerHTML = "<view-service-info-new>";
-                riot.mount('view-service-info-new', scope.favoritePaymentsList[i].params);
-                scope.unmount()
-              } else {
-                this.riotTags.innerHTML = "<view-service-pincards-new>";
-                riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
-                scope.unmount()
-              }
             }
 
 

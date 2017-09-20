@@ -3965,7 +3965,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 30%; " +
+  "top: 25%; " +
   "width: 88%;" +
   "font-size:" + 54 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
@@ -13391,7 +13391,7 @@ var css = {
 
   autopayEventNameField: ".autopay-event-name-field" +
   "{" +
-  "height:" + 90 * widthK + "px;" +
+  // "height:" + 90 * widthK + "px;" +
   "top: 4%;" +
   "}",
 
