@@ -3965,7 +3965,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top:" + 26 * widthK + "px; " +
+  "top: 30%; " +
   "width: 88%;" +
   "font-size:" + 54 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
