@@ -733,8 +733,8 @@
             scope.showError = true;
             scope.update();
             enteredPin = '';
-//            if (!scope.firstEnter)
-            updateEnteredPin();
+            if (!scope.firstEnter)
+              updateEnteredPin();
             return
           }
         },
