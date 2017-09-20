@@ -31,7 +31,40 @@
 
     //<div class="pincard-allcards-transparent-block"></div>
     //    if (!viewTransfer.check) {
-    scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+
+    scope.cardsArray = localStorage.getItem('click_client_cards') ? JSON.parse(localStorage.getItem('click_client_cards')) : [];
+
+    updateCardsArray = function () {
+      console.log("update cards array")
+      if (localStorage.getItem('click_client_cards')) {
+        scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+        if (device.platform != 'BrowserStand') {
+          console.log("Spinner Stop View Pincard Comp 45");
+          SpinnerPlugin.activityStop();
+        }
+
+        scope.update();
+      }
+      else
+        setTimeout(function () {
+          updateCardsArray();
+        }, 3000)
+    }
+
+    if (!localStorage.getItem('click_client_cards')) {
+      if (device.platform != 'BrowserStand') {
+        var options = {dimBackground: true};
+
+        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+          console.log("Started");
+        }, function () {
+          console.log("closed");
+        });
+      }
+
+      updateCardsArray();
+    }
+
 
     //    else {
     //      scope.cardsArray = [];
@@ -149,7 +182,7 @@
         }
       }
 
-      if (!checkChosenCard) {
+      if (!checkChosenCard && scope.cardsArray[indexOfCard]) {
         scope.cardsArray[indexOfCard].chosenCard = true;
         scope.cardName = scope.cardsArray[indexOfCard].name;
         scope.cardSum = scope.cardsArray[indexOfCard].salaryOriginal
@@ -176,7 +209,7 @@
     };
 
     scope.getAccountCardSum = function () {
-      console.log('sum',scope)
+      console.log('sum', scope)
 
       return scope.cardSum;
     };

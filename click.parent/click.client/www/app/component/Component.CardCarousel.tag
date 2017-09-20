@@ -131,10 +131,10 @@
           params = {
 
             phoneNumber: invoice.parameter,
-            amount: invoice.amount,
-            invoiceId: invoice.invoice_id,
-            time: invoice.time,
-            date: invoice.date,
+            amount     : invoice.amount,
+            invoiceId  : invoice.invoice_id,
+            time       : invoice.time,
+            date       : invoice.date,
           };
 
           history.arrayOfHistory.push({view: "view-transfer-detail"});
@@ -145,13 +145,13 @@
 
           params = {
 
-            amount: invoice.amount,
-            invoiceId: invoice.invoice_id,
-            phoneNumber: invoice.merchant_phone,
-            accountNumber: invoice.parameter,
-            serviceName: invoice.service_name,
+            amount        : invoice.amount,
+            invoiceId     : invoice.invoice_id,
+            phoneNumber   : invoice.merchant_phone,
+            accountNumber : invoice.parameter,
+            serviceName   : invoice.service_name,
             is_friend_help: invoice.is_friend_help,
-            friend_name: invoice.friend_name
+            friend_name   : invoice.friend_name
           };
 
 
@@ -286,28 +286,28 @@
 
 
           card = {
-            card_id: getAccountsCards[i].id,
-            id: getAccountsCards[i].id,
-            card_num_hash: getAccountsCards[i].card_num_hash,
-            card_num_crypted: getAccountsCards[i].card_num_crypted,
-            checksum: getAccountsCards[i].checksum,
-            bankName: typeOfCard,
-            name: getAccountsCards[i].description,
-            salary: '',
-            error_message: null,
-            countCard: getAccountsCards[i].countCard,
-            currency: getAccountsCards[i].currency_name.trim(),
-            numberPartOne: numberOfCardPartOne,
-            numberPartTwo: numberOfCardPartTwo,
-            url: getAccountsCards[i].image_url,
-            card_background_url: getAccountsCards[i].card_background_url,
-            chosenCard: defaultAccount,
-            default_account: defaultAccount,
-            access: getAccountsCards[i].access,
+            card_id                : getAccountsCards[i].id,
+            id                     : getAccountsCards[i].id,
+            card_num_hash          : getAccountsCards[i].card_num_hash,
+            card_num_crypted       : getAccountsCards[i].card_num_crypted,
+            checksum               : getAccountsCards[i].checksum,
+            bankName               : typeOfCard,
+            name                   : getAccountsCards[i].description,
+            salary                 : '',
+            error_message          : null,
+            countCard              : getAccountsCards[i].countCard,
+            currency               : getAccountsCards[i].currency_name.trim(),
+            numberPartOne          : numberOfCardPartOne,
+            numberPartTwo          : numberOfCardPartTwo,
+            url                    : getAccountsCards[i].image_url,
+            card_background_url    : getAccountsCards[i].card_background_url,
+            chosenCard             : defaultAccount,
+            default_account        : defaultAccount,
+            access                 : getAccountsCards[i].access,
             background_color_bottom: getAccountsCards[i].background_color_bottom,
-            background_color_top: getAccountsCards[i].background_color_top,
-            font_color: getAccountsCards[i].font_color,
-            removable: getAccountsCards[i].removable,
+            background_color_top   : getAccountsCards[i].background_color_top,
+            font_color             : getAccountsCards[i].font_color,
+            removable              : getAccountsCards[i].removable,
           };
 
           scope.cardsarray[getAccountsCards[i].id] = card;
@@ -350,12 +350,12 @@
         var sessionKey = loginInfo.session_key;
 
       window.api.call({
-        method: 'invoice.list',
-        input: {
+        method   : 'invoice.list',
+        input    : {
           session_key: sessionKey,
-          phone_num: phoneNumber
+          phone_num  : phoneNumber
         },
-        scope: this,
+        scope    : this,
         onSuccess: function (result) {
           if (result[0][0].error == 0 && viewMainPage.atMainPage) {
             if (result[1]) {
@@ -488,9 +488,9 @@
 
       window.api.call({
         method: 'check.contact.list',
-        input: {
-          phone_num: phoneNumber,
-          phone_list: scope.arrayOfPhoneNumbers,
+        input : {
+          phone_num  : phoneNumber,
+          phone_list : scope.arrayOfPhoneNumbers,
           session_key: sessionKey,
 
         },
@@ -588,9 +588,9 @@
 
           window.api.call({
             method: 'get.accounts',
-            input: {
+            input : {
               session_key: sessionKey,
-              phone_num: phoneNumber
+              phone_num  : phoneNumber
             },
 
             scope: this,
@@ -700,7 +700,7 @@
                         var filename = icon.substr(icon.lastIndexOf('/') + 1);
 //                        alert("filename=" + filename);
 
-                        var newIconBool = checkImageURLInProject;
+                        var newIconBool = checkImageURL;
                         newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
 
                           if (bool) {
@@ -715,7 +715,7 @@
 
                           var icon2 = arrayAccountInfo[index].image_url;
                           var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
-                          var newIcon = checkImageURLInProject;
+                          var newIcon = checkImageURL;
                           newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
 
                             if (bool2) {
@@ -921,18 +921,18 @@
         console.log('getAccountsCards', getAccountsCards[i])
         console.log('Balance request')
         window.api.call({
-          method: 'get.balance',
+          method     : 'get.balance',
           stopSpinner: false,
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            account_id: getAccountsCards[i].id,
-            card_num_hash: getAccountsCards[i].card_num_hash,
+          input      : {
+            session_key     : sessionKey,
+            phone_num       : phoneNumber,
+            account_id      : getAccountsCards[i].id,
+            card_num_hash   : getAccountsCards[i].card_num_hash,
             card_num_crypted: getAccountsCards[i].card_num_crypted
           },
           //TODO: DO CARDS
-          scope: this,
-          onSuccess: function (result) {
+          scope      : this,
+          onSuccess  : function (result) {
             if (result[0][0].error == 0) {
               if (result[1][0]) {
                 try {

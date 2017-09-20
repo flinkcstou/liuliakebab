@@ -72,7 +72,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards-new') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-service-pincards-new',
+          "view"  : 'view-service-pincards-new',
           "params": opts
         }
       );
