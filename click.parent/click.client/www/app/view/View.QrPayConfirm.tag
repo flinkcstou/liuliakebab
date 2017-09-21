@@ -70,6 +70,8 @@
                            operationmessagepartone="{window.languages.ComponentInProcessingPartOneForPay}"
                            operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"
                            step_amount="{3}"></component-in-processing>
+  <component-alert if="{showError}" errorcode="{errorCode}"
+                   errornote="{errorNote}"></component-alert>
 
 
   <script>
@@ -86,7 +88,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr-pay-confirm') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-qr-pay-confirm',
+          "view"  : 'view-qr-pay-confirm',
           "params": opts
         }
       );
@@ -217,13 +219,13 @@
         }
 
         inputObject = {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          service_id: Number(serviceId),
-          account_id: Number(accountId),
-          amount: Number(amount),
+          session_key : sessionKey,
+          phone_num   : phoneNumber,
+          service_id  : Number(serviceId),
+          account_id  : Number(accountId),
+          amount      : Number(amount),
           payment_data: payment_data,
-          datetime: date,
+          datetime    : date,
           friend_phone: friendPhone
         };
 
@@ -239,24 +241,23 @@
 
         console.log("inputObject", inputObject)
 
-        var answerFromServer = false;
-
         window.api.call({
-          method: 'app.payment',
+          method     : 'app.payment',
           stopSpinner: false,
-          input: inputObject,
+          input      : inputObject,
 
           scope: this,
 
           onSuccess: function (result) {
 
-            answerFromServer = true;
 
             console.log('RESULT QR QR', result)
 
             if (result[0][0].error == 0) {
               if (result[1])
                 if (!result[1][0].payment_id && result[1][0].invoice_id) {
+
+                  answerFromServer = true;
 
                   if (device.platform != 'BrowserStand') {
                     console.log("Spinner Stop View QR Pay Confirm 261");
@@ -304,10 +305,15 @@
 
         setTimeout(function () {
           if (!answerFromServer) {
+            scope.showError = true;
+            scope.errorNote = "Время ожидания истекло";
+            scope.errorCode = 1;
+            scope.update();
             if (device.platform != 'BrowserStand') {
               console.log("Spinner Stop View QR Pay Confirm 307");
               SpinnerPlugin.activityStop();
             }
+            window.isConnected = false;
             return
           }
         }, 20000)
@@ -315,6 +321,7 @@
 
     }
 
+    var answerFromServer = false;
     var qrCounter = 0;
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -324,12 +331,12 @@
       console.log("check transfer status");
 
       window.api.call({
-        method: 'get.payment',
+        method     : 'get.payment',
         stopSpinner: false,
-        input: {
+        input      : {
           session_key: sessionKey,
-          phone_num: phoneNumber,
-          payment_id: payment_id
+          phone_num  : phoneNumber,
+          payment_id : payment_id
         },
 
         scope: this,
@@ -340,6 +347,8 @@
 
             if (result[1][0].state == -1) {
 
+              answerFromServer = true;
+
               if (device.platform != 'BrowserStand') {
                 console.log("Spinner Stop View QR Pay Confirm 343");
                 SpinnerPlugin.activityStop();
@@ -349,6 +358,8 @@
 
 
             } else if (result[1][0].state == 2) {
+
+              answerFromServer = true;
 
               if (device.platform != 'BrowserStand') {
                 console.log("Spinner Stop View QR Pay Confirm 353");
@@ -379,6 +390,8 @@
 
               } else {
 
+                answerFromServer = true;
+
                 if (device.platform != 'BrowserStand') {
                   console.log("Spinner Stop View QR Pay Confirm 382");
                   SpinnerPlugin.activityStop();
@@ -392,6 +405,7 @@
 
           }
           else {
+            answerFromServer = true;
             if (device.platform != 'BrowserStand') {
               console.log("Spinner Stop View QR Pay Confirm 395");
               SpinnerPlugin.activityStop();
@@ -401,6 +415,8 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
+          answerFromServer = true;
+          componentUnsuccessId.style.display = 'block';
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }

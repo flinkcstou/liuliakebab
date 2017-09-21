@@ -91,7 +91,7 @@
                            operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"
                            step_amount="{3}"></component-in-processing>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}" errorcode="{errorCode}"
                    errornote="{errorNote}"></component-alert>
 
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
@@ -101,7 +101,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-transfer-stepfour',
+          "view"  : 'view-transfer-stepfour',
           "params": opts
         }
       );
@@ -112,6 +112,7 @@
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = false;
     scope.showError = false;
+    scope.errorCode = 0;
 
     console.log("TRANSFER STEP FOUR OPTS", opts)
     scope.tax = opts[1];
@@ -383,6 +384,8 @@
       }
     }
 
+    var answerFromServer = false;
+
     transfer = function () {
 
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
@@ -400,20 +403,19 @@
         });
       }
 
-      var answerFromServer = false;
 
       console.log("TRANSACTION_ID", objectForTransfer.transactionId)
 
       window.api.call({
-        method: 'p2p.payment',
+        method     : 'p2p.payment',
         stopSpinner: false,
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          account_id: scope.objectCardForTransfer.card_id,
-          receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
-          amount: parseInt(scope.objectSumForTransfer.sum),
-          type: scope.objectTypeForTransfer.type,
+        input      : {
+          session_key   : sessionKey,
+          phone_num     : phoneNumber,
+          account_id    : scope.objectCardForTransfer.card_id,
+          receiver_data : scope.objectTypeForTransfer.name.replace(/\s/g, ''),
+          amount        : parseInt(scope.objectSumForTransfer.sum),
+          type          : scope.objectTypeForTransfer.type,
           transaction_id: objectForTransfer.transactionId
 //                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
         },
@@ -421,7 +423,7 @@
         scope: this,
 
         onSuccess: function (result) {
-          answerFromServer = true;
+
           if (result[0][0].error == 0) {
             viewTransferStepTwo.sum = 0;
             viewTransferStepTwo.sumWithoutSpace = 0;
@@ -429,6 +431,8 @@
             if (result[1])
               if (result[1][0]) {
                 if (result[1][0].secret_code && scope.objectTypeForTransfer.type == 2) {
+
+                  answerFromServer = true;
 
                   if (device.platform != 'BrowserStand') {
                     console.log("Spinner Stop Transfer Step Four 432");
@@ -488,10 +492,15 @@
 
       setTimeout(function () {
         if (!answerFromServer) {
+          scope.showError = true;
+          scope.errorNote = "Время ожидания истекло";
+          scope.errorCode = 1;
+          scope.update();
           if (device.platform != 'BrowserStand') {
             console.log("Spinner Stop Transfer Step Four 484");
             SpinnerPlugin.activityStop();
           }
+          window.isConnected = false;
           return
         }
       }, 20000)
@@ -507,12 +516,12 @@
       console.log("check transfer status");
 
       window.api.call({
-        method: 'get.payment',
+        method     : 'get.payment',
         stopSpinner: false,
-        input: {
+        input      : {
           session_key: sessionKey,
-          phone_num: phoneNumber,
-          payment_id: payment_id
+          phone_num  : phoneNumber,
+          payment_id : payment_id
         },
 
         scope: this,
@@ -525,6 +534,7 @@
 
 
             if (result[1][0].state == -1) {
+              answerFromServer = true;
 
               window.languages.tempText = JSON.stringify(result[1][0].error);
               scope.errorMessageFromTransfer = result[1][0].error;
@@ -537,6 +547,7 @@
 
 
             } else if (result[1][0].state == 2) {
+              answerFromServer = true;
 
               if (device.platform != 'BrowserStand') {
                 console.log("Spinner Stop Transfer Step Four 534");
@@ -560,6 +571,7 @@
                 }, 2000);
 
               } else {
+                answerFromServer = true;
 
                 if (device.platform != 'BrowserStand') {
                   console.log("Spinner Stop Transfer Step Four 557");
@@ -574,6 +586,7 @@
 
           }
           else {
+            answerFromServer = true;
             if (device.platform != 'BrowserStand') {
               console.log("Spinner Stop Transfer Step Four 570");
               SpinnerPlugin.activityStop();
@@ -583,6 +596,7 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
+          answerFromServer = true;
           componentUnsuccessId.style.display = 'block';
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);

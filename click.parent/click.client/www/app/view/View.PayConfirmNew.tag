@@ -128,7 +128,7 @@
                           viewpage="{viewPage}"
                           step_amount="{stepAmount}"></component-generated-qr>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}" errorcode="{errorCode}"
                    errornote="{errorNote}"></component-alert>
 
 
@@ -141,7 +141,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay-confirm-new') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-pay-confirm-new',
+          "view"  : 'view-pay-confirm-new',
           "params": opts
         }
       );
@@ -211,6 +211,7 @@
 
     scope.stepAmount = 3;
     scope.stepErrorAmount = 3;
+    scope.errorCode = 0;
 
     this.formType = opts.formtype;
     this.firstFieldId = opts.firstFieldId;
@@ -354,22 +355,22 @@
           favoritePaymentsListForApi = [];
           for (var i in favoritePaymentsList)
             favoritePaymentsListForApi.push({
-              "id": favoritePaymentsList[i].id,
+              "id"  : favoritePaymentsList[i].id,
               "type": 1,
               "body": JSON.stringify(favoritePaymentsList[i])
             })
         }
 
         var newFavorite = {
-          "params": opts,
+          "params" : opts,
           "service": scope.service,
-          "ussd": scope.fieldArray[0].ussd_query,
-          "id": id
+          "ussd"   : scope.fieldArray[0].ussd_query,
+          "id"     : id
         };
         favoritePaymentsList.push(newFavorite);
 
         favoritePaymentsListForApi.push({
-          "id": id,
+          "id"  : id,
           "type": 1,
           "body": JSON.stringify(newFavorite)
         });
@@ -377,9 +378,9 @@
 
         window.api.call({
           method: 'add.favourite',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
+          input : {
+            session_key  : sessionKey,
+            phone_num    : phoneNumber,
             wishlist_data: favoritePaymentsListForApi
           },
 
@@ -448,9 +449,9 @@
 
             window.api.call({
               method: 'delete.favourite',
-              input: {
-                session_key: sessionKey,
-                phone_num: phoneNumber,
+              input : {
+                session_key  : sessionKey,
+                phone_num    : phoneNumber,
                 wishlist_data: [{"id": opts.favoriteId, "type": 1}]
               },
 
@@ -570,31 +571,31 @@
 
       if (opts.formtype == 1) {
         payment_data = {
-          "param": opts.firstFieldId,
-          "value": firstFieldtext,
+          "param"         : opts.firstFieldId,
+          "value"         : firstFieldtext,
           "transaction_id": opts.transactionId
         };
       }
       else if (opts.formtype == 2) {
         payment_data = {
-          "pin_param": opts.cardTypeId,
+          "pin_param"     : opts.cardTypeId,
           "transaction_id": opts.transactionId
         };
       }
       else if (opts.formtype == 3) {
         payment_data = {
-          "param": opts.firstFieldId,
-          "value": firstFieldtext,
+          "param"         : opts.firstFieldId,
+          "value"         : firstFieldtext,
           "communal_param": opts.communalParam,
           "transaction_id": opts.transactionId
         };
       }
       else if (opts.formtype == 4) {
         payment_data = {
-          "param": opts.firstFieldId,
-          "value": firstFieldtext,
+          "param"                 : opts.firstFieldId,
+          "value"                 : firstFieldtext,
           "internet_package_param": opts.internetPackageParam,
-          "transaction_id": opts.transactionId
+          "transaction_id"        : opts.transactionId
         };
       }
 
@@ -612,6 +613,7 @@
     };
 
     var statusCheckCounter = 0;
+    var answerFromServer = false;
 
 
     function paymentFunction(payment_data) {
@@ -626,31 +628,29 @@
         });
       }
 
-      var answerFromServer = false;
-
 
       if (opts.optionAttribute && opts.optionValue) {
         payment_data[opts.optionAttribute] = opts.optionValue;
       }
 
       window.api.call({
-        method: 'app.payment',
+        method     : 'app.payment',
         stopSpinner: false,
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          service_id: Number(serviceId),
-          account_id: Number(accountId),
-          amount: Number(amount),
+        input      : {
+          session_key : sessionKey,
+          phone_num   : phoneNumber,
+          service_id  : Number(serviceId),
+          account_id  : Number(accountId),
+          amount      : Number(amount),
           payment_data: payment_data,
-          datetime: date,
+          datetime    : date,
           friend_phone: friendPhone
         },
 
         scope: this,
 
         onSuccess: function (result) {
-          answerFromServer = true;
+
           if (result[0][0].error == 0) {
             if (result[1]) {
 
@@ -673,6 +673,8 @@
               }
               else if (result[1][0].invoice_id && !result[1][0].payment_id) {
 
+                answerFromServer = true;
+
                 if (device.platform != 'BrowserStand') {
                   console.log("Spinner Stop View Pay Confirm New 676");
                   SpinnerPlugin.activityStop();
@@ -686,6 +688,7 @@
             }
           }
           else {
+            answerFromServer = true;
             scope.errorMessageFromPayment = result[0][0].error_note;
             componentUnsuccessId.style.display = 'block';
             scope.update();
@@ -702,10 +705,15 @@
 
       setTimeout(function () {
         if (!answerFromServer) {
+          scope.showError = true;
+          scope.errorNote = "Время ожидания истекло";
+          scope.errorCode = 1;
+          scope.update();
           if (device.platform != 'BrowserStand') {
             console.log("Spinner Stop View Pay Confirm New 705");
             SpinnerPlugin.activityStop();
           }
+          window.isConnected = false;
           return
         }
       }, 20000)
@@ -716,12 +724,12 @@
       console.log("check payment status");
 
       window.api.call({
-        method: 'get.payment',
+        method     : 'get.payment',
         stopSpinner: false,
-        input: {
+        input      : {
           session_key: sessionKey,
-          phone_num: phoneNumber,
-          payment_id: payment_id
+          phone_num  : phoneNumber,
+          payment_id : payment_id
         },
 
         scope: this,
@@ -731,6 +739,7 @@
 
 
             if (result[1][0].state == -1) {
+              answerFromServer = true;
               scope.stepErrorAmount = 2;
               window.languages.tempText = JSON.stringify(result[1][0].error);
               scope.errorMessageFromPayment = result[1][0].error;
@@ -743,6 +752,7 @@
 
 
             } else if (result[1][0].state == 2) {
+              answerFromServer = true;
               window.updateBalanceGlobalFunction();
 
               viewServicePinCards.friendHelpPaymentMode = false;
@@ -756,6 +766,7 @@
               }
 
               if (result[1][0].qr_image) {
+                answerFromServer = true;
                 scope.qrImage = result[1][0].qr_image;
                 scope.qrHeader = result[1][0].qr_header;
                 scope.qrFooter = result[1][0].qr_footer;
@@ -777,6 +788,7 @@
                 }, 2000);
 
               } else {
+                answerFromServer = true;
 
                 console.log("stopping check")
 
@@ -800,6 +812,7 @@
 
           }
           else {
+            answerFromServer = true;
             if (device.platform != 'BrowserStand') {
               console.log("Spinner Stop View Pay Confirm New 803");
               SpinnerPlugin.activityStop();
@@ -809,6 +822,7 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
+          answerFromServer = true;
           componentUnsuccessId.style.display = 'block';
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
@@ -849,15 +863,15 @@
           console.log(Number(amount));
           window.api.call({
             method: 'autopay.add.by.event',
-            input: {
-              session_key: sessionKey,
-              phone_num: phoneNumber,
-              service_id: Number(serviceId),
-              account_id: Number(accountId),
-              amount: amount,
+            input : {
+              session_key    : sessionKey,
+              phone_num      : phoneNumber,
+              service_id     : Number(serviceId),
+              account_id     : Number(accountId),
+              amount         : amount,
               cntrg_phone_num: inputVerification.spaceDeleter(scope.autoPayData.cntrg_phone_num),
-              step: scope.autoPayData.step,
-              title: scope.autoPayData.name
+              step           : scope.autoPayData.step,
+              title          : scope.autoPayData.name
             },
 
             scope: this,
@@ -890,18 +904,18 @@
 
           window.api.call({
             method: 'autopay.add.by.schedule',
-            input: {
-              session_key: sessionKey,
-              phone_num: phoneNumber,
-              type: scope.autoPayData.type,
-              service_id: Number(serviceId),
-              account_id: Number(accountId),
-              amount: Number(amount),
+            input : {
+              session_key : sessionKey,
+              phone_num   : phoneNumber,
+              type        : scope.autoPayData.type,
+              service_id  : Number(serviceId),
+              account_id  : Number(accountId),
+              amount      : Number(amount),
               payment_data: payment_data,
-              paytime: scope.autoPayData.paytime,
-              week_day: scope.autoPayData.week_day ? scope.autoPayData.week_day : null,
-              month_day: scope.autoPayData.month_day ? scope.autoPayData.month_day : null,
-              title: scope.autoPayData.name
+              paytime     : scope.autoPayData.paytime,
+              week_day    : scope.autoPayData.week_day ? scope.autoPayData.week_day : null,
+              month_day   : scope.autoPayData.month_day ? scope.autoPayData.month_day : null,
+              title       : scope.autoPayData.name
             },
 
             scope: this,
@@ -969,10 +983,10 @@
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         window.api.call({
           method: 'autopay.delete',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            autopay_id: scope.autoPayData.id,
+          input : {
+            session_key : sessionKey,
+            phone_num   : phoneNumber,
+            autopay_id  : scope.autoPayData.id,
             autopay_type: scope.autoPayData.autopay_type
           },
 
