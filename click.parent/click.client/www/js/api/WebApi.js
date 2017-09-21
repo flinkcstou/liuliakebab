@@ -149,9 +149,8 @@ window.api.initSocket = function () {
                 SpinnerPlugin.activityStop();
               }
               localStorage.setItem('session_broken', true);
-              riotTags.innerHTML = "<view-authorization>";
-              riot.mount('view-authorization');
-              return
+              showAlertComponent("Сессия была прервана");
+
             }
 
             return

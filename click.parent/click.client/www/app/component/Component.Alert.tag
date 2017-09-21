@@ -103,6 +103,7 @@
             }
         } else {
           scope.outerShowAlertBool = true;
+          riot.update()
           riotTags.innerHTML = "<view-authorization>";
           riot.mount('view-authorization');
         }
