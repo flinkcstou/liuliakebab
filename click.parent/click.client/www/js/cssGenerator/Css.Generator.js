@@ -10145,13 +10145,12 @@ var css = {
   componentBankListBankLogoFront: ".component-banklist-bank-logo-front" +
   "{" +
   "position: absolute;" +
-  "top:" + 62 * widthK + "px;" +
-  "right:" + -16 * widthK + "px;" +
+  "top:" + 74 * widthK + "px;" +
+  "right:" + 28.5 * widthK + "px;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  "font-size:" + 36 * widthK + "px;" +
-  "height:" + 170 * widthK + "px;" +
-  "width:" + 330 * widthK + "px;" +
+  "height:" + 150 * widthK + "px;" +
+  "width:" + 245 * widthK + "px;" +
   "background-position: top right;" +
   "background-position-x: center;" +
   "background-position-y: center;" +
