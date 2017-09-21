@@ -1145,7 +1145,7 @@
 
             onSuccess: function (result) {
               if (result[0][0].error == 0) {
-                console.log('GET SERVICE PARAMETERS LIST', JSON.stringify(result))
+                //console.log('GET SERVICE PARAMETERS LIST', JSON.stringify(result))
                 if (result[1])
                   for (var i in result[1]) {
                     console.log("1. service id=", result[1][i].service_id, "element:", result[1][i]);
