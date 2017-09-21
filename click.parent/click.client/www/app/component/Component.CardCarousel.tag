@@ -131,10 +131,10 @@
           params = {
 
             phoneNumber: invoice.parameter,
-            amount     : invoice.amount,
-            invoiceId  : invoice.invoice_id,
-            time       : invoice.time,
-            date       : invoice.date,
+            amount: invoice.amount,
+            invoiceId: invoice.invoice_id,
+            time: invoice.time,
+            date: invoice.date,
           };
 
           history.arrayOfHistory.push({view: "view-transfer-detail"});
@@ -145,13 +145,13 @@
 
           params = {
 
-            amount        : invoice.amount,
-            invoiceId     : invoice.invoice_id,
-            phoneNumber   : invoice.merchant_phone,
-            accountNumber : invoice.parameter,
-            serviceName   : invoice.service_name,
+            amount: invoice.amount,
+            invoiceId: invoice.invoice_id,
+            phoneNumber: invoice.merchant_phone,
+            accountNumber: invoice.parameter,
+            serviceName: invoice.service_name,
             is_friend_help: invoice.is_friend_help,
-            friend_name   : invoice.friend_name
+            friend_name: invoice.friend_name
           };
 
 
@@ -286,28 +286,28 @@
 
 
           card = {
-            card_id                : getAccountsCards[i].id,
-            id                     : getAccountsCards[i].id,
-            card_num_hash          : getAccountsCards[i].card_num_hash,
-            card_num_crypted       : getAccountsCards[i].card_num_crypted,
-            checksum               : getAccountsCards[i].checksum,
-            bankName               : typeOfCard,
-            name                   : getAccountsCards[i].description,
-            salary                 : '',
-            error_message          : null,
-            countCard              : getAccountsCards[i].countCard,
-            currency               : getAccountsCards[i].currency_name.trim(),
-            numberPartOne          : numberOfCardPartOne,
-            numberPartTwo          : numberOfCardPartTwo,
-            url                    : getAccountsCards[i].image_url,
-            card_background_url    : getAccountsCards[i].card_background_url,
-            chosenCard             : defaultAccount,
-            default_account        : defaultAccount,
-            access                 : getAccountsCards[i].access,
+            card_id: getAccountsCards[i].id,
+            id: getAccountsCards[i].id,
+            card_num_hash: getAccountsCards[i].card_num_hash,
+            card_num_crypted: getAccountsCards[i].card_num_crypted,
+            checksum: getAccountsCards[i].checksum,
+            bankName: typeOfCard,
+            name: getAccountsCards[i].description,
+            salary: '',
+            error_message: null,
+            countCard: getAccountsCards[i].countCard,
+            currency: getAccountsCards[i].currency_name.trim(),
+            numberPartOne: numberOfCardPartOne,
+            numberPartTwo: numberOfCardPartTwo,
+            url: getAccountsCards[i].image_url,
+            card_background_url: getAccountsCards[i].card_background_url,
+            chosenCard: defaultAccount,
+            default_account: defaultAccount,
+            access: getAccountsCards[i].access,
             background_color_bottom: getAccountsCards[i].background_color_bottom,
-            background_color_top   : getAccountsCards[i].background_color_top,
-            font_color             : getAccountsCards[i].font_color,
-            removable              : getAccountsCards[i].removable,
+            background_color_top: getAccountsCards[i].background_color_top,
+            font_color: getAccountsCards[i].font_color,
+            removable: getAccountsCards[i].removable,
           };
 
           scope.cardsarray[getAccountsCards[i].id] = card;
@@ -350,12 +350,12 @@
         var sessionKey = loginInfo.session_key;
 
       window.api.call({
-        method   : 'invoice.list',
-        input    : {
+        method: 'invoice.list',
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber
+          phone_num: phoneNumber
         },
-        scope    : this,
+        scope: this,
         onSuccess: function (result) {
           if (result[0][0].error == 0 && viewMainPage.atMainPage) {
             if (result[1]) {
@@ -488,9 +488,9 @@
 
       window.api.call({
         method: 'check.contact.list',
-        input : {
-          phone_num  : phoneNumber,
-          phone_list : scope.arrayOfPhoneNumbers,
+        input: {
+          phone_num: phoneNumber,
+          phone_list: scope.arrayOfPhoneNumbers,
           session_key: sessionKey,
 
         },
@@ -571,6 +571,62 @@
       }
     }
 
+
+    cardImagesCaching = function () {
+      if (device.platform != 'BrowserStand') {
+
+        window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+          var j = -1, count = 0;
+          for (var i = 0; i < arrayAccountInfo.length; i++) {
+            j++;
+
+            var icon = arrayAccountInfo[i].card_background_url;
+            var filename = icon.substr(icon.lastIndexOf('/') + 1);
+
+            var newIconBool = checkImageURL;
+            newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
+
+              if (bool) {
+                count++;
+                arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
+                console.log("(1)new file name=" + arrayAccountInfo[index].card_background_url + "," + count);
+              } else {
+                count++;
+                arrayAccountInfo[index].card_background_url = 'resources/icons/cards/' + fileName;
+                console.log("(2)new file name=" + arrayAccountInfo[index].card_background_url + "," + count);
+              }
+
+              var icon2 = arrayAccountInfo[index].image_url;
+              var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
+              var newIcon = checkImageURL;
+              newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
+
+                if (bool2) {
+                  count++;
+                  arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
+                  console.log("(11)new file name=" + arrayAccountInfo[index2].image_url + "," + count);
+                } else {
+                  count++;
+                  arrayAccountInfo[index2].image_url = 'resources/icons/cards/logo/' + fileName2;
+                  console.log("(12)new file name=" + arrayAccountInfo[index2].image_url + "," + count);
+                }
+
+                if (count == (arrayAccountInfo.length * 2)) {
+
+                  console.log('SAVE into localstorage cached cards', arrayAccountInfo);
+                  localStorage.setItem("click_client_accountInfo", JSON.stringify(arrayAccountInfo));
+
+                }
+              });
+            });
+          }
+
+        }, onErrorLoadFs);
+      }
+    };
+
+    var arrayAccountInfo = [];
+
     scope.onComponentCreated = onComponentCreated = function (cardNumberParameter) {
 
       console.log("onComponentCreated STARTED");
@@ -588,16 +644,14 @@
 
           window.api.call({
             method: 'get.accounts',
-            input : {
+            input: {
               session_key: sessionKey,
-              phone_num  : phoneNumber
+              phone_num: phoneNumber
             },
 
             scope: this,
 
             onSuccess: function (result) {
-
-              var arrayAccountInfo = [];
 
 
               if (result[0][0].error == 0) {
@@ -673,113 +727,30 @@
                   var countCard = 2;
                   var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
 
-                  if (device.platform != 'BrowserStand') {
-                    var count = 0;
-
-                    window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-                      var j = -1;
-                      for (var i = 0; i < result[1].length; i++) {
-                        j++;
-//                        console.log('arrayAccountInfo_1' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
-
-                        if (result[1][i].id == loginInfo.default_account) {
-                          result[1][i].countCard = 1;
-                        }
-                        else {
-                          result[1][i].countCard = countCard;
-                          countCard++;
-                        }
-                        arrayAccountInfo.push(result[1][i])
-
-//                        arrayAccountInfo.push(result[1][i]);
-
-                        console.log('arrayAccountInfo_2' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
-
-                        var icon = result[1][i].card_background_url;
-
-                        var filename = icon.substr(icon.lastIndexOf('/') + 1);
-//                        alert("filename=" + filename);
-
-                        var newIconBool = checkImageURL;
-                        newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
-
-                          if (bool) {
-                            count++;
-                            arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
-                            console.log("(1)new file name=" + arrayAccountInfo[index].card_background_url + "," + count);
-                          } else {
-                            count++;
-                            arrayAccountInfo[index].card_background_url = 'resources/icons/cards/' + fileName;
-                            console.log("(2)new file name=" + arrayAccountInfo[index].card_background_url + "," + count);
-                          }
-
-                          var icon2 = arrayAccountInfo[index].image_url;
-                          var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
-                          var newIcon = checkImageURL;
-                          newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
-
-                            if (bool2) {
-                              count++;
-                              arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
-                              console.log("(11)new file name=" + arrayAccountInfo[index2].image_url + "," + count);
-                            } else {
-                              count++;
-                              arrayAccountInfo[index2].image_url = 'resources/icons/cards/logo/' + fileName2;
-                              console.log("(12)new file name=" + arrayAccountInfo[index2].image_url + "," + count);
-                            }
-
-                            if (count == (result[1].length * 2)) {
-                              console.log("GHVCHGFUIHOI:JIJsave into localstorage fake");
-                              var accountInfo = JSON.stringify(arrayAccountInfo);
-                              if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
-                                localStorage.removeItem("click_client_accountInfo")
-                              }
-                              console.log('arrayAccountInfo_1232131' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
-                              console.log('accountInfo', accountInfo);
-                              console.log('save into localstorage last ', arrayAccountInfo);
-                              localStorage.setItem("click_client_accountInfo", JSON.stringify(arrayAccountInfo));
-
-                              setTimeout(function () {
-
-                                addCard()
-                              }, 0);
-
-                            }
-                          });
-                        });
-                      }
-
-
-                      setTimeout(function () {
-
-                        addCard(false)
-                      }, 0);
-
-                    }, onErrorLoadFs);
-                  } else {
-
-                    for (var i = 0; i < result[1].length; i++) {
-                      if (result[1][i].id == loginInfo.default_account) {
-                        result[1][i].countCard = 1;
-                      }
-                      else {
-                        result[1][i].countCard = countCard;
-                        countCard++;
-                      }
-                      arrayAccountInfo.push(result[1][i])
+                  for (var i = 0; i < result[1].length; i++) {
+                    if (result[1][i].id == loginInfo.default_account) {
+                      result[1][i].countCard = 1;
                     }
-                    var accountInfo = JSON.stringify(arrayAccountInfo);
-                    if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
-                      localStorage.removeItem("click_client_accountInfo")
+                    else {
+                      result[1][i].countCard = countCard;
+                      countCard++;
                     }
-
-                    console.log('accountInfo BROWSER STAND', JSON.parse(accountInfo));
-                    localStorage.setItem("click_client_accountInfo", accountInfo);
-                    setTimeout(function () {
-
-                      addCard()
-                    }, 0);
+                    arrayAccountInfo.push(result[1][i])
                   }
+                  var accountInfo = JSON.stringify(arrayAccountInfo);
+                  if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
+                    localStorage.removeItem("click_client_accountInfo")
+                  }
+
+                  console.log('accountInfo BROWSER STAND', JSON.parse(accountInfo));
+                  localStorage.setItem("click_client_accountInfo", accountInfo);
+
+                  cardImagesCaching();
+
+                  setTimeout(function () {
+
+                    addCard()
+                  }, 0);
 
                   if (device.platform != 'BrowserStand') {
                     console.log("Spinner Stop Component Card Carousel 650");
@@ -844,6 +815,7 @@
 //      console.log(modeOfApp.offlineMode)
 //    })
     };
+
 
     if (viewMainPage.atMainPage && !modeOfApp.demoVersion && modeOfApp.onlineMode) {
       console.log("INVOICE INVOICE")
@@ -921,18 +893,18 @@
         console.log('getAccountsCards', getAccountsCards[i])
         console.log('Balance request')
         window.api.call({
-          method     : 'get.balance',
+          method: 'get.balance',
           stopSpinner: false,
-          input      : {
-            session_key     : sessionKey,
-            phone_num       : phoneNumber,
-            account_id      : getAccountsCards[i].id,
-            card_num_hash   : getAccountsCards[i].card_num_hash,
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            account_id: getAccountsCards[i].id,
+            card_num_hash: getAccountsCards[i].card_num_hash,
             card_num_crypted: getAccountsCards[i].card_num_crypted
           },
           //TODO: DO CARDS
-          scope      : this,
-          onSuccess  : function (result) {
+          scope: this,
+          onSuccess: function (result) {
             if (result[0][0].error == 0) {
               if (result[1][0]) {
                 try {
