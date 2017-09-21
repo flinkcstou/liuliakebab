@@ -56,7 +56,7 @@ tourCards.mainpage = [{
 
 tourCards.transfer = [{
   counter: 1, image: "resources/icons/ComponentTour/transfer/banks.png",
-  title: "ДОСТУПНЫЕ БАНКИ",
+  title: "ЛИМИТЫ НА ПЕРЕВОДЫ",
   text: "Список банков, чьи карты доступны для переводов",
   back_color: "#0091EA", title_color: "white",
   icon_size: 28, icon_y: 46, check: "resources/banks1.png"

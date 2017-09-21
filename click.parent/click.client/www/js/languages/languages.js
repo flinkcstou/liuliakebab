@@ -361,10 +361,11 @@ var RU_LANGUAGES =
   "ViewReportServiceRepeatButtonLabel": "повторить",
   "ViewReportServiceShowQrButtonLabel": "Показать QR-Код",
 
-  "ViewBankListTitleName": "ДОСТУПНЫЕ БАНКИ",
+  "ViewBankListTitleName": "ЛИМИТЫ НА ПЕРЕВОДЫ",
   "ViewBankListLimitForMonthText": "сум",
-  "ViewBankListTransferLimitText": "Лимит на передачу:",
-  "ViewBankListReceiveLimitText": "Лимит на прием:",
+  "ViewBankListTransferLimitText": "передача в месяц",
+  "ViewBankListReceiveLimitText": "прием в месяц",
+  "ViewBankListPublicOfferText": "ПУБЛИЧНАЯ ОФЕРТА",
 
   "ViewAddCardTitle": "ДОБАВИТЬ КАРТУ",
   //"ViewAddCardNameTitle": "Введите название карты",

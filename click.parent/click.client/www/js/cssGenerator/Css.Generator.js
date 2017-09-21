@@ -10037,9 +10037,9 @@ var css = {
   "margin-bottom: 15px;" +
   "}",
 
-  componentBankListCard: ".component-banklist-card" +
+  componentBankListCardFlipper: ".component-banklist-card-flipper" +
   "{" +
-  "height: " + 286 * widthK + "px;" +
+  "height: " + 298 * widthK + "px;" +
   "width: " + 302 * widthK + "px;" +
   "position: relative;" +
   "top: " + 13 * widthK + "px;" +
@@ -10047,6 +10047,43 @@ var css = {
   "margin: " + 4 * widthK + "px;" +
   "left: " + 48 * widthK + "px;" +
   "background-color: white;" +
+  "perspective: 1000px;" +
+  "transition: 0.6s;" +
+  "transform-style: preserve-3d;" +
+  "}",
+
+  // componentBankListCardFlipperHover: ".component-banklist-card-flipper:hover" +
+  // "{" +
+  // "transform: rotateY(-180deg);" +
+  // "}",
+
+  componentBankListCardBack: ".component-banklist-card-back" +
+  "{" +
+  "height: " + 298 * widthK + "px;" +
+  "width: " + 302 * widthK + "px;" +
+  "position: absolute;" +
+  // "top: " + 13 * widthK + "px;" +
+  // "float: left;" +
+  // "margin: " + 4 * widthK + "px;" +
+  // "left: " + 48 * widthK + "px;" +
+  "background-color: white;" +
+  "backface-visibility: hidden;" +
+  "transform: rotateY(180deg);" +
+  "}",
+
+  componentBankListCardFront: ".component-banklist-card-front" +
+  "{" +
+  "height: " + 298 * widthK + "px;" +
+  "width: " + 302 * widthK + "px;" +
+  "position: absolute;" +
+  // "top: " + 13 * widthK + "px;" +
+  // "float: left;" +
+  // "margin: " + 4 * widthK + "px;" +
+  // "left: " + 48 * widthK + "px;" +
+  "background-color: white;" +
+  "backface-visibility: hidden;" +
+  "z-index: 2;" +
+  "transform: rotateY(0deg);" +
   "}",
 
 
@@ -10076,10 +10113,24 @@ var css = {
   "top: 0;" +
   "}",
 
+  componentBankListRotate: ".component-banklist-bank-rotate" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "height:" + 30 * widthK + "px;" +
+  "width:" + 30 * widthK + "px;" +
+  "top: 4%;" +
+  "float: right;" +
+  "right: 7%;" +
+  "background-image: url('resources/icons/ViewTransfer/banks_rotate.png');" +
+  "}",
+
   componentBankListBankLogo: ".component-banklist-bank-logo" +
   "{" +
   "position: absolute;" +
-  "top:" + 30 * widthK + "px;" +
+  "top:" + 10 * widthK + "px;" +
   "right:" + 51 * widthK + "px;" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
@@ -10091,22 +10142,79 @@ var css = {
   "background-position-y: center;" +
   "}",
 
+  componentBankListBankLogoFront: ".component-banklist-bank-logo-front" +
+  "{" +
+  "position: absolute;" +
+  "top:" + 62 * widthK + "px;" +
+  "right:" + -16 * widthK + "px;" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "height:" + 170 * widthK + "px;" +
+  "width:" + 330 * widthK + "px;" +
+  "background-position: top right;" +
+  "background-position-x: center;" +
+  "background-position-y: center;" +
+  "}",
+
 
   componentBankListBankLimitContainer: ".component-banklist-bank-limit-container" +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height: 34%;" +
-  "top: 60%;" +
+  "top: 42%;" +
   "display: inline-block;" +
   "margin: 0;" +
+  "}",
+
+  componentBankListBankLimitReceiptContainer: ".component-banklist-bank-limit-receipt-container" +
+  "{" +
+  "position: relative;" +
+  "display: inline-block;" +
+  "top: 0%;" +
+  "left: 10%;" +
+  "margin: 0;" +
+  "}",
+
+  componentBankListBankLimitTransferContainer: ".component-banklist-bank-limit-transfer-container" +
+  "{" +
+  "position: relative;" +
+  "display: inline-block;" +
+  "top: 0%;" +
+  "left: 10%;" +
+  "margin: 0;" +
+  "}",
+
+  componentBankListArrowDown: ".component-banklist-bank-arrow-down" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "height:" + 22 * widthK + "px;" +
+  "width:" + 20 * widthK + "px;" +
+  "left: 0%;" +
+  "background-image: url('resources/icons/ViewTransfer/banks_limit_receipt.png');" +
+  "}",
+
+  componentBankListArrowUp: ".component-banklist-bank-arrow-up" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "height:" + 22 * widthK + "px;" +
+  "width:" + 20 * widthK + "px;" +
+  "left: 0%;" +
+  "background-image: url('resources/icons/ViewTransfer/banks_limit_transfer.png');" +
   "}",
 
   componentBankListBankLimitReceipt: ".component-banklist-bank-limit-receipt " +
   "{" +
   "position: relative;" +
   "top: 0%;" +
-  "left: 8%;" +
+  "left: 10%;" +
   "margin: 0;" +
   "font-size:" + 20 * widthK + "px;" +
   "color: #585658;" +
@@ -10118,7 +10226,7 @@ var css = {
   "{" +
   "position: relative;" +
   "top: 2%;" +
-  "left: 8%;" +
+  "left: 10%;" +
   "margin: 0;" +
   "font-size:" + 20 * widthK + "px;" +
   "color: #585658;" +
@@ -10132,8 +10240,8 @@ var css = {
   "top: 0%;" +
   "left: 10%;" +
   "margin: 0;" +
-  "font-size:" + 20 * widthK + "px;" +
-  "color: #585658;" +
+  "font-size:" + 22 * widthK + "px;" +
+  "color: #aed83d;" +
   "float: left;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
@@ -10146,12 +10254,47 @@ var css = {
   "top: 0%;" +
   "left: 10%;" +
   "margin: 0;" +
-  "font-size:" + 20 * widthK + "px;" +
-  "color: #585658;" +
+  "font-size:" + 22 * widthK + "px;" +
+  "color: #ff8067;" +
   "float: left;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "width: 90%;" +
+  "}",
+
+  componentBankListPunlicOfferContainer: ".component-banklist-public-offer-container" +
+  "{" +
+  "position: absolute;" +
+  "bottom: 0%;" +
+  "background-color: #09b1ff;" +
+  "width: 100%;" +
+  "height: " + 45 * widthK + "px;" +
+  "font-weight: bold;" +
+  "text-decoration: none;" +
+  "font-size:" + 18 * widthK + "px;" +
+  "color: white;" +
+  "}",
+
+  componentBankListPunlicOfferLink: ".component-banklist-public-offer-link" +
+  "{" +
+  "position: absolute;" +
+  "top: 30%;" +
+  "float: left;" +
+  "left: 10%;" +
+  "}",
+
+  componentBankListPublicOfferArrow: ".component-banklist-public-offer-arrow" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "height:" + 11 * widthK + "px;" +
+  "width:" + 11 * widthK + "px;" +
+  "top: 38%;" +
+  "float: right;" +
+  "right: 9%;" +
+  "background-image: url('resources/icons/ViewTransfer/banks_offerta.png');" +
   "}",
 
 //  VIEW FAVORITES

@@ -186,18 +186,42 @@
            ontouchend="closeComponentBankListTouchEnd()" ontouchstart="closeComponentBankListTouchStart()"></div>
     </div>
     <div id="bankListContainerId" class="component-banklist-container" onscroll="bankListTouchMove()">
-      <div class="component-banklist-card" each="{i in bankList}">
+      <div class="component-banklist-card-flipper" each="{i in bankList}" ontouchstart="flipCardTouchStart()"
+           ontouchend="flipCardTouchEnd(this)">
+
+        <div class="component-banklist-card-front">
+          <div class="component-banklist-bank-rotate"></div>
+          <div class="component-banklist-bank-logo-front" style="background-image: url({i.image});"></div>
+        </div>
+
+        <div class="component-banklist-card-back">
         <div class="component-banklist-bank-logo" style="background-image: url({i.image});"></div>
+
+        <div class="component-banklist-bank-rotate"></div>
+
         <div class="component-banklist-bank-limit-container">
-          <div class="component-banklist-bank-limit-receipt">{window.languages.ViewBankListReceiveLimitText}</div>
-          <div class="component-banklist-bank-limit-currency-receipt">{i.p2p_receipt_max_limit_text}
+          <div class="component-banklist-bank-limit-receipt-container">
+            <div class="component-banklist-bank-arrow-down"></div>
+            <div class="component-banklist-bank-limit-currency-receipt">
+              {i.p2p_receipt_max_limit_text}
+            </div>
+            <div class="component-banklist-bank-limit-receipt">{window.languages.ViewBankListReceiveLimitText}</div>
           </div>
 
-          <div class="component-banklist-bank-limit-transfer">{window.languages.ViewBankListTransferLimitText}</div>
-          <div class="component-banklist-bank-limit-currency-transfer">
-            {i.p2p_max_limit_text}
+          <div class="component-banklist-bank-limit-transfer-container">
+            <div class="component-banklist-bank-arrow-up"></div>
+            <div class="component-banklist-bank-limit-currency-transfer">
+              {i.p2p_max_limit_text}
+            </div>
+            <div class="component-banklist-bank-limit-transfer">{window.languages.ViewBankListTransferLimitText}</div>
           </div>
         </div>
+          <div class="component-banklist-public-offer-container" ontouchend="openPublicOffer(&quot;{i.public_offer}&quot;)" id="{i.code}">
+            <div class="component-banklist-public-offer-link">{window.languages.ViewBankListPublicOfferText}</div>
+            <div class="component-banklist-public-offer-arrow"></div>
+          </div>
+      </div>
+
       </div>
     </div>
   </div>
@@ -510,6 +534,39 @@
         window.checkShowingComponent = null;
         scope.update()
       }
+    }
+
+    var flipCardTouchStartX, flipCardTouchStartY, flipCardTouchEndX, flipCardTouchEndY, pointerInOffer = false;
+
+    flipCardTouchStart = function () {
+        flipCardTouchStartX = event.changedTouches[0].pageX
+        flipCardTouchStartY = event.changedTouches[0].pageY
+    }
+
+    flipCardTouchEnd = function (object) {
+        flipCardTouchEndX = event.changedTouches[0].pageX
+        flipCardTouchEndY = event.changedTouches[0].pageY
+
+        var publicOfferContainer = object.getElementsByClassName("component-banklist-public-offer-container")[0];
+        var publicOfferId = publicOfferContainer.id;
+        var publicOfferRect = document.getElementById(publicOfferId).getBoundingClientRect()
+
+        if (Math.abs(flipCardTouchStartX - flipCardTouchEndX) <= 20 &&
+                Math.abs(flipCardTouchStartY - flipCardTouchEndY) <= 20 && !pointerInOffer){
+
+                var rotated = object.style.transform;
+                if (rotated == "rotateY(-180deg)") {
+                    if (publicOfferRect.top > flipCardTouchEndY)
+                        object.style.transform = "rotateY(0deg)";
+                }
+                else
+                    object.style.transform = "rotateY(-180deg)";
+        }
+    }
+
+    openPublicOffer = function (LinkToPublicOffer) {
+        console.log("Link to Offer", LinkToPublicOffer);
+        window.open(LinkToPublicOffer, '_system', 'location=no');
     }
 
 
