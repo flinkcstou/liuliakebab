@@ -216,7 +216,7 @@
             <div class="component-banklist-bank-limit-transfer">{window.languages.ViewBankListTransferLimitText}</div>
           </div>
         </div>
-          <div class="component-banklist-public-offer-container" ontouchend="openPublicOffer(&quot;{i.public_offer}&quot;)" id="{i.code}">
+          <div hidden="{!i.public_offer}" class="component-banklist-public-offer-container" ontouchend="openPublicOffer(&quot;{i.public_offer}&quot;)" id="{i.code}">
             <div class="component-banklist-public-offer-link">{window.languages.ViewBankListPublicOfferText}</div>
             <div class="component-banklist-public-offer-arrow"></div>
           </div>
@@ -549,15 +549,22 @@
 
         var publicOfferContainer = object.getElementsByClassName("component-banklist-public-offer-container")[0];
         var publicOfferId = publicOfferContainer.id;
-        var publicOfferRect = document.getElementById(publicOfferId).getBoundingClientRect()
+        var publicOfferRect = document.getElementById(publicOfferId).getBoundingClientRect();
+        var publicOfferHidden = publicOfferContainer.hidden;
 
         if (Math.abs(flipCardTouchStartX - flipCardTouchEndX) <= 20 &&
                 Math.abs(flipCardTouchStartY - flipCardTouchEndY) <= 20 && !pointerInOffer){
 
                 var rotated = object.style.transform;
                 if (rotated == "rotateY(-180deg)") {
-                    if (publicOfferRect.top > flipCardTouchEndY)
+                    if (!publicOfferHidden) {
+                        if (publicOfferRect.top > flipCardTouchEndY)
+                            object.style.transform = "rotateY(0deg)";
+                    }
+                    else
+                    {
                         object.style.transform = "rotateY(0deg)";
+                    }
                 }
                 else
                     object.style.transform = "rotateY(-180deg)";
