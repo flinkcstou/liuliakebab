@@ -497,9 +497,9 @@
           enteredPin = enteredPin.substring(0, enteredPin.length - 1);
         }
 
-        console.log("SETTINGS FOR FINGER PRINT", JSON.parse(localStorage.getItem('settings_finger_print')))
         if (myValue == "space" && JSON.parse(localStorage.getItem('settings_finger_print')) == true) {
           console.log('space')
+          console.log("SETTINGS FOR FINGER PRINT", JSON.parse(localStorage.getItem('settings_finger_print')))
           try {
             fingerPrintTurnOn();
           }
@@ -704,7 +704,7 @@
           }
           else {
             if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop in Authorization");
+              console.log("Spinner Stop View Authorization");
               SpinnerPlugin.activityStop();
             }
 
@@ -734,6 +734,7 @@
           }
         },
         onFail: function (api_status, api_status_message, data) {
+          checkServiceAnswer = true;
           console.log("App.login error");
           scope.errorNote = "Сервис временно недоступен";
           scope.showError = true;
@@ -748,15 +749,17 @@
 
       if (countOfCall <= 3 && !checkServiceAnswer && window.isConnected)
         setTimeout(function () {
-          if (!checkServiceAnswer && modeOfApp.onlineMode)
-            enter();
+          if (!checkServiceAnswer && modeOfApp.onlineMode) {
+              enter();
+              console.log("TRY TO LOGIN BY TIMER");
+          }
           if (countOfCall == 3 && !checkServiceAnswer) {
             scope.showError = true;
             scope.errorNote = "Сервис временно недоступен";
             scope.errorCode = 1;
             countOfCall = 0;
             if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop Authorization");
+              console.log("Spinner Stop View Authorization");
               SpinnerPlugin.activityStop();
             }
 //            window.isConnected = false;
@@ -775,7 +778,7 @@
 
     getAccount = function () {
 
-        console.log("ACCOUNT INFO: ", JSON.parse(localStorage.getItem("click_client_loginInfo")));
+      console.log("LOGIN INFO: ", JSON.parse(localStorage.getItem("click_client_loginInfo")));
 
       if (history.arrayOfHistory.length < 2) {
         console.log("HISTORY: ", history);
@@ -787,14 +790,14 @@
         var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = info.session_key;
 
-        console.log("DEBUG HISTORY IF 1", scope.firstEnter);
-
         if (scope.firstEnter) {
           var lengthOfPin = firstPinInputId.value.length;
           var compareLength = window.inputVerification.spaceDeleter(firstPinInputId.value);
-          console.log("DEBUG HISTORY IF 2");
+          console.log("FIRST ENTER IN ACCOUNT");
         }
-        console.log("DEBUG HISTORY IF 1_2", localStorage.getItem("click_client_accountInfo"));
+
+        console.log("ACCOUNT INFO IN LOCAL STORAGE: ", localStorage.getItem("click_client_accountInfo"));
+
         if (scope.firstEnter && (lengthOfPin != compareLength.length || lengthOfPin != 5)) {
           console.log("DEBUG HISTORY IF 3");
           riotTags.innerHTML = "<view-pin-code>";
@@ -1223,7 +1226,7 @@
       }
 
       if (device.platform != 'BrowserStand') {
-        console.log("Spinner Stop View Authorization 1207");
+        console.log("Spinner Stop View Authorization");
         SpinnerPlugin.activityStop();
       }
     }
