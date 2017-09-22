@@ -15,6 +15,7 @@
 
       <p class="account-detail-transfer-icon-title-phone">
         +99890974322344</p>
+
     </div>
 
     <div class="account-detail-container">
