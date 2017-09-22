@@ -101,7 +101,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-transfer-stepfour',
+          "view": 'view-transfer-stepfour',
           "params": opts
         }
       );
@@ -407,15 +407,15 @@
       console.log("TRANSACTION_ID", objectForTransfer.transactionId)
 
       window.api.call({
-        method     : 'p2p.payment',
+        method: 'p2p.payment',
         stopSpinner: false,
-        input      : {
-          session_key   : sessionKey,
-          phone_num     : phoneNumber,
-          account_id    : scope.objectCardForTransfer.card_id,
-          receiver_data : scope.objectTypeForTransfer.name.replace(/\s/g, ''),
-          amount        : parseInt(scope.objectSumForTransfer.sum),
-          type          : scope.objectTypeForTransfer.type,
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          account_id: scope.objectCardForTransfer.card_id,
+          receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
+          amount: parseInt(scope.objectSumForTransfer.sum),
+          type: scope.objectTypeForTransfer.type,
           transaction_id: objectForTransfer.transactionId
 //                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
         },
@@ -503,7 +503,7 @@
           window.isConnected = false;
           return
         }
-      }, 20000)
+      }, 30000)
 
     }
 
@@ -516,12 +516,12 @@
       console.log("check transfer status");
 
       window.api.call({
-        method     : 'get.payment',
+        method: 'get.payment',
         stopSpinner: false,
-        input      : {
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber,
-          payment_id : payment_id
+          phone_num: phoneNumber,
+          payment_id: payment_id
         },
 
         scope: this,

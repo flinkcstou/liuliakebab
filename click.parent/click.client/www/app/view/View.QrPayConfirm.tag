@@ -88,7 +88,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr-pay-confirm') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-qr-pay-confirm',
+          "view": 'view-qr-pay-confirm',
           "params": opts
         }
       );
@@ -219,13 +219,13 @@
         }
 
         inputObject = {
-          session_key : sessionKey,
-          phone_num   : phoneNumber,
-          service_id  : Number(serviceId),
-          account_id  : Number(accountId),
-          amount      : Number(amount),
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          service_id: Number(serviceId),
+          account_id: Number(accountId),
+          amount: Number(amount),
           payment_data: payment_data,
-          datetime    : date,
+          datetime: date,
           friend_phone: friendPhone
         };
 
@@ -242,9 +242,9 @@
         console.log("inputObject", inputObject)
 
         window.api.call({
-          method     : 'app.payment',
+          method: 'app.payment',
           stopSpinner: false,
-          input      : inputObject,
+          input: inputObject,
 
           scope: this,
 
@@ -316,7 +316,7 @@
             window.isConnected = false;
             return
           }
-        }, 20000)
+        }, 30000)
       }
 
     }
@@ -331,12 +331,12 @@
       console.log("check transfer status");
 
       window.api.call({
-        method     : 'get.payment',
+        method: 'get.payment',
         stopSpinner: false,
-        input      : {
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber,
-          payment_id : payment_id
+          phone_num: phoneNumber,
+          payment_id: payment_id
         },
 
         scope: this,

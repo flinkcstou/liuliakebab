@@ -161,14 +161,14 @@
           });
         }
         window.api.call({
-          method   : 'invoice.action',
-          input    : {
+          method: 'invoice.action',
+          input: {
             session_key: sessionKey,
-            phone_num  : phoneNumber,
-            invoice_id : scope.opts.invoiceId,
-            action     : invoiceActions.DECLINE
+            phone_num: phoneNumber,
+            invoice_id: scope.opts.invoiceId,
+            action: invoiceActions.DECLINE
           },
-          scope    : this,
+          scope: this,
           onSuccess: function (result) {
 
             console.log("result of invoice payment decline", result);
@@ -251,17 +251,17 @@
         }
 
         window.api.call({
-          method     : 'invoice.action',
+          method: 'invoice.action',
           stopSpinner: false,
-          input      : {
+          input: {
             session_key: sessionKey,
-            phone_num  : phoneNumber,
-            invoice_id : scope.opts.invoiceId,
-            action     : invoiceActions.ACCEPT,
-            account_id : accountId
+            phone_num: phoneNumber,
+            invoice_id: scope.opts.invoiceId,
+            action: invoiceActions.ACCEPT,
+            account_id: accountId
           },
-          scope      : this,
-          onSuccess  : function (result) {
+          scope: this,
+          onSuccess: function (result) {
 
             console.log("result of invoice payment accept", result);
 
@@ -316,7 +316,7 @@
             window.isConnected = false;
             return
           }
-        }, 20000)
+        }, 30000)
       }
     };
 
@@ -331,12 +331,12 @@
       var sessionKey = loginInfo.session_key;
 
       window.api.call({
-        method     : 'get.payment',
+        method: 'get.payment',
         stopSpinner: false,
-        input      : {
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber,
-          payment_id : payment_id
+          phone_num: phoneNumber,
+          payment_id: payment_id
         },
 
         scope: this,
