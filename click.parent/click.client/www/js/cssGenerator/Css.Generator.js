@@ -11277,7 +11277,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height: 25%;" +
+  "height: 30%;" +
   "background-color: white;" +
   "}",
 
@@ -11314,12 +11314,21 @@ var css = {
   "color: #515151;" +
   "}",
 
+  viewQrContactNumberInputCommission: ".view-qr-contact-number-input-commission" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "bottom: -30%;" +
+  "}",
+
   viewQrButtonsContainer: ".view-qr-buttons-container" +
   "{" +
   "position: absolute;" +
   "width:100%;" +
   "height:" + 90 * widthK + "px;" +
-  "top: 24%;" +
+  "top: 29%;" +
   "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
@@ -12138,29 +12147,39 @@ var css = {
 
   qrPayconfirmTextField: ".qr-payconfirm-text-field" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "margin: 0;" +
   "color: darkgray;" +
   "font-size: " + 24 * widthK + "px; " +
   "left: 8%;" +
-  "top: 25%;" +
+  "top: 15%;" +
   "}",
 
   qrPayconfirmPhoneInput: ".qr-payconfirm-phone-input" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "margin: 0;" +
   "left: 8%;" +
-  "top: 47%;" +
+  "top: 12%;" +
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
+  "}",
+
+  qrPayconfirmTaxField: ".qr-payconfirm-tax-field" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "left: 8%;" +
+  "top: 10%;" +
   "}",
 
   qrPayconfirmField: ".qr-payconfirm-field" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height: 22.5%;" +
+  "height: 24.5%;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   //"top: 23%;" +

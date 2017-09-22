@@ -19,6 +19,8 @@
       <div class="qr-payconfirm-field">
         <p class="qr-payconfirm-text-field">{window.languages.ViewPayConfirmAmountOfPay}</p>
         <p class="qr-payconfirm-phone-input">{amountTextCopy} {currency}</p>
+        <p if="{tax}" class="qr-payconfirm-tax-field">{window.languages.ViewTransferFourTax} {tax}
+          {objectCardForTransfer.currency}</p>
       </div>
       <div class="qr-payconfirm-field">
         <p class="qr-payconfirm-text-field">{window.languages.ViewPayConfirmCategory}</p>
@@ -107,6 +109,7 @@
     scope.titleName = opts[2].name
     scope.serviceIcon = opts[2].image
     scope.categoryName = opts[2].name
+    scope.tax = opts[2].tax
 
     scope.update()
     console.log(opts[0])

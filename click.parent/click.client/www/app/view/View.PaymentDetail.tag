@@ -316,7 +316,7 @@
             window.isConnected = false;
             return
           }
-        }, 30000)
+        }, 40000)
       }
     };
 
