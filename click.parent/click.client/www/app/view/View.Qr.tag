@@ -16,6 +16,9 @@
     <div class="view-qr-contact-phone-field-container">
       <div class="view-qr-contact-phone-field">
         <p class="view-qr-contact-text-field">Сумма</p>
+        <p if="{!showPlaceHolderError && !modeOfApp.offlineMode}" class="view-qr-contact-number-input-commission">
+          {window.languages.ViewTransferTwoTax} {tax}
+          {window.languages.Currency}</p>
         <input maxlength="14" class="view-qr-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
                autofocus
                onmouseup="sumMouseUp()"
@@ -51,6 +54,8 @@
 
     this.on('mount', function () {
 
+      scope.tax = sumForQrPay * opts.commission_percent / 100;
+
       if (device.platform ==
         'Android')
         setTimeout(function () {
@@ -75,6 +80,11 @@
 //      }
 //      else
     })
+
+    scope.showPlaceHolderError = false;
+
+    if (!opts.commission_percent)
+        scope.showPlaceHolderError = true;
 
     var checkFirst = false,
       maskOne = /[0-9]/g,
@@ -133,6 +143,7 @@
         }
         if (parseInt(sumForQrPay) <= opts.max_pay_limit && parseInt(sumForQrPay) >= opts.min_pay_limit) {
           riotTags.innerHTML = "<view-qr-pincards>";
+          opts.tax = scope.tax;
           riot.mount('view-qr-pincards', opts);
 
           scope.unmount()
@@ -218,6 +229,12 @@
       } else {
         sumValueId.selectionStart = 0
         sumValueId.selectionEnd = 0
+      }
+
+      if (sumForQrPay)
+          scope.tax = sumForQrPay * opts.commission_percent / 100;
+      else {
+          scope.tax = 0
       }
 
       scope.update()
