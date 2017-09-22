@@ -110,9 +110,9 @@ window.api.initSocket = function () {
 
 
     var parsedData = JSON.parse(event.data);
+    console.log(parsedData);
     var method = parsedData.data[0][0].method;
     var callBack = me.callBacks[method];
-    console.log(parsedData);
     if (parsedData.api_status == 0)
       try {
 

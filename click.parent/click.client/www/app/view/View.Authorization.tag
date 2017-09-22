@@ -488,7 +488,7 @@
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
-        console.log("VALUE", myValue)
+        console.log("PRESSED DIGIT", myValue)
 
         if (enteredPin.length < 5 && myValue != 'x' && myValue != 'space') {
           enteredPin += myValue;
@@ -497,8 +497,7 @@
           enteredPin = enteredPin.substring(0, enteredPin.length - 1);
         }
 
-        console.log('MY VALUE', myValue)
-        console.log("JSON.parse(localStorage.getItem('settings_finger_print'))", JSON.parse(localStorage.getItem('settings_finger_print')))
+        console.log("SETTINGS FOR FINGER PRINT", JSON.parse(localStorage.getItem('settings_finger_print')))
         if (myValue == "space" && JSON.parse(localStorage.getItem('settings_finger_print')) == true) {
           console.log('space')
           try {
@@ -543,8 +542,6 @@
         riot.mount('view-main-page');
         scope.unmount()
       }
-
-
     };
 
     updateEnteredPin = function () {
@@ -631,7 +628,6 @@
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
       var date = parseInt(Date.now() / 1000);
-//      console.log(date);
       var token = localStorage.getItem('click_client_token');
       if (!pin && localStorage.getItem('click_client_pin')) {
         pin = localStorage.getItem('click_client_pin');
@@ -639,7 +635,8 @@
       var password = hex_sha512(token + date + pin);
       localStorage.setItem("pinForStand", pin);
 
-      console.log(phoneNumber, deviceId, password, date, pin)
+      console.log("PHONE NUMBER: ",phoneNumber, " DEVICE ID: ", deviceId);
+      console.log("PASSWORD: ", password, " DATE: " , date, "PIN: ", pin);
       authorization(phoneNumber, deviceId, password, date);
     };
 
@@ -676,14 +673,13 @@
         scope: this,
 
         onSuccess: function (result) {
-//          console.log(result[0][0])
           checkServiceAnswer = true;
 
           if (result[0][0].error == 0) {
             if (!result[1][0].error) {
-              localStorage.setItem('click_client_pin', pin)
+              console.log("SUCCESS AUTHORIZATION");
 
-              console.log("APP LOGIN RESULT", result);
+              localStorage.setItem('click_client_pin', pin)
               localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
               modeOfflineMode.check = false;
               var JsonInfo = JSON.stringify(result[1][0]);
@@ -702,20 +698,19 @@
                 localStorage.removeItem('click_client_friendsOuter_count')
               }
 
-
               getAccount();
               window.pushNotificationActions.retrievePushNotification();
             }
           }
           else {
             if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop Authorization 702");
+              console.log("Spinner Stop in Authorization");
               SpinnerPlugin.activityStop();
             }
 
             if (result[0][0].error == -31) {
-              scope.clickPinError = true;
               console.log("click pin error");
+              scope.clickPinError = true;
             } else if (result[0][0].error == -799) {
               scope.errorNote = result[0][0].error_note;
               scope.errorCode = 2;
@@ -728,7 +723,7 @@
               else
                 scope.errorNote = result[0][0].error_note;
               scope.clickPinError = false;
-              console.log("errornote=", scope.errorNote);
+              console.log("errornote = ", scope.errorNote);
             }
             scope.showError = true;
             scope.update();
@@ -739,15 +734,15 @@
           }
         },
         onFail: function (api_status, api_status_message, data) {
+          console.log("App.login error");
           scope.errorNote = "Сервис временно недоступен";
           scope.showError = true;
           scope.clickPinError = false;
           scope.errorCode = 1;
           scope.update();
-          console.log("App.login error, auth view 747")
 
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
+          console.error("Error data: ",data);
         }
       });
 
@@ -761,7 +756,7 @@
             scope.errorCode = 1;
             countOfCall = 0;
             if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop Authorization 737");
+              console.log("Spinner Stop Authorization");
               SpinnerPlugin.activityStop();
             }
 //            window.isConnected = false;
@@ -777,18 +772,15 @@
       var sessionKey = loginInfo.session_key;
     }
 
-    var balance;
-    var arrayAccountInfo = [];
-    getAccount = function (e) {
 
-      console.log("DEBUG GET ACCOUNT");
+    getAccount = function () {
+
+        console.log("ACCOUNT INFO: ", JSON.parse(localStorage.getItem("click_client_loginInfo")));
 
       if (history.arrayOfHistory.length < 2) {
-        console.log("DEBUG HISTORY", history);
+        console.log("HISTORY: ", history);
         localStorage.setItem('onResume', false)
       }
-
-      console.log("DEBUG GET ACCOUNT2", JSON.parse(localStorage.getItem("click_client_loginInfo")));
 
       if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
