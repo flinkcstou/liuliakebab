@@ -56,8 +56,7 @@
 
       scope.tax = sumForQrPay * opts.commission_percent / 100;
 
-      if (device.platform ==
-        'Android')
+      if (device.platform == 'Android')
         setTimeout(function () {
           sumValueId.focus()
         }, 0);
@@ -71,7 +70,7 @@
         sumForQrPay = opts.rk_amount
       }
       else {
-        sumValueId.value = 0
+//        sumValueId.value = 0
       }
 //      if (viewTransferStepTwo.sum.length > 0) {
 //        sumValueId.value = viewTransferStepTwo.sum;
