@@ -71,9 +71,6 @@
         sumValueId.value = window.amountTransform(opts.rk_amount)
         sumForQrPay = opts.rk_amount
       }
-      else {
-//        sumValueId.value = 0
-      }
 //      if (viewTransferStepTwo.sum.length > 0) {
 //        sumValueId.value = viewTransferStepTwo.sum;
 //        checkFirst = true;
