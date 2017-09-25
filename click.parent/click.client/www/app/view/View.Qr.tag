@@ -68,9 +68,6 @@
         sumValueId.value = window.amountTransform(opts.rk_amount)
         sumForQrPay = opts.rk_amount
       }
-      else {
-        sumValueId.value = 0
-      }
 
       scope.tax = sumForQrPay * opts.commission_percent / 100;
 
