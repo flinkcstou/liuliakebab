@@ -65,6 +65,8 @@
         sumValueId.autofocus
       }
 
+      console.log('SUM', opts.rk_amount)
+
       if (opts.rk_amount) {
         sumValueId.value = window.amountTransform(opts.rk_amount)
         sumForQrPay = opts.rk_amount
