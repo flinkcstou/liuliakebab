@@ -662,10 +662,11 @@
 
         onSuccess: function (result) {
           answerFromServer = true;
+          console.log("Success answer for authorization");
 
           if (result[0][0].error == 0) {
             if (!result[1][0].error) {
-              console.log("SUCCESS AUTHORIZATION");
+              console.log("User is authorized");
 
               localStorage.setItem('click_client_pin', pin)
               localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
@@ -725,11 +726,7 @@
           answerFromServer = true;
           console.log("App.login error");
 
-          if (device.platform == 'Android')
-              showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
-          else {
-              showAlertComponent("Сервер временно недоступен");
-          }
+          showAlertComponent("Время ожидания истекло");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error("Error data: ",data);
           return;
@@ -738,8 +735,7 @@
 
       setTimeout(function () {
           if (!answerFromServer) {
-                  showAlertComponent("Время ожидания истекло");
-
+              showAlertComponent("Время ожидания истекло");
               if (device.platform != 'BrowserStand') {
                   console.log("Spinner stop in authorization by timeout");
                   SpinnerPlugin.activityStop();
@@ -796,22 +792,9 @@
 
           if (!JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken')) && !JSON.parse(sessionStorage.getItem("push_news"))) {
             console.log("DEBUG HISTORY IF 6");
-//            if (history.arrayOfHistory) {
-//              if (history.arrayOfHistory[history.arrayOfHistory.length - 1] && (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-device'
-//                || history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-sms' || history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-client'
-//                || history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization')) {
-//                this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
-//                riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
-//                localStorage.setItem('onResume', false)
-//                scope.unmount()
-//              }
-//            }
-//            else {
-//            localStorage.setItem("showTour", true);
             this.riotTags.innerHTML = "<view-main-page>";
             riot.mount('view-main-page');
           }
-//          }
           else {
 
             console.log("DEBUG HISTORY IF 7", JSON.parse(localStorage.getItem('settings_block')), JSON.parse(localStorage.getItem('session_broken')), JSON.parse(sessionStorage.getItem("push_news")));
@@ -893,7 +876,6 @@
             onSuccess: function (result) {
               if (result[0][0].error == 0)
                 if (result[1][0]) {
-//                  console.log('GET SERVICE CATEGORY LIST',JSON.stringify(result[1]))
 
                   if (device.platform != 'BrowserStand') {
                     window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
@@ -923,7 +905,6 @@
 
 
                           if (result[1].length == scope.categoryList.length) {
-//                            console.log("save into localstorage, categoryList=", scope.categoryList);
                             scope.update(scope.categoryList);
                             localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
                             localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
@@ -941,7 +922,6 @@
                         "icon": result[1][i].icon
                       };
                     }
-//                    riot.update(scope.categoryList);
                     localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
                     localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
                   }
@@ -961,14 +941,11 @@
          * */
         if ((!(localStorage.getItem("click_client_payServiceList") && localStorage.getItem("click_client_servicesMapByCategory")
           && localStorage.getItem("click_client_servicesMap")) || info.update_services) && modeOfApp.onlineMode) {
-//        refreshServiceList = function () {
-//          console.log("IN SERVICE LIST FUNC");
           scope.serviceList = [];
           scope.servicesMapByCategory = {};
           scope.servicesMap = {};
           scope.serviceNamesMap = {};
           scope.operatorKey = phoneNumber.substr(3, 2);
-//          console.log("MOPERATORS!!!!!!!!!!!!!!", window.mOperators[scope.operatorKey]);
           window.api.call({
             method: 'get.service.list',
             input: {
@@ -980,7 +957,6 @@
             onSuccess: function (result) {
               if (result[0][0].error == 0)
                 if (result[1][0]) {
-//                  console.log('GET SERVICE LIST', JSON.stringify(result[1]))
                   var firstService;
 
                   for (var i in result[1]) {
@@ -995,7 +971,6 @@
                         scope.servicesMapByCategory[result[1][i].category_id] = [];
                         if (result[1][i].category_id === 1 && (result[1][i].id === window.mOperators[scope.operatorKey])) {
                           localStorage.setItem('myNumberOperatorId', result[1][i].id);
-//                                console.log("MY NUMBER ID", scope.serviceList[index].id);
 
                           var myNumberObject = {};
                           myNumberObject.name = 'Мой номер';
@@ -1005,14 +980,12 @@
 
                         } else if (result[1][i].category_id === 1) {
                           firstService = result[1][i];
-//                                console.log("FIRST SERVICE=", firstService);
                         }
                         scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
                       }
                       else {
                         if (result[1][i].category_id === 1 && (result[1][i].id === window.mOperators[scope.operatorKey])) {
                           localStorage.setItem('myNumberOperatorId', result[1][i].id);
-//                                console.log("MY NUMBER ID", scope.serviceList[index].id);
 
                           var myNumberObject = {};
                           myNumberObject.name = 'Мой номер';
@@ -1076,21 +1049,14 @@
                       if (scope.servicesMapByCategory[scope.serviceList[index].category_id][k].id != ('mynumber' + localStorage.getItem('myNumberOperatorId')) &&
                         scope.servicesMapByCategory[scope.serviceList[index].category_id][k].id == scope.serviceList[index].id) {
                         scope.servicesMapByCategory[scope.serviceList[index].category_id][k].image = cordova.file.dataDirectory + fileName;
-//                        console.log(scope.servicesMapByCategory[scope.serviceList[index].category_id][k].image);
                       }
                     }
-//                    console.log("service id IN CACH=", scope.serviceList[index].id, ", element:", scope.serviceList[index]);
 
                     if (counter == scope.serviceList.length) {
-//                      console.log("SAVING TO LOCALSTORAGE SERVICES 2222!!!!!!!!!!!!!!!!!!!!!");
                       localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
                       localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
                     }
                   }
-//                  else {
-//                    scope.serviceList[index]['image'] = 'resources/icons/ViewPay/' + fileName;
-//                  }
-
                 });
               }
 
@@ -1098,10 +1064,8 @@
           }
         }
 
-//        refreshServiceList();
 
         servicesParamsInit = function () {
-//          console.log("IN SERVICES PARAMS INIT");
           scope.servicesParams = [];
           scope.servicesParamsMapOne = {};
           scope.servicesParamsMapTwo = {};
@@ -1120,7 +1084,6 @@
 
             onSuccess: function (result) {
               if (result[0][0].error == 0) {
-                //console.log('GET SERVICE PARAMETERS LIST', JSON.stringify(result))
                 if (result[1])
                   for (var i in result[1]) {
                     console.log("1. service id=", result[1][i].service_id, "element:", result[1][i]);
