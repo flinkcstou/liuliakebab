@@ -75,13 +75,7 @@
         demoContainer.style.left = 100 * widthK + 'px';
       if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#00b0eb");
-
     })
-
-    //    localStorage.setItem('device.platform', device.platform)
-
-    //    localStorage.clear()
-
 
     var checkRemember = false;
 
@@ -105,7 +99,6 @@
 
       if (Math.abs(rememberTouchStartX - rememberTouchEndX) <= 20 && Math.abs(rememberTouchStartY - rememberTouchEndY) <= 20) {
         if (!checkRemember) {
-//          this.rememberIcon.style.opacity = '1';
           this.rememberIcon.style.backgroundImage = "url(resources/icons/authorization/selected.png)";
           localStorage.setItem('device_remember', true);
           checkRemember = true;
@@ -113,7 +106,6 @@
 
         }
         else {
-//          this.rememberIcon.style.opacity = '0.3';
           this.rememberIcon.style.backgroundImage = "url(resources/icons/authorization/deselected.png)";
           localStorage.setItem('device_remember', false);
           checkRemember = false;
@@ -135,7 +127,6 @@
 
     scope.showError = false;
 
-    //    scope.phoneNumber = '+' + window.languages.CodeOfCountry;
     scope.phoneNumber = '';
     scope.maskPhoneNumber = '';
     scope.maskPhoneNumberDisplay = '';
@@ -160,7 +151,6 @@
       keyboardTouchEndX = event.changedTouches[0].pageX
       keyboardTouchEndY = event.changedTouches[0].pageY
 
-
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
         console.log("inputFocusIndex start", inputFocusIndex);
@@ -168,7 +158,6 @@
         if (window.inputVerification.spaceDeleter(scope.maskPhoneNumber).length < 9 && myValue != 'x') {
 
           if (inputFocusIndex <= 2) {
-//            console.log("transform edit=", window.inputVerification.phoneEnterTransform(inputFocusIndex, myValue, scope.maskPhoneNumber));
             scope.maskPhoneNumber = window.inputVerification.phoneEnterTransform(inputFocusIndex, myValue, scope.maskPhoneNumber);
             scope.phoneNumber = '+' + window.languages.CodeOfCountry + window.inputVerification.spaceDeleter(scope.maskPhoneNumber);
             inputFocusIndex = inputFocusIndex == 2 ? 4 : (inputFocusIndex == 1 ? 2 : 1);
@@ -195,10 +184,6 @@
           inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, inputFocusIndex)).width + inputLocalStartX - 3 * widthK + 'px';
         }
 
-
-//        console.log("m=", scope.maskPhoneNumber);
-//        console.log("p=", scope.phoneNumber);
-//        console.log("inputFocusIndex end", inputFocusIndex);
         scope.update();
       }
       return
@@ -234,18 +219,15 @@
         for (var i = 0; i < scope.maskPhoneNumber.length; i++) {
 
           if (regNumberTouchEndX < (ctx.measureText(scope.maskPhoneNumber.substring(0, i + 1)).width + inputStartX)) {
-
             if (regNumberTouchEndX < (ctx.measureText(scope.maskPhoneNumber.substring(0, i)).width + ctx.measureText(scope.maskPhoneNumber[i]).width / 2 + inputStartX)) {
               inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, i)).width + inputLocalStartX - 3 * widthK + 'px';
-
               inputFocusIndex = i;
-            } else if (regNumberTouchEndX > (ctx.measureText(scope.maskPhoneNumber.substring(0, i)).width + ctx.measureText(scope.maskPhoneNumber[i]).width / 2 + inputStartX)) {
-              inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, i + 1)).width + inputLocalStartX - 3 * widthK + 'px';
-
-              inputFocusIndex = i + 1;
             }
-
-
+            else
+              if (regNumberTouchEndX > (ctx.measureText(scope.maskPhoneNumber.substring(0, i)).width + ctx.measureText(scope.maskPhoneNumber[i]).width / 2 + inputStartX)) {
+                inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, i + 1)).width + inputLocalStartX - 3 * widthK + 'px';
+                inputFocusIndex = i + 1;
+              }
             break;
           }
         }
@@ -259,7 +241,6 @@
         if (el.className == "registration-caret") {
           el.className = "registration-caret-two";
         } else {
-//        el = document.querySelector("div.box1");
           el.className = "registration-caret";
         }
       }
@@ -279,7 +260,6 @@
 
       offlineTouchStartX = event.changedTouches[0].pageX
       offlineTouchStartY = event.changedTouches[0].pageY
-
 
     }
 
@@ -309,7 +289,6 @@
       event.preventDefault();
       event.stopPropagation();
 
-
       demoContinueTouchStartX = event.changedTouches[0].pageX
       demoContinueTouchStartY = event.changedTouches[0].pageY
     }
@@ -329,7 +308,6 @@
     }
 
     var demoOpenTouchStartX, demoOpenTouchStartY, demoOpenTouchEndX, demoOpenTouchEndY;
-
 
     goToDemoTouchStart = function () {
       event.preventDefault();
@@ -360,13 +338,7 @@
         demoContinueContainer.style.display = 'block'
       }
 
-//      localStorage.setItem('demo_version', true);
     }
-    //    closeDemo = function () {
-    //      event.preventDefault();
-    //      event.stopPropagation();
-    //      this.demoContainer.classList.add('hide')
-    //    }
 
     var getPhoneNumberTouchStartX, getPhoneNumberTouchStartY, getPhoneNumberTouchEndX, getPhoneNumberTouchEndY
 
@@ -378,7 +350,6 @@
 
       getPhoneNumberTouchStartX = event.changedTouches[0].pageX
       getPhoneNumberTouchStartY = event.changedTouches[0].pageY
-
     };
 
     getPhoneNumberTouchEnd = function () {
@@ -399,11 +370,8 @@
           scope.errorNote = "Неправильно введен номер телефона";
           scope.showError = true;
           scope.update();
-
           correctPhoneNumber = false;
         }
-//      console.log(phoneNumber);
-
 
         if (correctPhoneNumber) {
           if (localStorage.getItem('version') && localStorage.getItem('version') === AppVersion.version) {
@@ -472,9 +440,7 @@
       return device.manufacturer + ' ' + device.version + ' ' + device.model;
     }
 
-    var countOfCall = 0;
     function registrationDevice(phoneNumber, date) {
-      countOfCall++;
       var checkServiceAnswer = false;
       if (device.platform != 'BrowserStand') {
         var options = {dimBackground: true};
@@ -534,14 +500,11 @@
             }
           }
           else {
-
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
             scope.update();
           }
-
-
         },
 
         onFail: function (api_status, api_status_message, data) {
