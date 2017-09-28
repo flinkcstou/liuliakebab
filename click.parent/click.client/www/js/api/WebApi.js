@@ -22,7 +22,7 @@ window.api.init = function () {
       window.api.init();
   }
 
-
+//
 };
 
 window.api.initSocket = function () {
