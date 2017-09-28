@@ -47,8 +47,6 @@
     closeAlertFormEnd = function (id) {
       event.preventDefault();
       event.stopPropagation();
-      console.log('QQQ')
-      console.log('scope.parent', scope.parent)
 
       document.getElementById(id).style.webkitTransform = 'scale(1)'
 
@@ -58,6 +56,7 @@
       if (Math.abs(okButtonStartX - okButtonEndX) <= 20 && Math.abs(okButtonStartY - okButtonEndY) <= 20) {
 
         if (scope.parent) {
+          console.log("Alert from parent:", scope.parent);
           scope.parent.showError = false;
 
           if (opts.carddelete) {
@@ -67,19 +66,21 @@
           }
 
           if (opts.errorcode == 1) {
-            riotTags.innerHTML = "<view-authorization>";
-            riot.mount('view-authorization');
+            console.log("Alert to main page");
+            riotTags.innerHTML = "<view-main-page>";
+            riot.mount('view-main-page');
             return;
           }
 
           if (opts.errorcode == 2) {
-            console.log("errorcode = 2")
+            console.log("Alert to registration");
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');
             return;
           }
 
           if (opts.viewpage) {
+            console.log("Alert to ", opts.viewpage);
             riotTags.innerHTML = "<" + opts.viewpage + ">";
             riot.mount(opts.viewpage);
 
@@ -101,7 +102,10 @@
               }
 //          scope.unmount()
             }
-        } else {
+        }
+        else
+        {
+          console.log("Alert without parent");
           scope.outerShowAlertBool = true;
           riot.update()
           riotTags.innerHTML = "<view-authorization>";

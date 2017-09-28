@@ -44,25 +44,31 @@
       if (Math.abs(okButtonStartX - okButtonEndX) <= 20 && Math.abs(okButtonStartY - okButtonEndY) <= 20) {
 
         if (opts.confirmtype == 'local') {
+          console.log("Confirm on local");
           scope.parent.result(true);
           scope.parent.confirmShowBool = false;
+        }
+        else
+          if (opts.confirmtype == 'internet') {
 
+            modeOfApp.offlineMode = true;
+            modeOfApp.onlineMode = false;
+            console.log("Confirm on internet");
+            riotTags.innerHTML = "<view-main-page>";
+            riot.mount('view-main-page');
+            //        scope.unmount()
         }
-        else if (opts.confirmtype == 'internet') {
-          modeOfApp.offlineMode = true;
-          modeOfApp.onlineMode = false;
-
-          riotTags.innerHTML = "<view-main-page>";
-          riot.mount('view-main-page');
-//        scope.unmount()
-        } else if (opts.confirmtype == 'session') {
-          riotTags.innerHTML = "<view-authorization>";
-          riot.mount('view-authorization');
-//        scope.unmount()
-        }
-        else {
-          navigator.app.exitApp();
-        }
+        else
+          if (opts.confirmtype == 'session')
+          {
+            riotTags.innerHTML = "<view-authorization>";
+            riot.mount('view-authorization');
+            //        scope.unmount()
+          }
+          else
+          {
+            navigator.app.exitApp();
+          }
         scope.outerShowAlertBool = true;
 
         //OK
@@ -80,8 +86,6 @@
       cancelButtonStartY = event.changedTouches[0].pageY;
 
       document.getElementById(id).style.webkitTransform = 'scale(0.8)'
-
-
     }
 
     cancelConfirmEnd = function (id) {
@@ -96,12 +100,14 @@
       if (Math.abs(cancelButtonStartX - cancelButtonEndX) <= 20 && Math.abs(cancelButtonStartY - cancelButtonEndY) <= 20) {
 
         scope.outerShowAlertBool = true;
-        if (scope.parent)
+        if (scope.parent) {
+          console.log("Confirm from parent");
           scope.parent.confirmShowBool = false;
+        }
+        console.log("Confirm to authorization");
         riot.update()
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
-
 
       }
     }

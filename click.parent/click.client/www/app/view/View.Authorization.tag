@@ -736,14 +736,15 @@
         onFail: function (api_status, api_status_message, data) {
           checkServiceAnswer = true;
           console.log("App.login error");
-          scope.errorNote = "Сервис временно недоступен";
-          scope.showError = true;
-          scope.clickPinError = false;
-          scope.errorCode = 1;
-          scope.update();
 
+          if (device.platform == 'Android')
+              showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
+          else {
+              showAlertComponent("Сервер временно недоступен");
+          }
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error("Error data: ",data);
+          return;
         }
       });
 
@@ -754,16 +755,18 @@
               console.log("TRY TO LOGIN BY TIMER");
           }
           if (countOfCall == 3 && !checkServiceAnswer) {
-            scope.showError = true;
-            scope.errorNote = "Сервис временно недоступен";
-            scope.errorCode = 1;
+
+            if (device.platform == 'Android')
+                showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
+            else {
+                showAlertComponent("Сервер временно недоступен");
+            }
+
             countOfCall = 0;
             if (device.platform != 'BrowserStand') {
               console.log("Spinner Stop View Authorization");
               SpinnerPlugin.activityStop();
             }
-//            window.isConnected = false;
-            scope.update();
             return;
           }
         }, 10000);
