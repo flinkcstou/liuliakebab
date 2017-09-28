@@ -417,7 +417,6 @@
       event.stopPropagation();
 
       resetLocalButtonId.style.webkitTransform = 'scale(0.8)'
-
       resetLocalStorageTouchStartX = event.changedTouches[0].pageX
       resetLocalStorageTouchStartY = event.changedTouches[0].pageY
 
@@ -437,7 +436,6 @@
           firstPinInputId.blur();
 
         var question = 'Подтвердите удаление данных'
-//        confirm(question)
         scope.confirmShowBool = true;
         scope.confirmNote = question;
         scope.confirmType = 'local';
@@ -447,7 +445,6 @@
             localStorage.clear();
             if (device.platform != 'BrowserStand') {
               window.FirebasePlugin.unsubscribe("news");
-
             }
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');
@@ -455,12 +452,6 @@
             return
           }
         };
-//      if (scope.result) {
-//        localStorage.clear();
-//        this.riotTags.innerHTML = "<view-registration-device>";
-//        riot.mount('view-registration-device');
-//        return
-//      }
       }
     };
 
@@ -640,29 +631,26 @@
       authorization(phoneNumber, deviceId, password, date);
     };
 
-    var countOfCall = 0;
     function authorization(phoneNumber, deviceId, password, date) {
-      countOfCall++;
 
       if (scope.firstEnter)
         firstPinInputId.blur();
 
       var version = localStorage.getItem('version')
-      var checkServiceAnswer = false;
+      var answerFromServer = false;
 
       if (device.platform != 'BrowserStand') {
         var options = {dimBackground: true};
-
         SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
+          console.log("Spinner start in authorization");
         }, function () {
-          console.log("closed");
+          console.log("Spinner stop in authorization");
         });
       }
 
       window.api.call({
         method: 'app.login',
-        stopSpinner: false,
+        stopSpinner: true,
         input: {
           phone_num: phoneNumber,
           device_id: deviceId,
@@ -673,7 +661,7 @@
         scope: this,
 
         onSuccess: function (result) {
-          checkServiceAnswer = true;
+          answerFromServer = true;
 
           if (result[0][0].error == 0) {
             if (!result[1][0].error) {
@@ -734,7 +722,7 @@
           }
         },
         onFail: function (api_status, api_status_message, data) {
-          checkServiceAnswer = true;
+          answerFromServer = true;
           console.log("App.login error");
 
           if (device.platform == 'Android')
@@ -748,28 +736,18 @@
         }
       });
 
-      if (countOfCall <= 3 && !checkServiceAnswer && window.isConnected)
-        setTimeout(function () {
-          if (!checkServiceAnswer && modeOfApp.onlineMode) {
-              enter();
-              console.log("TRY TO LOGIN BY TIMER");
-          }
-          if (countOfCall == 3 && !checkServiceAnswer) {
+      setTimeout(function () {
+          if (!answerFromServer) {
+                  showAlertComponent("Время ожидания истекло");
 
-            if (device.platform == 'Android')
-                showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
-            else {
-                showAlertComponent("Сервер временно недоступен");
-            }
-
-            countOfCall = 0;
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Authorization");
-              SpinnerPlugin.activityStop();
-            }
-            return;
+              if (device.platform != 'BrowserStand') {
+                  console.log("Spinner stop in authorization by timeout");
+                  SpinnerPlugin.activityStop();
+              }
+              window.isConnected = false;
+              return
           }
-        }, 10000);
+      }, 30000)
     }
 
     if (checkSessionKey) {
@@ -777,7 +755,6 @@
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = loginInfo.session_key;
     }
-
 
     getAccount = function () {
 
@@ -1233,7 +1210,6 @@
         SpinnerPlugin.activityStop();
       }
     }
-
 
   </script>
 </view-authorization>
