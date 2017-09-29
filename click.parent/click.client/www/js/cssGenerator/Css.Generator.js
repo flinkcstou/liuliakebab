@@ -9217,6 +9217,15 @@ var css = {
   "border-bottom: 1px solid lightgrey;" +
   "}",
 
+  paymentDetailPaymentContainerPayFrom: ".payment-detail-payment-container-pay-from" +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "height: 11.5%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "}",
+
   paymentDetailTitle: ".payment-detail-title " +
   "{" +
   "position: absolute;" +
@@ -9226,6 +9235,15 @@ var css = {
   "color: #c1c1c1;" +
   "margin: 0;" +
   "text-align: center;" +
+  "}",
+
+  paymentDetailCommission: ".payment-detail-commission" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "bottom:" + -15 * widthK + "px;" +
   "}",
 
   paymentDetailSum: ".payment-detail-sum " +

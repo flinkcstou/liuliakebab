@@ -26,13 +26,12 @@
 
     <div class="payment-detail-payment-container">
       <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitleSum}</p>
+      <p if="{opts.commission_percent}" class="payment-detail-commission">
+        {window.languages.ViewTransferTwoTax} {opts.commission_percent}
+        {window.languages.Currency}</p>
       <p class="payment-detail-sum">{opts.amount} сум</p>
     </div>
-    <div class="payment-detail-payment-container">
-      <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitlePayFor} {opts.serviceName}:</p>
-      <p class="payment-detail-number">{opts.accountNumber}</p>
-    </div>
-    <div class="payment-detail-payment-container">
+    <div class="payment-detail-payment-container-pay-from">
       <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitlePayFrom}</p>
     </div>
 

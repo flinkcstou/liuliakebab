@@ -151,7 +151,8 @@
             accountNumber: invoice.parameter,
             serviceName: invoice.service_name,
             is_friend_help: invoice.is_friend_help,
-            friend_name: invoice.friend_name
+            friend_name: invoice.friend_name,
+            commission_percent: invoice.commission_percent,
           };
 
 
