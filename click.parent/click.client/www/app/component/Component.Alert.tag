@@ -106,10 +106,20 @@
         else
         {
           console.log("Alert without parent");
-          scope.outerShowAlertBool = true;
-          riot.update()
-          riotTags.innerHTML = "<view-authorization>";
-          riot.mount('view-authorization');
+          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device') {
+            scope.outerShowAlertBool = true;
+            console.log("Alert to device registration");
+            riot.update()
+            riotTags.innerHTML = "<view-registration-device>";
+            riot.mount('view-registration-device');
+          }
+          else {
+            console.log("Alert to authorization");
+            scope.outerShowAlertBool = true;
+            riot.update()
+            riotTags.innerHTML = "<view-authorization>";
+            riot.mount('view-authorization');
+          }
         }
 
         //OK

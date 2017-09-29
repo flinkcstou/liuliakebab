@@ -244,7 +244,6 @@
           el.className = "registration-caret";
         }
       }
-
       return el;
     }
 
@@ -441,20 +440,20 @@
     }
 
     function registrationDevice(phoneNumber, date) {
-      var checkServiceAnswer = false;
+      var answerFromServer = false;
       if (device.platform != 'BrowserStand') {
         var options = {dimBackground: true};
 
         SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
+          console.log("Spinner stop in device registration");
         }, function () {
-          console.log("closed");
+          console.log("Spinner stop in device registration");
         });
       }
 
       window.api.call({
         method: 'device.register.request',
-        stopSpinner: false,
+        stopSpinner: true,
         input: {
           phone_num: phoneNumber,
           device_info: deviceInfo(),
@@ -468,14 +467,11 @@
         scope: this,
 
         onSuccess: function (result) {
-          checkServiceAnswer = true;
+          answerFromServer = true;
+          console.log("Device.register.request method answer: fail");
+
           if (result[0][0].error == 0) {
             if (result[1][0]) {
-
-              if (device.platform != 'BrowserStand') {
-                console.log("Spinner Stop RegistrationDevice 510");
-                SpinnerPlugin.activityStop();
-              }
 
               localStorage.setItem('onResume', false)
 
@@ -508,30 +504,27 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
+          answerFromServer = true;
+          console.log("Device.register.request method answer: fail");
+          showAlertComponent("Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
       });
 
-      if (countOfCall <= 3 && !checkServiceAnswer && window.isConnected)
-        setTimeout(function () {
-          if (!checkServiceAnswer && modeOfApp.onlineMode) {
-            var date = parseInt(Date.now() / 1000);
-            registrationDevice(localStorage.getItem('click_client_phoneNumber'), date);
+      setTimeout(function () {
+          if (!answerFromServer) {
+              scope.showError = true;
+              scope.errorNote = "Время ожидания истекло";
+              scope.update();
+              if (device.platform != 'BrowserStand') {
+                  console.log("Spinner stop in device registration by timeout");
+                  SpinnerPlugin.activityStop();
+              }
+              window.isConnected = false;
+              return;
           }
-          if (countOfCall == 3 && !checkServiceAnswer) {
-            scope.showError = true;
-            scope.errorNote = "Сервис временно недоступен";
-            countOfCall = 0;
-            scope.update();
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Registration Device 559");
-              SpinnerPlugin.activityStop();
-            }
-            window.isConnected = false;
-            return;
-          }
-        }, 10000);
+      }, 30000)
     }
 
   </script>

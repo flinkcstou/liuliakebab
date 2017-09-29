@@ -397,9 +397,9 @@
         var options = {dimBackground: true};
 
         SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
+          console.log("Spinner start in transfer");
         }, function () {
-          console.log("closed");
+          console.log("Spinner stop in transfer");
         });
       }
 
@@ -408,7 +408,7 @@
 
       window.api.call({
         method: 'p2p.payment',
-        stopSpinner: false,
+        stopSpinner: true,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
@@ -492,15 +492,11 @@
 
       setTimeout(function () {
         if (!answerFromServer) {
+          window.api.forceClose();
           scope.showError = true;
           scope.errorNote = "Время ожидания истекло";
           scope.errorCode = 1;
           scope.update();
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner Stop Transfer Step Four 484");
-            SpinnerPlugin.activityStop();
-          }
-          window.isConnected = false;
           return
         }
       }, 30000)

@@ -104,10 +104,20 @@
           console.log("Confirm from parent");
           scope.parent.confirmShowBool = false;
         }
-        console.log("Confirm to authorization");
-        riot.update()
-        riotTags.innerHTML = "<view-authorization>";
-        riot.mount('view-authorization');
+
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device') {
+          console.log("Confirm to device registration");
+          riot.update()
+          riotTags.innerHTML = "<view-registration-device>";
+          riot.mount('view-registration-device');
+        }
+        else
+        {
+          console.log("Confirm to authorization");
+          riot.update()
+          riotTags.innerHTML = "<view-authorization>";
+          riot.mount('view-authorization');
+        }
 
       }
     }

@@ -662,7 +662,7 @@
 
         onSuccess: function (result) {
           answerFromServer = true;
-          console.log("Success answer for authorization");
+          console.log("App.login method answer: success");
 
           if (result[0][0].error == 0) {
             if (!result[1][0].error) {
@@ -724,9 +724,8 @@
         },
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          console.log("App.login error");
-
-          showAlertComponent("Время ожидания истекло");
+          console.log("App.login method answer: fail");
+          showAlertComponent("Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error("Error data: ",data);
           return;
