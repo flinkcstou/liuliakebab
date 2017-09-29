@@ -30,8 +30,6 @@
     var scope = this;
     scope.showError = false;
 
-    console.log("COMPONENT CARD OPTS", opts)
-
     if (!opts.background) {
       console.log('QWEQ')
       opts.background = 'background-image: url(resources/icons/cards/all.png)'
@@ -41,7 +39,6 @@
 
     scope.on("mount", function () {
 
-//      console.log("ASD_scope.leftOfCard", scope.leftOfCard);
     });
 
 

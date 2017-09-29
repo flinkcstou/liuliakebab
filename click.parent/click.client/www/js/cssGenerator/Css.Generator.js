@@ -10476,6 +10476,7 @@ var css = {
 
   addCardUzcardIcon: ".add-card-uzcard-icon " +
   "{" +
+  "visibility: hidden;" +
   "position: absolute;" +
   "top:4%;" +
   "right:2%;" +

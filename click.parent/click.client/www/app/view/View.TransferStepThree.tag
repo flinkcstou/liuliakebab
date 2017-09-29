@@ -31,12 +31,10 @@
       objectForTransfer = opts[0],
       checkChosenCard = false,
       chosenCard;
-    console.log('OOOOPts', opts)
 
     if (opts[0].owner)
       var owner = opts[0].owner;
 
-    console.log('STEP 3', opts)
     scope.showError = false;
 
     arrayForTransfer.push(opts[0])

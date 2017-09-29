@@ -93,8 +93,6 @@
         scope.arrayOfPhoneNumbers.push(personObj)
       }
 
-      console.log('CONTACTS ARRAY', scope.arrayOfPhoneNumbers)
-
       if (typeof scope.arrayOfPhoneNumbers === 'undefined' || scope.arrayOfPhoneNumbers.length < 1) return
 
 

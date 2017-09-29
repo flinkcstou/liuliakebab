@@ -478,7 +478,6 @@
 //                  result[1][i].amount = window.amountTransform(result[1][i].amount);
 //                  result[1][i].p2p_receipt_max_limit_transform = window.amountTransform(result[1][i].p2p_receipt_max_limit);
 //                  result[1][i].p2p_max_limit_transform = window.amountTransform(result[1][i].p2p_max_limit);
-                  console.log('BANK LIST', result[1][i])
 
                   if (result[1][i].p2p_status == 1)
                     bankListAvailable.push(result[1][i]);
@@ -649,7 +648,6 @@
     contactPhoneBlurAndChange = function (from) {
       event.preventDefault();
       event.stopPropagation();
-      console.log('from', from)
       if (onPaste) {
 
         contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(contactPhoneNumberId.value))
@@ -679,7 +677,6 @@
 
       scope.cardMode = true
       scope.contactMode = false
-      console.log('event.keyCode', event)
       if (onPaste) {
         var cardWithouSpace = inputVerification.spaceDeleter(event.target.value)
         console.log('cardWithouSpace', cardWithouSpace)
@@ -1267,7 +1264,7 @@
         contactChooseTouchEndY = event.changedTouches[0].pageY
       }
 
-      console.log('Contact transfer')
+      console.log('Transfer to click user')
       console.log(contactChooseTouchStartX, contactChooseTouchStartY)
       console.log(contactChooseTouchStartX, contactChooseTouchStartY)
 
@@ -1278,7 +1275,6 @@
         ownerCardDsiplayId.style.display = 'none'
 
         if (scope.tourClosed) {
-          console.log("focusing fields")
 
           if (device.platform == 'iOS') {
             contactPhoneNumberId.autofocus;
@@ -1477,7 +1473,6 @@
               console.log("BANKLIST", bankList);
               var percentOfBank = 0;
               for (var i = 0; i < bankList.length; i++) {
-                console.log('BANK LIST', bankList[i])
                 if (codeOfBank == bankList[i].code) {
                   checkOfCode = true;
                   nameOfBank = bankList[i].bank_name;

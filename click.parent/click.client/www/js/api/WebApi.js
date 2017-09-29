@@ -7,12 +7,12 @@ window.api.callBacks = {};
 
 window.api.forceClose = function () {
     this.socket.onclose = function () {
-        if (device.platform != 'BrowserStand') {
-            console.log("Spinner stop in forceClose");
-            SpinnerPlugin.activityStop();
-        }
-        console.log("Socket closed forcefully");
-        window.isConnected = false;
+      if (device.platform != 'BrowserStand') {
+        console.log("Spinner stop in forceClose");
+        SpinnerPlugin.activityStop();
+      }
+      console.log("Socket closed forcefully");
+      window.isConnected = false;
     };
     window.api.socket.close();
 };
