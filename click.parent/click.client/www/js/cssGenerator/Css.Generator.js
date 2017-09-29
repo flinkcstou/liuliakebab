@@ -10607,7 +10607,7 @@ var css = {
   //"height: 18%;" +
   "height:" + 60 * widthK + "px;" +
   "left: 6%;" +
-  "bottom: 14%;" +
+  "bottom: 11%;" +
   "}",
 
   addCardCardDateBox: ".add-card-card-date-box " +
