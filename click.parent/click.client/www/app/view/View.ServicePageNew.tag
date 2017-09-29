@@ -1131,9 +1131,13 @@
 
 
                   if (scope.hasSecondLevel && scope.secondLevelMap[scope.firstLevelArray[0].type]) {
-                    scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].type];
-
+                    var chosenFirstLevelId = scope.firstLevelArray[0].type;
+                    if (scope.chosenFieldParamIdTwo)
+                        chosenFirstLevelId = scope.chosenFieldParamIdTwo;
+                    scope.secondLevelArray = scope.secondLevelMap[chosenFirstLevelId];
                   }
+
+                  console.log("SECOND LEVEL",scope.secondLevelArray, scope.firstLevelArray)
                   checkFieldsToActivateNext();
                 }
               }
@@ -1283,7 +1287,6 @@
           scope.chosenFieldParamIdTwo = scope.firstLevelArray[0].id;
         if (scope.hasSecondLevel && scope.secondLevelMap[scope.firstLevelArray[0].id]) {
           scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].id];
-
         }
 
         checkFieldsToActivateNext();
@@ -1356,8 +1359,8 @@
       }
       if (scope.secondLevelArray) {
         this.blockSecondDropdownId.style.display = 'block';
-        if (scope.oldFieldParamIdThree) {
-          if (scope.formType == 3)
+          if (scope.oldFieldParamIdThree) {
+            if (scope.formType == 3)
             document.getElementById('two' + scope.oldFieldParamIdThree).style.backgroundColor = 'white';
           else if (scope.formType == 4)
             document.getElementById(scope.oldFieldParamIdThree).style.backgroundColor = 'white';
@@ -1668,7 +1671,7 @@
               scope.chosenFieldParamIdThree = id;
               opts.amountText = scope.secondLevelArray[i].usd_cost;
               amountForPayTransaction = scope.secondLevelArray[i].sum_cost;
-              scope.update(scope.chosenFieldNameThree);
+              scope.update();
               break;
             }
           }
