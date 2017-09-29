@@ -164,17 +164,13 @@
     };
 
     scope.addCard = addCard = function (withoutBalance, invoice) {
-      console.log('ADD CARD ADD')
 
       if (modeOfApp.offlineMode) return;
 
 
       if (localStorage.getItem('click_client_accountInfo') && !scope.checkSumOfHash) {
-        console.log('STEP', 0)
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
         var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'))
-        console.log("BEFORE getAccountsCards", getAccountsCards)
-        console.log("AFTER getAccountsCards", getAccountsCards)
       }
 
       if (!scope.checkSumOfHash) {
@@ -312,7 +308,6 @@
 
           scope.cardsarray[getAccountsCards[i].id] = card;
 
-          console.log('scope.cardsarray', scope.cardsarray)
 
           localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
 

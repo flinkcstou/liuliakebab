@@ -97,7 +97,8 @@ window.api.initSocket = function () {
     if (modeOfApp.offlineMode) return;
 
     var parsedData = JSON.parse(event.data);
-    var method = parsedData.data[0][0].method;
+    console.log("Received data:", parsedData);
+    var method = parsedData.data[0][0].method;/// !!!
     var callBack = me.callBacks[method];
     if (parsedData.api_status == 0)
       try {
