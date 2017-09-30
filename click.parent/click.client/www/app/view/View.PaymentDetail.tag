@@ -27,12 +27,12 @@
     <div class="payment-detail-payment-container">
       <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitleSum}</p>
       <p if="{opts.commission_percent}" class="payment-detail-commission">
-        {window.languages.ViewTransferTwoTax} {opts.commission_percent}
+        {window.languages.ViewTransferTwoTax} {commission_amount}
         {window.languages.Currency}</p>
       <p class="payment-detail-sum">{opts.amount} сум</p>
     </div>
     <div class="payment-detail-payment-container-pay-from">
-      <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitlePayFrom}</p>
+      <p class="payment-detail-title-pay-from">{window.languages.ViewPaymentDetailTitlePayFrom}</p>
     </div>
 
     <component-pincards paymentdetail="{true}" clean="{true}"></component-pincards>
@@ -82,6 +82,7 @@
       touchEndAcceptY;
 
     scope.showError = false;
+    scope.commission_amount = scope.opts.amount * scope.opts.commission_percent / 100;
     scope.errorCode = 0;
     //    scope.titleName = window.languages.ViewPaymentDetailTitle + scope.opts.invoiceId;
 

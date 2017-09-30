@@ -9221,7 +9221,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 90%;" +
-  "height: 11.5%;" +
+  "height: 8%;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "}",
@@ -9237,13 +9237,25 @@ var css = {
   "text-align: center;" +
   "}",
 
+  paymentDetailTitlePayFrom: ".payment-detail-title-pay-from " +
+  "{" +
+  "position: absolute;" +
+  "bottom: 0%;" +
+  "left: 3%;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "}",
+
   paymentDetailCommission: ".payment-detail-commission" +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "color: gray;" +
+  "color: #c1c1c1;" +
   "font-size:" + 24 * widthK + "px;" +
-  "bottom:" + -15 * widthK + "px;" +
+  "bottom: -37%;" +
+  "left: 3%;" +
   "}",
 
   paymentDetailSum: ".payment-detail-sum " +
