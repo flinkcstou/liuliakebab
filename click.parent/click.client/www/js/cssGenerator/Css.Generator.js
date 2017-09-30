@@ -13610,7 +13610,7 @@ var css = {
   "{" +
   "position: relative;" +
   "height:" + 80 * widthK + "px; " +
-  "width:" + 145 * widthK + "px; " +
+  "width: fit-content;"  +
   //"left: 4%;" +
   "top: 15%;" +
   "margin-right: " + 32 * widthK + "px; " +
@@ -13622,8 +13622,9 @@ var css = {
   autopayEventStepText: ".autopay-event-step-text" +
   "{" +
   "position: relative;" +
+  "display: inline-block;" +
   "background-size: contain;" +
-  "top: " + 15 * widthK + "px; " +
+  "top: -" + 15 * widthK + "px; " +
   "left: 1%;" +
   "text-align: left;" +
   "font-size:" + 45 * widthK + "px; " +
@@ -13632,14 +13633,15 @@ var css = {
 
   autopayEventStepCheckIcon: ".autopay-event-step-check-icon" +
   "{" +
-  "position: absolute;" +
+  // "position: absolute;" +
+  "display: inline-block;" +
   "right: 0;" +
-  "width: 60%;" +
+  "width:" + 40 * widthK + "px; " +
   "height: 100%;" +
-  "top: 0;" +
+  // "top: 0;" +
   "background-repeat: no-repeat;" +
-  "background-size: 50%;" +
-  "background-position: 80%;" +
+  "background-size: 100%;" +
+  "background-position-y: 80%;" +
   "background-image: url(resources/icons/ViewService/radio_unselected.png);" +
   "}",
 
