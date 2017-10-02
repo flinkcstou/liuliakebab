@@ -27,7 +27,7 @@ window.api.init = function () {
 window.api.initSocket = function () {
 
   this.socket.onopen = function () {
-    console.log('WebSocket is openned');
+    console.log('WebSocket is opened');
     if (!window.isConnected && modeOfApp.onlineMode) {
       if (window.lastSocketMethodToSend) {
         if (window.api.socket.readyState == 1) {
@@ -111,7 +111,7 @@ window.api.initSocket = function () {
           if (!window.api.sessionErrorChecker) {
             window.api.sessionErrorChecker = true;
             if (!error) {
-              showAlertComponent("Ooooops! Что-то пошло не так. При возникновении этой ошибки ещё раз, свяжитесь со службой поддержки по номеру +998 71 2310880.")
+              showAlertComponent("Произошла непредвиденная ошибка. Свяжитесь с нашей службой поддержки +998 71 2310880")
             }
             else {
               if (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true) return

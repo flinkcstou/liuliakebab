@@ -45,8 +45,6 @@
     var scope = this;
     scope.checkOfSearch = false;
 
-    console.log('OPTS in PAY', opts);
-
     if (opts.mode == 'ADDAUTOPAY')
       this.titleName = window.languages.ViewAutoPayTitleName;
     else this.titleName = window.languages.ViewPayTitleName;
@@ -122,7 +120,6 @@
     };
 
     scope.on('mount', function () {
-      console.log("IN MOUNT FUNCTION PAY", viewPay.categoryId, viewPay.categoryScrollTop);
       if (opts.categoryId) {
         document.getElementById("tick" + viewPay.categoryId).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
         hintUpdate(viewPay.categoryId);
@@ -201,8 +198,6 @@
             hintUpdate(scope.index);
           }
 
-          console.log("OFFSET TOP", document.getElementById(id).offsetTop)
-
           document.getElementById(id).scrollIntoView();
 //        categoriesContainerId.scrollIntoView(document.getElementById(id).offsetTop)
 
@@ -261,7 +256,6 @@
     localStorage.setItem('autoPayData', null);
     window.viewServicePinCards = {};
     //opts = (!opts.mode || opts.mode == 'USUAL') ? {} : opts;
-    console.log('OPTS', opts);
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
       event.stopPropagation();

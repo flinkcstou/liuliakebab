@@ -491,7 +491,6 @@
             if (result[1][0])
               for (var i in result[1][0].phone_list) {
                 object = {}
-                console.log('result[1][0]', result[1][0])
                 if (!result[1][0].phone_list[i].phone) {
                   continue
                 }
@@ -592,10 +591,7 @@
                 }
 
                 if (count == (arrayAccountInfo.length * 2)) {
-
-                  console.log('SAVE into localstorage cached cards', arrayAccountInfo);
                   localStorage.setItem("click_client_accountInfo", JSON.stringify(arrayAccountInfo));
-
                 }
               });
             });

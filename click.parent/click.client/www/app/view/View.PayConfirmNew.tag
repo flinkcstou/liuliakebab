@@ -264,9 +264,6 @@
 
     scope.update(scope.amountTextCopy)
 
-    console.log("AMOUNT", this.amountText, " scope.amountTextCopy", scope.amountTextCopy)
-
-
     //    riot.update()
 
     if (scope.cardOrFriendBool) {

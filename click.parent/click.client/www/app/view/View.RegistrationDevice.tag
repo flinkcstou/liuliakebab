@@ -517,7 +517,7 @@
                   console.log("Spinner stop in device registration by timeout");
                   SpinnerPlugin.activityStop();
               }
-              window.isConnected = false;
+              window.api.forceClose();
               return;
           }
       }, 30000)

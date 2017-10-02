@@ -112,14 +112,12 @@
 
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
-            console.log("contact list checker method", result);
             var object = {};
             var counter = 0;
 
             if (result[1][0])
               for (var i in result[1][0].phone_list) {
                 object = {}
-                console.log('result[1][0]', result[1][0])
                 if (!result[1][0].phone_list[i].phone) {
                   continue
                 }

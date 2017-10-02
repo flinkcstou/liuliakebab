@@ -325,7 +325,6 @@
         if (opts.view != "registration") {
           scope.tourData = JSON.parse(localStorage.getItem("tour_data"));
           scope.tourData[opts.view] = true;
-          console.log("New tourData", scope.tourData);
           localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
         }
 

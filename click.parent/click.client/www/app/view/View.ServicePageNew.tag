@@ -378,10 +378,6 @@
 
       if (!scope.service['amount_editable']) return
 
-      if (from == 'sum')
-        console.log('length', amount.value.length)
-
-
       if (amountForPayTransaction < scope.service.min_pay_limit && from == 'sum' && amount.value.length != 0) {
         scope.showErrorOfLimit = true;
         amountField.style.borderBottom = 3 * widthK + 'px solid red';
@@ -468,7 +464,6 @@
         if (scope.chosenFieldParamIdThree)
           opts.internetPackageParam = scope.chosenFieldParamIdThree;
         else {
-          console.log("Выберите интернет пакет");
           scope.enterButtonEnabled = false;
           scope.update(scope.enterButtonEnabled);
           return;
@@ -592,9 +587,6 @@
 
     this.on('mount', function () {
 
-      console.log("ON SERVICEPAGE NEW ON MOUNT");
-      console.log("calcOn on new mount", scope.calcOn)
-
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).calculator && scope.calcOn) {
         if (firstFieldInput)
           firstFieldInput.blur();
@@ -633,10 +625,7 @@
 
     focusFieldAfterTourClosed = function () {
 
-      console.log("ON SERVICEPAGE autofocus first field");
-
       if (opts.mode != 'ADDAUTOPAY' && opts.mode != 'ADDFAVORITE') {
-        console.log('1')
         if (device.platform == 'iOS') {
           firstFieldInput.autofocus;
           firstFieldInput.focus();
@@ -1035,8 +1024,6 @@
 
       scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
 
-      console.log('disable cache', scope.service.disable_cache)
-
       if (scope.service.disable_cache && modeOfApp.onlineMode && !modeOfApp.demoVersion) {
 //        console.log("")
         window.api.call({
@@ -1083,13 +1070,11 @@
               localStorage.setItem("click_client_servicesParamsMapFour", JSON.stringify(scope.servicesParamsMapFour));
               localStorage.setItem("click_client_servicesParamsMapFive", JSON.stringify(scope.servicesParamsMapFive));
 
-
-              console.log("NEW MAP FOUR AND FIVE, updated");
-
               function fill() {
 
                 if (scope.formType == 4 && scope.servicesParamsMapFour[scope.service.id] && scope.servicesParamsMapFive[scope.service.id]) {
                   //scope.on('mount', function () {
+                  console.log(scope);
                   amountField.style.display = 'none';
                   //});
                   scope.firstLevelArray = [];
@@ -1097,8 +1082,6 @@
                   scope.chosenFieldNameTwo = scope.servicesParamsMapFour[scope.service.id][0].name;
                   scope.hasSecondLevel = true;
                   scope.hasFirstLevel = true;
-
-                  console.log("RRRRRR");
 
                   for (var i = 0; i < scope.servicesParamsMapFour[scope.service.id].length; i++) {
                     scope.firstLevelArray.push(scope.servicesParamsMapFour[scope.service.id][i]);
@@ -1125,7 +1108,6 @@
                     scope.chosenFieldNameThree = opts.secondLevelFieldName;
                     amountForPayTransaction = opts.amountText ? opts.amountText : opts.amountWithoutSpace;
 
-                    console.log("amount===", amountForPayTransaction)
                   } else
                     scope.chosenFieldParamIdTwo = scope.firstLevelArray[0].type;
 
@@ -1136,8 +1118,6 @@
                         chosenFirstLevelId = scope.chosenFieldParamIdTwo;
                     scope.secondLevelArray = scope.secondLevelMap[chosenFirstLevelId];
                   }
-
-                  console.log("SECOND LEVEL",scope.secondLevelArray, scope.firstLevelArray)
                   checkFieldsToActivateNext();
                 }
               }
@@ -1188,12 +1168,9 @@
         console.log("scope.servicesParamsMapFive[opts.chosenServiceId]", scope.servicesParamsMapFive[opts.chosenServiceId])
         console.log("scope.servicesParamsMapSix[opts.chosenServiceId]", scope.servicesParamsMapSix[opts.chosenServiceId])
         if (scope.phoneFieldBool) {
-          console.log("NUMBER FROM OPTS 1", opts.firstFieldText)
           scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(opts.firstFieldText);
-          console.log("NUMBER FROM OPTS 2", scope.defaultNumber)
         }
         scope.inputMaxLength = scope.fieldArray[0].max_len;
-        console.log("INPUT LENGTH=", scope.inputMaxLength);
         scope.hasPrefixes = false;
         scope.prefixesArray = [];
 
@@ -1208,7 +1185,6 @@
             scope.chosenPrefixTitle = opts.chosenPrefixTitle ? opts.chosenPrefixTitle : scope.prefixesArray[0].title;
             scope.chosenPrefixId = opts.chosenPrefixId ? opts.chosenPrefixId : scope.prefixesArray[0].option_id;
             scope.chosenPrefixName = opts.chosenPrefixName ? opts.chosenPrefixName : scope.prefixesArray[0].name;
-            console.log("scope.hasPrefixes", scope.hasPrefixes);
           }
         }
 

@@ -65,8 +65,6 @@
   <script>
     var scope = this;
 
-    console.log("KEYBOARD OPTS", opts)
-
     this.on('mount', function () {
       scope.update()
     })

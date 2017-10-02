@@ -65,10 +65,6 @@
 
   <script>
 
-
-    console.log('OPTS in PINCARDS NEW ', opts);
-
-
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards-new') {
       history.arrayOfHistory.push(
         {

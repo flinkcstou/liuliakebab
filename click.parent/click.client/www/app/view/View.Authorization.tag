@@ -675,7 +675,6 @@
                 var friends = JSON.parse(localStorage.getItem('click_client_friends'));
                 var outerFriendsCount = JSON.parse(localStorage.getItem('click_client_friendsOuter_count'));
                 friends.splice(friends.length - outerFriendsCount, outerFriendsCount);
-                console.log("deleted outer friends, ", outerFriendsCount, friends)
                 localStorage.setItem('click_client_friends', JSON.stringify(friends));
                 localStorage.removeItem('click_client_friendsOuter_count')
               }
@@ -728,6 +727,7 @@
       setTimeout(function () {
           if (!answerFromServer) {
               showAlertComponent("Время ожидания истекло");
+              answerFromServer = true;
               if (device.platform != 'BrowserStand') {
                   console.log("Spinner stop in authorization by timeout");
                   SpinnerPlugin.activityStop();
@@ -766,20 +766,16 @@
           riot.mount('view-pin-code', ['view-authorization']);
         }
         else if (!localStorage.getItem("click_client_accountInfo")) {
-
-
           this.riotTags.innerHTML = "<view-main-page>";
           riot.mount('view-main-page');
           scope.unmount()
-        } else {
-
+        }
+        else {
           if (!JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken')) && !JSON.parse(sessionStorage.getItem("push_news"))) {
             this.riotTags.innerHTML = "<view-main-page>";
             riot.mount('view-main-page');
           }
           else {
-
-
             if (localStorage.getItem('settings_block') || localStorage.getItem('session_broken') || sessionStorage.getItem("push_news")) {
               if (JSON.parse(localStorage.getItem('settings_block')) === true || JSON.parse(localStorage.getItem('session_broken')) === true || JSON.parse(sessionStorage.getItem("push_news")) === true) {
                 if (history.arrayOfHistory) {
@@ -813,7 +809,6 @@
                   }
                 }
               }
-
               else {
                 this.riotTags.innerHTML = "<view-main-page>";
                 riot.mount('view-main-page');
@@ -825,7 +820,6 @@
             }
           }
         }
-
 
         if ((!localStorage.getItem("click_client_payCategoryList") || info.update_categories) && modeOfApp.onlineMode) {
 
@@ -842,13 +836,11 @@
             onSuccess: function (result) {
               if (result[0][0].error == 0)
                 if (result[1][0]) {
-
                   if (device.platform != 'BrowserStand') {
                     window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
                       var j = -1;
 
                       for (var i in result[1]) {
-
                         scope.categoryNamesMap[result[1][i].id] = {
                           "name": result[1][i].name,
                           "icon": result[1][i].icon
@@ -864,11 +856,9 @@
 
                           if (bool) {
                             scope.categoryList[index]['icon'] = cordova.file.dataDirectory + fileName;
-                            console.log("BOOL TRUE, url=", scope.categoryList[index]['icon']);
                           } else {
                             scope.categoryList[index]['icon'] = 'resources/icons/ViewPay/' + fileName;
                           }
-
 
                           if (result[1].length == scope.categoryList.length) {
                             scope.update(scope.categoryList);
@@ -961,7 +951,6 @@
                         scope.servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
                       }
 
-
                       if (!scope.servicesMap[result[1][i].id + '']) {
                         scope.servicesMap[result[1][i].id + ''] = [];
                         scope.servicesMap[result[1][i].id + ''].push(result[1][i]);
@@ -971,16 +960,12 @@
                       }
                     }
                   }
-                  console.log("SAVING TO LOCALSTORAGE SERVICES!!!!!!!!!!!!!!!!!!!!!");
                   localStorage.setItem('click_client_payServiceList', JSON.stringify(scope.serviceList));
                   localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(scope.serviceNamesMap));
                   localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(scope.servicesMapByCategory));
                   localStorage.setItem('click_client_servicesMap', JSON.stringify(scope.servicesMap));
                   serviceImagesCaching();
-
                 }
-
-
               servicesParamsInit();
             },
             onFail: function (api_status, api_status_message, data) {
