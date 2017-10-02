@@ -220,7 +220,6 @@ window.inputVerification.telVerification = function (phoneNumber) {
 }
 
 window.inputVerification.telVerificationWithSpace = function (phoneNumber) {
-  console.log('PHONE NUMBER BEFORE', phoneNumber)
   phoneNumber = phoneNumber.toString()
 
   phoneNumber = phoneNumber.replace(new RegExp('[^0-9]', 'g'), '');
@@ -231,7 +230,6 @@ window.inputVerification.telVerificationWithSpace = function (phoneNumber) {
     phoneNumber = phoneNumber.substring(phoneNumber.length - 10, phoneNumber.length)
   }
   newNumber = phoneNumber.slice(0, 2) + ' ' + phoneNumber.slice(2);
-  console.log('PHONE NUMBER AFTER', newNumber)
   return newNumber;
 }
 
@@ -302,7 +300,6 @@ window.pushNotificationSaveTokenToServer = function (token) {
 
     onSuccess: function (result) {
       if (result[0][0].error == 0) {
-        console.log("PUSH", result);
         localStorage.setItem('push_registered', token);
 
         window.FirebasePlugin.logEvent("Registration", {
@@ -323,8 +320,6 @@ window.pushNotificationSaveTokenToServer = function (token) {
       console.error(data);
     }
   });
-  console.log('TOKEN PUSH', token);
-  console.log(token);
 };
 
 window.pushNotificationInitialize = function () {
@@ -334,18 +329,14 @@ window.pushNotificationInitialize = function () {
 
       if (!token || typeof token == "undefined") {
 
-        console.log("No Token", token);
-
         window.FirebasePlugin.onTokenRefresh(function (token) {
 
-          console.log("Token On REFRESH", token);
           window.pushNotificationSaveTokenToServer(token);
         }, function (error) {
           console.error(error);
         });
       } else {
 
-        console.log("Token Get Succeed", token);
         window.pushNotificationSaveTokenToServer(token);
       }
 
@@ -420,7 +411,6 @@ window.pushNotificationActions = {
                 }
               }
 
-              console.log("Invoice", invoice);
             }
             else {
 
@@ -515,10 +505,7 @@ window.pushNotificationActions = {
     var notification = sessionStorage.getItem("push_notification")
     notification = JSON.parse(notification);
 
-    console.log('NOTIFICATION EXIST', notification)
-
     if (notification) {
-
       window.pushNotificationActions[notification.action](notification.params);
     }
 
@@ -544,8 +531,6 @@ window.updateBalanceGlobalFunction = function () {
   console.log('getAccountsCards', getAccountsCards)
 
   for (var i in getAccountsCards) {
-    console.log('getAccountsCards', getAccountsCards[i])
-    console.log('Balance request')
     window.api.call({
       method: 'get.balance',
       stopSpinner: false,
@@ -562,8 +547,6 @@ window.updateBalanceGlobalFunction = function () {
         if (result[0][0].error == 0) {
           if (result[1][0]) {
             try {
-              console.log('SCOPE.CARDSARRAY', arrayOfCard)
-
               if (arrayOfCard[result[1][0].account_id])
                 arrayOfCard[result[1][0].account_id].salaryOriginal = result[1][0].balance.toFixed(0);
 
@@ -575,7 +558,6 @@ window.updateBalanceGlobalFunction = function () {
 
 
               arrayOfCard[result[1][0].account_id].salary = result[1][0].balance;
-              console.log('SCOPE.CARDSARRAY', arrayOfCard)
               localStorage.setItem('click_client_cards', JSON.stringify(arrayOfCard));
 
 

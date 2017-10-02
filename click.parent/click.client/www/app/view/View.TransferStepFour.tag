@@ -492,6 +492,10 @@
 
       setTimeout(function () {
         if (!answerFromServer) {
+          if (device.platform != 'BrowserStand') {
+              console.log("Spinner stop in transfer step four by timeout");
+              SpinnerPlugin.activityStop();
+          }
           window.api.forceClose();
           scope.showError = true;
           scope.errorNote = "Время ожидания истекло";

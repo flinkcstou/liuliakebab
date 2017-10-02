@@ -83,9 +83,6 @@
     scope.index = -1;
     var pinCardtouchStartY, pinCardtouchEndY;
 
-    console.log('OPTS PINCARDS Component', scope.opts);
-    console.log(' scope.cardsArray in component pincard', scope.cardsArray);
-
     scope.on("mount", function () {
       for (var i in scope.cardsArray) {
         if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {

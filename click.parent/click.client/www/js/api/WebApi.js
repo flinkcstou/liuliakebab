@@ -7,10 +7,6 @@ window.api.callBacks = {};
 
 window.api.forceClose = function () {
     this.socket.onclose = function () {
-      if (device.platform != 'BrowserStand') {
-        console.log("Spinner stop in forceClose");
-        SpinnerPlugin.activityStop();
-      }
       console.log("Socket closed forcefully");
       window.isConnected = false;
     };
@@ -166,7 +162,7 @@ window.api.call = function (params) {
   console.log('METHOD', method);
   var input = params.input;
   var stopSpinner = params.stopSpinner === undefined ? true : params.stopSpinner;
-  console.log("Params.stopSpinner", params.stopSpinner);
+  console.log("Stop spinner parameter:", params.stopSpinner);
 
   var onSuccess = params.onSuccess;
   var onFail = params.onFail;
@@ -174,8 +170,6 @@ window.api.call = function (params) {
   console.log("Sending information:", input);
   this.callBacks[method] = {
     ok: function (data) {
-
-      console.log('ANSWER OF API ', data);
 
       if (stopSpinner) {
         window.api.spinnerOn = false;

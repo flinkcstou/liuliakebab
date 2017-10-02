@@ -1257,16 +1257,12 @@
 
     contactTouchEnd = function (bool) {
 
-      console.log("tourClosed", scope.tourClosed)
-
       if (!bool) {
         contactChooseTouchEndX = event.changedTouches[0].pageX
         contactChooseTouchEndY = event.changedTouches[0].pageY
       }
 
       console.log('Transfer to click user')
-      console.log(contactChooseTouchStartX, contactChooseTouchStartY)
-      console.log(contactChooseTouchStartX, contactChooseTouchStartY)
 
       if ((Math.abs(contactChooseTouchStartX - contactChooseTouchEndX) <= 20 && Math.abs(contactChooseTouchStartY - contactChooseTouchEndY) <= 20) || bool) {
         viewTransferStepTwo.sum = 0;

@@ -73,9 +73,7 @@
 
 
     var scope = this;
-    scope.classForPages = ''
-
-    console.log("component tour view=", opts.view);
+    scope.classForPages = '';
 
     if (opts.view == 'registration') {
       scope.classForPages = "component-card-upper-icon";

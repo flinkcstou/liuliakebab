@@ -106,10 +106,8 @@
 
                       if (bool) {
                         scope.popularServiceList[index].image = cordova.file.dataDirectory + fileName;
-                        console.log("1.index=", index, ",imageUrl=", scope.popularServiceList[index].image);
                       } else {
                         scope.popularServiceList[index].image = 'resources/icons/ViewPay/' + fileName;
-                        console.log("2.index=", index, ",imageUrl=", scope.popularServiceList[index]['image']);
                       }
 
                       if (scope.popularServiceList.length == 3) {
@@ -118,7 +116,6 @@
                         myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
                         myNumberObject.id = 'mynumber' + localStorage.getItem('myNumberOperatorId');
                         scope.popularServiceList.push(myNumberObject);
-                        console.log("popular services", scope.popularServiceList);
                         scope.update();
                         localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
                       }
@@ -209,7 +206,6 @@
 
     fillFavorites = function () {
       if (scope.favoritePaymentsList) {
-        console.log("fillFavorites");
         scope.favPaymentsList = [];
         for (var i in scope.favoritePaymentsList) {
           if (!scope.favoritePaymentsList[i].id) {
@@ -235,8 +231,6 @@
     if (modeOfApp.onlineMode && (!localStorage.getItem('favoritePaymentsList') ||
       (localStorage.getItem('version') !== AppVersion.version && localStorage.getItem('favoritePaymentsList')))) {
 
-      console.log("WishList call");
-
       window.api.call({
         method: 'get.wishlist',
         input: {
@@ -251,7 +245,6 @@
 
           if (result[0][0].error == 0) {
 
-            console.log("SUCCESSFULLY got favs from api", result[1])
             if (result[1].length != 0 && !localStorage.getItem('favoritePaymentsList')) {
               scope.favoritePaymentsList = [];
 

@@ -794,7 +794,6 @@
     }
 
     //    findContactsFooter()
-    console.log(device.platform)
     if (device.platform != 'BrowserStand') {
       findContactsFooter();
       console.log('FINDCONTACTS() RUN')
@@ -846,8 +845,6 @@
 
       localStorage.setItem('contactList', JSON.stringify(arrayOfConnectedContacts))
     }
-
-    console.log("FOOTER SCRIPT")
 
   </script>
 </component-footer>

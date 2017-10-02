@@ -188,7 +188,6 @@
     fingerPrintTurnOn = function () {
       window.fingerPrint.fingerPrintInitialize = true;
       if (localStorage.getItem('settings_finger_print') !== null) {
-        console.log("FINGER PRINT INITIALIZE")
         if (device.platform == 'Android') {
 
           function isAvailableSuccess(result) {
@@ -479,8 +478,6 @@
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
-        console.log("PRESSED DIGIT", myValue)
-
         if (enteredPin.length < 5 && myValue != 'x' && myValue != 'space') {
           enteredPin += myValue;
         }
@@ -489,8 +486,6 @@
         }
 
         if (myValue == "space" && JSON.parse(localStorage.getItem('settings_finger_print')) == true) {
-          console.log('space')
-          console.log("SETTINGS FOR FINGER PRINT", JSON.parse(localStorage.getItem('settings_finger_print')))
           try {
             fingerPrintTurnOn();
           }
@@ -626,8 +621,6 @@
       var password = hex_sha512(token + date + pin);
       localStorage.setItem("pinForStand", pin);
 
-      console.log("PHONE NUMBER: ",phoneNumber, " DEVICE ID: ", deviceId);
-      console.log("PASSWORD: ", password, " DATE: " , date, "PIN: ", pin);
       authorization(phoneNumber, deviceId, password, date);
     };
 
@@ -753,10 +746,7 @@
 
     getAccount = function () {
 
-      console.log("LOGIN INFO: ", JSON.parse(localStorage.getItem("click_client_loginInfo")));
-
       if (history.arrayOfHistory.length < 2) {
-        console.log("HISTORY: ", history);
         localStorage.setItem('onResume', false)
       }
 
@@ -768,52 +758,37 @@
         if (scope.firstEnter) {
           var lengthOfPin = firstPinInputId.value.length;
           var compareLength = window.inputVerification.spaceDeleter(firstPinInputId.value);
-          console.log("FIRST ENTER IN ACCOUNT");
+          console.log("First enter in account");
         }
 
-        console.log("ACCOUNT INFO IN LOCAL STORAGE: ", localStorage.getItem("click_client_accountInfo"));
-
         if (scope.firstEnter && (lengthOfPin != compareLength.length || lengthOfPin != 5)) {
-          console.log("DEBUG HISTORY IF 3");
           riotTags.innerHTML = "<view-pin-code>";
           riot.mount('view-pin-code', ['view-authorization']);
         }
         else if (!localStorage.getItem("click_client_accountInfo")) {
 
-          console.log("DEBUG HISTORY IF 4");
 
           this.riotTags.innerHTML = "<view-main-page>";
           riot.mount('view-main-page');
           scope.unmount()
         } else {
 
-          console.log("DEBUG HISTORY IF 5", JSON.parse(localStorage.getItem('onResume')), JSON.parse(localStorage.getItem('session_broken')), JSON.parse(sessionStorage.getItem("push_news")));
-
           if (!JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken')) && !JSON.parse(sessionStorage.getItem("push_news"))) {
-            console.log("DEBUG HISTORY IF 6");
             this.riotTags.innerHTML = "<view-main-page>";
             riot.mount('view-main-page');
           }
           else {
 
-            console.log("DEBUG HISTORY IF 7", JSON.parse(localStorage.getItem('settings_block')), JSON.parse(localStorage.getItem('session_broken')), JSON.parse(sessionStorage.getItem("push_news")));
 
             if (localStorage.getItem('settings_block') || localStorage.getItem('session_broken') || sessionStorage.getItem("push_news")) {
-              console.log("DEBUG HISTORY IF 8");
               if (JSON.parse(localStorage.getItem('settings_block')) === true || JSON.parse(localStorage.getItem('session_broken')) === true || JSON.parse(sessionStorage.getItem("push_news")) === true) {
-                console.log("QWEQWEWWWWWWW");
-                console.log("DEBUG HISTORY IF 9", history.arrayOfHistory);
                 if (history.arrayOfHistory) {
-                  console.log("DEBUG HISTORY IF 10", history.arrayOfHistory[history.arrayOfHistory.length - 1]);
                   if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
-                    console.log("DEBUG HISTORY IF 11");
                     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-news') {
-                      console.log("DEBUG HISTORY IF 12");
                       this.riotTags.innerHTML = "<view-main-page>";
                       riot.mount("view-main-page");
                     }
                     else {
-                      console.log("DEBUG HISTORY IF 13");
                       this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
                       riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
                     }
@@ -821,27 +796,19 @@
                     if (device.platform != 'BrowserStand')
                       StatusBar.backgroundColorByHexString("#00a8f1");
 
-                    console.log("DEBUG HISTORY IF 14", JSON.parse(localStorage.getItem('settings_block')), JSON.parse(localStorage.getItem('session_broken')), JSON.parse(sessionStorage.getItem("push_news")));
-
                     if (JSON.parse(localStorage.getItem('settings_block')) === true) {
-                      console.log("DEBUG HISTORY IF 15");
                       localStorage.setItem('onResume', false);
                     }
                     else {
-                      console.log("DEBUG HISTORY IF 16");
                       if (JSON.parse(localStorage.getItem('session_broken')) === true) {
-                        console.log("DEBUG HISTORY IF 17");
                         localStorage.setItem('session_broken', false);
                       }
                       else {
-                        console.log("DEBUG HISTORY IF 18");
                         if (JSON.parse(sessionStorage.getItem("push_news")) === true) {
-                          console.log("DEBUG HISTORY IF 19");
                           sessionStorage.setItem("push_news", false)
                         }
                       }
                     }
-                    console.log("DEBUG HISTORY IF 20");
                     return
                   }
                 }
@@ -960,11 +927,9 @@
 
                   for (var i in result[1]) {
                     if (result[1][i].is_visible == 1) {
-                      console.log("service id=", result[1][i].id, ", element:", result[1][i]);
 
                       scope.serviceNamesMap[result[1][i].id] = result[1][i].name;
                       scope.serviceList.push(result[1][i]);
-
 
                       if (!scope.servicesMapByCategory[result[1][i].category_id]) {
                         scope.servicesMapByCategory[result[1][i].category_id] = [];
@@ -1085,7 +1050,6 @@
               if (result[0][0].error == 0) {
                 if (result[1])
                   for (var i in result[1]) {
-                    console.log("1. service id=", result[1][i].service_id, "element:", result[1][i]);
                     if (!scope.servicesParamsMapOne[result[1][i].service_id]) {
                       scope.servicesParamsMapOne[result[1][i].service_id] = [];
                       scope.servicesParamsMapOne[result[1][i].service_id].push(result[1][i]);
@@ -1097,7 +1061,6 @@
                   }
                 if (result[2])
                   for (var i in result[2]) {
-                    console.log("2. service id=", result[2][i].service_id, "element:", result[2][i]);
                     if (!scope.servicesParamsMapTwo[result[2][i].service_id]) {
                       scope.servicesParamsMapTwo[result[2][i].service_id] = [];
                       scope.servicesParamsMapTwo[result[2][i].service_id].push(result[2][i]);
@@ -1108,7 +1071,6 @@
                   }
                 if (result[3])
                   for (var i in result[3]) {
-                    console.log("3. service id=", result[3][i].service_id, "element:", result[3][i]);
                     if (!scope.servicesParamsMapThree[result[3][i].service_id]) {
                       scope.servicesParamsMapThree[result[3][i].service_id] = [];
                       scope.servicesParamsMapThree[result[3][i].service_id].push(result[3][i]);
@@ -1119,7 +1081,6 @@
                   }
                 if (result[4])
                   for (var i in result[4]) {
-                    console.log("4. service id=", result[4][i].service_id, "element:", result[4][i]);
                     if (!scope.servicesParamsMapFour[result[4][i].service_id]) {
                       scope.servicesParamsMapFour[result[4][i].service_id] = [];
                       scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
@@ -1129,7 +1090,6 @@
                   }
                 if (result[5])
                   for (var i in result[5]) {
-                    console.log("5. service id=", result[5][i].service_id, "element:", result[5][i]);
                     if (!scope.servicesParamsMapFive[result[5][i].service_id]) {
                       scope.servicesParamsMapFive[result[5][i].service_id] = [];
                       scope.servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
@@ -1139,7 +1099,6 @@
                   }
                 if (result[6])
                   for (var i in result[6]) {
-                    console.log("6. service id=", result[6][i].service_id, "element:", result[6][i]);
                     if (!scope.servicesParamsMapSix[result[6][i].service_id]) {
                       scope.servicesParamsMapSix[result[6][i].service_id] = [];
                       scope.servicesParamsMapSix[result[6][i].service_id].push(result[6][i]);

@@ -107,8 +107,6 @@
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
-        console.log("inputFocusIndexSms", inputFocusIndexSms);
-
         if (scope.confirmSms.length < 5 && myValue != 'x') {
 
           scope.confirmSms = scope.confirmSms.slice(0, inputFocusIndexSms) + myValue + scope.confirmSms.slice(inputFocusIndexSms);
@@ -126,7 +124,6 @@
         }
 
 
-        console.log("p=", scope.confirmSms);
         scope.update();
         if (scope.confirmSms.length == 5) {
           var sms = scope.confirmSms;
@@ -377,7 +374,6 @@
               clearInterval(time);
 
               localStorage.setItem('confirm_needed', false);
-              console.log(result)
               if (result[0][0].client_exists == 1) {
                 localStorage.setItem('click_client_registered', true)
                 this.riotTags.innerHTML = "<view-authorization>";

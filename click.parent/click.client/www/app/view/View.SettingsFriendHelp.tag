@@ -71,7 +71,6 @@
 
     function onSuccess(contacts) {
       //      alert('Found ' + contacts.length + ' contacts.');
-      console.log('contacts', contacts)
 
       for (var i in contacts) {
         var personObj = {};

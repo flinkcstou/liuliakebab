@@ -314,7 +314,6 @@
 
           count++;
 
-          console.log('COUNT', count)
 //        cardNumber %= count;
           localStorage.setItem('click_client_countCard', count);
 //        localStorage.setItem('cardNumber', cardNumber);
@@ -322,7 +321,6 @@
       }
 
       scope.update()
-      console.log('CARDSARRAY', scope.cardsarray)
 
 //      scope.update(scope.cardsarray);
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
@@ -356,8 +354,6 @@
           if (result[0][0].error == 0 && viewMainPage.atMainPage) {
             if (result[1]) {
               if (result[1][0]) {
-                console.log('invoice', result[1])
-
                 if (result[1].length != 0) {
                   try {
                     cards.style.transition = '0s';
@@ -372,11 +368,9 @@
                   scope.cardNumber = 1;
                 }
 
-
 //                scope.update(scope.invoiceCheck);
 //                scope.update(scope.cardNumber);
                 var arrayOfInvoice = [];
-                console.log("scope.arrayOfFriends", scope.arrayOfFriends)
                 for (var i = 0; i < result[1].length; i++) {
 
                   //TODO: FIX
@@ -399,8 +393,6 @@
 
                   arrayOfInvoice.push(result[1][i]);
                 }
-
-                console.log("arrayOfInvoice", arrayOfInvoice);
 
                 localStorage.setItem('click_client_invoice_list', JSON.stringify(arrayOfInvoice));
 
@@ -451,7 +443,6 @@
 
     function onSuccess(contacts) {
       //      alert('Found ' + contacts.length + ' contacts.');
-      console.log('contacts', contacts)
 
       for (var i in contacts) {
         var personObj = {};
@@ -555,7 +546,6 @@
 
 
     if (!localStorage.getItem('click_client_friendsOuter_count')) {
-      console.log("requesting friend list")
 
       if (device.platform != 'BrowserStand') {
         var options = new ContactFindOptions();
@@ -583,11 +573,9 @@
               if (bool) {
                 count++;
                 arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
-                console.log("(1)new file name=" + arrayAccountInfo[index].card_background_url + "," + count);
               } else {
                 count++;
                 arrayAccountInfo[index].card_background_url = 'resources/icons/cards/' + fileName;
-                console.log("(2)new file name=" + arrayAccountInfo[index].card_background_url + "," + count);
               }
 
               var icon2 = arrayAccountInfo[index].image_url;
@@ -598,11 +586,9 @@
                 if (bool2) {
                   count++;
                   arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
-                  console.log("(11)new file name=" + arrayAccountInfo[index2].image_url + "," + count);
                 } else {
                   count++;
                   arrayAccountInfo[index2].image_url = 'resources/icons/cards/logo/' + fileName2;
-                  console.log("(12)new file name=" + arrayAccountInfo[index2].image_url + "," + count);
                 }
 
                 if (count == (arrayAccountInfo.length * 2)) {
@@ -622,8 +608,6 @@
     var arrayAccountInfo = [];
 
     scope.onComponentCreated = onComponentCreated = function (cardNumberParameter) {
-
-      console.log("onComponentCreated STARTED");
 
 //    this.on('mount', function () {
 //      clearInterval(changingColor);
@@ -655,23 +639,18 @@
                   for (var k in cardsArray) {
                     countLocalStorageCard++;
                   }
-                  console.log('cardsArraycardsArraycardsArraycardsArray', cardsArray);
                   if (countLocalStorageCard == result[1].length) {
-                    console.log("LENGHT IS EQUAL")
                     for (var i in result[1]) {
-                      console.log('cardsArray[result[1].id]', cardsArray[result[1][i].id]);
                       if (cardsArray[result[1][i].id]) {
-
-                        console.log('HASH SUM CHECKING', cardsArray[result[1][i].id].checksum, result[1][i].checksum);
 
                         if (cardsArray[result[1][i].id].checksum != result[1][i].checksum) {
                           if (device.platform != 'BrowserStand') {
                             var options = {dimBackground: true};
 
                             SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                              console.log("Started");
+                              console.log("Spinner start in card carousel");
                             }, function () {
-                              console.log("closed");
+                              console.log("Spinner stop in card carousel");
                             });
                           }
                           scope.checkSumOfHash = false;
@@ -704,20 +683,14 @@
                     scope.checkSumOfHash = false;
                   }
 
-                  console.log("CARDS RESULT", result[1], cardsArray)
-
                 }
                 else {
                   scope.checkSumOfHash = false;
                 }
 
-                console.log('HASH SUM CHECK', scope.checkSumOfHash)
-                console.log('update_account_cache', info.update_account_cache)
-
 //                console.log('CARDS UPDATE()', result[1])
 //                console.log(result[1])
                 if (!scope.checkSumOfHash || info.update_account_cache) {
-                  console.log("ASEWASEW");
                   var countCard = 2;
                   var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
 
@@ -736,7 +709,6 @@
                     localStorage.removeItem("click_client_accountInfo")
                   }
 
-                  console.log('accountInfo BROWSER STAND', JSON.parse(accountInfo));
                   localStorage.setItem("click_client_accountInfo", accountInfo);
 
                   cardImagesCaching();
@@ -812,7 +784,6 @@
 
 
     if (viewMainPage.atMainPage && !modeOfApp.demoVersion && modeOfApp.onlineMode) {
-      console.log("INVOICE INVOICE")
       invoiceCheckFunction();
     }
 
@@ -851,8 +822,6 @@
 //        }
 //      }
 
-      console.log("ON MOUNT CARD NUMBER", scope.cardNumber)
-
       cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
 
@@ -870,22 +839,12 @@
     //
     writeBalance = function () {
 
-
-      console.log("BALANCE STARTED");
-      console.log("BALANCE STARTED", getAccountsCards);
-
       if (getAccountsCards.length == 0) {
         if (localStorage.getItem('click_client_cards'))
           getAccountsCards = JSON.parse(localStorage.getItem('click_client_cards'))
-
-        console.log("JSON.parse(localStorage.getItem('click_client_cards'))", JSON.parse(localStorage.getItem('click_client_cards')))
       }
 
-      console.log('getAccountsCards', getAccountsCards)
-
       for (var i in getAccountsCards) {
-        console.log('getAccountsCards', getAccountsCards[i])
-        console.log('Balance request')
         window.api.call({
           method: 'get.balance',
           stopSpinner: false,
@@ -902,7 +861,6 @@
             if (result[0][0].error == 0) {
               if (result[1][0]) {
                 try {
-                  console.log('SCOPE.CARDSARRAY', scope.cardsarray)
 
                   if (scope.cardsarray[result[1][0].account_id])
                     scope.cardsarray[result[1][0].account_id].salaryOriginal = result[1][0].balance.toFixed(0);
@@ -915,7 +873,6 @@
 
 
                   scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
-                  console.log('SCOPE.CARDSARRAY', scope.cardsarray)
                   localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
 
 
@@ -997,7 +954,6 @@
     var firstEnter = false;
 
     startTouchCarousel = function () {
-      console.log('Carousel Touch Start', event)
 
       //
       //Test
@@ -1008,8 +964,6 @@
 //      clearInterval(changingColor)
 //
 //      firstEnter = true;
-
-      console.log("Start Touch Carousel", scope.cardNumber);
 
       carouselTouchStartX = event.changedTouches[0].pageX;
       left = -((540 * scope.cardNumber) * widthK) - carouselTouchStartX;

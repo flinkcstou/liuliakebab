@@ -144,16 +144,12 @@
 
     componentKeyboard.returnValue = function (myValue, id) {
 
-      console.log("ID end", id)
-
       document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       keyboardTouchEndX = event.changedTouches[0].pageX
       keyboardTouchEndY = event.changedTouches[0].pageY
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
-
-        console.log("inputFocusIndex start", inputFocusIndex);
 
         if (window.inputVerification.spaceDeleter(scope.maskPhoneNumber).length < 9 && myValue != 'x') {
 

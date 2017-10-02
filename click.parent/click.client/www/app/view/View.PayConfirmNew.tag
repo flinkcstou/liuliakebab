@@ -302,9 +302,6 @@
     scope.update();
 
 
-    console.log("CONFIRMED=", sessionStorage.getItem('payTransferConfirmed'))
-    console.log("BLOCKED=", payTransferBlocked)
-
     if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
       console.log("payTransferConfirmed=", sessionStorage.getItem('payTransferConfirmed'))
       payService();
@@ -761,7 +758,7 @@
               this.operationMessage = window.languages.ComponentSuccessMessageForPay;
               scope.update();
               if (device.platform != 'BrowserStand') {
-                console.log("Spinner Stop View Pay Confirm New 753");
+                console.log("Spinner stop in pay confirm");
                 SpinnerPlugin.activityStop();
               }
 
@@ -800,7 +797,7 @@
 
 
                 if (device.platform != 'BrowserStand') {
-                  console.log("Spinner Stop View Pay Confirm New 790");
+                  console.log("Spinner stop in pay confirm");
                   SpinnerPlugin.activityStop();
                 }
 
@@ -814,7 +811,7 @@
           else {
             answerFromServer = true;
             if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Pay Confirm New 803");
+              console.log("Spinner stop in pay confirm");
               SpinnerPlugin.activityStop();
             }
             componentUnsuccessId.style.display = 'block';
@@ -852,9 +849,9 @@
         var options = {dimBackground: true};
 
         SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
+          console.log("Spinner start in pay confirm");
         }, function () {
-          console.log("closed");
+          console.log("Spinner stop in pay confirm");
         });
       }
 
@@ -973,9 +970,9 @@
           var options = {dimBackground: true};
 
           SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-            console.log("Started");
+            console.log("Spinner start in pay confirm");
           }, function () {
-            console.log("closed");
+            console.log("Spinner stop in pay confirm");
           });
         }
 
@@ -994,7 +991,6 @@
 
           onSuccess: function (result) {
             if (result[0][0].error == 0) {
-              console.log("result of autopay.delete", result);
               localStorage.setItem('autoPayData', null);
 
               viewServicePinCards.friendHelpPaymentMode = false;
@@ -1007,7 +1003,6 @@
               componentSuccessId.style.display = 'block';
             }
             else {
-              console.log("result of autopay.delete", result);
               componentUnsuccessId.style.display = 'block';
             }
           },
@@ -1065,7 +1060,5 @@
       }
 
     }
-
-
   </script>
 </view-pay-confirm-new>

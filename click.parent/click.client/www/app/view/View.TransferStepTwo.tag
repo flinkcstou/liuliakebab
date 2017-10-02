@@ -42,8 +42,6 @@
 
   <script>
 
-    console.log("TRANSFER STEP TWO OPTS", opts)
-
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-steptwo') {
       history.arrayOfHistory.push(
         {
@@ -294,8 +292,6 @@
 
 //      console.log('objectForTransfer', objectForTransfer)
 
-        console.log('maxLimit', maxLimit)
-        console.log('minLimit', minLimit)
         scope.showPlaceHolderError = false;
 
         if (sumForTransfer > maxLimit) {
