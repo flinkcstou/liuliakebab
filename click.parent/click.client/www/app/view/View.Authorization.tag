@@ -624,13 +624,15 @@
       authorization(phoneNumber, deviceId, password, date);
     };
 
+    var answerFromServer;
+
     function authorization(phoneNumber, deviceId, password, date) {
 
       if (scope.firstEnter)
         firstPinInputId.blur();
 
       var version = localStorage.getItem('version')
-      var answerFromServer = false;
+      answerFromServer = false;
 
       if (device.platform != 'BrowserStand') {
         var options = {dimBackground: true};
@@ -719,22 +721,22 @@
           console.log("App.login method answer: fail");
           showAlertComponent("Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error("Error data: ",data);
+          console.error("Error data: ", data);
           return;
         }
       });
 
       setTimeout(function () {
-          if (!answerFromServer && window.isConnected) {
-              showAlertComponent("Время ожидания истекло");
-              answerFromServer = true;
-              if (device.platform != 'BrowserStand') {
-                  console.log("Spinner stop in authorization by timeout");
-                  SpinnerPlugin.activityStop();
-              }
-              window.isConnected = false;
-              return
+        if (!answerFromServer && window.isConnected) {
+          showAlertComponent("Время ожидания истекло");
+          answerFromServer = true;
+          if (device.platform != 'BrowserStand') {
+            console.log("Spinner stop in authorization by timeout");
+            SpinnerPlugin.activityStop();
           }
+          window.isConnected = false;
+          return
+        }
       }, 30000)
     }
 
