@@ -219,11 +219,10 @@
               inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, i)).width + inputLocalStartX - 3 * widthK + 'px';
               inputFocusIndex = i;
             }
-            else
-              if (regNumberTouchEndX > (ctx.measureText(scope.maskPhoneNumber.substring(0, i)).width + ctx.measureText(scope.maskPhoneNumber[i]).width / 2 + inputStartX)) {
-                inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, i + 1)).width + inputLocalStartX - 3 * widthK + 'px';
-                inputFocusIndex = i + 1;
-              }
+            else if (regNumberTouchEndX > (ctx.measureText(scope.maskPhoneNumber.substring(0, i)).width + ctx.measureText(scope.maskPhoneNumber[i]).width / 2 + inputStartX)) {
+              inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, i + 1)).width + inputLocalStartX - 3 * widthK + 'px';
+              inputFocusIndex = i + 1;
+            }
             break;
           }
         }
@@ -435,13 +434,15 @@
       return device.manufacturer + ' ' + device.version + ' ' + device.model;
     }
 
+    var answerFromServer;
+
     function registrationDevice(phoneNumber, date) {
-      var answerFromServer = false;
+      answerFromServer = false;
       if (device.platform != 'BrowserStand') {
         var options = {dimBackground: true};
 
         SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Spinner stop in device registration");
+          console.log("Spinner start in device registration");
         }, function () {
           console.log("Spinner stop in device registration");
         });
@@ -509,17 +510,17 @@
       });
 
       setTimeout(function () {
-          if (!answerFromServer) {
-              scope.showError = true;
-              scope.errorNote = "Время ожидания истекло";
-              scope.update();
-              if (device.platform != 'BrowserStand') {
-                  console.log("Spinner stop in device registration by timeout");
-                  SpinnerPlugin.activityStop();
-              }
-              window.api.forceClose();
-              return;
+        if (!answerFromServer) {
+          scope.showError = true;
+          scope.errorNote = "Время ожидания истекло";
+          scope.update();
+          if (device.platform != 'BrowserStand') {
+            console.log("Spinner stop in device registration by timeout");
+            SpinnerPlugin.activityStop();
           }
+          window.api.forceClose();
+          return;
+        }
       }, 30000)
     }
 
