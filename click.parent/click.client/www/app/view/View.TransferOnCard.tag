@@ -39,7 +39,8 @@
       touchStartAcceptX,
       touchStartAcceptY,
       touchEndAcceptX,
-      touchEndAcceptY;
+      touchEndAcceptY,
+      transferOnCardCheckAnswer;
 
     scope.success = false;
     scope.fail = false;
@@ -133,7 +134,7 @@
           });
         }
 
-        var checkAnswer = false;
+        transferOnCardCheckAnswer = false;
 
         window.api.call({
           method: 'invoice.action',
@@ -148,7 +149,7 @@
           },
           scope: this,
           onSuccess: function (result) {
-            checkAnswer = true;
+            transferOnCardCheckAnswer = true;
 
             if (device.platform != 'BrowserStand') {
               console.log("Spinner Stop View Transfer On Card 154");
@@ -182,7 +183,7 @@
           },
 
           onFail: function (api_status, api_status_message, data) {
-            checkAnswer = true;
+            transferOnCardCheckAnswer = true;
 
             componentUnsuccessId.style.display = 'block';
 
@@ -191,10 +192,10 @@
           }
         });
 
-        if (!checkAnswer && window.isConnected) {
+        if (!transferOnCardCheckAnswer && window.isConnected) {
           console.log("wwww")
           setTimeout(function () {
-            if (!checkAnswer) {
+            if (!transferOnCardCheckAnswer) {
               scope.showError = true;
               scope.errorNote = "Сервис временно недоступен";
               scope.stepAmount = 1;

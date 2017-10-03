@@ -153,9 +153,10 @@
 
     }
 
+    var checkAnswer;
 
     function getInformation() {
-      var checkAnswer = false;
+      checkAnswer = false;
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
       window.api.call({

@@ -32,7 +32,7 @@
            ontouchend="goToInvoiceHistoryDetailTouchEnd(this.title, this.id)"
            ontouchstart="goToInvoiceHistoryDetailTouchStart(this.id)">
         <div
-            class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
+          class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
           <mark class="invoice-list-invoice-sum-sym">сум</mark>
           <p class="invoice-list-invoice-sum">{invoice.amount}</p>
         </div>
@@ -142,6 +142,7 @@
     }
 
     scope.invoiceList = [];
+    var checkAnswerToUser;
 
     getInvoiceListToUser = function () {
       console.log("ASDQQQ");
@@ -160,7 +161,7 @@
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = loginInfo.session_key;
-      var checkAnswerToUser = false;
+      checkAnswerToUser = false;
 
       if (device.platform != 'BrowserStand') {
         var options = {dimBackground: true};
