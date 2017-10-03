@@ -725,7 +725,7 @@
       });
 
       setTimeout(function () {
-          if (!answerFromServer) {
+          if (!answerFromServer && window.isConnected) {
               showAlertComponent("Время ожидания истекло");
               answerFromServer = true;
               if (device.platform != 'BrowserStand') {

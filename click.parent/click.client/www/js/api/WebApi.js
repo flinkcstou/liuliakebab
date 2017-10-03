@@ -94,7 +94,7 @@ window.api.initSocket = function () {
 
     var parsedData = JSON.parse(event.data);
     console.log("Received data:", parsedData);
-    var method = parsedData.data[0][0].method;/// !!!
+    var method = parsedData.data[0][0].method;
     var callBack = me.callBacks[method];
     if (parsedData.api_status == 0)
       try {
@@ -105,7 +105,6 @@ window.api.initSocket = function () {
       }
       catch (ERROR) {
         console.log("Error on socket initializing: ", ERROR);
-
         try {
           var error = parsedData.data[0][0].error_note;
           if (!window.api.sessionErrorChecker) {
