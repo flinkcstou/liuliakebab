@@ -112,26 +112,33 @@
     //      }
     //    };
 
-    var touchStartAddFirstCard;
-    var touchEndAddFirstCard;
+    var touchStartAddFirstCardX, touchEndAddFirstCardX, touchStartAddFirstCardY, touchEndAddFirstCardY;
 
-    invoiceBlockTouchStart = function () {
-      touchStartInvoiceOne = event.changedTouches[0].pageX;
+    addFirstCardTouchStart = function () {
+      touchStartAddFirstCardX = event.changedTouches[0].pageX;
+      touchStartAddFirstCardY = event.changedTouches[0].pageY;
       console.log('touchStartInvoiceOne', touchStartInvoiceOne)
     };
 
 
     addFirstCardTouchEnd = function () {
 
-      event.preventDefault();
-      event.stopPropagation();
+      touchEndAddFirstCardX = event.changedTouches[0].pageX;
+      touchEndAddFirstCardY = event.changedTouches[0].pageY;
 
-      console.log("add card page open")
+      if (Math.abs(touchStartAddFirstCardX - touchEndAddFirstCardX) < 20 && Math.abs(touchStartAddFirstCardY - touchEndAddFirstCardY) < 20) {
 
-      riotTags.innerHTML = "<view-add-card>";
-      riot.mount('view-add-card');
+        event.preventDefault();
+        event.stopPropagation();
 
-      scope.unmount()
+        console.log("add card page open")
+
+        riotTags.innerHTML = "<view-add-card>";
+        riot.mount('view-add-card');
+
+        scope.unmount()
+
+      }
     }
 
     var touchStartInvoiceOne;
@@ -578,12 +585,12 @@
 
     // if (!localStorage.getItem('click_client_friendsOuter_count')) {
 
-//    if (device.platform != 'BrowserStand') {
-//      var options = new ContactFindOptions();
-//      options.multiple = true;
-//      options.hasPhoneNumber = true;
-//      navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
-//    }
+    //    if (device.platform != 'BrowserStand') {
+    //      var options = new ContactFindOptions();
+    //      options.multiple = true;
+    //      options.hasPhoneNumber = true;
+    //      navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
+    //    }
     //}
 
 
