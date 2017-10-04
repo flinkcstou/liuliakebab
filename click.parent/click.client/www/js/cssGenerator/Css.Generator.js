@@ -10041,6 +10041,36 @@ var css = {
   "width:" + 627 * widthK + "px;" +
   "}",
 
+  addCardCarousel: ".add-card-carousel" +
+  "{" +
+  "height:" + 289 * widthK + "px;" +
+  "width:" + 510 * widthK + "px;" +
+  "position: absolute;" +
+  "top:" + 7 * widthK + "px;" +
+  "left:" + 640 * widthK + "px;" +
+  "}",
+
+  addCardCarouselIcon: ".add-card-carousel-icon" +
+  "{" +
+  "background-image: url(resources/icons/cards/all.png);" +
+  "height:" + 150 * widthK + "px;" +
+  "width:" + 230 * widthK + "px;" +
+  "position: absolute;" +
+  "top:15%;" +
+  "left:28%;" +
+  "background-size: cover;" +
+  "}",
+
+  addCardCarouselText: ".add-card-carousel-text" +
+  "{" +
+  "width:70%;" +
+  "position: absolute;" +
+  "top:75%;" +
+  "left:20%;" +
+  "font-size: " + 30 * widthK + "px;" +
+  "color: white;" +
+  "}",
+
 //  VIEW BANK LIST
 
   componentBankList: ".component-bank-list" +
@@ -13610,7 +13640,7 @@ var css = {
   "{" +
   "position: relative;" +
   "height:" + 80 * widthK + "px; " +
-  "width: fit-content;"  +
+  "width: fit-content;" +
   //"left: 4%;" +
   "top: 15%;" +
   "margin-right: " + 32 * widthK + "px; " +

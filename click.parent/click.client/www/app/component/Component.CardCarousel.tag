@@ -36,6 +36,15 @@
         </div>
       </div>
 
+      <div class="add-card-carousel">
+        <div class="add-card-carousel-icon" ontouchend="addFirstCardTouchEnd()" ontouchstart="addFirstCardTouchStart()">
+        </div>
+        <div class="add-card-carousel-text">
+          {window.languages.ComponentCardCarouselAddFirstCardtext}
+        </div>
+
+      </div>
+
       <component-card each="{i in cardsarray}"
                       countcard="{i.countCard}"
                       name="{i.name}" salary="{i.salary}" currency="{i.currency}"
@@ -51,6 +60,7 @@
                    errornote="{errorNote}"></component-alert>
 
   <script>
+    //if="{!cardsarray || cardsarray.length==0}"
 
     var scope = this;
     scope.invoiceLeft = 100 * widthK;
@@ -101,6 +111,28 @@
     ////        return
     //      }
     //    };
+
+    var touchStartAddFirstCard;
+    var touchEndAddFirstCard;
+
+    invoiceBlockTouchStart = function () {
+      touchStartInvoiceOne = event.changedTouches[0].pageX;
+      console.log('touchStartInvoiceOne', touchStartInvoiceOne)
+    };
+
+
+    addFirstCardTouchEnd = function () {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      console.log("add card page open")
+
+      riotTags.innerHTML = "<view-add-card>";
+      riot.mount('view-add-card');
+
+      scope.unmount()
+    }
 
     var touchStartInvoiceOne;
     var touchEndInvoiceOne;
@@ -266,6 +298,8 @@
       if (!scope.checkSumOfHash) {
         count = 1;
         for (var i = 0; i < getAccountsCards.length; i++) {
+
+
           if (getAccountsCards[i].access == 0) break;
           if (loginInfo.default_account == getAccountsCards[i].id) {
             var defaultAccount = true;

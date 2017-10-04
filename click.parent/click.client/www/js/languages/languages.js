@@ -555,6 +555,9 @@ var RU_LANGUAGES =
   "ComponentGeneratedQrUpperInfoText": "Ваш  электронный билет (QR-код):",
 
 
+  "ComponentCardCarouselAddFirstCardtext": "Добавьте первую карту"
+
+
 };
 
 window.languages = RU_LANGUAGES;

@@ -467,13 +467,76 @@
 //      }
 
 
+//      window.api.call({
+//        method: 'registration',
+//        input: {
+//          phone_num: phoneNumber,
+//          card_number: cardNumber,
+//          card_data: cardInformation,
+//          pin: hex_md5(pin)
+//        },
+//        scope: this,
+//
+//        onSuccess: function (result) {
+//          console.log(result)
+//          console.log(result[0][0])
+//          if (result[0][0].error == 0) {
+//
+//            var processOpacity = 10;
+//            scope.showRegistrationProcess = true;
+//            scope.update();
+//            scope.registrationProcessInterval = setInterval(function () {
+//              if (scope.registrationSuccess != 0 && scope.registrationSuccess != -2) {
+//                clearInterval(scope.registrationProcessInterval)
+//                return
+//              }
+//
+//              if (window["registrationProcessingId"] && typeof window["registrationProcessingId"] !== "undefined") {
+//
+//                registrationProcessingId.style.opacity = '0.' + processOpacity;
+////        console.log('Changing Opacity')
+//                processOpacity++;
+//                if (processOpacity == 99) {
+//                  processOpacity = 10;
+//                }
+//              }
+//            }, 20)
+//            console.log('REGISTRATION CLIENT', result)
+////            scope.clickPinError = false;
+////            scope.errorNote = result[0][0].error_note;
+////            scope.showError = true;
+//
+//            localStorage.setItem("registration_check_id", JSON.stringify(result[1][0].check_id))
+//            localStorage.setItem("registration_check_hash", JSON.stringify(result[1][0].check_hash))
+////            riotTags.innerHTML = "<view-authorization>";
+////            riot.mount('view-authorization', {from: "registration-client"});
+//            scope.timeoutIndex = 0;
+//            setTimeout(function () {
+//              checkRegistrationFunction()
+//            }, 5000)
+//          }
+//          else {
+//            scope.clickPinError = false;
+//            scope.errorNote = result[0][0].error_note;
+//            scope.showError = true;
+//            scope.viewpage = "view-registration-client"
+//            scope.update();
+//          }
+//
+//        },
+//        onFail: function (api_status, api_status_message, data) {
+//          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+//          console.error(data);
+//        }
+//      })
+
+
       window.api.call({
-        method: 'registration',
+        method: 'user.register',
         input: {
           phone_num: phoneNumber,
-          card_number: cardNumber,
-          card_data: cardInformation,
-          pin: hex_md5(pin)
+          pin: hex_md5(pin),
+          sign_string: hex_md5(phoneNumber.substring(0, 5) + 'CLICK' + phoneNumber.substring(5))
         },
         scope: this,
 
@@ -481,48 +544,21 @@
           console.log(result)
           console.log(result[0][0])
           if (result[0][0].error == 0) {
+            console.log("user register method result")
 
-            var processOpacity = 10;
-            scope.showRegistrationProcess = true;
-            scope.update();
-            scope.registrationProcessInterval = setInterval(function () {
-              if (scope.registrationSuccess != 0 && scope.registrationSuccess != -2) {
-                clearInterval(scope.registrationProcessInterval)
-                return
-              }
+            localStorage.setItem('click_client_registered', true);
+            riotTags.innerHTML = "<view-authorization>";
+            riot.mount('view-authorization', {from: "registration-client"});
 
-              if (window["registrationProcessingId"] && typeof window["registrationProcessingId"] !== "undefined") {
-
-                registrationProcessingId.style.opacity = '0.' + processOpacity;
-//        console.log('Changing Opacity')
-                processOpacity++;
-                if (processOpacity == 99) {
-                  processOpacity = 10;
-                }
-              }
-            }, 20)
-            console.log('REGISTRATION CLIENT', result)
-//            scope.clickPinError = false;
-//            scope.errorNote = result[0][0].error_note;
-//            scope.showError = true;
-
-            localStorage.setItem("registration_check_id", JSON.stringify(result[1][0].check_id))
-            localStorage.setItem("registration_check_hash", JSON.stringify(result[1][0].check_hash))
-//            riotTags.innerHTML = "<view-authorization>";
-//            riot.mount('view-authorization', {from: "registration-client"});
-            scope.timeoutIndex = 0;
-            setTimeout(function () {
-              checkRegistrationFunction()
-            }, 5000)
+            scope.unmount()
           }
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            scope.viewpage = "view-registration-client"
+            //scope.viewpage = "view-pin-code"
             scope.update();
           }
-
         },
         onFail: function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -560,104 +596,104 @@
       }
     };
 
-    checkRegistrationFunction = function () {
-      console.log("CHECK REGISTRATION")
-//      event.preventDefault();
-//      event.stopPropagation();
-
-      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-
-
-//      if (device.platform != 'BrowserStand') {
-//        var options = {dimBackground: true};
-//
-//        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-//          console.log("Started");
-//        }, function () {
-//          console.log("closed");
-//        });
-//      }
-
-      window.api.call({
-        method: 'registration.check',
-        input: {
-          phone_num: phoneNumber,
-          check_id: JSON.parse(localStorage.getItem("registration_check_id")),
-          check_hash: JSON.parse(localStorage.getItem("registration_check_hash")),
-        },
-        scope: this,
-
-        onSuccess: function (result) {
-          console.log("SUCCESS registration.check");
-          console.log(result)
-          console.log(result[0][0])
-          if (result[0][0].error == 0) {
-            console.log('REGISTRATION CHECK', result)
-            if (result[1][0].registered == 0) {
-
-              if (scope.timeouts.length > scope.timeoutIndex) {
-
-                setTimeout(function () {
-                  checkRegistrationFunction()
-                }, scope.timeouts[scope.timeoutIndex]);
-                scope.registrationSuccess = 0;
-                scope.timeoutIndex++;
-              } else {
-
-                scope.registrationSuccess = -2;
-                scope.timeoutIndex %= scope.timeouts.length;
-              }
-
-              scope.update();
-
-              console.log("ANSWER OF CHECK REGISTRATION", 0)
-              return;
-            }
-            else {
-              if (result[1][0].registered == -1) {
-                scope.registrationSuccess = -1;
-                scope.errorRegistrationProcess = result[0][0].error_note;
-//                clearInterval(registrationInterval)
-
-                console.log("ANSWER OF CHECK REGISTRATION", -1)
-
-//
-//                setTimeout(function () {
-//                  riotTags.innerHTML = "<view-registration-client>";
-//                  riot.mount('view-registration-client')
-//                }, 10000)
-              }
-              if (result[1][0].registered == 1) {
-                window.standCheckRegistration = true;
-                localStorage.setItem('click_client_registered', true)
-                scope.registrationSuccess = 1;
-//                clearInterval(registrationInterval)
-
-                console.log("ANSWER OF CHECK REGISTRATION", 1)
-
-              }
-
-            }
-            scope.update();
-          }
-          else {
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
-            scope.viewpage = "view-registration-client"
-            scope.update();
-
-          }
-
-        },
-        onFail: function (api_status, api_status_message, data) {
-          console.log("FAIL registration.check");
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      })
-
-    }
+    //    checkRegistrationFunction = function () {
+    //      console.log("CHECK REGISTRATION")
+    ////      event.preventDefault();
+    ////      event.stopPropagation();
+    //
+    //      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+    //
+    //
+    //      if (device.platform != 'BrowserStand') {
+    //        var options = {dimBackground: true};
+    //
+    //        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+    //          console.log("Started");
+    //        }, function () {
+    //          console.log("closed");
+    //        });
+    //      }
+    //
+    //      window.api.call({
+    //        method: 'registration.check',
+    //        input: {
+    //          phone_num: phoneNumber,
+    //          check_id: JSON.parse(localStorage.getItem("registration_check_id")),
+    //          check_hash: JSON.parse(localStorage.getItem("registration_check_hash")),
+    //        },
+    //        scope: this,
+    //
+    //        onSuccess: function (result) {
+    //          console.log("SUCCESS registration.check");
+    //          console.log(result)
+    //          console.log(result[0][0])
+    //          if (result[0][0].error == 0) {
+    //            console.log('REGISTRATION CHECK', result)
+    //            if (result[1][0].registered == 0) {
+    //
+    //              if (scope.timeouts.length > scope.timeoutIndex) {
+    //
+    //                setTimeout(function () {
+    //                  checkRegistrationFunction()
+    //                }, scope.timeouts[scope.timeoutIndex]);
+    //                scope.registrationSuccess = 0;
+    //                scope.timeoutIndex++;
+    //              } else {
+    //
+    //                scope.registrationSuccess = -2;
+    //                scope.timeoutIndex %= scope.timeouts.length;
+    //              }
+    //
+    //              scope.update();
+    //
+    //              console.log("ANSWER OF CHECK REGISTRATION", 0)
+    //              return;
+    //            }
+    //            else {
+    //              if (result[1][0].registered == -1) {
+    //                scope.registrationSuccess = -1;
+    //                scope.errorRegistrationProcess = result[0][0].error_note;
+    ////                clearInterval(registrationInterval)
+    //
+    //                console.log("ANSWER OF CHECK REGISTRATION", -1)
+    //
+    ////
+    ////                setTimeout(function () {
+    ////                  riotTags.innerHTML = "<view-registration-client>";
+    ////                  riot.mount('view-registration-client')
+    ////                }, 10000)
+    //              }
+    //              if (result[1][0].registered == 1) {
+    //                window.standCheckRegistration = true;
+    //                localStorage.setItem('click_client_registered', true)
+    //                scope.registrationSuccess = 1;
+    ////                clearInterval(registrationInterval)
+    //
+    //                console.log("ANSWER OF CHECK REGISTRATION", 1)
+    //
+    //              }
+    //
+    //            }
+    //            scope.update();
+    //          }
+    //          else {
+    //            scope.clickPinError = false;
+    //            scope.errorNote = result[0][0].error_note;
+    //            scope.showError = true;
+    //            scope.viewpage = "view-registration-client"
+    //            scope.update();
+    //
+    //          }
+    //
+    //        },
+    //        onFail: function (api_status, api_status_message, data) {
+    //          console.log("FAIL registration.check");
+    //          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+    //          console.error(data);
+    //        }
+    //      })
+    //
+    //    }
 
     changePin = function (pin) {
       console.log("aaa");

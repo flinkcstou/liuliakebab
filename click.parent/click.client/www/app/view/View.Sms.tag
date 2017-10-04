@@ -342,9 +342,11 @@
     }
 
     var countOfCall = 0;
+    var checkServiceAnswer;
+
     function registrationConfirm(sms, phoneNumber, deviceId) {
       countOfCall++;
-      var checkServiceAnswer = false;
+      checkServiceAnswer = false;
       if (device.platform != 'BrowserStand') {
         var options = {dimBackground: true};
 
@@ -383,9 +385,13 @@
               }
               else {
                 localStorage.setItem('click_client_registered', false)
-                this.riotTags.innerHTML = "<view-registration-client>";
-                riot.mount('view-registration-client');
+//                this.riotTags.innerHTML = "<view-registration-client>";
+//                riot.mount('view-registration-client');
 
+//                scope.unmount()
+//
+                riotTags.innerHTML = "<view-pin-code>";
+                riot.mount('view-pin-code', ['view-registration-client']);
                 scope.unmount()
               }
             }
