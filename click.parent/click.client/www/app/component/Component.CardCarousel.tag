@@ -444,28 +444,28 @@
     function onSuccess(contacts) {
       //      alert('Found ' + contacts.length + ' contacts.');
 
-      for (var i in contacts) {
-        var personObj = {};
-        if (contacts[i].phoneNumbers) {
-          personObj.phone = [];
-          for (var k in contacts[i].phoneNumbers) {
-            //console.log("phoneNumber", window.inputVerification.spaceDeleter(contacts[i].phoneNumbers[k].value));
-
-            personObj.phone.push(window.inputVerification.spaceDeleter(contacts[i].phoneNumbers[k].value))
-          }
-        }
-        else {
-          continue
-        }
-        if (contacts[i].name && contacts[i].name.familyName)
-          personObj.lastname = contacts[i].name.familyName
-
-        if (contacts[i].name && contacts[i].name.givenName)
-          personObj.firstname = contacts[i].name.givenName
-
-        console.log("personObj=", JSON.stringify(personObj))
-        scope.arrayOfPhoneNumbers.push(personObj)
-      }
+//      for (var i in contacts) {
+//        var personObj = {};
+//        if (contacts[i].phoneNumbers) {
+//          personObj.phone = [];
+//          for (var k in contacts[i].phoneNumbers) {
+//            //console.log("phoneNumber", window.inputVerification.spaceDeleter(contacts[i].phoneNumbers[k].value));
+//
+//            personObj.phone.push(window.inputVerification.spaceDeleter(contacts[i].phoneNumbers[k].value))
+//          }
+//        }
+//        else {
+//          continue
+//        }
+//        if (contacts[i].name && contacts[i].name.familyName)
+//          personObj.lastname = contacts[i].name.familyName
+//
+//        if (contacts[i].name && contacts[i].name.givenName)
+//          personObj.firstname = contacts[i].name.givenName
+//
+//        //console.log("personObj=", JSON.stringify(personObj))
+//        scope.arrayOfPhoneNumbers.push(personObj)
+//      }
 
 //      if (typeof scope.arrayOfPhoneNumbers === 'undefined' || scope.arrayOfPhoneNumbers.length < 1) return
 //

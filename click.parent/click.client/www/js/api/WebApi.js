@@ -6,11 +6,11 @@ window.api.spinnerOn = false;
 window.api.callBacks = {};
 
 window.api.forceClose = function () {
-    this.socket.onclose = function () {
-      console.log("Socket closed forcefully");
-      window.isConnected = false;
-    };
-    window.api.socket.close();
+  this.socket.onclose = function () {
+    console.log("Socket closed forcefully");
+    window.isConnected = false;
+  };
+  window.api.socket.close();
 };
 
 window.api.init = function () {
@@ -28,6 +28,7 @@ window.api.initSocket = function () {
 
   this.socket.onopen = function () {
     console.log('WebSocket is opened');
+    console.log('window.isConnected=', window.isConnected, ",modeOfApp.onlineMode=", modeOfApp.onlineMode);
     if (!window.isConnected && modeOfApp.onlineMode) {
       if (window.lastSocketMethodToSend) {
         if (window.api.socket.readyState == 1) {
@@ -70,20 +71,19 @@ window.api.initSocket = function () {
     if (event.wasClean) {
       return;
     }
-    else
-      if (modeOfApp.onlineMode) {
+    else if (modeOfApp.onlineMode) {
 
-        if (window.isConnected == true || modeOfApp.offlineMode == true) {
-            return
-        }
-
-        if (device.platform == 'Android')
-            showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
-        else {
-            showAlertComponent("Сервер временно недоступен");
-        }
+      if (window.isConnected == true || modeOfApp.offlineMode == true) {
         return
       }
+
+      if (device.platform == 'Android')
+        showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
+      else {
+        showAlertComponent("Сервер временно недоступен");
+      }
+      return
+    }
   };
 
   var me = this;
@@ -207,8 +207,8 @@ window.api.call = function (params) {
     else {
       console.log("Saving last method to send, socket ready state:", window.api.socket.readyState);
       window.lastSocketMethodToSend = JSON.stringify({
-          method: method,
-          parameters: input
+        method: method,
+        parameters: input
       });
       switch (window.api.socket.readyState) {
         case 0:
