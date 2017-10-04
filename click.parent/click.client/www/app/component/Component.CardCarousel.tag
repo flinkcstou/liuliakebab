@@ -628,7 +628,6 @@
                 }
 
                 if (count == (arrayAccountInfo.length * 2)) {
-                  console.log("Caching card images");
                   localStorage.setItem("click_client_accountInfo", JSON.stringify(arrayAccountInfo));
                 }
               });
@@ -746,7 +745,7 @@
                   }, 0);
 
                   info.update_account_cache = false;
-                  localStorage.setItem('click_client_loginInfo', info);
+                  localStorage.setItem('click_client_loginInfo', JSON.stringify(info));
 
                   if (device.platform != 'BrowserStand') {
                     console.log("Spinner Stop Component Card Carousel 650");
