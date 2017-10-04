@@ -148,16 +148,22 @@ window.amountTransform = function (amount) {
     return '';
   }
 
-
-  amount = amount.replace(new RegExp('[^0-9]', 'g'), '');
-  var j = 0;
+  amount = amount.replace(new RegExp('[^0-9.]', 'g'), '');
   var newAmount = '';
-  for (var i = amount.length - 1; i >= 0; i--) {
-    j++;
-    newAmount += amount[i];
-    if (j % 3 == 0 && i != 0) {
-      newAmount += ' ';
-    }
+
+  if (amount.includes('.')) {
+    newAmount = amount;
+      console.log("Amount contains dot");
+  }
+  else {
+      var j = 0;
+      for (var i = amount.length - 1; i >= 0; i--) {
+          j++;
+          newAmount += amount[i];
+          if (j % 3 == 0 && i != 0) {
+              newAmount += ' ';
+          }
+      }
   }
 
   return newAmount.split("").reverse().join("");
