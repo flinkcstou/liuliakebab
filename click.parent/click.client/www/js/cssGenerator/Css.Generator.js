@@ -10044,10 +10044,10 @@ var css = {
   addCardCarousel: ".add-card-carousel" +
   "{" +
   "height:" + 289 * widthK + "px;" +
-  "width:" + 510 * widthK + "px;" +
+  "width:" + 320 * widthK + "px;" +
   "position: absolute;" +
   "top:" + 7 * widthK + "px;" +
-  "left:" + 640 * widthK + "px;" +
+  "left:" + 730 * widthK + "px;" +
   "}",
 
   addCardCarouselIcon: ".add-card-carousel-icon" +
@@ -10057,16 +10057,16 @@ var css = {
   "width:" + 230 * widthK + "px;" +
   "position: absolute;" +
   "top:15%;" +
-  "left:28%;" +
+  "left:15%;" +
   "background-size: cover;" +
   "}",
 
   addCardCarouselText: ".add-card-carousel-text" +
   "{" +
-  "width:70%;" +
+  "width:100%;" +
   "position: absolute;" +
   "top:75%;" +
-  "left:20%;" +
+  // "left:20%;" +
   "font-size: " + 30 * widthK + "px;" +
   "color: white;" +
   "}",

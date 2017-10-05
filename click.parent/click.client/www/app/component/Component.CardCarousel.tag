@@ -36,8 +36,9 @@
         </div>
       </div>
 
-      <div class="add-card-carousel">
-        <div class="add-card-carousel-icon" ontouchend="addFirstCardTouchEnd()" ontouchstart="addFirstCardTouchStart()">
+      <div class="add-card-carousel" ontouchend="addFirstCardTouchEnd()"
+           ontouchstart="addFirstCardTouchStart()">
+        <div class="add-card-carousel-icon">
         </div>
         <div class="add-card-carousel-text">
           {window.languages.ComponentCardCarouselAddFirstCardtext}
@@ -65,6 +66,7 @@
     var scope = this;
     scope.invoiceLeft = 100 * widthK;
     scope.invoiceList = [];
+    scope.addFirstCardBool = false;
 
     scope.arrayOfPhoneNumbers = [];
     scope.arrayOfFriends = (JSON.parse(localStorage.getItem('click_client_friends')) === null) ? [] : JSON.parse(localStorage.getItem('click_client_friends'));
@@ -77,7 +79,8 @@
       scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
       scope.update();
       console.log("first card link", JSON.stringify(scope.cardsarray[0]));
-    }
+    } else
+      scope.addFirstCardBool = true;
 
     //    this.on('mount', function () {
     //      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
