@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <div class="add-card-carousel" ontouchend="addFirstCardTouchEnd()"
+      <div class="add-card-carousel" if="{addFirstCardBool}" ontouchend="addFirstCardTouchEnd()"
            ontouchstart="addFirstCardTouchStart()">
         <div class="add-card-carousel-icon">
         </div>
@@ -77,10 +77,13 @@
 
     if (localStorage.getItem('click_client_cards')) {
       scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
+      if (scope.cardsarray.length < 1) {
+        scope.addFirstCardBool = true;
+        console.log("condition one worked")
+      }
       scope.update();
       console.log("first card link", JSON.stringify(scope.cardsarray[0]));
-    } else
-      scope.addFirstCardBool = true;
+    }
 
     //    this.on('mount', function () {
     //      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
@@ -210,6 +213,11 @@
 
       if (localStorage.getItem('click_client_accountInfo') && !scope.checkSumOfHash) {
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
+        console.log("getAccountsCards ", getAccountsCards)
+        if (getAccountsCards.length < 1) {
+          scope.addFirstCardBool = true;
+          console.log("scope.addFirstCardBool = true;")
+        }
         var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'))
       }
 
@@ -469,9 +477,7 @@
             scope.showError = true;
             scope.update();
           }
-        }
-        ,
-
+        },
         onFail: function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
