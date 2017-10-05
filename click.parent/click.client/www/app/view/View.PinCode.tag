@@ -36,7 +36,7 @@
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}" errorcode="{errorCode}"
                    errornote="{errorNote}" step_amount="{stepToBack}" viewpage="{viewpage}"></component-alert>
 
   <div if="{showRegistrationProcess}" class="registration-process">
@@ -547,10 +547,21 @@
             console.log("user register method result")
 
             localStorage.setItem('click_client_registered', true);
-            riotTags.innerHTML = "<view-authorization>";
-            riot.mount('view-authorization', {from: "registration-client"});
+//            riotTags.innerHTML = "<view-authorization>";
+//            riot.mount('view-authorization', {from: "registration-client"});
+//            scope.unmount()
 
-            scope.unmount()
+            var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+            var deviceId = localStorage.getItem('click_client_deviceID');
+            var date = parseInt(Date.now() / 1000);
+            var token = localStorage.getItem('click_client_token');
+            if (!pin && localStorage.getItem('click_client_pin')) {
+              pin = localStorage.getItem('click_client_pin');
+            }
+            var password = hex_sha512(token + date + pin);
+            localStorage.setItem("pinForStand", pin);
+
+            authorizationPinCode(phoneNumber, deviceId, password, date);
           }
           else {
             scope.clickPinError = false;
@@ -569,6 +580,121 @@
     };
 
     scope.registrationSuccess = 0;
+    var answerFromServer;
+
+    function authorizationPinCode(phoneNumber, deviceId, password, date) {
+      scope.firstEnter = false;
+//      if (scope.firstEnter)
+//        firstPinInputId.blur();
+
+      var version = localStorage.getItem('version')
+      answerFromServer = false;
+
+      if (device.platform != 'BrowserStand') {
+        var options = {dimBackground: true};
+        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+          console.log("Spinner start in authorization");
+        }, function () {
+          console.log("Spinner stop in authorization");
+        });
+      }
+
+      window.api.call({
+        method: 'app.login',
+        stopSpinner: true,
+        input: {
+          phone_num: phoneNumber,
+          device_id: deviceId,
+          password: password,
+          datetime: date,
+          app_version: version
+        },
+        scope: this,
+
+        onSuccess: function (result) {
+          answerFromServer = true;
+          console.log("App.login method answer: success");
+
+          if (result[0][0].error == 0) {
+            if (!result[1][0].error) {
+              console.log("User is authorized");
+
+              localStorage.setItem('click_client_pin', pin)
+              localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
+              modeOfflineMode.check = false;
+              var JsonInfo = JSON.stringify(result[1][0]);
+              localStorage.setItem('click_client_loginInfo', JsonInfo);
+
+              checkSessionKey = true;
+              viewAuthorization.check = false;
+              localStorage.setItem("click_client_authorized", true);
+
+              if (localStorage.getItem('click_client_friends') && JSON.parse(localStorage.getItem('click_client_friends'))) {
+                var friends = JSON.parse(localStorage.getItem('click_client_friends'));
+                var outerFriendsCount = JSON.parse(localStorage.getItem('click_client_friendsOuter_count'));
+                friends.splice(friends.length - outerFriendsCount, outerFriendsCount);
+                localStorage.setItem('click_client_friends', JSON.stringify(friends));
+                localStorage.removeItem('click_client_friendsOuter_count')
+              }
+
+              getAccount(checkSessionKey, scope.firstEnter);
+              window.pushNotificationActions.retrievePushNotification();
+            }
+          }
+          else {
+            if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Authorization");
+              SpinnerPlugin.activityStop();
+            }
+
+            if (result[0][0].error == -31) {
+              console.log("click pin error");
+              scope.clickPinError = true;
+            } else if (result[0][0].error == -799) {
+              scope.errorNote = result[0][0].error_note;
+              scope.errorCode = 2;
+              console.log("client not registered error");
+            } else {
+              console.log(opts)
+              if (opts.from == "registration-client") {
+                scope.errorNote = "Карта ещё не добавлена. Попробуйте войти через несколько минут";
+              }
+              else
+                scope.errorNote = result[0][0].error_note;
+              scope.clickPinError = false;
+              console.log("errornote = ", scope.errorNote);
+            }
+            scope.showError = true;
+            scope.update();
+            enteredPin = '';
+            if (!scope.firstEnter)
+              updateEnteredPin();
+            return
+          }
+        },
+        onFail: function (api_status, api_status_message, data) {
+          answerFromServer = true;
+          console.log("App.login method answer: fail");
+          showAlertComponent("Сервис временно не доступен");
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error("Error data: ", data);
+          return;
+        }
+      });
+
+      setTimeout(function () {
+        if (!answerFromServer && window.isConnected) {
+          showAlertComponent("Время ожидания истекло");
+          answerFromServer = true;
+          if (device.platform != 'BrowserStand') {
+            console.log("Spinner stop in authorization by timeout");
+            SpinnerPlugin.activityStop();
+          }
+          window.isConnected = false;
+          return
+        }
+      }, 30000)
+    }
 
     var checkRegistrationTouchStartX, checkRegistrationTouchStartY, checkRegistrationTouchEndX,
       checkRegistrationTouchEndY;

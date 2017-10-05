@@ -153,17 +153,17 @@ window.amountTransform = function (amount) {
 
   if (amount.includes('.')) {
     newAmount = amount;
-      console.log("Amount contains dot");
+    console.log("Amount contains dot");
   }
   else {
-      var j = 0;
-      for (var i = amount.length - 1; i >= 0; i--) {
-          j++;
-          newAmount += amount[i];
-          if (j % 3 == 0 && i != 0) {
-              newAmount += ' ';
-          }
+    var j = 0;
+    for (var i = amount.length - 1; i >= 0; i--) {
+      j++;
+      newAmount += amount[i];
+      if (j % 3 == 0 && i != 0) {
+        newAmount += ' ';
       }
+    }
   }
 
   return newAmount.split("").reverse().join("");
@@ -583,6 +583,390 @@ window.updateBalanceGlobalFunction = function () {
         console.error(data);
       }
     });
+  }
+}
+
+/////////
+
+
+window.getAccount = function (checkSessionKey, firstEnter) {
+
+  if (checkSessionKey) {
+    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+    var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+    var sessionKey = loginInfo.session_key;
+  }
+
+  if (history.arrayOfHistory.length < 2) {
+    localStorage.setItem('onResume', false)
+  }
+
+  if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
+    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+    var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+    var sessionKey = info.session_key;
+
+    if (firstEnter) {
+      var lengthOfPin = firstPinInputId.value.length;
+      var compareLength = window.inputVerification.spaceDeleter(firstPinInputId.value);
+      console.log("First enter in account");
+    }
+
+    if (firstEnter && (lengthOfPin != compareLength.length || lengthOfPin != 5)) {
+      riotTags.innerHTML = "<view-pin-code>";
+      riot.mount('view-pin-code', ['view-authorization']);
+    }
+    else if (!localStorage.getItem("click_client_accountInfo")) {
+      this.riotTags.innerHTML = "<view-main-page>";
+      riot.mount('view-main-page');
+      //riot.unmount()
+    }
+    else {
+      if (!JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken')) && !JSON.parse(sessionStorage.getItem("push_news"))) {
+        this.riotTags.innerHTML = "<view-main-page>";
+        riot.mount('view-main-page');
+      }
+      else {
+        if (localStorage.getItem('settings_block') || localStorage.getItem('session_broken') || sessionStorage.getItem("push_news")) {
+          if (JSON.parse(localStorage.getItem('settings_block')) === true || JSON.parse(localStorage.getItem('session_broken')) === true || JSON.parse(sessionStorage.getItem("push_news")) === true) {
+            if (history.arrayOfHistory) {
+              if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
+                if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-news') {
+                  this.riotTags.innerHTML = "<view-main-page>";
+                  riot.mount("view-main-page");
+                }
+                else {
+                  this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+                  riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+                }
+
+                if (device.platform != 'BrowserStand')
+                  StatusBar.backgroundColorByHexString("#00a8f1");
+
+                if (JSON.parse(localStorage.getItem('settings_block')) === true) {
+                  localStorage.setItem('onResume', false);
+                }
+                else {
+                  if (JSON.parse(localStorage.getItem('session_broken')) === true) {
+                    localStorage.setItem('session_broken', false);
+                  }
+                  else {
+                    if (JSON.parse(sessionStorage.getItem("push_news")) === true) {
+                      sessionStorage.setItem("push_news", false)
+                    }
+                  }
+                }
+                return
+              }
+            }
+          }
+          else {
+            this.riotTags.innerHTML = "<view-main-page>";
+            riot.mount('view-main-page');
+          }
+        }
+        else {
+          this.riotTags.innerHTML = "<view-main-page>";
+          riot.mount('view-main-page');
+        }
+      }
+    }
+
+    if ((!localStorage.getItem("click_client_payCategoryList") || info.update_categories) && modeOfApp.onlineMode) {
+
+      var categoryList = [];
+      var categoryNamesMap = {};
+      window.api.call({
+        method: 'get.service.category.list',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber
+        },
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0)
+            if (result[1][0]) {
+              if (device.platform != 'BrowserStand') {
+                window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+                  var j = -1;
+
+                  for (var i in result[1]) {
+                    categoryNamesMap[result[1][i].id] = {
+                      "name": result[1][i].name,
+                      "icon": result[1][i].icon
+                    };
+                    j++;
+                    categoryList.push(result[1][i]);
+
+                    var icon = result[1][i].icon;
+                    var filename = icon.substr(icon.lastIndexOf('/') + 1);
+
+                    var newIconBool = checkImageURL;
+                    newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
+
+                      if (bool) {
+                        categoryList[index]['icon'] = cordova.file.dataDirectory + fileName;
+                      } else {
+                        categoryList[index]['icon'] = 'resources/icons/ViewPay/' + fileName;
+                      }
+
+                      if (result[1].length == categoryList.length) {
+                        localStorage.setItem('click_client_payCategoryList', JSON.stringify(categoryList));
+                        localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(categoryNamesMap));
+                      }
+                    });
+                  }
+                }, onErrorLoadFs);
+              }
+              else {
+                for (var i in result[1]) {
+
+                  categoryList.push(result[1][i]);
+                  categoryNamesMap[result[1][i].id] = {
+                    "name": result[1][i].name,
+                    "icon": result[1][i].icon
+                  };
+                }
+                localStorage.setItem('click_client_payCategoryList', JSON.stringify(categoryList));
+                localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(categoryNamesMap));
+              }
+            }
+
+          scope.id = 0;
+
+        },
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+    /*
+     * Убрана проверка, так как по требованию в онлайн режиме всегда производится вызов сервисов.
+     * */
+
+    var serviceList = [];
+    var servicesMapByCategory = {};
+    var servicesMap = {};
+    var serviceNamesMap = {};
+
+    if ((!(localStorage.getItem("click_client_payServiceList") && localStorage.getItem("click_client_servicesMapByCategory")
+      && localStorage.getItem("click_client_servicesMap")) || info.update_services) && modeOfApp.onlineMode) {
+
+      var operatorKey = phoneNumber.substr(3, 2);
+      window.api.call({
+        method: 'get.service.list',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber
+        },
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0)
+            if (result[1][0]) {
+              var firstService;
+
+              for (var i in result[1]) {
+                if (result[1][i].is_visible == 1) {
+
+                  serviceNamesMap[result[1][i].id] = result[1][i].name;
+                  serviceList.push(result[1][i]);
+
+                  if (!servicesMapByCategory[result[1][i].category_id]) {
+                    servicesMapByCategory[result[1][i].category_id] = [];
+                    if (result[1][i].category_id === 1 && (result[1][i].id === window.mOperators[operatorKey])) {
+                      localStorage.setItem('myNumberOperatorId', result[1][i].id);
+
+                      var myNumberObject = {};
+                      myNumberObject.name = 'Мой номер';
+                      myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+                      myNumberObject.id = 'mynumber' + result[1][i].id;
+                      servicesMapByCategory[result[1][i].category_id].push(myNumberObject);
+
+                    } else if (result[1][i].category_id === 1) {
+                      firstService = result[1][i];
+                    }
+                    servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
+                  }
+                  else {
+                    if (result[1][i].category_id === 1 && (result[1][i].id === window.mOperators[operatorKey])) {
+                      localStorage.setItem('myNumberOperatorId', result[1][i].id);
+
+                      var myNumberObject = {};
+                      myNumberObject.name = 'Мой номер';
+                      myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+                      myNumberObject.id = 'mynumber' + result[1][i].id;
+                      servicesMapByCategory[result[1][i].category_id][0] = myNumberObject;
+                      servicesMapByCategory[result[1][i].category_id].push(firstService);
+                    }
+                    servicesMapByCategory[result[1][i].category_id].push(result[1][i]);
+                  }
+
+                  if (!servicesMap[result[1][i].id + '']) {
+                    servicesMap[result[1][i].id + ''] = [];
+                    servicesMap[result[1][i].id + ''].push(result[1][i]);
+                  }
+                  else {
+                    servicesMap[result[1][i].id + ''].push(result[1][i]);
+                  }
+                }
+              }
+              localStorage.setItem('click_client_payServiceList', JSON.stringify(serviceList));
+              localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(serviceNamesMap));
+              localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(servicesMapByCategory));
+              localStorage.setItem('click_client_servicesMap', JSON.stringify(servicesMap));
+              serviceImagesCaching();
+            }
+          servicesParamsInit();
+        },
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      })
+    }
+
+    serviceImagesCaching = function () {
+      if (device.platform != 'BrowserStand') {
+        window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+          var j = -1, counter = 0;
+
+          for (var i in serviceList) {
+            j++;
+
+            var icon = serviceList[i].image;
+            var filename = icon.substr(icon.lastIndexOf('/') + 1);
+
+            var newIconBool = checkImageURL;
+            newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
+
+              if (bool) {
+                counter++;
+                serviceList[index].image = cordova.file.dataDirectory + fileName;
+                servicesMap[serviceList[index].id + ''][0].image = cordova.file.dataDirectory + fileName;
+
+                for (var k = 0; k < servicesMapByCategory[serviceList[index].category_id].length; k++) {
+                  if (servicesMapByCategory[serviceList[index].category_id][k].id != ('mynumber' + localStorage.getItem('myNumberOperatorId')) &&
+                    servicesMapByCategory[serviceList[index].category_id][k].id == serviceList[index].id) {
+                    servicesMapByCategory[serviceList[index].category_id][k].image = cordova.file.dataDirectory + fileName;
+                  }
+                }
+
+                if (counter == serviceList.length) {
+                  localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(servicesMapByCategory));
+                  localStorage.setItem('click_client_servicesMap', JSON.stringify(servicesMap));
+                }
+              }
+            });
+          }
+
+        }, onErrorLoadFs);
+      }
+    }
+
+
+    servicesParamsInit = function () {
+      var servicesParams = [];
+      var servicesParamsMapOne = {};
+      var servicesParamsMapTwo = {};
+      var servicesParamsMapThree = {};
+      var servicesParamsMapFour = {};
+      var servicesParamsMapFive = {};
+      var servicesParamsMapSix = {};
+      window.api.call({
+        method: 'get.service.parameters.list',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+            if (result[1])
+              for (var i in result[1]) {
+                if (!servicesParamsMapOne[result[1][i].service_id]) {
+                  servicesParamsMapOne[result[1][i].service_id] = [];
+                  servicesParamsMapOne[result[1][i].service_id].push(result[1][i]);
+                }
+                else
+                  servicesParamsMapOne[result[1][i].service_id].push(result[1][i]);
+
+
+              }
+            if (result[2])
+              for (var i in result[2]) {
+                if (!servicesParamsMapTwo[result[2][i].service_id]) {
+                  servicesParamsMapTwo[result[2][i].service_id] = [];
+                  servicesParamsMapTwo[result[2][i].service_id].push(result[2][i]);
+                }
+                else
+                  servicesParamsMapTwo[result[2][i].service_id].push(result[2][i]);
+
+              }
+            if (result[3])
+              for (var i in result[3]) {
+                if (!servicesParamsMapThree[result[3][i].service_id]) {
+                  servicesParamsMapThree[result[3][i].service_id] = [];
+                  servicesParamsMapThree[result[3][i].service_id].push(result[3][i]);
+                }
+                else
+                  servicesParamsMapThree[result[3][i].service_id].push(result[3][i]);
+
+              }
+            if (result[4])
+              for (var i in result[4]) {
+                if (!servicesParamsMapFour[result[4][i].service_id]) {
+                  servicesParamsMapFour[result[4][i].service_id] = [];
+                  servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
+                }
+                else
+                  servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
+              }
+            if (result[5])
+              for (var i in result[5]) {
+                if (!servicesParamsMapFive[result[5][i].service_id]) {
+                  servicesParamsMapFive[result[5][i].service_id] = [];
+                  servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
+                }
+                else
+                  servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
+              }
+            if (result[6])
+              for (var i in result[6]) {
+                if (!servicesParamsMapSix[result[6][i].service_id]) {
+                  servicesParamsMapSix[result[6][i].service_id] = [];
+                  servicesParamsMapSix[result[6][i].service_id].push(result[6][i]);
+                }
+                else
+                  servicesParamsMapSix[result[6][i].service_id].push(result[6][i]);
+              }
+            localStorage.setItem('click_client_servicesParams', JSON.stringify(result));
+            localStorage.setItem('click_client_servicesParamsMapOne', JSON.stringify(servicesParamsMapOne));
+            localStorage.setItem('click_client_servicesParamsMapTwo', JSON.stringify(servicesParamsMapTwo));
+            localStorage.setItem('click_client_servicesParamsMapThree', JSON.stringify(servicesParamsMapThree));
+            localStorage.setItem('click_client_servicesParamsMapFour', JSON.stringify(servicesParamsMapFour));
+            localStorage.setItem('click_client_servicesParamsMapFive', JSON.stringify(servicesParamsMapFive));
+            localStorage.setItem('click_client_servicesParamsMapSix', JSON.stringify(servicesParamsMapSix));
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    };
+
+
+  }
+
+  if (device.platform != 'BrowserStand') {
+    console.log("Spinner Stop View Authorization");
+    SpinnerPlugin.activityStop();
   }
 }
 
