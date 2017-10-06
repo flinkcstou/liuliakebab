@@ -69,7 +69,6 @@
     scope.addFirstCardBool = false;
 
     scope.arrayOfPhoneNumbers = [];
-    scope.arrayOfFriends = (JSON.parse(localStorage.getItem('click_client_friends')) === null) ? [] : JSON.parse(localStorage.getItem('click_client_friends'));
 
     scope.showError = false;
 
@@ -423,12 +422,16 @@
                   //TODO: FIX
                   try {
                     result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
-                    if (result[1][i].is_friend_help && scope.arrayOfFriends.length != 0) {
-                      for (var j = 0; j < scope.arrayOfFriends.length; j++) {
-                        if (scope.arrayOfFriends[j].number === result[1][i].merchant_phone) {
-                          console.log("friend name assigning", result[1][i].friend_name)
-                          result[1][i].friend_name = scope.arrayOfFriends[j].name;
-                        }
+                    console.log("phone number matching", result[1][i].merchant_phone, ", array of numbers", scope.arrayOfPhoneNumbers)
+                    console.log(sessionStorage.getItem('arrayOfPhoneNumbers'));
+                    if (result[1][i].is_friend_help && scope.arrayOfPhoneNumbers.length != 0) {
+                      loop2:for (var j = 0; j < scope.arrayOfPhoneNumbers.length; j++) {
+                        for (var k = 0; k < scope.arrayOfPhoneNumbers[j].phone; k++)
+                          if (scope.arrayOfPhoneNumbers[j].phone[k] === result[1][i].merchant_phone) {
+                            result[1][i].friend_name = scope.arrayOfPhoneNumbers[j].firstname + ' ' + scope.arrayOfPhoneNumbers[j].lastname;
+                            console.log("friend name assigning", result[1][i].friend_name)
+                            break loop2;
+                          }
                       }
                     }
 
@@ -489,100 +492,31 @@
     function onSuccess(contacts) {
       //      alert('Found ' + contacts.length + ' contacts.');
 
-//      for (var i in contacts) {
-//        var personObj = {};
-//        if (contacts[i].phoneNumbers) {
-//          personObj.phone = [];
-//          for (var k in contacts[i].phoneNumbers) {
-//            //console.log("phoneNumber", window.inputVerification.spaceDeleter(contacts[i].phoneNumbers[k].value));
-//
-//            personObj.phone.push(window.inputVerification.spaceDeleter(contacts[i].phoneNumbers[k].value))
-//          }
-//        }
-//        else {
-//          continue
-//        }
-//        if (contacts[i].name && contacts[i].name.familyName)
-//          personObj.lastname = contacts[i].name.familyName
-//
-//        if (contacts[i].name && contacts[i].name.givenName)
-//          personObj.firstname = contacts[i].name.givenName
-//
-//        //console.log("personObj=", JSON.stringify(personObj))
-//        scope.arrayOfPhoneNumbers.push(personObj)
-//      }
+      for (var i in contacts) {
+        var personObj = {};
+        if (contacts[i].phoneNumbers) {
+          personObj.phone = [];
+          for (var k in contacts[i].phoneNumbers) {
+            //console.log("phoneNumber", window.inputVerification.spaceDeleter(contacts[i].phoneNumbers[k].value));
 
-//      if (typeof scope.arrayOfPhoneNumbers === 'undefined' || scope.arrayOfPhoneNumbers.length < 1) return
-//
-//
-//      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-//      var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-//      var sessionKey = info.session_key;
+            personObj.phone.push(window.inputVerification.spaceDeleter(contacts[i].phoneNumbers[k].value))
+          }
+        }
+        else {
+          continue
+        }
+        if (contacts[i].name && contacts[i].name.familyName)
+          personObj.lastname = contacts[i].name.familyName
 
-//      window.api.call({
-//        method: 'check.contact.list',
-//        input: {
-//          phone_num: phoneNumber,
-//          phone_list: scope.arrayOfPhoneNumbers,
-//          session_key: sessionKey,
-//
-//        },
-//
-//        scope: this,
-//
-//        onSuccess: function (result) {
-//          if (result[0][0].error == 0) {
-//            console.log("contact list checker method", result);
-//            var object = {};
-//            var counter = 0;
-//
-//            if (result[1][0])
-//              for (var i in result[1][0].phone_list) {
-//                object = {}
-//                if (!result[1][0].phone_list[i].phone) {
-//                  continue
-//                }
-//                if (result[1][0].phone_list[i].firstname && result[1][0].phone_list[i].lastname)
-//                  object.name = result[1][0].phone_list[i].firstname + " " + result[1][0].phone_list[i].lastname;
-//                else {
-//                  if (result[1][0].phone_list[i].firstname)
-//                    object.name = result[1][0].phone_list[i].firstname;
-//                  else {
-//                    if (result[1][0].phone_list[i].lastname) {
-//                      object.name = result[1][0].phone_list[i].lastname
-//                    }
-//                    else {
-//                      object.name = 'Неизвестно'
-//                    }
-//                  }
-//                }
-//                object.number = result[1][0].phone_list[i].phone;
-//                if (object.name)
-//                  object.firstLetterOfName = object.name[0].toUpperCase();
-//                object.photo = null;
-//                counter++;
-//
-//                scope.arrayOfFriends.push(object);
-//              }
-//
-//            localStorage.setItem('click_client_friends', JSON.stringify(scope.arrayOfFriends))
-//            localStorage.setItem('click_client_friendsOuter_count', counter);
-//            scope.update();
-//          }
-//          else {
-//            scope.clickPinError = false;
-//            scope.errorNote = result[0][0].error_note;
-//            scope.showError = true;
-//            scope.viewPage = ''
-//            scope.update();
-//          }
-//        },
-//
-//        onFail: function (api_status, api_status_message, data) {
-//          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-//          console.error(data);
-//        }
-//      });
+        if (contacts[i].name && contacts[i].name.givenName)
+          personObj.firstname = contacts[i].name.givenName
+
+        console.log("personObj=", JSON.stringify(personObj))
+        scope.arrayOfPhoneNumbers.push(personObj)
+
+        sessionStorage.setItem('arrayOfPhoneNumbers', scope.arrayOfPhoneNumbers);
+      }
+
     }
 
 
@@ -594,12 +528,13 @@
 
     // if (!localStorage.getItem('click_client_friendsOuter_count')) {
 
-    //    if (device.platform != 'BrowserStand') {
-    //      var options = new ContactFindOptions();
-    //      options.multiple = true;
-    //      options.hasPhoneNumber = true;
-    //      navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
-    //    }
+    if (device.platform != 'BrowserStand' && !sessionStorage.getItem('arrayOfPhoneNumbers')) {
+      console.log("Looking for phoneNUmbners")
+      var options = new ContactFindOptions();
+      options.multiple = true;
+      options.hasPhoneNumber = true;
+      navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
+    }
     //}
 
 
