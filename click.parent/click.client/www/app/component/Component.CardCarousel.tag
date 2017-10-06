@@ -68,7 +68,7 @@
     scope.invoiceList = [];
     scope.addFirstCardBool = false;
 
-    scope.arrayOfPhoneNumbers = [];
+    var arrayOfPhones = [];
 
     scope.showError = false;
 
@@ -422,17 +422,27 @@
                   //TODO: FIX
                   try {
                     result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
-                    console.log("phone number matching", result[1][i].merchant_phone, ", array of numbers", scope.arrayOfPhoneNumbers)
-                    console.log(sessionStorage.getItem('arrayOfPhoneNumbers'));
-                    if (result[1][i].is_friend_help && scope.arrayOfPhoneNumbers.length != 0) {
-                      loop2:for (var j = 0; j < scope.arrayOfPhoneNumbers.length; j++) {
-                        for (var k = 0; k < scope.arrayOfPhoneNumbers[j].phone; k++)
-                          if (scope.arrayOfPhoneNumbers[j].phone[k] === result[1][i].merchant_phone) {
-                            result[1][i].friend_name = scope.arrayOfPhoneNumbers[j].firstname;
-                            console.log("friend name assigning", result[1][i].friend_name)
-                            break loop2;
+                    console.log("phone number matching", result[1][i].merchant_phone, ", array of numbers", arrayOfPhones)
+                    scope.searchNumber = inputVerification.spaceDeleter(result[1][i].merchant_phone);
+
+                    if (result[1][i].is_friend_help && arrayOfPhones.length != 0) {
+
+                      arrayOfPhones.filter(function (wordOfFunction) {
+                        if (wordOfFunction.phoneNumbers) {
+                          for (var i in wordOfFunction.phoneNumbers) {
+                            index = wordOfFunction.phoneNumbers[i].value.indexOf(scope.searchNumber);
+                            if (index != -1) {
+                              result[1][i].friend_name = wordOfFunction.name.givenName;
+                              console.log('result[1][i].friend_name=', result[1][i].friend_name)
+                              break;
+                            }
                           }
-                      }
+                        }
+                        else
+                          index = -1;
+
+                      });
+
                     }
 
 
@@ -490,31 +500,18 @@
 
 
     function onSuccess(contacts) {
-      //      alert('Found ' + contacts.length + ' contacts.');
 
-      for (var i in contacts) {
-        var personObj = {};
-        if (contacts[i].phoneNumbers) {
-          personObj.phone = [];
-          for (var k in contacts[i].phoneNumbers) {
-            //console.log("phoneNumber", window.inputVerification.spaceDeleter(contacts[i].phoneNumbers[k].value));
+      for (var i = 0; i < contacts.length; i++) {
+        if (contacts[i].name)
+          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null) {
+            for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
+              var phone = inputVerification.spaceDeleter(contacts[i].phoneNumbers[j].value);
 
-            personObj.phone.push(window.inputVerification.spaceDeleter(contacts[i].phoneNumbers[k].value))
+              contacts[i].phoneNumbers[j].value = phone;
+            }
+            arrayOfPhones.push(contacts[i])
+            sessionStorage.setItem('arrayOfPhones', arrayOfPhones);
           }
-        }
-        else {
-          continue
-        }
-        if (contacts[i].name && contacts[i].name.familyName)
-          personObj.lastname = contacts[i].name.familyName
-
-        if (contacts[i].name && contacts[i].name.givenName)
-          personObj.firstname = contacts[i].name.givenName
-
-        console.log("personObj=", JSON.stringify(personObj))
-        scope.arrayOfPhoneNumbers.push(personObj)
-
-        sessionStorage.setItem('arrayOfPhoneNumbers', scope.arrayOfPhoneNumbers);
       }
 
     }
@@ -528,7 +525,7 @@
 
     // if (!localStorage.getItem('click_client_friendsOuter_count')) {
 
-    if (device.platform != 'BrowserStand' && !sessionStorage.getItem('arrayOfPhoneNumbers')) {
+    if (device.platform != 'BrowserStand' && !sessionStorage.getItem('arrayOfPhones')) {
       console.log("Looking for phoneNUmbners")
       var options = new ContactFindOptions();
       options.multiple = true;
