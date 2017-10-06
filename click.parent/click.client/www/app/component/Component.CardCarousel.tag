@@ -428,7 +428,7 @@
                       loop2:for (var j = 0; j < scope.arrayOfPhoneNumbers.length; j++) {
                         for (var k = 0; k < scope.arrayOfPhoneNumbers[j].phone; k++)
                           if (scope.arrayOfPhoneNumbers[j].phone[k] === result[1][i].merchant_phone) {
-                            result[1][i].friend_name = scope.arrayOfPhoneNumbers[j].firstname + ' ' + scope.arrayOfPhoneNumbers[j].lastname;
+                            result[1][i].friend_name = scope.arrayOfPhoneNumbers[j].firstname;
                             console.log("friend name assigning", result[1][i].friend_name)
                             break loop2;
                           }

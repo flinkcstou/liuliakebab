@@ -17,8 +17,8 @@
       {(opts.is_friend_help)?(window.languages.ViewPaymentDetailTitleFriendHelpTwo):(window.languages.ViewPaymentDetailTitleTwoIfNotFriendsHelp
       + " " + opts.serviceName)}</p>
 
-    <p class="transfer-to-card-transfer-title-phone" if="{opts.is_friend_help}">
-      +{opts.phoneNumber}</p>
+    <p class="transfer-to-card-transfer-title-phone" if="{opts.is_friend_help}">{opts.friend_name?opts.friend_name:
+      ('+'+opts.phoneNumber)}</p>
 
   </div>
 
