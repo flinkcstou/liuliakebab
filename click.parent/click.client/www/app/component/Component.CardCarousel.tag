@@ -424,6 +424,7 @@
                     result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
                     console.log("phone number matching", result[1][i].merchant_phone, ", array of numbers", arrayOfPhones)
                     scope.searchNumber = inputVerification.spaceDeleter(result[1][i].merchant_phone);
+                    arrayOfPhones = JSON.parse(sessionStorage.getItem('arrayOfPhones'));
 
                     if (result[1][i].is_friend_help && arrayOfPhones.length != 0) {
 
@@ -434,7 +435,6 @@
                             if (index != -1) {
                               result[1][i].friend_name = wordOfFunction.name.givenName;
                               console.log('result[1][i].friend_name=', result[1][i].friend_name)
-                              break;
                             }
                           }
                         }
@@ -510,7 +510,7 @@
               contacts[i].phoneNumbers[j].value = phone;
             }
             arrayOfPhones.push(contacts[i])
-            sessionStorage.setItem('arrayOfPhones', arrayOfPhones);
+            sessionStorage.setItem('arrayOfPhones', JSON.stringify(arrayOfPhones));
           }
       }
 
