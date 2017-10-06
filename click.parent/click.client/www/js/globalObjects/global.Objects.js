@@ -151,7 +151,7 @@ window.amountTransform = function (amount) {
   amount = amount.replace(new RegExp('[^0-9.]', 'g'), '');
   var newAmount = '';
 
-  if (amount.includes('.')) {
+  if (amount.indexOf('.') >= 0) {
     newAmount = amount;
     console.log("Amount contains dot");
   }
