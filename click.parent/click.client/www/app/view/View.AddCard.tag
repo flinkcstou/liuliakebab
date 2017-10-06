@@ -232,9 +232,12 @@
         boxDate.focus()
       }
 
-      if (boxOne.value.length <= 19 && (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT))
-        boxOne.value = inputVerification.cardVerification(boxOne.value);
+      if (boxOne.value.length <= 19 && (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT)) {
+          boxOne.value = inputVerification.cardVerification(boxOne.value);
+      }
 
+      boxOne.selectionStart = boxOne.value.length;
+      boxOne.selectionEnd = boxOne.value.length;
     }
 
 
