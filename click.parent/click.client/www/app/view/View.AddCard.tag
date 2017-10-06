@@ -59,7 +59,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-card') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-add-card',
+          "view": 'view-add-card',
           "params": opts
         }
       );
@@ -158,12 +158,12 @@
         var answerFromServer = false;
 
         window.api.call({
-          method     : 'card.add',
+          method: 'card.add',
           stopSpinner: false,
-          input      : {
-            phone_num  : phoneNumber,
+          input: {
+            phone_num: phoneNumber,
             card_number: cardNumber,
-            card_data  : dateOrPin,
+            card_data: dateOrPin,
             session_key: sessionKey,
 
           },
@@ -214,18 +214,31 @@
     }
 
     var onPaste = false;
+    var canFormatNumber = true;
 
     boxOnePaste = function () {
       onPaste = true;
     }
 
     boxOneInput = function () {
-      boxOne.value = inputVerification.cardVerification(boxOne.value);
+//      console.log("input canFormatNumber=", canFormatNumber)
+
+//      if (canFormatNumber) {
+//
+//        console.log("dschjgfwd", boxOne.value.toString() + '!')
+//        boxOne.value = inputVerification.cardVerification(inputVerification.spaceDeleter(boxOne.value));
+//        console.log("after", boxOne.value.toString() + '!')
+//      }
     }
 
+    var boxCursorPositionSelectionStart, boxCursorPositionSelectionEnd, oldValueOfBoxNumber;
     boxOneKeyUp = function () {
       event.preventDefault()
       event.stopPropagation()
+
+      boxCursorPositionSelectionStart = boxOne.selectionStart;
+      boxCursorPositionSelectionEnd = boxOne.selectionEnd;
+      oldValueOfBoxNumber = boxOne.value
 
       if (boxOne.value.length == 19) {
         boxDate.autofocus
@@ -233,18 +246,28 @@
       }
 
       if (boxOne.value.length <= 19 && (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT)) {
-          boxOne.value = inputVerification.cardVerification(boxOne.value);
+        boxOne.value = inputVerification.cardVerification(boxOne.value);
+
+        if ((oldValueOfBoxNumber.length != boxOne.value.length && inputVerification.spaceDeleter(oldValueOfBoxNumber) == inputVerification.spaceDeleter(boxOne.value)) ||
+          boxCursorPositionSelectionStart % 5 == 4 && inputVerification.spaceDeleter(oldValueOfBoxNumber) != inputVerification.spaceDeleter(boxOne.value)) {
+          boxOne.selectionStart = boxCursorPositionSelectionStart + 1
+          boxOne.selectionEnd = boxCursorPositionSelectionEnd + 1
+        }
+        else {
+          boxOne.selectionStart = boxCursorPositionSelectionStart
+          boxOne.selectionEnd = boxCursorPositionSelectionEnd
+        }
       }
 
-      boxOne.selectionStart = boxOne.value.length;
-      boxOne.selectionEnd = boxOne.value.length;
     }
 
 
     boxOneKeyDown = function () {
+
       if (boxOne.value.length >= 19 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         boxOne.value = event.target.value.substring(0, event.target.value.length - 1);
       }
+
     }
 
 

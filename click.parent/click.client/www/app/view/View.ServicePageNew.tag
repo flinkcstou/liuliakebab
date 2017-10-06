@@ -491,10 +491,10 @@
 
     var contactStopChanging = false
     telPayVerificationKeyDown = function (input) {
-//      console.log(event.target.value)
+
       if (scope.phoneFieldBool)
         if (input.value.length >= 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-//          firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+
           contactStopChanging = true;
         }
         else {
@@ -512,13 +512,7 @@
       if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT && onPaste) {
         if (firstFieldInput.type != 'text' && scope.phoneFieldBool)
           firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(firstFieldInput.value))
-//
-//
-//        firstFieldInput.selectionStart = cursorPositionSelectionStart
-//        firstFieldInput.selectionEnd = cursorPositionSelectionEnd
-//
-//        if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3)
-//          firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
+
 
         onPaste = false;
 
