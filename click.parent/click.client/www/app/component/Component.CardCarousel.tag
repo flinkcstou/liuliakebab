@@ -216,7 +216,7 @@
         if (getAccountsCards.length < 1) {
 //          scope.addFirstCardBool = true;
           viewMainPage.addFirstCardBool = true;
-          console.log("scope.addFirstCardBool = true;")
+          console.log("viewMainPage.addFirstCardBool = true;")
           scope.parent.update();
         }
         var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'))
@@ -316,7 +316,7 @@
 
       if (!scope.checkSumOfHash) {
         count = 1;
-        if (scope.addFirstCardBool) count = 2;
+        if (viewMainPage.addFirstCardBool) count = 2;
         console.log("COUNT=", count)
         for (var i = 0; i < getAccountsCards.length; i++) {
 

@@ -179,19 +179,27 @@
             if (result[0][0].error == 0) {
               console.log("CARD ADD", result);
 
-              if (result[1][0].status == 1) {
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
-                scope.viewPage = 'view-main-page';
-                scope.update();
-              } else if (result[1][0].status == -1) {
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
-                scope.viewPage = 'view-add-card';
-                scope.update();
-              }
+              viewMainPage.addFirstCardBool = false;
+
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
+              scope.showError = true;
+              scope.viewPage = 'view-main-page';
+              scope.update();
+
+//              if (result[1][0].status == 1) {
+//                scope.clickPinError = false;
+//                scope.errorNote = result[0][0].error_note;
+//                scope.showError = true;
+//                scope.viewPage = 'view-main-page';
+//                scope.update();
+//              } else if (result[1][0].status == -1) {
+//                scope.clickPinError = false;
+//                scope.errorNote = result[0][0].error_note;
+//                scope.showError = true;
+//                scope.viewPage = 'view-add-card';
+//                scope.update();
+//              }
 
             }
             else {

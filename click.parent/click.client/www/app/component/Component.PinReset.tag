@@ -6,11 +6,13 @@
 
 
     <div class="component-pinreset-buttons-container">
-      <div id="pinResetYesButtonId" class="component-pinreset-button" ontouchstart="resetPinStart()" ontouchend="resetPinEnd()">
+      <div id="pinResetYesButtonId" class="component-pinreset-button" ontouchstart="resetPinStart()"
+           ontouchend="resetPinEnd()">
         <p class="component-pinreset-button-label">
           {window.languages.ComponentPinResetYesButtonLabel}</p>
       </div>
-      <div id="pinResetCloseButtonId" class="component-pinreset-button component-pinreset-no-button" ontouchstart="closeWindowStart()"
+      <div id="pinResetCloseButtonId" class="component-pinreset-button component-pinreset-no-button"
+           ontouchstart="closeWindowStart()"
            ontouchend="closeWindowEnd()">
         <p class="component-pinreset-button-label">{window.languages.ComponentPinResetNoButtonLabel}</p>
       </div>
@@ -26,7 +28,8 @@
 
 
     <div class="component-pinreset-buttons-container">
-      <div id="goToRegButtonId" class="component-pinreset-registration-button" ontouchstart="goToRegistrationStart()" ontouchend="goToRegistrationEnd()">
+      <div id="goToRegButtonId" class="component-pinreset-registration-button" ontouchstart="goToRegistrationStart()"
+           ontouchend="goToRegistrationEnd()">
         <p class="component-pinreset-registration-button-label">
           {window.languages.ComponentPinResetRegistrationButtonLabel}</p>
       </div>
@@ -66,9 +69,9 @@
         var sign_string = hex_md5(phoneNumber.substring(0, 5) + timeStamp + phoneNumber.substring(phoneNumber.length - 4, phoneNumber.length));
         window.api.call({
           method: 'pin.reset',
-          input : {
-            timestamp  : timeStamp,
-            phone_num  : phoneNumber,
+          input: {
+            timestamp: timeStamp,
+            phone_num: phoneNumber,
             sign_string: sign_string
           },
 
@@ -78,6 +81,8 @@
             console.log('pin.reset', result);
             if (result[0][0].error == 0) {
               console.log("result of PIN RESET ", result);
+              localStorage.removeItem('click_client_cards');
+              localStorage.removeItem('click_client_accountInfo');
               scope.firstMessage = result[1][0].text1;
               scope.secondMessage = result[1][0].text2;
               scope.firstStage = false;
