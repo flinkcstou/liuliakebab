@@ -12867,7 +12867,11 @@ window.fakedSocket.register("card.add", function (input) {
         "success": 1,
         "error": 0,
         "error_note": "Запрос на подключение передан на обработку, смс с результатом будет отправлен в течении 10 минут"
-      }], []
+      }], [
+        {
+          "status":1
+        }
+      ]
     ];
   }
 
