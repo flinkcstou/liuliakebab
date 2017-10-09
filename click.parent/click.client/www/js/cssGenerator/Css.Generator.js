@@ -3892,7 +3892,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 60%;" +
   "background-position: center;" +
-  "top: 27%;" +
+  "top: 25%;" +
   "right: -2%;" +
   "}",
 
@@ -3953,7 +3953,7 @@ var css = {
   "{" +
   "float: left;" +
   "position: relative;" +
-  "top: 30%;" +
+  "top: 25%;" +
   "font-size: " + 54 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -4001,7 +4001,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 30%;" +
+  "top: 25%;" +
   "padding: 0;" +
   "margin: 0;" +
   "margin-left: 3%;" +
@@ -13607,7 +13607,7 @@ var css = {
 
   autopayEventNumberField: ".autopay-event-number-field" +
   "{" +
-  "height:" + 90 * widthK + "px;" +
+  "height: 10%" +
   "top: 11%;" +
   "}",
 

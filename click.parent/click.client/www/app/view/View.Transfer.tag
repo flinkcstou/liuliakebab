@@ -195,32 +195,33 @@
         </div>
 
         <div class="component-banklist-card-back">
-        <div class="component-banklist-bank-logo" style="background-image: url({i.image});"></div>
+          <div class="component-banklist-bank-logo" style="background-image: url({i.image});"></div>
 
-        <div class="component-banklist-bank-rotate"></div>
+          <div class="component-banklist-bank-rotate"></div>
 
-        <div class="component-banklist-bank-limit-container">
-          <div class="component-banklist-bank-limit-receipt-container">
-            <div class="component-banklist-bank-arrow-down"></div>
-            <div class="component-banklist-bank-limit-currency-receipt">
-              {i.p2p_receipt_max_limit_text}
+          <div class="component-banklist-bank-limit-container">
+            <div class="component-banklist-bank-limit-receipt-container">
+              <div class="component-banklist-bank-arrow-down"></div>
+              <div class="component-banklist-bank-limit-currency-receipt">
+                {i.p2p_receipt_max_limit_text}
+              </div>
+              <div class="component-banklist-bank-limit-receipt">{window.languages.ViewBankListReceiveLimitText}</div>
             </div>
-            <div class="component-banklist-bank-limit-receipt">{window.languages.ViewBankListReceiveLimitText}</div>
-          </div>
 
-          <div class="component-banklist-bank-limit-transfer-container">
-            <div class="component-banklist-bank-arrow-up"></div>
-            <div class="component-banklist-bank-limit-currency-transfer">
-              {i.p2p_max_limit_text}
+            <div class="component-banklist-bank-limit-transfer-container">
+              <div class="component-banklist-bank-arrow-up"></div>
+              <div class="component-banklist-bank-limit-currency-transfer">
+                {i.p2p_max_limit_text}
+              </div>
+              <div class="component-banklist-bank-limit-transfer">{window.languages.ViewBankListTransferLimitText}</div>
             </div>
-            <div class="component-banklist-bank-limit-transfer">{window.languages.ViewBankListTransferLimitText}</div>
           </div>
-        </div>
-          <div hidden="{!i.public_offer}" class="component-banklist-public-offer-container" ontouchend="openPublicOffer(&quot;{i.public_offer}&quot;)" id="{i.code}">
+          <div hidden="{!i.public_offer}" class="component-banklist-public-offer-container"
+               ontouchend="openPublicOffer(&quot;{i.public_offer}&quot;)" id="{i.code}">
             <div class="component-banklist-public-offer-link">{window.languages.ViewBankListPublicOfferText}</div>
             <div class="component-banklist-public-offer-arrow"></div>
           </div>
-      </div>
+        </div>
 
       </div>
     </div>
@@ -538,41 +539,40 @@
     var flipCardTouchStartX, flipCardTouchStartY, flipCardTouchEndX, flipCardTouchEndY, pointerInOffer = false;
 
     flipCardTouchStart = function () {
-        flipCardTouchStartX = event.changedTouches[0].pageX
-        flipCardTouchStartY = event.changedTouches[0].pageY
+      flipCardTouchStartX = event.changedTouches[0].pageX
+      flipCardTouchStartY = event.changedTouches[0].pageY
     }
 
     flipCardTouchEnd = function (object) {
-        flipCardTouchEndX = event.changedTouches[0].pageX
-        flipCardTouchEndY = event.changedTouches[0].pageY
+      flipCardTouchEndX = event.changedTouches[0].pageX
+      flipCardTouchEndY = event.changedTouches[0].pageY
 
-        var publicOfferContainer = object.getElementsByClassName("component-banklist-public-offer-container")[0];
-        var publicOfferId = publicOfferContainer.id;
-        var publicOfferRect = document.getElementById(publicOfferId).getBoundingClientRect();
-        var publicOfferHidden = publicOfferContainer.hidden;
+      var publicOfferContainer = object.getElementsByClassName("component-banklist-public-offer-container")[0];
+      var publicOfferId = publicOfferContainer.id;
+      var publicOfferRect = document.getElementById(publicOfferId).getBoundingClientRect();
+      var publicOfferHidden = publicOfferContainer.hidden;
 
-        if (Math.abs(flipCardTouchStartX - flipCardTouchEndX) <= 20 &&
-                Math.abs(flipCardTouchStartY - flipCardTouchEndY) <= 20 && !pointerInOffer){
+      if (Math.abs(flipCardTouchStartX - flipCardTouchEndX) <= 20 &&
+        Math.abs(flipCardTouchStartY - flipCardTouchEndY) <= 20 && !pointerInOffer) {
 
-                var rotated = object.style.transform;
-                if (rotated == "rotateY(-180deg)") {
-                    if (!publicOfferHidden) {
-                        if (publicOfferRect.top > flipCardTouchEndY)
-                            object.style.transform = "rotateY(0deg)";
-                    }
-                    else
-                    {
-                        object.style.transform = "rotateY(0deg)";
-                    }
-                }
-                else
-                    object.style.transform = "rotateY(-180deg)";
+        var rotated = object.style.transform;
+        if (rotated == "rotateY(-180deg)") {
+          if (!publicOfferHidden) {
+            if (publicOfferRect.top > flipCardTouchEndY)
+              object.style.transform = "rotateY(0deg)";
+          }
+          else {
+            object.style.transform = "rotateY(0deg)";
+          }
         }
+        else
+          object.style.transform = "rotateY(-180deg)";
+      }
     }
 
     openPublicOffer = function (LinkToPublicOffer) {
-        console.log("Link to Offer", LinkToPublicOffer);
-        window.open(LinkToPublicOffer, '_system', 'location=no');
+      console.log("Link to Offer", LinkToPublicOffer);
+      window.open(LinkToPublicOffer, '_system', 'location=no');
     }
 
 
@@ -958,12 +958,10 @@
         cardInputId.value = inputVerification.cardVerification(cardInputId.value);
 
         if (cardOldValueOfNumber.length != cardInputId.value.length && inputVerification.spaceDeleter(cardOldValueOfNumber) == inputVerification.spaceDeleter(cardInputId.value)) {
-          console.log("111")
           cardInputId.selectionStart = cardCursorPositionSelectionStart + 1
           cardInputId.selectionEnd = cardCursorPositionSelectionEnd + 1
         }
         else {
-          console.log("222")
           cardInputId.selectionStart = cardCursorPositionSelectionStart
           cardInputId.selectionEnd = cardCursorPositionSelectionEnd
         }
