@@ -10047,25 +10047,27 @@ var css = {
   "width:" + 320 * widthK + "px;" +
   "position: absolute;" +
   "top:" + 7 * widthK + "px;" +
-  "left:" + 730 * widthK + "px;" +
+  "left:" + 735 * widthK + "px;" +
   "}",
 
   addCardCarouselIcon: ".add-card-carousel-icon" +
   "{" +
-  "background-image: url(resources/icons/cards/all.png);" +
+  "background-image: url(resources/icons/cards/addCard/add_first_card.png);" +
   "height:" + 150 * widthK + "px;" +
   "width:" + 230 * widthK + "px;" +
   "position: absolute;" +
   "top:15%;" +
-  "left:15%;" +
-  "background-size: cover;" +
+  "left:17%;" +
+  "background-size: 85%;" +
+  "background-position-y: 45%;" +
+  "background-repeat: no-repeat;" +
   "}",
 
   addCardCarouselText: ".add-card-carousel-text" +
   "{" +
   "width:100%;" +
   "position: absolute;" +
-  "top:75%;" +
+  "top:70%;" +
   "text-align: center;" +
   "font-size: " + 28 * widthK + "px;" +
   "color: white;" +

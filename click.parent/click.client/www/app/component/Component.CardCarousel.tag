@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <div class="add-card-carousel" if="{addFirstCardBool}" ontouchend="addFirstCardTouchEnd()"
+      <div class="add-card-carousel" if="{viewMainPage.addFirstCardBool}" ontouchend="addFirstCardTouchEnd()"
            ontouchstart="addFirstCardTouchStart()">
         <div class="add-card-carousel-icon">
         </div>
@@ -65,7 +65,7 @@
     var scope = this;
     scope.invoiceLeft = 100 * widthK;
     scope.invoiceList = [];
-    scope.addFirstCardBool = false;
+    console.log(" viewMainPage.addFirstCardBool", viewMainPage.addFirstCardBool)
 
     var arrayOfPhones = [];
 
@@ -76,8 +76,9 @@
     if (localStorage.getItem('click_client_cards')) {
       scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
       if (scope.cardsarray.length < 1) {
-        scope.addFirstCardBool = true;
-        console.log("condition one worked")
+//        scope.addFirstCardBool = true;
+        viewMainPage.addFirstCardBool = true;
+        scope.parent.update();
       }
       scope.update();
       console.log("first card link", JSON.stringify(scope.cardsarray[0]));
@@ -213,8 +214,10 @@
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
         console.log("getAccountsCards ", getAccountsCards)
         if (getAccountsCards.length < 1) {
-          scope.addFirstCardBool = true;
+//          scope.addFirstCardBool = true;
+          viewMainPage.addFirstCardBool = true;
           console.log("scope.addFirstCardBool = true;")
+          scope.parent.update();
         }
         var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'))
       }

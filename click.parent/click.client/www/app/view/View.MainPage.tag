@@ -13,12 +13,13 @@
     <view-news if="{!modeOfApp.offlineMode}"></view-news>
 
     <div class="bank-operation-button-my-cards">
-      <div id="myCardButtonId" class="bank-operation-button-my-cards-container">
+      <div id="myCardButtonId" class="bank-operation-button-my-cards-container" if="{!viewMainPage.addFirstCardBool}">
         <div class="bank-operation-button-my-cards-icon"></div>
         <div class="bank-operation-button-my-cards-label">
           {window.languages.BankOperationsAutoPay}
         </div>
-        <div class="bank-operation-button-container" ontouchend="myCardListTouchEnd()"
+        <div class="bank-operation-button-container"
+             ontouchend="myCardListTouchEnd()"
              ontouchstart="myCardListTouchStart()"></div>
       </div>
     </div>
@@ -37,6 +38,7 @@
     viewServicePage.amountWithoutSpace = 0;
     viewServicePage.amountTex = 0;
     onBackParams.opts = null;
+    viewMainPage.addFirstCardBool = false;
 
 
     this.on('mount', function () {
