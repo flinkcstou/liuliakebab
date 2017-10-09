@@ -61,7 +61,6 @@
                    errornote="{errorNote}"></component-alert>
 
   <script>
-    //if="{!cardsarray || cardsarray.length==0}"
 
     var scope = this;
     scope.invoiceLeft = 100 * widthK;
@@ -314,8 +313,9 @@
 
       if (!scope.checkSumOfHash) {
         count = 1;
+        if (scope.addFirstCardBool) count = 2;
+        console.log("COUNT=", count)
         for (var i = 0; i < getAccountsCards.length; i++) {
-
 
           if (getAccountsCards[i].access == 0) break;
           if (loginInfo.default_account == getAccountsCards[i].id) {
@@ -359,6 +359,8 @@
           localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
 
           count++;
+
+          console.log("COUNT =", count)
 
 //        cardNumber %= count;
           localStorage.setItem('click_client_countCard', count);
@@ -414,15 +416,12 @@
                   scope.cardNumber = 1;
                 }
 
-//                scope.update(scope.invoiceCheck);
-//                scope.update(scope.cardNumber);
                 var arrayOfInvoice = [];
                 for (var i = 0; i < result[1].length; i++) {
 
                   //TODO: FIX
                   try {
                     result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
-                    console.log("phone number matching", result[1][i].merchant_phone, ", array of numbers", arrayOfPhones)
                     scope.searchNumber = inputVerification.spaceDeleter(result[1][i].merchant_phone);
                     arrayOfPhones = JSON.parse(sessionStorage.getItem('arrayOfPhones'));
 
@@ -434,7 +433,6 @@
                             index = wordOfFunction.phoneNumbers[i].value.indexOf(scope.searchNumber);
                             if (index != -1) {
                               result[1][i].friend_name = wordOfFunction.name.givenName;
-                              console.log('result[1][i].friend_name=', result[1][i].friend_name)
                             }
                           }
                         }
@@ -470,7 +468,6 @@
                 if (scope.invoiceList)
                   setTimeout(function () {
                     addCard()
-//                  scope.update()
                   }, 0);
               }
               else {
@@ -518,21 +515,16 @@
 
 
     function onError(contactError) {
-      //      alert('onError!');
       console.log('error', contactError)
     }
 
 
-    // if (!localStorage.getItem('click_client_friendsOuter_count')) {
-
     if (device.platform != 'BrowserStand' && !sessionStorage.getItem('arrayOfPhones')) {
-      console.log("Looking for phoneNUmbners")
       var options = new ContactFindOptions();
       options.multiple = true;
       options.hasPhoneNumber = true;
       navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
     }
-    //}
 
 
     cardImagesCaching = function () {
@@ -582,11 +574,6 @@
 
     scope.onComponentCreated = onComponentCreated = function (cardNumberParameter) {
 
-//    this.on('mount', function () {
-//      clearInterval(changingColor);
-
-//      console.log(scope.cardsarray);
-//      localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
       if (modeOfApp.onlineMode) {
         if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -717,35 +704,6 @@
           });
         }
       }
-//      copyCardsArray = JSON.parse(JSON.stringify(scope.cardsarray));
-//      console.log(copyCardsArray, defaultAccountId)
-//
-//      var splitTop = copyCardsArray[defaultAccountId].background_color_top.split(',')
-//
-//      cMount1 = splitTowp[0]
-//      cMount2 = splitTop[1]
-//      cMount3 = splitTop[2]
-//
-//      var splitBottom = copyCardsArray[defaultAccountId].background_color_bottom.split(',')
-//
-//      vMount1 = splitBottom[0]
-//      vMount2 = splitBottom[1]
-//      vMount3 = splitBottom[2]
-//      console.log('splitTop', splitTop)
-//      console.log('splitBottom', splitBottom)
-//
-//      if (!viewMainPage.myCards) {
-//        htmlId.style.background = '-webkit-linear-gradient(rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + '),' +
-//          'rgb(' + vMount1 + ',' + vMount2 + ',' + vMount3 + ')150%)';
-//
-//        contacts.style.backgroundColor = 'rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + ')';
-//        circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + ')';
-//
-//        contactsId.style.backgroundColor = 'rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + ')';
-//        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + ')';
-//      }
-//      console.log(modeOfApp.offlineMode)
-//    })
     };
 
 
@@ -777,16 +735,6 @@
     };
 
     this.on("mount", function () {
-//      console.log("CARDS", JSON.parse(localStorage.getItem("click_client_cards")))
-
-//      if (!scope.invoiceCheck) {
-//        count = 0;
-//        scope.cardNumber = 1;
-//        for (var i in scope.cardsarray) {
-//          scope.cardsarray[i].countCard = count;
-//          count++;
-//        }
-//      }
 
       cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -802,7 +750,7 @@
       }
     });
 
-    //
+
     writeBalance = function () {
 
       if (getAccountsCards.length == 0) {
@@ -850,8 +798,6 @@
             }
             else {
 
-              console.log("STOP STOP STOP")
-
               if (scope.cardsarray[result[1][0].account_id]) {
                 scope.cardsarray[result[1][0].account_id].salary = null;
                 scope.cardsarray[result[1][0].account_id].error_message = "Ошибка баланса";
@@ -881,11 +827,6 @@
       var sessionKey = info.session_key;
 
     var carouselTouchStartX, carouselTouchEndX;
-    //    scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-    //    if (!scope.cardsarray) {
-    //      scope.cardsarray = {};
-    //    }
-
 
     var card;
     scope.cardNumber = JSON.parse(localStorage.getItem('cardNumber'));
@@ -893,7 +834,6 @@
     if (!scope.cardNumber) {
       scope.cardNumber = 1;
     }
-    //    riot.update(scope.cardNumber);
 
     var pos = 0;
     var count = localStorage.getItem('click_client_countCard');
@@ -901,10 +841,6 @@
     if (!count)
       count = 1;
 
-    //    if (!viewMainPage.atMainPage) {
-    //      scope.cardNumber = 0;
-    ////      count = 0;
-    //    }
 
     var cNow1, cNow2, cNow3, vNow1, vNow2, vNow3;
     var cNext1, cNext2, cNext3, vNext1, vNext2, vNext3;
@@ -916,81 +852,16 @@
 
     startTouchCarousel = function () {
 
-      //
-      //Test
-//      scope.direction = 0;
-//      scope.whereWasX = event.changedTouches[0].pageX;
-//      //
-//      //
-//      clearInterval(changingColor)
-//
-//      firstEnter = true;
-
       carouselTouchStartX = event.changedTouches[0].pageX;
       left = -((540 * scope.cardNumber) * widthK) - carouselTouchStartX;
       delta = left;
-//
-//      for (var i in scope.cardsarray) {
-//        if (scope.cardsarray[i].countCard == cardNumber) {
-//          console.log('SPLIT SPLIT ', scope.cardsarray[i].background_color_top.split(','))
-//          var splitTop = scope.cardsarray[i].background_color_top.split(',');
-//
-//          cNow1 = splitTop[0]
-//          cNow2 = splitTop[1]
-//          cNow3 = splitTop[2]
-//
-//          var splitBottom = scope.cardsarray[i].background_color_bottom.split(',')
-//
-//          vNow1 = splitBottom[0]
-//          vNow2 = splitBottom[1]
-//          vNow3 = splitBottom[2]
-//        }
-//
-//        if (scope.cardsarray[i].countCard == cardNumber - 1) {
-//          console.log('PRIVIOUS', scope.cardsarray[i])
-//          var splitTopPrivious = scope.cardsarray[i].background_color_top.split(',');
-//          cPrivious1 = splitTopPrivious[0]
-//          cPrivious2 = splitTopPrivious[1]
-//          cPrivious3 = splitTopPrivious[2]
-//
-//          var splitBottomPrivious = scope.cardsarray[i].background_color_bottom.split(',');
-//          vPrivious1 = splitBottomPrivious[0]
-//          vPrivious2 = splitBottomPrivious[1]
-//          vPrivious3 = splitBottomPrivious[2]
-//        }
-//
-//        if (scope.cardsarray[i].countCard == cardNumber + 1) {
-//
-//          var splitTopNext = scope.cardsarray[i].background_color_top.split(',');
-//          cNext1 = splitTopNext[0]
-//          cNext2 = splitTopNext[1]
-//          cNext3 = splitTopNext[2]
-//
-//          var splitBottomNext = scope.cardsarray[i].background_color_bottom.split(',');
-//          vNext1 = splitBottomNext[0]
-//          vNext2 = splitBottomNext[1]
-//          vNext3 = splitBottomNext[2]
-//        }
-//      }
-//      scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-//      cNowOriginal1 = cNow1
-//      cNowOriginal2 = cNow2
-//      cNowOriginal3 = cNow3
-//
-//      vNowOriginal1 = vNow1
-//      vNowOriginal2 = vNow2
-//      vNowOriginal3 = vNow3
+
     }
 
-    //    var leftCard = false, rightCard = false;
 
     endTouchCarousel = function () {
       event.preventDefault()
       event.stopPropagation()
-
-      console.log('Carousel Touch End', event)
-
-//      clearInterval(changingColor)
 
       carouselTouchEndX = event.changedTouches[0].pageX;
       if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20) {
@@ -1003,8 +874,6 @@
             scope.cardNumber = 1;
           console.log("End Touch Carousel", scope.cardNumber);
 
-//          scope.cardNumber = (scope.invoiceCheck && scope.cardNumber) ? (scope.cardNumber - 2) : (scope.cardNumber);
-
           localStorage.setItem("cardNumber", scope.cardNumber);
 
           pos = (scope.cardNumber) * 540 * widthK;
@@ -1016,11 +885,8 @@
               sendChosenCardId = i;
               break;
             }
-
           }
 
-//          htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-//            'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
           riotTags.innerHTML = "<view-my-cards>";
           riot.mount("view-my-cards", [sendChosenCardId]);
           document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -1039,211 +905,21 @@
       event.preventDefault()
       event.stopPropagation()
 
-//      if (scope.whereWasX < event.changedTouches[0].pageX && scope.direction == 1
-//        || scope.whereWasX > event.changedTouches[0].pageX && scope.direction == -1) {
-//
-//
-//        if (fromChangableColor1 == cNowOriginal1 && fromChangableColor2 == cNowOriginal2 && fromChangableColor3 == cNowOriginal3 &&
-//          toChangableColor1 == vNowOriginal1 && toChangableColor2 == vNowOriginal2 && toChangableColor3 == vNowOriginal3) {
-//
-//          console.log("ASD", fromChangableColor1, cNext1, cPrivious1, cNowOriginal1);
-//
-//          if (scope.direction == -1) {
-//
-//            fromChangableColor1 = cNext1
-//            fromChangableColor2 = cNext2
-//            fromChangableColor3 = cNext3
-//
-//            toChangableColor1 = vNext1
-//            toChangableColor2 = vNext2
-//            toChangableColor3 = vNext3
-//
-//            console.log("BBB");
-//
-//          } else {
-//
-//            fromChangableColor1 = cPrivious1
-//            fromChangableColor2 = cPrivious2
-//            fromChangableColor3 = cPrivious3
-//
-//            toChangableColor1 = vPrivious1
-//            toChangableColor2 = vPrivious2
-//            toChangableColor3 = vPrivious3
-//            console.log("GGG");
-//          }
-//        } else {
-//
-//          if (fromChangableColor1 == cNext1 || fromChangableColor1 == cPrivious1) {
-//            fromChangableColor1 = cNowOriginal1
-//            fromChangableColor2 = cNowOriginal2
-//            fromChangableColor3 = cNowOriginal3
-//
-//            toChangableColor1 = vNowOriginal1
-//            toChangableColor2 = vNowOriginal2
-//            toChangableColor3 = vNowOriginal3
-//          }
-//        }
-//
-//        scope.direction *= -1;
-//
-//        console.log('QQQQ')
-//      }
-//
-//      if (carouselTouchStartX > event.changedTouches[0].pageX && firstEnter) {
-//        //to RIGHT
-//        scope.direction = 1;
-//        rightCard = true;
-//        leftCard = false;
-//        firstEnter = false;
-//        fromChangableColor1 = cNext1
-//        fromChangableColor2 = cNext2
-//        fromChangableColor3 = cNext3
-//
-//        toChangableColor1 = vNext1
-//        toChangableColor2 = vNext2
-//        toChangableColor3 = vNext3
-//      }
-//
-//      if (carouselTouchStartX < event.changedTouches[0].pageX && firstEnter) {
-//        //to LEFT
-//        scope.direction = -1;
-//        rightCard = false;
-//        leftCard = true;
-//        firstEnter = false;
-//        fromChangableColor1 = cPrivious1
-//        fromChangableColor2 = cPrivious2
-//        fromChangableColor3 = cPrivious3
-//
-//        toChangableColor1 = vPrivious1
-//        toChangableColor2 = vPrivious2
-//        toChangableColor3 = vPrivious3
-//      }
-//
-//      if (cNow1 > fromChangableColor1) cNow1--;
-//      if (cNow1 < fromChangableColor1) cNow1++;
-//      if (cNow2 > fromChangableColor2) cNow2--;
-//      if (cNow2 < fromChangableColor2) cNow2++;
-//      if (cNow3 > fromChangableColor3) cNow3--;
-//      if (cNow3 < fromChangableColor3) cNow3++;
-//      if (vNow1 > toChangableColor1) vNow1--;
-//      if (vNow1 < toChangableColor1) vNow1++;
-//      if (vNow2 > toChangableColor2) vNow2--;
-//      if (vNow2 < toChangableColor2) vNow2++;
-//      if (vNow3 > toChangableColor3) vNow3--;
-//      if (vNow3 < toChangableColor3) vNow3++;
-//
-//      htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-//        'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
-//
-//      if (!viewMainPage.myCards) {
-//        contacts.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-//        circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-//
-//        contactsId.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-//        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-//      }
-
 
       document.getElementById('cards').style.transition = '0s';
       document.getElementById('cards').style.webkitTransition = '0s';
       document.getElementById('cards').style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
       document.getElementById('cards').style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
 
-      //Test
-      //
-      //scope.whereWasX = event.changedTouches[0].pageX;
     };
 
-    //    if (modeOfApp.offlineMode) {
-    //
-    ////        scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-    //      addCard();
-    //    }
-    //    changeColor = function (index) {
-    //      console.log('sss')
-    //      var splitTop = scope.cardsarray[index].background_color_top.split(',');
-    //      fromChangableColor1 = splitTop[0]
-    //      fromChangableColor2 = splitTop[1]
-    //      fromChangableColor3 = splitTop[2]
-    //
-    //      var splitBottom = scope.cardsarray[index].background_color_bottom.split(',');
-    //      toChangableColor1 = splitBottom[0]
-    //      toChangableColor2 = splitBottom[1]
-    //      toChangableColor3 = splitBottom[2]
-    //
-    //      if (cNow1 != fromChangableColor1)
-    //        if (cNow1 > fromChangableColor1) cNow1--;
-    //
-    //      if (cNow1 != fromChangableColor1)
-    //        if (cNow1 < fromChangableColor1) cNow1++;
-    //
-    //      if (cNow2 != fromChangableColor2)
-    //        if (cNow2 > fromChangableColor2) cNow2--;
-    //
-    //      if (cNow2 != fromChangableColor2)
-    //        if (cNow2 < fromChangableColor2) cNow2++;
-    //
-    //      if (cNow3 != fromChangableColor3)
-    //        if (cNow3 > fromChangableColor3) cNow3--;
-    //
-    //      if (cNow3 != fromChangableColor3)
-    //        if (cNow3 < fromChangableColor3) cNow3++;
-    //
-    //      if (vNow1 != toChangableColor1)
-    //        if (vNow1 > toChangableColor1) vNow1--;
-    //
-    //      if (vNow1 != toChangableColor1)
-    //        if (vNow1 < toChangableColor1) vNow1++;
-    //
-    //      if (vNow2 != toChangableColor2)
-    //        if (vNow2 > toChangableColor2) vNow2--;
-    //
-    //      if (vNow2 != toChangableColor2)
-    //        if (vNow2 < toChangableColor2) vNow2++;
-    //
-    //      if (vNow3 != toChangableColor3)
-    //        if (vNow3 > toChangableColor3) vNow3--;
-    //
-    //      if (vNow3 != toChangableColor3)
-    //        if (vNow3 < toChangableColor3) vNow3++;
-    //
-    //      htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-    //        'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
-    //
-    //      if (!viewMainPage.myCards) {
-    //        contacts.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-    //        circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-    //
-    //        contactsId.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-    //        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-    //      }
-    //
-    //      if (cNow1 == fromChangableColor1 && cNow2 == fromChangableColor2 && cNow3 == fromChangableColor3 &&
-    //        vNow1 == toChangableColor1 && vNow2 == toChangableColor2 && vNow3 == toChangableColor3)
-    //        clearInterval(changingColor)
-    //
-    //      if (!fromChangableColor1 || !fromChangableColor2 || !fromChangableColor3 || !toChangableColor1 || !toChangableColor2 || !toChangableColor3)
-    //        clearInterval(changingColor)
-    ////
-    ////      console.log('cNow1', cNow1, 'fromChangableColor1', fromChangableColor1)
-    ////      console.log('cNow2', cNow2, 'fromChangableColor2', fromChangableColor2)
-    ////      console.log('cNow3', cNow3, 'fromChangableColor3', fromChangableColor3)
-    ////      console.log('vNow1', vNow1, 'toChangableColor1', toChangableColor1)
-    ////      console.log('vNow2', vNow2, 'toChangableColor2', toChangableColor2)
-    ////      console.log('vNow3', vNow3, 'toChangableColor3', toChangableColor3)
-    //
-    //
-    //    }
-    //    var changingColor;
 
     scope.changePositionCardCarousel = changePositionCardCarousel = function () {
       if (event) {
         event.preventDefault()
         event.stopPropagation()
       }
-//      clearInterval(changingColor);
-//      if (!scope.invoiceCheck && count != 0)
-//        count -= 1;
+
 
       if (scope.invoiceCheck) {
         var invoiceVar = 0;
@@ -1259,7 +935,7 @@
         console.log("Move Touch Carousel1", scope.cardNumber);
 
         ++scope.cardNumber;
-//        riot.update(scope.cardNumber);
+
         document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById('cards').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById('cards').style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
@@ -1293,20 +969,13 @@
         console.log("Move Touch Carousel4", scope.cardNumber);
 
         --scope.cardNumber;
-//        riot.update(scope.cardNumber);
+
         document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById('cards').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById('cards').style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
         document.getElementById('cards').style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
-//      for (i in scope.cardsarray) {
-//        if (scope.cardsarray[i].countCard == cardNumber)
-//          var index = i;
-//      }
-//      changingColor = setInterval(function () {
-//        changeColor(index)
-//      }, 4);
 
       if (viewMainPage.myCards) {
         for (var i in scope.cardsarray) {
