@@ -100,7 +100,7 @@
 
   <view-report-service-new hidden="{!showComponent}"></view-report-service-new>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}" step_amount="{stepAmount}"
                    errornote="{errorNote}"></component-alert>
 
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
