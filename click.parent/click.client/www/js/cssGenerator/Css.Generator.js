@@ -10066,8 +10066,8 @@ var css = {
   "width:100%;" +
   "position: absolute;" +
   "top:75%;" +
-  // "left:20%;" +
-  "font-size: " + 30 * widthK + "px;" +
+  "text-align: center;" +
+  "font-size: " + 28 * widthK + "px;" +
   "color: white;" +
   "}",
 
