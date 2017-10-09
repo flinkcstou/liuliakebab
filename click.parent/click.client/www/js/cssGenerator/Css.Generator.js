@@ -65,11 +65,11 @@ var css = {
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "touch-action: manipulation;" +
-  //"background-image: url(resources/from-user.png);" +
-  //"opacity: 0.6;" +
-  //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+  // "background-image: url('resources/addcarddraft.png');" +
+  // "opacity: 0.6;" +
+  // "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+  // "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+  // "background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
   "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
@@ -10525,14 +10525,17 @@ var css = {
   "position: relative;" +
   //"top:" + 177 * heightK + "px;" +
   "top:" + 100 * heightK + "px;" +
-  "width:" + 600 * widthK + "px;" +
-  "height:" + 320 * heightK + "px;" +
+  "width:" + 515 * widthK + "px;" +
+  "height:" + 285 * heightK + "px;" +
   "border:" + 1 + "px solid #e7e7e7;" +
   //"border:" + 3 * heightK + "px solid #e7e7e7;" +
   "background-color: white;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "border-radius:" + 10 * heightK + "px;" +
+  "background-image: url(resources/icons/cards/addCard/new_card.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: cover;" +
   "}",
 
 
@@ -10595,7 +10598,7 @@ var css = {
   "text-align: center;" +
   "color: #757389;" +
   "font-size:" + 24 * widthK + "px;" +
-  "top: 1%;" +
+  "top: 2%;" +
   "left: 8%;" +
   "}",
 
@@ -10607,8 +10610,8 @@ var css = {
   "background-color: white;" +
   "border:" + 1 + "px solid #e7e7e7;" +
   //"border:" + 3 * heightK + "px solid #e7e7e7;" +
-  "width:" + 520 * widthK + "px;" +
-  "height:" + 60 * widthK + "px;" +
+  "width:" + 460 * widthK + "px;" +
+  "height:" + 55 * widthK + "px;" +
   //"height: 19%;" +
   "left: 6%;" +
   "top: 26%;" +
@@ -10617,21 +10620,21 @@ var css = {
   addCardCardNumberBox: ".add-card-card-number-box " +
   "{" +
   "position: absolute;" +
-  "width:" + 470 * widthK + "px;" +
+  "width:" + 420 * widthK + "px;" +
   "height: 100%;" +
   "top: 0%;" +
   "padding: 0;" +
   "background-color: transparent;" +
   "border: none;" +
   "outline: none;" +
-  "font-size:" + 38 * widthK + "px;" +
+  "font-size:" + 35 * widthK + "px;" +
   //"letter-spacing:1px;" +
   "word-spacing:" + 25 * widthK + "px;" +
   "}",
 
   addCardCardNumberBoxOne: ".add-card-card-number-box-one " +
   "{" +
-  "left:" + 30 * widthK + "px;" +
+  "left:" + 21 * widthK + "px;" +
   "}",
 
   addCardCardText: ".add-card-card-text " +
@@ -10640,14 +10643,14 @@ var css = {
   "margin: 0;" +
   "background-size: contain;" +
   "color: #757389;" +
-  "font-size:" + 27 * widthK + "px;" +
+  "font-size:" + 23 * widthK + "px;" +
   "}",
 
   addCardCardTextDate: ".add-card-card-text-date " +
   "{" +
   "left: 6%;" +
   "width: 200%;" +
-  "bottom: 36%;" +
+  "bottom: 32%;" +
   "}",
 
   addCardCardTextPin: ".add-card-card-text-pin " +
@@ -10665,9 +10668,9 @@ var css = {
   "background-color: white;" +
   //"border:" + 3 * heightK + "px solid #e7e7e7;" +
   "border:" + 1 + "px solid #e7e7e7;" +
-  "width: 27%;" +
+  "width: 24%;" +
   //"height: 18%;" +
-  "height:" + 60 * widthK + "px;" +
+  "height:" + 55 * widthK + "px;" +
   "left: 6%;" +
   "bottom: 11%;" +
   "}",
@@ -10675,17 +10678,14 @@ var css = {
   addCardCardDateBox: ".add-card-card-date-box " +
   "{" +
   "position: absolute;" +
-  "width:" + 125 * widthK + "px;" +
-  "left:" + 30 * widthK + "px;" +
-  //"left: 17%;" +
-  // "height: 60%;" +
+  "width:" + 90 * widthK + "px;" +
+  "left:" + 21 * widthK + "px;" +
   "top: 20%;" +
   "padding: 0;" +
   "background-color: transparent;" +
   "outline: none;" +
   "border: none;" +
-  "font-size:" + 38 * widthK + "px;" +
-  //"letter-spacing:1px;" +
+  "font-size:" + 34 * widthK + "px;" +
   "}",
 
   addCardCardPin: ".add-card-card-pin " +
