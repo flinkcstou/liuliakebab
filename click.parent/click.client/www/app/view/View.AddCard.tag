@@ -113,12 +113,12 @@
 
         cardNumber = inputVerification.spaceDeleter(boxOne.value)
 
-        if (cardNumber.substring(0, 4) == '8600') {
-          dateOrPin = boxDate.value;
-        }
-        else {
-          dateOrPin = pinCodeOfBank;
-        }
+//        if (cardNumber.substring(0, 4) == '8600') {
+        dateOrPin = boxDate.value;
+//        }
+//        else {
+//          dateOrPin = pinCodeOfBank;
+//        }
 
         console.log(cardNumber, dateOrPin)
 
