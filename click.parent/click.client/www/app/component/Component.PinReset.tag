@@ -83,6 +83,8 @@
               console.log("result of PIN RESET ", result);
               localStorage.removeItem('click_client_cards');
               localStorage.removeItem('click_client_accountInfo');
+              localStorage.removeItem('cardNumber');
+              localStorage.removeItem('click_client_countCard');
               scope.firstMessage = result[1][0].text1;
               scope.secondMessage = result[1][0].text2;
               scope.firstStage = false;

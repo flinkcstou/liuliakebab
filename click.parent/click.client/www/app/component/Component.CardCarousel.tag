@@ -212,7 +212,7 @@
 
       if (localStorage.getItem('click_client_accountInfo') && !scope.checkSumOfHash) {
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
-        console.log("getAccountsCards ", getAccountsCards)
+        console.log("getAccountsCards ", JSON.stringify(getAccountsCards))
         if (getAccountsCards.length < 1) {
 //          scope.addFirstCardBool = true;
           viewMainPage.addFirstCardBool = true;
@@ -316,7 +316,7 @@
 
       if (!scope.checkSumOfHash) {
         count = 1;
-        if (viewMainPage.addFirstCardBool) count = 2;
+        // if (viewMainPage.addFirstCardBool) count = 2;
         console.log("COUNT=", count)
         for (var i = 0; i < getAccountsCards.length; i++) {
 
@@ -381,7 +381,8 @@
         if (invoice)
           scope.update();
       }
-    };
+    }
+    ;
 
     scope.invoiceCheck = false;
 
@@ -470,6 +471,7 @@
 
                 if (scope.invoiceList)
                   setTimeout(function () {
+                    console.log("addcard 473")
                     addCard()
                   }, 0);
               }
@@ -577,6 +579,8 @@
 
     scope.onComponentCreated = onComponentCreated = function (cardNumberParameter) {
 
+      console.log("ON COMPONENT CREATED")
+
       if (modeOfApp.onlineMode) {
         if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -651,6 +655,8 @@
                 if (!scope.checkSumOfHash || info.update_account_cache) {
                   var countCard = 2;
                   var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+                  arrayAccountInfo = [];
+
 
                   for (var i = 0; i < result[1].length; i++) {
                     if (result[1][i].id == loginInfo.default_account) {
@@ -664,6 +670,7 @@
                   }
                   var accountInfo = JSON.stringify(arrayAccountInfo);
                   if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
+                    console.log("removing")
                     localStorage.removeItem("click_client_accountInfo")
                   }
 
@@ -689,6 +696,7 @@
                       console.log("Spinner Stop Component Card Carousel 657");
                       SpinnerPlugin.activityStop();
                     }
+                    console.log("addcard 696")
                     addCard()
                   }, 0);
                 }
