@@ -2,6 +2,7 @@
   <div class="registration-device-flex-container">
     <div class="registration-device-unchangable-container">
       <div class="registration-device-phone-field">
+        <component-canvas></component-canvas>
         <p class="registration-device-text-field">{window.languages.ViewRegistrationTextField}</p>
 
         <p class="registration-device-phone-code-part">+{window.languages.CodeOfCountry}</p>
@@ -75,6 +76,8 @@
         demoContainer.style.left = 100 * widthK + 'px';
       if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#00b0eb");
+      canvas = document.getElementById('canvas');
+      ctx = canvas.getContext("2d");
     })
 
     var checkRemember = false;
@@ -189,9 +192,8 @@
     var inputStartX = 260 * widthK;
     var inputLocalStartX = inputStartX - 80 * widthK;
     var inputFocusIndex = 0;
-    var canvas = document.createElement('canvas');
-    var ctx = canvas.getContext("2d");
-    ctx.font = 64 * widthK + "px SFUIDisplay-Light";
+    var canvas;
+    var ctx;
 
 
     onTouchendRegNumber = function () {
