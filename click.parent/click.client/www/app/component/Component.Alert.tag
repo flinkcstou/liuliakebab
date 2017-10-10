@@ -87,6 +87,7 @@
           }
 
           console.log("OPTS in ALERT", opts)
+          console.log(JSON.stringify(history.arrayOfHistory))
 
           if (opts.step_amount)
             if (opts.step_amount || opts.step_amount == 0) {
@@ -103,8 +104,7 @@
 //          scope.unmount()
             }
         }
-        else
-        {
+        else {
           console.log("Alert without parent");
           if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device') {
             scope.outerShowAlertBool = true;

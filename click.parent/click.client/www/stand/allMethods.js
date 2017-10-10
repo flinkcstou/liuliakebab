@@ -96,8 +96,8 @@ window.fakedSocket.register("app.login", function (input) {
       [{
         "method": input.method,
         "success": 1,
-        "error": 0,
-        "error_note": ''
+        "error": -1,
+        "error_note": 'JHVGHJGJGVYU'
       }],
       [{
         default_account: "2484171",
@@ -12869,7 +12869,7 @@ window.fakedSocket.register("card.add", function (input) {
         "error_note": "Запрос на подключение передан на обработку, смс с результатом будет отправлен в течении 10 минут"
       }], [
         {
-          "status":1
+          "status": 1
         }
       ]
     ];

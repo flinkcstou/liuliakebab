@@ -391,7 +391,7 @@
 //                scope.unmount()
 //
                 riotTags.innerHTML = "<view-pin-code>";
-                riot.mount('view-pin-code', ['view-registration-client']);
+                riot.mount('view-pin-code', ['view-sms']);
                 scope.unmount()
               }
             }

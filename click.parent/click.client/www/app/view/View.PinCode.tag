@@ -39,56 +39,6 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}" errorcode="{errorCode}"
                    errornote="{errorNote}" step_amount="{stepToBack}" viewpage="{viewpage}"></component-alert>
 
-  <div if="{showRegistrationProcess}" class="registration-process">
-
-    <div if="{registrationSuccess == 0}" class="registration-process-container">
-      <div id="registrationProcessingId" class="registration-process-processing">
-      </div>
-      <div class="registration-process-text">
-        <p>Пожалуйста, подождите.<br><br>Мы регистрируем вашу карту в системе CLICK!</p>
-      </div>
-    </div>
-
-    <div if="{registrationSuccess == -2}" class="registration-process-container">
-      <div class="registration-process-x">
-      </div>
-      <div class="registration-process-text">
-        <p class="registration-process-check-status-label">
-          Ваша карта ещё не добавлена.<br><br>Проверьте статус регистрации через несколько минут</p>
-      </div>
-      <button class="registration-process-button-check-status" ontouchstart="checkRegistrationTouchStart()"
-              ontouchend="checkRegistrationTouchEnd()">ПРОВЕРИТЬ СТАТУС РЕГИСТРАЦИИ
-      </button>
-    </div>
-
-    <div if="{registrationSuccess == 1}" class="registration-process-container">
-      <div class="registration-process-ok">
-      </div>
-      <div class="registration-process-text">
-        <p>Ваша карта<br>успешно зарегестрирована!</p>
-      </div>
-
-      <button class="registration-process-button-next" ontouchstart="registrationProcessNextTouchStart()"
-              ontouchend="registrationProcessNextTouchEnd()">ДАЛЕЕ
-      </button>
-    </div>
-
-    <div if="{registrationSuccess == -1}" class="registration-process-container">
-      <div class="registration-process-x">
-      </div>
-      <div class="registration-process-text">
-        <p class="registration-process-check-status-label" id="registrationProcessErorrId">
-          Произошла ошибка при регистрации.<br>Попробуйте ещё раз</p>
-      </div>
-
-      <button class="registration-process-button-check-status" ontouchstart="registrationProcessCheckStatusTouchStart()"
-              ontouchend="registrationProcessCheckStatusTouchEnd()">ЗАРЕГИСТРИРОВАТЬСЯ ЗАНОВО
-      </button>
-    </div>
-
-
-  </div>
-
 
   <script>
 
@@ -137,12 +87,11 @@
 
     scope.labelOfTitle = window.languages.ViewPinCodeClickPinLabel;
 
-    if (opts[0] == 'view-registration-client') {
+    if (opts[0] == 'view-sms') {
       fromRegistration = true;
       scope.checkPin = true;
       scope.nowCheckPin = false
-      var cardNumber = opts[1];
-      var cardInformation = opts[2];
+      console.log("ASD")
     } else if (opts[0] == 'view-security-settings') {
       fromSettings = true;
       fromAuthorization = false;
@@ -236,58 +185,58 @@
       }
     }
 
-
-    var registrationNextTouchStartX, registrationNextTouchStartY, registrationNextTouchEndX, registrationNextTouchEndY;
-
-    registrationProcessNextTouchStart = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      registrationNextTouchStartX = event.changedTouches[0].pageX;
-      registrationNextTouchStartY = event.changedTouches[0].pageY;
-    }
-
-    registrationProcessNextTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      registrationNextTouchEndX = event.changedTouches[0].pageX;
-      registrationNextTouchEndY = event.changedTouches[0].pageY;
-
-      if (Math.abs(registrationNextTouchStartX - registrationNextTouchEndX) <= 20 && Math.abs(registrationNextTouchStartY - registrationNextTouchEndY) <= 20) {
-
-        riotTags.innerHTML = "<view-authorization>";
-        riot.mount('view-authorization', {from: "registration-client"});
-
-        scope.unmount()
-      }
-    }
-
-    var registrationCheckStatusTouchStartX, registrationCheckStatusTouchStartY, registrationCheckStatusTouchEndX,
-      registrationCheckStatusTouchEndY;
-
-    registrationProcessCheckStatusTouchStart = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      registrationCheckStatusTouchStartX = event.changedTouches[0].pageX;
-      registrationCheckStatusTouchStartY = event.changedTouches[0].pageY;
-    }
-
-    registrationProcessCheckStatusTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      registrationCheckStatusTouchEndX = event.changedTouches[0].pageX;
-      registrationCheckStatusTouchEndY = event.changedTouches[0].pageY;
-
-      if (Math.abs(registrationCheckStatusTouchStartX - registrationCheckStatusTouchEndX) <= 20 && Math.abs(registrationCheckStatusTouchStartY - registrationCheckStatusTouchEndY) <= 20) {
-
-        riotTags.innerHTML = "<view-registration-client>";
-        riot.mount('view-registration-client');
-
-      }
-    }
+    //
+    //    var registrationNextTouchStartX, registrationNextTouchStartY, registrationNextTouchEndX, registrationNextTouchEndY;
+    //
+    //    registrationProcessNextTouchStart = function () {
+    //      event.preventDefault();
+    //      event.stopPropagation();
+    //
+    //      registrationNextTouchStartX = event.changedTouches[0].pageX;
+    //      registrationNextTouchStartY = event.changedTouches[0].pageY;
+    //    }
+    //
+    //    registrationProcessNextTouchEnd = function () {
+    //      event.preventDefault();
+    //      event.stopPropagation();
+    //
+    //      registrationNextTouchEndX = event.changedTouches[0].pageX;
+    //      registrationNextTouchEndY = event.changedTouches[0].pageY;
+    //
+    //      if (Math.abs(registrationNextTouchStartX - registrationNextTouchEndX) <= 20 && Math.abs(registrationNextTouchStartY - registrationNextTouchEndY) <= 20) {
+    //
+    //        riotTags.innerHTML = "<view-authorization>";
+    //        riot.mount('view-authorization', {from: "registration-client"});
+    //
+    //        scope.unmount()
+    //      }
+    //    }
+    //
+    //    var registrationCheckStatusTouchStartX, registrationCheckStatusTouchStartY, registrationCheckStatusTouchEndX,
+    //      registrationCheckStatusTouchEndY;
+    //
+    //    registrationProcessCheckStatusTouchStart = function () {
+    //      event.preventDefault();
+    //      event.stopPropagation();
+    //
+    //      registrationCheckStatusTouchStartX = event.changedTouches[0].pageX;
+    //      registrationCheckStatusTouchStartY = event.changedTouches[0].pageY;
+    //    }
+    //
+    //    registrationProcessCheckStatusTouchEnd = function () {
+    //      event.preventDefault();
+    //      event.stopPropagation();
+    //
+    //      registrationCheckStatusTouchEndX = event.changedTouches[0].pageX;
+    //      registrationCheckStatusTouchEndY = event.changedTouches[0].pageY;
+    //
+    //      if (Math.abs(registrationCheckStatusTouchStartX - registrationCheckStatusTouchEndX) <= 20 && Math.abs(registrationCheckStatusTouchStartY - registrationCheckStatusTouchEndY) <= 20) {
+    //
+    //        riotTags.innerHTML = "<view-registration-client>";
+    //        riot.mount('view-registration-client');
+    //
+    //      }
+    //    }
 
     var backFromPinCodeTouchStartX, backFromPinCodeTouchStartY, backFromPinCodeTouchEndX,
       backFromPinCodeTouchEndY;
@@ -415,7 +364,6 @@
                 sessionStorage.setItem('payTransferConfirmed', false);
                 errorPinTimesCounter++;
                 if (errorPinTimesCounter == 3) {
-                  console.log("OOPS");
                   scope.errorNote = window.languages.ViewPinCodeConfirmPayTransferThirdErrorAlertText;
                   scope.viewpage = "view-authorization";
                 }
@@ -434,7 +382,6 @@
               scope.update();
             }
           } else if (scope.checkPin) {
-            console.log('qwewewww')
             pin = enteredPin;
             scope.checkPin = false;
             scope.checkPinConfirm = true;
@@ -448,7 +395,7 @@
       }
     }
 
-    var registrationInterval;
+    //    var registrationInterval;
     enter = function (pin) {
       //event.preventDefault();
       //event.stopPropagation();
@@ -564,10 +511,11 @@
             authorizationPinCode(phoneNumber, deviceId, password, date);
           }
           else {
+            console.log("pincode error part")
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            //scope.viewpage = "view-pin-code"
+            scope.viewpage = "view-registration-device"
             scope.update();
           }
         },
@@ -579,7 +527,7 @@
 
     };
 
-    scope.registrationSuccess = 0;
+    //    scope.registrationSuccess = 0;
     var answerFromServer;
 
     function authorizationPinCode(phoneNumber, deviceId, password, date) {
@@ -656,14 +604,17 @@
               console.log("client not registered error");
             } else {
               console.log(opts)
-              if (opts.from == "registration-client") {
-                scope.errorNote = "Карта ещё не добавлена. Попробуйте войти через несколько минут";
-              }
-              else
-                scope.errorNote = result[0][0].error_note;
+              scope.errorNote = result[0][0].error_note;
               scope.clickPinError = false;
               console.log("errornote = ", scope.errorNote);
+              scope.checkPin = true;
+              scope.checkPinConfirm = false;
+              scope.update();
+              pinConfirm = '';
+              pin = '';
+              enteredPin = '';
             }
+            console.log("qwert")
             scope.showError = true;
             scope.update();
             enteredPin = '';
@@ -696,31 +647,31 @@
       }, 30000)
     }
 
-    var checkRegistrationTouchStartX, checkRegistrationTouchStartY, checkRegistrationTouchEndX,
-      checkRegistrationTouchEndY;
-
-    checkRegistrationTouchStart = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      checkRegistrationTouchStartX = event.changedTouches[0].pageX;
-      checkRegistrationTouchStartY = event.changedTouches[0].pageY;
-    };
-
-    checkRegistrationTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      checkRegistrationTouchEndX = event.changedTouches[0].pageX;
-      checkRegistrationTouchEndY = event.changedTouches[0].pageY;
-
-      if (Math.abs(checkRegistrationTouchStartX - checkRegistrationTouchEndX) <= 20 && Math.abs(checkRegistrationTouchStartY - checkRegistrationTouchEndY) <= 20) {
-        scope.registrationSuccess = 0; //Выполнить повторную проверку
-        scope.timeoutIndex = 0;
-        scope.update();
-        checkRegistrationFunction()
-      }
-    };
+    //    var checkRegistrationTouchStartX, checkRegistrationTouchStartY, checkRegistrationTouchEndX,
+    //      checkRegistrationTouchEndY;
+    //
+    //    checkRegistrationTouchStart = function () {
+    //      event.preventDefault();
+    //      event.stopPropagation();
+    //
+    //      checkRegistrationTouchStartX = event.changedTouches[0].pageX;
+    //      checkRegistrationTouchStartY = event.changedTouches[0].pageY;
+    //    };
+    //
+    //    checkRegistrationTouchEnd = function () {
+    //      event.preventDefault();
+    //      event.stopPropagation();
+    //
+    //      checkRegistrationTouchEndX = event.changedTouches[0].pageX;
+    //      checkRegistrationTouchEndY = event.changedTouches[0].pageY;
+    //
+    //      if (Math.abs(checkRegistrationTouchStartX - checkRegistrationTouchEndX) <= 20 && Math.abs(checkRegistrationTouchStartY - checkRegistrationTouchEndY) <= 20) {
+    //        scope.registrationSuccess = 0; //Выполнить повторную проверку
+    //        scope.timeoutIndex = 0;
+    //        scope.update();
+    //        checkRegistrationFunction()
+    //      }
+    //    };
 
     //    checkRegistrationFunction = function () {
     //      console.log("CHECK REGISTRATION")
