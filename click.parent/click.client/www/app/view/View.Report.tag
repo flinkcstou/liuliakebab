@@ -21,7 +21,7 @@
          ontouchend="monthContainerTouchEnd()"
          ontouchmove="monthContainerTouchMove()"
          hidden="{(tags['component-report-filter'].filterDateFrom && tags['component-report-filter'].filterDateTo)}">
-      <div class="view-reports-month-info-container" each="{i in monthsArray}"
+      <div class="view-reports-month-info-container" each="{i in mArray}"
            style="left:{50*i.count}%;">
         <p class="view-reports-month-info-name"
            ontouchend="changePositionReportVoiceOver({i.count})">
@@ -181,7 +181,7 @@
 
 
     if (!scope.mNumber) {
-      scope.mNumber = new Date().getMonth();
+      scope.mNumber = 12;
       console.log('MONTH NUMBER', scope.mNumber)
 
       scope.monthNotStartedYet = false;
@@ -237,7 +237,23 @@
 
     scope.monthsArray = window.languages.ViewReportMonthsArray;
     console.log("monthsArray", scope.monthsArray);
-    scope.update(scope.monthsArray);
+    scope.mArray = [];
+    var j = 12, t, tempObj;
+    for (var i = new Date().getMonth(); i > -scope.mNumber; i--) {
+      if (j > 0) {
+        t = i <= 0 ? (11 + i) : i;
+
+        console.log("t=", t, ", i=", i)
+        scope.mArray.push({"count": j, "name": scope.monthsArray[t].name, "month": t});
+
+        console.log(j, " mArray ", JSON.stringify(scope.mArray[scope.mArray.length - 1]))
+        j--;
+
+      }
+      else break;
+
+    }
+    scope.update(scope.mArray);
 
 
     var monthChanged = false;
