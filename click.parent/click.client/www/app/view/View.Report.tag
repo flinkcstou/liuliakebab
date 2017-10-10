@@ -217,8 +217,8 @@
       scope.update();
 
       var date = new Date();
-      var firstDay = new Date(date.getFullYear(), scope.mNumber, 1);
-      var lastDay = new Date(date.getFullYear(), scope.mNumber + 1, 0);
+      var firstDay = new Date(date.getFullYear(), scope.mArray[scope.mNumber].month, 1);
+      var lastDay = new Date(date.getFullYear(), scope.mArray[scope.mNumber].month + 1, 0);
       console.log("firstDay=", firstDay);
       console.log("lastDay=", lastDay);
 
@@ -238,20 +238,14 @@
     scope.monthsArray = window.languages.ViewReportMonthsArray;
     console.log("monthsArray", scope.monthsArray);
     scope.mArray = [];
-    var j = 12, t, tempObj;
-    for (var i = new Date().getMonth(); i > -scope.mNumber; i--) {
+    var j = 12, t, curMonth = new Date().getMonth();
+    for (var i = curMonth; i > -curMonth; i--) {
       if (j > 0) {
         t = i <= 0 ? (11 + i) : i;
-
-        console.log("t=", t, ", i=", i)
-        scope.mArray.push({"count": j, "name": scope.monthsArray[t].name, "month": t});
-
-        console.log(j, " mArray ", JSON.stringify(scope.mArray[scope.mArray.length - 1]))
-        j--;
-
+        scope.mArray.push({"count": j--, "name": scope.monthsArray[t].name, "month": t});
+        console.log(j, " mArray ", JSON.stringify(scope.mArray[scope.mArray.length - 1]));
       }
       else break;
-
     }
     scope.update(scope.mArray);
 
@@ -576,8 +570,8 @@
 
         var date = new Date();
 
-        firstDay = new Date(date.getFullYear(), scope.mNumber, 1);
-        lastDay = new Date(date.getFullYear(), scope.mNumber + 1, 0);
+        firstDay = new Date(date.getFullYear(), scope.mArray[scope.mNumber].month, 1);
+        lastDay = new Date(date.getFullYear(), scope.mArray[scope.mNumber].month + 1, 0);
 
         firstDay = convertDate(firstDay);
         lastDay = convertDate(lastDay);
@@ -750,8 +744,8 @@
 
         var date = new Date();
 
-        firstDay = new Date(date.getFullYear(), scope.mNumber, 1);
-        lastDay = new Date(date.getFullYear(), scope.mNumber + 1, 0);
+        firstDay = new Date(date.getFullYear(), scope.mArray[scope.mNumber].month, 1);
+        lastDay = new Date(date.getFullYear(), scope.mArray[scope.mNumber].month + 1, 0);
 
         firstDay = convertDate(firstDay);
         lastDay = convertDate(lastDay);
