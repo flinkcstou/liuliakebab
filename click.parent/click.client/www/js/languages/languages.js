@@ -528,6 +528,7 @@ var RU_LANGUAGES =
   "ComponentToolbarAriaLabelOpenSideMenu": "Открыть боковое меню",
   "ComponentToolbarAriaLabelOpenBalanceInfo": "Информация об общем балансе всех Ваших карт и история платежей",
   "ComponentToolbarAriaLabelOpenNews": "Открыть новости",
+  "ComponentToolbarTitle": "ОТЧЕТЫ",
 
   "ComponentKeyboardAriaLabelDeleteSym": "Удалить последний символ",
 

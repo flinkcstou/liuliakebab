@@ -10,6 +10,10 @@
          aria-label="{window.languages.ComponentToolbarAriaLabelOpenBalanceInfo}">
     </div>
 
+    <div class="toolbar-circle-container-title">
+      {window.languages.ComponentToolbarTitle}
+    </div>
+
     <div if="{!modeOfApp.offlineMode}" id="bellButtonId" class="bell-button bell-icon"
          ontouchstart="bellButtonTouchStart()"
          ontouchend="bellButtonTouchEnd()" role="button"
