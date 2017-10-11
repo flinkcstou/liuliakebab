@@ -87,8 +87,8 @@
   ></component-unsuccess>
 
   <component-in-processing id="componentInProcessingId"
-                           operationmessagepartone="{window.languages.ComponentInProcessingPartOne}"
-                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"
+                           operationmessagepartone="{window.languages.ComponentInProcessingPartOneForTransfer}"
+                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwoForTransfer}"
                            step_amount="{3}"></component-in-processing>
 
   <component-alert if="{showError}" clickpinerror="{clickPinError}" errorcode="{errorCode}"
