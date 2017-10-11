@@ -1357,8 +1357,8 @@ var css = {
   "background-image: url(resources/icons/bank-operations/circleReport.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 75%;" +
-  "background-position-x: 48%;" +
-  "background-position-y: 46%;" +
+  "background-position-x: 50%;" +
+  "background-position-y: 50%;" +
   "-webkit-box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
   "-moz-box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
   "box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
@@ -1446,7 +1446,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "bottom:" + 429 * heightK + "px;" +
-  "top:" + 545 * widthK + "px;" +
+  "top:" + 564 * widthK + "px;" +
   "width: 100%;" +
   "}",
 
@@ -1928,7 +1928,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top:" + 839 * heightK + "px;" +
+  "top:" + 850 * heightK + "px;" +
   "bottom:" + 90 * widthK + "px;" +
   "background: transparent;" +
   "}",
@@ -2025,7 +2025,7 @@ var css = {
   serviceLabels: ".service-labels " +
   "{" +
   "position: absolute;" +
-  "bottom:0;" +
+  "bottom:" + 12 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
   "color: grey;" +
   "width: 100%;" +
