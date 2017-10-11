@@ -524,7 +524,6 @@
           console.error(data);
         }
       })
-
     };
 
     //    scope.registrationSuccess = 0;
@@ -583,6 +582,20 @@
                 friends.splice(friends.length - outerFriendsCount, outerFriendsCount);
                 localStorage.setItem('click_client_friends', JSON.stringify(friends));
                 localStorage.removeItem('click_client_friendsOuter_count')
+              }
+
+              if (!localStorage.getItem('settings_finger_print')) {
+                localStorage.setItem('settings_finger_print', false)
+              }
+
+              if (typeof window.fingerPrint.fingerPrintInitialize != undefined && window.fingerPrint.fingerPrintInitialize == false) {
+
+                try {
+                  fingerPrintTurnOn();
+                }
+                catch (e) {
+                  console.log(e)
+                }
               }
 
               getAccount(checkSessionKey, scope.firstEnter);
