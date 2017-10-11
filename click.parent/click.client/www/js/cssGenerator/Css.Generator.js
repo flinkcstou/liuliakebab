@@ -1546,7 +1546,7 @@ var css = {
   "right:" + 27 * widthK + "px;" +
   "border-bottom: 1px solid #4ae3ff;" +
   "text-align: center;" +
-  "top:" + 440 * widthK + "px;" +
+  "top:" + 473 * widthK + "px;" +
   "height:" + 100 * heightK + "px;" +
   "}",
 
