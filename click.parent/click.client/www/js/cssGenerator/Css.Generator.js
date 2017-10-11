@@ -1514,7 +1514,7 @@ var css = {
   "width:" + 720 * widthK + "px;" +
   "height: 60%;" +
   // "bottom:" + 85 * heightK + "px;" +
-  "top:" + 30 * heightK + "px;" +
+  "top:" + 55 * heightK + "px;" +
   // "top: 15%;" +
   "}",
 
