@@ -1342,29 +1342,40 @@ var css = {
   "border-bottom: 1px solid #4ae3ff;" +
   "}",
 
-    toolbarCircleContainer: ".toolbar-circle-container " +
-    "{" +
-    "position: relative;" +
-    "margin-left: auto;" +
-    "margin-right: auto;" +
-    "width:" + 105 * widthK + "px;" +
-    "height:" + 105 * widthK + "px;" +
-    // "left:" + 272 * widthK + "px;" +
-    "bottom:" + 22 * widthK + "px;" +
-    "border-radius:" + 100 * widthK + "px;" +
-    "background-color: white;" +
-    "border:" + 8 * widthK + "px solid #00a8f1;" +
-    "background-image: url(resources/icons/bank-operations/circleReport.png);" +
-    "background-repeat: no-repeat;" +
-    "background-size: 75%;" +
-    "background-position-x: 48%;" +
-    "background-position-y: 46%;" +
-    "-webkit-box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
-    "-moz-box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
-    "box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
-    "}",
+  toolbarCircleContainer: ".toolbar-circle-container " +
+  "{" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "width:" + 105 * widthK + "px;" +
+  "height:" + 105 * widthK + "px;" +
+  // "left:" + 272 * widthK + "px;" +
+  "bottom:" + 22 * widthK + "px;" +
+  "border-radius:" + 100 * widthK + "px;" +
+  "background-color: white;" +
+  "border:" + 8 * widthK + "px solid #00a8f1;" +
+  "background-image: url(resources/icons/bank-operations/circleReport.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 75%;" +
+  "background-position-x: 48%;" +
+  "background-position-y: 46%;" +
+  "-webkit-box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
+  "-moz-box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
+  "box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
+  "}",
 
-  menuButton: ".menu-button " +
+  toolbarCircleContainerTitle: ".toolbar-circle-container-title " +
+  "{" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "width:" + 117 * widthK + "px;" +
+  "bottom:" + 17 * widthK + "px;" +
+  "color: white;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "}",
+
+    menuButton: ".menu-button " +
   "{" +
   "position: absolute;" +
   "left:" + 4 * widthK + "px;" +
