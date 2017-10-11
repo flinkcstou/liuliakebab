@@ -1962,7 +1962,7 @@ var css = {
   "position: absolute;" +
   "height: 55%;" +
   "width: 100%;" +
-  "bottom: 15%;" +
+  "bottom: 23%;" +
   "left:" + 25 * widthK + "px;" +
   "}",
 
