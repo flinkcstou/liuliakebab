@@ -35,7 +35,7 @@
     </p>
 
     <p class="view-reports-month-not-started-yet-label" if="{monthNotStartedYet}">
-      {languages.ViewReportMonthsArray[mNumber].name}
+      {mArray[mNumber].name}
       {languages.ViewReportsFilterMonthNotStartedYet}</p>
 
     <div ontouchstart="reportsBodyContainerTouchStart()" ontouchend="reportsBodyContainerTouchEnd()"
@@ -217,8 +217,10 @@
       scope.update();
 
       var date = new Date();
-      var firstDay = new Date(date.getFullYear(), scope.mArray[scope.mNumber].month, 1);
-      var lastDay = new Date(date.getFullYear(), scope.mArray[scope.mNumber].month + 1, 0);
+      var yearToSearch = scope.mNumber >= 12 - curMonth ? date.getFullYear() : date.getFullYear() - 1;
+      console.log("yearToSearch", yearToSearch)
+      firstDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month, 1);
+      lastDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month + 1, 0);
       console.log("firstDay=", firstDay);
       console.log("lastDay=", lastDay);
 
@@ -242,11 +244,12 @@
     for (var i = curMonth; i > -curMonth; i--) {
       if (j > 0) {
         t = i <= 0 ? (11 + i) : i;
-        scope.mArray.push({"count": j--, "name": scope.monthsArray[t].name, "month": t});
+        scope.mArray[j - 1] = {"count": j--, "name": scope.monthsArray[t].name, "month": t};
         console.log(j, " mArray ", JSON.stringify(scope.mArray[scope.mArray.length - 1]));
       }
       else break;
     }
+    console.log("mArray=", scope.mArray)
     scope.update(scope.mArray);
 
 
@@ -350,17 +353,17 @@
       }
 
       var dateForComparison = new Date();
+//
+//      if (dateForComparison.getMonth() < scope.mArray[scope.mNumber].month) {
+//
+//        scope.monthNotStartedYet = true;
+//        scope.update();
+//
+//      } else {
 
-      if (dateForComparison.getMonth() < scope.mNumber) {
-
-        scope.monthNotStartedYet = true;
-        scope.update();
-
-      } else {
-
-        scope.monthNotStartedYet = false;
-        scope.update();
-      }
+      scope.monthNotStartedYet = false;
+      scope.update();
+      // }
 
       if (scope.firstReportView) {
         paymentListUpdate();
@@ -411,16 +414,18 @@
 
       var dateForComparison = new Date();
 
-      if (dateForComparison.getMonth() < scope.mNumber) {
+      console.log("dateForComparison.getMonth()", dateForComparison.getMonth(), " and scope.mArray[scope.mNumber].month", scope.mArray[scope.mNumber].month)
 
-        scope.monthNotStartedYet = true;
-        scope.update();
+//      if (dateForComparison.getMonth() < scope.mArray[scope.mNumber].month) {
+//
+//        scope.monthNotStartedYet = true;
+//        scope.update();
+//
+//      } else {
 
-      } else {
-
-        scope.monthNotStartedYet = false;
-        scope.update();
-      }
+      scope.monthNotStartedYet = false;
+      scope.update();
+      //}
 
       if (scope.firstReportView) {
         paymentListUpdate();
@@ -466,16 +471,16 @@
 
       var dateForComparison = new Date();
 
-      if (dateForComparison.getMonth() < scope.mNumber) {
+//      if (dateForComparison.getMonth() < scope.mArray[scope.mNumber].month) {
+//
+//        scope.monthNotStartedYet = true;
+//        scope.update();
+//
+//      } else {
 
-        scope.monthNotStartedYet = true;
-        scope.update();
-
-      } else {
-
-        scope.monthNotStartedYet = false;
-        scope.update();
-      }
+      scope.monthNotStartedYet = false;
+      scope.update();
+      //}
 
       if (scope.firstReportView) {
         paymentListUpdate();
@@ -569,9 +574,10 @@
       if (!(firstDay && lastDay)) {
 
         var date = new Date();
-
-        firstDay = new Date(date.getFullYear(), scope.mArray[scope.mNumber].month, 1);
-        lastDay = new Date(date.getFullYear(), scope.mArray[scope.mNumber].month + 1, 0);
+        var yearToSearch = scope.mNumber >= 12 - curMonth ? date.getFullYear() : date.getFullYear() - 1;
+        console.log("yearToSearch", yearToSearch)
+        firstDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month, 1);
+        lastDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month + 1, 0);
 
         firstDay = convertDate(firstDay);
         lastDay = convertDate(lastDay);
@@ -743,9 +749,10 @@
       if (!(firstDay && lastDay)) {
 
         var date = new Date();
-
-        firstDay = new Date(date.getFullYear(), scope.mArray[scope.mNumber].month, 1);
-        lastDay = new Date(date.getFullYear(), scope.mArray[scope.mNumber].month + 1, 0);
+        var yearToSearch = scope.mNumber >= 12 - curMonth ? date.getFullYear() : date.getFullYear() - 1;
+        console.log("yearToSearch", yearToSearch)
+        firstDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month, 1);
+        lastDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month + 1, 0);
 
         firstDay = convertDate(firstDay);
         lastDay = convertDate(lastDay);
