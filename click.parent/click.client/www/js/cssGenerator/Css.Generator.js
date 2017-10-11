@@ -6729,6 +6729,21 @@ var css = {
   "font-size:" + 36 * widthK + "px;" +
   "}",
 
+  InProcessingOperationSuccessMessagePartTwoForTransfer: ".in-processing-operation-success-message-part-two-for-transfer" +
+  "{" +
+  "position: relative;" +
+  "color: black;" +
+  "width: 100%;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 610 * widthK + "px;" +
+  "left:" + -10 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "}",
+
   InProcessingNextButtonInnerContainer: ".in-processing-next-button-inner-container" +
   "{" +
   // "top: 83%;" +

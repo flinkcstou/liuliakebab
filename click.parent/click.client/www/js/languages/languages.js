@@ -180,8 +180,10 @@ var RU_LANGUAGES =
   "ComponentSuccessMessageForRemovingFromFavorites": "Платёж успешно удален из избранных",
 
   "ComponentInProcessingPartOne": "Перевод передан на обработку.",
+  "ComponentInProcessingPartOneForTransfer": "Перевод отправлен",
   "ComponentInProcessingPartOneForPay": "Оплата передана на обработку.",
   "ComponentInProcessingPartTwo": "Ждите СМС с результатом!",
+  "ComponentInProcessingPartTwoForTransfer": "и ожидает подтверждение получателя.",
 
   "ComponentUnsuccessMessagePart1": 'Извините,',
   "ComponentUnsuccessMessagePart2": 'что-то пошло не так.',

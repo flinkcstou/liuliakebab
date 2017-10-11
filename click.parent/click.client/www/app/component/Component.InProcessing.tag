@@ -1,6 +1,7 @@
 <component-in-processing id="componentInProcessingId" class="component-in-processing">
   <p class="in-processing-operation-success-message-part-one">{opts.operationmessagepartone}</p>
-  <p class="in-processing-operation-success-message-part-two">{opts.operationmessageparttwo}</p>
+  <p class="{in-processing-operation-success-message-part-two-for-transfer: forTransfer,
+   in-processing-operation-success-message-part-two: !forTransfer}">{opts.operationmessageparttwo}</p>
   <div class="in-processing-success-icon"></div>
 
   <button class="in-processing-next-button-inner-container" ontouchend="closeInProcessingMessageForm()">
@@ -8,9 +9,16 @@
   </button>
 
   <script>
-    var scope = this;
+      var scope = this;
+      scope.forTransfer = false;
+      if (!opts.operationmessageparttwo.localeCompare(window.languages.ComponentInProcessingPartTwoForTransfer)) {
+          scope.forTransfer = true;
+          console.log(opts.operationmessageparttwo);
+          console.log(window.languages.ComponentInProcessingPartTwoForTransfer);
+          scope.update();
+      }
 
-    closeInProcessingMessageForm = function () {
+      closeInProcessingMessageForm = function () {
       event.preventDefault();
       event.stopPropagation();
       componentInProcessingId.style.display = 'none';
