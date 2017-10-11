@@ -1350,20 +1350,32 @@ var css = {
   "width:" + 105 * widthK + "px;" +
   "height:" + 105 * widthK + "px;" +
   // "left:" + 272 * widthK + "px;" +
-  "bottom:" + 10 * widthK + "px;" +
+  "bottom:" + 22 * widthK + "px;" +
   "border-radius:" + 100 * widthK + "px;" +
   "background-color: white;" +
   "border:" + 8 * widthK + "px solid #00a8f1;" +
   "background-image: url(resources/icons/bank-operations/circleReport.png);" +
   "background-repeat: no-repeat;" +
-  "background-size: 90%;" +
-  "background-position: center;" +
+  "background-size: 75%;" +
+  "background-position-x: 50%;" +
+  "background-position-y: 50%;" +
   "-webkit-box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
   "-moz-box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
   "box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
   "}",
 
-  menuButton: ".menu-button " +
+  toolbarCircleContainerTitle: ".toolbar-circle-container-title " +
+  "{" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "width:" + 117 * widthK + "px;" +
+  "bottom:" + 17 * widthK + "px;" +
+  "color: white;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "}",
+
+    menuButton: ".menu-button " +
   "{" +
   "position: absolute;" +
   "left:" + 4 * widthK + "px;" +
@@ -1434,7 +1446,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "bottom:" + 429 * heightK + "px;" +
-  "top:" + 545 * widthK + "px;" +
+  "top:" + 564 * widthK + "px;" +
   "width: 100%;" +
   "}",
 
@@ -1502,7 +1514,7 @@ var css = {
   "width:" + 720 * widthK + "px;" +
   "height: 60%;" +
   // "bottom:" + 85 * heightK + "px;" +
-  "top:" + 30 * heightK + "px;" +
+  "top:" + 55 * heightK + "px;" +
   // "top: 15%;" +
   "}",
 
@@ -1534,7 +1546,7 @@ var css = {
   "right:" + 27 * widthK + "px;" +
   "border-bottom: 1px solid #4ae3ff;" +
   "text-align: center;" +
-  "top:" + 440 * widthK + "px;" +
+  "top:" + 473 * widthK + "px;" +
   "height:" + 100 * heightK + "px;" +
   "}",
 
@@ -1625,7 +1637,7 @@ var css = {
   "height:" + 290 * widthK + "px;" +
   "width: 100%;" +
   "display: inline-block;" +
-  "top:" + 140 * widthK + "px;" +
+  "top:" + 182 * widthK + "px;" +
   "background: transparent;" +
   "transition: 1s;" +
   "-webkit-transform: scale(1);" +
@@ -1916,7 +1928,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top:" + 805 * heightK + "px;" +
+  "top:" + 850 * heightK + "px;" +
   "bottom:" + 90 * widthK + "px;" +
   "background: transparent;" +
   "}",
@@ -1950,7 +1962,7 @@ var css = {
   "position: absolute;" +
   "height: 55%;" +
   "width: 100%;" +
-  "bottom: 15%;" +
+  "bottom: 23%;" +
   "left:" + 25 * widthK + "px;" +
   "}",
 
@@ -2013,7 +2025,7 @@ var css = {
   serviceLabels: ".service-labels " +
   "{" +
   "position: absolute;" +
-  "bottom:0;" +
+  "bottom:" + 12 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
   "color: grey;" +
   "width: 100%;" +
