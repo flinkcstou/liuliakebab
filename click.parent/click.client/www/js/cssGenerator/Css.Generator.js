@@ -1637,7 +1637,7 @@ var css = {
   "height:" + 290 * widthK + "px;" +
   "width: 100%;" +
   "display: inline-block;" +
-  "top:" + 140 * widthK + "px;" +
+  "top:" + 182 * widthK + "px;" +
   "background: transparent;" +
   "transition: 1s;" +
   "-webkit-transform: scale(1);" +
