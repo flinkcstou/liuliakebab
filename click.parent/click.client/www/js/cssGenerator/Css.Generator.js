@@ -1928,7 +1928,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top:" + 805 * heightK + "px;" +
+  "top:" + 839 * heightK + "px;" +
   "bottom:" + 90 * widthK + "px;" +
   "background: transparent;" +
   "}",
