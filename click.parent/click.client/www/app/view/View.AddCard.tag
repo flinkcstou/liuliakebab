@@ -52,9 +52,12 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}" viewpage="{viewPage}"></component-alert>
 
+  <component-alert-new if="{showAlertNew}" clickpinerror="{clickPinError}"
+                       errornote="{errorNote}" viewpage="{viewPage}"></component-alert-new>
   <script>
     var scope = this;
     scope.showError = false;
+    scope.showAlertNew = true;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-card') {
       history.arrayOfHistory.push(
@@ -187,13 +190,13 @@
               scope.viewPage = 'view-main-page';
               scope.update();
 
-//              if (result[1][0].status == 1) {
+//              if (result[1][0].registered == 1) {
 //                scope.clickPinError = false;
 //                scope.errorNote = result[0][0].error_note;
 //                scope.showError = true;
 //                scope.viewPage = 'view-main-page';
 //                scope.update();
-//              } else if (result[1][0].status == -1) {
+//              } else if (result[1][0].registered == -1) {
 //                scope.clickPinError = false;
 //                scope.errorNote = result[0][0].error_note;
 //                scope.showError = true;
