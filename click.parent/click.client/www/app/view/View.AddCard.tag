@@ -110,23 +110,18 @@
       createButtonEndX = event.changedTouches[0].pageX;
       createButtonEndY = event.changedTouches[0].pageY;
 
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)';
 
       if (Math.abs(createButtonStartX - createButtonEndX) <= 20 && Math.abs(createButtonStartY - createButtonEndY) <= 20) {
 
-        boxOne.blur()
+        boxOne.blur();
+        boxDate.blur();
 
 
-        cardNumber = inputVerification.spaceDeleter(boxOne.value)
-
-//        if (cardNumber.substring(0, 4) == '8600') {
+        cardNumber = inputVerification.spaceDeleter(boxOne.value);
         dateOrPin = boxDate.value;
-//        }
-//        else {
-//          dateOrPin = pinCodeOfBank;
-//        }
 
-        console.log(cardNumber, dateOrPin)
+        console.log(cardNumber, dateOrPin);
 
 
         if (modeOfApp.offlineMode) {
@@ -147,15 +142,6 @@
           return
         }
 
-//        if (device.platform != 'BrowserStand') {
-//          var options = {dimBackground: true};
-//
-//          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-//            console.log("Started");
-//          }, function () {
-//            console.log("closed");
-//          });
-//        }
 
         var answerFromServer = false;
 
@@ -168,8 +154,7 @@
             phone_num: phoneNumber,
             card_number: cardNumber,
             card_data: dateOrPin,
-            session_key: sessionKey,
-
+            session_key: sessionKey
           },
 
           scope: this,
@@ -209,7 +194,7 @@
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
               scope.showError = true;
-              scope.viewPage = ''
+              scope.viewPage = '';
               scope.update();
             }
           },
@@ -283,7 +268,7 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            scope.viewPage = ''
+            scope.viewPage = '';
             scope.update();
           }
         },
