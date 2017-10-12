@@ -6752,7 +6752,7 @@ var css = {
   "margin-bottom: 0;" +
   "margin-right: auto;" +
   "top:" + 610 * widthK + "px;" +
-  "left:" + -10 * widthK + "px;" +
+  "left: 0;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
 
