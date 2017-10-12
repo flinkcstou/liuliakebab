@@ -316,7 +316,7 @@
 
       if (!scope.checkSumOfHash) {
         count = 1;
-        // if (viewMainPage.addFirstCardBool) count = 2;
+        if (viewMainPage.addFirstCardBool) count = 2;
         console.log("COUNT=", count)
         for (var i = 0; i < getAccountsCards.length; i++) {
 
@@ -369,9 +369,11 @@
           localStorage.setItem('click_client_countCard', count);
 //        localStorage.setItem('cardNumber', cardNumber);
         }
+
+        scope.update();
       }
 
-      scope.update()
+      scope.update();
 
 //      scope.update(scope.cardsarray);
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {

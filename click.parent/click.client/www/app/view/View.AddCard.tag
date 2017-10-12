@@ -167,6 +167,12 @@
 
               if (result[0][0].registered == 1) {
                 viewMainPage.addFirstCardBool = false;
+                var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+                if (!loginInfo.default_account || loginInfo.default_account == 0) {
+                  loginInfo.default_account = result[0][0].default_account;
+                  localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo));
+                  console.log("DEFAULT was set", loginInfo.default_account, localStorage.getItem("click_client_loginInfo"));
+                }
                 scope.errorNote = result[0][0].error_note;
                 scope.showResult = true;
                 updateIcon('success');
@@ -241,6 +247,12 @@
 
             if (result[0][0].registered == 1) {
               viewMainPage.addFirstCardBool = false;
+              var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+              if (!loginInfo.default_account || loginInfo.default_account == 0) {
+                loginInfo.default_account = result[0][0].default_account;
+                localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo));
+                console.log("DEFAULT was set", loginInfo.default_account, localStorage.getItem("click_client_loginInfo"));
+              }
               scope.errorNote = result[0][0].error_note;
               scope.showResult = true;
               updateIcon('success');
