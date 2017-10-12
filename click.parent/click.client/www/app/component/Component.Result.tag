@@ -2,6 +2,7 @@
   <div id="componentResultId" class="component-result">
     <div id="alertNewIconId" class="component-result-icon"
          style="background-image: url('resources/gifs/loading.gif')"></div>
+    <p class="component-result-please-wait" >{window.languages.ComponentResultPleaseWait}</p>
     <p class="component-result-message" if="{!opts.clickpinerror}">{opts.errornote}</p>
 
 
