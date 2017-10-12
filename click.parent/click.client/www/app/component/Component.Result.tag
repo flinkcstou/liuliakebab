@@ -16,20 +16,12 @@
     var scope = this;
     scope.outerShowAlertBool = false;
 
-    //    console.log("OPTS OF ALERT", opts)
-    //    if (opts[0] && opts[0].outerErrorNote) {
-    //      console.log("OPTS OF ALERTGCHFG")
-    //      scope.outerCall = true;
-    //      scope.outerErrorNote = opts[0].outerErrorNote;
-    //      riot.update();
-    //    }
-
     setTimeout(function () {
         console.log("CHANGE GIF");
         alertNewIconId.style.backgroundImage = "url(resources/gifs/success.gif)";
 
       }, 5000
-    )
+    );
 
     var okButtonStartX, okButtonEndX, okButtonStartY, okButtonEndY;
 
