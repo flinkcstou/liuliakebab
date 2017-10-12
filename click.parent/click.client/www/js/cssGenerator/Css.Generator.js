@@ -10654,7 +10654,7 @@ var css = {
   "background-color: transparent;" +
   "border: none;" +
   "outline: none;" +
-  "font-size:" + 35 * widthK + "px;" +
+  "font-size:" + 34 * widthK + "px;" +
   //"letter-spacing:1px;" +
   "word-spacing:" + 25 * widthK + "px;" +
   "}",
@@ -10706,7 +10706,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 90 * widthK + "px;" +
-  "left:" + 21 * widthK + "px;" +
+  "left:" + 17 * widthK + "px;" +
   "top: 20%;" +
   "padding: 0;" +
   "background-color: transparent;" +
