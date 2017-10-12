@@ -12866,12 +12866,34 @@ window.fakedSocket.register("card.add", function (input) {
         "method": input.method,
         "success": 1,
         "error": 0,
-        "error_note": "Запрос на подключение передан на обработку, смс с результатом будет отправлен в течении 10 минут"
-      }], [
-        {
-          "status": 1
-        }
-      ]
+        "error_note": "Карта успешно добавлена",
+        "registered": 1,
+        "check_id": 200500
+      }]
+    ];
+  }
+
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});
+
+window.fakedSocket.register("card.add.check", function (input) {
+
+  if (input) {
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": "Карта успешно добавлена",
+        "registered": 1
+      }]
     ];
   }
 

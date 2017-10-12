@@ -8,7 +8,7 @@
     <button id="alertOkButtonId" class="component-result-button-inner-container"
             ontouchstart="closeResultFormStart(this.id)"
             ontouchend="closeResultFormEnd(this.id)">
-      {opts.errorcode==2? window.languages.ComponentAlertRegister: window.languages.ComponentAlertOk}
+      {window.languages.ComponentAlertOk}
     </button>
   </div>
 
@@ -16,12 +16,17 @@
     var scope = this;
     scope.outerShowAlertBool = false;
 
-    setTimeout(function () {
-        console.log("CHANGE GIF");
-        alertNewIconId.style.backgroundImage = "url(resources/gifs/success.gif)";
 
-      }, 5000
-    );
+    updateIcon = function (result) {
+      console.log("CHANGE GIF", result);
+      if (result == 'success') {
+        alertNewIconId.style.backgroundImage = "url(resources/gifs/success.gif)";
+      } else if (result == 'unsuccess') {
+        alertNewIconId.style.backgroundImage = "url(resources/gifs/unsuccess.gif)";
+      } else if (result == 'waiting') {
+        alertNewIconId.style.backgroundImage = "url(resources/gifs/waiting.gif)";
+      }
+    }
 
     var okButtonStartX, okButtonEndX, okButtonStartY, okButtonEndY;
 
@@ -48,27 +53,8 @@
 
         if (scope.parent) {
           console.log("Alert from parent:", scope.parent);
-          scope.parent.showAlertNew = false;
+          scope.parent.showResult = false;
 
-          if (opts.carddelete) {
-            riotTags.innerHTML = "<view-my-cards>";
-            riot.mount('view-my-cards');
-            return
-          }
-
-          if (opts.errorcode == 1) {
-            console.log("Alert to main page");
-            riotTags.innerHTML = "<view-main-page>";
-            riot.mount('view-main-page');
-            return;
-          }
-
-          if (opts.errorcode == 2) {
-            console.log("Alert to registration");
-            riotTags.innerHTML = "<view-registration-device>";
-            riot.mount('view-registration-device');
-            return;
-          }
 
           if (opts.viewpage) {
             console.log("Alert to ", opts.viewpage);
@@ -92,7 +78,7 @@
                 riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
                 riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
               }
-//          scope.unmount()
+
             }
         }
         else {

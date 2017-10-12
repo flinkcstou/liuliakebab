@@ -52,12 +52,12 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}" viewpage="{viewPage}"></component-alert>
 
-  <component-result if="{showAlertNew}" clickpinerror="{clickPinError}"
-                    errornote="{errorNote}" viewpage="{viewPage}"></component-result>
+  <component-result if="{showResult}" result="{result}" errornote="{errorNote}"
+                    viewpage="{viewPage}"></component-result>
   <script>
     var scope = this;
     scope.showError = false;
-    scope.showAlertNew = true;
+    scope.showResult = false;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-card') {
       history.arrayOfHistory.push(
@@ -148,17 +148,20 @@
         var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = info.session_key;
 
-        if (device.platform != 'BrowserStand') {
-          var options = {dimBackground: true};
-
-          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-            console.log("Started");
-          }, function () {
-            console.log("closed");
-          });
-        }
+//        if (device.platform != 'BrowserStand') {
+//          var options = {dimBackground: true};
+//
+//          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+//            console.log("Started");
+//          }, function () {
+//            console.log("closed");
+//          });
+//        }
 
         var answerFromServer = false;
+
+        scope.showResult = true;
+        scope.update();
 
         window.api.call({
           method: 'card.add',
@@ -184,25 +187,25 @@
 
               viewMainPage.addFirstCardBool = false;
 
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
-              scope.viewPage = 'view-main-page';
-              scope.update();
-
-//              if (result[1][0].registered == 1) {
-//                scope.clickPinError = false;
-//                scope.errorNote = result[0][0].error_note;
-//                scope.showError = true;
-//                scope.viewPage = 'view-main-page';
-//                scope.update();
-//              } else if (result[1][0].registered == -1) {
-//                scope.clickPinError = false;
-//                scope.errorNote = result[0][0].error_note;
-//                scope.showError = true;
-//                scope.viewPage = 'view-add-card';
-//                scope.update();
-//              }
+              if (result[0][0].registered == 1) {
+                scope.errorNote = result[0][0].error_note;
+                scope.showResult = true;
+                updateIcon('success');
+                scope.viewPage = 'view-main-page';
+                scope.update();
+              } else if (result[0][0].registered == -1) {
+                scope.errorNote = result[0][0].error_note;
+                scope.showResult = true;
+                updateIcon('unsuccess');
+                scope.viewPage = 'view-add-card';
+                scope.update();
+              } else if (result[0][0].registered == 0) {
+                scope.errorNote = result[0][0].error_note;
+                scope.showResult = true;
+                updateIcon('waiting');
+                scope.viewPage = 'view-add-card';
+                scope.update();
+              }
 
             }
             else {
