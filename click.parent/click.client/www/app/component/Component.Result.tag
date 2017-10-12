@@ -2,9 +2,8 @@
   <div id="componentResultId" class="component-result">
     <div id="alertNewIconId" class="component-result-icon"
          style="background-image: url('resources/gifs/loading.gif')"></div>
-    <p class="component-result-please-wait" >{window.languages.ComponentResultPleaseWait}</p>
-    <p class="component-result-message" if="{!opts.clickpinerror}">{opts.errornote}</p>
-
+    <p id="wait" class="component-result-wait-start">{window.languages.ComponentResultPleaseWait}</p>
+    <p id="resultMessage" class="component-result-message" if="{!opts.clickpinerror}">{opts.errornote}</p>
 
     <button id="alertOkButtonId" class="component-result-button-inner-container"
             ontouchstart="closeResultFormStart(this.id)"
@@ -27,6 +26,9 @@
       } else if (result == 'waiting') {
         alertNewIconId.style.backgroundImage = "url(resources/gifs/waiting.gif)";
       }
+      wait.classList.add("component-result-wait-stop");
+      resultMessage.classList.add("component-result-message-start");
+      alertOkButtonId.classList.add("component-result-button-start");
     }
 
     var okButtonStartX, okButtonEndX, okButtonStartY, okButtonEndY;

@@ -163,6 +163,7 @@
         scope.showResult = true;
         scope.update();
 
+        setTimeout(function () {
         window.api.call({
           method: 'card.add',
           stopSpinner: false,
@@ -222,6 +223,7 @@
             console.error(data);
           }
         });
+        }, 10000);
 
         setTimeout(function () {
           if (!answerFromServer) {

@@ -11716,45 +11716,67 @@ var css = {
 
   componentResultMessage: ".component-result-message" +
   "{" +
-  "position: relative;" +
-  "color: #1d1d1f;" +
+  "position: absolute;" +
+  "color: #757389;" +
   "width:" + 400 * widthK + "px;" +
   "text-align: center;" +
   "margin-left: auto;" +
   "margin-top: 0;" +
   "margin-bottom: 0;" +
-  "margin-right: auto;" +
-  "top:" + 370 * widthK + "px;" +
-  // "left:" + -10 * widthK + "px;" +
+  "margin-right: -50%;" +
+  "top: 78%;" +
+  "left: 50%;" +
+  "transform: translate(-50%, -50%);" +
   "font-size:" + 36 * widthK + "px;" +
+  "opacity: 0;" +
   "}",
 
-  componentResultPleaseWait: ".component-result-please-wait " +
+  componentResultMessageStart: ".component-result-message-start " +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "-webkit-transition-delay: 0.8s;" +
+  "transition: 0.7s;" +
+  "transition-delay: 0.8s;" +
+  "top: 75% !important;" +
+  "opacity: 1 !important;" +
+  "}",
+
+  componentResultWaitStart: ".component-result-wait-start " +
   "{" +
   "position: absolute;" +
   "margin-left: auto;" +
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: -50%;" +
-  "top:" + 950 * widthK + "px;" +
+  "top: 75%;" +
   "left:  50%;" +
   "transform: translate(-50%, -50%);" +
   "color: #757389;" +
   "font-size:" + 36 * widthK + "px;" +
-  "-webkit-animation: component-result-please-wait-moving 0.5s;" +
-  "animation: component-result-please-wait-moving 0.5s;" +
+  "-webkit-animation: component-result-wait-start-moving;" +
+  "-webkit-animation-duration: 0.7s;" +
+  "animation: component-result-wait-start-moving;" +
+  "animation-duration: 0.7s;" +
   "}",
 
-  componentResultPleaseWaitMoving: "@keyframes component-result-please-wait-moving " +
+  componentResultWaitStartMoving: "@keyframes component-result-wait-start-moving " +
   "{" +
   "from {" +
-  "top:" + 960 * widthK + "px;" +
+  "top: 78%;" +
   "opacity: 0" +
   "}" +
   "to {" +
-  "top:" + 950 * widthK + "px;" +
+  "top: 75%;" +
   "opacity: 1" +
   "}" +
+  "}",
+
+  componentResultWaitStop: ".component-result-wait-stop " +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "transition: 0.7s;" +
+  "top: 78% !important;" +
+  "opacity: 0 !important;" +
   "}",
 
   componentResultButtonInnerContainer: ".component-result-button-inner-container" +
@@ -11771,6 +11793,16 @@ var css = {
   "bottom: 0;" +
   "font-size: " + 38 * widthK + "px;" +
   "color: #ffffff;" +
+  "opacity: 0;" +
+  "}",
+
+  componentResultButtonStart: ".component-result-button-start" +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "-webkit-transition-delay: 1s;" +
+  "transition: 0.7s;" +
+  "transition-delay: 1s;" +
+  "opacity: 1 !important;" +
   "}",
 
   componentResultButtonLabel: ".component-result-button-label" +
