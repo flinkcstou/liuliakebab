@@ -10654,7 +10654,7 @@ var css = {
   "background-color: transparent;" +
   "border: none;" +
   "outline: none;" +
-  "font-size:" + 35 * widthK + "px;" +
+  "font-size:" + 34 * widthK + "px;" +
   //"letter-spacing:1px;" +
   "word-spacing:" + 25 * widthK + "px;" +
   "}",
