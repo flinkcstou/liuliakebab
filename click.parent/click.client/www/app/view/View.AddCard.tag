@@ -58,6 +58,9 @@
     var scope = this;
     scope.showError = false;
     scope.showResult = false;
+    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+    var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+    var sessionKey = info.session_key;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-card') {
       history.arrayOfHistory.push(
@@ -144,10 +147,6 @@
           return
         }
 
-        var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-        var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-        var sessionKey = info.session_key;
-
 //        if (device.platform != 'BrowserStand') {
 //          var options = {dimBackground: true};
 //
@@ -165,7 +164,6 @@
 
         window.api.call({
           method: 'card.add',
-          stopSpinner: false,
           input: {
             phone_num: phoneNumber,
             card_number: cardNumber,
@@ -177,17 +175,13 @@
           scope: this,
 
           onSuccess: function (result) {
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Add Card 175");
-              SpinnerPlugin.activityStop();
-            }
+
             answerFromServer = true;
             if (result[0][0].error == 0) {
               console.log("CARD ADD", result);
 
-              viewMainPage.addFirstCardBool = false;
-
               if (result[0][0].registered == 1) {
+                viewMainPage.addFirstCardBool = false;
                 scope.errorNote = result[0][0].error_note;
                 scope.showResult = true;
                 updateIcon('success');
@@ -202,13 +196,16 @@
               } else if (result[0][0].registered == 0) {
                 scope.errorNote = result[0][0].error_note;
                 scope.showResult = true;
-                updateIcon('waiting');
+                scope.checkStatus = true;
+                scope.checkId = result[0][0].check_id;
+                updateIcon('waiting', scope.checkStatus, 'view-add-card');
                 scope.viewPage = 'view-add-card';
                 scope.update();
               }
 
             }
             else {
+              scope.showResult = false;
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
               scope.showError = true;
@@ -218,6 +215,7 @@
           },
 
           onFail: function (api_status, api_status_message, data) {
+            scope.showResult = false;
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
@@ -233,6 +231,69 @@
           }
         }, 20000)
       }
+
+    }
+
+    scope.cardAddCheck = cardAddCheck = function () {
+
+      console.log(" scope.checkId=", scope.checkId)
+
+      window.api.call({
+        method: 'card.add.check',
+        input: {
+          phone_num: phoneNumber,
+          session_key: sessionKey,
+          check_id: scope.checkId
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+
+          answerFromServer = true;
+          if (result[0][0].error == 0) {
+            console.log("CARD ADD CHECK", result);
+
+            if (result[0][0].registered == 1) {
+              viewMainPage.addFirstCardBool = false;
+              scope.errorNote = result[0][0].error_note;
+              scope.showResult = true;
+              updateIcon('success');
+              scope.viewPage = 'view-main-page';
+              scope.update();
+            } else if (result[0][0].registered == -1) {
+              scope.errorNote = result[0][0].error_note;
+              scope.showResult = true;
+              updateIcon('unsuccess');
+              scope.viewPage = 'view-add-card';
+              scope.update();
+            } else if (result[0][0].registered == 0) {
+              scope.errorNote = result[0][0].error_note;
+              scope.showResult = true;
+              scope.checkStatus = true;
+              scope.checkId = result[0][0].check_id;
+              updateIcon('waiting', scope.checkStatus, 'view-add-card');
+              scope.viewPage = 'view-add-card';
+              scope.update();
+            }
+
+          }
+          else {
+            scope.showResult = false;
+            scope.clickPinError = false;
+            scope.errorNote = result[0][0].error_note;
+            scope.showError = true;
+            scope.viewPage = ''
+            scope.update();
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          scope.showResult = false;
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
 
     }
 

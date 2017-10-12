@@ -15,17 +15,28 @@
   <script>
     var scope = this;
     scope.outerShowAlertBool = false;
+    scope.restart = false;
 
 
-    updateIcon = function (result) {
-      console.log("CHANGE GIF", result);
+    updateIcon = function (result, checkStatus, from) {
+      console.log("CHANGE GIF", result, checkStatus);
       if (result == 'success') {
         alertNewIconId.style.backgroundImage = "url(resources/gifs/success.gif)";
       } else if (result == 'unsuccess') {
         alertNewIconId.style.backgroundImage = "url(resources/gifs/unsuccess.gif)";
       } else if (result == 'waiting') {
+        scope.restart = checkStatus ? checkStatus : false;
+        scope.fromView = from;
         alertNewIconId.style.backgroundImage = "url(resources/gifs/waiting.gif)";
       }
+    }
+
+    restartComponent = function () {
+      scope.restart = false;
+      alertNewIconId.style.backgroundImage = "url(resources/gifs/loading.gif)";
+      console.log("PARENT", scope.parent)
+      if (scope.fromView == 'view-add-card')
+        scope.parent.cardAddCheck();
     }
 
     var okButtonStartX, okButtonEndX, okButtonStartY, okButtonEndY;
@@ -51,7 +62,12 @@
 
       if (Math.abs(okButtonStartX - okButtonEndX) <= 20 && Math.abs(okButtonStartY - okButtonEndY) <= 20) {
 
-        if (scope.parent) {
+        if (scope.restart) {
+
+          restartComponent();
+        } else {
+
+//        if (scope.parent) {
           console.log("Alert from parent:", scope.parent);
           scope.parent.showResult = false;
 
@@ -80,27 +96,29 @@
               }
 
             }
-        }
-        else {
-          console.log("Alert without parent");
-          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device') {
-            scope.outerShowAlertBool = true;
-            console.log("Alert to device registration");
-            riot.update()
-            riotTags.innerHTML = "<view-registration-device>";
-            riot.mount('view-registration-device');
-          }
-          else {
-            console.log("Alert to authorization");
-            scope.outerShowAlertBool = true;
-            riot.update()
-            riotTags.innerHTML = "<view-authorization>";
-            riot.mount('view-authorization');
-          }
-        }
+//        }
+//        else {
+//          console.log("Alert without parent");
+//          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device') {
+//            scope.outerShowAlertBool = true;
+//            console.log("Alert to device registration");
+//            riot.update()
+//            riotTags.innerHTML = "<view-registration-device>";
+//            riot.mount('view-registration-device');
+//          }
+//          else {
+//            console.log("Alert to authorization");
+//            scope.outerShowAlertBool = true;
+//            riot.update()
+//            riotTags.innerHTML = "<view-authorization>";
+//            riot.mount('view-authorization');
+//          }
+//        }
 
-        //OK
-        riot.update()
+          //OK
+          riot.update()
+
+        }
       }
     };
 
