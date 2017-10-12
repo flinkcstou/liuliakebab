@@ -8,7 +8,7 @@
     <button id="alertOkButtonId" class="component-result-button-inner-container"
             ontouchstart="closeResultFormStart(this.id)"
             ontouchend="closeResultFormEnd(this.id)">
-      {window.languages.ComponentAlertOk}
+      {buttonText}
     </button>
   </div>
 
@@ -16,18 +16,23 @@
     var scope = this;
     scope.outerShowAlertBool = false;
     scope.restart = false;
+    scope.buttonText = window.languages.ComponentResultRepeat;
 
 
     updateIcon = function (result, checkStatus, from) {
       console.log("CHANGE GIF", result, checkStatus);
       if (result == 'success') {
         alertNewIconId.style.backgroundImage = "url(resources/gifs/success.gif)";
+        scope.buttonText = window.languages.ComponentResultOk;
+        alertOkButtonId.classList.add("component-result-button-success");
       } else if (result == 'unsuccess') {
         alertNewIconId.style.backgroundImage = "url(resources/gifs/unsuccess.gif)";
+        alertOkButtonId.classList.add("component-result-button-unsuccess");
       } else if (result == 'waiting') {
         scope.restart = checkStatus ? checkStatus : false;
         scope.fromView = from;
         alertNewIconId.style.backgroundImage = "url(resources/gifs/waiting.gif)";
+        alertOkButtonId.classList.add("component-result-button-waiting");
       }
       wait.classList.add("component-result-wait-stop");
       resultMessage.classList.add("component-result-message-start");

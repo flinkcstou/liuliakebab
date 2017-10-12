@@ -11726,6 +11726,7 @@ var css = {
   "margin-right: -50%;" +
   "top: 78%;" +
   "left: 50%;" +
+  "-webkit-transform: translate(-50%, -50%);" +
   "transform: translate(-50%, -50%);" +
   "font-size:" + 36 * widthK + "px;" +
   "opacity: 0;" +
@@ -11750,6 +11751,7 @@ var css = {
   "margin-right: -50%;" +
   "top: 75%;" +
   "left:  50%;" +
+  "-webkit-transform: translate(-50%, -50%);" +
   "transform: translate(-50%, -50%);" +
   "color: #757389;" +
   "font-size:" + 36 * widthK + "px;" +
@@ -11794,6 +11796,21 @@ var css = {
   "font-size: " + 38 * widthK + "px;" +
   "color: #ffffff;" +
   "opacity: 0;" +
+  "}",
+
+  componentResultButtonSuccess: ".component-result-button-success" +
+  "{" +
+  "background-color: #8FD032 !important;" +
+  "}",
+
+  componentResultButtonUnsuccess: ".component-result-button-unsuccess" +
+  "{" +
+  "background-color: #EB2A48 !important;" +
+  "}",
+
+  componentResultButtonWaiting: ".component-result-button-waiting" +
+  "{" +
+  "background-color: #F8AE22 !important;" +
   "}",
 
   componentResultButtonStart: ".component-result-button-start" +

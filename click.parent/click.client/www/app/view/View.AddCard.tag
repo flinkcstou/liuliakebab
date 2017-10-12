@@ -148,7 +148,6 @@
         scope.showResult = true;
         scope.update();
 
-        setTimeout(function () {
         window.api.call({
           method: 'card.add',
           input: {
@@ -206,7 +205,6 @@
             console.error(data);
           }
         });
-        }, 10000);
 
         setTimeout(function () {
           if (!answerFromServer) {
