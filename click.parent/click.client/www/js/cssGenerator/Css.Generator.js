@@ -11729,6 +11729,34 @@ var css = {
   "font-size:" + 36 * widthK + "px;" +
   "}",
 
+  componentResultPleaseWait: ".component-result-please-wait " +
+  "{" +
+  "position: absolute;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: -50%;" +
+  "top:" + 950 * widthK + "px;" +
+  "left:  50%;" +
+  "transform: translate(-50%, -50%);" +
+  "color: #757389;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "-webkit-animation: component-result-please-wait-moving 0.5s;" +
+  "animation: component-result-please-wait-moving 0.5s;" +
+  "}",
+
+  componentResultPleaseWaitMoving: "@keyframes component-result-please-wait-moving " +
+  "{" +
+  "from {" +
+  "top:" + 960 * widthK + "px;" +
+  "opacity: 0" +
+  "}" +
+  "to {" +
+  "top:" + 950 * widthK + "px;" +
+  "opacity: 1" +
+  "}" +
+  "}",
+
   componentResultButtonInnerContainer: ".component-result-button-inner-container" +
   "{" +
   "border: none;" +
