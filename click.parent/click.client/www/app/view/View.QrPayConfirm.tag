@@ -65,7 +65,7 @@
   <component-unsuccess id="componentUnsuccessId"
                        operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
                        operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{window.languages.ComponentUnsuccessMessagePart3ForPay}"
+                       operationmessagepartthree="{errorQrPayment}"
                        step_amount="{0}"></component-unsuccess>
 
   <component-in-processing id="componentInProcessingId"
@@ -277,15 +277,6 @@
                   componentSuccessId.style.display = 'block';
                 } else if (result[1][0].payment_id && !result[1][0].invoice_id) {
 
-//                  if (device.platform != 'BrowserStand') {
-//                    var options = {dimBackground: true};
-//
-//                    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-//                      console.log("Started");
-//                    }, function () {
-//                      console.log("closed");
-//                    });
-//                  }
 
                   setTimeout(function () {
                     checkQrPaymentStatus(result[1][0].payment_id);
@@ -356,6 +347,7 @@
                 console.log("Spinner Stop View QR Pay Confirm 343");
                 SpinnerPlugin.activityStop();
               }
+              scope.errorQrPayment = result[0][0].error_note;
               componentUnsuccessId.style.display = 'block';
               riot.update()
 
