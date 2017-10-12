@@ -1,21 +1,13 @@
-<component-alert-new hidden="{outerShowAlertBool}">
-  <div id="componentAlertId" class="component-alert">
-    <div id="alertNewIconId" class="component-alert-icon" style="background-image: url('resources/raingif.jpg')"></div>
-    <p class="component-alert-message" if="{!opts.clickpinerror}">{opts.errornote}</p>
-
-    <div class="component-alert-clickpin-error-container" if="{opts.clickpinerror}">
-      <p class="component-alert-message component-alert-clickpin-message-one">
-        {window.languages.ComponentAlertClickPinErrorTextOne}</p>
-      <p class="component-alert-message component-alert-clickpin-message-two">
-        {window.languages.ComponentAlertClickPinErrorTextTwo}</p>
-      <p class="component-alert-message component-alert-clickpin-message-three">
-        {window.languages.ComponentAlertClickPinErrorTextThree}</p>
-    </div>
+<component-result hidden="{outerShowAlertBool}">
+  <div id="componentResultId" class="component-result">
+    <div id="alertNewIconId" class="component-result-icon"
+         style="background-image: url('resources/gifs/loading.gif')"></div>
+    <p class="component-result-message" if="{!opts.clickpinerror}">{opts.errornote}</p>
 
 
-    <button id="alertOkButtonId" class="component-alert-button-inner-container"
-            ontouchstart="closeAlertFormStart(this.id)"
-            ontouchend="closeAlertFormEnd(this.id)">
+    <button id="alertOkButtonId" class="component-result-button-inner-container"
+            ontouchstart="closeResultFormStart(this.id)"
+            ontouchend="closeResultFormEnd(this.id)">
       {opts.errorcode==2? window.languages.ComponentAlertRegister: window.languages.ComponentAlertOk}
     </button>
   </div>
@@ -34,14 +26,14 @@
 
     setTimeout(function () {
         console.log("CHANGE GIF");
-        alertNewIconId.style.backgroundImage = "url(resources/snowgif.jpg)";
+        alertNewIconId.style.backgroundImage = "url(resources/gifs/success.gif)";
 
-      }, 3000
+      }, 5000
     )
 
     var okButtonStartX, okButtonEndX, okButtonStartY, okButtonEndY;
 
-    closeAlertFormStart = function (id) {
+    closeResultFormStart = function (id) {
       event.preventDefault();
       event.stopPropagation();
 
@@ -51,7 +43,7 @@
       document.getElementById(id).style.webkitTransform = 'scale(0.8)'
     }
 
-    closeAlertFormEnd = function (id) {
+    closeResultFormEnd = function (id) {
       event.preventDefault();
       event.stopPropagation();
 
@@ -136,4 +128,4 @@
 
 
   </script>
-</component-alert-new>
+</component-result>

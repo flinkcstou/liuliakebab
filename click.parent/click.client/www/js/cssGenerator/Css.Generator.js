@@ -1375,7 +1375,7 @@ var css = {
   "font-size:" + 30 * widthK + "px;" +
   "}",
 
-    menuButton: ".menu-button " +
+  menuButton: ".menu-button " +
   "{" +
   "position: absolute;" +
   "left:" + 4 * widthK + "px;" +
@@ -11697,6 +11697,79 @@ var css = {
   "font-size: " + 38 * widthK + "px;" +
   "color: #ffffff;" +
   "}",
+
+
+  //COMPONENT RESULT
+
+  //  Component Alert
+  componentResult: ".component-result " +
+  "{" +
+  "position: absolute;" +
+  //"opacity: 0.92;" +
+  "height: 100%;" +
+  "top: 0;" +
+  "width: 100%;" +
+  //"background-color: white;" +
+  "background-image: url(resources/icons/transparent.png);" +
+  "z-index: 999999999;" +
+  "}",
+
+  componentResultMessage: ".component-result-message" +
+  "{" +
+  "position: relative;" +
+  "color: #1d1d1f;" +
+  "width:" + 400 * widthK + "px;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 370 * widthK + "px;" +
+  // "left:" + -10 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "}",
+
+  componentResultButtonInnerContainer: ".component-result-button-inner-container" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "height: " + 74 * widthK + "px;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "top: 90%;" +
+  "background-color: #01B8FE;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "bottom: 0;" +
+  "font-size: " + 38 * widthK + "px;" +
+  "color: #ffffff;" +
+  "}",
+
+  componentResultButtonLabel: ".component-result-button-label" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "font-size:" + 38 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-align: center;" +
+  "display: table-cell;" +
+  "vertical-align: middle;" +
+  "}",
+
+  componentResultIcon: ".component-result-icon" +
+  "{" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "top:" + 200 * widthK + "px;" +
+  "width:" + 400 * widthK + "px;" +
+  "height:" + 400 * widthK + "px;" +
+  "background-image: url(resources/icons/icon/alert_icon.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 115%;" +
+  "background-position-x: center;" +
+  "}",
+
 
   //VIEW TRUSTED DEVICES
   trustedDevicesTitle: ".trusted-devices-title " +

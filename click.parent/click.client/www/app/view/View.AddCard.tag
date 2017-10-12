@@ -52,8 +52,8 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}" viewpage="{viewPage}"></component-alert>
 
-  <component-alert-new if="{showAlertNew}" clickpinerror="{clickPinError}"
-                       errornote="{errorNote}" viewpage="{viewPage}"></component-alert-new>
+  <component-result if="{showAlertNew}" clickpinerror="{clickPinError}"
+                    errornote="{errorNote}" viewpage="{viewPage}"></component-result>
   <script>
     var scope = this;
     scope.showError = false;
