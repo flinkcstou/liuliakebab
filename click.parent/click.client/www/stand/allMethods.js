@@ -12866,7 +12866,7 @@ window.fakedSocket.register("card.add", function (input) {
         "method": input.method,
         "success": 1,
         "error": 0,
-        "error_note": "Карта успешно добавлена",
+        "error_note": "Время ожидания истекло",
         "registered": 0,
         "check_id": 200500
       }]

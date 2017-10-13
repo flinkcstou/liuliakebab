@@ -2,7 +2,7 @@
   <div id="componentResultId" class="component-result">
     <div id="alertNewIconId" class="component-result-icon"
          style="background-image: url('resources/gifs/loading.gif')"></div>
-    <p id="wait" class="component-result-wait-start">{window.languages.ComponentResultPleaseWait}</p>
+    <p id="wait" class="component-result-wait">{window.languages.ComponentResultPleaseWait}</p>
     <p id="resultMessage" class="component-result-message" if="{!opts.clickpinerror}">{opts.errornote}</p>
 
     <button id="alertOkButtonId" class="component-result-button-inner-container"
@@ -21,6 +21,12 @@
 
     updateIcon = function (result, checkStatus, from) {
       console.log("CHANGE GIF", result, checkStatus);
+      alertOkButtonId.classList.remove("component-result-button-stop");
+      alertOkButtonId.classList.remove("component-result-button-waiting");
+      alertOkButtonId.classList.remove("component-result-button-success");
+      alertOkButtonId.classList.remove("component-result-button-unsuccess");
+      wait.classList.remove("component-result-wait-start");
+      resultMessage.classList.remove("component-result-message-stop");
       if (result == 'success') {
         alertNewIconId.style.backgroundImage = "url(resources/gifs/success.gif)";
         scope.buttonText = window.languages.ComponentResultOk;
@@ -42,7 +48,14 @@
     restartComponent = function () {
       scope.restart = false;
       alertNewIconId.style.backgroundImage = "url(resources/gifs/loading.gif)";
-      console.log("PARENT", scope.parent)
+      alertOkButtonId.style.opacity = "0";
+      alertOkButtonId.classList.remove("component-result-button-start");
+      alertOkButtonId.classList.add("component-result-button-stop");
+      wait.classList.remove("component-result-wait-stop");
+      wait.classList.add("component-result-wait-start");
+      resultMessage.classList.remove("component-result-message-start");
+      resultMessage.classList.add("component-result-message-stop");
+      console.log("PARENT", scope.parent);
       if (scope.fromView == 'view-add-card')
         scope.parent.cardAddCheck();
     }

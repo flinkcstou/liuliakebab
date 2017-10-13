@@ -11742,7 +11742,15 @@ var css = {
   "opacity: 1 !important;" +
   "}",
 
-  componentResultWaitStart: ".component-result-wait-start " +
+  componentResultMessageStop: ".component-result-message-stop " +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "transition: 0.7s;" +
+  "top: 78% !important;" +
+  "opacity: 0 !important;" +
+  "}",
+
+  componentResultWait: ".component-result-wait " +
   "{" +
   "position: absolute;" +
   "margin-left: auto;" +
@@ -11755,22 +11763,10 @@ var css = {
   "transform: translate(-50%, -50%);" +
   "color: #757389;" +
   "font-size:" + 36 * widthK + "px;" +
-  "-webkit-animation: component-result-wait-start-moving;" +
+  "-webkit-animation-name: componentResultWaitStartWebKitAnimation;" +
   "-webkit-animation-duration: 0.7s;" +
-  "animation: component-result-wait-start-moving;" +
+  "animation-name: componentResultWaitStartAnimation;" +
   "animation-duration: 0.7s;" +
-  "}",
-
-  componentResultWaitStartMoving: "@keyframes component-result-wait-start-moving " +
-  "{" +
-  "from {" +
-  "top: 78%;" +
-  "opacity: 0" +
-  "}" +
-  "to {" +
-  "top: 75%;" +
-  "opacity: 1" +
-  "}" +
   "}",
 
   componentResultWaitStop: ".component-result-wait-stop " +
@@ -11779,6 +11775,40 @@ var css = {
   "transition: 0.7s;" +
   "top: 78% !important;" +
   "opacity: 0 !important;" +
+  "}",
+
+  componentResultWaitStart: ".component-result-wait-start " +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "-webkit-transition-delay: 0.8s;" +
+  "transition: 0.7s;" +
+  "transition-delay: 0.8s;" +
+  "top: 75% !important;" +
+  "opacity: 1 !important;" +
+  "}",
+
+  componentResultWaitStartWebKitAnimation: "@-webkit-keyframes componentResultWaitStartWebKitAnimation " +
+  "{" +
+  "from {" +
+    "opacity: 0;" +
+    "top: 78%;" +
+  "}" +
+  "to {" +
+    "opacity: 1;" +
+    "top: 75%;" +
+  "}" +
+  "}",
+
+  componentResultWaitStartAnimation: "@keyframes componentResultWaitStartAnimation " +
+  "{" +
+  "from {" +
+    "opacity: 0;" +
+    "top: 78%;" +
+  "}" +
+  "to {" +
+    "opacity: 1;" +
+    "top: 75%;" +
+  "}" +
   "}",
 
   componentResultButtonInnerContainer: ".component-result-button-inner-container" +
@@ -11820,6 +11850,13 @@ var css = {
   "transition: 0.7s;" +
   "transition-delay: 1s;" +
   "opacity: 1 !important;" +
+  "}",
+
+  componentResultButtonStop: ".component-result-button-stop" +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "transition: 0.7s;" +
+  "opacity: 0 !important;" +
   "}",
 
   componentResultButtonLabel: ".component-result-button-label" +
