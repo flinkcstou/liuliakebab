@@ -227,7 +227,9 @@
     </div>
   </div>
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
+                   errornote="{errorNote}"
+                   pathtosettings="{pathToSettings}"
+                   permissionerror="{permissionError}"></component-alert>
 
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
@@ -1533,7 +1535,6 @@
     }
 
     findContacts = function () {
-
       var options = new ContactFindOptions();
       var fields = [''];
       options.filter = "";
@@ -1558,10 +1559,17 @@
 
       function error(message) {
         scope.clickPinError = false;
-        scope.errorNote = 'Отсутствует доступ';
+        scope.errorNote = 'Отсутствует доступ к контактам';
         scope.showError = true;
+        scope.permissionError = true;
+        if (device.platform == 'iOS') {
+            scope.pathToSettings = 'Путь: Настройки/CLICK Uzbekistan/Контакты ';
+        }
+        if (device.platform == 'Android') {
+            scope.pathToSettings = 'Путь: Настройки/Приложения/CLICK Uzbekistan/Разрешения';
+        }
+        contactPhoneNumberId.blur();
         scope.update();
-//        alert('Failed because: ' + message);
       }
     }
     if (device.platform != 'BrowserStand') {

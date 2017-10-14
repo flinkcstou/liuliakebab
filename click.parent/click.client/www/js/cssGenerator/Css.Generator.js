@@ -11552,6 +11552,21 @@ var css = {
   "font-size:" + 36 * widthK + "px;" +
   "}",
 
+  componentAlertMessageSettings: ".component-alert-message-settings" +
+  "{" +
+  "position: relative;" +
+  "color: #1d1d1f;" +
+  "width:" + 600 * widthK + "px;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 380 * widthK + "px;" +
+  // "left:" + -10 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "}",
+
   componentAlertClickPinErrorContainer: ".component-alert-clickpin-error-container" +
   "{" +
   "position: relative;" +
