@@ -190,7 +190,6 @@
     }
 
 
-
     if (typeof window.fingerPrint.fingerPrintInitialize != undefined && window.fingerPrint.fingerPrintInitialize == false) {
 
       try {
@@ -208,15 +207,15 @@
       event.stopPropagation();
 
       if (!eyeInputShow) {
-        firstPinInputId.type = "text"
+        firstPinInputId.type = "text";
         eyeInputShow = true;
       }
       else {
-        firstPinInputId.type = "password"
+        firstPinInputId.type = "password";
         eyeInputShow = false;
       }
 
-    }
+    };
 
     inputPinBlur = function () {
 //      event.preventDefault();
@@ -224,7 +223,7 @@
 
 
       firstPinInputId.blur();
-    }
+    };
 
     var pinResetTouchStartX, pinResetTouchStartY, pinResetTouchEndX, pinResetTouchEndY;
 
@@ -232,10 +231,10 @@
       event.preventDefault();
       event.stopPropagation();
 
-      forgetPinButtonId.style.webkitTransform = 'scale(0.8)'
+      forgetPinButtonId.style.webkitTransform = 'scale(0.8)';
 
-      pinResetTouchStartX = event.changedTouches[0].pageX
-      pinResetTouchStartY = event.changedTouches[0].pageY
+      pinResetTouchStartX = event.changedTouches[0].pageX;
+      pinResetTouchStartY = event.changedTouches[0].pageY;
 
 
     };
@@ -245,10 +244,10 @@
       event.preventDefault();
       event.stopPropagation();
 
-      forgetPinButtonId.style.webkitTransform = 'scale(1)'
+      forgetPinButtonId.style.webkitTransform = 'scale(1)';
 
-      pinResetTouchEndX = event.changedTouches[0].pageX
-      pinResetTouchEndY = event.changedTouches[0].pageY
+      pinResetTouchEndX = event.changedTouches[0].pageX;
+      pinResetTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(pinResetTouchStartX - pinResetTouchEndX) <= 20 && Math.abs(pinResetTouchStartY - pinResetTouchEndY) <= 20) {
         if (scope.firstEnter)
@@ -264,9 +263,9 @@
       event.preventDefault();
       event.stopPropagation();
 
-      resetLocalButtonId.style.webkitTransform = 'scale(0.8)'
-      resetLocalStorageTouchStartX = event.changedTouches[0].pageX
-      resetLocalStorageTouchStartY = event.changedTouches[0].pageY
+      resetLocalButtonId.style.webkitTransform = 'scale(0.8)';
+      resetLocalStorageTouchStartX = event.changedTouches[0].pageX;
+      resetLocalStorageTouchStartY = event.changedTouches[0].pageY;
 
     }
 
@@ -274,16 +273,16 @@
       event.preventDefault();
       event.stopPropagation();
 
-      resetLocalButtonId.style.webkitTransform = 'scale(1)'
+      resetLocalButtonId.style.webkitTransform = 'scale(1)';
 
-      resetLocalStorageTouchEndX = event.changedTouches[0].pageX
-      resetLocalStorageTouchEndY = event.changedTouches[0].pageY
+      resetLocalStorageTouchEndX = event.changedTouches[0].pageX;
+      resetLocalStorageTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(resetLocalStorageTouchStartX - resetLocalStorageTouchEndX) <= 20 && Math.abs(resetLocalStorageTouchStartY - resetLocalStorageTouchEndY) <= 20) {
         if (scope.firstEnter)
           firstPinInputId.blur();
 
-        var question = 'Подтвердите удаление данных'
+        var question = 'Подтвердите удаление данных';
         scope.confirmShowBool = true;
         scope.confirmNote = question;
         scope.confirmType = 'local';
@@ -296,7 +295,7 @@
             }
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');
-            scope.unmount()
+            scope.unmount();
             return
           }
         };
@@ -311,18 +310,18 @@
 
     componentKeyboard.returnStartValue = function (id) {
 
-      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)';
 
-      keyboardTouchStartX = event.changedTouches[0].pageX
-      keyboardTouchStartY = event.changedTouches[0].pageY
+      keyboardTouchStartX = event.changedTouches[0].pageX;
+      keyboardTouchStartY = event.changedTouches[0].pageY;
     }
 
     componentKeyboard.returnValue = function (myValue, id) {
 
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)';
 
-      keyboardTouchEndX = event.changedTouches[0].pageX
-      keyboardTouchEndY = event.changedTouches[0].pageY
+      keyboardTouchEndX = event.changedTouches[0].pageX;
+      keyboardTouchEndY = event.changedTouches[0].pageY;
 
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {

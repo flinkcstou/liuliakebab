@@ -76,46 +76,14 @@
     if (localStorage.getItem('click_client_cards')) {
       scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
       if (scope.cardsarray.length < 1) {
-//        scope.addFirstCardBool = true;
         viewMainPage.addFirstCardBool = true;
+        console.log("addFirstCardBool=true 11");
         scope.parent.update();
       }
       scope.update();
       console.log("first card link", JSON.stringify(scope.cardsarray[0]));
     }
 
-    //    this.on('mount', function () {
-    //      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
-    //
-    //      if (!scope.invoiceCheck) {
-    //        count = 0;
-    //        for (var i in scope.cardsarray) {
-    //          scope.cardsarray[i].countCard = count;
-    //          count++;
-    //        }
-    //      }
-    //      scope.update()
-    //
-    //    })
-
-    //    scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-    //    scope.cardsarray = (scope.cardsarray) ? (scope.cardsarray) : ({});
-    //    riot.update(scope.cardsarray);
-
-
-    //    stopPropagation = function () {
-    //
-    //      billsHolderTouchEndX = event.changedTouches[0].pageX;
-    //
-    //      console.log('billsHolderTouchEndX', billsHolderTouchEndX)
-    //      console.log('carouselTouchStartX', billsHolderTouchEndX)
-    //      if (Math.abs(carouselTouchStartX - billsHolderTouchEndX) < 20) {
-    //        event.stopPropagation();
-    //        event.preventDefault();
-    //        stopPropagationInvoice = true;
-    ////        return
-    //      }
-    //    };
 
     var touchStartAddFirstCardX, touchEndAddFirstCardX, touchStartAddFirstCardY, touchEndAddFirstCardY;
 
@@ -210,13 +178,15 @@
 
       if (modeOfApp.offlineMode) return;
 
+      console.log("000 ", scope.checkSumOfHash)
+
       if (localStorage.getItem('click_client_accountInfo') && !scope.checkSumOfHash) {
+
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
         console.log("getAccountsCards ", JSON.stringify(getAccountsCards))
         if (getAccountsCards.length < 1) {
-//          scope.addFirstCardBool = true;
           viewMainPage.addFirstCardBool = true;
-          console.log("viewMainPage.addFirstCardBool = true;")
+          console.log("viewMainPage.addFirstCardBool = true; 22")
           scope.parent.update();
         }
         var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'))
@@ -229,86 +199,8 @@
       else {
         if (scope.checkSumOfHash) {
           scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-//          var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-//          var idTMP;
-//          var countFromDefault;
-//          for (var j in scope.cardsarray) {
-//            console.log('IN CYCLE SEARCH DEFAULT', scope.cardsarray[j].countCard, scope.cardsarray[j].default_account)
-//            if (scope.cardsarray[j].countCard == 0 && scope.cardsarray[j].default_account === false) {
-//              idTMP = j;
-//              console.log('idTMP', idTMP)
-//              countFromDefault = scope.cardsarray[loginInfo.default_account].countCard;
-//
-//            }
-//          }
-//
-//          if (idTMP) {
-//            console.log('idTMP', idTMP)
-//            scope.cardsarray[loginInfo.default_account].countCard = 0;
-//            console.log('FOUND', scope.cardsarray[loginInfo.default_account])
-//            scope.cardsarray[idTMP].countCard = countFromDefault;
-//            console.log('FOUND', scope.cardsarray[idTMP])
-//            localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
-//          }
-//
-//          scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-//
-//          console.log('DEFAULT PROBLEM ', JSON.parse(localStorage.getItem("click_client_cards")))
-
-
-//          console.log("CARDS ARRAY AFTER HASH SUM", scope.cardsarray)
-//
-//          if (scope.invoiceCheck && viewMainPage.atMainPage) {
-//            count = 1;
-//            var tmpCount = count;
-//
-//            for (var i in scope.cardsarray) {
-//              scope.cardsarray[i].countCard = scope.cardsarray[i].countCard + count;
-//              if (scope.cardsarray[i].countCard >= tmpCount)
-//                tmpCount = scope.cardsarray[i].countCard;
-//            }
-//            count = tmpCount + 1;
-//
-//            localStorage.setItem('click_client_countCard', count)
-//            localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray))
-//
-//            console.log('CARD NUMBER', scope.cardNumber)
-//
-//          }
-//          else {
-//            if (!viewMainPage.atMainPage)
-//              count = 1;
-//            else {
-//              if (viewMainPage.atMainPage && !scope.invoiceCheck) {
-//                count = 1
-//              }
-//            }
-//            var tmpCount = count;
-//
-//            for (var i in scope.cardsarray) {
-//              scope.cardsarray[i].countCard = scope.cardsarray[i].countCard + count;
-//              if (scope.cardsarray[i].countCard >= tmpCount)
-//                tmpCount = scope.cardsarray[i].countCard;
-//            }
-//            count = tmpCount + 1;
-//          }
-//          scope.update()
         }
-//        else {
-//          if (!viewMainPage.atMainPage)
-//            count = 1;
-//        }
-//        localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray))
       }
-
-//      if (scope.invoiceCheck && viewMainPage.atMainPage && !scope.checkSumOfHash) {
-//        count = 1;
-////        scope.update()
-//      }
-//      else {
-//        if(!scope.invoiceCheck && viewMainPage.atMainPage)
-//          count = 0;
-//      }
 
       var numberOfCardPartOne;
       var numberOfCardPartTwo;
@@ -370,18 +262,20 @@
 //        localStorage.setItem('cardNumber', cardNumber);
         }
 
-        scope.update();
       }
-
-      scope.update();
+      console.log("asd");
+      riot.update();
 
 //      scope.update(scope.cardsarray);
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
+        console.log("kkk");
         writeBalance();
         scope.update()
       } else {
-        if (invoice)
+        if (invoice) {
+          console.log("zzz");
           scope.update();
+        }
       }
     }
     ;
@@ -470,6 +364,8 @@
                     scope.invoiceList.push(arrayOfInvoice[1]);
                   }
                 }
+
+                console.log("invoices", scope.invoiceList)
 
                 if (scope.invoiceList)
                   setTimeout(function () {
@@ -655,20 +551,32 @@
                 }
 
                 if (!scope.checkSumOfHash || info.update_account_cache) {
-                  var countCard = 2;
+
                   var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
                   arrayAccountInfo = [];
+                  var countCard;
 
+                  if (loginInfo.default_account && loginInfo.default_account != 0) {
+                    countCard = 2;
 
-                  for (var i = 0; i < result[1].length; i++) {
-                    if (result[1][i].id == loginInfo.default_account) {
-                      result[1][i].countCard = 1;
+                    for (var i = 0; i < result[1].length; i++) {
+                      if (result[1][i].id == loginInfo.default_account) {
+                        result[1][i].countCard = 1;
+                      }
+                      else {
+                        result[1][i].countCard = countCard;
+                        countCard++;
+                      }
+                      arrayAccountInfo.push(result[1][i])
                     }
-                    else {
+                  } else {
+                    countCard = 1;
+
+                    for (var i = 0; i < result[1].length; i++) {
                       result[1][i].countCard = countCard;
                       countCard++;
+                      arrayAccountInfo.push(result[1][i])
                     }
-                    arrayAccountInfo.push(result[1][i])
                   }
                   var accountInfo = JSON.stringify(arrayAccountInfo);
                   if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
@@ -687,14 +595,14 @@
                   info.update_account_cache = false;
                   localStorage.setItem('click_client_loginInfo', JSON.stringify(info));
 
-                  if (device.platform != 'BrowserStand') {
+                  if (device.platform !== 'BrowserStand') {
                     console.log("Spinner Stop Component Card Carousel 650");
                     SpinnerPlugin.activityStop();
                   }
                 }
                 else {
                   setTimeout(function () {
-                    if (device.platform != 'BrowserStand') {
+                    if (device.platform !== 'BrowserStand') {
                       console.log("Spinner Stop Component Card Carousel 657");
                       SpinnerPlugin.activityStop();
                     }
@@ -770,6 +678,8 @@
         if (localStorage.getItem('click_client_cards'))
           getAccountsCards = JSON.parse(localStorage.getItem('click_client_cards'))
       }
+
+      console.log("www");
 
       for (var i in getAccountsCards) {
         window.api.call({

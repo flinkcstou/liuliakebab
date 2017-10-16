@@ -38,7 +38,6 @@
     viewServicePage.amountWithoutSpace = 0;
     viewServicePage.amountTex = 0;
     onBackParams.opts = null;
-    viewMainPage.addFirstCardBool = false;
 
 
     this.on('mount', function () {

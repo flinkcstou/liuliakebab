@@ -1,5 +1,6 @@
 window.viewMainPage = {};
 viewMainPage.myCards = false;
+viewMainPage.addFirstCardBool = false;
 
 window.onBackParams = {};
 onBackParams.opts = null;

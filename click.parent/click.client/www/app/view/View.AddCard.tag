@@ -168,6 +168,8 @@
               if (result[0][0].registered == 1) {
                 viewMainPage.addFirstCardBool = false;
                 var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+                localStorage.removeItem('cardNumber');
+                localStorage.removeItem('click_client_countCard');
                 if (!loginInfo.default_account || loginInfo.default_account == 0) {
                   loginInfo.default_account = result[0][0].default_account;
                   localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo));
@@ -247,6 +249,8 @@
 
             if (result[0][0].registered == 1) {
               viewMainPage.addFirstCardBool = false;
+              localStorage.removeItem('cardNumber');
+              localStorage.removeItem('click_client_countCard');
               var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
               if (!loginInfo.default_account || loginInfo.default_account == 0) {
                 loginInfo.default_account = result[0][0].default_account;
