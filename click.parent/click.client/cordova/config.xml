@@ -33,6 +33,7 @@
   <plugin name="cordova-plugin-datepicker"/>
   <plugin name="cordova-plugin-inappbrowser"/>
   <plugin name="cordova-plugin-appversion"/>
+  <plugin name="cordova-open-native-settings"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>

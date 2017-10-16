@@ -5620,6 +5620,33 @@ var css = {
   "top: -9%;" +
   "}",
 
+  transferContactAccess: ".transfer-contact-access-text" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: -9%;" +
+  "}",
+
+  transferContactAccessSettings: ".transfer-contact-access-text-settings" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "color: #01cfff;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: -9%;" +
+  "}",
+
+  transferContactAccessContainer: ".transfer-contact-access-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 79.5%;" +
+  "height:" + 120 * widthK + "px;" +
+  "left: 10%;" +
+  "top:" + 165 * widthK + "px;" +
+  "}",
+
   transferContactPhoneIcon: ".transfer-contact-phone-icon" +
   "{" +
   "position: absolute;" +

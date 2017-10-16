@@ -39,6 +39,12 @@
              ontouchstart="pickContactFromNativeTouchStart()"
              ontouchend="pickContactFromNativeTouchEnd()"></div>
       </div>
+      <div if="{!accessToContacts}" class="transfer-contact-access-container">
+        <p class="transfer-contact-access-text">{window.languages.ViewPayTransferAccessToContacts}</p>
+        <p class="transfer-contact-access-text-settings"
+           ontouchstart="goToSettingsStart()"
+           ontouchend="goToSettingsEnd()">{window.languages.ViewPayTransferAccessToContactsSettings}</p>
+      </div>
       <div id="firstSuggestionBlockId" class="transfer-contact-found-container-one"
            ontouchend="firstSuggestionBlockTouchEnd()" ontouchstart="firstSuggestionBlockTouchStart()">
         <div class="transfer-contact-found-photo" style="background-image: url({suggestionOne.photo})">
@@ -1534,6 +1540,7 @@
       }
     }
 
+    scope.accessToContacts = true;
     findContacts = function () {
       var options = new ContactFindOptions();
       var fields = [''];
@@ -1558,17 +1565,7 @@
       }
 
       function error(message) {
-        scope.clickPinError = false;
-        scope.errorNote = 'Отсутствует доступ к контактам';
-        scope.showError = true;
-        scope.permissionError = true;
-        if (device.platform == 'iOS') {
-            scope.pathToSettings = 'Путь: Настройки/CLICK Uzbekistan/Контакты ';
-        }
-        if (device.platform == 'Android') {
-            scope.pathToSettings = 'Путь: Настройки/Приложения/CLICK Uzbekistan/Разрешения';
-        }
-        contactPhoneNumberId.blur();
+        scope.accessToContacts = false;
         scope.update();
       }
     }
@@ -1579,6 +1576,36 @@
       catch (e) {
         console.log(e)
       }
+    }
+
+    var goToSettingsTouchStartX, goToSettingsTouchStartY, goToSettingsTouchEndX,
+        goToSettingsTouchEndY;
+
+    goToSettingsStart = function () {
+        event.preventDefault();
+        event.stopPropagation();
+
+        goToSettingsTouchStartX = event.changedTouches[0].pageX
+        goToSettingsTouchStartY = event.changedTouches[0].pageY
+    }
+
+    goToSettingsEnd = function () {
+        event.preventDefault();
+        event.stopPropagation();
+
+        goToSettingsTouchEndX = event.changedTouches[0].pageX
+        goToSettingsTouchEndY = event.changedTouches[0].pageY
+
+        if (Math.abs(goToSettingsTouchEndX - goToSettingsTouchStartX) <= 20 &&
+            Math.abs(goToSettingsTouchEndY - goToSettingsTouchStartY) <= 20) {
+            window.cordova.plugins.settings.open("application_details", function() {
+                    console.log('opened settings');
+                },
+                function () {
+                    console.log('failed to open settings');
+                }
+            );
+        }
     }
 
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
