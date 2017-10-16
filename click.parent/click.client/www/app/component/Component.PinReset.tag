@@ -80,11 +80,11 @@
           onSuccess: function (result) {
             console.log('pin.reset', result);
             if (result[0][0].error == 0) {
-//              console.log("result of PIN RESET ", result);
-//              localStorage.setItem('click_client_cards', JSON.stringify({}));
-//              localStorage.removeItem('click_client_accountInfo');
-//              localStorage.removeItem('cardNumber');
-//              localStorage.removeItem('click_client_countCard');
+              console.log("resetting account");
+              localStorage.removeItem('click_client_cards');
+              localStorage.removeItem('click_client_accountInfo');
+              localStorage.removeItem('cardNumber');
+              localStorage.removeItem('click_client_countCard');
               scope.firstMessage = result[1][0].text1;
               scope.secondMessage = result[1][0].text2;
               scope.firstStage = false;

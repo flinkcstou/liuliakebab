@@ -55,12 +55,15 @@
                       background="{(i.card_background_url)?(i.card_background_url):('resources/icons/cards/all.png')}"
                       fontcolor="{i.font_color}"
                       error_message="{i.error_message}"></component-card>
+
+
     </div>
   </div>
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
+
 
     var scope = this;
     scope.invoiceLeft = 100 * widthK;
@@ -72,10 +75,12 @@
     scope.showError = false;
 
     scope.checkSumOfHash = true;
+    scope.addFirstCardBool = false;
 
     if (localStorage.getItem('click_client_cards')) {
       scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
       if (scope.cardsarray.length < 1) {
+        scope.addFirstCardBool = true;
         viewMainPage.addFirstCardBool = true;
         console.log("addFirstCardBool=true 11");
         scope.parent.update();
@@ -174,6 +179,7 @@
       }
     };
 
+
     scope.addCard = addCard = function (withoutBalance, invoice) {
 
       if (modeOfApp.offlineMode) return;
@@ -185,8 +191,13 @@
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
         console.log("getAccountsCards ", JSON.stringify(getAccountsCards))
         if (getAccountsCards.length < 1) {
+          scope.addFirstCardBool = true;
           viewMainPage.addFirstCardBool = true;
           console.log("viewMainPage.addFirstCardBool = true; 22")
+          scope.parent.update();
+        } else {
+          viewMainPage.addFirstCardBool = false;
+          console.log("addFirstCardBool=false 22");
           scope.parent.update();
         }
         var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'))
@@ -201,6 +212,8 @@
           scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
         }
       }
+
+      console.log("cardsArray new must", JSON.stringify(scope.cardsarray))
 
       var numberOfCardPartOne;
       var numberOfCardPartTwo;
@@ -229,7 +242,7 @@
             card_num_hash: getAccountsCards[i].card_num_hash,
             card_num_crypted: getAccountsCards[i].card_num_crypted,
             checksum: getAccountsCards[i].checksum,
-            bankName: typeOfCard,
+//            bankName: typeOfCard,
             name: getAccountsCards[i].description,
             salary: '',
             error_message: null,
@@ -255,7 +268,9 @@
 
           count++;
 
+
           console.log("COUNT =", count)
+          console.log("CARDsARRAY =", JSON.stringify(scope.cardsarray))
 
 //        cardNumber %= count;
           localStorage.setItem('click_client_countCard', count);
@@ -264,9 +279,13 @@
 
       }
       console.log("asd");
-      riot.update();
 
-//      scope.update(scope.cardsarray);
+      scope.parent.update();
+      scope.update(scope.cardsarray);
+
+      scope.update();
+
+
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
         console.log("kkk");
         writeBalance();
@@ -557,6 +576,7 @@
                   var countCard;
 
                   if (loginInfo.default_account && loginInfo.default_account != 0) {
+                    console.log("default account is present")
                     countCard = 2;
 
                     for (var i = 0; i < result[1].length; i++) {
@@ -570,6 +590,7 @@
                       arrayAccountInfo.push(result[1][i])
                     }
                   } else {
+                    console.log("default account is absent")
                     countCard = 1;
 
                     for (var i = 0; i < result[1].length; i++) {
@@ -585,6 +606,13 @@
                   }
 
                   localStorage.setItem("click_client_accountInfo", accountInfo);
+
+                  console.log("accountInfo", JSON.parse(localStorage.getItem("click_client_accountInfo")));
+                  console.log("cards", JSON.parse(localStorage.getItem("click_client_cards")));
+                  console.log("countCard", JSON.parse(localStorage.getItem("click_client_countCard")));
+                  console.log("cardNumber", JSON.parse(localStorage.getItem("cardNumber")));
+                  console.log("loginInfo", JSON.parse(localStorage.getItem("click_client_loginInfo")));
+
 
                   cardImagesCaching();
 
@@ -696,11 +724,10 @@
           scope: this,
           onSuccess: function (result) {
             if (result[0][0].error == 0) {
-              if (result[1][0]) {
+              if (result[1][0] && scope.cardsarray[result[1][0].account_id]) {
                 try {
 
-                  if (scope.cardsarray[result[1][0].account_id])
-                    scope.cardsarray[result[1][0].account_id].salaryOriginal = result[1][0].balance.toFixed(0);
+                  scope.cardsarray[result[1][0].account_id].salaryOriginal = result[1][0].balance.toFixed(0);
 
                   result[1][0].balance = result[1][0].balance.toFixed(0).toString();
 
@@ -901,8 +928,10 @@
 
 
       if (viewMainPage.myCards) {
+        console.log("MY CARDS");
         for (var i in scope.cardsarray) {
           if (scope.cardsarray[i].countCard == scope.cardNumber) {
+
             scope.parent.cardInformation(scope.cardsarray[i].card_id);
           }
         }

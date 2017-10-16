@@ -97,6 +97,8 @@
             console.log("Alert to ", opts.viewpage);
             riotTags.innerHTML = "<" + opts.viewpage + ">";
             riot.mount(opts.viewpage);
+            this.parent.unmount();
+            this.unmount();
 
           }
 
