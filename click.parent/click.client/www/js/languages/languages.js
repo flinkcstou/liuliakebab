@@ -103,7 +103,7 @@ var RU_LANGUAGES =
   "ComponentReportFilterYesterdayText": "вчера",
 
   "ComponentResultPleaseWait": "Пожалуйста подождите...",
-  "ComponentResultOk": "OK!",
+  "ComponentResultOk": "Закрыть",
   "ComponentResultRepeat": "ПОВТОРИТЬ",
 
   "ViewAmountCalculatorNameTitle": "КАЛЬКУЛЯТОР ВАЛЮТ",
