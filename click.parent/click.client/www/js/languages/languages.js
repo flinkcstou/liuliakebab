@@ -147,6 +147,8 @@ var RU_LANGUAGES =
   "ViewPayTransferNext": "Далее",
   "ViewPayTransferTitle": "ПЕРЕВОДЫ",
   "ViewPayTransferCardOwnerTitle": "Владелец:",
+  "ViewPayTransferAccessToContacts": "Для быстрого поиска в адресной книге, необходимо разрешить приложению доступ к контактам на Вашем устройстве",
+  "ViewPayTransferAccessToContactsSettings": "Перейти в настройки",
 
 
   "ViewTransferTwoTax": "Комиссия: ",
