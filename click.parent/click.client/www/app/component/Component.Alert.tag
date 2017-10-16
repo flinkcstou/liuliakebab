@@ -2,6 +2,7 @@
   <div id="componentAlertId" class="component-alert">
     <div class="component-alert-icon"></div>
     <p class="component-alert-message" if="{!opts.clickpinerror}">{opts.errornote}</p>
+    <p class="component-alert-message-settings" if="{opts.permissionerror}">{opts.pathtosettings}</p>
 
     <div class="component-alert-clickpin-error-container" if="{opts.clickpinerror}">
       <p class="component-alert-message component-alert-clickpin-message-one">
