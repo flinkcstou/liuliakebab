@@ -104,7 +104,7 @@ var RU_LANGUAGES =
 
   "ComponentResultPleaseWait": "Пожалуйста подождите...",
   "ComponentResultOk": "Закрыть",
-  "ComponentResultRepeat": "ПОВТОРИТЬ",
+  "ComponentResultRepeat": "Повторить",
 
   "ViewAmountCalculatorNameTitle": "КАЛЬКУЛЯТОР ВАЛЮТ",
   "ViewAmountCalculatorTextOne": "Введите сумму в USD",
