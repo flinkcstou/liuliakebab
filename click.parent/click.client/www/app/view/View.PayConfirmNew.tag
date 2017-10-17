@@ -665,7 +665,6 @@
                 scope.errorNote = result[0][0].error_note;
                 scope.showResult = true;
                 updateIcon('success');
-                //scope.viewPage = 'view-main-page';
                 scope.update();
               }
             }
@@ -679,7 +678,6 @@
             scope.errorNote = result[0][0].error_note;
             scope.showResult = true;
             updateIcon('unsuccess');
-            // scope.viewPage = 'view-add-card';
             scope.update();
           }
         },
@@ -687,9 +685,9 @@
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
           scope.errorNote = result[0][0].error_note;
+          scope.viewPage = "view-main-page";
           scope.showResult = true;
           updateIcon('unsuccess');
-          // scope.viewPage = 'view-add-card';
           scope.update();
           //componentUnsuccessId.style.display = 'block';
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -736,17 +734,13 @@
               scope.stepErrorAmount = 2;
               window.languages.tempText = JSON.stringify(result[1][0].error);
               scope.errorMessageFromPayment = result[1][0].error;
-//              if (device.platform != 'BrowserStand') {
-//                console.log("Spinner Stop View Pay Confirm New 737");
-//                SpinnerPlugin.activityStop();
-//              }
+
               //componentUnsuccessId.style.display = 'block';
-              scope.errorNote = result[0][0].error_note;
+              scope.errorNote = result[1][0].error;
+              scope.stepAmount = 2;
               scope.showResult = true;
               updateIcon('unsuccess');
-              // scope.viewPage = 'view-add-card';
               scope.update();
-              riot.update()
 
 
             } else if (result[1][0].state == 2) {
@@ -757,11 +751,7 @@
               viewServicePinCards.chosenFriendForHelp = null;
               scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
               this.operationMessage = window.languages.ComponentSuccessMessageForPay;
-              scope.update();
-//              if (device.platform != 'BrowserStand') {
-//                console.log("Spinner stop in pay confirm");
-//                SpinnerPlugin.activityStop();
-//              }
+
 
               if (result[1][0].qr_image) {
                 answerFromServer = true;
@@ -772,10 +762,9 @@
                 componentGeneratedQrId.style.display = 'block';
                 qrFooterTextId.innerHTML = result[1][0].qr_footer;
               } else {
-                scope.errorNote = result[0][0].error_note;
+                scope.errorNote = window.languages.ComponentSuccessMessageForPay;
                 scope.showResult = true;
                 updateIcon('success');
-                //scope.viewPage = 'view-main-page';
                 scope.update();
               }
               //componentSuccessId.style.display = 'block';
@@ -800,15 +789,19 @@
                 viewServicePinCards.chosenFriendForHelp = null;
 
                 scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
+//                scope.update();
+//
+//                if (device.platform != 'BrowserStand') {
+//                  console.log("Spinner stop in pay confirm");
+//                  SpinnerPlugin.activityStop();
+//                }
+
+                scope.errorNote = window.languages.ComponentInProcessingPayment;
+                scope.showResult = true;
+                updateIcon('waiting');
                 scope.update();
 
-
-                if (device.platform != 'BrowserStand') {
-                  console.log("Spinner stop in pay confirm");
-                  SpinnerPlugin.activityStop();
-                }
-
-                componentInProcessingId.style.display = 'block';
+                //componentInProcessingId.style.display = 'block';
               }
 
             }
@@ -821,13 +814,23 @@
               console.log("Spinner stop in pay confirm");
               SpinnerPlugin.activityStop();
             }
-            componentUnsuccessId.style.display = 'block';
+//            componentUnsuccessId.style.display = 'block';
+            scope.errorNote = result[1][0].error;
+            scope.viewPage = "view-main-page";
+            scope.showResult = true;
+            updateIcon('unsuccess');
+            scope.update();
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          componentUnsuccessId.style.display = 'block';
+          scope.errorNote = result[1][0].error;
+          scope.viewPage = "view-main-page";
+          scope.showResult = true;
+          updateIcon('unsuccess');
+          scope.update();
+//          componentUnsuccessId.style.display = 'block';
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }

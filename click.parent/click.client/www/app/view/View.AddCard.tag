@@ -189,9 +189,9 @@
               } else if (result[0][0].registered == 0) {
                 scope.errorNote = result[0][0].error_note;
                 scope.showResult = true;
-                scope.checkStatus = true;
+                scope.repeat = true;
                 scope.checkId = result[0][0].check_id;
-                updateIcon('waiting', scope.checkStatus, 'view-add-card');
+                updateIcon('waiting', scope.repeat, 'view-add-card');
                 scope.viewPage = 'view-add-card';
                 scope.update();
               }
