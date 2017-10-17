@@ -97,6 +97,9 @@
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
 
+  <component-result if="{showResult}" result="{result}" errornote="{errorNote}"
+                    viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
+
   <script>
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
       history.arrayOfHistory.push(
@@ -113,6 +116,7 @@
     scope.rightbuttoncheck = false;
     scope.showError = false;
     scope.errorCode = 0;
+    scope.stepAmount = 3;
 
     console.log("TRANSFER STEP FOUR OPTS", opts)
     scope.tax = opts[1];
@@ -393,22 +397,26 @@
       if (!objectForTransfer.transactionId)
         objectForTransfer.transactionId = parseInt(Date.now() / 1000);
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
 
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Spinner start in transfer");
-        }, function () {
-          console.log("Spinner stop in transfer");
-        });
-      }
+//        if (device.platform != 'BrowserStand') {
+//          var options = {dimBackground: true};
+//
+//          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+//            console.log("Spinner start in transfer");
+//          }, function () {
+//            console.log("Spinner stop in transfer");
+//          });
+//        }
+
+
+      scope.showResult = true;
+      scope.update();
 
 
       console.log("TRANSACTION_ID", objectForTransfer.transactionId)
 
       window.api.call({
         method: 'p2p.payment',
-        stopSpinner: true,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
@@ -438,6 +446,8 @@
                     console.log("Spinner Stop Transfer Step Four 432");
                     SpinnerPlugin.activityStop();
                   }
+                  scope.showResult = false;
+                  scope.update();
 
                   blockCodeConfirmId.style.display = 'block';
                   this.secretCode = result[1][0].secret_code;
@@ -473,18 +483,27 @@
           }
           else {
 
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Transfer Step Four 471");
-              SpinnerPlugin.activityStop();
-            }
-            scope.errorMessageFromTransfer = result[0][0].error_note
-            componentUnsuccessId.style.display = 'block';
+//            if (device.platform != 'BrowserStand') {
+//              console.log("Spinner Stop View Transfer Step Four 471");
+//              SpinnerPlugin.activityStop();
+//            }
+//            scope.errorMessageFromTransfer = result[0][0].error_note
+//            componentUnsuccessId.style.display = 'block';
+            scope.errorNote = result[0][0].error_note;
+            scope.viewPage = "view-main-page";
+            scope.showResult = true;
+            updateIcon('unsuccess');
             scope.update();
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          componentUnsuccessId.style.display = 'block';
+          scope.errorNote = api_status_message;
+          scope.viewPage = "view-main-page";
+          scope.showResult = true;
+          updateIcon('unsuccess');
+          scope.update();
+//          componentUnsuccessId.style.display = 'block';
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -493,13 +512,15 @@
       setTimeout(function () {
         if (!answerFromServer) {
           if (device.platform != 'BrowserStand') {
-              console.log("Spinner stop in transfer step four by timeout");
-              SpinnerPlugin.activityStop();
+            console.log("Spinner stop in transfer step four by timeout");
+            SpinnerPlugin.activityStop();
           }
           window.api.forceClose();
-          scope.showError = true;
+//          scope.showError = true;
           scope.errorNote = "Время ожидания истекло";
-          scope.errorCode = 1;
+          scope.showResult = true;
+          scope.viewPage = 'view-authorization';
+          updateIcon('waiting');
           scope.update();
           return
         }
@@ -517,7 +538,6 @@
 
       window.api.call({
         method: 'get.payment',
-        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
@@ -542,8 +562,12 @@
                 console.log("Spinner Stop Transfer Step Four 524");
                 SpinnerPlugin.activityStop();
               }
-              componentUnsuccessId.style.display = 'block';
-              riot.update()
+//              componentUnsuccessId.style.display = 'block';
+              scope.errorNote = result[0][0].error;
+              scope.showResult = true;
+              updateIcon('unsuccess');
+              scope.update();
+//              riot.update()
 
 
             } else if (result[1][0].state == 2) {
@@ -555,7 +579,12 @@
               }
 
               window.updateBalanceGlobalFunction();
-              componentSuccessId.style.display = 'block';
+//              componentSuccessId.style.display = 'block';
+
+              scope.errorNote = window.languages.ComponentSuccessMessage;
+              scope.showResult = true;
+              updateIcon('success');
+              scope.update();
               transferFindCards(scope.objectTypeForTransfer.name);
 
 
@@ -578,7 +607,11 @@
                   SpinnerPlugin.activityStop();
                 }
 
-                componentInProcessingId.style.display = 'block';
+//                componentInProcessingId.style.display = 'block';
+                scope.errorNote = window.languages.ComponentInProcessingForTransfer;
+                scope.showResult = true;
+                updateIcon('waiting');
+                scope.update();
               }
 
             }
@@ -591,13 +624,21 @@
               console.log("Spinner Stop Transfer Step Four 570");
               SpinnerPlugin.activityStop();
             }
-            componentUnsuccessId.style.display = 'block';
+//            componentUnsuccessId.style.display = 'block';
+            scope.errorNote = result[0][0].error;
+            scope.showResult = true;
+            updateIcon('unsuccess');
+            scope.update();
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          componentUnsuccessId.style.display = 'block';
+//          componentUnsuccessId.style.display = 'block';
+          scope.errorNote = api_status_message;
+          scope.showResult = true;
+          updateIcon('unsuccess');
+          scope.update();
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }

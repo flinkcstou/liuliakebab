@@ -216,6 +216,11 @@
 
         setTimeout(function () {
           if (!answerFromServer) {
+            scope.showResult = true;
+            scope.errorNote = "Время ожидания истекло";
+            scope.viewPage = 'view-authorization';
+            updateIcon('waiting');
+            scope.update();
             if (device.platform != 'BrowserStand') {
               console.log("Spinner Stop View Add Card 201");
               SpinnerPlugin.activityStop();

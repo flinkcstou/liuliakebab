@@ -697,6 +697,8 @@
 
       setTimeout(function () {
         if (!answerFromServer) {
+          scope.showResult = false;
+
           scope.showError = true;
           scope.errorNote = "Время ожидания истекло";
           scope.errorCode = 1;
@@ -810,10 +812,13 @@
           }
           else {
             answerFromServer = true;
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner stop in pay confirm");
-              SpinnerPlugin.activityStop();
-            }
+
+            scope.showResult = false;
+
+//            if (device.platform != 'BrowserStand') {
+//              console.log("Spinner stop in pay confirm");
+//              SpinnerPlugin.activityStop();
+//            }
 //            componentUnsuccessId.style.display = 'block';
             scope.errorNote = result[1][0].error;
             scope.viewPage = "view-main-page";
@@ -825,7 +830,7 @@
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          scope.errorNote = result[1][0].error;
+          scope.errorNote = api_status_message;
           scope.viewPage = "view-main-page";
           scope.showResult = true;
           updateIcon('unsuccess');
