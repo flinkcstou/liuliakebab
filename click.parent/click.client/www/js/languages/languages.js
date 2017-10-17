@@ -185,7 +185,7 @@ var RU_LANGUAGES =
   "ComponentInProcessingPartOneForTransfer": "Перевод отправлен",
   "ComponentInProcessingPartOneForPay": "Оплата передана на обработку.",
   "ComponentInProcessingPartTwo": "Ждите СМС с результатом!",
-  "ComponentInProcessingPartTwoForTransfer": "ожидает подтверждения получателя",
+  "ComponentInProcessingPartTwoForTransfer": "и ожидает подтверждения получателя",
 
   "ComponentUnsuccessMessagePart1": 'Извините,',
   "ComponentUnsuccessMessagePart2": 'что-то пошло не так.',
