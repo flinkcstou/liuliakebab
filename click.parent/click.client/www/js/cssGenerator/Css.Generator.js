@@ -2670,7 +2670,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top:" + -22 * widthK + "px;" +
+  "top:" + -64 * widthK + "px;" +
   "}",
 
   myCardsButtonContainer: ".my-cards-button-container " +
