@@ -608,7 +608,7 @@
                 }
 
 //                componentInProcessingId.style.display = 'block';
-                scope.errorNote = window.languages.ComponentInProcessingForTransfer;
+                scope.errorNote = window.languages.ComponentInProcessingPartOne;
                 scope.showResult = true;
                 updateIcon('waiting');
                 scope.update();
