@@ -684,7 +684,7 @@
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          scope.errorNote = result[0][0].error_note;
+          scope.errorNote = api_status_message;
           scope.viewPage = "view-main-page";
           scope.showResult = true;
           updateIcon('unsuccess');
@@ -701,10 +701,6 @@
           scope.errorNote = "Время ожидания истекло";
           scope.viewPage = 'view-main-page';
           scope.update();
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner Stop View Pay Confirm New 705");
-            SpinnerPlugin.activityStop();
-          }
           window.isConnected = false;
           return
         }
@@ -731,9 +727,9 @@
 
             if (result[1][0].state == -1) {
               answerFromServer = true;
-              scope.stepErrorAmount = 2;
-              window.languages.tempText = JSON.stringify(result[1][0].error);
-              scope.errorMessageFromPayment = result[1][0].error;
+              //scope.stepErrorAmount = 2;
+//              window.languages.tempText = JSON.stringify(result[1][0].error);
+//              scope.errorMessageFromPayment = result[1][0].error;
 
               //componentUnsuccessId.style.display = 'block';
               scope.errorNote = result[1][0].error;
@@ -812,12 +808,6 @@
           else {
             answerFromServer = true;
 
-            scope.showResult = false;
-
-//            if (device.platform != 'BrowserStand') {
-//              console.log("Spinner stop in pay confirm");
-//              SpinnerPlugin.activityStop();
-//            }
 //            componentUnsuccessId.style.display = 'block';
             scope.errorNote = result[1][0].error;
             scope.viewPage = "view-main-page";
