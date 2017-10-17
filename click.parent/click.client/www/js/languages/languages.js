@@ -187,7 +187,7 @@ var RU_LANGUAGES =
 
   "ComponentInProcessingPartOne": "Перевод передан на обработку.",
   "ComponentInProcessingPartOneForTransfer": "Перевод отправлен",
-  "ComponentInProcessingPartTwoForTransfer": "ожидает подтверждения получателя",
+  "ComponentInProcessingPartTwoForTransfer": "и ожидает подтверждения получателя",
   "ComponentInProcessingForTransfer": "Перевод отправлен и ожидает подтверждения получателя",
 
   "ComponentInProcessingPartOneForPay": "Оплата передана на обработку.",
