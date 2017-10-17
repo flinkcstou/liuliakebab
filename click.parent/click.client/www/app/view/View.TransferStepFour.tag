@@ -397,18 +397,6 @@
       if (!objectForTransfer.transactionId)
         objectForTransfer.transactionId = parseInt(Date.now() / 1000);
 
-
-//        if (device.platform != 'BrowserStand') {
-//          var options = {dimBackground: true};
-//
-//          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-//            console.log("Spinner start in transfer");
-//          }, function () {
-//            console.log("Spinner stop in transfer");
-//          });
-//        }
-
-
       scope.showResult = true;
       scope.update();
 
@@ -442,10 +430,6 @@
 
                   answerFromServer = true;
 
-                  if (device.platform != 'BrowserStand') {
-                    console.log("Spinner Stop Transfer Step Four 432");
-                    SpinnerPlugin.activityStop();
-                  }
                   scope.showResult = false;
                   scope.update();
 
@@ -463,16 +447,6 @@
                 }
                 if (result[1][0].secret_code == 0) {
 
-//                  if (device.platform != 'BrowserStand') {
-//                    var options = {dimBackground: true};
-//
-//                    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-//                      console.log("Started");
-//                    }, function () {
-//                      console.log("closed");
-//                    });
-//                  }
-
                   setTimeout(function () {
                     checkTransferStatus(result[1][0].payment_id);
                   }, 2000);
@@ -483,10 +457,6 @@
           }
           else {
 
-//            if (device.platform != 'BrowserStand') {
-//              console.log("Spinner Stop View Transfer Step Four 471");
-//              SpinnerPlugin.activityStop();
-//            }
 //            scope.errorMessageFromTransfer = result[0][0].error_note
 //            componentUnsuccessId.style.display = 'block';
             scope.errorNote = result[0][0].error_note;
@@ -511,10 +481,7 @@
 
       setTimeout(function () {
         if (!answerFromServer) {
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner stop in transfer step four by timeout");
-            SpinnerPlugin.activityStop();
-          }
+
           window.api.forceClose();
 //          scope.showError = true;
           scope.errorNote = "Время ожидания истекло";
@@ -558,10 +525,6 @@
 
               window.languages.tempText = JSON.stringify(result[1][0].error);
               scope.errorMessageFromTransfer = result[1][0].error;
-              if (device.platform != 'BrowserStand') {
-                console.log("Spinner Stop Transfer Step Four 524");
-                SpinnerPlugin.activityStop();
-              }
 //              componentUnsuccessId.style.display = 'block';
               scope.errorNote = result[0][0].error;
               scope.showResult = true;
@@ -572,11 +535,6 @@
 
             } else if (result[1][0].state == 2) {
               answerFromServer = true;
-
-              if (device.platform != 'BrowserStand') {
-                console.log("Spinner Stop Transfer Step Four 534");
-                SpinnerPlugin.activityStop();
-              }
 
               window.updateBalanceGlobalFunction();
 //              componentSuccessId.style.display = 'block';
@@ -602,11 +560,6 @@
               } else {
                 answerFromServer = true;
 
-                if (device.platform != 'BrowserStand') {
-                  console.log("Spinner Stop Transfer Step Four 557");
-                  SpinnerPlugin.activityStop();
-                }
-
 //                componentInProcessingId.style.display = 'block';
                 scope.errorNote = window.languages.ComponentInProcessingPartOne;
                 scope.showResult = true;
@@ -620,10 +573,6 @@
           }
           else {
             answerFromServer = true;
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop Transfer Step Four 570");
-              SpinnerPlugin.activityStop();
-            }
 //            componentUnsuccessId.style.display = 'block';
             scope.errorNote = result[0][0].error;
             scope.showResult = true;

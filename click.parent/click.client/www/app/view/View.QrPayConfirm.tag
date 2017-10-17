@@ -400,7 +400,7 @@
               } else {
 
                 answerFromServer = true;
-                scope.errorNote = window.languages.ComponentInProcessingPayment;
+                scope.errorNote = window.languages.ComponentInProcessingPartOneForPay;
                 scope.showResult = true;
                 scope.stepAmount = waitingStep;
                 updateIcon('waiting');
