@@ -11861,11 +11861,11 @@ var css = {
   "height: " + 74 * widthK + "px;" +
   "left: 28%;" +
   "width: 44%;" +
-  "top: 90%;" +
   "background-color: #01B8FE;" +
   "border-radius: " + 10 * widthK + "px;" +
-  "bottom: 0;" +
-  "font-size: " + 38 * widthK + "px;" +
+  "bottom: 10%;" +
+  "font-size: " + 32 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
   "color: #ffffff;" +
   "opacity: 0;" +
   "}",

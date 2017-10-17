@@ -104,7 +104,7 @@ var RU_LANGUAGES =
 
   "ComponentResultPleaseWait": "Пожалуйста подождите...",
   "ComponentResultOk": "Закрыть",
-  "ComponentResultRepeat": "ПОВТОРИТЬ",
+  "ComponentResultRepeat": "Повторить",
 
   "ViewAmountCalculatorNameTitle": "КАЛЬКУЛЯТОР ВАЛЮТ",
   "ViewAmountCalculatorTextOne": "Введите сумму в USD",
@@ -187,7 +187,8 @@ var RU_LANGUAGES =
 
   "ComponentInProcessingPartOne": "Перевод передан на обработку.",
   "ComponentInProcessingPartOneForTransfer": "Перевод отправлен",
-  "ComponentInProcessingForTransfer": "Перевод передан на обработку",
+  "ComponentInProcessingPartTwoForTransfer": "и ожидает подтверждения получателя",
+  "ComponentInProcessingForTransfer": "Перевод отправлен и ожидает подтверждения получателя",
 
   "ComponentInProcessingPartOneForPay": "Оплата передана на обработку.",
   "ComponentInProcessingPartTwo": "Ждите СМС с результатом!",
