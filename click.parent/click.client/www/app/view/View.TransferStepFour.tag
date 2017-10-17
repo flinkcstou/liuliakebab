@@ -519,7 +519,7 @@
 //          scope.showError = true;
           scope.errorNote = "Время ожидания истекло";
           scope.showResult = true;
-          scope.viewPage = 'view-authorization';
+          scope.viewPage = 'view-main-page';
           updateIcon('waiting');
           scope.update();
           return

@@ -697,11 +697,9 @@
 
       setTimeout(function () {
         if (!answerFromServer) {
-          scope.showResult = false;
-
-          scope.showError = true;
+          scope.showResult = true;
           scope.errorNote = "Время ожидания истекло";
-          scope.errorCode = 1;
+          scope.viewPage = 'view-main-page';
           scope.update();
           if (device.platform != 'BrowserStand') {
             console.log("Spinner Stop View Pay Confirm New 705");
@@ -757,6 +755,7 @@
 
               if (result[1][0].qr_image) {
                 answerFromServer = true;
+                scope.showResult = false;
                 scope.qrImage = result[1][0].qr_image;
                 scope.qrHeader = result[1][0].qr_header;
                 scope.qrFooter = result[1][0].qr_footer;
