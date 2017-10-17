@@ -3,7 +3,7 @@
     <div id="alertNewIconId" class="component-result-icon"
          style="background-image: url('resources/gifs/loading.gif')"></div>
     <p id="wait" class="component-result-wait">{window.languages.ComponentResultPleaseWait}</p>
-    <p id="resultMessage" class="component-result-message" if="{!opts.clickpinerror}">{opts.errornote}</p>
+    <p id="resultMessage" class="component-result-message">{opts.errornote}</p>
 
     <button id="alertOkButtonId" class="component-result-button-inner-container"
             ontouchstart="closeResultFormStart(this.id)"
@@ -90,56 +90,44 @@
 
 //        if (scope.parent) {
           console.log("Alert from parent:", scope.parent);
+          console.log("OPTS in RESULT COMPONENT", opts)
           scope.parent.showResult = false;
 
 
-          if (opts.viewpage) {
-            console.log("Alert to ", opts.viewpage);
+//          if (opts.viewpage) {
+//            console.log("Alert to ", opts.viewpage);
+//            riotTags.innerHTML = "<" + opts.viewpage + ">";
+//            riot.mount(opts.viewpage);
+//            this.parent.unmount();
+//            this.unmount();
+//
+//          }
+
+
+          if (opts.step_amount) {
+            history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
+            console.log(history.arrayOfHistory)
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+
+            console.log("after success", history.arrayOfHistory)
+
+            if (history.arrayOfHistory.length != 0) {
+              console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
+              riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+              riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+              return;
+            } else {
+              console.log("unsuccess mounting main-page");
+              riotTags.innerHTML = "<view-main-page>";
+              riot.mount("view-main-page");
+            }
+          } else if (!opts.step_amount && opts.viewpage) {
             riotTags.innerHTML = "<" + opts.viewpage + ">";
             riot.mount(opts.viewpage);
             this.parent.unmount();
             this.unmount();
-
           }
 
-          console.log("OPTS in ALERT", opts)
-          console.log(JSON.stringify(history.arrayOfHistory))
-
-          if (opts.step_amount)
-            if (opts.step_amount || opts.step_amount == 0) {
-              console.log("opts.step_amount", opts)
-              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
-              console.log(history.arrayOfHistory)
-              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-              if (!opts.viewmount)
-                onBackKeyDown()
-              else {
-                riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
-                riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
-              }
-
-            }
-//        }
-//        else {
-//          console.log("Alert without parent");
-//          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device') {
-//            scope.outerShowAlertBool = true;
-//            console.log("Alert to device registration");
-//            riot.update()
-//            riotTags.innerHTML = "<view-registration-device>";
-//            riot.mount('view-registration-device');
-//          }
-//          else {
-//            console.log("Alert to authorization");
-//            scope.outerShowAlertBool = true;
-//            riot.update()
-//            riotTags.innerHTML = "<view-authorization>";
-//            riot.mount('view-authorization');
-//          }
-//        }
-
-          //OK
-          riot.update()
 
         }
       }

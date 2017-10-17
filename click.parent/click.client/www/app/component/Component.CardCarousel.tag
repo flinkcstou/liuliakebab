@@ -68,7 +68,6 @@
     var scope = this;
     scope.invoiceLeft = 100 * widthK;
     scope.invoiceList = [];
-    console.log(" viewMainPage.addFirstCardBool", viewMainPage.addFirstCardBool)
 
     var arrayOfPhones = [];
 
@@ -82,11 +81,9 @@
       if (scope.cardsarray.length < 1) {
         scope.addFirstCardBool = true;
         viewMainPage.addFirstCardBool = true;
-        console.log("addFirstCardBool=true 11");
         scope.parent.update();
       }
       scope.update();
-      console.log("first card link", JSON.stringify(scope.cardsarray[0]));
     }
 
 
@@ -132,11 +129,6 @@
       invoice = JSON.parse(invoice);
 
       touchEndInvoiceOne = event.changedTouches[0].pageX;
-
-      console.log('touchEndInvoiceOne', touchEndInvoiceOne)
-
-      console.log('START', touchStartInvoiceOne)
-      console.log('END', touchEndInvoiceOne)
 
       if (Math.abs(touchStartInvoiceOne - touchEndInvoiceOne) < 20) {
         event.stopPropagation();
@@ -184,20 +176,16 @@
 
       if (modeOfApp.offlineMode) return;
 
-      console.log("000 ", scope.checkSumOfHash)
-
       if (localStorage.getItem('click_client_accountInfo') && !scope.checkSumOfHash) {
 
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
-        console.log("getAccountsCards ", JSON.stringify(getAccountsCards))
+
         if (getAccountsCards.length < 1) {
           scope.addFirstCardBool = true;
           viewMainPage.addFirstCardBool = true;
-          console.log("viewMainPage.addFirstCardBool = true; 22")
           scope.parent.update();
         } else {
           viewMainPage.addFirstCardBool = false;
-          console.log("addFirstCardBool=false 22");
           scope.parent.update();
         }
         var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'))
@@ -213,8 +201,6 @@
         }
       }
 
-      console.log("cardsArray new must", JSON.stringify(scope.cardsarray))
-
       var numberOfCardPartOne;
       var numberOfCardPartTwo;
       var typeOfCard;
@@ -222,7 +208,6 @@
       if (!scope.checkSumOfHash) {
         count = 1;
         if (viewMainPage.addFirstCardBool) count = 2;
-        console.log("COUNT=", count)
         for (var i = 0; i < getAccountsCards.length; i++) {
 
           if (getAccountsCards[i].access == 0) break;
@@ -242,7 +227,7 @@
             card_num_hash: getAccountsCards[i].card_num_hash,
             card_num_crypted: getAccountsCards[i].card_num_crypted,
             checksum: getAccountsCards[i].checksum,
-//            bankName: typeOfCard,
+            bankName: typeOfCard,
             name: getAccountsCards[i].description,
             salary: '',
             error_message: null,
@@ -263,22 +248,14 @@
 
           scope.cardsarray[getAccountsCards[i].id] = card;
 
-
           localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
 
           count++;
 
-
-          console.log("COUNT =", count)
-          console.log("CARDsARRAY =", JSON.stringify(scope.cardsarray))
-
-//        cardNumber %= count;
           localStorage.setItem('click_client_countCard', count);
-//        localStorage.setItem('cardNumber', cardNumber);
         }
 
       }
-      console.log("asd");
 
       scope.parent.update();
       scope.update(scope.cardsarray);
@@ -287,12 +264,10 @@
 
 
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
-        console.log("kkk");
         writeBalance();
         scope.update()
       } else {
         if (invoice) {
-          console.log("zzz");
           scope.update();
         }
       }
@@ -384,11 +359,8 @@
                   }
                 }
 
-                console.log("invoices", scope.invoiceList)
-
                 if (scope.invoiceList)
                   setTimeout(function () {
-                    console.log("addcard 473")
                     addCard()
                   }, 0);
               }
@@ -496,8 +468,6 @@
 
     scope.onComponentCreated = onComponentCreated = function (cardNumberParameter) {
 
-      console.log("ON COMPONENT CREATED")
-
       if (modeOfApp.onlineMode) {
         if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -576,7 +546,6 @@
                   var countCard;
 
                   if (loginInfo.default_account && loginInfo.default_account != 0) {
-                    console.log("default account is present")
                     countCard = 2;
 
                     for (var i = 0; i < result[1].length; i++) {
@@ -590,7 +559,6 @@
                       arrayAccountInfo.push(result[1][i])
                     }
                   } else {
-                    console.log("default account is absent")
                     countCard = 1;
 
                     for (var i = 0; i < result[1].length; i++) {
@@ -601,18 +569,9 @@
                   }
                   var accountInfo = JSON.stringify(arrayAccountInfo);
                   if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
-                    console.log("removing")
                     localStorage.removeItem("click_client_accountInfo")
                   }
-
                   localStorage.setItem("click_client_accountInfo", accountInfo);
-
-                  console.log("accountInfo", JSON.parse(localStorage.getItem("click_client_accountInfo")));
-                  console.log("cards", JSON.parse(localStorage.getItem("click_client_cards")));
-                  console.log("countCard", JSON.parse(localStorage.getItem("click_client_countCard")));
-                  console.log("cardNumber", JSON.parse(localStorage.getItem("cardNumber")));
-                  console.log("loginInfo", JSON.parse(localStorage.getItem("click_client_loginInfo")));
-
 
                   cardImagesCaching();
 
@@ -634,7 +593,6 @@
                       console.log("Spinner Stop Component Card Carousel 657");
                       SpinnerPlugin.activityStop();
                     }
-                    console.log("addcard 696")
                     addCard()
                   }, 0);
                 }
@@ -668,7 +626,6 @@
       scope.invoiceList = [];
       scope.invoiceCheck = false;
 
-      console.log("THERE IS NO CARDS IN LOCALSTORAGE");
       if (!localStorage.getItem('click_client_cards')) {
         scope.cardNumber = 1;
         count = 1;
@@ -676,7 +633,6 @@
         localStorage.setItem("cardNumber", scope.cardNumber);
         localStorage.setItem("click_client_countCard", count);
       }
-
       changePositionCardCarousel()
 
 
@@ -692,9 +648,6 @@
       cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
       if (modeOfApp.offlineMode) {
-
-        console.log("scope.switchToOfflineMode");
-
         setTimeout(scope.switchToOfflineMode, 10);
       }
     });
@@ -706,8 +659,6 @@
         if (localStorage.getItem('click_client_cards'))
           getAccountsCards = JSON.parse(localStorage.getItem('click_client_cards'))
       }
-
-      console.log("www");
 
       for (var i in getAccountsCards) {
         window.api.call({
@@ -822,13 +773,11 @@
 
           if (scope.invoiceCheck && scope.cardNumber == 0)
             scope.cardNumber = 1;
-          console.log("End Touch Carousel", scope.cardNumber);
 
           localStorage.setItem("cardNumber", scope.cardNumber);
 
           pos = (scope.cardNumber) * 540 * widthK;
           var sendChosenCardId;
-          console.log("CARD CARD CARD", scope.cardsarray);
 
           for (var i in scope.cardsarray) {
             if (scope.cardsarray[i].countCard == scope.cardNumber) {
@@ -928,7 +877,6 @@
 
 
       if (viewMainPage.myCards) {
-        console.log("MY CARDS");
         for (var i in scope.cardsarray) {
           if (scope.cardsarray[i].countCard == scope.cardNumber) {
 
