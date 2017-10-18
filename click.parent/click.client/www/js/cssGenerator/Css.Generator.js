@@ -11766,7 +11766,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: -50%;" +
-  "top: 78%;" +
+  "top: 63%;" +
   "left: 50%;" +
   "-webkit-transform: translate(-50%, -50%);" +
   "transform: translate(-50%, -50%);" +
@@ -11780,7 +11780,7 @@ var css = {
   "-webkit-transition-delay: 0.8s;" +
   "transition: 0.7s;" +
   "transition-delay: 0.8s;" +
-  "top: 75% !important;" +
+  "top: 60% !important;" +
   "opacity: 1 !important;" +
   "}",
 
@@ -11788,7 +11788,7 @@ var css = {
   "{" +
   "-webkit-transition: 0.7s;" +
   "transition: 0.7s;" +
-  "top: 78% !important;" +
+  "top: 63% !important;" +
   "opacity: 0 !important;" +
   "}",
 
@@ -11799,7 +11799,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: -50%;" +
-  "top: 75%;" +
+  "top: 60%;" +
   "left:  50%;" +
   "-webkit-transform: translate(-50%, -50%);" +
   "transform: translate(-50%, -50%);" +
@@ -11815,7 +11815,7 @@ var css = {
   "{" +
   "-webkit-transition: 0.7s;" +
   "transition: 0.7s;" +
-  "top: 78% !important;" +
+  "top: 63% !important;" +
   "opacity: 0 !important;" +
   "}",
 
@@ -11825,7 +11825,7 @@ var css = {
   "-webkit-transition-delay: 0.8s;" +
   "transition: 0.7s;" +
   "transition-delay: 0.8s;" +
-  "top: 75% !important;" +
+  "top: 60% !important;" +
   "opacity: 1 !important;" +
   "}",
 
@@ -11833,11 +11833,11 @@ var css = {
   "{" +
   "from {" +
     "opacity: 0;" +
-    "top: 78%;" +
+    "top: 63%;" +
   "}" +
   "to {" +
     "opacity: 1;" +
-    "top: 75%;" +
+    "top: 60%;" +
   "}" +
   "}",
 
@@ -11845,11 +11845,11 @@ var css = {
   "{" +
   "from {" +
     "opacity: 0;" +
-    "top: 78%;" +
+    "top: 63%;" +
   "}" +
   "to {" +
     "opacity: 1;" +
-    "top: 75%;" +
+    "top: 60%;" +
   "}" +
   "}",
 

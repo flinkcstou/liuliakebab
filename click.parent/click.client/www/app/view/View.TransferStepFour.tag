@@ -484,14 +484,13 @@
               window.languages.tempText = JSON.stringify(result[1][0].error);
               scope.errorMessageFromTransfer = result[1][0].error;
 //              componentUnsuccessId.style.display = 'block';
-              updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[0][0].error);
+              updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[1][0].error);
 //              riot.update()
             } else if (result[1][0].state == 2) {
               answerFromServer = true;
 
               window.updateBalanceGlobalFunction();
 //              componentSuccessId.style.display = 'block';
-
               updateResultComponent(true, scope.stepAmount, null, 'success', window.languages.ComponentSuccessMessage);
               transferFindCards(scope.objectTypeForTransfer.name);
             } else if (result[1][0].state == 1) {
