@@ -97,7 +97,7 @@
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
 
-  <component-result if="{showResult}" result="{result}" errornote="{errorNote}"
+  <component-result if="{showResult}" result="{result}" errornote="{resultText}"
                     viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
 
   <script>
@@ -397,8 +397,8 @@
       if (!objectForTransfer.transactionId)
         objectForTransfer.transactionId = parseInt(Date.now() / 1000);
 
-      scope.showResult = true;
-      scope.update();
+      initResultComponent();
+
 
 
       console.log("TRANSACTION_ID", objectForTransfer.transactionId)
@@ -430,8 +430,7 @@
 
                   answerFromServer = true;
 
-                  scope.showResult = false;
-                  scope.update();
+                  closeResultComponent();
 
                   blockCodeConfirmId.style.display = 'block';
                   this.secretCode = result[1][0].secret_code;
@@ -459,20 +458,13 @@
 
 //            scope.errorMessageFromTransfer = result[0][0].error_note
 //            componentUnsuccessId.style.display = 'block';
-            scope.errorNote = result[0][0].error_note;
-            scope.viewPage = "view-main-page";
-            scope.showResult = true;
-            updateIcon('unsuccess');
+            updateResultComponent(true, null, "view-main-page", 'unsuccess', result[0][0].error_note)
             scope.update();
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          scope.errorNote = api_status_message;
-          scope.viewPage = "view-main-page";
-          scope.showResult = true;
-          updateIcon('unsuccess');
-          scope.update();
+          updateResultComponent(true, null, "view-main-page", 'unsuccess', api_status_message);
 //          componentUnsuccessId.style.display = 'block';
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
@@ -484,11 +476,7 @@
 
           window.api.forceClose();
 //          scope.showError = true;
-          scope.errorNote = "Время ожидания истекло";
-          scope.showResult = true;
-          scope.viewPage = 'view-main-page';
-          updateIcon('waiting');
-          scope.update();
+          updateResultComponent(true, null, "view-main-page", 'waiting', "Время ожидания истекло");
           return
         }
       }, 30000)
@@ -526,10 +514,7 @@
               window.languages.tempText = JSON.stringify(result[1][0].error);
               scope.errorMessageFromTransfer = result[1][0].error;
 //              componentUnsuccessId.style.display = 'block';
-              scope.errorNote = result[0][0].error;
-              scope.showResult = true;
-              updateIcon('unsuccess');
-              scope.update();
+              updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[0][0].error);
 //              riot.update()
 
 
@@ -539,10 +524,7 @@
               window.updateBalanceGlobalFunction();
 //              componentSuccessId.style.display = 'block';
 
-              scope.errorNote = window.languages.ComponentSuccessMessage;
-              scope.showResult = true;
-              updateIcon('success');
-              scope.update();
+              updateResultComponent(true, scope.stepAmount, null, 'success', window.languages.ComponentSuccessMessage);
               transferFindCards(scope.objectTypeForTransfer.name);
 
 
@@ -597,6 +579,26 @@
     closeSecretCodePage = function () {
       blockCodeConfirmId.style.display = 'none';
       componentInProcessingId.style.display = 'block';
+    }
+
+    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+        console.log("OPEN RESULT COMPONENT");
+        scope.showResult = showResult;
+        scope.stepAmount = stepAmount;
+        scope.viewPage = viewPage;
+        scope.resultText = text;
+        updateIcon(status);
+        scope.update();
+    }
+
+    closeResultComponent = function () {
+        scope.showResult = false;
+        scope.update();
+    }
+
+    initResultComponent = function () {
+        scope.showResult = true;
+        scope.update();
     }
   </script>
 </view-transfer-stepfour>
