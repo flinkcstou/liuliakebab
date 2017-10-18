@@ -118,6 +118,8 @@
     scope.errorCode = 0;
     scope.stepAmount = 3;
 
+    var pageToReturnIfError = 'view-main-page';
+
     console.log("TRANSFER STEP FOUR OPTS", opts)
     scope.tax = opts[1];
     scope.errorMessageFromTransfer = '';
@@ -432,12 +434,12 @@
           else {
 //            scope.errorMessageFromTransfer = result[0][0].error_note
 //            componentUnsuccessId.style.display = 'block';
-            updateResultComponent(true, null, "view-main-page", 'unsuccess', result[0][0].error_note)
+            updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[0][0].error_note)
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          updateResultComponent(true, null, "view-main-page", 'unsuccess', api_status_message);
+          updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
 //          componentUnsuccessId.style.display = 'block';
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
@@ -448,7 +450,7 @@
         if (!answerFromServer) {
           window.api.forceClose();
 //          scope.showError = true;
-          updateResultComponent(true, null, "view-main-page", 'waiting', window.languages.WaitingTimeExpiredText);
+          updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
           return
         }
       }, 30000)

@@ -83,6 +83,7 @@
 
     console.log('OPTS QR CONFIRM', opts)
     var scope = this;
+    var pageToReturnIfError = 'view-main-page';
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -296,7 +297,7 @@
 
           onFail: function (api_status, api_status_message, data) {
             answerFromServer = true;
-            updateResultComponent(true, null, "view-main-page", 'unsuccess', api_status_message);
+            updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
@@ -306,7 +307,7 @@
           if (!answerFromServer) {
             scope.showResult = true;
             scope.errorNote = window.languages.WaitingTimeExpiredText;
-            scope.viewPage = 'view-main-page';
+            scope.viewPage = pageToReturnIfError;
             scope.update();
             window.isConnected = false;
             return
@@ -385,7 +386,7 @@
           }
           else {
             answerFromServer = true;
-            updateResultComponent(true, errorStep, "view-main-page", 'unsuccess', result[1][0].error);
+            updateResultComponent(true, errorStep, pageToReturnIfError, 'unsuccess', result[1][0].error);
 
           }
         },
@@ -393,7 +394,7 @@
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
 
-          updateResultComponent(true, errorStep, "view-main-page", 'unsuccess', api_status_message);
+          updateResultComponent(true, errorStep, pageToReturnIfError, 'unsuccess', api_status_message);
 
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
