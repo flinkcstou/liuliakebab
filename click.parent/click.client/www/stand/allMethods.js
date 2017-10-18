@@ -148,58 +148,58 @@ window.fakedSocket.register("get.accounts", function (input) {
   var array = [];
   array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
   array.push([
-    // {
-    //   acc_abs: "DUET    ",
-    //   access: 2,
-    //   accno: "8600 **** **** 0880",
-    //   background_url: "resources/icons/cards/aab.png",
-    //   bank_name: "UZCARD",
-    //   branch: "00000",
-    //   card_num: "1234 **** **** 5678",
-    //   card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw=",
-    //   card_num_hash: "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
-    //   currency: "000",
-    //   background_color_bottom: "255,141,101",
-    //   background_color_top: "192,62,108",
-    //   font_color: "42,42,42",
-    //   card_background_url: 'resources/icons/cards/aab.png',
-    //   currency_code: "UZS",
-    //   currency_name: "сум                                               ",
-    //   description: "Карта UZCARD-Online",
-    //   expire_date: "1806",
-    //   id: 2484171,
-    //   image_url: "resources/icons/cards/aab.png",
-    //   is_uzcard: 1,
-    //   checksum: 1,
-    //   removable: 1,
-    //   short_name: "aloq"
-    // },
-    // {
-    //   acc_abs: "SMARTV    ",
-    //   access: 2,
-    //   accno: "8600 **** **** 0890",
-    //   background_url: "resources/icons/cards/hitech.png",
-    //   bank_name: "UZCARD",
-    //   branch: "00000",
-    //   card_num: "2300 **** **** 1111",
-    //   card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw=",
-    //   card_num_hash: "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
-    //   currency: "000",
-    //   background_color_bottom: "255,33,101",
-    //   background_color_top: "6,62,12",
-    //   font_color: "255,255,255",
-    //   card_background_url: 'resources/icons/cards/hitech.png',
-    //   currency_code: "UZS",
-    //   currency_name: "сум                                               ",
-    //   description: "Карта UZCARD-Online",
-    //   expire_date: "1806",
-    //   id: 7487271,
-    //   image_url: "resources/icons/cards/hitech.png",
-    //   is_uzcard: 1,
-    //   removable: 1,
-    //   checksum: 2,
-    //   short_name: "aloq"
-    // },
+    {
+      acc_abs: "DUET    ",
+      access: 2,
+      accno: "8600 **** **** 0880",
+      background_url: "resources/icons/cards/aab.png",
+      bank_name: "UZCARD",
+      branch: "00000",
+      card_num: "1234 **** **** 5678",
+      card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw=",
+      card_num_hash: "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
+      currency: "000",
+      background_color_bottom: "255,141,101",
+      background_color_top: "192,62,108",
+      font_color: "42,42,42",
+      card_background_url: 'resources/icons/cards/aab.png',
+      currency_code: "UZS",
+      currency_name: "сум                                               ",
+      description: "Карта UZCARD-Online",
+      expire_date: "1806",
+      id: 2484171,
+      image_url: "resources/icons/cards/aab.png",
+      is_uzcard: 1,
+      checksum: 1,
+      removable: 1,
+      short_name: "aloq"
+    },
+    {
+      acc_abs: "SMARTV    ",
+      access: 2,
+      accno: "8600 **** **** 0890",
+      background_url: "resources/icons/cards/hitech.png",
+      bank_name: "UZCARD",
+      branch: "00000",
+      card_num: "2300 **** **** 1111",
+      card_num_crypted: "lOsf9WfWjE0SkLmL/vo7BZaXMoJzK7kko4NdN66GDH+AYhDbjw7vzSKi7HcX0XZgLF+KKa8DMlt3Y2Gd4hynoGo46t9ue/unPvX6KHO4TFKeEFrdo/BI5FcwF9gY3703MoVidiu1a1tdAotUXXB+sSlDFJkZghcg8+BQX3r9Zzw=",
+      card_num_hash: "06F93764713760A6DEA80ABFADE34B17029CE010C391674798CCB7DEB77A34FC",
+      currency: "000",
+      background_color_bottom: "255,33,101",
+      background_color_top: "6,62,12",
+      font_color: "255,255,255",
+      card_background_url: 'resources/icons/cards/hitech.png',
+      currency_code: "UZS",
+      currency_name: "сум                                               ",
+      description: "Карта UZCARD-Online",
+      expire_date: "1806",
+      id: 7487271,
+      image_url: "resources/icons/cards/hitech.png",
+      is_uzcard: 1,
+      removable: 1,
+      checksum: 2,
+      short_name: "aloq"
+    },
     //
     // {
     //   acc_abs: "SMARTV    ",
@@ -12893,6 +12893,30 @@ window.fakedSocket.register("card.add.check", function (input) {
         "error": 0,
         "error_note": "Карта успешно добавлена",
         "registered": 1
+      }]
+    ];
+  }
+
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'wrong'
+    }
+  ];
+});
+
+
+window.fakedSocket.register("add.favourite", function (input) {
+
+  if (input) {
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": "Карта успешно добавлена",
       }]
     ];
   }
