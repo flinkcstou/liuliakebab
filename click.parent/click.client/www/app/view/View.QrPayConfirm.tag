@@ -384,8 +384,6 @@
               scope.stepAmount = successStep;
               updateIcon('success');
               scope.update();
-//              componentSuccessId.style.display = 'block';
-
 
             } else if (result[1][0].state == 1) {
 
@@ -405,8 +403,6 @@
                 scope.stepAmount = waitingStep;
                 updateIcon('waiting');
                 scope.update();
-
-//                componentInProcessingId.style.display = 'block';
               }
 
             }
@@ -422,19 +418,19 @@
             updateIcon('unsuccess');
             scope.update();
 
-//            componentUnsuccessId.style.display = 'block';
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
+
           scope.errorNote = api_status_message;
           scope.viewPage = "view-main-page";
           scope.showResult = true;
           scope.stepAmount = errorStep;
           updateIcon('unsuccess');
           scope.update();
-//          componentUnsuccessId.style.display = 'block';
+
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }

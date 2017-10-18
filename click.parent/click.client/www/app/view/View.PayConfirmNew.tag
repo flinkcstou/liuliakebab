@@ -132,7 +132,7 @@
                    errornote="{errorNote}"></component-alert>
 
 
-  <component-result if="{showResult}" result="{result}" errornote="{errorNote}"
+  <component-result if="{showResult}" result="{result}" errornote="{resultText}"
                     viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
 
 
@@ -216,6 +216,12 @@
     scope.stepAmount = 3;
     scope.stepErrorAmount = 3;
     scope.errorCode = 0;
+
+    var pageToReturnIfError = 'view-main-page';
+    var getPaymentSuccessStep = 3,
+      getPaymentErrorStep = 2,
+      appPaymentErrorStep = 3;
+
 
     this.formType = opts.formtype;
     this.firstFieldId = opts.firstFieldId;
@@ -509,21 +515,9 @@
       if (Math.abs(enterPayStartY - enterPayEndY) <= 20 && Math.abs(enterPayStartX - enterPayEndX) <= 20) {
 
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
           scope.showError = true;
           scope.errorNote = question;
-//        confirm(question)
-//        scope.confirmShowBool = true;
-//        scope.confirmNote = question;
-//        scope.confirmType = 'local';
-//        scope.result = function (bool) {
-//          if (bool) {
-//            localStorage.clear();
-//            window.location = 'index.html'
-//            scope.unmount()
-//            return
-//          }
-//        };
           scope.update();
           return
         }
@@ -618,8 +612,7 @@
         payment_data[opts.optionAttribute] = opts.optionValue;
       }
 
-      scope.showResult = true;
-      scope.update();
+      initResultComponent();
 
       window.api.call({
         method: 'app.payment',
@@ -652,44 +645,23 @@
 
                 answerFromServer = true;
 
-//                if (device.platform != 'BrowserStand') {
-//                  console.log("Spinner Stop View Pay Confirm New 676");
-//                  SpinnerPlugin.activityStop();
-//                }
-
                 viewServicePinCards.friendHelpPaymentMode = false;
                 viewServicePinCards.chosenFriendForHelp = null;
 
-//                componentSuccessId.style.display = 'block';
-
-                scope.errorNote = result[0][0].error_note;
-                scope.showResult = true;
-                updateIcon('success');
-                scope.update();
+                updateResultComponent(true, getPaymentSuccessStep, null, 'success', result[0][0].error_note);
               }
             }
           }
           else {
             answerFromServer = true;
-//            scope.errorMessageFromPayment = result[0][0].error_note;
-//            componentUnsuccessId.style.display = 'block';
-//            scope.update();
-
-            scope.errorNote = result[0][0].error_note;
-            scope.showResult = true;
-            updateIcon('unsuccess');
-            scope.update();
+            updateResultComponent(true, appPaymentErrorStep, null, 'unsuccess', result[0][0].error_note);
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          scope.errorNote = api_status_message;
-          scope.viewPage = "view-main-page";
-          scope.showResult = true;
-          updateIcon('unsuccess');
-          scope.update();
-          //componentUnsuccessId.style.display = 'block';
+          updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
+
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -697,10 +669,7 @@
 
       setTimeout(function () {
         if (!answerFromServer) {
-          scope.showResult = true;
-          scope.errorNote = "Время ожидания истекло";
-          scope.viewPage = 'view-main-page';
-          scope.update();
+          updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
           window.isConnected = false;
           return
         }
@@ -726,17 +695,9 @@
 
 
             if (result[1][0].state == -1) {
-              answerFromServer = true;
-              //scope.stepErrorAmount = 2;
-//              window.languages.tempText = JSON.stringify(result[1][0].error);
-//              scope.errorMessageFromPayment = result[1][0].error;
 
-              //componentUnsuccessId.style.display = 'block';
-              scope.errorNote = result[1][0].error;
-              scope.stepAmount = 2;
-              scope.showResult = true;
-              updateIcon('unsuccess');
-              scope.update();
+              answerFromServer = true;
+              updateResultComponent(true, getPaymentErrorStep, null, 'unsuccess', result[1][0].error);
 
 
             } else if (result[1][0].state == 2) {
@@ -745,13 +706,10 @@
 
               viewServicePinCards.friendHelpPaymentMode = false;
               viewServicePinCards.chosenFriendForHelp = null;
-              scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
-              this.operationMessage = window.languages.ComponentSuccessMessageForPay;
-
 
               if (result[1][0].qr_image) {
                 answerFromServer = true;
-                scope.showResult = false;
+                closeResultComponent();
                 scope.qrImage = result[1][0].qr_image;
                 scope.qrHeader = result[1][0].qr_header;
                 scope.qrFooter = result[1][0].qr_footer;
@@ -759,12 +717,9 @@
                 componentGeneratedQrId.style.display = 'block';
                 qrFooterTextId.innerHTML = result[1][0].qr_footer;
               } else {
-                scope.errorNote = window.languages.ComponentSuccessMessageForPay;
-                scope.showResult = true;
-                updateIcon('success');
-                scope.update();
+                updateResultComponent(true, getPaymentSuccessStep, null, 'success', window.languages.ComponentSuccessMessageForPay);
+
               }
-              //componentSuccessId.style.display = 'block';
 
 
             } else if (result[1][0].state == 1) {
@@ -785,20 +740,8 @@
                 viewServicePinCards.friendHelpPaymentMode = false;
                 viewServicePinCards.chosenFriendForHelp = null;
 
-                scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
-//                scope.update();
-//
-//                if (device.platform != 'BrowserStand') {
-//                  console.log("Spinner stop in pay confirm");
-//                  SpinnerPlugin.activityStop();
-//                }
+                updateResultComponent(true, getPaymentSuccessStep, null, 'waiting', window.languages.ComponentInProcessingPartOneForPay);
 
-                scope.errorNote = window.languages.ComponentInProcessingPayment;
-                scope.showResult = true;
-                updateIcon('waiting');
-                scope.update();
-
-                //componentInProcessingId.style.display = 'block';
               }
 
             }
@@ -807,24 +750,15 @@
           }
           else {
             answerFromServer = true;
+            updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[1][0].error);
 
-//            componentUnsuccessId.style.display = 'block';
-            scope.errorNote = result[1][0].error;
-            scope.viewPage = "view-main-page";
-            scope.showResult = true;
-            updateIcon('unsuccess');
-            scope.update();
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          scope.errorNote = api_status_message;
-          scope.viewPage = "view-main-page";
-          scope.showResult = true;
-          updateIcon('unsuccess');
-          scope.update();
-//          componentUnsuccessId.style.display = 'block';
+          updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
+
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -1064,5 +998,27 @@
       }
 
     }
+
+
+    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+      console.log("OPEN RESULT COMPONENT");
+      scope.showResult = showResult;
+      scope.stepAmount = stepAmount;
+      scope.viewPage = viewPage;
+      scope.resultText = text;
+      updateIcon(status);
+      scope.update();
+    }
+
+    closeResultComponent = function () {
+      scope.showResult = false;
+      scope.update();
+    }
+
+    initResultComponent = function () {
+      scope.showResult = true;
+      scope.update();
+    }
+
   </script>
 </view-pay-confirm-new>

@@ -569,7 +569,9 @@ var RU_LANGUAGES =
   "ComponentGeneratedQrUpperInfoText": "Ваш  электронный билет (QR-код):",
 
 
-  "ComponentCardCarouselAddFirstCardtext": "Добавьте свою первую карту в CLICK"
+  "ComponentCardCarouselAddFirstCardtext": "Добавьте свою первую карту в CLICK",
+
+  "WaitingTimeExpiredText":"Время ожидания истекло"
 
 
 };
