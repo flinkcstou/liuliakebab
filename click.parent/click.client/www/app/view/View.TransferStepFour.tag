@@ -459,7 +459,6 @@
 //            scope.errorMessageFromTransfer = result[0][0].error_note
 //            componentUnsuccessId.style.display = 'block';
             updateResultComponent(true, null, "view-main-page", 'unsuccess', result[0][0].error_note)
-            scope.update();
           }
         },
 
@@ -543,10 +542,7 @@
                 answerFromServer = true;
 
 //                componentInProcessingId.style.display = 'block';
-                scope.errorNote = window.languages.ComponentInProcessingPartOne;
-                scope.showResult = true;
-                updateIcon('waiting');
-                scope.update();
+                updateResultComponent(true, scope.stepAmount, null, 'waiting', window.languages.ComponentInProcessingPartOne);
               }
 
             }
@@ -556,20 +552,14 @@
           else {
             answerFromServer = true;
 //            componentUnsuccessId.style.display = 'block';
-            scope.errorNote = result[0][0].error;
-            scope.showResult = true;
-            updateIcon('unsuccess');
-            scope.update();
+            updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[0][0].error);
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
 //          componentUnsuccessId.style.display = 'block';
-          scope.errorNote = api_status_message;
-          scope.showResult = true;
-          updateIcon('unsuccess');
-          scope.update();
+          updateResultComponent(true, scope.stepAmount, null, 'unsuccess', api_status_message);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
