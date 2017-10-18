@@ -105,6 +105,7 @@ var RU_LANGUAGES =
   "ComponentResultPleaseWait": "Пожалуйста подождите...",
   "ComponentResultOk": "Закрыть",
   "ComponentResultRepeat": "Повторить",
+  "ComponentResultQRSuccess": "Оплата QR прошла успешно",
 
   "ViewAmountCalculatorNameTitle": "КАЛЬКУЛЯТОР ВАЛЮТ",
   "ViewAmountCalculatorTextOne": "Введите сумму в USD",

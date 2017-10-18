@@ -217,7 +217,7 @@
         setTimeout(function () {
           if (!answerFromServer) {
             scope.showResult = true;
-            scope.errorNote = "Время ожидания истекло";
+            scope.errorNote = window.languages.WaitingTimeExpiredText;
             scope.viewPage = 'view-authorization';
             updateIcon('waiting');
             scope.update();

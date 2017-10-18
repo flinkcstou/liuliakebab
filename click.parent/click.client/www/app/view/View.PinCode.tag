@@ -573,7 +573,7 @@
 
       setTimeout(function () {
         if (!answerFromServer && window.isConnected) {
-          showAlertComponent("Время ожидания истекло");
+          showAlertComponent(window.languages.WaitingTimeExpiredText);
           answerFromServer = true;
           if (device.platform != 'BrowserStand') {
             console.log("Spinner stop in authorization by timeout");

@@ -448,7 +448,7 @@
         if (!answerFromServer) {
           window.api.forceClose();
 //          scope.showError = true;
-          updateResultComponent(true, null, "view-main-page", 'waiting', "Время ожидания истекло");
+          updateResultComponent(true, null, "view-main-page", 'waiting', window.languages.WaitingTimeExpiredText);
           return
         }
       }, 30000)

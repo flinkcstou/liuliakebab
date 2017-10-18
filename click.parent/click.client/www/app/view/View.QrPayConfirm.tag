@@ -75,7 +75,7 @@
   <component-alert if="{showError}" errorcode="{errorCode}"
                    errornote="{errorNote}"></component-alert>
 
-  <component-result if="{showResult}" result="{result}" errornote="{errorNote}"
+  <component-result if="{showResult}" result="{result}" errornote="{resultText}"
                     viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
 
 
@@ -117,7 +117,7 @@
     scope.update();
     console.log(opts[0]);
 
-    var successStep = 3, errorStep = 0, waitingStep = 3;
+    var successStep = 3, errorStep = 0, waitingStep = 3, unsuccessStep = 2;
     //
     //    if (scope.isInFavorites)
     //      this.viewPage = 'view-main-page';
@@ -276,12 +276,7 @@
 
 //                  scope.operationMessage = 'Оплата QR прошла успешно';
                   viewServicePinCards.friendHelpPaymentMode = false;
-
-                  scope.errorNote = 'Оплата QR прошла успешно';
-                  scope.showResult = true;
-                  scope.stepAmount = successStep;
-                  updateIcon('success');
-                  scope.update();
+                  updateResultComponent(true, successStep, null, 'success', window.languages.ComponentResultQRSuccess);
 //                  componentSuccessId.style.display = 'block';
                 } else if (result[1][0].payment_id && !result[1][0].invoice_id) {
 
@@ -294,22 +289,14 @@
             }
             else {
               console.log("result of APP.PAYMENT 3", result);
-              scope.errorNote = result[0][0].error_note;
-              scope.showResult = true;
-              scope.stepAmount = errorStep;
-              updateIcon('unsuccess');
-              scope.update();
+              updateResultComponent(true, errorStep, null, 'unsuccess', result[0][0].error_note);
 //              componentUnsuccessId.style.display = 'block';
             }
           },
 
           onFail: function (api_status, api_status_message, data) {
             answerFromServer = true;
-            scope.errorNote = api_status_message;
-            scope.viewPage = "view-main-page";
-            scope.showResult = true;
-            updateIcon('unsuccess');
-            scope.update();
+            updateResultComponent(true, null, "view-main-page", 'unsuccess', api_status_message);
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
@@ -318,7 +305,7 @@
         setTimeout(function () {
           if (!answerFromServer) {
             scope.showResult = true;
-            scope.errorNote = "Время ожидания истекло";
+            scope.errorNote = window.languages.WaitingTimeExpiredText;
             scope.viewPage = 'view-main-page';
             scope.update();
             window.isConnected = false;
@@ -360,12 +347,7 @@
 //              scope.errorQrPayment = result[0][0].error_note;
 //              componentUnsuccessId.style.display = 'block';
 //              riot.update()
-
-              scope.errorNote = result[1][0].error;
-              scope.stepAmount = 2;
-              scope.showResult = true;
-              updateIcon('unsuccess');
-              scope.update();
+              updateResultComponent(true, unsuccessStep, null, 'unsuccess', result[1][0].error);
 
 
             } else if (result[1][0].state == 2) {
@@ -379,11 +361,7 @@
 
 //              scope.operationMessage = 'Оплата QR прошла успешно';
 //              scope.update();
-              scope.errorNote = 'Оплата QR прошла успешно';
-              scope.showResult = true;
-              scope.stepAmount = successStep;
-              updateIcon('success');
-              scope.update();
+              updateResultComponent(true, successStep, null, 'success', window.languages.ComponentResultQRSuccess);
 
             } else if (result[1][0].state == 1) {
 
@@ -398,11 +376,7 @@
               } else {
 
                 answerFromServer = true;
-                scope.errorNote = window.languages.ComponentInProcessingPartOneForPay;
-                scope.showResult = true;
-                scope.stepAmount = waitingStep;
-                updateIcon('waiting');
-                scope.update();
+                updateResultComponent(true, waitingStep, null, 'waiting', window.languages.ComponentInProcessingPartOneForPay);
               }
 
             }
@@ -411,12 +385,7 @@
           }
           else {
             answerFromServer = true;
-            scope.errorNote = result[1][0].error;
-            scope.viewPage = "view-main-page";
-            scope.showResult = true;
-            scope.stepAmount = errorStep;
-            updateIcon('unsuccess');
-            scope.update();
+            updateResultComponent(true, errorStep, "view-main-page", 'unsuccess', result[1][0].error);
 
           }
         },
@@ -424,17 +393,32 @@
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
 
-          scope.errorNote = api_status_message;
-          scope.viewPage = "view-main-page";
-          scope.showResult = true;
-          scope.stepAmount = errorStep;
-          updateIcon('unsuccess');
-          scope.update();
+          updateResultComponent(true, errorStep, "view-main-page", 'unsuccess', api_status_message);
 
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
       });
+    }
+
+    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+        console.log("OPEN RESULT COMPONENT");
+        scope.showResult = showResult;
+        scope.stepAmount = stepAmount;
+        scope.viewPage = viewPage;
+        scope.resultText = text;
+        updateIcon(status);
+        scope.update();
+    }
+
+    closeResultComponent = function () {
+        scope.showResult = false;
+        scope.update();
+    }
+
+    initResultComponent = function () {
+        scope.showResult = true;
+        scope.update();
     }
 
 

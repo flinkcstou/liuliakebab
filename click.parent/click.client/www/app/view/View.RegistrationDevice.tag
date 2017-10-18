@@ -514,7 +514,7 @@
       setTimeout(function () {
         if (!answerFromServer) {
           scope.showError = true;
-          scope.errorNote = "Время ожидания истекло";
+          scope.errorNote = window.languages.WaitingTimeExpiredText;
           scope.update();
           if (device.platform != 'BrowserStand') {
             console.log("Spinner stop in device registration by timeout");
