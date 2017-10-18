@@ -132,7 +132,6 @@
       scope.plus = '+';
     }
 
-
     scope.objectSumForTransfer = opts[0][1];
     scope.objectComment = opts[0][2];
     scope.objectCardForTransfer = opts[0][3];
@@ -222,9 +221,7 @@
                 searchedIndex = phone.indexOf(searchNumber);
                 if (searchedIndex != -1) {
                   checkInBottomContacts = true;
-//                  console.log('CHECK', transferContacts[i])
                   transferContacts.splice(i, 1);
-//                  console.log('TRANSFER CONTACTS', transferContacts)
                   localStorage.setItem('transferContacts', JSON.stringify(transferContacts));
                   break;
                 }
@@ -235,7 +232,6 @@
         }
 
       transferContacts = JSON.parse(localStorage.getItem('transferContacts'));
-//      console.log('searchNumber', searchNumber)
 
       var options = new ContactFindOptions();
       options.filter = '';
@@ -251,7 +247,6 @@
           if (contacts[i].phoneNumbers != null)
             if (contacts[i].phoneNumbers[0] != null)
               if (contacts[i].phoneNumbers[0].value != null) {
-//                console.log('contacts[i].phoneNumbers[0].value', contacts[i].phoneNumbers[0].value)
                 digits = contacts[i].phoneNumbers[0].value.match(maskOne)
                 for (var k in digits) {
                   phone += digits[k]
@@ -263,8 +258,6 @@
                   return;
                 }
               }
-
-
         }
       }
 
@@ -287,16 +280,13 @@
         card.owner.firstName = opts[2];
       card.owner.secondName = '';
       var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))
-//      console.log('CODE OF BANK', codeOfBank)
       if (JSON.parse(localStorage.getItem('p2pTransferCards'))) {
         transferCards = JSON.parse(localStorage.getItem('p2pTransferCards'));
         for (var j = 0; j < transferCards.length; j++) {
-
           if (transferCards[j].cardNumber == saveCard) {
             transferCards.splice(j, 1);
             localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
           }
-
         }
       }
 
@@ -304,28 +294,25 @@
         if (codeOfBank == bankList[i].code) {
           if (JSON.parse(localStorage.getItem('p2pTransferCards'))) {
             transferCards = JSON.parse(localStorage.getItem('p2pTransferCards'));
-            card.image = bankList[i].image
-            card.name = bankList[i].name
+            card.image = bankList[i].image;
+            card.name = bankList[i].name;
             card.cardNumber = saveCard;
-            transferCards.unshift(card)
-
+            transferCards.unshift(card);
             localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
           }
           else {
-            card.image = bankList[i].image
-            card.name = bankList[i].name
+            card.image = bankList[i].image;
+            card.name = bankList[i].name;
             card.cardNumber = saveCard;
-            transferCards.unshift(card)
+            transferCards.unshift(card);
             localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
-
           }
-
         }
       }
 
-      viewTransfer.phoneNumber = 0
-      viewTransfer.cardNumber = 0
-      viewTransfer.cardNumber = 0
+      viewTransfer.phoneNumber = 0;
+      viewTransfer.cardNumber = 0;
+      viewTransfer.cardNumber = 0;
       viewTransferStepTwo.sum = 0;
       viewTransferStepTwo.sumWithoutSpace = 0;
     }
@@ -372,19 +359,14 @@
 //          }
 //        };
           scope.update();
-
           return
         }
-
         if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) != true) {
           riotTags.innerHTML = "<view-pin-code>";
           riot.mount('view-pin-code', ['view-transfer-stepfour']);
           return
         }
-
         transfer();
-
-
       }
     }
 
@@ -399,9 +381,7 @@
 
       initResultComponent();
 
-
-
-      console.log("TRANSACTION_ID", objectForTransfer.transactionId)
+      console.log("TRANSACTION_ID", objectForTransfer.transactionId);
 
       window.api.call({
         method: 'p2p.payment',
@@ -440,22 +420,16 @@
                   viewTransferStepTwo.sum = 0;
                   viewTransferStepTwo.sumWithoutSpace = 0;
                   window.updateBalanceGlobalFunction();
-
                   scope.update();
-
                 }
                 if (result[1][0].secret_code == 0) {
-
                   setTimeout(function () {
                     checkTransferStatus(result[1][0].payment_id);
                   }, 2000);
-
                 }
               }
-
           }
           else {
-
 //            scope.errorMessageFromTransfer = result[0][0].error_note
 //            componentUnsuccessId.style.display = 'block';
             updateResultComponent(true, null, "view-main-page", 'unsuccess', result[0][0].error_note)
@@ -472,7 +446,6 @@
 
       setTimeout(function () {
         if (!answerFromServer) {
-
           window.api.forceClose();
 //          scope.showError = true;
           updateResultComponent(true, null, "view-main-page", 'waiting', "Время ожидания истекло");
@@ -505,8 +478,6 @@
           console.log("GET PAYMENT RESULT", result);
 
           if (result[0][0].error == 0 && result[1][0]) {
-
-
             if (result[1][0].state == -1) {
               answerFromServer = true;
 
@@ -515,8 +486,6 @@
 //              componentUnsuccessId.style.display = 'block';
               updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[0][0].error);
 //              riot.update()
-
-
             } else if (result[1][0].state == 2) {
               answerFromServer = true;
 
@@ -525,29 +494,21 @@
 
               updateResultComponent(true, scope.stepAmount, null, 'success', window.languages.ComponentSuccessMessage);
               transferFindCards(scope.objectTypeForTransfer.name);
-
-
             } else if (result[1][0].state == 1) {
-
               console.log("COUNTER COUNTER+1", counter, counter + 1);
               counter++;
 
               if (counter < 5) {
-
                 setTimeout(function () {
                   checkTransferStatus(result[1][0].payment_id);
                 }, 2000);
-
               } else {
                 answerFromServer = true;
-
 //                componentInProcessingId.style.display = 'block';
                 updateResultComponent(true, scope.stepAmount, null, 'waiting', window.languages.ComponentInProcessingPartOne);
               }
-
             }
             window.api.spinnerOn = false;
-
           }
           else {
             answerFromServer = true;
