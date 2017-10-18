@@ -248,6 +248,7 @@
     var scope = this;
     scope.numberLength = 10;
     scope.tourClosed = true;
+    scope.clickPinError = false;
     this.on('mount', function () {
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
@@ -481,19 +482,11 @@
               if (result[0][0].error == 0) {
                 var bankListAvailable = [];
                 for (var i in result[1]) {
-//                  result[1][i].amount = result[1][i].p2p_max_limit.toString();
-//                  console.log('result[1][i]', result[1][i])
-//
-//                  result[1][i].amount = window.amountTransform(result[1][i].amount);
-//                  result[1][i].p2p_receipt_max_limit_transform = window.amountTransform(result[1][i].p2p_receipt_max_limit);
-//                  result[1][i].p2p_max_limit_transform = window.amountTransform(result[1][i].p2p_max_limit);
 
                   if (result[1][i].p2p_status == 1)
                     bankListAvailable.push(result[1][i]);
-
-//              console.log("!!!!!", result[1][i].p2p_max_limit);
                 }
-//            console.log("result of P2P BANK LIST ", result[1]);
+
                 if (localStorage.getItem('click_client_p2p_all_bank_list') != JSON.stringify(result[1])) {
                   localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(bankListAvailable));
                   localStorage.setItem('click_client_p2p_all_bank_list', JSON.stringify(result[1]));
@@ -501,7 +494,6 @@
 
               }
               else {
-                scope.clickPinError = false;
                 scope.errorNote = result[0][0].error_note;
                 scope.showError = true;
                 scope.update();
@@ -934,8 +926,6 @@
 //            riot.update()
           }
           else {
-//              alert(result[0][0].error_note);
-            scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
             scope.update();
@@ -1411,7 +1401,6 @@
       if (Math.abs(goToTransferStepTwoTouchStartX - goToTransferStepTwoTouchEndX) <= 20 && Math.abs(goToTransferStepTwoTouchStartY - goToTransferStepTwoTouchEndY) <= 20) {
 
         if (!checkPhoneForTransfer && !checkCardForTransfer) {
-          scope.clickPinError = false;
           scope.errorNote = 'Введите номер телефона или номер карты';
           scope.showError = true;
           scope.update();
@@ -1424,7 +1413,6 @@
             viewTransfer.type = 2;
             if (phoneNumberForTransfer.length != 9) {
               contactPhoneNumberId.blur();
-              scope.clickPinError = false;
               scope.errorNote = 'Неверный номер телефона';
               scope.showError = true;
               scope.update();
@@ -1457,8 +1445,7 @@
               var firstFourSymbols = cardInputId.value.replace(/\s/g, '').substring(0, 4);
               console.log('firstFourSymbols', firstFourSymbols)
               if (firstFourSymbols != '8600') {
-                cardInputId.blur()
-                scope.clickPinError = false;
+                cardInputId.blur();
                 scope.errorNote = 'Неверные данные о карте';
                 scope.showError = true;
                 scope.update();
@@ -1474,37 +1461,42 @@
               var bankList = JSON.parse(localStorage.getItem('click_client_p2p_all_bank_list'))
               console.log("BANKLIST", bankList);
               var percentOfBank = 0;
-              for (var i = 0; i < bankList.length; i++) {
-                if (codeOfBank == bankList[i].code) {
-                  checkOfCode = true;
-                  nameOfBank = bankList[i].bank_name;
-                  if (bankList[i].p2p_status == 1) {
-                    statusOfBankToP2P = true
+
+              if (bankList)
+                for (var i = 0; i < bankList.length; i++) {
+                  if (codeOfBank == bankList[i].code) {
+                    checkOfCode = true;
+                    nameOfBank = bankList[i].bank_name;
+                    if (bankList[i].p2p_status == 1) {
+                      statusOfBankToP2P = true
+                    }
+                    percentOfBank = bankList[i].p2p_percent
+                    break;
                   }
-                  percentOfBank = bankList[i].p2p_percent
-                  break;
+                  else {
+                    checkOfCode = false;
+                  }
                 }
-                else {
-                  checkOfCode = false;
-                }
+              else {
+                cardInputId.blur();
+                scope.errorNote = 'Подождите, данные для обработки информации еще не прогрузились';
+                scope.showError = true;
+                scope.update();
+                return;
               }
               if (!checkOfCode) {
-                cardInputId.blur()
-                scope.clickPinError = false;
+                cardInputId.blur();
                 scope.errorNote = 'Неверный номер карты';
                 scope.showError = true;
                 scope.update();
-//            alert('Неверный код банка');
                 return;
               }
 
               if (checkOfCode && !statusOfBankToP2P) {
-                cardInputId.blur()
-                scope.clickPinError = false;
+                cardInputId.blur();
                 scope.errorNote = 'Карта "' + nameOfBank + '" банка временно недоступна для перевода средств';
                 scope.showError = true;
                 scope.update();
-//            alert('Неверный код банка');
                 return;
               }
 
@@ -1513,8 +1505,7 @@
             viewTransfer.cardNumber = cardNumberForTransfer
             viewTransfer.type = 1;
             if (cardNumberForTransfer.replace(/\s/g, '').length != 16) {
-              cardInputId.blur()
-              scope.clickPinError = false;
+              cardInputId.blur();
               scope.errorNote = 'Неверный номер карты';
               scope.showError = true;
               scope.update();
@@ -1579,33 +1570,33 @@
     }
 
     var goToSettingsTouchStartX, goToSettingsTouchStartY, goToSettingsTouchEndX,
-        goToSettingsTouchEndY;
+      goToSettingsTouchEndY;
 
     goToSettingsStart = function () {
-        event.preventDefault();
-        event.stopPropagation();
+      event.preventDefault();
+      event.stopPropagation();
 
-        goToSettingsTouchStartX = event.changedTouches[0].pageX
-        goToSettingsTouchStartY = event.changedTouches[0].pageY
+      goToSettingsTouchStartX = event.changedTouches[0].pageX
+      goToSettingsTouchStartY = event.changedTouches[0].pageY
     }
 
     goToSettingsEnd = function () {
-        event.preventDefault();
-        event.stopPropagation();
+      event.preventDefault();
+      event.stopPropagation();
 
-        goToSettingsTouchEndX = event.changedTouches[0].pageX
-        goToSettingsTouchEndY = event.changedTouches[0].pageY
+      goToSettingsTouchEndX = event.changedTouches[0].pageX
+      goToSettingsTouchEndY = event.changedTouches[0].pageY
 
-        if (Math.abs(goToSettingsTouchEndX - goToSettingsTouchStartX) <= 20 &&
-            Math.abs(goToSettingsTouchEndY - goToSettingsTouchStartY) <= 20) {
-            window.cordova.plugins.settings.open("application_details", function() {
-                    console.log('opened settings');
-                },
-                function () {
-                    console.log('failed to open settings');
-                }
-            );
-        }
+      if (Math.abs(goToSettingsTouchEndX - goToSettingsTouchStartX) <= 20 &&
+        Math.abs(goToSettingsTouchEndY - goToSettingsTouchStartY) <= 20) {
+        window.cordova.plugins.settings.open("application_details", function () {
+            console.log('opened settings');
+          },
+          function () {
+            console.log('failed to open settings');
+          }
+        );
+      }
     }
 
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
