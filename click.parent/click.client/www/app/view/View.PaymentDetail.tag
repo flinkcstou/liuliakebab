@@ -87,6 +87,9 @@
     scope.showError = false;
     scope.commission_amount = scope.opts.amount * scope.opts.commission_percent / 100;
     scope.errorCode = 0;
+
+    var pageToReturnIfError = 'view-main-page', pageToReturnIfSuccess = 'view-report';
+    var paymentSuccessStep = 1, paymentWaitingStep = 0;
     //    scope.titleName = window.languages.ViewPaymentDetailTitle + scope.opts.invoiceId;
 
     console.log("OPTS Payment Detail", opts)
@@ -243,18 +246,7 @@
           return;
         }
 
-//        if (device.platform != 'BrowserStand') {
-//          var options = {dimBackground: true};
-//
-//          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-//            console.log("Started");
-//          }, function () {
-//            console.log("closed");
-//          });
-//        }
-
-        scope.showResult = true;
-        scope.update();
+        initResultComponent();
 
         window.api.call({
           method: 'invoice.action',
@@ -280,27 +272,19 @@
             }
             else {
               answerFromServer = true;
-//              componentUnsuccessId.style.display = 'block';
+
               history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
               console.log(history.arrayOfHistory)
               sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
-              scope.errorNote = result[0][0].error_note;
-              scope.showResult = true;
-              updateIcon('unsuccess');
-              scope.viewPage = 'view-main-page';
-              scope.update()
+              updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[0][0].error_note);
             }
           },
 
           onFail: function (api_status, api_status_message, data) {
             answerFromServer = true;
-            scope.errorNote = api_status_message;
-            scope.showResult = true;
-            updateIcon('unsuccess');
-            scope.viewPage = 'view-main-page';
-            scope.update()
-//            componentUnsuccessId.style.display = 'block';
+            updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
+
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
@@ -308,15 +292,8 @@
 
         setTimeout(function () {
           if (!answerFromServer) {
-            scope.showResult = true;
-            scope.errorNote = "Время ожидания истекло";
-            scope.viewPage = 'view-main-page';
-            scope.update();
 
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Pay Confirm New 705");
-              SpinnerPlugin.activityStop();
-            }
+            updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
             window.isConnected = false;
             return
           }
@@ -354,43 +331,23 @@
             if (result[1][0].state == -1) {
               answerFromServer = true;
 
-//              if (device.platform != 'BrowserStand') {
-//                console.log("Spinner Stop View Payment Detail 331");
-//                SpinnerPlugin.activityStop();
-//              }
+              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1);
+              console.log(history.arrayOfHistory);
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-//              componentUnsuccessId.style.display = 'block';
-//              scope.errorMessageFromTransfer = result[1][0].error;
-              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
-              console.log(history.arrayOfHistory)
-              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-
-              scope.errorNote = result[1][0].error;
-              scope.showResult = true;
-              updateIcon('unsuccess');
-              scope.stepAmount = 1;
-              scope.update();
+              updateResultComponent(true, paymentSuccessStep, null, 'unsuccess', result[0][0].error);
 
             } else if (result[1][0].state == 2) {
               answerFromServer = true;
 
-//              if (device.platform != 'BrowserStand') {
-//                console.log("Spinner Stop View Payment Detail 348");
-//                SpinnerPlugin.activityStop();
-//              }
               window.updateBalanceGlobalFunction();
 
-//              componentSuccessId.style.display = 'block';
 
-              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
-              console.log(history.arrayOfHistory)
-              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1);
+              console.log(history.arrayOfHistory);
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-              scope.errorNote = window.languages.ComponentSuccessMessageForPay;
-              scope.showResult = true;
-              updateIcon('success');
-              scope.viewPage = 'view-report';
-              scope.update()
+              updateResultComponent(true, null, pageToReturnIfSuccess, 'success', window.languages.ComponentSuccessMessageForPay);
 
             } else if (result[1][0].state == 1) {
 
@@ -405,21 +362,12 @@
 
               } else {
                 answerFromServer = true;
-//                if (device.platform != 'BrowserStand') {
-//                  console.log("Spinner Stop View Payment Detail 384");
-//                  SpinnerPlugin.activityStop();
-//                }
 
-//                componentInProcessingId.style.display = 'block';
-                history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
-                console.log(history.arrayOfHistory)
-                sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+                history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1);
+                console.log(history.arrayOfHistory);
+                sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-                scope.errorNote = window.languages.ComponentInProcessingPayment;
-                scope.showResult = true;
-                updateIcon('waiting');
-                scope.stepAmount = 0;
-                scope.update();
+                updateResultComponent(true, paymentWaitingStep, null, 'waiting', window.languages.ComponentInProcessingPartOneForPay);
 
               }
 
@@ -428,32 +376,40 @@
           }
           else {
             answerFromServer = true;
-            console.log("result of GET.PAYMENT in else", result);
-//            if (device.platform != 'BrowserStand') {
-//              console.log("Spinner Stop View Payment Detail 404");
-//              SpinnerPlugin.activityStop();
-//            }
-//            componentUnsuccessId.style.display = 'block';
-            scope.errorNote = api_status_message;
-            scope.viewPage = "view-main-page";
-            scope.showResult = true;
-            updateIcon('unsuccess');
-            scope.update();
+            updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[1][0].error);
+
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-//          componentUnsuccessId.style.display = 'block';
-          scope.errorNote = api_status_message;
-          scope.viewPage = "view-main-page";
-          scope.showResult = true;
-          updateIcon('unsuccess');
-          scope.update();
+
+          updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
       });
+    }
+
+
+    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+      console.log("OPEN RESULT COMPONENT");
+      scope.showResult = showResult;
+      scope.stepAmount = stepAmount;
+      scope.viewPage = viewPage;
+      scope.resultText = text;
+      updateIcon(status);
+      scope.update();
+    }
+
+    closeResultComponent = function () {
+      scope.showResult = false;
+      scope.update();
+    }
+
+    initResultComponent = function () {
+      scope.showResult = true;
+      scope.update();
     }
 
 
