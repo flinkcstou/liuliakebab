@@ -319,7 +319,7 @@
                     scope.searchNumber = inputVerification.spaceDeleter(result[1][i].merchant_phone);
                     arrayOfPhones = JSON.parse(sessionStorage.getItem('arrayOfPhones'));
 
-                    if (result[1][i].is_friend_help && arrayOfPhones.length != 0) {
+                    if (result[1][i].is_friend_help && arrayOfPhones && arrayOfPhones.length != 0) {
 
                       arrayOfPhones.filter(function (wordOfFunction) {
                         if (wordOfFunction.phoneNumbers) {
