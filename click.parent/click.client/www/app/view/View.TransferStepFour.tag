@@ -97,7 +97,7 @@
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
 
-  <component-result if="{showResult}" result="{result}" errornote="{resultText}"
+  <component-result if="{showResult}" resulttext="{resultText}"
                     viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
 
   <script>

@@ -70,7 +70,7 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}" errorcode="{errorCode}"
                    errornote="{errorNote}"></component-alert>
 
-  <component-result if="{showResult}" result="{result}" errornote="{resultText}"
+  <component-result if="{showResult}" resulttext="{resultText}"
                     viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
 
   <script>

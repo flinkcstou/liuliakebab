@@ -75,7 +75,7 @@
   <component-alert if="{showError}" errorcode="{errorCode}"
                    errornote="{errorNote}"></component-alert>
 
-  <component-result if="{showResult}" result="{result}" errornote="{resultText}"
+  <component-result if="{showResult}" resulttext="{resultText}"
                     viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
 
 
@@ -403,23 +403,23 @@
     }
 
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
-        console.log("OPEN RESULT COMPONENT");
-        scope.showResult = showResult;
-        scope.stepAmount = stepAmount;
-        scope.viewPage = viewPage;
-        scope.resultText = text;
-        updateIcon(status);
-        scope.update();
+      console.log("OPEN RESULT COMPONENT");
+      scope.showResult = showResult;
+      scope.stepAmount = stepAmount;
+      scope.viewPage = viewPage;
+      scope.resultText = text;
+      updateIcon(status);
+      scope.update();
     }
 
     closeResultComponent = function () {
-        scope.showResult = false;
-        scope.update();
+      scope.showResult = false;
+      scope.update();
     }
 
     initResultComponent = function () {
-        scope.showResult = true;
-        scope.update();
+      scope.showResult = true;
+      scope.update();
     }
 
 

@@ -3,7 +3,7 @@
     <div id="alertNewIconId" class="component-result-icon"
          style="background-image: url('resources/gifs/loading.gif')"></div>
     <p id="wait" class="component-result-wait">{window.languages.ComponentResultPleaseWait}</p>
-    <p id="resultMessage" class="component-result-message">{opts.errornote}</p>
+    <p id="resultMessage" class="component-result-message">{opts.resulttext}</p>
 
     <button id="alertOkButtonId" class="component-result-button-inner-container"
             ontouchstart="closeResultFormStart(this.id)"

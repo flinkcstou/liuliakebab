@@ -132,7 +132,7 @@
                    errornote="{errorNote}"></component-alert>
 
 
-  <component-result if="{showResult}" result="{result}" errornote="{resultText}"
+  <component-result if="{showResult}" resulttext="{resultText}"
                     viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
 
 
@@ -320,6 +320,28 @@
       favoriteStartX = event.changedTouches[0].pageX;
     };
 
+
+    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+      console.log("OPEN RESULT COMPONENT");
+      scope.showResult = showResult;
+      scope.stepAmount = stepAmount;
+      scope.viewPage = viewPage;
+      scope.resultText = text;
+      updateIcon(status);
+      scope.update();
+    }
+
+    closeResultComponent = function () {
+      console.log("CLOSE RESULT COMPONENT");
+      scope.showResult = false;
+      scope.update();
+    }
+
+    initResultComponent = function () {
+      console.log("INIT RESULT COMPONENT");
+      scope.showResult = true;
+      scope.update();
+    }
 
     addToFavoritesinPayConfirm = function () {
       event.stopPropagation();
@@ -708,7 +730,6 @@
               viewServicePinCards.chosenFriendForHelp = null;
 
               if (result[1][0].qr_image) {
-                answerFromServer = true;
                 closeResultComponent();
                 scope.qrImage = result[1][0].qr_image;
                 scope.qrHeader = result[1][0].qr_header;
@@ -999,26 +1020,6 @@
 
     }
 
-
-    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
-      console.log("OPEN RESULT COMPONENT");
-      scope.showResult = showResult;
-      scope.stepAmount = stepAmount;
-      scope.viewPage = viewPage;
-      scope.resultText = text;
-      updateIcon(status);
-      scope.update();
-    }
-
-    closeResultComponent = function () {
-      scope.showResult = false;
-      scope.update();
-    }
-
-    initResultComponent = function () {
-      scope.showResult = true;
-      scope.update();
-    }
 
   </script>
 </view-pay-confirm-new>
