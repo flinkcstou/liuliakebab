@@ -11,7 +11,7 @@
 
   <div class="view-transfer-on-card-content-container">
 
-    <component-pincards clean="{true}" transferoncard="true"></component-pincards>
+    <component-pincards clean="{true}" transferoncard="true" useFor="p2p"></component-pincards>
 
     <button id="acceptTransferOnCardButtonId" class="transfer-on-card-ok-button"
             ontouchend="transferOnCardOnTouchEndAccept()"

@@ -35,7 +35,7 @@
       <p class="payment-detail-title-pay-from">{window.languages.ViewPaymentDetailTitlePayFrom}</p>
     </div>
 
-    <component-pincards paymentdetail="{true}" clean="{true}"></component-pincards>
+    <component-pincards paymentdetail="{true}" clean="{true}" useFor="payment"></component-pincards>
 
     <div class="account-detail-cover"></div>
 

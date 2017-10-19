@@ -14,7 +14,7 @@
     <div class="qr-pincard-payfrom-container">
       <p class="qr-pincard-payfrom-field">{window.languages.ViewServicePinCardPayFromField}</p></div>
 
-    <component-pincards clean="{true}" friendhelpbool="{friendHelpBool}"></component-pincards>
+    <component-pincards clean="{true}" friendhelpbool="{friendHelpBool}" useFor="payment"></component-pincards>
     <div class="qr-pincard-bottom-container">
 
       <div class="qr-pincard-friend-help-container" if="{!friendHelpBool}" ontouchend="friendHelp()">

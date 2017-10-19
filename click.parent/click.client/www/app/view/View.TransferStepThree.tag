@@ -11,7 +11,7 @@
     <div class="transferthree-menus-container">
       <p id="cardLabelId" class="transferthree-menu-name-label">{window.languages.ViewTransferThreeMenuTitle}</p>
     </div>
-    <component-pincards clean="{true}"></component-pincards>
+    <component-pincards clean="{true}" useFor="p2p"></component-pincards>
 
     <button id="nextButtonId" class="transferthree-next-button-inner-container"
             ontouchstart="goToTransferFourTouchStart()"

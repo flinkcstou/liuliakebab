@@ -18,7 +18,7 @@
     <div class="pincard-payfrom-container">
       <p class="pincard-payfrom-field">{window.languages.ViewServicePinCardPayFromField}</p></div>
 
-    <component-pincards clean="{!friendHelpBool}"></component-pincards>
+    <component-pincards clean="{!friendHelpBool}" useFor="payment"></component-pincards>
     <div class="pincard-bottom-container">
 
       <div class="pincard-friend-help-container" if="{!friendHelpBool && opts.mode!='ADDAUTOPAY'}"
