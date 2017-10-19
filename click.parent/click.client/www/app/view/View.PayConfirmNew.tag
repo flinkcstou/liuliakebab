@@ -305,13 +305,6 @@
     }
     scope.update();
 
-
-    if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
-      console.log("payTransferConfirmed=", sessionStorage.getItem('payTransferConfirmed'))
-      payService();
-      sessionStorage.setItem('payTransferConfirmed', null);
-    }
-
     var favoriteStartY, favoriteStartX, favoriteEndY, favoriteEndX;
 
     scope.onTouchStartOfFavorite = onTouchStartOfFavorite = function () {
@@ -328,19 +321,19 @@
       scope.viewPage = viewPage;
       scope.resultText = text;
       updateIcon(status);
-      scope.update();
+      riot.update();
     }
 
     closeResultComponent = function () {
       console.log("CLOSE RESULT COMPONENT");
       scope.showResult = false;
-      scope.update();
+      riot.update();
     }
 
     initResultComponent = function () {
       console.log("INIT RESULT COMPONENT");
       scope.showResult = true;
-      scope.update();
+      riot.update();
     }
 
     addToFavoritesinPayConfirm = function () {
@@ -547,6 +540,7 @@
         if (opts.mode != 'ADDAUTOPAY' && payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) != true) {
           riotTags.innerHTML = "<view-pin-code>";
           riot.mount('view-pin-code', ['view-pay-confirm']);
+          scope.unmount();
           return
         }
         payService();
@@ -636,6 +630,8 @@
 
       initResultComponent();
 
+//      showResultComponentGlobal(getPaymentSuccessStep, null, 'success', "");
+
       window.api.call({
         method: 'app.payment',
         input: {
@@ -669,6 +665,7 @@
 
                 viewServicePinCards.friendHelpPaymentMode = false;
                 viewServicePinCards.chosenFriendForHelp = null;
+                console.log("WWWWWWWW")
 
                 updateResultComponent(true, getPaymentSuccessStep, null, 'success', result[0][0].error_note);
               }
@@ -1018,6 +1015,12 @@
         }
       }
 
+    }
+
+    if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
+      console.log("payTransferConfirmed=", sessionStorage.getItem('payTransferConfirmed'))
+      payService();
+      sessionStorage.setItem('payTransferConfirmed', null);
     }
 
 
