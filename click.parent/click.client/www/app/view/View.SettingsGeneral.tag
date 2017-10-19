@@ -48,7 +48,7 @@
       </div>
       <div class="settings-general-languages-container" if="{langChangeBool}">
         <div class="settings-general-lang-container" ontouchend="MakeMainCheck()">
-          <p class="settings-general-lang-text">Русский</p>
+          <p class="settings-general-lang-text">{window.languages.ViewSettingsGeneralLanguageRussian}</p>
           <div id="langCheckId" class="settings-general-lang-check"></div>
         </div>
       </div>
@@ -64,12 +64,17 @@
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
 
+  <component-success id="componentSuccessId"
+                     operationmessage="{window.languages.ViewSettingsGeneralSuccessSave}"
+                     viewpage="{}" step_amount="{}" close_action="{goToBack}"></component-success>
+
   <script>
     var scope = this;
     scope.showError = false;
     this.titleName = window.languages.ViewMainSettingsTitleTwo;
     scope.langChangeBool = false;
     var checkOfEdit = false;
+    var pageToReturnIfSuccess = 'view-general-settings';
 
     console.log(JSON.parse(localStorage.getItem('click_client_loginInfo')))
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -134,7 +139,7 @@
 
         scope.confirmShowBool = true;
         scope.confirmType = 'local';
-        scope.confirmNote = 'Подтвердите удаление фото';
+        scope.confirmNote = window.languages.ViewSettingsGeneralConfirmPhotoDelete;
         scope.update();
         scope.result = function (bool) {
           if (bool) {
@@ -199,10 +204,7 @@
             loginInfo.lastname = result[1][0].lastname
             loginInfo.gender = result[1][0].gender
             localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo))
-            scope.clickPinError = false;
-            scope.errorNote = 'Изменения сохранены';
-            scope.showError = true;
-            scope.update();
+            componentSuccessId.style.display = 'block';
           }
           else {
             scope.clickPinError = false;

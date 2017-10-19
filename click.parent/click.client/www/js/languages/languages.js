@@ -307,6 +307,9 @@ var RU_LANGUAGES =
   "ViewSettingsGeneralDeletePhotoTitle": "Удалить фото",
   "ViewSettingsGeneralGenderMaleTitle": "Муж",
   "ViewSettingsGeneralGenderFemaleTitle": "Жен",
+  "ViewSettingsGeneralSuccessSave": "Изменения сохранены",
+  "ViewSettingsGeneralConfirmPhotoDelete": "Подтвердите удаление фото",
+  "ViewSettingsGeneralLanguageRussian": "Русский",
 
   "ViewSettingsUserAgreementTitle": "ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ",
 
