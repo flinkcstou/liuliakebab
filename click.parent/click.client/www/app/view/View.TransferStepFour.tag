@@ -168,12 +168,6 @@
     console.log("CONFIRMED=", sessionStorage.getItem('payTransferConfirmed'))
     console.log("BLOCKED=", payTransferBlocked)
 
-    if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
-      console.log("payTransferConfirmed=", sessionStorage.getItem('payTransferConfirmed'))
-      transfer();
-      sessionStorage.setItem('payTransferConfirmed', null);
-    }
-
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
     goToBackStart = function () {
@@ -321,6 +315,27 @@
 
     var transferStepTouchStartX, transferStepTouchStartY, transferStepTouchEndX, transferStepTouchEndY;
 
+
+    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+      console.log("OPEN RESULT COMPONENT");
+      scope.showResult = showResult;
+      scope.stepAmount = stepAmount;
+      scope.viewPage = viewPage;
+      scope.resultText = text;
+      updateIcon(status);
+      scope.update();
+    }
+
+    closeResultComponent = function () {
+      scope.showResult = false;
+      scope.update();
+    }
+
+    initResultComponent = function () {
+      scope.showResult = true;
+      scope.update();
+    }
+
     transferStepTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -343,23 +358,6 @@
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
           scope.showError = true;
           scope.errorNote = question;
-
-//        confirm(question)
-//        scope.confirmShowBool = true;
-//        scope.confirmNote = question;
-//        scope.confirmType = 'local';
-//        scope.result = function (bool) {
-//          if (bool) {
-//            localStorage.clear();
-//            window.location = 'index.html'
-//            scope.unmount()
-//            return
-//          }
-//          else{
-//            scope.confirmShowBool = false;
-//            return
-//          }
-//        };
           scope.update();
           return
         }
@@ -485,14 +483,12 @@
 
               window.languages.tempText = JSON.stringify(result[1][0].error);
               scope.errorMessageFromTransfer = result[1][0].error;
-//              componentUnsuccessId.style.display = 'block';
               updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[1][0].error);
-//              riot.update()
+
             } else if (result[1][0].state == 2) {
               answerFromServer = true;
 
               window.updateBalanceGlobalFunction();
-//              componentSuccessId.style.display = 'block';
               updateResultComponent(true, scope.stepAmount, null, 'success', window.languages.ComponentSuccessMessage);
               transferFindCards(scope.objectTypeForTransfer.name);
             } else if (result[1][0].state == 1) {
@@ -505,7 +501,6 @@
                 }, 2000);
               } else {
                 answerFromServer = true;
-//                componentInProcessingId.style.display = 'block';
                 updateResultComponent(true, scope.stepAmount, null, 'waiting', window.languages.ComponentInProcessingPartOne);
               }
             }
@@ -513,14 +508,12 @@
           }
           else {
             answerFromServer = true;
-//            componentUnsuccessId.style.display = 'block';
             updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[0][0].error);
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-//          componentUnsuccessId.style.display = 'block';
           updateResultComponent(true, scope.stepAmount, null, 'unsuccess', api_status_message);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
@@ -533,24 +526,11 @@
       componentInProcessingId.style.display = 'block';
     }
 
-    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
-        console.log("OPEN RESULT COMPONENT");
-        scope.showResult = showResult;
-        scope.stepAmount = stepAmount;
-        scope.viewPage = viewPage;
-        scope.resultText = text;
-        updateIcon(status);
-        scope.update();
+    if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
+      console.log("payTransferConfirmed=", sessionStorage.getItem('payTransferConfirmed'))
+      transfer();
+      sessionStorage.setItem('payTransferConfirmed', null);
     }
 
-    closeResultComponent = function () {
-        scope.showResult = false;
-        scope.update();
-    }
-
-    initResultComponent = function () {
-        scope.showResult = true;
-        scope.update();
-    }
   </script>
 </view-transfer-stepfour>
