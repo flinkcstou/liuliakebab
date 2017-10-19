@@ -33,11 +33,12 @@
     //    if (!viewTransfer.check) {
 
     scope.cardsArray = localStorage.getItem('click_client_cards') ? JSON.parse(localStorage.getItem('click_client_cards')) : [];
-
+    checkCardPermission();
     updateCardsArray = function () {
       console.log("update cards array")
       if (localStorage.getItem('click_client_cards')) {
         scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+        checkCardPermission();
         if (device.platform != 'BrowserStand') {
           console.log("Spinner Stop View Pincard Comp 45");
           SpinnerPlugin.activityStop();
@@ -211,6 +212,26 @@
       return scope.cardSum;
     };
 
+    function checkCardPermission () {
+        for (var i in scope.cardsArray) {
+            scope.cardsArray[i].permission = false;
+            if (scope.opts.usefor == "p2p" && scope.cardsArray[i].p2p_allowed == 1){
+                scope.cardsArray[i].permission = true;
+            }
+            if (scope.opts.usefor == "payment" && scope.cardsArray[i].payment_allowed == 1){
+                scope.cardsArray[i].permission = true;
+            }
+            if (scope.opts.usefor == "all"){
+                scope.cardsArray[i].permission = true;
+            }
+
+            if (scope.cardsArray[i].permission == false)
+            {
+                console.log("Cardsarray in permission check function:", scope.cardsArray);
+                delete scope.cardsArray[i];
+            }
+        }
+    }
 
   </script>
 </component-pincards>
