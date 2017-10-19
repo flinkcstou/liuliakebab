@@ -94,46 +94,51 @@ window.api.initSocket = function () {
 
     var parsedData = JSON.parse(event.data);
     console.log("Received data:", parsedData);
-    var method = parsedData.data[0][0].method;
-    var callBack = me.callBacks[method];
-    if (parsedData.api_status == 0)
-      try {
-        if (parsedData.api_status == 0) {
-          callBack.ok(parsedData.data);
-          return;
-        }
-      }
-      catch (ERROR) {
-        console.log("Error on socket initializing: ", ERROR);
-        try {
-          var error = parsedData.data[0][0].error_note;
-          if (!window.api.sessionErrorChecker) {
-            window.api.sessionErrorChecker = true;
-            if (!error) {
-              showAlertComponent("Произошла непредвиденная ошибка. Свяжитесь с нашей службой поддержки +998 71 2310880")
-            }
-            else {
-              if (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true) return
-              console.log("Session is broken");
-              if (device.platform != 'BrowserStand') {
-                console.log("Spinner stop in webApi (session is broken)");
-                SpinnerPlugin.activityStop();
-              }
-              localStorage.setItem('session_broken', true);
-              showAlertComponent("Сессия была прервана");
-            }
-            return
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      }
     try {
-      callBack.err(parsedData.api_status, parsedData.api_status_message, parsedData.data);
+      var method = parsedData.data[0][0].method;
+      var callBack = me.callBacks[method];
+      if (parsedData.api_status == 0)
+        try {
+          if (parsedData.api_status == 0) {
+            callBack.ok(parsedData.data);
+            return;
+          }
+        }
+        catch (ERROR) {
+          console.log("Error on socket initializing: ", ERROR);
+          try {
+            var error = parsedData.data[0][0].error_note;
+            if (!window.api.sessionErrorChecker) {
+              window.api.sessionErrorChecker = true;
+              if (!error) {
+                showAlertComponent("Произошла непредвиденная ошибка. Свяжитесь с нашей службой поддержки +998 71 2310880")
+              }
+              else {
+                if (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true) return
+                console.log("Session is broken");
+                if (device.platform != 'BrowserStand') {
+                  console.log("Spinner stop in webApi (session is broken)");
+                  SpinnerPlugin.activityStop();
+                }
+                localStorage.setItem('session_broken', true);
+                showAlertComponent("Сессия была прервана");
+              }
+              return
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      try {
+        callBack.err(parsedData.api_status, parsedData.api_status_message, parsedData.data);
+      }
+      catch (error) {
+        console.log("Error on socket initializing: ", error);
+      }
+    } catch (error) {
+      console.log("Error on parsing response: ", error);
     }
-    catch (error) {
-      console.log("Error on socket initializing: ", error);
-    }
+
   };
 
   this.socket.onerror = function (error) {
