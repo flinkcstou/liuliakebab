@@ -318,10 +318,6 @@
       boxCursorPositionSelectionEnd = boxOne.selectionEnd;
       oldValueOfBoxNumber = boxOne.value
 
-      if (boxOne.value.length == 19) {
-        boxDate.autofocus
-        boxDate.focus()
-      }
 
       if (boxOne.value.length <= 19 && (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT)) {
         boxOne.value = inputVerification.cardVerification(boxOne.value);
@@ -335,6 +331,11 @@
           boxOne.selectionStart = boxCursorPositionSelectionStart
           boxOne.selectionEnd = boxCursorPositionSelectionEnd
         }
+      }
+
+      if (boxOne.value.length == 19) {
+        boxDate.autofocus
+        boxDate.focus()
       }
 
     }
