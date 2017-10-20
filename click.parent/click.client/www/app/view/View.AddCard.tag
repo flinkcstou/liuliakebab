@@ -15,7 +15,7 @@
       <div class="add-card-uzcard-icon"></div>
       <p class="add-card-card-text add-card-card-number-text">{window.languages.ViewAddCardNumberTitle}</p>
       <div id="cardNumberInput" class="add-card-card-number">
-        <input type="tel" onpaste="boxOnePaste()" oninput="boxOneInput()" onkeyup="boxOneKeyUp()"
+        <input type="tel" onpaste="boxOnePaste()" onkeyup="boxOneKeyUp()"
                onkeydown="boxOneKeyDown()" autofocus="true"
                id="boxOne"
                class="add-card-card-number-box add-card-card-number-box-one">
@@ -52,7 +52,7 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}" viewpage="{viewPage}"></component-alert>
 
-  <component-result if="{showResult}" result="{result}" errornote="{errorNote}"
+  <component-result if="{showResult}" result="{result}" resulttext="{resultText}"
                     viewpage="{viewPage}"></component-result>
   <script>
     var scope = this;
@@ -61,6 +61,9 @@
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = info.session_key;
+
+    var mainPageToReturn = 'view-main-page', pageToReturnTwo = 'view-add-card',
+      pageToReturnIfTimeout = 'view-authorization';
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-card') {
       history.arrayOfHistory.push(
@@ -87,6 +90,29 @@
         scope.doMainCard = false;
         doMainId.style.backgroundImage = 'url(resources/icons/ViewService/unchecked.png)';
       }
+    }
+
+
+    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+      console.log("OPEN RESULT COMPONENT");
+      scope.showResult = showResult;
+      scope.stepAmount = stepAmount;
+      scope.viewPage = viewPage;
+      scope.resultText = text;
+      updateIcon(status);
+      scope.update();
+    }
+
+    closeResultComponent = function () {
+      console.log("CLOSE RESULT COMPONENT");
+      scope.showResult = false;
+      scope.update();
+    }
+
+    initResultComponent = function () {
+      console.log("INIT RESULT COMPONENT");
+      scope.showResult = true;
+      scope.update();
     }
 
     var dateOrPin = '';
@@ -145,8 +171,7 @@
 
         var answerFromServer = false;
 
-        scope.showResult = true;
-        scope.update();
+        initResultComponent();
 
         window.api.call({
           method: 'card.add',
@@ -175,40 +200,32 @@
                   localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo));
                   console.log("DEFAULT was set", loginInfo.default_account, localStorage.getItem("click_client_loginInfo"));
                 }
-                scope.errorNote = result[0][0].error_note;
-                scope.showResult = true;
-                updateIcon('success');
-                scope.viewPage = 'view-main-page';
-                scope.update();
+
+                updateResultComponent(true, null, mainPageToReturn, 'success', result[0][0].error_note);
+
               } else if (result[0][0].registered == -1) {
-                scope.errorNote = result[0][0].error_note;
-                scope.showResult = true;
-                updateIcon('unsuccess');
-                scope.viewPage = 'view-add-card';
-                scope.update();
+
+                updateResultComponent(true, null, pageToReturnTwo, 'unsuccess', result[0][0].error_note);
+
               } else if (result[0][0].registered == 0) {
-                scope.errorNote = result[0][0].error_note;
+                scope.resultText = result[0][0].error_note;
                 scope.showResult = true;
                 scope.repeat = true;
                 scope.checkId = result[0][0].check_id;
                 updateIcon('waiting', scope.repeat, 'view-add-card');
                 scope.viewPage = 'view-add-card';
                 scope.update();
+
               }
 
             }
             else {
-              scope.showResult = false;
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
-              scope.viewPage = '';
-              scope.update();
+              updateResultComponent(true, null, mainPageToReturn, 'unsuccess', result[0][0].error_note);
             }
           },
 
           onFail: function (api_status, api_status_message, data) {
-            scope.showResult = false;
+            updateResultComponent(true, null, mainPageToReturn, 'unsuccess', api_status_message);
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
@@ -216,15 +233,8 @@
 
         setTimeout(function () {
           if (!answerFromServer) {
-            scope.showResult = true;
-            scope.errorNote = window.languages.WaitingTimeExpiredText;
-            scope.viewPage = 'view-authorization';
-            updateIcon('waiting');
-            scope.update();
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Add Card 201");
-              SpinnerPlugin.activityStop();
-            }
+            updateResultComponent(true, null, pageToReturnIfTimeout, 'waiting', window.languages.WaitingTimeExpiredText);
+
             return
           }
         }, 20000)
@@ -262,19 +272,13 @@
                 localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo));
                 console.log("DEFAULT was set", loginInfo.default_account, localStorage.getItem("click_client_loginInfo"));
               }
-              scope.errorNote = result[0][0].error_note;
-              scope.showResult = true;
-              updateIcon('success');
-              scope.viewPage = 'view-main-page';
-              scope.update();
+              updateResultComponent(true, null, mainPageToReturn, 'success', result[0][0].error_note);
             } else if (result[0][0].registered == -1) {
-              scope.errorNote = result[0][0].error_note;
-              scope.showResult = true;
-              updateIcon('unsuccess');
-              scope.viewPage = 'view-add-card';
-              scope.update();
+
+              updateResultComponent(true, null, pageToReturnTwo, 'unsuccess', result[0][0].error_note);
+
             } else if (result[0][0].registered == 0) {
-              scope.errorNote = result[0][0].error_note;
+              scope.resultText = result[0][0].error_note;
               scope.showResult = true;
               scope.checkStatus = true;
               scope.checkId = result[0][0].check_id;
@@ -285,17 +289,12 @@
 
           }
           else {
-            scope.showResult = false;
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
-            scope.viewPage = '';
-            scope.update();
+            updateResultComponent(true, null, mainPageToReturn, 'unsuccess', result[0][0].error_note);
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          scope.showResult = false;
+          updateResultComponent(true, null, mainPageToReturn, 'unsuccess', api_status_message);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -308,17 +307,6 @@
 
     boxOnePaste = function () {
       onPaste = true;
-    }
-
-    boxOneInput = function () {
-//      console.log("input canFormatNumber=", canFormatNumber)
-
-//      if (canFormatNumber) {
-//
-//        console.log("dschjgfwd", boxOne.value.toString() + '!')
-//        boxOne.value = inputVerification.cardVerification(inputVerification.spaceDeleter(boxOne.value));
-//        console.log("after", boxOne.value.toString() + '!')
-//      }
     }
 
     var boxCursorPositionSelectionStart, boxCursorPositionSelectionEnd, oldValueOfBoxNumber;
