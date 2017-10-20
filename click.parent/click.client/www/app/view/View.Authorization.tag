@@ -466,7 +466,6 @@
       if (!pin && localStorage.getItem('click_client_pin')) {
         pin = localStorage.getItem('click_client_pin');
       }
-      console.log("In auth Pin crypted=", pin, "token=", token, "date=", date);
       var password = hex_sha512(token + date + pin);
       localStorage.setItem("pinForStand", pin);
       authorization(phoneNumber, deviceId, password, date);
