@@ -10704,7 +10704,7 @@ var css = {
   "{" +
   "left: 6%;" +
   "width: 200%;" +
-  "bottom: 32%;" +
+  "top: 58%;" +
   "}",
 
   addCardCardTextPin: ".add-card-card-text-pin " +
@@ -10726,13 +10726,13 @@ var css = {
   //"height: 18%;" +
   "height:" + 55 * widthK + "px;" +
   "left: 6%;" +
-  "bottom: 11%;" +
+  "top: 71%;" +
   "}",
 
   addCardCardDateBox: ".add-card-card-date-box " +
   "{" +
   "position: absolute;" +
-  "width:" + 90 * widthK + "px;" +
+  "width:" + 95 * widthK + "px;" +
   "left:" + 17 * widthK + "px;" +
   "top: 20%;" +
   "padding: 0;" +
@@ -11758,18 +11758,12 @@ var css = {
 
   componentResultMessage: ".component-result-message" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "color: #757389;" +
-  "width:" + 400 * widthK + "px;" +
+  "width:" + 500 * widthK + "px;" +
+  "margin: auto;" +
   "text-align: center;" +
-  "margin-left: auto;" +
-  "margin-top: 0;" +
-  "margin-bottom: 0;" +
-  "margin-right: -50%;" +
-  "top: 63%;" +
-  "left: 50%;" +
-  "-webkit-transform: translate(-50%, -50%);" +
-  "transform: translate(-50%, -50%);" +
+  "top:" + 250 * widthK + "px" + "!important;" +
   "font-size:" + 36 * widthK + "px;" +
   "opacity: 0;" +
   "}",
@@ -11780,7 +11774,7 @@ var css = {
   "-webkit-transition-delay: 0.8s;" +
   "transition: 0.7s;" +
   "transition-delay: 0.8s;" +
-  "top: 60% !important;" +
+  "top:" + 214 * widthK + "px" + "!important;" +
   "opacity: 1 !important;" +
   "}",
 
@@ -11788,21 +11782,16 @@ var css = {
   "{" +
   "-webkit-transition: 0.7s;" +
   "transition: 0.7s;" +
-  "top: 63% !important;" +
+  "top:" + 226 * widthK + "px" + "!important;" +
   "opacity: 0 !important;" +
   "}",
 
   componentResultWait: ".component-result-wait " +
   "{" +
-  "position: absolute;" +
-  "margin-left: auto;" +
-  "margin-top: 0;" +
-  "margin-bottom: 0;" +
-  "margin-right: -50%;" +
-  "top: 60%;" +
-  "left:  50%;" +
-  "-webkit-transform: translate(-50%, -50%);" +
-  "transform: translate(-50%, -50%);" +
+  "position: relative;" +
+  "margin: auto;" +
+  "top:" + 250 * widthK + "px;" +
+  "text-align: center;" +
   "color: #757389;" +
   "font-size:" + 36 * widthK + "px;" +
   "-webkit-animation-name: componentResultWaitStartWebKitAnimation;" +
@@ -11815,7 +11804,7 @@ var css = {
   "{" +
   "-webkit-transition: 0.7s;" +
   "transition: 0.7s;" +
-  "top: 63% !important;" +
+  "top:" + 262 * widthK + "px" + "!important;" +
   "opacity: 0 !important;" +
   "}",
 
@@ -11825,7 +11814,7 @@ var css = {
   "-webkit-transition-delay: 0.8s;" +
   "transition: 0.7s;" +
   "transition-delay: 0.8s;" +
-  "top: 60% !important;" +
+  "top:" + 250 * widthK + "px" + "!important;" +
   "opacity: 1 !important;" +
   "}",
 
@@ -11833,11 +11822,11 @@ var css = {
   "{" +
   "from {" +
     "opacity: 0;" +
-    "top: 63%;" +
+    "top:" + 262 * widthK + "px;" +
   "}" +
   "to {" +
     "opacity: 1;" +
-    "top: 60%;" +
+    "top:" + 250 * widthK + "px;" +
   "}" +
   "}",
 
@@ -11845,11 +11834,11 @@ var css = {
   "{" +
   "from {" +
     "opacity: 0;" +
-    "top: 63%;" +
+    "top:" + 262 * widthK + "px;" +
   "}" +
   "to {" +
     "opacity: 1;" +
-    "top: 60%;" +
+    "top:" + 250 * widthK + "px;" +
   "}" +
   "}",
 
