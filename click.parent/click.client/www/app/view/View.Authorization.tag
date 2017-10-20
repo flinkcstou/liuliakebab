@@ -466,9 +466,9 @@
       if (!pin && localStorage.getItem('click_client_pin')) {
         pin = localStorage.getItem('click_client_pin');
       }
+      console.log("Pin crypted=", pin);
       var password = hex_sha512(token + date + pin);
       localStorage.setItem("pinForStand", pin);
-
       authorization(phoneNumber, deviceId, password, date);
     };
 
@@ -479,7 +479,7 @@
       if (scope.firstEnter)
         firstPinInputId.blur();
 
-      var version = localStorage.getItem('version')
+      var version = localStorage.getItem('version');
       answerFromServer = false;
 
       if (device.platform != 'BrowserStand') {

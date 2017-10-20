@@ -400,7 +400,7 @@
       //event.stopPropagation();
 
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-      localStorage.setItem("click_client_pin", JSON.stringify(hex_md5(pin)))
+      localStorage.setItem("click_client_pin", JSON.stringify(hex_md5(pin)));
 
 
       window.api.call({
@@ -416,7 +416,7 @@
           console.log(result)
           console.log(result[0][0])
           if (result[0][0].error == 0) {
-            console.log("user register method result")
+            console.log("user register method result");
 
             localStorage.setItem('click_client_registered', true);
 //            riotTags.innerHTML = "<view-authorization>";
@@ -427,9 +427,13 @@
             var deviceId = localStorage.getItem('click_client_deviceID');
             var date = parseInt(Date.now() / 1000);
             var token = localStorage.getItem('click_client_token');
-            if (!pin && localStorage.getItem('click_client_pin')) {
+            console.log("pin before=", pin.toString());
+            if (localStorage.getItem('click_client_pin')) {
               pin = localStorage.getItem('click_client_pin');
+            } else {
+              pin = hex_md5(pin);
             }
+            console.log("Pin crypted=", pin);
             var password = hex_sha512(token + date + pin);
             localStorage.setItem("pinForStand", pin);
 
@@ -711,7 +715,6 @@
     //    }
 
     changePin = function (pin) {
-      console.log("aaa");
       //event.preventDefault();
       //event.stopPropagation();
 
@@ -758,7 +761,7 @@
               scope.stepToBack = 1;
             else {
               sessionStorage.clear()
-              scope.viewpage = 'view-authorization'
+              scope.viewpage = 'view-authorization';
               scope.stepToBack = null
             }
             scope.update();
