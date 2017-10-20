@@ -114,7 +114,7 @@ window.api.initSocket = function () {
                 showAlertComponent("Произошла непредвиденная ошибка. Свяжитесь с нашей службой поддержки +998 71 2310880")
               }
               else {
-                if (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true) return
+                if (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true) return;
                 console.log("Session is broken");
                 if (device.platform != 'BrowserStand') {
                   console.log("Spinner stop in webApi (session is broken)");

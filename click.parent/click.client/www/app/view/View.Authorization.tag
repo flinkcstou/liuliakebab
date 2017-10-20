@@ -466,7 +466,7 @@
       if (!pin && localStorage.getItem('click_client_pin')) {
         pin = localStorage.getItem('click_client_pin');
       }
-      console.log("Pin crypted=", pin);
+      console.log("In auth Pin crypted=", pin, "token=", token, "date=", date);
       var password = hex_sha512(token + date + pin);
       localStorage.setItem("pinForStand", pin);
       authorization(phoneNumber, deviceId, password, date);
@@ -490,6 +490,8 @@
           console.log("Spinner stop in authorization");
         });
       }
+
+      console.log("INPUT TO APP.LOGIN=", phoneNumber, ", ", deviceId, ", ", password, ", ", date)
 
       window.api.call({
         method: 'app.login',

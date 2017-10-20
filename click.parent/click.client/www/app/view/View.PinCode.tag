@@ -429,12 +429,17 @@
             var token = localStorage.getItem('click_client_token');
             console.log("pin before=", pin.toString());
             if (localStorage.getItem('click_client_pin')) {
+              console.log("111")
               pin = localStorage.getItem('click_client_pin');
+              console.log("In PIN Pin crypted=", pin, "token=", token, "date=", date);
+              var password = hex_sha512(token + date + pin);
+              console.log("passw=", password)
+              console.log("DEFAKJVDSRFBVGSW=", hex_sha512("1" + "2"))
             } else {
               pin = hex_md5(pin);
+              console.log("Pin crypted=", pin, "token=", token, "date=", date);
+              var password = hex_sha512(token + date + pin);
             }
-            console.log("Pin crypted=", pin);
-            var password = hex_sha512(token + date + pin);
             localStorage.setItem("pinForStand", pin);
 
             authorizationPinCode(phoneNumber, deviceId, password, date);
@@ -474,6 +479,8 @@
           console.log("Spinner stop in authorization");
         });
       }
+
+      console.log("INPUT TO APP.LOGIN=", phoneNumber, ", ", deviceId, ", ", password, ", ", date)
 
       window.api.call({
         method: 'app.login',
