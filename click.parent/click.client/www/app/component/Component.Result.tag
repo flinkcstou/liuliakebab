@@ -81,7 +81,8 @@
       okButtonEndX = event.changedTouches[0].pageX;
       okButtonEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(okButtonStartX - okButtonEndX) <= 20 && Math.abs(okButtonStartY - okButtonEndY) <= 20) {
+      if (Math.abs(okButtonStartX - okButtonEndX) <= 20 && Math.abs(okButtonStartY - okButtonEndY) <= 20
+          && alertOkButtonId.classList.contains("component-result-button-start")) {
 
         if (scope.restart) {
 
@@ -127,8 +128,6 @@
             this.parent.unmount();
             this.unmount();
           }
-
-
         }
       }
     };
