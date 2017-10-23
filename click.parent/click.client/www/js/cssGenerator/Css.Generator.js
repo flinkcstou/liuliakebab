@@ -13232,6 +13232,22 @@ var css = {
   "border-bottom-right-radius:" + 70 * widthK + "px;" +
   "}",
 
+  viewNewsBlockWithLink: ".view-news-block-with-link" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "margin: 0 auto 3% auto;" +
+  "padding-bottom: 0;" +
+  "height:" + 400 * widthK + "px;" +
+  //"contain: content;" +
+  "background-image: url('resources/icons/ViewNews/news.png');" +
+  "background-repeat: no-repeat;" +
+  "background-position-y: bottom;" +
+  "background-size: 100%;" +
+  "background-color: white;" +
+  "border-bottom-right-radius:" + 70 * widthK + "px;" +
+  "}",
+
   viewNewsPageTitle: ".view-news-page-title " +
   "{" +
   "position: absolute;" +
@@ -13386,6 +13402,29 @@ var css = {
   "position: relative;" +
   "height: 10%;  " +
   "width: 100%;  " +
+  "}",
+
+  viewNewsFollowLinkContainer: ".view-news-follow-link-container" +
+  "{" +
+  "position: relative;" +
+  "margin-top: " + 25 * widthK + "px;" +
+  "left: 6%;" +
+  "background-color: #09b1ff;" +
+  "width: 40%;" +
+  "height: " + 45 * widthK + "px;" +
+  "font-weight: bold;" +
+  "text-decoration: none;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "border-radius:" + 5 * widthK + "px;" +
+  "color: white;" +
+  "}",
+
+  viewNewsFollowLinkText: ".view-news-follow-link-text" +
+  "{" +
+  "position: absolute;" +
+  "top: 20%;" +
+  "float: left;" +
+  "left: 10%;" +
   "}",
 
 

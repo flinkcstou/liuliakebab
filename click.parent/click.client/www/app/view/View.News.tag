@@ -12,15 +12,19 @@
       <div id="newsImageId{i.news_id}" hidden
            class="view-news-block-image" style="background-image: url({i.news_image})"></div>
 
-      <div class="view-news-block" shorttext="{i.content_short}" opened="false" title="{i.news_content}"
+      <div class="{view-news-block:!i.url, view-news-block-with-link:i.url}" shorttext="{i.content_short}" opened="false" title="{i.news_content}"
            id="newsContainerId{i.news_id}"
            ontouchstart="newsTouchStart()"
            ontouchend="newsTouchEnd(this.id, 'newsTextId' + {i.news_id}, this.title, document.getElementById(this.id).getAttribute('shorttext'), 'newsImageId'+{i.news_id}, {i.news_id})">
         <p class="view-news-block-title">{i.news_title}</p>
         <p id="newsTextId{i.news_id}" class="view-news-block-text">{i.content_short}</p>
-
+        <div hidden="{!i.url}" class="view-news-follow-link-container"
+             ontouchend="followLink(&quot;{i.url}&quot;)" id="{i.news_id}">
+          <div class="view-news-follow-link-text">{window.languages.ViewNewsFollowLink}</div>
+          <div class="component-banklist-public-offer-arrow"></div>
+        </div>
         <p class="view-news-block-date">{i.datetime}</p>
-        <div if="{!i.opened}" class="view-news-block-readmore-container">Подробнее
+        <div if="{!i.opened}" class="view-news-block-readmore-container">{window.languages.ViewNewsDetails}
           <div class="view-news-block-readmore-icon"></div>
         </div>
         <div if="{i.opened}" class="view-news-block-readmore-container">
@@ -78,6 +82,11 @@
       touchStartY = event.changedTouches[0].pageY;
     }
 
+    followLink = function (LinkToNews) {
+      console.log("Link to news", LinkToNews);
+      window.open(LinkToNews, '_system', 'location=no');
+    }
+
     newsTouchEnd = function (containerId, textId, longText, shortText, imageId, newsId) {
       event.preventDefault()
       event.stopPropagation()
@@ -125,7 +134,10 @@
           }
 //          scope.newsOpened = false;
           document.getElementById(containerId).style.paddingBottom = '0px'
-          document.getElementById(containerId).style.height = 330 * widthK + 'px';
+          if (document.getElementById(containerId).className == "view-news-block")
+            document.getElementById(containerId).style.height = 330 * widthK + 'px';
+          else
+            document.getElementById(containerId).style.height = 400 * widthK + 'px';
           document.getElementById(imageId).style.display = 'false'
           document.getElementById(imageId).style.display = 'none'
           document.getElementById(textId).innerHTML = shortText;

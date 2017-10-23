@@ -576,6 +576,9 @@ var RU_LANGUAGES =
 
   "ComponentCardCarouselAddFirstCardtext": "Добавьте свою первую карту в CLICK",
 
+  "ViewNewsDetails": "Подробнее",
+  "ViewNewsFollowLink": "Перейти",
+
   "WaitingTimeExpiredText": "Время ожидания истекло"
 
 
