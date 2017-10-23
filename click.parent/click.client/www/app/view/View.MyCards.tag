@@ -89,6 +89,9 @@
 
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
+  <component-success id="componentSuccessId"
+                     operationmessage="{window.languages.ViewMyCardSuccessDelete}"
+                     viewpage="{}" step_amount="{}" close_action="{goToBack}"></component-success>
 
   <script>
 

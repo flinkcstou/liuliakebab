@@ -86,20 +86,21 @@
 
       window.api.call({
         method: 'account.remove',
-        input : {
+        input: {
           session_key: scope.sessionKey,
-          phone_num  : scope.phoneNumber,
-          account_id : scope.accountId,
+          phone_num: scope.phoneNumber,
+          account_id: scope.accountId,
         },
 
         scope: this,
 
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
-            scope.parent.clickPinError = false;
-            scope.parent.errorNote = 'Карта успешно удалена';
-            scope.parent.showError = true;
-            scope.parent.cardDelete = true;
+            componentSuccessId.style.display = 'block';
+//            scope.parent.clickPinError = false;
+//            scope.parent.errorNote = 'Карта успешно удалена';
+//            scope.parent.showError = true;
+//            scope.parent.cardDelete = true;
             riot.update();
             var cardNumber = JSON.parse(localStorage.getItem("cardNumber"));
 

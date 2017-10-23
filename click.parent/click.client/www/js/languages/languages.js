@@ -66,6 +66,7 @@ var RU_LANGUAGES =
     "ViewMyCardReports": "Отчеты по карте",
     "ViewMyCardBlock": "Удалить карту",
     "ViewMyCardLastOperations": "Последние операции",
+    "ViewMyCardSuccessDelete": "Карта успешно удалена",
 
     "ViewServicePageEnterLabel": "Далее",
     "ViewServicePageChooseCityLabel": "Выберите город",
@@ -575,7 +576,7 @@ var RU_LANGUAGES =
 
   "ComponentCardCarouselAddFirstCardtext": "Добавьте свою первую карту в CLICK",
 
-  "WaitingTimeExpiredText":"Время ожидания истекло"
+  "WaitingTimeExpiredText": "Время ожидания истекло"
 
 
 };
