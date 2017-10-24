@@ -21,7 +21,7 @@
         <div hidden="{!i.url}" class="view-news-follow-link-container"
              ontouchend="followLink(&quot;{i.url}&quot;)" id="{i.news_id}">
           <div class="view-news-follow-link-text">{window.languages.ViewNewsFollowLink}</div>
-          <div class="component-banklist-public-offer-arrow"></div>
+          <div class="view-news-follow-link-arrow"></div>
         </div>
         <p class="view-news-block-date">{i.datetime}</p>
         <div if="{!i.opened}" class="view-news-block-readmore-container">{window.languages.ViewNewsDetails}
@@ -137,7 +137,7 @@
           if (document.getElementById(containerId).className == "view-news-block")
             document.getElementById(containerId).style.height = 330 * widthK + 'px';
           else
-            document.getElementById(containerId).style.height = 400 * widthK + 'px';
+            document.getElementById(containerId).style.height = 415 * widthK + 'px';
           document.getElementById(imageId).style.display = 'false'
           document.getElementById(imageId).style.display = 'none'
           document.getElementById(textId).innerHTML = shortText;

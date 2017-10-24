@@ -13238,7 +13238,7 @@ var css = {
   "width: 100%;" +
   "margin: 0 auto 3% auto;" +
   "padding-bottom: 0;" +
-  "height:" + 400 * widthK + "px;" +
+  "height:" + 415 * widthK + "px;" +
   //"contain: content;" +
   "background-image: url('resources/icons/ViewNews/news.png');" +
   "background-repeat: no-repeat;" +
@@ -13410,11 +13410,10 @@ var css = {
   "margin-top: " + 25 * widthK + "px;" +
   "left: 6%;" +
   "background-color: #09b1ff;" +
-  "width: 40%;" +
-  "height: " + 45 * widthK + "px;" +
-  "font-weight: bold;" +
+  "width: 44%;" +
+  "height: " + 60 * widthK + "px;" +
   "text-decoration: none;" +
-  "font-size:" + 24 * widthK + "px;" +
+  "font-size:" + 25 * widthK + "px;" +
   "border-radius:" + 5 * widthK + "px;" +
   "color: white;" +
   "}",
@@ -13422,9 +13421,23 @@ var css = {
   viewNewsFollowLinkText: ".view-news-follow-link-text" +
   "{" +
   "position: absolute;" +
-  "top: 20%;" +
+  "top: 27%;" +
   "float: left;" +
-  "left: 10%;" +
+  "left: 22%;" +
+  "}",
+
+  viewNewsFollowLinkArrow: ".view-news-follow-link-arrow" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "height:" + 17 * widthK + "px;" +
+  "width:" + 17 * widthK + "px;" +
+  "top: 38%;" +
+  "float: right;" +
+  "right: 14%;" +
+  "background-image: url('resources/icons/ViewTransfer/banks_offerta.png');" +
   "}",
 
 

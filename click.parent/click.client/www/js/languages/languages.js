@@ -105,7 +105,7 @@ var RU_LANGUAGES =
 
   "ComponentResultPleaseWait": "Пожалуйста подождите...",
   "ComponentResultOk": "Закрыть",
-  "ComponentResultRepeat": "Повторить",
+  "ComponentResultClose": "Закрыть",
   "ComponentResultQRSuccess": "Оплата QR прошла успешно",
 
   "ViewAmountCalculatorNameTitle": "КАЛЬКУЛЯТОР ВАЛЮТ",
@@ -577,7 +577,7 @@ var RU_LANGUAGES =
   "ComponentCardCarouselAddFirstCardtext": "Добавьте свою первую карту в CLICK",
 
   "ViewNewsDetails": "Подробнее",
-  "ViewNewsFollowLink": "Перейти",
+  "ViewNewsFollowLink": "ПЕРЕЙТИ",
 
   "WaitingTimeExpiredText": "Время ожидания истекло"
 

@@ -16,7 +16,7 @@
     var scope = this;
     scope.outerShowAlertBool = false;
     scope.restart = false;
-    scope.buttonText = window.languages.ComponentResultRepeat;
+    scope.buttonText = window.languages.ComponentResultClose;
 
 
     updateIcon = function (result, checkStatus, from) {
