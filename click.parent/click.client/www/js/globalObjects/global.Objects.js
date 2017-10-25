@@ -116,6 +116,15 @@ window.fingerPrint = {};
 window.fingerPrint.check = false;
 window.fingerPrint.fingerPrintInitialize = false;
 
+window.componentFlags = {
+  alert: false,
+  result: false,
+  inProcessing: false,
+  success: false,
+  unsuccess: false,
+  confirm: false,
+};
+
 
 window.representDotedDate = function (left, middle, right) {
 

@@ -132,7 +132,7 @@
                    errornote="{errorNote}"></component-alert>
 
 
-  <component-result if="{showResult}" resulttext="{resultText}"
+  <component-result if="{window.componentFlags.result}" resulttext="{resultText}"
                     viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
 
 
@@ -315,8 +315,9 @@
 
 
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
-      console.log("OPEN RESULT COMPONENT");
-      scope.showResult = showResult;
+      console.log("OPEN RESULT COMPONENT:", showResult, status, text);
+      window.componentFlags.result = showResult;
+//      scope.showResult = showResult;
       scope.stepAmount = stepAmount;
       scope.viewPage = viewPage;
       scope.resultText = text;
@@ -326,12 +327,14 @@
 
     closeResultComponent = function () {
       console.log("CLOSE RESULT COMPONENT");
+      window.componentFlags.result = false;
       scope.showResult = false;
       riot.update();
     }
 
     initResultComponent = function () {
       console.log("INIT RESULT COMPONENT");
+      window.componentFlags.result = true;
       scope.showResult = true;
       riot.update();
     }
@@ -744,7 +747,7 @@
 
               statusCheckCounter++;
 
-              if (statusCheckCounter < 5) {
+              if (statusCheckCounter < 5 && window.componentFlags.result) {
 
                 setTimeout(function () {
                   checkPaymentStatus(result[1][0].payment_id);
