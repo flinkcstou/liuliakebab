@@ -128,6 +128,8 @@
         }
       }
       scope.update();
+      if (device.platform != 'BrowserStand')
+        navigator.splashscreen.hide();
     });
 
     window.lastSocketMethodToSend = undefined;
