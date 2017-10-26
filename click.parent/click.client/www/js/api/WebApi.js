@@ -111,6 +111,7 @@ window.api.initSocket = function () {
             if (!window.api.sessionErrorChecker) {
               window.api.sessionErrorChecker = true;
               if (!error) {
+                window.componentFlags.result = false;
                 showAlertComponent("Произошла непредвиденная ошибка. Свяжитесь с нашей службой поддержки +998 71 2310880")
               }
               else {
