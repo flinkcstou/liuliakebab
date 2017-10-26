@@ -82,7 +82,7 @@
       okButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(okButtonStartX - okButtonEndX) <= 20 && Math.abs(okButtonStartY - okButtonEndY) <= 20
-          && resultButtonId.classList.contains("component-result-button-start")) {
+        && resultButtonId.classList.contains("component-result-button-start")) {
 
         if (scope.restart) {
 
@@ -103,6 +103,9 @@
 //            this.unmount();
 //
 //          }
+
+
+          window.componentFlags.result = false;
 
 
           if (opts.step_amount) {
