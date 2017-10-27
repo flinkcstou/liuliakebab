@@ -10377,12 +10377,13 @@ var css = {
   "width: 90%;" +
   "}",
 
-  componentBankListPunlicOfferContainer: ".component-banklist-public-offer-container" +
+  componentBankListPublicOfferContainer: ".component-banklist-public-offer-container" +
   "{" +
-  "position: absolute;" +
-  "bottom: 0%;" +
+  "position: relative;" +
+  "top: " + 253 * widthK + "px;" +
   "background-color: #09b1ff;" +
-  "width: 100%;" +
+  "margin: auto;" +
+  "width: " + 301 * widthK + "px;" +
   "height: " + 45 * widthK + "px;" +
   "font-weight: bold;" +
   "text-decoration: none;" +
@@ -10390,7 +10391,7 @@ var css = {
   "color: white;" +
   "}",
 
-  componentBankListPunlicOfferLink: ".component-banklist-public-offer-link" +
+  componentBankListPublicOfferLink: ".component-banklist-public-offer-link" +
   "{" +
   "position: absolute;" +
   "top: 30%;" +
