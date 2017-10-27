@@ -356,15 +356,10 @@
       console.log("focusing fields", scope.tourClosed)
 
 
-      if (device.platform == 'iOS') {
+      setTimeout(function () {
         contactPhoneNumberId.autofocus;
         contactPhoneNumberId.focus();
-      }
-      else {
-        setTimeout(function () {
-          contactPhoneNumberId.focus();
-        }, 0)
-      }
+      }, 0)
 
     }
 
@@ -1267,16 +1262,10 @@
         ownerCardDsiplayId.style.display = 'none'
 
         if (scope.tourClosed) {
-
-          if (device.platform == 'iOS') {
+          setTimeout(function () {
             contactPhoneNumberId.autofocus;
             contactPhoneNumberId.focus();
-          }
-          else {
-            setTimeout(function () {
-              contactPhoneNumberId.focus();
-            }, 0)
-          }
+          }, 0)
         }
 
         contactInputFieldId.style.display = 'block'
