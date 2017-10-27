@@ -193,6 +193,7 @@
     console.log('isInFavorites', opts.isInFavorites)
     scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
+    componentFlags.result = false;
 
     if (opts.mode == 'ADDAUTOPAY') {
       scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
