@@ -492,8 +492,6 @@
         });
       }
 
-      console.log("INPUT TO APP.LOGIN=", phoneNumber, ", ", deviceId, ", ", password, ", ", date)
-
       window.api.call({
         method: 'app.login',
         stopSpinner: true,
