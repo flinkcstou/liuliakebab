@@ -1329,15 +1329,11 @@
         viewTransferStepTwo.sum = 0;
         viewTransferStepTwo.sumWithoutSpace = 0;
 
-        if (device.platform == 'iOS') {
+
+        setTimeout(function () {
           cardInputId.autofocus;
           cardInputId.focus();
-        }
-        else {
-          setTimeout(function () {
-            cardInputId.focus();
-          }, 0)
-        }
+        }, 0)
 
         contactInputFieldId.style.display = 'none'
         cardInputFieldId.style.display = 'block'
