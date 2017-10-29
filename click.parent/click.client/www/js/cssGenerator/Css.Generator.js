@@ -7726,6 +7726,7 @@ var css = {
   "background-color: white; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
   settingsPageTitle: ".settings-page-title " +

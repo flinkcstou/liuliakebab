@@ -62,6 +62,9 @@
   </div>
 
   <div id="blockFirstFieldId" class="autopay-event-amount-dropdown-component">
+    <div type="button" class="servicepage-fields-dropdown-close-button" role="button"
+         aria-label="{window.languages.Close}"
+         ontouchend="closeDropdownTouchEnd()" ontouchstart="closeDropdownTouchStart()"></div>
     <div class="autopay-event-amount-dropdown-field-two">
       <p class="autopay-event-dropdown-text-field" style="color: white;">{chosenAmount}</p>
     </div>
@@ -471,6 +474,29 @@
         }
       }
     }
+
+    var closeDropdownTouchStartX, closeDropdownTouchStartY, closeDropdownTouchEndX,
+      closeDropdownTouchEndY;
+
+    closeDropdownTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      closeDropdownTouchStartX = event.changedTouches[0].pageX;
+      closeDropdownTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    closeDropdownTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      closeDropdownTouchEndX = event.changedTouches[0].pageX;
+      closeDropdownTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(closeDropdownTouchStartX - closeDropdownTouchEndX) <= 20 && Math.abs(closeDropdownTouchStartY - closeDropdownTouchEndY) <= 20) {
+        this.blockFirstFieldId.style.display = 'none';
+      }
+    };
 
 
   </script>
