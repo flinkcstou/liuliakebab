@@ -149,7 +149,7 @@
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
-          accounts: accountsForBalance,
+          accounts: accountsForBalance
         },
         //TODO: DO CARDS
         scope: this,
