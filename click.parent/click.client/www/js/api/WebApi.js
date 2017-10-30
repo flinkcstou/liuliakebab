@@ -76,7 +76,8 @@ window.api.initSocket = function () {
       if (window.isConnected == true || modeOfApp.offlineMode == true) {
         return
       }
-
+      window.componentFlags.result = false;
+      riot.update();
       if (device.platform == 'Android')
         showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
       else {
@@ -112,6 +113,7 @@ window.api.initSocket = function () {
               window.api.sessionErrorChecker = true;
               if (!error) {
                 window.componentFlags.result = false;
+                riot.update();
                 showAlertComponent("Произошла непредвиденная ошибка. Свяжитесь с нашей службой поддержки +998 71 2310880")
               }
               else {
@@ -148,6 +150,8 @@ window.api.initSocket = function () {
     window.isConnected = false;
     if (modeOfApp.offlineMode) return
     console.log('Error with socket ' + error.message);
+    window.componentFlags.result = false;
+    riot.update();
     if (device.platform == 'Android')
       showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
     else {
