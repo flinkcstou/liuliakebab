@@ -5465,6 +5465,124 @@ var css = {
 
   //VIEW TRANSFER
 
+  transferBlockContainer: ".transfer-block-container" +
+  "{" +
+  "position: relative;" +
+  "min-height:" + 100 * widthK + "px; " +
+  "width: 100%;" +
+  "padding-top: 1%;" +
+  "border-bottom:" + 1 + "px solid gainsboro;" +
+  "background-color: transparent;" +
+  "}",
+
+  transferCategoryIcon: ".transfer-category-icon" +
+  "{" +
+  "position: relative;" +
+  "width: 13%;" +
+  "height:" + 95 * widthK + "px; " +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "float: left;" +
+  "left: 3%;" +
+  "background-size: 50%;" +
+  "}",
+
+  transferCategoryNameField: ".transfer-category-name-field" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 31 * widthK + "px; " +
+  "left: 6%;" +
+  "text-align: left;" +
+  "font-size:" + 29 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  transferIconTick: ".transfer-icon-tick " +
+  "{" +
+  "position: relative;" +
+  "left: 91%;" +
+  "background-size: contain;" +
+  "background-image: url(resources/icons/ViewService/right.png);" +
+  "background-repeat: no-repeat;" +
+  "width:" + 19 * widthK + "px;" +
+  "height:" + 18 * widthK + "px;" +
+  "top:" + 9 * widthK + "px;" +
+  "}",
+
+  transferBetweenCardsTitle: ".transfer-between-cards-title" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "}",
+
+  transferBetweenCardsComission: ".transfer-between-cards-commission" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "right:" + 6 * widthK + "px;" +
+  "bottom: -" + 52 * widthK + "px;" +
+  "}",
+
+  transferBetweenCardsSumContainer: ".transfer-between-cards-sum-container" +
+  "{" +
+  "position: relative;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height:" + 130 * widthK + "px;" +
+  "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  "top:" + 52 * widthK + "px;" +
+  "}",
+
+  transferBetweenCardsCardsContainer: ".transfer-between-cards-cards-container" +
+  "{" +
+  "position: relative;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height:" + 130 * widthK + "px;" +
+  "color: white;" +
+  "top:" + 52 * widthK + "px;" +
+  "}",
+
+  transferBetweenCardsFromContainer: ".transfer-between-cards-from-to-container" +
+  "{" +
+  "position: relative;" +
+  "width: 79.5%;" +
+  "height:" + 130 * widthK + "px;" +
+  "color: white;" +
+  "top:" + 52 * widthK + "px;" +
+  "}",
+
+  transferBetweenCardsSumInput: ".transfer-between-cards-sum-input" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "top:" + 10 * widthK + "px;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "font-size:" + 55 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "}",
+
+  transferBetweenCardsArrowDown: ".transfer-between-cards-arrow-down" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "margin: auto;" +
+  "height:" + 32 * widthK + "px;" +
+  "width:" + 30 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewTransfer/banks_limit_receipt.png');" +
+  "}",
+
   transferBodyContainer: ".transfer-body-container" +
   "{" +
   "position: absolute;" +
@@ -5595,6 +5713,14 @@ var css = {
   "{" +
   "position: absolute;" +
   "top: 10%;" +
+  "height: 50%;" +
+  "width: 100%;" +
+  "background-color: transparent;" +
+  "}",
+
+  transferNewContactBodyContainer: ".transfer-new-contact-body-container" +
+  "{" +
+  "position: absolute;" +
   "height: 50%;" +
   "width: 100%;" +
   "background-color: transparent;" +
@@ -5755,7 +5881,6 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
-
 
   transferContactFoundPhoto: ".transfer-contact-found-photo" +
   "{" +

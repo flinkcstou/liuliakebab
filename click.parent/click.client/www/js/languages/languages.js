@@ -151,6 +151,17 @@ var RU_LANGUAGES =
   "ViewPayTransferCardOwnerTitle": "Владелец:",
   "ViewPayTransferAccessToContacts": "Для быстрого поиска в адресной книге, необходимо разрешить приложению доступ к контактам на Вашем устройстве",
   "ViewPayTransferAccessToContactsSettings": "Перейти в настройки",
+  "ViewPayTransferByCardNumber": "ПО НОМЕРУ КАРТЫ",
+  "ViewPayTransferByPhoneNumber": "ПО НОМЕРУ ТЕЛЕФОНА",
+  "ViewPayTransferBetweenCards": "МЕЖДУ СВОИМИ КАРТАМИ",
+  "ViewPayTransferBetweenCardsTitle": "ПЕРЕВОД МЕЖДУ КАРТАМИ",
+  "ViewPayTransferBetweenCardsFrom": "Карта списания:",
+  "ViewPayTransferBetweenCardsTo": "Карта пополнения:",
+  "ViewPayTransferHistory": "ИСТОРИЯ ПЕРЕВОДОВ",
+  "ViewPayTransferByCardNumberTitle": "ПЕРЕВОД НА КАРТУ",
+  "ViewPayTransferByPhoneNumberTitle": "ПЕРЕВОД НА НОМЕР",
+  "ViewPayTransferHistoryTitle": "ИСТОРИЯ ПЕРЕВОДОВ",
+  "ViewPayTransferNewCardTextField": "Введите номер карты получателя:",
 
 
   "ViewTransferTwoTax": "Комиссия: ",
