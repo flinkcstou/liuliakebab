@@ -452,7 +452,7 @@
 
       window.api.call({
         method: 'device.register.request',
-        stopSpinner: true,
+        stopSpinner: false,
         input: {
           phone_num: phoneNumber,
           device_info: deviceInfo(),
@@ -467,6 +467,10 @@
 
         onSuccess: function (result) {
           answerFromServer = true;
+          if (device.platform != 'BrowserStand') {
+            console.log("Spinner stop in device registration by timeout");
+            SpinnerPlugin.activityStop();
+          }
           console.log("Device.register.request method answer: fail");
 
           if (result[0][0].error == 0) {
@@ -505,6 +509,10 @@
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
           console.log("Device.register.request method answer: fail");
+          if (device.platform != 'BrowserStand') {
+            console.log("Spinner stop in device registration by timeout");
+            SpinnerPlugin.activityStop();
+          }
           showAlertComponent("Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);

@@ -246,10 +246,11 @@ window.api.call = function (params) {
         method: method,
         parameters: input
       });
-      if (device.platform != 'BrowserStand') {
-        console.log("Spinner stop in web api (not connected)");
-        SpinnerPlugin.activityStop();
-      }
+      if (stopSpinner)
+        if (device.platform != 'BrowserStand') {
+          console.log("Spinner stop in web api (not connected)");
+          SpinnerPlugin.activityStop();
+        }
     }
     window.api.init();
   }
@@ -264,6 +265,12 @@ function onlineDetector() {
 }
 
 function offlineDetector() {
-  window.isConnected = false;
-  console.log("Offline detector, window.isConnected:", window.isConnected);
+
+  console.log("navigator connection", navigator.connection.type, Connection.NONE)
+
+  if (navigator.connection.type === Connection.NONE) {
+
+    window.isConnected = false;
+    console.log("Offline detector, window.isConnected:", window.isConnected);
+  }
 }
