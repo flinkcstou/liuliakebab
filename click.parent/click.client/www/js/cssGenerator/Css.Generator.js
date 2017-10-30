@@ -11950,24 +11950,24 @@ var css = {
   componentResultWaitStartWebKitAnimation: "@-webkit-keyframes componentResultWaitStartWebKitAnimation " +
   "{" +
   "from {" +
-    "opacity: 0;" +
-    "top:" + 262 * widthK + "px;" +
+  "opacity: 0;" +
+  "top:" + 262 * widthK + "px;" +
   "}" +
   "to {" +
-    "opacity: 1;" +
-    "top:" + 250 * widthK + "px;" +
+  "opacity: 1;" +
+  "top:" + 250 * widthK + "px;" +
   "}" +
   "}",
 
   componentResultWaitStartAnimation: "@keyframes componentResultWaitStartAnimation " +
   "{" +
   "from {" +
-    "opacity: 0;" +
-    "top:" + 262 * widthK + "px;" +
+  "opacity: 0;" +
+  "top:" + 262 * widthK + "px;" +
   "}" +
   "to {" +
-    "opacity: 1;" +
-    "top:" + 250 * widthK + "px;" +
+  "opacity: 1;" +
+  "top:" + 250 * widthK + "px;" +
   "}" +
   "}",
 
@@ -13351,7 +13351,7 @@ var css = {
   "width: 100%;" +
   "margin: 0 auto 3% auto;" +
   "padding-bottom: 0;" +
-  "height:" + 330 * widthK + "px;" +
+  "height:" + 360 * widthK + "px;" +
   //"contain: content;" +
   "background-image: url('resources/icons/ViewNews/news.png');" +
   "background-repeat: no-repeat;" +
@@ -13433,7 +13433,8 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "contain: content;" +
+  // "contain: content;" +
+  "margin-bottom: 7%;" +
   "}",
 
   viewNewsBlockText: ".view-news-block-text " +
@@ -13493,7 +13494,7 @@ var css = {
   "margin: 0;  " +
   "left: 30%;  " +
   "margin-top:" + 35 * widthK + "px; " +
-  "margin-bottom:" + 52 * widthK + "px; " +
+  "margin-bottom:" + 35 * widthK + "px; " +
   "width: 30%;  " +
   "height: 17%;  " +
   "float: left;  " +
