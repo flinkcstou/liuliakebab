@@ -10309,6 +10309,7 @@ var css = {
   // "margin: " + 4 * widthK + "px;" +
   // "left: " + 48 * widthK + "px;" +
   "background-color: white;" +
+  "-webkit-backface-visibility: hidden;" +
   "backface-visibility: hidden;" +
   "transform: rotateY(180deg);" +
   "}",
@@ -10323,6 +10324,7 @@ var css = {
   // "margin: " + 4 * widthK + "px;" +
   // "left: " + 48 * widthK + "px;" +
   "background-color: white;" +
+  "-webkit-backface-visibility: hidden;" +
   "backface-visibility: hidden;" +
   "z-index: 2;" +
   "transform: rotateY(0deg);" +
