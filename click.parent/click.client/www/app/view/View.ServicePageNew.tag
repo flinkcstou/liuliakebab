@@ -1109,7 +1109,7 @@
                   if (scope.hasSecondLevel && scope.secondLevelMap[scope.firstLevelArray[0].type]) {
                     var chosenFirstLevelId = scope.firstLevelArray[0].type;
                     if (scope.chosenFieldParamIdTwo)
-                        chosenFirstLevelId = scope.chosenFieldParamIdTwo;
+                      chosenFirstLevelId = scope.chosenFieldParamIdTwo;
                     scope.secondLevelArray = scope.secondLevelMap[chosenFirstLevelId];
                   }
                   checkFieldsToActivateNext();
@@ -1329,8 +1329,8 @@
       }
       if (scope.secondLevelArray) {
         this.blockSecondDropdownId.style.display = 'block';
-          if (scope.oldFieldParamIdThree) {
-            if (scope.formType == 3)
+        if (scope.oldFieldParamIdThree) {
+          if (scope.formType == 3)
             document.getElementById('two' + scope.oldFieldParamIdThree).style.backgroundColor = 'white';
           else if (scope.formType == 4)
             document.getElementById(scope.oldFieldParamIdThree).style.backgroundColor = 'white';
@@ -1873,6 +1873,9 @@
         opts.chosenPrefixId = scope.chosenPrefixId;
         opts.chosenPrefixName = scope.chosenPrefixName;
         opts.transactionId = null;
+
+        history.arrayOfHistory[history.arrayOfHistory.length - 1].params = opts;
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
 
 //      viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
