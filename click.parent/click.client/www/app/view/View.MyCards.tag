@@ -91,13 +91,14 @@
                      confirmtype="{confirmType}"></component-confirm>
   <component-success id="componentSuccessId"
                      operationmessage="{window.languages.ViewMyCardSuccessDelete}"
-                     viewpage="{}" step_amount="{}" close_action="{goToBack}"></component-success>
+                     viewpage="{viewPage}" step_amount="{}" close_action="{goToBack}"></component-success>
 
   <script>
 
     var scope = this;
     scope.cardDelete = false;
     viewMainPage.atMainPage = false;
+    scope.viewPage = '';
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-cards') {
       history.arrayOfHistory.push(

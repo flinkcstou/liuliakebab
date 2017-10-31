@@ -72,15 +72,15 @@
         deleteCardComponentId.style.display = 'none'
       }
     }
-    scope.sessionKey = ''
-    scope.phoneNumber = ''
-    scope.accountId = ''
+    scope.sessionKey = '';
+    scope.phoneNumber = '';
+    scope.accountId = '';
 
     componentDeleteCard.getInformation = function (sessionKey, phoneNumber, accountId) {
-      scope.sessionKey = sessionKey
-      scope.phoneNumber = phoneNumber
-      scope.accountId = accountId
-    }
+      scope.sessionKey = sessionKey;
+      scope.phoneNumber = phoneNumber;
+      scope.accountId = accountId;
+    };
 
     componentDeleteCard.deleteCard = function () {
 
@@ -89,13 +89,13 @@
         input: {
           session_key: scope.sessionKey,
           phone_num: scope.phoneNumber,
-          account_id: scope.accountId,
+          account_id: scope.accountId
         },
 
         scope: this,
 
         onSuccess: function (result) {
-          if (result[0][0].error == 0) {
+          if (result[0][0].error === 0) {
             componentSuccessId.style.display = 'block';
 //            scope.parent.clickPinError = false;
 //            scope.parent.errorNote = 'Карта успешно удалена';
@@ -103,11 +103,16 @@
 //            scope.parent.cardDelete = true;
             riot.update();
             var cardNumber = JSON.parse(localStorage.getItem("cardNumber"));
+            var cards = JSON.parse(localStorage.getItem("click_client_cards"));
 
             cardNumber = (cardNumber - 1 >= 0) ? (cardNumber - 1) : (0);
+            if (!cards.length || cards.length == 1) {
+              scope.parent.viewPage = "view-main-page";
+              riot.update();
+              localStorage.removeItem('click_client_cards');
+            }
             localStorage.setItem("cardNumber", cardNumber);
             deleteCardComponentId.style.display = 'none';
-//              updateCard();
             return;
           }
           else {
