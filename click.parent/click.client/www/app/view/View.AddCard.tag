@@ -52,7 +52,7 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}" viewpage="{viewPage}"></component-alert>
 
-  <component-result if="{showResult}" result="{result}" resulttext="{resultText}"
+  <component-result if="{window.componentFlags.result}" result="{result}" resulttext="{resultText}"
                     viewpage="{viewPage}"></component-result>
   <script>
     var scope = this;
@@ -77,6 +77,7 @@
 
 
     scope.doMainCard = false;
+    componentFlags.result = false;
 
     doMainCardTouchEnd = function () {
       event.preventDefault()
@@ -95,7 +96,8 @@
 
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
       console.log("OPEN RESULT COMPONENT");
-      scope.showResult = showResult;
+      window.componentFlags.result = showResult;
+//      scope.showResult = showResult;
       scope.stepAmount = stepAmount;
       scope.viewPage = viewPage;
       scope.resultText = text;
@@ -105,12 +107,14 @@
 
     closeResultComponent = function () {
       console.log("CLOSE RESULT COMPONENT");
+      window.componentFlags.result = false;
       scope.showResult = false;
       scope.update();
     }
 
     initResultComponent = function () {
       console.log("INIT RESULT COMPONENT");
+      window.componentFlags.result = true;
       scope.showResult = true;
       scope.update();
     }

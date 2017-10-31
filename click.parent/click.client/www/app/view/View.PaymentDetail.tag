@@ -70,7 +70,7 @@
   <component-alert if="{showError}" clickpinerror="{clickPinError}" errorcode="{errorCode}"
                    errornote="{errorNote}"></component-alert>
 
-  <component-result if="{showResult}" resulttext="{resultText}"
+  <component-result if="{window.componentFlags.result}" resulttext="{resultText}"
                     viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
 
   <script>
@@ -87,6 +87,7 @@
     scope.showError = false;
     scope.commission_amount = scope.opts.amount * scope.opts.commission_percent / 100;
     scope.errorCode = 0;
+    componentFlags.result = false;
 
     var pageToReturnIfError = 'view-main-page', pageToReturnIfSuccess = 'view-report';
     var paymentSuccessStep = 1, paymentWaitingStep = 0;
@@ -394,7 +395,8 @@
 
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
       console.log("OPEN RESULT COMPONENT");
-      scope.showResult = showResult;
+//      scope.showResult = showResult;
+      window.componentFlags.result = showResult;
       scope.stepAmount = stepAmount;
       scope.viewPage = viewPage;
       scope.resultText = text;
@@ -404,11 +406,13 @@
 
     closeResultComponent = function () {
       scope.showResult = false;
+      window.componentFlags.result = false;
       scope.update();
     }
 
     initResultComponent = function () {
       scope.showResult = true;
+      window.componentFlags.result = true;
       scope.update();
     }
 

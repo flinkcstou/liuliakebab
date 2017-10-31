@@ -97,7 +97,7 @@
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
                      confirmtype="{confirmType}"></component-confirm>
 
-  <component-result if="{showResult}" resulttext="{resultText}"
+  <component-result if="{window.componentFlags.result}" resulttext="{resultText}"
                     viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
 
   <script>
@@ -117,6 +117,7 @@
     scope.showError = false;
     scope.errorCode = 0;
     scope.stepAmount = 3;
+    componentFlags.result = false;
 
     var pageToReturnIfError = 'view-main-page';
 
@@ -318,7 +319,8 @@
 
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
       console.log("OPEN RESULT COMPONENT");
-      scope.showResult = showResult;
+      window.componentFlags.result = showResult;
+//      scope.showResult = showResult;
       scope.stepAmount = stepAmount;
       scope.viewPage = viewPage;
       scope.resultText = text;
@@ -328,11 +330,13 @@
 
     closeResultComponent = function () {
       scope.showResult = false;
+      window.componentFlags.result = false;
       scope.update();
     }
 
     initResultComponent = function () {
       scope.showResult = true;
+      window.componentFlags.result = true;
       scope.update();
     }
 

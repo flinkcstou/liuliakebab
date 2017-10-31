@@ -75,7 +75,7 @@
   <component-alert if="{showError}" errorcode="{errorCode}"
                    errornote="{errorNote}"></component-alert>
 
-  <component-result if="{showResult}" resulttext="{resultText}"
+  <component-result if="{window.componentFlags.result}" resulttext="{resultText}"
                     viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
 
 
@@ -114,6 +114,7 @@
     scope.serviceIcon = opts[2].image;
     scope.categoryName = opts[2].name;
     scope.tax = opts[2].tax;
+    componentFlags.result = false;
 
     scope.update();
     console.log(opts[0]);
@@ -404,7 +405,8 @@
 
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
       console.log("OPEN RESULT COMPONENT");
-      scope.showResult = showResult;
+//      scope.showResult = showResult;
+      window.componentFlags.result = showResult;
       scope.stepAmount = stepAmount;
       scope.viewPage = viewPage;
       scope.resultText = text;
@@ -414,11 +416,13 @@
 
     closeResultComponent = function () {
       scope.showResult = false;
+      window.componentFlags.result = false;
       scope.update();
     }
 
     initResultComponent = function () {
       scope.showResult = true;
+      window.componentFlags.result = true;
       scope.update();
     }
 
