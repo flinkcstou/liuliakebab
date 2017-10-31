@@ -44,7 +44,7 @@
 
     scope.showError = false;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-sms') {
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-sms') {
       history.arrayOfHistory.push(
         {
           "view": 'view-sms',
@@ -57,9 +57,9 @@
 
     this.on('mount', function () {
 
-      if (device.platform != 'BrowserStand')
+      if (device.platform !== 'BrowserStand')
         StatusBar.backgroundColorByHexString("#00b0eb");
-    })
+    });
 
 
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
@@ -70,7 +70,7 @@
 
       keyboardTouchStartX = event.changedTouches[0].pageX
       keyboardTouchStartY = event.changedTouches[0].pageY
-    }
+    };
 
     //
     //    componentKeyboard.returnValue = function (myValue) {
@@ -99,7 +99,7 @@
 
     componentKeyboard.returnValue = function (myValue, id) {
 
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)';
 
       keyboardTouchEndX = event.changedTouches[0].pageX
       keyboardTouchEndY = event.changedTouches[0].pageY
@@ -227,7 +227,7 @@
 //        scope.unmount()
         componentTourId.style.display = "block";
 //        tourBackPageId.style.opacity = '1';
-        if (device.platform != 'BrowserStand')
+        if (device.platform !== 'BrowserStand')
           StatusBar.backgroundColorByHexString("#024361");
 
 
@@ -246,8 +246,8 @@
     }
 
     goToBackRegistrationEnd = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
       changeNumberButtonId.style.webkitTransform = 'scale(1)'
 
@@ -318,7 +318,7 @@
     var token;
     viewSms.getSms = function (sms) {
       scope.confirmSms = sms;
-      scope.update(scope.confirmSms)
+      scope.update(scope.confirmSms);
       event.preventDefault();
       event.stopPropagation();
 
@@ -347,7 +347,7 @@
     function registrationConfirm(sms, phoneNumber, deviceId) {
       countOfCall++;
       checkServiceAnswer = false;
-      if (device.platform != 'BrowserStand') {
+      if (device.platform !== 'BrowserStand') {
         var options = {dimBackground: true};
 
         SpinnerPlugin.activityStart(languages.Downloading, options, function () {
@@ -420,7 +420,7 @@
             scope.showError = true;
             scope.errorNote = "Сервис временно недоступен";
             countOfCall = 0;
-            if (device.platform != 'BrowserStand') {
+            if (device.platform !== 'BrowserStand') {
               console.log("Spinner Stop View SMS 422");
               SpinnerPlugin.activityStop();
             }
@@ -441,15 +441,15 @@
 
       resendTouchStartX = event.changedTouches[0].pageX
       resendTouchStartY = event.changedTouches[0].pageY
-    }
+    };
 
     touchEndResend = function () {
 
       event.preventDefault();
       event.stopPropagation();
 
-      resendTouchEndX = event.changedTouches[0].pageX
-      resendTouchEndY = event.changedTouches[0].pageY
+      resendTouchEndX = event.changedTouches[0].pageX;
+      resendTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(resendTouchStartX - resendTouchEndX) <= 20 && Math.abs(resendTouchStartY - resendTouchEndY) <= 20) {
         scope.clickPinError = false;
@@ -459,7 +459,7 @@
 //      alert(window.languages.ViewSmsResendText + localStorage.getItem('click_client_phoneNumber'));
         resendSms();
       }
-    }
+    };
 
     resendSms = function () {
       event.preventDefault();
@@ -487,14 +487,6 @@
       })
     }
 
-    //      <div class="registration-buttons-container">
-    //      <div class="registration-container-offline">
-    //      <div class="registration-button-offline">Офлайн режим</div>
-    //    </div>
-    //    <a href="stand/index-stand.html" id="demoContainer" class="registration-container-demo-version"
-    //    ontouchstart="goToDemo()">
-    //      <div class="registration-button-demo-version">Демо версия</div>
-    //    </a>
-    //    </div>
+
   </script>
 </view-sms>
