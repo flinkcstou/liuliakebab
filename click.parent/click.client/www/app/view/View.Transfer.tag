@@ -553,15 +553,20 @@
         var rotated = object.style.transform;
         if (rotated == "rotateY(-180deg)") {
           if (!publicOfferHidden) {
-            if (publicOfferRect.top > flipCardTouchEndY)
+            if (publicOfferRect.top > flipCardTouchEndY) {
               object.style.transform = "rotateY(0deg)";
+              object.style.webkitTransform = "rotateY(0deg)";
+            }
           }
           else {
             object.style.transform = "rotateY(0deg)";
+            object.style.webkitTransform = "rotateY(0deg)";
           }
         }
-        else
+        else {
           object.style.transform = "rotateY(-180deg)";
+          object.style.webkitTransform = "rotateY(-180deg)";
+        }
       }
     }
 

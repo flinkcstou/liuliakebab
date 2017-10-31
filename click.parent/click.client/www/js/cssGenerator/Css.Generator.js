@@ -10292,13 +10292,10 @@ var css = {
   "background-color: white;" +
   "perspective: 1000px;" +
   "transition: 0.6s;" +
+  "-webkit-transition: 0.6s;" +
   "transform-style: preserve-3d;" +
+  "-webkit-transform-style: preserve-3d;" +
   "}",
-
-  // componentBankListCardFlipperHover: ".component-banklist-card-flipper:hover" +
-  // "{" +
-  // "transform: rotateY(-180deg);" +
-  // "}",
 
   componentBankListCardBack: ".component-banklist-card-back" +
   "{" +
@@ -10310,9 +10307,10 @@ var css = {
   // "margin: " + 4 * widthK + "px;" +
   // "left: " + 48 * widthK + "px;" +
   "background-color: white;" +
-  "-webkit-backface-visibility: hidden;" +
   "backface-visibility: hidden;" +
+  "-webkit-backface-visibility: hidden;" +
   "transform: rotateY(180deg);" +
+  "-webkit-transform: rotateY(180deg);" +
   "}",
 
   componentBankListCardFront: ".component-banklist-card-front" +
@@ -10325,10 +10323,11 @@ var css = {
   // "margin: " + 4 * widthK + "px;" +
   // "left: " + 48 * widthK + "px;" +
   "background-color: white;" +
-  "-webkit-backface-visibility: hidden;" +
   "backface-visibility: hidden;" +
+  "-webkit-backface-visibility: hidden;" +
   "z-index: 2;" +
   "transform: rotateY(0deg);" +
+  "-webkit-transform: rotateY(0deg);" +
   "}",
 
 
