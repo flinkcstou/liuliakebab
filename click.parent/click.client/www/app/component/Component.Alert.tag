@@ -107,19 +107,19 @@
         }
         else {
           console.log("Alert without parent");
-          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device') {
-            scope.outerShowAlertBool = true;
-            console.log("Alert to device registration");
-            riot.update()
-            riotTags.innerHTML = "<view-registration-device>";
-            riot.mount('view-registration-device');
-          }
-          else {
+          if (localStorage.getItem('click_client_authorized') && JSON.parse(localStorage.getItem('click_client_authorized'))) {
             console.log("Alert to authorization");
             scope.outerShowAlertBool = true;
             riot.update()
             riotTags.innerHTML = "<view-authorization>";
             riot.mount('view-authorization');
+          }
+          else {
+            scope.outerShowAlertBool = true;
+            console.log("Alert to device registration");
+            riot.update()
+            riotTags.innerHTML = "<view-registration-device>";
+            riot.mount('view-registration-device');
           }
         }
 

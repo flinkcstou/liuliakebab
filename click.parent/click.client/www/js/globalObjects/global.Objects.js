@@ -688,6 +688,7 @@ window.getAccount = function (checkSessionKey, firstEnter) {
       var categoryNamesMap = {};
       window.api.call({
         method: 'get.service.category.list',
+        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber
@@ -767,6 +768,7 @@ window.getAccount = function (checkSessionKey, firstEnter) {
       var operatorKey = phoneNumber.substr(3, 2);
       window.api.call({
         method: 'get.service.list',
+        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber
@@ -887,6 +889,7 @@ window.getAccount = function (checkSessionKey, firstEnter) {
       var servicesParamsMapSix = {};
       window.api.call({
         method: 'get.service.parameters.list',
+        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber
@@ -975,10 +978,10 @@ window.getAccount = function (checkSessionKey, firstEnter) {
   }
 
   if (device.platform != 'BrowserStand') {
-    console.log("Spinner Stop View Authorization");
+    console.log("Spinner Stop global objects getAccount");
     SpinnerPlugin.activityStop();
   }
-}
+};
 
 
 window.fingerPrintTurnOn = function () {

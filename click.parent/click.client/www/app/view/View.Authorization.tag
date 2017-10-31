@@ -180,10 +180,10 @@
     }
 
 
-    if (device.platform != 'BrowserStand')
+    if (device.platform !== 'BrowserStand')
       StatusBar.backgroundColorByHexString("#00b0eb");
 
-    if (device.platform == 'Android') {
+    if (device.platform === 'Android') {
       scope.checkAndroid = true;
     }
 
@@ -269,7 +269,7 @@
       resetLocalStorageTouchStartX = event.changedTouches[0].pageX;
       resetLocalStorageTouchStartY = event.changedTouches[0].pageY;
 
-    }
+    };
 
     resetLocalStorageTouchEnd = function () {
       event.preventDefault();

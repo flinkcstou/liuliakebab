@@ -63,7 +63,6 @@
           {
             riotTags.innerHTML = "<view-authorization>";
             riot.mount('view-authorization');
-            //        scope.unmount()
           }
           else
           {

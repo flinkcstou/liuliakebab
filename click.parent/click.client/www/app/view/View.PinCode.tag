@@ -473,7 +473,7 @@
 
       window.api.call({
         method: 'app.login',
-        stopSpinner: true,
+        stopSpinner: false,
         input: {
           phone_num: phoneNumber,
           device_id: deviceId,
