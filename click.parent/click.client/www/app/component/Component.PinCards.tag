@@ -54,19 +54,19 @@
 //        }, 3000)
     }
 
-    if (!localStorage.getItem('click_client_cards')) {
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
-        }, function () {
-          console.log("closed");
-        });
-      }
-
-//      updateCardsArray();
-    }
+    //    if (!localStorage.getItem('click_client_cards')) {
+    //      if (device.platform != 'BrowserStand') {
+    //        var options = {dimBackground: true};
+    //
+    //        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+    //          console.log("Started");
+    //        }, function () {
+    //          console.log("closed");
+    //        });
+    //      }
+    //
+    ////      updateCardsArray();
+    //    }
 
 
     //    else {
