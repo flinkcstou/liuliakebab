@@ -38,13 +38,15 @@
       console.log("update cards array")
       if (localStorage.getItem('click_client_cards')) {
         scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+        console.log("cardsArray in pincards", scope.cardsArray);
         checkCardPermission();
         if (device.platform != 'BrowserStand') {
           console.log("Spinner Stop View Pincard Comp 45");
           SpinnerPlugin.activityStop();
         }
-
+        console.log("Before update");
         scope.update();
+        console.log("After update");
       }
       else
         setTimeout(function () {
@@ -63,7 +65,7 @@
         });
       }
 
-      updateCardsArray();
+//      updateCardsArray();
     }
 
 

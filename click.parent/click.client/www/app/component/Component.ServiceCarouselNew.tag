@@ -590,7 +590,7 @@
             }
 
             //scope.service = scope.servicesMap[scope.favoritePaymentsList[i].params.chosenServiceId][0];
-
+            console.log("HERE IS WORKING");
             console.log("localStorage cards", localStorage.getItem('click_client_cards'))
 
             if (localStorage.getItem('click_client_cards')) {
