@@ -509,19 +509,19 @@
                 localStorage.removeItem('click_client_friendsOuter_count')
               }
 
-              if (!localStorage.getItem('settings_finger_print')) {
-                localStorage.setItem('settings_finger_print', false)
-              }
-
-              if (typeof window.fingerPrint.fingerPrintInitialize != undefined && window.fingerPrint.fingerPrintInitialize == false) {
-
-                try {
-                  fingerPrintTurnOn();
-                }
-                catch (e) {
-                  console.log(e)
-                }
-              }
+//              if (!localStorage.getItem('settings_finger_print')) {
+//                localStorage.setItem('settings_finger_print', false)
+//              }
+//
+//              if (typeof window.fingerPrint.fingerPrintInitialize != undefined && window.fingerPrint.fingerPrintInitialize == false) {
+//
+//                try {
+//                  fingerPrintTurnOn();
+//                }
+//                catch (e) {
+//                  console.log(e)
+//                }
+//              }
 
               getAccount(checkSessionKey, scope.firstEnter);
               window.pushNotificationActions.retrievePushNotification();

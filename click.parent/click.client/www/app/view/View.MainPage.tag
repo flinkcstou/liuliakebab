@@ -28,8 +28,6 @@
   <component-tour view="mainpage"></component-tour>
   <script>
 
-    //    console.log('BASE64', atob('aWQ9MDEwMDAmYW1vdW50PTEyMjAwJm9yZGVyX2lkPTAxN0I1N0NFLUJDRUItNEE3MC04NEFFLUJFRTM0NUY4NUI1OQ=='))
-
     viewMainPage.atMainPage = true;
     viewTransfer.check = false;
     viewServicePinCards.friendHelpPaymentMode = false;
@@ -57,7 +55,6 @@
           viewNewsId.style.display = 'block'
           scope.tags['view-news'].showNewsFunction(1);
 
-//          window.News.newsCounter = 0;
 
           if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-news') {
             history.arrayOfHistory.push(
@@ -74,17 +71,7 @@
 
 
     var scope = this;
-    //
-    //        function sum(arg1, arg2, callback) {
-    //
-    //            var my_number = arg1 + arg2;
-    //
-    //            callback(my_number);
-    //        }
-    //
-    //        sum(5, 15, function(num) {
-    //            console.log("callback SUM " + num);
-    //        });
+
 
     localStorage.setItem('cardNumber', 1);
 
@@ -153,12 +140,8 @@
       touchEndX = event.changedTouches[0].pageX;
       timeEndX = event.timeStamp.toFixed(0);
 
-//      if (touchEndX - touchStartX > 20) {
-//        menuOpen();
-//      }
-
-      console.log('touchMoveX', touchMoveX)
-      console.log('widthK', 269 * widthK)
+      console.log('touchMoveX', touchMoveX);
+      console.log('widthK', 269 * widthK);
       if (touchMoveX > 269 * widthK) {
         menuOpenTouchEnd(true);
       }
@@ -169,22 +152,22 @@
         else
           closeMenu()
       }
-    }
+    };
 
     blockForSwipeTouchMove = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
       var deltaForSideMenuBack = event.changedTouches[0].pageX.toFixed(0) / width;
       var deltaForMainPage = 1 - deltaForSideMenuBack;
       if (deltaForMainPage < 0.1)
-        deltaForMainPage = 0.1
+        deltaForMainPage = 0.1;
       if (event.changedTouches[0].pageX - 538 * widthK <= 0) {
         sideMenuId.style.webkitTransform = 'translate3d(' + (event.changedTouches[0].pageX - 538 * widthK) + 'px,0,0)'
         touchMoveX = event.changedTouches[0].pageX;
       }
       sideMenuBackPageId.style.opacity = deltaForSideMenuBack;
       mainPageId.style.opacity = deltaForMainPage;
-    }
+    };
 
     if (!localStorage.getItem('push_registered')) {
       window.pushNotificationInitialize();
