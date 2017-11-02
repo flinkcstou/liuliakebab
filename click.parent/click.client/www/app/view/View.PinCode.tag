@@ -563,8 +563,7 @@
         },
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          console.log("App.login method answer: fail");
-          showAlertComponent("Сервис временно не доступен");
+          updateAlertComponent(true, null, null, "Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error("Error data: ", data);
           return;
@@ -573,7 +572,7 @@
 
       setTimeout(function () {
         if (!answerFromServer && window.isConnected) {
-          showAlertComponent(window.languages.WaitingTimeExpiredText);
+          updateAlertComponent(true, null, null, window.languages.WaitingTimeExpiredText);
           answerFromServer = true;
           if (device.platform != 'BrowserStand') {
             console.log("Spinner stop in authorization by timeout");
@@ -585,134 +584,8 @@
       }, 30000)
     }
 
-    //    var checkRegistrationTouchStartX, checkRegistrationTouchStartY, checkRegistrationTouchEndX,
-    //      checkRegistrationTouchEndY;
-    //
-    //    checkRegistrationTouchStart = function () {
-    //      event.preventDefault();
-    //      event.stopPropagation();
-    //
-    //      checkRegistrationTouchStartX = event.changedTouches[0].pageX;
-    //      checkRegistrationTouchStartY = event.changedTouches[0].pageY;
-    //    };
-    //
-    //    checkRegistrationTouchEnd = function () {
-    //      event.preventDefault();
-    //      event.stopPropagation();
-    //
-    //      checkRegistrationTouchEndX = event.changedTouches[0].pageX;
-    //      checkRegistrationTouchEndY = event.changedTouches[0].pageY;
-    //
-    //      if (Math.abs(checkRegistrationTouchStartX - checkRegistrationTouchEndX) <= 20 && Math.abs(checkRegistrationTouchStartY - checkRegistrationTouchEndY) <= 20) {
-    //        scope.registrationSuccess = 0; //Выполнить повторную проверку
-    //        scope.timeoutIndex = 0;
-    //        scope.update();
-    //        checkRegistrationFunction()
-    //      }
-    //    };
-
-    //    checkRegistrationFunction = function () {
-    //      console.log("CHECK REGISTRATION")
-    ////      event.preventDefault();
-    ////      event.stopPropagation();
-    //
-    //      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-    //
-    //
-    //      if (device.platform != 'BrowserStand') {
-    //        var options = {dimBackground: true};
-    //
-    //        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-    //          console.log("Started");
-    //        }, function () {
-    //          console.log("closed");
-    //        });
-    //      }
-    //
-    //      window.api.call({
-    //        method: 'registration.check',
-    //        input: {
-    //          phone_num: phoneNumber,
-    //          check_id: JSON.parse(localStorage.getItem("registration_check_id")),
-    //          check_hash: JSON.parse(localStorage.getItem("registration_check_hash")),
-    //        },
-    //        scope: this,
-    //
-    //        onSuccess: function (result) {
-    //          console.log("SUCCESS registration.check");
-    //          console.log(result)
-    //          console.log(result[0][0])
-    //          if (result[0][0].error == 0) {
-    //            console.log('REGISTRATION CHECK', result)
-    //            if (result[1][0].registered == 0) {
-    //
-    //              if (scope.timeouts.length > scope.timeoutIndex) {
-    //
-    //                setTimeout(function () {
-    //                  checkRegistrationFunction()
-    //                }, scope.timeouts[scope.timeoutIndex]);
-    //                scope.registrationSuccess = 0;
-    //                scope.timeoutIndex++;
-    //              } else {
-    //
-    //                scope.registrationSuccess = -2;
-    //                scope.timeoutIndex %= scope.timeouts.length;
-    //              }
-    //
-    //              scope.update();
-    //
-    //              console.log("ANSWER OF CHECK REGISTRATION", 0)
-    //              return;
-    //            }
-    //            else {
-    //              if (result[1][0].registered == -1) {
-    //                scope.registrationSuccess = -1;
-    //                scope.errorRegistrationProcess = result[0][0].error_note;
-    ////                clearInterval(registrationInterval)
-    //
-    //                console.log("ANSWER OF CHECK REGISTRATION", -1)
-    //
-    ////
-    ////                setTimeout(function () {
-    ////                  riotTags.innerHTML = "<view-registration-client>";
-    ////                  riot.mount('view-registration-client')
-    ////                }, 10000)
-    //              }
-    //              if (result[1][0].registered == 1) {
-    //                window.standCheckRegistration = true;
-    //                localStorage.setItem('click_client_registered', true)
-    //                scope.registrationSuccess = 1;
-    ////                clearInterval(registrationInterval)
-    //
-    //                console.log("ANSWER OF CHECK REGISTRATION", 1)
-    //
-    //              }
-    //
-    //            }
-    //            scope.update();
-    //          }
-    //          else {
-    //            scope.clickPinError = false;
-    //            scope.errorNote = result[0][0].error_note;
-    //            scope.showError = true;
-    //            scope.viewpage = "view-registration-client"
-    //            scope.update();
-    //
-    //          }
-    //
-    //        },
-    //        onFail: function (api_status, api_status_message, data) {
-    //          console.log("FAIL registration.check");
-    //          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-    //          console.error(data);
-    //        }
-    //      })
-    //
-    //    }
 
     changePin = function (pin) {
-      //event.preventDefault();
-      //event.stopPropagation();
 
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -772,6 +645,16 @@
           console.error(data);
         }
       })
+    }
+
+
+    updateAlertComponent = function (showError, stepAmount, viewPage, text) {
+      console.log("OPEN ALERT COMPONENT:", showError, text, stepAmount, viewPage);
+      scope.showError = showError;
+      scope.stepAmount = stepAmount;
+      scope.viewPage = viewPage;
+      scope.errorNote = text;
+      riot.update();
     }
 
 

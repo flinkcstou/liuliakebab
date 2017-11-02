@@ -500,9 +500,7 @@
           }
           else {
             scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
-            scope.update();
+            updateAlertComponent(true, null, null, result[0][0].error_note);
           }
         },
 
@@ -513,7 +511,7 @@
             console.log("Spinner stop in device registration by timeout");
             SpinnerPlugin.activityStop();
           }
-          showAlertComponent("Сервис временно не доступен");
+          updateAlertComponent(true, null, null, "Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -521,9 +519,7 @@
 
       setTimeout(function () {
         if (!answerFromServer) {
-          scope.showError = true;
-          scope.errorNote = window.languages.WaitingTimeExpiredText;
-          scope.update();
+          updateAlertComponent(true, null, null, window.languages.WaitingTimeExpiredText);
           if (device.platform != 'BrowserStand') {
             console.log("Spinner stop in device registration by timeout");
             SpinnerPlugin.activityStop();
@@ -532,6 +528,15 @@
           return;
         }
       }, 30000)
+    }
+
+    updateAlertComponent = function (showError, stepAmount, viewPage, text) {
+      console.log("OPEN ALERT COMPONENT:", showError, text, stepAmount, viewPage);
+      scope.showError = showError;
+      scope.stepAmount = stepAmount;
+      scope.viewPage = viewPage;
+      scope.errorNote = text;
+      riot.update();
     }
 
   </script>

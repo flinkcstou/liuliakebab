@@ -457,7 +457,7 @@
         pin = hex_md5(firstPinInputId.value);
         enter()
       }
-    }
+    };
 
     enter = function () {
 
@@ -541,21 +541,24 @@
             }
 
             if (result[0][0].error == -31) {
-              console.log("click pin error");
+
               scope.clickPinError = true;
+
             } else if (result[0][0].error == -799) {
+
               scope.errorNote = result[0][0].error_note;
               scope.errorCode = 2;
-              console.log("client not registered error");
+
+
             } else {
-              console.log(opts)
+
               if (opts.from == "registration-client") {
                 scope.errorNote = "Карта ещё не добавлена. Попробуйте войти через несколько минут";
               }
               else
                 scope.errorNote = result[0][0].error_note;
               scope.clickPinError = false;
-              console.log("errornote = ", scope.errorNote);
+
             }
             scope.showError = true;
             scope.update();
@@ -567,8 +570,7 @@
         },
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          console.log("App.login method answer: fail");
-          showAlertComponent("Сервис временно не доступен");
+          updateAlertComponent(true, null, null, "Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error("Error data: ", data);
           return;
@@ -577,8 +579,8 @@
 
       setTimeout(function () {
         if (!answerFromServer && window.isConnected) {
-          showAlertComponent(window.languages.WaitingTimeExpiredText);
           answerFromServer = true;
+          updateAlertComponent(true, null, null, window.languages.WaitingTimeExpiredText);
           if (device.platform != 'BrowserStand') {
             console.log("Spinner stop in authorization by timeout");
             SpinnerPlugin.activityStop();
@@ -587,6 +589,16 @@
           return
         }
       }, 30000)
+    }
+
+
+    updateAlertComponent = function (showError, stepAmount, viewPage, text) {
+      console.log("OPEN ALERT COMPONENT:", showError, text, stepAmount, viewPage);
+      scope.showError = showError;
+      scope.stepAmount = stepAmount;
+      scope.viewPage = viewPage;
+      scope.errorNote = text;
+      riot.update();
     }
 
 
