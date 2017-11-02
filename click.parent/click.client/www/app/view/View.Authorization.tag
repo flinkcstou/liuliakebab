@@ -55,7 +55,7 @@
 
   <component-pin-reset></component-pin-reset>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}" viewpage="{viewPage}"
                    errornote="{errorNote}" errorcode="{errorCode}"></component-alert>
 
   <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"

@@ -48,7 +48,7 @@
     </a>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}" viewpage="{viewPage}"
                    errornote="{errorNote}"></component-alert>
 
   <component-tour view="registration"></component-tour>

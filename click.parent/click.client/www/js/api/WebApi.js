@@ -74,6 +74,7 @@ window.api.initSocket = function () {
     else if (modeOfApp.onlineMode) {
 
       if (window.isConnected == true || modeOfApp.offlineMode == true) {
+        showAlertComponent("Сервер временно недоступен");
         return
       }
       window.componentFlags.result = false;

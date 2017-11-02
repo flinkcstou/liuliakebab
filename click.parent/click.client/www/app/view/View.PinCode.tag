@@ -652,7 +652,7 @@
       console.log("OPEN ALERT COMPONENT:", showError, text, stepAmount, viewPage);
       scope.showError = showError;
       scope.stepAmount = stepAmount;
-      scope.viewPage = viewPage;
+      scope.viewpage = viewPage;
       scope.errorNote = text;
       riot.update();
     }
