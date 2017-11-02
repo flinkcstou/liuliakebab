@@ -184,6 +184,7 @@
         if (getAccountsCards.length < 1) {
           scope.addFirstCardBool = true;
           viewMainPage.addFirstCardBool = true;
+          localStorage.removeItem('click_client_cards');
           scope.parent.update();
         } else {
           viewMainPage.addFirstCardBool = false;
