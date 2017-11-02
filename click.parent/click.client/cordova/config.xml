@@ -2,8 +2,8 @@
 <widget id="air.com.ssdsoftwaresolutions.clickuz"
         android-packageName="air.com.ssdsoftwaresolutions.clickuz"
         ios-CFBundleIdentifier="com.ssdsoftwaresolutions.clickuz"
-        version="5.8" xmlns="http://www.w3.org/ns/widgets"
-        android-versionCode="50000080">
+        version="5.0.8" xmlns="http://www.w3.org/ns/widgets"
+        android-versionCode="50000008">
   <name>CLICK Uzbekistan</name>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="Orientation" value="sensorPortrait"/>
@@ -44,16 +44,14 @@
   <platform name="ios">
 
     <config-file parent="NSContactsUsageDescription" target="*info.plist">
-      <string>This data is used exclusively for the correct operation of the application with
-        functions such as: Selecting a phone number from the contact list.
+      <string>Это необходимо для корректной работы приложения с такими функциями, как: выбор номера телефона из списка
+        Ваших контактов.
       </string>
     </config-file>
 
     <config-file parent="NSCameraUsageDescription" target="*-Info.plist">
-      <string>This data is used exclusively for the correct operation of the application with functions such as:
-        Selecting a phone number from the contact list,
-        automatically inserting the code from sms, making USSD requests,
-        setting the profile photo, reading the QR code.
+      <string>Это необходимо для корректной работы приложения с такими функциями, как: выбор номера телефона из списка
+        Ваших контактов.
       </string>
     </config-file>
 
