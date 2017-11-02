@@ -62,8 +62,7 @@
     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = info.session_key;
 
-    var mainPageToReturn = 'view-main-page', pageToReturnTwo = 'view-add-card',
-      pageToReturnIfTimeout = 'view-authorization';
+    var mainPageToReturn = 'view-main-page', pageToReturnTwo = 'view-add-card';
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-card') {
       history.arrayOfHistory.push(
@@ -237,7 +236,7 @@
 
         setTimeout(function () {
           if (!answerFromServer) {
-            updateResultComponent(true, null, pageToReturnIfTimeout, 'waiting', window.languages.WaitingTimeExpiredText);
+            updateResultComponent(true, null, mainPageToReturn, 'waiting', window.languages.WaitingTimeExpiredText);
 
             return
           }
