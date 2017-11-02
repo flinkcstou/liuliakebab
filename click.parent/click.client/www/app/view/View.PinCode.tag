@@ -563,7 +563,7 @@
         },
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          updateAlertComponent(true, null, null, "Сервис временно не доступен");
+          updateAlertComponent(true, null, 'view-authorization', "Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error("Error data: ", data);
           return;
@@ -572,7 +572,7 @@
 
       setTimeout(function () {
         if (!answerFromServer && window.isConnected) {
-          updateAlertComponent(true, null, null, window.languages.WaitingTimeExpiredText);
+          updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
           answerFromServer = true;
           if (device.platform != 'BrowserStand') {
             console.log("Spinner stop in authorization by timeout");

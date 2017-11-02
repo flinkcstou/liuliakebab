@@ -500,7 +500,7 @@
           }
           else {
             scope.clickPinError = false;
-            updateAlertComponent(true, null, null, result[0][0].error_note);
+            updateAlertComponent(true, null, 'view-registration-device', result[0][0].error_note);
           }
         },
 
@@ -511,7 +511,7 @@
             console.log("Spinner stop in device registration by timeout");
             SpinnerPlugin.activityStop();
           }
-          updateAlertComponent(true, null, null, "Сервис временно не доступен");
+          updateAlertComponent(true, null, 'view-registration-device', "Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -519,7 +519,7 @@
 
       setTimeout(function () {
         if (!answerFromServer) {
-          updateAlertComponent(true, null, null, window.languages.WaitingTimeExpiredText);
+          updateAlertComponent(true, null, 'view-registration-device', window.languages.WaitingTimeExpiredText);
           if (device.platform != 'BrowserStand') {
             console.log("Spinner stop in device registration by timeout");
             SpinnerPlugin.activityStop();
