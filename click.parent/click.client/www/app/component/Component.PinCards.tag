@@ -35,23 +35,23 @@
     scope.cardsArray = localStorage.getItem('click_client_cards') ? JSON.parse(localStorage.getItem('click_client_cards')) : [];
     checkCardPermission();
     updateCardsArray = function () {
-      console.log("update cards array")
-      if (localStorage.getItem('click_client_cards')) {
-        scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-        console.log("cardsArray in pincards", scope.cardsArray);
-        checkCardPermission();
-        if (device.platform != 'BrowserStand') {
-          console.log("Spinner Stop View Pincard Comp 45");
-          SpinnerPlugin.activityStop();
-        }
-        console.log("Before update");
-        scope.update();
-        console.log("After update");
-      }
-      else
-        setTimeout(function () {
-          updateCardsArray();
-        }, 3000)
+//      console.log("update cards array")
+//      if (localStorage.getItem('click_client_cards')) {
+//        scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+//        console.log("cardsArray in pincards", scope.cardsArray);
+//        checkCardPermission();
+//        if (device.platform != 'BrowserStand') {
+//          console.log("Spinner Stop View Pincard Comp 45");
+//          SpinnerPlugin.activityStop();
+//        }
+//        console.log("Before update");
+//        scope.update();
+//        console.log("After update");
+//      }
+//      else
+//        setTimeout(function () {
+//          updateCardsArray();
+//        }, 3000)
     }
 
     if (!localStorage.getItem('click_client_cards')) {
@@ -164,7 +164,7 @@
 
       scope.checkedId = '';
       var checkChosenCard = false;
-      var indexOfCard;
+      var indexOfCard = 0;
 
       for (var i in scope.cardsArray) {
 
@@ -185,16 +185,17 @@
       if (!checkChosenCard && scope.cardsArray[indexOfCard]) {
         scope.cardsArray[indexOfCard].chosenCard = true;
         scope.cardName = scope.cardsArray[indexOfCard].name;
-        scope.cardSum = scope.cardsArray[indexOfCard].salaryOriginal
+        scope.cardSum = scope.cardsArray[indexOfCard].salaryOriginal;
         scope.checkedId = "check" + scope.cardsArray[indexOfCard].card_id;
       }
 
-      localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))
+      localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
       riot.update();
     };
 
 
-    if (scope.opts.clean && viewMainPage.myCards !== true) {
+    if (scope.opts.clean && viewMainPage.myCards !== true && scope.cardsArray.length > 0) {
+      console.log("198");
       scope.cleanChosenCards();
     }
 
@@ -214,25 +215,25 @@
       return scope.cardSum;
     };
 
-    function checkCardPermission () {
-        for (var i in scope.cardsArray) {
-            scope.cardsArray[i].permission = false;
-            if (scope.opts.usefor == "p2p" && scope.cardsArray[i].p2p_allowed == 1){
-                scope.cardsArray[i].permission = true;
-            }
-            if (scope.opts.usefor == "payment" && scope.cardsArray[i].payment_allowed == 1){
-                scope.cardsArray[i].permission = true;
-            }
-            if (scope.opts.usefor == "all"){
-                scope.cardsArray[i].permission = true;
-            }
-
-            if (scope.cardsArray[i].permission == false)
-            {
-                console.log("Cardsarray in permission check function:", scope.cardsArray);
-                delete scope.cardsArray[i];
-            }
-        }
+    function checkCardPermission() {
+//        for (var i in scope.cardsArray) {
+//            scope.cardsArray[i].permission = false;
+//            if (scope.opts.usefor == "p2p" && scope.cardsArray[i].p2p_allowed == 1){
+//                scope.cardsArray[i].permission = true;
+//            }
+//            if (scope.opts.usefor == "payment" && scope.cardsArray[i].payment_allowed == 1){
+//                scope.cardsArray[i].permission = true;
+//            }
+//            if (scope.opts.usefor == "all"){
+//                scope.cardsArray[i].permission = true;
+//            }
+//
+//            if (scope.cardsArray[i].permission == false)
+//            {
+//                console.log("Cardsarray in permission check function:", scope.cardsArray);
+//                delete scope.cardsArray[i];
+//            }
+//        }
     }
 
   </script>
