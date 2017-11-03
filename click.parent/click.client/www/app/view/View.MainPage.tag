@@ -39,24 +39,25 @@
 
 
     this.on('mount', function () {
-      if (device.platform != 'BrowserStand')
+      if (device.platform !== 'BrowserStand')
         StatusBar.backgroundColorByHexString("#00a8f1");
 
       localStorage.setItem("click_client_authorized", true);
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).mainpage) {
         componentTourId.style.display = "block";
-        if (device.platform != 'BrowserStand')
+        if (device.platform !== 'BrowserStand')
           StatusBar.backgroundColorByHexString("#004663");
       }
 
       if (opts) {
-        if (opts.view == "news") {
-          viewNewsId.style.display = 'block'
+        if (opts.view === "news") {
+          console.log("mainPage news");
+          viewNewsId.style.display = 'block';
           scope.tags['view-news'].showNewsFunction(1);
 
 
-          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-news') {
+          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-news') {
             history.arrayOfHistory.push(
               {
                 "view": 'view-news',
@@ -95,22 +96,22 @@
     var width = window.innerWidth;
 
 
-    var myCardListStartX, myCardListEndX, myCardListStartY, myCardListEndY
+    var myCardListStartX, myCardListEndX, myCardListStartY, myCardListEndY;
 
     myCardListTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      myCardButtonId.style.webkitTransform = 'scale(0.7)'
+      myCardButtonId.style.webkitTransform = 'scale(0.7)';
 
       myCardListStartX = event.changedTouches[0].pageX;
       myCardListStartY = event.changedTouches[0].pageY;
-    }
+    };
     myCardListTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      myCardButtonId.style.webkitTransform = 'scale(1)'
+      myCardButtonId.style.webkitTransform = 'scale(1)';
 
       myCardListEndX = event.changedTouches[0].pageX;
       myCardListEndY = event.changedTouches[0].pageY;
@@ -135,7 +136,7 @@
     };
 
     blockForSwipeTouchEnd = function () {
-      event.stopPropagation()
+      event.stopPropagation();
 
       touchEndX = event.changedTouches[0].pageX;
       timeEndX = event.timeStamp.toFixed(0);

@@ -16,6 +16,7 @@ window.api.forceClose = function () {
 window.api.init = function () {
   try {
     window.api.socket = new WebSocket("wss://my.click.uz:8443");
+    console.log("SOCKET =", JSON.stringify(window.api.socket));
     window.api.initSocket();
   }
   catch (error) {

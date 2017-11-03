@@ -12,7 +12,8 @@
       <div id="newsImageId{i.news_id}" hidden
            class="view-news-block-image" style="background-image: url({i.news_image})"></div>
 
-      <div class="{view-news-block:!i.url, view-news-block-with-link:i.url}" shorttext="{i.content_short}" opened="false" title="{i.news_content}"
+      <div class="{view-news-block:!i.url, view-news-block-with-link:i.url}" shorttext="{i.content_short}"
+           opened="false" title="{i.news_content}"
            id="newsContainerId{i.news_id}"
            ontouchstart="newsTouchStart()"
            ontouchend="newsTouchEnd(this.id, 'newsTextId' + {i.news_id}, this.title, document.getElementById(this.id).getAttribute('shorttext'), 'newsImageId'+{i.news_id}, {i.news_id})">
@@ -41,13 +42,13 @@
   <script>
     var scope = this;
 
-    scope.newsArray = []
+    scope.newsArray = [];
     scope.newsOpened = false;
 
 
     closeNewsTouchEnd = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
       console.log('SCOPE NEW', scope)
 
@@ -63,7 +64,7 @@
 
       onBackKeyDown()
       scope.unmount()
-    }
+    };
 
     var pageNumber = 2;
     newsScrollFunction = function () {
@@ -72,7 +73,7 @@
         pageNumber++;
       }
 
-    }
+    };
 
     var touchStartY, touchEndY;
     var openImage = false;
@@ -80,17 +81,17 @@
     newsTouchStart = function () {
 
       touchStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     followLink = function (LinkToNews) {
       console.log("Link to news", LinkToNews);
       window.open(LinkToNews, '_system', 'location=no');
-    }
+    };
 
     newsTouchEnd = function (containerId, textId, longText, shortText, imageId, newsId) {
-      event.preventDefault()
-      event.stopPropagation()
-      console.log('News ARRAY', scope.newsArray)
+      event.preventDefault();
+      event.stopPropagation();
+      console.log('News ARRAY', scope.newsArray);
 
       touchEndY = event.changedTouches[0].pageY;
 
@@ -114,10 +115,10 @@
             }
           }
 
-          document.getElementById(containerId).style.paddingBottom = 100 * widthK + 'px'
+          document.getElementById(containerId).style.paddingBottom = 100 * widthK + 'px';
           document.getElementById(containerId).setAttribute('opened', true)
           if (openImage)
-            document.getElementById(imageId).style.display = 'block'
+            document.getElementById(imageId).style.display = 'block';
           document.getElementById(containerId).style.height = 'auto';
           document.getElementById(textId).innerHTML = longText;
           riot.update();
@@ -144,15 +145,15 @@
           document.getElementById(containerId).setAttribute('opened', false)
         }
 
-        console.log(scope.newsArray)
+        console.log(scope.newsArray);
         scope.update()
 
       }
-    }
+    };
 
     scope.showNewsFunction = function (pageNumber) {
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-      var signString = hex_md5(phoneNumber.substring(0, 5) + "CLICK" + phoneNumber.substring(phoneNumber.length - 7, phoneNumber.length))
+      var signString = hex_md5(phoneNumber.substring(0, 5) + "CLICK" + phoneNumber.substring(phoneNumber.length - 7, phoneNumber.length));
 
 
       window.api.call({
@@ -160,7 +161,7 @@
         input: {
           phone_num: phoneNumber,
           sign_string: signString,
-          page_number: pageNumber,
+          page_number: pageNumber
 
         },
 
@@ -179,24 +180,28 @@
                 result[1][i].image_exist = false;
               }
               if (result[1][i].news_content.length > 120) {
-                console.log('result[1][i]', result[1][i])
+                console.log('result[1][i]', result[1][i]);
                 if (result[1][i].news_content_short)
                   result[1][i].content_short = result[1][i].news_content_short.substring(0, 120) + '...';
               }
               scope.newsArray.push(result[1][i])
             }
-            console.log(" NEWS ARRAY WITH OPTIONS", result[1])
+            console.log(" NEWS ARRAY WITH OPTIONS", result[1]);
             scope.update()
           }
           else {
+            console.log("view news error 1");
             scope.showError = true;
-            scope.errorNote = result[0][0].error_note
+            scope.errorNote = result[0][0].error_note;
             scope.update();
             console.log(result[0][0].error_note);
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
+          scope.showError = true;
+          scope.errorNote = api_status_message;
+          scope.update();
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }

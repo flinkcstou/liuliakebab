@@ -31,7 +31,7 @@
       scope.update();
     }, 1000);
 
-    if (device.platform != 'BrowserStand') {
+    if (device.platform !== 'BrowserStand') {
       window.FirebasePlugin.onNotificationOpen(function (notification) {
 
         if (!scope.show) {
@@ -44,7 +44,7 @@
         console.log("PUSH NOTIFICATION OBJECT", notification);
         ++numberOfMessage;
 
-        if (device.platform == "iOS") {
+        if (device.platform === "iOS") {
 
           notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).notification.body;
         } else {
@@ -61,7 +61,7 @@
 
           var background_notification = {};
 
-          if (scope.notificationAction == "invoice") {
+          if (scope.notificationAction === "invoice") {
 
             background_notification.action = "getInvoiceFunction";
             background_notification.params = scope.notificationElementId;
@@ -69,7 +69,7 @@
             sessionStorage.setItem("push_notification", JSON.stringify(background_notification));
           }
 
-          if (scope.notificationAction == "card.add") {
+          if (scope.notificationAction === "card.add") {
 
 
             background_notification.action = "refreshCardCarousel";
@@ -78,7 +78,7 @@
             sessionStorage.setItem("push_notification", JSON.stringify(background_notification));
           }
 
-          if (scope.notificationAction == "payment") {
+          if (scope.notificationAction === "payment") {
 
             background_notification.action = "getPaymentList";
             background_notification.params = scope.notificationElementId;
@@ -86,7 +86,7 @@
             sessionStorage.setItem("push_notification", JSON.stringify(background_notification));
           }
 
-          if (scope.notificationAction == "news") {
+          if (scope.notificationAction === "news") {
 
 //            window.News.newsCounter++;
 //            riot.update();
@@ -98,9 +98,9 @@
 
             window.News.newsCounter = 0;
 
-            sessionStorage.setItem("push_news", true)
+            sessionStorage.setItem("push_news", true);
 
-            console.log('running news')
+            console.log('running news');
 
             riotTags.innerHTML = "<view-main-page>";
             riot.mount("view-main-page", {view: "news"});
