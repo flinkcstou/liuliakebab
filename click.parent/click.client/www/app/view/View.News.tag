@@ -136,7 +136,7 @@
 //          scope.newsOpened = false;
           document.getElementById(containerId).style.paddingBottom = '0px'
           if (document.getElementById(containerId).className == "view-news-block")
-            document.getElementById(containerId).style.height = 330 * widthK + 'px';
+            document.getElementById(containerId).style.height = 360 * widthK + 'px';
           else
             document.getElementById(containerId).style.height = 415 * widthK + 'px';
           document.getElementById(imageId).style.display = 'false'
