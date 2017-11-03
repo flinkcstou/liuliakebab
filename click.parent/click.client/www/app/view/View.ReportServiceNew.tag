@@ -203,9 +203,9 @@
 
 //        console.log("serviceMap=", servicesMap);
 //        console.log("servicesParamsMapOne =", servicesParamsMapOne);
-        console.log("scope.opts.service_id=", scope.opts.service_id);
-        console.log("scope.opts.payment_id=", scope.opts.payment_id);
-        console.log("scope.service=", servicesMap[scope.opts.service_id][0]);
+//        console.log("scope.opts.service_id=", scope.opts.service_id);
+//        console.log("scope.opts.payment_id=", scope.opts.payment_id);
+//        console.log("scope.service=", servicesMap[scope.opts.service_id][0]);
 
         newFavorite.formtype = servicesMap[scope.opts.service_id][0].form_type;
         newFavorite.firstFieldId = servicesMap[scope.opts.service_id][0].service_parameters;
@@ -225,16 +225,13 @@
         newFavorite.chosenPrefixName = scope.opts.chosenPrefixName;
 
 
-        console.log("ADD TO FAVORITES INPUT", newFavorite);
-
+        favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
         favoritePaymentsList = (favoritePaymentsList) ? (favoritePaymentsList) : ([]);
+        favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
         favoritePaymentsListForApi = (favoritePaymentsListForApi) ? (favoritePaymentsListForApi) : ([]);
-
-        console.log("ID for favorite", Math.floor((Math.random() * 1000000) + 1))
         var id = Math.floor((Math.random() * 1000000) + 1);
         scope.opts.favoriteId = id;
 
-        console.log("Chosen Service =", servicesMap[scope.opts.service_id][0]);
 
         var newItem = {
           "params": newFavorite,
@@ -266,7 +263,6 @@
 
             if (result[0][0].error == 0) {
 
-              console.log("SUCCESSFULLY ADDED")
 
             }
             else {
@@ -283,12 +279,10 @@
           }
         });
 
-        console.log("favoritePaymentsList=", favoritePaymentsList);
 
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
         localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
         scope.operationMessage = window.languages.ComponentSuccessMessageForAddingToFavorites;
-        console.log("operationMesssage=", scope.operationMessage);
         scope.update(scope.operationMessage);
 
         //componentSuccessId.style.display = 'block';
@@ -306,17 +300,15 @@
 
         var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
         var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
-        console.log(favoritePaymentsList);
         for (var i in favoritePaymentsList)
           if (favoritePaymentsList[i].id == scope.opts.favoriteId) {
             favoritePaymentsList.splice(i, 1);
-            console.log(favoritePaymentsList);
             scope.isInFavorites = false;
             scope.update(scope.isInFavorites);
 
             for (var j in favoritePaymentsListForApi)
               if (favoritePaymentsListForApi[j].id == scope.opts.favoriteId) {
-                favoritePaymentsListForApi.splice(j, 1);
+              favoritePaymentsListForApi.splice(j, 1);
                 break;
               }
 
@@ -333,8 +325,6 @@
               onSuccess: function (result) {
 
                 if (result[0][0].error == 0) {
-
-                  console.log("SUCCESSFULLY deleted")
 
                 }
                 else {
@@ -360,7 +350,6 @@
 
 
         scope.operationMessage = window.languages.ComponentSuccessMessageForRemovingFromFavorites;
-        console.log("operationMesssage ", scope.operationMessage);
         scope.update(scope.operationMessage);
         //componentSuccessId.style.display = 'block';
       }
