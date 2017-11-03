@@ -266,7 +266,8 @@
               localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList));
               console.log("favs processed", scope.favoritePaymentsList);
               fillFavorites();
-            } else if (result[1].length == 0 && localStorage.getItem('favoritePaymentsList')) {
+            } else if (result[1].length == 0 && localStorage.getItem('favoritePaymentsList')
+              && localStorage.getItem('favoritePaymentsList').length > 2) {
 
               var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
               var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
