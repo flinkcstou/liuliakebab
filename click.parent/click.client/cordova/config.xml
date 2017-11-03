@@ -50,8 +50,14 @@
     </config-file>
 
     <config-file parent="NSCameraUsageDescription" target="*-Info.plist">
-      <string>Это необходимо для корректной работы приложения с такими функциями, как: выбор номера телефона из списка
-        Ваших контактов.
+      <string>Программа «CLICK Uzbekistan» запрашивает доступ к «Камере».
+        Это необходимо для корректной работы приложения с такими функциями, как: установка фото профиля и считывание QR кода.
+      </string>
+    </config-file>
+
+    <config-file parent="NSPhotoLibraryUsageDescription" target="*-Info.plist">
+      <string>Программа «CLICK Uzbekistan» запрашивает доступ к «Галерее».
+        Это необходимо для корректной работы приложения с такими функциями, как:установка фото профиля.
       </string>
     </config-file>
 
