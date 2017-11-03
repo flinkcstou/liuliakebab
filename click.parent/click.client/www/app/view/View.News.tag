@@ -155,6 +155,17 @@
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var signString = hex_md5(phoneNumber.substring(0, 5) + "CLICK" + phoneNumber.substring(phoneNumber.length - 7, phoneNumber.length));
 
+      var answerFromServer = false;
+
+      if (device.platform != 'BrowserStand') {
+        var options = {dimBackground: true};
+        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+          console.log("Spinner start in news");
+        }, function () {
+          console.log("Spinner stop in news");
+        });
+      }
+
 
       window.api.call({
         method: 'get.news',
@@ -168,6 +179,7 @@
         scope: this,
 
         onSuccess: function (result) {
+          answerFromServer = true;
 
           if (result[0][0].error == 0) {
             console.log("NEWS", result);
@@ -199,6 +211,7 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
+          answerFromServer = true;
           scope.showError = true;
           scope.errorNote = api_status_message;
           scope.update();
@@ -206,6 +219,21 @@
           console.error(data);
         }
       });
+
+      setTimeout(function () {
+        if (!answerFromServer && window.isConnected) {
+          answerFromServer = true;
+          scope.showError = true;
+          scope.errorNote = window.languages.WaitingTimeExpiredText;
+          scope.update();
+          if (device.platform != 'BrowserStand') {
+            console.log("Spinner stop in authorization by timeout");
+            SpinnerPlugin.activityStop();
+          }
+          window.isConnected = false;
+          return
+        }
+      }, 30000)
     }
 
   </script>
