@@ -198,7 +198,8 @@
                 var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
                 localStorage.removeItem('cardNumber');
                 localStorage.removeItem('click_client_countCard');
-                if (!loginInfo.default_account || loginInfo.default_account == 0) {
+//                if (!loginInfo.default_account || loginInfo.default_account == 0) {
+                if (result[0][0].default_account) {
                   loginInfo.default_account = result[0][0].default_account;
                   localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo));
                   console.log("DEFAULT was set", loginInfo.default_account, localStorage.getItem("click_client_loginInfo"));
