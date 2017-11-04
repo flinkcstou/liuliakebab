@@ -9,8 +9,11 @@
 
     <div class="view-news-block-of-all" each="{i in newsArray}">
 
-      <div id="newsImageId{i.news_id}" hidden
-           class="view-news-block-image" style="background-image: url({i.news_image})"></div>
+      <div id="newsImageId{i.news_id}"
+           hidden
+           class="view-news-block-image"
+           exist="{i.image_exist}"
+           style="background-image: url({i.news_image})"></div>
 
       <div class="{view-news-block:!i.url, view-news-block-with-link:i.url}" shorttext="{i.content_short}"
            opened="false" title="{i.news_content}"
@@ -41,7 +44,7 @@
 
   <script>
     var scope = this;
-
+    console.log("Is update running here ?");
     scope.newsArray = [];
     scope.newsOpened = false;
 
@@ -61,7 +64,6 @@
         riot.mount('view-authorization');
         return
       }
-
       onBackKeyDown()
       scope.unmount()
     };
@@ -79,7 +81,6 @@
     var openImage = false;
 
     newsTouchStart = function () {
-
       touchStartY = event.changedTouches[0].pageY;
     };
 
@@ -91,63 +92,43 @@
     newsTouchEnd = function (containerId, textId, longText, shortText, imageId, newsId) {
       event.preventDefault();
       event.stopPropagation();
-      console.log('News ARRAY', scope.newsArray);
 
       touchEndY = event.changedTouches[0].pageY;
 
-//      console.log('NEWS ARRAY', newsArray)
-//      console.log('NEWS ARRAY[i]', newsArray[i])
-
-
       if (Math.abs(touchStartY - touchEndY) <= 20) {
-
         if (JSON.parse(document.getElementById(containerId).getAttribute('opened')) === false) {
+          console.log("This post is not opened and its id is", newsId);
+          console.log("All posts", scope.newsArray);
           for (var i in scope.newsArray) {
-            console.log(scope.newsArray[i].news_id, newsId)
-            if (scope.newsArray[i].news_id == newsId) {
+            if (scope.newsArray[i].news_id === newsId) {
               scope.newsArray[i].opened = true;
-              if (scope.newsArray[i].image_exist === true) {
-                openImage = true;
-              }
-              else {
-                openImage = false;
-              }
             }
           }
-
+          openImage = JSON.parse(document.getElementById(imageId).getAttribute('exist')) === true;
           document.getElementById(containerId).style.paddingBottom = 100 * widthK + 'px';
-          document.getElementById(containerId).setAttribute('opened', true)
+          document.getElementById(containerId).setAttribute('opened', true);
           if (openImage)
             document.getElementById(imageId).style.display = 'block';
           document.getElementById(containerId).style.height = 'auto';
           document.getElementById(textId).innerHTML = longText;
-          riot.update();
-
-          console.log('LONG TEXT', longText)
-//          console.log('document.getElementById(containerId)', document.getElementById(containerId).children)
-//          scope.newsOpened = true;
         }
         else {
           for (var i in scope.newsArray) {
-            if (scope.newsArray[i].news_id == newsId) {
+            if (scope.newsArray[i].news_id === newsId) {
               scope.newsArray[i].opened = false;
             }
           }
-//          scope.newsOpened = false;
-          document.getElementById(containerId).style.paddingBottom = '0px'
-          if (document.getElementById(containerId).className == "view-news-block")
+          document.getElementById(containerId).style.paddingBottom = '0px';
+          if (document.getElementById(containerId).className === "view-news-block")
             document.getElementById(containerId).style.height = 360 * widthK + 'px';
           else
             document.getElementById(containerId).style.height = 415 * widthK + 'px';
-          document.getElementById(imageId).style.display = 'false'
-          document.getElementById(imageId).style.display = 'none'
+          document.getElementById(imageId).style.display = 'false';
+          document.getElementById(imageId).style.display = 'none';
           document.getElementById(textId).innerHTML = shortText;
           document.getElementById(containerId).setAttribute('opened', false)
         }
-
-        console.log(scope.newsArray);
-        scope.update()
-
+        scope.update();
       }
     };
 
@@ -157,7 +138,7 @@
 
       var answerFromServer = false;
 
-      if (device.platform != 'BrowserStand') {
+      if (device.platform !== 'BrowserStand') {
         var options = {dimBackground: true};
         SpinnerPlugin.activityStart(languages.Downloading, options, function () {
           console.log("Spinner start in news");
@@ -165,8 +146,6 @@
           console.log("Spinner stop in news");
         });
       }
-
-
       window.api.call({
         method: 'get.news',
         input: {
@@ -181,8 +160,7 @@
         onSuccess: function (result) {
           answerFromServer = true;
 
-          if (result[0][0].error == 0) {
-            console.log("NEWS", result);
+          if (result[0][0].error === 0) {
             for (var i in result[1]) {
               result[1][i].opened = false;
               if (result[1][i].news_image) {
@@ -192,13 +170,11 @@
                 result[1][i].image_exist = false;
               }
               if (result[1][i].news_content.length > 120) {
-                console.log('result[1][i]', result[1][i]);
                 if (result[1][i].news_content_short)
                   result[1][i].content_short = result[1][i].news_content_short.substring(0, 120) + '...';
               }
               scope.newsArray.push(result[1][i])
             }
-            console.log(" NEWS ARRAY WITH OPTIONS", result[1]);
             scope.update()
           }
           else {
@@ -226,7 +202,7 @@
           scope.showError = true;
           scope.errorNote = window.languages.WaitingTimeExpiredText;
           scope.update();
-          if (device.platform != 'BrowserStand') {
+          if (device.platform !== 'BrowserStand') {
             console.log("Spinner stop in authorization by timeout");
             SpinnerPlugin.activityStop();
           }
