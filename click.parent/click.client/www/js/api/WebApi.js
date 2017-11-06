@@ -14,12 +14,14 @@ window.api.forceClose = function () {
 };
 
 window.api.init = function () {
+  if (!window.isConnected)
   try {
     window.api.socket = new WebSocket("wss://my.click.uz:8443");
     console.log("SOCKET =", JSON.stringify(window.api.socket));
     window.api.initSocket();
   }
   catch (error) {
+    console.error("error on establishing connection", error);
     if (modeOfApp.onlineMode)
       window.api.init();
   }
@@ -28,65 +30,50 @@ window.api.init = function () {
 window.api.initSocket = function () {
 
   this.socket.onopen = function () {
-    console.log('WebSocket is opened');
-    console.log('window.isConnected=', window.isConnected, ",modeOfApp.onlineMode=", modeOfApp.onlineMode);
-    if (!window.isConnected && modeOfApp.onlineMode) {
-      if (window.lastSocketMethodToSend) {
-        if (window.api.socket.readyState == 1) {
-          console.log("Sending last saved method");
-          window.api.socket.send(window.lastSocketMethodToSend);
-          window.lastSocketMethodToSend = undefined;
-        }
-        else {
-          switch (window.api.socket.readyState) {
-            case 0:
-              console.log("Is connecting");
-              break;
-            case 2:
-              console.log("Is closing");
-              window.isConnected = false;
-              window.api.init();
-              break;
-            case 3:
-              console.log("Is closed");
-              window.isConnected = false;
-              window.api.init();
-              break;
-          }
-        }
+    console.log('WebSocket is opened and ');
+    window.isConnected = true;
+    if (modeOfApp.onlineMode) {
+      switch (window.api.socket.readyState) {
+        case 1:
+          console.log("connected");
+          break;
+        case 0:
+          console.log("connecting");
+          break;
+        case 2:
+          console.log("closing");
+          break;
+        case 3:
+          console.log("closed");
+          window.api.init();
+          break;
       }
     }
-    window.isConnected = true;
-    console.log("window.isConnected =", window.isConnected);
   };
 
   this.socket.onclose = function (event) {
 
     console.log('Connection is closed');
     console.log(event);
-    if (device.platform != 'BrowserStand') {
+    if (device.platform !== 'BrowserStand') {
       console.log("Spinner stop in webApi (socket on close)");
       SpinnerPlugin.activityStop();
     }
-
-    if (event.wasClean) {
-      return;
-    }
-    else if (modeOfApp.onlineMode) {
-
-      if (window.isConnected == true || modeOfApp.offlineMode == true) {
+    if (modeOfApp.offlineMode) return;
+    if (!event.wasClean) {
+      if (window.isConnected === true || modeOfApp.offlineMode === true) {
         showAlertComponent("Сервер временно недоступен");
         return
       }
       window.componentFlags.result = false;
       riot.update();
-      if (device.platform == 'Android')
+      if (device.platform === 'Android')
         showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
       else {
         showAlertComponent("Сервер временно недоступен");
       }
-      return
     }
+    window.isConnected = false;
   };
 
   var me = this;
@@ -100,9 +87,9 @@ window.api.initSocket = function () {
     try {
       var method = parsedData.data[0][0].method;
       var callBack = me.callBacks[method];
-      if (parsedData.api_status == 0)
+      if (parsedData.api_status === 0)
         try {
-          if (parsedData.api_status == 0) {
+          if (parsedData.api_status === 0) {
             callBack.ok(parsedData.data);
             return;
           }
@@ -121,7 +108,7 @@ window.api.initSocket = function () {
               else {
                 if (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true) return;
                 console.log("Session is broken");
-                if (device.platform != 'BrowserStand') {
+                if (device.platform !== 'BrowserStand') {
                   console.log("Spinner stop in webApi (session is broken)");
                   SpinnerPlugin.activityStop();
                 }
@@ -150,16 +137,15 @@ window.api.initSocket = function () {
 
   this.socket.onerror = function (error) {
     window.isConnected = false;
-    if (modeOfApp.offlineMode) return
+    if (modeOfApp.offlineMode) return;
     console.log('Error with socket ' + error.message);
     window.componentFlags.result = false;
     riot.update();
-    if (device.platform == 'Android')
+    if (device.platform === 'Android')
       showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
     else {
       showAlertComponent("Сервер временно недоступен");
     }
-    return
   };
 };
 
@@ -176,7 +162,6 @@ window.api.call = function (params) {
   var input = params.input;
   var stopSpinner = params.stopSpinner === undefined ? true : params.stopSpinner;
   console.log("Stop spinner parameter:", params.stopSpinner);
-
   var onSuccess = params.onSuccess;
   var onFail = params.onFail;
   var scope = params.scope || window;
@@ -186,8 +171,7 @@ window.api.call = function (params) {
 
       if (stopSpinner) {
         window.api.spinnerOn = false;
-
-        if (device.platform != 'BrowserStand') {
+        if (device.platform !== 'BrowserStand') {
           console.log("Stopping spinner from webApi on answer of api")
           SpinnerPlugin.activityStop();
         }
@@ -195,13 +179,11 @@ window.api.call = function (params) {
       onSuccess.call(scope, data);
     },
     err: function (api_status, api_status_message, data) {
-      if (device.platform != 'BrowserStand') {
-        console.log("Spinner Stop WebApi 224");
+      if (device.platform !== 'BrowserStand') {
+        console.log("Spinner Stop in err function of WebApi");
         SpinnerPlugin.activityStop();
       }
-
       console.log("CONNECTION ERROR WEB SOCKET ON FAIL CALL");
-
       onFail.call(scope, api_status, api_status_message, data);
     }
   };
@@ -211,50 +193,11 @@ window.api.call = function (params) {
   console.log('Socket:', window.api.socket)
 
   if (modeOfApp.onlineMode && window.isConnected && window.api.socket) {
-    if (window.api.socket.readyState == 1) {
-      console.log("Sending method");
-      this.socket.send(JSON.stringify({
-        method: method,
-        parameters: input
-      }));
-    }
-    else {
-      console.log("Saving last method to send, socket ready state:", window.api.socket.readyState);
-      window.lastSocketMethodToSend = JSON.stringify({
-        method: method,
-        parameters: input
-      });
-      switch (window.api.socket.readyState) {
-        case 0:
-          console.log("Is connecting");
-          break;
-        case 2:
-          console.log("Is closing");
-          window.isConnected = false;
-          window.api.init();
-          break;
-        case 3:
-          console.log("Is closed");
-          window.isConnected = false;
-          window.api.init();
-          break;
-      }
-    }
-  }
-  else {
-    if (modeOfApp.onlineMode && !window.isConnected && window.api.socket.readyState != 1) {
-      console.log("Saving last method to send (socket not connected)");
-      window.lastSocketMethodToSend = JSON.stringify({
-        method: method,
-        parameters: input
-      });
-      if (stopSpinner)
-        if (device.platform != 'BrowserStand') {
-          console.log("Spinner stop in web api (not connected)");
-          SpinnerPlugin.activityStop();
-        }
-    }
-    window.api.init();
+    console.log("Sending method");
+    this.socket.send(JSON.stringify({
+      method: method,
+      parameters: input
+    }));
   }
 };
 
@@ -267,11 +210,8 @@ function onlineDetector() {
 }
 
 function offlineDetector() {
-
-  console.log("navigator connection", navigator.connection.type, Connection.NONE)
-
+  console.log("navigator connection", navigator.connection.type, Connection.NONE);
   if (navigator.connection.type === Connection.NONE) {
-
     window.isConnected = false;
     console.log("Offline detector, window.isConnected:", window.isConnected);
   }
