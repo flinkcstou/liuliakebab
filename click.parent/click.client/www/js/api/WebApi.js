@@ -13,22 +13,53 @@ window.api.forceClose = function () {
   window.api.socket.close();
 };
 
-window.api.init = function () {
-  if (!window.isConnected)
-  try {
-    window.api.socket = new WebSocket("wss://my.click.uz:8443");
-    console.log("SOCKET =", JSON.stringify(window.api.socket));
-    window.api.initSocket();
+window.api.call = function (params, timeout) {
+  console.log("Function call:");
+
+  if (timeout === undefined)
+    timeout = 30000;
+
+  if (!window.isConnected) {
+    window.api.init();
   }
-  catch (error) {
-    console.error("error on establishing connection", error);
-    if (modeOfApp.onlineMode)
-      window.api.init();
+  var stateCheckerCleared = false;
+  var stateChecker = setInterval(function () {
+    console.log("in interval of web api", window.api.socket, window.isConnected);
+    if (window.api.socket.readyState === 1) {
+      window.api.send(params);
+      clearInterval(stateChecker);
+      stateCheckerCleared = true;
+      console.log("Clearing interval-sender - request sent");
+    }
+    if (window.api.socket.readyState === 0) {
+      console.log("Connection in state 0, checking again");
+    }
+  }, 200);
+
+  if (!stateCheckerCleared) {
+    setTimeout(function () {
+      clearInterval(stateChecker);
+      console.log('clearing interval-sender - time out');
+    }, timeout);
+  }
+};
+
+window.api.init = function () {
+  if (!window.isConnected) {
+    try {
+      window.api.socket = new WebSocket("wss://my.click.uz:8443");
+      console.log("SOCKET =", JSON.stringify(window.api.socket));
+      window.api.initSocket();
+    }
+    catch (error) {
+      console.error("error on establishing connection", error);
+      if (modeOfApp.onlineMode)
+        window.api.init();
+    }
   }
 };
 
 window.api.initSocket = function () {
-
   this.socket.onopen = function () {
     console.log('WebSocket is opened and ');
     window.isConnected = true;
@@ -45,14 +76,13 @@ window.api.initSocket = function () {
           break;
         case 3:
           console.log("closed");
-          window.api.init();
+          window.isConnected = false;
           break;
       }
     }
   };
 
   this.socket.onclose = function (event) {
-
     console.log('Connection is closed');
     console.log(event);
     if (device.platform !== 'BrowserStand') {
@@ -65,23 +95,20 @@ window.api.initSocket = function () {
         showAlertComponent("Сервер временно недоступен");
         return
       }
-      window.componentFlags.result = false;
-      riot.update();
       if (device.platform === 'Android')
         showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
       else {
         showAlertComponent("Сервер временно недоступен");
       }
+      riot.update();
     }
-    window.isConnected = false;
+    // window.isConnected = false;
   };
 
   var me = this;
 
   this.socket.onmessage = function (event) {
-
     if (modeOfApp.offlineMode) return;
-
     var parsedData = JSON.parse(event.data);
     console.log("Received data:", parsedData);
     try {
@@ -101,7 +128,6 @@ window.api.initSocket = function () {
             if (!window.api.sessionErrorChecker) {
               window.api.sessionErrorChecker = true;
               if (!error) {
-                window.componentFlags.result = false;
                 riot.update();
                 showAlertComponent("Произошла непредвиденная ошибка. Свяжитесь с нашей службой поддержки +998 71 2310880")
               }
@@ -113,7 +139,6 @@ window.api.initSocket = function () {
                   SpinnerPlugin.activityStop();
                 }
                 localStorage.setItem('session_broken', true);
-                window.componentFlags.result = false;
                 riot.update();
                 showAlertComponent("Сессия была прервана");
               }
@@ -132,14 +157,12 @@ window.api.initSocket = function () {
     } catch (error) {
       console.log("Error on parsing response: ", error);
     }
-
   };
 
   this.socket.onerror = function (error) {
     window.isConnected = false;
     if (modeOfApp.offlineMode) return;
     console.log('Error with socket ' + error.message);
-    window.componentFlags.result = false;
     riot.update();
     if (device.platform === 'Android')
       showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
@@ -149,26 +172,21 @@ window.api.initSocket = function () {
   };
 };
 
-window.api.call = function (params) {
-
-  if (!window.isConnected && modeOfApp.onlineMode)
-    window.api.init();
-
+window.api.send = function (params) {
   window.api.sessionErrorChecker = false;
   window.api.spinnerOn = true;
 
   var method = params.method;
-  console.log('METHOD', method);
   var input = params.input;
   var stopSpinner = params.stopSpinner === undefined ? true : params.stopSpinner;
-  console.log("Stop spinner parameter:", params.stopSpinner);
   var onSuccess = params.onSuccess;
   var onFail = params.onFail;
   var scope = params.scope || window;
+  console.log('METHOD', method);
+  console.log("Stop spinner parameter:", params.stopSpinner);
   console.log("Sending information:", input);
   this.callBacks[method] = {
     ok: function (data) {
-
       if (stopSpinner) {
         window.api.spinnerOn = false;
         if (device.platform !== 'BrowserStand') {
@@ -188,17 +206,11 @@ window.api.call = function (params) {
     }
   };
 
-  console.log('Online mode:', modeOfApp.onlineMode)
-  console.log('Window is connected:', window.isConnected)
-  console.log('Socket:', window.api.socket)
-
-  if (modeOfApp.onlineMode && window.isConnected && window.api.socket) {
-    console.log("Sending method");
-    this.socket.send(JSON.stringify({
-      method: method,
-      parameters: input
-    }));
-  }
+  console.log("Sending method");
+  this.socket.send(JSON.stringify({
+    method: method,
+    parameters: input
+  }));
 };
 
 function onlineDetector() {

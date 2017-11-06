@@ -693,7 +693,6 @@
       setTimeout(function () {
         if (!answerFromServer) {
           updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
-          window.isConnected = false;
           return
         }
       }, 30000)

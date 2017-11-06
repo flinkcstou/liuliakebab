@@ -197,7 +197,7 @@
       });
 
       setTimeout(function () {
-        if (!answerFromServer && window.isConnected) {
+        if (!answerFromServer) {
           answerFromServer = true;
           scope.showError = true;
           scope.errorNote = window.languages.WaitingTimeExpiredText;
@@ -206,8 +206,6 @@
             console.log("Spinner stop in authorization by timeout");
             SpinnerPlugin.activityStop();
           }
-          window.isConnected = false;
-          return
         }
       }, 30000)
     }

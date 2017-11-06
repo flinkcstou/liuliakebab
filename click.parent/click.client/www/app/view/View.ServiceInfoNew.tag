@@ -213,7 +213,7 @@
         }
       });
 
-      if (!checkAnswer && window.isConnected) {
+      if (!checkAnswer) {
         console.log("wwww")
         setTimeout(function () {
           if (!checkAnswer) {
@@ -225,8 +225,6 @@
               console.log("Spinner Stop View Service Info New 224");
               SpinnerPlugin.activityStop();
             }
-            window.isConnected = false;
-            return
           }
         }, 10000);
       }

@@ -578,14 +578,13 @@
       });
 
       setTimeout(function () {
-        if (!answerFromServer && window.isConnected) {
+        if (!answerFromServer) {
           answerFromServer = true;
           updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
           if (device.platform != 'BrowserStand') {
             console.log("Spinner stop in authorization by timeout");
             SpinnerPlugin.activityStop();
           }
-          window.isConnected = false;
           return
         }
       }, 30000)

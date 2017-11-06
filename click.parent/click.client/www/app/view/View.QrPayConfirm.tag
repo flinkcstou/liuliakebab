@@ -310,8 +310,6 @@
             scope.errorNote = window.languages.WaitingTimeExpiredText;
             scope.viewPage = pageToReturnIfError;
             scope.update();
-            window.isConnected = false;
-            return
           }
         }, 30000)
       }

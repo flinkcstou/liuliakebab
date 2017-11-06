@@ -699,7 +699,7 @@
       });
 
 
-      if (!gotAnswer && window.isConnected)
+      if (!gotAnswer)
         setTimeout(function () {
           if (!gotAnswer) {
             scope.showError = true;
@@ -710,8 +710,6 @@
               console.log("Spinner Stop View Report 694");
               SpinnerPlugin.activityStop();
             }
-            window.isConnected = false;
-            return
           }
         }, 10000);
 
@@ -829,7 +827,7 @@
         }
       });
 
-      if (!gotAnswer && window.isConnected)
+      if (!gotAnswer)
         setTimeout(function () {
           if (!gotAnswer) {
             scope.showError = true;
@@ -840,8 +838,6 @@
               console.log("Spinner Stop View Report 823");
               SpinnerPlugin.activityStop();
             }
-            window.isConnected = false;
-            return
           }
         }, 10000);
 

@@ -230,7 +230,7 @@
           console.error(data);
         }
       });
-      if (!checkAnswerToUser && window.isConnected) {
+      if (!checkAnswerToUser) {
         console.log("wwww to user")
         setTimeout(function () {
           if (!checkAnswerToUser) {
@@ -243,8 +243,6 @@
             scope.showError = true;
             scope.errorNote = "Сервис временно недоступен";
             scope.update();
-            window.isConnected = false;
-            return
           }
         }, 10000);
       }
@@ -331,7 +329,7 @@
         }
       });
 
-      if (!checkAnswerFromUser && window.isConnected) {
+      if (!checkAnswerFromUser) {
         console.log("wwww from user")
         setTimeout(function () {
           if (!checkAnswerFromUser) {
@@ -344,8 +342,6 @@
             scope.showError = true;
             scope.errorNote = "Сервис временно недоступен";
             scope.update();
-            window.isConnected = false;
-            return
           }
         }, 10000);
       }

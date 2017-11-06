@@ -409,7 +409,7 @@
         }
       });
 
-      if (countOfCall <= 3 && !checkServiceAnswer && window.isConnected)
+      if (countOfCall <= 3 && !checkServiceAnswer)
         setTimeout(function () {
           if (!checkServiceAnswer && modeOfApp.onlineMode) {
             var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -424,10 +424,7 @@
               console.log("Spinner Stop View SMS 422");
               SpinnerPlugin.activityStop();
             }
-            window.isConnected = false;
             scope.update();
-
-            return;
           }
         }, 10000);
 
