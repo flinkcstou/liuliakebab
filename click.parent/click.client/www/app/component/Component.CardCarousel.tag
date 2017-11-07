@@ -144,7 +144,7 @@
             amount: invoice.amount,
             invoiceId: invoice.invoice_id,
             time: invoice.time,
-            date: invoice.date,
+            date: invoice.date
           };
 
           history.arrayOfHistory.push({view: "view-transfer-detail"});

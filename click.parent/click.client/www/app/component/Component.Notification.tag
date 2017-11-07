@@ -34,6 +34,13 @@
     if (device.platform !== 'BrowserStand') {
       window.FirebasePlugin.onNotificationOpen(function (notification) {
 
+        if (notification.message) {
+          var tap = notification.tap;
+          notification = JSON.parse(notification.message);
+          notification.tap = tap;
+          console.log("New notification=", notification);
+        }
+
         if (!scope.show) {
           sessionStorage.setItem("push_notification_real", JSON.stringify(notification));
         }
