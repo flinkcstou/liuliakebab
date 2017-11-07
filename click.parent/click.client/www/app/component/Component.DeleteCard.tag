@@ -153,8 +153,10 @@
 
               } else {
                 console.log("Third condition");
-                riotTags.innerHTML = "<view-default-account>";
-                riot.mount('view-default-account');
+                scope.parent.viewPage = "view-default-account";
+                riot.update();
+                componentSuccessId.style.display = 'block';
+                deleteCardComponentId.style.display = 'none';
               }
             }
 
