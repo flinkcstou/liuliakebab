@@ -1,7 +1,7 @@
 <view-default-account class="view-service-pincards riot-tags-main-container">
 
   <div class="pay-page-title" style="border-style: none;">
-    <p class="servicepage-title">
+    <p class="default-account-title">
       {window.languages.ViewDefaultAccountTitle}</p>
   </div>
 
@@ -92,18 +92,18 @@
             onSuccess: function (result) {
               if (result[0][0].error == 0 && result[1][0]) {
                 var j = 2;
-                for (var i in cards) {
-                  if (cards[i].card_id == result[1][0].default_account_id) {
-                    cards[i].default_account = true;
-                    cards[i].countCard = 1;
+                for (var i in cardsArray) {
+                  if (cardsArray[i].card_id == result[1][0].default_account_id) {
+                    cardsArray[i].default_account = true;
+                    cardsArray[i].countCard = 1;
                   }
                   else {
-                    cards[i].default_account = false;
-                    cards[i].countCard = j++;
+                    cardsArray[i].default_account = false;
+                    cardsArray[i].countCard = j++;
                   }
                 }
-                console.log("cards after default was set", cards);
-                localStorage.setItem('click_client_cards', JSON.stringify(cards));
+                console.log("cards after default was set", cardsArray);
+                localStorage.setItem('click_client_cards', JSON.stringify(cardsArray));
                 scope.viewPage = "view-main-page";
                 riot.update();
                 componentSuccessId.style.display = 'block';
