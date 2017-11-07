@@ -26,7 +26,7 @@
         <div id="namePhoneFieldId" class="settings-add-friend-name-phone-field">
           <p class="settings-add-friend-contact-text-field"></p>
           <p class="settings-add-friend-contact-number-first-part"></p>
-          <input maxlength="20" id="contactNameId" ontouchend="namePhoneFieldTouchEnd()" autofocus="true"
+          <input maxlength="20" id="contactNameId" ontouchend="namePhoneFieldTouchEnd()"
                  class="settings-add-friend-name-number-input-part"
                  type="text"/>
         </div>
@@ -82,8 +82,10 @@
 
     this.on('mount', function () {
 
-      namePhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff"
-      contactPhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb"
+      namePhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb";
+      contactPhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
+      contactPhoneNumberId.focus();
+      contactPhoneNumberId.autofocus;
       if (contactPhoneNumberId.value.length != scope.numberLength) {
         nextButtonId.style.display = 'none'
       }

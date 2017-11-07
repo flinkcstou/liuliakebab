@@ -169,6 +169,9 @@ window.api.initSocket = function () {
     window.isConnected = false;
     if (modeOfApp.offlineMode) return;
     console.log('Error with socket ' + error.message);
+    if (navigator.connection.type !== Connection.NONE){
+      showAlertComponent("Сервер временно недоступен");
+    }
     riot.update();
   };
 };
