@@ -36,10 +36,8 @@ window.api.call = function (params, timeout) {
     }
     if (window.api.socket.readyState === 3) {
       console.log("Connection in state 3, opening new connection");
-      window.api.socket.close();
       window.isConnected = false;
-      stateCheckerCleared = true;
-      clearInterval(stateChecker);
+      window.api.init();
     }
   }, 200);
 
