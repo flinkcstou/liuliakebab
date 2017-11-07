@@ -91,6 +91,8 @@ window.api.initSocket = function () {
   this.socket.onclose = function (event) {
     console.log('Connection is closed');
     console.log(event);
+    window.isConnected = false;
+    init();
     if (device.platform !== 'BrowserStand') {
       console.log("Spinner stop in webApi (socket on close)");
       SpinnerPlugin.activityStop();
@@ -108,7 +110,6 @@ window.api.initSocket = function () {
       showAlertComponent("Сервер временно недоступен");
       riot.update();
     }
-    // window.isConnected = false;
   };
 
   var me = this;
