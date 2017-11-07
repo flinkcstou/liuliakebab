@@ -84,6 +84,17 @@
 
     componentDeleteCard.deleteCard = function () {
 
+      var answerFromServer = false;
+
+      if (device.platform != 'BrowserStand') {
+        var options = {dimBackground: true};
+        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+          console.log("Spinner start in authorization");
+        }, function () {
+          console.log("Spinner stop in authorization");
+        });
+      }
+
       window.api.call({
         method: 'account.remove',
         input: {
@@ -95,6 +106,9 @@
         scope: this,
 
         onSuccess: function (result) {
+
+          answerFromServer = true;
+
           if (result[0][0].error === 0) {
 
             var cardNumber = JSON.parse(localStorage.getItem("cardNumber"));
@@ -155,6 +169,7 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
+          answerFromServer = true;
           scope.parent.clickPinError = false;
           scope.parent.errorNote = api_status_message;
           scope.parent.showError = true;
@@ -163,7 +178,23 @@
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
-      })
+      });
+
+      setTimeout(function () {
+        if (!answerFromServer) {
+          answerFromServer = true;
+          scope.parent.clickPinError = false;
+          scope.parent.errorNote = window.languages.WaitingTimeExpiredText;
+          scope.parent.showError = true;
+          deleteCardComponentId.style.display = "none";
+          riot.update();
+          if (device.platform != 'BrowserStand') {
+            console.log("Spinner stop in authorization by timeout");
+            SpinnerPlugin.activityStop();
+          }
+          return
+        }
+      }, 30000)
     };
 
 
