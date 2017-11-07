@@ -11,7 +11,6 @@
 
   <script>
     var scope = this;
-    scope.parent.showError = false;
 
     console.log('scope.parent DELETE', scope.parent)
 
@@ -116,10 +115,13 @@
             return;
           }
           else {
-            scope.parent.clickPinError = false;
-            scope.parent.errorNote = result[0][0].error_note;
-            scope.parent.showError = true;
-            deleteCardComponentId.style.display = "none"
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: result[0][0].error_note
+            });
+            deleteCardComponentId.style.display = "none";
             riot.update();
           }
         },

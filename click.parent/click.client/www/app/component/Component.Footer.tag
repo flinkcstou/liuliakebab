@@ -72,15 +72,10 @@
     </div>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
 
     var check = false;
     var scope = this;
-
-    scope.showError = false;
 
     //    scope.firstContactObject = {};
     //    scope.firstContactObject.contactFname = 'Egor';
@@ -197,37 +192,45 @@
           navigator.contacts.pickContact(function (contact) {
             console.log('CONTACT PICK', contact)
 
-            scope.showError = false;
+            window.common.alert.hide("componentAlertId");
 
             if (!contact.phoneNumbers) {
-              scope.showError = true;
-              scope.errorNote = 'Отсутствует номер контакта'
-              scope.update()
-              return
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                errornote: 'Отсутствует номер контакта'
+              });
+              scope.update();
+              return;
             }
 
             if (!contact.name) {
-              scope.showError = true;
-              scope.errorNote = 'Отсутствует имя контакта'
-              scope.update()
-              return
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                errornote: 'Отсутствует имя контакта'
+              });
+              scope.update();
+              return;
             }
 
             if (!contact.name.givenName) {
               if (!contact.name.familyName) {
-                scope.showError = true;
-                scope.errorNote = 'Отсутствует имя контакта'
-                scope.update()
-                return
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  errornote: 'Отсутствует имя контакта'
+                });
+                scope.update();
+                return;
               }
             }
 
             for (var i in arrayToSend) {
               if (arrayToSend[i].id == contact.id) {
-                scope.showError = true;
-                scope.errorNote = 'Этот контакт уже добавлен'
-                scope.update()
-                return
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  errornote: 'Этот контакт уже добавлен'
+                });
+                scope.update();
+                return;
               }
             }
 
@@ -372,26 +375,32 @@
           try {
             navigator.contacts.pickContact(function (contact) {
 
-              scope.showError = false;
+              window.common.alert.hide("componentAlertId");
 
               if (!contact.phoneNumbers) {
-                scope.showError = true;
-                scope.errorNote = 'Отсутствует номер контакта'
-                scope.update()
-                return
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  errornote: 'Отсутствует номер контакта'
+                });
+                scope.update();
+                return;
               }
 
               if (!contact.name) {
-                scope.showError = true;
-                scope.errorNote = 'Отсутствует имя контакта'
-                scope.update()
-                return
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  errornote: 'Отсутствует имя контакта'
+                });
+                scope.update();
+                return;
               }
 
               if (!contact.name.givenName) {
                 if (!contact.name.familyName) {
-                  scope.showError = true;
-                  scope.errorNote = 'Отсутствует имя контакта'
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    errornote: 'Отсутствует имя контакта'
+                  });
                   scope.update()
                   return
                 }
@@ -400,10 +409,12 @@
               for (var i in arrayToSend) {
                 console.log(arrayToSend[i].id, contact.id)
                 if (arrayToSend[i].id == contact.id) {
-                  scope.showError = true;
-                  scope.errorNote = 'Этот контакт уже добавлен'
-                  scope.update()
-                  return
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    errornote: 'Этот контакт уже добавлен'
+                  });
+                  scope.update();
+                  return;
                 }
               }
 
@@ -465,26 +476,32 @@
 
             navigator.contacts.pickContact(function (contact) {
 
-              scope.showError = false;
+              window.common.alert.hide("componentAlertId");
 
               if (!contact.phoneNumbers) {
-                scope.showError = true;
-                scope.errorNote = 'Отсутствует номер контакта'
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  errornote: 'Отсутствует номер контакта'
+                });
                 scope.update()
                 return
               }
 
               if (!contact.name) {
-                scope.showError = true;
-                scope.errorNote = 'Отсутствует имя контакта'
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  errornote: 'Отсутствует имя контакта'
+                });
                 scope.update()
                 return
               }
 
               if (!contact.name.givenName) {
                 if (!contact.name.familyName) {
-                  scope.showError = true;
-                  scope.errorNote = 'Отсутствует имя контакта'
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    errornote: 'Отсутствует имя контакта'
+                  });
                   scope.update()
                   return
                 }
@@ -493,10 +510,12 @@
               for (var i in arrayToSend) {
                 console.log(arrayToSend[i].id, contact.id)
                 if (arrayToSend[i].id == contact.id) {
-                  scope.showError = true;
-                  scope.errorNote = 'Этот контакт уже добавлен'
-                  scope.update()
-                  return
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    errornote: 'Этот контакт уже добавлен'
+                  });
+                  scope.update();
+                  return;
                 }
               }
 
@@ -558,38 +577,46 @@
           try {
             navigator.contacts.pickContact(function (contact) {
 
-              scope.showError = false;
+              window.common.alert.hide("componentAlertId");
 
               if (!contact.phoneNumbers) {
-                scope.showError = true;
-                scope.errorNote = 'Отсутствует номер контакта'
-                scope.update()
-                return
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  errornote: 'Отсутствует номер контакта'
+                });
+                scope.update();
+                return;
               }
 
               if (!contact.name) {
-                scope.showError = true;
-                scope.errorNote = 'Отсутствует имя контакта'
-                scope.update()
-                return
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  errornote: 'Отсутствует имя контакта'
+                });
+                scope.update();
+                return;
               }
 
               if (!contact.name.givenName) {
                 if (!contact.name.familyName) {
-                  scope.showError = true;
-                  scope.errorNote = 'Отсутствует имя контакта'
-                  scope.update()
-                  return
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    errornote: 'Отсутствует имя контакта'
+                  });
+                  scope.update();
+                  return;
                 }
               }
 
               for (var i in arrayToSend) {
                 console.log(arrayToSend[i].id, contact.id)
                 if (arrayToSend[i].id == contact.id) {
-                  scope.showError = true;
-                  scope.errorNote = 'Этот контакт уже добавлен'
-                  scope.update()
-                  return
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    errornote: 'Этот контакт уже добавлен'
+                  });
+                  scope.update();
+                  return;
                 }
               }
 
@@ -649,18 +676,22 @@
             window.pickContactFromNativeChecker = true;
 
             navigator.contacts.pickContact(function (contact) {
-              scope.showError = false;
+              window.common.alert.hide("componentAlertId");
 
               if (!contact.phoneNumbers) {
-                scope.showError = true;
-                scope.errorNote = 'Отсутствует номер контакта'
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  errornote: 'Отсутствует номер контакта'
+                });
                 scope.update()
                 return
               }
 
               if (!contact.name) {
-                scope.showError = true;
-                scope.errorNote = 'Отсутствует имя контакта'
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  errornote: 'Отсутствует имя контакта'
+                });
                 scope.update()
                 return
               }
@@ -668,8 +699,10 @@
               for (var i in arrayToSend) {
                 console.log(arrayToSend[i].id, contact.id)
                 if (arrayToSend[i].id == contact.id) {
-                  scope.showError = true;
-                  scope.errorNote = 'Этот контакт уже добавлен'
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    errornote: 'Этот контакт уже добавлен'
+                  });
                   scope.update()
                   return
                 }

@@ -222,6 +222,25 @@ var css = {
   "bottom: 0;" +
   "}",
 
+  // //ALERTS
+  // componentAlertBlockId: "#alertComponentBlockId display: none;}",
+  //
+  // componentAlertId: "#componentAlertId {display: none;}",
+  //
+  // componentConfirmId: "#componentConfirmId {display: none;}",
+  //
+  // componentInProcessId: "#componentInProcessingId {display: none;}",
+  //
+  // componentResultId: "#componentResultId {display: none;}",
+  //
+  // componentSuccessId: "#componentSuccessId {display: none;}",
+  //
+  // componentUnsuccessId: "#componentUnsuccessId {display: none;}",
+  //
+  // componentGenQRId: "#componentGeneratedQrId {display: none;}",
+  //
+  // //ALERTS
+
   //VIEW INVOICE LIST
 
   invoiceListPageTitle: ".invoice-list-page-title" +

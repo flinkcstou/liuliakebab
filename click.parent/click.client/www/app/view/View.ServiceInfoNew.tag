@@ -45,16 +45,7 @@
     </button>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}" step_amount="{stepAmount}" viewpage="{viewPage}"
-                   viewmount="{true}" errornote="{errorNote}"></component-alert>
-
-  <component-unsuccess id="componentUnsuccessId" step_amount="{stepAmount}"
-                       operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
-                       operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{errorMessage}"></component-unsuccess>
-
   <script>
-
 
     console.log('OPTS in ServiceInfo NEW', opts);
 
@@ -69,7 +60,6 @@
     }
 
     var scope = this;
-    scope.showError = false;
 
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
@@ -201,31 +191,53 @@
             console.log("result of GET ADDITIONAL INFO 2", result);
             scope.errorMessage = result[0][0].error_note;
             scope.stepAmount = 1;
-            componentUnsuccessId.style.display = 'block';
+
+            window.common.alert.show("componentUnsuccessId", {
+              parent: scope,
+              step_amount: scope.stepAmount,
+              operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+              operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+              operationmessagepartthree: scope.errorMessage
+            });
+
             scope.update();
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          componentUnsuccessId.style.display = 'block';
+          window.common.alert.show("componentUnsuccessId", {
+            parent: scope,
+            step_amount: scope.stepAmount,
+            operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+            operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+            operationmessagepartthree: scope.errorMessage
+          });
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
       });
 
-      if (!checkAnswer && window.isConnected) {
+      if (!checkAnswer) {
         console.log("wwww")
         setTimeout(function () {
           if (!checkAnswer) {
-            scope.showError = true;
             scope.errorNote = "Сервис временно недоступен";
             scope.stepAmount = 1;
             scope.update();
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              step_amount: scope.stepAmount,
+              viewpage: scope.viewPage,
+              viewmount: true,
+              errornote: scope.errorNote,
+            });
+
             if (device.platform != 'BrowserStand') {
               console.log("Spinner Stop View Service Info New 224");
               SpinnerPlugin.activityStop();
             }
-            window.isConnected = false;
             return
           }
         }, 10000);
@@ -296,7 +308,16 @@
 
         scope.clickPinError = false;
         scope.errorNote = "Выберите из вариантов";
-        scope.showError = true;
+
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          clickpinerror: scope.clickPinError,
+          step_amount: scope.stepAmount,
+          viewpage: scope.viewPage,
+          viewmount: true,
+          errornote: scope.errorNote,
+        });
+
         scope.update();
       } else {
         this.riotTags.innerHTML = "<view-service-pincards-new>";

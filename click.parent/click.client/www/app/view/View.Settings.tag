@@ -73,8 +73,6 @@
     </div>
 
   </div>
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
 
   <view-settings-support id="settingsSupportId" style="display: none"></view-settings-support>
 
@@ -375,9 +373,15 @@
 
         var question = 'Подтвердите удаление данных'
 //        confirm(question)
-        scope.confirmShowBool = true;
         scope.confirmNote = question;
         scope.confirmType = 'local';
+
+        window.common.alert.show("componentConfirmId", {
+          "confirmnote": scope.confirmNote,
+          "confirmtype": scope.confirmType,
+          parent: scope,
+        });
+
         scope.update();
         scope.result = function (bool) {
           if (bool) {

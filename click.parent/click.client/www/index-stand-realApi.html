@@ -37,13 +37,13 @@
 </head>
 
 <body id="bodyId">
-<div id="alertComponentBlockId" style="opacity: 0;"></div>
 
+<div id="alertTags"></div>
 <div id="riotTags" class="riot-tags-main-container">
 </div>
 
 <script>
-  var versionOfApp = '5.0.8'
+  var versionOfApp = '5.0.8';
   if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
 
   }
@@ -66,7 +66,7 @@
 
         if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
           scope.riotTags.innerHTML = "<view-authorization>";
-          riot.mount('view-authorization')
+          riot.mount('view-authorization');
         }
         else {
           scope.riotTags.innerHTML = "<view-registration-device>";
@@ -89,7 +89,7 @@
     firstMount.firstStep = function () {
       if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
         scope.riotTags.innerHTML = "<view-authorization>";
-        riot.mount('view-authorization')
+        riot.mount('view-authorization');
       }
       else {
         scope.riotTags.innerHTML = "<view-registration-device>";
@@ -151,23 +151,17 @@
     }
   }
 
-
   function showAlertComponent(outerErrorNote) {
-    setTimeout(function () {
-      alertComponentBlockId.style.opacity = 1;
-    }, 500);
 
-    alertComponentBlockId.innerHTML = "<component-alert>";
-    riot.mount('component-alert', {"errornote": outerErrorNote});
+    window.common.alert.show("componentAlertId", {"errornote": outerErrorNote});
   }
 
   function showConfirmComponent(outerConfirmNote, confirmType) {
-    setTimeout(function () {
-      alertComponentBlockId.style.opacity = 1;
-    }, 500);
 
-    alertComponentBlockId.innerHTML = "<component-confirm>";
-    riot.mount('component-confirm', {"confirmnote": outerConfirmNote, "confirmtype": confirmType});
+    window.common.alert.show("componentConfirmId", {
+      "confirmnote": outerConfirmNote,
+      "confirmtype": confirmType
+    });
   }
 
   function checkImageURL(dirEntry, fileNamePrefix, fileName, assetURL, index, callback) {

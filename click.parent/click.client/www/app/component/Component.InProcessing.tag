@@ -21,7 +21,7 @@
       closeInProcessingMessageForm = function () {
       event.preventDefault();
       event.stopPropagation();
-      componentInProcessingId.style.display = 'none';
+        window.common.alert.hide("componentInProcessingId");
       console.log("before inProcessing", history.arrayOfHistory)
 
       if (opts.step_amount) {

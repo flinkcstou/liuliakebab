@@ -52,8 +52,8 @@
 
 
       <button
-        class="{autopay-event-button-enter-enabled: enterButtonEnabled,autopay-event-button-enter-disabled:!enterButtonEnabled}"
-        ontouchend="chooseCardToPay()" ontouchstart="onTouchStartOfChooseCard()">
+          class="{autopay-event-button-enter-enabled: enterButtonEnabled,autopay-event-button-enter-disabled:!enterButtonEnabled}"
+          ontouchend="chooseCardToPay()" ontouchstart="onTouchStartOfChooseCard()">
         {window.languages.ViewServicePageEnterLabel}
       </button>
 
@@ -76,12 +76,8 @@
     </div>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
     var scope = this;
-    scope.showError = false;
     scope.enterButtonEnabled = false;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-autopay-event-method-new') {
@@ -392,9 +388,11 @@
 
       if (Math.abs(chooseCardStartY - chooseCardEndY) <= 20 && Math.abs(chooseCardStartX - chooseCardEndX) <= 20) {
         if (autoPayNameInput.value.length < 1) {
-          scope.clickPinError = false;
-          scope.errorNote = "Введите название автоплатежа";
-          scope.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: "Введите название автоплатежа",
+          });
           scope.update();
           return;
         }
@@ -404,15 +402,19 @@
 //        console.log("REGEXP validation=", phoneRegexp.test(inputVerification.spaceDeleter(PhoneNumberInput.value)));
 
         if (PhoneNumberInput.value.length < 10) {
-          scope.clickPinError = false;
-          scope.errorNote = "Неправильно введён номер телефона";
-          scope.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: "Неправильно введён номер телефона",
+          });
           scope.update();
           return;
         } else if (PhoneNumberInput.value.length == 0) {
-          scope.clickPinError = false;
-          scope.errorNote = "Введите значение первого поля";
-          scope.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: "Введите значение первого поля",
+          });
           scope.update();
           return;
         }
@@ -426,9 +428,11 @@
 //        }
 
         if (!chosenStep) {
-          scope.clickPinError = false;
-          scope.errorNote = "Выберите условную сумму для пополнения баланса";
-          scope.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: "Выберите условную сумму для пополнения баланса",
+          });
           scope.update();
           return;
         }

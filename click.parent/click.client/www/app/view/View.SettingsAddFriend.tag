@@ -61,19 +61,16 @@
 
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
+
     var scope = this;
-    scope.showError = false;
     scope.numberLength = 10;
     this.titleName = window.languages.ViewSettingsAddFriendTitleName;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-friend') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-add-friend',
+          "view": 'view-add-friend',
           "params": opts
         }
       );
@@ -254,7 +251,13 @@
       function error(message) {
         scope.clickPinError = false;
         scope.errorNote = 'Failed because: ' + message;
-        scope.showError = true;
+
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          clickpinerror: scope.clickPinError,
+          errornote: scope.errorNote,
+        });
+
         scope.update();
       }
     }

@@ -192,7 +192,7 @@
           }
         });
 
-        if (!transferOnCardCheckAnswer && window.isConnected) {
+        if (!transferOnCardCheckAnswer) {
           console.log("wwww")
           setTimeout(function () {
             if (!transferOnCardCheckAnswer) {
@@ -205,7 +205,6 @@
                 console.log("Spinner Stop View Transfer On Card 204");
                 SpinnerPlugin.activityStop();
               }
-              window.isConnected = false;
               return
             }
           }, 10000);

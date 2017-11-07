@@ -49,15 +49,8 @@
     </button>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}" viewpage="{viewPage}"></component-alert>
-
-  <component-result if="{window.componentFlags.result}" result="{result}" resulttext="{resultText}"
-                    viewpage="{viewPage}"></component-result>
   <script>
     var scope = this;
-    scope.showError = false;
-    scope.showResult = false;
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = info.session_key;
@@ -76,7 +69,6 @@
 
 
     scope.doMainCard = false;
-    componentFlags.result = false;
 
     doMainCardTouchEnd = function () {
       event.preventDefault()
@@ -95,28 +87,36 @@
 
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
       console.log("OPEN RESULT COMPONENT");
-      window.componentFlags.result = showResult;
-//      scope.showResult = showResult;
+
+      if (showResult) {
+
+        window.common.alert.updateView("componentResultId", {
+          parent: scope,
+          resulttext: text,
+          viewpage: viewPage,
+        });
+      } else {
+
+        window.common.alert.hide("componentResultId");
+      }
       scope.stepAmount = stepAmount;
-      scope.viewPage = viewPage;
-      scope.resultText = text;
       updateIcon(status);
       scope.update();
-    }
+    };
 
     closeResultComponent = function () {
       console.log("CLOSE RESULT COMPONENT");
-      window.componentFlags.result = false;
-      scope.showResult = false;
+      window.common.alert.hide("componentResultId");
       scope.update();
-    }
+    };
 
     initResultComponent = function () {
       console.log("INIT RESULT COMPONENT");
-      window.componentFlags.result = true;
-      scope.showResult = true;
+      window.common.alert.updateView("componentResultId", {
+        parent: scope,
+      });
       scope.update();
-    }
+    };
 
     var dateOrPin = '';
     var cardNumber = '';
@@ -158,9 +158,11 @@
             "*880*0*" + cardNumber + '*' + dateOrPin + "%23",
             function (err) {
               if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
-                scope.showError = true;
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: "Unknown phone number"
+                });
                 scope.update();
               }
               else console.log("Dialer Error:" + err);
@@ -212,12 +214,14 @@
                 updateResultComponent(true, null, pageToReturnTwo, 'unsuccess', result[0][0].error_note);
 
               } else if (result[0][0].registered == 0) {
-                scope.resultText = result[0][0].error_note;
-                scope.showResult = true;
+                window.common.alert.updateView("componentResultId", {
+                  parent: scope,
+                  resulttext: result[0][0].error_note,
+                  viewpage: 'view-add-card'
+                });
                 scope.repeat = true;
                 scope.checkId = result[0][0].check_id;
                 updateIcon('waiting', scope.repeat, 'view-add-card');
-                scope.viewPage = 'view-add-card';
                 scope.update();
 
               }
@@ -282,12 +286,14 @@
               updateResultComponent(true, null, pageToReturnTwo, 'unsuccess', result[0][0].error_note);
 
             } else if (result[0][0].registered == 0) {
-              scope.resultText = result[0][0].error_note;
-              scope.showResult = true;
+              window.common.alert.updateView("componentResultId", {
+                parent: scope,
+                resulttext: result[0][0].error_note,
+                viewpage: 'view-add-card'
+              });
               scope.checkStatus = true;
               scope.checkId = result[0][0].check_id;
               updateIcon('waiting', scope.checkStatus, 'view-add-card');
-              scope.viewPage = 'view-add-card';
               scope.update();
             }
 
@@ -304,23 +310,23 @@
         }
       });
 
-    }
+    };
 
     var onPaste = false;
     var canFormatNumber = true;
 
     boxOnePaste = function () {
       onPaste = true;
-    }
+    };
 
     var boxCursorPositionSelectionStart, boxCursorPositionSelectionEnd, oldValueOfBoxNumber;
     boxOneKeyUp = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
       boxCursorPositionSelectionStart = boxOne.selectionStart;
       boxCursorPositionSelectionEnd = boxOne.selectionEnd;
-      oldValueOfBoxNumber = boxOne.value
+      oldValueOfBoxNumber = boxOne.value;
 
 
       if (boxOne.value.length <= 19 && (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT)) {

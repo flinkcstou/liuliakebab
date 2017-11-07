@@ -10,20 +10,16 @@
     <p class="settings-user-agreement-text">{helpText}</p>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
     var scope = this;
-    scope.showError = false;
     this.titleName = window.languages.ViewHelpTitle;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-help') {
       history.arrayOfHistory.push(
-          {
-            "view": 'view-help',
-            "params": opts
-          }
+        {
+          "view": 'view-help',
+          "params": opts
+        }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
@@ -58,9 +54,12 @@
           }
         }
         else {
-          scope.clickPinError = false;
-          scope.errorNote = result[0][0].error_note;
-          scope.showError = true;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: result[0][0].error_note
+          });
           scope.update();
         }
       },

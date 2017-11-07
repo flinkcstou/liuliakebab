@@ -24,7 +24,7 @@
       closeButtonStartY = event.changedTouches[0].pageY;
 
       qrCloseButtonId.style.webkitTransform = 'scale(0.8)'
-    }
+    };
 
     closeGeneratedQrFormEnd = function () {
       event.preventDefault();
@@ -37,18 +37,18 @@
 
       if (Math.abs(closeButtonStartX - closeButtonEndX) <= 20 && Math.abs(closeButtonStartY - closeButtonEndY) <= 20) {
 
-        componentGeneratedQrId.style.display = 'none';
-        console.log("before success", history.arrayOfHistory)
-        console.log("OPTS in qr comp", opts)
+        window.common.alert.hide("componentGeneratedQrId");
+        console.log("before success", history.arrayOfHistory);
+        console.log("OPTS in qr comp", opts);
         if (opts.step_amount) {
-          history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
-          console.log(history.arrayOfHistory)
-          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+          history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount);
+          console.log(history.arrayOfHistory);
+          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-          console.log("after success", history.arrayOfHistory)
+          console.log("after success", history.arrayOfHistory);
 
           if (history.arrayOfHistory.length != 0) {
-            console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
+            console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
             riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
             riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
             return;

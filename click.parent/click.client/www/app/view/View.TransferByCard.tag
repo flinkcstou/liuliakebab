@@ -1,7 +1,8 @@
 <view-transfer-by-card class="riot-tags-main-container">
   <div class="transfer-page-title">
     <p class="transfer-name-title">{titleName}</p>
-    <div id="backButton" ontouchend="goToBackFromTransferByCardTouchEnd()" ontouchstart="goToBackFromTransferByCardTouchStart()"
+    <div id="backButton" ontouchend="goToBackFromTransferByCardTouchEnd()"
+         ontouchstart="goToBackFromTransferByCardTouchStart()"
          class="transfer-back-button" role="button" aria-label="{window.languages.Back}">
     </div>
     <div if="{modeOfApp.onlineMode}" id="rightButton" role="button"
@@ -16,15 +17,15 @@
       <div class="transfer-contact-phone-field">
         <p class="transfer-contact-text-field">{window.languages.ViewPayTransferNewCardTextField}</p>
         <input
-          id="cardInputId"
-          class="transfer-card-number-input-part"
-          type="tel"
-          onpaste="onPasteTrigger()"
-          oninput="cardPhoneBlurAndChange('onInput')"
-          onchange="cardPhoneBlurAndChange()"
-          onfocus="cardPhoneBlurAndChange()"
-          onkeyup="cardOnKeyUp()"
-          onkeydown="searchCard(this)"/>
+            id="cardInputId"
+            class="transfer-card-number-input-part"
+            type="tel"
+            onpaste="onPasteTrigger()"
+            oninput="cardPhoneBlurAndChange('onInput')"
+            onchange="cardPhoneBlurAndChange()"
+            onfocus="cardPhoneBlurAndChange()"
+            onkeyup="cardOnKeyUp()"
+            onkeydown="searchCard(this)"/>
       </div>
       <div hidden id="ownerCardDisplayId" class="transfer-card-owner-container">
         <p class="transfer-card-owner-title" style="display:inline">{window.languages.ViewPayTransferCardOwnerTitle}</p>
@@ -83,13 +84,6 @@
       </div>
     </div>
   </div>
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"
-                   pathtosettings="{pathToSettings}"
-                   permissionerror="{permissionError}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
 
   <component-tour view="transfer" focusfield="{true}"></component-tour>
   <script>
@@ -99,7 +93,6 @@
     var scope = this;
     scope.tourClosed = true;
     scope.clickPinError = false;
-    scope.showError = false;
     scope.showComponent = false;
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-by-card') {
       history.arrayOfHistory.push(
@@ -246,7 +239,15 @@
             }
             else {
               scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+                pathtosettings: scope.pathToSettings,
+                permissionerror: scope.permissionError,
+              });
+
               scope.update();
             }
           },
@@ -300,9 +301,17 @@
 
           if (modeOfApp.demoVersion) {
             var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-            scope.showError = true;
             scope.errorNote = question;
             scope.confirmType = 'local';
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              pathtosettings: scope.pathToSettings,
+              permissionerror: scope.permissionError,
+            });
+
             scope.update();
             return;
           }
@@ -341,7 +350,15 @@
                 }
                 else {
                   scope.errorNote = result[0][0].error_note;
-                  scope.showError = true;
+
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    clickpinerror: scope.clickPinError,
+                    errornote: scope.errorNote,
+                    pathtosettings: scope.pathToSettings,
+                    permissionerror: scope.permissionError,
+                  });
+
                   scope.update();
                 }
               },

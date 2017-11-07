@@ -39,9 +39,6 @@
     <div class="view-news-block-space"></div>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
     var scope = this;
     console.log("Is update running here ?");
@@ -179,8 +176,10 @@
           }
           else {
             console.log("view news error 1");
-            scope.showError = true;
-            scope.errorNote = result[0][0].error_note;
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              errornote: result[0][0].error_note
+            });
             scope.update();
             console.log(result[0][0].error_note);
           }
@@ -188,8 +187,10 @@
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          scope.showError = true;
-          scope.errorNote = api_status_message;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: api_status_message
+          });
           scope.update();
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
@@ -197,16 +198,17 @@
       });
 
       setTimeout(function () {
-        if (!answerFromServer && window.isConnected) {
+        if (!answerFromServer) {
           answerFromServer = true;
-          scope.showError = true;
-          scope.errorNote = window.languages.WaitingTimeExpiredText;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: window.languages.WaitingTimeExpiredText
+          });
           scope.update();
           if (device.platform !== 'BrowserStand') {
             console.log("Spinner stop in authorization by timeout");
             SpinnerPlugin.activityStop();
           }
-          window.isConnected = false;
           return
         }
       }, 30000)

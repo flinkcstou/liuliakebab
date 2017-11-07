@@ -47,7 +47,8 @@
   </div>
 
   <div class="registration-client-buttons-container">
-    <div if="{device.platform != 'iOS'}" id="regClinetOfflineButtonId" class="registration-container-offline" ontouchstart="registrationClientOfflineTouchStart()"
+    <div if="{device.platform != 'iOS'}" id="regClinetOfflineButtonId" class="registration-container-offline"
+         ontouchstart="registrationClientOfflineTouchStart()"
          ontouchend="registrationClientOfflineTouchEnd()">
       <div class="registration-button-offline">Офлайн режим
       </div>
@@ -57,9 +58,6 @@
       <div class="registration-button-demo-version">Демо версия</div>
     </div>
   </div>
-
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
 
   <div hidden id="demoContinueContainer" class="demo-version-continue riot-tags-main-container">
     <p class="demo-version-demonstration-text">Демонстрационный режим</p>
@@ -97,13 +95,12 @@
       if (device.platform == 'iOS')
         demoContainer.style.left = 100 * widthK + 'px';
 
-      if(device.platform != "BrowserStand")
-      StatusBar.backgroundColorByHexString("#00b0eb");
+      if (device.platform != "BrowserStand")
+        StatusBar.backgroundColorByHexString("#00b0eb");
     })
 
     var scope = this;
 
-    scope.showError = false;
     scope.cardNumberPartOne = '';
     scope.cardNumberPartTwo = '';
     scope.cardNumberPartThree = '';
@@ -117,7 +114,8 @@
     var selectionEnd;
     var changed = false;
     var date = false;
-    var checkOne = false, checkTwo = false, checkThree = false, checkFour = false, checkDate = false, checkPin = false, checkPinCopy = false, checkDateCopy = false;
+    var checkOne = false, checkTwo = false, checkThree = false, checkFour = false, checkDate = false, checkPin = false,
+      checkPinCopy = false, checkDateCopy = false;
 
     regClientGoToDemoTouchStart = function () {
       event.preventDefault();
@@ -455,7 +453,11 @@
 //        alert('error')
           scope.clickPinError = false;
           scope.errorNote = 'Неверные данные о карте';
-          scope.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+          });
           scope.update();
         }
 

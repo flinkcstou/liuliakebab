@@ -55,12 +55,6 @@
 
   <component-pin-reset></component-pin-reset>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}" viewpage="{viewPage}"
-                   errornote="{errorNote}" errorcode="{errorCode}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-
   <script>
 
 
@@ -154,9 +148,6 @@
       }
 
     }
-
-    scope.showError = false;
-    scope.confirmShowBool = false;
 
     if (history.arrayOfHistory.length != 0) {
       if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization' && !JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken'))) {
@@ -285,9 +276,11 @@
           firstPinInputId.blur();
 
         var question = 'Подтвердите удаление данных';
-        scope.confirmShowBool = true;
-        scope.confirmNote = question;
-        scope.confirmType = 'local';
+        window.common.alert.show("componentConfirmId", {
+          parent: scope,
+          "confirmnote": question,
+          "confirmtype": 'local'
+        });
         scope.update();
         scope.result = function (bool) {
           if (bool) {
@@ -535,6 +528,9 @@
             }
           }
           else {
+
+            var clickPinError, errorNote, errorCode;
+
             if (device.platform != 'BrowserStand') {
               console.log("Spinner Stop View Authorization");
               SpinnerPlugin.activityStop();
@@ -542,25 +538,31 @@
 
             if (result[0][0].error == -31) {
 
-              scope.clickPinError = true;
+              clickPinError = true;
 
             } else if (result[0][0].error == -799) {
 
-              scope.errorNote = result[0][0].error_note;
-              scope.errorCode = 2;
+              errorNote = result[0][0].error_note;
+              errorCode = 2;
 
 
             } else {
 
               if (opts.from == "registration-client") {
-                scope.errorNote = "Карта ещё не добавлена. Попробуйте войти через несколько минут";
+                errorNote = "Карта ещё не добавлена. Попробуйте войти через несколько минут";
               }
               else
-                scope.errorNote = result[0][0].error_note;
-              scope.clickPinError = false;
+                errorNote = result[0][0].error_note;
+              clickPinError = false;
 
             }
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: clickPinError,
+              errornote: errorNote,
+              errorcode: errorCode
+            });
             scope.update();
             enteredPin = '';
             if (!scope.firstEnter)
@@ -578,14 +580,13 @@
       });
 
       setTimeout(function () {
-        if (!answerFromServer && window.isConnected) {
+        if (!answerFromServer) {
           answerFromServer = true;
           updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
           if (device.platform != 'BrowserStand') {
             console.log("Spinner stop in authorization by timeout");
             SpinnerPlugin.activityStop();
           }
-          window.isConnected = false;
           return
         }
       }, 30000)
@@ -594,10 +595,21 @@
 
     updateAlertComponent = function (showError, stepAmount, viewPage, text) {
       console.log("OPEN ALERT COMPONENT:", showError, text, stepAmount, viewPage);
-      scope.showError = showError;
+
+      if (showError) {
+
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          viewpage: viewPage,
+          errornote: text
+        });
+      } else {
+
+        window.common.alert.hide("componentAlertId");
+      }
+
       scope.stepAmount = stepAmount;
-      scope.viewPage = viewPage;
-      scope.errorNote = text;
+
       riot.update();
     }
 

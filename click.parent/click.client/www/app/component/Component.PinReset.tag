@@ -37,13 +37,9 @@
 
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
     var scope = this;
     scope.firstStage = true;
-    scope.showError = false;
 
     var resetPinStartX, resetPinStartY, resetPinEndX, resetPinEndY;
 
@@ -91,9 +87,12 @@
               scope.update();
             }
             else {
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: result[0][0].error_note
+              });
               scope.update();
             }
           },

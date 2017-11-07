@@ -58,13 +58,6 @@
       </div>
     </div>
   </div>
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"
-                   pathtosettings="{pathToSettings}"
-                   permissionerror="{permissionError}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
 
   <component-tour view="transfer" focusfield="{true}"></component-tour>
   <script>
@@ -74,7 +67,6 @@
     var scope = this;
     scope.tourClosed = true;
     scope.clickPinError = false;
-    scope.showError = false;
     scope.showComponent = false;
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-by-phone') {
       history.arrayOfHistory.push(
@@ -133,9 +125,17 @@
 
           if (modeOfApp.demoVersion) {
             var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-            scope.showError = true;
             scope.errorNote = question;
             scope.confirmType = 'local';
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              pathtosettings: scope.pathToSettings,
+              permissionerror: scope.permissionError,
+            });
+
             scope.update();
             return;
           }
@@ -174,7 +174,15 @@
                 }
                 else {
                   scope.errorNote = result[0][0].error_note;
-                  scope.showError = true;
+
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    clickpinerror: scope.clickPinError,
+                    errornote: scope.errorNote,
+                    pathtosettings: scope.pathToSettings,
+                    permissionerror: scope.permissionError,
+                  });
+
                   scope.update();
                 }
               },

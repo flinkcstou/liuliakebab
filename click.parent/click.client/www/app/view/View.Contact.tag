@@ -50,12 +50,6 @@
     </div>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-
   <script>
     var scope = this;
 
@@ -159,9 +153,12 @@
               scope.unmount()
             }
             else {
-              scope.clickPinError = false;
-              scope.errorNote = 'Вы не можете оплатить за этот номер';
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: 'Вы не можете оплатить за этот номер'
+              });
               scope.update();
             }
 
@@ -221,9 +218,12 @@
             scope.unmount()
           }
           else {
-            scope.clickPinError = false;
-            scope.errorNote = 'Вы не можете оплатить за этот номер';
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: 'Вы не можете оплатить за этот номер'
+            });
             scope.update();
           }
         }
@@ -261,10 +261,13 @@
         var arrayOfContacts = JSON.parse(localStorage.getItem('contactList'))
 
         var question = 'Подтвердите удаление из списка'
-        scope.confirmShowBool = true;
-        scope.confirmNote = question;
-        scope.confirmType = 'local';
-        scope.update()
+        window.common.alert.show("componentConfirmId", {
+          parent: scope,
+          "confirmnote": question,
+          "confirmtype": 'local'
+        });
+
+        scope.update();
         scope.result = function (bool) {
           if (bool) {
             for (var i = 0; i < arrayOfContacts.length; i++) {

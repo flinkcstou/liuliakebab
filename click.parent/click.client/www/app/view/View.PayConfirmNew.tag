@@ -64,7 +64,7 @@
     <div class="payconfirm-bottom-container">
       <div class="payconfirm-action-autopay-container" if="{opts.mode!='ADDAUTOPAY'}">
         <div
-          class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
+            class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
           <div class="payconfirm-action-icon-one" if="{!isInFavorites}"
                style="background-image: url('resources/icons/ViewService/addfavorite.png');"
                ontouchstart="onTouchStartOfFavorite()"
@@ -104,37 +104,6 @@
 
     </div>
   </div>
-
-  <component-success id="componentSuccessId"
-                     operationmessage="{operationMessage}"
-                     goback="{goBack}"
-                     viewpage="{viewPage}" step_amount="{stepAmount}"></component-success>
-  <component-unsuccess id="componentUnsuccessId"
-                       viewpage="{viewPage}"
-                       step_amount="{stepErrorAmount}"
-                       goback="{goBack}"
-                       operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
-                       operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{errorMessageFromPayment}"></component-unsuccess>
-
-  <component-in-processing id="componentInProcessingId" viewpage="{viewPage}" step_amount="{stepAmount}"
-                           operationmessagepartone="{window.languages.ComponentInProcessingPartOneForPay}"
-                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"></component-in-processing>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-
-  <component-generated-qr id="componentGeneratedQrId" qr_image="{qrImage}" qr_header="{qrHeader}" qr_footer="{qrFooter}"
-                          viewpage="{viewPage}"
-                          step_amount="{stepAmount}"></component-generated-qr>
-
-  <component-alert if="{showError}" clickpinerror="{clickPinError}" errorcode="{errorCode}"
-                   errornote="{errorNote}"></component-alert>
-
-
-  <component-result if="{window.componentFlags.result}" resulttext="{resultText}"
-                    viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
-
 
   <script>
 
@@ -193,7 +162,6 @@
     console.log('isInFavorites', opts.isInFavorites)
     scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
-    componentFlags.result = false;
 
     if (opts.mode == 'ADDAUTOPAY') {
       scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
@@ -317,26 +285,36 @@
 
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
       console.log("OPEN RESULT COMPONENT:", showResult, status, text);
-      window.componentFlags.result = showResult;
-//      scope.showResult = showResult;
-      scope.stepAmount = stepAmount;
-      scope.viewPage = viewPage;
-      scope.resultText = text;
+
+      if (showResult) {
+
+        window.common.alert.updateView("componentResultId", {
+          parent: scope,
+          resulttext: text,
+          viewpage: viewPage,
+          step_amount: stepAmount
+        });
+      } else {
+
+        window.common.alert.hide("componentResultId");
+      }
+
       updateIcon(status);
       riot.update();
     }
 
     closeResultComponent = function () {
       console.log("CLOSE RESULT COMPONENT");
-      window.componentFlags.result = false;
-      scope.showResult = false;
+      window.common.alert.hide("componentResultId");
       riot.update();
     }
 
     initResultComponent = function () {
       console.log("INIT RESULT COMPONENT");
-      window.componentFlags.result = true;
-      scope.showResult = true;
+      window.common.alert.updateView("componentResultId", {
+        parent: scope,
+
+      });
       riot.update();
     }
 
@@ -350,8 +328,10 @@
 
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
-          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
           scope.update();
 
           return
@@ -414,8 +394,10 @@
 
             }
             else {
-              scope.showError = true;
-              scope.errorNote = result[0][0].error_note
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                errornote: result[0][0].error_note,
+              });
               scope.update();
               console.log(result[0][0].error_note);
             }
@@ -485,9 +467,11 @@
 
                 }
                 else {
-                  scope.clickPinError = false;
-                  scope.showError = true;
-                  scope.errorNote = result[0][0].error_note
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    clickpinerror: false,
+                    errornote: result[0][0].error_note,
+                  });
                   scope.update();
                   console.log(result[0][0].error_note);
                 }
@@ -535,8 +519,10 @@
 
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
-          scope.showError = true;
-          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
           scope.update();
           return
         }
@@ -693,7 +679,6 @@
       setTimeout(function () {
         if (!answerFromServer) {
           updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
-          window.isConnected = false;
           return
         }
       }, 30000)
@@ -732,11 +717,15 @@
 
               if (result[1][0].qr_image) {
                 closeResultComponent();
-                scope.qrImage = result[1][0].qr_image;
-                scope.qrHeader = result[1][0].qr_header;
-                scope.qrFooter = result[1][0].qr_footer;
                 scope.update();
-                componentGeneratedQrId.style.display = 'block';
+                window.common.alert.show("componentGeneratedQrId", {
+                  parent: scope,
+                  qr_image: result[1][0].qr_image,
+                  qr_header: result[1][0].qr_header,
+                  qr_footer: result[1][0].qr_footer,
+                  viewpage: scope.viewPage,
+                  step_amount: scope.stepAmount
+                });
                 qrFooterTextId.innerHTML = result[1][0].qr_footer;
               } else {
                 updateResultComponent(true, getPaymentSuccessStep, null, 'success', window.languages.ComponentSuccessMessageForPay);
@@ -748,7 +737,7 @@
 
               statusCheckCounter++;
 
-              if (statusCheckCounter < 5 && window.componentFlags.result) {
+              if (statusCheckCounter < 5 && window.common.alert.isShown("componentResultId")) {
 
                 setTimeout(function () {
                   checkPaymentStatus(result[1][0].payment_id);
@@ -841,18 +830,42 @@
 
                 scope.autoPayData.isNew = false;
                 localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-                componentSuccessId.style.display = 'block';
+                window.common.alert.show("componentSuccessId", {
+                  parent: scope,
+                  operationmessage: scope.operationMessage,
+                  goback: scope.goBack,
+                  viewpage: scope.viewPage,
+                  step_amount: scope.stepAmount
+                });
 
               }
               else {
                 scope.errorMessageFromPayment = result[0][0].error_note;
                 scope.update();
-                componentUnsuccessId.style.display = 'block';
+                window.common.alert.show("componentUnsuccessId", {
+                  parent: scope,
+                  viewpage: scope.viewPage,
+                  step_amount: scope.stepErrorAmount,
+                  goback: scope.goBack,
+                  operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+                  operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                  operationmessagepartthree: scope.errorMessageFromPayment
+                });
               }
             },
 
             onFail: function (api_status, api_status_message, data) {
-              componentUnsuccessId.style.display = 'block';
+
+              window.common.alert.show("componentUnsuccessId", {
+                parent: scope,
+                viewpage: scope.viewPage,
+                step_amount: scope.stepErrorAmount,
+                goback: scope.goBack,
+                operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+                operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                operationmessagepartthree: scope.errorMessageFromPayment
+              });
+
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
               console.error(data);
             }
@@ -884,19 +897,42 @@
                   scope.autoPayData.fromView = 'AFTERCREATION';
                 scope.autoPayData.isNew = false;
                 localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-                componentSuccessId.style.display = 'block';
+                window.common.alert.show("componentSuccessId", {
+                  parent: scope,
+                  operationmessage: scope.operationMessage,
+                  goback: scope.goBack,
+                  viewpage: scope.viewPage,
+                  step_amount: scope.stepAmount
+                });
 
               }
               else {
 
                 scope.errorMessageFromPayment = result[0][0].error_note;
                 scope.update();
-                componentUnsuccessId.style.display = 'block';
+
+                window.common.alert.show("componentUnsuccessId", {
+                  parent: scope,
+                  viewpage: scope.viewPage,
+                  step_amount: scope.stepErrorAmount,
+                  goback: scope.goBack,
+                  operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+                  operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                  operationmessagepartthree: scope.errorMessageFromPayment
+                });
               }
             },
 
             onFail: function (api_status, api_status_message, data) {
-              componentUnsuccessId.style.display = 'block';
+              window.common.alert.show("componentUnsuccessId", {
+                parent: scope,
+                viewpage: scope.viewPage,
+                step_amount: scope.stepErrorAmount,
+                goback: scope.goBack,
+                operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+                operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                operationmessagepartthree: scope.errorMessageFromPayment
+              });
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
               console.error(data);
             }
@@ -960,15 +996,38 @@
               scope.viewPage = 'view-auto-pay-new';
               scope.stepAmount = 1;
               scope.update();
-              componentSuccessId.style.display = 'block';
+
+              window.common.alert.show("componentSuccessId", {
+                parent: scope,
+                operationmessage: scope.operationMessage,
+                goback: scope.goBack,
+                viewpage: scope.viewPage,
+                step_amount: scope.stepAmount
+              });
             }
             else {
-              componentUnsuccessId.style.display = 'block';
+              window.common.alert.show("componentUnsuccessId", {
+                parent: scope,
+                viewpage: scope.viewPage,
+                step_amount: scope.stepErrorAmount,
+                goback: scope.goBack,
+                operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+                operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                operationmessagepartthree: scope.errorMessageFromPayment
+              });
             }
           },
 
           onFail: function (api_status, api_status_message, data) {
-            componentUnsuccessId.style.display = 'block';
+            window.common.alert.show("componentUnsuccessId", {
+              parent: scope,
+              viewpage: scope.viewPage,
+              step_amount: scope.stepErrorAmount,
+              goback: scope.goBack,
+              operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+              operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+              operationmessagepartthree: scope.errorMessageFromPayment
+            });
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
@@ -986,8 +1045,10 @@
 
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
-          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
           scope.update();
 
           return
