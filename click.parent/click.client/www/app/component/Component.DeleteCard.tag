@@ -71,7 +71,7 @@
 
         deleteCardComponentId.style.display = 'none'
       }
-    }
+    };
     scope.sessionKey = '';
     scope.phoneNumber = '';
     scope.accountId = '';
@@ -96,39 +96,127 @@
 
         onSuccess: function (result) {
           if (result[0][0].error === 0) {
-            componentSuccessId.style.display = 'block';
-//            scope.parent.clickPinError = false;
-//            scope.parent.errorNote = 'Карта успешно удалена';
-//            scope.parent.showError = true;
-//            scope.parent.cardDelete = true;
-            riot.update();
+
             var cardNumber = JSON.parse(localStorage.getItem("cardNumber"));
             var cards = JSON.parse(localStorage.getItem("click_client_cards"));
+            var isDefault = false;
 
             cardNumber = (cardNumber - 1 >= 0) ? (cardNumber - 1) : (0);
-            if (!cards.length || cards.length == 1) {
+            localStorage.setItem("cardNumber", cardNumber);
+
+
+            console.log("acc id=", scope.accountId)
+            console.log("cards before=", cards);
+            for (var i in cards) {
+              if (cards[i].card_id == scope.accountId) {
+                console.log("xascdeswcfe");
+                if (cards[i].default_account)
+                  isDefault = true;
+                delete cards[scope.accountId];
+                localStorage.setItem('click_client_cards', JSON.stringify(cards));
+              }
+            }
+
+            console.log("cards after=", cards);
+            console.log("keys size", Object.keys(cards).length);
+
+            if (!isDefault || Object.keys(cards).length === 0) {
+              console.log("First condition");
               scope.parent.viewPage = "view-main-page";
               riot.update();
-              localStorage.removeItem('click_client_cards');
+              componentSuccessId.style.display = 'block';
+              deleteCardComponentId.style.display = 'none';
+
+            } else {
+              if (Object.keys(cards).length === 1) {
+                console.log("Second condition");
+                componentDeleteCard.setDefaultAccount(cards);
+
+              } else {
+                console.log("Third condition");
+                riotTags.innerHTML = "<view-default-account>";
+                riot.mount('view-default-account');
+              }
             }
-            localStorage.setItem("cardNumber", cardNumber);
-            deleteCardComponentId.style.display = 'none';
-            return;
+
           }
           else {
             scope.parent.clickPinError = false;
             scope.parent.errorNote = result[0][0].error_note;
             scope.parent.showError = true;
-            deleteCardComponentId.style.display = "none"
+            deleteCardComponentId.style.display = "none";
             riot.update();
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
+          scope.parent.clickPinError = false;
+          scope.parent.errorNote = api_status_message;
+          scope.parent.showError = true;
+          deleteCardComponentId.style.display = "none";
+          riot.update();
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
       })
+    };
+
+
+    componentDeleteCard.setDefaultAccount = function (cards) {
+
+      console.log("setting default id=", accountId);
+      var accountId = cards[Object.keys(cards)[0]].card_id;
+
+      window.api.call({
+        method: 'settings.change.default.account',
+        input: {
+          session_key: scope.sessionKey,
+          phone_num: scope.phoneNumber,
+          account_id: accountId
+        },
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0 && result[1][0]) {
+            var j = 2;
+            for (var i in cards) {
+              if (cards[i].card_id == result[1][0].default_account_id) {
+                cards[i].default_account = true;
+                cards[i].countCard = 1;
+              }
+              else {
+                cards[i].default_account = false;
+                cards[i].countCard = j++;
+              }
+            }
+            console.log("cards after default was set", cards);
+            localStorage.setItem('click_client_cards', JSON.stringify(cards));
+            scope.parent.viewPage = "view-main-page";
+            riot.update();
+            componentSuccessId.style.display = 'block';
+            deleteCardComponentId.style.display = 'none';
+            return;
+
+          }
+          else if (result[0][0].error != 0) {
+            scope.parent.clickPinError = false;
+            scope.parent.errorNote = result[0][0].error_note;
+            scope.parent.showError = true;
+            deleteCardComponentId.style.display = "none";
+            riot.update();
+          }
+        },
+        onFail: function (api_status, api_status_message, data) {
+          scope.parent.clickPinError = false;
+          scope.parent.errorNote = api_status_message;
+          scope.parent.showError = true;
+          deleteCardComponentId.style.display = "none";
+          riot.update();
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+
     }
 
 

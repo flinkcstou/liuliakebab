@@ -590,7 +590,11 @@ var RU_LANGUAGES =
   "ViewNewsDetails": "Подробнее",
   "ViewNewsFollowLink": "ПЕРЕЙТИ",
 
-  "WaitingTimeExpiredText": "Время ожидания истекло"
+  "WaitingTimeExpiredText": "Время ожидания истекло",
+
+  "ViewDefaultAccountTitle": "ОСНОВНАЯ КАРТА",
+  "ViewDefaultAccountSubTitle": "Выберите основную карту",
+  "ViewDefaultAccountChooseButtonText": "Выбрать"
 
 
 };
