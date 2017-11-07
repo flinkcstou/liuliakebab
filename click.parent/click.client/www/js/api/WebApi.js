@@ -101,11 +101,11 @@ window.api.initSocket = function () {
         showAlertComponent("Сервер временно недоступен");
         return
       }
-      if (device.platform === 'Android')
-        showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
-      else {
-        showAlertComponent("Сервер временно недоступен");
-      }
+      riot.update();
+    }
+
+    if (navigator.connection.type !== Connection.NONE){
+      showAlertComponent("Сервер временно недоступен");
       riot.update();
     }
     // window.isConnected = false;
@@ -170,11 +170,6 @@ window.api.initSocket = function () {
     if (modeOfApp.offlineMode) return;
     console.log('Error with socket ' + error.message);
     riot.update();
-    if (device.platform === 'Android')
-      showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
-    else {
-      showAlertComponent("Сервер временно недоступен");
-    }
   };
 };
 
@@ -232,5 +227,10 @@ function offlineDetector() {
   if (navigator.connection.type === Connection.NONE) {
     window.isConnected = false;
     console.log("Offline detector, window.isConnected:", window.isConnected);
+    if (device.platform === 'Android')
+      showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
+    else {
+      showAlertComponent("Сервер временно недоступен");
+    }
   }
 }
