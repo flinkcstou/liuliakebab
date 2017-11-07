@@ -35,14 +35,20 @@
       window.FirebasePlugin.onNotificationOpen(function (notification) {
 
         if (notification.message) {
-          var tap = notification.tap;
-          notification = JSON.parse(notification.message);
-          notification.tap = tap;
-          console.log("New notification=", notification);
+          scope.notificationNew = JSON.parse(JSON.stringify(notification.message));
+          scope.notificationNew.tap = notification.tap;
+          scope.notificationNew.body = notification.body ? notification.body : notification.text;
+          console.log("New notification=", scope.notificationNew);
+
         }
 
         if (!scope.show) {
-          sessionStorage.setItem("push_notification_real", JSON.stringify(notification));
+          console.log("push object before saving into sessionStorage", JSON.stringify(notification));
+          if (scope.notificationNew) {
+            sessionStorage.setItem("push_notification_real", JSON.stringify(scope.notificationNew));
+          } else {
+            sessionStorage.setItem("push_notification_real", JSON.stringify(notification));
+          }
         }
         else {
           return
