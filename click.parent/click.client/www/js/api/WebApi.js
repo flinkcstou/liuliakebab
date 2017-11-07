@@ -27,28 +27,35 @@ window.api.call = function (params, timeout) {
     console.log("in interval of web api", window.api.socket, window.isConnected);
     if (window.api.socket.readyState === 1) {
       window.api.send(params);
-      clearInterval(stateChecker);
       stateCheckerCleared = true;
-      console.log("Clearing interval-sender - request sent");
+      console.log("Clearing interval-sender - request sent", stateChecker);
+      clearInterval(stateChecker);
     }
     if (window.api.socket.readyState === 0) {
       console.log("Connection in state 0, checking again");
     }
+    if (window.api.socket.readyState === 3) {
+      console.log("Connection in state 3, opening new connection");
+      window.api.socket.close();
+      window.isConnected = false;
+      stateCheckerCleared = true;
+      clearInterval(stateChecker);
+    }
   }, 200);
 
-  if (!stateCheckerCleared) {
     setTimeout(function () {
-      clearInterval(stateChecker);
-      console.log('clearing interval-sender - time out');
+      if (!stateCheckerCleared) {
+        clearInterval(stateChecker);
+        console.log('clearing interval-sender - time out', stateChecker);
+      }
     }, timeout);
-  }
 };
 
 window.api.init = function () {
   if (!window.isConnected) {
     try {
       window.api.socket = new WebSocket("wss://my.click.uz:8443");
-      console.log("SOCKET =", JSON.stringify(window.api.socket));
+      console.log("SOCKET =", window.api.socket);
       window.api.initSocket();
     }
     catch (error) {
@@ -76,7 +83,6 @@ window.api.initSocket = function () {
           break;
         case 3:
           console.log("closed");
-          window.isConnected = false;
           break;
       }
     }
