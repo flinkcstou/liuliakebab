@@ -43,12 +43,12 @@ window.api.call = function (params, timeout) {
     }
   }, 200);
 
-    setTimeout(function () {
-      if (!stateCheckerCleared) {
-        clearInterval(stateChecker);
-        console.log('clearing interval-sender - time out', stateChecker);
-      }
-    }, timeout);
+  setTimeout(function () {
+    if (!stateCheckerCleared) {
+      clearInterval(stateChecker);
+      console.log('clearing interval-sender - time out', stateChecker);
+    }
+  }, timeout);
 };
 
 window.api.init = function () {
@@ -104,7 +104,7 @@ window.api.initSocket = function () {
       riot.update();
     }
 
-    if (navigator.connection.type !== Connection.NONE){
+    if (navigator.connection.type !== Connection.NONE) {
       showAlertComponent("Сервер временно недоступен");
       riot.update();
     }

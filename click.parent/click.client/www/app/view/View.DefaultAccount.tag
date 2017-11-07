@@ -19,15 +19,16 @@
     </div>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
+  <component-alert if="{showError}" errornote="{errorNote}" viewpage="{viewPage}"></component-alert>
+
+  <component-success id="componentSuccessId"
+                     operationmessage="{window.languages.ViewDefaultAccountSuccessText}"
+                     viewpage="{viewPage}"></component-success>
 
 
   <script>
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-default-account') {
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-default-account') {
       history.arrayOfHistory.push(
         {
           "view": 'view-default-account',
@@ -64,84 +65,76 @@
       if (Math.abs(enterCardStartY - enterCardEndY) <= 20 && Math.abs(enterCardStartX - enterCardEndX) <= 20) {
 
         var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-        scope.update()
-
-        cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+        scope.update();
         console.log("cardsArray=", cardsArray);
+        var accountId;
 
-//
-//        for (var i in cardsArray) {
-//          if (cardsArray[i].chosenCard && cardsArray[i].access == 2) {
-//            opts.chosenCardId = cardsArray[i].card_id;
-//            opts.payByCard = true;
-//            scope.checked = true;
-//            event.preventDefault();
-//            event.stopPropagation();
-//            onBackParams.opts = JSON.parse(JSON.stringify(opts));
-//            this.riotTags.innerHTML = "<view-pay-confirm-new>";
-//            riot.mount('view-pay-confirm-new', opts);
-//            scope.unmount();
-//          }
-//        }
-
-        window.api.call({
-          method: 'settings.change.default.account',
-          input: {
-            session_key: scope.sessionKey,
-            phone_num: scope.phoneNumber,
-            account_id: accountId
-          },
-          scope: this,
-
-          onSuccess: function (result) {
-            if (result[0][0].error == 0 && result[1][0]) {
-              var j = 2;
-              for (var i in cards) {
-                if (cards[i].card_id == result[1][0].default_account_id) {
-                  cards[i].default_account = true;
-                  cards[i].countCard = 1;
-                }
-                else {
-                  cards[i].default_account = false;
-                  cards[i].countCard = j++;
-                }
-              }
-              console.log("cards after default was set", cards);
-              localStorage.setItem('click_client_cards', JSON.stringify(cards));
-              scope.parent.viewPage = "view-main-page";
-              riot.update();
-              componentSuccessId.style.display = 'block';
-              deleteCardComponentId.style.display = 'none';
-              return;
-
-            }
-            else if (result[0][0].error != 0) {
-              scope.parent.clickPinError = false;
-              scope.parent.errorNote = result[0][0].error_note;
-              scope.parent.showError = true;
-              deleteCardComponentId.style.display = "none";
-              riot.update();
-            }
-          },
-          onFail: function (api_status, api_status_message, data) {
-            scope.parent.clickPinError = false;
-            scope.parent.errorNote = api_status_message;
-            scope.parent.showError = true;
-            deleteCardComponentId.style.display = "none";
-            riot.update();
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
+        for (var i in cardsArray)
+          if (cardsArray[i].chosenCard && cardsArray[i].access == 2) {
+            accountId = cardsArray[i].card_id;
           }
-        });
+
+
+        if (accountId) {
+
+          var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+          var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+          window.api.call({
+            method: 'settings.change.default.account',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber,
+              account_id: accountId
+            },
+            scope: this,
+
+            onSuccess: function (result) {
+              if (result[0][0].error == 0 && result[1][0]) {
+                var j = 2;
+                for (var i in cards) {
+                  if (cards[i].card_id == result[1][0].default_account_id) {
+                    cards[i].default_account = true;
+                    cards[i].countCard = 1;
+                  }
+                  else {
+                    cards[i].default_account = false;
+                    cards[i].countCard = j++;
+                  }
+                }
+                console.log("cards after default was set", cards);
+                localStorage.setItem('click_client_cards', JSON.stringify(cards));
+                scope.viewPage = "view-main-page";
+                riot.update();
+                componentSuccessId.style.display = 'block';
+                return;
+
+              }
+              else if (result[0][0].error != 0) {
+                scope.clickPinError = false;
+                scope.errorNote = result[0][0].error_note;
+                scope.showError = true;
+                riot.update();
+              }
+            },
+            onFail: function (api_status, api_status_message, data) {
+              scope.clickPinError = false;
+              scope.errorNote = api_status_message;
+              scope.showError = true;
+              scope.viewPage = "view-main-page";
+              riot.update();
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
+        } else {
+
+        }
 
 
       }
     };
 
-    refreshFunction = function (bool) {
-      scope.friendHelpBool = bool;
-      scope.update(scope.friendHelpBool);
-    }
 
   </script>
 </view-default-account>

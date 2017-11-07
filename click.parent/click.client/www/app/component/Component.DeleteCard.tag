@@ -98,11 +98,15 @@
           if (result[0][0].error === 0) {
 
             var cardNumber = JSON.parse(localStorage.getItem("cardNumber"));
+            var countCard = JSON.parse(localStorage.getItem("click_client_countCard"));
             var cards = JSON.parse(localStorage.getItem("click_client_cards"));
             var isDefault = false;
+            var hasDefault = false;
 
             cardNumber = (cardNumber - 1 >= 0) ? (cardNumber - 1) : (0);
-            localStorage.setItem("cardNumber", cardNumber);
+            countCard = (countCard - 1 >= 0) ? (countCard - 1) : (0);
+            localStorage.setItem("cardNumber", JSON.stringify(cardNumber));
+            localStorage.setItem("click_client_countCard", JSON.stringify(countCard));
 
 
             console.log("acc id=", scope.accountId)
@@ -114,13 +118,14 @@
                   isDefault = true;
                 delete cards[scope.accountId];
                 localStorage.setItem('click_client_cards', JSON.stringify(cards));
-              }
+              } else if (cards[i].default_account) hasDefault = true;
+
             }
 
             console.log("cards after=", cards);
             console.log("keys size", Object.keys(cards).length);
 
-            if (!isDefault || Object.keys(cards).length === 0) {
+            if ((!isDefault && hasDefault) || Object.keys(cards).length === 0) {
               console.log("First condition");
               scope.parent.viewPage = "view-main-page";
               riot.update();
@@ -164,7 +169,6 @@
 
     componentDeleteCard.setDefaultAccount = function (cards) {
 
-      console.log("setting default id=", accountId);
       var accountId = cards[Object.keys(cards)[0]].card_id;
 
       window.api.call({

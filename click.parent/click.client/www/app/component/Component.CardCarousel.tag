@@ -78,7 +78,7 @@
 
     if (localStorage.getItem('click_client_cards')) {
       scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
-      if (scope.cardsarray.length < 1) {
+      if (Object.keys(scope.cardsarray).length < 1) {
         scope.addFirstCardBool = true;
         viewMainPage.addFirstCardBool = true;
         localStorage.removeItem('click_client_cards');
