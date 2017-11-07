@@ -131,6 +131,18 @@ window.api.initSocket = function () {
           console.log("Error on socket initializing: ", ERROR);
           try {
             var error = parsedData.data[0][0].error_note;
+            var error_code = parsedData.data[0][0].error;
+            console.log("Error in answer from server", error_code);
+            if (error_code === -31){
+              if (device.platform !== 'BrowserStand') {
+                console.log("Spinner stop in webApi (session is broken)");
+                SpinnerPlugin.activityStop();
+              }
+              localStorage.setItem('session_broken', true);
+              riot.update();
+              showAlertComponent("Сессия была прервана");
+              return;
+            }
             if (!window.api.sessionErrorChecker) {
               window.api.sessionErrorChecker = true;
               if (!error) {
@@ -138,15 +150,9 @@ window.api.initSocket = function () {
                 showAlertComponent("Произошла непредвиденная ошибка. Свяжитесь с нашей службой поддержки +998 71 2310880")
               }
               else {
-                if (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true) return;
-                console.log("Session is broken");
-                if (device.platform !== 'BrowserStand') {
-                  console.log("Spinner stop in webApi (session is broken)");
-                  SpinnerPlugin.activityStop();
-                }
-                localStorage.setItem('session_broken', true);
-                riot.update();
-                showAlertComponent("Сессия была прервана");
+                if (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)
+                  return;
+                showAlertComponent(error);
               }
               return
             }
