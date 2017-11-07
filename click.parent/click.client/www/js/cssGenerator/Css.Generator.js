@@ -15067,6 +15067,21 @@ var css = {
   "color: #fffaf9;" +
   "}",
 
+  defaultAccountTitle: ".default-account-title" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size: " + 38 * widthK + "px; " +
+  "left: 25%;" +
+  "top: 56%;" +
+  "margin: 0;" +
+  "color: #fffaf9;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "width: 60%;" +
+  "}"
+
 }
 
 
