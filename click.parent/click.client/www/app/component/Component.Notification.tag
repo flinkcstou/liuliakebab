@@ -2,7 +2,8 @@
                         class="component-notification {component-notification-show: show, component-notification-set-transition: setTransition}">
 
   <div style="display: none" class="component-notification-icon"></div>
-  <p id="pushNotificationText" class="component-notification-text"></p>
+  <p id="pushNotificationText" class="component-notification-text">
+    {JSON.parse(sessionStorage.getItem("push_notification_real")).body}</p>
 
   <div class="component-notification-buttons-container">
     <p class="component-notification-button-cancel" ontouchend="onTouchEndNotificationDecline()"
@@ -27,7 +28,7 @@
     setTimeout(function () {
 
       scope.setTransition = true;
-      pushNotificationText.innerHTML = "";
+//      pushNotificationText.innerHTML = "";
       scope.update();
     }, 1000);
 
@@ -35,20 +36,20 @@
       window.FirebasePlugin.onNotificationOpen(function (notification) {
 
         if (notification.message) {
-          scope.notificationNew = JSON.parse(JSON.stringify(notification.message));
+          scope.notificationNew = JSON.parse(notification.message);
           scope.notificationNew.tap = notification.tap;
-          scope.notificationNew.body = notification.body ? notification.body : notification.text;
+          scope.notificationNew.body = scope.notificationNew.body ? scope.notificationNew.body : scope.notificationNew.text;
           console.log("New notification=", scope.notificationNew);
 
         }
 
         if (!scope.show) {
-          console.log("push object before saving into sessionStorage", JSON.stringify(notification));
           if (scope.notificationNew) {
             sessionStorage.setItem("push_notification_real", JSON.stringify(scope.notificationNew));
           } else {
             sessionStorage.setItem("push_notification_real", JSON.stringify(notification));
           }
+          console.log("push object after saving into sessionStorage", JSON.parse(sessionStorage.getItem("push_notification_real")));
         }
         else {
           return
@@ -56,6 +57,8 @@
 
         console.log("PUSH NOTIFICATION OBJECT", notification);
         ++numberOfMessage;
+
+        console.log("numberOfMessage", numberOfMessage);
 
         if (device.platform === "iOS") {
 
@@ -127,8 +130,15 @@
         else {
 
           scope.show = true;
+          if (device.platform === "iOS") {
+
+            notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).notification.body;
+          } else {
+
+            notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).body;
+          }
           scope.notificationText = JSON.stringify(notificationText);
-          pushNotificationText.innerHTML = JSON.stringify(notificationText);
+//          pushNotificationText.innerHTML = JSON.stringify(notificationText);
 
           console.log('NOTIFICATION TEXT', scope.notificationText)
 
