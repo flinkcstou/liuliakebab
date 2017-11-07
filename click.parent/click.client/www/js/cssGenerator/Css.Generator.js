@@ -14069,7 +14069,7 @@ var css = {
   "{" +
   "position: relative;" +
   "height:" + 80 * widthK + "px; " +
-  "width: fit-content;" +
+  "width: 30.5%;" +
   //"left: 4%;" +
   "top: 15%;" +
   "margin-right: " + 32 * widthK + "px; " +
@@ -14078,12 +14078,25 @@ var css = {
   "float: left;" +
   "}",
 
+  autopayEventStepDropdownIcon: ".autopay-event-step-dropdown-icon" +
+  "{" +
+  "position: absolute;" +
+  "background-image: url('resources/icons/ViewService/dropdown_icon.png');" +
+  "width: 22%;" +
+  "height: 36%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 65%;" +
+  "background-position: center;" +
+  "top: 35%;" +
+  "left: 92%;" +
+  "}",
+
   autopayEventStepText: ".autopay-event-step-text" +
   "{" +
   "position: relative;" +
   "display: inline-block;" +
   "background-size: contain;" +
-  "top: -" + 15 * widthK + "px; " +
+  "top: 18%;" +
   "left: 1%;" +
   "text-align: left;" +
   "font-size:" + 45 * widthK + "px; " +

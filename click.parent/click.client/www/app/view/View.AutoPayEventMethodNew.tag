@@ -34,9 +34,9 @@
       <div id="convertedAmountFieldId" class="autopay-event-step-field">
         <p class="autopay-event-step-field-text">{window.languages.ViewAutoPayMethodEventPutBalansText}</p>
 
-        <div class="autopay-event-step-container" each="{i in stepsArray}">
-          <div class="autopay-event-step-text">{i.step_title}</div>
-          <div id="{i.step_value}" class="autopay-event-step-check-icon" ontouchend="chooseStep(this.id)"></div>
+        <div class="autopay-event-step-container" if="{stepsArrayExist}" ontouchend="openStepsDropDown()">
+          <div class="autopay-event-step-text">{chosenStep}</div>
+          <div class="autopay-event-step-dropdown-icon"></div>
         </div>
       </div>
 
@@ -61,7 +61,7 @@
 
   </div>
 
-  <div id="blockFirstFieldId" class="autopay-event-amount-dropdown-component">
+  <div id="blockAmountFieldId" class="autopay-event-amount-dropdown-component">
     <div type="button" class="servicepage-fields-dropdown-close-button" role="button"
          aria-label="{window.languages.Close}"
          ontouchend="closeDropdownTouchEnd()" ontouchstart="closeDropdownTouchStart()"></div>
@@ -76,6 +76,21 @@
     </div>
   </div>
 
+  <div id="blockStepFieldId" class="autopay-event-amount-dropdown-component">
+    <div type="button" class="servicepage-fields-dropdown-close-button" role="button"
+         aria-label="{window.languages.Close}"
+         ontouchend="closeStepsDropdownTouchEnd()" ontouchstart="closeStepsDropdownTouchStart()"></div>
+    <div class="autopay-event-amount-dropdown-field-two">
+      <p class="autopay-event-dropdown-text-field" style="color: white;">{chosenStep}</p>
+    </div>
+    <div class="autopay-event-dropdown-container">
+      <div class="autopay-event-dropdown-variant" each="{i in stepsArray}" id="{i.step_value}"
+           ontouchstart="onTouchStartOfStepDropdown()" ontouchend="onTouchEndOfStepDropdown(this.id)">
+        <p id="step{i.step_value}" class="autopay-event-dropdown-text-field" style="left: 8%">{i.step_title}</p>
+      </div>
+    </div>
+  </div>
+
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
@@ -84,7 +99,7 @@
     scope.showError = false;
     scope.enterButtonEnabled = false;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-autopay-event-method-new') {
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-autopay-event-method-new') {
       history.arrayOfHistory.push(
         {
           "view": 'view-autopay-event-method-new',
@@ -123,14 +138,14 @@
     scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
     onBackParams.opts = JSON.parse(JSON.stringify(opts));
-    if (scope.autoPayData.fromView == 'PAYCONFIRM') {
+    if (scope.autoPayData.fromView === 'PAYCONFIRM') {
       onBackParams.opts.mode = 'USUAL';
       opts.mode = 'ADDAUTOPAY';
     }
     console.log("Window.opts=", onBackParams.opts)
     console.log("OPTS AutoPayMethod EVENT NEW=", opts);
 
-    if (opts.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
+    if (opts.chosenServiceId === 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
       console.log("My number part");
       scope.serviceName = 'Мой номер';
       scope.serviceIcon = 'resources/icons/ViewPay/myphone.png';
@@ -144,7 +159,7 @@
       this.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
       this.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
       if (scope.autoPayData.fromView == 'PAYCONFIRM' && opts.firstFieldText) {
-        if (opts.firstFieldId == 1)
+        if (opts.firstFieldId === 1)
           scope.defaultNumber = !opts.firstFieldText ? null : (inputVerification.telVerificationWithSpace(opts.firstFieldText));
         else scope.defaultNumber = opts.firstFieldText;
       }
@@ -159,25 +174,33 @@
     scope.chosenStep = this.stepsArray ? this.stepsArray[0].step_value : null;
     scope.amountsCanBeText = "";
 
+    console.log("stepsArray=", scope.stepsArray)
+
 
     if (scope.amountsArrayExist) {
       scope.chosenFieldParamId = this.amountsArray[0];
       scope.chosenAmount = this.amountsArray[0];
 
       for (var i = 0; i < this.amountsArray.length; i++) {
-        if (i == this.amountsArray.length - 1)
+        if (i === this.amountsArray.length - 1)
           scope.amountsCanBeText += 'или ' + this.amountsArray[i] + ' ';
-        else if (i == this.amountsArray.length - 2)
+        else if (i === this.amountsArray.length - 2)
           scope.amountsCanBeText += this.amountsArray[i] + ' ';
         else
           scope.amountsCanBeText += this.amountsArray[i] + ', ';
       }
     }
 
+    if (scope.stepsArrayExist) {
+      scope.chosenStep = this.stepsArray[0].step_title;
+      scope.chosenStepId = this.stepsArray[0].step_value;
+      chosenStep = this.stepsArray[0].step_value;
+    }
+
     scope.update(scope.amountsCanBeText);
 
     this.on('mount', function () {
-      if (device.platform == 'iOS') {
+      if (device.platform === 'iOS') {
         autoPayNameInput.autofocus;
         autoPayNameInput.focus();
       } else {
@@ -195,13 +218,13 @@
       oldChosenStep = chosenStep;
       chosenStep = id;
       document.getElementById(chosenStep).style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
-      if (oldChosenStep && oldChosenStep != id)
+      if (oldChosenStep && oldChosenStep !== id)
         document.getElementById(oldChosenStep).style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
       checkFieldsEventToActivateNext();
     };
 
     openDropDown = function () {
-      this.blockFirstFieldId.style.display = 'block';
+      this.blockAmountFieldId.style.display = 'block';
       console.log("id=", scope.chosenFieldParamId);
       if (scope.oldFieldParamId) {
         document.getElementById(scope.oldFieldParamId).style.backgroundColor = 'white';
@@ -213,6 +236,21 @@
       }
     };
 
+
+    openStepsDropDown = function () {
+      this.blockStepFieldId.style.display = 'block';
+      console.log(" step id=", scope.chosenStepId);
+      if (scope.oldStepId) {
+        document.getElementById(scope.oldStepId).style.backgroundColor = 'white';
+        document.getElementById('step' + scope.oldStepId).style.color = '#515151';
+      }
+      if (scope.chosenStepId) {
+        document.getElementById(scope.chosenStepId).style.backgroundColor = '#0084E6';
+        document.getElementById('step' + scope.chosenStepId).style.color = 'white';
+      }
+    };
+
+    var amountOnTouchStartX, amountOnTouchStartY, amountOnTouchEndY, amountOnTouchEndX;
 
     scope.onTouchStartOfAmountDropdown = onTouchStartOfAmountDropdown = function () {
       event.stopPropagation();
@@ -228,7 +266,7 @@
 
       if (Math.abs(amountOnTouchStartY - amountOnTouchEndY) <= 20 && Math.abs(amountOnTouchStartX - amountOnTouchEndX) <= 20) {
 
-        this.blockFirstFieldId.style.display = 'none';
+        this.blockAmountFieldId.style.display = 'none';
 
         for (var i = 0; i < scope.amountsArray.length; i++) {
           if (scope.amountsArray[i] == id) {
@@ -243,7 +281,40 @@
       }
     };
 
-    var eventContactStopChanging = false
+    var stepOnTouchStartX, stepOnTouchStartY, stepOnTouchEndY, stepOnTouchEndX;
+
+    scope.onTouchStartOfStepDropdown = onTouchStartOfStepDropdown = function () {
+      event.stopPropagation();
+      stepOnTouchStartY = event.changedTouches[0].pageY;
+      stepOnTouchStartX = event.changedTouches[0].pageX;
+    };
+
+    scope.onTouchEndOfStepDropdown = onTouchEndOfStepDropdown = function (id) {
+      event.stopPropagation();
+
+      stepOnTouchEndY = event.changedTouches[0].pageY;
+      stepOnTouchEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(stepOnTouchStartY - stepOnTouchEndY) <= 20 && Math.abs(stepOnTouchStartX - stepOnTouchEndX) <= 20) {
+
+        this.blockStepFieldId.style.display = 'none';
+
+        for (var i = 0; i < scope.stepsArray.length; i++) {
+          if (scope.stepsArray[i].step_value === id) {
+            scope.chosenStep = scope.stepsArray[i].step_title;
+            chosenStep = id;
+
+            scope.oldStepId = scope.chosenStepId;
+            scope.chosenStepId = id;
+            scope.update(scope.chosenStep);
+
+            break;
+          }
+        }
+      }
+    };
+
+    var eventContactStopChanging = false;
     telPayVerificationKeyDown = function (input) {
 
       if (input.value.length >= 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
@@ -359,18 +430,18 @@
         return;
       }
 
-      if (!chosenStep) {
-        console.log("Выберите условную сумму для пополнения баланса");
-        scope.enterButtonEnabled = false;
-        scope.update(scope.enterButtonEnabled);
-
-        return;
-      }
+//      if (!chosenStep) {
+//        console.log("Выберите условную сумму для пополнения баланса");
+//        scope.enterButtonEnabled = false;
+//        scope.update(scope.enterButtonEnabled);
+//
+//        return;
+//      }
 
 
       scope.enterButtonEnabled = true;
       scope.update(scope.enterButtonEnabled);
-    }
+    };
 
     var chooseCardStartY, chooseCardStartX, chooseCardEndY, chooseCardEndX;
 
@@ -425,13 +496,13 @@
 //          return;
 //        }
 
-        if (!chosenStep) {
-          scope.clickPinError = false;
-          scope.errorNote = "Выберите условную сумму для пополнения баланса";
-          scope.showError = true;
-          scope.update();
-          return;
-        }
+//        if (!chosenStep) {
+//          scope.clickPinError = false;
+//          scope.errorNote = "Выберите условную сумму для пополнения баланса";
+//          scope.showError = true;
+//          scope.update();
+//          return;
+//        }
 
         scope.autoPayData.name = autoPayNameInput.value;
         scope.autoPayData.isNew = true;
@@ -473,7 +544,7 @@
 
         }
       }
-    }
+    };
 
     var closeDropdownTouchStartX, closeDropdownTouchStartY, closeDropdownTouchEndX,
       closeDropdownTouchEndY;
@@ -494,7 +565,31 @@
       closeDropdownTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(closeDropdownTouchStartX - closeDropdownTouchEndX) <= 20 && Math.abs(closeDropdownTouchStartY - closeDropdownTouchEndY) <= 20) {
-        this.blockFirstFieldId.style.display = 'none';
+        this.blockAmountFieldId.style.display = 'none';
+      }
+    };
+
+
+    var closeStepDropdownStartX, closeStepDropdownStartY, closeStepDropdownEndX,
+      closeStepDropdownEndY;
+
+    closeStepsDropdownTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      closeStepDropdownStartX = event.changedTouches[0].pageX;
+      closeStepDropdownStartY = event.changedTouches[0].pageY;
+    };
+
+    closeStepsDropdownTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      closeStepDropdownEndX = event.changedTouches[0].pageX;
+      closeStepDropdownEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(closeStepDropdownStartX - closeStepDropdownEndX) <= 20 && Math.abs(closeStepDropdownStartY - closeStepDropdownEndY) <= 20) {
+        this.blockStepFieldId.style.display = 'none';
       }
     };
 
