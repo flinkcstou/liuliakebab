@@ -252,7 +252,6 @@
 
           scope.showError = true;
           scope.errorNote = window.languages.ViewPaymentDetailCardNotChosen;
-          scope.clickPinError = false;
 
           scope.update();
 
@@ -263,7 +262,6 @@
 
           scope.showError = true;
           scope.errorNote = window.languages.ViewPaymentDetailCardNotChosen;
-          scope.clickPinError = false;
 
           scope.update();
 
