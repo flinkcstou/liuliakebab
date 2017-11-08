@@ -19,12 +19,6 @@
     </div>
   </div>
 
-  <component-alert if="{showError}" errornote="{errorNote}" viewpage="{viewPage}"></component-alert>
-
-  <component-success id="componentSuccessId"
-                     operationmessage="{window.languages.ViewDefaultAccountSuccessText}"
-                     viewpage="{viewPage}"></component-success>
-
 
   <script>
 
@@ -39,7 +33,6 @@
     }
 
     var scope = this;
-    scope.showError = false;
 
     var enterCardStartY, enterCardStartX, enterCardEndY, enterCardEndX;
 
@@ -104,25 +97,28 @@
                 }
                 console.log("cards after default was set", cardsArray);
                 localStorage.setItem('click_client_cards', JSON.stringify(cardsArray));
-                scope.viewPage = "view-main-page";
-                riot.update();
-                componentSuccessId.style.display = 'block';
+                window.common.alert.show("componentSuccessId", {
+                  parent: scope,
+                  operationmessage: window.languages.ViewDefaultAccountSuccessText,
+                  viewpage: "view-main-page"
+                });
                 return;
 
               }
               else if (result[0][0].error != 0) {
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
-                riot.update();
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  viewpage: "view-main-page",
+                  errornote: result[0][0].error_note
+                });
               }
             },
             onFail: function (api_status, api_status_message, data) {
-              scope.clickPinError = false;
-              scope.errorNote = api_status_message;
-              scope.showError = true;
-              scope.viewPage = "view-main-page";
-              riot.update();
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                viewpage: "view-main-page",
+                errornote: api_status_message
+              });
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
               console.error(data);
             }
