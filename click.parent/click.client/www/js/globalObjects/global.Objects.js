@@ -94,6 +94,8 @@ window.common.alert = {
     if (window.common.alert.priorities[id1] === window.common.alert.priorities[id2]) return 0;
   },
   show: function (id, params) {
+    
+    window.clearTimers();
 
     console.log(id);
 
@@ -102,8 +104,9 @@ window.common.alert = {
     var show = true;
 
     try {
-
-      SpinnerPlugin.activityStop();
+      if (device.platform !== 'BrowserStand') {
+        SpinnerPlugin.activityStop();
+      }
     } catch (error) {
 
       console.error(error);
@@ -144,19 +147,19 @@ window.common.alert = {
   },
   isShown: function (id) {
 
-    console.log(id);
-
-    console.log("IS SHOWN FUNC ELEMENT", id, window[id]);
+    // console.log(id);
+    //
+    // console.log("IS SHOWN FUNC ELEMENT", id, window[id]);
 
     if (!window[id]) return false;
 
-    console.log("IS SHOWN FUNC ELEMENT SCOPE", id, window.common.alert.scopes[id]);
+    // console.log("IS SHOWN FUNC ELEMENT SCOPE", id, window.common.alert.scopes[id]);
 
     if (!window.common.alert.scopes[id]) return false;
 
     try {
 
-      console.log("IS SHOWN FUNC ELEMENT SCOPE", id, window[id], window[id].style.display);
+      // console.log("IS SHOWN FUNC ELEMENT SCOPE", id, window[id], window[id].style.display);
 
       if (window[id].style.display !== "none") return true;
     } catch (error) {
@@ -1283,3 +1286,11 @@ window.fingerPrintTurnOn = function () {
   }
 }
 
+window.clearTimers = function() {
+  var id = window.setTimeout(function() {}, 0);
+  var maxInterval = id - 10;
+  while(id > maxInterval){
+    window.clearTimeout(id);
+    id--;
+  }
+};

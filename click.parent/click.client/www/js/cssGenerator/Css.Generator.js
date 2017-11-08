@@ -6879,7 +6879,8 @@ var css = {
   "width: 100%;" +
   //"background-color: #353340;" +
   //"background-image: url(resources/icons/transparent.png);" +
-  "display: none;" +
+  // "display: none;" +
+  "z-index: 999999999;" +
   "background-color: rgba(255,255,255,0.95);" +
   "}",
 
@@ -6984,7 +6985,8 @@ var css = {
   "width: 100%;" +
   //"background-color: #353340;" +
   //"background-image: url(resources/icons/transparent.png);" +
-  "display: none;" +
+  "z-index: 999999999;" +
+  // "display: none;" +
   "background-color: rgba(255,255,255,0.95);" +
   "}",
 
@@ -7138,7 +7140,8 @@ var css = {
   "height: 100%;" +
   "width: 100%;" +
   "background-color: #353340;" +
-  "display: none;" +
+  // "display: none;" +
+  "z-index: 999999999;" +
   "}",
 
   unsuccessOperationSuccessMessage: ".unsuccess-operation-success-message" +
@@ -7222,7 +7225,8 @@ var css = {
   "width: 100%;" +
   //"background-color: #353340;" +
   //"background-image: url(resources/icons/transparent.png);" +
-  "display: none;" +
+  // "display: none;" +
+  "z-index: 999999999;" +
   "background-color: rgba(255,255,255,0.95);" +
   "}",
 
