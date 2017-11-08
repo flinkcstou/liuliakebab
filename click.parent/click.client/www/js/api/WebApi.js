@@ -93,23 +93,6 @@ window.api.initSocket = function () {
     console.log(event);
     window.isConnected = false;
     window.api.init();
-    if (device.platform !== 'BrowserStand') {
-      console.log("Spinner stop in webApi (socket on close)");
-      SpinnerPlugin.activityStop();
-    }
-    if (modeOfApp.offlineMode) return;
-    if (!event.wasClean) {
-      if (window.isConnected === true || modeOfApp.offlineMode === true) {
-        showAlertComponent("Сервер временно недоступен");
-        return
-      }
-      riot.update();
-    }
-
-    if (navigator.connection.type !== Connection.NONE) {
-      showAlertComponent("Сервер временно недоступен");
-      riot.update();
-    }
   };
 
   var me = this;
@@ -194,7 +177,6 @@ window.api.send = function (params) {
   var onFail = params.onFail;
   var scope = params.scope || window;
   console.log('METHOD', method);
-  console.log("Stop spinner parameter:", params.stopSpinner);
   console.log("Sending information:", input);
   this.callBacks[method] = {
     ok: function (data) {
