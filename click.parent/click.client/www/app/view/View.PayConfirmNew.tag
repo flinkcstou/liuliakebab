@@ -299,7 +299,7 @@
         window.common.alert.hide("componentResultId");
       }
 
-      updateIcon(status);
+      updateIcon(status, null, null, text, stepAmount);
       riot.update();
     }
 

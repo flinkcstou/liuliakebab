@@ -398,7 +398,7 @@
       scope.stepAmount = stepAmount;
       scope.viewPage = viewPage;
       scope.resultText = text;
-      updateIcon(status);
+      updateIcon(status, null, null, text, stepAmount);
       scope.update();
 
       if (showResult) {

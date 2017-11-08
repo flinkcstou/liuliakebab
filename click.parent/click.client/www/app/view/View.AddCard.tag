@@ -100,7 +100,7 @@
         window.common.alert.hide("componentResultId");
       }
       scope.stepAmount = stepAmount;
-      updateIcon(status);
+      updateIcon(status, null, null, text, stepAmount);
       scope.update();
     };
 

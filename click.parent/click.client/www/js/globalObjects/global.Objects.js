@@ -70,13 +70,12 @@ window.common.alert = {
     for (var i in window.common.alert.scopes) {
 
       if (i === id) {
-        console.log("This scope", window.common.alert.scopes);
         for (var j in params) {
-
           window.common.alert.scopes[i][j] = params[j];
           window.common.alert.scopes[i].update();
+          console.log(window[i], "AND", window.common.alert.scopes[i]);
         }
-
+        riot.update();
         return;
       }
     }
