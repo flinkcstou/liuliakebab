@@ -92,7 +92,7 @@ window.api.initSocket = function () {
     console.log('Connection is closed');
     console.log(event);
     window.isConnected = false;
-    init();
+    window.api.init();
     if (device.platform !== 'BrowserStand') {
       console.log("Spinner stop in webApi (socket on close)");
       SpinnerPlugin.activityStop();
