@@ -43,13 +43,13 @@
       okButtonStartY = event.changedTouches[0].pageY;
 
       document.getElementById(id).style.webkitTransform = 'scale(0.8)'
-    }
+    };
 
     closeAlertFormEnd = function (id) {
       event.preventDefault();
       event.stopPropagation();
 
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)';
 
       okButtonEndX = event.changedTouches[0].pageX;
       okButtonEndY = event.changedTouches[0].pageY;
@@ -66,14 +66,14 @@
             return
           }
 
-          if (opts.errorcode == 1) {
+          if (opts.errorcode === 1) {
             console.log("Alert to main page");
             riotTags.innerHTML = "<view-main-page>";
             riot.mount('view-main-page');
             return;
           }
 
-          if (opts.errorcode == 2) {
+          if (opts.errorcode === 2) {
             console.log("Alert to registration");
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');
@@ -91,7 +91,7 @@
           console.log(JSON.stringify(history.arrayOfHistory))
 
           if (opts.step_amount)
-            if (opts.step_amount || opts.step_amount == 0) {
+            if (opts.step_amount || opts.step_amount === 0) {
               console.log("opts.step_amount", opts)
               history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
               console.log(history.arrayOfHistory)
@@ -107,7 +107,7 @@
         }
         else {
           console.log("Alert without parent");
-          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device') {
+          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view === 'view-registration-device') {
             scope.outerShowAlertBool = true;
             console.log("Alert to device registration");
             riot.update()

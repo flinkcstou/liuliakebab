@@ -3,7 +3,8 @@
 
   <div style="display: none" class="component-notification-icon"></div>
   <p id="pushNotificationText" class="component-notification-text">
-    {JSON.parse(sessionStorage.getItem("push_notification_real")).body}</p>
+    {(device.platform === "iOS")?JSON.parse(sessionStorage.getItem("push_notification_real")).notification.body:
+    JSON.parse(sessionStorage.getItem("push_notification_real")).body}</p>
 
   <div class="component-notification-buttons-container">
     <p class="component-notification-button-cancel" ontouchend="onTouchEndNotificationDecline()"

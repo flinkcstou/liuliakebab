@@ -39,7 +39,7 @@
     <div class="view-news-block-space"></div>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
+  <component-alert if="{showError}" clickpinerror="{clickPinError}" viewpage="{viewPage}"
                    errornote="{errorNote}"></component-alert>
 
   <script>
@@ -137,6 +137,7 @@
       var signString = hex_md5(phoneNumber.substring(0, 5) + "CLICK" + phoneNumber.substring(phoneNumber.length - 7, phoneNumber.length));
 
       var answerFromServer = false;
+      scope.viewPage = 'view-main-page';
 
       if (device.platform !== 'BrowserStand') {
         var options = {dimBackground: true};
