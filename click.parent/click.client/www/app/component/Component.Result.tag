@@ -1,4 +1,4 @@
-<component-result hidden="{outerShowAlertBool}">
+<component-result>
   <div id="componentResultId" class="component-result">
     <div id="alertNewIconId" class="component-result-icon"
          style="background-image: url('resources/gifs/loading.gif')"></div>
@@ -14,7 +14,6 @@
 
   <script>
     var scope = this;
-    scope.outerShowAlertBool = false;
     scope.restart = false;
     scope.buttonText = window.languages.ComponentResultClose;
 
@@ -43,7 +42,7 @@
       wait.classList.add("component-result-wait-stop");
       resultMessage.classList.add("component-result-message-start");
       resultButtonId.classList.add("component-result-button-start");
-    }
+    };
 
     restartComponent = function () {
       scope.restart = false;
@@ -55,10 +54,10 @@
       wait.classList.add("component-result-wait-start");
       resultMessage.classList.remove("component-result-message-start");
       resultMessage.classList.add("component-result-message-stop");
-      console.log("PARENT", scope.parent);
+      console.log("PARENT", opts.parent);
       if (scope.fromView == 'view-add-card')
-        scope.parent.cardAddCheck();
-    }
+        opts.parent.cardAddCheck();
+    };
 
     var okButtonStartX, okButtonEndX, okButtonStartY, okButtonEndY;
 
@@ -70,7 +69,7 @@
       okButtonStartY = event.changedTouches[0].pageY;
 
       document.getElementById(id).style.webkitTransform = 'scale(0.8)'
-    }
+    };
 
     closeResultFormEnd = function (id) {
       event.preventDefault();
@@ -89,10 +88,8 @@
           restartComponent();
         } else {
 
-//        if (scope.parent) {
-          console.log("Alert from parent:", scope.parent);
-          console.log("OPTS in RESULT COMPONENT", opts)
-          scope.parent.showResult = false;
+          console.log("OPTS in RESULT COMPONENT", opts);
+          window.common.alert.hide("componentResultId");
 
 
 //          if (opts.viewpage) {
@@ -105,7 +102,7 @@
 //          }
 
 
-          window.componentFlags.result = false;
+          window.common.alert.hide("componentResultId");
 
 
           if (opts.step_amount) {
@@ -128,8 +125,8 @@
           } else if (!opts.step_amount && opts.viewpage) {
             riotTags.innerHTML = "<" + opts.viewpage + ">";
             riot.mount(opts.viewpage);
-            this.parent.unmount();
-            this.unmount();
+            opts.parent.unmount();
+            scope.unmount();
           }
         }
       }

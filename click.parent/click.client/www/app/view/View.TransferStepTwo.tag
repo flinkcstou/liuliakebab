@@ -37,9 +37,6 @@
 
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-steptwo') {
@@ -97,8 +94,6 @@
     scope.showPlaceHolderError = false;
 
     console.log("TAX=", objectForTransfer.percent);
-
-    scope.showError = false;
 
     sumMouseUp = function () {
       event.preventDefault()
@@ -323,7 +318,13 @@
                 if (err == "empty") {
                   scope.clickPinError = false;
                   scope.errorNote = ("Unknown phone number");
-                  scope.showError = true;
+
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    clickpinerror: scope.clickPinError,
+                    errornote: scope.errorNote
+                  });
+
                   scope.update();
                 }
                 else console.log("Dialer Error:" + err);
@@ -342,7 +343,13 @@
                 if (err == "empty") {
                   scope.clickPinError = false;
                   scope.errorNote = ("Unknown phone number");
-                  scope.showError = true;
+
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    clickpinerror: scope.clickPinError,
+                    errornote: scope.errorNote
+                  });
+
                   scope.update();
                 }
                 else console.log("Dialer Error:" + err);

@@ -136,7 +136,7 @@
 //        scope.update(scope.checkedId);
 
         if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
-          this.parent.refreshFunction(false);
+          scope.parent.refreshFunction(false);
           viewServicePinCards.friendHelpPaymentMode = false;
           viewServicePinCards.chosenFriendForHelp = null;
         }

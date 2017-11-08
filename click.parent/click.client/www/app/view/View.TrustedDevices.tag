@@ -22,9 +22,6 @@
     </div>
   </div>
 
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-
   <script>
 
     var scope = this,
@@ -139,12 +136,16 @@
       if (Math.abs(deleteTouchEndX - deleteTouchStartX) < 20 &&
         Math.abs(deleteTouchEndY - deleteTouchStartY) < 20) {
 
-        scope.confirmShowBool = true;
         scope.confirmNote = "Вы действительно хотите удалить устройство?";
         scope.confirmType = 'local';
-        scope.update();
 
-        console.log(scope.confirmShowBool)
+        window.common.alert.show("componentConfirmId", {
+          "confirmnote": scope.confirmNote,
+          "confirmtype": scope.confirmType,
+          parent: scope,
+        });
+
+        scope.update();
 
         scope.result = function (bool) {
           console.log(bool)

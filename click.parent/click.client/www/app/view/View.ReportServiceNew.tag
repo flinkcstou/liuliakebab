@@ -86,20 +86,8 @@
     </div>
   </div>
 
-  <component-success id="componentSuccessId"
-                     operationmessage="{operationMessage}"
-                     viewpage="{undefined}" step_amount="{0}" close_action="{goToBack}"></component-success>
-
-
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-generated-qr id="componentGeneratedQrId" qr_image="{opts.qr_image}" qr_header="{opts.qr_header}"
-                          qr_footer="{opts.qr_footer}"
-                          viewpage="{undefined}"
-                          step_amount="{0}"></component-generated-qr>
-
   <script>
+
     console.log("OPTS in ReportService New=", opts);
     var scope = this,
       goToSupportTouchStartX,
@@ -266,9 +254,14 @@
 
             }
             else {
-              scope.showError = true;
               scope.errorNote = result[0][0].error_note
               scope.update();
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+              });
               console.log(result[0][0].error_note);
             }
           },
@@ -308,7 +301,7 @@
 
             for (var j in favoritePaymentsListForApi)
               if (favoritePaymentsListForApi[j].id == scope.opts.favoriteId) {
-              favoritePaymentsListForApi.splice(j, 1);
+                favoritePaymentsListForApi.splice(j, 1);
                 break;
               }
 
@@ -329,9 +322,13 @@
                 }
                 else {
                   scope.clickPinError = false;
-                  scope.showError = true;
                   scope.errorNote = result[0][0].error_note
                   scope.update();
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    clickpinerror: scope.clickPinError,
+                    errornote: scope.errorNote,
+                  });
                   console.log(result[0][0].error_note);
                 }
               },
@@ -419,7 +416,14 @@
           scope.update();
 //        scope.unmount()
         } else {
-          componentGeneratedQrId.style.display = 'block';
+          window.common.alert.show("componentGeneratedQrId", {
+            parent: scope,
+            qr_image: opts.qr_image,
+            qr_header: opts.qr_header,
+            qr_footer: opts.qr_footer,
+            viewpage: undefined,
+            step_amount: 0
+          });
           qrFooterTextId.innerHTML = scope.opts.qr_footer;
         }
       }

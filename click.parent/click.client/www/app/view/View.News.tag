@@ -39,9 +39,6 @@
     <div class="view-news-block-space"></div>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}" viewpage="{viewPage}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
     var scope = this;
     console.log("Is update running here ?");
@@ -137,7 +134,6 @@
       var signString = hex_md5(phoneNumber.substring(0, 5) + "CLICK" + phoneNumber.substring(phoneNumber.length - 7, phoneNumber.length));
 
       var answerFromServer = false;
-      scope.viewPage = 'view-main-page';
 
       if (device.platform !== 'BrowserStand') {
         var options = {dimBackground: true};
@@ -180,8 +176,11 @@
           }
           else {
             console.log("view news error 1");
-            scope.showError = true;
-            scope.errorNote = result[0][0].error_note;
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              errornote: result[0][0].error_note,
+              viewpage:'view-main-page'
+            });
             scope.update();
             console.log(result[0][0].error_note);
           }
@@ -189,8 +188,11 @@
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          scope.showError = true;
-          scope.errorNote = api_status_message;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: api_status_message,
+            viewpage:'view-main-page'
+          });
           scope.update();
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
@@ -200,13 +202,17 @@
       setTimeout(function () {
         if (!answerFromServer) {
           answerFromServer = true;
-          scope.showError = true;
-          scope.errorNote = window.languages.WaitingTimeExpiredText;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: window.languages.WaitingTimeExpiredText,
+            viewpage:'view-main-page'
+          });
           scope.update();
           if (device.platform !== 'BrowserStand') {
             console.log("Spinner stop in authorization by timeout");
             SpinnerPlugin.activityStop();
           }
+          return
         }
       }, 30000)
     }

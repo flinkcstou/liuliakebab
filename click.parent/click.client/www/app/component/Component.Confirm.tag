@@ -1,4 +1,4 @@
-<component-confirm hidden="{outerShowAlertBool}">
+<component-confirm>
   <div id="componentConfirmId" class="component-alert">
     <div class="component-alert-icon"></div>
     <p class="component-alert-message">{opts.confirmnote}</p>
@@ -18,7 +18,8 @@
 
   <script>
     var scope = this;
-    scope.outerShowAlertBool = false;
+
+    console.log("COMPONENT CONFIRM", opts);
 
     var okButtonStartX, okButtonEndX, okButtonStartY, okButtonEndY;
 
@@ -29,46 +30,42 @@
       okButtonStartX = event.changedTouches[0].pageX;
       okButtonStartY = event.changedTouches[0].pageY;
 
-      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
-    }
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)';
+    };
 
     okConfirmEnd = function (id) {
       event.preventDefault();
       event.stopPropagation();
 
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)';
 
       okButtonEndX = event.changedTouches[0].pageX;
       okButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(okButtonStartX - okButtonEndX) <= 20 && Math.abs(okButtonStartY - okButtonEndY) <= 20) {
 
-        if (opts.confirmtype == 'local') {
+        if (opts.confirmtype === 'local') {
           console.log("Confirm on local");
-          scope.parent.result(true);
-          scope.parent.confirmShowBool = false;
+          opts.parent.result(true);
+          window.common.alert.hide("componentConfirmId");
         }
-        else
-          if (opts.confirmtype == 'internet') {
+        else if (opts.confirmtype === 'internet') {
 
-            modeOfApp.offlineMode = true;
-            modeOfApp.onlineMode = false;
-            console.log("Confirm on internet");
-            riotTags.innerHTML = "<view-main-page>";
-            riot.mount('view-main-page');
-            //        scope.unmount()
+          modeOfApp.offlineMode = true;
+          modeOfApp.onlineMode = false;
+          console.log("Confirm on internet");
+          riotTags.innerHTML = "<view-main-page>";
+          riot.mount('view-main-page');
+          //        scope.unmount()
         }
-        else
-          if (opts.confirmtype == 'session')
-          {
-            riotTags.innerHTML = "<view-authorization>";
-            riot.mount('view-authorization');
-          }
-          else
-          {
-            navigator.app.exitApp();
-          }
-        scope.outerShowAlertBool = true;
+        else if (opts.confirmtype === 'session') {
+          riotTags.innerHTML = "<view-authorization>";
+          riot.mount('view-authorization');
+        }
+        else {
+          navigator.app.exitApp();
+        }
+        window.common.alert.hide("componentConfirmId");
 
         //OK
         riot.update()
@@ -84,36 +81,35 @@
       cancelButtonStartX = event.changedTouches[0].pageX;
       cancelButtonStartY = event.changedTouches[0].pageY;
 
-      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
-    }
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)';
+    };
 
     cancelConfirmEnd = function (id) {
       event.preventDefault();
       event.stopPropagation();
 
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)';
 
       cancelButtonEndX = event.changedTouches[0].pageX;
       cancelButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(cancelButtonStartX - cancelButtonEndX) <= 20 && Math.abs(cancelButtonStartY - cancelButtonEndY) <= 20) {
 
-        scope.outerShowAlertBool = true;
-        if (scope.parent) {
+        window.common.alert.hide("componentConfirmId");
+        if (opts.parent) {
           console.log("Confirm from parent");
-          scope.parent.confirmShowBool = false;
+          window.common.alert.hide("componentConfirmId");
         }
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device') {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view === 'view-registration-device') {
           console.log("Confirm to device registration");
-          riot.update()
+          riot.update();
           riotTags.innerHTML = "<view-registration-device>";
           riot.mount('view-registration-device');
         }
-        else
-        {
+        else {
           console.log("Confirm to authorization");
-          riot.update()
+          riot.update();
           riotTags.innerHTML = "<view-authorization>";
           riot.mount('view-authorization');
         }

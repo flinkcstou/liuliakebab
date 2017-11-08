@@ -333,7 +333,7 @@
         }
         componentTourId.style.display = 'none';
         if (opts.focusfield) {
-          this.parent.focusFieldAfterTourClosed();
+          scope.parent.focusFieldAfterTourClosed();
         }
       }
     }

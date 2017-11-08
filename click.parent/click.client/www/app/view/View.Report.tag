@@ -100,12 +100,6 @@
 
   <view-report-service-new hidden="{!showComponent}"></view-report-service-new>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}" step_amount="{stepAmount}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-
   <script>
 
     var scope = this;
@@ -172,7 +166,6 @@
 
     scope.leftOfOperations = 320 * widthK;
     scope.firstReportView = true;
-    scope.showError = false;
 
     scope.count = 12;
     //    localStorage.setItem('click_client_countCard', count);
@@ -686,7 +679,12 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              step_amount: scope.stepAmount
+            });
             scope.update();
 
           }
@@ -702,14 +700,20 @@
       if (!gotAnswer)
         setTimeout(function () {
           if (!gotAnswer) {
-            scope.showError = true;
             scope.errorNote = "Сервис временно недоступен";
             scope.stepAmount = 0;
             scope.update();
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              step_amount: scope.stepAmount
+            });
             if (device.platform != 'BrowserStand') {
               console.log("Spinner Stop View Report 694");
               SpinnerPlugin.activityStop();
             }
+            return
           }
         }, 10000);
 
@@ -816,7 +820,12 @@
             createGraph(scope.graphList);
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              step_amount: scope.stepAmount
+            });
             scope.update();
           }
 
@@ -830,14 +839,20 @@
       if (!gotAnswer)
         setTimeout(function () {
           if (!gotAnswer) {
-            scope.showError = true;
             scope.errorNote = "Сервис временно недоступен";
             scope.stepAmount = 0;
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              step_amount: scope.stepAmount
+            });
             scope.update();
             if (device.platform != 'BrowserStand') {
               console.log("Spinner Stop View Report 823");
               SpinnerPlugin.activityStop();
             }
+            return
           }
         }, 10000);
 
@@ -974,8 +989,13 @@
 
           if (modeOfApp.demoVersion) {
             var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-            scope.showError = true;
             scope.errorNote = question;
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              step_amount: scope.stepAmount
+            });
 //        confirm(question)
 //          scope.confirmShowBool = true;
 //          scope.confirmNote = question;

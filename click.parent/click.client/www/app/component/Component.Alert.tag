@@ -1,4 +1,4 @@
-<component-alert hidden="{outerShowAlertBool}">
+<component-alert>
   <div id="componentAlertId" class="component-alert">
     <div class="component-alert-icon"></div>
     <p class="component-alert-message" if="{!opts.clickpinerror}">{opts.errornote}</p>
@@ -23,7 +23,6 @@
 
   <script>
     var scope = this;
-    scope.outerShowAlertBool = false;
 
     //    console.log("OPTS OF ALERT", opts)
     //    if (opts[0] && opts[0].outerErrorNote) {
@@ -42,7 +41,7 @@
       okButtonStartX = event.changedTouches[0].pageX;
       okButtonStartY = event.changedTouches[0].pageY;
 
-      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)';
     };
 
     closeAlertFormEnd = function (id) {
@@ -56,14 +55,14 @@
 
       if (Math.abs(okButtonStartX - okButtonEndX) <= 20 && Math.abs(okButtonStartY - okButtonEndY) <= 20) {
 
-        if (scope.parent) {
-          console.log("Alert from parent:", scope.parent);
-          scope.parent.showError = false;
+        if (opts.parent) {
+          console.log("Alert from parent:", opts.parent);
+          window.common.alert.hide("componentAlertId");
 
           if (opts.carddelete) {
             riotTags.innerHTML = "<view-my-cards>";
             riot.mount('view-my-cards');
-            return
+            return;
           }
 
           if (opts.errorcode === 1) {
@@ -87,17 +86,17 @@
             return;
           }
 
-          console.log("OPTS in ALERT", opts)
-          console.log(JSON.stringify(history.arrayOfHistory))
+          console.log("OPTS in ALERT", opts);
+          console.log(JSON.stringify(history.arrayOfHistory));
 
           if (opts.step_amount)
-            if (opts.step_amount || opts.step_amount === 0) {
-              console.log("opts.step_amount", opts)
+            if (opts.step_amount || opts.step_amount == 0) {
+              console.log("opts.step_amount", opts);
               history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
-              console.log(history.arrayOfHistory)
-              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+              console.log(history.arrayOfHistory);
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
               if (!opts.viewmount)
-                onBackKeyDown()
+                onBackKeyDown();
               else {
                 riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
                 riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
@@ -107,8 +106,8 @@
         }
         else {
           console.log("Alert without parent");
-          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view === 'view-registration-device') {
-            scope.outerShowAlertBool = true;
+          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device') {
+            window.common.alert.hide("componentAlertId");
             console.log("Alert to device registration");
             riot.update()
             riotTags.innerHTML = "<view-registration-device>";
@@ -116,7 +115,7 @@
           }
           else {
             console.log("Alert to authorization");
-            scope.outerShowAlertBool = true;
+            window.common.alert.hide("componentAlertId");
             riot.update()
             riotTags.innerHTML = "<view-authorization>";
             riot.mount('view-authorization');

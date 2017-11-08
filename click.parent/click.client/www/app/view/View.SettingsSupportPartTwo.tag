@@ -19,12 +19,9 @@
     </div>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}" step_amount="{0}"></component-alert>
-
   <script>
+
     var scope = this;
-    scope.showError = false;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-settings-support') {
       history.arrayOfHistory.push(
@@ -141,7 +138,14 @@
               console.log("SUPPORT", result);
               scope.clickPinError = false;
               scope.errorNote = 'Удачно отправлено';
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+                step_amount: 0
+              });
+
               scope.update();
 //            alert('Удачно отправлено');
             }
@@ -149,7 +153,14 @@
 //            alert(result[0][0].error_note);
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+                step_amount: 0
+              });
+
               scope.update();
             }
           },

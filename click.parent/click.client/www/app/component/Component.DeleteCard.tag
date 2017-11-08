@@ -11,7 +11,6 @@
 
   <script>
     var scope = this;
-    scope.parent.showError = false;
 
     console.log('scope.parent DELETE', scope.parent)
 
@@ -71,7 +70,7 @@
 
         deleteCardComponentId.style.display = 'none'
       }
-    };
+    }
     scope.sessionKey = '';
     scope.phoneNumber = '';
     scope.accountId = '';
@@ -162,9 +161,12 @@
 
           }
           else {
-            scope.parent.clickPinError = false;
-            scope.parent.errorNote = result[0][0].error_note;
-            scope.parent.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: result[0][0].error_note
+            });
             deleteCardComponentId.style.display = "none";
             riot.update();
           }
@@ -252,8 +254,7 @@
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
-      });
-
+      })
     }
 
 

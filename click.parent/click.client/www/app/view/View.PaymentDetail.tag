@@ -53,27 +53,8 @@
     </div>
   </div>
 
-
-  <component-success id="componentSuccessId"
-                     operationmessage="{window.languages.ComponentSuccessMessageForPay}"
-                     viewpage="{viewPage}" step_amount="{}" close_action="{goToBack}"></component-success>
-  <component-unsuccess id="componentUnsuccessId"
-                       operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
-                       operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{errorMessageFromTransfer}"
-                       step_amount="{1}"></component-unsuccess>
-  <component-in-processing id="componentInProcessingId" viewpage="{viewPage}"
-                           operationmessagepartone="{window.languages.ComponentInProcessingPartOneForPay}"
-                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"
-                           step_amount="{0}"></component-in-processing>
-
-  <component-alert if="{showError}" errorcode="{errorCode}" viewpage="{viewPage}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-result if="{window.componentFlags.result}" resulttext="{resultText}"
-                    viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
-
   <script>
+
     var scope = this,
       touchStartDeclineX,
       touchStartDeclineY,
@@ -84,10 +65,8 @@
       touchEndAcceptX,
       touchEndAcceptY;
 
-    scope.showError = false;
     scope.commission_amount = scope.opts.amount * scope.opts.commission_percent / 100;
     scope.errorCode = 0;
-    componentFlags.result = false;
 
     var pageToReturnIfError = 'view-main-page', pageToReturnIfSuccess = 'view-report';
     var paymentSuccessStep = 1, paymentWaitingStep = 0;
@@ -187,20 +166,25 @@
               paymentDetailGoToBackEnd(true);
             }
             else {
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
-              scope.viewPage = 'view-main-page';
-              scope.update();
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: result[0][0].error_note,
+                errorcode: scope.errorCode,
+                viewpage :'view-main-page'
+              });
             }
           },
 
           onFail: function (api_status, api_status_message, data) {
             answerFromServer = true;
-            scope.errorNote = api_status_message;
-            scope.showError = true;
-            scope.viewPage = 'view-main-page';
-            scope.update();
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: api_status_message,
+              errorcode: scope.errorCode,
+              viewpage :'view-main-page'
+            });
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
@@ -209,10 +193,13 @@
         setTimeout(function () {
           if (!answerFromServer) {
             answerFromServer = true;
-            scope.showError = true;
-            scope.errorNote = window.languages.WaitingTimeExpiredText;
-            scope.viewPage = 'view-main-page';
-            scope.update();
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: window.languages.WaitingTimeExpiredText,
+              errorcode: scope.errorCode,
+              viewpage :'view-main-page'
+            });
             if (device.platform !== 'BrowserStand') {
               console.log("Spinner stop in authorization by timeout");
               SpinnerPlugin.activityStop();
@@ -250,20 +237,24 @@
 
         if (accountId == undefined) {
 
-          scope.showError = true;
-          scope.errorNote = window.languages.ViewPaymentDetailCardNotChosen;
-
-          scope.update();
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: window.languages.ViewPaymentDetailCardNotChosen,
+            errorcode: scope.errorCode
+          });
 
           return;
         }
 
         if (!accountId && accountId != 0) {
 
-          scope.showError = true;
-          scope.errorNote = window.languages.ViewPaymentDetailCardNotChosen;
-
-          scope.update();
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: window.languages.ViewPaymentDetailCardNotChosen,
+            errorcode: scope.errorCode
+          });
 
           return;
         }
@@ -316,6 +307,7 @@
           if (!answerFromServer) {
 
             updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
+            return
           }
         }, 40000)
       }
@@ -415,25 +407,45 @@
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
       console.log("OPEN RESULT COMPONENT");
 //      scope.showResult = showResult;
-      window.componentFlags.result = showResult;
+
       scope.stepAmount = stepAmount;
       scope.viewPage = viewPage;
       scope.resultText = text;
+
+      if (showResult) {
+
+        window.common.alert.updateView("componentResultId", {
+          parent: scope,
+          resulttext: scope.resultText,
+          viewpage: scope.viewPage,
+          step_amount: scope.stepAmount,
+          parent: scope
+        });
+      } else {
+
+        window.common.alert.hide("componentResultId");
+      }
       updateIcon(status);
       scope.update();
-    }
+    };
 
     closeResultComponent = function () {
       scope.showResult = false;
-      window.componentFlags.result = false;
+      window.common.alert.hide("componentResultId");
       scope.update();
-    }
+    };
 
     initResultComponent = function () {
-      scope.showResult = true;
-      window.componentFlags.result = true;
+
+      window.common.alert.updateView("componentResultId", {
+        parent: scope,
+        resulttext: scope.resultText,
+        viewpage: scope.viewPage,
+        step_amount: scope.stepAmount,
+        parent: scope
+      });
       scope.update();
-    }
+    };
 
 
   </script>

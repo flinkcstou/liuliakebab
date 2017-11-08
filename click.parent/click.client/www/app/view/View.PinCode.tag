@@ -36,10 +36,6 @@
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}" errorcode="{errorCode}"
-                   errornote="{errorNote}" step_amount="{stepToBack}" viewpage="{viewpage}"></component-alert>
-
-
   <script>
 
     var scope = this;
@@ -75,7 +71,6 @@
     scope.nowCheckPin = true;
     scope.stepToBack = null;
     scope.checkPinConfirm = false;
-    scope.showError = false;
     var fromRegistration = false;
     var fromAuthorization = false;
     var fromSettings = false;
@@ -326,10 +321,20 @@
               scope.errorNote = "Введенный CLICK-PIN не совпадает указанному ранее. Попробуйте еще раз!";
 
               console.log('scope.checkPin', scope.checkPin, 'scope.checkPinConfirm', scope.checkPinConfirm)
-              scope.showError = true;
+
               scope.checkPin = true;
               scope.checkPinConfirm = false;
               scope.update();
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                viewpage: scope.viewpage,
+                errornote: scope.errorNote,
+                errorcode: scope.errorCode,
+                step_amount: scope.stepToBack
+              });
+
               console.log('scope.checkPin', scope.checkPin, 'scope.checkPinConfirm', scope.checkPinConfirm)
               pinConfirm = '';
               pin = '';
@@ -357,7 +362,6 @@
             }
             else {
               scope.clickPinError = false;
-              scope.showError = true;
 
               if (fromPayOrTransfer) {
                 scope.errorNote = window.languages.ViewPinCodeConfirmPayTransferErrorAlertText;
@@ -380,6 +384,15 @@
               enteredPin = '';
               updateEnteredPin()
               scope.update();
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                viewpage: scope.viewpage,
+                errornote: scope.errorNote,
+                errorcode: scope.errorCode,
+                step_amount: scope.stepToBack
+              });
             }
           } else if (scope.checkPin) {
             pin = enteredPin;
@@ -439,9 +452,17 @@
             console.log("pincode error part")
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
             scope.viewpage = "view-registration-device"
             scope.update();
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              viewpage: scope.viewpage,
+              errornote: scope.errorNote,
+              errorcode: scope.errorCode,
+              step_amount: scope.stepToBack
+            });
           }
         },
         onFail: function (api_status, api_status_message, data) {
@@ -553,8 +574,16 @@
               enteredPin = '';
             }
             console.log("qwert")
-            scope.showError = true;
             scope.update();
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              viewpage: scope.viewpage,
+              errornote: scope.errorNote,
+              errorcode: scope.errorCode,
+              step_amount: scope.stepToBack
+            });
             enteredPin = '';
             if (!scope.firstEnter)
               updateEnteredPin();
@@ -578,6 +607,7 @@
             console.log("Spinner stop in authorization by timeout");
             SpinnerPlugin.activityStop();
           }
+          return
         }
       }, 30000)
     }
@@ -605,7 +635,6 @@
           if (result[0][0].error == 0) {
             scope.clickPinError = false;
             scope.errorNote = "CLICK PIN успешно изменен";
-            scope.showError = true;
             localStorage.setItem("click_client_pin", JSON.stringify(hex_md5(pin)))
 
             if (!fromRegistration)
@@ -617,11 +646,20 @@
             localStorage.setItem('pinForStand', hex_md5(pin));
             scope.update();
 
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              viewpage: scope.viewpage,
+              errornote: scope.errorNote,
+              errorcode: scope.errorCode,
+              step_amount: scope.stepToBack
+            });
+
             //onBackKeyDown();
 //            scope.unmount()
           }
           else {
-            scope.showError = true;
+
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             if (!fromAuthorization)
@@ -633,6 +671,15 @@
             }
             scope.update();
 
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              viewpage: scope.viewpage,
+              errornote: scope.errorNote,
+              errorcode: scope.errorCode,
+              step_amount: scope.stepToBack
+            });
+
             //onBackKeyDown();
             //scope.unmount()
           }
@@ -643,16 +690,32 @@
           console.error(data);
         }
       })
-    }
+    };
 
 
     updateAlertComponent = function (showError, stepAmount, viewPage, text) {
       console.log("OPEN ALERT COMPONENT:", showError, text, stepAmount, viewPage);
-      scope.showError = showError;
+
       scope.stepAmount = stepAmount;
+
       scope.viewpage = viewPage;
       scope.errorNote = text;
       riot.update();
+
+      if (showError) {
+
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          clickpinerror: scope.clickPinError,
+          viewpage: scope.viewpage,
+          errornote: scope.errorNote,
+          errorcode: scope.errorCode,
+          step_amount: scope.stepToBack
+        });
+      } else {
+
+        window.common.alert.hide("componentAlertId");
+      }
     }
 
 

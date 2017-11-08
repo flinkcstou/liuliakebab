@@ -48,9 +48,6 @@
     </a>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}" viewpage="{viewPage}"
-                   errornote="{errorNote}"></component-alert>
-
   <component-tour view="registration"></component-tour>
 
   <div hidden id="demoContinueContainer" class="demo-version-continue riot-tags-main-container">
@@ -127,8 +124,6 @@
 
     var scope = this;
     var token;
-
-    scope.showError = false;
 
     scope.phoneNumber = '';
     scope.maskPhoneNumber = '';
@@ -364,7 +359,12 @@
         if (phoneNumber.length != 12) {
           scope.clickPinError = false;
           scope.errorNote = "Неправильно введен номер телефона";
-          scope.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+            viewpage: scope.viewPage,
+          });
           scope.update();
           correctPhoneNumber = false;
         }
@@ -532,11 +532,25 @@
 
     updateAlertComponent = function (showError, stepAmount, viewPage, text) {
       console.log("OPEN ALERT COMPONENT:", showError, text, stepAmount, viewPage);
-      scope.showError = showError;
+
       scope.stepAmount = stepAmount;
+
       scope.viewPage = viewPage;
       scope.errorNote = text;
       riot.update();
+
+      if (showError) {
+
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          clickpinerror: scope.clickPinError,
+          errornote: scope.errorNote,
+          viewpage: scope.viewPage,
+        });
+      } else {
+
+        window.common.alert.hide("componentAlertId");
+      }
     }
 
   </script>

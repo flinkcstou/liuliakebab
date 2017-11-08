@@ -59,26 +59,6 @@
     </div>
   </div>
 
-  <component-success id="componentSuccessId"
-                     operationmessage="{operationMessage}"
-                     viewpage="{viewPage}" step_amount="{3}"></component-success>
-  <component-unsuccess id="componentUnsuccessId"
-                       operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
-                       operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{errorQrPayment}"
-                       step_amount="{0}"></component-unsuccess>
-
-  <component-in-processing id="componentInProcessingId"
-                           operationmessagepartone="{window.languages.ComponentInProcessingPartOneForPay}"
-                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"
-                           step_amount="{3}"></component-in-processing>
-  <component-alert if="{showError}" errorcode="{errorCode}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-result if="{window.componentFlags.result}" resulttext="{resultText}"
-                    viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
-
-
   <script>
 
     console.log('OPTS QR CONFIRM', opts)
@@ -114,7 +94,6 @@
     scope.serviceIcon = opts[2].image;
     scope.categoryName = opts[2].name;
     scope.tax = opts[2].tax;
-    componentFlags.result = false;
 
     scope.update();
     console.log(opts[0]);
@@ -251,7 +230,12 @@
 
         console.log("inputObject", inputObject)
 
-        scope.showResult = true;
+        window.common.alert.updateView("componentResultId", {
+          parent: scope,
+          resulttext: scope.resultText,
+          viewpage: scope.viewPage,
+          step_amount: scope.stepAmount
+        });
         scope.update();
 
         window.api.call({
@@ -306,10 +290,16 @@
 
         setTimeout(function () {
           if (!answerFromServer) {
-            scope.showResult = true;
             scope.errorNote = window.languages.WaitingTimeExpiredText;
             scope.viewPage = pageToReturnIfError;
             scope.update();
+            window.common.alert.updateView("componentResultId", {
+              parent: scope,
+              resulttext: scope.resultText,
+              viewpage: scope.viewPage,
+              step_amount: scope.stepAmount
+            });
+            return
           }
         }, 30000)
       }
@@ -404,25 +394,41 @@
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
       console.log("OPEN RESULT COMPONENT");
 //      scope.showResult = showResult;
-      window.componentFlags.result = showResult;
+
       scope.stepAmount = stepAmount;
       scope.viewPage = viewPage;
       scope.resultText = text;
       updateIcon(status);
       scope.update();
-    }
+
+      if (showResult) {
+
+        window.common.alert.updateView("componentResultId", {
+          parent: scope,
+          resulttext: scope.resultText,
+          viewpage: scope.viewPage,
+          step_amount: scope.stepAmount
+        });
+      } else {
+
+        window.common.alert.hide("componentResultId");
+      }
+    };
 
     closeResultComponent = function () {
-      scope.showResult = false;
-      window.componentFlags.result = false;
+      window.common.alert.hide("componentResultId");
       scope.update();
-    }
+    };
 
     initResultComponent = function () {
-      scope.showResult = true;
-      window.componentFlags.result = true;
+      window.common.alert.updateView("componentResultId", {
+        parent: scope,
+        resulttext: scope.resultText,
+        viewpage: scope.viewPage,
+        step_amount: scope.stepAmount
+      });
       scope.update();
-    }
+    };
 
 
   </script>

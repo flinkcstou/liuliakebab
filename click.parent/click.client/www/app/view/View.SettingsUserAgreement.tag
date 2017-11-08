@@ -10,12 +10,10 @@
     <p class="settings-user-agreement-text">{contentOfAgreement}</p>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
+
     var scope = this;
-    scope.showError = false;
+
     this.titleName = window.languages.ViewSettingsUserAgreementTitle;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-settings-user-agreement') {
@@ -92,7 +90,13 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+            });
+
             scope.update();
           }
         },

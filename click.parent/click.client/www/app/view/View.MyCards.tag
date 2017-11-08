@@ -84,21 +84,10 @@
 
   <component-delete-card id="deleteCardComponentId"></component-delete-card>
 
-  <component-alert if="{showError}" carddelete="{cardDelete}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-  <component-success id="componentSuccessId"
-                     operationmessage="{window.languages.ViewMyCardSuccessDelete}"
-                     viewpage="{viewPage}" step_amount="{}" close_action="{goToBack}"></component-success>
-
   <script>
 
     var scope = this;
-    scope.cardDelete = false;
     viewMainPage.atMainPage = false;
-    scope.viewPage = '';
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-cards') {
       history.arrayOfHistory.push(
@@ -240,8 +229,10 @@
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-          scope.showError = true;
-          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
 //        scope.confirmType = 'local';
 //        scope.result = function (bool) {
 //          if (bool) {
@@ -336,9 +327,11 @@
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-          scope.confirmShowBool = true;
-          scope.confirmNote = question;
-          scope.confirmType = 'local';
+          window.common.alert.show("componentConfirmId", {
+            parent: scope,
+            "confirmnote": question,
+            "confirmtype": 'local'
+          });
           scope.result = function (bool) {
             if (bool) {
               localStorage.clear();
@@ -347,7 +340,7 @@
               return
             }
             else {
-              scope.confirmShowBool = false;
+              window.common.alert.hide("componentConfirmId");
               return
             }
           };
@@ -367,9 +360,11 @@
           componentDeleteCard.getInformation(sessionKey, phoneNumber, account_id);
         }
         else {
-          scope.clickPinError = false;
-          scope.errorNote = 'Вы не можете удалить эту карту!';
-          scope.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: 'Вы не можете удалить эту карту!',
+          });
           scope.update();
         }
       }
@@ -381,7 +376,6 @@
       phoneNumber = localStorage.getItem('click_client_phoneNumber'),
       myCardsOnTouchStartY, myCardsOnTouchStartX, myCardsOnTouchEndY, myCardsOnTouchEndX;
 
-    scope.showError = false;
     console.log("MY CARDS VIEW, OPTS=", opts);
 
     if (opts[0]) {
@@ -498,9 +492,11 @@
               }
             }
             else {
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: result[0][0].error_note
+              });
               scope.update();
             }
 
@@ -555,9 +551,11 @@
           scope.unmount()
         }
         else {
-          scope.clickPinError = false;
-          scope.errorNote = 'Извининте, вы не можете произвести оплату с этой карты';
-          scope.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: 'Извининте, вы не можете произвести оплату с этой карты'
+          });
           scope.update();
         }
       }
@@ -605,9 +603,11 @@
           scope.unmount()
         }
         else {
-          scope.clickPinError = false;
-          scope.errorNote = 'Извининте, вы не можете произвести перевод с этой карты';
-          scope.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: 'Извининте, вы не можете произвести перевод с этой карты'
+          });
           scope.update();
         }
       }
@@ -638,9 +638,11 @@
           if (modeOfApp.demoVersion) {
             var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-            scope.confirmShowBool = true;
-            scope.confirmNote = question;
-            scope.confirmType = 'local';
+            window.common.alert.show("componentConfirmId", {
+              parent: scope,
+              "confirmnote": question,
+              "confirmtype": 'local'
+            });
             scope.result = function (bool) {
               if (bool) {
                 localStorage.clear();
@@ -649,7 +651,7 @@
                 return
               }
               else {
-                scope.confirmShowBool = false;
+                window.common.alert.hide("componentConfirmId");
                 return
               }
             };

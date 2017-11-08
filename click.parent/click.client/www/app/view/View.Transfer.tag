@@ -232,15 +232,9 @@
       </div>
     </div>
   </div>
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"
-                   pathtosettings="{pathToSettings}"
-                   permissionerror="{permissionError}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
 
   <component-tour view="transfer" focusfield="{true}"></component-tour>
+
   <script>
 
     viewTransfer.check = true;
@@ -440,9 +434,18 @@
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-          scope.showError = true;
+
           scope.errorNote = question;
           scope.confirmType = 'local';
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+            pathtosettings: scope.pathToSettings,
+            permissionerror: scope.permissionError,
+          });
+
           scope.update();
 
           return
@@ -490,7 +493,15 @@
               }
               else {
                 scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote,
+                  pathtosettings: scope.pathToSettings,
+                  permissionerror: scope.permissionError,
+                });
+
                 scope.update();
               }
             },
@@ -712,7 +723,6 @@
       cardNumberForTransfer = '',
       arrayOfContacts = [];
 
-    scope.showError = false;
     scope.showComponent = false;
 
     scope.suggestionOne = {};
@@ -927,7 +937,15 @@
           }
           else {
             scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              pathtosettings: scope.pathToSettings,
+              permissionerror: scope.permissionError,
+            });
+
             scope.update();
           }
         },
@@ -1392,7 +1410,15 @@
 
         if (!checkPhoneForTransfer && !checkCardForTransfer) {
           scope.errorNote = 'Введите номер телефона или номер карты';
-          scope.showError = true;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+            pathtosettings: scope.pathToSettings,
+            permissionerror: scope.permissionError,
+          });
+
           scope.update();
 //        alert('Write phone number or card number for transfer')
         }
@@ -1404,7 +1430,15 @@
             if (phoneNumberForTransfer.length != 9) {
               contactPhoneNumberId.blur();
               scope.errorNote = 'Неверный номер телефона';
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+                pathtosettings: scope.pathToSettings,
+                permissionerror: scope.permissionError,
+              });
+
               scope.update();
 //            alert('Incorrect phone number')
               return
@@ -1437,7 +1471,15 @@
               if (firstFourSymbols != '8600') {
                 cardInputId.blur();
                 scope.errorNote = 'Неверные данные о карте';
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote,
+                  pathtosettings: scope.pathToSettings,
+                  permissionerror: scope.permissionError,
+                });
+
                 scope.update();
 //            alert('Неверный код банка');
                 return;
@@ -1470,14 +1512,30 @@
               else {
                 cardInputId.blur();
                 scope.errorNote = 'Подождите, данные для обработки информации еще не прогрузились';
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote,
+                  pathtosettings: scope.pathToSettings,
+                  permissionerror: scope.permissionError,
+                });
+
                 scope.update();
                 return;
               }
               if (!checkOfCode) {
                 cardInputId.blur();
                 scope.errorNote = 'Неверный номер карты';
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote,
+                  pathtosettings: scope.pathToSettings,
+                  permissionerror: scope.permissionError,
+                });
+
                 scope.update();
                 return;
               }
@@ -1485,7 +1543,15 @@
               if (checkOfCode && !statusOfBankToP2P) {
                 cardInputId.blur();
                 scope.errorNote = 'Карта "' + nameOfBank + '" банка временно недоступна для перевода средств';
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote,
+                  pathtosettings: scope.pathToSettings,
+                  permissionerror: scope.permissionError,
+                });
+
                 scope.update();
                 return;
               }
@@ -1497,7 +1563,15 @@
             if (cardNumberForTransfer.replace(/\s/g, '').length != 16) {
               cardInputId.blur();
               scope.errorNote = 'Неверный номер карты';
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+                pathtosettings: scope.pathToSettings,
+                permissionerror: scope.permissionError,
+              });
+
               scope.update();
 //            alert('Incorrect card number')
               return

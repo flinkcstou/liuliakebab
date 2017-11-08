@@ -205,6 +205,7 @@
                 console.log("Spinner Stop View Transfer On Card 204");
                 SpinnerPlugin.activityStop();
               }
+              return
             }
           }, 10000);
         }

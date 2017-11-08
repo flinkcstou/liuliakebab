@@ -34,12 +34,9 @@
 
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
+
     var scope = this;
-    scope.showError = false;
     this.titleName = window.languages.ViewQrTitle;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr') {
@@ -82,7 +79,7 @@
     scope.showPlaceHolderError = false;
 
     if (!opts.commission_percent)
-        scope.showPlaceHolderError = true;
+      scope.showPlaceHolderError = true;
 
     var checkFirst = false,
       maskOne = /[0-9]/g,
@@ -128,7 +125,11 @@
               if (err == "empty") {
                 scope.clickPinError = false;
                 scope.errorNote = ("Неверный номер");
-                scope.showError = true;
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote
+                });
                 scope.update();
               }
               else console.log("Ошибка USSD:" + err);
@@ -154,7 +155,12 @@
           else {
             scope.errorNote = opts.lang_min_amount
           }
-          scope.showError = true;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote
+          });
           scope.update();
 //          alert(opts.lang_max_amount)
         }
@@ -230,9 +236,9 @@
       }
 
       if (sumForQrPay)
-          scope.tax = sumForQrPay * opts.commission_percent / 100;
+        scope.tax = sumForQrPay * opts.commission_percent / 100;
       else {
-          scope.tax = 0
+        scope.tax = 0
       }
 
       scope.update()

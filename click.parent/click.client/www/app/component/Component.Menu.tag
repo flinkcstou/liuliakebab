@@ -79,11 +79,6 @@
     <iframe id="iFrameExternalUrlId" class="iFrame-main" frameborder="0"></iframe>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
   <script>
     var scope = this;
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -99,7 +94,6 @@
       scope.photo = "resources/icons/icon/icon.png"
     }
 
-    scope.showError = false;
     scope.showIFrame = false;
 
     if (modeOfApp.onlineMode) {
@@ -164,8 +158,11 @@
       event.stopPropagation();
       if (modeOfApp.demoVersion) {
         var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-        scope.showError = true;
-        scope.errorNote = question;
+
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          errornote: question
+        });
 //        confirm(question)
 //        scope.confirmShowBool = true;
 //        scope.confirmNote = question;
@@ -318,8 +315,10 @@
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-          scope.showError = true;
-          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
 //          scope.confirmShowBool = true;
 //          scope.confirmNote = question;
 //          scope.confirmType = 'local';
@@ -444,8 +443,10 @@
       if (Math.abs(autoPayTouchStartX - autoPayTouchEndX) <= 20 && Math.abs(autoPayTouchStartY - autoPayTouchEndY) <= 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
-          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
 //        confirm(question)
 //          scope.confirmShowBool = true;
 //          scope.confirmNote = question;
@@ -497,8 +498,10 @@
       if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX) < 20 && Math.abs(qrScannerTouchStartY - qrScannerTouchEndY) < 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
-          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
 //        confirm(question)
 //          scope.confirmShowBool = true;
 //          scope.confirmNote = question;
@@ -643,9 +646,12 @@
 
                             return
                           }
-                          scope.clickPinError = false;
-                          scope.errorNote = result[0][0].error_note;
-                          scope.showError = true;
+
+                          window.common.alert.show("componentAlertId", {
+                            parent: scope,
+                            clickpinerror: false,
+                            errornote: result[0][0].error_note
+                          });
                           scope.update();
                         }
                       },
@@ -670,9 +676,12 @@
               }
             },
             function (error) {
-              scope.clickPinError = false;
-              scope.errorNote = "Отсутствует доступ";
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: "Отсутствует доступ"
+              });
               scope.update();
             },
             {
@@ -719,9 +728,11 @@
               }
               else {
 
-                scope.showError = true;
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: result[0][0].error_note
+                });
                 scope.update();
 //                alert(result[0][0].error_note);
               }
@@ -766,8 +777,11 @@
       if (Math.abs(settingsTouchStartX - settingsTouchEndX) < 20 && Math.abs(settingsTouchStartY - settingsTouchEndY) < 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
-          scope.errorNote = question;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
 //        confirm(question)
 //          scope.confirmShowBool = true;
 //          scope.confirmNote = question;
@@ -824,8 +838,10 @@
       if (Math.abs(billingsTouchEndX - billingsTouchStartX) < 20 && Math.abs(billingsTouchStartY - billingsTouchEndY) < 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
-          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
 //        confirm(question)
 //          scope.confirmShowBool = true;
 //          scope.confirmNote = question;
@@ -852,9 +868,11 @@
             "*880*00*98767" + "%23",
             function (err) {
               if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Неверный номер");
-                scope.showError = true;
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: "Неверный номер"
+                });
                 scope.update();
               }
               else console.log("Dialer Error:" + err);
@@ -896,8 +914,10 @@
       if (Math.abs(favoritesTouchStartX - favoritesTouchEndX) < 20 && Math.abs(favoritesTouchStartY - favoritesTouchEndY) < 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
-          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
 //        confirm(question)
 //          scope.confirmShowBool = true;
 //          scope.confirmNote = question;

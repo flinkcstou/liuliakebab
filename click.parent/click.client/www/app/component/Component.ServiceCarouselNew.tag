@@ -40,12 +40,6 @@
 
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-
   <script>
 
     var scope = this;
@@ -73,8 +67,6 @@
     if (phoneNumber && modeOfApp.onlineMode)
       scope.operatorKey = phoneNumber.substr(3, 2);
     scope.addFavoriteBool = true;
-
-    scope.showError = false;
 
     if (!localStorage.getItem("click_client_popularServiceList") && modeOfApp.onlineMode) {
       scope.popularServiceList = [];
@@ -148,9 +140,11 @@
             }
           }
           else {
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: result[0][0].error_note
+            });
             scope.update();
           }
 
@@ -303,9 +297,11 @@
 
                   }
                   else {
-                    scope.clickPinError = false;
-                    scope.showError = true;
-                    scope.errorNote = result[0][0].error_note
+                    window.common.alert.show("componentAlertId", {
+                      parent: scope,
+                      clickpinerror: false,
+                      errornote: result[0][0].error_note
+                    });
                     scope.update();
                     console.log(result[0][0].error_note);
                   }
@@ -321,9 +317,11 @@
 
           }
           else {
-            scope.clickPinError = false;
-            scope.showError = true;
-            scope.errorNote = result[0][0].error_note
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: result[0][0].error_note
+            });
             scope.update();
             console.log(result[0][0].error_note);
           }
@@ -354,8 +352,10 @@
       if (Math.abs(openFavouriteStartX - openFavouriteEndX) <= 20 && Math.abs(openFavouriteStartY - openFavouriteEndY) <= 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
-          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
 //        confirm(question)
 //          scope.confirmShowBool = true;
 //          scope.confirmNote = question;
@@ -563,9 +563,12 @@
               }
 
               if (ussdQuery === null) {
-                scope.clickPinError = false;
-                scope.errorNote = ("Сервис временно недоступен!");
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: "Сервис временно недоступен!"
+                });
                 scope.update();
                 return
               }
@@ -577,9 +580,12 @@
                 ussdQuery + "%23",
                 function (err) {
                   if (err == "empty") {
-                    scope.clickPinError = false;
-                    scope.errorNote = ("Unknown phone number");
-                    scope.showError = true;
+
+                    window.common.alert.show("componentAlertId", {
+                      parent: scope,
+                      clickpinerror: false,
+                      errornote: "Неизвестный номер телефона"
+                    });
                     scope.update();
                   }
                   else console.log("Dialer Error:" + err);
@@ -659,9 +665,11 @@
 
             } else {
 
-              scope.clickPinError = false;
-              scope.errorNote = ("Подождите, данные для избранных платежей еще не подгрузились");
-              scope.showError = true;
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: "Подождите, данные для избранных платежей еще не подгрузились"
+              });
               scope.update();
 
             }
@@ -688,9 +696,11 @@
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
 //        confirm(question)
-          scope.confirmShowBool = true;
-          scope.confirmNote = question;
-          scope.confirmType = 'local';
+          window.common.alert.show("componentConfirmId", {
+            parent: scope,
+            "confirmnote": question,
+            "confirmtype": "local"
+          });
           scope.result = function (bool) {
             if (bool) {
               localStorage.clear();
@@ -699,7 +709,7 @@
               return
             }
             else {
-              scope.confirmShowBool = false;
+              window.common.alert.hide("componentConfirmId");
               return
             }
           };

@@ -38,11 +38,10 @@
 </head>
 
 <body id="bodyId">
-<div id="indexNotificationBlockId" style="z-index: 999999999;"></div>
-<div id="alertComponentBlockId" style="opacity: 0;"></div>
+<div id="indexNotificationBlockId"></div>
 
-<div id="riotTags">
-</div>
+<div id="alertTags"></div>
+<div id="riotTags"></div>
 
 <script>
 
@@ -190,14 +189,13 @@
       GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
       document.head.appendChild(GENERATOR);
 
-
       firstMount.firstStep = function () {
         scope.indexNotificationBlockId.innerHTML = "<component-notification>";
         riot.mount('component-notification');
 
         if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
           scope.riotTags.innerHTML = "<view-authorization>";
-          riot.mount('view-authorization')
+          riot.mount('view-authorization');
         }
         else {
           scope.riotTags.innerHTML = "<view-registration-device>";
@@ -352,21 +350,13 @@
 
 
   function showAlertComponent(outerErrorNote) {
-    setTimeout(function () {
-      alertComponentBlockId.style.opacity = 1;
-    }, 500);
 
-    alertComponentBlockId.innerHTML = "<component-alert>";
-    riot.mount('component-alert', {"errornote": outerErrorNote});
+    window.common.alert.show("componentAlertId", {"errornote": outerErrorNote});
   }
 
   function showConfirmComponent(outerConfirmNote, confirmType) {
-    setTimeout(function () {
-      alertComponentBlockId.style.opacity = 1;
-    }, 500);
 
-    alertComponentBlockId.innerHTML = "<component-confirm>";
-    riot.mount('component-confirm', {
+    window.common.alert.show("componentConfirmId", {
       "confirmnote": outerConfirmNote,
       "confirmtype": confirmType
     });

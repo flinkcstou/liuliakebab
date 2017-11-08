@@ -33,7 +33,7 @@
 
       if (Math.abs(closeButtonStartX - closeButtonEndX) <= 20 && Math.abs(closeButtonStartY - closeButtonEndY) <= 20) {
 
-        componentSuccessId.style.display = 'none';
+        window.common.alert.hide("componentSuccessId");
         console.log("before success", history.arrayOfHistory)
         console.log("OPTS in success component", opts)
         if (opts.step_amount) {

@@ -4,7 +4,8 @@
     <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
          class="{back-button: backbuttoncheck}">
     </div>
-    <div id="rightButton" type="button" class="{check-button: rightbuttoncheck}" ontouchstart="saveEditStart()" ontouchend="saveEditEnd()"></div>
+    <div id="rightButton" type="button" class="{check-button: rightbuttoncheck}" ontouchstart="saveEditStart()"
+         ontouchend="saveEditEnd()"></div>
   </div>
   <div class="card-edit-body-container">
     <div class="card-edit-field">
@@ -18,10 +19,8 @@
     </div>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
   <script>
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-card-edit') {
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-card-edit') {
       history.arrayOfHistory.push(
         {
           "view": 'view-card-edit',
@@ -32,11 +31,10 @@
     }
 
     var scope = this;
-    scope.showError = false;
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;
     scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-    var isMain
+    var isMain;
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
@@ -44,7 +42,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      backButton.style.webkitTransform = 'scale(0.7)'
+      backButton.style.webkitTransform = 'scale(0.7)';
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;
@@ -55,19 +53,19 @@
       event.preventDefault();
       event.stopPropagation();
 
-      backButton.style.webkitTransform = 'scale(1)'
+      backButton.style.webkitTransform = 'scale(1)';
 
       goBackButtonEndX = event.changedTouches[0].pageX;
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
-        onBackKeyDown()
-        scope.unmount()
+        onBackKeyDown();
+        scope.unmount();
       }
     };
 
     this.on('mount', function () {
-      console.log("OPTS CARD", opts)
+      console.log("OPTS CARD", opts);
       if (opts[0]) {
         scope.card = opts[0];
         console.log('scope.card from opt', scope.card);
@@ -81,7 +79,6 @@
           isMain = scope.card.default_account;
           scope.update();
         }
-
       }
 
       if (isMain) {
@@ -170,9 +167,12 @@
 
               }
               else {
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: result[0][0].error_note
+                });
                 scope.update();
               }
 
@@ -228,9 +228,12 @@
 
               }
               else if (result[0][0].error != 0) {
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: result[0][0].error_note
+                });
                 scope.update();
               }
             },

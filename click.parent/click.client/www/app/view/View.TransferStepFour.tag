@@ -77,30 +77,9 @@
       </button>
     </div>
   </code-confirm>
-  <component-success id="componentSuccessId"
-                     operationmessage="{window.languages.ComponentSuccessMessage}"
-                     viewpage="view-transfer" step_amount="{3}"></component-success>
-  <component-unsuccess id="componentUnsuccessId" step_amount="{3}"
-                       operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
-                       operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{errorMessageFromTransfer}"
-  ></component-unsuccess>
-
-  <component-in-processing id="componentInProcessingId"
-                           operationmessagepartone="{window.languages.ComponentInProcessingPartOneForTransfer}"
-                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwoForTransfer}"
-                           step_amount="{3}"></component-in-processing>
-
-  <component-alert if="{showError}" clickpinerror="{clickPinError}" errorcode="{errorCode}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-
-  <component-result if="{window.componentFlags.result}" resulttext="{resultText}"
-                    viewpage="{viewPage}" step_amount="{stepAmount}"></component-result>
 
   <script>
+
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
       history.arrayOfHistory.push(
         {
@@ -114,10 +93,8 @@
     var scope = this;
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = false;
-    scope.showError = false;
     scope.errorCode = 0;
     scope.stepAmount = 3;
-    componentFlags.result = false;
 
     var pageToReturnIfError = 'view-main-page';
 
@@ -319,26 +296,40 @@
 
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
       console.log("OPEN RESULT COMPONENT");
-      window.componentFlags.result = showResult;
+
 //      scope.showResult = showResult;
       scope.stepAmount = stepAmount;
+
       scope.viewPage = viewPage;
       scope.resultText = text;
       updateIcon(status);
       scope.update();
-    }
+
+      if (showResult) {
+
+        window.common.alert.updateView("componentResultId", {
+          parent: scope,
+          resulttext: scope.resultText,
+          viewpage: scope.viewPage,
+          step_amount: scope.stepAmount
+        });
+      } else {
+
+        window.common.alert.hide("componentResultId");
+      }
+    };
 
     closeResultComponent = function () {
-      scope.showResult = false;
-      window.componentFlags.result = false;
+      window.common.alert.hide("componentResultId");
       scope.update();
-    }
+    };
 
     initResultComponent = function () {
-      scope.showResult = true;
-      window.componentFlags.result = true;
+      window.common.alert.updateView("componentResultId", {
+        parent: scope,
+      });
       scope.update();
-    }
+    };
 
     transferStepTouchStart = function () {
       event.preventDefault();
@@ -360,8 +351,13 @@
       if (Math.abs(transferStepTouchStartX - transferStepTouchEndX) <= 20 && Math.abs(transferStepTouchStartY - transferStepTouchEndY) <= 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
           scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errorcode: scope.errorCode,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+          });
           scope.update();
           return
         }
@@ -527,8 +523,13 @@
 
     closeSecretCodePage = function () {
       blockCodeConfirmId.style.display = 'none';
-      componentInProcessingId.style.display = 'block';
-    }
+      window.common.alert.show("componentInProcessingId", {
+        parent: scope,
+        operationmessagepartone: window.languages.ComponentInProcessingPartOneForTransfer,
+        operationmessageparttwo: window.languages.ComponentInProcessingPartTwoForTransfer,
+        step_amount: 3,
+      });
+    };
 
     if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
       console.log("payTransferConfirmed=", sessionStorage.getItem('payTransferConfirmed'))

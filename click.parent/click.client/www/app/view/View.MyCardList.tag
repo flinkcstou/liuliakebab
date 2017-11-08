@@ -34,10 +34,6 @@
 
   </div>
 
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
   <script>
     var scope = this;
     this.titleName = window.languages.ViewMyCardListTitleName;
@@ -207,9 +203,12 @@
                 }
               }
               else {
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: result[0][0].error_note
+                });
                 scope.update();
               }
             },
@@ -424,9 +423,11 @@
               }
             }
             else {
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: result[0][0].error_note
+              });
               scope.update();
             }
           },
@@ -541,8 +542,10 @@
 
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
-          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
 //        confirm(question)
 //        scope.confirmShowBool = true;
 //        scope.confirmNote = question;

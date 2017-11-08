@@ -46,11 +46,7 @@
     </div>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
-
 
     console.log('OPTS', opts);
 
@@ -66,8 +62,6 @@
     }
 
     var scope = this;
-
-    scope.showError = false;
 
     touchStartTitle = function () {
       event.preventDefault();
@@ -111,7 +105,11 @@
               console.log(cardSumFromPinCards, opts.qrSum)
               scope.clickPinError = false;
               scope.errorNote = "На выбранной карте недостаточно средств";
-              scope.showError = true;
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+              });
               riot.update();
               return;
             }
@@ -125,7 +123,11 @@
       if (!scope.checked) {
         scope.clickPinError = false;
         scope.errorNote = "Выберите карту для оплаты";
-        scope.showError = true;
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          clickpinerror: scope.clickPinError,
+          errornote: scope.errorNote,
+        });
         scope.update();
         return;
 

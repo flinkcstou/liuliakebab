@@ -30,9 +30,6 @@
     <component-keyboard></component-keyboard>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <component-tour view="registration"></component-tour>
 
   <script>
@@ -41,8 +38,6 @@
     scope.messageTitle = window.languages.ViewSmsCodeActivationText;
     scope.messageTitleTwo = '';
     scope.phoneNumber = localStorage.getItem('click_client_phoneNumber');
-
-    scope.showError = false;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-sms') {
       history.arrayOfHistory.push(
@@ -398,7 +393,13 @@
             else {
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_code;
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+              });
+
               scope.update();
             }
         },
@@ -417,14 +418,22 @@
             registrationConfirm(scope.confirmSms, phoneNumber, deviceId);
           }
           if (countOfCall == 3 && !checkServiceAnswer) {
-            scope.showError = true;
             scope.errorNote = "Сервис временно недоступен";
             countOfCall = 0;
             if (device.platform !== 'BrowserStand') {
               console.log("Spinner Stop View SMS 422");
               SpinnerPlugin.activityStop();
             }
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+            });
+
             scope.update();
+
+            return;
           }
         }, 10000);
 
@@ -451,7 +460,13 @@
       if (Math.abs(resendTouchStartX - resendTouchEndX) <= 20 && Math.abs(resendTouchStartY - resendTouchEndY) <= 20) {
         scope.clickPinError = false;
         scope.errorNote = window.languages.ViewSmsResendText + localStorage.getItem('click_client_phoneNumber');
-        scope.showError = true;
+
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          clickpinerror: scope.clickPinError,
+          errornote: scope.errorNote,
+        });
+
         scope.update();
 //      alert(window.languages.ViewSmsResendText + localStorage.getItem('click_client_phoneNumber'));
         resendSms();

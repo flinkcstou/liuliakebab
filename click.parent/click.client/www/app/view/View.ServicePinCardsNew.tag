@@ -56,11 +56,6 @@
     </div>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-
   <component-tour view="friendhelp"></component-tour>
 
   <script>
@@ -68,7 +63,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards-new') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-service-pincards-new',
+          "view": 'view-service-pincards-new',
           "params": opts
         }
       );
@@ -76,7 +71,6 @@
     }
 
     var scope = this;
-    scope.showError = false;
 
     var backStartY, backStartX, backEndY, backEndX;
 
@@ -187,7 +181,12 @@
           console.log(cardSumFromPinCards, opts.amountText)
           scope.clickPinError = false;
           scope.errorNote = "На выбранной карте недостаточно средств";
-          scope.showError = true;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+          });
           riot.update();
           return;
         }
@@ -222,7 +221,13 @@
         if (!scope.checked) {
           scope.clickPinError = false;
           scope.errorNote = "Выберите карту для оплаты";
-          scope.showError = true;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+          });
+
           scope.update();
           return;
         }
@@ -234,9 +239,15 @@
       if (modeOfApp.demoVersion) {
         var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-        scope.confirmShowBool = true;
         scope.confirmNote = question;
         scope.confirmType = 'local';
+
+        window.common.alert.show("componentConfirmId", {
+          "confirmnote": scope.confirmNote,
+          "confirmtype": scope.confirmType,
+          parent: scope,
+        });
+
         scope.result = function (bool) {
           if (bool) {
             localStorage.clear();

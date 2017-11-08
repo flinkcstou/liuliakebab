@@ -32,9 +32,6 @@
 
   </div>
 
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-
   <script>
     var scope = this;
     console.log('OPTS in FriendHelp', opts);
@@ -46,7 +43,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-friend-help-settings') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-friend-help-settings',
+          "view": 'view-friend-help-settings',
           "params": opts
         }
       );
@@ -101,9 +98,9 @@
 
       window.api.call({
         method: 'check.contact.list',
-        input : {
-          phone_num  : phoneNumber,
-          phone_list : scope.arrayOfPhoneNumbers,
+        input: {
+          phone_num: phoneNumber,
+          phone_list: scope.arrayOfPhoneNumbers,
           session_key: sessionKey,
 
         },
@@ -366,10 +363,15 @@
 
         var question = "Подтвердите удаление из списка";
 
-
-        scope.confirmShowBool = true;
         scope.confirmNote = question;
         scope.confirmType = 'local';
+
+        window.common.alert.show("componentConfirmId", {
+          "confirmnote": scope.confirmNote,
+          "confirmtype": scope.confirmType,
+          parent: scope,
+        });
+
         scope.result = function (bool) {
           if (bool) {
             var idOfBlock = 'id' + idWithoutPrefix;

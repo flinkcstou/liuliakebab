@@ -16,6 +16,158 @@ viewAuthorization.check = false;
 
 window.isConnected = false;
 
+window.common = {};
+window.common.alert = {
+  ids: [
+    "componentAlertId", //component-alert
+    "componentConfirmId", //component-confirm
+    "componentInProcessingId", //component-in-processing
+    "componentResultId", //component-result
+    "componentSuccessId", //component-success
+    "componentUnsuccessId", //component-unsuccess
+    "componentGeneratedQrId" //component-generated-qr
+  ],
+  priorities: {
+    "componentAlertId": 4,
+    "componentConfirmId": 6,
+    "componentInProcessingId": 2,
+    "componentResultId": 1,
+    "componentSuccessId": 3,
+    "componentUnsuccessId": 3,
+    "componentGeneratedQrId": 3
+  },
+  tags: {
+    "componentAlertId": "component-alert",
+    "componentConfirmId": "component-confirm",
+    "componentInProcessingId": "component-in-processing",
+    "componentResultId": "component-result",
+    "componentSuccessId": "component-success",
+    "componentUnsuccessId": "component-unsuccess",
+    "componentGeneratedQrId": "component-generated-qr"
+  },
+  scopes: {},
+  hide: function (id) {
+
+    console.log(id);
+
+    try {
+
+      if (!window.common.alert.scopes[id]) return;
+      window.common.alert.scopes[id].unmount();
+      delete window.common.alert.scopes[id];
+    } catch (error) {
+
+      console.error(error);
+    }
+  },
+  updateView: function (id, params) {
+
+    if (!window.common.alert.isShown()) {
+
+      window.common.alert.show(id, params);
+      return;
+    }
+
+    for (var i in window.common.alert.scopes) {
+
+      if (i === id) {
+
+        for (var j in params) {
+
+          window.common.alert.scopes[i][j] = params[j];
+          window.common.alert.scopes[i].update();
+        }
+
+        return;
+      }
+    }
+  },
+  compare2Ids: function (id1, id2) {
+
+    console.log(id1, id2);
+
+    if (!window.common.alert.priorities[id1]) return undefined;
+    if (!window.common.alert.priorities[id2]) return undefined;
+
+    if (window.common.alert.priorities[id1] > window.common.alert.priorities[id2]) return 1;
+    if (window.common.alert.priorities[id1] < window.common.alert.priorities[id2]) return -1;
+    if (window.common.alert.priorities[id1] === window.common.alert.priorities[id2]) return 0;
+  },
+  show: function (id, params) {
+
+    console.log(id);
+
+    if (!window.common.alert.priorities[id]) return;
+
+    var show = true;
+
+    try {
+
+      SpinnerPlugin.activityStop();
+    } catch (error) {
+
+      console.error(error);
+    }
+
+    for (var i = 0; i < window.common.alert.ids.length; i++) {
+
+      var element = window.common.alert.ids[i];
+
+      if (!window.common.alert.isShown(element)) {
+
+        console.log("Is Not Shown", element);
+        continue;
+      }
+
+      if (id !== element && window.common.alert.compare2Ids(id, element) >= 0) {
+
+        window.common.alert.hide(element);
+      }
+
+      if (window.common.alert.compare2Ids(id, element) < 0) {
+
+        show = false;
+      }
+    }
+
+    if (show) {
+
+      try {
+
+        alertTags.innerHTML = "<" + window.common.alert.tags[id] + ">";
+        window.common.alert.scopes[id] = riot.mount(window.common.alert.tags[id], params)[0];
+      } catch (error) {
+
+        console.error(error);
+      }
+    }
+  },
+  isShown: function (id) {
+
+    console.log(id);
+
+    console.log("IS SHOWN FUNC ELEMENT", id, window[id]);
+
+    if (!window[id]) return false;
+
+    console.log("IS SHOWN FUNC ELEMENT SCOPE", id, window.common.alert.scopes[id]);
+
+    if (!window.common.alert.scopes[id]) return false;
+
+    try {
+
+      console.log("IS SHOWN FUNC ELEMENT SCOPE", id, window[id], window[id].style.display);
+
+      if (window[id].style.display !== "none") return true;
+    } catch (error) {
+
+      console.error(error);
+    }
+
+    return false;
+  }
+};
+
 window.lastSocketMethodToSend;
 
 window.viewRegistrationDevice = {};
@@ -115,16 +267,6 @@ window.News.newsCounter = 0;
 window.fingerPrint = {};
 window.fingerPrint.check = false;
 window.fingerPrint.fingerPrintInitialize = false;
-
-window.componentFlags = {
-  alert: false,
-  result: false,
-  inProcessing: false,
-  success: false,
-  unsuccess: false,
-  confirm: false,
-};
-
 
 window.representDotedDate = function (left, middle, right) {
 

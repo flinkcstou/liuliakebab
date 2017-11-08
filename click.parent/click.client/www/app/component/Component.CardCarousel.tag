@@ -59,8 +59,6 @@
 
     </div>
   </div>
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
 
   <script>
 
@@ -70,8 +68,6 @@
     scope.invoiceList = [];
 
     var arrayOfPhones = [];
-
-    scope.showError = false;
 
     scope.checkSumOfHash = true;
     scope.addFirstCardBool = false;
@@ -380,9 +376,15 @@
             }
           }
           else {
+
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote
+            });
             scope.update();
           }
         },
@@ -602,9 +604,15 @@
                 }
               }
               else {
+
                 scope.clickPinError = false;
                 scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote
+                });
                 scope.update();
               }
             },
