@@ -140,9 +140,12 @@
 
             if ((!isDefault && hasDefault) || Object.keys(cards).length === 0) {
               console.log("First condition");
-              scope.parent.viewPage = "view-main-page";
-              riot.update();
-              componentSuccessId.style.display = 'block';
+
+              window.common.alert.show("componentSuccessId", {
+                parent: scope,
+                operationmessage: window.languages.ViewMyCardSuccessDelete,
+                viewpage: "view-main-page"
+              });
               deleteCardComponentId.style.display = 'none';
 
             } else {
@@ -152,9 +155,11 @@
 
               } else {
                 console.log("Third condition");
-                scope.parent.viewPage = "view-default-account";
-                riot.update();
-                componentSuccessId.style.display = 'block';
+                window.common.alert.show("componentSuccessId", {
+                  parent: scope,
+                  operationmessage: window.languages.ViewMyCardSuccessDelete,
+                  viewpage: "view-default-account"
+                });
                 deleteCardComponentId.style.display = 'none';
               }
             }
@@ -174,9 +179,11 @@
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          scope.parent.clickPinError = false;
-          scope.parent.errorNote = api_status_message;
-          scope.parent.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            viewpage: "view-main-page",
+            errornote: api_status_message
+          });
           deleteCardComponentId.style.display = "none";
           riot.update();
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -187,9 +194,11 @@
       setTimeout(function () {
         if (!answerFromServer) {
           answerFromServer = true;
-          scope.parent.clickPinError = false;
-          scope.parent.errorNote = window.languages.WaitingTimeExpiredText;
-          scope.parent.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            viewpage: "view-main-page",
+            errornote: window.languages.WaitingTimeExpiredText
+          });
           deleteCardComponentId.style.display = "none";
           riot.update();
           if (device.platform != 'BrowserStand') {
@@ -230,25 +239,33 @@
             }
             console.log("cards after default was set", cards);
             localStorage.setItem('click_client_cards', JSON.stringify(cards));
-            scope.parent.viewPage = "view-main-page";
-            riot.update();
-            componentSuccessId.style.display = 'block';
+
+            window.common.alert.show("componentSuccessId", {
+              parent: scope,
+              operationmessage: window.languages.ViewMyCardSuccessDelete,
+              viewpage: "view-main-page"
+            });
             deleteCardComponentId.style.display = 'none';
             return;
 
           }
           else if (result[0][0].error != 0) {
-            scope.parent.clickPinError = false;
-            scope.parent.errorNote = result[0][0].error_note;
-            scope.parent.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              viewpage: "view-main-page",
+              errornote: result[0][0].error_note
+            });
             deleteCardComponentId.style.display = "none";
             riot.update();
           }
         },
         onFail: function (api_status, api_status_message, data) {
-          scope.parent.clickPinError = false;
-          scope.parent.errorNote = api_status_message;
-          scope.parent.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            viewpage: "view-main-page",
+            errornote: api_status_message
+          });
           deleteCardComponentId.style.display = "none";
           riot.update();
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
