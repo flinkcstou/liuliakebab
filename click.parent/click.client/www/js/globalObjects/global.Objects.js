@@ -75,7 +75,6 @@ window.common.alert = {
           window.common.alert.scopes[i].update();
           console.log(window[i], "AND", window.common.alert.scopes[i]);
         }
-        riot.update();
         return;
       }
     }
