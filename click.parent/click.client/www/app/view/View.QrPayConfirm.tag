@@ -230,13 +230,13 @@
 
         console.log("inputObject", inputObject)
 
+        scope.update();
         window.common.alert.updateView("componentResultId", {
           parent: scope,
           resulttext: scope.resultText,
           viewpage: scope.viewPage,
           step_amount: scope.stepAmount
         });
-        scope.update();
 
         window.api.call({
           method: 'app.payment',
@@ -398,9 +398,7 @@
       scope.stepAmount = stepAmount;
       scope.viewPage = viewPage;
       scope.resultText = text;
-      updateIcon(status, null, null, text, stepAmount);
-      scope.update();
-
+      updateIcon(status);
       if (showResult) {
 
         window.common.alert.updateView("componentResultId", {

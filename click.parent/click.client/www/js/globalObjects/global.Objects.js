@@ -71,10 +71,11 @@ window.common.alert = {
 
       if (i === id) {
         for (var j in params) {
-          window.common.alert.scopes[i][j] = params[j];
-          window.common.alert.scopes[i].update();
-          console.log(window[i], "AND", window.common.alert.scopes[i]);
+          window.common.alert.scopes[i].opts[j] = params[j];
+          console.log("Param", j, "value", params[j]);
         }
+        console.log("Setted opts", window.common.alert.scopes[i].opts);
+        window.common.alert.scopes[i].update();
         return;
       }
     }

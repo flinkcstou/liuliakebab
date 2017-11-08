@@ -286,6 +286,7 @@
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
       console.log("OPEN RESULT COMPONENT:", showResult, status, text);
 
+      updateIcon(status);
       if (showResult) {
 
         window.common.alert.updateView("componentResultId", {
@@ -298,9 +299,6 @@
 
         window.common.alert.hide("componentResultId");
       }
-
-      updateIcon(status, null, null, text, stepAmount);
-      riot.update();
     }
 
     closeResultComponent = function () {
