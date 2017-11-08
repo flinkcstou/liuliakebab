@@ -67,7 +67,7 @@
                            operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"
                            step_amount="{0}"></component-in-processing>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}" errorcode="{errorCode}"
+  <component-alert if="{showError}" errorcode="{errorCode}" viewpage="{viewPage}"
                    errornote="{errorNote}"></component-alert>
 
   <component-result if="{window.componentFlags.result}" resulttext="{resultText}"
@@ -167,6 +167,8 @@
             console.log("closed");
           });
         }
+
+        var answerFromServer = false;
         window.api.call({
           method: 'invoice.action',
           input: {
@@ -177,6 +179,7 @@
           },
           scope: this,
           onSuccess: function (result) {
+            answerFromServer = true;
 
             console.log("result of invoice payment decline", result);
 
@@ -187,15 +190,35 @@
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
               scope.showError = true;
+              scope.viewPage = 'view-main-page';
               scope.update();
             }
           },
 
           onFail: function (api_status, api_status_message, data) {
+            answerFromServer = true;
+            scope.errorNote = api_status_message;
+            scope.showError = true;
+            scope.viewPage = 'view-main-page';
+            scope.update();
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
         });
+
+        setTimeout(function () {
+          if (!answerFromServer) {
+            answerFromServer = true;
+            scope.showError = true;
+            scope.errorNote = window.languages.WaitingTimeExpiredText;
+            scope.viewPage = 'view-main-page';
+            scope.update();
+            if (device.platform !== 'BrowserStand') {
+              console.log("Spinner stop in authorization by timeout");
+              SpinnerPlugin.activityStop();
+            }
+          }
+        }, 30000)
       }
     };
 
