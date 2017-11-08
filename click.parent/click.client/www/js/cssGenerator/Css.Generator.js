@@ -11901,7 +11901,7 @@ var css = {
   "width: 100%;" +
   //"background-color: white;" +
   "background-image: url(resources/icons/transparent.png);" +
-  "z-index: 999999999;" +
+  "z-index: 9999999;" +
   "}",
 
   componentResultMessage: ".component-result-message" +

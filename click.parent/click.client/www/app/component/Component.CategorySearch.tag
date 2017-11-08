@@ -10,31 +10,19 @@
     <div class="search-suggestion-container">
       <div id="suggestionOneId" class="search-suggestion-field-one" ontouchstart="suggestionFieldOneTouchStart()"
            ontouchend="suggestionFieldOneTouchEnd()">
-        <p class="search-part-of-suggestion">{onePartOne}
-          <mark class="search-selected-field-color">{onePartTwo}</mark>
-          {onePartThree}
-        </p>
+        <p class="search-part-of-suggestion">{onePartOne}<mark class="search-selected-field-color">{onePartTwo}</mark>{onePartThree}</p>
       </div>
       <div id="suggestionTwoId" class="search-suggestion-field-two" ontouchstart="suggestionFieldTwoTouchStart()"
            ontouchend="suggestionFieldTwoTouchEnd()">
-        <p class="search-part-of-suggestion">{twoPartOne}
-          <mark class="search-selected-field-color">{twoPartTwo}</mark>
-          {twoPartThree}
-        </p>
+        <p class="search-part-of-suggestion">{twoPartOne}<mark class="search-selected-field-color">{twoPartTwo}</mark>{twoPartThree}</p>
       </div>
       <div id="suggestionThreeId" class="search-suggestion-field-three" ontouchstart="suggestionFieldThreeTouchStart()"
            ontouchend="suggestionFieldThreeTouchEnd()">
-        <p class="search-part-of-suggestion">{threePartOne}
-          <mark class="search-selected-field-color">{threePartTwo}</mark>
-          {threePartThree}
-        </p>
+        <p class="search-part-of-suggestion">{threePartOne}<mark class="search-selected-field-color">{threePartTwo}</mark>{threePartThree}</p>
       </div>
       <div id="suggestionFourId" class="search-suggestion-field-four" ontouchstart="suggestionFieldFourTouchStart()"
            ontouchend="suggestionFieldFourTouchEnd()">
-        <p class="search-part-of-suggestion">{fourPartOne}
-          <mark class="search-selected-field-color">{fourPartTwo}</mark>
-          {fourPartThree}
-        </p>
+        <p class="search-part-of-suggestion">{fourPartOne}<mark class="search-selected-field-color">{fourPartTwo}</mark>{fourPartThree}</p>
       </div>
     </div>
   </div>
@@ -58,22 +46,22 @@
       event.preventDefault();
       event.stopPropagation();
 
-      console.log('scope.parent', scope.parent)
+      console.log('scope.parent', scope.parent);
 
 
-      rightButton.style.webkitTransform = 'scale(0.8)'
+      rightButton.style.webkitTransform = 'scale(0.8)';
 
       searchButtonStartX = event.changedTouches[0].pageX;
       searchButtonStartY = event.changedTouches[0].pageY;
 
 
-    }
+    };
 
     searchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      rightButton.style.webkitTransform = 'scale(1)'
+      rightButton.style.webkitTransform = 'scale(1)';
 
       searchButtonEndX = event.changedTouches[0].pageX;
       searchButtonEndY = event.changedTouches[0].pageY;
@@ -95,7 +83,7 @@
         }
       }
 
-    }
+    };
 
     var xButtonStartX, xButtonEndX, xButtonStartY, xButtonEndY;
 
@@ -107,11 +95,11 @@
       console.log("Search Cancel Start", event.changedTouches[0].pageX);
       console.log("Search Cancel Start", event.changedTouches[0].pageY);
 
-      closeSearchButtonId.style.webkitTransform = 'scale(0.8)'
+      closeSearchButtonId.style.webkitTransform = 'scale(0.8)';
 
       xButtonStartX = event.changedTouches[0].pageX;
       xButtonStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     searchCancelEnd = function () {
       event.preventDefault();
@@ -121,7 +109,7 @@
       console.log("Search Cancel End", event.changedTouches[0].pageX);
       console.log("Search Cancel End", event.changedTouches[0].pageY);
 
-      closeSearchButtonId.style.webkitTransform = 'scale(1)'
+      closeSearchButtonId.style.webkitTransform = 'scale(1)';
 
       xButtonEndX = event.changedTouches[0].pageX;
       xButtonEndY = event.changedTouches[0].pageY;
@@ -131,7 +119,7 @@
         scope.searchWord = '';
         searchInputId.autofocus = false;
       }
-    }
+    };
 
     searchSuggestion = function () {
 
@@ -233,9 +221,17 @@
                 scope.suggestionOne.form_type = wordOfFunction.form_type;
               }
 
+
               scope.onePartOne = scope.suggestionOne.name.substring(0, index);
               scope.onePartTwo = scope.suggestionOne.name.substring(index, scope.searchWord.length + scope.onePartOne.length);
               scope.onePartThree = scope.suggestionOne.name.substring(scope.onePartTwo.length + scope.onePartOne.length, scope.suggestionOne.name.length);
+
+              console.log("scope.suggestionOne.name=", scope.suggestionOne.name)
+              console.log("scope.onePartOne=", "!" + scope.onePartOne, "!" + scope.suggestionOne.name.substring(0, index) + "!")
+              console.log("scope.onePartTwo=" + "!" + scope.onePartTwo + "!" + scope.suggestionOne.name.substring(index, scope.searchWord.length + scope.onePartOne.length) + "!")
+              console.log("scope.onePartThree=" + "'" + scope.onePartThree + "'" + scope.suggestionOne.name.substring(scope.onePartTwo.length + scope.onePartOne.length, scope.suggestionOne.name.length) + "!")
+              console.log("sample=" + "q" + "asd" + "q");
+
 
               scope.update();
             }
@@ -256,7 +252,7 @@
 
 
         })
-    }
+    };
 
     var suggestionOneTouchStartX,
       suggestionOneTouchStartY,
@@ -270,7 +266,7 @@
       suggestionOneTouchStartX = event.changedTouches[0].pageX;
       suggestionOneTouchStartY = event.changedTouches[0].pageY;
 
-    }
+    };
 
 
     suggestionFieldOneTouchEnd = function () {
@@ -285,7 +281,7 @@
         searchInputId.autofocus = false;
         blockSearchId.style.display = 'none';
         scope.parent.checkOfSearch = true;
-        scope.update(scope.parent.checkOfSearch)
+        scope.update(scope.parent.checkOfSearch);
 
         if (scope.suggestionOne.form_type) {
           scope.parent.onTouchEndOfService(scope.suggestionOne.id)
@@ -293,7 +289,7 @@
         else
           scope.parent.onTouchEndOfCategory(scope.suggestionOne.id);
       }
-    }
+    };
 
     var suggestionTwoTouchStartX,
       suggestionTwoTouchStartY,
@@ -307,7 +303,7 @@
       suggestionTwoTouchStartX = event.changedTouches[0].pageX;
       suggestionTwoTouchStartY = event.changedTouches[0].pageY;
 
-    }
+    };
 
     suggestionFieldTwoTouchEnd = function () {
       event.preventDefault();
@@ -321,14 +317,14 @@
         searchInputId.autofocus = false;
         blockSearchId.style.display = 'none';
         scope.parent.checkOfSearch = true;
-        scope.update(scope.parent.checkOfSearch)
+        scope.update(scope.parent.checkOfSearch);
         if (scope.suggestionTwo.form_type) {
           scope.parent.onTouchEndOfService(scope.suggestionTwo.id)
         }
         else
           scope.parent.onTouchEndOfCategory(scope.suggestionTwo.id);
       }
-    }
+    };
 
     var suggestionThreeTouchStartX,
       suggestionThreeTouchStartY,
@@ -342,7 +338,7 @@
       suggestionThreeTouchStartX = event.changedTouches[0].pageX;
       suggestionThreeTouchStartY = event.changedTouches[0].pageY;
 
-    }
+    };
 
 
     suggestionFieldThreeTouchEnd = function () {
@@ -358,14 +354,14 @@
         searchInputId.autofocus = false;
         blockSearchId.style.display = 'none';
         scope.parent.checkOfSearch = true;
-        scope.update(scope.parent.checkOfSearch)
+        scope.update(scope.parent.checkOfSearch);
         if (scope.suggestionThree.form_type) {
           scope.parent.onTouchEndOfService(scope.suggestionThree.id)
         }
         else
           scope.parent.onTouchEndOfCategory(scope.suggestionThree.id);
       }
-    }
+    };
 
     var suggestionFourTouchStartX,
       suggestionFourTouchStartY,
@@ -379,7 +375,7 @@
       suggestionFourTouchStartX = event.changedTouches[0].pageX;
       suggestionFourTouchStartY = event.changedTouches[0].pageY;
 
-    }
+    };
 
     suggestionFieldFourTouchEnd = function () {
       event.preventDefault();
@@ -393,7 +389,7 @@
         searchInputId.autofocus = false;
         blockSearchId.style.display = 'none';
         scope.parent.checkOfSearch = true;
-        scope.update(scope.parent.checkOfSearch)
+        scope.update(scope.parent.checkOfSearch);
 
         if (scope.suggestionFour.form_type) {
           scope.parent.onTouchEndOfService(scope.suggestionFour.id)
