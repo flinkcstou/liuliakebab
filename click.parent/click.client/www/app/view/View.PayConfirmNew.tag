@@ -663,6 +663,7 @@
           }
           else {
             answerFromServer = true;
+            console.log("Error on app.payment",   result[0][0].error_note);
             updateResultComponent(true, appPaymentErrorStep, null, 'unsuccess', result[0][0].error_note);
           }
         },

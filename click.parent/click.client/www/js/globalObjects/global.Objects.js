@@ -62,8 +62,7 @@ window.common.alert = {
   },
   updateView: function (id, params) {
 
-    if (!window.common.alert.isShown()) {
-
+    if (!window.common.alert.isShown(id)) {
       window.common.alert.show(id, params);
       return;
     }
@@ -71,7 +70,7 @@ window.common.alert = {
     for (var i in window.common.alert.scopes) {
 
       if (i === id) {
-
+        console.log("This scope", window.common.alert.scopes);
         for (var j in params) {
 
           window.common.alert.scopes[i][j] = params[j];
@@ -118,7 +117,7 @@ window.common.alert = {
 
       if (!window.common.alert.isShown(element)) {
 
-        console.log("Is Not Shown", element);
+        // console.log("Is Not Shown", element);
         continue;
       }
 
@@ -150,18 +149,23 @@ window.common.alert = {
     // console.log(id);
     //
     // console.log("IS SHOWN FUNC ELEMENT", id, window[id]);
-
-    if (!window[id]) return false;
+    if (!window[id]) {
+      return false;
+    }
 
     // console.log("IS SHOWN FUNC ELEMENT SCOPE", id, window.common.alert.scopes[id]);
 
-    if (!window.common.alert.scopes[id]) return false;
+    if (!window.common.alert.scopes[id]){
+      return false;
+    }
 
     try {
 
       // console.log("IS SHOWN FUNC ELEMENT SCOPE", id, window[id], window[id].style.display);
 
-      if (window[id].style.display !== "none") return true;
+      if (window[id].style.display !== "none") {
+        return true;
+      }
     } catch (error) {
 
       console.error(error);
