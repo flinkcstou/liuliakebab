@@ -17,13 +17,16 @@
     scope.restart = false;
     scope.buttonText = window.languages.ComponentResultClose;
 
-    this.on('updated', function() { console.log('Updated!') });
+    this.on('updated', function () {
+      console.log('Updated!')
+    });
 
 
-    updateIcon = function (result, checkStatus, from, text, stepAmount) {
+    updateIcon = function (result, checkStatus, from, text, stepAmount, viewPage) {
       console.log(result, checkStatus, from, text, stepAmount);
       opts.resulttext = text;
       opts.step_amount = stepAmount;
+      opts.viewpage = viewPage;
       scope.update();
       console.log("CHANGE GIF", result, checkStatus);
       resultButtonId.classList.remove("component-result-button-stop");

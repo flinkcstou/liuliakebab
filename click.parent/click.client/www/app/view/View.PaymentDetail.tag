@@ -74,6 +74,49 @@
 
     console.log("OPTS Payment Detail", opts)
 
+    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+      console.log("OPEN RESULT COMPONENT");
+//      scope.showResult = showResult;
+
+      scope.stepAmount = stepAmount;
+      scope.viewPage = viewPage;
+      scope.resultText = text;
+
+      if (showResult) {
+
+        window.common.alert.updateView("componentResultId", {
+          parent: scope,
+          resulttext: scope.resultText,
+          viewpage: scope.viewPage,
+          step_amount: scope.stepAmount,
+          parent: scope
+        });
+      } else {
+
+        window.common.alert.hide("componentResultId");
+      }
+      updateIcon(status, null, null, text, stepAmount, scope.viewPage);
+      scope.update();
+    };
+
+    closeResultComponent = function () {
+      scope.showResult = false;
+      window.common.alert.hide("componentResultId");
+      scope.update();
+    };
+
+    initResultComponent = function () {
+
+      window.common.alert.updateView("componentResultId", {
+        parent: scope,
+        resulttext: scope.resultText,
+        viewpage: scope.viewPage,
+        step_amount: scope.stepAmount,
+        parent: scope
+      });
+      scope.update();
+    };
+
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
     paymentDetailGoToBackStart = function () {
@@ -171,7 +214,7 @@
                 clickpinerror: false,
                 errornote: result[0][0].error_note,
                 errorcode: scope.errorCode,
-                viewpage :'view-main-page'
+                viewpage: 'view-main-page'
               });
             }
           },
@@ -183,7 +226,7 @@
               clickpinerror: false,
               errornote: api_status_message,
               errorcode: scope.errorCode,
-              viewpage :'view-main-page'
+              viewpage: 'view-main-page'
             });
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
@@ -198,7 +241,7 @@
               clickpinerror: false,
               errornote: window.languages.WaitingTimeExpiredText,
               errorcode: scope.errorCode,
-              viewpage :'view-main-page'
+              viewpage: 'view-main-page'
             });
             if (device.platform !== 'BrowserStand') {
               console.log("Spinner stop in authorization by timeout");
@@ -347,7 +390,7 @@
               console.log(history.arrayOfHistory);
               sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-              updateResultComponent(true, paymentSuccessStep, null, 'unsuccess', result[0][0].error);
+              updateResultComponent(true, paymentSuccessStep, null, 'unsuccess', result[1][0].error);
 
             } else if (result[1][0].state == 2) {
               answerFromServer = true;
@@ -402,50 +445,6 @@
         }
       });
     }
-
-
-    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
-      console.log("OPEN RESULT COMPONENT");
-//      scope.showResult = showResult;
-
-      scope.stepAmount = stepAmount;
-      scope.viewPage = viewPage;
-      scope.resultText = text;
-
-      if (showResult) {
-
-        window.common.alert.updateView("componentResultId", {
-          parent: scope,
-          resulttext: scope.resultText,
-          viewpage: scope.viewPage,
-          step_amount: scope.stepAmount,
-          parent: scope
-        });
-      } else {
-
-        window.common.alert.hide("componentResultId");
-      }
-      updateIcon(status, null, null, text, stepAmount);
-      scope.update();
-    };
-
-    closeResultComponent = function () {
-      scope.showResult = false;
-      window.common.alert.hide("componentResultId");
-      scope.update();
-    };
-
-    initResultComponent = function () {
-
-      window.common.alert.updateView("componentResultId", {
-        parent: scope,
-        resulttext: scope.resultText,
-        viewpage: scope.viewPage,
-        step_amount: scope.stepAmount,
-        parent: scope
-      });
-      scope.update();
-    };
 
 
   </script>

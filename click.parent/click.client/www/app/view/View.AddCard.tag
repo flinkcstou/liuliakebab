@@ -93,14 +93,14 @@
         window.common.alert.updateView("componentResultId", {
           parent: scope,
           resulttext: text,
-          viewpage: viewPage,
+          viewpage: viewPage
         });
       } else {
 
         window.common.alert.hide("componentResultId");
       }
       scope.stepAmount = stepAmount;
-      updateIcon(status, null, null, text, stepAmount);
+      updateIcon(status, null, null, text, stepAmount, viewPage);
       scope.update();
     };
 
