@@ -471,7 +471,7 @@
 //              console.log("old icon 2", scope.cardsarray[i].url);
 
               if (count == (Object.keys(scope.cardsarray).length * 2)) {
-//                console.log("FINISH CACH", scope.cardsarray);
+                console.log("FINISH CACH", scope.cardsarray);
                 localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
                 scope.update();
               }
@@ -513,7 +513,7 @@
 //                  console.log("new icon 2=", scope.cardsarray[index2].url);
 
                   if (count == (Object.keys(scope.cardsarray).length * 2)) {
-//                    console.log("FINISH CACH", scope.cardsarray);
+                    console.log("FINISH CACH", scope.cardsarray);
                     localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
                     scope.update();
                   }
