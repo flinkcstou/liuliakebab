@@ -99,6 +99,45 @@
     console.log(opts[0]);
 
     var successStep = 3, errorStep = 0, waitingStep = 3, unsuccessStep = 2;
+
+    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+      console.log("OPEN RESULT COMPONENT");
+//      scope.showResult = showResult;
+
+      scope.stepAmount = stepAmount;
+      scope.viewPage = viewPage;
+      scope.resultText = text;
+      updateIcon(status, null, null, text, stepAmount, viewPage);
+      scope.update();
+
+      if (showResult) {
+
+        window.common.alert.updateView("componentResultId", {
+          parent: scope,
+          resulttext: scope.resultText,
+          viewpage: scope.viewPage,
+          step_amount: scope.stepAmount
+        });
+      } else {
+
+        window.common.alert.hide("componentResultId");
+      }
+    };
+
+    closeResultComponent = function () {
+      window.common.alert.hide("componentResultId");
+      scope.update();
+    };
+
+    initResultComponent = function () {
+      window.common.alert.updateView("componentResultId", {
+        parent: scope,
+        resulttext: scope.resultText,
+        viewpage: scope.viewPage,
+        step_amount: scope.stepAmount
+      });
+      scope.update();
+    };
     //
     //    if (scope.isInFavorites)
     //      this.viewPage = 'view-main-page';
@@ -230,13 +269,13 @@
 
         console.log("inputObject", inputObject)
 
-        scope.update();
         window.common.alert.updateView("componentResultId", {
           parent: scope,
           resulttext: scope.resultText,
           viewpage: scope.viewPage,
           step_amount: scope.stepAmount
         });
+        scope.update();
 
         window.api.call({
           method: 'app.payment',
@@ -390,43 +429,6 @@
         }
       });
     }
-
-    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
-      console.log("OPEN RESULT COMPONENT");
-//      scope.showResult = showResult;
-
-      scope.stepAmount = stepAmount;
-      scope.viewPage = viewPage;
-      scope.resultText = text;
-      updateIcon(status);
-      if (showResult) {
-
-        window.common.alert.updateView("componentResultId", {
-          parent: scope,
-          resulttext: scope.resultText,
-          viewpage: scope.viewPage,
-          step_amount: scope.stepAmount
-        });
-      } else {
-
-        window.common.alert.hide("componentResultId");
-      }
-    };
-
-    closeResultComponent = function () {
-      window.common.alert.hide("componentResultId");
-      scope.update();
-    };
-
-    initResultComponent = function () {
-      window.common.alert.updateView("componentResultId", {
-        parent: scope,
-        resulttext: scope.resultText,
-        viewpage: scope.viewPage,
-        step_amount: scope.stepAmount
-      });
-      scope.update();
-    };
 
 
   </script>

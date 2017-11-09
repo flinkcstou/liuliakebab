@@ -88,20 +88,20 @@
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
       console.log("OPEN RESULT COMPONENT");
 
-      scope.stepAmount = stepAmount;
-      updateIcon(status);
-
       if (showResult) {
 
         window.common.alert.updateView("componentResultId", {
           parent: scope,
           resulttext: text,
-          viewpage: viewPage,
+          viewpage: viewPage
         });
       } else {
 
         window.common.alert.hide("componentResultId");
       }
+      scope.stepAmount = stepAmount;
+      updateIcon(status, null, null, text, stepAmount, viewPage);
+      scope.update();
     };
 
     closeResultComponent = function () {
@@ -214,16 +214,15 @@
                 updateResultComponent(true, null, pageToReturnTwo, 'unsuccess', result[0][0].error_note);
 
               } else if (result[0][0].registered == 0) {
-
-                scope.repeat = true;
-                scope.checkId = result[0][0].check_id;
-                updateIcon('waiting');
-                scope.update();
                 window.common.alert.updateView("componentResultId", {
                   parent: scope,
                   resulttext: result[0][0].error_note,
                   viewpage: 'view-add-card'
                 });
+                scope.repeat = true;
+                scope.checkId = result[0][0].check_id;
+                updateIcon('waiting', scope.repeat, 'view-add-card');
+                scope.update();
 
               }
 
@@ -287,14 +286,15 @@
               updateResultComponent(true, null, pageToReturnTwo, 'unsuccess', result[0][0].error_note);
 
             } else if (result[0][0].registered == 0) {
-              scope.checkStatus = true;
-              scope.checkId = result[0][0].check_id;
-              updateIcon('waiting');
               window.common.alert.updateView("componentResultId", {
                 parent: scope,
                 resulttext: result[0][0].error_note,
                 viewpage: 'view-add-card'
               });
+              scope.checkStatus = true;
+              scope.checkId = result[0][0].check_id;
+              updateIcon('waiting', scope.checkStatus, 'view-add-card');
+              scope.update();
             }
 
           }

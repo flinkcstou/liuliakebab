@@ -86,33 +86,6 @@
       }
     });
 
-
-    //    cardEditFocus = function () {
-    //      event.preventDefault()
-    //      event.stopPropagation()
-    //
-    //      if (cardNameInputID.value.length > 25) {
-    //        return
-    //      }
-    //    }
-    //
-    //    cardEditKeyDown = function () {
-    //      if (cardNameInputID.value.length > 25) {
-    //        event.preventDefault()
-    //        event.stopPropagation()
-    //        return
-    //      }
-    //    }
-    //
-    //    cardEditKeyUp = function () {
-    //      event.preventDefault()
-    //      event.stopPropagation()
-    //
-    //      if (cardNameInputID.value.length > 25) {
-    //        return
-    //      }
-    //    }
-
     var saveButtonStartX, saveButtonEndX, saveButtonStartY, saveButtonEndY;
 
     saveEditStart = function () {
@@ -135,12 +108,10 @@
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         var newCardName = cardNameInputID.value;
-//      console.log("old name=", scope.card.name);
-//      console.log("new name=", newCardName);
-//      console.log("card id=", scope.card.card_id);
+
 
         if (scope.card.name != newCardName) {
-//        console.log("going to change name");
+
           window.api.call({
             method: 'settings.account.name',
             input: {
@@ -152,11 +123,10 @@
             scope: this,
 
             onSuccess: function (result) {
-//            console.log(result);
-//            console.log(result[0][0]);
+
               if (result[0][0].error == 0) {
                 scope.cardsArray[scope.card.card_id].name = newCardName;
-//              console.log("name new=", scope.cardsArray[scope.card.card_id].name);
+
                 //TODO: CHANGED - COMMENTED
                 if (isMain == scope.card.default_account) {
                   localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
@@ -186,7 +156,7 @@
           scope.noNameChange = true;
         }
         if (isMain != scope.card.default_account && !scope.onlyOneCard) {
-//        console.log("is main");
+
           window.api.call({
             method: 'settings.change.default.account',
             input: {
@@ -197,8 +167,7 @@
             scope: this,
 
             onSuccess: function (result) {
-//            console.log(result);
-//            console.log(result[0][0]);
+
               if (result[0][0].error == 0 && result[1][0]) {
                 var j = 2;
                 for (var i in scope.cardsArray) {
@@ -217,12 +186,11 @@
                   for (var k in scope.cardsArray) {
                     if (scope.cardsArray[k].countCard == i) {
                       scope.cardsarrayTwo[scope.cardsArray[k].card_id] = scope.cardsArray[k];
-//                    console.log("i=", i, ",card=", cardsarrayTwo[scope.cardsArray[k].card_id]);
+
                     }
                   }
                 }
-//              console.log("Default account ID new=", result[1][0].default_account_id);
-//              console.log("bool of current card=", scope.cardsArray[scope.card.card_id].default_account);
+
                 localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarrayTwo));
                 onBackKeyDown();
 
@@ -247,7 +215,7 @@
         }
 
         if (scope.noNameChange && scope.noBoolChange) {
-//        console.log("no changes");
+
           onBackKeyDown();
 
         }
@@ -258,11 +226,11 @@
 
     MakeMainCheck = function () {
       if (isMain) {
-//        console.log("false!!!");
+
         isMain = false;
         makeMainCheckId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
       } else {
-//        console.log("true!!!");
+
         isMain = true;
         makeMainCheckId.style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
       }

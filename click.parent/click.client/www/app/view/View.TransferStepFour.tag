@@ -303,8 +303,6 @@
       scope.viewPage = viewPage;
       scope.resultText = text;
 
-      updateIcon(status);
-
       if (showResult) {
 
         window.common.alert.updateView("componentResultId", {
@@ -317,6 +315,8 @@
 
         window.common.alert.hide("componentResultId");
       }
+      updateIcon(status, null, null, text, stepAmount, scope.viewPage);
+      scope.update();
     };
 
     closeResultComponent = function () {

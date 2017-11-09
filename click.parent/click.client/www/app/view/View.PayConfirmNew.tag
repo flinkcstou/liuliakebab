@@ -64,7 +64,7 @@
     <div class="payconfirm-bottom-container">
       <div class="payconfirm-action-autopay-container" if="{opts.mode!='ADDAUTOPAY'}">
         <div
-            class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
+          class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
           <div class="payconfirm-action-icon-one" if="{!isInFavorites}"
                style="background-image: url('resources/icons/ViewService/addfavorite.png');"
                ontouchstart="onTouchStartOfFavorite()"
@@ -286,7 +286,6 @@
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
       console.log("OPEN RESULT COMPONENT:", showResult, status, text);
 
-      updateIcon(status);
       if (showResult) {
 
         window.common.alert.updateView("componentResultId", {
@@ -299,6 +298,9 @@
 
         window.common.alert.hide("componentResultId");
       }
+
+      updateIcon(status, null, null, text, stepAmount, viewPage);
+      riot.update();
     }
 
     closeResultComponent = function () {
@@ -661,7 +663,7 @@
           }
           else {
             answerFromServer = true;
-            console.log("Error on app.payment",   result[0][0].error_note);
+            console.log("Error on app.payment", result[0][0].error_note);
             updateResultComponent(true, appPaymentErrorStep, null, 'unsuccess', result[0][0].error_note);
           }
         },

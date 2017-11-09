@@ -25,7 +25,7 @@
     scope.notificationAction = "";
 
     var numberOfMessage = 0;
-    var notificationText = "";
+    //    var notificationText = "";
 
     setTimeout(function () {
 
