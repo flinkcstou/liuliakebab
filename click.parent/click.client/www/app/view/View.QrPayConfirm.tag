@@ -107,9 +107,6 @@
       scope.stepAmount = stepAmount;
       scope.viewPage = viewPage;
       scope.resultText = text;
-      updateIcon(status, null, null, text, stepAmount, viewPage);
-      scope.update();
-
       if (showResult) {
 
         window.common.alert.updateView("componentResultId", {
@@ -122,6 +119,7 @@
 
         window.common.alert.hide("componentResultId");
       }
+      updateIcon(status, null, null, text, stepAmount, viewPage);
     };
 
     closeResultComponent = function () {

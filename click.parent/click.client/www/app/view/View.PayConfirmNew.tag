@@ -287,7 +287,6 @@
       console.log("OPEN RESULT COMPONENT:", showResult, status, text);
 
       if (showResult) {
-
         window.common.alert.updateView("componentResultId", {
           parent: scope,
           resulttext: text,
@@ -295,12 +294,9 @@
           step_amount: stepAmount
         });
       } else {
-
         window.common.alert.hide("componentResultId");
       }
-
       updateIcon(status, null, null, text, stepAmount, viewPage);
-      riot.update();
     }
 
     closeResultComponent = function () {

@@ -24,10 +24,6 @@
 
     updateIcon = function (result, checkStatus, from, text, stepAmount, viewPage) {
       console.log(result, checkStatus, from, text, stepAmount);
-      opts.resulttext = text;
-      opts.step_amount = stepAmount;
-      opts.viewpage = viewPage;
-      scope.update();
       console.log("CHANGE GIF", result, checkStatus);
       resultButtonId.classList.remove("component-result-button-stop");
       resultButtonId.classList.remove("component-result-button-waiting");
@@ -36,16 +32,16 @@
       wait.classList.remove("component-result-wait-start");
       resultMessage.classList.remove("component-result-message-stop");
       if (result == 'success') {
-        alertNewIconId.style.backgroundImage = "url(resources/gifs/success.gif)";
+        alertNewIconId.style.backgroundImage = "url(resources/gifs/success.gif?p" + new Date().getTime() + ")";
         scope.buttonText = window.languages.ComponentResultOk;
         resultButtonId.classList.add("component-result-button-success");
       } else if (result == 'unsuccess') {
-        alertNewIconId.style.backgroundImage = "url(resources/gifs/unsuccess.gif)";
+        alertNewIconId.style.backgroundImage = "url(resources/gifs/unsuccess.gif?p" + new Date().getTime() + ")";
         resultButtonId.classList.add("component-result-button-unsuccess");
       } else if (result == 'waiting') {
         scope.restart = checkStatus ? checkStatus : false;
         scope.fromView = from;
-        alertNewIconId.style.backgroundImage = "url(resources/gifs/waiting.gif)";
+        alertNewIconId.style.backgroundImage = "url(resources/gifs/waiting.gif?p" + new Date().getTime() + ")";
         resultButtonId.classList.add("component-result-button-waiting");
       }
       wait.classList.add("component-result-wait-stop");
@@ -100,7 +96,6 @@
           console.log("OPTS in RESULT COMPONENT", opts);
           window.common.alert.hide("componentResultId");
 
-
 //          if (opts.viewpage) {
 //            console.log("Alert to ", opts.viewpage);
 //            riotTags.innerHTML = "<" + opts.viewpage + ">";
@@ -109,8 +104,6 @@
 //            this.unmount();
 //
 //          }
-
-
           window.common.alert.hide("componentResultId");
 
 

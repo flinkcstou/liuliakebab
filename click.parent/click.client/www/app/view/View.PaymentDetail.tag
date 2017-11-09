@@ -83,7 +83,6 @@
       scope.resultText = text;
 
       if (showResult) {
-
         window.common.alert.updateView("componentResultId", {
           parent: scope,
           resulttext: scope.resultText,
@@ -92,11 +91,9 @@
           parent: scope
         });
       } else {
-
         window.common.alert.hide("componentResultId");
       }
       updateIcon(status, null, null, text, stepAmount, scope.viewPage);
-      scope.update();
     };
 
     closeResultComponent = function () {
