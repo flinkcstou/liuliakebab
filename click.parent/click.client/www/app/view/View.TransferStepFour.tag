@@ -316,7 +316,6 @@
         window.common.alert.hide("componentResultId");
       }
       updateIcon(status, null, null, text, stepAmount, scope.viewPage);
-      scope.update();
     };
 
     closeResultComponent = function () {

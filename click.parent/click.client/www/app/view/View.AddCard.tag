@@ -101,7 +101,6 @@
       }
       scope.stepAmount = stepAmount;
       updateIcon(status, null, null, text, stepAmount, viewPage);
-      scope.update();
     };
 
     closeResultComponent = function () {
