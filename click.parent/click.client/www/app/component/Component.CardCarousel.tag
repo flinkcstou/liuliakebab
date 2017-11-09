@@ -189,21 +189,35 @@
         var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'))
       }
 
-      if (!scope.checkSumOfHash) {
+      if (scope.checkSumOfHash) {
+
+        scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
+//        console.log("scope.checkSumOfHash", scope.checkSumOfHash, " cards from storage", scope.cardsarray);
+
+      } else if (!scope.checkSumOfHash) {
+
+//        console.log("scope.checkSumOfHash ", scope.checkSumOfHash);
+
+        if (!loginInfo.update_account_cache) {
+//          console.log("updateAccountCache false");
+          scope.cardImageCachedLinks = {};
+          for (var j in scope.cardsarray) {
+            scope.cardImageCachedLinks[j] = {
+              "cardId": j,
+              "cardBackgroundUrl": scope.cardsarray[j].card_background_url,
+              "url": scope.cardsarray[j].url
+            };
+          }
+//          console.log("SAVE CACHED LINKS", scope.cardImageCachedLinks)
+        }
 
         scope.cardsarray = {};
-      }
-      else {
-        if (scope.checkSumOfHash) {
-          scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-        }
-      }
+        var numberOfCardPartOne;
+        var numberOfCardPartTwo;
+        var typeOfCard;
 
-      var numberOfCardPartOne;
-      var numberOfCardPartTwo;
-      var typeOfCard;
+//        console.log("cards empty");
 
-      if (!scope.checkSumOfHash) {
         count = 1;
         if (viewMainPage.addFirstCardBool) count = 2;
         for (var i = 0; i < getAccountsCards.length; i++) {
@@ -215,7 +229,7 @@
           else
             defaultAccount = false;
 
-          numberOfCardPartOne = getAccountsCards[i].accno.substring(0, 4)
+          numberOfCardPartOne = getAccountsCards[i].accno.substring(0, 4);
           numberOfCardPartTwo = getAccountsCards[i].accno.substring(getAccountsCards[i].accno.length - 4, getAccountsCards[i].accno.length);
 
 
@@ -255,7 +269,18 @@
           localStorage.setItem('click_client_countCard', count);
         }
 
+        if (loginInfo.update_account_cache) {
+
+          cardImagesCaching(true);
+          loginInfo.update_account_cache = false;
+          localStorage.setItem('click_client_loginInfo', JSON.stringify(loginInfo));
+
+        } else {
+          cardImagesCaching(false);
+        }
+
       }
+
 
       scope.parent.update();
       scope.update(scope.cardsarray);
@@ -427,48 +452,79 @@
     }
 
 
-    cardImagesCaching = function () {
+    cardImagesCaching = function (full) {
+      console.log("FULL CACH? ", full);
       if (device.platform != 'BrowserStand') {
+        console.log("START CACHING CARDS");
 
         window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-          var j = -1, count = 0;
-          for (var i = 0; i < arrayAccountInfo.length; i++) {
-            j++;
+          var count = 0;
+          for (var i in scope.cardsarray) {
 
-            var icon = arrayAccountInfo[i].card_background_url;
-            var filename = icon.substr(icon.lastIndexOf('/') + 1);
+            if (!full && scope.cardImageCachedLinks[i]) {
+//              console.log("card exists", i)
+              scope.cardsarray[i].card_background_url = scope.cardImageCachedLinks[i].cardBackgroundUrl;
+              scope.cardsarray[i].url = scope.cardImageCachedLinks[i].url;
+              count = count + 2;
 
-            var newIconBool = checkImageURL;
-            newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
-              if (bool) {
-                count++;
-                arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
-              } else {
-                count++;
-                arrayAccountInfo[index].card_background_url = 'resources/icons/cards/' + fileName;
+//              console.log("old icon", scope.cardsarray[i].card_background_url);
+//              console.log("old icon 2", scope.cardsarray[i].url);
+
+              if (count == (Object.keys(scope.cardsarray).length * 2)) {
+//                console.log("FINISH CACH", scope.cardsarray);
+                localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
+                scope.update();
               }
 
-              var icon2 = arrayAccountInfo[index].image_url;
-              var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
-              var newIcon = checkImageURL;
-              newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
-                if (bool2) {
+            } else {
+
+              var icon = scope.cardsarray[i].card_background_url;
+              var filename = icon.substr(icon.lastIndexOf('/') + 1);
+
+//              console.log("icon1=", icon);
+
+              var newIconBool = checkImageURL;
+              newIconBool('www/resources/icons/cards/', 'cards', filename, icon, i, function (bool, index, fileName) {
+//                console.log("bool=", bool, "index=", index, "fileName=", fileName);
+                if (bool) {
                   count++;
-                  arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
+                  scope.cardsarray[index].card_background_url = cordova.file.dataDirectory + fileName;
                 } else {
                   count++;
-                  arrayAccountInfo[index2].image_url = 'resources/icons/cards/logo/' + fileName2;
+                  scope.cardsarray[index].card_background_url = 'resources/icons/cards/' + fileName;
                 }
 
-                if (count == (arrayAccountInfo.length * 2)) {
-                  localStorage.setItem("click_client_accountInfo", JSON.stringify(arrayAccountInfo));
-                }
+//                console.log("new icon=", scope.cardsarray[index].card_background_url);
+
+                var icon2 = scope.cardsarray[index].url;
+                var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
+                console.log("icon 2=", icon2);
+                var newIcon = checkImageURL;
+                newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
+//                  console.log("bool=", bool2, "index=", index2, "fileName=", fileName2);
+                  if (bool2) {
+                    count++;
+                    scope.cardsarray[index2].url = cordova.file.dataDirectory + fileName2;
+                  } else {
+                    count++;
+                    scope.cardsarray[index2].url = 'resources/icons/cards/logo/' + fileName2;
+                  }
+
+//                  console.log("new icon 2=", scope.cardsarray[index2].url);
+
+                  if (count == (Object.keys(scope.cardsarray).length * 2)) {
+//                    console.log("FINISH CACH", scope.cardsarray);
+                    localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
+                    scope.update();
+                  }
+                });
               });
-            });
+            }
           }
         }, onErrorLoadFs);
       }
     };
+
 
     var arrayAccountInfo = [];
 
@@ -494,10 +550,8 @@
               if (result[0][0].error == 0) {
                 if (localStorage.getItem('click_client_cards')) {
                   var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-                  var countLocalStorageCard = 0;
-                  for (var k in cardsArray) {
-                    countLocalStorageCard++;
-                  }
+                  var countLocalStorageCard = Object.keys(cardsArray).length;
+
                   if (countLocalStorageCard == result[1].length) {
                     for (var i in result[1]) {
                       if (cardsArray[result[1][i].id]) {
@@ -545,7 +599,7 @@
                   scope.checkSumOfHash = false;
                 }
 
-                if (!scope.checkSumOfHash || info.update_account_cache) {
+                if (!scope.checkSumOfHash) {
 
                   var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
                   arrayAccountInfo = [];
@@ -579,14 +633,9 @@
                   }
                   localStorage.setItem("click_client_accountInfo", accountInfo);
 
-                  cardImagesCaching();
-
                   setTimeout(function () {
                     addCard()
                   }, 0);
-
-                  info.update_account_cache = false;
-                  localStorage.setItem('click_client_loginInfo', JSON.stringify(info));
 
                   if (device.platform !== 'BrowserStand') {
                     console.log("Spinner Stop Component Card Carousel 650");
