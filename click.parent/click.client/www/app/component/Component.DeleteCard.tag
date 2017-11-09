@@ -88,9 +88,9 @@
       if (device.platform != 'BrowserStand') {
         var options = {dimBackground: true};
         SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Spinner start in authorization");
+          console.log("Spinner start in card delete");
         }, function () {
-          console.log("Spinner stop in authorization");
+          console.log("Spinner stop in card delete");
         });
       }
 
@@ -122,21 +122,22 @@
             localStorage.setItem("click_client_countCard", JSON.stringify(countCard));
 
 
-            console.log("acc id=", scope.accountId)
-            console.log("cards before=", cards);
             for (var i in cards) {
               if (cards[i].card_id == scope.accountId) {
-                console.log("xascdeswcfe");
                 if (cards[i].default_account)
                   isDefault = true;
                 delete cards[scope.accountId];
                 localStorage.setItem('click_client_cards', JSON.stringify(cards));
               } else if (cards[i].default_account) hasDefault = true;
-
             }
 
-            console.log("cards after=", cards);
-            console.log("keys size", Object.keys(cards).length);
+            var j = 1;
+            for (var i in cards) {
+              card_number = cards[i].countCard;
+              cards[i].countCard = j++;
+              console.log("Index of card", card_number);
+            }
+            localStorage.setItem('click_client_cards', JSON.stringify(cards));
 
             if ((!isDefault && hasDefault) || Object.keys(cards).length === 0) {
               console.log("First condition");
@@ -237,7 +238,6 @@
                 cards[i].countCard = j++;
               }
             }
-            console.log("cards after default was set", cards);
             localStorage.setItem('click_client_cards', JSON.stringify(cards));
 
             window.common.alert.show("componentSuccessId", {
