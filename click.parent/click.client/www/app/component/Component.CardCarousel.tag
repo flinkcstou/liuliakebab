@@ -673,67 +673,64 @@
           getAccountsCards = JSON.parse(localStorage.getItem('click_client_cards'))
       }
 
-      for (var i in getAccountsCards) {
-        window.api.call({
-          method: 'get.balance',
-          stopSpinner: false,
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            account_id: getAccountsCards[i].id,
-            card_num_hash: getAccountsCards[i].card_num_hash,
-            card_num_crypted: getAccountsCards[i].card_num_crypted
-          },
-          //TODO: DO CARDS
-          scope: this,
-          onSuccess: function (result) {
-            if (result[0][0].error == 0) {
-              if (result[1][0] && scope.cardsarray[result[1][0].account_id]) {
-                try {
-
-                  scope.cardsarray[result[1][0].account_id].salaryOriginal = result[1][0].balance.toFixed(0);
-
-                  result[1][0].balance = result[1][0].balance.toFixed(0).toString();
-
-                  if (result[1][0].balance != 0)
-                    result[1][0].balance = window.amountTransform(result[1][0].balance.toString());
-
-                  scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
-                  localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
-
-                  scope.update();
-
-                }
-                catch (error) {
-                  console.log(error)
-                }
-
-              }
-            }
-            else {
-
-              if (scope.cardsarray[result[1][0].account_id]) {
-                scope.cardsarray[result[1][0].account_id].salary = null;
-                scope.cardsarray[result[1][0].account_id].error_message = "Ошибка баланса";
-                localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
-              }
-              scope.update();
-            }
-          },
-
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
-          }
-        });
+      for (var j in getAccountsCards) {
+        objectAccount.account_id = getAccountsCards[j].id
+        objectAccount.card_num_hash = getAccountsCards[j].card_num_hash
+        objectAccount.card_num_crypted = getAccountsCards[j].card_num_crypted
+        accountsForBalance.push(objectAccount);
+        objectAccount = {};
       }
+
+      window.api.call({
+        method: 'get.balance.multiple',
+        stopSpinner: false,
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          accounts: accountsForBalance
+        },
+        scope: this,
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+            if (result[1]) {
+              try {
+                for (var i in result[1]) {
+                  scope.cardsarray[result[1][i].account_id].salaryOriginal = result[1][i].balance.toFixed(0);
+                  result[1][i].balance = result[1][i].balance.toFixed(0).toString();
+
+                  if (result[1][i].balance !== 0)
+                    result[1][i].balance = window.amountTransform(result[1][i].balance.toString());
+
+                  scope.cardsarray[result[1][i].account_id].salary = result[1][i].balance;
+                  localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+                }
+                scope.update();
+              } catch (Error) {
+                console.log("Error on parse result fro get.balance.multiple", Error);
+              }
+            }
+          }
+          else {
+            for (var i in scope.cardsarray){
+              scope.cardsarray[i].salary = null;
+              scope.cardsarray[i].error_message = "Ошибка баланса";
+            }
+            localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+            scope.update();
+          }
+        },
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
     }
 
     var getAccountsCards = [];
-
+    var objectAccount = {};
+    var accountsForBalance = [];
 
     var defaultAccountId;
-
 
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
