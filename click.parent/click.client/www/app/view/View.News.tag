@@ -50,9 +50,11 @@
       event.preventDefault();
       event.stopPropagation();
 
-      console.log('SCOPE NEW', scope)
+      console.log('SCOPE NEW', scope);
 
-      if (scope.parent.opts.view) {
+      if (!JSON.parse(localStorage.getItem('click_client_authorized'))) {
+
+        console.log("AUTH MOUNT FROM NEWS");
 
         if (sessionStorage.getItem("push_news")) {
           sessionStorage.setItem("push_news", false)
@@ -61,7 +63,13 @@
         riot.mount('view-authorization');
         return
       }
-      onBackKeyDown()
+      console.log("history=", history.arrayOfHistory);
+      history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+      if (history.arrayOfHistory[history.arrayOfHistory.length - 2].view === "view-main-page") {
+        history.arrayOfHistory[history.arrayOfHistory.length - 2].params = {};
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+      }
+      onBackKeyDown();
       scope.unmount()
     };
 
@@ -179,7 +187,7 @@
             window.common.alert.show("componentAlertId", {
               parent: scope,
               errornote: result[0][0].error_note,
-              viewpage:'view-main-page'
+              viewpage: 'view-main-page'
             });
             scope.update();
             console.log(result[0][0].error_note);
@@ -191,7 +199,7 @@
           window.common.alert.show("componentAlertId", {
             parent: scope,
             errornote: api_status_message,
-            viewpage:'view-main-page'
+            viewpage: 'view-main-page'
           });
           scope.update();
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -205,7 +213,7 @@
           window.common.alert.show("componentAlertId", {
             parent: scope,
             errornote: window.languages.WaitingTimeExpiredText,
-            viewpage:'view-main-page'
+            viewpage: 'view-main-page'
           });
           scope.update();
           if (device.platform !== 'BrowserStand') {

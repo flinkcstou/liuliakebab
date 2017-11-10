@@ -1149,8 +1149,7 @@ window.fingerPrintTurnOn = function (firstEnter) {
           window.fingerPrint.check = true;
           localStorage.setItem('settings_finger_print_enrolled', true)
 
-          console.log("111")
-          if (window.fingerPrint.check && !firstEnter) {
+          if (window.fingerPrint.check && !firstEnter && (!sessionStorage.getItem("push_news") || JSON.parse(sessionStorage.getItem("push_news")) !== true)) {
             var encryptConfig = {
               clientId: "myAppName",
               clientSecret: "currentUser",
@@ -1166,15 +1165,11 @@ window.fingerPrintTurnOn = function (firstEnter) {
 
             if (localStorage.getItem("settings_finger_print") !== null) {
               if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
-                console.log("222");
 
                 FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
               }
               else {
-                console.log("333");
 
-                // if (!localStorage.getItem('click_client_cards')) {
-                // console.log("444");
                 onConfirm = function (index) {
                   if (index == 1) {
                     localStorage.setItem('settings_finger_print', true)
@@ -1191,7 +1186,7 @@ window.fingerPrintTurnOn = function (firstEnter) {
                   'Устройтсво поддерживает технологию TouchID',            // title
                   ['Да', 'Нет']          // buttonLabels
                 );
-                // }
+
               }
             }
           }
