@@ -235,19 +235,25 @@
         scope: this,
 
         onSuccess: function (result) {
+          var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+
           if (result[0][0].error == 0 && result[1][0]) {
             var j = 2;
             for (var i in cards) {
               if (cards[i].card_id == result[1][0].default_account_id) {
+                loginInfo.default_account = result[1][0].default_account_id;
                 cards[i].default_account = true;
+                cards[i].chosenCard = true;
                 cards[i].countCard = 1;
               }
               else {
                 cards[i].default_account = false;
                 cards[i].countCard = j++;
+                cards[i].chosenCard = false;
               }
             }
             localStorage.setItem('click_client_cards', JSON.stringify(cards));
+            localStorage.setItem('click_client_loginInfo', JSON.stringify(loginInfo));
 
             window.common.alert.show("componentSuccessId", {
               parent: scope,
