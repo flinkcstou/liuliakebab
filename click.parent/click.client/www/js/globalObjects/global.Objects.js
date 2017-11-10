@@ -795,6 +795,10 @@ window.getAccount = function (checkSessionKey, firstEnter) {
                   riot.mount("view-main-page");
                 }
                 else {
+                  if (device.platform !== 'BrowserStand') {
+                    console.log("Spinner stop in G.O. 799");
+                    SpinnerPlugin.activityStop();
+                  }
                   console.log("G.O. 798 mounting ", history.arrayOfHistory[history.arrayOfHistory.length - 1].view, ", history=", history.arrayOfHistory);
                   this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
                   riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
