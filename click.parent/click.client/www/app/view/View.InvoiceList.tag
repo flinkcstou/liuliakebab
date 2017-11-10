@@ -228,7 +228,7 @@
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
-      });
+      }, 10000);
       if (!checkAnswerToUser) {
         console.log("wwww to user")
         setTimeout(function () {
@@ -333,7 +333,7 @@
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
-      });
+      }, 10000);
 
       if (!checkAnswerFromUser) {
         console.log("wwww from user")
