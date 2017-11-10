@@ -111,7 +111,7 @@
 
         authorizationButtonsContainerId.style.top = 400 * widthK + 'px';
 
-        if (device.platform == 'iOS') {
+        if (device.platform === 'iOS') {
           firstPinInputId.autofocus;
           firstPinInputId.focus();
         }
@@ -122,7 +122,7 @@
         }
       }
       scope.update();
-      if (device.platform != 'BrowserStand')
+      if (device.platform !== 'BrowserStand')
         navigator.splashscreen.hide();
     });
 
@@ -138,19 +138,22 @@
       scope.firstEnter = false;
     }
     else {
-      if (JSON.parse(localStorage.getItem('click_client_registered')) == true && !localStorage.getItem("click_client_accountInfo") && opts && opts.from && opts.from == "registration-client") {
-        console.log("ASD")
+      if (JSON.parse(localStorage.getItem('click_client_registered')) === true
+        && !localStorage.getItem("click_client_accountInfo")
+        && opts && opts.from && opts.from === "registration-client") {
+        console.log("It's not first enter");
         scope.firstEnter = false;
       }
       else {
-        console.log("ASDASD")
+        console.log("It's first enter");
         scope.firstEnter = true;
       }
 
     }
 
-    if (history.arrayOfHistory.length != 0) {
-      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-authorization' && !JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken'))) {
+    if (history.arrayOfHistory.length !== 0) {
+      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-authorization'
+        && !JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken'))) {
         history.arrayOfHistory.push(
           {
             "view": 'view-authorization',
@@ -183,7 +186,8 @@
     }
 
 
-    if (typeof window.fingerPrint.fingerPrintInitialize != undefined && window.fingerPrint.fingerPrintInitialize == false) {
+    if (typeof window.fingerPrint.fingerPrintInitialize != undefined
+      && window.fingerPrint.fingerPrintInitialize === false && !scope.firstEnter) {
 
       try {
         fingerPrintTurnOn();
@@ -285,7 +289,7 @@
         scope.result = function (bool) {
           if (bool) {
             localStorage.clear();
-            if (device.platform != 'BrowserStand') {
+            if (device.platform !== 'BrowserStand') {
               window.FirebasePlugin.unsubscribe("news");
             }
             riotTags.innerHTML = "<view-registration-device>";
@@ -321,14 +325,14 @@
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
-        if (enteredPin.length < 5 && myValue != 'x' && myValue != 'space') {
+        if (enteredPin.length < 5 && myValue !== 'x' && myValue !== 'space') {
           enteredPin += myValue;
         }
-        if (myValue == 'x') {
+        if (myValue === 'x') {
           enteredPin = enteredPin.substring(0, enteredPin.length - 1);
         }
 
-        if (myValue == "space" && JSON.parse(localStorage.getItem('settings_finger_print')) == true) {
+        if (myValue === "space" && JSON.parse(localStorage.getItem('settings_finger_print')) === true) {
           try {
             fingerPrintTurnOn();
           }
@@ -375,21 +379,21 @@
 
     updateEnteredPin = function () {
 
-      if (enteredPin.length == 0) {
+      if (enteredPin.length === 0) {
         circleOne.style.backgroundColor = 'transparent';
         circleTwo.style.backgroundColor = 'transparent';
         circleThree.style.backgroundColor = 'transparent';
         circleFour.style.backgroundColor = 'transparent';
         circleFive.style.backgroundColor = 'transparent';
       }
-      if (enteredPin.length == 1) {
+      if (enteredPin.length === 1) {
         circleOne.style.backgroundColor = '#01cfff';
         circleTwo.style.backgroundColor = 'transparent';
         circleThree.style.backgroundColor = 'transparent';
         circleFour.style.backgroundColor = 'transparent';
         circleFive.style.backgroundColor = 'transparent';
       }
-      if (enteredPin.length == 2) {
+      if (enteredPin.length === 2) {
         circleOne.style.backgroundColor = '#01cfff';
         circleOne.style.backgroundColor = '#01cfff';
         circleTwo.style.backgroundColor = '#01cfff';
@@ -398,7 +402,7 @@
         circleFive.style.backgroundColor = 'transparent';
       }
 
-      if (enteredPin.length == 3) {
+      if (enteredPin.length === 3) {
         circleOne.style.backgroundColor = '#01cfff';
         circleTwo.style.backgroundColor = '#01cfff';
         circleThree.style.backgroundColor = '#01cfff';
@@ -406,7 +410,7 @@
         circleFive.style.backgroundColor = 'transparent';
       }
 
-      if (enteredPin.length == 4) {
+      if (enteredPin.length === 4) {
         circleOne.style.backgroundColor = '#01cfff';
         circleTwo.style.backgroundColor = '#01cfff';
         circleThree.style.backgroundColor = '#01cfff';
@@ -414,7 +418,7 @@
         circleFive.style.backgroundColor = 'transparent';
       }
 
-      if (enteredPin.length == 5) {
+      if (enteredPin.length === 5) {
         circleOne.style.backgroundColor = '#01cfff';
         circleTwo.style.backgroundColor = '#01cfff';
         circleThree.style.backgroundColor = '#01cfff';
@@ -476,7 +480,7 @@
       var version = localStorage.getItem('version');
       answerFromServer = false;
 
-      if (device.platform != 'BrowserStand') {
+      if (device.platform !== 'BrowserStand') {
         var options = {dimBackground: true};
         SpinnerPlugin.activityStart(languages.Downloading, options, function () {
           console.log("Spinner start in authorization");
@@ -501,7 +505,7 @@
           answerFromServer = true;
           console.log("App.login method answer: success");
 
-          if (result[0][0].error == 0) {
+          if (result[0][0].error === 0) {
             if (!result[1][0].error) {
               console.log("User is authorized");
 
@@ -531,16 +535,16 @@
 
             var clickPinError, errorNote, errorCode;
 
-            if (device.platform != 'BrowserStand') {
+            if (device.platform !== 'BrowserStand') {
               console.log("Spinner Stop View Authorization");
               SpinnerPlugin.activityStop();
             }
 
-            if (result[0][0].error == -31) {
+            if (result[0][0].error === -31) {
 
               clickPinError = true;
 
-            } else if (result[0][0].error == -799) {
+            } else if (result[0][0].error === -799) {
 
               errorNote = result[0][0].error_note;
               errorCode = 2;
@@ -548,7 +552,7 @@
 
             } else {
 
-              if (opts.from == "registration-client") {
+              if (opts.from === "registration-client") {
                 errorNote = "Карта ещё не добавлена. Попробуйте войти через несколько минут";
               }
               else
@@ -583,7 +587,7 @@
         if (!answerFromServer) {
           answerFromServer = true;
           updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
-          if (device.platform != 'BrowserStand') {
+          if (device.platform !== 'BrowserStand') {
             console.log("Spinner stop in authorization by timeout");
             SpinnerPlugin.activityStop();
           }

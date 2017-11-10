@@ -141,22 +141,22 @@ window.api.initSocket = function () {
               return
             }
           } catch (error) {
-            console.log(error);
+            console.error("Error on parsing parsedData.data[0][0].error_note", error);
           }
         }
       try {
         callBack.err(parsedData.api_status, parsedData.api_status_message, parsedData.data);
       }
       catch (error) {
-        console.log("Error on socket initializing: ", error);
+        console.error("Error on socket initializing: ", error);
       }
     } catch (error) {
-      console.log("Error on parsing response: ", error);
+      console.error("Error on parsing response: ", error);
     }
   };
 
   this.socket.onerror = function (error) {
-    console.log("Onerror event in InitSocket", error);
+    console.error("Onerror event in InitSocket", error);
     window.isConnected = false;
     if (modeOfApp.offlineMode) return;
     console.log('Error with socket ' + error.message);
