@@ -79,6 +79,17 @@
         viewMainPage.addFirstCardBool = true;
         localStorage.removeItem('click_client_cards');
         scope.parent.update();
+      } else {
+
+        for (var i in scope.cardsarray) {
+          if (scope.cardsarray[i].card_id == JSON.parse(localStorage.getItem("click_client_loginInfo")).default_account) {
+            scope.cardsarray[i].chosenCard = true;
+          }
+          else
+            scope.cardsarray[i].chosenCard = false;
+        }
+        localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+
       }
       scope.update();
     }
@@ -760,7 +771,7 @@
             }
           }
           else {
-            for (var i in scope.cardsarray){
+            for (var i in scope.cardsarray) {
               scope.cardsarray[i].salary = null;
               scope.cardsarray[i].error_message = "Ошибка баланса";
             }

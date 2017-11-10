@@ -169,15 +169,20 @@
             onSuccess: function (result) {
 
               if (result[0][0].error == 0 && result[1][0]) {
+                var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
                 var j = 2;
                 for (var i in scope.cardsArray) {
                   if (scope.cardsArray[i].card_id == result[1][0].default_account_id) {
                     scope.cardsArray[i].default_account = true;
                     scope.cardsArray[i].countCard = 1;
+                    scope.cardsArray[i].chosenCard = true;
+                    loginInfo.default_account = result[1][0].default_account_id;
+
                   }
                   else {
                     scope.cardsArray[i].default_account = false;
                     scope.cardsArray[i].countCard = j++;
+                    scope.cardsArray[i].chosenCard = false;
                   }
                 }
 
@@ -192,6 +197,7 @@
                 }
 
                 localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarrayTwo));
+                localStorage.setItem('click_client_loginInfo', JSON.stringify(loginInfo));
                 onBackKeyDown();
 
               }
