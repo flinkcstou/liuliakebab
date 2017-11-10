@@ -113,6 +113,7 @@
             var cardNumber = JSON.parse(localStorage.getItem("cardNumber"));
             var countCard = JSON.parse(localStorage.getItem("click_client_countCard"));
             var cards = JSON.parse(localStorage.getItem("click_client_cards"));
+            var accountInfo = JSON.parse(localStorage.getItem("click_client_accountInfo"));
             var isDefault = false;
             var hasDefault = false;
 
@@ -138,6 +139,14 @@
               console.log("Index of card", card_number);
             }
             localStorage.setItem('click_client_cards', JSON.stringify(cards));
+
+            for (var i in accountInfo){
+              console.log(accountInfo[i].id, scope.accountId);
+              if (accountInfo[i].id === scope.accountId){
+                accountInfo.splice(i, 1);
+              }
+            }
+            localStorage.setItem('click_client_accountInfo', JSON.stringify(accountInfo));
 
             if ((!isDefault && hasDefault) || Object.keys(cards).length === 0) {
               console.log("First condition");
