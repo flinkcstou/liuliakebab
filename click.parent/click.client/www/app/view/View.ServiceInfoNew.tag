@@ -215,7 +215,7 @@
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
-      });
+      }, 10000);
 
       if (!checkAnswer) {
         console.log("wwww")
