@@ -92,7 +92,7 @@ window.common.alert = {
     if (window.common.alert.priorities[id1] === window.common.alert.priorities[id2]) return 0;
   },
   show: function (id, params) {
-    
+
     window.clearTimers();
 
     console.log(id);
@@ -154,7 +154,7 @@ window.common.alert = {
 
     // console.log("IS SHOWN FUNC ELEMENT SCOPE", id, window.common.alert.scopes[id]);
 
-    if (!window.common.alert.scopes[id]){
+    if (!window.common.alert.scopes[id]) {
       return false;
     }
 
@@ -790,10 +790,12 @@ window.getAccount = function (checkSessionKey, firstEnter) {
             if (history.arrayOfHistory) {
               if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
                 if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-news') {
+                  console.log("G.O. 798 mounting main-page 793");
                   this.riotTags.innerHTML = "<view-main-page>";
                   riot.mount("view-main-page");
                 }
                 else {
+                  console.log("G.O. 798 mounting ", history.arrayOfHistory[history.arrayOfHistory.length - 1].view, ", history=", history.arrayOfHistory);
                   this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
                   riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
                 }
@@ -810,6 +812,7 @@ window.getAccount = function (checkSessionKey, firstEnter) {
                   }
                   else {
                     if (JSON.parse(sessionStorage.getItem("push_news")) === true) {
+                      console.log("G.O. 815 push_news set to false");
                       sessionStorage.setItem("push_news", false)
                     }
                   }
@@ -819,11 +822,13 @@ window.getAccount = function (checkSessionKey, firstEnter) {
             }
           }
           else {
+            console.log("G.O. 825 main page mount");
             this.riotTags.innerHTML = "<view-main-page>";
             riot.mount('view-main-page');
           }
         }
         else {
+          console.log("G.O. 831 main page mount");
           this.riotTags.innerHTML = "<view-main-page>";
           riot.mount('view-main-page');
         }
@@ -1132,7 +1137,8 @@ window.getAccount = function (checkSessionKey, firstEnter) {
 };
 
 
-window.fingerPrintTurnOn = function () {
+window.fingerPrintTurnOn = function (firstEnter) {
+  console.log("G.O. fingerprint, firstEnter=", firstEnter);
   window.fingerPrint.fingerPrintInitialize = true;
   if (localStorage.getItem('settings_finger_print') !== null) {
     if (device.platform == 'Android') {
@@ -1143,7 +1149,8 @@ window.fingerPrintTurnOn = function () {
           window.fingerPrint.check = true;
           localStorage.setItem('settings_finger_print_enrolled', true)
 
-          if (window.fingerPrint.check) {
+          console.log("111")
+          if (window.fingerPrint.check && !firstEnter) {
             var encryptConfig = {
               clientId: "myAppName",
               clientSecret: "currentUser",
@@ -1159,29 +1166,32 @@ window.fingerPrintTurnOn = function () {
 
             if (localStorage.getItem("settings_finger_print") !== null) {
               if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
+                console.log("222");
 
                 FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
               }
               else {
+                console.log("333");
 
-                if (!localStorage.getItem('click_client_cards')) {
-                  onConfirm = function (index) {
-                    if (index == 1) {
-                      localStorage.setItem('settings_finger_print', true)
+                // if (!localStorage.getItem('click_client_cards')) {
+                // console.log("444");
+                onConfirm = function (index) {
+                  if (index == 1) {
+                    localStorage.setItem('settings_finger_print', true)
 
-                    }
-                    else {
-                      localStorage.setItem('settings_finger_print', false)
-                    }
                   }
-
-                  navigator.notification.confirm(
-                    'Хотите использовать ее для CLICK?',  // message
-                    onConfirm,              // callback to invoke with index of button pressed
-                    'Устройтсво поддерживает технологию TouchID',            // title
-                    ['Да', 'Нет']          // buttonLabels
-                  );
+                  else {
+                    localStorage.setItem('settings_finger_print', false)
+                  }
                 }
+
+                navigator.notification.confirm(
+                  'Хотите использовать ее для CLICK?',  // message
+                  onConfirm,              // callback to invoke with index of button pressed
+                  'Устройтсво поддерживает технологию TouchID',            // title
+                  ['Да', 'Нет']          // buttonLabels
+                );
+                // }
               }
             }
           }
@@ -1289,10 +1299,11 @@ window.fingerPrintTurnOn = function () {
   }
 }
 
-window.clearTimers = function() {
-  var id = window.setTimeout(function() {}, 0);
+window.clearTimers = function () {
+  var id = window.setTimeout(function () {
+  }, 0);
   var maxInterval = id - 10;
-  while(id > maxInterval){
+  while (id > maxInterval) {
     window.clearTimeout(id);
     id--;
   }

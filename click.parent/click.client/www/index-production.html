@@ -190,16 +190,22 @@
       document.head.appendChild(GENERATOR);
 
       firstMount.firstStep = function () {
+        console.log("component notification mounted");
         scope.indexNotificationBlockId.innerHTML = "<component-notification>";
         riot.mount('component-notification');
 
-        if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
-          scope.riotTags.innerHTML = "<view-authorization>";
-          riot.mount('view-authorization');
-        }
-        else {
-          scope.riotTags.innerHTML = "<view-registration-device>";
-          riot.mount('view-registration-device');
+        if (JSON.parse(sessionStorage.getItem("push_news")) !== true) {
+
+          if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
+            console.log("authorization mounted");
+            scope.riotTags.innerHTML = "<view-authorization>";
+            riot.mount('view-authorization');
+          }
+          else {
+            console.log("registration-device mounted");
+            scope.riotTags.innerHTML = "<view-registration-device>";
+            riot.mount('view-registration-device');
+          }
         }
       };
 
@@ -272,7 +278,9 @@
     }
     setTimeout(function () {
       localStorage.setItem('onResume', true);
-      if (JSON.parse(localStorage.getItem('settings_block')) === true) {
+      console.log("onResume set true");
+      if (JSON.parse(localStorage.getItem('settings_block')) === true && (!sessionStorage.getItem("push_news") || JSON.parse(sessionStorage.getItem("push_news")) !== true)) {
+        console.log("authorization mount onPause, block true");
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
 
@@ -292,7 +300,7 @@
       console.log("BEFORE MINUTES", waitingMinutes);
       console.log("NOW MINUTES", nowMinutes);
 
-      if (Math.abs(parseInt(waitingMinutes) - parseInt(nowMinutes)) > 5) {
+      if ((Math.abs(parseInt(waitingMinutes) - parseInt(nowMinutes)) > 5)) {
         console.log("5 minutes >");
         console.log("SESSION_BROKEN = TRUE");
         localStorage.setItem('session_broken', true)

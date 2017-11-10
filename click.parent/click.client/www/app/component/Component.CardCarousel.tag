@@ -192,14 +192,14 @@
       if (scope.checkSumOfHash) {
 
         scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-//        console.log("scope.checkSumOfHash", scope.checkSumOfHash, " cards from storage", scope.cardsarray);
+        console.log("scope.checkSumOfHash", scope.checkSumOfHash, " cards from storage", scope.cardsarray);
 
       } else if (!scope.checkSumOfHash) {
 
-//        console.log("scope.checkSumOfHash ", scope.checkSumOfHash);
+        console.log("scope.checkSumOfHash ", scope.checkSumOfHash);
 
         if (!loginInfo.update_account_cache) {
-//          console.log("updateAccountCache false");
+          console.log("updateAccountCache false");
           scope.cardImageCachedLinks = {};
           for (var j in scope.cardsarray) {
             scope.cardImageCachedLinks[j] = {
@@ -208,7 +208,7 @@
               "url": scope.cardsarray[j].url
             };
           }
-//          console.log("SAVE CACHED LINKS", scope.cardImageCachedLinks)
+          console.log("SAVE CACHED LINKS", scope.cardImageCachedLinks)
         }
 
         scope.cardsarray = {};
@@ -216,7 +216,7 @@
         var numberOfCardPartTwo;
         var typeOfCard;
 
-//        console.log("cards empty");
+        console.log("cards empty");
 
         count = 1;
         if (viewMainPage.addFirstCardBool) count = 2;
@@ -462,13 +462,13 @@
           for (var i in scope.cardsarray) {
 
             if (!full && scope.cardImageCachedLinks[i]) {
-//              console.log("card exists", i)
+              console.log("card exists", i)
               scope.cardsarray[i].card_background_url = scope.cardImageCachedLinks[i].cardBackgroundUrl;
               scope.cardsarray[i].url = scope.cardImageCachedLinks[i].url;
               count = count + 2;
 
-//              console.log("old icon", scope.cardsarray[i].card_background_url);
-//              console.log("old icon 2", scope.cardsarray[i].url);
+              console.log("old icon", scope.cardsarray[i].card_background_url);
+              console.log("old icon 2", scope.cardsarray[i].url);
 
               if (count == (Object.keys(scope.cardsarray).length * 2)) {
                 console.log("FINISH CACH", scope.cardsarray);
@@ -481,11 +481,11 @@
               var icon = scope.cardsarray[i].card_background_url;
               var filename = icon.substr(icon.lastIndexOf('/') + 1);
 
-//              console.log("icon1=", icon);
+              console.log("icon1=", icon);
 
               var newIconBool = checkImageURL;
               newIconBool('www/resources/icons/cards/', 'cards', filename, icon, i, function (bool, index, fileName) {
-//                console.log("bool=", bool, "index=", index, "fileName=", fileName);
+                console.log("bool=", bool, "index=", index, "fileName=", fileName);
                 if (bool) {
                   count++;
                   scope.cardsarray[index].card_background_url = cordova.file.dataDirectory + fileName;
@@ -494,14 +494,14 @@
                   scope.cardsarray[index].card_background_url = 'resources/icons/cards/' + fileName;
                 }
 
-//                console.log("new icon=", scope.cardsarray[index].card_background_url);
+                console.log("new icon=", scope.cardsarray[index].card_background_url);
 
                 var icon2 = scope.cardsarray[index].url;
                 var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
                 console.log("icon 2=", icon2);
                 var newIcon = checkImageURL;
                 newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
-//                  console.log("bool=", bool2, "index=", index2, "fileName=", fileName2);
+                  console.log("bool=", bool2, "index=", index2, "fileName=", fileName2);
                   if (bool2) {
                     count++;
                     scope.cardsarray[index2].url = cordova.file.dataDirectory + fileName2;
@@ -510,7 +510,7 @@
                     scope.cardsarray[index2].url = 'resources/icons/cards/logo/' + fileName2;
                   }
 
-//                  console.log("new icon 2=", scope.cardsarray[index2].url);
+                  console.log("new icon 2=", scope.cardsarray[index2].url);
 
                   if (count == (Object.keys(scope.cardsarray).length * 2)) {
                     console.log("FINISH CACH", scope.cardsarray);

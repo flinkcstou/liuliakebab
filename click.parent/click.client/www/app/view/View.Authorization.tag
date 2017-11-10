@@ -187,10 +187,11 @@
 
 
     if (typeof window.fingerPrint.fingerPrintInitialize != undefined
-      && window.fingerPrint.fingerPrintInitialize === false && !scope.firstEnter) {
+      && window.fingerPrint.fingerPrintInitialize === false) {
+      console.log("AUTHORIZATION CALL OF FINGERPRINT 191");
 
       try {
-        fingerPrintTurnOn();
+        fingerPrintTurnOn(scope.firstEnter);
       }
       catch (e) {
         console.log(e)
@@ -334,7 +335,8 @@
 
         if (myValue === "space" && JSON.parse(localStorage.getItem('settings_finger_print')) === true) {
           try {
-            fingerPrintTurnOn();
+            console.log("AUTHORIZATION CALL OF FINGERPRINT 338");
+            fingerPrintTurnOn(scope.firstEnter);
           }
           catch (e) {
             console.log(e)
