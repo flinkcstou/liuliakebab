@@ -108,13 +108,15 @@
         scope: this,
 
         onSuccess: function (result) {
-          if (result[0][0].error == 0) {
+          answerFromServer = true;
+
+          if (result[0][0].error === 0) {
             var object = {};
             var counter = 0;
 
             if (result[1][0])
               for (var i in result[1][0].phone_list) {
-                object = {}
+                object = {};
                 if (!result[1][0].phone_list[i].phone) {
                   continue
                 }
@@ -155,6 +157,7 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
+          answerFromServer = true;
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -163,7 +166,7 @@
 
 
     function onError(contactError) {
-      //      alert('onError!');
+      answerFromServer = true;
       console.log('error', contactError)
     }
 
@@ -177,7 +180,31 @@
         var options = new ContactFindOptions();
         options.multiple = true;
         options.hasPhoneNumber = true;
+        var answerFromServer = false;
+        if (device.platform !== 'BrowserStand') {
+          var options = {dimBackground: true};
+          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+            console.log("Spinner start in settingsFriendHelp");
+          }, function () {
+            console.log("Spinner stop in settingsFriendHelp");
+          });
+        }
         navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
+        setTimeout(function () {
+          if (!answerFromServer) {
+            answerFromServer = true;
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              errornote: window.languages.WaitingTimeExpiredText,
+              step_amount: 0
+            });
+            scope.update();
+            if (device.platform !== 'BrowserStand') {
+              console.log("Spinner stop in settingsFriendHelp by timeout");
+              SpinnerPlugin.activityStop();
+            }
+          }
+        }, 30000);
       }
     }
 
