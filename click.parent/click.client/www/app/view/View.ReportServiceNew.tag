@@ -28,10 +28,12 @@
           <p class="report-service-text-field">{(opts.parameter_name) ? (opts.parameter_name) : ("")}</p>
           <p class="report-service-phone-input">{(opts.cntrg_info_param2) ? (opts.cntrg_info_param2) : ("")}</p>
         </div>
-        <div class="report-service-field">
+        <div class="report-service-field report-service-amount-field">
           <p class="report-service-text-field">{window.languages.ViewReportServiceAmountOfPay}</p>
           <p class="report-service-info-input report-service-info-input-amount">-
             {(opts.amount) ? (amountTransform(opts.amount.toString())) : ("")} сум</p>
+          <p class="report-service-tax-field">{window.languages.ViewTransferFourTax} {opts.commission_amount}
+            {window.languages.ViewReportServiceCommissionCurrency}</p>
         </div>
         <div class="report-service-field">
           <p class="report-service-text-field">{window.languages.ViewReportServicePayWithCard}</p>

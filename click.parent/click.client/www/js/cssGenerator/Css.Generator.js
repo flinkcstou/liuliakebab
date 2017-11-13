@@ -12973,6 +12973,17 @@ var css = {
   reportServiceInfoInputAmount: ".report-service-info-input-amount" +
   "{" +
   "color: #ff6d65;" +
+  "top: 35%;" +
+  "}",
+
+  reportServiceTaxField: ".report-service-tax-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "left: 4%;" +
+  "top: 63%;" +
   "}",
 
   reportServiceField: ".report-service-field" +
@@ -12984,6 +12995,11 @@ var css = {
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   //"top: 23%;" +
+  "}",
+
+  reportServiceAmountField: ".report-service-amount-field" +
+  "{" +
+  "height: 28%;" +
   "}",
 
   reportServiceLastField: ".report-service-last-field" +
