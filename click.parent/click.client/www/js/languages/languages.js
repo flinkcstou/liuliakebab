@@ -426,6 +426,7 @@ var RU_LANGUAGES =
   "ViewReportServiceStatus": "Статус:",
   "ViewReportServicePaymentNumber": "Номер платежа:",
   "ViewReportServicePaymentDate": "Дата:",
+  "ViewReportServiceCommissionCurrency": "сум",
 
   "ViewReportsFilterAllAccountsText": "Все карты и счета",
 

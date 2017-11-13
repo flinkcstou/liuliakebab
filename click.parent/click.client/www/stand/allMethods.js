@@ -451,7 +451,7 @@ window.fakedSocket.register("get.payment.list", function (input) {
   var error = true;
   array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
 
-  console.log('INPUT PARAMETER DATA', input.parameters.date_start)
+  console.log('INPUT PARAMETER DATA', input.parameters.date_start);
 
   if (!input.parameters.date_start) {
     array.push([
