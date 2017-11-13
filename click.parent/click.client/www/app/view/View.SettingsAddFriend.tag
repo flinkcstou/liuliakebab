@@ -194,14 +194,20 @@
         console.log('CONTACTINFO', contactInfo)
         setTimeout(function () {
           var phoneNumber
-          if (device.platform == 'iOS') {
+          if (device.platform === 'iOS') {
             phoneNumber = contactInfo.phoneNr;
             contactNameId.value = contactInfo.displayName
+            if (contactNameId.value.length > 20){
+              contactNameId.value = contactNameId.value.substring(0, 21) + "...";
+            }
           }
 
-          if (device.platform == 'Android') {
+          if (device.platform === 'Android') {
             phoneNumber = contactInfo.nameFormated
             contactNameId.value = contactInfo.displayName
+            if (contactNameId.value.length > 20){
+              contactNameId.value = contactNameId.value.substring(0, 21) + "...";
+            }
           }
 
           var phone = inputVerification.telVerification(phoneNumber);
