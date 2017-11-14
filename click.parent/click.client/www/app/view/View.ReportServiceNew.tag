@@ -28,11 +28,16 @@
           <p class="report-service-text-field">{(opts.parameter_name) ? (opts.parameter_name) : ("")}</p>
           <p class="report-service-phone-input">{(opts.cntrg_info_param2) ? (opts.cntrg_info_param2) : ("")}</p>
         </div>
-        <div class="report-service-field report-service-amount-field">
+        <div
+          class="report-service-field {report-service-amount-field:opts.comission_amount && opts.comission_amount!=0 }">
           <p class="report-service-text-field">{window.languages.ViewReportServiceAmountOfPay}</p>
-          <p class="report-service-info-input report-service-info-input-amount">-
+          <p
+            class="report-service-info-input-amount {report-service-info-input-amount-with-tax: opts.comission_amount && opts.comission_amount!=0}">
+            -
             {(opts.amount) ? (amountTransform(opts.amount.toString())) : ("")} сум</p>
-          <p class="report-service-tax-field">{window.languages.ViewTransferFourTax} {opts.commission_amount}
+          <p if="{opts.comission_amount && opts.comission_amount!=0}" class="report-service-tax-field">
+            {window.languages.ViewTransferFourTax}
+            {opts.comission_amount}
             {window.languages.ViewReportServiceCommissionCurrency}</p>
         </div>
         <div class="report-service-field">
