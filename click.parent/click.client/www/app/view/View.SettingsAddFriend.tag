@@ -611,6 +611,7 @@
         object.name = contactNameId.value.toString();
         object.number = window.languages.CodeOfCountry + inputVerification.spaceDeleter(contactPhoneNumberId.value);
         object.firstLetterOfName = '';
+        object.id = object.number + Math.floor((Math.random() * 1000) + 1);
 
         var index = -1;
         arrayOfContacts.filter(function (wordOfFunction) {

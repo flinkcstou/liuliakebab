@@ -10,21 +10,21 @@
            class="settings-friend-help-add-button"></div>
     </div>
     <div id="mainContainerId" class="settings-container">
-      <div each="{i in arrayOfFriends}" id="{'id'+i.number}" class="settings-friend-help-contact-container">
+      <div each="{i in arrayOfFriends}" id="{'id'+i.id}" class="settings-friend-help-contact-container">
         <div class="settings-friend-help-contact-found-photo"
              style="background-image: url({i.photo})">{i.firstLetterOfName}
         </div>
         <div class="settings-friend-help-contact-found-text-container"
-             ontouchstart="chooseFriendForHelpStart('id'+{i.number})"
-             ontouchend="chooseFriendForHelpEnd({i.number}, 'id'+{i.number})">
+             ontouchstart="chooseFriendForHelpStart('id'+{i.id})"
+             ontouchend="chooseFriendForHelpEnd({i.number}, 'id'+{i.id})">
           <div class="settings-friend-help-contact-found-text-one">{i.name}</div>
           <div class="settings-friend-help-contact-found-text-two">+{i.number.substring(0, 3) + ' ' +
             inputVerification.telVerificationWithSpace(i.number.substring(3, i.number.length))}
           </div>
         </div>
-        <div id="{'del' + i.number}" class="settings-friend-help-contact-cancel-icon"
+        <div id="{'del' + i.id}" class="settings-friend-help-contact-cancel-icon"
              ontouchstart="deleteFriendTouchStart(this.id)"
-             ontouchend="deleteFriendTouchEnd({'id'+i.number}, {i.number}, this.id)" role="button"
+             ontouchend="deleteFriendTouchEnd({'id'+i.id}, {i.number}, this.id)" role="button"
              aria-label="{window.languages.ViewFriendHelpSettingsVoiceOverDeleteFriend}"></div>
       </div>
 
@@ -139,7 +139,7 @@
                   object.firstLetterOfName = object.name[0].toUpperCase();
                 object.photo = null;
                 counter++;
-
+                object.id = object.number + Math.floor((Math.random() * 1000) + 1);
                 scope.arrayOfFriends.push(object);
               }
 
