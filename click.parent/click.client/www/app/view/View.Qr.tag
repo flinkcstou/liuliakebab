@@ -51,8 +51,7 @@
 
     this.on('mount', function () {
 
-      if (device.platform ==
-        'Android')
+      if (device.platform ==='Android')
         setTimeout(function () {
           sumValueId.focus()
         }, 0);
@@ -67,6 +66,7 @@
       }
 
       scope.tax = sumForQrPay * opts.commission_percent / 100;
+      scope.update();
 
 //      if (viewTransferStepTwo.sum.length > 0) {
 //        sumValueId.value = viewTransferStepTwo.sum;
