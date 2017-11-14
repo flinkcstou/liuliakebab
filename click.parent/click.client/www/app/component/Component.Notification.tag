@@ -3,9 +3,7 @@
 
   <div style="display: none" class="component-notification-icon"></div>
   <p id="pushNotificationText" class="component-notification-text">
-    {sessionStorage.getItem("push_notification_real")?((device.platform ===
-    "iOS")?JSON.parse(sessionStorage.getItem("push_notification_real")).notification.body:
-    JSON.parse(sessionStorage.getItem("push_notification_real")).body) : ""}</p>
+    {notificationText}</p>
 
   <div class="component-notification-buttons-container">
     <p class="component-notification-button-cancel" ontouchend="onTouchEndNotificationDecline()"
@@ -37,11 +35,20 @@
     if (device.platform !== 'BrowserStand') {
       window.FirebasePlugin.onNotificationOpen(function (notification) {
 
+//        alert("onNotification open input object " + JSON.stringify(notification));
+
         if (notification.message) {
-          scope.notificationNew = JSON.parse(notification.message);
-          scope.notificationNew.tap = notification.tap;
-          scope.notificationNew.body = scope.notificationNew.body ? scope.notificationNew.body : scope.notificationNew.text;
+          try {
+            scope.notificationNew = JSON.parse(notification.message);
+            scope.notificationNew.tap = notification.tap;
+            scope.notificationNew.body = scope.notificationNew.body ? scope.notificationNew.body : scope.notificationNew.text;
+//            alert("New notification=" + JSON.stringify(scope.notificationNew));
+          } catch (e) {
+//            alert("message parsing error " + e)
+//            alert("message = " + JSON.stringify(notification))
+          }
           console.log("New notification=", scope.notificationNew);
+
 
         }
 
@@ -64,11 +71,18 @@
 
         if (device.platform === "iOS") {
 
-          notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).notification.body;
+          try {
+            var temp = JSON.parse(sessionStorage.getItem("push_notification_real"));
+            notificationText = temp.notification ? temp.notification.body : (temp.aps ? temp.aps.alert : "");
+          } catch (e) {
+//            alert("error " + e)
+          }
+
         } else {
 
           notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).body;
         }
+//        alert("Notification text 78" + notificationText);
         scope.notificationAction = JSON.parse(sessionStorage.getItem("push_notification_real")).action;
         scope.notificationElementId = JSON.parse(sessionStorage.getItem("push_notification_real")).notify_id;
 
@@ -133,8 +147,13 @@
 
           scope.show = true;
           if (device.platform === "iOS") {
-
-            notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).notification.body;
+            try {
+              var temp = JSON.parse(sessionStorage.getItem("push_notification_real"));
+              notificationText = temp.notification ? temp.notification.body : (temp.aps ? temp.aps.alert : "");
+//              notificationText = temp.aps.alert;
+            } catch (e) {
+//              alert("error " + e)
+            }
           } else {
 
             notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).body;
@@ -143,6 +162,7 @@
 //          pushNotificationText.innerHTML = JSON.stringify(notificationText);
 
           console.log('NOTIFICATION TEXT', scope.notificationText)
+//          alert('NOTIFICATION TEXT 153' + scope.notificationText)
 
           numberOfMessage = 0;
 

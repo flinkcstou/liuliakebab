@@ -24,7 +24,7 @@
   <plugin name="cordova-plugin-splashscreen"/>
   <plugin name="cordova-plugin-statusbar"/>
   <plugin name="phonegap-plugin-barcodescanner"/>
-  <plugin name="cordova-plugin-firebase" spec="0.1.23"/>
+  <plugin name="cordova-plugin-firebase" spec="0.1.24"/>
   <plugin name="cordova-plugin-network-information"/>
   <plugin name="cordova-plugin-x-socialsharing"/>
   <plugin name="cordova-plugin-dialogs"/>
@@ -51,7 +51,8 @@
 
     <config-file parent="NSCameraUsageDescription" target="*-Info.plist">
       <string>Программа «CLICK Uzbekistan» запрашивает доступ к «Камере».
-        Это необходимо для корректной работы приложения с такими функциями, как: установка фото профиля и считывание QR кода.
+        Это необходимо для корректной работы приложения с такими функциями, как: установка фото профиля и считывание QR
+        кода.
       </string>
     </config-file>
 

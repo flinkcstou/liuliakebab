@@ -184,6 +184,10 @@
 
       if (device.platform === 'Android')
         permissionAccess();
+      else if (device.platform === 'iOS') {
+        window.FirebasePlugin.grantPermission();
+      }
+
 
       var GENERATOR = document.createElement('script');
       GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
