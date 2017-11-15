@@ -1918,11 +1918,11 @@ var css = {
   "top:" + 242 * widthK + "px;" +
   "width:" + 384 * widthK + "px;" +
   "height:" + 40 * widthK + "px;" +
-  "font-size:" + 32 * widthK + "px;" +
-  "text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
-  "-webkit-text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
-  "color: transparent;" +
-  "font-family: Orator;" +
+  "font-size:" + 26 * widthK + "px;" +
+  // "text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
+  // "-webkit-text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
+  // "color: transparent;" +
+  "font-family: 'OCRAStd';" +
   "left:" + 20 * widthK + "px;" +
   "}",
 
@@ -1930,25 +1930,25 @@ var css = {
   "{" +
   "position: absolute;" +
   "left: 0px;" +
-  "font-weight: bold;" +
+  // "font-weight: bold;" +
   "}",
 
   cardNumberPartTwo: ".card-number-part-two " +
   "{" +
   "position: absolute;" +
   "left:" + 304 * widthK + "px;" +
-  "font-weight: bold;" +
+  // "font-weight: bold;" +
   "}",
 
   numberStars: ".number-stars " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left:" + 90 * widthK + "px;" +
-  "top:" + 2 * widthK + "px;" +
-  "letter-spacing:" + -10 * widthK + "px;" +
-  "font-size:" + 52 * widthK + "px;" +
-  "word-spacing:" + -8 * widthK + "px;" +
+  "left:" + 108 * widthK + "px;" +
+  // "top: -" + 8 * widthK + "px;" +
+  // "letter-spacing:" + -10 * widthK + "px;" +
+  "font-size:" + 26 * widthK + "px;" +
+  // "word-spacing:" + -8 * widthK + "px;" +
   "}",
 
   //SERVICE CAROUSEL COMPONENT
@@ -5462,10 +5462,11 @@ var css = {
   "position: absolute;" +
   "top: 80%;" +
   "width:100%;" +
-  "font-size:" + 21 * widthK + "px;" +
-  "text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
-  "-webkit-text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;font-family: Orator;" +
-  "color: transparent;" +
+  "font-size:" + 18 * widthK + "px;" +
+  // "text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
+  // "-webkit-text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
+  "font-family: 'OCRAStd';" +
+  // "color: transparent;" +
   "left:5%" +
   "}",
 
@@ -5473,23 +5474,23 @@ var css = {
   "{" +
   "position: absolute;" +
   "left: 0px;" +
-  "font-weight: bold;" +
+  // "font-weight: bold;" +
   "}",
 
   myCardListcardNumberPartTwo: ".mycardlist-card-number-part-two " +
   "{" +
   "position: absolute;" +
   "left:58%;" +
-  "font-weight: bold;" +
+  // "font-weight: bold;" +
   "}",
 
   myCardListnumberStars: ".mycardlist-number-stars " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left: 18%;" +
-  "letter-spacing:" + -8 * widthK + "px;" +
-  "font-size:" + 36 * widthK + "px;" +
+  "left: 19%;" +
+  // "letter-spacing:" + -8 * widthK + "px;" +
+  "font-size:" + 18 * widthK + "px;" +
   "}",
 
   //VIEW TRANSFER
@@ -11051,7 +11052,8 @@ var css = {
   "background-color: transparent;" +
   "border: none;" +
   "outline: none;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "font-family: 'OCRAStd';" +
   //"letter-spacing:1px;" +
   "word-spacing:" + 25 * widthK + "px;" +
   "}",
@@ -11109,7 +11111,8 @@ var css = {
   "background-color: transparent;" +
   "outline: none;" +
   "border: none;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "font-family: 'OCRAStd';" +
   "}",
 
   addCardCardPin: ".add-card-card-pin " +
