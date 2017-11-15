@@ -43,6 +43,15 @@ var css = {
   "font-style: normal;" +
   "}",
 
+  OcrAStdRegular: "@font-face " +
+  "{" +
+  "font-family: 'OCRAStd';" +
+  "src: url('resources/font/OCRAStd/OCRAStd.otf');" +
+  "format: ('opentype');" +
+  "font-weight: normal;" +
+  "font-style: normal;" +
+  "}",
+
 
   // riotTagsMainContainer: ".riot-tags-main-container " +
   // "{" +
