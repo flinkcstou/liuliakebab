@@ -162,6 +162,12 @@ var RU_LANGUAGES =
   "ViewPayTransferByPhoneNumberTitle": "ПЕРЕВОД НА НОМЕР",
   "ViewPayTransferHistoryTitle": "ИСТОРИЯ ПЕРЕВОДОВ",
   "ViewPayTransferNewCardTextField": "Введите номер карты получателя:",
+  "ViewPayTransferNewContactName": "Пользователю CLICK",
+  "ViewPayTransferNewCardName": "На карту друга",
+  "ViewPayTransferNewBetweenName": "Между моими картами",
+  "ViewPayTransferNewTitle": "ПЕРЕВОД СРЕДСТВ",
+  "ViewPayTransferNewContactTextField": "Номер телефона друга:",
+  "ViewPayTransferNewContinue": "ПРОДОЛЖИТЬ",
 
 
   "ViewTransferTwoTax": "Комиссия: ",
@@ -206,8 +212,6 @@ var RU_LANGUAGES =
   "ComponentInProcessingPartOneForPay": "Оплата передана на обработку.",
   "ComponentInProcessingPartTwo": "Ждите СМС с результатом!",
   "ComponentInProcessingPayment": "Оплата передана на обработку. Ждите СМС с результатом!",
-
-  "ComponentInProcessingPartTwoForTransfer": "и ожидает подтверждения получателя",
 
   "ComponentUnsuccessMessagePart1": 'Извините,',
   "ComponentUnsuccessMessagePart2": 'что-то пошло не так.',

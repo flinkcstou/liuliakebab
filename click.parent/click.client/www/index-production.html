@@ -218,6 +218,16 @@
       document.addEventListener("resume", onResumeFunction, false);
       document.addEventListener("online", onlineDetector, false);
       document.addEventListener("offline", offlineDetector, false);
+      //raise button on keyboardShow
+      window.addEventListener('native.keyboardshow', keyboardShowHandler);
+      window.addEventListener('native.keyboardhide', keyboardHideHandler);
+
+      function keyboardShowHandler(e){
+        console.log('Keyboard height is: ' + e.keyboardHeight);
+      }
+      function keyboardHideHandler(e){
+        console.log('Keyboard hidden');
+      }
     }, false);
   }
 
@@ -376,18 +386,6 @@
 
 
   function checkImageURL(dirEntry, fileNamePrefix, fileName, assetURL, index, callback) {
-
-//    var xhr = new XMLHttpRequest();
-//
-//    xhr.open('GET', cordova.file.applicationDirectory + dirEntry + fileName, true);
-//    xhr.responseType = 'blob';
-//
-//    xhr.onload = function () {
-//      var blob = new Blob([this.response], {type: 'image/png'});
-//      callback(false, index, fileName);
-//    };
-//
-//    xhr.onerror = function () {
 
     var convertFunction = convertFileToDataURLviaFileReader;
 

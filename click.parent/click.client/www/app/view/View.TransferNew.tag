@@ -12,44 +12,56 @@
   </div>
 
   <div class="transfer-body-container">
-    <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
-      <li style="overflow: hidden;">
-        <div class="transfer-block-container"
-             id="view-transfer-by-card"
-             ontouchend="transferTouchEnd(this.id)" ontouchstart="transferTouchStart()">
-          <div class="transfer-category-icon"></div>
-          <div class="transfer-category-name-field">{window.languages.ViewPayTransferByCardNumber}</div>
-          <div class="transfer-icon-tick"></div>
+    <div id="menuContainerId" class="transfer-new-menu-container">
+      <div id="contact" class="transfer-new-menu-item"
+           ontouchend="transferTypeTouchEnd(this.id)"
+           ontouchstart="transferTypeTouchStart()"
+           activated="false">
+        <div id="contactIconId"
+             class="transfer-new-menu-contact-icon">
         </div>
-      </li>
-      <li style="overflow: hidden;">
-        <div class="transfer-block-container"
-             id="view-transfer-by-phone"
-             ontouchend="transferTouchEnd(this.id)" ontouchstart="transferTouchStart()">
-          <div class="transfer-category-icon"></div>
-          <div class="transfer-category-name-field">{window.languages.ViewPayTransferByPhoneNumber}</div>
-          <div class="transfer-icon-tick"></div>
+        <p id="contactLabelId" class="transfer-new-menu-label-contact">
+          {window.languages.ViewPayTransferNewContactName}</p>
+      </div>
+      <div id="card" class="transfer-new-menu-item"
+           ontouchend="transferTypeTouchEnd(this.id)"
+           ontouchstart="transferTypeTouchStart()"
+           activated="false">
+        <div id="cardIconId" class="transfer-new-menu-card-icon">
         </div>
-      </li>
-      <li style="overflow: hidden;">
-        <div class="transfer-block-container"
-             id="view-transfer-between-cards"
-             ontouchend="transferTouchEnd(this.id)" ontouchstart="transferTouchStart()">
-          <div class="transfer-category-icon"></div>
-          <div class="transfer-category-name-field">{window.languages.ViewPayTransferBetweenCards}</div>
-          <div class="transfer-icon-tick"></div>
+        <p id="cardLabelId" class="transfer-new-menu-label-card">
+          {window.languages.ViewPayTransferNewCardName}</p>
+      </div>
+      <div id="between" class="transfer-new-menu-item"
+           ontouchend="transferTypeTouchEnd(this.id)"
+           ontouchstart="transferTypeTouchStart()"
+           activated="false">
+        <div id="betweenIconId" class="transfer-new-menu-between-icon">
         </div>
-      </li>
-      <li style="overflow: hidden;">
-        <div class="transfer-block-container"
-             id="view-transfer-history"
-             ontouchend="transferTouchEnd(this.id)" ontouchstart="transferTouchStart()">
-          <div class="transfer-category-icon"></div>
-          <div class="transfer-category-name-field">{window.languages.ViewPayTransferHistory}</div>
-          <div class="transfer-icon-tick"></div>
-        </div>
-      </li>
-    </ul>
+        <p id="betweenLabelId" class="transfer-new-menu-label-between">
+          {window.languages.ViewPayTransferNewBetweenName}</p>
+      </div>
+    </div>
+    <component-transfer-contact
+      style="display: none"
+      class="transfer-new-form-container"
+      id="contactForm">
+    </component-transfer-contact>
+
+    <component-transfer-card
+      style="display: none"
+      class="transfer-new-form-container"
+      id="cardForm">
+    </component-transfer-card>
+
+    <component-transfer-between
+      style="display: none"
+      class="transfer-new-form-container"
+      id="betweenForm">
+    </component-transfer-between>
+    <button id="bottomButtonId" class="transfer-new-button-container">
+      {buttonText}
+    </button>
   </div>
 
   <div hidden="{!showComponent}" id="componentBankListId" class="component-bank-list">
@@ -101,9 +113,9 @@
   <component-tour view="transfer" focusfield="{true}"></component-tour>
   <script>
 
-    viewTransfer.check = true;
-    this.titleName = window.languages.ViewPayTransferTitle;
     var scope = this;
+    scope.titleName = window.languages.ViewPayTransferNewTitle;
+    scope.buttonText = window.languages.ViewPayTransferNewContinue;
     scope.tourClosed = true;
     scope.clickPinError = false;
     scope.showComponent = false;
@@ -122,42 +134,106 @@
     }
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-    this.on('mount', function () {
+    scope.on('mount', function () {
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
         componentTourId.style.display = "block";
         scope.tourClosed = false;
         if (device.platform !== 'BrowserStand')
           StatusBar.backgroundColorByHexString("#004663");
       }
+      showTransferByContact();
     });
-
-    //Choose transfer type and tour processing
     {
-      var transferTouchStartX, transferTouchStartY, transferTouchEndX, transferTouchEndY;
-      transferTouchStart = function () {
+      //Choose transfer type
+      var transferTypeTouchStartX, transferTypeTouchStartY, transferTypeTouchEndX, transferTypeTouchEndY;
+      transferTypeTouchStart = function () {
         event.preventDefault();
         event.stopPropagation();
 
-        transferTouchStartX = event.changedTouches[0].pageX;
-        transferTouchStartY = event.changedTouches[0].pageY;
-      }
-      transferTouchEnd = function (id) {
+        transferTypeTouchStartX = event.changedTouches[0].pageX;
+        transferTypeTouchStartY = event.changedTouches[0].pageY;
+      };
+      transferTypeTouchEnd = function (id) {
         event.preventDefault();
         event.stopPropagation();
 
-        transferTouchEndX = event.changedTouches[0].pageX;
-        transferTouchEndY = event.changedTouches[0].pageY;
+        transferTypeTouchEndX = event.changedTouches[0].pageX;
+        transferTypeTouchEndY = event.changedTouches[0].pageY;
 
-        if (Math.abs(transferTouchStartX - transferTouchEndX) <= 20
-          && Math.abs(transferTouchStartY - transferTouchEndY) <= 20) {
-          console.log("Go to transfer", id);
-          riotTags.innerHTML = "<" + id + ">";
-          riot.mount(id);
+        if (Math.abs(transferTypeTouchStartX - transferTypeTouchEndX) <= 20
+          && Math.abs(transferTypeTouchStartY - transferTypeTouchEndY) <= 20) {
+          makeAllGrey();
+          if (id === 'contact') {
+            showTransferByContact();
+          }
+          if (id === 'card') {
+            showTransferByCard();
+          }
+          if (id === 'between') {
+            showTransferByBetween();
+          }
         }
       };
+
+      //Make all labels and icons grey
+      makeAllGrey = function () {
+        contactLabelId.style.color = "#989898";
+        cardLabelId.style.color = "#989898";
+        betweenLabelId.style.color = "#989898";
+        if (contact.getAttribute('activated') === 'true') {
+          contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser2.png)';
+          contact.setAttribute('activated', false);
+        }
+        if (card.getAttribute('activated') === 'true') {
+          cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend2.png)';
+          card.setAttribute('activated', false);
+        }
+        if (between.getAttribute('activated') === 'true') {
+          betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown2.png)';
+          between.setAttribute('activated', false);
+        }
+        contactForm.style.display = "none";
+        cardForm.style.display = "none";
+        betweenForm.style.display = "none";
+      };
+
+      //Open transfer by contact
+      showTransferByContact = function () {
+        if (contact.getAttribute('activated') === 'false') {
+          makeAllGrey();
+          contactForm.style.display = "block";
+          contactLabelId.style.color = "black";
+          contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser1.png)';
+          contact.setAttribute('activated', true);
+        }
+      };
+
+      //Open transfer by card
+      showTransferByCard = function () {
+        if (card.getAttribute('activated') === 'false') {
+          makeAllGrey();
+          cardForm.style.display = "block";
+          cardLabelId.style.color = "black";
+          cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend1.png)';
+          card.setAttribute('activated', true);
+        }
+      };
+
+      //Open transfer by between
+      showTransferByBetween = function () {
+        if (between.getAttribute('activated') === 'false') {
+          makeAllGrey();
+          betweenForm.style.display = "block";
+          betweenLabelId.style.color = "black";
+          betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown1.png)';
+          between.setAttribute('activated', true);
+        }
+      };
+      //Tour processing
       focusFieldAfterTourClosed = function () {
         scope.tourClosed = true;
-      }
+      };
+
     }
 
     //Info about banks

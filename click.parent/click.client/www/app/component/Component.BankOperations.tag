@@ -123,8 +123,8 @@
       transferButtonId.style.webkitTransform = 'scale(1)';
 
       if (Math.abs(transferStartX - transferEndX) <= 20 && Math.abs(transferStartY - transferEndY) <= 20) {
-        riotTags.innerHTML = "<view-transfer>";
-        riot.mount('view-transfer');
+        riotTags.innerHTML = "<view-transfer-new>";
+        riot.mount('view-transfer-new');
 //        scope.unmount()
       }
       else return;

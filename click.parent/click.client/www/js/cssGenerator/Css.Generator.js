@@ -5645,6 +5645,35 @@ var css = {
   "background-color: transparent;" +
   "}",
 
+  transferNewMenuItem: ".transfer-new-menu-item" +
+  "{" +
+  "width: 33.33%;" +
+  "height: 100%;" +
+  "float: left;" +
+  "font-size:" + 27 * widthK + "px;" +
+  "color: #989898;" +
+  "}",
+
+  transferNewMenuContainer: ".transfer-new-menu-container" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 155 * widthK + "px;" +
+  "width: 100%;" +
+  "top: 0;" +
+  "background-color: #f1f1f1;" +
+  "}",
+
+  transferNewContactPhoneField: ".transfer-new-contact-phone-field" +
+  "{" +
+  "position: relative;" +
+  "left: 10%;" +
+  "width: 68.5%;" +
+  "height:" + 130 * widthK + "px;" +
+  "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  "padding-top: 8%;" +
+  "}",
+
   transferCardOwnerContainer: ".transfer-card-owner-container " +
   "{" +
   "position: relative;" +
@@ -5716,6 +5745,186 @@ var css = {
   "background-size: 68%;" +
   "background-position: center;" +
   "opacity: 0.5;" +
+  "}",
+
+  transferNewMenuLabelContact: ".transfer-new-menu-label-contact" +
+  "{" +
+  "margin-left: 16%;" +
+  "margin-right: auto;" +
+  "margin-top: 5%;" +
+  "width: 75%;" +
+  "text-align: center;" +
+  "word-wrap: break-word;" +
+  "}",
+
+  transferNewMenuLabelCard: ".transfer-new-menu-label-card" +
+  "{" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "margin-top: 7%;" +
+  "width: 45%;" +
+  "text-align: center;" +
+  "word-wrap: break-word;" +
+  "}",
+
+  transferNewMenuLabelBetween: ".transfer-new-menu-label-between" +
+  "{" +
+  "margin-left: auto;" +
+  "margin-right: 8%;" +
+  "margin-top: 0%;" +
+  "text-align: center;" +
+  "word-wrap: break-word;" +
+  "}",
+
+  transferNewContactPhoneIcon: ".transfer-new-contact-phone-icon" +
+  "{" +
+  "position: absolute;" +
+  "background-image: url('resources/icons/ViewTransfer/phonebook.png');" +
+  "width: 13%;" +
+  "height: 50%;" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 42 * widthK + "px;" +
+  "background-position: center;" +
+  "top: 56%;" +
+  "right: -19%;" +
+  "}",
+
+  transferNewContactTextField: ".transfer-new-contact-text-field" +
+  "{" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "}",
+
+  transferNewContactNumberFirstPart: ".transfer-new-contact-number-first-part" +
+  "{" +
+  "float: left;" +
+  "position: relative;" +
+  "margin-top: 3%;" +
+  "font-size:" + 51 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "}",
+
+  transferNewMenuContactIcon: ".transfer-new-menu-contact-icon" +
+  "{" +
+  "position: relative;" +
+  "height: 33%;" +
+  "left: 3.5%;" +
+  "margin-top: 5%;" +
+  "background: transparent;" +
+  "background-image: url('resources/icons/ViewTransfer/touser2.png');" +
+  "background-repeat: no-repeat;" +
+  "background-size: 25%;" +
+  "background-position: center;" +
+  "}",
+
+  transferNewMenuCardIcon: ".transfer-new-menu-card-icon" +
+  "{" +
+  "position: relative;" +
+  "height: 27%;" +
+  "margin-top: 7%;" +
+  "background: transparent;" +
+  "background-image: url('resources/icons/ViewTransfer/tofriend2.png');" +
+  "background-repeat: no-repeat;" +
+  "background-size: 25%;" +
+  "background-position: center;" +
+  "}",
+
+  transferNewMenuBetweenIcon: ".transfer-new-menu-between-icon" +
+  "{" +
+  "position: relative;" +
+  "height: 46%;" +
+  "right: 4%;" +
+  "margin-top: 1%;" +
+  "background: transparent;" +
+  "background-image: url('resources/icons/ViewTransfer/toown2.png');" +
+  "background-repeat: no-repeat;" +
+  "background-size: 21%;" +
+  "background-position: center;" +
+  "}",
+
+  transferNewButtonContainer: ".transfer-new-button-container" +
+  "{" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "bottom: 0;" +
+  "color: #ffffff;" +
+  "display: none;" +
+  "}",
+
+  transferNewContactNumberInputPart: ".transfer-new-contact-number-input-part" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "margin-left: 3%;" +
+  "margin-top: 3%;" +
+  "width: 65%;" +
+  "font-size:" + 51 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "}",
+
+  transferNewContactSuggestion: ".transfer-new-contact-suggestion" +
+  "{" +
+  "width: 79.5%;" +
+  "position: relative;" +
+  "height:" + 120 * widthK + "px;" +
+  "background-color: #F0F1F4;" +
+  "left: 10%;" +
+  "}",
+
+  transferNewFormContainer: ".transfer-new-form-container" +
+  "{" +
+  "padding-top:" + 155 * widthK + "px;" +
+  "}",
+
+  transferNewContactPhoto: ".transfer-new-contact-photo" +
+  "{" +
+  "top:" + 8 * widthK + "px;" +
+  "position: relative;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-size: cover;" +
+  "background-position: center;" +
+  "border-radius: 50%;" +
+  "text-align: center;" +
+  "line-height:" + 100 * widthK + "px;" +
+  "font-size:" + 50 * widthK + "px;" +
+  "background-color: #027fe3;" +
+  "color: white;" +
+  "left: 5%;" +
+  "}",
+
+  transferNewCardTextField: ".transfer-new-card-text-field" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "left: 16%;" +
+  "padding-top:" + 35 * widthK + "px;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "}",
+
+  transferNewCardContainer: ".transfer-new-card-container" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "left:" + 59 * widthK + "px;" +
+  "top:" + 20 * widthK + "px;" +
+  "height:" + 345 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-image: url('resources/icons/ViewTransfer/transfer_card.png');" +
   "}",
 
   transferMenuContactLabel: ".transfer-menu-contact-label" +
