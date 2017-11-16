@@ -299,6 +299,11 @@
 
     console.log('balance')
 
+    if (modeOfApp.onlineMode && window.isConnected) {
+      console.log('HIDE CONFIRM')
+      window.common.alert.hide("componentConfirmId");
+    }
+
     if (!checkFirstStarting && localStorage.getItem('click_client_token') && localStorage.getItem('click_client_loginInfo')) {
       var nowMinutes = new Date().getMinutes();
       console.log("BEFORE MINUTES", waitingMinutes);
