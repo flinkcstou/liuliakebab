@@ -3,7 +3,8 @@
     <p class="transfer-new-contact-text-field">{window.languages.ViewPayTransferNewContactTextField}</p>
     <p class="transfer-new-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
     <input id="contactPhoneNumberId"
-           class="transfer-new-contact-number-input-part" type="tel"
+           class="transfer-new-contact-number-input-part"
+           type="tel"
            onpaste="onPasteTrigger()"
            oninput="contactPhoneBlurAndChange()"
            onchange="contactPhoneBlurAndChange()"

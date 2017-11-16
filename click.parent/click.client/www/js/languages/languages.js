@@ -168,6 +168,7 @@ var RU_LANGUAGES =
   "ViewPayTransferNewTitle": "ПЕРЕВОД СРЕДСТВ",
   "ViewPayTransferNewContactTextField": "Номер телефона друга:",
   "ViewPayTransferNewContinue": "ПРОДОЛЖИТЬ",
+  "ViewPayTransferNewCardOwnerTitle": "ФИО:",
 
 
   "ViewTransferTwoTax": "Комиссия: ",

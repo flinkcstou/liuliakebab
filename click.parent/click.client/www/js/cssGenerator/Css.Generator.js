@@ -5924,8 +5924,77 @@ var css = {
   "left:" + 59 * widthK + "px;" +
   "top:" + 20 * widthK + "px;" +
   "height:" + 345 * widthK + "px;" +
+  "width:" + 607 * widthK + "px;" +
+  "background-size: cover;" +
+  "background-position: center;" +
   "background-repeat: no-repeat;" +
   "background-image: url('resources/icons/ViewTransfer/transfer_card.png');" +
+  "}",
+
+  transferNewCardNumberInputPart: ".transfer-new-card-number-input" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "top:" + 154 * widthK + "px;" +
+  "left:" + 48 * widthK + "px;" +
+  "width:" + 510 * widthK + "px;" +
+  "margin: 0%;" +
+  "padding: 0;" +
+  "font-size:" + 37 * widthK + "px;" +
+  "font-family: 'OCRAStd';" +
+  "color: #515151;" +
+  "}",
+
+  transferNewCardOwnerInfo: ".transfer-new-card-owner-info " +
+  "{" +
+  "position: absolute;" +
+  "top: 43%;" +
+  "left: 6%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "text-align: center;" +
+  "color: #626062;" +
+  "}",
+
+  transferNewCardOwnerContainer: ".transfer-new-card-owner-container " +
+  "{" +
+  "position: absolute;" +
+  "top:" + 254 * widthK + "px;" +
+  "left:" + 60 * widthK + "px;" +
+  "}",
+
+  transferNewCardOwnerTitle: ".transfer-new-card-owner-title " +
+  "{" +
+  "position: relative;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "color: #c1c1c1;" +
+  "margin: 0;" +
+  "float: left;" +
+  "}",
+
+  transferNewCardOwnerInfo: ".transfer-new-card-owner-info " +
+  "{" +
+  "position: relative;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "margin: 0;" +
+  "float: left;" +
+  "padding-left:" + 8 * widthK + "px;" +
+  "color: #626062;" +
+  "}",
+
+  transferNewCardBankIcon: ".transfer-new-card-bankIcon" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 129 * widthK + "px;" +
+  "height:" + 37 * widthK + "px;" +
+  "top:" + 34 * widthK + "px;" +
+  "right:" + 34 * widthK + "px;" +
+  "background-size: cover;" +
+  "background-position: center;" +
+  "background-repeat: no-repeat;" +
+  // "background-image: url('resources/icons/cards/typeOfCards/uzcard.png');" +
   "}",
 
   transferMenuContactLabel: ".transfer-menu-contact-label" +
