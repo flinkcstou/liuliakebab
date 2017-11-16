@@ -126,8 +126,6 @@ window.api.initSocket = function () {
               localStorage.setItem("click_client_authorized", false);
 
               riot.update();
-              if (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)
-                return;
               showAlertComponent("Сессия была прервана");
               return;
             }
