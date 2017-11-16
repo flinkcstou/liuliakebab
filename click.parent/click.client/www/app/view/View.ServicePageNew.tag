@@ -215,7 +215,7 @@
     </div>
 
     <div
-        class="{servicepage-pincards-container: opts.mode == 'USUAL',
+      class="{servicepage-pincards-container: opts.mode == 'USUAL',
       servicepage-pincards-container-two: opts.mode != 'USUAL'}">
       <div class="servicepage-pincards-block-container" each="{i in pincardIds}">
         <div class="servicepage-pincard-title">{pincardsMap[i][0].name}</div>
@@ -680,6 +680,7 @@
                 phone += digits[i]
               }
               firstFieldInput.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
+              checkFieldsToActivateNext();
             }, 0);
           }, function (error) {
             console.log('error', error)
