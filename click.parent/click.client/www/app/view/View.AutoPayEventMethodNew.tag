@@ -391,6 +391,7 @@
               phone += digits[i]
             }
             PhoneNumberInput.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
+            checkFieldsEventToActivateNext();
           }, 0);
         }, function (error) {
           console.log('error', error)
