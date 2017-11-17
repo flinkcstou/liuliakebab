@@ -117,12 +117,14 @@ window.api.initSocket = function () {
             var error = parsedData.data[0][0].error_note;
             var error_code = parsedData.data[0][0].error;
             console.log("Error in answer from server", error_code);
-            if (error_code === -31){
+            if (error_code === -31) {
               if (device.platform !== 'BrowserStand') {
                 console.log("Spinner stop in webApi (session is broken)");
                 SpinnerPlugin.activityStop();
               }
               localStorage.setItem('session_broken', true);
+              localStorage.setItem("click_client_authorized", false);
+
               riot.update();
               showAlertComponent("Сессия была прервана");
               return;
@@ -160,7 +162,7 @@ window.api.initSocket = function () {
     window.isConnected = false;
     if (modeOfApp.offlineMode) return;
     console.log('Error with socket ' + error.message);
-    if (navigator.connection.type !== Connection.NONE){
+    if (navigator.connection.type !== Connection.NONE) {
       showAlertComponent("Сервер временно недоступен");
     }
     riot.update();

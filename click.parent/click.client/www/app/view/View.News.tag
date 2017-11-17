@@ -52,13 +52,20 @@
 
       console.log('SCOPE NEW', scope);
 
-      if (!JSON.parse(localStorage.getItem('click_client_authorized'))) {
+      if (sessionStorage.getItem("push_news")) {
+        sessionStorage.setItem("push_news", false)
+      }
 
+
+      console.log("1 authorized=", JSON.parse(localStorage.getItem('click_client_authorized')));
+      console.log("2 settings block=", JSON.parse(localStorage.getItem('settings_block')));
+      console.log("3 onResume=", JSON.parse(localStorage.getItem('onResume')));
+      console.log("4 session_broken=", JSON.parse(localStorage.getItem('session_broken')));//
+//
+      if (!JSON.parse(localStorage.getItem('click_client_authorized')) || JSON.parse(localStorage.getItem('session_broken')) || (JSON.parse(localStorage.getItem('settings_block')) === true && JSON.parse(localStorage.getItem('onResume')))) {
+//
         console.log("AUTH MOUNT FROM NEWS");
 
-        if (sessionStorage.getItem("push_news")) {
-          sessionStorage.setItem("push_news", false)
-        }
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
         return

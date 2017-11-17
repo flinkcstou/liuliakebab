@@ -293,7 +293,7 @@
     setTimeout(function () {
       localStorage.setItem('onResume', true);
       console.log("onResume set true");
-      if (JSON.parse(localStorage.getItem('settings_block')) === true && (!sessionStorage.getItem("push_news") || JSON.parse(sessionStorage.getItem("push_news")) !== true)) {
+      if (JSON.parse(localStorage.getItem('settings_block')) === true) {
         console.log("authorization mount onPause, block true");
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
@@ -308,6 +308,11 @@
     if (modeOfApp.offlineMode) return
 
     console.log('balance')
+
+    if (modeOfApp.onlineMode && window.isConnected) {
+      console.log('HIDE CONFIRM')
+      window.common.alert.hide("componentConfirmId");
+    }
 
     if (!checkFirstStarting && localStorage.getItem('click_client_token') && localStorage.getItem('click_client_loginInfo')) {
       var nowMinutes = new Date().getMinutes();
