@@ -1,8 +1,8 @@
 <component-unsuccess id="componentUnsuccessId" class="component-unsuccess">
-  <p class="unsuccess-operation-success-message">{opts.operationmessagepartone}<br>{opts.operationmessageparttwo}</p>
-  <p class="unsuccess-operation-success-message-part-three">{(opts.operationmessagepartthree)
-    ? opts.operationmessagepartthree :window.languages.tempText}</p>
   <div class="unsuccess-unsuccess-icon"></div>
+  <div class="unsuccess-operation-success-message">{(opts.operationmessagepartthree)
+    ? opts.operationmessagepartthree :window.languages.tempText}
+  </div>
 
   <button id="unsuccessButtonId" class="unsuccess-next-button-inner-container"
           ontouchstart="closeUnsuccessMessageFormStart()" ontouchend="closeUnsuccessMessageFormEnd()">

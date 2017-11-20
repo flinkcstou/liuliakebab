@@ -1,6 +1,6 @@
 <component-success id="componentSuccessId" class="component-success">
-  <p class="success-operation-success-message">{opts.operationmessage}</p>
   <div class="success-success-icon"></div>
+  <div class="success-operation-success-message">{opts.operationmessage}</div>
 
   <button id="closeButtonId" class="success-next-button-inner-container" ontouchstart="closeSuccessMessageFormStart()"
           ontouchend="closeSuccessMessageFormEnd()">
