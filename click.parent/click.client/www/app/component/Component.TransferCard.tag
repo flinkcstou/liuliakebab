@@ -1,50 +1,77 @@
-<component-transfer-card>
-  <p class="transfer-new-card-text-field">{window.languages.ViewPayTransferNewCardTextField}</p>
-  <div id="cardContainer" class="transfer-new-card-container">
-    <div id="bankIcon" class="transfer-new-card-bankIcon"></div>
-    <div id="processingIcon" class="transfer-new-card-processingIcon"></div>
-    <input id="cardInput"
-           class="transfer-new-card-number-input"
-           type="tel"
-           onpaste="onPasteTrigger()"
-           oninput="cardBlurAndChange()"
-           onchange="cardBlurAndChange()"
-           onfocus="cardBlurAndChange()"
-           onkeydown="searchCard(this)"
-           onkeyup="cardOnKeyUp()"/>
-    <div id="cardOwner" class="transfer-new-card-owner-container" hidden>
-      <p class="transfer-new-card-owner-title">{window.languages.ViewPayTransferNewCardOwnerTitle}</p>
-      <p class="transfer-new-card-owner-info">{cardOwner}</p>
-    </div>
+<component-transfer-card class="transfer-new-card"
+                id="{'cardNumber'+opts.countcard}"
+                style="background-image: url({(opts.background)}); color: rgb({opts.fontcolor}); left:{(540 * opts.countcard + 100) * widthK}px">
+
+  <div class="card-bank-name" style="background-image: url({opts.bankname})"></div>
+  <div class="card-salary-title">{opts.name}</div>
+
+  <div class="card-balance-currency-container">
+    <p if="{!modeOfApp.offlineMode}" class="card-balance">{(opts.salary) ? (opts.salary) : (opts.error_message)}</p>
+    <p if="{!modeOfApp.offlineMode && opts.salary}" class="card-currency">{opts.currency}</p>
+
+    <a if="{modeOfApp.offlineMode}" style="color: rgb({opts.fontcolor});" class="offline-card-balance"
+       ontouchstart="offlineBalanceTrueTouchStart()" ontouchend="offlineBalanceTrueTouchEnd()"
+       ontouchmove="offlineBalanceTrueTouchMove()">Получить баланс</a>
   </div>
+
+  <div class="card-number">
+    <div class="card-number-part-one">{opts.numberpartone}</div>
+    <p class="number-stars" if="{opts.numberpartone && opts.numberparttwo}">**** ****</p>
+    <div class="card-number-part-two">{opts.numberparttwo}</div>
+  </div>
+
   <script>
+    modeOfApp.offlineMode.balance = false;
 
     var scope = this;
-    var onPaste = false;
 
-    //Card number input handler
-    cardBlurAndChange = function () {
-      event.preventDefault();
+    if (!opts.background) {
+      console.log('QWEQ');
+      opts.background = 'background-image: url(resources/icons/cards/all.png)';
+      console.log('opts.background', opts.background);
+      scope.update()
+    }
+
+    offlineBalanceTrueTouchStart = function () {
       event.stopPropagation();
+      event.preventDefault();
 
-      if (onPaste) {
-        var cardWithouSpace = inputVerification.spaceDeleter(event.target.value);
-        cardInput.value = inputVerification.cardVerification(cardWithouSpace);
-        onPaste = false;
-      }
+      modeOfApp.offlineMode.balance = true;
 
-      if (cardInput.value.replace(/\s/g, '').length === 16) {
-        cardOwnerFunction();
-        bottomButtonId.style.display = 'block';
+      if (device.platform == "Android") {
+        phonedialer.dial(
+          "*880*2%23",
+          function (err) {
+            if (err == "empty") {
+
+              scope.clickPinError = false;
+              scope.errorNote = "Unknown phone number";
+
+              window.common.alert.show("componentAlertId", {
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+                parent: scope
+              });
+              scope.update();
+            }
+            else console.log("Dialer Error:" + err);
+          },
+          function (success) {
+          }
+        );
+        return
       }
-      else
-        bottomButtonId.style.display = 'none';
-      scope.update();
     };
 
-    onPasteTrigger = function () {
-      onPaste = true;
+    offlineBalanceTrueTouchEnd = function () {
+      event.stopPropagation();
+      event.preventDefault();
     };
+    offlineBalanceTrueTouchMove = function () {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+
 
   </script>
 </component-transfer-card>

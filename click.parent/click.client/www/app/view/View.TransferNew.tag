@@ -42,24 +42,27 @@
           {window.languages.ViewPayTransferNewBetweenName}</p>
       </div>
     </div>
-    <component-transfer-contact
+    <component-transfer-to-contact
       style="display: none"
       class="transfer-new-form-container"
       id="contactForm">
-    </component-transfer-contact>
+    </component-transfer-to-contact>
 
-    <component-transfer-card
+    <component-transfer-to-card
       style="display: none"
       class="transfer-new-form-container"
       id="cardForm">
-    </component-transfer-card>
+    </component-transfer-to-card>
 
     <component-transfer-between
       style="display: none"
       class="transfer-new-form-container"
       id="betweenForm">
     </component-transfer-between>
-    <button id="bottomButtonId" class="transfer-new-button-container">
+    <button id="bottomButtonId"
+            class="transfer-new-button-container"
+            ontouchstart="onTouchStartOfNext()"
+            ontouchend="onTouchEndOfNext()">
       {buttonText}
     </button>
   </div>
@@ -114,11 +117,17 @@
   <script>
 
     var scope = this;
+    var transferTouchStartX,
+      transferTouchStartY,
+      transferTouchEndX,
+      transferTouchEndY;
     scope.titleName = window.languages.ViewPayTransferNewTitle;
     scope.buttonText = window.languages.ViewPayTransferNewContinue;
     scope.tourClosed = true;
     scope.clickPinError = false;
     scope.showComponent = false;
+    scope.allBankList = [];
+    scope.activatedType = '';
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-new') {
       history.arrayOfHistory.push(
         {
@@ -145,23 +154,22 @@
     });
     {
       //Choose transfer type
-      var transferTypeTouchStartX, transferTypeTouchStartY, transferTypeTouchEndX, transferTypeTouchEndY;
       transferTypeTouchStart = function () {
         event.preventDefault();
         event.stopPropagation();
 
-        transferTypeTouchStartX = event.changedTouches[0].pageX;
-        transferTypeTouchStartY = event.changedTouches[0].pageY;
+        transferTouchStartX = event.changedTouches[0].pageX;
+        transferTouchStartY = event.changedTouches[0].pageY;
       };
       transferTypeTouchEnd = function (id) {
         event.preventDefault();
         event.stopPropagation();
 
-        transferTypeTouchEndX = event.changedTouches[0].pageX;
-        transferTypeTouchEndY = event.changedTouches[0].pageY;
+        transferTouchEndX = event.changedTouches[0].pageX;
+        transferTouchEndY = event.changedTouches[0].pageY;
 
-        if (Math.abs(transferTypeTouchStartX - transferTypeTouchEndX) <= 20
-          && Math.abs(transferTypeTouchStartY - transferTypeTouchEndY) <= 20) {
+        if (Math.abs(transferTouchStartX - transferTouchEndX) <= 20
+          && Math.abs(transferTouchStartY - transferTouchEndY) <= 20) {
           makeAllGrey();
           if (id === 'contact') {
             showTransferByContact();
@@ -171,6 +179,36 @@
           }
           if (id === 'between') {
             showTransferByBetween();
+          }
+        }
+      };
+
+      //Go to next step
+      onTouchStartOfNext = function(){
+        event.preventDefault();
+        event.stopPropagation();
+
+        transferTouchStartX = event.changedTouches[0].pageX;
+        transferTouchStartY = event.changedTouches[0].pageY;
+      };
+      onTouchEndOfNext = function () {
+        event.preventDefault();
+        event.stopPropagation();
+
+        transferTouchEndX = event.changedTouches[0].pageX;
+        transferTouchEndY = event.changedTouches[0].pageY;
+
+        if (Math.abs(transferTouchStartX - transferTouchEndX) <= 20
+          && Math.abs(transferTouchStartY - transferTouchEndY) <= 20) {
+
+          if (scope.activatedType === 'contact'){
+
+          }
+          if (scope.activatedType === 'card'){
+
+          }
+          if (scope.activatedType === 'between'){
+
           }
         }
       };
@@ -195,16 +233,20 @@
         contactForm.style.display = "none";
         cardForm.style.display = "none";
         betweenForm.style.display = "none";
+        bottomButtonId.style.display = "none";
       };
 
       //Open transfer by contact
       showTransferByContact = function () {
         if (contact.getAttribute('activated') === 'false') {
           makeAllGrey();
+          checkPhoneNumberLength();
           contactForm.style.display = "block";
           contactLabelId.style.color = "black";
           contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser1.png)';
           contact.setAttribute('activated', true);
+          scope.activatedType = 'contact';
+          scope.update();
         }
       };
 
@@ -212,10 +254,13 @@
       showTransferByCard = function () {
         if (card.getAttribute('activated') === 'false') {
           makeAllGrey();
+          checkCardNumberLength();
           cardForm.style.display = "block";
           cardLabelId.style.color = "black";
           cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend1.png)';
           card.setAttribute('activated', true);
+          scope.activatedType = 'card';
+          scope.update();
         }
       };
 
@@ -227,13 +272,10 @@
           betweenLabelId.style.color = "black";
           betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown1.png)';
           between.setAttribute('activated', true);
+          scope.activatedType = 'between';
+          scope.update();
         }
       };
-      //Tour processing
-      focusFieldAfterTourClosed = function () {
-        scope.tourClosed = true;
-      };
-
     }
 
     //Info about banks
@@ -314,6 +356,7 @@
                   if (localStorage.getItem('click_client_p2p_all_bank_list') !== JSON.stringify(result[1])) {
                     localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(bankListAvailable));
                     localStorage.setItem('click_client_p2p_all_bank_list', JSON.stringify(result[1]));
+                    scope.allBankList = result[1];
                   }
                 }
                 else {
@@ -336,6 +379,10 @@
               }
             });
         }
+
+      if (JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"))) {
+        scope.allBankList = JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"));
+      }
 
       var closeBankListTouchStartX, closeBankListTouchStartY, closeBankListTouchEndX, closeBankListTouchEndY;
 
@@ -436,6 +483,15 @@
         }
       }
     }
+
+    //Tour processing
+    focusFieldAfterTourClosed = function () {
+      scope.tourClosed = true;
+      setTimeout(function () {
+        contactPhoneNumberId.autofocus;
+        contactPhoneNumberId.focus();
+      }, 0)
+    };
 
   </script>
 </view-transfer-new>

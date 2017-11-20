@@ -5857,7 +5857,7 @@ var css = {
   "background-color: #00a8f1;" +
   "bottom: 0;" +
   "color: #ffffff;" +
-  "display: none;" +
+  // "display: none;" +
   "}",
 
   transferNewContactNumberInputPart: ".transfer-new-contact-number-input-part" +
@@ -5882,6 +5882,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "background-color: #F0F1F4;" +
   "left: 10%;" +
+  "margin-top:" + 5 * widthK + "px;" +
   "}",
 
   transferNewFormContainer: ".transfer-new-form-container" +
@@ -5984,17 +5985,128 @@ var css = {
   "color: #626062;" +
   "}",
 
-  transferNewCardBankIcon: ".transfer-new-card-bankIcon" +
+  transferNewCardProcessingIcon: ".transfer-new-card-processingIcon" +
   "{" +
   "position: absolute;" +
   "width:" + 129 * widthK + "px;" +
   "height:" + 37 * widthK + "px;" +
   "top:" + 34 * widthK + "px;" +
   "right:" + 34 * widthK + "px;" +
-  "background-size: cover;" +
+  "background-size: contain;" +
   "background-position: center;" +
   "background-repeat: no-repeat;" +
+  // "display: none;" +
   // "background-image: url('resources/icons/cards/typeOfCards/uzcard.png');" +
+  "}",
+
+  transferNewCardBankIcon: ".transfer-new-card-bankIcon" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 185 * widthK + "px;" +
+  "height:" + 90 * widthK + "px;" +
+  "top:" + 20 * widthK + "px;" +
+  "left:" + 10 * widthK + "px;" +
+  "background-size: contain;" +
+  "background-position: center;" +
+  "background-repeat: no-repeat;" +
+  // "display: none;" +
+  // "background-image: url('resources/icons/cards/typeOfCards/uzcard.png');" +
+  "}",
+
+  transferNewCardSuggestionsContainer: ".transfer-new-card-suggestions-container" +
+  "{" +
+  "padding-top:" + 207 * widthK + "px;" +
+  "}",
+
+  transferNewContactFoundContainer: ".transfer-new-card-found-container" +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "height:" + 117 * widthK + "px;" +
+  "background-color: #F0F1F4;" +
+  "left: 5%;" +
+  "margin-top:" + 8 * widthK + "px;" +
+  "}",
+
+  transferNewCardFoundTextTwo: ".transfer-new-card-found-text-two" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left:" + 320 * widthK + "px;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: 40%;" +
+  "}",
+
+  transferNewContactSuggestionsContainer: ".transfer-new-contact-suggestions-container" +
+  "{" +
+  "padding-top:" + 15 * widthK + "px;" +
+  "}",
+
+  transferNewBetweenAmountField: ".transfer-new-between-amount-field" +
+  "{" +
+  "position: relative;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height:" + 120 * widthK + "px;" +
+  "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  "padding-top:" + 25 * widthK + "px;" +
+  "}",
+
+  transferNewBetweenTextField: ".transfer-new-between-text-field" +
+  "{" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "}",
+
+  transferNewBetweenAmountInput: ".transfer-new-between-amount-input" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "width: 65%;" +
+  "font-size:" + 51 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "}",
+
+  transferNewBetweenInputCommission: ".transfer-new-between-input-commission" +
+  "{" +
+  "position: relative;" +
+  "color: gray;" +
+  "text-align: right;" +
+  "font-size:" + 33 * widthK + "px;" +
+  "margin-top:" + 17 * widthK + "px;" +
+  "}",
+
+  transferNewCardCarousel: ".transfer-new-card-carousel " +
+  "{" +
+  "position: relative;" +
+  "height:" + 290 * widthK + "px;" +
+  "width: 100%;" +
+  "display: inline-block;" +
+  "background: transparent;" +
+  "transition: 1s;" +
+  "-webkit-transform: scale(1);" +
+  "}",
+
+  transferNewCard: ".transfer-new-card " +
+  "{" +
+  "background-image: url(resources/icons/cards/all.png);" +
+  "-webkit-appearance: none;" +
+  "height:" + 289 * widthK + "px;" +
+  "width:" + 510 * widthK + "px;" +
+  "position: absolute;" +
+  "top:" + 7 * widthK + "px;" +
+  "-webkit-border-radius:" + 14 * widthK + "px;" +
+  "-moz-border-radius:" + 14 * widthK + "px;" +
+  "border-radius:" + 14 * widthK + "px;" +
+  "background-size: cover;" +
+  "color: white;" +
   "}",
 
   transferMenuContactLabel: ".transfer-menu-contact-label" +
