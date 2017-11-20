@@ -895,19 +895,12 @@
                   scope.autoPayData.fromView = 'AFTERCREATION';
                 scope.autoPayData.isNew = false;
                 localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-//                window.common.alert.show("componentSuccessId", {
-//                  parent: scope,
-//                  operationmessage: scope.operationMessage,
-//                  goback: scope.goBack,
-//                  viewpage: scope.viewPage,
-//                  step_amount: scope.stepAmount
-//                });
-
-                window.common.alert.show("componentInProcessingId", {
+                window.common.alert.show("componentSuccessId", {
                   parent: scope,
-                  operationmessagepartone: window.languages.ComponentInProcessingPartOneForTransfer,
-                  operationmessageparttwo: "и ожидает подтверждения",
-                  step_amount: 3
+                  operationmessage: scope.operationMessage,
+                  goback: scope.goBack,
+                  viewpage: scope.viewPage,
+                  step_amount: scope.stepAmount
                 });
 
               }
