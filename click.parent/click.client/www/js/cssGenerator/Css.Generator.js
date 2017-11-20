@@ -11920,6 +11920,8 @@ var css = {
   "top:" + 250 * widthK + "px" + "!important;" +
   "font-size:" + 36 * widthK + "px;" +
   "opacity: 0;" +
+  "height: 300px;" +
+  "overflow: hidden;" +
   "}",
 
   componentResultMessageStart: ".component-result-message-start " +
