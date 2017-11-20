@@ -835,6 +835,7 @@
                   step_amount: scope.stepAmount
                 });
 
+
               }
               else {
                 scope.errorMessageFromPayment = result[0][0].error_note;
@@ -894,12 +895,19 @@
                   scope.autoPayData.fromView = 'AFTERCREATION';
                 scope.autoPayData.isNew = false;
                 localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-                window.common.alert.show("componentSuccessId", {
+//                window.common.alert.show("componentSuccessId", {
+//                  parent: scope,
+//                  operationmessage: scope.operationMessage,
+//                  goback: scope.goBack,
+//                  viewpage: scope.viewPage,
+//                  step_amount: scope.stepAmount
+//                });
+
+                window.common.alert.show("componentInProcessingId", {
                   parent: scope,
-                  operationmessage: scope.operationMessage,
-                  goback: scope.goBack,
-                  viewpage: scope.viewPage,
-                  step_amount: scope.stepAmount
+                  operationmessagepartone: window.languages.ComponentInProcessingPartOneForTransfer,
+                  operationmessageparttwo: "и ожидает подтверждения",
+                  step_amount: 3
                 });
 
               }

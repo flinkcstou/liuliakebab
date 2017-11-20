@@ -6904,7 +6904,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 610 * widthK + "px;" +
+  "top:" + 400 * widthK + "px;" +
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
@@ -6919,7 +6919,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 610 * widthK + "px;" +
+  "top:" + 400 * widthK + "px;" +
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
@@ -6934,7 +6934,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 610 * widthK + "px;" +
+  "top:" + 400 * widthK + "px;" +
   "left: 0;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
