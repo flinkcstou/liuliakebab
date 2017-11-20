@@ -2,25 +2,48 @@
   <div class="transfer-new-between-amount-field">
     <p class="transfer-new-between-text-field">{window.languages.ViewTransferDetailTitleSum}</p>
     <input id="betweenAmountId"
-           class="transfer-new-contact-number-input-part"
+           class="transfer-new-between-amount-input"
            type="tel">
     <p if="{!showPlaceHolderError && !modeOfApp.offlineMode}" class="transfer-new-between-input-commission">
       {window.languages.ViewTransferTwoTax} 1000
       {window.languages.Currency}</p>
   </div>
 
-  <div id="cardFromId">
-    <component-transfer-card-carousel
-      carouselId="1">
-    </component-transfer-card-carousel>
+  <div id="cardFromId"
+       class="transfer-new-card-from">
+    <p class="transfer-new-between-from-text-field">{window.languages.ViewPayTransferBetweenCardsFrom}</p>
+    <component-transfer-card-carousel-top
+      carouselid="1"
+      style="position: relative;
+      right:{16 * widthK}px;
+      top:{16 * widthK}px">
+    </component-transfer-card-carousel-top>
   </div>
 
-  <div id="cardToId">
-    <component-transfer-card-carousel
-    carouselId="2">
-    </component-transfer-card-carousel>
+  <div class="transfer-new-between-cards-arrow">
+  </div>
+
+  <div id="cardToId"
+       class="transfer-new-card-to">
+    <p class="transfer-new-between-from-text-field">{window.languages.ViewPayTransferBetweenCardsTo}</p>
+    <component-transfer-card-carousel-bottom
+    carouselid="2"
+    style="position: relative;
+      right:{16 * widthK}px;
+      top:{11 * widthK}px">
+    </component-transfer-card-carousel-bottom>
   </div>
   <script>
+  var scope = this;
+  if (localStorage.getItem('click_client_cards')) {
+    scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
+    scope.update();
+  }
+
+  scope.count = localStorage.getItem('click_client_countCard');
+  if (!scope.count)
+    scope.count = 1;
+
 
   </script>
 </component-transfer-between>

@@ -6079,14 +6079,15 @@ var css = {
   "position: relative;" +
   "color: gray;" +
   "text-align: right;" +
-  "font-size:" + 33 * widthK + "px;" +
+  "font-size:" + 32 * widthK + "px;" +
   "margin-top:" + 17 * widthK + "px;" +
+  "margin-right:" + 8 * widthK + "px;" +
   "}",
 
   transferNewCardCarousel: ".transfer-new-card-carousel " +
   "{" +
   "position: relative;" +
-  "height:" + 290 * widthK + "px;" +
+  "height:" + 235 * widthK + "px;" +
   "width: 100%;" +
   "display: inline-block;" +
   "background: transparent;" +
@@ -6098,8 +6099,8 @@ var css = {
   "{" +
   "background-image: url(resources/icons/cards/all.png);" +
   "-webkit-appearance: none;" +
-  "height:" + 289 * widthK + "px;" +
-  "width:" + 510 * widthK + "px;" +
+  "height:" + 222 * widthK + "px;" +
+  "width:" + 393 * widthK + "px;" +
   "position: absolute;" +
   "top:" + 7 * widthK + "px;" +
   "-webkit-border-radius:" + 14 * widthK + "px;" +
@@ -6107,6 +6108,119 @@ var css = {
   "border-radius:" + 14 * widthK + "px;" +
   "background-size: cover;" +
   "color: white;" +
+  "}",
+
+  transferNewCardFrom: ".transfer-new-card-from " +
+  "{" +
+  "position: relative;" +
+  "margin-top:" + 59 * widthK + "px;" +
+  "margin-left: 10%" +
+  "}",
+
+  transferNewCardTo: ".transfer-new-card-to " +
+  "{" +
+  "position: relative;" +
+  "margin-top:" + 17 * widthK + "px;" +
+  "margin-left: 10%" +
+  "}",
+
+  transferNewCardBalansCurrencyContainer: ".transfer-new-card-balance-currency-container " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 500 * widthK + "px;" +
+  "top:" + 116 * widthK + "px;" +
+  "left:" + 27 * widthK + "px;" +
+  "display: inline-block;" +
+  "margin: 0;" +
+  "overflow: hidden;" +
+  "}",
+
+  transferNewCardBalance: ".transfer-new-card-balance " +
+  "{" +
+  "position: relative;" +
+  "font-size:" + 40 * widthK + "px;" +
+  "margin: 0;" +
+  "float: left;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "max-height: 52%;" +
+  "}",
+
+  transferNewCardCurrency: ".transfer-new-card-currency " +
+  "{" +
+  "position: relative;" +
+  "bottom:" + 8 * widthK + "px;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "margin-left:" + 7 * widthK + "px;" +
+  "background-size: contain;" +
+  "float: left;" +
+  "width:" + 60 * widthK + "px;" +
+  "}",
+
+  transferNewCardSalaryTitle: ".transfer-new-card-salary-title " +
+  "{" +
+  "position: absolute;" +
+  "top:" + 93 * widthK + "px;" +
+  "left:" + 27 * widthK + "px;" +
+  "background-size: contain;" +
+  "font-size:" + 23 * widthK + "px;" +
+  "height: 10%;" +
+  "width: 90%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  transferNewCardNumber: ".transfer-new-card-number " +
+  "{" +
+  "position: absolute;" +
+  "top:" + 181 * widthK + "px;" +
+  "width:" + 384 * widthK + "px;" +
+  "height:" + 40 * widthK + "px;" +
+  "font-size:" + 23 * widthK + "px;" +
+  "font-family: 'OCRAStd';" +
+  "left:" + 27 * widthK + "px;" +
+  "}",
+
+  transferNewCardNumberPartOne: ".transfer-new-card-number-part-one " +
+  "{" +
+  "position: absolute;" +
+  "left: 0px;" +
+  "}",
+
+  transferNewNumberStars: ".transfer-new-number-stars " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left:" + 76 * widthK + "px;" +
+  "font-size:" + 23 * widthK + "px;" +
+  "}",
+
+  transferNewCardNumberPartTwo: ".transfer-new-card-number-part-two " +
+  "{" +
+  "position: absolute;" +
+  "left:" + 233 * widthK + "px;" +
+  "}",
+
+  transferNewBetweenFromTextField: ".transfer-new-between-from-text-field" +
+  "{" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "}",
+
+  transferNewBetweenCardsArrow: ".transfer-new-between-cards-arrow" +
+  "{" +
+  "position: relative;" +
+  "background-image: url('resources/icons/ViewTransfer/between_cards_arrow.png');" +
+  "margin-top:" + 20 * widthK + "px;" +
+  "margin-left:" + 336 * widthK + "px;" +
+  "width:" + 49 * widthK + "px;" +
+  "height:" + 53 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-size: cover;" +
+  "background-position: center;" +
   "}",
 
   transferMenuContactLabel: ".transfer-menu-contact-label" +
