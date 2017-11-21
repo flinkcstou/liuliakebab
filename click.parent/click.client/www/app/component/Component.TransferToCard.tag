@@ -28,9 +28,16 @@
     </div>
     <div id="cardOwnerId" class="transfer-new-card-owner-container" hidden>
       <p class="transfer-new-card-owner-title">{window.languages.ViewPayTransferNewCardOwnerTitle}</p>
-      <p class="transfer-new-card-owner-info">{cardOwner}</p>
+      <p class="transfer-new-card-owner-info">{parent.cardOwner}</p>
     </div>
   </div>
+  <button if="{showBottomButton}"
+          id="bottomButtonId"
+          class="transfer-new-button-container"
+          ontouchstart="onTouchStartOfNextCard()"
+          ontouchend="onTouchEndOfNextCard()">
+    {window.languages.ViewPayTransferNewContinue}
+  </button>
   <script>
 
     var scope = this;
@@ -51,6 +58,7 @@
     scope.bankImage = '';
     scope.processingImage = '';
     scope.searchCardNumber = '';
+    scope.showBottomButton = false;
 
     //Card number input handler
     cardBlurAndChange = function () {
@@ -157,8 +165,8 @@
           if (result[0][0].error === 0) {
             try {
               if (result[1] && result[1][0]) {
-                scope.cardOwner = result[1][0].card_owner;
-                if (scope.cardOwner)
+                scope.parent.cardOwner = result[1][0].card_owner;
+                if (scope.parent.cardOwner)
                   cardOwnerId.style.display = 'block';
               }
               scope.update()
@@ -199,7 +207,7 @@
             bankIconFound = true;
           }
         });
-        if (bankIconFound === false){
+        if (bankIconFound === false) {
           bankId = '';
           scope.bankImage = '';
           bankIconId.style.display = 'none';
@@ -217,7 +225,7 @@
         processingId = processingIdInInput;
         processingIconFound = false;
         /// TO DO PROCESSING ICON
-        if (processingIconFound === false){
+        if (processingIconFound === false) {
           processingId = '';
           scope.processingImage = '';
           processingIconId.style.display = 'none';
@@ -233,14 +241,15 @@
 
     checkCardNumberLength = function () {
       if (cardInputId.value.replace(/\s/g, '').length === 16) {
-        scope.parent.showBottomButton = true;
+        scope.showBottomButton = true;
         cardSuggestions.style.display = 'none';
         cardOwnerFunction();
       }
       else {
-        scope.parent.showBottomButton = false;
+        scope.showBottomButton = false;
         cardSuggestions.style.display = 'block';
         cardOwnerId.style.display = 'none';
+        scope.parent.cardOwner = '';
       }
       scope.parent.update();
     };
@@ -270,6 +279,127 @@
       }
       checkForIcons();
       checkCardNumberLength();
+    };
+
+    //Go to next step
+    onTouchStartOfNextCard = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      transferCardTouchStartX = event.changedTouches[0].pageX;
+      transferCardTouchStartY = event.changedTouches[0].pageY;
+    };
+    onTouchEndOfNextCard = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      transferCardTouchEndX = event.changedTouches[0].pageX;
+      transferCardTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(transferCardTouchStartX - transferCardTouchEndX) <= 20
+        && Math.abs(transferCardTouchStartY - transferCardTouchEndY) <= 20) {
+
+        if (modeOfApp.onlineMode) {
+          var firstFourSymbols = cardInputId.value.replace(/\s/g, '').substring(0, 4);
+          if (firstFourSymbols !== '8600') {
+            cardInputId.blur();
+            scope.errorNote = 'Неверные данные о карте';
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              pathtosettings: scope.pathToSettings,
+              permissionerror: scope.permissionError,
+            });
+            scope.update();
+            return;
+          }
+          var codeOfBank = cardInputId.value.replace(/\s/g, '').substring(3, 6);
+          var checkOfCode = false;
+          var statusOfBankToP2P = false;
+          var nameOfBank = '';
+
+          var bankList = JSON.parse(localStorage.getItem('click_client_p2p_all_bank_list'));
+          var percentOfBank = 0;
+          var minOfBank = 0;
+          var maxOfBank = 0;
+          if (bankList) {
+            for (var i = 0; i < bankList.length; i++) {
+              if (codeOfBank === bankList[i].code) {
+                checkOfCode = true;
+                nameOfBank = bankList[i].bank_name;
+                if (bankList[i].p2p_status === 1) {
+                  statusOfBankToP2P = true
+                }
+                minOfBank = bankList[i].p2p_min_limit;
+                maxOfBank = bankList[i].p2p_max_limit;
+                percentOfBank = bankList[i].p2p_percent;
+                break;
+              }
+              else {
+                checkOfCode = false;
+              }
+            }
+          }
+          else {
+            cardInputId.blur();
+            scope.errorNote = 'Подождите, данные для обработки информации еще не прогрузились';
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              pathtosettings: scope.pathToSettings,
+              permissionerror: scope.permissionError,
+            });
+
+            scope.update();
+            return;
+          }
+          if (!checkOfCode) {
+            cardInputId.blur();
+            scope.errorNote = 'Неверный номер карты';
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              pathtosettings: scope.pathToSettings,
+              permissionerror: scope.permissionError,
+            });
+            scope.update();
+            return;
+          }
+
+          if (checkOfCode && !statusOfBankToP2P) {
+            cardInputId.blur();
+            scope.errorNote = 'Карта "' + nameOfBank + '" банка временно недоступна для перевода средств';
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              pathtosettings: scope.pathToSettings,
+              permissionerror: scope.permissionError,
+            });
+            scope.update();
+            return;
+          }
+
+          params = {
+            transferType: 'card',
+            cardNumber: cardInputId.value.replace(/\s/g, ''),
+            cardOwner: scope.cardOwner,
+            taxPercent: percentOfBank,
+            minLimit: minOfBank,
+            maxLimit: maxOfBank,
+          };
+          riotTags.innerHTML = "<view-transfer-submit>";
+          riot.mount('view-transfer-submit', params);
+        }
+
+
+      }
     };
 
   </script>

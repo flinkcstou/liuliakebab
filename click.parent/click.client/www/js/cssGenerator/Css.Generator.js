@@ -5652,7 +5652,6 @@ var css = {
   "height: 100%;" +
   "float: left;" +
   "font-size:" + 27 * widthK + "px;" +
-  "color: #989898;" +
   "}",
 
   transferNewMenuContainer: ".transfer-new-menu-container" +
@@ -6220,6 +6219,26 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
   "background-position: center;" +
+  "}",
+
+  transferNewSubmitReceiverContainer: ".transfer-new-submit-receiver-container" +
+  "{" +
+  "position: relative;" +
+  "background-color: #f1f1f1;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "width: 80%;" +
+  "height:" + 85 * widthK + "px;" +
+  "margin-left: 10%;" +
+  "margin-top:" + 30 * widthK + "px;" +
+  "}",
+
+  transferNewSubmitReceiverLabel: ".transfer-new-submit-receiver-label" +
+  "{" +
+  "margin: 0;" +
+  "padding-top:" + 20 * widthK + "px;" +
+  "padding-left:" + 28 * widthK + "px;" +
+  "color: gray;" +
+  "font-size:" + 32 * widthK + "px;" +
   "}",
 
   transferMenuContactLabel: ".transfer-menu-contact-label" +

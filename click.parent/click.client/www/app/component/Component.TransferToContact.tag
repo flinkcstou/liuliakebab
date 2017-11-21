@@ -32,13 +32,20 @@
       <div class="transfer-contact-found-text-two">{i.phone}</div>
     </div>
   </div>
-
+  <button if="{showBottomButton}"
+          id="bottomButtonId"
+          class="transfer-new-button-container"
+          ontouchstart="onTouchStartOfNextContact()"
+          ontouchend="onTouchEndOfNextContact()">
+    {window.languages.ViewPayTransferNewContinue}
+  </button>
   <script>
 
     var scope = this;
     var onPaste = false;
     var contactStopChanging = false;
     var arrayOfContacts = [];
+    var taxPercent = 0;
     var transferContactTouchStartX,
       transferContactTouchStartY,
       transferContactTouchEndX,
@@ -46,6 +53,7 @@
     scope.numberLength = 10;
     scope.searchNumber = '';
     scope.phoneSuggestionsArray = [];
+    scope.showBottomButton = false;
 
     //Find contacts after page is loaded
     findContacts = function () {
@@ -81,6 +89,11 @@
         console.log(e)
       }
     }
+
+    //get comission percent
+    if (JSON.parse(localStorage.getItem('click_client_loginInfo')))
+      taxPercent = JSON.parse(localStorage.getItem('click_client_loginInfo')).p2p_comission;
+
 
     //Contact phone input handler
     contactPhoneBlurAndChange = function () {
@@ -228,14 +241,42 @@
 
     checkPhoneNumberLength = function () {
       if (contactPhoneNumberId.value.length === scope.numberLength) {
-        scope.parent.showBottomButton = true;
+        scope.showBottomButton = true;
         contactPhoneSuggestions.style.display = 'none';
       }
       else {
-        scope.parent.showBottomButton = false;
+        scope.showBottomButton = false;
         contactPhoneSuggestions.style.display = 'block';
       }
       scope.parent.update();
-    }
+    };
+
+    //Go to next step
+    onTouchStartOfNextContact = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      transferContactTouchStartX = event.changedTouches[0].pageX;
+      transferCardTouchStartY = event.changedTouches[0].pageY;
+    };
+    onTouchEndOfNextContact = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      transferCardTouchEndX = event.changedTouches[0].pageX;
+      transferCardTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(transferContactTouchStartX - transferCardTouchEndX) <= 20
+        && Math.abs(transferCardTouchStartY - transferCardTouchEndY) <= 20) {
+
+        params = {
+          transferType: 'contact',
+          phoneNumber: cardInputId.value.replace(/\s/g, ''),
+          taxPercent: taxPercent
+        };
+        riotTags.innerHTML = "<view-transfer-submit>";
+        riot.mount('view-transfer-submit', params);
+      }
+    };
   </script>
 </component-transfer-to-contact>

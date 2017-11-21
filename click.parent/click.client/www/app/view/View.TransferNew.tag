@@ -1,6 +1,6 @@
 <view-transfer-new class="riot-tags-main-container">
   <div class="transfer-page-title">
-    <p class="transfer-name-title">{titleName}</p>
+    <p class="transfer-name-title">{window.languages.ViewPayTransferNewTitle}</p>
     <div id="backButton" ontouchend="goToBackFromTransferTouchEnd()" ontouchstart="goToBackFromTransferTouchStart()"
          class="transfer-back-button" role="button" aria-label="{window.languages.Back}">
     </div>
@@ -59,13 +59,7 @@
       class="transfer-new-form-container"
       id="betweenForm">
     </component-transfer-between>
-    <button if="{showBottomButton}"
-            id="bottomButtonId"
-            class="transfer-new-button-container"
-            ontouchstart="onTouchStartOfNext()"
-            ontouchend="onTouchEndOfNext()">
-      {buttonText}
-    </button>
+
   </div>
 
   <div hidden="{!showComponent}" id="componentBankListId" class="component-bank-list">
@@ -122,14 +116,13 @@
       transferTouchStartY,
       transferTouchEndX,
       transferTouchEndY;
-    scope.titleName = window.languages.ViewPayTransferNewTitle;
-    scope.buttonText = window.languages.ViewPayTransferNewContinue;
+
     scope.tourClosed = true;
     scope.clickPinError = false;
     scope.showComponent = false;
     scope.allBankList = [];
     scope.activatedType = '';
-    scope.showBottomButton = false;
+    scope.cardOwner = '';
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-new') {
       history.arrayOfHistory.push(
         {
@@ -143,6 +136,11 @@
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
     }
+    if (JSON.parse(localStorage.getItem('click_client_loginInfo')))
+      var tax = JSON.parse(localStorage.getItem('click_client_loginInfo')).p2p_comission;
+    else
+      var tax = 0;
+
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
     scope.on('mount', function () {
@@ -183,41 +181,6 @@
           }
           if (id === 'between') {
             showTransferByBetween();
-          }
-        }
-      };
-
-      //Go to next step
-      onTouchStartOfNext = function(){
-        event.preventDefault();
-        event.stopPropagation();
-
-        transferTouchStartX = event.changedTouches[0].pageX;
-        transferTouchStartY = event.changedTouches[0].pageY;
-      };
-      onTouchEndOfNext = function () {
-        event.preventDefault();
-        event.stopPropagation();
-
-        transferTouchEndX = event.changedTouches[0].pageX;
-        transferTouchEndY = event.changedTouches[0].pageY;
-
-        if (Math.abs(transferTouchStartX - transferTouchEndX) <= 20
-          && Math.abs(transferTouchStartY - transferTouchEndY) <= 20) {
-
-          if (scope.activatedType === 'contact'){
-
-          }
-          if (scope.activatedType === 'card'){
-            params = {
-              transferType: 'card',
-              cardNumber: cardInputId.value.replace(/\s/g, ''),
-            };
-            riotTags.innerHTML = "<view-transfer-card-submit>";
-            riot.mount('view-transfer-card-submit', params);
-          }
-          if (scope.activatedType === 'between'){
-
           }
         }
       };

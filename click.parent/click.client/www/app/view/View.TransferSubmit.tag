@@ -1,6 +1,6 @@
-<view-transfer-card-submit class="riot-tags-main-container">
+<view-transfer-submit class="riot-tags-main-container">
   <div class="transfer-page-title">
-    <p class="transfer-name-title">{titleName}</p>
+    <p class="transfer-name-title">{window.languages.ViewPayTransferNewSubmitTitle}</p>
     <div id="backButton" ontouchend="goToBackFromTransferTouchEnd()" ontouchstart="goToBackFromTransferTouchStart()"
          class="transfer-back-button" role="button" aria-label="{window.languages.Back}">
     </div>
@@ -12,18 +12,38 @@
   </div>
 
   <div class="transfer-body-container">
-    <div class="transfer-new-receiver">
-      <p></p>
-      <p></p>
+    <div class="transfer-new-submit-receiver-container">
+      <p class="transfer-new-submit-receiver-label">
+        {window.languages.ViewPayTransferNewSubmitRecieverLabel}
+        {receiver}
+      </p>
     </div>
     <div class="transfer-new-between-amount-field">
       <p class="transfer-new-between-text-field">{window.languages.ViewTransferDetailTitleSum}</p>
-      <input id="betweenAmountId"
+      <input id="submitAmountId"
              class="transfer-new-between-amount-input"
-             type="tel">
+             type="tel"
+             pattern="\d*"
+             maxlength="14"
+             onfocus="amountFocus()"
+             onmouseup="amountMouseUp()"
+             onblur="amountOnBlur()"
+             onkeyup="amountKeyUp()"
+             oninput="amountKeyUp()">
+      <p if="{showPlaceHolderError && maxLimit && minLimit}" id="placeHolderSumId" class="transfer-new-between-input-commission">{placeHolderText}</p>
       <p if="{!showPlaceHolderError && !modeOfApp.offlineMode}" class="transfer-new-between-input-commission">
-        {window.languages.ViewTransferTwoTax} 1000
+        {window.languages.ViewTransferTwoTax} {tax}
         {window.languages.Currency}</p>
+    </div>
+    <div id="cardFromId"
+         class="transfer-new-card-from">
+      <p class="transfer-new-between-from-text-field">{window.languages.ViewPayTransferBetweenCardsFrom}</p>
+      <component-transfer-card-carousel-top
+        carouselid="1"
+        style="position: relative;
+        right:{16 * widthK}px;
+        top:{16 * widthK}px">
+      </component-transfer-card-carousel-top>
     </div>
 
     <button if="{showBottomButton}"
@@ -85,12 +105,18 @@
     var scope = this;
     scope.titleName = window.languages.ViewPayTransferNewTitle;
     scope.buttonText = window.languages.ViewPayTransferNewContinue;
-    scope.tourClosed = true;
     scope.clickPinError = false;
     scope.showComponent = false;
     scope.allBankList = [];
-    scope.activatedType = '';
     scope.showBottomButton = false;
+    scope.receiver = '';
+    scope.maxLimit;
+    scope.minLimit;
+    scope.tax = 0;
+    scope.taxPercent = 0;
+    scope.cardNumberTop = 0;
+    scope.maskOne = /[0-9]/g;
+    scope.maskTwo = /[0-9' ']/g;
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-card-submit') {
       console.log("opts on saving history", opts);
       history.arrayOfHistory.push(
@@ -101,22 +127,107 @@
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
-    if (localStorage.getItem('click_client_loginInfo')) {
-      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-      var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+
+    if (JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"))) {
+      scope.allBankList = JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"));
     }
-    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
     scope.on('mount', function () {
       console.log("opts on mount cardSubmit", opts);
-      if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
-        componentTourId.style.display = "block";
-        scope.tourClosed = false;
-        if (device.platform !== 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#004663");
+      if (opts){
+        if (opts.transferType === 'contact'){
+          scope.receiver = opts.phoneNumber;
+          scope.taxPercent = opts.taxPercent;
+        }
+        if (opts.transferType === 'card'){
+          scope.receiver = opts.cardOwner;
+          scope.taxPercent = opts.taxPercent;
+          scope.maxLimit = opts.maxLimit;
+          scope.minLimit = opts.minLimit;
+        }
       }
     });
     {
+      amountMouseUp = function () {
+        event.preventDefault()
+        event.stopPropagation()
+        if (submitAmountId.value.match(scope.maskOne) !== null
+          && submitAmountId.value.match(scope.maskOne).length !== null) {
+          submitAmountId.selectionStart = submitAmountId.value.match(scope.maskTwo).length;
+          submitAmountId.selectionEnd = submitAmountId.value.match(scope.maskTwo).length;
+        } else {
+          submitAmountId.selectionStart = 0;
+          submitAmountId.selectionEnd = 0;
+        }
+      };
+
+      amountOnBlur = function () {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (submitAmountId.value.length === 0) {
+          submitAmountIdValueId.value = 0;
+        }
+      };
+
+      amountFocus = function () {
+        event.preventDefault();
+        event.stopPropagation();
+        if (submitAmountId.value.length === 1 && submitAmountId.value[0] === 0) {
+          submitAmountId.value = '';
+        }
+      };
+
+      amountKeyUp = function () {
+        console.log(scope);
+        if (submitAmountId.value.length === 1) {
+          submitAmountId.value = window.amountTransform(submitAmountId.value.toString());
+        }
+
+        if (event.keyCode === 8) {
+          sumForTransfer = sumForTransfer.substring(0, sumForTransfer.length - 1);
+        }
+
+        if (submitAmountId.value.match(scope.maskTwo) !== null && submitAmountId.value.match(scope.maskTwo).length !== null) {
+
+          submitAmountId.value = submitAmountId.value.substring(0, event.target.value.match(scope.maskTwo).length);
+          submitAmountId.selectionStart = submitAmountId.value.match(scope.maskTwo).length;
+          submitAmountId.selectionEnd = submitAmountId.value.match(scope.maskTwo).length;
+
+          sumForTransfer = submitAmountId.value.substring(0, submitAmountId.value.match(scope.maskTwo).length);
+          sumForTransfer = sumForTransfer.replace(new RegExp(' ', 'g'), '');
+
+          submitAmountId.value = window.amountTransform(sumForTransfer.toString());
+          submitAmountId.selectionStart = submitAmountId.value.match(scope.maskTwo).length;
+          submitAmountId.selectionEnd = submitAmountId.value.match(scope.maskTwo).length;
+
+        } else {
+          submitAmountId.selectionStart = 0;
+          submitAmountId.selectionEnd = 0;
+        }
+
+        if (sumForTransfer)
+          scope.tax = sumForTransfer * scope.taxPercent / 100;
+        else {
+          scope.tax = 0
+        }
+
+        scope.showPlaceHolderError = false;
+
+        if (scope.cardNumberTop !== 0){
+
+        }
+
+        if (sumForTransfer > scope.maxLimit) {
+          scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit)
+          scope.showPlaceHolderError = true;
+        }
+        if (sumForTransfer < scope.minLimit) {
+          scope.placeHolderText = "Минимальная сумма " + window.amountTransform(scope.minLimit)
+          scope.showPlaceHolderError = true;
+        }
+        scope.update()
+      };
 
     }
 
@@ -279,4 +390,4 @@
     }
 
   </script>
-</view-transfer-card-submit>
+</view-transfer-submit>

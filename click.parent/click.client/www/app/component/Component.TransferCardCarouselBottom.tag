@@ -4,7 +4,7 @@
        ontouchmove="moveTouchCarouselTransferBottom(this)"
        ontouchstart="startTouchCarouselTransferBottom()">
     <div id="{opts.carouselid}" class="cards">
-      <component-transfer-card each="{i in parent.cardsarray}"
+      <component-transfer-card each="{i in cardsarray}"
                       countcard="{i.countCard}"
                       name="{i.name}" salary="{i.salary}" currency="{i.currency}"
                       numberpartone="{i.numberPartOne}"
@@ -24,7 +24,14 @@
     scope.cardNumberBottom = 1;
     scope.leftBottom = 0;
     scope.deltaBottom = 0;
-    console.log("BETWEEN AS PARENT", scope.parent);
+    if (localStorage.getItem('click_client_cards')) {
+      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
+      scope.update();
+    }
+
+    scope.count = localStorage.getItem('click_client_countCard');
+    if (!scope.count)
+      scope.count = 1;
 
     scope.on("mount", function () {
       document.getElementById(scope.carouselidBottom).style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -63,7 +70,7 @@
         event.preventDefault();
         event.stopPropagation();
       }
-      if (carouselTouchEndX < carouselTouchStartX && scope.cardNumberBottom < scope.parent.count - 1) {
+      if (carouselTouchEndX < carouselTouchStartX && scope.cardNumberBottom < scope.count - 1) {
         ++scope.cardNumberBottom;
         document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
@@ -72,7 +79,7 @@
 
       }
 
-      if (carouselTouchEndX < carouselTouchStartX && scope.cardNumberBottom >= scope.parent.count - 1) {
+      if (carouselTouchEndX < carouselTouchStartX && scope.cardNumberBottom >= scope.count - 1) {
         document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberBottom * 404) * widthK + 'px' + ", 0, 0)";

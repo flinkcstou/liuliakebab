@@ -35,14 +35,8 @@
   </div>
   <script>
   var scope = this;
-  if (localStorage.getItem('click_client_cards')) {
-    scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
-    scope.update();
-  }
-
-  scope.count = localStorage.getItem('click_client_countCard');
-  if (!scope.count)
-    scope.count = 1;
+  scope.cardNumberTop = 0;
+  scope.cardNumberBottom = 0;
 
 
   </script>
