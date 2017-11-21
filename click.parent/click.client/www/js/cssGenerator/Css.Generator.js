@@ -5857,7 +5857,7 @@ var css = {
   "background-color: #00a8f1;" +
   "bottom: 0;" +
   "color: #ffffff;" +
-  // "display: none;" +
+  "display: block;" +
   "}",
 
   transferNewContactNumberInputPart: ".transfer-new-contact-number-input-part" +
@@ -6080,8 +6080,7 @@ var css = {
   "color: gray;" +
   "text-align: right;" +
   "font-size:" + 32 * widthK + "px;" +
-  "margin-top:" + 17 * widthK + "px;" +
-  "margin-right:" + 8 * widthK + "px;" +
+  "margin-top:" + 33 * widthK + "px;" +
   "}",
 
   transferNewCardCarousel: ".transfer-new-card-carousel " +

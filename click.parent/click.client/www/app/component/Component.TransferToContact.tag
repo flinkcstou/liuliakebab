@@ -8,7 +8,6 @@
            onpaste="onPasteTrigger()"
            oninput="contactPhoneBlurAndChange()"
            onchange="contactPhoneBlurAndChange()"
-           onfocus="contactPhoneBlurAndChange()"
            onkeyup="searchContacts()"
            onkeydown="telTransferVerificationKeyDown(this)"/>
     <div class="transfer-new-contact-phone-icon"
@@ -229,13 +228,14 @@
 
     checkPhoneNumberLength = function () {
       if (contactPhoneNumberId.value.length === scope.numberLength) {
-        bottomButtonId.style.display = 'block';
+        scope.parent.showBottomButton = true;
         contactPhoneSuggestions.style.display = 'none';
       }
       else {
-        bottomButtonId.style.display = 'none';
+        scope.parent.showBottomButton = false;
         contactPhoneSuggestions.style.display = 'block';
       }
+      scope.parent.update();
     }
   </script>
 </component-transfer-to-contact>

@@ -10,7 +10,6 @@
            onpaste="onPasteTrigger()"
            oninput="cardBlurAndChange()"
            onchange="cardBlurAndChange()"
-           onfocus="cardBlurAndChange()"
            onkeydown="cardOnKeyDown(this)"
            onkeyup="searchCard()"/>
     <div id="cardSuggestions" class="transfer-new-card-suggestions-container">
@@ -55,7 +54,6 @@
 
     //Card number input handler
     cardBlurAndChange = function () {
-      console.log('cardBlurAndChange');
       event.preventDefault();
       event.stopPropagation();
 
@@ -235,15 +233,16 @@
 
     checkCardNumberLength = function () {
       if (cardInputId.value.replace(/\s/g, '').length === 16) {
-        bottomButtonId.style.display = 'block';
+        scope.parent.showBottomButton = true;
         cardSuggestions.style.display = 'none';
         cardOwnerFunction();
       }
       else {
-        bottomButtonId.style.display = 'none';
+        scope.parent.showBottomButton = false;
         cardSuggestions.style.display = 'block';
         cardOwnerId.style.display = 'none';
       }
+      scope.parent.update();
     };
 
     onPasteTrigger = function () {

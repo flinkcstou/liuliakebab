@@ -59,7 +59,8 @@
       class="transfer-new-form-container"
       id="betweenForm">
     </component-transfer-between>
-    <button id="bottomButtonId"
+    <button if="{showBottomButton}"
+            id="bottomButtonId"
             class="transfer-new-button-container"
             ontouchstart="onTouchStartOfNext()"
             ontouchend="onTouchEndOfNext()">
@@ -128,6 +129,7 @@
     scope.showComponent = false;
     scope.allBankList = [];
     scope.activatedType = '';
+    scope.showBottomButton = false;
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-new') {
       history.arrayOfHistory.push(
         {
@@ -144,6 +146,8 @@
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
     scope.on('mount', function () {
+      if (opts)
+        console.log('opts on mount new transfers', opts);
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
         componentTourId.style.display = "block";
         scope.tourClosed = false;
@@ -205,7 +209,12 @@
 
           }
           if (scope.activatedType === 'card'){
-
+            params = {
+              transferType: 'card',
+              cardNumber: cardInputId.value.replace(/\s/g, ''),
+            };
+            riotTags.innerHTML = "<view-transfer-card-submit>";
+            riot.mount('view-transfer-card-submit', params);
           }
           if (scope.activatedType === 'between'){
 
@@ -233,7 +242,6 @@
         contactForm.style.display = "none";
         cardForm.style.display = "none";
         betweenForm.style.display = "none";
-        bottomButtonId.style.display = "none";
       };
 
       //Open transfer by contact
@@ -321,7 +329,6 @@
               pathtosettings: scope.pathToSettings,
               permissionerror: scope.permissionError,
             });
-
             scope.update();
             return;
           }
@@ -329,7 +336,7 @@
           if (JSON.parse(localStorage.getItem("click_client_p2p_bank_list"))) {
             scope.bankList = JSON.parse(localStorage.getItem("click_client_p2p_bank_list"));
           }
-          scope.showComponent = true
+          scope.showComponent = true;
           window.checkShowingComponent = scope;
           scope.update();
         }
